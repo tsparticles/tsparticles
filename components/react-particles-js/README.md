@@ -80,3 +80,8 @@ particlesJS('particles-js', {
 ```
 bower install particles.js --save
 ```
+
+##### ***Install gem***
+```
+gem 'rails-assets-particles.js'
+```
