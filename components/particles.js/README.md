@@ -104,6 +104,11 @@ key | option type / notes | example
 
 ### `Packages install`
 
+##### ***npm***
+```
+npm install particles.js
+```
+
 ##### ***Bower***
 ```
 bower install particles.js --save
