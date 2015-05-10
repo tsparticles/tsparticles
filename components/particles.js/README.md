@@ -130,4 +130,6 @@ meteor add newswim:particles
 
 ### `Hosting / CDN`
 
+***Please use this host or your own to load particles.js on your projects***
+
 http://www.jsdelivr.com/#!particles.js
