@@ -105,6 +105,7 @@ key | option type / notes | example
 ### `Packages install`
 
 ##### ***npm***
+https://www.npmjs.com/package/particles.js
 ```
 npm install particles.js
 ```
@@ -117,6 +118,12 @@ bower install particles.js --save
 ##### ***Rails Assets***
 ```
 gem 'rails-assets-particles.js'
+```
+
+##### ***Meteor***
+https://atmospherejs.com/newswim/particles
+```
+meteor add newswim:particles
 ```
 
 -------------------------------
