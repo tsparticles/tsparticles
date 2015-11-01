@@ -22,9 +22,9 @@ QUnit.test("Path segment types", function(assert) {
     assert.equal(SVGPathSeg.PATHSEG_CURVETO_CUBIC_SMOOTH_REL, "17");
     assert.equal(SVGPathSeg.PATHSEG_CURVETO_QUADRATIC_SMOOTH_ABS, "18");
     assert.equal(SVGPathSeg.PATHSEG_CURVETO_QUADRATIC_SMOOTH_REL, "19");
-    
+
     assert.equal(path.createSVGPathSegClosePath().pathSegType, SVGPathSeg.PATHSEG_CLOSEPATH);
-    assert.equal(path.createSVGPathSegClosePath().pathSegTypeAsLetter, 'z');
+    assert.equal(path.createSVGPathSegClosePath().pathSegTypeAsLetter, "z");
     assert.equal(path.createSVGPathSegMovetoAbs(1, 2).pathSegType, SVGPathSeg.PATHSEG_MOVETO_ABS);
     assert.equal(path.createSVGPathSegMovetoAbs(1, 2).pathSegTypeAsLetter, "M");
     assert.equal(path.createSVGPathSegMovetoAbs(1, 2).x, "1");
@@ -166,6 +166,6 @@ QUnit.test("Validate the pathSegList inheritance model", function(assert) {
 // LayoutTests/svg/dom/SVGPathSegList-appendItem.xhtml
 QUnit.test("Validate the pathSegList inheritance model", function(assert) {
     var path1 = document.createElementNS("http://www.w3.org/2000/svg", "path");
-    path1.setAttribute('d', "M 0 0 L 100 0 L 100 100");
+    path1.setAttribute("d", "M 0 0 L 100 0 L 100 100");
     assert.equal(path1.pathSegList.numberOfItems, "3");
 });
