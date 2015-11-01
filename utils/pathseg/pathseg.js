@@ -212,7 +212,7 @@
         // Spec: http://www.w3.org/TR/SVG11/single-page.html#paths-InterfaceSVGPathSegList
         window.SVGPathSegList = function(pathElement) {
             this._path = pathElement;
-            this._list = [];
+            this._list = this._parsePath(this._path);
             this.numberOfItems = 0;
             // TODO: Parse the path and update _list and numberOfItems.
 
@@ -223,7 +223,7 @@
         }
 
         SVGPathSegList.prototype._synchronizePathToList = function() {
-            // TODO: Synchronize the path's d attribute to this list.
+            this._path = this._parsePath(this._path);
         }
 
         SVGPathSegList.prototype._synchronizeListToPath = function() {
@@ -281,6 +281,403 @@
             // TODO: Optimize this to just append to the existing attribute.
             this._synchronizeListToPath();
             return newItem;
+        }
+
+        SVGPathSegList.prototype._parsePath = function(pathElement) {
+            var dAttribute = pathElement.getAttribute("d");
+            if (!dAttribute || dAttribute.length == 0)
+                return [];
+
+            var PathSegmentData = function() {
+                this.command = SVGPathSeg.PATHSEG_UNKNOWN;
+                this.targetPointX = undefined;
+                this.targetPointY = undefined;
+                this.point1X = undefined;
+                this.point1Y = undefined;
+                this.point2X = undefined;
+                this.point2Y = undefined;
+                this.arcSweep = false;
+                this.arcLarge = false;
+            }
+            PathSegmentData.prototype.arcRadiiX = function() { return this.point1X; }
+            PathSegmentData.prototype.setArcRadiiX = function(x) { this.point1X = x; }
+            PathSegmentData.prototype.arcRadiiY = function() { return this.point1Y; }
+            PathSegmentData.prototype.setArcRadiiY = function(y) { this.point1Y = y; }
+            PathSegmentData.prototype.arcAngle = function() { return this.point2X; }
+            PathSegmentData.prototype.setArcAngle = function(angle) { this.point2X = angle; }
+            PathSegmentData.prototype.r1 = function() { return this.point1X; }
+            PathSegmentData.prototype.r2 = function() { return this.poing1Y; }
+            PathSegmentData.prototype.x = function() { return this.targetPointX; }
+            PathSegmentData.prototype.y = function() { return this.targetPointY; }
+            PathSegmentData.prototype.x1 = function() { return this.point1X; }
+            PathSegmentData.prototype.y1 = function() { return this.point1Y; }
+            PathSegmentData.prototype.x2 = function() { return this.point2X; }
+            PathSegmentData.prototype.y2 = function() { return this.point2Y; }
+
+            var Builder = function() {
+                this.path = [];
+                this._closed = true;
+            }
+
+            Builder.prototype.appendSegment = function(segment) {
+                switch (segment.command) {
+                case SVGPathSeg.PATHSEG_MOVETO_REL:
+                    this.path.push(new SVGPathSegMovetoRel(segment.targetPointX, segment.targetPointY));
+                    break;
+                case SVGPathSeg.PATHSEG_MOVETO_ABS:
+                    this.path.push(new SVGPathSegMovetoAbs(segment.targetPointX, segment.targetPointY));
+                    break;
+                case SVGPathSeg.PATHSEG_LINETO_REL:
+                    this.path.push(new SVGPathSegLinetoRel(segment.targetPointX, segment.targetPointY));
+                    break;
+                case SVGPathSeg.PATHSEG_LINETO_ABS:
+                    this.path.push(new SVGPathSegLinetoAbs(segment.targetPointX, segment.targetPointY));
+                    break;
+                case SVGPathSeg.PATHSEG_LINETO_HORIZONTAL_REL:
+                    this.path.push(new SVGPathSegLinetoHorizontalRel(segment.targetPointX));
+                    break;
+                case SVGPathSeg.PATHSEG_LINETO_HORIZONTAL_ABS:
+                    this.path.push(new SVGPathSegLinetoHorizontalAbs(segment.targetPointX));
+                    break;
+                case SVGPathSeg.PATHSEG_LINETO_VERTICAL_REL:
+                    this.path.push(new SVGPathSegLinetoVerticalRel(segment.targetPointY));
+                    break;
+                case SVGPathSeg.PATHSEG_LINETO_VERTICAL_ABS:
+                    this.path.push(new SVGPathSegLinetoVerticalAbs(segment.targetPointY));
+                    break;
+                case SVGPathSeg.PATHSEG_CLOSEPATH:
+                    this.path.push(new SVGPathSegClosePath());
+                    break;
+                case SVGPathSeg.PATHSEG_CURVETO_CUBIC_REL:
+                    this.path.push(new SVGPathSegCurvetoCubicRel(segment.targetPointX, segment.targetPointY, segment.point1X, segment.point1Y, segment.point2X, segment.point2Y));
+                    break;
+                case SVGPathSeg.PATHSEG_CURVETO_CUBIC_ABS:
+                    this.path.push(new SVGPathSegCurvetoCubicAbs(segment.targetPointX, segment.targetPointY, segment.point1X, segment.point1Y, segment.point2X, segment.point2Y));
+                    break;
+                case SVGPathSeg.PATHSEG_CURVETO_CUBIC_SMOOTH_REL:
+                    this.path.push(new SVGPathSegCurvetoCubicSmoothRel(segment.targetPointX, segment.targetPointY, segment.point2X, segment.point2Y));
+                    break;
+                case SVGPathSeg.PATHSEG_CURVETO_CUBIC_SMOOTH_ABS:
+                    this.path.push(new SVGPathSegCurvetoCubicSmoothAbs(segment.targetPointX, segment.targetPointY, segment.point2X, segment.point2Y));
+                    break;
+                case SVGPathSeg.PATHSEG_CURVETO_QUADRATIC_REL:
+                    this.path.push(new SVGPathSegCurvetoQuadraticRel(segment.targetPointX, segment.targetPointY, segment.point1X, segment.point1Y));
+                    break;
+                case SVGPathSeg.PATHSEG_CURVETO_QUADRATIC_ABS:
+                    this.path.push(new SVGPathSegCurvetoQuadraticAbs(segment.targetPointX, segment.targetPointY, segment.point1X, segment.point1Y));
+                    break;
+                case SVGPathSeg.PATHSEG_CURVETO_QUADRATIC_SMOOTH_REL:
+                    this.path.push(new SVGPathSegCurvetoQuadraticSmoothRel(segment.targetPointX, segment.targetPointY));
+                    break;
+                case SVGPathSeg.PATHSEG_CURVETO_QUADRATIC_SMOOTH_ABS:
+                    this.path.push(new SVGPathSegCurvetoQuadraticSmoothAbs(segment.targetPointX, segment.targetPointY));
+                    break;
+                case SVGPathSeg.PATHSEG_ARC_REL:
+                    this.path.push(new SVGPathSegArcRel(segment.targetPointX, segment.targetPointY, segment.arcRadiiX, segment.arcRadiiY, segment.arcAngle(), segment.arcLarge, segment.arcSweep));
+                    break;
+                case SVGPathSeg.PATHSEG_ARC_ABS:
+                    this.path.push(new SVGPathSegArcAbs(segment.targetPointX, segment.targetPointY, segment.arcRadiiX, segment.arcRadiiY, segment.arcAngle(), segment.arcLarge, segment.arcSweep));
+                    break;
+                default:
+                    throw "Unknown path seg type."
+                }
+            }
+
+            var Source = function(string) {
+                this._string = string;
+                this._currentIndex = 0;
+                this._endIndex = this._string.length;
+                this._previousCommand = SVGPathSeg.PATHSEG_UNKNOWN;
+
+                this._skipOptionalSpaces();
+            }
+
+            Source.prototype._isCurrentSpace = function() {
+                var character = this._string[this._currentIndex];
+                return character <= ' ' && (character == ' ' || character == '\n' || character == '\t' || character == '\r' || character == '\f');
+            }
+
+            Source.prototype._skipOptionalSpaces = function() {
+                while (this._currentIndex < this._endIndex && this._isCurrentSpace())
+                    this._currentIndex++;
+                return this._currentIndex < this._endIndex;
+            }
+
+            Source.prototype._skipOptionalSpacesOrDelimiter = function() {
+                if (this._currentIndex < this._endIndex && !this._isCurrentSpace() && this._string.charAt(this._currentIndex) != ',')
+                    return false;
+                if (this._skipOptionalSpaces()) {
+                    if (this._currentIndex < this._endIndex && this._string.charAt(this._currentIndex) == ',') {
+                        this._currentIndex++;
+                        this._skipOptionalSpaces();
+                    }
+                }
+                return this._currentIndex < this._endIndex;
+            }
+
+            Source.prototype.hasMoreData = function() {
+                return this._currentIndex < this._endIndex;
+            }
+
+            Source.prototype.peekSegmentType = function() {
+                var lookahead = this._string[this._currentIndex];
+                return this._parseSVGSegmentTypeHelper(lookahead);
+            }
+
+            Source.prototype._parseSVGSegmentTypeHelper = function(lookahead) {
+                switch (lookahead) {
+                case "Z":
+                case "z":
+                    return SVGPathSeg.PATHSEG_CLOSEPATH;
+                case "M":
+                    return SVGPathSeg.PATHSEG_MOVETO_ABS;
+                case "m":
+                    return SVGPathSeg.PATHSEG_MOVETO_REL;
+                case "L":
+                    return SVGPathSeg.PATHSEG_LINETO_ABS;
+                case "l":
+                    return SVGPathSeg.PATHSEG_LINETO_REL;
+                case "C":
+                    return SVGPathSeg.PATHSEG_CURVETO_CUBIC_ABS;
+                case "c":
+                    return SVGPathSeg.PATHSEG_CURVETO_CUBIC_REL;
+                case "Q":
+                    return SVGPathSeg.PATHSEG_CURVETO_QUADRATIC_ABS;
+                case "q":
+                    return SVGPathSeg.PATHSEG_CURVETO_QUADRATIC_REL;
+                case "A":
+                    return SVGPathSeg.PATHSEG_ARC_ABS;
+                case "a":
+                    return SVGPathSeg.PATHSEG_ARC_REL;
+                case "H":
+                    return SVGPathSeg.PATHSEG_LINETO_HORIZONTAL_ABS;
+                case "h":
+                    return SVGPathSeg.PATHSEG_LINETO_HORIZONTAL_REL;
+                case "V":
+                    return SVGPathSeg.PATHSEG_LINETO_VERTICAL_ABS;
+                case "v":
+                    return SVGPathSeg.PATHSEG_LINETO_VERTICAL_REL;
+                case "S":
+                    return SVGPathSeg.PATHSEG_CURVETO_CUBIC_SMOOTH_ABS;
+                case "s":
+                    return SVGPathSeg.PATHSEG_CURVETO_CUBIC_SMOOTH_REL;
+                case "T":
+                    return SVGPathSeg.PATHSEG_CURVETO_QUADRATIC_SMOOTH_ABS;
+                case "t":
+                    return SVGPathSeg.PATHSEG_CURVETO_QUADRATIC_SMOOTH_REL;
+                default:
+                    return SVGPathSeg.PATHSEG_UNKNOWN;
+                }
+            }
+
+            Source.prototype._nextCommandHelper = function(lookahead, previousCommand) {
+                // Check for remaining coordinates in the current command.
+                if ((lookahead == '+' || lookahead == '-' || lookahead == '.' || (lookahead >= '0' && lookahead <= '9')) && previousCommand != SVGPathSeg.PATHSEG_CLOSEPATH) {
+                    if (previousCommand == SVGPathSeg.PATHSEG_MOVETO_ABS)
+                        return SVGPathSeg.PATHSEG_LINETO_ABS;
+                    if (previousCommand == SVGPathSeg.PATHSEG_MOVETO_REL)
+                        return SVGPathSeg.PATHSEG_LINETO_REL;
+                    return previousCommand;
+                }
+                return SVGPathSeg.PATHSEG_UNKNOWN;
+            }
+
+            Source.prototype.initialCommandIsMoveTo = function() {
+                // If the path is empty it is still valid, so return true.
+                if (!this.hasMoreData())
+                    return true;
+                var command = this.peekSegmentType();
+                // Path must start with moveTo.
+                return command == SVGPathSeg.PATHSEG_MOVETO_ABS || command == SVGPathSeg.PATHSEG_MOVETO_REL;
+            }
+
+            Source.prototype._parseNumber = function() {
+                var exponent = 0;
+                var integer = 0;
+                var frac = 1;
+                var decimal = 0;
+                var sign = 1;
+                var expsign = 1;
+
+                var startIndex = this._currentIndex;
+
+                this._skipOptionalSpaces();
+
+                // read the sign
+                if (this._currentIndex < this._endIndex && this._string.charAt(this._currentIndex) == '+')
+                    this._currentIndex++;
+                else if (this._currentIndex < this._endIndex && this._string.charAt(this._currentIndex) == '-') {
+                    this._currentIndex++;
+                    sign = -1;
+                }
+
+                if (this._currentIndex == this._endIndex || ((this._string.charAt(this._currentIndex) < '0' || this._string.charAt(this._currentIndex) > '9') && this._string.charAt(this._currentIndex) != '.'))
+                    // The first character of a number must be one of [0-9+-.]
+                    return undefined;
+
+                // read the integer part, build right-to-left
+                var startIntPartIndex = this._currentIndex;
+                while (this._currentIndex < this._endIndex && this._string.charAt(this._currentIndex) >= '0' && this._string.charAt(this._currentIndex) <= '9')
+                    this._currentIndex++; // Advance to first non-digit.
+
+                if (this._currentIndex != startIntPartIndex) {
+                    var scanIntPartIndex = this._currentIndex - 1;
+                    var multiplier = 1;
+                    while (scanIntPartIndex >= startIntPartIndex) {
+                        integer += multiplier * (this._string.charAt(scanIntPartIndex--) - '0');
+                        multiplier *= 10;
+                    }
+                }
+
+                // Read the decimals.
+                if (this._currentIndex < this._endIndex && this._string.charAt(this._currentIndex) == '.') {
+                    this._currentIndex++;
+
+                    // There must be a least one digit following the .
+                    if (this._currentIndex >= this._endIndex || this._string.charAt(this._currentIndex) < '0' || this._string.charAt(this._currentIndex) > '9')
+                        return undefined;
+                    while (this._currentIndex < this._endIndex && this._string.charAt(this._currentIndex) >= '0' && this._string.charAt(this._currentIndex) <= '9')
+                        decimal += (this._string.charAt(this._currentIndex++) - '0') * (frac *= 0.1);
+                }
+
+                // read the exponent part
+                if (this._currentIndex != startIndex && this._currentIndex + 1 < this._endIndex && (this._string.charAt(this._currentIndex) == 'e' || this._string.charAt(this._currentIndex) == 'E') && (this._string.charAt(this._currentIndex + 1) != 'x' && this._string.charAt(this._currentIndex + 1) != 'm')) {
+                    this._currentIndex++;
+
+                    // read the sign of the exponent
+                    if (this._string.charAt(this._currentIndex) == '+') {
+                        this._currentIndex++;
+                    } else if (this._string.charAt(this._currentIndex) == '-') {
+                        this._currentIndex++;
+                        expsign = -1;
+                    }
+
+                    // There must be an exponent
+                    if (this._currentIndex >= this._endIndex || this._string.charAt(this._currentIndex) < '0' || this._string.charAt(this._currentIndex) > '9')
+                        return undefined;
+
+                    while (this._currentIndex < this._endIndex && this._string.charAt(this._currentIndex) >= '0' && this._string.charAt(this._currentIndex) <= '9') {
+                        exponent *= 10;
+                        exponent += (this._string.charAt(this._currentIndex) - '0');
+                        this._currentIndex++;
+                    }
+                }
+
+                var number = integer + decimal;
+                number *= sign;
+
+                if (exponent)
+                    number *= Math.pow(10, expsign * exponent);
+
+                if (startIndex == this._currentIndex)
+                    return undefined;
+
+                this._skipOptionalSpacesOrDelimiter();
+
+                return number;
+            }
+
+            Source.prototype._parseArcFlag = function() {
+                if (this._currentIndex >= this._endIndex)
+                    return undefined;
+                var flag = false;
+                var flagChar = this.string.charAt(this._currentIndex++);
+                if (flagChar == '0')
+                    flag = false;
+                else if (flagChar == '1')
+                    flag = true;
+                else
+                    return undefined;
+
+                this._skipOptionalSpacesOrDelimiter();
+                return flag;
+            }
+
+            Source.prototype.parseSegment = function() {
+                var segment = new PathSegmentData();
+                var lookahead = this._string[this._currentIndex];
+                var command = this._parseSVGSegmentTypeHelper(lookahead);
+                if (command == SVGPathSeg.PathSegUnknown) {
+                    // Possibly an implicit command. Not allowed if this is the first command.
+                    if (this._previousCommand == SVGPathSeg.PATHSEG_UNKNOWN)
+                        return segment;
+                    command = this._nextCommandHelper(lookahead, this._previousCommand);
+                    if (command == SVGPathSeg.PATHSEG_UNKNOWN)
+                        return segment;
+                } else {
+                    this._currentIndex++;
+                }
+
+                this._previousCommand = command;
+                segment.command = command;
+
+                switch (segment.command) {
+                case SVGPathSeg.PATHSEG_CURVETO_CUBIC_REL:
+                case SVGPathSeg.PATHSEG_CURVETO_CUBIC_ABS:
+                    segment.point1X = this._parseNumber();
+                    segment.point1Y = this._parseNumber();
+                    /* fall through */
+                case SVGPathSeg.PATHSEG_CURVETO_CUBIC_SMOOTH_REL:
+                case SVGPathSeg.PATHSEG_CURVETO_QUADRATIC_SMOOTH_ABS:
+                    segment.point2X = this._parseNumber();
+                    segment.point2Y = this._parseNumber();
+                    /* fall through */
+                case SVGPathSeg.PATHSEG_MOVETO_REL:
+                case SVGPathSeg.PATHSEG_MOVETO_ABS:
+                case SVGPathSeg.PATHSEG_LINETO_REL:
+                case SVGPathSeg.PATHSEG_LINETO_ABS:
+                case SVGPathSeg.PATHSEG_CURVETO_QUADRATIC_SMOOTH_REL:
+                case SVGPathSeg.PATHSEG_CURVETO_QUADRATIC_SMOOTH_ABS:
+                    segment.targetPointX = this._parseNumber();
+                    segment.targetPointY = this._parseNumber();
+                    break;
+                case SVGPathSeg.PATHSEG_LINETO_HORIZONTAL_REL:
+                case SVGPathSeg.PATHSEG_LINETO_HORIZONTAL_ABS:
+                    segment.targetPointX = this._parseNumber();
+                    break;
+                case SVGPathSeg.PATHSEG_LINETO_VERTICAL_REL:
+                case SVGPathSeg.PATHSEG_LINETO_VERTICAL_ABS:
+                    segment.targetPointY = this._parseNumber();
+                    break;
+                case SVGPathSeg.PATHSEG_CLOSEPATH:
+                    this._skipOptionalSpaces();
+                    break;
+                case SVGPathSeg.PATHSEG_CURVETO_QUADRATIC_REL:
+                case SVGPathSeg.PATHSEG_CURVETO_QUADRATIC_ABS:
+                    segment.point1X = this._parseNumber();
+                    segment.point1Y = this._parseNumber();
+                    segment.targetPointX = this._parseNumber();
+                    segment.targetPointY = this._parseNumber();
+                    break;
+                case SVGPathSeg.PATHSEG_ARC_REL:
+                case SVGPathSeg.PATHSEG_ARC_ABS:
+                    segment.setArcRadiiX(this._parseNumber());
+                    segment.setArcRadiiY(this._parseNumber());
+                    segment.setArcAngle(this._parseNumber());
+                    segment.arcLarge = this._parseArcFlag();
+                    segment.arcSweep = this._parseArcFlag();
+                    segment.targetPointX = this._parseNumber();
+                    this.targetPointY = this._parseNumber();
+                    break;
+                case SVGPathSeg.PATHSEG_UNKNOWN:
+                    throw "Unknown path seg type"
+                }
+
+                return segment;
+            }
+
+            var builder = new Builder();
+            var source = new Source(dAttribute);
+
+            if (!source.initialCommandIsMoveTo())
+                return [];
+            while (source.hasMoreData()) {
+                var segment = source.parseSegment();
+                if (segment.command == SVGPathSeg.PATHSEG_UNKNOWN)
+                    return [];
+                builder.appendSegment(segment);
+            }
+            return builder.path;
         }
 
         // Add the pathSegList accessors to SVGPathElement.
