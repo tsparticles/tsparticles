@@ -278,6 +278,7 @@
 
         SVGPathSegList.prototype.appendItem = function(newItem) {
             this._list.push(newItem);
+            // TODO: Optimize this to just append to the existing attribute.
             this._synchronizeListToPath();
             return newItem;
         }
