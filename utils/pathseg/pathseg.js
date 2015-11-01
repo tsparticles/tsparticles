@@ -230,62 +230,74 @@
     if (!window.SVGPathSegList) {
         // http://www.w3.org/TR/SVG11/single-page.html#paths-InterfaceSVGPathSegList
         window.SVGPathSegList = function(pathElement) {
-            // TODO: Synchronize from element.
-            // TODO: Setup mutation observer on element to listen for 'd' changes.
             this._path = pathElement;
             this._list = [];
             this.numberOfItems = 0;
+            // TODO: Parse the path and update _list and numberOfItems.
+
+            // Use a MutationObserver to catch changes to the path.
+            this._pathMutationObserver = new MutationObserver(this._synchronizePathToList);
+            this._mutationObserverConfig = { 'attributes': true, 'attributeFilter': ['d'] };
+            this._pathMutationObserver.observe(this._path, this._mutationObserverConfig);
         }
 
-        SVGPathSegList.clear = function() {
+        SVGPathSegList.prototype._synchronizePathToList = function() {
+            // TODO: Synchronize the path's d attribute to this list.
+        }
+
+        SVGPathSegList.prototype._synchronizeListToPath = function() {
+            this._pathMutationObserver.disable();
+            // TODO: Synchronize the list to the path's d attribute.
+            this._pathMutationObserver.observe(this._path, this._mutationObserverConfig);
+        }
+
+        SVGPathSegList.prototype.clear = function() {
             this._list = [];
             this.numberOfItems = 0;
-            // TODO: Synchronize back to element.
-            // this._path.setAttribute(d, '');
+            this._synchronizeListToPath();
         }
 
-        SVGPathSegList.initialize = function(newItem) {
+        SVGPathSegList.prototype.initialize = function(newItem) {
             this._list.push(newItem);
             this.numberOfItems = 1;
-            // TODO: Synchronize back to element.
-            // this._path.setAttribute(d, '');
+            this._synchronizeListToPath();
             return newItem;
         }
 
-        SVGPathSegList.getItem = function(index) {
+        SVGPathSegList.prototype.getItem = function(index) {
             return this._list[index];
         }
 
-        SVGPathSegList.insertItemBefore = function(newItem, index) {
+        SVGPathSegList.prototype.insertItemBefore = function(newItem, index) {
             // Spec: If the index is greater than or equal to numberOfItems, then the new item is appended to the end of the list.
             if (index > this._numberOfItems)
                 index = this._numberOfItems;
             this._list.splice(index, 0, newItem);
-            // TODO: Synchronize back to element.
             this._numberOfItems++;
+            this._synchronizeListToPath();
             return newItem;
         }
 
-        SVGPathSegList.replaceItem = function(newItem, index) {
+        SVGPathSegList.prototype.replaceItem = function(newItem, index) {
             if (index <= 0 || index >= this._numberOfItems - 1)
                 throw "INDEX_SIZE_ERR";
             this._list[index] = newItem;
-            // TODO: Synchronize back to element.
+            this._synchronizeListToPath();
             return newItem;
         }
 
-        SVGPathSegList.removeItem = function(index) {
+        SVGPathSegList.prototype.removeItem = function(index) {
             if (index <= 0 || index >= this._numberOfItems - 1)
                 throw "INDEX_SIZE_ERR";
             var item = this._list[index];
             this._list.splice(index, 1);
-            // TODO: Synchronize back to element.
+            this._synchronizeListToPath();
             return item;
         }
 
-        SVGPathSegList.appendItem = function(newItem) {
+        SVGPathSegList.prototype.appendItem = function(newItem) {
             this._list.push(newItem);
-            // TODO: Synchronize back to element.
+            this._synchronizeListToPath();
             return newItem;
         }
 
