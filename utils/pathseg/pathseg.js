@@ -35,6 +35,7 @@
         window.SVGPathSegClosePath = function() {
             SVGPathSeg.call(this, SVGPathSeg.PATHSEG_CLOSEPATH, "z");
         }
+        SVGPathSegClosePath.prototype._asString = function() { return this.pathSegTypeAsLetter; }
         SVGPathSegClosePath.prototype = Object.create(SVGPathSeg.prototype);
 
         window.SVGPathSegMovetoAbs = function(x, y) {
@@ -42,6 +43,7 @@
             this.x = x;
             this.y = y;
         }
+        SVGPathSegMovetoAbs.prototype._asString = function() { return this.pathSegTypeAsLetter + this.x + " " + this.y; }
         SVGPathSegMovetoAbs.prototype = Object.create(SVGPathSeg.prototype);
 
         window.SVGPathSegMovetoRel = function(x, y) {
@@ -49,6 +51,7 @@
             this.x = x;
             this.y = y;
         }
+        SVGPathSegMovetoRel.prototype._asString = function() { return this.pathSegTypeAsLetter + this.x + " " + this.y; }
         SVGPathSegMovetoRel.prototype = Object.create(SVGPathSeg.prototype);
 
         window.SVGPathSegLinetoAbs = function(x, y) {
@@ -56,6 +59,7 @@
             this.x = x;
             this.y = y;
         }
+        SVGPathSegLinetoAbs.prototype._asString = function() { return this.pathSegTypeAsLetter + this.x + " " + this.y; }
         SVGPathSegLinetoAbs.prototype = Object.create(SVGPathSeg.prototype);
 
         window.SVGPathSegLinetoRel = function(x, y) {
@@ -63,6 +67,7 @@
             this.x = x;
             this.y = y;
         }
+        SVGPathSegLinetoRel.prototype._asString = function() { return this.pathSegTypeAsLetter + this.x + " " + this.y; }
         SVGPathSegLinetoRel.prototype = Object.create(SVGPathSeg.prototype);
 
         window.SVGPathSegCurvetoCubicAbs = function(x, y, x1, y1, x2, y2) {
@@ -74,6 +79,7 @@
             this.x2 = x2;
             this.y2 = y2;
         }
+        SVGPathSegCurvetoCubicAbs.prototype._asString = function() { return this.pathSegTypeAsLetter + this.x + " " + this.y + " " + this.x1 + " " + this.y1 + " " + this.x2 + " " + this.y2; }
         SVGPathSegCurvetoCubicAbs.prototype = Object.create(SVGPathSeg.prototype);
 
         window.SVGPathSegCurvetoCubicRel = function(x, y, x1, y1, x2, y2) {
@@ -85,6 +91,7 @@
             this.x2 = x2;
             this.y2 = y2;
         }
+        SVGPathSegCurvetoCubicRel.prototype._asString = function() { return this.pathSegTypeAsLetter + this.x + " " + this.y + " " + this.x1 + " " + this.y1 + " " + this.x2 + " " + this.y2; }
         SVGPathSegCurvetoCubicRel.prototype = Object.create(SVGPathSeg.prototype);
 
         window.SVGPathSegCurvetoQuadraticAbs = function(x, y, x1, y1) {
@@ -94,6 +101,7 @@
             this.x1 = x1;
             this.y1 = y1;
         }
+        SVGPathSegCurvetoQuadraticAbs.prototype._asString = function() { return this.pathSegTypeAsLetter + this.x1 + " " + this.y1; }
         SVGPathSegCurvetoQuadraticAbs.prototype = Object.create(SVGPathSeg.prototype);
 
         window.SVGPathSegCurvetoQuadraticRel = function(x, y, x1, y1) {
@@ -103,6 +111,7 @@
             this.x1 = x1;
             this.y1 = y1;
         }
+        SVGPathSegCurvetoQuadraticRel.prototype._asString = function() { return this.pathSegTypeAsLetter + this.x1 + " " + this.y1; }
         SVGPathSegCurvetoQuadraticRel.prototype = Object.create(SVGPathSeg.prototype);
 
         window.SVGPathSegArcAbs = function(x, y, r1, r2, angle, largeArcFlag, sweepFlag) {
@@ -115,6 +124,7 @@
             this.largeArcFlag = largeArcFlag;
             this.sweepFlag = sweepFlag;
         }
+        SVGPathSegArcAbs.prototype._asString = function() { return this.pathSegTypeAsLetter + this.x + " " + this.y + " " + this.r1 + " " + this.r2 + " " + this.angle + " " + this.largeArcFlag + " " + this.sweepFlag; }
         SVGPathSegArcAbs.prototype = Object.create(SVGPathSeg.prototype);
 
         window.SVGPathSegArcRel = function(x, y, r1, r2, angle, largeArcFlag, sweepFlag) {
@@ -127,30 +137,35 @@
             this.largeArcFlag = largeArcFlag;
             this.sweepFlag = sweepFlag;
         }
+        SVGPathSegArcRel.prototype._asString = function() { return this.pathSegTypeAsLetter + this.x + " " + this.y + " " + this.r1 + " " + this.r2 + " " + this.angle + " " + this.largeArcFlag + " " + this.sweepFlag; }
         SVGPathSegArcRel.prototype = Object.create(SVGPathSeg.prototype);
 
         window.SVGPathSegLinetoHorizontalAbs = function(x) {
             SVGPathSeg.call(this, SVGPathSeg.PATHSEG_LINETO_HORIZONTAL_ABS, "H");
             this.x = x;
         }
+        SVGPathSegLinetoHorizontalAbs.prototype._asString = function() { return this.pathSegTypeAsLetter + this.x; }
         SVGPathSegLinetoHorizontalAbs.prototype = Object.create(SVGPathSeg.prototype);
 
         window.SVGPathSegLinetoHorizontalRel = function(x) {
             SVGPathSeg.call(this, SVGPathSeg.PATHSEG_LINETO_HORIZONTAL_REL, "h");
             this.x = x;
         }
+        SVGPathSegLinetoHorizontalRel.prototype._asString = function() { return this.pathSegTypeAsLetter + this.x; }
         SVGPathSegLinetoHorizontalRel.prototype = Object.create(SVGPathSeg.prototype);
 
         window.SVGPathSegLinetoVerticalAbs = function(y) {
             SVGPathSeg.call(this, SVGPathSeg.PATHSEG_LINETO_VERTICAL_ABS, "V");
             this.y = y;
         }
+        SVGPathSegLinetoVerticalAbs.prototype._asString = function() { return this.pathSegTypeAsLetter + this.y; }
         SVGPathSegLinetoVerticalAbs.prototype = Object.create(SVGPathSeg.prototype);
 
         window.SVGPathSegLinetoVerticalRel = function(y) {
             SVGPathSeg.call(this, SVGPathSeg.PATHSEG_LINETO_VERTICAL_REL, "v");
             this.y = y;
         }
+        SVGPathSegLinetoVerticalRel.prototype._asString = function() { return this.pathSegTypeAsLetter + this.y; }
         SVGPathSegLinetoVerticalRel.prototype = Object.create(SVGPathSeg.prototype);
 
         window.SVGPathSegCurvetoCubicSmoothAbs = function(x, y, x2, y2) {
@@ -160,6 +175,7 @@
             this.x2 = x2;
             this.y2 = y2;
         }
+        SVGPathSegCurvetoCubicSmoothAbs.prototype._asString = function() { return this.pathSegTypeAsLetter + this.x + " " + this.y + " " + this.x2 + " " + this.y2; }
         SVGPathSegCurvetoCubicSmoothAbs.prototype = Object.create(SVGPathSeg.prototype);
 
         window.SVGPathSegCurvetoCubicSmoothRel = function(x, y, x2, y2) {
@@ -169,6 +185,7 @@
             this.x2 = x2;
             this.y2 = y2;
         }
+        SVGPathSegCurvetoCubicSmoothRel.prototype._asString = function() { return this.pathSegTypeAsLetter + this.x + " " + this.y + " " + this.x2 + " " + this.y2; }
         SVGPathSegCurvetoCubicSmoothRel.prototype = Object.create(SVGPathSeg.prototype);
 
         window.SVGPathSegCurvetoQuadraticSmoothAbs = function(x, y) {
@@ -176,6 +193,7 @@
             this.x = x;
             this.y = y;
         }
+        SVGPathSegCurvetoQuadraticSmoothAbs.prototype._asString = function() { return this.pathSegTypeAsLetter + this.x + " " + this.y; }
         SVGPathSegCurvetoQuadraticSmoothAbs.prototype = Object.create(SVGPathSeg.prototype);
 
         window.SVGPathSegCurvetoQuadraticSmoothRel = function(x, y) {
@@ -183,6 +201,7 @@
             this.x = x;
             this.y = y;
         }
+        SVGPathSegCurvetoQuadraticSmoothRel.prototype._asString = function() { return this.pathSegTypeAsLetter + this.x + " " + this.y; }
         SVGPathSegCurvetoQuadraticSmoothRel.prototype = Object.create(SVGPathSeg.prototype);
 
         // Add createSVGPathSeg* functions to SVGPathElement.
@@ -213,8 +232,7 @@
         window.SVGPathSegList = function(pathElement) {
             this._path = pathElement;
             this._list = this._parsePath(this._path);
-            this.numberOfItems = 0;
-            // TODO: Parse the path and update _list and numberOfItems.
+            this.numberOfItems = this._list.length;
 
             // Use a MutationObserver to catch changes to the path.
             this._pathMutationObserver = new MutationObserver(this._synchronizePathToList);
@@ -224,11 +242,12 @@
 
         SVGPathSegList.prototype._synchronizePathToList = function() {
             this._path = this._parsePath(this._path);
+            this.numberOfItems = this._path.length;
         }
 
         SVGPathSegList.prototype._synchronizeListToPath = function() {
             this._pathMutationObserver.disable();
-            // TODO: Synchronize the list to the path's d attribute.
+            this._path.setAttribute('d', this._pathAsString());
             this._pathMutationObserver.observe(this._path, this._mutationObserverConfig);
         }
 
@@ -281,6 +300,19 @@
             // TODO: Optimize this to just append to the existing attribute.
             this._synchronizeListToPath();
             return newItem;
+        }
+
+        SVGPathSegList.prototype._pathAsString = function() {
+            var string = "";
+            var first = true;
+            this.path.forEach(function(pathSeg) {
+                if (first) {
+                    first = false;
+                    string += pathSeg._asString();
+                } else {
+                    string += " " + pathSeg._asString();
+                }
+            });
         }
 
         SVGPathSegList.prototype._parsePath = function(pathElement) {
@@ -677,6 +709,7 @@
                     return [];
                 builder.appendSegment(segment);
             }
+
             return builder.path;
         }
 
