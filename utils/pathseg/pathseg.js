@@ -35,40 +35,40 @@
         window.SVGPathSegClosePath = function() {
             SVGPathSeg.call(this, SVGPathSeg.PATHSEG_CLOSEPATH, "z");
         }
-        SVGPathSegClosePath.prototype._asString = function() { return this.pathSegTypeAsLetter; }
         SVGPathSegClosePath.prototype = Object.create(SVGPathSeg.prototype);
+        SVGPathSegClosePath.prototype._asString = function() { return this.pathSegTypeAsLetter; }
 
         window.SVGPathSegMovetoAbs = function(x, y) {
             SVGPathSeg.call(this, SVGPathSeg.PATHSEG_MOVETO_ABS, "M");
             this.x = x;
             this.y = y;
         }
-        SVGPathSegMovetoAbs.prototype._asString = function() { return this.pathSegTypeAsLetter + this.x + " " + this.y; }
         SVGPathSegMovetoAbs.prototype = Object.create(SVGPathSeg.prototype);
+        SVGPathSegMovetoAbs.prototype._asString = function() { return this.pathSegTypeAsLetter + " " + this.x + " " + this.y; }
 
         window.SVGPathSegMovetoRel = function(x, y) {
             SVGPathSeg.call(this, SVGPathSeg.PATHSEG_MOVETO_REL, "m");
             this.x = x;
             this.y = y;
         }
-        SVGPathSegMovetoRel.prototype._asString = function() { return this.pathSegTypeAsLetter + this.x + " " + this.y; }
         SVGPathSegMovetoRel.prototype = Object.create(SVGPathSeg.prototype);
+        SVGPathSegMovetoRel.prototype._asString = function() { return this.pathSegTypeAsLetter + " " + this.x + " " + this.y; }
 
         window.SVGPathSegLinetoAbs = function(x, y) {
             SVGPathSeg.call(this, SVGPathSeg.PATHSEG_LINETO_ABS, "L");
             this.x = x;
             this.y = y;
         }
-        SVGPathSegLinetoAbs.prototype._asString = function() { return this.pathSegTypeAsLetter + this.x + " " + this.y; }
         SVGPathSegLinetoAbs.prototype = Object.create(SVGPathSeg.prototype);
+        SVGPathSegLinetoAbs.prototype._asString = function() { return this.pathSegTypeAsLetter + " " + this.x + " " + this.y; }
 
         window.SVGPathSegLinetoRel = function(x, y) {
             SVGPathSeg.call(this, SVGPathSeg.PATHSEG_LINETO_REL, "l");
             this.x = x;
             this.y = y;
         }
-        SVGPathSegLinetoRel.prototype._asString = function() { return this.pathSegTypeAsLetter + this.x + " " + this.y; }
         SVGPathSegLinetoRel.prototype = Object.create(SVGPathSeg.prototype);
+        SVGPathSegLinetoRel.prototype._asString = function() { return this.pathSegTypeAsLetter + " " + this.x + " " + this.y; }
 
         window.SVGPathSegCurvetoCubicAbs = function(x, y, x1, y1, x2, y2) {
             SVGPathSeg.call(this, SVGPathSeg.PATHSEG_CURVETO_CUBIC_ABS, "C");
@@ -79,8 +79,8 @@
             this.x2 = x2;
             this.y2 = y2;
         }
-        SVGPathSegCurvetoCubicAbs.prototype._asString = function() { return this.pathSegTypeAsLetter + this.x + " " + this.y + " " + this.x1 + " " + this.y1 + " " + this.x2 + " " + this.y2; }
         SVGPathSegCurvetoCubicAbs.prototype = Object.create(SVGPathSeg.prototype);
+        SVGPathSegCurvetoCubicAbs.prototype._asString = function() { return this.pathSegTypeAsLetter + " " + this.x1 + " " + this.y1 + " " + this.x2 + " " + this.y2 + " " + this.x + " " + this.y; }
 
         window.SVGPathSegCurvetoCubicRel = function(x, y, x1, y1, x2, y2) {
             SVGPathSeg.call(this, SVGPathSeg.PATHSEG_CURVETO_CUBIC_REL, "c");
@@ -91,8 +91,8 @@
             this.x2 = x2;
             this.y2 = y2;
         }
-        SVGPathSegCurvetoCubicRel.prototype._asString = function() { return this.pathSegTypeAsLetter + this.x + " " + this.y + " " + this.x1 + " " + this.y1 + " " + this.x2 + " " + this.y2; }
         SVGPathSegCurvetoCubicRel.prototype = Object.create(SVGPathSeg.prototype);
+        SVGPathSegCurvetoCubicRel.prototype._asString = function() { return this.pathSegTypeAsLetter + " " + this.x1 + " " + this.y1 + " " + this.x2 + " " + this.y2 + " " + this.x + " " + this.y; }
 
         window.SVGPathSegCurvetoQuadraticAbs = function(x, y, x1, y1) {
             SVGPathSeg.call(this, SVGPathSeg.PATHSEG_CURVETO_QUADRATIC_ABS, "Q");
@@ -101,8 +101,8 @@
             this.x1 = x1;
             this.y1 = y1;
         }
-        SVGPathSegCurvetoQuadraticAbs.prototype._asString = function() { return this.pathSegTypeAsLetter + this.x1 + " " + this.y1; }
         SVGPathSegCurvetoQuadraticAbs.prototype = Object.create(SVGPathSeg.prototype);
+        SVGPathSegCurvetoQuadraticAbs.prototype._asString = function() { return this.pathSegTypeAsLetter + " " + this.x1 + " " + this.y1 + " " + this.x + " " + this.y; }
 
         window.SVGPathSegCurvetoQuadraticRel = function(x, y, x1, y1) {
             SVGPathSeg.call(this, SVGPathSeg.PATHSEG_CURVETO_QUADRATIC_REL, "q");
@@ -111,8 +111,8 @@
             this.x1 = x1;
             this.y1 = y1;
         }
-        SVGPathSegCurvetoQuadraticRel.prototype._asString = function() { return this.pathSegTypeAsLetter + this.x1 + " " + this.y1; }
         SVGPathSegCurvetoQuadraticRel.prototype = Object.create(SVGPathSeg.prototype);
+        SVGPathSegCurvetoQuadraticRel.prototype._asString = function() { return this.pathSegTypeAsLetter + " " + this.x1 + " " + this.y1 + " " + this.x + " " + this.y; }
 
         window.SVGPathSegArcAbs = function(x, y, r1, r2, angle, largeArcFlag, sweepFlag) {
             SVGPathSeg.call(this, SVGPathSeg.PATHSEG_ARC_ABS, "A");
@@ -124,8 +124,8 @@
             this.largeArcFlag = largeArcFlag;
             this.sweepFlag = sweepFlag;
         }
-        SVGPathSegArcAbs.prototype._asString = function() { return this.pathSegTypeAsLetter + this.x + " " + this.y + " " + this.r1 + " " + this.r2 + " " + this.angle + " " + this.largeArcFlag + " " + this.sweepFlag; }
         SVGPathSegArcAbs.prototype = Object.create(SVGPathSeg.prototype);
+        SVGPathSegArcAbs.prototype._asString = function() { return this.pathSegTypeAsLetter + " " + this.r1 + " " + this.r2 + " " + this.angle + " " + (this.largeArcFlag ? "1" : "0") + " " + (this.sweepFlag ? "1" : "0") + " " + this.x + " " + this.y; }
 
         window.SVGPathSegArcRel = function(x, y, r1, r2, angle, largeArcFlag, sweepFlag) {
             SVGPathSeg.call(this, SVGPathSeg.PATHSEG_ARC_REL, "a");
@@ -137,36 +137,36 @@
             this.largeArcFlag = largeArcFlag;
             this.sweepFlag = sweepFlag;
         }
-        SVGPathSegArcRel.prototype._asString = function() { return this.pathSegTypeAsLetter + this.x + " " + this.y + " " + this.r1 + " " + this.r2 + " " + this.angle + " " + this.largeArcFlag + " " + this.sweepFlag; }
         SVGPathSegArcRel.prototype = Object.create(SVGPathSeg.prototype);
+        SVGPathSegArcRel.prototype._asString = function() { return this.pathSegTypeAsLetter + " " + this.r1 + " " + this.r2 + " " + this.angle + " " + (this.largeArcFlag ? "1" : "0") + " " + (this.sweepFlag ? "1" : "0") + " " + this.x + " " + this.y; }
 
         window.SVGPathSegLinetoHorizontalAbs = function(x) {
             SVGPathSeg.call(this, SVGPathSeg.PATHSEG_LINETO_HORIZONTAL_ABS, "H");
             this.x = x;
         }
-        SVGPathSegLinetoHorizontalAbs.prototype._asString = function() { return this.pathSegTypeAsLetter + this.x; }
         SVGPathSegLinetoHorizontalAbs.prototype = Object.create(SVGPathSeg.prototype);
+        SVGPathSegLinetoHorizontalAbs.prototype._asString = function() { return this.pathSegTypeAsLetter + " " + this.x; }
 
         window.SVGPathSegLinetoHorizontalRel = function(x) {
             SVGPathSeg.call(this, SVGPathSeg.PATHSEG_LINETO_HORIZONTAL_REL, "h");
             this.x = x;
         }
-        SVGPathSegLinetoHorizontalRel.prototype._asString = function() { return this.pathSegTypeAsLetter + this.x; }
         SVGPathSegLinetoHorizontalRel.prototype = Object.create(SVGPathSeg.prototype);
+        SVGPathSegLinetoHorizontalRel.prototype._asString = function() { return this.pathSegTypeAsLetter + " " + this.x; }
 
         window.SVGPathSegLinetoVerticalAbs = function(y) {
             SVGPathSeg.call(this, SVGPathSeg.PATHSEG_LINETO_VERTICAL_ABS, "V");
             this.y = y;
         }
-        SVGPathSegLinetoVerticalAbs.prototype._asString = function() { return this.pathSegTypeAsLetter + this.y; }
         SVGPathSegLinetoVerticalAbs.prototype = Object.create(SVGPathSeg.prototype);
+        SVGPathSegLinetoVerticalAbs.prototype._asString = function() { return this.pathSegTypeAsLetter + " " + this.y; }
 
         window.SVGPathSegLinetoVerticalRel = function(y) {
             SVGPathSeg.call(this, SVGPathSeg.PATHSEG_LINETO_VERTICAL_REL, "v");
             this.y = y;
         }
-        SVGPathSegLinetoVerticalRel.prototype._asString = function() { return this.pathSegTypeAsLetter + this.y; }
         SVGPathSegLinetoVerticalRel.prototype = Object.create(SVGPathSeg.prototype);
+        SVGPathSegLinetoVerticalRel.prototype._asString = function() { return this.pathSegTypeAsLetter + " " + this.y; }
 
         window.SVGPathSegCurvetoCubicSmoothAbs = function(x, y, x2, y2) {
             SVGPathSeg.call(this, SVGPathSeg.PATHSEG_CURVETO_CUBIC_SMOOTH_ABS, "S");
@@ -175,8 +175,8 @@
             this.x2 = x2;
             this.y2 = y2;
         }
-        SVGPathSegCurvetoCubicSmoothAbs.prototype._asString = function() { return this.pathSegTypeAsLetter + this.x + " " + this.y + " " + this.x2 + " " + this.y2; }
         SVGPathSegCurvetoCubicSmoothAbs.prototype = Object.create(SVGPathSeg.prototype);
+        SVGPathSegCurvetoCubicSmoothAbs.prototype._asString = function() { return this.pathSegTypeAsLetter + " " + this.x2 + " " + this.y2 + " " + this.x + " " + this.y; }
 
         window.SVGPathSegCurvetoCubicSmoothRel = function(x, y, x2, y2) {
             SVGPathSeg.call(this, SVGPathSeg.PATHSEG_CURVETO_CUBIC_SMOOTH_REL, "s");
@@ -185,24 +185,24 @@
             this.x2 = x2;
             this.y2 = y2;
         }
-        SVGPathSegCurvetoCubicSmoothRel.prototype._asString = function() { return this.pathSegTypeAsLetter + this.x + " " + this.y + " " + this.x2 + " " + this.y2; }
         SVGPathSegCurvetoCubicSmoothRel.prototype = Object.create(SVGPathSeg.prototype);
+        SVGPathSegCurvetoCubicSmoothRel.prototype._asString = function() { return this.pathSegTypeAsLetter + " " + this.x2 + " " + this.y2 + " " + this.x + " " + this.y; }
 
         window.SVGPathSegCurvetoQuadraticSmoothAbs = function(x, y) {
             SVGPathSeg.call(this, SVGPathSeg.PATHSEG_CURVETO_QUADRATIC_SMOOTH_ABS, "T");
             this.x = x;
             this.y = y;
         }
-        SVGPathSegCurvetoQuadraticSmoothAbs.prototype._asString = function() { return this.pathSegTypeAsLetter + this.x + " " + this.y; }
         SVGPathSegCurvetoQuadraticSmoothAbs.prototype = Object.create(SVGPathSeg.prototype);
+        SVGPathSegCurvetoQuadraticSmoothAbs.prototype._asString = function() { return this.pathSegTypeAsLetter + " " + this.x + " " + this.y; }
 
         window.SVGPathSegCurvetoQuadraticSmoothRel = function(x, y) {
             SVGPathSeg.call(this, SVGPathSeg.PATHSEG_CURVETO_QUADRATIC_SMOOTH_REL, "t");
             this.x = x;
             this.y = y;
         }
-        SVGPathSegCurvetoQuadraticSmoothRel.prototype._asString = function() { return this.pathSegTypeAsLetter + this.x + " " + this.y; }
         SVGPathSegCurvetoQuadraticSmoothRel.prototype = Object.create(SVGPathSeg.prototype);
+        SVGPathSegCurvetoQuadraticSmoothRel.prototype._asString = function() { return this.pathSegTypeAsLetter + " " + this.x + " " + this.y; }
 
         // Add createSVGPathSeg* functions to SVGPathElement.
         // Spec: http://www.w3.org/TR/SVG11/single-page.html#paths-InterfaceSVGPathElement.
@@ -231,7 +231,7 @@
         // Spec: http://www.w3.org/TR/SVG11/single-page.html#paths-InterfaceSVGPathSegList
         window.SVGPathSegList = function(pathElement) {
             this._path = pathElement;
-            this._list = this._parsePath(this._path);
+            this._list = SVGPathSegList._parsePath(this._path.getAttribute("d"));
             this.numberOfItems = this._list.length;
 
             // Use a MutationObserver to catch changes to the path.
@@ -241,13 +241,13 @@
         }
 
         SVGPathSegList.prototype._synchronizePathToList = function() {
-            this._path = this._parsePath(this._path);
+            this._path = SVGPathSegList._parsePath(this._path.getAttribute("d"));
             this.numberOfItems = this._path.length;
         }
 
         SVGPathSegList.prototype._synchronizeListToPath = function() {
             this._pathMutationObserver.disable();
-            this._path.setAttribute('d', this._pathAsString());
+            this._path.setAttribute("d", SVGPathSegList._pathSegArrayAsString(this._path));
             this._pathMutationObserver.observe(this._path, this._mutationObserverConfig);
         }
 
@@ -302,10 +302,10 @@
             return newItem;
         }
 
-        SVGPathSegList.prototype._pathAsString = function() {
+        SVGPathSegList._pathSegArrayAsString = function(pathSegArray) {
             var string = "";
             var first = true;
-            this.path.forEach(function(pathSeg) {
+            pathSegArray.forEach(function(pathSeg) {
                 if (first) {
                     first = false;
                     string += pathSeg._asString();
@@ -313,11 +313,11 @@
                     string += " " + pathSeg._asString();
                 }
             });
+            return string;
         }
 
-        SVGPathSegList.prototype._parsePath = function(pathElement) {
-            var dAttribute = pathElement.getAttribute("d");
-            if (!dAttribute || dAttribute.length == 0)
+        SVGPathSegList._parsePath = function(string) {
+            if (!string || string.length == 0)
                 return [];
 
             var PathSegmentData = function() {
@@ -405,10 +405,10 @@
                     this.path.push(new SVGPathSegCurvetoQuadraticSmoothAbs(segment.targetPointX, segment.targetPointY));
                     break;
                 case SVGPathSeg.PATHSEG_ARC_REL:
-                    this.path.push(new SVGPathSegArcRel(segment.targetPointX, segment.targetPointY, segment.arcRadiiX, segment.arcRadiiY, segment.arcAngle(), segment.arcLarge, segment.arcSweep));
+                    this.path.push(new SVGPathSegArcRel(segment.targetPointX, segment.targetPointY, segment.point1X, segment.point1Y, segment.arcAngle(), segment.arcLarge, segment.arcSweep));
                     break;
                 case SVGPathSeg.PATHSEG_ARC_ABS:
-                    this.path.push(new SVGPathSegArcAbs(segment.targetPointX, segment.targetPointY, segment.arcRadiiX, segment.arcRadiiY, segment.arcAngle(), segment.arcLarge, segment.arcSweep));
+                    this.path.push(new SVGPathSegArcAbs(segment.targetPointX, segment.targetPointY, segment.point1X, segment.point1Y, segment.arcAngle(), segment.arcLarge, segment.arcSweep));
                     break;
                 default:
                     throw "Unknown path seg type."
@@ -426,7 +426,7 @@
 
             Source.prototype._isCurrentSpace = function() {
                 var character = this._string[this._currentIndex];
-                return character <= ' ' && (character == ' ' || character == '\n' || character == '\t' || character == '\r' || character == '\f');
+                return character <= " " && (character == " " || character == "\n" || character == "\t" || character == "\r" || character == "\f");
             }
 
             Source.prototype._skipOptionalSpaces = function() {
@@ -436,10 +436,10 @@
             }
 
             Source.prototype._skipOptionalSpacesOrDelimiter = function() {
-                if (this._currentIndex < this._endIndex && !this._isCurrentSpace() && this._string.charAt(this._currentIndex) != ',')
+                if (this._currentIndex < this._endIndex && !this._isCurrentSpace() && this._string.charAt(this._currentIndex) != ",")
                     return false;
                 if (this._skipOptionalSpaces()) {
-                    if (this._currentIndex < this._endIndex && this._string.charAt(this._currentIndex) == ',') {
+                    if (this._currentIndex < this._endIndex && this._string.charAt(this._currentIndex) == ",") {
                         this._currentIndex++;
                         this._skipOptionalSpaces();
                     }
@@ -504,7 +504,7 @@
 
             Source.prototype._nextCommandHelper = function(lookahead, previousCommand) {
                 // Check for remaining coordinates in the current command.
-                if ((lookahead == '+' || lookahead == '-' || lookahead == '.' || (lookahead >= '0' && lookahead <= '9')) && previousCommand != SVGPathSeg.PATHSEG_CLOSEPATH) {
+                if ((lookahead == "+" || lookahead == "-" || lookahead == "." || (lookahead >= "0" && lookahead <= "9")) && previousCommand != SVGPathSeg.PATHSEG_CLOSEPATH) {
                     if (previousCommand == SVGPathSeg.PATHSEG_MOVETO_ABS)
                         return SVGPathSeg.PATHSEG_LINETO_ABS;
                     if (previousCommand == SVGPathSeg.PATHSEG_MOVETO_REL)
@@ -536,61 +536,61 @@
                 this._skipOptionalSpaces();
 
                 // read the sign
-                if (this._currentIndex < this._endIndex && this._string.charAt(this._currentIndex) == '+')
+                if (this._currentIndex < this._endIndex && this._string.charAt(this._currentIndex) == "+")
                     this._currentIndex++;
-                else if (this._currentIndex < this._endIndex && this._string.charAt(this._currentIndex) == '-') {
+                else if (this._currentIndex < this._endIndex && this._string.charAt(this._currentIndex) == "-") {
                     this._currentIndex++;
                     sign = -1;
                 }
 
-                if (this._currentIndex == this._endIndex || ((this._string.charAt(this._currentIndex) < '0' || this._string.charAt(this._currentIndex) > '9') && this._string.charAt(this._currentIndex) != '.'))
+                if (this._currentIndex == this._endIndex || ((this._string.charAt(this._currentIndex) < "0" || this._string.charAt(this._currentIndex) > "9") && this._string.charAt(this._currentIndex) != "."))
                     // The first character of a number must be one of [0-9+-.]
                     return undefined;
 
                 // read the integer part, build right-to-left
                 var startIntPartIndex = this._currentIndex;
-                while (this._currentIndex < this._endIndex && this._string.charAt(this._currentIndex) >= '0' && this._string.charAt(this._currentIndex) <= '9')
+                while (this._currentIndex < this._endIndex && this._string.charAt(this._currentIndex) >= "0" && this._string.charAt(this._currentIndex) <= "9")
                     this._currentIndex++; // Advance to first non-digit.
 
                 if (this._currentIndex != startIntPartIndex) {
                     var scanIntPartIndex = this._currentIndex - 1;
                     var multiplier = 1;
                     while (scanIntPartIndex >= startIntPartIndex) {
-                        integer += multiplier * (this._string.charAt(scanIntPartIndex--) - '0');
+                        integer += multiplier * (this._string.charAt(scanIntPartIndex--) - "0");
                         multiplier *= 10;
                     }
                 }
 
                 // Read the decimals.
-                if (this._currentIndex < this._endIndex && this._string.charAt(this._currentIndex) == '.') {
+                if (this._currentIndex < this._endIndex && this._string.charAt(this._currentIndex) == ".") {
                     this._currentIndex++;
 
                     // There must be a least one digit following the .
-                    if (this._currentIndex >= this._endIndex || this._string.charAt(this._currentIndex) < '0' || this._string.charAt(this._currentIndex) > '9')
+                    if (this._currentIndex >= this._endIndex || this._string.charAt(this._currentIndex) < "0" || this._string.charAt(this._currentIndex) > "9")
                         return undefined;
-                    while (this._currentIndex < this._endIndex && this._string.charAt(this._currentIndex) >= '0' && this._string.charAt(this._currentIndex) <= '9')
-                        decimal += (this._string.charAt(this._currentIndex++) - '0') * (frac *= 0.1);
+                    while (this._currentIndex < this._endIndex && this._string.charAt(this._currentIndex) >= "0" && this._string.charAt(this._currentIndex) <= "9")
+                        decimal += (this._string.charAt(this._currentIndex++) - "0") * (frac *= 0.1);
                 }
 
                 // read the exponent part
-                if (this._currentIndex != startIndex && this._currentIndex + 1 < this._endIndex && (this._string.charAt(this._currentIndex) == 'e' || this._string.charAt(this._currentIndex) == 'E') && (this._string.charAt(this._currentIndex + 1) != 'x' && this._string.charAt(this._currentIndex + 1) != 'm')) {
+                if (this._currentIndex != startIndex && this._currentIndex + 1 < this._endIndex && (this._string.charAt(this._currentIndex) == "e" || this._string.charAt(this._currentIndex) == "E") && (this._string.charAt(this._currentIndex + 1) != "x" && this._string.charAt(this._currentIndex + 1) != "m")) {
                     this._currentIndex++;
 
                     // read the sign of the exponent
-                    if (this._string.charAt(this._currentIndex) == '+') {
+                    if (this._string.charAt(this._currentIndex) == "+") {
                         this._currentIndex++;
-                    } else if (this._string.charAt(this._currentIndex) == '-') {
+                    } else if (this._string.charAt(this._currentIndex) == "-") {
                         this._currentIndex++;
                         expsign = -1;
                     }
 
                     // There must be an exponent
-                    if (this._currentIndex >= this._endIndex || this._string.charAt(this._currentIndex) < '0' || this._string.charAt(this._currentIndex) > '9')
+                    if (this._currentIndex >= this._endIndex || this._string.charAt(this._currentIndex) < "0" || this._string.charAt(this._currentIndex) > "9")
                         return undefined;
 
-                    while (this._currentIndex < this._endIndex && this._string.charAt(this._currentIndex) >= '0' && this._string.charAt(this._currentIndex) <= '9') {
+                    while (this._currentIndex < this._endIndex && this._string.charAt(this._currentIndex) >= "0" && this._string.charAt(this._currentIndex) <= "9") {
                         exponent *= 10;
-                        exponent += (this._string.charAt(this._currentIndex) - '0');
+                        exponent += (this._string.charAt(this._currentIndex) - "0");
                         this._currentIndex++;
                     }
                 }
@@ -613,10 +613,10 @@
                 if (this._currentIndex >= this._endIndex)
                     return undefined;
                 var flag = false;
-                var flagChar = this.string.charAt(this._currentIndex++);
-                if (flagChar == '0')
+                var flagChar = this._string.charAt(this._currentIndex++);
+                if (flagChar == "0")
                     flag = false;
-                else if (flagChar == '1')
+                else if (flagChar == "1")
                     flag = true;
                 else
                     return undefined;
@@ -650,7 +650,7 @@
                     segment.point1Y = this._parseNumber();
                     /* fall through */
                 case SVGPathSeg.PATHSEG_CURVETO_CUBIC_SMOOTH_REL:
-                case SVGPathSeg.PATHSEG_CURVETO_QUADRATIC_SMOOTH_ABS:
+                case SVGPathSeg.PATHSEG_CURVETO_CUBIC_SMOOTH_ABS:
                     segment.point2X = this._parseNumber();
                     segment.point2Y = this._parseNumber();
                     /* fall through */
@@ -689,17 +689,17 @@
                     segment.arcLarge = this._parseArcFlag();
                     segment.arcSweep = this._parseArcFlag();
                     segment.targetPointX = this._parseNumber();
-                    this.targetPointY = this._parseNumber();
+                    segment.targetPointY = this._parseNumber();
                     break;
                 case SVGPathSeg.PATHSEG_UNKNOWN:
-                    throw "Unknown path seg type"
+                    break;
                 }
 
                 return segment;
             }
 
             var builder = new Builder();
-            var source = new Source(dAttribute);
+            var source = new Source(string);
 
             if (!source.initialCommandIsMoveTo())
                 return [];
