@@ -24,7 +24,7 @@ QUnit.test("Path segment types", function(assert) {
     assert.equal(SVGPathSeg.PATHSEG_CURVETO_QUADRATIC_SMOOTH_REL, "19");
     
     assert.equal(path.createSVGPathSegClosePath().pathSegType, SVGPathSeg.PATHSEG_CLOSEPATH);
-    assert.equal(path.createSVGPathSegClosePath().pathSegTypeAsLetter, 'Z');
+    assert.equal(path.createSVGPathSegClosePath().pathSegTypeAsLetter, 'z');
     assert.equal(path.createSVGPathSegMovetoAbs(1, 2).pathSegType, SVGPathSeg.PATHSEG_MOVETO_ABS);
     assert.equal(path.createSVGPathSegMovetoAbs(1, 2).pathSegTypeAsLetter, "M");
     assert.equal(path.createSVGPathSegMovetoAbs(1, 2).x, "1");

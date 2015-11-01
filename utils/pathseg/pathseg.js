@@ -35,7 +35,7 @@
 
         window.SVGPathSegClosePath = function() {
             this.pathSegType = SVGPathSeg.PATHSEG_CLOSEPATH;
-            this.pathSegTypeAsLetter = 'Z';
+            this.pathSegTypeAsLetter = 'z';
         }
         SVGPathSegClosePath.prototype = Object.create(SVGPathSeg.prototype);
 
