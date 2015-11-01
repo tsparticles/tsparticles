@@ -1,9 +1,5 @@
-QUnit.test( "hello test", function(assert) {
-  assert.ok( 1 == "1", "Passed!" );
-});
-
 // LayoutTests/svg/dom/script-tests/path-segments.js
-QUnit.test("Path Segment Types", function(assert) {
+QUnit.test("Path segment types", function(assert) {
     var path = document.createElementNS("http://www.w3.org/2000/svg", "path");
 
     assert.equal(SVGPathSeg.PATHSEG_UNKNOWN, "0");
@@ -130,7 +126,7 @@ QUnit.test("Path Segment Types", function(assert) {
 });
 
 // LayoutTests/svg/dom/svg2-inheritance.html
-QUnit.test("Validate the PathSeg inheritance model", function(assert) {
+QUnit.test("Validate the path seg inheritance model", function(assert) {
     function checkParent(type, expectedParent) {
         assert.ok(window[type]);
         var parentPrototype = window[type].prototype.__proto__;
@@ -157,7 +153,12 @@ QUnit.test("Validate the PathSeg inheritance model", function(assert) {
     checkParent("SVGPathSegLinetoRel", "SVGPathSeg");
     checkParent("SVGPathSegLinetoVerticalAbs", "SVGPathSeg");
     checkParent("SVGPathSegLinetoVerticalRel", "SVGPathSeg");
-    //checkParent("SVGPathSegList", "Object");
+    checkParent("SVGPathSegList", "Object");
     checkParent("SVGPathSegMovetoAbs", "SVGPathSeg");
     checkParent("SVGPathSegMovetoRel", "SVGPathSeg");
+});
+
+QUnit.test("pathSegList basic test", function(assert) {
+    var path = document.createElementNS("http://www.w3.org/2000/svg", "path");
+    assert.ok(path.pathSegList instanceof SVGPathSegList);
 });
