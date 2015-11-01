@@ -158,7 +158,14 @@ QUnit.test("Validate the path seg inheritance model", function(assert) {
     checkParent("SVGPathSegMovetoRel", "SVGPathSeg");
 });
 
-QUnit.test("pathSegList basic test", function(assert) {
+QUnit.test("Validate the pathSegList inheritance model", function(assert) {
     var path = document.createElementNS("http://www.w3.org/2000/svg", "path");
     assert.ok(path.pathSegList instanceof SVGPathSegList);
+});
+
+// LayoutTests/svg/dom/SVGPathSegList-appendItem.xhtml
+QUnit.test("Validate the pathSegList inheritance model", function(assert) {
+    var path1 = document.createElementNS("http://www.w3.org/2000/svg", "path");
+    path1.setAttribute('d', "M 0 0 L 100 0 L 100 100");
+    assert.equal(path1.pathSegList.numberOfItems, "3");
 });

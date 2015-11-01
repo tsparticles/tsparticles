@@ -265,10 +265,65 @@
     if (!window.SVGPathSegList) {
         // http://www.w3.org/TR/SVG11/single-page.html#paths-InterfaceSVGPathSegList
         window.SVGPathSegList = function(pathElement) {
+            // TODO: Synchronize from element.
+            // TODO: Setup mutation observer on element to listen for 'd' changes.
             this._path = pathElement;
             this._list = [];
             this.numberOfItems = 0;
         }
+
+        SVGPathSegList.clear = function() {
+            this._list = [];
+            this.numberOfItems = 0;
+            // TODO: Synchronize back to element.
+            // this._path.setAttribute(d, '');
+        }
+
+        SVGPathSegList.initialize = function(newItem) {
+            this._list.push(newItem);
+            this.numberOfItems = 1;
+            // TODO: Synchronize back to element.
+            // this._path.setAttribute(d, '');
+            return newItem;
+        }
+
+        SVGPathSegList.getItem = function(index) {
+            return this._list[index];
+        }
+
+        SVGPathSegList.insertItemBefore = function(newItem, index) {
+            // Spec: If the index is greater than or equal to numberOfItems, then the new item is appended to the end of the list.
+            if (index > this._numberOfItems)
+                index = this._numberOfItems;
+            this._list.splice(index, 0, newItem);
+            // TODO: Synchronize back to element.
+            this._numberOfItems++;
+            return newItem;
+        }
+
+        SVGPathSegList.replaceItem = function(newItem, index) {
+            if (index <= 0 || index >= this._numberOfItems - 1)
+                throw "INDEX_SIZE_ERR";
+            this._list[index] = newItem;
+            // TODO: Synchronize back to element.
+            return newItem;
+        }
+
+        SVGPathSegList.removeItem = function(index) {
+            if (index <= 0 || index >= this._numberOfItems - 1)
+                throw "INDEX_SIZE_ERR";
+            var item = this._list[index];
+            this._list.splice(index, 1);
+            // TODO: Synchronize back to element.
+            return item;
+        }
+
+        SVGPathSegList.appendItem = function(newItem) {
+            this._list.push(newItem);
+            // TODO: Synchronize back to element.
+            return newItem;
+        }
+
         // http://www.w3.org/TR/SVG11/single-page.html#paths-InterfaceSVGAnimatedPathData
         Object.defineProperty(SVGPathElement.prototype, "pathSegList", { get: function() { return new SVGPathSegList(this); } });
         // FIXME: The following are not implemented and simply return SVGPathElement.pathSegList.
