@@ -5,13 +5,12 @@
 
 (function() {
     if (!window.SVGPathSeg) {
-        // http://www.w3.org/TR/SVG11/single-page.html#paths-InterfaceSVGPathSeg
-        window.SVGPathSeg = function() {
-            this.pathSegtype = undefined;
-            this.pathSegTypeAsLetter = undefined;
+        // Spec: http://www.w3.org/TR/SVG11/single-page.html#paths-InterfaceSVGPathSeg
+        window.SVGPathSeg = function(type, typeAsLetter) {
+            this.pathSegType = type;
+            this.pathSegTypeAsLetter = typeAsLetter;
         }
 
-        // Path segment types.
         SVGPathSeg.PATHSEG_UNKNOWN = 0;
         SVGPathSeg.PATHSEG_CLOSEPATH = 1;
         SVGPathSeg.PATHSEG_MOVETO_ABS = 2;
@@ -34,46 +33,40 @@
         SVGPathSeg.PATHSEG_CURVETO_QUADRATIC_SMOOTH_REL = 19;
 
         window.SVGPathSegClosePath = function() {
-            this.pathSegType = SVGPathSeg.PATHSEG_CLOSEPATH;
-            this.pathSegTypeAsLetter = 'z';
+            SVGPathSeg.call(this, SVGPathSeg.PATHSEG_CLOSEPATH, 'z');
         }
         SVGPathSegClosePath.prototype = Object.create(SVGPathSeg.prototype);
 
         window.SVGPathSegMovetoAbs = function(x, y) {
-            this.pathSegType = SVGPathSeg.PATHSEG_MOVETO_ABS;
-            this.pathSegTypeAsLetter = 'M';
+            SVGPathSeg.call(this, SVGPathSeg.PATHSEG_MOVETO_ABS, 'M');
             this.x = x;
             this.y = y;
         }
         SVGPathSegMovetoAbs.prototype = Object.create(SVGPathSeg.prototype);
 
         window.SVGPathSegMovetoRel = function(x, y) {
-            this.pathSegType = SVGPathSeg.PATHSEG_MOVETO_REL;
-            this.pathSegTypeAsLetter = 'm';
+            SVGPathSeg.call(this, SVGPathSeg.PATHSEG_MOVETO_REL, 'm');
             this.x = x;
             this.y = y;
         }
         SVGPathSegMovetoRel.prototype = Object.create(SVGPathSeg.prototype);
 
         window.SVGPathSegLinetoAbs = function(x, y) {
-            this.pathSegType = SVGPathSeg.PATHSEG_LINETO_ABS;
-            this.pathSegTypeAsLetter = 'L';
+            SVGPathSeg.call(this, SVGPathSeg.PATHSEG_LINETO_ABS, 'L');
             this.x = x;
             this.y = y;
         }
         SVGPathSegLinetoAbs.prototype = Object.create(SVGPathSeg.prototype);
 
         window.SVGPathSegLinetoRel = function(x, y) {
-            this.pathSegType = SVGPathSeg.PATHSEG_LINETO_REL;
-            this.pathSegTypeAsLetter = 'l';
+            SVGPathSeg.call(this, SVGPathSeg.PATHSEG_LINETO_REL, 'l');
             this.x = x;
             this.y = y;
         }
         SVGPathSegLinetoRel.prototype = Object.create(SVGPathSeg.prototype);
 
         window.SVGPathSegCurvetoCubicAbs = function(x, y, x1, y1, x2, y2) {
-            this.pathSegType = SVGPathSeg.PATHSEG_CURVETO_CUBIC_ABS;
-            this.pathSegTypeAsLetter = 'C';
+            SVGPathSeg.call(this, SVGPathSeg.PATHSEG_CURVETO_CUBIC_ABS, 'C');
             this.x = x;
             this.y = y;
             this.x1 = x1;
@@ -84,8 +77,7 @@
         SVGPathSegCurvetoCubicAbs.prototype = Object.create(SVGPathSeg.prototype);
 
         window.SVGPathSegCurvetoCubicRel = function(x, y, x1, y1, x2, y2) {
-            this.pathSegType = SVGPathSeg.PATHSEG_CURVETO_CUBIC_REL;
-            this.pathSegTypeAsLetter = 'c';
+            SVGPathSeg.call(this, SVGPathSeg.PATHSEG_CURVETO_CUBIC_REL, 'c');
             this.x = x;
             this.y = y;
             this.x1 = x1;
@@ -96,8 +88,7 @@
         SVGPathSegCurvetoCubicRel.prototype = Object.create(SVGPathSeg.prototype);
 
         window.SVGPathSegCurvetoQuadraticAbs = function(x, y, x1, y1) {
-            this.pathSegType = SVGPathSeg.PATHSEG_CURVETO_QUADRATIC_ABS;
-            this.pathSegTypeAsLetter = 'Q';
+            SVGPathSeg.call(this, SVGPathSeg.PATHSEG_CURVETO_QUADRATIC_ABS, 'Q');
             this.x = x;
             this.y = y;
             this.x1 = x1;
@@ -106,8 +97,7 @@
         SVGPathSegCurvetoQuadraticAbs.prototype = Object.create(SVGPathSeg.prototype);
 
         window.SVGPathSegCurvetoQuadraticRel = function(x, y, x1, y1) {
-            this.pathSegType = SVGPathSeg.PATHSEG_CURVETO_QUADRATIC_REL;
-            this.pathSegTypeAsLetter = 'q';
+            SVGPathSeg.call(this, SVGPathSeg.PATHSEG_CURVETO_QUADRATIC_REL, 'q');
             this.x = x;
             this.y = y;
             this.x1 = x1;
@@ -116,8 +106,7 @@
         SVGPathSegCurvetoQuadraticRel.prototype = Object.create(SVGPathSeg.prototype);
 
         window.SVGPathSegArcAbs = function(x, y, r1, r2, angle, largeArcFlag, sweepFlag) {
-            this.pathSegType = SVGPathSeg.PATHSEG_ARC_ABS;
-            this.pathSegTypeAsLetter = 'A';
+            SVGPathSeg.call(this, SVGPathSeg.PATHSEG_ARC_ABS, 'A');
             this.x = x;
             this.y = y;
             this.r1 = r1;
@@ -129,8 +118,7 @@
         SVGPathSegArcAbs.prototype = Object.create(SVGPathSeg.prototype);
 
         window.SVGPathSegArcRel = function(x, y, r1, r2, angle, largeArcFlag, sweepFlag) {
-            this.pathSegType = SVGPathSeg.PATHSEG_ARC_REL;
-            this.pathSegTypeAsLetter = 'a';
+            SVGPathSeg.call(this, SVGPathSeg.PATHSEG_ARC_REL, 'a');
             this.x = x;
             this.y = y;
             this.r1 = r1;
@@ -142,36 +130,31 @@
         SVGPathSegArcRel.prototype = Object.create(SVGPathSeg.prototype);
 
         window.SVGPathSegLinetoHorizontalAbs = function(x) {
-            this.pathSegType = SVGPathSeg.PATHSEG_LINETO_HORIZONTAL_ABS;
-            this.pathSegTypeAsLetter = 'H';
+            SVGPathSeg.call(this, SVGPathSeg.PATHSEG_LINETO_HORIZONTAL_ABS, 'H');
             this.x = x;
         }
         SVGPathSegLinetoHorizontalAbs.prototype = Object.create(SVGPathSeg.prototype);
 
         window.SVGPathSegLinetoHorizontalRel = function(x) {
-            this.pathSegType = SVGPathSeg.PATHSEG_LINETO_HORIZONTAL_REL;
-            this.pathSegTypeAsLetter = 'h';
+            SVGPathSeg.call(this, SVGPathSeg.PATHSEG_LINETO_HORIZONTAL_REL, 'h');
             this.x = x;
         }
         SVGPathSegLinetoHorizontalRel.prototype = Object.create(SVGPathSeg.prototype);
 
         window.SVGPathSegLinetoVerticalAbs = function(y) {
-            this.pathSegType = SVGPathSeg.PATHSEG_LINETO_VERTICAL_ABS;
-            this.pathSegTypeAsLetter = 'V';
+            SVGPathSeg.call(this, SVGPathSeg.PATHSEG_LINETO_VERTICAL_ABS, 'V');
             this.y = y;
         }
         SVGPathSegLinetoVerticalAbs.prototype = Object.create(SVGPathSeg.prototype);
 
         window.SVGPathSegLinetoVerticalRel = function(y) {
-            this.pathSegType = SVGPathSeg.PATHSEG_LINETO_VERTICAL_REL;
-            this.pathSegTypeAsLetter = 'v';
+            SVGPathSeg.call(this, SVGPathSeg.PATHSEG_LINETO_VERTICAL_REL, 'v');
             this.y = y;
         }
         SVGPathSegLinetoVerticalRel.prototype = Object.create(SVGPathSeg.prototype);
 
         window.SVGPathSegCurvetoCubicSmoothAbs = function(x, y, x2, y2) {
-            this.pathSegType = SVGPathSeg.PATHSEG_CURVETO_CUBIC_SMOOTH_ABS;
-            this.pathSegTypeAsLetter = 'S';
+            SVGPathSeg.call(this, SVGPathSeg.PATHSEG_CURVETO_CUBIC_SMOOTH_ABS, 'S');
             this.x = x;
             this.y = y;
             this.x2 = x2;
@@ -180,8 +163,7 @@
         SVGPathSegCurvetoCubicSmoothAbs.prototype = Object.create(SVGPathSeg.prototype);
 
         window.SVGPathSegCurvetoCubicSmoothRel = function(x, y, x2, y2) {
-            this.pathSegType = SVGPathSeg.PATHSEG_CURVETO_CUBIC_SMOOTH_REL;
-            this.pathSegTypeAsLetter = 's';
+            SVGPathSeg.call(this, SVGPathSeg.PATHSEG_CURVETO_CUBIC_SMOOTH_REL, 's');
             this.x = x;
             this.y = y;
             this.x2 = x2;
@@ -190,22 +172,21 @@
         SVGPathSegCurvetoCubicSmoothRel.prototype = Object.create(SVGPathSeg.prototype);
 
         window.SVGPathSegCurvetoQuadraticSmoothAbs = function(x, y) {
-            this.pathSegType = SVGPathSeg.PATHSEG_CURVETO_QUADRATIC_SMOOTH_ABS;
-            this.pathSegTypeAsLetter = 'T';
+            SVGPathSeg.call(this, SVGPathSeg.PATHSEG_CURVETO_QUADRATIC_SMOOTH_ABS, 'T');
             this.x = x;
             this.y = y;
         }
         SVGPathSegCurvetoQuadraticSmoothAbs.prototype = Object.create(SVGPathSeg.prototype);
 
         window.SVGPathSegCurvetoQuadraticSmoothRel = function(x, y) {
-            this.pathSegType = SVGPathSeg.PATHSEG_CURVETO_QUADRATIC_SMOOTH_REL;
-            this.pathSegTypeAsLetter = 't';
+            SVGPathSeg.call(this, SVGPathSeg.PATHSEG_CURVETO_QUADRATIC_SMOOTH_REL, 't');
             this.x = x;
             this.y = y;
         }
         SVGPathSegCurvetoQuadraticSmoothRel.prototype = Object.create(SVGPathSeg.prototype);
 
-        // create* methods from http://www.w3.org/TR/SVG11/single-page.html#paths-InterfaceSVGPathElement.
+        // Add createSVGPathSeg* functions to SVGPathElement.
+        // Spec: http://www.w3.org/TR/SVG11/single-page.html#paths-InterfaceSVGPathElement.
         SVGPathElement.prototype.createSVGPathSegClosePath = function() { return new SVGPathSegClosePath(); }
         SVGPathElement.prototype.createSVGPathSegMovetoAbs = function(x, y) { return new SVGPathSegMovetoAbs(x, y); }
         SVGPathElement.prototype.createSVGPathSegMovetoRel = function(x, y) { return new SVGPathSegMovetoRel(x, y); }
@@ -228,7 +209,7 @@
     }
 
     if (!window.SVGPathSegList) {
-        // http://www.w3.org/TR/SVG11/single-page.html#paths-InterfaceSVGPathSegList
+        // Spec: http://www.w3.org/TR/SVG11/single-page.html#paths-InterfaceSVGPathSegList
         window.SVGPathSegList = function(pathElement) {
             this._path = pathElement;
             this._list = [];
@@ -301,7 +282,8 @@
             return newItem;
         }
 
-        // http://www.w3.org/TR/SVG11/single-page.html#paths-InterfaceSVGAnimatedPathData
+        // Add the pathSegList accessors to SVGPathElement.
+        // Spec: http://www.w3.org/TR/SVG11/single-page.html#paths-InterfaceSVGAnimatedPathData
         Object.defineProperty(SVGPathElement.prototype, "pathSegList", { get: function() { return new SVGPathSegList(this); } });
         // FIXME: The following are not implemented and simply return SVGPathElement.pathSegList.
         Object.defineProperty(SVGPathElement.prototype, "normalizedPathSegList", { get: function() { return new SVGPathSegList(this); } });
