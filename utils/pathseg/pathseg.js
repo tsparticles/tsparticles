@@ -629,7 +629,7 @@
                 var segment = new PathSegmentData();
                 var lookahead = this._string[this._currentIndex];
                 var command = this._parseSVGSegmentTypeHelper(lookahead);
-                if (command == SVGPathSeg.PathSegUnknown) {
+                if (command == SVGPathSeg.PATHSEG_UNKNOWN) {
                     // Possibly an implicit command. Not allowed if this is the first command.
                     if (this._previousCommand == SVGPathSeg.PATHSEG_UNKNOWN)
                         return segment;
