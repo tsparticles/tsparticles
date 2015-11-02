@@ -166,7 +166,10 @@ QUnit.test("Validate the pathSegList inheritance model", function(assert) {
 // Source/core/svg/SVGPathParserTest.cpp
 QUnit.test("Path parsing", function(assert) {
     function checkParsing(string, expected) {
-        var pathSegArray = SVGPathSegList._parsePath(string);
+        var path = document.createElementNS("http://www.w3.org/2000/svg", "path");
+        path.setAttribute("d", string);
+        var pathSegList = path.pathSegList;
+        var pathSegArray = pathSegList._parsePath(string);
         var actual = SVGPathSegList._pathSegArrayAsString(pathSegArray);
         assert.equal(actual, expected);
     }
@@ -216,8 +219,6 @@ QUnit.test("Path parsing", function(assert) {
     checkParsing("\tM1,2", "M 1 2");
     checkParsing("\nM1,2", "M 1 2");
     checkParsing("\rM1,2", "M 1 2");
-    checkParsing("\vM1,2", ""); // error case
-    checkParsing("xM1,2", ""); // error case
     checkParsing("M1,2 ", "M 1 2");
     checkParsing("M1,2\t", "M 1 2");
     checkParsing("M1,2\n", "M 1 2");
@@ -225,8 +226,6 @@ QUnit.test("Path parsing", function(assert) {
 
     checkParsing("", "");
     checkParsing(" ", "");
-    checkParsing("x", ""); // error case
-    checkParsing("L1,2", ""); // error case
     checkParsing("M.1 .2 L.3 .4 .5 .6", "M 0.1 0.2 L 0.30000000000000004 0.4 L 0.5 0.6000000000000001");
 
     checkParsing("M1,1h2,3", "M 1 1 h 2 h 3");
@@ -247,8 +246,99 @@ QUnit.test("Path parsing", function(assert) {
 });
 
 // LayoutTests/svg/dom/SVGPathSegList-appendItem.xhtml
-QUnit.test("Validate the pathSegList inheritance model", function(assert) {
+QUnit.test("Test of SVGPathSegList::appendItem(...)", function(assert) {
     var path1 = document.createElementNS("http://www.w3.org/2000/svg", "path");
     path1.setAttribute("d", "M 0 0 L 100 0 L 100 100");
+    var path2 = document.createElementNS("http://www.w3.org/2000/svg", "path");
+    path2.setAttribute("d", "M 0 0 L 50 100 h 100 h 100 v 100");
+
+    // Check initial 'pathSegList' value of path1
     assert.equal(path1.pathSegList.numberOfItems, "3");
+
+    assert.equal(path1.pathSegList.getItem(0).toString(), "[object SVGPathSegMovetoAbs]");
+    assert.equal(path1.pathSegList.getItem(0).x, "0");
+    assert.equal(path1.pathSegList.getItem(0).y, "0");
+    assert.equal(path1.pathSegList.getItem(1).toString(), "[object SVGPathSegLinetoAbs]");
+    assert.equal(path1.pathSegList.getItem(1).x, "100");
+    assert.equal(path1.pathSegList.getItem(1).y, "0");
+    assert.equal(path1.pathSegList.getItem(2).toString(), "[object SVGPathSegLinetoAbs]");
+    assert.equal(path1.pathSegList.getItem(2).x, "100");
+    assert.equal(path1.pathSegList.getItem(2).y, "100");
+
+    // Check initial 'pathSegList' value of path2
+    assert.equal(path2.pathSegList.numberOfItems, "5");
+    assert.equal(path2.pathSegList.getItem(0).toString(), "[object SVGPathSegMovetoAbs]");
+    assert.equal(path2.pathSegList.getItem(0).x, "0");
+    assert.equal(path2.pathSegList.getItem(0).y, "0");
+    assert.equal(path2.pathSegList.getItem(1).toString(), "[object SVGPathSegLinetoAbs]");
+    assert.equal(path2.pathSegList.getItem(1).x, "50");
+    assert.equal(path2.pathSegList.getItem(1).y, "100");
+    assert.equal(path2.pathSegList.getItem(2).toString(), "[object SVGPathSegLinetoHorizontalRel]");
+    assert.equal(path2.pathSegList.getItem(2).x, "100");
+    assert.equal(path2.pathSegList.getItem(3).toString(), "[object SVGPathSegLinetoHorizontalRel]");
+    assert.equal(path2.pathSegList.getItem(3).x, "100");
+    assert.equal(path2.pathSegList.getItem(4).toString(), "[object SVGPathSegLinetoVerticalRel]");
+    assert.equal(path2.pathSegList.getItem(4).y, "100");
+
+    // Negate x value of fourth segment in path2
+    assert.equal(path2.pathSegList.getItem(3).x = -path2.pathSegList.getItem(3).x, "-100");
+
+    // Append second item from path1 to path2 list
+    assert.equal(path2.pathSegList.appendItem(path2.pathSegList.getItem(3)).toString(), "[object SVGPathSegLinetoHorizontalRel]");
+    assert.equal(path2.pathSegList.numberOfItems, "6");
+    assert.equal(path2.pathSegList.getItem(0).toString(), "[object SVGPathSegMovetoAbs]");
+    assert.equal(path2.pathSegList.getItem(0).x, "0");
+    assert.equal(path2.pathSegList.getItem(0).y, "0");
+    assert.equal(path2.pathSegList.getItem(1).toString(), "[object SVGPathSegLinetoAbs]");
+    assert.equal(path2.pathSegList.getItem(1).x, "50");
+    assert.equal(path2.pathSegList.getItem(1).y, "100");
+    assert.equal(path2.pathSegList.getItem(2).toString(), "[object SVGPathSegLinetoHorizontalRel]");
+    assert.equal(path2.pathSegList.getItem(2).x, "100");
+    assert.equal(path2.pathSegList.getItem(3).toString(), "[object SVGPathSegLinetoHorizontalRel]");
+    assert.equal(path2.pathSegList.getItem(3).x, "-100");
+    assert.equal(path2.pathSegList.getItem(4).toString(), "[object SVGPathSegLinetoVerticalRel]");
+    assert.equal(path2.pathSegList.getItem(4).y, "100");
+    assert.equal(path2.pathSegList.getItem(5).toString(), "[object SVGPathSegLinetoHorizontalRel]");
+    assert.equal(path2.pathSegList.getItem(5).x, "-100");
+
+    // Append second item from path2 to path1 list
+    assert.equal(path1.pathSegList.appendItem(path2.pathSegList.getItem(1)).toString(), "[object SVGPathSegLinetoAbs]");
+
+    // Change last item of path1 list, that came from path2 list, assure it's updating path1
+    assert.equal(path1.pathSegList.getItem(3).x -= 50, "0");
+
+    // Reset points attribute to M 0 0 L 100 0 v 100"
+    path2.setAttribute('d', 'M 0 0 L 100 0 v 100');
+
+    // Append fourth item from path1 to path2 list - now should look like a rectangle
+    assert.equal(path2.pathSegList.appendItem(path1.pathSegList.getItem(3)).toString(), "[object SVGPathSegLinetoAbs]");
+
+    // Check final 'pathSegList' value of path1
+    assert.equal(path1.pathSegList.numberOfItems, "4");
+    assert.equal(path1.pathSegList.getItem(0).toString(), "[object SVGPathSegMovetoAbs]");
+    assert.equal(path1.pathSegList.getItem(0).x, "0");
+    assert.equal(path1.pathSegList.getItem(0).y, "0");
+    assert.equal(path1.pathSegList.getItem(1).toString(), "[object SVGPathSegLinetoAbs]");
+    assert.equal(path1.pathSegList.getItem(1).x, "100");
+    assert.equal(path1.pathSegList.getItem(1).y, "0");
+    assert.equal(path1.pathSegList.getItem(2).toString(), "[object SVGPathSegLinetoAbs]");
+    assert.equal(path1.pathSegList.getItem(2).x, "100");
+    assert.equal(path1.pathSegList.getItem(2).y, "100");
+    assert.equal(path1.pathSegList.getItem(3).toString(), "[object SVGPathSegLinetoAbs]");
+    assert.equal(path1.pathSegList.getItem(3).x, "0");
+    assert.equal(path1.pathSegList.getItem(3).y, "100");
+
+    // Check final 'pathSegList' value of path2
+    assert.equal(path2.pathSegList.numberOfItems, "4");
+    assert.equal(path2.pathSegList.getItem(0).toString(), "[object SVGPathSegMovetoAbs]");
+    assert.equal(path2.pathSegList.getItem(0).x, "0");
+    assert.equal(path2.pathSegList.getItem(0).y, "0");
+    assert.equal(path2.pathSegList.getItem(1).toString(), "[object SVGPathSegLinetoAbs]");
+    assert.equal(path2.pathSegList.getItem(1).x, "100");
+    assert.equal(path1.pathSegList.getItem(1).y, "0");
+    assert.equal(path2.pathSegList.getItem(2).toString(), "[object SVGPathSegLinetoVerticalRel]");
+    assert.equal(path2.pathSegList.getItem(2).y, "100");
+    assert.equal(path2.pathSegList.getItem(3).toString(), "[object SVGPathSegLinetoAbs]");
+    assert.equal(path2.pathSegList.getItem(3).x, "0");
+    assert.equal(path1.pathSegList.getItem(3).y, "100");
 });
