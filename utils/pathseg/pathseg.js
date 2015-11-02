@@ -468,10 +468,10 @@
 
             Source.prototype.peekSegmentType = function() {
                 var lookahead = this._string[this._currentIndex];
-                return this._parseSVGSegmentTypeHelper(lookahead);
+                return this._pathSegTypeFromChar(lookahead);
             }
 
-            Source.prototype._parseSVGSegmentTypeHelper = function(lookahead) {
+            Source.prototype._pathSegTypeFromChar = function(lookahead) {
                 switch (lookahead) {
                 case "Z":
                 case "z":
@@ -538,6 +538,8 @@
                 return command == SVGPathSeg.PATHSEG_MOVETO_ABS || command == SVGPathSeg.PATHSEG_MOVETO_REL;
             }
 
+            // Parse a number from an SVG path. This very closely follows genericParseNumber(...) from Source/core/svg/SVGParserUtilities.cpp.
+            // Spec: http://www.w3.org/TR/SVG11/single-page.html#paths-PathDataBNF
             Source.prototype._parseNumber = function() {
                 var exponent = 0;
                 var integer = 0;
@@ -550,7 +552,7 @@
 
                 this._skipOptionalSpaces();
 
-                // read the sign
+                // Read the sign.
                 if (this._currentIndex < this._endIndex && this._string.charAt(this._currentIndex) == "+")
                     this._currentIndex++;
                 else if (this._currentIndex < this._endIndex && this._string.charAt(this._currentIndex) == "-") {
@@ -559,10 +561,10 @@
                 }
 
                 if (this._currentIndex == this._endIndex || ((this._string.charAt(this._currentIndex) < "0" || this._string.charAt(this._currentIndex) > "9") && this._string.charAt(this._currentIndex) != "."))
-                    // The first character of a number must be one of [0-9+-.]
+                    // The first character of a number must be one of [0-9+-.].
                     return undefined;
 
-                // read the integer part, build right-to-left
+                // Read the integer part, build right-to-left.
                 var startIntPartIndex = this._currentIndex;
                 while (this._currentIndex < this._endIndex && this._string.charAt(this._currentIndex) >= "0" && this._string.charAt(this._currentIndex) <= "9")
                     this._currentIndex++; // Advance to first non-digit.
@@ -587,11 +589,11 @@
                         decimal += (this._string.charAt(this._currentIndex++) - "0") * (frac *= 0.1);
                 }
 
-                // read the exponent part
+                // Read the exponent part.
                 if (this._currentIndex != startIndex && this._currentIndex + 1 < this._endIndex && (this._string.charAt(this._currentIndex) == "e" || this._string.charAt(this._currentIndex) == "E") && (this._string.charAt(this._currentIndex + 1) != "x" && this._string.charAt(this._currentIndex + 1) != "m")) {
                     this._currentIndex++;
 
-                    // read the sign of the exponent
+                    // Read the sign of the exponent.
                     if (this._string.charAt(this._currentIndex) == "+") {
                         this._currentIndex++;
                     } else if (this._string.charAt(this._currentIndex) == "-") {
@@ -599,7 +601,7 @@
                         expsign = -1;
                     }
 
-                    // There must be an exponent
+                    // There must be an exponent.
                     if (this._currentIndex >= this._endIndex || this._string.charAt(this._currentIndex) < "0" || this._string.charAt(this._currentIndex) > "9")
                         return undefined;
 
@@ -642,7 +644,7 @@
 
             Source.prototype.parseSegment = function() {
                 var lookahead = this._string[this._currentIndex];
-                var command = this._parseSVGSegmentTypeHelper(lookahead);
+                var command = this._pathSegTypeFromChar(lookahead);
                 if (command == SVGPathSeg.PATHSEG_UNKNOWN) {
                     // Possibly an implicit command. Not allowed if this is the first command.
                     if (this._previousCommand == SVGPathSeg.PATHSEG_UNKNOWN)
