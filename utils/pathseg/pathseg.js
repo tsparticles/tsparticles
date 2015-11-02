@@ -421,32 +421,6 @@
 
             var owningPathSegList = this;
 
-            var PathSegmentData = function() {
-                this.command = SVGPathSeg.PATHSEG_UNKNOWN;
-                this.targetPointX = undefined;
-                this.targetPointY = undefined;
-                this.point1X = undefined;
-                this.point1Y = undefined;
-                this.point2X = undefined;
-                this.point2Y = undefined;
-                this.arcSweep = false;
-                this.arcLarge = false;
-            }
-            PathSegmentData.prototype.arcRadiiX = function() { return this.point1X; }
-            PathSegmentData.prototype.setArcRadiiX = function(x) { this.point1X = x; }
-            PathSegmentData.prototype.arcRadiiY = function() { return this.point1Y; }
-            PathSegmentData.prototype.setArcRadiiY = function(y) { this.point1Y = y; }
-            PathSegmentData.prototype.arcAngle = function() { return this.point2X; }
-            PathSegmentData.prototype.setArcAngle = function(angle) { this.point2X = angle; }
-            PathSegmentData.prototype.r1 = function() { return this.point1X; }
-            PathSegmentData.prototype.r2 = function() { return this.poing1Y; }
-            PathSegmentData.prototype.x = function() { return this.targetPointX; }
-            PathSegmentData.prototype.y = function() { return this.targetPointY; }
-            PathSegmentData.prototype.x1 = function() { return this.point1X; }
-            PathSegmentData.prototype.y1 = function() { return this.point1Y; }
-            PathSegmentData.prototype.x2 = function() { return this.point2X; }
-            PathSegmentData.prototype.y2 = function() { return this.point2Y; }
-
             var Builder = function() {
                 this.path = [];
                 this._closed = true;
@@ -506,10 +480,10 @@
                     this.path.push(new SVGPathSegCurvetoQuadraticSmoothAbs(owningPathSegList, segment.targetPointX, segment.targetPointY));
                     break;
                 case SVGPathSeg.PATHSEG_ARC_REL:
-                    this.path.push(new SVGPathSegArcRel(owningPathSegList, segment.targetPointX, segment.targetPointY, segment.point1X, segment.point1Y, segment.arcAngle(), segment.arcLarge, segment.arcSweep));
+                    this.path.push(new SVGPathSegArcRel(owningPathSegList, segment.targetPointX, segment.targetPointY, segment.point1X, segment.point1Y, segment.arcAngle, segment.arcLarge, segment.arcSweep));
                     break;
                 case SVGPathSeg.PATHSEG_ARC_ABS:
-                    this.path.push(new SVGPathSegArcAbs(owningPathSegList, segment.targetPointX, segment.targetPointY, segment.point1X, segment.point1Y, segment.arcAngle(), segment.arcLarge, segment.arcSweep));
+                    this.path.push(new SVGPathSegArcAbs(owningPathSegList, segment.targetPointX, segment.targetPointY, segment.point1X, segment.point1Y, segment.arcAngle, segment.arcLarge, segment.arcSweep));
                     break;
                 default:
                     throw "Unknown path seg type."
@@ -727,7 +701,7 @@
             }
 
             Source.prototype.parseSegment = function() {
-                var segment = new PathSegmentData();
+                var segment = { };
                 var lookahead = this._string[this._currentIndex];
                 var command = this._parseSVGSegmentTypeHelper(lookahead);
                 if (command == SVGPathSeg.PATHSEG_UNKNOWN) {
@@ -784,9 +758,9 @@
                     break;
                 case SVGPathSeg.PATHSEG_ARC_REL:
                 case SVGPathSeg.PATHSEG_ARC_ABS:
-                    segment.setArcRadiiX(this._parseNumber());
-                    segment.setArcRadiiY(this._parseNumber());
-                    segment.setArcAngle(this._parseNumber());
+                    segment.point1X = this._parseNumber();
+                    segment.point1Y = this._parseNumber();
+                    segment.arcAngle = this._parseNumber();
                     segment.arcLarge = this._parseArcFlag();
                     segment.arcSweep = this._parseArcFlag();
                     segment.targetPointX = this._parseNumber();
