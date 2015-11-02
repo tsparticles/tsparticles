@@ -335,7 +335,6 @@
         window.SVGPathSegList = function(pathElement) {
             this._pathElement = pathElement;
             this._list = this._parsePath(this._pathElement.getAttribute("d"));
-            this.numberOfItems = this._list.length;
 
             // Use a MutationObserver to catch changes to the path's "d" attribute.
             this._mutationObserverConfig = { "attributes": true, "attributeFilter": ["d"] };
@@ -343,14 +342,14 @@
             this._pathElementMutationObserver.observe(this._pathElement, this._mutationObserverConfig);
         }
 
+        Object.defineProperty(SVGPathSegList.prototype, "numberOfItems", { get: function() { return this._list.length; } });
+
         SVGPathSegList.prototype._synchronizePathToList = function(mutationRecord) {
             if (!this._pathElement) {
                 this._list = [];
-                this.numberOfItems = 0;
                 return;
             }
             this._list = this._parsePath(this._pathElement.getAttribute("d"));
-            this.numberOfItems = this._list.length;
         }
 
         SVGPathSegList.prototype._synchronizeListToPath = function() {
@@ -369,14 +368,12 @@
                 pathSeg._owningPathSegList = null;
             });
             this._list = [];
-            this.numberOfItems = 0;
             this._synchronizeListToPath();
         }
 
         SVGPathSegList.prototype.initialize = function(newItem) {
             this._list.push(newItem);
             newItem._owningPathSegList = this;
-            this.numberOfItems = 1;
             this._synchronizeListToPath();
             return newItem;
         }
@@ -395,7 +392,6 @@
             }
             this._list.splice(index, 0, newItem);
             newItem._owningPathSegList = this;
-            this.numberOfItems++;
             this._synchronizeListToPath();
             return newItem;
         }
@@ -414,7 +410,6 @@
                 throw "INDEX_SIZE_ERR";
             var item = this._list[index];
             this._list.splice(index, 1);
-            this.numberOfItems--;
             this._synchronizeListToPath();
             return item;
         }
@@ -425,7 +420,6 @@
                 newItem = newItem.clone();
             }
             this._list.push(newItem);
-            this.numberOfItems++;
             newItem._owningPathSegList = this;
             // TODO: Optimize this to just append to the existing attribute.
             this._synchronizeListToPath();
