@@ -379,6 +379,8 @@
         }
 
         SVGPathSegList.prototype.getItem = function(index) {
+            if (index >= this.numberOfItems)
+                throw "INDEX_SIZE_ERR";
             return this._list[index];
         }
 
