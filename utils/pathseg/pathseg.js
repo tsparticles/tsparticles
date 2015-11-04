@@ -391,8 +391,7 @@
         SVGPathSegList.prototype.initialize = function(newItem) {
             this._checkPathSynchronizedToList();
 
-            // TODO(pdr): Shouldn't we clear the list here?
-            this._list.push(newItem);
+            this._list = [newItem];
             newItem._owningPathSegList = this;
             this._writeListToPath();
             return newItem;
