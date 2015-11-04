@@ -663,7 +663,7 @@ QUnit.test("Test how SVGLengthList reacts to XML DOM modifications", function(as
 
 // LayoutTests/svg/dom/svglist-exception-on-out-bounds-error.html
 QUnit.test("Tests that out of bounds accesses of SVGPathSegList correctly throw exceptions", function(assert) {
-    var path = document.createElementNS("http://www.w3.org/2000/svg","path");
+    var path = document.createElementNS("http://www.w3.org/2000/svg", "path");
     var svgList = path.pathSegList;
     var indicesToTest = [-Infinity, NaN, -1, 0, 1, Infinity];
     for (var i = 0; i < indicesToTest.length; i++) {
@@ -687,4 +687,33 @@ QUnit.test("Tests that out of bounds accesses of SVGPathSegList correctly throw 
             svgList.removeItem(index);
         });
     }
+});
+
+// LayoutTests/svg/dom/svglist-insertItemBefore-appends.html
+QUnit.test("Tests that insertItemBefore correctly appends if its index is out of bounds", function(assert) {
+    var path = document.createElementNS("http://www.w3.org/2000/svg", "path");
+    var seg00 = path.createSVGPathSegMovetoAbs(0,0);
+    var seg01 = path.createSVGPathSegMovetoAbs(0,1);
+    var seg11 = path.createSVGPathSegMovetoAbs(1,1);
+    var seg10 = path.createSVGPathSegMovetoAbs(1,0);
+    var svgList = path.pathSegList;
+    assert.equal(svgList.numberOfItems, "0");
+    svgList.appendItem(seg01);
+    assert.equal(svgList.numberOfItems, "1");
+    assert.equal(svgList.getItem(0), seg01);
+    svgList.appendItem(seg11);
+    assert.equal(svgList.numberOfItems, "2");
+    assert.equal(svgList.getItem(0), seg01);
+    assert.equal(svgList.getItem(1), seg11);
+    svgList.insertItemBefore(seg00, 0);
+    assert.equal(svgList.numberOfItems, "3");
+    assert.equal(svgList.getItem(0), seg00);
+    assert.equal(svgList.getItem(1), seg01);
+    assert.equal(svgList.getItem(2), seg11);
+    svgList.insertItemBefore(seg10, 42);
+    assert.equal(svgList.numberOfItems, "4");
+    assert.equal(svgList.getItem(0), seg00);
+    assert.equal(svgList.getItem(1), seg01);
+    assert.equal(svgList.getItem(2), seg11);
+    assert.equal(svgList.getItem(3), seg10);
 });
