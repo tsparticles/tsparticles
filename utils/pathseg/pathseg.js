@@ -397,11 +397,15 @@
             return newItem;
         }
 
+        SVGPathSegList.prototype._checkValidIndex = function(index) {
+            if (index < 0 || index >= this.numberOfItems)
+                throw "INDEX_SIZE_ERR";
+        }
+
         SVGPathSegList.prototype.getItem = function(index) {
             this._checkPathSynchronizedToList();
 
-            if (index >= this.numberOfItems)
-                throw "INDEX_SIZE_ERR";
+            this._checkValidIndex(index);
             return this._list[index];
         }
 
@@ -424,8 +428,11 @@
         SVGPathSegList.prototype.replaceItem = function(newItem, index) {
             this._checkPathSynchronizedToList();
 
-            if (index <= 0 || index >= this.numberOfItems - 1)
-                throw "INDEX_SIZE_ERR";
+            if (newItem._owningPathSegList) {
+                // SVG2 spec says to make a copy.
+                newItem = newItem.clone();
+            }
+            this._checkValidIndex(index);
             this._list[index] = newItem;
             newItem._owningPathSegList = this;
             this._writeListToPath();
@@ -435,8 +442,7 @@
         SVGPathSegList.prototype.removeItem = function(index) {
             this._checkPathSynchronizedToList();
 
-            if (index <= 0 || index >= this.numberOfItems - 1)
-                throw "INDEX_SIZE_ERR";
+            this._checkValidIndex(index);
             var item = this._list[index];
             this._list.splice(index, 1);
             this._writeListToPath();
