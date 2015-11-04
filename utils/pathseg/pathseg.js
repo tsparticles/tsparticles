@@ -398,7 +398,7 @@
         }
 
         SVGPathSegList.prototype._checkValidIndex = function(index) {
-            if (index < 0 || index >= this.numberOfItems)
+            if (isNaN(index) || index < 0 || index >= this.numberOfItems)
                 throw "INDEX_SIZE_ERR";
         }
 

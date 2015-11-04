@@ -652,3 +652,31 @@ QUnit.test("Test how SVGLengthList reacts to XML DOM modifications", function(as
     path.pathSegList.getItem(0).x -= 100;
     assert.equal(path.getAttribute('d'), "M 0 0 L 100 0 L 100 100 L 0 100");
 });
+
+// LayoutTests/svg/dom/svglist-exception-on-out-bounds-error.html
+QUnit.test("Tests that out of bounds accesses of SVGPathSegList correctly throw exceptions", function(assert) {
+    var path = document.createElementNS("http://www.w3.org/2000/svg","path");
+    var svgList = path.pathSegList;
+    var indicesToTest = [-Infinity, NaN, -1, 0, 1, Infinity];
+    for (var i = 0; i < indicesToTest.length; i++) {
+        var index = indicesToTest[i];
+        assert.throws(function() {
+            svgList.getItem(index);
+        });
+        assert.throws(function() {
+            svgList.insertItemBefore(null, index);
+        });
+        var seg = path.createSVGPathSegClosePath();
+        assert.equal(svgList.insertItemBefore(seg, index), seg);
+        svgList.removeItem(0);
+        assert.throws(function() {
+            svgList.replaceItem(seg, index);
+        });
+        assert.throws(function() {
+            svgList.replaceItem(null, index);
+        });
+        assert.throws(function() {
+            svgList.removeItem(index);
+        });
+    }
+});
