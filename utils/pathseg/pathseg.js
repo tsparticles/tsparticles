@@ -338,21 +338,36 @@
 
             // Use a MutationObserver to catch changes to the path's "d" attribute.
             this._mutationObserverConfig = { "attributes": true, "attributeFilter": ["d"] };
-            this._pathElementMutationObserver = new MutationObserver(this._synchronizePathToList);
+            this._pathElementMutationObserver = new MutationObserver(this._updateListFromPathMutations);
             this._pathElementMutationObserver.observe(this._pathElement, this._mutationObserverConfig);
         }
 
-        Object.defineProperty(SVGPathSegList.prototype, "numberOfItems", { get: function() { return this._list.length; } });
-
-        SVGPathSegList.prototype._synchronizePathToList = function(mutationRecord) {
-            if (!this._pathElement) {
-                this._list = [];
-                return;
+        Object.defineProperty(SVGPathSegList.prototype, "numberOfItems", {
+            get: function() {
+                this._checkPathSynchronizedToList();
+                return this._list.length;
             }
-            this._list = this._parsePath(this._pathElement.getAttribute("d"));
+        });
+
+        // Process any pending mutations to the path element and update the list as needed.
+        // This should be the first call of all public functions and is needed because
+        // MutationObservers are not synchronous so we can have pending asynchronous mutations.
+        SVGPathSegList.prototype._checkPathSynchronizedToList = function() {
+            this._updateListFromPathMutations(this._pathElementMutationObserver.takeRecords());
         }
 
-        SVGPathSegList.prototype._synchronizeListToPath = function() {
+        SVGPathSegList.prototype._updateListFromPathMutations = function(mutationRecords) {
+            var hasPathMutations = false;
+            mutationRecords.forEach(function(record) {
+                if (record.attributeName == 'd')
+                    hasPathMutations = true;
+            });
+            if (hasPathMutations)
+                this._list = this._parsePath(this._pathElement.getAttribute("d"));
+        }
+
+        // Serialize the list and update the path's 'd' attribute.
+        SVGPathSegList.prototype._writeListToPath = function() {
             this._pathElementMutationObserver.disconnect();
             this._pathElement.setAttribute("d", SVGPathSegList._pathSegArrayAsString(this._list));
             this._pathElementMutationObserver.observe(this._pathElement, this._mutationObserverConfig);
@@ -360,31 +375,40 @@
 
         // When a path segment changes the list needs to be synchronized back to the path element.
         SVGPathSegList.prototype.segmentChanged = function(pathSeg) {
-            this._synchronizeListToPath();
+            this._writeListToPath();
         }
 
         SVGPathSegList.prototype.clear = function() {
+            this._checkPathSynchronizedToList();
+
             this._list.forEach(function(pathSeg) {
                 pathSeg._owningPathSegList = null;
             });
             this._list = [];
-            this._synchronizeListToPath();
+            this._writeListToPath();
         }
 
         SVGPathSegList.prototype.initialize = function(newItem) {
+            this._checkPathSynchronizedToList();
+
+            // TODO(pdr): Shouldn't we clear the list here?
             this._list.push(newItem);
             newItem._owningPathSegList = this;
-            this._synchronizeListToPath();
+            this._writeListToPath();
             return newItem;
         }
 
         SVGPathSegList.prototype.getItem = function(index) {
+            this._checkPathSynchronizedToList();
+
             if (index >= this.numberOfItems)
                 throw "INDEX_SIZE_ERR";
             return this._list[index];
         }
 
         SVGPathSegList.prototype.insertItemBefore = function(newItem, index) {
+            this._checkPathSynchronizedToList();
+
             // Spec: If the index is greater than or equal to numberOfItems, then the new item is appended to the end of the list.
             if (index > this.numberOfItems)
                 index = this.numberOfItems;
@@ -394,29 +418,35 @@
             }
             this._list.splice(index, 0, newItem);
             newItem._owningPathSegList = this;
-            this._synchronizeListToPath();
+            this._writeListToPath();
             return newItem;
         }
 
         SVGPathSegList.prototype.replaceItem = function(newItem, index) {
+            this._checkPathSynchronizedToList();
+
             if (index <= 0 || index >= this.numberOfItems - 1)
                 throw "INDEX_SIZE_ERR";
             this._list[index] = newItem;
             newItem._owningPathSegList = this;
-            this._synchronizeListToPath();
+            this._writeListToPath();
             return newItem;
         }
 
         SVGPathSegList.prototype.removeItem = function(index) {
+            this._checkPathSynchronizedToList();
+
             if (index <= 0 || index >= this.numberOfItems - 1)
                 throw "INDEX_SIZE_ERR";
             var item = this._list[index];
             this._list.splice(index, 1);
-            this._synchronizeListToPath();
+            this._writeListToPath();
             return item;
         }
 
         SVGPathSegList.prototype.appendItem = function(newItem) {
+            this._checkPathSynchronizedToList();
+
             if (newItem._owningPathSegList) {
                 // SVG2 spec says to make a copy.
                 newItem = newItem.clone();
@@ -424,7 +454,7 @@
             this._list.push(newItem);
             newItem._owningPathSegList = this;
             // TODO: Optimize this to just append to the existing attribute.
-            this._synchronizeListToPath();
+            this._writeListToPath();
             return newItem;
         }
 
