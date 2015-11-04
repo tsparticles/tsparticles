@@ -732,6 +732,7 @@
                 case SVGPathSeg.PATHSEG_LINETO_VERTICAL_ABS:
                     return new SVGPathSegLinetoVerticalAbs(owningPathSegList, this._parseNumber());
                 case SVGPathSeg.PATHSEG_CLOSEPATH:
+                    this._skipOptionalSpaces();
                     return new SVGPathSegClosePath(owningPathSegList);
                 case SVGPathSeg.PATHSEG_CURVETO_CUBIC_REL:
                     var points = {x1: this._parseNumber(), y1: this._parseNumber(), x2: this._parseNumber(), y2: this._parseNumber(), x: this._parseNumber(), y: this._parseNumber()};

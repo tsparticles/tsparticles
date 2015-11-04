@@ -448,8 +448,8 @@ QUnit.test("Test of SVGPathSegList.clear and SVGPathSegList.initialize", functio
     assert.equal(path2.pathSegList.getItem(0).y, "150");
 });
 
-// LayoutTests/svg/dom/SVGPathSegList-insertItemBefore.xhtml
-QUnit.test("Test of SVGPathSegList.insertItemBefore", function(assert) {
+// LayoutTests/svg/dom/SVGPathSegList-removeItem.xhtml
+QUnit.test("Test of SVGPathSegList::removeItem", function(assert) {
     var path1 = document.createElementNS("http://www.w3.org/2000/svg", "path");
     path1.setAttribute("d", "M 0 0 L 100 0 L 0 100 L 100 100");
 
@@ -507,4 +507,47 @@ QUnit.test("Test of SVGPathSegList.insertItemBefore", function(assert) {
     assert.equal(path1.pathSegList.getItem(4).toString(), "[object SVGPathSegLinetoAbs]");
     assert.equal(path1.pathSegList.getItem(4).x, "0");
     assert.equal(path1.pathSegList.getItem(4).y, "100");
+});
+
+// LayoutTests/svg/dom/SVGPathSegList-insertItemBefore.xhtml
+QUnit.test("Test of SVGPathSegList.insertItemBefore", function(assert) {
+    var path1 = document.createElementNS("http://www.w3.org/2000/svg", "path");
+    path1.setAttribute("d", "M 0 0 L 100 0 L 100 100 z L 0 100");
+    var path2 = document.createElementNS("http://www.w3.org/2000/svg", "path");
+    path2.setAttribute("d", "M 0 0 h 100 z v 100 h -100");
+
+    // Check initial 'pathSegList' value of path1.
+    assert.equal(path1.pathSegList.numberOfItems, "5");
+    assert.equal(path1.pathSegList.getItem(0).toString(), "[object SVGPathSegMovetoAbs]");
+    assert.equal(path1.pathSegList.getItem(0).x, "0");
+    assert.equal(path1.pathSegList.getItem(0).y, "0");
+    assert.equal(path1.pathSegList.getItem(1).toString(), "[object SVGPathSegLinetoAbs]");
+    assert.equal(path1.pathSegList.getItem(1).x, "100");
+    assert.equal(path1.pathSegList.getItem(1).y, "0");
+    assert.equal(path1.pathSegList.getItem(2).toString(), "[object SVGPathSegLinetoAbs]");
+    assert.equal(path1.pathSegList.getItem(2).x, "100");
+    assert.equal(path1.pathSegList.getItem(2).y, "100");
+    assert.equal(path1.pathSegList.getItem(3).toString(), "[object SVGPathSegClosePath]");
+    assert.equal(path1.pathSegList.getItem(4).toString(), "[object SVGPathSegLinetoAbs]");
+    assert.equal(path1.pathSegList.getItem(4).x, "0");
+    assert.equal(path1.pathSegList.getItem(4).y, "100");
+
+    // Check initial 'pathSegList' value of path2.
+    assert.equal(path2.pathSegList.numberOfItems, "5");
+    assert.equal(path2.pathSegList.getItem(0).toString(), "[object SVGPathSegMovetoAbs]");
+    assert.equal(path2.pathSegList.getItem(0).x, "0");
+    assert.equal(path2.pathSegList.getItem(0).y, "0");
+    assert.equal(path2.pathSegList.getItem(1).toString(), "[object SVGPathSegLinetoHorizontalRel]");
+    assert.equal(path2.pathSegList.getItem(1).x, "100");
+    assert.equal(path2.pathSegList.getItem(2).toString(), "[object SVGPathSegClosePath]");
+    assert.equal(path2.pathSegList.getItem(3).toString(), "[object SVGPathSegLinetoVerticalRel]");
+    assert.equal(path2.pathSegList.getItem(3).y, "100");
+    assert.equal(path2.pathSegList.getItem(4).toString(), "[object SVGPathSegLinetoHorizontalRel]");
+    assert.equal(path2.pathSegList.getItem(4).x, "-100");
+
+    // Remove fourth item of path1.
+    assert.equal(path1.pathSegList.removeItem(3).toString(), "[object SVGPathSegClosePath]");
+
+    // Remove third item of path2.
+    assert.equal(path2.pathSegList.removeItem(2).toString(), "[object SVGPathSegClosePath]");
 });
