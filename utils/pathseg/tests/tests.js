@@ -629,3 +629,26 @@ QUnit.test("Test of SVGPathSegList.replaceItem", function(assert) {
     assert.equal(path2.pathSegList.getItem(3).toString(), "[object SVGPathSegLinetoHorizontalRel]");
     assert.equal(path2.pathSegList.getItem(3).x, "-100");
 });
+
+// LayoutTests/svg/dom/SVGPathSegList-xml-dom-synchronization.xhtml
+QUnit.test("Test how SVGLengthList reacts to XML DOM modifications", function(assert) {
+    var path = document.createElementNS("http://www.w3.org/2000/svg", "path");
+    path.setAttribute("d", "M 200 0 L 100 0 L 100 100");
+
+    assert.equal(path.pathSegList.numberOfItems, "3");
+
+    // Check initial 'd' attribute value.
+    assert.equal(path.getAttribute('d'), "M 200 0 L 100 0 L 100 100");
+
+    // Append one item, check 'd' attribute changed.
+    path.pathSegList.appendItem(path.createSVGPathSegLinetoAbs(0, 100));
+    assert.equal(path.getAttribute('d'), "M 200 0 L 100 0 L 100 100 L 0 100");
+
+    // Modify first item, check 'd' attribute changed.
+    path.pathSegList.getItem(0).x -= 100;
+    assert.equal(path.getAttribute('d'), "M 100 0 L 100 0 L 100 100 L 0 100");
+
+    // Modify first item, check 'd' attribute changed, now a green rectangle should be visible.
+    path.pathSegList.getItem(0).x -= 100;
+    assert.equal(path.getAttribute('d'), "M 0 0 L 100 0 L 100 100 L 0 100");
+});
