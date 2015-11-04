@@ -632,25 +632,33 @@ QUnit.test("Test of SVGPathSegList.replaceItem", function(assert) {
 
 // LayoutTests/svg/dom/SVGPathSegList-xml-dom-synchronization.xhtml
 QUnit.test("Test how SVGLengthList reacts to XML DOM modifications", function(assert) {
+    // Cross-browser formatting of the d string, needed so both gecko and blink can use the same test.
+    function formatDAttribute(string) {
+        return string.replace(/,/g, " ")          // Remove Firefox commas
+                   .replace(/([A-Z])/g, " $1 ") // "M 100 0L 50 0" -> " M 100 0 L 50 0"
+                   .replace(/^\s/, "")          // " M 100 0" -> "M 100 0"
+                   .replace(/\s\s/g, " ");      // If there was already whitespace between coordinates & commands, fix it up again.
+    }
+
     var path = document.createElementNS("http://www.w3.org/2000/svg", "path");
     path.setAttribute("d", "M 200 0 L 100 0 L 100 100");
 
     assert.equal(path.pathSegList.numberOfItems, "3");
 
     // Check initial 'd' attribute value.
-    assert.equal(path.getAttribute('d'), "M 200 0 L 100 0 L 100 100");
+    assert.equal(formatDAttribute(path.getAttribute('d')), "M 200 0 L 100 0 L 100 100");
 
     // Append one item, check 'd' attribute changed.
     path.pathSegList.appendItem(path.createSVGPathSegLinetoAbs(0, 100));
-    assert.equal(path.getAttribute('d'), "M 200 0 L 100 0 L 100 100 L 0 100");
+    assert.equal(formatDAttribute(path.getAttribute('d')), "M 200 0 L 100 0 L 100 100 L 0 100");
 
     // Modify first item, check 'd' attribute changed.
     path.pathSegList.getItem(0).x -= 100;
-    assert.equal(path.getAttribute('d'), "M 100 0 L 100 0 L 100 100 L 0 100");
+    assert.equal(formatDAttribute(path.getAttribute('d')), "M 100 0 L 100 0 L 100 100 L 0 100");
 
     // Modify first item, check 'd' attribute changed, now a green rectangle should be visible.
     path.pathSegList.getItem(0).x -= 100;
-    assert.equal(path.getAttribute('d'), "M 0 0 L 100 0 L 100 100 L 0 100");
+    assert.equal(formatDAttribute(path.getAttribute('d')), "M 0 0 L 100 0 L 100 100 L 0 100");
 });
 
 // LayoutTests/svg/dom/svglist-exception-on-out-bounds-error.html
