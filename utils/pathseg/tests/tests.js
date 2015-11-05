@@ -313,7 +313,7 @@ QUnit.test("Test of SVGPathSegList.appendItem", function(assert) {
     assert.equal(path1.pathSegList.getItem(3).x -= 50, "0");
 
     // Reset points attribute to M 0 0 L 100 0 v 100"
-    path2.setAttribute('d', 'M 0 0 L 100 0 v 100');
+    path2.setAttribute("d", "M 0 0 L 100 0 v 100");
 
     // Append fourth item from path1 to path2 list - now should look like a rectangle
     assert.equal(path2.pathSegList.appendItem(path1.pathSegList.getItem(3)).toString(), "[object SVGPathSegLinetoAbs]");
@@ -646,19 +646,19 @@ QUnit.test("Test how SVGLengthList reacts to XML DOM modifications", function(as
     assert.equal(path.pathSegList.numberOfItems, "3");
 
     // Check initial 'd' attribute value.
-    assert.equal(formatDAttribute(path.getAttribute('d')), "M 200 0 L 100 0 L 100 100");
+    assert.equal(formatDAttribute(path.getAttribute("d")), "M 200 0 L 100 0 L 100 100");
 
     // Append one item, check 'd' attribute changed.
     path.pathSegList.appendItem(path.createSVGPathSegLinetoAbs(0, 100));
-    assert.equal(formatDAttribute(path.getAttribute('d')), "M 200 0 L 100 0 L 100 100 L 0 100");
+    assert.equal(formatDAttribute(path.getAttribute("d")), "M 200 0 L 100 0 L 100 100 L 0 100");
 
     // Modify first item, check 'd' attribute changed.
     path.pathSegList.getItem(0).x -= 100;
-    assert.equal(formatDAttribute(path.getAttribute('d')), "M 100 0 L 100 0 L 100 100 L 0 100");
+    assert.equal(formatDAttribute(path.getAttribute("d")), "M 100 0 L 100 0 L 100 100 L 0 100");
 
     // Modify first item, check 'd' attribute changed, now a green rectangle should be visible.
     path.pathSegList.getItem(0).x -= 100;
-    assert.equal(formatDAttribute(path.getAttribute('d')), "M 0 0 L 100 0 L 100 100 L 0 100");
+    assert.equal(formatDAttribute(path.getAttribute("d")), "M 0 0 L 100 0 L 100 100 L 0 100");
 });
 
 // LayoutTests/svg/dom/svglist-exception-on-out-bounds-error.html
@@ -720,7 +720,7 @@ QUnit.test("Tests that insertItemBefore correctly appends if its index is out of
 
 QUnit.test("SVGEdit replaceItem browser sniffing support", function(assert) {
     var path = document.createElementNS("http://www.w3.org/2000/svg", "path");
-    path.setAttribute('d', 'M0,0 10,10');
+    path.setAttribute("d", "M0,0 10,10");
     var seglist = path.pathSegList;
     var seg = path.createSVGPathSegLinetoAbs(5,5);
     var replaced = seglist.replaceItem(seg, 0);
@@ -729,7 +729,7 @@ QUnit.test("SVGEdit replaceItem browser sniffing support", function(assert) {
 
 QUnit.test("SVGEdit insertItemBefore browser sniffing support", function(assert) {
     var path = document.createElementNS("http://www.w3.org/2000/svg", "path");
-    path.setAttribute('d', 'M0,0 10,10');
+    path.setAttribute("d", "M0,0 10,10");
     var seglist = path.pathSegList;
     var seg = path.createSVGPathSegLinetoAbs(5,5);
     var inserted = seglist.insertItemBefore(seg, 0);
