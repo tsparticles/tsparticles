@@ -1,9 +1,7 @@
-"use strict";
-
 // SVGPathSeg API polyfill
 //
 
-(function() {
+(function() { "use strict";
     if (!window.SVGPathSeg) {
         // Spec: http://www.w3.org/TR/SVG11/single-page.html#paths-InterfaceSVGPathSeg
         window.SVGPathSeg = function(type, typeAsLetter, owningPathSegList) {
@@ -357,6 +355,8 @@
         }
 
         SVGPathSegList.prototype._updateListFromPathMutations = function(mutationRecords) {
+            if (!this._pathElement)
+                return;
             var hasPathMutations = false;
             mutationRecords.forEach(function(record) {
                 if (record.attributeName == 'd')

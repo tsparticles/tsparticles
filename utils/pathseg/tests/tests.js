@@ -717,3 +717,21 @@ QUnit.test("Tests that insertItemBefore correctly appends if its index is out of
     assert.equal(svgList.getItem(2), seg11);
     assert.equal(svgList.getItem(3), seg10);
 });
+
+QUnit.test("SVGEdit replaceItem browser sniffing support", function(assert) {
+    var path = document.createElementNS("http://www.w3.org/2000/svg", "path");
+    path.setAttribute('d', 'M0,0 10,10');
+    var seglist = path.pathSegList;
+    var seg = path.createSVGPathSegLinetoAbs(5,5);
+    var replaced = seglist.replaceItem(seg, 0);
+    assert.equal(replaced, seg);
+});
+
+QUnit.test("SVGEdit insertItemBefore browser sniffing support", function(assert) {
+    var path = document.createElementNS("http://www.w3.org/2000/svg", "path");
+    path.setAttribute('d', 'M0,0 10,10');
+    var seglist = path.pathSegList;
+    var seg = path.createSVGPathSegLinetoAbs(5,5);
+    var inserted = seglist.insertItemBefore(seg, 0);
+    assert.equal(inserted, seg);
+});
