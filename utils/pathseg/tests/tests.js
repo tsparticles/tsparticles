@@ -735,3 +735,53 @@ QUnit.test("SVGEdit insertItemBefore browser sniffing support", function(assert)
     var inserted = seglist.insertItemBefore(seg, 0);
     assert.equal(inserted, seg);
 });
+
+QUnit.test("Asynchronous mutation observer", function(assert) {
+    var path = document.createElementNS("http://www.w3.org/2000/svg", "path");
+    path.setAttribute("d", "M 1 2 M 3 4 Z");
+    var segList = path.pathSegList;
+    var moveToSeg = segList.getItem(1);
+    assert.equal(moveToSeg.toString(), "[object SVGPathSegMovetoAbs]");
+    assert.equal(moveToSeg.x, "3");
+    assert.equal(moveToSeg.y, "4");
+    assert.equal(segList.numberOfItems, 3);
+    path.setAttribute("d", "M50,51 L52,53 L54,55Z");
+
+    var done = assert.async();
+    setTimeout(function() {
+        // This check is only for the polyfill and should pass whether the polyfill is used or not.
+        if (SVGPathSegList._pathSegArrayAsString) {
+            // Ensure the path seg list was updated asynchronously by checking the interal _list
+            // member which will not synchronize the list automatically.
+            assert.equal(segList._list.length, "4");
+        }
+
+        assert.equal(path.pathSegList.numberOfItems, "4");
+        assert.equal(path.pathSegList.getItem(0).toString(), "[object SVGPathSegMovetoAbs]");
+        assert.equal(path.pathSegList.getItem(0).x, "50");
+        assert.equal(path.pathSegList.getItem(0).y, "51");
+        assert.equal(path.pathSegList.getItem(1).toString(), "[object SVGPathSegLinetoAbs]");
+        assert.equal(path.pathSegList.getItem(1).x, "52");
+        assert.equal(path.pathSegList.getItem(1).y, "53");
+        assert.equal(path.pathSegList.getItem(2).toString(), "[object SVGPathSegLinetoAbs]");
+        assert.equal(path.pathSegList.getItem(2).x, "54");
+        assert.equal(path.pathSegList.getItem(2).y, "55");
+        assert.equal(path.pathSegList.getItem(3).toString(), "[object SVGPathSegClosePath]");
+
+        // Path segs tearoffs should still be usable even if they are detached.
+        assert.equal(moveToSeg.toString(), "[object SVGPathSegMovetoAbs]");
+        assert.equal(moveToSeg.x, "3");
+        assert.equal(moveToSeg.y, "4");
+        moveToSeg.x += 5;
+        moveToSeg.y += 10;
+        assert.equal(moveToSeg.x, "8");
+        assert.equal(moveToSeg.y, "14");
+
+        // Detached path segs should not modify the old list.
+        assert.equal(path.pathSegList.numberOfItems, "4");
+        assert.equal(path.pathSegList.getItem(1).toString(), "[object SVGPathSegLinetoAbs]");
+        assert.equal(path.pathSegList.getItem(1).x, "52");
+        assert.equal(path.pathSegList.getItem(1).y, "53");
+        done();
+    });
+});

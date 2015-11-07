@@ -350,7 +350,7 @@
 
             // Use a MutationObserver to catch changes to the path's "d" attribute.
             this._mutationObserverConfig = { "attributes": true, "attributeFilter": ["d"] };
-            this._pathElementMutationObserver = new MutationObserver(this._updateListFromPathMutations);
+            this._pathElementMutationObserver = new MutationObserver(this._updateListFromPathMutations.bind(this));
             this._pathElementMutationObserver.observe(this._pathElement, this._mutationObserverConfig);
         }
 
