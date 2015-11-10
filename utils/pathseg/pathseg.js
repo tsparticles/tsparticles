@@ -6,7 +6,7 @@
 // changes which were implemented in Firefox 43 and Chrome 46.
 
 (function() { "use strict";
-    if (!window.SVGPathSeg) {
+    if (!("SVGPathSeg" in window)) {
         // Spec: http://www.w3.org/TR/SVG11/single-page.html#paths-InterfaceSVGPathSeg
         window.SVGPathSeg = function(type, typeAsLetter, owningPathSegList) {
             this.pathSegType = type;
@@ -332,7 +332,7 @@
         SVGPathElement.prototype.createSVGPathSegCurvetoQuadraticSmoothRel = function(x, y) { return new SVGPathSegCurvetoQuadraticSmoothRel(undefined, x, y); }
     }
 
-    if (!window.SVGPathSegList) {
+    if (!("SVGPathSegList" in window)) {
         // Spec: http://www.w3.org/TR/SVG11/single-page.html#paths-InterfaceSVGPathSegList
         window.SVGPathSegList = function(pathElement) {
             this._pathElement = pathElement;
