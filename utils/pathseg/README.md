@@ -31,3 +31,10 @@ moveToSeg.y += 200;
 console.log(path.getAttribute('d')); // m 210 210 l 100 100
 ```
 
+These APIs have been removed from SVG 2 but their original definitions can be found at:
+
+http://www.w3.org/TR/SVG/single-page.html#paths-InterfaceSVGPathSeg
+
+http://www.w3.org/TR/SVG/single-page.html#paths-InterfaceSVGPathSegList
+
+
