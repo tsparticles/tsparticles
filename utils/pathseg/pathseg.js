@@ -14,6 +14,8 @@
             this._owningPathSegList = owningPathSegList;
         }
 
+        SVGPathSeg.prototype.classname = "SVGPathSeg";
+
         SVGPathSeg.PATHSEG_UNKNOWN = 0;
         SVGPathSeg.PATHSEG_CLOSEPATH = 1;
         SVGPathSeg.PATHSEG_MOVETO_ABS = 2;
@@ -343,6 +345,8 @@
             this._pathElementMutationObserver = new MutationObserver(this._updateListFromPathMutations.bind(this));
             this._pathElementMutationObserver.observe(this._pathElement, this._mutationObserverConfig);
         }
+
+        SVGPathSegList.prototype.classname = "SVGPathSegList";
 
         Object.defineProperty(SVGPathSegList.prototype, "numberOfItems", {
             get: function() {
