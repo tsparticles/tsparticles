@@ -1,16 +1,14 @@
 # SVGPathSeg polyfill
 
-This is a drop-in replacement for the SVGPathSeg and SVGPathSegList APIs that were removed from SVG2 (https://lists.w3.org/Archives/Public/www-svg/2015Jun/0044.html), including the latest spec changes which were implemented in Firefox 43 and Chrome 46.
+This is a drop-in replacement for the SVGPathSeg and SVGPathSegList APIs that were removed from SVG2 (https://lists.w3.org/Archives/Public/www-svg/2015Jun/0044.html). Existing code that uses the SVGPathSeg or SVGPathSegList APIs can use this polyfill to keep working. This polyfill is based on the exact code and tests that were removed from Chromium 47.
 
-The SVGPathSeg API was difficult to use and has been removed from the SVG spec in favor of a new, awesomer API in the Paths module (https://lists.w3.org/Archives/Public/www-svg/2015Jun/0044.html). All new development should use the SVG Path Data API. There's even a polyfill ([path-data-polyfill.js](https://github.com/jarek-foksa/path-data-polyfill.js)) for browsers that do not yet support the new API.
-
-Existing code that uses the SVGPathSeg or SVGPathSegList APIs will soon break in browsers (including Chromium 47+, see https://groups.google.com/a/chromium.org/d/msg/blink-dev/EDC3cBg9mCU/OvElJgOWCgAJ) and this polyfill can be used to keep pages working. This polyfill is heavily based on the exact code and tests that were removed in Chromium 47.
+The SVGPathSeg API was difficult to use and has been removed from the SVG spec in favor of a new, awesomer API in the Paths module (https://lists.w3.org/Archives/Public/www-svg/2015Jun/0044.html). All new development should use the SVG Path Data API. There's a polyfill ([path-data-polyfill.js](https://github.com/jarek-foksa/path-data-polyfill.js)) for browsers that do not yet support the new API.
 
 ## Implementation status
 
 Now passing all SVGPathSeg tests from the Chromium repository.
 
-This has been tested in svg-edit and works as expected, including passing all svg-edit tests.
+Now used by [svg-edit](https://github.com/SVG-Edit/svgedit) and passes all svg-edit path tests.
 
 ## Using pathseg.js
 Just add pathseg.js to your server and drop this in your html or svg files:
@@ -36,5 +34,3 @@ These APIs have been removed from SVG 2 but their original definitions can be fo
 http://www.w3.org/TR/SVG/single-page.html#paths-InterfaceSVGPathSeg
 
 http://www.w3.org/TR/SVG/single-page.html#paths-InterfaceSVGPathSegList
-
-
