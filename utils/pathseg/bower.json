@@ -1,0 +1,22 @@
+{
+  "name": "pathseg",
+  "description": "A polyfill for SVG's SVGPathSeg and SVGPathSegList",
+  "main": "pathseg.js",
+  "authors": [
+    "Philip Rogers"
+  ],
+  "license": "Chromium's License",
+  "keywords": [
+    "SVG",
+    "polyfill",
+    "pathseg",
+    "SVGPathSeg",
+    "SVGPathSegList"
+  ],
+  "homepage": "https://github.com/progers/pathseg",
+  "moduleType": "globals",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/progers/pathseg.git"
+  }
+}
