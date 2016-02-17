@@ -1,5 +1,6 @@
 {
   "name": "pathseg",
+  "version": "1.0.1",
   "description": "A polyfill for SVG's SVGPathSeg and SVGPathSegList",
   "main": "pathseg.js",
   "authors": [
