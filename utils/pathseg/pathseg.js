@@ -671,8 +671,11 @@
                     // There must be a least one digit following the .
                     if (this._currentIndex >= this._endIndex || this._string.charAt(this._currentIndex) < "0" || this._string.charAt(this._currentIndex) > "9")
                         return undefined;
-                    while (this._currentIndex < this._endIndex && this._string.charAt(this._currentIndex) >= "0" && this._string.charAt(this._currentIndex) <= "9")
-                        decimal += (this._string.charAt(this._currentIndex++) - "0") * (frac *= 0.1);
+                    while (this._currentIndex < this._endIndex && this._string.charAt(this._currentIndex) >= "0" && this._string.charAt(this._currentIndex) <= "9") {
+                        frac *= 10;
+                        decimal += (this._string.charAt(this._currentIndex) - "0") / frac;
+                        this._currentIndex += 1;
+                    }
                 }
 
                 // Read the exponent part.

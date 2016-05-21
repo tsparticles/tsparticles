@@ -217,7 +217,7 @@ QUnit.test("Path parsing", function(assert) {
     checkParsing("m100,200,3,4", "m 100 200 l 3 4");
 
     checkParsing("M 100-200", "M 100 -200");
-    checkParsing("M 0.6.5", "M 0.6000000000000001 0.5");
+    checkParsing("M 0.6.5", "M 0.6 0.5");
 
     checkParsing(" M1,2", "M 1 2");
     checkParsing("  M1,2", "M 1 2");
@@ -231,7 +231,7 @@ QUnit.test("Path parsing", function(assert) {
 
     checkParsing("", "");
     checkParsing(" ", "");
-    checkParsing("M.1 .2 L.3 .4 .5 .6", "M 0.1 0.2 L 0.30000000000000004 0.4 L 0.5 0.6000000000000001");
+    checkParsing("M.1 .2 L.3 .4 .5 .6", "M 0.1 0.2 L 0.3 0.4 L 0.5 0.6");
 
     checkParsing("M1,1h2,3", "M 1 1 h 2 h 3");
     checkParsing("M1,1H2,3", "M 1 1 H 2 H 3");
