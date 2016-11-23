@@ -1,7 +1,7 @@
 /// <reference path="../../typings/index.d.ts" />
 
 import deepExtend = require( 'deep-extend' );
-import {defaultParams, Interact, Modes, IParams, Particle, ParticleManager} from '.';
+import {defaultParams, Interact, Modes, IParams, Particle, ParticleManager, Vendors} from '.';
 
 export default class ParticlesLibrary{
 
@@ -9,6 +9,7 @@ export default class ParticlesLibrary{
 	particleManager: ParticleManager;
 	interact: Interact;
 	modes: Modes;
+	vendors: Vendors;
 
 	constructor( canvasElement: HTMLCanvasElement, params?: any ){
 		deepExtend( defaultParams, params );
@@ -16,7 +17,9 @@ export default class ParticlesLibrary{
 		this.extendParams( canvasElement );
 		this.interact = new Interact( this.params );
 		this.modes = new Modes( this.params );
-		this.particleManager = new ParticleManager( this.params, this.interact, this.modes, this );
+		this.vendors = new Vendors( this.params );
+		this.particleManager = new ParticleManager( this.params, this.interact, this.modes, this.vendors, this );
+		console.log( this.params );
 
 	}
 

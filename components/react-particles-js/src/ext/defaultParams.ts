@@ -115,9 +115,9 @@ let defaultParams: IParams = {
 	},
 	retina_detect: false,
 	fn: {
-		interact: null,
-		modes: null,
-		vendors: null
+		interact: {},
+		modes: {},
+		vendors: {}
 	},
 	tmp: {
 		obj: null,

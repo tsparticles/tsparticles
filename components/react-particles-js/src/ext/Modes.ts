@@ -1,4 +1,4 @@
-import {isInArray, IParams, Particle} from '.';
+import {clamp, isInArray, IParams, Particle} from '.';
 
 type Pos = {
 	pos_x: number;
@@ -11,6 +11,16 @@ export default class Modes{
 
 	constructor( params: IParams ){
 		this.params = params;
+		this.pushParticles = this.pushParticles.bind( this );
+		this.removeParticles = this.removeParticles.bind( this );
+		this.bubbleParticle = this.bubbleParticle.bind( this );
+		this.repulseParticle = this.repulseParticle.bind( this );
+		this.grabParticle = this.grabParticle.bind( this );
+		this.params.fn.modes.pushParticles = this.pushParticles;
+		this.params.fn.modes.removeParticles = this.removeParticles;
+		this.params.fn.modes.bubbleParticle = this.bubbleParticle;
+		this.params.fn.modes.repulseParticle = this.repulseParticle;
+		this.params.fn.modes.grabParticle = this.grabParticle;
 	}
 
 	pushParticles( nb: number, pos?: Pos ): void{
@@ -172,6 +182,129 @@ export default class Modes{
 		}
 	}
 
-	
+	repulseParticle( particle: Particle ){
+
+		if( this.params.interactivity.events.onhover.enable && 
+			isInArray( 'repulse', this.params.interactivity.events.onhover.mode ) &&
+			this.params.interactivity.status == 'mousemove' ) {
+
+			let dx_mouse: number = particle.x - this.params.interactivity.mouse.pos_x;
+			let dy_mouse: number = particle.y - this.params.interactivity.mouse.pos_y;
+			let dist_mouse: number = Math.sqrt( dx_mouse*dx_mouse + dy_mouse * dy_mouse );
+
+			let normVec: any = { x: dx_mouse/dist_mouse, y: dy_mouse/dist_mouse };
+			let repulseRadius: number = this.params.interactivity.modes.repulse.distance;
+			let velocity: number = 100;
+			let repulseFactor: number = clamp( ( 1 / repulseRadius ) * ( -1 * Math.pow( dist_mouse / repulseRadius, 2 ) + 1 ) * repulseRadius * velocity, 0, 50 );
+			
+			let pos: {
+				x: number;
+				y: number;
+			} = {
+				x: particle.x + normVec.x * repulseFactor,
+				y: particle.y + normVec.y * repulseFactor
+			}
+
+			if( this.params.particles.move.out_mode == 'bounce' ){
+				if( pos.x - particle.radius > 0 && pos.x + particle.radius < this.params.canvas.width)
+					particle.x = pos.x;
+				if( pos.y - particle.radius > 0 && pos.y + particle.radius < this.params.canvas.height )
+					particle.y = pos.y;
+			}else{
+				particle.x = pos.x;
+				particle.y = pos.y;
+			}
+		
+		}else if( this.params.interactivity.events.onclick.enable &&
+			isInArray( 'repulse', this.params.interactivity.events.onclick.mode ) ){
+
+			if( !this.params.tmp.repulse_finish ){
+				this.params.tmp.repulse_count++;
+				if( this.params.tmp.repulse_count == this.params.particles.array.length )
+					this.params.tmp.repulse_finish = true;
+			}
+
+			if( this.params.tmp.repulse_clicking ){
+
+				let repulseRadius: number = Math.pow(this.params.interactivity.modes.repulse.distance/6, 3);
+
+				let dx: number = this.params.interactivity.mouse.click_pos_x - particle.x;
+				let dy: number = this.params.interactivity.mouse.click_pos_y - particle.y;
+				let d: number = dx * dx + dy * dy;
+
+				let force: number = -repulseRadius / d * 1;
+
+				let process: () => void =
+					() => {
+						let f: number = Math.atan2( dy, dx );
+						particle.vx = force * Math.cos( f );
+						particle.vy = force * Math.sin( f );
+						if( this.params.particles.move.out_mode == 'bounce' ){
+							let pos: {
+								x: number;
+								y: number;
+							} = {
+								x: particle.x + particle.vx,
+								y: particle.y + particle.vy
+							}
+							if ( pos.x + particle.radius > this.params.canvas.width )
+								particle.vx = -particle.vx;
+							else if ( pos.x - particle.radius < 0 )
+								particle.vx = -particle.vx;
+							if ( pos.y + particle.radius > this.params.canvas.height )
+								particle.vy = -particle.vy;
+							else if ( pos.y - particle.radius < 0 )
+								particle.vy = -particle.vy;
+						}
+					};
+
+				if( d <= repulseRadius ){
+					process();
+				}
+			}else{
+				if( this.params.tmp.repulse_clicking == false ){
+					particle.vx = particle.vx_i;
+					particle.vy = particle.vy_i;
+				}
+			}
+
+		}
+	}
+
+	grabParticle( particle: Particle ): void{
+		if( this.params.interactivity.events.onhover.enable &&
+			this.params.interactivity.status == 'onmousemove' ){
+
+			let dx_mouse: number = particle.x - this.params.interactivity.mouse.pos_x;
+			let dy_mouse: number = particle.y - this.params.interactivity.mouse.pos_y;
+			let dist_mouse: number = Math.sqrt( dx_mouse * dx_mouse + dy_mouse * dy_mouse );
+
+			if( dist_mouse <= this.params.interactivity.modes.grab.distance ){
+
+				let opacity_line: number = this.params.interactivity.modes.grab.line_linked.opacity
+					- ( dist_mouse / ( 1 / this.params.interactivity.modes.grab.line_linked.opacity ) ) 
+					/ this.params.interactivity.modes.grab.distance;
+
+				if( opacity_line > 0 ){
+					let color_line: {
+						r: number;
+						g: number;
+						b: number;
+					} = this.params.particles.line_linked.color_rgb_line;
+					let {r, g, b} = color_line;
+					this.params.canvas.ctx.strokeStyle = `rgba( ${r}, ${g}, ${b}, ${opacity_line} )`;
+					this.params.canvas.ctx.lineWidth = this.params.particles.line_linked.width;
+
+					this.params.canvas.ctx.beginPath();
+					this.params.canvas.ctx.moveTo( particle.x, particle.y );
+					this.params.canvas.ctx.lineTo( this.params.interactivity.mouse.pos_x, this.params.interactivity.mouse.pos_y );
+					this.params.canvas.ctx.stroke();
+					this.params.canvas.ctx.closePath();
+				}
+
+			}
+
+		}
+	}
 
 }

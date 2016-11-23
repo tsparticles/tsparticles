@@ -77,6 +77,7 @@ export interface IParams{
 		array: any[];
 	};
 	interactivity: {
+		el?: EventTarget;
 		status?: string;
 		detect_on: string;
 		events: {
@@ -133,6 +134,8 @@ export interface IParams{
 			grabParticle?: any;
 			bubbleParticle?: any;
 			repulseParticle?: any;
+			pushParticles?: any;
+			removeParticles?: any;
 		};
 		retinaInit?: any;
 		canvasInit?: any;
@@ -146,10 +149,17 @@ export interface IParams{
 		particlesUpdate?: any;
 		vendors?: {
 			start?: any;
+			eventsListeners?: any;
+			destroy?: any;
 			densityAutoParticles?: any;
 			checkOverlap?: any;
 			createSvgImg?: any;
 			drawShape?: any;
+			checkBeforeDraw?: any;
+			exportImg?: any;
+			loadImg?: any;
+			draw?: any;
+			init?: any;
 		};
 		particle?: any;
 		checkAnimFrame?: any;
@@ -170,10 +180,15 @@ export interface IParams{
 		retina: boolean;
 		img_type?: string;
 		img_obj?: any;
+		img_error?: any;
 		source_svg?: any;
 		count_svg?: number;
 		pushing?: any;
 		bubble_clicking?: boolean;
 		bubble_duration_end?: boolean;
+		repulse_clicking?: boolean;
+		repulse_finish?: boolean;
+		repulse_count?: number;
+		checkAnimFrame?: any;
 	};
 }

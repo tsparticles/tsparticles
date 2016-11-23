@@ -1,4 +1,4 @@
-import {IParams, Particle, Interact, isInArray, Modes, requestAnimFrame, cancelRequestAnimFrame, ParticlesLibrary} from '.';
+import {IParams, Particle, Interact, isInArray, Modes, requestAnimFrame, cancelRequestAnimFrame, ParticlesLibrary, Vendors} from '.';
 
 export default class ParticleManager{
 
@@ -6,11 +6,13 @@ export default class ParticleManager{
 	interact: Interact;
 	lib: ParticlesLibrary;
 	modes: Modes;
+	vendors: Vendors;
 
-	constructor( params: IParams, interact: Interact, modes: Modes, lib: ParticlesLibrary ){
+	constructor( params: IParams, interact: Interact, modes: Modes, vendors: Vendors, lib: ParticlesLibrary ){
 		this.params = params;
 		this.interact = interact;
 		this.modes = modes;
+		this.vendors = vendors;
 		this.lib = lib;
 		this.particlesCreate = this.particlesCreate.bind( this );
 		this.particlesUpdate = this.particlesUpdate.bind( this );
