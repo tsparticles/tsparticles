@@ -24,5 +24,8 @@
     "typings": "^2.0.0",
     "webpack": "^1.13.3",
     "webpack-node-externals": "^1.5.4"
+  },
+  "dependencies": {
+    "react": "^15.4.1"
   }
 }

@@ -1,4 +1,4 @@
-const externals = require( 'webpack-node-externals' );
+const webpack = require( 'webpack' );
 
 const plugins = process.env.NODE_ENV == "production" ? 
 	[
@@ -25,9 +25,15 @@ const plugins = process.env.NODE_ENV == "production" ?
 	[];
 
 const typescriptLoader = {
-    test: /\.ts$/,
+    test: /\.tsx?$/,
     exclude: /node_modules/,
     loader: 'babel-loader!ts-loader'
+};
+
+const babelLoader = {
+    test: /\.js$/,
+    exclude: /node_modules/,
+    loader: 'babel-loader'
 };
 
 const jsonLoader = {
@@ -37,6 +43,7 @@ const jsonLoader = {
 
 const loaders = [
     typescriptLoader,
+    babelLoader,
     jsonLoader
 ];
 
@@ -54,16 +61,12 @@ const config = {
         filename: "[name].js",
         libraryTarget: 'umd'
     },
-    target: 'node',
+    target: 'web',
     module: {
         loaders
     },
-    externals: [ externals() ],
-    plugins,
-    node:{
-        __filename: true,
-        __dirname: true
-    }
+    externals: [ "react", "deep-extend" ],
+    plugins
 };
 
 module.exports = config;
