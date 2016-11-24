@@ -28,22 +28,24 @@ export const isInArray: ( value: any, array: any ) => boolean =
 		return array.indexOf( value ) > -1;
 	};
 
-let requestAnimFrameProp: () => any =
-	() => {
-		return window.requestAnimationFrame ||
+
+let requestAnimFrame: ( callback: any ) => any = 
+	(function(){
+		return (window.requestAnimationFrame ||
 			window.webkitRequestAnimationFrame ||
-			(( callback: any ) => {
+			function( callback: any ){
 				window.setTimeout( callback, 1000 / 60 );
 			});
-	};
+	})();
 
-let cancelRequestAnimFrameProp: () => any = 
-	() => {
-		return window.cancelAnimationFrame ||
+let cancelRequestAnimFrame: ( handle: any ) => any =
+	(function(){
+		return (window.cancelAnimationFrame ||
 			window.webkitCancelAnimationFrame ||
-			clearTimeout
-	};
+			clearTimeout );
+	})();
 
-export const requestAnimFrame = requestAnimFrameProp();
-
-export const cancelRequestAnimFrame = cancelRequestAnimFrameProp();
+export {
+	cancelRequestAnimFrame,
+	requestAnimFrame
+};

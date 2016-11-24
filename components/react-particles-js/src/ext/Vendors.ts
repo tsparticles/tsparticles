@@ -1,10 +1,11 @@
-import {IParams, Particle, cancelRequestAnimFrame, requestAnimFrame, isInArray} from '.';
+import {IParams, Particle, cancelRequestAnimFrame, requestAnimFrame, isInArray, hexToRgb} from '.';
 
 export default class Vendors{
 
 	params: IParams;
 
 	constructor( params: IParams ){
+
 		this.params = params;
 		this.eventsListeners = this.eventsListeners.bind( this );
 		this.onMouseMove = this.onMouseMove.bind( this );
@@ -20,6 +21,7 @@ export default class Vendors{
 		this.draw = this.draw.bind( this );
 		this.checkBeforeDraw = this.checkBeforeDraw.bind( this );
 		this.init = this.init.bind( this );
+		this.start = this.start.bind( this );
 		this.params.fn.vendors.eventsListeners = this.eventsListeners
 		this.params.fn.vendors.densityAutoParticles = this.densityAutoParticles
 		this.params.fn.vendors.checkOverlap = this.checkOverlap
@@ -31,6 +33,7 @@ export default class Vendors{
 		this.params.fn.vendors.draw = this.draw
 		this.params.fn.vendors.checkBeforeDraw = this.checkBeforeDraw
 		this.params.fn.vendors.init = this.init
+		this.params.fn.vendors.start = this.start
 	}
 
 	eventsListeners(): void{
@@ -213,7 +216,7 @@ export default class Vendors{
 
 	destroy(): void{
 		let {canvas, fn} = this.params;
-		cancelAnimationFrame( fn.drawAnimFrame );
+		cancelRequestAnimFrame( fn.drawAnimFrame );
 		canvas.element.remove();
 	}
 
@@ -275,6 +278,7 @@ export default class Vendors{
 	}
 
 	draw(): void{
+
 		let {fn, particles, tmp} = this.params;
 
 		if( particles.shape.type == 'image' ){
@@ -310,7 +314,7 @@ export default class Vendors{
 			if( !particles.move.enable ){
 				cancelRequestAnimFrame( fn.drawAnimFrame );
 			}else{
-				fn.drawAnimFrame = requestAnimFrame( fn.vendors.draw );
+				fn.drawAnimFrame = requestAnimationFrame( fn.vendors.draw );
 			}
 		}
 	}
@@ -321,7 +325,9 @@ export default class Vendors{
 		if( particles.shape.type == 'image' ){
 			if( tmp.img_type == 'svg' && tmp.source_svg == undefined ){
 				// Not clear what "= requestAnimFrame( check )" means
-				tmp.checkAnimFrame = requestAnimFrame();
+				let check: any;
+				console.log( 'here' );
+				tmp.checkAnimFrame = requestAnimFrame( check );
 			}else{
 				cancelRequestAnimFrame( tmp.checkAnimFrame );
 				if( !tmp.img_error ){
@@ -336,6 +342,16 @@ export default class Vendors{
 	}
 
 	init(): void{
+		let {fn, particles} = this.params;
+		fn.retinaInit();
+		fn.canvasInit();
+		fn.canvasSize();
+		fn.particlesCreate();
+		fn.vendors.densityAutoParticles();
+		particles.line_linked.color_rgb_line = hexToRgb( particles.line_linked.color );
+	}
+
+	start(): void{
 		let {fn, particles, tmp} = this.params;
 		if( isInArray( 'image', particles.shape.type ) ){
 			tmp.img_type = particles.shape.image.src.substr( particles.shape.image.src.length - 3 );

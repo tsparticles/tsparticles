@@ -19,8 +19,8 @@ export default class ParticlesLibrary{
 		this.modes = new Modes( this.params );
 		this.vendors = new Vendors( this.params );
 		this.particleManager = new ParticleManager( this.params, this.interact, this.modes, this.vendors, this );
-		console.log( this.params );
-
+		this.params.fn.vendors.eventsListeners();
+		this.params.fn.vendors.start();
 	}
 
 	extendParams( canvasElement: HTMLCanvasElement ): void{
