@@ -1,4 +1,4 @@
-import {IParams, Particle, Interact, isInArray, Modes, requestAnimFrame, cancelRequestAnimFrame, ParticlesLibrary, Vendors} from '.';
+import {IParams, Particle, Interact, isInArray, Modes,  ParticlesLibrary, Vendors} from '.';
 
 export default class ParticleManager{
 
@@ -42,8 +42,8 @@ export default class ParticleManager{
 
 			if( this.params.particles.move.enable ){
 				let ms = this.params.particles.move.speed / 2;
-				particle.x = particle.vx * ms;
-				particle.y = particle.vy * ms;
+				particle.x += particle.vx * ms;
+				particle.y += particle.vy * ms;
 			}
 
 			if( this.params.particles.opacity.anim.enable ){
@@ -173,8 +173,8 @@ export default class ParticleManager{
 	}
 
 	particlesRefresh(): void{
-		cancelRequestAnimFrame( this.params.fn.checkAnimFrame );
-		cancelRequestAnimFrame( this.params.fn.drawAnimFrame );
+		cancelAnimationFrame( this.params.fn.checkAnimFrame );
+		cancelAnimationFrame( this.params.fn.drawAnimFrame );
 		this.params.tmp.source_svg = undefined;
 		this.params.tmp.img_obj = undefined;
 		this.params.tmp.count_svg = 0;

@@ -50,9 +50,7 @@ export default class Particle{
 
 	setupPosition( position?: { x: number; y: number; }): void{
 		this.x = position ? position.x : Math.random() * this.params.canvas.width;
-		this.y = position ? position.y : Math.random() * this.params.canvas.height
-		console.log( this.x, this.y, position );
-		debugger;
+		this.y = position ? position.y : Math.random() * this.params.canvas.height;
 
 		if( this.x > this.params.canvas.width - this.radius * 2 ){
 			this.x = this.x - this.radius;
@@ -196,7 +194,7 @@ export default class Particle{
 		if( this.opacity_bubble != undefined ){
 			opacity = this.opacity_bubble;
 		}else{
-			this.opacity;
+			opacity = this.opacity;
 		}
 
 		let color_value: string;
@@ -213,7 +211,8 @@ export default class Particle{
 
 		switch( this.shape ){
 			case 'circle':
-				console.log( 'it is a circle.', `drawing to ${this.x}, ${this.y}` );
+				if( ( Math.floor( Math.random() * 100 ) + 20 ) % 17 == 0 ){
+				}
 				this.params.canvas.ctx.arc( this.x, this.y, radius, 0, Math.PI * 2, false );
 				break;
 

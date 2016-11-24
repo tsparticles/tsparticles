@@ -28,7 +28,7 @@ export default class Interact{
 				this.params.canvas.ctx.lineWidth = this.params.particles.line_linked.width;
 
 				this.params.canvas.ctx.beginPath();
-				this.params.canvas.ctx.moveTo( p1.x, p2.y );
+				this.params.canvas.ctx.moveTo( p1.x, p1.y );
 				this.params.canvas.ctx.lineTo( p2.x, p2.y );
 				this.params.canvas.ctx.stroke();
 				this.params.canvas.ctx.closePath();

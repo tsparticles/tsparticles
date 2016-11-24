@@ -14,7 +14,8 @@ const plugins = process.env.NODE_ENV == "production" ?
 		    compressor: {
 		        warnings: false
 		    },
-		    mangle: false
+		    mangle: true,
+            beautify: true
 		}),
 		new webpack.DefinePlugin({
 		    'process.env': {
@@ -53,19 +54,35 @@ const config = {
     resolve: {
         extensions: [ "", ".ts", ".tsx", ".js" ]
     },
-    entry: {
-        index: "./src/index.ts"
-    },
+    entry: "./src/index.ts",
     output: {
         path: 'lib',
-        filename: "[name].js",
-        libraryTarget: 'umd'
+        filename: "particles.js",
+        library: "Particles",
+        libraryTarget: 'umd',
+        pathinfo: false
     },
     target: 'web',
     module: {
         loaders
     },
-    externals: [ "react", "deep-extend" ],
+    externals: [
+        {
+            react: {
+                commonjs: "react",
+                commonjs2: "react",
+                amd: "react",
+                root: "React"
+            },
+            "react-dom": {
+                commonjs: "react-dom",
+                commonjs2: "react-dom",
+                amd: "react-dom",
+                root: "ReactDom"
+            }
+        }
+        
+    ],
     plugins
 };
 

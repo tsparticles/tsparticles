@@ -28,24 +28,17 @@ export const isInArray: ( value: any, array: any ) => boolean =
 		return array.indexOf( value ) > -1;
 	};
 
-
-let requestAnimFrame: ( callback: any ) => any = 
-	(function(){
-		return (window.requestAnimationFrame ||
-			window.webkitRequestAnimationFrame ||
-			function( callback: any ){
-				window.setTimeout( callback, 1000 / 60 );
-			});
-	})();
-
-let cancelRequestAnimFrame: ( handle: any ) => any =
-	(function(){
-		return (window.cancelAnimationFrame ||
-			window.webkitCancelAnimationFrame ||
-			clearTimeout );
-	})();
-
-export {
-	cancelRequestAnimFrame,
-	requestAnimFrame
-};
+export const deepExtend: ( destination: any, source: any ) => any =
+	( destination, source ) => {
+		for( let property in source ){
+			if( source[ property ] &&
+				source[ property ].constructor &&
+				source[ property ].constructor === Object ){
+				destination[ property ] = destination[ property ] || {};
+				arguments.callee( destination[ property ], source[ property ] );
+			}else{
+				destination[ property ] = source[ property ];
+			}
+		}
+		return destination;
+	};

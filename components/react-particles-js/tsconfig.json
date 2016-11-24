@@ -4,7 +4,8 @@
         "noImplicitAny": true,
         "module": "commonjs",
         "target": "es6",
-        "jsx": "react"
+        "jsx": "react",
+        "removeComments": true
     },
     "files": [
         "./typings/index.d.ts",

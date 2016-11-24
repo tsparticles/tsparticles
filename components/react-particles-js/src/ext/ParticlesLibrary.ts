@@ -1,7 +1,6 @@
 /// <reference path="../../typings/index.d.ts" />
 
-import deepExtend = require( 'deep-extend' );
-import {defaultParams, Interact, Modes, IParams, Particle, ParticleManager, Vendors} from '.';
+import {deepExtend, defaultParams, Interact, Modes, IParams, Particle, ParticleManager, Vendors} from '.';
 
 export default class ParticlesLibrary{
 
@@ -19,13 +18,26 @@ export default class ParticlesLibrary{
 		this.modes = new Modes( this.params );
 		this.vendors = new Vendors( this.params );
 		this.particleManager = new ParticleManager( this.params, this.interact, this.modes, this.vendors, this );
+	}
+
+	start(): void{
 		this.params.fn.vendors.eventsListeners();
 		this.params.fn.vendors.start();
+	}
+
+	destroy(): void{
+		this.detachListeners();
+		this.vendors.detachListeners();
+	}
+
+	detachListeners(): void{
+		window.removeEventListener( 'resize', this.onWindowResize );
 	}
 
 	extendParams( canvasElement: HTMLCanvasElement ): void{
 		this.extendCanvasDefinition( canvasElement );
 		this.extendTmpDefinition();
+		this.onWindowResize = this.onWindowResize.bind( this );
 		this.retinaInit = this.retinaInit.bind( this );
 		this.canvasInit = this.canvasInit.bind( this );
 		this.canvasSize = this.canvasSize.bind( this );

@@ -8,20 +8,20 @@ let defaultParams: IParams = {
     },
 	particles: {
 		number: {
-			value: 400,
+			value: 120,
 			density: {
 				enable: true,
 				value_area: 800
 			}
 		},
 		color: {
-			value: '#fff'
+			value: '#BB0000'
 		},
 		shape: {
 			type: 'circle',
 			stroke: {
 				width: 0,
-				color: '#ff0000'
+				color: '#000000'
 			},
 			polygon: {
 				nb_sides: 5
@@ -33,35 +33,35 @@ let defaultParams: IParams = {
 			}
 		},
 		opacity: {
-			value: 1,
+			value: 0.5,
 			random: false,
 			anim: {
-				enable: false,
-				speed: 2,
-				opacity_min: 0,
+				enable: true,
+				speed: 1,
+				opacity_min: 0.1,
 				sync: false
 			}
 		},
 		size: {
-			value: 20,
+			value: 1,
 			random: false,
 			anim: {
 				enable: false,
-				speed: 20,
+				speed: 40,
 				size_min: 0,
 				sync: false
 			}
 		},
 		line_linked: {
 			enable: true,
-			distance: 100,
-			color: '#fff',
-			opacity: 1,
+			distance: 150,
+			color: '#BB0000',
+			opacity: 0.4,
 			width: 1
 		},
 		move: {
 			enable: true,
-			speed: 2,
+			speed: 4,
 			direction: 'none',
 			random: false,
 			straight: false,
@@ -80,7 +80,7 @@ let defaultParams: IParams = {
 		events: {
 			onhover: {
 				enable: true,
-				mode: 'grab'
+				mode: 'repulse'
 			},
 			onclick: {
 				enable: true,
@@ -90,7 +90,7 @@ let defaultParams: IParams = {
 		},
 		modes: {
 			grab:{
-				distance: 100,
+				distance: 400,
 				line_linked:{
 					opacity: 1
 				}
@@ -101,7 +101,7 @@ let defaultParams: IParams = {
 				duration: 0.4
 			},
 			repulse:{
-				distance: 200,
+				distance: 100,
 				duration: 0.4
 			},
 			push:{
@@ -113,7 +113,7 @@ let defaultParams: IParams = {
 		},
 		mouse:{}
 	},
-	retina_detect: false,
+	retina_detect: true,
 	fn: {
 		interact: {},
 		modes: {},

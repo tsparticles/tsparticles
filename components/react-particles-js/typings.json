@@ -1,7 +1,7 @@
 {
   "globalDependencies": {
-    "deep-extend": "registry:dt/deep-extend#0.4.1+20160212164839",
     "node": "registry:dt/node#6.0.0+20161110151007",
-    "react": "registry:dt/react#0.14.0+20161117000655"
+    "react": "registry:dt/react#0.14.0+20161117000655",
+    "react-dom": "registry:dt/react-dom#0.14.0+20160412154040"
   }
 }

@@ -1,4 +1,4 @@
-import {IParams, Particle, cancelRequestAnimFrame, requestAnimFrame, isInArray, hexToRgb} from '.';
+import {IParams, Particle, isInArray, hexToRgb} from '.';
 
 export default class Vendors{
 
@@ -56,7 +56,25 @@ export default class Vendors{
 		if( interactivity.events.onclick.enable ){
 			interactivity.el.addEventListener( 'click', this.onClick );
 		}
+	}
 
+	detachListeners(): void{
+		let {interactivity} = this.params;
+
+		if( interactivity.el ){
+
+			if( interactivity.events.onhover.enable ||
+				interactivity.events.onclick.enable ){
+				interactivity.el.removeEventListener( 'mousemove', this.onMouseMove );
+				interactivity.el.addEventListener( 'mouseleave', this.onMouseLeave );
+			}
+
+			if( interactivity.events.onclick.enable ){
+				interactivity.el.addEventListener( 'click', this.onClick );
+			}
+		}
+
+		window.cancelAnimationFrame( this.params.fn.drawAnimFrame );
 	}
 
 	public onMouseMove( event: MouseEvent ): void{
@@ -216,7 +234,7 @@ export default class Vendors{
 
 	destroy(): void{
 		let {canvas, fn} = this.params;
-		cancelRequestAnimFrame( fn.drawAnimFrame );
+		cancelAnimationFrame( fn.drawAnimFrame );
 		canvas.element.remove();
 	}
 
@@ -286,33 +304,33 @@ export default class Vendors{
 				if( tmp.count_svg >= particles.number.value ){
 					fn.particlesDraw();
 					if( !particles.move.enable ){
-						cancelRequestAnimFrame( fn.drawAnimFrame );
+						cancelAnimationFrame( fn.drawAnimFrame );
 					}else{
-						fn.drawAnimFrame = requestAnimFrame( fn.vendors.draw );
+						fn.drawAnimFrame = requestAnimationFrame( fn.vendors.draw );
 					}
 				}else{
 					if( !tmp.img_error ){
-						fn.drawAnimFrame = requestAnimFrame( fn.vendors.draw );
+						fn.drawAnimFrame = requestAnimationFrame( fn.vendors.draw );
 					}
 				}
 			}else{
 				if( tmp.img_obj != undefined ){
 					fn.particlesDraw();
 					if( !particles.move.enable ){
-						cancelRequestAnimFrame( fn.drawAnimFrame );
+						cancelAnimationFrame( fn.drawAnimFrame );
 					}else{
-						fn.drawAnimFrame = requestAnimFrame( fn.vendors.draw );
+						fn.drawAnimFrame = requestAnimationFrame( fn.vendors.draw );
 					}
 				}else{
 					if( !tmp.img_error ){
-						fn.drawAnimFrame = requestAnimFrame( fn.vendors.draw );
+						fn.drawAnimFrame = requestAnimationFrame( fn.vendors.draw );
 					}
 				}
 			}
 		}else{
 			fn.particlesDraw();
 			if( !particles.move.enable ){
-				cancelRequestAnimFrame( fn.drawAnimFrame );
+				cancelAnimationFrame( fn.drawAnimFrame );
 			}else{
 				fn.drawAnimFrame = requestAnimationFrame( fn.vendors.draw );
 			}
@@ -324,12 +342,11 @@ export default class Vendors{
 
 		if( particles.shape.type == 'image' ){
 			if( tmp.img_type == 'svg' && tmp.source_svg == undefined ){
-				// Not clear what "= requestAnimFrame( check )" means
+				// Not clear what "= requestAnimationFrame( check )" means
 				let check: any;
-				console.log( 'here' );
-				tmp.checkAnimFrame = requestAnimFrame( check );
+				tmp.checkAnimFrame = requestAnimationFrame( check );
 			}else{
-				cancelRequestAnimFrame( tmp.checkAnimFrame );
+				cancelAnimationFrame( tmp.checkAnimFrame );
 				if( !tmp.img_error ){
 					fn.vendors.init();
 					fn.vendors.draw();
