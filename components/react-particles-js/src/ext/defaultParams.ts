@@ -8,14 +8,14 @@ let defaultParams: IParams = {
     },
 	particles: {
 		number: {
-			value: 120,
+			value: 40,
 			density: {
-				enable: true,
-				value_area: 800
+				enable: false,
+				value_area: 1200
 			}
 		},
 		color: {
-			value: '#BB0000'
+			value: '#FFF'
 		},
 		shape: {
 			type: 'circle',
@@ -43,7 +43,7 @@ let defaultParams: IParams = {
 			}
 		},
 		size: {
-			value: 1,
+			value: 2,
 			random: false,
 			anim: {
 				enable: false,
@@ -55,8 +55,8 @@ let defaultParams: IParams = {
 		line_linked: {
 			enable: true,
 			distance: 150,
-			color: '#BB0000',
-			opacity: 0.4,
+			color: '#FFF',
+			opacity: 0.6,
 			width: 1
 		},
 		move: {
