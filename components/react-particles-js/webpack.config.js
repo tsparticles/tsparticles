@@ -33,12 +33,6 @@ const typescriptLoader = {
     loader: 'babel-loader!ts-loader'
 };
 
-const babelLoader = {
-    test: /\.js$/,
-    exclude: /node_modules/,
-    loader: 'babel-loader'
-};
-
 const jsonLoader = {
     test: /\.json$/,
     loader: 'json-loader'
@@ -46,7 +40,6 @@ const jsonLoader = {
 
 const loaders = [
     typescriptLoader,
-    babelLoader,
     jsonLoader
 ];
 
