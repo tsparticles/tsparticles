@@ -1,41 +1,1132 @@
-!function(e, t) {
-    "object" == typeof exports && "object" == typeof module ? module.exports = t(require("react")) : "function" == typeof define && define.amd ? define([ "react" ], t) : "object" == typeof exports ? exports.Particles = t(require("react")) : e.Particles = t(e.React);
-}(this, function(__WEBPACK_EXTERNAL_MODULE_3__) {
-    return function(e) {
-        function t(n) {
-            if (a[n]) return a[n].exports;
-            var i = a[n] = {
+!function(a, t) {
+    "object" == typeof exports && "object" == typeof module ? module.exports = t(require("react")) : "function" == typeof define && define.amd ? define([ "react" ], t) : "object" == typeof exports ? exports.Particles = t(require("react")) : a.Particles = t(a.React);
+}(this, function(a) {
+    return function(a) {
+        function t(i) {
+            if (e[i]) return e[i].exports;
+            var s = e[i] = {
                 exports: {},
-                id: n,
+                id: i,
                 loaded: !1
             };
-            return e[n].call(i.exports, i, i.exports, t), i.loaded = !0, i.exports;
+            return a[i].call(s.exports, s, s.exports, t), s.loaded = !0, s.exports;
         }
-        var a = {};
-        return t.m = e, t.c = a, t.p = "", t(0);
-    }([ function(module, exports, __webpack_require__) {
-        eval('"use strict";\n\nconst Particles_1 = __webpack_require__(4);\nObject.defineProperty(exports, "__esModule", { value: true });\nexports.default = Particles_1.default;\n\n//////////////////\n// WEBPACK FOOTER\n// ./src/index.ts\n// module id = 0\n// module chunks = 0\n//# sourceURL=webpack:///./src/index.ts?');
-    }, function(module, exports, __webpack_require__) {
-        eval('"use strict";\n\nfunction __export(m) {\n    for (var p in m) if (!exports.hasOwnProperty(p)) exports[p] = m[p];\n}\n__export(__webpack_require__(11));\n__export(__webpack_require__(9));\nconst Interact_1 = __webpack_require__(5);\nexports.Interact = Interact_1.default;\nconst Modes_1 = __webpack_require__(6);\nexports.Modes = Modes_1.default;\nconst Particle_1 = __webpack_require__(7);\nexports.Particle = Particle_1.default;\nconst ParticleManager_1 = __webpack_require__(8);\nexports.ParticleManager = ParticleManager_1.default;\nconst ParticlesLibrary_1 = __webpack_require__(2);\nexports.ParticlesLibrary = ParticlesLibrary_1.default;\nconst Vendors_1 = __webpack_require__(10);\nexports.Vendors = Vendors_1.default;\n\n//////////////////\n// WEBPACK FOOTER\n// ./src/ext/index.ts\n// module id = 1\n// module chunks = 0\n//# sourceURL=webpack:///./src/ext/index.ts?');
-    }, function(module, exports, __webpack_require__) {
-        eval("\"use strict\";\n\nconst _1 = __webpack_require__(1);\nclass ParticlesLibrary {\n    constructor(canvasElement, params) {\n        _1.deepExtend(_1.defaultParams, params);\n        this.params = _1.defaultParams;\n        this.extendParams(canvasElement);\n        this.interact = new _1.Interact(this.params);\n        this.modes = new _1.Modes(this.params);\n        this.vendors = new _1.Vendors(this.params);\n        this.particleManager = new _1.ParticleManager(this.params, this.interact, this.modes, this.vendors, this);\n    }\n    start() {\n        this.params.fn.vendors.eventsListeners();\n        this.params.fn.vendors.start();\n    }\n    destroy() {\n        this.detachListeners();\n        this.vendors.detachListeners();\n    }\n    detachListeners() {\n        window.removeEventListener('resize', this.onWindowResize);\n    }\n    extendParams(canvasElement) {\n        this.extendCanvasDefinition(canvasElement);\n        this.extendTmpDefinition();\n        this.onWindowResize = this.onWindowResize.bind(this);\n        this.retinaInit = this.retinaInit.bind(this);\n        this.canvasInit = this.canvasInit.bind(this);\n        this.canvasSize = this.canvasSize.bind(this);\n        this.canvasPaint = this.canvasPaint.bind(this);\n        this.canvasClear = this.canvasClear.bind(this);\n        this.extendRetinaFunctionDefinition();\n        this.extendCanvasFunctionDefinition();\n        this.extendParticleFunctionDefinition();\n    }\n    extendCanvasDefinition(canvasElement) {\n        this.params.canvas = {\n            element: canvasElement,\n            width: canvasElement.offsetWidth,\n            height: canvasElement.offsetHeight\n        };\n    }\n    extendTmpDefinition() {\n        this.params.tmp.obj = {\n            size_value: this.params.particles.size.value,\n            size_anim_speed: this.params.particles.size.anim.speed,\n            move_speed: this.params.particles.move.speed,\n            line_linked_distance: this.params.particles.line_linked.distance,\n            line_linked_width: this.params.particles.line_linked.width,\n            mode_grab_distance: this.params.interactivity.modes.grab.distance,\n            mode_bubble_distance: this.params.interactivity.modes.bubble.distance,\n            mode_bubble_size: this.params.interactivity.modes.bubble.size,\n            mode_repulse_distance: this.params.interactivity.modes.repulse.distance\n        };\n    }\n    extendRetinaFunctionDefinition() {\n        this.params.fn.retinaInit = this.retinaInit;\n    }\n    retinaInit() {\n        if (this.params.retina_detect && window.devicePixelRatio > 1) {\n            this.params.canvas.pxratio = window.devicePixelRatio;\n            this.params.tmp.retina = true;\n            this.params.canvas.width = this.params.canvas.element.offsetWidth * this.params.canvas.pxratio;\n            this.params.canvas.height = this.params.canvas.element.offsetHeight * this.params.canvas.pxratio;\n            this.params.particles.size.value = this.params.tmp.obj.size_value * this.params.canvas.pxratio;\n            this.params.particles.size.anim.speed = this.params.tmp.obj.size_anim_speed * this.params.canvas.pxratio;\n            this.params.particles.move.speed = this.params.tmp.obj.move_speed * this.params.canvas.pxratio;\n            this.params.particles.line_linked.distance = this.params.tmp.obj.line_linked_distance * this.params.canvas.pxratio;\n            this.params.interactivity.modes.grab.distance = this.params.tmp.obj.mode_grab_distance * this.params.canvas.pxratio;\n            this.params.interactivity.modes.bubble.distance = this.params.tmp.obj.mode_bubble_distance * this.params.canvas.pxratio;\n            this.params.particles.line_linked.width = this.params.tmp.obj.line_linked_width * this.params.canvas.pxratio;\n            this.params.interactivity.modes.bubble.size = this.params.tmp.obj.mode_bubble_size * this.params.canvas.pxratio;\n            this.params.interactivity.modes.repulse.distance = this.params.tmp.obj.mode_repulse_distance * this.params.canvas.pxratio;\n        } else {\n            this.params.canvas.pxratio = 1;\n            this.params.tmp.retina = false;\n        }\n    }\n    extendCanvasFunctionDefinition() {\n        this.params.fn.canvasInit = this.canvasInit;\n        this.params.fn.canvasSize = this.canvasSize;\n        this.params.fn.canvasPaint = this.canvasPaint;\n        this.params.fn.canvasClear = this.canvasClear;\n    }\n    canvasInit() {\n        this.params.canvas.ctx = this.params.canvas.element.getContext('2d');\n    }\n    canvasSize() {\n        this.params.canvas.element.width = this.params.canvas.width;\n        this.params.canvas.element.height = this.params.canvas.height;\n        if (this.params && this.params.interactivity.events.resize) {\n            window.addEventListener('resize', this.onWindowResize);\n        }\n    }\n    canvasPaint() {\n        this.params.canvas.ctx.fillRect(0, 0, this.params.canvas.width, this.params.canvas.height);\n    }\n    canvasClear() {\n        this.params.canvas.ctx.clearRect(0, 0, this.params.canvas.width, this.params.canvas.height);\n    }\n    extendParticleFunctionDefinition() {\n        this.params.fn.particle = _1.Particle;\n    }\n    onWindowResize() {\n        this.params.canvas.width = this.params.canvas.element.offsetWidth;\n        this.params.canvas.height = this.params.canvas.element.offsetHeight;\n        if (this.params.tmp.retina) {\n            this.params.canvas.width *= this.params.canvas.pxratio;\n            this.params.canvas.height *= this.params.canvas.pxratio;\n        }\n        this.params.canvas.element.width = this.params.canvas.width;\n        this.params.canvas.element.height = this.params.canvas.height;\n        if (!this.params.particles.move.enable) {\n            this.params.fn.particlesEmpty();\n            this.params.fn.particlesCreate();\n            this.params.fn.particlesDraw();\n            this.params.fn.vendors.densityAutoParticles();\n        }\n        this.params.fn.vendors.densityAutoParticles();\n    }\n}\nObject.defineProperty(exports, \"__esModule\", { value: true });\nexports.default = ParticlesLibrary;\n\n//////////////////\n// WEBPACK FOOTER\n// ./src/ext/ParticlesLibrary.ts\n// module id = 2\n// module chunks = 0\n//# sourceURL=webpack:///./src/ext/ParticlesLibrary.ts?");
-    }, function(module, exports) {
-        eval('module.exports = __WEBPACK_EXTERNAL_MODULE_3__;\n\n//////////////////\n// WEBPACK FOOTER\n// external {"commonjs":"react","commonjs2":"react","amd":"react","root":"React"}\n// module id = 3\n// module chunks = 0\n//# sourceURL=webpack:///external_%7B%22commonjs%22:%22react%22,%22commonjs2%22:%22react%22,%22amd%22:%22react%22,%22root%22:%22React%22%7D?');
-    }, function(module, exports, __webpack_require__) {
-        eval('"use strict";\n\nconst React = __webpack_require__(3);\nconst react_1 = __webpack_require__(3);\nconst ParticlesLibrary_1 = __webpack_require__(2);\nclass Particles extends react_1.Component {\n    constructor(props) {\n        super(props);\n    }\n    componentDidMount() {\n        this.p = new ParticlesLibrary_1.default(this.canvas);\n        this.p.start();\n    }\n    componentWillUnmount() {\n        this.p.destroy();\n    }\n    render() {\n        return React.createElement("div", null, React.createElement("div", { id: \'particles-js\' }, React.createElement("canvas", { ref: c => this.canvas = c, style: {\n                width: "100%",\n                height: "100%"\n            } })));\n    }\n}\nObject.defineProperty(exports, "__esModule", { value: true });\nexports.default = Particles;\n\n//////////////////\n// WEBPACK FOOTER\n// ./src/Particles.tsx\n// module id = 4\n// module chunks = 0\n//# sourceURL=webpack:///./src/Particles.tsx?');
-    }, function(module, exports) {
-        eval('"use strict";\n\nclass Interact {\n    constructor(params) {\n        this.params = params;\n        this.linkParticles = this.linkParticles.bind(this);\n        this.attractParticles = this.attractParticles.bind(this);\n        this.bounceParticles = this.bounceParticles.bind(this);\n        this.params.fn.interact.linkParticles = this.linkParticles;\n        this.params.fn.interact.attractParticles = this.attractParticles;\n        this.params.fn.interact.bounceParticles = this.bounceParticles;\n    }\n    linkParticles(p1, p2) {\n        let dx = p1.x - p2.x;\n        let dy = p1.y - p2.y;\n        let dist = Math.sqrt(dx * dx + dy * dy);\n        if (dist <= this.params.particles.line_linked.distance) {\n            let opacity_line = this.params.particles.line_linked.opacity - dist / (1 / this.params.particles.line_linked.opacity) / this.params.particles.line_linked.distance;\n            if (opacity_line > 0) {\n                let color_line = this.params.particles.line_linked.color_rgb_line;\n                let { r, g, b } = color_line;\n                this.params.canvas.ctx.strokeStyle = `rgba( ${ r }, ${ g }, ${ b }, ${ opacity_line } )`;\n                this.params.canvas.ctx.lineWidth = this.params.particles.line_linked.width;\n                this.params.canvas.ctx.beginPath();\n                this.params.canvas.ctx.moveTo(p1.x, p1.y);\n                this.params.canvas.ctx.lineTo(p2.x, p2.y);\n                this.params.canvas.ctx.stroke();\n                this.params.canvas.ctx.closePath();\n            }\n        }\n    }\n    attractParticles(p1, p2) {\n        let dx = p1.x - p2.x;\n        let dy = p1.y - p2.y;\n        let dist = Math.sqrt(dx * dx + dy * dy);\n        if (dist <= this.params.particles.line_linked.distance) {\n            let ax = dx / (this.params.particles.move.attract.rotateX * 1000);\n            let ay = dy / (this.params.particles.move.attract.rotateY * 1000);\n            p1.vx -= ax;\n            p1.vy -= ay;\n            p2.vx += ax;\n            p2.vy += ay;\n        }\n    }\n    bounceParticles(p1, p2) {\n        let dx = p1.x - p2.x;\n        let dy = p1.y - p2.y;\n        let dist = Math.sqrt(dx * dx + dy * dy);\n        let dist_p = p1.radius + p2.radius;\n        if (dist <= dist_p) {\n            p1.vx = -p1.vx;\n            p1.vy = -p1.vy;\n            p2.vx = -p2.vx;\n            p2.vy = -p2.vy;\n        }\n    }\n}\nObject.defineProperty(exports, "__esModule", { value: true });\nexports.default = Interact;\n\n//////////////////\n// WEBPACK FOOTER\n// ./src/ext/Interact.ts\n// module id = 5\n// module chunks = 0\n//# sourceURL=webpack:///./src/ext/Interact.ts?');
-    }, function(module, exports, __webpack_require__) {
-        eval("\"use strict\";\n\nconst _1 = __webpack_require__(1);\nclass Modes {\n    constructor(params) {\n        this.params = params;\n        this.pushParticles = this.pushParticles.bind(this);\n        this.removeParticles = this.removeParticles.bind(this);\n        this.bubbleParticle = this.bubbleParticle.bind(this);\n        this.repulseParticle = this.repulseParticle.bind(this);\n        this.grabParticle = this.grabParticle.bind(this);\n        this.params.fn.modes.pushParticles = this.pushParticles;\n        this.params.fn.modes.removeParticles = this.removeParticles;\n        this.params.fn.modes.bubbleParticle = this.bubbleParticle;\n        this.params.fn.modes.repulseParticle = this.repulseParticle;\n        this.params.fn.modes.grabParticle = this.grabParticle;\n    }\n    pushParticles(nb, pos) {\n        this.params.tmp.pushing = true;\n        if (!pos) pos = {\n            pos_x: Math.random() * this.params.canvas.width,\n            pos_y: Math.random() * this.params.canvas.height\n        };\n        for (let i = 0; i < nb; i++) {\n            this.params.particles.array.push(new _1.Particle(this.params, this.params.particles.color, this.params.particles.opacity.value, {\n                x: pos.pos_x,\n                y: pos.pos_y\n            }));\n            if (i == nb - 1) {\n                if (!this.params.particles.move.enable) {\n                    this.params.fn.particlesDraw();\n                }\n                this.params.tmp.pushing = false;\n            }\n        }\n    }\n    removeParticles(nb) {\n        this.params.particles.array.splice(0, nb);\n        if (!this.params.particles.move.enable) {\n            this.params.fn.particlesDraw();\n        }\n    }\n    bubbleParticle(particle) {\n        if (this.params.interactivity.events.onhover.enable && _1.isInArray('bubble', this.params.interactivity.events.onhover.mode)) {\n            let dx_mouse = particle.x - this.params.interactivity.mouse.pos_x;\n            let dy_mouse = particle.y - this.params.interactivity.mouse.pos_y;\n            let dist_mouse = Math.sqrt(dx_mouse * dx_mouse + dy_mouse * dy_mouse);\n            let ratio = 1 - dist_mouse / this.params.interactivity.modes.bubble.distance;\n            let init = () => {\n                particle.opacity_bubble = particle.opacity;\n                particle.radius_bubble = particle.radius;\n            };\n            if (dist_mouse <= this.params.interactivity.modes.bubble.distance) {\n                if (ratio >= 0 && this.params.interactivity.status == 'mousemove') {\n                    if (this.params.interactivity.modes.bubble.size != this.params.particles.size.value) {\n                        if (this.params.interactivity.modes.bubble.size > this.params.particles.size.value) {\n                            let size = particle.radius + this.params.interactivity.modes.bubble.size * ratio;\n                            if (size >= 0) {\n                                particle.radius_bubble = size;\n                            }\n                        } else {\n                            let dif = particle.radius - this.params.interactivity.modes.bubble.size;\n                            let size = particle.radius - dif * ratio;\n                            if (size > 0) {\n                                particle.radius_bubble = size;\n                            } else {\n                                particle.radius_bubble = 0;\n                            }\n                        }\n                    }\n                    if (this.params.interactivity.modes.bubble.opacity != this.params.particles.opacity.value) {\n                        if (this.params.interactivity.modes.bubble.opacity > this.params.particles.opacity.value) {\n                            let opacity = this.params.interactivity.modes.bubble.opacity * ratio;\n                            if (opacity > particle.opacity && opacity <= this.params.interactivity.modes.bubble.opacity) {\n                                particle.opacity_bubble = opacity;\n                            }\n                        } else {\n                            let opacity = particle.opacity - (this.params.particles.opacity.value - this.params.interactivity.modes.bubble.opacity) * ratio;\n                            if (opacity < particle.opacity && opacity >= this.params.interactivity.modes.bubble.opacity) {\n                                particle.opacity_bubble = opacity;\n                            }\n                        }\n                    }\n                }\n            } else {\n                init();\n            }\n            if (this.params.interactivity.status == 'mouseleave') {\n                init();\n            }\n        } else if (this.params.interactivity.events.onclick.enable && _1.isInArray('bubble', this.params.interactivity.events.onclick.mode)) {\n            if (this.params.tmp.bubble_clicking) {\n                let dx_mouse = particle.x - this.params.interactivity.mouse.click_pos_x;\n                let dy_mouse = particle.y - this.params.interactivity.mouse.click_pos_y;\n                let dist_mouse = Math.sqrt(dx_mouse * dx_mouse + dy_mouse * dy_mouse);\n                let time_spent = (new Date().getTime() - this.params.interactivity.mouse.click_time) / 1000;\n                if (time_spent > this.params.interactivity.modes.bubble.duration) {\n                    this.params.tmp.bubble_duration_end = true;\n                }\n                if (time_spent > this.params.interactivity.modes.bubble.duration * 2) {\n                    this.params.tmp.bubble_clicking = false;\n                    this.params.tmp.bubble_duration_end = false;\n                }\n                let process = (bubble_param, particles_param, p_obj_bubble, p_obj, id) => {\n                    if (bubble_param != particles_param) {\n                        if (!this.params.tmp.bubble_duration_end) {\n                            if (dist_mouse <= this.params.interactivity.modes.bubble.distance) {\n                                let obj;\n                                if (p_obj_bubble != undefined) {\n                                    obj = p_obj_bubble;\n                                } else {\n                                    obj = p_obj;\n                                }\n                                if (obj != bubble_param) {\n                                    let value = p_obj - time_spent * (p_obj - bubble_param) / this.params.interactivity.modes.bubble.duration;\n                                    if (id == 'size') particle.radius_bubble = value;\n                                    if (id == 'opacity') particle.opacity_bubble = value;\n                                }\n                            } else {\n                                if (id == 'size') particle.radius_bubble = undefined;\n                                if (id == 'opacity') particle.opacity_bubble = undefined;\n                            }\n                        } else {\n                            if (p_obj_bubble != undefined) {\n                                let value_tmp = p_obj - time_spent * (p_obj - bubble_param) / this.params.interactivity.modes.bubble.duration;\n                                let dif = bubble_param - value_tmp;\n                                let value = bubble_param + dif;\n                                if (id == 'size') particle.radius_bubble = value;\n                                if (id == 'opacity') particle.opacity_bubble = value;\n                            }\n                        }\n                    }\n                };\n                if (this.params.tmp.bubble_clicking) {\n                    process(this.params.interactivity.modes.bubble.size, this.params.particles.size.value, particle.radius_bubble, particle.radius, 'size');\n                    process(this.params.interactivity.modes.bubble.opacity, this.params.particles.opacity.value, particle.opacity_bubble, particle.opacity, 'opacity');\n                }\n            }\n        }\n    }\n    repulseParticle(particle) {\n        if (this.params.interactivity.events.onhover.enable && _1.isInArray('repulse', this.params.interactivity.events.onhover.mode) && this.params.interactivity.status == 'mousemove') {\n            let dx_mouse = particle.x - this.params.interactivity.mouse.pos_x;\n            let dy_mouse = particle.y - this.params.interactivity.mouse.pos_y;\n            let dist_mouse = Math.sqrt(dx_mouse * dx_mouse + dy_mouse * dy_mouse);\n            let normVec = { x: dx_mouse / dist_mouse, y: dy_mouse / dist_mouse };\n            let repulseRadius = this.params.interactivity.modes.repulse.distance;\n            let velocity = 100;\n            let repulseFactor = _1.clamp(1 / repulseRadius * (-1 * Math.pow(dist_mouse / repulseRadius, 2) + 1) * repulseRadius * velocity, 0, 50);\n            let pos = {\n                x: particle.x + normVec.x * repulseFactor,\n                y: particle.y + normVec.y * repulseFactor\n            };\n            if (this.params.particles.move.out_mode == 'bounce') {\n                if (pos.x - particle.radius > 0 && pos.x + particle.radius < this.params.canvas.width) particle.x = pos.x;\n                if (pos.y - particle.radius > 0 && pos.y + particle.radius < this.params.canvas.height) particle.y = pos.y;\n            } else {\n                particle.x = pos.x;\n                particle.y = pos.y;\n            }\n        } else if (this.params.interactivity.events.onclick.enable && _1.isInArray('repulse', this.params.interactivity.events.onclick.mode)) {\n            if (!this.params.tmp.repulse_finish) {\n                this.params.tmp.repulse_count++;\n                if (this.params.tmp.repulse_count == this.params.particles.array.length) this.params.tmp.repulse_finish = true;\n            }\n            if (this.params.tmp.repulse_clicking) {\n                let repulseRadius = Math.pow(this.params.interactivity.modes.repulse.distance / 6, 3);\n                let dx = this.params.interactivity.mouse.click_pos_x - particle.x;\n                let dy = this.params.interactivity.mouse.click_pos_y - particle.y;\n                let d = dx * dx + dy * dy;\n                let force = -repulseRadius / d * 1;\n                let process = () => {\n                    let f = Math.atan2(dy, dx);\n                    particle.vx = force * Math.cos(f);\n                    particle.vy = force * Math.sin(f);\n                    if (this.params.particles.move.out_mode == 'bounce') {\n                        let pos = {\n                            x: particle.x + particle.vx,\n                            y: particle.y + particle.vy\n                        };\n                        if (pos.x + particle.radius > this.params.canvas.width) particle.vx = -particle.vx;else if (pos.x - particle.radius < 0) particle.vx = -particle.vx;\n                        if (pos.y + particle.radius > this.params.canvas.height) particle.vy = -particle.vy;else if (pos.y - particle.radius < 0) particle.vy = -particle.vy;\n                    }\n                };\n                if (d <= repulseRadius) {\n                    process();\n                }\n            } else {\n                if (this.params.tmp.repulse_clicking == false) {\n                    particle.vx = particle.vx_i;\n                    particle.vy = particle.vy_i;\n                }\n            }\n        }\n    }\n    grabParticle(particle) {\n        if (this.params.interactivity.events.onhover.enable && this.params.interactivity.status == 'onmousemove') {\n            let dx_mouse = particle.x - this.params.interactivity.mouse.pos_x;\n            let dy_mouse = particle.y - this.params.interactivity.mouse.pos_y;\n            let dist_mouse = Math.sqrt(dx_mouse * dx_mouse + dy_mouse * dy_mouse);\n            if (dist_mouse <= this.params.interactivity.modes.grab.distance) {\n                let opacity_line = this.params.interactivity.modes.grab.line_linked.opacity - dist_mouse / (1 / this.params.interactivity.modes.grab.line_linked.opacity) / this.params.interactivity.modes.grab.distance;\n                if (opacity_line > 0) {\n                    let color_line = this.params.particles.line_linked.color_rgb_line;\n                    let { r, g, b } = color_line;\n                    this.params.canvas.ctx.strokeStyle = `rgba( ${ r }, ${ g }, ${ b }, ${ opacity_line } )`;\n                    this.params.canvas.ctx.lineWidth = this.params.particles.line_linked.width;\n                    this.params.canvas.ctx.beginPath();\n                    this.params.canvas.ctx.moveTo(particle.x, particle.y);\n                    this.params.canvas.ctx.lineTo(this.params.interactivity.mouse.pos_x, this.params.interactivity.mouse.pos_y);\n                    this.params.canvas.ctx.stroke();\n                    this.params.canvas.ctx.closePath();\n                }\n            }\n        }\n    }\n}\nObject.defineProperty(exports, \"__esModule\", { value: true });\nexports.default = Modes;\n\n//////////////////\n// WEBPACK FOOTER\n// ./src/ext/Modes.ts\n// module id = 6\n// module chunks = 0\n//# sourceURL=webpack:///./src/ext/Modes.ts?");
-    }, function(module, exports, __webpack_require__) {
-        eval("\"use strict\";\n\nconst _1 = __webpack_require__(1);\nclass Particle {\n    constructor(params, color, opacity, position) {\n        this.params = params;\n        this.setupSize();\n        this.setupPosition(position);\n        this.setupColor(color);\n        this.setupOpacity();\n        this.setupAnimation();\n    }\n    setupSize() {\n        this.radius = (this.params.particles.size.random ? Math.random() : 1) * this.params.particles.size.value;\n        if (this.params.particles.size.anim.enable) {\n            this.size_status = false;\n            this.vs = this.params.particles.size.anim.speed / 100;\n            if (!this.params.particles.size.anim.sync) this.vs = this.vs * Math.random();\n        }\n    }\n    setupPosition(position) {\n        this.x = position ? position.x : Math.random() * this.params.canvas.width;\n        this.y = position ? position.y : Math.random() * this.params.canvas.height;\n        if (this.x > this.params.canvas.width - this.radius * 2) {\n            this.x = this.x - this.radius;\n        } else if (this.x < this.radius * 2) {\n            this.x = this.x + this.radius;\n        }\n        if (this.y > this.params.canvas.height - this.radius * 2) {\n            this.y = this.y - this.radius;\n        } else if (this.y < this.radius * 2) {\n            this.y = this.y + this.radius;\n        }\n        if (this.params.particles.move.bounce) {\n            this.params.fn.vendors.checkOverlap(this, position);\n        }\n    }\n    setupColor(color) {\n        this.color = {};\n        if (typeof color.value == 'object') {\n            if (color.value instanceof Array) {\n                let color_selected = color.value[Math.floor(Math.random() * this.params.particles.color.value.length)];\n                this.color.rgb = _1.hexToRgb(color_selected);\n            } else {\n                if (color.value.r != undefined && color.value.g != undefined && color.value.b != undefined) {\n                    let { r, g, b } = color.value;\n                    this.color.rgb = { r, g, b };\n                }\n                if (color.value.h != undefined && color.value.s != undefined && color.value.l != undefined) {\n                    let { h, s, l } = color.value;\n                    this.color.hsl = { h, s, l };\n                }\n            }\n        } else if (color.value == 'random') {\n            this.color.rgb = {\n                r: Math.floor(Math.random() * (255 - 0 + 1)) + 0,\n                g: Math.floor(Math.random() * (255 - 0 + 1)) + 0,\n                b: Math.floor(Math.random() * (255 - 0 + 1)) + 0\n            };\n        } else if (typeof color.value == 'string') {\n            this.color = color;\n            this.color.rgb = _1.hexToRgb(this.color.value);\n        }\n    }\n    setupOpacity() {\n        this.opacity = (this.params.particles.opacity.random ? Math.random() : 1) * this.params.particles.opacity.value;\n        if (this.params.particles.opacity.anim.enable) {\n            this.opacity_status = false;\n            this.vo = this.params.particles.opacity.anim.speed / 100;\n            if (!this.params.particles.opacity.anim.sync) {\n                this.vo = this.vo * Math.random();\n            }\n        }\n    }\n    setupAnimation() {\n        let velbase = null;\n        switch (this.params.particles.move.direction) {\n            case 'top':\n                velbase = { x: 0, y: -1 };\n                break;\n            case 'top-right':\n                velbase = { x: 0.5, y: -0.5 };\n                break;\n            case 'right':\n                velbase = { x: 1, y: 0 };\n                break;\n            case 'bottom-right':\n                velbase = { x: 0.5, y: 0.5 };\n                break;\n            case 'bottom':\n                velbase = { x: 0, y: 1 };\n                break;\n            case 'bottom-left':\n                velbase = { x: -0.5, y: 1 };\n                break;\n            case 'left':\n                velbase = { x: -1, y: 0 };\n                break;\n            case 'top-left':\n                velbase = { x: -0.5, y: -0.5 };\n                break;\n            default:\n                velbase = { x: 0, y: 0 };\n                break;\n        }\n        if (this.params.particles.move.straight) {\n            this.vx = velbase.x;\n            this.vy = velbase.y;\n            if (this.params.particles.move.random) {\n                this.vx = this.vx * Math.random();\n                this.vy = this.vy * Math.random();\n            }\n        } else {\n            this.vx = velbase.x + Math.random() - 0.5;\n            this.vy = velbase.y + Math.random() - 0.5;\n        }\n        this.vx_i = this.vx;\n        this.vy_i = this.vy;\n        let shape_type = this.params.particles.shape.type;\n        if (typeof shape_type == 'object') {\n            if (shape_type instanceof Array) {\n                let shape_selected = shape_type[Math.floor(Math.random() * shape_type.length)];\n                this.shape = shape_selected;\n            }\n        } else {\n            this.shape = shape_type;\n        }\n        if (this.shape == 'image') {\n            let sh = this.params.particles.shape;\n            this.img = {\n                src: sh.image.src,\n                ratio: sh.image.width / sh.image.height\n            };\n            if (!this.img.ratio) this.img.ratio = 1;\n            if (this.params.tmp.img_type == 'svg' && this.params.tmp.source_svg != undefined) {\n                this.params.fn.vendors.createSvgImg(this);\n                if (this.params.tmp.pushing) {\n                    this.img.loaded = false;\n                }\n            }\n        }\n    }\n    draw() {\n        let radius;\n        if (this.radius_bubble != undefined) {\n            radius = this.radius_bubble;\n        } else {\n            radius = this.radius;\n        }\n        let opacity;\n        if (this.opacity_bubble != undefined) {\n            opacity = this.opacity_bubble;\n        } else {\n            opacity = this.opacity;\n        }\n        let color_value;\n        if (this.color.rgb) {\n            let { r, g, b } = this.color.rgb;\n            color_value = `rgba( ${ r }, ${ g }, ${ b }, ${ opacity } )`;\n        } else {\n            let { h, s, l } = this.color.hsl;\n            color_value = `hsla( ${ h }, ${ s }, ${ l }, ${ opacity } )`;\n        }\n        this.params.canvas.ctx.fillStyle = color_value;\n        this.params.canvas.ctx.beginPath();\n        switch (this.shape) {\n            case 'circle':\n                if ((Math.floor(Math.random() * 100) + 20) % 17 == 0) {}\n                this.params.canvas.ctx.arc(this.x, this.y, radius, 0, Math.PI * 2, false);\n                break;\n            case 'edge':\n                this.params.canvas.ctx.rect(this.x - radius, this.y - radius, radius * 2, radius * 2);\n                break;\n            case 'triangle':\n                this.params.fn.vendors.drawShape(this.params.canvas.ctx, this.x - radius, this.y + radius / 1.66, radius * 2, 3, 2);\n                break;\n            case 'polygon':\n                this.params.fn.vendors.drawShape(this.params.canvas.ctx, this.x - radius / (this.params.particles.shape.polygon.nb_sides / 3.5), this.y - radius / (2.66 / 3.5), radius * 2.66 / (this.params.particles.shape.polygon.nb_sides / 3), this.params.particles.shape.polygon.nb_sides, 1);\n                break;\n            case 'star':\n                this.params.fn.vendors.drawShape(this.params.canvas.ctx, this.x - radius * 2 / (this.params.particles.shape.polygon.nb_sides / 4), this.y - radius / (2 * 2.66 / 3.5), radius * 2 * 2.66 / (this.params.particles.shape.polygon.nb_sides / 3), this.params.particles.shape.polygon.nb_sides, 2);\n                break;\n            case 'image':\n                let draw = img_obj => {\n                    this.params.canvas.ctx.drawImage(img_obj, this.x - radius, this.y - radius, radius * 2, radius * 2 / this.img.ratio);\n                };\n                let img_obj;\n                if (this.params.tmp.img_type == 'svg') {\n                    img_obj = this.img.obj;\n                } else {\n                    img_obj = this.params.tmp.img_obj;\n                }\n                if (img_obj) draw(img_obj);\n                break;\n        }\n        this.params.canvas.ctx.closePath();\n        if (this.params.particles.shape.stroke.width > 0) {\n            this.params.canvas.ctx.strokeStyle = this.params.particles.shape.stroke.color;\n            this.params.canvas.ctx.lineWidth = this.params.particles.shape.stroke.width;\n            this.params.canvas.ctx.stroke();\n        }\n        this.params.canvas.ctx.fill();\n    }\n}\nObject.defineProperty(exports, \"__esModule\", { value: true });\nexports.default = Particle;\n\n//////////////////\n// WEBPACK FOOTER\n// ./src/ext/Particle.ts\n// module id = 7\n// module chunks = 0\n//# sourceURL=webpack:///./src/ext/Particle.ts?");
-    }, function(module, exports, __webpack_require__) {
-        eval("\"use strict\";\n\nconst _1 = __webpack_require__(1);\nclass ParticleManager {\n    constructor(params, interact, modes, vendors, lib) {\n        this.params = params;\n        this.interact = interact;\n        this.modes = modes;\n        this.vendors = vendors;\n        this.lib = lib;\n        this.particlesCreate = this.particlesCreate.bind(this);\n        this.particlesUpdate = this.particlesUpdate.bind(this);\n        this.particlesDraw = this.particlesDraw.bind(this);\n        this.particlesEmpty = this.particlesEmpty.bind(this);\n        this.particlesRefresh = this.particlesRefresh.bind(this);\n        this.extendParticleFunctionDefinition();\n    }\n    extendParticleFunctionDefinition() {\n        this.params.fn.particlesCreate = this.particlesCreate;\n        this.params.fn.particlesUpdate = this.particlesUpdate;\n        this.params.fn.particlesDraw = this.particlesDraw;\n        this.params.fn.particlesEmpty = this.particlesEmpty;\n        this.params.fn.particlesRefresh = this.particlesRefresh;\n    }\n    particlesCreate() {\n        let { color, opacity } = this.params.particles;\n        for (let i = 0; i < this.params.particles.number.value; i++) {\n            this.params.particles.array.push(new _1.Particle(this.params, color, opacity.value));\n        }\n    }\n    particlesUpdate() {\n        this.params.particles.array.forEach((particle, i) => {\n            if (this.params.particles.move.enable) {\n                let ms = this.params.particles.move.speed / 2;\n                particle.x += particle.vx * ms;\n                particle.y += particle.vy * ms;\n            }\n            if (this.params.particles.opacity.anim.enable) {\n                if (particle.opacity_status == true) {\n                    if (particle.opacity >= this.params.particles.opacity.value) particle.opacity_status = false;\n                    particle.opacity += particle.vo;\n                } else {\n                    if (particle.opacity <= this.params.particles.opacity.anim.opacity_min) particle.opacity_status = true;\n                    particle.opacity -= particle.vo;\n                }\n                if (particle.opacity < 0) particle.opacity = 0;\n            }\n            if (this.params.particles.size.anim.enable) {\n                if (particle.size_status == true) {\n                    if (particle.radius >= this.params.particles.size.value) particle.size_status = false;\n                    particle.radius += particle.vs;\n                } else {\n                    if (particle.radius <= this.params.particles.size.anim.size_min) particle.radius -= particle.vs;\n                }\n                if (particle.radius < 0) particle.radius = 0;\n            }\n            let new_pos;\n            if (this.params.particles.move.out_mode == 'bound') {\n                new_pos = {\n                    x_left: particle.radius,\n                    x_right: this.params.canvas.width,\n                    y_top: particle.radius,\n                    y_bottom: this.params.canvas.height\n                };\n            } else {\n                new_pos = {\n                    x_left: -particle.radius,\n                    x_right: this.params.canvas.width + particle.radius,\n                    y_top: -particle.radius,\n                    y_bottom: this.params.canvas.height + particle.radius\n                };\n            }\n            if (particle.x - particle.radius > this.params.canvas.width) {\n                particle.x = new_pos.x_left;\n                particle.y = Math.random() * this.params.canvas.height;\n            } else if (particle.x + particle.radius < 0) {\n                particle.x = new_pos.x_right;\n                particle.y = Math.random() * this.params.canvas.height;\n            }\n            if (particle.y - particle.radius > this.params.canvas.height) {\n                particle.y = new_pos.y_top;\n                particle.x = Math.random() * this.params.canvas.width;\n            } else if (particle.y + particle.radius < 0) {\n                particle.y = new_pos.y_bottom;\n                particle.x = Math.random() * this.params.canvas.width;\n            }\n            switch (this.params.particles.move.out_mode) {\n                case 'bounce':\n                    if (particle.x + particle.radius > this.params.canvas.width) particle.vx = -particle.vx;else if (particle.x - particle.radius < 0) particle.vx = -particle.vx;\n                    if (particle.y + particle.radius > this.params.canvas.height) particle.vy = -particle.vy;else if (particle.y - particle.radius < 0) particle.vy = -particle.vy;\n                    break;\n            }\n            if (_1.isInArray('grab', this.params.interactivity.events.onhover.mode)) {\n                this.params.fn.modes.grabParticle(particle);\n            }\n            if (_1.isInArray('bubble', this.params.interactivity.events.onhover.mode) || _1.isInArray('bubble', this.params.interactivity.events.onclick.mode)) {\n                this.params.fn.modes.bubbleParticle(particle);\n            }\n            if (_1.isInArray('repulse', this.params.interactivity.events.onhover.mode) || _1.isInArray('repulse', this.params.interactivity.events.onclick.mode)) {\n                this.params.fn.modes.repulseParticle(particle);\n            }\n            let { linkParticles, attractParticles, bounceParticles } = this.interact;\n            if (this.params.particles.line_linked.enable || this.params.particles.move.attract.enable) {\n                for (let j = i + 1; j < this.params.particles.array.length; j++) {\n                    let link = this.params.particles.array[j];\n                    if (this.params.particles.line_linked.enable) linkParticles(particle, link);\n                    if (this.params.particles.move.attract.enable) attractParticles(particle, link);\n                    if (this.params.particles.move.bounce) bounceParticles(particle, link);\n                }\n            }\n        });\n    }\n    particlesDraw() {\n        this.params.canvas.ctx.clearRect(0, 0, this.params.canvas.width, this.params.canvas.height);\n        this.params.fn.particlesUpdate();\n        this.params.particles.array.forEach(particle => {\n            particle.draw();\n        });\n    }\n    particlesEmpty() {\n        this.params.particles.array = [];\n    }\n    particlesRefresh() {\n        cancelAnimationFrame(this.params.fn.checkAnimFrame);\n        cancelAnimationFrame(this.params.fn.drawAnimFrame);\n        this.params.tmp.source_svg = undefined;\n        this.params.tmp.img_obj = undefined;\n        this.params.tmp.count_svg = 0;\n        this.particlesEmpty();\n        this.lib.canvasClear();\n        this.params.fn.vendors.start();\n    }\n}\nObject.defineProperty(exports, \"__esModule\", { value: true });\nexports.default = ParticleManager;\n\n//////////////////\n// WEBPACK FOOTER\n// ./src/ext/ParticleManager.ts\n// module id = 8\n// module chunks = 0\n//# sourceURL=webpack:///./src/ext/ParticleManager.ts?");
-    }, function(module, exports) {
-        eval('"use strict";\n\nvar _arguments = arguments;\nexports.hexToRgb = hex => {\n    let shorthandRegex = /^#?([a-f\\d])([a-f\\d])([a-f\\d])$/i;\n    hex = hex.replace(shorthandRegex, (m, r, g, b) => {\n        return r + r + g + g + b + b;\n    });\n    let result = /^#?([a-f\\d]{2})([a-f\\d]{2})([a-f\\d]{2})$/i.exec(hex);\n    return result ? {\n        r: parseInt(result[1], 16),\n        g: parseInt(result[2], 16),\n        b: parseInt(result[3], 16)\n    } : null;\n};\nexports.clamp = (number, min, max) => {\n    return Math.min(Math.max(number, min), max);\n};\nexports.isInArray = (value, array) => {\n    return array.indexOf(value) > -1;\n};\nexports.deepExtend = (destination, source) => {\n    for (let property in source) {\n        if (source[property] && source[property].constructor && source[property].constructor === Object) {\n            destination[property] = destination[property] || {};\n            _arguments.callee(destination[property], source[property]);\n        } else {\n            destination[property] = source[property];\n        }\n    }\n    return destination;\n};\n\n//////////////////\n// WEBPACK FOOTER\n// ./src/ext/Utils.ts\n// module id = 9\n// module chunks = 0\n//# sourceURL=webpack:///./src/ext/Utils.ts?');
-    }, function(module, exports, __webpack_require__) {
-        eval("\"use strict\";\n\nconst _1 = __webpack_require__(1);\nclass Vendors {\n    constructor(params) {\n        this.params = params;\n        this.eventsListeners = this.eventsListeners.bind(this);\n        this.onMouseMove = this.onMouseMove.bind(this);\n        this.onMouseLeave = this.onMouseLeave.bind(this);\n        this.onClick = this.onClick.bind(this);\n        this.densityAutoParticles = this.densityAutoParticles.bind(this);\n        this.checkOverlap = this.checkOverlap.bind(this);\n        this.createSvgImg = this.createSvgImg.bind(this);\n        this.destroy = this.destroy.bind(this);\n        this.drawShape = this.drawShape.bind(this);\n        this.exportImg = this.exportImg.bind(this);\n        this.loadImg = this.loadImg.bind(this);\n        this.draw = this.draw.bind(this);\n        this.checkBeforeDraw = this.checkBeforeDraw.bind(this);\n        this.init = this.init.bind(this);\n        this.start = this.start.bind(this);\n        this.params.fn.vendors.eventsListeners = this.eventsListeners;\n        this.params.fn.vendors.densityAutoParticles = this.densityAutoParticles;\n        this.params.fn.vendors.checkOverlap = this.checkOverlap;\n        this.params.fn.vendors.createSvgImg = this.createSvgImg;\n        this.params.fn.vendors.destroy = this.destroy;\n        this.params.fn.vendors.drawShape = this.drawShape;\n        this.params.fn.vendors.exportImg = this.exportImg;\n        this.params.fn.vendors.loadImg = this.loadImg;\n        this.params.fn.vendors.draw = this.draw;\n        this.params.fn.vendors.checkBeforeDraw = this.checkBeforeDraw;\n        this.params.fn.vendors.init = this.init;\n        this.params.fn.vendors.start = this.start;\n    }\n    eventsListeners() {\n        let { canvas, interactivity } = this.params;\n        if (interactivity.detect_on == 'window') {\n            interactivity.el = window;\n        } else {\n            interactivity.el = canvas.element;\n        }\n        if (interactivity.events.onhover.enable || interactivity.events.onclick.enable) {\n            interactivity.el.addEventListener('mousemove', this.onMouseMove);\n            interactivity.el.addEventListener('mouseleave', this.onMouseLeave);\n        }\n        if (interactivity.events.onclick.enable) {\n            interactivity.el.addEventListener('click', this.onClick);\n        }\n    }\n    detachListeners() {\n        let { interactivity } = this.params;\n        if (interactivity.el) {\n            if (interactivity.events.onhover.enable || interactivity.events.onclick.enable) {\n                interactivity.el.removeEventListener('mousemove', this.onMouseMove);\n                interactivity.el.addEventListener('mouseleave', this.onMouseLeave);\n            }\n            if (interactivity.events.onclick.enable) {\n                interactivity.el.addEventListener('click', this.onClick);\n            }\n        }\n        window.cancelAnimationFrame(this.params.fn.drawAnimFrame);\n    }\n    onMouseMove(event) {\n        let { canvas, interactivity, tmp } = this.params;\n        let pos;\n        if (interactivity.el == window) {\n            pos = {\n                x: event.clientX,\n                y: event.clientY\n            };\n        } else {\n            pos = {\n                x: event.offsetX || event.clientX,\n                y: event.offsetY || event.clientY\n            };\n        }\n        interactivity.mouse.pos_x = pos.x;\n        interactivity.mouse.pos_y = pos.y;\n        if (tmp.retina) {\n            interactivity.mouse.pos_x *= canvas.pxratio;\n            interactivity.mouse.pos_y *= canvas.pxratio;\n        }\n        interactivity.status = 'mousemove';\n    }\n    onMouseLeave(event) {\n        let { interactivity } = this.params;\n        interactivity.mouse.pos_x = null;\n        interactivity.mouse.pos_y = null;\n        interactivity.status = 'mouseleave';\n    }\n    onClick() {\n        let { fn, interactivity, particles, tmp } = this.params;\n        interactivity.mouse.click_pos_x = interactivity.mouse.pos_x;\n        interactivity.mouse.click_pos_y = interactivity.mouse.pos_y;\n        interactivity.mouse.click_time = new Date().getTime();\n        if (interactivity.events.onclick.enable) {\n            switch (interactivity.events.onclick.mode) {\n                case 'push':\n                    if (particles.move.enable) {\n                        fn.modes.pushParticles(interactivity.modes.push.particles_nb, interactivity.mouse);\n                    } else {\n                        if (interactivity.modes.push.particles_nb == 1) {\n                            fn.modes.pushParticles(interactivity.modes.push.particles_nb, interactivity.mouse);\n                        } else if (interactivity.modes.push.particles_nb > 1) {\n                            fn.modes.pushParticles(interactivity.modes.push.particles_nb);\n                        }\n                    }\n                    break;\n                case 'remove':\n                    fn.modes.removeParticles(interactivity.modes.remove.particles_nb);\n                    break;\n                case 'bubble':\n                    tmp.bubble_clicking = true;\n                    break;\n                case 'repulse':\n                    tmp.repulse_clicking = true;\n                    tmp.repulse_count = 0;\n                    tmp.repulse_finish = false;\n                    setTimeout(() => {\n                        tmp.repulse_clicking = false;\n                    }, interactivity.modes.repulse.duration * 1000);\n                    break;\n            }\n        }\n    }\n    densityAutoParticles() {\n        let { canvas, fn, particles, tmp } = this.params;\n        if (particles.number.density.enable) {\n            let area = canvas.element.width * canvas.element.height / 1000;\n            if (tmp.retina) {\n                area = area / canvas.pxratio * 2;\n            }\n            let nb_particles = area * particles.number.value / particles.number.density.value_area;\n            let missing_particles = particles.array.length - nb_particles;\n            if (missing_particles < 0) {\n                fn.modes.pushParticles(Math.abs(missing_particles));\n            } else {\n                fn.modes.removeParticles(missing_particles);\n            }\n        }\n    }\n    checkOverlap(p1, position) {\n        let { canvas, fn, particles } = this.params;\n        particles.array.forEach(particle => {\n            let p2 = particle;\n            let dx = p1.x - p2.x;\n            let dy = p1.y - p2.y;\n            let dist = Math.sqrt(dx * dx + dy * dy);\n            if (dist <= p1.radius + p2.radius) {\n                p1.x = position ? position.x : Math.random() * canvas.width;\n                p1.y = position ? position.y : Math.random() * canvas.height;\n                fn.vendors.checkOverlap(p1);\n            }\n        });\n    }\n    createSvgImg(particle) {\n        let { tmp } = this.params;\n        let svgXml = tmp.source_svg;\n        let rgbHex = /#([0-9A-F]{3,6})/gi;\n        let coloredSvgXml = svgXml.replace(rgbHex, (m, r, g, b) => {\n            let color_value;\n            if (particle.color.rgb) {\n                let { r, g, b } = particle.color.rgb;\n                color_value = `rgba( ${ r }, ${ g }, ${ b }, ${ particle.opacity } )`;\n            } else {\n                let { h, s, l } = particle.color.hsl;\n                color_value = `rgba( ${ h }, ${ s }, ${ l }, ${ particle.opacity } )`;\n            }\n            return color_value;\n        });\n        let svg = new Blob([coloredSvgXml], {\n            type: 'image/svg+xml;charset=utf-8'\n        });\n        let DOMURL = window.URL || window;\n        let url = DOMURL.createObjectURL(svg);\n        let img = new Image();\n        img.addEventListener('load', () => {\n            particle.img.obj = img;\n            particle.img.loaded = true;\n            DOMURL.revokeObjectURL(url);\n            tmp.count_svg++;\n        });\n        img.src = url;\n    }\n    destroy() {\n        let { canvas, fn } = this.params;\n        cancelAnimationFrame(fn.drawAnimFrame);\n        canvas.element.remove();\n    }\n    drawShape(c, startX, startY, sideLength, sideCountNumerator, sideCountDenominator) {\n        let sideCount = sideCountNumerator * sideCountDenominator;\n        let decimalSides = sideCountNumerator / sideCountDenominator;\n        let interiorAngleDegrees = 180 * (decimalSides - 2) / decimalSides;\n        let interiorAngle = Math.PI - Math.PI * interiorAngleDegrees / 180;\n        c.save();\n        c.beginPath();\n        c.translate(startX, startY);\n        c.moveTo(0, 0);\n        for (let i = 0; i < sideCount; i++) {\n            c.lineTo(sideLength, 0);\n            c.translate(sideLength, 0);\n            c.rotate(interiorAngle);\n        }\n        c.fill();\n        c.restore();\n    }\n    exportImg() {\n        let { canvas } = this.params;\n        window.open(canvas.element.toDataURL('image/png'), '_blank');\n    }\n    loadImg(type) {\n        let { fn, particles, tmp } = this.params;\n        tmp.img_error = undefined;\n        if (particles.shape.image.src != '') {\n            if (type == 'svg') {\n                let xhr = new XMLHttpRequest();\n                xhr.open('GET', particles.shape.image.src);\n                xhr.onreadystatechange = data => {\n                    if (xhr.readyState == 4) {\n                        if (xhr.status == 200) {\n                            tmp.source_svg = data.currentTarget.response;\n                            fn.vendors.checkBeforeDraw();\n                        } else {\n                            console.log('Error react-particles-js - image not found');\n                            tmp.img_error = true;\n                        }\n                    }\n                };\n                xhr.send();\n            } else {\n                let img = new Image();\n                img.addEventListener('load', () => {\n                    tmp.img_obj = img;\n                    fn.vendors.checkBeforeDraw();\n                });\n                img.src = particles.shape.image.src;\n            }\n        } else {\n            console.log('Error react-particles-js - no image.src');\n            tmp.img_error = true;\n        }\n    }\n    draw() {\n        let { fn, particles, tmp } = this.params;\n        if (particles.shape.type == 'image') {\n            if (tmp.img_type == 'svg') {\n                if (tmp.count_svg >= particles.number.value) {\n                    fn.particlesDraw();\n                    if (!particles.move.enable) {\n                        cancelAnimationFrame(fn.drawAnimFrame);\n                    } else {\n                        fn.drawAnimFrame = requestAnimationFrame(fn.vendors.draw);\n                    }\n                } else {\n                    if (!tmp.img_error) {\n                        fn.drawAnimFrame = requestAnimationFrame(fn.vendors.draw);\n                    }\n                }\n            } else {\n                if (tmp.img_obj != undefined) {\n                    fn.particlesDraw();\n                    if (!particles.move.enable) {\n                        cancelAnimationFrame(fn.drawAnimFrame);\n                    } else {\n                        fn.drawAnimFrame = requestAnimationFrame(fn.vendors.draw);\n                    }\n                } else {\n                    if (!tmp.img_error) {\n                        fn.drawAnimFrame = requestAnimationFrame(fn.vendors.draw);\n                    }\n                }\n            }\n        } else {\n            fn.particlesDraw();\n            if (!particles.move.enable) {\n                cancelAnimationFrame(fn.drawAnimFrame);\n            } else {\n                fn.drawAnimFrame = requestAnimationFrame(fn.vendors.draw);\n            }\n        }\n    }\n    checkBeforeDraw() {\n        let { fn, particles, tmp } = this.params;\n        if (particles.shape.type == 'image') {\n            if (tmp.img_type == 'svg' && tmp.source_svg == undefined) {\n                let check;\n                tmp.checkAnimFrame = requestAnimationFrame(check);\n            } else {\n                cancelAnimationFrame(tmp.checkAnimFrame);\n                if (!tmp.img_error) {\n                    fn.vendors.init();\n                    fn.vendors.draw();\n                }\n            }\n        } else {\n            fn.vendors.init();\n            fn.vendors.draw();\n        }\n    }\n    init() {\n        let { fn, particles } = this.params;\n        fn.retinaInit();\n        fn.canvasInit();\n        fn.canvasSize();\n        fn.particlesCreate();\n        fn.vendors.densityAutoParticles();\n        particles.line_linked.color_rgb_line = _1.hexToRgb(particles.line_linked.color);\n    }\n    start() {\n        let { fn, particles, tmp } = this.params;\n        if (_1.isInArray('image', particles.shape.type)) {\n            tmp.img_type = particles.shape.image.src.substr(particles.shape.image.src.length - 3);\n            fn.vendors.loadImg(tmp.img_type);\n        } else {\n            fn.vendors.checkBeforeDraw();\n        }\n    }\n}\nObject.defineProperty(exports, \"__esModule\", { value: true });\nexports.default = Vendors;\n\n//////////////////\n// WEBPACK FOOTER\n// ./src/ext/Vendors.ts\n// module id = 10\n// module chunks = 0\n//# sourceURL=webpack:///./src/ext/Vendors.ts?");
-    }, function(module, exports) {
-        eval("\"use strict\";\n\nlet defaultParams = {\n    canvas: {\n        element: null,\n        width: null,\n        height: null\n    },\n    particles: {\n        number: {\n            value: 120,\n            density: {\n                enable: true,\n                value_area: 800\n            }\n        },\n        color: {\n            value: '#BB0000'\n        },\n        shape: {\n            type: 'circle',\n            stroke: {\n                width: 0,\n                color: '#000000'\n            },\n            polygon: {\n                nb_sides: 5\n            },\n            image: {\n                src: '',\n                width: 100,\n                height: 100\n            }\n        },\n        opacity: {\n            value: 0.5,\n            random: false,\n            anim: {\n                enable: true,\n                speed: 1,\n                opacity_min: 0.1,\n                sync: false\n            }\n        },\n        size: {\n            value: 1,\n            random: false,\n            anim: {\n                enable: false,\n                speed: 40,\n                size_min: 0,\n                sync: false\n            }\n        },\n        line_linked: {\n            enable: true,\n            distance: 150,\n            color: '#BB0000',\n            opacity: 0.4,\n            width: 1\n        },\n        move: {\n            enable: true,\n            speed: 4,\n            direction: 'none',\n            random: false,\n            straight: false,\n            out_mode: 'out',\n            bounce: false,\n            attract: {\n                enable: false,\n                rotateX: 3000,\n                rotateY: 3000\n            }\n        },\n        array: []\n    },\n    interactivity: {\n        detect_on: 'canvas',\n        events: {\n            onhover: {\n                enable: true,\n                mode: 'repulse'\n            },\n            onclick: {\n                enable: true,\n                mode: 'push'\n            },\n            resize: true\n        },\n        modes: {\n            grab: {\n                distance: 400,\n                line_linked: {\n                    opacity: 1\n                }\n            },\n            bubble: {\n                distance: 200,\n                size: 80,\n                duration: 0.4\n            },\n            repulse: {\n                distance: 100,\n                duration: 0.4\n            },\n            push: {\n                particles_nb: 4\n            },\n            remove: {\n                particles_nb: 2\n            }\n        },\n        mouse: {}\n    },\n    retina_detect: true,\n    fn: {\n        interact: {},\n        modes: {},\n        vendors: {}\n    },\n    tmp: {\n        obj: null,\n        retina: null\n    }\n};\nexports.defaultParams = defaultParams;\n\n//////////////////\n// WEBPACK FOOTER\n// ./src/ext/defaultParams.ts\n// module id = 11\n// module chunks = 0\n//# sourceURL=webpack:///./src/ext/defaultParams.ts?");
+        var e = {};
+        return t.m = a, t.c = e, t.p = "", t(0);
+    }([ function(a, t, e) {
+        "use strict";
+        var i = e(3);
+        Object.defineProperty(t, "__esModule", {
+            value: !0
+        }), t.default = i.default;
+    }, function(a, t, e) {
+        "use strict";
+        function i(a) {
+            for (var e in a) t.hasOwnProperty(e) || (t[e] = a[e]);
+        }
+        i(e(11)), i(e(9));
+        var s = e(4);
+        t.Interact = s.default;
+        var r = e(5);
+        t.Modes = r.default;
+        var n = e(6);
+        t.Particle = n.default;
+        var o = e(7);
+        t.ParticleManager = o.default;
+        var c = e(8);
+        t.ParticlesLibrary = c.default;
+        var p = e(10);
+        t.Vendors = p.default;
+    }, function(t, e) {
+        t.exports = a;
+    }, function(a, t, e) {
+        "use strict";
+        function i(a, t) {
+            if (!(a instanceof t)) throw new TypeError("Cannot call a class as a function");
+        }
+        function s(a, t) {
+            if (!a) throw new ReferenceError("this hasn't been initialised - super() hasn't been called");
+            return !t || "object" != typeof t && "function" != typeof t ? a : t;
+        }
+        function r(a, t) {
+            if ("function" != typeof t && null !== t) throw new TypeError("Super expression must either be null or a function, not " + typeof t);
+            a.prototype = Object.create(t && t.prototype, {
+                constructor: {
+                    value: a,
+                    enumerable: !1,
+                    writable: !0,
+                    configurable: !0
+                }
+            }), t && (Object.setPrototypeOf ? Object.setPrototypeOf(a, t) : a.__proto__ = t);
+        }
+        var n = function() {
+            function a(a, t) {
+                for (var e = 0; e < t.length; e++) {
+                    var i = t[e];
+                    i.enumerable = i.enumerable || !1, i.configurable = !0, "value" in i && (i.writable = !0), 
+                    Object.defineProperty(a, i.key, i);
+                }
+            }
+            return function(t, e, i) {
+                return e && a(t.prototype, e), i && a(t, i), t;
+            };
+        }(), o = e(2), c = e(2), p = e(1), h = function(a) {
+            function t(a) {
+                return i(this, t), s(this, (t.__proto__ || Object.getPrototypeOf(t)).call(this, a));
+            }
+            return r(t, a), n(t, [ {
+                key: "componentDidMount",
+                value: function() {
+                    this.particlesLibrary = new p.ParticlesLibrary(this.canvas, this.props.params), 
+                    this.particlesLibrary.start();
+                }
+            }, {
+                key: "componentWillUnmount",
+                value: function() {
+                    this.particlesLibrary.destroy();
+                }
+            }, {
+                key: "render",
+                value: function() {
+                    var a = this, t = this.props, e = t.width, i = t.height;
+                    return o.createElement("div", null, o.createElement("canvas", {
+                        ref: function(t) {
+                            return a.canvas = t;
+                        },
+                        style: {
+                            width: e,
+                            height: i
+                        }
+                    }));
+                }
+            } ]), t;
+        }(c.Component);
+        Object.defineProperty(t, "__esModule", {
+            value: !0
+        }), t.default = h, h.defaultProps = {
+            width: "100%",
+            height: "100%",
+            params: {}
+        };
+    }, function(a, t) {
+        "use strict";
+        function e(a, t) {
+            if (!(a instanceof t)) throw new TypeError("Cannot call a class as a function");
+        }
+        var i = function() {
+            function a(a, t) {
+                for (var e = 0; e < t.length; e++) {
+                    var i = t[e];
+                    i.enumerable = i.enumerable || !1, i.configurable = !0, "value" in i && (i.writable = !0), 
+                    Object.defineProperty(a, i.key, i);
+                }
+            }
+            return function(t, e, i) {
+                return e && a(t.prototype, e), i && a(t, i), t;
+            };
+        }(), s = function() {
+            function a(t) {
+                e(this, a), this.params = t, this.linkParticles = this.linkParticles.bind(this), 
+                this.attractParticles = this.attractParticles.bind(this), this.bounceParticles = this.bounceParticles.bind(this), 
+                this.params.fn.interact.linkParticles = this.linkParticles, this.params.fn.interact.attractParticles = this.attractParticles, 
+                this.params.fn.interact.bounceParticles = this.bounceParticles;
+            }
+            return i(a, [ {
+                key: "linkParticles",
+                value: function(a, t) {
+                    var e = a.x - t.x, i = a.y - t.y, s = Math.sqrt(e * e + i * i);
+                    if (s <= this.params.particles.line_linked.distance) {
+                        var r = this.params.particles.line_linked.opacity - s / (1 / this.params.particles.line_linked.opacity) / this.params.particles.line_linked.distance;
+                        if (r > 0) {
+                            var n = this.params.particles.line_linked.color_rgb_line, o = n.r, c = n.g, p = n.b;
+                            this.params.canvas.ctx.strokeStyle = "rgba( " + o + ", " + c + ", " + p + ", " + r + " )", 
+                            this.params.canvas.ctx.lineWidth = this.params.particles.line_linked.width, this.params.canvas.ctx.beginPath(), 
+                            this.params.canvas.ctx.moveTo(a.x, a.y), this.params.canvas.ctx.lineTo(t.x, t.y), 
+                            this.params.canvas.ctx.stroke(), this.params.canvas.ctx.closePath();
+                        }
+                    }
+                }
+            }, {
+                key: "attractParticles",
+                value: function(a, t) {
+                    var e = a.x - t.x, i = a.y - t.y, s = Math.sqrt(e * e + i * i);
+                    if (s <= this.params.particles.line_linked.distance) {
+                        var r = e / (1e3 * this.params.particles.move.attract.rotateX), n = i / (1e3 * this.params.particles.move.attract.rotateY);
+                        a.vx -= r, a.vy -= n, t.vx += r, t.vy += n;
+                    }
+                }
+            }, {
+                key: "bounceParticles",
+                value: function(a, t) {
+                    var e = a.x - t.x, i = a.y - t.y, s = Math.sqrt(e * e + i * i), r = a.radius + t.radius;
+                    s <= r && (a.vx = -a.vx, a.vy = -a.vy, t.vx = -t.vx, t.vy = -t.vy);
+                }
+            } ]), a;
+        }();
+        Object.defineProperty(t, "__esModule", {
+            value: !0
+        }), t.default = s;
+    }, function(a, t, e) {
+        "use strict";
+        function i(a, t) {
+            if (!(a instanceof t)) throw new TypeError("Cannot call a class as a function");
+        }
+        var s = function() {
+            function a(a, t) {
+                for (var e = 0; e < t.length; e++) {
+                    var i = t[e];
+                    i.enumerable = i.enumerable || !1, i.configurable = !0, "value" in i && (i.writable = !0), 
+                    Object.defineProperty(a, i.key, i);
+                }
+            }
+            return function(t, e, i) {
+                return e && a(t.prototype, e), i && a(t, i), t;
+            };
+        }(), r = e(1), n = function() {
+            function a(t) {
+                i(this, a), this.params = t, this.pushParticles = this.pushParticles.bind(this), 
+                this.removeParticles = this.removeParticles.bind(this), this.bubbleParticle = this.bubbleParticle.bind(this), 
+                this.repulseParticle = this.repulseParticle.bind(this), this.grabParticle = this.grabParticle.bind(this), 
+                this.params.fn.modes.pushParticles = this.pushParticles, this.params.fn.modes.removeParticles = this.removeParticles, 
+                this.params.fn.modes.bubbleParticle = this.bubbleParticle, this.params.fn.modes.repulseParticle = this.repulseParticle, 
+                this.params.fn.modes.grabParticle = this.grabParticle;
+            }
+            return s(a, [ {
+                key: "pushParticles",
+                value: function(a, t) {
+                    this.params.tmp.pushing = !0, t || (t = {
+                        pos_x: Math.random() * this.params.canvas.width,
+                        pos_y: Math.random() * this.params.canvas.height
+                    });
+                    for (var e = 0; e < a; e++) this.params.particles.array.push(new r.Particle(this.params, this.params.particles.color, this.params.particles.opacity.value, {
+                        x: t.pos_x,
+                        y: t.pos_y
+                    })), e == a - 1 && (this.params.particles.move.enable || this.params.fn.particlesDraw(), 
+                    this.params.tmp.pushing = !1);
+                }
+            }, {
+                key: "removeParticles",
+                value: function(a) {
+                    this.params.particles.array.splice(0, a), this.params.particles.move.enable || this.params.fn.particlesDraw();
+                }
+            }, {
+                key: "bubbleParticle",
+                value: function(a) {
+                    var t = this;
+                    if (this.params.interactivity.events.onhover.enable && r.isInArray("bubble", this.params.interactivity.events.onhover.mode)) {
+                        var e = a.x - this.params.interactivity.mouse.pos_x, i = a.y - this.params.interactivity.mouse.pos_y, s = Math.sqrt(e * e + i * i), n = 1 - s / this.params.interactivity.modes.bubble.distance, o = function() {
+                            a.opacity_bubble = a.opacity, a.radius_bubble = a.radius;
+                        };
+                        if (s <= this.params.interactivity.modes.bubble.distance) {
+                            if (n >= 0 && "mousemove" == this.params.interactivity.status) {
+                                if (this.params.interactivity.modes.bubble.size != this.params.particles.size.value) if (this.params.interactivity.modes.bubble.size > this.params.particles.size.value) {
+                                    var c = a.radius + this.params.interactivity.modes.bubble.size * n;
+                                    c >= 0 && (a.radius_bubble = c);
+                                } else {
+                                    var p = a.radius - this.params.interactivity.modes.bubble.size, h = a.radius - p * n;
+                                    h > 0 ? a.radius_bubble = h : a.radius_bubble = 0;
+                                }
+                                if (this.params.interactivity.modes.bubble.opacity != this.params.particles.opacity.value) if (this.params.interactivity.modes.bubble.opacity > this.params.particles.opacity.value) {
+                                    var l = this.params.interactivity.modes.bubble.opacity * n;
+                                    l > a.opacity && l <= this.params.interactivity.modes.bubble.opacity && (a.opacity_bubble = l);
+                                } else {
+                                    var m = a.opacity - (this.params.particles.opacity.value - this.params.interactivity.modes.bubble.opacity) * n;
+                                    m < a.opacity && m >= this.params.interactivity.modes.bubble.opacity && (a.opacity_bubble = m);
+                                }
+                            }
+                        } else o();
+                        "mouseleave" == this.params.interactivity.status && o();
+                    } else this.params.interactivity.events.onclick.enable && r.isInArray("bubble", this.params.interactivity.events.onclick.mode) && this.params.tmp.bubble_clicking && !function() {
+                        var e = a.x - t.params.interactivity.mouse.click_pos_x, i = a.y - t.params.interactivity.mouse.click_pos_y, s = Math.sqrt(e * e + i * i), r = (new Date().getTime() - t.params.interactivity.mouse.click_time) / 1e3;
+                        r > t.params.interactivity.modes.bubble.duration && (t.params.tmp.bubble_duration_end = !0), 
+                        r > 2 * t.params.interactivity.modes.bubble.duration && (t.params.tmp.bubble_clicking = !1, 
+                        t.params.tmp.bubble_duration_end = !1);
+                        var n = function(e, i, n, o, c) {
+                            if (e != i) if (t.params.tmp.bubble_duration_end) {
+                                if (void 0 != n) {
+                                    var p = o - r * (o - e) / t.params.interactivity.modes.bubble.duration, h = e - p, l = e + h;
+                                    "size" == c && (a.radius_bubble = l), "opacity" == c && (a.opacity_bubble = l);
+                                }
+                            } else if (s <= t.params.interactivity.modes.bubble.distance) {
+                                var m = void 0;
+                                if (m = void 0 != n ? n : o, m != e) {
+                                    var u = o - r * (o - e) / t.params.interactivity.modes.bubble.duration;
+                                    "size" == c && (a.radius_bubble = u), "opacity" == c && (a.opacity_bubble = u);
+                                }
+                            } else "size" == c && (a.radius_bubble = void 0), "opacity" == c && (a.opacity_bubble = void 0);
+                        };
+                        t.params.tmp.bubble_clicking && (n(t.params.interactivity.modes.bubble.size, t.params.particles.size.value, a.radius_bubble, a.radius, "size"), 
+                        n(t.params.interactivity.modes.bubble.opacity, t.params.particles.opacity.value, a.opacity_bubble, a.opacity, "opacity"));
+                    }();
+                }
+            }, {
+                key: "repulseParticle",
+                value: function(a) {
+                    var t = this;
+                    if (this.params.interactivity.events.onhover.enable && r.isInArray("repulse", this.params.interactivity.events.onhover.mode) && "mousemove" == this.params.interactivity.status) {
+                        var e = a.x - this.params.interactivity.mouse.pos_x, i = a.y - this.params.interactivity.mouse.pos_y, s = Math.sqrt(e * e + i * i), n = {
+                            x: e / s,
+                            y: i / s
+                        }, o = this.params.interactivity.modes.repulse.distance, c = 100, p = r.clamp(1 / o * (-1 * Math.pow(s / o, 2) + 1) * o * c, 0, 50), h = {
+                            x: a.x + n.x * p,
+                            y: a.y + n.y * p
+                        };
+                        "bounce" == this.params.particles.move.out_mode ? (h.x - a.radius > 0 && h.x + a.radius < this.params.canvas.width && (a.x = h.x), 
+                        h.y - a.radius > 0 && h.y + a.radius < this.params.canvas.height && (a.y = h.y)) : (a.x = h.x, 
+                        a.y = h.y);
+                    } else this.params.interactivity.events.onclick.enable && r.isInArray("repulse", this.params.interactivity.events.onclick.mode) && (this.params.tmp.repulse_finish || (this.params.tmp.repulse_count++, 
+                    this.params.tmp.repulse_count == this.params.particles.array.length && (this.params.tmp.repulse_finish = !0)), 
+                    this.params.tmp.repulse_clicking ? !function() {
+                        var e = Math.pow(t.params.interactivity.modes.repulse.distance / 6, 3), i = t.params.interactivity.mouse.click_pos_x - a.x, s = t.params.interactivity.mouse.click_pos_y - a.y, r = i * i + s * s, n = -e / r * 1, o = function() {
+                            var e = Math.atan2(s, i);
+                            if (a.vx = n * Math.cos(e), a.vy = n * Math.sin(e), "bounce" == t.params.particles.move.out_mode) {
+                                var r = {
+                                    x: a.x + a.vx,
+                                    y: a.y + a.vy
+                                };
+                                r.x + a.radius > t.params.canvas.width ? a.vx = -a.vx : r.x - a.radius < 0 && (a.vx = -a.vx), 
+                                r.y + a.radius > t.params.canvas.height ? a.vy = -a.vy : r.y - a.radius < 0 && (a.vy = -a.vy);
+                            }
+                        };
+                        r <= e && o();
+                    }() : 0 == this.params.tmp.repulse_clicking && (a.vx = a.vx_i, a.vy = a.vy_i));
+                }
+            }, {
+                key: "grabParticle",
+                value: function(a) {
+                    if (this.params.interactivity.events.onhover.enable && "onmousemove" == this.params.interactivity.status) {
+                        var t = a.x - this.params.interactivity.mouse.pos_x, e = a.y - this.params.interactivity.mouse.pos_y, i = Math.sqrt(t * t + e * e);
+                        if (i <= this.params.interactivity.modes.grab.distance) {
+                            var s = this.params.interactivity.modes.grab.line_linked.opacity - i / (1 / this.params.interactivity.modes.grab.line_linked.opacity) / this.params.interactivity.modes.grab.distance;
+                            if (s > 0) {
+                                var r = this.params.particles.line_linked.color_rgb_line, n = r.r, o = r.g, c = r.b;
+                                this.params.canvas.ctx.strokeStyle = "rgba( " + n + ", " + o + ", " + c + ", " + s + " )", 
+                                this.params.canvas.ctx.lineWidth = this.params.particles.line_linked.width, this.params.canvas.ctx.beginPath(), 
+                                this.params.canvas.ctx.moveTo(a.x, a.y), this.params.canvas.ctx.lineTo(this.params.interactivity.mouse.pos_x, this.params.interactivity.mouse.pos_y), 
+                                this.params.canvas.ctx.stroke(), this.params.canvas.ctx.closePath();
+                            }
+                        }
+                    }
+                }
+            } ]), a;
+        }();
+        Object.defineProperty(t, "__esModule", {
+            value: !0
+        }), t.default = n;
+    }, function(a, t, e) {
+        "use strict";
+        function i(a, t) {
+            if (!(a instanceof t)) throw new TypeError("Cannot call a class as a function");
+        }
+        var s = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function(a) {
+            return typeof a;
+        } : function(a) {
+            return a && "function" == typeof Symbol && a.constructor === Symbol && a !== Symbol.prototype ? "symbol" : typeof a;
+        }, r = function() {
+            function a(a, t) {
+                for (var e = 0; e < t.length; e++) {
+                    var i = t[e];
+                    i.enumerable = i.enumerable || !1, i.configurable = !0, "value" in i && (i.writable = !0), 
+                    Object.defineProperty(a, i.key, i);
+                }
+            }
+            return function(t, e, i) {
+                return e && a(t.prototype, e), i && a(t, i), t;
+            };
+        }(), n = e(1), o = function() {
+            function a(t, e, s, r) {
+                i(this, a), this.params = t, this.setupSize(), this.setupPosition(r), this.setupColor(e), 
+                this.setupOpacity(), this.setupAnimation();
+            }
+            return r(a, [ {
+                key: "setupSize",
+                value: function() {
+                    this.radius = (this.params.particles.size.random ? Math.random() : 1) * this.params.particles.size.value, 
+                    this.params.particles.size.anim.enable && (this.size_status = !1, this.vs = this.params.particles.size.anim.speed / 100, 
+                    this.params.particles.size.anim.sync || (this.vs = this.vs * Math.random()));
+                }
+            }, {
+                key: "setupPosition",
+                value: function(a) {
+                    this.x = a ? a.x : Math.random() * this.params.canvas.width, this.y = a ? a.y : Math.random() * this.params.canvas.height, 
+                    this.x > this.params.canvas.width - 2 * this.radius ? this.x = this.x - this.radius : this.x < 2 * this.radius && (this.x = this.x + this.radius), 
+                    this.y > this.params.canvas.height - 2 * this.radius ? this.y = this.y - this.radius : this.y < 2 * this.radius && (this.y = this.y + this.radius), 
+                    this.params.particles.move.bounce && this.params.fn.vendors.checkOverlap(this, a);
+                }
+            }, {
+                key: "setupColor",
+                value: function(a) {
+                    if (this.color = {}, "object" == s(a.value)) if (a.value instanceof Array) {
+                        var t = a.value[Math.floor(Math.random() * this.params.particles.color.value.length)];
+                        this.color.rgb = n.hexToRgb(t);
+                    } else {
+                        if (void 0 != a.value.r && void 0 != a.value.g && void 0 != a.value.b) {
+                            var e = a.value, i = e.r, r = e.g, o = e.b;
+                            this.color.rgb = {
+                                r: i,
+                                g: r,
+                                b: o
+                            };
+                        }
+                        if (void 0 != a.value.h && void 0 != a.value.s && void 0 != a.value.l) {
+                            var c = a.value, p = c.h, h = c.s, l = c.l;
+                            this.color.hsl = {
+                                h: p,
+                                s: h,
+                                l: l
+                            };
+                        }
+                    } else "random" == a.value ? this.color.rgb = {
+                        r: Math.floor(256 * Math.random()) + 0,
+                        g: Math.floor(256 * Math.random()) + 0,
+                        b: Math.floor(256 * Math.random()) + 0
+                    } : "string" == typeof a.value && (this.color = a, this.color.rgb = n.hexToRgb(this.color.value));
+                }
+            }, {
+                key: "setupOpacity",
+                value: function() {
+                    this.opacity = (this.params.particles.opacity.random ? Math.random() : 1) * this.params.particles.opacity.value, 
+                    this.params.particles.opacity.anim.enable && (this.opacity_status = !1, this.vo = this.params.particles.opacity.anim.speed / 100, 
+                    this.params.particles.opacity.anim.sync || (this.vo = this.vo * Math.random()));
+                }
+            }, {
+                key: "setupAnimation",
+                value: function() {
+                    var a = null;
+                    switch (this.params.particles.move.direction) {
+                      case "top":
+                        a = {
+                            x: 0,
+                            y: -1
+                        };
+                        break;
+
+                      case "top-right":
+                        a = {
+                            x: .5,
+                            y: -.5
+                        };
+                        break;
+
+                      case "right":
+                        a = {
+                            x: 1,
+                            y: 0
+                        };
+                        break;
+
+                      case "bottom-right":
+                        a = {
+                            x: .5,
+                            y: .5
+                        };
+                        break;
+
+                      case "bottom":
+                        a = {
+                            x: 0,
+                            y: 1
+                        };
+                        break;
+
+                      case "bottom-left":
+                        a = {
+                            x: -.5,
+                            y: 1
+                        };
+                        break;
+
+                      case "left":
+                        a = {
+                            x: -1,
+                            y: 0
+                        };
+                        break;
+
+                      case "top-left":
+                        a = {
+                            x: -.5,
+                            y: -.5
+                        };
+                        break;
+
+                      default:
+                        a = {
+                            x: 0,
+                            y: 0
+                        };
+                    }
+                    this.params.particles.move.straight ? (this.vx = a.x, this.vy = a.y, this.params.particles.move.random && (this.vx = this.vx * Math.random(), 
+                    this.vy = this.vy * Math.random())) : (this.vx = a.x + Math.random() - .5, this.vy = a.y + Math.random() - .5), 
+                    this.vx_i = this.vx, this.vy_i = this.vy;
+                    var t = this.params.particles.shape.type;
+                    if ("object" == ("undefined" == typeof t ? "undefined" : s(t))) {
+                        if (t instanceof Array) {
+                            var e = t[Math.floor(Math.random() * t.length)];
+                            this.shape = e;
+                        }
+                    } else this.shape = t;
+                    if ("image" == this.shape) {
+                        var i = this.params.particles.shape;
+                        this.img = {
+                            src: i.image.src,
+                            ratio: i.image.width / i.image.height
+                        }, this.img.ratio || (this.img.ratio = 1), "svg" == this.params.tmp.img_type && void 0 != this.params.tmp.source_svg && (this.params.fn.vendors.createSvgImg(this), 
+                        this.params.tmp.pushing && (this.img.loaded = !1));
+                    }
+                }
+            }, {
+                key: "draw",
+                value: function a() {
+                    var t = this, e = void 0;
+                    e = void 0 != this.radius_bubble ? this.radius_bubble : this.radius;
+                    var i = void 0;
+                    i = void 0 != this.opacity_bubble ? this.opacity_bubble : this.opacity;
+                    var s = void 0;
+                    if (this.color.rgb) {
+                        var r = this.color.rgb, n = r.r, o = r.g, c = r.b;
+                        s = "rgba( " + n + ", " + o + ", " + c + ", " + i + " )";
+                    } else {
+                        var p = this.color.hsl, h = p.h, l = p.s, m = p.l;
+                        s = "hsla( " + h + ", " + l + ", " + m + ", " + i + " )";
+                    }
+                    switch (this.params.canvas.ctx.fillStyle = s, this.params.canvas.ctx.beginPath(), 
+                    this.shape) {
+                      case "circle":
+                        (Math.floor(100 * Math.random()) + 20) % 17 == 0, this.params.canvas.ctx.arc(this.x, this.y, e, 0, 2 * Math.PI, !1);
+                        break;
+
+                      case "edge":
+                        this.params.canvas.ctx.rect(this.x - e, this.y - e, 2 * e, 2 * e);
+                        break;
+
+                      case "triangle":
+                        this.params.fn.vendors.drawShape(this.params.canvas.ctx, this.x - e, this.y + e / 1.66, 2 * e, 3, 2);
+                        break;
+
+                      case "polygon":
+                        this.params.fn.vendors.drawShape(this.params.canvas.ctx, this.x - e / (this.params.particles.shape.polygon.nb_sides / 3.5), this.y - e / .76, 2.66 * e / (this.params.particles.shape.polygon.nb_sides / 3), this.params.particles.shape.polygon.nb_sides, 1);
+                        break;
+
+                      case "star":
+                        this.params.fn.vendors.drawShape(this.params.canvas.ctx, this.x - 2 * e / (this.params.particles.shape.polygon.nb_sides / 4), this.y - e / 1.52, 2 * e * 2.66 / (this.params.particles.shape.polygon.nb_sides / 3), this.params.particles.shape.polygon.nb_sides, 2);
+                        break;
+
+                      case "image":
+                        var a = function(a) {
+                            t.params.canvas.ctx.drawImage(a, t.x - e, t.y - e, 2 * e, 2 * e / t.img.ratio);
+                        }, u = void 0;
+                        u = "svg" == this.params.tmp.img_type ? this.img.obj : this.params.tmp.img_obj, 
+                        u && a(u);
+                    }
+                    this.params.canvas.ctx.closePath(), this.params.particles.shape.stroke.width > 0 && (this.params.canvas.ctx.strokeStyle = this.params.particles.shape.stroke.color, 
+                    this.params.canvas.ctx.lineWidth = this.params.particles.shape.stroke.width, this.params.canvas.ctx.stroke()), 
+                    this.params.canvas.ctx.fill();
+                }
+            } ]), a;
+        }();
+        Object.defineProperty(t, "__esModule", {
+            value: !0
+        }), t.default = o;
+    }, function(a, t, e) {
+        "use strict";
+        function i(a, t) {
+            if (!(a instanceof t)) throw new TypeError("Cannot call a class as a function");
+        }
+        var s = function() {
+            function a(a, t) {
+                for (var e = 0; e < t.length; e++) {
+                    var i = t[e];
+                    i.enumerable = i.enumerable || !1, i.configurable = !0, "value" in i && (i.writable = !0), 
+                    Object.defineProperty(a, i.key, i);
+                }
+            }
+            return function(t, e, i) {
+                return e && a(t.prototype, e), i && a(t, i), t;
+            };
+        }(), r = e(1), n = function() {
+            function a(t, e, s, r, n) {
+                i(this, a), this.params = t, this.interact = e, this.modes = s, this.vendors = r, 
+                this.lib = n, this.particlesCreate = this.particlesCreate.bind(this), this.particlesUpdate = this.particlesUpdate.bind(this), 
+                this.particlesDraw = this.particlesDraw.bind(this), this.particlesEmpty = this.particlesEmpty.bind(this), 
+                this.particlesRefresh = this.particlesRefresh.bind(this), this.extendParticleFunctionDefinition();
+            }
+            return s(a, [ {
+                key: "extendParticleFunctionDefinition",
+                value: function() {
+                    this.params.fn.particlesCreate = this.particlesCreate, this.params.fn.particlesUpdate = this.particlesUpdate, 
+                    this.params.fn.particlesDraw = this.particlesDraw, this.params.fn.particlesEmpty = this.particlesEmpty, 
+                    this.params.fn.particlesRefresh = this.particlesRefresh;
+                }
+            }, {
+                key: "particlesCreate",
+                value: function() {
+                    for (var a = this.params.particles, t = a.color, e = a.opacity, i = 0; i < this.params.particles.number.value; i++) this.params.particles.array.push(new r.Particle(this.params, t, e.value));
+                }
+            }, {
+                key: "particlesUpdate",
+                value: function() {
+                    var a = this;
+                    this.params.particles.array.forEach(function(t, e) {
+                        if (a.params.particles.move.enable) {
+                            var i = a.params.particles.move.speed / 2;
+                            t.x += t.vx * i, t.y += t.vy * i;
+                        }
+                        a.params.particles.opacity.anim.enable && (1 == t.opacity_status ? (t.opacity >= a.params.particles.opacity.value && (t.opacity_status = !1), 
+                        t.opacity += t.vo) : (t.opacity <= a.params.particles.opacity.anim.opacity_min && (t.opacity_status = !0), 
+                        t.opacity -= t.vo), t.opacity < 0 && (t.opacity = 0)), a.params.particles.size.anim.enable && (1 == t.size_status ? (t.radius >= a.params.particles.size.value && (t.size_status = !1), 
+                        t.radius += t.vs) : t.radius <= a.params.particles.size.anim.size_min && (t.radius -= t.vs), 
+                        t.radius < 0 && (t.radius = 0));
+                        var s = void 0;
+                        switch (s = "bound" == a.params.particles.move.out_mode ? {
+                            x_left: t.radius,
+                            x_right: a.params.canvas.width,
+                            y_top: t.radius,
+                            y_bottom: a.params.canvas.height
+                        } : {
+                            x_left: -t.radius,
+                            x_right: a.params.canvas.width + t.radius,
+                            y_top: -t.radius,
+                            y_bottom: a.params.canvas.height + t.radius
+                        }, t.x - t.radius > a.params.canvas.width ? (t.x = s.x_left, t.y = Math.random() * a.params.canvas.height) : t.x + t.radius < 0 && (t.x = s.x_right, 
+                        t.y = Math.random() * a.params.canvas.height), t.y - t.radius > a.params.canvas.height ? (t.y = s.y_top, 
+                        t.x = Math.random() * a.params.canvas.width) : t.y + t.radius < 0 && (t.y = s.y_bottom, 
+                        t.x = Math.random() * a.params.canvas.width), a.params.particles.move.out_mode) {
+                          case "bounce":
+                            t.x + t.radius > a.params.canvas.width ? t.vx = -t.vx : t.x - t.radius < 0 && (t.vx = -t.vx), 
+                            t.y + t.radius > a.params.canvas.height ? t.vy = -t.vy : t.y - t.radius < 0 && (t.vy = -t.vy);
+                        }
+                        r.isInArray("grab", a.params.interactivity.events.onhover.mode) && a.params.fn.modes.grabParticle(t), 
+                        (r.isInArray("bubble", a.params.interactivity.events.onhover.mode) || r.isInArray("bubble", a.params.interactivity.events.onclick.mode)) && a.params.fn.modes.bubbleParticle(t), 
+                        (r.isInArray("repulse", a.params.interactivity.events.onhover.mode) || r.isInArray("repulse", a.params.interactivity.events.onclick.mode)) && a.params.fn.modes.repulseParticle(t);
+                        var n = a.interact, o = n.linkParticles, c = n.attractParticles, p = n.bounceParticles;
+                        if (a.params.particles.line_linked.enable || a.params.particles.move.attract.enable) for (var h = e + 1; h < a.params.particles.array.length; h++) {
+                            var l = a.params.particles.array[h];
+                            a.params.particles.line_linked.enable && o(t, l), a.params.particles.move.attract.enable && c(t, l), 
+                            a.params.particles.move.bounce && p(t, l);
+                        }
+                    });
+                }
+            }, {
+                key: "particlesDraw",
+                value: function() {
+                    this.params.canvas.ctx.clearRect(0, 0, this.params.canvas.width, this.params.canvas.height), 
+                    this.params.fn.particlesUpdate(), this.params.particles.array.forEach(function(a) {
+                        a.draw();
+                    });
+                }
+            }, {
+                key: "particlesEmpty",
+                value: function() {
+                    this.params.particles.array = [];
+                }
+            }, {
+                key: "particlesRefresh",
+                value: function() {
+                    cancelAnimationFrame(this.params.fn.checkAnimFrame), cancelAnimationFrame(this.params.fn.drawAnimFrame), 
+                    this.params.tmp.source_svg = void 0, this.params.tmp.img_obj = void 0, this.params.tmp.count_svg = 0, 
+                    this.particlesEmpty(), this.lib.canvasClear(), this.params.fn.vendors.start();
+                }
+            } ]), a;
+        }();
+        Object.defineProperty(t, "__esModule", {
+            value: !0
+        }), t.default = n;
+    }, function(a, t, e) {
+        "use strict";
+        function i(a, t) {
+            if (!(a instanceof t)) throw new TypeError("Cannot call a class as a function");
+        }
+        var s = function() {
+            function a(a, t) {
+                for (var e = 0; e < t.length; e++) {
+                    var i = t[e];
+                    i.enumerable = i.enumerable || !1, i.configurable = !0, "value" in i && (i.writable = !0), 
+                    Object.defineProperty(a, i.key, i);
+                }
+            }
+            return function(t, e, i) {
+                return e && a(t.prototype, e), i && a(t, i), t;
+            };
+        }(), r = e(1), n = function() {
+            function a(t, e) {
+                i(this, a), r.deepExtend(r.defaultParams, e), this.params = r.defaultParams, this.extendParams(t), 
+                this.interact = new r.Interact(this.params), this.modes = new r.Modes(this.params), 
+                this.vendors = new r.Vendors(this.params), this.particleManager = new r.ParticleManager(this.params, this.interact, this.modes, this.vendors, this);
+            }
+            return s(a, [ {
+                key: "start",
+                value: function() {
+                    this.params.fn.vendors.eventsListeners(), this.params.fn.vendors.start();
+                }
+            }, {
+                key: "destroy",
+                value: function() {
+                    this.detachListeners(), this.vendors.detachListeners();
+                }
+            }, {
+                key: "detachListeners",
+                value: function() {
+                    window.removeEventListener("resize", this.onWindowResize);
+                }
+            }, {
+                key: "extendParams",
+                value: function(a) {
+                    this.extendCanvasDefinition(a), this.extendTmpDefinition(), this.onWindowResize = this.onWindowResize.bind(this), 
+                    this.retinaInit = this.retinaInit.bind(this), this.canvasInit = this.canvasInit.bind(this), 
+                    this.canvasSize = this.canvasSize.bind(this), this.canvasPaint = this.canvasPaint.bind(this), 
+                    this.canvasClear = this.canvasClear.bind(this), this.extendRetinaFunctionDefinition(), 
+                    this.extendCanvasFunctionDefinition(), this.extendParticleFunctionDefinition();
+                }
+            }, {
+                key: "extendCanvasDefinition",
+                value: function(a) {
+                    this.params.canvas = {
+                        element: a,
+                        width: a.offsetWidth,
+                        height: a.offsetHeight
+                    };
+                }
+            }, {
+                key: "extendTmpDefinition",
+                value: function() {
+                    this.params.tmp.obj = {
+                        size_value: this.params.particles.size.value,
+                        size_anim_speed: this.params.particles.size.anim.speed,
+                        move_speed: this.params.particles.move.speed,
+                        line_linked_distance: this.params.particles.line_linked.distance,
+                        line_linked_width: this.params.particles.line_linked.width,
+                        mode_grab_distance: this.params.interactivity.modes.grab.distance,
+                        mode_bubble_distance: this.params.interactivity.modes.bubble.distance,
+                        mode_bubble_size: this.params.interactivity.modes.bubble.size,
+                        mode_repulse_distance: this.params.interactivity.modes.repulse.distance
+                    };
+                }
+            }, {
+                key: "extendRetinaFunctionDefinition",
+                value: function() {
+                    this.params.fn.retinaInit = this.retinaInit;
+                }
+            }, {
+                key: "retinaInit",
+                value: function() {
+                    this.params.retina_detect && window.devicePixelRatio > 1 ? (this.params.canvas.pxratio = window.devicePixelRatio, 
+                    this.params.tmp.retina = !0, this.params.canvas.width = this.params.canvas.element.offsetWidth * this.params.canvas.pxratio, 
+                    this.params.canvas.height = this.params.canvas.element.offsetHeight * this.params.canvas.pxratio, 
+                    this.params.particles.size.value = this.params.tmp.obj.size_value * this.params.canvas.pxratio, 
+                    this.params.particles.size.anim.speed = this.params.tmp.obj.size_anim_speed * this.params.canvas.pxratio, 
+                    this.params.particles.move.speed = this.params.tmp.obj.move_speed * this.params.canvas.pxratio, 
+                    this.params.particles.line_linked.distance = this.params.tmp.obj.line_linked_distance * this.params.canvas.pxratio, 
+                    this.params.interactivity.modes.grab.distance = this.params.tmp.obj.mode_grab_distance * this.params.canvas.pxratio, 
+                    this.params.interactivity.modes.bubble.distance = this.params.tmp.obj.mode_bubble_distance * this.params.canvas.pxratio, 
+                    this.params.particles.line_linked.width = this.params.tmp.obj.line_linked_width * this.params.canvas.pxratio, 
+                    this.params.interactivity.modes.bubble.size = this.params.tmp.obj.mode_bubble_size * this.params.canvas.pxratio, 
+                    this.params.interactivity.modes.repulse.distance = this.params.tmp.obj.mode_repulse_distance * this.params.canvas.pxratio) : (this.params.canvas.pxratio = 1, 
+                    this.params.tmp.retina = !1);
+                }
+            }, {
+                key: "extendCanvasFunctionDefinition",
+                value: function() {
+                    this.params.fn.canvasInit = this.canvasInit, this.params.fn.canvasSize = this.canvasSize, 
+                    this.params.fn.canvasPaint = this.canvasPaint, this.params.fn.canvasClear = this.canvasClear;
+                }
+            }, {
+                key: "canvasInit",
+                value: function() {
+                    this.params.canvas.ctx = this.params.canvas.element.getContext("2d");
+                }
+            }, {
+                key: "canvasSize",
+                value: function() {
+                    this.params.canvas.element.width = this.params.canvas.width, this.params.canvas.element.height = this.params.canvas.height, 
+                    this.params && this.params.interactivity.events.resize && window.addEventListener("resize", this.onWindowResize);
+                }
+            }, {
+                key: "canvasPaint",
+                value: function() {
+                    this.params.canvas.ctx.fillRect(0, 0, this.params.canvas.width, this.params.canvas.height);
+                }
+            }, {
+                key: "canvasClear",
+                value: function() {
+                    this.params.canvas.ctx.clearRect(0, 0, this.params.canvas.width, this.params.canvas.height);
+                }
+            }, {
+                key: "extendParticleFunctionDefinition",
+                value: function() {
+                    this.params.fn.particle = r.Particle;
+                }
+            }, {
+                key: "onWindowResize",
+                value: function() {
+                    this.params.canvas.width = this.params.canvas.element.offsetWidth, this.params.canvas.height = this.params.canvas.element.offsetHeight, 
+                    this.params.tmp.retina && (this.params.canvas.width *= this.params.canvas.pxratio, 
+                    this.params.canvas.height *= this.params.canvas.pxratio), this.params.canvas.element.width = this.params.canvas.width, 
+                    this.params.canvas.element.height = this.params.canvas.height, this.params.particles.move.enable || (this.params.fn.particlesEmpty(), 
+                    this.params.fn.particlesCreate(), this.params.fn.particlesDraw(), this.params.fn.vendors.densityAutoParticles()), 
+                    this.params.fn.vendors.densityAutoParticles();
+                }
+            } ]), a;
+        }();
+        Object.defineProperty(t, "__esModule", {
+            value: !0
+        }), t.default = n;
+    }, function(a, t) {
+        "use strict";
+        t.hexToRgb = function(a) {
+            var t = /^#?([a-f\d])([a-f\d])([a-f\d])$/i;
+            a = a.replace(t, function(a, t, e, i) {
+                return t + t + e + e + i + i;
+            });
+            var e = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(a);
+            return e ? {
+                r: parseInt(e[1], 16),
+                g: parseInt(e[2], 16),
+                b: parseInt(e[3], 16)
+            } : null;
+        }, t.clamp = function(a, t, e) {
+            return Math.min(Math.max(a, t), e);
+        }, t.isInArray = function(a, t) {
+            return t.indexOf(a) > -1;
+        }, t.deepExtend = function(a, e) {
+            for (var i in e) e[i] && e[i].constructor && e[i].constructor === Object ? (a[i] = a[i] || {}, 
+            t.deepExtend(a[i], e[i])) : a[i] = e[i];
+            return a;
+        };
+    }, function(a, t, e) {
+        "use strict";
+        function i(a, t) {
+            if (!(a instanceof t)) throw new TypeError("Cannot call a class as a function");
+        }
+        var s = function() {
+            function a(a, t) {
+                for (var e = 0; e < t.length; e++) {
+                    var i = t[e];
+                    i.enumerable = i.enumerable || !1, i.configurable = !0, "value" in i && (i.writable = !0), 
+                    Object.defineProperty(a, i.key, i);
+                }
+            }
+            return function(t, e, i) {
+                return e && a(t.prototype, e), i && a(t, i), t;
+            };
+        }(), r = e(1), n = function() {
+            function a(t) {
+                i(this, a), this.params = t, this.eventsListeners = this.eventsListeners.bind(this), 
+                this.onMouseMove = this.onMouseMove.bind(this), this.onMouseLeave = this.onMouseLeave.bind(this), 
+                this.onClick = this.onClick.bind(this), this.densityAutoParticles = this.densityAutoParticles.bind(this), 
+                this.checkOverlap = this.checkOverlap.bind(this), this.createSvgImg = this.createSvgImg.bind(this), 
+                this.destroy = this.destroy.bind(this), this.drawShape = this.drawShape.bind(this), 
+                this.exportImg = this.exportImg.bind(this), this.loadImg = this.loadImg.bind(this), 
+                this.draw = this.draw.bind(this), this.checkBeforeDraw = this.checkBeforeDraw.bind(this), 
+                this.init = this.init.bind(this), this.start = this.start.bind(this), this.params.fn.vendors.eventsListeners = this.eventsListeners, 
+                this.params.fn.vendors.densityAutoParticles = this.densityAutoParticles, this.params.fn.vendors.checkOverlap = this.checkOverlap, 
+                this.params.fn.vendors.createSvgImg = this.createSvgImg, this.params.fn.vendors.destroy = this.destroy, 
+                this.params.fn.vendors.drawShape = this.drawShape, this.params.fn.vendors.exportImg = this.exportImg, 
+                this.params.fn.vendors.loadImg = this.loadImg, this.params.fn.vendors.draw = this.draw, 
+                this.params.fn.vendors.checkBeforeDraw = this.checkBeforeDraw, this.params.fn.vendors.init = this.init, 
+                this.params.fn.vendors.start = this.start;
+            }
+            return s(a, [ {
+                key: "eventsListeners",
+                value: function() {
+                    var a = this.params, t = a.canvas, e = a.interactivity;
+                    "window" == e.detect_on ? e.el = window : e.el = t.element, (e.events.onhover.enable || e.events.onclick.enable) && (e.el.addEventListener("mousemove", this.onMouseMove), 
+                    e.el.addEventListener("mouseleave", this.onMouseLeave)), e.events.onclick.enable && e.el.addEventListener("click", this.onClick);
+                }
+            }, {
+                key: "detachListeners",
+                value: function() {
+                    var a = this.params.interactivity;
+                    a.el && ((a.events.onhover.enable || a.events.onclick.enable) && (a.el.removeEventListener("mousemove", this.onMouseMove), 
+                    a.el.addEventListener("mouseleave", this.onMouseLeave)), a.events.onclick.enable && a.el.addEventListener("click", this.onClick)), 
+                    window.cancelAnimationFrame(this.params.fn.drawAnimFrame);
+                }
+            }, {
+                key: "onMouseMove",
+                value: function(a) {
+                    var t = this.params, e = t.canvas, i = t.interactivity, s = t.tmp, r = void 0;
+                    r = i.el == window ? {
+                        x: a.clientX,
+                        y: a.clientY
+                    } : {
+                        x: a.offsetX || a.clientX,
+                        y: a.offsetY || a.clientY
+                    }, i.mouse.pos_x = r.x, i.mouse.pos_y = r.y, s.retina && (i.mouse.pos_x *= e.pxratio, 
+                    i.mouse.pos_y *= e.pxratio), i.status = "mousemove";
+                }
+            }, {
+                key: "onMouseLeave",
+                value: function(a) {
+                    var t = this.params.interactivity;
+                    t.mouse.pos_x = null, t.mouse.pos_y = null, t.status = "mouseleave";
+                }
+            }, {
+                key: "onClick",
+                value: function() {
+                    var a = this.params, t = a.fn, e = a.interactivity, i = a.particles, s = a.tmp;
+                    if (e.mouse.click_pos_x = e.mouse.pos_x, e.mouse.click_pos_y = e.mouse.pos_y, e.mouse.click_time = new Date().getTime(), 
+                    e.events.onclick.enable) switch (e.events.onclick.mode) {
+                      case "push":
+                        i.move.enable ? t.modes.pushParticles(e.modes.push.particles_nb, e.mouse) : 1 == e.modes.push.particles_nb ? t.modes.pushParticles(e.modes.push.particles_nb, e.mouse) : e.modes.push.particles_nb > 1 && t.modes.pushParticles(e.modes.push.particles_nb);
+                        break;
+
+                      case "remove":
+                        t.modes.removeParticles(e.modes.remove.particles_nb);
+                        break;
+
+                      case "bubble":
+                        s.bubble_clicking = !0;
+                        break;
+
+                      case "repulse":
+                        s.repulse_clicking = !0, s.repulse_count = 0, s.repulse_finish = !1, setTimeout(function() {
+                            s.repulse_clicking = !1;
+                        }, 1e3 * e.modes.repulse.duration);
+                    }
+                }
+            }, {
+                key: "densityAutoParticles",
+                value: function() {
+                    var a = this.params, t = a.canvas, e = a.fn, i = a.particles, s = a.tmp;
+                    if (i.number.density.enable) {
+                        var r = t.element.width * t.element.height / 1e3;
+                        s.retina && (r = r / t.pxratio * 2);
+                        var n = r * i.number.value / i.number.density.value_area, o = i.array.length - n;
+                        o < 0 ? e.modes.pushParticles(Math.abs(o)) : e.modes.removeParticles(o);
+                    }
+                }
+            }, {
+                key: "checkOverlap",
+                value: function(a, t) {
+                    var e = this.params, i = e.canvas, s = e.fn, r = e.particles;
+                    r.array.forEach(function(e) {
+                        var r = e, n = a.x - r.x, o = a.y - r.y, c = Math.sqrt(n * n + o * o);
+                        c <= a.radius + r.radius && (a.x = t ? t.x : Math.random() * i.width, a.y = t ? t.y : Math.random() * i.height, 
+                        s.vendors.checkOverlap(a));
+                    });
+                }
+            }, {
+                key: "createSvgImg",
+                value: function(a) {
+                    var t = this.params.tmp, e = t.source_svg, i = /#([0-9A-F]{3,6})/gi, s = e.replace(i, function(t, e, i, s) {
+                        var r = void 0;
+                        if (a.color.rgb) {
+                            var n = a.color.rgb, o = n.r, c = n.g, p = n.b;
+                            r = "rgba( " + o + ", " + c + ", " + p + ", " + a.opacity + " )";
+                        } else {
+                            var h = a.color.hsl, l = h.h, m = h.s, u = h.l;
+                            r = "rgba( " + l + ", " + m + ", " + u + ", " + a.opacity + " )";
+                        }
+                        return r;
+                    }), r = new Blob([ s ], {
+                        type: "image/svg+xml;charset=utf-8"
+                    }), n = window.URL || window, o = n.createObjectURL(r), c = new Image();
+                    c.addEventListener("load", function() {
+                        a.img.obj = c, a.img.loaded = !0, n.revokeObjectURL(o), t.count_svg++;
+                    }), c.src = o;
+                }
+            }, {
+                key: "destroy",
+                value: function() {
+                    var a = this.params, t = a.canvas, e = a.fn;
+                    cancelAnimationFrame(e.drawAnimFrame), t.element.remove();
+                }
+            }, {
+                key: "drawShape",
+                value: function(a, t, e, i, s, r) {
+                    var n = s * r, o = s / r, c = 180 * (o - 2) / o, p = Math.PI - Math.PI * c / 180;
+                    a.save(), a.beginPath(), a.translate(t, e), a.moveTo(0, 0);
+                    for (var h = 0; h < n; h++) a.lineTo(i, 0), a.translate(i, 0), a.rotate(p);
+                    a.fill(), a.restore();
+                }
+            }, {
+                key: "exportImg",
+                value: function() {
+                    var a = this.params.canvas;
+                    window.open(a.element.toDataURL("image/png"), "_blank");
+                }
+            }, {
+                key: "loadImg",
+                value: function(a) {
+                    var t = this.params, e = t.fn, i = t.particles, s = t.tmp;
+                    s.img_error = void 0, "" != i.shape.image.src ? "svg" == a ? !function() {
+                        var a = new XMLHttpRequest();
+                        a.open("GET", i.shape.image.src), a.onreadystatechange = function(t) {
+                            4 == a.readyState && (200 == a.status ? (s.source_svg = t.currentTarget.response, 
+                            e.vendors.checkBeforeDraw()) : (console.log("Error react-particles-js - image not found"), 
+                            s.img_error = !0));
+                        }, a.send();
+                    }() : !function() {
+                        var a = new Image();
+                        a.addEventListener("load", function() {
+                            s.img_obj = a, e.vendors.checkBeforeDraw();
+                        }), a.src = i.shape.image.src;
+                    }() : (console.log("Error react-particles-js - no image.src"), s.img_error = !0);
+                }
+            }, {
+                key: "draw",
+                value: function() {
+                    var a = this.params, t = a.fn, e = a.particles, i = a.tmp;
+                    "image" == e.shape.type ? "svg" == i.img_type ? i.count_svg >= e.number.value ? (t.particlesDraw(), 
+                    e.move.enable ? t.drawAnimFrame = requestAnimationFrame(t.vendors.draw) : cancelAnimationFrame(t.drawAnimFrame)) : i.img_error || (t.drawAnimFrame = requestAnimationFrame(t.vendors.draw)) : void 0 != i.img_obj ? (t.particlesDraw(), 
+                    e.move.enable ? t.drawAnimFrame = requestAnimationFrame(t.vendors.draw) : cancelAnimationFrame(t.drawAnimFrame)) : i.img_error || (t.drawAnimFrame = requestAnimationFrame(t.vendors.draw)) : (t.particlesDraw(), 
+                    e.move.enable ? t.drawAnimFrame = requestAnimationFrame(t.vendors.draw) : cancelAnimationFrame(t.drawAnimFrame));
+                }
+            }, {
+                key: "checkBeforeDraw",
+                value: function() {
+                    var a = this.params, t = a.fn, e = a.particles, i = a.tmp;
+                    if ("image" == e.shape.type) if ("svg" == i.img_type && void 0 == i.source_svg) {
+                        var s = void 0;
+                        i.checkAnimFrame = requestAnimationFrame(s);
+                    } else cancelAnimationFrame(i.checkAnimFrame), i.img_error || (t.vendors.init(), 
+                    t.vendors.draw()); else t.vendors.init(), t.vendors.draw();
+                }
+            }, {
+                key: "init",
+                value: function() {
+                    var a = this.params, t = a.fn, e = a.particles;
+                    t.retinaInit(), t.canvasInit(), t.canvasSize(), t.particlesCreate(), t.vendors.densityAutoParticles(), 
+                    e.line_linked.color_rgb_line = r.hexToRgb(e.line_linked.color);
+                }
+            }, {
+                key: "start",
+                value: function() {
+                    var a = this.params, t = a.fn, e = a.particles, i = a.tmp;
+                    r.isInArray("image", e.shape.type) ? (i.img_type = e.shape.image.src.substr(e.shape.image.src.length - 3), 
+                    t.vendors.loadImg(i.img_type)) : t.vendors.checkBeforeDraw();
+                }
+            } ]), a;
+        }();
+        Object.defineProperty(t, "__esModule", {
+            value: !0
+        }), t.default = n;
+    }, function(a, t) {
+        "use strict";
+        var e = {
+            canvas: {
+                element: null,
+                width: null,
+                height: null
+            },
+            particles: {
+                number: {
+                    value: 40,
+                    density: {
+                        enable: !1,
+                        value_area: 1200
+                    }
+                },
+                color: {
+                    value: "#FFF"
+                },
+                shape: {
+                    type: "circle",
+                    stroke: {
+                        width: 0,
+                        color: "#000000"
+                    },
+                    polygon: {
+                        nb_sides: 5
+                    },
+                    image: {
+                        src: "",
+                        width: 100,
+                        height: 100
+                    }
+                },
+                opacity: {
+                    value: .5,
+                    random: !1,
+                    anim: {
+                        enable: !0,
+                        speed: 1,
+                        opacity_min: .1,
+                        sync: !1
+                    }
+                },
+                size: {
+                    value: 2,
+                    random: !1,
+                    anim: {
+                        enable: !1,
+                        speed: 40,
+                        size_min: 0,
+                        sync: !1
+                    }
+                },
+                line_linked: {
+                    enable: !0,
+                    distance: 150,
+                    color: "#FFF",
+                    opacity: .6,
+                    width: 1
+                },
+                move: {
+                    enable: !0,
+                    speed: 4,
+                    direction: "none",
+                    random: !1,
+                    straight: !1,
+                    out_mode: "out",
+                    bounce: !1,
+                    attract: {
+                        enable: !1,
+                        rotateX: 3e3,
+                        rotateY: 3e3
+                    }
+                },
+                array: []
+            },
+            interactivity: {
+                detect_on: "canvas",
+                events: {
+                    onhover: {
+                        enable: !0,
+                        mode: "repulse"
+                    },
+                    onclick: {
+                        enable: !0,
+                        mode: "push"
+                    },
+                    resize: !0
+                },
+                modes: {
+                    grab: {
+                        distance: 400,
+                        line_linked: {
+                            opacity: 1
+                        }
+                    },
+                    bubble: {
+                        distance: 200,
+                        size: 80,
+                        duration: .4
+                    },
+                    repulse: {
+                        distance: 100,
+                        duration: .4
+                    },
+                    push: {
+                        particles_nb: 4
+                    },
+                    remove: {
+                        particles_nb: 2
+                    }
+                },
+                mouse: {}
+            },
+            retina_detect: !0,
+            fn: {
+                interact: {},
+                modes: {},
+                vendors: {}
+            },
+            tmp: {
+                obj: null,
+                retina: null
+            }
+        };
+        t.defaultParams = e;
     } ]);
 });
