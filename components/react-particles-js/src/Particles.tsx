@@ -3,38 +3,48 @@
 import * as React from 'react';
 import {Component} from 'react';
 
-import P from './ext/ParticlesLibrary';
+import {IParams, ParticlesLibrary} from './lib';
 
-export default class Particles extends Component<{}, { increment: number; }>{
+export interface ParticlesProps{
+	width: string;
+	height: string;
+	params: any;
+}
+
+export default class Particles extends Component<ParticlesProps, {}>{
+
+	public static defaultProps: ParticlesProps = {
+		width: "100%",
+		height: "100%",
+		params: {}
+	};
 
 	canvas: HTMLCanvasElement;
-	p: P;
-	interval: any;
+	particlesLibrary: ParticlesLibrary;
 
-	constructor( props: any ){
+	constructor( props: ParticlesProps ){
 		super( props );
 	}
 
 	componentDidMount(){
 
-		this.p = new P( this.canvas );
-		this.p.start();
+		this.particlesLibrary = new ParticlesLibrary( this.canvas, this.props.params );
+		this.particlesLibrary.start();
 	}
 
 	componentWillUnmount(){
-		this.p.destroy();
+		this.particlesLibrary.destroy();
 	}
 
 	render(){
+		let {width, height} = this.props;
 		return (
 			<div>
-				<div id='particles-js'>
-					<canvas ref={(c) => this.canvas = c} style={{
-						width: "100%",
-						height: "100%"
-					}}>
-					</canvas>
-				</div>
+				<canvas ref={(c) => this.canvas = c} style={{
+					width,
+					height
+				}}>
+				</canvas>
 			</div>
 		);
 	}
