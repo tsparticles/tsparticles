@@ -27,3 +27,33 @@ class App extends Component{
 }
 
 ```
+
+---
+
+### Reporting issues
+
++ Look for any related issues.  
++ If you find an issue that seems related, please comment there instead of creating a new one.  
++ If you find no related issue, create a new one.  
++ Include all details you can ( operative system, environment, interpreter version, etc.. ).  
++ Include the error log.  
++ Remember to check the discussion and update if there changes.  
+
+### Contributing  
+
++ Fork the repository  
++ Create your feature branch  
++ Commit your changes and push the branch  
++ Submit a pull request
+
+---
+
+## Info
+
+### Refactoring stages
+
++ Add comprehensive props to the component.  
++ Change params names.  
++ Change variable and function names into more readable/understable/maintainable ones.  
++ Update the structure of the code detaching defined functions from `this.params.fn` object.  
++ Tests.
