@@ -67,7 +67,8 @@ export default class ParticleManager{
 					particle.radius += particle.vs;
 				}else{
 					if( particle.radius <= this.params.particles.size.anim.size_min )
-						particle.radius -= particle.vs;
+						particle.size_status = true;
+					particle.radius -= particle.vs;
 				}
 				if( particle.radius < 0 )
 					particle.radius = 0;
