@@ -43,3 +43,5 @@ typings
 yarn.lock
 
 .DS_Store
+
+lib/particles.js.map

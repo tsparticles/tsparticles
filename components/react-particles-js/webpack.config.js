@@ -1,6 +1,8 @@
 const webpack = require( 'webpack' );
 
-const plugins = process.env.NODE_ENV == "production" ? 
+const production = process.env.NODE_ENV == "production";
+
+const plugins = production ? 
 	[
 		new webpack.optimize.DedupePlugin(),
 		new webpack.optimize.OccurenceOrderPlugin(),
@@ -50,7 +52,7 @@ const loaders = [
 
 const config = {
     context: __dirname,
-    devtool: "eval",
+    devtool: production ? null : "source-map-loader",
     resolve: {
         extensions: [ "", ".ts", ".tsx", ".js" ]
     },
