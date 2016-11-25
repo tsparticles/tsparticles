@@ -11,9 +11,11 @@ This is a fork of [Particles.js](https://github.com/VincentGarreau/particles.js/
 
 ## How to use
 
+### Code
+
 Example:
 
-```typescript
+```javascript
 import Particles from 'react-particles-js';
 
 class App extends Component{
@@ -27,6 +29,16 @@ class App extends Component{
 }
 
 ```
+
+### Props
+
+| Prop | Type | Definition |
+| --- | --- | --- |
+| width | string | The width of the canvas. |
+| height | string | The height of the canvas. |
+| params | object | The parameters of the particles instance. |
+
+Find your parameters configuration [here](http://vincentgarreau.com/particles.js/).
 
 ---
 
