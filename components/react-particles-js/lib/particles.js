@@ -1,83 +1,83 @@
-!function(a, t) {
-    "object" == typeof exports && "object" == typeof module ? module.exports = t(require("react")) : "function" == typeof define && define.amd ? define([ "react" ], t) : "object" == typeof exports ? exports.Particles = t(require("react")) : a.Particles = t(a.React);
-}(this, function(a) {
-    return function(a) {
+!function(e, t) {
+    "object" == typeof exports && "object" == typeof module ? module.exports = t(require("react")) : "function" == typeof define && define.amd ? define([ "react" ], t) : "object" == typeof exports ? exports.Particles = t(require("react")) : e.Particles = t(e.React);
+}(this, function(e) {
+    return function(e) {
         function t(i) {
-            if (e[i]) return e[i].exports;
-            var s = e[i] = {
+            if (a[i]) return a[i].exports;
+            var r = a[i] = {
                 exports: {},
                 id: i,
                 loaded: !1
             };
-            return a[i].call(s.exports, s, s.exports, t), s.loaded = !0, s.exports;
+            return e[i].call(r.exports, r, r.exports, t), r.loaded = !0, r.exports;
         }
-        var e = {};
-        return t.m = a, t.c = e, t.p = "", t(0);
-    }([ function(a, t, e) {
+        var a = {};
+        return t.m = e, t.c = a, t.p = "", t(0);
+    }([ function(e, t, a) {
         "use strict";
-        var i = e(3);
+        var i = a(3);
         Object.defineProperty(t, "__esModule", {
             value: !0
         }), t.default = i.default;
-    }, function(a, t, e) {
+    }, function(e, t, a) {
         "use strict";
-        function i(a) {
-            for (var e in a) t.hasOwnProperty(e) || (t[e] = a[e]);
+        function i(e) {
+            for (var a in e) t.hasOwnProperty(a) || (t[a] = e[a]);
         }
-        i(e(11)), i(e(9));
-        var s = e(4);
-        t.Interact = s.default;
-        var r = e(5);
-        t.Modes = r.default;
-        var n = e(6);
+        i(a(11)), i(a(9));
+        var r = a(4);
+        t.Interact = r.default;
+        var s = a(5);
+        t.Modes = s.default;
+        var n = a(6);
         t.Particle = n.default;
-        var o = e(7);
+        var o = a(7);
         t.ParticleManager = o.default;
-        var c = e(8);
+        var c = a(8);
         t.ParticlesLibrary = c.default;
-        var p = e(10);
-        t.Vendors = p.default;
-    }, function(t, e) {
-        t.exports = a;
-    }, function(a, t, e) {
+        var l = a(10);
+        t.Vendors = l.default;
+    }, function(t, a) {
+        t.exports = e;
+    }, function(e, t, a) {
         "use strict";
-        function i(a, t) {
-            if (!(a instanceof t)) throw new TypeError("Cannot call a class as a function");
+        function i(e, t) {
+            if (!(e instanceof t)) throw new TypeError("Cannot call a class as a function");
         }
-        function s(a, t) {
-            if (!a) throw new ReferenceError("this hasn't been initialised - super() hasn't been called");
-            return !t || "object" != typeof t && "function" != typeof t ? a : t;
+        function r(e, t) {
+            if (!e) throw new ReferenceError("this hasn't been initialised - super() hasn't been called");
+            return !t || "object" != typeof t && "function" != typeof t ? e : t;
         }
-        function r(a, t) {
+        function s(e, t) {
             if ("function" != typeof t && null !== t) throw new TypeError("Super expression must either be null or a function, not " + typeof t);
-            a.prototype = Object.create(t && t.prototype, {
+            e.prototype = Object.create(t && t.prototype, {
                 constructor: {
-                    value: a,
+                    value: e,
                     enumerable: !1,
                     writable: !0,
                     configurable: !0
                 }
-            }), t && (Object.setPrototypeOf ? Object.setPrototypeOf(a, t) : a.__proto__ = t);
+            }), t && (Object.setPrototypeOf ? Object.setPrototypeOf(e, t) : e.__proto__ = t);
         }
         var n = function() {
-            function a(a, t) {
-                for (var e = 0; e < t.length; e++) {
-                    var i = t[e];
+            function e(e, t) {
+                for (var a = 0; a < t.length; a++) {
+                    var i = t[a];
                     i.enumerable = i.enumerable || !1, i.configurable = !0, "value" in i && (i.writable = !0), 
-                    Object.defineProperty(a, i.key, i);
+                    Object.defineProperty(e, i.key, i);
                 }
             }
-            return function(t, e, i) {
-                return e && a(t.prototype, e), i && a(t, i), t;
+            return function(t, a, i) {
+                return a && e(t.prototype, a), i && e(t, i), t;
             };
-        }(), o = e(2), c = e(2), p = e(1), h = function(a) {
-            function t(a) {
-                return i(this, t), s(this, (t.__proto__ || Object.getPrototypeOf(t)).call(this, a));
+        }(), o = a(2), c = a(2), l = a(1), u = function(e) {
+            function t(e) {
+                return i(this, t), r(this, (t.__proto__ || Object.getPrototypeOf(t)).call(this, e));
             }
-            return r(t, a), n(t, [ {
+            return s(t, e), n(t, [ {
                 key: "componentDidMount",
                 value: function() {
-                    this.particlesLibrary = new p.ParticlesLibrary(this.canvas, this.props.params), 
+                    this.particlesLibrary = new l.ParticlesLibrary(this.canvas, this.props.params), 
                     this.particlesLibrary.start();
                 }
             }, {
@@ -88,13 +88,13 @@
             }, {
                 key: "render",
                 value: function() {
-                    var a = this, t = this.props, e = t.width, i = t.height;
+                    var e = this, t = this.props, a = t.width, i = t.height;
                     return o.createElement("div", null, o.createElement("canvas", {
                         ref: function(t) {
-                            return a.canvas = t;
+                            return e.canvas = t;
                         },
                         style: {
-                            width: e,
+                            width: a,
                             height: i
                         }
                     }));
@@ -103,242 +103,233 @@
         }(c.Component);
         Object.defineProperty(t, "__esModule", {
             value: !0
-        }), t.default = h, h.defaultProps = {
+        }), t.default = u, u.defaultProps = {
             width: "100%",
             height: "100%",
             params: {}
         };
-    }, function(a, t) {
+    }, function(e, t) {
         "use strict";
-        function e(a, t) {
-            if (!(a instanceof t)) throw new TypeError("Cannot call a class as a function");
+        function a(e, t) {
+            if (!(e instanceof t)) throw new TypeError("Cannot call a class as a function");
         }
         var i = function() {
-            function a(a, t) {
-                for (var e = 0; e < t.length; e++) {
-                    var i = t[e];
+            function e(e, t) {
+                for (var a = 0; a < t.length; a++) {
+                    var i = t[a];
                     i.enumerable = i.enumerable || !1, i.configurable = !0, "value" in i && (i.writable = !0), 
-                    Object.defineProperty(a, i.key, i);
+                    Object.defineProperty(e, i.key, i);
                 }
             }
-            return function(t, e, i) {
-                return e && a(t.prototype, e), i && a(t, i), t;
+            return function(t, a, i) {
+                return a && e(t.prototype, a), i && e(t, i), t;
             };
-        }(), s = function() {
-            function a(t) {
-                e(this, a), this.params = t, this.linkParticles = this.linkParticles.bind(this), 
-                this.attractParticles = this.attractParticles.bind(this), this.bounceParticles = this.bounceParticles.bind(this), 
-                this.params.fn.interact.linkParticles = this.linkParticles, this.params.fn.interact.attractParticles = this.attractParticles, 
-                this.params.fn.interact.bounceParticles = this.bounceParticles;
+        }(), r = function() {
+            function e(t, i) {
+                a(this, e), this.params = t, this.library = i;
             }
-            return i(a, [ {
+            return i(e, [ {
                 key: "linkParticles",
-                value: function(a, t) {
-                    var e = a.x - t.x, i = a.y - t.y, s = Math.sqrt(e * e + i * i);
-                    if (s <= this.params.particles.line_linked.distance) {
-                        var r = this.params.particles.line_linked.opacity - s / (1 / this.params.particles.line_linked.opacity) / this.params.particles.line_linked.distance;
-                        if (r > 0) {
-                            var n = this.params.particles.line_linked.color_rgb_line, o = n.r, c = n.g, p = n.b;
-                            this.params.canvas.ctx.strokeStyle = "rgba( " + o + ", " + c + ", " + p + ", " + r + " )", 
-                            this.params.canvas.ctx.lineWidth = this.params.particles.line_linked.width, this.params.canvas.ctx.beginPath(), 
-                            this.params.canvas.ctx.moveTo(a.x, a.y), this.params.canvas.ctx.lineTo(t.x, t.y), 
-                            this.params.canvas.ctx.stroke(), this.params.canvas.ctx.closePath();
+                value: function(e, t) {
+                    var a = e.x - t.x, i = e.y - t.y, r = Math.sqrt(a * a + i * i), s = this.library.canvas;
+                    if (r <= this.params.particles.line_linked.distance) {
+                        var n = this.params.particles.line_linked.opacity - r / (1 / this.params.particles.line_linked.opacity) / this.params.particles.line_linked.distance;
+                        if (n > 0) {
+                            var o = this.params.particles.line_linked.color_rgb_line, c = o.r, l = o.g, u = o.b;
+                            s.ctx.strokeStyle = "rgba( " + c + ", " + l + ", " + u + ", " + n + " )", s.ctx.lineWidth = this.params.particles.line_linked.width, 
+                            s.ctx.beginPath(), s.ctx.moveTo(e.x, e.y), s.ctx.lineTo(t.x, t.y), s.ctx.stroke(), 
+                            s.ctx.closePath();
                         }
                     }
                 }
             }, {
                 key: "attractParticles",
-                value: function(a, t) {
-                    var e = a.x - t.x, i = a.y - t.y, s = Math.sqrt(e * e + i * i);
-                    if (s <= this.params.particles.line_linked.distance) {
-                        var r = e / (1e3 * this.params.particles.move.attract.rotateX), n = i / (1e3 * this.params.particles.move.attract.rotateY);
-                        a.vx -= r, a.vy -= n, t.vx += r, t.vy += n;
+                value: function(e, t) {
+                    var a = e.x - t.x, i = e.y - t.y, r = Math.sqrt(a * a + i * i);
+                    if (r <= this.params.particles.line_linked.distance) {
+                        var s = a / (1e3 * this.params.particles.move.attract.rotateX), n = i / (1e3 * this.params.particles.move.attract.rotateY);
+                        e.vx -= s, e.vy -= n, t.vx += s, t.vy += n;
                     }
                 }
             }, {
                 key: "bounceParticles",
-                value: function(a, t) {
-                    var e = a.x - t.x, i = a.y - t.y, s = Math.sqrt(e * e + i * i), r = a.radius + t.radius;
-                    s <= r && (a.vx = -a.vx, a.vy = -a.vy, t.vx = -t.vx, t.vy = -t.vy);
+                value: function(e, t) {
+                    var a = e.x - t.x, i = e.y - t.y, r = Math.sqrt(a * a + i * i), s = e.radius + t.radius;
+                    r <= s && (e.vx = -e.vx, e.vy = -e.vy, t.vx = -t.vx, t.vy = -t.vy);
                 }
-            } ]), a;
+            } ]), e;
         }();
         Object.defineProperty(t, "__esModule", {
             value: !0
-        }), t.default = s;
-    }, function(a, t, e) {
+        }), t.default = r;
+    }, function(e, t, a) {
         "use strict";
-        function i(a, t) {
-            if (!(a instanceof t)) throw new TypeError("Cannot call a class as a function");
+        function i(e, t) {
+            if (!(e instanceof t)) throw new TypeError("Cannot call a class as a function");
         }
-        var s = function() {
-            function a(a, t) {
-                for (var e = 0; e < t.length; e++) {
-                    var i = t[e];
+        var r = function() {
+            function e(e, t) {
+                for (var a = 0; a < t.length; a++) {
+                    var i = t[a];
                     i.enumerable = i.enumerable || !1, i.configurable = !0, "value" in i && (i.writable = !0), 
-                    Object.defineProperty(a, i.key, i);
+                    Object.defineProperty(e, i.key, i);
                 }
             }
-            return function(t, e, i) {
-                return e && a(t.prototype, e), i && a(t, i), t;
+            return function(t, a, i) {
+                return a && e(t.prototype, a), i && e(t, i), t;
             };
-        }(), r = e(1), n = function() {
-            function a(t) {
-                i(this, a), this.params = t, this.pushParticles = this.pushParticles.bind(this), 
-                this.removeParticles = this.removeParticles.bind(this), this.bubbleParticle = this.bubbleParticle.bind(this), 
-                this.repulseParticle = this.repulseParticle.bind(this), this.grabParticle = this.grabParticle.bind(this), 
-                this.params.fn.modes.pushParticles = this.pushParticles, this.params.fn.modes.removeParticles = this.removeParticles, 
-                this.params.fn.modes.bubbleParticle = this.bubbleParticle, this.params.fn.modes.repulseParticle = this.repulseParticle, 
-                this.params.fn.modes.grabParticle = this.grabParticle;
+        }(), s = a(1), n = function() {
+            function e(t, a) {
+                i(this, e), this.params = t, this.library = a;
             }
-            return s(a, [ {
+            return r(e, [ {
                 key: "pushParticles",
-                value: function(a, t) {
-                    this.params.tmp.pushing = !0, t || (t = {
-                        pos_x: Math.random() * this.params.canvas.width,
-                        pos_y: Math.random() * this.params.canvas.height
+                value: function(e, t) {
+                    var a = this.library, i = a.canvas, r = a.tmp, n = a.manager;
+                    r.pushing = !0, t || (t = {
+                        pos_x: Math.random() * i.width,
+                        pos_y: Math.random() * i.height
                     });
-                    for (var e = 0; e < a; e++) this.params.particles.array.push(new r.Particle(this.params, this.params.particles.color, this.params.particles.opacity.value, {
+                    for (var o = 0; o < e; o++) this.params.particles.array.push(new s.Particle(this.params, this.library, this.params.particles.color, this.params.particles.opacity.value, {
                         x: t.pos_x,
                         y: t.pos_y
-                    })), e == a - 1 && (this.params.particles.move.enable || this.params.fn.particlesDraw(), 
-                    this.params.tmp.pushing = !1);
+                    })), o == e - 1 && (this.params.particles.move.enable || n.particlesDraw(), r.pushing = !1);
                 }
             }, {
                 key: "removeParticles",
-                value: function(a) {
-                    this.params.particles.array.splice(0, a), this.params.particles.move.enable || this.params.fn.particlesDraw();
+                value: function(e) {
+                    var t = this.library.manager;
+                    this.params.particles.array.splice(0, e), this.params.particles.move.enable || t.particlesDraw();
                 }
             }, {
                 key: "bubbleParticle",
-                value: function(a) {
-                    var t = this;
-                    if (this.params.interactivity.events.onhover.enable && r.isInArray("bubble", this.params.interactivity.events.onhover.mode)) {
-                        var e = a.x - this.params.interactivity.mouse.pos_x, i = a.y - this.params.interactivity.mouse.pos_y, s = Math.sqrt(e * e + i * i), n = 1 - s / this.params.interactivity.modes.bubble.distance, o = function() {
-                            a.opacity_bubble = a.opacity, a.radius_bubble = a.radius;
+                value: function(e) {
+                    var t = this, a = this.library.tmp;
+                    if (this.params.interactivity.events.onhover.enable && s.isInArray("bubble", this.params.interactivity.events.onhover.mode)) {
+                        var i = e.x - this.params.interactivity.mouse.pos_x, r = e.y - this.params.interactivity.mouse.pos_y, n = Math.sqrt(i * i + r * r), o = 1 - n / this.params.interactivity.modes.bubble.distance, c = function() {
+                            e.opacity_bubble = e.opacity, e.radius_bubble = e.radius;
                         };
-                        if (s <= this.params.interactivity.modes.bubble.distance) {
-                            if (n >= 0 && "mousemove" == this.params.interactivity.status) {
+                        if (n <= this.params.interactivity.modes.bubble.distance) {
+                            if (o >= 0 && "mousemove" == this.params.interactivity.status) {
                                 if (this.params.interactivity.modes.bubble.size != this.params.particles.size.value) if (this.params.interactivity.modes.bubble.size > this.params.particles.size.value) {
-                                    var c = a.radius + this.params.interactivity.modes.bubble.size * n;
-                                    c >= 0 && (a.radius_bubble = c);
+                                    var l = e.radius + this.params.interactivity.modes.bubble.size * o;
+                                    l >= 0 && (e.radius_bubble = l);
                                 } else {
-                                    var p = a.radius - this.params.interactivity.modes.bubble.size, h = a.radius - p * n;
-                                    h > 0 ? a.radius_bubble = h : a.radius_bubble = 0;
+                                    var u = e.radius - this.params.interactivity.modes.bubble.size, p = e.radius - u * o;
+                                    p > 0 ? e.radius_bubble = p : e.radius_bubble = 0;
                                 }
                                 if (this.params.interactivity.modes.bubble.opacity != this.params.particles.opacity.value) if (this.params.interactivity.modes.bubble.opacity > this.params.particles.opacity.value) {
-                                    var l = this.params.interactivity.modes.bubble.opacity * n;
-                                    l > a.opacity && l <= this.params.interactivity.modes.bubble.opacity && (a.opacity_bubble = l);
+                                    var h = this.params.interactivity.modes.bubble.opacity * o;
+                                    h > e.opacity && h <= this.params.interactivity.modes.bubble.opacity && (e.opacity_bubble = h);
                                 } else {
-                                    var m = a.opacity - (this.params.particles.opacity.value - this.params.interactivity.modes.bubble.opacity) * n;
-                                    m < a.opacity && m >= this.params.interactivity.modes.bubble.opacity && (a.opacity_bubble = m);
+                                    var m = e.opacity - (this.params.particles.opacity.value - this.params.interactivity.modes.bubble.opacity) * o;
+                                    m < e.opacity && m >= this.params.interactivity.modes.bubble.opacity && (e.opacity_bubble = m);
                                 }
                             }
-                        } else o();
-                        "mouseleave" == this.params.interactivity.status && o();
-                    } else this.params.interactivity.events.onclick.enable && r.isInArray("bubble", this.params.interactivity.events.onclick.mode) && this.params.tmp.bubble_clicking && !function() {
-                        var e = a.x - t.params.interactivity.mouse.click_pos_x, i = a.y - t.params.interactivity.mouse.click_pos_y, s = Math.sqrt(e * e + i * i), r = (new Date().getTime() - t.params.interactivity.mouse.click_time) / 1e3;
-                        r > t.params.interactivity.modes.bubble.duration && (t.params.tmp.bubble_duration_end = !0), 
-                        r > 2 * t.params.interactivity.modes.bubble.duration && (t.params.tmp.bubble_clicking = !1, 
-                        t.params.tmp.bubble_duration_end = !1);
-                        var n = function(e, i, n, o, c) {
-                            if (e != i) if (t.params.tmp.bubble_duration_end) {
-                                if (void 0 != n) {
-                                    var p = o - r * (o - e) / t.params.interactivity.modes.bubble.duration, h = e - p, l = e + h;
-                                    "size" == c && (a.radius_bubble = l), "opacity" == c && (a.opacity_bubble = l);
+                        } else c();
+                        "mouseleave" == this.params.interactivity.status && c();
+                    } else this.params.interactivity.events.onclick.enable && s.isInArray("bubble", this.params.interactivity.events.onclick.mode) && a.bubble_clicking && !function() {
+                        var i = e.x - t.params.interactivity.mouse.click_pos_x, r = e.y - t.params.interactivity.mouse.click_pos_y, s = Math.sqrt(i * i + r * r), n = (new Date().getTime() - t.params.interactivity.mouse.click_time) / 1e3;
+                        n > t.params.interactivity.modes.bubble.duration && (a.bubble_duration_end = !0), 
+                        n > 2 * t.params.interactivity.modes.bubble.duration && (a.bubble_clicking = !1, 
+                        a.bubble_duration_end = !1);
+                        var o = function(i, r, o, c, l) {
+                            if (i != r) if (a.bubble_duration_end) {
+                                if (void 0 != o) {
+                                    var u = c - n * (c - i) / t.params.interactivity.modes.bubble.duration, p = i - u, h = i + p;
+                                    "size" == l && (e.radius_bubble = h), "opacity" == l && (e.opacity_bubble = h);
                                 }
                             } else if (s <= t.params.interactivity.modes.bubble.distance) {
                                 var m = void 0;
-                                if (m = void 0 != n ? n : o, m != e) {
-                                    var u = o - r * (o - e) / t.params.interactivity.modes.bubble.duration;
-                                    "size" == c && (a.radius_bubble = u), "opacity" == c && (a.opacity_bubble = u);
+                                if (m = void 0 != o ? o : c, m != i) {
+                                    var v = c - n * (c - i) / t.params.interactivity.modes.bubble.duration;
+                                    "size" == l && (e.radius_bubble = v), "opacity" == l && (e.opacity_bubble = v);
                                 }
-                            } else "size" == c && (a.radius_bubble = void 0), "opacity" == c && (a.opacity_bubble = void 0);
+                            } else "size" == l && (e.radius_bubble = void 0), "opacity" == l && (e.opacity_bubble = void 0);
                         };
-                        t.params.tmp.bubble_clicking && (n(t.params.interactivity.modes.bubble.size, t.params.particles.size.value, a.radius_bubble, a.radius, "size"), 
-                        n(t.params.interactivity.modes.bubble.opacity, t.params.particles.opacity.value, a.opacity_bubble, a.opacity, "opacity"));
+                        a.bubble_clicking && (o(t.params.interactivity.modes.bubble.size, t.params.particles.size.value, e.radius_bubble, e.radius, "size"), 
+                        o(t.params.interactivity.modes.bubble.opacity, t.params.particles.opacity.value, e.opacity_bubble, e.opacity, "opacity"));
                     }();
                 }
             }, {
                 key: "repulseParticle",
-                value: function(a) {
-                    var t = this;
-                    if (this.params.interactivity.events.onhover.enable && r.isInArray("repulse", this.params.interactivity.events.onhover.mode) && "mousemove" == this.params.interactivity.status) {
-                        var e = a.x - this.params.interactivity.mouse.pos_x, i = a.y - this.params.interactivity.mouse.pos_y, s = Math.sqrt(e * e + i * i), n = {
-                            x: e / s,
-                            y: i / s
-                        }, o = this.params.interactivity.modes.repulse.distance, c = 100, p = r.clamp(1 / o * (-1 * Math.pow(s / o, 2) + 1) * o * c, 0, 50), h = {
-                            x: a.x + n.x * p,
-                            y: a.y + n.y * p
+                value: function(e) {
+                    var t = this, a = this.library, i = a.canvas, r = a.tmp;
+                    if (this.params.interactivity.events.onhover.enable && s.isInArray("repulse", this.params.interactivity.events.onhover.mode) && "mousemove" == this.params.interactivity.status) {
+                        var n = e.x - this.params.interactivity.mouse.pos_x, o = e.y - this.params.interactivity.mouse.pos_y, c = Math.sqrt(n * n + o * o), l = {
+                            x: n / c,
+                            y: o / c
+                        }, u = this.params.interactivity.modes.repulse.distance, p = 100, h = s.clamp(1 / u * (-1 * Math.pow(c / u, 2) + 1) * u * p, 0, 50), m = {
+                            x: e.x + l.x * h,
+                            y: e.y + l.y * h
                         };
-                        "bounce" == this.params.particles.move.out_mode ? (h.x - a.radius > 0 && h.x + a.radius < this.params.canvas.width && (a.x = h.x), 
-                        h.y - a.radius > 0 && h.y + a.radius < this.params.canvas.height && (a.y = h.y)) : (a.x = h.x, 
-                        a.y = h.y);
-                    } else this.params.interactivity.events.onclick.enable && r.isInArray("repulse", this.params.interactivity.events.onclick.mode) && (this.params.tmp.repulse_finish || (this.params.tmp.repulse_count++, 
-                    this.params.tmp.repulse_count == this.params.particles.array.length && (this.params.tmp.repulse_finish = !0)), 
-                    this.params.tmp.repulse_clicking ? !function() {
-                        var e = Math.pow(t.params.interactivity.modes.repulse.distance / 6, 3), i = t.params.interactivity.mouse.click_pos_x - a.x, s = t.params.interactivity.mouse.click_pos_y - a.y, r = i * i + s * s, n = -e / r * 1, o = function() {
-                            var e = Math.atan2(s, i);
-                            if (a.vx = n * Math.cos(e), a.vy = n * Math.sin(e), "bounce" == t.params.particles.move.out_mode) {
-                                var r = {
-                                    x: a.x + a.vx,
-                                    y: a.y + a.vy
+                        "bounce" == this.params.particles.move.out_mode ? (m.x - e.radius > 0 && m.x + e.radius < i.width && (e.x = m.x), 
+                        m.y - e.radius > 0 && m.y + e.radius < i.height && (e.y = m.y)) : (e.x = m.x, e.y = m.y);
+                    } else this.params.interactivity.events.onclick.enable && s.isInArray("repulse", this.params.interactivity.events.onclick.mode) && (r.repulse_finish || (r.repulse_count++, 
+                    r.repulse_count == this.params.particles.array.length && (r.repulse_finish = !0)), 
+                    r.repulse_clicking ? !function() {
+                        var a = Math.pow(t.params.interactivity.modes.repulse.distance / 6, 3), r = t.params.interactivity.mouse.click_pos_x - e.x, s = t.params.interactivity.mouse.click_pos_y - e.y, n = r * r + s * s, o = -a / n * 1, c = function() {
+                            var a = Math.atan2(s, r);
+                            if (e.vx = o * Math.cos(a), e.vy = o * Math.sin(a), "bounce" == t.params.particles.move.out_mode) {
+                                var n = {
+                                    x: e.x + e.vx,
+                                    y: e.y + e.vy
                                 };
-                                r.x + a.radius > t.params.canvas.width ? a.vx = -a.vx : r.x - a.radius < 0 && (a.vx = -a.vx), 
-                                r.y + a.radius > t.params.canvas.height ? a.vy = -a.vy : r.y - a.radius < 0 && (a.vy = -a.vy);
+                                n.x + e.radius > i.width ? e.vx = -e.vx : n.x - e.radius < 0 && (e.vx = -e.vx), 
+                                n.y + e.radius > i.height ? e.vy = -e.vy : n.y - e.radius < 0 && (e.vy = -e.vy);
                             }
                         };
-                        r <= e && o();
-                    }() : 0 == this.params.tmp.repulse_clicking && (a.vx = a.vx_i, a.vy = a.vy_i));
+                        n <= a && c();
+                    }() : 0 == r.repulse_clicking && (e.vx = e.vx_i, e.vy = e.vy_i));
                 }
             }, {
                 key: "grabParticle",
-                value: function(a) {
-                    if (this.params.interactivity.events.onhover.enable && "onmousemove" == this.params.interactivity.status) {
-                        var t = a.x - this.params.interactivity.mouse.pos_x, e = a.y - this.params.interactivity.mouse.pos_y, i = Math.sqrt(t * t + e * e);
-                        if (i <= this.params.interactivity.modes.grab.distance) {
-                            var s = this.params.interactivity.modes.grab.line_linked.opacity - i / (1 / this.params.interactivity.modes.grab.line_linked.opacity) / this.params.interactivity.modes.grab.distance;
-                            if (s > 0) {
-                                var r = this.params.particles.line_linked.color_rgb_line, n = r.r, o = r.g, c = r.b;
-                                this.params.canvas.ctx.strokeStyle = "rgba( " + n + ", " + o + ", " + c + ", " + s + " )", 
-                                this.params.canvas.ctx.lineWidth = this.params.particles.line_linked.width, this.params.canvas.ctx.beginPath(), 
-                                this.params.canvas.ctx.moveTo(a.x, a.y), this.params.canvas.ctx.lineTo(this.params.interactivity.mouse.pos_x, this.params.interactivity.mouse.pos_y), 
-                                this.params.canvas.ctx.stroke(), this.params.canvas.ctx.closePath();
+                value: function(e) {
+                    var t = this.library.canvas, a = this.params, i = a.interactivity, r = a.particles;
+                    if (i.events.onhover.enable && "mousemove" == i.status) {
+                        var s = e.x - i.mouse.pos_x, n = e.y - i.mouse.pos_y, o = Math.sqrt(s * s + n * n);
+                        if (o <= i.modes.grab.distance) {
+                            var c = i.modes.grab, l = c.line_linked.opacity - o / (1 / c.line_linked.opacity) / c.distance;
+                            if (l > 0) {
+                                var u = r.line_linked.color_rgb_line, p = u.r, h = u.g, m = u.b;
+                                t.ctx.strokeStyle = "rgba( " + p + ", " + h + ", " + m + ", " + l + " )", t.ctx.lineWidth = r.line_linked.width, 
+                                t.ctx.beginPath(), t.ctx.moveTo(e.x, e.y), t.ctx.lineTo(i.mouse.pos_x, i.mouse.pos_y), 
+                                t.ctx.stroke(), t.ctx.closePath();
                             }
                         }
                     }
                 }
-            } ]), a;
+            } ]), e;
         }();
         Object.defineProperty(t, "__esModule", {
             value: !0
         }), t.default = n;
-    }, function(a, t, e) {
+    }, function(e, t, a) {
         "use strict";
-        function i(a, t) {
-            if (!(a instanceof t)) throw new TypeError("Cannot call a class as a function");
+        function i(e, t) {
+            if (!(e instanceof t)) throw new TypeError("Cannot call a class as a function");
         }
-        var s = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function(a) {
-            return typeof a;
-        } : function(a) {
-            return a && "function" == typeof Symbol && a.constructor === Symbol && a !== Symbol.prototype ? "symbol" : typeof a;
-        }, r = function() {
-            function a(a, t) {
-                for (var e = 0; e < t.length; e++) {
-                    var i = t[e];
+        var r = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function(e) {
+            return typeof e;
+        } : function(e) {
+            return e && "function" == typeof Symbol && e.constructor === Symbol && e !== Symbol.prototype ? "symbol" : typeof e;
+        }, s = function() {
+            function e(e, t) {
+                for (var a = 0; a < t.length; a++) {
+                    var i = t[a];
                     i.enumerable = i.enumerable || !1, i.configurable = !0, "value" in i && (i.writable = !0), 
-                    Object.defineProperty(a, i.key, i);
+                    Object.defineProperty(e, i.key, i);
                 }
             }
-            return function(t, e, i) {
-                return e && a(t.prototype, e), i && a(t, i), t;
+            return function(t, a, i) {
+                return a && e(t.prototype, a), i && e(t, i), t;
             };
-        }(), n = e(1), o = function() {
-            function a(t, e, s, r) {
-                i(this, a), this.params = t, this.setupSize(), this.setupPosition(r), this.setupColor(e), 
-                this.setupOpacity(), this.setupAnimation();
+        }(), n = a(1), o = function() {
+            function e(t, a, r, s, n) {
+                i(this, e), this.params = t, this.library = a, this.setupSize(), this.setupPosition(n), 
+                this.setupColor(r), this.setupOpacity(), this.setupAnimation();
             }
-            return r(a, [ {
+            return s(e, [ {
                 key: "setupSize",
                 value: function() {
                     this.radius = (this.params.particles.size.random ? Math.random() : 1) * this.params.particles.size.value, 
@@ -347,40 +338,41 @@
                 }
             }, {
                 key: "setupPosition",
-                value: function(a) {
-                    this.x = a ? a.x : Math.random() * this.params.canvas.width, this.y = a ? a.y : Math.random() * this.params.canvas.height, 
-                    this.x > this.params.canvas.width - 2 * this.radius ? this.x = this.x - this.radius : this.x < 2 * this.radius && (this.x = this.x + this.radius), 
-                    this.y > this.params.canvas.height - 2 * this.radius ? this.y = this.y - this.radius : this.y < 2 * this.radius && (this.y = this.y + this.radius), 
-                    this.params.particles.move.bounce && this.params.fn.vendors.checkOverlap(this, a);
+                value: function(e) {
+                    var t = this.library, a = t.canvas, i = t.vendors;
+                    this.x = e ? e.x : Math.random() * a.width, this.y = e ? e.y : Math.random() * a.height, 
+                    this.x > a.width - 2 * this.radius ? this.x = this.x - this.radius : this.x < 2 * this.radius && (this.x = this.x + this.radius), 
+                    this.y > a.height - 2 * this.radius ? this.y = this.y - this.radius : this.y < 2 * this.radius && (this.y = this.y + this.radius), 
+                    this.params.particles.move.bounce && i.checkOverlap(this, e);
                 }
             }, {
                 key: "setupColor",
-                value: function(a) {
-                    if (this.color = {}, "object" == s(a.value)) if (a.value instanceof Array) {
-                        var t = a.value[Math.floor(Math.random() * this.params.particles.color.value.length)];
+                value: function(e) {
+                    if (this.color = {}, "object" == r(e.value)) if (e.value instanceof Array) {
+                        var t = e.value[Math.floor(Math.random() * this.params.particles.color.value.length)];
                         this.color.rgb = n.hexToRgb(t);
                     } else {
-                        if (void 0 != a.value.r && void 0 != a.value.g && void 0 != a.value.b) {
-                            var e = a.value, i = e.r, r = e.g, o = e.b;
+                        if (void 0 != e.value.r && void 0 != e.value.g && void 0 != e.value.b) {
+                            var a = e.value, i = a.r, s = a.g, o = a.b;
                             this.color.rgb = {
                                 r: i,
-                                g: r,
+                                g: s,
                                 b: o
                             };
                         }
-                        if (void 0 != a.value.h && void 0 != a.value.s && void 0 != a.value.l) {
-                            var c = a.value, p = c.h, h = c.s, l = c.l;
+                        if (void 0 != e.value.h && void 0 != e.value.s && void 0 != e.value.l) {
+                            var c = e.value, l = c.h, u = c.s, p = c.l;
                             this.color.hsl = {
-                                h: p,
-                                s: h,
-                                l: l
+                                h: l,
+                                s: u,
+                                l: p
                             };
                         }
-                    } else "random" == a.value ? this.color.rgb = {
+                    } else "random" == e.value ? this.color.rgb = {
                         r: Math.floor(256 * Math.random()) + 0,
                         g: Math.floor(256 * Math.random()) + 0,
                         b: Math.floor(256 * Math.random()) + 0
-                    } : "string" == typeof a.value && (this.color = a, this.color.rgb = n.hexToRgb(this.color.value));
+                    } : "string" == typeof e.value && (this.color = e, this.color.rgb = n.hexToRgb(this.color.value));
                 }
             }, {
                 key: "setupOpacity",
@@ -392,227 +384,213 @@
             }, {
                 key: "setupAnimation",
                 value: function() {
-                    var a = null;
+                    var e = this.library, t = e.tmp, a = e.vendors, i = null;
                     switch (this.params.particles.move.direction) {
                       case "top":
-                        a = {
+                        i = {
                             x: 0,
                             y: -1
                         };
                         break;
 
                       case "top-right":
-                        a = {
+                        i = {
                             x: .5,
                             y: -.5
                         };
                         break;
 
                       case "right":
-                        a = {
+                        i = {
                             x: 1,
                             y: 0
                         };
                         break;
 
                       case "bottom-right":
-                        a = {
+                        i = {
                             x: .5,
                             y: .5
                         };
                         break;
 
                       case "bottom":
-                        a = {
+                        i = {
                             x: 0,
                             y: 1
                         };
                         break;
 
                       case "bottom-left":
-                        a = {
+                        i = {
                             x: -.5,
                             y: 1
                         };
                         break;
 
                       case "left":
-                        a = {
+                        i = {
                             x: -1,
                             y: 0
                         };
                         break;
 
                       case "top-left":
-                        a = {
+                        i = {
                             x: -.5,
                             y: -.5
                         };
                         break;
 
                       default:
-                        a = {
+                        i = {
                             x: 0,
                             y: 0
                         };
                     }
-                    this.params.particles.move.straight ? (this.vx = a.x, this.vy = a.y, this.params.particles.move.random && (this.vx = this.vx * Math.random(), 
-                    this.vy = this.vy * Math.random())) : (this.vx = a.x + Math.random() - .5, this.vy = a.y + Math.random() - .5), 
+                    this.params.particles.move.straight ? (this.vx = i.x, this.vy = i.y, this.params.particles.move.random && (this.vx = this.vx * Math.random(), 
+                    this.vy = this.vy * Math.random())) : (this.vx = i.x + Math.random() - .5, this.vy = i.y + Math.random() - .5), 
                     this.vx_i = this.vx, this.vy_i = this.vy;
-                    var t = this.params.particles.shape.type;
-                    if ("object" == ("undefined" == typeof t ? "undefined" : s(t))) {
-                        if (t instanceof Array) {
-                            var e = t[Math.floor(Math.random() * t.length)];
-                            this.shape = e;
+                    var s = this.params.particles.shape.type;
+                    if ("object" == ("undefined" == typeof s ? "undefined" : r(s))) {
+                        if (s instanceof Array) {
+                            var n = s[Math.floor(Math.random() * s.length)];
+                            this.shape = n;
                         }
-                    } else this.shape = t;
+                    } else this.shape = s;
                     if ("image" == this.shape) {
-                        var i = this.params.particles.shape;
+                        var o = this.params.particles.shape;
                         this.img = {
-                            src: i.image.src,
-                            ratio: i.image.width / i.image.height
-                        }, this.img.ratio || (this.img.ratio = 1), "svg" == this.params.tmp.img_type && void 0 != this.params.tmp.source_svg && (this.params.fn.vendors.createSvgImg(this), 
-                        this.params.tmp.pushing && (this.img.loaded = !1));
+                            src: o.image.src,
+                            ratio: o.image.width / o.image.height
+                        }, this.img.ratio || (this.img.ratio = 1), "svg" == t.img_type && void 0 != t.source_svg && (a.createSvgImg(this), 
+                        t.pushing && (this.img.loaded = !1));
                     }
                 }
             }, {
                 key: "draw",
-                value: function a() {
-                    var t = this, e = void 0;
-                    e = void 0 != this.radius_bubble ? this.radius_bubble : this.radius;
-                    var i = void 0;
-                    i = void 0 != this.opacity_bubble ? this.opacity_bubble : this.opacity;
-                    var s = void 0;
+                value: function e() {
+                    var t = this, a = this.library, i = a.canvas, r = a.tmp, s = a.vendors, n = void 0;
+                    n = void 0 != this.radius_bubble ? this.radius_bubble : this.radius;
+                    var o = void 0;
+                    o = void 0 != this.opacity_bubble ? this.opacity_bubble : this.opacity;
+                    var c = void 0;
                     if (this.color.rgb) {
-                        var r = this.color.rgb, n = r.r, o = r.g, c = r.b;
-                        s = "rgba( " + n + ", " + o + ", " + c + ", " + i + " )";
+                        var l = this.color.rgb, u = l.r, p = l.g, h = l.b;
+                        c = "rgba( " + u + ", " + p + ", " + h + ", " + o + " )";
                     } else {
-                        var p = this.color.hsl, h = p.h, l = p.s, m = p.l;
-                        s = "hsla( " + h + ", " + l + ", " + m + ", " + i + " )";
+                        var m = this.color.hsl, v = m.h, d = m.s, y = m.l;
+                        c = "hsla( " + v + ", " + d + ", " + y + ", " + o + " )";
                     }
-                    switch (this.params.canvas.ctx.fillStyle = s, this.params.canvas.ctx.beginPath(), 
-                    this.shape) {
+                    switch (i.ctx.fillStyle = c, i.ctx.beginPath(), this.shape) {
                       case "circle":
-                        (Math.floor(100 * Math.random()) + 20) % 17 == 0, this.params.canvas.ctx.arc(this.x, this.y, e, 0, 2 * Math.PI, !1);
+                        (Math.floor(100 * Math.random()) + 20) % 17 == 0, i.ctx.arc(this.x, this.y, n, 0, 2 * Math.PI, !1);
                         break;
 
                       case "edge":
-                        this.params.canvas.ctx.rect(this.x - e, this.y - e, 2 * e, 2 * e);
+                        i.ctx.rect(this.x - n, this.y - n, 2 * n, 2 * n);
                         break;
 
                       case "triangle":
-                        this.params.fn.vendors.drawShape(this.params.canvas.ctx, this.x - e, this.y + e / 1.66, 2 * e, 3, 2);
+                        s.drawShape(i.ctx, this.x - n, this.y + n / 1.66, 2 * n, 3, 2);
                         break;
 
                       case "polygon":
-                        this.params.fn.vendors.drawShape(this.params.canvas.ctx, this.x - e / (this.params.particles.shape.polygon.nb_sides / 3.5), this.y - e / .76, 2.66 * e / (this.params.particles.shape.polygon.nb_sides / 3), this.params.particles.shape.polygon.nb_sides, 1);
+                        s.drawShape(i.ctx, this.x - n / (this.params.particles.shape.polygon.nb_sides / 3.5), this.y - n / .76, 2.66 * n / (this.params.particles.shape.polygon.nb_sides / 3), this.params.particles.shape.polygon.nb_sides, 1);
                         break;
 
                       case "star":
-                        this.params.fn.vendors.drawShape(this.params.canvas.ctx, this.x - 2 * e / (this.params.particles.shape.polygon.nb_sides / 4), this.y - e / 1.52, 2 * e * 2.66 / (this.params.particles.shape.polygon.nb_sides / 3), this.params.particles.shape.polygon.nb_sides, 2);
+                        s.drawShape(i.ctx, this.x - 2 * n / (this.params.particles.shape.polygon.nb_sides / 4), this.y - n / 1.52, 2 * n * 2.66 / (this.params.particles.shape.polygon.nb_sides / 3), this.params.particles.shape.polygon.nb_sides, 2);
                         break;
 
                       case "image":
-                        var a = function(a) {
-                            t.params.canvas.ctx.drawImage(a, t.x - e, t.y - e, 2 * e, 2 * e / t.img.ratio);
-                        }, u = void 0;
-                        u = "svg" == this.params.tmp.img_type ? this.img.obj : this.params.tmp.img_obj, 
-                        u && a(u);
+                        var e = function(e) {
+                            i.ctx.drawImage(e, t.x - n, t.y - n, 2 * n, 2 * n / t.img.ratio);
+                        }, b = void 0;
+                        b = "svg" == r.img_type ? this.img.obj : r.img_obj, b && e(b);
                     }
-                    this.params.canvas.ctx.closePath(), this.params.particles.shape.stroke.width > 0 && (this.params.canvas.ctx.strokeStyle = this.params.particles.shape.stroke.color, 
-                    this.params.canvas.ctx.lineWidth = this.params.particles.shape.stroke.width, this.params.canvas.ctx.stroke()), 
-                    this.params.canvas.ctx.fill();
+                    i.ctx.closePath(), this.params.particles.shape.stroke.width > 0 && (i.ctx.strokeStyle = this.params.particles.shape.stroke.color, 
+                    i.ctx.lineWidth = this.params.particles.shape.stroke.width, i.ctx.stroke()), i.ctx.fill();
                 }
-            } ]), a;
+            } ]), e;
         }();
         Object.defineProperty(t, "__esModule", {
             value: !0
         }), t.default = o;
-    }, function(a, t, e) {
+    }, function(e, t, a) {
         "use strict";
-        function i(a, t) {
-            if (!(a instanceof t)) throw new TypeError("Cannot call a class as a function");
+        function i(e, t) {
+            if (!(e instanceof t)) throw new TypeError("Cannot call a class as a function");
         }
-        var s = function() {
-            function a(a, t) {
-                for (var e = 0; e < t.length; e++) {
-                    var i = t[e];
+        var r = function() {
+            function e(e, t) {
+                for (var a = 0; a < t.length; a++) {
+                    var i = t[a];
                     i.enumerable = i.enumerable || !1, i.configurable = !0, "value" in i && (i.writable = !0), 
-                    Object.defineProperty(a, i.key, i);
+                    Object.defineProperty(e, i.key, i);
                 }
             }
-            return function(t, e, i) {
-                return e && a(t.prototype, e), i && a(t, i), t;
+            return function(t, a, i) {
+                return a && e(t.prototype, a), i && e(t, i), t;
             };
-        }(), r = e(1), n = function() {
-            function a(t, e, s, r, n) {
-                i(this, a), this.params = t, this.interact = e, this.modes = s, this.vendors = r, 
-                this.lib = n, this.particlesCreate = this.particlesCreate.bind(this), this.particlesUpdate = this.particlesUpdate.bind(this), 
-                this.particlesDraw = this.particlesDraw.bind(this), this.particlesEmpty = this.particlesEmpty.bind(this), 
-                this.particlesRefresh = this.particlesRefresh.bind(this), this.extendParticleFunctionDefinition();
+        }(), s = a(1), n = function() {
+            function e(t, a, r, s, n) {
+                i(this, e), this.params = t, this.interact = a, this.modes = r, this.vendors = s, 
+                this.library = n;
             }
-            return s(a, [ {
-                key: "extendParticleFunctionDefinition",
-                value: function() {
-                    this.params.fn.particlesCreate = this.particlesCreate, this.params.fn.particlesUpdate = this.particlesUpdate, 
-                    this.params.fn.particlesDraw = this.particlesDraw, this.params.fn.particlesEmpty = this.particlesEmpty, 
-                    this.params.fn.particlesRefresh = this.particlesRefresh;
-                }
-            }, {
+            return r(e, [ {
                 key: "particlesCreate",
                 value: function() {
-                    for (var a = this.params.particles, t = a.color, e = a.opacity, i = 0; i < this.params.particles.number.value; i++) this.params.particles.array.push(new r.Particle(this.params, t, e.value));
+                    for (var e = this.params.particles, t = e.color, a = e.opacity, i = 0; i < this.params.particles.number.value; i++) this.params.particles.array.push(new s.Particle(this.params, this.library, t, a.value));
                 }
             }, {
                 key: "particlesUpdate",
                 value: function() {
-                    var a = this;
-                    this.params.particles.array.forEach(function(t, e) {
-                        if (a.params.particles.move.enable) {
-                            var i = a.params.particles.move.speed / 2;
-                            t.x += t.vx * i, t.y += t.vy * i;
+                    var e = this, t = this.library, a = t.canvas, i = t.interact, r = t.modes;
+                    this.params.particles.array.forEach(function(t, n) {
+                        if (e.params.particles.move.enable) {
+                            var o = e.params.particles.move.speed / 2;
+                            t.x += t.vx * o, t.y += t.vy * o;
                         }
-                        a.params.particles.opacity.anim.enable && (1 == t.opacity_status ? (t.opacity >= a.params.particles.opacity.value && (t.opacity_status = !1), 
-                        t.opacity += t.vo) : (t.opacity <= a.params.particles.opacity.anim.opacity_min && (t.opacity_status = !0), 
-                        t.opacity -= t.vo), t.opacity < 0 && (t.opacity = 0)), a.params.particles.size.anim.enable && (1 == t.size_status ? (t.radius >= a.params.particles.size.value && (t.size_status = !1), 
-                        t.radius += t.vs) : t.radius <= a.params.particles.size.anim.size_min && (t.radius -= t.vs), 
-                        t.radius < 0 && (t.radius = 0));
-                        var s = void 0;
-                        switch (s = "bound" == a.params.particles.move.out_mode ? {
+                        e.params.particles.opacity.anim.enable && (1 == t.opacity_status ? (t.opacity >= e.params.particles.opacity.value && (t.opacity_status = !1), 
+                        t.opacity += t.vo) : (t.opacity <= e.params.particles.opacity.anim.opacity_min && (t.opacity_status = !0), 
+                        t.opacity -= t.vo), t.opacity < 0 && (t.opacity = 0)), e.params.particles.size.anim.enable && (1 == t.size_status ? (t.radius >= e.params.particles.size.value && (t.size_status = !1), 
+                        t.radius += t.vs) : (t.radius <= e.params.particles.size.anim.size_min && (t.size_status = !0), 
+                        t.radius -= t.vs), t.radius < 0 && (t.radius = 0));
+                        var c = void 0;
+                        switch (c = "bound" == e.params.particles.move.out_mode ? {
                             x_left: t.radius,
-                            x_right: a.params.canvas.width,
+                            x_right: a.width,
                             y_top: t.radius,
-                            y_bottom: a.params.canvas.height
+                            y_bottom: a.height
                         } : {
                             x_left: -t.radius,
-                            x_right: a.params.canvas.width + t.radius,
+                            x_right: a.width + t.radius,
                             y_top: -t.radius,
-                            y_bottom: a.params.canvas.height + t.radius
-                        }, t.x - t.radius > a.params.canvas.width ? (t.x = s.x_left, t.y = Math.random() * a.params.canvas.height) : t.x + t.radius < 0 && (t.x = s.x_right, 
-                        t.y = Math.random() * a.params.canvas.height), t.y - t.radius > a.params.canvas.height ? (t.y = s.y_top, 
-                        t.x = Math.random() * a.params.canvas.width) : t.y + t.radius < 0 && (t.y = s.y_bottom, 
-                        t.x = Math.random() * a.params.canvas.width), a.params.particles.move.out_mode) {
+                            y_bottom: a.height + t.radius
+                        }, t.x - t.radius > a.width ? (t.x = c.x_left, t.y = Math.random() * a.height) : t.x + t.radius < 0 && (t.x = c.x_right, 
+                        t.y = Math.random() * a.height), t.y - t.radius > a.height ? (t.y = c.y_top, t.x = Math.random() * a.width) : t.y + t.radius < 0 && (t.y = c.y_bottom, 
+                        t.x = Math.random() * a.width), e.params.particles.move.out_mode) {
                           case "bounce":
-                            t.x + t.radius > a.params.canvas.width ? t.vx = -t.vx : t.x - t.radius < 0 && (t.vx = -t.vx), 
-                            t.y + t.radius > a.params.canvas.height ? t.vy = -t.vy : t.y - t.radius < 0 && (t.vy = -t.vy);
+                            t.x + t.radius > a.width ? t.vx = -t.vx : t.x - t.radius < 0 && (t.vx = -t.vx), 
+                            t.y + t.radius > a.height ? t.vy = -t.vy : t.y - t.radius < 0 && (t.vy = -t.vy);
                         }
-                        r.isInArray("grab", a.params.interactivity.events.onhover.mode) && a.params.fn.modes.grabParticle(t), 
-                        (r.isInArray("bubble", a.params.interactivity.events.onhover.mode) || r.isInArray("bubble", a.params.interactivity.events.onclick.mode)) && a.params.fn.modes.bubbleParticle(t), 
-                        (r.isInArray("repulse", a.params.interactivity.events.onhover.mode) || r.isInArray("repulse", a.params.interactivity.events.onclick.mode)) && a.params.fn.modes.repulseParticle(t);
-                        var n = a.interact, o = n.linkParticles, c = n.attractParticles, p = n.bounceParticles;
-                        if (a.params.particles.line_linked.enable || a.params.particles.move.attract.enable) for (var h = e + 1; h < a.params.particles.array.length; h++) {
-                            var l = a.params.particles.array[h];
-                            a.params.particles.line_linked.enable && o(t, l), a.params.particles.move.attract.enable && c(t, l), 
-                            a.params.particles.move.bounce && p(t, l);
+                        if (s.isInArray("grab", e.params.interactivity.events.onhover.mode) && r.grabParticle(t), 
+                        (s.isInArray("bubble", e.params.interactivity.events.onhover.mode) || s.isInArray("bubble", e.params.interactivity.events.onclick.mode)) && r.bubbleParticle(t), 
+                        (s.isInArray("repulse", e.params.interactivity.events.onhover.mode) || s.isInArray("repulse", e.params.interactivity.events.onclick.mode)) && r.repulseParticle(t), 
+                        e.params.particles.line_linked.enable || e.params.particles.move.attract.enable) for (var l = n + 1; l < e.params.particles.array.length; l++) {
+                            var u = e.params.particles.array[l];
+                            e.params.particles.line_linked.enable && i.linkParticles(t, u), e.params.particles.move.attract.enable && i.attractParticles(t, u), 
+                            e.params.particles.move.bounce && i.bounceParticles(t, u);
                         }
                     });
                 }
             }, {
                 key: "particlesDraw",
                 value: function() {
-                    this.params.canvas.ctx.clearRect(0, 0, this.params.canvas.width, this.params.canvas.height), 
-                    this.params.fn.particlesUpdate(), this.params.particles.array.forEach(function(a) {
-                        a.draw();
+                    var e = this.library, t = e.canvas, a = e.manager;
+                    t.ctx.clearRect(0, 0, t.width, t.height), a.particlesUpdate(), this.params.particles.array.forEach(function(e) {
+                        e.draw();
                     });
                 }
             }, {
@@ -623,41 +601,57 @@
             }, {
                 key: "particlesRefresh",
                 value: function() {
-                    cancelAnimationFrame(this.params.fn.checkAnimFrame), cancelAnimationFrame(this.params.fn.drawAnimFrame), 
-                    this.params.tmp.source_svg = void 0, this.params.tmp.img_obj = void 0, this.params.tmp.count_svg = 0, 
-                    this.particlesEmpty(), this.lib.canvasClear(), this.params.fn.vendors.start();
+                    var e = this.library, t = e.tmp, a = e.vendors;
+                    cancelAnimationFrame(t.checkAnimFrame), cancelAnimationFrame(t.drawAnimFrame), t.source_svg = void 0, 
+                    t.img_obj = void 0, t.count_svg = 0, this.particlesEmpty(), this.library.canvasClear(), 
+                    a.start();
                 }
-            } ]), a;
+            } ]), e;
         }();
         Object.defineProperty(t, "__esModule", {
             value: !0
         }), t.default = n;
-    }, function(a, t, e) {
+    }, function(e, t, a) {
         "use strict";
-        function i(a, t) {
-            if (!(a instanceof t)) throw new TypeError("Cannot call a class as a function");
+        function i(e, t) {
+            if (!(e instanceof t)) throw new TypeError("Cannot call a class as a function");
         }
-        var s = function() {
-            function a(a, t) {
-                for (var e = 0; e < t.length; e++) {
-                    var i = t[e];
+        var r = function() {
+            function e(e, t) {
+                for (var a = 0; a < t.length; a++) {
+                    var i = t[a];
                     i.enumerable = i.enumerable || !1, i.configurable = !0, "value" in i && (i.writable = !0), 
-                    Object.defineProperty(a, i.key, i);
+                    Object.defineProperty(e, i.key, i);
                 }
             }
-            return function(t, e, i) {
-                return e && a(t.prototype, e), i && a(t, i), t;
+            return function(t, a, i) {
+                return a && e(t.prototype, a), i && e(t, i), t;
             };
-        }(), r = e(1), n = function() {
-            function a(t, e) {
-                i(this, a), r.deepExtend(r.defaultParams, e), this.params = r.defaultParams, this.extendParams(t), 
-                this.interact = new r.Interact(this.params), this.modes = new r.Modes(this.params), 
-                this.vendors = new r.Vendors(this.params), this.particleManager = new r.ParticleManager(this.params, this.interact, this.modes, this.vendors, this);
+        }(), s = a(1), n = function() {
+            function e(t, a) {
+                i(this, e), this.tmp = {}, this.loadParameters(a), this.loadCanvas(t), this.extendParams(t), 
+                this.interact = new s.Interact(this.params, this), this.modes = new s.Modes(this.params, this), 
+                this.vendors = new s.Vendors(this.params, this), this.manager = new s.ParticleManager(this.params, this.interact, this.modes, this.vendors, this);
             }
-            return s(a, [ {
+            return r(e, [ {
+                key: "loadParameters",
+                value: function(e) {
+                    s.deepExtend(s.defaultParams, e), this.params = s.defaultParams;
+                }
+            }, {
+                key: "loadCanvas",
+                value: function(e) {
+                    this.canvas = {
+                        element: e,
+                        width: e.offsetWidth,
+                        height: e.offsetHeight
+                    };
+                }
+            }, {
                 key: "start",
                 value: function() {
-                    this.params.fn.vendors.eventsListeners(), this.params.fn.vendors.start();
+                    var e = this.vendors;
+                    e.eventsListeners(), e.start();
                 }
             }, {
                 key: "destroy",
@@ -671,26 +665,14 @@
                 }
             }, {
                 key: "extendParams",
-                value: function(a) {
-                    this.extendCanvasDefinition(a), this.extendTmpDefinition(), this.onWindowResize = this.onWindowResize.bind(this), 
-                    this.retinaInit = this.retinaInit.bind(this), this.canvasInit = this.canvasInit.bind(this), 
-                    this.canvasSize = this.canvasSize.bind(this), this.canvasPaint = this.canvasPaint.bind(this), 
-                    this.canvasClear = this.canvasClear.bind(this), this.extendRetinaFunctionDefinition(), 
-                    this.extendCanvasFunctionDefinition(), this.extendParticleFunctionDefinition();
-                }
-            }, {
-                key: "extendCanvasDefinition",
-                value: function(a) {
-                    this.params.canvas = {
-                        element: a,
-                        width: a.offsetWidth,
-                        height: a.offsetHeight
-                    };
+                value: function(e) {
+                    this.extendTmpDefinition(), this.onWindowResize = this.onWindowResize.bind(this);
                 }
             }, {
                 key: "extendTmpDefinition",
                 value: function() {
-                    this.params.tmp.obj = {
+                    var e = this.tmp;
+                    e.obj = {
                         size_value: this.params.particles.size.value,
                         size_anim_speed: this.params.particles.size.anim.speed,
                         move_speed: this.params.particles.move.speed,
@@ -703,312 +685,278 @@
                     };
                 }
             }, {
-                key: "extendRetinaFunctionDefinition",
-                value: function() {
-                    this.params.fn.retinaInit = this.retinaInit;
-                }
-            }, {
                 key: "retinaInit",
                 value: function() {
-                    this.params.retina_detect && window.devicePixelRatio > 1 ? (this.params.canvas.pxratio = window.devicePixelRatio, 
-                    this.params.tmp.retina = !0, this.params.canvas.width = this.params.canvas.element.offsetWidth * this.params.canvas.pxratio, 
-                    this.params.canvas.height = this.params.canvas.element.offsetHeight * this.params.canvas.pxratio, 
-                    this.params.particles.size.value = this.params.tmp.obj.size_value * this.params.canvas.pxratio, 
-                    this.params.particles.size.anim.speed = this.params.tmp.obj.size_anim_speed * this.params.canvas.pxratio, 
-                    this.params.particles.move.speed = this.params.tmp.obj.move_speed * this.params.canvas.pxratio, 
-                    this.params.particles.line_linked.distance = this.params.tmp.obj.line_linked_distance * this.params.canvas.pxratio, 
-                    this.params.interactivity.modes.grab.distance = this.params.tmp.obj.mode_grab_distance * this.params.canvas.pxratio, 
-                    this.params.interactivity.modes.bubble.distance = this.params.tmp.obj.mode_bubble_distance * this.params.canvas.pxratio, 
-                    this.params.particles.line_linked.width = this.params.tmp.obj.line_linked_width * this.params.canvas.pxratio, 
-                    this.params.interactivity.modes.bubble.size = this.params.tmp.obj.mode_bubble_size * this.params.canvas.pxratio, 
-                    this.params.interactivity.modes.repulse.distance = this.params.tmp.obj.mode_repulse_distance * this.params.canvas.pxratio) : (this.params.canvas.pxratio = 1, 
-                    this.params.tmp.retina = !1);
-                }
-            }, {
-                key: "extendCanvasFunctionDefinition",
-                value: function() {
-                    this.params.fn.canvasInit = this.canvasInit, this.params.fn.canvasSize = this.canvasSize, 
-                    this.params.fn.canvasPaint = this.canvasPaint, this.params.fn.canvasClear = this.canvasClear;
+                    var e = this.canvas, t = this.tmp;
+                    this.params.retina_detect && window.devicePixelRatio > 1 ? (e.pxratio = window.devicePixelRatio, 
+                    t.retina = !0, e.width = e.element.offsetWidth * e.pxratio, e.height = e.element.offsetHeight * e.pxratio, 
+                    this.params.particles.size.value = t.obj.size_value * e.pxratio, this.params.particles.size.anim.speed = t.obj.size_anim_speed * e.pxratio, 
+                    this.params.particles.move.speed = t.obj.move_speed * e.pxratio, this.params.particles.line_linked.distance = t.obj.line_linked_distance * e.pxratio, 
+                    this.params.interactivity.modes.grab.distance = t.obj.mode_grab_distance * e.pxratio, 
+                    this.params.interactivity.modes.bubble.distance = t.obj.mode_bubble_distance * e.pxratio, 
+                    this.params.particles.line_linked.width = t.obj.line_linked_width * e.pxratio, this.params.interactivity.modes.bubble.size = t.obj.mode_bubble_size * e.pxratio, 
+                    this.params.interactivity.modes.repulse.distance = t.obj.mode_repulse_distance * e.pxratio) : (e.pxratio = 1, 
+                    t.retina = !1);
                 }
             }, {
                 key: "canvasInit",
                 value: function() {
-                    this.params.canvas.ctx = this.params.canvas.element.getContext("2d");
+                    var e = this.canvas;
+                    e.ctx = e.element.getContext("2d");
                 }
             }, {
                 key: "canvasSize",
                 value: function() {
-                    this.params.canvas.element.width = this.params.canvas.width, this.params.canvas.element.height = this.params.canvas.height, 
-                    this.params && this.params.interactivity.events.resize && window.addEventListener("resize", this.onWindowResize);
+                    var e = this.canvas;
+                    e.element.width = e.width, e.element.height = e.height, this.params && this.params.interactivity.events.resize && window.addEventListener("resize", this.onWindowResize);
                 }
             }, {
                 key: "canvasPaint",
                 value: function() {
-                    this.params.canvas.ctx.fillRect(0, 0, this.params.canvas.width, this.params.canvas.height);
+                    var e = this.canvas;
+                    e.ctx.fillRect(0, 0, e.width, e.height);
                 }
             }, {
                 key: "canvasClear",
                 value: function() {
-                    this.params.canvas.ctx.clearRect(0, 0, this.params.canvas.width, this.params.canvas.height);
-                }
-            }, {
-                key: "extendParticleFunctionDefinition",
-                value: function() {
-                    this.params.fn.particle = r.Particle;
+                    var e = this.canvas;
+                    e.ctx.clearRect(0, 0, e.width, e.height);
                 }
             }, {
                 key: "onWindowResize",
                 value: function() {
-                    this.params.canvas.width = this.params.canvas.element.offsetWidth, this.params.canvas.height = this.params.canvas.element.offsetHeight, 
-                    this.params.tmp.retina && (this.params.canvas.width *= this.params.canvas.pxratio, 
-                    this.params.canvas.height *= this.params.canvas.pxratio), this.params.canvas.element.width = this.params.canvas.width, 
-                    this.params.canvas.element.height = this.params.canvas.height, this.params.particles.move.enable || (this.params.fn.particlesEmpty(), 
-                    this.params.fn.particlesCreate(), this.params.fn.particlesDraw(), this.params.fn.vendors.densityAutoParticles()), 
-                    this.params.fn.vendors.densityAutoParticles();
+                    var e = this.canvas, t = this.manager, a = this.tmp, i = this.vendors;
+                    e.width = e.element.offsetWidth, e.height = e.element.offsetHeight, a.retina && (e.width *= e.pxratio, 
+                    e.height *= e.pxratio), e.element.width = e.width, e.element.height = e.height, 
+                    this.params.particles.move.enable || (t.particlesEmpty(), t.particlesCreate(), t.particlesDraw(), 
+                    i.densityAutoParticles()), i.densityAutoParticles();
                 }
-            } ]), a;
+            } ]), e;
         }();
         Object.defineProperty(t, "__esModule", {
             value: !0
         }), t.default = n;
-    }, function(a, t) {
+    }, function(e, t) {
         "use strict";
-        t.hexToRgb = function(a) {
+        t.hexToRgb = function(e) {
             var t = /^#?([a-f\d])([a-f\d])([a-f\d])$/i;
-            a = a.replace(t, function(a, t, e, i) {
-                return t + t + e + e + i + i;
+            e = e.replace(t, function(e, t, a, i) {
+                return t + t + a + a + i + i;
             });
-            var e = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(a);
-            return e ? {
-                r: parseInt(e[1], 16),
-                g: parseInt(e[2], 16),
-                b: parseInt(e[3], 16)
+            var a = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(e);
+            return a ? {
+                r: parseInt(a[1], 16),
+                g: parseInt(a[2], 16),
+                b: parseInt(a[3], 16)
             } : null;
-        }, t.clamp = function(a, t, e) {
-            return Math.min(Math.max(a, t), e);
-        }, t.isInArray = function(a, t) {
-            return t.indexOf(a) > -1;
-        }, t.deepExtend = function(a, e) {
-            for (var i in e) e[i] && e[i].constructor && e[i].constructor === Object ? (a[i] = a[i] || {}, 
-            t.deepExtend(a[i], e[i])) : a[i] = e[i];
-            return a;
+        }, t.clamp = function(e, t, a) {
+            return Math.min(Math.max(e, t), a);
+        }, t.isInArray = function(e, t) {
+            return t.indexOf(e) > -1;
+        }, t.deepExtend = function(e, a) {
+            for (var i in a) a[i] && a[i].constructor && a[i].constructor === Object ? (e[i] = e[i] || {}, 
+            t.deepExtend(e[i], a[i])) : e[i] = a[i];
+            return e;
         };
-    }, function(a, t, e) {
+    }, function(e, t, a) {
         "use strict";
-        function i(a, t) {
-            if (!(a instanceof t)) throw new TypeError("Cannot call a class as a function");
+        function i(e, t) {
+            if (!(e instanceof t)) throw new TypeError("Cannot call a class as a function");
         }
-        var s = function() {
-            function a(a, t) {
-                for (var e = 0; e < t.length; e++) {
-                    var i = t[e];
+        var r = function() {
+            function e(e, t) {
+                for (var a = 0; a < t.length; a++) {
+                    var i = t[a];
                     i.enumerable = i.enumerable || !1, i.configurable = !0, "value" in i && (i.writable = !0), 
-                    Object.defineProperty(a, i.key, i);
+                    Object.defineProperty(e, i.key, i);
                 }
             }
-            return function(t, e, i) {
-                return e && a(t.prototype, e), i && a(t, i), t;
+            return function(t, a, i) {
+                return a && e(t.prototype, a), i && e(t, i), t;
             };
-        }(), r = e(1), n = function() {
-            function a(t) {
-                i(this, a), this.params = t, this.eventsListeners = this.eventsListeners.bind(this), 
-                this.onMouseMove = this.onMouseMove.bind(this), this.onMouseLeave = this.onMouseLeave.bind(this), 
-                this.onClick = this.onClick.bind(this), this.densityAutoParticles = this.densityAutoParticles.bind(this), 
-                this.checkOverlap = this.checkOverlap.bind(this), this.createSvgImg = this.createSvgImg.bind(this), 
-                this.destroy = this.destroy.bind(this), this.drawShape = this.drawShape.bind(this), 
-                this.exportImg = this.exportImg.bind(this), this.loadImg = this.loadImg.bind(this), 
-                this.draw = this.draw.bind(this), this.checkBeforeDraw = this.checkBeforeDraw.bind(this), 
-                this.init = this.init.bind(this), this.start = this.start.bind(this), this.params.fn.vendors.eventsListeners = this.eventsListeners, 
-                this.params.fn.vendors.densityAutoParticles = this.densityAutoParticles, this.params.fn.vendors.checkOverlap = this.checkOverlap, 
-                this.params.fn.vendors.createSvgImg = this.createSvgImg, this.params.fn.vendors.destroy = this.destroy, 
-                this.params.fn.vendors.drawShape = this.drawShape, this.params.fn.vendors.exportImg = this.exportImg, 
-                this.params.fn.vendors.loadImg = this.loadImg, this.params.fn.vendors.draw = this.draw, 
-                this.params.fn.vendors.checkBeforeDraw = this.checkBeforeDraw, this.params.fn.vendors.init = this.init, 
-                this.params.fn.vendors.start = this.start;
+        }(), s = a(1), n = function() {
+            function e(t, a) {
+                i(this, e), this.params = t, this.library = a, this.onMouseMove = this.onMouseMove.bind(this), 
+                this.onMouseLeave = this.onMouseLeave.bind(this), this.onClick = this.onClick.bind(this);
             }
-            return s(a, [ {
+            return r(e, [ {
                 key: "eventsListeners",
                 value: function() {
-                    var a = this.params, t = a.canvas, e = a.interactivity;
+                    var e = this.params.interactivity, t = this.library.canvas;
                     "window" == e.detect_on ? e.el = window : e.el = t.element, (e.events.onhover.enable || e.events.onclick.enable) && (e.el.addEventListener("mousemove", this.onMouseMove), 
                     e.el.addEventListener("mouseleave", this.onMouseLeave)), e.events.onclick.enable && e.el.addEventListener("click", this.onClick);
                 }
             }, {
                 key: "detachListeners",
                 value: function() {
-                    var a = this.params.interactivity;
-                    a.el && ((a.events.onhover.enable || a.events.onclick.enable) && (a.el.removeEventListener("mousemove", this.onMouseMove), 
-                    a.el.addEventListener("mouseleave", this.onMouseLeave)), a.events.onclick.enable && a.el.addEventListener("click", this.onClick)), 
-                    window.cancelAnimationFrame(this.params.fn.drawAnimFrame);
+                    var e = this.params.interactivity, t = this.library.tmp;
+                    e.el && ((e.events.onhover.enable || e.events.onclick.enable) && (e.el.removeEventListener("mousemove", this.onMouseMove), 
+                    e.el.addEventListener("mouseleave", this.onMouseLeave)), e.events.onclick.enable && e.el.addEventListener("click", this.onClick)), 
+                    window.cancelAnimationFrame(t.drawAnimFrame);
                 }
             }, {
                 key: "onMouseMove",
-                value: function(a) {
-                    var t = this.params, e = t.canvas, i = t.interactivity, s = t.tmp, r = void 0;
-                    r = i.el == window ? {
-                        x: a.clientX,
-                        y: a.clientY
+                value: function(e) {
+                    var t = this.library, a = t.canvas, i = t.tmp, r = this.params.interactivity, s = void 0;
+                    s = r.el == window ? {
+                        x: e.clientX,
+                        y: e.clientY
                     } : {
-                        x: a.offsetX || a.clientX,
-                        y: a.offsetY || a.clientY
-                    }, i.mouse.pos_x = r.x, i.mouse.pos_y = r.y, s.retina && (i.mouse.pos_x *= e.pxratio, 
-                    i.mouse.pos_y *= e.pxratio), i.status = "mousemove";
+                        x: e.offsetX || e.clientX,
+                        y: e.offsetY || e.clientY
+                    }, r.mouse.pos_x = s.x, r.mouse.pos_y = s.y, i.retina && (r.mouse.pos_x *= a.pxratio, 
+                    r.mouse.pos_y *= a.pxratio), r.status = "mousemove";
                 }
             }, {
                 key: "onMouseLeave",
-                value: function(a) {
+                value: function(e) {
                     var t = this.params.interactivity;
                     t.mouse.pos_x = null, t.mouse.pos_y = null, t.status = "mouseleave";
                 }
             }, {
                 key: "onClick",
                 value: function() {
-                    var a = this.params, t = a.fn, e = a.interactivity, i = a.particles, s = a.tmp;
-                    if (e.mouse.click_pos_x = e.mouse.pos_x, e.mouse.click_pos_y = e.mouse.pos_y, e.mouse.click_time = new Date().getTime(), 
-                    e.events.onclick.enable) switch (e.events.onclick.mode) {
+                    var e = this.library, t = e.modes, a = e.tmp, i = this.params, r = i.interactivity, s = i.particles;
+                    if (r.mouse.click_pos_x = r.mouse.pos_x, r.mouse.click_pos_y = r.mouse.pos_y, r.mouse.click_time = new Date().getTime(), 
+                    r.events.onclick.enable) switch (r.events.onclick.mode) {
                       case "push":
-                        i.move.enable ? t.modes.pushParticles(e.modes.push.particles_nb, e.mouse) : 1 == e.modes.push.particles_nb ? t.modes.pushParticles(e.modes.push.particles_nb, e.mouse) : e.modes.push.particles_nb > 1 && t.modes.pushParticles(e.modes.push.particles_nb);
+                        s.move.enable ? t.pushParticles(r.modes.push.particles_nb, r.mouse) : 1 == r.modes.push.particles_nb ? t.pushParticles(r.modes.push.particles_nb, r.mouse) : r.modes.push.particles_nb > 1 && t.pushParticles(r.modes.push.particles_nb);
                         break;
 
                       case "remove":
-                        t.modes.removeParticles(e.modes.remove.particles_nb);
+                        t.removeParticles(r.modes.remove.particles_nb);
                         break;
 
                       case "bubble":
-                        s.bubble_clicking = !0;
+                        a.bubble_clicking = !0;
                         break;
 
                       case "repulse":
-                        s.repulse_clicking = !0, s.repulse_count = 0, s.repulse_finish = !1, setTimeout(function() {
-                            s.repulse_clicking = !1;
-                        }, 1e3 * e.modes.repulse.duration);
+                        a.repulse_clicking = !0, a.repulse_count = 0, a.repulse_finish = !1, setTimeout(function() {
+                            a.repulse_clicking = !1;
+                        }, 1e3 * r.modes.repulse.duration);
                     }
                 }
             }, {
                 key: "densityAutoParticles",
                 value: function() {
-                    var a = this.params, t = a.canvas, e = a.fn, i = a.particles, s = a.tmp;
-                    if (i.number.density.enable) {
-                        var r = t.element.width * t.element.height / 1e3;
-                        s.retina && (r = r / t.pxratio * 2);
-                        var n = r * i.number.value / i.number.density.value_area, o = i.array.length - n;
-                        o < 0 ? e.modes.pushParticles(Math.abs(o)) : e.modes.removeParticles(o);
+                    var e = this.library, t = e.canvas, a = e.modes, i = e.tmp, r = this.params.particles;
+                    if (r.number.density.enable) {
+                        var s = t.element.width * t.element.height / 1e3;
+                        i.retina && (s = s / t.pxratio * 2);
+                        var n = s * r.number.value / r.number.density.value_area, o = r.array.length - n;
+                        o < 0 ? a.pushParticles(Math.abs(o)) : a.removeParticles(o);
                     }
                 }
             }, {
                 key: "checkOverlap",
-                value: function(a, t) {
-                    var e = this.params, i = e.canvas, s = e.fn, r = e.particles;
-                    r.array.forEach(function(e) {
-                        var r = e, n = a.x - r.x, o = a.y - r.y, c = Math.sqrt(n * n + o * o);
-                        c <= a.radius + r.radius && (a.x = t ? t.x : Math.random() * i.width, a.y = t ? t.y : Math.random() * i.height, 
-                        s.vendors.checkOverlap(a));
+                value: function(e, t) {
+                    var a = this.library, i = a.canvas, r = a.vendors, s = this.params.particles;
+                    s.array.forEach(function(a) {
+                        var s = a, n = e.x - s.x, o = e.y - s.y, c = Math.sqrt(n * n + o * o);
+                        c <= e.radius + s.radius && (e.x = t ? t.x : Math.random() * i.width, e.y = t ? t.y : Math.random() * i.height, 
+                        r.checkOverlap(e));
                     });
                 }
             }, {
                 key: "createSvgImg",
-                value: function(a) {
-                    var t = this.params.tmp, e = t.source_svg, i = /#([0-9A-F]{3,6})/gi, s = e.replace(i, function(t, e, i, s) {
-                        var r = void 0;
-                        if (a.color.rgb) {
-                            var n = a.color.rgb, o = n.r, c = n.g, p = n.b;
-                            r = "rgba( " + o + ", " + c + ", " + p + ", " + a.opacity + " )";
+                value: function(e) {
+                    var t = this.library.tmp, a = t.source_svg, i = /#([0-9A-F]{3,6})/gi, r = a.replace(i, function(t, a, i, r) {
+                        var s = void 0;
+                        if (e.color.rgb) {
+                            var n = e.color.rgb, o = n.r, c = n.g, l = n.b;
+                            s = "rgba( " + o + ", " + c + ", " + l + ", " + e.opacity + " )";
                         } else {
-                            var h = a.color.hsl, l = h.h, m = h.s, u = h.l;
-                            r = "rgba( " + l + ", " + m + ", " + u + ", " + a.opacity + " )";
+                            var u = e.color.hsl, p = u.h, h = u.s, m = u.l;
+                            s = "rgba( " + p + ", " + h + ", " + m + ", " + e.opacity + " )";
                         }
-                        return r;
-                    }), r = new Blob([ s ], {
+                        return s;
+                    }), s = new Blob([ r ], {
                         type: "image/svg+xml;charset=utf-8"
-                    }), n = window.URL || window, o = n.createObjectURL(r), c = new Image();
+                    }), n = window.URL || window, o = n.createObjectURL(s), c = new Image();
                     c.addEventListener("load", function() {
-                        a.img.obj = c, a.img.loaded = !0, n.revokeObjectURL(o), t.count_svg++;
+                        e.img.obj = c, e.img.loaded = !0, n.revokeObjectURL(o), t.count_svg++;
                     }), c.src = o;
                 }
             }, {
                 key: "destroy",
                 value: function() {
-                    var a = this.params, t = a.canvas, e = a.fn;
-                    cancelAnimationFrame(e.drawAnimFrame), t.element.remove();
+                    var e = this.library, t = e.canvas, a = e.tmp;
+                    cancelAnimationFrame(a.drawAnimFrame), t.element.remove();
                 }
             }, {
                 key: "drawShape",
-                value: function(a, t, e, i, s, r) {
-                    var n = s * r, o = s / r, c = 180 * (o - 2) / o, p = Math.PI - Math.PI * c / 180;
-                    a.save(), a.beginPath(), a.translate(t, e), a.moveTo(0, 0);
-                    for (var h = 0; h < n; h++) a.lineTo(i, 0), a.translate(i, 0), a.rotate(p);
-                    a.fill(), a.restore();
+                value: function(e, t, a, i, r, s) {
+                    var n = r * s, o = r / s, c = 180 * (o - 2) / o, l = Math.PI - Math.PI * c / 180;
+                    e.save(), e.beginPath(), e.translate(t, a), e.moveTo(0, 0);
+                    for (var u = 0; u < n; u++) e.lineTo(i, 0), e.translate(i, 0), e.rotate(l);
+                    e.fill(), e.restore();
                 }
             }, {
                 key: "exportImg",
                 value: function() {
-                    var a = this.params.canvas;
-                    window.open(a.element.toDataURL("image/png"), "_blank");
+                    var e = this.library.canvas;
+                    window.open(e.element.toDataURL("image/png"), "_blank");
                 }
             }, {
                 key: "loadImg",
-                value: function(a) {
-                    var t = this.params, e = t.fn, i = t.particles, s = t.tmp;
-                    s.img_error = void 0, "" != i.shape.image.src ? "svg" == a ? !function() {
-                        var a = new XMLHttpRequest();
-                        a.open("GET", i.shape.image.src), a.onreadystatechange = function(t) {
-                            4 == a.readyState && (200 == a.status ? (s.source_svg = t.currentTarget.response, 
-                            e.vendors.checkBeforeDraw()) : (console.log("Error react-particles-js - image not found"), 
-                            s.img_error = !0));
-                        }, a.send();
+                value: function(e) {
+                    var t = this.library, a = t.tmp, i = t.vendors, r = this.params.particles;
+                    a.img_error = void 0, "" != r.shape.image.src ? "svg" == e ? !function() {
+                        var e = new XMLHttpRequest();
+                        e.open("GET", r.shape.image.src), e.onreadystatechange = function(t) {
+                            4 == e.readyState && (200 == e.status ? (a.source_svg = t.currentTarget.response, 
+                            i.checkBeforeDraw()) : (console.log("Error react-particles-js - image not found"), 
+                            a.img_error = !0));
+                        }, e.send();
                     }() : !function() {
-                        var a = new Image();
-                        a.addEventListener("load", function() {
-                            s.img_obj = a, e.vendors.checkBeforeDraw();
-                        }), a.src = i.shape.image.src;
-                    }() : (console.log("Error react-particles-js - no image.src"), s.img_error = !0);
+                        var e = new Image();
+                        e.addEventListener("load", function() {
+                            a.img_obj = e, i.checkBeforeDraw();
+                        }), e.src = r.shape.image.src;
+                    }() : (console.log("Error react-particles-js - no image.src"), a.img_error = !0);
                 }
             }, {
                 key: "draw",
                 value: function() {
-                    var a = this.params, t = a.fn, e = a.particles, i = a.tmp;
-                    "image" == e.shape.type ? "svg" == i.img_type ? i.count_svg >= e.number.value ? (t.particlesDraw(), 
-                    e.move.enable ? t.drawAnimFrame = requestAnimationFrame(t.vendors.draw) : cancelAnimationFrame(t.drawAnimFrame)) : i.img_error || (t.drawAnimFrame = requestAnimationFrame(t.vendors.draw)) : void 0 != i.img_obj ? (t.particlesDraw(), 
-                    e.move.enable ? t.drawAnimFrame = requestAnimationFrame(t.vendors.draw) : cancelAnimationFrame(t.drawAnimFrame)) : i.img_error || (t.drawAnimFrame = requestAnimationFrame(t.vendors.draw)) : (t.particlesDraw(), 
-                    e.move.enable ? t.drawAnimFrame = requestAnimationFrame(t.vendors.draw) : cancelAnimationFrame(t.drawAnimFrame));
+                    var e = this.library, t = e.tmp, a = e.manager, i = e.vendors, r = this.params.particles;
+                    "image" == r.shape.type ? "svg" == t.img_type ? t.count_svg >= r.number.value ? (a.particlesDraw(), 
+                    r.move.enable ? t.drawAnimFrame = requestAnimationFrame(i.draw.bind(i)) : cancelAnimationFrame(t.drawAnimFrame)) : t.img_error || (t.drawAnimFrame = requestAnimationFrame(i.draw.bind(i))) : void 0 != t.img_obj ? (a.particlesDraw(), 
+                    r.move.enable ? t.drawAnimFrame = requestAnimationFrame(i.draw.bind(i)) : cancelAnimationFrame(t.drawAnimFrame)) : t.img_error || (t.drawAnimFrame = requestAnimationFrame(i.draw.bind(i))) : (a.particlesDraw(), 
+                    r.move.enable ? t.drawAnimFrame = requestAnimationFrame(i.draw.bind(i)) : cancelAnimationFrame(t.drawAnimFrame));
                 }
             }, {
                 key: "checkBeforeDraw",
                 value: function() {
-                    var a = this.params, t = a.fn, e = a.particles, i = a.tmp;
-                    if ("image" == e.shape.type) if ("svg" == i.img_type && void 0 == i.source_svg) {
-                        var s = void 0;
-                        i.checkAnimFrame = requestAnimationFrame(s);
-                    } else cancelAnimationFrame(i.checkAnimFrame), i.img_error || (t.vendors.init(), 
-                    t.vendors.draw()); else t.vendors.init(), t.vendors.draw();
+                    var e = this.library, t = e.tmp, a = e.vendors, i = this.params.particles;
+                    if ("image" == i.shape.type) if ("svg" == t.img_type && void 0 == t.source_svg) {
+                        var r = void 0;
+                        t.checkAnimFrame = requestAnimationFrame(r);
+                    } else cancelAnimationFrame(t.checkAnimFrame), t.img_error || (a.init(), a.draw()); else a.init(), 
+                    a.draw();
                 }
             }, {
                 key: "init",
                 value: function() {
-                    var a = this.params, t = a.fn, e = a.particles;
-                    t.retinaInit(), t.canvasInit(), t.canvasSize(), t.particlesCreate(), t.vendors.densityAutoParticles(), 
-                    e.line_linked.color_rgb_line = r.hexToRgb(e.line_linked.color);
+                    var e = this.library, t = e.manager, a = e.vendors, i = this.params.particles;
+                    e.retinaInit(), e.canvasInit(), e.canvasSize(), t.particlesCreate(), a.densityAutoParticles(), 
+                    i.line_linked.color_rgb_line = s.hexToRgb(i.line_linked.color);
                 }
             }, {
                 key: "start",
                 value: function() {
-                    var a = this.params, t = a.fn, e = a.particles, i = a.tmp;
-                    r.isInArray("image", e.shape.type) ? (i.img_type = e.shape.image.src.substr(e.shape.image.src.length - 3), 
-                    t.vendors.loadImg(i.img_type)) : t.vendors.checkBeforeDraw();
+                    var e = this.library, t = e.tmp, a = e.vendors, i = this.params.particles;
+                    s.isInArray("image", i.shape.type) ? (t.img_type = i.shape.image.src.substr(i.shape.image.src.length - 3), 
+                    a.loadImg(t.img_type)) : a.checkBeforeDraw();
                 }
-            } ]), a;
+            } ]), e;
         }();
         Object.defineProperty(t, "__esModule", {
             value: !0
         }), t.default = n;
-    }, function(a, t) {
+    }, function(e, t) {
         "use strict";
-        var e = {
-            canvas: {
-                element: null,
-                width: null,
-                height: null
-            },
+        var a = {
             particles: {
                 number: {
                     value: 40,
@@ -1064,7 +1012,7 @@
                 },
                 move: {
                     enable: !0,
-                    speed: 4,
+                    speed: 1,
                     direction: "none",
                     random: !1,
                     straight: !1,
@@ -1083,19 +1031,19 @@
                 events: {
                     onhover: {
                         enable: !0,
-                        mode: "repulse"
+                        mode: "grab"
                     },
                     onclick: {
                         enable: !0,
-                        mode: "push"
+                        mode: "repulse"
                     },
                     resize: !0
                 },
                 modes: {
                     grab: {
-                        distance: 400,
+                        distance: 180,
                         line_linked: {
-                            opacity: 1
+                            opacity: .35
                         }
                     },
                     bubble: {
@@ -1105,7 +1053,7 @@
                     },
                     repulse: {
                         distance: 100,
-                        duration: .4
+                        duration: 5
                     },
                     push: {
                         particles_nb: 4
@@ -1116,17 +1064,8 @@
                 },
                 mouse: {}
             },
-            retina_detect: !0,
-            fn: {
-                interact: {},
-                modes: {},
-                vendors: {}
-            },
-            tmp: {
-                obj: null,
-                retina: null
-            }
+            retina_detect: !0
         };
-        t.defaultParams = e;
+        t.defaultParams = a;
     } ]);
 });
