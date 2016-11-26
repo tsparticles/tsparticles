@@ -1,8 +1,9 @@
-import {hexToRgb, IParams} from '.';
+import {hexToRgb, IParams, ParticlesLibrary} from '.';
 
 export default class Particle{
 
 	params: IParams;
+	library: ParticlesLibrary;
 
 	radius: number;
 	radius_bubble: number;
@@ -29,8 +30,9 @@ export default class Particle{
 
 	img: { src: string; ratio: number; loaded?: boolean; obj?: any; };
 
-	constructor( params: IParams, color?: any, opacity?: any, position?: { x: number; y: number; }){
+	constructor( params: IParams, library: ParticlesLibrary, color?: any, opacity?: any, position?: { x: number; y: number; }){
 		this.params = params;
+		this.library = library;
 		this.setupSize();
 		this.setupPosition( position );
 		this.setupColor( color );
@@ -49,15 +51,18 @@ export default class Particle{
 	}
 
 	setupPosition( position?: { x: number; y: number; }): void{
-		this.x = position ? position.x : Math.random() * this.params.canvas.width;
-		this.y = position ? position.y : Math.random() * this.params.canvas.height;
 
-		if( this.x > this.params.canvas.width - this.radius * 2 ){
+		let {canvas} = this.library;
+
+		this.x = position ? position.x : Math.random() * canvas.width;
+		this.y = position ? position.y : Math.random() * canvas.height;
+
+		if( this.x > canvas.width - this.radius * 2 ){
 			this.x = this.x - this.radius;
 		}else if( this.x < this.radius * 2 ){
 			this.x = this.x + this.radius;
 		}
-		if( this.y > this.params.canvas.height - this.radius * 2 ){
+		if( this.y > canvas.height - this.radius * 2 ){
 			this. y = this.y - this.radius;
 		}else if( this.y < this.radius * 2 ){
 			this.y = this.y + this.radius;
@@ -183,6 +188,8 @@ export default class Particle{
 
 	public draw(): void{
 
+		let {canvas} = this.library;
+
 		let radius: number;
 		if( this.radius_bubble != undefined ){
 			radius = this.radius_bubble;
@@ -206,27 +213,27 @@ export default class Particle{
 			color_value = `hsla( ${h}, ${s}, ${l}, ${opacity} )`;
 		}
 
-		this.params.canvas.ctx.fillStyle = color_value;
-		this.params.canvas.ctx.beginPath();
+		canvas.ctx.fillStyle = color_value;
+		canvas.ctx.beginPath();
 
 		switch( this.shape ){
 			case 'circle':
 				if( ( Math.floor( Math.random() * 100 ) + 20 ) % 17 == 0 ){
 				}
-				this.params.canvas.ctx.arc( this.x, this.y, radius, 0, Math.PI * 2, false );
+				canvas.ctx.arc( this.x, this.y, radius, 0, Math.PI * 2, false );
 				break;
 
 			case 'edge':
-				this.params.canvas.ctx.rect( this.x - radius, this.y - radius, radius * 2, radius * 2 );
+				canvas.ctx.rect( this.x - radius, this.y - radius, radius * 2, radius * 2 );
 				break;
 
 			case 'triangle':
-				this.params.fn.vendors.drawShape( this.params.canvas.ctx, this.x - radius, this.y + radius / 1.66, radius * 2, 3, 2 );
+				this.params.fn.vendors.drawShape( canvas.ctx, this.x - radius, this.y + radius / 1.66, radius * 2, 3, 2 );
 				break;
 
 			case 'polygon':
 				this.params.fn.vendors.drawShape(
-					this.params.canvas.ctx,
+					canvas.ctx,
 					this.x - radius / ( this.params.particles.shape.polygon.nb_sides / 3.5 ),
 					this.y - radius / ( 2.66 / 3.5 ),
 					radius * 2.66 / ( this.params.particles.shape.polygon.nb_sides / 3 ),
@@ -237,7 +244,7 @@ export default class Particle{
 
 			case 'star':
 				this.params.fn.vendors.drawShape(
-					this.params.canvas.ctx,
+					canvas.ctx,
 					this.x - radius * 2 / ( this.params.particles.shape.polygon.nb_sides / 4 ),
 					this.y - radius / ( 2 * 2.66 / 3.5 ),
 					radius * 2 * 2.66 / ( this.params.particles.shape.polygon.nb_sides / 3 ),
@@ -249,7 +256,7 @@ export default class Particle{
 			case 'image':
 				let draw: ( img_obj: any ) => void = 
 					( img_obj ) => {
-						this.params.canvas.ctx.drawImage(
+						canvas.ctx.drawImage(
 							img_obj,
 							this.x - radius,
 							this.y - radius,
@@ -268,15 +275,15 @@ export default class Particle{
 				break;
 		}
 
-		this.params.canvas.ctx.closePath();
+		canvas.ctx.closePath();
 
 		if( this.params.particles.shape.stroke.width > 0 ){
-			this.params.canvas.ctx.strokeStyle = this.params.particles.shape.stroke.color;
-			this.params.canvas.ctx.lineWidth = this.params.particles.shape.stroke.width;
-			this.params.canvas.ctx.stroke();
+			canvas.ctx.strokeStyle = this.params.particles.shape.stroke.color;
+			canvas.ctx.lineWidth = this.params.particles.shape.stroke.width;
+			canvas.ctx.stroke();
 		}
 
-		this.params.canvas.ctx.fill();
+		canvas.ctx.fill();
 	}
 
 }

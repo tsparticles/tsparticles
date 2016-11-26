@@ -1,11 +1,6 @@
 import {IParams} from '.';
 
 let defaultParams: IParams = {
-    canvas: {
-        element: null,
-        width: null,
-        height: null
-    },
 	particles: {
 		number: {
 			value: 40,
@@ -61,7 +56,7 @@ let defaultParams: IParams = {
 		},
 		move: {
 			enable: true,
-			speed: 4,
+			speed: 1,
 			direction: 'none',
 			random: false,
 			straight: false,
@@ -80,19 +75,19 @@ let defaultParams: IParams = {
 		events: {
 			onhover: {
 				enable: true,
-				mode: 'repulse'
+				mode: 'grab'
 			},
 			onclick: {
 				enable: true,
-				mode: 'push'
+				mode: 'repulse'
 			},
 			resize: true
 		},
 		modes: {
 			grab:{
-				distance: 400,
+				distance: 180,
 				line_linked:{
-					opacity: 1
+					opacity: 0.35
 				}
 			},
 			bubble:{
@@ -102,7 +97,7 @@ let defaultParams: IParams = {
 			},
 			repulse:{
 				distance: 100,
-				duration: 0.4
+				duration: 5
 			},
 			push:{
 				particles_nb: 4

@@ -1,8 +1,19 @@
 /// <reference path="../../typings/index.d.ts" />
 
-import {deepExtend, defaultParams, Interact, Modes, IParams, Particle, ParticleManager, Vendors} from '.';
+import {
+	ICanvasParam,
+	IParams,
+	deepExtend,
+	defaultParams,
+	Interact,
+	Modes,
+	Particle,
+	ParticleManager,
+	Vendors} from '.';
 
 export default class ParticlesLibrary{
+
+	canvas: ICanvasParam;
 
 	params: IParams;
 	particleManager: ParticleManager;
@@ -11,13 +22,28 @@ export default class ParticlesLibrary{
 	vendors: Vendors;
 
 	constructor( canvasElement: HTMLCanvasElement, params?: any ){
+		this.loadParameters( params );
+		this.loadCanvas( canvasElement );
+
+		this.extendParams( canvasElement );
+
+		this.interact = new Interact( this.params, this );
+		this.modes = new Modes( this.params, this );
+		this.vendors = new Vendors( this.params, this );
+		this.particleManager = new ParticleManager( this.params, this.interact, this.modes, this.vendors, this );
+	}
+
+	loadParameters( params?: any ): void{
 		deepExtend( defaultParams, params );
 		this.params = defaultParams;
-		this.extendParams( canvasElement );
-		this.interact = new Interact( this.params );
-		this.modes = new Modes( this.params );
-		this.vendors = new Vendors( this.params );
-		this.particleManager = new ParticleManager( this.params, this.interact, this.modes, this.vendors, this );
+	}
+
+	loadCanvas( canvasElement: HTMLCanvasElement ){
+		this.canvas = {
+			element: canvasElement,
+			width: canvasElement.offsetWidth,
+			height: canvasElement.offsetHeight
+		}
 	}
 
 	start(): void{
@@ -35,7 +61,6 @@ export default class ParticlesLibrary{
 	}
 
 	extendParams( canvasElement: HTMLCanvasElement ): void{
-		this.extendCanvasDefinition( canvasElement );
 		this.extendTmpDefinition();
 		this.onWindowResize = this.onWindowResize.bind( this );
 		this.retinaInit = this.retinaInit.bind( this );
@@ -46,14 +71,6 @@ export default class ParticlesLibrary{
 		this.extendRetinaFunctionDefinition();
 		this.extendCanvasFunctionDefinition();
 		this.extendParticleFunctionDefinition();
-	}
-
-	extendCanvasDefinition( canvasElement: HTMLCanvasElement ): void{
-		this.params.canvas = {
-			element: canvasElement,
-			width: canvasElement.offsetWidth,
-			height: canvasElement.offsetHeight
-		};
 	}
 
 	extendTmpDefinition(): void{
@@ -75,25 +92,28 @@ export default class ParticlesLibrary{
 	}
 
 	retinaInit(): void{
+
+		let {canvas} = this;
+
 		if( this.params.retina_detect && window.devicePixelRatio > 1 ){
-			this.params.canvas.pxratio = window.devicePixelRatio;
+			canvas.pxratio = window.devicePixelRatio;
 			this.params.tmp.retina = true;
 
-			this.params.canvas.width = this.params.canvas.element.offsetWidth * this.params.canvas.pxratio;
-			this.params.canvas.height = this.params.canvas.element.offsetHeight * this.params.canvas.pxratio;
+			canvas.width = canvas.element.offsetWidth * canvas.pxratio;
+			canvas.height = canvas.element.offsetHeight * canvas.pxratio;
 
-			this.params.particles.size.value = this.params.tmp.obj.size_value * this.params.canvas.pxratio;
-			this.params.particles.size.anim.speed = this.params.tmp.obj.size_anim_speed * this.params.canvas.pxratio;
-			this.params.particles.move.speed = this.params.tmp.obj.move_speed * this.params.canvas.pxratio;
-			this.params.particles.line_linked.distance = this.params.tmp.obj.line_linked_distance * this.params.canvas.pxratio;
-			this.params.interactivity.modes.grab.distance = this.params.tmp.obj.mode_grab_distance * this.params.canvas.pxratio;
-			this.params.interactivity.modes.bubble.distance = this.params.tmp.obj.mode_bubble_distance * this.params.canvas.pxratio;
-			this.params.particles.line_linked.width = this.params.tmp.obj.line_linked_width * this.params.canvas.pxratio;
-			this.params.interactivity.modes.bubble.size = this.params.tmp.obj.mode_bubble_size * this.params.canvas.pxratio;
-			this.params.interactivity.modes.repulse.distance = this.params.tmp.obj.mode_repulse_distance * this.params.canvas.pxratio;
+			this.params.particles.size.value = this.params.tmp.obj.size_value * canvas.pxratio;
+			this.params.particles.size.anim.speed = this.params.tmp.obj.size_anim_speed * canvas.pxratio;
+			this.params.particles.move.speed = this.params.tmp.obj.move_speed * canvas.pxratio;
+			this.params.particles.line_linked.distance = this.params.tmp.obj.line_linked_distance * canvas.pxratio;
+			this.params.interactivity.modes.grab.distance = this.params.tmp.obj.mode_grab_distance * canvas.pxratio;
+			this.params.interactivity.modes.bubble.distance = this.params.tmp.obj.mode_bubble_distance * canvas.pxratio;
+			this.params.particles.line_linked.width = this.params.tmp.obj.line_linked_width * canvas.pxratio;
+			this.params.interactivity.modes.bubble.size = this.params.tmp.obj.mode_bubble_size * canvas.pxratio;
+			this.params.interactivity.modes.repulse.distance = this.params.tmp.obj.mode_repulse_distance * canvas.pxratio;
 
 		}else{
-			this.params.canvas.pxratio = 1;
+			canvas.pxratio = 1;
 			this.params.tmp.retina = false;
 		}
 	}
@@ -106,12 +126,18 @@ export default class ParticlesLibrary{
 	}
 
 	canvasInit(): void{
-		this.params.canvas.ctx = this.params.canvas.element.getContext( '2d' );
+
+		let {canvas} = this;
+
+		canvas.ctx = canvas.element.getContext( '2d' );
 	}
 
 	canvasSize(): void{
-		this.params.canvas.element.width = this.params.canvas.width;
-		this.params.canvas.element.height = this.params.canvas.height;
+
+		let {canvas} = this;
+
+		canvas.element.width = canvas.width;
+		canvas.element.height = canvas.height;
 
 		if( this.params && this.params.interactivity.events.resize ){
 			window.addEventListener( 'resize', this.onWindowResize );
@@ -119,11 +145,17 @@ export default class ParticlesLibrary{
 	}
 
 	canvasPaint(): void{
-		this.params.canvas.ctx.fillRect( 0, 0, this.params.canvas.width, this.params.canvas.height );
+
+		let {canvas} = this;
+
+		canvas.ctx.fillRect( 0, 0, canvas.width, canvas.height );
 	}
 
 	canvasClear(): void{
-		this.params.canvas.ctx.clearRect( 0, 0, this.params.canvas.width, this.params.canvas.height );
+
+		let {canvas} = this;
+
+		canvas.ctx.clearRect( 0, 0, canvas.width, canvas.height );
 	}
 
 	extendParticleFunctionDefinition(): void{
@@ -131,16 +163,19 @@ export default class ParticlesLibrary{
 	}
 
 	public onWindowResize(): void{
-		this.params.canvas.width = this.params.canvas.element.offsetWidth;
-		this.params.canvas.height = this.params.canvas.element.offsetHeight;
+
+		let {canvas} = this;
+
+		canvas.width = canvas.element.offsetWidth;
+		canvas.height = canvas.element.offsetHeight;
 
 		if( this.params.tmp.retina ){
-			this.params.canvas.width *= this.params.canvas.pxratio;
-			this.params.canvas.height *= this.params.canvas.pxratio;
+			canvas.width *= canvas.pxratio;
+			canvas.height *= canvas.pxratio;
 		}
 
-		this.params.canvas.element.width = this.params.canvas.width;
-		this.params.canvas.element.height = this.params.canvas.height;
+		canvas.element.width = canvas.width;
+		canvas.element.height = canvas.height;
 
 		if( !this.params.particles.move.enable ){
 			this.params.fn.particlesEmpty();

@@ -4,16 +4,16 @@ export default class ParticleManager{
 
 	params: IParams;
 	interact: Interact;
-	lib: ParticlesLibrary;
+	library: ParticlesLibrary;
 	modes: Modes;
 	vendors: Vendors;
 
-	constructor( params: IParams, interact: Interact, modes: Modes, vendors: Vendors, lib: ParticlesLibrary ){
+	constructor( params: IParams, interact: Interact, modes: Modes, vendors: Vendors, library: ParticlesLibrary ){
 		this.params = params;
 		this.interact = interact;
 		this.modes = modes;
 		this.vendors = vendors;
-		this.lib = lib;
+		this.library = library;
 		this.particlesCreate = this.particlesCreate.bind( this );
 		this.particlesUpdate = this.particlesUpdate.bind( this );
 		this.particlesDraw = this.particlesDraw.bind( this );
@@ -33,11 +33,14 @@ export default class ParticleManager{
 	particlesCreate(): void{
 		let {color, opacity} = this.params.particles;
 		for( let i = 0; i < this.params.particles.number.value; i++ ){
-			this.params.particles.array.push( new Particle( this.params, color, opacity.value ) );
+			this.params.particles.array.push( new Particle( this.params, this.library, color, opacity.value ) );
 		}
 	}
 
 	particlesUpdate(): void{
+
+		let {canvas} = this.library;
+
 		this.params.particles.array.forEach( ( particle: Particle, i: number ) => {
 
 			if( this.params.particles.move.enable ){
@@ -85,42 +88,42 @@ export default class ParticleManager{
 			if( this.params.particles.move.out_mode == 'bound' ){
 				new_pos = {
 					x_left: particle.radius,
-					x_right: this.params.canvas.width,
+					x_right: canvas.width,
 					y_top: particle.radius,
-					y_bottom: this.params.canvas.height
+					y_bottom: canvas.height
 				};
 			}else{
 				new_pos = {
 					x_left: -particle.radius,
-					x_right: this.params.canvas.width + particle.radius,
+					x_right: canvas.width + particle.radius,
 					y_top: -particle.radius,
-					y_bottom: this.params.canvas.height + particle.radius
+					y_bottom: canvas.height + particle.radius
 				};
 			}
 
-			if( particle.x - particle.radius > this.params.canvas.width ){
+			if( particle.x - particle.radius > canvas.width ){
 				particle.x = new_pos.x_left;
-				particle.y = Math.random() * this.params.canvas.height;
+				particle.y = Math.random() * canvas.height;
 			}else if( particle.x + particle.radius < 0 ){
 				particle.x = new_pos.x_right;
-				particle.y = Math.random() * this.params.canvas.height;
+				particle.y = Math.random() * canvas.height;
 			}
 
-			if( particle.y - particle.radius > this.params.canvas.height ){
+			if( particle.y - particle.radius > canvas.height ){
 				particle.y = new_pos.y_top;
-				particle.x = Math.random() * this.params.canvas.width;
+				particle.x = Math.random() * canvas.width;
 			}else if( particle.y + particle.radius < 0 ){
 				particle.y = new_pos.y_bottom;
-				particle.x = Math.random() * this.params.canvas.width;
+				particle.x = Math.random() * canvas.width;
 			}
 
 			switch( this.params.particles.move.out_mode ){
 				case 'bounce':
-					if( particle.x + particle.radius > this.params.canvas.width )
+					if( particle.x + particle.radius > canvas.width )
 						particle.vx = -particle.vx;
 					else if( particle.x - particle.radius < 0 )
 						particle.vx = -particle.vx;
-					if( particle.y + particle.radius > this.params.canvas.height )
+					if( particle.y + particle.radius > canvas.height )
 						particle.vy = -particle.vy;
 					else if( particle.y - particle.radius < 0 )
 						particle.vy = -particle.vy;
@@ -161,7 +164,10 @@ export default class ParticleManager{
 	}
 
 	particlesDraw(): void{
-		this.params.canvas.ctx.clearRect( 0, 0, this.params.canvas.width, this.params.canvas.height );
+
+		let {canvas} = this.library;
+
+		canvas.ctx.clearRect( 0, 0, canvas.width, canvas.height );
 		this.params.fn.particlesUpdate();
 
 		this.params.particles.array.forEach( ( particle: Particle ) => {
@@ -180,7 +186,7 @@ export default class ParticleManager{
 		this.params.tmp.img_obj = undefined;
 		this.params.tmp.count_svg = 0;
 		this.particlesEmpty();
-		this.lib.canvasClear();
+		this.library.canvasClear();
 		this.params.fn.vendors.start();
 	}
 

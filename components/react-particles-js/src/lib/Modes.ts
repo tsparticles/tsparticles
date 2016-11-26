@@ -1,4 +1,4 @@
-import {clamp, isInArray, IParams, Particle} from '.';
+import {clamp, isInArray, IParams, Particle, ParticlesLibrary} from '.';
 
 type Pos = {
 	pos_x: number;
@@ -8,9 +8,11 @@ type Pos = {
 export default class Modes{
 
 	params: IParams;
+	library: ParticlesLibrary;
 
-	constructor( params: IParams ){
+	constructor( params: IParams, library: ParticlesLibrary ){
 		this.params = params;
+		this.library = library;
 		this.pushParticles = this.pushParticles.bind( this );
 		this.removeParticles = this.removeParticles.bind( this );
 		this.bubbleParticle = this.bubbleParticle.bind( this );
@@ -26,16 +28,19 @@ export default class Modes{
 	pushParticles( nb: number, pos?: Pos ): void{
 		this.params.tmp.pushing = true;
 
+		let {canvas} = this.library;
+
 		if( !pos )
 			pos = {
-				pos_x: Math.random() * this.params.canvas.width,
-				pos_y: Math.random() * this.params.canvas.height
+				pos_x: Math.random() * canvas.width,
+				pos_y: Math.random() * canvas.height
 			}
 
 		for( let i = 0; i < nb; i++ ){
 			this.params.particles.array.push(
 				new Particle(
 					this.params,
+					this.library,
 					this.params.particles.color,
 					this.params.particles.opacity.value,
 					{
@@ -184,6 +189,8 @@ export default class Modes{
 
 	repulseParticle( particle: Particle ){
 
+		let {canvas} = this.library;
+
 		if( this.params.interactivity.events.onhover.enable && 
 			isInArray( 'repulse', this.params.interactivity.events.onhover.mode ) &&
 			this.params.interactivity.status == 'mousemove' ) {
@@ -206,9 +213,9 @@ export default class Modes{
 			}
 
 			if( this.params.particles.move.out_mode == 'bounce' ){
-				if( pos.x - particle.radius > 0 && pos.x + particle.radius < this.params.canvas.width)
+				if( pos.x - particle.radius > 0 && pos.x + particle.radius < canvas.width)
 					particle.x = pos.x;
-				if( pos.y - particle.radius > 0 && pos.y + particle.radius < this.params.canvas.height )
+				if( pos.y - particle.radius > 0 && pos.y + particle.radius < canvas.height )
 					particle.y = pos.y;
 			}else{
 				particle.x = pos.x;
@@ -247,11 +254,11 @@ export default class Modes{
 								x: particle.x + particle.vx,
 								y: particle.y + particle.vy
 							}
-							if ( pos.x + particle.radius > this.params.canvas.width )
+							if ( pos.x + particle.radius > canvas.width )
 								particle.vx = -particle.vx;
 							else if ( pos.x - particle.radius < 0 )
 								particle.vx = -particle.vx;
-							if ( pos.y + particle.radius > this.params.canvas.height )
+							if ( pos.y + particle.radius > canvas.height )
 								particle.vy = -particle.vy;
 							else if ( pos.y - particle.radius < 0 )
 								particle.vy = -particle.vy;
@@ -273,7 +280,9 @@ export default class Modes{
 
 	grabParticle( particle: Particle ): void{
 
-		let {canvas, interactivity, particles} = this.params;
+		let {canvas} = this.library;
+
+		let {interactivity, particles} = this.params;
 
 		if( interactivity.events.onhover.enable &&
 			interactivity.status == 'mousemove' ){

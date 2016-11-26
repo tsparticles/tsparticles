@@ -1,11 +1,13 @@
-import {Particle, IParams} from '.';
+import {Particle, IParams, ParticlesLibrary} from '.';
 
 export default class Interact{
 
 	params: IParams;
+	library: ParticlesLibrary;
 
-	constructor( params: IParams ){
+	constructor( params: IParams, library: ParticlesLibrary ){
 		this.params = params;
+		this.library = library;
 		this.linkParticles = this.linkParticles.bind( this );
 		this.attractParticles = this.attractParticles.bind( this );
 		this.bounceParticles = this.bounceParticles.bind( this );
@@ -19,19 +21,21 @@ export default class Interact{
 		let dy: number = p1.y - p2.y;
 		let dist: number = Math.sqrt( dx * dx + dy * dy );
 
+		let {canvas} = this.library;
+
 		if( dist <= this.params.particles.line_linked.distance ){
 			let opacity_line: number = this.params.particles.line_linked.opacity - ( dist / ( 1 / this.params.particles.line_linked.opacity ) ) / this.params.particles.line_linked.distance;
 			if( opacity_line > 0 ){
 				let color_line: any = this.params.particles.line_linked.color_rgb_line;
 				let {r, g, b} = color_line;
-				this.params.canvas.ctx.strokeStyle = `rgba( ${r}, ${g}, ${b}, ${opacity_line} )`;
-				this.params.canvas.ctx.lineWidth = this.params.particles.line_linked.width;
+				canvas.ctx.strokeStyle = `rgba( ${r}, ${g}, ${b}, ${opacity_line} )`;
+				canvas.ctx.lineWidth = this.params.particles.line_linked.width;
 
-				this.params.canvas.ctx.beginPath();
-				this.params.canvas.ctx.moveTo( p1.x, p1.y );
-				this.params.canvas.ctx.lineTo( p2.x, p2.y );
-				this.params.canvas.ctx.stroke();
-				this.params.canvas.ctx.closePath();
+				canvas.ctx.beginPath();
+				canvas.ctx.moveTo( p1.x, p1.y );
+				canvas.ctx.lineTo( p2.x, p2.y );
+				canvas.ctx.stroke();
+				canvas.ctx.closePath();
 			}
 		}
 	}

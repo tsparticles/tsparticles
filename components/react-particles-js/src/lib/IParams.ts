@@ -1,11 +1,12 @@
+export interface ICanvasParam{
+	element: HTMLCanvasElement;
+	width: number;
+	height: number;
+	pxratio?: number;
+	ctx?: CanvasRenderingContext2D;
+}
+
 export interface IParams{
-	canvas: {
-		element: HTMLCanvasElement;
-		width: number;
-		height: number;
-		pxratio?: number;
-		ctx?: CanvasRenderingContext2D;
-	};
 	particles: {
 		number: {
 			value: number;

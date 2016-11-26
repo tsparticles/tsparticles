@@ -1,12 +1,14 @@
-import {IParams, Particle, isInArray, hexToRgb} from '.';
+import {IParams, Particle, isInArray, hexToRgb, ParticlesLibrary} from '.';
 
 export default class Vendors{
 
 	params: IParams;
+	library: ParticlesLibrary;
 
-	constructor( params: IParams ){
+	constructor( params: IParams, library: ParticlesLibrary ){
 
 		this.params = params;
+		this.library = library;
 		this.eventsListeners = this.eventsListeners.bind( this );
 		this.onMouseMove = this.onMouseMove.bind( this );
 		this.onMouseLeave = this.onMouseLeave.bind( this );
@@ -37,7 +39,8 @@ export default class Vendors{
 	}
 
 	eventsListeners(): void{
-		let {canvas, interactivity} = this.params;
+		let {interactivity} = this.params;
+		let {canvas} = this.library;
 
 		if( interactivity.detect_on == 'window' ){
 			interactivity.el = window;
@@ -78,7 +81,10 @@ export default class Vendors{
 	}
 
 	public onMouseMove( event: MouseEvent ): void{
-		let {canvas, interactivity, tmp} = this.params;
+
+		let {canvas} = this.library;
+
+		let {interactivity, tmp} = this.params;
 
 		let pos: {
 			x: number;
@@ -163,7 +169,9 @@ export default class Vendors{
 	}
 
 	densityAutoParticles(): void{
-		let {canvas, fn, particles, tmp} = this.params;
+
+		let {canvas} = this.library;
+		let {fn, particles, tmp} = this.params;
 
 		if( particles.number.density.enable ){
 			let area: number = canvas.element.width * canvas.element.height / 1000;
@@ -182,7 +190,8 @@ export default class Vendors{
 	}
 
 	checkOverlap( p1: Particle, position?: { x: number; y: number; } ): void{
-		let {canvas, fn, particles} = this.params;
+		let {canvas} = this.library;
+		let {fn, particles} = this.params;
 
 		particles.array.forEach( ( particle: Particle ) => {
 			let p2: Particle = particle; 
@@ -233,7 +242,8 @@ export default class Vendors{
 	}
 
 	destroy(): void{
-		let {canvas, fn} = this.params;
+		let {canvas} = this.library;
+		let {fn} = this.params;
 		cancelAnimationFrame( fn.drawAnimFrame );
 		canvas.element.remove();
 	}
@@ -257,7 +267,7 @@ export default class Vendors{
 	}
 
 	exportImg(): void{
-		let {canvas} = this.params;
+		let {canvas} = this.library;
 		window.open( canvas.element.toDataURL( 'image/png' ), '_blank' );
 	}
 
