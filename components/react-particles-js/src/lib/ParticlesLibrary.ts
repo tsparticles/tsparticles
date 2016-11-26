@@ -2,6 +2,7 @@
 
 import {
 	ICanvasParam,
+	ITmpParam,
 	IParams,
 	deepExtend,
 	defaultParams,
@@ -14,6 +15,7 @@ import {
 export default class ParticlesLibrary{
 
 	canvas: ICanvasParam;
+	tmp: ITmpParam = {};
 
 	params: IParams;
 	particleManager: ParticleManager;
@@ -74,7 +76,10 @@ export default class ParticlesLibrary{
 	}
 
 	extendTmpDefinition(): void{
-		this.params.tmp.obj = {
+
+		let {tmp} = this;
+
+		tmp.obj = {
 			size_value: this.params.particles.size.value,
 			size_anim_speed: this.params.particles.size.anim.speed,
 			move_speed: this.params.particles.move.speed,
@@ -93,28 +98,28 @@ export default class ParticlesLibrary{
 
 	retinaInit(): void{
 
-		let {canvas} = this;
+		let {canvas, tmp} = this;
 
 		if( this.params.retina_detect && window.devicePixelRatio > 1 ){
 			canvas.pxratio = window.devicePixelRatio;
-			this.params.tmp.retina = true;
+			tmp.retina = true;
 
 			canvas.width = canvas.element.offsetWidth * canvas.pxratio;
 			canvas.height = canvas.element.offsetHeight * canvas.pxratio;
 
-			this.params.particles.size.value = this.params.tmp.obj.size_value * canvas.pxratio;
-			this.params.particles.size.anim.speed = this.params.tmp.obj.size_anim_speed * canvas.pxratio;
-			this.params.particles.move.speed = this.params.tmp.obj.move_speed * canvas.pxratio;
-			this.params.particles.line_linked.distance = this.params.tmp.obj.line_linked_distance * canvas.pxratio;
-			this.params.interactivity.modes.grab.distance = this.params.tmp.obj.mode_grab_distance * canvas.pxratio;
-			this.params.interactivity.modes.bubble.distance = this.params.tmp.obj.mode_bubble_distance * canvas.pxratio;
-			this.params.particles.line_linked.width = this.params.tmp.obj.line_linked_width * canvas.pxratio;
-			this.params.interactivity.modes.bubble.size = this.params.tmp.obj.mode_bubble_size * canvas.pxratio;
-			this.params.interactivity.modes.repulse.distance = this.params.tmp.obj.mode_repulse_distance * canvas.pxratio;
+			this.params.particles.size.value = tmp.obj.size_value * canvas.pxratio;
+			this.params.particles.size.anim.speed = tmp.obj.size_anim_speed * canvas.pxratio;
+			this.params.particles.move.speed = tmp.obj.move_speed * canvas.pxratio;
+			this.params.particles.line_linked.distance = tmp.obj.line_linked_distance * canvas.pxratio;
+			this.params.interactivity.modes.grab.distance = tmp.obj.mode_grab_distance * canvas.pxratio;
+			this.params.interactivity.modes.bubble.distance = tmp.obj.mode_bubble_distance * canvas.pxratio;
+			this.params.particles.line_linked.width = tmp.obj.line_linked_width * canvas.pxratio;
+			this.params.interactivity.modes.bubble.size = tmp.obj.mode_bubble_size * canvas.pxratio;
+			this.params.interactivity.modes.repulse.distance = tmp.obj.mode_repulse_distance * canvas.pxratio;
 
 		}else{
 			canvas.pxratio = 1;
-			this.params.tmp.retina = false;
+			tmp.retina = false;
 		}
 	}
 
@@ -164,12 +169,12 @@ export default class ParticlesLibrary{
 
 	public onWindowResize(): void{
 
-		let {canvas} = this;
+		let {canvas, tmp} = this;
 
 		canvas.width = canvas.element.offsetWidth;
 		canvas.height = canvas.element.offsetHeight;
 
-		if( this.params.tmp.retina ){
+		if( tmp.retina ){
 			canvas.width *= canvas.pxratio;
 			canvas.height *= canvas.pxratio;
 		}

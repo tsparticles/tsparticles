@@ -6,6 +6,33 @@ export interface ICanvasParam{
 	ctx?: CanvasRenderingContext2D;
 }
 
+export interface ITmpParam{
+	obj?: {
+		size_value: number;
+	    size_anim_speed: number;
+	    move_speed: number;
+	    line_linked_distance: number;
+	    line_linked_width: number;
+	    mode_grab_distance: number;
+	    mode_bubble_distance: number;
+	    mode_bubble_size: number;
+	    mode_repulse_distance: number;
+	};
+	retina?: boolean;
+	img_type?: string;
+	img_obj?: any;
+	img_error?: any;
+	source_svg?: any;
+	count_svg?: number;
+	pushing?: any;
+	bubble_clicking?: boolean;
+	bubble_duration_end?: boolean;
+	repulse_clicking?: boolean;
+	repulse_finish?: boolean;
+	repulse_count?: number;
+	checkAnimFrame?: any;
+};
+
 export interface IParams{
 	particles: {
 		number: {
@@ -165,31 +192,5 @@ export interface IParams{
 		particle?: any;
 		checkAnimFrame?: any;
 		drawAnimFrame?: any;
-	};
-	tmp: {
-		obj: {
-			size_value: number;
-		    size_anim_speed: number;
-		    move_speed: number;
-		    line_linked_distance: number;
-		    line_linked_width: number;
-		    mode_grab_distance: number;
-		    mode_bubble_distance: number;
-		    mode_bubble_size: number;
-		    mode_repulse_distance: number;
-		};
-		retina: boolean;
-		img_type?: string;
-		img_obj?: any;
-		img_error?: any;
-		source_svg?: any;
-		count_svg?: number;
-		pushing?: any;
-		bubble_clicking?: boolean;
-		bubble_duration_end?: boolean;
-		repulse_clicking?: boolean;
-		repulse_finish?: boolean;
-		repulse_count?: number;
-		checkAnimFrame?: any;
 	};
 }

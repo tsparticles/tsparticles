@@ -113,10 +113,6 @@ let defaultParams: IParams = {
 		interact: {},
 		modes: {},
 		vendors: {}
-	},
-	tmp: {
-		obj: null,
-		retina: null
 	}
 };
 

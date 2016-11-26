@@ -82,9 +82,9 @@ export default class Vendors{
 
 	public onMouseMove( event: MouseEvent ): void{
 
-		let {canvas} = this.library;
+		let {canvas, tmp} = this.library;
 
-		let {interactivity, tmp} = this.params;
+		let {interactivity} = this.params;
 
 		let pos: {
 			x: number;
@@ -123,7 +123,8 @@ export default class Vendors{
 	}
 
 	public onClick(): void{
-		let {fn, interactivity, particles, tmp} = this.params;
+		let {tmp} = this.library;
+		let {fn, interactivity, particles} = this.params;
 
 		interactivity.mouse.click_pos_x = interactivity.mouse.pos_x;
 		interactivity.mouse.click_pos_y = interactivity.mouse.pos_y;
@@ -170,8 +171,8 @@ export default class Vendors{
 
 	densityAutoParticles(): void{
 
-		let {canvas} = this.library;
-		let {fn, particles, tmp} = this.params;
+		let {canvas, tmp} = this.library;
+		let {fn, particles} = this.params;
 
 		if( particles.number.density.enable ){
 			let area: number = canvas.element.width * canvas.element.height / 1000;
@@ -209,7 +210,7 @@ export default class Vendors{
 	}
 
 	createSvgImg( particle: Particle ): void{
-		let {tmp} = this.params;
+		let {tmp} = this.library;
 
 		let svgXml: string = tmp.source_svg;
 		let rgbHex: RegExp = /#([0-9A-F]{3,6})/gi;
@@ -272,7 +273,8 @@ export default class Vendors{
 	}
 
 	loadImg( type: string ): void{
-		let {fn, particles, tmp} = this.params;
+		let {tmp} = this.library;
+		let {fn, particles} = this.params;
 
 		tmp.img_error = undefined;
 		if( particles.shape.image.src != '' ){
@@ -307,7 +309,8 @@ export default class Vendors{
 
 	draw(): void{
 
-		let {fn, particles, tmp} = this.params;
+		let {tmp} = this.library;
+		let {fn, particles} = this.params;
 
 		if( particles.shape.type == 'image' ){
 			if( tmp.img_type == 'svg' ){
@@ -348,7 +351,8 @@ export default class Vendors{
 	}
 
 	checkBeforeDraw(): void{
-		let {fn, particles, tmp} = this.params;
+		let {tmp} = this.library;
+		let {fn, particles} = this.params;
 
 		if( particles.shape.type == 'image' ){
 			if( tmp.img_type == 'svg' && tmp.source_svg == undefined ){
@@ -379,7 +383,8 @@ export default class Vendors{
 	}
 
 	start(): void{
-		let {fn, particles, tmp} = this.params;
+		let {tmp} = this.library;
+		let {fn, particles} = this.params;
 		if( isInArray( 'image', particles.shape.type ) ){
 			tmp.img_type = particles.shape.image.src.substr( particles.shape.image.src.length - 3 );
 			fn.vendors.loadImg( tmp.img_type );

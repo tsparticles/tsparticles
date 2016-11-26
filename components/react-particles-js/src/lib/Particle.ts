@@ -113,6 +113,9 @@ export default class Particle{
 	}
 
 	setupAnimation(): void{
+
+		let {tmp} = this.library;
+
 		let velbase: { x: number; y: number; } = null;
 		switch( this.params.particles.move.direction ){
 			case 'top':
@@ -177,9 +180,9 @@ export default class Particle{
 			};
 			if( !this.img.ratio )
 				this.img.ratio = 1;
-			if( this.params.tmp.img_type == 'svg' && this.params.tmp.source_svg != undefined ){
+			if( tmp.img_type == 'svg' && tmp.source_svg != undefined ){
 				this.params.fn.vendors.createSvgImg( this );
-				if( this.params.tmp.pushing ){
+				if( tmp.pushing ){
 					this.img.loaded = false;
 				}
 			}
@@ -188,7 +191,7 @@ export default class Particle{
 
 	public draw(): void{
 
-		let {canvas} = this.library;
+		let {canvas, tmp} = this.library;
 
 		let radius: number;
 		if( this.radius_bubble != undefined ){
@@ -265,10 +268,10 @@ export default class Particle{
 						);
 					};
 				let img_obj: any;
-				if( this.params.tmp.img_type == 'svg' ){
+				if( tmp.img_type == 'svg' ){
 					img_obj = this.img.obj;
 				}else{
-					img_obj = this.params.tmp.img_obj;
+					img_obj = tmp.img_obj;
 				}
 				if( img_obj )
 					draw( img_obj );

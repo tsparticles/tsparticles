@@ -26,9 +26,9 @@ export default class Modes{
 	}
 
 	pushParticles( nb: number, pos?: Pos ): void{
-		this.params.tmp.pushing = true;
+		let {canvas, tmp} = this.library;
 
-		let {canvas} = this.library;
+		tmp.pushing = true;
 
 		if( !pos )
 			pos = {
@@ -53,7 +53,7 @@ export default class Modes{
 				if( !this.params.particles.move.enable ){
 					this.params.fn.particlesDraw();
 				}
-				this.params.tmp.pushing = false;
+				tmp.pushing = false;
 			}
 		}
 	}
@@ -66,6 +66,9 @@ export default class Modes{
 	}
 
 	bubbleParticle( particle: Particle ){
+
+		let {tmp} = this.library;
+
 		if( this.params.interactivity.events.onhover.enable &&
 			isInArray( 'bubble', this.params.interactivity.events.onhover.mode ) ){
 
@@ -126,25 +129,25 @@ export default class Modes{
 		}else if( this.params.interactivity.events.onclick.enable &&
 			isInArray( 'bubble', this.params.interactivity.events.onclick.mode ) ){
 
-			if( this.params.tmp.bubble_clicking ){
+			if( tmp.bubble_clicking ){
 				let dx_mouse: number = particle.x - this.params.interactivity.mouse.click_pos_x;
 				let dy_mouse: number = particle.y - this.params.interactivity.mouse.click_pos_y;
 				let dist_mouse: number = Math.sqrt( dx_mouse * dx_mouse + dy_mouse * dy_mouse );
 				let time_spent: number = ( new Date().getTime() - this.params.interactivity.mouse.click_time ) / 1000;
 
 				if( time_spent > this.params.interactivity.modes.bubble.duration ){
-					this.params.tmp.bubble_duration_end = true;
+					tmp.bubble_duration_end = true;
 				}
 
 				if( time_spent > this.params.interactivity.modes.bubble.duration * 2 ){
-					this.params.tmp.bubble_clicking = false;
-					this.params.tmp.bubble_duration_end = false;
+					tmp.bubble_clicking = false;
+					tmp.bubble_duration_end = false;
 				}
 
 				let process: any = ( bubble_param: any, particles_param: any, p_obj_bubble: any, p_obj: any, id: any ) => {
 					 // TODO Check where dist_mouse is initiated ( Line 890 )
 					if( bubble_param != particles_param ){
-						if( !this.params.tmp.bubble_duration_end ){
+						if( !tmp.bubble_duration_end ){
 							if( dist_mouse <= this.params.interactivity.modes.bubble.distance ){
 								let obj: any;
 								if( p_obj_bubble != undefined ){
@@ -179,7 +182,7 @@ export default class Modes{
 					}
 				};
 
-				if( this.params.tmp.bubble_clicking ){
+				if( tmp.bubble_clicking ){
 					process( this.params.interactivity.modes.bubble.size, this.params.particles.size.value, particle.radius_bubble, particle.radius, 'size' );
 					process( this.params.interactivity.modes.bubble.opacity, this.params.particles.opacity.value, particle.opacity_bubble, particle.opacity, 'opacity' );
 				}
@@ -189,7 +192,7 @@ export default class Modes{
 
 	repulseParticle( particle: Particle ){
 
-		let {canvas} = this.library;
+		let {canvas, tmp} = this.library;
 
 		if( this.params.interactivity.events.onhover.enable && 
 			isInArray( 'repulse', this.params.interactivity.events.onhover.mode ) &&
@@ -225,13 +228,13 @@ export default class Modes{
 		}else if( this.params.interactivity.events.onclick.enable &&
 			isInArray( 'repulse', this.params.interactivity.events.onclick.mode ) ){
 
-			if( !this.params.tmp.repulse_finish ){
-				this.params.tmp.repulse_count++;
-				if( this.params.tmp.repulse_count == this.params.particles.array.length )
-					this.params.tmp.repulse_finish = true;
+			if( !tmp.repulse_finish ){
+				tmp.repulse_count++;
+				if( tmp.repulse_count == this.params.particles.array.length )
+					tmp.repulse_finish = true;
 			}
 
-			if( this.params.tmp.repulse_clicking ){
+			if( tmp.repulse_clicking ){
 
 				let repulseRadius: number = Math.pow(this.params.interactivity.modes.repulse.distance/6, 3);
 
@@ -269,7 +272,7 @@ export default class Modes{
 					process();
 				}
 			}else{
-				if( this.params.tmp.repulse_clicking == false ){
+				if( tmp.repulse_clicking == false ){
 					particle.vx = particle.vx_i;
 					particle.vy = particle.vy_i;
 				}
