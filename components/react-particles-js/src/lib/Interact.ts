@@ -8,19 +8,12 @@ export default class Interact{
 	constructor( params: IParams, library: ParticlesLibrary ){
 		this.params = params;
 		this.library = library;
-		this.linkParticles = this.linkParticles.bind( this );
-		this.attractParticles = this.attractParticles.bind( this );
-		this.bounceParticles = this.bounceParticles.bind( this );
-		this.params.fn.interact.linkParticles = this.linkParticles;
-		this.params.fn.interact.attractParticles = this.attractParticles;
-		this.params.fn.interact.bounceParticles = this.bounceParticles;
 	}
 
 	linkParticles( p1: Particle, p2: Particle ): void{
 		let dx: number = p1.x - p2.x;
 		let dy: number = p1.y - p2.y;
 		let dist: number = Math.sqrt( dx * dx + dy * dy );
-
 		let {canvas} = this.library;
 
 		if( dist <= this.params.particles.line_linked.distance ){

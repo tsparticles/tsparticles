@@ -14,21 +14,8 @@ export default class ParticleManager{
 		this.modes = modes;
 		this.vendors = vendors;
 		this.library = library;
-		this.particlesCreate = this.particlesCreate.bind( this );
-		this.particlesUpdate = this.particlesUpdate.bind( this );
-		this.particlesDraw = this.particlesDraw.bind( this );
-		this.particlesEmpty = this.particlesEmpty.bind( this );
-		this.particlesRefresh = this.particlesRefresh.bind( this );
-		this.extendParticleFunctionDefinition();
 	}
 
-	extendParticleFunctionDefinition(): void{
-		this.params.fn.particlesCreate = this.particlesCreate;
-		this.params.fn.particlesUpdate = this.particlesUpdate;
-		this.params.fn.particlesDraw = this.particlesDraw;
-		this.params.fn.particlesEmpty = this.particlesEmpty;
-		this.params.fn.particlesRefresh = this.particlesRefresh;
-	}
 
 	particlesCreate(): void{
 		let {color, opacity} = this.params.particles;
@@ -38,8 +25,7 @@ export default class ParticleManager{
 	}
 
 	particlesUpdate(): void{
-
-		let {canvas} = this.library;
+		let {canvas, interact, modes} = this.library;
 
 		this.params.particles.array.forEach( ( particle: Particle, i: number ) => {
 
@@ -131,33 +117,33 @@ export default class ParticleManager{
 			}
 
 			if( isInArray( 'grab', this.params.interactivity.events.onhover.mode ) ){
-				this.params.fn.modes.grabParticle( particle );
+				modes.grabParticle( particle );
 			}
 
 			if( isInArray( 'bubble', this.params.interactivity.events.onhover.mode ) || 
 				isInArray( 'bubble', this.params.interactivity.events.onclick.mode ) ){
-				this.params.fn.modes.bubbleParticle( particle );
+				modes.bubbleParticle( particle );
 			}
 
 			if( isInArray( 'repulse', this.params.interactivity.events.onhover.mode ) || 
 				isInArray( 'repulse', this.params.interactivity.events.onclick.mode ) ){
-				this.params.fn.modes.repulseParticle( particle );
+				modes.repulseParticle( particle );
 			}
 
-			let {linkParticles, attractParticles, bounceParticles} = this.interact;
+			//let {linkParticles, attractParticles, bounceParticles} = this.interact;
 
 			if( this.params.particles.line_linked.enable || this.params.particles.move.attract.enable ){
 				for( let j = i + 1; j < this.params.particles.array.length; j++ ){
 					let link = this.params.particles.array[ j ];
 
 					if( this.params.particles.line_linked.enable )
-						linkParticles( particle, link );
+						interact.linkParticles( particle, link );
 
 					if( this.params.particles.move.attract.enable )
-						attractParticles( particle, link );
+						interact.attractParticles( particle, link );
 
 					if( this.params.particles.move.bounce )
-						bounceParticles( particle, link );
+						interact.bounceParticles( particle, link );
 				}
 			}
 		});
@@ -165,10 +151,10 @@ export default class ParticleManager{
 
 	particlesDraw(): void{
 
-		let {canvas} = this.library;
+		let {canvas, manager} = this.library;
 
 		canvas.ctx.clearRect( 0, 0, canvas.width, canvas.height );
-		this.params.fn.particlesUpdate();
+		manager.particlesUpdate();
 
 		this.params.particles.array.forEach( ( particle: Particle ) => {
 			particle.draw();
@@ -181,16 +167,16 @@ export default class ParticleManager{
 
 	particlesRefresh(): void{
 
-		let {tmp} = this.library;
+		let {tmp, vendors} = this.library;
 
-		cancelAnimationFrame( this.params.fn.checkAnimFrame );
-		cancelAnimationFrame( this.params.fn.drawAnimFrame );
+		cancelAnimationFrame( tmp.checkAnimFrame );
+		cancelAnimationFrame( tmp.drawAnimFrame );
 		tmp.source_svg = undefined;
 		tmp.img_obj = undefined;
 		tmp.count_svg = 0;
 		this.particlesEmpty();
 		this.library.canvasClear();
-		this.params.fn.vendors.start();
+		vendors.start();
 	}
 
 }

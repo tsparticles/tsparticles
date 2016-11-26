@@ -31,6 +31,15 @@ export interface ITmpParam{
 	repulse_finish?: boolean;
 	repulse_count?: number;
 	checkAnimFrame?: any;
+	drawAnimFrame?: any;
+};
+
+export interface IMouseParam{
+	pos_x?: number;
+	pos_y?: number;
+	click_pos_x?: number;
+	click_pos_y?: number;
+	click_time?: number;
 };
 
 export interface IParams{
@@ -143,54 +152,7 @@ export interface IParams{
 				particles_nb: number;
 			};
 		};
-		mouse?: {
-			pos_x?: number;
-			pos_y?: number;
-			click_pos_x?: number;
-			click_pos_y?: number;
-			click_time?: number;
-		};
+		mouse?: IMouseParam;
 	};
 	retina_detect: boolean;
-	fn: {
-		interact?: {
-			linkParticles?: any;
-			attractParticles?: any;
-			bounceParticles?: any;
-		};
-		modes?: {
-			grabParticle?: any;
-			bubbleParticle?: any;
-			repulseParticle?: any;
-			pushParticles?: any;
-			removeParticles?: any;
-		};
-		retinaInit?: any;
-		canvasInit?: any;
-		canvasSize?: any;
-		canvasPaint?: any;
-		canvasClear?: any;
-		particlesCreate?: any;
-		particlesDraw?: any;
-		particlesEmpty?: any;
-		particlesRefresh?: any;
-		particlesUpdate?: any;
-		vendors?: {
-			start?: any;
-			eventsListeners?: any;
-			destroy?: any;
-			densityAutoParticles?: any;
-			checkOverlap?: any;
-			createSvgImg?: any;
-			drawShape?: any;
-			checkBeforeDraw?: any;
-			exportImg?: any;
-			loadImg?: any;
-			draw?: any;
-			init?: any;
-		};
-		particle?: any;
-		checkAnimFrame?: any;
-		drawAnimFrame?: any;
-	};
 }

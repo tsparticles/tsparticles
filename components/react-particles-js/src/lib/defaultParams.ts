@@ -108,12 +108,7 @@ let defaultParams: IParams = {
 		},
 		mouse:{}
 	},
-	retina_detect: true,
-	fn: {
-		interact: {},
-		modes: {},
-		vendors: {}
-	}
+	retina_detect: true
 };
 
 export {

@@ -9,33 +9,10 @@ export default class Vendors{
 
 		this.params = params;
 		this.library = library;
-		this.eventsListeners = this.eventsListeners.bind( this );
+		
 		this.onMouseMove = this.onMouseMove.bind( this );
 		this.onMouseLeave = this.onMouseLeave.bind( this );
 		this.onClick = this.onClick.bind( this );
-		this.densityAutoParticles = this.densityAutoParticles.bind( this );
-		this.checkOverlap = this.checkOverlap.bind( this );
-		this.createSvgImg = this.createSvgImg.bind( this );
-		this.destroy = this.destroy.bind( this );
-		this.drawShape = this.drawShape.bind( this );
-		this.exportImg = this.exportImg.bind( this );
-		this.loadImg = this.loadImg.bind( this );
-		this.draw = this.draw.bind( this );
-		this.checkBeforeDraw = this.checkBeforeDraw.bind( this );
-		this.init = this.init.bind( this );
-		this.start = this.start.bind( this );
-		this.params.fn.vendors.eventsListeners = this.eventsListeners
-		this.params.fn.vendors.densityAutoParticles = this.densityAutoParticles
-		this.params.fn.vendors.checkOverlap = this.checkOverlap
-		this.params.fn.vendors.createSvgImg = this.createSvgImg
-		this.params.fn.vendors.destroy = this.destroy
-		this.params.fn.vendors.drawShape = this.drawShape
-		this.params.fn.vendors.exportImg = this.exportImg
-		this.params.fn.vendors.loadImg = this.loadImg
-		this.params.fn.vendors.draw = this.draw
-		this.params.fn.vendors.checkBeforeDraw = this.checkBeforeDraw
-		this.params.fn.vendors.init = this.init
-		this.params.fn.vendors.start = this.start
 	}
 
 	eventsListeners(): void{
@@ -63,6 +40,7 @@ export default class Vendors{
 
 	detachListeners(): void{
 		let {interactivity} = this.params;
+		let {tmp} = this.library;
 
 		if( interactivity.el ){
 
@@ -77,7 +55,7 @@ export default class Vendors{
 			}
 		}
 
-		window.cancelAnimationFrame( this.params.fn.drawAnimFrame );
+		window.cancelAnimationFrame( tmp.drawAnimFrame );
 	}
 
 	public onMouseMove( event: MouseEvent ): void{
@@ -123,8 +101,8 @@ export default class Vendors{
 	}
 
 	public onClick(): void{
-		let {tmp} = this.library;
-		let {fn, interactivity, particles} = this.params;
+		let {modes, tmp} = this.library;
+		let {interactivity, particles} = this.params;
 
 		interactivity.mouse.click_pos_x = interactivity.mouse.pos_x;
 		interactivity.mouse.click_pos_y = interactivity.mouse.pos_y;
@@ -137,18 +115,18 @@ export default class Vendors{
 
 				case 'push':
 					if( particles.move.enable ){
-						fn.modes.pushParticles( interactivity.modes.push.particles_nb, interactivity.mouse );
+						modes.pushParticles( interactivity.modes.push.particles_nb, interactivity.mouse );
 					}else{
 						if( interactivity.modes.push.particles_nb == 1 ){
-							fn.modes.pushParticles( interactivity.modes.push.particles_nb, interactivity.mouse );
+							modes.pushParticles( interactivity.modes.push.particles_nb, interactivity.mouse );
 						}else if( interactivity.modes.push.particles_nb > 1 ){
-							fn.modes.pushParticles( interactivity.modes.push.particles_nb );
+							modes.pushParticles( interactivity.modes.push.particles_nb );
 						}
 					}
 					break;
 
 				case 'remove':
-					fn.modes.removeParticles( interactivity.modes.remove.particles_nb );
+					modes.removeParticles( interactivity.modes.remove.particles_nb );
 					break;
 
 				case 'bubble':
@@ -171,8 +149,8 @@ export default class Vendors{
 
 	densityAutoParticles(): void{
 
-		let {canvas, tmp} = this.library;
-		let {fn, particles} = this.params;
+		let {canvas, modes, tmp} = this.library;
+		let {particles} = this.params;
 
 		if( particles.number.density.enable ){
 			let area: number = canvas.element.width * canvas.element.height / 1000;
@@ -183,16 +161,16 @@ export default class Vendors{
 			let nb_particles: number = area * particles.number.value / particles.number.density.value_area;
 			let missing_particles: number = particles.array.length - nb_particles;
 			if( missing_particles < 0 ){
-				fn.modes.pushParticles( Math.abs( missing_particles ) );
+				modes.pushParticles( Math.abs( missing_particles ) );
 			}else{
-				fn.modes.removeParticles( missing_particles );
+				modes.removeParticles( missing_particles );
 			}
 		}
 	}
 
 	checkOverlap( p1: Particle, position?: { x: number; y: number; } ): void{
-		let {canvas} = this.library;
-		let {fn, particles} = this.params;
+		let {canvas, vendors} = this.library;
+		let {particles} = this.params;
 
 		particles.array.forEach( ( particle: Particle ) => {
 			let p2: Particle = particle; 
@@ -204,7 +182,7 @@ export default class Vendors{
 			if( dist <= p1.radius + p2.radius ){
 				p1.x = position ? position.x : Math.random() * canvas.width;
 				p1.y = position ? position.y : Math.random() * canvas.height;
-				fn.vendors.checkOverlap( p1 );
+				vendors.checkOverlap( p1 );
 			}
 		});
 	}
@@ -243,9 +221,8 @@ export default class Vendors{
 	}
 
 	destroy(): void{
-		let {canvas} = this.library;
-		let {fn} = this.params;
-		cancelAnimationFrame( fn.drawAnimFrame );
+		let {canvas, tmp} = this.library;
+		cancelAnimationFrame( tmp.drawAnimFrame );
 		canvas.element.remove();
 	}
 
@@ -273,8 +250,8 @@ export default class Vendors{
 	}
 
 	loadImg( type: string ): void{
-		let {tmp} = this.library;
-		let {fn, particles} = this.params;
+		let {tmp, vendors} = this.library;
+		let {particles} = this.params;
 
 		tmp.img_error = undefined;
 		if( particles.shape.image.src != '' ){
@@ -285,7 +262,7 @@ export default class Vendors{
 					if( xhr.readyState == 4 ){
 						if( xhr.status == 200 ){
 							tmp.source_svg = data.currentTarget.response;
-							fn.vendors.checkBeforeDraw();
+							vendors.checkBeforeDraw();
 						}else{
 							console.log( 'Error react-particles-js - image not found' );
 							tmp.img_error = true;
@@ -297,7 +274,7 @@ export default class Vendors{
 				let img: HTMLImageElement = new Image();
 				img.addEventListener( 'load', () => {
 					tmp.img_obj = img;
-					fn.vendors.checkBeforeDraw();
+					vendors.checkBeforeDraw();
 				});
 				img.src = particles.shape.image.src;
 			}
@@ -309,50 +286,50 @@ export default class Vendors{
 
 	draw(): void{
 
-		let {tmp} = this.library;
-		let {fn, particles} = this.params;
+		let {tmp, manager, vendors} = this.library;
+		let {particles} = this.params;
 
 		if( particles.shape.type == 'image' ){
 			if( tmp.img_type == 'svg' ){
 				if( tmp.count_svg >= particles.number.value ){
-					fn.particlesDraw();
+					manager.particlesDraw();
 					if( !particles.move.enable ){
-						cancelAnimationFrame( fn.drawAnimFrame );
+						cancelAnimationFrame( tmp.drawAnimFrame );
 					}else{
-						fn.drawAnimFrame = requestAnimationFrame( fn.vendors.draw );
+						tmp.drawAnimFrame = requestAnimationFrame( vendors.draw.bind( vendors ) );
 					}
 				}else{
 					if( !tmp.img_error ){
-						fn.drawAnimFrame = requestAnimationFrame( fn.vendors.draw );
+						tmp.drawAnimFrame = requestAnimationFrame( vendors.draw.bind( vendors ) );
 					}
 				}
 			}else{
 				if( tmp.img_obj != undefined ){
-					fn.particlesDraw();
+					manager.particlesDraw();
 					if( !particles.move.enable ){
-						cancelAnimationFrame( fn.drawAnimFrame );
+						cancelAnimationFrame( tmp.drawAnimFrame );
 					}else{
-						fn.drawAnimFrame = requestAnimationFrame( fn.vendors.draw );
+						tmp.drawAnimFrame = requestAnimationFrame( vendors.draw.bind( vendors ) );
 					}
 				}else{
 					if( !tmp.img_error ){
-						fn.drawAnimFrame = requestAnimationFrame( fn.vendors.draw );
+						tmp.drawAnimFrame = requestAnimationFrame( vendors.draw.bind( vendors ) );
 					}
 				}
 			}
 		}else{
-			fn.particlesDraw();
+			manager.particlesDraw();
 			if( !particles.move.enable ){
-				cancelAnimationFrame( fn.drawAnimFrame );
+				cancelAnimationFrame( tmp.drawAnimFrame );
 			}else{
-				fn.drawAnimFrame = requestAnimationFrame( fn.vendors.draw );
+				tmp.drawAnimFrame = requestAnimationFrame( vendors.draw.bind( vendors ) );
 			}
 		}
 	}
 
 	checkBeforeDraw(): void{
-		let {tmp} = this.library;
-		let {fn, particles} = this.params;
+		let {tmp, vendors} = this.library;
+		let {particles} = this.params;
 
 		if( particles.shape.type == 'image' ){
 			if( tmp.img_type == 'svg' && tmp.source_svg == undefined ){
@@ -362,34 +339,36 @@ export default class Vendors{
 			}else{
 				cancelAnimationFrame( tmp.checkAnimFrame );
 				if( !tmp.img_error ){
-					fn.vendors.init();
-					fn.vendors.draw();
+					vendors.init();
+					vendors.draw();
 				}
 			}
 		}else{
-			fn.vendors.init();
-			fn.vendors.draw();
+			vendors.init();
+			vendors.draw();
 		}
 	}
 
 	init(): void{
-		let {fn, particles} = this.params;
-		fn.retinaInit();
-		fn.canvasInit();
-		fn.canvasSize();
-		fn.particlesCreate();
-		fn.vendors.densityAutoParticles();
+		let {library} = this;
+		let {manager, vendors} = library;
+		let {particles} = this.params;
+		library.retinaInit();
+		library.canvasInit();
+		library.canvasSize();
+		manager.particlesCreate();
+		vendors.densityAutoParticles();
 		particles.line_linked.color_rgb_line = hexToRgb( particles.line_linked.color );
 	}
 
 	start(): void{
-		let {tmp} = this.library;
-		let {fn, particles} = this.params;
+		let {tmp, vendors} = this.library;
+		let {particles} = this.params;
 		if( isInArray( 'image', particles.shape.type ) ){
 			tmp.img_type = particles.shape.image.src.substr( particles.shape.image.src.length - 3 );
-			fn.vendors.loadImg( tmp.img_type );
+			vendors.loadImg( tmp.img_type );
 		}else{
-			fn.vendors.checkBeforeDraw();
+			vendors.checkBeforeDraw();
 		}
 	}
 

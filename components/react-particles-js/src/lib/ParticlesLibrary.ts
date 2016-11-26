@@ -16,9 +16,9 @@ export default class ParticlesLibrary{
 
 	canvas: ICanvasParam;
 	tmp: ITmpParam = {};
-
 	params: IParams;
-	particleManager: ParticleManager;
+	
+	manager: ParticleManager;
 	interact: Interact;
 	modes: Modes;
 	vendors: Vendors;
@@ -32,7 +32,7 @@ export default class ParticlesLibrary{
 		this.interact = new Interact( this.params, this );
 		this.modes = new Modes( this.params, this );
 		this.vendors = new Vendors( this.params, this );
-		this.particleManager = new ParticleManager( this.params, this.interact, this.modes, this.vendors, this );
+		this.manager = new ParticleManager( this.params, this.interact, this.modes, this.vendors, this );
 	}
 
 	loadParameters( params?: any ): void{
@@ -49,8 +49,9 @@ export default class ParticlesLibrary{
 	}
 
 	start(): void{
-		this.params.fn.vendors.eventsListeners();
-		this.params.fn.vendors.start();
+		let {vendors} = this;
+		vendors.eventsListeners();
+		vendors.start();
 	}
 
 	destroy(): void{
@@ -65,14 +66,6 @@ export default class ParticlesLibrary{
 	extendParams( canvasElement: HTMLCanvasElement ): void{
 		this.extendTmpDefinition();
 		this.onWindowResize = this.onWindowResize.bind( this );
-		this.retinaInit = this.retinaInit.bind( this );
-		this.canvasInit = this.canvasInit.bind( this );
-		this.canvasSize = this.canvasSize.bind( this );
-		this.canvasPaint = this.canvasPaint.bind( this );
-		this.canvasClear = this.canvasClear.bind( this );
-		this.extendRetinaFunctionDefinition();
-		this.extendCanvasFunctionDefinition();
-		this.extendParticleFunctionDefinition();
 	}
 
 	extendTmpDefinition(): void{
@@ -92,9 +85,6 @@ export default class ParticlesLibrary{
 		};
 	}
 
-	extendRetinaFunctionDefinition(): void{
-		this.params.fn.retinaInit = this.retinaInit;
-	}
 
 	retinaInit(): void{
 
@@ -121,13 +111,6 @@ export default class ParticlesLibrary{
 			canvas.pxratio = 1;
 			tmp.retina = false;
 		}
-	}
-
-	extendCanvasFunctionDefinition(): void{
-		this.params.fn.canvasInit = this.canvasInit;
-		this.params.fn.canvasSize = this.canvasSize;
-		this.params.fn.canvasPaint = this.canvasPaint;
-		this.params.fn.canvasClear = this.canvasClear;
 	}
 
 	canvasInit(): void{
@@ -163,13 +146,9 @@ export default class ParticlesLibrary{
 		canvas.ctx.clearRect( 0, 0, canvas.width, canvas.height );
 	}
 
-	extendParticleFunctionDefinition(): void{
-		this.params.fn.particle = Particle;
-	}
-
 	public onWindowResize(): void{
 
-		let {canvas, tmp} = this;
+		let {canvas, manager, tmp, vendors} = this;
 
 		canvas.width = canvas.element.offsetWidth;
 		canvas.height = canvas.element.offsetHeight;
@@ -183,13 +162,13 @@ export default class ParticlesLibrary{
 		canvas.element.height = canvas.height;
 
 		if( !this.params.particles.move.enable ){
-			this.params.fn.particlesEmpty();
-			this.params.fn.particlesCreate();
-			this.params.fn.particlesDraw();
-			this.params.fn.vendors.densityAutoParticles();
+			manager.particlesEmpty();
+			manager.particlesCreate();
+			manager.particlesDraw();
+			vendors.densityAutoParticles();
 		}
 
-		this.params.fn.vendors.densityAutoParticles();
+		vendors.densityAutoParticles();
 	}
 
 }

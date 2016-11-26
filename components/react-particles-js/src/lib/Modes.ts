@@ -1,4 +1,4 @@
-import {clamp, isInArray, IParams, Particle, ParticlesLibrary} from '.';
+import {clamp, isInArray, IMouseParam, IParams, Particle, ParticlesLibrary} from '.';
 
 type Pos = {
 	pos_x: number;
@@ -13,20 +13,10 @@ export default class Modes{
 	constructor( params: IParams, library: ParticlesLibrary ){
 		this.params = params;
 		this.library = library;
-		this.pushParticles = this.pushParticles.bind( this );
-		this.removeParticles = this.removeParticles.bind( this );
-		this.bubbleParticle = this.bubbleParticle.bind( this );
-		this.repulseParticle = this.repulseParticle.bind( this );
-		this.grabParticle = this.grabParticle.bind( this );
-		this.params.fn.modes.pushParticles = this.pushParticles;
-		this.params.fn.modes.removeParticles = this.removeParticles;
-		this.params.fn.modes.bubbleParticle = this.bubbleParticle;
-		this.params.fn.modes.repulseParticle = this.repulseParticle;
-		this.params.fn.modes.grabParticle = this.grabParticle;
 	}
 
-	pushParticles( nb: number, pos?: Pos ): void{
-		let {canvas, tmp} = this.library;
+	pushParticles( nb: number, pos?: IMouseParam ): void{
+		let {canvas, tmp, manager} = this.library;
 
 		tmp.pushing = true;
 
@@ -51,7 +41,7 @@ export default class Modes{
 
 			if( i == nb -1 ){
 				if( !this.params.particles.move.enable ){
-					this.params.fn.particlesDraw();
+					manager.particlesDraw();
 				}
 				tmp.pushing = false;
 			}
@@ -59,9 +49,12 @@ export default class Modes{
 	}
 
 	removeParticles( nb: number ): void{
+
+		let {manager} = this.library;
+
 		this.params.particles.array.splice( 0, nb );
 		if( !this.params.particles.move.enable ){
-			this.params.fn.particlesDraw();
+			manager.particlesDraw();
 		}
 	}
 

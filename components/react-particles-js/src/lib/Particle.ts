@@ -52,7 +52,7 @@ export default class Particle{
 
 	setupPosition( position?: { x: number; y: number; }): void{
 
-		let {canvas} = this.library;
+		let {canvas, vendors} = this.library;
 
 		this.x = position ? position.x : Math.random() * canvas.width;
 		this.y = position ? position.y : Math.random() * canvas.height;
@@ -69,7 +69,7 @@ export default class Particle{
 		}
 
 		if( this.params.particles.move.bounce ){
-			this.params.fn.vendors.checkOverlap( this, position );
+			vendors.checkOverlap( this, position );
 		}
 	}
 
@@ -114,7 +114,7 @@ export default class Particle{
 
 	setupAnimation(): void{
 
-		let {tmp} = this.library;
+		let {tmp, vendors} = this.library;
 
 		let velbase: { x: number; y: number; } = null;
 		switch( this.params.particles.move.direction ){
@@ -181,7 +181,7 @@ export default class Particle{
 			if( !this.img.ratio )
 				this.img.ratio = 1;
 			if( tmp.img_type == 'svg' && tmp.source_svg != undefined ){
-				this.params.fn.vendors.createSvgImg( this );
+				vendors.createSvgImg( this );
 				if( tmp.pushing ){
 					this.img.loaded = false;
 				}
@@ -191,7 +191,7 @@ export default class Particle{
 
 	public draw(): void{
 
-		let {canvas, tmp} = this.library;
+		let {canvas, tmp, vendors} = this.library;
 
 		let radius: number;
 		if( this.radius_bubble != undefined ){
@@ -231,11 +231,11 @@ export default class Particle{
 				break;
 
 			case 'triangle':
-				this.params.fn.vendors.drawShape( canvas.ctx, this.x - radius, this.y + radius / 1.66, radius * 2, 3, 2 );
+				vendors.drawShape( canvas.ctx, this.x - radius, this.y + radius / 1.66, radius * 2, 3, 2 );
 				break;
 
 			case 'polygon':
-				this.params.fn.vendors.drawShape(
+				vendors.drawShape(
 					canvas.ctx,
 					this.x - radius / ( this.params.particles.shape.polygon.nb_sides / 3.5 ),
 					this.y - radius / ( 2.66 / 3.5 ),
@@ -246,7 +246,7 @@ export default class Particle{
 				break;
 
 			case 'star':
-				this.params.fn.vendors.drawShape(
+				vendors.drawShape(
 					canvas.ctx,
 					this.x - radius * 2 / ( this.params.particles.shape.polygon.nb_sides / 4 ),
 					this.y - radius / ( 2 * 2.66 / 3.5 ),
