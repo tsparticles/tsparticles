@@ -272,34 +272,37 @@ export default class Modes{
 	}
 
 	grabParticle( particle: Particle ): void{
-		if( this.params.interactivity.events.onhover.enable &&
-			this.params.interactivity.status == 'onmousemove' ){
 
-			let dx_mouse: number = particle.x - this.params.interactivity.mouse.pos_x;
-			let dy_mouse: number = particle.y - this.params.interactivity.mouse.pos_y;
+		let {canvas, interactivity, particles} = this.params;
+
+		if( interactivity.events.onhover.enable &&
+			interactivity.status == 'mousemove' ){
+
+			let dx_mouse: number = particle.x - interactivity.mouse.pos_x;
+			let dy_mouse: number = particle.y - interactivity.mouse.pos_y;
 			let dist_mouse: number = Math.sqrt( dx_mouse * dx_mouse + dy_mouse * dy_mouse );
 
-			if( dist_mouse <= this.params.interactivity.modes.grab.distance ){
+			if( dist_mouse <= interactivity.modes.grab.distance ){
 
-				let opacity_line: number = this.params.interactivity.modes.grab.line_linked.opacity
-					- ( dist_mouse / ( 1 / this.params.interactivity.modes.grab.line_linked.opacity ) ) 
-					/ this.params.interactivity.modes.grab.distance;
+				let {grab} = interactivity.modes;
 
+				let opacity_line: number = grab.line_linked.opacity - ( dist_mouse / ( 1 / grab.line_linked.opacity ) ) / grab.distance;
+				
 				if( opacity_line > 0 ){
 					let color_line: {
 						r: number;
 						g: number;
 						b: number;
-					} = this.params.particles.line_linked.color_rgb_line;
+					} = particles.line_linked.color_rgb_line;
 					let {r, g, b} = color_line;
-					this.params.canvas.ctx.strokeStyle = `rgba( ${r}, ${g}, ${b}, ${opacity_line} )`;
-					this.params.canvas.ctx.lineWidth = this.params.particles.line_linked.width;
+					canvas.ctx.strokeStyle = `rgba( ${r}, ${g}, ${b}, ${opacity_line} )`;
+					canvas.ctx.lineWidth = particles.line_linked.width;
 
-					this.params.canvas.ctx.beginPath();
-					this.params.canvas.ctx.moveTo( particle.x, particle.y );
-					this.params.canvas.ctx.lineTo( this.params.interactivity.mouse.pos_x, this.params.interactivity.mouse.pos_y );
-					this.params.canvas.ctx.stroke();
-					this.params.canvas.ctx.closePath();
+					canvas.ctx.beginPath();
+					canvas.ctx.moveTo( particle.x, particle.y );
+					canvas.ctx.lineTo( interactivity.mouse.pos_x, interactivity.mouse.pos_y );
+					canvas.ctx.stroke();
+					canvas.ctx.closePath();
 				}
 
 			}
