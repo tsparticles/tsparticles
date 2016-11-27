@@ -96,6 +96,11 @@ export interface IParams{
 			opacity: number;
 			width: number;
 			color_rgb_line?: any;
+			shadow: {
+				enable: boolean;
+				blur: number;
+				color: string;
+			};
 		};
 		move: {
 			enable: boolean;

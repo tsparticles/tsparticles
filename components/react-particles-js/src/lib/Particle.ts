@@ -192,6 +192,7 @@ export default class Particle{
 	public draw(): void{
 
 		let {canvas, tmp, vendors} = this.library;
+		let {particles} = this.params;
 
 		let radius: number;
 		if( this.radius_bubble != undefined ){
@@ -221,8 +222,6 @@ export default class Particle{
 
 		switch( this.shape ){
 			case 'circle':
-				if( ( Math.floor( Math.random() * 100 ) + 20 ) % 17 == 0 ){
-				}
 				canvas.ctx.arc( this.x, this.y, radius, 0, Math.PI * 2, false );
 				break;
 

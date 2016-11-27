@@ -38,7 +38,7 @@ let defaultParams: IParams = {
 			}
 		},
 		size: {
-			value: 2,
+			value: 1,
 			random: false,
 			anim: {
 				enable: false,
@@ -52,16 +52,21 @@ let defaultParams: IParams = {
 			distance: 150,
 			color: '#FFF',
 			opacity: 0.6,
-			width: 1
+			width: 1,
+			shadow: {
+				enable: true,
+				blur: 5,
+				color: 'lime'
+			}
 		},
 		move: {
 			enable: true,
-			speed: 1,
+			speed: 3,
 			direction: 'none',
 			random: false,
 			straight: false,
-			out_mode: 'out',
-			bounce: false,
+			out_mode: 'bounce',
+			bounce: true,
 			attract: {
 				enable: false,
 				rotateX: 3000,
@@ -74,11 +79,11 @@ let defaultParams: IParams = {
 		detect_on: 'canvas',
 		events: {
 			onhover: {
-				enable: true,
+				enable: false,
 				mode: 'grab'
 			},
 			onclick: {
-				enable: true,
+				enable: false,
 				mode: 'repulse'
 			},
 			resize: true
