@@ -4,6 +4,12 @@ type RGB = {
 	b: number;
 };
 
+type HSL = {
+	h: number;
+	s: number;
+	l: number;
+};
+
 export const hexToRgb: ( hex: string ) => RGB =
 	( hex ) => {
 		let shorthandRegex = /^#?([a-f\d])([a-f\d])([a-f\d])$/i;
@@ -41,4 +47,34 @@ export const deepExtend: ( destination: any, source: any ) => any =
 			}
 		}
 		return destination;
+	};
+
+export const getColor: ( colorObject: any ) => { rgb?: RGB, hsl?: HSL } = 
+	( colorObject ) => {
+		let color: { rgb?: RGB, hsl?: HSL } = {};
+		if( typeof( colorObject ) == 'object' ){
+			if( colorObject instanceof Array ){
+				let selectedColor: string = colorObject[ Math.floor( Math.random() * colorObject.length ) ];
+				color.rgb = hexToRgb( selectedColor );
+			}else{
+				let {r, g, b} = colorObject;
+				if( r !== undefined && g !== undefined && b !== undefined ){
+					color.rgb = { r, g, b };
+				}else{
+					let {h, s, l} = colorObject;
+					if( h !== undefined && g !== undefined && b !== undefined ){
+						color.hsl = { h, s, l };
+					}
+				}
+			}
+		}else if( colorObject == 'random' ){
+			color.rgb = {
+				r: ( Math.floor( Math.random() * 255 ) + 1 ),
+				g: ( Math.floor( Math.random() * 255 ) + 1 ),
+				b: ( Math.floor( Math.random() * 255 ) + 1 )
+			}
+		}else if( typeof( colorObject ) == 'string' ){
+			color.rgb = hexToRgb( colorObject );
+		}
+		return color;
 	};

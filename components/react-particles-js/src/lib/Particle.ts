@@ -1,4 +1,4 @@
-import {hexToRgb, IParams, ParticlesLibrary} from '.';
+import {hexToRgb, IParams, ParticlesLibrary, getColor} from '.';
 
 export default class Particle{
 
@@ -74,31 +74,7 @@ export default class Particle{
 	}
 
 	setupColor( color?: any ){
-		this.color = {};
-		if( typeof( color.value ) == 'object' ){
-			if( color.value instanceof Array ){
-				let color_selected: string = color.value[ Math.floor( Math.random() * this.params.particles.color.value.length ) ];
-				this.color.rgb = hexToRgb( color_selected );
-			}else{
-				if( color.value.r != undefined && color.value.g != undefined && color.value.b != undefined ){
-					let {r, g, b} = color.value;
-					this.color.rgb = { r, g, b };
-				}
-				if( color.value.h != undefined && color.value.s != undefined && color.value.l != undefined ){
-					let {h, s, l} = color.value;
-					this.color.hsl = { h, s, l };
-				}
-			}
-		}else if( color.value == 'random' ){
-			this.color.rgb = {
-				r: ( Math.floor( Math.random() * ( 255 - 0 + 1 ) ) + 0 ),
-				g: ( Math.floor( Math.random() * ( 255 - 0 + 1 ) ) + 0 ),
-				b: ( Math.floor( Math.random() * ( 255 - 0 + 1 ) ) + 0 )
-			}
-		}else if( typeof( color.value ) == 'string' ){
-			this.color = color;
-			this.color.rgb = hexToRgb( this.color.value );
-		}
+		this.color = getColor( color.value );
 	}
 
 	setupOpacity(): void{
