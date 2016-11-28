@@ -71,7 +71,7 @@ export default class ParticleManager{
 			};
 			let new_pos: Pos;
 
-			if( this.params.particles.move.out_mode == 'bound' ){
+			if( this.params.particles.move.out_mode == 'bounce' ){
 				new_pos = {
 					x_left: particle.radius,
 					x_right: canvas.width,
