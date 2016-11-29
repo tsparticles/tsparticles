@@ -37,6 +37,7 @@ class App extends Component{
 | width | string | The width of the canvas. |
 | height | string | The height of the canvas. |
 | params | object | The parameters of the particles instance. |
+| style | object | The style of the canvas element. |
 
 Find your parameters configuration [here](http://vincentgarreau.com/particles.js/).
 
