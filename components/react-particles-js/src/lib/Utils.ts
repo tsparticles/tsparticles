@@ -1,3 +1,5 @@
+/// <reference path="../../typings/index.d.ts" />
+
 type RGB = {
 	r: number;
 	g: number;

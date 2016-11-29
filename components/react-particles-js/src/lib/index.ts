@@ -1,4 +1,4 @@
-export * from './defaultParams';
+export * from './getDefaultParams';
 export * from './IParams';
 export * from './Utils';
 import Interact from './Interact';

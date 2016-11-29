@@ -5,7 +5,7 @@ import {
 	ITmpParam,
 	IParams,
 	deepExtend,
-	defaultParams,
+	getDefaultParams,
 	Interact,
 	Modes,
 	Particle,
@@ -23,12 +23,10 @@ export default class ParticlesLibrary{
 	modes: Modes;
 	vendors: Vendors;
 
-	constructor( canvasElement: HTMLCanvasElement, params?: any ){
+	constructor( params?: any ){
+		this.tmp = {};
 		this.loadParameters( params );
-		this.loadCanvas( canvasElement );
-
-		this.extendParams( canvasElement );
-
+		this.extendParams();
 		this.interact = new Interact( this.params, this );
 		this.modes = new Modes( this.params, this );
 		this.vendors = new Vendors( this.params, this );
@@ -36,8 +34,9 @@ export default class ParticlesLibrary{
 	}
 
 	loadParameters( params?: any ): void{
-		deepExtend( defaultParams, params );
-		this.params = defaultParams;
+		let defaultParams: IParams = getDefaultParams();
+		let mergedParams: IParams = deepExtend( defaultParams, params );
+		this.params = mergedParams;
 	}
 
 	loadCanvas( canvasElement: HTMLCanvasElement ){
@@ -55,15 +54,18 @@ export default class ParticlesLibrary{
 	}
 
 	destroy(): void{
+		let {tmp} = this;
 		this.detachListeners();
 		this.vendors.detachListeners();
+		cancelAnimationFrame( tmp.drawAnimFrame );
+		this.canvasClear();
 	}
 
 	detachListeners(): void{
 		window.removeEventListener( 'resize', this.onWindowResize );
 	}
 
-	extendParams( canvasElement: HTMLCanvasElement ): void{
+	extendParams(): void{
 		this.extendTmpDefinition();
 		this.onWindowResize = this.onWindowResize.bind( this );
 	}

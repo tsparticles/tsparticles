@@ -1,49 +1,78 @@
 /// <reference path="../typings/index.d.ts" />
 
 import * as React from 'react';
-import {Component} from 'react';
+import {PureComponent} from 'react';
 
-import {IParams, ParticlesLibrary} from './lib';
+import {IParams, ParticlesLibrary, deepExtend} from './lib';
 
 export interface ParticlesProps{
 	width: string;
 	height: string;
 	params: any;
+	style: any;
 }
 
-export default class Particles extends Component<ParticlesProps, {}>{
+export interface ParticlesState{
+	canvas?: HTMLCanvasElement;
+	library?: ParticlesLibrary;
+}
+
+export default class Particles extends PureComponent<ParticlesProps, ParticlesState>{
 
 	public static defaultProps: ParticlesProps = {
 		width: "100%",
 		height: "100%",
-		params: {}
+		params: {},
+		style: {}
 	};
-
-	canvas: HTMLCanvasElement;
-	particlesLibrary: ParticlesLibrary;
 
 	constructor( props: ParticlesProps ){
 		super( props );
+		this.state = {
+			canvas: undefined,
+			library: undefined
+		}
+		this.loadCanvas = this.loadCanvas.bind( this );
 	}
 
-	componentDidMount(){
-
-		this.particlesLibrary = new ParticlesLibrary( this.canvas, this.props.params );
-		this.particlesLibrary.start();
+	destroy(){
+		this.state.library.destroy();
 	}
 
+	loadCanvas( canvas: HTMLCanvasElement ){
+		if( canvas ){
+			this.setState({
+				canvas
+			}, () => {
+				this.state.library.loadCanvas( this.state.canvas );
+				this.state.library.start();
+			});
+		}
+	}
+
+	componentWillMount(){
+		this.setState({
+			library: new ParticlesLibrary( this.props.params )
+		});
+	}
+	
 	componentWillUnmount(){
-		this.particlesLibrary.destroy();
+		this.state.library.destroy();
+		this.setState({
+			library: undefined
+		})
 	}
 
 	render(){
 		let {width, height} = this.props;
 		return (
 			<div>
-				<canvas ref={(c) => this.canvas = c} style={{
-					width,
-					height
-				}}>
+				<canvas ref={this.loadCanvas} style={
+					deepExtend(this.props.style, {
+						width,
+						height
+					})
+				}>
 				</canvas>
 			</div>
 		);

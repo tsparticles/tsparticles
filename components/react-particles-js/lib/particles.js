@@ -16,7 +16,7 @@
     }([ function(e, t, a) {
         "use strict";
         var i = a(3);
-        Object.defineProperty(t, "__esModule", {
+        t.Particles = i.default, Object.defineProperty(t, "__esModule", {
             value: !0
         }), t.default = i.default;
     }, function(e, t, a) {
@@ -72,41 +72,63 @@
             };
         }(), o = a(2), c = a(2), l = a(1), u = function(e) {
             function t(e) {
-                return i(this, t), r(this, (t.__proto__ || Object.getPrototypeOf(t)).call(this, e));
+                i(this, t);
+                var a = r(this, (t.__proto__ || Object.getPrototypeOf(t)).call(this, e));
+                return a.state = {
+                    canvas: void 0,
+                    library: void 0
+                }, a.loadCanvas = a.loadCanvas.bind(a), a;
             }
             return s(t, e), n(t, [ {
-                key: "componentDidMount",
+                key: "destroy",
                 value: function() {
-                    this.particlesLibrary = new l.ParticlesLibrary(this.canvas, this.props.params), 
-                    this.particlesLibrary.start();
+                    this.state.library.destroy();
+                }
+            }, {
+                key: "loadCanvas",
+                value: function(e) {
+                    var t = this;
+                    e && this.setState({
+                        canvas: e
+                    }, function() {
+                        t.state.library.loadCanvas(t.state.canvas), t.state.library.start();
+                    });
+                }
+            }, {
+                key: "componentWillMount",
+                value: function() {
+                    this.setState({
+                        library: new l.ParticlesLibrary(this.props.params)
+                    });
                 }
             }, {
                 key: "componentWillUnmount",
                 value: function() {
-                    this.particlesLibrary.destroy();
+                    this.state.library.destroy(), this.setState({
+                        library: void 0
+                    });
                 }
             }, {
                 key: "render",
                 value: function() {
-                    var e = this, t = this.props, a = t.width, i = t.height;
+                    var e = this.props, t = e.width, a = e.height;
                     return o.createElement("div", null, o.createElement("canvas", {
-                        ref: function(t) {
-                            return e.canvas = t;
-                        },
-                        style: {
-                            width: a,
-                            height: i
-                        }
+                        ref: this.loadCanvas,
+                        style: l.deepExtend(this.props.style, {
+                            width: t,
+                            height: a
+                        })
                     }));
                 }
             } ]), t;
-        }(c.Component);
+        }(c.PureComponent);
         Object.defineProperty(t, "__esModule", {
             value: !0
         }), t.default = u, u.defaultProps = {
             width: "100%",
             height: "100%",
-            params: {}
+            params: {},
+            style: {}
         };
     }, function(e, t) {
         "use strict";
@@ -131,14 +153,15 @@
             return i(e, [ {
                 key: "linkParticles",
                 value: function(e, t) {
-                    var a = e.x - t.x, i = e.y - t.y, r = Math.sqrt(a * a + i * i), s = this.library.canvas;
+                    var a = e.x - t.x, i = e.y - t.y, r = Math.sqrt(a * a + i * i), s = this.library.canvas, n = this.params.particles.line_linked;
                     if (r <= this.params.particles.line_linked.distance) {
-                        var n = this.params.particles.line_linked.opacity - r / (1 / this.params.particles.line_linked.opacity) / this.params.particles.line_linked.distance;
-                        if (n > 0) {
-                            var o = this.params.particles.line_linked.color_rgb_line, c = o.r, l = o.g, u = o.b;
-                            s.ctx.strokeStyle = "rgba( " + c + ", " + l + ", " + u + ", " + n + " )", s.ctx.lineWidth = this.params.particles.line_linked.width, 
-                            s.ctx.beginPath(), s.ctx.moveTo(e.x, e.y), s.ctx.lineTo(t.x, t.y), s.ctx.stroke(), 
-                            s.ctx.closePath();
+                        var o = this.params.particles.line_linked.opacity - r / (1 / this.params.particles.line_linked.opacity) / this.params.particles.line_linked.distance;
+                        if (o > 0) {
+                            var c = this.params.particles.line_linked.color_rgb_line, l = c.r, u = c.g, p = c.b;
+                            s.ctx.save(), s.ctx.strokeStyle = "rgba( " + l + ", " + u + ", " + p + ", " + o + " )", 
+                            s.ctx.lineWidth = this.params.particles.line_linked.width, s.ctx.beginPath(), n.shadow.enable && (s.ctx.shadowBlur = n.shadow.blur, 
+                            s.ctx.shadowColor = n.shadow.color), s.ctx.moveTo(e.x, e.y), s.ctx.lineTo(t.x, t.y), 
+                            s.ctx.stroke(), s.ctx.closePath(), s.ctx.restore();
                         }
                     }
                 }
@@ -348,31 +371,7 @@
             }, {
                 key: "setupColor",
                 value: function(e) {
-                    if (this.color = {}, "object" == r(e.value)) if (e.value instanceof Array) {
-                        var t = e.value[Math.floor(Math.random() * this.params.particles.color.value.length)];
-                        this.color.rgb = n.hexToRgb(t);
-                    } else {
-                        if (void 0 != e.value.r && void 0 != e.value.g && void 0 != e.value.b) {
-                            var a = e.value, i = a.r, s = a.g, o = a.b;
-                            this.color.rgb = {
-                                r: i,
-                                g: s,
-                                b: o
-                            };
-                        }
-                        if (void 0 != e.value.h && void 0 != e.value.s && void 0 != e.value.l) {
-                            var c = e.value, l = c.h, u = c.s, p = c.l;
-                            this.color.hsl = {
-                                h: l,
-                                s: u,
-                                l: p
-                            };
-                        }
-                    } else "random" == e.value ? this.color.rgb = {
-                        r: Math.floor(256 * Math.random()) + 0,
-                        g: Math.floor(256 * Math.random()) + 0,
-                        b: Math.floor(256 * Math.random()) + 0
-                    } : "string" == typeof e.value && (this.color = e, this.color.rgb = n.hexToRgb(this.color.value));
+                    this.color = n.getColor(e.value);
                 }
             }, {
                 key: "setupOpacity",
@@ -470,7 +469,8 @@
             }, {
                 key: "draw",
                 value: function e() {
-                    var t = this, a = this.library, i = a.canvas, r = a.tmp, s = a.vendors, n = void 0;
+                    var t = this, a = this.library, i = a.canvas, r = a.tmp, s = a.vendors, n = (this.params.particles, 
+                    void 0);
                     n = void 0 != this.radius_bubble ? this.radius_bubble : this.radius;
                     var o = void 0;
                     o = void 0 != this.opacity_bubble ? this.opacity_bubble : this.opacity;
@@ -484,7 +484,7 @@
                     }
                     switch (i.ctx.fillStyle = c, i.ctx.beginPath(), this.shape) {
                       case "circle":
-                        (Math.floor(100 * Math.random()) + 20) % 17 == 0, i.ctx.arc(this.x, this.y, n, 0, 2 * Math.PI, !1);
+                        i.ctx.arc(this.x, this.y, n, 0, 2 * Math.PI, !1);
                         break;
 
                       case "edge":
@@ -558,7 +558,7 @@
                         t.radius += t.vs) : (t.radius <= e.params.particles.size.anim.size_min && (t.size_status = !0), 
                         t.radius -= t.vs), t.radius < 0 && (t.radius = 0));
                         var c = void 0;
-                        switch (c = "bound" == e.params.particles.move.out_mode ? {
+                        switch (c = "bounce" == e.params.particles.move.out_mode ? {
                             x_left: t.radius,
                             x_right: a.width,
                             y_top: t.radius,
@@ -601,10 +601,11 @@
             }, {
                 key: "particlesRefresh",
                 value: function() {
-                    var e = this.library, t = e.tmp, a = e.vendors;
+                    var e = this.library, t = e.tmp;
+                    e.vendors;
                     cancelAnimationFrame(t.checkAnimFrame), cancelAnimationFrame(t.drawAnimFrame), t.source_svg = void 0, 
                     t.img_obj = void 0, t.count_svg = 0, this.particlesEmpty(), this.library.canvasClear(), 
-                    a.start();
+                    this.library.start();
                 }
             } ]), e;
         }();
@@ -628,15 +629,16 @@
                 return a && e(t.prototype, a), i && e(t, i), t;
             };
         }(), s = a(1), n = function() {
-            function e(t, a) {
-                i(this, e), this.tmp = {}, this.loadParameters(a), this.loadCanvas(t), this.extendParams(t), 
+            function e(t) {
+                i(this, e), this.tmp = {}, this.tmp = {}, this.loadParameters(t), this.extendParams(), 
                 this.interact = new s.Interact(this.params, this), this.modes = new s.Modes(this.params, this), 
                 this.vendors = new s.Vendors(this.params, this), this.manager = new s.ParticleManager(this.params, this.interact, this.modes, this.vendors, this);
             }
             return r(e, [ {
                 key: "loadParameters",
                 value: function(e) {
-                    s.deepExtend(s.defaultParams, e), this.params = s.defaultParams;
+                    var t = s.getDefaultParams(), a = s.deepExtend(t, e);
+                    this.params = a;
                 }
             }, {
                 key: "loadCanvas",
@@ -656,7 +658,9 @@
             }, {
                 key: "destroy",
                 value: function() {
-                    this.detachListeners(), this.vendors.detachListeners();
+                    var e = this.tmp;
+                    this.detachListeners(), this.vendors.detachListeners(), cancelAnimationFrame(e.drawAnimFrame), 
+                    this.canvasClear();
                 }
             }, {
                 key: "detachListeners",
@@ -665,7 +669,7 @@
                 }
             }, {
                 key: "extendParams",
-                value: function(e) {
+                value: function() {
                     this.extendTmpDefinition(), this.onWindowResize = this.onWindowResize.bind(this);
                 }
             }, {
@@ -738,6 +742,11 @@
         }), t.default = n;
     }, function(e, t) {
         "use strict";
+        var a = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function(e) {
+            return typeof e;
+        } : function(e) {
+            return e && "function" == typeof Symbol && e.constructor === Symbol && e !== Symbol.prototype ? "symbol" : typeof e;
+        };
         t.hexToRgb = function(e) {
             var t = /^#?([a-f\d])([a-f\d])([a-f\d])$/i;
             e = e.replace(t, function(e, t, a, i) {
@@ -757,6 +766,31 @@
             for (var i in a) a[i] && a[i].constructor && a[i].constructor === Object ? (e[i] = e[i] || {}, 
             t.deepExtend(e[i], a[i])) : e[i] = a[i];
             return e;
+        }, t.getColor = function(e) {
+            var i = {};
+            if ("object" == ("undefined" == typeof e ? "undefined" : a(e))) if (e instanceof Array) {
+                var r = e[Math.floor(Math.random() * e.length)];
+                i.rgb = t.hexToRgb(r);
+            } else {
+                var s = e.r, n = e.g, o = e.b;
+                if (void 0 !== s && void 0 !== n && void 0 !== o) i.rgb = {
+                    r: s,
+                    g: n,
+                    b: o
+                }; else {
+                    var c = e.h, l = e.s, u = e.l;
+                    void 0 !== c && void 0 !== n && void 0 !== o && (i.hsl = {
+                        h: c,
+                        s: l,
+                        l: u
+                    });
+                }
+            } else "random" == e ? i.rgb = {
+                r: Math.floor(255 * Math.random()) + 1,
+                g: Math.floor(255 * Math.random()) + 1,
+                b: Math.floor(255 * Math.random()) + 1
+            } : "string" == typeof e && (i.rgb = t.hexToRgb(e));
+            return i;
         };
     }, function(e, t, a) {
         "use strict";
@@ -956,116 +990,122 @@
         }), t.default = n;
     }, function(e, t) {
         "use strict";
-        var a = {
-            particles: {
-                number: {
-                    value: 40,
-                    density: {
-                        enable: !1,
-                        value_area: 1200
-                    }
-                },
-                color: {
-                    value: "#FFF"
-                },
-                shape: {
-                    type: "circle",
-                    stroke: {
-                        width: 0,
-                        color: "#000000"
-                    },
-                    polygon: {
-                        nb_sides: 5
-                    },
-                    image: {
-                        src: "",
-                        width: 100,
-                        height: 100
-                    }
-                },
-                opacity: {
-                    value: .5,
-                    random: !1,
-                    anim: {
-                        enable: !0,
-                        speed: 1,
-                        opacity_min: .1,
-                        sync: !1
-                    }
-                },
-                size: {
-                    value: 2,
-                    random: !1,
-                    anim: {
-                        enable: !1,
-                        speed: 40,
-                        size_min: 0,
-                        sync: !1
-                    }
-                },
-                line_linked: {
-                    enable: !0,
-                    distance: 150,
-                    color: "#FFF",
-                    opacity: .6,
-                    width: 1
-                },
-                move: {
-                    enable: !0,
-                    speed: 1,
-                    direction: "none",
-                    random: !1,
-                    straight: !1,
-                    out_mode: "out",
-                    bounce: !1,
-                    attract: {
-                        enable: !1,
-                        rotateX: 3e3,
-                        rotateY: 3e3
-                    }
-                },
-                array: []
-            },
-            interactivity: {
-                detect_on: "canvas",
-                events: {
-                    onhover: {
-                        enable: !0,
-                        mode: "grab"
-                    },
-                    onclick: {
-                        enable: !0,
-                        mode: "repulse"
-                    },
-                    resize: !0
-                },
-                modes: {
-                    grab: {
-                        distance: 180,
-                        line_linked: {
-                            opacity: .35
+        t.getDefaultParams = function() {
+            return {
+                particles: {
+                    number: {
+                        value: 40,
+                        density: {
+                            enable: !1,
+                            value_area: 1200
                         }
                     },
-                    bubble: {
-                        distance: 200,
-                        size: 80,
-                        duration: .4
+                    color: {
+                        value: "#FFF"
                     },
-                    repulse: {
-                        distance: 100,
-                        duration: 5
+                    shape: {
+                        type: "circle",
+                        stroke: {
+                            width: 0,
+                            color: "#000000"
+                        },
+                        polygon: {
+                            nb_sides: 5
+                        },
+                        image: {
+                            src: "",
+                            width: 100,
+                            height: 100
+                        }
                     },
-                    push: {
-                        particles_nb: 4
+                    opacity: {
+                        value: .5,
+                        random: !1,
+                        anim: {
+                            enable: !0,
+                            speed: 1,
+                            opacity_min: .1,
+                            sync: !1
+                        }
                     },
-                    remove: {
-                        particles_nb: 2
-                    }
+                    size: {
+                        value: 1,
+                        random: !1,
+                        anim: {
+                            enable: !1,
+                            speed: 40,
+                            size_min: 0,
+                            sync: !1
+                        }
+                    },
+                    line_linked: {
+                        enable: !0,
+                        distance: 150,
+                        color: "#FFF",
+                        opacity: .6,
+                        width: 1,
+                        shadow: {
+                            enable: !0,
+                            blur: 5,
+                            color: "lime"
+                        }
+                    },
+                    move: {
+                        enable: !0,
+                        speed: 3,
+                        direction: "none",
+                        random: !1,
+                        straight: !1,
+                        out_mode: "bounce",
+                        bounce: !0,
+                        attract: {
+                            enable: !1,
+                            rotateX: 3e3,
+                            rotateY: 3e3
+                        }
+                    },
+                    array: []
                 },
-                mouse: {}
-            },
-            retina_detect: !0
+                interactivity: {
+                    detect_on: "canvas",
+                    events: {
+                        onhover: {
+                            enable: !1,
+                            mode: "grab"
+                        },
+                        onclick: {
+                            enable: !1,
+                            mode: "repulse"
+                        },
+                        resize: !0
+                    },
+                    modes: {
+                        grab: {
+                            distance: 180,
+                            line_linked: {
+                                opacity: .35
+                            }
+                        },
+                        bubble: {
+                            distance: 200,
+                            size: 80,
+                            duration: .4
+                        },
+                        repulse: {
+                            distance: 100,
+                            duration: 5
+                        },
+                        push: {
+                            particles_nb: 4
+                        },
+                        remove: {
+                            particles_nb: 2
+                        }
+                    },
+                    mouse: {}
+                },
+                retina_detect: !0
+            };
         };
-        t.defaultParams = a;
     } ]);
 });
