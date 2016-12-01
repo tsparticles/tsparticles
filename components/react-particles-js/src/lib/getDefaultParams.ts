@@ -56,7 +56,7 @@ export const getDefaultParams: () => IParams =
 					opacity: 0.6,
 					width: 1,
 					shadow: {
-						enable: true,
+						enable: false,
 						blur: 5,
 						color: 'lime'
 					}

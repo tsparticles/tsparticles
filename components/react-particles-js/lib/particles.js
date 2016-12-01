@@ -1045,7 +1045,7 @@
                         opacity: .6,
                         width: 1,
                         shadow: {
-                            enable: !0,
+                            enable: !1,
                             blur: 5,
                             color: "lime"
                         }
