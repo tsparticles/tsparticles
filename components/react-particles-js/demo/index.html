@@ -11,6 +11,23 @@
                 padding: 0;
                 background: #2e3250;
             }
+
+            .wrapper{
+                height: 100vh;
+                width: 100vw;
+                line-height: 100vh;
+                text-align: center;
+            }
+
+            span{
+                color: white;
+                text-shadow: 0px 1px 0px #333, -1px 0px 0px #333, 0px 0px 10px rgba( 0, 0, 0, 0.80 );
+                font: 100 45px 'Helvetica Neue', 'Helvetica', 'Open Sans', sans-serif;
+            }
+
+
+
+
         </style>
     <body>
     	<div id="app"></div>
@@ -23,7 +40,33 @@
             const App = React.createClass({
                 render: function(){
                     return (
-                        <P />
+                        <div className="wrapper">
+                            <P 
+                            params={{
+                                particles: {
+                                    number: {
+                                        value: 50
+                                    },
+                                    line_linked: {
+                                        shadow: {
+                                            enable: false,
+                                            color: "#3CA9D1",
+                                            blur: 5
+                                        }
+                                    }
+                                }
+                            }}
+                            style={{
+                                position: "fixed",
+                                top: 0,
+                                left: 0,
+                                width: "100%",
+                                height: "100%"
+                            }} />
+                            <span>
+                                Particles
+                            </span>
+                        </div>
                     );
                 }
             });

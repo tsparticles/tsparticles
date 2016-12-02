@@ -1,7 +1,8 @@
 ## Particles.js - React Component
 
-Porting in **Typescript** + **React**.  
-This is a fork of [Particles.js](https://github.com/VincentGarreau/particles.js/) by [Vincent Garreau](https://github.com/VincentGarreau).
+![Particles](https://raw.githubusercontent/wufe/react-particles-js/master/demo/particles.png)
+
+Implementation in **Typescript** + **React** of [Particles.js](https://github.com/VincentGarreau/particles.js/) by [Vincent Garreau](https://github.com/VincentGarreau).
 
 ---
 
@@ -40,6 +41,36 @@ class App extends Component{
 | style | object | The style of the canvas element. |
 
 Find your parameters configuration [here](http://vincentgarreau.com/particles.js/).
+
+### Added functionalities
+
+#### Shadow
+
+Adds blurred shadow to the lines of the canvas.
+
+```js
+import Particles from 'react-particles-js';
+
+class App extends Component{
+  
+    render(){
+        return (
+            <Particles params={{
+            		particles: {
+            			line_linked: {
+            				shadow: {
+            					enable: true,
+            					color: "#3CA9D1",
+            					blur: 5
+            				}
+            			}
+            		}
+            	}}/>
+        );
+    };
+
+}
+```
 
 ---
 
