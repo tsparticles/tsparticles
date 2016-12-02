@@ -1,6 +1,6 @@
 ## Particles.js - React Component
 
-![Particles](https://raw.githubusercontent/wufe/react-particles-js/master/demo/particles.png)
+![Particles](https://raw.githubusercontent.com/wufe/react-particles-js/master/demo/particles.png)
 
 Implementation in **Typescript** + **React** of [Particles.js](https://github.com/VincentGarreau/particles.js/) by [Vincent Garreau](https://github.com/VincentGarreau).
 
