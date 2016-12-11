@@ -20,12 +20,6 @@ export default class Modes{
 
 		tmp.pushing = true;
 
-		if( !pos )
-			pos = {
-				pos_x: Math.random() * canvas.width,
-				pos_y: Math.random() * canvas.height
-			}
-
 		for( let i = 0; i < nb; i++ ){
 			this.params.particles.array.push(
 				new Particle(
@@ -34,8 +28,8 @@ export default class Modes{
 					this.params.particles.color,
 					this.params.particles.opacity.value,
 					{
-						x: pos.pos_x,
-						y: pos.pos_y
+						x: pos ? pos.pos_x : Math.random() * canvas.width,
+						y: pos ? pos.pos_y : Math.random() * canvas.height
 					})
 			);
 

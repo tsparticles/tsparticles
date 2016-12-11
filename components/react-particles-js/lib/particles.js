@@ -209,13 +209,10 @@
                 key: "pushParticles",
                 value: function(e, t) {
                     var a = this.library, i = a.canvas, r = a.tmp, n = a.manager;
-                    r.pushing = !0, t || (t = {
-                        pos_x: Math.random() * i.width,
-                        pos_y: Math.random() * i.height
-                    });
+                    r.pushing = !0;
                     for (var o = 0; o < e; o++) this.params.particles.array.push(new s.Particle(this.params, this.library, this.params.particles.color, this.params.particles.opacity.value, {
-                        x: t.pos_x,
-                        y: t.pos_y
+                        x: t ? t.pos_x : Math.random() * i.width,
+                        y: t ? t.pos_y : Math.random() * i.height
                     })), o == e - 1 && (this.params.particles.move.enable || n.particlesDraw(), r.pushing = !1);
                 }
             }, {
