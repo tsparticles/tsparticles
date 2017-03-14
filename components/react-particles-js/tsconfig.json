@@ -8,7 +8,6 @@
         "removeComments": true
     },
     "files": [
-        "./typings/index.d.ts",
         "./src/index.ts"
     ]
 }
