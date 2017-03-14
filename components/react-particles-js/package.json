@@ -1,6 +1,6 @@
 {
   "name": "react-particles-js",
-  "version": "1.4.0",
+  "version": "1.5.0",
   "description": "Reactified particles.js",
   "main": "lib/particles.js",
   "types": "index.d.ts",
