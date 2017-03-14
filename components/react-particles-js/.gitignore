@@ -45,3 +45,6 @@ yarn.lock
 .DS_Store
 
 lib/particles.js.map
+
+# Visual Studio Code
+.vscode
