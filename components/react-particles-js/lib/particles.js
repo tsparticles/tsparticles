@@ -15,16 +15,19 @@
         return t.m = e, t.c = a, t.p = "", t(0);
     }([ function(e, t, a) {
         "use strict";
-        var i = a(3);
-        t.Particles = i.default, Object.defineProperty(t, "__esModule", {
+        Object.defineProperty(t, "__esModule", {
             value: !0
-        }), t.default = i.default;
+        });
+        var i = a(3);
+        t.Particles = i.default, t.default = i.default;
     }, function(e, t, a) {
         "use strict";
         function i(e) {
             for (var a in e) t.hasOwnProperty(a) || (t[a] = e[a]);
         }
-        i(a(11)), i(a(9));
+        Object.defineProperty(t, "__esModule", {
+            value: !0
+        }), i(a(11)), i(a(9));
         var r = a(4);
         t.Interact = r.default;
         var s = a(5);
@@ -70,7 +73,11 @@
             return function(t, a, i) {
                 return a && e(t.prototype, a), i && e(t, i), t;
             };
-        }(), o = a(2), c = a(2), l = a(1), u = function(e) {
+        }();
+        Object.defineProperty(t, "__esModule", {
+            value: !0
+        });
+        var o = a(2), c = a(2), l = a(1), u = function(e) {
             function t(e) {
                 i(this, t);
                 var a = r(this, (t.__proto__ || Object.getPrototypeOf(t)).call(this, e));
@@ -122,14 +129,12 @@
                 }
             } ]), t;
         }(c.PureComponent);
-        Object.defineProperty(t, "__esModule", {
-            value: !0
-        }), t.default = u, u.defaultProps = {
+        u.defaultProps = {
             width: "100%",
             height: "100%",
             params: {},
             style: {}
-        };
+        }, t.default = u;
     }, function(e, t) {
         "use strict";
         function a(e, t) {
@@ -146,7 +151,11 @@
             return function(t, a, i) {
                 return a && e(t.prototype, a), i && e(t, i), t;
             };
-        }(), r = function() {
+        }();
+        Object.defineProperty(t, "__esModule", {
+            value: !0
+        });
+        var r = function() {
             function e(t, i) {
                 a(this, e), this.params = t, this.library = i;
             }
@@ -182,9 +191,7 @@
                 }
             } ]), e;
         }();
-        Object.defineProperty(t, "__esModule", {
-            value: !0
-        }), t.default = r;
+        t.default = r;
     }, function(e, t, a) {
         "use strict";
         function i(e, t) {
@@ -201,7 +208,11 @@
             return function(t, a, i) {
                 return a && e(t.prototype, a), i && e(t, i), t;
             };
-        }(), s = a(1), n = function() {
+        }();
+        Object.defineProperty(t, "__esModule", {
+            value: !0
+        });
+        var s = a(1), n = function() {
             function e(t, a) {
                 i(this, e), this.params = t, this.library = a;
             }
@@ -248,28 +259,28 @@
                             }
                         } else c();
                         "mouseleave" == this.params.interactivity.status && c();
-                    } else this.params.interactivity.events.onclick.enable && s.isInArray("bubble", this.params.interactivity.events.onclick.mode) && a.bubble_clicking && !function() {
-                        var i = e.x - t.params.interactivity.mouse.click_pos_x, r = e.y - t.params.interactivity.mouse.click_pos_y, s = Math.sqrt(i * i + r * r), n = (new Date().getTime() - t.params.interactivity.mouse.click_time) / 1e3;
-                        n > t.params.interactivity.modes.bubble.duration && (a.bubble_duration_end = !0), 
-                        n > 2 * t.params.interactivity.modes.bubble.duration && (a.bubble_clicking = !1, 
+                    } else if (this.params.interactivity.events.onclick.enable && s.isInArray("bubble", this.params.interactivity.events.onclick.mode) && a.bubble_clicking) {
+                        var v = e.x - this.params.interactivity.mouse.click_pos_x, d = e.y - this.params.interactivity.mouse.click_pos_y, y = Math.sqrt(v * v + d * d), b = (new Date().getTime() - this.params.interactivity.mouse.click_time) / 1e3;
+                        b > this.params.interactivity.modes.bubble.duration && (a.bubble_duration_end = !0), 
+                        b > 2 * this.params.interactivity.modes.bubble.duration && (a.bubble_clicking = !1, 
                         a.bubble_duration_end = !1);
-                        var o = function(i, r, o, c, l) {
+                        var f = function(i, r, s, n, o) {
                             if (i != r) if (a.bubble_duration_end) {
-                                if (void 0 != o) {
-                                    var u = c - n * (c - i) / t.params.interactivity.modes.bubble.duration, p = i - u, h = i + p;
-                                    "size" == l && (e.radius_bubble = h), "opacity" == l && (e.opacity_bubble = h);
+                                if (void 0 != s) {
+                                    var c = n - b * (n - i) / t.params.interactivity.modes.bubble.duration, l = i - c, u = i + l;
+                                    "size" == o && (e.radius_bubble = u), "opacity" == o && (e.opacity_bubble = u);
                                 }
-                            } else if (s <= t.params.interactivity.modes.bubble.distance) {
-                                var m = void 0;
-                                if (m = void 0 != o ? o : c, m != i) {
-                                    var v = c - n * (c - i) / t.params.interactivity.modes.bubble.duration;
-                                    "size" == l && (e.radius_bubble = v), "opacity" == l && (e.opacity_bubble = v);
+                            } else if (y <= t.params.interactivity.modes.bubble.distance) {
+                                var p = void 0;
+                                if (p = void 0 != s ? s : n, p != i) {
+                                    var h = n - b * (n - i) / t.params.interactivity.modes.bubble.duration;
+                                    "size" == o && (e.radius_bubble = h), "opacity" == o && (e.opacity_bubble = h);
                                 }
-                            } else "size" == l && (e.radius_bubble = void 0), "opacity" == l && (e.opacity_bubble = void 0);
+                            } else "size" == o && (e.radius_bubble = void 0), "opacity" == o && (e.opacity_bubble = void 0);
                         };
-                        a.bubble_clicking && (o(t.params.interactivity.modes.bubble.size, t.params.particles.size.value, e.radius_bubble, e.radius, "size"), 
-                        o(t.params.interactivity.modes.bubble.opacity, t.params.particles.opacity.value, e.opacity_bubble, e.opacity, "opacity"));
-                    }();
+                        a.bubble_clicking && (f(this.params.interactivity.modes.bubble.size, this.params.particles.size.value, e.radius_bubble, e.radius, "size"), 
+                        f(this.params.interactivity.modes.bubble.opacity, this.params.particles.opacity.value, e.opacity_bubble, e.opacity, "opacity"));
+                    }
                 }
             }, {
                 key: "repulseParticle",
@@ -285,22 +296,22 @@
                         };
                         "bounce" == this.params.particles.move.out_mode ? (m.x - e.radius > 0 && m.x + e.radius < i.width && (e.x = m.x), 
                         m.y - e.radius > 0 && m.y + e.radius < i.height && (e.y = m.y)) : (e.x = m.x, e.y = m.y);
-                    } else this.params.interactivity.events.onclick.enable && s.isInArray("repulse", this.params.interactivity.events.onclick.mode) && (r.repulse_finish || (r.repulse_count++, 
+                    } else if (this.params.interactivity.events.onclick.enable && s.isInArray("repulse", this.params.interactivity.events.onclick.mode)) if (r.repulse_finish || (r.repulse_count++, 
                     r.repulse_count == this.params.particles.array.length && (r.repulse_finish = !0)), 
-                    r.repulse_clicking ? !function() {
-                        var a = Math.pow(t.params.interactivity.modes.repulse.distance / 6, 3), r = t.params.interactivity.mouse.click_pos_x - e.x, s = t.params.interactivity.mouse.click_pos_y - e.y, n = r * r + s * s, o = -a / n * 1, c = function() {
-                            var a = Math.atan2(s, r);
-                            if (e.vx = o * Math.cos(a), e.vy = o * Math.sin(a), "bounce" == t.params.particles.move.out_mode) {
-                                var n = {
+                    r.repulse_clicking) {
+                        var v = Math.pow(this.params.interactivity.modes.repulse.distance / 6, 3), d = this.params.interactivity.mouse.click_pos_x - e.x, y = this.params.interactivity.mouse.click_pos_y - e.y, b = d * d + y * y, f = -v / b * 1, _ = function() {
+                            var a = Math.atan2(y, d);
+                            if (e.vx = f * Math.cos(a), e.vy = f * Math.sin(a), "bounce" == t.params.particles.move.out_mode) {
+                                var r = {
                                     x: e.x + e.vx,
                                     y: e.y + e.vy
                                 };
-                                n.x + e.radius > i.width ? e.vx = -e.vx : n.x - e.radius < 0 && (e.vx = -e.vx), 
-                                n.y + e.radius > i.height ? e.vy = -e.vy : n.y - e.radius < 0 && (e.vy = -e.vy);
+                                r.x + e.radius > i.width ? e.vx = -e.vx : r.x - e.radius < 0 && (e.vx = -e.vx), 
+                                r.y + e.radius > i.height ? e.vy = -e.vy : r.y - e.radius < 0 && (e.vy = -e.vy);
                             }
                         };
-                        n <= a && c();
-                    }() : 0 == r.repulse_clicking && (e.vx = e.vx_i, e.vy = e.vy_i));
+                        b <= v && _();
+                    } else 0 == r.repulse_clicking && (e.vx = e.vx_i, e.vy = e.vy_i);
                 }
             }, {
                 key: "grabParticle",
@@ -321,9 +332,7 @@
                 }
             } ]), e;
         }();
-        Object.defineProperty(t, "__esModule", {
-            value: !0
-        }), t.default = n;
+        t.default = n;
     }, function(e, t, a) {
         "use strict";
         function i(e, t) {
@@ -344,7 +353,11 @@
             return function(t, a, i) {
                 return a && e(t.prototype, a), i && e(t, i), t;
             };
-        }(), n = a(1), o = function() {
+        }();
+        Object.defineProperty(t, "__esModule", {
+            value: !0
+        });
+        var n = a(1), o = function() {
             function e(t, a, r, s, n) {
                 i(this, e), this.params = t, this.library = a, this.setupSize(), this.setupPosition(n), 
                 this.setupColor(r), this.setupOpacity(), this.setupAnimation();
@@ -511,9 +524,7 @@
                 }
             } ]), e;
         }();
-        Object.defineProperty(t, "__esModule", {
-            value: !0
-        }), t.default = o;
+        t.default = o;
     }, function(e, t, a) {
         "use strict";
         function i(e, t) {
@@ -530,7 +541,11 @@
             return function(t, a, i) {
                 return a && e(t.prototype, a), i && e(t, i), t;
             };
-        }(), s = a(1), n = function() {
+        }();
+        Object.defineProperty(t, "__esModule", {
+            value: !0
+        });
+        var s = a(1), n = function() {
             function e(t, a, r, s, n) {
                 i(this, e), this.params = t, this.interact = a, this.modes = r, this.vendors = s, 
                 this.library = n;
@@ -606,9 +621,7 @@
                 }
             } ]), e;
         }();
-        Object.defineProperty(t, "__esModule", {
-            value: !0
-        }), t.default = n;
+        t.default = n;
     }, function(e, t, a) {
         "use strict";
         function i(e, t) {
@@ -625,7 +638,11 @@
             return function(t, a, i) {
                 return a && e(t.prototype, a), i && e(t, i), t;
             };
-        }(), s = a(1), n = function() {
+        }();
+        Object.defineProperty(t, "__esModule", {
+            value: !0
+        });
+        var s = a(1), n = function() {
             function e(t) {
                 i(this, e), this.tmp = {}, this.tmp = {}, this.loadParameters(t), this.extendParams(), 
                 this.interact = new s.Interact(this.params, this), this.modes = new s.Modes(this.params, this), 
@@ -734,9 +751,7 @@
                 }
             } ]), e;
         }();
-        Object.defineProperty(t, "__esModule", {
-            value: !0
-        }), t.default = n;
+        t.default = n;
     }, function(e, t) {
         "use strict";
         var a = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function(e) {
@@ -744,7 +759,9 @@
         } : function(e) {
             return e && "function" == typeof Symbol && e.constructor === Symbol && e !== Symbol.prototype ? "symbol" : typeof e;
         };
-        t.hexToRgb = function(e) {
+        Object.defineProperty(t, "__esModule", {
+            value: !0
+        }), t.hexToRgb = function(e) {
             var t = /^#?([a-f\d])([a-f\d])([a-f\d])$/i;
             e = e.replace(t, function(e, t, a, i) {
                 return t + t + a + a + i + i;
@@ -805,7 +822,11 @@
             return function(t, a, i) {
                 return a && e(t.prototype, a), i && e(t, i), t;
             };
-        }(), s = a(1), n = function() {
+        }();
+        Object.defineProperty(t, "__esModule", {
+            value: !0
+        });
+        var s = a(1), n = function() {
             function e(t, a) {
                 i(this, e), this.params = t, this.library = a, this.onMouseMove = this.onMouseMove.bind(this), 
                 this.onMouseLeave = this.onMouseLeave.bind(this), this.onClick = this.onClick.bind(this);
@@ -933,19 +954,19 @@
                 key: "loadImg",
                 value: function(e) {
                     var t = this.library, a = t.tmp, i = t.vendors, r = this.params.particles;
-                    a.img_error = void 0, "" != r.shape.image.src ? "svg" == e ? !function() {
-                        var e = new XMLHttpRequest();
-                        e.open("GET", r.shape.image.src), e.onreadystatechange = function(t) {
-                            4 == e.readyState && (200 == e.status ? (a.source_svg = t.currentTarget.response, 
+                    if (a.img_error = void 0, "" != r.shape.image.src) if ("svg" == e) {
+                        var s = new XMLHttpRequest();
+                        s.open("GET", r.shape.image.src), s.onreadystatechange = function(e) {
+                            4 == s.readyState && (200 == s.status ? (a.source_svg = e.currentTarget.response, 
                             i.checkBeforeDraw()) : (console.log("Error react-particles-js - image not found"), 
                             a.img_error = !0));
-                        }, e.send();
-                    }() : !function() {
-                        var e = new Image();
-                        e.addEventListener("load", function() {
-                            a.img_obj = e, i.checkBeforeDraw();
-                        }), e.src = r.shape.image.src;
-                    }() : (console.log("Error react-particles-js - no image.src"), a.img_error = !0);
+                        }, s.send();
+                    } else {
+                        var n = new Image();
+                        n.addEventListener("load", function() {
+                            a.img_obj = n, i.checkBeforeDraw();
+                        }), n.src = r.shape.image.src;
+                    } else console.log("Error react-particles-js - no image.src"), a.img_error = !0;
                 }
             }, {
                 key: "draw",
@@ -982,12 +1003,12 @@
                 }
             } ]), e;
         }();
-        Object.defineProperty(t, "__esModule", {
-            value: !0
-        }), t.default = n;
+        t.default = n;
     }, function(e, t) {
         "use strict";
-        t.getDefaultParams = function() {
+        Object.defineProperty(t, "__esModule", {
+            value: !0
+        }), t.getDefaultParams = function() {
             return {
                 particles: {
                     number: {
