@@ -3,10 +3,10 @@
   "version": "1.4.0",
   "description": "Reactified particles.js",
   "main": "lib/particles.js",
+  "types": "index.d.ts",
   "scripts": {
     "compile": "webpack",
-    "compile:production": "NODE_ENV=production webpack",
-    "prepublish": "typings install"
+    "compile:production": "NODE_ENV=production webpack"
   },
   "repository": {
     "url": "https://github.com/Wufe/react-particles-js",
@@ -29,6 +29,9 @@
     "webpack-node-externals": "^1.5.4"
   },
   "dependencies": {
+    "@types/node": "^7.0.8",
+    "@types/react": "^15.0.16",
+    "@types/react-dom": "^0.14.23",
     "react": "^15.4.1"
   }
 }
