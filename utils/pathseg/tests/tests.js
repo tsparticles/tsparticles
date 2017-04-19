@@ -785,3 +785,98 @@ QUnit.test("Asynchronous mutation observer", function(assert) {
         done();
     });
 });
+
+QUnit.test("Test getPathSegAtLength length boundary conditions", function(assert) {
+    var path = document.createElementNS("http://www.w3.org/2000/svg", "path");
+
+    // Empty path.
+    path.setAttribute("d", "");
+    assert.equal(path.getPathSegAtLength(-10), "0");
+    assert.equal(path.getPathSegAtLength(0), "0");
+    assert.equal(path.getPathSegAtLength(1), "0");
+    assert.equal(path.getPathSegAtLength(10), "0");
+
+    // Path with one segment.
+    path.setAttribute("d", "M1 1");
+    assert.equal(path.getPathSegAtLength(-10), "0");
+    assert.equal(path.getPathSegAtLength(0), "0");
+    assert.equal(path.getPathSegAtLength(1), "0");
+    assert.equal(path.getPathSegAtLength(10), "0");
+
+    // Path with one close segment.
+    path.setAttribute("d", "z");
+    assert.equal(path.getPathSegAtLength(-10), "0");
+    assert.equal(path.getPathSegAtLength(0), "0");
+    assert.equal(path.getPathSegAtLength(1), "0");
+    assert.equal(path.getPathSegAtLength(10), "0");
+});
+
+// LayoutTests/svg/dom/script-tests/svgpath-getPathSegAtLength.js
+QUnit.test("Test the getPathSegAtLength API", function(assert) {
+    var path = document.createElementNS("http://www.w3.org/2000/svg", "path");
+    path.setAttribute("d", "M0 0 L0 5 L5 5 L 5 0");
+
+    assert.equal(path.getPathSegAtLength(0), "0");
+    assert.equal(path.getPathSegAtLength(1), "1");
+    assert.equal(path.getPathSegAtLength(5), "1");
+    assert.equal(path.getPathSegAtLength(6), "2");
+    assert.equal(path.getPathSegAtLength(10), "2");
+    assert.equal(path.getPathSegAtLength(11), "3");
+    // WebKit/Opera/FF all return the last path segment if the distance exceeds the actual path length:
+    assert.equal(path.getPathSegAtLength(16), "3");
+    assert.equal(path.getPathSegAtLength(20), "3");
+    assert.equal(path.getPathSegAtLength(24), "3");
+    assert.equal(path.getPathSegAtLength(25), "3");
+    assert.equal(path.getPathSegAtLength(100), "3");
+});
+
+// LayoutTests/svg/dom/SVGGeometryElement-valid-arguments.html
+QUnit.test("Test invalid arguments when calling getPathSegAtLength", function(assert) {
+    var path = document.createElementNS("http://www.w3.org/2000/svg", "path");
+    assert.throws(function() {
+        path.getPathSegAtLength();
+    });
+    assert.throws(function() {
+        path.getPathSegAtLength(NaN);
+    });
+    assert.throws(function() {
+        path.getPathSegAtLength(Infinity);
+    });
+});
+
+QUnit.test("Test getPathSegAtLength with non-trivial paths", function(assert) {
+    var path = document.createElementNS("http://www.w3.org/2000/svg", "path");
+
+    // Absolute line-to.
+    path.setAttribute("d", "M0 0 L0 5 L5 5 L5 0");
+    assert.equal(path.getPathSegAtLength(0), "0");
+    assert.equal(path.getPathSegAtLength(1), "1");
+    assert.equal(path.getPathSegAtLength(5), "1");
+    assert.equal(path.getPathSegAtLength(6), "2");
+
+    // Relative line-to.
+    path.setAttribute("d", "M0 0 l0 5 l5 0 l0 -5");
+    assert.equal(path.getPathSegAtLength(0), "0");
+    assert.equal(path.getPathSegAtLength(1), "1");
+    assert.equal(path.getPathSegAtLength(5), "1");
+    assert.equal(path.getPathSegAtLength(6), "2");
+
+    // Cubic curve.
+    path.setAttribute("d", "M100,250 C 100,50 400,50 400,250Z");
+    assert.equal(path.getPathSegAtLength(0), "0");
+    assert.equal(path.getPathSegAtLength(1), "1");
+    assert.equal(path.getPathSegAtLength(100), "1");
+    assert.equal(path.getPathSegAtLength(200), "1");
+    assert.equal(path.getPathSegAtLength(300), "1");
+    assert.equal(path.getPathSegAtLength(400), "1");
+    assert.equal(path.getPathSegAtLength(500), "2");
+
+    // Multiple quadratic curves.
+    path.setAttribute("d", "M0,0 Q0,0 100,50 T100,100 T300, 300Z");
+    assert.equal(path.getPathSegAtLength(0), "0");
+    assert.equal(path.getPathSegAtLength(1), "1");
+    assert.equal(path.getPathSegAtLength(100), "1");
+    assert.equal(path.getPathSegAtLength(200), "2");
+    assert.equal(path.getPathSegAtLength(400), "3");
+    assert.equal(path.getPathSegAtLength(600), "4");
+});

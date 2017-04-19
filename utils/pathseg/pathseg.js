@@ -332,6 +332,31 @@
         window.SVGPathElement.prototype.createSVGPathSegCurvetoCubicSmoothRel = function(x, y, x2, y2) { return new window.SVGPathSegCurvetoCubicSmoothRel(undefined, x, y, x2, y2); }
         window.SVGPathElement.prototype.createSVGPathSegCurvetoQuadraticSmoothAbs = function(x, y) { return new window.SVGPathSegCurvetoQuadraticSmoothAbs(undefined, x, y); }
         window.SVGPathElement.prototype.createSVGPathSegCurvetoQuadraticSmoothRel = function(x, y) { return new window.SVGPathSegCurvetoQuadraticSmoothRel(undefined, x, y); }
+
+        if (!("getPathSegAtLength" in window.SVGPathElement.prototype)) {
+            // Add getPathSegAtLength to SVGPathElement.
+            // Spec: https://www.w3.org/TR/SVG11/single-page.html#paths-__svg__SVGPathElement__getPathSegAtLength
+            window.SVGPathElement.prototype.getPathSegAtLength = function(distance) {
+                if (distance === undefined || !isFinite(distance))
+                    throw "Invalid arguments.";
+
+                var measurementElement = document.createElementNS("http://www.w3.org/2000/svg", "path");
+                measurementElement.setAttribute("d", this.getAttribute("d"));
+                var lastPathSegment = measurementElement.pathSegList.numberOfItems - 1;
+
+                // If the path is empty, return 0.
+                if (lastPathSegment <= 0)
+                    return 0;
+
+                do {
+                    measurementElement.pathSegList.removeItem(lastPathSegment);
+                    if (distance > measurementElement.getTotalLength())
+                        break;
+                    lastPathSegment--;
+                } while (lastPathSegment > 0);
+                return lastPathSegment;
+            }
+        }
     }
 
     if (!("SVGPathSegList" in window)) {
