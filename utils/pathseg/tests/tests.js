@@ -879,4 +879,15 @@ QUnit.test("Test getPathSegAtLength with non-trivial paths", function(assert) {
     assert.equal(path.getPathSegAtLength(200), "2");
     assert.equal(path.getPathSegAtLength(400), "3");
     assert.equal(path.getPathSegAtLength(600), "4");
+
+    // Discontinuous paths.
+    // This didn't get spec'd (see: https://github.com/w3c/svgwg/issues/282) but had consistent behavior in Edge, Blink, WebKit, and Gecko.
+    path.setAttribute("d", "M0,0 h100 M100,100 v0 M0,100 h0");
+    assert.equal(path.getPathSegAtLength(99), "1");
+    assert.equal(path.getPathSegAtLength(100), "1");
+    assert.equal(path.getPathSegAtLength(101), "5");
+    path.setAttribute("d", "M50,50 L150,50 M50,100 L150,100");
+    assert.equal(path.getPathSegAtLength(99), "1");
+    assert.equal(path.getPathSegAtLength(100), "1");
+    assert.equal(path.getPathSegAtLength(101), "3");
 });

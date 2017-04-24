@@ -336,6 +336,7 @@
         if (!("getPathSegAtLength" in window.SVGPathElement.prototype)) {
             // Add getPathSegAtLength to SVGPathElement.
             // Spec: https://www.w3.org/TR/SVG11/single-page.html#paths-__svg__SVGPathElement__getPathSegAtLength
+            // This polyfill requires SVGPathElement.getTotalLength to implement the distance-along-a-path algorithm.
             window.SVGPathElement.prototype.getPathSegAtLength = function(distance) {
                 if (distance === undefined || !isFinite(distance))
                     throw "Invalid arguments.";
