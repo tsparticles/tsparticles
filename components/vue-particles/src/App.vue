@@ -36,13 +36,7 @@
 </script>
 
 <style lang="scss">
-  *,
-  *:after,
-  *:before {
-    box-sizing: inherit;
-  }
-
-  html {
+  *, :after, :before {
     box-sizing: border-box;
   }
 
