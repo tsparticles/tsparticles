@@ -7,8 +7,8 @@ import VueParticles from './vue-particles'
 import VuePrism from 'vue-prism'
 Vue.use(VueParticles, VuePrism)
 
-// import 'prismjs/themes/prism.css'
-// import 'prismjs/themes/prism-okaidia.css'
+import 'prismjs/themes/prism.css'
+import 'prismjs/themes/prism-okaidia.css'
 
 Vue.config.productionTip = false
 
