@@ -64,6 +64,9 @@
   code {
     font-family: Menlo, Monaco, Andale Mono, Ubuntu Mono, monospace !important;
     font-size: .95em;
+    @media (max-width: 767px) {
+      font-size: .85em;
+    }
   }
 
   pre.language-js {
@@ -120,6 +123,8 @@
     background-image: url("./assets/sky.jpg");
     background-size: cover;
     position: absolute;
+    top: 0;
+    left: 0;
     width: 100%;
     height: 100%;
   }
