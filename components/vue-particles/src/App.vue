@@ -10,7 +10,7 @@
           Vue.js component for particles backgrounds
         </p>
       </div>
-      <vue-particles color="#ffffff"></vue-particles>
+      <vue-particles color="#ffffff" linesColor="#ffffff"></vue-particles>
 
     </div>
     <main-content></main-content>

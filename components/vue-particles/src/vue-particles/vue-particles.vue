@@ -1,5 +1,5 @@
 <template>
-    <div id="particles-js" :color="color"></div>
+    <div id="particles-js" :color="color" :linesColor="linesColor"></div>
 </template>
 <script>
     /* eslint-disable */
@@ -10,15 +10,19 @@
             color: {
                 type: String,
                 default: '#dedede'
+            },
+            linesColor: {
+                type: String,
+                default: '#dedede'
             }
         },
         mounted () {
             this.$nextTick(() => {
-                this.initParticleJS(this.color)
+                this.initParticleJS(this.color, this.linesColor)
             })
         },
         methods: {
-            initParticleJS (color) {
+            initParticleJS (color, linesColor) {
                 particlesJS('particles-js', {
                     "particles": {
                         "number": {
@@ -64,7 +68,7 @@
                         "line_linked": {
                             "enable": true,
                             "distance": 150,
-                            "color": "#9d9291",
+                            "color": linesColor,
                             "opacity": 0.4,
                             "width": 1
                         },
