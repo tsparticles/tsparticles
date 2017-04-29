@@ -7,7 +7,7 @@ import VueParticles from './vue-particles'
 import VuePrism from 'vue-prism'
 Vue.use(VueParticles, VuePrism)
 
-// import 'milligram/dist/milligram.min.css'
+import 'milligram/dist/milligram.min.css'
 // import 'bootstrap-grid-only/bootstrap.css'
 import 'prismjs/themes/prism.css'
 import 'prismjs/themes/prism-okaidia.css'
