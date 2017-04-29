@@ -8,6 +8,7 @@ import VuePrism from 'vue-prism'
 Vue.use(VueParticles, VuePrism)
 
 // import 'milligram/dist/milligram.min.css'
+import 'normalize.css/normalize.css'
 import 'bootstrap-grid-only/bootstrap.css'
 import 'prismjs/themes/prism.css'
 import 'prismjs/themes/prism-okaidia.css'
