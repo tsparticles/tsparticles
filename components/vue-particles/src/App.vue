@@ -13,23 +13,20 @@
       <vue-particles color="#ffffff"></vue-particles>
 
     </div>
-
-    <div class="main-section">
-      <h3 class="teko white">
-        How to use
-      </h3>
-      <pre class="white">
-              <code>
-npm install vue-particles --save-dev
-              </code>
-            </pre>
-    </div>
+    <main-content></main-content>
+    <foot></foot>
   </div>
 </template>
 
 <script>
+  import Foot from './components/Foot'
+  import MainContent from './components/Main'
   export default {
     name: 'app',
+    components: {
+      Foot,
+      MainContent
+    },
     data () {
       return {
         msg: 'Welcome to Your Vue.js App'
@@ -46,6 +43,7 @@ npm install vue-particles --save-dev
   html, body {
     height: 100%;
   }
+
   body {
     margin: 0;
     background: linear-gradient(45deg, hsl(0, 0%, 49%) 0%, hsla(158, 21%, 69%, 0) 70%), linear-gradient(135deg, hsl(203, 49%, 13%) 10%, hsla(203, 64%, 52%, 0) 80%), linear-gradient(225deg, hsl(0, 0%, 0%) 10%, hsla(189, 54%, 37%, 0) 80%), linear-gradient(315deg, hsl(0, 0%, 70%) 100%, hsla(238, 24%, 45%, 0) 70%);
@@ -63,13 +61,20 @@ npm install vue-particles --save-dev
   code[class*="language-"],
   pre[class*="language-"],
   pre,
-  code{
-    font-family: Menlo,Monaco,Andale Mono,Ubuntu Mono,monospace !important;
+  code {
+    font-family: Menlo, Monaco, Andale Mono, Ubuntu Mono, monospace !important;
     font-size: .95em;
   }
+
   pre.language-js {
-    max-width:500px;
-    margin: 1rem auto!important;
+    max-width: 550px;
+    margin: 1rem auto !important;
+  }
+
+  .npm-code {
+    background: #292929;
+    border-radius: 3px;
+    box-shadow: inset 0px 0px 39px rgba(0, 0, 0, 0.74);
   }
 
   h1, h2 {
@@ -103,6 +108,14 @@ npm install vue-particles --save-dev
     font-family: 'Teko', sans-serif;
   }
 
+  .text-left {
+    text-align: left;
+  }
+
+  .text-center {
+    text-align: center;
+  }
+
   #particles-js {
     background-image: url("./assets/sky.jpg");
     background-size: cover;
@@ -120,6 +133,12 @@ npm install vue-particles --save-dev
     display: flex;
     height: 100%;
     justify-content: center;
+  }
+
+  .main-section {
+    max-width: 550px;
+    margin: auto;
+    padding: 0 1rem;
   }
 
   .main-title {
@@ -143,5 +162,13 @@ npm install vue-particles --save-dev
         font-size: 1rem;
       }
     }
+  }
+
+  .section-title {
+    margin: 2rem 0 0 0;
+  }
+
+  .footer {
+    margin: 1rem 0;
   }
 </style>
