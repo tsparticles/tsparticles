@@ -78,7 +78,7 @@
   }
 
   pre.language-js, pre.language-html {
-    max-width: 550px;
+    max-width: 650px;
     margin: 1rem auto !important;
     background: #292929;
     border-radius: 3px;
@@ -152,7 +152,7 @@
   }
 
   .main-section {
-    max-width: 550px;
+    max-width: 650px;
     margin: auto;
     padding: 0 1rem;
   }
