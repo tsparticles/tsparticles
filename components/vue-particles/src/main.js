@@ -3,6 +3,7 @@
 import 'normalize.css/normalize.css'
 import 'prismjs/themes/prism.css'
 import 'prismjs/themes/prism-okaidia.css'
+import './assets/tables.scss'
 
 import Vue from 'vue'
 import App from './App'
