@@ -82,13 +82,13 @@
     margin: 1rem auto !important;
     background: #292929;
     border-radius: 3px;
-    box-shadow: inset 0px 0px 39px rgba(0, 0, 0, 0.74);
+    box-shadow: 2px 6px 17px rgba(0, 0, 0, 0.39);
   }
 
   .npm-code {
     background: #292929;
     border-radius: 3px;
-    box-shadow: inset 0px 0px 39px rgba(0, 0, 0, 0.74);
+    box-shadow: 2px 6px 17px rgba(0, 0, 0, 0.39);
   }
 
   h1, h2 {
