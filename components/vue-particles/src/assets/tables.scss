@@ -61,13 +61,12 @@ $breakpoint-alpha:  767px; // adjust to your needs
 }
 
 .rwd-table {
-  background: #34495E;
   color: #fff;
-  border-radius: .4em;
   overflow: hidden;
   background: #292929;
   border-radius: 3px;
-  box-shadow: inset 0px 0px 39px rgba(0, 0, 0, 0.74);
+  box-shadow: 2px 6px 17px rgba(0, 0, 0, 0.39);
+  padding: .5rem;
   tr {
     border-color: lighten(#34495E, 10%);
   }
