@@ -10,7 +10,15 @@
           Vue.js component for particles backgrounds
         </p>
       </div>
-      <vue-particles color="#ffffff" linesColor="#ffffff"></vue-particles>
+      <vue-particles
+        color="#ffffff"
+        linesColor="#ffffff"
+        :particlesNumber="80"
+        shapeType="circle"
+        :particleSize="5"
+        :linesWidth="2"
+      >
+      </vue-particles>
 
     </div>
     <main-content></main-content>
@@ -46,7 +54,7 @@
 
   body {
     margin: 0;
-    background: linear-gradient(45deg, hsl(0, 0%, 49%) 0%, hsla(158, 21%, 69%, 0) 70%), linear-gradient(135deg, hsl(203, 49%, 13%) 10%, hsla(203, 64%, 52%, 0) 80%), linear-gradient(225deg, hsl(0, 0%, 0%) 10%, hsla(189, 54%, 37%, 0) 80%), linear-gradient(315deg, hsl(0, 0%, 70%) 100%, hsla(238, 24%, 45%, 0) 70%);
+    background: #34393f;
   }
 
   #app {
@@ -69,9 +77,12 @@
     }
   }
 
-  pre.language-js {
+  pre.language-js, pre.language-html {
     max-width: 550px;
     margin: 1rem auto !important;
+    background: #292929;
+    border-radius: 3px;
+    box-shadow: inset 0px 0px 39px rgba(0, 0, 0, 0.74);
   }
 
   .npm-code {
