@@ -1,6 +1,6 @@
 # vue-particles
+### Vue.js component for particles backgrounds
 
-> Vue.js component for particles backgrounds
 
 ## Build Setup
 
