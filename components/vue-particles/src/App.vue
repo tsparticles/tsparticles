@@ -10,7 +10,7 @@
           Vue.js component for particles backgrounds
         </p>
         <br>
-        <a class="gh-button" target="_blank" href="/https://github.com/creotip/vue-particles"><span class="gh-button__icon"></span>Download</a>
+        <a class="gh-button" target="_blank" href="https://github.com/creotip/vue-particles"><span class="gh-button__icon"></span>Download</a>
       </div>
       <vue-particles
         color="#ffffff"
