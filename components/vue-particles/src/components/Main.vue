@@ -65,6 +65,12 @@ Vue.use(VueParticles)
           <td data-th="Description">Particle color</td>
         </tr>
         <tr>
+          <td data-th="Name">particleOpacity</td>
+          <td data-th="Type">Number</td>
+          <td data-th="Default">0.7</td>
+          <td data-th="Description">Particle opacity</td>
+        </tr>
+        <tr>
           <td data-th="Name">particlesNumber</td>
           <td data-th="Type">Number</td>
           <td data-th="Default">80</td>
@@ -101,6 +107,72 @@ Vue.use(VueParticles)
           <td data-th="Default">1</td>
           <td data-th="Description">
             Lines width
+          </td>
+        </tr>
+        <tr>
+          <td data-th="Name">lineLinked</td>
+          <td data-th="Type">Boolean</td>
+          <td data-th="Default">true</td>
+          <td data-th="Description">
+            Enable lines
+          </td>
+        </tr>
+        <tr>
+          <td data-th="Name">lineOpacity</td>
+          <td data-th="Type">Number</td>
+          <td data-th="Default">0.4</td>
+          <td data-th="Description">
+            Line opacity
+          </td>
+        </tr>
+        <tr>
+          <td data-th="Name">linesDistance</td>
+          <td data-th="Type">Number</td>
+          <td data-th="Default">150</td>
+          <td data-th="Description">
+            Lines distance
+          </td>
+        </tr>
+        <tr>
+          <td data-th="Name">moveSpeed</td>
+          <td data-th="Type">Number</td>
+          <td data-th="Default">3</td>
+          <td data-th="Description">
+            Particles speed
+          </td>
+        </tr>
+        <tr>
+          <td data-th="Name">hoverEffect</td>
+          <td data-th="Type">Boolean</td>
+          <td data-th="Default">true</td>
+          <td data-th="Description">
+            Enable hover effect
+          </td>
+        </tr>
+        <tr>
+          <td data-th="Name">hoverMode</td>
+          <td data-th="Type">String</td>
+          <td data-th="Default">grab</td>
+          <td data-th="Description">
+            Available hover modes:
+            "grab", "repulse", "bubble"
+          </td>
+        </tr>
+        <tr>
+          <td data-th="Name">clickEffect</td>
+          <td data-th="Type">Boolean</td>
+          <td data-th="Default">true</td>
+          <td data-th="Description">
+            Enable click effect
+          </td>
+        </tr>
+        <tr>
+          <td data-th="Name">clickMode</td>
+          <td data-th="Type">String</td>
+          <td data-th="Default">push</td>
+          <td data-th="Description">
+            Available click modes:
+            "push", "remove", "repulse", "bubble"
           </td>
         </tr>
       </table>
