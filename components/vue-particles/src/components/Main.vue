@@ -193,7 +193,7 @@ Vue.use(VueParticles)
   const appCodeFull = `<template>
       <div id="app">
         <vue-particles
-          color="#ffffff"
+          color="#dedede"
           linesColor="#ffffff"
           :particlesNumber="80"
           shapeType="circle"
