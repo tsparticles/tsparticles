@@ -187,7 +187,7 @@ Vue.use(VueParticles)
   /* eslint-disable */
   const appCode = `<template>
       <div id="app">
-        <vue-particles color="#ffffff"></vue-particles>
+        <vue-particles color="#777777"></vue-particles>
       </div>
    </template>`
   const appCodeFull = `<template>
