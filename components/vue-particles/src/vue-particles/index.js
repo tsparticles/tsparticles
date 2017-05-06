@@ -8,5 +8,6 @@ const VueParticles = {
     }
 
 }
-/* eslint-disable */
+
 export default VueParticles
+/* eslint-disable */
