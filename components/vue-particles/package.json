@@ -24,7 +24,7 @@
     "lint": "eslint --ext .js,.vue src",
     "rollup": "rollup -c"
   },
-  "main": "src/vue-particles/index.js",
+  "main": "vue-particles/bundle.js",
   "dependencies": {
     "vue": "^2.2.6",
     "particles.js": "^2.0.0"
