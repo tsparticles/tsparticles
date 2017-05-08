@@ -1,5 +1,5 @@
 # vue-particles
-### Vue.js component for particles backgrounds
+### Vue.js component for particles backgrounds ✨
 ### SSR compatible - Tested with <a href="https://nuxtjs.org/" target="_blank">Nuxt.js</a>
 
 ------------------------------
