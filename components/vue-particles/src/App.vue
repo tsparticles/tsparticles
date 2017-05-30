@@ -9,6 +9,9 @@
         <p class="subtitle">
           Vue.js component for particles backgrounds
         </p>
+        <p class="subtitle">
+          SSR compatible
+        </p>
         <br>
         <a class="gh-button" target="_blank" href="https://github.com/creotip/vue-particles"><span class="gh-button__icon"></span>Download</a>
       </div>

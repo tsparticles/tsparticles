@@ -20,7 +20,6 @@
 </template>
 <script>
   /* eslint-disable */
-  import particles from 'particles.js'
   export default {
     name: 'vue-particles',
     props: {
@@ -86,6 +85,8 @@
       }
     },
     mounted () {
+      // import particle.js only on client-side
+      require('particles.js')
       this.$nextTick(() => {
         this.initParticleJS(
           this.color,
