@@ -1,6 +1,6 @@
 const webpack = require( 'webpack' );
 
-const production = process.env.NODE_ENV == "production";
+const production = process.env.NODE_ENV === "production";
 
 const plugins = production ? 
 	[
@@ -47,11 +47,11 @@ const config = {
     context: __dirname,
     devtool: production ? null : "source-map-loader",
     resolve: {
-        extensions: [ "", ".ts", ".tsx", ".js" ]
+        extensions: [ ".ts", ".tsx", ".js" ]
     },
     entry: "./src/index.ts",
     output: {
-        path: 'lib',
+        path: __dirname + '/lib',
         filename: "particles.js",
         library: "Particles",
         libraryTarget: 'umd',
@@ -68,12 +68,6 @@ const config = {
                 commonjs2: "react",
                 amd: "react",
                 root: "React"
-            },
-            "react-dom": {
-                commonjs: "react-dom",
-                commonjs2: "react-dom",
-                amd: "react-dom",
-                root: "ReactDom"
             }
         }
         

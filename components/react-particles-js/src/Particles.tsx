@@ -1,5 +1,6 @@
 import * as React from 'react';
 import {PureComponent} from 'react';
+import deepClone = require('lodash.clonedeep');
 
 import {IParams, ParticlesLibrary, deepExtend} from './lib';
 
@@ -66,7 +67,7 @@ export default class Particles extends PureComponent<ParticlesProps, ParticlesSt
 		return (
 			<div>
 				<canvas ref={this.loadCanvas} style={
-					deepExtend(this.props.style, {
+					deepExtend(deepClone(this.props.style), {
 						width,
 						height
 					})
