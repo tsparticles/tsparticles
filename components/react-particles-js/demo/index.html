@@ -1,44 +1,43 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-    	<title>react-particles-js</title>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <style>
-            html, body{
-                margin: 0;
-                padding: 0;
-                background: #2e3250;
-            }
 
-            .wrapper{
-                height: 100vh;
-                width: 100vw;
-                line-height: 100vh;
-                text-align: center;
-            }
+<head>
+    <title>react-particles-js</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+        html,
+        body {
+            margin: 0;
+            padding: 0;
+            background: #2e3250;
+        }
+        
+        .wrapper {
+            height: 100vh;
+            width: 100vw;
+            line-height: 100vh;
+            text-align: center;
+        }
+        
+        span {
+            color: white;
+            text-shadow: 0px 1px 0px #333, -1px 0px 0px #333, 0px 0px 10px rgba( 0, 0, 0, 0.80);
+            font: 100 45px 'Helvetica Neue', 'Helvetica', 'Open Sans', sans-serif;
+        }
+    </style>
 
-            span{
-                color: white;
-                text-shadow: 0px 1px 0px #333, -1px 0px 0px #333, 0px 0px 10px rgba( 0, 0, 0, 0.80 );
-                font: 100 45px 'Helvetica Neue', 'Helvetica', 'Open Sans', sans-serif;
-            }
-
-
-
-
-        </style>
     <body>
-    	<div id="app"></div>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/react/15.4.0/react.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/react/15.4.0/react-dom.js"></script>
+        <div id="app"></div>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/react/16.0.0/umd/react.production.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/react-dom/16.0.0/umd/react-dom.production.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.8.29/browser.min.js"></script>
         <script src="../lib/particles.js"></script>
         <script type="text/babel">
             const P = Particles.default;
-            const App = React.createClass({
-                render: function(){
+            class App extends React.Component {
+                render(){
                     return (
                         <div className="wrapper">
                             <P 
@@ -69,11 +68,10 @@
                         </div>
                     );
                 }
-            });
+            }
             const appRoot = document.getElementById( 'app' );
             ReactDOM.render( <App />, appRoot );
         </script>
     </body>
+
 </html>
-
-
