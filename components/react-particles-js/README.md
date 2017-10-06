@@ -55,7 +55,8 @@ class App extends Component{
   
     render(){
         return (
-            <Particles params={{
+            <Particles 
+              params={{
             		particles: {
             			line_linked: {
             				shadow: {
@@ -65,7 +66,12 @@ class App extends Component{
             				}
             			}
             		}
-            	}}/>
+            	}}
+              style={
+                width: '100%',
+                backgroundImage: `url(${logo})` 
+              }
+            />
         );
     };
 
