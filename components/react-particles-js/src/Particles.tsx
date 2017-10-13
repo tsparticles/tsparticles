@@ -9,6 +9,8 @@ export interface ParticlesProps{
 	height: string;
 	params: any;
 	style: any;
+	className?: string;
+	canvasClassName?: string;
 }
 
 export interface ParticlesState{
@@ -63,10 +65,10 @@ export default class Particles extends PureComponent<ParticlesProps, ParticlesSt
 	}
 
 	render(){
-		let {width, height} = this.props;
+		let {width, height, className, canvasClassName} = this.props;
 		return (
-			<div>
-				<canvas ref={this.loadCanvas} style={
+			<div className={className}>
+				<canvas ref={this.loadCanvas} className={canvasClassName} style={
 					deepExtend(deepClone(this.props.style), {
 						width,
 						height
