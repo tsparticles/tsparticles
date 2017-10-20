@@ -5,7 +5,7 @@ const production = process.env.NODE_ENV === "production";
 const plugins = production ? 
 	[
 		new webpack.optimize.DedupePlugin(),
-		new webpack.optimize.OccurenceOrderPlugin(),
+		new webpack.optimize.OccurrenceOrderPlugin(),
 		new webpack.optimize.UglifyJsPlugin({
 		    debug: false,
 		    minimize: true,
@@ -45,7 +45,7 @@ const loaders = [
 
 const config = {
     context: __dirname,
-    devtool: production ? null : "source-map-loader",
+    devtool: production ? false : "source-map-loader",
     resolve: {
         extensions: [ ".ts", ".tsx", ".js" ]
     },
