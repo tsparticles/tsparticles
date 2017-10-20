@@ -126,6 +126,8 @@ export interface ParticlesProps{
     height?: string;
     params?: IParticlesParams;
     style?: any;
+    className?: string;
+	canvasClassName?: string;
 }
 
 type Particles = ComponentClass<ParticlesProps>;
