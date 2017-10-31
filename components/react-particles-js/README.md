@@ -69,10 +69,10 @@ class App extends Component{
             			}
             		}
             	}}
-              style={
+              style={{
                 width: '100%',
                 backgroundImage: `url(${logo})` 
-              }
+              }}
             />
         );
     };
