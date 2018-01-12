@@ -144,7 +144,7 @@
     text-align: center;
   }
 
-  #particles-js {
+  .particles-js {
     background-image: url("./assets/sky.jpg");
     background-size: cover;
     position: absolute;
