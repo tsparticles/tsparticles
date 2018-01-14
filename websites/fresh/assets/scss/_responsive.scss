@@ -1,0 +1,43 @@
+/* ==========================================================================
+Responsive Styles
+========================================================================== */
+
+@media (max-width: 767px) {
+
+    div.nav-item.is-drop  {
+        border-top: 1px solid transparent !important;
+    }
+    div.nav-item.is-drop a {
+        padding-left: 4px !important;
+    }
+    .nav-item.is-tab {
+        padding-top: 8px;
+        padding-bottom: 8px;
+    }
+    .nav .nav-item.is-tab.is-active {
+        border-bottom: none !important;
+        color: $secondary;
+    }
+    .nav-item.nav-inner {
+        padding-top: 15px !important;
+        padding-bottom: 15px !important;
+    }
+    .nav-item.nav-inner-xs {
+        padding-top: 6px !important;
+        padding-bottom: 6px !important;
+    }
+    span.drop-caret {
+        position: relative;
+        right: 15px;
+    }
+    .title.section-title {
+        font-size: 2rem !important;
+    }
+    .level-left.level-social {
+        display: flex;
+        justify-content: flex-start;
+    }
+    .pushed-image {
+        margin-top: 0 !important;
+    }
+}

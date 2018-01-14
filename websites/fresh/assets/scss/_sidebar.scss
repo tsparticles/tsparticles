@@ -1,0 +1,111 @@
+/* ==========================================================================
+Sidebar Styles 
+========================================================================== */
+
+// Panel opening and closing animation lasts 200ms 
+body {
+    transition: transform .2s;
+}
+
+/* Slide page 200px to the right when panel is opened */
+body.ps-active {
+    transform: translateX(250px);
+}
+
+/* Position panel */
+#left-panel {
+    position: fixed !important;
+    top: 0;
+    left: 0;
+    width: 250px;
+    height: 100%;  /* remember to set 100% height for all its parents too, including html and body */
+    background-color: $blue-grey;
+    transform: translateX(-251px);
+    &:focus {
+        outline: none !important;
+    }
+    .panel-header .delete {
+        position: absolute;
+        right: 20px;
+        top: 20px;
+    }
+    .left-menu-wrapper {
+        width: 250px;
+        height: 100vh;
+        position: sticky !important;
+        position: -webkit-sticky !important;
+        top: 0 !important;
+        left: 0 !important;
+        overflow: auto;
+    }
+    .menu-list li a.side-menu-item {
+        color: $light-blue-grey;
+        padding: 10px 7px 14px 12px !important;
+        margin-right: 15px;
+        transition: all 0.5s;
+        &:hover {
+            background: darken($blue-grey,5%);
+            color: darken($light-blue-grey,5%);
+        }
+    }
+    .menu-list li a.side-menu-subitem {
+        color: $light-blue-grey;
+        padding: 6px 7px 8px 7px !important;
+        transition: all 0.5s;
+        &:hover {
+            background: lighten($blue-grey,5%);
+            color: lighten($light-blue-grey,5%);
+        }
+    }
+    a.side-menu-subitem.is-subactive {
+        background: lighten($blue-grey,5%);
+        color: lighten($light-blue-grey,5%);
+    }
+    .menu-list a.is-active {
+        color: $smoke-white !important;
+        background-color: $secondary !important;
+        &:hover {
+            opacity: 0.9 !important;
+        }
+    }
+    .menu-list li ul {
+        border-left: 1px solid $light-blue-grey;
+    }
+    a.side-menu-item i.end-icon {
+        float: right;
+        font-weight: 900;
+        font-size: 9px;
+        position: relative;
+        top: 8px;
+        right: 14px;
+        opacity: 0;
+        transition: all 0.5s;
+    }
+    a.side-menu-item:hover i.end-icon, a.side-menu-item.is-active i.end-icon {
+        opacity: 1;
+    }
+    .menu-label, .menu-list a {
+        margin-left: 15px;
+        color: #c9c9c9;
+    }
+    .menu-label i {
+        font-size: 25px;
+        position: relative;
+        top: 6px;
+        margin-right: 7px;
+    }
+    .panel-header {
+        img.panel-logo {
+            height: 30px;
+            margin-left: 15px;
+            margin-top: 20px;
+            margin-bottom: 25px;
+        }
+    }
+    ul.sidebar-submenu {
+        margin-left: 30px;
+    }
+    .caret-rotate {
+        transform: rotate(-180deg);
+    }
+}
