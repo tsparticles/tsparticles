@@ -360,7 +360,12 @@
         }
     }
 
-    if (!("SVGPathSegList" in window)) {
+    // Checking for SVGPathSegList in window checks for the case of an implementation without the
+    // SVGPathSegList API.
+    // The second check for appendItem is specific to Firefox 59+ which removed only parts of the
+    // SVGPathSegList API (e.g., appendItem). In this case we need to re-implement the entire API
+    // so the polyfill data (i.e., _list) is used throughout.
+    if (!("SVGPathSegList" in window) || !("appendItem" in window.SVGPathSegList.prototype)) {
         // Spec: http://www.w3.org/TR/SVG11/single-page.html#paths-InterfaceSVGPathSegList
         window.SVGPathSegList = function(pathElement) {
             this._pathElement = pathElement;

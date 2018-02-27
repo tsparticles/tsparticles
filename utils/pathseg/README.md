@@ -12,6 +12,8 @@ Now used by [svg-edit](https://github.com/SVG-Edit/svgedit) and passes all svg-e
 
 Blink will likely remove SVGPathElement.getPathSegAtLength (see: [Intent to deprecate and remove SVGPathElement.getPathSegAtLength](https://groups.google.com/a/chromium.org/d/msg/blink-dev/Gc1Aw282beo/NsfsKf8LBgAJ)). A getPathSegAtLength polyfill has been added to this library.
 
+Firefox 59 will likely remove portions of the SVGPathSeg and SVGPathSegList APIs (see: [Remove the WebIDL methods for creating and mutating SVG path data](https://bugzilla.mozilla.org/show_bug.cgi?id=1436438)). This library has support for polyfilling this partial implementation.
+
 ## Using pathseg.js
 Just add pathseg.js to your server and drop this in your html or svg files:
 ```
