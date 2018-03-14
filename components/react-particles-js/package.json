@@ -15,6 +15,9 @@
   "author": "Simone <simone.bembi@gmail.com>",
   "license": "MIT",
   "devDependencies": {
+    "@types/lodash.clonedeep": "^4.5.3",
+    "@types/node": "^8.0.32",
+    "@types/react": "^16.0.8",
     "babel-core": "^6.18.2",
     "babel-loader": "^7.1.2",
     "babel-preset-es2015": "^6.18.0",
@@ -29,9 +32,6 @@
     "webpack-node-externals": "^1.5.4"
   },
   "dependencies": {
-    "@types/lodash.clonedeep": "^4.5.3",
-    "@types/node": "^8.0.32",
-    "@types/react": "^16.0.8",
     "lodash.clonedeep": "^4.5.0"
   },
   "peerDependencies": {
