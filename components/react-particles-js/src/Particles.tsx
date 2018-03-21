@@ -58,7 +58,7 @@ export default class Particles extends PureComponent<ParticlesProps, ParticlesSt
 	}
 	
 	componentWillUnmount(){
-		this.state.library.destroy();
+		this.destroy();
 		this.setState({
 			library: undefined
 		})
