@@ -1,5 +1,5 @@
 import * as React from 'react';
-import {PureComponent} from 'react';
+import {Component} from 'react';
 import deepClone = require('lodash.clonedeep');
 
 import {IParams, ParticlesLibrary, deepExtend} from './lib';
@@ -18,7 +18,7 @@ export interface ParticlesState{
 	library?: ParticlesLibrary;
 }
 
-export default class Particles extends PureComponent<ParticlesProps, ParticlesState>{
+export default class Particles extends Component<ParticlesProps, ParticlesState>{
 
 	public static defaultProps: ParticlesProps = {
 		width: "100%",
@@ -36,6 +36,17 @@ export default class Particles extends PureComponent<ParticlesProps, ParticlesSt
 		this.loadCanvas = this.loadCanvas.bind( this );
 	}
 
+	private refresh(props: Readonly<ParticlesProps>): void {
+		if (this.state.canvas) {
+			this.destroy();
+			this.setState({
+				library: new ParticlesLibrary(props.params)
+			}, () => {
+				this.loadCanvas(this.state.canvas);
+			});
+		}
+	}
+
 	destroy(){
 		this.state.library.destroy();
 	}
@@ -49,6 +60,17 @@ export default class Particles extends PureComponent<ParticlesProps, ParticlesSt
 				this.state.library.start();
 			});
 		}
+	}
+
+	componentWillUpdate(nextProps: Readonly<ParticlesProps>) {
+		if (this.props !== nextProps) {
+			this.refresh(nextProps);
+		}
+	}
+
+	forceUpdate() {
+		this.refresh(this.props);
+		super.forceUpdate();
 	}
 
 	componentWillMount(){
