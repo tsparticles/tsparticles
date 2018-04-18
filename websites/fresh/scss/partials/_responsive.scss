@@ -1,0 +1,80 @@
+/* ==========================================================================
+Responsive Styles
+========================================================================== */
+
+@media (max-width: 767px) {
+
+    .landing-caption {
+        text-align: center;
+    }
+    .navbar-menu {
+        .is-static {
+            position: absolute;
+            width: 100%;
+        }
+        .is-fixed {
+            position: fixed;
+            width: 100%;
+        }
+        .navbar-item {
+            text-align: center !important;
+            .signup-button {
+                width: 100% !important;
+            }
+        }
+        .navbar-link {
+            padding: 10px 20px !important;
+        }
+    }
+    .title.section-title {
+        font-size: 2rem !important;
+    }
+    .level-left.level-social {
+        display: flex;
+        justify-content: flex-start;
+    }
+    .pushed-image {
+        margin-top: 0 !important;
+    }
+    .testimonial {
+        margin: 0 auto;
+    }
+}
+
+
+@media only screen and (min-device-width : 768px) and (max-device-width : 1024px) and (orientation : portrait) {
+    .landing-caption {
+        text-align: center;
+    }
+    .navbar-menu {
+        .is-static {
+            position: absolute;
+            width: 100%;
+        }
+        .is-fixed {
+            position: fixed;
+            width: 100%;
+        }
+        .navbar-item {
+            text-align: center !important;
+            .signup-button {
+                width: 100% !important;
+            }
+        }
+        .navbar-link {
+            padding: 10px 20px !important;
+        }
+    }
+    .pushed-image {
+        margin-top: 0 !important;
+    }
+    .testimonial {
+        margin: 0 auto;
+    }
+    .is-centered-tablet-portrait {
+        text-align: center !important;
+        .divider {
+            margin: 0 auto !important;
+        }
+    }
+}

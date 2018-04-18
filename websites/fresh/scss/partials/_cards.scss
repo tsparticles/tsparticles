@@ -1,0 +1,84 @@
+/*! _cards.scss v1.0.0 | Commercial License | built on top of bulma.io/Bulmax */
+
+/* ==========================================================================
+Cards and Card content styles
+========================================================================== */
+
+// Feature Card
+.feature-card {
+    width: 300px;
+    height: 320px;
+    background-color: #fff;
+    border-radius: 3px;
+    margin: 0 auto;
+    .card-title h4 {
+        font-family: 'Open Sans', sans-serif;
+        padding-top: 25px;
+        font-size: 1.2rem;
+        font-weight: 600;
+        color: $blue-grey;
+    }
+    .card-icon img {
+        height: 120px;
+        margin-top: 20px;
+    }
+    .card-text {
+        padding: 0 40px;
+        p {
+            color: $muted-grey;
+        }
+    }
+    .card-action {
+        margin-top: 10px;
+    }
+    &.is-bordered {
+        border: 1px solid $fade-grey;
+    }
+}
+
+// Flex Card
+.flex-card {
+    position: relative;
+    background-color: #fff;
+    border: 0;
+    border-radius: 0.1875rem;
+    display: inline-block;
+    position: relative;
+    overflow: hidden;
+    width: 100%;
+    margin-bottom: 20px;
+    &.raised {
+        box-shadow: 0px 5px 25px 0px rgba(0, 0, 0, 0.2);
+    }
+    .tabs {
+        padding: 15px 0.7rem;
+    }
+    .navtab-content {
+        min-height: 190px;
+        p {
+            padding: 0 0.8rem 20px;
+        }
+    }
+    .navigation-tabs {
+        &.outlined-pills .tabs.tabs-header {
+            &.primary {
+                background-color: $primary;
+            }
+            &.secondary {
+                background-color: $secondary;
+            }
+            &.accent {
+                background-color: $accent;
+            }
+            ul li a {
+                color: $grey-white;
+            }  
+            ul li.is-active a {
+                color: $white;
+                border: 1px solid $white;
+                border-bottom-color: $white !important;
+            }
+        }
+    }
+
+}

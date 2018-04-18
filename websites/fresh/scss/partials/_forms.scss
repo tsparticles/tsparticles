@@ -1,0 +1,54 @@
+/* ==========================================================================
+Inputs styles
+========================================================================== */
+
+input.input {
+    color: $basaltic-grey;
+    box-shadow: none !important;
+    transition: all 0.8s;
+    padding-bottom: 3px;
+    &.is-small {
+        padding-bottom: 2px;
+        padding-left: 10px;
+    }
+    &.is-medium {
+        padding-bottom: 5px;
+    }
+    &.is-large {
+        padding-bottom: 7px;
+    }
+    &:focus, &:active {
+        border-color: $light-grey;
+    }
+    &.rounded {
+        border-radius: 100px;
+    }
+    &.is-primary-focus:focus {
+        border-color: $primary;
+        ~ span.icon i {
+            color: $primary;
+        }
+    }
+    &.is-secondary-focus:focus {
+        border-color: $secondary;
+        ~ span.icon i {
+            color: $secondary;
+        }
+    }
+    &.is-accent-focus:focus {
+        border-color: $accent;
+        ~ span.icon i {
+            color: $accent;
+        }
+    }
+    &.is-bloody-focus:focus {
+        border-color: $bloody;
+        ~ span.icon i {
+            color: $bloody;
+        }
+    }
+}
+
+.form-footer {
+    width: 100%;
+}

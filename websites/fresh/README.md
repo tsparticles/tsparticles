@@ -7,7 +7,28 @@ You can access the demo [here](https://cssninjastudio.github.io/fresh/).
 
 Fresh is developed with the [Bulma css framework](https://bulma.io)
 
-You need to have Sass installed on your machine in order to edit this template. If you don't have Sass and don't know how to install it you can find some instructions [here](http://sass-lang.com/install).
+**Version 2.0**
+
+## Usage
+Fresh is now a Bulma starter fully bundled with **npm** and **gulp**. Bulma has been upgrade to latest version **0.7**.
+
+* Clone or download the repo
+* Run `npm install`
+* Run `gulp build`
+* Run `gulp default`
+
+## Major changes
+
+* Everything is now handled by gulp and npm
+* Bulma version upgraded to 0.7
+* Bulma source sass is editable (note that the `@widescreen` variable has been set to false)
+* Panel slider library has been removed. Sidebar completely rewritten without any plugin.
+* Removed unused classes and refactored scss
+* Added more scss partials for better code maintainability
+* Introduced Panini templating engine. Learn more about Panini here: https://github.com/zurb/panini
+* Fully automated build and watch process, integration with browser sync
+* Navbar rework since deprecation of `.nav` element in favor of `.navbar`.
+* Optimized responsive display for mobile and tablets.
 
 ## Issues
 

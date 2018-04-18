@@ -1,0 +1,180 @@
+/* ==========================================================================
+Sidebar Styles 
+========================================================================== */
+
+//Sidebar animated icon trigger
+.menu-icon-wrapper {
+    position: relative;
+    left: 0;
+    top: 0;
+    //margin: -12px 0px 0px -12px;
+    width: 34px;
+    height: 34px;
+    pointer-events: none;
+    transition: 0.1s;
+    svg {
+        position: absolute;
+        top: -18px;
+        left: -18px;
+        transform: scale(0.07);
+        transform-origin: 0 0;
+        path {
+            stroke: $secondary;
+            stroke-width: 40px;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+            fill: transparent;
+            transition: stroke-dasharray 0.5s;
+            &.path1 {
+                stroke-dashoffset: 5803.15px; 
+                stroke-dasharray: 2901.57px, 2981.57px, 240px;
+            }
+            &.path2 {
+                stroke-dashoffset: 800px; 
+                stroke-dasharray: 400px, 480px, 240px;
+            }
+            &.path3 {
+                stroke-dashoffset: 6993.11px; 
+                stroke-dasharray: 3496.56px, 3576.56px, 240px;
+            }
+        }
+    }
+    &.open {
+        svg {
+            path {
+                &.path1 {
+                    stroke-dasharray: 2901.57px, 5258.15px, 240px;
+                }
+                &.path2 {
+                    stroke-dasharray: 400px, 600px, 0px;
+                }
+                &.path3 {
+                    stroke-dasharray: 3496.56px, 6448.11px, 240px;
+                }
+            }
+        }
+    }
+    .menu-icon-trigger {
+        position: relative;
+        width: 100%;
+        height: 100%;
+        cursor: pointer;
+        pointer-events: auto;
+        background: none;
+        border: none;
+        margin: 0;
+        padding: 0;
+    }
+}
+
+//Sidebar
+.sidebar {
+    background: $dark-grey;
+    width: 280px;
+    height: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    transform: translateX(-281px);
+    transition: all .3s;
+    z-index: 10000;
+    &.is-active {
+        transform: translateX(0);
+    }
+    .sidebar-header {
+        height: 4.25rem;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        border-bottom: 1px solid lighten($dark-grey, 5%);
+        padding: 0 20px;
+        img {
+            height: 32px;
+        }
+        a {
+            width: 24px;
+            height: 24px;
+        }
+        svg {
+            stroke: $white;
+            transform: rotate(0);
+            transition: all .3s;
+            cursor: pointer;
+            &:hover {
+                stroke: $secondary;
+                transform: rotate(180deg);
+            }
+        }
+    }
+    .inner {
+        position: relative;
+        .sidebar-menu {
+            margin: 0;
+            padding: 0;
+            max-width: 400px;
+            list-style: none;
+            list-style-type: none;
+            font-family: 'Open Sans', sans-serif !important;
+            li {
+                a {
+                    padding: 20px 25px;
+                    display: block;
+                    text-decoration: none;
+                    color: $white;
+                    &:hover {
+                        padding: 20px 25px;
+                        display: block;
+                        text-decoration: none;
+                        color: $white;
+                    }
+                }
+                a span {
+                    margin-right: 20px;
+                    color: $white;
+                }
+                &.have-children {
+                    ul {
+                        padding: 0px;
+                    }
+                    li {
+                        a {
+                            background-color: darken($dark-grey, 5%);
+                            padding-left: 62px;
+                            border-bottom: 1px solid darken($dark-grey, 2%);
+                            font-size: .8rem;
+                            &:hover {
+                                color: $primary;
+                                padding-left: 62px;
+                            }
+                        }
+                    }
+                    span::after {
+                        position: absolute;
+                        top: 27px;
+                        right: 30px;
+                        content: "\f054";
+                        color: $white;
+                        transition: all .5s;
+                        font-weight: 200 !important;
+                        font-size: .8rem;
+                    } 
+                }
+            }
+        }
+        li.have-children, li {
+            position: relative;
+        }
+        li.have-children.active > a, li.have-children.active > a span, li.have-children.active > a span:after {
+            color: $secondary;
+        }
+        li.active.have-children span::after {
+            -moz-transform: rotate(90deg);
+            -o-transform: rotate(90deg);
+            -webkit-transform: rotate(90deg);
+            transform: rotate(90deg);
+        }
+        .sidebar-menu .have-children > ul {
+            display: none;
+        }
+    }
+}

@@ -1,0 +1,43 @@
+{
+  "name": "fresh-starter",
+  "version": "0.0.1",
+  "description": "Starter bundled with bulma.io",
+  "main": "Gruntfile.js",
+  "devDependencies": {
+    "autoprefixer": "^6.3.6",
+    "browser-sync": "^2.18.13",
+    "gulp": "^3.9.1",
+    "gulp-clean": "^0.3.2",
+    "gulp-concat": "^2.6.0",
+    "gulp-postcss": "^6.1.0",
+    "gulp-sass": "^2.2.0",
+    "gulp-sourcemaps": "^1.6.0",
+    "jquery": "~3",
+    "mq4-hover-shim": "^0.3.0",
+    "panini": "^1.3.0",
+    "popper.js": "^1.12.3",
+    "rimraf": "^2.5.2"
+  },
+  "engines": {
+    "node": ">=0.10.1"
+  },
+  "scripts": {
+    "start": "gulp",
+    "build": "gulp build"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/cssninjaStudio/fresh.git"
+  },
+  "bugs": {
+    "url": "https://github.com/cssninjaStudio/fresh/issues",
+    "email": "support@cssninja.io"
+  },
+  "author": "Css Ninja <hello@cssninja.io> (https://cssninja.io)",
+  "license": "MIT",
+  "private": true,
+  "dependencies": {
+    "bulma": "0.7",
+    "feather-icons": "^4.7.0"
+  }
+}

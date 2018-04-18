@@ -1,0 +1,115 @@
+/* ==========================================================================
+Navbar
+========================================================================== */
+
+//Navbar
+.navbar.is-fresh {
+    position: relative;
+    min-height: 3.8rem;
+    transition: all .3s;
+    z-index: 99;
+    .container {
+        min-height: 4rem;
+    }
+    &.no-shadow {
+        box-shadow: none !important;
+    }
+    //Responsive menu icon
+    .navbar-burger {
+        width: 4rem;
+        height: 4rem;
+    }
+    //Brand
+    .navbar-brand {
+        min-height: 4rem;
+        img {
+            max-height: 36px !important;
+            height: 36px;
+        }
+        //Removing navbar item default hover behaviour
+        &:hover {
+            .navbar-item {
+                background: transparent !important;
+            }
+        }
+    }
+    .navbar-end {
+        align-items: center;
+    }
+    //Navbar items
+    .navbar-item {
+        color: $muted-grey;
+        &.is-secondary {
+            &:hover {
+                color: $secondary !important;
+            }
+        }
+        &.has-dropdown {
+            padding: 10px 0;
+            .navbar-link {
+                color: $muted-grey;
+                &:after {
+                    top: 55%;
+                    height: 0.5em;
+                    width: 0.5em;
+                    border-width: 2px;
+                    border-color: $muted-grey;
+                }
+            }
+            .navbar-dropdown {
+                top: 3.4rem;
+                min-width: 220px;
+                margin-top: 4px;
+                border-top-color: $secondary;
+                .navbar-item {
+                    padding: 10px 20px;
+                }
+            }
+            &:hover {
+                .navbar-link {
+                    color: $secondary;
+                    &:after {
+                        border-color: $secondary;
+                    }
+                }
+            }
+        }
+        .signup {
+            display: block;
+            line-height: 0;
+            font-size: .9rem !important;
+        }
+    }
+
+    //Fixed navbar modifier
+    &.is-fixed {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        min-height: 4rem !important;
+        background: $white;
+        box-shadow: 0 0 8px 0 rgba(0, 0, 0, 0.12);
+        a {
+            color: $blue-grey;
+            &:hover {
+                color: $primary;
+            }
+        }
+    }
+}
+
+//Cloned fixed navbar
+#navbar-clone {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background: $white;
+    transform: translateY(-100%);
+    z-index: 100;
+    box-shadow: 0 0 8px 0 rgba(0, 0, 0, 0.12);
+    &.is-active {
+        transform: translateY(0); 
+    }
+}
