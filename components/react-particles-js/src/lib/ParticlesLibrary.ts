@@ -83,6 +83,7 @@ export default class ParticlesLibrary{
 			mode_bubble_size: this.params.interactivity.modes.bubble.size,
 			mode_repulse_distance: this.params.interactivity.modes.repulse.distance
 		};
+		tmp.count_svg = 0;
 	}
 
 
