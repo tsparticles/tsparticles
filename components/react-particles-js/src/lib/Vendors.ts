@@ -191,7 +191,7 @@ export default class Vendors{
 		let {tmp} = this.library;
 
 		let svgXml: string = tmp.source_svg;
-		let rgbHex: RegExp = /#([0-9A-F]{3,6})/gi;
+		let rgbHex: RegExp = /#([0-9A-F]{3,6})|rgb\([0-9,]+\)/gi;
 		let coloredSvgXml: string = svgXml.replace( rgbHex, ( m, r, g, b ) => {
 			let color_value: string;
 			if( particle.color.rgb ){
