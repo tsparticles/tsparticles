@@ -136,15 +136,21 @@ export default class ParticlesLibrary{
 	canvasPaint(): void{
 
 		let {canvas} = this;
-
-		canvas.ctx.fillRect( 0, 0, canvas.width, canvas.height );
+		try{
+			canvas.ctx.fillRect( 0, 0, canvas.width, canvas.height );
+		}catch(e){
+			console.log(e);
+		}
 	}
 
 	canvasClear(): void{
 
 		let {canvas} = this;
-
-		canvas.ctx.clearRect( 0, 0, canvas.width, canvas.height );
+		try{
+			canvas.ctx.clearRect( 0, 0, canvas.width, canvas.height );
+		}catch(e){
+			console.log(e);
+		}
 	}
 
 	public onWindowResize(): void{
