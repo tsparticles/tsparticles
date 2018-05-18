@@ -24,6 +24,7 @@ export const getDefaultParams: () => IParams =
 				},
 				image: {
 					src: '',
+					data: null,
 					width: 100,
 					height: 100
 				}

@@ -65,6 +65,7 @@ export interface IParams{
 			},
 			image: {
 				src: string;
+				data: string;
 				width: number;
 				height: number;
 			}
