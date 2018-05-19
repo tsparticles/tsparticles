@@ -190,7 +190,7 @@ export default class Vendors{
 	createSvgImg( particle: Particle ): void{
 		let {tmp} = this.library;
 
-		let svgXml: string = tmp.source_svg;
+		let svgXml: string = this.params.particles.shape.image.data;
 		let rgbHex: RegExp = /#([0-9A-F]{3,6})|rgb\([0-9,]+\)/gi;
 		let coloredSvgXml: string = svgXml.replace( rgbHex, ( m, r, g, b ) => {
 			let color_value: string;
@@ -256,7 +256,7 @@ export default class Vendors{
 		if( image.src != '' ){
 			if( type == 'svg' ){
 				if(image.data){
-					tmp.source_svg = image.data;
+					// tmp.source_svg = image.data;
 					vendors.checkBeforeDraw();
 				}else{
 					let xhr: XMLHttpRequest = new XMLHttpRequest();
@@ -265,7 +265,7 @@ export default class Vendors{
 						if( xhr.readyState == 4 ){
 							if( xhr.status == 200 ){
 								image.data = data.currentTarget.response;
-								tmp.source_svg = data.currentTarget.response;
+								// tmp.source_svg = data.currentTarget.response;
 								vendors.checkBeforeDraw();
 							}else{
 								console.log( 'Error react-particles-js - image not found' );
@@ -337,7 +337,7 @@ export default class Vendors{
 		let {particles} = this.params;
 
 		if( particles.shape.type == 'image' ){
-			if( tmp.img_type == 'svg' && tmp.source_svg == undefined ){
+			if( tmp.img_type == 'svg' && this.params.particles.shape.image.data == undefined ){
 				// Not clear what "= requestAnimationFrame( check )" means
 				let check: any;
 				tmp.checkAnimFrame = requestAnimationFrame( check );

@@ -22,7 +22,6 @@ export interface ITmpParam{
 	img_type?: string;
 	img_obj?: any;
 	img_error?: any;
-	source_svg?: any;
 	count_svg?: number;
 	pushing?: any;
 	bubble_clicking?: boolean;

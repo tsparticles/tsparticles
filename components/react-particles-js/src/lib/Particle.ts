@@ -156,7 +156,7 @@ export default class Particle{
 			};
 			if( !this.img.ratio )
 				this.img.ratio = 1;
-			if( tmp.img_type == 'svg' && tmp.source_svg != undefined ){
+			if( tmp.img_type == 'svg' && this.params.particles.shape.image.data != undefined ){
 				vendors.createSvgImg( this );
 				if( tmp.pushing ){
 					this.img.loaded = false;

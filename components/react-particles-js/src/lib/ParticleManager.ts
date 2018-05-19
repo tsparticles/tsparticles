@@ -170,7 +170,6 @@ export default class ParticleManager{
 
 		cancelAnimationFrame( tmp.checkAnimFrame );
 		cancelAnimationFrame( tmp.drawAnimFrame );
-		tmp.source_svg = undefined;
 		tmp.img_obj = undefined;
 		tmp.count_svg = 0;
 		this.particlesEmpty();
