@@ -187,12 +187,11 @@ export default class Vendors{
 		});
 	}
 
-	createSvgImg( particle: Particle ): void{
+	createSvgImg( particle: Particle, data: string ): void{
 		let {tmp} = this.library;
 
-		let svgXml: string = this.params.particles.shape.image.data;
 		let rgbHex: RegExp = /#([0-9A-F]{3,6})|rgb\([0-9,]+\)/gi;
-		let coloredSvgXml: string = svgXml.replace( rgbHex, ( m, r, g, b ) => {
+		let coloredSvgXml: string = data.replace( rgbHex, ( m, r, g, b ) => {
 			let color_value: string;
 			if( particle.color.rgb ){
 				let {r, g, b} = particle.color.rgb;
@@ -256,7 +255,6 @@ export default class Vendors{
 		if( image.src != '' ){
 			if( type == 'svg' ){
 				if(image.data){
-					// tmp.source_svg = image.data;
 					vendors.checkBeforeDraw();
 				}else{
 					let xhr: XMLHttpRequest = new XMLHttpRequest();
@@ -265,7 +263,6 @@ export default class Vendors{
 						if( xhr.readyState == 4 ){
 							if( xhr.status == 200 ){
 								image.data = data.currentTarget.response;
-								// tmp.source_svg = data.currentTarget.response;
 								vendors.checkBeforeDraw();
 							}else{
 								console.log( 'Error react-particles-js - image not found' );
@@ -293,8 +290,7 @@ export default class Vendors{
 
 		let {tmp, manager, vendors} = this.library;
 		let {particles} = this.params;
-
-		if( particles.shape.type == 'image' ){
+		if( particles.shape.type == 'image' || particles.shape.type == 'images' ){
 			if( tmp.img_type == 'svg' ){
 				if( tmp.count_svg >= particles.number.value ){
 					manager.particlesDraw();
@@ -336,18 +332,18 @@ export default class Vendors{
 		let {tmp, vendors} = this.library;
 		let {particles} = this.params;
 
-		if( particles.shape.type == 'image' ){
-			if( tmp.img_type == 'svg' && this.params.particles.shape.image.data == undefined ){
-				// Not clear what "= requestAnimationFrame( check )" means
-				let check: any;
-				tmp.checkAnimFrame = requestAnimationFrame( check );
-			}else{
+		if( particles.shape.type == 'image' || particles.shape.type == 'images' ){
+			// if( tmp.img_type == 'svg' && this.params.particles.shape.image.data == undefined ){
+			// 	// Not clear what "= requestAnimationFrame( check )" means
+			// 	let check: any;
+			// 	tmp.checkAnimFrame = requestAnimationFrame( check );
+			// }else{
 				cancelAnimationFrame( tmp.checkAnimFrame );
 				if( !tmp.img_error ){
 					vendors.init();
 					vendors.draw();
 				}
-			}
+			// }
 		}else{
 			vendors.init();
 			vendors.draw();
@@ -369,8 +365,7 @@ export default class Vendors{
 	start(): void{
 		let {tmp, vendors} = this.library;
 		let {particles} = this.params;
-		if( isInArray( 'image', particles.shape.type ) ){
-			
+		if( particles.shape.type == 'image' ){
 			let match: string[];
 			if(match = /^data:image\/(\w{3})\+xml;base64,(.*)$/.exec(particles.shape.image.src)){
 				tmp.img_type = match[1];
@@ -379,6 +374,17 @@ export default class Vendors{
 				tmp.img_type = match[1];
 			}
 			vendors.loadImg(tmp.img_type, particles.shape.image);
+		}else if( particles.shape.type == 'images' ){
+			for(let image of particles.shape.images){
+				let match: string[];
+				if(match = /^data:image\/(\w{3})\+xml;base64,(.*)$/.exec(image.src)){
+					tmp.img_type = match[1];
+					image.data = atob(match[2]);
+				}else if(match = /^.*(\w{3})$/.exec(image.src)){
+					tmp.img_type = match[1];
+				}
+				vendors.loadImg(tmp.img_type, image);
+			}
 		}else{
 			vendors.checkBeforeDraw();
 		}

@@ -156,8 +156,25 @@ export default class Particle{
 			};
 			if( !this.img.ratio )
 				this.img.ratio = 1;
-			if( tmp.img_type == 'svg' && this.params.particles.shape.image.data != undefined ){
-				vendors.createSvgImg( this );
+			if( tmp.img_type == 'svg' && sh.image.data != undefined ){
+				vendors.createSvgImg( this, sh.image.data );
+				if( tmp.pushing ){
+					this.img.loaded = false;
+				}
+			}
+		}
+		if( this.shape == 'images' ){
+			let sh: any = this.params.particles.shape;
+			tmp.img_index++;
+			let image = sh.images[tmp.img_index % sh.images.length];
+			this.img = {
+				src: image.src,
+				ratio: image.width / image.height
+			};
+			if( !this.img.ratio )
+				this.img.ratio = 1;
+			if( tmp.img_type == 'svg' && image.data != undefined ){
+				vendors.createSvgImg( this, image.data);
 				if( tmp.pushing ){
 					this.img.loaded = false;
 				}
@@ -231,6 +248,7 @@ export default class Particle{
 				);
 				break;
 
+			case 'images':
 			case 'image':
 				let draw: ( img_obj: any ) => void = 
 					( img_obj ) => {

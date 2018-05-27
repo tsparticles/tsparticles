@@ -23,6 +23,7 @@ export interface ITmpParam{
 	img_obj?: any;
 	img_error?: any;
 	count_svg?: number;
+	img_index?: number;
 	pushing?: any;
 	bubble_clicking?: boolean;
 	bubble_duration_end?: boolean;
@@ -67,7 +68,13 @@ export interface IParams{
 				data: string;
 				width: number;
 				height: number;
-			}
+			},
+			images: {
+				src: string;
+				data: string;
+				width: number;
+				height: number;
+			} []
 		};
 		opacity: {
 			value: number;

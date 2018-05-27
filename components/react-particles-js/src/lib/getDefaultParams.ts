@@ -27,7 +27,8 @@ export const getDefaultParams: () => IParams =
 					data: null,
 					width: 100,
 					height: 100
-				}
+				},
+				images: []
 			},
 			opacity: {
 				value: 0.5,

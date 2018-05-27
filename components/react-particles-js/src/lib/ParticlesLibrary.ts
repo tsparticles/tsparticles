@@ -84,6 +84,7 @@ export default class ParticlesLibrary{
 			mode_repulse_distance: this.params.interactivity.modes.repulse.distance
 		};
 		tmp.count_svg = 0;
+		tmp.img_index = 0;
 	}
 
 
