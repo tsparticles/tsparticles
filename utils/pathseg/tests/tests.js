@@ -891,3 +891,27 @@ QUnit.test("Test getPathSegAtLength with non-trivial paths", function(assert) {
     assert.equal(path.getPathSegAtLength(100), "1");
     assert.equal(path.getPathSegAtLength(101), "3");
 });
+
+QUnit.test("Test PathSegList.length", function(assert) {
+	var path = document.createElementNS("http://www.w3.org/2000/svg", "path");
+
+	// Empty path.
+	path.setAttribute("d", "");
+	assert.equal(path.pathSegList.length, path.pathSegList.numberOfItems);
+	assert.equal(path.pathSegList.length, 0);
+
+	// Path with one segment.
+	path.setAttribute("d", "M1 1");
+	assert.equal(path.pathSegList.length, path.pathSegList.numberOfItems);
+	assert.equal(path.pathSegList.length, 1);
+
+	// Path with one close segment.
+	path.setAttribute("d", "z");
+	assert.equal(path.pathSegList.length, path.pathSegList.numberOfItems);
+	assert.equal(path.pathSegList.length, 0);
+
+	// Path with two segments and a close.
+	path.setAttribute("d", "M1 1 L2 2Z");
+	assert.equal(path.pathSegList.length, path.pathSegList.numberOfItems);
+	assert.equal(path.pathSegList.length, 3);
+});

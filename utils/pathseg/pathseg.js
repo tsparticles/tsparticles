@@ -387,6 +387,15 @@
             enumerable: true
         });
 
+        // The length property was not specified but was in Firefox 58.
+        Object.defineProperty(window.SVGPathSegList.prototype, "length", {
+            get: function() {
+                this._checkPathSynchronizedToList();
+                return this._list.length;
+            },
+            enumerable: true
+        });
+
         // Add the pathSegList accessors to window.SVGPathElement.
         // Spec: http://www.w3.org/TR/SVG11/single-page.html#paths-InterfaceSVGAnimatedPathData
         Object.defineProperty(window.SVGPathElement.prototype, "pathSegList", {
