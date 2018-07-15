@@ -62,10 +62,12 @@ export default class Particles extends Component<ParticlesProps, ParticlesState>
 		}
 	}
 
+	shouldComponentUpdate(nextProps: Readonly<ParticlesProps>) {
+		return nextProps !== this.props;
+	}
+
 	componentWillUpdate(nextProps: Readonly<ParticlesProps>) {
-		if (this.props !== nextProps) {
-			this.refresh(nextProps);
-		}
+		this.refresh(nextProps);
 	}
 
 	forceUpdate() {
