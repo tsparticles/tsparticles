@@ -170,15 +170,19 @@ export default class Vendors{
 
 	checkOverlap( p1: Particle, position?: { x: number; y: number; } ): void{
 		let {canvas, vendors} = this.library;
+
+		// Hot fix: maximum call stack due to not rendered canvas.
+		// https://github.com/Wufe/react-particles-js/issues/49
+		if (!canvas.width || !canvas.height) return;
+
 		let {particles} = this.params;
 
 		particles.array.forEach( ( particle: Particle ) => {
-			let p2: Particle = particle; 
+			let p2: Particle = particle;
 
 			let dx: number = p1.x - p2.x;
 			let dy: number = p1.y - p2.y;
 			let dist: number = Math.sqrt( dx * dx + dy * dy );
-
 			if( dist <= p1.radius + p2.radius ){
 				p1.x = position ? position.x : Math.random() * canvas.width;
 				p1.y = position ? position.y : Math.random() * canvas.height;
