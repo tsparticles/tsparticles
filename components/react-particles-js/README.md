@@ -109,3 +109,22 @@ class App extends Component{
 + Change variable and function names into more readable/understable/maintainable ones.  
 + Update the structure of the code detaching defined functions from `this.params.fn` object.  
 + Tests.
+
+### What's next
+
+The main purpose of this library is to be simple to use, also allowing to be customized.
+
+To accomplish this, an experimental branch has been created in order to provide a boilerplate for the next version of this library.
+
+A live demonstration can be found [here](http://timeon.space).
+
+In this simple demo website, a new approach has been used, giving the application a powerful composability.  
+Issues concerning best practices, usability, backward compatibility and performances are raising, so..
+
+**Looking for contributors and mantainers**
+
+All is needed is previous experience with Typescript.
+
+If you are interested contact me privately.
+
+Every PR will always be welcome.
