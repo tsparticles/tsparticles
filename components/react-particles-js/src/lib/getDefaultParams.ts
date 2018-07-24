@@ -1,4 +1,4 @@
-import {IParams} from '.';
+import { IParams } from '.';
 
 export const getDefaultParams: () => IParams =
 	() => ({
@@ -92,29 +92,30 @@ export const getDefaultParams: () => IParams =
 				resize: true
 			},
 			modes: {
-				grab:{
+				grab: {
 					distance: 180,
-					line_linked:{
+					line_linked: {
 						opacity: 0.35
 					}
 				},
-				bubble:{
+				bubble: {
 					distance: 200,
 					size: 80,
 					duration: 0.4
 				},
-				repulse:{
+				repulse: {
 					distance: 100,
 					duration: 5
 				},
-				push:{
+				push: {
 					particles_nb: 4
 				},
-				remove:{
+				remove: {
 					particles_nb: 2
 				}
 			},
-			mouse:{}
+			mouse: {}
 		},
-		retina_detect: true
+		retina_detect: true,
+		fps_limit: 60
 	});

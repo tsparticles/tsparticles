@@ -119,6 +119,7 @@ export type IParticlesParams = {
         };
     };
     retina_detected?: boolean;
+    fps_limit?: number;
 };
 
 export interface ParticlesProps{

@@ -167,4 +167,5 @@ export interface IParams{
 		mouse?: IMouseParam;
 	};
 	retina_detect: boolean;
+	fps_limit: number;
 }
