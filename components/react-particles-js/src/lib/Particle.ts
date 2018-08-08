@@ -148,46 +148,20 @@ export default class Particle{
 			this.shape = shape_type;
 		}
 
-		if( this.shape === ShapeType.IMAGE ){
-			let shapeDefinition: IShapeDefinitionEnhanced = this.params.particles.shape;
-			this.img = shapeDefinition.image;
-			// if( !this.img.ratio )
-			// 	this.img.ratio = 1;
-			if( shapeDefinition.image.type == 'svg' && shapeDefinition.image.svgData != undefined ){
-				// vendors.createSvgImg( this, shapeDefinition.image.svgData );
-				// if( tmp.pushing ){
-				// 	this.img.loaded = false;
-				// }
-				this.imageManager.createSvgImage(shapeDefinition.image.svgData, {
-					color: this.color,
-					opacity: this.opacity,
-				}).then(image => {
-					this.img.elementData = image;
-					this.img.loaded = true;
-				});
+		if( this.shape === ShapeType.IMAGE || this.shape === ShapeType.IMAGES ){
+			if (this.shape === ShapeType.IMAGES) {
+				this.img = this.imageManager.getImage(++tmp.img_index);
+			} else {
+				this.img = this.imageManager.getImage();
 			}
-		}
-		if( this.shape === ShapeType.IMAGES ){
-			let sh: IShapeDefinitionEnhanced = this.params.particles.shape;
-			tmp.img_index++;
-			const index = tmp.img_index;
-			let image = sh.images[index % sh.images.length];
-			this.img = image;
-			// (window as any).sha256 && (window as any).sha256(this.img.src).then((digest: string) => console.log(index, digest.substr(0, 3)));
-			// if( !this.img.ratio )
-			// 	this.img.ratio = 1;
-			if( image.type === 'svg' && image.svgData !== undefined ){
-				// vendors.createSvgImg( this, image.data);
-				this.imageManager.createSvgImage(image.svgData, {
+			if( this.img.type === 'svg' && this.img.svgData !== undefined ){
+				this.imageManager.createSvgImage(this.img.svgData, {
 					color: this.color,
 					opacity: this.opacity,
 				}).then(image => {
 					this.img.elementData = image;
 					this.img.loaded = true;
 				});
-				// if( tmp.pushing ){
-				// 	this.img.loaded = false;
-				// }
 			}
 		}
 	}
@@ -223,9 +197,9 @@ export default class Particle{
 		canvas.ctx.fillStyle = color_value;
 		canvas.ctx.beginPath();
 
-		const draw = (img_obj: HTMLImageElement) => {
+		const draw = (imageElement: HTMLImageElement) => {
 			canvas.ctx.drawImage(
-				img_obj,
+				imageElement,
 				this.x - radius,
 				this.y - radius,
 				radius * 2,
@@ -234,19 +208,19 @@ export default class Particle{
 		};
 
 		switch( this.shape ){
-			case 'circle':
+			case ShapeType.CIRCLE:
 				canvas.ctx.arc( this.x, this.y, radius, 0, Math.PI * 2, false );
 				break;
 
-			case 'edge':
+			case ShapeType.EDGE:
 				canvas.ctx.rect( this.x - radius, this.y - radius, radius * 2, radius * 2 );
 				break;
 
-			case 'triangle':
+			case ShapeType.TRIANGLE:
 				vendors.drawShape( canvas.ctx, this.x - radius, this.y + radius / 1.66, radius * 2, 3, 2 );
 				break;
 
-			case 'polygon':
+			case ShapeType.POLYGON:
 				vendors.drawShape(
 					canvas.ctx,
 					this.x - radius / ( this.params.particles.shape.polygon.nb_sides / 3.5 ),
@@ -257,7 +231,7 @@ export default class Particle{
 				);
 				break;
 
-			case 'star':
+			case ShapeType.STAR:
 				vendors.drawShape(
 					canvas.ctx,
 					this.x - radius * 2 / ( this.params.particles.shape.polygon.nb_sides / 4 ),
@@ -268,8 +242,8 @@ export default class Particle{
 				);
 				break;
 
-			case 'images':
-			case 'image':
+			case ShapeType.IMAGES:
+			case ShapeType.IMAGE:
 				if( this.img.elementData )
 					draw( this.img.elementData );
 				break;

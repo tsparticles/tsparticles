@@ -21,7 +21,6 @@ export interface ITmpParam{
 	retina?: boolean;
 	img_type?: string;
 	img_types?: string[];
-	img_obj?: HTMLImageElement;
 	img_error?: any;
 	count_svg?: number;
 	img_index?: number;

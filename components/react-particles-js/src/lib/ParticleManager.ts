@@ -167,10 +167,7 @@ export default class ParticleManager{
 	particlesRefresh(): void{
 
 		let {tmp, vendors} = this.library;
-
-		cancelAnimationFrame( tmp.checkAnimFrame );
 		cancelAnimationFrame( tmp.drawAnimFrame );
-		tmp.img_obj = undefined;
 		tmp.count_svg = 0;
 		this.particlesEmpty();
 		this.library.canvasClear();

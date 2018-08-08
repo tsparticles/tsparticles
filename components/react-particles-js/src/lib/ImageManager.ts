@@ -40,10 +40,13 @@ export class ImageManager {
         if( shape.type === 'image' ){
             this.mode = ImageMode.SINGLE;
             return this.parseSingleImage(shape.image)
-                .then(parsedImage => ({
-                    ...shape,
-                    image: parsedImage
-                }));
+                .then(parsedImage => {
+                    this.singleImage = parsedImage;
+                    return {
+                        ...shape,
+                        image: parsedImage
+                    };
+                });
 		}else if( shape.type == 'images' ){
             this.mode = ImageMode.MULTIPLE;
             const promises: Promise<IImageDefinitionEnhanced>[] = [];
@@ -51,10 +54,13 @@ export class ImageManager {
                 promises.push(this.parseSingleImage(imageShape));
             }
             return Promise.all(promises)
-                .then(parsedImages => ({
-                    ...shape,
-                    images: parsedImages
-                }));
+                .then(parsedImages => {
+                    this.multipleImages = parsedImages;
+                    return {
+                        ...shape,
+                        images: parsedImages
+                    };
+                });
         } else {
             return Promise.resolve(shape);
         }

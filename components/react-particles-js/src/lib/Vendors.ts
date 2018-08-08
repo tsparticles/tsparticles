@@ -195,38 +195,6 @@ export default class Vendors{
 		});
 	}
 
-	// createSvgImg( particle: Particle, data: string ): void{
-	// 	let {tmp} = this.library;
-
-	// 	let rgbHex: RegExp = /#([0-9A-F]{3,6})|rgb\([0-9,]+\)/gi;
-	// 	let coloredSvgXml: string = data.replace( rgbHex, ( m, r, g, b ) => {
-	// 		let color_value: string;
-	// 		if( particle.color.rgb ){
-	// 			let {r, g, b} = particle.color.rgb;
-	// 			color_value = `rgba( ${r}, ${g}, ${b}, ${particle.opacity} )`;
-	// 		}else{
-	// 			let {h, s, l} = particle.color.hsl;
-	// 			color_value = `rgba( ${h}, ${s}, ${l}, ${particle.opacity} )`;
-	// 		}
-	// 		return color_value;
-	// 	});
-
-	// 	let svg: Blob = new Blob( [coloredSvgXml], {
-	// 		type: 'image/svg+xml;charset=utf-8'
-	// 	});
-	// 	let DOMURL: any = window.URL || window;
-	// 	let url: any = DOMURL.createObjectURL( svg );
-
-	// 	let img = new Image();
-	// 	img.addEventListener( 'load', () => {
-	// 		particle.img.obj = img;
-	// 		particle.img.loaded = true;
-	// 		DOMURL.revokeObjectURL( url );
-	// 		tmp.count_svg++;
-	// 	});
-	// 	img.src = url;
-	// }
-
 	destroy(): void{
 		let {canvas, tmp} = this.library;
 		cancelAnimationFrame( tmp.drawAnimFrame );
@@ -256,43 +224,6 @@ export default class Vendors{
 		window.open( canvas.element.toDataURL( 'image/png' ), '_blank' );
 	}
 
-	// loadImg( type: string, image: any ): void{
-	// 	let {tmp, vendors} = this.library;
-	// 	tmp.img_error = undefined;
-	// 	if( image.src != '' ){
-	// 		if( type == 'svg' ){
-	// 			if(image.data){
-	// 				vendors.checkBeforeDraw();
-	// 			}else{
-	// 				let xhr: XMLHttpRequest = new XMLHttpRequest();
-	// 				xhr.open( 'GET', image.src );
-	// 				xhr.onreadystatechange = ( data: any ) => {
-	// 					if( xhr.readyState == 4 ){
-	// 						if( xhr.status == 200 ){
-	// 							image.data = data.currentTarget.response;
-	// 							vendors.checkBeforeDraw();
-	// 						}else{
-	// 							console.log( 'Error react-particles-js - image not found' );
-	// 							tmp.img_error = true;
-	// 						}
-	// 					}
-	// 				};
-	// 				xhr.send();
-	// 			}
-	// 		}else{
-	// 			let img: HTMLImageElement = new Image();
-	// 			img.addEventListener( 'load', () => {
-	// 				tmp.img_obj = img;
-	// 				vendors.checkBeforeDraw();
-	// 			});
-	// 			img.src = image.src;
-	// 		}
-	// 	}else{
-	// 		console.log( 'Error react-particles-js - no image.src' );
-	// 		tmp.img_error = true;
-	// 	}
-	// }
-
 	draw(): void{
     	let shouldDraw = true;
 		let {tmp, manager, vendors} = this.library;
@@ -313,92 +244,7 @@ export default class Vendors{
 		}else{
 			tmp.drawAnimFrame = requestAnimationFrame( vendors.draw );
 		}
-		// if(particles.shape.type === ShapeType.IMAGE){
-		// 	if( tmp.img_type == 'svg' ){
-		// 		if( tmp.count_svg >= particles.number.value ){
-        //   			if( shouldDraw ){
-		// 				manager.particlesDraw();
-        //   			}
-		// 			if( !particles.move.enable ){
-		// 				cancelAnimationFrame( tmp.drawAnimFrame );
-		// 			}else{
-		// 				tmp.drawAnimFrame = requestAnimationFrame( vendors.draw );
-		// 			}
-		// 		}else{
-		// 			if( !tmp.img_error ){
-		// 				tmp.drawAnimFrame = requestAnimationFrame( vendors.draw );
-		// 			}
-		// 		}
-		// 	}else{
-		// 		if( tmp.img_obj != undefined ){
-        //   			if( shouldDraw ){
-        //     			manager.particlesDraw();
-        //   			}
-		// 			if( !particles.move.enable ){
-		// 				cancelAnimationFrame( tmp.drawAnimFrame );
-		// 			}else{
-		// 				tmp.drawAnimFrame = requestAnimationFrame( vendors.draw );
-		// 			}
-		// 		}else{
-		// 			if( !tmp.img_error ){
-		// 				tmp.drawAnimFrame = requestAnimationFrame( vendors.draw );
-		// 			}
-		// 		}
-		// 	}
-		// } else if (particles.shape.type === ShapeType.IMAGES) {
-		// 	if (shouldDraw) {
-		// 		manager.particlesDraw();
-		// 	}
-		// 	if( !particles.move.enable ){
-		// 		cancelAnimationFrame( tmp.drawAnimFrame );
-		// 	}else{
-		// 		tmp.drawAnimFrame = requestAnimationFrame( vendors.draw );
-		// 	}
-		// }else{
-		if( shouldDraw ){
-			manager.particlesDraw();
-		}
-		if( !particles.move.enable ){
-			cancelAnimationFrame( tmp.drawAnimFrame );
-		}else{
-			tmp.drawAnimFrame = requestAnimationFrame( vendors.draw );
-		}
-		// }
 	}
-
-	// checkBeforeDraw(): void{
-	// 	let {tmp, vendors} = this.library;
-	// 	let {particles} = this.params;
-
-	// 	if( particles.shape.type == 'image' ){
-	// 		if( tmp.img_type == 'svg' && this.params.particles.shape.image.data == undefined ){
-	// 			tmp.checkAnimFrame = requestAnimationFrame(() => {});
-	// 		}else{
-	// 			cancelAnimationFrame( tmp.checkAnimFrame );
-	// 			if( !tmp.img_error ){
-	// 				vendors.init();
-	// 				vendors.draw();
-	// 			}
-	// 		}
-	// 	} else if (particles.shape.type === 'images') {
-	// 		let atLeastOneSvgWithNoData = false;
-	// 		particles.shape.images.forEach((img, index) => {
-	// 			if (tmp.img_type /* TODO: Convert to tmp.img_types[index] */ === 'svg' && img.data === undefined && !atLeastOneSvgWithNoData)
-	// 				atLeastOneSvgWithNoData = true;
-	// 		});
-	// 		if (atLeastOneSvgWithNoData) {
-	// 			// Wait until all images loaded
-	// 			tmp.checkAnimFrame = requestAnimationFrame(() => {});
-	// 		} else {
-	// 			cancelAnimationFrame(tmp.checkAnimFrame);
-	// 			vendors.init();
-	// 			vendors.draw();
-	// 		}
-	// 	} else {
-	// 		vendors.init();
-	// 		vendors.draw();
-	// 	}
-	// }
 
 	init(): void{
 		if (this.initialized)
@@ -426,30 +272,6 @@ export default class Vendors{
 				this.init();
 				this.draw();
 			});
-
-		// if( particles.shape.type == 'image' ){
-		// 	let match: string[];
-		// 	if(match = /^data:image\/(\w{3})\+xml;(.*?)base64,(.*)$/.exec(particles.shape.image.src)){
-		// 		tmp.img_type = match[1];
-		// 		particles.shape.image.data = atob(match[3]);
-		// 	}else if(match = /^.*(\w{3})$/.exec(particles.shape.image.src)){
-		// 		tmp.img_type = match[1];
-		// 	}
-		// 	vendors.loadImg(tmp.img_type, particles.shape.image);
-		// }else if( particles.shape.type == 'images' ){
-		// 	for(let image of particles.shape.images){
-		// 		let match: string[];
-		// 		if(match = /^data:image\/(\w{3})\+xml;(.*?)base64,(.*)$/.exec(image.src)){
-		// 			tmp.img_type = match[1];
-		// 			image.data = atob(match[3]);
-		// 		}else if(match = /^.*(\w{3})$/.exec(image.src)){
-		// 			tmp.img_type = match[1];
-		// 		}
-		// 		vendors.loadImg(tmp.img_type, image);
-		// 	}
-		// }else{
-		// 	vendors.checkBeforeDraw();
-		// }
 	}
 
 }
