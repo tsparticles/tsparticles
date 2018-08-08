@@ -1,4 +1,5 @@
 import {clamp, isInArray, IMouseParam, IParams, Particle, ParticlesLibrary} from '.';
+import { ImageManager } from './ImageManager';
 
 type Pos = {
 	pos_x: number;
@@ -10,7 +11,7 @@ export default class Modes{
 	params: IParams;
 	library: ParticlesLibrary;
 
-	constructor( params: IParams, library: ParticlesLibrary ){
+	constructor(private imageManager: ImageManager, params: IParams, library: ParticlesLibrary ){
 		this.params = params;
 		this.library = library;
 	}
@@ -23,6 +24,7 @@ export default class Modes{
 		for( let i = 0; i < nb; i++ ){
 			this.params.particles.array.push(
 				new Particle(
+					this.imageManager,
 					this.params,
 					this.library,
 					this.params.particles.color,

@@ -1,4 +1,5 @@
 import {IParams, Particle, Interact, isInArray, Modes,  ParticlesLibrary, Vendors} from '.';
+import { ImageManager } from './ImageManager';
 
 export default class ParticleManager{
 
@@ -8,7 +9,7 @@ export default class ParticleManager{
 	modes: Modes;
 	vendors: Vendors;
 
-	constructor( params: IParams, interact: Interact, modes: Modes, vendors: Vendors, library: ParticlesLibrary ){
+	constructor(private imageManager: ImageManager, params: IParams, interact: Interact, modes: Modes, vendors: Vendors, library: ParticlesLibrary ){
 		this.params = params;
 		this.interact = interact;
 		this.modes = modes;
@@ -16,11 +17,10 @@ export default class ParticleManager{
 		this.library = library;
 	}
 
-
 	particlesCreate(): void{
 		let {color, opacity} = this.params.particles;
 		for( let i = 0; i < this.params.particles.number.value; i++ ){
-			this.params.particles.array.push( new Particle( this.params, this.library, color, opacity.value ) );
+			this.params.particles.array.push( new Particle(this.imageManager, this.params, this.library, color, opacity.value ) );
 		}
 	}
 

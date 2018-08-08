@@ -1,10 +1,15 @@
-type RGB = {
+export interface IParsedColor {
+	hsl?: HSL;
+	rgb?: RGB;
+}
+
+export type RGB = {
 	r: number;
 	g: number;
 	b: number;
 };
 
-type HSL = {
+export type HSL = {
 	h: number;
 	s: number;
 	l: number;

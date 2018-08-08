@@ -1,4 +1,7 @@
 import {hexToRgb, IParams, ParticlesLibrary, getColor} from '.';
+import { MoveDirection, ShapeType } from './IParams';
+import { IParsedColor } from './Utils';
+import { ImageManager, IShapeDefinitionEnhanced, IImageDefinitionEnhanced } from './ImageManager';
 
 export default class Particle{
 
@@ -13,7 +16,7 @@ export default class Particle{
 	x: number;
 	y: number;
 
-	color: any;
+	color: IParsedColor;
 
 	opacity: number;
 	opacity_bubble: number;
@@ -28,9 +31,9 @@ export default class Particle{
 
 	shape: string;
 
-	img: { src: string; ratio: number; loaded?: boolean; obj?: any; };
+	img: IImageDefinitionEnhanced;
 
-	constructor( params: IParams, library: ParticlesLibrary, color?: any, opacity?: any, position?: { x: number; y: number; }){
+	constructor(private imageManager: ImageManager, params: IParams, library: ParticlesLibrary, color?: any, opacity?: any, position?: { x: number; y: number; }){
 		this.params = params;
 		this.library = library;
 		this.setupSize();
@@ -89,33 +92,32 @@ export default class Particle{
 	}
 
 	setupAnimation(): void{
-
 		let {tmp, vendors} = this.library;
 
 		let velbase: { x: number; y: number; } = null;
 		switch( this.params.particles.move.direction ){
-			case 'top':
+			case MoveDirection.TOP:
 				velbase = { x: 0, y: -1 };
 				break;
-			case 'top-right':
+			case MoveDirection.TOP_RIGHT:
 				velbase = { x: 0.5, y: -0.5 };
 				break;
-			case 'right':
+			case MoveDirection.RIGHT:
 				velbase = { x: 1, y: 0 };
 				break;
-			case 'bottom-right':
+			case MoveDirection.BOTTOM_RIGHT:
 				velbase = { x: 0.5, y: 0.5 };
 				break;
-			case 'bottom':
+			case MoveDirection.BOTTOM:
 				velbase = { x: 0, y: 1 };
 				break;
-			case 'bottom-left':
+			case MoveDirection.BOTTOM_LEFT:
 				velbase = { x: -0.5, y: 1 };
 				break;
-			case 'left':
+			case MoveDirection.LEFT:
 				velbase = { x: -1, y:0 };
 				break;
-			case 'top-left':
+			case MoveDirection.TOP_LEFT:
 				velbase = { x: -0.5, y: -0.5 };
 				break;
 			default:
@@ -137,47 +139,55 @@ export default class Particle{
 		this.vx_i = this.vx;
 		this.vy_i = this.vy;
 
-		let shape_type: any = this.params.particles.shape.type;
+		let shape_type = this.params.particles.shape.type;
 
-		if( typeof( shape_type ) == 'object' ){
-			if( shape_type instanceof Array ){
-				let shape_selected: string = shape_type[ Math.floor( Math.random() * shape_type.length ) ];
-				this.shape = shape_selected;
-			}
+		if( Array.isArray(shape_type) ){
+			let shape_selected = shape_type[ Math.floor( Math.random() * shape_type.length ) ];
+			this.shape = shape_selected;
 		}else{
 			this.shape = shape_type;
 		}
 
-		if( this.shape == 'image' ){
-			let sh: any = this.params.particles.shape;
-			this.img = {
-				src: sh.image.src,
-				ratio: sh.image.width / sh.image.height
-			};
-			if( !this.img.ratio )
-				this.img.ratio = 1;
-			if( tmp.img_type == 'svg' && sh.image.data != undefined ){
-				vendors.createSvgImg( this, sh.image.data );
-				if( tmp.pushing ){
-					this.img.loaded = false;
-				}
+		if( this.shape === ShapeType.IMAGE ){
+			let shapeDefinition: IShapeDefinitionEnhanced = this.params.particles.shape;
+			this.img = shapeDefinition.image;
+			// if( !this.img.ratio )
+			// 	this.img.ratio = 1;
+			if( shapeDefinition.image.type == 'svg' && shapeDefinition.image.svgData != undefined ){
+				// vendors.createSvgImg( this, shapeDefinition.image.svgData );
+				// if( tmp.pushing ){
+				// 	this.img.loaded = false;
+				// }
+				this.imageManager.createSvgImage(shapeDefinition.image.svgData, {
+					color: this.color,
+					opacity: this.opacity,
+				}).then(image => {
+					this.img.elementData = image;
+					this.img.loaded = true;
+				});
 			}
 		}
-		if( this.shape == 'images' ){
-			let sh: any = this.params.particles.shape;
+		if( this.shape === ShapeType.IMAGES ){
+			let sh: IShapeDefinitionEnhanced = this.params.particles.shape;
 			tmp.img_index++;
-			let image = sh.images[tmp.img_index % sh.images.length];
-			this.img = {
-				src: image.src,
-				ratio: image.width / image.height
-			};
-			if( !this.img.ratio )
-				this.img.ratio = 1;
-			if( tmp.img_type == 'svg' && image.data != undefined ){
-				vendors.createSvgImg( this, image.data);
-				if( tmp.pushing ){
-					this.img.loaded = false;
-				}
+			const index = tmp.img_index;
+			let image = sh.images[index % sh.images.length];
+			this.img = image;
+			// (window as any).sha256 && (window as any).sha256(this.img.src).then((digest: string) => console.log(index, digest.substr(0, 3)));
+			// if( !this.img.ratio )
+			// 	this.img.ratio = 1;
+			if( image.type === 'svg' && image.svgData !== undefined ){
+				// vendors.createSvgImg( this, image.data);
+				this.imageManager.createSvgImage(image.svgData, {
+					color: this.color,
+					opacity: this.opacity,
+				}).then(image => {
+					this.img.elementData = image;
+					this.img.loaded = true;
+				});
+				// if( tmp.pushing ){
+				// 	this.img.loaded = false;
+				// }
 			}
 		}
 	}
@@ -212,6 +222,16 @@ export default class Particle{
 
 		canvas.ctx.fillStyle = color_value;
 		canvas.ctx.beginPath();
+
+		const draw = (img_obj: HTMLImageElement) => {
+			canvas.ctx.drawImage(
+				img_obj,
+				this.x - radius,
+				this.y - radius,
+				radius * 2,
+				radius * 2 / this.img.ratio
+			);
+		};
 
 		switch( this.shape ){
 			case 'circle':
@@ -250,24 +270,8 @@ export default class Particle{
 
 			case 'images':
 			case 'image':
-				let draw: ( img_obj: any ) => void = 
-					( img_obj ) => {
-						canvas.ctx.drawImage(
-							img_obj,
-							this.x - radius,
-							this.y - radius,
-							radius * 2,
-							radius * 2 / this.img.ratio
-						);
-					};
-				let img_obj: any;
-				if( tmp.img_type == 'svg' ){
-					img_obj = this.img.obj;
-				}else{
-					img_obj = tmp.img_obj;
-				}
-				if( img_obj )
-					draw( img_obj );
+				if( this.img.elementData )
+					draw( this.img.elementData );
 				break;
 		}
 

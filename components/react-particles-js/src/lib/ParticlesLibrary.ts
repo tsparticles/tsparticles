@@ -9,6 +9,7 @@ import {
 	Particle,
 	ParticleManager,
 	Vendors} from '.';
+import { ImageManager } from './ImageManager';
 
 export default class ParticlesLibrary{
 
@@ -21,14 +22,16 @@ export default class ParticlesLibrary{
 	modes: Modes;
 	vendors: Vendors;
 
+	imageManager = new ImageManager();
+
 	constructor( params?: any ){
 		this.tmp = {};
 		this.loadParameters( params );
 		this.extendParams();
 		this.interact = new Interact( this.params, this );
-		this.modes = new Modes( this.params, this );
-		this.vendors = new Vendors( this.params, this );
-		this.manager = new ParticleManager( this.params, this.interact, this.modes, this.vendors, this );
+		this.modes = new Modes(this.imageManager, this.params, this );
+		this.vendors = new Vendors(this.imageManager, this.params, this );
+		this.manager = new ParticleManager(this.imageManager, this.params, this.interact, this.modes, this.vendors, this );
 	}
 
 	loadParameters( params?: any ): void{

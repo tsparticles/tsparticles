@@ -20,7 +20,8 @@ export interface ITmpParam{
 	};
 	retina?: boolean;
 	img_type?: string;
-	img_obj?: any;
+	img_types?: string[];
+	img_obj?: HTMLImageElement;
 	img_error?: any;
 	count_svg?: number;
 	img_index?: number;
@@ -42,6 +43,47 @@ export interface IMouseParam{
 	click_time?: number;
 };
 
+export enum ShapeType {
+	CIRCLE = 'circle',
+	EDGE = 'edge',
+	TRIANGLE = 'triangle',
+	POLYGON = 'polygon',
+	STAR = 'star',
+	IMAGE = 'image',
+	IMAGES = 'images',
+}
+
+export enum MoveDirection {
+	TOP = 'top',
+	TOP_RIGHT = 'top-right',
+	RIGHT = 'right',
+	BOTTOM_RIGHT = 'bottom-right',
+	BOTTOM = 'bottom',
+	BOTTOM_LEFT = 'bottom-left',
+	LEFT = 'left',
+	TOP_LEFT = 'top-left',
+	NONE = 'none',
+}
+
+export interface IImageDefinition {
+	src: string;
+	width: number;
+	height: number;
+}
+
+export interface IShapeDefinition {
+	type: ShapeType;
+	stroke: {
+		width: number;
+		color: any; // TODO: Add definition for color
+	};
+	polygon: {
+		nb_sides: number;
+	};
+	image: IImageDefinition;
+	images: IImageDefinition[];
+}
+
 export interface IParams{
 	particles: {
 		number: {
@@ -54,28 +96,7 @@ export interface IParams{
 		color: {
 			value: any;
 		};
-		shape: {
-			type: string | string[];
-			stroke: {
-				width: number;
-				color: any;
-			},
-			polygon: {
-				nb_sides: number;
-			},
-			image: {
-				src: string;
-				data: string;
-				width: number;
-				height: number;
-			},
-			images: {
-				src: string;
-				data: string;
-				width: number;
-				height: number;
-			} []
-		};
+		shape: IShapeDefinition;
 		opacity: {
 			value: number;
 			random: boolean;
@@ -112,7 +133,7 @@ export interface IParams{
 		move: {
 			enable: boolean;
 			speed: number;
-			direction: string;
+			direction: MoveDirection;
 			random: boolean;
 			straight: boolean;
 			out_mode: string;

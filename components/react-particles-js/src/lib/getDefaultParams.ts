@@ -1,4 +1,5 @@
 import { IParams } from '.';
+import { ShapeType, MoveDirection } from './IParams';
 
 export const getDefaultParams: () => IParams =
 	() => ({
@@ -14,7 +15,7 @@ export const getDefaultParams: () => IParams =
 				value: '#FFF'
 			},
 			shape: {
-				type: 'circle',
+				type: ShapeType.CIRCLE,
 				stroke: {
 					width: 0,
 					color: '#000000'
@@ -65,7 +66,7 @@ export const getDefaultParams: () => IParams =
 			move: {
 				enable: true,
 				speed: 3,
-				direction: 'none',
+				direction: MoveDirection.NONE,
 				random: false,
 				straight: false,
 				out_mode: 'bounce',
@@ -117,5 +118,5 @@ export const getDefaultParams: () => IParams =
 			mouse: {}
 		},
 		retina_detect: true,
-		fps_limit: 60
+		fps_limit: 999
 	});
