@@ -7,6 +7,19 @@
 
 import {ComponentClass} from 'react';
 
+type ShapeType = 'circle' | 'edge' | 'triangle' | 'polygon' | 'star' | 'image' | 'images';
+
+type MoveDirection = 'top' | 'top-right' | 'right' | 'bottom-right' | 'bottom' | 'bottom-left' |
+    'left' | 'top-left' | 'none';
+
+type InteractivityMode = 'grab' | 'push' | 'remove' | 'bubble' | 'repulse';
+
+declare interface IImageDefinition {
+	src?: string;
+	width?: number;
+	height?: number;
+}
+
 export type IParticlesParams = {
     particles?: {
         number?: {
@@ -20,7 +33,7 @@ export type IParticlesParams = {
             value: string;
         };
         shape?: {
-            type?: string;
+            type?: ShapeType | ShapeType[];
             stroke?: {
                 width?: number;
                 color?: string;
@@ -28,11 +41,8 @@ export type IParticlesParams = {
             polygon?: {
                 nb_sides: number;
             };
-            image?: {
-                src?: string;
-                width?: number;
-                height?: number;
-            };
+            image?: IImageDefinition;
+            images?: IImageDefinition[];
         };
         opacity?: {
             value?: number;
@@ -69,7 +79,7 @@ export type IParticlesParams = {
         move?: {
             enable?: boolean;
             speed?: number;
-            direction?: string;
+            direction?: MoveDirection;
             random?: boolean;
             straight?: boolean;
             out_mode?: string;
@@ -86,11 +96,11 @@ export type IParticlesParams = {
         events?: {
             onhover?: {
                 enable?: boolean;
-                mode?: string;
+                mode?: InteractivityMode;
             };
             onclick?: {
                 enable?: boolean;
-                mode?: string;
+                mode?: InteractivityMode;
             };
             resize?: boolean;
         };
@@ -118,7 +128,7 @@ export type IParticlesParams = {
             };
         };
     };
-    retina_detected?: boolean;
+    retina_detect?: boolean;
     fps_limit?: number;
 };
 
