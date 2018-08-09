@@ -115,6 +115,7 @@ export type IParticlesParams = {
                 distance?: number;
                 size?: number;
                 duration?: number;
+                opacity?: number;
             };
             repulse?: {
                 distance?: number;

@@ -4,21 +4,7 @@ const production = process.env.NODE_ENV === "production";
 
 const plugins = production ? 
 	[
-		new webpack.optimize.DedupePlugin(),
 		new webpack.optimize.OccurrenceOrderPlugin(),
-		new webpack.optimize.UglifyJsPlugin({
-		    debug: false,
-		    minimize: true,
-		    sourceMap: false,
-		    output: {
-		        comments: false
-		    },
-		    compressor: {
-		        warnings: false
-		    },
-		    mangle: true,
-            beautify: true
-		}),
 		new webpack.DefinePlugin({
 		    'process.env': {
 		        'NODE_ENV': JSON.stringify( 'production' )
@@ -30,20 +16,21 @@ const plugins = production ?
 const typescriptLoader = {
     test: /\.tsx?$/,
     exclude: /node_modules/,
-    loader: 'babel-loader!ts-loader'
+    use: ['babel-loader', 'ts-loader']
 };
 
 const jsonLoader = {
     test: /\.json$/,
-    loader: 'json-loader'
+    use: 'json-loader'
 };
 
-const loaders = [
+const rules = [
     typescriptLoader,
     jsonLoader
 ];
 
 const config = {
+    mode: production ? 'production' : 'development',
     context: __dirname,
     devtool: production ? false : "source-map-loader",
     resolve: {
@@ -59,7 +46,7 @@ const config = {
     },
     target: 'web',
     module: {
-        loaders
+        rules
     },
     externals: [
         {
