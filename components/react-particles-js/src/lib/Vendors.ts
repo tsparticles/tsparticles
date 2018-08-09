@@ -1,6 +1,6 @@
 import {IParams, Particle, isInArray, hexToRgb, ParticlesLibrary} from '.';
 import {ImageManager, IImageDefinitionEnhanced} from './ImageManager';
-import { ShapeType } from './IParams';
+import { ShapeType, InteractivityMode } from './IParams';
 
 export default class Vendors{
 
@@ -119,7 +119,7 @@ export default class Vendors{
 
 		if( interactivity.events.onclick.enable ){
 			switch( interactivity.events.onclick.mode ){
-				case 'push':
+				case InteractivityMode.PUSH:
 					if( particles.move.enable ){
 						modes.pushParticles( interactivity.modes.push.particles_nb, interactivity.mouse );
 					}else{
@@ -131,15 +131,15 @@ export default class Vendors{
 					}
 					break;
 
-				case 'remove':
+				case InteractivityMode.REMOVE:
 					modes.removeParticles( interactivity.modes.remove.particles_nb );
 					break;
 
-				case 'bubble':
+				case InteractivityMode.BUBBLE:
 					tmp.bubble_clicking = true;
 					break;
 
-				case 'repulse':
+				case InteractivityMode.REPULSE:
 					tmp.repulse_clicking = true;
 					tmp.repulse_count = 0;
 					tmp.repulse_finish = false;
@@ -266,9 +266,6 @@ export default class Vendors{
 
 		this.imageManager.parseShape(particles.shape)
 			.then(shape => {
-				// TODO: Let the new created particles to use this shape definition
-				// instead of overriding the default one
-				this.params.particles.shape = shape;
 				this.init();
 				this.draw();
 			});

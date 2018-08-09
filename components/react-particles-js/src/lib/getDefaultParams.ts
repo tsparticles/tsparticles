@@ -1,5 +1,5 @@
 import { IParams } from '.';
-import { ShapeType, MoveDirection } from './IParams';
+import { ShapeType, MoveDirection, InteractivityMode } from './IParams';
 
 export const getDefaultParams: () => IParams =
 	() => ({
@@ -84,11 +84,11 @@ export const getDefaultParams: () => IParams =
 			events: {
 				onhover: {
 					enable: false,
-					mode: 'grab'
+					mode: InteractivityMode.GRAB
 				},
 				onclick: {
 					enable: false,
-					mode: 'repulse'
+					mode: InteractivityMode.REPULSE
 				},
 				resize: true
 			},

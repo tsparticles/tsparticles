@@ -1,6 +1,6 @@
 import { resolve } from "dns";
-import { IImageDefinition, IShapeDefinition } from "./IParams";
-import { IParsedColor } from "./Utils";
+import { IImageDefinition, IShapeDefinition, ShapeType } from "./IParams";
+import { IParsedColor, isEqual } from "./Utils";
 
 export interface IImageDefinitionEnhanced extends IImageDefinition {
     svgData?: string;
@@ -37,7 +37,7 @@ export class ImageManager {
     }
 
     parseShape(shape: IShapeDefinitionEnhanced): Promise<IShapeDefinitionEnhanced> {
-        if( shape.type === 'image' ){
+        if( isEqual(ShapeType.IMAGE, shape.type) ){
             this.mode = ImageMode.SINGLE;
             return this.parseSingleImage(shape.image)
                 .then(parsedImage => {
@@ -47,7 +47,7 @@ export class ImageManager {
                         image: parsedImage
                     };
                 });
-		}else if( shape.type == 'images' ){
+        }else if( isEqual(ShapeType.IMAGES, shape.type) ){ // 'image' or 'images', not both
             this.mode = ImageMode.MULTIPLE;
             const promises: Promise<IImageDefinitionEnhanced>[] = [];
 			for(let imageShape of shape.images){

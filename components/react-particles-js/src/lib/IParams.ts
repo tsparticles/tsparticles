@@ -19,8 +19,6 @@ export interface ITmpParam{
 	    mode_repulse_distance: number;
 	};
 	retina?: boolean;
-	img_type?: string;
-	img_types?: string[];
 	img_error?: any;
 	count_svg?: number;
 	img_index?: number;
@@ -62,6 +60,14 @@ export enum MoveDirection {
 	LEFT = 'left',
 	TOP_LEFT = 'top-left',
 	NONE = 'none',
+}
+
+export enum InteractivityMode {
+	GRAB = 'grab',
+	PUSH = 'push',
+	REMOVE = 'remove',
+	BUBBLE = 'bubble',
+	REPULSE = 'repulse',
 }
 
 export interface IImageDefinition {
@@ -152,11 +158,11 @@ export interface IParams{
 		events: {
 			onhover: {
 				enable: boolean;
-				mode: string | string[];
+				mode: InteractivityMode | InteractivityMode[];
 			};
 			onclick: {
 				enable: boolean;
-				mode: string | string[];
+				mode: InteractivityMode | InteractivityMode[];
 			};
 			resize: boolean;
 		};

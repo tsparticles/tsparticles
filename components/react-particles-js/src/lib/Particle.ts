@@ -147,7 +147,7 @@ export default class Particle{
 		}else{
 			this.shape = shape_type;
 		}
-
+		
 		if( this.shape === ShapeType.IMAGE || this.shape === ShapeType.IMAGES ){
 			if (this.shape === ShapeType.IMAGES) {
 				this.img = this.imageManager.getImage(++tmp.img_index);

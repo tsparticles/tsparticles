@@ -34,10 +34,18 @@ export const clamp: ( number: number, min: number, max: number ) => number =
 		return Math.min( Math.max( number, min ), max );
 	};
 
-export const isInArray: ( value: any, array: any ) => boolean =
-	( value, array ) => {
-		return array.indexOf( value ) > -1;
-	};
+export function isInArray( value: any, array: any ): boolean {
+	return array.indexOf( value ) > -1;
+}
+
+export function isEqual<T>(value: T, array: T[]): boolean;
+export function isEqual<T>(value: T, object: T): boolean;
+
+export function isEqual<T>(value: T, arrayOrObject: T | T[]): boolean {
+	if (Array.isArray(arrayOrObject))
+		return isInArray(value, arrayOrObject);
+	return arrayOrObject === value;
+}
 
 export const deepExtend: ( destination: any, source: any ) => any =
 	function( destination, source ){
@@ -54,7 +62,7 @@ export const deepExtend: ( destination: any, source: any ) => any =
 		return destination;
 	};
 
-export const getColor: ( colorObject: any ) => { rgb?: RGB, hsl?: HSL } = 
+export const getColor: ( colorObject: any ) => IParsedColor = 
 	( colorObject ) => {
 		let color: { rgb?: RGB, hsl?: HSL } = {};
 		if( typeof( colorObject ) == 'object' ){
