@@ -4,10 +4,17 @@ import deepClone = require('lodash.clonedeep');
 
 import {IParams, ParticlesLibrary, deepExtend} from './lib';
 
-export interface ParticlesProps{
+type RecursivePartial<T> = {
+	[P in keyof T]?:
+		T[P] extends (infer U)[] ? RecursivePartial<U>[] :
+		T[P] extends object ? RecursivePartial<T[P]> :
+		T[P];
+};
+
+export interface ParticlesProps {
 	width: string;
 	height: string;
-	params: any;
+	params: RecursivePartial<IParams>;
 	style: any;
 	className?: string;
 	canvasClassName?: string;
