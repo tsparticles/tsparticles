@@ -8,7 +8,8 @@ import {
 	Modes,
 	Particle,
 	ParticleManager,
-	Vendors} from '.';
+	Vendors,
+	PolygonMask} from '.';
 import { ImageManager } from './ImageManager';
 
 export default class ParticlesLibrary{
@@ -21,6 +22,7 @@ export default class ParticlesLibrary{
 	interact: Interact;
 	modes: Modes;
 	vendors: Vendors;
+	polygonMask: PolygonMask;
 
 	imageManager = new ImageManager();
 
@@ -32,6 +34,7 @@ export default class ParticlesLibrary{
 		this.modes = new Modes(this.imageManager, this.params, this );
 		this.vendors = new Vendors(this.imageManager, this.params, this );
 		this.manager = new ParticleManager(this.imageManager, this.params, this.interact, this.modes, this.vendors, this );
+		this.polygonMask = new PolygonMask(this);
 	}
 
 	loadParameters( params?: any ): void{
@@ -176,11 +179,15 @@ export default class ParticlesLibrary{
 		canvas.element.width = canvas.width;
 		canvas.element.height = canvas.height;
 
-		if( !this.params.particles.move.enable ){
+		if( !this.params.particles.move.enable || this.params.polygon.enable ){
 			manager.particlesEmpty();
-			manager.particlesCreate();
-			manager.particlesDraw();
-			vendors.densityAutoParticles();
+			this.polygonMask.initialize()
+				.then(() => {
+					manager.particlesCreate();
+					manager.particlesDraw();
+					vendors.densityAutoParticles();
+				});
+			
 		}
 
 		vendors.densityAutoParticles();

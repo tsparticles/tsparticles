@@ -1,6 +1,6 @@
 import {IParams, Particle, isInArray, hexToRgb, ParticlesLibrary} from '.';
 import {ImageManager, IImageDefinitionEnhanced} from './ImageManager';
-import { ShapeType, InteractivityMode } from './IParams';
+import { ShapeType, InteractivityMode, PolygonInlineArrangementType, PolygonType } from './IParams';
 
 export default class Vendors{
 
@@ -114,6 +114,16 @@ export default class Vendors{
 
 		interactivity.mouse.click_pos_x = interactivity.mouse.pos_x;
 		interactivity.mouse.click_pos_y = interactivity.mouse.pos_y;
+		if (this.params.polygon.enable &&
+			[PolygonType.INSIDE, PolygonType.OUTSIDE].indexOf(this.params.polygon.type) > -1) {
+			const point = {
+				x: interactivity.mouse.click_pos_x,
+				y: interactivity.mouse.click_pos_y,
+			};
+			const isInside = this.library.polygonMask.isPointInsidePolygon(point);
+			if (this.params.polygon.type === PolygonType.INSIDE && !isInside) return;
+			if (this.params.polygon.type === PolygonType.OUTSIDE && isInside) return;
+		}
 
 		interactivity.mouse.click_time = new Date().getTime();
 
@@ -188,9 +198,20 @@ export default class Vendors{
 			let dy: number = p1.y - p2.y;
 			let dist: number = Math.sqrt( dx * dx + dy * dy );
 			if( dist <= p1.radius + p2.radius ){
-				p1.x = position ? position.x : Math.random() * canvas.width;
-				p1.y = position ? position.y : Math.random() * canvas.height;
-				vendors.checkOverlap( p1 );
+				if (!this.library.params.polygon.enable) {
+					p1.x = position ? position.x : Math.random() * canvas.width;
+					p1.y = position ? position.y : Math.random() * canvas.height;
+					vendors.checkOverlap( p1 );
+				} else {
+					// If disposition is random, we cannot check if the point is used by another particle
+					switch (this.library.params.polygon.inline.arrangement) {
+						case PolygonInlineArrangementType.RANDOM_LENGTH:
+						case PolygonInlineArrangementType.RANDOM_POINT:
+						default:
+							// Let the particle be overlapped
+					}
+				}
+				
 			}
 		});
 	}
@@ -256,9 +277,12 @@ export default class Vendors{
 		library.retinaInit();
 		library.canvasInit();
 		library.canvasSize();
-		manager.particlesCreate();
-		vendors.densityAutoParticles();
-		particles.line_linked.color_rgb_line = hexToRgb( particles.line_linked.color );
+		library.polygonMask.initialize()
+			.then(() => {
+				manager.particlesCreate();
+				vendors.densityAutoParticles();
+				particles.line_linked.color_rgb_line = hexToRgb( particles.line_linked.color );
+			});
 	}
 
 	start(): void{

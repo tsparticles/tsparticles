@@ -1,7 +1,12 @@
+export type TPoint = {
+	x: number;
+	y: number;
+};
+
 export interface IParsedColor {
 	hsl?: HSL;
 	rgb?: RGB;
-}
+};
 
 export type RGB = {
 	r: number;

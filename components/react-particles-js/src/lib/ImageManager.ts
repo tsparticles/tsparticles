@@ -95,21 +95,11 @@ export class ImageManager {
 				if (image.svgData) { // already loaded
 					return Promise.resolve(image);
 				} else {
-                    return new Promise<IImageDefinitionEnhanced>((resolve, reject) => {
-                        let xhr: XMLHttpRequest = new XMLHttpRequest();
-                        xhr.open( 'GET', image.src );
-                        xhr.onreadystatechange = ( data: any ) => {
-                            if( xhr.readyState == 4 ){
-                                if( xhr.status == 200 ){
-                                    image.svgData = data.currentTarget.response;
-                                    resolve(image);
-                                }else{
-                                    reject(new Error(`Error react-particles-js - Status code ${xhr.readyState}`));
-                                }
-                            }
-                        };
-                        xhr.send();
-                    });
+                    return this.downloadImage(image.src)
+                        .then(data => {
+                            image.svgData = data.response;
+                            return image;
+                        });
 				}
 			}else{
                 return new Promise<IImageDefinitionEnhanced>(resolve => {
@@ -124,6 +114,23 @@ export class ImageManager {
 		}else{
 			return Promise.reject(new Error('Error react-particles-js - no image.src'));
 		}
+    }
+
+    public downloadImage(url: string): Promise<{ response: any; xhr: XMLHttpRequest; }> {
+        return new Promise((resolve, reject) => {
+            let xhr: XMLHttpRequest = new XMLHttpRequest();
+            xhr.open( 'GET', url );
+            xhr.onreadystatechange = ( data: any ) => {
+                if( xhr.readyState == 4 ){
+                    if( xhr.status == 200 ){
+                        resolve({ response: data.currentTarget.response, xhr });
+                    }else{
+                        reject(new Error(`Error react-particles-js - Status code ${xhr.readyState}`));
+                    }
+                }
+            };
+            xhr.send();
+        });
     }
 
     createSvgImage(imageData: string, particleParameters: {

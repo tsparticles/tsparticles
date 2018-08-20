@@ -80,13 +80,53 @@ export interface IShapeDefinition {
 	type: ShapeType;
 	stroke: {
 		width: number;
-		color: any; // TODO: Add definition for color
+		color: any;
 	};
 	polygon: {
 		nb_sides: number;
 	};
 	image: IImageDefinition;
 	images: IImageDefinition[];
+}
+
+export enum PolygonType {
+	INLINE = 'inline',
+	INSIDE = 'inside',
+	OUTSIDE = 'outside',
+}
+
+export enum PolygonInlineArrangementType {
+	RANDOM_POINT = 'random-point',
+	PER_POINT = 'per-point',
+	ONE_PER_POINT = 'one-per-point', // Overrides particles number
+	RANDOM_LENGTH = 'random-length',
+	EQUIDISTANT = 'equidistant',
+}
+
+export enum PolygonMoveType {
+	PATH = 'path',
+	RADIUS = 'radius',
+}
+
+export interface IPolygonDefinition {
+	enable: boolean;
+	scale: number;
+	type: PolygonType;
+	move: {
+		radius: number;
+		type: PolygonMoveType;
+	};
+	inline: {
+		arrangement: PolygonInlineArrangementType;
+	};
+	draw: {
+        enable: boolean;
+        stroke: {
+            width: number;
+            color: string;
+        };
+    };
+	url: string;
 }
 
 export interface IParams{
@@ -194,4 +234,5 @@ export interface IParams{
 	};
 	retina_detect: boolean;
 	fps_limit: number;
+	polygon: IPolygonDefinition;
 }

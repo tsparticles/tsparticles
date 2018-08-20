@@ -1,6 +1,6 @@
 import {hexToRgb, IParams, ParticlesLibrary, getColor} from '.';
-import { MoveDirection, ShapeType } from './IParams';
-import { IParsedColor } from './Utils';
+import { MoveDirection, ShapeType, PolygonType, PolygonInlineArrangementType } from './IParams';
+import { IParsedColor, TPoint } from './Utils';
 import { ImageManager, IShapeDefinitionEnhanced, IImageDefinitionEnhanced } from './ImageManager';
 
 export default class Particle{
@@ -15,6 +15,7 @@ export default class Particle{
 
 	x: number;
 	y: number;
+
 
 	color: IParsedColor;
 
@@ -33,11 +34,17 @@ export default class Particle{
 
 	img: IImageDefinitionEnhanced;
 
-	constructor(private imageManager: ImageManager, params: IParams, library: ParticlesLibrary, color?: any, opacity?: any, position?: { x: number; y: number; }){
+	constructor(
+		private imageManager: ImageManager,
+		params: IParams,
+		library: ParticlesLibrary,
+		color?: any,
+		opacity?: any,
+		public initialPosition?: TPoint){
 		this.params = params;
 		this.library = library;
 		this.setupSize();
-		this.setupPosition( position );
+		this.setupPosition();
 		this.setupColor( color );
 		this.setupOpacity();
 		this.setupAnimation();
@@ -53,12 +60,77 @@ export default class Particle{
 		}
 	}
 
-	setupPosition( position?: { x: number; y: number; }): void{
+	setupPosition(): void{
 
 		let {canvas, vendors} = this.library;
+		const position = this.initialPosition;
 
-		this.x = position ? position.x : Math.random() * canvas.width;
-		this.y = position ? position.y : Math.random() * canvas.height;
+		if (this.library.params.polygon.enable) {
+			switch (this.library.params.polygon.type) {
+				case PolygonType.INLINE:
+					if (position) {
+						this.x = position.x;
+						this.y = position.y;
+					} else {
+						switch (this.library.params.polygon.inline.arrangement) {
+							case PolygonInlineArrangementType.RANDOM_POINT:
+								{
+									const randomPosition = this.library.polygonMask.getRandomPointOnPolygonPath();
+									this.x = randomPosition.x;
+									this.y = randomPosition.y;
+									break;
+								}
+							case PolygonInlineArrangementType.RANDOM_LENGTH:
+								{
+									const randomPosition = this.library.polygonMask.getRandomPointOnPolygonPathByLength();
+									this.x = randomPosition.x;
+									this.y = randomPosition.y;
+									break;
+								}
+							case PolygonInlineArrangementType.EQUIDISTANT:
+								{
+									const position = this.library.polygonMask.getEquidistantPoingOnPolygonPathByIndex(this.library.params.particles.array.length);
+									this.x = position.x;
+									this.y = position.y;
+									break;
+								}
+							case PolygonInlineArrangementType.PER_POINT:
+							case PolygonInlineArrangementType.ONE_PER_POINT:
+							default:
+								{
+									const position = this.library.polygonMask.getPoingOnPolygonPathByIndex(this.library.params.particles.array.length);
+									this.x = position.x;
+									this.y = position.y;
+								}
+						}
+					}
+					break;
+				case PolygonType.INSIDE:
+					if (position) {
+						this.x = position.x;
+						this.y = position.y;
+					} else {
+						const position = this.library.polygonMask.getRandomPointInsidePolygonPath();
+						this.x = position.x;
+						this.y = position.y;
+					}
+					break;
+				case PolygonType.OUTSIDE:
+					if (position) {
+						this.x = position.x;
+						this.y = position.y;
+					} else {
+						const position = this.library.polygonMask.getRandomPointOutsidePolygonPath();
+						this.x = position.x;
+						this.y = position.y;
+					}
+					break;
+			}
+			this.initialPosition = { x: this.x, y: this.y };
+		} else {
+			this.x = position ? position.x : Math.random() * canvas.width;
+			this.y = position ? position.y : Math.random() * canvas.height;
+		}
 
 		if( this.x > canvas.width - this.radius * 2 ){
 			this.x = this.x - this.radius;

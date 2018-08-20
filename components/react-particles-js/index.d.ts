@@ -1,4 +1,4 @@
-// Type definitions for react-particles-js v2.4.0-beta.3
+// Type definitions for react-particles-js v2.4.0-beta.4
 // Project: https://github.com/wufe/react-particles-js
 // Definitions by: Simone Bembi <https://github.com/wufe>
 // Definitions: https://github.com/DefinitelyTyped/DefinitelyTyped
@@ -25,6 +25,33 @@ declare interface IImageDefinition {
 	src?: string;
 	width?: number;
 	height?: number;
+}
+
+type PolygonType = 'inline' | 'inside' | 'outside';
+
+type PolygonInlineArrangementType = 'random-point' | 'per-point' | 'one-per-point' | 'random-length' | 'equidistant';
+
+type PolygonMoveType = 'path' | 'radius';
+
+declare interface IPolygonDefinition {
+    enable: boolean;
+    scale: number;
+    type: PolygonType;
+    move: {
+        radius: number;
+        type: PolygonMoveType;
+    };
+    inline: {
+        arrangement: PolygonInlineArrangementType;
+    };
+    draw: {
+        enable: boolean;
+        stroke: {
+            width: number;
+            color: string;
+        };
+    };
+    url: string;
 }
 
 export type IParticlesParams = RecursivePartial<{
@@ -138,6 +165,7 @@ export type IParticlesParams = RecursivePartial<{
     };
     retina_detect: boolean;
     fps_limit: number;
+    polygon: IPolygonDefinition;
 }>;
 
 export interface ParticlesProps{

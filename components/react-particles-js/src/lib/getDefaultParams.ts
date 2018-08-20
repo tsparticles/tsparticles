@@ -1,5 +1,5 @@
 import { IParams } from '.';
-import { ShapeType, MoveDirection, InteractivityMode } from './IParams';
+import { ShapeType, MoveDirection, InteractivityMode, PolygonType, PolygonInlineArrangementType, PolygonMoveType } from './IParams';
 
 export const getDefaultParams: () => IParams =
 	() => ({
@@ -118,5 +118,25 @@ export const getDefaultParams: () => IParams =
 			mouse: {}
 		},
 		retina_detect: true,
-		fps_limit: 999
+		fps_limit: 999,
+		polygon: {
+			enable: false,
+			scale: 1,
+			type: PolygonType.INLINE,
+			inline: {
+				arrangement: PolygonInlineArrangementType.ONE_PER_POINT,
+			},
+			draw: {
+				enable: false,
+				stroke: {
+					width: .5,
+					color: 'rgba(255, 255, 255, .1)'
+				}
+			},
+			move: {
+				radius: 10,
+				type: PolygonMoveType.PATH,
+			},
+			url: '',
+		},
 	});

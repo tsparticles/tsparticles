@@ -1,5 +1,6 @@
-import {IParams, Particle, Interact, isInArray, Modes,  ParticlesLibrary, Vendors} from '.';
+import {IParams, Particle, Interact, isInArray, Modes,  ParticlesLibrary, Vendors, TPoint} from '.';
 import { ImageManager } from './ImageManager';
+import { PolygonType, PolygonMoveType, PolygonInlineArrangementType } from './IParams';
 
 export default class ParticleManager{
 
@@ -19,7 +20,14 @@ export default class ParticleManager{
 
 	particlesCreate(): void{
 		let {color, opacity} = this.params.particles;
-		for( let i = 0; i < this.params.particles.number.value; i++ ){
+
+		let particlesNumber = this.params.particles.number.value;
+		if (this.params.polygon.enable &&
+			this.params.polygon.type === PolygonType.INLINE &&
+			this.params.polygon.inline.arrangement === PolygonInlineArrangementType.PER_POINT) {
+			particlesNumber = this.library.polygonMask.getVerticesNumber();
+		}
+		for( let i = 0; i < particlesNumber; i++ ){
 			this.params.particles.array.push( new Particle(this.imageManager, this.params, this.library, color, opacity.value ) );
 		}
 	}
@@ -104,14 +112,47 @@ export default class ParticleManager{
 
 			switch( this.params.particles.move.out_mode ){
 				case 'bounce':
-					if( particle.x + particle.radius > canvas.width )
-						particle.vx = -particle.vx;
-					else if( particle.x - particle.radius < 0 )
-						particle.vx = -particle.vx;
-					if( particle.y + particle.radius > canvas.height )
-						particle.vy = -particle.vy;
-					else if( particle.y - particle.radius < 0 )
-						particle.vy = -particle.vy;
+					{
+						if (this.params.polygon.enable) {
+							const moveRadius = this.params.polygon.move.radius;
+							switch (this.params.polygon.type) {
+								case PolygonType.INLINE:
+									if (this.getDistance(particle.initialPosition, particle) > moveRadius) {
+										particle.vx = -particle.vx + (particle.vy / 2);
+										particle.vy = -particle.vy + (particle.vx / 2);
+									}
+									break;
+								case PolygonType.INSIDE:
+								case PolygonType.OUTSIDE:
+									{
+										const mode = this.params.polygon.move.type;
+										if (mode === PolygonMoveType.RADIUS) {
+											if (this.getDistance(particle.initialPosition, particle) > moveRadius) {
+												particle.vx = -particle.vx + (particle.vy / 2);
+												particle.vy = -particle.vy + (particle.vx / 2);
+											}
+										} else if (mode === PolygonMoveType.PATH) {
+											const shouldBeInside = this.params.polygon.type === PolygonType.INSIDE;
+											const isInside = this.library.polygonMask.isPointInsidePolygon({ x: particle.x, y: particle.y });
+											if ((shouldBeInside && !isInside) || (!shouldBeInside && isInside)) {
+												particle.vx = -particle.vx + (particle.vy / 2);
+												particle.vy = -particle.vy + (particle.vx / 2);
+											}
+										}
+									}
+									break;
+							}
+						} else {
+							if( particle.x + particle.radius > canvas.width )
+								particle.vx = -particle.vx;
+							else if( particle.x - particle.radius < 0 )
+								particle.vx = -particle.vx;
+							if( particle.y + particle.radius > canvas.height )
+								particle.vy = -particle.vy;
+							else if( particle.y - particle.radius < 0 )
+								particle.vy = -particle.vy;
+						}
+					}
 					break;
 			}
 
@@ -148,6 +189,10 @@ export default class ParticleManager{
 		});
 	}
 
+	private getDistance(p1: TPoint, p2: TPoint): number {
+		return Math.sqrt((p1.x - p2.x) * (p1.x - p2.x) + (p1.y - p2.y) * (p1.y - p2.y));
+	}
+
 	particlesDraw(): void{
 
 		let {canvas, manager} = this.library;
@@ -158,6 +203,9 @@ export default class ParticleManager{
 		this.params.particles.array.forEach( ( particle: Particle ) => {
 			particle.draw();
 		});
+
+		if (this.params.polygon.enable && this.params.polygon.draw.enable)
+			this.library.polygonMask.drawPolygon();
 	}
 
 	particlesEmpty(): void{

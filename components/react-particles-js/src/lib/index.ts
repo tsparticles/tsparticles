@@ -7,6 +7,7 @@ import Vendors from './Vendors';
 
 export * from './getDefaultParams';
 export * from './IParams';
+export * from './PolygonMask';
 export * from './Utils';
 
 export {

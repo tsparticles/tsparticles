@@ -44,9 +44,104 @@ class App extends Component{
 
 Find your parameters configuration [here](http://vincentgarreau.com/particles.js/).
 
+---
+
 ### Added functionalities
 
-#### Shadow
+#### Polygon mask support
+
+Demo: [Polygon mask demo](https://rpj.bembi.org/#mask).
+
+Available only since version `v2.4.0-beta.4` (available with `npm install react-particles-js@2.4.0-beta.4`).
+
+##### Requirements
+
++ Only the first path of the svg will be fetched
++ The **[SVGPathSeg polyfill](https://github.com/progers/pathseg)** is required.  
+Add it in your index.html:
+
+```html
+<script src="https://cdn.rawgit.com/progers/pathseg/master/pathseg.js"></script>
+```
+
+##### Example
+```typescript
+import Particles from 'react-particles-js';
+
+class App extends Component{
+  
+    render(){
+        return (
+            <Particles 
+                params={{
+                    polygon: {
+                        enable: true,
+                        type: 'inside',
+                        move: {
+                            radius: 10
+                        },
+                        url: 'path/to/svg.svg'
+                    }
+                }} />
+        );
+    };
+
+}
+```
+
+##### Parameters
+
++ `polygon.enable` (boolean; default false) - Whether the mask must be enabled
++ `polygon.url` (string) - The url of the svg  
++ `polygon.type` ('inline' | 'inside' | 'outside'; default 'inline') - The particles should be drawn over, inside or outside the svg path  
++ `polygon.scale` (number; default 1) - How much the svg must be scaled  
++ `polygon.move.radius` (number; default 10) - The radius which will be used as particles movement boundary  
++ `polygon.move.type` ('path' | 'radius'; default 'path') - Whether the particles should be bounded to the polygon path or to a given radius, while moving with `polygon.type = 'outside'` or `polygon.type = 'inside'` 
++ `polygon.inline.arrangement` ('random-point' | 'per-point' | 'one-per-point' | 'random-length' | 'equidistant'; default 'one-per-point') - Whether the particles disposition with `polygon.type = 'inline'` should be random or following some criteria; `'one-per-point'` overrides the number of the particles drawn.  
++ `polygon.draw.enable` (boolean; default false) - Whether the shape should be drawn on the canvas  
++ `polygon.draw.stroke.width` (number; default .5) - Draw stroke  
++ `polygon.draw.stroke.color` (string; default 'rgba(255, 255, 255, .1)') - Draw stroke color  
+
+---
+
+#### Multiple images
+
+Lets you use multiple images as particle shape.  
+
+Demo: [Multiple images demo](https://rpj.bembi.org/#images).
+
+Available only since version `v2.4.0-beta.3` (available with `npm install react-particles-js@2.4.0-beta.3`).
+
+##### Example
+
+```typescript
+import Particles from 'react-particles-js';
+
+class App extends Component{
+  
+    render(){
+        return (
+            <Particles 
+                params={{
+                    particles: {
+                        shape: {
+                            type: 'images',
+                            images: [
+                                {src: 'path/to/first/image.svg', height: 20, width: 20},
+                                {src: 'path/to/second/image.jpg', height: 20, width: 20},
+                            ]
+                        }
+                    }
+                }} />
+        );
+    };
+
+}
+```
+
+---
+
+#### Line link shadow
 
 Adds blurred shadow to the lines of the canvas.
 
