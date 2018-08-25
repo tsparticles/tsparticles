@@ -64,6 +64,7 @@ export const deepAssign = (destination: any, ...sources: any[]) => {
 				if (typeof destination !== 'object' || !destination || Array.isArray(destination)) destination = {};
 			}
 			for (const key in source) {
+				if (key === '__proto__') continue;
 				const value = source[key];
 				const isObject = typeof value === 'object';
 				if (isObject && Array.isArray(value)) {
