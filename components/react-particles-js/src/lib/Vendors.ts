@@ -1,6 +1,6 @@
-import {IParams, Particle, isInArray, hexToRgb, ParticlesLibrary} from '.';
-import {ImageManager, IImageDefinitionEnhanced} from './ImageManager';
-import { ShapeType, InteractivityMode, PolygonInlineArrangementType, PolygonType } from './IParams';
+import {IParams, Particle, hexToRgb, ParticlesLibrary} from '.';
+import {ImageManager} from './ImageManager';
+import { PolygonInlineArrangementType } from './IParams';
 
 export default class Vendors{
 
@@ -16,159 +16,17 @@ export default class Vendors{
 		if( typeof performance !== 'undefined' ){
 			this.lastDraw = performance.now();
 		}
-		
-		this.onMouseMove = this.onMouseMove.bind( this );
-		this.onMouseLeave = this.onMouseLeave.bind( this );
-		this.onClick = this.onClick.bind( this );
 		this.draw = this.draw.bind( this );
-	}
-
-	eventsListeners(): void{
-		let {interactivity} = this.params;
-		let {canvas} = this.library;
-
-		if( interactivity.detect_on == 'window' ){
-			interactivity.el = window;
-		}else{
-			interactivity.el = canvas.element;
-		}
-
-		if( interactivity.events.onhover.enable ||
-			interactivity.events.onclick.enable ){
-
-			interactivity.el.addEventListener( 'mousemove', this.onMouseMove );
-			interactivity.el.addEventListener( 'mouseleave', this.onMouseLeave );
-
-		}
-
-		if( interactivity.events.onclick.enable ){
-			interactivity.el.addEventListener( 'click', this.onClick );
-		}
-	}
-
-	detachListeners(): void{
-		let {interactivity} = this.params;
-		let {tmp} = this.library;
-
-		if( interactivity.el ){
-
-			if( interactivity.events.onhover.enable ||
-				interactivity.events.onclick.enable ){
-				interactivity.el.removeEventListener( 'mousemove', this.onMouseMove );
-				interactivity.el.addEventListener( 'mouseleave', this.onMouseLeave );
-			}
-
-			if( interactivity.events.onclick.enable ){
-				interactivity.el.addEventListener( 'click', this.onClick );
-			}
-		}
-
-		window.cancelAnimationFrame( tmp.drawAnimFrame );
-	}
-
-	public onMouseMove( event: MouseEvent ): void{
-
-		let {canvas, tmp} = this.library;
-
-		let {interactivity} = this.params;
-
-		let pos: {
-			x: number;
-			y: number;
-		};
-
-		if( interactivity.el == window ){
-			pos = {
-				x: event.clientX,
-				y: event.clientY
-			};
-		}else{
-			pos = {
-				x: event.offsetX || event.clientX,
-				y: event.offsetY || event.clientY
-			};
-		}
-
-		interactivity.mouse.pos_x = pos.x;
-		interactivity.mouse.pos_y = pos.y;
-
-		if( tmp.retina ){
-			interactivity.mouse.pos_x *= canvas.pxratio;
-			interactivity.mouse.pos_y *= canvas.pxratio;
-		}
-
-		interactivity.status = 'mousemove';
-	}
-
-	public onMouseLeave( event: MouseEvent ): void{
-		let {interactivity} = this.params;
-
-		interactivity.mouse.pos_x = null;
-		interactivity.mouse.pos_y = null;
-		interactivity.status = 'mouseleave';
-	}
-
-	public onClick(): void{
-		let {modes, tmp} = this.library;
-		let {interactivity, particles} = this.params;
-
-		interactivity.mouse.click_pos_x = interactivity.mouse.pos_x;
-		interactivity.mouse.click_pos_y = interactivity.mouse.pos_y;
-		if (this.params.polygon.enable &&
-			[PolygonType.INSIDE, PolygonType.OUTSIDE].indexOf(this.params.polygon.type) > -1) {
-			const point = {
-				x: interactivity.mouse.click_pos_x,
-				y: interactivity.mouse.click_pos_y,
-			};
-			const isInside = this.library.polygonMask.isPointInsidePolygon(point);
-			if (this.params.polygon.type === PolygonType.INSIDE && !isInside) return;
-			if (this.params.polygon.type === PolygonType.OUTSIDE && isInside) return;
-		}
-
-		interactivity.mouse.click_time = new Date().getTime();
-
-		if( interactivity.events.onclick.enable ){
-			switch( interactivity.events.onclick.mode ){
-				case InteractivityMode.PUSH:
-					if( particles.move.enable ){
-						modes.pushParticles( interactivity.modes.push.particles_nb, interactivity.mouse );
-					}else{
-						if( interactivity.modes.push.particles_nb == 1 ){
-							modes.pushParticles( interactivity.modes.push.particles_nb, interactivity.mouse );
-						}else if( interactivity.modes.push.particles_nb > 1 ){
-							modes.pushParticles( interactivity.modes.push.particles_nb );
-						}
-					}
-					break;
-
-				case InteractivityMode.REMOVE:
-					modes.removeParticles( interactivity.modes.remove.particles_nb );
-					break;
-
-				case InteractivityMode.BUBBLE:
-					tmp.bubble_clicking = true;
-					break;
-
-				case InteractivityMode.REPULSE:
-					tmp.repulse_clicking = true;
-					tmp.repulse_count = 0;
-					tmp.repulse_finish = false;
-					setTimeout(() => {
-						tmp.repulse_clicking = false;
-					}, interactivity.modes.repulse.duration * 1000 );
-					break;
-			}
-		}
 	}
 
 	densityAutoParticles(): void{
 
-		let {canvas, modes, tmp} = this.library;
+		let {canvas, modes} = this.library;
 		let {particles} = this.params;
 
 		if( particles.number.density.enable ){
 			let area: number = canvas.element.width * canvas.element.height / 1000;
-			if( tmp.retina ){
+			if( this.library.retina ){
 				area = area / canvas.pxratio * 2;
 			}
 
@@ -277,11 +135,18 @@ export default class Vendors{
 		library.retinaInit();
 		library.canvasInit();
 		library.canvasSize();
-		library.polygonMask.initialize()
+		library.polygonMask.initialize(this.library.getParameter(p => p.polygon))
 			.then(() => {
 				manager.particlesCreate();
 				vendors.densityAutoParticles();
-				particles.line_linked.color_rgb_line = hexToRgb( particles.line_linked.color );
+				this.library.setParameters({
+					particles: {
+						line_linked: {
+							color_rgb_line: hexToRgb( particles.line_linked.color )
+						}
+					}
+				});
+				this.draw();
 			});
 	}
 
@@ -291,7 +156,7 @@ export default class Vendors{
 		this.imageManager.parseShape(particles.shape)
 			.then(shape => {
 				this.init();
-				this.draw();
+				
 			});
 	}
 

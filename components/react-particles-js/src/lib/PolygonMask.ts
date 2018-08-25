@@ -1,5 +1,6 @@
 import { ParticlesLibrary } from '.';
 import { TPoint } from './Utils';
+import { IPolygonDefinition } from './IParams';
 
 export interface ISVGPolygonData {
     paths: SVGPathElement[],
@@ -41,12 +42,17 @@ export class PolygonMask {
     private debounceTime = 250;
     private debounceTimer: NodeJS.Timer;
 
+    private polygon: IPolygonDefinition;
+
     constructor(private library: ParticlesLibrary) {
         this.parseSvgPathToPolygon = this.parseSvgPathToPolygon.bind(this);
     }
     
-    initialize(): Promise<void> {
-        if (!this.library.params.polygon.enable)
+    initialize(polygon: IPolygonDefinition): Promise<void> {
+
+        this.polygon = polygon;
+
+        if (!polygon.enable)
             return Promise.resolve();
         if (!this.initialized) {
             return this.parseSvgPathToPolygon()
@@ -72,7 +78,7 @@ export class PolygonMask {
     }
 
     parseSvgPathToPolygon(svgUrl?: string): Promise<Array<[number, number]>> {
-        svgUrl = svgUrl || this.library.params.polygon.url;
+        svgUrl = svgUrl || this.polygon.url;
         const canvasSizeDidNotChange = this.library.canvas.width === this.lastCanvasWidth &&
             this.library.canvas.height === this.lastCanvasHeight;
         if (this.polygonRaw && this.polygonRaw.length && canvasSizeDidNotChange)
@@ -80,8 +86,8 @@ export class PolygonMask {
         return this.parseSvgPath(svgUrl)
             .then(polygonData => {
                 this.polygonData = polygonData;
-                this.polygonWidth = parseInt(this.polygonData.svg.getAttribute('width')) * this.library.params.polygon.scale;
-                this.polygonHeight = parseInt(this.polygonData.svg.getAttribute('height')) * this.library.params.polygon.scale;
+                this.polygonWidth = parseInt(this.polygonData.svg.getAttribute('width')) * this.polygon.scale;
+                this.polygonHeight = parseInt(this.polygonData.svg.getAttribute('height')) * this.polygon.scale;
                 this.polygonOffsetX = this.library.canvas.width / 2 - this.polygonWidth / 2;
                 this.polygonOffsetY = this.library.canvas.height / 2 - this.polygonHeight / 2;
                 if (this.polygonData.paths.length) {
@@ -138,7 +144,7 @@ export class PolygonMask {
                                 continue;
                         }
 
-                        this.polygonRaw.push([point.x * this.library.params.polygon.scale + this.polygonOffsetX, point.y * this.library.params.polygon.scale + this.polygonOffsetY]);
+                        this.polygonRaw.push([point.x * this.polygon.scale + this.polygonOffsetX, point.y * this.polygon.scale + this.polygonOffsetY]);
                     }
                 });
 
@@ -186,8 +192,8 @@ export class PolygonMask {
             throw new Error(`No polygon data loaded.`);
         const point = this.polygonData.paths[0].getPointAtLength(Math.floor(Math.random() * this.polygonPathLength) +1);
         return {
-            x: point.x * this.library.params.polygon.scale + this.polygonOffsetX,
-            y: point.y * this.library.params.polygon.scale + this.polygonOffsetY,
+            x: point.x * this.polygon.scale + this.polygonOffsetX,
+            y: point.y * this.polygon.scale + this.polygonOffsetY,
         };
     }
 
@@ -239,10 +245,10 @@ export class PolygonMask {
     getEquidistantPoingOnPolygonPathByIndex(index: number): TPoint {
         if (!this.initialized)
             throw new Error(`No polygon data loaded.`);
-        const point = this.polygonData.paths[0].getPointAtLength(this.polygonPathLength / this.library.params.particles.number.value * index);
+        const point = this.polygonData.paths[0].getPointAtLength(this.polygonPathLength / this.library.getParameter(p => p.particles.number.value) * index);
         return {
-            x: point.x * this.library.params.polygon.scale + this.polygonOffsetX,
-            y: point.y * this.library.params.polygon.scale + this.polygonOffsetY,
+            x: point.x * this.polygon.scale + this.polygonOffsetX,
+            y: point.y * this.polygon.scale + this.polygonOffsetY,
         };
     }
 
@@ -257,8 +263,8 @@ export class PolygonMask {
             });
             context.closePath();
         }
-        context.strokeStyle = this.library.params.polygon.draw.stroke.color;
-        context.lineWidth = this.library.params.polygon.draw.stroke.width;
+        context.strokeStyle = this.polygon.draw.stroke.color;
+        context.lineWidth = this.polygon.draw.stroke.width;
         this.polygonPath ? context.stroke(this.polygonPath) : context.stroke();
     }
 

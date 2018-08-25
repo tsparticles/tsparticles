@@ -2,14 +2,15 @@ import {
 	ICanvasParam,
 	ITmpParam,
 	IParams,
-	deepExtend,
+	deepAssign,
 	getDefaultParams,
-	Interact,
+	Interactivity,
 	Modes,
 	Particle,
 	ParticleManager,
 	Vendors,
-	PolygonMask} from '.';
+	PolygonMask,
+	RecursivePartial} from '.';
 import { ImageManager } from './ImageManager';
 
 export default class ParticlesLibrary{
@@ -19,27 +20,36 @@ export default class ParticlesLibrary{
 	params: IParams;
 	
 	manager: ParticleManager;
-	interact: Interact;
+	interactivity: Interactivity;
 	modes: Modes;
 	vendors: Vendors;
 	polygonMask: PolygonMask;
 
 	imageManager = new ImageManager();
 
+	retina = false;
+
 	constructor( params?: any ){
+		this.onWindowResize = this.onWindowResize.bind( this );
 		this.tmp = {};
 		this.loadParameters( params );
-		this.extendParams();
-		this.interact = new Interact( this.params, this );
-		this.modes = new Modes(this.imageManager, this.params, this );
+		this.interactivity = new Interactivity(this);
+		this.modes = new Modes(this);
 		this.vendors = new Vendors(this.imageManager, this.params, this );
-		this.manager = new ParticleManager(this.imageManager, this.params, this.interact, this.modes, this.vendors, this );
+		this.manager = new ParticleManager(this);
 		this.polygonMask = new PolygonMask(this);
 	}
 
+	getParameter<T>(selector: (params: IParams) => T): T {
+		return selector(this.params);
+	}
+
+	setParameters(params: RecursivePartial<IParams>) {
+		this.params = deepAssign({...this.params}, params);
+	}
+
 	loadParameters( params?: any ): void{
-		let defaultParams: IParams = getDefaultParams();
-		let mergedParams: IParams = deepExtend( defaultParams, params );
+		let mergedParams: IParams = deepAssign({}, getDefaultParams(), params);
 		this.params = mergedParams;
 	}
 
@@ -52,15 +62,14 @@ export default class ParticlesLibrary{
 	}
 
 	start(): void{
-		let {vendors} = this;
-		vendors.eventsListeners();
-		vendors.start();
+		this.interactivity.attachEventHandlers();
+		this.vendors.start();
 	}
 
 	destroy(): void{
 		let {tmp} = this;
 		this.detachListeners();
-		this.vendors.detachListeners();
+		this.interactivity.detachEventHandlers();
 		cancelAnimationFrame( tmp.drawAnimFrame );
 		this.canvasClear();
 	}
@@ -69,55 +78,65 @@ export default class ParticlesLibrary{
 		window.removeEventListener( 'resize', this.onWindowResize );
 	}
 
-	extendParams(): void{
-		this.extendTmpDefinition();
-		this.onWindowResize = this.onWindowResize.bind( this );
-	}
-
-	extendTmpDefinition(): void{
-
-		let {tmp} = this;
-
-		tmp.obj = {
-			size_value: this.params.particles.size.value,
-			size_anim_speed: this.params.particles.size.anim.speed,
-			move_speed: this.params.particles.move.speed,
-			line_linked_distance: this.params.particles.line_linked.distance,
-			line_linked_width: this.params.particles.line_linked.width,
-			mode_grab_distance: this.params.interactivity.modes.grab.distance,
-			mode_bubble_distance: this.params.interactivity.modes.bubble.distance,
-			mode_bubble_size: this.params.interactivity.modes.bubble.size,
-			mode_repulse_distance: this.params.interactivity.modes.repulse.distance
-		};
-		tmp.count_svg = 0;
-		tmp.img_index = 0;
-	}
-
-
 	retinaInit(): void{
 
-		let {canvas, tmp} = this;
+		const pixelRatio = window.devicePixelRatio;
 
-		if( this.params.retina_detect && window.devicePixelRatio > 1 ){
-			canvas.pxratio = window.devicePixelRatio;
-			tmp.retina = true;
+		if( this.params.retina_detect && pixelRatio > 1 ){
+			this.canvas.pxratio = pixelRatio;
+			
+			this.canvas.width = this.canvas.element.offsetWidth * this.canvas.pxratio;
+			this.canvas.height = this.canvas.element.offsetHeight * this.canvas.pxratio;
+			
+			this.retina = true;
 
-			canvas.width = canvas.element.offsetWidth * canvas.pxratio;
-			canvas.height = canvas.element.offsetHeight * canvas.pxratio;
+			const params = this.getParameter(p => p);
 
-			this.params.particles.size.value = tmp.obj.size_value * canvas.pxratio;
-			this.params.particles.size.anim.speed = tmp.obj.size_anim_speed * canvas.pxratio;
-			this.params.particles.move.speed = tmp.obj.move_speed * canvas.pxratio;
-			this.params.particles.line_linked.distance = tmp.obj.line_linked_distance * canvas.pxratio;
-			this.params.interactivity.modes.grab.distance = tmp.obj.mode_grab_distance * canvas.pxratio;
-			this.params.interactivity.modes.bubble.distance = tmp.obj.mode_bubble_distance * canvas.pxratio;
-			this.params.particles.line_linked.width = tmp.obj.line_linked_width * canvas.pxratio;
-			this.params.interactivity.modes.bubble.size = tmp.obj.mode_bubble_size * canvas.pxratio;
-			this.params.interactivity.modes.repulse.distance = tmp.obj.mode_repulse_distance * canvas.pxratio;
+			this.setParameters({
+				interactivity: {
+					modes: {
+						bubble: {
+							distance: params.interactivity.modes.bubble.distance * pixelRatio,
+							size: params.interactivity.modes.bubble.size * pixelRatio
+						},
+						grab: {
+							distance: params.interactivity.modes.grab.distance * pixelRatio
+						},
+						repulse: {
+							distance: params.interactivity.modes.repulse.distance * pixelRatio
+						}
+					},
+				},
+				particles: {
+					line_linked: {
+						distance: params.particles.line_linked.distance * pixelRatio,
+						width: params.particles.line_linked.width * pixelRatio
+					},
+					move: {
+						speed: params.particles.move.speed * pixelRatio
+					},
+					size: {
+						value: params.particles.size.value * pixelRatio,
+						anim: {
+							speed: params.particles.size.anim.speed * pixelRatio
+						}
+					}
+				}
+			});
+
+			// this.params.particles.size.value = tmp.obj.size_value * canvas.pxratio;
+			// this.params.particles.size.anim.speed = tmp.obj.size_anim_speed * canvas.pxratio;
+			// this.params.particles.move.speed = tmp.obj.move_speed * canvas.pxratio;
+			// this.params.particles.line_linked.distance = tmp.obj.line_linked_distance * canvas.pxratio;
+			// this.params.interactivity.modes.grab.distance = tmp.obj.mode_grab_distance * canvas.pxratio;
+			// this.params.interactivity.modes.bubble.distance = tmp.obj.mode_bubble_distance * canvas.pxratio;
+			// this.params.particles.line_linked.width = tmp.obj.line_linked_width * canvas.pxratio;
+			// this.params.interactivity.modes.bubble.size = tmp.obj.mode_bubble_size * canvas.pxratio;
+			// this.params.interactivity.modes.repulse.distance = tmp.obj.mode_repulse_distance * canvas.pxratio;
 
 		}else{
-			canvas.pxratio = 1;
-			tmp.retina = false;
+			this.canvas.pxratio = 1;
+			this.retina = false;
 		}
 	}
 
@@ -166,12 +185,12 @@ export default class ParticlesLibrary{
 
 	public onWindowResize(): void{
 
-		let {canvas, manager, tmp, vendors} = this;
+		let {canvas, manager, vendors} = this;
 
 		canvas.width = canvas.element.offsetWidth;
 		canvas.height = canvas.element.offsetHeight;
 
-		if( tmp.retina ){
+		if( this.retina ){
 			canvas.width *= canvas.pxratio;
 			canvas.height *= canvas.pxratio;
 		}
@@ -181,7 +200,7 @@ export default class ParticlesLibrary{
 
 		if( !this.params.particles.move.enable || this.params.polygon.enable ){
 			manager.particlesEmpty();
-			this.polygonMask.initialize()
+			this.polygonMask.initialize(this.getParameter(p => p.polygon))
 				.then(() => {
 					manager.particlesCreate();
 					manager.particlesDraw();

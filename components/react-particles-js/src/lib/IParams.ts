@@ -6,38 +6,9 @@ export interface ICanvasParam{
 	ctx?: CanvasRenderingContext2D;
 }
 
-export interface ITmpParam{
-	obj?: {
-		size_value: number;
-	    size_anim_speed: number;
-	    move_speed: number;
-	    line_linked_distance: number;
-	    line_linked_width: number;
-	    mode_grab_distance: number;
-	    mode_bubble_distance: number;
-	    mode_bubble_size: number;
-	    mode_repulse_distance: number;
-	};
-	retina?: boolean;
-	img_error?: any;
-	count_svg?: number;
-	img_index?: number;
-	pushing?: any;
-	bubble_clicking?: boolean;
-	bubble_duration_end?: boolean;
-	repulse_clicking?: boolean;
-	repulse_finish?: boolean;
-	repulse_count?: number;
+export interface ITmpParam {
 	checkAnimFrame?: any;
 	drawAnimFrame?: any;
-};
-
-export interface IMouseParam{
-	pos_x?: number;
-	pos_y?: number;
-	click_pos_x?: number;
-	click_pos_y?: number;
-	click_time?: number;
 };
 
 export enum ShapeType {
@@ -76,7 +47,7 @@ export interface IImageDefinition {
 	height: number;
 }
 
-export interface IShapeDefinition {
+export interface IParticleShapeDefinition {
 	type: ShapeType;
 	stroke: {
 		width: number;
@@ -97,7 +68,6 @@ export enum PolygonType {
 
 export enum PolygonInlineArrangementType {
 	RANDOM_POINT = 'random-point',
-	PER_POINT = 'per-point',
 	ONE_PER_POINT = 'one-per-point', // Overrides particles number
 	RANDOM_LENGTH = 'random-length',
 	EQUIDISTANT = 'equidistant',
@@ -129,6 +99,47 @@ export interface IPolygonDefinition {
 	url: string;
 }
 
+export interface IParticleSizeDefinition {
+	value: number;
+	random: boolean;
+	anim: {
+		enable: boolean;
+		speed: number;
+		size_min: number;
+		sync: boolean;
+	}
+}
+
+export interface IParticleColorDefinition {
+	value: any;
+}
+
+export interface IParticleOpacityDefinition {
+	value: number;
+	random: boolean;
+	anim: {
+		enable: boolean;
+		speed: number;
+		opacity_min: number;
+		sync: boolean;
+	}
+}
+
+export interface IParticleMoveDefinition {
+	enable: boolean;
+	speed: number;
+	direction: MoveDirection;
+	random: boolean;
+	straight: boolean;
+	out_mode: string;
+	bounce: boolean;
+	attract: {
+		enable: boolean;
+		rotateX: number;
+		rotateY: number;
+	}
+}
+
 export interface IParams{
 	particles: {
 		number: {
@@ -138,30 +149,10 @@ export interface IParams{
 				value_area: number;
 			}
 		};
-		color: {
-			value: any;
-		};
-		shape: IShapeDefinition;
-		opacity: {
-			value: number;
-			random: boolean;
-			anim: {
-				enable: boolean;
-				speed: number;
-				opacity_min: number;
-				sync: boolean;
-			}
-		};
-		size: {
-			value: number;
-			random: boolean;
-			anim: {
-				enable: boolean;
-				speed: number;
-				size_min: number;
-				sync: boolean;
-			}
-		};
+		color: IParticleColorDefinition;
+		shape: IParticleShapeDefinition;
+		opacity: IParticleOpacityDefinition;
+		size: IParticleSizeDefinition;
 		line_linked: {
 			enable: boolean;
 			distance: number;
@@ -175,25 +166,10 @@ export interface IParams{
 				color: string;
 			};
 		};
-		move: {
-			enable: boolean;
-			speed: number;
-			direction: MoveDirection;
-			random: boolean;
-			straight: boolean;
-			out_mode: string;
-			bounce: boolean;
-			attract: {
-				enable: boolean;
-				rotateX: number;
-				rotateY: number;
-			}
-		};
+		move: IParticleMoveDefinition;
 		array: any[];
 	};
 	interactivity: {
-		el?: EventTarget;
-		status?: string;
 		detect_on: string;
 		events: {
 			onhover: {
@@ -230,7 +206,6 @@ export interface IParams{
 				particles_nb: number;
 			};
 		};
-		mouse?: IMouseParam;
 	};
 	retina_detect: boolean;
 	fps_limit: number;

@@ -1,5 +1,5 @@
 import { resolve } from "dns";
-import { IImageDefinition, IShapeDefinition, ShapeType } from "./IParams";
+import { IImageDefinition, IParticleShapeDefinition, ShapeType } from "./IParams";
 import { IParsedColor, isEqual } from "./Utils";
 
 export interface IImageDefinitionEnhanced extends IImageDefinition {
@@ -10,7 +10,7 @@ export interface IImageDefinitionEnhanced extends IImageDefinition {
     type?: string;
 }
 
-export interface IShapeDefinitionEnhanced extends IShapeDefinition {
+export interface IShapeDefinitionEnhanced extends IParticleShapeDefinition {
     image: IImageDefinitionEnhanced;
     images: IImageDefinitionEnhanced[];
 }
@@ -37,7 +37,7 @@ export class ImageManager {
     }
 
     parseShape(shape: IShapeDefinitionEnhanced): Promise<IShapeDefinitionEnhanced> {
-        if( isEqual(ShapeType.IMAGE, shape.type) ){
+        if(isEqual(ShapeType.IMAGE, shape.type)) {
             this.mode = ImageMode.SINGLE;
             return this.parseSingleImage(shape.image)
                 .then(parsedImage => {
@@ -47,12 +47,9 @@ export class ImageManager {
                         image: parsedImage
                     };
                 });
-        }else if( isEqual(ShapeType.IMAGES, shape.type) ){ // 'image' or 'images', not both
+        } else if(isEqual(ShapeType.IMAGES, shape.type)) { // 'image' or 'images', not both
             this.mode = ImageMode.MULTIPLE;
-            const promises: Promise<IImageDefinitionEnhanced>[] = [];
-			for(let imageShape of shape.images){
-                promises.push(this.parseSingleImage(imageShape));
-            }
+            const promises = shape.images.map(imageShape => this.parseSingleImage(imageShape));
             return Promise.all(promises)
                 .then(parsedImages => {
                     this.multipleImages = parsedImages;
@@ -160,10 +157,7 @@ export class ImageManager {
         return new Promise(resolve => {
             let img = new Image();
             img.addEventListener( 'load', () => {
-                // particle.img.obj = img;
-                // particle.img.loaded = true;
                 DOMURL.revokeObjectURL( url );
-                // tmp.count_svg++;
                 resolve(img);
             });
             img.src = url;

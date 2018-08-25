@@ -1,4 +1,4 @@
-import Interact from './Interact';
+import Interactivity from './Interactivity';
 import Modes from './Modes';
 import Particle from './Particle';
 import ParticleManager from './ParticleManager';
@@ -11,7 +11,7 @@ export * from './PolygonMask';
 export * from './Utils';
 
 export {
-	Interact,
+	Interactivity,
 	Modes,
 	Particle,
 	ParticleManager,

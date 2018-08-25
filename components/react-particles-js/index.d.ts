@@ -29,7 +29,7 @@ declare interface IImageDefinition {
 
 type PolygonType = 'inline' | 'inside' | 'outside';
 
-type PolygonInlineArrangementType = 'random-point' | 'per-point' | 'one-per-point' | 'random-length' | 'equidistant';
+type PolygonInlineArrangementType = 'random-point' | 'one-per-point' | 'random-length' | 'equidistant';
 
 type PolygonMoveType = 'path' | 'radius';
 

@@ -52,20 +52,34 @@ export function isEqual<T>(value: T, arrayOrObject: T | T[]): boolean {
 	return arrayOrObject === value;
 }
 
-export const deepExtend: ( destination: any, source: any ) => any =
-	function( destination, source ){
-		for( let property in source ){
-			if( source[ property ] &&
-				source[ property ].constructor &&
-				source[ property ].constructor === Object ){
-				destination[ property ] = destination[ property ] || {};
-				deepExtend( destination[ property ], source[ property ] );
-			}else{
-				destination[ property ] = source[ property ];
+export const deepAssign = (destination: any, ...sources: any[]) => {
+	for (const source of sources) {
+		if (source === undefined || source === null) continue;
+		let typeOfSource = typeof source;
+		if (typeOfSource === 'object') {
+			const sourceIsArray = Array.isArray(source);
+			if (sourceIsArray) {
+				if (typeof destination !== 'object' || !destination || !Array.isArray(destination)) destination = [];
+			} else {
+				if (typeof destination !== 'object' || !destination || Array.isArray(destination)) destination = {};
 			}
+			for (const key in source) {
+				const value = source[key];
+				const isObject = typeof value === 'object';
+				if (isObject && Array.isArray(value)) {
+					destination[key] = value.map(v => deepAssign(destination[key], v));
+				} else if (isObject) {
+					destination[key] = deepAssign(destination[key], value);
+				} else {
+					destination[key] = deepAssign(destination[key], value);
+				}
+			}
+		} else {
+			destination = source;
 		}
-		return destination;
-	};
+	}
+	return destination;
+}
 
 export const getColor: ( colorObject: any ) => IParsedColor = 
 	( colorObject ) => {
@@ -96,3 +110,10 @@ export const getColor: ( colorObject: any ) => IParsedColor =
 		}
 		return color;
 	};
+
+export type RecursivePartial<T> = {
+	[P in keyof T]?:
+		T[P] extends (infer U)[] ? RecursivePartial<U>[] :
+		T[P] extends object ? RecursivePartial<T[P]> :
+		T[P];
+};

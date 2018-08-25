@@ -1,15 +1,7 @@
 import * as React from 'react';
 import {Component} from 'react';
-import deepClone = require('lodash.clonedeep');
 
-import {IParams, ParticlesLibrary, deepExtend} from './lib';
-
-type RecursivePartial<T> = {
-	[P in keyof T]?:
-		T[P] extends (infer U)[] ? RecursivePartial<U>[] :
-		T[P] extends object ? RecursivePartial<T[P]> :
-		T[P];
-};
+import {IParams, ParticlesLibrary, deepAssign, RecursivePartial} from './lib';
 
 export interface ParticlesProps {
 	width: string;
@@ -99,12 +91,11 @@ export default class Particles extends Component<ParticlesProps, ParticlesState>
 		let {width, height, className, canvasClassName} = this.props;
 		return (
 			<div className={className}>
-				<canvas ref={this.loadCanvas} className={canvasClassName} style={
-					deepExtend(deepClone(this.props.style), {
-						width,
-						height
-					})
-				}>
+				<canvas ref={this.loadCanvas} className={canvasClassName} style={{
+					...this.props.style,
+					width,
+					height
+				}}>
 				</canvas>
 			</div>
 		);

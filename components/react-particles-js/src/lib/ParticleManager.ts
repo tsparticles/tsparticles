@@ -1,68 +1,63 @@
-import {IParams, Particle, Interact, isInArray, Modes,  ParticlesLibrary, Vendors, TPoint} from '.';
+import {IParams, Particle, Interactivity, isInArray, Modes,  ParticlesLibrary, Vendors, TPoint} from '.';
 import { ImageManager } from './ImageManager';
 import { PolygonType, PolygonMoveType, PolygonInlineArrangementType } from './IParams';
 
 export default class ParticleManager{
 
-	params: IParams;
-	interact: Interact;
-	library: ParticlesLibrary;
-	modes: Modes;
-	vendors: Vendors;
-
-	constructor(private imageManager: ImageManager, params: IParams, interact: Interact, modes: Modes, vendors: Vendors, library: ParticlesLibrary ){
-		this.params = params;
-		this.interact = interact;
-		this.modes = modes;
-		this.vendors = vendors;
-		this.library = library;
+	constructor(private library: ParticlesLibrary ){
+		this.particlesCreate = this.particlesCreate.bind(this);
 	}
 
 	particlesCreate(): void{
-		let {color, opacity} = this.params.particles;
+		const particles = this.library.getParameter(p => p.particles);
+		const polygon = this.library.getParameter(p => p.polygon);
 
-		let particlesNumber = this.params.particles.number.value;
-		if (this.params.polygon.enable &&
-			this.params.polygon.type === PolygonType.INLINE &&
-			this.params.polygon.inline.arrangement === PolygonInlineArrangementType.PER_POINT) {
+		let particlesNumber = particles.number.value;
+		if (polygon.enable &&
+			polygon.type === PolygonType.INLINE &&
+			polygon.inline.arrangement === PolygonInlineArrangementType.ONE_PER_POINT) {
 			particlesNumber = this.library.polygonMask.getVerticesNumber();
 		}
 		for( let i = 0; i < particlesNumber; i++ ){
-			this.params.particles.array.push( new Particle(this.imageManager, this.params, this.library, color, opacity.value ) );
+			particles.array.push(new Particle(this.library));
 		}
 	}
 
 	particlesUpdate(): void{
-		let {canvas, interact, modes} = this.library;
+		let {canvas, modes} = this.library;
 
-		this.params.particles.array.forEach( ( particle: Particle, i: number ) => {
-			if( this.params.particles.move.enable ){
-				let ms = this.params.particles.move.speed / 2;
+		const interactivity = this.library.getParameter(p => p.interactivity);
+		const particles = this.library.getParameter(p => p.particles);
+		const polygon = this.library.getParameter(p => p.polygon);
+
+		particles.array.forEach((particle, i) => {
+			if( particles.move.enable ){
+				let ms = particles.move.speed / 2;
 				particle.x += particle.vx * ms;
 				particle.y += particle.vy * ms;
 			}
 
-			if( this.params.particles.opacity.anim.enable ){
+			if( particles.opacity.anim.enable ){
 				if( particle.opacity_status == true ){
-					if( particle.opacity >= this.params.particles.opacity.value )
+					if( particle.opacityValue >= particles.opacity.value )
 						particle.opacity_status = false;
-					particle.opacity += particle.vo;
+					particle.opacityValue += particle.vo;
 				}else{
-					if( particle.opacity <= this.params.particles.opacity.anim.opacity_min )
+					if( particle.opacityValue <= particles.opacity.anim.opacity_min )
 						particle.opacity_status = true;
-					particle.opacity -= particle.vo;
+					particle.opacityValue -= particle.vo;
 				}
-				if( particle.opacity < 0 )
-					particle.opacity = 0;
+				if( particle.opacityValue < 0 )
+					particle.opacityValue = 0;
 			}
 
-			if( this.params.particles.size.anim.enable ){
+			if( particles.size.anim.enable ){
 				if( particle.size_status == true ){
-					if( particle.radius >= this.params.particles.size.value )
+					if( particle.radius >= particles.size.value )
 						particle.size_status = false;
 					particle.radius += particle.vs;
 				}else{
-					if( particle.radius <= this.params.particles.size.anim.size_min )
+					if( particle.radius <= particles.size.anim.size_min )
 						particle.size_status = true;
 					particle.radius -= particle.vs;
 				}
@@ -78,7 +73,7 @@ export default class ParticleManager{
 			};
 			let new_pos: Pos;
 
-			if( this.params.particles.move.out_mode == 'bounce' ){
+			if( particles.move.out_mode == 'bounce' ){
 				new_pos = {
 					x_left: particle.radius,
 					x_right: canvas.width,
@@ -110,12 +105,12 @@ export default class ParticleManager{
 				particle.x = Math.random() * canvas.width;
 			}
 
-			switch( this.params.particles.move.out_mode ){
+			switch( particles.move.out_mode ){
 				case 'bounce':
 					{
-						if (this.params.polygon.enable) {
-							const moveRadius = this.params.polygon.move.radius;
-							switch (this.params.polygon.type) {
+						if (polygon.enable) {
+							const moveRadius = polygon.move.radius;
+							switch (polygon.type) {
 								case PolygonType.INLINE:
 									if (this.getDistance(particle.initialPosition, particle) > moveRadius) {
 										particle.vx = -particle.vx + (particle.vy / 2);
@@ -125,14 +120,14 @@ export default class ParticleManager{
 								case PolygonType.INSIDE:
 								case PolygonType.OUTSIDE:
 									{
-										const mode = this.params.polygon.move.type;
+										const mode = polygon.move.type;
 										if (mode === PolygonMoveType.RADIUS) {
 											if (this.getDistance(particle.initialPosition, particle) > moveRadius) {
 												particle.vx = -particle.vx + (particle.vy / 2);
 												particle.vy = -particle.vy + (particle.vx / 2);
 											}
 										} else if (mode === PolygonMoveType.PATH) {
-											const shouldBeInside = this.params.polygon.type === PolygonType.INSIDE;
+											const shouldBeInside = polygon.type === PolygonType.INSIDE;
 											const isInside = this.library.polygonMask.isPointInsidePolygon({ x: particle.x, y: particle.y });
 											if ((shouldBeInside && !isInside) || (!shouldBeInside && isInside)) {
 												particle.vx = -particle.vx + (particle.vy / 2);
@@ -156,67 +151,77 @@ export default class ParticleManager{
 					break;
 			}
 
-			if( isInArray( 'grab', this.params.interactivity.events.onhover.mode ) ){
+			if( isInArray( 'grab', interactivity.events.onhover.mode ) ){
 				modes.grabParticle( particle );
 			}
 
-			if( isInArray( 'bubble', this.params.interactivity.events.onhover.mode ) || 
-				isInArray( 'bubble', this.params.interactivity.events.onclick.mode ) ){
+			if( isInArray( 'bubble', interactivity.events.onhover.mode ) || 
+				isInArray( 'bubble', interactivity.events.onclick.mode ) ){
 				modes.bubbleParticle( particle );
 			}
 
-			if( isInArray( 'repulse', this.params.interactivity.events.onhover.mode ) || 
-				isInArray( 'repulse', this.params.interactivity.events.onclick.mode ) ){
+			if( isInArray( 'repulse', interactivity.events.onhover.mode ) || 
+				isInArray( 'repulse', interactivity.events.onclick.mode ) ){
 				modes.repulseParticle( particle );
 			}
 
 			//let {linkParticles, attractParticles, bounceParticles} = this.interact;
 
-			if( this.params.particles.line_linked.enable || this.params.particles.move.attract.enable ){
-				for( let j = i + 1; j < this.params.particles.array.length; j++ ){
-					let link = this.params.particles.array[ j ];
+			if( particles.line_linked.enable || particles.move.attract.enable ){
+				for( let j = i + 1; j < particles.array.length; j++ ){
+					let link = particles.array[ j ];
 
-					if( this.params.particles.line_linked.enable )
-						interact.linkParticles( particle, link );
+					if( particles.line_linked.enable )
+						this.library.interactivity.linkParticles( particle, link );
 
-					if( this.params.particles.move.attract.enable )
-						interact.attractParticles( particle, link );
+					if( particles.move.attract.enable )
+						this.library.interactivity.attractParticles( particle, link );
 
-					if( this.params.particles.move.bounce )
-						interact.bounceParticles( particle, link );
+					if( particles.move.bounce )
+						this.library.interactivity.bounceParticles( particle, link );
 				}
 			}
 		});
 	}
 
-	private getDistance(p1: TPoint, p2: TPoint): number {
-		return Math.sqrt((p1.x - p2.x) * (p1.x - p2.x) + (p1.y - p2.y) * (p1.y - p2.y));
+	getDistances(p1: TPoint, p2: TPoint): { distance: number; distanceX: number; distanceY: number; } {
+		const distanceX = p1.x - p2.x;
+		const distanceY = p1.y - p2.y;
+		const distance = Math.sqrt(distanceX * distanceX + distanceY * distanceY);
+		return { distance, distanceX, distanceY };
+	}
+
+	getDistance(p1: TPoint, p2: TPoint): number {
+		return this.getDistances(p1, p2).distance;
 	}
 
 	particlesDraw(): void{
 
 		let {canvas, manager} = this.library;
 
+		const particles = this.library.getParameter(p => p.particles);
+		const polygon = this.library.getParameter(p => p.polygon);
+
 		canvas.ctx.clearRect( 0, 0, canvas.width, canvas.height );
 		manager.particlesUpdate();
 
-		this.params.particles.array.forEach( ( particle: Particle ) => {
+		particles.array.forEach( ( particle: Particle ) => {
 			particle.draw();
 		});
 
-		if (this.params.polygon.enable && this.params.polygon.draw.enable)
+		if (polygon.enable && polygon.draw.enable)
 			this.library.polygonMask.drawPolygon();
 	}
 
 	particlesEmpty(): void{
-		this.params.particles.array = [];
+		const particles = this.library.getParameter(p => p.particles);
+		particles.array = [];
 	}
 
 	particlesRefresh(): void{
 
-		let {tmp, vendors} = this.library;
+		let {tmp} = this.library;
 		cancelAnimationFrame( tmp.drawAnimFrame );
-		tmp.count_svg = 0;
 		this.particlesEmpty();
 		this.library.canvasClear();
 		this.library.start();
