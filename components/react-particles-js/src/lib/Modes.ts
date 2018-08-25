@@ -128,7 +128,6 @@ export default class Modes {
 				}
 
 				let process: any = ( bubble_param: any, particles_param: any, p_obj_bubble: any, p_obj: any, id: any ) => {
-					 // TODO Check where dist_mouse is initiated ( Line 890 )
 					if( bubble_param != particles_param ){
 						if( !this.bubble_duration_end ){
 							if( mouseDistance <= this.library.getParameter(p => p.interactivity.modes.bubble.distance) ){
@@ -217,38 +216,31 @@ export default class Modes {
 
 			if( this.repulse_clicking ){
 
-				let repulseRadius: number = Math.pow(this.library.getParameter(p => p.interactivity.modes.repulse.distance)/6, 3);
+				let repulseRadius = Math.pow(this.library.getParameter(p => p.interactivity.modes.repulse.distance)/6, 3);
+				let {distance, distanceX, distanceY} = this.library.manager.getDistances(this.library.interactivity.mouseClickPosition, particle);
 
-				const {distance, distanceX, distanceY} = this.library.manager.getDistances(particle, this.library.interactivity.mouseClickPosition);
+				const force = repulseRadius / Math.pow(distance, 2);
 
-				let force: number = -repulseRadius / distance * 1;
-
-				let process: () => void =
-					() => {
-						let f: number = Math.atan2( distanceY, distanceX );
-						particle.vx = force * Math.cos( f );
-						particle.vy = force * Math.sin( f );
-						if( this.library.getParameter(p => p.particles.move.out_mode) == 'bounce' ){
-							let pos: {
-								x: number;
-								y: number;
-							} = {
-								x: particle.x + particle.vx,
-								y: particle.y + particle.vy
-							}
-							if ( pos.x + particle.radius > canvas.width )
-								particle.vx = -particle.vx;
-							else if ( pos.x - particle.radius < 0 )
-								particle.vx = -particle.vx;
-							if ( pos.y + particle.radius > canvas.height )
-								particle.vy = -particle.vy;
-							else if ( pos.y - particle.radius < 0 )
-								particle.vy = -particle.vy;
-						}
-					};
+				const repulsion = force * -1;
 
 				if( distance <= repulseRadius ){
-					process();
+					let f = Math.atan2( distanceY, distanceX );
+					particle.vx = repulsion * Math.cos( f );
+					particle.vy = repulsion * Math.sin( f );
+					if( this.library.getParameter(p => p.particles.move.out_mode) == 'bounce' ){
+						let pos: TPoint = {
+							x: particle.x + particle.vx,
+							y: particle.y + particle.vy
+						}
+						if ( pos.x + particle.radius > canvas.width )
+							particle.vx = -particle.vx;
+						else if ( pos.x - particle.radius < 0 )
+							particle.vx = -particle.vx;
+						if ( pos.y + particle.radius > canvas.height )
+							particle.vy = -particle.vy;
+						else if ( pos.y - particle.radius < 0 )
+							particle.vy = -particle.vy;
+					}
 				}
 			}else{
 				if( this.repulse_clicking == false ){

@@ -165,8 +165,6 @@ export default class ParticleManager{
 				modes.repulseParticle( particle );
 			}
 
-			//let {linkParticles, attractParticles, bounceParticles} = this.interact;
-
 			if( particles.line_linked.enable || particles.move.attract.enable ){
 				for( let j = i + 1; j < particles.array.length; j++ ){
 					let link = particles.array[ j ];
