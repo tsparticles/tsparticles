@@ -75,9 +75,8 @@ export default class Vendors{
 	}
 
 	destroy(): void{
-		let {canvas, tmp} = this.library;
-		cancelAnimationFrame( tmp.drawAnimFrame );
-		canvas.element.remove();
+		cancelAnimationFrame(this.library.drawAnimFrame);
+		this.library.canvas.element.remove();
 	}
 
 	drawShape( c: CanvasRenderingContext2D, startX: number, startY: number, sideLength: number, sideCountNumerator: number, sideCountDenominator: number ): void{
@@ -105,7 +104,7 @@ export default class Vendors{
 
 	draw(): void{
     	let shouldDraw = true;
-		let {tmp, manager, vendors} = this.library;
+		let {manager, vendors} = this.library;
 		let {particles} = this.params;
 		if( performance !== undefined ){
 			let thisDraw = performance.now();
@@ -119,9 +118,9 @@ export default class Vendors{
 			manager.particlesDraw();
 		}
 		if( !particles.move.enable ){
-			cancelAnimationFrame( tmp.drawAnimFrame );
+			cancelAnimationFrame(this.library.drawAnimFrame);
 		}else{
-			tmp.drawAnimFrame = requestAnimationFrame( vendors.draw );
+			this.library.drawAnimFrame = requestAnimationFrame( vendors.draw );
 		}
 	}
 

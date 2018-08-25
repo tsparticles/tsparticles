@@ -6,11 +6,6 @@ export interface ICanvasParam{
 	ctx?: CanvasRenderingContext2D;
 }
 
-export interface ITmpParam {
-	checkAnimFrame?: any;
-	drawAnimFrame?: any;
-};
-
 export enum ShapeType {
 	CIRCLE = 'circle',
 	EDGE = 'edge',

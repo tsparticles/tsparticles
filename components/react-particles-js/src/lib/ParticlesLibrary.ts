@@ -1,6 +1,5 @@
 import {
 	ICanvasParam,
-	ITmpParam,
 	IParams,
 	deepAssign,
 	getDefaultParams,
@@ -16,7 +15,6 @@ import { ImageManager } from './ImageManager';
 export default class ParticlesLibrary{
 
 	canvas: ICanvasParam;
-	tmp: ITmpParam = {};
 	params: IParams;
 	
 	manager: ParticleManager;
@@ -29,9 +27,10 @@ export default class ParticlesLibrary{
 
 	retina = false;
 
+	drawAnimFrame: number;
+
 	constructor( params?: any ){
 		this.onWindowResize = this.onWindowResize.bind( this );
-		this.tmp = {};
 		this.loadParameters( params );
 		this.interactivity = new Interactivity(this);
 		this.modes = new Modes(this);
@@ -67,10 +66,9 @@ export default class ParticlesLibrary{
 	}
 
 	destroy(): void{
-		let {tmp} = this;
 		this.detachListeners();
 		this.interactivity.detachEventHandlers();
-		cancelAnimationFrame( tmp.drawAnimFrame );
+		cancelAnimationFrame(this.drawAnimFrame);
 		this.canvasClear();
 	}
 

@@ -217,9 +217,7 @@ export default class ParticleManager{
 	}
 
 	particlesRefresh(): void{
-
-		let {tmp} = this.library;
-		cancelAnimationFrame( tmp.drawAnimFrame );
+		cancelAnimationFrame(this.library.drawAnimFrame);
 		this.particlesEmpty();
 		this.library.canvasClear();
 		this.library.start();

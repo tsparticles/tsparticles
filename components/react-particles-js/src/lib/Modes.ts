@@ -14,7 +14,7 @@ export default class Modes {
 	constructor(private library: ParticlesLibrary ){}
 
 	pushParticles(nb: number, pos?: TPoint) {
-		let {canvas, tmp, manager} = this.library;
+		let {canvas, manager} = this.library;
 
 		this.pushing = true;
 
@@ -51,9 +51,6 @@ export default class Modes {
 	}
 
 	bubbleParticle( particle: Particle ){
-
-		let {tmp} = this.library;
-
 		const interactivity = this.library.getParameter(p => p.interactivity);
 
 		if( interactivity.events.onhover.enable &&
@@ -174,7 +171,7 @@ export default class Modes {
 
 	repulseParticle( particle: Particle ){
 
-		let {canvas, tmp} = this.library;
+		let {canvas} = this.library;
 
 		if( this.library.getParameter(p => p.interactivity.events.onhover.enable) && 
 			isInArray( 'repulse', this.library.getParameter(p => p.interactivity.events.onhover.mode) ) &&
@@ -187,10 +184,7 @@ export default class Modes {
 			let velocity: number = 100;
 			let repulseFactor: number = clamp( ( 1 / repulseRadius ) * ( -1 * Math.pow( distance / repulseRadius, 2 ) + 1 ) * repulseRadius * velocity, 0, 50 );
 			
-			let pos: {
-				x: number;
-				y: number;
-			} = {
+			let pos: TPoint = {
 				x: particle.x + normVec.x * repulseFactor,
 				y: particle.y + normVec.y * repulseFactor
 			}
