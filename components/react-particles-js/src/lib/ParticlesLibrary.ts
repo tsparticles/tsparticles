@@ -122,17 +122,7 @@ export default class ParticlesLibrary{
 				}
 			});
 
-			// this.params.particles.size.value = tmp.obj.size_value * canvas.pxratio;
-			// this.params.particles.size.anim.speed = tmp.obj.size_anim_speed * canvas.pxratio;
-			// this.params.particles.move.speed = tmp.obj.move_speed * canvas.pxratio;
-			// this.params.particles.line_linked.distance = tmp.obj.line_linked_distance * canvas.pxratio;
-			// this.params.interactivity.modes.grab.distance = tmp.obj.mode_grab_distance * canvas.pxratio;
-			// this.params.interactivity.modes.bubble.distance = tmp.obj.mode_bubble_distance * canvas.pxratio;
-			// this.params.particles.line_linked.width = tmp.obj.line_linked_width * canvas.pxratio;
-			// this.params.interactivity.modes.bubble.size = tmp.obj.mode_bubble_size * canvas.pxratio;
-			// this.params.interactivity.modes.repulse.distance = tmp.obj.mode_repulse_distance * canvas.pxratio;
-
-		}else{
+		} else {
 			this.canvas.pxratio = 1;
 			this.retina = false;
 		}
