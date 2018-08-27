@@ -1,5 +1,5 @@
 import { IParams } from '.';
-import { ShapeType, MoveDirection, InteractivityMode, PolygonType, PolygonInlineArrangementType, PolygonMoveType } from './IParams';
+import { ShapeType, MoveDirection, InteractivityMode, PolygonType, PolygonInlineArrangementType, PolygonMoveType, MoveOutMode } from './IParams';
 import { deepAssign } from './Utils';
 
 const defaultParams: IParams = {
@@ -68,7 +68,7 @@ const defaultParams: IParams = {
 			direction: MoveDirection.NONE,
 			random: false,
 			straight: false,
-			out_mode: 'bounce',
+			out_mode: MoveOutMode.BOUNCE,
 			bounce: true,
 			attract: {
 				enable: false,

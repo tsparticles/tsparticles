@@ -19,6 +19,8 @@ type ShapeType = 'circle' | 'edge' | 'triangle' | 'polygon' | 'star' | 'image' |
 type MoveDirection = 'top' | 'top-right' | 'right' | 'bottom-right' | 'bottom' | 'bottom-left' |
     'left' | 'top-left' | 'none';
 
+type MoveOutMode = 'bounce' | 'out';
+
 type InteractivityMode = 'grab' | 'push' | 'remove' | 'bubble' | 'repulse';
 
 declare interface IImageDefinition {
@@ -116,7 +118,7 @@ export type IParticlesParams = RecursivePartial<{
             direction: MoveDirection;
             random: boolean;
             straight: boolean;
-            out_mode: string;
+            out_mode: MoveOutMode;
             bounce: boolean;
             attract: {
                 enable: boolean;

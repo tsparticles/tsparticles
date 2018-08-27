@@ -28,6 +28,11 @@ export enum MoveDirection {
 	NONE = 'none',
 }
 
+export enum MoveOutMode {
+	BOUNCE = 'bounce',
+	OUT = 'out',
+}
+
 export enum InteractivityMode {
 	GRAB = 'grab',
 	PUSH = 'push',
@@ -126,7 +131,7 @@ export interface IParticleMoveDefinition {
 	direction: MoveDirection;
 	random: boolean;
 	straight: boolean;
-	out_mode: string;
+	out_mode: MoveOutMode;
 	bounce: boolean;
 	attract: {
 		enable: boolean;
