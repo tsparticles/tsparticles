@@ -1,7 +1,22 @@
-import {hexToRgb, IParams, ParticlesLibrary, getColor} from '.';
-import { MoveDirection, ShapeType, PolygonType, PolygonInlineArrangementType, IParticleSizeDefinition, IParticleColorDefinition, IParticleOpacityDefinition, IParticleMoveDefinition, IPolygonDefinition, IParticleShapeDefinition } from './IParams';
-import { IParsedColor, TPoint, deepAssign } from './Utils';
-import { ImageManager, IShapeDefinitionEnhanced, IImageDefinitionEnhanced } from './ImageManager';
+import { hexToRgb, IParams, ParticlesLibrary, getColor } from ".";
+import {
+	MoveDirection,
+	ShapeType,
+	PolygonType,
+	PolygonInlineArrangementType,
+	IParticleSizeDefinition,
+	IParticleColorDefinition,
+	IParticleOpacityDefinition,
+	IParticleMoveDefinition,
+	IPolygonDefinition,
+	IParticleShapeDefinition
+} from "./IParams";
+import { IParsedColor, TPoint, deepAssign } from "./Utils";
+import {
+	ImageManager,
+	IShapeDefinitionEnhanced,
+	IImageDefinitionEnhanced
+} from "./ImageManager";
 
 export type ParticleParams = {
 	color?: IParticleColorDefinition;
@@ -24,7 +39,6 @@ export default class Particle {
 	x: number;
 	y: number;
 
-
 	color: IParsedColor;
 
 	opacityValue: number;
@@ -38,15 +52,23 @@ export default class Particle {
 	vx_i: number;
 	vy_i: number;
 
-	
 	shapeImage: IImageDefinitionEnhanced;
-	
+
 	initialPosition: TPoint;
 	shape: IParticleShapeDefinition;
-	
+
 	constructor(
 		library: ParticlesLibrary,
-		{color, move, opacity, polygon, position, shape, size}: ParticleParams = {}){
+		{
+			color,
+			move,
+			opacity,
+			polygon,
+			position,
+			shape,
+			size
+		}: ParticleParams = {}
+	) {
 		this.library = library;
 		this.setupSize(size);
 		this.setupPosition(move, polygon, position);
@@ -60,15 +82,18 @@ export default class Particle {
 		const defaultSize = this.library.getParameter(p => p.particles.size);
 		size = deepAssign({}, defaultSize, size);
 		this.radius = (size.random ? Math.random() : 1) * size.value;
-		if(size.anim.enable){
+		if (size.anim.enable) {
 			this.size_status = false;
 			this.vs = size.anim.speed / 100;
-			if( !size.anim.sync) this.vs = this.vs * Math.random();
+			if (!size.anim.sync) this.vs = this.vs * Math.random();
 		}
 	}
 
-	setupPosition(move?: IParticleMoveDefinition, polygon?: IPolygonDefinition, position?: TPoint): void {
-
+	setupPosition(
+		move?: IParticleMoveDefinition,
+		polygon?: IPolygonDefinition,
+		position?: TPoint
+	): void {
 		this.initialPosition = position;
 		const defaultMove = this.library.getParameter(p => p.particles.move);
 		move = deepAssign({}, defaultMove, move);
@@ -76,7 +101,7 @@ export default class Particle {
 		polygon = deepAssign({}, defaultPolygon, polygon);
 		const particlesArray = this.library.getParameter(p => p.particles.array);
 
-		const {canvas, vendors} = this.library;
+		const { canvas, vendors } = this.library;
 
 		if (position) {
 			this.x = position.x;
@@ -94,11 +119,15 @@ export default class Particle {
 								randomPosition = this.library.polygonMask.getRandomPointOnPolygonPathByLength();
 								break;
 							case PolygonInlineArrangementType.EQUIDISTANT:
-								randomPosition = this.library.polygonMask.getEquidistantPoingOnPolygonPathByIndex(particlesArray.length);
+								randomPosition = this.library.polygonMask.getEquidistantPoingOnPolygonPathByIndex(
+									particlesArray.length
+								);
 								break;
 							case PolygonInlineArrangementType.ONE_PER_POINT:
 							default:
-								randomPosition = this.library.polygonMask.getPoingOnPolygonPathByIndex(particlesArray.length);
+								randomPosition = this.library.polygonMask.getPoingOnPolygonPathByIndex(
+									particlesArray.length
+								);
 						}
 						break;
 					case PolygonType.INSIDE:
@@ -121,18 +150,18 @@ export default class Particle {
 			this.y = Math.random() * canvas.height;
 		}
 
-		if( this.x > canvas.width - this.radius * 2 ){
+		if (this.x > canvas.width - this.radius * 2) {
 			this.x = this.x - this.radius;
-		}else if( this.x < this.radius * 2 ){
+		} else if (this.x < this.radius * 2) {
 			this.x = this.x + this.radius;
 		}
-		if( this.y > canvas.height - this.radius * 2 ){
-			this. y = this.y - this.radius;
-		}else if( this.y < this.radius * 2 ){
+		if (this.y > canvas.height - this.radius * 2) {
+			this.y = this.y - this.radius;
+		} else if (this.y < this.radius * 2) {
 			this.y = this.y + this.radius;
 		}
 
-		if(move.bounce){
+		if (move.bounce) {
 			vendors.checkOverlap(this, { x: this.x, y: this.y });
 		}
 	}
@@ -174,7 +203,7 @@ export default class Particle {
 				baseVelocity = { x: 1, y: 0 };
 				break;
 			case MoveDirection.BOTTOM_RIGHT:
-				baseVelocity = { x: 0.5, y: 0.5 };
+				baseVelocity = { x: 0.5, y: 0.5 };
 				break;
 			case MoveDirection.BOTTOM:
 				baseVelocity = { x: 0, y: 1 };
@@ -183,23 +212,23 @@ export default class Particle {
 				baseVelocity = { x: -0.5, y: 1 };
 				break;
 			case MoveDirection.LEFT:
-				baseVelocity = { x: -1, y:0 };
+				baseVelocity = { x: -1, y: 0 };
 				break;
 			case MoveDirection.TOP_LEFT:
-				baseVelocity = { x: -0.5, y: -0.5 };
+				baseVelocity = { x: -0.5, y: -0.5 };
 				break;
 			default:
-				baseVelocity = { x: 0, y: 0 };
+				baseVelocity = { x: 0, y: 0 };
 				break;
 		}
 		if (move.straight) {
 			this.vx = baseVelocity.x;
 			this.vy = baseVelocity.y;
 			if (move.random) {
-				this.vx = this.vx * ( Math.random() );
-				this.vy = this.vy * ( Math.random() );
+				this.vx = this.vx * Math.random();
+				this.vy = this.vy * Math.random();
 			}
-		}else{
+		} else {
 			this.vx = baseVelocity.x + Math.random() - 0.5;
 			this.vy = baseVelocity.y + Math.random() - 0.5;
 		}
@@ -209,60 +238,66 @@ export default class Particle {
 	}
 
 	setupShape(shape?: IParticleShapeDefinition) {
-
 		const defaultShape = this.library.getParameter(p => p.particles.shape);
 		shape = deepAssign({}, defaultShape, shape);
 		const particlesArray = this.library.getParameter(p => p.particles.array);
 
 		if (Array.isArray(shape.type)) {
-			let selectedShape = shape.type[Math.floor(Math.random() * shape.type.length)];
+			let selectedShape =
+				shape.type[Math.floor(Math.random() * shape.type.length)];
 			shape = deepAssign({}, shape, { type: selectedShape });
 		}
-		
+
 		this.shape = shape;
-		
+
 		if (shape.type === ShapeType.IMAGE || shape.type === ShapeType.IMAGES) {
 			if (shape.type === ShapeType.IMAGES) {
-				this.shapeImage = this.library.imageManager.getImage(particlesArray.length);
+				this.shapeImage = this.library.imageManager.getImage(
+					particlesArray.length
+				);
 			} else {
 				this.shapeImage = this.library.imageManager.getImage();
 			}
-			if( this.shapeImage.type === 'svg' && this.shapeImage.svgData !== undefined ){
-				this.library.imageManager.createSvgImage(this.shapeImage.svgData, {
-					color: this.color,
-					opacity: this.opacityValue,
-				}).then(image => {
-					this.shapeImage.elementData = image;
-					this.shapeImage.loaded = true;
-				});
+			if (
+				this.shapeImage.type === "svg" &&
+				this.shapeImage.svgData !== undefined
+			) {
+				this.library.imageManager
+					.createSvgImage(this.shapeImage.svgData, {
+						color: this.color,
+						opacity: this.opacityValue
+					})
+					.then(image => {
+						this.shapeImage.elementData = image;
+						this.shapeImage.loaded = true;
+					});
 			}
 		}
 	}
 
-	draw(): void{
-
-		let {canvas, vendors} = this.library;
+	draw(): void {
+		let { canvas, vendors } = this.library;
 
 		let radius: number;
-		if( this.radius_bubble !== undefined ){
+		if (this.radius_bubble !== undefined) {
 			radius = this.radius_bubble;
-		}else{
+		} else {
 			radius = this.radius;
 		}
 
 		let opacityValue: number;
-		if( this.bubbleOpacity !== undefined ){
+		if (this.bubbleOpacity !== undefined) {
 			opacityValue = this.bubbleOpacity;
-		}else{
+		} else {
 			opacityValue = this.opacityValue;
 		}
 
 		let colorValue: string;
-		if( this.color.rgb ){
-			let {r, g, b} = this.color.rgb;
+		if (this.color.rgb) {
+			let { r, g, b } = this.color.rgb;
 			colorValue = `rgba( ${r}, ${g}, ${b}, ${opacityValue} )`;
-		}else{
-			let {h, s, l} = this.color.hsl;
+		} else {
+			let { h, s, l } = this.color.hsl;
 			colorValue = `hsla( ${h}, ${s}, ${l}, ${opacityValue} )`;
 		}
 
@@ -271,23 +306,35 @@ export default class Particle {
 
 		switch (this.shape.type) {
 			case ShapeType.CIRCLE:
-				canvas.ctx.arc( this.x, this.y, radius, 0, Math.PI * 2, false );
+				canvas.ctx.arc(this.x, this.y, radius, 0, Math.PI * 2, false);
 				break;
 
 			case ShapeType.EDGE:
-				canvas.ctx.rect( this.x - radius, this.y - radius, radius * 2, radius * 2 );
+				canvas.ctx.rect(
+					this.x - radius,
+					this.y - radius,
+					radius * 2,
+					radius * 2
+				);
 				break;
 
 			case ShapeType.TRIANGLE:
-				vendors.drawShape( canvas.ctx, this.x - radius, this.y + radius / 1.66, radius * 2, 3, 2 );
+				vendors.drawShape(
+					canvas.ctx,
+					this.x - radius,
+					this.y + radius / 1.66,
+					radius * 2,
+					3,
+					2
+				);
 				break;
 
 			case ShapeType.POLYGON:
 				vendors.drawShape(
 					canvas.ctx,
 					this.x - radius / (this.shape.polygon.nb_sides / 3.5),
-					this.y - radius / ( 2.66 / 3.5 ),
-					radius * 2.66 / (this.shape.polygon.nb_sides / 3 ),
+					this.y - radius / (2.66 / 3.5),
+					(radius * 2.66) / (this.shape.polygon.nb_sides / 3),
 					this.shape.polygon.nb_sides,
 					1
 				);
@@ -296,9 +343,9 @@ export default class Particle {
 			case ShapeType.STAR:
 				vendors.drawShape(
 					canvas.ctx,
-					this.x - radius * 2 / (this.shape.polygon.nb_sides / 4),
-					this.y - radius / ( 2 * 2.66 / 3.5 ),
-					radius * 2 * 2.66 / (this.shape.polygon.nb_sides / 3),
+					this.x - (radius * 2) / (this.shape.polygon.nb_sides / 4),
+					this.y - radius / ((2 * 2.66) / 3.5),
+					(radius * 2 * 2.66) / (this.shape.polygon.nb_sides / 3),
 					this.shape.polygon.nb_sides,
 					2
 				);
@@ -312,7 +359,7 @@ export default class Particle {
 						this.x - radius,
 						this.y - radius,
 						radius * 2,
-						radius * 2 / this.shapeImage.ratio
+						(radius * 2) / this.shapeImage.ratio
 					);
 				}
 				break;
@@ -328,5 +375,4 @@ export default class Particle {
 
 		canvas.ctx.fill();
 	}
-
 }

@@ -9,14 +9,14 @@ import {
 	ParticleManager,
 	Vendors,
 	PolygonMask,
-	RecursivePartial} from '.';
-import { ImageManager } from './ImageManager';
+	RecursivePartial
+} from ".";
+import { ImageManager } from "./ImageManager";
 
-export default class ParticlesLibrary{
-
+export default class ParticlesLibrary {
 	canvas: ICanvasParam;
 	params: IParams;
-	
+
 	manager: ParticleManager;
 	interactivity: Interactivity;
 	modes: Modes;
@@ -29,12 +29,12 @@ export default class ParticlesLibrary{
 
 	drawAnimFrame: number;
 
-	constructor( params?: any ){
-		this.onWindowResize = this.onWindowResize.bind( this );
-		this.loadParameters( params );
+	constructor(params?: any) {
+		this.onWindowResize = this.onWindowResize.bind(this);
+		this.loadParameters(params);
 		this.interactivity = new Interactivity(this);
 		this.modes = new Modes(this);
-		this.vendors = new Vendors(this.imageManager, this.params, this );
+		this.vendors = new Vendors(this.imageManager, this.params, this);
 		this.manager = new ParticleManager(this);
 		this.polygonMask = new PolygonMask(this);
 	}
@@ -44,48 +44,48 @@ export default class ParticlesLibrary{
 	}
 
 	setParameters(params: RecursivePartial<IParams>) {
-		this.params = deepAssign({...this.params}, params);
+		this.params = deepAssign({ ...this.params }, params);
 	}
 
-	loadParameters( params?: any ): void{
+	loadParameters(params?: any): void {
 		let mergedParams: IParams = deepAssign({}, getDefaultParams(), params);
 		this.params = mergedParams;
 	}
 
-	loadCanvas( canvasElement: HTMLCanvasElement ){
+	loadCanvas(canvasElement: HTMLCanvasElement) {
 		this.canvas = {
 			element: canvasElement,
 			width: canvasElement.offsetWidth,
 			height: canvasElement.offsetHeight
-		}
+		};
 	}
 
-	start(): void{
+	start(): void {
 		this.interactivity.attachEventHandlers();
 		this.vendors.start();
 	}
 
-	destroy(): void{
+	destroy(): void {
 		this.detachListeners();
 		this.interactivity.detachEventHandlers();
 		cancelAnimationFrame(this.drawAnimFrame);
 		this.canvasClear();
 	}
 
-	detachListeners(): void{
-		window.removeEventListener( 'resize', this.onWindowResize );
+	detachListeners(): void {
+		window.removeEventListener("resize", this.onWindowResize);
 	}
 
-	retinaInit(): void{
-
+	retinaInit(): void {
 		const pixelRatio = window.devicePixelRatio;
 
-		if( this.params.retina_detect && pixelRatio > 1 ){
+		if (this.params.retina_detect && pixelRatio > 1) {
 			this.canvas.pxratio = pixelRatio;
-			
+
 			this.canvas.width = this.canvas.element.offsetWidth * this.canvas.pxratio;
-			this.canvas.height = this.canvas.element.offsetHeight * this.canvas.pxratio;
-			
+			this.canvas.height =
+				this.canvas.element.offsetHeight * this.canvas.pxratio;
+
 			this.retina = true;
 
 			const params = this.getParameter(p => p);
@@ -103,7 +103,7 @@ export default class ParticlesLibrary{
 						repulse: {
 							distance: params.interactivity.modes.repulse.distance * pixelRatio
 						}
-					},
+					}
 				},
 				particles: {
 					line_linked: {
@@ -121,64 +121,58 @@ export default class ParticlesLibrary{
 					}
 				}
 			});
-
 		} else {
 			this.canvas.pxratio = 1;
 			this.retina = false;
 		}
 	}
 
-	canvasInit(): void{
+	canvasInit(): void {
+		let { canvas } = this;
 
-		let {canvas} = this;
-
-		canvas.ctx = canvas.element.getContext( '2d' );
+		canvas.ctx = canvas.element.getContext("2d");
 	}
 
-	canvasSize(): void{
-
-		let {canvas} = this;
+	canvasSize(): void {
+		let { canvas } = this;
 
 		canvas.element.width = canvas.width;
 		canvas.element.height = canvas.height;
 
-		if( this.params && this.params.interactivity.events.resize ){
-			window.addEventListener( 'resize', this.onWindowResize );
+		if (this.params && this.params.interactivity.events.resize) {
+			window.addEventListener("resize", this.onWindowResize);
 		}
 	}
 
-	canvasPaint(): void{
-
-		let {canvas} = this;
+	canvasPaint(): void {
+		let { canvas } = this;
 		if (canvas && canvas.ctx) {
-			try{
-				canvas.ctx.fillRect( 0, 0, canvas.width, canvas.height );
+			try {
+				canvas.ctx.fillRect(0, 0, canvas.width, canvas.height);
 			} catch (e) {
 				console.warn(e);
 			}
 		}
 	}
 
-	canvasClear(): void{
-
-		let {canvas} = this;
+	canvasClear(): void {
+		let { canvas } = this;
 		if (canvas && canvas.ctx) {
-			try{
-				canvas.ctx.clearRect( 0, 0, canvas.width, canvas.height );
-			}catch (e) {
+			try {
+				canvas.ctx.clearRect(0, 0, canvas.width, canvas.height);
+			} catch (e) {
 				console.warn(e);
-			}	
+			}
 		}
 	}
 
-	public onWindowResize(): void{
-
-		let {canvas, manager, vendors} = this;
+	public onWindowResize(): void {
+		let { canvas, manager, vendors } = this;
 
 		canvas.width = canvas.element.offsetWidth;
 		canvas.height = canvas.element.offsetHeight;
 
-		if( this.retina ){
+		if (this.retina) {
 			canvas.width *= canvas.pxratio;
 			canvas.height *= canvas.pxratio;
 		}
@@ -186,18 +180,17 @@ export default class ParticlesLibrary{
 		canvas.element.width = canvas.width;
 		canvas.element.height = canvas.height;
 
-		if( !this.params.particles.move.enable || this.params.polygon.enable ){
+		if (!this.params.particles.move.enable || this.params.polygon.enable) {
 			manager.particlesEmpty();
-			this.polygonMask.initialize(this.getParameter(p => p.polygon))
+			this.polygonMask
+				.initialize(this.getParameter(p => p.polygon))
 				.then(() => {
 					manager.particlesCreate();
 					manager.particlesDraw();
 					vendors.densityAutoParticles();
 				});
-			
 		}
 
 		vendors.densityAutoParticles();
 	}
-
 }

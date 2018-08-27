@@ -1,4 +1,4 @@
-export interface ICanvasParam{
+export interface ICanvasParam {
 	element: HTMLCanvasElement;
 	width: number;
 	height: number;
@@ -7,38 +7,38 @@ export interface ICanvasParam{
 }
 
 export enum ShapeType {
-	CIRCLE = 'circle',
-	EDGE = 'edge',
-	TRIANGLE = 'triangle',
-	POLYGON = 'polygon',
-	STAR = 'star',
-	IMAGE = 'image',
-	IMAGES = 'images',
+	CIRCLE = "circle",
+	EDGE = "edge",
+	TRIANGLE = "triangle",
+	POLYGON = "polygon",
+	STAR = "star",
+	IMAGE = "image",
+	IMAGES = "images"
 }
 
 export enum MoveDirection {
-	TOP = 'top',
-	TOP_RIGHT = 'top-right',
-	RIGHT = 'right',
-	BOTTOM_RIGHT = 'bottom-right',
-	BOTTOM = 'bottom',
-	BOTTOM_LEFT = 'bottom-left',
-	LEFT = 'left',
-	TOP_LEFT = 'top-left',
-	NONE = 'none',
+	TOP = "top",
+	TOP_RIGHT = "top-right",
+	RIGHT = "right",
+	BOTTOM_RIGHT = "bottom-right",
+	BOTTOM = "bottom",
+	BOTTOM_LEFT = "bottom-left",
+	LEFT = "left",
+	TOP_LEFT = "top-left",
+	NONE = "none"
 }
 
 export enum MoveOutMode {
-	BOUNCE = 'bounce',
-	OUT = 'out',
+	BOUNCE = "bounce",
+	OUT = "out"
 }
 
 export enum InteractivityMode {
-	GRAB = 'grab',
-	PUSH = 'push',
-	REMOVE = 'remove',
-	BUBBLE = 'bubble',
-	REPULSE = 'repulse',
+	GRAB = "grab",
+	PUSH = "push",
+	REMOVE = "remove",
+	BUBBLE = "bubble",
+	REPULSE = "repulse"
 }
 
 export interface IImageDefinition {
@@ -61,21 +61,21 @@ export interface IParticleShapeDefinition {
 }
 
 export enum PolygonType {
-	INLINE = 'inline',
-	INSIDE = 'inside',
-	OUTSIDE = 'outside',
+	INLINE = "inline",
+	INSIDE = "inside",
+	OUTSIDE = "outside"
 }
 
 export enum PolygonInlineArrangementType {
-	RANDOM_POINT = 'random-point',
-	ONE_PER_POINT = 'one-per-point', // Overrides particles number
-	RANDOM_LENGTH = 'random-length',
-	EQUIDISTANT = 'equidistant',
+	RANDOM_POINT = "random-point",
+	ONE_PER_POINT = "one-per-point", // Overrides particles number
+	RANDOM_LENGTH = "random-length",
+	EQUIDISTANT = "equidistant"
 }
 
 export enum PolygonMoveType {
-	PATH = 'path',
-	RADIUS = 'radius',
+	PATH = "path",
+	RADIUS = "radius"
 }
 
 export interface IPolygonDefinition {
@@ -90,12 +90,12 @@ export interface IPolygonDefinition {
 		arrangement: PolygonInlineArrangementType;
 	};
 	draw: {
-        enable: boolean;
-        stroke: {
-            width: number;
-            color: string;
-        };
-    };
+		enable: boolean;
+		stroke: {
+			width: number;
+			color: string;
+		};
+	};
 	url: string;
 }
 
@@ -107,7 +107,7 @@ export interface IParticleSizeDefinition {
 		speed: number;
 		size_min: number;
 		sync: boolean;
-	}
+	};
 }
 
 export interface IParticleColorDefinition {
@@ -122,7 +122,7 @@ export interface IParticleOpacityDefinition {
 		speed: number;
 		opacity_min: number;
 		sync: boolean;
-	}
+	};
 }
 
 export interface IParticleMoveDefinition {
@@ -137,17 +137,17 @@ export interface IParticleMoveDefinition {
 		enable: boolean;
 		rotateX: number;
 		rotateY: number;
-	}
+	};
 }
 
-export interface IParams{
+export interface IParams {
 	particles: {
 		number: {
 			value: number;
 			density: {
 				enable: boolean;
 				value_area: number;
-			}
+			};
 		};
 		color: IParticleColorDefinition;
 		shape: IParticleShapeDefinition;
@@ -187,7 +187,7 @@ export interface IParams{
 				distance: number;
 				line_linked: {
 					opacity: number;
-				}
+				};
 			};
 			bubble: {
 				distance: number;

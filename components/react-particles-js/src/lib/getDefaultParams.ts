@@ -1,6 +1,14 @@
-import { IParams } from '.';
-import { ShapeType, MoveDirection, InteractivityMode, PolygonType, PolygonInlineArrangementType, PolygonMoveType, MoveOutMode } from './IParams';
-import { deepAssign } from './Utils';
+import { IParams } from ".";
+import {
+	ShapeType,
+	MoveDirection,
+	InteractivityMode,
+	PolygonType,
+	PolygonInlineArrangementType,
+	PolygonMoveType,
+	MoveOutMode
+} from "./IParams";
+import { deepAssign } from "./Utils";
 
 const defaultParams: IParams = {
 	particles: {
@@ -12,19 +20,19 @@ const defaultParams: IParams = {
 			}
 		},
 		color: {
-			value: '#FFF'
+			value: "#FFF"
 		},
 		shape: {
 			type: ShapeType.CIRCLE,
 			stroke: {
 				width: 0,
-				color: '#000000'
+				color: "#000000"
 			},
 			polygon: {
 				nb_sides: 5
 			},
 			image: {
-				src: '',
+				src: "",
 				width: 100,
 				height: 100
 			},
@@ -53,13 +61,13 @@ const defaultParams: IParams = {
 		line_linked: {
 			enable: true,
 			distance: 150,
-			color: '#FFF',
+			color: "#FFF",
 			opacity: 0.6,
 			width: 1,
 			shadow: {
 				enable: false,
 				blur: 5,
-				color: 'lime'
+				color: "lime"
 			}
 		},
 		move: {
@@ -79,7 +87,7 @@ const defaultParams: IParams = {
 		array: []
 	},
 	interactivity: {
-		detect_on: 'canvas',
+		detect_on: "canvas",
 		events: {
 			onhover: {
 				enable: false,
@@ -122,21 +130,21 @@ const defaultParams: IParams = {
 		scale: 1,
 		type: PolygonType.INLINE,
 		inline: {
-			arrangement: PolygonInlineArrangementType.ONE_PER_POINT,
+			arrangement: PolygonInlineArrangementType.ONE_PER_POINT
 		},
 		draw: {
 			enable: false,
 			stroke: {
-				width: .5,
-				color: 'rgba(255, 255, 255, .1)'
+				width: 0.5,
+				color: "rgba(255, 255, 255, .1)"
 			}
 		},
 		move: {
 			radius: 10,
-			type: PolygonMoveType.PATH,
+			type: PolygonMoveType.PATH
 		},
-		url: '',
-	},
+		url: ""
+	}
 };
 
 export const getDefaultParams = () => deepAssign({}, defaultParams);
