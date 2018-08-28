@@ -1,4 +1,4 @@
-// Type definitions for react-particles-js v2.4.0-beta.6
+// Type definitions for react-particles-js v2.4.0-beta.7
 // Project: https://github.com/wufe/react-particles-js
 // Definitions by: Simone Bembi <https://github.com/wufe>
 // Definitions: https://github.com/DefinitelyTyped/DefinitelyTyped
