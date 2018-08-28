@@ -1,6 +1,6 @@
 {
   "name": "react-particles-js",
-  "version": "2.4.0-beta.5",
+  "version": "2.4.0-beta.6",
   "description": "Reactified particles.js",
   "main": "lib/particles.js",
   "types": "index.d.ts",
@@ -15,7 +15,6 @@
   "author": "Simone <simone.bembi@gmail.com>",
   "license": "MIT",
   "devDependencies": {
-    "@types/lodash.clonedeep": "^4.5.3",
     "@types/node": "^8.0.32",
     "@types/react": "^16.0.8",
     "babel-core": "^6.18.2",
