@@ -1,9 +1,9 @@
 ## Particles.js - React Component
 
-[![alt text][image]][hyperlink]
+[![Particles][image]][hyperlink]
 
   [hyperlink]: https://rpj.bembi.org
-  [image]: https://raw.githubusercontent.com/wufe/react-particles-js/master/demo/particles.png (Particles)
+  [image]: https://raw.githubusercontent.com/wufe/react-particles-js/master/img/particles.png (Particles)
 
 Implementation in **Typescript** + **React** of [Particles.js](https://github.com/VincentGarreau/particles.js/) by [Vincent Garreau](https://github.com/VincentGarreau).
 
