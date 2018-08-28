@@ -16,7 +16,7 @@ const plugins = production ?
 const typescriptLoader = {
     test: /\.tsx?$/,
     exclude: /node_modules/,
-    use: ['babel-loader', 'ts-loader']
+    use: ['ts-loader']
 };
 
 const jsonLoader = {
