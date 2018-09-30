@@ -53,7 +53,7 @@ const config = {
         libraryTarget: 'umd',
         pathinfo: false
     },
-    target: 'web',
+    target: 'node',
     module: {
         rules
     },
