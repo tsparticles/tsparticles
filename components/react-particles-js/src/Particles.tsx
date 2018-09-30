@@ -37,12 +37,17 @@ export default class Particles extends Component<
 		this.loadCanvas = this.loadCanvas.bind(this);
 	}
 
+	private buildParticlesLibrary(params: RecursivePartial<IParams>) {
+		try{if (window === undefined) return null; } catch{ return null; } // SSR
+		return new ParticlesLibrary(params);
+	}
+
 	private refresh(props: Readonly<ParticlesProps>): void {
 		if (this.state.canvas) {
 			this.destroy();
 			this.setState(
 				{
-					library: new ParticlesLibrary(props.params)
+					library: this.buildParticlesLibrary(props.params)
 				},
 				() => {
 					this.loadCanvas(this.state.canvas);
@@ -84,7 +89,7 @@ export default class Particles extends Component<
 
 	componentWillMount() {
 		this.setState({
-			library: new ParticlesLibrary(this.props.params)
+			library: this.buildParticlesLibrary(this.props.params)
 		});
 	}
 
