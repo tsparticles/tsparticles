@@ -51,9 +51,10 @@ const config = {
         filename: "particles.js",
         library: "Particles",
         libraryTarget: 'umd',
-        pathinfo: false
+        pathinfo: false,
+        globalObject: 'this'
     },
-    target: 'node',
+    target: 'web',
     module: {
         rules
     },
