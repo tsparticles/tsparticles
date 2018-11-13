@@ -9,7 +9,7 @@ You can access the demo [here](https://cssninjastudio.github.io./).
 
 Fresh is developed with the [Bulma css framework](https://bulma.io)
 
-**Version 2.0**
+**Version 2.1**
 
 ## Usage
 Fresh is now a Bulma starter fully bundled with **npm** and **gulp**. Bulma has been upgrade to latest version **0.7**.
@@ -19,8 +19,14 @@ Fresh is now a Bulma starter fully bundled with **npm** and **gulp**. Bulma has 
 * Run `gulp build`
 * Run `gulp default`
 
-## Major changes
+## Changelog
 
+**Fresh 2.1**
+* Improved page responsiveness particularly on tablet for both orientations, and mobile
+* Fixed small layout issues
+* Added a modal login form
+=========================================================
+**Fresh 2.0**
 * Everything is now handled by gulp and npm
 * Bulma version upgraded to 0.7
 * Bulma source sass is editable (note that the `@widescreen` variable has been set to false)
