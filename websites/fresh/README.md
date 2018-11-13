@@ -25,7 +25,7 @@ Fresh is now a Bulma starter fully bundled with **npm** and **gulp**. Bulma has 
 * Improved page responsiveness particularly on tablet for both orientations, and mobile
 * Fixed small layout issues
 * Added a modal login form
-=========================================================
+
 **Fresh 2.0**
 * Everything is now handled by gulp and npm
 * Bulma version upgraded to 0.7
