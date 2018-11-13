@@ -8,7 +8,7 @@ title: Modern Bulma Ecommerce App and Dashboard
 <section class="hero is-fullheight is-default is-bold">
 
     {{> navbar}}
-    
+
     {{> navbar-clone}}
 
     <div class="hero-body">
@@ -118,10 +118,10 @@ title: Modern Bulma Ecommerce App and Dashboard
         <div class="columns">
             <div class="column is-centered-tablet-portrait">
                 <h1 class="title section-title">You're here because you want the best</h1>
-                <h3 class="subtitle is-5 is-muted">And we Know it</h3>
+                <h3 class="subtitle is-4 is-muted">And we Know it</h3>
                 <div class="divider"></div>
             </div>
-            <div class="column is-7 mt-60">
+            <div class="column is-8 mt-60">
 
                 <!-- icon block -->
                 <article class="media icon-box">
@@ -134,7 +134,7 @@ title: Modern Bulma Ecommerce App and Dashboard
                         <div class="content">
                             <p>
                                 <span class="icon-box-title">Powerful and unified interface</span>
-                                <span class="icon-box-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin ornare magna eros, eu pellentesque tortor vestibulum ut. Maecenas non massa sem. Etiam finibus odio quis feugiat facilisis.</span>
+                                <span class="icon-box-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin ornare magna eros, eu pellentesque tortor.</span>
                             </p>
                         </div>
                     </div>
@@ -152,7 +152,7 @@ title: Modern Bulma Ecommerce App and Dashboard
                         <div class="content">
                             <p>
                                 <span class="icon-box-title">Cross device Synchronisation</span>
-                                <span class="icon-box-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin ornare magna eros, eu pellentesque tortor vestibulum ut. Maecenas non massa sem. Etiam finibus odio quis feugiat facilisis.</span>
+                                <span class="icon-box-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin ornare magna eros, eu pellentesque tortor.</span>
                             </p>
                         </div>
                     </div>
@@ -170,7 +170,7 @@ title: Modern Bulma Ecommerce App and Dashboard
                         <div class="content">
                             <p>
                                 <span class="icon-box-title">Nomad System</span>
-                                <span class="icon-box-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin ornare magna eros, eu pellentesque tortor vestibulum ut. Maecenas non massa sem. Etiam finibus odio quis feugiat facilisis.</span>
+                                <span class="icon-box-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin ornare magna eros, eu pellentesque tortor.</span>
                             </p>
                         </div>
                     </div>
@@ -290,7 +290,38 @@ title: Modern Bulma Ecommerce App and Dashboard
 
 
 
+<div id="auth-modal" class="modal">
+    <div class="modal-background"></div>
+    <div class="modal-content">
+        <div class="flex-card auth-card">
+            <div class="tabs-wrapper">
+                <div class="tabs">
+                    <ul>
+                        <li class="is-active" data-tab="login-tab"><a>Login</a></li>
+                        <li data-tab="register-tab"><a>Register</a></li>
+                    </ul>
+                </div>
+                <div id="login-tab" class="tab-content is-active">
+                    <div class="field">
+                        <label>Username</label>
+                        <div class="control">
+                            <input type="text" class="input is-medium" placeholder="Enter username">
+                        </div>
+                    </div>
+                    <div class="field">
+                        <label>Password</label>
+                        <div class="control">
+                            <input type="password" class="input is-medium" placeholder="Enter password">
+                        </div>
+                    </div>
 
+                    <a class="button is-fullwidth secondary-btn is-rounded raised">Log in</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <button class="modal-close is-large" aria-label="close"></button>
+</div>
 
 
 
