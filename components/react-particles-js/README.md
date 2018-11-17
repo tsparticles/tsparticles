@@ -57,7 +57,7 @@ Find your parameters configuration [here](http://vincentgarreau.com/particles.js
 
 Demo: [Polygon mask demo](https://rpj.bembi.org/#mask).
 
-Available only since version `v2.4.0-beta.4` (available with `npm install react-particles-js@2.4.0-beta.4`).
+Available only since version `v2.4.0-beta.5` (available with `npm install react-particles-js@2.4.0-beta.5`).
 
 ##### Requirements
 
