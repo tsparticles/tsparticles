@@ -78,8 +78,8 @@ export default class Particles extends Component<
 		return nextProps !== this.props;
 	}
 
-	componentWillUpdate(nextProps: Readonly<ParticlesProps>) {
-		this.refresh(nextProps);
+	componentDidUpdate() {
+		this.refresh(this.props);
 	}
 
 	forceUpdate() {
@@ -87,7 +87,7 @@ export default class Particles extends Component<
 		super.forceUpdate();
 	}
 
-	componentWillMount() {
+	componentDidMount() {
 		this.setState({
 			library: this.buildParticlesLibrary(this.props.params)
 		});
