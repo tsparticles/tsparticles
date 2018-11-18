@@ -159,8 +159,6 @@ export class PolygonMask {
 
 			this.createPath2D();
 
-			if (this.initialized) this.library.manager.particlesRefresh();
-
 			return this.polygonRaw;
 		});
 	}
