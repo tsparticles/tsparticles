@@ -57,11 +57,11 @@ Find your parameters configuration [here](http://vincentgarreau.com/particles.js
 
 Demo: [Polygon mask demo](https://rpj.bembi.org/#mask).
 
-Available only since version `v2.4.0-beta.5` (available with `npm install react-particles-js@2.4.0-beta.5`).
+Available only since version `v2.4.0` (available with `npm install react-particles-js@2.4.0`).
 
 ##### Requirements
 
-+ Only the first path of the svg will be fetched
++ Only the first path of the svg will be fetched so you may want to join all path in your svg.
 + The **[SVGPathSeg polyfill](https://github.com/progers/pathseg)** is required.  
 Add it in your index.html:
 
@@ -115,7 +115,7 @@ Lets you use multiple images as particle shape.
 
 Demo: [Multiple images demo](https://rpj.bembi.org/#images).
 
-Available only since version `v2.4.0-beta.3` (available with `npm install react-particles-js@2.4.0-beta.3`).
+Available only since version `v2.4.0` (available with `npm install react-particles-js@2.4.0`).
 
 ##### Example
 
