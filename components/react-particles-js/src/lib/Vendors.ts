@@ -25,15 +25,16 @@ export default class Vendors {
 		let { canvas, modes } = this.library;
 		let { particles } = this.params;
 
-		if (particles.number.density.enable) {
-			let area: number = (canvas.element.width * canvas.element.height) / 1000;
-			if (this.library.retina) {
-				area = (area / canvas.pxratio) * 2;
-			}
+		const density = particles.number.density;
+		let densityValueArea = density.value_area;
 
-			let nb_particles: number =
-				(area * particles.number.value) / particles.number.density.value_area;
-			let missing_particles: number = particles.array.length - nb_particles;
+		if (density.enable) {
+			let area = (canvas.element.width * canvas.element.height) / 1000;
+			if (this.library.retina) {
+				area = area / canvas.pxratio;
+			}
+			const nb_particles = area * particles.number.value / densityValueArea;
+			const missing_particles = particles.array.length - nb_particles;
 			if (missing_particles < 0) {
 				modes.pushParticles(Math.abs(missing_particles));
 			} else {
