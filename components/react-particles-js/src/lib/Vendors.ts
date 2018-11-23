@@ -31,7 +31,7 @@ export default class Vendors {
 		if (density.enable) {
 			let area = (canvas.element.width * canvas.element.height) / 1000;
 			if (this.library.retina) {
-				area = area / canvas.pxratio * 2;
+				area = area / (canvas.pxratio * 2);
 			}
 			const nb_particles = area * particles.number.value / densityValueArea;
 			const missing_particles = particles.array.length - nb_particles;
