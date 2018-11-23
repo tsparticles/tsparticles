@@ -49,6 +49,7 @@ export default class Interact {
 
 	detachEventHandlers() {
 		const interactivity = this.library.getParameter(p => p.interactivity);
+		if (!this.interactionElement) return;
 
 		if (
 			interactivity.events.onhover.enable ||
