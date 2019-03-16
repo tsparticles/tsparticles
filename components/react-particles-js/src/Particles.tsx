@@ -75,8 +75,8 @@ export default class Particles extends Component<
 					if (!library) {
 						return;
 					}
-					this.state.library.loadCanvas(canvas);
-					this.state.library.start();
+					library.loadCanvas(canvas);
+					library.start();
 				}
 			);
 		}
