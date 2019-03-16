@@ -2,6 +2,7 @@ import * as React from "react";
 import { Component } from "react";
 
 import { IParams, ParticlesLibrary, deepAssign, RecursivePartial } from "./lib";
+import { isEqual } from 'lodash';
 
 export interface ParticlesProps {
 	width: string;
@@ -75,7 +76,7 @@ export default class Particles extends Component<
 	}
 
 	shouldComponentUpdate(nextProps: Readonly<ParticlesProps>) {
-		return nextProps !== this.props;
+		return !isEqual(nextProps, this.props);
 	}
 
 	componentDidUpdate() {
