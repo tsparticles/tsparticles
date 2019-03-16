@@ -49,7 +49,7 @@ export default class Particles extends Component<
 			this.destroy();
 			this.setState(
 				{
-					library: this.buildParticlesLibrary(props.params) || undefined
+					library: this.buildParticlesLibrary(props.params)
 				},
 				() => {
 					this.loadCanvas(canvas);
@@ -75,8 +75,8 @@ export default class Particles extends Component<
 					if (!library) {
 						return;
 					}
-					library.loadCanvas(canvas);
-					library.start();
+					this.state.library.loadCanvas(canvas);
+					this.state.library.start();
 				}
 			);
 		}
@@ -97,7 +97,7 @@ export default class Particles extends Component<
 
 	componentDidMount() {
 		this.setState({
-			library: this.buildParticlesLibrary(this.props.params) || undefined
+			library: this.buildParticlesLibrary(this.props.params)
 		});
 	}
 

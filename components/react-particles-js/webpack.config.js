@@ -2,7 +2,7 @@ const webpack = require( 'webpack' );
 
 const production = process.env.NODE_ENV === "production";
 
-const plugins = production ?
+const plugins = production ? 
 	[
 		new webpack.optimize.OccurrenceOrderPlugin(),
 		new webpack.DefinePlugin({
@@ -23,8 +23,7 @@ const typescriptLoader = {
                 presets: ['@babel/preset-env']
             }
         }, {
-            loader: 'ts-loader',
-            options: { compilerOptions: { strict: process.env.NODE_ENV !== 'production' }}
+            loader: 'ts-loader'
         }
     ]
 };
@@ -68,7 +67,7 @@ const config = {
                 root: "React"
             }
         }
-
+        
     ],
     plugins
 };
