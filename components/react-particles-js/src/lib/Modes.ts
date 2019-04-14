@@ -17,7 +17,7 @@ export default class Modes {
 	repulse_count = 0;
 	repulse_finish = false;
 
-	constructor(private library: ParticlesLibrary) {}
+	constructor(private library: ParticlesLibrary) { }
 
 	pushParticles(amount: number, position?: TPoint) {
 		let { manager } = this.library;
@@ -26,7 +26,16 @@ export default class Modes {
 
 		this.pushing = true;
 
-		for (let i = 0; i < amount; i++) {
+		let amountOfParticlesToAdd = amount;
+		if (particles.number.max > 0) {
+			amountOfParticlesToAdd =
+				particles.array.length + amount > particles.number.max
+					? particles.number.max - particles.array.length
+					: amount;
+		}
+
+
+		for (let i = 0; i < amountOfParticlesToAdd; i++) {
 			particles.array.push(new Particle(this.library, { position }));
 
 			if (i === amount - 1) {
@@ -67,7 +76,7 @@ export default class Modes {
 				if (
 					ratio >= 0 &&
 					this.library.interactivity.mouseStatus ===
-						MouseInteractivityStatus.MOUSEMOVE
+					MouseInteractivityStatus.MOUSEMOVE
 				) {
 					const bubbleSize = interactivity.modes.bubble.size;
 					const particleSize = particles.size.value;
@@ -102,7 +111,7 @@ export default class Modes {
 							const opacity =
 								particle.opacityValue -
 								(particles.opacity.value - interactivity.modes.bubble.opacity) *
-									ratio;
+								ratio;
 							if (
 								opacity < particle.opacityValue &&
 								opacity >= interactivity.modes.bubble.opacity
@@ -166,7 +175,7 @@ export default class Modes {
 									let value: any =
 										p_obj -
 										(timeSpent * (p_obj - bubble_param)) /
-											interactivity.modes.bubble.duration;
+										interactivity.modes.bubble.duration;
 									if (id == "size") particle.radius_bubble = value;
 									if (id == "opacity") particle.bubbleOpacity = value;
 								}
@@ -179,7 +188,7 @@ export default class Modes {
 								let value_tmp: any =
 									p_obj -
 									(timeSpent * (p_obj - bubble_param)) /
-										interactivity.modes.bubble.duration;
+									interactivity.modes.bubble.duration;
 								let dif: any = bubble_param - value_tmp;
 								let value: any = bubble_param + dif;
 								if (id == "size") particle.radius_bubble = value;
@@ -218,7 +227,7 @@ export default class Modes {
 			interactivity.events.onhover.enable &&
 			isInArray(InteractivityMode.REPULSE, interactivity.events.onhover.mode) &&
 			this.library.interactivity.mouseStatus ===
-				MouseInteractivityStatus.MOUSEMOVE
+			MouseInteractivityStatus.MOUSEMOVE
 		) {
 			const {
 				distance,
@@ -234,9 +243,9 @@ export default class Modes {
 			let velocity: number = 100;
 			let repulseFactor: number = clamp(
 				(1 / repulseRadius) *
-					(-1 * Math.pow(distance / repulseRadius, 2) + 1) *
-					repulseRadius *
-					velocity,
+				(-1 * Math.pow(distance / repulseRadius, 2) + 1) *
+				repulseRadius *
+				velocity,
 				0,
 				50
 			);
@@ -323,7 +332,7 @@ export default class Modes {
 		if (
 			interactivity.events.onhover.enable &&
 			this.library.interactivity.mouseStatus ===
-				MouseInteractivityStatus.MOUSEMOVE
+			MouseInteractivityStatus.MOUSEMOVE
 		) {
 			const distance = this.library.manager.getDistance(
 				particle,

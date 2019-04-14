@@ -144,6 +144,11 @@ export interface IParams {
 	particles: {
 		number: {
 			value: number;
+			/**
+			 * The maximum number of particles that can be added via pushing.
+			 * Set to <= 0 to have unlimited particles
+			 */
+			max: number;
 			density: {
 				enable: boolean;
 				value_area: number;

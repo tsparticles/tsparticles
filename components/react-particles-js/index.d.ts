@@ -7,8 +7,8 @@
 
 type RecursivePartial<T> = {
 	[P in keyof T]?: T[P] extends (infer U)[]
-		? RecursivePartial<U>[]
-		: T[P] extends object ? RecursivePartial<T[P]> : T[P]
+	? RecursivePartial<U>[]
+	: T[P] extends object ? RecursivePartial<T[P]> : T[P]
 };
 
 import { ComponentClass } from "react";
@@ -78,6 +78,7 @@ export type IParticlesParams = RecursivePartial<{
 	particles: {
 		number: {
 			value: number;
+			max: number;
 			density: {
 				enable: boolean;
 				value_area: number;

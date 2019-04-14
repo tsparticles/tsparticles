@@ -14,6 +14,7 @@ const defaultParams: IParams = {
 	particles: {
 		number: {
 			value: 40,
+			max: -1,
 			density: {
 				enable: false,
 				value_area: 1200
