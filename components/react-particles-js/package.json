@@ -6,7 +6,7 @@
   "types": "index.d.ts",
   "scripts": {
     "compile": "webpack",
-    "compile:production": "NODE_ENV=production webpack"
+    "compile:production": "cross-env NODE_ENV=production webpack"
   },
   "repository": {
     "url": "https://github.com/Wufe/react-particles-js",
@@ -21,11 +21,13 @@
     "@types/node": "^8.0.32",
     "@types/react": "^16.0.8",
     "babel-loader": "^8.0.0",
+    "cross-env": "^5.2.0",
     "react-dom": "^16.0.0",
     "ts-loader": "^4.4.2",
     "ts-node": "^3.3.0",
     "typescript": "^3.0.1",
     "webpack": "^4.16.5",
+    "webpack-bundle-analyzer": "^3.3.2",
     "webpack-cli": "^3.1.0",
     "webpack-node-externals": "^1.5.4"
   },

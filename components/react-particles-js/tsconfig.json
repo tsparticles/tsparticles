@@ -5,7 +5,8 @@
         "module": "commonjs",
         "target": "es6",
         "jsx": "react",
-        "removeComments": true
+        "removeComments": true,
+        "esModuleInterop": true
     },
     "files": [
         "./src/index.ts"

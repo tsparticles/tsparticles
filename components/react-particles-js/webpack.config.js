@@ -1,17 +1,24 @@
 const webpack = require( 'webpack' );
+const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
 
 const production = process.env.NODE_ENV === "production";
 
-const plugins = production ? 
+const plugins = (production ? 
 	[
 		new webpack.optimize.OccurrenceOrderPlugin(),
 		new webpack.DefinePlugin({
 		    'process.env': {
 		        'NODE_ENV': JSON.stringify( 'production' )
 		    }
-		})
+        })
 	] :
-	[];
+	[]).concat([
+        new BundleAnalyzerPlugin({
+            openAnalyzer: false,
+            analyzerMode: "static",
+            reportFilename: "../report.html"
+        })
+    ]);
 
 const typescriptLoader = {
     test: /\.tsx?$/,

@@ -2,7 +2,7 @@ import * as React from "react";
 import { Component } from "react";
 
 import { IParams, ParticlesLibrary, deepAssign, RecursivePartial } from "./lib";
-import { isEqual } from 'lodash';
+import isEqual from 'lodash/isEqual';
 
 export interface ParticlesProps {
 	width: string;
