@@ -78,6 +78,7 @@ Sidebar Styles
     transform: translateX(-281px);
     transition: all .3s;
     z-index: 10000;
+    overflow-y: auto;
     &.is-active {
         transform: translateX(0);
     }
