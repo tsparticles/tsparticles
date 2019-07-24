@@ -33,7 +33,7 @@ $(document).ready(function () {
 
     //Sidebar menu
     if ($('.sidebar').length) {
-        $(".sidebar-menu > li.have-children a").on("click", function (i) {
+        $(".sidebar-menu > li.have-children > a").on("click", function (i) {
             i.preventDefault();
             if (!$(this).parent().hasClass("active")) {
                 $(".sidebar-menu li ul").slideUp();
