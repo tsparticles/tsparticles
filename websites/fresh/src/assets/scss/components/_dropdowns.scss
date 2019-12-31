@@ -1,0 +1,108 @@
+/* ==========================================================================
+Dropdown styles
+========================================================================== */
+
+// Hover Dropdowns
+.nav-item {
+    &.is-drop {
+        position: relative;
+
+        &:hover {
+            border-bottom: 1px solid transparent !important;
+            color: $secondary;
+
+            a {
+                border-bottom: 1px solid transparent !important;
+                color: $secondary;
+            }
+
+            .dropContain {
+                top: 65px;
+                animation: fadeInUp 0.27s ease-out;
+
+                .dropOut {
+                    opacity: 1;
+                }
+            }
+        }
+
+        a {
+            padding-right: 7px;
+        }
+
+        span {
+            &.drop-caret {
+                position: relative;
+                top: 5px;
+            }
+        }
+
+        .dropContain {
+            width: 220px;
+            position: absolute;
+            z-index: 3;
+            left: 50%;
+            margin-left: -110px;
+            top: -400px;
+    
+            .dropOut {
+                width: 220px;
+                background: $white;
+                float: left;
+                position: relative;
+                margin-top: 15px;
+                opacity: 0;
+                -webkit-border-radius: 4px;
+                -moz-border-radius: 4px;
+                border-radius: 4px;
+                -webkit-box-shadow: 0 1px 6px rgba(0, 0, 0, 0.15);
+                -moz-box-shadow: 0 1px 6px rgba(0, 0, 0, 0.15);
+                box-shadow: 0 1px 6px rgba(0, 0, 0, 0.15);
+                -webkit-transition: all .5s ease-out;
+                -moz-transition: all .5s ease-out;
+                -ms-transition: all .5s ease-out;
+                -o-transition: all .5s ease-out;
+                transition: all .5s ease-out;
+            }
+    
+            .dropOut .triangle {
+                width: 0;
+                height: 0;
+                position: absolute;
+                border-left: 8px solid transparent;
+                border-right: 8px solid transparent;
+                border-bottom: 8px solid $white;
+                top: -8px;
+                left: 50%;
+                margin-left: -8px;
+            }
+    
+            .dropOut ul li {
+                text-align: left;
+                float: left;
+                width: 200px;
+                padding: 12px 0 10px 15px;
+                margin: 0px 10px;
+                color: #777;
+                -webkit-border-radius: 4px;
+                -moz-border-radius: 4px;
+                border-radius: 4px;
+                -webkit-transition: background-color .1s ease-out;
+                -moz-transition: background-color .1s ease-out;
+                -ms-transition: background-color .1s ease-out;
+                -o-transition: background-color .1s ease-out;
+                transition: background-color .1s ease-out;
+    
+                &:hover {
+                    background: $light-grey;
+                    cursor: pointer;
+                }
+            }
+    
+            .dropOut ul {
+                float: left;
+                padding: 10px 0;
+            }
+        }
+    }
+}

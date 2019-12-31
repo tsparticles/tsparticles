@@ -1,171 +1,305 @@
-var gulp = require('gulp');
-var clean = require('gulp-clean');
-var sass = require('gulp-sass');
-var sourcemaps = require('gulp-sourcemaps');
-var postcss = require('gulp-postcss');
-var autoprefixer = require('autoprefixer');
-var mq4HoverShim = require('mq4-hover-shim');
-var rimraf = require('rimraf').sync;
-var browser = require('browser-sync');
-var panini = require('panini');
-var concat = require('gulp-concat');
-var port = process.env.SERVER_PORT || 8080;
-var nodepath =  'node_modules/';
+'use strict';
+const {src, dest, watch, series, parallel } = require('gulp');
+const log = require('fancy-log');
+const colors = require('ansi-colors');
+const browserSync = require('browser-sync').create();
+const sass = require('gulp-sass');
+const bourbon = require('node-bourbon').includePaths;
+const rename = require('gulp-rename');
+const concat = require('gulp-concat');
+const del = require('del');
+const panini = require('panini');
+const uglify = require('gulp-uglify-es').default;
+const sourcemaps = require('gulp-sourcemaps');
+const imagemin = require('gulp-imagemin');
+const removeCode = require('gulp-remove-code');
+const removeLog = require('gulp-remove-logging');
+const prettyHtml = require('gulp-pretty-html');
+const sassLint = require('gulp-sass-lint');
+const htmllint = require('gulp-htmllint');
+const jshint = require('gulp-jshint');
+const htmlreplace = require('gulp-html-replace');
+const newer = require('gulp-newer');
+const autoprefixer = require('gulp-autoprefixer');
+const accessibility = require('gulp-accessibility');
+const babel = require('gulp-babel');
+const nodepath = 'node_modules/';
+const assetspath = 'assets/';
 
-// Starts a BrowerSync instance
-gulp.task('server', ['build'], function(){
-    browser.init({server: './_site', port: port});
-});
+// File paths
+const files = {
+  scssPath: 'app/scss/**/*.scss',
+  jsPath: 'app/js/**/*.js'
+}
 
-// Watch files for changes
-gulp.task('watch', function() {
-    gulp.watch('scss/**/*', ['compile-scss', browser.reload]);
-    gulp.watch('sass/**/*', ['compile-sass', browser.reload]);
-    gulp.watch('js/**/*', ['copy-js', browser.reload]);
-    gulp.watch('html/pages/**/*', ['compile-html']);
-    gulp.watch('images/**/*', ['copy-images', browser.reload]);
-    gulp.watch(['html/{layouts,includes,helpers,data}/**/*'], ['compile-html:reset','compile-html']);
-    gulp.watch(['./src/{layouts,partials,helpers,data}/**/*'], [panini.refresh]);
-});
-
-// Erases the dist folder
-gulp.task('reset', function() {
-    rimraf('bulma/*');
-    rimraf('scss/*');
-    rimraf('assets/css/*');
-    rimraf('assets/fonts/*');
-    rimraf('images/*');
-});
-
-// Erases the dist folder
-gulp.task('clean', function() {
-    rimraf('_site');
-});
-
+// ------------ SETUP TASKS -------------
 // Copy Bulma filed into Bulma development folder
-gulp.task('setupBulma', function() {
-    //Get Bulma from node modules
-    gulp.src([nodepath + 'bulma/*.sass']).pipe(gulp.dest('bulma/'));
-    gulp.src([nodepath + 'bulma/**/*.sass']).pipe(gulp.dest('bulma/'));
-});
+function setupBulma() {
+  console.log('---------------COPYING BULMA FILES---------------');
+  return src([nodepath + 'bulma/*.sass', nodepath + 'bulma/**/*.sass'])
+    .pipe(dest('src/assets/sass/'));
+}
 
-// Copy assets
-gulp.task('copy', function() {
-    //Copy other external css assets
-    gulp.src(['assets/css/*.css']).pipe(gulp.dest('_site/assets/css/'));
-    //Copy other external font assets
-    gulp.src(['assets/fonts/*']).pipe(gulp.dest('_site/assets/fonts/'));
-});
+// ------------ DEVELOPMENT TASKS -------------
 
-//Theme Sass variables
-var sassOptions = {
-    errLogToConsole: true,
-    outputStyle: 'compressed',
-    includePaths: [nodepath + 'bulma/sass']
-};
+// COMPILE BULMA SASS INTO CSS
+function compileSASS() {
+  console.log('---------------COMPILING BULMA SASS---------------');
+  return src(['src/assets/sass/bulma.sass'])
+    .pipe(sass({
+      outputStyle: 'compressed',
+      sourceComments: 'map',
+      sourceMap: 'sass',
+      includePaths: bourbon
+    }).on('error', sass.logError))
+    .pipe(autoprefixer('last 2 versions'))
+    .pipe(dest('dist/assets/css'))
+    .pipe(browserSync.stream());
+}
 
-//Theme Scss variables
-var scssOptions = {
-    errLogToConsole: true,
-    outputStyle: 'compressed',
-    includePaths: ['./scss/partials']
-};
+// COMPILE SCSS INTO CSS
+function compileSCSS() {
+  console.log('---------------COMPILING SCSS---------------');
+  return src(['src/assets/scss/core.scss'])
+    .pipe(sass({
+      outputStyle: 'compressed',
+      sourceComments: 'map',
+      sourceMap: 'scss',
+      includePaths: bourbon
+    }).on('error', sass.logError))
+    .pipe(autoprefixer('last 2 versions'))
+    .pipe(dest('dist/assets/css'))
+    .pipe(browserSync.stream());
+}
 
-// Compile Bulma Sass
-gulp.task('compile-sass', function () {
-    var processors = [
-        mq4HoverShim.postprocessorFor({ hoverSelectorPrefix: '.is-true-hover ' }),
-        autoprefixer({
-            browsers: [
-                "Chrome >= 45",
-                "Firefox ESR",
-                "Edge >= 12",
-                "Explorer >= 10",
-                "iOS >= 9",
-                "Safari >= 9",
-                "Android >= 4.4",
-                "Opera >= 30"
-            ]
-        })//,
-        //cssnano(),
-    ];
-    //Watch me get Sassy
-    return gulp.src('./bulma/bulma.sass')
-        .pipe(sourcemaps.init())
-        .pipe(sass(sassOptions).on('error', sass.logError))
-        .pipe(postcss(processors))
-        .pipe(sourcemaps.write())
-        .pipe(gulp.dest('./_site/assets/css/'));
-});
-
-// Compile Theme Scss
-gulp.task('compile-scss', function () {
-    var processors = [
-        mq4HoverShim.postprocessorFor({ hoverSelectorPrefix: '.is-true-hover ' }),
-        autoprefixer({
-            browsers: [
-                "Chrome >= 45",
-                "Firefox ESR",
-                "Edge >= 12",
-                "Explorer >= 10",
-                "iOS >= 9",
-                "Safari >= 9",
-                "Android >= 4.4",
-                "Opera >= 30"
-            ]
-        })//,
-        //cssnano(),
-    ];
-    //Watch me get Sassy
-    return gulp.src('./scss/core.scss')
-        .pipe(sourcemaps.init())
-        .pipe(sass(sassOptions).on('error', sass.logError))
-        .pipe(postcss(processors))
-        .pipe(sourcemaps.write())
-        .pipe(gulp.dest('./_site/assets/css/'));
-});
-
-// Compile Html
-gulp.task('compile-html', function() {
-    gulp.src('html/pages/**/*.html')
-        .pipe(panini({
-        root: 'html/pages/',
-        layouts: 'html/layouts/',
-        partials: 'html/includes/',
-        helpers: 'html/helpers/',
-        data: 'html/data/'
+// USING PANINI, TEMPLATE, PAGE AND PARTIAL FILES ARE COMBINED TO FORM HTML MARKUP
+function compileHTML() {
+  console.log('---------------COMPILING HTML WITH PANINI---------------');
+  panini.refresh();
+  return src('src/pages/**/*.html')
+    .pipe(panini({
+      root: 'src/pages/',
+      layouts: 'src/layouts/',
+          /*pageLayouts: {
+            //All pages inside src/pages/blog will use the blog.html layout
+            'blog': 'blog'
+          }*/
+      partials: 'src/partials/',
+      helpers: 'src/helpers/',
+      data: 'src/data/'
     }))
-        .pipe(gulp.dest('_site'))
-        .on('finish', browser.reload);
-});
+    .pipe(dest('dist'))
+    .pipe(browserSync.stream());
+}
 
-gulp.task('compile-html:reset', function(done) {
-    panini.refresh();
-    done();
-});
-
-// Compile js from node modules
-gulp.task('compile-js', function() {
-    return gulp.src([ 
-        nodepath + 'jquery/dist/jquery.min.js', 
-        nodepath + 'feather-icons/dist/feather.min.js',
+// COPY CUSTOM JS
+function compileJS() {
+  console.log('---------------COMPILE CUSTOM JS---------------');
+  return src([
+      'src/assets/js/functions.js',
+      'src/assets/js/main.js',
     ])
-        .pipe(concat('app.js'))
-        .pipe(gulp.dest('./_site/assets/js/'));
-});
+    .pipe(babel())
+    .pipe(dest('dist/assets/js/'))
+    .pipe(browserSync.stream());
+}
 
-//Copy Theme js to production site
-gulp.task('copy-js', function() {
-    gulp.src('js/**/*.js')
-        .pipe(gulp.dest('./_site/assets/js/'));
-});
+// RESET PANINI'S CACHE OF LAYOUTS AND PARTIALS
+function resetPages(done) {
+  console.log('---------------CLEARING PANINI CACHE---------------');
+  panini.refresh();
+  done();
+}
 
-//Copy images to production site
-gulp.task('copy-images', function() {
-    gulp.src('images/**/*')
-        .pipe(gulp.dest('./_site/assets/images/'));
-});
+// SASS LINT
+function scssLint() {
+  console.log('---------------SASS LINTING---------------');
+  return src('src/assets/scss/**/*.scss')
+    .pipe(sassLint({
+      configFile: '.scss-lint.yml'
+    }))
+    .pipe(sassLint.format())
+    .pipe(sassLint.failOnError());
+}
 
-gulp.task('init', ['setupBulma']);
-gulp.task('build', ['clean','copy','compile-js', 'copy-js', 'compile-sass', 'compile-scss', 'compile-html', 'copy-images']);
-gulp.task('default', ['server', 'watch']);
+// HTML LINTER
+function htmlLint() {
+  console.log('---------------HTML LINTING---------------');
+  return src('dist/*.html')
+    .pipe(htmllint({}, htmllintReporter));
+}
+
+function htmllintReporter(filepath, issues) {
+  if (issues.length > 0) {
+    issues.forEach(function (issue) {
+      log(colors.cyan('[gulp-htmllint] ') + colors.white(filepath + ' [' + issue.line + ']: ') + colors.red('(' + issue.code + ') ' + issue.msg));
+    });
+    process.exitCode = 1;
+  } else {
+    console.log('---------------NO HTML LINT ERROR---------------');
+  }
+}
+
+// JS LINTER
+function jsLint() {
+  return src('src/assets/js/*.js')
+    .pipe(jshint())
+    .pipe(jshint.reporter('default'));
+}
+
+// WATCH FILES
+function watchFiles() {
+  watch('src/**/*.html', compileHTML);
+  watch(['src/assets/scss/**/*', 'src/assets/scss/*'] , compileSCSS);
+  watch('src/assets/js/*.js', compileJS);
+  watch('src/assets/img/**/*', copyImages);
+}
+
+
+// BROWSER SYNC
+function browserSyncInit(done) {
+  console.log('---------------BROWSER SYNC---------------');
+  browserSync.init({
+    server: './dist'
+  });
+  return done();
+}
+
+// ------------ OPTIMIZATION TASKS -------------
+
+// COPIES AND MINIFY IMAGE TO DIST
+function copyImages() {
+  console.log('---------------OPTIMIZING IMAGES---------------');
+  return src('src/assets/img/**/*.+(png|jpg|jpeg|gif|svg)')
+    .pipe(newer('dist/assets/img/'))
+    //.pipe(imagemin())
+    .pipe(dest('dist/assets/img/'))
+    .pipe(browserSync.stream());
+}
+
+
+// PLACES FONT FILES IN THE DIST FOLDER
+function copyFont() {
+  console.log('---------------COPYING FONTS INTO DIST FOLDER---------------');
+  return src([
+      'src/assets/font/**/*',
+    ])
+    .pipe(dest('dist/assets/fonts'))
+    .pipe(browserSync.stream());
+}
+
+// PLACES DATA FILES IN THE DIST FOLDER
+function copyData() {
+  console.log('---------------COPYING DATA INTO DIST FOLDER---------------');
+  return src([
+    'src/data/**/*',
+  ])
+    .pipe(dest('dist/assets/data'))
+    .pipe(browserSync.stream());
+}
+
+// CONCATENATE JS PLUGINS
+function concatPlugins() {
+  console.log('---------------CONCATENATE JS PLUGINS---------------');
+  return src([
+    nodepath + 'jquery/dist/jquery.min.js',
+    nodepath + 'feather-icons/dist/feather.min.js',
+    nodepath + 'slick-carousel/slick/slick.min.js',
+    nodepath + 'scrollreveal/dist/scrollreveal.min.js',
+    nodepath + 'waypoints/lib/jquery.waypoints.min.js',
+    nodepath + 'waypoints/lib/shortcuts/sticky.min.js',
+    nodepath + 'jquery.counterup/jquery.counterup.min.js',
+    //Additional static js assets
+    'src/assets/vendor/js/**/*.js',
+  ])
+    .pipe(sourcemaps.init())
+    .pipe(concat('app.js'))
+    .pipe(sourcemaps.write('./'))
+    .pipe(dest('dist/assets/js'))
+    .pipe(browserSync.stream());
+}
+
+// CONCATENATE CSS PLUGINS
+function concatCssPlugins() {
+  console.log('---------------CONCATENATE CSS PLUGINS---------------');
+  return src([
+    //nodepath + 'slick-carousel/slick/slick.css',
+    //nodepath + 'slick-carousel/slick/slick-theme.css',
+    //Additional static css assets
+    'src/assets/vendor/css/**/*.css',
+  ])
+    .pipe(sourcemaps.init())
+    .pipe(concat('app.css'))
+    .pipe(sourcemaps.write('./'))
+    .pipe(dest('dist/assets/css'))
+    .pipe(browserSync.stream());
+}
+
+// COPY JS VENDOR FILES
+function jsVendor() {
+  console.log('---------------COPY JAVASCRIPT VENDOR FILES INTO DIST---------------');
+  return src([
+      'src/assets/vendor/js/*',
+    ])
+    .pipe(dest('dist/assets/vendor/js'))
+    .pipe(browserSync.stream());
+}
+
+// COPY CSS VENDOR FILES
+function cssVendor() {
+  console.log('---------------COPY CSS VENDOR FILES INTO DIST---------------');
+  return src([
+      'src/assets/vendor/css/*',
+
+    ])
+    .pipe(dest('dist/assets/vendor/css'))
+    .pipe(browserSync.stream());
+}
+
+// PRETTIFY HTML FILES
+function prettyHTML() {
+  console.log('---------------HTML PRETTIFY---------------');
+  return src('dist/*.html')
+    .pipe(prettyHtml({
+      indent_size: 4,
+      indent_char: ' ',
+      unformatted: ['code', 'pre', 'em', 'strong', 'span', 'i', 'b', 'br']
+    }))
+    .pipe(dest('dist'));
+}
+
+// DELETE DIST FOLDER
+function cleanDist(done) {
+  console.log('---------------REMOVING OLD FILES FROM DIST---------------');
+  del.sync('dist');
+  return done();
+}
+
+// ACCESSIBILITY CHECK
+function HTMLAccessibility() {
+  return src('dist/*.html')
+    .pipe(accessibility({
+      force: true
+    }))
+    .on('error', console.log)
+    .pipe(accessibility.report({
+      reportType: 'txt'
+    }))
+    .pipe(rename({
+      extname: '.txt'
+    }))
+    .pipe(dest('accessibility-reports'));
+}
+
+// RUN ALL LINTERS
+exports.linters = series(htmlLint, scssLint, jsLint);
+
+// RUN ACCESSIILITY CHECK
+exports.accessibility = HTMLAccessibility;
+
+//SETUP
+exports.setup = series(setupBulma);
+
+// DEV
+exports.dev = series(cleanDist, copyFont, copyData, jsVendor, cssVendor, copyImages, compileHTML, concatPlugins, concatCssPlugins, compileJS, resetPages, prettyHTML, compileSASS, compileSCSS, browserSyncInit, watchFiles);
+

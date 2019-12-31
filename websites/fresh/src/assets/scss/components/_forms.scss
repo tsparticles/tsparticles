@@ -1,0 +1,22 @@
+/* ==========================================================================
+Inputs styles
+========================================================================== */
+
+.input, .textarea {
+    color: $basaltic-grey;
+    box-shadow: none !important;
+    transition: all 0.3s;
+
+    &:focus {
+        border-color: darken($fade-grey, 3%);
+        box-shadow: $light-shadow !important;
+    }
+}
+
+.form-footer {
+    width: 100%;
+
+    .button {
+        min-width: 160px;
+    }
+}

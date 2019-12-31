@@ -1,0 +1,157 @@
+$custom: #7F00FF;
+
+=timepicker
+	.timepicker
+		display: flex
+		flex-direction: row
+		justify-content: center
+		// min-width: 200px
+		// max-width: 200px
+		margin: auto
+		.timepicker-start,
+		.timepicker-end
+			display: flex
+			flex-direction: row
+			flex: 1 50%
+			justify-content: center
+			position: relative
+			.timepicker-hours,
+			.timepicker-minutes
+				display: flex
+				flex-direction: column
+				align-items: center
+				.timepicker-input
+					position: relative
+					color: $custom
+					text-align: center
+					overflow: hidden
+					font-size: 2rem
+					font-weight: $weight-normal
+					&.is-input
+						.timepicker-input-number
+							visability: hidden
+							opacity: 0
+							transition: opacity 100ms ease-in
+
+						input
+							visability: visible
+							opacity: 1
+							transition: opacity 100ms ease-in
+					input
+						width: 4rem
+						margin: 0
+						padding: 0
+						position: relative
+						z-index: 2
+						box-shadow: none
+						outline: none
+						border: none
+						opacity: 0
+						transition: opacity 100ms ease-in
+
+
+			.timepicker-input-number
+				position: absolute
+				z-index: 1
+				top: 0
+				left: 0
+				right: 0
+				bottom: 0
+				visability: visible
+				opacity: 1
+				transition: opacity 1000ms ease-in
+				font-weight: 300
+				&.is-increment-hide
+					opacity: 0
+					transform: translateY(-50px)
+					animation: increment-prev 100ms ease-in
+
+				&.is-increment-visible
+					opacity: 1
+					transform: translateY(0)
+					animation: increment-next 100ms ease-out
+
+				&.is-decrement-hide
+					opacity: 0
+					transform: translateY(50px)
+					animation: decrement-prev 100ms ease-in
+
+				&.is-decrement-visible
+					opacity: 1
+					transform: translateY(0)
+					animation: decrement-next 100ms ease-out
+		.timepicker-end
+			margin-left: 1rem
+			padding-left: 1rem
+			&:before,
+			&::before
+				content: ''
+				position: absolute
+				top: 50%
+				left: 0
+				transform: translateY(-50%)
+				height: 50%
+				width: .1rem
+				background-color: $white-ter
+		.timepicker-previous,
+		.timepicker-next
+			font-size: 1rem
+			line-height: 1rem
+			display: block
+			color: #ADBCDA
+			text-align: center
+			margin: 1rem 0 0
+			font-size: 1rem
+			padding: .5rem
+			width: 100%
+			user-select: none
+			&:hover
+				cursor: pointer
+				background-color: $white-ter
+		.timepicker-previous
+			margin: 0 0 1rem
+
+		.timepicker-time-divider
+			display: flex
+			justify-content: center
+			align-items: center
+			font-size: 1.5rem
+			color: $custom
+
+		@each $name, $pair in $colors
+			$color: nth($pair, 1)
+			$color-invert: nth($pair, 2)
+			&.is-#{$name}
+				.timepicker-input,
+				.timepicker-input-number,
+				.timepicker-time-divider
+					color: $color !important
+
+		@each $name, $value in $shades
+			$color: $value
+			$color-invert: findColorInvert($color)
+			&.is-#{$name}
+				.timepicker-input,
+				.timepicker-input-number,
+				.timepicker-time-divider
+					color: $color !important
+
+@keyframes decrement-prev
+	from
+		opacity: 1
+		transform: translateY(0)
+
+@keyframes decrement-next
+	from
+		opacity: 0
+		transform: translateY(-50px)
+
+@keyframes increment-prev
+	from
+		opacity: 1
+		transform: translateY(0)
+
+@keyframes increment-next
+	from
+		opacity: 0
+		transform: translateY(50px)

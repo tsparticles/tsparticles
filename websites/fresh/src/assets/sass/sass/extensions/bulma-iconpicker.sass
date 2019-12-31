@@ -1,0 +1,57 @@
+[data-action="iconPicker"]
+  width: 0
+  height: 0
+  display: block
+  opacity: 0
+  top: -999px
+  position: absolute
+.iconpicker-preview
+  border-radius: 100%
+  background-color: whitesmoke
+  &:hover
+    cursor: pointer
+  .iconpicker-icon-preview
+    color: $grey
+    font-size: 1.5em
+
+.iconpicker-modal
+  .modal-card
+    .modal-card-head
+      background: $primary
+      color: $white
+      border-top-left-radius: 0
+      border-top-right-radius: 0
+      padding: 1rem
+      .modal-card-title
+        font-size: 1.2em
+        color: $white
+      .iconpicker-search
+        background-color: rgba(255, 255, 255, 0.5)
+        border-radius: 2em
+        box-shadow: none
+        border: .1em solid rgba(255, 255, 255, 0.3)
+        margin: 0 2em
+        padding: .3em 1em
+        color: $grey
+
+  .iconpicker-sets
+    flex-shrink: 0
+    background-color: whitesmoke
+    font-size: .8em
+    margin: 0
+  .modal-card-body
+    padding: 0
+    .iconpicker-icons
+      display: flex
+      flex-direction: row
+      flex-wrap: wrap
+      justify-content: center
+      padding: 1em
+      [data-icon]
+        display: block
+        width: 48px
+        height: 48px
+        text-align: center
+        padding: .5rem
+        .iconpicker-icon-preview
+          font-size: 1.4em

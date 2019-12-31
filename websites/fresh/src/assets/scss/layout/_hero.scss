@@ -1,0 +1,47 @@
+/* ==========================================================================
+Hero styles
+========================================================================== */
+
+.hero-body {
+    padding-top: 6rem;
+    padding-bottom: 6rem;
+
+    .title {
+        font-family: $font;
+        color: $blue-grey;
+    }
+
+    .title {
+        &.is-bold {
+            font-weight: 700;
+        }
+    }
+
+    .subtitle {
+        &.is-muted {
+            color: $muted-grey;
+        }
+    }
+
+    .landing-caption {
+        .button {
+            min-width: 130px;
+        }
+    }
+}
+
+.hero-foot {
+
+    * {
+        border: none !important;
+    }
+
+    img {
+        &.partner-logo {
+            display: block;
+            margin: 0 auto;
+            width: 100%;
+            max-width: 100px;
+        }
+    }
+}

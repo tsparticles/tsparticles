@@ -1,0 +1,149 @@
+$steps-maker-default-color: $grey-light !default
+$steps-marker-default-border: .2em solid #fff !default
+$steps-default-color: $grey-lighter !default
+$steps-completed-color: $primary !default
+$steps-active-color: $primary !default
+$steps-divider-height: .2em !default
+
+=steps-size($size)
+  font-size: $size
+  min-height: $size * 2
+
+  .step-item
+    &:not(:first-child)::before
+      height: $steps-divider-height
+      width: 100%
+      bottom: 0
+      left: -50%
+      top: #{$size}
+    .step-marker
+      height: $size * 2
+      width: $size * 2
+      position: absolute
+      left: calc(50% - #{$size})
+      .icon
+        *
+          font-size: $size
+    .step-details
+      margin-top: $size * 2
+      margin-left: .5em
+      margin-right: .5em
+      padding-top: .2em
+      .step-title
+        font-size: $size * 1.2
+        font-weight: $weight-semibold
+
+
+.steps
+  +block
+  display: flex
+  flex-wrap: wrap
+
+  .step-item
+    margin-top: 0
+    position: relative
+    flex-grow: 1
+    flex-basis: 0
+    &:not(:first-child)
+      flex-basis: 1em
+      flex-grow: 1
+      flex-shrink: 1
+      &::before
+        // This will contain the horizontal or vertical divider
+        content: " "
+        display: block
+        position: absolute
+
+    &::before
+      background: linear-gradient(to left, $steps-default-color 50%, $steps-active-color 50%)
+      background-size: 200% 100%
+      background-position: right bottom
+      .step-marker
+        color: $white
+    &.is-active
+      &::before
+        background-position: left bottom
+      .step-marker
+        background-color: $white
+        border-color: $steps-active-color
+        color: $steps-active-color
+    &.is-completed
+      &::before
+        background-position: left bottom
+      .step-marker
+        color: $white
+        background-color: $steps-completed-color
+
+    .step-marker
+      align-items: center
+      display: flex
+      border-radius: 50%
+      font-weight: $weight-bold
+      justify-content: center
+      background: $steps-maker-default-color
+      color: $white
+      border: $steps-marker-default-border
+      z-index: 1
+
+    .step-details
+      text-align: center
+
+    // Override marker color per step
+    @each $name, $pair in $colors
+      $color: nth($pair, 1)
+      $color-invert: nth($pair, 2)
+      &.is-#{$name}
+        &::before
+          background: linear-gradient(to left, $steps-default-color 50%, $color 50%)
+          background-size: 200% 100%
+          background-position: right bottom
+        &.is-active
+          &::before
+            background-position: left bottom
+          .step-marker
+            background-color: $white
+            border-color: $color
+            color: $color
+        &.is-completed
+          &::before
+            background-position: left bottom
+          .step-marker
+            color: $color-invert
+            background-color: $color
+
+  .steps-content
+    align-items: stretch
+    flex-basis: 100%
+    margin: 2rem 0
+    .step-content
+      display: none
+      &.is-active
+        display: block
+
+  .steps-actions
+    display: flex
+    align-items: stretch
+    flex-basis: 100%
+    .steps-action
+      display: flex
+      flex-basis: 0
+      flex-grow: 1
+      margin: .5rem
+      justify-content: center
+      align-items: center
+
+  &.is-animated
+    .step-item
+      &::before
+        transition: all 2s ease
+      .step-marker
+        transition: all 0s ease
+        transition-delay: 1.5s
+
+  +steps-size($size-normal)
+  &.is-small
+    +steps-size($size-small)
+  &.is-medium
+    +steps-size($size-medium)
+  &.is-large
+    +steps-size($size-large)

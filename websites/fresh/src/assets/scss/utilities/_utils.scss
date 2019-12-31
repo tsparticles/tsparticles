@@ -1,0 +1,163 @@
+body {
+    overflow-x: hidden;
+}
+
+//Preloader
+#preloader {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: $white;
+    z-index: 99;
+}
+
+#status {
+    width: 200px;
+    height: 200px;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    background-image: url(../img/loaders/rings.svg);
+    background-size: 80px 80px;
+    background-repeat: no-repeat;
+    background-position: center;
+    margin: -100px 0 0 -100px;
+}
+
+//Back to top button
+#backtotop {
+    position: fixed;
+    right: 0;
+    opacity: 0;
+    visibility: hidden;
+    bottom: 25px;
+    margin: 0 25px 0 0;
+    z-index: 9999;
+    transition: 0.35s;
+    transform: scale(0.7);
+    transition: all 0.5s;
+
+    &.visible {
+        opacity: 1;
+        visibility: visible;
+        transform: scale(1);
+
+        a {
+            outline: none;
+            text-decoration: none;
+            border: 0 none;
+            display: block;
+            width: 46px;
+            height: 46px;
+            background-color: $medium-grey;
+            color: $white;
+            opacity: 1;
+            transition: all 0.3s;
+            border-radius: 50%;
+            text-align: center;
+            font-size: 26px;
+
+            &:after {
+                outline: none;
+                content: "\e316";
+                font-family: "Material Icons";
+                position: relative;
+                display: block;
+                top: 52%;
+                -webkit-transform: translateY(-55%);
+                transform: translateY(-55%);
+            }
+
+            &:hover {
+                outline: none;
+                opacity: 0.9;
+                background: $secondary;
+            }
+        }
+    }
+}
+
+
+//Helpers
+.is-disabled {
+    pointer-events: none;
+    opacity: 0.4;
+    cursor: default !important;
+}
+
+.is-hidden {
+    display: none !important;
+}
+
+.stuck {
+    position: fixed !important;
+    top: 0 !important;
+    z-index: 2 !important;
+}
+
+.light-text {
+    color: $white !important;
+}
+
+.mb-20 {
+    margin-bottom: 20px;
+}
+
+.mb-40 {
+    margin-bottom: 40px;
+}
+
+.mb-60 {
+    margin-bottom: 60px;
+}
+
+.mt-20 {
+    margin-top: 20px;
+}
+
+.mt-40 {
+    margin-top: 40px;
+}
+
+.mt-50 {
+    margin-top: 50px;
+}
+
+.mt-60 {
+    margin-top: 60px;
+}
+
+.ml-30 {
+    margin-left: 30px;
+}
+
+.huge-pb {
+    padding-bottom: 100px;
+}
+
+.pb-20 {
+    padding-bottom: 20px !important;
+}
+
+.pb-40 {
+    padding-bottom: 40px !important;
+}
+
+//Input placeholders
+::-webkit-input-placeholder { /* Chrome/Opera/Safari */
+    color: $placeholder;
+}
+
+::-moz-placeholder { /* Firefox 19+ */
+    color: $placeholder;
+}
+
+:-ms-input-placeholder { /* IE 10+ */
+    color: $placeholder;
+}
+
+:-moz-placeholder { /* Firefox 18- */
+    color: $placeholder;
+}
