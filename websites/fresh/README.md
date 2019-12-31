@@ -142,7 +142,7 @@ To use this template, your computer needs:
 
 ### Additional Resources:
 - [Sass: Syntactically Awesome Style Sheets](http://sass-lang.com/)
-- [Bootstrap](https://getbootstrap.com/)
+- [Bulma](https://bulma.io/)
 - [Handlebars](http://handlebarsjs.com/)
 - [Panini](https://github.com/zurb/panini)
 - [Gulp](https://gulpjs.org/getting-started)
