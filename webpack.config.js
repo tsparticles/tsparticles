@@ -4,8 +4,8 @@ const TerserPlugin = require('terser-webpack-plugin');
 module.exports = {
 	// Change to your "entry-point".
 	entry: {
-		'particles': './src/particles.ts',
-		'particles.min': './src/particles.ts'
+		'tsparticles': './src/particles.ts',
+		'tsparticles.min': './src/particles.ts'
 	},
 	output: {
 		path: path.resolve(__dirname, 'dist'),
