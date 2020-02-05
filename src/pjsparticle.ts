@@ -220,6 +220,7 @@ export class pJSParticle {
                 pJS.canvas.ctx.arc(p_x, p_y, radius, 0, Math.PI * 2, false);
                 break;
             case 'edge':
+            case 'square':
                 pJS.canvas.ctx.rect(p.x - radius, p.y - radius, radius * 2, radius * 2);
                 break;
             case 'triangle':
@@ -241,6 +242,32 @@ export class pJSParticle {
                     2 // sideCountDenominator
                 );
                 break;
+
+            case 'heart':
+                var x = p.x - radius / 2;
+                var y = p.y - radius / 2;
+
+                pJS.canvas.ctx.moveTo(x, y + radius / 4);
+                pJS.canvas.ctx.quadraticCurveTo(x, y, x + radius / 4, y);
+                pJS.canvas.ctx.quadraticCurveTo(x + radius / 2, y, x + radius / 2, y + radius / 4);
+                pJS.canvas.ctx.quadraticCurveTo(x + radius / 2, y, x + radius * 3 / 4, y);
+                pJS.canvas.ctx.quadraticCurveTo(x + radius, y, x + radius, y + radius / 4);
+                pJS.canvas.ctx.quadraticCurveTo(x + radius, y + radius / 2, x + radius * 3 / 4, y + radius * 3 / 4);
+                pJS.canvas.ctx.lineTo(x + radius / 2, y + radius);
+                pJS.canvas.ctx.lineTo(x + radius / 4, y + radius * 3 / 4);
+                pJS.canvas.ctx.quadraticCurveTo(x, y + radius / 2, x, y + radius / 4);
+                break;
+
+            case 'char':
+            case 'character':
+                pJS.canvas.ctx.font = `${options.settings.particles.shape.character.style} ${options.particles.shape.character.weight} ${Math.round(radius) * 2}px ${options.particles.shape.character.font}`;
+                // if (stroke) {
+                pJS.canvas.ctx.strokeText(options.settings.particles.shape.character.value, this.x - radius / 2, this.y + radius / 2);
+                // } else {
+                //     pJS.canvas.ctx.fillText(options.settings.particles.shape.character.value, this.x - radius / 2, this.y + radius / 2);
+                // }
+                break;
+
             case 'image':
                 let img_obj: any;
 

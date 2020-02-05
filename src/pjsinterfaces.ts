@@ -5,7 +5,7 @@ import { pJSFunctions } from './pjsfunctions';
 export interface pJS {
     canvas: {
         el: HTMLElement,
-        ctx?: any,
+        ctx?: CanvasRenderingContext2D,
         w: number,
         h: number,
         tag_id: string
@@ -41,6 +41,12 @@ export interface pJSOptions {
             polygon: {
                 nb_sides: number
             },
+            character: {
+                value: string,
+                font: string,
+                style: string,
+                weigth: string
+            }
             image: {
                 src: string,
                 width: number,
