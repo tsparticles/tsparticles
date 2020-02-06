@@ -353,4 +353,3 @@ MigrationBackup/
 .ionide/
 
 .DS_Store
-package-lock.json
