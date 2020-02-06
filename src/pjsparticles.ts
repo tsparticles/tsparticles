@@ -191,9 +191,13 @@ export class pJSParticles {
 
         /* init all */
         if (!pJS.fn) return;
-        
-        window["cancelRequestAnimFrame"](pJS.fn.checkAnimFrame);
-        window["cancelRequestAnimFrame"](pJS.fn.drawAnimFrame);
+
+        if (pJS.fn) {
+            if (pJS.fn.checkAnimFrame)
+                window.cancelRequestAnimFrame(pJS.fn.checkAnimFrame());
+            if (pJS.fn.drawAnimFrame)
+                window.cancelRequestAnimFrame(pJS.fn.drawAnimFrame());
+        }
         pJS.source_svg = undefined;
         pJS.img_obj = undefined;
         pJS.count_svg = 0;

@@ -1,4 +1,5 @@
 import { pJSContainer } from './pjscontainer';
+import { pJSOptions } from './pjsinterfaces';
 
 'use strict';
 
@@ -17,18 +18,7 @@ export class pJSLoader {
     pJSDom = value;
   }
 
-  static load(tag_id: string, params: any) {
-    /* no string id? so it's object params, and set the id with default id */
-    if (typeof (tag_id) != 'string') {
-      params = tag_id;
-      tag_id = 'particles-js';
-    }
-
-    /* no id? set the id to default id */
-    if (!tag_id) {
-      tag_id = 'particles-js';
-    }
-
+  static load(tag_id: string, params: pJSOptions) {
     /* pJS elements */
     let pJS_tag = document.getElementById(tag_id);
     let pJS_canvas_class = 'particles-js-canvas-el';
@@ -62,16 +52,15 @@ export class pJSLoader {
       let found = false;
 
       for (let idx = 0; idx < pJSLoader.pJSDom().length; idx++) {
-
         if (pJSLoader.pJSDom()[idx].pJS.canvas.tag_id == tag_id) {
           found = true;
           pJSLoader.pJSDom()[idx] = pjs;
         }
       }
 
-      if (!found) {
+      if (!found)
         pJSLoader.pJSDom().push(pjs);
-      }
+
       return pjs;
     }
   }
