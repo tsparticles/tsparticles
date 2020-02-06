@@ -39,8 +39,7 @@ export interface pJS {
     source_svg?: string,
     img_obj?: any,
     count_svg?: number;
-    img_error?: boolean,
-    checkAnimFrame?: () => void
+    img_error?: boolean
 }
 
 export interface pJSOptions {

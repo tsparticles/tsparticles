@@ -7,20 +7,21 @@
 /* v2.0.1
 /* ----------------------------------------------- */
 import { pJSLoader } from './pjsloader';
+import { pJSOptions } from './pjsinterfaces';
 
 'use strict';
 
 declare global {
   interface Window {
-    requestAnimFrame: any;
-    mozRequestAnimationFrame: any,
-    oRequestAnimationFrame: any,
-    msRequestAnimationFrame: any,
-    cancelRequestAnimFrame: any,
-    webkitCancelRequestAnimationFrame: any,
-    mozCancelRequestAnimationFrame: any,
-    oCancelRequestAnimationFrame: any,
-    msCancelRequestAnimationFrame: any,
+    requestAnimFrame: (callback: FrameRequestCallback) => number,
+    mozRequestAnimationFrame: (callback: FrameRequestCallback) => number,
+    oRequestAnimationFrame: (callback: FrameRequestCallback) => number,
+    msRequestAnimationFrame: (callback: FrameRequestCallback) => number,
+    cancelRequestAnimFrame: (handle: number) => void,
+    webkitCancelRequestAnimationFrame: (handle: number) => void,
+    mozCancelRequestAnimationFrame: (handle: number) => void,
+    oCancelRequestAnimationFrame: (handle: number) => void,
+    msCancelRequestAnimationFrame: (handle: number) => void,
     particlesJS: any,
     pJSDom: any
   }
@@ -50,7 +51,7 @@ window.cancelRequestAnimFrame = (function () {
 
 /* ---------- particles.js functions - start ------------ */
 
-window.particlesJS = (tag_id: string, params: any) => {
+window.particlesJS = (tag_id: string = 'particles-js', params: pJSOptions) => {
   pJSLoader.load(tag_id, params);
 };
 

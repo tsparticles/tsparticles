@@ -259,19 +259,19 @@ export class pJSVendors {
 
         if (options.particles.shape.type == 'image') {
             if (pJS.img_type == 'svg') {
-                if (pJS.fn && (pJS.count_svg || 0) >= options.particles.number.value) {
+                if (pJS.fn && pJS.fn.drawAnimFrame && (pJS.count_svg || 0) >= options.particles.number.value) {
                     pJS.fn.particles.draw();
                     if (!options.particles.move.enable)
-                        window["cancelRequestAnimFrame"](pJS.fn.drawAnimFrame);
+                        window.cancelRequestAnimFrame(pJS.fn.drawAnimFrame());
                     else
-                        pJS.fn.drawAnimFrame = window["requestAnimFrame"](() => {
+                        pJS.fn.drawAnimFrame = () => window.requestAnimFrame(() => {
                             if (pJS.fn)
                                 pJS.fn.vendors.draw();
                         });
                 }
                 else {
                     if (!pJS.img_error && pJS.fn)
-                        pJS.fn.drawAnimFrame = window["requestAnimFrame"](() => {
+                        pJS.fn.drawAnimFrame = () => window.requestAnimFrame(() => {
                             if (pJS.fn)
                                 pJS.fn.vendors.draw();
                         });
@@ -282,14 +282,11 @@ export class pJSVendors {
                     if (pJS.fn)
                         pJS.fn.particles.draw();
 
-                    if (!options.particles.move.enable)
-                        window["cancelRequestAnimFrame"](() => {
-                            if (pJS.fn && pJS.fn.drawAnimFrame)
-                                pJS.fn.drawAnimFrame();
-                        });
+                    if (pJS.fn && pJS.fn.drawAnimFrame && !options.particles.move.enable)
+                        window.cancelRequestAnimFrame(pJS.fn.drawAnimFrame());
                     else
                         if (pJS.fn)
-                            pJS.fn.drawAnimFrame = window["requestAnimFrame"](() => {
+                            pJS.fn.drawAnimFrame = () => window.requestAnimFrame(() => {
                                 if (pJS.fn)
                                     pJS.fn.vendors.draw();
                             });
@@ -297,7 +294,7 @@ export class pJSVendors {
                 else {
                     if (!pJS.img_error)
                         if (pJS.fn)
-                            pJS.fn.drawAnimFrame = window["requestAnimFrame"](() => {
+                            pJS.fn.drawAnimFrame = () => window.requestAnimFrame(() => {
                                 if (pJS.fn)
                                     pJS.fn.vendors.draw();
                             });
@@ -308,12 +305,12 @@ export class pJSVendors {
             if (pJS.fn)
                 pJS.fn.particles.draw();
             if (!options.particles.move.enable) {
-                if (pJS.fn)
-                    window["cancelRequestAnimFrame"](pJS.fn.drawAnimFrame);
+                if (pJS.fn && pJS.fn.drawAnimFrame)
+                    window.cancelRequestAnimFrame(pJS.fn.drawAnimFrame());
             }
             else
                 if (pJS.fn)
-                    pJS.fn.drawAnimFrame = window["requestAnimFrame"](() => {
+                    pJS.fn.drawAnimFrame = () => window.requestAnimFrame(() => {
                         if (pJS.fn)
                             pJS.fn.vendors.draw();
                     });
@@ -326,14 +323,16 @@ export class pJSVendors {
 
         // if shape is image
         if (options.particles.shape.type == 'image') {
-            if (pJS.img_type == 'svg' && pJS.source_svg == undefined) {
-                pJS.checkAnimFrame = window["requestAnimFrame"](() => {
+            if (pJS.img_type == 'svg' && pJS.source_svg == undefined && pJS.fn) {
+                pJS.fn.checkAnimFrame = () => window["requestAnimFrame"](() => {
                     //TODO: Questo check non è da nessuna parte
                     //check();
                 });
             }
             else {
-                window["cancelRequestAnimFrame"](pJS.checkAnimFrame);
+                if (pJS.fn && pJS.fn.checkAnimFrame)
+                    window.cancelRequestAnimFrame(pJS.fn.checkAnimFrame());
+
                 if (!pJS.img_error) {
                     if (pJS.fn) {
                         pJS.fn.vendors.init();

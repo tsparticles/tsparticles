@@ -16,7 +16,7 @@ export class pJSFunctions {
     retina: pJSRetina;
     canvas: pJSCanvas;
     particles: pJSParticles;
-    checkAnimFrame?: () => void;
+    checkAnimFrame?: () => number;
     drawAnimFrame?: () => number;
 
     constructor(pJS: pJS) {
