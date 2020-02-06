@@ -1,9 +1,10 @@
 import { pJSUtils } from './pjsutils';
+import { pJS } from './pjsinterfaces';
 
 'use strict';
 
 export class pJSParticle {
-    pJS: any;
+    pJS: pJS;
     radius: number;
     size_status?: boolean;
     vs?: number;
@@ -25,7 +26,7 @@ export class pJSParticle {
     opacity_bubble?: number;
 
     /* --------- pJS functions - particles ----------- */
-    constructor(pJS: any, color: any, opacity: number, position?: any) {
+    constructor(pJS: pJS, color: any, opacity: number, position?: any) {
         this.pJS = pJS;
         let options = pJS.options;
 
@@ -55,7 +56,8 @@ export class pJSParticle {
         this.offsetY = 0;
         /* check position - avoid overlap */
         if (options.particles.move.bounce) {
-            pJS.fn.vendors.checkOverlap(this, position);
+            if (pJS.fn)
+                pJS.fn.vendors.checkOverlap(this, position);
         }
         /* color */
         this.color = {};
@@ -157,12 +159,11 @@ export class pJSParticle {
         /* if shape is image */
         let shape_type = options.particles.shape.type;
 
-        if (typeof (shape_type) == 'object') {
-            if (shape_type instanceof Array) {
-                let shape_selected = shape_type[Math.floor(Math.random() * shape_type.length)];
-                this.shape = shape_selected;
-            }
-        } else {
+        if (shape_type instanceof Array) {
+            let shape_selected = shape_type[Math.floor(Math.random() * shape_type.length)];
+            this.shape = shape_selected;
+        }
+        else {
             this.shape = shape_type;
         }
 
@@ -174,8 +175,9 @@ export class pJSParticle {
             };
             if (!this.img.ratio)
                 this.img.ratio = 1;
-            if (pJS.img_type == 'svg' && pJS.source_svg != undefined) {
+            if (pJS.img_type == 'svg' && pJS.source_svg != undefined && pJS.fn) {
                 pJS.fn.vendors.createSvgImg(this);
+
                 if (pJS.pushing) {
                     this.img.loaded = false;
                 }
@@ -209,6 +211,9 @@ export class pJSParticle {
         else {
             color_value = 'hsla(' + p.color.hsl.h + ',' + p.color.hsl.s + '%,' + p.color.hsl.l + '%,' + opacity + ')';
         }
+
+        if (!pJS.canvas.ctx || !pJS.fn) return;
+
         pJS.canvas.ctx.fillStyle = color_value;
         pJS.canvas.ctx.beginPath();
 
@@ -260,9 +265,9 @@ export class pJSParticle {
 
             case 'char':
             case 'character':
-                pJS.canvas.ctx.font = `${options.settings.particles.shape.character.style} ${options.particles.shape.character.weight} ${Math.round(radius) * 2}px ${options.particles.shape.character.font}`;
+                pJS.canvas.ctx.font = `${options.particles.shape.character.style} ${options.particles.shape.character.weigth} ${Math.round(radius) * 2}px ${options.particles.shape.character.font}`;
                 // if (stroke) {
-                pJS.canvas.ctx.strokeText(options.settings.particles.shape.character.value, this.x - radius / 2, this.y + radius / 2);
+                pJS.canvas.ctx.strokeText(options.particles.shape.character.value, this.x - radius / 2, this.y + radius / 2);
                 // } else {
                 //     pJS.canvas.ctx.fillText(options.settings.particles.shape.character.value, this.x - radius / 2, this.y + radius / 2);
                 // }
@@ -297,8 +302,8 @@ export class pJSParticle {
     subDraw(img_obj: any, radius: number) {
         let p = this;
         let pJS = this.pJS;
-        let options = pJS.options;
 
-        pJS.canvas.ctx.drawImage(img_obj, p.x - radius, p.y - radius, radius * 2, radius * 2 / p.img.ratio);
+        if (pJS.canvas.ctx)
+            pJS.canvas.ctx.drawImage(img_obj, p.x - radius, p.y - radius, radius * 2, radius * 2 / p.img.ratio);
     }
 }

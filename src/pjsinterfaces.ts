@@ -1,23 +1,46 @@
 import { pJSFunctions } from './pjsfunctions';
+import { pJSParticle } from './pjsparticle';
 
 'use strict';
 
 export interface pJS {
     canvas: {
-        el: HTMLElement,
-        ctx?: CanvasRenderingContext2D,
+        el: HTMLCanvasElement,
+        ctx?: CanvasRenderingContext2D | null,
         w: number,
         h: number,
-        tag_id: string
+        tag_id: string,
+        pxratio?: number
     },
     particles: {
-        array: []
+        array: pJSParticle[]
     },
     interactivity: {
-        mouse: {}
+        el?: HTMLElement | Window,
+        status?: string,
+        mouse: {
+            click_pos_x?: number | null,
+            click_pos_y?: number | null,
+            pos_x?: number | null,
+            pos_y?: number | null,
+            click_time?: number
+        }
     },
     options: pJSOptions,
-    fn?: pJSFunctions
+    fn?: pJSFunctions,
+    retina?: boolean,
+    pushing?: boolean,
+    bubble_clicking?: boolean,
+    bubble_duration_end?: boolean,
+    repulse_finish?: boolean,
+    repulse_count?: number,
+    repulse_clicking?: boolean,
+    img_type?: string,
+    source_svg?: string,
+    img_obj?: any,
+    count_svg?: number;
+    img_error?: boolean,
+    checkAnimFrame?: () => void
 }
 
 export interface pJSOptions {
@@ -33,7 +56,7 @@ export interface pJSOptions {
             value: string
         },
         shape: {
-            type: string,
+            type: string | string[],
             stroke: {
                 width: number,
                 color: string
@@ -44,7 +67,7 @@ export interface pJSOptions {
             character: {
                 value: string,
                 font: string,
-                style: string,
+                style?: string,
                 weigth: string
             }
             image: {
@@ -125,7 +148,8 @@ export interface pJSOptions {
             bubble: {
                 distance: number,
                 size: number,
-                duration: number
+                duration: number,
+                opacity: number
             },
             repulse: {
                 distance: number,

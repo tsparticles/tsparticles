@@ -1,12 +1,13 @@
 import { pJSParticle } from './pjsparticle';
 import { pJSUtils } from './pjsutils';
+import { pJS } from './pjsinterfaces';
 
 'use strict';
 
 export class pJSParticles {
-    pJS: any;
+    pJS: pJS;
 
-    constructor(pJS: any) {
+    constructor(pJS: pJS) {
         this.pJS = pJS;
     }
 
@@ -47,7 +48,7 @@ export class pJSParticles {
 
                 p.offsetX += (tmp_x - p.offsetX) / options.interactivity.events.onhover.parallax.smooth; // Easing equation
 
-                let tmp_y = (pJS.interactivity.mouse.pos_y - (window.innerHeight / 2)) * (p.radius / options.interactivity.events.onhover.parallax.force);
+                let tmp_y = ((pJS.interactivity.mouse.pos_y || 0) - (window.innerHeight / 2)) * (p.radius / options.interactivity.events.onhover.parallax.force);
 
                 p.offsetY += (tmp_y - p.offsetY) / options.interactivity.events.onhover.parallax.smooth; // Easing equation
             }
@@ -56,12 +57,12 @@ export class pJSParticles {
                 if (p.opacity_status == true) {
                     if (p.opacity >= options.particles.opacity.value)
                         p.opacity_status = false;
-                    p.opacity += p.vo;
+                    p.opacity += (p.vo || 0);
                 }
                 else {
                     if (p.opacity <= options.particles.opacity.anim.opacity_min)
                         p.opacity_status = true;
-                    p.opacity -= p.vo;
+                    p.opacity -= (p.vo || 0);
                 }
                 if (p.opacity < 0)
                     p.opacity = 0;
@@ -71,12 +72,12 @@ export class pJSParticles {
                 if (p.size_status == true) {
                     if (p.radius >= options.particles.size.value)
                         p.size_status = false;
-                    p.radius += p.vs;
+                    p.radius += (p.vs || 0);
                 }
                 else {
                     if (p.radius <= options.particles.size.anim.size_min)
                         p.size_status = true;
-                    p.radius -= p.vs;
+                    p.radius -= (p.vs || 0);
                 }
                 if (p.radius < 0)
                     p.radius = 0;
@@ -130,13 +131,13 @@ export class pJSParticles {
                     break;
             }
             /* events */
-            if (pJSUtils.isInArray('grab', options.interactivity.events.onhover.mode)) {
+            if (pJS.fn && options.interactivity.events.onhover.mode == 'grab') {
                 pJS.fn.modes.grabParticle(p);
             }
-            if (pJSUtils.isInArray('bubble', options.interactivity.events.onhover.mode) || pJSUtils.isInArray('bubble', options.interactivity.events.onclick.mode)) {
+            if (pJS.fn && (options.interactivity.events.onhover.mode == 'bubble' || options.interactivity.events.onclick.mode == 'bubble')) {
                 pJS.fn.modes.bubbleParticle(p);
             }
-            if (pJSUtils.isInArray('repulse', options.interactivity.events.onhover.mode) || pJSUtils.isInArray('repulse', options.interactivity.events.onclick.mode)) {
+            if (pJS.fn && (options.interactivity.events.onhover.mode == 'repulse' || options.interactivity.events.onclick.mode == 'repulse')) {
                 pJS.fn.modes.repulseParticle(p);
             }
             /* interaction auto between particles */
@@ -144,15 +145,15 @@ export class pJSParticles {
                 for (let j = i + 1; j < pJS.particles.array.length; j++) {
                     let p2 = pJS.particles.array[j];
                     /* link particles */
-                    if (options.particles.line_linked.enable) {
+                    if (pJS.fn && options.particles.line_linked.enable) {
                         pJS.fn.interact.linkParticles(p, p2);
                     }
                     /* attract particles */
-                    if (options.particles.move.attract.enable) {
+                    if (pJS.fn && options.particles.move.attract.enable) {
                         pJS.fn.interact.attractParticles(p, p2);
                     }
                     /* bounce particles */
-                    if (options.particles.move.bounce) {
+                    if (pJS.fn && options.particles.move.bounce) {
                         pJS.fn.interact.bounceParticles(p, p2);
                     }
                 }
@@ -165,9 +166,11 @@ export class pJSParticles {
         let options = pJS.options;
 
         /* clear canvas */
-        pJS.canvas.ctx.clearRect(0, 0, pJS.canvas.w, pJS.canvas.h);
+        if (pJS.canvas.ctx)
+            pJS.canvas.ctx.clearRect(0, 0, pJS.canvas.w, pJS.canvas.h);
         /* update each particles param */
-        pJS.fn.particles.update();
+        if (pJS.fn)
+            pJS.fn.particles.update();
         /* draw each particle */
         for (let i = 0; i < pJS.particles.array.length; i++) {
             let p = pJS.particles.array[i];
@@ -187,6 +190,8 @@ export class pJSParticles {
         let options = pJS.options;
 
         /* init all */
+        if (!pJS.fn) return;
+        
         window["cancelRequestAnimFrame"](pJS.fn.checkAnimFrame);
         window["cancelRequestAnimFrame"](pJS.fn.drawAnimFrame);
         pJS.source_svg = undefined;

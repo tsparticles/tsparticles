@@ -1,9 +1,11 @@
 'use strict';
 
-export class pJSRetina {
-    pJS: any;
+import { pJS } from "./pjsinterfaces";
 
-    constructor(pJS: any) {
+export class pJSRetina {
+    pJS: pJS;
+
+    constructor(pJS: pJS) {
         this.pJS = pJS;
     }
 

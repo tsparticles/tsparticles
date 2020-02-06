@@ -1,12 +1,14 @@
 import { pJSUtils } from './pjsutils';
 import { pJSLoader } from './pjsloader';
+import { pJS } from './pjsinterfaces';
+import { pJSRetina } from './pjsretina';
 
 'use strict';
 
 export class pJSVendors {
-    pJS: any;
+    pJS: pJS;
 
-    constructor(pJS: any) {
+    constructor(pJS: pJS) {
         this.pJS = pJS;
     }
 
@@ -37,13 +39,8 @@ export class pJSVendors {
                     pos_y = e.offsetY || e.clientY;
                 }
 
-                pJS.interactivity.mouse.pos_x = pos_x;
-                pJS.interactivity.mouse.pos_y = pos_y;
-
-                if (pJS.retina) {
-                    pJS.interactivity.mouse.pos_x *= pJS.canvas.pxratio;
-                    pJS.interactivity.mouse.pos_y *= pJS.canvas.pxratio;
-                }
+                pJS.interactivity.mouse.pos_x = pos_x * (pJS.retina ? pJS.canvas.pxratio || 1 : 1);
+                pJS.interactivity.mouse.pos_y = pos_y * (pJS.retina ? pJS.canvas.pxratio || 1 : 1);
 
                 pJS.interactivity.status = 'mousemove';
             });
@@ -63,20 +60,21 @@ export class pJSVendors {
                 if (options.interactivity.events.onclick.enable) {
                     switch (options.interactivity.events.onclick.mode) {
                         case 'push':
-                            if (options.particles.move.enable) {
+                            if (options.particles.move.enable && pJS.fn) {
                                 pJS.fn.modes.pushParticles(options.interactivity.modes.push.particles_nb, pJS.interactivity.mouse);
                             }
                             else {
-                                if (options.interactivity.modes.push.particles_nb == 1) {
+                                if (pJS.fn && options.interactivity.modes.push.particles_nb == 1) {
                                     pJS.fn.modes.pushParticles(options.interactivity.modes.push.particles_nb, pJS.interactivity.mouse);
                                 }
-                                else if (options.interactivity.modes.push.particles_nb > 1) {
+                                else if (pJS.fn && options.interactivity.modes.push.particles_nb > 1) {
                                     pJS.fn.modes.pushParticles(options.interactivity.modes.push.particles_nb);
                                 }
                             }
                             break;
                         case 'remove':
-                            pJS.fn.modes.removeParticles(options.interactivity.modes.remove.particles_nb);
+                            if (pJS.fn)
+                                pJS.fn.modes.removeParticles(options.interactivity.modes.remove.particles_nb);
                             break;
                         case 'bubble':
                             pJS.bubble_clicking = true;
@@ -104,7 +102,7 @@ export class pJSVendors {
             let area = pJS.canvas.el.width * pJS.canvas.el.height / 1000;
 
             if (pJS.retina) {
-                area = area / (pJS.canvas.pxratio * 2);
+                area = area / ((pJS.canvas.pxratio || 1) * 2);
             }
             /* calc number of particles based on density area */
             let nb_particles = area * options.particles.number.value / options.particles.number.density.value_area;
@@ -112,14 +110,15 @@ export class pJSVendors {
             /* add or remove X particles */
             let missing_particles = pJS.particles.array.length - nb_particles;
 
-            if (missing_particles < 0)
-                pJS.fn.modes.pushParticles(Math.abs(missing_particles));
-            else
-                pJS.fn.modes.removeParticles(missing_particles);
+            if (pJS.fn)
+                if (missing_particles < 0)
+                    pJS.fn.modes.pushParticles(Math.abs(missing_particles));
+                else
+                    pJS.fn.modes.removeParticles(missing_particles);
         }
     }
 
-    checkOverlap(p1: any, position: any) {
+    checkOverlap(p1: any, position?: any) {
         let pJS = this.pJS;
         let options = pJS.options;
 
@@ -132,26 +131,30 @@ export class pJSVendors {
             if (dist <= p1.radius + p2.radius) {
                 p1.x = position ? position.x : Math.random() * pJS.canvas.w;
                 p1.y = position ? position.y : Math.random() * pJS.canvas.h;
-                pJS.fn.vendors.checkOverlap(p1);
+                if (pJS.fn)
+                    pJS.fn.vendors.checkOverlap(p1);
             }
         }
     }
 
     createSvgImg(p: any) {
         let pJS = this.pJS;
-        let options = pJS.options;
 
         /* set color to svg element */
         let svgXml = pJS.source_svg;
+
+        if (!svgXml) return;
+
         let rgbHex = /#([0-9A-F]{3,6})/gi;
-        let coloredSvgXml = svgXml.replace(rgbHex, (m: number, r: number, g: number, b: number) => {
+        let coloredSvgXml = svgXml.replace(rgbHex, (substring: string, ...args: any[]) => {
             let color_value;
+
             if (p.color.rgb) {
                 color_value = 'rgba(' + p.color.rgb.r + ',' + p.color.rgb.g + ',' + p.color.rgb.b + ',' + p.opacity + ')';
-            }
-            else {
+            } else {
                 color_value = 'hsla(' + p.color.hsl.h + ',' + p.color.hsl.s + '%,' + p.color.hsl.l + '%,' + p.opacity + ')';
             }
+
             return color_value;
         });
         /* prepare to create img with colored svg */
@@ -161,7 +164,12 @@ export class pJSVendors {
         img.addEventListener('load', () => {
             p.img.obj = img;
             p.img.loaded = true;
+
             URL.revokeObjectURL(url);
+
+            if (!pJS.count_svg)
+                pJS.count_svg = 0;
+
             pJS.count_svg++;
         });
         img.src = url;
@@ -171,7 +179,8 @@ export class pJSVendors {
         let pJS = this.pJS;
         let options = pJS.options;
 
-        cancelAnimationFrame(pJS.fn.drawAnimFrame);
+        if (pJS.fn && pJS.fn.drawAnimFrame !== undefined)
+            cancelAnimationFrame(pJS.fn.drawAnimFrame());
         pJS.canvas.el.remove();
         pJSLoader.pJSDomSet([]);
     }
@@ -216,8 +225,10 @@ export class pJSVendors {
                 let response = await fetch(options.particles.shape.image.src);
 
                 if (response.ok) {
-                    pJS.source_svg = await response.blob();
-                    pJS.fn.vendors.checkBeforeDraw();
+                    pJS.source_svg = await response.text();
+
+                    if (pJS.fn)
+                        pJS.fn.vendors.checkBeforeDraw();
                 } else {
                     console.error('Error pJS - Image not found');
                     pJS.img_error = true;
@@ -228,7 +239,9 @@ export class pJSVendors {
 
                 img.addEventListener('load', () => {
                     pJS.img_obj = img;
-                    pJS.fn.vendors.checkBeforeDraw();
+
+                    if (pJS.fn)
+                        pJS.fn.vendors.checkBeforeDraw();
                 });
 
                 img.src = options.particles.shape.image.src;
@@ -246,50 +259,64 @@ export class pJSVendors {
 
         if (options.particles.shape.type == 'image') {
             if (pJS.img_type == 'svg') {
-                if (pJS.count_svg >= options.particles.number.value) {
+                if (pJS.fn && (pJS.count_svg || 0) >= options.particles.number.value) {
                     pJS.fn.particles.draw();
                     if (!options.particles.move.enable)
                         window["cancelRequestAnimFrame"](pJS.fn.drawAnimFrame);
                     else
                         pJS.fn.drawAnimFrame = window["requestAnimFrame"](() => {
-                            pJS.fn.vendors.draw();
+                            if (pJS.fn)
+                                pJS.fn.vendors.draw();
                         });
                 }
                 else {
-                    if (!pJS.img_error)
+                    if (!pJS.img_error && pJS.fn)
                         pJS.fn.drawAnimFrame = window["requestAnimFrame"](() => {
-                            pJS.fn.vendors.draw();
+                            if (pJS.fn)
+                                pJS.fn.vendors.draw();
                         });
                 }
             }
             else {
                 if (pJS.img_obj != undefined) {
-                    pJS.fn.particles.draw();
+                    if (pJS.fn)
+                        pJS.fn.particles.draw();
+
                     if (!options.particles.move.enable)
                         window["cancelRequestAnimFrame"](() => {
-                            pJS.fn.drawAnimFrame();
+                            if (pJS.fn && pJS.fn.drawAnimFrame)
+                                pJS.fn.drawAnimFrame();
                         });
                     else
-                        pJS.fn.drawAnimFrame = window["requestAnimFrame"](() => {
-                            pJS.fn.vendors.draw();
-                        });
+                        if (pJS.fn)
+                            pJS.fn.drawAnimFrame = window["requestAnimFrame"](() => {
+                                if (pJS.fn)
+                                    pJS.fn.vendors.draw();
+                            });
                 }
                 else {
                     if (!pJS.img_error)
-                        pJS.fn.drawAnimFrame = window["requestAnimFrame"](() => {
-                            pJS.fn.vendors.draw();
-                        });
+                        if (pJS.fn)
+                            pJS.fn.drawAnimFrame = window["requestAnimFrame"](() => {
+                                if (pJS.fn)
+                                    pJS.fn.vendors.draw();
+                            });
                 }
             }
         }
         else {
-            pJS.fn.particles.draw();
-            if (!options.particles.move.enable)
-                window["cancelRequestAnimFrame"](pJS.fn.drawAnimFrame);
+            if (pJS.fn)
+                pJS.fn.particles.draw();
+            if (!options.particles.move.enable) {
+                if (pJS.fn)
+                    window["cancelRequestAnimFrame"](pJS.fn.drawAnimFrame);
+            }
             else
-                pJS.fn.drawAnimFrame = window["requestAnimFrame"](() => {
-                    pJS.fn.vendors.draw();
-                });
+                if (pJS.fn)
+                    pJS.fn.drawAnimFrame = window["requestAnimFrame"](() => {
+                        if (pJS.fn)
+                            pJS.fn.vendors.draw();
+                    });
         }
     }
 
@@ -308,14 +335,18 @@ export class pJSVendors {
             else {
                 window["cancelRequestAnimFrame"](pJS.checkAnimFrame);
                 if (!pJS.img_error) {
-                    pJS.fn.vendors.init();
-                    pJS.fn.vendors.draw();
+                    if (pJS.fn) {
+                        pJS.fn.vendors.init();
+                        pJS.fn.vendors.draw();
+                    }
                 }
             }
         }
         else {
-            pJS.fn.vendors.init();
-            pJS.fn.vendors.draw();
+            if (pJS.fn) {
+                pJS.fn.vendors.init();
+                pJS.fn.vendors.draw();
+            }
         }
     }
 
@@ -324,24 +355,30 @@ export class pJSVendors {
         let options = pJS.options;
 
         /* init canvas + particles */
-        pJS.fn.retina.init();
-        pJS.fn.canvas.init();
-        pJS.fn.canvas.size();
-        pJS.fn.canvas.paint();
-        pJS.fn.particles.create();
-        pJS.fn.vendors.densityAutoParticles();
+        if (pJS.fn) {
+            pJS.fn.retina.init();
+            pJS.fn.canvas.init();
+            pJS.fn.canvas.size();
+            pJS.fn.canvas.paint();
+            pJS.fn.particles.create();
+            pJS.fn.vendors.densityAutoParticles();
+        }
     }
 
     async start() {
         let pJS = this.pJS;
         let options = pJS.options;
 
-        if (pJSUtils.isInArray('image', options.particles.shape.type)) {
+        if (options.particles.shape.type == 'image') {
             pJS.img_type = options.particles.shape.image.src.substr(options.particles.shape.image.src.length - 3);
-            await pJS.fn.vendors.loadImg(pJS.img_type);
+            if (pJS.fn) {
+                await pJS.fn.vendors.loadImg(pJS.img_type);
+            }
         }
         else {
-            pJS.fn.vendors.checkBeforeDraw();
+            if (pJS.fn) {
+                pJS.fn.vendors.checkBeforeDraw();
+            }
         }
     }
 }
