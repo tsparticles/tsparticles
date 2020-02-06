@@ -18,3 +18,13 @@ steps:
 - task: CmdLine@2
   inputs:
     script: 'npx webpack'
+
+- task: npmAuthenticate@0
+  inputs:
+    workingFile: '.npmrc'
+    customEndpoint: 'npmjs'
+
+- task: Npm@1
+  inputs:
+    command: 'publish'
+    publishEndpoint: 'npmjs'
