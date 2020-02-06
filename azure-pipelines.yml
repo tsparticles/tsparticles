@@ -5,6 +5,7 @@
 
 trigger:
 - master
+- dev
 
 pool:
   vmImage: 'ubuntu-latest'
@@ -19,11 +20,13 @@ steps:
     script: 'npx webpack'
 
 - task: npmAuthenticate@0
+  condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/master'))
   inputs:
     workingFile: '.npmrc'
     customEndpoint: 'npmjs'
 
 - task: Npm@1
+  condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/master'))
   inputs:
     command: 'publish'
     publishEndpoint: 'npmjs'
