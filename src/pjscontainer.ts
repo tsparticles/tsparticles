@@ -8,7 +8,7 @@ export class pJSContainer {
     pJS: pJS;
 
     constructor(tag_id: string, params: any) {
-        let canvas_el = document.querySelector('#' + tag_id + ' > .particles-js-canvas-el') as HTMLElement;
+        let canvas_el = document.querySelector('#' + tag_id + ' > .particles-js-canvas-el') as HTMLCanvasElement;
 
         /* particles.js variables with default values */
         this.pJS = {
@@ -44,6 +44,11 @@ export class pJSContainer {
                         },
                         polygon: {
                             nb_sides: 5
+                        },
+                        character: {
+                            value: '*',
+                            font: 'Verdana',
+                            weigth: '400'
                         },
                         image: {
                             src: '',
@@ -122,7 +127,8 @@ export class pJSContainer {
                         bubble: {
                             distance: 200,
                             size: 80,
-                            duration: 0.4
+                            duration: 0.4,
+                            opacity: 1
                         },
                         repulse: {
                             distance: 200,

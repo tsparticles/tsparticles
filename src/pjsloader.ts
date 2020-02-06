@@ -13,7 +13,7 @@ export class pJSLoader {
     return pJSDom;
   }
 
-  static pJSDomSet(value: any[]) {
+  static pJSDomSet(value: pJSContainer[]) {
     pJSDom = value;
   }
 
