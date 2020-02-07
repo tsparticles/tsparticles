@@ -17,7 +17,7 @@ export class pJSFunctions {
     canvas: pJSCanvas;
     particles: pJSParticles;
     checkAnimFrame?: () => number;
-    drawAnimFrame?: () => number;
+    drawAnimFrame?: number;
 
     constructor(pJS: pJS) {
         this.pJS = pJS;

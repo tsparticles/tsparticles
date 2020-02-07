@@ -180,7 +180,7 @@ export class pJSVendors {
         let options = pJS.options;
 
         if (pJS.fn && pJS.fn.drawAnimFrame !== undefined)
-            cancelAnimationFrame(pJS.fn.drawAnimFrame());
+            cancelAnimationFrame(pJS.fn.drawAnimFrame);
         pJS.canvas.el.remove();
         pJSLoader.pJSDomSet([]);
     }
@@ -262,16 +262,16 @@ export class pJSVendors {
                 if (pJS.fn && pJS.fn.drawAnimFrame && (pJS.count_svg || 0) >= options.particles.number.value) {
                     pJS.fn.particles.draw();
                     if (!options.particles.move.enable)
-                        window.cancelRequestAnimFrame(pJS.fn.drawAnimFrame());
+                        window.cancelRequestAnimFrame(pJS.fn.drawAnimFrame);
                     else
-                        pJS.fn.drawAnimFrame = () => window.requestAnimFrame(() => {
+                        pJS.fn.drawAnimFrame = window.requestAnimFrame(() => {
                             if (pJS.fn)
                                 pJS.fn.vendors.draw();
                         });
                 }
                 else {
                     if (!pJS.img_error && pJS.fn)
-                        pJS.fn.drawAnimFrame = () => window.requestAnimFrame(() => {
+                        pJS.fn.drawAnimFrame = window.requestAnimFrame(() => {
                             if (pJS.fn)
                                 pJS.fn.vendors.draw();
                         });
@@ -283,10 +283,10 @@ export class pJSVendors {
                         pJS.fn.particles.draw();
 
                     if (pJS.fn && pJS.fn.drawAnimFrame && !options.particles.move.enable)
-                        window.cancelRequestAnimFrame(pJS.fn.drawAnimFrame());
+                        window.cancelRequestAnimFrame(pJS.fn.drawAnimFrame);
                     else
                         if (pJS.fn)
-                            pJS.fn.drawAnimFrame = () => window.requestAnimFrame(() => {
+                            pJS.fn.drawAnimFrame = window.requestAnimFrame(() => {
                                 if (pJS.fn)
                                     pJS.fn.vendors.draw();
                             });
@@ -294,7 +294,7 @@ export class pJSVendors {
                 else {
                     if (!pJS.img_error)
                         if (pJS.fn)
-                            pJS.fn.drawAnimFrame = () => window.requestAnimFrame(() => {
+                            pJS.fn.drawAnimFrame = window.requestAnimFrame(() => {
                                 if (pJS.fn)
                                     pJS.fn.vendors.draw();
                             });
@@ -306,11 +306,11 @@ export class pJSVendors {
                 pJS.fn.particles.draw();
             if (!options.particles.move.enable) {
                 if (pJS.fn && pJS.fn.drawAnimFrame)
-                    window.cancelRequestAnimFrame(pJS.fn.drawAnimFrame());
+                    window.cancelRequestAnimFrame(pJS.fn.drawAnimFrame);
             }
             else
                 if (pJS.fn)
-                    pJS.fn.drawAnimFrame = () => window.requestAnimFrame(() => {
+                    pJS.fn.drawAnimFrame = window.requestAnimFrame(() => {
                         if (pJS.fn)
                             pJS.fn.vendors.draw();
                     });
