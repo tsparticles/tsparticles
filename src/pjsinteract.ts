@@ -1,5 +1,6 @@
 import { pJSUtils } from './pjsutils';
-import { pJS, pJSOptions } from './pjsinterfaces'; 
+import { pJS, pJSOptions } from './pjsinterfaces';
+import { pJSParticle } from './pjsparticle';
 
 'use strict';
 
@@ -11,7 +12,7 @@ export class pJSInteract {
     }
 
     /* ---------- pJS functions - particles interaction ------------ */
-    linkParticles(p1: any, p2: any) {
+    linkParticles(p1: pJSParticle, p2: pJSParticle) {
         let pJS = this.pJS;
         let options = pJS.options;
 
@@ -27,6 +28,8 @@ export class pJSInteract {
                 options.particles.line_linked.color_rgb = options.particles.line_linked.color_rgb || pJSUtils.hexToRgb(options.particles.line_linked.color);
 
                 let color_line = options.particles.line_linked.color_rgb;
+
+                if (!pJS.canvas.ctx) return;
 
                 if (color_line) {
                     pJS.canvas.ctx.strokeStyle = 'rgba(' + color_line.r + ',' + color_line.g + ',' + color_line.b + ',' + opacity_line + ')';
@@ -44,7 +47,7 @@ export class pJSInteract {
         }
     }
 
-    attractParticles(p1: any, p2: any) {
+    attractParticles(p1: pJSParticle, p2: pJSParticle) {
         let pJS = this.pJS;
         let options = pJS.options;
 
@@ -55,7 +58,7 @@ export class pJSInteract {
 
         if (dist <= options.particles.line_linked.distance) {
             let ax = dx / (options.particles.move.attract.rotateX * 1000), ay = dy / (options.particles.move.attract.rotateY * 1000);
-            
+
             p1.vx -= ax;
             p1.vy -= ay;
             p2.vx += ax;
@@ -63,7 +66,7 @@ export class pJSInteract {
         }
     }
 
-    bounceParticles(p1: any, p2: any) {
+    bounceParticles(p1: pJSParticle, p2: pJSParticle) {
         let dx = p1.x - p2.x;
         let dy = p1.y - p2.y;
         let dist = Math.sqrt(dx * dx + dy * dy);

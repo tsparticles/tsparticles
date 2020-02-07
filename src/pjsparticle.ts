@@ -1,5 +1,5 @@
 import { pJSUtils } from './pjsutils';
-import { pJS } from './pjsinterfaces';
+import { pJS, pJSParticleImage, pJSColor, pJSCoordinates, pJSRgb, pJSHsl } from './pjsinterfaces';
 
 'use strict';
 
@@ -12,7 +12,7 @@ export class pJSParticle {
     y: number;
     offsetX: number;
     offsetY: number;
-    color: any;
+    color: pJSColor;
     opacity: number;
     opacity_status?: boolean;
     vo?: number;
@@ -21,12 +21,12 @@ export class pJSParticle {
     vx_i: number;
     vy_i: number;
     shape?: string;
-    img: any;
+    img?: pJSParticleImage;
     radius_bubble?: number;
     opacity_bubble?: number;
 
     /* --------- pJS functions - particles ----------- */
-    constructor(pJS: pJS, color: any, opacity: number, position?: any) {
+    constructor(pJS: pJS, color: { value: string[] | pJSRgb | pJSHsl | string }, opacity: number, position?: pJSCoordinates) {
         this.pJS = pJS;
         let options = pJS.options;
 
@@ -68,32 +68,39 @@ export class pJSParticle {
                 this.color.rgb = pJSUtils.hexToRgb(color_selected);
             }
             else {
-                if (color.value.r != undefined && color.value.g != undefined && color.value.b != undefined) {
+
+                var rgbColor = color.value as pJSRgb;
+
+                if (rgbColor && rgbColor.r != undefined && rgbColor.g != undefined && rgbColor.b != undefined) {
                     this.color.rgb = {
-                        r: color.value.r,
-                        g: color.value.g,
-                        b: color.value.b
+                        r: rgbColor.r,
+                        g: rgbColor.g,
+                        b: rgbColor.b
                     };
                 }
-                if (color.value.h != undefined && color.value.s != undefined && color.value.l != undefined) {
+
+                var hslColor = color.value as pJSHsl;
+
+                if (hslColor.h != undefined && hslColor.s != undefined && hslColor.l != undefined) {
                     this.color.hsl = {
-                        h: color.value.h,
-                        s: color.value.s,
-                        l: color.value.l
+                        h: hslColor.h,
+                        s: hslColor.s,
+                        l: hslColor.l
                     };
                 }
             }
         }
-        else if (color.value == 'random') {
-            this.color.rgb = {
-                r: (Math.floor(Math.random() * (255 - 0 + 1)) + 0),
-                g: (Math.floor(Math.random() * (255 - 0 + 1)) + 0),
-                b: (Math.floor(Math.random() * (255 - 0 + 1)) + 0)
-            };
-        }
         else if (typeof (color.value) == 'string') {
-            this.color = color;
-            this.color.rgb = pJSUtils.hexToRgb(this.color.value);
+            if (color.value == 'random') {
+                this.color.rgb = {
+                    r: (Math.floor(Math.random() * (255 - 0 + 1)) + 0),
+                    g: (Math.floor(Math.random() * (255 - 0 + 1)) + 0),
+                    b: (Math.floor(Math.random() * (255 - 0 + 1)) + 0)
+                };
+            } else {
+                this.color = {};
+                this.color.rgb = pJSUtils.hexToRgb(color.value);
+            }
         }
         /* opacity */
         this.opacity = (options.particles.opacity.random ? Math.random() : 1) * options.particles.opacity.value;
@@ -105,7 +112,7 @@ export class pJSParticle {
             }
         }
         /* animation - velocity for speed */
-        let velbase = {} as any;
+        let velbase: pJSCoordinates;
 
         switch (options.particles.move.direction) {
             case 'top':
@@ -189,7 +196,7 @@ export class pJSParticle {
         let p = this;
         let pJS = this.pJS;
         let options = pJS.options;
-        let radius: any;
+        let radius: number;
         let opacity;
         let color_value;
 
@@ -208,11 +215,11 @@ export class pJSParticle {
         if (p.color.rgb) {
             color_value = 'rgba(' + p.color.rgb.r + ',' + p.color.rgb.g + ',' + p.color.rgb.b + ',' + opacity + ')';
         }
-        else {
+        else if (p.color.hsl) {
             color_value = 'hsla(' + p.color.hsl.h + ',' + p.color.hsl.s + '%,' + p.color.hsl.l + '%,' + opacity + ')';
         }
 
-        if (!pJS.canvas.ctx || !pJS.fn) return;
+        if (!pJS.canvas.ctx || !pJS.fn || !color_value) return;
 
         pJS.canvas.ctx.fillStyle = color_value;
         pJS.canvas.ctx.beginPath();
@@ -274,10 +281,11 @@ export class pJSParticle {
                 break;
 
             case 'image':
-                let img_obj: any;
+                let img_obj: HTMLImageElement | undefined;
 
                 if (pJS.img_type == 'svg') {
-                    img_obj = p.img.obj;
+                    if (p.img)
+                        img_obj = p.img.obj;
                 }
                 else {
                     img_obj = pJS.img_obj;
@@ -299,11 +307,11 @@ export class pJSParticle {
         pJS.canvas.ctx.fill();
     }
 
-    subDraw(img_obj: any, radius: number) {
+    subDraw(img_obj: HTMLImageElement, radius: number) {
         let p = this;
         let pJS = this.pJS;
 
-        if (pJS.canvas.ctx)
+        if (pJS.canvas.ctx && p.img)
             pJS.canvas.ctx.drawImage(img_obj, p.x - radius, p.y - radius, radius * 2, radius * 2 / p.img.ratio);
     }
 }

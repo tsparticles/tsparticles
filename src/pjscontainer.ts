@@ -1,13 +1,13 @@
 import { pJSFunctions } from './pjsfunctions';
 import { pJSUtils } from './pjsutils';
-import { pJS } from './pjsinterfaces';
+import { pJS, pJSOptions } from './pjsinterfaces';
 
 'use strict';
 
 export class pJSContainer {
     pJS: pJS;
 
-    constructor(tag_id: string, params: any) {
+    constructor(tag_id: string, params: pJSOptions) {
         let canvas_el = document.querySelector('#' + tag_id + ' > .particles-js-canvas-el') as HTMLCanvasElement;
 
         /* particles.js variables with default values */
