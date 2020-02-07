@@ -196,7 +196,7 @@ export class pJSParticles {
             if (pJS.fn.checkAnimFrame)
                 window.cancelRequestAnimFrame(pJS.fn.checkAnimFrame());
             if (pJS.fn.drawAnimFrame)
-                window.cancelRequestAnimFrame(pJS.fn.drawAnimFrame());
+                window.cancelRequestAnimFrame(pJS.fn.drawAnimFrame);
         }
         pJS.source_svg = undefined;
         pJS.img_obj = undefined;
