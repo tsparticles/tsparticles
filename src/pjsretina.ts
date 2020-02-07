@@ -1,25 +1,27 @@
 'use strict';
 
-import { pJS } from "./pjsinterfaces";
+import { pJSContainer } from "./pjscontainer";
 
 export class pJSRetina {
-    pJS: pJS;
+    pJSContainer: pJSContainer;
+    isRetina: boolean;
 
-    constructor(pJS: pJS) {
-        this.pJS = pJS;
+    constructor(pJSContainer: pJSContainer) {
+        this.pJSContainer = pJSContainer;
+        this.isRetina = false;
     }
 
     init() {
-        let pJS = this.pJS;
+        let pJS = this.pJSContainer;
         let options = pJS.options;
 
         if (options.retina_detect && window.devicePixelRatio > 1) {
             pJS.canvas.pxratio = window.devicePixelRatio;
-            pJS.retina = true;
+            this.isRetina = true;
         }
         else {
             pJS.canvas.pxratio = 1;
-            pJS.retina = false;
+            this.isRetina = false;
         }
 
         pJS.canvas.w = pJS.canvas.el.offsetWidth * pJS.canvas.pxratio;

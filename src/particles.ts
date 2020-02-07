@@ -7,7 +7,7 @@
 /* v2.0.1
 /* ----------------------------------------------- */
 import { pJSLoader } from './pjsloader';
-import { pJSOptions, pJS } from './pjsinterfaces';
+import { pJSOptions } from './pjsinterfaces';
 import { pJSContainer } from './pjscontainer';
 
 'use strict';

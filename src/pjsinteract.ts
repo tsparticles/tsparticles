@@ -1,19 +1,19 @@
 import { pJSUtils } from './pjsutils';
-import { pJS, pJSOptions } from './pjsinterfaces';
 import { pJSParticle } from './pjsparticle';
+import { pJSContainer } from './pjscontainer';
 
 'use strict';
 
 export class pJSInteract {
-    pJS: pJS;
+    pJSContainer: pJSContainer;
 
-    constructor(pJS: pJS) {
-        this.pJS = pJS;
+    constructor(pJSContainer: pJSContainer) {
+        this.pJSContainer = pJSContainer;
     }
 
     /* ---------- pJS functions - particles interaction ------------ */
     linkParticles(p1: pJSParticle, p2: pJSParticle) {
-        let pJS = this.pJS;
+        let pJS = this.pJSContainer;
         let options = pJS.options;
 
         let dx = (p1.x + p1.offsetX) - (p2.x + p2.offsetX);
@@ -48,7 +48,7 @@ export class pJSInteract {
     }
 
     attractParticles(p1: pJSParticle, p2: pJSParticle) {
-        let pJS = this.pJS;
+        let pJS = this.pJSContainer;
         let options = pJS.options;
 
         /* condensed particles */

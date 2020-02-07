@@ -1,10 +1,11 @@
 import { pJSUtils } from './pjsutils';
-import { pJS, pJSParticleImage, pJSColor, pJSCoordinates, pJSRgb, pJSHsl } from './pjsinterfaces';
+import { pJSParticleImage, pJSColor, pJSCoordinates, pJSRgb, pJSHsl } from './pjsinterfaces';
+import { pJSContainer } from './pjscontainer';
 
 'use strict';
 
 export class pJSParticle {
-    pJS: pJS;
+    pJSContainer: pJSContainer;
     radius: number;
     size_status?: boolean;
     vs?: number;
@@ -26,9 +27,9 @@ export class pJSParticle {
     opacity_bubble?: number;
 
     /* --------- pJS functions - particles ----------- */
-    constructor(pJS: pJS, color: { value: string[] | pJSColor | string }, opacity: number, position?: pJSCoordinates) {
-        this.pJS = pJS;
-        let options = pJS.options;
+    constructor(pJSContainer: pJSContainer, color: { value: string[] | pJSColor | string }, opacity: number, position?: pJSCoordinates) {
+        this.pJSContainer = pJSContainer;
+        let options = pJSContainer.options;
 
         /* size */
         this.radius = (options.particles.size.random ? Math.random() : 1) * options.particles.size.value;
@@ -40,14 +41,14 @@ export class pJSParticle {
             }
         }
         /* position */
-        this.x = position ? position.x : Math.random() * pJS.canvas.w;
-        this.y = position ? position.y : Math.random() * pJS.canvas.h;
+        this.x = position ? position.x : Math.random() * pJSContainer.canvas.w;
+        this.y = position ? position.y : Math.random() * pJSContainer.canvas.h;
         /* check position  - into the canvas */
-        if (this.x > pJS.canvas.w - this.radius * 2)
+        if (this.x > pJSContainer.canvas.w - this.radius * 2)
             this.x = this.x - this.radius;
         else if (this.x < this.radius * 2)
             this.x = this.x + this.radius;
-        if (this.y > pJS.canvas.h - this.radius * 2)
+        if (this.y > pJSContainer.canvas.h - this.radius * 2)
             this.y = this.y - this.radius;
         else if (this.y < this.radius * 2)
             this.y = this.y + this.radius;
@@ -56,8 +57,7 @@ export class pJSParticle {
         this.offsetY = 0;
         /* check position - avoid overlap */
         if (options.particles.move.bounce) {
-            if (pJS.fn)
-                pJS.fn.vendors.checkOverlap(this, position);
+            pJSContainer.vendors.checkOverlap(this, position);
         }
         /* color */
         this.color = {};
@@ -183,10 +183,10 @@ export class pJSParticle {
             };
             if (!this.img.ratio)
                 this.img.ratio = 1;
-            if (pJS.img_type == 'svg' && pJS.source_svg != undefined && pJS.fn) {
-                pJS.fn.vendors.createSvgImg(this);
+            if (pJSContainer.img_type == 'svg' && pJSContainer.source_svg != undefined) {
+                pJSContainer.vendors.createSvgImg(this);
 
-                if (pJS.pushing) {
+                if (pJSContainer.pushing) {
                     this.img.loaded = false;
                 }
             }
@@ -195,7 +195,7 @@ export class pJSParticle {
 
     draw() {
         let p = this;
-        let pJS = this.pJS;
+        let pJS = this.pJSContainer;
         let options = pJS.options;
         let radius: number;
         let opacity;
@@ -220,7 +220,7 @@ export class pJSParticle {
             color_value = 'hsla(' + p.color.hsl.h + ',' + p.color.hsl.s + '%,' + p.color.hsl.l + '%,' + opacity + ')';
         }
 
-        if (!pJS.canvas.ctx || !pJS.fn || !color_value) return;
+        if (!pJS.canvas.ctx || !color_value) return;
 
         pJS.canvas.ctx.fillStyle = color_value;
         pJS.canvas.ctx.beginPath();
@@ -237,10 +237,10 @@ export class pJSParticle {
                 pJS.canvas.ctx.rect(p.x - radius, p.y - radius, radius * 2, radius * 2);
                 break;
             case 'triangle':
-                pJS.fn.vendors.drawShape(pJS.canvas.ctx, p.x - radius, p.y + radius / 1.66, radius * 2, 3, 2);
+                pJS.vendors.drawShape(pJS.canvas.ctx, p.x - radius, p.y + radius / 1.66, radius * 2, 3, 2);
                 break;
             case 'polygon':
-                pJS.fn.vendors.drawShape(pJS.canvas.ctx, p.x - radius / (options.particles.shape.polygon.nb_sides / 3.5), // startX
+                pJS.vendors.drawShape(pJS.canvas.ctx, p.x - radius / (options.particles.shape.polygon.nb_sides / 3.5), // startX
                     p.y - radius / (2.66 / 3.5), // startY
                     radius * 2.66 / (options.particles.shape.polygon.nb_sides / 3), // sideLength
                     options.particles.shape.polygon.nb_sides, // sideCountNumerator
@@ -248,7 +248,7 @@ export class pJSParticle {
                 );
                 break;
             case 'star':
-                pJS.fn.vendors.drawShape(pJS.canvas.ctx, p.x - radius * 2 / (options.particles.shape.polygon.nb_sides / 4), // startX
+                pJS.vendors.drawShape(pJS.canvas.ctx, p.x - radius * 2 / (options.particles.shape.polygon.nb_sides / 4), // startX
                     p.y - radius / (2 * 2.66 / 3.5), // startY
                     radius * 2 * 2.66 / (options.particles.shape.polygon.nb_sides / 3), // sideLength
                     options.particles.shape.polygon.nb_sides, // sideCountNumerator
@@ -310,7 +310,7 @@ export class pJSParticle {
 
     subDraw(img_obj: HTMLImageElement, radius: number) {
         let p = this;
-        let pJS = this.pJS;
+        let pJS = this.pJSContainer;
 
         if (pJS.canvas.ctx && p.img)
             pJS.canvas.ctx.drawImage(img_obj, p.x - radius, p.y - radius, radius * 2, radius * 2 / p.img.ratio);

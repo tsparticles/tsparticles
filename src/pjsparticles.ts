@@ -1,33 +1,35 @@
 import { pJSParticle } from './pjsparticle';
 import { pJSUtils } from './pjsutils';
-import { pJS } from './pjsinterfaces';
+import { pJSContainer } from './pjscontainer';
 
 'use strict';
 
 export class pJSParticles {
-    pJS: pJS;
+    pJSContainer: pJSContainer;
+    array: pJSParticle[];
 
-    constructor(pJS: pJS) {
-        this.pJS = pJS;
+    constructor(pJSContainer: pJSContainer) {
+        this.pJSContainer = pJSContainer;
+        this.array = [];
     }
 
     /* --------- pJS functions - particles ----------- */
     create() {
-        let pJS = this.pJS;
+        let pJS = this.pJSContainer;
         let options = pJS.options;
 
         for (let i = 0; i < options.particles.number.value; i++) {
-            pJS.particles.array.push(new pJSParticle(pJS, options.particles.color, options.particles.opacity.value));
+            this.array.push(new pJSParticle(pJS, options.particles.color, options.particles.opacity.value));
         }
     }
 
     update() {
-        let pJS = this.pJS;
+        let pJS = this.pJSContainer;
         let options = pJS.options;
 
-        for (let i = 0; i < pJS.particles.array.length; i++) {
+        for (let i = 0; i < this.array.length; i++) {
             /* the particle */
-            let p = pJS.particles.array[i];
+            let p = this.array[i];
             // let d = ( dx = pJS.interactivity.mouse.click_pos_x - p.x ) * dx + ( dy = pJS.interactivity.mouse.click_pos_y - p.y ) * dy;
             // let f = -BANG_SIZE / d;
             // if ( d < BANG_SIZE ) {
@@ -131,30 +133,35 @@ export class pJSParticles {
                     break;
             }
             /* events */
-            if (pJS.fn && (options.interactivity.events.onhover.mode == 'grab' || pJSUtils.isInArray('grab', options.interactivity.events.onhover.mode as string[]))) {
-                pJS.fn.modes.grabParticle(p);
+            if (options.interactivity.events.onhover.mode == 'grab' || pJSUtils.isInArray('grab', options.interactivity.events.onhover.mode as string[])) {
+                pJS.modes.grabParticle(p);
             }
-            if (pJS.fn && (options.interactivity.events.onhover.mode == 'bubble' || options.interactivity.events.onclick.mode == 'bubble' || pJSUtils.isInArray('bubble', options.interactivity.events.onhover.mode as string[]) || pJSUtils.isInArray('bubble', options.interactivity.events.onclick.mode as string[]))) {
-                pJS.fn.modes.bubbleParticle(p);
+
+            if (options.interactivity.events.onhover.mode == 'bubble' || options.interactivity.events.onclick.mode == 'bubble' || pJSUtils.isInArray('bubble', options.interactivity.events.onhover.mode as string[]) || pJSUtils.isInArray('bubble', options.interactivity.events.onclick.mode as string[])) {
+                pJS.modes.bubbleParticle(p);
             }
-            if (pJS.fn && (options.interactivity.events.onhover.mode == 'repulse' || options.interactivity.events.onclick.mode == 'repulse' || pJSUtils.isInArray('repulse', options.interactivity.events.onhover.mode as string[]) || pJSUtils.isInArray('repulse', options.interactivity.events.onclick.mode as string[]))) {
-                pJS.fn.modes.repulseParticle(p);
+
+            if (options.interactivity.events.onhover.mode == 'repulse' || options.interactivity.events.onclick.mode == 'repulse' || pJSUtils.isInArray('repulse', options.interactivity.events.onhover.mode as string[]) || pJSUtils.isInArray('repulse', options.interactivity.events.onclick.mode as string[])) {
+                pJS.modes.repulseParticle(p);
             }
+
             /* interaction auto between particles */
             if (options.particles.line_linked.enable || options.particles.move.attract.enable) {
-                for (let j = i + 1; j < pJS.particles.array.length; j++) {
-                    let p2 = pJS.particles.array[j];
+                for (let j = i + 1; j < this.array.length; j++) {
+                    let p2 = this.array[j];
                     /* link particles */
-                    if (pJS.fn && options.particles.line_linked.enable) {
-                        pJS.fn.interact.linkParticles(p, p2);
+                    if (options.particles.line_linked.enable) {
+                        pJS.interact.linkParticles(p, p2);
                     }
+
                     /* attract particles */
-                    if (pJS.fn && options.particles.move.attract.enable) {
-                        pJS.fn.interact.attractParticles(p, p2);
+                    if (options.particles.move.attract.enable) {
+                        pJS.interact.attractParticles(p, p2);
                     }
+
                     /* bounce particles */
-                    if (pJS.fn && options.particles.move.bounce) {
-                        pJS.fn.interact.bounceParticles(p, p2);
+                    if (options.particles.move.bounce) {
+                        pJS.interact.bounceParticles(p, p2);
                     }
                 }
             }
@@ -162,48 +169,48 @@ export class pJSParticles {
     }
 
     draw() {
-        let pJS = this.pJS;
+        let pJS = this.pJSContainer;
         let options = pJS.options;
 
         /* clear canvas */
         if (pJS.canvas.ctx)
             pJS.canvas.ctx.clearRect(0, 0, pJS.canvas.w, pJS.canvas.h);
+
         /* update each particles param */
-        if (pJS.fn)
-            pJS.fn.particles.update();
+        pJS.particles.update();
+
         /* draw each particle */
-        for (let i = 0; i < pJS.particles.array.length; i++) {
-            let p = pJS.particles.array[i];
+        for (let i = 0; i < this.array.length; i++) {
+            let p = this.array[i];
             p.draw();
         }
     }
 
     empty() {
-        let pJS = this.pJS;
+        let pJS = this.pJSContainer;
         let options = pJS.options;
 
-        pJS.particles.array = [];
+        this.array = [];
     }
 
     async refresh() {
-        let pJS = this.pJS;
+        let pJS = this.pJSContainer;
         let options = pJS.options;
 
         /* init all */
-        if (!pJS.fn) return;
+        if (pJS.checkAnimFrame)
+            window.cancelRequestAnimFrame(pJS.checkAnimFrame);
 
-        if (pJS.fn) {
-            if (pJS.fn.checkAnimFrame)
-                window.cancelRequestAnimFrame(pJS.fn.checkAnimFrame());
-            if (pJS.fn.drawAnimFrame)
-                window.cancelRequestAnimFrame(pJS.fn.drawAnimFrame);
-        }
+        if (pJS.drawAnimFrame)
+            window.cancelRequestAnimFrame(pJS.drawAnimFrame);
+
         pJS.source_svg = undefined;
         pJS.img_obj = undefined;
         pJS.count_svg = 0;
-        pJS.fn.particles.empty();
-        pJS.fn.canvas.clear();
+        pJS.particles.empty();
+        pJS.canvas.clear();
+
         /* restart */
-        await pJS.fn.vendors.start();
+        await pJS.vendors.start();
     }
 }

@@ -1,19 +1,20 @@
 import { pJSUtils } from './pjsutils';
 import { pJSParticle } from './pjsparticle';
-import { pJS, pJSMouseData } from './pjsinterfaces';
+import { pJSMouseData } from './pjsinterfaces';
+import { pJSContainer } from './pjscontainer';
 
 'use strict';
 
 export class pJSModes {
-    pJS: pJS;
+    pJSContainer: pJSContainer;
 
-    constructor(pJS: pJS) {
-        this.pJS = pJS;
+    constructor(pJSContainer: pJSContainer) {
+        this.pJSContainer = pJSContainer;
     }
 
     /* ---------- pJS functions - modes events ------------ */
     pushParticles(nb: number, pos?: pJSMouseData) {
-        let pJS = this.pJS;
+        let pJS = this.pJSContainer;
         let options = pJS.options;
 
         pJS.pushing = true;
@@ -24,8 +25,8 @@ export class pJSModes {
             }));
 
             if (i == nb - 1) {
-                if (!options.particles.move.enable && pJS.fn) {
-                    pJS.fn.particles.draw();
+                if (!options.particles.move.enable) {
+                    pJS.particles.draw();
                 }
                 pJS.pushing = false;
             }
@@ -33,12 +34,12 @@ export class pJSModes {
     }
 
     removeParticles(nb: number) {
-        let pJS = this.pJS;
+        let pJS = this.pJSContainer;
         let options = pJS.options;
 
         pJS.particles.array.splice(0, nb);
-        if (!options.particles.move.enable && pJS.fn) {
-            pJS.fn.particles.draw();
+        if (!options.particles.move.enable) {
+            pJS.particles.draw();
         }
     }
 
@@ -48,7 +49,7 @@ export class pJSModes {
     }
 
     bubbleParticle(p: pJSParticle) {
-        let pJS = this.pJS;
+        let pJS = this.pJSContainer;
         let options = pJS.options;
 
         /* on hover event */
@@ -133,7 +134,7 @@ export class pJSModes {
     }
 
     processBubble(p: pJSParticle, dist_mouse: number, time_spent: number, bubble_param: number, particles_param: number, p_obj_bubble: number | undefined, p_obj: number, id: string) {
-        let pJS = this.pJS;
+        let pJS = this.pJSContainer;
         let options = pJS.options;
 
         if (bubble_param != particles_param) {
@@ -175,7 +176,7 @@ export class pJSModes {
     }
 
     processRepulse(p: pJSParticle, dx: number, dy: number, force: number) {
-        let pJS = this.pJS;
+        let pJS = this.pJSContainer;
         let options = pJS.options;
 
         let f = Math.atan2(dy, dx);
@@ -198,7 +199,7 @@ export class pJSModes {
     }
 
     repulseParticle(p: pJSParticle) {
-        let pJS = this.pJS;
+        let pJS = this.pJSContainer;
         let options = pJS.options;
 
         if (options.interactivity.events.onhover.enable && (options.interactivity.events.onhover.mode == 'repulse'  || pJSUtils.isInArray('repulse', options.interactivity.events.onhover.mode as string[])) && pJS.interactivity.status == 'mousemove') {
@@ -265,7 +266,7 @@ export class pJSModes {
     }
 
     grabParticle(p: pJSParticle) {
-        let pJS = this.pJS;
+        let pJS = this.pJSContainer;
         let options = pJS.options;
 
         if (options.interactivity.events.onhover.enable && pJS.interactivity.status == 'mousemove') {

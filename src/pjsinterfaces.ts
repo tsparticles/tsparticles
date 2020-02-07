@@ -1,39 +1,9 @@
-import { pJSFunctions } from './pjsfunctions';
-import { pJSParticle } from './pjsparticle';
-
 'use strict';
 
-export interface pJS {
-    canvas: {
-        el: HTMLCanvasElement,
-        ctx?: CanvasRenderingContext2D | null,
-        w: number,
-        h: number,
-        tag_id: string,
-        pxratio?: number
-    },
-    particles: {
-        array: pJSParticle[]
-    },
-    interactivity: {
-        el?: HTMLElement | Window,
+export interface pJSContainerInteractivity {
+    el?: HTMLElement | Window,
         status?: string,
         mouse: pJSMouseData
-    },
-    options: pJSOptions,
-    fn?: pJSFunctions,
-    retina?: boolean,
-    pushing?: boolean,
-    bubble_clicking?: boolean,
-    bubble_duration_end?: boolean,
-    repulse_finish?: boolean,
-    repulse_count?: number,
-    repulse_clicking?: boolean,
-    img_type?: string,
-    source_svg?: string,
-    img_obj?: HTMLImageElement,
-    count_svg?: number;
-    img_error?: boolean
 }
 
 export interface pJSOptions {

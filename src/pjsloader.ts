@@ -52,7 +52,7 @@ export class pJSLoader {
       let found = false;
 
       for (let idx = 0; idx < pJSLoader.pJSDom().length; idx++) {
-        if (pJSLoader.pJSDom()[idx].pJS.canvas.tag_id == tag_id) {
+        if (pJSLoader.pJSDom()[idx].canvas.tag_id == tag_id) {
           found = true;
           pJSLoader.pJSDom()[idx] = pjs;
         }
