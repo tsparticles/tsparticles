@@ -52,7 +52,7 @@ export class pJSModes {
         let options = pJS.options;
 
         /* on hover event */
-        if (options.interactivity.events.onhover.enable && options.interactivity.events.onhover.mode == 'bubble') {
+        if (options.interactivity.events.onhover.enable && (options.interactivity.events.onhover.mode == 'bubble' || pJSUtils.isInArray('bubble', options.interactivity.events.onhover.mode as string[]))) {
             let dx_mouse = (p.x + p.offsetX) - (pJS.interactivity.mouse.pos_x || 0);
             let dy_mouse = (p.y + p.offsetY) - (pJS.interactivity.mouse.pos_y || 0);
             let dist_mouse = Math.sqrt(dx_mouse * dx_mouse + dy_mouse * dy_mouse);
@@ -107,7 +107,7 @@ export class pJSModes {
             }
         }
         /* on click event */
-        else if (options.interactivity.events.onclick.enable && options.interactivity.events.onclick.mode == 'bubble') {
+        else if (options.interactivity.events.onclick.enable && (options.interactivity.events.onclick.mode == 'bubble' || pJSUtils.isInArray('bubble', options.interactivity.events.onclick.mode as string[]))) {
             let dx_mouse = p.x - (pJS.interactivity.mouse.click_pos_x || 0);
             let dy_mouse = p.y - (pJS.interactivity.mouse.click_pos_y || 0);
             let dist_mouse = Math.sqrt(dx_mouse * dx_mouse + dy_mouse * dy_mouse);
@@ -201,7 +201,7 @@ export class pJSModes {
         let pJS = this.pJS;
         let options = pJS.options;
 
-        if (options.interactivity.events.onhover.enable && options.interactivity.events.onhover.mode == 'repulse' && pJS.interactivity.status == 'mousemove') {
+        if (options.interactivity.events.onhover.enable && (options.interactivity.events.onhover.mode == 'repulse'  || pJSUtils.isInArray('repulse', options.interactivity.events.onhover.mode as string[])) && pJS.interactivity.status == 'mousemove') {
             let dx_mouse = p.x - (pJS.interactivity.mouse.pos_x || 0);
             let dy_mouse = p.y - (pJS.interactivity.mouse.pos_y || 0);
             let dist_mouse = Math.sqrt(dx_mouse * dx_mouse + dy_mouse * dy_mouse);
@@ -223,7 +223,7 @@ export class pJSModes {
                 p.y = pos.y;
             }
         }
-        else if (options.interactivity.events.onclick.enable && options.interactivity.events.onclick.mode == 'repulse') {
+        else if (options.interactivity.events.onclick.enable && (options.interactivity.events.onclick.mode == 'repulse' || pJSUtils.isInArray('repulse', options.interactivity.events.onclick.mode as string[]))) {
             if (!pJS.repulse_finish) {
 
                 if (!pJS.repulse_count)

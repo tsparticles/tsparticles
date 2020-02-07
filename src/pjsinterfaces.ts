@@ -46,7 +46,7 @@ export interface pJSOptions {
             }
         },
         color: {
-            value: string
+            value: string | pJSColor | string[]
         },
         shape: {
             type: string | string[],
@@ -118,7 +118,7 @@ export interface pJSOptions {
         events: {
             onhover: {
                 enable: boolean,
-                mode: string,
+                mode: string | string[],
                 parallax: {
                     enable: boolean,
                     force: number,
@@ -127,7 +127,7 @@ export interface pJSOptions {
             },
             onclick: {
                 enable: boolean,
-                mode: string
+                mode: string | string[]
             },
             resize: boolean
         },
