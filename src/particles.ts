@@ -7,7 +7,8 @@
 /* v2.0.1
 /* ----------------------------------------------- */
 import { pJSLoader } from './pjsloader';
-import { pJSOptions } from './pjsinterfaces';
+import { pJSOptions, pJS } from './pjsinterfaces';
+import { pJSContainer } from './pjscontainer';
 
 'use strict';
 
@@ -23,7 +24,7 @@ declare global {
     oCancelRequestAnimationFrame: (handle: number) => void,
     msCancelRequestAnimationFrame: (handle: number) => void,
     particlesJS: any,
-    pJSDom: any
+    pJSDom: () => pJSContainer[]
   }
 }
 

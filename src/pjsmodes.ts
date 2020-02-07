@@ -1,6 +1,6 @@
 import { pJSUtils } from './pjsutils';
 import { pJSParticle } from './pjsparticle';
-import { pJS } from './pjsinterfaces';
+import { pJS, pJSMouseData } from './pjsinterfaces';
 
 'use strict';
 
@@ -12,15 +12,15 @@ export class pJSModes {
     }
 
     /* ---------- pJS functions - modes events ------------ */
-    pushParticles(nb: number, pos?: any) {
+    pushParticles(nb: number, pos?: pJSMouseData) {
         let pJS = this.pJS;
         let options = pJS.options;
 
         pJS.pushing = true;
         for (let i = 0; i < nb; i++) {
             pJS.particles.array.push(new pJSParticle(pJS, options.particles.color, options.particles.opacity.value, {
-                'x': pos ? pos.pos_x : Math.random() * pJS.canvas.w,
-                'y': pos ? pos.pos_y : Math.random() * pJS.canvas.h
+                'x': pos && pos.pos_x ? pos.pos_x : Math.random() * pJS.canvas.w,
+                'y': pos && pos.pos_y ? pos.pos_y : Math.random() * pJS.canvas.h
             }));
 
             if (i == nb - 1) {
@@ -42,12 +42,12 @@ export class pJSModes {
         }
     }
 
-    init(p: any) {
+    init(p: pJSParticle) {
         p.opacity_bubble = p.opacity;
         p.radius_bubble = p.radius;
     }
 
-    bubbleParticle(p: any) {
+    bubbleParticle(p: pJSParticle) {
         let pJS = this.pJS;
         let options = pJS.options;
 
@@ -132,7 +132,7 @@ export class pJSModes {
         }
     }
 
-    processBubble(p: any, dist_mouse: number, time_spent: number, bubble_param: any, particles_param: any, p_obj_bubble: any, p_obj: any, id: string) {
+    processBubble(p: pJSParticle, dist_mouse: number, time_spent: number, bubble_param: number, particles_param: number, p_obj_bubble: number | undefined, p_obj: number, id: string) {
         let pJS = this.pJS;
         let options = pJS.options;
 
@@ -174,7 +174,7 @@ export class pJSModes {
         }
     }
 
-    processRepulse(p: any, dx: number, dy: number, force: number) {
+    processRepulse(p: pJSParticle, dx: number, dy: number, force: number) {
         let pJS = this.pJS;
         let options = pJS.options;
 
@@ -197,7 +197,7 @@ export class pJSModes {
         }
     }
 
-    repulseParticle(p: any) {
+    repulseParticle(p: pJSParticle) {
         let pJS = this.pJS;
         let options = pJS.options;
 
@@ -264,7 +264,7 @@ export class pJSModes {
         }
     }
 
-    grabParticle(p: any) {
+    grabParticle(p: pJSParticle) {
         let pJS = this.pJS;
         let options = pJS.options;
 

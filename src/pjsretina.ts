@@ -24,6 +24,7 @@ export class pJSRetina {
 
         pJS.canvas.w = pJS.canvas.el.offsetWidth * pJS.canvas.pxratio;
         pJS.canvas.h = pJS.canvas.el.offsetHeight * pJS.canvas.pxratio;
+        
         options.particles.size.value = options.particles.size.value * pJS.canvas.pxratio;
         options.particles.size.anim.speed = options.particles.size.anim.speed * pJS.canvas.pxratio;
         options.particles.move.speed = options.particles.move.speed * pJS.canvas.pxratio;

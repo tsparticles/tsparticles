@@ -18,13 +18,7 @@ export interface pJS {
     interactivity: {
         el?: HTMLElement | Window,
         status?: string,
-        mouse: {
-            click_pos_x?: number | null,
-            click_pos_y?: number | null,
-            pos_x?: number | null,
-            pos_y?: number | null,
-            click_time?: number
-        }
+        mouse: pJSMouseData
     },
     options: pJSOptions,
     fn?: pJSFunctions,
@@ -37,7 +31,7 @@ export interface pJS {
     repulse_clicking?: boolean,
     img_type?: string,
     source_svg?: string,
-    img_obj?: any,
+    img_obj?: HTMLImageElement,
     count_svg?: number;
     img_error?: boolean
 }
@@ -165,8 +159,39 @@ export interface pJSOptions {
     retina_detect: boolean
 }
 
+export interface pJSColor {
+    rgb?: pJSRgb | null,
+    hsl?: pJSHsl | null
+}
+
 export interface pJSRgb {
     r: number,
     g: number,
     b: number
+}
+
+export interface pJSHsl {
+    h: number,
+    s: number,
+    l: number
+}
+
+export interface pJSParticleImage {
+    src: string,
+    ratio: number
+    obj?: HTMLImageElement,
+    loaded?: boolean
+}
+
+export interface pJSCoordinates {
+    x: number,
+    y: number
+}
+
+export interface pJSMouseData {
+    click_pos_x?: number | null,
+    click_pos_y?: number | null,
+    pos_x?: number | null,
+    pos_y?: number | null,
+    click_time?: number
 }
