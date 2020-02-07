@@ -26,7 +26,7 @@ export class pJSParticle {
     opacity_bubble?: number;
 
     /* --------- pJS functions - particles ----------- */
-    constructor(pJS: pJS, color: { value: string[] | pJSRgb | pJSHsl | string }, opacity: number, position?: pJSCoordinates) {
+    constructor(pJS: pJS, color: { value: string[] | pJSColor | string }, opacity: number, position?: pJSCoordinates) {
         this.pJS = pJS;
         let options = pJS.options;
 
@@ -63,7 +63,8 @@ export class pJSParticle {
         this.color = {};
         if (typeof (color.value) == 'object') {
             if (color.value instanceof Array) {
-                let color_selected = color.value[Math.floor(Math.random() * options.particles.color.value.length)];
+                let arr = options.particles.color.value as string[];
+                let color_selected = color.value[Math.floor(Math.random() * arr.length)];
 
                 this.color.rgb = pJSUtils.hexToRgb(color_selected);
             }

@@ -131,13 +131,13 @@ export class pJSParticles {
                     break;
             }
             /* events */
-            if (pJS.fn && options.interactivity.events.onhover.mode == 'grab') {
+            if (pJS.fn && (options.interactivity.events.onhover.mode == 'grab' || pJSUtils.isInArray('grab', options.interactivity.events.onhover.mode as string[]))) {
                 pJS.fn.modes.grabParticle(p);
             }
-            if (pJS.fn && (options.interactivity.events.onhover.mode == 'bubble' || options.interactivity.events.onclick.mode == 'bubble')) {
+            if (pJS.fn && (options.interactivity.events.onhover.mode == 'bubble' || options.interactivity.events.onclick.mode == 'bubble' || pJSUtils.isInArray('bubble', options.interactivity.events.onhover.mode as string[]) || pJSUtils.isInArray('bubble', options.interactivity.events.onclick.mode as string[]))) {
                 pJS.fn.modes.bubbleParticle(p);
             }
-            if (pJS.fn && (options.interactivity.events.onhover.mode == 'repulse' || options.interactivity.events.onclick.mode == 'repulse')) {
+            if (pJS.fn && (options.interactivity.events.onhover.mode == 'repulse' || options.interactivity.events.onclick.mode == 'repulse' || pJSUtils.isInArray('repulse', options.interactivity.events.onhover.mode as string[]) || pJSUtils.isInArray('repulse', options.interactivity.events.onclick.mode as string[]))) {
                 pJS.fn.modes.repulseParticle(p);
             }
             /* interaction auto between particles */
