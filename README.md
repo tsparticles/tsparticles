@@ -1,5 +1,9 @@
 # TypeScript Particles
 
+## tsparticles
+
+### A lightweight TypeScript library for creating particles
+
 [Particles.js](https://github.com/VincentGarreau/particles.js) converted in TypeScript
 
 | Branch | Build Status |
@@ -23,17 +27,34 @@ npm install tsparticles
 
 ### `Hosting / CDN`
 
-***Please use this host or your own to load particles.js on your projects***
+***Please use this host or your own to load tsparticles on your projects***
 
-<http://www.jsdelivr.com/#!tsparticles>
+[![](https://data.jsdelivr.com/v1/package/npm/tsparticles/badge)](https://www.jsdelivr.com/package/npm/tsparticles)
+
+### `Usage`
+
+Load particles.js and configure the particles:
+
+**index.html**
+
+```html
+<div id="particles-js"></div>
+
+<script src="tsparticles.min.js"></script>
+```
+
+**app.js**
+
+```javascript
+/* particlesJS.load(@dom-id, @path-json, @callback (optional)); */
+particlesJS.load('particles-js', 'assets/particles.json', function() {
+  console.log('callback - particles.js config loaded');
+});
+```
 
 ---
 
 # Original Readme
-
-## particles.js
-
-### A lightweight JavaScript library for creating particles
 
 ---
 
@@ -50,27 +71,6 @@ CodePen demo:
 <http://codepen.io/VincentGarreau/pen/pnlso>
 
 ---
-
-### `Usage`
-
-Load particles.js and configure the particles:
-
-**index.html**
-
-```html
-<div id="particles-js"></div>
-
-<script src="particles.js"></script>
-```
-
-**app.js**
-
-```javascript
-/* particlesJS.load(@dom-id, @path-json, @callback (optional)); */
-particlesJS.load('particles-js', 'assets/particles.json', function() {
-  console.log('callback - particles.js config loaded');
-});
-```
 
 **particles.json**
 
