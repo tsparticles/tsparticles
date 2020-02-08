@@ -23,7 +23,6 @@
       data_css = pJS_GUI_Export.config_demo;
       delete pJS_GUI_Export.config_demo;
       delete pJS_GUI_Export.canvas;
-      delete pJS_GUI_Export.fn;
       delete pJS_GUI_Export.particles.array;
       delete pJS_GUI_Export.interactivity.el;
       delete pJS_GUI_Export.interactivity.mouse;
@@ -44,14 +43,14 @@
       return p.exportConfig('json');
     };
     p.update = async function () {
-      return await pJS_GUI.fn.particles.refresh();
+      return await pJS_GUI.particles.refresh();
     };
     window.gui = new dat.GUI({
       autoPlace: true,
       closed: true,
       width: 340
     });
-    window.pJS_GUI = window.pJSDom()[0].pJS;
+    window.pJS_GUI = window.pJSDom()[0];
     window.page_settings = {
       hide_card: false,
       background_color: '#111',
@@ -98,7 +97,7 @@
     };
     gui.add(pJS_GUI, 'retina_detect').name('retina_detect').onChange(async function (value) {
       console.log(pJS_GUI.retina_detect);
-      pJS_GUI.retina_detect = value;
+      pJS_GUI.options.retina_detect = value;
       return await p.update();
     });
     f.particles.number.add(pJS_GUI.particles.number, 'value', 0, 600).name('value').step(1).onChange(async function (value) {
@@ -340,7 +339,7 @@
         return $('.js-box-bottom').fadeOut(200);
       }
     });
-    gui.add(pJS_GUI.fn.vendors, 'exportImg').name('→ Export image (png)');
+    gui.add(pJS_GUI.vendors, 'exportImg').name('→ Export image (png)');
     gui.add(p, 'exportConfigJSON').name('→ Download current config (json)');
     initPage = function () {
       var box_bottom, config, page, panel;
