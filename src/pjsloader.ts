@@ -3,7 +3,7 @@ import { pJSOptions } from './pjsinterfaces';
 
 'use strict';
 
-var pJSDom: pJSContainer[] = [];
+let pJSDom: pJSContainer[] = [];
 
 export class pJSLoader {
   static pJSDom() {
@@ -21,10 +21,9 @@ export class pJSLoader {
   static load(tag_id: string, params: pJSOptions) {
     /* pJS elements */
     let pJS_tag = document.getElementById(tag_id);
-    let pJS_canvas_class = 'particles-js-canvas-el';
 
     if (pJS_tag) {
-      let exist_canvas = pJS_tag.getElementsByClassName(pJS_canvas_class);
+      let exist_canvas = pJS_tag.getElementsByClassName(pJSConstants.canvasClass);
 
       /* remove canvas if exists into the pJS target tag */
       if (exist_canvas.length) {
@@ -37,7 +36,7 @@ export class pJSLoader {
     /* create canvas element */
     let canvas_el = document.createElement('canvas');
 
-    canvas_el.className = pJS_canvas_class;
+    canvas_el.className = pJSConstants.canvasClass;
 
     /* set size canvas */
     canvas_el.style.width = "100%";
@@ -67,17 +66,17 @@ export class pJSLoader {
 
   static async loadJSON(tag_id: string, path_config_json: string, callback: () => void) {
     /* load json config */
-    let response = await fetch(path_config_json);
+    const response = await fetch(path_config_json);
 
     if (response.ok) {
-      let params = await response.json();
+      const params = await response.json();
 
       pJSLoader.load(tag_id, params);
 
       if (callback)
         callback();
     } else {
-      console.error('Error pJS - fetch status: ' + response.status);
+      console.error(`Error pJS - fetch status: ${response.status}`);
       console.error('Error pJS - File config not found');
     }
   };

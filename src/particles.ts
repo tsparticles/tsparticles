@@ -52,7 +52,7 @@ window.cancelRequestAnimFrame = (function () {
 
 /* ---------- particles.js functions - start ------------ */
 
-window.particlesJS = (tag_id: string = 'particles-js', params: pJSOptions) => {
+window.particlesJS = (tag_id: string, params: pJSOptions) => {
   pJSLoader.load(tag_id, params);
 };
 

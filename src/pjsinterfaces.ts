@@ -19,7 +19,7 @@ export interface pJSOptions {
             value: string | pJSColor | string[]
         },
         shape: {
-            type: string | string[],
+            type: pJSShapeType | pJSShapeType[],
             stroke: {
                 width: number,
                 color: string
@@ -70,10 +70,10 @@ export interface pJSOptions {
         move: {
             enable: boolean,
             speed: number,
-            direction: string,
+            direction: pJSMoveDirection,
             random: boolean,
             straight: boolean,
-            out_mode: string,
+            out_mode: pJSOutMode,
             bounce: boolean,
             attract: {
                 enable: boolean,
@@ -84,11 +84,11 @@ export interface pJSOptions {
         array: []
     },
     interactivity: {
-        detect_on: string,
+        detect_on: pJSInteractivityDetect,
         events: {
             onhover: {
                 enable: boolean,
-                mode: string | string[],
+                mode: pJSHoverMode | pJSHoverMode[],
                 parallax: {
                     enable: boolean,
                     force: number,
@@ -97,7 +97,7 @@ export interface pJSOptions {
             },
             onclick: {
                 enable: boolean,
-                mode: string | string[]
+                mode: pJSClickMode | pJSClickMode[]
             },
             resize: boolean
         },
@@ -164,4 +164,15 @@ export interface pJSMouseData {
     pos_x?: number | null,
     pos_y?: number | null,
     click_time?: number
+}
+
+export interface pJSSvg {
+    source?: string,
+    count: number
+}
+
+export interface pJSImg {
+    type?: string;
+    obj?: HTMLImageElement;
+    error?: boolean;
 }
