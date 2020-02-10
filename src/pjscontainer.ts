@@ -133,7 +133,7 @@ export class pJSContainer {
                         enable: true,
                         mode: pJSHoverMode.grab,
                         parallax: {
-                            enable: true,
+                            enable: false,
                             force: 2,
                             smooth: 10
                         }

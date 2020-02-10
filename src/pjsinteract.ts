@@ -36,20 +36,22 @@ export class pJSInteract {
 
                 if (!pJS.canvas.ctx) return;
 
+                const ctx = pJS.canvas.ctx;
+
                 const color_line = options.particles.line_linked.color_rgb;
 
                 if (color_line) {
-                    pJS.canvas.ctx.strokeStyle = `rgba(${color_line.r},${color_line.g},${color_line.b},${opacity_line})`;
+                    ctx.strokeStyle = `rgba(${color_line.r},${color_line.g},${color_line.b},${opacity_line})`;
                 }
 
-                pJS.canvas.ctx.lineWidth = options.particles.line_linked.width;
+                ctx.lineWidth = options.particles.line_linked.width;
                 //pJS.canvas.ctx.lineCap = 'round'; /* performance issue */
                 /* path */
-                pJS.canvas.ctx.beginPath();
-                pJS.canvas.ctx.moveTo(x1, y1);
-                pJS.canvas.ctx.lineTo(x2, y2);
-                pJS.canvas.ctx.stroke();
-                pJS.canvas.ctx.closePath();
+                ctx.beginPath();
+                ctx.moveTo(x1, y1);
+                ctx.lineTo(x2, y2);
+                ctx.stroke();
+                ctx.closePath();
             }
         }
     }

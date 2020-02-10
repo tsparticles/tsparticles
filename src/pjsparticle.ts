@@ -70,8 +70,7 @@ export class pJSParticle {
                 let color_selected = color.value[Math.floor(Math.random() * arr.length)];
 
                 this.color.rgb = pJSUtils.hexToRgb(color_selected);
-            }
-            else {
+            } else {
 
                 let rgbColor = color.value as pJSRgb;
 

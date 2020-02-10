@@ -10,13 +10,47 @@
 </head>
 <body>
 
+<!-- particles.js container -->
+<div id="particles-js"></div>
+
 <!-- count particles -->
 <div class="count-particles">
   <span class="js-count-particles">--</span> particles
 </div>
 
-<!-- particles.js container -->
-<div id="particles-js"></div>
+
+<div class="box-top">
+  
+  <div class="box-presets">
+    <span class="select-label js-dp-label js-dp-label-presets" data-dp="presets">--</span>
+    <ul id="js-select-preset" class="select-dropdown js-dp-dropdown" data-dp="presets">
+      <li data-val="default">Default</li>
+      <li data-val="test">Test</li>
+      <li data-val="nasa">NASA</li>
+      <li data-val="bubble">Bubble</li>
+      <li data-val="star">Star</li>
+      <li data-val="snow">Snow</li>
+      <li data-val="nyancat">Nyan Cat</li>
+      <li data-val="nyancat2">Nyan Cat 2</li>
+    </ul>
+  </div>
+
+</div>
+
+<div class="box-bottom js-box-bottom">
+    
+  <div class="box-github">
+    <a href="https://github.com/VincentGarreau/particles.js/" target="_blank">
+      <span class="label">particles.js</span>
+      <div class="svg-wrap">
+        <svg class="icon-github">
+          <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-github"></use>
+        </svg>
+      </div>
+    </a>
+  </div>
+
+</div>
 
 <!-- scripts -->
 <script src="../dist/tsparticles.js"></script>

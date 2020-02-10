@@ -29,8 +29,9 @@ export class pJSParticles {
     update() {
         let pJS = this.pJSContainer;
         let options = pJS.options;
+        const arrLength = this.array.length;
 
-        for (let i = 0; i < this.array.length; i++) {
+        for (let i = 0; i < arrLength; i++) {
             /* the particle */
             let p = this.array[i];
             // let d = ( dx = pJS.interactivity.mouse.click_pos_x - p.x ) * dx + ( dy = pJS.interactivity.mouse.click_pos_y - p.y ) * dy;
@@ -156,7 +157,7 @@ export class pJSParticles {
 
             /* interaction auto between particles */
             if (options.particles.line_linked.enable || options.particles.move.attract.enable) {
-                for (let j = i + 1; j < this.array.length; j++) {
+                for (let j = i + 1; j < arrLength; j++) {
                     let p2 = this.array[j];
 
                     /* link particles */
