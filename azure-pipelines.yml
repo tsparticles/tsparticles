@@ -31,11 +31,6 @@ steps:
     command: 'publish'
     publishEndpoint: 'npmjs'
 
-- task: DeleteFiles@1
-  inputs:
-    SourceFolder: '$(Build.ArtifactStagingDirectory)'
-    Contents: '**/*'
-
 - task: CopyFiles@2
   inputs:
     Contents: |
@@ -47,6 +42,6 @@ steps:
 
 - task: PublishBuildArtifacts@1
   inputs:
-    PathtoPublish: ''
+    PathtoPublish: '$(Build.ArtifactStagingDirectory)'
     ArtifactName: 'tsparticles'
     publishLocation: 'Container'
