@@ -151,11 +151,11 @@ export type IParticlesParams = RecursivePartial<{
 		events: {
 			onhover: {
 				enable: boolean;
-				mode: InteractivityMode;
+				mode: InteractivityMode | InteractivityMode[];
 			};
 			onclick: {
 				enable: boolean;
-				mode: InteractivityMode;
+				mode: InteractivityMode | InteractivityMode[];
 			};
 			resize: boolean;
 		};
