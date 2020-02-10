@@ -34,7 +34,7 @@ steps:
 - task: DeleteFiles@1
   inputs:
     SourceFolder: '$(Build.ArtifactStagingDirectory)'
-    Contents: '**'
+    Contents: '**/*'
 
 - task: CopyFiles@2
   inputs:
