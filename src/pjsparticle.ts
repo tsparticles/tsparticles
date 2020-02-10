@@ -56,10 +56,12 @@ export class pJSParticle {
         /* parallax */
         this.offsetX = 0;
         this.offsetY = 0;
+
         /* check position - avoid overlap */
         if (options.particles.move.bounce) {
             this.checkOverlap(position);
         }
+
         /* color */
         this.color = {};
         if (typeof (color.value) == 'object') {
@@ -91,8 +93,7 @@ export class pJSParticle {
                     };
                 }
             }
-        }
-        else if (typeof (color.value) == 'string') {
+        } else if (typeof (color.value) == 'string') {
             if (color.value == 'random') {
                 this.color.rgb = {
                     r: (Math.floor(Math.random() * (255 - 0 + 1)) + 0),
@@ -104,6 +105,7 @@ export class pJSParticle {
                 this.color.rgb = pJSUtils.hexToRgb(color.value);
             }
         }
+
         /* opacity */
         this.opacity = (options.particles.opacity.random ? Math.random() : 1) * options.particles.opacity.value;
         if (options.particles.opacity.anim.enable) {
@@ -113,6 +115,7 @@ export class pJSParticle {
                 this.vo = this.vo * Math.random();
             }
         }
+
         /* animation - velocity for speed */
         let velbase: pJSCoordinates;
 
@@ -158,6 +161,7 @@ export class pJSParticle {
             this.vx = velbase.x + Math.random() - 0.5;
             this.vy = velbase.y + Math.random() - 0.5;
         }
+
         // let theta = 2.0 * Math.PI * Math.random();
 
         // this.vx = Math.cos(theta);
