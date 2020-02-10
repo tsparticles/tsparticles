@@ -241,7 +241,7 @@ export class pJSModes {
                 let repulseRadius = Math.pow(options.interactivity.modes.repulse.distance / 6, 3);
                 let dx = (pJS.interactivity.mouse.click_pos_x || 0) - p.x;
                 let dy = (pJS.interactivity.mouse.click_pos_y || 0) - p.y;
-                let d = Math.sqrt(dx * dx + dy * dy); //TODO: Aggiunto Math.sqrt, vedere cosa cambia
+                let d = dx * dx + dy * dy;
                 let force = -repulseRadius / d; //TODO: * 1?
 
 
