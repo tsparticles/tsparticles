@@ -39,9 +39,6 @@ jspm_packages
 # Typings folder
 typings
 
-# Yarn lock file
-yarn.lock
-
 .DS_Store
 
 lib/particles.js.map
