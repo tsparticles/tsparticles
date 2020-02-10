@@ -1,5 +1,6 @@
 import { pJSLoader } from './pjsloader';
 import { pJSContainer } from './pjscontainer';
+import { pJSInteractivityDetect, pJSClickMode, pJSShapeType } from './pjsenums';
 
 'use strict';
 

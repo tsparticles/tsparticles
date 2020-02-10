@@ -2,6 +2,7 @@ import { pJSUtils } from './pjsutils';
 import { pJSParticle } from './pjsparticle';
 import { pJSMouseData } from './pjsinterfaces';
 import { pJSContainer } from './pjscontainer';
+import { pJSHoverMode, pJSClickMode, pJSProcessBubbleType, pJSOutMode } from './pjsenums';
 
 'use strict';
 

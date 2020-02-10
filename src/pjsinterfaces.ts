@@ -1,5 +1,7 @@
 'use strict';
 
+import { pJSShapeType, pJSMoveDirection, pJSOutMode, pJSInteractivityDetect, pJSHoverMode, pJSClickMode } from "./pjsenums";
+
 export interface pJSContainerInteractivity {
     el?: HTMLElement | Window,
         status?: string,

@@ -1,6 +1,7 @@
 import { pJSUtils } from './pjsutils';
 import { pJSParticleImage, pJSColor, pJSCoordinates, pJSRgb, pJSHsl } from './pjsinterfaces';
 import { pJSContainer } from './pjscontainer';
+import { pJSShapeType, pJSMoveDirection } from './pjsenums';
 
 'use strict';
 

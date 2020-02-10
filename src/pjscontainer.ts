@@ -7,6 +7,7 @@ import { pJSVendors } from './pjsvendors';
 import { pJSRetina } from './pjsretina';
 import { pJSCanvas } from './pjscanvas';
 import { pJSParticles } from './pjsparticles';
+import { pJSShapeType, pJSMoveDirection, pJSOutMode, pJSInteractivityDetect, pJSHoverMode, pJSClickMode } from './pjsenums';
 
 'use strict';
 

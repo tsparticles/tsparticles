@@ -1,6 +1,7 @@
 import { pJSParticle } from './pjsparticle';
 import { pJSUtils } from './pjsutils';
 import { pJSContainer } from './pjscontainer';
+import { pJSOutMode, pJSHoverMode, pJSClickMode } from './pjsenums';
 
 'use strict';
 
