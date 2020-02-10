@@ -31,12 +31,17 @@ steps:
     command: 'publish'
     publishEndpoint: 'npmjs'
 
+- task: DeleteFiles@1
+  inputs:
+    SourceFolder: '$(Build.ArtifactStagingDirectory)'
+    Contents: '**'
+
 - task: CopyFiles@2
   inputs:
     Contents: |
       dist/**
       demo/**
-    TargetFolder: '$(Build.ArtifactStagingDirectory)'
+    TargetFolder: ''
     CleanTargetFolder: true
     OverWrite: true
 
