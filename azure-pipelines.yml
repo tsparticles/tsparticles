@@ -33,9 +33,10 @@ steps:
 
 - task: CopyFiles@2
   inputs:
-    Contents: '**'
+    Contents: |
+      dist/**
+      demo/**
     TargetFolder: '$(Build.ArtifactStagingDirectory)'
-    CleanTargetFolder: true
 
 - task: PublishBuildArtifacts@1
   inputs:
