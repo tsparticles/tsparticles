@@ -150,10 +150,10 @@
       pJS_GUI.options.particles.shape.image.height = value;
       return await p.update();
     });
-    // f.particles.size.add(pJS_GUI.obj, 'size_value', 0, 500).name('value').onChange(async function (value) {
-    //   pJS_GUI.obj.size_value = value;
-    //   return await p.update();
-    // });
+    f.particles.size.add(pJS_GUI.options.particles.size, 'value', 0, 500).name('value').onChange(async function (value) {
+      pJS_GUI.options.particles.size.value = value;
+      return await p.update();
+    });
     f.particles.size.add(pJS_GUI.options.particles.size, 'random').name('random').onChange(async function (value) {
       pJS_GUI.options.particles.size.random = value;
       return await p.update();

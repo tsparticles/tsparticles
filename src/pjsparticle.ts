@@ -269,10 +269,6 @@ export class pJSParticle {
                 break;
 
             case pJSShapeType.heart:
-                console.log(`radius: ${radius}`);
-                console.log(`p.radius_bubble: ${p.radius_bubble}`);
-                console.log(`p.radius: ${p.radius}`);
-
                 let x = p.x - radius / 2;
                 let y = p.y - radius / 2;
 
