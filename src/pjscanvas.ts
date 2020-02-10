@@ -1,4 +1,5 @@
 import { pJSContainer } from './pjscontainer';
+import { pJSConstants } from './pjsconstants';
 
 'use strict';
 
