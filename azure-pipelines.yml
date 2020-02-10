@@ -41,7 +41,7 @@ steps:
     Contents: |
       dist/**
       demo/**
-    TargetFolder: ''
+    TargetFolder: '$(Build.ArtifactStagingDirectory)'
     CleanTargetFolder: true
     OverWrite: true
 
