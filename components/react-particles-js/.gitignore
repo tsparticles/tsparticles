@@ -52,3 +52,5 @@ lib/particles.js.map
 
 /lib
 report.html
+
+package-lock.json
