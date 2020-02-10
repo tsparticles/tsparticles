@@ -1,6 +1,7 @@
 import { pJSUtils } from './pjsutils';
 import { pJSParticleImage, pJSColor, pJSCoordinates, pJSRgb, pJSHsl } from './pjsinterfaces';
 import { pJSContainer } from './pjscontainer';
+import { pJSShapeType, pJSMoveDirection } from './pjsenums';
 
 'use strict';
 
@@ -21,7 +22,7 @@ export class pJSParticle {
     vy: number;
     vx_i: number;
     vy_i: number;
-    shape?: string;
+    shape?: pJSShapeType;
     img?: pJSParticleImage;
     radius_bubble?: number;
     opacity_bubble?: number;
@@ -55,10 +56,12 @@ export class pJSParticle {
         /* parallax */
         this.offsetX = 0;
         this.offsetY = 0;
+
         /* check position - avoid overlap */
         if (options.particles.move.bounce) {
-            pJSContainer.vendors.checkOverlap(this, position);
+            this.checkOverlap(position);
         }
+
         /* color */
         this.color = {};
         if (typeof (color.value) == 'object') {
@@ -67,10 +70,9 @@ export class pJSParticle {
                 let color_selected = color.value[Math.floor(Math.random() * arr.length)];
 
                 this.color.rgb = pJSUtils.hexToRgb(color_selected);
-            }
-            else {
+            } else {
 
-                var rgbColor = color.value as pJSRgb;
+                let rgbColor = color.value as pJSRgb;
 
                 if (rgbColor && rgbColor.r != undefined && rgbColor.g != undefined && rgbColor.b != undefined) {
                     this.color.rgb = {
@@ -80,7 +82,7 @@ export class pJSParticle {
                     };
                 }
 
-                var hslColor = color.value as pJSHsl;
+                let hslColor = color.value as pJSHsl;
 
                 if (hslColor.h != undefined && hslColor.s != undefined && hslColor.l != undefined) {
                     this.color.hsl = {
@@ -90,8 +92,7 @@ export class pJSParticle {
                     };
                 }
             }
-        }
-        else if (typeof (color.value) == 'string') {
+        } else if (typeof (color.value) == 'string') {
             if (color.value == 'random') {
                 this.color.rgb = {
                     r: (Math.floor(Math.random() * (255 - 0 + 1)) + 0),
@@ -103,6 +104,7 @@ export class pJSParticle {
                 this.color.rgb = pJSUtils.hexToRgb(color.value);
             }
         }
+
         /* opacity */
         this.opacity = (options.particles.opacity.random ? Math.random() : 1) * options.particles.opacity.value;
         if (options.particles.opacity.anim.enable) {
@@ -112,32 +114,33 @@ export class pJSParticle {
                 this.vo = this.vo * Math.random();
             }
         }
+
         /* animation - velocity for speed */
         let velbase: pJSCoordinates;
 
         switch (options.particles.move.direction) {
-            case 'top':
+            case pJSMoveDirection.top:
                 velbase = { x: 0, y: -1 };
                 break;
-            case 'top-right':
+            case pJSMoveDirection.topRight:
                 velbase = { x: 0.5, y: -0.5 };
                 break;
-            case 'right':
+            case pJSMoveDirection.right:
                 velbase = { x: 1, y: -0 };
                 break;
-            case 'bottom-right':
+            case pJSMoveDirection.bottomRight:
                 velbase = { x: 0.5, y: 0.5 };
                 break;
-            case 'bottom':
+            case pJSMoveDirection.bottom:
                 velbase = { x: 0, y: 1 };
                 break;
-            case 'bottom-left':
+            case pJSMoveDirection.bottomLeft:
                 velbase = { x: -0.5, y: 1 };
                 break;
-            case 'left':
+            case pJSMoveDirection.left:
                 velbase = { x: -1, y: 0 };
                 break;
-            case 'top-left':
+            case pJSMoveDirection.topLeft:
                 velbase = { x: -0.5, y: -0.5 };
                 break;
             default:
@@ -157,6 +160,7 @@ export class pJSParticle {
             this.vx = velbase.x + Math.random() - 0.5;
             this.vy = velbase.y + Math.random() - 0.5;
         }
+
         // let theta = 2.0 * Math.PI * Math.random();
 
         // this.vx = Math.cos(theta);
@@ -175,7 +179,7 @@ export class pJSParticle {
             this.shape = shape_type;
         }
 
-        if (this.shape == 'image') {
+        if (this.shape == pJSShapeType.image) {
             let sh = options.particles.shape;
             this.img = {
                 src: sh.image.src,
@@ -183,8 +187,8 @@ export class pJSParticle {
             };
             if (!this.img.ratio)
                 this.img.ratio = 1;
-            if (pJSContainer.img_type == 'svg' && pJSContainer.source_svg != undefined) {
-                pJSContainer.vendors.createSvgImg(this);
+            if (pJSContainer.img.type == 'svg' && pJSContainer.svg.source != undefined) {
+                this.createSvgImg();
 
                 if (pJSContainer.pushing) {
                     this.img.loaded = false;
@@ -203,21 +207,20 @@ export class pJSParticle {
 
         if (p.radius_bubble != undefined) {
             radius = p.radius_bubble;
-        }
-        else {
+        } else {
             radius = p.radius;
         }
+
         if (p.opacity_bubble != undefined) {
             opacity = p.opacity_bubble;
-        }
-        else {
+        } else {
             opacity = p.opacity;
         }
+
         if (p.color.rgb) {
-            color_value = 'rgba(' + p.color.rgb.r + ',' + p.color.rgb.g + ',' + p.color.rgb.b + ',' + opacity + ')';
-        }
-        else if (p.color.hsl) {
-            color_value = 'hsla(' + p.color.hsl.h + ',' + p.color.hsl.s + '%,' + p.color.hsl.l + '%,' + opacity + ')';
+            color_value = `rgba(${p.color.rgb.r},${p.color.rgb.g},${p.color.rgb.b},${opacity})`;
+        } else if (p.color.hsl) {
+            color_value = `hsla(${p.color.hsl.h},${p.color.hsl.s}%,${p.color.hsl.l}%,${opacity})`;
         }
 
         if (!pJS.canvas.ctx || !color_value) return;
@@ -228,72 +231,81 @@ export class pJSParticle {
         let p_x = p.x + p.offsetX;
         let p_y = p.y + p.offsetY;
 
+        const ctx = pJS.canvas.ctx;
+
         switch (p.shape) {
-            case 'circle':
-                pJS.canvas.ctx.arc(p_x, p_y, radius, 0, Math.PI * 2, false);
+            case pJSShapeType.circle:
+                ctx.arc(p_x, p_y, radius, 0, Math.PI * 2, false);
                 break;
-            case 'edge':
-            case 'square':
-                pJS.canvas.ctx.rect(p.x - radius, p.y - radius, radius * 2, radius * 2);
+            case pJSShapeType.edge:
+            case pJSShapeType.square:
+                ctx.rect(p.x - radius, p.y - radius, radius * 2, radius * 2);
                 break;
-            case 'triangle':
-                pJS.vendors.drawShape(pJS.canvas.ctx, p.x - radius, p.y + radius / 1.66, radius * 2, 3, 2);
+            case pJSShapeType.triangle:
+                p.drawShape(ctx, p.x - radius, p.y + radius / 1.66, radius * 2, 3, 2);
                 break;
-            case 'polygon':
-                pJS.vendors.drawShape(pJS.canvas.ctx, p.x - radius / (options.particles.shape.polygon.nb_sides / 3.5), // startX
-                    p.y - radius / (2.66 / 3.5), // startY
-                    radius * 2.66 / (options.particles.shape.polygon.nb_sides / 3), // sideLength
-                    options.particles.shape.polygon.nb_sides, // sideCountNumerator
-                    1 // sideCountDenominator
-                );
+            case pJSShapeType.polygon:
+                {
+                    const startX = p.x - radius / (options.particles.shape.polygon.nb_sides / 3.5);
+                    const startY = p.y - radius / (2.66 / 3.5);
+                    const sideLength = radius * 2.66 / (options.particles.shape.polygon.nb_sides / 3);
+                    const sideCountNumerator = options.particles.shape.polygon.nb_sides;
+                    const sideCountDenominator = 1;
+
+                    p.drawShape(ctx, startX, startY, sideLength, sideCountNumerator, sideCountDenominator);
+                }
                 break;
-            case 'star':
-                pJS.vendors.drawShape(pJS.canvas.ctx, p.x - radius * 2 / (options.particles.shape.polygon.nb_sides / 4), // startX
-                    p.y - radius / (2 * 2.66 / 3.5), // startY
-                    radius * 2 * 2.66 / (options.particles.shape.polygon.nb_sides / 3), // sideLength
-                    options.particles.shape.polygon.nb_sides, // sideCountNumerator
-                    2 // sideCountDenominator
-                );
+            case pJSShapeType.star:
+                {
+                    const startX = p.x - radius * 2 / (options.particles.shape.polygon.nb_sides / 4);
+                    const startY = p.y - radius / (2 * 2.66 / 3.5);
+                    const sideLength = radius * 2 * 2.66 / (options.particles.shape.polygon.nb_sides / 3);
+                    const sideCountNumerator = options.particles.shape.polygon.nb_sides;
+                    const sideCountDenominator = 2;
+
+                    p.drawShape(ctx, startX, startY, sideLength, sideCountNumerator, sideCountDenominator);
+                }
                 break;
 
-            case 'heart':
-                var x = p.x - radius / 2;
-                var y = p.y - radius / 2;
+            case pJSShapeType.heart:
+                let x = p.x - radius / 2;
+                let y = p.y - radius / 2;
 
-                pJS.canvas.ctx.moveTo(x, y + radius / 4);
-                pJS.canvas.ctx.quadraticCurveTo(x, y, x + radius / 4, y);
-                pJS.canvas.ctx.quadraticCurveTo(x + radius / 2, y, x + radius / 2, y + radius / 4);
-                pJS.canvas.ctx.quadraticCurveTo(x + radius / 2, y, x + radius * 3 / 4, y);
-                pJS.canvas.ctx.quadraticCurveTo(x + radius, y, x + radius, y + radius / 4);
-                pJS.canvas.ctx.quadraticCurveTo(x + radius, y + radius / 2, x + radius * 3 / 4, y + radius * 3 / 4);
-                pJS.canvas.ctx.lineTo(x + radius / 2, y + radius);
-                pJS.canvas.ctx.lineTo(x + radius / 4, y + radius * 3 / 4);
-                pJS.canvas.ctx.quadraticCurveTo(x, y + radius / 2, x, y + radius / 4);
+                ctx.moveTo(x, y + radius / 4);
+                ctx.quadraticCurveTo(x, y, x + radius / 4, y);
+                ctx.quadraticCurveTo(x + radius / 2, y, x + radius / 2, y + radius / 4);
+                ctx.quadraticCurveTo(x + radius / 2, y, x + radius * 3 / 4, y);
+                ctx.quadraticCurveTo(x + radius, y, x + radius, y + radius / 4);
+                ctx.quadraticCurveTo(x + radius, y + radius / 2, x + radius * 3 / 4, y + radius * 3 / 4);
+                ctx.lineTo(x + radius / 2, y + radius);
+                ctx.lineTo(x + radius / 4, y + radius * 3 / 4);
+                ctx.quadraticCurveTo(x, y + radius / 2, x, y + radius / 4);
+
                 break;
 
-            case 'char':
-            case 'character':
-                pJS.canvas.ctx.font = `${options.particles.shape.character.style} ${options.particles.shape.character.weigth} ${Math.round(radius) * 2}px ${options.particles.shape.character.font}`;
+            case pJSShapeType.char:
+            case pJSShapeType.character:
+                ctx.font = `${options.particles.shape.character.style} ${options.particles.shape.character.weigth} ${Math.round(radius) * 2}px ${options.particles.shape.character.font}`;
                 // if (stroke) {
-                pJS.canvas.ctx.strokeText(options.particles.shape.character.value, this.x - radius / 2, this.y + radius / 2);
+                ctx.strokeText(options.particles.shape.character.value, this.x - radius / 2, this.y + radius / 2);
                 // } else {
-                //     pJS.canvas.ctx.fillText(options.settings.particles.shape.character.value, this.x - radius / 2, this.y + radius / 2);
+                //     ctx.fillText(options.settings.particles.shape.character.value, this.x - radius / 2, this.y + radius / 2);
                 // }
                 break;
 
-            case 'image':
+            case pJSShapeType.image:
                 let img_obj: HTMLImageElement | undefined;
 
-                if (pJS.img_type == 'svg') {
-                    if (p.img)
-                        img_obj = p.img.obj;
+                if (pJS.img.type == 'svg' && p.img) {
+                    img_obj = p.img.obj;
+                } else {
+                    img_obj = pJS.img.obj;
                 }
-                else {
-                    img_obj = pJS.img_obj;
-                }
+
                 if (img_obj) {
-                    this.subDraw(img_obj, radius);
+                    this.subDraw(ctx, img_obj, radius);
                 }
+
                 break;
         }
 
@@ -308,11 +320,97 @@ export class pJSParticle {
         pJS.canvas.ctx.fill();
     }
 
-    subDraw(img_obj: HTMLImageElement, radius: number) {
+    subDraw(ctx: CanvasRenderingContext2D, img_obj: HTMLImageElement, radius: number) {
         let p = this;
-        let pJS = this.pJSContainer;
+        let ratio = 1;
 
-        if (pJS.canvas.ctx && p.img)
-            pJS.canvas.ctx.drawImage(img_obj, p.x - radius, p.y - radius, radius * 2, radius * 2 / p.img.ratio);
+        if (p.img) {
+            ratio = p.img.ratio;
+        }
+
+        ctx.drawImage(img_obj, p.x - radius, p.y - radius, radius * 2, radius * 2 / ratio);
+    }
+
+    drawShape(ctx: CanvasRenderingContext2D, startX: number, startY: number, sideLength: number, sideCountNumerator: number, sideCountDenominator: number) {
+
+        // By Programming Thomas - https://programmingthomas.wordpress.com/2013/04/03/n-sided-shapes/
+        let sideCount = sideCountNumerator * sideCountDenominator;
+        let decimalSides = sideCountNumerator / sideCountDenominator;
+        let interiorAngleDegrees = (180 * (decimalSides - 2)) / decimalSides;
+        let interiorAngle = Math.PI - Math.PI * interiorAngleDegrees / 180; // convert to radians
+
+        ctx.save();
+        ctx.beginPath();
+        ctx.translate(startX, startY);
+        ctx.moveTo(0, 0);
+
+        for (let i = 0; i < sideCount; i++) {
+            ctx.lineTo(sideLength, 0);
+            ctx.translate(sideLength, 0);
+            ctx.rotate(interiorAngle);
+        }
+
+        //c.stroke();
+        ctx.fill();
+        ctx.restore();
+    }
+
+    checkOverlap(position?: pJSCoordinates) {
+        const pJS = this.pJSContainer;
+        const p = this;
+
+        for (const p2 of pJS.particles.array) {
+            let dx = p.x - p2.x;
+            let dy = p.y - p2.y;
+            let dist = Math.sqrt(dx * dx + dy * dy);
+
+            if (dist <= p.radius + p2.radius) {
+                p.x = position ? position.x : Math.random() * pJS.canvas.w;
+                p.y = position ? position.y : Math.random() * pJS.canvas.h;
+
+                p.checkOverlap();
+            }
+        }
+    }
+
+    createSvgImg() {
+        const pJS = this.pJSContainer;
+        const p = this;
+
+        /* set color to svg element */
+        let svgXml = pJS.svg.source;
+
+        if (!svgXml) return;
+
+        let rgbHex = /#([0-9A-F]{3,6})/gi;
+        let coloredSvgXml = svgXml.replace(rgbHex, (substring: string) => {
+            let color_value;
+
+            if (p.color.rgb) {
+                color_value = `rgba(${p.color.rgb.r},${p.color.rgb.g},${p.color.rgb.b},${p.opacity})`;
+            } else if (p.color.hsl) {
+                color_value = `hsla(${p.color.hsl.h},${p.color.hsl.s}%,${p.color.hsl.l}%,${p.opacity})`;
+            }
+
+            return color_value || substring;
+        });
+        /* prepare to create img with colored svg */
+        let svg = new Blob([coloredSvgXml], { type: 'image/svg+xml;charset=utf-8' }), url = URL.createObjectURL(svg);
+        /* create particle img obj */
+        let img = new Image();
+        img.addEventListener('load', () => {
+            if (p.img) {
+                p.img.obj = img;
+                p.img.loaded = true;
+            }
+
+            URL.revokeObjectURL(url);
+
+            if (!pJS.svg.count)
+                pJS.svg.count = 0;
+
+            pJS.svg.count++;
+        });
+        img.src = url;
     }
 }

@@ -18,8 +18,7 @@ export class pJSRetina {
         if (options.retina_detect && window.devicePixelRatio > 1) {
             pJS.canvas.pxratio = window.devicePixelRatio;
             this.isRetina = true;
-        }
-        else {
+        } else {
             pJS.canvas.pxratio = 1;
             this.isRetina = false;
         }

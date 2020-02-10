@@ -1,6 +1,7 @@
 import { pJSParticle } from './pjsparticle';
 import { pJSUtils } from './pjsutils';
 import { pJSContainer } from './pjscontainer';
+import { pJSOutMode, pJSHoverMode, pJSClickMode } from './pjsenums';
 
 'use strict';
 
@@ -19,15 +20,18 @@ export class pJSParticles {
         let options = pJS.options;
 
         for (let i = 0; i < options.particles.number.value; i++) {
-            this.array.push(new pJSParticle(pJS, options.particles.color, options.particles.opacity.value));
+            const p = new pJSParticle(pJS, options.particles.color, options.particles.opacity.value);
+
+            this.array.push(p);
         }
     }
 
     update() {
         let pJS = this.pJSContainer;
         let options = pJS.options;
+        const arrLength = this.array.length;
 
-        for (let i = 0; i < this.array.length; i++) {
+        for (let i = 0; i < arrLength; i++) {
             /* the particle */
             let p = this.array[i];
             // let d = ( dx = pJS.interactivity.mouse.click_pos_x - p.x ) * dx + ( dy = pJS.interactivity.mouse.click_pos_y - p.y ) * dy;
@@ -37,6 +41,7 @@ export class pJSParticles {
             //     p.vx = f * Math.cos(t);
             //     p.vy = f * Math.sin(t);
             // }
+
             /* move the particle */
             if (options.particles.move.enable) {
                 let ms = options.particles.move.speed / 2;
@@ -54,6 +59,7 @@ export class pJSParticles {
 
                 p.offsetY += (tmp_y - p.offsetY) / options.interactivity.events.onhover.parallax.smooth; // Easing equation
             }
+
             /* change opacity status */
             if (options.particles.opacity.anim.enable) {
                 if (p.opacity_status == true) {
@@ -69,6 +75,7 @@ export class pJSParticles {
                 if (p.opacity < 0)
                     p.opacity = 0;
             }
+
             /* change size */
             if (options.particles.size.anim.enable) {
                 if (p.size_status == true) {
@@ -84,10 +91,11 @@ export class pJSParticles {
                 if (p.radius < 0)
                     p.radius = 0;
             }
+            
             /* change particle position if it is out of canvas */
             let new_pos;
 
-            if (options.particles.move.out_mode == 'bounce') {
+            if (options.particles.move.out_mode == pJSOutMode.bounce) {
                 new_pos = {
                     x_left: p.radius,
                     x_right: pJS.canvas.w,
@@ -119,9 +127,10 @@ export class pJSParticles {
                 p.y = new_pos.y_bottom;
                 p.x = Math.random() * pJS.canvas.w;
             }
+
             /* out of canvas modes */
             switch (options.particles.move.out_mode) {
-                case 'bounce':
+                case pJSOutMode.bounce:
                     if ((p.x + p.offsetX) + p.radius > pJS.canvas.w)
                         p.vx = -p.vx;
                     else if ((p.x + p.offsetX) - p.radius < 0)
@@ -132,23 +141,25 @@ export class pJSParticles {
                         p.vy = -p.vy;
                     break;
             }
+
             /* events */
-            if (options.interactivity.events.onhover.mode == 'grab' || pJSUtils.isInArray('grab', options.interactivity.events.onhover.mode as string[])) {
+            if (pJSUtils.isInArray(pJSHoverMode.grab, options.interactivity.events.onhover.mode)) {
                 pJS.modes.grabParticle(p);
             }
 
-            if (options.interactivity.events.onhover.mode == 'bubble' || options.interactivity.events.onclick.mode == 'bubble' || pJSUtils.isInArray('bubble', options.interactivity.events.onhover.mode as string[]) || pJSUtils.isInArray('bubble', options.interactivity.events.onclick.mode as string[])) {
+            if (pJSUtils.isInArray(pJSHoverMode.bubble, options.interactivity.events.onhover.mode) || pJSUtils.isInArray(pJSClickMode.bubble, options.interactivity.events.onclick.mode)) {
                 pJS.modes.bubbleParticle(p);
             }
 
-            if (options.interactivity.events.onhover.mode == 'repulse' || options.interactivity.events.onclick.mode == 'repulse' || pJSUtils.isInArray('repulse', options.interactivity.events.onhover.mode as string[]) || pJSUtils.isInArray('repulse', options.interactivity.events.onclick.mode as string[])) {
+            if (pJSUtils.isInArray(pJSHoverMode.repulse, options.interactivity.events.onhover.mode) || pJSUtils.isInArray(pJSClickMode.repulse, options.interactivity.events.onclick.mode)) {
                 pJS.modes.repulseParticle(p);
             }
 
             /* interaction auto between particles */
             if (options.particles.line_linked.enable || options.particles.move.attract.enable) {
-                for (let j = i + 1; j < this.array.length; j++) {
+                for (let j = i + 1; j < arrLength; j++) {
                     let p2 = this.array[j];
+
                     /* link particles */
                     if (options.particles.line_linked.enable) {
                         pJS.interact.linkParticles(p, p2);
@@ -170,7 +181,6 @@ export class pJSParticles {
 
     draw() {
         let pJS = this.pJSContainer;
-        let options = pJS.options;
 
         /* clear canvas */
         if (pJS.canvas.ctx)
@@ -180,22 +190,17 @@ export class pJSParticles {
         pJS.particles.update();
 
         /* draw each particle */
-        for (let i = 0; i < this.array.length; i++) {
-            let p = this.array[i];
+        for (const p of this.array) {
             p.draw();
         }
     }
 
     empty() {
-        let pJS = this.pJSContainer;
-        let options = pJS.options;
-
         this.array = [];
     }
 
     async refresh() {
         let pJS = this.pJSContainer;
-        let options = pJS.options;
 
         /* init all */
         if (pJS.checkAnimFrame)
@@ -204,10 +209,10 @@ export class pJSParticles {
         if (pJS.drawAnimFrame)
             window.cancelRequestAnimFrame(pJS.drawAnimFrame);
 
-        pJS.source_svg = undefined;
-        pJS.img_obj = undefined;
-        pJS.count_svg = 0;
-        pJS.particles.empty();
+        pJS.svg.source = undefined;
+        pJS.svg.count = 0;
+        pJS.img.obj = undefined;
+        this.empty();
         pJS.canvas.clear();
 
         /* restart */

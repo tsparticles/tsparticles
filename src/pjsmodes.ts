@@ -2,6 +2,7 @@ import { pJSUtils } from './pjsutils';
 import { pJSParticle } from './pjsparticle';
 import { pJSMouseData } from './pjsinterfaces';
 import { pJSContainer } from './pjscontainer';
+import { pJSHoverMode, pJSClickMode, pJSProcessBubbleType, pJSOutMode } from './pjsenums';
 
 'use strict';
 
@@ -14,30 +15,33 @@ export class pJSModes {
 
     /* ---------- pJS functions - modes events ------------ */
     pushParticles(nb: number, pos?: pJSMouseData) {
-        let pJS = this.pJSContainer;
-        let options = pJS.options;
+        const pJS = this.pJSContainer;
+        const options = pJS.options;
 
         pJS.pushing = true;
-        for (let i = 0; i < nb; i++) {
-            pJS.particles.array.push(new pJSParticle(pJS, options.particles.color, options.particles.opacity.value, {
-                'x': pos && pos.pos_x ? pos.pos_x : Math.random() * pJS.canvas.w,
-                'y': pos && pos.pos_y ? pos.pos_y : Math.random() * pJS.canvas.h
-            }));
 
-            if (i == nb - 1) {
-                if (!options.particles.move.enable) {
-                    pJS.particles.draw();
-                }
-                pJS.pushing = false;
-            }
+        for (let i = 0; i < nb; i++) {
+            const p = new pJSParticle(pJS, options.particles.color, options.particles.opacity.value, {
+                x: pos && pos.pos_x ? pos.pos_x : Math.random() * pJS.canvas.w,
+                y: pos && pos.pos_y ? pos.pos_y : Math.random() * pJS.canvas.h
+            });
+
+            pJS.particles.array.push(p);
         }
+
+        if (!options.particles.move.enable) {
+            pJS.particles.draw();
+        }
+
+        pJS.pushing = false;
     }
 
     removeParticles(nb: number) {
-        let pJS = this.pJSContainer;
-        let options = pJS.options;
+        const pJS = this.pJSContainer;
+        const options = pJS.options;
 
         pJS.particles.array.splice(0, nb);
+
         if (!options.particles.move.enable) {
             pJS.particles.draw();
         }
@@ -49,11 +53,11 @@ export class pJSModes {
     }
 
     bubbleParticle(p: pJSParticle) {
-        let pJS = this.pJSContainer;
-        let options = pJS.options;
+        const pJS = this.pJSContainer;
+        const options = pJS.options;
 
         /* on hover event */
-        if (options.interactivity.events.onhover.enable && (options.interactivity.events.onhover.mode == 'bubble' || pJSUtils.isInArray('bubble', options.interactivity.events.onhover.mode as string[]))) {
+        if (options.interactivity.events.onhover.enable && pJSUtils.isInArray(pJSHoverMode.bubble, options.interactivity.events.onhover.mode)) {
             let dx_mouse = (p.x + p.offsetX) - (pJS.interactivity.mouse.pos_x || 0);
             let dy_mouse = (p.y + p.offsetY) - (pJS.interactivity.mouse.pos_y || 0);
             let dist_mouse = Math.sqrt(dx_mouse * dx_mouse + dy_mouse * dy_mouse);
@@ -69,15 +73,13 @@ export class pJSModes {
                             if (size >= 0) {
                                 p.radius_bubble = size;
                             }
-                        }
-                        else {
+                        } else {
                             let dif = p.radius - options.interactivity.modes.bubble.size;
                             let size = p.radius - (dif * ratio);
 
                             if (size > 0) {
                                 p.radius_bubble = size;
-                            }
-                            else {
+                            } else {
                                 p.radius_bubble = 0;
                             }
                         }
@@ -98,17 +100,15 @@ export class pJSModes {
                         }
                     }
                 }
-            }
-            else {
+            } else {
                 this.init(p);
             }
             /* mouseleave */
             if (pJS.interactivity.status == 'mouseleave') {
                 this.init(p);
             }
-        }
-        /* on click event */
-        else if (options.interactivity.events.onclick.enable && (options.interactivity.events.onclick.mode == 'bubble' || pJSUtils.isInArray('bubble', options.interactivity.events.onclick.mode as string[]))) {
+        } else if (options.interactivity.events.onclick.enable && pJSUtils.isInArray(pJSClickMode.bubble, options.interactivity.events.onclick.mode)) {
+            /* on click event */
             let dx_mouse = p.x - (pJS.interactivity.mouse.click_pos_x || 0);
             let dy_mouse = p.y - (pJS.interactivity.mouse.click_pos_y || 0);
             let dist_mouse = Math.sqrt(dx_mouse * dx_mouse + dy_mouse * dy_mouse);
@@ -118,6 +118,7 @@ export class pJSModes {
                 if (time_spent > options.interactivity.modes.bubble.duration) {
                     pJS.bubble_duration_end = true;
                 }
+
                 if (time_spent > options.interactivity.modes.bubble.duration * 2) {
                     pJS.bubble_clicking = false;
                     pJS.bubble_duration_end = false;
@@ -126,16 +127,16 @@ export class pJSModes {
 
             if (pJS.bubble_clicking) {
                 /* size */
-                this.processBubble(p, dist_mouse, time_spent, options.interactivity.modes.bubble.size, options.particles.size.value, p.radius_bubble, p.radius, 'size');
+                this.processBubble(p, dist_mouse, time_spent, options.interactivity.modes.bubble.size, options.particles.size.value, p.radius_bubble, p.radius, pJSProcessBubbleType.size);
                 /* opacity */
-                this.processBubble(p, dist_mouse, time_spent, options.interactivity.modes.bubble.opacity, options.particles.opacity.value, p.opacity_bubble, p.opacity, 'opacity');
+                this.processBubble(p, dist_mouse, time_spent, options.interactivity.modes.bubble.opacity, options.particles.opacity.value, p.opacity_bubble, p.opacity, pJSProcessBubbleType.opacity);
             }
         }
     }
 
-    processBubble(p: pJSParticle, dist_mouse: number, time_spent: number, bubble_param: number, particles_param: number, p_obj_bubble: number | undefined, p_obj: number, id: string) {
-        let pJS = this.pJSContainer;
-        let options = pJS.options;
+    processBubble(p: pJSParticle, dist_mouse: number, time_spent: number, bubble_param: number, particles_param: number, p_obj_bubble: number | undefined, p_obj: number, id: pJSProcessBubbleType) {
+        const pJS = this.pJSContainer;
+        const options = pJS.options;
 
         if (bubble_param != particles_param) {
             if (!pJS.bubble_duration_end) {
@@ -149,28 +150,25 @@ export class pJSModes {
                     if (obj != bubble_param) {
                         let value = p_obj - (time_spent * (p_obj - bubble_param) / options.interactivity.modes.bubble.duration);
 
-                        if (id == 'size')
+                        if (id == pJSProcessBubbleType.size)
                             p.radius_bubble = value;
-                        if (id == 'opacity')
+                        if (id == pJSProcessBubbleType.opacity)
                             p.opacity_bubble = value;
                     }
                 } else {
-                    if (id == 'size')
+                    if (id == pJSProcessBubbleType.size)
                         p.radius_bubble = undefined;
-                    if (id == 'opacity')
+                    if (id == pJSProcessBubbleType.opacity)
                         p.opacity_bubble = undefined;
                 }
-            }
-            else {
-                if (p_obj_bubble != undefined) {
-                    let value_tmp = p_obj - (time_spent * (p_obj - bubble_param) / options.interactivity.modes.bubble.duration), dif = bubble_param - value_tmp;
-                    let value = bubble_param + dif;
+            } else if (p_obj_bubble != undefined) {
+                let value_tmp = p_obj - (time_spent * (p_obj - bubble_param) / options.interactivity.modes.bubble.duration), dif = bubble_param - value_tmp;
+                let value = bubble_param + dif;
 
-                    if (id == 'size')
-                        p.radius_bubble = value;
-                    if (id == 'opacity')
-                        p.opacity_bubble = value;
-                }
+                if (id == pJSProcessBubbleType.size)
+                    p.radius_bubble = value;
+                if (id == pJSProcessBubbleType.opacity)
+                    p.opacity_bubble = value;
             }
         }
     }
@@ -180,13 +178,16 @@ export class pJSModes {
         let options = pJS.options;
 
         let f = Math.atan2(dy, dx);
+
         p.vx = force * Math.cos(f);
         p.vy = force * Math.sin(f);
-        if (options.particles.move.out_mode == 'bounce') {
+
+        if (options.particles.move.out_mode == pJSOutMode.bounce) {
             let pos = {
                 x: p.x + p.vx,
                 y: p.y + p.vy
             };
+
             if (pos.x + p.radius > pJS.canvas.w)
                 p.vx = -p.vx;
             else if (pos.x - p.radius < 0)
@@ -202,7 +203,7 @@ export class pJSModes {
         let pJS = this.pJSContainer;
         let options = pJS.options;
 
-        if (options.interactivity.events.onhover.enable && (options.interactivity.events.onhover.mode == 'repulse'  || pJSUtils.isInArray('repulse', options.interactivity.events.onhover.mode as string[])) && pJS.interactivity.status == 'mousemove') {
+        if (options.interactivity.events.onhover.enable && pJSUtils.isInArray(pJSHoverMode.repulse, options.interactivity.events.onhover.mode) && pJS.interactivity.status == 'mousemove') {
             let dx_mouse = p.x - (pJS.interactivity.mouse.pos_x || 0);
             let dy_mouse = p.y - (pJS.interactivity.mouse.pos_y || 0);
             let dist_mouse = Math.sqrt(dx_mouse * dx_mouse + dy_mouse * dy_mouse);
@@ -214,7 +215,7 @@ export class pJSModes {
                 y: p.y + normVec.y * repulseFactor
             };
 
-            if (options.particles.move.out_mode == 'bounce') {
+            if (options.particles.move.out_mode == pJSOutMode.bounce) {
                 if (pos.x - p.radius > 0 && pos.x + p.radius < pJS.canvas.w)
                     p.x = pos.x;
                 if (pos.y - p.radius > 0 && pos.y + p.radius < pJS.canvas.h)
@@ -223,8 +224,7 @@ export class pJSModes {
                 p.x = pos.x;
                 p.y = pos.y;
             }
-        }
-        else if (options.interactivity.events.onclick.enable && (options.interactivity.events.onclick.mode == 'repulse' || pJSUtils.isInArray('repulse', options.interactivity.events.onclick.mode as string[]))) {
+        } else if (options.interactivity.events.onclick.enable && pJSUtils.isInArray(pJSClickMode.repulse, options.interactivity.events.onclick.mode)) {
             if (!pJS.repulse_finish) {
 
                 if (!pJS.repulse_count)
@@ -236,12 +236,13 @@ export class pJSModes {
                     pJS.repulse_finish = true;
                 }
             }
+
             if (pJS.repulse_clicking) {
                 let repulseRadius = Math.pow(options.interactivity.modes.repulse.distance / 6, 3);
                 let dx = (pJS.interactivity.mouse.click_pos_x || 0) - p.x;
                 let dy = (pJS.interactivity.mouse.click_pos_y || 0) - p.y;
-                let d = dx * dx + dy * dy;
-                let force = -repulseRadius / d * 1;
+                let d = Math.sqrt(dx * dx + dy * dy); //TODO: retry sqrt
+                let force = -repulseRadius / d; //TODO: * 1?
 
 
                 // default
@@ -256,11 +257,9 @@ export class pJSModes {
                 // }else{
                 //   process();
                 // }
-            } else {
-                if (pJS.repulse_clicking == false) {
-                    p.vx = p.vx_i;
-                    p.vy = p.vy_i;
-                }
+            } else if (pJS.repulse_clicking === false) {
+                p.vx = p.vx_i;
+                p.vy = p.vy_i;
             }
         }
     }
@@ -284,7 +283,7 @@ export class pJSModes {
                     let color_line = options.particles.line_linked.color_rgb || { r: 127, g: 127, b: 127 };
 
                     if (pJS.canvas.ctx) {
-                        pJS.canvas.ctx.strokeStyle = 'rgba(' + color_line.r + ',' + color_line.g + ',' + color_line.b + ',' + opacity_line + ')';
+                        pJS.canvas.ctx.strokeStyle = `rgba(${color_line.r},${color_line.g},${color_line.b},${opacity_line})`;
                         pJS.canvas.ctx.lineWidth = options.particles.line_linked.width;
                         //pJS.canvas.ctx.lineCap = 'round'; /* performance issue */
                         /* path */

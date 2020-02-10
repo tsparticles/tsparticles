@@ -1,54 +1,157 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="utf-8">
   <title>particles.js</title>
   <meta name="description" content="particles.js is a lightweight JavaScript library for creating particles.">
   <meta name="author" content="Vincent Garreau" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <meta name="viewport"
+    content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
   <link rel="stylesheet" media="screen" href="css/style.css">
 </head>
+
 <body>
 
-<!-- count particles -->
-<div class="count-particles">
-  <span class="js-count-particles">--</span> particles
-</div>
+  <svg display="none" width="0" height="0" version="1.1" xmlns="http://www.w3.org/2000/svg"
+    xmlns:xlink="http://www.w3.org/1999/xlink">
+    <defs>
+      <symbol id="icon-codepen-button" viewBox="0 0 1523 1024">
+        <title>codepen-button</title>
+        <path class="path1" d="M880.598 461.621h409.431v93.091h-409.431v-93.091z"></path>
+        <path class="path2"
+          d="M1263.802 508.166c-68.092-68.092-100.547-202.744-103.212-296.164 93.353 125.427 214.676 234.818 361.455 296.164-146.779 58.74-262.753 174.749-361.455 296.164 8.014-100.030 32.455-221.455 103.212-296.164v0z">
+        </path>
+        <path class="path3" d="M247.969 462.983v90.383l67.559-45.191-67.559-45.191z"></path>
+        <path class="path4" d="M481.162 397.38v-125.952l-211.579 141.041 94.513 63.226 117.066-78.315z"></path>
+        <path class="path5" d="M746.75 412.469l-211.579-141.041v125.952l117.075 78.315 94.504-63.226z"></path>
+        <path class="path6" d="M269.583 603.872l211.579 141.041v-125.944l-117.066-78.298-94.513 63.2z"></path>
+        <path class="path7" d="M535.171 618.97v125.944l211.579-141.041-94.504-63.2-117.075 78.298z"></path>
+        <path class="path8" d="M508.166 444.289l-95.503 63.886 95.503 63.886 95.511-63.886-95.511-63.886z"></path>
+        <path class="path9"
+          d="M508.166 0c-280.644 0-508.166 227.514-508.166 508.175s227.523 508.166 508.166 508.166c280.661 0 508.175-227.506 508.175-508.166s-227.514-508.175-508.175-508.175v0zM822.374 603.906c0 1.193-0.085 2.361-0.237 3.537-0.059 0.381-0.152 0.779-0.212 1.159-0.144 0.762-0.271 1.523-0.474 2.268-0.118 0.449-0.279 0.88-0.423 1.303-0.212 0.66-0.432 1.32-0.694 1.98-0.178 0.449-0.406 0.88-0.601 1.303-0.288 0.609-0.584 1.21-0.914 1.803-0.237 0.415-0.516 0.829-0.77 1.236-0.364 0.559-0.736 1.109-1.142 1.633-0.296 0.415-0.601 0.796-0.931 1.176-0.423 0.499-0.872 0.99-1.337 1.456-0.355 0.364-0.702 0.728-1.075 1.058-0.491 0.449-1.007 0.88-1.54 1.286-0.398 0.313-0.796 0.626-1.219 0.922-0.161 0.102-0.296 0.228-0.457 0.33l-287.202 191.488c-4.536 3.021-9.749 4.545-14.988 4.545-5.213 0-10.435-1.523-14.979-4.545l-287.194-191.471c-0.152-0.102-0.288-0.228-0.44-0.33-0.423-0.296-0.829-0.609-1.227-0.922-0.525-0.415-1.041-0.846-1.532-1.286-0.372-0.33-0.728-0.694-1.083-1.058-0.474-0.465-0.906-0.956-1.346-1.456-0.313-0.381-0.626-0.762-0.922-1.176-0.398-0.525-0.779-1.075-1.134-1.633-0.271-0.415-0.525-0.829-0.779-1.236-0.33-0.592-0.626-1.193-0.914-1.803-0.203-0.432-0.415-0.863-0.601-1.303-0.262-0.66-0.491-1.32-0.694-1.98-0.152-0.432-0.296-0.863-0.423-1.303-0.195-0.745-0.33-1.506-0.474-2.268-0.068-0.381-0.169-0.779-0.212-1.159-0.161-1.176-0.245-2.344-0.245-3.537v-191.488c0-1.193 0.093-2.361 0.245-3.521 0.051-0.398 0.152-0.779 0.212-1.176 0.144-0.762 0.271-1.523 0.474-2.268 0.127-0.449 0.271-0.88 0.423-1.303 0.203-0.66 0.432-1.32 0.694-1.963 0.186-0.449 0.398-0.889 0.601-1.32 0.288-0.609 0.584-1.21 0.914-1.786 0.245-0.432 0.508-0.846 0.779-1.252 0.355-0.559 0.736-1.109 1.134-1.633 0.296-0.398 0.609-0.796 0.922-1.176 0.44-0.499 0.88-0.99 1.346-1.456 0.355-0.364 0.711-0.728 1.083-1.058 0.491-0.449 0.999-0.88 1.532-1.286 0.398-0.313 0.804-0.626 1.227-0.922 0.152-0.102 0.288-0.228 0.44-0.33l287.211-191.471c9.072-6.051 20.886-6.051 29.958 0l287.202 191.471c0.161 0.102 0.296 0.228 0.457 0.33 0.423 0.296 0.821 0.609 1.219 0.922 0.525 0.415 1.049 0.846 1.54 1.286 0.372 0.33 0.719 0.694 1.075 1.058 0.474 0.465 0.914 0.956 1.337 1.456 0.33 0.381 0.635 0.779 0.931 1.176 0.406 0.525 0.779 1.075 1.142 1.633 0.254 0.415 0.525 0.829 0.77 1.252 0.33 0.575 0.626 1.176 0.914 1.786 0.195 0.432 0.423 0.88 0.601 1.32 0.262 0.643 0.482 1.303 0.694 1.963 0.144 0.432 0.305 0.863 0.423 1.303 0.195 0.745 0.33 1.506 0.474 2.268 0.068 0.398 0.161 0.779 0.212 1.176 0.161 1.159 0.237 2.327 0.237 3.521v191.471h-0.008z">
+        </path>
+        <path class="path10" d="M768.372 553.366v-90.383l-67.55 45.191 67.55 45.191z"></path>
+      </symbol>
+      <symbol id="icon-download" viewBox="0 0 1024 1024">
+        <title>download</title>
+        <path class="path1"
+          d="M1024 512c0-282.77-229.23-512-512-512s-512 229.23-512 512 229.23 512 512 512 512-229.23 512-512zM96 512c0-229.75 186.25-416 416-416s416 186.25 416 416-186.25 416-416 416-416-186.25-416-416zM557.254 813.256l256-256.002c24.994-24.992 24.994-65.514 0-90.508s-65.516-24.994-90.51 0l-146.744 146.744v-357.49c0-35.346-28.654-64-64-64s-64 28.654-64 64v357.49l-146.744-146.746c-24.994-24.994-65.518-24.994-90.512 0-12.496 12.498-18.744 28.878-18.744 45.256s6.248 32.758 18.744 45.254l256 256.002c24.994 24.992 65.518 24.992 90.51 0z">
+        </path>
+      </symbol>
+      <symbol id="icon-github" viewBox="0 0 1024 1024">
+        <title>github</title>
+        <path class="path1"
+          d="M512 0c-282.77 0-512 229.23-512 512s229.23 512 512 512 512-229.23 512-512-229.23-512-512-512zM816.056 816.056c-39.518 39.516-85.512 70.532-136.708 92.186-13.006 5.5-26.214 10.328-39.6 14.492v-76.734c0-40.334-13.834-70-41.5-89 17.334-1.666 33.25-4 47.75-7s29.834-7.334 46-13 30.666-12.416 43.5-20.25 25.166-18 37-30.5 21.75-26.666 29.75-42.5 14.334-34.834 19-57 7-46.584 7-73.25c0-51.666-16.834-95.666-50.5-132 15.334-40 13.666-83.5-5-130.5l-12.5-1.5c-8.666-1-24.25 2.666-46.75 11s-47.75 22-75.75 41c-39.666-11-80.834-16.5-123.5-16.5-43 0-84 5.5-123 16.5-17.666-12-34.416-21.916-50.25-29.75s-28.5-13.166-38-16-18.334-4.584-26.5-5.25-13.416-0.834-15.75-0.5-4 0.666-5 1c-18.666 47.334-20.334 90.834-5 130.5-33.666 36.334-50.5 80.334-50.5 132 0 26.666 2.334 51.084 7 73.25s11 41.166 19 57 17.916 30 29.75 42.5 24.166 22.666 37 30.5 27.334 14.584 43.5 20.25 31.5 10 46 13 30.416 5.334 47.75 7c-27.334 18.666-41 48.334-41 89v78.23c-15.098-4.494-29.98-9.804-44.6-15.988-51.194-21.654-97.188-52.67-136.706-92.186-39.516-39.518-70.534-85.512-92.186-136.708-22.398-52.958-33.756-109.262-33.756-167.348s11.358-114.39 33.758-167.35c21.654-51.194 52.67-97.188 92.186-136.706s85.512-70.534 136.706-92.186c52.96-22.4 109.264-33.758 167.35-33.758s114.39 11.358 167.35 33.758c51.196 21.654 97.19 52.67 136.708 92.186 39.516 39.516 70.532 85.512 92.186 136.706 22.398 52.96 33.756 109.264 33.756 167.35s-11.358 114.39-33.758 167.35c-21.654 51.194-52.67 97.19-92.186 136.706z">
+        </path>
+      </symbol>
+    </defs>
+  </svg>
 
-<!-- particles.js container -->
-<div id="particles-js"></div>
+  <!-- panel -->
+  <div class="panel">
+    <h1>particles.js</h1>
+    <span class="r-version">v1.1.1</span>
+    <h2>A lightweight JavaScript library for creating particles</h2>
+    <ul>
+      <li>
+        <a href="https://github.com/matteobruni/tsparticles/" target="_blank">
+          <span class="label">GitHub</span>
+          <div class="svg-wrap">
+            <svg class="icon-github">
+              <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-github"></use>
+            </svg>
+          </div>
+        </a>
+      </li>
+      <li>
+        <a download href="https://github.com/matteobruni/tsparticles/archive/master.zip">
+          <span class="label">Download</span>
+          <div class="svg-wrap">
+            <svg class="icon-download">
+              <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-download"></use>
+            </svg>
+          </div>
+        </a>
+      </li>
+    </ul>
 
-<!-- scripts -->
-<script src="../dist/tsparticles.js"></script>
-<script src="js/lib/stats.js"></script>
-<script src="js/lib/dat.gui.js"></script>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
-<script src="js/gui.js"></script>
-<script src="js/app.js"></script>
+  </div>
 
-<!-- stats.js -->
-<script>
-  function getStats(){
-    var count_particles, stats, update;
-    stats = new Stats;
-    stats.setMode(0);
-    stats.domElement.style.position = 'absolute';
-    stats.domElement.style.left = '0px';
-    stats.domElement.style.top = '0px';
-    document.body.appendChild(stats.domElement);
-    count_particles = document.querySelector('.js-count-particles');
-    update = function() {
-      stats.begin();
-      stats.end();
-      if (window.pJSDom[0].pJS.particles && window.pJSDom[0].pJS.particles.array) {
-        count_particles.innerText = window.pJSDom[0].pJS.particles.array.length;
-      }
+  <!-- particles.js container -->
+  <div id="particles-js"></div>
+
+  <!-- count particles -->
+  <div class="count-particles">
+    <span class="js-count-particles">--</span> particles
+  </div>
+
+
+  <div class="box-top">
+
+    <div class="box-presets">
+      <span class="select-label js-dp-label js-dp-label-presets" data-dp="presets">--</span>
+      <ul id="js-select-preset" class="select-dropdown js-dp-dropdown" data-dp="presets">
+        <li data-val="default">Default</li>
+        <li data-val="test">Test</li>
+        <li data-val="nasa">NASA</li>
+        <li data-val="bubble">Bubble</li>
+        <li data-val="star">Star</li>
+        <li data-val="snow">Snow</li>
+        <li data-val="nyancat">Nyan Cat</li>
+        <li data-val="nyancat2">Nyan Cat 2</li>
+      </ul>
+    </div>
+
+  </div>
+
+  <div class="box-bottom js-box-bottom">
+
+    <div class="box-github">
+      <a href="https://github.com/matteobruni/tsparticles/" target="_blank">
+        <span class="label">tsparticles</span>
+        <div class="svg-wrap">
+          <svg class="icon-github">
+            <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-github"></use>
+          </svg>
+        </div>
+      </a>
+    </div>
+
+  </div>
+
+  <!-- scripts -->
+  <script src="../dist/tsparticles.js"></script>
+  <script src="js/lib/stats.js"></script>
+  <script src="js/lib/dat.gui.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+  <script src="js/gui.js"></script>
+  <script src="js/app.js"></script>
+
+  <!-- stats.js -->
+  <script>
+    function getStats() {
+      var count_particles, stats, update;
+      stats = new Stats;
+      stats.setMode(0);
+      stats.domElement.style.position = 'absolute';
+      stats.domElement.style.left = '0px';
+      stats.domElement.style.top = '0px';
+      document.body.appendChild(stats.domElement);
+      count_particles = document.querySelector('.js-count-particles');
+      update = function () {
+        stats.begin();
+        stats.end();
+        if (window.pJSDom()[0].particles.array) {
+          count_particles.innerText = window.pJSDom()[0].particles.array.length;
+        }
+        requestAnimationFrame(update);
+      };
       requestAnimationFrame(update);
-    };
-    requestAnimationFrame(update);
-  }
-  if(window.pJSDom()[0]) getStats();
-</script>
+    }
+    if (window.pJSDom()[0]) getStats();
+  </script>
 
 </body>
+
 </html>

@@ -30,3 +30,18 @@ steps:
   inputs:
     command: 'publish'
     publishEndpoint: 'npmjs'
+
+- task: CopyFiles@2
+  inputs:
+    Contents: |
+      dist/**
+      demo/**
+    TargetFolder: '$(Build.ArtifactStagingDirectory)'
+    CleanTargetFolder: true
+    OverWrite: true
+
+- task: PublishBuildArtifacts@1
+  inputs:
+    PathtoPublish: '$(Build.ArtifactStagingDirectory)'
+    ArtifactName: 'tsparticles'
+    publishLocation: 'Container'

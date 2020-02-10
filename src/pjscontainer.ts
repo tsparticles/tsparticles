@@ -1,12 +1,13 @@
 
 import { pJSUtils } from './pjsutils';
-import { pJSOptions, pJSContainerInteractivity } from './pjsinterfaces';
+import { pJSOptions, pJSContainerInteractivity, pJSSvg, pJSImg } from './pjsinterfaces';
 import { pJSInteract } from './pjsinteract';
 import { pJSModes } from './pjsmodes';
 import { pJSVendors } from './pjsvendors';
 import { pJSRetina } from './pjsretina';
 import { pJSCanvas } from './pjscanvas';
 import { pJSParticles } from './pjsparticles';
+import { pJSShapeType, pJSMoveDirection, pJSOutMode, pJSInteractivityDetect, pJSHoverMode, pJSClickMode } from './pjsenums';
 
 'use strict';
 
@@ -28,11 +29,8 @@ export class pJSContainer {
     repulse_finish?: boolean;
     repulse_count?: number;
     repulse_clicking?: boolean;
-    img_type?: string;
-    source_svg?: string;
-    img_obj?: HTMLImageElement;
-    count_svg?: number;
-    img_error?: boolean;
+    svg: pJSSvg;
+    img: pJSImg;
 
     constructor(tag_id: string, params: pJSOptions) {
         this.interact = new pJSInteract(this);
@@ -45,6 +43,13 @@ export class pJSContainer {
         this.interactivity = {
             mouse: {}
         };
+
+        this.svg = {
+            source: undefined,
+            count: 0
+        };
+
+        this.img = {};
 
         this.options = {
             particles: {
@@ -59,7 +64,7 @@ export class pJSContainer {
                     value: '#fff'
                 },
                 shape: {
-                    type: 'circle',
+                    type: pJSShapeType.circle,
                     stroke: {
                         width: 0,
                         color: '#ff0000'
@@ -108,10 +113,10 @@ export class pJSContainer {
                 move: {
                     enable: true,
                     speed: 2,
-                    direction: 'none',
+                    direction: pJSMoveDirection.none,
                     random: false,
                     straight: false,
-                    out_mode: 'out',
+                    out_mode: pJSOutMode.out,
                     bounce: false,
                     attract: {
                         enable: false,
@@ -122,20 +127,20 @@ export class pJSContainer {
                 array: []
             },
             interactivity: {
-                detect_on: 'canvas',
+                detect_on: pJSInteractivityDetect.canvas,
                 events: {
                     onhover: {
                         enable: true,
-                        mode: 'grab',
+                        mode: pJSHoverMode.grab,
                         parallax: {
-                            enable: true,
+                            enable: false,
                             force: 2,
                             smooth: 10
                         }
                     },
                     onclick: {
                         enable: true,
-                        mode: 'push'
+                        mode: pJSClickMode.push
                     },
                     resize: true
                 },
