@@ -37,6 +37,8 @@ steps:
       dist/**
       demo/**
     TargetFolder: '$(Build.ArtifactStagingDirectory)'
+    CleanTargetFolder: true
+    OverWrite: true
 
 - task: PublishBuildArtifacts@1
   inputs:
