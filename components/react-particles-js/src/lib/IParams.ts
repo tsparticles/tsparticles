@@ -6,6 +6,18 @@ export interface ICanvasParam {
 	ctx?: CanvasRenderingContext2D;
 }
 
+export type RGB = {
+	r: number;
+	g: number;
+	b: number;
+};
+
+export type HSL = {
+	h: number;
+	s: number;
+	l: number;
+};
+
 export enum ShapeType {
 	CIRCLE = "circle",
 	EDGE = "edge",
@@ -110,8 +122,10 @@ export interface IParticleSizeDefinition {
 	};
 }
 
+export type ParticleColorValueType = string | string[] | RGB | HSL | 'random';
+
 export interface IParticleColorDefinition {
-	value: any;
+	value: ParticleColorValueType;
 }
 
 export interface IParticleOpacityDefinition {

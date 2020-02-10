@@ -43,6 +43,18 @@ declare interface IImageDefinition {
 	height?: number;
 }
 
+type RGB = {
+	r: number;
+	g: number;
+	b: number;
+};
+
+type HSL = {
+	h: number;
+	s: number;
+	l: number;
+};
+
 type PolygonType = "inline" | "inside" | "outside";
 
 type PolygonInlineArrangementType =
@@ -85,7 +97,7 @@ export type IParticlesParams = RecursivePartial<{
 			};
 		};
 		color: {
-			value: string;
+			value: string | string[] | RGB | HSL | 'random';
 		};
 		shape: {
 			type: ShapeType | ShapeType[];

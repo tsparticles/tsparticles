@@ -1,3 +1,5 @@
+import { HSL, RGB, ParticleColorValueType } from "./IParams";
+
 export type TPoint = {
 	x: number;
 	y: number;
@@ -7,18 +9,6 @@ export interface IParsedColor {
 	hsl?: HSL;
 	rgb?: RGB;
 }
-
-export type RGB = {
-	r: number;
-	g: number;
-	b: number;
-};
-
-export type HSL = {
-	h: number;
-	s: number;
-	l: number;
-};
 
 export const hexToRgb: (hex: string) => RGB = hex => {
 	let shorthandRegex = /^#?([a-f\d])([a-f\d])([a-f\d])$/i;
@@ -95,7 +85,19 @@ export const deepAssign = (destination: any, ...sources: any[]) => {
 	return destination;
 };
 
-export const getColor: (colorObject: any) => IParsedColor = colorObject => {
+const isRGB = (color: ParticleColorValueType): color is RGB =>
+	typeof(color) === 'object' &&
+	('r' in color) &&
+	('g' in color) &&
+	('b' in color);
+
+const isHSL = (color: ParticleColorValueType): color is HSL =>
+	typeof(color) === 'object' &&
+	('h' in color) &&
+	('s' in color) &&
+	('l' in color);
+
+export const getColor: (colorObject: ParticleColorValueType) => IParsedColor = colorObject => {
 	let color: { rgb?: RGB; hsl?: HSL } = {};
 	if (typeof colorObject == "object") {
 		if (colorObject instanceof Array) {
@@ -103,14 +105,12 @@ export const getColor: (colorObject: any) => IParsedColor = colorObject => {
 				colorObject[Math.floor(Math.random() * colorObject.length)];
 			color.rgb = hexToRgb(selectedColor);
 		} else {
-			let { r, g, b } = colorObject;
-			if (r !== undefined && g !== undefined && b !== undefined) {
+			if (isRGB(colorObject)) {
+				let { r, g, b } = colorObject;
 				color.rgb = { r, g, b };
-			} else {
+			} else if (isHSL(colorObject)) {
 				let { h, s, l } = colorObject;
-				if (h !== undefined && g !== undefined && b !== undefined) {
-					color.hsl = { h, s, l };
-				}
+				color.hsl = { h, s, l };
 			}
 		}
 	} else if (colorObject == "random") {
