@@ -30,3 +30,9 @@ steps:
   inputs:
     command: 'publish'
     publishEndpoint: 'npmjs'
+
+- task: PublishBuildArtifacts@1
+  inputs:
+    PathtoPublish: '$(Build.ArtifactStagingDirectory)'
+    ArtifactName: 'tsparticles'
+    publishLocation: 'Container'
