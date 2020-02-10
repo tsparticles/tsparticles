@@ -310,10 +310,10 @@
       pJS_GUI.options.interactivity.modes.bubble.duration = value;
       return await p.update();
     });
-    // fm.repulse.add(pJS_GUI.obj, 'mode_repulse_distance', 0, 1000).name('distance').onChange(async function (value) {
-    //   pJS_GUI.obj.mode_repulse_distance = value;
-    //   return await p.update();
-    // });
+    fm.repulse.add(pJS_GUI.options.interactivity.modes.repulse, 'distance', 0, 1000).name('distance').onChange(async function (value) {
+      pJS_GUI.options.interactivity.modes.repulse.distance = value;
+      return await p.update();
+    });
     gui_f.pagecss.addColor(pJS_GUI.options.config_demo, 'background_color').name('background-color').onChange(function (value) {
       return $('#particles-js').css('background-color', value);
     });
