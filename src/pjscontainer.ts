@@ -27,26 +27,6 @@ export class pJSContainer {
     svg: pJSSvg;
     img: pJSImg;
 
-    static readonly requestFrameFunction = (function () {
-        return window.requestAnimationFrame ||
-            window.webkitRequestAnimationFrame ||
-            window.mozRequestAnimationFrame ||
-            window.oRequestAnimationFrame ||
-            window.msRequestAnimationFrame ||
-            function (callback: () => void) {
-                window.setTimeout(callback, 1000 / 60);
-            };
-    })();
-
-    static readonly cancelAnimationFunction = (function () {
-        return window.cancelAnimationFrame ||
-            window.webkitCancelRequestAnimationFrame ||
-            window.mozCancelRequestAnimationFrame ||
-            window.oCancelRequestAnimationFrame ||
-            window.msCancelRequestAnimationFrame ||
-            clearTimeout
-    })();
-
     constructor(tag_id: string, params: pJSOptions) {
         this.retina = new pJSRetina(this);
         this.canvas = new pJSCanvas(this, tag_id);
@@ -228,11 +208,21 @@ export class pJSContainer {
     }
 
     requestFrame(callback: FrameRequestCallback) {
-        return pJSContainer.requestFrameFunction(callback);
+        const fps_limit = this.options.fps_limit;
+        
+        return window.requestAnimFrame((timestamp) => {
+            if (fps_limit <= 0) {
+                callback(timestamp);
+            } else {
+                setTimeout(() => {
+                    callback(timestamp);
+                }, 1000 / fps_limit);
+            }
+        });
     }
 
     cancelAnimation(handle: number) {
-        return pJSContainer.cancelAnimationFunction(handle);
+        return window.cancelAnimationFrame(handle);
     }
 
     draw() {
