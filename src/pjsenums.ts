@@ -8,7 +8,8 @@ export enum pJSShapeType {
     square = 'square',
     heart = 'heart',
     char = 'char',
-    character = 'character'
+    character = 'character',
+    line = "line"
 }
 
 export enum pJSMoveDirection {

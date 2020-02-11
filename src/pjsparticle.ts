@@ -244,6 +244,14 @@ export class pJSParticle {
         const ctx = pJS.canvas.ctx;
 
         switch (this.shape) {
+            case pJSShapeType.line:
+                ctx.moveTo(this.x, this.y)
+                ctx.lineTo(this.x, this.y+radius)
+                ctx.strokeStyle = options.particles.shape.stroke.color;
+                ctx.lineWidth = options.particles.shape.stroke.width;
+                ctx.stroke();
+              break;
+       
             case pJSShapeType.circle:
                 ctx.arc(p_x, p_y, radius, 0, Math.PI * 2, false);
                 break;
