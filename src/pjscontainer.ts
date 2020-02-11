@@ -27,6 +27,26 @@ export class pJSContainer {
     svg: pJSSvg;
     img: pJSImg;
 
+    static readonly requestFrameFunction = (function () {
+        return window.requestAnimationFrame ||
+            window.webkitRequestAnimationFrame ||
+            window.mozRequestAnimationFrame ||
+            window.oRequestAnimationFrame ||
+            window.msRequestAnimationFrame ||
+            function (callback: () => void) {
+                window.setTimeout(callback, 1000 / 60);
+            };
+    })();
+
+    static readonly cancelAnimationFunction = (function () {
+        return window.cancelAnimationFrame ||
+            window.webkitCancelRequestAnimationFrame ||
+            window.mozCancelRequestAnimationFrame ||
+            window.oCancelRequestAnimationFrame ||
+            window.msCancelRequestAnimationFrame ||
+            clearTimeout
+    })();
+
     constructor(tag_id: string, params: pJSOptions) {
         this.retina = new pJSRetina(this);
         this.canvas = new pJSCanvas(this, tag_id);
@@ -207,6 +227,14 @@ export class pJSContainer {
         }
     }
 
+    requestFrame(callback: FrameRequestCallback) {
+        return pJSContainer.requestFrameFunction(callback);
+    }
+
+    cancelAnimation(handle: number) {
+        return pJSContainer.cancelAnimationFunction(handle);
+    }
+
     draw() {
         if (this.options.particles.shape.type == pJSShapeType.image) {
             if (this.img.type == 'svg') {
@@ -214,35 +242,33 @@ export class pJSContainer {
                     this.particles.draw();
 
                     if (!this.options.particles.move.enable) {
-                        window.cancelRequestAnimFrame(this.drawAnimFrame);
+                        this.cancelAnimation(this.drawAnimFrame);
                     } else {
-                        this.drawAnimFrame = window.requestAnimFrame(() => {
+                        this.drawAnimFrame = this.requestFrame(() => {
                             this.draw();
                         });
                     }
-                }
-                else {
+                } else {
                     if (!this.img.error) {
-                        this.drawAnimFrame = window.requestAnimFrame(() => {
+                        this.drawAnimFrame = this.requestFrame(() => {
                             this.draw();
                         });
                     }
                 }
-            }
-            else {
+            } else {
                 if (this.img.obj != undefined) {
                     this.particles.draw();
 
-                    if (this.drawAnimFrame !== undefined && !this.options.particles.move.enable)
-                        window.cancelRequestAnimFrame(this.drawAnimFrame);
-                    else
-                        this.drawAnimFrame = window.requestAnimFrame(() => {
+                    if (this.drawAnimFrame !== undefined && !this.options.particles.move.enable) {
+                        this.cancelAnimation(this.drawAnimFrame);
+                    } else {
+                        this.drawAnimFrame = this.requestFrame(() => {
                             this.draw();
                         });
-                }
-                else {
+                    }
+                } else {
                     if (!this.img.error) {
-                        this.drawAnimFrame = window.requestAnimFrame(() => {
+                        this.drawAnimFrame = this.requestFrame(() => {
                             this.draw();
                         });
                     }
@@ -253,10 +279,10 @@ export class pJSContainer {
 
             if (!this.options.particles.move.enable) {
                 if (this.drawAnimFrame !== undefined) {
-                    window.cancelRequestAnimFrame(this.drawAnimFrame);
+                    this.cancelAnimation(this.drawAnimFrame);
                 }
             } else {
-                this.drawAnimFrame = window.requestAnimFrame(() => {
+                this.drawAnimFrame = this.requestFrame(() => {
                     this.draw();
                 });
             }
@@ -267,22 +293,22 @@ export class pJSContainer {
         // if shape is image
         if (this.options.particles.shape.type == pJSShapeType.image) {
             if (this.img.type == 'svg' && this.svg.source == undefined) {
-                this.checkAnimFrame = window.requestAnimFrame(() => {
+                this.checkAnimFrame = this.requestFrame(() => {
                     //TODO: Questo check non è da nessuna parte
                     //check();
                 });
             }
             else {
-                if (this.checkAnimFrame)
-                    window.cancelRequestAnimFrame(this.checkAnimFrame);
+                if (this.checkAnimFrame) {
+                    this.cancelAnimation(this.checkAnimFrame);
+                }
 
                 if (!this.img.error) {
                     this.init();
                     this.draw();
                 }
             }
-        }
-        else {
+        } else {
             this.init();
             this.draw();
         }

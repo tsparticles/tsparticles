@@ -240,10 +240,10 @@ export class pJSParticles {
 
         /* init all */
         if (pJS.checkAnimFrame)
-            window.cancelRequestAnimFrame(pJS.checkAnimFrame);
+            pJS.cancelAnimation(pJS.checkAnimFrame);
 
         if (pJS.drawAnimFrame)
-            window.cancelRequestAnimFrame(pJS.drawAnimFrame);
+            pJS.cancelAnimation(pJS.drawAnimFrame);
 
         pJS.svg.source = undefined;
         pJS.svg.count = 0;
