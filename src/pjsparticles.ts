@@ -2,12 +2,14 @@ import { pJSParticle } from './pjsparticle';
 import { pJSUtils } from './pjsutils';
 import { pJSContainer } from './pjscontainer';
 import { pJSOutMode, pJSHoverMode, pJSClickMode } from './pjsenums';
+import { pJSMouseData } from './pjsinterfaces';
 
 'use strict';
 
 export class pJSParticles {
     pJSContainer: pJSContainer;
     array: pJSParticle[];
+    pushing?: boolean;
 
     constructor(pJSContainer: pJSContainer) {
         this.pJSContainer = pJSContainer;
@@ -144,15 +146,15 @@ export class pJSParticles {
 
             /* events */
             if (pJSUtils.isInArray(pJSHoverMode.grab, options.interactivity.events.onhover.mode)) {
-                pJS.modes.grabParticle(p);
+                p.grab();
             }
 
             if (pJSUtils.isInArray(pJSHoverMode.bubble, options.interactivity.events.onhover.mode) || pJSUtils.isInArray(pJSClickMode.bubble, options.interactivity.events.onclick.mode)) {
-                pJS.modes.bubbleParticle(p);
+                p.bubble();
             }
 
             if (pJSUtils.isInArray(pJSHoverMode.repulse, options.interactivity.events.onhover.mode) || pJSUtils.isInArray(pJSClickMode.repulse, options.interactivity.events.onclick.mode)) {
-                pJS.modes.repulseParticle(p);
+                p.repulse();
             }
 
             /* interaction auto between particles */
@@ -162,17 +164,17 @@ export class pJSParticles {
 
                     /* link particles */
                     if (options.particles.line_linked.enable) {
-                        pJS.interact.linkParticles(p, p2);
+                        p.link(p2);
                     }
 
                     /* attract particles */
                     if (options.particles.move.attract.enable) {
-                        pJS.interact.attractParticles(p, p2);
+                        p.attract(p2);
                     }
 
                     /* bounce particles */
                     if (options.particles.move.bounce) {
-                        pJS.interact.bounceParticles(p, p2);
+                        p.bounce(p2);
                     }
                 }
             }
@@ -199,6 +201,40 @@ export class pJSParticles {
         this.array = [];
     }
 
+    remove(nb: number) {
+        var pJS = this.pJSContainer;
+        var options = pJS.options;
+
+        this.array.splice(0, nb);
+
+        if (!options.particles.move.enable) {
+            this.draw();
+        }
+    }
+
+    /* ---------- pJS functions - modes events ------------ */
+    push(nb: number, pos?: pJSMouseData) {
+        const pJS = this.pJSContainer;
+        const options = pJS.options;
+
+        this.pushing = true;
+
+        for (let i = 0; i < nb; i++) {
+            const p = new pJSParticle(pJS, options.particles.color, options.particles.opacity.value, {
+                x: pos && pos.pos_x ? pos.pos_x : Math.random() * pJS.canvas.w,
+                y: pos && pos.pos_y ? pos.pos_y : Math.random() * pJS.canvas.h
+            });
+
+            this.array.push(p);
+        }
+
+        if (!options.particles.move.enable) {
+            this.draw();
+        }
+
+        this.pushing = false;
+    }
+
     async refresh() {
         let pJS = this.pJSContainer;
 
@@ -212,10 +248,12 @@ export class pJSParticles {
         pJS.svg.source = undefined;
         pJS.svg.count = 0;
         pJS.img.obj = undefined;
+
         this.empty();
+        
         pJS.canvas.clear();
 
         /* restart */
-        await pJS.vendors.start();
+        await pJS.start();
     }
 }

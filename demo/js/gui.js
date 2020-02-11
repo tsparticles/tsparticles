@@ -338,7 +338,7 @@
         return $('.js-box-bottom').fadeOut(200);
       }
     });
-    gui.add(pJS_GUI.vendors, 'exportImg').name('→ Export image (png)');
+    gui.add(pJS_GUI, 'exportImg').name('→ Export image (png)');
     gui.add(p, 'exportConfigJSON').name('→ Download current config (json)');
     initPage = function () {
       var box_bottom, config, page, panel;
