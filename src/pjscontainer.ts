@@ -359,32 +359,6 @@ export class pJSContainer {
         }
     }
 
-    processRepulse(p: pJSParticle, dx: number, dy: number, force: number) {
-        let pJS = this;
-        let options = pJS.options;
-
-        let f = Math.atan2(dy, dx);
-
-        p.vx = force * Math.cos(f);
-        p.vy = force * Math.sin(f);
-
-        if (options.particles.move.out_mode == pJSOutMode.bounce) {
-            let pos = {
-                x: p.x + p.vx,
-                y: p.y + p.vy
-            };
-
-            if (pos.x + p.radius > pJS.canvas.w)
-                p.vx = -p.vx;
-            else if (pos.x - p.radius < 0)
-                p.vx = -p.vx;
-            if (pos.y + p.radius > pJS.canvas.h)
-                p.vy = -p.vy;
-            else if (pos.y - p.radius < 0)
-                p.vy = -p.vy;
-        }
-    }
-
     init() {
         /* init canvas + particles */
         this.retina.init();

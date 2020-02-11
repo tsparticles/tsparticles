@@ -572,7 +572,7 @@ export class pJSParticle {
                 y: this.y + normVec.y * repulseFactor
             };
 
-            if (options.particles.move.out_mode == pJSOutMode.bounce) {
+            if (options.particles.move.out_mode == pJSOutMode.bounce || options.particles.move.out_mode == pJSOutMode.bounceVertical) {
                 if (pos.x - this.radius > 0 && pos.x + this.radius < pJS.canvas.w)
                     this.x = pos.x;
                 if (pos.y - this.radius > 0 && pos.y + this.radius < pJS.canvas.h)
@@ -604,7 +604,7 @@ export class pJSParticle {
 
                 // default
                 if (d <= repulseRadius) {
-                    pJS.processRepulse(this, dx, dy, force);
+                    this.processRepulse(dx, dy, force);
                 }
                 // bang - slow motion mode
                 // if(!pJS.repulse_finish){
@@ -618,6 +618,32 @@ export class pJSParticle {
                 this.vx = this.vx_i;
                 this.vy = this.vy_i;
             }
+        }
+    }
+
+    processRepulse(dx: number, dy: number, force: number) {
+        let pJS = this.pJSContainer;
+        let options = pJS.options;
+
+        let f = Math.atan2(dy, dx);
+
+        this.vx = force * Math.cos(f);
+        this.vy = force * Math.sin(f);
+
+        if (options.particles.move.out_mode == pJSOutMode.bounce || options.particles.move.out_mode == pJSOutMode.bounceVertical) {
+            let pos = {
+                x: this.x + this.vx,
+                y: this.y + this.vy
+            };
+
+            if (pos.x + this.radius > pJS.canvas.w)
+                this.vx = -this.vx;
+            else if (pos.x - this.radius < 0)
+                this.vx = -this.vx;
+            if (pos.y + this.radius > pJS.canvas.h)
+                this.vy = -this.vy;
+            else if (pos.y - this.radius < 0)
+                this.vy = -this.vy;
         }
     }
 

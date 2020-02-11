@@ -25,7 +25,9 @@ export enum pJSMoveDirection {
 
 export enum pJSOutMode {
     out = 'out',
-    bounce = 'bounce'
+    bounce = 'bounce',
+    bounceVertical = 'bounce-vertical',
+    bounceHorizontal = 'bounce-horizontal'
 }
 
 export enum pJSInteractivityDetect {
