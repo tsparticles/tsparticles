@@ -60,6 +60,20 @@ window.particlesJS.load = async (tag_id: string, path_config_json: string, callb
   await pJSLoader.loadJSON(tag_id, path_config_json, callback);
 }
 
+window.particlesJS.setOnClickHandler = function (callback: EventListenerOrEventListenerObject) {
+  let pJSDom = pJSLoader.pJSDom();
+  if (pJSDom.length == 0) {
+    throw new Error("Can only set click handlers after calling particlesJS.load() or particlesJS()");
+  }
+  for (var i = 0; i < pJSDom.length; i++) {
+    let el = pJSDom[i].interactivity.el;
+    
+    if (el) {
+      el.addEventListener('click', callback);
+    }
+  }
+}
+
 window.pJSDom = function () {
   return pJSLoader.pJSDom();
 }
