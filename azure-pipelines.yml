@@ -15,9 +15,9 @@ steps:
   inputs:
     command: 'ci'
 
-- task: CmdLine@2
+- task: Npm@1
   inputs:
-    script: 'npx webpack'
+    command: 'run build'
 
 - task: npmAuthenticate@0
   condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/master'))
