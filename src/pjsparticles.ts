@@ -28,7 +28,7 @@ export class pJSParticles {
         }
     }
 
-    update() {
+    update(delta: number) {
         let pJS = this.pJSContainer;
         let options = pJS.options;
         const arrLength = this.array.length;
@@ -46,9 +46,9 @@ export class pJSParticles {
 
             /* move the particle */
             if (options.particles.move.enable) {
-                let ms = options.particles.move.speed / 2;
-                p.x += p.vx * ms;
-                p.y += p.vy * ms;
+                let ms = options.particles.move.speed / 10;
+                p.x += p.vx * ms * delta;
+                p.y += p.vy * ms * delta;
             }
             /* parallax */
             if (pJS.interactivity.mouse.pos_x && options.interactivity.events.onhover.parallax.enable) {
@@ -181,7 +181,7 @@ export class pJSParticles {
         }
     }
 
-    draw() {
+    draw(delta: number) {
         let pJS = this.pJSContainer;
 
         /* clear canvas */
@@ -189,7 +189,7 @@ export class pJSParticles {
             pJS.canvas.ctx.clearRect(0, 0, pJS.canvas.w, pJS.canvas.h);
 
         /* update each particles param */
-        pJS.particles.update();
+        pJS.particles.update(delta);
 
         /* draw each particle */
         for (const p of this.array) {
@@ -199,17 +199,6 @@ export class pJSParticles {
 
     empty() {
         this.array = [];
-    }
-
-    remove(nb: number) {
-        var pJS = this.pJSContainer;
-        var options = pJS.options;
-
-        this.array.splice(0, nb);
-
-        if (!options.particles.move.enable) {
-            this.draw();
-        }
     }
 
     /* ---------- pJS functions - modes events ------------ */
@@ -229,10 +218,21 @@ export class pJSParticles {
         }
 
         if (!options.particles.move.enable) {
-            this.draw();
+            this.draw(0);
         }
 
         this.pushing = false;
+    }
+
+    remove(nb: number) {
+        var pJS = this.pJSContainer;
+        var options = pJS.options;
+
+        this.array.splice(0, nb);
+
+        if (!options.particles.move.enable) {
+            this.draw(0);
+        }
     }
 
     async refresh() {

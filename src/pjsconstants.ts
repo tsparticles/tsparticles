@@ -121,6 +121,6 @@ export class pJSConstants {
             }
         },
         retina_detect: false,
-        fps_limit: 0
+        fps_limit: 60
     };
 }
