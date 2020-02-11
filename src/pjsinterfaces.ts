@@ -178,3 +178,14 @@ export interface pJSImg {
     obj?: HTMLImageElement;
     error?: boolean;
 }
+
+export interface pJSBubble {
+    clicking?: boolean;
+    duration_end?: boolean;
+}
+
+export interface pJSRepulse {
+    finish?: boolean;
+    count?: number;
+    clicking?: boolean;
+}

@@ -354,3 +354,5 @@ MigrationBackup/
 
 .DS_Store
 dist/
+lib/
+build/

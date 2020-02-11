@@ -1,11 +1,11 @@
 const path = require('path');
-const TerserPlugin = require('terser-webpack-plugin');
+const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 
 module.exports = {
 	// Change to your "entry-point".
 	entry: {
-		'tsparticles': './src/particles.ts',
-		'tsparticles.min': './src/particles.ts'
+		'particles': './build/js/particles.js',
+		'particles.min': './build/js/particles.js'
 	},
 	output: {
 		path: path.resolve(__dirname, 'dist'),
@@ -14,12 +14,12 @@ module.exports = {
 		// library: 'particles'
 	},
 	resolve: {
-		extensions: ['.ts', '.tsx', '.js', '.json']
+		extensions: ['.js', '.jsx', '.json']
 	},
 	module: {
 		rules: [{
 			// Include ts, tsx, js, and jsx files.
-			test: /\.(ts|js)x?$/,
+			test: /\.(js)x?$/,
 			exclude: /node_modules/,
 			loader: 'babel-loader',
 		}],
@@ -27,14 +27,10 @@ module.exports = {
 	optimization: {
 		minimize: true,
 		minimizer: [
-			new TerserPlugin({
-				cache: true,
-				parallel: true,
-				sourceMap: true, // Must be set to true if using source-maps in production
-				terserOptions: {
-					// https://github.com/webpack-contrib/terser-webpack-plugin#terseroptions
-				}
-			}),
-		],
+			new UglifyJsPlugin({
+				include: /\.min\.js$/,
+				sourceMap: true
+			})
+		]
 	}
 };

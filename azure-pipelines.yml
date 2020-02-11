@@ -12,26 +12,32 @@ pool:
 
 steps:
 - task: Npm@1
+  displayName: npm ci
   inputs:
     command: 'ci'
 
-- task: CmdLine@2
+- task: Npm@1
+  displayName: npm run build
   inputs:
-    script: 'npx webpack'
+    command: 'custom'
+    customCommand: 'run build'
 
 - task: npmAuthenticate@0
+  displayName: npm authenticate
   condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/master'))
   inputs:
     workingFile: '.npmrc'
     customEndpoint: 'npmjs'
 
 - task: Npm@1
+  displayName: npm publish
   condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/master'))
   inputs:
     command: 'publish'
     publishEndpoint: 'npmjs'
 
 - task: CopyFiles@2
+  displayName: Copying files to Artifacts
   inputs:
     Contents: |
       dist/**
@@ -41,6 +47,7 @@ steps:
     OverWrite: true
 
 - task: PublishBuildArtifacts@1
+  displayName: Publishing Artifacts
   inputs:
     PathtoPublish: '$(Build.ArtifactStagingDirectory)'
     ArtifactName: 'tsparticles'

@@ -57,11 +57,11 @@ export class pJSCanvas {
                     pJS.particles.create();
                     pJS.particles.draw();
                     //TODO: seems double code, check if it works without it
-                    // pJS.vendors.densityAutoParticles();
+                    // pJS.densityAutoParticles();
                 }
 
                 /* density particles enabled */
-                pJS.vendors.densityAutoParticles();
+                pJS.densityAutoParticles();
             });
         }
     }
