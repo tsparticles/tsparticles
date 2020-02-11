@@ -99,6 +99,10 @@
       pJS_GUI.options.retina_detect = value;
       return await p.update();
     });
+    gui.add(pJS_GUI.options, 'fps_limit', 0, 240).step(1).name('fps_limit').onChange(async function (value) {
+      pJS_GUI.options.fps_limit = value;
+      return await p.update();
+    });
     f.particles.number.add(pJS_GUI.options.particles.number, 'value', 0, 600).name('value').step(1).onChange(async function (value) {
       pJS_GUI.options.particles.number.value = value;
       return await p.update();

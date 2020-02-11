@@ -1,6 +1,23 @@
 'use strict';
 
 import { pJSShapeType, pJSMoveDirection, pJSOutMode, pJSInteractivityDetect, pJSHoverMode, pJSClickMode } from "./pjsenums";
+import { pJSContainer } from "./pjscontainer";
+
+declare global {
+    interface Window {
+      requestAnimFrame: (callback: FrameRequestCallback) => number,
+      mozRequestAnimationFrame: (callback: FrameRequestCallback) => number,
+      oRequestAnimationFrame: (callback: FrameRequestCallback) => number,
+      msRequestAnimationFrame: (callback: FrameRequestCallback) => number,
+      cancelRequestAnimFrame: (handle: number) => void,
+      webkitCancelRequestAnimationFrame: (handle: number) => void,
+      mozCancelRequestAnimationFrame: (handle: number) => void,
+      oCancelRequestAnimationFrame: (handle: number) => void,
+      msCancelRequestAnimationFrame: (handle: number) => void,
+      particlesJS: any,
+      pJSDom: () => pJSContainer[]
+    }
+  }
 
 export interface pJSContainerInteractivity {
     el?: HTMLElement | Window;
@@ -107,7 +124,8 @@ export interface pJSOptions {
             };
         };
     };
-    retina_detect: boolean
+    retina_detect: boolean,
+    fps_limit: number
 }
 
 export interface pJSShape {

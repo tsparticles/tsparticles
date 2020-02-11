@@ -120,6 +120,7 @@ export class pJSConstants {
                 }
             }
         },
-        retina_detect: false
+        retina_detect: false,
+        fps_limit: 60
     };
 }

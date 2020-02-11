@@ -55,7 +55,7 @@ export class pJSCanvas {
                 if (!options.particles.move.enable) {
                     pJS.particles.empty();
                     pJS.particles.create();
-                    pJS.particles.draw();
+                    pJS.particles.draw(0);
                     //TODO: seems double code, check if it works without it
                     // pJS.densityAutoParticles();
                 }

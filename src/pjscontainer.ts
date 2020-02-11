@@ -27,6 +27,9 @@ export class pJSContainer {
     svg: pJSSvg;
     img: pJSImg;
 
+    lastFrameTime = 0;
+    pageHidden = false;
+
     constructor(tag_id: string, params: pJSOptions) {
         this.retina = new pJSRetina(this);
         this.canvas = new pJSCanvas(this, tag_id);
@@ -58,7 +61,29 @@ export class pJSContainer {
         this.eventsListeners();
 
         //TODO: Start è async
-        this.start();
+        this.start().then(() => {
+            /*
+                Cancel animation if page is not in focus
+                Browsers will do this anyway, however the
+                Delta time must also be reset, so canceling
+                the old frame and starting a new one is necessary
+            */
+            document.addEventListener("visibilitychange", () => this.handleVisibilityChange(), false);
+        });
+    }
+
+    handleVisibilityChange() {
+        if (document.hidden) {
+            this.pageHidden = true;
+
+            if (this.drawAnimFrame) {
+                this.cancelAnimation(this.drawAnimFrame);
+            }
+        } else {
+            this.pageHidden = false;
+            this.lastFrameTime = performance.now();
+            this.draw(0);
+        }
     }
 
     /* ---------- pJS functions - vendors ------------ */
@@ -207,58 +232,65 @@ export class pJSContainer {
         }
     }
 
-    draw() {
+    requestFrame(callback: FrameRequestCallback) {
+        return window.requestAnimFrame(callback);
+    }
+
+    cancelAnimation(handle: number) {
+        return window.cancelAnimationFrame(handle);
+    }
+
+    draw(timestamp: DOMHighResTimeStamp) {
+        // FPS limit logic
+        // If we are too fast, just draw without updating
+        var fps_limit = this.options.fps_limit;
+        if (fps_limit > 0 && timestamp < this.lastFrameTime + (1000 / fps_limit)) {
+            this.requestFrame(timestamp => this.draw(timestamp));
+            return;
+        }
+
+        const delta = timestamp - this.lastFrameTime;
+        this.lastFrameTime = timestamp;
+
         if (this.options.particles.shape.type == pJSShapeType.image) {
             if (this.img.type == 'svg') {
                 if (this.drawAnimFrame && this.svg.count >= this.options.particles.number.value) {
-                    this.particles.draw();
+                    this.particles.draw(delta);
 
                     if (!this.options.particles.move.enable) {
-                        window.cancelRequestAnimFrame(this.drawAnimFrame);
+                        this.cancelAnimation(this.drawAnimFrame);
                     } else {
-                        this.drawAnimFrame = window.requestAnimFrame(() => {
-                            this.draw();
-                        });
+                        this.drawAnimFrame = this.requestFrame(timestamp => this.draw(timestamp));
                     }
-                }
-                else {
+                } else {
                     if (!this.img.error) {
-                        this.drawAnimFrame = window.requestAnimFrame(() => {
-                            this.draw();
-                        });
+                        this.drawAnimFrame = this.requestFrame(timestamp => this.draw(timestamp));
                     }
                 }
-            }
-            else {
+            } else {
                 if (this.img.obj != undefined) {
-                    this.particles.draw();
+                    this.particles.draw(delta);
 
-                    if (this.drawAnimFrame !== undefined && !this.options.particles.move.enable)
-                        window.cancelRequestAnimFrame(this.drawAnimFrame);
-                    else
-                        this.drawAnimFrame = window.requestAnimFrame(() => {
-                            this.draw();
-                        });
-                }
-                else {
+                    if (this.drawAnimFrame !== undefined && !this.options.particles.move.enable) {
+                        this.cancelAnimation(this.drawAnimFrame);
+                    } else {
+                        this.drawAnimFrame = this.requestFrame(timestamp => this.draw(timestamp));
+                    }
+                } else {
                     if (!this.img.error) {
-                        this.drawAnimFrame = window.requestAnimFrame(() => {
-                            this.draw();
-                        });
+                        this.drawAnimFrame = this.requestFrame(timestamp => this.draw(timestamp));
                     }
                 }
             }
         } else {
-            this.particles.draw();
+            this.particles.draw(delta);
 
             if (!this.options.particles.move.enable) {
                 if (this.drawAnimFrame !== undefined) {
-                    window.cancelRequestAnimFrame(this.drawAnimFrame);
+                    this.cancelAnimation(this.drawAnimFrame);
                 }
             } else {
-                this.drawAnimFrame = window.requestAnimFrame(() => {
-                    this.draw();
-                });
+                this.drawAnimFrame = this.requestFrame(timestamp => this.draw(timestamp));
             }
         }
     }
@@ -267,24 +299,24 @@ export class pJSContainer {
         // if shape is image
         if (this.options.particles.shape.type == pJSShapeType.image) {
             if (this.img.type == 'svg' && this.svg.source == undefined) {
-                this.checkAnimFrame = window.requestAnimFrame(() => {
+                this.checkAnimFrame = this.requestFrame(() => {
                     //TODO: Questo check non è da nessuna parte
                     //check();
                 });
             }
             else {
-                if (this.checkAnimFrame)
-                    window.cancelRequestAnimFrame(this.checkAnimFrame);
+                if (this.checkAnimFrame) {
+                    this.cancelAnimation(this.checkAnimFrame);
+                }
 
                 if (!this.img.error) {
                     this.init();
-                    this.draw();
+                    this.draw(0);
                 }
             }
-        }
-        else {
+        } else {
             this.init();
-            this.draw();
+            this.draw(0);
         }
     }
 
