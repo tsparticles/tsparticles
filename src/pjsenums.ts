@@ -32,7 +32,8 @@ export enum pJSOutMode {
 
 export enum pJSInteractivityDetect {
     canvas = 'canvas',
-    window = 'window'
+    window = 'window',
+    parent = 'parent'
 }
 
 export enum pJSHoverMode {

@@ -20,7 +20,7 @@ declare global {
   }
 
 export interface pJSContainerInteractivity {
-    el?: HTMLElement | Window;
+    el?: HTMLElement | Window | Node | null;
     status?: string;
     mouse: pJSMouseData;
 }

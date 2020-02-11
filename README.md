@@ -231,7 +231,7 @@ key | option type / notes | example
 `particles.move.attract.enable` | boolean | `true` / `false`
 `particles.move.attract.rotateX` | number | `3000`
 `particles.move.attract.rotateY` | number | `1500`
-`interactivity.detect_on` | string | `"canvas", "window"`
+`interactivity.detect_on` | string | `"canvas", "window","parent"`
 `interactivity.events.onhover.enable` | boolean | `true` / `false`
 `interactivity.events.onhover.mode` | string <br /> array selection | `"grab"` <br /> `"bubble"` <br /> `"repulse"` <br /> `["grab", "bubble"]`
 `interactivity.events.onclick.enable` | boolean | `true` / `false`
