@@ -185,7 +185,8 @@ export class pJSParticle {
             let sh = options.particles.shape;
             this.img = {
                 src: sh.image.src,
-                ratio: sh.image.width / sh.image.height
+                ratio: sh.image.width / sh.image.height,
+                replace_color: sh.image.replace_color
             };
             if (!this.img.ratio)
                 this.img.ratio = 1;
@@ -394,20 +395,27 @@ export class pJSParticle {
 
         if (!svgXml) return;
 
-        let rgbHex = /#([0-9A-F]{3,6})/gi;
-        let coloredSvgXml = svgXml.replace(rgbHex, (substring: string) => {
-            let color_value;
+        let url: string;
+        if (this.img && this.img.replace_color) {
+            let rgbHex = /#([0-9A-F]{3,6})/gi;
+            let coloredSvgXml = svgXml.replace(rgbHex, (substring: string) => {
+                let color_value;
 
-            if (p.color.rgb) {
-                color_value = `rgba(${p.color.rgb.r},${p.color.rgb.g},${p.color.rgb.b},${p.opacity})`;
-            } else if (p.color.hsl) {
-                color_value = `hsla(${p.color.hsl.h},${p.color.hsl.s}%,${p.color.hsl.l}%,${p.opacity})`;
-            }
+                if (p.color.rgb) {
+                    color_value = `rgb(${p.color.rgb.r},${p.color.rgb.g},${p.color.rgb.b})`;
+                } else if (p.color.hsl) {
+                    color_value = `hsl(${p.color.hsl.h},${p.color.hsl.s}%,${p.color.hsl.l}%)`;
+                }
 
-            return color_value || substring;
-        });
+                return color_value || substring;
+            });
+            url = 'data:image/svg+xml;utf8,' + coloredSvgXml;
+        } else {
+            url = 'data:image/svg+xml;utf8,' + svgXml;
+        }
         /* prepare to create img with colored svg */
-        let svg = new Blob([coloredSvgXml], { type: 'image/svg+xml;charset=utf-8' }), url = URL.createObjectURL(svg);
+        // let svg = new Blob([coloredSvgXml], { type: 'image/svg+xml;charset=utf-8' });
+        // let url = URL.createObjectURL(svg);
         /* create particle img obj */
         let img = new Image();
         img.addEventListener('load', () => {
@@ -416,7 +424,7 @@ export class pJSParticle {
                 p.img.loaded = true;
             }
 
-            URL.revokeObjectURL(url);
+            // URL.revokeObjectURL(url);
 
             if (!pJS.svg.count)
                 pJS.svg.count = 0;
@@ -591,7 +599,7 @@ export class pJSParticle {
                 let dx = (pJS.interactivity.mouse.click_pos_x || 0) - this.x;
                 let dy = (pJS.interactivity.mouse.click_pos_y || 0) - this.y;
                 let d = Math.sqrt(dx * dx + dy * dy);
-                let force = -repulseRadius / (d*d);
+                let force = -repulseRadius / (d * d);
 
 
                 // default
