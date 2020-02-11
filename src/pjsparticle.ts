@@ -26,6 +26,7 @@ export class pJSParticle {
     img?: pJSParticleImage;
     radius_bubble?: number;
     opacity_bubble?: number;
+    text?: string;
 
     /* --------- pJS functions - particles ----------- */
     constructor(pJSContainer: pJSContainer, color: { value: string[] | pJSColor | string }, opacity: number, position?: pJSCoordinates) {
@@ -196,32 +197,39 @@ export class pJSParticle {
                 }
             }
         }
+
+        if (this.shape == pJSShapeType.char || this.shape == pJSShapeType.character) {
+            if (typeof options.particles.shape.character.value === 'string') {
+                this.text = options.particles.shape.character.value;
+            } else {
+                this.text = options.particles.shape.character.value[Math.floor(Math.random() * options.particles.shape.character.value.length)]
+            }
+        }
     }
 
     draw() {
-        let p = this;
         let pJS = this.pJSContainer;
         let options = pJS.options;
         let radius: number;
         let opacity;
         let color_value;
 
-        if (p.radius_bubble != undefined) {
-            radius = p.radius_bubble;
+        if (this.radius_bubble != undefined) {
+            radius = this.radius_bubble;
         } else {
-            radius = p.radius;
+            radius = this.radius;
         }
 
-        if (p.opacity_bubble != undefined) {
-            opacity = p.opacity_bubble;
+        if (this.opacity_bubble != undefined) {
+            opacity = this.opacity_bubble;
         } else {
-            opacity = p.opacity;
+            opacity = this.opacity;
         }
 
-        if (p.color.rgb) {
-            color_value = `rgba(${p.color.rgb.r},${p.color.rgb.g},${p.color.rgb.b},${opacity})`;
-        } else if (p.color.hsl) {
-            color_value = `hsla(${p.color.hsl.h},${p.color.hsl.s}%,${p.color.hsl.l}%,${opacity})`;
+        if (this.color.rgb) {
+            color_value = `rgba(${this.color.rgb.r},${this.color.rgb.g},${this.color.rgb.b},${opacity})`;
+        } else if (this.color.hsl) {
+            color_value = `hsla(${this.color.hsl.h},${this.color.hsl.s}%,${this.color.hsl.l}%,${opacity})`;
         }
 
         if (!pJS.canvas.ctx || !color_value) return;
@@ -229,48 +237,48 @@ export class pJSParticle {
         pJS.canvas.ctx.fillStyle = color_value;
         pJS.canvas.ctx.beginPath();
 
-        let p_x = p.x + p.offsetX;
-        let p_y = p.y + p.offsetY;
+        let p_x = this.x + this.offsetX;
+        let p_y = this.y + this.offsetY;
 
         const ctx = pJS.canvas.ctx;
 
-        switch (p.shape) {
+        switch (this.shape) {
             case pJSShapeType.circle:
                 ctx.arc(p_x, p_y, radius, 0, Math.PI * 2, false);
                 break;
             case pJSShapeType.edge:
             case pJSShapeType.square:
-                ctx.rect(p.x - radius, p.y - radius, radius * 2, radius * 2);
+                ctx.rect(this.x - radius, this.y - radius, radius * 2, radius * 2);
                 break;
             case pJSShapeType.triangle:
-                p.drawShape(ctx, p.x - radius, p.y + radius / 1.66, radius * 2, 3, 2);
+                this.drawShape(ctx, this.x - radius, this.y + radius / 1.66, radius * 2, 3, 2);
                 break;
             case pJSShapeType.polygon:
                 {
-                    const startX = p.x - radius / (options.particles.shape.polygon.nb_sides / 3.5);
-                    const startY = p.y - radius / (2.66 / 3.5);
+                    const startX = this.x - radius / (options.particles.shape.polygon.nb_sides / 3.5);
+                    const startY = this.y - radius / (2.66 / 3.5);
                     const sideLength = radius * 2.66 / (options.particles.shape.polygon.nb_sides / 3);
                     const sideCountNumerator = options.particles.shape.polygon.nb_sides;
                     const sideCountDenominator = 1;
 
-                    p.drawShape(ctx, startX, startY, sideLength, sideCountNumerator, sideCountDenominator);
+                    this.drawShape(ctx, startX, startY, sideLength, sideCountNumerator, sideCountDenominator);
                 }
                 break;
             case pJSShapeType.star:
                 {
-                    const startX = p.x - radius * 2 / (options.particles.shape.polygon.nb_sides / 4);
-                    const startY = p.y - radius / (2 * 2.66 / 3.5);
+                    const startX = this.x - radius * 2 / (options.particles.shape.polygon.nb_sides / 4);
+                    const startY = this.y - radius / (2 * 2.66 / 3.5);
                     const sideLength = radius * 2 * 2.66 / (options.particles.shape.polygon.nb_sides / 3);
                     const sideCountNumerator = options.particles.shape.polygon.nb_sides;
                     const sideCountDenominator = 2;
 
-                    p.drawShape(ctx, startX, startY, sideLength, sideCountNumerator, sideCountDenominator);
+                    this.drawShape(ctx, startX, startY, sideLength, sideCountNumerator, sideCountDenominator);
                 }
                 break;
 
             case pJSShapeType.heart:
-                let x = p.x - radius / 2;
-                let y = p.y - radius / 2;
+                let x = this.x - radius / 2;
+                let y = this.y - radius / 2;
 
                 ctx.moveTo(x, y + radius / 4);
                 ctx.quadraticCurveTo(x, y, x + radius / 4, y);
@@ -286,19 +294,22 @@ export class pJSParticle {
 
             case pJSShapeType.char:
             case pJSShapeType.character:
-                ctx.font = `${options.particles.shape.character.style} ${options.particles.shape.character.weigth} ${Math.round(radius) * 2}px ${options.particles.shape.character.font}`;
-                // if (stroke) {
-                ctx.strokeText(options.particles.shape.character.value, this.x - radius / 2, this.y + radius / 2);
-                // } else {
-                //     ctx.fillText(options.settings.particles.shape.character.value, this.x - radius / 2, this.y + radius / 2);
-                // }
+                ctx.font = `${options.particles.shape.character.style} ${options.particles.shape.character.weight} ${Math.round(radius) * 2}px ${options.particles.shape.character.font}`;
+
+                if (this.text !== undefined) {
+                    // if (stroke) {
+                    ctx.strokeText(this.text, this.x - radius / 2, this.y + radius / 2);
+                    // } else {
+                    //    ctx.fillText(this.text, this.x - radius / 2, this.y + radius / 2);
+                    // }
+                }
                 break;
 
             case pJSShapeType.image:
                 let img_obj: HTMLImageElement | undefined;
 
-                if (pJS.img.type == 'svg' && p.img) {
-                    img_obj = p.img.obj;
+                if (pJS.img.type == 'svg' && this.img) {
+                    img_obj = this.img.obj;
                 } else {
                     img_obj = pJS.img.obj;
                 }
@@ -579,8 +590,8 @@ export class pJSParticle {
                 let repulseRadius = Math.pow(options.interactivity.modes.repulse.distance / 6, 3);
                 let dx = (pJS.interactivity.mouse.click_pos_x || 0) - this.x;
                 let dy = (pJS.interactivity.mouse.click_pos_y || 0) - this.y;
-                let d = dx * dx + dy * dy; //There's not a Math.sqrt for distance, if added it breaks the Nasa sample
-                let force = -repulseRadius / d;
+                let d = Math.sqrt(dx * dx + dy * dy);
+                let force = -repulseRadius / (d*d);
 
 
                 // default

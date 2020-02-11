@@ -1,7 +1,5 @@
 'use strict';
 
-import { pJSCoordinates } from "./pjsinterfaces";
-
 /* ---------- global functions - vendors ------------ */
 
 export class pJSUtils {
