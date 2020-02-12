@@ -298,14 +298,14 @@
       pJS_GUI.options.interactivity.modes.grab.line_linked.opacity = value;
       return await p.update();
     });
-     fm.bubble.add(pJS_GUI.options.interactivity.modes.bubble, 'distance', 0, 1500).name('distance').onChange(async function (value) {
-       pJS_GUI.options.interactivity.modes.bubble.distance = value;
-       return await p.update();
-     });
-     fm.bubble.add(pJS_GUI.options.interactivity.modes.bubble, 'size', 0, 500).name('size').onChange(async function (value) {
+    fm.bubble.add(pJS_GUI.options.interactivity.modes.bubble, 'distance', 0, 1500).name('distance').onChange(async function (value) {
+      pJS_GUI.options.interactivity.modes.bubble.distance = value;
+      return await p.update();
+    });
+    fm.bubble.add(pJS_GUI.options.interactivity.modes.bubble, 'size', 0, 500).name('size').onChange(async function (value) {
       pJS_GUI.options.interactivity.modes.bubble.size = value;
-       return await p.update();
-     });
+      return await p.update();
+    });
     fm.bubble.add(pJS_GUI.options.interactivity.modes.bubble, 'opacity', 0, 1).name('opacity').onChange(async function (value) {
       pJS_GUI.options.interactivity.modes.bubble.opacity = value;
       return await p.update();
@@ -526,7 +526,7 @@
     }
   });
 
-  tsParticles.loadJSON('tsparticles', `presets/${id_preset}.json`, function () {
+  tsParticles.loadJSON('tsparticles', `presets/${id_preset}.json`).then(() => {
     return $(function () {
       window.loadGUI();
       window.loadStats();

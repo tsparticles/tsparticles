@@ -210,7 +210,7 @@ export class Container {
 
         this.canvas.el.remove();
 
-        Loader.tsParticlesDomSet([]);
+        Loader.domSet([]);
     }
 
     exportImg() {

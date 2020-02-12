@@ -58,8 +58,8 @@ class Main {
     Loader.load(tag_id, params);
   }
 
-  async loadJSON(tag_id: string, path_config_json: string, callback: () => void) {
-    await Loader.loadJSON(tag_id, path_config_json, callback);
+  async loadJSON(tag_id: string, path_config_json: string) {
+    await Loader.loadJSON(tag_id, path_config_json);
   }
 
   setOnClickHandler(callback: EventListenerOrEventListenerObject) {
@@ -67,7 +67,7 @@ class Main {
   }
 
   tsParticlesDom() {
-    return Loader.tsParticlesDom();
+    return Loader.dom();
   }
 }
 
@@ -89,7 +89,7 @@ window.particlesJS.load = async (tag_id: string, path_config_json: string, callb
     console.info('this method is obsolete, please use the new tsParticles.loadJSON');
   }
 
-  window.tsParticles.loadJSON(tag_id, path_config_json, callback);
+  window.tsParticles.loadJSON(tag_id, path_config_json).then(callback);
 };
 
 window.particlesJS.setOnClickHandler = function (callback: EventListenerOrEventListenerObject) {

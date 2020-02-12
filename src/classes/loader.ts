@@ -7,30 +7,30 @@ import { Constants } from '../utils/constants';
 let tsParticlesDom: Container[] = [];
 
 export class Loader {
-  static tsParticlesDom() {
+  static dom() {
     if (!tsParticlesDom) {
-      Loader.tsParticlesDomSet([]);
+      Loader.domSet([]);
     }
 
     return tsParticlesDom;
   }
 
-  static tsParticlesDomSet(value: Container[]) {
+  static domSet(value: Container[]) {
     tsParticlesDom = value;
   }
 
   static load(tag_id: string, params: Options) {
-    /* pJS elements */
-    let pJS_tag = document.getElementById(tag_id);
+    /* elements */
+    let tag = document.getElementById(tag_id);
 
-    if (pJS_tag) {
-      let exist_canvas = pJS_tag.getElementsByClassName(Constants.canvasClass);
+    if (!tag) return;
 
-      /* remove canvas if exists into the pJS target tag */
-      if (exist_canvas.length) {
-        while (exist_canvas.length > 0) {
-          pJS_tag.removeChild(exist_canvas[0]);
-        }
+    let exist_canvas = tag.getElementsByClassName(Constants.canvasClass);
+
+    /* remove canvas if exists into the pJS target tag */
+    if (exist_canvas.length) {
+      while (exist_canvas.length > 0) {
+        tag.removeChild(exist_canvas[0]);
       }
     }
 
@@ -44,28 +44,25 @@ export class Loader {
     canvas_el.style.height = "100%";
 
     /* append canvas */
-    let canvas = document.getElementById(tag_id)?.appendChild(canvas_el);
+    const canvas = document.getElementById(tag_id)?.appendChild(canvas_el);
 
-    /* launch particle.js */
-    if (canvas != null) {
-      let pjs = new Container(tag_id, params);
-      let found = false;
+    /* launch tsparticle */
+    if (!canvas) return;
 
-      for (let idx = 0; idx < Loader.tsParticlesDom().length; idx++) {
-        if (Loader.tsParticlesDom()[idx].canvas.tag_id == tag_id) {
-          found = true;
-          Loader.tsParticlesDom()[idx] = pjs;
-        }
-      }
+    const newItem = new Container(tag_id, params);
+    const dom = Loader.dom();
+    const idx = dom.findIndex(v => v.canvas.tag_id == tag_id);
 
-      if (!found)
-        Loader.tsParticlesDom().push(pjs);
-
-      return pjs;
+    if (idx >= 0) {
+      dom.splice(idx, 1, newItem);
+    } else {
+      dom.push(newItem);
     }
+
+    return newItem;
   }
 
-  static async loadJSON(tag_id: string, path_config_json: string, callback: () => void) {
+  static async loadJSON(tag_id: string, path_config_json: string) {
     /* load json config */
     const response = await fetch(path_config_json);
 
@@ -73,9 +70,6 @@ export class Loader {
       const params = await response.json();
 
       Loader.load(tag_id, params);
-
-      if (callback)
-        callback();
     } else {
       console.error(`Error pJS - fetch status: ${response.status}`);
       console.error('Error pJS - File config not found');
@@ -83,13 +77,13 @@ export class Loader {
   };
 
   static setOnClickHandler(callback: EventListenerOrEventListenerObject) {
-    let tsParticlesDom = Loader.tsParticlesDom();
+    let tsParticlesDom = Loader.dom();
     if (tsParticlesDom.length == 0) {
       throw new Error("Can only set click handlers after calling tsParticles.load() or tsParticles.loadJSON()");
     }
     for (var i = 0; i < tsParticlesDom.length; i++) {
       let el = tsParticlesDom[i].interactivity.el;
-  
+
       if (el) {
         el.addEventListener('click', callback);
       }
