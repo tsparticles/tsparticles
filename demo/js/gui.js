@@ -119,7 +119,7 @@
       pJS_GUI.options.particles.color.value = value;
       return await p.update();
     });
-    f.particles.shape.add(pJS_GUI.options.particles.shape, 'type', ['circle', 'edge', 'triangle', 'polygon', 'star', 'image', 'heart'/*, 'char', 'character'*/]).name('type').onChange(async function (value) {
+    f.particles.shape.add(pJS_GUI.options.particles.shape, 'type', ['circle', 'line', 'edge', 'triangle', 'polygon', 'star', 'image', 'heart'/*, 'char', 'character'*/]).name('type').onChange(async function (value) {
       pJS_GUI.options.particles.shape.type = value;
       return await p.update();
     });
@@ -140,8 +140,8 @@
       pJS_GUI.options.particles.shape.image.src = value;
       if (pJS_GUI.particles.shape.type === 'image') {
         type = value.substr(value.length - 3);
-        if (type === 'svg' && value !== 'svg/github.svg') {
-          alert("Ajax request is necessary for loading SVG files. You can type this example into the 'image.src' input to solve the CORS issue: 'svg/github.svg'");
+        if (type === 'svg' && value !== 'img/github.svg') {
+          alert("Ajax request is necessary for loading SVG files. You can type this example into the 'image.src' input to solve the CORS issue: 'img/github.svg'");
         }
       }
       return await p.update();
@@ -166,10 +166,10 @@
       pJS_GUI.options.particles.size.anim.enable = value;
       return await p.update();
     });
-    // ff.size_anim.add(pJS_GUI.obj, 'size_anim_speed', 0, 300).name('anim.speed').onChange(async function (value) {
-    //   pJS_GUI.obj.size_anim_speed = value;
-    //   return await p.update();
-    // });
+    ff.size_anim.add(pJS_GUI.options.particles.size.anim, 'speed', 0, 300).name('anim.speed').onChange(async function (value) {
+      pJS_GUI.options.particles.size.anim.speed = value;
+      return await p.update();
+    });
     ff.size_anim.add(pJS_GUI.options.particles.size.anim, 'size_min', 0, 100).name('anim.size_min').onChange(async function (value) {
       pJS_GUI.options.particles.size.anim.size_min = value;
       return await p.update();
@@ -206,22 +206,22 @@
       pJS_GUI.options.particles.line_linked.enable = value;
       return await p.update();
     });
-    // f.particles.line_linked.add(pJS_GUI.obj, 'line_linked_distance', 0, 2000).name('distance').onChange(async function (value) {
-    //   pJS_GUI.obj.line_linked_distance = value;
-    //   return await p.update();
-    // });
-    // f.particles.line_linked.addColor(pJS_GUI.particles.line_linked, 'color').name('color').onChange(async function (value) {
-    //   pJS_GUI.options.particles.line_linked.color = value;
-    //   return await p.update();
-    // });
+    f.particles.line_linked.add(pJS_GUI.options.particles.line_linked, 'distance', 0, 2000).name('distance').onChange(async function (value) {
+      pJS_GUI.options.particles.line_linked.distance = value;
+      return await p.update();
+    });
+    f.particles.line_linked.addColor(pJS_GUI.options.particles.line_linked, 'color').name('color').onChange(async function (value) {
+      pJS_GUI.options.particles.line_linked.color = value;
+      return await p.update();
+    });
     f.particles.line_linked.add(pJS_GUI.options.particles.line_linked, 'opacity', 0, 1).name('opacity').onChange(async function (value) {
       pJS_GUI.options.particles.line_linked.opacity = value;
       return await p.update();
     });
-    // f.particles.line_linked.add(pJS_GUI.obj, 'line_linked_width', 0, 20).name('width').onChange(async function (value) {
-    //   pJS_GUI.obj.line_linked_width = value;
-    //   return await p.update();
-    // });
+    f.particles.line_linked.add(pJS_GUI.options.particles.line_linked, 'width', 0, 20).name('width').onChange(async function (value) {
+      pJS_GUI.options.particles.line_linked.width = value;
+      return await p.update();
+    });
     f.particles.move.add(pJS_GUI.options.particles.move, 'enable').name('enable').onChange(async function (value) {
       pJS_GUI.options.particles.move.enable = value;
       return await p.update();
@@ -238,11 +238,11 @@
       pJS_GUI.options.particles.move.straight = value;
       return await p.update();
     });
-    // f.particles.move.add(pJS_GUI.obj, 'move_speed', 0, 200).name('speed').onChange(async function (value) {
-    //   pJS_GUI.obj.move_speed = value;
-    //   return await p.update();
-    // });
-    f.particles.move.add(pJS_GUI.options.particles.move, 'out_mode', ['out', 'bounce']).name('out_mode').onChange(async function (value) {
+    f.particles.move.add(pJS_GUI.options.particles.move, 'speed', 0, 200).name('speed').onChange(async function (value) {
+      pJS_GUI.options.particles.move.speed = value;
+      return await p.update();
+    });
+    f.particles.move.add(pJS_GUI.options.particles.move, 'out_mode', ['out', 'bounce', 'bounce-vertical', 'bounce-horizontal']).name('out_mode').onChange(async function (value) {
       pJS_GUI.options.particles.move.out_mode = value;
       return await p.update();
     });
@@ -258,7 +258,7 @@
       pJS_GUI.options.particles.move.attract.rotateY = value;
       return await p.update();
     });
-    gui_f.interactivity.add(pJS_GUI.options.interactivity, 'detect_on', ['window', 'canvas']).name('detect_on').onChange(async function (value) {
+    gui_f.interactivity.add(pJS_GUI.options.interactivity, 'detect_on', ['window', 'canvas', 'parent']).name('detect_on').onChange(async function (value) {
       pJS_GUI.options.interactivity.detect_on = value;
       return await p.update();
     });
@@ -290,22 +290,22 @@
       pJS_GUI.options.interactivity.events.onclick.mode = value;
       return await p.update();
     });
-    // fm.grab.add(pJS_GUI.obj, 'mode_grab_distance', 0, 1500).name('distance').onChange(async function (value) {
-    //   pJS_GUI.obj.mode_grab_distance = value;
-    //   return await p.update();
-    // });
+    fm.grab.add(pJS_GUI.options.interactivity.modes.grab, 'distance', 0, 1500).name('distance').onChange(async function (value) {
+      pJS_GUI.options.interactivity.modes.grab.distance = value;
+      return await p.update();
+    });
     fmm.grab_linelinked.add(pJS_GUI.options.interactivity.modes.grab.line_linked, 'opacity', 0, 1).name('opacity').onChange(async function (value) {
       pJS_GUI.options.interactivity.modes.grab.line_linked.opacity = value;
       return await p.update();
     });
-    // fm.bubble.add(pJS_GUI.obj, 'mode_bubble_distance', 0, 1500).name('distance').onChange(async function (value) {
-    //   pJS_GUI.obj.mode_bubble_distance = value;
-    //   return await p.update();
-    // });
-    // fm.bubble.add(pJS_GUI.obj, 'mode_bubble_size', 0, 500).name('size').onChange(async function (value) {
-    //   pJS_GUI.obj.mode_bubble_size = value;
-    //   return await p.update();
-    // });
+     fm.bubble.add(pJS_GUI.options.interactivity.modes.bubble, 'distance', 0, 1500).name('distance').onChange(async function (value) {
+       pJS_GUI.options.interactivity.modes.bubble.distance = value;
+       return await p.update();
+     });
+     fm.bubble.add(pJS_GUI.options.interactivity.modes.bubble, 'size', 0, 500).name('size').onChange(async function (value) {
+      pJS_GUI.options.interactivity.modes.bubble.size = value;
+       return await p.update();
+     });
     fm.bubble.add(pJS_GUI.options.interactivity.modes.bubble, 'opacity', 0, 1).name('opacity').onChange(async function (value) {
       pJS_GUI.options.interactivity.modes.bubble.opacity = value;
       return await p.update();
@@ -510,16 +510,16 @@
     id_preset = 'default';
   }
 
-  loadPreset = function(preset) {
+  loadPreset = function (preset) {
     window.location = window.location.origin + window.location.pathname + '#' + preset;
     return window.location.reload();
   };
 
-  $('#js-select-preset li').on('click', function() {
+  $('#js-select-preset li').on('click', function () {
     return loadPreset($(this).attr('data-val'));
   });
 
-  $('#js-select-preset li').each(function(index) {
+  $('#js-select-preset li').each(function (index) {
     var item;
     item = $('#js-select-preset li').eq(index);
     if (item.attr('data-val') === id_preset) {
