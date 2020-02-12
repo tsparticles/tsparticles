@@ -60,7 +60,7 @@ particlesJS.load('particles-js', 'assets/particles.json', function() {
 
 Configure, export, and share your particles.js configuration on CodePen:
 
-<http://https://tsparticles.matteobruni.it/demo/>
+<https://tsparticles.matteobruni.it/demo/>
 
 ---
 
