@@ -54,21 +54,13 @@ particlesJS.load('particles-js', 'assets/particles.json', function() {
 
 ---
 
-# Original Readme
-
----
-
 ### `Demo / Generator`
 
-[![Particles Generator](http://vincentgarreau.com/particles.js/assets/img/github-screen.jpg)](http://vincentgarreau.com/particles.js/)
+[![Particles Generator](https://tsparticles.matteobruni.it/demo/img/demo.png)](https://tsparticles.matteobruni.it/demo/)
 
 Configure, export, and share your particles.js configuration on CodePen:
 
-<http://vincentgarreau.com/particles.js/>
-
-CodePen demo:
-
-<http://codepen.io/VincentGarreau/pen/pnlso>
+<http://https://tsparticles.matteobruni.it/demo/>
 
 ---
 
