@@ -2,7 +2,7 @@
 
 /* ---------- global functions - vendors ------------ */
 
-export class pJSUtils {
+export class Utils {
   static hexToRgb(hex: string) {
     // By Tim Down - http://stackoverflow.com/a/5624139/3493650
     // Expand shorthand form (e.g. "03F") to full form (e.g. "0033FF")
@@ -34,7 +34,7 @@ export class pJSUtils {
       if (source[property] && source[property].constructor && source[property].constructor === Object) {
         destination[property] = destination[property] || {};
 
-        pJSUtils.deepExtend(destination[property], source[property]);
+        Utils.deepExtend(destination[property], source[property]);
       } else {
         destination[property] = source[property];
       }

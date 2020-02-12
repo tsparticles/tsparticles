@@ -1,31 +1,14 @@
 'use strict';
 
-import { pJSShapeType, pJSMoveDirection, pJSOutMode, pJSInteractivityDetect, pJSHoverMode, pJSClickMode } from "./pjsenums";
-import { pJSContainer } from "./pjscontainer";
+import { ShapeType, MoveDirection, OutMode, InteractivityDetect, HoverMode, ClickMode } from "./enums";
 
-declare global {
-    interface Window {
-      requestAnimFrame: (callback: FrameRequestCallback) => number,
-      mozRequestAnimationFrame: (callback: FrameRequestCallback) => number,
-      oRequestAnimationFrame: (callback: FrameRequestCallback) => number,
-      msRequestAnimationFrame: (callback: FrameRequestCallback) => number,
-      cancelRequestAnimFrame: (handle: number) => void,
-      webkitCancelRequestAnimationFrame: (handle: number) => void,
-      mozCancelRequestAnimationFrame: (handle: number) => void,
-      oCancelRequestAnimationFrame: (handle: number) => void,
-      msCancelRequestAnimationFrame: (handle: number) => void,
-      particlesJS: any,
-      pJSDom: () => pJSContainer[]
-    }
-  }
-
-export interface pJSContainerInteractivity {
+export interface ContainerInteractivity {
     el?: HTMLElement | Window | Node | null;
     status?: string;
-    mouse: pJSMouseData;
+    mouse: MouseData;
 }
 
-export interface pJSOptions {
+export interface Options {
     particles: {
         number: {
             value: number;
@@ -35,7 +18,7 @@ export interface pJSOptions {
             };
         };
         color: {
-            value: string | pJSColor | string[];
+            value: string | Color | string[];
         };
         shape: pJSShape;
         opacity: {
@@ -64,15 +47,15 @@ export interface pJSOptions {
             color: string;
             opacity: number;
             width: number;
-            color_rgb?: pJSRgb | null;
+            color_rgb?: Rgb | null;
         };
         move: {
             enable: boolean;
             speed: number;
-            direction: pJSMoveDirection;
+            direction: MoveDirection;
             random: boolean;
             straight: boolean;
-            out_mode: pJSOutMode;
+            out_mode: OutMode;
             bounce: boolean;
             attract: {
                 enable: boolean;
@@ -82,11 +65,11 @@ export interface pJSOptions {
         };
     };
     interactivity: {
-        detect_on: pJSInteractivityDetect;
+        detect_on: InteractivityDetect;
         events: {
             onhover: {
                 enable: boolean;
-                mode: pJSHoverMode | pJSHoverMode[];
+                mode: HoverMode | HoverMode[];
                 parallax: {
                     enable: boolean;
                     force: number;
@@ -95,7 +78,7 @@ export interface pJSOptions {
             };
             onclick: {
                 enable: boolean;
-                mode: pJSClickMode | pJSClickMode[];
+                mode: ClickMode | ClickMode[];
             };
             resize: boolean;
         };
@@ -129,7 +112,7 @@ export interface pJSOptions {
 }
 
 export interface pJSShape {
-    type: pJSShapeType | pJSShapeType[];
+    type: ShapeType | ShapeType[];
     stroke: {
         width: number;
         color: string;
@@ -151,24 +134,24 @@ export interface pJSShape {
     };
 }
 
-export interface pJSColor {
-    rgb?: pJSRgb | null;
-    hsl?: pJSHsl | null;
+export interface Color {
+    rgb?: Rgb | null;
+    hsl?: Hsl | null;
 }
 
-export interface pJSRgb {
+export interface Rgb {
     r: number;
     g: number;
     b: number;
 }
 
-export interface pJSHsl {
+export interface Hsl {
     h: number;
     s: number;
     l: number;
 }
 
-export interface pJSParticleImage {
+export interface ParticleImage {
     src: string;
     ratio: number;
     obj?: HTMLImageElement;
@@ -176,12 +159,12 @@ export interface pJSParticleImage {
     replace_color: boolean;
 }
 
-export interface pJSCoordinates {
+export interface Coordinates {
     x: number;
     y: number;
 }
 
-export interface pJSMouseData {
+export interface MouseData {
     click_pos_x?: number | null;
     click_pos_y?: number | null;
     pos_x?: number | null;
@@ -189,23 +172,23 @@ export interface pJSMouseData {
     click_time?: number;
 }
 
-export interface pJSSvg {
+export interface Svg {
     source?: string;
     count: number;
 }
 
-export interface pJSImg {
+export interface Image {
     type?: string;
     obj?: HTMLImageElement;
     error?: boolean;
 }
 
-export interface pJSBubble {
+export interface Bubble {
     clicking?: boolean;
     duration_end?: boolean;
 }
 
-export interface pJSRepulse {
+export interface Repulse {
     finish?: boolean;
     count?: number;
     clicking?: boolean;

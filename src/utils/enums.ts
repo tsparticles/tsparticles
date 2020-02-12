@@ -1,4 +1,4 @@
-export enum pJSShapeType {
+export enum ShapeType {
     circle = 'circle',
     edge = 'edge',
     triangle = 'triangle',
@@ -12,7 +12,7 @@ export enum pJSShapeType {
     line = "line"
 }
 
-export enum pJSMoveDirection {
+export enum MoveDirection {
     none = 'none',
     top = 'top',
     topRight = 'top-right',
@@ -24,33 +24,33 @@ export enum pJSMoveDirection {
     topLeft = 'top-left'
 }
 
-export enum pJSOutMode {
+export enum OutMode {
     out = 'out',
     bounce = 'bounce',
     bounceVertical = 'bounce-vertical',
     bounceHorizontal = 'bounce-horizontal'
 }
 
-export enum pJSInteractivityDetect {
+export enum InteractivityDetect {
     canvas = 'canvas',
     window = 'window',
     parent = 'parent'
 }
 
-export enum pJSHoverMode {
+export enum HoverMode {
     grab = 'grab',
     bubble = 'bubble',
     repulse = 'repulse'
 }
 
-export enum pJSClickMode {
+export enum ClickMode {
     push = 'push',
     remove = 'remove',
     bubble = 'bubble',
     repulse = 'repulse'
 }
 
-export enum pJSProcessBubbleType {
+export enum ProcessBubbleType {
     size = 'size',
     opacity = 'opacity'
 }

@@ -1,9 +1,9 @@
-import { pJSOptions } from "./pjsinterfaces";
-import { pJSShapeType, pJSMoveDirection, pJSOutMode, pJSInteractivityDetect, pJSHoverMode, pJSClickMode } from "./pjsenums";
+import { Options } from "./interfaces";
+import { ShapeType, MoveDirection, OutMode, InteractivityDetect, HoverMode, ClickMode } from "./enums";
 
-export class pJSConstants {
-    static readonly canvasClass = 'particles-canvas-el';
-    static readonly defaultOptions: pJSOptions = {
+export class Constants {
+    static readonly canvasClass = 'tsparticles-canvas-el';
+    static readonly defaultOptions: Options = {
         particles: {
             number: {
                 value: 400,
@@ -16,7 +16,7 @@ export class pJSConstants {
                 value: '#fff'
             },
             shape: {
-                type: pJSShapeType.circle,
+                type: ShapeType.circle,
                 stroke: {
                     width: 0,
                     color: '#ff0000'
@@ -66,10 +66,10 @@ export class pJSConstants {
             move: {
                 enable: true,
                 speed: 2,
-                direction: pJSMoveDirection.none,
+                direction: MoveDirection.none,
                 random: false,
                 straight: false,
-                out_mode: pJSOutMode.out,
+                out_mode: OutMode.out,
                 bounce: false,
                 attract: {
                     enable: false,
@@ -79,11 +79,11 @@ export class pJSConstants {
             }
         },
         interactivity: {
-            detect_on: pJSInteractivityDetect.canvas,
+            detect_on: InteractivityDetect.canvas,
             events: {
                 onhover: {
                     enable: true,
-                    mode: pJSHoverMode.grab,
+                    mode: HoverMode.grab,
                     parallax: {
                         enable: false,
                         force: 2,
@@ -92,7 +92,7 @@ export class pJSConstants {
                 },
                 onclick: {
                     enable: true,
-                    mode: pJSClickMode.push
+                    mode: ClickMode.push
                 },
                 resize: true
             },

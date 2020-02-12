@@ -30,7 +30,7 @@
       delete pJS_GUI_Export.particles.color.rgb;
       delete pJS_GUI_Export.particles.line_linked.color_rgb_line;
       if (type === 'json') {
-        return console.save(pJS_GUI_Export, 'particlesjs-config.json');
+        return console.save(pJS_GUI_Export, 'tsparticles-config.json');
       } else {
         data = {
           js: pJS_GUI_Export,
@@ -50,7 +50,7 @@
       closed: true,
       width: 340
     });
-    window.pJS_GUI = window.pJSDom()[0];
+    window.pJS_GUI = window.tsParticles.tsParticlesDom()[0];
     window.page_settings = {
       hide_card: false,
       background_color: '#111',
@@ -99,7 +99,7 @@
       pJS_GUI.options.retina_detect = value;
       return await p.update();
     });
-    gui.add(pJS_GUI.options, 'fps_limit', 0, 240).step(1).name('fps_limit').onChange(async function (value) {
+    gui.add(pJS_GUI.options, 'fps_limit', 0, 60).step(1).name('fps_limit').onChange(async function (value) {
       pJS_GUI.options.fps_limit = value;
       return await p.update();
     });
@@ -319,19 +319,19 @@
       return await p.update();
     });
     gui_f.pagecss.addColor(pJS_GUI.options.config_demo, 'background_color').name('background-color').onChange(function (value) {
-      return $('#particles-js').css('background-color', value);
+      return $('#tsparticles').css('background-color', value);
     });
     gui_f.pagecss.add(pJS_GUI.options.config_demo, 'background_image').name('background-image url').onChange(function (value) {
-      return $('#particles-js').css('background-image', 'url(' + value + ')');
+      return $('#tsparticles').css('background-image', 'url(' + value + ')');
     });
     gui_f.pagecss.add(pJS_GUI.options.config_demo, 'background_size').name('background-size').onChange(function (value) {
-      return $('#particles-js').css('background-size', value);
+      return $('#tsparticles').css('background-size', value);
     });
     gui_f.pagecss.add(pJS_GUI.options.config_demo, 'background_position').name('background-position').onChange(function (value) {
-      return $('#particles-js').css('background-position', value);
+      return $('#tsparticles').css('background-position', value);
     });
     gui_f.pagecss.add(pJS_GUI.options.config_demo, 'background_repeat').name('background-repeat').onChange(function (value) {
-      return $('#particles-js').css('background-repeat', value);
+      return $('#tsparticles').css('background-repeat', value);
     });
     gui_f.pagecss.add(pJS_GUI.options.config_demo, 'hide_card').name('hide card').onChange(function (value) {
       if (value) {
@@ -452,7 +452,7 @@
     var k, n, pjs, pjs_style, playAudio, start, stop;
     k = [38, 38, 40, 40, 37, 39, 37, 39, 66, 65];
     n = 0;
-    pjs = $('#particles-js');
+    pjs = $('#tsparticles');
     pjs_style = null;
     playAudio = function () {
       var audio, src_path;
@@ -467,7 +467,6 @@
       window.konami = true;
       pjs_style = pjs.attr('style');
       pjs.addClass('troll').css({
-        'background-image': 'url(https://dl.dropboxusercontent.com/u/19580440/particlesjs-assets/kbLd9vb_new.gif)',
         'background-size': '75%',
         'background-position': '0 50%',
         'background-color': '#043564'
@@ -527,7 +526,7 @@
     }
   });
 
-  particlesJS.load('particles-js', `presets/${id_preset}.json`, function () {
+  tsParticles.loadJSON('tsparticles', `presets/${id_preset}.json`, function () {
     return $(function () {
       window.loadGUI();
       window.loadStats();
