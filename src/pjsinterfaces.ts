@@ -20,7 +20,7 @@ declare global {
   }
 
 export interface pJSContainerInteractivity {
-    el?: HTMLElement | Window;
+    el?: HTMLElement | Window | Node | null;
     status?: string;
     mouse: pJSMouseData;
 }
@@ -147,6 +147,7 @@ export interface pJSShape {
         src: string;
         width: number;
         height: number;
+        replace_color: boolean;
     };
 }
 
@@ -172,6 +173,7 @@ export interface pJSParticleImage {
     ratio: number;
     obj?: HTMLImageElement;
     loaded?: boolean;
+    replace_color: boolean;
 }
 
 export interface pJSCoordinates {

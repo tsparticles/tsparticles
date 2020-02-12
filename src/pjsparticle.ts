@@ -185,7 +185,8 @@ export class pJSParticle {
             let sh = options.particles.shape;
             this.img = {
                 src: sh.image.src,
-                ratio: sh.image.width / sh.image.height
+                ratio: sh.image.width / sh.image.height,
+                replace_color: sh.image.replace_color
             };
             if (!this.img.ratio)
                 this.img.ratio = 1;
@@ -243,6 +244,14 @@ export class pJSParticle {
         const ctx = pJS.canvas.ctx;
 
         switch (this.shape) {
+            case pJSShapeType.line:
+                ctx.moveTo(this.x, this.y)
+                ctx.lineTo(this.x, this.y+radius)
+                ctx.strokeStyle = options.particles.shape.stroke.color;
+                ctx.lineWidth = options.particles.shape.stroke.width;
+                ctx.stroke();
+              break;
+       
             case pJSShapeType.circle:
                 ctx.arc(p_x, p_y, radius, 0, Math.PI * 2, false);
                 break;
@@ -394,20 +403,27 @@ export class pJSParticle {
 
         if (!svgXml) return;
 
-        let rgbHex = /#([0-9A-F]{3,6})/gi;
-        let coloredSvgXml = svgXml.replace(rgbHex, (substring: string) => {
-            let color_value;
+        let url: string;
+        if (this.img && this.img.replace_color) {
+            let rgbHex = /#([0-9A-F]{3,6})/gi;
+            let coloredSvgXml = svgXml.replace(rgbHex, (substring: string) => {
+                let color_value;
 
-            if (p.color.rgb) {
-                color_value = `rgba(${p.color.rgb.r},${p.color.rgb.g},${p.color.rgb.b},${p.opacity})`;
-            } else if (p.color.hsl) {
-                color_value = `hsla(${p.color.hsl.h},${p.color.hsl.s}%,${p.color.hsl.l}%,${p.opacity})`;
-            }
+                if (p.color.rgb) {
+                    color_value = `rgb(${p.color.rgb.r},${p.color.rgb.g},${p.color.rgb.b})`;
+                } else if (p.color.hsl) {
+                    color_value = `hsl(${p.color.hsl.h},${p.color.hsl.s}%,${p.color.hsl.l}%)`;
+                }
 
-            return color_value || substring;
-        });
+                return color_value || substring;
+            });
+            url = 'data:image/svg+xml;utf8,' + coloredSvgXml;
+        } else {
+            url = 'data:image/svg+xml;utf8,' + svgXml;
+        }
         /* prepare to create img with colored svg */
-        let svg = new Blob([coloredSvgXml], { type: 'image/svg+xml;charset=utf-8' }), url = URL.createObjectURL(svg);
+        // let svg = new Blob([coloredSvgXml], { type: 'image/svg+xml;charset=utf-8' });
+        // let url = URL.createObjectURL(svg);
         /* create particle img obj */
         let img = new Image();
         img.addEventListener('load', () => {
@@ -416,7 +432,7 @@ export class pJSParticle {
                 p.img.loaded = true;
             }
 
-            URL.revokeObjectURL(url);
+            // URL.revokeObjectURL(url);
 
             if (!pJS.svg.count)
                 pJS.svg.count = 0;
@@ -564,7 +580,7 @@ export class pJSParticle {
                 y: this.y + normVec.y * repulseFactor
             };
 
-            if (options.particles.move.out_mode == pJSOutMode.bounce) {
+            if (options.particles.move.out_mode == pJSOutMode.bounce || options.particles.move.out_mode == pJSOutMode.bounceVertical) {
                 if (pos.x - this.radius > 0 && pos.x + this.radius < pJS.canvas.w)
                     this.x = pos.x;
                 if (pos.y - this.radius > 0 && pos.y + this.radius < pJS.canvas.h)
@@ -591,12 +607,12 @@ export class pJSParticle {
                 let dx = (pJS.interactivity.mouse.click_pos_x || 0) - this.x;
                 let dy = (pJS.interactivity.mouse.click_pos_y || 0) - this.y;
                 let d = Math.sqrt(dx * dx + dy * dy);
-                let force = -repulseRadius / (d*d);
+                let force = -repulseRadius / (d * d);
 
 
                 // default
                 if (d <= repulseRadius) {
-                    pJS.processRepulse(this, dx, dy, force);
+                    this.processRepulse(dx, dy, force);
                 }
                 // bang - slow motion mode
                 // if(!pJS.repulse_finish){
@@ -610,6 +626,32 @@ export class pJSParticle {
                 this.vx = this.vx_i;
                 this.vy = this.vy_i;
             }
+        }
+    }
+
+    processRepulse(dx: number, dy: number, force: number) {
+        let pJS = this.pJSContainer;
+        let options = pJS.options;
+
+        let f = Math.atan2(dy, dx);
+
+        this.vx = force * Math.cos(f);
+        this.vy = force * Math.sin(f);
+
+        if (options.particles.move.out_mode == pJSOutMode.bounce || options.particles.move.out_mode == pJSOutMode.bounceVertical) {
+            let pos = {
+                x: this.x + this.vx,
+                y: this.y + this.vy
+            };
+
+            if (pos.x + this.radius > pJS.canvas.w)
+                this.vx = -this.vx;
+            else if (pos.x - this.radius < 0)
+                this.vx = -this.vx;
+            if (pos.y + this.radius > pJS.canvas.h)
+                this.vy = -this.vy;
+            else if (pos.y - this.radius < 0)
+                this.vy = -this.vy;
         }
     }
 

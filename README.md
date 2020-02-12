@@ -60,7 +60,7 @@ particlesJS.load('particles-js', 'assets/particles.json', function() {
 
 ### `Demo / Generator`
 
-[![Particles Generator](https://camo.githubusercontent.com/cdc9e740f0c04b77449e476c91e6f7770a6af6e7/687474703a2f2f76696e63656e74676172726561752e636f6d2f7061727469636c65732e6a732f6173736574732f696d672f6769746875622d73637265656e2e6a7067)](http://vincentgarreau.com/particles.js/)
+[![Particles Generator](http://vincentgarreau.com/particles.js/assets/img/github-screen.jpg)](http://vincentgarreau.com/particles.js/)
 
 Configure, export, and share your particles.js configuration on CodePen:
 
@@ -197,10 +197,10 @@ key | option type / notes | example
 `particles.number.density.enable` | boolean | `true` / `false` 
 `particles.number.density.value_area` | number | `800`
 `particles.color.value` | HEX (string) <br /> RGB (object) <br /> HSL (object) <br /> array selection (HEX) <br /> random (string) | `"#b61924"` <br /> `{r:182, g:25, b:36}` <br />  `{h:356, s:76, l:41}` <br /> `["#b61924", "#333333", "999999"]` <br /> `"random"`
-`particles.shape.type` | string <br /> array selection | `"circle"` <br /> `"edge"` <br /> `"triangle"` <br /> `"polygon"` <br /> `"star"` <br /> `"image"` <br /> `["circle", "triangle", "image"]`
+`particles.shape.type` | string <br /> array selection | `"circle"` <br /> `"line"` <br /> `"edge"` <br /> `"triangle"` <br /> `"polygon"` <br /> `"star"` <br /> `"image"` <br /> `["circle", "triangle", "image"]`
 `particles.shape.stroke.width` | number | `2`
 `particles.shape.stroke.color` | HEX (string) | `"#222222"`
-`particles.shape.polygon.nb_slides` | number | `5`
+`particles.shape.polygon.nb_sides` | number | `5`
 `particles.shape.image.src` | path link <br /> svg / png / gif / jpg | `"assets/img/yop.svg"` <br /> `"http://mywebsite.com/assets/img/yop.png"`
 `particles.shape.image.width` | number <br />(for aspect ratio) | `100`
 `particles.shape.image.height` | number <br />(for aspect ratio) | `100`
@@ -226,12 +226,12 @@ key | option type / notes | example
 `particles.move.direction` | string | `"none"` <br /> `"top"` <br /> `"top-right"` <br /> `"right"` <br /> `"bottom-right"` <br /> `"bottom"` <br /> `"bottom-left"` <br /> `"left"` <br /> `"top-left"`
 `particles.move.random` | boolean | `true` / `false`
 `particles.move.straight` | boolean | `true` / `false`
-`particles.move.out_mode` | string <br /> (out of canvas) | `"out"` <br /> `"bounce"`
+`particles.move.out_mode` | string <br /> (out of canvas) | `"out"` <br /> `"bounce"` <br /> `"bounce-vertical"` <br /> `"bounce-horizontal"`
 `particles.move.bounce` | boolean <br /> (between particles) | `true` / `false`
 `particles.move.attract.enable` | boolean | `true` / `false`
 `particles.move.attract.rotateX` | number | `3000`
 `particles.move.attract.rotateY` | number | `1500`
-`interactivity.detect_on` | string | `"canvas", "window"`
+`interactivity.detect_on` | string | `"canvas", "window","parent"`
 `interactivity.events.onhover.enable` | boolean | `true` / `false`
 `interactivity.events.onhover.mode` | string <br /> array selection | `"grab"` <br /> `"bubble"` <br /> `"repulse"` <br /> `["grab", "bubble"]`
 `interactivity.events.onclick.enable` | boolean | `true` / `false`
@@ -245,5 +245,5 @@ key | option type / notes | example
 `interactivity.events.modes.repulse.distance` | number | `200`
 `interactivity.events.modes.repulse.duration` | number <br /> (second) | `1.2`
 `interactivity.events.modes.push.particles_nb` | number | `4`
-`interactivity.events.modes.push.particles_nb` | number | `4`
+`interactivity.events.modes.remove.particles_nb` | number | `4`
 `retina_detect` | boolean | `true` / `false`

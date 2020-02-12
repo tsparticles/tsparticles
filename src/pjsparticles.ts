@@ -93,11 +93,11 @@ export class pJSParticles {
                 if (p.radius < 0)
                     p.radius = 0;
             }
-            
+
             /* change particle position if it is out of canvas */
             let new_pos;
 
-            if (options.particles.move.out_mode == pJSOutMode.bounce) {
+            if (options.particles.move.out_mode == pJSOutMode.bounce || options.particles.move.out_mode == pJSOutMode.bounceVertical) {
                 new_pos = {
                     x_left: p.radius,
                     x_right: pJS.canvas.w,
@@ -141,6 +141,14 @@ export class pJSParticles {
                         p.vy = -p.vy;
                     else if ((p.y + p.offsetY) - p.radius < 0)
                         p.vy = -p.vy;
+                    break;
+                case pJSOutMode.bounceVertical:
+                    if (p.y + p.radius > pJS.canvas.h) p.vy = -p.vy;
+                    if (p.y - p.radius < 0) p.vy = -p.vy;
+                    break;
+                case pJSOutMode.bounceHorizontal:
+                    if (p.x + p.radius > pJS.canvas.w) p.vx = -p.vx;
+                    else if (p.x - p.radius < 0) p.vx = -p.vx;
                     break;
             }
 
@@ -250,7 +258,7 @@ export class pJSParticles {
         pJS.img.obj = undefined;
 
         this.empty();
-        
+
         pJS.canvas.clear();
 
         /* restart */

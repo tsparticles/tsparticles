@@ -32,7 +32,8 @@ export class pJSConstants {
                 image: {
                     src: '',
                     width: 100,
-                    height: 100
+                    height: 100,
+                    replace_color: true
                 }
             },
             opacity: {

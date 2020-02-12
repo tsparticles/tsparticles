@@ -91,77 +91,95 @@ export class pJSContainer {
         /* events target element */
         if (this.options.interactivity.detect_on == pJSInteractivityDetect.window) {
             this.interactivity.el = window;
+        } else if (this.options.interactivity.detect_on == 'parent') {
+            this.interactivity.el = this.canvas.el.parentNode;
         } else {
             this.interactivity.el = this.canvas.el;
         }
         /* detect mouse pos - on hover / click event */
         if (this.options.interactivity.events.onhover.enable || this.options.interactivity.events.onclick.enable) {
             /* el on mousemove */
-            this.interactivity.el.addEventListener('mousemove', (e: Event) => {
-                let pos_x;
-                let pos_y;
+            if (this.interactivity.el) {
+                this.interactivity.el.addEventListener('mousemove', (e: Event) => {
+                    let pos_x;
+                    let pos_y;
 
-                let mouseEvent = e as MouseEvent;
+                    let mouseEvent = e as MouseEvent;
 
-                if (this.interactivity.el == window) {
-                    pos_x = mouseEvent.clientX;
-                    pos_y = mouseEvent.clientY;
-                } else {
-                    pos_x = mouseEvent.offsetX || mouseEvent.clientX;
-                    pos_y = mouseEvent.offsetY || mouseEvent.clientY;
-                }
+                    if (this.interactivity.el == window) {
+                        pos_x = mouseEvent.clientX;
+                        pos_y = mouseEvent.clientY;
+                    } else if (this.options.interactivity.detect_on == pJSInteractivityDetect.parent) {
+                        let source = mouseEvent.srcElement as HTMLElement;
+                        let target = mouseEvent.currentTarget as HTMLElement
+                        if (source && target) {
+                            let sourceRect = source.getBoundingClientRect();
+                            let targetRect = target.getBoundingClientRect();
+                            pos_x = mouseEvent.offsetX + sourceRect.left - targetRect.left;
+                            pos_y = mouseEvent.offsetY + sourceRect.top - targetRect.top;
+                        } else {
+                            pos_x = mouseEvent.offsetX || mouseEvent.clientX;
+                            pos_y = mouseEvent.offsetY || mouseEvent.clientY;
+                        }
+                    } else {
+                        pos_x = mouseEvent.offsetX || mouseEvent.clientX;
+                        pos_y = mouseEvent.offsetY || mouseEvent.clientY;
+                    }
 
-                this.interactivity.mouse.pos_x = pos_x * (this.retina.isRetina ? this.canvas.pxratio : 1);
-                this.interactivity.mouse.pos_y = pos_y * (this.retina.isRetina ? this.canvas.pxratio : 1);
+                    this.interactivity.mouse.pos_x = pos_x * (this.retina.isRetina ? this.canvas.pxratio : 1);
+                    this.interactivity.mouse.pos_y = pos_y * (this.retina.isRetina ? this.canvas.pxratio : 1);
 
-                this.interactivity.status = 'mousemove';
-            });
-            /* el on onmouseleave */
-            this.interactivity.el.addEventListener('mouseleave', () => {
-                this.interactivity.mouse.pos_x = null;
-                this.interactivity.mouse.pos_y = null;
-                this.interactivity.status = 'mouseleave';
-            });
+                    this.interactivity.status = 'mousemove';
+                });
+                /* el on onmouseleave */
+                this.interactivity.el.addEventListener('mouseleave', () => {
+                    this.interactivity.mouse.pos_x = null;
+                    this.interactivity.mouse.pos_y = null;
+                    this.interactivity.status = 'mouseleave';
+                });
+            }
         }
 
         /* on click event */
         if (this.options.interactivity.events.onclick.enable) {
-            this.interactivity.el.addEventListener('click', () => {
-                this.interactivity.mouse.click_pos_x = this.interactivity.mouse.pos_x;
-                this.interactivity.mouse.click_pos_y = this.interactivity.mouse.pos_y;
-                this.interactivity.mouse.click_time = new Date().getTime();
+            if (this.interactivity.el) {
+                this.interactivity.el.addEventListener('click', () => {
+                    this.interactivity.mouse.click_pos_x = this.interactivity.mouse.pos_x;
+                    this.interactivity.mouse.click_pos_y = this.interactivity.mouse.pos_y;
+                    this.interactivity.mouse.click_time = new Date().getTime();
 
-                if (this.options.interactivity.events.onclick.enable) {
-                    switch (this.options.interactivity.events.onclick.mode) {
-                        case pJSClickMode.push:
-                            if (this.options.particles.move.enable) {
-                                this.particles.push(this.options.interactivity.modes.push.particles_nb, this.interactivity.mouse);
-                            } else {
-                                if (this.options.interactivity.modes.push.particles_nb == 1) {
+                    if (this.options.interactivity.events.onclick.enable) {
+                        switch (this.options.interactivity.events.onclick.mode) {
+                            case pJSClickMode.push:
+                                if (this.options.particles.move.enable) {
                                     this.particles.push(this.options.interactivity.modes.push.particles_nb, this.interactivity.mouse);
+                                } else {
+                                    if (this.options.interactivity.modes.push.particles_nb == 1) {
+                                        this.particles.push(this.options.interactivity.modes.push.particles_nb, this.interactivity.mouse);
+                                    }
+                                    else if (this.options.interactivity.modes.push.particles_nb > 1) {
+                                        this.particles.push(this.options.interactivity.modes.push.particles_nb);
+                                    }
                                 }
-                                else if (this.options.interactivity.modes.push.particles_nb > 1) {
-                                    this.particles.push(this.options.interactivity.modes.push.particles_nb);
-                                }
-                            }
-                            break;
-                        case pJSClickMode.remove:
-                            this.particles.remove(this.options.interactivity.modes.remove.particles_nb);
-                            break;
-                        case pJSClickMode.bubble:
-                            this.bubble.clicking = true;
-                            break;
-                        case pJSClickMode.repulse:
-                            this.repulse.clicking = true;
-                            this.repulse.count = 0;
-                            this.repulse.finish = false;
-                            setTimeout(() => {
-                                this.repulse.clicking = false;
-                            }, this.options.interactivity.modes.repulse.duration * 1000);
-                            break;
+                                break;
+                            case pJSClickMode.remove:
+                                this.particles.remove(this.options.interactivity.modes.remove.particles_nb);
+                                break;
+                            case pJSClickMode.bubble:
+                                this.bubble.clicking = true;
+                                break;
+                            case pJSClickMode.repulse:
+                                this.repulse.clicking = true;
+                                this.repulse.count = 0;
+                                this.repulse.finish = false;
+                                setTimeout(() => {
+                                    this.repulse.clicking = false;
+                                }, this.options.interactivity.modes.repulse.duration * 1000);
+                                break;
+                        }
                     }
-                }
-            });
+                });
+            }
         }
     }
 
@@ -356,32 +374,6 @@ export class pJSContainer {
                 if (id == pJSProcessBubbleType.opacity)
                     p.opacity_bubble = value;
             }
-        }
-    }
-
-    processRepulse(p: pJSParticle, dx: number, dy: number, force: number) {
-        let pJS = this;
-        let options = pJS.options;
-
-        let f = Math.atan2(dy, dx);
-
-        p.vx = force * Math.cos(f);
-        p.vy = force * Math.sin(f);
-
-        if (options.particles.move.out_mode == pJSOutMode.bounce) {
-            let pos = {
-                x: p.x + p.vx,
-                y: p.y + p.vy
-            };
-
-            if (pos.x + p.radius > pJS.canvas.w)
-                p.vx = -p.vx;
-            else if (pos.x - p.radius < 0)
-                p.vx = -p.vx;
-            if (pos.y + p.radius > pJS.canvas.h)
-                p.vy = -p.vy;
-            else if (pos.y - p.radius < 0)
-                p.vy = -p.vy;
         }
     }
 

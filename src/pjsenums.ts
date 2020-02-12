@@ -8,7 +8,8 @@ export enum pJSShapeType {
     square = 'square',
     heart = 'heart',
     char = 'char',
-    character = 'character'
+    character = 'character',
+    line = "line"
 }
 
 export enum pJSMoveDirection {
@@ -25,12 +26,15 @@ export enum pJSMoveDirection {
 
 export enum pJSOutMode {
     out = 'out',
-    bounce = 'bounce'
+    bounce = 'bounce',
+    bounceVertical = 'bounce-vertical',
+    bounceHorizontal = 'bounce-horizontal'
 }
 
 export enum pJSInteractivityDetect {
     canvas = 'canvas',
-    window = 'window'
+    window = 'window',
+    parent = 'parent'
 }
 
 export enum pJSHoverMode {
