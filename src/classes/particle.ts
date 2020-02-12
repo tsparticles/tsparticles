@@ -606,9 +606,8 @@ export class Particle {
                 let repulseRadius = Math.pow(options.interactivity.modes.repulse.distance / 6, 3);
                 let dx = (pJS.interactivity.mouse.click_pos_x || 0) - this.x;
                 let dy = (pJS.interactivity.mouse.click_pos_y || 0) - this.y;
-                let d = Math.sqrt(dx * dx + dy * dy);
-                let force = -repulseRadius / (d * d);
-
+                let d = dx * dx + dy * dy;
+                let force = -repulseRadius / d;
 
                 // default
                 if (d <= repulseRadius) {
@@ -648,6 +647,7 @@ export class Particle {
                 this.vx = -this.vx;
             else if (pos.x - this.radius < 0)
                 this.vx = -this.vx;
+
             if (pos.y + this.radius > pJS.canvas.h)
                 this.vy = -this.vy;
             else if (pos.y - this.radius < 0)
