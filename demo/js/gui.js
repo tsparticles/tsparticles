@@ -210,7 +210,7 @@
       pJS_GUI.options.particles.line_linked.distance = value;
       return await p.update();
     });
-    f.particles.line_linked.addColor(pJS_GUI.particles.line_linked, 'color').name('color').onChange(async function (value) {
+    f.particles.line_linked.addColor(pJS_GUI.options.particles.line_linked, 'color').name('color').onChange(async function (value) {
       pJS_GUI.options.particles.line_linked.color = value;
       return await p.update();
     });
@@ -258,7 +258,7 @@
       pJS_GUI.options.particles.move.attract.rotateY = value;
       return await p.update();
     });
-    gui_f.interactivity.add(pJS_GUI.options.interactivity, 'detect_on', ['window', 'canvas']).name('detect_on').onChange(async function (value) {
+    gui_f.interactivity.add(pJS_GUI.options.interactivity, 'detect_on', ['window', 'canvas', 'parent']).name('detect_on').onChange(async function (value) {
       pJS_GUI.options.interactivity.detect_on = value;
       return await p.update();
     });

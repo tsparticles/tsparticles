@@ -220,19 +220,18 @@ export class pJSContainer {
     async loadImg(type: string) {
         this.img.error = undefined;
         if (this.options.particles.shape.image.src != '') {
-            if (type == 'svg') {
-                let response = await fetch(this.options.particles.shape.image.src);
+            // if (type == 'svg') {
+            //     let response = await fetch(this.options.particles.shape.image.src);
 
-                if (response.ok) {
-                    this.svg.source = await response.text();
+            //     if (response.ok) {
+            //         this.svg.source = await response.text();
 
-                    this.checkBeforeDraw();
-                } else {
-                    console.error('Error pJS - Image not found');
-                    this.img.error = true;
-                }
-            }
-            else {
+            //         this.checkBeforeDraw();
+            //     } else {
+            //         console.error('Error pJS - Image not found');
+            //         this.img.error = true;
+            //     }
+            // } else {
                 let img = new Image();
 
                 img.addEventListener('load', () => {
@@ -242,7 +241,7 @@ export class pJSContainer {
                 });
 
                 img.src = this.options.particles.shape.image.src;
-            }
+            // }
         }
         else {
             console.error('Error pJS - No image.src');
@@ -271,21 +270,21 @@ export class pJSContainer {
         this.lastFrameTime = timestamp;
 
         if (this.options.particles.shape.type == pJSShapeType.image) {
-            if (this.img.type == 'svg') {
-                if (this.drawAnimFrame && this.svg.count >= this.options.particles.number.value) {
-                    this.particles.draw(delta);
+            // if (this.img.type == 'svg') {
+            //     if (this.drawAnimFrame && this.svg.count >= this.options.particles.number.value) {
+            //         this.particles.draw(delta);
 
-                    if (!this.options.particles.move.enable) {
-                        this.cancelAnimation(this.drawAnimFrame);
-                    } else {
-                        this.drawAnimFrame = this.requestFrame(timestamp => this.draw(timestamp));
-                    }
-                } else {
-                    if (!this.img.error) {
-                        this.drawAnimFrame = this.requestFrame(timestamp => this.draw(timestamp));
-                    }
-                }
-            } else {
+            //         if (!this.options.particles.move.enable) {
+            //             this.cancelAnimation(this.drawAnimFrame);
+            //         } else {
+            //             this.drawAnimFrame = this.requestFrame(timestamp => this.draw(timestamp));
+            //         }
+            //     } else {
+            //         if (!this.img.error) {
+            //             this.drawAnimFrame = this.requestFrame(timestamp => this.draw(timestamp));
+            //         }
+            //     }
+            // } else {
                 if (this.img.obj != undefined) {
                     this.particles.draw(delta);
 
@@ -299,7 +298,7 @@ export class pJSContainer {
                         this.drawAnimFrame = this.requestFrame(timestamp => this.draw(timestamp));
                     }
                 }
-            }
+            // }
         } else {
             this.particles.draw(delta);
 
@@ -316,13 +315,12 @@ export class pJSContainer {
     checkBeforeDraw() {
         // if shape is image
         if (this.options.particles.shape.type == pJSShapeType.image) {
-            if (this.img.type == 'svg' && this.svg.source == undefined) {
-                this.checkAnimFrame = this.requestFrame(() => {
-                    //TODO: Questo check non è da nessuna parte
-                    //check();
-                });
-            }
-            else {
+            // if (this.img.type == 'svg' && this.svg.source == undefined) {
+            //     this.checkAnimFrame = this.requestFrame(() => {
+            //         //TODO: Can't find anywhere this check
+            //         //check();
+            //     });
+            // } else {
                 if (this.checkAnimFrame) {
                     this.cancelAnimation(this.checkAnimFrame);
                 }
@@ -331,7 +329,7 @@ export class pJSContainer {
                     this.init();
                     this.draw(0);
                 }
-            }
+            // }
         } else {
             this.init();
             this.draw(0);
