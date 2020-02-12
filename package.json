@@ -1,7 +1,7 @@
 {
   "name": "tsparticles",
-  "version": "1.3.1",
-  "description": "Port of Vincent Garreau' particles.js which was originally a port of Vincent Garreau' particles.js, written in Typescript.",
+  "version": "1.3.2",
+  "description": "Porting of Vincent Garreau' particles.js, converted in TypeScript.",
   "homepage": "https://github.com/matteobruni/tsparticles",
   "scripts": {
     "type-check": "tsc --noEmit",
@@ -17,7 +17,12 @@
   "keywords": [
     "particles",
     "particle",
-    "canvas"
+    "canvas",
+    "particles-js",
+    "particles.js",
+    "typescript",
+    "javascript",
+    "animation"
   ],
   "author": "Matteo Bruni",
   "license": "MIT",

@@ -33,12 +33,12 @@ npm install tsparticles
 
 ### `Usage`
 
-Load particles.js and configure the particles:
+Load tsParticles and configure the particles:
 
 **index.html**
 
 ```html
-<div id="particles-js"></div>
+<div id="tsparticles"></div>
 
 <script src="tsparticles.min.js"></script>
 ```
@@ -46,10 +46,15 @@ Load particles.js and configure the particles:
 **app.js**
 
 ```javascript
-/* particlesJS.load(@dom-id, @path-json, @callback (optional)); */
-particlesJS.load('particles-js', 'assets/particles.json', function() {
-  console.log('callback - particles.js config loaded');
+/* tsParticles.load(@dom-id, @path-json, @callback (optional)); */
+tsParticles.loadJSON('tsparticles', 'assets/particles.json', function() {
+  console.log('callback - tsparticles config loaded');
 });
+
+//or
+
+/* tsParticles.load(@dom-id, @options); */
+tsParticles.load('tsparticles', { /* options here */ });
 ```
 
 ---
@@ -57,8 +62,6 @@ particlesJS.load('particles-js', 'assets/particles.json', function() {
 ### `Demo / Generator`
 
 [![Particles Generator](https://tsparticles.matteobruni.it/demo/img/demo.png)](https://tsparticles.matteobruni.it/demo/)
-
-Configure, export, and share your particles.js configuration on CodePen:
 
 <https://tsparticles.matteobruni.it/demo/>
 

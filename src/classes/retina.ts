@@ -1,12 +1,12 @@
 'use strict';
 
-import { pJSContainer } from "./pjscontainer";
+import { Container } from "./container";
 
-export class pJSRetina {
-    pJSContainer: pJSContainer;
+export class Retina {
+    pJSContainer: Container;
     isRetina: boolean;
 
-    constructor(pJSContainer: pJSContainer) {
+    constructor(pJSContainer: Container) {
         this.pJSContainer = pJSContainer;
         this.isRetina = false;
     }

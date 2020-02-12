@@ -1,17 +1,17 @@
-import { pJSParticle } from './pjsparticle';
-import { pJSUtils } from './pjsutils';
-import { pJSContainer } from './pjscontainer';
-import { pJSOutMode, pJSHoverMode, pJSClickMode } from './pjsenums';
-import { pJSMouseData } from './pjsinterfaces';
+import { Particle } from './particle';
+import { Utils } from '../utils/utils';
+import { Container } from './container';
+import { OutMode, HoverMode, ClickMode } from '../utils/enums';
+import { MouseData } from '../utils/interfaces';
 
 'use strict';
 
-export class pJSParticles {
-    pJSContainer: pJSContainer;
-    array: pJSParticle[];
+export class Particles {
+    pJSContainer: Container;
+    array: Particle[];
     pushing?: boolean;
 
-    constructor(pJSContainer: pJSContainer) {
+    constructor(pJSContainer: Container) {
         this.pJSContainer = pJSContainer;
         this.array = [];
     }
@@ -22,7 +22,7 @@ export class pJSParticles {
         let options = pJS.options;
 
         for (let i = 0; i < options.particles.number.value; i++) {
-            const p = new pJSParticle(pJS, options.particles.color, options.particles.opacity.value);
+            const p = new Particle(pJS, options.particles.color, options.particles.opacity.value);
 
             this.array.push(p);
         }
@@ -97,7 +97,7 @@ export class pJSParticles {
             /* change particle position if it is out of canvas */
             let new_pos;
 
-            if (options.particles.move.out_mode == pJSOutMode.bounce || options.particles.move.out_mode == pJSOutMode.bounceVertical) {
+            if (options.particles.move.out_mode == OutMode.bounce || options.particles.move.out_mode == OutMode.bounceVertical) {
                 new_pos = {
                     x_left: p.radius,
                     x_right: pJS.canvas.w,
@@ -132,7 +132,7 @@ export class pJSParticles {
 
             /* out of canvas modes */
             switch (options.particles.move.out_mode) {
-                case pJSOutMode.bounce:
+                case OutMode.bounce:
                     if ((p.x + p.offsetX) + p.radius > pJS.canvas.w)
                         p.vx = -p.vx;
                     else if ((p.x + p.offsetX) - p.radius < 0)
@@ -142,26 +142,26 @@ export class pJSParticles {
                     else if ((p.y + p.offsetY) - p.radius < 0)
                         p.vy = -p.vy;
                     break;
-                case pJSOutMode.bounceVertical:
+                case OutMode.bounceVertical:
                     if (p.y + p.radius > pJS.canvas.h) p.vy = -p.vy;
                     if (p.y - p.radius < 0) p.vy = -p.vy;
                     break;
-                case pJSOutMode.bounceHorizontal:
+                case OutMode.bounceHorizontal:
                     if (p.x + p.radius > pJS.canvas.w) p.vx = -p.vx;
                     else if (p.x - p.radius < 0) p.vx = -p.vx;
                     break;
             }
 
             /* events */
-            if (pJSUtils.isInArray(pJSHoverMode.grab, options.interactivity.events.onhover.mode)) {
+            if (Utils.isInArray(HoverMode.grab, options.interactivity.events.onhover.mode)) {
                 p.grab();
             }
 
-            if (pJSUtils.isInArray(pJSHoverMode.bubble, options.interactivity.events.onhover.mode) || pJSUtils.isInArray(pJSClickMode.bubble, options.interactivity.events.onclick.mode)) {
+            if (Utils.isInArray(HoverMode.bubble, options.interactivity.events.onhover.mode) || Utils.isInArray(ClickMode.bubble, options.interactivity.events.onclick.mode)) {
                 p.bubble();
             }
 
-            if (pJSUtils.isInArray(pJSHoverMode.repulse, options.interactivity.events.onhover.mode) || pJSUtils.isInArray(pJSClickMode.repulse, options.interactivity.events.onclick.mode)) {
+            if (Utils.isInArray(HoverMode.repulse, options.interactivity.events.onhover.mode) || Utils.isInArray(ClickMode.repulse, options.interactivity.events.onclick.mode)) {
                 p.repulse();
             }
 
@@ -210,14 +210,14 @@ export class pJSParticles {
     }
 
     /* ---------- pJS functions - modes events ------------ */
-    push(nb: number, pos?: pJSMouseData) {
+    push(nb: number, pos?: MouseData) {
         const pJS = this.pJSContainer;
         const options = pJS.options;
 
         this.pushing = true;
 
         for (let i = 0; i < nb; i++) {
-            const p = new pJSParticle(pJS, options.particles.color, options.particles.opacity.value, {
+            const p = new Particle(pJS, options.particles.color, options.particles.opacity.value, {
                 x: pos && pos.pos_x ? pos.pos_x : Math.random() * pJS.canvas.w,
                 y: pos && pos.pos_y ? pos.pos_y : Math.random() * pJS.canvas.h
             });

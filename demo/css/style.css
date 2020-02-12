@@ -517,18 +517,18 @@ canvas {
   display: block;
   vertical-align: bottom;
 }
-#particles-js {
+#tsparticles {
   width: 100%;
   height: 100%;
   background-color: #b61924;
   background-size: cover;
   background-position: 50% 50%;
 }
-#particles-js.troll canvas {
+#tsparticles.troll canvas {
   -webkit-animation: spinning 1.4s infinite;
   animation: spinning 1.4s infinite;
 }
-#particles-js .particles-js-canvas-el {
+#tsparticles .tsparticles-canvas-el {
   -ms-transform: scale(1);
   -webkit-transform: scale(1);
   transform: scale(1);

@@ -1,12 +1,12 @@
-import { pJSUtils } from './pjsutils';
-import { pJSParticleImage, pJSColor, pJSCoordinates, pJSRgb, pJSHsl } from './pjsinterfaces';
-import { pJSContainer } from './pjscontainer';
-import { pJSShapeType, pJSMoveDirection, pJSHoverMode, pJSClickMode, pJSProcessBubbleType, pJSOutMode } from './pjsenums';
+import { Utils } from '../utils/utils';
+import { ParticleImage, Color, Coordinates, Rgb, Hsl } from '../utils/interfaces';
+import { Container } from './container';
+import { ShapeType, MoveDirection, HoverMode, ClickMode, ProcessBubbleType, OutMode } from '../utils/enums';
 
 'use strict';
 
-export class pJSParticle {
-    pJSContainer: pJSContainer;
+export class Particle {
+    pJSContainer: Container;
     radius: number;
     size_status?: boolean;
     vs?: number;
@@ -14,7 +14,7 @@ export class pJSParticle {
     y: number;
     offsetX: number;
     offsetY: number;
-    color: pJSColor;
+    color: Color;
     opacity: number;
     opacity_status?: boolean;
     vo?: number;
@@ -22,14 +22,14 @@ export class pJSParticle {
     vy: number;
     vx_i: number;
     vy_i: number;
-    shape?: pJSShapeType;
-    img?: pJSParticleImage;
+    shape?: ShapeType;
+    img?: ParticleImage;
     radius_bubble?: number;
     opacity_bubble?: number;
     text?: string;
 
     /* --------- pJS functions - particles ----------- */
-    constructor(pJSContainer: pJSContainer, color: { value: string[] | pJSColor | string }, opacity: number, position?: pJSCoordinates) {
+    constructor(pJSContainer: Container, color: { value: string[] | Color | string }, opacity: number, position?: Coordinates) {
         this.pJSContainer = pJSContainer;
         let options = pJSContainer.options;
 
@@ -70,10 +70,10 @@ export class pJSParticle {
                 let arr = options.particles.color.value as string[];
                 let color_selected = color.value[Math.floor(Math.random() * arr.length)];
 
-                this.color.rgb = pJSUtils.hexToRgb(color_selected);
+                this.color.rgb = Utils.hexToRgb(color_selected);
             } else {
 
-                let rgbColor = color.value as pJSRgb;
+                let rgbColor = color.value as Rgb;
 
                 if (rgbColor && rgbColor.r != undefined && rgbColor.g != undefined && rgbColor.b != undefined) {
                     this.color.rgb = {
@@ -83,7 +83,7 @@ export class pJSParticle {
                     };
                 }
 
-                let hslColor = color.value as pJSHsl;
+                let hslColor = color.value as Hsl;
 
                 if (hslColor.h != undefined && hslColor.s != undefined && hslColor.l != undefined) {
                     this.color.hsl = {
@@ -102,7 +102,7 @@ export class pJSParticle {
                 };
             } else {
                 this.color = {};
-                this.color.rgb = pJSUtils.hexToRgb(color.value);
+                this.color.rgb = Utils.hexToRgb(color.value);
             }
         }
 
@@ -117,31 +117,31 @@ export class pJSParticle {
         }
 
         /* animation - velocity for speed */
-        let velbase: pJSCoordinates;
+        let velbase: Coordinates;
 
         switch (options.particles.move.direction) {
-            case pJSMoveDirection.top:
+            case MoveDirection.top:
                 velbase = { x: 0, y: -1 };
                 break;
-            case pJSMoveDirection.topRight:
+            case MoveDirection.topRight:
                 velbase = { x: 0.5, y: -0.5 };
                 break;
-            case pJSMoveDirection.right:
+            case MoveDirection.right:
                 velbase = { x: 1, y: -0 };
                 break;
-            case pJSMoveDirection.bottomRight:
+            case MoveDirection.bottomRight:
                 velbase = { x: 0.5, y: 0.5 };
                 break;
-            case pJSMoveDirection.bottom:
+            case MoveDirection.bottom:
                 velbase = { x: 0, y: 1 };
                 break;
-            case pJSMoveDirection.bottomLeft:
+            case MoveDirection.bottomLeft:
                 velbase = { x: -0.5, y: 1 };
                 break;
-            case pJSMoveDirection.left:
+            case MoveDirection.left:
                 velbase = { x: -1, y: 0 };
                 break;
-            case pJSMoveDirection.topLeft:
+            case MoveDirection.topLeft:
                 velbase = { x: -0.5, y: -0.5 };
                 break;
             default:
@@ -181,7 +181,7 @@ export class pJSParticle {
             this.shape = shape_type;
         }
 
-        if (this.shape == pJSShapeType.image) {
+        if (this.shape == ShapeType.image) {
             let sh = options.particles.shape;
             this.img = {
                 src: sh.image.src,
@@ -199,7 +199,7 @@ export class pJSParticle {
             // }
         }
 
-        if (this.shape == pJSShapeType.char || this.shape == pJSShapeType.character) {
+        if (this.shape == ShapeType.char || this.shape == ShapeType.character) {
             if (typeof options.particles.shape.character.value === 'string') {
                 this.text = options.particles.shape.character.value;
             } else {
@@ -244,7 +244,7 @@ export class pJSParticle {
         const ctx = pJS.canvas.ctx;
 
         switch (this.shape) {
-            case pJSShapeType.line:
+            case ShapeType.line:
                 ctx.moveTo(this.x, this.y)
                 ctx.lineTo(this.x, this.y + radius)
                 ctx.strokeStyle = options.particles.shape.stroke.color;
@@ -252,17 +252,17 @@ export class pJSParticle {
                 ctx.stroke();
                 break;
 
-            case pJSShapeType.circle:
+            case ShapeType.circle:
                 ctx.arc(p_x, p_y, radius, 0, Math.PI * 2, false);
                 break;
-            case pJSShapeType.edge:
-            case pJSShapeType.square:
+            case ShapeType.edge:
+            case ShapeType.square:
                 ctx.rect(this.x - radius, this.y - radius, radius * 2, radius * 2);
                 break;
-            case pJSShapeType.triangle:
+            case ShapeType.triangle:
                 this.drawShape(ctx, this.x - radius, this.y + radius / 1.66, radius * 2, 3, 2);
                 break;
-            case pJSShapeType.polygon:
+            case ShapeType.polygon:
                 {
                     const startX = this.x - radius / (options.particles.shape.polygon.nb_sides / 3.5);
                     const startY = this.y - radius / (2.66 / 3.5);
@@ -273,7 +273,7 @@ export class pJSParticle {
                     this.drawShape(ctx, startX, startY, sideLength, sideCountNumerator, sideCountDenominator);
                 }
                 break;
-            case pJSShapeType.star:
+            case ShapeType.star:
                 {
                     const startX = this.x - radius * 2 / (options.particles.shape.polygon.nb_sides / 4);
                     const startY = this.y - radius / (2 * 2.66 / 3.5);
@@ -285,7 +285,7 @@ export class pJSParticle {
                 }
                 break;
 
-            case pJSShapeType.heart:
+            case ShapeType.heart:
                 let x = this.x - radius / 2;
                 let y = this.y - radius / 2;
 
@@ -301,8 +301,8 @@ export class pJSParticle {
 
                 break;
 
-            case pJSShapeType.char:
-            case pJSShapeType.character:
+            case ShapeType.char:
+            case ShapeType.character:
                 ctx.font = `${options.particles.shape.character.style} ${options.particles.shape.character.weight} ${Math.round(radius) * 2}px ${options.particles.shape.character.font}`;
 
                 if (this.text !== undefined) {
@@ -314,7 +314,7 @@ export class pJSParticle {
                 }
                 break;
 
-            case pJSShapeType.image:
+            case ShapeType.image:
                 let img_obj: HTMLImageElement | undefined;
 
                 // if (pJS.img.type == 'svg' && this.img) {
@@ -376,7 +376,7 @@ export class pJSParticle {
         ctx.restore();
     }
 
-    checkOverlap(position?: pJSCoordinates) {
+    checkOverlap(position?: Coordinates) {
         const pJS = this.pJSContainer;
         const p = this;
 
@@ -461,7 +461,7 @@ export class pJSParticle {
 
                 if (opacity_line > 0) {
                     /* style */
-                    options.particles.line_linked.color_rgb = options.particles.line_linked.color_rgb || pJSUtils.hexToRgb(options.particles.line_linked.color);
+                    options.particles.line_linked.color_rgb = options.particles.line_linked.color_rgb || Utils.hexToRgb(options.particles.line_linked.color);
 
                     let color_line = options.particles.line_linked.color_rgb || { r: 127, g: 127, b: 127 };
 
@@ -486,7 +486,7 @@ export class pJSParticle {
         const options = pJS.options;
 
         /* on hover event */
-        if (options.interactivity.events.onhover.enable && pJSUtils.isInArray(pJSHoverMode.bubble, options.interactivity.events.onhover.mode)) {
+        if (options.interactivity.events.onhover.enable && Utils.isInArray(HoverMode.bubble, options.interactivity.events.onhover.mode)) {
             let dx_mouse = (this.x + this.offsetX) - (pJS.interactivity.mouse.pos_x || 0);
             let dy_mouse = (this.y + this.offsetY) - (pJS.interactivity.mouse.pos_y || 0);
             let dist_mouse = Math.sqrt(dx_mouse * dx_mouse + dy_mouse * dy_mouse);
@@ -537,7 +537,7 @@ export class pJSParticle {
             if (pJS.interactivity.status == 'mouseleave') {
                 this.initBubble();
             }
-        } else if (options.interactivity.events.onclick.enable && pJSUtils.isInArray(pJSClickMode.bubble, options.interactivity.events.onclick.mode)) {
+        } else if (options.interactivity.events.onclick.enable && Utils.isInArray(ClickMode.bubble, options.interactivity.events.onclick.mode)) {
             /* on click event */
             let dx_mouse = this.x - (pJS.interactivity.mouse.click_pos_x || 0);
             let dy_mouse = this.y - (pJS.interactivity.mouse.click_pos_y || 0);
@@ -557,9 +557,9 @@ export class pJSParticle {
 
             if (pJS.bubble.clicking) {
                 /* size */
-                pJS.processBubble(this, dist_mouse, time_spent, options.interactivity.modes.bubble.size, options.particles.size.value, this.radius_bubble, this.radius, pJSProcessBubbleType.size);
+                pJS.processBubble(this, dist_mouse, time_spent, options.interactivity.modes.bubble.size, options.particles.size.value, this.radius_bubble, this.radius, ProcessBubbleType.size);
                 /* opacity */
-                pJS.processBubble(this, dist_mouse, time_spent, options.interactivity.modes.bubble.opacity, options.particles.opacity.value, this.opacity_bubble, this.opacity, pJSProcessBubbleType.opacity);
+                pJS.processBubble(this, dist_mouse, time_spent, options.interactivity.modes.bubble.opacity, options.particles.opacity.value, this.opacity_bubble, this.opacity, ProcessBubbleType.opacity);
             }
         }
     }
@@ -568,19 +568,19 @@ export class pJSParticle {
         const pJS = this.pJSContainer;
         const options = pJS.options;
 
-        if (options.interactivity.events.onhover.enable && pJSUtils.isInArray(pJSHoverMode.repulse, options.interactivity.events.onhover.mode) && pJS.interactivity.status == 'mousemove') {
+        if (options.interactivity.events.onhover.enable && Utils.isInArray(HoverMode.repulse, options.interactivity.events.onhover.mode) && pJS.interactivity.status == 'mousemove') {
             let dx_mouse = this.x - (pJS.interactivity.mouse.pos_x || 0);
             let dy_mouse = this.y - (pJS.interactivity.mouse.pos_y || 0);
             let dist_mouse = Math.sqrt(dx_mouse * dx_mouse + dy_mouse * dy_mouse);
             let normVec = { x: dx_mouse / dist_mouse, y: dy_mouse / dist_mouse };
             let repulseRadius = options.interactivity.modes.repulse.distance, velocity = 100;
-            let repulseFactor = pJSUtils.clamp((1 / repulseRadius) * (-1 * Math.pow(dist_mouse / repulseRadius, 2) + 1) * repulseRadius * velocity, 0, 50);
+            let repulseFactor = Utils.clamp((1 / repulseRadius) * (-1 * Math.pow(dist_mouse / repulseRadius, 2) + 1) * repulseRadius * velocity, 0, 50);
             let pos = {
                 x: this.x + normVec.x * repulseFactor,
                 y: this.y + normVec.y * repulseFactor
             };
 
-            if (options.particles.move.out_mode == pJSOutMode.bounce || options.particles.move.out_mode == pJSOutMode.bounceVertical) {
+            if (options.particles.move.out_mode == OutMode.bounce || options.particles.move.out_mode == OutMode.bounceVertical) {
                 if (pos.x - this.radius > 0 && pos.x + this.radius < pJS.canvas.w)
                     this.x = pos.x;
                 if (pos.y - this.radius > 0 && pos.y + this.radius < pJS.canvas.h)
@@ -589,7 +589,7 @@ export class pJSParticle {
                 this.x = pos.x;
                 this.y = pos.y;
             }
-        } else if (options.interactivity.events.onclick.enable && pJSUtils.isInArray(pJSClickMode.repulse, options.interactivity.events.onclick.mode)) {
+        } else if (options.interactivity.events.onclick.enable && Utils.isInArray(ClickMode.repulse, options.interactivity.events.onclick.mode)) {
             if (!pJS.repulse.finish) {
 
                 if (!pJS.repulse.count)
@@ -638,7 +638,7 @@ export class pJSParticle {
         this.vx = force * Math.cos(f);
         this.vy = force * Math.sin(f);
 
-        if (options.particles.move.out_mode == pJSOutMode.bounce || options.particles.move.out_mode == pJSOutMode.bounceVertical) {
+        if (options.particles.move.out_mode == OutMode.bounce || options.particles.move.out_mode == OutMode.bounceVertical) {
             let pos = {
                 x: this.x + this.vx,
                 y: this.y + this.vy
@@ -656,7 +656,7 @@ export class pJSParticle {
     }
 
     /* ---------- pJS functions - particles interaction ------------ */
-    link(p2: pJSParticle) {
+    link(p2: Particle) {
         const pJS = this.pJSContainer;
         const options = pJS.options;
 
@@ -675,7 +675,7 @@ export class pJSParticle {
             if (opacity_line > 0) {
                 /* style */
                 if (!options.particles.line_linked.color_rgb) {
-                    options.particles.line_linked.color_rgb = pJSUtils.hexToRgb(options.particles.line_linked.color);
+                    options.particles.line_linked.color_rgb = Utils.hexToRgb(options.particles.line_linked.color);
                 }
 
                 if (!pJS.canvas.ctx) return;
@@ -700,7 +700,7 @@ export class pJSParticle {
         }
     }
 
-    attract(p2: pJSParticle) {
+    attract(p2: Particle) {
         let pJS = this.pJSContainer;
         let options = pJS.options;
 
@@ -720,7 +720,7 @@ export class pJSParticle {
         }
     }
 
-    bounce(p2: pJSParticle) {
+    bounce(p2: Particle) {
         let dx = this.x - p2.x;
         let dy = this.y - p2.y;
         let dist = Math.sqrt(dx * dx + dy * dy);

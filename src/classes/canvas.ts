@@ -1,10 +1,10 @@
-import { pJSContainer } from './pjscontainer';
-import { pJSConstants } from './pjsconstants';
+import { Container } from './container';
+import { Constants } from '../utils/constants';
 
 'use strict';
 
-export class pJSCanvas {
-    pJSContainer: pJSContainer;
+export class Canvas {
+    pJSContainer: Container;
     el: HTMLCanvasElement;
     ctx: CanvasRenderingContext2D | null;
     w: number;
@@ -12,8 +12,8 @@ export class pJSCanvas {
     tag_id: string;
     pxratio: number
 
-    constructor(pJSContainer: pJSContainer, tag_id: string) {
-        let canvas_el = document.querySelector(`#${tag_id} > .${pJSConstants.canvasClass}`) as HTMLCanvasElement;
+    constructor(pJSContainer: Container, tag_id: string) {
+        let canvas_el = document.querySelector(`#${tag_id} > .${Constants.canvasClass}`) as HTMLCanvasElement;
 
         this.pJSContainer = pJSContainer;
         this.el = canvas_el;

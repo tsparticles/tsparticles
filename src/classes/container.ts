@@ -1,39 +1,39 @@
 
-import { pJSUtils } from './pjsutils';
-import { pJSOptions, pJSContainerInteractivity, pJSSvg, pJSImg, pJSBubble, pJSRepulse } from './pjsinterfaces';
-import { pJSRetina } from './pjsretina';
-import { pJSCanvas } from './pjscanvas';
-import { pJSParticles } from './pjsparticles';
-import { pJSShapeType, pJSOutMode, pJSInteractivityDetect, pJSClickMode, pJSProcessBubbleType } from './pjsenums';
-import { pJSLoader } from './pjsloader';
-import { pJSParticle } from './pjsparticle';
-import { pJSConstants } from './pjsconstants';
+import { Utils } from '../utils/utils';
+import { Options, ContainerInteractivity, Svg, Image, Bubble, Repulse } from '../utils/interfaces';
+import { Retina } from './retina';
+import { Canvas } from './canvas';
+import { Particles } from './particles';
+import { ShapeType, OutMode, InteractivityDetect, ClickMode, ProcessBubbleType } from '../utils/enums';
+import { Loader } from './loader';
+import { Particle } from './particle';
+import { Constants } from '../utils/constants';
 
 'use strict';
 
-export class pJSContainer {
-    interactivity: pJSContainerInteractivity;
-    options: pJSOptions;
+export class Container {
+    interactivity: ContainerInteractivity;
+    options: Options;
 
-    retina: pJSRetina;
-    canvas: pJSCanvas;
-    particles: pJSParticles;
+    retina: Retina;
+    canvas: Canvas;
+    particles: Particles;
 
     checkAnimFrame?: number;
     drawAnimFrame?: number;
 
-    bubble: pJSBubble;
-    repulse: pJSRepulse;
-    svg: pJSSvg;
-    img: pJSImg;
+    bubble: Bubble;
+    repulse: Repulse;
+    svg: Svg;
+    img: Image;
 
     lastFrameTime = 0;
     pageHidden = false;
 
-    constructor(tag_id: string, params: pJSOptions) {
-        this.retina = new pJSRetina(this);
-        this.canvas = new pJSCanvas(this, tag_id);
-        this.particles = new pJSParticles(this);
+    constructor(tag_id: string, params: Options) {
+        this.retina = new Retina(this);
+        this.canvas = new Canvas(this, tag_id);
+        this.particles = new Particles(this);
 
         this.interactivity = {
             mouse: {}
@@ -48,13 +48,13 @@ export class pJSContainer {
         this.bubble = {};
         this.repulse = {};
 
-        this.options = pJSConstants.defaultOptions;
+        this.options = Constants.defaultOptions;
 
-        /* particles.js variables with default values */
+        /* tsParticles variables with default values */
 
         /* params settings */
         if (params) {
-            pJSUtils.deepExtend(this.options, params);
+            Utils.deepExtend(this.options, params);
         }
 
         /* ---------- pJS - start ------------ */
@@ -89,7 +89,7 @@ export class pJSContainer {
     /* ---------- pJS functions - vendors ------------ */
     eventsListeners() {
         /* events target element */
-        if (this.options.interactivity.detect_on == pJSInteractivityDetect.window) {
+        if (this.options.interactivity.detect_on == InteractivityDetect.window) {
             this.interactivity.el = window;
         } else if (this.options.interactivity.detect_on == 'parent') {
             this.interactivity.el = this.canvas.el.parentNode;
@@ -109,7 +109,7 @@ export class pJSContainer {
                     if (this.interactivity.el == window) {
                         pos_x = mouseEvent.clientX;
                         pos_y = mouseEvent.clientY;
-                    } else if (this.options.interactivity.detect_on == pJSInteractivityDetect.parent) {
+                    } else if (this.options.interactivity.detect_on == InteractivityDetect.parent) {
                         let source = mouseEvent.srcElement as HTMLElement;
                         let target = mouseEvent.currentTarget as HTMLElement
                         if (source && target) {
@@ -150,7 +150,7 @@ export class pJSContainer {
 
                     if (this.options.interactivity.events.onclick.enable) {
                         switch (this.options.interactivity.events.onclick.mode) {
-                            case pJSClickMode.push:
+                            case ClickMode.push:
                                 if (this.options.particles.move.enable) {
                                     this.particles.push(this.options.interactivity.modes.push.particles_nb, this.interactivity.mouse);
                                 } else {
@@ -162,13 +162,13 @@ export class pJSContainer {
                                     }
                                 }
                                 break;
-                            case pJSClickMode.remove:
+                            case ClickMode.remove:
                                 this.particles.remove(this.options.interactivity.modes.remove.particles_nb);
                                 break;
-                            case pJSClickMode.bubble:
+                            case ClickMode.bubble:
                                 this.bubble.clicking = true;
                                 break;
-                            case pJSClickMode.repulse:
+                            case ClickMode.repulse:
                                 this.repulse.clicking = true;
                                 this.repulse.count = 0;
                                 this.repulse.finish = false;
@@ -210,7 +210,7 @@ export class pJSContainer {
 
         this.canvas.el.remove();
 
-        pJSLoader.pJSDomSet([]);
+        Loader.tsParticlesDomSet([]);
     }
 
     exportImg() {
@@ -269,7 +269,7 @@ export class pJSContainer {
         const delta = timestamp - this.lastFrameTime;
         this.lastFrameTime = timestamp;
 
-        if (this.options.particles.shape.type == pJSShapeType.image) {
+        if (this.options.particles.shape.type == ShapeType.image) {
             // if (this.img.type == 'svg') {
             //     if (this.drawAnimFrame && this.svg.count >= this.options.particles.number.value) {
             //         this.particles.draw(delta);
@@ -314,7 +314,7 @@ export class pJSContainer {
 
     checkBeforeDraw() {
         // if shape is image
-        if (this.options.particles.shape.type == pJSShapeType.image) {
+        if (this.options.particles.shape.type == ShapeType.image) {
             // if (this.img.type == 'svg' && this.svg.source == undefined) {
             //     this.checkAnimFrame = this.requestFrame(() => {
             //         //TODO: Can't find anywhere this check
@@ -336,7 +336,7 @@ export class pJSContainer {
         }
     }
 
-    processBubble(p: pJSParticle, dist_mouse: number, time_spent: number, bubble_param: number, particles_param: number, p_obj_bubble: number | undefined, p_obj: number, id: pJSProcessBubbleType) {
+    processBubble(p: Particle, dist_mouse: number, time_spent: number, bubble_param: number, particles_param: number, p_obj_bubble: number | undefined, p_obj: number, id: ProcessBubbleType) {
         const pJS = this;
         const options = pJS.options;
 
@@ -352,24 +352,24 @@ export class pJSContainer {
                     if (obj != bubble_param) {
                         let value = p_obj - (time_spent * (p_obj - bubble_param) / options.interactivity.modes.bubble.duration);
 
-                        if (id == pJSProcessBubbleType.size)
+                        if (id == ProcessBubbleType.size)
                             p.radius_bubble = value;
-                        if (id == pJSProcessBubbleType.opacity)
+                        if (id == ProcessBubbleType.opacity)
                             p.opacity_bubble = value;
                     }
                 } else {
-                    if (id == pJSProcessBubbleType.size)
+                    if (id == ProcessBubbleType.size)
                         p.radius_bubble = undefined;
-                    if (id == pJSProcessBubbleType.opacity)
+                    if (id == ProcessBubbleType.opacity)
                         p.opacity_bubble = undefined;
                 }
             } else if (p_obj_bubble != undefined) {
                 let value_tmp = p_obj - (time_spent * (p_obj - bubble_param) / options.interactivity.modes.bubble.duration), dif = bubble_param - value_tmp;
                 let value = bubble_param + dif;
 
-                if (id == pJSProcessBubbleType.size)
+                if (id == ProcessBubbleType.size)
                     p.radius_bubble = value;
-                if (id == pJSProcessBubbleType.opacity)
+                if (id == ProcessBubbleType.opacity)
                     p.opacity_bubble = value;
             }
         }
@@ -386,7 +386,7 @@ export class pJSContainer {
     }
 
     async start() {
-        if (this.options.particles.shape.type == pJSShapeType.image) {
+        if (this.options.particles.shape.type == ShapeType.image) {
             this.img.type = this.options.particles.shape.image.src.substr(this.options.particles.shape.image.src.length - 3);
             await this.loadImg(this.img.type);
         }
