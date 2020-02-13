@@ -77,9 +77,11 @@
         modes: gui_f.interactivity.addFolder('modes')
       }
     };
+
     ff = {
       shape_stroke: f.particles.shape.addFolder('stroke'),
       shape_polygon: f.particles.shape.addFolder('polygon'),
+      shape_character: f.particles.shape.addFolder('character'),
       shape_image: f.particles.shape.addFolder('image'),
       size_anim: f.particles.size.addFolder('anim'),
       opacity_anim: f.particles.opacity.addFolder('anim')
@@ -125,6 +127,22 @@
     });
     ff.shape_polygon.add(pJS_GUI.options.particles.shape.polygon, 'nb_sides', 3, 12).step(1).name('polygon.nb_sides').onChange(async function (value) {
       pJS_GUI.options.particles.shape.polygon.nb_sides = value;
+      return await p.update();
+    });
+    ff.shape_character.add(pJS_GUI.options.particles.shape.character, 'value').name('character.value').onChange(async function (value) {
+      pJS_GUI.options.particles.shape.character.value = value;
+      return await p.update();
+    });
+    ff.shape_character.add(pJS_GUI.options.particles.shape.character, 'font').name('character.font').onChange(async function (value) {
+      pJS_GUI.options.particles.shape.character.font = value;
+      return await p.update();
+    });
+    ff.shape_character.add(pJS_GUI.options.particles.shape.character, 'style').name('character.style').onChange(async function (value) {
+      pJS_GUI.options.particles.shape.character.style = value;
+      return await p.update();
+    });
+    ff.shape_character.add(pJS_GUI.options.particles.shape.character, 'weight').name('character.weight').onChange(async function (value) {
+      pJS_GUI.options.particles.shape.character.weight = value;
       return await p.update();
     });
     ff.shape_stroke.add(pJS_GUI.options.particles.shape.stroke, 'width', 0, 20).step(1).name('stroke.width').onChange(async function (value) {
@@ -349,8 +367,6 @@
       page = $(pJS_GUI.canvas.el).parent();
       panel = $('.panel');
       config = pJS_GUI.options.config_demo;
-
-      console.log(config);
 
       box_bottom = $('.js-box-bottom');
       page.css({
