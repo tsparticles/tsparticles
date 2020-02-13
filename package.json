@@ -1,6 +1,6 @@
 {
   "name": "tsparticles",
-  "version": "1.4.4",
+  "version": "1.4.5",
   "description": "Porting of Vincent Garreau' particles.js, converted in TypeScript.",
   "homepage": "https://github.com/matteobruni/tsparticles",
   "scripts": {

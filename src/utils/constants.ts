@@ -27,7 +27,9 @@ export class Constants {
                 character: {
                     value: '*',
                     font: 'Verdana',
-                    weight: '400'
+                    weight: '400',
+                    style: '',
+                    fill: false
                 },
                 image: {
                     src: '',

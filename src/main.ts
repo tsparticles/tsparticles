@@ -4,7 +4,7 @@
 /* Demo / Generator : tsparticles.matteobruni.it/demo
 /* GitHub : github.com/matteobruni/tsparticles
 /* How to use? : Check the GitHub README
-/* v1.4.4
+/* v1.4.5
 /* ----------------------------------------------- */
 import { Loader } from './classes/loader';
 import { Options } from './utils/interfaces';

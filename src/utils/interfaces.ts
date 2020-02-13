@@ -122,8 +122,9 @@ export interface pJSShape {
     character: {
         value: string | string[];
         font: string;
-        style?: string;
+        style: string;
         weight: string;
+        fill: boolean;
     };
     image: {
         src: string;

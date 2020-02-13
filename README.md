@@ -17,7 +17,7 @@
 
 ### ***npm***
 
-<https://www.npmjs.com/package/tsparticles>
+[![npmjs](https://badge.fury.io/js/tsparticles.svg)](https://www.npmjs.com/package/tsparticles)
 
 ```shell
 npm install tsparticles
@@ -29,7 +29,7 @@ npm install tsparticles
 
 ***Please use this host or your own to load tsparticles on your projects***
 
-[![](https://data.jsdelivr.com/v1/package/npm/tsparticles/badge)](https://www.jsdelivr.com/package/npm/tsparticles)
+[![jsDelivr](https://data.jsdelivr.com/v1/package/npm/tsparticles/badge)](https://www.jsdelivr.com/package/npm/tsparticles)
 
 ### `Usage`
 
