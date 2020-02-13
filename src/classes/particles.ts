@@ -2,7 +2,7 @@ import { Particle } from './particle';
 import { Utils } from '../utils/utils';
 import { Container } from './container';
 import { OutMode, HoverMode, ClickMode } from '../utils/enums';
-import { MouseData } from '../utils/interfaces';
+import { MouseData, Rgb } from '../utils/interfaces';
 
 'use strict';
 
@@ -10,6 +10,7 @@ export class Particles {
     pJSContainer: Container;
     array: Particle[];
     pushing?: boolean;
+    line_linked_color?: Rgb | null;
 
     constructor(pJSContainer: Container) {
         this.pJSContainer = pJSContainer;
@@ -260,6 +261,8 @@ export class Particles {
         this.empty();
 
         pJS.canvas.clear();
+
+        delete pJS.particles.line_linked_color;
 
         /* restart */
         await pJS.start();

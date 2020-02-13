@@ -461,9 +461,9 @@ export class Particle {
 
                 if (opacity_line > 0) {
                     /* style */
-                    options.particles.line_linked.color_rgb = options.particles.line_linked.color_rgb || Utils.hexToRgb(options.particles.line_linked.color);
+                    pJS.particles.line_linked_color = pJS.particles.line_linked_color || Utils.hexToRgb(options.particles.line_linked.color);
 
-                    let color_line = options.particles.line_linked.color_rgb || { r: 127, g: 127, b: 127 };
+                    let color_line = pJS.particles.line_linked_color || { r: 127, g: 127, b: 127 };
 
                     if (pJS.canvas.ctx) {
                         pJS.canvas.ctx.strokeStyle = `rgba(${color_line.r},${color_line.g},${color_line.b},${opacity_line})`;
@@ -674,15 +674,15 @@ export class Particle {
 
             if (opacity_line > 0) {
                 /* style */
-                if (!options.particles.line_linked.color_rgb) {
-                    options.particles.line_linked.color_rgb = Utils.hexToRgb(options.particles.line_linked.color);
+                if (!pJS.particles.line_linked_color) {
+                    pJS.particles.line_linked_color = Utils.hexToRgb(options.particles.line_linked.color);
                 }
 
                 if (!pJS.canvas.ctx) return;
 
                 const ctx = pJS.canvas.ctx;
 
-                const color_line = options.particles.line_linked.color_rgb;
+                const color_line = pJS.particles.line_linked_color;
 
                 if (color_line) {
                     ctx.strokeStyle = `rgba(${color_line.r},${color_line.g},${color_line.b},${opacity_line})`;
