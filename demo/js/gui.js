@@ -121,7 +121,7 @@
       pJS_GUI.options.particles.color.value = value;
       return await p.update();
     });
-    f.particles.shape.add(pJS_GUI.options.particles.shape, 'type', ['circle', 'line', 'edge', 'triangle', 'polygon', 'star', 'image', 'heart'/*, 'char', 'character'*/]).name('type').onChange(async function (value) {
+    f.particles.shape.add(pJS_GUI.options.particles.shape, 'type', ['circle', 'line', 'edge', 'triangle', 'polygon', 'star', 'image', 'heart', 'char', 'character']).name('type').onChange(async function (value) {
       pJS_GUI.options.particles.shape.type = value;
       return await p.update();
     });
