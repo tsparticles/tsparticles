@@ -23,7 +23,8 @@
         "value": "M",
         "font": "Verdana",
         "style": "",
-        "weight": "400"
+        "weight": "400",
+        "fill": true
       },
       "image": {
         "src": "img/github.svg",

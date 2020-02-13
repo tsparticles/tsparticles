@@ -306,11 +306,11 @@ export class Particle {
                 ctx.font = `${options.particles.shape.character.style} ${options.particles.shape.character.weight} ${Math.round(radius) * 2}px ${options.particles.shape.character.font}`;
 
                 if (this.text !== undefined) {
-                    // if (stroke) {
-                    ctx.strokeText(this.text, this.x - radius / 2, this.y + radius / 2);
-                    // } else {
-                    //    ctx.fillText(this.text, this.x - radius / 2, this.y + radius / 2);
-                    // }
+                    if (options.particles.shape.character.fill) {
+                        ctx.fillText(this.text, this.x - radius / 2, this.y + radius / 2);
+                    } else {
+                        ctx.strokeText(this.text, this.x - radius / 2, this.y + radius / 2);
+                    }
                 }
                 break;
 

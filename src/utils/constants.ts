@@ -28,7 +28,8 @@ export class Constants {
                     value: '*',
                     font: 'Verdana',
                     weight: '400',
-                    style: ''
+                    style: '',
+                    fill: false
                 },
                 image: {
                     src: '',

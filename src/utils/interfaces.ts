@@ -124,6 +124,7 @@ export interface pJSShape {
         font: string;
         style: string;
         weight: string;
+        fill: boolean;
     };
     image: {
         src: string;
