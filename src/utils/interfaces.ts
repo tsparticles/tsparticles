@@ -47,7 +47,6 @@ export interface Options {
             color: string;
             opacity: number;
             width: number;
-            color_rgb?: Rgb | null;
         };
         move: {
             enable: boolean;
