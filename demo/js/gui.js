@@ -517,7 +517,7 @@
     });
   };
 
-  id_presets = ['test', 'default', 'star', 'snow', 'bubble', 'nyancat', 'nyancat2', 'nasa'];
+  id_presets = ['test', 'default', 'star', 'snow', 'bubble', 'nyancat', 'nyancat2', 'nasa', 'chars'];
 
   id_preset = window.location.hash.substring(1);
 
