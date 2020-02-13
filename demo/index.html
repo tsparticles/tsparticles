@@ -51,7 +51,7 @@
   <!-- panel -->
   <div class="panel">
     <h1>tsparticles</h1>
-    <span class="r-version">v1.4.1</span>
+    <span class="r-version">v1.4.2</span>
     <h2>A lightweight JavaScript library for creating particles</h2>
     <ul>
       <li>
@@ -141,14 +141,14 @@
       update = function () {
         stats.begin();
         stats.end();
-        if (tsParticles.tsParticlesDom()[0].particles.array) {
-          count_particles.innerText = tsParticles.tsParticlesDom()[0].particles.array.length;
+        if (tsParticles.dom()[0].particles.array) {
+          count_particles.innerText = tsParticles.dom()[0].particles.array.length;
         }
         requestAnimationFrame(update);
       };
       requestAnimationFrame(update);
     }
-    if (tsParticles.tsParticlesDom()[0]) getStats();
+    if (tsParticles.dom()[0]) getStats();
   </script>
 
 </body>

@@ -50,7 +50,7 @@
       closed: true,
       width: 340
     });
-    window.pJS_GUI = window.tsParticles.tsParticlesDom()[0];
+    window.pJS_GUI = window.tsParticles.dom()[0];
     window.page_settings = {
       hide_card: false,
       background_color: '#111',

@@ -4,7 +4,7 @@
 /* Demo / Generator : tsparticles.matteobruni.it/demo
 /* GitHub : github.com/matteobruni/tsparticles
 /* How to use? : Check the GitHub README
-/* v1.4.1
+/* v1.4.2
 /* ----------------------------------------------- */
 import { Loader } from './classes/loader';
 import { Options } from './utils/interfaces';
@@ -66,7 +66,7 @@ class Main {
     Loader.setOnClickHandler(callback);
   }
 
-  tsParticlesDom() {
+  dom() {
     return Loader.dom();
   }
 }
@@ -102,8 +102,8 @@ window.particlesJS.setOnClickHandler = function (callback: EventListenerOrEventL
 
 window.pJSDom = function () {
   if (console) {
-    console.info('this method is obsolete, please use the new tsParticles.tsParticlesDom');
+    console.info('this method is obsolete, please use the new tsParticles.dom');
   }
 
-  return window.tsParticles.tsParticlesDom();
+  return window.tsParticles.dom();
 };

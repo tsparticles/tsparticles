@@ -81,8 +81,8 @@ export class Loader {
     if (tsParticlesDom.length == 0) {
       throw new Error("Can only set click handlers after calling tsParticles.load() or tsParticles.loadJSON()");
     }
-    for (var i = 0; i < tsParticlesDom.length; i++) {
-      let el = tsParticlesDom[i].interactivity.el;
+    for (const domItem of tsParticlesDom) {
+      let el = domItem.interactivity.el;
 
       if (el) {
         el.addEventListener('click', callback);
