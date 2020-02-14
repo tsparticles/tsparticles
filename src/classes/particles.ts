@@ -2,7 +2,7 @@ import { Particle } from './particle';
 import { Utils } from '../utils/utils';
 import { Container } from './container';
 import { OutMode, HoverMode, ClickMode } from '../utils/enums';
-import { MouseData, Rgb } from '../utils/interfaces';
+import { IMouseData, IRgb } from '../utils/interfaces';
 
 'use strict';
 
@@ -10,7 +10,7 @@ export class Particles {
     pJSContainer: Container;
     array: Particle[];
     pushing?: boolean;
-    line_linked_color?: Rgb | null;
+    line_linked_color?: IRgb | null;
 
     constructor(pJSContainer: Container) {
         this.pJSContainer = pJSContainer;
@@ -211,7 +211,7 @@ export class Particles {
     }
 
     /* ---------- pJS functions - modes events ------------ */
-    push(nb: number, pos?: MouseData) {
+    push(nb: number, pos?: IMouseData) {
         const pJS = this.pJSContainer;
         const options = pJS.options;
 

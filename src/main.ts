@@ -6,9 +6,9 @@
 /* How to use? : Check the GitHub README
 /* v1.4.6
 /* ----------------------------------------------- */
-import { Loader } from './classes/loader';
-import { Options } from './utils/interfaces';
 import { Container } from './classes/container';
+import { Loader } from './classes/loader';
+import { IOptions } from './utils/interfaces';
 
 'use strict';
 
@@ -31,7 +31,7 @@ declare global {
 
 /* ---------- global functions - vendors ------------ */
 
-window.requestAnimFrame = (function () {
+window.requestAnimFrame = (() => {
   return window.requestAnimationFrame ||
     window.webkitRequestAnimationFrame ||
     window.mozRequestAnimationFrame ||
@@ -42,7 +42,7 @@ window.requestAnimFrame = (function () {
     };
 })();
 
-window.cancelRequestAnimFrame = (function () {
+window.cancelRequestAnimFrame = (() => {
   return window.cancelAnimationFrame ||
     window.webkitCancelRequestAnimationFrame ||
     window.mozCancelRequestAnimationFrame ||
@@ -54,20 +54,24 @@ window.cancelRequestAnimFrame = (function () {
 /* ---------- tsParticles functions - start ------------ */
 
 class Main {
-  load(tag_id: string, params: Options) {
+  public load(tag_id: string, params: IOptions) {
     Loader.load(tag_id, params);
   }
 
-  async loadJSON(tag_id: string, path_config_json: string) {
+  public async loadJSON(tag_id: string, path_config_json: string) {
     await Loader.loadJSON(tag_id, path_config_json);
   }
 
-  setOnClickHandler(callback: EventListenerOrEventListenerObject) {
+  public setOnClickHandler(callback: EventListenerOrEventListenerObject) {
     Loader.setOnClickHandler(callback);
   }
 
-  dom() {
+  public dom() {
     return Loader.dom();
+  }
+
+  public domItem(idx: number) {
+    return this.dom()[idx];
   }
 }
 
@@ -76,7 +80,7 @@ window.tsParticles = new Main();
 Object.freeze(window.tsParticles);
 
 /* particles.js compatibility */
-window.particlesJS = (tag_id: string, params: Options) => {
+window.particlesJS = (tag_id: string, params: IOptions) => {
   if (console) {
     console.info('this method is obsolete, please use the new tsParticles.load');
   }

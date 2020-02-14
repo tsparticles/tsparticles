@@ -1,5 +1,5 @@
 import { Container } from './container';
-import { Options } from '../utils/interfaces';
+import { IOptions } from '../utils/interfaces';
 import { Constants } from '../utils/constants';
 
 'use strict';
@@ -19,7 +19,7 @@ export class Loader {
     tsParticlesDom = value;
   }
 
-  static load(tag_id: string, params: Options) {
+  static load(tag_id: string, params: IOptions) {
     /* elements */
     let tag = document.getElementById(tag_id);
 

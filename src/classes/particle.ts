@@ -1,5 +1,5 @@
 import { Utils } from '../utils/utils';
-import { ParticleImage, Color, Coordinates, Rgb, Hsl } from '../utils/interfaces';
+import { IParticleImage, IColor, ICoordinates, IRgb, IHsl } from '../utils/interfaces';
 import { Container } from './container';
 import { ShapeType, MoveDirection, HoverMode, ClickMode, ProcessBubbleType, OutMode } from '../utils/enums';
 
@@ -14,7 +14,7 @@ export class Particle {
     y: number;
     offsetX: number;
     offsetY: number;
-    color: Color;
+    color: IColor;
     opacity: number;
     opacity_status?: boolean;
     vo?: number;
@@ -23,13 +23,13 @@ export class Particle {
     vx_i: number;
     vy_i: number;
     shape?: ShapeType;
-    img?: ParticleImage;
+    img?: IParticleImage;
     radius_bubble?: number;
     opacity_bubble?: number;
     text?: string;
 
     /* --------- pJS functions - particles ----------- */
-    constructor(pJSContainer: Container, color: { value: string[] | Color | string }, opacity: number, position?: Coordinates) {
+    constructor(pJSContainer: Container, color: { value: string[] | IColor | string }, opacity: number, position?: ICoordinates) {
         this.pJSContainer = pJSContainer;
         let options = pJSContainer.options;
 
@@ -73,7 +73,7 @@ export class Particle {
                 this.color.rgb = Utils.hexToRgb(color_selected);
             } else {
 
-                let rgbColor = color.value as Rgb;
+                let rgbColor = color.value as IRgb;
 
                 if (rgbColor && rgbColor.r != undefined && rgbColor.g != undefined && rgbColor.b != undefined) {
                     this.color.rgb = {
@@ -83,7 +83,7 @@ export class Particle {
                     };
                 }
 
-                let hslColor = color.value as Hsl;
+                let hslColor = color.value as IHsl;
 
                 if (hslColor.h != undefined && hslColor.s != undefined && hslColor.l != undefined) {
                     this.color.hsl = {
@@ -117,7 +117,7 @@ export class Particle {
         }
 
         /* animation - velocity for speed */
-        let velbase: Coordinates;
+        let velbase: ICoordinates;
 
         switch (options.particles.move.direction) {
             case MoveDirection.top:
@@ -376,7 +376,7 @@ export class Particle {
         ctx.restore();
     }
 
-    checkOverlap(position?: Coordinates) {
+    checkOverlap(position?: ICoordinates) {
         const pJS = this.pJSContainer;
         const p = this;
 

@@ -9,7 +9,7 @@ export enum ShapeType {
     heart = 'heart',
     char = 'char',
     character = 'character',
-    line = "line"
+    line = "line",
 }
 
 export enum MoveDirection {
@@ -21,36 +21,36 @@ export enum MoveDirection {
     bottom = 'bottom',
     bottomLeft = 'bottom-left',
     left = 'left',
-    topLeft = 'top-left'
+    topLeft = 'top-left',
 }
 
 export enum OutMode {
     out = 'out',
     bounce = 'bounce',
     bounceVertical = 'bounce-vertical',
-    bounceHorizontal = 'bounce-horizontal'
+    bounceHorizontal = 'bounce-horizontal',
 }
 
 export enum InteractivityDetect {
     canvas = 'canvas',
     window = 'window',
-    parent = 'parent'
+    parent = 'parent',
 }
 
 export enum HoverMode {
     grab = 'grab',
     bubble = 'bubble',
-    repulse = 'repulse'
+    repulse = 'repulse',
 }
 
 export enum ClickMode {
     push = 'push',
     remove = 'remove',
     bubble = 'bubble',
-    repulse = 'repulse'
+    repulse = 'repulse',
 }
 
 export enum ProcessBubbleType {
     size = 'size',
-    opacity = 'opacity'
+    opacity = 'opacity',
 }

@@ -1,6 +1,6 @@
 
 import { Utils } from '../utils/utils';
-import { Options, ContainerInteractivity, Svg, Image, Bubble, Repulse } from '../utils/interfaces';
+import { IOptions, IContainerInteractivity, ISvg, IImage, IBubble, IRepulse } from '../utils/interfaces';
 import { Retina } from './retina';
 import { Canvas } from './canvas';
 import { Particles } from './particles';
@@ -12,8 +12,8 @@ import { Constants } from '../utils/constants';
 'use strict';
 
 export class Container {
-    interactivity: ContainerInteractivity;
-    options: Options;
+    interactivity: IContainerInteractivity;
+    options: IOptions;
 
     retina: Retina;
     canvas: Canvas;
@@ -22,15 +22,15 @@ export class Container {
     checkAnimFrame?: number;
     drawAnimFrame?: number;
 
-    bubble: Bubble;
-    repulse: Repulse;
-    svg: Svg;
-    img: Image;
+    bubble: IBubble;
+    repulse: IRepulse;
+    svg: ISvg;
+    img: IImage;
 
     lastFrameTime = 0;
     pageHidden = false;
 
-    constructor(tag_id: string, params: Options) {
+    constructor(tag_id: string, params: IOptions) {
         this.retina = new Retina(this);
         this.canvas = new Canvas(this, tag_id);
         this.particles = new Particles(this);
