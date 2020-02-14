@@ -26,7 +26,7 @@ export class Utils {
   }
 
   public static isInArray<T>(value: T, array: T[] | T) {
-    return value == array || (array as T[]).indexOf(value) > -1;
+    return value === array || (array as T[]).indexOf(value) > -1;
   }
 
   public static deepExtend(destination: any, source: any) {

@@ -85,7 +85,7 @@ export class Particles {
 
             /* change size */
             if (options.particles.size.anim.enable) {
-                if (p.size_status == true) {
+                if (p.size_status) {
                     if (p.radius >= options.particles.size.value) {
                         p.size_status = false;
                     }
@@ -106,7 +106,7 @@ export class Particles {
             /* change particle position if it is out of canvas */
             let new_pos;
 
-            if (options.particles.move.out_mode == OutMode.bounce || options.particles.move.out_mode == OutMode.bounceVertical) {
+            if (options.particles.move.out_mode === OutMode.bounce || options.particles.move.out_mode === OutMode.bounceVertical) {
                 new_pos = {
                     x_left: p.radius,
                     x_right: container.canvas.w,

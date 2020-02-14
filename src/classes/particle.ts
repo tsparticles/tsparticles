@@ -65,7 +65,7 @@ export class Particle {
 
         /* color */
         this.color = {};
-        if (typeof (color.value) == 'object') {
+        if (typeof (color.value) === 'object') {
             if (color.value instanceof Array) {
                 let arr = options.particles.color.value as string[];
                 let color_selected = color.value[Math.floor(Math.random() * arr.length)];
@@ -75,7 +75,7 @@ export class Particle {
 
                 let rgbColor = color.value as IRgb;
 
-                if (rgbColor && rgbColor.r != undefined && rgbColor.g != undefined && rgbColor.b != undefined) {
+                if (rgbColor && rgbColor.r !== undefined && rgbColor.g !== undefined && rgbColor.b !== undefined) {
                     this.color.rgb = {
                         r: rgbColor.r,
                         g: rgbColor.g,
@@ -85,7 +85,7 @@ export class Particle {
 
                 let hslColor = color.value as IHsl;
 
-                if (hslColor && hslColor.h != undefined && hslColor.s != undefined && hslColor.l != undefined) {
+                if (hslColor && hslColor.h !== undefined && hslColor.s !== undefined && hslColor.l !== undefined) {
                     this.color.hsl = {
                         h: hslColor.h,
                         s: hslColor.s,
@@ -93,8 +93,8 @@ export class Particle {
                     };
                 }
             }
-        } else if (typeof (color.value) == 'string') {
-            if (color.value == 'random') {
+        } else if (typeof (color.value) === 'string') {
+            if (color.value === 'random') {
                 this.color.rgb = {
                     r: (Math.floor(Math.random() * (255 - 0 + 1)) + 0),
                     g: (Math.floor(Math.random() * (255 - 0 + 1)) + 0),
@@ -181,7 +181,7 @@ export class Particle {
             this.shape = shape_type;
         }
 
-        if (this.shape == ShapeType.image) {
+        if (this.shape === ShapeType.image) {
             let sh = options.particles.shape;
             this.img = {
                 src: sh.image.src,
@@ -190,7 +190,7 @@ export class Particle {
             };
             if (!this.img.ratio)
                 this.img.ratio = 1;
-            // if (container.img.type == 'svg' && container.svg.source != undefined) {
+            // if (container.img.type === 'svg' && container.svg.source !== undefined) {
             //     this.createSvgImg();
 
             //     if (container.particles.pushing) {
@@ -199,7 +199,7 @@ export class Particle {
             // }
         }
 
-        if (this.shape == ShapeType.char || this.shape == ShapeType.character) {
+        if (this.shape === ShapeType.char || this.shape === ShapeType.character) {
             if (typeof options.particles.shape.character.value === 'string') {
                 this.text = options.particles.shape.character.value;
             } else {
@@ -215,13 +215,13 @@ export class Particle {
         let opacity;
         let color_value;
 
-        if (this.radius_bubble != undefined) {
+        if (this.radius_bubble !== undefined) {
             radius = this.radius_bubble;
         } else {
             radius = this.radius;
         }
 
-        if (this.opacity_bubble != undefined) {
+        if (this.opacity_bubble !== undefined) {
             opacity = this.opacity_bubble;
         } else {
             opacity = this.opacity;
@@ -317,7 +317,7 @@ export class Particle {
             case ShapeType.image:
                 let img_obj: HTMLImageElement | undefined;
 
-                // if (container.img.type == 'svg' && this.img) {
+                // if (container.img.type === 'svg' && this.img) {
                 //     img_obj = this.img.obj;
                 // } else {
                 img_obj = container.img.obj;
@@ -451,7 +451,7 @@ export class Particle {
         let container = this.container;
         let options = container.options;
 
-        if (options.interactivity.events.onhover.enable && container.interactivity.status == 'mousemove') {
+        if (options.interactivity.events.onhover.enable && container.interactivity.status === 'mousemove') {
             let dx_mouse = this.x - (container.interactivity.mouse.pos_x || 0);
             let dy_mouse = this.y - (container.interactivity.mouse.pos_y || 0);
             let dist_mouse = Math.sqrt(dx_mouse * dx_mouse + dy_mouse * dy_mouse);
@@ -494,9 +494,9 @@ export class Particle {
 
             /* mousemove - check ratio */
             if (dist_mouse <= options.interactivity.modes.bubble.distance) {
-                if (ratio >= 0 && container.interactivity.status == 'mousemove') {
+                if (ratio >= 0 && container.interactivity.status === 'mousemove') {
                     /* size */
-                    if (options.interactivity.modes.bubble.size != options.particles.size.value) {
+                    if (options.interactivity.modes.bubble.size !== options.particles.size.value) {
                         if (options.interactivity.modes.bubble.size > options.particles.size.value) {
                             let size = this.radius + (options.interactivity.modes.bubble.size * ratio);
                             if (size >= 0) {
@@ -514,7 +514,7 @@ export class Particle {
                         }
                     }
                     /* opacity */
-                    if (options.interactivity.modes.bubble.opacity != options.particles.opacity.value) {
+                    if (options.interactivity.modes.bubble.opacity !== options.particles.opacity.value) {
                         if (options.interactivity.modes.bubble.opacity > options.particles.opacity.value) {
                             let opacity = options.interactivity.modes.bubble.opacity * ratio;
                             if (opacity > this.opacity && opacity <= options.interactivity.modes.bubble.opacity) {
@@ -534,7 +534,7 @@ export class Particle {
             }
 
             /* mouseleave */
-            if (container.interactivity.status == 'mouseleave') {
+            if (container.interactivity.status === 'mouseleave') {
                 this.initBubble();
             }
         } else if (options.interactivity.events.onclick.enable && Utils.isInArray(ClickMode.bubble, options.interactivity.events.onclick.mode)) {
@@ -568,7 +568,7 @@ export class Particle {
         const container = this.container;
         const options = container.options;
 
-        if (options.interactivity.events.onhover.enable && Utils.isInArray(HoverMode.repulse, options.interactivity.events.onhover.mode) && container.interactivity.status == 'mousemove') {
+        if (options.interactivity.events.onhover.enable && Utils.isInArray(HoverMode.repulse, options.interactivity.events.onhover.mode) && container.interactivity.status === 'mousemove') {
             let dx_mouse = this.x - (container.interactivity.mouse.pos_x || 0);
             let dy_mouse = this.y - (container.interactivity.mouse.pos_y || 0);
             let dist_mouse = Math.sqrt(dx_mouse * dx_mouse + dy_mouse * dy_mouse);
@@ -580,7 +580,7 @@ export class Particle {
                 y: this.y + normVec.y * repulseFactor
             };
 
-            if (options.particles.move.out_mode == OutMode.bounce || options.particles.move.out_mode == OutMode.bounceVertical) {
+            if (options.particles.move.out_mode === OutMode.bounce || options.particles.move.out_mode === OutMode.bounceVertical) {
                 if (pos.x - this.radius > 0 && pos.x + this.radius < container.canvas.w)
                     this.x = pos.x;
                 if (pos.y - this.radius > 0 && pos.y + this.radius < container.canvas.h)
@@ -597,7 +597,7 @@ export class Particle {
 
                 container.repulse.count++;
 
-                if (container.repulse.count == container.particles.array.length) {
+                if (container.repulse.count === container.particles.array.length) {
                     container.repulse.finish = true;
                 }
             }
@@ -637,7 +637,7 @@ export class Particle {
         this.vx = force * Math.cos(f);
         this.vy = force * Math.sin(f);
 
-        if (options.particles.move.out_mode == OutMode.bounce || options.particles.move.out_mode == OutMode.bounceVertical) {
+        if (options.particles.move.out_mode === OutMode.bounce || options.particles.move.out_mode === OutMode.bounceVertical) {
             let pos = {
                 x: this.x + this.vx,
                 y: this.y + this.vy

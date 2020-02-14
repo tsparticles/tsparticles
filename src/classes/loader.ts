@@ -53,7 +53,7 @@ export class Loader {
 
     const newItem = new Container(tagId, params);
     const dom = Loader.dom();
-    const idx = dom.findIndex(v => v.canvas.tagId == tagId);
+    const idx = dom.findIndex(v => v.canvas.tagId === tagId);
 
     if (idx >= 0) {
       dom.splice(idx, 1, newItem);
@@ -81,7 +81,7 @@ export class Loader {
   public static setOnClickHandler(callback: EventListenerOrEventListenerObject) {
     let tsParticlesDom = Loader.dom();
 
-    if (tsParticlesDom.length == 0) {
+    if (tsParticlesDom.length === 0) {
       throw new Error("Can only set click handlers after calling tsParticles.load() or tsParticles.loadJSON()");
     }
 

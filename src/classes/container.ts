@@ -90,9 +90,9 @@ export class Container {
     /* ---------- tsParticles functions - vendors ------------ */
     public eventsListeners() {
         /* events target element */
-        if (this.options.interactivity.detect_on == InteractivityDetect.window) {
+        if (this.options.interactivity.detect_on === InteractivityDetect.window) {
             this.interactivity.el = window;
-        } else if (this.options.interactivity.detect_on == 'parent') {
+        } else if (this.options.interactivity.detect_on === InteractivityDetect.parent) {
             this.interactivity.el = this.canvas.el.parentNode;
         } else {
             this.interactivity.el = this.canvas.el;
@@ -107,10 +107,10 @@ export class Container {
 
                     let mouseEvent = e as MouseEvent;
 
-                    if (this.interactivity.el == window) {
+                    if (this.interactivity.el === window) {
                         pos_x = mouseEvent.clientX;
                         pos_y = mouseEvent.clientY;
-                    } else if (this.options.interactivity.detect_on == InteractivityDetect.parent) {
+                    } else if (this.options.interactivity.detect_on === InteractivityDetect.parent) {
                         let source = mouseEvent.srcElement as HTMLElement;
                         let target = mouseEvent.currentTarget as HTMLElement
                         if (source && target) {
@@ -155,7 +155,7 @@ export class Container {
                                 if (this.options.particles.move.enable) {
                                     this.particles.push(this.options.interactivity.modes.push.particles_nb, this.interactivity.mouse);
                                 } else {
-                                    if (this.options.interactivity.modes.push.particles_nb == 1) {
+                                    if (this.options.interactivity.modes.push.particles_nb === 1) {
                                         this.particles.push(this.options.interactivity.modes.push.particles_nb, this.interactivity.mouse);
                                     }
                                     else if (this.options.interactivity.modes.push.particles_nb > 1) {
@@ -221,7 +221,7 @@ export class Container {
     public async loadImg(type: string) {
         this.img.error = undefined;
         if (this.options.particles.shape.image.src) {
-            // if (type == 'svg') {
+            // if (type === 'svg') {
             //     let response = await fetch(this.options.particles.shape.image.src);
 
             //     if (response.ok) {
@@ -271,7 +271,7 @@ export class Container {
         this.lastFrameTime = timestamp;
 
         if (this.options.particles.shape.type === ShapeType.image) {
-            // if (this.img.type == 'svg') {
+            // if (this.img.type === 'svg') {
             //     if (this.drawAnimFrame && this.svg.count >= this.options.particles.number.value) {
             //         this.particles.draw(delta);
 
@@ -286,7 +286,7 @@ export class Container {
             //         }
             //     }
             // } else {
-            if (this.img.obj != undefined) {
+            if (this.img.obj) {
                 this.particles.draw(delta);
 
                 if (this.drawAnimFrame !== undefined && !this.options.particles.move.enable) {
@@ -316,7 +316,7 @@ export class Container {
     public checkBeforeDraw() {
         // if shape is image
         if (this.options.particles.shape.type === ShapeType.image) {
-            // if (this.img.type == 'svg' && this.svg.source == undefined) {
+            // if (this.img.type === 'svg' && this.svg.source === undefined) {
             //     this.checkAnimFrame = this.requestFrame(() => {
             //         //TODO: Can't find anywhere this check
             //         //check();
@@ -341,37 +341,47 @@ export class Container {
         const container = this;
         const options = container.options;
 
-        if (bubble_param != particles_param) {
+        if (bubble_param !== particles_param) {
             if (!container.bubble.duration_end) {
                 if (dist_mouse <= options.interactivity.modes.bubble.distance) {
                     let obj;
 
-                    if (p_obj_bubble != undefined)
+                    if (p_obj_bubble) {
                         obj = p_obj_bubble;
-                    else
+                    } else {
                         obj = p_obj;
-                    if (obj != bubble_param) {
+                    }
+
+                    if (obj !== bubble_param) {
                         let value = p_obj - (time_spent * (p_obj - bubble_param) / options.interactivity.modes.bubble.duration);
 
-                        if (id == ProcessBubbleType.size)
+                        if (id === ProcessBubbleType.size) {
                             p.radius_bubble = value;
-                        if (id == ProcessBubbleType.opacity)
+                        }
+
+                        if (id === ProcessBubbleType.opacity) {
                             p.opacity_bubble = value;
+                        }
                     }
                 } else {
-                    if (id == ProcessBubbleType.size)
+                    if (id === ProcessBubbleType.size) {
                         p.radius_bubble = undefined;
-                    if (id == ProcessBubbleType.opacity)
+                    }
+
+                    if (id === ProcessBubbleType.opacity)
                         p.opacity_bubble = undefined;
                 }
-            } else if (p_obj_bubble != undefined) {
+            } else if (p_obj_bubble) {
                 let value_tmp = p_obj - (time_spent * (p_obj - bubble_param) / options.interactivity.modes.bubble.duration), dif = bubble_param - value_tmp;
                 let value = bubble_param + dif;
 
-                if (id == ProcessBubbleType.size)
+                if (id === ProcessBubbleType.size) {
                     p.radius_bubble = value;
-                if (id == ProcessBubbleType.opacity)
+                }
+
+                if (id === ProcessBubbleType.opacity) {
                     p.opacity_bubble = value;
+                }
             }
         }
     }
