@@ -53,7 +53,7 @@ export class Loader {
 
     const newItem = new Container(tagId, params);
     const dom = Loader.dom();
-    const idx = dom.findIndex(v => v.canvas.tagId === tagId);
+    const idx = dom.findIndex((v) => v.canvas.tagId === tagId);
 
     if (idx >= 0) {
       dom.splice(idx, 1, newItem);

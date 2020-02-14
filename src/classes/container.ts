@@ -68,7 +68,7 @@ export class Container {
                 the old frame and starting a new one is necessary
             */
             document.addEventListener("visibilitychange", () => this.handleVisibilityChange(), false);
-        }).catch(error => {
+        }).catch((error) => {
             throw error;
         });
     }
@@ -263,7 +263,7 @@ export class Container {
         const fps_limit = this.options.fps_limit;
 
         if (fps_limit > 0 && timestamp < this.lastFrameTime + (1000 / fps_limit)) {
-            this.drawAnimFrame = this.requestFrame(timestamp => this.draw(timestamp));
+            this.drawAnimFrame = this.requestFrame((timestamp) => this.draw(timestamp));
             return;
         }
 
@@ -278,11 +278,11 @@ export class Container {
             //         if (!this.options.particles.move.enable) {
             //             this.cancelAnimation(this.drawAnimFrame);
             //         } else {
-            //             this.drawAnimFrame = this.requestFrame(timestamp => this.draw(timestamp));
+            //             this.drawAnimFrame = this.requestFrame((timestamp) => this.draw(timestamp));
             //         }
             //     } else {
             //         if (!this.img.error) {
-            //             this.drawAnimFrame = this.requestFrame(timestamp => this.draw(timestamp));
+            //             this.drawAnimFrame = this.requestFrame((timestamp) => this.draw(timestamp));
             //         }
             //     }
             // } else {
@@ -292,11 +292,11 @@ export class Container {
                 if (this.drawAnimFrame !== undefined && !this.options.particles.move.enable) {
                     this.cancelAnimation(this.drawAnimFrame);
                 } else {
-                    this.drawAnimFrame = this.requestFrame(timestamp => this.draw(timestamp));
+                    this.drawAnimFrame = this.requestFrame((timestamp) => this.draw(timestamp));
                 }
             } else {
                 if (!this.img.error) {
-                    this.drawAnimFrame = this.requestFrame(timestamp => this.draw(timestamp));
+                    this.drawAnimFrame = this.requestFrame((timestamp) => this.draw(timestamp));
                 }
             }
             // }
@@ -308,7 +308,7 @@ export class Container {
                     this.cancelAnimation(this.drawAnimFrame);
                 }
             } else {
-                this.drawAnimFrame = this.requestFrame(timestamp => this.draw(timestamp));
+                this.drawAnimFrame = this.requestFrame((timestamp) => this.draw(timestamp));
             }
         }
     }
