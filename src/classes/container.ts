@@ -1,19 +1,18 @@
+"use strict";
 
-import { Utils } from '../utils/utils';
-import { Options, ContainerInteractivity, Svg, Image, Bubble, Repulse } from '../utils/interfaces';
-import { Retina } from './retina';
-import { Canvas } from './canvas';
-import { Particles } from './particles';
-import { ShapeType, OutMode, InteractivityDetect, ClickMode, ProcessBubbleType } from '../utils/enums';
-import { Loader } from './loader';
-import { Particle } from './particle';
-import { Constants } from '../utils/constants';
-
-'use strict';
+import { Utils } from "../utils/utils";
+import { IOptions, IContainerInteractivity, ISvg, IImage, IBubble, IRepulse } from "../utils/interfaces";
+import { Retina } from "./retina";
+import { Canvas } from "./canvas";
+import { Particles } from "./particles";
+import { ShapeType, InteractivityDetect, ClickMode, ProcessBubbleType } from "../utils/enums";
+import { Loader } from "./loader";
+import { Particle } from "./particle";
+import { Constants } from "../utils/constants";
 
 export class Container {
-    interactivity: ContainerInteractivity;
-    options: Options;
+    interactivity: IContainerInteractivity;
+    options: IOptions;
 
     retina: Retina;
     canvas: Canvas;
@@ -22,17 +21,17 @@ export class Container {
     checkAnimFrame?: number;
     drawAnimFrame?: number;
 
-    bubble: Bubble;
-    repulse: Repulse;
-    svg: Svg;
-    img: Image;
+    bubble: IBubble;
+    repulse: IRepulse;
+    svg: ISvg;
+    img: IImage;
 
     lastFrameTime = 0;
     pageHidden = false;
 
-    constructor(tag_id: string, params: Options) {
+    constructor(tagId: string, params: IOptions) {
         this.retina = new Retina(this);
-        this.canvas = new Canvas(this, tag_id);
+        this.canvas = new Canvas(this, tagId);
         this.particles = new Particles(this);
 
         this.interactivity = {
@@ -57,7 +56,7 @@ export class Container {
             Utils.deepExtend(this.options, params);
         }
 
-        /* ---------- pJS - start ------------ */
+        /* ---------- tsParticles - start ------------ */
         this.eventsListeners();
 
         //TODO: Start è async
@@ -69,10 +68,12 @@ export class Container {
                 the old frame and starting a new one is necessary
             */
             document.addEventListener("visibilitychange", () => this.handleVisibilityChange(), false);
+        }).catch((error) => {
+            throw error;
         });
     }
 
-    handleVisibilityChange() {
+    public handleVisibilityChange() {
         if (document.hidden) {
             this.pageHidden = true;
 
@@ -86,12 +87,12 @@ export class Container {
         }
     }
 
-    /* ---------- pJS functions - vendors ------------ */
-    eventsListeners() {
+    /* ---------- tsParticles functions - vendors ------------ */
+    public eventsListeners() {
         /* events target element */
-        if (this.options.interactivity.detect_on == InteractivityDetect.window) {
+        if (this.options.interactivity.detect_on === InteractivityDetect.window) {
             this.interactivity.el = window;
-        } else if (this.options.interactivity.detect_on == 'parent') {
+        } else if (this.options.interactivity.detect_on === InteractivityDetect.parent) {
             this.interactivity.el = this.canvas.el.parentNode;
         } else {
             this.interactivity.el = this.canvas.el;
@@ -100,16 +101,16 @@ export class Container {
         if (this.options.interactivity.events.onhover.enable || this.options.interactivity.events.onclick.enable) {
             /* el on mousemove */
             if (this.interactivity.el) {
-                this.interactivity.el.addEventListener('mousemove', (e: Event) => {
+                this.interactivity.el.addEventListener("mousemove", (e: Event) => {
                     let pos_x;
                     let pos_y;
 
                     let mouseEvent = e as MouseEvent;
 
-                    if (this.interactivity.el == window) {
+                    if (this.interactivity.el === window) {
                         pos_x = mouseEvent.clientX;
                         pos_y = mouseEvent.clientY;
-                    } else if (this.options.interactivity.detect_on == InteractivityDetect.parent) {
+                    } else if (this.options.interactivity.detect_on === InteractivityDetect.parent) {
                         let source = mouseEvent.srcElement as HTMLElement;
                         let target = mouseEvent.currentTarget as HTMLElement
                         if (source && target) {
@@ -129,13 +130,13 @@ export class Container {
                     this.interactivity.mouse.pos_x = pos_x * (this.retina.isRetina ? this.canvas.pxratio : 1);
                     this.interactivity.mouse.pos_y = pos_y * (this.retina.isRetina ? this.canvas.pxratio : 1);
 
-                    this.interactivity.status = 'mousemove';
+                    this.interactivity.status = "mousemove";
                 });
                 /* el on onmouseleave */
-                this.interactivity.el.addEventListener('mouseleave', () => {
+                this.interactivity.el.addEventListener("mouseleave", () => {
                     this.interactivity.mouse.pos_x = null;
                     this.interactivity.mouse.pos_y = null;
-                    this.interactivity.status = 'mouseleave';
+                    this.interactivity.status = "mouseleave";
                 });
             }
         }
@@ -143,7 +144,7 @@ export class Container {
         /* on click event */
         if (this.options.interactivity.events.onclick.enable) {
             if (this.interactivity.el) {
-                this.interactivity.el.addEventListener('click', () => {
+                this.interactivity.el.addEventListener("click", () => {
                     this.interactivity.mouse.click_pos_x = this.interactivity.mouse.pos_x;
                     this.interactivity.mouse.click_pos_y = this.interactivity.mouse.pos_y;
                     this.interactivity.mouse.click_time = new Date().getTime();
@@ -154,7 +155,7 @@ export class Container {
                                 if (this.options.particles.move.enable) {
                                     this.particles.push(this.options.interactivity.modes.push.particles_nb, this.interactivity.mouse);
                                 } else {
-                                    if (this.options.interactivity.modes.push.particles_nb == 1) {
+                                    if (this.options.interactivity.modes.push.particles_nb === 1) {
                                         this.particles.push(this.options.interactivity.modes.push.particles_nb, this.interactivity.mouse);
                                     }
                                     else if (this.options.interactivity.modes.push.particles_nb > 1) {
@@ -183,7 +184,7 @@ export class Container {
         }
     }
 
-    densityAutoParticles() {
+    public densityAutoParticles() {
         if (this.options.particles.number.density.enable) {
             /* calc area */
             let area = this.canvas.el.width * this.canvas.el.height / 1000;
@@ -204,7 +205,7 @@ export class Container {
         }
     }
 
-    destroypJS() {
+    public destroyContainer() {
         if (this.drawAnimFrame !== undefined)
             cancelAnimationFrame(this.drawAnimFrame);
 
@@ -213,14 +214,14 @@ export class Container {
         Loader.domSet([]);
     }
 
-    exportImg() {
-        window.open(this.canvas.el.toDataURL('image/png'), '_blank');
+    public exportImg() {
+        window.open(this.canvas.el.toDataURL("image/png"), "_blank");
     }
 
-    async loadImg(type: string) {
+    public async loadImg(type: string) {
         this.img.error = undefined;
-        if (this.options.particles.shape.image.src != '') {
-            // if (type == 'svg') {
+        if (this.options.particles.shape.image.src) {
+            // if (type === "svg") {
             //     let response = await fetch(this.options.particles.shape.image.src);
 
             //     if (response.ok) {
@@ -228,76 +229,76 @@ export class Container {
 
             //         this.checkBeforeDraw();
             //     } else {
-            //         console.error('Error pJS - Image not found');
+            //         console.error("Error tsParticles - Image not found");
             //         this.img.error = true;
             //     }
             // } else {
-                let img = new Image();
+            let img = new Image();
 
-                img.addEventListener('load', () => {
-                    this.img.obj = img;
+            img.addEventListener("load", () => {
+                this.img.obj = img;
 
-                    this.checkBeforeDraw();
-                });
+                this.checkBeforeDraw();
+            });
 
-                img.src = this.options.particles.shape.image.src;
+            img.src = this.options.particles.shape.image.src;
             // }
-        }
-        else {
-            console.error('Error pJS - No image.src');
+        } else {
+            console.error("Error tsParticles - No image.src");
             this.img.error = true;
         }
     }
 
-    requestFrame(callback: FrameRequestCallback) {
+    public requestFrame(callback: FrameRequestCallback) {
         return window.requestAnimFrame(callback);
     }
 
-    cancelAnimation(handle: number) {
+    public cancelAnimation(handle: number) {
         return window.cancelAnimationFrame(handle);
     }
 
-    draw(timestamp: DOMHighResTimeStamp) {
+    public draw(timestamp: DOMHighResTimeStamp) {
         // FPS limit logic
         // If we are too fast, just draw without updating
-        var fps_limit = this.options.fps_limit;
+        const fps_limit = this.options.fps_limit;
+
         if (fps_limit > 0 && timestamp < this.lastFrameTime + (1000 / fps_limit)) {
-            this.drawAnimFrame = this.requestFrame(timestamp => this.draw(timestamp));
+            this.drawAnimFrame = this.requestFrame((timestamp) => this.draw(timestamp));
             return;
         }
 
         const delta = timestamp - this.lastFrameTime;
         this.lastFrameTime = timestamp;
 
-        if (this.options.particles.shape.type == ShapeType.image) {
-            // if (this.img.type == 'svg') {
+        if (this.options.particles.shape.type === ShapeType.image) {
+            // if (this.img.type === "svg") {
             //     if (this.drawAnimFrame && this.svg.count >= this.options.particles.number.value) {
             //         this.particles.draw(delta);
 
             //         if (!this.options.particles.move.enable) {
             //             this.cancelAnimation(this.drawAnimFrame);
             //         } else {
-            //             this.drawAnimFrame = this.requestFrame(timestamp => this.draw(timestamp));
+            //             this.drawAnimFrame = this.requestFrame((timestamp) => this.draw(timestamp));
             //         }
             //     } else {
             //         if (!this.img.error) {
-            //             this.drawAnimFrame = this.requestFrame(timestamp => this.draw(timestamp));
+            //             this.drawAnimFrame = this.requestFrame((timestamp) => this.draw(timestamp));
             //         }
             //     }
             // } else {
-                if (this.img.obj != undefined) {
-                    this.particles.draw(delta);
+            if (this.img.obj) {
+                this.particles.draw(delta);
 
-                    if (this.drawAnimFrame !== undefined && !this.options.particles.move.enable) {
-                        this.cancelAnimation(this.drawAnimFrame);
-                    } else {
-                        this.drawAnimFrame = this.requestFrame(timestamp => this.draw(timestamp));
-                    }
+                if (this.drawAnimFrame !== undefined && !this.options.particles.move.enable) {
+                    this.cancelAnimation(this.drawAnimFrame);
                 } else {
-                    if (!this.img.error) {
-                        this.drawAnimFrame = this.requestFrame(timestamp => this.draw(timestamp));
-                    }
+                    this.drawAnimFrame = this.requestFrame((timestamp) => this.draw(timestamp));
                 }
+            } else {
+                if (!this.img.error) {
+                    this.drawAnimFrame = this.requestFrame((timestamp) => this.draw(timestamp));
+                }
+            }
             // }
         } else {
             this.particles.draw(delta);
@@ -307,28 +308,28 @@ export class Container {
                     this.cancelAnimation(this.drawAnimFrame);
                 }
             } else {
-                this.drawAnimFrame = this.requestFrame(timestamp => this.draw(timestamp));
+                this.drawAnimFrame = this.requestFrame((timestamp) => this.draw(timestamp));
             }
         }
     }
 
-    checkBeforeDraw() {
+    public checkBeforeDraw() {
         // if shape is image
-        if (this.options.particles.shape.type == ShapeType.image) {
-            // if (this.img.type == 'svg' && this.svg.source == undefined) {
+        if (this.options.particles.shape.type === ShapeType.image) {
+            // if (this.img.type === "svg" && this.svg.source === undefined) {
             //     this.checkAnimFrame = this.requestFrame(() => {
-            //         //TODO: Can't find anywhere this check
+            //         //TODO: Can"t find anywhere this check
             //         //check();
             //     });
             // } else {
-                if (this.checkAnimFrame) {
-                    this.cancelAnimation(this.checkAnimFrame);
-                }
+            if (this.checkAnimFrame) {
+                this.cancelAnimation(this.checkAnimFrame);
+            }
 
-                if (!this.img.error) {
-                    this.init();
-                    this.draw(0);
-                }
+            if (!this.img.error) {
+                this.init();
+                this.draw(0);
+            }
             // }
         } else {
             this.init();
@@ -336,46 +337,7 @@ export class Container {
         }
     }
 
-    processBubble(p: Particle, dist_mouse: number, time_spent: number, bubble_param: number, particles_param: number, p_obj_bubble: number | undefined, p_obj: number, id: ProcessBubbleType) {
-        const pJS = this;
-        const options = pJS.options;
-
-        if (bubble_param != particles_param) {
-            if (!pJS.bubble.duration_end) {
-                if (dist_mouse <= options.interactivity.modes.bubble.distance) {
-                    let obj;
-
-                    if (p_obj_bubble != undefined)
-                        obj = p_obj_bubble;
-                    else
-                        obj = p_obj;
-                    if (obj != bubble_param) {
-                        let value = p_obj - (time_spent * (p_obj - bubble_param) / options.interactivity.modes.bubble.duration);
-
-                        if (id == ProcessBubbleType.size)
-                            p.radius_bubble = value;
-                        if (id == ProcessBubbleType.opacity)
-                            p.opacity_bubble = value;
-                    }
-                } else {
-                    if (id == ProcessBubbleType.size)
-                        p.radius_bubble = undefined;
-                    if (id == ProcessBubbleType.opacity)
-                        p.opacity_bubble = undefined;
-                }
-            } else if (p_obj_bubble != undefined) {
-                let value_tmp = p_obj - (time_spent * (p_obj - bubble_param) / options.interactivity.modes.bubble.duration), dif = bubble_param - value_tmp;
-                let value = bubble_param + dif;
-
-                if (id == ProcessBubbleType.size)
-                    p.radius_bubble = value;
-                if (id == ProcessBubbleType.opacity)
-                    p.opacity_bubble = value;
-            }
-        }
-    }
-
-    init() {
+    public init() {
         /* init canvas + particles */
         this.retina.init();
         this.canvas.init();
@@ -385,8 +347,8 @@ export class Container {
         this.densityAutoParticles();
     }
 
-    async start() {
-        if (this.options.particles.shape.type == ShapeType.image) {
+    public async start() {
+        if (this.options.particles.shape.type === ShapeType.image) {
             this.img.type = this.options.particles.shape.image.src.substr(this.options.particles.shape.image.src.length - 3);
             await this.loadImg(this.img.type);
         }

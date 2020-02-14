@@ -1,14 +1,14 @@
-'use strict';
+"use strict";
 
 import { ShapeType, MoveDirection, OutMode, InteractivityDetect, HoverMode, ClickMode } from "./enums";
 
-export interface ContainerInteractivity {
+export interface IContainerInteractivity {
     el?: HTMLElement | Window | Node | null;
     status?: string;
-    mouse: MouseData;
+    mouse: IMouseData;
 }
 
-export interface Options {
+export interface IOptions {
     particles: {
         number: {
             value: number;
@@ -18,9 +18,9 @@ export interface Options {
             };
         };
         color: {
-            value: string | Color | string[];
+            value: string | IColor | string[];
         };
-        shape: pJSShape;
+        shape: IShape;
         opacity: {
             value: number;
             random: boolean;
@@ -110,7 +110,7 @@ export interface Options {
     fps_limit: number
 }
 
-export interface pJSShape {
+export interface IShape {
     type: ShapeType | ShapeType[];
     stroke: {
         width: number;
@@ -134,24 +134,24 @@ export interface pJSShape {
     };
 }
 
-export interface Color {
-    rgb?: Rgb | null;
-    hsl?: Hsl | null;
+export interface IColor {
+    rgb?: IRgb | null;
+    hsl?: IHsl | null;
 }
 
-export interface Rgb {
+export interface IRgb {
     r: number;
     g: number;
     b: number;
 }
 
-export interface Hsl {
+export interface IHsl {
     h: number;
     s: number;
     l: number;
 }
 
-export interface ParticleImage {
+export interface IParticleImage {
     src: string;
     ratio: number;
     obj?: HTMLImageElement;
@@ -159,12 +159,12 @@ export interface ParticleImage {
     replace_color: boolean;
 }
 
-export interface Coordinates {
+export interface ICoordinates {
     x: number;
     y: number;
 }
 
-export interface MouseData {
+export interface IMouseData {
     click_pos_x?: number | null;
     click_pos_y?: number | null;
     pos_x?: number | null;
@@ -172,24 +172,40 @@ export interface MouseData {
     click_time?: number;
 }
 
-export interface Svg {
+export interface ISvg {
     source?: string;
     count: number;
 }
 
-export interface Image {
+export interface IImage {
     type?: string;
     obj?: HTMLImageElement;
     error?: boolean;
 }
 
-export interface Bubble {
+export interface IBubble {
     clicking?: boolean;
     duration_end?: boolean;
 }
 
-export interface Repulse {
+export interface IRepulse {
     finish?: boolean;
     count?: number;
     clicking?: boolean;
+}
+
+export interface IOpacity {
+    value: number;
+    status?: boolean;
+    velocity?: number;
+}
+
+export interface ISize {
+    status?: boolean;
+    velocity?: number;
+}
+
+export interface IVelocity {
+    horizontal: number;
+    vertical: number;
 }
