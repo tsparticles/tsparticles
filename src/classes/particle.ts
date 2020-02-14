@@ -6,31 +6,31 @@ import { ShapeType, MoveDirection, HoverMode, ClickMode, ProcessBubbleType, OutM
 'use strict';
 
 export class Particle {
-    pJSContainer: Container;
-    radius: number;
-    size_status?: boolean;
-    vs?: number;
-    x: number;
-    y: number;
-    offsetX: number;
-    offsetY: number;
-    color: IColor;
-    opacity: number;
-    opacity_status?: boolean;
-    vo?: number;
-    vx: number;
-    vy: number;
-    vx_i: number;
-    vy_i: number;
-    shape?: ShapeType;
-    img?: IParticleImage;
-    radius_bubble?: number;
-    opacity_bubble?: number;
-    text?: string;
+    private container: Container;
+    public radius: number;
+    public size_status?: boolean;
+    public vs?: number;
+    public x: number;
+    public y: number;
+    public offsetX: number;
+    public offsetY: number;
+    public color: IColor;
+    public opacity: number;
+    public opacity_status?: boolean;
+    public vo?: number;
+    public vx: number;
+    public vy: number;
+    public vx_i: number;
+    public vy_i: number;
+    public shape?: ShapeType;
+    public img?: IParticleImage;
+    public radius_bubble?: number;
+    public opacity_bubble?: number;
+    public text?: string;
 
     /* --------- pJS functions - particles ----------- */
     constructor(pJSContainer: Container, color: { value: string[] | IColor | string }, opacity: number, position?: ICoordinates) {
-        this.pJSContainer = pJSContainer;
+        this.container = pJSContainer;
         let options = pJSContainer.options;
 
         /* size */
@@ -208,8 +208,8 @@ export class Particle {
         }
     }
 
-    draw() {
-        let pJS = this.pJSContainer;
+    public draw() {
+        let pJS = this.container;
         let options = pJS.options;
         let radius: number;
         let opacity;
@@ -341,7 +341,7 @@ export class Particle {
         pJS.canvas.ctx.fill();
     }
 
-    subDraw(ctx: CanvasRenderingContext2D, img_obj: HTMLImageElement, radius: number) {
+    public subDraw(ctx: CanvasRenderingContext2D, img_obj: HTMLImageElement, radius: number) {
         let p = this;
         let ratio = 1;
 
@@ -352,7 +352,7 @@ export class Particle {
         ctx.drawImage(img_obj, p.x - radius, p.y - radius, radius * 2, radius * 2 / ratio);
     }
 
-    drawShape(ctx: CanvasRenderingContext2D, startX: number, startY: number, sideLength: number, sideCountNumerator: number, sideCountDenominator: number) {
+    public drawShape(ctx: CanvasRenderingContext2D, startX: number, startY: number, sideLength: number, sideCountNumerator: number, sideCountDenominator: number) {
 
         // By Programming Thomas - https://programmingthomas.wordpress.com/2013/04/03/n-sided-shapes/
         let sideCount = sideCountNumerator * sideCountDenominator;
@@ -376,8 +376,8 @@ export class Particle {
         ctx.restore();
     }
 
-    checkOverlap(position?: ICoordinates) {
-        const pJS = this.pJSContainer;
+    public checkOverlap(position?: ICoordinates) {
+        const pJS = this.container;
         const p = this;
 
         for (const p2 of pJS.particles.array) {
@@ -442,13 +442,13 @@ export class Particle {
     //     img.src = url;
     // }
 
-    initBubble() {
+    public initBubble() {
         this.opacity_bubble = this.opacity;
         this.radius_bubble = this.radius;
     }
 
-    grab() {
-        let pJS = this.pJSContainer;
+    public grab() {
+        let pJS = this.container;
         let options = pJS.options;
 
         if (options.interactivity.events.onhover.enable && pJS.interactivity.status == 'mousemove') {
@@ -481,8 +481,8 @@ export class Particle {
         }
     }
 
-    bubble() {
-        const pJS = this.pJSContainer;
+    public bubble() {
+        const pJS = this.container;
         const options = pJS.options;
 
         /* on hover event */
@@ -564,8 +564,8 @@ export class Particle {
         }
     }
 
-    repulse() {
-        const pJS = this.pJSContainer;
+    public repulse() {
+        const pJS = this.container;
         const options = pJS.options;
 
         if (options.interactivity.events.onhover.enable && Utils.isInArray(HoverMode.repulse, options.interactivity.events.onhover.mode) && pJS.interactivity.status == 'mousemove') {
@@ -628,8 +628,8 @@ export class Particle {
         }
     }
 
-    processRepulse(dx: number, dy: number, force: number) {
-        let pJS = this.pJSContainer;
+    public processRepulse(dx: number, dy: number, force: number) {
+        let pJS = this.container;
         let options = pJS.options;
 
         let f = Math.atan2(dy, dx);
@@ -656,8 +656,8 @@ export class Particle {
     }
 
     /* ---------- pJS functions - particles interaction ------------ */
-    link(p2: Particle) {
-        const pJS = this.pJSContainer;
+    public link(p2: Particle) {
+        const pJS = this.container;
         const options = pJS.options;
 
         const x1 = this.x + this.offsetX;
@@ -700,8 +700,8 @@ export class Particle {
         }
     }
 
-    attract(p2: Particle) {
-        let pJS = this.pJSContainer;
+    public attract(p2: Particle) {
+        let pJS = this.container;
         let options = pJS.options;
 
         /* condensed particles */
@@ -720,7 +720,7 @@ export class Particle {
         }
     }
 
-    bounce(p2: Particle) {
+    public bounce(p2: Particle) {
         let dx = this.x - p2.x;
         let dy = this.y - p2.y;
         let dist = Math.sqrt(dx * dx + dy * dy);

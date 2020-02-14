@@ -7,19 +7,19 @@ import { IMouseData, IRgb } from '../utils/interfaces';
 'use strict';
 
 export class Particles {
-    pJSContainer: Container;
-    array: Particle[];
-    pushing?: boolean;
-    line_linked_color?: IRgb | null;
+    private container: Container;
+    public array: Particle[];
+    public pushing?: boolean;
+    public line_linked_color?: IRgb | null;
 
     constructor(pJSContainer: Container) {
-        this.pJSContainer = pJSContainer;
+        this.container = pJSContainer;
         this.array = [];
     }
 
     /* --------- pJS functions - particles ----------- */
-    create() {
-        let pJS = this.pJSContainer;
+    public create() {
+        let pJS = this.container;
         let options = pJS.options;
 
         for (let i = 0; i < options.particles.number.value; i++) {
@@ -29,8 +29,8 @@ export class Particles {
         }
     }
 
-    update(delta: number) {
-        let pJS = this.pJSContainer;
+    public update(delta: number) {
+        let pJS = this.container;
         let options = pJS.options;
         const arrLength = this.array.length;
 
@@ -190,8 +190,8 @@ export class Particles {
         }
     }
 
-    draw(delta: number) {
-        let pJS = this.pJSContainer;
+    public draw(delta: number) {
+        let pJS = this.container;
 
         /* clear canvas */
         if (pJS.canvas.ctx)
@@ -206,13 +206,13 @@ export class Particles {
         }
     }
 
-    empty() {
+    public empty() {
         this.array = [];
     }
 
     /* ---------- pJS functions - modes events ------------ */
-    push(nb: number, pos?: IMouseData) {
-        const pJS = this.pJSContainer;
+    public push(nb: number, pos?: IMouseData) {
+        const pJS = this.container;
         const options = pJS.options;
 
         this.pushing = true;
@@ -233,8 +233,8 @@ export class Particles {
         this.pushing = false;
     }
 
-    remove(nb: number) {
-        var pJS = this.pJSContainer;
+    public remove(nb: number) {
+        var pJS = this.container;
         var options = pJS.options;
 
         this.array.splice(0, nb);
@@ -244,8 +244,8 @@ export class Particles {
         }
     }
 
-    async refresh() {
-        let pJS = this.pJSContainer;
+    public async refresh() {
+        let pJS = this.container;
 
         /* init all */
         if (pJS.checkAnimFrame)

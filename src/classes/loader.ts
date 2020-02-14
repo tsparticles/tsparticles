@@ -1,13 +1,13 @@
 import { Container } from './container';
-import { IOptions } from '../utils/interfaces';
 import { Constants } from '../utils/constants';
+import { IOptions } from '../utils/interfaces';
 
 'use strict';
 
 let tsParticlesDom: Container[] = [];
 
 export class Loader {
-  static dom() {
+  public static dom() {
     if (!tsParticlesDom) {
       Loader.domSet([]);
     }
@@ -15,15 +15,17 @@ export class Loader {
     return tsParticlesDom;
   }
 
-  static domSet(value: Container[]) {
+  public static domSet(value: Container[]) {
     tsParticlesDom = value;
   }
 
-  static load(tag_id: string, params: IOptions) {
+  public static load(tag_id: string, params: IOptions) {
     /* elements */
     let tag = document.getElementById(tag_id);
 
-    if (!tag) return;
+    if (!tag) {
+      return;
+    }
 
     let exist_canvas = tag.getElementsByClassName(Constants.canvasClass);
 
@@ -62,7 +64,7 @@ export class Loader {
     return newItem;
   }
 
-  static async loadJSON(tag_id: string, path_config_json: string) {
+  public static async loadJSON(tag_id: string, path_config_json: string) {
     /* load json config */
     const response = await fetch(path_config_json);
 
@@ -76,11 +78,13 @@ export class Loader {
     }
   };
 
-  static setOnClickHandler(callback: EventListenerOrEventListenerObject) {
+  public static setOnClickHandler(callback: EventListenerOrEventListenerObject) {
     let tsParticlesDom = Loader.dom();
+
     if (tsParticlesDom.length == 0) {
       throw new Error("Can only set click handlers after calling tsParticles.load() or tsParticles.loadJSON()");
     }
+
     for (const domItem of tsParticlesDom) {
       let el = domItem.interactivity.el;
 

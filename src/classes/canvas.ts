@@ -4,18 +4,18 @@ import { Constants } from '../utils/constants';
 'use strict';
 
 export class Canvas {
-    pJSContainer: Container;
-    el: HTMLCanvasElement;
-    ctx: CanvasRenderingContext2D | null;
-    w: number;
-    h: number;
-    tag_id: string;
-    pxratio: number
+    private container: Container;
+    public el: HTMLCanvasElement;
+    public ctx: CanvasRenderingContext2D | null;
+    public w: number;
+    public h: number;
+    public tag_id: string;
+    public pxratio: number
 
-    constructor(pJSContainer: Container, tag_id: string) {
+    constructor(container: Container, tag_id: string) {
         let canvas_el = document.querySelector(`#${tag_id} > .${Constants.canvasClass}`) as HTMLCanvasElement;
 
-        this.pJSContainer = pJSContainer;
+        this.container = container;
         this.el = canvas_el;
         this.w = canvas_el.offsetWidth;
         this.h = canvas_el.offsetHeight;
@@ -25,13 +25,13 @@ export class Canvas {
     }
 
     /* ---------- pJS functions - canvas ------------ */
-    init() {
-        //TODO: Moved in the constructor, check if it's fine there
+    public init() {
+        // TODO: Moved in the constructor, check if it's fine there
         // this.ctx = this.el.getContext('2d');
     }
 
-    size() {
-        let pJS = this.pJSContainer;
+    public size() {
+        let pJS = this.container;
         let options = pJS.options;
 
         this.el.width = this.w;
@@ -56,7 +56,7 @@ export class Canvas {
                     pJS.particles.empty();
                     pJS.particles.create();
                     pJS.particles.draw(0);
-                    //TODO: seems double code, check if it works without it
+                    // TODO: seems double code, check if it works without it
                     // pJS.densityAutoParticles();
                 }
 
@@ -66,13 +66,15 @@ export class Canvas {
         }
     }
 
-    paint() {
-        if (this.ctx)
+    public paint() {
+        if (this.ctx) {
             this.ctx.fillRect(0, 0, this.w, this.h);
+        }
     }
 
-    clear() {
-        if (this.ctx)
+    public clear() {
+        if (this.ctx) {
             this.ctx.clearRect(0, 0, this.w, this.h);
+        }
     }
 }
