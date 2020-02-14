@@ -213,9 +213,9 @@ export class Particle {
         } else if (typeof (color.value) === "string") {
             if (color.value === "random") {
                 res.rgb = {
-                    r: (Math.floor(Math.random() * (255 - 0 + 1)) + 0),
-                    g: (Math.floor(Math.random() * (255 - 0 + 1)) + 0),
-                    b: (Math.floor(Math.random() * (255 - 0 + 1)) + 0)
+                    r: Math.floor(Math.random() * 256),
+                    g: Math.floor(Math.random() * 256),
+                    b: Math.floor(Math.random() * 256)
                 };
             } else {
                 res.rgb = Utils.hexToRgb(color.value);
