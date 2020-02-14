@@ -1,3 +1,5 @@
+'use strict';
+
 /* -----------------------------------------------
 /* Author : Matteo Bruni - www.matteobruni.it
 /* MIT license: https://opensource.org/licenses/MIT
@@ -9,8 +11,6 @@
 import { Container } from './classes/container';
 import { Loader } from './classes/loader';
 import { IOptions } from './utils/interfaces';
-
-'use strict';
 
 declare global {
   interface Window {

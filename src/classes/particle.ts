@@ -1,9 +1,9 @@
+'use strict';
+
 import { Utils } from '../utils/utils';
 import { IParticleImage, IColor, ICoordinates, IRgb, IHsl } from '../utils/interfaces';
 import { Container } from './container';
 import { ShapeType, MoveDirection, HoverMode, ClickMode, ProcessBubbleType, OutMode } from '../utils/enums';
-
-'use strict';
 
 export class Particle {
     private container: Container;

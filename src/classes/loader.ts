@@ -1,8 +1,8 @@
+'use strict';
+
 import { Container } from './container';
 import { Constants } from '../utils/constants';
 import { IOptions } from '../utils/interfaces';
-
-'use strict';
 
 let tsParticlesDom: Container[] = [];
 

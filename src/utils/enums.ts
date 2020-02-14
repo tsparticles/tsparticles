@@ -1,3 +1,5 @@
+'use strict';
+
 export enum ShapeType {
     circle = 'circle',
     edge = 'edge',

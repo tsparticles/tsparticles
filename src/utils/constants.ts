@@ -1,3 +1,5 @@
+'use strict';
+
 import { IOptions } from "./interfaces";
 import { ShapeType, MoveDirection, OutMode, InteractivityDetect, HoverMode, ClickMode } from "./enums";
 

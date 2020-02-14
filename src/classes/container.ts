@@ -1,3 +1,4 @@
+'use strict';
 
 import { Utils } from '../utils/utils';
 import { IOptions, IContainerInteractivity, ISvg, IImage, IBubble, IRepulse } from '../utils/interfaces';
@@ -8,8 +9,6 @@ import { ShapeType, OutMode, InteractivityDetect, ClickMode, ProcessBubbleType }
 import { Loader } from './loader';
 import { Particle } from './particle';
 import { Constants } from '../utils/constants';
-
-'use strict';
 
 export class Container {
     interactivity: IContainerInteractivity;

@@ -1,7 +1,7 @@
+'use strict';
+
 import { Container } from './container';
 import { Constants } from '../utils/constants';
-
-'use strict';
 
 export class Canvas {
     private container: Container;
