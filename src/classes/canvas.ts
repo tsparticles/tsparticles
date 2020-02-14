@@ -24,26 +24,26 @@ export class Canvas {
         this.ctx = this.el.getContext('2d');
     }
 
-    /* ---------- pJS functions - canvas ------------ */
+    /* ---------- tsParticles functions - canvas ------------ */
     public init() {
         // TODO: Moved in the constructor, check if it's fine there
         // this.ctx = this.el.getContext('2d');
     }
 
     public size() {
-        let pJS = this.container;
-        let options = pJS.options;
+        let container = this.container;
+        let options = container.options;
 
         this.el.width = this.w;
         this.el.height = this.h;
 
-        if (pJS && options.interactivity.events.resize) {
+        if (container && options.interactivity.events.resize) {
             window.addEventListener('resize', () => {
                 this.w = this.el.offsetWidth;
                 this.h = this.el.offsetHeight;
 
                 /* resize canvas */
-                if (pJS.retina.isRetina) {
+                if (container.retina.isRetina) {
                     this.w *= this.pxratio;
                     this.h *= this.pxratio;
                 }
@@ -53,15 +53,15 @@ export class Canvas {
 
                 /* repaint canvas on anim disabled */
                 if (!options.particles.move.enable) {
-                    pJS.particles.empty();
-                    pJS.particles.create();
-                    pJS.particles.draw(0);
+                    container.particles.empty();
+                    container.particles.create();
+                    container.particles.draw(0);
                     // TODO: seems double code, check if it works without it
-                    // pJS.densityAutoParticles();
+                    // container.densityAutoParticles();
                 }
 
                 /* density particles enabled */
-                pJS.densityAutoParticles();
+                container.densityAutoParticles();
             });
         }
     }

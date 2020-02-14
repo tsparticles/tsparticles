@@ -9,7 +9,7 @@
             var data, data_css, tsParticles_GUI_Export, tsParticles_GUI_tmp, ratio;
             tsParticles_GUI_Export = {};
             tsParticles_GUI_tmp = window.tsParticles_GUI;
-            pJSUtils.deepExtend(tsParticles_GUI_Export, tsParticles_GUI_tmp.options);
+            Utils.deepExtend(tsParticles_GUI_Export, tsParticles_GUI_tmp.options);
             ratio = tsParticles_GUI_tmp.canvas.pxratio;
             tsParticles_GUI_Export.particles.size.value = tsParticles_GUI_tmp.particles.size.value / ratio;
             tsParticles_GUI_Export.particles.size.anim.speed = tsParticles_GUI_tmp.particles.size.anim.speed / ratio;
@@ -469,11 +469,11 @@
     });
 
     konamiCode = function() {
-        var k, n, pjs, pjs_style, playAudio, start, stop;
+        var k, n, tsp, tsp_style, playAudio, start, stop;
         k = [38, 38, 40, 40, 37, 39, 37, 39, 66, 65];
         n = 0;
-        pjs = $('#tsparticles');
-        pjs_style = null;
+        tsp = $('#tsparticles');
+        tsp_style = null;
         playAudio = function() {
             var audio, src_path;
             audio = document.createElement('audio');
@@ -485,8 +485,8 @@
         };
         start = function(audio) {
             window.konami = true;
-            pjs_style = pjs.attr('style');
-            pjs.addClass('troll').css({
+            tsp_style = tsp.attr('style');
+            tsp.addClass('troll').css({
                 'background-size': '75%',
                 'background-position': '0 50%',
                 'background-color': '#043564'
@@ -502,7 +502,7 @@
         };
         stop = function() {
             window.konami = false;
-            pjs.removeClass('troll').attr('style', pjs_style);
+            tsp.removeClass('troll').attr('style', tsp_style);
             if (!tsParticles_GUI.config_demo.hide_card) {
                 $('.panel').fadeIn(200);
                 return $('.js-box_bottom').fadeOut(200);

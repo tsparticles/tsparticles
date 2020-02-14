@@ -57,7 +57,7 @@ export class Container {
             Utils.deepExtend(this.options, params);
         }
 
-        /* ---------- pJS - start ------------ */
+        /* ---------- tsParticles - start ------------ */
         this.eventsListeners();
 
         //TODO: Start è async
@@ -86,7 +86,7 @@ export class Container {
         }
     }
 
-    /* ---------- pJS functions - vendors ------------ */
+    /* ---------- tsParticles functions - vendors ------------ */
     eventsListeners() {
         /* events target element */
         if (this.options.interactivity.detect_on == InteractivityDetect.window) {
@@ -204,7 +204,7 @@ export class Container {
         }
     }
 
-    destroypJS() {
+    destroyContainer() {
         if (this.drawAnimFrame !== undefined)
             cancelAnimationFrame(this.drawAnimFrame);
 
@@ -228,23 +228,22 @@ export class Container {
 
             //         this.checkBeforeDraw();
             //     } else {
-            //         console.error('Error pJS - Image not found');
+            //         console.error('Error tsParticles - Image not found');
             //         this.img.error = true;
             //     }
             // } else {
-                let img = new Image();
+            let img = new Image();
 
-                img.addEventListener('load', () => {
-                    this.img.obj = img;
+            img.addEventListener('load', () => {
+                this.img.obj = img;
 
-                    this.checkBeforeDraw();
-                });
+                this.checkBeforeDraw();
+            });
 
-                img.src = this.options.particles.shape.image.src;
+            img.src = this.options.particles.shape.image.src;
             // }
-        }
-        else {
-            console.error('Error pJS - No image.src');
+        } else {
+            console.error('Error tsParticles - No image.src');
             this.img.error = true;
         }
     }
@@ -285,19 +284,19 @@ export class Container {
             //         }
             //     }
             // } else {
-                if (this.img.obj != undefined) {
-                    this.particles.draw(delta);
+            if (this.img.obj != undefined) {
+                this.particles.draw(delta);
 
-                    if (this.drawAnimFrame !== undefined && !this.options.particles.move.enable) {
-                        this.cancelAnimation(this.drawAnimFrame);
-                    } else {
-                        this.drawAnimFrame = this.requestFrame(timestamp => this.draw(timestamp));
-                    }
+                if (this.drawAnimFrame !== undefined && !this.options.particles.move.enable) {
+                    this.cancelAnimation(this.drawAnimFrame);
                 } else {
-                    if (!this.img.error) {
-                        this.drawAnimFrame = this.requestFrame(timestamp => this.draw(timestamp));
-                    }
+                    this.drawAnimFrame = this.requestFrame(timestamp => this.draw(timestamp));
                 }
+            } else {
+                if (!this.img.error) {
+                    this.drawAnimFrame = this.requestFrame(timestamp => this.draw(timestamp));
+                }
+            }
             // }
         } else {
             this.particles.draw(delta);
@@ -321,14 +320,14 @@ export class Container {
             //         //check();
             //     });
             // } else {
-                if (this.checkAnimFrame) {
-                    this.cancelAnimation(this.checkAnimFrame);
-                }
+            if (this.checkAnimFrame) {
+                this.cancelAnimation(this.checkAnimFrame);
+            }
 
-                if (!this.img.error) {
-                    this.init();
-                    this.draw(0);
-                }
+            if (!this.img.error) {
+                this.init();
+                this.draw(0);
+            }
             // }
         } else {
             this.init();
@@ -337,11 +336,11 @@ export class Container {
     }
 
     processBubble(p: Particle, dist_mouse: number, time_spent: number, bubble_param: number, particles_param: number, p_obj_bubble: number | undefined, p_obj: number, id: ProcessBubbleType) {
-        const pJS = this;
-        const options = pJS.options;
+        const container = this;
+        const options = container.options;
 
         if (bubble_param != particles_param) {
-            if (!pJS.bubble.duration_end) {
+            if (!container.bubble.duration_end) {
                 if (dist_mouse <= options.interactivity.modes.bubble.distance) {
                     let obj;
 

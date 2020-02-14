@@ -29,7 +29,7 @@ export class Loader {
 
     let exist_canvas = tag.getElementsByClassName(Constants.canvasClass);
 
-    /* remove canvas if exists into the pJS target tag */
+    /* remove canvas if exists into the container target tag */
     if (exist_canvas.length) {
       while (exist_canvas.length > 0) {
         tag.removeChild(exist_canvas[0]);
@@ -73,8 +73,8 @@ export class Loader {
 
       Loader.load(tag_id, params);
     } else {
-      console.error(`Error pJS - fetch status: ${response.status}`);
-      console.error('Error pJS - File config not found');
+      console.error(`Error tsParticles - fetch status: ${response.status}`);
+      console.error('Error tsParticles - File config not found');
     }
   };
 
