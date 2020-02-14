@@ -93,7 +93,9 @@ window.particlesJS.load = async (tagId: string, path_config_json: string, callba
     console.info('this method is obsolete, please use the new tsParticles.loadJSON');
   }
 
-  window.tsParticles.loadJSON(tagId, path_config_json).then(callback);
+  window.tsParticles.loadJSON(tagId, path_config_json).then(callback).catch(error => {
+    console.error(error);
+  });
 };
 
 window.particlesJS.setOnClickHandler = function (callback: EventListenerOrEventListenerObject) {

@@ -552,6 +552,8 @@
             window.loadStats();
             return konamiCode();
         });
+    }).catch(error => {
+        console.log(error)
     });
 
 }).call(this);

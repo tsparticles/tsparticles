@@ -68,6 +68,8 @@ export class Container {
                 the old frame and starting a new one is necessary
             */
             document.addEventListener("visibilitychange", () => this.handleVisibilityChange(), false);
+        }).catch(error => {
+            throw error;
         });
     }
 
@@ -218,7 +220,7 @@ export class Container {
 
     public async loadImg(type: string) {
         this.img.error = undefined;
-        if (this.options.particles.shape.image.src != '') {
+        if (this.options.particles.shape.image.src) {
             // if (type == 'svg') {
             //     let response = await fetch(this.options.particles.shape.image.src);
 
@@ -268,7 +270,7 @@ export class Container {
         const delta = timestamp - this.lastFrameTime;
         this.lastFrameTime = timestamp;
 
-        if (this.options.particles.shape.type == ShapeType.image) {
+        if (this.options.particles.shape.type === ShapeType.image) {
             // if (this.img.type == 'svg') {
             //     if (this.drawAnimFrame && this.svg.count >= this.options.particles.number.value) {
             //         this.particles.draw(delta);
@@ -313,7 +315,7 @@ export class Container {
 
     public checkBeforeDraw() {
         // if shape is image
-        if (this.options.particles.shape.type == ShapeType.image) {
+        if (this.options.particles.shape.type === ShapeType.image) {
             // if (this.img.type == 'svg' && this.svg.source == undefined) {
             //     this.checkAnimFrame = this.requestFrame(() => {
             //         //TODO: Can't find anywhere this check
@@ -385,7 +387,7 @@ export class Container {
     }
 
     public async start() {
-        if (this.options.particles.shape.type == ShapeType.image) {
+        if (this.options.particles.shape.type === ShapeType.image) {
             this.img.type = this.options.particles.shape.image.src.substr(this.options.particles.shape.image.src.length - 3);
             await this.loadImg(this.img.type);
         }
