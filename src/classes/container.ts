@@ -30,9 +30,9 @@ export class Container {
     lastFrameTime = 0;
     pageHidden = false;
 
-    constructor(tag_id: string, params: IOptions) {
+    constructor(tagId: string, params: IOptions) {
         this.retina = new Retina(this);
-        this.canvas = new Canvas(this, tag_id);
+        this.canvas = new Canvas(this, tagId);
         this.particles = new Particles(this);
 
         this.interactivity = {

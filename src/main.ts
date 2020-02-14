@@ -54,12 +54,12 @@ window.cancelRequestAnimFrame = (() => {
 /* ---------- tsParticles functions - start ------------ */
 
 class Main {
-  public load(tag_id: string, params: IOptions) {
-    Loader.load(tag_id, params);
+  public load(tagId: string, params: IOptions) {
+    Loader.load(tagId, params);
   }
 
-  public async loadJSON(tag_id: string, path_config_json: string) {
-    await Loader.loadJSON(tag_id, path_config_json);
+  public async loadJSON(tagId: string, path_config_json: string) {
+    await Loader.loadJSON(tagId, path_config_json);
   }
 
   public setOnClickHandler(callback: EventListenerOrEventListenerObject) {
@@ -80,20 +80,20 @@ window.tsParticles = new Main();
 Object.freeze(window.tsParticles);
 
 /* particles.js compatibility */
-window.particlesJS = (tag_id: string, params: IOptions) => {
+window.particlesJS = (tagId: string, params: IOptions) => {
   if (console) {
     console.info('this method is obsolete, please use the new tsParticles.load');
   }
 
-  window.tsParticles.load(tag_id, params);
+  window.tsParticles.load(tagId, params);
 };
 
-window.particlesJS.load = async (tag_id: string, path_config_json: string, callback: () => void) => {
+window.particlesJS.load = async (tagId: string, path_config_json: string, callback: () => void) => {
   if (console) {
     console.info('this method is obsolete, please use the new tsParticles.loadJSON');
   }
 
-  window.tsParticles.loadJSON(tag_id, path_config_json).then(callback);
+  window.tsParticles.loadJSON(tagId, path_config_json).then(callback);
 };
 
 window.particlesJS.setOnClickHandler = function (callback: EventListenerOrEventListenerObject) {

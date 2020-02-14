@@ -19,41 +19,41 @@ export class Loader {
     tsParticlesDom = value;
   }
 
-  public static load(tag_id: string, params: IOptions) {
+  public static load(tagId: string, params: IOptions) {
     /* elements */
-    let tag = document.getElementById(tag_id);
+    let tag = document.getElementById(tagId);
 
     if (!tag) {
       return;
     }
 
-    let exist_canvas = tag.getElementsByClassName(Constants.canvasClass);
+    let existCanvas = tag.getElementsByClassName(Constants.canvasClass);
 
     /* remove canvas if exists into the container target tag */
-    if (exist_canvas.length) {
-      while (exist_canvas.length > 0) {
-        tag.removeChild(exist_canvas[0]);
+    if (existCanvas.length) {
+      while (existCanvas.length > 0) {
+        tag.removeChild(existCanvas[0]);
       }
     }
 
     /* create canvas element */
-    let canvas_el = document.createElement('canvas');
+    const canvasEl = document.createElement('canvas');
 
-    canvas_el.className = Constants.canvasClass;
+    canvasEl.className = Constants.canvasClass;
 
     /* set size canvas */
-    canvas_el.style.width = "100%";
-    canvas_el.style.height = "100%";
+    canvasEl.style.width = "100%";
+    canvasEl.style.height = "100%";
 
     /* append canvas */
-    const canvas = document.getElementById(tag_id)?.appendChild(canvas_el);
+    const canvas = document.getElementById(tagId)?.appendChild(canvasEl);
 
     /* launch tsparticle */
     if (!canvas) return;
 
-    const newItem = new Container(tag_id, params);
+    const newItem = new Container(tagId, params);
     const dom = Loader.dom();
-    const idx = dom.findIndex(v => v.canvas.tag_id == tag_id);
+    const idx = dom.findIndex(v => v.canvas.tagId == tagId);
 
     if (idx >= 0) {
       dom.splice(idx, 1, newItem);
@@ -64,14 +64,14 @@ export class Loader {
     return newItem;
   }
 
-  public static async loadJSON(tag_id: string, path_config_json: string) {
+  public static async loadJSON(tagId: string, path_config_json: string) {
     /* load json config */
     const response = await fetch(path_config_json);
 
     if (response.ok) {
       const params = await response.json();
 
-      Loader.load(tag_id, params);
+      Loader.load(tagId, params);
     } else {
       console.error(`Error tsParticles - fetch status: ${response.status}`);
       console.error('Error tsParticles - File config not found');

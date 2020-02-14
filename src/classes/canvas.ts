@@ -9,17 +9,17 @@ export class Canvas {
     public ctx: CanvasRenderingContext2D | null;
     public w: number;
     public h: number;
-    public tag_id: string;
+    public tagId: string;
     public pxratio: number
 
-    constructor(container: Container, tag_id: string) {
-        let canvas_el = document.querySelector(`#${tag_id} > .${Constants.canvasClass}`) as HTMLCanvasElement;
+    constructor(container: Container, tagId: string) {
+        let canvas_el = document.querySelector(`#${tagId} > .${Constants.canvasClass}`) as HTMLCanvasElement;
 
         this.container = container;
         this.el = canvas_el;
         this.w = canvas_el.offsetWidth;
         this.h = canvas_el.offsetHeight;
-        this.tag_id = tag_id;
+        this.tagId = tagId;
         this.pxratio = 1;
         this.ctx = this.el.getContext('2d');
     }
