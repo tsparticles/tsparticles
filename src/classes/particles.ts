@@ -46,132 +46,22 @@ export class Particles {
             // }
 
             /* move the particle */
-            if (options.particles.move.enable) {
-                let ms = options.particles.move.speed / 10;
-                p.x += p.velocity.x * ms * delta;
-                p.y += p.velocity.y * ms * delta;
-            }
+            p.move(delta);
+
             /* parallax */
-            if (container.interactivity.mouse.pos_x && options.interactivity.events.onhover.parallax.enable) {
-                /* smaller is the particle, longer is the offset distance */
-                let tmp_x = (container.interactivity.mouse.pos_x - (window.innerWidth / 2)) * (p.radius / options.interactivity.events.onhover.parallax.force);
-
-                p.offsetX += (tmp_x - p.offsetX) / options.interactivity.events.onhover.parallax.smooth; // Easing equation
-
-                let tmp_y = ((container.interactivity.mouse.pos_y || 0) - (window.innerHeight / 2)) * (p.radius / options.interactivity.events.onhover.parallax.force);
-
-                p.offsetY += (tmp_y - p.offsetY) / options.interactivity.events.onhover.parallax.smooth; // Easing equation
-            }
+            p.moveParallax();
 
             /* change opacity status */
-            if (options.particles.opacity.anim.enable) {
-                if (p.opacity.status) {
-                    if (p.opacity.value >= options.particles.opacity.value) {
-                        p.opacity.status = false;
-                    }
-
-                    p.opacity.value += (p.opacity.velocity || 0);
-                } else {
-                    if (p.opacity.value <= options.particles.opacity.anim.opacity_min) {
-                        p.opacity.status = true;
-                    }
-
-                    p.opacity.value -= (p.opacity.velocity || 0);
-                }
-                if (p.opacity.value < 0) {
-                    p.opacity.value = 0;
-                }
-            }
+            p.updateOpacity();
 
             /* change size */
-            if (options.particles.size.anim.enable) {
-                if (p.size_status) {
-                    if (p.radius >= options.particles.size.value) {
-                        p.size_status = false;
-                    }
-
-                    p.radius += (p.vs || 0);
-                } else {
-                    if (p.radius <= options.particles.size.anim.size_min) {
-                        p.size_status = true;
-                    }
-
-                    p.radius -= (p.vs || 0);
-                }
-
-                if (p.radius < 0)
-                    p.radius = 0;
-            }
+            p.updateSize();
 
             /* change particle position if it is out of canvas */
-            let new_pos;
-
-            if (options.particles.move.out_mode === OutMode.bounce || options.particles.move.out_mode === OutMode.bounceVertical) {
-                new_pos = {
-                    x_left: p.radius,
-                    x_right: container.canvas.w,
-                    y_top: p.radius,
-                    y_bottom: container.canvas.h
-                };
-            } else {
-                new_pos = {
-                    x_left: -p.radius - p.offsetX,
-                    x_right: container.canvas.w + p.radius + p.offsetX,
-                    y_top: -p.radius - p.offsetY,
-                    y_bottom: container.canvas.h + p.radius - p.offsetY
-                };
-            }
-
-            if ((p.x) - p.radius > container.canvas.w - p.offsetX) {
-                p.x = new_pos.x_left;
-                p.y = Math.random() * container.canvas.h;
-            } else if ((p.x) + p.radius < 0 - p.offsetX) {
-                p.x = new_pos.x_right;
-                p.y = Math.random() * container.canvas.h;
-            }
-
-            if ((p.y) - p.radius > container.canvas.h - p.offsetY) {
-                p.y = new_pos.y_top;
-                p.x = Math.random() * container.canvas.w;
-            } else if ((p.y) + p.radius < 0 - p.offsetY) {
-                p.y = new_pos.y_bottom;
-                p.x = Math.random() * container.canvas.w;
-            }
+            p.fixOutOfCanvasPosition();
 
             /* out of canvas modes */
-            switch (options.particles.move.out_mode) {
-                case OutMode.bounce:
-                    if ((p.x + p.offsetX) + p.radius > container.canvas.w) {
-                        p.velocity.x = -p.velocity.x;
-                    } else if ((p.x + p.offsetX) - p.radius < 0) {
-                        p.velocity.x = -p.velocity.x;
-                    }
-
-                    if ((p.y + p.offsetY) + p.radius > container.canvas.h) {
-                        p.velocity.y = -p.velocity.y;
-                    } else if ((p.y + p.offsetY) - p.radius < 0) {
-                        p.velocity.y = -p.velocity.y;
-                    }
-
-                    break;
-                case OutMode.bounceVertical:
-                    if (p.y + p.radius > container.canvas.h) {
-                        p.velocity.y = -p.velocity.y;
-                    }
-
-                    if (p.y - p.radius < 0) {
-                        p.velocity.y = -p.velocity.y;
-                    }
-
-                    break;
-                case OutMode.bounceHorizontal:
-                    if (p.x + p.radius > container.canvas.w) {
-                        p.velocity.x = -p.velocity.x;
-                    } else if (p.x - p.radius < 0) {
-                        p.velocity.x = -p.velocity.x;
-                    }
-                    break;
-            }
+            p.updateOutMode();
 
             /* events */
             if (Utils.isInArray(HoverMode.grab, options.interactivity.events.onhover.mode)) {

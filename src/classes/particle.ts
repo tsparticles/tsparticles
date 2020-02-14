@@ -783,8 +783,8 @@ export class Particle {
     }
 
     public attract(p2: Particle) {
-        let container = this.container;
-        let options = container.options;
+        const container = this.container;
+        const options = container.options;
 
         /* condensed particles */
         let dx = this.x - p2.x;
@@ -813,6 +813,157 @@ export class Particle {
             this.velocity.y = -this.velocity.y;
             p2.velocity.x = -p2.velocity.x;
             p2.velocity.y = -p2.velocity.y;
+        }
+    }
+
+    public move(delta: number) {
+        const container = this.container;
+        const options = container.options;
+
+        if (options.particles.move.enable) {
+            let moveSpeed = options.particles.move.speed / 10;
+            this.x += this.velocity.x * moveSpeed * delta;
+            this.y += this.velocity.y * moveSpeed * delta;
+        }
+    }
+
+    public moveParallax() {
+        const container = this.container;
+        const options = container.options;
+
+        if (container.interactivity.mouse.pos_x && options.interactivity.events.onhover.parallax.enable) {
+            /* smaller is the particle, longer is the offset distance */
+            let tmp_x = (container.interactivity.mouse.pos_x - (window.innerWidth / 2)) * (this.radius / options.interactivity.events.onhover.parallax.force);
+            let tmp_y = ((container.interactivity.mouse.pos_y || 0) - (window.innerHeight / 2)) * (this.radius / options.interactivity.events.onhover.parallax.force);
+
+            this.offsetX += (tmp_x - this.offsetX) / options.interactivity.events.onhover.parallax.smooth; // Easing equation
+            this.offsetY += (tmp_y - this.offsetY) / options.interactivity.events.onhover.parallax.smooth; // Easing equation
+        }
+    }
+
+    public updateOpacity() {
+        const container = this.container;
+        const options = container.options;
+
+        if (options.particles.opacity.anim.enable) {
+            if (this.opacity.status) {
+                if (this.opacity.value >= options.particles.opacity.value) {
+                    this.opacity.status = false;
+                }
+
+                this.opacity.value += (this.opacity.velocity || 0);
+            } else {
+                if (this.opacity.value <= options.particles.opacity.anim.opacity_min) {
+                    this.opacity.status = true;
+                }
+
+                this.opacity.value -= (this.opacity.velocity || 0);
+            }
+            if (this.opacity.value < 0) {
+                this.opacity.value = 0;
+            }
+        }
+    }
+
+    public updateSize() {
+        const container = this.container;
+        const options = container.options;
+
+        if (options.particles.size.anim.enable) {
+            if (this.size_status) {
+                if (this.radius >= options.particles.size.value) {
+                    this.size_status = false;
+                }
+
+                this.radius += (this.vs || 0);
+            } else {
+                if (this.radius <= options.particles.size.anim.size_min) {
+                    this.size_status = true;
+                }
+
+                this.radius -= (this.vs || 0);
+            }
+
+            if (this.radius < 0)
+                this.radius = 0;
+        }
+    }
+
+    public fixOutOfCanvasPosition() {
+        const container = this.container;
+        const options = container.options;
+
+        let new_pos;
+
+        if (options.particles.move.out_mode === OutMode.bounce || options.particles.move.out_mode === OutMode.bounceVertical) {
+            new_pos = {
+                x_left: this.radius,
+                x_right: container.canvas.w,
+                y_top: this.radius,
+                y_bottom: container.canvas.h
+            };
+        } else {
+            new_pos = {
+                x_left: -this.radius - this.offsetX,
+                x_right: container.canvas.w + this.radius + this.offsetX,
+                y_top: -this.radius - this.offsetY,
+                y_bottom: container.canvas.h + this.radius - this.offsetY
+            };
+        }
+
+        if ((this.x) - this.radius > container.canvas.w - this.offsetX) {
+            this.x = new_pos.x_left;
+            this.y = Math.random() * container.canvas.h;
+        } else if ((this.x) + this.radius < 0 - this.offsetX) {
+            this.x = new_pos.x_right;
+            this.y = Math.random() * container.canvas.h;
+        }
+
+        if ((this.y) - this.radius > container.canvas.h - this.offsetY) {
+            this.y = new_pos.y_top;
+            this.x = Math.random() * container.canvas.w;
+        } else if ((this.y) + this.radius < 0 - this.offsetY) {
+            this.y = new_pos.y_bottom;
+            this.x = Math.random() * container.canvas.w;
+        }
+    }
+
+    public updateOutMode() {
+        const container = this.container;
+        const options = container.options;
+
+        switch (options.particles.move.out_mode) {
+            case OutMode.bounce:
+                if ((this.x + this.offsetX) + this.radius > container.canvas.w) {
+                    this.velocity.x = -this.velocity.x;
+                } else if ((this.x + this.offsetX) - this.radius < 0) {
+                    this.velocity.x = -this.velocity.x;
+                }
+
+                if ((this.y + this.offsetY) + this.radius > container.canvas.h) {
+                    this.velocity.y = -this.velocity.y;
+                } else if ((this.y + this.offsetY) - this.radius < 0) {
+                    this.velocity.y = -this.velocity.y;
+                }
+
+                break;
+            case OutMode.bounceVertical:
+                if (this.y + this.radius > container.canvas.h) {
+                    this.velocity.y = -this.velocity.y;
+                }
+
+                if (this.y - this.radius < 0) {
+                    this.velocity.y = -this.velocity.y;
+                }
+
+                break;
+            case OutMode.bounceHorizontal:
+                if (this.x + this.radius > container.canvas.w) {
+                    this.velocity.x = -this.velocity.x;
+                } else if (this.x - this.radius < 0) {
+                    this.velocity.x = -this.velocity.x;
+                }
+                break;
         }
     }
 }
