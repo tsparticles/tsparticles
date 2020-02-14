@@ -1,7 +1,7 @@
 "use strict";
 
 import { Utils } from "../utils/utils";
-import { IParticleImage, IColor, ICoordinates, IRgb, IHsl, IOptions } from "../utils/interfaces";
+import { IParticleImage, IColor, ICoordinates, IRgb, IHsl, IOptions, IOpacity } from "../utils/interfaces";
 import { Container } from "./container";
 import { ShapeType, MoveDirection, HoverMode, ClickMode, ProcessBubbleType, OutMode } from "../utils/enums";
 
@@ -15,13 +15,9 @@ export class Particle {
     public offsetX: number;
     public offsetY: number;
     public color: IColor;
-    public opacity: number;
-    public opacity_status?: boolean;
-    public vo?: number;
-    public vx: number;
-    public vy: number;
-    public vx_i: number;
-    public vy_i: number;
+    public opacity: IOpacity;
+    public velocity: ICoordinates;
+    public initialVelocity: ICoordinates;
     public shape?: ShapeType;
     public img?: IParticleImage;
     public radius_bubble?: number;
@@ -71,40 +67,27 @@ export class Particle {
         this.color = this.getColor(options, color);
 
         /* opacity */
-        this.opacity = (options.particles.opacity.random ? Math.random() : 1) * options.particles.opacity.value;
+        this.opacity = {
+            value: (options.particles.opacity.random ? Math.random() : 1) * options.particles.opacity.value
+        };
 
         if (options.particles.opacity.anim.enable) {
-            this.opacity_status = false;
-            this.vo = options.particles.opacity.anim.speed / 100;
+            this.opacity.status = false;
+            this.opacity.velocity = options.particles.opacity.anim.speed / 100;
+
             if (!options.particles.opacity.anim.sync) {
-                this.vo = this.vo * Math.random();
+                this.opacity.velocity *= Math.random();
             }
         }
 
         /* animation - velocity for speed */
-        let velbase = this.getVelBase(options);
+        this.velocity = this.calcVelocity(options);
 
-        if (options.particles.move.straight) {
-            this.vx = velbase.x;
-            this.vy = velbase.y;
+        this.initialVelocity = {
+            x: this.velocity.x,
+            y: this.velocity.y
+        };
 
-            if (options.particles.move.random) {
-                this.vx = this.vx * (Math.random());
-                this.vy = this.vy * (Math.random());
-            }
-        }
-        else {
-            this.vx = velbase.x + Math.random() - 0.5;
-            this.vy = velbase.y + Math.random() - 0.5;
-        }
-
-        // let theta = 2.0 * Math.PI * Math.random();
-
-        // this.vx = Math.cos(theta);
-        // this.vy = Math.sin(theta);
-
-        this.vx_i = this.vx;
-        this.vy_i = this.vy;
         /* if shape is image */
         let shape_type = options.particles.shape.type;
 
@@ -141,6 +124,35 @@ export class Particle {
                 this.text = options.particles.shape.character.value[Math.floor(Math.random() * options.particles.shape.character.value.length)]
             }
         }
+    }
+
+    private calcVelocity(options: IOptions) {
+        const velbase = this.getVelBase(options);
+        let res: ICoordinates = {
+            x: 0,
+            y: 0
+        };
+
+        if (options.particles.move.straight) {
+            res.x = velbase.x;
+            res.y = velbase.y;
+
+            if (options.particles.move.random) {
+                res.x *= Math.random();
+                res.y *= Math.random();
+            }
+        }
+        else {
+            res.x = velbase.x + Math.random() - 0.5;
+            res.y = velbase.y + Math.random() - 0.5;
+        }
+
+        // let theta = 2.0 * Math.PI * Math.random();
+
+        // res.x = Math.cos(theta);
+        // res.y = Math.sin(theta);
+
+        return res;
     }
 
     private getVelBase(options: IOptions) {
@@ -241,7 +253,7 @@ export class Particle {
         if (this.opacity_bubble !== undefined) {
             opacity = this.opacity_bubble;
         } else {
-            opacity = this.opacity;
+            opacity = this.opacity.value;
         }
 
         if (this.color.rgb) {
@@ -470,7 +482,7 @@ export class Particle {
     // }
 
     public initBubble() {
-        this.opacity_bubble = this.opacity;
+        this.opacity_bubble = this.opacity.value;
         this.radius_bubble = this.radius;
     }
 
@@ -545,7 +557,7 @@ export class Particle {
             /* size */
             container.processBubble(this, dist_mouse, time_spent, options.interactivity.modes.bubble.size, options.particles.size.value, this.radius_bubble, this.radius, ProcessBubbleType.size);
             /* opacity */
-            container.processBubble(this, dist_mouse, time_spent, options.interactivity.modes.bubble.opacity, options.particles.opacity.value, this.opacity_bubble, this.opacity, ProcessBubbleType.opacity);
+            container.processBubble(this, dist_mouse, time_spent, options.interactivity.modes.bubble.opacity, options.particles.opacity.value, this.opacity_bubble, this.opacity.value, ProcessBubbleType.opacity);
         }
     }
 
@@ -562,38 +574,10 @@ export class Particle {
         if (dist_mouse <= options.interactivity.modes.bubble.distance) {
             if (ratio >= 0 && container.interactivity.status === "mousemove") {
                 /* size */
-                if (options.interactivity.modes.bubble.size !== options.particles.size.value) {
-                    if (options.interactivity.modes.bubble.size > options.particles.size.value) {
-                        let size = this.radius + (options.interactivity.modes.bubble.size * ratio);
-                        if (size >= 0) {
-                            this.radius_bubble = size;
-                        }
-                    } else {
-                        let dif = this.radius - options.interactivity.modes.bubble.size;
-                        let size = this.radius - (dif * ratio);
+                this.hoverBubbleSize(ratio);
 
-                        if (size > 0) {
-                            this.radius_bubble = size;
-                        } else {
-                            this.radius_bubble = 0;
-                        }
-                    }
-                }
                 /* opacity */
-                if (options.interactivity.modes.bubble.opacity !== options.particles.opacity.value) {
-                    if (options.interactivity.modes.bubble.opacity > options.particles.opacity.value) {
-                        let opacity = options.interactivity.modes.bubble.opacity * ratio;
-                        if (opacity > this.opacity && opacity <= options.interactivity.modes.bubble.opacity) {
-                            this.opacity_bubble = opacity;
-                        }
-                    }
-                    else {
-                        let opacity = this.opacity - (options.particles.opacity.value - options.interactivity.modes.bubble.opacity) * ratio;
-                        if (opacity < this.opacity && opacity >= options.interactivity.modes.bubble.opacity) {
-                            this.opacity_bubble = opacity;
-                        }
-                    }
-                }
+                this.hoverBubbleOpacity(ratio);
             }
         } else {
             this.initBubble();
@@ -602,6 +586,49 @@ export class Particle {
         /* mouseleave */
         if (container.interactivity.status === "mouseleave") {
             this.initBubble();
+        }
+    }
+
+    private hoverBubbleSize(ratio: number) {
+        const container = this.container;
+        const options = container.options;
+
+        if (options.interactivity.modes.bubble.size !== options.particles.size.value) {
+            if (options.interactivity.modes.bubble.size > options.particles.size.value) {
+                let size = this.radius + (options.interactivity.modes.bubble.size * ratio);
+                if (size >= 0) {
+                    this.radius_bubble = size;
+                }
+            } else {
+                let dif = this.radius - options.interactivity.modes.bubble.size;
+                let size = this.radius - (dif * ratio);
+
+                if (size > 0) {
+                    this.radius_bubble = size;
+                } else {
+                    this.radius_bubble = 0;
+                }
+            }
+        }
+    }
+
+    private hoverBubbleOpacity(ratio: number) {
+        const container = this.container;
+        const options = container.options;
+
+        if (options.interactivity.modes.bubble.opacity !== options.particles.opacity.value) {
+            if (options.interactivity.modes.bubble.opacity > options.particles.opacity.value) {
+                let opacity = options.interactivity.modes.bubble.opacity * ratio;
+                if (opacity > this.opacity.value && opacity <= options.interactivity.modes.bubble.opacity) {
+                    this.opacity_bubble = opacity;
+                }
+            }
+            else {
+                let opacity = this.opacity.value - (options.particles.opacity.value - options.interactivity.modes.bubble.opacity) * ratio;
+                if (opacity < this.opacity.value && opacity >= options.interactivity.modes.bubble.opacity) {
+                    this.opacity_bubble = opacity;
+                }
+            }
         }
     }
 
@@ -652,8 +679,8 @@ export class Particle {
             //   process();
             // }
         } else if (container.repulse.clicking === false) {
-            this.vx = this.vx_i;
-            this.vy = this.vy_i;
+            this.velocity.x = this.initialVelocity.x;
+            this.velocity.y = this.initialVelocity.y;
         }
     }
 
@@ -689,24 +716,24 @@ export class Particle {
 
         let f = Math.atan2(dy, dx);
 
-        this.vx = force * Math.cos(f);
-        this.vy = force * Math.sin(f);
+        this.velocity.x = force * Math.cos(f);
+        this.velocity.y = force * Math.sin(f);
 
         if (options.particles.move.out_mode === OutMode.bounce || options.particles.move.out_mode === OutMode.bounceVertical) {
             let pos = {
-                x: this.x + this.vx,
-                y: this.y + this.vy
+                x: this.x + this.velocity.x,
+                y: this.y + this.velocity.y
             };
 
             if (pos.x + this.radius > container.canvas.w)
-                this.vx = -this.vx;
+                this.velocity.x = -this.velocity.x;
             else if (pos.x - this.radius < 0)
-                this.vx = -this.vx;
+                this.velocity.x = -this.velocity.x;
 
             if (pos.y + this.radius > container.canvas.h)
-                this.vy = -this.vy;
+                this.velocity.y = -this.velocity.y;
             else if (pos.y - this.radius < 0)
-                this.vy = -this.vy;
+                this.velocity.y = -this.velocity.y;
         }
     }
 
@@ -768,10 +795,10 @@ export class Particle {
             let ax = dx / (options.particles.move.attract.rotateX * 1000);
             let ay = dy / (options.particles.move.attract.rotateY * 1000);
 
-            this.vx -= ax;
-            this.vy -= ay;
-            p2.vx += ax;
-            p2.vy += ay;
+            this.velocity.x -= ax;
+            this.velocity.y -= ay;
+            p2.velocity.x += ax;
+            p2.velocity.y += ay;
         }
     }
 
@@ -782,10 +809,10 @@ export class Particle {
         let dist_p = this.radius + p2.radius;
 
         if (dist <= dist_p) {
-            this.vx = -this.vx;
-            this.vy = -this.vy;
-            p2.vx = -p2.vx;
-            p2.vy = -p2.vy;
+            this.velocity.x = -this.velocity.x;
+            this.velocity.y = -this.velocity.y;
+            p2.velocity.x = -p2.velocity.x;
+            p2.velocity.y = -p2.velocity.y;
         }
     }
 }

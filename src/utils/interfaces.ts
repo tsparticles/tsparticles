@@ -193,3 +193,9 @@ export interface IRepulse {
     count?: number;
     clicking?: boolean;
 }
+
+export interface IOpacity {
+    value: number;
+    status?: boolean;
+    velocity?: number;
+}

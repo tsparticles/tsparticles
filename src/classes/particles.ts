@@ -48,8 +48,8 @@ export class Particles {
             /* move the particle */
             if (options.particles.move.enable) {
                 let ms = options.particles.move.speed / 10;
-                p.x += p.vx * ms * delta;
-                p.y += p.vy * ms * delta;
+                p.x += p.velocity.x * ms * delta;
+                p.y += p.velocity.y * ms * delta;
             }
             /* parallax */
             if (container.interactivity.mouse.pos_x && options.interactivity.events.onhover.parallax.enable) {
@@ -65,21 +65,21 @@ export class Particles {
 
             /* change opacity status */
             if (options.particles.opacity.anim.enable) {
-                if (p.opacity_status) {
-                    if (p.opacity >= options.particles.opacity.value) {
-                        p.opacity_status = false;
+                if (p.opacity.status) {
+                    if (p.opacity.value >= options.particles.opacity.value) {
+                        p.opacity.status = false;
                     }
 
-                    p.opacity += (p.vo || 0);
+                    p.opacity.value += (p.opacity.velocity || 0);
                 } else {
-                    if (p.opacity <= options.particles.opacity.anim.opacity_min) {
-                        p.opacity_status = true;
+                    if (p.opacity.value <= options.particles.opacity.anim.opacity_min) {
+                        p.opacity.status = true;
                     }
 
-                    p.opacity -= (p.vo || 0);
+                    p.opacity.value -= (p.opacity.velocity || 0);
                 }
-                if (p.opacity < 0) {
-                    p.opacity = 0;
+                if (p.opacity.value < 0) {
+                    p.opacity.value = 0;
                 }
             }
 
@@ -142,33 +142,33 @@ export class Particles {
             switch (options.particles.move.out_mode) {
                 case OutMode.bounce:
                     if ((p.x + p.offsetX) + p.radius > container.canvas.w) {
-                        p.vx = -p.vx;
+                        p.velocity.x = -p.velocity.x;
                     } else if ((p.x + p.offsetX) - p.radius < 0) {
-                        p.vx = -p.vx;
+                        p.velocity.x = -p.velocity.x;
                     }
 
                     if ((p.y + p.offsetY) + p.radius > container.canvas.h) {
-                        p.vy = -p.vy;
+                        p.velocity.y = -p.velocity.y;
                     } else if ((p.y + p.offsetY) - p.radius < 0) {
-                        p.vy = -p.vy;
+                        p.velocity.y = -p.velocity.y;
                     }
 
                     break;
                 case OutMode.bounceVertical:
                     if (p.y + p.radius > container.canvas.h) {
-                        p.vy = -p.vy;
+                        p.velocity.y = -p.velocity.y;
                     }
 
                     if (p.y - p.radius < 0) {
-                        p.vy = -p.vy;
+                        p.velocity.y = -p.velocity.y;
                     }
 
                     break;
                 case OutMode.bounceHorizontal:
                     if (p.x + p.radius > container.canvas.w) {
-                        p.vx = -p.vx;
+                        p.velocity.x = -p.velocity.x;
                     } else if (p.x - p.radius < 0) {
-                        p.vx = -p.vx;
+                        p.velocity.x = -p.velocity.x;
                     }
                     break;
             }
