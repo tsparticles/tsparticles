@@ -5,7 +5,7 @@ import { IOptions, IContainerInteractivity, ISvg, IImage, IBubble, IRepulse } fr
 import { Retina } from './retina';
 import { Canvas } from './canvas';
 import { Particles } from './particles';
-import { ShapeType, OutMode, InteractivityDetect, ClickMode, ProcessBubbleType } from '../utils/enums';
+import { ShapeType, InteractivityDetect, ClickMode, ProcessBubbleType } from '../utils/enums';
 import { Loader } from './loader';
 import { Particle } from './particle';
 import { Constants } from '../utils/constants';

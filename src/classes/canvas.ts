@@ -37,7 +37,7 @@ export class Canvas {
         this.el.width = this.w;
         this.el.height = this.h;
 
-        if (container && options.interactivity.events.resize) {
+        if (options.interactivity.events.resize) {
             window.addEventListener('resize', () => {
                 this.w = this.el.offsetWidth;
                 this.h = this.el.offsetHeight;
