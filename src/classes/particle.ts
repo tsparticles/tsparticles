@@ -136,14 +136,17 @@ export class Particle {
         };
 
         /* check position  - into the canvas */
-        if (this.position.x > container.canvas.w - this.radius * 2)
-            this.position.x -= this.radius;
-        else if (this.position.x < this.radius * 2)
-            this.position.x += this.radius;
-        if (this.position.y > container.canvas.h - this.radius * 2)
-            this.position.y -= this.radius;
-        else if (this.position.y < this.radius * 2)
-            this.position.y += this.radius;
+        if (pos.x > container.canvas.w - this.radius * 2) {
+            pos.x -= this.radius;
+        } else if (pos.x < this.radius * 2) {
+            pos.x += this.radius;
+        }
+
+        if (pos.y > container.canvas.h - this.radius * 2) {
+            pos.y -= this.radius;
+        } else if (pos.y < this.radius * 2) {
+            pos.y += this.radius;
+        }
 
         return pos;
     }
