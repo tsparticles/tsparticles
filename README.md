@@ -2,6 +2,9 @@
 
 ## tsparticles
 
+[![CodeFactor](https://www.codefactor.io/repository/github/matteobruni/tsparticles/badge)](https://www.codefactor.io/repository/github/matteobruni/tsparticles)
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/b983aaf3461a4c48b1e2eecce1ff1d74)](https://www.codacy.com/manual/ar3s/tsparticles?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=matteobruni/tsparticles&amp;utm_campaign=Badge_Grade)
+
 ### A lightweight TypeScript library for creating particles
 
 [Particles.js](https://github.com/VincentGarreau/particles.js) converted in TypeScript
