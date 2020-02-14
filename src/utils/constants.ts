@@ -1,10 +1,10 @@
-'use strict';
+"use strict";
 
 import { IOptions } from "./interfaces";
 import { ShapeType, MoveDirection, OutMode, InteractivityDetect, HoverMode, ClickMode } from "./enums";
 
 export class Constants {
-    public static readonly canvasClass = 'tsparticles-canvas-el';
+    public static readonly canvasClass = "tsparticles-canvas-el";
     public static readonly defaultOptions: IOptions = {
         fps_limit: 60,
         interactivity: {
@@ -52,12 +52,12 @@ export class Constants {
         },
         particles: {
             color: {
-                value: '#fff'
+                value: "#fff"
             },
             line_linked: {
                 enable: true,
                 distance: 100,
-                color: '#fff',
+                color: "#fff",
                 opacity: 1,
                 width: 1
             },
@@ -95,22 +95,22 @@ export class Constants {
             shape: {
                 character: {
                     fill: false,
-                    font: 'Verdana',
-                    style: '',
-                    value: '*',
-                    weight: '400'
+                    font: "Verdana",
+                    style: "",
+                    value: "*",
+                    weight: "400"
                 },
                 image: {
                     height: 100,
                     replace_color: true,
-                    src: '',
+                    src: "",
                     width: 100,
                 },
                 polygon: {
                     nb_sides: 5
                 },
                 stroke: {
-                    color: '#ff0000',
+                    color: "#ff0000",
                     width: 0
                 },
                 type: ShapeType.circle,

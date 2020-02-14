@@ -1,4 +1,4 @@
-'use strict';
+"use strict";
 
 import { ShapeType, MoveDirection, OutMode, InteractivityDetect, HoverMode, ClickMode } from "./enums";
 

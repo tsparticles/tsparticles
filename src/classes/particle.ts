@@ -1,9 +1,9 @@
-'use strict';
+"use strict";
 
-import { Utils } from '../utils/utils';
-import { IParticleImage, IColor, ICoordinates, IRgb, IHsl } from '../utils/interfaces';
-import { Container } from './container';
-import { ShapeType, MoveDirection, HoverMode, ClickMode, ProcessBubbleType, OutMode } from '../utils/enums';
+import { Utils } from "../utils/utils";
+import { IParticleImage, IColor, ICoordinates, IRgb, IHsl } from "../utils/interfaces";
+import { Container } from "./container";
+import { ShapeType, MoveDirection, HoverMode, ClickMode, ProcessBubbleType, OutMode } from "../utils/enums";
 
 export class Particle {
     private container: Container;
@@ -65,7 +65,7 @@ export class Particle {
 
         /* color */
         this.color = {};
-        if (typeof (color.value) === 'object') {
+        if (typeof (color.value) === "object") {
             if (color.value instanceof Array) {
                 let arr = options.particles.color.value as string[];
                 let color_selected = color.value[Math.floor(Math.random() * arr.length)];
@@ -93,8 +93,8 @@ export class Particle {
                     };
                 }
             }
-        } else if (typeof (color.value) === 'string') {
-            if (color.value === 'random') {
+        } else if (typeof (color.value) === "string") {
+            if (color.value === "random") {
                 this.color.rgb = {
                     r: (Math.floor(Math.random() * (255 - 0 + 1)) + 0),
                     g: (Math.floor(Math.random() * (255 - 0 + 1)) + 0),
@@ -190,7 +190,7 @@ export class Particle {
             };
             if (!this.img.ratio)
                 this.img.ratio = 1;
-            // if (container.img.type === 'svg' && container.svg.source !== undefined) {
+            // if (container.img.type === "svg" && container.svg.source !== undefined) {
             //     this.createSvgImg();
 
             //     if (container.particles.pushing) {
@@ -200,7 +200,7 @@ export class Particle {
         }
 
         if (this.shape === ShapeType.char || this.shape === ShapeType.character) {
-            if (typeof options.particles.shape.character.value === 'string') {
+            if (typeof options.particles.shape.character.value === "string") {
                 this.text = options.particles.shape.character.value;
             } else {
                 this.text = options.particles.shape.character.value[Math.floor(Math.random() * options.particles.shape.character.value.length)]
@@ -317,7 +317,7 @@ export class Particle {
             case ShapeType.image:
                 let img_obj: HTMLImageElement | undefined;
 
-                // if (container.img.type === 'svg' && this.img) {
+                // if (container.img.type === "svg" && this.img) {
                 //     img_obj = this.img.obj;
                 // } else {
                 img_obj = container.img.obj;
@@ -417,16 +417,16 @@ export class Particle {
 
     //             return color_value || substring;
     //         });
-    //         url = 'data:image/svg+xml;utf8,' + coloredSvgXml;
+    //         url = "data:image/svg+xml;utf8," + coloredSvgXml;
     //     } else {
-    //         url = 'data:image/svg+xml;utf8,' + svgXml;
+    //         url = "data:image/svg+xml;utf8," + svgXml;
     //     }
     //     /* prepare to create img with colored svg */
-    //     // let svg = new Blob([coloredSvgXml], { type: 'image/svg+xml;charset=utf-8' });
+    //     // let svg = new Blob([coloredSvgXml], { type: "image/svg+xml;charset=utf-8" });
     //     // let url = URL.createObjectURL(svg);
     //     /* create particle img obj */
     //     let img = new Image();
-    //     img.addEventListener('load', () => {
+    //     img.addEventListener("load", () => {
     //         if (p.img) {
     //             p.img.obj = img;
     //             p.img.loaded = true;
@@ -451,7 +451,7 @@ export class Particle {
         let container = this.container;
         let options = container.options;
 
-        if (options.interactivity.events.onhover.enable && container.interactivity.status === 'mousemove') {
+        if (options.interactivity.events.onhover.enable && container.interactivity.status === "mousemove") {
             let dx_mouse = this.x - (container.interactivity.mouse.pos_x || 0);
             let dy_mouse = this.y - (container.interactivity.mouse.pos_y || 0);
             let dist_mouse = Math.sqrt(dx_mouse * dx_mouse + dy_mouse * dy_mouse);
@@ -468,7 +468,7 @@ export class Particle {
                     if (container.canvas.ctx) {
                         container.canvas.ctx.strokeStyle = `rgba(${color_line.r},${color_line.g},${color_line.b},${opacity_line})`;
                         container.canvas.ctx.lineWidth = options.particles.line_linked.width;
-                        //container.canvas.ctx.lineCap = 'round'; /* performance issue */
+                        //container.canvas.ctx.lineCap = "round"; /* performance issue */
                         /* path */
                         container.canvas.ctx.beginPath();
                         container.canvas.ctx.moveTo(this.x + this.offsetX, this.y + this.offsetY);
@@ -494,7 +494,7 @@ export class Particle {
 
             /* mousemove - check ratio */
             if (dist_mouse <= options.interactivity.modes.bubble.distance) {
-                if (ratio >= 0 && container.interactivity.status === 'mousemove') {
+                if (ratio >= 0 && container.interactivity.status === "mousemove") {
                     /* size */
                     if (options.interactivity.modes.bubble.size !== options.particles.size.value) {
                         if (options.interactivity.modes.bubble.size > options.particles.size.value) {
@@ -534,7 +534,7 @@ export class Particle {
             }
 
             /* mouseleave */
-            if (container.interactivity.status === 'mouseleave') {
+            if (container.interactivity.status === "mouseleave") {
                 this.initBubble();
             }
         } else if (options.interactivity.events.onclick.enable && Utils.isInArray(ClickMode.bubble, options.interactivity.events.onclick.mode)) {
@@ -568,7 +568,7 @@ export class Particle {
         const container = this.container;
         const options = container.options;
 
-        if (options.interactivity.events.onhover.enable && Utils.isInArray(HoverMode.repulse, options.interactivity.events.onhover.mode) && container.interactivity.status === 'mousemove') {
+        if (options.interactivity.events.onhover.enable && Utils.isInArray(HoverMode.repulse, options.interactivity.events.onhover.mode) && container.interactivity.status === "mousemove") {
             let dx_mouse = this.x - (container.interactivity.mouse.pos_x || 0);
             let dy_mouse = this.y - (container.interactivity.mouse.pos_y || 0);
             let dist_mouse = Math.sqrt(dx_mouse * dx_mouse + dy_mouse * dy_mouse);
@@ -689,7 +689,7 @@ export class Particle {
                 }
 
                 ctx.lineWidth = options.particles.line_linked.width;
-                //container.canvas.ctx.lineCap = 'round'; /* performance issue */
+                //container.canvas.ctx.lineCap = "round"; /* performance issue */
                 /* path */
                 ctx.beginPath();
                 ctx.moveTo(x1, y1);

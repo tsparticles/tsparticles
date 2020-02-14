@@ -47,8 +47,8 @@ Load tsParticles and configure the particles:
 
 ```javascript
 /* tsParticles.load(@dom-id, @path-json, @callback (optional)); */
-tsParticles.loadJSON('tsparticles', 'assets/particles.json').then(() => {
-  console.log('callback - tsparticles config loaded');
+tsParticles.loadJSON("tsparticles", "assets/particles.json").then(() => {
+  console.log("callback - tsparticles config loaded");
 }).catch((error) => {
   console.error(error);
 });
@@ -56,7 +56,7 @@ tsParticles.loadJSON('tsparticles', 'assets/particles.json').then(() => {
 //or
 
 /* tsParticles.load(@dom-id, @options); */
-tsParticles.load('tsparticles', { /* options here */ });
+tsParticles.load("tsparticles", { /* options here */ });
 ```
 
 ---

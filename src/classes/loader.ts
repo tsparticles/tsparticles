@@ -1,8 +1,8 @@
-'use strict';
+"use strict";
 
-import { Container } from './container';
-import { Constants } from '../utils/constants';
-import { IOptions } from '../utils/interfaces';
+import { Container } from "./container";
+import { Constants } from "../utils/constants";
+import { IOptions } from "../utils/interfaces";
 
 let tsParticlesDom: Container[] = [];
 
@@ -37,7 +37,7 @@ export class Loader {
     }
 
     /* create canvas element */
-    const canvasEl = document.createElement('canvas');
+    const canvasEl = document.createElement("canvas");
 
     canvasEl.className = Constants.canvasClass;
 
@@ -74,7 +74,7 @@ export class Loader {
       Loader.load(tagId, params);
     } else {
       console.error(`Error tsParticles - fetch status: ${response.status}`);
-      console.error('Error tsParticles - File config not found');
+      console.error("Error tsParticles - File config not found");
     }
   };
 
@@ -89,7 +89,7 @@ export class Loader {
       let el = domItem.interactivity.el;
 
       if (el) {
-        el.addEventListener('click', callback);
+        el.addEventListener("click", callback);
       }
     }
   }

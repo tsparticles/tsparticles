@@ -1,10 +1,10 @@
-'use strict';
+"use strict";
 
-import { Particle } from './particle';
-import { Utils } from '../utils/utils';
-import { Container } from './container';
-import { OutMode, HoverMode, ClickMode } from '../utils/enums';
-import { IMouseData, IRgb } from '../utils/interfaces';
+import { Particle } from "./particle";
+import { Utils } from "../utils/utils";
+import { Container } from "./container";
+import { OutMode, HoverMode, ClickMode } from "../utils/enums";
+import { IMouseData, IRgb } from "../utils/interfaces";
 
 export class Particles {
     private container: Container;

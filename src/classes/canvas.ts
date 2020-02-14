@@ -1,7 +1,7 @@
-'use strict';
+"use strict";
 
-import { Container } from './container';
-import { Constants } from '../utils/constants';
+import { Container } from "./container";
+import { Constants } from "../utils/constants";
 
 export class Canvas {
     private container: Container;
@@ -21,13 +21,13 @@ export class Canvas {
         this.h = canvas_el.offsetHeight;
         this.tagId = tagId;
         this.pxratio = 1;
-        this.ctx = this.el.getContext('2d');
+        this.ctx = this.el.getContext("2d");
     }
 
     /* ---------- tsParticles functions - canvas ------------ */
     public init() {
-        // TODO: Moved in the constructor, check if it's fine there
-        // this.ctx = this.el.getContext('2d');
+        // TODO: Moved in the constructor, check if it"s fine there
+        // this.ctx = this.el.getContext("2d");
     }
 
     public size() {
@@ -38,7 +38,7 @@ export class Canvas {
         this.el.height = this.h;
 
         if (options.interactivity.events.resize) {
-            window.addEventListener('resize', () => {
+            window.addEventListener("resize", () => {
                 this.w = this.el.offsetWidth;
                 this.h = this.el.offsetHeight;
 

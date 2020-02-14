@@ -1,14 +1,14 @@
-'use strict';
+"use strict";
 
-import { Utils } from '../utils/utils';
-import { IOptions, IContainerInteractivity, ISvg, IImage, IBubble, IRepulse } from '../utils/interfaces';
-import { Retina } from './retina';
-import { Canvas } from './canvas';
-import { Particles } from './particles';
-import { ShapeType, InteractivityDetect, ClickMode, ProcessBubbleType } from '../utils/enums';
-import { Loader } from './loader';
-import { Particle } from './particle';
-import { Constants } from '../utils/constants';
+import { Utils } from "../utils/utils";
+import { IOptions, IContainerInteractivity, ISvg, IImage, IBubble, IRepulse } from "../utils/interfaces";
+import { Retina } from "./retina";
+import { Canvas } from "./canvas";
+import { Particles } from "./particles";
+import { ShapeType, InteractivityDetect, ClickMode, ProcessBubbleType } from "../utils/enums";
+import { Loader } from "./loader";
+import { Particle } from "./particle";
+import { Constants } from "../utils/constants";
 
 export class Container {
     interactivity: IContainerInteractivity;
@@ -101,7 +101,7 @@ export class Container {
         if (this.options.interactivity.events.onhover.enable || this.options.interactivity.events.onclick.enable) {
             /* el on mousemove */
             if (this.interactivity.el) {
-                this.interactivity.el.addEventListener('mousemove', (e: Event) => {
+                this.interactivity.el.addEventListener("mousemove", (e: Event) => {
                     let pos_x;
                     let pos_y;
 
@@ -130,13 +130,13 @@ export class Container {
                     this.interactivity.mouse.pos_x = pos_x * (this.retina.isRetina ? this.canvas.pxratio : 1);
                     this.interactivity.mouse.pos_y = pos_y * (this.retina.isRetina ? this.canvas.pxratio : 1);
 
-                    this.interactivity.status = 'mousemove';
+                    this.interactivity.status = "mousemove";
                 });
                 /* el on onmouseleave */
-                this.interactivity.el.addEventListener('mouseleave', () => {
+                this.interactivity.el.addEventListener("mouseleave", () => {
                     this.interactivity.mouse.pos_x = null;
                     this.interactivity.mouse.pos_y = null;
-                    this.interactivity.status = 'mouseleave';
+                    this.interactivity.status = "mouseleave";
                 });
             }
         }
@@ -144,7 +144,7 @@ export class Container {
         /* on click event */
         if (this.options.interactivity.events.onclick.enable) {
             if (this.interactivity.el) {
-                this.interactivity.el.addEventListener('click', () => {
+                this.interactivity.el.addEventListener("click", () => {
                     this.interactivity.mouse.click_pos_x = this.interactivity.mouse.pos_x;
                     this.interactivity.mouse.click_pos_y = this.interactivity.mouse.pos_y;
                     this.interactivity.mouse.click_time = new Date().getTime();
@@ -215,13 +215,13 @@ export class Container {
     }
 
     public exportImg() {
-        window.open(this.canvas.el.toDataURL('image/png'), '_blank');
+        window.open(this.canvas.el.toDataURL("image/png"), "_blank");
     }
 
     public async loadImg(type: string) {
         this.img.error = undefined;
         if (this.options.particles.shape.image.src) {
-            // if (type === 'svg') {
+            // if (type === "svg") {
             //     let response = await fetch(this.options.particles.shape.image.src);
 
             //     if (response.ok) {
@@ -229,13 +229,13 @@ export class Container {
 
             //         this.checkBeforeDraw();
             //     } else {
-            //         console.error('Error tsParticles - Image not found');
+            //         console.error("Error tsParticles - Image not found");
             //         this.img.error = true;
             //     }
             // } else {
             let img = new Image();
 
-            img.addEventListener('load', () => {
+            img.addEventListener("load", () => {
                 this.img.obj = img;
 
                 this.checkBeforeDraw();
@@ -244,7 +244,7 @@ export class Container {
             img.src = this.options.particles.shape.image.src;
             // }
         } else {
-            console.error('Error tsParticles - No image.src');
+            console.error("Error tsParticles - No image.src");
             this.img.error = true;
         }
     }
@@ -271,7 +271,7 @@ export class Container {
         this.lastFrameTime = timestamp;
 
         if (this.options.particles.shape.type === ShapeType.image) {
-            // if (this.img.type === 'svg') {
+            // if (this.img.type === "svg") {
             //     if (this.drawAnimFrame && this.svg.count >= this.options.particles.number.value) {
             //         this.particles.draw(delta);
 
@@ -316,9 +316,9 @@ export class Container {
     public checkBeforeDraw() {
         // if shape is image
         if (this.options.particles.shape.type === ShapeType.image) {
-            // if (this.img.type === 'svg' && this.svg.source === undefined) {
+            // if (this.img.type === "svg" && this.svg.source === undefined) {
             //     this.checkAnimFrame = this.requestFrame(() => {
-            //         //TODO: Can't find anywhere this check
+            //         //TODO: Can"t find anywhere this check
             //         //check();
             //     });
             // } else {
