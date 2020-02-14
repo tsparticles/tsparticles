@@ -254,8 +254,8 @@ export class Particles {
     }
 
     public remove(nb: number) {
-        var container = this.container;
-        var options = container.options;
+        const container = this.container;
+        const options = container.options;
 
         this.array.splice(0, nb);
 

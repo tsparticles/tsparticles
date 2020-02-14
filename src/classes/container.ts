@@ -259,7 +259,8 @@ export class Container {
     draw(timestamp: DOMHighResTimeStamp) {
         // FPS limit logic
         // If we are too fast, just draw without updating
-        var fps_limit = this.options.fps_limit;
+        const fps_limit = this.options.fps_limit;
+
         if (fps_limit > 0 && timestamp < this.lastFrameTime + (1000 / fps_limit)) {
             this.drawAnimFrame = this.requestFrame(timestamp => this.draw(timestamp));
             return;
