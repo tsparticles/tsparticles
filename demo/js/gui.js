@@ -163,9 +163,7 @@
             if (tsParticles_GUI.particles.shape.type === "image") {
                 type = value.substr(value.length - 3);
                 if (type === "svg" && value !== "img/github.svg") {
-                    alert("Ajax request is necessary for loading SVG files. You can type this example into the "
-                        image.src " input to solve the CORS issue: "
-                        img / github.svg "");
+                    alert("Ajax request is necessary for loading SVG files. You can type this example into the 'image.src' input to solve the CORS issue: 'img/github.svg'");
                 }
             }
             return await p.update();
