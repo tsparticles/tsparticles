@@ -64,9 +64,9 @@ export class Loader {
     return newItem;
   }
 
-  public static async loadJSON(tagId: string, path_config_json: string) {
+  public static async loadJSON(tagId: string, jsonUrl: string) {
     /* load json config */
-    const response = await fetch(path_config_json);
+    const response = await fetch(jsonUrl);
 
     if (response.ok) {
       const params = await response.json();
