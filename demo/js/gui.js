@@ -6,34 +6,34 @@
         var f, ff, fm, fmm, gui_f, initPage, resizeGUI;
         window.p = {};
         p.exportConfig = function(type) {
-            var data, data_css, pJS_GUI_Export, pJS_GUI_tmp, ratio;
-            pJS_GUI_Export = {};
-            pJS_GUI_tmp = window.pJS_GUI;
-            pJSUtils.deepExtend(pJS_GUI_Export, pJS_GUI_tmp.options);
-            ratio = pJS_GUI_tmp.canvas.pxratio;
-            pJS_GUI_Export.particles.size.value = pJS_GUI_tmp.particles.size.value / ratio;
-            pJS_GUI_Export.particles.size.anim.speed = pJS_GUI_tmp.particles.size.anim.speed / ratio;
-            pJS_GUI_Export.particles.move.speed = pJS_GUI_tmp.particles.move.speed / ratio;
-            pJS_GUI_Export.particles.line_linked.distance = pJS_GUI_tmp.particles.line_linked.distance / ratio;
-            pJS_GUI_Export.interactivity.modes.grab.distance = pJS_GUI_tmp.interactivity.modes.grab.distance / ratio;
-            pJS_GUI_Export.interactivity.modes.bubble.distance = pJS_GUI_tmp.interactivity.modes.bubble.distance / ratio;
-            pJS_GUI_Export.particles.line_linked.width = pJS_GUI_tmp.particles.line_linked.width / ratio;
-            pJS_GUI_Export.interactivity.modes.bubble.size = pJS_GUI_tmp.interactivity.modes.bubble.size / ratio;
-            pJS_GUI_Export.interactivity.modes.repulse.distance = pJS_GUI_tmp.interactivity.modes.repulse.distance / ratio;
-            data_css = pJS_GUI_Export.config_demo;
-            delete pJS_GUI_Export.config_demo;
-            delete pJS_GUI_Export.canvas;
-            delete pJS_GUI_Export.particles.array;
-            delete pJS_GUI_Export.interactivity.el;
-            delete pJS_GUI_Export.interactivity.mouse;
-            delete pJS_GUI_Export.interactivity.status;
-            delete pJS_GUI_Export.particles.color.rgb;
-            delete pJS_GUI_Export.particles.line_linked.color_rgb_line;
+            var data, data_css, tsParticles_GUI_Export, tsParticles_GUI_tmp, ratio;
+            tsParticles_GUI_Export = {};
+            tsParticles_GUI_tmp = window.tsParticles_GUI;
+            pJSUtils.deepExtend(tsParticles_GUI_Export, tsParticles_GUI_tmp.options);
+            ratio = tsParticles_GUI_tmp.canvas.pxratio;
+            tsParticles_GUI_Export.particles.size.value = tsParticles_GUI_tmp.particles.size.value / ratio;
+            tsParticles_GUI_Export.particles.size.anim.speed = tsParticles_GUI_tmp.particles.size.anim.speed / ratio;
+            tsParticles_GUI_Export.particles.move.speed = tsParticles_GUI_tmp.particles.move.speed / ratio;
+            tsParticles_GUI_Export.particles.line_linked.distance = tsParticles_GUI_tmp.particles.line_linked.distance / ratio;
+            tsParticles_GUI_Export.interactivity.modes.grab.distance = tsParticles_GUI_tmp.interactivity.modes.grab.distance / ratio;
+            tsParticles_GUI_Export.interactivity.modes.bubble.distance = tsParticles_GUI_tmp.interactivity.modes.bubble.distance / ratio;
+            tsParticles_GUI_Export.particles.line_linked.width = tsParticles_GUI_tmp.particles.line_linked.width / ratio;
+            tsParticles_GUI_Export.interactivity.modes.bubble.size = tsParticles_GUI_tmp.interactivity.modes.bubble.size / ratio;
+            tsParticles_GUI_Export.interactivity.modes.repulse.distance = tsParticles_GUI_tmp.interactivity.modes.repulse.distance / ratio;
+            data_css = tsParticles_GUI_Export.config_demo;
+            delete tsParticles_GUI_Export.config_demo;
+            delete tsParticles_GUI_Export.canvas;
+            delete tsParticles_GUI_Export.particles.array;
+            delete tsParticles_GUI_Export.interactivity.el;
+            delete tsParticles_GUI_Export.interactivity.mouse;
+            delete tsParticles_GUI_Export.interactivity.status;
+            delete tsParticles_GUI_Export.particles.color.rgb;
+            delete tsParticles_GUI_Export.particles.line_linked.color_rgb_line;
             if (type === 'json') {
-                return console.save(pJS_GUI_Export, 'tsparticles-config.json');
+                return console.save(tsParticles_GUI_Export, 'tsparticles-config.json');
             } else {
                 data = {
-                    js: pJS_GUI_Export,
+                    js: tsParticles_GUI_Export,
                     css: data_css
                 };
                 return data;
@@ -43,14 +43,14 @@
             return p.exportConfig('json');
         };
         p.update = async function() {
-            return await pJS_GUI.particles.refresh();
+            return await tsParticles_GUI.particles.refresh();
         };
         window.gui = new dat.GUI({
             autoPlace: true,
             closed: true,
             width: 340
         });
-        window.pJS_GUI = window.tsParticles.dom()[0];
+        window.tsParticles_GUI = window.tsParticles.dom()[0];
         window.page_settings = {
             hide_card: false,
             background_color: '#111',
@@ -97,70 +97,70 @@
         fmm = {
             grab_linelinked: fm.grab.addFolder('line_linked')
         };
-        gui.add(pJS_GUI.options, 'retina_detect').name('retina_detect').onChange(async function(value) {
-            pJS_GUI.options.retina_detect = value;
+        gui.add(tsParticles_GUI.options, 'retina_detect').name('retina_detect').onChange(async function(value) {
+            tsParticles_GUI.options.retina_detect = value;
             return await p.update();
         });
-        gui.add(pJS_GUI.options, 'fps_limit', 0, 60).step(1).name('fps_limit').onChange(async function(value) {
-            pJS_GUI.options.fps_limit = value;
+        gui.add(tsParticles_GUI.options, 'fps_limit', 0, 60).step(1).name('fps_limit').onChange(async function(value) {
+            tsParticles_GUI.options.fps_limit = value;
             return await p.update();
         });
-        f.particles.number.add(pJS_GUI.options.particles.number, 'value', 0, 600).name('value').step(1).onChange(async function(value) {
-            pJS_GUI.options.particles.number.value = value;
+        f.particles.number.add(tsParticles_GUI.options.particles.number, 'value', 0, 600).name('value').step(1).onChange(async function(value) {
+            tsParticles_GUI.options.particles.number.value = value;
             return await p.update();
         });
-        f.particles.number.add(pJS_GUI.options.particles.number.density, 'enable').name('density.enable').onChange(async function(value) {
-            pJS_GUI.options.particles.number.density.enable = value;
+        f.particles.number.add(tsParticles_GUI.options.particles.number.density, 'enable').name('density.enable').onChange(async function(value) {
+            tsParticles_GUI.options.particles.number.density.enable = value;
             return await p.update();
         });
-        f.particles.number.add(pJS_GUI.options.particles.number.density, 'value_area', 0, 10000).name('density.value_area').onChange(async function(value) {
-            pJS_GUI.options.particles.number.density.value_area = value;
+        f.particles.number.add(tsParticles_GUI.options.particles.number.density, 'value_area', 0, 10000).name('density.value_area').onChange(async function(value) {
+            tsParticles_GUI.options.particles.number.density.value_area = value;
             return await p.update();
         });
-        f.particles.color.addColor(pJS_GUI.options.particles.color, 'value').name('value (single string)').onChange(async function(value) {
-            pJS_GUI.options.particles.color.value = value;
+        f.particles.color.addColor(tsParticles_GUI.options.particles.color, 'value').name('value (single string)').onChange(async function(value) {
+            tsParticles_GUI.options.particles.color.value = value;
             return await p.update();
         });
-        f.particles.shape.add(pJS_GUI.options.particles.shape, 'type', ['circle', 'line', 'edge', 'triangle', 'polygon', 'star', 'image', 'heart', 'char', 'character']).name('type').onChange(async function(value) {
-            pJS_GUI.options.particles.shape.type = value;
+        f.particles.shape.add(tsParticles_GUI.options.particles.shape, 'type', ['circle', 'line', 'edge', 'triangle', 'polygon', 'star', 'image', 'heart', 'char', 'character']).name('type').onChange(async function(value) {
+            tsParticles_GUI.options.particles.shape.type = value;
             return await p.update();
         });
-        ff.shape_polygon.add(pJS_GUI.options.particles.shape.polygon, 'nb_sides', 3, 12).step(1).name('polygon.nb_sides').onChange(async function(value) {
-            pJS_GUI.options.particles.shape.polygon.nb_sides = value;
+        ff.shape_polygon.add(tsParticles_GUI.options.particles.shape.polygon, 'nb_sides', 3, 12).step(1).name('polygon.nb_sides').onChange(async function(value) {
+            tsParticles_GUI.options.particles.shape.polygon.nb_sides = value;
             return await p.update();
         });
-        ff.shape_character.add(pJS_GUI.options.particles.shape.character, 'value').name('character.value').onChange(async function(value) {
-            pJS_GUI.options.particles.shape.character.value = value;
+        ff.shape_character.add(tsParticles_GUI.options.particles.shape.character, 'value').name('character.value').onChange(async function(value) {
+            tsParticles_GUI.options.particles.shape.character.value = value;
             return await p.update();
         });
-        ff.shape_character.add(pJS_GUI.options.particles.shape.character, 'font').name('character.font').onChange(async function(value) {
-            pJS_GUI.options.particles.shape.character.font = value;
+        ff.shape_character.add(tsParticles_GUI.options.particles.shape.character, 'font').name('character.font').onChange(async function(value) {
+            tsParticles_GUI.options.particles.shape.character.font = value;
             return await p.update();
         });
-        ff.shape_character.add(pJS_GUI.options.particles.shape.character, 'style').name('character.style').onChange(async function(value) {
-            pJS_GUI.options.particles.shape.character.style = value;
+        ff.shape_character.add(tsParticles_GUI.options.particles.shape.character, 'style').name('character.style').onChange(async function(value) {
+            tsParticles_GUI.options.particles.shape.character.style = value;
             return await p.update();
         });
-        ff.shape_character.add(pJS_GUI.options.particles.shape.character, 'weight').name('character.weight').onChange(async function(value) {
-            pJS_GUI.options.particles.shape.character.weight = value;
+        ff.shape_character.add(tsParticles_GUI.options.particles.shape.character, 'weight').name('character.weight').onChange(async function(value) {
+            tsParticles_GUI.options.particles.shape.character.weight = value;
             return await p.update();
         });
-        ff.shape_character.add(pJS_GUI.options.particles.shape.character, 'fill').name('character.fill').onChange(async function(value) {
-            pJS_GUI.options.particles.shape.character.fill = value;
+        ff.shape_character.add(tsParticles_GUI.options.particles.shape.character, 'fill').name('character.fill').onChange(async function(value) {
+            tsParticles_GUI.options.particles.shape.character.fill = value;
             return await p.update();
         });
-        ff.shape_stroke.add(pJS_GUI.options.particles.shape.stroke, 'width', 0, 20).step(1).name('stroke.width').onChange(async function(value) {
-            pJS_GUI.options.particles.shape.stroke.width = value;
+        ff.shape_stroke.add(tsParticles_GUI.options.particles.shape.stroke, 'width', 0, 20).step(1).name('stroke.width').onChange(async function(value) {
+            tsParticles_GUI.options.particles.shape.stroke.width = value;
             return await p.update();
         });
-        ff.shape_stroke.addColor(pJS_GUI.options.particles.shape.stroke, 'color').name('stroke.color').onChange(async function(value) {
-            pJS_GUI.options.particles.shape.stroke.color = value;
+        ff.shape_stroke.addColor(tsParticles_GUI.options.particles.shape.stroke, 'color').name('stroke.color').onChange(async function(value) {
+            tsParticles_GUI.options.particles.shape.stroke.color = value;
             return await p.update();
         });
-        ff.shape_image.add(pJS_GUI.options.particles.shape.image, 'src').name('image.src').onChange(async function(value) {
+        ff.shape_image.add(tsParticles_GUI.options.particles.shape.image, 'src').name('image.src').onChange(async function(value) {
             var type;
-            pJS_GUI.options.particles.shape.image.src = value;
-            if (pJS_GUI.particles.shape.type === 'image') {
+            tsParticles_GUI.options.particles.shape.image.src = value;
+            if (tsParticles_GUI.particles.shape.type === 'image') {
                 type = value.substr(value.length - 3);
                 if (type === 'svg' && value !== 'img/github.svg') {
                     alert("Ajax request is necessary for loading SVG files. You can type this example into the 'image.src' input to solve the CORS issue: 'img/github.svg'");
@@ -168,194 +168,194 @@
             }
             return await p.update();
         });
-        ff.shape_image.add(pJS_GUI.options.particles.shape.image, 'width').name('image.width').onChange(async function(value) {
-            pJS_GUI.options.particles.shape.image.width = value;
+        ff.shape_image.add(tsParticles_GUI.options.particles.shape.image, 'width').name('image.width').onChange(async function(value) {
+            tsParticles_GUI.options.particles.shape.image.width = value;
             return await p.update();
         });
-        ff.shape_image.add(pJS_GUI.options.particles.shape.image, 'height').name('image.height').onChange(async function(value) {
-            pJS_GUI.options.particles.shape.image.height = value;
+        ff.shape_image.add(tsParticles_GUI.options.particles.shape.image, 'height').name('image.height').onChange(async function(value) {
+            tsParticles_GUI.options.particles.shape.image.height = value;
             return await p.update();
         });
-        f.particles.size.add(pJS_GUI.options.particles.size, 'value', 0, 500).name('value').onChange(async function(value) {
-            pJS_GUI.options.particles.size.value = value;
+        f.particles.size.add(tsParticles_GUI.options.particles.size, 'value', 0, 500).name('value').onChange(async function(value) {
+            tsParticles_GUI.options.particles.size.value = value;
             return await p.update();
         });
-        f.particles.size.add(pJS_GUI.options.particles.size, 'random').name('random').onChange(async function(value) {
-            pJS_GUI.options.particles.size.random = value;
+        f.particles.size.add(tsParticles_GUI.options.particles.size, 'random').name('random').onChange(async function(value) {
+            tsParticles_GUI.options.particles.size.random = value;
             return await p.update();
         });
-        ff.size_anim.add(pJS_GUI.options.particles.size.anim, 'enable').name('anim.enable').onChange(async function(value) {
-            pJS_GUI.options.particles.size.anim.enable = value;
+        ff.size_anim.add(tsParticles_GUI.options.particles.size.anim, 'enable').name('anim.enable').onChange(async function(value) {
+            tsParticles_GUI.options.particles.size.anim.enable = value;
             return await p.update();
         });
-        ff.size_anim.add(pJS_GUI.options.particles.size.anim, 'speed', 0, 300).name('anim.speed').onChange(async function(value) {
-            pJS_GUI.options.particles.size.anim.speed = value;
+        ff.size_anim.add(tsParticles_GUI.options.particles.size.anim, 'speed', 0, 300).name('anim.speed').onChange(async function(value) {
+            tsParticles_GUI.options.particles.size.anim.speed = value;
             return await p.update();
         });
-        ff.size_anim.add(pJS_GUI.options.particles.size.anim, 'size_min', 0, 100).name('anim.size_min').onChange(async function(value) {
-            pJS_GUI.options.particles.size.anim.size_min = value;
+        ff.size_anim.add(tsParticles_GUI.options.particles.size.anim, 'size_min', 0, 100).name('anim.size_min').onChange(async function(value) {
+            tsParticles_GUI.options.particles.size.anim.size_min = value;
             return await p.update();
         });
-        ff.size_anim.add(pJS_GUI.options.particles.size.anim, 'sync').name('anim.sync').onChange(async function(value) {
-            pJS_GUI.options.particles.size.anim.sync = value;
+        ff.size_anim.add(tsParticles_GUI.options.particles.size.anim, 'sync').name('anim.sync').onChange(async function(value) {
+            tsParticles_GUI.options.particles.size.anim.sync = value;
             return await p.update();
         });
-        f.particles.opacity.add(pJS_GUI.options.particles.opacity, 'value', 0, 1).name('value').onChange(async function(value) {
-            pJS_GUI.options.particles.opacity.value = value;
+        f.particles.opacity.add(tsParticles_GUI.options.particles.opacity, 'value', 0, 1).name('value').onChange(async function(value) {
+            tsParticles_GUI.options.particles.opacity.value = value;
             return await p.update();
         });
-        f.particles.opacity.add(pJS_GUI.options.particles.opacity, 'random').name('random').onChange(async function(value) {
-            pJS_GUI.options.particles.opacity.random = value;
+        f.particles.opacity.add(tsParticles_GUI.options.particles.opacity, 'random').name('random').onChange(async function(value) {
+            tsParticles_GUI.options.particles.opacity.random = value;
             return await p.update();
         });
-        ff.opacity_anim.add(pJS_GUI.options.particles.opacity.anim, 'enable').name('anim.enable').onChange(async function(value) {
-            pJS_GUI.options.particles.opacity.anim.enable = value;
+        ff.opacity_anim.add(tsParticles_GUI.options.particles.opacity.anim, 'enable').name('anim.enable').onChange(async function(value) {
+            tsParticles_GUI.options.particles.opacity.anim.enable = value;
             return await p.update();
         });
-        ff.opacity_anim.add(pJS_GUI.options.particles.opacity.anim, 'speed', 0, 10).name('anim.speed').onChange(async function(value) {
-            pJS_GUI.options.particles.opacity.anim.speed = value;
+        ff.opacity_anim.add(tsParticles_GUI.options.particles.opacity.anim, 'speed', 0, 10).name('anim.speed').onChange(async function(value) {
+            tsParticles_GUI.options.particles.opacity.anim.speed = value;
             return await p.update();
         });
-        ff.opacity_anim.add(pJS_GUI.options.particles.opacity.anim, 'opacity_min', 0, 1).name('anim.opacity_min').onChange(async function(value) {
-            pJS_GUI.options.particles.opacity.anim.opacity_min = value;
+        ff.opacity_anim.add(tsParticles_GUI.options.particles.opacity.anim, 'opacity_min', 0, 1).name('anim.opacity_min').onChange(async function(value) {
+            tsParticles_GUI.options.particles.opacity.anim.opacity_min = value;
             return await p.update();
         });
-        ff.opacity_anim.add(pJS_GUI.options.particles.opacity.anim, 'sync').name('anim.sync').onChange(async function(value) {
-            pJS_GUI.options.particles.opacity.anim.sync = value;
+        ff.opacity_anim.add(tsParticles_GUI.options.particles.opacity.anim, 'sync').name('anim.sync').onChange(async function(value) {
+            tsParticles_GUI.options.particles.opacity.anim.sync = value;
             return await p.update();
         });
-        f.particles.line_linked.add(pJS_GUI.options.particles.line_linked, 'enable').name('enable_auto').onChange(async function(value) {
-            pJS_GUI.options.particles.line_linked.enable = value;
+        f.particles.line_linked.add(tsParticles_GUI.options.particles.line_linked, 'enable').name('enable_auto').onChange(async function(value) {
+            tsParticles_GUI.options.particles.line_linked.enable = value;
             return await p.update();
         });
-        f.particles.line_linked.add(pJS_GUI.options.particles.line_linked, 'distance', 0, 2000).name('distance').onChange(async function(value) {
-            pJS_GUI.options.particles.line_linked.distance = value;
+        f.particles.line_linked.add(tsParticles_GUI.options.particles.line_linked, 'distance', 0, 2000).name('distance').onChange(async function(value) {
+            tsParticles_GUI.options.particles.line_linked.distance = value;
             return await p.update();
         });
-        f.particles.line_linked.addColor(pJS_GUI.options.particles.line_linked, 'color').name('color').onChange(async function(value) {
-            pJS_GUI.options.particles.line_linked.color = value;
+        f.particles.line_linked.addColor(tsParticles_GUI.options.particles.line_linked, 'color').name('color').onChange(async function(value) {
+            tsParticles_GUI.options.particles.line_linked.color = value;
             return await p.update();
         });
-        f.particles.line_linked.add(pJS_GUI.options.particles.line_linked, 'opacity', 0, 1).name('opacity').onChange(async function(value) {
-            pJS_GUI.options.particles.line_linked.opacity = value;
+        f.particles.line_linked.add(tsParticles_GUI.options.particles.line_linked, 'opacity', 0, 1).name('opacity').onChange(async function(value) {
+            tsParticles_GUI.options.particles.line_linked.opacity = value;
             return await p.update();
         });
-        f.particles.line_linked.add(pJS_GUI.options.particles.line_linked, 'width', 0, 20).name('width').onChange(async function(value) {
-            pJS_GUI.options.particles.line_linked.width = value;
+        f.particles.line_linked.add(tsParticles_GUI.options.particles.line_linked, 'width', 0, 20).name('width').onChange(async function(value) {
+            tsParticles_GUI.options.particles.line_linked.width = value;
             return await p.update();
         });
-        f.particles.move.add(pJS_GUI.options.particles.move, 'enable').name('enable').onChange(async function(value) {
-            pJS_GUI.options.particles.move.enable = value;
+        f.particles.move.add(tsParticles_GUI.options.particles.move, 'enable').name('enable').onChange(async function(value) {
+            tsParticles_GUI.options.particles.move.enable = value;
             return await p.update();
         });
-        f.particles.move.add(pJS_GUI.options.particles.move, 'direction', ['none', 'top', 'top-right', 'right', 'bottom-right', 'bottom', 'bottom-left', 'left', 'top-left']).name('direction').onChange(async function(value) {
-            pJS_GUI.options.particles.move.direction = value;
+        f.particles.move.add(tsParticles_GUI.options.particles.move, 'direction', ['none', 'top', 'top-right', 'right', 'bottom-right', 'bottom', 'bottom-left', 'left', 'top-left']).name('direction').onChange(async function(value) {
+            tsParticles_GUI.options.particles.move.direction = value;
             return await p.update();
         });
-        f.particles.move.add(pJS_GUI.options.particles.move, 'random').name('random').onChange(async function(value) {
-            pJS_GUI.options.particles.move.random = value;
+        f.particles.move.add(tsParticles_GUI.options.particles.move, 'random').name('random').onChange(async function(value) {
+            tsParticles_GUI.options.particles.move.random = value;
             return await p.update();
         });
-        f.particles.move.add(pJS_GUI.options.particles.move, 'straight').name('straight').onChange(async function(value) {
-            pJS_GUI.options.particles.move.straight = value;
+        f.particles.move.add(tsParticles_GUI.options.particles.move, 'straight').name('straight').onChange(async function(value) {
+            tsParticles_GUI.options.particles.move.straight = value;
             return await p.update();
         });
-        f.particles.move.add(pJS_GUI.options.particles.move, 'speed', 0, 200).name('speed').onChange(async function(value) {
-            pJS_GUI.options.particles.move.speed = value;
+        f.particles.move.add(tsParticles_GUI.options.particles.move, 'speed', 0, 200).name('speed').onChange(async function(value) {
+            tsParticles_GUI.options.particles.move.speed = value;
             return await p.update();
         });
-        f.particles.move.add(pJS_GUI.options.particles.move, 'out_mode', ['out', 'bounce', 'bounce-vertical', 'bounce-horizontal']).name('out_mode').onChange(async function(value) {
-            pJS_GUI.options.particles.move.out_mode = value;
+        f.particles.move.add(tsParticles_GUI.options.particles.move, 'out_mode', ['out', 'bounce', 'bounce-vertical', 'bounce-horizontal']).name('out_mode').onChange(async function(value) {
+            tsParticles_GUI.options.particles.move.out_mode = value;
             return await p.update();
         });
-        f.particles.move.add(pJS_GUI.options.particles.move.attract, 'enable').name('attract.enable').onChange(async function(value) {
-            pJS_GUI.options.particles.move.attract.enable = value;
+        f.particles.move.add(tsParticles_GUI.options.particles.move.attract, 'enable').name('attract.enable').onChange(async function(value) {
+            tsParticles_GUI.options.particles.move.attract.enable = value;
             return await p.update();
         });
-        f.particles.move.add(pJS_GUI.options.particles.move.attract, 'rotateX', 0, 10000).name('attract.rotateX').onChange(async function(value) {
-            pJS_GUI.options.particles.move.attract.rotateX = value;
+        f.particles.move.add(tsParticles_GUI.options.particles.move.attract, 'rotateX', 0, 10000).name('attract.rotateX').onChange(async function(value) {
+            tsParticles_GUI.options.particles.move.attract.rotateX = value;
             return await p.update();
         });
-        f.particles.move.add(pJS_GUI.options.particles.move.attract, 'rotateY', 0, 10000).name('attract.rotateY').onChange(async function(value) {
-            pJS_GUI.options.particles.move.attract.rotateY = value;
+        f.particles.move.add(tsParticles_GUI.options.particles.move.attract, 'rotateY', 0, 10000).name('attract.rotateY').onChange(async function(value) {
+            tsParticles_GUI.options.particles.move.attract.rotateY = value;
             return await p.update();
         });
-        gui_f.interactivity.add(pJS_GUI.options.interactivity, 'detect_on', ['window', 'canvas', 'parent']).name('detect_on').onChange(async function(value) {
-            pJS_GUI.options.interactivity.detect_on = value;
+        gui_f.interactivity.add(tsParticles_GUI.options.interactivity, 'detect_on', ['window', 'canvas', 'parent']).name('detect_on').onChange(async function(value) {
+            tsParticles_GUI.options.interactivity.detect_on = value;
             return await p.update();
         });
-        f.interactivity.events_onhover.add(pJS_GUI.options.interactivity.events.onhover, 'enable').name('enable').onChange(async function(value) {
-            pJS_GUI.options.interactivity.events.onhover.enable = value;
+        f.interactivity.events_onhover.add(tsParticles_GUI.options.interactivity.events.onhover, 'enable').name('enable').onChange(async function(value) {
+            tsParticles_GUI.options.interactivity.events.onhover.enable = value;
             return await p.update();
         });
-        f.interactivity.events_onhover.add(pJS_GUI.options.interactivity.events.onhover, 'mode', ['grab', 'bubble', 'repulse']).name('mode').onChange(async function(value) {
-            pJS_GUI.options.interactivity.events.onhover.mode = value;
+        f.interactivity.events_onhover.add(tsParticles_GUI.options.interactivity.events.onhover, 'mode', ['grab', 'bubble', 'repulse']).name('mode').onChange(async function(value) {
+            tsParticles_GUI.options.interactivity.events.onhover.mode = value;
             return await p.update();
         });
-        fm.parallax.add(pJS_GUI.options.interactivity.events.onhover.parallax, 'enable').name('enable').onChange(async function(value) {
-            pJS_GUI.options.interactivity.events.onhover.parallax.enable = value;
+        fm.parallax.add(tsParticles_GUI.options.interactivity.events.onhover.parallax, 'enable').name('enable').onChange(async function(value) {
+            tsParticles_GUI.options.interactivity.events.onhover.parallax.enable = value;
             return await p.update();
         });
-        fm.parallax.add(pJS_GUI.options.interactivity.events.onhover.parallax, 'force', 0, 100).name('force').onChange(async function(value) {
-            pJS_GUI.options.interactivity.events.onhover.parallax.force = value;
+        fm.parallax.add(tsParticles_GUI.options.interactivity.events.onhover.parallax, 'force', 0, 100).name('force').onChange(async function(value) {
+            tsParticles_GUI.options.interactivity.events.onhover.parallax.force = value;
             return await p.update();
         });
-        fm.parallax.add(pJS_GUI.options.interactivity.events.onhover.parallax, 'smooth', 0, 100).name('smooth').onChange(async function(value) {
-            pJS_GUI.options.interactivity.events.onhover.parallax.smooth = value;
+        fm.parallax.add(tsParticles_GUI.options.interactivity.events.onhover.parallax, 'smooth', 0, 100).name('smooth').onChange(async function(value) {
+            tsParticles_GUI.options.interactivity.events.onhover.parallax.smooth = value;
             return await p.update();
         });
-        f.interactivity.events_onclick.add(pJS_GUI.options.interactivity.events.onclick, 'enable').name('enable').onChange(async function(value) {
-            pJS_GUI.options.interactivity.events.onclick.enable = value;
+        f.interactivity.events_onclick.add(tsParticles_GUI.options.interactivity.events.onclick, 'enable').name('enable').onChange(async function(value) {
+            tsParticles_GUI.options.interactivity.events.onclick.enable = value;
             return await p.update();
         });
-        f.interactivity.events_onclick.add(pJS_GUI.options.interactivity.events.onclick, 'mode', ['push', 'remove', 'bubble', 'repulse']).name('mode').onChange(async function(value) {
-            pJS_GUI.options.interactivity.events.onclick.mode = value;
+        f.interactivity.events_onclick.add(tsParticles_GUI.options.interactivity.events.onclick, 'mode', ['push', 'remove', 'bubble', 'repulse']).name('mode').onChange(async function(value) {
+            tsParticles_GUI.options.interactivity.events.onclick.mode = value;
             return await p.update();
         });
-        fm.grab.add(pJS_GUI.options.interactivity.modes.grab, 'distance', 0, 1500).name('distance').onChange(async function(value) {
-            pJS_GUI.options.interactivity.modes.grab.distance = value;
+        fm.grab.add(tsParticles_GUI.options.interactivity.modes.grab, 'distance', 0, 1500).name('distance').onChange(async function(value) {
+            tsParticles_GUI.options.interactivity.modes.grab.distance = value;
             return await p.update();
         });
-        fmm.grab_linelinked.add(pJS_GUI.options.interactivity.modes.grab.line_linked, 'opacity', 0, 1).name('opacity').onChange(async function(value) {
-            pJS_GUI.options.interactivity.modes.grab.line_linked.opacity = value;
+        fmm.grab_linelinked.add(tsParticles_GUI.options.interactivity.modes.grab.line_linked, 'opacity', 0, 1).name('opacity').onChange(async function(value) {
+            tsParticles_GUI.options.interactivity.modes.grab.line_linked.opacity = value;
             return await p.update();
         });
-        fm.bubble.add(pJS_GUI.options.interactivity.modes.bubble, 'distance', 0, 1500).name('distance').onChange(async function(value) {
-            pJS_GUI.options.interactivity.modes.bubble.distance = value;
+        fm.bubble.add(tsParticles_GUI.options.interactivity.modes.bubble, 'distance', 0, 1500).name('distance').onChange(async function(value) {
+            tsParticles_GUI.options.interactivity.modes.bubble.distance = value;
             return await p.update();
         });
-        fm.bubble.add(pJS_GUI.options.interactivity.modes.bubble, 'size', 0, 500).name('size').onChange(async function(value) {
-            pJS_GUI.options.interactivity.modes.bubble.size = value;
+        fm.bubble.add(tsParticles_GUI.options.interactivity.modes.bubble, 'size', 0, 500).name('size').onChange(async function(value) {
+            tsParticles_GUI.options.interactivity.modes.bubble.size = value;
             return await p.update();
         });
-        fm.bubble.add(pJS_GUI.options.interactivity.modes.bubble, 'opacity', 0, 1).name('opacity').onChange(async function(value) {
-            pJS_GUI.options.interactivity.modes.bubble.opacity = value;
+        fm.bubble.add(tsParticles_GUI.options.interactivity.modes.bubble, 'opacity', 0, 1).name('opacity').onChange(async function(value) {
+            tsParticles_GUI.options.interactivity.modes.bubble.opacity = value;
             return await p.update();
         });
-        fm.bubble.add(pJS_GUI.options.interactivity.modes.bubble, 'duration', 0, 10).name('duration (sec)').onChange(async function(value) {
-            pJS_GUI.options.interactivity.modes.bubble.duration = value;
+        fm.bubble.add(tsParticles_GUI.options.interactivity.modes.bubble, 'duration', 0, 10).name('duration (sec)').onChange(async function(value) {
+            tsParticles_GUI.options.interactivity.modes.bubble.duration = value;
             return await p.update();
         });
-        fm.repulse.add(pJS_GUI.options.interactivity.modes.repulse, 'distance', 0, 1000).name('distance').onChange(async function(value) {
-            pJS_GUI.options.interactivity.modes.repulse.distance = value;
+        fm.repulse.add(tsParticles_GUI.options.interactivity.modes.repulse, 'distance', 0, 1000).name('distance').onChange(async function(value) {
+            tsParticles_GUI.options.interactivity.modes.repulse.distance = value;
             return await p.update();
         });
-        gui_f.pagecss.addColor(pJS_GUI.options.config_demo, 'background_color').name('background-color').onChange(function(value) {
+        gui_f.pagecss.addColor(tsParticles_GUI.options.config_demo, 'background_color').name('background-color').onChange(function(value) {
             return $('#tsparticles').css('background-color', value);
         });
-        gui_f.pagecss.add(pJS_GUI.options.config_demo, 'background_image').name('background-image url').onChange(function(value) {
+        gui_f.pagecss.add(tsParticles_GUI.options.config_demo, 'background_image').name('background-image url').onChange(function(value) {
             return $('#tsparticles').css('background-image', 'url(' + value + ')');
         });
-        gui_f.pagecss.add(pJS_GUI.options.config_demo, 'background_size').name('background-size').onChange(function(value) {
+        gui_f.pagecss.add(tsParticles_GUI.options.config_demo, 'background_size').name('background-size').onChange(function(value) {
             return $('#tsparticles').css('background-size', value);
         });
-        gui_f.pagecss.add(pJS_GUI.options.config_demo, 'background_position').name('background-position').onChange(function(value) {
+        gui_f.pagecss.add(tsParticles_GUI.options.config_demo, 'background_position').name('background-position').onChange(function(value) {
             return $('#tsparticles').css('background-position', value);
         });
-        gui_f.pagecss.add(pJS_GUI.options.config_demo, 'background_repeat').name('background-repeat').onChange(function(value) {
+        gui_f.pagecss.add(tsParticles_GUI.options.config_demo, 'background_repeat').name('background-repeat').onChange(function(value) {
             return $('#tsparticles').css('background-repeat', value);
         });
-        gui_f.pagecss.add(pJS_GUI.options.config_demo, 'hide_card').name('hide card').onChange(function(value) {
+        gui_f.pagecss.add(tsParticles_GUI.options.config_demo, 'hide_card').name('hide card').onChange(function(value) {
             if (value) {
                 $('.panel').fadeOut(200);
                 return $('.js-box-bottom').fadeIn(200);
@@ -364,13 +364,13 @@
                 return $('.js-box-bottom').fadeOut(200);
             }
         });
-        gui.add(pJS_GUI, 'exportImg').name('→ Export image (png)');
+        gui.add(tsParticles_GUI, 'exportImg').name('→ Export image (png)');
         gui.add(p, 'exportConfigJSON').name('→ Download current config (json)');
         initPage = function() {
             var box_bottom, config, page, panel;
-            page = $(pJS_GUI.canvas.el).parent();
+            page = $(tsParticles_GUI.canvas.el).parent();
             panel = $('.panel');
-            config = pJS_GUI.options.config_demo;
+            config = tsParticles_GUI.options.config_demo;
 
             box_bottom = $('.js-box-bottom');
             page.css({
@@ -415,8 +415,8 @@
         update = function() {
             stats.begin();
             stats.end();
-            if (window.pJS_GUI.particles && window.pJS_GUI.particles.array) {
-                count_particles.text(window.pJS_GUI.particles.array.length);
+            if (window.tsParticles_GUI.particles && window.tsParticles_GUI.particles.array) {
+                count_particles.text(window.tsParticles_GUI.particles.array.length);
             }
             requestAnimationFrame(update);
         };
@@ -503,7 +503,7 @@
         stop = function() {
             window.konami = false;
             pjs.removeClass('troll').attr('style', pjs_style);
-            if (!pJS_GUI.config_demo.hide_card) {
+            if (!tsParticles_GUI.config_demo.hide_card) {
                 $('.panel').fadeIn(200);
                 return $('.js-box_bottom').fadeOut(200);
             }
