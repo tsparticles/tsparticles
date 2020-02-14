@@ -72,7 +72,7 @@ export class Container {
         });
     }
 
-    handleVisibilityChange() {
+    public handleVisibilityChange() {
         if (document.hidden) {
             this.pageHidden = true;
 
@@ -87,7 +87,7 @@ export class Container {
     }
 
     /* ---------- tsParticles functions - vendors ------------ */
-    eventsListeners() {
+    public eventsListeners() {
         /* events target element */
         if (this.options.interactivity.detect_on == InteractivityDetect.window) {
             this.interactivity.el = window;
@@ -183,7 +183,7 @@ export class Container {
         }
     }
 
-    densityAutoParticles() {
+    public densityAutoParticles() {
         if (this.options.particles.number.density.enable) {
             /* calc area */
             let area = this.canvas.el.width * this.canvas.el.height / 1000;
@@ -204,7 +204,7 @@ export class Container {
         }
     }
 
-    destroyContainer() {
+    public destroyContainer() {
         if (this.drawAnimFrame !== undefined)
             cancelAnimationFrame(this.drawAnimFrame);
 
@@ -213,11 +213,11 @@ export class Container {
         Loader.domSet([]);
     }
 
-    exportImg() {
+    public exportImg() {
         window.open(this.canvas.el.toDataURL('image/png'), '_blank');
     }
 
-    async loadImg(type: string) {
+    public async loadImg(type: string) {
         this.img.error = undefined;
         if (this.options.particles.shape.image.src != '') {
             // if (type == 'svg') {
@@ -248,15 +248,15 @@ export class Container {
         }
     }
 
-    requestFrame(callback: FrameRequestCallback) {
+    public requestFrame(callback: FrameRequestCallback) {
         return window.requestAnimFrame(callback);
     }
 
-    cancelAnimation(handle: number) {
+    public cancelAnimation(handle: number) {
         return window.cancelAnimationFrame(handle);
     }
 
-    draw(timestamp: DOMHighResTimeStamp) {
+    public draw(timestamp: DOMHighResTimeStamp) {
         // FPS limit logic
         // If we are too fast, just draw without updating
         const fps_limit = this.options.fps_limit;
@@ -312,7 +312,7 @@ export class Container {
         }
     }
 
-    checkBeforeDraw() {
+    public checkBeforeDraw() {
         // if shape is image
         if (this.options.particles.shape.type == ShapeType.image) {
             // if (this.img.type == 'svg' && this.svg.source == undefined) {
@@ -336,7 +336,7 @@ export class Container {
         }
     }
 
-    processBubble(p: Particle, dist_mouse: number, time_spent: number, bubble_param: number, particles_param: number, p_obj_bubble: number | undefined, p_obj: number, id: ProcessBubbleType) {
+    public processBubble(p: Particle, dist_mouse: number, time_spent: number, bubble_param: number, particles_param: number, p_obj_bubble: number | undefined, p_obj: number, id: ProcessBubbleType) {
         const container = this;
         const options = container.options;
 
@@ -375,7 +375,7 @@ export class Container {
         }
     }
 
-    init() {
+    public init() {
         /* init canvas + particles */
         this.retina.init();
         this.canvas.init();
@@ -385,7 +385,7 @@ export class Container {
         this.densityAutoParticles();
     }
 
-    async start() {
+    public async start() {
         if (this.options.particles.shape.type == ShapeType.image) {
             this.img.type = this.options.particles.shape.image.src.substr(this.options.particles.shape.image.src.length - 3);
             await this.loadImg(this.img.type);
