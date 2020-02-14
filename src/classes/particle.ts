@@ -85,7 +85,7 @@ export class Particle {
 
                 let hslColor = color.value as IHsl;
 
-                if (hslColor.h != undefined && hslColor.s != undefined && hslColor.l != undefined) {
+                if (hslColor && hslColor.h != undefined && hslColor.s != undefined && hslColor.l != undefined) {
                     this.color.hsl = {
                         h: hslColor.h,
                         s: hslColor.s,
