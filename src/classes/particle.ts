@@ -1,7 +1,7 @@
 "use strict";
 
 import { Utils } from "../utils/utils";
-import { IParticleImage, IColor, ICoordinates, IRgb, IHsl } from "../utils/interfaces";
+import { IParticleImage, IColor, ICoordinates, IRgb, IHsl, IOptions } from "../utils/interfaces";
 import { Container } from "./container";
 import { ShapeType, MoveDirection, HoverMode, ClickMode, ProcessBubbleType, OutMode } from "../utils/enums";
 
@@ -35,6 +35,7 @@ export class Particle {
 
         /* size */
         this.radius = (options.particles.size.random ? Math.random() : 1) * options.particles.size.value;
+
         if (options.particles.size.anim.enable) {
             this.size_status = false;
             this.vs = options.particles.size.anim.speed / 100;
@@ -42,18 +43,21 @@ export class Particle {
                 this.vs = this.vs * Math.random();
             }
         }
+
         /* position */
         this.x = position ? position.x : Math.random() * container.canvas.w;
         this.y = position ? position.y : Math.random() * container.canvas.h;
+
         /* check position  - into the canvas */
         if (this.x > container.canvas.w - this.radius * 2)
-            this.x = this.x - this.radius;
+            this.x -= this.radius;
         else if (this.x < this.radius * 2)
-            this.x = this.x + this.radius;
+            this.x += this.radius;
         if (this.y > container.canvas.h - this.radius * 2)
-            this.y = this.y - this.radius;
+            this.y -= this.radius;
         else if (this.y < this.radius * 2)
-            this.y = this.y + this.radius;
+            this.y += this.radius;
+
         /* parallax */
         this.offsetX = 0;
         this.offsetY = 0;
@@ -64,50 +68,11 @@ export class Particle {
         }
 
         /* color */
-        this.color = {};
-        if (typeof (color.value) === "object") {
-            if (color.value instanceof Array) {
-                let arr = options.particles.color.value as string[];
-                let color_selected = color.value[Math.floor(Math.random() * arr.length)];
-
-                this.color.rgb = Utils.hexToRgb(color_selected);
-            } else {
-
-                let rgbColor = color.value as IRgb;
-
-                if (rgbColor && rgbColor.r !== undefined && rgbColor.g !== undefined && rgbColor.b !== undefined) {
-                    this.color.rgb = {
-                        r: rgbColor.r,
-                        g: rgbColor.g,
-                        b: rgbColor.b
-                    };
-                }
-
-                let hslColor = color.value as IHsl;
-
-                if (hslColor && hslColor.h !== undefined && hslColor.s !== undefined && hslColor.l !== undefined) {
-                    this.color.hsl = {
-                        h: hslColor.h,
-                        s: hslColor.s,
-                        l: hslColor.l
-                    };
-                }
-            }
-        } else if (typeof (color.value) === "string") {
-            if (color.value === "random") {
-                this.color.rgb = {
-                    r: (Math.floor(Math.random() * (255 - 0 + 1)) + 0),
-                    g: (Math.floor(Math.random() * (255 - 0 + 1)) + 0),
-                    b: (Math.floor(Math.random() * (255 - 0 + 1)) + 0)
-                };
-            } else {
-                this.color = {};
-                this.color.rgb = Utils.hexToRgb(color.value);
-            }
-        }
+        this.color = this.getColor(options, color);
 
         /* opacity */
         this.opacity = (options.particles.opacity.random ? Math.random() : 1) * options.particles.opacity.value;
+
         if (options.particles.opacity.anim.enable) {
             this.opacity_status = false;
             this.vo = options.particles.opacity.anim.speed / 100;
@@ -117,37 +82,7 @@ export class Particle {
         }
 
         /* animation - velocity for speed */
-        let velbase: ICoordinates;
-
-        switch (options.particles.move.direction) {
-            case MoveDirection.top:
-                velbase = { x: 0, y: -1 };
-                break;
-            case MoveDirection.topRight:
-                velbase = { x: 0.5, y: -0.5 };
-                break;
-            case MoveDirection.right:
-                velbase = { x: 1, y: -0 };
-                break;
-            case MoveDirection.bottomRight:
-                velbase = { x: 0.5, y: 0.5 };
-                break;
-            case MoveDirection.bottom:
-                velbase = { x: 0, y: 1 };
-                break;
-            case MoveDirection.bottomLeft:
-                velbase = { x: -0.5, y: 1 };
-                break;
-            case MoveDirection.left:
-                velbase = { x: -1, y: 0 };
-                break;
-            case MoveDirection.topLeft:
-                velbase = { x: -0.5, y: -0.5 };
-                break;
-            default:
-                velbase = { x: 0, y: 0 };
-                break;
-        }
+        let velbase = this.getVelBase(options);
 
         if (options.particles.move.straight) {
             this.vx = velbase.x;
@@ -208,6 +143,88 @@ export class Particle {
         }
     }
 
+    private getVelBase(options: IOptions) {
+        let velbase: ICoordinates;
+
+        switch (options.particles.move.direction) {
+            case MoveDirection.top:
+                velbase = { x: 0, y: -1 };
+                break;
+            case MoveDirection.topRight:
+                velbase = { x: 0.5, y: -0.5 };
+                break;
+            case MoveDirection.right:
+                velbase = { x: 1, y: -0 };
+                break;
+            case MoveDirection.bottomRight:
+                velbase = { x: 0.5, y: 0.5 };
+                break;
+            case MoveDirection.bottom:
+                velbase = { x: 0, y: 1 };
+                break;
+            case MoveDirection.bottomLeft:
+                velbase = { x: -0.5, y: 1 };
+                break;
+            case MoveDirection.left:
+                velbase = { x: -1, y: 0 };
+                break;
+            case MoveDirection.topLeft:
+                velbase = { x: -0.5, y: -0.5 };
+                break;
+            default:
+                velbase = { x: 0, y: 0 };
+                break;
+        }
+
+        return velbase;
+    }
+
+    private getColor(options: IOptions, color: { value: string[] | IColor | string }) {
+        let res: IColor = {};
+
+        if (typeof (color.value) === "object") {
+            if (color.value instanceof Array) {
+                let arr = options.particles.color.value as string[];
+                let color_selected = color.value[Math.floor(Math.random() * arr.length)];
+
+                res.rgb = Utils.hexToRgb(color_selected);
+            } else {
+
+                let rgbColor = color.value as IRgb;
+
+                if (rgbColor && rgbColor.r !== undefined && rgbColor.g !== undefined && rgbColor.b !== undefined) {
+                    this.color.rgb = {
+                        r: rgbColor.r,
+                        g: rgbColor.g,
+                        b: rgbColor.b
+                    };
+                }
+
+                let hslColor = color.value as IHsl;
+
+                if (hslColor && hslColor.h !== undefined && hslColor.s !== undefined && hslColor.l !== undefined) {
+                    res.hsl = {
+                        h: hslColor.h,
+                        s: hslColor.s,
+                        l: hslColor.l
+                    };
+                }
+            }
+        } else if (typeof (color.value) === "string") {
+            if (color.value === "random") {
+                res.rgb = {
+                    r: (Math.floor(Math.random() * (255 - 0 + 1)) + 0),
+                    g: (Math.floor(Math.random() * (255 - 0 + 1)) + 0),
+                    b: (Math.floor(Math.random() * (255 - 0 + 1)) + 0)
+                };
+            } else {
+                res.rgb = Utils.hexToRgb(color.value);
+            }
+        }
+
+        return res;
+    }
+
     public draw() {
         let container = this.container;
         let options = container.options;
@@ -238,10 +255,30 @@ export class Particle {
         container.canvas.ctx.fillStyle = color_value;
         container.canvas.ctx.beginPath();
 
-        let p_x = this.x + this.offsetX;
-        let p_y = this.y + this.offsetY;
+        this.drawShape(radius);
 
+        container.canvas.ctx.closePath();
+
+        if (options.particles.shape.stroke.width > 0) {
+            container.canvas.ctx.strokeStyle = options.particles.shape.stroke.color;
+            container.canvas.ctx.lineWidth = options.particles.shape.stroke.width;
+            container.canvas.ctx.stroke();
+        }
+
+        container.canvas.ctx.fill();
+    }
+
+    private drawShape(radius: number) {
+        const container = this.container;
+        const options = container.options;
         const ctx = container.canvas.ctx;
+
+        if (!ctx) {
+            return;
+        }
+
+        const p_x = this.x + this.offsetX;
+        const p_y = this.y + this.offsetY;
 
         switch (this.shape) {
             case ShapeType.line:
@@ -260,7 +297,7 @@ export class Particle {
                 ctx.rect(this.x - radius, this.y - radius, radius * 2, radius * 2);
                 break;
             case ShapeType.triangle:
-                this.drawShape(ctx, this.x - radius, this.y + radius / 1.66, radius * 2, 3, 2);
+                this.subDrawShape(ctx, this.x - radius, this.y + radius / 1.66, radius * 2, 3, 2);
                 break;
             case ShapeType.polygon:
                 {
@@ -270,7 +307,7 @@ export class Particle {
                     const sideCountNumerator = options.particles.shape.polygon.nb_sides;
                     const sideCountDenominator = 1;
 
-                    this.drawShape(ctx, startX, startY, sideLength, sideCountNumerator, sideCountDenominator);
+                    this.subDrawShape(ctx, startX, startY, sideLength, sideCountNumerator, sideCountDenominator);
                 }
                 break;
             case ShapeType.star:
@@ -281,7 +318,7 @@ export class Particle {
                     const sideCountNumerator = options.particles.shape.polygon.nb_sides;
                     const sideCountDenominator = 2;
 
-                    this.drawShape(ctx, startX, startY, sideLength, sideCountNumerator, sideCountDenominator);
+                    this.subDrawShape(ctx, startX, startY, sideLength, sideCountNumerator, sideCountDenominator);
                 }
                 break;
 
@@ -329,16 +366,6 @@ export class Particle {
 
                 break;
         }
-
-        container.canvas.ctx.closePath();
-
-        if (options.particles.shape.stroke.width > 0) {
-            container.canvas.ctx.strokeStyle = options.particles.shape.stroke.color;
-            container.canvas.ctx.lineWidth = options.particles.shape.stroke.width;
-            container.canvas.ctx.stroke();
-        }
-
-        container.canvas.ctx.fill();
     }
 
     public subDraw(ctx: CanvasRenderingContext2D, img_obj: HTMLImageElement, radius: number) {
@@ -352,7 +379,7 @@ export class Particle {
         ctx.drawImage(img_obj, p.x - radius, p.y - radius, radius * 2, radius * 2 / ratio);
     }
 
-    public drawShape(ctx: CanvasRenderingContext2D, startX: number, startY: number, sideLength: number, sideCountNumerator: number, sideCountDenominator: number) {
+    public subDrawShape(ctx: CanvasRenderingContext2D, startX: number, startY: number, sideLength: number, sideCountNumerator: number, sideCountDenominator: number) {
 
         // By Programming Thomas - https://programmingthomas.wordpress.com/2013/04/03/n-sided-shapes/
         let sideCount = sideCountNumerator * sideCountDenominator;
@@ -487,80 +514,94 @@ export class Particle {
 
         /* on hover event */
         if (options.interactivity.events.onhover.enable && Utils.isInArray(HoverMode.bubble, options.interactivity.events.onhover.mode)) {
-            let dx_mouse = (this.x + this.offsetX) - (container.interactivity.mouse.pos_x || 0);
-            let dy_mouse = (this.y + this.offsetY) - (container.interactivity.mouse.pos_y || 0);
-            let dist_mouse = Math.sqrt(dx_mouse * dx_mouse + dy_mouse * dy_mouse);
-            let ratio = 1 - dist_mouse / options.interactivity.modes.bubble.distance;
-
-            /* mousemove - check ratio */
-            if (dist_mouse <= options.interactivity.modes.bubble.distance) {
-                if (ratio >= 0 && container.interactivity.status === "mousemove") {
-                    /* size */
-                    if (options.interactivity.modes.bubble.size !== options.particles.size.value) {
-                        if (options.interactivity.modes.bubble.size > options.particles.size.value) {
-                            let size = this.radius + (options.interactivity.modes.bubble.size * ratio);
-                            if (size >= 0) {
-                                this.radius_bubble = size;
-                            }
-                        } else {
-                            let dif = this.radius - options.interactivity.modes.bubble.size;
-                            let size = this.radius - (dif * ratio);
-
-                            if (size > 0) {
-                                this.radius_bubble = size;
-                            } else {
-                                this.radius_bubble = 0;
-                            }
-                        }
-                    }
-                    /* opacity */
-                    if (options.interactivity.modes.bubble.opacity !== options.particles.opacity.value) {
-                        if (options.interactivity.modes.bubble.opacity > options.particles.opacity.value) {
-                            let opacity = options.interactivity.modes.bubble.opacity * ratio;
-                            if (opacity > this.opacity && opacity <= options.interactivity.modes.bubble.opacity) {
-                                this.opacity_bubble = opacity;
-                            }
-                        }
-                        else {
-                            let opacity = this.opacity - (options.particles.opacity.value - options.interactivity.modes.bubble.opacity) * ratio;
-                            if (opacity < this.opacity && opacity >= options.interactivity.modes.bubble.opacity) {
-                                this.opacity_bubble = opacity;
-                            }
-                        }
-                    }
-                }
-            } else {
-                this.initBubble();
-            }
-
-            /* mouseleave */
-            if (container.interactivity.status === "mouseleave") {
-                this.initBubble();
-            }
+            this.hoverBubble();
         } else if (options.interactivity.events.onclick.enable && Utils.isInArray(ClickMode.bubble, options.interactivity.events.onclick.mode)) {
-            /* on click event */
-            let dx_mouse = this.x - (container.interactivity.mouse.click_pos_x || 0);
-            let dy_mouse = this.y - (container.interactivity.mouse.click_pos_y || 0);
-            let dist_mouse = Math.sqrt(dx_mouse * dx_mouse + dy_mouse * dy_mouse);
-            let time_spent = (new Date().getTime() - (container.interactivity.mouse.click_time || 0)) / 1000;
+            this.clickBubble();
+        }
+    }
 
-            if (container.bubble.clicking) {
-                if (time_spent > options.interactivity.modes.bubble.duration) {
-                    container.bubble.duration_end = true;
-                }
+    private clickBubble() {
+        const container = this.container;
+        const options = container.options;
 
-                if (time_spent > options.interactivity.modes.bubble.duration * 2) {
-                    container.bubble.clicking = false;
-                    container.bubble.duration_end = false;
-                }
+        /* on click event */
+        let dx_mouse = this.x - (container.interactivity.mouse.click_pos_x || 0);
+        let dy_mouse = this.y - (container.interactivity.mouse.click_pos_y || 0);
+        let dist_mouse = Math.sqrt(dx_mouse * dx_mouse + dy_mouse * dy_mouse);
+        let time_spent = (new Date().getTime() - (container.interactivity.mouse.click_time || 0)) / 1000;
+
+        if (container.bubble.clicking) {
+            if (time_spent > options.interactivity.modes.bubble.duration) {
+                container.bubble.duration_end = true;
             }
 
-            if (container.bubble.clicking) {
+            if (time_spent > options.interactivity.modes.bubble.duration * 2) {
+                container.bubble.clicking = false;
+                container.bubble.duration_end = false;
+            }
+        }
+
+        if (container.bubble.clicking) {
+            /* size */
+            container.processBubble(this, dist_mouse, time_spent, options.interactivity.modes.bubble.size, options.particles.size.value, this.radius_bubble, this.radius, ProcessBubbleType.size);
+            /* opacity */
+            container.processBubble(this, dist_mouse, time_spent, options.interactivity.modes.bubble.opacity, options.particles.opacity.value, this.opacity_bubble, this.opacity, ProcessBubbleType.opacity);
+        }
+    }
+
+    private hoverBubble() {
+        const container = this.container;
+        const options = container.options;
+
+        let dx_mouse = (this.x + this.offsetX) - (container.interactivity.mouse.pos_x || 0);
+        let dy_mouse = (this.y + this.offsetY) - (container.interactivity.mouse.pos_y || 0);
+        let dist_mouse = Math.sqrt(dx_mouse * dx_mouse + dy_mouse * dy_mouse);
+        let ratio = 1 - dist_mouse / options.interactivity.modes.bubble.distance;
+
+        /* mousemove - check ratio */
+        if (dist_mouse <= options.interactivity.modes.bubble.distance) {
+            if (ratio >= 0 && container.interactivity.status === "mousemove") {
                 /* size */
-                container.processBubble(this, dist_mouse, time_spent, options.interactivity.modes.bubble.size, options.particles.size.value, this.radius_bubble, this.radius, ProcessBubbleType.size);
+                if (options.interactivity.modes.bubble.size !== options.particles.size.value) {
+                    if (options.interactivity.modes.bubble.size > options.particles.size.value) {
+                        let size = this.radius + (options.interactivity.modes.bubble.size * ratio);
+                        if (size >= 0) {
+                            this.radius_bubble = size;
+                        }
+                    } else {
+                        let dif = this.radius - options.interactivity.modes.bubble.size;
+                        let size = this.radius - (dif * ratio);
+
+                        if (size > 0) {
+                            this.radius_bubble = size;
+                        } else {
+                            this.radius_bubble = 0;
+                        }
+                    }
+                }
                 /* opacity */
-                container.processBubble(this, dist_mouse, time_spent, options.interactivity.modes.bubble.opacity, options.particles.opacity.value, this.opacity_bubble, this.opacity, ProcessBubbleType.opacity);
+                if (options.interactivity.modes.bubble.opacity !== options.particles.opacity.value) {
+                    if (options.interactivity.modes.bubble.opacity > options.particles.opacity.value) {
+                        let opacity = options.interactivity.modes.bubble.opacity * ratio;
+                        if (opacity > this.opacity && opacity <= options.interactivity.modes.bubble.opacity) {
+                            this.opacity_bubble = opacity;
+                        }
+                    }
+                    else {
+                        let opacity = this.opacity - (options.particles.opacity.value - options.interactivity.modes.bubble.opacity) * ratio;
+                        if (opacity < this.opacity && opacity >= options.interactivity.modes.bubble.opacity) {
+                            this.opacity_bubble = opacity;
+                        }
+                    }
+                }
             }
+        } else {
+            this.initBubble();
+        }
+
+        /* mouseleave */
+        if (container.interactivity.status === "mouseleave") {
+            this.initBubble();
         }
     }
 
@@ -569,62 +610,76 @@ export class Particle {
         const options = container.options;
 
         if (options.interactivity.events.onhover.enable && Utils.isInArray(HoverMode.repulse, options.interactivity.events.onhover.mode) && container.interactivity.status === "mousemove") {
-            let dx_mouse = this.x - (container.interactivity.mouse.pos_x || 0);
-            let dy_mouse = this.y - (container.interactivity.mouse.pos_y || 0);
-            let dist_mouse = Math.sqrt(dx_mouse * dx_mouse + dy_mouse * dy_mouse);
-            let normVec = { x: dx_mouse / dist_mouse, y: dy_mouse / dist_mouse };
-            let repulseRadius = options.interactivity.modes.repulse.distance, velocity = 100;
-            let repulseFactor = Utils.clamp((1 / repulseRadius) * (-1 * Math.pow(dist_mouse / repulseRadius, 2) + 1) * repulseRadius * velocity, 0, 50);
-            let pos = {
-                x: this.x + normVec.x * repulseFactor,
-                y: this.y + normVec.y * repulseFactor
-            };
-
-            if (options.particles.move.out_mode === OutMode.bounce || options.particles.move.out_mode === OutMode.bounceVertical) {
-                if (pos.x - this.radius > 0 && pos.x + this.radius < container.canvas.w)
-                    this.x = pos.x;
-                if (pos.y - this.radius > 0 && pos.y + this.radius < container.canvas.h)
-                    this.y = pos.y;
-            } else {
-                this.x = pos.x;
-                this.y = pos.y;
-            }
+            this.hoverRepulse();
         } else if (options.interactivity.events.onclick.enable && Utils.isInArray(ClickMode.repulse, options.interactivity.events.onclick.mode)) {
-            if (!container.repulse.finish) {
+            this.clickRepulse();
+        }
+    }
 
-                if (!container.repulse.count)
-                    container.repulse.count = 0;
+    private clickRepulse() {
+        const container = this.container;
+        const options = container.options;
 
-                container.repulse.count++;
+        if (!container.repulse.finish) {
 
-                if (container.repulse.count === container.particles.array.length) {
-                    container.repulse.finish = true;
-                }
+            if (!container.repulse.count)
+                container.repulse.count = 0;
+
+            container.repulse.count++;
+
+            if (container.repulse.count === container.particles.array.length) {
+                container.repulse.finish = true;
             }
+        }
 
-            if (container.repulse.clicking) {
-                let repulseRadius = Math.pow(options.interactivity.modes.repulse.distance / 6, 3);
-                let dx = (container.interactivity.mouse.click_pos_x || 0) - this.x;
-                let dy = (container.interactivity.mouse.click_pos_y || 0) - this.y;
-                let d = dx * dx + dy * dy;
-                let force = -repulseRadius / d;
+        if (container.repulse.clicking) {
+            let repulseRadius = Math.pow(options.interactivity.modes.repulse.distance / 6, 3);
+            let dx = (container.interactivity.mouse.click_pos_x || 0) - this.x;
+            let dy = (container.interactivity.mouse.click_pos_y || 0) - this.y;
+            let d = dx * dx + dy * dy;
+            let force = -repulseRadius / d;
 
-                // default
-                if (d <= repulseRadius) {
-                    this.processRepulse(dx, dy, force);
-                }
-                // bang - slow motion mode
-                // if(!container.repulse_finish){
-                //   if(d <= repulseRadius){
-                //     process();
-                //   }
-                // }else{
-                //   process();
-                // }
-            } else if (container.repulse.clicking === false) {
-                this.vx = this.vx_i;
-                this.vy = this.vy_i;
+            // default
+            if (d <= repulseRadius) {
+                this.processRepulse(dx, dy, force);
             }
+            // bang - slow motion mode
+            // if(!container.repulse_finish){
+            //   if(d <= repulseRadius){
+            //     process();
+            //   }
+            // }else{
+            //   process();
+            // }
+        } else if (container.repulse.clicking === false) {
+            this.vx = this.vx_i;
+            this.vy = this.vy_i;
+        }
+    }
+
+    private hoverRepulse() {
+        const container = this.container;
+        const options = container.options;
+
+        let dx_mouse = this.x - (container.interactivity.mouse.pos_x || 0);
+        let dy_mouse = this.y - (container.interactivity.mouse.pos_y || 0);
+        let dist_mouse = Math.sqrt(dx_mouse * dx_mouse + dy_mouse * dy_mouse);
+        let normVec = { x: dx_mouse / dist_mouse, y: dy_mouse / dist_mouse };
+        let repulseRadius = options.interactivity.modes.repulse.distance, velocity = 100;
+        let repulseFactor = Utils.clamp((1 / repulseRadius) * (-1 * Math.pow(dist_mouse / repulseRadius, 2) + 1) * repulseRadius * velocity, 0, 50);
+        let pos = {
+            x: this.x + normVec.x * repulseFactor,
+            y: this.y + normVec.y * repulseFactor
+        };
+
+        if (options.particles.move.out_mode === OutMode.bounce || options.particles.move.out_mode === OutMode.bounceVertical) {
+            if (pos.x - this.radius > 0 && pos.x + this.radius < container.canvas.w)
+                this.x = pos.x;
+            if (pos.y - this.radius > 0 && pos.y + this.radius < container.canvas.h)
+                this.y = pos.y;
+        } else {
+            this.x = pos.x;
+            this.y = pos.y;
         }
     }
 
