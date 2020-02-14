@@ -204,3 +204,8 @@ export interface ISize {
     status?: boolean;
     velocity?: number;
 }
+
+export interface IVelocity {
+    horizontal: number;
+    vertical: number;
+}

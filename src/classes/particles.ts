@@ -4,7 +4,7 @@ import { Particle } from "./particle";
 import { Utils } from "../utils/utils";
 import { Container } from "./container";
 import { OutMode, HoverMode, ClickMode } from "../utils/enums";
-import { IMouseData, IRgb } from "../utils/interfaces";
+import { IMouseData, IRgb, ICoordinates } from "../utils/interfaces";
 
 export class Particles {
     private container: Container;
@@ -23,7 +23,7 @@ export class Particles {
         let options = container.options;
 
         for (let i = 0; i < options.particles.number.value; i++) {
-            const p = new Particle(container, options.particles.color, options.particles.opacity.value);
+            const p = new Particle(container);
 
             this.array.push(p);
         }
@@ -121,17 +121,23 @@ export class Particles {
     }
 
     /* ---------- tsParticles functions - modes events ------------ */
-    public push(nb: number, pos?: IMouseData) {
+    public push(nb: number, mousePosition?: IMouseData) {
         const container = this.container;
         const options = container.options;
 
         this.pushing = true;
 
+        let pos: ICoordinates | undefined;
+
+        if (mousePosition) {
+            pos = {
+                x: mousePosition.pos_x ?? 0,
+                y: mousePosition.pos_y ?? 0
+            };
+        }
+
         for (let i = 0; i < nb; i++) {
-            const p = new Particle(container, options.particles.color, options.particles.opacity.value, {
-                x: pos && pos.pos_x ? pos.pos_x : Math.random() * container.canvas.w,
-                y: pos && pos.pos_y ? pos.pos_y : Math.random() * container.canvas.h
-            });
+            const p = new Particle(container, pos);
 
             this.array.push(p);
         }

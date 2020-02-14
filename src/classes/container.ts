@@ -337,55 +337,6 @@ export class Container {
         }
     }
 
-    public processBubble(p: Particle, dist_mouse: number, time_spent: number, bubble_param: number, particles_param: number, p_obj_bubble: number | undefined, p_obj: number, id: ProcessBubbleType) {
-        const container = this;
-        const options = container.options;
-
-        if (bubble_param !== particles_param) {
-            if (!container.bubble.duration_end) {
-                if (dist_mouse <= options.interactivity.modes.bubble.distance) {
-                    let obj;
-
-                    if (p_obj_bubble) {
-                        obj = p_obj_bubble;
-                    } else {
-                        obj = p_obj;
-                    }
-
-                    if (obj !== bubble_param) {
-                        let value = p_obj - (time_spent * (p_obj - bubble_param) / options.interactivity.modes.bubble.duration);
-
-                        if (id === ProcessBubbleType.size) {
-                            p.radius_bubble = value;
-                        }
-
-                        if (id === ProcessBubbleType.opacity) {
-                            p.opacity_bubble = value;
-                        }
-                    }
-                } else {
-                    if (id === ProcessBubbleType.size) {
-                        p.radius_bubble = undefined;
-                    }
-
-                    if (id === ProcessBubbleType.opacity)
-                        p.opacity_bubble = undefined;
-                }
-            } else if (p_obj_bubble) {
-                let value_tmp = p_obj - (time_spent * (p_obj - bubble_param) / options.interactivity.modes.bubble.duration), dif = bubble_param - value_tmp;
-                let value = bubble_param + dif;
-
-                if (id === ProcessBubbleType.size) {
-                    p.radius_bubble = value;
-                }
-
-                if (id === ProcessBubbleType.opacity) {
-                    p.opacity_bubble = value;
-                }
-            }
-        }
-    }
-
     public init() {
         /* init canvas + particles */
         this.retina.init();
