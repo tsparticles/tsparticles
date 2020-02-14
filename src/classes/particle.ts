@@ -1,19 +1,16 @@
 "use strict";
 
 import { Utils } from "../utils/utils";
-import { IParticleImage, IColor, ICoordinates, IRgb, IHsl, IOptions, IOpacity } from "../utils/interfaces";
+import { IParticleImage, IColor, ICoordinates, IRgb, IHsl, IOptions, IOpacity, ISize } from "../utils/interfaces";
 import { Container } from "./container";
 import { ShapeType, MoveDirection, HoverMode, ClickMode, ProcessBubbleType, OutMode } from "../utils/enums";
 
 export class Particle {
     private container: Container;
     public radius: number;
-    public size_status?: boolean;
-    public vs?: number;
-    public x: number;
-    public y: number;
-    public offsetX: number;
-    public offsetY: number;
+    public size: ISize;
+    public position: ICoordinates;
+    public offset: ICoordinates;
     public color: IColor;
     public opacity: IOpacity;
     public velocity: ICoordinates;
@@ -30,33 +27,27 @@ export class Particle {
         let options = container.options;
 
         /* size */
+        this.size= {};
         this.radius = (options.particles.size.random ? Math.random() : 1) * options.particles.size.value;
 
         if (options.particles.size.anim.enable) {
-            this.size_status = false;
-            this.vs = options.particles.size.anim.speed / 100;
+            this.size.status = false;
+            this.size.velocity = options.particles.size.anim.speed / 100;
+
             if (!options.particles.size.anim.sync) {
-                this.vs = this.vs * Math.random();
+                this.size.velocity = this.size.velocity * Math.random();
             }
         }
 
-        /* position */
-        this.x = position ? position.x : Math.random() * container.canvas.w;
-        this.y = position ? position.y : Math.random() * container.canvas.h;
 
-        /* check position  - into the canvas */
-        if (this.x > container.canvas.w - this.radius * 2)
-            this.x -= this.radius;
-        else if (this.x < this.radius * 2)
-            this.x += this.radius;
-        if (this.y > container.canvas.h - this.radius * 2)
-            this.y -= this.radius;
-        else if (this.y < this.radius * 2)
-            this.y += this.radius;
+        /* position */
+        this.position = this.calcPosition(this.container, position);
 
         /* parallax */
-        this.offsetX = 0;
-        this.offsetY = 0;
+        this.offset = {
+            x: 0,
+            y: 0
+        };
 
         /* check position - avoid overlap */
         if (options.particles.move.bounce) {
@@ -89,14 +80,13 @@ export class Particle {
         };
 
         /* if shape is image */
-        let shape_type = options.particles.shape.type;
+        let shapeType = options.particles.shape.type;
 
-        if (shape_type instanceof Array) {
-            let shape_selected = shape_type[Math.floor(Math.random() * shape_type.length)];
-            this.shape = shape_selected;
-        }
-        else {
-            this.shape = shape_type;
+        if (shapeType instanceof Array) {
+            let selectedShape = shapeType[Math.floor(Math.random() * shapeType.length)];
+            this.shape = selectedShape;
+        } else {
+            this.shape = shapeType;
         }
 
         if (this.shape === ShapeType.image) {
@@ -124,6 +114,25 @@ export class Particle {
                 this.text = options.particles.shape.character.value[Math.floor(Math.random() * options.particles.shape.character.value.length)]
             }
         }
+    }
+
+    private calcPosition(container: Container, position?: ICoordinates) {
+        let pos = {
+            x: position ? position.x : Math.random() * container.canvas.w,
+            y: position ? position.y : Math.random() * container.canvas.h
+        };
+
+        /* check position  - into the canvas */
+        if (this.position.x > container.canvas.w - this.radius * 2)
+            this.position.x -= this.radius;
+        else if (this.position.x < this.radius * 2)
+            this.position.x += this.radius;
+        if (this.position.y > container.canvas.h - this.radius * 2)
+            this.position.y -= this.radius;
+        else if (this.position.y < this.radius * 2)
+            this.position.y += this.radius;
+
+        return pos;
     }
 
     private calcVelocity(options: IOptions) {
@@ -289,32 +298,34 @@ export class Particle {
             return;
         }
 
-        const p_x = this.x + this.offsetX;
-        const p_y = this.y + this.offsetY;
+        const pos = {
+            x: this.position.x + this.offset.x,
+            y: this.position.y + this.offset.y
+        };
 
         switch (this.shape) {
             case ShapeType.line:
-                ctx.moveTo(this.x, this.y)
-                ctx.lineTo(this.x, this.y + radius)
+                ctx.moveTo(this.position.x, this.position.y)
+                ctx.lineTo(this.position.x, this.position.y + radius)
                 ctx.strokeStyle = options.particles.shape.stroke.color;
                 ctx.lineWidth = options.particles.shape.stroke.width;
                 ctx.stroke();
                 break;
 
             case ShapeType.circle:
-                ctx.arc(p_x, p_y, radius, 0, Math.PI * 2, false);
+                ctx.arc(pos.x, pos.y, radius, 0, Math.PI * 2, false);
                 break;
             case ShapeType.edge:
             case ShapeType.square:
-                ctx.rect(this.x - radius, this.y - radius, radius * 2, radius * 2);
+                ctx.rect(this.position.x - radius, this.position.y - radius, radius * 2, radius * 2);
                 break;
             case ShapeType.triangle:
-                this.subDrawShape(ctx, this.x - radius, this.y + radius / 1.66, radius * 2, 3, 2);
+                this.subDrawShape(ctx, this.position.x - radius, this.position.y + radius / 1.66, radius * 2, 3, 2);
                 break;
             case ShapeType.polygon:
                 {
-                    const startX = this.x - radius / (options.particles.shape.polygon.nb_sides / 3.5);
-                    const startY = this.y - radius / (2.66 / 3.5);
+                    const startX = this.position.x - radius / (options.particles.shape.polygon.nb_sides / 3.5);
+                    const startY = this.position.y - radius / (2.66 / 3.5);
                     const sideLength = radius * 2.66 / (options.particles.shape.polygon.nb_sides / 3);
                     const sideCountNumerator = options.particles.shape.polygon.nb_sides;
                     const sideCountDenominator = 1;
@@ -324,8 +335,8 @@ export class Particle {
                 break;
             case ShapeType.star:
                 {
-                    const startX = this.x - radius * 2 / (options.particles.shape.polygon.nb_sides / 4);
-                    const startY = this.y - radius / (2 * 2.66 / 3.5);
+                    const startX = this.position.x - radius * 2 / (options.particles.shape.polygon.nb_sides / 4);
+                    const startY = this.position.y - radius / (2 * 2.66 / 3.5);
                     const sideLength = radius * 2 * 2.66 / (options.particles.shape.polygon.nb_sides / 3);
                     const sideCountNumerator = options.particles.shape.polygon.nb_sides;
                     const sideCountDenominator = 2;
@@ -335,8 +346,8 @@ export class Particle {
                 break;
 
             case ShapeType.heart:
-                let x = this.x - radius / 2;
-                let y = this.y - radius / 2;
+                let x = this.position.x - radius / 2;
+                let y = this.position.y - radius / 2;
 
                 ctx.moveTo(x, y + radius / 4);
                 ctx.quadraticCurveTo(x, y, x + radius / 4, y);
@@ -356,9 +367,9 @@ export class Particle {
 
                 if (this.text !== undefined) {
                     if (options.particles.shape.character.fill) {
-                        ctx.fillText(this.text, this.x - radius / 2, this.y + radius / 2);
+                        ctx.fillText(this.text, this.position.x - radius / 2, this.position.y + radius / 2);
                     } else {
-                        ctx.strokeText(this.text, this.x - radius / 2, this.y + radius / 2);
+                        ctx.strokeText(this.text, this.position.x - radius / 2, this.position.y + radius / 2);
                     }
                 }
                 break;
@@ -388,7 +399,7 @@ export class Particle {
             ratio = p.img.ratio;
         }
 
-        ctx.drawImage(img_obj, p.x - radius, p.y - radius, radius * 2, radius * 2 / ratio);
+        ctx.drawImage(img_obj, p.position.x - radius, p.position.y - radius, radius * 2, radius * 2 / ratio);
     }
 
     public subDrawShape(ctx: CanvasRenderingContext2D, startX: number, startY: number, sideLength: number, sideCountNumerator: number, sideCountDenominator: number) {
@@ -420,13 +431,13 @@ export class Particle {
         const p = this;
 
         for (const p2 of container.particles.array) {
-            let dx = p.x - p2.x;
-            let dy = p.y - p2.y;
+            let dx = p.position.x - p2.position.x;
+            let dy = p.position.y - p2.position.y;
             let dist = Math.sqrt(dx * dx + dy * dy);
 
             if (dist <= p.radius + p2.radius) {
-                p.x = position ? position.x : Math.random() * container.canvas.w;
-                p.y = position ? position.y : Math.random() * container.canvas.h;
+                p.position.x = position ? position.x : Math.random() * container.canvas.w;
+                p.position.y = position ? position.y : Math.random() * container.canvas.h;
 
                 p.checkOverlap();
             }
@@ -491,8 +502,8 @@ export class Particle {
         let options = container.options;
 
         if (options.interactivity.events.onhover.enable && container.interactivity.status === "mousemove") {
-            let dx_mouse = this.x - (container.interactivity.mouse.pos_x || 0);
-            let dy_mouse = this.y - (container.interactivity.mouse.pos_y || 0);
+            let dx_mouse = this.position.x - (container.interactivity.mouse.pos_x || 0);
+            let dy_mouse = this.position.y - (container.interactivity.mouse.pos_y || 0);
             let dist_mouse = Math.sqrt(dx_mouse * dx_mouse + dy_mouse * dy_mouse);
             /* draw a line between the cursor and the particle if the distance between them is under the config distance */
             if (dist_mouse <= options.interactivity.modes.grab.distance) {
@@ -510,7 +521,7 @@ export class Particle {
                         //container.canvas.ctx.lineCap = "round"; /* performance issue */
                         /* path */
                         container.canvas.ctx.beginPath();
-                        container.canvas.ctx.moveTo(this.x + this.offsetX, this.y + this.offsetY);
+                        container.canvas.ctx.moveTo(this.position.x + this.offset.x, this.position.y + this.offset.y);
                         container.canvas.ctx.lineTo((container.interactivity.mouse.pos_x || 0), (container.interactivity.mouse.pos_y || 0));
                         container.canvas.ctx.stroke();
                         container.canvas.ctx.closePath();
@@ -537,8 +548,8 @@ export class Particle {
         const options = container.options;
 
         /* on click event */
-        let dx_mouse = this.x - (container.interactivity.mouse.click_pos_x || 0);
-        let dy_mouse = this.y - (container.interactivity.mouse.click_pos_y || 0);
+        let dx_mouse = this.position.x - (container.interactivity.mouse.click_pos_x || 0);
+        let dy_mouse = this.position.y - (container.interactivity.mouse.click_pos_y || 0);
         let dist_mouse = Math.sqrt(dx_mouse * dx_mouse + dy_mouse * dy_mouse);
         let time_spent = (new Date().getTime() - (container.interactivity.mouse.click_time || 0)) / 1000;
 
@@ -565,8 +576,8 @@ export class Particle {
         const container = this.container;
         const options = container.options;
 
-        let dx_mouse = (this.x + this.offsetX) - (container.interactivity.mouse.pos_x || 0);
-        let dy_mouse = (this.y + this.offsetY) - (container.interactivity.mouse.pos_y || 0);
+        let dx_mouse = (this.position.x + this.offset.x) - (container.interactivity.mouse.pos_x || 0);
+        let dy_mouse = (this.position.y + this.offset.y) - (container.interactivity.mouse.pos_y || 0);
         let dist_mouse = Math.sqrt(dx_mouse * dx_mouse + dy_mouse * dy_mouse);
         let ratio = 1 - dist_mouse / options.interactivity.modes.bubble.distance;
 
@@ -661,8 +672,8 @@ export class Particle {
 
         if (container.repulse.clicking) {
             let repulseRadius = Math.pow(options.interactivity.modes.repulse.distance / 6, 3);
-            let dx = (container.interactivity.mouse.click_pos_x || 0) - this.x;
-            let dy = (container.interactivity.mouse.click_pos_y || 0) - this.y;
+            let dx = (container.interactivity.mouse.click_pos_x || 0) - this.position.x;
+            let dy = (container.interactivity.mouse.click_pos_y || 0) - this.position.y;
             let d = dx * dx + dy * dy;
             let force = -repulseRadius / d;
 
@@ -688,25 +699,25 @@ export class Particle {
         const container = this.container;
         const options = container.options;
 
-        let dx_mouse = this.x - (container.interactivity.mouse.pos_x || 0);
-        let dy_mouse = this.y - (container.interactivity.mouse.pos_y || 0);
+        let dx_mouse = this.position.x - (container.interactivity.mouse.pos_x || 0);
+        let dy_mouse = this.position.y - (container.interactivity.mouse.pos_y || 0);
         let dist_mouse = Math.sqrt(dx_mouse * dx_mouse + dy_mouse * dy_mouse);
         let normVec = { x: dx_mouse / dist_mouse, y: dy_mouse / dist_mouse };
         let repulseRadius = options.interactivity.modes.repulse.distance, velocity = 100;
         let repulseFactor = Utils.clamp((1 / repulseRadius) * (-1 * Math.pow(dist_mouse / repulseRadius, 2) + 1) * repulseRadius * velocity, 0, 50);
         let pos = {
-            x: this.x + normVec.x * repulseFactor,
-            y: this.y + normVec.y * repulseFactor
+            x: this.position.x + normVec.x * repulseFactor,
+            y: this.position.y + normVec.y * repulseFactor
         };
 
         if (options.particles.move.out_mode === OutMode.bounce || options.particles.move.out_mode === OutMode.bounceVertical) {
             if (pos.x - this.radius > 0 && pos.x + this.radius < container.canvas.w)
-                this.x = pos.x;
+                this.position.x = pos.x;
             if (pos.y - this.radius > 0 && pos.y + this.radius < container.canvas.h)
-                this.y = pos.y;
+                this.position.y = pos.y;
         } else {
-            this.x = pos.x;
-            this.y = pos.y;
+            this.position.x = pos.x;
+            this.position.y = pos.y;
         }
     }
 
@@ -721,8 +732,8 @@ export class Particle {
 
         if (options.particles.move.out_mode === OutMode.bounce || options.particles.move.out_mode === OutMode.bounceVertical) {
             let pos = {
-                x: this.x + this.velocity.x,
-                y: this.y + this.velocity.y
+                x: this.position.x + this.velocity.x,
+                y: this.position.y + this.velocity.y
             };
 
             if (pos.x + this.radius > container.canvas.w)
@@ -742,11 +753,11 @@ export class Particle {
         const container = this.container;
         const options = container.options;
 
-        const x1 = this.x + this.offsetX;
-        const x2 = p2.x + p2.offsetX;
+        const x1 = this.position.x + this.offset.x;
+        const x2 = p2.position.x + p2.offset.x;
         const dx = x1 - x2;
-        const y1 = this.y + this.offsetY;
-        const y2 = p2.y + p2.offsetY;
+        const y1 = this.position.y + this.offset.y;
+        const y2 = p2.position.y + p2.offset.y;
         const dy = y1 - y2;
         const dist = Math.sqrt(dx * dx + dy * dy);
 
@@ -787,8 +798,8 @@ export class Particle {
         const options = container.options;
 
         /* condensed particles */
-        let dx = this.x - p2.x;
-        let dy = this.y - p2.y;
+        let dx = this.position.x - p2.position.x;
+        let dy = this.position.y - p2.position.y;
         let dist = Math.sqrt(dx * dx + dy * dy);
 
         if (dist <= options.particles.line_linked.distance) {
@@ -803,8 +814,8 @@ export class Particle {
     }
 
     public bounce(p2: Particle) {
-        let dx = this.x - p2.x;
-        let dy = this.y - p2.y;
+        let dx = this.position.x - p2.position.x;
+        let dy = this.position.y - p2.position.y;
         let dist = Math.sqrt(dx * dx + dy * dy);
         let dist_p = this.radius + p2.radius;
 
@@ -822,8 +833,8 @@ export class Particle {
 
         if (options.particles.move.enable) {
             let moveSpeed = options.particles.move.speed / 10;
-            this.x += this.velocity.x * moveSpeed * delta;
-            this.y += this.velocity.y * moveSpeed * delta;
+            this.position.x += this.velocity.x * moveSpeed * delta;
+            this.position.y += this.velocity.y * moveSpeed * delta;
         }
     }
 
@@ -836,8 +847,8 @@ export class Particle {
             let tmp_x = (container.interactivity.mouse.pos_x - (window.innerWidth / 2)) * (this.radius / options.interactivity.events.onhover.parallax.force);
             let tmp_y = ((container.interactivity.mouse.pos_y || 0) - (window.innerHeight / 2)) * (this.radius / options.interactivity.events.onhover.parallax.force);
 
-            this.offsetX += (tmp_x - this.offsetX) / options.interactivity.events.onhover.parallax.smooth; // Easing equation
-            this.offsetY += (tmp_y - this.offsetY) / options.interactivity.events.onhover.parallax.smooth; // Easing equation
+            this.offset.x += (tmp_x - this.offset.x) / options.interactivity.events.onhover.parallax.smooth; // Easing equation
+            this.offset.y += (tmp_y - this.offset.y) / options.interactivity.events.onhover.parallax.smooth; // Easing equation
         }
     }
 
@@ -870,18 +881,18 @@ export class Particle {
         const options = container.options;
 
         if (options.particles.size.anim.enable) {
-            if (this.size_status) {
+            if (this.size.status) {
                 if (this.radius >= options.particles.size.value) {
-                    this.size_status = false;
+                    this.size.status = false;
                 }
 
-                this.radius += (this.vs || 0);
+                this.radius += (this.size.velocity || 0);
             } else {
                 if (this.radius <= options.particles.size.anim.size_min) {
-                    this.size_status = true;
+                    this.size.status = true;
                 }
 
-                this.radius -= (this.vs || 0);
+                this.radius -= (this.size.velocity || 0);
             }
 
             if (this.radius < 0)
@@ -904,27 +915,27 @@ export class Particle {
             };
         } else {
             new_pos = {
-                x_left: -this.radius - this.offsetX,
-                x_right: container.canvas.w + this.radius + this.offsetX,
-                y_top: -this.radius - this.offsetY,
-                y_bottom: container.canvas.h + this.radius - this.offsetY
+                x_left: -this.radius - this.offset.x,
+                x_right: container.canvas.w + this.radius + this.offset.x,
+                y_top: -this.radius - this.offset.y,
+                y_bottom: container.canvas.h + this.radius - this.offset.y
             };
         }
 
-        if ((this.x) - this.radius > container.canvas.w - this.offsetX) {
-            this.x = new_pos.x_left;
-            this.y = Math.random() * container.canvas.h;
-        } else if ((this.x) + this.radius < 0 - this.offsetX) {
-            this.x = new_pos.x_right;
-            this.y = Math.random() * container.canvas.h;
+        if ((this.position.x) - this.radius > container.canvas.w - this.offset.x) {
+            this.position.x = new_pos.x_left;
+            this.position.y = Math.random() * container.canvas.h;
+        } else if ((this.position.x) + this.radius < 0 - this.offset.x) {
+            this.position.x = new_pos.x_right;
+            this.position.y = Math.random() * container.canvas.h;
         }
 
-        if ((this.y) - this.radius > container.canvas.h - this.offsetY) {
-            this.y = new_pos.y_top;
-            this.x = Math.random() * container.canvas.w;
-        } else if ((this.y) + this.radius < 0 - this.offsetY) {
-            this.y = new_pos.y_bottom;
-            this.x = Math.random() * container.canvas.w;
+        if ((this.position.y) - this.radius > container.canvas.h - this.offset.y) {
+            this.position.y = new_pos.y_top;
+            this.position.x = Math.random() * container.canvas.w;
+        } else if ((this.position.y) + this.radius < 0 - this.offset.y) {
+            this.position.y = new_pos.y_bottom;
+            this.position.x = Math.random() * container.canvas.w;
         }
     }
 
@@ -934,33 +945,33 @@ export class Particle {
 
         switch (options.particles.move.out_mode) {
             case OutMode.bounce:
-                if ((this.x + this.offsetX) + this.radius > container.canvas.w) {
+                if ((this.position.x + this.offset.x) + this.radius > container.canvas.w) {
                     this.velocity.x = -this.velocity.x;
-                } else if ((this.x + this.offsetX) - this.radius < 0) {
+                } else if ((this.position.x + this.offset.x) - this.radius < 0) {
                     this.velocity.x = -this.velocity.x;
                 }
 
-                if ((this.y + this.offsetY) + this.radius > container.canvas.h) {
+                if ((this.position.y + this.offset.y) + this.radius > container.canvas.h) {
                     this.velocity.y = -this.velocity.y;
-                } else if ((this.y + this.offsetY) - this.radius < 0) {
+                } else if ((this.position.y + this.offset.y) - this.radius < 0) {
                     this.velocity.y = -this.velocity.y;
                 }
 
                 break;
             case OutMode.bounceVertical:
-                if (this.y + this.radius > container.canvas.h) {
+                if (this.position.y + this.radius > container.canvas.h) {
                     this.velocity.y = -this.velocity.y;
                 }
 
-                if (this.y - this.radius < 0) {
+                if (this.position.y - this.radius < 0) {
                     this.velocity.y = -this.velocity.y;
                 }
 
                 break;
             case OutMode.bounceHorizontal:
-                if (this.x + this.radius > container.canvas.w) {
+                if (this.position.x + this.radius > container.canvas.w) {
                     this.velocity.x = -this.velocity.x;
-                } else if (this.x - this.radius < 0) {
+                } else if (this.position.x - this.radius < 0) {
                     this.velocity.x = -this.velocity.x;
                 }
                 break;

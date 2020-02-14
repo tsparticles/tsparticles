@@ -199,3 +199,8 @@ export interface IOpacity {
     status?: boolean;
     velocity?: number;
 }
+
+export interface ISize {
+    status?: boolean;
+    velocity?: number;
+}
