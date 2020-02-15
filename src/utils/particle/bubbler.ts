@@ -38,7 +38,13 @@ export class Bubbler {
         this.radius = particle.radius;
     }
 
-    private process(dist_mouse: number, time_spent: number, bubble_param: number, particles_param: number, p_obj_bubble: number | undefined, p_obj: number, id: ProcessBubbleType): void {
+    private process(dist_mouse: number,
+        time_spent: number,
+        bubble_param: number,
+        particles_param: number,
+        p_obj_bubble: number | undefined,
+        p_obj: number,
+        id: ProcessBubbleType): void {
         const container = this.container;
         const options = container.options;
         const bubbleDuration = options.interactivity.modes.bubble.duration;
@@ -133,10 +139,10 @@ export class Bubbler {
         const options = container.options;
         const particle = this.particle;
 
-        let dx_mouse = (particle.position.x + particle.offset.x) - (container.interactivity.mouse.pos_x || 0);
-        let dy_mouse = (particle.position.y + particle.offset.y) - (container.interactivity.mouse.pos_y || 0);
-        let dist_mouse = Math.sqrt(dx_mouse * dx_mouse + dy_mouse * dy_mouse);
-        let ratio = 1 - dist_mouse / options.interactivity.modes.bubble.distance;
+        const dx_mouse = (particle.position.x + particle.offset.x) - (container.interactivity.mouse.pos_x || 0);
+        const dy_mouse = (particle.position.y + particle.offset.y) - (container.interactivity.mouse.pos_y || 0);
+        const dist_mouse = Math.sqrt(dx_mouse * dx_mouse + dy_mouse * dy_mouse);
+        const ratio = 1 - dist_mouse / options.interactivity.modes.bubble.distance;
 
         /* mousemove - check ratio */
         if (dist_mouse <= options.interactivity.modes.bubble.distance) {
@@ -164,14 +170,14 @@ export class Bubbler {
 
         if (options.interactivity.modes.bubble.size !== options.particles.size.value) {
             if (options.interactivity.modes.bubble.size > options.particles.size.value) {
-                let size = particle.radius + (options.interactivity.modes.bubble.size * ratio);
+                const size = particle.radius + (options.interactivity.modes.bubble.size * ratio);
 
                 if (size >= 0) {
                     this.radius = size;
                 }
             } else {
-                let dif = particle.radius - options.interactivity.modes.bubble.size;
-                let size = particle.radius - (dif * ratio);
+                const dif = particle.radius - options.interactivity.modes.bubble.size;
+                const size = particle.radius - (dif * ratio);
 
                 if (size > 0) {
                     this.radius = size;
