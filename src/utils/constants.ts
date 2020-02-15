@@ -36,7 +36,7 @@ export class Constants {
                     distance: 100,
                     line_linked: {
                         opacity: 1,
-                    }
+                    },
                 },
                 push: {
                     particles_nb: 4,

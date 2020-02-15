@@ -4,25 +4,18 @@ import { Utils } from "../utils";
 import { HoverMode, ClickMode, ProcessBubbleType } from "../enums";
 
 export class Bubbler {
-    private readonly particle: Particle;
-    private readonly container: Container;
-
     public opacity?: number;
     public radius?: number;
+
+    private readonly particle: Particle;
+    private readonly container: Container;
 
     constructor(container: Container, particle: Particle) {
         this.container = container;
         this.particle = particle;
     }
 
-    private init() {
-        const particle = this.particle;
-
-        this.opacity = particle.opacity.value;
-        this.radius = particle.radius;
-    }
-
-    public bubble() {
+    public bubble(): void {
         const container = this.container;
         const options = container.options;
         const hoverEnabled = options.interactivity.events.onhover.enable;
@@ -38,7 +31,14 @@ export class Bubbler {
         }
     }
 
-    private process(dist_mouse: number, time_spent: number, bubble_param: number, particles_param: number, p_obj_bubble: number | undefined, p_obj: number, id: ProcessBubbleType) {
+    private init(): void {
+        const particle = this.particle;
+
+        this.opacity = particle.opacity.value;
+        this.radius = particle.radius;
+    }
+
+    private process(dist_mouse: number, time_spent: number, bubble_param: number, particles_param: number, p_obj_bubble: number | undefined, p_obj: number, id: ProcessBubbleType): void {
         const container = this.container;
         const options = container.options;
         const bubbleDuration = options.interactivity.modes.bubble.duration;
@@ -89,7 +89,7 @@ export class Bubbler {
         }
     }
 
-    private clickBubble() {
+    private clickBubble(): void {
         const container = this.container;
         const options = container.options;
         const particle = this.particle;
@@ -128,7 +128,7 @@ export class Bubbler {
         }
     }
 
-    private hoverBubble() {
+    private hoverBubble(): void {
         const container = this.container;
         const options = container.options;
         const particle = this.particle;
@@ -157,7 +157,7 @@ export class Bubbler {
         }
     }
 
-    private hoverBubbleSize(ratio: number) {
+    private hoverBubbleSize(ratio: number): void {
         const container = this.container;
         const options = container.options;
         const particle = this.particle;
@@ -182,7 +182,7 @@ export class Bubbler {
         }
     }
 
-    private hoverBubbleOpacity(ratio: number) {
+    private hoverBubbleOpacity(ratio: number): void {
         const container = this.container;
         const options = container.options;
         const particle = this.particle;

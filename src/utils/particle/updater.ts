@@ -104,7 +104,7 @@ export class Updater {
         const particle = this.particle;
 
         if (options.particles.move.enable) {
-            let moveSpeed = options.particles.move.speed / 10;
+            const moveSpeed = options.particles.move.speed / 10;
             particle.position.x += particle.velocity.horizontal * moveSpeed * delta;
             particle.position.y += particle.velocity.vertical * moveSpeed * delta;
         }
@@ -130,7 +130,7 @@ export class Updater {
             /* smaller is the particle, longer is the offset distance */
             const tmp = {
                 x: (mousePos.x - windowDimension.width) * (particle.radius / parallaxForce),
-                y: (mousePos.y - windowDimension.height) * (particle.radius / parallaxForce)
+                y: (mousePos.y - windowDimension.height) * (particle.radius / parallaxForce),
             };
 
             particle.offset.x += (tmp.x - particle.offset.x) / parallaxSmooth; // Easing equation
