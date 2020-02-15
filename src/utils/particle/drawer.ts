@@ -176,7 +176,7 @@ export class Drawer {
         }
     }
 
-    private subDraw(ctx: CanvasRenderingContext2D, img_obj: HTMLImageElement, radius: number) {
+    private subDraw(ctx: CanvasRenderingContext2D, img_obj: HTMLImageElement, radius: number): void {
         const particle = this.particle;
 
         let ratio = 1;
@@ -188,7 +188,12 @@ export class Drawer {
         ctx.drawImage(img_obj, particle.position.x - radius, particle.position.y - radius, radius * 2, radius * 2 / ratio);
     }
 
-    private static subDrawShape(ctx: CanvasRenderingContext2D, startX: number, startY: number, sideLength: number, sideCountNumerator: number, sideCountDenominator: number) {
+    private static subDrawShape(ctx: CanvasRenderingContext2D,
+        startX: number,
+        startY: number,
+        sideLength: number,
+        sideCountNumerator: number,
+        sideCountDenominator: number): void {
         // By Programming Thomas - https://programmingthomas.wordpress.com/2013/04/03/n-sided-shapes/
         const sideCount = sideCountNumerator * sideCountDenominator;
         const decimalSides = sideCountNumerator / sideCountDenominator;

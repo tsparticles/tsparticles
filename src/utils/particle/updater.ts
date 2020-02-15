@@ -67,13 +67,13 @@ export class Updater {
         const particle = this.particle;
 
         /* condensed particles */
-        let dx = particle.position.x - p2.position.x;
-        let dy = particle.position.y - p2.position.y;
-        let dist = Math.sqrt(dx * dx + dy * dy);
+        const dx = particle.position.x - p2.position.x;
+        const dy = particle.position.y - p2.position.y;
+        const dist = Math.sqrt(dx * dx + dy * dy);
 
         if (dist <= options.particles.line_linked.distance) {
-            let ax = dx / (options.particles.move.attract.rotateX * 1000);
-            let ay = dy / (options.particles.move.attract.rotateY * 1000);
+            const ax = dx / (options.particles.move.attract.rotateX * 1000);
+            const ay = dy / (options.particles.move.attract.rotateY * 1000);
 
             particle.velocity.horizontal -= ax;
             particle.velocity.vertical -= ay;
@@ -85,10 +85,10 @@ export class Updater {
     public bounce(p2: Particle) {
         const particle = this.particle;
 
-        let dx = particle.position.x - p2.position.x;
-        let dy = particle.position.y - p2.position.y;
-        let dist = Math.sqrt(dx * dx + dy * dy);
-        let dist_p = particle.radius + p2.radius;
+        const dx = particle.position.x - p2.position.x;
+        const dy = particle.position.y - p2.position.y;
+        const dist = Math.sqrt(dx * dx + dy * dy);
+        const dist_p = particle.radius + p2.radius;
 
         if (dist <= dist_p) {
             particle.velocity.horizontal = -particle.velocity.horizontal;
@@ -117,18 +117,18 @@ export class Updater {
         const parallaxForce = options.interactivity.events.onhover.parallax.force;
         const mousePos = {
             x: container.interactivity.mouse.pos_x || 0,
-            y: container.interactivity.mouse.pos_y || 0
+            y: container.interactivity.mouse.pos_y || 0,
         };
         const windowDimension = {
             width: window.innerWidth / 2,
-            height: window.innerHeight / 2
+            height: window.innerHeight / 2,
         };
         const parallaxSmooth = options.interactivity.events.onhover.parallax.smooth;
 
 
         if (options.interactivity.events.onhover.parallax.enable) {
             /* smaller is the particle, longer is the offset distance */
-            let tmp = {
+            const tmp = {
                 x: (mousePos.x - windowDimension.width) * (particle.radius / parallaxForce),
                 y: (mousePos.y - windowDimension.height) * (particle.radius / parallaxForce)
             };

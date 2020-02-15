@@ -22,8 +22,8 @@ export class Container {
     public repulse: IRepulse;
     public svg: ISvg;
     public img: IImage;
-    public lastFrameTime = 0;
-    public pageHidden = false;
+    public lastFrameTime: number = 0;
+    public pageHidden: boolean = false;
 
     constructor(tagId: string, params: IOptions) {
         this.retina = new Retina(this);
@@ -195,10 +195,10 @@ export class Container {
             const density = this.options.particles.number.density.value_area;
 
             /* calc number of particles based on density area */
-            let nb_particles = area * particlesNumber / density;
+            const nb_particles = area * particlesNumber / density;
 
             /* add or remove X particles */
-            let missing_particles = this.particles.array.length - nb_particles;
+            const missing_particles = this.particles.array.length - nb_particles;
 
             if (missing_particles < 0)
                 this.particles.push(Math.abs(missing_particles));
@@ -355,7 +355,7 @@ export class Container {
             const src = this.options.particles.shape.image.src;
 
             this.img.type = src.substr(src.length - 3);
-            
+
             await this.loadImg(this.img.type);
         }
         else {
