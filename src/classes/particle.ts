@@ -1,7 +1,17 @@
 "use strict";
 
 import { Utils } from "../utils/utils";
-import { IParticleImage, IColor, ICoordinates, IRgb, IHsl, IOptions, IOpacity, ISize, IVelocity } from "../utils/interfaces";
+import {
+    IParticleImage,
+    IColor,
+    ICoordinates,
+    IRgb,
+    IHsl,
+    IOptions,
+    IOpacity,
+    ISize,
+    IVelocity
+} from "../utils/interfaces";
 import { Container } from "./container";
 import { ShapeType, MoveDirection } from "../utils/enums";
 import { Updater } from "../utils/particle/updater";
@@ -68,7 +78,7 @@ export class Particle {
 
         /* opacity */
         this.opacity = {
-            value: (options.particles.opacity.random ? Math.random() : 1) * options.particles.opacity.value
+            value: (options.particles.opacity.random ? Math.random() : 1) * options.particles.opacity.value,
         };
 
         if (options.particles.opacity.anim.enable) {
@@ -89,10 +99,10 @@ export class Particle {
         };
 
         /* if shape is image */
-        let shapeType = options.particles.shape.type;
+        const shapeType = options.particles.shape.type;
 
         if (shapeType instanceof Array) {
-            let selectedShape = shapeType[Math.floor(Math.random() * shapeType.length)];
+            const selectedShape = shapeType[Math.floor(Math.random() * shapeType.length)];
             this.shape = selectedShape;
         } else {
             this.shape = shapeType;
@@ -101,9 +111,9 @@ export class Particle {
         if (this.shape === ShapeType.image) {
             const sh = options.particles.shape;
             this.img = {
-                src: sh.image.src,
                 ratio: sh.image.width / sh.image.height,
-                replace_color: sh.image.replace_color
+                replace_color: sh.image.replace_color,
+                src: sh.image.src,
             };
 
             if (!this.img.ratio) {
@@ -218,7 +228,9 @@ export class Particle {
                if the distance between them is under the config distance
             */
             if (dist_mouse <= options.interactivity.modes.grab.distance) {
-                const opacity_line = options.interactivity.modes.grab.line_linked.opacity - (dist_mouse / (1 / options.interactivity.modes.grab.line_linked.opacity)) / options.interactivity.modes.grab.distance;
+                const lineOpacity = options.interactivity.modes.grab.line_linked.opacity;
+                const grabDistance = options.interactivity.modes.grab.distance;
+                const opacity_line = lineOpacity - (dist_mouse / (1 / lineOpacity)) / grabDistance;
 
                 if (opacity_line > 0) {
                     /* style */
@@ -230,7 +242,8 @@ export class Particle {
                     const color_line = container.particles.line_linked_color || { r: 127, g: 127, b: 127 };
 
                     if (container.canvas.ctx) {
-                        container.canvas.ctx.strokeStyle = `rgba(${color_line.r},${color_line.g},${color_line.b},${opacity_line})`;
+                        const strokeStyle = `rgba(${color_line.r},${color_line.g},${color_line.b},${opacity_line})`;
+                        container.canvas.ctx.strokeStyle = strokeStyle;
                         container.canvas.ctx.lineWidth = options.particles.line_linked.width;
                         // container.canvas.ctx.lineCap = "round"; /* performance issue */
                         /* path */
@@ -288,7 +301,7 @@ export class Particle {
         this.updater.updateSize();
     }
 
-    public fixOutOfCanvasPosition() {
+    public fixOutOfCanvasPosition(): void {
         this.updater.fixOutOfCanvasPosition();
     }
 
@@ -297,7 +310,7 @@ export class Particle {
     }
 
     private calcPosition(container: Container, position?: ICoordinates): ICoordinates {
-        let pos = {
+        const pos = {
             x: position && position.x ? position.x : Math.random() * container.canvas.w,
             y: position && position.y ? position.y : Math.random() * container.canvas.h,
         };
@@ -320,7 +333,7 @@ export class Particle {
 
     private calcVelocity(options: IOptions): IVelocity {
         const velbase = this.getVelBase(options);
-        let res = {
+        const res = {
             horizontal: 0,
             vertical: 0,
         };
@@ -339,7 +352,7 @@ export class Particle {
             res.vertical = velbase.y + Math.random() - 0.5;
         }
 
-        // let theta = 2.0 * Math.PI * Math.random();
+        // const theta = 2.0 * Math.PI * Math.random();
 
         // res.x = Math.cos(theta);
         // res.y = Math.sin(theta);
@@ -384,12 +397,12 @@ export class Particle {
     }
 
     private getColor(options: IOptions, color: { value: string[] | IColor | string }): IColor {
-        let res: IColor = {};
+        const res: IColor = {};
 
         if (typeof (color.value) === "object") {
             if (color.value instanceof Array) {
-                let arr = options.particles.color.value as string[];
-                let color_selected = color.value[Math.floor(Math.random() * arr.length)];
+                const arr = options.particles.color.value as string[];
+                const color_selected = color.value[Math.floor(Math.random() * arr.length)];
 
                 res.rgb = Utils.hexToRgb(color_selected);
             } else {
