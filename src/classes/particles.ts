@@ -19,7 +19,7 @@ export class Particles {
     }
 
     /* --------- tsParticles functions - particles ----------- */
-    public create() {
+    public create(): void {
         let container = this.container;
         let options = container.options;
 
@@ -30,7 +30,7 @@ export class Particles {
         }
     }
 
-    public update(delta: number) {
+    public update(delta: number): void {
         let container = this.container;
         let options = container.options;
         const arrLength = this.array.length;
@@ -105,7 +105,7 @@ export class Particles {
         }
     }
 
-    public draw(delta: number) {
+    public draw(delta: number): void {
         let container = this.container;
 
         /* clear canvas */
@@ -122,12 +122,12 @@ export class Particles {
         }
     }
 
-    public empty() {
+    public empty(): void {
         this.array = [];
     }
 
     /* ---------- tsParticles functions - modes events ------------ */
-    public push(nb: number, mousePosition?: IMouseData) {
+    public push(nb: number, mousePosition?: IMouseData): void {
         const container = this.container;
         const options = container.options;
 
@@ -155,7 +155,7 @@ export class Particles {
         this.pushing = false;
     }
 
-    public remove(nb: number) {
+    public remove(nb: number): void {
         const container = this.container;
         const options = container.options;
 
@@ -166,7 +166,7 @@ export class Particles {
         }
     }
 
-    public async refresh() {
+    public async refresh(): Promise<void> {
         let container = this.container;
 
         /* init all */

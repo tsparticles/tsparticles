@@ -38,7 +38,7 @@ export class Bubbler {
         }
     }
 
-    public process(dist_mouse: number, time_spent: number, bubble_param: number, particles_param: number, p_obj_bubble: number | undefined, p_obj: number, id: ProcessBubbleType) {
+    private process(dist_mouse: number, time_spent: number, bubble_param: number, particles_param: number, p_obj_bubble: number | undefined, p_obj: number, id: ProcessBubbleType) {
         const container = this.container;
         const options = container.options;
         const bubbleDuration = options.interactivity.modes.bubble.duration;

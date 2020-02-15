@@ -28,7 +28,7 @@ export class Repulser {
         }
     }
 
-    private clickRepulse() {
+    private clickRepulse(): void {
         const container = this.container;
         const options = container.options;
         const particle = this.particle;
@@ -71,7 +71,7 @@ export class Repulser {
         }
     }
 
-    private hoverRepulse() {
+    private hoverRepulse(): void {
         const container = this.container;
         const options = container.options;
         const particle = this.particle;
@@ -101,7 +101,7 @@ export class Repulser {
         }
     }
 
-    public processRepulse(dx: number, dy: number, force: number) {
+    private processRepulse(dx: number, dy: number, force: number): void {
         const container = this.container;
         const options = container.options;
         const particle = this.particle;
