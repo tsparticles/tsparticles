@@ -12,7 +12,7 @@ export class Updater {
         this.particle = particle;
     }
 
-    public link(p2: Particle) {
+    public link(p2: Particle): void {
         const container = this.container;
         const options = container.options;
         const particle = this.particle;
@@ -61,7 +61,7 @@ export class Updater {
         }
     }
 
-    public attract(p2: Particle) {
+    public attract(p2: Particle): void {
         const container = this.container;
         const options = container.options;
         const particle = this.particle;
@@ -82,7 +82,7 @@ export class Updater {
         }
     }
 
-    public bounce(p2: Particle) {
+    public bounce(p2: Particle): void {
         const particle = this.particle;
 
         const dx = particle.position.x - p2.position.x;
@@ -98,7 +98,7 @@ export class Updater {
         }
     }
 
-    public move(delta: number) {
+    public move(delta: number): void {
         const container = this.container;
         const options = container.options;
         const particle = this.particle;
@@ -110,7 +110,7 @@ export class Updater {
         }
     }
 
-    public moveParallax() {
+    public moveParallax(): void {
         const container = this.container;
         const options = container.options;
         const particle = this.particle;
@@ -120,8 +120,8 @@ export class Updater {
             y: container.interactivity.mouse.pos_y || 0,
         };
         const windowDimension = {
-            width: window.innerWidth / 2,
             height: window.innerHeight / 2,
+            width: window.innerWidth / 2,
         };
         const parallaxSmooth = options.interactivity.events.onhover.parallax.smooth;
 
@@ -138,7 +138,7 @@ export class Updater {
         }
     }
 
-    public updateOpacity() {
+    public updateOpacity(): void {
         const container = this.container;
         const options = container.options;
         const particle = this.particle;
@@ -163,7 +163,7 @@ export class Updater {
         }
     }
 
-    public updateSize() {
+    public updateSize(): void {
         const container = this.container;
         const options = container.options;
         const particle = this.particle;
@@ -189,7 +189,7 @@ export class Updater {
         }
     }
 
-    public fixOutOfCanvasPosition() {
+    public fixOutOfCanvasPosition(): void {
         const container = this.container;
         const options = container.options;
         const particle = this.particle;
@@ -201,15 +201,15 @@ export class Updater {
             new_pos = {
                 x_left: particle.radius,
                 x_right: container.canvas.w,
+                y_bottom: container.canvas.h,
                 y_top: particle.radius,
-                y_bottom: container.canvas.h
             };
         } else {
             new_pos = {
                 x_left: -particle.radius - particle.offset.x,
                 x_right: container.canvas.w + particle.radius + particle.offset.x,
+                y_bottom: container.canvas.h + particle.radius - particle.offset.y,
                 y_top: -particle.radius - particle.offset.y,
-                y_bottom: container.canvas.h + particle.radius - particle.offset.y
             };
         }
 
@@ -230,7 +230,7 @@ export class Updater {
         }
     }
 
-    public updateOutMode() {
+    public updateOutMode(): void {
         const container = this.container;
         const options = container.options;
         const particle = this.particle;
