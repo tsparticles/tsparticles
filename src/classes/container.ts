@@ -5,9 +5,8 @@ import { IOptions, IContainerInteractivity, ISvg, IImage, IBubble, IRepulse } fr
 import { Retina } from "./retina";
 import { Canvas } from "./canvas";
 import { Particles } from "./particles";
-import { ShapeType, InteractivityDetect, ClickMode, ProcessBubbleType } from "../utils/enums";
+import { ShapeType, InteractivityDetect } from "../utils/enums";
 import { Loader } from "./loader";
-import { Particle } from "./particle";
 import { Constants } from "../utils/constants";
 import { EventListeners } from "../utils/eventlisteners";
 
@@ -155,7 +154,7 @@ export class Container {
         window.open(this.canvas.el.toDataURL("image/png"), "_blank");
     }
 
-    public async loadImg(type: string): Promise<void> {
+    public async loadImg(): Promise<void> {
         this.img.error = undefined;
         if (this.options.particles.shape.image.src) {
             // if (type === "svg") {
@@ -290,7 +289,7 @@ export class Container {
 
             this.img.type = src.substr(src.length - 3);
 
-            await this.loadImg(this.img.type);
+            await this.loadImg();
         }
         else {
             this.checkBeforeDraw();
