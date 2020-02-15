@@ -9,6 +9,7 @@ import { ShapeType, InteractivityDetect, ClickMode, ProcessBubbleType } from "..
 import { Loader } from "./loader";
 import { Particle } from "./particle";
 import { Constants } from "../utils/constants";
+import { EventListeners } from "../utils/eventlisteners";
 
 export class Container {
     public interactivity: IContainerInteractivity;
@@ -24,6 +25,8 @@ export class Container {
     public img: IImage;
     public lastFrameTime: number;
     public pageHidden: boolean;
+
+    private readonly eventListeners: EventListeners;
 
     constructor(tagId: string, params: IOptions) {
         this.lastFrameTime = 0;
@@ -55,7 +58,8 @@ export class Container {
         }
 
         /* ---------- tsParticles - start ------------ */
-        this.eventsListeners();
+        this.eventListeners = new EventListeners(this);
+        this.addEventsListeners();
 
         this.start().then(() => {
             /*
@@ -85,7 +89,7 @@ export class Container {
     }
 
     /* ---------- tsParticles functions - vendors ------------ */
-    public eventsListeners(): void {
+    public addEventsListeners(): void {
         /* events target element */
         if (this.options.interactivity.detect_on === InteractivityDetect.window) {
             this.interactivity.el = window;
@@ -98,88 +102,16 @@ export class Container {
         if (this.options.interactivity.events.onhover.enable || this.options.interactivity.events.onclick.enable) {
             /* el on mousemove */
             if (this.interactivity.el) {
-                this.interactivity.el.addEventListener("mousemove", (e: Event) => {
-                    let pos_x;
-                    let pos_y;
-
-                    const mouseEvent = e as MouseEvent;
-
-                    if (this.interactivity.el === window) {
-                        pos_x = mouseEvent.clientX;
-                        pos_y = mouseEvent.clientY;
-                    } else if (this.options.interactivity.detect_on === InteractivityDetect.parent) {
-                        const source = mouseEvent.srcElement as HTMLElement;
-                        const target = mouseEvent.currentTarget as HTMLElement
-                        if (source && target) {
-                            const sourceRect = source.getBoundingClientRect();
-                            const targetRect = target.getBoundingClientRect();
-                            pos_x = mouseEvent.offsetX + sourceRect.left - targetRect.left;
-                            pos_y = mouseEvent.offsetY + sourceRect.top - targetRect.top;
-                        } else {
-                            pos_x = mouseEvent.offsetX || mouseEvent.clientX;
-                            pos_y = mouseEvent.offsetY || mouseEvent.clientY;
-                        }
-                    } else {
-                        pos_x = mouseEvent.offsetX || mouseEvent.clientX;
-                        pos_y = mouseEvent.offsetY || mouseEvent.clientY;
-                    }
-
-                    this.interactivity.mouse.pos_x = pos_x * (this.retina.isRetina ? this.canvas.pxratio : 1);
-                    this.interactivity.mouse.pos_y = pos_y * (this.retina.isRetina ? this.canvas.pxratio : 1);
-
-                    this.interactivity.status = "mousemove";
-                });
+                this.interactivity.el.addEventListener("mousemove", (e: Event) => this.eventListeners.mouseMove(e));
                 /* el on onmouseleave */
-                this.interactivity.el.addEventListener("mouseleave", () => {
-                    this.interactivity.mouse.pos_x = null;
-                    this.interactivity.mouse.pos_y = null;
-                    this.interactivity.status = "mouseleave";
-                });
+                this.interactivity.el.addEventListener("mouseleave", () => this.eventListeners.mouseLeave());
             }
         }
 
         /* on click event */
         if (this.options.interactivity.events.onclick.enable) {
             if (this.interactivity.el) {
-                this.interactivity.el.addEventListener("click", () => {
-                    this.interactivity.mouse.click_pos_x = this.interactivity.mouse.pos_x;
-                    this.interactivity.mouse.click_pos_y = this.interactivity.mouse.pos_y;
-                    this.interactivity.mouse.click_time = new Date().getTime();
-
-                    if (this.options.interactivity.events.onclick.enable) {
-                        const pushNb = this.options.interactivity.modes.push.particles_nb;
-                        const removeNb = this.options.interactivity.modes.remove.particles_nb;
-
-                        switch (this.options.interactivity.events.onclick.mode) {
-                            case ClickMode.push:
-                                if (this.options.particles.move.enable) {
-                                    this.particles.push(pushNb, this.interactivity.mouse);
-                                } else {
-                                    if (this.options.interactivity.modes.push.particles_nb === 1) {
-                                        this.particles.push(pushNb, this.interactivity.mouse);
-                                    }
-                                    else if (this.options.interactivity.modes.push.particles_nb > 1) {
-                                        this.particles.push(pushNb);
-                                    }
-                                }
-                                break;
-                            case ClickMode.remove:
-                                this.particles.remove(removeNb);
-                                break;
-                            case ClickMode.bubble:
-                                this.bubble.clicking = true;
-                                break;
-                            case ClickMode.repulse:
-                                this.repulse.clicking = true;
-                                this.repulse.count = 0;
-                                this.repulse.finish = false;
-                                setTimeout(() => {
-                                    this.repulse.clicking = false;
-                                }, this.options.interactivity.modes.repulse.duration * 1000);
-                                break;
-                        }
-                    }
-                });
+                this.interactivity.el.addEventListener("click", () => this.eventListeners.mouseClick());
             }
         }
     }
@@ -238,7 +170,7 @@ export class Container {
             //         this.img.error = true;
             //     }
             // } else {
-            let img = new Image();
+            const img = new Image();
 
             img.addEventListener("load", () => {
                 this.img.obj = img;

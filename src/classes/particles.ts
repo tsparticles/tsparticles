@@ -20,8 +20,8 @@ export class Particles {
 
     /* --------- tsParticles functions - particles ----------- */
     public create(): void {
-        let container = this.container;
-        let options = container.options;
+        const container = this.container;
+        const options = container.options;
 
         for (let i = 0; i < options.particles.number.value; i++) {
             const p = new Particle(container);
@@ -31,8 +31,8 @@ export class Particles {
     }
 
     public update(delta: number): void {
-        let container = this.container;
-        let options = container.options;
+        const container = this.container;
+        const options = container.options;
         const arrLength = this.array.length;
 
         for (let i = 0; i < arrLength; i++) {
@@ -138,7 +138,7 @@ export class Particles {
         if (mousePosition) {
             pos = {
                 x: mousePosition.pos_x ?? 0,
-                y: mousePosition.pos_y ?? 0
+                y: mousePosition.pos_y ?? 0,
             };
         }
 
@@ -167,7 +167,7 @@ export class Particles {
     }
 
     public async refresh(): Promise<void> {
-        let container = this.container;
+        const container = this.container;
 
         /* init all */
         if (container.checkAnimFrame) {

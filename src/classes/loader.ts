@@ -19,7 +19,7 @@ export class Loader {
     tsParticlesDom = value;
   }
 
-  public static load(tagId: string, params: IOptions) {
+  public static load(tagId: string, params: IOptions): Container | undefined {
     /* elements */
     const tag = document.getElementById(tagId);
 
