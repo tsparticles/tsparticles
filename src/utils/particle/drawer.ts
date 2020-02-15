@@ -14,6 +14,34 @@ export class Drawer {
         this.bubbler = bubbler;
     }
 
+    private static subDrawShape(ctx: CanvasRenderingContext2D,
+        startX: number,
+        startY: number,
+        sideLength: number,
+        sideCountNumerator: number,
+        sideCountDenominator: number): void {
+        // By Programming Thomas - https://programmingthomas.wordpress.com/2013/04/03/n-sided-shapes/
+        const sideCount = sideCountNumerator * sideCountDenominator;
+        const decimalSides = sideCountNumerator / sideCountDenominator;
+        const interiorAngleDegrees = (180 * (decimalSides - 2)) / decimalSides;
+        const interiorAngle = Math.PI - Math.PI * interiorAngleDegrees / 180; // convert to radians
+
+        ctx.save();
+        ctx.beginPath();
+        ctx.translate(startX, startY);
+        ctx.moveTo(0, 0);
+
+        for (let i = 0; i < sideCount; i++) {
+            ctx.lineTo(sideLength, 0);
+            ctx.translate(sideLength, 0);
+            ctx.rotate(interiorAngle);
+        }
+
+        // c.stroke();
+        ctx.fill();
+        ctx.restore();
+    }
+
     public draw(): void {
         const container = this.container;
         const options = container.options;
@@ -191,33 +219,5 @@ export class Drawer {
         };
 
         ctx.drawImage(img_obj, pos.x, pos.y, radius * 2, radius * 2 / ratio);
-    }
-
-    private static subDrawShape(ctx: CanvasRenderingContext2D,
-        startX: number,
-        startY: number,
-        sideLength: number,
-        sideCountNumerator: number,
-        sideCountDenominator: number): void {
-        // By Programming Thomas - https://programmingthomas.wordpress.com/2013/04/03/n-sided-shapes/
-        const sideCount = sideCountNumerator * sideCountDenominator;
-        const decimalSides = sideCountNumerator / sideCountDenominator;
-        const interiorAngleDegrees = (180 * (decimalSides - 2)) / decimalSides;
-        const interiorAngle = Math.PI - Math.PI * interiorAngleDegrees / 180; // convert to radians
-
-        ctx.save();
-        ctx.beginPath();
-        ctx.translate(startX, startY);
-        ctx.moveTo(0, 0);
-
-        for (let i = 0; i < sideCount; i++) {
-            ctx.lineTo(sideLength, 0);
-            ctx.translate(sideLength, 0);
-            ctx.rotate(interiorAngle);
-        }
-
-        // c.stroke();
-        ctx.fill();
-        ctx.restore();
     }
 }

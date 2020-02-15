@@ -10,7 +10,7 @@ import {
     IOptions,
     IOpacity,
     ISize,
-    IVelocity
+    IVelocity,
 } from "../utils/interfaces";
 import { Container } from "./container";
 import { ShapeType, MoveDirection } from "../utils/enums";
@@ -252,7 +252,7 @@ export class Particle {
 
                         const mousePos = {
                             x: (container.interactivity.mouse.pos_x || 0),
-                            y: (container.interactivity.mouse.pos_y || 0)
+                            y: (container.interactivity.mouse.pos_y || 0),
                         };
 
                         container.canvas.ctx.lineTo(mousePos.x, mousePos.y);
