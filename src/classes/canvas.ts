@@ -2,6 +2,7 @@
 
 import { Constants } from "../utils/constants";
 import { Container } from "./container";
+import { ICoordinates } from "../utils/interfaces";
 
 export class Canvas {
     public el: HTMLCanvasElement;

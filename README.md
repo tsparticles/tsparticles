@@ -4,6 +4,8 @@
 
 [![CodeFactor](https://www.codefactor.io/repository/github/matteobruni/tsparticles/badge)](https://www.codefactor.io/repository/github/matteobruni/tsparticles)
 [![Codacy Badge](https://api.codacy.com/project/badge/Grade/b983aaf3461a4c48b1e2eecce1ff1d74)](https://www.codacy.com/manual/ar3s/tsparticles?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=matteobruni/tsparticles&amp;utm_campaign=Badge_Grade)
+[![Code Inspector](https://www.code-inspector.com/project/4056/score/svg)(https://frontend.code-inspector.com/public/project/4056/tsparticles/dashboard)]
+[![Code Inspector](https://www.code-inspector.com/project/4056/score/svg)(https://frontend.code-inspector.com/public/project/4056/tsparticles/dashboard)]
 
 ### A lightweight TypeScript library for creating particles
 

@@ -108,7 +108,7 @@ export class Container {
                         pos_x = mouseEvent.clientX;
                         pos_y = mouseEvent.clientY;
                     } else if (this.options.interactivity.detect_on === InteractivityDetect.parent) {
-                        let source = mouseEvent.srcElement as HTMLElement;
+                        const source = mouseEvent.srcElement as HTMLElement;
                         const target = mouseEvent.currentTarget as HTMLElement
                         if (source && target) {
                             const sourceRect = source.getBoundingClientRect();

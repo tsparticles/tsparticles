@@ -12,7 +12,7 @@ export class Retina {
         this.isRetina = false;
     }
 
-    public init() {
+    public init(): void {
         const container = this.container;
         const options = container.options;
 
