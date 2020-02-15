@@ -33,12 +33,12 @@ export class Container {
         this.particles = new Particles(this);
 
         this.interactivity = {
-            mouse: {}
+            mouse: {},
         };
 
         this.svg = {
+            count: 0,
             source: undefined,
-            count: 0
         };
 
         this.img = {};
@@ -70,7 +70,7 @@ export class Container {
         });
     }
 
-    public handleVisibilityChange() {
+    public handleVisibilityChange(): void {
         if (document.hidden) {
             this.pageHidden = true;
 
@@ -85,7 +85,7 @@ export class Container {
     }
 
     /* ---------- tsParticles functions - vendors ------------ */
-    public eventsListeners() {
+    public eventsListeners(): void {
         /* events target element */
         if (this.options.interactivity.detect_on === InteractivityDetect.window) {
             this.interactivity.el = window;
@@ -102,17 +102,17 @@ export class Container {
                     let pos_x;
                     let pos_y;
 
-                    let mouseEvent = e as MouseEvent;
+                    const mouseEvent = e as MouseEvent;
 
                     if (this.interactivity.el === window) {
                         pos_x = mouseEvent.clientX;
                         pos_y = mouseEvent.clientY;
                     } else if (this.options.interactivity.detect_on === InteractivityDetect.parent) {
                         let source = mouseEvent.srcElement as HTMLElement;
-                        let target = mouseEvent.currentTarget as HTMLElement
+                        const target = mouseEvent.currentTarget as HTMLElement
                         if (source && target) {
-                            let sourceRect = source.getBoundingClientRect();
-                            let targetRect = target.getBoundingClientRect();
+                            const sourceRect = source.getBoundingClientRect();
+                            const targetRect = target.getBoundingClientRect();
                             pos_x = mouseEvent.offsetX + sourceRect.left - targetRect.left;
                             pos_y = mouseEvent.offsetY + sourceRect.top - targetRect.top;
                         } else {
@@ -184,7 +184,7 @@ export class Container {
         }
     }
 
-    public densityAutoParticles() {
+    public densityAutoParticles(): void {
         if (this.options.particles.number.density.enable) {
             /* calc area */
             let area = this.canvas.el.width * this.canvas.el.height / 1000;
@@ -209,7 +209,7 @@ export class Container {
         }
     }
 
-    public destroyContainer() {
+    public destroyContainer(): void {
         if (this.drawAnimFrame !== undefined) {
             cancelAnimationFrame(this.drawAnimFrame);
         }
@@ -219,11 +219,11 @@ export class Container {
         Loader.domSet([]);
     }
 
-    public exportImg() {
+    public exportImg(): void {
         window.open(this.canvas.el.toDataURL("image/png"), "_blank");
     }
 
-    public async loadImg(type: string) {
+    public async loadImg(type: string): void {
         this.img.error = undefined;
         if (this.options.particles.shape.image.src) {
             // if (type === "svg") {
@@ -254,15 +254,15 @@ export class Container {
         }
     }
 
-    public requestFrame(callback: FrameRequestCallback) {
+    public requestFrame(callback: FrameRequestCallback): number {
         return window.requestAnimFrame(callback);
     }
 
-    public cancelAnimation(handle: number) {
-        return window.cancelAnimationFrame(handle);
+    public cancelAnimation(handle: number): void {
+        window.cancelAnimationFrame(handle);
     }
 
-    public draw(timestamp: DOMHighResTimeStamp) {
+    public draw(timestamp: DOMHighResTimeStamp): void {
         // FPS limit logic
         // If we are too fast, just draw without updating
         const fps_limit = this.options.fps_limit;
@@ -318,7 +318,7 @@ export class Container {
         }
     }
 
-    public checkBeforeDraw() {
+    public checkBeforeDraw(): void {
         // if shape is image
         if (this.options.particles.shape.type === ShapeType.image) {
             // if (this.img.type === "svg" && this.svg.source === undefined) {
@@ -342,7 +342,7 @@ export class Container {
         }
     }
 
-    public init() {
+    public init(): void {
         /* init canvas + particles */
         this.retina.init();
         this.canvas.init();
@@ -352,7 +352,7 @@ export class Container {
         this.densityAutoParticles();
     }
 
-    public async start() {
+    public async start(): Promise<void> {
         if (this.options.particles.shape.type === ShapeType.image) {
             const src = this.options.particles.shape.image.src;
 
