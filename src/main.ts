@@ -52,23 +52,23 @@ window.cancelRequestAnimFrame = (() => {
 /* ---------- tsParticles functions - start ------------ */
 
 class Main {
-  public load(tagId: string, params: IOptions) {
-    Loader.load(tagId, params);
+  public load(tagId: string, params: IOptions): Container | undefined {
+    return Loader.load(tagId, params);
   }
 
-  public async loadJSON(tagId: string, path_config_json: string) {
+  public async loadJSON(tagId: string, path_config_json: string): Promise<void> {
     await Loader.loadJSON(tagId, path_config_json);
   }
 
-  public setOnClickHandler(callback: EventListenerOrEventListenerObject) {
+  public setOnClickHandler(callback: EventListenerOrEventListenerObject): void {
     Loader.setOnClickHandler(callback);
   }
 
-  public dom() {
+  public dom(): Container[] {
     return Loader.dom();
   }
 
-  public domItem(idx: number) {
+  public domItem(idx: number): Container {
     return this.dom()[idx];
   }
 }

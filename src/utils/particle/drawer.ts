@@ -14,7 +14,7 @@ export class Drawer {
         this.bubbler = bubbler;
     }
 
-    public draw() {
+    public draw(): void {
         const container = this.container;
         const options = container.options;
         const particle = this.particle;
@@ -61,7 +61,7 @@ export class Drawer {
         container.canvas.ctx.fill();
     }
 
-    private drawShape(radius: number) {
+    private drawShape(radius: number): void {
         const container = this.container;
         const options = container.options;
         const particle = this.particle;
@@ -73,7 +73,7 @@ export class Drawer {
 
         const pos = {
             x: particle.position.x + particle.offset.x,
-            y: particle.position.y + particle.offset.y
+            y: particle.position.y + particle.offset.y,
         };
 
         switch (particle.shape) {
@@ -123,8 +123,8 @@ export class Drawer {
                 break;
 
             case ShapeType.heart:
-                let x = particle.position.x - radius / 2;
-                let y = particle.position.y - radius / 2;
+                const x = particle.position.x - radius / 2;
+                const y = particle.position.y - radius / 2;
 
                 ctx.moveTo(x, y + radius / 4);
                 ctx.quadraticCurveTo(x, y, x + radius / 4, y);
@@ -185,7 +185,12 @@ export class Drawer {
             ratio = particle.img.ratio;
         }
 
-        ctx.drawImage(img_obj, particle.position.x - radius, particle.position.y - radius, radius * 2, radius * 2 / ratio);
+        const pos = {
+            x: particle.position.x - radius,
+            y: particle.position.y - radius,
+        };
+
+        ctx.drawImage(img_obj, pos.x, pos.y, radius * 2, radius * 2 / ratio);
     }
 
     private static subDrawShape(ctx: CanvasRenderingContext2D,

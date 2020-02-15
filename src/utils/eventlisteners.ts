@@ -43,7 +43,7 @@ export class EventListeners {
         container.interactivity.status = "mousemove";
     }
 
-    public mouseLeave() {
+    public mouseLeave(): void {
         const container = this.container;
 
         container.interactivity.mouse.pos_x = null;
@@ -51,7 +51,7 @@ export class EventListeners {
         container.interactivity.status = "mouseleave";
     }
 
-    public mouseClick() {
+    public mouseClick(): void {
         const container = this.container;
         const options = container.options;
 

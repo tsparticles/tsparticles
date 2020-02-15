@@ -106,7 +106,7 @@ export class Particles {
     }
 
     public draw(delta: number): void {
-        let container = this.container;
+        const container = this.container;
 
         /* clear canvas */
         if (container.canvas.ctx) {

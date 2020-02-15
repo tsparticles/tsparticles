@@ -12,7 +12,7 @@ export class Repulser {
         this.particle = particle;
     }
 
-    public repulse() {
+    public repulse(): void {
         const container = this.container;
         const options = container.options;
         const hoverEnabled = options.interactivity.events.onhover.enable;
@@ -83,7 +83,7 @@ export class Repulser {
         const repulseFactor = Utils.clamp((1 - Math.pow(dist_mouse / repulseRadius, 2)) * velocity, 0, 50);
         const pos = {
             x: particle.position.x + normVec.x * repulseFactor,
-            y: particle.position.y + normVec.y * repulseFactor
+            y: particle.position.y + normVec.y * repulseFactor,
         };
         const outMode = options.particles.move.out_mode;
 
@@ -113,9 +113,9 @@ export class Repulser {
         const outMode = options.particles.move.out_mode;
 
         if (outMode === OutMode.bounce || outMode === OutMode.bounceVertical) {
-            let pos = {
+            const pos = {
                 x: particle.position.x + particle.velocity.horizontal,
-                y: particle.position.y + particle.velocity.vertical
+                y: particle.position.y + particle.velocity.vertical,
             };
 
             if (pos.x + particle.radius > container.canvas.w) {
