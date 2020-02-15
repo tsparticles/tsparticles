@@ -52,7 +52,7 @@ export class Constants {
         },
         particles: {
             color: {
-                value: "#fff"
+                value: "#fff",
             },
             line_linked: {
                 color: "#fff",
@@ -124,7 +124,7 @@ export class Constants {
                 },
                 random: false,
                 value: 20,
-            }
+            },
         },
         retina_detect: false,
     };
