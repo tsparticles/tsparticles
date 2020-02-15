@@ -223,7 +223,7 @@ export class Container {
         window.open(this.canvas.el.toDataURL("image/png"), "_blank");
     }
 
-    public async loadImg(type: string): void {
+    public async loadImg(type: string): Promise<void> {
         this.img.error = undefined;
         if (this.options.particles.shape.image.src) {
             // if (type === "svg") {
