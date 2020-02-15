@@ -26,12 +26,12 @@ export class Canvas {
     }
 
     /* ---------- tsParticles functions - canvas ------------ */
-    public init() {
+    public init(): void {
         // TODO: Moved in the constructor, check if it"s fine there
         // this.ctx = this.el.getContext("2d");
     }
 
-    public size() {
+    public size(): void {
         const container = this.container;
         const options = container.options;
 
@@ -67,13 +67,13 @@ export class Canvas {
         }
     }
 
-    public paint() {
+    public paint(): void {
         if (this.ctx) {
             this.ctx.fillRect(0, 0, this.w, this.h);
         }
     }
 
-    public clear() {
+    public clear(): void {
         if (this.ctx) {
             this.ctx.clearRect(0, 0, this.w, this.h);
         }

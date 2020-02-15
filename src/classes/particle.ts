@@ -55,7 +55,7 @@ export class Particle {
         /* parallax */
         this.offset = {
             x: 0,
-            y: 0
+            y: 0,
         };
 
         /* check position - avoid overlap */
@@ -85,7 +85,7 @@ export class Particle {
 
         this.initialVelocity = {
             horizontal: this.velocity.horizontal,
-            vertical: this.velocity.vertical
+            vertical: this.velocity.vertical,
         };
 
         /* if shape is image */
@@ -159,9 +159,9 @@ export class Particle {
 
     private calcVelocity(options: IOptions) {
         const velbase = this.getVelBase(options);
-        let res: IVelocity = {
+        let res = {
             horizontal: 0,
-            vertical: 0
+            vertical: 0,
         };
 
         if (options.particles.move.straight) {
@@ -233,7 +233,7 @@ export class Particle {
                 res.rgb = Utils.hexToRgb(color_selected);
             } else {
 
-                let rgbColor = color.value as IRgb;
+                const rgbColor = color.value as IRgb;
 
                 if (rgbColor && rgbColor.r !== undefined && rgbColor.g !== undefined && rgbColor.b !== undefined) {
                     this.color.rgb = {
@@ -243,7 +243,7 @@ export class Particle {
                     };
                 }
 
-                let hslColor = color.value as IHsl;
+                const hslColor = color.value as IHsl;
 
                 if (hslColor && hslColor.h !== undefined && hslColor.s !== undefined && hslColor.l !== undefined) {
                     res.hsl = {
