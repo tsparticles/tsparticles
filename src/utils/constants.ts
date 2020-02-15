@@ -4,7 +4,7 @@ import { ClickMode, HoverMode, InteractivityDetect, MoveDirection, OutMode, Shap
 import { IOptions } from "./interfaces";
 
 export class Constants {
-    public static readonly canvasClass = "tsparticles-canvas-el";
+    public static readonly canvasClass: string = "tsparticles-canvas-el";
     public static readonly defaultOptions: IOptions = {
         fps_limit: 60,
         interactivity: {
@@ -35,18 +35,18 @@ export class Constants {
                 grab: {
                     distance: 100,
                     line_linked: {
-                        opacity: 1
+                        opacity: 1,
                     }
                 },
                 push: {
-                    particles_nb: 4
+                    particles_nb: 4,
                 },
                 remove: {
-                    particles_nb: 2
+                    particles_nb: 2,
                 },
                 repulse: {
                     distance: 200,
-                    duration: 0.4
+                    duration: 0.4,
                 },
             }
         },
@@ -59,13 +59,13 @@ export class Constants {
                 distance: 100,
                 enable: true,
                 opacity: 1,
-                width: 1
+                width: 1,
             },
             move: {
                 attract: {
                     enable: false,
                     rotateX: 3000,
-                    rotateY: 3000
+                    rotateY: 3000,
                 },
                 bounce: false,
                 direction: MoveDirection.none,
@@ -73,12 +73,12 @@ export class Constants {
                 out_mode: OutMode.out,
                 random: false,
                 speed: 2,
-                straight: false
+                straight: false,
             },
             number: {
                 density: {
                     enable: true,
-                    value_area: 800
+                    value_area: 800,
                 },
                 value: 400,
             },
@@ -87,7 +87,7 @@ export class Constants {
                     enable: false,
                     opacity_min: 0,
                     speed: 2,
-                    sync: false
+                    sync: false,
                 },
                 random: false,
                 value: 1,
@@ -107,7 +107,7 @@ export class Constants {
                     width: 100,
                 },
                 polygon: {
-                    nb_sides: 5
+                    nb_sides: 5,
                 },
                 stroke: {
                     color: "#ff0000",
@@ -120,7 +120,7 @@ export class Constants {
                     enable: false,
                     size_min: 0,
                     speed: 20,
-                    sync: false
+                    sync: false,
                 },
                 random: false,
                 value: 20,
