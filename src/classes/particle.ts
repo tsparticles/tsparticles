@@ -99,7 +99,7 @@ export class Particle {
         }
 
         if (this.shape === ShapeType.image) {
-            let sh = options.particles.shape;
+            const sh = options.particles.shape;
             this.img = {
                 src: sh.image.src,
                 ratio: sh.image.width / sh.image.height,
@@ -206,19 +206,19 @@ export class Particle {
     // }
 
     public grab(): void {
-        let container = this.container;
-        let options = container.options;
+        const container = this.container;
+        const options = container.options;
 
         if (options.interactivity.events.onhover.enable && container.interactivity.status === "mousemove") {
-            let dx_mouse = this.position.x - (container.interactivity.mouse.pos_x || 0);
-            let dy_mouse = this.position.y - (container.interactivity.mouse.pos_y || 0);
-            let dist_mouse = Math.sqrt(dx_mouse * dx_mouse + dy_mouse * dy_mouse);
+            const dx_mouse = this.position.x - (container.interactivity.mouse.pos_x || 0);
+            const dy_mouse = this.position.y - (container.interactivity.mouse.pos_y || 0);
+            const dist_mouse = Math.sqrt(dx_mouse * dx_mouse + dy_mouse * dy_mouse);
             /*
                draw a line between the cursor and the particle
                if the distance between them is under the config distance
             */
             if (dist_mouse <= options.interactivity.modes.grab.distance) {
-                let opacity_line = options.interactivity.modes.grab.line_linked.opacity - (dist_mouse / (1 / options.interactivity.modes.grab.line_linked.opacity)) / options.interactivity.modes.grab.distance;
+                const opacity_line = options.interactivity.modes.grab.line_linked.opacity - (dist_mouse / (1 / options.interactivity.modes.grab.line_linked.opacity)) / options.interactivity.modes.grab.distance;
 
                 if (opacity_line > 0) {
                     /* style */
@@ -227,7 +227,7 @@ export class Particle {
 
                     container.particles.line_linked_color = lineColor;
 
-                    let color_line = container.particles.line_linked_color || { r: 127, g: 127, b: 127 };
+                    const color_line = container.particles.line_linked_color || { r: 127, g: 127, b: 127 };
 
                     if (container.canvas.ctx) {
                         container.canvas.ctx.strokeStyle = `rgba(${color_line.r},${color_line.g},${color_line.b},${opacity_line})`;
