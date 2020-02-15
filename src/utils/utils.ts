@@ -15,14 +15,14 @@ export class Utils {
     const result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
 
     return result ? {
-      r: parseInt(result[1], 16),
-      g: parseInt(result[2], 16),
       b: parseInt(result[3], 16),
+      g: parseInt(result[2], 16),
+      r: parseInt(result[1], 16),
     } : null;
   }
 
-  public static clamp(number: number, min: number, max: number) {
-    return Math.min(Math.max(number, min), max);
+  public static clamp(num: number, min: number, max: number) {
+    return Math.min(Math.max(num, min), max);
   }
 
   public static isInArray<T>(value: T, array: T[] | T) {
@@ -30,7 +30,7 @@ export class Utils {
   }
 
   public static deepExtend(destination: any, source: any) {
-    for (let property in source) {
+    for (const property in source) {
       if (source[property] && source[property].constructor && source[property].constructor === Object) {
         destination[property] = destination[property] || {};
 

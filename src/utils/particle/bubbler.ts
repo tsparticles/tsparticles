@@ -25,11 +25,15 @@ export class Bubbler {
     public bubble() {
         const container = this.container;
         const options = container.options;
+        const hoverEnabled = options.interactivity.events.onhover.enable;
+        const hoverMode = options.interactivity.events.onhover.mode;
+        const clickEnabled = options.interactivity.events.onclick.enable;
+        const clickMode = options.interactivity.events.onclick.mode;
 
         /* on hover event */
-        if (options.interactivity.events.onhover.enable && Utils.isInArray(HoverMode.bubble, options.interactivity.events.onhover.mode)) {
+        if (hoverEnabled && Utils.isInArray(HoverMode.bubble, hoverMode)) {
             this.hoverBubble();
-        } else if (options.interactivity.events.onclick.enable && Utils.isInArray(ClickMode.bubble, options.interactivity.events.onclick.mode)) {
+        } else if (clickEnabled && Utils.isInArray(ClickMode.bubble, clickMode)) {
             this.clickBubble();
         }
     }
@@ -37,7 +41,7 @@ export class Bubbler {
     public process(dist_mouse: number, time_spent: number, bubble_param: number, particles_param: number, p_obj_bubble: number | undefined, p_obj: number, id: ProcessBubbleType) {
         const container = this.container;
         const options = container.options;
-        const particle = this.particle;
+        const bubbleDuration = options.interactivity.modes.bubble.duration;
 
         if (bubble_param !== particles_param) {
             if (!container.bubble.duration_end) {
@@ -51,7 +55,7 @@ export class Bubbler {
                     }
 
                     if (obj !== bubble_param) {
-                        let value = p_obj - (time_spent * (p_obj - bubble_param) / options.interactivity.modes.bubble.duration);
+                        const value = p_obj - (time_spent * (p_obj - bubble_param) / bubbleDuration);
 
                         if (id === ProcessBubbleType.size) {
                             this.radius = value;
@@ -70,8 +74,9 @@ export class Bubbler {
                         this.opacity = undefined;
                 }
             } else if (p_obj_bubble) {
-                let value_tmp = p_obj - (time_spent * (p_obj - bubble_param) / options.interactivity.modes.bubble.duration), dif = bubble_param - value_tmp;
-                let value = bubble_param + dif;
+                const value_tmp = p_obj - (time_spent * (p_obj - bubble_param) / bubbleDuration);
+                const dif = bubble_param - value_tmp;
+                const value = bubble_param + dif;
 
                 if (id === ProcessBubbleType.size) {
                     this.radius = value;
@@ -90,17 +95,17 @@ export class Bubbler {
         const particle = this.particle;
 
         /* on click event */
-        let dx_mouse = particle.position.x - (container.interactivity.mouse.click_pos_x || 0);
-        let dy_mouse = particle.position.y - (container.interactivity.mouse.click_pos_y || 0);
-        let dist_mouse = Math.sqrt(dx_mouse * dx_mouse + dy_mouse * dy_mouse);
-        let time_spent = (new Date().getTime() - (container.interactivity.mouse.click_time || 0)) / 1000;
+        const dx_mouse = particle.position.x - (container.interactivity.mouse.click_pos_x || 0);
+        const dy_mouse = particle.position.y - (container.interactivity.mouse.click_pos_y || 0);
+        const distMouse = Math.sqrt(dx_mouse * dx_mouse + dy_mouse * dy_mouse);
+        const timeSpent = (new Date().getTime() - (container.interactivity.mouse.click_time || 0)) / 1000;
 
         if (container.bubble.clicking) {
-            if (time_spent > options.interactivity.modes.bubble.duration) {
+            if (timeSpent > options.interactivity.modes.bubble.duration) {
                 container.bubble.duration_end = true;
             }
 
-            if (time_spent > options.interactivity.modes.bubble.duration * 2) {
+            if (timeSpent > options.interactivity.modes.bubble.duration * 2) {
                 container.bubble.clicking = false;
                 container.bubble.duration_end = false;
             }
@@ -108,9 +113,18 @@ export class Bubbler {
 
         if (container.bubble.clicking) {
             /* size */
-            this.process(dist_mouse, time_spent, options.interactivity.modes.bubble.size, options.particles.size.value, this.radius, this.particle.radius, ProcessBubbleType.size);
+            const sizeMode = options.interactivity.modes.bubble.size;
+            const optSize = options.particles.size.value;
+            const radius = this.radius;
+            const pRadius = this.particle.radius;
+            const opacityMode = options.interactivity.modes.bubble.opacity;
+            const optOpacity = options.particles.opacity.value;
+            const opacity = this.opacity;
+            const pOpacity = this.particle.opacity.value;
+
+            this.process(distMouse, timeSpent, sizeMode, optSize, radius, pRadius, ProcessBubbleType.size);
             /* opacity */
-            this.process(dist_mouse, time_spent, options.interactivity.modes.bubble.opacity, options.particles.opacity.value, this.opacity, this.particle.opacity.value, ProcessBubbleType.opacity);
+            this.process(distMouse, timeSpent, opacityMode, optOpacity, opacity, pOpacity, ProcessBubbleType.opacity);
         }
     }
 
@@ -172,18 +186,21 @@ export class Bubbler {
         const container = this.container;
         const options = container.options;
         const particle = this.particle;
+        const modeOpacity = options.interactivity.modes.bubble.opacity;
+        const optOpacity = options.particles.opacity.value;
+        const pOpacity = particle.opacity.value;
 
-        if (options.interactivity.modes.bubble.opacity !== options.particles.opacity.value) {
-            if (options.interactivity.modes.bubble.opacity > options.particles.opacity.value) {
-                let opacity = options.interactivity.modes.bubble.opacity * ratio;
+        if (modeOpacity !== optOpacity) {
+            if (modeOpacity > optOpacity) {
+                const opacity = options.interactivity.modes.bubble.opacity * ratio;
 
-                if (opacity > particle.opacity.value && opacity <= options.interactivity.modes.bubble.opacity) {
+                if (opacity > pOpacity && opacity <= modeOpacity) {
                     this.opacity = opacity;
                 }
-            }
-            else {
-                let opacity = particle.opacity.value - (options.particles.opacity.value - options.interactivity.modes.bubble.opacity) * ratio;
-                if (opacity < particle.opacity.value && opacity >= options.interactivity.modes.bubble.opacity) {
+            } else {
+                const opacity = pOpacity - (optOpacity - modeOpacity) * ratio;
+
+                if (opacity < pOpacity && opacity >= modeOpacity) {
                     this.opacity = opacity;
                 }
             }

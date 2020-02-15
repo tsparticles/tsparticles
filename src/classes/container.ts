@@ -11,23 +11,19 @@ import { Particle } from "./particle";
 import { Constants } from "../utils/constants";
 
 export class Container {
-    interactivity: IContainerInteractivity;
-    options: IOptions;
-
-    retina: Retina;
-    canvas: Canvas;
-    particles: Particles;
-
-    checkAnimFrame?: number;
-    drawAnimFrame?: number;
-
-    bubble: IBubble;
-    repulse: IRepulse;
-    svg: ISvg;
-    img: IImage;
-
-    lastFrameTime = 0;
-    pageHidden = false;
+    public interactivity: IContainerInteractivity;
+    public options: IOptions;
+    public retina: Retina;
+    public canvas: Canvas;
+    public particles: Particles;
+    public checkAnimFrame?: number;
+    public drawAnimFrame?: number;
+    public bubble: IBubble;
+    public repulse: IRepulse;
+    public svg: ISvg;
+    public img: IImage;
+    public lastFrameTime = 0;
+    public pageHidden = false;
 
     constructor(tagId: string, params: IOptions) {
         this.retina = new Retina(this);
@@ -59,7 +55,6 @@ export class Container {
         /* ---------- tsParticles - start ------------ */
         this.eventsListeners();
 
-        //TODO: Start è async
         this.start().then(() => {
             /*
                 Cancel animation if page is not in focus
@@ -150,21 +145,24 @@ export class Container {
                     this.interactivity.mouse.click_time = new Date().getTime();
 
                     if (this.options.interactivity.events.onclick.enable) {
+                        const pushNb = this.options.interactivity.modes.push.particles_nb;
+                        const removeNb = this.options.interactivity.modes.remove.particles_nb;
+
                         switch (this.options.interactivity.events.onclick.mode) {
                             case ClickMode.push:
                                 if (this.options.particles.move.enable) {
-                                    this.particles.push(this.options.interactivity.modes.push.particles_nb, this.interactivity.mouse);
+                                    this.particles.push(pushNb, this.interactivity.mouse);
                                 } else {
                                     if (this.options.interactivity.modes.push.particles_nb === 1) {
-                                        this.particles.push(this.options.interactivity.modes.push.particles_nb, this.interactivity.mouse);
+                                        this.particles.push(pushNb, this.interactivity.mouse);
                                     }
                                     else if (this.options.interactivity.modes.push.particles_nb > 1) {
-                                        this.particles.push(this.options.interactivity.modes.push.particles_nb);
+                                        this.particles.push(pushNb);
                                     }
                                 }
                                 break;
                             case ClickMode.remove:
-                                this.particles.remove(this.options.interactivity.modes.remove.particles_nb);
+                                this.particles.remove(removeNb);
                                 break;
                             case ClickMode.bubble:
                                 this.bubble.clicking = true;
@@ -192,8 +190,12 @@ export class Container {
             if (this.retina.isRetina) {
                 area = area / ((this.canvas.pxratio) * 2);
             }
+
+            const particlesNumber = this.options.particles.number.value;
+            const density = this.options.particles.number.density.value_area;
+
             /* calc number of particles based on density area */
-            let nb_particles = area * this.options.particles.number.value / this.options.particles.number.density.value_area;
+            let nb_particles = area * particlesNumber / density;
 
             /* add or remove X particles */
             let missing_particles = this.particles.array.length - nb_particles;
@@ -206,8 +208,9 @@ export class Container {
     }
 
     public destroyContainer() {
-        if (this.drawAnimFrame !== undefined)
+        if (this.drawAnimFrame !== undefined) {
             cancelAnimationFrame(this.drawAnimFrame);
+        }
 
         this.canvas.el.remove();
 
@@ -349,7 +352,10 @@ export class Container {
 
     public async start() {
         if (this.options.particles.shape.type === ShapeType.image) {
-            this.img.type = this.options.particles.shape.image.src.substr(this.options.particles.shape.image.src.length - 3);
+            const src = this.options.particles.shape.image.src;
+
+            this.img.type = src.substr(src.length - 3);
+            
             await this.loadImg(this.img.type);
         }
         else {

@@ -15,10 +15,15 @@ export class Repulser {
     public repulse() {
         const container = this.container;
         const options = container.options;
+        const hoverEnabled = options.interactivity.events.onhover.enable;
+        const clickEnabled = options.interactivity.events.onclick.enable;
+        const mouseMoveStatus = container.interactivity.status === "mousemove";
+        const hoverMode = options.interactivity.events.onhover.mode;
+        const clickMode = options.interactivity.events.onclick.mode;
 
-        if (options.interactivity.events.onhover.enable && Utils.isInArray(HoverMode.repulse, options.interactivity.events.onhover.mode) && container.interactivity.status === "mousemove") {
+        if (mouseMoveStatus && hoverEnabled && Utils.isInArray(HoverMode.repulse, hoverMode)) {
             this.hoverRepulse();
-        } else if (options.interactivity.events.onclick.enable && Utils.isInArray(ClickMode.repulse, options.interactivity.events.onclick.mode)) {
+        } else if (clickEnabled && Utils.isInArray(ClickMode.repulse, clickMode)) {
             this.clickRepulse();
         }
     }
@@ -29,9 +34,9 @@ export class Repulser {
         const particle = this.particle;
 
         if (!container.repulse.finish) {
-
-            if (!container.repulse.count)
+            if (!container.repulse.count) {
                 container.repulse.count = 0;
+            }
 
             container.repulse.count++;
 
@@ -41,11 +46,12 @@ export class Repulser {
         }
 
         if (container.repulse.clicking) {
-            let repulseRadius = Math.pow(options.interactivity.modes.repulse.distance / 6, 3);
-            let dx = (container.interactivity.mouse.click_pos_x || 0) - particle.position.x;
-            let dy = (container.interactivity.mouse.click_pos_y || 0) - particle.position.y;
-            let d = dx * dx + dy * dy;
-            let force = -repulseRadius / d;
+            const repulseDistance = options.interactivity.modes.repulse.distance;
+            const repulseRadius = Math.pow(repulseDistance / 6, 3);
+            const dx = (container.interactivity.mouse.click_pos_x || 0) - particle.position.x;
+            const dy = (container.interactivity.mouse.click_pos_y || 0) - particle.position.y;
+            const d = dx * dx + dy * dy;
+            const force = -repulseRadius / d;
 
             // default
             if (d <= repulseRadius) {
@@ -69,23 +75,26 @@ export class Repulser {
         const container = this.container;
         const options = container.options;
         const particle = this.particle;
-
-        let dx_mouse = particle.position.x - (container.interactivity.mouse.pos_x || 0);
-        let dy_mouse = particle.position.y - (container.interactivity.mouse.pos_y || 0);
-        let dist_mouse = Math.sqrt(dx_mouse * dx_mouse + dy_mouse * dy_mouse);
-        let normVec = { x: dx_mouse / dist_mouse, y: dy_mouse / dist_mouse };
-        let repulseRadius = options.interactivity.modes.repulse.distance, velocity = 100;
-        let repulseFactor = Utils.clamp((1 / repulseRadius) * (-1 * Math.pow(dist_mouse / repulseRadius, 2) + 1) * repulseRadius * velocity, 0, 50);
-        let pos = {
+        const dx_mouse = particle.position.x - (container.interactivity.mouse.pos_x || 0);
+        const dy_mouse = particle.position.y - (container.interactivity.mouse.pos_y || 0);
+        const dist_mouse = Math.sqrt(dx_mouse * dx_mouse + dy_mouse * dy_mouse);
+        const normVec = { x: dx_mouse / dist_mouse, y: dy_mouse / dist_mouse };
+        const repulseRadius = options.interactivity.modes.repulse.distance, velocity = 100;
+        const repulseFactor = Utils.clamp((1 - Math.pow(dist_mouse / repulseRadius, 2)) * velocity, 0, 50);
+        const pos = {
             x: particle.position.x + normVec.x * repulseFactor,
             y: particle.position.y + normVec.y * repulseFactor
         };
+        const outMode = options.particles.move.out_mode;
 
-        if (options.particles.move.out_mode === OutMode.bounce || options.particles.move.out_mode === OutMode.bounceVertical) {
-            if (pos.x - particle.radius > 0 && pos.x + particle.radius < container.canvas.w)
+        if (outMode === OutMode.bounce || outMode === OutMode.bounceVertical) {
+            if (pos.x - particle.radius > 0 && pos.x + particle.radius < container.canvas.w) {
                 particle.position.x = pos.x;
-            if (pos.y - particle.radius > 0 && pos.y + particle.radius < container.canvas.h)
+            }
+
+            if (pos.y - particle.radius > 0 && pos.y + particle.radius < container.canvas.h) {
                 particle.position.y = pos.y;
+            }
         } else {
             particle.position.x = pos.x;
             particle.position.y = pos.y;
@@ -93,16 +102,17 @@ export class Repulser {
     }
 
     public processRepulse(dx: number, dy: number, force: number) {
-        let container = this.container;
-        let options = container.options;
+        const container = this.container;
+        const options = container.options;
         const particle = this.particle;
-
-        let f = Math.atan2(dy, dx);
+        const f = Math.atan2(dy, dx);
 
         particle.velocity.horizontal = force * Math.cos(f);
         particle.velocity.vertical = force * Math.sin(f);
 
-        if (options.particles.move.out_mode === OutMode.bounce || options.particles.move.out_mode === OutMode.bounceVertical) {
+        const outMode = options.particles.move.out_mode;
+
+        if (outMode === OutMode.bounce || outMode === OutMode.bounceVertical) {
             let pos = {
                 x: particle.position.x + particle.velocity.horizontal,
                 y: particle.position.y + particle.velocity.vertical

@@ -3,8 +3,9 @@
 import { Container } from "./container";
 
 export class Retina {
-    private container: Container;
     public isRetina: boolean;
+
+    private readonly container: Container;
 
     constructor(container: Container) {
         this.container = container;
@@ -13,7 +14,7 @@ export class Retina {
 
     public init() {
         const container = this.container;
-        let options = container.options;
+        const options = container.options;
 
         if (options.retina_detect && window.devicePixelRatio > 1) {
             container.canvas.pxratio = window.devicePixelRatio;

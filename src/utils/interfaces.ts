@@ -1,6 +1,6 @@
 "use strict";
 
-import { ShapeType, MoveDirection, OutMode, InteractivityDetect, HoverMode, ClickMode } from "./enums";
+import { ClickMode, HoverMode, InteractivityDetect, MoveDirection, OutMode, ShapeType } from "./enums";
 
 export interface IContainerInteractivity {
     el?: HTMLElement | Window | Node | null;
@@ -208,4 +208,9 @@ export interface ISize {
 export interface IVelocity {
     horizontal: number;
     vertical: number;
+}
+
+export interface IDimension {
+    width: number;
+    height: number;
 }

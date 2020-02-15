@@ -37,9 +37,7 @@ window.requestAnimFrame = (() => {
     window.mozRequestAnimationFrame ||
     window.oRequestAnimationFrame ||
     window.msRequestAnimationFrame ||
-    function (callback: () => void) {
-      window.setTimeout(callback, 1000 / 60);
-    };
+    ((callback) => window.setTimeout(callback, 1000 / 60));
 })();
 
 window.cancelRequestAnimFrame = (() => {
@@ -98,7 +96,7 @@ window.particlesJS.load = async (tagId: string, path_config_json: string, callba
   });
 };
 
-window.particlesJS.setOnClickHandler = function (callback: EventListenerOrEventListenerObject) {
+window.particlesJS.setOnClickHandler = (callback: EventListenerOrEventListenerObject) => {
   if (console) {
     console.info("this method is obsolete, please use the new tsParticles.setOnClickHandler");
   }
@@ -106,7 +104,7 @@ window.particlesJS.setOnClickHandler = function (callback: EventListenerOrEventL
   window.tsParticles.setOnClickHandler(callback);
 };
 
-window.pJSDom = function () {
+window.pJSDom = () => {
   if (console) {
     console.info("this method is obsolete, please use the new tsParticles.dom");
   }

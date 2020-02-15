@@ -24,10 +24,12 @@ export class Updater {
         const y2 = p2.position.y + p2.offset.y;
         const dy = y1 - y2;
         const dist = Math.sqrt(dx * dx + dy * dy);
+        const optOpacity = options.particles.line_linked.opacity;
+        const optDistance = options.particles.line_linked.distance;
 
         /* draw a line between p1 and p2 if the distance between them is under the config distance */
-        if (dist <= options.particles.line_linked.distance) {
-            const opacity_line = options.particles.line_linked.opacity - (dist * options.particles.line_linked.opacity) / options.particles.line_linked.distance;
+        if (dist <= optDistance) {
+            const opacity_line = optOpacity - (dist * optOpacity) / optDistance;
 
             if (opacity_line > 0) {
                 /* style */
@@ -35,7 +37,9 @@ export class Updater {
                     container.particles.line_linked_color = Utils.hexToRgb(options.particles.line_linked.color);
                 }
 
-                if (!container.canvas.ctx) return;
+                if (!container.canvas.ctx) {
+                    return;
+                }
 
                 const ctx = container.canvas.ctx;
 
@@ -46,7 +50,7 @@ export class Updater {
                 }
 
                 ctx.lineWidth = options.particles.line_linked.width;
-                //container.canvas.ctx.lineCap = "round"; /* performance issue */
+                // container.canvas.ctx.lineCap = "round"; /* performance issue */
                 /* path */
                 ctx.beginPath();
                 ctx.moveTo(x1, y1);
@@ -110,14 +114,27 @@ export class Updater {
         const container = this.container;
         const options = container.options;
         const particle = this.particle;
+        const parallaxForce = options.interactivity.events.onhover.parallax.force;
+        const mousePos = {
+            x: container.interactivity.mouse.pos_x || 0,
+            y: container.interactivity.mouse.pos_y || 0
+        };
+        const windowDimension = {
+            width: window.innerWidth / 2,
+            height: window.innerHeight / 2
+        };
+        const parallaxSmooth = options.interactivity.events.onhover.parallax.smooth;
 
-        if (container.interactivity.mouse.pos_x && options.interactivity.events.onhover.parallax.enable) {
+
+        if (options.interactivity.events.onhover.parallax.enable) {
             /* smaller is the particle, longer is the offset distance */
-            let tmp_x = (container.interactivity.mouse.pos_x - (window.innerWidth / 2)) * (particle.radius / options.interactivity.events.onhover.parallax.force);
-            let tmp_y = ((container.interactivity.mouse.pos_y || 0) - (window.innerHeight / 2)) * (particle.radius / options.interactivity.events.onhover.parallax.force);
+            let tmp = {
+                x: (mousePos.x - windowDimension.width) * (particle.radius / parallaxForce),
+                y: (mousePos.y - windowDimension.height) * (particle.radius / parallaxForce)
+            };
 
-            particle.offset.x += (tmp_x - particle.offset.x) / options.interactivity.events.onhover.parallax.smooth; // Easing equation
-            particle.offset.y += (tmp_y - particle.offset.y) / options.interactivity.events.onhover.parallax.smooth; // Easing equation
+            particle.offset.x += (tmp.x - particle.offset.x) / parallaxSmooth; // Easing equation
+            particle.offset.y += (tmp.y - particle.offset.y) / parallaxSmooth; // Easing equation
         }
     }
 
@@ -166,8 +183,9 @@ export class Updater {
                 particle.radius -= (particle.size.velocity || 0);
             }
 
-            if (particle.radius < 0)
+            if (particle.radius < 0) {
                 particle.radius = 0;
+            }
         }
     }
 
@@ -175,10 +193,11 @@ export class Updater {
         const container = this.container;
         const options = container.options;
         const particle = this.particle;
+        const outMode = options.particles.move.out_mode;
 
         let new_pos;
 
-        if (options.particles.move.out_mode === OutMode.bounce || options.particles.move.out_mode === OutMode.bounceVertical) {
+        if (outMode === OutMode.bounce || outMode === OutMode.bounceVertical) {
             new_pos = {
                 x_left: particle.radius,
                 x_right: container.canvas.w,

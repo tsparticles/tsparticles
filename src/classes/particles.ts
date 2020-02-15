@@ -1,16 +1,17 @@
 "use strict";
 
+import { ClickMode, HoverMode } from "../utils/enums";
+import { Container } from "./container";
+import { IMouseData, IRgb, ICoordinates } from "../utils/interfaces";
 import { Particle } from "./particle";
 import { Utils } from "../utils/utils";
-import { Container } from "./container";
-import { OutMode, HoverMode, ClickMode } from "../utils/enums";
-import { IMouseData, IRgb, ICoordinates } from "../utils/interfaces";
 
 export class Particles {
-    private container: Container;
     public array: Particle[];
     public pushing?: boolean;
     public line_linked_color?: IRgb | null;
+
+    private readonly container: Container;
 
     constructor(container: Container) {
         this.container = container;
@@ -37,7 +38,8 @@ export class Particles {
         for (let i = 0; i < arrLength; i++) {
             /* the particle */
             let p = this.array[i];
-            // let d = ( dx = container.interactivity.mouse.click_pos_x - p.x ) * dx + ( dy = container.interactivity.mouse.click_pos_y - p.y ) * dy;
+            // let d = ( dx = container.interactivity.mouse.click_pos_x - p.x ) * dx +
+            //         ( dy = container.interactivity.mouse.click_pos_y - p.y ) * dy;
             // let f = -BANG_SIZE / d;
             // if ( d < BANG_SIZE ) {
             //     let t = Math.atan2( dy, dx );
@@ -63,16 +65,19 @@ export class Particles {
             /* out of canvas modes */
             p.updateOutMode();
 
+            const hoverMode = options.interactivity.events.onhover.mode;
+            const clickMode = options.interactivity.events.onclick.mode;
+
             /* events */
-            if (Utils.isInArray(HoverMode.grab, options.interactivity.events.onhover.mode)) {
+            if (Utils.isInArray(HoverMode.grab, hoverMode)) {
                 p.grab();
             }
 
-            if (Utils.isInArray(HoverMode.bubble, options.interactivity.events.onhover.mode) || Utils.isInArray(ClickMode.bubble, options.interactivity.events.onclick.mode)) {
+            if (Utils.isInArray(HoverMode.bubble, hoverMode) || Utils.isInArray(ClickMode.bubble, clickMode)) {
                 p.bubble();
             }
 
-            if (Utils.isInArray(HoverMode.repulse, options.interactivity.events.onhover.mode) || Utils.isInArray(ClickMode.repulse, options.interactivity.events.onclick.mode)) {
+            if (Utils.isInArray(HoverMode.repulse, hoverMode) || Utils.isInArray(ClickMode.repulse, clickMode)) {
                 p.repulse();
             }
 
@@ -104,8 +109,9 @@ export class Particles {
         let container = this.container;
 
         /* clear canvas */
-        if (container.canvas.ctx)
+        if (container.canvas.ctx) {
             container.canvas.ctx.clearRect(0, 0, container.canvas.w, container.canvas.h);
+        }
 
         /* update each particles param */
         container.particles.update(delta);
@@ -164,11 +170,13 @@ export class Particles {
         let container = this.container;
 
         /* init all */
-        if (container.checkAnimFrame)
+        if (container.checkAnimFrame) {
             container.cancelAnimation(container.checkAnimFrame);
+        }
 
-        if (container.drawAnimFrame)
+        if (container.drawAnimFrame) {
             container.cancelAnimation(container.drawAnimFrame);
+        }
 
         container.svg.source = undefined;
         container.svg.count = 0;

@@ -10,11 +10,6 @@ import { Repulser } from "../utils/particle/repulser";
 import { Drawer } from "../utils/particle/drawer";
 
 export class Particle {
-    private container: Container;
-    private updater: Updater;
-    private bubbler: Bubbler;
-    private repulser: Repulser;
-    private drawer: Drawer;
     public radius: number;
     public size: ISize;
     public position: ICoordinates;
@@ -27,6 +22,12 @@ export class Particle {
     public img?: IParticleImage;
     public opacity_bubble?: number;
     public text?: string;
+
+    private readonly container: Container;
+    private readonly updater: Updater;
+    private readonly bubbler: Bubbler;
+    private readonly repulser: Repulser;
+    private readonly drawer: Drawer;
 
     /* --------- tsParticles functions - particles ----------- */
     constructor(container: Container, position?: ICoordinates) {
@@ -104,8 +105,10 @@ export class Particle {
                 ratio: sh.image.width / sh.image.height,
                 replace_color: sh.image.replace_color
             };
-            if (!this.img.ratio)
+
+            if (!this.img.ratio) {
                 this.img.ratio = 1;
+            }
             // if (container.img.type === "svg" && container.svg.source !== undefined) {
             //     this.createSvgImg();
 
@@ -116,10 +119,13 @@ export class Particle {
         }
 
         if (this.shape === ShapeType.char || this.shape === ShapeType.character) {
-            if (typeof options.particles.shape.character.value === "string") {
-                this.text = options.particles.shape.character.value;
+            const value = options.particles.shape.character.value;
+
+            if (typeof value === "string") {
+                this.text = value;
             } else {
-                this.text = options.particles.shape.character.value[Math.floor(Math.random() * options.particles.shape.character.value.length)]
+
+                this.text = value[Math.floor(Math.random() * value.length)]
             }
         }
 
@@ -340,24 +346,36 @@ export class Particle {
             let dx_mouse = this.position.x - (container.interactivity.mouse.pos_x || 0);
             let dy_mouse = this.position.y - (container.interactivity.mouse.pos_y || 0);
             let dist_mouse = Math.sqrt(dx_mouse * dx_mouse + dy_mouse * dy_mouse);
-            /* draw a line between the cursor and the particle if the distance between them is under the config distance */
+            /*
+               draw a line between the cursor and the particle
+               if the distance between them is under the config distance
+            */
             if (dist_mouse <= options.interactivity.modes.grab.distance) {
                 let opacity_line = options.interactivity.modes.grab.line_linked.opacity - (dist_mouse / (1 / options.interactivity.modes.grab.line_linked.opacity)) / options.interactivity.modes.grab.distance;
 
                 if (opacity_line > 0) {
                     /* style */
-                    container.particles.line_linked_color = container.particles.line_linked_color || Utils.hexToRgb(options.particles.line_linked.color);
+                    const optColor = options.particles.line_linked.color;
+                    const lineColor = container.particles.line_linked_color || Utils.hexToRgb(optColor);
+
+                    container.particles.line_linked_color = lineColor;
 
                     let color_line = container.particles.line_linked_color || { r: 127, g: 127, b: 127 };
 
                     if (container.canvas.ctx) {
                         container.canvas.ctx.strokeStyle = `rgba(${color_line.r},${color_line.g},${color_line.b},${opacity_line})`;
                         container.canvas.ctx.lineWidth = options.particles.line_linked.width;
-                        //container.canvas.ctx.lineCap = "round"; /* performance issue */
+                        // container.canvas.ctx.lineCap = "round"; /* performance issue */
                         /* path */
                         container.canvas.ctx.beginPath();
                         container.canvas.ctx.moveTo(this.position.x + this.offset.x, this.position.y + this.offset.y);
-                        container.canvas.ctx.lineTo((container.interactivity.mouse.pos_x || 0), (container.interactivity.mouse.pos_y || 0));
+
+                        const mousePos = {
+                            x: (container.interactivity.mouse.pos_x || 0),
+                            y: (container.interactivity.mouse.pos_y || 0)
+                        };
+
+                        container.canvas.ctx.lineTo(mousePos.x, mousePos.y);
                         container.canvas.ctx.stroke();
                         container.canvas.ctx.closePath();
                     }

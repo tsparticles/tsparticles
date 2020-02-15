@@ -1,7 +1,7 @@
 "use strict";
 
-import { Container } from "./container";
 import { Constants } from "../utils/constants";
+import { Container } from "./container";
 import { IOptions } from "../utils/interfaces";
 
 let tsParticlesDom: Container[] = [];
@@ -21,13 +21,13 @@ export class Loader {
 
   public static load(tagId: string, params: IOptions) {
     /* elements */
-    let tag = document.getElementById(tagId);
+    const tag = document.getElementById(tagId);
 
     if (!tag) {
       return;
     }
 
-    let existCanvas = tag.getElementsByClassName(Constants.canvasClass);
+    const existCanvas = tag.getElementsByClassName(Constants.canvasClass);
 
     /* remove canvas if exists into the container target tag */
     if (existCanvas.length) {
@@ -49,7 +49,9 @@ export class Loader {
     const canvas = document.getElementById(tagId)?.appendChild(canvasEl);
 
     /* launch tsparticle */
-    if (!canvas) return;
+    if (!canvas) {
+      return;
+    }
 
     const newItem = new Container(tagId, params);
     const dom = Loader.dom();
@@ -79,18 +81,18 @@ export class Loader {
   };
 
   public static setOnClickHandler(callback: EventListenerOrEventListenerObject) {
-    let tsParticlesDom = Loader.dom();
+    const tsParticlesDom = Loader.dom();
 
     if (tsParticlesDom.length === 0) {
       throw new Error("Can only set click handlers after calling tsParticles.load() or tsParticles.loadJSON()");
     }
 
     for (const domItem of tsParticlesDom) {
-      let el = domItem.interactivity.el;
+      const el = domItem.interactivity.el;
 
       if (el) {
         el.addEventListener("click", callback);
       }
     }
   }
-};
+}
