@@ -22,10 +22,12 @@ export class Container {
     public repulse: IRepulse;
     public svg: ISvg;
     public img: IImage;
-    public lastFrameTime: number = 0;
-    public pageHidden: boolean = false;
+    public lastFrameTime: number;
+    public pageHidden: boolean;
 
     constructor(tagId: string, params: IOptions) {
+        this.lastFrameTime = 0;
+        this.pageHidden = false;
         this.retina = new Retina(this);
         this.canvas = new Canvas(this, tagId);
         this.particles = new Particles(this);
