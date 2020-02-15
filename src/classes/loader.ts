@@ -7,7 +7,7 @@ import { IOptions } from "../utils/interfaces";
 let tsParticlesDom: Container[] = [];
 
 export class Loader {
-  public static dom() {
+  public static dom(): Container[] {
     if (!tsParticlesDom) {
       Loader.domSet([]);
     }
@@ -15,7 +15,7 @@ export class Loader {
     return tsParticlesDom;
   }
 
-  public static domSet(value: Container[]) {
+  public static domSet(value: Container[]): void {
     tsParticlesDom = value;
   }
 
@@ -66,7 +66,7 @@ export class Loader {
     return newItem;
   }
 
-  public static async loadJSON(tagId: string, jsonUrl: string) {
+  public static async loadJSON(tagId: string, jsonUrl: string): Promise<void> {
     /* load json config */
     const response = await fetch(jsonUrl);
 
@@ -80,7 +80,7 @@ export class Loader {
     }
   };
 
-  public static setOnClickHandler(callback: EventListenerOrEventListenerObject) {
+  public static setOnClickHandler(callback: EventListenerOrEventListenerObject): void {
     const tsParticlesDom = Loader.dom();
 
     if (tsParticlesDom.length === 0) {

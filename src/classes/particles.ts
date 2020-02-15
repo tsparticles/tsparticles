@@ -37,7 +37,7 @@ export class Particles {
 
         for (let i = 0; i < arrLength; i++) {
             /* the particle */
-            let p = this.array[i];
+            const p = this.array[i];
             // let d = ( dx = container.interactivity.mouse.click_pos_x - p.x ) * dx +
             //         ( dy = container.interactivity.mouse.click_pos_y - p.y ) * dy;
             // let f = -BANG_SIZE / d;
@@ -84,7 +84,7 @@ export class Particles {
             /* interaction auto between particles */
             if (options.particles.line_linked.enable || options.particles.move.attract.enable) {
                 for (let j = i + 1; j < arrLength; j++) {
-                    let p2 = this.array[j];
+                    const p2 = this.array[j];
 
                     /* link particles */
                     if (options.particles.line_linked.enable) {

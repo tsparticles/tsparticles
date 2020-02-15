@@ -135,10 +135,10 @@ export class Particle {
         this.drawer = new Drawer(this.container, this, this.bubbler);
     }
 
-    private calcPosition(container: Container, position?: ICoordinates) {
+    private calcPosition(container: Container, position?: ICoordinates): ICoordinates {
         let pos = {
             x: position && position.x ? position.x : Math.random() * container.canvas.w,
-            y: position && position.y ? position.y : Math.random() * container.canvas.h
+            y: position && position.y ? position.y : Math.random() * container.canvas.h,
         };
 
         /* check position  - into the canvas */
@@ -157,7 +157,7 @@ export class Particle {
         return pos;
     }
 
-    private calcVelocity(options: IOptions) {
+    private calcVelocity(options: IOptions): IVelocity {
         const velbase = this.getVelBase(options);
         let res = {
             horizontal: 0,
@@ -186,7 +186,7 @@ export class Particle {
         return res;
     }
 
-    private getVelBase(options: IOptions) {
+    private getVelBase(options: IOptions): ICoordinates {
         let velbase: ICoordinates;
 
         switch (options.particles.move.direction) {
@@ -222,7 +222,7 @@ export class Particle {
         return velbase;
     }
 
-    private getColor(options: IOptions, color: { value: string[] | IColor | string }) {
+    private getColor(options: IOptions, color: { value: string[] | IColor | string }): IColor {
         let res: IColor = {};
 
         if (typeof (color.value) === "object") {
@@ -237,9 +237,9 @@ export class Particle {
 
                 if (rgbColor && rgbColor.r !== undefined && rgbColor.g !== undefined && rgbColor.b !== undefined) {
                     this.color.rgb = {
-                        r: rgbColor.r,
+                        b: rgbColor.b,
                         g: rgbColor.g,
-                        b: rgbColor.b
+                        r: rgbColor.r,
                     };
                 }
 
@@ -248,17 +248,17 @@ export class Particle {
                 if (hslColor && hslColor.h !== undefined && hslColor.s !== undefined && hslColor.l !== undefined) {
                     res.hsl = {
                         h: hslColor.h,
+                        l: hslColor.l,
                         s: hslColor.s,
-                        l: hslColor.l
                     };
                 }
             }
         } else if (typeof (color.value) === "string") {
             if (color.value === "random") {
                 res.rgb = {
-                    r: Math.floor(Math.random() * 256),
+                    b: Math.floor(Math.random() * 256),
                     g: Math.floor(Math.random() * 256),
-                    b: Math.floor(Math.random() * 256)
+                    r: Math.floor(Math.random() * 256),
                 };
             } else {
                 res.rgb = Utils.hexToRgb(color.value);
@@ -268,18 +268,18 @@ export class Particle {
         return res;
     }
 
-    public draw() {
+    public draw(): void {
         this.drawer.draw();
     }
 
-    public checkOverlap(position?: ICoordinates) {
+    public checkOverlap(position?: ICoordinates): void {
         const container = this.container;
         const p = this;
 
         for (const p2 of container.particles.array) {
-            let dx = p.position.x - p2.position.x;
-            let dy = p.position.y - p2.position.y;
-            let dist = Math.sqrt(dx * dx + dy * dy);
+            const dx = p.position.x - p2.position.x;
+            const dy = p.position.y - p2.position.y;
+            const dist = Math.sqrt(dx * dx + dy * dy);
 
             if (dist <= p.radius + p2.radius) {
                 p.position.x = position ? position.x : Math.random() * container.canvas.w;
@@ -338,7 +338,7 @@ export class Particle {
     //     img.src = url;
     // }
 
-    public grab() {
+    public grab(): void {
         let container = this.container;
         let options = container.options;
 
@@ -384,40 +384,40 @@ export class Particle {
         }
     }
 
-    public bubble() {
+    public bubble(): void {
         this.bubbler.bubble();
     }
 
-    public repulse() {
+    public repulse(): void {
         this.repulser.repulse();
     }
 
     /* ---------- tsParticles functions - particles interaction ------------ */
-    public link(p2: Particle) {
+    public link(p2: Particle): void {
         this.updater.link(p2);
     }
 
-    public attract(p2: Particle) {
+    public attract(p2: Particle): void {
         this.updater.attract(p2);
     }
 
-    public bounce(p2: Particle) {
+    public bounce(p2: Particle): void {
         this.updater.bounce(p2);
     }
 
-    public move(delta: number) {
+    public move(delta: number): void {
         this.updater.move(delta);
     }
 
-    public moveParallax() {
+    public moveParallax(): void {
         this.updater.moveParallax();
     }
 
-    public updateOpacity() {
+    public updateOpacity(): void {
         this.updater.updateOpacity();
     }
 
-    public updateSize() {
+    public updateSize(): void {
         this.updater.updateSize();
     }
 
@@ -425,7 +425,7 @@ export class Particle {
         this.updater.fixOutOfCanvasPosition();
     }
 
-    public updateOutMode() {
+    public updateOutMode(): void {
         this.updater.updateOutMode();
     }
 }
