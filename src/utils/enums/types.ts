@@ -1,18 +1,20 @@
-export enum ShapeType {
-    circle = "circle",
-    edge = "edge",
-    triangle = "triangle",
-    polygon = "polygon",
-    star = "star",
-    image = "image",
-    square = "square",
-    heart = "heart",
-    char = "char",
-    character = "character",
-    line = "line",
-}
+'use strict';
 
 export enum ProcessBubbleType {
-    size = "size",
     opacity = "opacity",
+    size = "size",
+}
+
+export enum ShapeType {
+    char = "char",
+    character = "character",
+    circle = "circle",
+    edge = "edge",
+    heart = "heart",
+    image = "image",
+    line = "line",
+    polygon = "polygon",
+    square = "square",
+    star = "star",
+    triangle = "triangle",
 }

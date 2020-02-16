@@ -1,19 +1,21 @@
-export enum OutMode {
-    out = "out",
-    bounce = "bounce",
-    bounceVertical = "bounce-vertical",
-    bounceHorizontal = "bounce-horizontal",
+'use strict';
+
+export enum ClickMode {
+    bubble = "bubble",
+    push = "push",
+    remove = "remove",
+    repulse = "repulse",
 }
 
 export enum HoverMode {
-    grab = "grab",
     bubble = "bubble",
+    grab = "grab",
     repulse = "repulse",
 }
 
-export enum ClickMode {
-    push = "push",
-    remove = "remove",
-    bubble = "bubble",
-    repulse = "repulse",
+export enum OutMode {
+    bounce = "bounce",
+    bounceHorizontal = "bounce-horizontal",
+    bounceVertical = "bounce-vertical",
+    out = "out",
 }

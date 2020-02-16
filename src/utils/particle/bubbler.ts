@@ -132,7 +132,7 @@ export class Bubbler {
                     optValue: options.particles.size.value,
                     value: this.particle.radius,
                 },
-                type: ProcessBubbleType.size
+                type: ProcessBubbleType.size,
             };
 
             this.process(distMouse, timeSpent, sizeData);
@@ -147,7 +147,7 @@ export class Bubbler {
                     optValue: options.particles.opacity.value,
                     value: this.particle.opacity.value,
                 },
-                type: ProcessBubbleType.opacity
+                type: ProcessBubbleType.opacity,
             };
 
             this.process(distMouse, timeSpent, opacityData);
