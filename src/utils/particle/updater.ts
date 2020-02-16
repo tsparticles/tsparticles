@@ -1,7 +1,7 @@
-import { Particle } from "../../classes/particle";
 import { Container } from "../../classes/container";
-import { Utils } from "../utils";
 import { OutMode } from "../enums";
+import { Particle } from "../../classes/particle";
+import { Utils } from "../utils";
 
 export class Updater {
     private readonly particle: Particle;
@@ -29,9 +29,9 @@ export class Updater {
 
         /* draw a line between p1 and p2 if the distance between them is under the config distance */
         if (dist <= optDistance) {
-            const opacity_line = optOpacity - (dist * optOpacity) / optDistance;
+            const opacityLine = optOpacity - (dist * optOpacity) / optDistance;
 
-            if (opacity_line > 0) {
+            if (opacityLine > 0) {
                 /* style */
                 if (!container.particles.line_linked_color) {
                     container.particles.line_linked_color = Utils.hexToRgb(options.particles.line_linked.color);
@@ -43,10 +43,10 @@ export class Updater {
 
                 const ctx = container.canvas.ctx;
 
-                const color_line = container.particles.line_linked_color;
+                const colorLine = container.particles.line_linked_color;
 
-                if (color_line) {
-                    ctx.strokeStyle = `rgba(${color_line.r},${color_line.g},${color_line.b},${opacity_line})`;
+                if (colorLine) {
+                    ctx.strokeStyle = `rgba(${colorLine.r},${colorLine.g},${colorLine.b},${opacityLine})`;
                 }
 
                 ctx.lineWidth = options.particles.line_linked.width;
@@ -88,9 +88,9 @@ export class Updater {
         const dx = particle.position.x - p2.position.x;
         const dy = particle.position.y - p2.position.y;
         const dist = Math.sqrt(dx * dx + dy * dy);
-        const dist_p = particle.radius + p2.radius;
+        const distP = particle.radius + p2.radius;
 
-        if (dist <= dist_p) {
+        if (dist <= distP) {
             particle.velocity.horizontal = -particle.velocity.horizontal;
             particle.velocity.vertical = -particle.velocity.vertical;
             p2.velocity.horizontal = -p2.velocity.horizontal;
@@ -105,6 +105,7 @@ export class Updater {
 
         if (options.particles.move.enable) {
             const moveSpeed = options.particles.move.speed / 10;
+
             particle.position.x += particle.velocity.horizontal * moveSpeed * delta;
             particle.position.y += particle.velocity.vertical * moveSpeed * delta;
         }
@@ -124,7 +125,6 @@ export class Updater {
             width: window.innerWidth / 2,
         };
         const parallaxSmooth = options.interactivity.events.onhover.parallax.smooth;
-
 
         if (options.interactivity.events.onhover.parallax.enable) {
             /* smaller is the particle, longer is the offset distance */
@@ -157,6 +157,7 @@ export class Updater {
 
                 particle.opacity.value -= (particle.opacity.velocity || 0);
             }
+
             if (particle.opacity.value < 0) {
                 particle.opacity.value = 0;
             }
@@ -195,17 +196,17 @@ export class Updater {
         const particle = this.particle;
         const outMode = options.particles.move.out_mode;
 
-        let new_pos;
+        let newPos;
 
         if (outMode === OutMode.bounce || outMode === OutMode.bounceVertical) {
-            new_pos = {
+            newPos = {
                 x_left: particle.radius,
                 x_right: container.canvas.w,
                 y_bottom: container.canvas.h,
                 y_top: particle.radius,
             };
         } else {
-            new_pos = {
+            newPos = {
                 x_left: -particle.radius - particle.offset.x,
                 x_right: container.canvas.w + particle.radius + particle.offset.x,
                 y_bottom: container.canvas.h + particle.radius - particle.offset.y,
@@ -214,18 +215,18 @@ export class Updater {
         }
 
         if ((particle.position.x) - particle.radius > container.canvas.w - particle.offset.x) {
-            particle.position.x = new_pos.x_left;
+            particle.position.x = newPos.x_left;
             particle.position.y = Math.random() * container.canvas.h;
         } else if ((particle.position.x) + particle.radius < 0 - particle.offset.x) {
-            particle.position.x = new_pos.x_right;
+            particle.position.x = newPos.x_right;
             particle.position.y = Math.random() * container.canvas.h;
         }
 
         if ((particle.position.y) - particle.radius > container.canvas.h - particle.offset.y) {
-            particle.position.y = new_pos.y_top;
+            particle.position.y = newPos.y_top;
             particle.position.x = Math.random() * container.canvas.w;
         } else if ((particle.position.y) + particle.radius < 0 - particle.offset.y) {
-            particle.position.y = new_pos.y_bottom;
+            particle.position.y = newPos.y_bottom;
             particle.position.x = Math.random() * container.canvas.w;
         }
     }

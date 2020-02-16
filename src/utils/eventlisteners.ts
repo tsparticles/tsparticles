@@ -1,5 +1,6 @@
+import { ClickMode, InteractivityDetect } from "./enums";
 import { Container } from "../classes/container";
-import { InteractivityDetect, ClickMode } from "./enums";
+import { ICoordinates } from "./interfaces";
 
 export class EventListeners {
     private readonly container: Container;
@@ -12,33 +13,40 @@ export class EventListeners {
         const container = this.container;
         const options = container.options;
 
-        let pos_x;
-        let pos_y;
+        let pos: ICoordinates;
 
         const mouseEvent = e as MouseEvent;
 
         if (container.interactivity.el === window) {
-            pos_x = mouseEvent.clientX;
-            pos_y = mouseEvent.clientY;
+            pos = {
+                x: mouseEvent.clientX,
+                y: mouseEvent.clientY,
+            };
         } else if (options.interactivity.detect_on === InteractivityDetect.parent) {
             const source = mouseEvent.srcElement as HTMLElement;
             const target = mouseEvent.currentTarget as HTMLElement
             if (source && target) {
                 const sourceRect = source.getBoundingClientRect();
                 const targetRect = target.getBoundingClientRect();
-                pos_x = mouseEvent.offsetX + sourceRect.left - targetRect.left;
-                pos_y = mouseEvent.offsetY + sourceRect.top - targetRect.top;
+                pos = {
+                    x: mouseEvent.offsetX + sourceRect.left - targetRect.left,
+                    y: mouseEvent.offsetY + sourceRect.top - targetRect.top,
+                };
             } else {
-                pos_x = mouseEvent.offsetX || mouseEvent.clientX;
-                pos_y = mouseEvent.offsetY || mouseEvent.clientY;
+                pos = {
+                    x: mouseEvent.offsetX || mouseEvent.clientX,
+                    y: mouseEvent.offsetY || mouseEvent.clientY,
+                };
             }
         } else {
-            pos_x = mouseEvent.offsetX || mouseEvent.clientX;
-            pos_y = mouseEvent.offsetY || mouseEvent.clientY;
+            pos = {
+                x: mouseEvent.offsetX || mouseEvent.clientX,
+                y: mouseEvent.offsetY || mouseEvent.clientY,
+            };
         }
 
-        container.interactivity.mouse.pos_x = pos_x * (container.retina.isRetina ? container.canvas.pxratio : 1);
-        container.interactivity.mouse.pos_y = pos_y * (container.retina.isRetina ? container.canvas.pxratio : 1);
+        container.interactivity.mouse.pos_x = pos.x * (container.retina.isRetina ? container.canvas.pxratio : 1);
+        container.interactivity.mouse.pos_y = pos.y * (container.retina.isRetina ? container.canvas.pxratio : 1);
 
         container.interactivity.status = "mousemove";
     }
@@ -70,8 +78,7 @@ export class EventListeners {
                     } else {
                         if (options.interactivity.modes.push.particles_nb === 1) {
                             container.particles.push(pushNb, container.interactivity.mouse);
-                        }
-                        else if (options.interactivity.modes.push.particles_nb > 1) {
+                        } else if (options.interactivity.modes.push.particles_nb > 1) {
                             container.particles.push(pushNb);
                         }
                     }
