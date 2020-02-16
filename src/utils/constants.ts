@@ -48,7 +48,7 @@ export class Constants {
                     distance: 200,
                     duration: 0.4,
                 },
-            }
+            },
         },
         particles: {
             color: {
