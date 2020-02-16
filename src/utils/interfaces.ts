@@ -1,6 +1,24 @@
 "use strict";
 
-import { ClickMode, HoverMode, InteractivityDetect, MoveDirection, OutMode, ShapeType } from "./enums";
+import { InteractivityDetect, MoveDirection } from "./enums/generics";
+import { ClickMode, HoverMode, OutMode } from "./enums/modes";
+import { ProcessBubbleType, ShapeType } from "./enums/types";
+
+export interface IBubblerProcessParam {
+    bubbleObj: IBubblerProcessParamObj,
+    particlesObj: IBubblerProcessParamObj,
+    type: ProcessBubbleType
+}
+
+export interface IBubblerProcessParamObj {
+    optValue: number,
+    value: number | undefined
+}
+
+export interface IColor {
+    rgb?: IRgb | null;
+    hsl?: IHsl | null;
+}
 
 export interface IContainerInteractivity {
     el?: HTMLElement | Window | Node | null;
@@ -134,11 +152,6 @@ export interface IShape {
     };
 }
 
-export interface IColor {
-    rgb?: IRgb | null;
-    hsl?: IHsl | null;
-}
-
 export interface IRgb {
     r: number;
     g: number;
@@ -213,4 +226,12 @@ export interface IVelocity {
 export interface IDimension {
     width: number;
     height: number;
+}
+
+export interface IShapeSide {
+    count: {
+        numerator: number,
+        denominator: number,
+    },
+    length: number,
 }

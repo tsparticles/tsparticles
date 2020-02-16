@@ -1,7 +1,10 @@
-import { Particle } from "../../classes/particle";
+
+import { ClickMode, HoverMode } from "../enums/modes";
 import { Container } from "../../classes/container";
+import { IBubblerProcessParam } from "../interfaces";
+import { Particle } from "../../classes/particle";
+import { ProcessBubbleType } from "../enums/types";
 import { Utils } from "../utils";
-import { HoverMode, ClickMode, ProcessBubbleType } from "../enums";
 
 export class Bubbler {
     public opacity?: number;
@@ -38,57 +41,58 @@ export class Bubbler {
         this.radius = particle.radius;
     }
 
-    private process(dist_mouse: number,
-        time_spent: number,
-        bubble_param: number,
-        particles_param: number,
-        p_obj_bubble: number | undefined,
-        p_obj: number,
-        id: ProcessBubbleType): void {
+    private process(distMouse: number, timeSpent: number, data: IBubblerProcessParam): void {
         const container = this.container;
         const options = container.options;
         const bubbleDuration = options.interactivity.modes.bubble.duration;
+        const bubbleParam = data.bubbleObj.optValue;
+        const bubbleDistance = options.interactivity.modes.bubble.distance;
+        const particlesParam = data.particlesObj.optValue;
+        const pObjBubble = data.bubbleObj.value;
+        const pObj = data.particlesObj.value || 0;
+        const type = data.type;
 
-        if (bubble_param !== particles_param) {
+        if (bubbleParam !== particlesParam) {
             if (!container.bubble.duration_end) {
-                if (dist_mouse <= options.interactivity.modes.bubble.distance) {
+                if (distMouse <= bubbleDistance) {
                     let obj;
 
-                    if (p_obj_bubble) {
-                        obj = p_obj_bubble;
+                    if (pObjBubble) {
+                        obj = pObjBubble;
                     } else {
-                        obj = p_obj;
+                        obj = pObj;
                     }
 
-                    if (obj !== bubble_param) {
-                        const value = p_obj - (time_spent * (p_obj - bubble_param) / bubbleDuration);
+                    if (obj !== bubbleParam) {
+                        const value = pObj - (timeSpent * (pObj - bubbleParam) / bubbleDuration);
 
-                        if (id === ProcessBubbleType.size) {
+                        if (type === ProcessBubbleType.size) {
                             this.radius = value;
                         }
 
-                        if (id === ProcessBubbleType.opacity) {
+                        if (type === ProcessBubbleType.opacity) {
                             this.opacity = value;
                         }
                     }
                 } else {
-                    if (id === ProcessBubbleType.size) {
+                    if (type === ProcessBubbleType.size) {
                         this.radius = undefined;
                     }
 
-                    if (id === ProcessBubbleType.opacity)
+                    if (type === ProcessBubbleType.opacity) {
                         this.opacity = undefined;
+                    }
                 }
-            } else if (p_obj_bubble) {
-                const value_tmp = p_obj - (time_spent * (p_obj - bubble_param) / bubbleDuration);
-                const dif = bubble_param - value_tmp;
-                const value = bubble_param + dif;
+            } else if (pObjBubble) {
+                const value_tmp = pObj - (timeSpent * (pObj - bubbleParam) / bubbleDuration);
+                const dif = bubbleParam - value_tmp;
+                const value = bubbleParam + dif;
 
-                if (id === ProcessBubbleType.size) {
+                if (type === ProcessBubbleType.size) {
                     this.radius = value;
                 }
 
-                if (id === ProcessBubbleType.opacity) {
+                if (type === ProcessBubbleType.opacity) {
                     this.opacity = value;
                 }
             }
@@ -119,18 +123,34 @@ export class Bubbler {
 
         if (container.bubble.clicking) {
             /* size */
-            const sizeMode = options.interactivity.modes.bubble.size;
-            const optSize = options.particles.size.value;
-            const radius = this.radius;
-            const pRadius = this.particle.radius;
-            const opacityMode = options.interactivity.modes.bubble.opacity;
-            const optOpacity = options.particles.opacity.value;
-            const opacity = this.opacity;
-            const pOpacity = this.particle.opacity.value;
+            const sizeData: IBubblerProcessParam = {
+                bubbleObj: {
+                    optValue: options.interactivity.modes.bubble.size,
+                    value: this.radius,
+                },
+                particlesObj: {
+                    optValue: options.particles.size.value,
+                    value: this.particle.radius,
+                },
+                type: ProcessBubbleType.size,
+            };
 
-            this.process(distMouse, timeSpent, sizeMode, optSize, radius, pRadius, ProcessBubbleType.size);
+            this.process(distMouse, timeSpent, sizeData);
+
             /* opacity */
-            this.process(distMouse, timeSpent, opacityMode, optOpacity, opacity, pOpacity, ProcessBubbleType.opacity);
+            const opacityData: IBubblerProcessParam = {
+                bubbleObj: {
+                    optValue: options.interactivity.modes.bubble.opacity,
+                    value: this.opacity,
+                },
+                particlesObj: {
+                    optValue: options.particles.opacity.value,
+                    value: this.particle.opacity.value,
+                },
+                type: ProcessBubbleType.opacity,
+            };
+
+            this.process(distMouse, timeSpent, opacityData);
         }
     }
 
@@ -138,7 +158,6 @@ export class Bubbler {
         const container = this.container;
         const options = container.options;
         const particle = this.particle;
-
         const dx_mouse = (particle.position.x + particle.offset.x) - (container.interactivity.mouse.pos_x || 0);
         const dy_mouse = (particle.position.y + particle.offset.y) - (container.interactivity.mouse.pos_y || 0);
         const dist_mouse = Math.sqrt(dx_mouse * dx_mouse + dy_mouse * dy_mouse);

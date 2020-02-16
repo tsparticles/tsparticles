@@ -1,7 +1,8 @@
-import { Particle } from "../../classes/particle";
-import { Container } from "../../classes/container";
-import { ShapeType } from "../enums";
 import { Bubbler } from "./bubbler";
+import { Container } from "../../classes/container";
+import { IShapeSide, ICoordinates } from "../interfaces";
+import { Particle } from "../../classes/particle";
+import { ShapeType } from "../enums/types";
 
 export class Drawer {
     private readonly particle: Particle;
@@ -14,26 +15,21 @@ export class Drawer {
         this.bubbler = bubbler;
     }
 
-    private static subDrawShape(ctx: CanvasRenderingContext2D,
-        startX: number,
-        startY: number,
-        sideLength: number,
-        sideCountNumerator: number,
-        sideCountDenominator: number): void {
+    private static subDrawShape(ctx: CanvasRenderingContext2D, start: ICoordinates, side: IShapeSide): void {
         // By Programming Thomas - https://programmingthomas.wordpress.com/2013/04/03/n-sided-shapes/
-        const sideCount = sideCountNumerator * sideCountDenominator;
-        const decimalSides = sideCountNumerator / sideCountDenominator;
+        const sideCount = side.count.numerator * side.count.denominator;
+        const decimalSides = side.count.numerator / side.count.denominator;
         const interiorAngleDegrees = (180 * (decimalSides - 2)) / decimalSides;
         const interiorAngle = Math.PI - Math.PI * interiorAngleDegrees / 180; // convert to radians
 
         ctx.save();
         ctx.beginPath();
-        ctx.translate(startX, startY);
+        ctx.translate(start.x, start.y);
         ctx.moveTo(0, 0);
 
         for (let i = 0; i < sideCount; i++) {
-            ctx.lineTo(sideLength, 0);
-            ctx.translate(sideLength, 0);
+            ctx.lineTo(side.length, 0);
+            ctx.translate(side.length, 0);
             ctx.rotate(interiorAngle);
         }
 
@@ -121,32 +117,53 @@ export class Drawer {
                 ctx.rect(particle.position.x - radius, particle.position.y - radius, radius * 2, radius * 2);
                 break;
             case ShapeType.triangle:
-                const startX = particle.position.x - radius;
-                const startY = particle.position.y + radius / 1.66;
-                const sideLength = radius * 2;
+                const start: ICoordinates = {
+                    x: particle.position.x - radius,
+                    y: particle.position.y + radius / 1.66,
+                };
 
-                Drawer.subDrawShape(ctx, startX, startY, sideLength, 3, 2);
+                const side: IShapeSide = {
+                    count: {
+                        denominator: 2,
+                        numerator: 3,
+                    },
+                    length: radius * 2,
+                };
+
+                Drawer.subDrawShape(ctx, start, side);
                 break;
             case ShapeType.polygon:
                 {
-                    const startX = particle.position.x - radius / (options.particles.shape.polygon.nb_sides / 3.5);
-                    const startY = particle.position.y - radius / (2.66 / 3.5);
-                    const sideLength = radius * 2.66 / (options.particles.shape.polygon.nb_sides / 3);
-                    const sideCountNumerator = options.particles.shape.polygon.nb_sides;
-                    const sideCountDenominator = 1;
+                    const start: ICoordinates = {
+                        x: particle.position.x - radius / (options.particles.shape.polygon.nb_sides / 3.5),
+                        y: particle.position.y - radius / (2.66 / 3.5),
+                    };
+                    const side: IShapeSide = {
+                        count: {
+                            denominator: 1,
+                            numerator: options.particles.shape.polygon.nb_sides,
+                        },
+                        length: radius * 2.66 / (options.particles.shape.polygon.nb_sides / 3),
+                    };
 
-                    Drawer.subDrawShape(ctx, startX, startY, sideLength, sideCountNumerator, sideCountDenominator);
+                    Drawer.subDrawShape(ctx, start, side);
                 }
                 break;
             case ShapeType.star:
                 {
-                    const startX = particle.position.x - radius * 2 / (options.particles.shape.polygon.nb_sides / 4);
-                    const startY = particle.position.y - radius / (2 * 2.66 / 3.5);
-                    const sideLength = radius * 2 * 2.66 / (options.particles.shape.polygon.nb_sides / 3);
-                    const sideCountNumerator = options.particles.shape.polygon.nb_sides;
-                    const sideCountDenominator = 2;
+                    const start: ICoordinates = {
+                        x: particle.position.x - radius * 2 / (options.particles.shape.polygon.nb_sides / 4),
+                        y: particle.position.y - radius / (2 * 2.66 / 3.5),
+                    };
+                    const side: IShapeSide = {
+                        count: {
+                            denominator: 2,
+                            numerator: options.particles.shape.polygon.nb_sides,
+                        },
+                        length: radius * 2 * 2.66 / (options.particles.shape.polygon.nb_sides / 3),
+                    };
 
-                    Drawer.subDrawShape(ctx, startX, startY, sideLength, sideCountNumerator, sideCountDenominator);
+                    Drawer.subDrawShape(ctx, start, side);
                 }
                 break;
 

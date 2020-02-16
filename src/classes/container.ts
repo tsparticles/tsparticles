@@ -1,14 +1,15 @@
 "use strict";
 
-import { Utils } from "../utils/utils";
-import { IOptions, IContainerInteractivity, ISvg, IImage, IBubble, IRepulse } from "../utils/interfaces";
-import { Retina } from "./retina";
 import { Canvas } from "./canvas";
-import { Particles } from "./particles";
-import { ShapeType, InteractivityDetect } from "../utils/enums";
-import { Loader } from "./loader";
 import { Constants } from "../utils/constants";
 import { EventListeners } from "../utils/eventlisteners";
+import { IBubble, IContainerInteractivity, IImage, IOptions, IRepulse, ISvg } from "../utils/interfaces";
+import { InteractivityDetect } from "../utils/enums/generics";
+import { Loader } from "./loader";
+import { Particles } from "./particles";
+import { Retina } from "./retina";
+import { ShapeType } from "../utils/enums/types";
+import { Utils } from "../utils/utils";
 
 export class Container {
     public interactivity: IContainerInteractivity;
@@ -128,15 +129,15 @@ export class Container {
             const density = this.options.particles.number.density.value_area;
 
             /* calc number of particles based on density area */
-            const nb_particles = area * particlesNumber / density;
+            const nbParticles = area * particlesNumber / density;
 
             /* add or remove X particles */
-            const missing_particles = this.particles.array.length - nb_particles;
+            const missingParticles = this.particles.array.length - nbParticles;
 
-            if (missing_particles < 0)
-                this.particles.push(Math.abs(missing_particles));
+            if (missingParticles < 0)
+                this.particles.push(Math.abs(missingParticles));
             else
-                this.particles.remove(missing_particles);
+                this.particles.remove(missingParticles);
         }
     }
 
@@ -196,9 +197,9 @@ export class Container {
     public draw(timestamp: DOMHighResTimeStamp): void {
         // FPS limit logic
         // If we are too fast, just draw without updating
-        const fps_limit = this.options.fps_limit;
+        const fpsLimit = this.options.fps_limit;
 
-        if (fps_limit > 0 && timestamp < this.lastFrameTime + (1000 / fps_limit)) {
+        if (fpsLimit > 0 && timestamp < this.lastFrameTime + (1000 / fpsLimit)) {
             this.drawAnimFrame = this.requestFrame((timestamp) => this.draw(timestamp));
             return;
         }

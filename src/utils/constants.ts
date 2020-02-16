@@ -1,7 +1,9 @@
 "use strict";
 
-import { ClickMode, HoverMode, InteractivityDetect, MoveDirection, OutMode, ShapeType } from "./enums";
+import { ClickMode, HoverMode, OutMode } from "./enums/modes";
+import { InteractivityDetect, MoveDirection } from "./enums/generics";
 import { IOptions } from "./interfaces";
+import { ShapeType } from "./enums/types";
 
 export class Constants {
     public static readonly canvasClass: string = "tsparticles-canvas-el";
