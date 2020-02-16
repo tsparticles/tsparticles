@@ -4,6 +4,22 @@ import { InteractivityDetect, MoveDirection } from "./enums/generics";
 import { ClickMode, HoverMode, OutMode } from "./enums/modes";
 import { ProcessBubbleType, ShapeType } from "./enums/types";
 
+export interface IBubblerProcessParam {
+    bubbleObj: IBubblerProcessParamObj,
+    particlesObj: IBubblerProcessParamObj,
+    type: ProcessBubbleType
+}
+
+export interface IBubblerProcessParamObj {
+    optValue: number,
+    value: number | undefined
+}
+
+export interface IColor {
+    rgb?: IRgb | null;
+    hsl?: IHsl | null;
+}
+
 export interface IContainerInteractivity {
     el?: HTMLElement | Window | Node | null;
     status?: string;
@@ -136,11 +152,6 @@ export interface IShape {
     };
 }
 
-export interface IColor {
-    rgb?: IRgb | null;
-    hsl?: IHsl | null;
-}
-
 export interface IRgb {
     r: number;
     g: number;
@@ -217,21 +228,10 @@ export interface IDimension {
     height: number;
 }
 
-export interface IBubblerProcessParamObj {
-    optValue: number,
-    value: number | undefined
-}
-
-export interface IBubblerProcessParam {
-    bubbleObj: IBubblerProcessParamObj,
-    particlesObj: IBubblerProcessParamObj,
-    type: ProcessBubbleType
-}
-
 export interface IShapeSide {
-    length: number,
     count: {
         numerator: number,
         denominator: number,
-    }
+    },
+    length: number,
 }
