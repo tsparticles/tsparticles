@@ -81,13 +81,13 @@ export class Loader {
   };
 
   public static setOnClickHandler(callback: EventListenerOrEventListenerObject): void {
-    const tsParticlesDom = Loader.dom();
+    const dom = Loader.dom();
 
-    if (tsParticlesDom.length === 0) {
+    if (dom.length === 0) {
       throw new Error("Can only set click handlers after calling tsParticles.load() or tsParticles.loadJSON()");
     }
 
-    for (const domItem of tsParticlesDom) {
+    for (const domItem of dom) {
       const el = domItem.interactivity.el;
 
       if (el) {
