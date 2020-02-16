@@ -21,7 +21,7 @@ export class Constants {
                         enable: false,
                         force: 2,
                         smooth: 10,
-                    }
+                    },
                 },
                 resize: true,
             },
