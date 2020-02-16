@@ -1,7 +1,8 @@
 "use strict";
 
-import { ClickMode, HoverMode, OutMode } from './enums';
-import { InteractivityDetect, MoveDirection, ShapeType, ProcessBubbleType } from "./enums";
+import { InteractivityDetect, MoveDirection } from "./enums/generics";
+import { ClickMode, HoverMode, OutMode } from "./enums/modes";
+import { ProcessBubbleType, ShapeType } from "./enums/types";
 
 export interface IContainerInteractivity {
     el?: HTMLElement | Window | Node | null;

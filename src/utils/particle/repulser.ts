@@ -1,4 +1,4 @@
-import { ClickMode, HoverMode, OutMode } from "../enums";
+import { ClickMode, HoverMode, OutMode } from "../enums/modes";
 import { Container } from "../../classes/container";
 import { Particle } from "../../classes/particle";
 import { Utils } from "../utils";

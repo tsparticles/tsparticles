@@ -1,5 +1,5 @@
 import { Container } from "../../classes/container";
-import { OutMode } from "../enums";
+import { OutMode } from "../enums/modes";
 import { Particle } from "../../classes/particle";
 import { Utils } from "../utils";
 

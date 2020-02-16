@@ -1,6 +1,6 @@
 "use strict";
 
-import { ClickMode, HoverMode } from "../utils/enums";
+import { ClickMode, HoverMode } from "../utils/enums/modes";
 import { Container } from "./container";
 import { IMouseData, IRgb, ICoordinates } from "../utils/interfaces";
 import { Particle } from "./particle";

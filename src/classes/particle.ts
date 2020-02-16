@@ -13,11 +13,12 @@ import {
     IVelocity,
 } from "../utils/interfaces";
 import { Container } from "./container";
-import { ShapeType, MoveDirection } from "../utils/enums";
+import { MoveDirection } from "../utils/enums/generics";
 import { Updater } from "../utils/particle/updater";
 import { Bubbler } from "../utils/particle/bubbler";
 import { Repulser } from "../utils/particle/repulser";
 import { Drawer } from "../utils/particle/drawer";
+import { ShapeType } from "../utils/enums/types";
 
 export class Particle {
     public radius: number;

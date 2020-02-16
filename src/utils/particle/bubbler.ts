@@ -1,7 +1,9 @@
-import { ClickMode, HoverMode, ProcessBubbleType } from "../enums";
+
+import { ClickMode, HoverMode } from "../enums/modes";
 import { Container } from "../../classes/container";
 import { IBubblerProcessParam } from "../interfaces";
 import { Particle } from "../../classes/particle";
+import { ProcessBubbleType } from "../enums/types";
 import { Utils } from "../utils";
 
 export class Bubbler {

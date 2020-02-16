@@ -1,8 +1,8 @@
-import { Particle } from "../../classes/particle";
-import { Container } from "../../classes/container";
-import { ShapeType } from "../enums";
 import { Bubbler } from "./bubbler";
+import { Container } from "../../classes/container";
 import { IShapeSide, ICoordinates } from "../interfaces";
+import { Particle } from "../../classes/particle";
+import { ShapeType } from "../enums/types";
 
 export class Drawer {
     private readonly particle: Particle;

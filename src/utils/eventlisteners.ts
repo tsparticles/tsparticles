@@ -1,5 +1,6 @@
-import { ClickMode, InteractivityDetect } from "./enums";
+import { ClickMode } from "./enums/modes";
 import { Container } from "../classes/container";
+import { InteractivityDetect } from "./enums/generics";
 import { ICoordinates } from "./interfaces";
 
 export class EventListeners {

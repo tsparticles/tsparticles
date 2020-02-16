@@ -4,10 +4,11 @@ import { Canvas } from "./canvas";
 import { Constants } from "../utils/constants";
 import { EventListeners } from "../utils/eventlisteners";
 import { IBubble, IContainerInteractivity, IImage, IOptions, IRepulse, ISvg } from "../utils/interfaces";
-import { InteractivityDetect, ShapeType } from "../utils/enums";
+import { InteractivityDetect } from "../utils/enums/generics";
 import { Loader } from "./loader";
 import { Particles } from "./particles";
 import { Retina } from "./retina";
+import { ShapeType } from "../utils/enums/types";
 import { Utils } from "../utils/utils";
 
 export class Container {
