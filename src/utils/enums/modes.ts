@@ -1,4 +1,4 @@
-'use strict';
+"use strict";
 
 export enum ClickMode {
     bubble = "bubble",
