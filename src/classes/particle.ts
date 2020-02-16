@@ -1,24 +1,22 @@
 "use strict";
 
-import { Utils } from "../utils/utils";
+import { Bubbler } from "../utils/particle/bubbler";
+import { Container } from "./container";
+import { Drawer } from "../utils/particle/drawer";
+import { Grabber } from "../utils/particle/grabber";
 import {
     IParticleImage,
     IColor,
     ICoordinates,
-    IRgb,
-    IHsl,
     IOptions,
     IOpacity,
     ISize,
     IVelocity,
 } from "../utils/interfaces";
-import { Container } from "./container";
-import { MoveDirection } from "../utils/enums/generics";
-import { Updater } from "../utils/particle/updater";
-import { Bubbler } from "../utils/particle/bubbler";
 import { Repulser } from "../utils/particle/repulser";
-import { Drawer } from "../utils/particle/drawer";
 import { ShapeType } from "../utils/enums/types";
+import { Updater } from "../utils/particle/updater";
+import { Utils } from "../utils/utils";
 
 export class Particle {
     public radius: number;
@@ -31,14 +29,15 @@ export class Particle {
     public initialVelocity: IVelocity;
     public shape?: ShapeType;
     public img?: IParticleImage;
-    public opacity_bubble?: number;
+    public opacityBubble?: number;
     public text?: string;
+    public readonly updater: Updater;
+    public readonly bubbler: Bubbler;
+    public readonly repulser: Repulser;
+    public readonly drawer: Drawer;
+    public readonly grabber: Grabber;
 
     private readonly container: Container;
-    private readonly updater: Updater;
-    private readonly bubbler: Bubbler;
-    private readonly repulser: Repulser;
-    private readonly drawer: Drawer;
 
     /* --------- tsParticles functions - particles ----------- */
     constructor(container: Container, position?: ICoordinates) {
@@ -59,7 +58,6 @@ export class Particle {
             }
         }
 
-
         /* position */
         this.position = this.calcPosition(this.container, position);
 
@@ -75,7 +73,7 @@ export class Particle {
         }
 
         /* color */
-        this.color = this.getColor(options, color);
+        this.color = Utils.getParticleColor(options, color);
 
         /* opacity */
         this.opacity = {
@@ -135,7 +133,6 @@ export class Particle {
             if (typeof value === "string") {
                 this.text = value;
             } else {
-
                 this.text = value[Math.floor(Math.random() * value.length)]
             }
         }
@@ -144,10 +141,7 @@ export class Particle {
         this.bubbler = new Bubbler(this.container, this);
         this.repulser = new Repulser(this.container, this);
         this.drawer = new Drawer(this.container, this, this.bubbler);
-    }
-
-    public draw(): void {
-        this.drawer.draw();
+        this.grabber = new Grabber(this.container, this);
     }
 
     public checkOverlap(position?: ICoordinates): void {
@@ -216,100 +210,6 @@ export class Particle {
     //     img.src = url;
     // }
 
-    public grab(): void {
-        const container = this.container;
-        const options = container.options;
-
-        if (options.interactivity.events.onhover.enable && container.interactivity.status === "mousemove") {
-            const dx_mouse = this.position.x - (container.interactivity.mouse.pos_x || 0);
-            const dy_mouse = this.position.y - (container.interactivity.mouse.pos_y || 0);
-            const dist_mouse = Math.sqrt(dx_mouse * dx_mouse + dy_mouse * dy_mouse);
-            /*
-               draw a line between the cursor and the particle
-               if the distance between them is under the config distance
-            */
-            if (dist_mouse <= options.interactivity.modes.grab.distance) {
-                const lineOpacity = options.interactivity.modes.grab.line_linked.opacity;
-                const grabDistance = options.interactivity.modes.grab.distance;
-                const opacity_line = lineOpacity - (dist_mouse / (1 / lineOpacity)) / grabDistance;
-
-                if (opacity_line > 0) {
-                    /* style */
-                    const optColor = options.particles.line_linked.color;
-                    const lineColor = container.particles.line_linked_color || Utils.hexToRgb(optColor);
-
-                    container.particles.line_linked_color = lineColor;
-
-                    const color_line = container.particles.line_linked_color || { r: 127, g: 127, b: 127 };
-
-                    if (container.canvas.ctx) {
-                        const strokeStyle = `rgba(${color_line.r},${color_line.g},${color_line.b},${opacity_line})`;
-                        container.canvas.ctx.strokeStyle = strokeStyle;
-                        container.canvas.ctx.lineWidth = options.particles.line_linked.width;
-                        // container.canvas.ctx.lineCap = "round"; /* performance issue */
-                        /* path */
-                        container.canvas.ctx.beginPath();
-                        container.canvas.ctx.moveTo(this.position.x + this.offset.x, this.position.y + this.offset.y);
-
-                        const mousePos = {
-                            x: (container.interactivity.mouse.pos_x || 0),
-                            y: (container.interactivity.mouse.pos_y || 0),
-                        };
-
-                        container.canvas.ctx.lineTo(mousePos.x, mousePos.y);
-                        container.canvas.ctx.stroke();
-                        container.canvas.ctx.closePath();
-                    }
-                }
-            }
-        }
-    }
-
-    public bubble(): void {
-        this.bubbler.bubble();
-    }
-
-    public repulse(): void {
-        this.repulser.repulse();
-    }
-
-    /* ---------- tsParticles functions - particles interaction ------------ */
-    public link(p2: Particle): void {
-        this.updater.link(p2);
-    }
-
-    public attract(p2: Particle): void {
-        this.updater.attract(p2);
-    }
-
-    public bounce(p2: Particle): void {
-        this.updater.bounce(p2);
-    }
-
-    public move(delta: number): void {
-        this.updater.move(delta);
-    }
-
-    public moveParallax(): void {
-        this.updater.moveParallax();
-    }
-
-    public updateOpacity(): void {
-        this.updater.updateOpacity();
-    }
-
-    public updateSize(): void {
-        this.updater.updateSize();
-    }
-
-    public fixOutOfCanvasPosition(): void {
-        this.updater.fixOutOfCanvasPosition();
-    }
-
-    public updateOutMode(): void {
-        this.updater.updateOutMode();
-    }
-
     private calcPosition(container: Container, position?: ICoordinates): ICoordinates {
         const pos = {
             x: position && position.x ? position.x : Math.random() * container.canvas.w,
@@ -333,7 +233,7 @@ export class Particle {
     }
 
     private calcVelocity(options: IOptions): IVelocity {
-        const velbase = this.getVelBase(options);
+        const velbase = Utils.getParticleVelBase(options);
         const res = {
             horizontal: 0,
             vertical: 0,
@@ -357,88 +257,6 @@ export class Particle {
 
         // res.x = Math.cos(theta);
         // res.y = Math.sin(theta);
-
-        return res;
-    }
-
-    private getVelBase(options: IOptions): ICoordinates {
-        let velbase: ICoordinates;
-
-        switch (options.particles.move.direction) {
-            case MoveDirection.top:
-                velbase = { x: 0, y: -1 };
-                break;
-            case MoveDirection.topRight:
-                velbase = { x: 0.5, y: -0.5 };
-                break;
-            case MoveDirection.right:
-                velbase = { x: 1, y: -0 };
-                break;
-            case MoveDirection.bottomRight:
-                velbase = { x: 0.5, y: 0.5 };
-                break;
-            case MoveDirection.bottom:
-                velbase = { x: 0, y: 1 };
-                break;
-            case MoveDirection.bottomLeft:
-                velbase = { x: -0.5, y: 1 };
-                break;
-            case MoveDirection.left:
-                velbase = { x: -1, y: 0 };
-                break;
-            case MoveDirection.topLeft:
-                velbase = { x: -0.5, y: -0.5 };
-                break;
-            default:
-                velbase = { x: 0, y: 0 };
-                break;
-        }
-
-        return velbase;
-    }
-
-    private getColor(options: IOptions, color: { value: string[] | IColor | string }): IColor {
-        const res: IColor = {};
-
-        if (typeof (color.value) === "object") {
-            if (color.value instanceof Array) {
-                const arr = options.particles.color.value as string[];
-                const color_selected = color.value[Math.floor(Math.random() * arr.length)];
-
-                res.rgb = Utils.hexToRgb(color_selected);
-            } else {
-
-                const rgbColor = color.value as IRgb;
-
-                if (rgbColor && rgbColor.r !== undefined && rgbColor.g !== undefined && rgbColor.b !== undefined) {
-                    this.color.rgb = {
-                        b: rgbColor.b,
-                        g: rgbColor.g,
-                        r: rgbColor.r,
-                    };
-                }
-
-                const hslColor = color.value as IHsl;
-
-                if (hslColor && hslColor.h !== undefined && hslColor.s !== undefined && hslColor.l !== undefined) {
-                    res.hsl = {
-                        h: hslColor.h,
-                        l: hslColor.l,
-                        s: hslColor.s,
-                    };
-                }
-            }
-        } else if (typeof (color.value) === "string") {
-            if (color.value === "random") {
-                res.rgb = {
-                    b: Math.floor(Math.random() * 256),
-                    g: Math.floor(Math.random() * 256),
-                    r: Math.floor(Math.random() * 256),
-                };
-            } else {
-                res.rgb = Utils.hexToRgb(color.value);
-            }
-        }
 
         return res;
     }

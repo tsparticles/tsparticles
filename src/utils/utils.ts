@@ -1,6 +1,7 @@
 "use strict";
 
-import { IRgb } from "./interfaces";
+import { ICoordinates, IColor, IHsl, IOptions, IRgb } from "./interfaces";
+import { MoveDirection } from "./enums/generics";
 
 /* ---------- global functions - vendors ------------ */
 
@@ -42,5 +43,86 @@ export class Utils {
       }
     }
     return destination;
+  }
+
+  public static getParticleVelBase(options: IOptions): ICoordinates {
+    let velbase: ICoordinates;
+
+    switch (options.particles.move.direction) {
+      case MoveDirection.top:
+        velbase = { x: 0, y: -1 };
+        break;
+      case MoveDirection.topRight:
+        velbase = { x: 0.5, y: -0.5 };
+        break;
+      case MoveDirection.right:
+        velbase = { x: 1, y: -0 };
+        break;
+      case MoveDirection.bottomRight:
+        velbase = { x: 0.5, y: 0.5 };
+        break;
+      case MoveDirection.bottom:
+        velbase = { x: 0, y: 1 };
+        break;
+      case MoveDirection.bottomLeft:
+        velbase = { x: -0.5, y: 1 };
+        break;
+      case MoveDirection.left:
+        velbase = { x: -1, y: 0 };
+        break;
+      case MoveDirection.topLeft:
+        velbase = { x: -0.5, y: -0.5 };
+        break;
+      default:
+        velbase = { x: 0, y: 0 };
+        break;
+    }
+
+    return velbase;
+  }
+
+  public static getParticleColor(options: IOptions, color: { value: string[] | IColor | string }): IColor {
+    const res: IColor = {};
+
+    if (typeof (color.value) === "object") {
+      if (color.value instanceof Array) {
+        const arr = options.particles.color.value as string[];
+        const color_selected = color.value[Math.floor(Math.random() * arr.length)];
+
+        res.rgb = Utils.hexToRgb(color_selected);
+      } else {
+        const rgbColor = color.value as IRgb;
+
+        if (rgbColor) {
+          res.rgb = {
+            b: rgbColor.b,
+            g: rgbColor.g,
+            r: rgbColor.r,
+          };
+        }
+
+        const hslColor = color.value as IHsl;
+
+        if (hslColor) {
+          res.hsl = {
+            h: hslColor.h,
+            l: hslColor.l,
+            s: hslColor.s,
+          };
+        }
+      }
+    } else if (typeof (color.value) === "string") {
+      if (color.value === "random") {
+        res.rgb = {
+          b: Math.floor(Math.random() * 256),
+          g: Math.floor(Math.random() * 256),
+          r: Math.floor(Math.random() * 256),
+        };
+      } else {
+        res.rgb = Utils.hexToRgb(color.value);
+      }
+    }
+
+    return res;
   }
 }

@@ -53,8 +53,8 @@ export class Drawer {
             radius = particle.radius;
         }
 
-        if (particle.opacity_bubble !== undefined) {
-            opacity = particle.opacity_bubble;
+        if (particle.opacityBubble !== undefined) {
+            opacity = particle.opacityBubble;
         } else {
             opacity = particle.opacity.value;
         }
