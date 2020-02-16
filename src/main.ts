@@ -6,7 +6,7 @@
 /* Demo / Generator : https://tsparticles.matteobruni.it/demo
 /* GitHub : https://www.github.com/matteobruni/tsparticles
 /* How to use? : Check the GitHub README
-/* v1.4.6
+/* v1.4.7
 /* ----------------------------------------------- */
 import { Container } from "./classes/container";
 import { Loader } from "./classes/loader";
@@ -37,9 +37,7 @@ window.requestAnimFrame = (() => {
     window.mozRequestAnimationFrame ||
     window.oRequestAnimationFrame ||
     window.msRequestAnimationFrame ||
-    function (callback: () => void) {
-      window.setTimeout(callback, 1000 / 60);
-    };
+    ((callback) => window.setTimeout(callback, 1000 / 60));
 })();
 
 window.cancelRequestAnimFrame = (() => {
@@ -54,23 +52,23 @@ window.cancelRequestAnimFrame = (() => {
 /* ---------- tsParticles functions - start ------------ */
 
 class Main {
-  public load(tagId: string, params: IOptions) {
-    Loader.load(tagId, params);
+  public load(tagId: string, params: IOptions): Container | undefined {
+    return Loader.load(tagId, params);
   }
 
-  public async loadJSON(tagId: string, path_config_json: string) {
+  public async loadJSON(tagId: string, path_config_json: string): Promise<void> {
     await Loader.loadJSON(tagId, path_config_json);
   }
 
-  public setOnClickHandler(callback: EventListenerOrEventListenerObject) {
+  public setOnClickHandler(callback: EventListenerOrEventListenerObject): void {
     Loader.setOnClickHandler(callback);
   }
 
-  public dom() {
+  public dom(): Container[] {
     return Loader.dom();
   }
 
-  public domItem(idx: number) {
+  public domItem(idx: number): Container {
     return this.dom()[idx];
   }
 }
@@ -98,7 +96,7 @@ window.particlesJS.load = async (tagId: string, path_config_json: string, callba
   });
 };
 
-window.particlesJS.setOnClickHandler = function (callback: EventListenerOrEventListenerObject) {
+window.particlesJS.setOnClickHandler = (callback: EventListenerOrEventListenerObject) => {
   if (console) {
     console.info("this method is obsolete, please use the new tsParticles.setOnClickHandler");
   }
@@ -106,7 +104,7 @@ window.particlesJS.setOnClickHandler = function (callback: EventListenerOrEventL
   window.tsParticles.setOnClickHandler(callback);
 };
 
-window.pJSDom = function () {
+window.pJSDom = () => {
   if (console) {
     console.info("this method is obsolete, please use the new tsParticles.dom");
   }

@@ -1,10 +1,10 @@
 "use strict";
 
+import { ClickMode, HoverMode, InteractivityDetect, MoveDirection, OutMode, ShapeType } from "./enums";
 import { IOptions } from "./interfaces";
-import { ShapeType, MoveDirection, OutMode, InteractivityDetect, HoverMode, ClickMode } from "./enums";
 
 export class Constants {
-    public static readonly canvasClass = "tsparticles-canvas-el";
+    public static readonly canvasClass: string = "tsparticles-canvas-el";
     public static readonly defaultOptions: IOptions = {
         fps_limit: 60,
         interactivity: {
@@ -12,7 +12,7 @@ export class Constants {
             events: {
                 onclick: {
                     enable: true,
-                    mode: ClickMode.push
+                    mode: ClickMode.push,
                 },
                 onhover: {
                     enable: true,
@@ -20,52 +20,52 @@ export class Constants {
                     parallax: {
                         enable: false,
                         force: 2,
-                        smooth: 10
-                    }
+                        smooth: 10,
+                    },
                 },
-                resize: true
+                resize: true,
             },
             modes: {
                 bubble: {
                     distance: 200,
                     duration: 0.4,
                     opacity: 1,
-                    size: 80
+                    size: 80,
                 },
                 grab: {
                     distance: 100,
                     line_linked: {
-                        opacity: 1
-                    }
+                        opacity: 1,
+                    },
                 },
                 push: {
-                    particles_nb: 4
+                    particles_nb: 4,
                 },
                 remove: {
-                    particles_nb: 2
+                    particles_nb: 2,
                 },
                 repulse: {
                     distance: 200,
-                    duration: 0.4
-                }
-            }
+                    duration: 0.4,
+                },
+            },
         },
         particles: {
             color: {
-                value: "#fff"
+                value: "#fff",
             },
             line_linked: {
-                enable: true,
-                distance: 100,
                 color: "#fff",
+                distance: 100,
+                enable: true,
                 opacity: 1,
-                width: 1
+                width: 1,
             },
             move: {
                 attract: {
                     enable: false,
                     rotateX: 3000,
-                    rotateY: 3000
+                    rotateY: 3000,
                 },
                 bounce: false,
                 direction: MoveDirection.none,
@@ -73,24 +73,24 @@ export class Constants {
                 out_mode: OutMode.out,
                 random: false,
                 speed: 2,
-                straight: false
+                straight: false,
             },
             number: {
                 density: {
                     enable: true,
-                    value_area: 800
+                    value_area: 800,
                 },
                 value: 400,
             },
             opacity: {
                 anim: {
                     enable: false,
-                    speed: 2,
                     opacity_min: 0,
-                    sync: false
+                    speed: 2,
+                    sync: false,
                 },
                 random: false,
-                value: 1
+                value: 1,
             },
             shape: {
                 character: {
@@ -98,7 +98,7 @@ export class Constants {
                     font: "Verdana",
                     style: "",
                     value: "*",
-                    weight: "400"
+                    weight: "400",
                 },
                 image: {
                     height: 100,
@@ -107,25 +107,25 @@ export class Constants {
                     width: 100,
                 },
                 polygon: {
-                    nb_sides: 5
+                    nb_sides: 5,
                 },
                 stroke: {
                     color: "#ff0000",
-                    width: 0
+                    width: 0,
                 },
                 type: ShapeType.circle,
             },
             size: {
                 anim: {
                     enable: false,
-                    speed: 20,
                     size_min: 0,
-                    sync: false
+                    speed: 20,
+                    sync: false,
                 },
                 random: false,
-                value: 20
-            }
+                value: 20,
+            },
         },
-        retina_detect: false
+        retina_detect: false,
     };
 }

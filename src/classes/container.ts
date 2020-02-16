@@ -5,42 +5,42 @@ import { IOptions, IContainerInteractivity, ISvg, IImage, IBubble, IRepulse } fr
 import { Retina } from "./retina";
 import { Canvas } from "./canvas";
 import { Particles } from "./particles";
-import { ShapeType, InteractivityDetect, ClickMode, ProcessBubbleType } from "../utils/enums";
+import { ShapeType, InteractivityDetect } from "../utils/enums";
 import { Loader } from "./loader";
-import { Particle } from "./particle";
 import { Constants } from "../utils/constants";
+import { EventListeners } from "../utils/eventlisteners";
 
 export class Container {
-    interactivity: IContainerInteractivity;
-    options: IOptions;
+    public interactivity: IContainerInteractivity;
+    public options: IOptions;
+    public retina: Retina;
+    public canvas: Canvas;
+    public particles: Particles;
+    public checkAnimFrame?: number;
+    public drawAnimFrame?: number;
+    public bubble: IBubble;
+    public repulse: IRepulse;
+    public svg: ISvg;
+    public img: IImage;
+    public lastFrameTime: number;
+    public pageHidden: boolean;
 
-    retina: Retina;
-    canvas: Canvas;
-    particles: Particles;
-
-    checkAnimFrame?: number;
-    drawAnimFrame?: number;
-
-    bubble: IBubble;
-    repulse: IRepulse;
-    svg: ISvg;
-    img: IImage;
-
-    lastFrameTime = 0;
-    pageHidden = false;
+    private readonly eventListeners: EventListeners;
 
     constructor(tagId: string, params: IOptions) {
+        this.lastFrameTime = 0;
+        this.pageHidden = false;
         this.retina = new Retina(this);
         this.canvas = new Canvas(this, tagId);
         this.particles = new Particles(this);
 
         this.interactivity = {
-            mouse: {}
+            mouse: {},
         };
 
         this.svg = {
+            count: 0,
             source: undefined,
-            count: 0
         };
 
         this.img = {};
@@ -57,9 +57,9 @@ export class Container {
         }
 
         /* ---------- tsParticles - start ------------ */
-        this.eventsListeners();
+        this.eventListeners = new EventListeners(this);
+        this.addEventsListeners();
 
-        //TODO: Start è async
         this.start().then(() => {
             /*
                 Cancel animation if page is not in focus
@@ -73,7 +73,7 @@ export class Container {
         });
     }
 
-    public handleVisibilityChange() {
+    public handleVisibilityChange(): void {
         if (document.hidden) {
             this.pageHidden = true;
 
@@ -88,7 +88,7 @@ export class Container {
     }
 
     /* ---------- tsParticles functions - vendors ------------ */
-    public eventsListeners() {
+    public addEventsListeners(): void {
         /* events target element */
         if (this.options.interactivity.detect_on === InteractivityDetect.window) {
             this.interactivity.el = window;
@@ -101,90 +101,21 @@ export class Container {
         if (this.options.interactivity.events.onhover.enable || this.options.interactivity.events.onclick.enable) {
             /* el on mousemove */
             if (this.interactivity.el) {
-                this.interactivity.el.addEventListener("mousemove", (e: Event) => {
-                    let pos_x;
-                    let pos_y;
-
-                    let mouseEvent = e as MouseEvent;
-
-                    if (this.interactivity.el === window) {
-                        pos_x = mouseEvent.clientX;
-                        pos_y = mouseEvent.clientY;
-                    } else if (this.options.interactivity.detect_on === InteractivityDetect.parent) {
-                        let source = mouseEvent.srcElement as HTMLElement;
-                        let target = mouseEvent.currentTarget as HTMLElement
-                        if (source && target) {
-                            let sourceRect = source.getBoundingClientRect();
-                            let targetRect = target.getBoundingClientRect();
-                            pos_x = mouseEvent.offsetX + sourceRect.left - targetRect.left;
-                            pos_y = mouseEvent.offsetY + sourceRect.top - targetRect.top;
-                        } else {
-                            pos_x = mouseEvent.offsetX || mouseEvent.clientX;
-                            pos_y = mouseEvent.offsetY || mouseEvent.clientY;
-                        }
-                    } else {
-                        pos_x = mouseEvent.offsetX || mouseEvent.clientX;
-                        pos_y = mouseEvent.offsetY || mouseEvent.clientY;
-                    }
-
-                    this.interactivity.mouse.pos_x = pos_x * (this.retina.isRetina ? this.canvas.pxratio : 1);
-                    this.interactivity.mouse.pos_y = pos_y * (this.retina.isRetina ? this.canvas.pxratio : 1);
-
-                    this.interactivity.status = "mousemove";
-                });
+                this.interactivity.el.addEventListener("mousemove", (e: Event) => this.eventListeners.mouseMove(e));
                 /* el on onmouseleave */
-                this.interactivity.el.addEventListener("mouseleave", () => {
-                    this.interactivity.mouse.pos_x = null;
-                    this.interactivity.mouse.pos_y = null;
-                    this.interactivity.status = "mouseleave";
-                });
+                this.interactivity.el.addEventListener("mouseleave", () => this.eventListeners.mouseLeave());
             }
         }
 
         /* on click event */
         if (this.options.interactivity.events.onclick.enable) {
             if (this.interactivity.el) {
-                this.interactivity.el.addEventListener("click", () => {
-                    this.interactivity.mouse.click_pos_x = this.interactivity.mouse.pos_x;
-                    this.interactivity.mouse.click_pos_y = this.interactivity.mouse.pos_y;
-                    this.interactivity.mouse.click_time = new Date().getTime();
-
-                    if (this.options.interactivity.events.onclick.enable) {
-                        switch (this.options.interactivity.events.onclick.mode) {
-                            case ClickMode.push:
-                                if (this.options.particles.move.enable) {
-                                    this.particles.push(this.options.interactivity.modes.push.particles_nb, this.interactivity.mouse);
-                                } else {
-                                    if (this.options.interactivity.modes.push.particles_nb === 1) {
-                                        this.particles.push(this.options.interactivity.modes.push.particles_nb, this.interactivity.mouse);
-                                    }
-                                    else if (this.options.interactivity.modes.push.particles_nb > 1) {
-                                        this.particles.push(this.options.interactivity.modes.push.particles_nb);
-                                    }
-                                }
-                                break;
-                            case ClickMode.remove:
-                                this.particles.remove(this.options.interactivity.modes.remove.particles_nb);
-                                break;
-                            case ClickMode.bubble:
-                                this.bubble.clicking = true;
-                                break;
-                            case ClickMode.repulse:
-                                this.repulse.clicking = true;
-                                this.repulse.count = 0;
-                                this.repulse.finish = false;
-                                setTimeout(() => {
-                                    this.repulse.clicking = false;
-                                }, this.options.interactivity.modes.repulse.duration * 1000);
-                                break;
-                        }
-                    }
-                });
+                this.interactivity.el.addEventListener("click", () => this.eventListeners.mouseClick());
             }
         }
     }
 
-    public densityAutoParticles() {
+    public densityAutoParticles(): void {
         if (this.options.particles.number.density.enable) {
             /* calc area */
             let area = this.canvas.el.width * this.canvas.el.height / 1000;
@@ -192,11 +123,15 @@ export class Container {
             if (this.retina.isRetina) {
                 area = area / ((this.canvas.pxratio) * 2);
             }
+
+            const particlesNumber = this.options.particles.number.value;
+            const density = this.options.particles.number.density.value_area;
+
             /* calc number of particles based on density area */
-            let nb_particles = area * this.options.particles.number.value / this.options.particles.number.density.value_area;
+            const nb_particles = area * particlesNumber / density;
 
             /* add or remove X particles */
-            let missing_particles = this.particles.array.length - nb_particles;
+            const missing_particles = this.particles.array.length - nb_particles;
 
             if (missing_particles < 0)
                 this.particles.push(Math.abs(missing_particles));
@@ -205,20 +140,21 @@ export class Container {
         }
     }
 
-    public destroyContainer() {
-        if (this.drawAnimFrame !== undefined)
+    public destroyContainer(): void {
+        if (this.drawAnimFrame !== undefined) {
             cancelAnimationFrame(this.drawAnimFrame);
+        }
 
         this.canvas.el.remove();
 
         Loader.domSet([]);
     }
 
-    public exportImg() {
+    public exportImg(): void {
         window.open(this.canvas.el.toDataURL("image/png"), "_blank");
     }
 
-    public async loadImg(type: string) {
+    public async loadImg(): Promise<void> {
         this.img.error = undefined;
         if (this.options.particles.shape.image.src) {
             // if (type === "svg") {
@@ -233,7 +169,7 @@ export class Container {
             //         this.img.error = true;
             //     }
             // } else {
-            let img = new Image();
+            const img = new Image();
 
             img.addEventListener("load", () => {
                 this.img.obj = img;
@@ -249,15 +185,15 @@ export class Container {
         }
     }
 
-    public requestFrame(callback: FrameRequestCallback) {
+    public requestFrame(callback: FrameRequestCallback): number {
         return window.requestAnimFrame(callback);
     }
 
-    public cancelAnimation(handle: number) {
-        return window.cancelAnimationFrame(handle);
+    public cancelAnimation(handle: number): void {
+        window.cancelAnimationFrame(handle);
     }
 
-    public draw(timestamp: DOMHighResTimeStamp) {
+    public draw(timestamp: DOMHighResTimeStamp): void {
         // FPS limit logic
         // If we are too fast, just draw without updating
         const fps_limit = this.options.fps_limit;
@@ -313,7 +249,7 @@ export class Container {
         }
     }
 
-    public checkBeforeDraw() {
+    public checkBeforeDraw(): void {
         // if shape is image
         if (this.options.particles.shape.type === ShapeType.image) {
             // if (this.img.type === "svg" && this.svg.source === undefined) {
@@ -337,7 +273,7 @@ export class Container {
         }
     }
 
-    public init() {
+    public init(): void {
         /* init canvas + particles */
         this.retina.init();
         this.canvas.init();
@@ -347,10 +283,13 @@ export class Container {
         this.densityAutoParticles();
     }
 
-    public async start() {
+    public async start(): Promise<void> {
         if (this.options.particles.shape.type === ShapeType.image) {
-            this.img.type = this.options.particles.shape.image.src.substr(this.options.particles.shape.image.src.length - 3);
-            await this.loadImg(this.img.type);
+            const src = this.options.particles.shape.image.src;
+
+            this.img.type = src.substr(src.length - 3);
+
+            await this.loadImg();
         }
         else {
             this.checkBeforeDraw();

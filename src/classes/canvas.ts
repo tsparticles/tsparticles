@@ -1,10 +1,10 @@
 "use strict";
 
-import { Container } from "./container";
 import { Constants } from "../utils/constants";
+import { Container } from "./container";
+import { ICoordinates } from "../utils/interfaces";
 
 export class Canvas {
-    private container: Container;
     public el: HTMLCanvasElement;
     public ctx: CanvasRenderingContext2D | null;
     public w: number;
@@ -12,27 +12,29 @@ export class Canvas {
     public tagId: string;
     public pxratio: number
 
+    private readonly container: Container;
+
     constructor(container: Container, tagId: string) {
-        let canvas_el = document.querySelector(`#${tagId} > .${Constants.canvasClass}`) as HTMLCanvasElement;
+        const canvasEl = document.querySelector(`#${tagId} > .${Constants.canvasClass}`) as HTMLCanvasElement;
 
         this.container = container;
-        this.el = canvas_el;
-        this.w = canvas_el.offsetWidth;
-        this.h = canvas_el.offsetHeight;
+        this.el = canvasEl;
+        this.w = canvasEl.offsetWidth;
+        this.h = canvasEl.offsetHeight;
         this.tagId = tagId;
         this.pxratio = 1;
         this.ctx = this.el.getContext("2d");
     }
 
     /* ---------- tsParticles functions - canvas ------------ */
-    public init() {
+    public init(): void {
         // TODO: Moved in the constructor, check if it"s fine there
         // this.ctx = this.el.getContext("2d");
     }
 
-    public size() {
-        let container = this.container;
-        let options = container.options;
+    public size(): void {
+        const container = this.container;
+        const options = container.options;
 
         this.el.width = this.w;
         this.el.height = this.h;
@@ -66,13 +68,13 @@ export class Canvas {
         }
     }
 
-    public paint() {
+    public paint(): void {
         if (this.ctx) {
             this.ctx.fillRect(0, 0, this.w, this.h);
         }
     }
 
-    public clear() {
+    public clear(): void {
         if (this.ctx) {
             this.ctx.clearRect(0, 0, this.w, this.h);
         }

@@ -6,7 +6,7 @@ import { Bubbler } from "./bubbler";
 export class Drawer {
     private readonly particle: Particle;
     private readonly container: Container;
-    bubbler: Bubbler;
+    private readonly bubbler: Bubbler;
 
     constructor(container: Container, particle: Particle, bubbler: Bubbler) {
         this.container = container;
@@ -14,7 +14,35 @@ export class Drawer {
         this.bubbler = bubbler;
     }
 
-    public draw() {
+    private static subDrawShape(ctx: CanvasRenderingContext2D,
+        startX: number,
+        startY: number,
+        sideLength: number,
+        sideCountNumerator: number,
+        sideCountDenominator: number): void {
+        // By Programming Thomas - https://programmingthomas.wordpress.com/2013/04/03/n-sided-shapes/
+        const sideCount = sideCountNumerator * sideCountDenominator;
+        const decimalSides = sideCountNumerator / sideCountDenominator;
+        const interiorAngleDegrees = (180 * (decimalSides - 2)) / decimalSides;
+        const interiorAngle = Math.PI - Math.PI * interiorAngleDegrees / 180; // convert to radians
+
+        ctx.save();
+        ctx.beginPath();
+        ctx.translate(startX, startY);
+        ctx.moveTo(0, 0);
+
+        for (let i = 0; i < sideCount; i++) {
+            ctx.lineTo(sideLength, 0);
+            ctx.translate(sideLength, 0);
+            ctx.rotate(interiorAngle);
+        }
+
+        // c.stroke();
+        ctx.fill();
+        ctx.restore();
+    }
+
+    public draw(): void {
         const container = this.container;
         const options = container.options;
         const particle = this.particle;
@@ -41,7 +69,9 @@ export class Drawer {
             color_value = `hsla(${particle.color.hsl.h},${particle.color.hsl.s}%,${particle.color.hsl.l}%,${opacity})`;
         }
 
-        if (!container.canvas.ctx || !color_value) return;
+        if (!container.canvas.ctx || !color_value) {
+            return;
+        }
 
         container.canvas.ctx.fillStyle = color_value;
         container.canvas.ctx.beginPath();
@@ -59,7 +89,7 @@ export class Drawer {
         container.canvas.ctx.fill();
     }
 
-    private drawShape(radius: number) {
+    private drawShape(radius: number): void {
         const container = this.container;
         const options = container.options;
         const particle = this.particle;
@@ -71,7 +101,7 @@ export class Drawer {
 
         const pos = {
             x: particle.position.x + particle.offset.x,
-            y: particle.position.y + particle.offset.y
+            y: particle.position.y + particle.offset.y,
         };
 
         switch (particle.shape) {
@@ -91,7 +121,11 @@ export class Drawer {
                 ctx.rect(particle.position.x - radius, particle.position.y - radius, radius * 2, radius * 2);
                 break;
             case ShapeType.triangle:
-                Drawer.subDrawShape(ctx, particle.position.x - radius, particle.position.y + radius / 1.66, radius * 2, 3, 2);
+                const startX = particle.position.x - radius;
+                const startY = particle.position.y + radius / 1.66;
+                const sideLength = radius * 2;
+
+                Drawer.subDrawShape(ctx, startX, startY, sideLength, 3, 2);
                 break;
             case ShapeType.polygon:
                 {
@@ -117,8 +151,8 @@ export class Drawer {
                 break;
 
             case ShapeType.heart:
-                let x = particle.position.x - radius / 2;
-                let y = particle.position.y - radius / 2;
+                const x = particle.position.x - radius / 2;
+                const y = particle.position.y - radius / 2;
 
                 ctx.moveTo(x, y + radius / 4);
                 ctx.quadraticCurveTo(x, y, x + radius / 4, y);
@@ -134,13 +168,21 @@ export class Drawer {
 
             case ShapeType.char:
             case ShapeType.character:
-                ctx.font = `${options.particles.shape.character.style} ${options.particles.shape.character.weight} ${Math.round(radius) * 2}px ${options.particles.shape.character.font}`;
+                const style = options.particles.shape.character.style;
+                const weight = options.particles.shape.character.weight;
+                const size = Math.round(radius) * 2;
+                const font = options.particles.shape.character.font;
+
+                ctx.font = `${style} ${weight} ${size}px ${font}`;
 
                 if (particle.text) {
+                    const x = particle.position.x - radius / 2;
+                    const y = particle.position.y + radius / 2;
+
                     if (options.particles.shape.character.fill) {
-                        ctx.fillText(particle.text, particle.position.x - radius / 2, particle.position.y + radius / 2);
+                        ctx.fillText(particle.text, x, y);
                     } else {
-                        ctx.strokeText(particle.text, particle.position.x - radius / 2, particle.position.y + radius / 2);
+                        ctx.strokeText(particle.text, x, y);
                     }
                 }
                 break;
@@ -162,7 +204,7 @@ export class Drawer {
         }
     }
 
-    public subDraw(ctx: CanvasRenderingContext2D, img_obj: HTMLImageElement, radius: number) {
+    private subDraw(ctx: CanvasRenderingContext2D, img_obj: HTMLImageElement, radius: number): void {
         const particle = this.particle;
 
         let ratio = 1;
@@ -171,29 +213,11 @@ export class Drawer {
             ratio = particle.img.ratio;
         }
 
-        ctx.drawImage(img_obj, particle.position.x - radius, particle.position.y - radius, radius * 2, radius * 2 / ratio);
-    }
+        const pos = {
+            x: particle.position.x - radius,
+            y: particle.position.y - radius,
+        };
 
-    public static subDrawShape(ctx: CanvasRenderingContext2D, startX: number, startY: number, sideLength: number, sideCountNumerator: number, sideCountDenominator: number) {
-        // By Programming Thomas - https://programmingthomas.wordpress.com/2013/04/03/n-sided-shapes/
-        let sideCount = sideCountNumerator * sideCountDenominator;
-        let decimalSides = sideCountNumerator / sideCountDenominator;
-        let interiorAngleDegrees = (180 * (decimalSides - 2)) / decimalSides;
-        let interiorAngle = Math.PI - Math.PI * interiorAngleDegrees / 180; // convert to radians
-
-        ctx.save();
-        ctx.beginPath();
-        ctx.translate(startX, startY);
-        ctx.moveTo(0, 0);
-
-        for (let i = 0; i < sideCount; i++) {
-            ctx.lineTo(sideLength, 0);
-            ctx.translate(sideLength, 0);
-            ctx.rotate(interiorAngle);
-        }
-
-        //c.stroke();
-        ctx.fill();
-        ctx.restore();
+        ctx.drawImage(img_obj, pos.x, pos.y, radius * 2, radius * 2 / ratio);
     }
 }
