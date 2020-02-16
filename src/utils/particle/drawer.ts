@@ -123,11 +123,11 @@ export class Drawer {
                 };
 
                 const side: IShapeSide = {
-                    length: radius * 2,
                     count: {
-                        numerator: 3,
                         denominator: 2,
+                        numerator: 3,
                     },
+                    length: radius * 2,
                 };
 
                 Drawer.subDrawShape(ctx, start, side);
@@ -139,11 +139,11 @@ export class Drawer {
                         y: particle.position.y - radius / (2.66 / 3.5),
                     };
                     const side: IShapeSide = {
-                        length: radius * 2.66 / (options.particles.shape.polygon.nb_sides / 3),
                         count: {
-                            numerator: options.particles.shape.polygon.nb_sides,
                             denominator: 1,
+                            numerator: options.particles.shape.polygon.nb_sides,
                         },
+                        length: radius * 2.66 / (options.particles.shape.polygon.nb_sides / 3),
                     };
 
                     Drawer.subDrawShape(ctx, start, side);
@@ -156,11 +156,11 @@ export class Drawer {
                         y: particle.position.y - radius / (2 * 2.66 / 3.5),
                     };
                     const side: IShapeSide = {
-                        length: radius * 2 * 2.66 / (options.particles.shape.polygon.nb_sides / 3),
                         count: {
-                            numerator: options.particles.shape.polygon.nb_sides,
                             denominator: 2,
+                            numerator: options.particles.shape.polygon.nb_sides,
                         },
+                        length: radius * 2 * 2.66 / (options.particles.shape.polygon.nb_sides / 3),
                     };
 
                     Drawer.subDrawShape(ctx, start, side);
