@@ -48,37 +48,37 @@ export class Particles {
             // }
 
             /* move the particle */
-            p.move(delta);
+            p.updater.move(delta);
 
             /* parallax */
-            p.moveParallax();
+            p.updater.moveParallax();
 
             /* change opacity status */
-            p.updateOpacity();
+            p.updater.updateOpacity();
 
             /* change size */
-            p.updateSize();
+            p.updater.updateSize();
 
             /* change particle position if it is out of canvas */
-            p.fixOutOfCanvasPosition();
+            p.updater.fixOutOfCanvasPosition();
 
             /* out of canvas modes */
-            p.updateOutMode();
+            p.updater.updateOutMode();
 
             const hoverMode = options.interactivity.events.onhover.mode;
             const clickMode = options.interactivity.events.onclick.mode;
 
             /* events */
             if (Utils.isInArray(HoverMode.grab, hoverMode)) {
-                p.grab();
+                p.grabber.grab();
             }
 
             if (Utils.isInArray(HoverMode.bubble, hoverMode) || Utils.isInArray(ClickMode.bubble, clickMode)) {
-                p.bubble();
+                p.bubbler.bubble();
             }
 
             if (Utils.isInArray(HoverMode.repulse, hoverMode) || Utils.isInArray(ClickMode.repulse, clickMode)) {
-                p.repulse();
+                p.repulser.repulse();
             }
 
             /* interaction auto between particles */
@@ -88,17 +88,17 @@ export class Particles {
 
                     /* link particles */
                     if (options.particles.line_linked.enable) {
-                        p.link(p2);
+                        p.updater.link(p2);
                     }
 
                     /* attract particles */
                     if (options.particles.move.attract.enable) {
-                        p.attract(p2);
+                        p.updater.attract(p2);
                     }
 
                     /* bounce particles */
                     if (options.particles.move.bounce) {
-                        p.bounce(p2);
+                        p.updater.bounce(p2);
                     }
                 }
             }
@@ -118,7 +118,7 @@ export class Particles {
 
         /* draw each particle */
         for (const p of this.array) {
-            p.draw();
+            p.drawer.draw();
         }
     }
 
