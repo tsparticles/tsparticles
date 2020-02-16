@@ -1,5 +1,5 @@
-import { Container } from "../../classes/container";
 import { ClickMode, HoverMode, ProcessBubbleType } from "../enums";
+import { Container } from "../../classes/container";
 import { IBubblerProcessParam } from "../interfaces";
 import { Particle } from "../../classes/particle";
 import { Utils } from "../utils";
