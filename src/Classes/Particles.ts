@@ -12,7 +12,7 @@ import { Utils } from "./Utils/Utils";
 export class Particles {
     public array: Particle[];
     public pushing?: boolean;
-    public line_linked_color?: IRgb | null;
+    public lineLinkedColor?: IRgb | null;
 
     private readonly container: Container;
 
@@ -186,7 +186,7 @@ export class Particles {
 
         container.canvas.clear();
 
-        delete container.particles.line_linked_color;
+        delete container.particles.lineLinkedColor;
 
         /* restart */
         await container.start();

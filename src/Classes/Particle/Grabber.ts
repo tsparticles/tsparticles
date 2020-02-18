@@ -35,11 +35,11 @@ export class Grabber {
                 if (opacityLine > 0) {
                     /* style */
                     const optColor = options.particles.line_linked.color;
-                    const lineColor = container.particles.line_linked_color || Utils.hexToRgb(optColor);
+                    const lineColor = container.particles.lineLinkedColor || Utils.hexToRgb(optColor);
 
-                    container.particles.line_linked_color = lineColor;
+                    container.particles.lineLinkedColor = lineColor;
 
-                    const colorLine = container.particles.line_linked_color || { r: 127, g: 127, b: 127 };
+                    const colorLine = container.particles.lineLinkedColor || { r: 127, g: 127, b: 127 };
 
                     const ctx = container.canvas.ctx;
 

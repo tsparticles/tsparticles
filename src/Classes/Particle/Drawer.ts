@@ -187,61 +187,64 @@ export class Drawer {
                 break;
 
             case ShapeType.heart:
-                const x = particle.position.x - radius / 2;
-                const y = particle.position.y - radius / 2;
+                {
+                    const x = particle.position.x - radius / 2;
+                    const y = particle.position.y - radius / 2;
 
-                ctx.moveTo(x, y + radius / 4);
-                ctx.quadraticCurveTo(x, y, x + radius / 4, y);
-                ctx.quadraticCurveTo(x + radius / 2, y, x + radius / 2, y + radius / 4);
-                ctx.quadraticCurveTo(x + radius / 2, y, x + radius * 3 / 4, y);
-                ctx.quadraticCurveTo(x + radius, y, x + radius, y + radius / 4);
-                ctx.quadraticCurveTo(x + radius, y + radius / 2, x + radius * 3 / 4, y + radius * 3 / 4);
-                ctx.lineTo(x + radius / 2, y + radius);
-                ctx.lineTo(x + radius / 4, y + radius * 3 / 4);
-                ctx.quadraticCurveTo(x, y + radius / 2, x, y + radius / 4);
-
+                    ctx.moveTo(x, y + radius / 4);
+                    ctx.quadraticCurveTo(x, y, x + radius / 4, y);
+                    ctx.quadraticCurveTo(x + radius / 2, y, x + radius / 2, y + radius / 4);
+                    ctx.quadraticCurveTo(x + radius / 2, y, x + radius * 3 / 4, y);
+                    ctx.quadraticCurveTo(x + radius, y, x + radius, y + radius / 4);
+                    ctx.quadraticCurveTo(x + radius, y + radius / 2, x + radius * 3 / 4, y + radius * 3 / 4);
+                    ctx.lineTo(x + radius / 2, y + radius);
+                    ctx.lineTo(x + radius / 4, y + radius * 3 / 4);
+                    ctx.quadraticCurveTo(x, y + radius / 2, x, y + radius / 4);
+                }
                 break;
 
             case ShapeType.char:
             case ShapeType.character:
-                const style = options.particles.shape.character.style;
-                const weight = options.particles.shape.character.weight;
-                const size = Math.round(radius) * 2;
-                const font = options.particles.shape.character.font;
-                const text = this.text;
+                {
+                    const style = options.particles.shape.character.style;
+                    const weight = options.particles.shape.character.weight;
+                    const size = Math.round(radius) * 2;
+                    const font = options.particles.shape.character.font;
+                    const text = this.text;
 
-                ctx.font = `${style} ${weight} ${size}px ${font}`;
+                    ctx.font = `${style} ${weight} ${size}px ${font}`;
 
-                if (text) {
-                    const x = particle.position.x - radius / 2;
-                    const y = particle.position.y + radius / 2;
+                    if (text) {
+                        const x = particle.position.x - radius / 2;
+                        const y = particle.position.y + radius / 2;
 
-                    if (options.particles.shape.character.fill) {
-                        ctx.fillText(text, x, y);
-                    } else {
-                        ctx.strokeText(text, x, y);
+                        if (options.particles.shape.character.fill) {
+                            ctx.fillText(text, x, y);
+                        } else {
+                            ctx.strokeText(text, x, y);
+                        }
                     }
                 }
                 break;
 
             case ShapeType.image:
-                let img_obj: HTMLImageElement | undefined;
+                let imgObj: HTMLImageElement | undefined;
 
                 // if (container.img.type === "svg" && this.img) {
-                //     img_obj = this.img.obj;
+                //     imgObj = this.img.obj;
                 // } else {
-                img_obj = container.img.obj;
+                imgObj = container.img.obj;
                 // }
 
-                if (img_obj) {
-                    this.subDraw(ctx, img_obj, radius);
+                if (imgObj) {
+                    this.subDraw(ctx, imgObj, radius);
                 }
 
                 break;
         }
     }
 
-    private subDraw(ctx: CanvasRenderingContext2D, img_obj: HTMLImageElement, radius: number): void {
+    private subDraw(ctx: CanvasRenderingContext2D, imgObj: HTMLImageElement, radius: number): void {
         const particle = this.particle;
 
         let ratio = 1;
@@ -255,6 +258,6 @@ export class Drawer {
             y: particle.position.y - radius,
         };
 
-        ctx.drawImage(img_obj, pos.x, pos.y, radius * 2, radius * 2 / ratio);
+        ctx.drawImage(imgObj, pos.x, pos.y, radius * 2, radius * 2 / ratio);
     }
 }

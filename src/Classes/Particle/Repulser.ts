@@ -81,12 +81,13 @@ export class Repulser {
         const options = container.options;
         const particle = this.particle;
         const mousePos = container.interactivity.mouse.position || { x: 0, y: 0 };
-        const dx_mouse = particle.position.x - mousePos.x;
-        const dy_mouse = particle.position.y - mousePos.y;
-        const dist_mouse = Math.sqrt(dx_mouse * dx_mouse + dy_mouse * dy_mouse);
-        const normVec = { x: dx_mouse / dist_mouse, y: dy_mouse / dist_mouse };
-        const repulseRadius = options.interactivity.modes.repulse.distance, velocity = 100;
-        const repulseFactor = Utils.clamp((1 - Math.pow(dist_mouse / repulseRadius, 2)) * velocity, 0, 50);
+        const dxMouse = particle.position.x - mousePos.x;
+        const dyMouse = particle.position.y - mousePos.y;
+        const distMouse = Math.sqrt(dxMouse * dxMouse + dyMouse * dyMouse);
+        const normVec = { x: dxMouse / distMouse, y: dyMouse / distMouse };
+        const repulseRadius = options.interactivity.modes.repulse.distance;
+        const velocity = 100;
+        const repulseFactor = Utils.clamp((1 - Math.pow(distMouse / repulseRadius, 2)) * velocity, 0, 50);
         const pos = {
             x: particle.position.x + normVec.x * repulseFactor,
             y: particle.position.y + normVec.y * repulseFactor,

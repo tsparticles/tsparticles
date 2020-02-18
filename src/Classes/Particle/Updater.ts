@@ -35,8 +35,8 @@ export class Updater {
 
             if (opacityLine > 0) {
                 /* style */
-                if (!container.particles.line_linked_color) {
-                    container.particles.line_linked_color = Utils.hexToRgb(options.particles.line_linked.color);
+                if (!container.particles.lineLinkedColor) {
+                    container.particles.lineLinkedColor = Utils.hexToRgb(options.particles.line_linked.color);
                 }
 
                 if (!container.canvas.ctx) {
@@ -45,7 +45,7 @@ export class Updater {
 
                 const ctx = container.canvas.ctx;
 
-                const colorLine = container.particles.line_linked_color;
+                const colorLine = container.particles.lineLinkedColor;
 
                 if (colorLine) {
                     ctx.strokeStyle = `rgba(${colorLine.r},${colorLine.g},${colorLine.b},${opacityLine})`;
