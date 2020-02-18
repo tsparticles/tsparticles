@@ -5,5 +5,5 @@ export interface IParticleImage {
     ratio: number;
     obj?: HTMLImageElement;
     loaded?: boolean;
-    replace_color: boolean;
+    replaceColor: boolean;
 }

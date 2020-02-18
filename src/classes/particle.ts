@@ -109,7 +109,7 @@ export class Particle {
             const sh = options.particles.shape;
             this.img = {
                 ratio: sh.image.width / sh.image.height,
-                replace_color: sh.image.replace_color,
+                replaceColor: sh.image.replace_color,
                 src: sh.image.src,
             };
 
