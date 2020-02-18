@@ -19,8 +19,9 @@ export class Grabber {
         const particle = this.particle;
 
         if (options.interactivity.events.onhover.enable && container.interactivity.status === "mousemove") {
-            const dxMouse = particle.position.x - (container.interactivity.mouse.pos_x || 0);
-            const dyMouse = particle.position.y - (container.interactivity.mouse.pos_y || 0);
+            const mousePos = container.interactivity.mouse.position || { x: 0, y: 0 };
+            const dxMouse = particle.position.x - mousePos.x;
+            const dyMouse = particle.position.y - mousePos.y;
             const distMouse = Math.sqrt(dxMouse * dxMouse + dyMouse * dyMouse);
             /*
                draw a line between the cursor and the particle
@@ -50,12 +51,6 @@ export class Grabber {
                         /* path */
                         ctx.beginPath();
                         ctx.moveTo(particle.position.x + particle.offset.x, particle.position.y + particle.offset.y);
-
-                        const mousePos = {
-                            x: (container.interactivity.mouse.pos_x || 0),
-                            y: (container.interactivity.mouse.pos_y || 0),
-                        };
-
                         ctx.lineTo(mousePos.x, mousePos.y);
                         ctx.stroke();
                         ctx.closePath();

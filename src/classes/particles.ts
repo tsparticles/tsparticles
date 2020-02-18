@@ -139,10 +139,7 @@ export class Particles {
         let pos: ICoordinates | undefined;
 
         if (mousePosition) {
-            pos = {
-                x: mousePosition.pos_x ?? 0,
-                y: mousePosition.pos_y ?? 0,
-            };
+            pos = mousePosition.position || { x: 0, y: 0 };
         }
 
         for (let i = 0; i < nb; i++) {

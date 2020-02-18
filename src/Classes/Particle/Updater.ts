@@ -118,10 +118,7 @@ export class Updater {
         const options = container.options;
         const particle = this.particle;
         const parallaxForce = options.interactivity.events.onhover.parallax.force;
-        const mousePos = {
-            x: container.interactivity.mouse.pos_x || 0,
-            y: container.interactivity.mouse.pos_y || 0,
-        };
+        const mousePos = container.interactivity.mouse.position || { x: 0, y: 0 };
         const windowDimension = {
             height: window.innerHeight / 2,
             width: window.innerWidth / 2,

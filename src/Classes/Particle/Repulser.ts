@@ -52,8 +52,9 @@ export class Repulser {
         if (container.repulse.clicking) {
             const repulseDistance = options.interactivity.modes.repulse.distance;
             const repulseRadius = Math.pow(repulseDistance / 6, 3);
-            const dx = (container.interactivity.mouse.click_pos_x || 0) - particle.position.x;
-            const dy = (container.interactivity.mouse.click_pos_y || 0) - particle.position.y;
+            const mouseClickPos = container.interactivity.mouse.clickPosition || { x: 0, y: 0 };
+            const dx = mouseClickPos.x - particle.position.x;
+            const dy = mouseClickPos.y - particle.position.y;
             const d = dx * dx + dy * dy;
             const force = -repulseRadius / d;
 
@@ -79,8 +80,9 @@ export class Repulser {
         const container = this.container;
         const options = container.options;
         const particle = this.particle;
-        const dx_mouse = particle.position.x - (container.interactivity.mouse.pos_x || 0);
-        const dy_mouse = particle.position.y - (container.interactivity.mouse.pos_y || 0);
+        const mousePos = container.interactivity.mouse.position || { x: 0, y: 0 };
+        const dx_mouse = particle.position.x - mousePos.x;
+        const dy_mouse = particle.position.y - mousePos.y;
         const dist_mouse = Math.sqrt(dx_mouse * dx_mouse + dy_mouse * dy_mouse);
         const normVec = { x: dx_mouse / dist_mouse, y: dy_mouse / dist_mouse };
         const repulseRadius = options.interactivity.modes.repulse.distance, velocity = 100;
