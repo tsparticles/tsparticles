@@ -107,7 +107,7 @@ export class Bubbler {
         const particle = this.particle;
 
         /* on click event */
-        const mouseClickPos = container.interactivity.mouse.clickPosition || { x: 0, y: 0, };
+        const mouseClickPos = container.interactivity.mouse.clickPosition || { x: 0, y: 0 };
         const dx_mouse = particle.position.x - mouseClickPos.x;
         const dy_mouse = particle.position.y - mouseClickPos.y;
         const distMouse = Math.sqrt(dx_mouse * dx_mouse + dy_mouse * dy_mouse);
@@ -161,7 +161,7 @@ export class Bubbler {
         const container = this.container;
         const options = container.options;
         const particle = this.particle;
-        const mousePos = container.interactivity.mouse.position || { x: 0, y: 0, };
+        const mousePos = container.interactivity.mouse.position || { x: 0, y: 0 };
         const dx_mouse = (particle.position.x + particle.offset.x) - mousePos.x;
         const dy_mouse = (particle.position.y + particle.offset.y) - mousePos.y;
         const dist_mouse = Math.sqrt(dx_mouse * dx_mouse + dy_mouse * dy_mouse);
