@@ -107,10 +107,11 @@ export class Bubbler {
         const particle = this.particle;
 
         /* on click event */
-        const dx_mouse = particle.position.x - (container.interactivity.mouse.click_pos_x || 0);
-        const dy_mouse = particle.position.y - (container.interactivity.mouse.click_pos_y || 0);
+        const mouseClickPos = container.interactivity.mouse.clickPosition || { x: 0, y: 0, };
+        const dx_mouse = particle.position.x - mouseClickPos.x;
+        const dy_mouse = particle.position.y - mouseClickPos.y;
         const distMouse = Math.sqrt(dx_mouse * dx_mouse + dy_mouse * dy_mouse);
-        const timeSpent = (new Date().getTime() - (container.interactivity.mouse.click_time || 0)) / 1000;
+        const timeSpent = (new Date().getTime() - (container.interactivity.mouse.clickTime || 0)) / 1000;
 
         if (container.bubble.clicking) {
             if (timeSpent > options.interactivity.modes.bubble.duration) {
@@ -160,8 +161,9 @@ export class Bubbler {
         const container = this.container;
         const options = container.options;
         const particle = this.particle;
-        const dx_mouse = (particle.position.x + particle.offset.x) - (container.interactivity.mouse.pos_x || 0);
-        const dy_mouse = (particle.position.y + particle.offset.y) - (container.interactivity.mouse.pos_y || 0);
+        const mousePos = container.interactivity.mouse.position || { x: 0, y: 0, };
+        const dx_mouse = (particle.position.x + particle.offset.x) - mousePos.x;
+        const dy_mouse = (particle.position.y + particle.offset.y) - mousePos.y;
         const dist_mouse = Math.sqrt(dx_mouse * dx_mouse + dy_mouse * dy_mouse);
         const ratio = 1 - dist_mouse / options.interactivity.modes.bubble.distance;
 

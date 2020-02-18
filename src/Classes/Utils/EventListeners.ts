@@ -48,8 +48,10 @@ export class EventListeners {
             };
         }
 
-        container.interactivity.mouse.pos_x = pos.x * (container.retina.isRetina ? container.canvas.pxratio : 1);
-        container.interactivity.mouse.pos_y = pos.y * (container.retina.isRetina ? container.canvas.pxratio : 1);
+        container.interactivity.mouse.clickPosition = {
+            x: pos.x * (container.retina.isRetina ? container.canvas.pxratio : 1),
+            y: pos.y * (container.retina.isRetina ? container.canvas.pxratio : 1),
+        };
 
         container.interactivity.status = "mousemove";
     }
@@ -57,8 +59,7 @@ export class EventListeners {
     public mouseLeave(): void {
         const container = this.container;
 
-        container.interactivity.mouse.pos_x = null;
-        container.interactivity.mouse.pos_y = null;
+        container.interactivity.mouse.position = null;
         container.interactivity.status = "mouseleave";
     }
 
@@ -66,9 +67,14 @@ export class EventListeners {
         const container = this.container;
         const options = container.options;
 
-        container.interactivity.mouse.click_pos_x = container.interactivity.mouse.pos_x;
-        container.interactivity.mouse.click_pos_y = container.interactivity.mouse.pos_y;
-        container.interactivity.mouse.click_time = new Date().getTime();
+        if (container.interactivity.mouse.position) {
+            container.interactivity.mouse.clickPosition = {
+                x: container.interactivity.mouse.position.x,
+                y: container.interactivity.mouse.position.y,
+            };
+        }
+
+        container.interactivity.mouse.clickTime = new Date().getTime();
 
         if (options.interactivity.events.onclick.enable) {
             const pushNb = options.interactivity.modes.push.particles_nb;
