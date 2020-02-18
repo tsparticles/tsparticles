@@ -134,20 +134,22 @@ export class Drawer {
                 ctx.rect(particle.position.x - radius, particle.position.y - radius, radius * 2, radius * 2);
                 break;
             case ShapeType.triangle:
-                const start: ICoordinates = {
-                    x: particle.position.x - radius,
-                    y: particle.position.y + radius / 1.66,
-                };
+                {
+                    const start: ICoordinates = {
+                        x: particle.position.x - radius,
+                        y: particle.position.y + radius / 1.66,
+                    };
 
-                const side: IShapeSide = {
-                    count: {
-                        denominator: 2,
-                        numerator: 3,
-                    },
-                    length: radius * 2,
-                };
+                    const side: IShapeSide = {
+                        count: {
+                            denominator: 2,
+                            numerator: 3,
+                        },
+                        length: radius * 2,
+                    };
 
-                Drawer.subDrawShape(ctx, start, side);
+                    Drawer.subDrawShape(ctx, start, side);
+                }
                 break;
             case ShapeType.polygon:
                 {

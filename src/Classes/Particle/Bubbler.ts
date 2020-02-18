@@ -86,8 +86,8 @@ export class Bubbler {
                     }
                 }
             } else if (pObjBubble) {
-                const value_tmp = pObj - (timeSpent * (pObj - bubbleParam) / bubbleDuration);
-                const dif = bubbleParam - value_tmp;
+                const tmpValue = pObj - (timeSpent * (pObj - bubbleParam) / bubbleDuration);
+                const dif = bubbleParam - tmpValue;
                 const value = bubbleParam + dif;
 
                 if (type === ProcessBubbleType.size) {
@@ -108,9 +108,9 @@ export class Bubbler {
 
         /* on click event */
         const mouseClickPos = container.interactivity.mouse.clickPosition || { x: 0, y: 0 };
-        const dx_mouse = particle.position.x - mouseClickPos.x;
-        const dy_mouse = particle.position.y - mouseClickPos.y;
-        const distMouse = Math.sqrt(dx_mouse * dx_mouse + dy_mouse * dy_mouse);
+        const dxMouse = particle.position.x - mouseClickPos.x;
+        const dyMouse = particle.position.y - mouseClickPos.y;
+        const distMouse = Math.sqrt(dxMouse * dxMouse + dyMouse * dyMouse);
         const timeSpent = (new Date().getTime() - (container.interactivity.mouse.clickTime || 0)) / 1000;
 
         if (container.bubble.clicking) {
@@ -162,13 +162,13 @@ export class Bubbler {
         const options = container.options;
         const particle = this.particle;
         const mousePos = container.interactivity.mouse.position || { x: 0, y: 0 };
-        const dx_mouse = (particle.position.x + particle.offset.x) - mousePos.x;
-        const dy_mouse = (particle.position.y + particle.offset.y) - mousePos.y;
-        const dist_mouse = Math.sqrt(dx_mouse * dx_mouse + dy_mouse * dy_mouse);
-        const ratio = 1 - dist_mouse / options.interactivity.modes.bubble.distance;
+        const dxMouse = (particle.position.x + particle.offset.x) - mousePos.x;
+        const dyMouse = (particle.position.y + particle.offset.y) - mousePos.y;
+        const distMouse = Math.sqrt(dxMouse * dxMouse + dyMouse * dyMouse);
+        const ratio = 1 - distMouse / options.interactivity.modes.bubble.distance;
 
         /* mousemove - check ratio */
-        if (dist_mouse <= options.interactivity.modes.bubble.distance) {
+        if (distMouse <= options.interactivity.modes.bubble.distance) {
             if (ratio >= 0 && container.interactivity.status === "mousemove") {
                 /* size */
                 this.hoverBubbleSize(ratio);

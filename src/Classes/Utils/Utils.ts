@@ -91,9 +91,9 @@ export class Utils {
     if (typeof (color.value) === "object") {
       if (color.value instanceof Array) {
         const arr = options.particles.color.value as string[];
-        const color_selected = color.value[Math.floor(Math.random() * arr.length)];
+        const colorSelected = color.value[Math.floor(Math.random() * arr.length)];
 
-        res.rgb = Utils.hexToRgb(color_selected);
+        res.rgb = Utils.hexToRgb(colorSelected);
       } else {
         const rgbColor = color.value as IRgb;
 
