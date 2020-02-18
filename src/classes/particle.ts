@@ -1,22 +1,20 @@
 "use strict";
 
-import { Bubbler } from "../utils/particle/bubbler";
-import { Container } from "./container";
-import { Drawer } from "../utils/particle/drawer";
-import { Grabber } from "../utils/particle/grabber";
-import {
-    IParticleImage,
-    IColor,
-    ICoordinates,
-    IOptions,
-    IOpacity,
-    ISize,
-    IVelocity,
-} from "../utils/interfaces";
-import { Repulser } from "../utils/particle/repulser";
-import { ShapeType } from "../utils/enums/types";
-import { Updater } from "../utils/particle/updater";
-import { Utils } from "../utils/utils";
+import { Bubbler } from "./Particle/Bubbler";
+import { Container } from "./Container";
+import { Drawer } from "./Particle/Drawer";
+import { Grabber } from "./Particle/Grabber";
+import { IVelocity } from "../Interfaces/IVelocity";
+import { ISize } from "../Interfaces/ISize";
+import { IOpacity } from "../Interfaces/IOpacity";
+import { ICoordinates } from "../Interfaces/ICoordinates";
+import { IParticleImage } from "../Interfaces/IParticleImage";
+import { IOptions } from "../Interfaces/IOptions";
+import { IColor } from "../Interfaces/IColor";
+import { Repulser } from "./Particle/Repulser";
+import { ShapeType } from "../Enums/ShapeType";
+import { Updater } from "./Particle/Updater";
+import { Utils } from "./Utils/Utils";
 
 export class Particle {
     public radius: number;

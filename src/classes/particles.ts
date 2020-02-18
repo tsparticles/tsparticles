@@ -1,10 +1,13 @@
 "use strict";
 
-import { ClickMode, HoverMode } from "../utils/enums/modes";
-import { Container } from "./container";
-import { IMouseData, IRgb, ICoordinates } from "../utils/interfaces";
-import { Particle } from "./particle";
-import { Utils } from "../utils/utils";
+import { ClickMode } from "../Enums/ClickMode";
+import { Container } from "./Container";
+import { HoverMode } from "../Enums/HoverMode";
+import { ICoordinates } from "../Interfaces/ICoordinates";
+import { IMouseData } from "../Interfaces/IMouseData";
+import { IRgb } from "../Interfaces/IRgb";
+import { Particle } from "./Particle";
+import { Utils } from "./Utils/Utils";
 
 export class Particles {
     public array: Particle[];

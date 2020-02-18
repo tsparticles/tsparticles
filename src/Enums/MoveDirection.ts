@@ -1,11 +1,5 @@
 "use strict";
 
-export enum InteractivityDetect {
-    canvas = "canvas",
-    parent = "parent",
-    window = "window",
-}
-
 export enum MoveDirection {
     bottom = "bottom",
     bottomLeft = "bottom-left",
@@ -15,5 +9,5 @@ export enum MoveDirection {
     right = "right",
     top = "top",
     topLeft = "top-left",
-    topRight = "top-right",
+    topRight = "top-right"
 }

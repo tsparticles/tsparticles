@@ -1,7 +1,9 @@
-import { Container } from "../../classes/container";
-import { OutMode } from "../enums/modes";
-import { Particle } from "../../classes/particle";
-import { Utils } from "../utils";
+"use strict";
+
+import { Container } from "../Container";
+import { OutMode } from "../../Enums/OutMode";
+import { Particle } from "../Particle";
+import { Utils } from "../Utils/Utils";
 
 export class Updater {
     private readonly particle: Particle;

@@ -1,7 +1,11 @@
-import { ClickMode, HoverMode, OutMode } from "../enums/modes";
-import { Container } from "../../classes/container";
-import { Particle } from "../../classes/particle";
-import { Utils } from "../utils";
+"use strict";
+
+import { ClickMode } from "../../Enums/ClickMode";
+import { Container } from "../Container";
+import { HoverMode } from "../../Enums/HoverMode";
+import { OutMode } from "../../Enums/OutMode";
+import { Particle } from "../Particle";
+import { Utils } from "../Utils/Utils";
 
 export class Repulser {
     private readonly particle: Particle;

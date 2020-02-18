@@ -1,15 +1,20 @@
 "use strict";
 
-import { Canvas } from "./canvas";
-import { Constants } from "../utils/constants";
-import { EventListeners } from "../utils/eventlisteners";
-import { IBubble, IContainerInteractivity, IImage, IOptions, IRepulse, ISvg } from "../utils/interfaces";
-import { InteractivityDetect } from "../utils/enums/generics";
-import { Loader } from "./loader";
-import { Particles } from "./particles";
-import { Retina } from "./retina";
-import { ShapeType } from "../utils/enums/types";
-import { Utils } from "../utils/utils";
+import { Canvas } from "./Canvas";
+import { Constants } from "./Utils/Constants";
+import { EventListeners } from "./Utils/EventListeners";
+import { IRepulse } from "../Interfaces/IRepulse";
+import { IBubble } from "../Interfaces/IBubble";
+import { IImage } from "../Interfaces/IImage";
+import { ISvg } from "../Interfaces/ISvg";
+import { IOptions } from "../Interfaces/IOptions";
+import { IContainerInteractivity } from "../Interfaces/IContainerInteractivity";
+import { InteractivityDetect } from "../Enums/InteractivityDetect";
+import { Loader } from "./Loader";
+import { Particles } from "./Particles";
+import { Retina } from "./Retina";
+import { ShapeType } from "../Enums/ShapeType";
+import { Utils } from "./Utils/Utils";
 
 export class Container {
     public interactivity: IContainerInteractivity;
@@ -134,10 +139,11 @@ export class Container {
             /* add or remove X particles */
             const missingParticles = this.particles.array.length - nbParticles;
 
-            if (missingParticles < 0)
+            if (missingParticles < 0) {
                 this.particles.push(Math.abs(missingParticles));
-            else
+            } else {
                 this.particles.remove(missingParticles);
+            }
         }
     }
 
@@ -200,7 +206,7 @@ export class Container {
         const fpsLimit = this.options.fps_limit;
 
         if (fpsLimit > 0 && timestamp < this.lastFrameTime + (1000 / fpsLimit)) {
-            this.drawAnimFrame = this.requestFrame((timestamp) => this.draw(timestamp));
+            this.drawAnimFrame = this.requestFrame((t) => this.draw(t));
             return;
         }
 
@@ -215,11 +221,11 @@ export class Container {
             //         if (!this.options.particles.move.enable) {
             //             this.cancelAnimation(this.drawAnimFrame);
             //         } else {
-            //             this.drawAnimFrame = this.requestFrame((timestamp) => this.draw(timestamp));
+            //             this.drawAnimFrame = this.requestFrame((t) => this.draw(t));
             //         }
             //     } else {
             //         if (!this.img.error) {
-            //             this.drawAnimFrame = this.requestFrame((timestamp) => this.draw(timestamp));
+            //             this.drawAnimFrame = this.requestFrame((t) => this.draw(t));
             //         }
             //     }
             // } else {
@@ -229,11 +235,11 @@ export class Container {
                 if (this.drawAnimFrame !== undefined && !this.options.particles.move.enable) {
                     this.cancelAnimation(this.drawAnimFrame);
                 } else {
-                    this.drawAnimFrame = this.requestFrame((timestamp) => this.draw(timestamp));
+                    this.drawAnimFrame = this.requestFrame((t) => this.draw(t));
                 }
             } else {
                 if (!this.img.error) {
-                    this.drawAnimFrame = this.requestFrame((timestamp) => this.draw(timestamp));
+                    this.drawAnimFrame = this.requestFrame((t) => this.draw(t));
                 }
             }
             // }
@@ -245,7 +251,7 @@ export class Container {
                     this.cancelAnimation(this.drawAnimFrame);
                 }
             } else {
-                this.drawAnimFrame = this.requestFrame((timestamp) => this.draw(timestamp));
+                this.drawAnimFrame = this.requestFrame((t) => this.draw(t));
             }
         }
     }
@@ -291,8 +297,7 @@ export class Container {
             this.img.type = src.substr(src.length - 3);
 
             await this.loadImg();
-        }
-        else {
+        } else {
             this.checkBeforeDraw();
         }
     }

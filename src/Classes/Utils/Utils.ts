@@ -1,7 +1,11 @@
 "use strict";
 
-import { ICoordinates, IColor, IHsl, IOptions, IRgb } from "./interfaces";
-import { MoveDirection } from "./enums/generics";
+import { ICoordinates } from "../../Interfaces/ICoordinates";
+import { IHsl } from "../../Interfaces/IHsl";
+import { IRgb } from "../../Interfaces/IRgb";
+import { IOptions } from "../../Interfaces/IOptions";
+import { IColor } from "../../Interfaces/IColor";
+import { MoveDirection } from "../../Enums/MoveDirection";
 
 /* ---------- global functions - vendors ------------ */
 

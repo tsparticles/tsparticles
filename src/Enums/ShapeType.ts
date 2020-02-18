@@ -1,10 +1,5 @@
 "use strict";
 
-export enum ProcessBubbleType {
-    opacity = "opacity",
-    size = "size",
-}
-
 export enum ShapeType {
     char = "char",
     character = "character",
@@ -16,5 +11,5 @@ export enum ShapeType {
     polygon = "polygon",
     square = "square",
     star = "star",
-    triangle = "triangle",
+    triangle = "triangle"
 }

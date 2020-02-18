@@ -1,8 +1,8 @@
 "use strict";
 
-import { Constants } from "../utils/constants";
-import { Container } from "./container";
-import { IOptions } from "../utils/interfaces";
+import { Constants } from "./Utils/Constants";
+import { Container } from "./Container";
+import { IOptions } from "../Interfaces/IOptions";
 
 let tsParticlesDom: Container[] = [];
 

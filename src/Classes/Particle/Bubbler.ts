@@ -1,10 +1,12 @@
+"use strict";
 
-import { ClickMode, HoverMode } from "../enums/modes";
-import { Container } from "../../classes/container";
-import { IBubblerProcessParam } from "../interfaces";
-import { Particle } from "../../classes/particle";
-import { ProcessBubbleType } from "../enums/types";
-import { Utils } from "../utils";
+import { ClickMode } from "../../Enums/ClickMode";
+import { Container } from "../Container";
+import { HoverMode } from "../../Enums/HoverMode";
+import { IBubblerProcessParam } from "../../Interfaces/IBubblerProcessParam";
+import { Particle } from "../Particle";
+import { ProcessBubbleType } from "../../Enums/ProcessBubbleType";
+import { Utils } from "../Utils/Utils";
 
 export class Bubbler {
     public opacity?: number;

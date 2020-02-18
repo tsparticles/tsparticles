@@ -1,6 +1,8 @@
-import { Container } from "../../classes/container";
-import { Particle } from "../../classes/particle";
-import { Utils } from "../utils";
+"use strict";
+
+import { Container } from "../Container";
+import { Particle } from "../Particle";
+import { Utils } from "../Utils/Utils";
 
 export class Grabber {
     private readonly container: Container;
