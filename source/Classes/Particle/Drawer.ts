@@ -11,11 +11,25 @@ export class Drawer {
     private readonly particle: Particle;
     private readonly container: Container;
     private readonly bubbler: Bubbler;
+    private opacityBubble?: number;
+    private text?: string;
 
     constructor(container: Container, particle: Particle, bubbler: Bubbler) {
         this.container = container;
         this.particle = particle;
         this.bubbler = bubbler;
+
+        const options = this.container.options;
+
+        if (this.particle.shape === ShapeType.char || particle.shape === ShapeType.character) {
+            const value = options.particles.shape.character.value;
+
+            if (typeof value === "string") {
+                this.text = value;
+            } else {
+                this.text = value[Math.floor(Math.random() * value.length)]
+            }
+        }
     }
 
     private static subDrawShape(ctx: CanvasRenderingContext2D, start: ICoordinates, side: IShapeSide): void {
@@ -48,7 +62,7 @@ export class Drawer {
 
         let radius: number;
         let opacity;
-        let color_value;
+        let colorValue;
 
         if (this.bubbler.radius !== undefined) {
             radius = this.bubbler.radius;
@@ -56,23 +70,23 @@ export class Drawer {
             radius = particle.radius;
         }
 
-        if (particle.opacityBubble !== undefined) {
-            opacity = particle.opacityBubble;
+        if (this.opacityBubble !== undefined) {
+            opacity = this.opacityBubble;
         } else {
             opacity = particle.opacity.value;
         }
 
         if (particle.color.rgb) {
-            color_value = `rgba(${particle.color.rgb.r},${particle.color.rgb.g},${particle.color.rgb.b},${opacity})`;
+            colorValue = `rgba(${particle.color.rgb.r},${particle.color.rgb.g},${particle.color.rgb.b},${opacity})`;
         } else if (particle.color.hsl) {
-            color_value = `hsla(${particle.color.hsl.h},${particle.color.hsl.s}%,${particle.color.hsl.l}%,${opacity})`;
+            colorValue = `hsla(${particle.color.hsl.h},${particle.color.hsl.s}%,${particle.color.hsl.l}%,${opacity})`;
         }
 
-        if (!container.canvas.ctx || !color_value) {
+        if (!container.canvas.ctx || !colorValue) {
             return;
         }
 
-        container.canvas.ctx.fillStyle = color_value;
+        container.canvas.ctx.fillStyle = colorValue;
         container.canvas.ctx.beginPath();
 
         this.drawShape(radius);
@@ -192,17 +206,18 @@ export class Drawer {
                 const weight = options.particles.shape.character.weight;
                 const size = Math.round(radius) * 2;
                 const font = options.particles.shape.character.font;
+                const text = this.text;
 
                 ctx.font = `${style} ${weight} ${size}px ${font}`;
 
-                if (particle.text) {
+                if (text) {
                     const x = particle.position.x - radius / 2;
                     const y = particle.position.y + radius / 2;
 
                     if (options.particles.shape.character.fill) {
-                        ctx.fillText(particle.text, x, y);
+                        ctx.fillText(text, x, y);
                     } else {
-                        ctx.strokeText(particle.text, x, y);
+                        ctx.strokeText(text, x, y);
                     }
                 }
                 break;

@@ -24,11 +24,9 @@ export class Particle {
     public color: IColor;
     public opacity: IOpacity;
     public velocity: IVelocity;
-    public initialVelocity: IVelocity;
+    public readonly initialVelocity: IVelocity;
     public shape?: ShapeType;
     public img?: IParticleImage;
-    public opacityBubble?: number;
-    public text?: string;
     public readonly updater: Updater;
     public readonly bubbler: Bubbler;
     public readonly repulser: Repulser;
@@ -88,11 +86,11 @@ export class Particle {
         }
 
         /* animation - velocity for speed */
-        this.velocity = this.calcVelocity(options);
+        this.initialVelocity = this.calcVelocity(options);
 
-        this.initialVelocity = {
-            horizontal: this.velocity.horizontal,
-            vertical: this.velocity.vertical,
+        this.velocity = {
+            horizontal: this.initialVelocity.horizontal,
+            vertical: this.initialVelocity.vertical,
         };
 
         /* if shape is image */
@@ -106,11 +104,11 @@ export class Particle {
         }
 
         if (this.shape === ShapeType.image) {
-            const sh = options.particles.shape;
+            const shape = options.particles.shape;
             this.img = {
-                ratio: sh.image.width / sh.image.height,
-                replaceColor: sh.image.replace_color,
-                src: sh.image.src,
+                ratio: shape.image.width / shape.image.height,
+                replaceColor: shape.image.replace_color,
+                src: shape.image.src,
             };
 
             if (!this.img.ratio) {
@@ -123,16 +121,6 @@ export class Particle {
             //         this.img.loaded = false;
             //     }
             // }
-        }
-
-        if (this.shape === ShapeType.char || this.shape === ShapeType.character) {
-            const value = options.particles.shape.character.value;
-
-            if (typeof value === "string") {
-                this.text = value;
-            } else {
-                this.text = value[Math.floor(Math.random() * value.length)]
-            }
         }
 
         this.updater = new Updater(this.container, this);
