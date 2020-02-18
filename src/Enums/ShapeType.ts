@@ -11,5 +11,5 @@ export enum ShapeType {
     polygon = "polygon",
     square = "square",
     star = "star",
-    triangle = "triangle"
+    triangle = "triangle",
 }

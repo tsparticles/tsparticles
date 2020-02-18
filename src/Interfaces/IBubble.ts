@@ -2,5 +2,5 @@
 
 export interface IBubble {
     clicking?: boolean;
-    duration_end?: boolean;
+    durationEnd?: boolean;
 }

@@ -9,5 +9,5 @@ export enum MoveDirection {
     right = "right",
     top = "top",
     topLeft = "top-left",
-    topRight = "top-right"
+    topRight = "top-right",
 }

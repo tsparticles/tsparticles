@@ -55,7 +55,7 @@ export class Bubbler {
         const type = data.type;
 
         if (bubbleParam !== particlesParam) {
-            if (!container.bubble.duration_end) {
+            if (!container.bubble.durationEnd) {
                 if (distMouse <= bubbleDistance) {
                     let obj;
 
@@ -115,12 +115,12 @@ export class Bubbler {
 
         if (container.bubble.clicking) {
             if (timeSpent > options.interactivity.modes.bubble.duration) {
-                container.bubble.duration_end = true;
+                container.bubble.durationEnd = true;
             }
 
             if (timeSpent > options.interactivity.modes.bubble.duration * 2) {
                 container.bubble.clicking = false;
-                container.bubble.duration_end = false;
+                container.bubble.durationEnd = false;
             }
         }
 
