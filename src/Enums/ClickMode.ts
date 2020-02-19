@@ -1,3 +1,5 @@
+"use strict";
+
 export enum ClickMode {
     bubble = "bubble",
     push = "push",

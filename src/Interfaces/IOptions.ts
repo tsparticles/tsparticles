@@ -7,6 +7,7 @@ import { InteractivityDetect } from "../Enums/InteractivityDetect";
 import { OutMode } from "../Enums/OutMode";
 import { IColor } from "./IColor";
 import { IShape } from "./IShape";
+
 export interface IOptions {
     particles: {
         number: {

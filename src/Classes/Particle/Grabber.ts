@@ -40,11 +40,11 @@ export class Grabber {
                     container.particles.lineLinkedColor = lineColor;
 
                     const colorLine = container.particles.lineLinkedColor || { r: 127, g: 127, b: 127 };
-
-                    const ctx = container.canvas.ctx;
+                    const ctx = container.canvas.context;
 
                     if (ctx) {
                         const strokeStyle = `rgba(${colorLine.r},${colorLine.g},${colorLine.b},${opacityLine})`;
+
                         ctx.strokeStyle = strokeStyle;
                         ctx.lineWidth = options.particles.line_linked.width;
                         // container.canvas.ctx.lineCap = "round"; /* performance issue */

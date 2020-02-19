@@ -95,11 +95,11 @@ export class Repulser {
         const outMode = options.particles.move.out_mode;
 
         if (outMode === OutMode.bounce || outMode === OutMode.bounceVertical) {
-            if (pos.x - particle.radius > 0 && pos.x + particle.radius < container.canvas.w) {
+            if (pos.x - particle.radius > 0 && pos.x + particle.radius < container.canvas.width) {
                 particle.position.x = pos.x;
             }
 
-            if (pos.y - particle.radius > 0 && pos.y + particle.radius < container.canvas.h) {
+            if (pos.y - particle.radius > 0 && pos.y + particle.radius < container.canvas.height) {
                 particle.position.y = pos.y;
             }
         } else {
@@ -125,13 +125,13 @@ export class Repulser {
                 y: particle.position.y + particle.velocity.vertical,
             };
 
-            if (pos.x + particle.radius > container.canvas.w) {
+            if (pos.x + particle.radius > container.canvas.width) {
                 particle.velocity.horizontal = -particle.velocity.horizontal;
             } else if (pos.x - particle.radius < 0) {
                 particle.velocity.horizontal = -particle.velocity.horizontal;
             }
 
-            if (pos.y + particle.radius > container.canvas.h) {
+            if (pos.y + particle.radius > container.canvas.height) {
                 particle.velocity.vertical = -particle.velocity.vertical;
             } else if (pos.y - particle.radius < 0) {
                 particle.velocity.vertical = -particle.velocity.vertical;

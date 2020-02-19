@@ -28,17 +28,33 @@ export class Retina {
 
         const ratio = container.canvas.pxratio;
 
-        container.canvas.w = container.canvas.el.offsetWidth * ratio;
-        container.canvas.h = container.canvas.el.offsetHeight * ratio;
+        container.canvas.width = container.canvas.element.offsetWidth * ratio;
+        container.canvas.height = container.canvas.element.offsetHeight * ratio;
 
-        options.interactivity.modes.bubble.distance = options.interactivity.modes.bubble.distance * ratio;
-        options.interactivity.modes.bubble.size = options.interactivity.modes.bubble.size * ratio;
-        options.interactivity.modes.grab.distance = options.interactivity.modes.grab.distance * ratio;
-        options.interactivity.modes.repulse.distance = options.interactivity.modes.repulse.distance * ratio;
-        options.particles.line_linked.distance = options.particles.line_linked.distance * ratio;
-        options.particles.line_linked.width = options.particles.line_linked.width * ratio;
-        options.particles.move.speed = options.particles.move.speed * ratio;
-        options.particles.size.value = options.particles.size.value * ratio;
-        options.particles.size.anim.speed = options.particles.size.anim.speed * ratio;
+        options.interactivity.modes.bubble.distance *= ratio;
+        options.interactivity.modes.bubble.size *= ratio;
+        options.interactivity.modes.grab.distance *= ratio;
+        options.interactivity.modes.repulse.distance *= ratio;
+        options.particles.line_linked.distance *= ratio;
+        options.particles.line_linked.width *= ratio;
+        options.particles.move.speed *= ratio;
+        options.particles.size.value *= ratio;
+        options.particles.size.anim.speed *= ratio;
+    }
+
+    public reset(): void {
+        const container = this.container;
+        const options = container.options;
+        const ratio = container.canvas.pxratio;
+
+        options.interactivity.modes.bubble.distance /= ratio;
+        options.interactivity.modes.bubble.size /= ratio;
+        options.interactivity.modes.grab.distance /= ratio;
+        options.interactivity.modes.repulse.distance /= ratio;
+        options.particles.line_linked.distance /= ratio;
+        options.particles.line_linked.width /= ratio;
+        options.particles.move.speed /= ratio;
+        options.particles.size.value /= ratio;
+        options.particles.size.anim.speed /= ratio;
     }
 }

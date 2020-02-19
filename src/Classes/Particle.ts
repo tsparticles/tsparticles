@@ -26,9 +26,9 @@ export class Particle {
     public color: IColor;
     public opacity: IOpacity;
     public velocity: IVelocity;
-    public readonly initialVelocity: IVelocity;
     public shape?: ShapeType;
     public img?: IParticleImage;
+    public readonly initialVelocity: IVelocity;
 
     private readonly updater: Updater;
     private readonly bubbler: Bubbler;
@@ -36,6 +36,35 @@ export class Particle {
     private readonly drawer: Drawer;
     private readonly grabber: Grabber;
     private readonly container: Container;
+
+    private static calcVelocity(options: IOptions): IVelocity {
+        const velbase = Utils.getParticleVelBase(options);
+        const res = {
+            horizontal: 0,
+            vertical: 0,
+        };
+
+        if (options.particles.move.straight) {
+            res.horizontal = velbase.x;
+            res.vertical = velbase.y;
+
+            if (options.particles.move.random) {
+                res.horizontal *= Math.random();
+                res.vertical *= Math.random();
+            }
+        }
+        else {
+            res.horizontal = velbase.x + Math.random() - 0.5;
+            res.vertical = velbase.y + Math.random() - 0.5;
+        }
+
+        // const theta = 2.0 * Math.PI * Math.random();
+
+        // res.x = Math.cos(theta);
+        // res.y = Math.sin(theta);
+
+        return res;
+    }
 
     /* --------- tsParticles functions - particles ----------- */
     constructor(container: Container, position?: ICoordinates) {
@@ -88,8 +117,7 @@ export class Particle {
         }
 
         /* animation - velocity for speed */
-        this.initialVelocity = this.calcVelocity(options);
-
+        this.initialVelocity = Particle.calcVelocity(options);
         this.velocity = {
             horizontal: this.initialVelocity.horizontal,
             vertical: this.initialVelocity.vertical,
@@ -100,6 +128,7 @@ export class Particle {
 
         if (shapeType instanceof Array) {
             const selectedShape = shapeType[Math.floor(Math.random() * shapeType.length)];
+
             this.shape = selectedShape;
         } else {
             this.shape = shapeType;
@@ -182,8 +211,8 @@ export class Particle {
             const dist = Math.sqrt(dx * dx + dy * dy);
 
             if (dist <= p.radius + p2.radius) {
-                p.position.x = position ? position.x : Math.random() * container.canvas.w;
-                p.position.y = position ? position.y : Math.random() * container.canvas.h;
+                p.position.x = position ? position.x : Math.random() * container.canvas.width;
+                p.position.y = position ? position.y : Math.random() * container.canvas.height;
 
                 p.checkOverlap();
             }
@@ -192,52 +221,23 @@ export class Particle {
 
     private calcPosition(container: Container, position?: ICoordinates): ICoordinates {
         const pos = {
-            x: position && position.x ? position.x : Math.random() * container.canvas.w,
-            y: position && position.y ? position.y : Math.random() * container.canvas.h,
+            x: position && position.x ? position.x : Math.random() * container.canvas.width,
+            y: position && position.y ? position.y : Math.random() * container.canvas.height,
         };
 
         /* check position  - into the canvas */
-        if (pos.x > container.canvas.w - this.radius * 2) {
+        if (pos.x > container.canvas.width - this.radius * 2) {
             pos.x -= this.radius;
         } else if (pos.x < this.radius * 2) {
             pos.x += this.radius;
         }
 
-        if (pos.y > container.canvas.h - this.radius * 2) {
+        if (pos.y > container.canvas.height - this.radius * 2) {
             pos.y -= this.radius;
         } else if (pos.y < this.radius * 2) {
             pos.y += this.radius;
         }
 
         return pos;
-    }
-
-    private calcVelocity(options: IOptions): IVelocity {
-        const velbase = Utils.getParticleVelBase(options);
-        const res = {
-            horizontal: 0,
-            vertical: 0,
-        };
-
-        if (options.particles.move.straight) {
-            res.horizontal = velbase.x;
-            res.vertical = velbase.y;
-
-            if (options.particles.move.random) {
-                res.horizontal *= Math.random();
-                res.vertical *= Math.random();
-            }
-        }
-        else {
-            res.horizontal = velbase.x + Math.random() - 0.5;
-            res.vertical = velbase.y + Math.random() - 0.5;
-        }
-
-        // const theta = 2.0 * Math.PI * Math.random();
-
-        // res.x = Math.cos(theta);
-        // res.y = Math.sin(theta);
-
-        return res;
     }
 }

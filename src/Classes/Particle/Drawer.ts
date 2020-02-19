@@ -11,8 +11,8 @@ export class Drawer {
     private readonly particle: Particle;
     private readonly container: Container;
     private readonly bubbler: Bubbler;
+    private readonly text?: string;
     private opacityBubble?: number;
-    private text?: string;
 
     constructor(container: Container, particle: Particle, bubbler: Bubbler) {
         this.container = container;
@@ -82,31 +82,31 @@ export class Drawer {
             colorValue = `hsla(${particle.color.hsl.h},${particle.color.hsl.s}%,${particle.color.hsl.l}%,${opacity})`;
         }
 
-        if (!container.canvas.ctx || !colorValue) {
+        if (!container.canvas.context || !colorValue) {
             return;
         }
 
-        container.canvas.ctx.fillStyle = colorValue;
-        container.canvas.ctx.beginPath();
+        container.canvas.context.fillStyle = colorValue;
+        container.canvas.context.beginPath();
 
         this.drawShape(radius);
 
-        container.canvas.ctx.closePath();
+        container.canvas.context.closePath();
 
         if (options.particles.shape.stroke.width > 0) {
-            container.canvas.ctx.strokeStyle = options.particles.shape.stroke.color;
-            container.canvas.ctx.lineWidth = options.particles.shape.stroke.width;
-            container.canvas.ctx.stroke();
+            container.canvas.context.strokeStyle = options.particles.shape.stroke.color;
+            container.canvas.context.lineWidth = options.particles.shape.stroke.width;
+            container.canvas.context.stroke();
         }
 
-        container.canvas.ctx.fill();
+        container.canvas.context.fill();
     }
 
     private drawShape(radius: number): void {
         const container = this.container;
         const options = container.options;
         const particle = this.particle;
-        const ctx = container.canvas.ctx;
+        const ctx = container.canvas.context;
 
         if (!ctx) {
             return;
@@ -119,8 +119,8 @@ export class Drawer {
 
         switch (particle.shape) {
             case ShapeType.line:
-                ctx.moveTo(particle.position.x, particle.position.y)
-                ctx.lineTo(particle.position.x, particle.position.y + radius)
+                ctx.moveTo(particle.position.x, particle.position.y);
+                ctx.lineTo(particle.position.x, particle.position.y + radius);
                 ctx.strokeStyle = options.particles.shape.stroke.color;
                 ctx.lineWidth = options.particles.shape.stroke.width;
                 ctx.stroke();
@@ -233,7 +233,7 @@ export class Drawer {
                 // if (container.img.type === "svg" && this.img) {
                 //     imgObj = this.img.obj;
                 // } else {
-                imgObj = container.img.obj;
+                imgObj = container.image.obj;
                 // }
 
                 if (imgObj) {

@@ -19,11 +19,11 @@ export class Particles {
     }
 
     /* --------- tsParticles functions - particles ----------- */
-    public create(): void {
+    public init(): void {
         const container = this.container;
         const options = container.options;
 
-        for (let i = 0; i < options.particles.number.value; i++) {
+        for (let i = this.array.length; i < options.particles.number.value; i++) {
             const p = new Particle(container);
 
             this.array.push(p);
@@ -64,7 +64,7 @@ export class Particles {
         const container = this.container;
 
         /* clear canvas */
-        container.canvas.ctx?.clearRect(0, 0, container.canvas.w, container.canvas.h);
+        container.canvas.clear();
 
         /* update each particles param */
         this.update(delta);
@@ -114,11 +114,5 @@ export class Particles {
         if (!options.particles.move.enable) {
             this.draw(0);
         }
-    }
-
-    public async refresh(): Promise<void> {
-        const container = this.container;
-
-        await container.refresh();
     }
 }

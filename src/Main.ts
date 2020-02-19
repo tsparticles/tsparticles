@@ -6,7 +6,7 @@
 /* Demo / Generator : https://tsparticles.matteobruni.it/demo
 /* GitHub : https://www.github.com/matteobruni/tsparticles
 /* How to use? : Check the GitHub README
-/* v1.5.2
+/* v1.5.3
 /* ----------------------------------------------- */
 import { Container } from "./Classes/Container";
 import { Loader } from "./Classes/Loader";
@@ -56,8 +56,8 @@ class Main {
     return Loader.load(tagId, params);
   }
 
-  public async loadJSON(tagId: string, pathConfigJson: string): Promise<void> {
-    await Loader.loadJSON(tagId, pathConfigJson);
+  public async loadJSON(tagId: string, pathConfigJson: string): Promise<Container | undefined> {
+    return await Loader.loadJSON(tagId, pathConfigJson);
   }
 
   public setOnClickHandler(callback: EventListenerOrEventListenerObject): void {
@@ -83,7 +83,7 @@ window.particlesJS = (tagId: string, params: IOptions) => {
     console.info("this method is obsolete, please use the new tsParticles.load");
   }
 
-  window.tsParticles.load(tagId, params);
+  return window.tsParticles.load(tagId, params);
 };
 
 window.particlesJS.load = async (tagId: string, pathConfigJson: string, callback: () => void) => {
@@ -91,7 +91,7 @@ window.particlesJS.load = async (tagId: string, pathConfigJson: string, callback
     console.info("this method is obsolete, please use the new tsParticles.loadJSON");
   }
 
-  window.tsParticles.loadJSON(tagId, pathConfigJson).then(callback).catch((error) => {
+  return window.tsParticles.loadJSON(tagId, pathConfigJson).then(callback).catch((error) => {
     console.error(error);
   });
 };

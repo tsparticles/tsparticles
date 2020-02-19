@@ -356,3 +356,5 @@ MigrationBackup/
 dist/
 lib/
 build/
+
+.idea/

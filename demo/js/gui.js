@@ -24,7 +24,7 @@
             delete tsParticles_GUI_Export.config_demo;
             delete tsParticles_GUI_Export.canvas;
             delete tsParticles_GUI_Export.particles.array;
-            delete tsParticles_GUI_Export.interactivity.el;
+            delete tsParticles_GUI_Export.interactivity.element;
             delete tsParticles_GUI_Export.interactivity.mouse;
             delete tsParticles_GUI_Export.interactivity.status;
             delete tsParticles_GUI_Export.particles.color.rgb;
@@ -368,7 +368,7 @@
         gui.add(p, "exportConfigJSON").name("→ Download current config (json)");
         initPage = function() {
             var box_bottom, config, page, panel;
-            page = $(tsParticles_GUI.canvas.el).parent();
+            page = $(tsParticles_GUI.canvas.element).parent();
             panel = $(".panel");
             config = tsParticles_GUI.options.config_demo;
 

@@ -62,14 +62,14 @@ export class Loader {
     return newItem;
   }
 
-  public static async loadJSON(tagId: string, jsonUrl: string): Promise<void> {
+  public static async loadJSON(tagId: string, jsonUrl: string): Promise<Container | undefined> {
     /* load json config */
     const response = await fetch(jsonUrl);
 
     if (response.ok) {
       const params = await response.json();
 
-      Loader.load(tagId, params);
+      return Loader.load(tagId, params);
     } else {
       console.error(`Error tsParticles - fetch status: ${response.status}`);
       console.error("Error tsParticles - File config not found");
@@ -84,7 +84,7 @@ export class Loader {
     }
 
     for (const domItem of dom) {
-      const el = domItem.interactivity.el;
+      const el = domItem.interactivity.element;
 
       if (el) {
         el.addEventListener("click", callback);
