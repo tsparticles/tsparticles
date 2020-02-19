@@ -37,34 +37,6 @@ export class Particle {
     private readonly grabber: Grabber;
     private readonly container: Container;
 
-    private static calcVelocity(options: IOptions): IVelocity {
-        const velbase = Utils.getParticleVelBase(options);
-        const res = {
-            horizontal: 0,
-            vertical: 0,
-        };
-
-        if (options.particles.move.straight) {
-            res.horizontal = velbase.x;
-            res.vertical = velbase.y;
-
-            if (options.particles.move.random) {
-                res.horizontal *= Math.random();
-                res.vertical *= Math.random();
-            }
-        } else {
-            res.horizontal = velbase.x + Math.random() - 0.5;
-            res.vertical = velbase.y + Math.random() - 0.5;
-        }
-
-        // const theta = 2.0 * Math.PI * Math.random();
-
-        // res.x = Math.cos(theta);
-        // res.y = Math.sin(theta);
-
-        return res;
-    }
-
     /* --------- tsParticles functions - particles ----------- */
     constructor(container: Container, position?: ICoordinates) {
         this.container = container;
@@ -151,6 +123,34 @@ export class Particle {
         this.repulser = new Repulser(this.container, this);
         this.drawer = new Drawer(this.container, this, this.bubbler);
         this.grabber = new Grabber(this.container, this);
+    }
+
+    private static calcVelocity(options: IOptions): IVelocity {
+        const velbase = Utils.getParticleVelBase(options);
+        const res = {
+            horizontal: 0,
+            vertical: 0,
+        };
+
+        if (options.particles.move.straight) {
+            res.horizontal = velbase.x;
+            res.vertical = velbase.y;
+
+            if (options.particles.move.random) {
+                res.horizontal *= Math.random();
+                res.vertical *= Math.random();
+            }
+        } else {
+            res.horizontal = velbase.x + Math.random() - 0.5;
+            res.vertical = velbase.y + Math.random() - 0.5;
+        }
+
+        // const theta = 2.0 * Math.PI * Math.random();
+
+        // res.x = Math.cos(theta);
+        // res.y = Math.sin(theta);
+
+        return res;
     }
 
     public update(delta: number): void {
