@@ -1,7 +1,7 @@
 "use strict";
 
-import { Constants } from "./Utils/Constants";
-import { Container } from "./Container";
+import {Constants} from "./Utils/Constants";
+import {Container} from "./Container";
 
 export class Canvas {
     public element: HTMLCanvasElement;

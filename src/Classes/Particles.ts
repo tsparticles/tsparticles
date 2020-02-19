@@ -1,10 +1,10 @@
 "use strict";
 
-import { Container } from "./Container";
-import { ICoordinates } from "../Interfaces/ICoordinates";
-import { IMouseData } from "../Interfaces/IMouseData";
-import { IRgb } from "../Interfaces/IRgb";
-import { Particle } from "./Particle";
+import {Container} from "./Container";
+import {ICoordinates} from "../Interfaces/ICoordinates";
+import {IMouseData} from "../Interfaces/IMouseData";
+import {IRgb} from "../Interfaces/IRgb";
+import {Particle} from "./Particle";
 
 export class Particles {
     public array: Particle[];
@@ -89,7 +89,7 @@ export class Particles {
         let pos: ICoordinates | undefined;
 
         if (mousePosition) {
-            pos = mousePosition.position || { x: 0, y: 0 };
+            pos = mousePosition.position || {x: 0, y: 0};
         }
 
         for (let i = 0; i < nb; i++) {

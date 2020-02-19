@@ -1,11 +1,11 @@
 "use strict";
 
-import { ClickMode } from "../../Enums/ClickMode";
-import { Container } from "../Container";
-import { HoverMode } from "../../Enums/HoverMode";
-import { OutMode } from "../../Enums/OutMode";
-import { Particle } from "../Particle";
-import { Utils } from "../Utils/Utils";
+import {ClickMode} from "../../Enums/ClickMode";
+import {Container} from "../Container";
+import {HoverMode} from "../../Enums/HoverMode";
+import {OutMode} from "../../Enums/OutMode";
+import {Particle} from "../Particle";
+import {Utils} from "../Utils/Utils";
 
 export class Repulser {
     private readonly particle: Particle;
@@ -52,7 +52,7 @@ export class Repulser {
         if (container.repulse.clicking) {
             const repulseDistance = options.interactivity.modes.repulse.distance;
             const repulseRadius = Math.pow(repulseDistance / 6, 3);
-            const mouseClickPos = container.interactivity.mouse.clickPosition || { x: 0, y: 0 };
+            const mouseClickPos = container.interactivity.mouse.clickPosition || {x: 0, y: 0};
             const dx = mouseClickPos.x - particle.position.x;
             const dy = mouseClickPos.y - particle.position.y;
             const d = dx * dx + dy * dy;
@@ -80,11 +80,11 @@ export class Repulser {
         const container = this.container;
         const options = container.options;
         const particle = this.particle;
-        const mousePos = container.interactivity.mouse.position || { x: 0, y: 0 };
+        const mousePos = container.interactivity.mouse.position || {x: 0, y: 0};
         const dxMouse = particle.position.x - mousePos.x;
         const dyMouse = particle.position.y - mousePos.y;
         const distMouse = Math.sqrt(dxMouse * dxMouse + dyMouse * dyMouse);
-        const normVec = { x: dxMouse / distMouse, y: dyMouse / distMouse };
+        const normVec = {x: dxMouse / distMouse, y: dyMouse / distMouse};
         const repulseRadius = options.interactivity.modes.repulse.distance;
         const velocity = 100;
         const repulseFactor = Utils.clamp((1 - Math.pow(distMouse / repulseRadius, 2)) * velocity, 0, 50);

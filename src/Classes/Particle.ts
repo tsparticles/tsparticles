@@ -1,22 +1,22 @@
 "use strict";
 
-import { Bubbler } from "./Particle/Bubbler";
-import { Container } from "./Container";
-import { Drawer } from "./Particle/Drawer";
-import { Grabber } from "./Particle/Grabber";
-import { IVelocity } from "../Interfaces/IVelocity";
-import { ISize } from "../Interfaces/ISize";
-import { IOpacity } from "../Interfaces/IOpacity";
-import { ICoordinates } from "../Interfaces/ICoordinates";
-import { IParticleImage } from "../Interfaces/IParticleImage";
-import { IOptions } from "../Interfaces/IOptions";
-import { IColor } from "../Interfaces/IColor";
-import { Repulser } from "./Particle/Repulser";
-import { ShapeType } from "../Enums/ShapeType";
-import { Updater } from "./Particle/Updater";
-import { Utils } from "./Utils/Utils";
-import { HoverMode } from "../Enums/HoverMode";
-import { ClickMode } from "../Enums/ClickMode";
+import {Bubbler} from "./Particle/Bubbler";
+import {Container} from "./Container";
+import {Drawer} from "./Particle/Drawer";
+import {Grabber} from "./Particle/Grabber";
+import {IVelocity} from "../Interfaces/IVelocity";
+import {ISize} from "../Interfaces/ISize";
+import {IOpacity} from "../Interfaces/IOpacity";
+import {ICoordinates} from "../Interfaces/ICoordinates";
+import {IParticleImage} from "../Interfaces/IParticleImage";
+import {IOptions} from "../Interfaces/IOptions";
+import {IColor} from "../Interfaces/IColor";
+import {Repulser} from "./Particle/Repulser";
+import {ShapeType} from "../Enums/ShapeType";
+import {Updater} from "./Particle/Updater";
+import {Utils} from "./Utils/Utils";
+import {HoverMode} from "../Enums/HoverMode";
+import {ClickMode} from "../Enums/ClickMode";
 
 export class Particle {
     public radius: number;
@@ -52,8 +52,7 @@ export class Particle {
                 res.horizontal *= Math.random();
                 res.vertical *= Math.random();
             }
-        }
-        else {
+        } else {
             res.horizontal = velbase.x + Math.random() - 0.5;
             res.vertical = velbase.y + Math.random() - 0.5;
         }

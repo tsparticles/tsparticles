@@ -1,6 +1,6 @@
 "use strict";
 
-import { ShapeType } from "../Enums/ShapeType";
+import {ShapeType} from "../Enums/ShapeType";
 
 export interface IShape {
     type: ShapeType | ShapeType[];

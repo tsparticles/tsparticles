@@ -1,9 +1,9 @@
 "use strict";
 
-import { ClickMode } from "../../Enums/ClickMode";
-import { Container } from "../Container";
-import { InteractivityDetect } from "../../Enums/InteractivityDetect";
-import { ICoordinates } from "../../Interfaces/ICoordinates";
+import {ClickMode} from "../../Enums/ClickMode";
+import {Container} from "../Container";
+import {InteractivityDetect} from "../../Enums/InteractivityDetect";
+import {ICoordinates} from "../../Interfaces/ICoordinates";
 
 export class EventListeners {
     private readonly container: Container;

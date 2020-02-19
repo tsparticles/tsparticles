@@ -1,12 +1,12 @@
 "use strict";
 
-import { ClickMode } from "../Enums/ClickMode";
-import { HoverMode } from "../Enums/HoverMode";
-import { MoveDirection } from "../Enums/MoveDirection";
-import { InteractivityDetect } from "../Enums/InteractivityDetect";
-import { OutMode } from "../Enums/OutMode";
-import { IColor } from "./IColor";
-import { IShape } from "./IShape";
+import {ClickMode} from "../Enums/ClickMode";
+import {HoverMode} from "../Enums/HoverMode";
+import {MoveDirection} from "../Enums/MoveDirection";
+import {InteractivityDetect} from "../Enums/InteractivityDetect";
+import {OutMode} from "../Enums/OutMode";
+import {IColor} from "./IColor";
+import {IShape} from "./IShape";
 
 export interface IOptions {
     particles: {

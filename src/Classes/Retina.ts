@@ -1,6 +1,6 @@
 "use strict";
 
-import { Container } from "./Container";
+import {Container} from "./Container";
 
 export class Retina {
     public isRetina: boolean;

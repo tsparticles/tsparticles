@@ -1,20 +1,20 @@
 "use strict";
 
-import { Canvas } from "./Canvas";
-import { Constants } from "./Utils/Constants";
-import { EventListeners } from "./Utils/EventListeners";
-import { IRepulse } from "../Interfaces/IRepulse";
-import { IBubble } from "../Interfaces/IBubble";
-import { IImage } from "../Interfaces/IImage";
-import { ISvg } from "../Interfaces/ISvg";
-import { IOptions } from "../Interfaces/IOptions";
-import { IContainerInteractivity } from "../Interfaces/IContainerInteractivity";
-import { InteractivityDetect } from "../Enums/InteractivityDetect";
-import { Loader } from "./Loader";
-import { Particles } from "./Particles";
-import { Retina } from "./Retina";
-import { ShapeType } from "../Enums/ShapeType";
-import { Utils } from "./Utils/Utils";
+import {Canvas} from "./Canvas";
+import {Constants} from "./Utils/Constants";
+import {EventListeners} from "./Utils/EventListeners";
+import {IRepulse} from "../Interfaces/IRepulse";
+import {IBubble} from "../Interfaces/IBubble";
+import {IImage} from "../Interfaces/IImage";
+import {ISvg} from "../Interfaces/ISvg";
+import {IOptions} from "../Interfaces/IOptions";
+import {IContainerInteractivity} from "../Interfaces/IContainerInteractivity";
+import {InteractivityDetect} from "../Enums/InteractivityDetect";
+import {Loader} from "./Loader";
+import {Particles} from "./Particles";
+import {Retina} from "./Retina";
+import {ShapeType} from "../Enums/ShapeType";
+import {Utils} from "./Utils/Utils";
 
 export class Container {
     public interactivity: IContainerInteractivity;
@@ -54,7 +54,7 @@ export class Container {
             count: 0,
             source: undefined,
         };
-        this.image = { error: false };
+        this.image = {error: false};
         this.bubble = {};
         this.repulse = {};
 

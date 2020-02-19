@@ -1,12 +1,12 @@
 "use strict";
 
-import { ClickMode } from "../../Enums/ClickMode";
-import { Container } from "../Container";
-import { HoverMode } from "../../Enums/HoverMode";
-import { IBubblerProcessParam } from "../../Interfaces/IBubblerProcessParam";
-import { Particle } from "../Particle";
-import { ProcessBubbleType } from "../../Enums/ProcessBubbleType";
-import { Utils } from "../Utils/Utils";
+import {ClickMode} from "../../Enums/ClickMode";
+import {Container} from "../Container";
+import {HoverMode} from "../../Enums/HoverMode";
+import {IBubblerProcessParam} from "../../Interfaces/IBubblerProcessParam";
+import {Particle} from "../Particle";
+import {ProcessBubbleType} from "../../Enums/ProcessBubbleType";
+import {Utils} from "../Utils/Utils";
 
 export class Bubbler {
     public opacity?: number;
@@ -107,7 +107,7 @@ export class Bubbler {
         const particle = this.particle;
 
         /* on click event */
-        const mouseClickPos = container.interactivity.mouse.clickPosition || { x: 0, y: 0 };
+        const mouseClickPos = container.interactivity.mouse.clickPosition || {x: 0, y: 0};
         const dxMouse = particle.position.x - mouseClickPos.x;
         const dyMouse = particle.position.y - mouseClickPos.y;
         const distMouse = Math.sqrt(dxMouse * dxMouse + dyMouse * dyMouse);
@@ -161,7 +161,7 @@ export class Bubbler {
         const container = this.container;
         const options = container.options;
         const particle = this.particle;
-        const mousePos = container.interactivity.mouse.position || { x: 0, y: 0 };
+        const mousePos = container.interactivity.mouse.position || {x: 0, y: 0};
         const dxMouse = (particle.position.x + particle.offset.x) - mousePos.x;
         const dyMouse = (particle.position.y + particle.offset.y) - mousePos.y;
         const distMouse = Math.sqrt(dxMouse * dxMouse + dyMouse * dyMouse);

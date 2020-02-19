@@ -1,11 +1,11 @@
 "use strict";
 
-import { Bubbler } from "./Bubbler";
-import { Container } from "../Container";
-import { IShapeSide } from "../../Interfaces/IShapeSide";
-import { ICoordinates } from "../../Interfaces/ICoordinates";
-import { Particle } from "../Particle";
-import { ShapeType } from "../../Enums/ShapeType";
+import {Bubbler} from "./Bubbler";
+import {Container} from "../Container";
+import {IShapeSide} from "../../Interfaces/IShapeSide";
+import {ICoordinates} from "../../Interfaces/ICoordinates";
+import {Particle} from "../Particle";
+import {ShapeType} from "../../Enums/ShapeType";
 
 export class Drawer {
     private readonly particle: Particle;
@@ -133,98 +133,93 @@ export class Drawer {
             case ShapeType.square:
                 ctx.rect(particle.position.x - radius, particle.position.y - radius, radius * 2, radius * 2);
                 break;
-            case ShapeType.triangle:
-                {
-                    const start: ICoordinates = {
-                        x: particle.position.x - radius,
-                        y: particle.position.y + radius / 1.66,
-                    };
+            case ShapeType.triangle: {
+                const start: ICoordinates = {
+                    x: particle.position.x - radius,
+                    y: particle.position.y + radius / 1.66,
+                };
 
-                    const side: IShapeSide = {
-                        count: {
-                            denominator: 2,
-                            numerator: 3,
-                        },
-                        length: radius * 2,
-                    };
+                const side: IShapeSide = {
+                    count: {
+                        denominator: 2,
+                        numerator: 3,
+                    },
+                    length: radius * 2,
+                };
 
-                    Drawer.subDrawShape(ctx, start, side);
-                }
+                Drawer.subDrawShape(ctx, start, side);
+            }
                 break;
-            case ShapeType.polygon:
-                {
-                    const start: ICoordinates = {
-                        x: particle.position.x - radius / (options.particles.shape.polygon.nb_sides / 3.5),
-                        y: particle.position.y - radius / (2.66 / 3.5),
-                    };
-                    const side: IShapeSide = {
-                        count: {
-                            denominator: 1,
-                            numerator: options.particles.shape.polygon.nb_sides,
-                        },
-                        length: radius * 2.66 / (options.particles.shape.polygon.nb_sides / 3),
-                    };
+            case ShapeType.polygon: {
+                const start: ICoordinates = {
+                    x: particle.position.x - radius / (options.particles.shape.polygon.nb_sides / 3.5),
+                    y: particle.position.y - radius / (2.66 / 3.5),
+                };
+                const side: IShapeSide = {
+                    count: {
+                        denominator: 1,
+                        numerator: options.particles.shape.polygon.nb_sides,
+                    },
+                    length: radius * 2.66 / (options.particles.shape.polygon.nb_sides / 3),
+                };
 
-                    Drawer.subDrawShape(ctx, start, side);
-                }
+                Drawer.subDrawShape(ctx, start, side);
+            }
                 break;
-            case ShapeType.star:
-                {
-                    const start: ICoordinates = {
-                        x: particle.position.x - radius * 2 / (options.particles.shape.polygon.nb_sides / 4),
-                        y: particle.position.y - radius / (2 * 2.66 / 3.5),
-                    };
-                    const side: IShapeSide = {
-                        count: {
-                            denominator: 2,
-                            numerator: options.particles.shape.polygon.nb_sides,
-                        },
-                        length: radius * 2 * 2.66 / (options.particles.shape.polygon.nb_sides / 3),
-                    };
+            case ShapeType.star: {
+                const start: ICoordinates = {
+                    x: particle.position.x - radius * 2 / (options.particles.shape.polygon.nb_sides / 4),
+                    y: particle.position.y - radius / (2 * 2.66 / 3.5),
+                };
+                const side: IShapeSide = {
+                    count: {
+                        denominator: 2,
+                        numerator: options.particles.shape.polygon.nb_sides,
+                    },
+                    length: radius * 2 * 2.66 / (options.particles.shape.polygon.nb_sides / 3),
+                };
 
-                    Drawer.subDrawShape(ctx, start, side);
-                }
+                Drawer.subDrawShape(ctx, start, side);
+            }
                 break;
 
-            case ShapeType.heart:
-                {
-                    const x = particle.position.x - radius / 2;
-                    const y = particle.position.y - radius / 2;
+            case ShapeType.heart: {
+                const x = particle.position.x - radius / 2;
+                const y = particle.position.y - radius / 2;
 
-                    ctx.moveTo(x, y + radius / 4);
-                    ctx.quadraticCurveTo(x, y, x + radius / 4, y);
-                    ctx.quadraticCurveTo(x + radius / 2, y, x + radius / 2, y + radius / 4);
-                    ctx.quadraticCurveTo(x + radius / 2, y, x + radius * 3 / 4, y);
-                    ctx.quadraticCurveTo(x + radius, y, x + radius, y + radius / 4);
-                    ctx.quadraticCurveTo(x + radius, y + radius / 2, x + radius * 3 / 4, y + radius * 3 / 4);
-                    ctx.lineTo(x + radius / 2, y + radius);
-                    ctx.lineTo(x + radius / 4, y + radius * 3 / 4);
-                    ctx.quadraticCurveTo(x, y + radius / 2, x, y + radius / 4);
-                }
+                ctx.moveTo(x, y + radius / 4);
+                ctx.quadraticCurveTo(x, y, x + radius / 4, y);
+                ctx.quadraticCurveTo(x + radius / 2, y, x + radius / 2, y + radius / 4);
+                ctx.quadraticCurveTo(x + radius / 2, y, x + radius * 3 / 4, y);
+                ctx.quadraticCurveTo(x + radius, y, x + radius, y + radius / 4);
+                ctx.quadraticCurveTo(x + radius, y + radius / 2, x + radius * 3 / 4, y + radius * 3 / 4);
+                ctx.lineTo(x + radius / 2, y + radius);
+                ctx.lineTo(x + radius / 4, y + radius * 3 / 4);
+                ctx.quadraticCurveTo(x, y + radius / 2, x, y + radius / 4);
+            }
                 break;
 
             case ShapeType.char:
-            case ShapeType.character:
-                {
-                    const style = options.particles.shape.character.style;
-                    const weight = options.particles.shape.character.weight;
-                    const size = Math.round(radius) * 2;
-                    const font = options.particles.shape.character.font;
-                    const text = this.text;
+            case ShapeType.character: {
+                const style = options.particles.shape.character.style;
+                const weight = options.particles.shape.character.weight;
+                const size = Math.round(radius) * 2;
+                const font = options.particles.shape.character.font;
+                const text = this.text;
 
-                    ctx.font = `${style} ${weight} ${size}px ${font}`;
+                ctx.font = `${style} ${weight} ${size}px ${font}`;
 
-                    if (text) {
-                        const x = particle.position.x - radius / 2;
-                        const y = particle.position.y + radius / 2;
+                if (text) {
+                    const x = particle.position.x - radius / 2;
+                    const y = particle.position.y + radius / 2;
 
-                        if (options.particles.shape.character.fill) {
-                            ctx.fillText(text, x, y);
-                        } else {
-                            ctx.strokeText(text, x, y);
-                        }
+                    if (options.particles.shape.character.fill) {
+                        ctx.fillText(text, x, y);
+                    } else {
+                        ctx.strokeText(text, x, y);
                     }
                 }
+            }
                 break;
 
             case ShapeType.image:

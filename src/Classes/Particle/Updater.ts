@@ -1,9 +1,9 @@
 "use strict";
 
-import { Container } from "../Container";
-import { OutMode } from "../../Enums/OutMode";
-import { Particle } from "../Particle";
-import { Utils } from "../Utils/Utils";
+import {Container} from "../Container";
+import {OutMode} from "../../Enums/OutMode";
+import {Particle} from "../Particle";
+import {Utils} from "../Utils/Utils";
 
 export class Updater {
     private readonly particle: Particle;
@@ -138,7 +138,7 @@ export class Updater {
         const options = container.options;
         const particle = this.particle;
         const parallaxForce = options.interactivity.events.onhover.parallax.force;
-        const mousePos = container.interactivity.mouse.position || { x: 0, y: 0 };
+        const mousePos = container.interactivity.mouse.position || {x: 0, y: 0};
         const windowDimension = {
             height: window.innerHeight / 2,
             width: window.innerWidth / 2,
