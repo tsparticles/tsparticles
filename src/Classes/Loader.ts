@@ -9,14 +9,10 @@ let tsParticlesDom: Container[] = [];
 export class Loader {
   public static dom(): Container[] {
     if (!tsParticlesDom) {
-      Loader.domSet([]);
+      tsParticlesDom = [];
     }
 
     return tsParticlesDom;
-  }
-
-  public static domSet(value: Container[]): void {
-    tsParticlesDom = value;
   }
 
   public static load(tagId: string, params: IOptions): Container | undefined {

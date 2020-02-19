@@ -15,6 +15,8 @@ import { Repulser } from "./Particle/Repulser";
 import { ShapeType } from "../Enums/ShapeType";
 import { Updater } from "./Particle/Updater";
 import { Utils } from "./Utils/Utils";
+import { HoverMode } from "../Enums/HoverMode";
+import { ClickMode } from "../Enums/ClickMode";
 
 export class Particle {
     public radius: number;
@@ -27,12 +29,12 @@ export class Particle {
     public readonly initialVelocity: IVelocity;
     public shape?: ShapeType;
     public img?: IParticleImage;
-    public readonly updater: Updater;
-    public readonly bubbler: Bubbler;
-    public readonly repulser: Repulser;
-    public readonly drawer: Drawer;
-    public readonly grabber: Grabber;
 
+    private readonly updater: Updater;
+    private readonly bubbler: Bubbler;
+    private readonly repulser: Repulser;
+    private readonly drawer: Drawer;
+    private readonly grabber: Grabber;
     private readonly container: Container;
 
     /* --------- tsParticles functions - particles ----------- */
@@ -114,13 +116,6 @@ export class Particle {
             if (!this.img.ratio) {
                 this.img.ratio = 1;
             }
-            // if (container.img.type === "svg" && container.svg.source !== undefined) {
-            //     this.createSvgImg();
-
-            //     if (container.particles.pushing) {
-            //         this.img.loaded = false;
-            //     }
-            // }
         }
 
         this.updater = new Updater(this.container, this);
@@ -128,6 +123,53 @@ export class Particle {
         this.repulser = new Repulser(this.container, this);
         this.drawer = new Drawer(this.container, this, this.bubbler);
         this.grabber = new Grabber(this.container, this);
+    }
+
+    public update(delta: number): void {
+        const container = this.container;
+        const options = container.options;
+
+        this.updater.update(delta);
+
+        const hoverMode = options.interactivity.events.onhover.mode;
+        const clickMode = options.interactivity.events.onclick.mode;
+
+        /* events */
+        if (Utils.isInArray(HoverMode.grab, hoverMode)) {
+            this.grabber.grab();
+        }
+
+        if (Utils.isInArray(HoverMode.bubble, hoverMode) || Utils.isInArray(ClickMode.bubble, clickMode)) {
+            this.bubbler.bubble();
+        }
+
+        if (Utils.isInArray(HoverMode.repulse, hoverMode) || Utils.isInArray(ClickMode.repulse, clickMode)) {
+            this.repulser.repulse();
+        }
+    }
+
+    public interact(p2: Particle): void {
+        const container = this.container;
+        const options = container.options;
+
+        /* link particles */
+        if (options.particles.line_linked.enable) {
+            this.updater.link(p2);
+        }
+
+        /* attract particles */
+        if (options.particles.move.attract.enable) {
+            this.updater.attract(p2);
+        }
+
+        /* bounce particles */
+        if (options.particles.move.bounce) {
+            this.updater.bounce(p2);
+        }
+    }
+
+    public draw(): void {
+        this.drawer.draw();
     }
 
     public checkOverlap(position?: ICoordinates): void {
@@ -147,54 +189,6 @@ export class Particle {
             }
         }
     }
-
-    // createSvgImg() {
-    //     const container = this.Container;
-    //     const p = this;
-
-    //     /* set color to svg element */
-    //     let svgXml = container.svg.source;
-
-    //     if (!svgXml) return;
-
-    //     let url: string;
-    //     if (this.img && this.img.replace_color) {
-    //         let rgbHex = /#([0-9A-F]{3,6})/gi;
-    //         let coloredSvgXml = svgXml.replace(rgbHex, (substring: string) => {
-    //             let color_value;
-
-    //             if (p.color.rgb) {
-    //                 color_value = `rgb(${p.color.rgb.r},${p.color.rgb.g},${p.color.rgb.b})`;
-    //             } else if (p.color.hsl) {
-    //                 color_value = `hsl(${p.color.hsl.h},${p.color.hsl.s}%,${p.color.hsl.l}%)`;
-    //             }
-
-    //             return color_value || substring;
-    //         });
-    //         url = "data:image/svg+xml;utf8," + coloredSvgXml;
-    //     } else {
-    //         url = "data:image/svg+xml;utf8," + svgXml;
-    //     }
-    //     /* prepare to create img with colored svg */
-    //     // let svg = new Blob([coloredSvgXml], { type: "image/svg+xml;charset=utf-8" });
-    //     // let url = URL.createObjectURL(svg);
-    //     /* create particle img obj */
-    //     let img = new Image();
-    //     img.addEventListener("load", () => {
-    //         if (p.img) {
-    //             p.img.obj = img;
-    //             p.img.loaded = true;
-    //         }
-
-    //         // URL.revokeObjectURL(url);
-
-    //         if (!container.svg.count)
-    //             container.svg.count = 0;
-
-    //         container.svg.count++;
-    //     });
-    //     img.src = url;
-    // }
 
     private calcPosition(container: Container, position?: ICoordinates): ICoordinates {
         const pos = {

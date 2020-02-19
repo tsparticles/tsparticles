@@ -50,59 +50,14 @@ export class Particles {
             //     p.vy = f * Math.sin(t);
             // }
 
-            /* move the particle */
-            p.updater.move(delta);
-
-            /* parallax */
-            p.updater.moveParallax();
-
-            /* change opacity status */
-            p.updater.updateOpacity();
-
-            /* change size */
-            p.updater.updateSize();
-
-            /* change particle position if it is out of canvas */
-            p.updater.fixOutOfCanvasPosition();
-
-            /* out of canvas modes */
-            p.updater.updateOutMode();
-
-            const hoverMode = options.interactivity.events.onhover.mode;
-            const clickMode = options.interactivity.events.onclick.mode;
-
-            /* events */
-            if (Utils.isInArray(HoverMode.grab, hoverMode)) {
-                p.grabber.grab();
-            }
-
-            if (Utils.isInArray(HoverMode.bubble, hoverMode) || Utils.isInArray(ClickMode.bubble, clickMode)) {
-                p.bubbler.bubble();
-            }
-
-            if (Utils.isInArray(HoverMode.repulse, hoverMode) || Utils.isInArray(ClickMode.repulse, clickMode)) {
-                p.repulser.repulse();
-            }
+            p.update(delta);
 
             /* interaction auto between particles */
             if (options.particles.line_linked.enable || options.particles.move.attract.enable) {
                 for (let j = i + 1; j < arrLength; j++) {
                     const p2 = this.array[j];
 
-                    /* link particles */
-                    if (options.particles.line_linked.enable) {
-                        p.updater.link(p2);
-                    }
-
-                    /* attract particles */
-                    if (options.particles.move.attract.enable) {
-                        p.updater.attract(p2);
-                    }
-
-                    /* bounce particles */
-                    if (options.particles.move.bounce) {
-                        p.updater.bounce(p2);
-                    }
+                    p.interact(p2);
                 }
             }
         }
@@ -112,20 +67,18 @@ export class Particles {
         const container = this.container;
 
         /* clear canvas */
-        if (container.canvas.ctx) {
-            container.canvas.ctx.clearRect(0, 0, container.canvas.w, container.canvas.h);
-        }
+        container.canvas.ctx?.clearRect(0, 0, container.canvas.w, container.canvas.h);
 
         /* update each particles param */
-        container.particles.update(delta);
+        this.update(delta);
 
         /* draw each particle */
         for (const p of this.array) {
-            p.drawer.draw();
+            p.draw();
         }
     }
 
-    public empty(): void {
+    public clear(): void {
         this.array = [];
     }
 
@@ -169,26 +122,6 @@ export class Particles {
     public async refresh(): Promise<void> {
         const container = this.container;
 
-        /* init all */
-        if (container.checkAnimFrame) {
-            container.cancelAnimation(container.checkAnimFrame);
-        }
-
-        if (container.drawAnimFrame) {
-            container.cancelAnimation(container.drawAnimFrame);
-        }
-
-        container.svg.source = undefined;
-        container.svg.count = 0;
-        container.img.obj = undefined;
-
-        this.empty();
-
-        container.canvas.clear();
-
-        delete container.particles.lineLinkedColor;
-
-        /* restart */
-        await container.start();
+        await container.refresh();
     }
 }

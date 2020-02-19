@@ -43,7 +43,7 @@
             return p.exportConfig("json");
         };
         p.update = async function() {
-            return await tsParticles_GUI.particles.refresh();
+            return await tsParticles_GUI.refresh();
         };
         window.gui = new dat.GUI({
             autoPlace: true,

@@ -12,6 +12,30 @@ export class EventListeners {
         this.container = container;
     }
 
+    public touchMove(e: Event): void {
+        const container = this.container;
+        const touchEvent = e as TouchEvent;
+
+        container.interactivity.mouse.position = {
+            x: touchEvent.touches[0].clientX,
+            y: touchEvent.touches[0].clientY,
+        };
+
+        if (container.retina.isRetina) {
+            container.interactivity.mouse.position.x *= container.canvas.pxratio;
+            container.interactivity.mouse.position.y *= container.canvas.pxratio;
+        }
+
+        container.interactivity.status = 'mousemove';
+    }
+
+    public touchEnd(e: Event): void {
+        const container = this.container;
+
+        container.interactivity.mouse.position = null;
+        container.interactivity.status = 'mouseleave';
+    }
+
     public mouseMove(e: Event): void {
         const container = this.container;
         const options = container.options;
