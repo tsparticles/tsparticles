@@ -17,14 +17,6 @@ import {ShapeType} from "../Enums/ShapeType";
 import {Utils} from "./Utils/Utils";
 
 export class Container {
-    private static requestFrame(callback: FrameRequestCallback): number {
-        return window.requestAnimFrame(callback);
-    }
-
-    private static cancelAnimation(handle: number): void {
-        window.cancelAnimationFrame(handle);
-    }
-
     public interactivity: IContainerInteractivity;
     public options: IOptions;
     public retina: Retina;
@@ -80,6 +72,14 @@ export class Container {
         }).catch((error) => {
             throw error;
         });
+    }
+
+    private static requestFrame(callback: FrameRequestCallback): number {
+        return window.requestAnimFrame(callback);
+    }
+
+    private static cancelAnimation(handle: number): void {
+        window.cancelAnimationFrame(handle);
     }
 
     /* ---------- tsParticles functions - vendors ------------ */
