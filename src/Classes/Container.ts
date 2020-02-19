@@ -17,6 +17,14 @@ import {ShapeType} from "../Enums/ShapeType";
 import {Utils} from "./Utils/Utils";
 
 export class Container {
+    private static requestFrame(callback: FrameRequestCallback): number {
+        return window.requestAnimFrame(callback);
+    }
+
+    private static cancelAnimation(handle: number): void {
+        window.cancelAnimationFrame(handle);
+    }
+
     public interactivity: IContainerInteractivity;
     public options: IOptions;
     public retina: Retina;
@@ -32,14 +40,6 @@ export class Container {
     public pageHidden: boolean;
 
     private readonly eventListeners: EventListeners;
-
-    private static requestFrame(callback: FrameRequestCallback): number {
-        return window.requestAnimFrame(callback);
-    }
-
-    private static cancelAnimation(handle: number): void {
-        window.cancelAnimationFrame(handle);
-    }
 
     constructor(tagId: string, params: IOptions) {
         this.lastFrameTime = 0;
