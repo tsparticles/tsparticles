@@ -268,30 +268,16 @@ export class Container {
         const delta = timestamp - this.lastFrameTime;
         this.lastFrameTime = timestamp;
 
-        if (this.options.particles.shape.type === ShapeType.image) {
-            if (this.img.obj) {
-                this.particles.draw(delta);
+        if (this.options.particles.shape.type === ShapeType.image && this.img.error) {
+            return;
+        }
 
-                if (this.drawAnimFrame !== undefined && !this.options.particles.move.enable) {
-                    this.cancelAnimation(this.drawAnimFrame);
-                } else {
-                    this.drawAnimFrame = this.requestFrame((t) => this.draw(t));
-                }
-            } else {
-                if (!this.img.error) {
-                    this.drawAnimFrame = this.requestFrame((t) => this.draw(t));
-                }
-            }
+        this.particles.draw(delta);
+
+        if (this.drawAnimFrame !== undefined && !this.options.particles.move.enable) {
+            this.cancelAnimation(this.drawAnimFrame);
         } else {
-            this.particles.draw(delta);
-
-            if (!this.options.particles.move.enable) {
-                if (this.drawAnimFrame !== undefined) {
-                    this.cancelAnimation(this.drawAnimFrame);
-                }
-            } else {
-                this.drawAnimFrame = this.requestFrame((t) => this.draw(t));
-            }
+            this.drawAnimFrame = this.requestFrame((t) => this.draw(t));
         }
     }
 
