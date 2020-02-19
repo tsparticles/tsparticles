@@ -221,28 +221,31 @@ export class Container {
         } else {
             this.interactivity.el = this.canvas.el;
         }
+
+        const interactivityEl = this.interactivity.el;
+
         /* detect mouse pos - on hover / click event */
         if (this.options.interactivity.events.onhover.enable || this.options.interactivity.events.onclick.enable) {
-            if (this.interactivity.el) {
+            if (interactivityEl) {
                 /* el on mousemove */
-                this.interactivity.el.addEventListener("mousemove", (e: Event) => this.eventListeners.mouseTouchMove(e));
+                interactivityEl.addEventListener("mousemove", (e: Event) => this.eventListeners.mouseTouchMove(e));
 
                 /* el on touchstart */
-                this.interactivity.el.addEventListener('touchstart', (e: Event) => this.eventListeners.mouseTouchMove(e));
+                interactivityEl.addEventListener('touchstart', (e: Event) => this.eventListeners.mouseTouchMove(e));
 
                 /* el on touchmove */
-                this.interactivity.el.addEventListener('touchmove', (e: Event) => this.eventListeners.mouseTouchMove(e));
+                interactivityEl.addEventListener('touchmove', (e: Event) => this.eventListeners.mouseTouchMove(e));
 
                 if (!this.options.interactivity.events.onclick.enable) {
                     /* el on touchend */
-                    this.interactivity.el.addEventListener('touchend', () => this.eventListeners.mouseTouchFinish());
+                    interactivityEl.addEventListener('touchend', () => this.eventListeners.mouseTouchFinish());
                 }
 
                 /* el on onmouseleave */
-                this.interactivity.el.addEventListener("mouseleave", () => this.eventListeners.mouseTouchFinish());
+                interactivityEl.addEventListener("mouseleave", () => this.eventListeners.mouseTouchFinish());
 
                 /* el on touchcancel */
-                this.interactivity.el.addEventListener("touchcancel", () => this.eventListeners.mouseTouchFinish());
+                interactivityEl.addEventListener("touchcancel", () => this.eventListeners.mouseTouchFinish());
             }
         }
 
