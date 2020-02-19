@@ -57,7 +57,7 @@ class Main {
   }
 
   public async loadJSON(tagId: string, pathConfigJson: string): Promise<Container | undefined> {
-    return await Loader.loadJSON(tagId, pathConfigJson);
+    return Loader.loadJSON(tagId, pathConfigJson);
   }
 
   public setOnClickHandler(callback: EventListenerOrEventListenerObject): void {
