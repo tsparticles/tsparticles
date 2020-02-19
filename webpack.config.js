@@ -4,8 +4,8 @@ const UglifyJsPlugin = require("uglifyjs-webpack-plugin");
 module.exports = {
     // Change to your "entry-point".
     entry: {
-        "tsparticles": "./dist/main.js",
-        "tsparticles.min": "./dist/main.js"
+        "tsparticles": "./dist/Main.js",
+        "tsparticles.min": "./dist/Main.js"
     },
     output: {
         path: path.resolve(__dirname, "dist"),
