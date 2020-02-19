@@ -18,8 +18,6 @@ export class EventListeners {
 
         let pos: ICoordinates;
 
-        console.log(e.type);
-
         if (e.type.startsWith("mouse")) {
             const mouseEvent = e as MouseEvent;
 
@@ -54,8 +52,6 @@ export class EventListeners {
         } else {
             const touchEvent = e as TouchEvent;
 
-            console.log("touch");
-
             const lastTouch = touchEvent.touches[touchEvent.touches.length - 1];
 
             pos = {
@@ -76,8 +72,6 @@ export class EventListeners {
 
     public mouseTouchFinish(): void {
         const container = this.container;
-
-        console.log("touch end");
 
         container.interactivity.mouse.position = null;
         container.interactivity.status = "mouseleave";
