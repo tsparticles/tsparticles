@@ -251,9 +251,9 @@ export class Container {
 
         /* on click event */
         if (this.options.interactivity.events.onclick.enable) {
-            if (this.interactivity.el) {
-                this.interactivity.el.addEventListener("touchend", (e: Event) => this.eventListeners.mouseTouchClick(e));
-                this.interactivity.el.addEventListener("mouseup", (e: Event) => this.eventListeners.mouseTouchClick(e));
+            if (interactivityEl) {
+                interactivityEl.addEventListener("touchend", (e: Event) => this.eventListeners.mouseTouchClick(e));
+                interactivityEl.addEventListener("mouseup", (e: Event) => this.eventListeners.mouseTouchClick(e));
             }
         }
     }
