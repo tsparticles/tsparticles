@@ -97,7 +97,7 @@ export class Utils {
       } else {
         const rgbColor = color.value as IRgb;
 
-        if (rgbColor) {
+        if (rgbColor.r !== undefined) {
           res.rgb = {
             b: rgbColor.b,
             g: rgbColor.g,
@@ -107,7 +107,7 @@ export class Utils {
 
         const hslColor = color.value as IHsl;
 
-        if (hslColor) {
+        if (hslColor.h !== undefined) {
           res.hsl = {
             h: hslColor.h,
             l: hslColor.l,
