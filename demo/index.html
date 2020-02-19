@@ -4,10 +4,22 @@
 <head>
     <meta charset="utf-8">
     <title>tsParticles</title>
-    <meta name="description" content="tsparticles is a lightweight JavaScript library for creating particles.">
+    <meta name="description" content="tsParticles is a lightweight TypeScript library for creating particles.">
     <meta name="author" content="Matteo Bruni" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <link rel="shortcut icon" type="image/x-icon" href="img/favicon.ico" />
+    <link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" media="screen" href="css/style.css">
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:creator" content="@HollowMatt_ITA">
+    <meta name="twitter:image:src" content="https://tsparticles.matteobruni.it/demo/img/demo.png">
+    <meta property="og:title" content="tsParticles - A lightweight TypeScript library for creating particles" />
+    <meta property="og:site_name" content="tsParticles" />
+    <meta property="og:url" content="https://tsparticles.matteobruni.it/demo" />
+    <meta property="og:description" content="A lightweight TypeScript library for creating particles." />
+    <meta property="og:image" content="https://tsparticles.matteobruni.it/demo/img/demo.png" />
 </head>
 
 <body>
@@ -50,7 +62,7 @@
     <div class="panel">
         <h1>tsparticles</h1>
         <span class="r-version">v1.5.1</span>
-        <h2>A lightweight JavaScript library for creating particles</h2>
+        <h2>A lightweight TypeScript library for creating particles</h2>
         <ul>
             <li>
                 <a href="https://github.com/matteobruni/tsparticles/" target="_blank">
@@ -102,6 +114,43 @@
             </ul>
         </div>
 
+        <div class="box-codepen js-box-codepen">
+            <span class="codepen-label">CodePen</span>
+            <div class="codepen-button js-codepen-button">
+                <div class="svg-wrap">
+                    <svg class="icon-codepen-button">
+            <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-codepen-button"></use>
+          </svg>
+                </div>
+            </div>
+            <form action="https://codepen.io/pen/define" method="POST" target="_blank">
+                <input id="data-input" type="hidden" name="data" value="">
+                <input class="codepen-submit-bt" type="submit">
+            </form>
+        </div>
+
+        <div class="box-share">
+            <span class="select-label js-dp-label" data-dp="share">Share</span>
+            <ul id="js-share" class="select-dropdown js-dp-dropdown" data-dp="share">
+                <li>
+                    <a target="_blank" href="http://twitter.com/?status=tsParticles - A lightweight TypeScript library for creating particles https://tsparticles.matteobruni.it/demo %23typescript %23particles %23html5 %23webdesign">Twitter</a>
+                </li>
+                <li>
+                    <a target="_blank" href="https://www.facebook.com/dialog/feed?app_id=508841200049663&amp;link=https://tsparticles.matteobruni.it/demo&amp;picture=https://tsparticles.matteobruni.it/demo/img/demo.png&amp;name=tsParticles&amp;description=tsParticles - A lightweight TypeScript library for creating particles&amp;redirect_uri=https://tsparticles.matteobruni.it/demo">Facebook</a>
+                </li>
+                <li>
+                    <a target="_blank" href="https://www.linkedin.com/shareArticle?mini=true&url=https://tsparticles.matteobruni.it/demo&title=tsParticles&summary=A%20lightweight%20TypeScript%20library%20for%20creating%20particles&source=https://tsparticles.matteobruni.it/demo">LinkedIn</a>
+                </li>
+                <li>
+                    <a target="_blank" href="http://www.pinterest.com/pin/create/button/?url=https://tsparticles.matteobruni.it/demo&amp;media=https://tsparticles.matteobruni.it/demo/img/demo.png&amp;description=tsParticles - A lightweight TypeScript library for creating particles https://tsparticles.matteobruni.it/demo"
+                        data-pin-do="buttonPin" data-pin-config="above">Pinterest</a>
+                </li>
+                <li>
+                    <a target="_blank" href="mailto:steve@jobs.com?subject=tsParticles - A lightweight TypeScript library for creating particles&amp;body=tsParticles - A lightweight TypeScript library for creating particles https://tsparticles.matteobruni.it/demo">Email</a>
+                </li>
+            </ul>
+        </div>
+
     </div>
 
     <div class="box-bottom js-box-bottom">
@@ -125,6 +174,7 @@
     <script src="../dist/tsparticles.min.js"></script>
     <script src="js/lib/stats.js"></script>
     <script src="js/gui.js"></script>
+    <script src="js/codepen.js"></script>
 
     <!-- stats.js -->
     <script>
@@ -140,14 +190,14 @@
             update = function() {
                 stats.begin();
                 stats.end();
-                if (tsParticles.dom()[0].particles.array) {
-                    count_particles.innerText = tsParticles.dom()[0].particles.array.length;
+                if (tsParticles.domItem(0).particles.array) {
+                    count_particles.innerText = tsParticles.domItem(0).particles.array.length;
                 }
                 requestAnimationFrame(update);
             };
             requestAnimationFrame(update);
         }
-        if (tsParticles.dom()[0]) getStats();
+        if (tsParticles.domItem(0)) getStats();
     </script>
 
 </body>
