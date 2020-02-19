@@ -48,6 +48,8 @@ export class EventListeners {
             };
         }
 
+        container.interactivity.mouse.position = pos;
+
         container.interactivity.mouse.clickPosition = {
             x: pos.x * (container.retina.isRetina ? container.canvas.pxratio : 1),
             y: pos.y * (container.retina.isRetina ? container.canvas.pxratio : 1),
