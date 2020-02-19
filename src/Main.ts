@@ -56,8 +56,8 @@ class Main {
     return Loader.load(tagId, params);
   }
 
-  public async loadJSON(tagId: string, path_config_json: string): Promise<void> {
-    await Loader.loadJSON(tagId, path_config_json);
+  public async loadJSON(tagId: string, pathConfigJson: string): Promise<void> {
+    await Loader.loadJSON(tagId, pathConfigJson);
   }
 
   public setOnClickHandler(callback: EventListenerOrEventListenerObject): void {
@@ -86,12 +86,12 @@ window.particlesJS = (tagId: string, params: IOptions) => {
   window.tsParticles.load(tagId, params);
 };
 
-window.particlesJS.load = async (tagId: string, path_config_json: string, callback: () => void) => {
+window.particlesJS.load = async (tagId: string, pathConfigJson: string, callback: () => void) => {
   if (console) {
     console.info("this method is obsolete, please use the new tsParticles.loadJSON");
   }
 
-  window.tsParticles.loadJSON(tagId, path_config_json).then(callback).catch((error) => {
+  window.tsParticles.loadJSON(tagId, pathConfigJson).then(callback).catch((error) => {
     console.error(error);
   });
 };
