@@ -1,9 +1,9 @@
 "use strict";
 
-import { Container } from "../Container";
-import { OutMode } from "../../Enums/OutMode";
-import { Particle } from "../Particle";
-import { Utils } from "../Utils/Utils";
+import {Container} from "../Container";
+import {OutMode} from "../../Enums/OutMode";
+import {Particle} from "../Particle";
+import {Utils} from "../Utils/Utils";
 
 export class Updater {
     private readonly particle: Particle;
@@ -59,11 +59,11 @@ export class Updater {
                     container.particles.lineLinkedColor = Utils.hexToRgb(options.particles.line_linked.color);
                 }
 
-                if (!container.canvas.ctx) {
+                if (!container.canvas.context) {
                     return;
                 }
 
-                const ctx = container.canvas.ctx;
+                const ctx = container.canvas.context;
 
                 const colorLine = container.particles.lineLinkedColor;
 
@@ -138,7 +138,7 @@ export class Updater {
         const options = container.options;
         const particle = this.particle;
         const parallaxForce = options.interactivity.events.onhover.parallax.force;
-        const mousePos = container.interactivity.mouse.position || { x: 0, y: 0 };
+        const mousePos = container.interactivity.mouse.position || {x: 0, y: 0};
         const windowDimension = {
             height: window.innerHeight / 2,
             width: window.innerWidth / 2,
@@ -220,33 +220,33 @@ export class Updater {
         if (outMode === OutMode.bounce || outMode === OutMode.bounceVertical) {
             newPos = {
                 x_left: particle.radius,
-                x_right: container.canvas.w,
-                y_bottom: container.canvas.h,
+                x_right: container.canvas.width,
+                y_bottom: container.canvas.height,
                 y_top: particle.radius,
             };
         } else {
             newPos = {
                 x_left: -particle.radius - particle.offset.x,
-                x_right: container.canvas.w + particle.radius + particle.offset.x,
-                y_bottom: container.canvas.h + particle.radius - particle.offset.y,
+                x_right: container.canvas.width + particle.radius + particle.offset.x,
+                y_bottom: container.canvas.height + particle.radius - particle.offset.y,
                 y_top: -particle.radius - particle.offset.y,
             };
         }
 
-        if ((particle.position.x) - particle.radius > container.canvas.w - particle.offset.x) {
+        if ((particle.position.x) - particle.radius > container.canvas.width - particle.offset.x) {
             particle.position.x = newPos.x_left;
-            particle.position.y = Math.random() * container.canvas.h;
+            particle.position.y = Math.random() * container.canvas.height;
         } else if ((particle.position.x) + particle.radius < 0 - particle.offset.x) {
             particle.position.x = newPos.x_right;
-            particle.position.y = Math.random() * container.canvas.h;
+            particle.position.y = Math.random() * container.canvas.height;
         }
 
-        if ((particle.position.y) - particle.radius > container.canvas.h - particle.offset.y) {
+        if ((particle.position.y) - particle.radius > container.canvas.height - particle.offset.y) {
             particle.position.y = newPos.y_top;
-            particle.position.x = Math.random() * container.canvas.w;
+            particle.position.x = Math.random() * container.canvas.width;
         } else if ((particle.position.y) + particle.radius < 0 - particle.offset.y) {
             particle.position.y = newPos.y_bottom;
-            particle.position.x = Math.random() * container.canvas.w;
+            particle.position.x = Math.random() * container.canvas.width;
         }
     }
 
@@ -257,13 +257,13 @@ export class Updater {
 
         switch (options.particles.move.out_mode) {
             case OutMode.bounce:
-                if ((particle.position.x + particle.offset.x) + particle.radius > container.canvas.w) {
+                if ((particle.position.x + particle.offset.x) + particle.radius > container.canvas.width) {
                     particle.velocity.horizontal = -particle.velocity.horizontal;
                 } else if ((particle.position.x + particle.offset.x) - particle.radius < 0) {
                     particle.velocity.horizontal = -particle.velocity.horizontal;
                 }
 
-                if ((particle.position.y + particle.offset.y) + particle.radius > container.canvas.h) {
+                if ((particle.position.y + particle.offset.y) + particle.radius > container.canvas.height) {
                     particle.velocity.vertical = -particle.velocity.vertical;
                 } else if ((particle.position.y + particle.offset.y) - particle.radius < 0) {
                     particle.velocity.vertical = -particle.velocity.vertical;
@@ -271,7 +271,7 @@ export class Updater {
 
                 break;
             case OutMode.bounceVertical:
-                if (particle.position.y + particle.radius > container.canvas.h) {
+                if (particle.position.y + particle.radius > container.canvas.height) {
                     particle.velocity.vertical = -particle.velocity.vertical;
                 }
 
@@ -281,7 +281,7 @@ export class Updater {
 
                 break;
             case OutMode.bounceHorizontal:
-                if (particle.position.x + particle.radius > container.canvas.w) {
+                if (particle.position.x + particle.radius > container.canvas.width) {
                     particle.velocity.horizontal = -particle.velocity.horizontal;
                 } else if (particle.position.x - particle.radius < 0) {
                     particle.velocity.horizontal = -particle.velocity.horizontal;

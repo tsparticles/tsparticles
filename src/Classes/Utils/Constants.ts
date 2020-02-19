@@ -1,12 +1,12 @@
 "use strict";
 
-import { MoveDirection } from "../../Enums/MoveDirection";
-import { InteractivityDetect } from "../../Enums/InteractivityDetect";
-import { IOptions } from "../../Interfaces/IOptions";
-import { ShapeType } from "../../Enums/ShapeType";
-import { ClickMode } from "../../Enums/ClickMode";
-import { HoverMode } from "../../Enums/HoverMode";
-import { OutMode } from "../../Enums/OutMode";
+import {MoveDirection} from "../../Enums/MoveDirection";
+import {InteractivityDetect} from "../../Enums/InteractivityDetect";
+import {IOptions} from "../../Interfaces/IOptions";
+import {ShapeType} from "../../Enums/ShapeType";
+import {ClickMode} from "../../Enums/ClickMode";
+import {HoverMode} from "../../Enums/HoverMode";
+import {OutMode} from "../../Enums/OutMode";
 
 export class Constants {
     public static readonly canvasClass: string = "tsparticles-canvas-el";

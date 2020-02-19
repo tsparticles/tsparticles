@@ -1,15 +1,15 @@
 "use strict";
 
-import { Constants } from "./Utils/Constants";
-import { Container } from "./Container";
+import {Constants} from "./Utils/Constants";
+import {Container} from "./Container";
 
 export class Canvas {
-    public el: HTMLCanvasElement;
-    public ctx: CanvasRenderingContext2D | null;
-    public w: number;
-    public h: number;
+    public element: HTMLCanvasElement;
+    public context: CanvasRenderingContext2D | null;
+    public width: number;
+    public height: number;
     public tagId: string;
-    public pxratio: number
+    public pxratio: number;
 
     private readonly container: Container;
 
@@ -17,43 +17,45 @@ export class Canvas {
         const canvasEl = document.querySelector(`#${tagId} > .${Constants.canvasClass}`) as HTMLCanvasElement;
 
         this.container = container;
-        this.el = canvasEl;
-        this.w = canvasEl.offsetWidth;
-        this.h = canvasEl.offsetHeight;
+        this.element = canvasEl;
+        this.width = canvasEl.offsetWidth;
+        this.height = canvasEl.offsetHeight;
         this.tagId = tagId;
         this.pxratio = 1;
-        this.ctx = this.el.getContext("2d");
+        this.context = this.element.getContext("2d");
     }
 
     /* ---------- tsParticles functions - canvas ------------ */
     public init(): void {
+        this.size();
+        this.paint();
     }
 
     public size(): void {
         const container = this.container;
         const options = container.options;
 
-        this.el.width = this.w;
-        this.el.height = this.h;
+        this.element.width = this.width;
+        this.element.height = this.height;
 
         if (options.interactivity.events.resize) {
             window.addEventListener("resize", () => {
-                this.w = this.el.offsetWidth;
-                this.h = this.el.offsetHeight;
+                this.width = this.element.offsetWidth;
+                this.height = this.element.offsetHeight;
 
                 /* resize canvas */
                 if (container.retina.isRetina) {
-                    this.w *= this.pxratio;
-                    this.h *= this.pxratio;
+                    this.width *= this.pxratio;
+                    this.height *= this.pxratio;
                 }
 
-                this.el.width = this.w;
-                this.el.height = this.h;
+                this.element.width = this.width;
+                this.element.height = this.height;
 
                 /* repaint canvas on anim disabled */
                 if (!options.particles.move.enable) {
                     container.particles.clear();
-                    container.particles.create();
+                    container.particles.init();
                     container.particles.draw(0);
                 }
 
@@ -64,14 +66,14 @@ export class Canvas {
     }
 
     public paint(): void {
-        if (this.ctx) {
-            this.ctx.fillRect(0, 0, this.w, this.h);
+        if (this.context) {
+            this.context.fillRect(0, 0, this.width, this.height);
         }
     }
 
     public clear(): void {
-        if (this.ctx) {
-            this.ctx.clearRect(0, 0, this.w, this.h);
+        if (this.context) {
+            this.context.clearRect(0, 0, this.width, this.height);
         }
     }
 }

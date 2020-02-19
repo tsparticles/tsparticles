@@ -28,7 +28,7 @@
                 <!-- stats - count particles -->
                 <div class="count-particles"><span class="js-count-particles">--</span> particles </div>
                 <!-- tsParticles lib - https://github.com/matteobruni/tsparticles -->
-                <script src="https://cdn.jsdelivr.net/npm/tsparticles@1.5.2/dist/tsparticles.min.js" integrity="sha256-CxqmPoQu65PhBiDVTd5h3DRXDYE8/+W5NRJhoSXS2R4=" crossorigin="anonymous"></script>
+                <script src="https://unpkg.com/tsparticles"></script>
                 <!-- stats.js lib -->
                 <script src="http://threejs.org/examples/js/libs/stats.min.js"></script>`,
                 html_pre_processor: '',

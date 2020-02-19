@@ -1,8 +1,8 @@
 "use strict";
 
-import { Container } from "../Container";
-import { Particle } from "../Particle";
-import { Utils } from "../Utils/Utils";
+import {Container} from "../Container";
+import {Particle} from "../Particle";
+import {Utils} from "../Utils/Utils";
 
 export class Grabber {
     private readonly container: Container;
@@ -19,7 +19,7 @@ export class Grabber {
         const particle = this.particle;
 
         if (options.interactivity.events.onhover.enable && container.interactivity.status === "mousemove") {
-            const mousePos = container.interactivity.mouse.position || { x: 0, y: 0 };
+            const mousePos = container.interactivity.mouse.position || {x: 0, y: 0};
             const dxMouse = particle.position.x - mousePos.x;
             const dyMouse = particle.position.y - mousePos.y;
             const distMouse = Math.sqrt(dxMouse * dxMouse + dyMouse * dyMouse);
@@ -39,12 +39,12 @@ export class Grabber {
 
                     container.particles.lineLinkedColor = lineColor;
 
-                    const colorLine = container.particles.lineLinkedColor || { r: 127, g: 127, b: 127 };
-
-                    const ctx = container.canvas.ctx;
+                    const colorLine = container.particles.lineLinkedColor || {r: 127, g: 127, b: 127};
+                    const ctx = container.canvas.context;
 
                     if (ctx) {
                         const strokeStyle = `rgba(${colorLine.r},${colorLine.g},${colorLine.b},${opacityLine})`;
+
                         ctx.strokeStyle = strokeStyle;
                         ctx.lineWidth = options.particles.line_linked.width;
                         // container.canvas.ctx.lineCap = "round"; /* performance issue */

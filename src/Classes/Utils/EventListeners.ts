@@ -1,9 +1,9 @@
 "use strict";
 
-import { ClickMode } from "../../Enums/ClickMode";
-import { Container } from "../Container";
-import { InteractivityDetect } from "../../Enums/InteractivityDetect";
-import { ICoordinates } from "../../Interfaces/ICoordinates";
+import {ClickMode} from "../../Enums/ClickMode";
+import {Container} from "../Container";
+import {InteractivityDetect} from "../../Enums/InteractivityDetect";
+import {ICoordinates} from "../../Interfaces/ICoordinates";
 
 export class EventListeners {
     private readonly container: Container;
@@ -21,13 +21,13 @@ export class EventListeners {
         if (e.type.startsWith("mouse")) {
             const mouseEvent = e as MouseEvent;
 
-            if (container.interactivity.el === window) {
+            if (container.interactivity.element === window) {
                 pos = {
                     x: mouseEvent.clientX,
                     y: mouseEvent.clientY,
                 };
             } else if (options.interactivity.detect_on === InteractivityDetect.parent) {
-                const source = mouseEvent.srcElement as HTMLElement;
+                const source = mouseEvent.target as HTMLElement;
                 const target = mouseEvent.currentTarget as HTMLElement;
 
                 if (source && target) {

@@ -1,7 +1,7 @@
 "use strict";
 
-import { ProcessBubbleType } from "../Enums/ProcessBubbleType";
-import { IBubblerProcessParamObj } from "./IBubblerProcessParamObj";
+import {ProcessBubbleType} from "../Enums/ProcessBubbleType";
+import {IBubblerProcessParamObj} from "./IBubblerProcessParamObj";
 
 export interface IBubblerProcessParam {
     bubbleObj: IBubblerProcessParamObj;
