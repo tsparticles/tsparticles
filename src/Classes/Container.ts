@@ -225,20 +225,32 @@ export class Container {
         if (this.options.interactivity.events.onhover.enable || this.options.interactivity.events.onclick.enable) {
             if (this.interactivity.el) {
                 /* el on mousemove */
-                this.interactivity.el.addEventListener("mousemove", (e: Event) => this.eventListeners.mouseMove(e));
+                this.interactivity.el.addEventListener("mousemove", (e: Event) => this.eventListeners.mouseTouchMove(e));
+
+                /* el on touchstart */
+                this.interactivity.el.addEventListener('touchstart', (e: Event) => this.eventListeners.mouseTouchMove(e));
 
                 /* el on touchmove */
-                this.interactivity.el.addEventListener('touchmove', (e: Event) => this.eventListeners.touchMove(e));
-                
+                this.interactivity.el.addEventListener('touchmove', (e: Event) => this.eventListeners.mouseTouchMove(e));
+
+                if (!this.options.interactivity.events.onclick.enable) {
+                    /* el on touchend */
+                    this.interactivity.el.addEventListener('touchend', () => this.eventListeners.mouseTouchFinish());
+                }
+
                 /* el on onmouseleave */
-                this.interactivity.el.addEventListener("mouseleave", () => this.eventListeners.mouseLeave());
+                this.interactivity.el.addEventListener("mouseleave", () => this.eventListeners.mouseTouchFinish());
+
+                /* el on touchcancel */
+                this.interactivity.el.addEventListener("touchcancel", () => this.eventListeners.mouseTouchFinish());
             }
         }
 
         /* on click event */
         if (this.options.interactivity.events.onclick.enable) {
             if (this.interactivity.el) {
-                this.interactivity.el.addEventListener("click", () => this.eventListeners.mouseClick());
+                this.interactivity.el.addEventListener("touchend", (e: Event) => this.eventListeners.mouseTouchClick(e));
+                this.interactivity.el.addEventListener("mouseup", (e: Event) => this.eventListeners.mouseTouchClick(e));
             }
         }
     }
