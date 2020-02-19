@@ -27,8 +27,6 @@ export class Canvas {
 
     /* ---------- tsParticles functions - canvas ------------ */
     public init(): void {
-        // TODO: Moved in the constructor, check if it"s fine there
-        // this.ctx = this.el.getContext("2d");
     }
 
     public size(): void {
@@ -54,11 +52,9 @@ export class Canvas {
 
                 /* repaint canvas on anim disabled */
                 if (!options.particles.move.enable) {
-                    container.particles.empty();
+                    container.particles.clear();
                     container.particles.create();
                     container.particles.draw(0);
-                    // TODO: seems double code, check if it works without it
-                    // container.densityAutoParticles();
                 }
 
                 /* density particles enabled */

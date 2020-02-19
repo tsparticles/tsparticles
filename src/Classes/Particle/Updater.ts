@@ -14,6 +14,26 @@ export class Updater {
         this.particle = particle;
     }
 
+    public update(delta: number): void {
+        /* move the particle */
+        this.move(delta);
+
+        /* parallax */
+        this.moveParallax();
+
+        /* change opacity status */
+        this.updateOpacity();
+
+        /* change size */
+        this.updateSize();
+
+        /* change particle position if it is out of canvas */
+        this.fixOutOfCanvasPosition();
+
+        /* out of canvas modes */
+        this.updateOutMode();
+    }
+
     public link(p2: Particle): void {
         const container = this.container;
         const options = container.options;
@@ -100,7 +120,7 @@ export class Updater {
         }
     }
 
-    public move(delta: number): void {
+    private move(delta: number): void {
         const container = this.container;
         const options = container.options;
         const particle = this.particle;
@@ -113,7 +133,7 @@ export class Updater {
         }
     }
 
-    public moveParallax(): void {
+    private moveParallax(): void {
         const container = this.container;
         const options = container.options;
         const particle = this.particle;
@@ -137,7 +157,7 @@ export class Updater {
         }
     }
 
-    public updateOpacity(): void {
+    private updateOpacity(): void {
         const container = this.container;
         const options = container.options;
         const particle = this.particle;
@@ -163,7 +183,7 @@ export class Updater {
         }
     }
 
-    public updateSize(): void {
+    private updateSize(): void {
         const container = this.container;
         const options = container.options;
         const particle = this.particle;
@@ -189,7 +209,7 @@ export class Updater {
         }
     }
 
-    public fixOutOfCanvasPosition(): void {
+    private fixOutOfCanvasPosition(): void {
         const container = this.container;
         const options = container.options;
         const particle = this.particle;
@@ -230,7 +250,7 @@ export class Updater {
         }
     }
 
-    public updateOutMode(): void {
+    private updateOutMode(): void {
         const container = this.container;
         const options = container.options;
         const particle = this.particle;

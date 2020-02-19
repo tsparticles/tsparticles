@@ -49,7 +49,7 @@ export class Container {
             source: undefined,
         };
 
-        this.img = {};
+        this.img = { error: false };
         this.bubble = {};
         this.repulse = {};
 
@@ -79,47 +79,7 @@ export class Container {
         });
     }
 
-    public handleVisibilityChange(): void {
-        if (document.hidden) {
-            this.pageHidden = true;
-
-            if (this.drawAnimFrame) {
-                this.cancelAnimation(this.drawAnimFrame);
-            }
-        } else {
-            this.pageHidden = false;
-            this.lastFrameTime = performance.now();
-            this.draw(0);
-        }
-    }
-
     /* ---------- tsParticles functions - vendors ------------ */
-    public addEventsListeners(): void {
-        /* events target element */
-        if (this.options.interactivity.detect_on === InteractivityDetect.window) {
-            this.interactivity.el = window;
-        } else if (this.options.interactivity.detect_on === InteractivityDetect.parent) {
-            this.interactivity.el = this.canvas.el.parentNode;
-        } else {
-            this.interactivity.el = this.canvas.el;
-        }
-        /* detect mouse pos - on hover / click event */
-        if (this.options.interactivity.events.onhover.enable || this.options.interactivity.events.onclick.enable) {
-            /* el on mousemove */
-            if (this.interactivity.el) {
-                this.interactivity.el.addEventListener("mousemove", (e: Event) => this.eventListeners.mouseMove(e));
-                /* el on onmouseleave */
-                this.interactivity.el.addEventListener("mouseleave", () => this.eventListeners.mouseLeave());
-            }
-        }
-
-        /* on click event */
-        if (this.options.interactivity.events.onclick.enable) {
-            if (this.interactivity.el) {
-                this.interactivity.el.addEventListener("click", () => this.eventListeners.mouseClick());
-            }
-        }
-    }
 
     public densityAutoParticles(): void {
         if (this.options.particles.number.density.enable) {
@@ -147,14 +107,18 @@ export class Container {
         }
     }
 
-    public destroyContainer(): void {
+    public destroy(): void {
         if (this.drawAnimFrame !== undefined) {
             cancelAnimationFrame(this.drawAnimFrame);
         }
 
         this.canvas.el.remove();
 
-        Loader.domSet([]);
+        const idx = Loader.dom().indexOf(this);
+
+        if (idx >= 0) {
+            Loader.dom().splice(idx, 1);
+        }
     }
 
     public exportImg(): void {
@@ -162,20 +126,9 @@ export class Container {
     }
 
     public async loadImg(): Promise<void> {
-        this.img.error = undefined;
+        this.img.error = false;
+
         if (this.options.particles.shape.image.src) {
-            // if (type === "svg") {
-            //     let response = await fetch(this.options.particles.shape.image.src);
-
-            //     if (response.ok) {
-            //         this.svg.source = await response.text();
-
-            //         this.checkBeforeDraw();
-            //     } else {
-            //         console.error("Error tsParticles - Image not found");
-            //         this.img.error = true;
-            //     }
-            // } else {
             const img = new Image();
 
             img.addEventListener("load", () => {
@@ -185,109 +138,34 @@ export class Container {
             });
 
             img.src = this.options.particles.shape.image.src;
-            // }
         } else {
             console.error("Error tsParticles - No image.src");
             this.img.error = true;
         }
     }
 
-    public requestFrame(callback: FrameRequestCallback): number {
-        return window.requestAnimFrame(callback);
-    }
-
-    public cancelAnimation(handle: number): void {
-        window.cancelAnimationFrame(handle);
-    }
-
-    public draw(timestamp: DOMHighResTimeStamp): void {
-        // FPS limit logic
-        // If we are too fast, just draw without updating
-        const fpsLimit = this.options.fps_limit;
-
-        if (fpsLimit > 0 && timestamp < this.lastFrameTime + (1000 / fpsLimit)) {
-            this.drawAnimFrame = this.requestFrame((t) => this.draw(t));
-            return;
+    public async refresh(): Promise<void> {
+        /* init all */
+        if (this.checkAnimFrame) {
+            this.cancelAnimation(this.checkAnimFrame);
         }
 
-        const delta = timestamp - this.lastFrameTime;
-        this.lastFrameTime = timestamp;
-
-        if (this.options.particles.shape.type === ShapeType.image) {
-            // if (this.img.type === "svg") {
-            //     if (this.drawAnimFrame && this.svg.count >= this.options.particles.number.value) {
-            //         this.particles.draw(delta);
-
-            //         if (!this.options.particles.move.enable) {
-            //             this.cancelAnimation(this.drawAnimFrame);
-            //         } else {
-            //             this.drawAnimFrame = this.requestFrame((t) => this.draw(t));
-            //         }
-            //     } else {
-            //         if (!this.img.error) {
-            //             this.drawAnimFrame = this.requestFrame((t) => this.draw(t));
-            //         }
-            //     }
-            // } else {
-            if (this.img.obj) {
-                this.particles.draw(delta);
-
-                if (this.drawAnimFrame !== undefined && !this.options.particles.move.enable) {
-                    this.cancelAnimation(this.drawAnimFrame);
-                } else {
-                    this.drawAnimFrame = this.requestFrame((t) => this.draw(t));
-                }
-            } else {
-                if (!this.img.error) {
-                    this.drawAnimFrame = this.requestFrame((t) => this.draw(t));
-                }
-            }
-            // }
-        } else {
-            this.particles.draw(delta);
-
-            if (!this.options.particles.move.enable) {
-                if (this.drawAnimFrame !== undefined) {
-                    this.cancelAnimation(this.drawAnimFrame);
-                }
-            } else {
-                this.drawAnimFrame = this.requestFrame((t) => this.draw(t));
-            }
+        if (this.drawAnimFrame) {
+            this.cancelAnimation(this.drawAnimFrame);
         }
-    }
 
-    public checkBeforeDraw(): void {
-        // if shape is image
-        if (this.options.particles.shape.type === ShapeType.image) {
-            // if (this.img.type === "svg" && this.svg.source === undefined) {
-            //     this.checkAnimFrame = this.requestFrame(() => {
-            //         //TODO: Can"t find anywhere this check
-            //         //check();
-            //     });
-            // } else {
-            if (this.checkAnimFrame) {
-                this.cancelAnimation(this.checkAnimFrame);
-            }
+        this.svg.source = undefined;
+        this.svg.count = 0;
+        this.img.obj = undefined;
 
-            if (!this.img.error) {
-                this.init();
-                this.draw(0);
-            }
-            // }
-        } else {
-            this.init();
-            this.draw(0);
-        }
-    }
+        this.particles.clear();
 
-    public init(): void {
-        /* init canvas + particles */
-        this.retina.init();
-        this.canvas.init();
-        this.canvas.size();
-        this.canvas.paint();
-        this.particles.create();
-        this.densityAutoParticles();
+        this.canvas.clear();
+
+        delete this.particles.lineLinkedColor;
+
+        /* restart */
+        await this.start();
     }
 
     public async start(): Promise<void> {
@@ -300,5 +178,121 @@ export class Container {
         } else {
             this.checkBeforeDraw();
         }
+    }
+
+    private init(): void {
+        /* init canvas + particles */
+        this.retina.init();
+        this.canvas.init();
+        this.canvas.size();
+        this.canvas.paint();
+        this.particles.create();
+        this.densityAutoParticles();
+    }
+
+    private requestFrame(callback: FrameRequestCallback): number {
+        return window.requestAnimFrame(callback);
+    }
+
+    private cancelAnimation(handle: number): void {
+        window.cancelAnimationFrame(handle);
+    }
+
+    private handleVisibilityChange(): void {
+        if (document.hidden) {
+            this.pageHidden = true;
+
+            if (this.drawAnimFrame) {
+                this.cancelAnimation(this.drawAnimFrame);
+            }
+        } else {
+            this.pageHidden = false;
+            this.lastFrameTime = performance.now();
+            this.draw(0);
+        }
+    }
+
+    private addEventsListeners(): void {
+        /* events target element */
+        if (this.options.interactivity.detect_on === InteractivityDetect.window) {
+            this.interactivity.el = window;
+        } else if (this.options.interactivity.detect_on === InteractivityDetect.parent) {
+            this.interactivity.el = this.canvas.el.parentNode;
+        } else {
+            this.interactivity.el = this.canvas.el;
+        }
+        /* detect mouse pos - on hover / click event */
+        if (this.options.interactivity.events.onhover.enable || this.options.interactivity.events.onclick.enable) {
+            if (this.interactivity.el) {
+                /* el on mousemove */
+                this.interactivity.el.addEventListener("mousemove", (e: Event) => this.eventListeners.mouseTouchMove(e));
+
+                /* el on touchstart */
+                this.interactivity.el.addEventListener('touchstart', (e: Event) => this.eventListeners.mouseTouchMove(e));
+
+                /* el on touchmove */
+                this.interactivity.el.addEventListener('touchmove', (e: Event) => this.eventListeners.mouseTouchMove(e));
+
+                if (!this.options.interactivity.events.onclick.enable) {
+                    /* el on touchend */
+                    this.interactivity.el.addEventListener('touchend', () => this.eventListeners.mouseTouchFinish());
+                }
+
+                /* el on onmouseleave */
+                this.interactivity.el.addEventListener("mouseleave", () => this.eventListeners.mouseTouchFinish());
+
+                /* el on touchcancel */
+                this.interactivity.el.addEventListener("touchcancel", () => this.eventListeners.mouseTouchFinish());
+            }
+        }
+
+        /* on click event */
+        if (this.options.interactivity.events.onclick.enable) {
+            if (this.interactivity.el) {
+                this.interactivity.el.addEventListener("touchend", (e: Event) => this.eventListeners.mouseTouchClick(e));
+                this.interactivity.el.addEventListener("mouseup", (e: Event) => this.eventListeners.mouseTouchClick(e));
+            }
+        }
+    }
+
+    private draw(timestamp: DOMHighResTimeStamp): void {
+        // FPS limit logic
+        // If we are too fast, just draw without updating
+        const fpsLimit = this.options.fps_limit;
+
+        if (fpsLimit > 0 && timestamp < this.lastFrameTime + (1000 / fpsLimit)) {
+            this.drawAnimFrame = this.requestFrame((t) => this.draw(t));
+            return;
+        }
+
+        const delta = timestamp - this.lastFrameTime;
+        this.lastFrameTime = timestamp;
+
+        if (this.options.particles.shape.type === ShapeType.image && this.img.error) {
+            return;
+        }
+
+        this.particles.draw(delta);
+
+        if (this.drawAnimFrame !== undefined && !this.options.particles.move.enable) {
+            this.cancelAnimation(this.drawAnimFrame);
+        } else {
+            this.drawAnimFrame = this.requestFrame((t) => this.draw(t));
+        }
+    }
+
+    private checkBeforeDraw(): void {
+        if (this.options.particles.shape.type === ShapeType.image) {
+            if (this.checkAnimFrame) {
+                this.cancelAnimation(this.checkAnimFrame);
+            }
+
+            if (this.img.error) {
+                return;
+            }
+        }
+
+        this.init();
+        this.draw(0);
     }
 }

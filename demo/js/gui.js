@@ -9,17 +9,17 @@
             var data, data_css, tsParticles_GUI_Export, tsParticles_GUI_tmp, ratio;
             tsParticles_GUI_Export = {};
             tsParticles_GUI_tmp = window.tsParticles_GUI;
-            Utils.deepExtend(tsParticles_GUI_Export, tsParticles_GUI_tmp.options);
-            ratio = tsParticles_GUI_tmp.canvas.pxratio;
-            tsParticles_GUI_Export.particles.size.value = tsParticles_GUI_tmp.particles.size.value / ratio;
-            tsParticles_GUI_Export.particles.size.anim.speed = tsParticles_GUI_tmp.particles.size.anim.speed / ratio;
-            tsParticles_GUI_Export.particles.move.speed = tsParticles_GUI_tmp.particles.move.speed / ratio;
-            tsParticles_GUI_Export.particles.line_linked.distance = tsParticles_GUI_tmp.particles.line_linked.distance / ratio;
-            tsParticles_GUI_Export.interactivity.modes.grab.distance = tsParticles_GUI_tmp.interactivity.modes.grab.distance / ratio;
-            tsParticles_GUI_Export.interactivity.modes.bubble.distance = tsParticles_GUI_tmp.interactivity.modes.bubble.distance / ratio;
-            tsParticles_GUI_Export.particles.line_linked.width = tsParticles_GUI_tmp.particles.line_linked.width / ratio;
-            tsParticles_GUI_Export.interactivity.modes.bubble.size = tsParticles_GUI_tmp.interactivity.modes.bubble.size / ratio;
-            tsParticles_GUI_Export.interactivity.modes.repulse.distance = tsParticles_GUI_tmp.interactivity.modes.repulse.distance / ratio;
+            Object.deepExtend(tsParticles_GUI_Export, tsParticles_GUI_tmp.options);
+            ratio = tsParticles_GUI_tmp.options.retina_detect ? tsParticles_GUI_tmp.canvas.pxratio : 1;
+            tsParticles_GUI_Export.particles.size.value = tsParticles_GUI_tmp.options.particles.size.value / ratio;
+            tsParticles_GUI_Export.particles.size.anim.speed = tsParticles_GUI_tmp.options.particles.size.anim.speed / ratio;
+            tsParticles_GUI_Export.particles.move.speed = tsParticles_GUI_tmp.options.particles.move.speed / ratio;
+            tsParticles_GUI_Export.particles.line_linked.distance = tsParticles_GUI_tmp.options.particles.line_linked.distance / ratio;
+            tsParticles_GUI_Export.interactivity.modes.grab.distance = tsParticles_GUI_tmp.options.interactivity.modes.grab.distance / ratio;
+            tsParticles_GUI_Export.interactivity.modes.bubble.distance = tsParticles_GUI_tmp.options.interactivity.modes.bubble.distance / ratio;
+            tsParticles_GUI_Export.particles.line_linked.width = tsParticles_GUI_tmp.options.particles.line_linked.width / ratio;
+            tsParticles_GUI_Export.interactivity.modes.bubble.size = tsParticles_GUI_tmp.options.interactivity.modes.bubble.size / ratio;
+            tsParticles_GUI_Export.interactivity.modes.repulse.distance = tsParticles_GUI_tmp.options.interactivity.modes.repulse.distance / ratio;
             data_css = tsParticles_GUI_Export.config_demo;
             delete tsParticles_GUI_Export.config_demo;
             delete tsParticles_GUI_Export.canvas;
@@ -43,7 +43,7 @@
             return p.exportConfig("json");
         };
         p.update = async function() {
-            return await tsParticles_GUI.particles.refresh();
+            return await tsParticles_GUI.refresh();
         };
         window.gui = new dat.GUI({
             autoPlace: true,
@@ -423,6 +423,19 @@
         return requestAnimationFrame(update);
     };
 
+    Object.deepExtend = function(destination, source) {
+        for (const property in source) {
+            if (source[property] && source[property].constructor && source[property].constructor === Object) {
+                destination[property] = destination[property] || {};
+
+                Object.deepExtend(destination[property], source[property]);
+            } else {
+                destination[property] = source[property];
+            }
+        }
+        return destination;
+    };
+
     (function(console) {
         console.save = function(data, filename) {
             var a, blob, e;
@@ -550,10 +563,11 @@
         return $(function() {
             window.loadGUI();
             window.loadStats();
+            window.loadCodePen();
             return konamiCode();
         });
     }).catch((error) => {
-        console.log(error)
+        console.log(error);
     });
 
 }).call(this);

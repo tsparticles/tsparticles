@@ -1,14 +1,15 @@
 {
     "name": "tsparticles",
-    "version": "1.5.1",
+    "version": "1.5.2",
     "description": "Porting of Vincent Garreau's particles.js, converted in TypeScript.",
     "homepage": "https://github.com/matteobruni/tsparticles",
     "scripts": {
         "type-check": "tsc --noEmit",
         "type-check:watch": "npm run type-check -- --watch",
-        "build": "npm run build:types && npm run build:js && npx webpack",
+        "build": "npm run build:types && npm run build:js && npx webpack --mode production",
         "build:types": "tsc --emitDeclarationOnly",
-        "build:js": "babel src --out-dir dist --extensions \".ts,.tsx\" --source-maps inline"
+        "build:js": "babel src --out-dir dist --extensions \".ts,.tsx\" --source-maps inline",
+        "postinstall": "npm run build"
     },
     "repository": {
         "type": "git",
