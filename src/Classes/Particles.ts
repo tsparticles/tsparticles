@@ -5,6 +5,7 @@ import {ICoordinates} from "../Interfaces/ICoordinates";
 import {IMouseData} from "../Interfaces/IMouseData";
 import {IRgb} from "../Interfaces/IRgb";
 import {Particle} from "./Particle";
+import {PolygonMaskType} from "../Enums/PolygonMaskType";
 
 export class Particles {
     public array: Particle[];
@@ -23,10 +24,14 @@ export class Particles {
         const container = this.container;
         const options = container.options;
 
-        for (let i = this.array.length; i < options.particles.number.value; i++) {
-            const p = new Particle(container);
+        if (options.polygon.type === PolygonMaskType.inline) {
+            container.polygon.drawPointsOnPolygonPath();
+        } else {
+            for (let i = this.array.length; i < options.particles.number.value; i++) {
+                const p = new Particle(container);
 
-            this.array.push(p);
+                this.array.push(p);
+            }
         }
     }
 
@@ -61,12 +66,18 @@ export class Particles {
 
     public draw(delta: number): void {
         const container = this.container;
+        const options = container.options;
 
         /* clear canvas */
         container.canvas.clear();
 
         /* update each particles param */
         this.update(delta);
+
+        /* draw polygon shape in debug mode */
+        if(options.polygon.debug.enable){
+            container.polygon.drawDebugPolygon();
+        }
 
         /* draw each particle */
         for (const p of this.array) {

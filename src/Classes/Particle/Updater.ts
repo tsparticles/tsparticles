@@ -5,6 +5,7 @@ import {OutMode} from "../../Enums/OutMode";
 import {Particle} from "../Particle";
 import {Utils} from "../Utils/Utils";
 import {ClickMode} from "../../Enums/ClickMode";
+import {PolygonMaskType} from "../../Enums/PolygonMaskType";
 
 export class Updater {
     private readonly particle: Particle;
@@ -275,16 +276,37 @@ export class Updater {
 
         switch (options.particles.move.out_mode) {
             case OutMode.bounce:
-                if ((particle.position.x + particle.offset.x) + particle.radius > container.canvas.width) {
-                    particle.velocity.horizontal = -particle.velocity.horizontal;
-                } else if ((particle.position.x + particle.offset.x) - particle.radius < 0) {
-                    particle.velocity.horizontal = -particle.velocity.horizontal;
-                }
+                /* check bounce against polygon boundaries */
+                if (options.polygon.type !== PolygonMaskType.none && options.polygon.type !== PolygonMaskType.inline) {
+                    if (!container.polygon.checkInsidePolygon(particle.position)) {
+                        particle.velocity.horizontal = -particle.velocity.horizontal + (particle.velocity.vertical / 2);
+                        particle.velocity.vertical = -particle.velocity.vertical + (particle.velocity.horizontal / 2);
+                    }
+                } else if (options.polygon.type === PolygonMaskType.inline) {
+                    if (!particle.initialPosition) {
+                        particle.initialPosition = {x: 0, y: 0};
+                    }
 
-                if ((particle.position.y + particle.offset.y) + particle.radius > container.canvas.height) {
-                    particle.velocity.vertical = -particle.velocity.vertical;
-                } else if ((particle.position.y + particle.offset.y) - particle.radius < 0) {
-                    particle.velocity.vertical = -particle.velocity.vertical;
+                    const dx = particle.initialPosition.x - particle.position.x;
+                    const dy = particle.initialPosition.y - particle.position.y;
+                    const dist = Math.sqrt(dx * dx + dy * dy);
+
+                    if (dist > options.polygon.move.radius) {
+                        particle.velocity.horizontal = -particle.velocity.horizontal + (particle.velocity.vertical / 2);
+                        particle.velocity.vertical = -particle.velocity.vertical + (particle.velocity.horizontal / 2);
+                    }
+                } else {
+                    if ((particle.position.x + particle.offset.x) + particle.radius > container.canvas.width) {
+                        particle.velocity.horizontal = -particle.velocity.horizontal;
+                    } else if ((particle.position.x + particle.offset.x) - particle.radius < 0) {
+                        particle.velocity.horizontal = -particle.velocity.horizontal;
+                    }
+
+                    if ((particle.position.y + particle.offset.y) + particle.radius > container.canvas.height) {
+                        particle.velocity.vertical = -particle.velocity.vertical;
+                    } else if ((particle.position.y + particle.offset.y) - particle.radius < 0) {
+                        particle.velocity.vertical = -particle.velocity.vertical;
+                    }
                 }
 
                 break;

@@ -2,6 +2,7 @@
 
 import {Constants} from "./Utils/Constants";
 import {Container} from "./Container";
+import {PolygonMaskType} from "../Enums/PolygonMaskType";
 
 export class Canvas {
     public element: HTMLCanvasElement;
@@ -61,6 +62,19 @@ export class Canvas {
 
                 /* density particles enabled */
                 container.densityAutoParticles();
+
+                if (options.polygon.type !== PolygonMaskType.none) {
+                    if (container.polygon.redrawTimeout) {
+                        clearTimeout(container.polygon.redrawTimeout);
+                    }
+
+                    container.polygon.redrawTimeout = setTimeout(async function () {
+                        container.polygon.raw = await container.polygon.parseSvgPathToPolygon();
+                        container.particles.clear();
+                        container.particles.init();
+                        container.particles.draw(0);
+                    }, 250);
+                }
             });
         }
     }

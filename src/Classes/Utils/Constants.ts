@@ -7,6 +7,7 @@ import {ShapeType} from "../../Enums/ShapeType";
 import {ClickMode} from "../../Enums/ClickMode";
 import {HoverMode} from "../../Enums/HoverMode";
 import {OutMode} from "../../Enums/OutMode";
+import {PolygonMaskType} from "../../Enums/PolygonMaskType";
 
 export class Constants {
     public static readonly canvasClass: string = "tsparticles-canvas-el";
@@ -130,6 +131,17 @@ export class Constants {
                 random: false,
                 value: 20,
             },
+        },
+        polygon: {
+            debug: {
+                enable: false,
+                color: "#ffffff",
+            },
+            type: PolygonMaskType.none,
+            move: {
+                radius: 10,
+            },
+            url: "",
         },
         retina_detect: false,
     };
