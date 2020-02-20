@@ -16,6 +16,12 @@ steps:
   inputs:
     command: 'ci'
 
+- task: Npm@1
+  displayName: npm run build
+  inputs:
+    command: 'custom'
+    customCommand: 'run build'
+
 - task: npmAuthenticate@0
   displayName: npm authenticate
   condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/master'))
