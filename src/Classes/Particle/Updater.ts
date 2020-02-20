@@ -296,15 +296,14 @@ export class Updater {
                         particle.velocity.vertical = -particle.velocity.vertical + (particle.velocity.horizontal / 2);
                     }
                 } else {
-                    if ((particle.position.x + particle.offset.x) + particle.radius > container.canvas.width) {
-                        particle.velocity.horizontal = -particle.velocity.horizontal;
-                    } else if ((particle.position.x + particle.offset.x) - particle.radius < 0) {
+                    const x = particle.position.x + particle.offset.x;
+                    const y = particle.position.y + particle.offset.y;
+
+                    if (x + particle.radius > container.canvas.width || x - particle.radius < 0) {
                         particle.velocity.horizontal = -particle.velocity.horizontal;
                     }
 
-                    if ((particle.position.y + particle.offset.y) + particle.radius > container.canvas.height) {
-                        particle.velocity.vertical = -particle.velocity.vertical;
-                    } else if ((particle.position.y + particle.offset.y) - particle.radius < 0) {
+                    if (y + particle.radius > container.canvas.height || y - particle.radius < 0) {
                         particle.velocity.vertical = -particle.velocity.vertical;
                     }
                 }
