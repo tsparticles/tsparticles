@@ -69,7 +69,7 @@ class Main {
     }
 
     public domItem(idx: number): Container {
-        return this.dom()[idx];
+        return this.domItem(idx);
     }
 }
 
