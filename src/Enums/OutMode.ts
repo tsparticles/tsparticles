@@ -5,5 +5,5 @@ export enum OutMode {
     bounceHorizontal = "bounce-horizontal",
     bounceVertical = "bounce-vertical",
     out = "out",
-    destroy = "destroy"
+    destroy = "destroy",
 }
