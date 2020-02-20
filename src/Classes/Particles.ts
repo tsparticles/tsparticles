@@ -33,9 +33,8 @@ export class Particles {
     public update(delta: number): void {
         const container = this.container;
         const options = container.options;
-        const arrLength = this.array.length;
 
-        for (let i = 0; i < arrLength; i++) {
+        for (let i = 0; i < this.array.length; i++) {
             /* the particle */
             const p = this.array[i];
             // let d = ( dx = container.interactivity.mouse.click_pos_x - p.x ) * dx +
@@ -51,7 +50,7 @@ export class Particles {
 
             /* interaction auto between particles */
             if (options.particles.line_linked.enable || options.particles.move.attract.enable) {
-                for (let j = i + 1; j < arrLength; j++) {
+                for (let j = i + 1; j < this.array.length; j++) {
                     const p2 = this.array[j];
 
                     p.interact(p2);

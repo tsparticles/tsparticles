@@ -4,6 +4,7 @@ import {Container} from "../Container";
 import {OutMode} from "../../Enums/OutMode";
 import {Particle} from "../Particle";
 import {Utils} from "../Utils/Utils";
+import {ClickMode} from "../../Enums/ClickMode";
 
 export class Updater {
     private readonly particle: Particle;
@@ -233,20 +234,37 @@ export class Updater {
             };
         }
 
-        if ((particle.position.x) - particle.radius > container.canvas.width - particle.offset.x) {
-            particle.position.x = newPos.x_left;
-            particle.position.y = Math.random() * container.canvas.height;
-        } else if ((particle.position.x) + particle.radius < 0 - particle.offset.x) {
-            particle.position.x = newPos.x_right;
-            particle.position.y = Math.random() * container.canvas.height;
-        }
+        if (outMode == OutMode.destroy) {
+            if (particle.position.x - particle.radius > container.canvas.width ||
+                particle.position.x + particle.radius < 0 ||
+                particle.position.y - particle.radius > container.canvas.height ||
+                particle.position.y + particle.radius < 0) {
+                const idx = container.particles.array.indexOf(particle);
+                container.particles.array.splice(idx, 1);
 
-        if ((particle.position.y) - particle.radius > container.canvas.height - particle.offset.y) {
-            particle.position.y = newPos.y_top;
-            particle.position.x = Math.random() * container.canvas.width;
-        } else if ((particle.position.y) + particle.radius < 0 - particle.offset.y) {
-            particle.position.y = newPos.y_bottom;
-            particle.position.x = Math.random() * container.canvas.width;
+                /* remove the canvas if the arary is empty */
+                const clickMode = options.interactivity.events.onclick.mode;
+
+                if (!container.particles.array.length && !Utils.isInArray(ClickMode.push, clickMode)) {
+                    container.destroy();
+                }
+            }
+        } else {
+            if ((particle.position.x) - particle.radius > container.canvas.width - particle.offset.x) {
+                particle.position.x = newPos.x_left;
+                particle.position.y = Math.random() * container.canvas.height;
+            } else if ((particle.position.x) + particle.radius < 0 - particle.offset.x) {
+                particle.position.x = newPos.x_right;
+                particle.position.y = Math.random() * container.canvas.height;
+            }
+
+            if ((particle.position.y) - particle.radius > container.canvas.height - particle.offset.y) {
+                particle.position.y = newPos.y_top;
+                particle.position.x = Math.random() * container.canvas.width;
+            } else if ((particle.position.y) + particle.radius < 0 - particle.offset.y) {
+                particle.position.y = newPos.y_bottom;
+                particle.position.x = Math.random() * container.canvas.width;
+            }
         }
     }
 

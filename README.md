@@ -1,6 +1,6 @@
 # TypeScript Particles
 
-## tsparticles
+## tsParticles
 
 [![CodeFactor](https://www.codefactor.io/repository/github/matteobruni/tsparticles/badge)](https://www.codefactor.io/repository/github/matteobruni/tsparticles)
 [![Codacy Badge](https://api.codacy.com/project/badge/Grade/b983aaf3461a4c48b1e2eecce1ff1d74)](https://www.codacy.com/manual/ar3s/tsparticles?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=matteobruni/tsparticles&amp;utm_campaign=Badge_Grade)
@@ -52,7 +52,7 @@ Load tsParticles and configure the particles:
 
 ```javascript
 /* tsParticles.load(@dom-id, @path-json, @callback (optional)); */
-tsParticles.loadJSON("tsparticles", "assets/particles.json").then(() => {
+tsParticles.loadJSON("tsparticles", "presets/default.json").then((container) => {
   console.log("callback - tsparticles config loaded");
 }).catch((error) => {
   console.error(error);
@@ -76,18 +76,18 @@ tsParticles.load("tsparticles", { /* options here */ });
 
 **particles.json**
 
-```javascript
+```json
 {
   "particles": {
+    "color": {
+      "value": "#ffffff"
+    },
     "number": {
       "value": 80,
       "density": {
         "enable": true,
         "value_area": 800
       }
-    },
-    "color": {
-      "value": "#ffffff"
     },
     "shape": {
       "type": "circle",
@@ -185,7 +185,8 @@ tsParticles.load("tsparticles", { /* options here */ });
       }
     }
   },
-  "retina_detect": true
+  "retina_detect": true,
+  "fps_limit": 60
 }
 ```
 
@@ -228,7 +229,7 @@ key | option type / notes | example
 `particles.move.direction` | string | `"none"` <br /> `"top"` <br /> `"top-right"` <br /> `"right"` <br /> `"bottom-right"` <br /> `"bottom"` <br /> `"bottom-left"` <br /> `"left"` <br /> `"top-left"`
 `particles.move.random` | boolean | `true` / `false`
 `particles.move.straight` | boolean | `true` / `false`
-`particles.move.out_mode` | string <br /> (out of canvas) | `"out"` <br /> `"bounce"` <br /> `"bounce-vertical"` <br /> `"bounce-horizontal"`
+`particles.move.out_mode` | string <br /> (out of canvas) | `"out"`<br /> `"destroy"` <br /> `"bounce"` <br /> `"bounce-vertical"` <br /> `"bounce-horizontal"`
 `particles.move.bounce` | boolean <br /> (between particles) | `true` / `false`
 `particles.move.attract.enable` | boolean | `true` / `false`
 `particles.move.attract.rotateX` | number | `3000`
@@ -249,3 +250,4 @@ key | option type / notes | example
 `interactivity.events.modes.push.particles_nb` | number | `4`
 `interactivity.events.modes.remove.particles_nb` | number | `4`
 `retina_detect` | boolean | `true` / `false`
+`fps_limit` | number | `60`

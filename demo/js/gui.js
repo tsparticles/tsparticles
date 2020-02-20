@@ -264,7 +264,7 @@
             tsParticles_GUI.options.particles.move.speed = value;
             return await p.update();
         });
-        f.particles.move.add(tsParticles_GUI.options.particles.move, "out_mode", ["out", "bounce", "bounce-vertical", "bounce-horizontal"]).name("out_mode").onChange(async function(value) {
+        f.particles.move.add(tsParticles_GUI.options.particles.move, "out_mode", ["out", "destroy", "bounce", "bounce-vertical", "bounce-horizontal"]).name("out_mode").onChange(async function(value) {
             tsParticles_GUI.options.particles.move.out_mode = value;
             return await p.update();
         });
