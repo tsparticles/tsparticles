@@ -68,7 +68,7 @@ export class Canvas {
                         clearTimeout(container.polygon.redrawTimeout);
                     }
 
-                    container.polygon.redrawTimeout = setTimeout(async function () {
+                    container.polygon.redrawTimeout = setTimeout(async () => {
                         container.polygon.raw = await container.polygon.parseSvgPathToPolygon();
                         container.particles.clear();
                         container.particles.init();

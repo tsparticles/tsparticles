@@ -22,7 +22,7 @@ export class PolygonMask {
         this.height = 0;
     }
 
-    public checkInsidePolygon(position: ICoordinates | undefined | null) {
+    public checkInsidePolygon(position: ICoordinates | undefined | null): boolean {
         const container = this.container;
         const options = container.options;
 
@@ -61,6 +61,8 @@ export class PolygonMask {
         } else {
             return true;
         }
+
+        return false;
     }
 
     public randomPointInPolygon(): ICoordinates {
@@ -86,14 +88,14 @@ export class PolygonMask {
      * Opera release 49
      * Opera for Android release 49
      */
-    public async parseSvgPathToPolygon(svgUrl?: string) {
+    public async parseSvgPathToPolygon(svgUrl?: string): Promise<number[][] | undefined> {
         const container = this.container;
         const options = container.options;
+        const url = svgUrl || options.polygon.url;
 
-        svgUrl = svgUrl || options.polygon.url;
         // Load SVG from file on server
         if (!this.path || !this.svg) {
-            const req = await fetch(svgUrl);
+            const req = await fetch(url);
             if (req.ok) {
                 const xml = await req.text();
 
@@ -115,7 +117,7 @@ export class PolygonMask {
         /* centering of the polygon mask */
         this.offset = {
             x: container.canvas.width / 2 - this.width / 2,
-            y: container.canvas.height / 2 - this.height / 2
+            y: container.canvas.height / 2 - this.height / 2,
         };
 
 
@@ -123,7 +125,7 @@ export class PolygonMask {
         const polygonRaw = [];
         const p = {
             x: 0,
-            y: 0
+            y: 0,
         };
 
         for (let i = 0; i < len; i++) {
@@ -184,7 +186,7 @@ export class PolygonMask {
         return polygonRaw;
     }
 
-    drawDebugPolygon() {
+    public drawDebugPolygon(): void {
         const container = this.container;
         const options = container.options;
         const context = container.canvas.context;
@@ -204,14 +206,14 @@ export class PolygonMask {
         }
     }
 
-    drawPointsOnPolygonPath() {
+    public drawPointsOnPolygonPath(): void {
         const container = this.container;
 
         if (this.raw) {
             for (let i = 0, j = this.raw.length - 1; i < this.raw.length; j = i++) {
                 const position = {
                     x: this.raw[i][0],
-                    y: this.raw[i][1]
+                    y: this.raw[i][1],
                 };
                 const particle = new Particle(container, position);
 

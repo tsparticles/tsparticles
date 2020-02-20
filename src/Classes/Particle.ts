@@ -225,7 +225,7 @@ export class Particle {
     }
 
     private calcPosition(container: Container, position?: ICoordinates): ICoordinates {
-        let pos = {x: 0, y: 0};
+        const pos = {x: 0, y: 0};
 
         if (container.polygon.raw && container.polygon.raw.length > 0) {
             if (position) {

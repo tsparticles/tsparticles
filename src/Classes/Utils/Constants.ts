@@ -134,13 +134,13 @@ export class Constants {
         },
         polygon: {
             debug: {
-                enable: false,
                 color: "#ffffff",
+                enable: false,
             },
-            type: PolygonMaskType.none,
             move: {
                 radius: 10,
             },
+            type: PolygonMaskType.none,
             url: "",
         },
         retina_detect: false,
