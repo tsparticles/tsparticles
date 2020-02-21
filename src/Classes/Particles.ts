@@ -75,8 +75,8 @@ export class Particles {
         this.update(delta);
 
         /* draw polygon shape in debug mode */
-        if(options.polygon.debug.enable){
-            container.polygon.drawDebugPolygon();
+        if(options.polygon.draw.enable){
+            container.polygon.drawPolygon();
         }
 
         /* draw each particle */

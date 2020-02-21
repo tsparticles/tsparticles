@@ -9,6 +9,24 @@ declare function require(name: string): any;
 
 require("pathseg");
 
+type TSVGAbsoluteCoordinatesTypes =
+    | SVGPathSegArcAbs
+    | SVGPathSegCurvetoCubicAbs
+    | SVGPathSegCurvetoCubicSmoothAbs
+    | SVGPathSegCurvetoQuadraticAbs
+    | SVGPathSegCurvetoQuadraticSmoothAbs
+    | SVGPathSegLinetoAbs
+    | SVGPathSegMovetoAbs;
+
+type TSVGRelativeCoordinatesTypes =
+    | SVGPathSegArcRel
+    | SVGPathSegCurvetoCubicRel
+    | SVGPathSegCurvetoCubicSmoothRel
+    | SVGPathSegCurvetoQuadraticRel
+    | SVGPathSegCurvetoQuadraticSmoothRel
+    | SVGPathSegLinetoRel
+    | SVGPathSegMovetoRel;
+
 export class PolygonMask {
     public redrawTimeout?: number;
     public raw?: number[][];
@@ -115,8 +133,10 @@ export class PolygonMask {
             }
         }
 
-        this.width = parseFloat(this.svg.getAttribute("width") || "0");
-        this.height = parseFloat(this.svg.getAttribute("height") || "0");
+        const scale = options.polygon.scale;
+
+        this.width = parseFloat(this.svg.getAttribute("width") || "0") * scale;
+        this.height = parseFloat(this.svg.getAttribute("height") || "0") * scale;
 
         /* centering of the polygon mask */
         this.offset = {
@@ -132,7 +152,7 @@ export class PolygonMask {
         };
 
         for (let i = 0; i < len; i++) {
-            const segment: any = this.path.pathSegList.getItem(i);
+            const segment = this.path.pathSegList.getItem(i);
 
             switch (segment.pathSegType) {
                 //
@@ -145,15 +165,17 @@ export class PolygonMask {
                 case window.SVGPathSeg.PATHSEG_ARC_ABS:
                 case window.SVGPathSeg.PATHSEG_CURVETO_CUBIC_SMOOTH_ABS:
                 case window.SVGPathSeg.PATHSEG_CURVETO_QUADRATIC_SMOOTH_ABS:
-                    p.x = segment.x;
-                    p.y = segment.y;
+                    const absSeg = segment as TSVGAbsoluteCoordinatesTypes;
+
+                    p.x = absSeg.x;
+                    p.y = absSeg.y;
 
                 case window.SVGPathSeg.PATHSEG_LINETO_HORIZONTAL_ABS:
-                    p.x = segment.x;
+                    p.x = (segment as SVGPathSegLinetoHorizontalAbs).x;
                     break;
 
                 case window.SVGPathSeg.PATHSEG_LINETO_VERTICAL_ABS:
-                    p.y = segment.y;
+                    p.y = (segment as SVGPathSegLinetoVerticalAbs).y;
                     break;
 
                 //
@@ -166,15 +188,17 @@ export class PolygonMask {
                 case window.SVGPathSeg.PATHSEG_ARC_REL:
                 case window.SVGPathSeg.PATHSEG_CURVETO_CUBIC_SMOOTH_REL:
                 case window.SVGPathSeg.PATHSEG_CURVETO_QUADRATIC_SMOOTH_REL:
-                    p.x += segment.x;
-                    p.y += segment.y;
+                    const relSeg = segment as TSVGRelativeCoordinatesTypes;
+
+                    p.x += relSeg.x;
+                    p.y += relSeg.y;
                     break;
 
                 case window.SVGPathSeg.PATHSEG_LINETO_HORIZONTAL_REL:
-                    p.x += segment.x;
+                    p.x += (segment as SVGPathSegLinetoHorizontalRel).x;
                     break;
                 case window.SVGPathSeg.PATHSEG_LINETO_VERTICAL_REL:
-                    p.y += segment.y;
+                    p.y += (segment as SVGPathSegLinetoVerticalRel).y;
                     break;
 
                 case window.SVGPathSeg.PATHSEG_UNKNOWN:
@@ -183,13 +207,13 @@ export class PolygonMask {
                     break;
             }
 
-            polygonRaw.push([p.x + this.offset.x, p.y + this.offset.y]);
+            polygonRaw.push([p.x * scale + this.offset.x, p.y * scale + this.offset.y]);
         }
 
         return polygonRaw;
     }
 
-    public drawDebugPolygon(): void {
+    public drawPolygon(): void {
         const container = this.container;
         const options = container.options;
         const context = container.canvas.context;
@@ -203,8 +227,8 @@ export class PolygonMask {
             }
 
             context.closePath();
-            context.strokeStyle = options.polygon.debug.color;
-            context.lineWidth = 0.5;
+            context.strokeStyle = options.polygon.draw.lineColor;
+            context.lineWidth = options.polygon.draw.lineWidth;
             context.stroke();
         }
     }

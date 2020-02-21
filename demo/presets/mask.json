@@ -1,7 +1,7 @@
 {
   "particles": {
     "number": {
-      "value": 200,
+      "value": 300,
       "density": {
         "enable": false,
         "value_area": 2000
@@ -106,14 +106,15 @@
   },
   "retina_detect": true,
   "polygon": {
-    "debug": {
+    "draw": {
       "enable": true,
-      "color": "#ffffff"
+      "lineColor": "#ffffff"
     },
-    "type": "inline",
+    "type": "inside",
     "move": {
-      "radius": 20
+      "radius": 10
     },
+    "scale": 0.5,
     "url": "img/smalldeer.svg"
   },
   "config_demo": {

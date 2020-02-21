@@ -109,13 +109,15 @@ export interface IOptions {
         };
     };
     polygon: {
-        debug: {
-            color: string;
+        draw: {
+            lineColor: string;
+            lineWidth: number;
             enable: boolean;
         };
         move: {
             radius: number;
         };
+        scale: number;
         type: PolygonMaskType;
         url: string;
     };

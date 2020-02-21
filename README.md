@@ -262,8 +262,10 @@ key | option type / notes | example
 `interactivity.events.modes.remove.particles_nb` | number | `4`
 `retina_detect` | boolean | `true` / `false`
 `fps_limit` | number | `60`
-`polygon.debug.enable` | boolean | `true` / `false`
-`polygon.debug.color` | HEX (string) | `#ffffff`
+`polygon.draw.enable` | boolean | `true` / `false`
+`polygon.draw.lineWidth` | number | `0.5`
+`polygon.draw.lineColor` | HEX (string) | `#ffffff`
+`polygon.scale` | number | 1
 `polygon.type` | string | `none` / `inside` / `outside` / `inline`
 `polygon.move.radius` | number | `10`
 `polygon.url` | string | `demo/svg/deer.svg`
