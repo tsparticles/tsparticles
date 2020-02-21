@@ -5,6 +5,10 @@ import {ICoordinates} from "../Interfaces/ICoordinates";
 import {PolygonMaskType} from "../Enums/PolygonMaskType";
 import {Particle} from "./Particle";
 
+declare function require(name: string): any;
+
+require("pathseg");
+
 export class PolygonMask {
     public redrawTimeout?: number;
     public raw?: number[][];
