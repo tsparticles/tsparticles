@@ -169,6 +169,7 @@ export class PolygonMask {
 
                     p.x = absSeg.x;
                     p.y = absSeg.y;
+                    break;
 
                 case window.SVGPathSeg.PATHSEG_LINETO_HORIZONTAL_ABS:
                     p.x = (segment as SVGPathSegLinetoHorizontalAbs).x;
@@ -237,7 +238,7 @@ export class PolygonMask {
         const container = this.container;
 
         if (this.raw) {
-            for (let i = 0, j = this.raw.length - 1; i < this.raw.length; j = i++) {
+            for (let i = 0; i < this.raw.length; i++) {
                 const position = {
                     x: this.raw[i][0],
                     y: this.raw[i][1],
