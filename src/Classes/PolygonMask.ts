@@ -5,6 +5,10 @@ import {ICoordinates} from "../Interfaces/ICoordinates";
 import {PolygonMaskType} from "../Enums/PolygonMaskType";
 import {Particle} from "./Particle";
 
+// @ts-ignore
+declare function require(name:string);
+require("pathseg");
+
 export class PolygonMask {
     public redrawTimeout?: number;
     public raw?: number[][];
@@ -99,9 +103,9 @@ export class PolygonMask {
             if (req.ok) {
                 const xml = await req.text();
 
-                const doc = new XMLDocument();
+                const parser = new DOMParser();
 
-                doc.write(xml);
+                const doc = parser.parseFromString(xml, "image/svg+xml");
 
                 this.svg = doc.getElementsByTagName("svg")[0];
                 this.path = doc.getElementsByTagName("path")[0];
@@ -120,7 +124,6 @@ export class PolygonMask {
             y: container.canvas.height / 2 - this.height / 2,
         };
 
-
         const len = this.path.pathSegList.numberOfItems;
         const polygonRaw = [];
         const p = {
@@ -129,9 +132,9 @@ export class PolygonMask {
         };
 
         for (let i = 0; i < len; i++) {
-            const pathSeg: any = this.path.pathSegList.getItem(i);
+            const segment: any = this.path.pathSegList.getItem(i);
 
-            switch (pathSeg.pathSegType) {
+            switch (segment.pathSegType) {
                 //
                 // Absolute
                 //
@@ -142,15 +145,15 @@ export class PolygonMask {
                 case window.SVGPathSeg.PATHSEG_ARC_ABS:
                 case window.SVGPathSeg.PATHSEG_CURVETO_CUBIC_SMOOTH_ABS:
                 case window.SVGPathSeg.PATHSEG_CURVETO_QUADRATIC_SMOOTH_ABS:
-                    p.x = pathSeg.x;
-                    p.y = pathSeg.y;
+                    p.x = segment.x;
+                    p.y = segment.y;
 
                 case window.SVGPathSeg.PATHSEG_LINETO_HORIZONTAL_ABS:
-                    p.x = pathSeg.x;
+                    p.x = segment.x;
                     break;
 
                 case window.SVGPathSeg.PATHSEG_LINETO_VERTICAL_ABS:
-                    p.y = pathSeg.y;
+                    p.y = segment.y;
                     break;
 
                 //
@@ -163,15 +166,15 @@ export class PolygonMask {
                 case window.SVGPathSeg.PATHSEG_ARC_REL:
                 case window.SVGPathSeg.PATHSEG_CURVETO_CUBIC_SMOOTH_REL:
                 case window.SVGPathSeg.PATHSEG_CURVETO_QUADRATIC_SMOOTH_REL:
-                    p.x += pathSeg.x;
-                    p.y += pathSeg.y;
+                    p.x += segment.x;
+                    p.y += segment.y;
                     break;
 
                 case window.SVGPathSeg.PATHSEG_LINETO_HORIZONTAL_REL:
-                    p.x += pathSeg.x;
+                    p.x += segment.x;
                     break;
                 case window.SVGPathSeg.PATHSEG_LINETO_VERTICAL_REL:
-                    p.y += pathSeg.y;
+                    p.y += segment.y;
                     break;
 
                 case window.SVGPathSeg.PATHSEG_UNKNOWN:

@@ -186,7 +186,18 @@ tsParticles.load("tsparticles", { /* options here */ });
     }
   },
   "retina_detect": true,
-  "fps_limit": 60
+  "fps_limit": 60,
+  "polygon": {
+    "debug": {
+      "enable": true,
+      "color": "#000000"
+    },
+    "type": "inside",
+    "move": {
+      "radius": 10
+    },
+    "url": "demo/svg/deer.svg"
+  }
 }
 ```
 
@@ -251,3 +262,8 @@ key | option type / notes | example
 `interactivity.events.modes.remove.particles_nb` | number | `4`
 `retina_detect` | boolean | `true` / `false`
 `fps_limit` | number | `60`
+`polygon.debug.enable` | boolean | `true` / `false`
+`polygon.debug.color` | HEX (string) | `#ffffff`
+`polygon.type` | string | `none` / `inside` / `outside` / `inline`
+`polygon.move.radius` | number | `10`
+`polygon.url` | string | `demo/svg/deer.svg`
