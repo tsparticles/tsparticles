@@ -15,6 +15,7 @@ import {Particles} from "./Particles";
 import {Retina} from "./Retina";
 import {ShapeType} from "../Enums/ShapeType";
 import {Utils} from "./Utils/Utils";
+import {PolygonMask} from "./PolygonMask";
 
 export class Container {
     public interactivity: IContainerInteractivity;
@@ -22,6 +23,7 @@ export class Container {
     public retina: Retina;
     public canvas: Canvas;
     public particles: Particles;
+    public polygon: PolygonMask;
     public checkAnimFrame?: number;
     public drawAnimFrame?: number;
     public bubble: IBubble;
@@ -39,6 +41,7 @@ export class Container {
         this.retina = new Retina(this);
         this.canvas = new Canvas(this, tagId);
         this.particles = new Particles(this);
+        this.polygon = new PolygonMask(this);
         this.interactivity = {
             mouse: {},
         };
@@ -174,6 +177,13 @@ export class Container {
     }
 
     public async start(): Promise<void> {
+        /* If is set the url of svg element, load it and parse into raw polygon data,
+         * works only with single path SVG
+         */
+        if (this.options.polygon.url) {
+            this.polygon.raw = await this.polygon.parseSvgPathToPolygon(this.options.polygon.url);
+        }
+
         if (this.options.particles.shape.type === ShapeType.image) {
             const src = this.options.particles.shape.image.src;
 

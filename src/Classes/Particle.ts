@@ -17,10 +17,12 @@ import {Updater} from "./Particle/Updater";
 import {Utils} from "./Utils/Utils";
 import {HoverMode} from "../Enums/HoverMode";
 import {ClickMode} from "../Enums/ClickMode";
+import {PolygonMaskType} from "../Enums/PolygonMaskType";
 
 export class Particle {
     public radius: number;
     public size: ISize;
+    public initialPosition?: ICoordinates;
     public position: ICoordinates;
     public offset: ICoordinates;
     public color: IColor;
@@ -42,6 +44,10 @@ export class Particle {
         this.container = container;
         const options = container.options;
         const color = options.particles.color;
+
+        if (options.polygon.type === PolygonMaskType.inline) {
+            this.initialPosition = position;
+        }
 
         /* size */
         this.size = {};
@@ -219,10 +225,22 @@ export class Particle {
     }
 
     private calcPosition(container: Container, position?: ICoordinates): ICoordinates {
-        const pos = {
-            x: position && position.x ? position.x : Math.random() * container.canvas.width,
-            y: position && position.y ? position.y : Math.random() * container.canvas.height,
-        };
+        const pos = {x: 0, y: 0};
+
+        if (container.polygon.raw && container.polygon.raw.length > 0) {
+            if (position) {
+                pos.x = position.x;
+                pos.y = position.y;
+            } else {
+                const randp = container.polygon.randomPointInPolygon();
+
+                pos.x = randp.x;
+                pos.y = randp.y;
+            }
+        } else {
+            pos.x = position ? position.x : Math.random() * container.canvas.width;
+            pos.y = position ? position.y : Math.random() * container.canvas.height;
+        }
 
         /* check position  - into the canvas */
         if (pos.x > container.canvas.width - this.radius * 2) {

@@ -4,6 +4,7 @@ import {ClickMode} from "../../Enums/ClickMode";
 import {Container} from "../Container";
 import {InteractivityDetect} from "../../Enums/InteractivityDetect";
 import {ICoordinates} from "../../Interfaces/ICoordinates";
+import {PolygonMaskType} from "../../Enums/PolygonMaskType";
 
 export class EventListeners {
     private readonly container: Container;
@@ -78,6 +79,19 @@ export class EventListeners {
     }
 
     public mouseTouchClick(e: Event): void {
+        const container = this.container;
+        const options = container.options;
+
+        if (options.polygon.type !== PolygonMaskType.none && options.polygon.type !== PolygonMaskType.inline) {
+            if (container.polygon.checkInsidePolygon(container.interactivity.mouse.position)) {
+                this.doMouseTouchClick(e);
+            }
+        } else {
+            this.doMouseTouchClick(e);
+        }
+    }
+
+    private doMouseTouchClick(e: Event): void {
         const container = this.container;
         const options = container.options;
 

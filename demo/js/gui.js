@@ -534,7 +534,7 @@
         });
     };
 
-    id_presets = ["test", "default", "star", "snow", "bubble", "nyancat", "nyancat2", "nasa", "chars"];
+    id_presets = ["test", "default", "star", "snow", "bubble", "nyancat", "nyancat2", "nasa", "chars", "mask"];
 
     id_preset = window.location.hash.substring(1);
 
