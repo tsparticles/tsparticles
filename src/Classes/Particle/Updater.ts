@@ -235,7 +235,7 @@ export class Updater {
             };
         }
 
-        if (outMode == OutMode.destroy) {
+        if (outMode === OutMode.destroy) {
             if (particle.position.x + particle.radius < 0 ||
                 particle.position.y + particle.radius < 0 ||
                 particle.position.x - particle.radius > container.canvas.width ||
