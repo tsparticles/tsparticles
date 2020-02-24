@@ -1,5 +1,6 @@
 require("pathseg");
 
+/* eslint no-console: ["error", { allow: ["warn", "error"] }] */
 export class ParticlesJS {
     /*
     * @deprecated this method is obsolete, please use the new tsParticles.load
