@@ -59,9 +59,9 @@ export class PolygonMask {
 
                 for (let i = 0, j = this.raw.length - 1; i < this.raw.length; j = i++) {
                     const xi = this.raw[i][0];
-					const yi = this.raw[i][1];
+                    const yi = this.raw[i][1];
                     const xj = this.raw[j][0];
-					const yj = this.raw[j][1];
+                    const yj = this.raw[j][1];
                     const intersect = ((yi > y) !== (yj > y)) && (x < (xj - xi) * (y - yi) / (yj - yi) + xi);
 
                     if (intersect) {
