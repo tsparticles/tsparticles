@@ -87,12 +87,14 @@ window.particlesJS = (tagId: string, params: IOptions) => ParticlesJS.load(tagId
 /*
  * @deprecated this method is obsolete, please use the new tsParticles.loadJSON
  */
-window.particlesJS.load = (tagId: string, pathConfigJson: string, callback: (container: Container) => void) => ParticlesJS.loadJson(tagId, pathConfigJson, callback);
+window.particlesJS.load = (tagId: string, pathConfigJson: string, callback: (container: Container) => void) =>
+    ParticlesJS.loadJson(tagId, pathConfigJson, callback);
 
 /*
  * @deprecated this method is obsolete, please use the new tsParticles.setOnClickHandler
  */
-window.particlesJS.setOnClickHandler = (callback: EventListenerOrEventListenerObject) => ParticlesJS.setOnClickHandler(callback);
+window.particlesJS.setOnClickHandler = (callback: EventListenerOrEventListenerObject) =>
+    ParticlesJS.setOnClickHandler(callback);
 
 /*
  * @deprecated this method is obsolete, please use the new tsParticles.dom
