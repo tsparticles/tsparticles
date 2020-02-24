@@ -8,13 +8,10 @@
 /* How to use? : Check the GitHub README
 /* v1.5.6
 /* ----------------------------------------------- */
-declare function require(name: string): any;
-
-require("pathseg");
-
 import {Container} from "./Classes/Container";
 import {Loader} from "./Classes/Loader";
 import {IOptions} from "./Interfaces/IOptions";
+import {ParticlesJS} from "../support/support";
 
 declare global {
     interface Window {
@@ -83,39 +80,19 @@ Object.freeze(window.tsParticles);
 
 /* particles.js compatibility */
 /*
- * @deprecated this method is obsolete, please use the new tsParticles.load
+ * @deprecated this method is obsolete, please use the new tsParticles.loadJSON
  */
-window.particlesJS = (tagId: string, params: IOptions) => {
-    if (console) {
-        console.warn("this method is obsolete, please use the new tsParticles.load");
-    }
-
-    return window.tsParticles.load(tagId, params);
-};
+window.particlesJS = (tagId: string, params: IOptions) => ParticlesJS.load(tagId, params);
 
 /*
  * @deprecated this method is obsolete, please use the new tsParticles.loadJSON
  */
-window.particlesJS.load = (tagId: string, pathConfigJson: string, callback: (container: Container | undefined) => void) => {
-    if (console) {
-        console.warn("this method is obsolete, please use the new tsParticles.loadJSON");
-    }
-
-    window.tsParticles.loadJSON(tagId, pathConfigJson).then(callback).catch((error) => {
-        console.error(error);
-    });
-};
+window.particlesJS.load = (tagId: string, pathConfigJson: string, callback: (container: Container) => void) => ParticlesJS.loadJson(tagId, pathConfigJson, callback);
 
 /*
  * @deprecated this method is obsolete, please use the new tsParticles.setOnClickHandler
  */
-window.particlesJS.setOnClickHandler = (callback: EventListenerOrEventListenerObject) => {
-    if (console) {
-        console.warn("this method is obsolete, please use the new tsParticles.setOnClickHandler");
-    }
-
-    window.tsParticles.setOnClickHandler(callback);
-};
+window.particlesJS.setOnClickHandler = (callback: EventListenerOrEventListenerObject) => ParticlesJS.setOnClickHandler(callback);
 
 /*
  * @deprecated this method is obsolete, please use the new tsParticles.dom
