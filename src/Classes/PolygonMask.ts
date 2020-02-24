@@ -233,10 +233,10 @@ export class PolygonMask {
         const container = this.container;
 
         if (this.raw) {
-            for (let i = 0; i < this.raw.length; i++) {
+            for (const item of this.raw) {
                 const position = {
-                    x: this.raw[i][0],
-                    y: this.raw[i][1],
+                    x: item[0],
+                    y: item[1],
                 };
                 const particle = new Particle(container, position);
 

@@ -1,8 +1,8 @@
 "use strict";
 
 export enum PolygonMaskType {
-    none = "none",
+    inline = "inline",
     inside = "inside",
     outside = "outside",
-    inline = "inline",
+    none = "none",
 }

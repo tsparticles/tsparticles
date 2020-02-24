@@ -236,14 +236,14 @@ export class Updater {
         }
 
         if (outMode == OutMode.destroy) {
-            if (particle.position.x - particle.radius > container.canvas.width ||
-                particle.position.x + particle.radius < 0 ||
-                particle.position.y - particle.radius > container.canvas.height ||
-                particle.position.y + particle.radius < 0) {
+            if (particle.position.x + particle.radius < 0 ||
+                particle.position.y + particle.radius < 0 ||
+                particle.position.x - particle.radius > container.canvas.width ||
+                particle.position.y - particle.radius > container.canvas.height) {
                 const idx = container.particles.array.indexOf(particle);
                 container.particles.array.splice(idx, 1);
 
-                /* remove the canvas if the arary is empty */
+                /* remove the canvas if the array is empty */
                 const clickMode = options.interactivity.events.onclick.mode;
 
                 if (!container.particles.array.length && !Utils.isInArray(ClickMode.push, clickMode)) {

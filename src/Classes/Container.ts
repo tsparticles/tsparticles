@@ -9,7 +9,6 @@ import {IImage} from "../Interfaces/IImage";
 import {ISvg} from "../Interfaces/ISvg";
 import {IOptions} from "../Interfaces/IOptions";
 import {IContainerInteractivity} from "../Interfaces/IContainerInteractivity";
-import {InteractivityDetect} from "../Enums/InteractivityDetect";
 import {Loader} from "./Loader";
 import {Particles} from "./Particles";
 import {Retina} from "./Retina";
@@ -63,7 +62,7 @@ export class Container {
 
         /* ---------- tsParticles - start ------------ */
         this.eventListeners = new EventListeners(this);
-        this.addEventsListeners();
+        this.eventListeners.addEventsListeners();
         this.start().then(() => {
             /*
                 Cancel animation if page is not in focus
@@ -214,52 +213,6 @@ export class Container {
             this.pageHidden = false;
             this.lastFrameTime = performance.now();
             this.draw(0);
-        }
-    }
-
-    private addEventsListeners(): void {
-        /* events target element */
-        if (this.options.interactivity.detect_on === InteractivityDetect.window) {
-            this.interactivity.element = window;
-        } else if (this.options.interactivity.detect_on === InteractivityDetect.parent) {
-            this.interactivity.element = this.canvas.element.parentNode;
-        } else {
-            this.interactivity.element = this.canvas.element;
-        }
-
-        const interactivityEl = this.interactivity.element;
-
-        /* detect mouse pos - on hover / click event */
-        if (this.options.interactivity.events.onhover.enable || this.options.interactivity.events.onclick.enable) {
-            if (interactivityEl) {
-                /* el on mousemove */
-                interactivityEl.addEventListener("mousemove", (e: Event) => this.eventListeners.mouseTouchMove(e));
-
-                /* el on touchstart */
-                interactivityEl.addEventListener("touchstart", (e: Event) => this.eventListeners.mouseTouchMove(e));
-
-                /* el on touchmove */
-                interactivityEl.addEventListener("touchmove", (e: Event) => this.eventListeners.mouseTouchMove(e));
-
-                if (!this.options.interactivity.events.onclick.enable) {
-                    /* el on touchend */
-                    interactivityEl.addEventListener("touchend", () => this.eventListeners.mouseTouchFinish());
-                }
-
-                /* el on onmouseleave */
-                interactivityEl.addEventListener("mouseleave", () => this.eventListeners.mouseTouchFinish());
-
-                /* el on touchcancel */
-                interactivityEl.addEventListener("touchcancel", () => this.eventListeners.mouseTouchFinish());
-            }
-        }
-
-        /* on click event */
-        if (this.options.interactivity.events.onclick.enable) {
-            if (interactivityEl) {
-                interactivityEl.addEventListener("touchend", (e: Event) => this.eventListeners.mouseTouchClick(e));
-                interactivityEl.addEventListener("mouseup", (e: Event) => this.eventListeners.mouseTouchClick(e));
-            }
         }
     }
 

@@ -134,9 +134,9 @@ export class Constants {
         },
         polygon: {
             draw: {
+                enable: false,
                 lineColor: "#ffffff",
                 lineWidth: 0.5,
-                enable: false,
             },
             move: {
                 radius: 10,
