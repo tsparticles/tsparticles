@@ -5,11 +5,7 @@ import {ICoordinates} from "../Interfaces/ICoordinates";
 import {PolygonMaskType} from "../Enums/PolygonMaskType";
 import {Particle} from "./Particle";
 
-declare function require(name: string): any;
-
-require("pathseg");
-
-type TSVGAbsoluteCoordinatesTypes =
+type SvgAbsoluteCoordinatesTypes =
     | SVGPathSegArcAbs
     | SVGPathSegCurvetoCubicAbs
     | SVGPathSegCurvetoCubicSmoothAbs
@@ -18,7 +14,7 @@ type TSVGAbsoluteCoordinatesTypes =
     | SVGPathSegLinetoAbs
     | SVGPathSegMovetoAbs;
 
-type TSVGRelativeCoordinatesTypes =
+type SvgRelativeCoordinatesTypes =
     | SVGPathSegArcRel
     | SVGPathSegCurvetoCubicRel
     | SVGPathSegCurvetoCubicSmoothRel
@@ -165,7 +161,7 @@ export class PolygonMask {
                 case window.SVGPathSeg.PATHSEG_ARC_ABS:
                 case window.SVGPathSeg.PATHSEG_CURVETO_CUBIC_SMOOTH_ABS:
                 case window.SVGPathSeg.PATHSEG_CURVETO_QUADRATIC_SMOOTH_ABS:
-                    const absSeg = segment as TSVGAbsoluteCoordinatesTypes;
+                    const absSeg = segment as SvgAbsoluteCoordinatesTypes;
 
                     p.x = absSeg.x;
                     p.y = absSeg.y;
@@ -189,7 +185,7 @@ export class PolygonMask {
                 case window.SVGPathSeg.PATHSEG_ARC_REL:
                 case window.SVGPathSeg.PATHSEG_CURVETO_CUBIC_SMOOTH_REL:
                 case window.SVGPathSeg.PATHSEG_CURVETO_QUADRATIC_SMOOTH_REL:
-                    const relSeg = segment as TSVGRelativeCoordinatesTypes;
+                    const relSeg = segment as SvgRelativeCoordinatesTypes;
 
                     p.x += relSeg.x;
                     p.y += relSeg.y;
@@ -205,7 +201,6 @@ export class PolygonMask {
                 case window.SVGPathSeg.PATHSEG_UNKNOWN:
                 case window.SVGPathSeg.PATHSEG_CLOSEPATH:
                     continue; // Skip the closing path (and the UNKNOWN)
-                    break;
             }
 
             polygonRaw.push([p.x * scale + this.offset.x, p.y * scale + this.offset.y]);

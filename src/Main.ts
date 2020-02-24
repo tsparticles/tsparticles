@@ -8,6 +8,10 @@
 /* How to use? : Check the GitHub README
 /* v1.5.6
 /* ----------------------------------------------- */
+declare function require(name: string): any;
+
+require("pathseg");
+
 import {Container} from "./Classes/Container";
 import {Loader} from "./Classes/Loader";
 import {IOptions} from "./Interfaces/IOptions";
@@ -78,17 +82,23 @@ window.tsParticles = new Main();
 Object.freeze(window.tsParticles);
 
 /* particles.js compatibility */
+/*
+ * @deprecated this method is obsolete, please use the new tsParticles.load
+ */
 window.particlesJS = (tagId: string, params: IOptions) => {
     if (console) {
-        console.info("this method is obsolete, please use the new tsParticles.load");
+        console.warn("this method is obsolete, please use the new tsParticles.load");
     }
 
     return window.tsParticles.load(tagId, params);
 };
 
+/*
+ * @deprecated this method is obsolete, please use the new tsParticles.loadJSON
+ */
 window.particlesJS.load = (tagId: string, pathConfigJson: string, callback: (container: Container | undefined) => void) => {
     if (console) {
-        console.info("this method is obsolete, please use the new tsParticles.loadJSON");
+        console.warn("this method is obsolete, please use the new tsParticles.loadJSON");
     }
 
     window.tsParticles.loadJSON(tagId, pathConfigJson).then(callback).catch((error) => {
@@ -96,17 +106,23 @@ window.particlesJS.load = (tagId: string, pathConfigJson: string, callback: (con
     });
 };
 
+/*
+ * @deprecated this method is obsolete, please use the new tsParticles.setOnClickHandler
+ */
 window.particlesJS.setOnClickHandler = (callback: EventListenerOrEventListenerObject) => {
     if (console) {
-        console.info("this method is obsolete, please use the new tsParticles.setOnClickHandler");
+        console.warn("this method is obsolete, please use the new tsParticles.setOnClickHandler");
     }
 
     window.tsParticles.setOnClickHandler(callback);
 };
 
+/*
+ * @deprecated this method is obsolete, please use the new tsParticles.dom
+ */
 window.pJSDom = () => {
     if (console) {
-        console.info("this method is obsolete, please use the new tsParticles.dom");
+        console.warn("this method is obsolete, please use the new tsParticles.dom");
     }
 
     return window.tsParticles.dom();
