@@ -51,7 +51,7 @@ Load tsParticles and configure the particles:
 **app.js**
 
 ```javascript
-/* tsParticles.load(@dom-id, @path-json, @callback (optional)); */
+/* tsParticles.loadJSON(@dom-id, @path-json, @callback (optional)); */
 tsParticles.loadJSON("tsparticles", "presets/default.json").then((container) => {
   console.log("callback - tsparticles config loaded");
 }).catch((error) => {
