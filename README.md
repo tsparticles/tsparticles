@@ -51,7 +51,7 @@ Load tsParticles and configure the particles:
 **app.js**
 
 ```javascript
-/* tsParticles.load(@dom-id, @path-json, @callback (optional)); */
+/* tsParticles.loadJSON(@dom-id, @path-json, @callback (optional)); */
 tsParticles.loadJSON("tsparticles", "presets/default.json").then((container) => {
   console.log("callback - tsparticles config loaded");
 }).catch((error) => {
@@ -186,7 +186,18 @@ tsParticles.load("tsparticles", { /* options here */ });
     }
   },
   "retina_detect": true,
-  "fps_limit": 60
+  "fps_limit": 60,
+  "polygon": {
+    "debug": {
+      "enable": true,
+      "color": "#000000"
+    },
+    "type": "inside",
+    "move": {
+      "radius": 10
+    },
+    "url": "demo/svg/deer.svg"
+  }
 }
 ```
 
@@ -251,3 +262,10 @@ key | option type / notes | example
 `interactivity.events.modes.remove.particles_nb` | number | `4`
 `retina_detect` | boolean | `true` / `false`
 `fps_limit` | number | `60`
+`polygon.draw.enable` | boolean | `true` / `false`
+`polygon.draw.lineWidth` | number | `0.5`
+`polygon.draw.lineColor` | HEX (string) | `#ffffff`
+`polygon.scale` | number | 1
+`polygon.type` | string | `none` / `inside` / `outside` / `inline`
+`polygon.move.radius` | number | `10`
+`polygon.url` | string | `demo/svg/deer.svg`

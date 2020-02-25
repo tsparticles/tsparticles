@@ -5,6 +5,7 @@ import {OutMode} from "../../Enums/OutMode";
 import {Particle} from "../Particle";
 import {Utils} from "../Utils/Utils";
 import {ClickMode} from "../../Enums/ClickMode";
+import {PolygonMaskType} from "../../Enums/PolygonMaskType";
 
 export class Updater {
     private readonly particle: Particle;
@@ -234,15 +235,15 @@ export class Updater {
             };
         }
 
-        if (outMode == OutMode.destroy) {
-            if (particle.position.x - particle.radius > container.canvas.width ||
-                particle.position.x + particle.radius < 0 ||
-                particle.position.y - particle.radius > container.canvas.height ||
-                particle.position.y + particle.radius < 0) {
+        if (outMode === OutMode.destroy) {
+            if (particle.position.x + particle.radius < 0 ||
+                particle.position.y + particle.radius < 0 ||
+                particle.position.x - particle.radius > container.canvas.width ||
+                particle.position.y - particle.radius > container.canvas.height) {
                 const idx = container.particles.array.indexOf(particle);
                 container.particles.array.splice(idx, 1);
 
-                /* remove the canvas if the arary is empty */
+                /* remove the canvas if the array is empty */
                 const clickMode = options.interactivity.events.onclick.mode;
 
                 if (!container.particles.array.length && !Utils.isInArray(ClickMode.push, clickMode)) {
@@ -250,18 +251,18 @@ export class Updater {
                 }
             }
         } else {
-            if ((particle.position.x) - particle.radius > container.canvas.width - particle.offset.x) {
+            if (particle.position.x - particle.radius > container.canvas.width - particle.offset.x) {
                 particle.position.x = newPos.x_left;
                 particle.position.y = Math.random() * container.canvas.height;
-            } else if ((particle.position.x) + particle.radius < 0 - particle.offset.x) {
+            } else if (particle.position.x + particle.radius < 0 - particle.offset.x) {
                 particle.position.x = newPos.x_right;
                 particle.position.y = Math.random() * container.canvas.height;
             }
 
-            if ((particle.position.y) - particle.radius > container.canvas.height - particle.offset.y) {
+            if (particle.position.y - particle.radius > container.canvas.height - particle.offset.y) {
                 particle.position.y = newPos.y_top;
                 particle.position.x = Math.random() * container.canvas.width;
-            } else if ((particle.position.y) + particle.radius < 0 - particle.offset.y) {
+            } else if (particle.position.y + particle.radius < 0 - particle.offset.y) {
                 particle.position.y = newPos.y_bottom;
                 particle.position.x = Math.random() * container.canvas.width;
             }
@@ -271,40 +272,81 @@ export class Updater {
     private updateOutMode(): void {
         const container = this.container;
         const options = container.options;
-        const particle = this.particle;
 
         switch (options.particles.move.out_mode) {
             case OutMode.bounce:
-                if ((particle.position.x + particle.offset.x) + particle.radius > container.canvas.width) {
-                    particle.velocity.horizontal = -particle.velocity.horizontal;
-                } else if ((particle.position.x + particle.offset.x) - particle.radius < 0) {
-                    particle.velocity.horizontal = -particle.velocity.horizontal;
-                }
-
-                if ((particle.position.y + particle.offset.y) + particle.radius > container.canvas.height) {
-                    particle.velocity.vertical = -particle.velocity.vertical;
-                } else if ((particle.position.y + particle.offset.y) - particle.radius < 0) {
-                    particle.velocity.vertical = -particle.velocity.vertical;
-                }
+                this.updateBounce();
 
                 break;
             case OutMode.bounceVertical:
-                if (particle.position.y + particle.radius > container.canvas.height) {
-                    particle.velocity.vertical = -particle.velocity.vertical;
-                }
-
-                if (particle.position.y - particle.radius < 0) {
-                    particle.velocity.vertical = -particle.velocity.vertical;
-                }
+                this.updateBounceVertical();
 
                 break;
             case OutMode.bounceHorizontal:
-                if (particle.position.x + particle.radius > container.canvas.width) {
-                    particle.velocity.horizontal = -particle.velocity.horizontal;
-                } else if (particle.position.x - particle.radius < 0) {
-                    particle.velocity.horizontal = -particle.velocity.horizontal;
-                }
+                this.updateBounceHorizontal();
                 break;
+        }
+    }
+
+    private updateBounce(): void {
+        const container = this.container;
+        const options = container.options;
+        const particle = this.particle;
+
+        /* check bounce against polygon boundaries */
+        if (options.polygon.type !== PolygonMaskType.none && options.polygon.type !== PolygonMaskType.inline) {
+            if (!container.polygon.checkInsidePolygon(particle.position)) {
+                particle.velocity.horizontal = -particle.velocity.horizontal + (particle.velocity.vertical / 2);
+                particle.velocity.vertical = -particle.velocity.vertical + (particle.velocity.horizontal / 2);
+            }
+        } else if (options.polygon.type === PolygonMaskType.inline) {
+            if (!particle.initialPosition) {
+                particle.initialPosition = {x: 0, y: 0};
+            }
+
+            const dx = particle.initialPosition.x - particle.position.x;
+            const dy = particle.initialPosition.y - particle.position.y;
+            const dist = Math.sqrt(dx * dx + dy * dy);
+
+            if (dist > options.polygon.move.radius) {
+                particle.velocity.horizontal = -particle.velocity.horizontal + (particle.velocity.vertical / 2);
+                particle.velocity.vertical = -particle.velocity.vertical + (particle.velocity.horizontal / 2);
+            }
+        } else {
+            const x = particle.position.x + particle.offset.x;
+            const y = particle.position.y + particle.offset.y;
+
+            if (x + particle.radius > container.canvas.width || x - particle.radius < 0) {
+                particle.velocity.horizontal = -particle.velocity.horizontal;
+            }
+
+            if (y + particle.radius > container.canvas.height || y - particle.radius < 0) {
+                particle.velocity.vertical = -particle.velocity.vertical;
+            }
+        }
+    }
+
+    private updateBounceVertical(): void {
+        const container = this.container;
+        const particle = this.particle;
+
+        if (particle.position.y + particle.radius > container.canvas.height) {
+            particle.velocity.vertical = -particle.velocity.vertical;
+        }
+
+        if (particle.position.y - particle.radius < 0) {
+            particle.velocity.vertical = -particle.velocity.vertical;
+        }
+    }
+
+    private updateBounceHorizontal(): void {
+        const container = this.container;
+        const particle = this.particle;
+
+        if (particle.position.x + particle.radius > container.canvas.width) {
+            particle.velocity.horizontal = -particle.velocity.horizontal;
+        } else if (particle.position.x - particle.radius < 0) {
+            particle.velocity.horizontal = -particle.velocity.horizontal;
         }
     }
 }

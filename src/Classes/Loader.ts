@@ -15,6 +15,10 @@ export class Loader {
         return tsParticlesDom;
     }
 
+    public static domItem(index: number): Container {
+        return Loader.dom()[index];
+    }
+
     public static load(tagId: string, params: IOptions): Container | undefined {
         /* elements */
         const tag = document.getElementById(tagId);
