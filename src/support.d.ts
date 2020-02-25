@@ -1,5 +1,5 @@
-import {IOptions} from "../src/Interfaces/IOptions";
-import {Container} from "../src/Classes/Container";
+import {IOptions} from "./Interfaces/IOptions";
+import {Container} from "./Classes/Container";
 
 declare class ParticlesJS {
     /* @deprecated */

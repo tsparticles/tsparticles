@@ -44,6 +44,10 @@ export class PolygonMask {
         const container = this.container;
         const options = container.options;
 
+        if (options.polygon.type === PolygonMaskType.none) {
+            return true;
+        }
+
         // https://github.com/substack/point-in-polygon
         // ray-casting algorithm based on
         // http://www.ecse.rpi.edu/Homepages/wrf/Research/Short_Notes/pnpoly.html
