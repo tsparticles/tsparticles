@@ -5,6 +5,7 @@
 
 trigger:
 - master
+- staging
 - dev
 
 pool:
