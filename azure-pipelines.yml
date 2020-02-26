@@ -52,3 +52,15 @@ steps:
     PathtoPublish: '$(Build.ArtifactStagingDirectory)'
     ArtifactName: 'tsparticles'
     publishLocation: 'Container'
+
+- task: GitHubRelease@1
+  displayName: 'Github Release'
+  condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/master'))
+  inputs:
+    gitHubConnection: 'github.com_matteobruni'
+    repositoryName: 'matteobruni/tsparticles'
+    action: 'create'
+    target: '$(Build.SourceVersion)'
+    tagSource: 'gitTag'
+    changeLogCompareToRelease: 'lastFullRelease'
+    changeLogType: 'commitBased'
