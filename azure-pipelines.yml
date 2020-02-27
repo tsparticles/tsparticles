@@ -79,5 +79,6 @@ steps:
     action: 'create'
     target: '$(Build.SourceVersion)'
     tagSource: 'gitTag'
+    assets: '$(Build.ArtifactStagingDirectory)/dist/*'
     changeLogCompareToRelease: 'lastFullRelease'
     changeLogType: 'commitBased'
