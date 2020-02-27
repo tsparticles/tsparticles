@@ -65,3 +65,19 @@ steps:
     tagSource: 'gitTag'
     changeLogCompareToRelease: 'lastFullRelease'
     changeLogType: 'commitBased'
+
+- task: NuGetCommand@2
+  displayName: 'Nuget Pack'
+  inputs:
+    command: 'pack'
+    packagesToPack: '**/*.nuspec'
+    versioningScheme: 'off'
+
+- task: NuGetCommand@2
+  condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/master'))
+  displayName: 'Nuget Publish'
+  inputs:
+    command: 'push'
+    packagesToPush: '$(Build.ArtifactStagingDirectory)/**/*.nupkg;!$(Build.ArtifactStagingDirectory)/**/*.symbols.nupkg'
+    nuGetFeedType: 'external'
+    publishFeedCredentials: 'Nuget'
