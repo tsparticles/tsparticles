@@ -32,6 +32,10 @@ npm install tsparticles
 
 ---
 
+### ***NuGet***
+
+[![Nuget](https://img.shields.io/nuget/v/tsParticles)](https://www.nuget.org/packages/tsParticles/)
+
 ### `Hosting / CDN`
 
 ***Please use this host or your own to load tsparticles on your projects***
@@ -70,9 +74,9 @@ tsParticles.load("tsparticles", { /* options here */ });
 
 ### `Demo / Generator`
 
-[![Particles Generator](https://tsparticles.matteobruni.it/demo/img/demo.png)](https://tsparticles.matteobruni.it/demo/)
+[![Particles Generator](https://particles.matteobruni.it/images/demo.png)](https://particles.matteobruni.it/)
 
-<https://tsparticles.matteobruni.it/demo/>
+<https://particles.matteobruni.it/>
 
 ---
 
