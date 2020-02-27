@@ -70,9 +70,9 @@ tsParticles.load("tsparticles", { /* options here */ });
 
 ### `Demo / Generator`
 
-[![Particles Generator](https://tsparticles.matteobruni.it/demo/img/demo.png)](https://tsparticles.matteobruni.it/demo/)
+[![Particles Generator](https://particles.matteobruni.it/images/demo.png)](https://particles.matteobruni.it/)
 
-<https://tsparticles.matteobruni.it/demo/>
+<https://particles.matteobruni.it/>
 
 ---
 
