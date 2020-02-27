@@ -30,11 +30,11 @@
 npm install tsparticles
 ```
 
----
-
 ### ***NuGet***
 
 [![Nuget](https://img.shields.io/nuget/v/tsParticles)](https://www.nuget.org/packages/tsParticles/)
+
+---
 
 ### `Hosting / CDN`
 
