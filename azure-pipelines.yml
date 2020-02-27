@@ -47,6 +47,22 @@ steps:
     CleanTargetFolder: true
     OverWrite: true
 
+- task: NuGetCommand@2
+  displayName: 'Nuget Pack'
+  inputs:
+    command: 'pack'
+    packagesToPack: '**/*.nuspec'
+    versioningScheme: 'off'
+
+- task: NuGetCommand@2
+  condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/master'))
+  displayName: 'Nuget Publish'
+  inputs:
+    command: 'push'
+    packagesToPush: '$(Build.ArtifactStagingDirectory)/**/*.nupkg;!$(Build.ArtifactStagingDirectory)/**/*.symbols.nupkg'
+    nuGetFeedType: 'external'
+    publishFeedCredentials: 'Nuget'
+
 - task: PublishBuildArtifacts@1
   displayName: Publishing Artifacts
   inputs:
@@ -63,21 +79,6 @@ steps:
     action: 'create'
     target: '$(Build.SourceVersion)'
     tagSource: 'gitTag'
+    assets: '$(Build.ArtifactStagingDirectory)/dist/*'
     changeLogCompareToRelease: 'lastFullRelease'
     changeLogType: 'commitBased'
-
-- task: NuGetCommand@2
-  displayName: 'Nuget Pack'
-  inputs:
-    command: 'pack'
-    packagesToPack: '**/*.nuspec'
-    versioningScheme: 'off'
-
-- task: NuGetCommand@2
-  condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/master'))
-  displayName: 'Nuget Publish'
-  inputs:
-    command: 'push'
-    packagesToPush: '$(Build.ArtifactStagingDirectory)/**/*.nupkg;!$(Build.ArtifactStagingDirectory)/**/*.symbols.nupkg'
-    nuGetFeedType: 'external'
-    publishFeedCredentials: 'Nuget'
