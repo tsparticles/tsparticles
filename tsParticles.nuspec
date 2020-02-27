@@ -9,8 +9,8 @@
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <projectUrl>https://particles.matteobruni.it/</projectUrl>
     <description>Porting of Vincent Garreau's particles.js, converted in TypeScript.</description>
-	<license type="expression">MIT</license>
   </metadata>
+  <license type="expression">MIT</license>
   <files>
     <file src="dist\Classes\Particle\Bubbler.d.ts" target="tsparticles\Classes\Particle\Bubbler.d.ts" />
     <file src="dist\Classes\Particle\Bubbler.js" target="tsparticles\Classes\Particle\Bubbler.js" />
