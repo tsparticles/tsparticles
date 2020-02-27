@@ -6,7 +6,7 @@
 /* Demo / Generator : https://tsparticles.matteobruni.it/demo
 /* GitHub : https://www.github.com/matteobruni/tsparticles
 /* How to use? : Check the GitHub README
-/* v1.6.0
+/* v1.6.1
 /* ----------------------------------------------- */
 import {Container} from "./Classes/Container";
 import {Loader} from "./Classes/Loader";
@@ -53,6 +53,10 @@ window.cancelRequestAnimFrame = (() => {
 /* ---------- tsParticles functions - start ------------ */
 
 class Main {
+    public loadFromArray(tagId: string, params: Array<IOptions>, index?: number): Container | undefined {
+        return Loader.loadFromArray(tagId, params, index);
+    }
+
     public load(tagId: string, params: IOptions): Container | undefined {
         return Loader.load(tagId, params);
     }
