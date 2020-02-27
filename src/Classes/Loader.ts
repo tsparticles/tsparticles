@@ -19,6 +19,10 @@ export class Loader {
         return Loader.dom()[index];
     }
 
+    public static loadFromArray(tagId: string, params: Array<IOptions>, index?: number): Container | undefined {
+        return Loader.load(tagId, params[(index === undefined || index < 0 || index >= params.length) ? Math.floor(Math.random() * params.length) : index]);
+    }
+
     public static load(tagId: string, params: IOptions): Container | undefined {
         /* elements */
         const tag = document.getElementById(tagId);
@@ -73,7 +77,11 @@ export class Loader {
         if (response.ok) {
             const params = await response.json();
 
-            return Loader.load(tagId, params);
+            if (params instanceof Array) {
+                return Loader.loadFromArray(tagId, params);
+            } else {
+                return Loader.load(tagId, params);
+            }
         } else {
             console.error(`Error tsParticles - fetch status: ${response.status}`);
             console.error("Error tsParticles - File config not found");

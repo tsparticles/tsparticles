@@ -30,11 +30,11 @@
 npm install tsparticles
 ```
 
----
-
 ### ***NuGet***
 
 [![Nuget](https://img.shields.io/nuget/v/tsParticles)](https://www.nuget.org/packages/tsParticles/)
+
+---
 
 ### `Hosting / CDN`
 
@@ -57,6 +57,7 @@ Load tsParticles and configure the particles:
 **app.js**
 
 ```javascript
+// @path-json can be an object or an array, the first will be loaded directly, the object from the array will be random selected
 /* tsParticles.loadJSON(@dom-id, @path-json, @callback (optional)); */
 tsParticles.loadJSON("tsparticles", "presets/default.json").then((container) => {
   console.log("callback - tsparticles config loaded");
@@ -68,6 +69,19 @@ tsParticles.loadJSON("tsparticles", "presets/default.json").then((container) => 
 
 /* tsParticles.load(@dom-id, @options); */
 tsParticles.load("tsparticles", { /* options here */ });
+
+//or
+
+/* tsParticles.loadFromArray(@dom-id, @options, @index (optional)); */
+tsParticles.loadFromArray("tsparticles", [ { /* options here */ }, { /* other options here */ }]); //random object
+tsParticles.loadFromArray("tsparticles", [ { /* options here */ }, { /* other options here */ }], 1); //the second one
+// Important! If the index is not in range 0...array.length, the index will be ignored.
+
+// after initialization this can be used.
+
+/* tsParticles.setOnClickHandler(@callback); */
+/* this will be fired from all particles loaded */
+tsParticles.setOnClickHandler((e) => { /* custom on click handler */ });
 ```
 
 ---
