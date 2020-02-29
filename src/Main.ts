@@ -11,6 +11,7 @@
 import {Container} from "./Classes/Container";
 import {Loader} from "./Classes/Loader";
 import {IOptions} from "./Interfaces/IOptions";
+import {IParticlesJs} from "./Interfaces/IParticlesJs";
 import {ParticlesJS} from "./support";
 
 declare global {
@@ -24,7 +25,7 @@ declare global {
         mozCancelRequestAnimationFrame: (handle: number) => void;
         oCancelRequestAnimationFrame: (handle: number) => void;
         msCancelRequestAnimationFrame: (handle: number) => void;
-        particlesJS: any;
+        particlesJS: IParticlesJs;
         tsParticles: Main;
         pJSDom: () => Container[];
     }
@@ -84,7 +85,7 @@ Object.freeze(window.tsParticles);
 
 /* particles.js compatibility */
 /*
- * @deprecated this method is obsolete, please use the new tsParticles.loadJSON
+ * @deprecated this method is obsolete, please use the new tsParticles.load
  */
 window.particlesJS = (tagId: string, params: IOptions) => ParticlesJS.load(tagId, params);
 

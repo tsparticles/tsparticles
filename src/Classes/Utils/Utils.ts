@@ -8,7 +8,6 @@ import {IColor} from "../../Interfaces/IColor";
 import {MoveDirection} from "../../Enums/MoveDirection";
 
 /* ---------- global functions - vendors ------------ */
-
 export class Utils {
     public static hexToRgb(hex: string): IRgb | null {
         // By Tim Down - http://stackoverflow.com/a/5624139/3493650
@@ -50,39 +49,39 @@ export class Utils {
     }
 
     public static getParticleVelBase(options: IOptions): ICoordinates {
-        let velbase: ICoordinates;
+        let velocityBase: ICoordinates;
 
         switch (options.particles.move.direction) {
             case MoveDirection.top:
-                velbase = {x: 0, y: -1};
+                velocityBase = {x: 0, y: -1};
                 break;
             case MoveDirection.topRight:
-                velbase = {x: 0.5, y: -0.5};
+                velocityBase = {x: 0.5, y: -0.5};
                 break;
             case MoveDirection.right:
-                velbase = {x: 1, y: -0};
+                velocityBase = {x: 1, y: -0};
                 break;
             case MoveDirection.bottomRight:
-                velbase = {x: 0.5, y: 0.5};
+                velocityBase = {x: 0.5, y: 0.5};
                 break;
             case MoveDirection.bottom:
-                velbase = {x: 0, y: 1};
+                velocityBase = {x: 0, y: 1};
                 break;
             case MoveDirection.bottomLeft:
-                velbase = {x: -0.5, y: 1};
+                velocityBase = {x: -0.5, y: 1};
                 break;
             case MoveDirection.left:
-                velbase = {x: -1, y: 0};
+                velocityBase = {x: -1, y: 0};
                 break;
             case MoveDirection.topLeft:
-                velbase = {x: -0.5, y: -0.5};
+                velocityBase = {x: -0.5, y: -0.5};
                 break;
             default:
-                velbase = {x: 0, y: 0};
+                velocityBase = {x: 0, y: 0};
                 break;
         }
 
-        return velbase;
+        return velocityBase;
     }
 
     public static getParticleColor(options: IOptions, color: { value: string[] | IColor | string }): IColor {
