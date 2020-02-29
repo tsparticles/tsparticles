@@ -2,7 +2,7 @@
 
 ## tsParticles
 
-[![Slack](https://cdn.brandfolder.io/5H442O3W/as/pl546j-7le8zk-5guop3/Slack_RGB.auto?width=94&height=38)](https://join.slack.com/t/tsparticles/shared_invite/enQtOTcxNTQxNjQ4NzkxLWE2MTZhZWExMWRmOWI5MTMxNjczOGE1Yjk0MjViYjdkYTUzODM3OTc5MGQ5MjFlODc4MzE0N2Q1OWQxZDc1YzI)
+[![Slack](https://cdn.brandfolder.io/5H442O3W/as/pl546j-7le8zk-5guop3/Slack_RGB.auto?width=94&height=38)](https://join.slack.com/t/tsparticles/shared_invite/enQtOTcxNTQxNjQ4NzkxLWE2MTZhZWExMWRmOWI5MTMxNjczOGE1Yjk0MjViYjdkYTUzODM3OTc5MGQ5MjFlODc4MzE0N2Q1OWQxZDc1YzI) [![tsParticles - A lightweight TypeScript library for creating particles | Product Hunt Embed](https://api.producthunt.com/widgets/embed-image/v1/featured.svg?post_id=186113&theme=light)](https://www.producthunt.com/posts/tsparticles?utm_source=badge-featured&utm_medium=badge&utm_souce=badge-tsparticles")
 
 [![CodeFactor](https://www.codefactor.io/repository/github/matteobruni/tsparticles/badge)](https://www.codefactor.io/repository/github/matteobruni/tsparticles)
 [![Codacy Badge](https://api.codacy.com/project/badge/Grade/b983aaf3461a4c48b1e2eecce1ff1d74)](https://www.codacy.com/manual/ar3s/tsparticles?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=matteobruni/tsparticles&amp;utm_campaign=Badge_Grade)
@@ -30,11 +30,11 @@
 npm install tsparticles
 ```
 
----
-
 ### ***NuGet***
 
 [![Nuget](https://img.shields.io/nuget/v/tsParticles)](https://www.nuget.org/packages/tsParticles/)
+
+---
 
 ### `Hosting / CDN`
 
@@ -57,6 +57,7 @@ Load tsParticles and configure the particles:
 **app.js**
 
 ```javascript
+// @path-json can be an object or an array, the first will be loaded directly, the object from the array will be random selected
 /* tsParticles.loadJSON(@dom-id, @path-json, @callback (optional)); */
 tsParticles.loadJSON("tsparticles", "presets/default.json").then((container) => {
   console.log("callback - tsparticles config loaded");
@@ -68,6 +69,19 @@ tsParticles.loadJSON("tsparticles", "presets/default.json").then((container) => 
 
 /* tsParticles.load(@dom-id, @options); */
 tsParticles.load("tsparticles", { /* options here */ });
+
+//or
+
+/* tsParticles.loadFromArray(@dom-id, @options, @index (optional)); */
+tsParticles.loadFromArray("tsparticles", [ { /* options here */ }, { /* other options here */ }]); //random object
+tsParticles.loadFromArray("tsparticles", [ { /* options here */ }, { /* other options here */ }], 1); //the second one
+// Important! If the index is not in range 0...array.length, the index will be ignored.
+
+// after initialization this can be used.
+
+/* tsParticles.setOnClickHandler(@callback); */
+/* this will be fired from all particles loaded */
+tsParticles.setOnClickHandler((e) => { /* custom on click handler */ });
 ```
 
 ---
