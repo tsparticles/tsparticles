@@ -1,6 +1,9 @@
 "use strict";
 
 import {ShapeType} from "../Enums/ShapeType";
+import {IShapeImage} from "./IShapeImage";
+import {IShapeCharacter} from "./IShapeCharacter";
+import {IShapePolygon} from "./IShapePolygon";
 
 export interface IShape {
     type: ShapeType | ShapeType[];
@@ -8,20 +11,8 @@ export interface IShape {
         width: number;
         color: string;
     };
-    polygon: {
-        nb_sides: number;
-    };
-    character: {
-        value: string | string[];
-        font: string;
-        style: string;
-        weight: string;
-        fill: boolean;
-    };
-    image: {
-        src: string;
-        width: number;
-        height: number;
-        replace_color: boolean;
-    };
+    polygon: IShapePolygon;
+    character: IShapeCharacter;
+    image: IShapeImage | Array<IShapeImage>;
 }
+

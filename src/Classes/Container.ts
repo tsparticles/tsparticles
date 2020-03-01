@@ -15,6 +15,7 @@ import {Retina} from "./Retina";
 import {ShapeType} from "../Enums/ShapeType";
 import {Utils} from "./Utils/Utils";
 import {PolygonMask} from "./PolygonMask";
+import {IShapeImage} from "../Interfaces/IShapeImage";
 
 export class Container {
     public interactivity: IContainerInteractivity;
@@ -28,7 +29,7 @@ export class Container {
     public bubble: IBubble;
     public repulse: IRepulse;
     public svg: ISvg;
-    public image: IImage;
+    public images: Array<IImage>;
     public lastFrameTime: number;
     public pageHidden: boolean;
 
@@ -48,7 +49,7 @@ export class Container {
             count: 0,
             source: undefined,
         };
-        this.image = {error: false};
+        this.images = [];
         this.bubble = {};
         this.repulse = {};
 
@@ -92,7 +93,7 @@ export class Container {
             let area = this.canvas.element.width * this.canvas.element.height / 1000;
 
             if (this.retina.isRetina) {
-                area /= this.canvas.pxratio * 2;
+                area /= this.canvas.pxRatio * 2;
             }
 
             const optParticlesNumber = this.options.particles.number.value;
@@ -131,23 +132,23 @@ export class Container {
         window.open(this.canvas.element.toDataURL("image/png"), "_blank");
     }
 
-    public async loadImg(): Promise<void> {
-        this.image.error = false;
+    public async loadImg(image: IImage, optionsImage: IShapeImage): Promise<void> {
+        image.error = false;
 
-        if (this.options.particles.shape.image.src) {
+        if (optionsImage.src) {
             const img = new Image();
 
             img.addEventListener("load", () => {
-                this.image.obj = img;
+                image.obj = img;
 
                 this.checkBeforeDraw();
             });
 
-            img.src = this.options.particles.shape.image.src;
+            img.src = optionsImage.src;
         } else {
             console.error("Error tsParticles - No image.src");
 
-            this.image.error = true;
+            image.error = true;
         }
     }
 
@@ -163,8 +164,7 @@ export class Container {
 
         this.svg.source = undefined;
         this.svg.count = 0;
-        this.image.obj = undefined;
-
+        this.images = [];
         this.particles.clear();
         this.retina.reset();
         this.canvas.clear();
@@ -184,11 +184,28 @@ export class Container {
         }
 
         if (this.options.particles.shape.type === ShapeType.image) {
-            const src = this.options.particles.shape.image.src;
+            if (this.options.particles.shape.image instanceof Array) {
+                for (const optionsImage of this.options.particles.shape.image) {
+                    const src = optionsImage.src;
+                    const image: IImage = {error: false};
 
-            this.image.type = src.substr(src.length - 3);
+                    image.type = src.substr(src.length - 3);
 
-            await this.loadImg();
+                    await this.loadImg(image, optionsImage);
+
+                    this.images.push(image);
+                }
+            }  else {
+                const optionsImage = this.options.particles.shape.image;
+                const src = optionsImage.src;
+                const image: IImage = {error: false};
+
+                image.type = src.substr(src.length - 3);
+
+                await this.loadImg(image, optionsImage);
+
+                this.images.push(image);
+            }
         } else {
             this.checkBeforeDraw();
         }
@@ -230,7 +247,7 @@ export class Container {
 
         this.lastFrameTime = timestamp;
 
-        if (this.options.particles.shape.type === ShapeType.image && this.image.error) {
+        if (this.options.particles.shape.type === ShapeType.image && this.images.every((img) => img.error)) {
             return;
         }
 
@@ -249,7 +266,7 @@ export class Container {
                 Container.cancelAnimation(this.checkAnimFrame);
             }
 
-            if (this.image.error) {
+            if (this.images.every((img) => img.error)) {
                 return;
             }
         }

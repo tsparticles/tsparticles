@@ -223,16 +223,8 @@ export class Drawer {
                 break;
 
             case ShapeType.image:
-                let imgObj: HTMLImageElement | undefined;
-
-                // if (container.img.type === "svg" && this.img) {
-                //     imgObj = this.img.obj;
-                // } else {
-                imgObj = container.image.obj;
-                // }
-
-                if (imgObj) {
-                    this.subDraw(ctx, imgObj, radius);
+                if (particle.image && particle.image.data.obj) {
+                    this.subDraw(ctx, particle.image.data.obj, radius);
                 }
 
                 break;
@@ -244,8 +236,8 @@ export class Drawer {
 
         let ratio = 1;
 
-        if (particle.img) {
-            ratio = particle.img.ratio;
+        if (particle.image) {
+            ratio = particle.image.ratio;
         }
 
         const pos = {

@@ -29,7 +29,7 @@ export class Particle {
     public opacity: IOpacity;
     public velocity: IVelocity;
     public shape?: ShapeType;
-    public img?: IParticleImage;
+    public image?: IParticleImage;
     public readonly initialVelocity: IVelocity;
 
     private readonly updater: Updater;
@@ -104,23 +104,25 @@ export class Particle {
         const shapeType = options.particles.shape.type;
 
         if (shapeType instanceof Array) {
-            const selectedShape = shapeType[Math.floor(Math.random() * shapeType.length)];
-
-            this.shape = selectedShape;
+            this.shape = shapeType[Math.floor(Math.random() * shapeType.length)];
         } else {
             this.shape = shapeType;
         }
 
         if (this.shape === ShapeType.image) {
             const shape = options.particles.shape;
-            this.img = {
-                ratio: shape.image.width / shape.image.height,
-                replaceColor: shape.image.replace_color,
-                src: shape.image.src,
+            const index = Math.floor(Math.random() * container.images.length);
+            const image = container.images[index];
+            const optionsImage = shape.image instanceof Array ? shape.image[index] : shape.image;
+            this.image = {
+                ratio: optionsImage.width / optionsImage.height,
+                replaceColor: optionsImage.replace_color,
+                src: optionsImage.src,
+                data: image,
             };
 
-            if (!this.img.ratio) {
-                this.img.ratio = 1;
+            if (!this.image.ratio) {
+                this.image.ratio = 1;
             }
         }
 

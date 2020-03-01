@@ -113,8 +113,8 @@ export class EventListeners {
         container.interactivity.mouse.position = pos;
 
         if (container.retina.isRetina) {
-            container.interactivity.mouse.position.x *= container.canvas.pxratio;
-            container.interactivity.mouse.position.y *= container.canvas.pxratio;
+            container.interactivity.mouse.position.x *= container.canvas.pxRatio;
+            container.interactivity.mouse.position.y *= container.canvas.pxRatio;
         }
 
         container.interactivity.status = "mousemove";
