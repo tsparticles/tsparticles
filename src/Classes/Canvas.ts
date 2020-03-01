@@ -81,6 +81,7 @@ export class Canvas {
 
     public paint(): void {
         if (this.context) {
+            this.context.fillStyle = "rgba(255, 255, 255, 0)";
             this.context.fillRect(0, 0, this.width, this.height);
         }
     }
