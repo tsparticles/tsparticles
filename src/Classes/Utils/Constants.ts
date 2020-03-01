@@ -8,6 +8,7 @@ import {ClickMode} from "../../Enums/ClickMode";
 import {HoverMode} from "../../Enums/HoverMode";
 import {OutMode} from "../../Enums/OutMode";
 import {PolygonMaskType} from "../../Enums/PolygonMaskType";
+import {DivMode} from "../../Enums/DivMode";
 
 export class Constants {
     public static readonly canvasClass: string = "tsparticles-canvas-el";
@@ -28,6 +29,11 @@ export class Constants {
                         force: 2,
                         smooth: 10,
                     },
+                },
+                ondiv: {
+                    enable: false,
+                    mode: DivMode.repulse,
+                    el: "repulse-div"
                 },
                 resize: true,
             },

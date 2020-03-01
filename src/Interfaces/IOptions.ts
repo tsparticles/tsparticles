@@ -8,6 +8,7 @@ import {OutMode} from "../Enums/OutMode";
 import {PolygonMaskType} from "../Enums/PolygonMaskType";
 import {IColor} from "./IColor";
 import {IShape} from "./IShape";
+import {DivMode} from "../Enums/DivMode";
 
 export interface IOptions {
     fps_limit: number;
@@ -26,6 +27,11 @@ export interface IOptions {
                     force: number;
                     smooth: number;
                 };
+            };
+            ondiv: {
+              enable: boolean;
+              mode: DivMode | DivMode[];
+              el: string;
             };
             resize: boolean;
         };
