@@ -57,11 +57,13 @@ export class Repulser {
         const dx_div = particle.position.x - pos.x;
         const dy_div = particle.position.y - pos.y;
         const dist_div = Math.sqrt(dx_div * dx_div + dy_div * dy_div);
-
-        const normVec = {x: dx_div / dist_div, y: dy_div / dist_div};
+        const normVec = {
+            x: dx_div / dist_div,
+            y: dy_div / dist_div
+        };
         const repulseRadius = divWidth;
         const velocity = 100;
-        const repulseFactor = Utils.clamp((1 / repulseRadius) * (-1 * Math.pow(dist_div / repulseRadius, 4) + 1) * repulseRadius * velocity, 0, 50);
+        const repulseFactor = Utils.clamp((-Math.pow(dist_div / repulseRadius, 4) + 1) * velocity, 0, 50);
 
         this.particle.position.x += normVec.x * repulseFactor;
         this.particle.position.y += normVec.y * repulseFactor;

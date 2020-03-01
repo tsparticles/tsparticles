@@ -21,6 +21,11 @@ export class Constants {
                     enable: true,
                     mode: ClickMode.push,
                 },
+                ondiv: {
+                    el: "repulse-div",
+                    enable: false,
+                    mode: DivMode.repulse,
+                },
                 onhover: {
                     enable: true,
                     mode: HoverMode.grab,
@@ -29,11 +34,6 @@ export class Constants {
                         force: 2,
                         smooth: 10,
                     },
-                },
-                ondiv: {
-                    enable: false,
-                    mode: DivMode.repulse,
-                    el: "repulse-div"
                 },
                 resize: true,
             },
