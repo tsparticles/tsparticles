@@ -104,6 +104,7 @@ tsParticles.setOnClickHandler((e) => { /* custom on click handler */ });
     },
     "number": {
       "value": 80,
+      "limit": 200,
       "density": {
         "enable": true,
         "value_area": 800
@@ -228,6 +229,7 @@ tsParticles.setOnClickHandler((e) => { /* custom on click handler */ });
 key | option type / notes | example
 ----|---------|------
 `particles.number.value` | number | `40`
+`particles.number.limit` | number | `200` / `0` or less disables the limit
 `particles.number.density.enable` | boolean | `true` / `false` 
 `particles.number.density.value_area` | number | `800`
 `particles.color.value` | HEX (string) <br /> RGB (object) <br /> HSL (object) <br /> array selection (HEX) <br /> random (string) | `"#b61924"` <br /> `{r:182, g:25, b:36}` <br />  `{h:356, s:76, l:41}` <br /> `["#b61924", "#333333", "999999"]` <br /> `"random"`

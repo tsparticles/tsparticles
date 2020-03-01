@@ -90,6 +90,7 @@ export interface IOptions {
                 enable: boolean;
                 value_area: number;
             };
+            limit: number;
             value: number;
         };
         opacity: {

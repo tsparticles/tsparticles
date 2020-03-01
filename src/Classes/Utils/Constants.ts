@@ -92,6 +92,7 @@ export class Constants {
                     enable: true,
                     value_area: 800,
                 },
+                limit: 0,
                 value: 400,
             },
             opacity: {

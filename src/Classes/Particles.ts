@@ -75,7 +75,7 @@ export class Particles {
         this.update(delta);
 
         /* draw polygon shape in debug mode */
-        if(options.polygon.draw.enable){
+        if (options.polygon.draw.enable) {
             container.polygon.drawPolygon();
         }
 
@@ -95,6 +95,12 @@ export class Particles {
         const options = container.options;
 
         this.pushing = true;
+
+        if (options.particles.number.limit > 0) {
+            if ((this.array.length + nb) > options.particles.number.limit) {
+                this.remove((this.array.length + nb) - options.particles.number.limit);
+            }
+        }
 
         let pos: ICoordinates | undefined;
 
