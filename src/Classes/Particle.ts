@@ -115,10 +115,10 @@ export class Particle {
             const image = container.images[index];
             const optionsImage = shape.image instanceof Array ? shape.image[index] : shape.image;
             this.image = {
+                data: image,
                 ratio: optionsImage.width / optionsImage.height,
                 replaceColor: optionsImage.replace_color,
                 src: optionsImage.src,
-                data: image,
             };
 
             if (!this.image.ratio) {
