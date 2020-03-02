@@ -11,6 +11,6 @@
     <description>Porting of Vincent Garreau's particles.js, converted in TypeScript.</description>
   </metadata>
   <files>
-    <file src="dist\**" target="tsparticles" />
+    <file src="dist\**" target="Content/Scripts/tsparticles" />
   </files>
 </package>
