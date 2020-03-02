@@ -27,7 +27,7 @@ export class Utils {
         } : null;
     }
 
-    public static hslToRgb(hsl: IHsl) {
+    public static hslToRgb(hsl: IHsl): IRgb {
         const result: IRgb = {b: 0, g: 0, r: 0};
 
         if (hsl.s == 0) {
