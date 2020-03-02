@@ -3,55 +3,89 @@
 import {Constants} from "./Utils/Constants";
 import {Container} from "./Container";
 import {PolygonMaskType} from "../Enums/PolygonMaskType";
+import {IDimension} from "../Interfaces/IDimension";
 
+/**
+ * Canvas manager
+ */
 export class Canvas {
+    /**
+     * The particles canvas
+     */
     public element: HTMLCanvasElement;
+    /**
+     * The particles canvas context
+     */
     public context: CanvasRenderingContext2D | null;
-    public width: number;
-    public height: number;
+    /**
+     * The particles canvas dimension
+     */
+    public dimension: IDimension;
+    /**
+     * The particles canvas container element id
+     */
     public tagId: string;
+    /**
+     * The ratio used by the particles canvas
+     */
     public pxRatio: number;
 
+    /**
+     * The parent container
+     */
     private readonly container: Container;
 
+    /**
+     * Constructor of canvas manager
+     * @param container the parent container
+     * @param tagId the particles container element id
+     */
     constructor(container: Container, tagId: string) {
         const canvasEl = document.querySelector(`#${tagId} > .${Constants.canvasClass}`) as HTMLCanvasElement;
 
         this.container = container;
         this.element = canvasEl;
-        this.width = canvasEl.offsetWidth;
-        this.height = canvasEl.offsetHeight;
+        this.dimension = {
+            width: canvasEl.offsetWidth,
+            height: canvasEl.offsetHeight
+        };
         this.tagId = tagId;
         this.pxRatio = 1;
         this.context = this.element.getContext("2d");
     }
 
     /* ---------- tsParticles functions - canvas ------------ */
+    /**
+     * Initializes the canvas element
+     */
     public init(): void {
         this.size();
         this.paint();
     }
 
+    /**
+     * Calculates the size of the canvas
+     */
     public size(): void {
         const container = this.container;
         const options = container.options;
 
-        this.element.width = this.width;
-        this.element.height = this.height;
+        this.element.width = this.dimension.width;
+        this.element.height = this.dimension.height;
 
         if (options.interactivity.events.resize) {
             window.addEventListener("resize", () => {
-                this.width = this.element.offsetWidth;
-                this.height = this.element.offsetHeight;
+                this.dimension.width = this.element.offsetWidth;
+                this.dimension.height = this.element.offsetHeight;
 
                 /* resize canvas */
                 if (container.retina.isRetina) {
-                    this.width *= this.pxRatio;
-                    this.height *= this.pxRatio;
+                    this.dimension.width *= this.pxRatio;
+                    this.dimension.height *= this.pxRatio;
                 }
 
-                this.element.width = this.width;
-                this.element.height = this.height;
+                this.element.width = this.dimension.width;
+                this.element.height = this.dimension.height;
 
                 /* repaint canvas on anim disabled */
                 if (!options.particles.move.enable) {
@@ -79,16 +113,22 @@ export class Canvas {
         }
     }
 
+    /**
+     * Paints the canvas background
+     */
     public paint(): void {
         if (this.context) {
             this.context.fillStyle = "rgba(255, 255, 255, 0)";
-            this.context.fillRect(0, 0, this.width, this.height);
+            this.context.fillRect(0, 0, this.dimension.width, this.dimension.height);
         }
     }
 
+    /**
+     * Clears the canvas content
+     */
     public clear(): void {
         if (this.context) {
-            this.context.clearRect(0, 0, this.width, this.height);
+            this.context.clearRect(0, 0, this.dimension.width, this.dimension.height);
         }
     }
 }

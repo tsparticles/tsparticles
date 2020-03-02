@@ -6,13 +6,23 @@ import {InteractivityDetect} from "../../Enums/InteractivityDetect";
 import {ICoordinates} from "../../Interfaces/ICoordinates";
 import {PolygonMaskType} from "../../Enums/PolygonMaskType";
 
+/**
+ * Particles container event listeners manager
+ */
 export class EventListeners {
     private readonly container: Container;
 
+    /**
+     * Events listener constructor
+     * @param container the calling container
+     */
     constructor(container: Container) {
         this.container = container;
     }
 
+    /**
+     * Initializing event listeners
+     */
     public addEventsListeners(): void {
         const container = this.container;
         const options = container.options;
@@ -62,6 +72,10 @@ export class EventListeners {
         }
     }
 
+    /**
+     * Mouse/Touch move event
+     * @param e the event arguments
+     */
     private mouseTouchMove(e: Event): void {
         const container = this.container;
         const options = container.options;
@@ -73,7 +87,7 @@ export class EventListeners {
 
             if (container.interactivity.element === window) {
                 const clientRect = container.canvas.element.getBoundingClientRect();
-                
+
                 pos = {
                     x: mouseEvent.clientX - clientRect.left,
                     y: mouseEvent.clientY - clientRect.top,
@@ -123,6 +137,9 @@ export class EventListeners {
         container.interactivity.status = "mousemove";
     }
 
+    /**
+     * Mouse/Touch event finish
+     */
     private mouseTouchFinish(): void {
         const container = this.container;
 
@@ -130,6 +147,10 @@ export class EventListeners {
         container.interactivity.status = "mouseleave";
     }
 
+    /**
+     * Mouse/Touch click/tap event
+     * @param e the click event arguments
+     */
     private mouseTouchClick(e: Event): void {
         const container = this.container;
         const options = container.options;
@@ -143,6 +164,10 @@ export class EventListeners {
         }
     }
 
+    /**
+     * Mouse/Touch click/tap event implementation
+     * @param e the click event arguments
+     */
     private doMouseTouchClick(e: Event): void {
         const container = this.container;
         const options = container.options;

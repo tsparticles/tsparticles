@@ -69,6 +69,13 @@
 <div class="container container-main">
 	<div class="row">
 		<div class="col-8 col-content">
+			<section class="tsd-panel tsd-comment">
+				<div class="tsd-comment tsd-typography">
+					<div class="lead">
+						<p>Canvas manager</p>
+					</div>
+				</div>
+			</section>
 			<section class="tsd-panel tsd-hierarchy">
 				<h3>Hierarchy</h3>
 				<ul class="tsd-hierarchy">
@@ -92,11 +99,10 @@
 							<ul class="tsd-index-list">
 								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private"><a href="_classes_canvas_.canvas.html#container" class="tsd-kind-icon">container</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-class"><a href="_classes_canvas_.canvas.html#context" class="tsd-kind-icon">context</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class"><a href="_classes_canvas_.canvas.html#dimension" class="tsd-kind-icon">dimension</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-class"><a href="_classes_canvas_.canvas.html#element" class="tsd-kind-icon">element</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-class"><a href="_classes_canvas_.canvas.html#height" class="tsd-kind-icon">height</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-class"><a href="_classes_canvas_.canvas.html#pxratio" class="tsd-kind-icon">px<wbr>Ratio</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-class"><a href="_classes_canvas_.canvas.html#tagid" class="tsd-kind-icon">tag<wbr>Id</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-class"><a href="_classes_canvas_.canvas.html#width" class="tsd-kind-icon">width</a></li>
 							</ul>
 						</section>
 						<section class="tsd-index-section ">
@@ -123,16 +129,31 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/matteobruni/tsparticles/blob/94a0c0f/src/Classes/Canvas.ts#L15">Classes/Canvas.ts:15</a></li>
+									<li>Defined in <a href="https://github.com/matteobruni/tsparticles/blob/3ed894a/src/Classes/Canvas.ts#L36">Classes/Canvas.ts:36</a></li>
 								</ul>
 							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Constructor of canvas manager</p>
+								</div>
+							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
 									<h5>container: <a href="_classes_container_.container.html" class="tsd-signature-type">Container</a></h5>
+									<div class="tsd-comment tsd-typography">
+										<div class="lead">
+											<p>the parent container</p>
+										</div>
+									</div>
 								</li>
 								<li>
 									<h5>tagId: <span class="tsd-signature-type">string</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<div class="lead">
+											<p>the particles container element id</p>
+										</div>
+									</div>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <a href="_classes_canvas_.canvas.html" class="tsd-signature-type">Canvas</a></h4>
@@ -148,9 +169,14 @@
 					<div class="tsd-signature tsd-kind-icon">container<span class="tsd-signature-symbol">:</span> <a href="_classes_container_.container.html" class="tsd-signature-type">Container</a></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/matteobruni/tsparticles/blob/94a0c0f/src/Classes/Canvas.ts#L15">Classes/Canvas.ts:15</a></li>
+							<li>Defined in <a href="https://github.com/matteobruni/tsparticles/blob/3ed894a/src/Classes/Canvas.ts#L36">Classes/Canvas.ts:36</a></li>
 						</ul>
 					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>The parent container</p>
+						</div>
+					</div>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class">
 					<a name="context" class="tsd-anchor"></a>
@@ -158,9 +184,29 @@
 					<div class="tsd-signature tsd-kind-icon">context<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">CanvasRenderingContext2D</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">null</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/matteobruni/tsparticles/blob/94a0c0f/src/Classes/Canvas.ts#L9">Classes/Canvas.ts:9</a></li>
+							<li>Defined in <a href="https://github.com/matteobruni/tsparticles/blob/3ed894a/src/Classes/Canvas.ts#L19">Classes/Canvas.ts:19</a></li>
 						</ul>
 					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>The particles canvas context</p>
+						</div>
+					</div>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class">
+					<a name="dimension" class="tsd-anchor"></a>
+					<h3>dimension</h3>
+					<div class="tsd-signature tsd-kind-icon">dimension<span class="tsd-signature-symbol">:</span> <a href="../interfaces/_interfaces_idimension_.idimension.html" class="tsd-signature-type">IDimension</a></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/matteobruni/tsparticles/blob/3ed894a/src/Classes/Canvas.ts#L23">Classes/Canvas.ts:23</a></li>
+						</ul>
+					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>The particles canvas dimension</p>
+						</div>
+					</div>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class">
 					<a name="element" class="tsd-anchor"></a>
@@ -168,19 +214,14 @@
 					<div class="tsd-signature tsd-kind-icon">element<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">HTMLCanvasElement</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/matteobruni/tsparticles/blob/94a0c0f/src/Classes/Canvas.ts#L8">Classes/Canvas.ts:8</a></li>
+							<li>Defined in <a href="https://github.com/matteobruni/tsparticles/blob/3ed894a/src/Classes/Canvas.ts#L15">Classes/Canvas.ts:15</a></li>
 						</ul>
 					</aside>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class">
-					<a name="height" class="tsd-anchor"></a>
-					<h3>height</h3>
-					<div class="tsd-signature tsd-kind-icon">height<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span></div>
-					<aside class="tsd-sources">
-						<ul>
-							<li>Defined in <a href="https://github.com/matteobruni/tsparticles/blob/94a0c0f/src/Classes/Canvas.ts#L11">Classes/Canvas.ts:11</a></li>
-						</ul>
-					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>The particles canvas</p>
+						</div>
+					</div>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class">
 					<a name="pxratio" class="tsd-anchor"></a>
@@ -188,9 +229,14 @@
 					<div class="tsd-signature tsd-kind-icon">px<wbr>Ratio<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/matteobruni/tsparticles/blob/94a0c0f/src/Classes/Canvas.ts#L13">Classes/Canvas.ts:13</a></li>
+							<li>Defined in <a href="https://github.com/matteobruni/tsparticles/blob/3ed894a/src/Classes/Canvas.ts#L31">Classes/Canvas.ts:31</a></li>
 						</ul>
 					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>The ratio used by the particles canvas</p>
+						</div>
+					</div>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class">
 					<a name="tagid" class="tsd-anchor"></a>
@@ -198,19 +244,14 @@
 					<div class="tsd-signature tsd-kind-icon">tag<wbr>Id<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/matteobruni/tsparticles/blob/94a0c0f/src/Classes/Canvas.ts#L12">Classes/Canvas.ts:12</a></li>
+							<li>Defined in <a href="https://github.com/matteobruni/tsparticles/blob/3ed894a/src/Classes/Canvas.ts#L27">Classes/Canvas.ts:27</a></li>
 						</ul>
 					</aside>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class">
-					<a name="width" class="tsd-anchor"></a>
-					<h3>width</h3>
-					<div class="tsd-signature tsd-kind-icon">width<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span></div>
-					<aside class="tsd-sources">
-						<ul>
-							<li>Defined in <a href="https://github.com/matteobruni/tsparticles/blob/94a0c0f/src/Classes/Canvas.ts#L10">Classes/Canvas.ts:10</a></li>
-						</ul>
-					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>The particles canvas container element id</p>
+						</div>
+					</div>
 				</section>
 			</section>
 			<section class="tsd-panel-group tsd-member-group ">
@@ -225,9 +266,14 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/matteobruni/tsparticles/blob/94a0c0f/src/Classes/Canvas.ts#L89">Classes/Canvas.ts:89</a></li>
+									<li>Defined in <a href="https://github.com/matteobruni/tsparticles/blob/3ed894a/src/Classes/Canvas.ts#L129">Classes/Canvas.ts:129</a></li>
 								</ul>
 							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Clears the canvas content</p>
+								</div>
+							</div>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
 						</li>
 					</ul>
@@ -242,9 +288,14 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/matteobruni/tsparticles/blob/94a0c0f/src/Classes/Canvas.ts#L30">Classes/Canvas.ts:30</a></li>
+									<li>Defined in <a href="https://github.com/matteobruni/tsparticles/blob/3ed894a/src/Classes/Canvas.ts#L61">Classes/Canvas.ts:61</a></li>
 								</ul>
 							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Initializes the canvas element</p>
+								</div>
+							</div>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
 						</li>
 					</ul>
@@ -259,9 +310,14 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/matteobruni/tsparticles/blob/94a0c0f/src/Classes/Canvas.ts#L82">Classes/Canvas.ts:82</a></li>
+									<li>Defined in <a href="https://github.com/matteobruni/tsparticles/blob/3ed894a/src/Classes/Canvas.ts#L119">Classes/Canvas.ts:119</a></li>
 								</ul>
 							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Paints the canvas background</p>
+								</div>
+							</div>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
 						</li>
 					</ul>
@@ -276,9 +332,14 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/matteobruni/tsparticles/blob/94a0c0f/src/Classes/Canvas.ts#L35">Classes/Canvas.ts:35</a></li>
+									<li>Defined in <a href="https://github.com/matteobruni/tsparticles/blob/3ed894a/src/Classes/Canvas.ts#L69">Classes/Canvas.ts:69</a></li>
 								</ul>
 							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Calculates the size of the canvas</p>
+								</div>
+							</div>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
 						</li>
 					</ul>
@@ -313,19 +374,16 @@
 								<a href="_classes_canvas_.canvas.html#context" class="tsd-kind-icon">context</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-class">
-								<a href="_classes_canvas_.canvas.html#element" class="tsd-kind-icon">element</a>
+								<a href="_classes_canvas_.canvas.html#dimension" class="tsd-kind-icon">dimension</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-class">
-								<a href="_classes_canvas_.canvas.html#height" class="tsd-kind-icon">height</a>
+								<a href="_classes_canvas_.canvas.html#element" class="tsd-kind-icon">element</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-class">
 								<a href="_classes_canvas_.canvas.html#pxratio" class="tsd-kind-icon">px<wbr>Ratio</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-class">
 								<a href="_classes_canvas_.canvas.html#tagid" class="tsd-kind-icon">tag<wbr>Id</a>
-							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-class">
-								<a href="_classes_canvas_.canvas.html#width" class="tsd-kind-icon">width</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class">
 								<a href="_classes_canvas_.canvas.html#clear" class="tsd-kind-icon">clear</a>
@@ -414,5 +472,14 @@
 <div class="overlay"></div>
 <script src="../assets/js/main.js"></script>
 <script>if (location.protocol == 'file:') document.write('<script src="../assets/js/search.js"><' + '/script>');</script>
+<script>
+        (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+                m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+        ga('create', 'UA-159372955-1', 'auto');
+        ga('send', 'pageview');
+    </script>
 </body>
 </html>

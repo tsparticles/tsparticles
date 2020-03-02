@@ -7,6 +7,9 @@ import {ICoordinates} from "../../Interfaces/ICoordinates";
 import {Particle} from "../Particle";
 import {ShapeType} from "../../Enums/ShapeType";
 
+/**
+ * Particle draw manager
+ */
 export class Drawer {
     private readonly particle: Particle;
     private readonly container: Container;

@@ -10,8 +10,18 @@ import {OutMode} from "../../Enums/OutMode";
 import {PolygonMaskType} from "../../Enums/PolygonMaskType";
 import {DivMode} from "../../Enums/DivMode";
 
+/**
+ * Project's constants
+ */
 export class Constants {
+    /**
+     * Particles canvas element class name
+     */
     public static readonly canvasClass: string = "tsparticles-canvas-el";
+
+    /**
+     * Particles default options
+     */
     public static readonly defaultOptions: IOptions = {
         fps_limit: 60,
         interactivity: {

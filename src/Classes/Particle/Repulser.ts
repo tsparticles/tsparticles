@@ -8,6 +8,9 @@ import {Particle} from "../Particle";
 import {Utils} from "../Utils/Utils";
 import {DivMode} from "../../Enums/DivMode";
 
+/**
+ * Particle repulse manager
+ */
 export class Repulser {
     private readonly particle: Particle;
     private readonly container: Container;
@@ -132,11 +135,11 @@ export class Repulser {
         const outMode = options.particles.move.out_mode;
 
         if (outMode === OutMode.bounce || outMode === OutMode.bounceVertical) {
-            if (pos.x - particle.radius > 0 && pos.x + particle.radius < container.canvas.width) {
+            if (pos.x - particle.radius > 0 && pos.x + particle.radius < container.canvas.dimension.width) {
                 particle.position.x = pos.x;
             }
 
-            if (pos.y - particle.radius > 0 && pos.y + particle.radius < container.canvas.height) {
+            if (pos.y - particle.radius > 0 && pos.y + particle.radius < container.canvas.dimension.height) {
                 particle.position.y = pos.y;
             }
         } else {
@@ -162,13 +165,13 @@ export class Repulser {
                 y: particle.position.y + particle.velocity.vertical,
             };
 
-            if (pos.x + particle.radius > container.canvas.width) {
+            if (pos.x + particle.radius > container.canvas.dimension.width) {
                 particle.velocity.horizontal = -particle.velocity.horizontal;
             } else if (pos.x - particle.radius < 0) {
                 particle.velocity.horizontal = -particle.velocity.horizontal;
             }
 
-            if (pos.y + particle.radius > container.canvas.height) {
+            if (pos.y + particle.radius > container.canvas.dimension.height) {
                 particle.velocity.vertical = -particle.velocity.vertical;
             } else if (pos.y - particle.radius < 0) {
                 particle.velocity.vertical = -particle.velocity.vertical;

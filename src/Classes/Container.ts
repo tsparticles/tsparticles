@@ -17,6 +17,9 @@ import {Utils} from "./Utils/Utils";
 import {PolygonMask} from "./PolygonMask";
 import {IOptionsShapeImage} from "../Interfaces/Options/Shape/IOptionsShapeImage";
 
+/**
+ * The object loaded into an HTML element, it'll contain options loaded and all data to let everything working
+ */
 export class Container {
     public interactivity: IContainerInteractivity;
     public options: IOptions;

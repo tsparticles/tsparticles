@@ -8,6 +8,9 @@ import {Particle} from "../Particle";
 import {ProcessBubbleType} from "../../Enums/ProcessBubbleType";
 import {Utils} from "../Utils/Utils";
 
+/**
+ * Particle bubble manager
+ */
 export class Bubbler {
     public opacity?: number;
     public radius?: number;

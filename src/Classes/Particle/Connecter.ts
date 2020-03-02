@@ -2,6 +2,9 @@ import {Particle} from "../Particle";
 import {Container} from "../Container";
 import {Utils} from "../Utils/Utils";
 
+/**
+ * Particle connection manager
+ */
 export class Connecter {
     private readonly particle: Particle;
     private readonly container: Container;

@@ -7,6 +7,9 @@ import {IRgb} from "../Interfaces/IRgb";
 import {Particle} from "./Particle";
 import {PolygonMaskType} from "../Enums/PolygonMaskType";
 
+/**
+ * Particles manager
+ */
 export class Particles {
     public array: Particle[];
     public pushing?: boolean;
