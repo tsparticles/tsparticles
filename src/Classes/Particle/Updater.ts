@@ -87,7 +87,7 @@ export class Updater {
 
                 const ctx = container.canvas.context;
 
-                let colorLine: IRgb | undefined = undefined;
+                let colorLine: IRgb | undefined;
 
                 /*
                  * particles connecting line color:
