@@ -55,9 +55,9 @@ export class Connecter {
     private lineStyle(destParticle: Particle): CanvasGradient | undefined {
         const particle = this.particle;
 
-        if (particle.color.rgb && destParticle.color.rgb) {
-            const sourceRgb = particle.color.rgb;
-            const destRgb = destParticle.color.rgb;
+        if (particle.color && destParticle.color) {
+            const sourceRgb = particle.color;
+            const destRgb = destParticle.color;
 
             const rgb = {
                 b: Utils.mixComponents(sourceRgb.b, destRgb.b, particle.radius, destParticle.radius),
@@ -77,16 +77,16 @@ export class Connecter {
         const gradStop = Math.floor(destParticle.radius / particle.radius);
         const ctx = container.canvas.context;
 
-        if (!ctx || !particle.color.rgb || !destParticle.color.rgb) return;
+        if (!ctx || !particle.color || !destParticle.color) return;
 
         const sourcePos = particle.position;
         const destPos = destParticle.position;
 
         const grad = ctx.createLinearGradient(sourcePos.x, sourcePos.y, destPos.x, destPos.y);
 
-        grad.addColorStop(0, Utils.getStyleFromColor(particle.color.rgb));
+        grad.addColorStop(0, Utils.getStyleFromColor(particle.color));
         grad.addColorStop(gradStop > 1 ? 1 : gradStop, midColor);
-        grad.addColorStop(1, Utils.getStyleFromColor(destParticle.color.rgb));
+        grad.addColorStop(1, Utils.getStyleFromColor(destParticle.color));
 
         return grad;
     }

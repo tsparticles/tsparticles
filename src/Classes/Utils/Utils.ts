@@ -27,6 +27,38 @@ export class Utils {
         } : null;
     }
 
+    public static hslToRgb(hsl: IHsl) {
+        const result: IRgb = {b: 0, g: 0, r: 0};
+
+        if (hsl.s == 0) {
+            result.b = hsl.l; // achromatic
+            result.g = hsl.l;
+            result.r = hsl.l;
+        } else {
+            const q = hsl.l < 0.5 ? hsl.l * (1 + hsl.s) : hsl.l + hsl.s - hsl.l * hsl.s;
+            const p = 2 * hsl.l - q;
+
+            result.r = Utils.hue2rgb(p, q, hsl.h + 1 / 3);
+            result.g = Utils.hue2rgb(p, q, hsl.h);
+            result.b = Utils.hue2rgb(p, q, hsl.h - 1 / 3);
+        }
+
+        result.r = Math.round(result.r * 255);
+        result.g = Math.round(result.g * 255);
+        result.b = Math.round(result.b * 255);
+
+        return result;
+    }
+
+    private static hue2rgb(p: number, q: number, t: number) {
+        if (t < 0) t += 1;
+        if (t > 1) t -= 1;
+        if (t < 1 / 6) return p + (q - p) * 6 * t;
+        if (t < 1 / 2) return q;
+        if (t < 2 / 3) return p + (q - p) * (2 / 3 - t) * 6;
+        return p;
+    }
+
     /**
      * Generate a random RGBA color
      */
@@ -103,45 +135,37 @@ export class Utils {
         return velocityBase;
     }
 
-    public static getParticleColor(options: IOptions, color: { value: string[] | IColor | string }): IColor {
-        const res: IColor = {};
+    public static getParticleColor(options: IOptions, color: { value: string[] | IColor | string }): IRgb | null {
+        let res: IRgb | null = null;
 
         if (typeof (color.value) === "object") {
             if (color.value instanceof Array) {
                 const arr = options.particles.color.value as string[];
                 const colorSelected = color.value[Math.floor(Math.random() * arr.length)];
 
-                res.rgb = Utils.hexToRgb(colorSelected);
+                res = Utils.hexToRgb(colorSelected);
             } else {
                 const rgbColor = color.value as IRgb;
 
                 if (rgbColor.r !== undefined) {
-                    res.rgb = {
-                        b: rgbColor.b,
-                        g: rgbColor.g,
-                        r: rgbColor.r,
-                    };
+                    res = rgbColor;
                 }
 
                 const hslColor = color.value as IHsl;
 
                 if (hslColor.h !== undefined) {
-                    res.hsl = {
-                        h: hslColor.h,
-                        l: hslColor.l,
-                        s: hslColor.s,
-                    };
+                    res = Utils.hslToRgb(hslColor);
                 }
             }
         } else {
             if (color.value === "random") {
-                res.rgb = {
+                res = {
                     b: Math.floor(Math.random() * 256),
                     g: Math.floor(Math.random() * 256),
                     r: Math.floor(Math.random() * 256),
                 };
             } else {
-                res.rgb = Utils.hexToRgb(color.value);
+                res = Utils.hexToRgb(color.value);
             }
         }
 

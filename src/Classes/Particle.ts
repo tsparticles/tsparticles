@@ -10,7 +10,6 @@ import {IOpacity} from "../Interfaces/IOpacity";
 import {ICoordinates} from "../Interfaces/ICoordinates";
 import {IParticleImage} from "../Interfaces/IParticleImage";
 import {IOptions} from "../Interfaces/Options/IOptions";
-import {IColor} from "../Interfaces/IColor";
 import {Repulser} from "./Particle/Repulser";
 import {ShapeType} from "../Enums/ShapeType";
 import {Updater} from "./Particle/Updater";
@@ -19,6 +18,7 @@ import {HoverMode} from "../Enums/HoverMode";
 import {ClickMode} from "../Enums/ClickMode";
 import {PolygonMaskType} from "../Enums/PolygonMaskType";
 import {Connecter} from "./Particle/Connecter";
+import {IRgb} from "../Interfaces/IRgb";
 
 export class Particle {
     public radius: number;
@@ -26,7 +26,7 @@ export class Particle {
     public initialPosition?: ICoordinates;
     public position: ICoordinates;
     public offset: ICoordinates;
-    public color: IColor;
+    public color: IRgb | null;
     public opacity: IOpacity;
     public velocity: IVelocity;
     public shape?: ShapeType;

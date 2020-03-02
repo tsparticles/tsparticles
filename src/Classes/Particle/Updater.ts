@@ -97,9 +97,9 @@ export class Updater {
 
                 if (container.particles.lineLinkedColor === "random") {
                     colorLine = Utils.getRandomColorRGBA();
-                } else if (container.particles.lineLinkedColor == "mid" && particle.color.rgb && p2.color.rgb) {
-                    const sourceColor = particle.color.rgb;
-                    const destColor = p2.color.rgb;
+                } else if (container.particles.lineLinkedColor == "mid" && particle.color && p2.color) {
+                    const sourceColor = particle.color;
+                    const destColor = p2.color;
 
                     colorLine = {
                         b: Math.floor(Utils.mixComponents(sourceColor.b, destColor.b, particle.radius, p2.radius)),

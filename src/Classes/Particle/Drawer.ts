@@ -76,10 +76,8 @@ export class Drawer {
             opacity = particle.opacity.value;
         }
 
-        if (particle.color.rgb) {
-            colorValue = `rgba(${particle.color.rgb.r},${particle.color.rgb.g},${particle.color.rgb.b},${opacity})`;
-        } else if (particle.color.hsl) {
-            colorValue = `hsla(${particle.color.hsl.h},${particle.color.hsl.s}%,${particle.color.hsl.l}%,${opacity})`;
+        if (particle.color) {
+            colorValue = `rgba(${particle.color.r}, ${particle.color.g}, ${particle.color.b}, ${opacity})`;
         }
 
         if (!container.canvas.context || !colorValue) {
