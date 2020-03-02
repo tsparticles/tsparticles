@@ -154,7 +154,7 @@ export class PolygonMask {
         };
 
         for (let i = 0; i < len; i++) {
-            const segment = this.path.pathSegList.getItem(i);
+            const segment: SVGPathSeg = this.path.pathSegList.getItem(i);
 
             switch (segment.pathSegType) {
                 //
