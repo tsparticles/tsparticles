@@ -2,7 +2,7 @@
 
 import {Constants} from "./Utils/Constants";
 import {Container} from "./Container";
-import {IOptions} from "../Interfaces/IOptions";
+import {IOptions} from "../Interfaces/Options/IOptions";
 
 let tsParticlesDom: Container[] = [];
 
@@ -20,7 +20,15 @@ export class Loader {
     }
 
     public static loadFromArray(tagId: string, params: Array<IOptions>, index?: number): Container | undefined {
-        return Loader.load(tagId, params[(index === undefined || index < 0 || index >= params.length) ? Math.floor(Math.random() * params.length) : index]);
+        let idx: number;
+
+        if (index === undefined || index < 0 || index >= params.length) {
+            idx = Math.floor(Math.random() * params.length);
+        } else {
+            idx = index;
+        }
+
+        return Loader.load(tagId, params[idx]);
     }
 
     public static load(tagId: string, params: IOptions): Container | undefined {

@@ -2,7 +2,7 @@
 
 import {Bubbler} from "./Bubbler";
 import {Container} from "../Container";
-import {IShapeSide} from "../../Interfaces/IShapeSide";
+import {IOptionsShapeSide} from "../../Interfaces/Options/Shape/IOptionsShapeSide";
 import {ICoordinates} from "../../Interfaces/ICoordinates";
 import {Particle} from "../Particle";
 import {ShapeType} from "../../Enums/ShapeType";
@@ -32,7 +32,7 @@ export class Drawer {
         }
     }
 
-    private static subDrawShape(ctx: CanvasRenderingContext2D, start: ICoordinates, side: IShapeSide): void {
+    private static subDrawShape(ctx: CanvasRenderingContext2D, start: ICoordinates, side: IOptionsShapeSide): void {
         // By Programming Thomas - https://programmingthomas.wordpress.com/2013/04/03/n-sided-shapes/
         const sideCount = side.count.numerator * side.count.denominator;
         const decimalSides = side.count.numerator / side.count.denominator;
@@ -139,7 +139,7 @@ export class Drawer {
                     y: particle.position.y + radius / 1.66,
                 };
 
-                const side: IShapeSide = {
+                const side: IOptionsShapeSide = {
                     count: {
                         denominator: 2,
                         numerator: 3,
@@ -155,7 +155,7 @@ export class Drawer {
                     x: particle.position.x - radius / (options.particles.shape.polygon.nb_sides / 3.5),
                     y: particle.position.y - radius / (2.66 / 3.5),
                 };
-                const side: IShapeSide = {
+                const side: IOptionsShapeSide = {
                     count: {
                         denominator: 1,
                         numerator: options.particles.shape.polygon.nb_sides,
@@ -171,7 +171,7 @@ export class Drawer {
                     x: particle.position.x - radius * 2 / (options.particles.shape.polygon.nb_sides / 4),
                     y: particle.position.y - radius / (2 * 2.66 / 3.5),
                 };
-                const side: IShapeSide = {
+                const side: IOptionsShapeSide = {
                     count: {
                         denominator: 2,
                         numerator: options.particles.shape.polygon.nb_sides,

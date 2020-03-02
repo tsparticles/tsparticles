@@ -3,7 +3,7 @@
 import {ICoordinates} from "../../Interfaces/ICoordinates";
 import {IHsl} from "../../Interfaces/IHsl";
 import {IRgb} from "../../Interfaces/IRgb";
-import {IOptions} from "../../Interfaces/IOptions";
+import {IOptions} from "../../Interfaces/Options/IOptions";
 import {IColor} from "../../Interfaces/IColor";
 import {MoveDirection} from "../../Enums/MoveDirection";
 

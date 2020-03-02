@@ -7,7 +7,7 @@ import {IRepulse} from "../Interfaces/IRepulse";
 import {IBubble} from "../Interfaces/IBubble";
 import {IImage} from "../Interfaces/IImage";
 import {ISvg} from "../Interfaces/ISvg";
-import {IOptions} from "../Interfaces/IOptions";
+import {IOptions} from "../Interfaces/Options/IOptions";
 import {IContainerInteractivity} from "../Interfaces/IContainerInteractivity";
 import {Loader} from "./Loader";
 import {Particles} from "./Particles";
@@ -15,7 +15,7 @@ import {Retina} from "./Retina";
 import {ShapeType} from "../Enums/ShapeType";
 import {Utils} from "./Utils/Utils";
 import {PolygonMask} from "./PolygonMask";
-import {IShapeImage} from "../Interfaces/IShapeImage";
+import {IOptionsShapeImage} from "../Interfaces/Options/Shape/IOptionsShapeImage";
 
 export class Container {
     public interactivity: IContainerInteractivity;
@@ -132,7 +132,7 @@ export class Container {
         window.open(this.canvas.element.toDataURL("image/png"), "_blank");
     }
 
-    public async loadImg(image: IImage, optionsImage: IShapeImage): Promise<void> {
+    public async loadImg(image: IImage, optionsImage: IOptionsShapeImage): Promise<void> {
         image.error = false;
 
         if (optionsImage.src) {

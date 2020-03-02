@@ -1,4 +1,4 @@
-export interface IShapeImage {
+export interface IOptionsShapeImage {
     src: string;
     width: number;
     height: number;

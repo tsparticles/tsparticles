@@ -1,4 +1,4 @@
-export interface IShapeStroke {
+export interface IOptionsShapeStroke {
     width: number;
     color: string;
 }

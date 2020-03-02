@@ -1,4 +1,4 @@
-export interface IShapeCharacter {
+export interface IOptionsShapeCharacter {
     value: string | string[];
     font: string;
     style: string;

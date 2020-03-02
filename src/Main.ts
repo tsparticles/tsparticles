@@ -10,7 +10,7 @@
 /* ----------------------------------------------- */
 import {Container} from "./Classes/Container";
 import {Loader} from "./Classes/Loader";
-import {IOptions} from "./Interfaces/IOptions";
+import {IOptions} from "./Interfaces/Options/IOptions";
 import {IParticlesJs} from "./Interfaces/IParticlesJs";
 import {ParticlesJS} from "./support";
 

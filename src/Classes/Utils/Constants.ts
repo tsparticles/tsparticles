@@ -2,7 +2,7 @@
 
 import {MoveDirection} from "../../Enums/MoveDirection";
 import {InteractivityDetect} from "../../Enums/InteractivityDetect";
-import {IOptions} from "../../Interfaces/IOptions";
+import {IOptions} from "../../Interfaces/Options/IOptions";
 import {ShapeType} from "../../Enums/ShapeType";
 import {ClickMode} from "../../Enums/ClickMode";
 import {HoverMode} from "../../Enums/HoverMode";

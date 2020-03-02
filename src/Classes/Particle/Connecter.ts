@@ -60,9 +60,9 @@ export class Connecter {
             const destRgb = destParticle.color.rgb;
 
             const rgb = {
-                r: Utils.mixComponents(sourceRgb.r, destRgb.r, particle.radius, destParticle.radius),
-                g: Utils.mixComponents(sourceRgb.g, destRgb.g, particle.radius, destParticle.radius),
                 b: Utils.mixComponents(sourceRgb.b, destRgb.b, particle.radius, destParticle.radius),
+                g: Utils.mixComponents(sourceRgb.g, destRgb.g, particle.radius, destParticle.radius),
+                r: Utils.mixComponents(sourceRgb.r, destRgb.r, particle.radius, destParticle.radius),
             };
 
             const midColor = Utils.getStyleFromColor(rgb);

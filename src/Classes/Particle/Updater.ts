@@ -102,9 +102,9 @@ export class Updater {
                     const destColor = p2.color.rgb;
 
                     colorLine = {
-                        r: Math.floor(Utils.mixComponents(sourceColor.r, destColor.r, particle.radius, p2.radius)),
-                        g: Math.floor(Utils.mixComponents(sourceColor.g, destColor.g, particle.radius, p2.radius)),
                         b: Math.floor(Utils.mixComponents(sourceColor.b, destColor.b, particle.radius, p2.radius)),
+                        g: Math.floor(Utils.mixComponents(sourceColor.g, destColor.g, particle.radius, p2.radius)),
+                        r: Math.floor(Utils.mixComponents(sourceColor.r, destColor.r, particle.radius, p2.radius)),
                     };
 
                 }

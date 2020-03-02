@@ -9,7 +9,7 @@ import {ISize} from "../Interfaces/ISize";
 import {IOpacity} from "../Interfaces/IOpacity";
 import {ICoordinates} from "../Interfaces/ICoordinates";
 import {IParticleImage} from "../Interfaces/IParticleImage";
-import {IOptions} from "../Interfaces/IOptions";
+import {IOptions} from "../Interfaces/Options/IOptions";
 import {IColor} from "../Interfaces/IColor";
 import {Repulser} from "./Particle/Repulser";
 import {ShapeType} from "../Enums/ShapeType";
