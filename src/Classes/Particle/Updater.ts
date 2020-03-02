@@ -68,15 +68,12 @@ export class Updater {
                     if (options.particles.line_linked.color === "random") {
                         if (options.particles.line_linked.consent) {
                             container.particles.lineLinkedColor = Utils.hexToRgb(color);
-                        }
-                        else if (options.particles.line_linked.blink) {
+                        } else if (options.particles.line_linked.blink) {
                             container.particles.lineLinkedColor = "random";
-                        }
-                        else {
+                        } else {
                             container.particles.lineLinkedColor = "mid";
                         }
-                    }
-                    else {
+                    } else {
                         container.particles.lineLinkedColor = Utils.hexToRgb(color);
                     }
                 }
@@ -92,8 +89,10 @@ export class Updater {
                 /*
                  * particles connecting line color:
                  *
-                 *  random: in blink mode : in every frame refresh the color would change hence resulting blinking of lines
-                 *  mid: in consent mode: sample particles color and get a mid level color from those two for the connecting line color
+                 *  random: in blink mode : in every frame refresh the color would change
+                 *          hence resulting blinking of lines
+                 *  mid: in consent mode: sample particles color and get a mid level color
+                 *                        from those two for the connecting line color
                  */
 
                 if (container.particles.lineLinkedColor === "random") {
@@ -105,7 +104,7 @@ export class Updater {
                     colorLine = {
                         r: Math.floor(Utils.mixComponents(sourceColor.r, destColor.r, particle.radius, p2.radius)),
                         g: Math.floor(Utils.mixComponents(sourceColor.g, destColor.g, particle.radius, p2.radius)),
-                        b: Math.floor(Utils.mixComponents(sourceColor.b, destColor.b, particle.radius, p2.radius))
+                        b: Math.floor(Utils.mixComponents(sourceColor.b, destColor.b, particle.radius, p2.radius)),
                     };
 
                 }

@@ -15,7 +15,7 @@ export class Connecter {
     /**
      * Connecting particles on hover interactivity
      */
-    public connect(destParticle: Particle) {
+    public connect(destParticle: Particle): void {
         const container = this.container;
         const options = container.options;
         const particle = this.particle;
@@ -53,10 +53,6 @@ export class Connecter {
         }
     }
 
-    private static getStyleFromColor(color: IRgb): string {
-        return `rgba(${Math.floor(color.r)}, ${Math.floor(color.g)}, ${Math.floor(color.b)}, 0.4)`;
-    }
-
     private lineStyle(destParticle: Particle): CanvasGradient | undefined {
         const particle = this.particle;
 
@@ -70,7 +66,7 @@ export class Connecter {
                 b: Utils.mixComponents(sourceRgb.b, destRgb.b, particle.radius, destParticle.radius),
             };
 
-            const midColor = Connecter.getStyleFromColor(rgb);
+            const midColor = Utils.getStyleFromColor(rgb);
 
             return this.gradient(destParticle, midColor);
         }
@@ -89,9 +85,9 @@ export class Connecter {
 
         const grad = ctx.createLinearGradient(sourcePos.x, sourcePos.y, destPos.x, destPos.y);
 
-        grad.addColorStop(0, Connecter.getStyleFromColor(particle.color.rgb));
+        grad.addColorStop(0, Utils.getStyleFromColor(particle.color.rgb));
         grad.addColorStop(gradStop > 1 ? 1 : gradStop, midColor);
-        grad.addColorStop(1, Connecter.getStyleFromColor(destParticle.color.rgb));
+        grad.addColorStop(1, Utils.getStyleFromColor(destParticle.color.rgb));
 
         return grad;
     }

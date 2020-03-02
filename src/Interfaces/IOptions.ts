@@ -45,7 +45,7 @@ export interface IOptions {
             connect: {
                 distance: number;
                 line_linked: {
-                    opacity: number
+                    opacity: number;
                 };
                 radius: number;
             };

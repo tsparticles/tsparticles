@@ -30,11 +30,11 @@ export class Utils {
     /**
      * Generate a random RGBA color
      */
-    public static getRandomColorRGBA(min?: number) {
+    public static getRandomColorRGBA(min?: number): IRgb {
         return {
-            r: Math.floor(Math.random() * 255 + (min || 0)),
-            g: Math.floor(Math.random() * 255 + (min || 0)),
             b: Math.floor(Math.random() * 255 + (min || 0)),
+            g: Math.floor(Math.random() * 255 + (min || 0)),
+            r: Math.floor(Math.random() * 255 + (min || 0)),
         };
     }
 
@@ -59,8 +59,12 @@ export class Utils {
         return destination;
     }
 
-    public static mixComponents(comp1: number, comp2: number, weight1: number, weight2: number) {
+    public static mixComponents(comp1: number, comp2: number, weight1: number, weight2: number): number {
         return (comp1 * weight1 + comp2 * weight2) / (weight1 + weight2);
+    }
+
+    public static getStyleFromColor(color: IRgb): string {
+        return `rgba(${Math.floor(color.r)}, ${Math.floor(color.g)}, ${Math.floor(color.b)}, 0.4)`;
     }
 
     public static getParticleVelBase(options: IOptions): ICoordinates {

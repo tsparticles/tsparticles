@@ -59,7 +59,7 @@ export class Repulser {
         const dist_div = Math.sqrt(dx_div * dx_div + dy_div * dy_div);
         const normVec = {
             x: dx_div / dist_div,
-            y: dy_div / dist_div
+            y: dy_div / dist_div,
         };
         const repulseRadius = divWidth;
         const velocity = 100;

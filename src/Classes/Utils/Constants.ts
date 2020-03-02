@@ -47,7 +47,7 @@ export class Constants {
                 connect: {
                     distance: 80,
                     line_linked: {
-                        opacity: 0.5
+                        opacity: 0.5,
                     },
                     radius: 60,
                 },
