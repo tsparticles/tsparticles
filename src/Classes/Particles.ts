@@ -10,7 +10,7 @@ import {PolygonMaskType} from "../Enums/PolygonMaskType";
 export class Particles {
     public array: Particle[];
     public pushing?: boolean;
-    public lineLinkedColor?: IRgb | null;
+    public lineLinkedColor?: IRgb | string | null;
 
     private readonly container: Container;
 
@@ -51,7 +51,7 @@ export class Particles {
             //     p.vy = f * Math.sin(t);
             // }
 
-            p.update(delta);
+            p.update(i, delta);
 
             /* interaction auto between particles */
             if (options.particles.line_linked.enable || options.particles.move.attract.enable) {

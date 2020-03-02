@@ -27,6 +27,17 @@ export class Utils {
         } : null;
     }
 
+    /**
+     * Generate a random RGBA color
+     */
+    public static getRandomColorRGBA(min?: number) {
+        return {
+            r: Math.floor(Math.random() * 255 + (min || 0)),
+            g: Math.floor(Math.random() * 255 + (min || 0)),
+            b: Math.floor(Math.random() * 255 + (min || 0)),
+        };
+    }
+
     public static clamp(num: number, min: number, max: number): number {
         return Math.min(Math.max(num, min), max);
     }
@@ -46,6 +57,10 @@ export class Utils {
             }
         }
         return destination;
+    }
+
+    public static mixComponents(comp1: number, comp2: number, weight1: number, weight2: number) {
+        return (comp1 * weight1 + comp2 * weight2) / (weight1 + weight2);
     }
 
     public static getParticleVelBase(options: IOptions): ICoordinates {

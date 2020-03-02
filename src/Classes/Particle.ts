@@ -18,6 +18,7 @@ import {Utils} from "./Utils/Utils";
 import {HoverMode} from "../Enums/HoverMode";
 import {ClickMode} from "../Enums/ClickMode";
 import {PolygonMaskType} from "../Enums/PolygonMaskType";
+import {Connecter} from "./Particle/Connecter";
 
 export class Particle {
     public radius: number;
@@ -35,6 +36,7 @@ export class Particle {
     private readonly updater: Updater;
     private readonly bubbler: Bubbler;
     private readonly repulser: Repulser;
+    private readonly connecter: Connecter;
     private readonly drawer: Drawer;
     private readonly grabber: Grabber;
     private readonly container: Container;
@@ -131,6 +133,7 @@ export class Particle {
         this.repulser = new Repulser(this.container, this);
         this.drawer = new Drawer(this.container, this, this.bubbler);
         this.grabber = new Grabber(this.container, this);
+        this.connecter = new Connecter(this.container, this);
     }
 
     private static calcVelocity(options: IOptions): IVelocity {
@@ -161,7 +164,7 @@ export class Particle {
         return res;
     }
 
-    public update(delta: number): void {
+    public update(index: number, delta: number): void {
         const container = this.container;
         const options = container.options;
 
@@ -173,6 +176,15 @@ export class Particle {
         /* events */
         if (Utils.isInArray(HoverMode.grab, hoverMode)) {
             this.grabber.grab();
+        }
+
+        //  New interactivity `connect` which would just connect the particles on hover
+
+        if (Utils.isInArray(HoverMode.connect, options.interactivity.events.onhover.mode)) {
+            for (let j = index + 1; j < container.particles.array.length; j++) {
+                const p2 = container.particles.array[j];
+                this.connecter.connect(p2);
+            }
         }
 
         if (Utils.isInArray(HoverMode.bubble, hoverMode) || Utils.isInArray(ClickMode.bubble, clickMode)) {

@@ -6,6 +6,7 @@ import {Particle} from "../Particle";
 import {Utils} from "../Utils/Utils";
 import {ClickMode} from "../../Enums/ClickMode";
 import {PolygonMaskType} from "../../Enums/PolygonMaskType";
+import {IRgb} from "../../Interfaces/IRgb";
 
 export class Updater {
     private readonly particle: Particle;
@@ -58,7 +59,26 @@ export class Updater {
             if (opacityLine > 0) {
                 /* style */
                 if (!container.particles.lineLinkedColor) {
-                    container.particles.lineLinkedColor = Utils.hexToRgb(options.particles.line_linked.color);
+                    const color = options.particles.line_linked.color;
+
+                    /* particles.line_linked - convert hex colors to rgb */
+                    //  check for the color profile requested and
+                    //  then return appropriate value
+
+                    if (options.particles.line_linked.color === "random") {
+                        if (options.particles.line_linked.consent) {
+                            container.particles.lineLinkedColor = Utils.hexToRgb(color);
+                        }
+                        else if (options.particles.line_linked.blink) {
+                            container.particles.lineLinkedColor = "random";
+                        }
+                        else {
+                            container.particles.lineLinkedColor = "mid";
+                        }
+                    }
+                    else {
+                        container.particles.lineLinkedColor = Utils.hexToRgb(color);
+                    }
                 }
 
                 if (!container.canvas.context) {
@@ -67,7 +87,28 @@ export class Updater {
 
                 const ctx = container.canvas.context;
 
-                const colorLine = container.particles.lineLinkedColor;
+                let colorLine: IRgb | undefined = undefined;
+
+                /*
+                 * particles connecting line color:
+                 *
+                 *  random: in blink mode : in every frame refresh the color would change hence resulting blinking of lines
+                 *  mid: in consent mode: sample particles color and get a mid level color from those two for the connecting line color
+                 */
+
+                if (container.particles.lineLinkedColor === "random") {
+                    colorLine = Utils.getRandomColorRGBA();
+                } else if (container.particles.lineLinkedColor == "mid" && particle.color.rgb && p2.color.rgb) {
+                    const sourceColor = particle.color.rgb;
+                    const destColor = p2.color.rgb;
+
+                    colorLine = {
+                        r: Math.floor(Utils.mixComponents(sourceColor.r, destColor.r, particle.radius, p2.radius)),
+                        g: Math.floor(Utils.mixComponents(sourceColor.g, destColor.g, particle.radius, p2.radius)),
+                        b: Math.floor(Utils.mixComponents(sourceColor.b, destColor.b, particle.radius, p2.radius))
+                    };
+
+                }
 
                 if (colorLine) {
                     ctx.strokeStyle = `rgba(${colorLine.r},${colorLine.g},${colorLine.b},${opacityLine})`;

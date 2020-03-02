@@ -44,6 +44,13 @@ export class Constants {
                     opacity: 1,
                     size: 80,
                 },
+                connect: {
+                    distance: 80,
+                    line_linked: {
+                        opacity: 0.5
+                    },
+                    radius: 60,
+                },
                 grab: {
                     distance: 100,
                     line_linked: {
@@ -67,7 +74,9 @@ export class Constants {
                 value: "#fff",
             },
             line_linked: {
+                blink: false,
                 color: "#fff",
+                consent: false,
                 distance: 100,
                 enable: true,
                 opacity: 1,

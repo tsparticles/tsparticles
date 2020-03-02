@@ -42,6 +42,13 @@ export interface IOptions {
                 opacity: number;
                 size: number;
             };
+            connect: {
+                distance: number;
+                line_linked: {
+                    opacity: number
+                };
+                radius: number;
+            };
             grab: {
                 distance: number;
                 line_linked: {
@@ -65,7 +72,9 @@ export interface IOptions {
             value: string | IColor | string[];
         };
         line_linked: {
+            blink: boolean;
             color: string;
+            consent: boolean;
             distance: number;
             enable: boolean;
             opacity: number;
