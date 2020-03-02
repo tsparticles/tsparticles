@@ -596,7 +596,7 @@ ul.tsd-descriptions > li > :last-child > :last-child > :last-child {
   background-position: 0 -153px; }
 
 .tsd-kind-object-literal > .tsd-kind-icon:before {
-  background-position: 0px -17px; }
+  background-position: 0 -17px; }
 
 .tsd-kind-object-literal.tsd-is-protected > .tsd-kind-icon:before {
   background-position: -17px -17px; }
@@ -605,7 +605,7 @@ ul.tsd-descriptions > li > :last-child > :last-child > :last-child {
   background-position: -34px -17px; }
 
 .tsd-kind-class > .tsd-kind-icon:before {
-  background-position: 0px -34px; }
+  background-position: 0 -34px; }
 
 .tsd-kind-class.tsd-is-protected > .tsd-kind-icon:before {
   background-position: -17px -34px; }
@@ -614,7 +614,7 @@ ul.tsd-descriptions > li > :last-child > :last-child > :last-child {
   background-position: -34px -34px; }
 
 .tsd-kind-class.tsd-has-type-parameter > .tsd-kind-icon:before {
-  background-position: 0px -51px; }
+  background-position: 0 -51px; }
 
 .tsd-kind-class.tsd-has-type-parameter.tsd-is-protected > .tsd-kind-icon:before {
   background-position: -17px -51px; }
@@ -623,7 +623,7 @@ ul.tsd-descriptions > li > :last-child > :last-child > :last-child {
   background-position: -34px -51px; }
 
 .tsd-kind-interface > .tsd-kind-icon:before {
-  background-position: 0px -68px; }
+  background-position: 0 -68px; }
 
 .tsd-kind-interface.tsd-is-protected > .tsd-kind-icon:before {
   background-position: -17px -68px; }
@@ -632,7 +632,7 @@ ul.tsd-descriptions > li > :last-child > :last-child > :last-child {
   background-position: -34px -68px; }
 
 .tsd-kind-interface.tsd-has-type-parameter > .tsd-kind-icon:before {
-  background-position: 0px -85px; }
+  background-position: 0 -85px; }
 
 .tsd-kind-interface.tsd-has-type-parameter.tsd-is-protected > .tsd-kind-icon:before {
   background-position: -17px -85px; }
@@ -641,7 +641,7 @@ ul.tsd-descriptions > li > :last-child > :last-child > :last-child {
   background-position: -34px -85px; }
 
 .tsd-kind-module > .tsd-kind-icon:before {
-  background-position: 0px -102px; }
+  background-position: 0 -102px; }
 
 .tsd-kind-module.tsd-is-protected > .tsd-kind-icon:before {
   background-position: -17px -102px; }
@@ -650,7 +650,7 @@ ul.tsd-descriptions > li > :last-child > :last-child > :last-child {
   background-position: -34px -102px; }
 
 .tsd-kind-external-module > .tsd-kind-icon:before {
-  background-position: 0px -102px; }
+  background-position: 0 -102px; }
 
 .tsd-kind-external-module.tsd-is-protected > .tsd-kind-icon:before {
   background-position: -17px -102px; }
@@ -659,7 +659,7 @@ ul.tsd-descriptions > li > :last-child > :last-child > :last-child {
   background-position: -34px -102px; }
 
 .tsd-kind-enum > .tsd-kind-icon:before {
-  background-position: 0px -119px; }
+  background-position: 0 -119px; }
 
 .tsd-kind-enum.tsd-is-protected > .tsd-kind-icon:before {
   background-position: -17px -119px; }
@@ -668,7 +668,7 @@ ul.tsd-descriptions > li > :last-child > :last-child > :last-child {
   background-position: -34px -119px; }
 
 .tsd-kind-enum-member > .tsd-kind-icon:before {
-  background-position: 0px -136px; }
+  background-position: 0 -136px; }
 
 .tsd-kind-enum-member.tsd-is-protected > .tsd-kind-icon:before {
   background-position: -17px -136px; }
@@ -677,7 +677,7 @@ ul.tsd-descriptions > li > :last-child > :last-child > :last-child {
   background-position: -34px -136px; }
 
 .tsd-kind-signature > .tsd-kind-icon:before {
-  background-position: 0px -153px; }
+  background-position: 0 -153px; }
 
 .tsd-kind-signature.tsd-is-protected > .tsd-kind-icon:before {
   background-position: -17px -153px; }
@@ -686,7 +686,7 @@ ul.tsd-descriptions > li > :last-child > :last-child > :last-child {
   background-position: -34px -153px; }
 
 .tsd-kind-type-alias > .tsd-kind-icon:before {
-  background-position: 0px -170px; }
+  background-position: 0 -170px; }
 
 .tsd-kind-type-alias.tsd-is-protected > .tsd-kind-icon:before {
   background-position: -17px -170px; }
@@ -695,7 +695,7 @@ ul.tsd-descriptions > li > :last-child > :last-child > :last-child {
   background-position: -34px -170px; }
 
 .tsd-kind-type-alias.tsd-has-type-parameter > .tsd-kind-icon:before {
-  background-position: 0px -187px; }
+  background-position: 0 -187px; }
 
 .tsd-kind-type-alias.tsd-has-type-parameter.tsd-is-protected > .tsd-kind-icon:before {
   background-position: -17px -187px; }
@@ -704,82 +704,82 @@ ul.tsd-descriptions > li > :last-child > :last-child > :last-child {
   background-position: -34px -187px; }
 
 .tsd-kind-variable > .tsd-kind-icon:before {
-  background-position: -136px -0px; }
+  background-position: -136px 0; }
 
 .tsd-kind-variable.tsd-is-protected > .tsd-kind-icon:before {
-  background-position: -153px -0px; }
+  background-position: -153px 0; }
 
 .tsd-kind-variable.tsd-is-private > .tsd-kind-icon:before {
-  background-position: -119px -0px; }
+  background-position: -119px 0; }
 
 .tsd-kind-variable.tsd-parent-kind-class > .tsd-kind-icon:before {
-  background-position: -51px -0px; }
+  background-position: -51px 0; }
 
 .tsd-kind-variable.tsd-parent-kind-class.tsd-is-inherited > .tsd-kind-icon:before {
-  background-position: -68px -0px; }
+  background-position: -68px 0; }
 
 .tsd-kind-variable.tsd-parent-kind-class.tsd-is-protected > .tsd-kind-icon:before {
-  background-position: -85px -0px; }
+  background-position: -85px 0; }
 
 .tsd-kind-variable.tsd-parent-kind-class.tsd-is-protected.tsd-is-inherited > .tsd-kind-icon:before {
-  background-position: -102px -0px; }
+  background-position: -102px 0; }
 
 .tsd-kind-variable.tsd-parent-kind-class.tsd-is-private > .tsd-kind-icon:before {
-  background-position: -119px -0px; }
+  background-position: -119px 0; }
 
 .tsd-kind-variable.tsd-parent-kind-enum > .tsd-kind-icon:before {
-  background-position: -170px -0px; }
+  background-position: -170px 0; }
 
 .tsd-kind-variable.tsd-parent-kind-enum.tsd-is-protected > .tsd-kind-icon:before {
-  background-position: -187px -0px; }
+  background-position: -187px 0; }
 
 .tsd-kind-variable.tsd-parent-kind-enum.tsd-is-private > .tsd-kind-icon:before {
-  background-position: -119px -0px; }
+  background-position: -119px 0; }
 
 .tsd-kind-variable.tsd-parent-kind-interface > .tsd-kind-icon:before {
-  background-position: -204px -0px; }
+  background-position: -204px 0; }
 
 .tsd-kind-variable.tsd-parent-kind-interface.tsd-is-inherited > .tsd-kind-icon:before {
-  background-position: -221px -0px; }
+  background-position: -221px 0; }
 
 .tsd-kind-property > .tsd-kind-icon:before {
-  background-position: -136px -0px; }
+  background-position: -136px 0; }
 
 .tsd-kind-property.tsd-is-protected > .tsd-kind-icon:before {
-  background-position: -153px -0px; }
+  background-position: -153px 0; }
 
 .tsd-kind-property.tsd-is-private > .tsd-kind-icon:before {
-  background-position: -119px -0px; }
+  background-position: -119px 0; }
 
 .tsd-kind-property.tsd-parent-kind-class > .tsd-kind-icon:before {
-  background-position: -51px -0px; }
+  background-position: -51px 0; }
 
 .tsd-kind-property.tsd-parent-kind-class.tsd-is-inherited > .tsd-kind-icon:before {
-  background-position: -68px -0px; }
+  background-position: -68px 0; }
 
 .tsd-kind-property.tsd-parent-kind-class.tsd-is-protected > .tsd-kind-icon:before {
-  background-position: -85px -0px; }
+  background-position: -85px 0; }
 
 .tsd-kind-property.tsd-parent-kind-class.tsd-is-protected.tsd-is-inherited > .tsd-kind-icon:before {
-  background-position: -102px -0px; }
+  background-position: -102px 0; }
 
 .tsd-kind-property.tsd-parent-kind-class.tsd-is-private > .tsd-kind-icon:before {
-  background-position: -119px -0px; }
+  background-position: -119px 0; }
 
 .tsd-kind-property.tsd-parent-kind-enum > .tsd-kind-icon:before {
-  background-position: -170px -0px; }
+  background-position: -170px 0; }
 
 .tsd-kind-property.tsd-parent-kind-enum.tsd-is-protected > .tsd-kind-icon:before {
-  background-position: -187px -0px; }
+  background-position: -187px 0; }
 
 .tsd-kind-property.tsd-parent-kind-enum.tsd-is-private > .tsd-kind-icon:before {
-  background-position: -119px -0px; }
+  background-position: -119px 0; }
 
 .tsd-kind-property.tsd-parent-kind-interface > .tsd-kind-icon:before {
-  background-position: -204px -0px; }
+  background-position: -204px 0; }
 
 .tsd-kind-property.tsd-parent-kind-interface.tsd-is-inherited > .tsd-kind-icon:before {
-  background-position: -221px -0px; }
+  background-position: -221px 0; }
 
 .tsd-kind-get-signature > .tsd-kind-icon:before {
   background-position: -136px -17px; }
@@ -1611,8 +1611,8 @@ pre {
     transform: translate(0, 0); } }
 
 .tsd-page-title {
-  padding: 70px 0 20px 0;
-  margin: 0 0 40px 0;
+  padding: 70px 0 20px;
+  margin: 0 0 40px;
   background: #fff;
   box-shadow: 0 0 5px rgba(0, 0, 0, 0.35); }
   .tsd-page-title h1 {
@@ -1692,7 +1692,7 @@ dl.tsd-comment-tags {
     font-size: 0.8em;
     font-weight: normal; }
   dl.tsd-comment-tags dd {
-    margin: 0 0 10px 0; }
+    margin: 0 0 10px; }
     dl.tsd-comment-tags dd:before, dl.tsd-comment-tags dd:after {
       display: table;
       content: " "; }
@@ -1794,8 +1794,8 @@ footer {
   margin-bottom: 30px !important; }
 
 .tsd-index-panel h3 {
-  margin: 0 -20px 10px -20px;
-  padding: 0 20px 10px 20px;
+  margin: 0 -20px 10px;
+  padding: 0 20px 10px;
   border-bottom: 1px solid #eee; }
 
 .tsd-index-panel ul.tsd-index-list {
@@ -1977,8 +1977,8 @@ footer {
   .tsd-panel:empty {
     display: none; }
   .tsd-panel > h1, .tsd-panel > h2, .tsd-panel > h3 {
-    margin: 1.5em -20px 10px -20px;
-    padding: 0 20px 10px 20px;
+    margin: 1.5em -20px 10px;
+    padding: 0 20px 10px;
     border-bottom: 1px solid #eee; }
     .tsd-panel > h1.tsd-before-signature, .tsd-panel > h2.tsd-before-signature, .tsd-panel > h3.tsd-before-signature {
       margin-bottom: 0;
@@ -2079,7 +2079,7 @@ footer {
     display: block; }
 
 .tsd-signature {
-  margin: 0 0 1em 0;
+  margin: 0 0 1em;
   padding: 10px;
   border: 1px solid #eee;
   font-family: Menlo, Monaco, Consolas, "Courier New", monospace;
@@ -2108,11 +2108,11 @@ footer {
 
 .tsd-signatures {
   padding: 0;
-  margin: 0 0 1em 0;
+  margin: 0 0 1em;
   border: 1px solid #eee; }
   .tsd-signatures .tsd-signature {
     margin: 0;
-    border-width: 1px 0 0 0;
+    border-width: 1px 0 0;
     transition: background-color 0.1s; }
     .tsd-signatures .tsd-signature:first-child {
       border-top-width: 0; }
@@ -2155,7 +2155,7 @@ ul.tsd-descriptions {
       visibility: hidden; }
   ul.tsd-descriptions h4, ul.tsd-descriptions .tsd-index-panel h3, .tsd-index-panel ul.tsd-descriptions h3 {
     font-size: 16px;
-    margin: 1em 0 0.5em 0; }
+    margin: 1em 0 0.5em; }
 
 ul.tsd-parameters,
 ul.tsd-type-parameters {
@@ -2169,7 +2169,7 @@ ul.tsd-type-parameters {
   ul.tsd-parameters h5,
   ul.tsd-type-parameters h5 {
     font-size: 16px;
-    margin: 1em 0 0.5em 0; }
+    margin: 1em 0 0.5em; }
   ul.tsd-parameters .tsd-comment,
   ul.tsd-type-parameters .tsd-comment {
     margin-top: -0.5em; }
@@ -2177,7 +2177,7 @@ ul.tsd-type-parameters {
 .tsd-sources {
   font-size: 14px;
   color: #808080;
-  margin: 0 0 1em 0; }
+  margin: 0 0 1em; }
   .tsd-sources a {
     color: #808080;
     text-decoration: underline; }
