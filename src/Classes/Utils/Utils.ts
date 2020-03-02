@@ -163,7 +163,7 @@ export class Utils {
         return res;
     }
 
-    private static hue2rgb(p: number, q: number, t: number) {
+    private static hue2rgb(p: number, q: number, t: number): number {
         if (t < 0) {
             t += 1;
         }
