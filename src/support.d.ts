@@ -1,4 +1,4 @@
-import {IOptions} from "./Interfaces/IOptions";
+import {IOptions} from "./Interfaces/Options/IOptions";
 import {Container} from "./Classes/Container";
 
 declare class ParticlesJS {

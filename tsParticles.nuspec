@@ -2,7 +2,7 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
   <metadata>
     <id>tsParticles</id>
-    <version>1.6.1</version>
+    <version>1.7.0</version>
     <title>tsparticles</title>
     <authors>Matteo Bruni</authors>
     <owners>Matteo Bruni</owners>
@@ -11,97 +11,6 @@
     <description>Porting of Vincent Garreau's particles.js, converted in TypeScript.</description>
   </metadata>
   <files>
-    <file src="dist\Classes\Particle\Bubbler.d.ts" target="tsparticles\Classes\Particle\Bubbler.d.ts" />
-    <file src="dist\Classes\Particle\Bubbler.js" target="tsparticles\Classes\Particle\Bubbler.js" />
-    <file src="dist\Classes\Particle\Drawer.d.ts" target="tsparticles\Classes\Particle\Drawer.d.ts" />
-    <file src="dist\Classes\Particle\Drawer.js" target="tsparticles\Classes\Particle\Drawer.js" />
-    <file src="dist\Classes\Particle\Grabber.d.ts" target="tsparticles\Classes\Particle\Grabber.d.ts" />
-    <file src="dist\Classes\Particle\Grabber.js" target="tsparticles\Classes\Particle\Grabber.js" />
-    <file src="dist\Classes\Particle\Repulser.d.ts" target="tsparticles\Classes\Particle\Repulser.d.ts" />
-    <file src="dist\Classes\Particle\Repulser.js" target="tsparticles\Classes\Particle\Repulser.js" />
-    <file src="dist\Classes\Particle\Updater.d.ts" target="tsparticles\Classes\Particle\Updater.d.ts" />
-    <file src="dist\Classes\Particle\Updater.js" target="tsparticles\Classes\Particle\Updater.js" />
-    <file src="dist\Classes\Utils\Constants.d.ts" target="tsparticles\Classes\Utils\Constants.d.ts" />
-    <file src="dist\Classes\Utils\Constants.js" target="tsparticles\Classes\Utils\Constants.js" />
-    <file src="dist\Classes\Utils\EventListeners.d.ts" target="tsparticles\Classes\Utils\EventListeners.d.ts" />
-    <file src="dist\Classes\Utils\EventListeners.js" target="tsparticles\Classes\Utils\EventListeners.js" />
-    <file src="dist\Classes\Utils\Utils.d.ts" target="tsparticles\Classes\Utils\Utils.d.ts" />
-    <file src="dist\Classes\Utils\Utils.js" target="tsparticles\Classes\Utils\Utils.js" />
-    <file src="dist\Classes\Canvas.d.ts" target="tsparticles\Classes\Canvas.d.ts" />
-    <file src="dist\Classes\Canvas.js" target="tsparticles\Classes\Canvas.js" />
-    <file src="dist\Classes\Container.d.ts" target="tsparticles\Classes\Container.d.ts" />
-    <file src="dist\Classes\Container.js" target="tsparticles\Classes\Container.js" />
-    <file src="dist\Classes\Loader.d.ts" target="tsparticles\Classes\Loader.d.ts" />
-    <file src="dist\Classes\Loader.js" target="tsparticles\Classes\Loader.js" />
-    <file src="dist\Classes\Particle.d.ts" target="tsparticles\Classes\Particle.d.ts" />
-    <file src="dist\Classes\Particle.js" target="tsparticles\Classes\Particle.js" />
-    <file src="dist\Classes\Particles.d.ts" target="tsparticles\Classes\Particles.d.ts" />
-    <file src="dist\Classes\Particles.js" target="tsparticles\Classes\Particles.js" />
-    <file src="dist\Classes\PolygonMask.d.ts" target="tsparticles\Classes\PolygonMask.d.ts" />
-    <file src="dist\Classes\PolygonMask.js" target="tsparticles\Classes\PolygonMask.js" />
-    <file src="dist\Classes\Retina.d.ts" target="tsparticles\Classes\Retina.d.ts" />
-    <file src="dist\Classes\Retina.js" target="tsparticles\Classes\Retina.js" />
-    <file src="dist\Enums\ClickMode.d.ts" target="tsparticles\Enums\ClickMode.d.ts" />
-    <file src="dist\Enums\ClickMode.js" target="tsparticles\Enums\ClickMode.js" />
-    <file src="dist\Enums\HoverMode.d.ts" target="tsparticles\Enums\HoverMode.d.ts" />
-    <file src="dist\Enums\HoverMode.js" target="tsparticles\Enums\HoverMode.js" />
-    <file src="dist\Enums\InteractivityDetect.d.ts" target="tsparticles\Enums\InteractivityDetect.d.ts" />
-    <file src="dist\Enums\InteractivityDetect.js" target="tsparticles\Enums\InteractivityDetect.js" />
-    <file src="dist\Enums\MoveDirection.d.ts" target="tsparticles\Enums\MoveDirection.d.ts" />
-    <file src="dist\Enums\MoveDirection.js" target="tsparticles\Enums\MoveDirection.js" />
-    <file src="dist\Enums\OutMode.d.ts" target="tsparticles\Enums\OutMode.d.ts" />
-    <file src="dist\Enums\OutMode.js" target="tsparticles\Enums\OutMode.js" />
-    <file src="dist\Enums\PolygonMaskType.d.ts" target="tsparticles\Enums\PolygonMaskType.d.ts" />
-    <file src="dist\Enums\PolygonMaskType.js" target="tsparticles\Enums\PolygonMaskType.js" />
-    <file src="dist\Enums\ProcessBubbleType.d.ts" target="tsparticles\Enums\ProcessBubbleType.d.ts" />
-    <file src="dist\Enums\ProcessBubbleType.js" target="tsparticles\Enums\ProcessBubbleType.js" />
-    <file src="dist\Enums\ShapeType.d.ts" target="tsparticles\Enums\ShapeType.d.ts" />
-    <file src="dist\Enums\ShapeType.js" target="tsparticles\Enums\ShapeType.js" />
-    <file src="dist\Interfaces\IBubble.d.ts" target="tsparticles\Interfaces\IBubble.d.ts" />
-    <file src="dist\Interfaces\IBubble.js" target="tsparticles\Interfaces\IBubble.js" />
-    <file src="dist\Interfaces\IBubblerProcessParam.d.ts" target="tsparticles\Interfaces\IBubblerProcessParam.d.ts" />
-    <file src="dist\Interfaces\IBubblerProcessParam.js" target="tsparticles\Interfaces\IBubblerProcessParam.js" />
-    <file src="dist\Interfaces\IBubblerProcessParamObj.d.ts" target="tsparticles\Interfaces\IBubblerProcessParamObj.d.ts" />
-    <file src="dist\Interfaces\IBubblerProcessParamObj.js" target="tsparticles\Interfaces\IBubblerProcessParamObj.js" />
-    <file src="dist\Interfaces\IColor.d.ts" target="tsparticles\Interfaces\IColor.d.ts" />
-    <file src="dist\Interfaces\IColor.js" target="tsparticles\Interfaces\IColor.js" />
-    <file src="dist\Interfaces\IContainerInteractivity.d.ts" target="tsparticles\Interfaces\IContainerInteractivity.d.ts" />
-    <file src="dist\Interfaces\IContainerInteractivity.js" target="tsparticles\Interfaces\IContainerInteractivity.js" />
-    <file src="dist\Interfaces\ICoordinates.d.ts" target="tsparticles\Interfaces\ICoordinates.d.ts" />
-    <file src="dist\Interfaces\ICoordinates.js" target="tsparticles\Interfaces\ICoordinates.js" />
-    <file src="dist\Interfaces\IDimension.d.ts" target="tsparticles\Interfaces\IDimension.d.ts" />
-    <file src="dist\Interfaces\IDimension.js" target="tsparticles\Interfaces\IDimension.js" />
-    <file src="dist\Interfaces\IHsl.d.ts" target="tsparticles\Interfaces\IHsl.d.ts" />
-    <file src="dist\Interfaces\IHsl.js" target="tsparticles\Interfaces\IHsl.js" />
-    <file src="dist\Interfaces\IImage.d.ts" target="tsparticles\Interfaces\IImage.d.ts" />
-    <file src="dist\Interfaces\IImage.js" target="tsparticles\Interfaces\IImage.js" />
-    <file src="dist\Interfaces\IMouseData.d.ts" target="tsparticles\Interfaces\IMouseData.d.ts" />
-    <file src="dist\Interfaces\IMouseData.js" target="tsparticles\Interfaces\IMouseData.js" />
-    <file src="dist\Interfaces\IOpacity.d.ts" target="tsparticles\Interfaces\IOpacity.d.ts" />
-    <file src="dist\Interfaces\IOpacity.js" target="tsparticles\Interfaces\IOpacity.js" />
-    <file src="dist\Interfaces\IOptions.d.ts" target="tsparticles\Interfaces\IOptions.d.ts" />
-    <file src="dist\Interfaces\IOptions.js" target="tsparticles\Interfaces\IOptions.js" />
-    <file src="dist\Interfaces\IParticleImage.d.ts" target="tsparticles\Interfaces\IParticleImage.d.ts" />
-    <file src="dist\Interfaces\IParticleImage.js" target="tsparticles\Interfaces\IParticleImage.js" />
-    <file src="dist\Interfaces\IRepulse.d.ts" target="tsparticles\Interfaces\IRepulse.d.ts" />
-    <file src="dist\Interfaces\IRepulse.js" target="tsparticles\Interfaces\IRepulse.js" />
-    <file src="dist\Interfaces\IRgb.d.ts" target="tsparticles\Interfaces\IRgb.d.ts" />
-    <file src="dist\Interfaces\IRgb.js" target="tsparticles\Interfaces\IRgb.js" />
-    <file src="dist\Interfaces\IShape.d.ts" target="tsparticles\Interfaces\IShape.d.ts" />
-    <file src="dist\Interfaces\IShape.js" target="tsparticles\Interfaces\IShape.js" />
-    <file src="dist\Interfaces\IShapeSide.d.ts" target="tsparticles\Interfaces\IShapeSide.d.ts" />
-    <file src="dist\Interfaces\IShapeSide.js" target="tsparticles\Interfaces\IShapeSide.js" />
-    <file src="dist\Interfaces\ISize.d.ts" target="tsparticles\Interfaces\ISize.d.ts" />
-    <file src="dist\Interfaces\ISize.js" target="tsparticles\Interfaces\ISize.js" />
-    <file src="dist\Interfaces\ISvg.d.ts" target="tsparticles\Interfaces\ISvg.d.ts" />
-    <file src="dist\Interfaces\ISvg.js" target="tsparticles\Interfaces\ISvg.js" />
-    <file src="dist\Interfaces\IVelocity.d.ts" target="tsparticles\Interfaces\IVelocity.d.ts" />
-    <file src="dist\Interfaces\IVelocity.js" target="tsparticles\Interfaces\IVelocity.js" />
-    <file src="dist\Main.d.ts" target="tsparticles\Main.d.ts" />
-    <file src="dist\Main.js" target="tsparticles\Main.js" />
-    <file src="dist\support.d.ts" target="tsparticles\support.d.ts" />
-    <file src="dist\support.js" target="tsparticles\support.js" />
-    <file src="dist\tsparticles.js" target="tsparticles\tsparticles.js" />
-    <file src="dist\tsparticles.min.js" target="tsparticles\tsparticles.min.js" />
+    <file src="dist\**" target="Content/Scripts/tsparticles" />
   </files>
 </package>

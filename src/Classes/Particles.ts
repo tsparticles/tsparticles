@@ -10,7 +10,7 @@ import {PolygonMaskType} from "../Enums/PolygonMaskType";
 export class Particles {
     public array: Particle[];
     public pushing?: boolean;
-    public lineLinkedColor?: IRgb | null;
+    public lineLinkedColor?: IRgb | string | null;
 
     private readonly container: Container;
 
@@ -51,7 +51,7 @@ export class Particles {
             //     p.vy = f * Math.sin(t);
             // }
 
-            p.update(delta);
+            p.update(i, delta);
 
             /* interaction auto between particles */
             if (options.particles.line_linked.enable || options.particles.move.attract.enable) {
@@ -75,7 +75,7 @@ export class Particles {
         this.update(delta);
 
         /* draw polygon shape in debug mode */
-        if(options.polygon.draw.enable){
+        if (options.polygon.draw.enable) {
             container.polygon.drawPolygon();
         }
 
@@ -95,6 +95,12 @@ export class Particles {
         const options = container.options;
 
         this.pushing = true;
+
+        if (options.particles.number.limit > 0) {
+            if ((this.array.length + nb) > options.particles.number.limit) {
+                this.remove((this.array.length + nb) - options.particles.number.limit);
+            }
+        }
 
         let pos: ICoordinates | undefined;
 

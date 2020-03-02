@@ -9,8 +9,7 @@ import {ISize} from "../Interfaces/ISize";
 import {IOpacity} from "../Interfaces/IOpacity";
 import {ICoordinates} from "../Interfaces/ICoordinates";
 import {IParticleImage} from "../Interfaces/IParticleImage";
-import {IOptions} from "../Interfaces/IOptions";
-import {IColor} from "../Interfaces/IColor";
+import {IOptions} from "../Interfaces/Options/IOptions";
 import {Repulser} from "./Particle/Repulser";
 import {ShapeType} from "../Enums/ShapeType";
 import {Updater} from "./Particle/Updater";
@@ -18,6 +17,8 @@ import {Utils} from "./Utils/Utils";
 import {HoverMode} from "../Enums/HoverMode";
 import {ClickMode} from "../Enums/ClickMode";
 import {PolygonMaskType} from "../Enums/PolygonMaskType";
+import {Connecter} from "./Particle/Connecter";
+import {IRgb} from "../Interfaces/IRgb";
 
 export class Particle {
     public radius: number;
@@ -25,16 +26,17 @@ export class Particle {
     public initialPosition?: ICoordinates;
     public position: ICoordinates;
     public offset: ICoordinates;
-    public color: IColor;
+    public color: IRgb | null;
     public opacity: IOpacity;
     public velocity: IVelocity;
     public shape?: ShapeType;
-    public img?: IParticleImage;
+    public image?: IParticleImage;
     public readonly initialVelocity: IVelocity;
 
     private readonly updater: Updater;
     private readonly bubbler: Bubbler;
     private readonly repulser: Repulser;
+    private readonly connecter: Connecter;
     private readonly drawer: Drawer;
     private readonly grabber: Grabber;
     private readonly container: Container;
@@ -104,23 +106,25 @@ export class Particle {
         const shapeType = options.particles.shape.type;
 
         if (shapeType instanceof Array) {
-            const selectedShape = shapeType[Math.floor(Math.random() * shapeType.length)];
-
-            this.shape = selectedShape;
+            this.shape = shapeType[Math.floor(Math.random() * shapeType.length)];
         } else {
             this.shape = shapeType;
         }
 
         if (this.shape === ShapeType.image) {
             const shape = options.particles.shape;
-            this.img = {
-                ratio: shape.image.width / shape.image.height,
-                replaceColor: shape.image.replace_color,
-                src: shape.image.src,
+            const index = Math.floor(Math.random() * container.images.length);
+            const image = container.images[index];
+            const optionsImage = shape.image instanceof Array ? shape.image[index] : shape.image;
+            this.image = {
+                data: image,
+                ratio: optionsImage.width / optionsImage.height,
+                replaceColor: optionsImage.replace_color,
+                src: optionsImage.src,
             };
 
-            if (!this.img.ratio) {
-                this.img.ratio = 1;
+            if (!this.image.ratio) {
+                this.image.ratio = 1;
             }
         }
 
@@ -129,6 +133,7 @@ export class Particle {
         this.repulser = new Repulser(this.container, this);
         this.drawer = new Drawer(this.container, this, this.bubbler);
         this.grabber = new Grabber(this.container, this);
+        this.connecter = new Connecter(this.container, this);
     }
 
     private static calcVelocity(options: IOptions): IVelocity {
@@ -159,7 +164,7 @@ export class Particle {
         return res;
     }
 
-    public update(delta: number): void {
+    public update(index: number, delta: number): void {
         const container = this.container;
         const options = container.options;
 
@@ -171,6 +176,15 @@ export class Particle {
         /* events */
         if (Utils.isInArray(HoverMode.grab, hoverMode)) {
             this.grabber.grab();
+        }
+
+        //  New interactivity `connect` which would just connect the particles on hover
+
+        if (Utils.isInArray(HoverMode.connect, options.interactivity.events.onhover.mode)) {
+            for (let j = index + 1; j < container.particles.array.length; j++) {
+                const p2 = container.particles.array[j];
+                this.connecter.connect(p2);
+            }
         }
 
         if (Utils.isInArray(HoverMode.bubble, hoverMode) || Utils.isInArray(ClickMode.bubble, clickMode)) {

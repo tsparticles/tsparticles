@@ -2,12 +2,13 @@
 
 import {MoveDirection} from "../../Enums/MoveDirection";
 import {InteractivityDetect} from "../../Enums/InteractivityDetect";
-import {IOptions} from "../../Interfaces/IOptions";
+import {IOptions} from "../../Interfaces/Options/IOptions";
 import {ShapeType} from "../../Enums/ShapeType";
 import {ClickMode} from "../../Enums/ClickMode";
 import {HoverMode} from "../../Enums/HoverMode";
 import {OutMode} from "../../Enums/OutMode";
 import {PolygonMaskType} from "../../Enums/PolygonMaskType";
+import {DivMode} from "../../Enums/DivMode";
 
 export class Constants {
     public static readonly canvasClass: string = "tsparticles-canvas-el";
@@ -19,6 +20,11 @@ export class Constants {
                 onclick: {
                     enable: true,
                     mode: ClickMode.push,
+                },
+                ondiv: {
+                    el: "repulse-div",
+                    enable: false,
+                    mode: DivMode.repulse,
                 },
                 onhover: {
                     enable: true,
@@ -37,6 +43,13 @@ export class Constants {
                     duration: 0.4,
                     opacity: 1,
                     size: 80,
+                },
+                connect: {
+                    distance: 80,
+                    line_linked: {
+                        opacity: 0.5,
+                    },
+                    radius: 60,
                 },
                 grab: {
                     distance: 100,
@@ -61,7 +74,9 @@ export class Constants {
                 value: "#fff",
             },
             line_linked: {
+                blink: false,
                 color: "#fff",
+                consent: false,
                 distance: 100,
                 enable: true,
                 opacity: 1,
@@ -86,6 +101,7 @@ export class Constants {
                     enable: true,
                     value_area: 800,
                 },
+                limit: 0,
                 value: 400,
             },
             opacity: {

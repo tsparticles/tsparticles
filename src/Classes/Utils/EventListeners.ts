@@ -72,9 +72,11 @@ export class EventListeners {
             const mouseEvent = e as MouseEvent;
 
             if (container.interactivity.element === window) {
+                const clientRect = container.canvas.element.getBoundingClientRect();
+                
                 pos = {
-                    x: mouseEvent.clientX,
-                    y: mouseEvent.clientY,
+                    x: mouseEvent.clientX - clientRect.left,
+                    y: mouseEvent.clientY - clientRect.top,
                 };
             } else if (options.interactivity.detect_on === InteractivityDetect.parent) {
                 const source = mouseEvent.target as HTMLElement;
@@ -83,6 +85,7 @@ export class EventListeners {
                 if (source && target) {
                     const sourceRect = source.getBoundingClientRect();
                     const targetRect = target.getBoundingClientRect();
+
                     pos = {
                         x: mouseEvent.offsetX + sourceRect.left - targetRect.left,
                         y: mouseEvent.offsetY + sourceRect.top - targetRect.top,
@@ -113,8 +116,8 @@ export class EventListeners {
         container.interactivity.mouse.position = pos;
 
         if (container.retina.isRetina) {
-            container.interactivity.mouse.position.x *= container.canvas.pxratio;
-            container.interactivity.mouse.position.y *= container.canvas.pxratio;
+            container.interactivity.mouse.position.x *= container.canvas.pxRatio;
+            container.interactivity.mouse.position.y *= container.canvas.pxRatio;
         }
 
         container.interactivity.status = "mousemove";

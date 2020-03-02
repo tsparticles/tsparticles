@@ -3,6 +3,7 @@
 import {Container} from "../Container";
 import {Particle} from "../Particle";
 import {Utils} from "../Utils/Utils";
+import {IRgb} from "../../Interfaces/IRgb";
 
 export class Grabber {
     private readonly container: Container;
@@ -35,14 +36,24 @@ export class Grabber {
                 if (opacityLine > 0) {
                     /* style */
                     const optColor = options.particles.line_linked.color;
-                    const lineColor = container.particles.lineLinkedColor || Utils.hexToRgb(optColor);
+                    let lineColor = container.particles.lineLinkedColor || Utils.hexToRgb(optColor);
+
+                    if (lineColor == "random") {
+                        lineColor = Utils.getRandomColorRGBA();
+                    }
 
                     container.particles.lineLinkedColor = lineColor;
 
-                    const colorLine = container.particles.lineLinkedColor || {r: 127, g: 127, b: 127};
+                    let colorLine: IRgb = {r: 127, g: 127, b: 127};
                     const ctx = container.canvas.context;
 
                     if (ctx) {
+                        if (container.particles.lineLinkedColor == "random") {
+                            colorLine = Utils.getRandomColorRGBA();
+                        } else {
+                            colorLine = container.particles.lineLinkedColor as IRgb || colorLine;
+                        }
+
                         const strokeStyle = `rgba(${colorLine.r},${colorLine.g},${colorLine.b},${opacityLine})`;
 
                         ctx.strokeStyle = strokeStyle;
