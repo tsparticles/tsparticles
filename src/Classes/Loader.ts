@@ -19,7 +19,7 @@ export class Loader {
         return Loader.dom()[index];
     }
 
-    public static loadFromArray(tagId: string, params: Array<IOptions>, index?: number): Container | undefined {
+    public static loadFromArray(tagId: string, params: IOptions[], index?: number): Container | undefined {
         let idx: number;
 
         if (index === undefined || index < 0 || index >= params.length) {

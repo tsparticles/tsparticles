@@ -54,7 +54,7 @@ window.cancelRequestAnimFrame = (() => {
 /* ---------- tsParticles functions - start ------------ */
 
 class Main {
-    public loadFromArray(tagId: string, params: Array<IOptions>, index?: number): Container | undefined {
+    public loadFromArray(tagId: string, params: IOptions[], index?: number): Container | undefined {
         return Loader.loadFromArray(tagId, params, index);
     }
 
