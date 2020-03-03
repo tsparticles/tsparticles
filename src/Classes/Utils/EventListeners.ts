@@ -1,6 +1,6 @@
 "use strict";
 
-import {ClickMode} from "../../Enums/ClickMode";
+import {ClickMode} from "../../Enums/Modes/ClickMode";
 import {Container} from "../Container";
 import {InteractivityDetect} from "../../Enums/InteractivityDetect";
 import {ICoordinates} from "../../Interfaces/ICoordinates";

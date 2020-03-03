@@ -4,11 +4,11 @@ import {MoveDirection} from "../../Enums/MoveDirection";
 import {InteractivityDetect} from "../../Enums/InteractivityDetect";
 import {IOptions} from "../../Interfaces/Options/IOptions";
 import {ShapeType} from "../../Enums/ShapeType";
-import {ClickMode} from "../../Enums/ClickMode";
-import {HoverMode} from "../../Enums/HoverMode";
+import {ClickMode} from "../../Enums/Modes/ClickMode";
+import {HoverMode} from "../../Enums/Modes/HoverMode";
 import {OutMode} from "../../Enums/OutMode";
 import {PolygonMaskType} from "../../Enums/PolygonMaskType";
-import {DivMode} from "../../Enums/DivMode";
+import {DivMode} from "../../Enums/Modes/DivMode";
 
 /**
  * Project's constants

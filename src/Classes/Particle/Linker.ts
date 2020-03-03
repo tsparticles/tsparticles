@@ -9,7 +9,7 @@ export class Linker {
 
     constructor(container: Container, particle: Particle) {
         this.container = container;
-        this.particle = particle
+        this.particle = particle;
     }
 
     public link(p2: Particle): void {

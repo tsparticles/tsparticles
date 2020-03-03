@@ -1,4 +1,4 @@
-import {DivMode} from "../../../../Enums/DivMode";
+import {DivMode} from "../../../../Enums/Modes/DivMode";
 
 export interface IOptionsInteractivityEventDiv {
     enable: boolean;

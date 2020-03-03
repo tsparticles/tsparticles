@@ -1,4 +1,4 @@
-import {HoverMode} from "../../../../Enums/HoverMode";
+import {HoverMode} from "../../../../Enums/Modes/HoverMode";
 import {IOptionsInteractivityEventHoverParallax} from "./IOptionsInteractivityEventHoverParallax";
 
 export interface IOptionsInteractivityEventHover {

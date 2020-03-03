@@ -46,8 +46,8 @@ export class Canvas {
         this.container = container;
         this.element = canvasEl;
         this.dimension = {
+            height: canvasEl.offsetHeight,
             width: canvasEl.offsetWidth,
-            height: canvasEl.offsetHeight
         };
         this.tagId = tagId;
         this.pxRatio = 1;

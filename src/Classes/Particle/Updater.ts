@@ -4,7 +4,7 @@ import {Container} from "../Container";
 import {OutMode} from "../../Enums/OutMode";
 import {Particle} from "../Particle";
 import {Utils} from "../Utils/Utils";
-import {ClickMode} from "../../Enums/ClickMode";
+import {ClickMode} from "../../Enums/Modes/ClickMode";
 import {PolygonMaskType} from "../../Enums/PolygonMaskType";
 
 /**
