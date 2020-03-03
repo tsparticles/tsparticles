@@ -57,9 +57,7 @@ export class Grabber {
                             colorLine = container.particles.lineLinkedColor as IRgb || colorLine;
                         }
 
-                        const strokeStyle = `rgba(${colorLine.r},${colorLine.g},${colorLine.b},${opacityLine})`;
-
-                        ctx.strokeStyle = strokeStyle;
+                        ctx.strokeStyle = `rgba(${colorLine.r},${colorLine.g},${colorLine.b},${opacityLine})`;
                         ctx.lineWidth = options.particles.line_linked.width;
                         // container.canvas.ctx.lineCap = "round"; /* performance issue */
                         /* path */
