@@ -1,6 +1,5 @@
 import {Container} from "../Container";
 import {Particle} from "../Particle";
-import {IRgb} from "../../Interfaces/IRgb";
 import {Linker} from "./Linker";
 import {Attracter} from "./Attracter";
 import {Bouncer} from "./Bouncer";
