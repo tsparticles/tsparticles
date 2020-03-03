@@ -86,8 +86,8 @@
 							<ul class="tsd-index-list">
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-static"><a href="_classes_utils_utils_.utils.html#clamp" class="tsd-kind-icon">clamp</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-static"><a href="_classes_utils_utils_.utils.html#deepextend" class="tsd-kind-icon">deep<wbr>Extend</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-static"><a href="_classes_utils_utils_.utils.html#getparticlebasevelocity" class="tsd-kind-icon">get<wbr>Particle<wbr>Base<wbr>Velocity</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-static"><a href="_classes_utils_utils_.utils.html#getparticlecolor" class="tsd-kind-icon">get<wbr>Particle<wbr>Color</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-static"><a href="_classes_utils_utils_.utils.html#getparticlevelbase" class="tsd-kind-icon">get<wbr>Particle<wbr>Vel<wbr>Base</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-static"><a href="_classes_utils_utils_.utils.html#getrandomcolorrgba" class="tsd-kind-icon">get<wbr>Random<wbr>ColorRGBA</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-static"><a href="_classes_utils_utils_.utils.html#getstylefromcolor" class="tsd-kind-icon">get<wbr>Style<wbr>From<wbr>Color</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-static"><a href="_classes_utils_utils_.utils.html#hextorgb" class="tsd-kind-icon">hex<wbr>ToRgb</a></li>
@@ -112,19 +112,33 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/matteobruni/tsparticles/blob/94a0c0f/src/Classes/Utils/Utils.ts#L64">Classes/Utils/Utils.ts:64</a></li>
+									<li>Defined in <a href="https://github.com/matteobruni/tsparticles/blob/3ed894a/src/Classes/Utils/Utils.ts#L80">Classes/Utils/Utils.ts:80</a></li>
 								</ul>
 							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Clamps a number between a minimum and maximum value</p>
+								</div>
+							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
 									<h5>num: <span class="tsd-signature-type">number</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>the source number</p>
+									</div>
 								</li>
 								<li>
 									<h5>min: <span class="tsd-signature-type">number</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>the minimum value</p>
+									</div>
 								</li>
 								<li>
 									<h5>max: <span class="tsd-signature-type">number</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>the maximum value</p>
+									</div>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">number</span></h4>
@@ -141,19 +155,61 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/matteobruni/tsparticles/blob/94a0c0f/src/Classes/Utils/Utils.ts#L72">Classes/Utils/Utils.ts:72</a></li>
+									<li>Defined in <a href="https://github.com/matteobruni/tsparticles/blob/3ed894a/src/Classes/Utils/Utils.ts#L98">Classes/Utils/Utils.ts:98</a></li>
 								</ul>
 							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Extend destination object with source values</p>
+								</div>
+							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
 									<h5>destination: <span class="tsd-signature-type">any</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>the object to extend</p>
+									</div>
 								</li>
 								<li>
 									<h5>source: <span class="tsd-signature-type">any</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>the source providing new values</p>
+									</div>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">any</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-static">
+					<a name="getparticlebasevelocity" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagStatic">Static</span> get<wbr>Particle<wbr>Base<wbr>Velocity</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-static">
+						<li class="tsd-signature tsd-kind-icon">get<wbr>Particle<wbr>Base<wbr>Velocity<span class="tsd-signature-symbol">(</span>options<span class="tsd-signature-symbol">: </span><a href="../interfaces/_interfaces_options_ioptions_.ioptions.html" class="tsd-signature-type">IOptions</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="../interfaces/_interfaces_icoordinates_.icoordinates.html" class="tsd-signature-type">ICoordinates</a></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/matteobruni/tsparticles/blob/3ed894a/src/Classes/Utils/Utils.ts#L134">Classes/Utils/Utils.ts:134</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Get Particle base velocity</p>
+								</div>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>options: <a href="../interfaces/_interfaces_options_ioptions_.ioptions.html" class="tsd-signature-type">IOptions</a></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>the options to use for calculating the velocity</p>
+									</div>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <a href="../interfaces/_interfaces_icoordinates_.icoordinates.html" class="tsd-signature-type">ICoordinates</a></h4>
 						</li>
 					</ul>
 				</section>
@@ -167,16 +223,27 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/matteobruni/tsparticles/blob/94a0c0f/src/Classes/Utils/Utils.ts#L129">Classes/Utils/Utils.ts:129</a></li>
+									<li>Defined in <a href="https://github.com/matteobruni/tsparticles/blob/3ed894a/src/Classes/Utils/Utils.ts#L175">Classes/Utils/Utils.ts:175</a></li>
 								</ul>
 							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Gets the particles color</p>
+								</div>
+							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
 									<h5>options: <a href="../interfaces/_interfaces_options_ioptions_.ioptions.html" class="tsd-signature-type">IOptions</a></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>the options to use for calculating the color</p>
+									</div>
 								</li>
 								<li>
 									<h5>color: <span class="tsd-signature-symbol">{ </span>value<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol"> | </span><a href="../interfaces/_interfaces_icolor_.icolor.html" class="tsd-signature-type">IColor</a><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> }</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>the input color to convert in <a href="../interfaces/_interfaces_irgb_.irgb.html">IRgb</a> object</p>
+									</div>
 									<ul class="tsd-parameters">
 										<li class="tsd-parameter">
 											<h5>value<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol"> | </span><a href="../interfaces/_interfaces_icolor_.icolor.html" class="tsd-signature-type">IColor</a><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">string</span></h5>
@@ -185,29 +252,6 @@
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <a href="../interfaces/_interfaces_irgb_.irgb.html" class="tsd-signature-type">IRgb</a><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">null</span></h4>
-						</li>
-					</ul>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-static">
-					<a name="getparticlevelbase" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagStatic">Static</span> get<wbr>Particle<wbr>Vel<wbr>Base</h3>
-					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-static">
-						<li class="tsd-signature tsd-kind-icon">get<wbr>Particle<wbr>Vel<wbr>Base<span class="tsd-signature-symbol">(</span>options<span class="tsd-signature-symbol">: </span><a href="../interfaces/_interfaces_options_ioptions_.ioptions.html" class="tsd-signature-type">IOptions</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="../interfaces/_interfaces_icoordinates_.icoordinates.html" class="tsd-signature-type">ICoordinates</a></li>
-					</ul>
-					<ul class="tsd-descriptions">
-						<li class="tsd-description">
-							<aside class="tsd-sources">
-								<ul>
-									<li>Defined in <a href="https://github.com/matteobruni/tsparticles/blob/94a0c0f/src/Classes/Utils/Utils.ts#L93">Classes/Utils/Utils.ts:93</a></li>
-								</ul>
-							</aside>
-							<h4 class="tsd-parameters-title">Parameters</h4>
-							<ul class="tsd-parameters">
-								<li>
-									<h5>options: <a href="../interfaces/_interfaces_options_ioptions_.ioptions.html" class="tsd-signature-type">IOptions</a></h5>
-								</li>
-							</ul>
-							<h4 class="tsd-returns-title">Returns <a href="../interfaces/_interfaces_icoordinates_.icoordinates.html" class="tsd-signature-type">ICoordinates</a></h4>
 						</li>
 					</ul>
 				</section>
@@ -221,7 +265,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/matteobruni/tsparticles/blob/94a0c0f/src/Classes/Utils/Utils.ts#L56">Classes/Utils/Utils.ts:56</a></li>
+									<li>Defined in <a href="https://github.com/matteobruni/tsparticles/blob/3ed894a/src/Classes/Utils/Utils.ts#L65">Classes/Utils/Utils.ts:65</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -233,6 +277,9 @@
 							<ul class="tsd-parameters">
 								<li>
 									<h5><span class="tsd-flag ts-flagOptional">Optional</span> min: <span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">number</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>a minimum seed value for all 3 values</p>
+									</div>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <a href="../interfaces/_interfaces_irgb_.irgb.html" class="tsd-signature-type">IRgb</a></h4>
@@ -249,13 +296,21 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/matteobruni/tsparticles/blob/94a0c0f/src/Classes/Utils/Utils.ts#L89">Classes/Utils/Utils.ts:89</a></li>
+									<li>Defined in <a href="https://github.com/matteobruni/tsparticles/blob/3ed894a/src/Classes/Utils/Utils.ts#L126">Classes/Utils/Utils.ts:126</a></li>
 								</ul>
 							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Prepares a rgba() css function from a <a href="../interfaces/_interfaces_irgb_.irgb.html">IRgb</a> object</p>
+								</div>
+							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
 									<h5>color: <a href="../interfaces/_interfaces_irgb_.irgb.html" class="tsd-signature-type">IRgb</a></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>the <a href="../interfaces/_interfaces_irgb_.irgb.html">IRgb</a> color to convert</p>
+									</div>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">string</span></h4>
@@ -272,13 +327,21 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/matteobruni/tsparticles/blob/94a0c0f/src/Classes/Utils/Utils.ts#L12">Classes/Utils/Utils.ts:12</a></li>
+									<li>Defined in <a href="https://github.com/matteobruni/tsparticles/blob/3ed894a/src/Classes/Utils/Utils.ts#L16">Classes/Utils/Utils.ts:16</a></li>
 								</ul>
 							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Converts hexadecimal string (HTML color code) in a <a href="../interfaces/_interfaces_irgb_.irgb.html">IRgb</a> object</p>
+								</div>
+							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
 									<h5>hex: <span class="tsd-signature-type">string</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>the hexadecimal string (#f70 or #ff7700)</p>
+									</div>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <a href="../interfaces/_interfaces_irgb_.irgb.html" class="tsd-signature-type">IRgb</a><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">null</span></h4>
@@ -295,13 +358,20 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/matteobruni/tsparticles/blob/94a0c0f/src/Classes/Utils/Utils.ts#L30">Classes/Utils/Utils.ts:30</a></li>
+									<li>Defined in <a href="https://github.com/matteobruni/tsparticles/blob/3ed894a/src/Classes/Utils/Utils.ts#L38">Classes/Utils/Utils.ts:38</a></li>
 								</ul>
 							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Converts a Hue Saturation Lightness (<a href="../interfaces/_interfaces_ihsl_.ihsl.html">IHsl</a>) object in a <a href="../interfaces/_interfaces_irgb_.irgb.html">IRgb</a> object</p>
+								</div>
+							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
 									<h5>hsl: <a href="../interfaces/_interfaces_ihsl_.ihsl.html" class="tsd-signature-type">IHsl</a></h5>
+									<div class="tsd-comment tsd-typography">
+									</div>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <a href="../interfaces/_interfaces_irgb_.irgb.html" class="tsd-signature-type">IRgb</a></h4>
@@ -318,9 +388,11 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/matteobruni/tsparticles/blob/94a0c0f/src/Classes/Utils/Utils.ts#L166">Classes/Utils/Utils.ts:166</a></li>
+									<li>Defined in <a href="https://github.com/matteobruni/tsparticles/blob/3ed894a/src/Classes/Utils/Utils.ts#L218">Classes/Utils/Utils.ts:218</a></li>
 								</ul>
 							</aside>
+							<div class="tsd-comment tsd-typography">
+							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
@@ -331,6 +403,8 @@
 								</li>
 								<li>
 									<h5>t: <span class="tsd-signature-type">number</span></h5>
+									<div class="tsd-comment tsd-typography">
+									</div>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">number</span></h4>
@@ -347,9 +421,14 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/matteobruni/tsparticles/blob/94a0c0f/src/Classes/Utils/Utils.ts#L68">Classes/Utils/Utils.ts:68</a></li>
+									<li>Defined in <a href="https://github.com/matteobruni/tsparticles/blob/3ed894a/src/Classes/Utils/Utils.ts#L89">Classes/Utils/Utils.ts:89</a></li>
 								</ul>
 							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Check if a value is equal to the destination, if same type, or is in the provided array</p>
+								</div>
+							</div>
 							<h4 class="tsd-type-parameters-title">Type parameters</h4>
 							<ul class="tsd-type-parameters">
 								<li>
@@ -360,9 +439,15 @@
 							<ul class="tsd-parameters">
 								<li>
 									<h5>value: <span class="tsd-signature-type">T</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>the value to check</p>
+									</div>
 								</li>
 								<li>
 									<h5>array: <span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">T</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>the data array or single value</p>
+									</div>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">boolean</span></h4>
@@ -379,9 +464,11 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/matteobruni/tsparticles/blob/94a0c0f/src/Classes/Utils/Utils.ts#L85">Classes/Utils/Utils.ts:85</a></li>
+									<li>Defined in <a href="https://github.com/matteobruni/tsparticles/blob/3ed894a/src/Classes/Utils/Utils.ts#L118">Classes/Utils/Utils.ts:118</a></li>
 								</ul>
 							</aside>
+							<div class="tsd-comment tsd-typography">
+							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
@@ -395,6 +482,8 @@
 								</li>
 								<li>
 									<h5>weight2: <span class="tsd-signature-type">number</span></h5>
+									<div class="tsd-comment tsd-typography">
+									</div>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">number</span></h4>
@@ -428,10 +517,10 @@
 								<a href="_classes_utils_utils_.utils.html#deepextend" class="tsd-kind-icon">deep<wbr>Extend</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-static">
-								<a href="_classes_utils_utils_.utils.html#getparticlecolor" class="tsd-kind-icon">get<wbr>Particle<wbr>Color</a>
+								<a href="_classes_utils_utils_.utils.html#getparticlebasevelocity" class="tsd-kind-icon">get<wbr>Particle<wbr>Base<wbr>Velocity</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-static">
-								<a href="_classes_utils_utils_.utils.html#getparticlevelbase" class="tsd-kind-icon">get<wbr>Particle<wbr>Vel<wbr>Base</a>
+								<a href="_classes_utils_utils_.utils.html#getparticlecolor" class="tsd-kind-icon">get<wbr>Particle<wbr>Color</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-static">
 								<a href="_classes_utils_utils_.utils.html#getrandomcolorrgba" class="tsd-kind-icon">get<wbr>Random<wbr>ColorRGBA</a>
@@ -529,5 +618,14 @@
 <div class="overlay"></div>
 <script src="../assets/js/main.js"></script>
 <script>if (location.protocol == 'file:') document.write('<script src="../assets/js/search.js"><' + '/script>');</script>
+<script>
+        (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+                m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+        ga('create', 'UA-159372955-1', 'auto');
+        ga('send', 'pageview');
+    </script>
 </body>
 </html>

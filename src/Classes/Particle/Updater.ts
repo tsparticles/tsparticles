@@ -8,6 +8,9 @@ import {ClickMode} from "../../Enums/ClickMode";
 import {PolygonMaskType} from "../../Enums/PolygonMaskType";
 import {IRgb} from "../../Interfaces/IRgb";
 
+/**
+ * Particle updater, it manages movement
+ */
 export class Updater {
     private readonly particle: Particle;
     private readonly container: Container;
@@ -262,15 +265,15 @@ export class Updater {
         if (outMode === OutMode.bounce || outMode === OutMode.bounceVertical) {
             newPos = {
                 x_left: particle.radius,
-                x_right: container.canvas.width,
-                y_bottom: container.canvas.height,
+                x_right: container.canvas.dimension.width,
+                y_bottom: container.canvas.dimension.height,
                 y_top: particle.radius,
             };
         } else {
             newPos = {
                 x_left: -particle.radius - particle.offset.x,
-                x_right: container.canvas.width + particle.radius + particle.offset.x,
-                y_bottom: container.canvas.height + particle.radius - particle.offset.y,
+                x_right: container.canvas.dimension.width + particle.radius + particle.offset.x,
+                y_bottom: container.canvas.dimension.height + particle.radius - particle.offset.y,
                 y_top: -particle.radius - particle.offset.y,
             };
         }
@@ -278,8 +281,8 @@ export class Updater {
         if (outMode === OutMode.destroy) {
             if (particle.position.x + particle.radius < 0 ||
                 particle.position.y + particle.radius < 0 ||
-                particle.position.x - particle.radius > container.canvas.width ||
-                particle.position.y - particle.radius > container.canvas.height) {
+                particle.position.x - particle.radius > container.canvas.dimension.width ||
+                particle.position.y - particle.radius > container.canvas.dimension.height) {
                 const idx = container.particles.array.indexOf(particle);
                 container.particles.array.splice(idx, 1);
 
@@ -291,20 +294,20 @@ export class Updater {
                 }
             }
         } else {
-            if (particle.position.x - particle.radius > container.canvas.width - particle.offset.x) {
+            if (particle.position.x - particle.radius > container.canvas.dimension.width - particle.offset.x) {
                 particle.position.x = newPos.x_left;
-                particle.position.y = Math.random() * container.canvas.height;
+                particle.position.y = Math.random() * container.canvas.dimension.height;
             } else if (particle.position.x + particle.radius < 0 - particle.offset.x) {
                 particle.position.x = newPos.x_right;
-                particle.position.y = Math.random() * container.canvas.height;
+                particle.position.y = Math.random() * container.canvas.dimension.height;
             }
 
-            if (particle.position.y - particle.radius > container.canvas.height - particle.offset.y) {
+            if (particle.position.y - particle.radius > container.canvas.dimension.height - particle.offset.y) {
                 particle.position.y = newPos.y_top;
-                particle.position.x = Math.random() * container.canvas.width;
+                particle.position.x = Math.random() * container.canvas.dimension.width;
             } else if (particle.position.y + particle.radius < 0 - particle.offset.y) {
                 particle.position.y = newPos.y_bottom;
-                particle.position.x = Math.random() * container.canvas.width;
+                particle.position.x = Math.random() * container.canvas.dimension.width;
             }
         }
     }
@@ -356,11 +359,11 @@ export class Updater {
             const x = particle.position.x + particle.offset.x;
             const y = particle.position.y + particle.offset.y;
 
-            if (x + particle.radius > container.canvas.width || x - particle.radius < 0) {
+            if (x + particle.radius > container.canvas.dimension.width || x - particle.radius < 0) {
                 particle.velocity.horizontal = -particle.velocity.horizontal;
             }
 
-            if (y + particle.radius > container.canvas.height || y - particle.radius < 0) {
+            if (y + particle.radius > container.canvas.dimension.height || y - particle.radius < 0) {
                 particle.velocity.vertical = -particle.velocity.vertical;
             }
         }
@@ -370,7 +373,7 @@ export class Updater {
         const container = this.container;
         const particle = this.particle;
 
-        if (particle.position.y + particle.radius > container.canvas.height) {
+        if (particle.position.y + particle.radius > container.canvas.dimension.height) {
             particle.velocity.vertical = -particle.velocity.vertical;
         }
 
@@ -383,7 +386,7 @@ export class Updater {
         const container = this.container;
         const particle = this.particle;
 
-        if (particle.position.x + particle.radius > container.canvas.width) {
+        if (particle.position.x + particle.radius > container.canvas.dimension.width) {
             particle.velocity.horizontal = -particle.velocity.horizontal;
         } else if (particle.position.x - particle.radius < 0) {
             particle.velocity.horizontal = -particle.velocity.horizontal;

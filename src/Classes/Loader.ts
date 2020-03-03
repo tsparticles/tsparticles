@@ -6,7 +6,13 @@ import {IOptions} from "../Interfaces/Options/IOptions";
 
 let tsParticlesDom: Container[] = [];
 
+/**
+ * Main class for creating the [[Container]] objects
+ */
 export class Loader {
+    /**
+     * All the [[Container]] objects loaded
+     */
     public static dom(): Container[] {
         if (!tsParticlesDom) {
             tsParticlesDom = [];
@@ -15,10 +21,20 @@ export class Loader {
         return tsParticlesDom;
     }
 
+    /**
+     * Retrieves a [[Container]] from all the objects loaded
+     * @param index the object index
+     */
     public static domItem(index: number): Container {
         return Loader.dom()[index];
     }
 
+    /**
+     * Loads an options object from the provided array to create a [[Container]] object.
+     * @param tagId the particles container element id
+     * @param params the options array to get the item from
+     * @param index if provided gets the corresponding item from the array
+     */
     public static loadFromArray(tagId: string, params: IOptions[], index?: number): Container | undefined {
         let idx: number;
 
@@ -31,6 +47,11 @@ export class Loader {
         return Loader.load(tagId, params[idx]);
     }
 
+    /**
+     * Loads the provided options to create a [[Container]] object.
+     * @param tagId the particles container element id
+     * @param params the options object to initialize the [[Container]]
+     */
     public static load(tagId: string, params: IOptions): Container | undefined {
         /* elements */
         const tag = document.getElementById(tagId);
@@ -78,6 +99,12 @@ export class Loader {
         return newItem;
     }
 
+    /**
+     * Loads the provided json with a GET request. The content will be used to create a [[Container]] object.
+     * This method is async, so if you need a callback refer to JavaScript function `fetch`
+     * @param tagId the particles container element id
+     * @param jsonUrl the json path to use in the GET request
+     */
     public static async loadJSON(tagId: string, jsonUrl: string): Promise<Container | undefined> {
         /* load json config */
         const response = await fetch(jsonUrl);
@@ -96,6 +123,10 @@ export class Loader {
         }
     };
 
+    /**
+     * Adds an additional click handler to all the loaded [[Container]] objects.
+     * @param callback the function called after the click event is fired
+     */
     public static setOnClickHandler(callback: EventListenerOrEventListenerObject): void {
         const dom = Loader.dom();
 

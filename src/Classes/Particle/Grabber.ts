@@ -5,6 +5,9 @@ import {Particle} from "../Particle";
 import {Utils} from "../Utils/Utils";
 import {IRgb} from "../../Interfaces/IRgb";
 
+/**
+ * Particle grab manager
+ */
 export class Grabber {
     private readonly container: Container;
     private readonly particle: Particle;

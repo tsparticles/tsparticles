@@ -20,6 +20,9 @@ import {PolygonMaskType} from "../Enums/PolygonMaskType";
 import {Connecter} from "./Particle/Connecter";
 import {IRgb} from "../Interfaces/IRgb";
 
+/**
+ * The single particle object
+ */
 export class Particle {
     public radius: number;
     public size: ISize;
@@ -137,7 +140,7 @@ export class Particle {
     }
 
     private static calcVelocity(options: IOptions): IVelocity {
-        const velbase = Utils.getParticleVelBase(options);
+        const velbase = Utils.getParticleBaseVelocity(options);
         const res = {
             horizontal: 0,
             vertical: 0,
@@ -230,8 +233,8 @@ export class Particle {
             const dist = Math.sqrt(dx * dx + dy * dy);
 
             if (dist <= p.radius + p2.radius) {
-                p.position.x = position ? position.x : Math.random() * container.canvas.width;
-                p.position.y = position ? position.y : Math.random() * container.canvas.height;
+                p.position.x = position ? position.x : Math.random() * container.canvas.dimension.width;
+                p.position.y = position ? position.y : Math.random() * container.canvas.dimension.height;
 
                 p.checkOverlap();
             }
@@ -252,18 +255,18 @@ export class Particle {
                 pos.y = randp.y;
             }
         } else {
-            pos.x = position ? position.x : Math.random() * container.canvas.width;
-            pos.y = position ? position.y : Math.random() * container.canvas.height;
+            pos.x = position ? position.x : Math.random() * container.canvas.dimension.width;
+            pos.y = position ? position.y : Math.random() * container.canvas.dimension.height;
         }
 
         /* check position  - into the canvas */
-        if (pos.x > container.canvas.width - this.radius * 2) {
+        if (pos.x > container.canvas.dimension.width - this.radius * 2) {
             pos.x -= this.radius;
         } else if (pos.x < this.radius * 2) {
             pos.x += this.radius;
         }
 
-        if (pos.y > container.canvas.height - this.radius * 2) {
+        if (pos.y > container.canvas.dimension.height - this.radius * 2) {
             pos.y -= this.radius;
         } else if (pos.y < this.radius * 2) {
             pos.y += this.radius;
