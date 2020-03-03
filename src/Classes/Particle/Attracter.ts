@@ -7,7 +7,7 @@ export class Attracter {
 
     constructor(container: Container, particle: Particle) {
         this.container = container;
-        this.particle = particle
+        this.particle = particle;
     }
 
     public attract(p2: Particle): void {

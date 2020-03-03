@@ -1,12 +1,12 @@
 "use strict";
 
-import {ClickMode} from "../../Enums/ClickMode";
+import {ClickMode} from "../../Enums/Modes/ClickMode";
 import {Container} from "../Container";
-import {HoverMode} from "../../Enums/HoverMode";
+import {HoverMode} from "../../Enums/Modes/HoverMode";
 import {OutMode} from "../../Enums/OutMode";
 import {Particle} from "../Particle";
 import {Utils} from "../Utils/Utils";
-import {DivMode} from "../../Enums/DivMode";
+import {DivMode} from "../../Enums/Modes/DivMode";
 
 /**
  * Particle repulse manager

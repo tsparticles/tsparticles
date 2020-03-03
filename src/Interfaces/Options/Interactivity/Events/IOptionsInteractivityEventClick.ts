@@ -1,4 +1,4 @@
-import {ClickMode} from "../../../../Enums/ClickMode";
+import {ClickMode} from "../../../../Enums/Modes/ClickMode";
 
 export interface IOptionsInteractivityEventClick {
     enable: boolean;
