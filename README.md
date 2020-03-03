@@ -9,6 +9,8 @@
 [![Code Inspector](https://www.code-inspector.com/project/4056/score/svg)](https://frontend.code-inspector.com/public/project/4056/tsparticles/dashboard)
 [![Code Inspector](https://www.code-inspector.com/project/4056/status/svg)](https://frontend.code-inspector.com/public/project/4056/tsparticles/dashboard)
 
+***API documentation and Development references here: <https://particles.matteobruni.it/docs/>***
+
 ### A lightweight TypeScript library for creating particles
 
 [Particles.js](https://github.com/VincentGarreau/particles.js) converted in TypeScript
