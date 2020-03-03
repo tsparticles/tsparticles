@@ -21,10 +21,11 @@ export class Connecter {
         const container = this.container;
         const options = container.options;
         const particle = this.particle;
-
         const ctx = container.canvas.context;
 
-        if (!ctx) return;
+        if (!ctx) {
+            return;
+        }
 
         if (options.interactivity.events.onhover.enable && container.interactivity.status == 'mousemove') {
             const xDiff = Math.abs(particle.position.x - destParticle.position.x);
@@ -38,7 +39,9 @@ export class Connecter {
             if (xDiff < distMax && yDiff < distMax && xCoreDiff < connectAreaRadius && yCoreDiff < connectAreaRadius) {
                 const lineStyle = this.lineStyle(destParticle);
 
-                if (!lineStyle) return;
+                if (!lineStyle) {
+                    return;
+                }
 
                 ctx.beginPath();
                 ctx.strokeStyle = lineStyle;
