@@ -1,4 +1,4 @@
-import {IOptions} from "./IOptions";
+import {IOptions} from "./Options/IOptions";
 import {Container} from "../Classes/Container";
 
 export interface IParticlesJs {

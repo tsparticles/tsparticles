@@ -23,6 +23,9 @@ type SvgRelativeCoordinatesTypes =
     | SVGPathSegLinetoRel
     | SVGPathSegMovetoRel;
 
+/**
+ * Polygon Mask manager
+ */
 export class PolygonMask {
     public redrawTimeout?: number;
     public raw?: number[][];
@@ -57,8 +60,8 @@ export class PolygonMask {
             }
 
             if (this.raw.length > 0) {
-                const x = position ? position.x : Math.random() * container.canvas.width;
-                const y = position ? position.y : Math.random() * container.canvas.height;
+                const x = position ? position.x : Math.random() * container.canvas.dimension.width;
+                const y = position ? position.y : Math.random() * container.canvas.dimension.height;
                 let inside = false;
 
                 for (let i = 0, j = this.raw.length - 1; i < this.raw.length; j = i++) {
@@ -92,8 +95,8 @@ export class PolygonMask {
     public randomPointInPolygon(): ICoordinates {
         const container = this.container;
         const position = {
-            x: Math.random() * container.canvas.width,
-            y: Math.random() * container.canvas.height,
+            x: Math.random() * container.canvas.dimension.width,
+            y: Math.random() * container.canvas.dimension.height,
         };
 
         if (this.checkInsidePolygon(position)) {
@@ -142,8 +145,8 @@ export class PolygonMask {
 
         /* centering of the polygon mask */
         this.offset = {
-            x: container.canvas.width / 2 - this.width / 2,
-            y: container.canvas.height / 2 - this.height / 2,
+            x: container.canvas.dimension.width / 2 - this.width / 2,
+            y: container.canvas.dimension.height / 2 - this.height / 2,
         };
 
         const len = this.path.pathSegList.numberOfItems;
@@ -154,7 +157,7 @@ export class PolygonMask {
         };
 
         for (let i = 0; i < len; i++) {
-            const segment = this.path.pathSegList.getItem(i);
+            const segment: SVGPathSeg = this.path.pathSegList.getItem(i);
 
             switch (segment.pathSegType) {
                 //

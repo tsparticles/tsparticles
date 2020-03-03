@@ -9,34 +9,41 @@ import {ISize} from "../Interfaces/ISize";
 import {IOpacity} from "../Interfaces/IOpacity";
 import {ICoordinates} from "../Interfaces/ICoordinates";
 import {IParticleImage} from "../Interfaces/IParticleImage";
-import {IOptions} from "../Interfaces/IOptions";
-import {IColor} from "../Interfaces/IColor";
+import {IOptions} from "../Interfaces/Options/IOptions";
 import {Repulser} from "./Particle/Repulser";
 import {ShapeType} from "../Enums/ShapeType";
 import {Updater} from "./Particle/Updater";
 import {Utils} from "./Utils/Utils";
-import {HoverMode} from "../Enums/HoverMode";
-import {ClickMode} from "../Enums/ClickMode";
+import {HoverMode} from "../Enums/Modes/HoverMode";
+import {ClickMode} from "../Enums/Modes/ClickMode";
 import {PolygonMaskType} from "../Enums/PolygonMaskType";
+import {Connecter} from "./Particle/Connecter";
+import {IRgb} from "../Interfaces/IRgb";
+import {InteractionManager} from "./Particle/InteractionManager";
 
+/**
+ * The single particle object
+ */
 export class Particle {
     public radius: number;
     public size: ISize;
     public initialPosition?: ICoordinates;
     public position: ICoordinates;
     public offset: ICoordinates;
-    public color: IColor;
+    public color: IRgb | null;
     public opacity: IOpacity;
     public velocity: IVelocity;
     public shape?: ShapeType;
-    public img?: IParticleImage;
+    public image?: IParticleImage;
     public readonly initialVelocity: IVelocity;
 
     private readonly updater: Updater;
     private readonly bubbler: Bubbler;
     private readonly repulser: Repulser;
+    private readonly connecter: Connecter;
     private readonly drawer: Drawer;
     private readonly grabber: Grabber;
+    private readonly interactionManager: InteractionManager;
     private readonly container: Container;
 
     /* --------- tsParticles functions - particles ----------- */
@@ -104,23 +111,25 @@ export class Particle {
         const shapeType = options.particles.shape.type;
 
         if (shapeType instanceof Array) {
-            const selectedShape = shapeType[Math.floor(Math.random() * shapeType.length)];
-
-            this.shape = selectedShape;
+            this.shape = shapeType[Math.floor(Math.random() * shapeType.length)];
         } else {
             this.shape = shapeType;
         }
 
         if (this.shape === ShapeType.image) {
             const shape = options.particles.shape;
-            this.img = {
-                ratio: shape.image.width / shape.image.height,
-                replaceColor: shape.image.replace_color,
-                src: shape.image.src,
+            const index = Math.floor(Math.random() * container.images.length);
+            const image = container.images[index];
+            const optionsImage = shape.image instanceof Array ? shape.image[index] : shape.image;
+            this.image = {
+                data: image,
+                ratio: optionsImage.width / optionsImage.height,
+                replaceColor: optionsImage.replace_color,
+                src: optionsImage.src,
             };
 
-            if (!this.img.ratio) {
-                this.img.ratio = 1;
+            if (!this.image.ratio) {
+                this.image.ratio = 1;
             }
         }
 
@@ -129,10 +138,12 @@ export class Particle {
         this.repulser = new Repulser(this.container, this);
         this.drawer = new Drawer(this.container, this, this.bubbler);
         this.grabber = new Grabber(this.container, this);
+        this.connecter = new Connecter(this.container, this);
+        this.interactionManager = new InteractionManager(this.container, this);
     }
 
     private static calcVelocity(options: IOptions): IVelocity {
-        const velbase = Utils.getParticleVelBase(options);
+        const velbase = Utils.getParticleBaseVelocity(options);
         const res = {
             horizontal: 0,
             vertical: 0,
@@ -159,7 +170,7 @@ export class Particle {
         return res;
     }
 
-    public update(delta: number): void {
+    public update(index: number, delta: number): void {
         const container = this.container;
         const options = container.options;
 
@@ -173,6 +184,15 @@ export class Particle {
             this.grabber.grab();
         }
 
+        //  New interactivity `connect` which would just connect the particles on hover
+
+        if (Utils.isInArray(HoverMode.connect, options.interactivity.events.onhover.mode)) {
+            for (let j = index + 1; j < container.particles.array.length; j++) {
+                const p2 = container.particles.array[j];
+                this.connecter.connect(p2);
+            }
+        }
+
         if (Utils.isInArray(HoverMode.bubble, hoverMode) || Utils.isInArray(ClickMode.bubble, clickMode)) {
             this.bubbler.bubble();
         }
@@ -183,23 +203,7 @@ export class Particle {
     }
 
     public interact(p2: Particle): void {
-        const container = this.container;
-        const options = container.options;
-
-        /* link particles */
-        if (options.particles.line_linked.enable) {
-            this.updater.link(p2);
-        }
-
-        /* attract particles */
-        if (options.particles.move.attract.enable) {
-            this.updater.attract(p2);
-        }
-
-        /* bounce particles */
-        if (options.particles.move.bounce) {
-            this.updater.bounce(p2);
-        }
+        this.interactionManager.interact(p2);
     }
 
     public draw(): void {
@@ -216,8 +220,8 @@ export class Particle {
             const dist = Math.sqrt(dx * dx + dy * dy);
 
             if (dist <= p.radius + p2.radius) {
-                p.position.x = position ? position.x : Math.random() * container.canvas.width;
-                p.position.y = position ? position.y : Math.random() * container.canvas.height;
+                p.position.x = position ? position.x : Math.random() * container.canvas.dimension.width;
+                p.position.y = position ? position.y : Math.random() * container.canvas.dimension.height;
 
                 p.checkOverlap();
             }
@@ -238,18 +242,18 @@ export class Particle {
                 pos.y = randp.y;
             }
         } else {
-            pos.x = position ? position.x : Math.random() * container.canvas.width;
-            pos.y = position ? position.y : Math.random() * container.canvas.height;
+            pos.x = position ? position.x : Math.random() * container.canvas.dimension.width;
+            pos.y = position ? position.y : Math.random() * container.canvas.dimension.height;
         }
 
         /* check position  - into the canvas */
-        if (pos.x > container.canvas.width - this.radius * 2) {
+        if (pos.x > container.canvas.dimension.width - this.radius * 2) {
             pos.x -= this.radius;
         } else if (pos.x < this.radius * 2) {
             pos.x += this.radius;
         }
 
-        if (pos.y > container.canvas.height - this.radius * 2) {
+        if (pos.y > container.canvas.dimension.height - this.radius * 2) {
             pos.y -= this.radius;
         } else if (pos.y < this.radius * 2) {
             pos.y += this.radius;
