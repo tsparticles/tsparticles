@@ -24,7 +24,7 @@ export class Updater {
         this.move(delta);
 
         /* parallax */
-        this.moveParallax();
+        this.moveParallax(delta);
 
         /* change opacity status */
         this.updateOpacity();
@@ -45,14 +45,15 @@ export class Updater {
         const particle = this.particle;
 
         if (options.particles.move.enable) {
-            const moveSpeed = options.particles.move.speed / 10;
+            const moveSpeed = options.particles.move.speed / 2;
+            const deltaFactor = (60 * delta) / 1000;
 
-            particle.position.x += particle.velocity.horizontal * moveSpeed * delta;
-            particle.position.y += particle.velocity.vertical * moveSpeed * delta;
+            particle.position.x += particle.velocity.horizontal * moveSpeed * deltaFactor;
+            particle.position.y += particle.velocity.vertical * moveSpeed * deltaFactor;
         }
     }
 
-    private moveParallax(): void {
+    private moveParallax(delta: number): void {
         const container = this.container;
         const options = container.options;
         const particle = this.particle;
