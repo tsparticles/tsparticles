@@ -68,7 +68,7 @@ export class Updater {
                     //  check for the color profile requested and
                     //  then return appropriate value
 
-                    if (options.particles.line_linked.color === "random") {
+                    if (color === "random") {
                         if (options.particles.line_linked.consent) {
                             container.particles.lineLinkedColor = Utils.hexToRgb(color);
                         } else if (options.particles.line_linked.blink) {
@@ -109,7 +109,8 @@ export class Updater {
                         g: Math.floor(Utils.mixComponents(sourceColor.g, destColor.g, particle.radius, p2.radius)),
                         r: Math.floor(Utils.mixComponents(sourceColor.r, destColor.r, particle.radius, p2.radius)),
                     };
-
+                } else {
+                    colorLine = container.particles.lineLinkedColor as IRgb;
                 }
 
                 if (colorLine) {
