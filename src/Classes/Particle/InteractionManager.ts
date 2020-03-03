@@ -13,7 +13,7 @@ export class InteractionManager {
 
     constructor(container: Container, particle: Particle) {
         this.container = container;
-        this.particle = particle
+        this.particle = particle;
         this.linker = new Linker(container, particle);
         this.attracter = new Attracter(container, particle);
         this.bouncer = new Bouncer(container, particle);
