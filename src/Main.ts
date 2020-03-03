@@ -16,11 +16,12 @@ import {ParticlesJS} from "./support";
 
 declare global {
     interface Window {
-        requestAnimFrame: (callback: FrameRequestCallback) => number;
+        //change from Anim to Animation to make variables consistent
+        requestAnimationFrame: (callback: FrameRequestCallback) => number;
         mozRequestAnimationFrame: (callback: FrameRequestCallback) => number;
         oRequestAnimationFrame: (callback: FrameRequestCallback) => number;
         msRequestAnimationFrame: (callback: FrameRequestCallback) => number;
-        cancelRequestAnimFrame: (handle: number) => void;
+        cancelRequestAnimationFrame: (handle: number) => void;
         webkitCancelRequestAnimationFrame: (handle: number) => void;
         mozCancelRequestAnimationFrame: (handle: number) => void;
         oCancelRequestAnimationFrame: (handle: number) => void;
@@ -33,7 +34,7 @@ declare global {
 
 /* ---------- global functions - vendors ------------ */
 
-window.requestAnimFrame = (() => {
+window.requestAnimationFrame = (() => {
     return window.requestAnimationFrame ||
         window.webkitRequestAnimationFrame ||
         window.mozRequestAnimationFrame ||
@@ -42,7 +43,7 @@ window.requestAnimFrame = (() => {
         ((callback) => window.setTimeout(callback, 1000 / 60));
 })();
 
-window.cancelRequestAnimFrame = (() => {
+window.cancelRequestAnimationFrame = (() => {
     return window.cancelAnimationFrame ||
         window.webkitCancelRequestAnimationFrame ||
         window.mozCancelRequestAnimationFrame ||

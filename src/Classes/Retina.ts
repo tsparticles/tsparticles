@@ -17,16 +17,16 @@ export class Retina {
         const options = container.options;
 
         if (options.retina_detect && window.devicePixelRatio > 1) {
-            container.canvas.pxratio = window.devicePixelRatio;
+            container.canvas.pxRatio = window.devicePixelRatio;
 
             this.isRetina = true;
         } else {
-            container.canvas.pxratio = 1;
+            container.canvas.pxRatio = 1;
 
             this.isRetina = false;
         }
 
-        const ratio = container.canvas.pxratio;
+        const ratio = container.canvas.pxRatio;
 
         container.canvas.width = container.canvas.element.offsetWidth * ratio;
         container.canvas.height = container.canvas.element.offsetHeight * ratio;
@@ -45,7 +45,7 @@ export class Retina {
     public reset(): void {
         const container = this.container;
         const options = container.options;
-        const ratio = container.canvas.pxratio;
+        const ratio = container.canvas.pxRatio;
 
         options.interactivity.modes.bubble.distance /= ratio;
         options.interactivity.modes.bubble.size /= ratio;

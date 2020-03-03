@@ -5,7 +5,8 @@ import {ICoordinates} from "../Interfaces/ICoordinates";
 import {PolygonMaskType} from "../Enums/PolygonMaskType";
 import {Particle} from "./Particle";
 
-type SvgAbsoluteCoordinatesTypes =
+//changed Svg to SVG
+type SVGAbsoluteCoordinatesTypes =
     | SVGPathSegArcAbs
     | SVGPathSegCurvetoCubicAbs
     | SVGPathSegCurvetoCubicSmoothAbs
@@ -14,7 +15,8 @@ type SvgAbsoluteCoordinatesTypes =
     | SVGPathSegLinetoAbs
     | SVGPathSegMovetoAbs;
 
-type SvgRelativeCoordinatesTypes =
+//changed Svg to SVG
+type SVGRelativeCoordinatesTypes =
     | SVGPathSegArcRel
     | SVGPathSegCurvetoCubicRel
     | SVGPathSegCurvetoCubicSmoothRel
@@ -112,7 +114,8 @@ export class PolygonMask {
      * Opera release 49
      * Opera for Android release 49
      */
-    public async parseSvgPathToPolygon(svgUrl?: string): Promise<number[][] | undefined> {
+    //changed svg to SVG
+    public async parseSVGPathToPolygon(svgUrl?: string): Promise<number[][] | undefined> {
         const container = this.container;
         const options = container.options;
         const url = svgUrl || options.polygon.url;
@@ -167,7 +170,7 @@ export class PolygonMask {
                 case window.SVGPathSeg.PATHSEG_ARC_ABS:
                 case window.SVGPathSeg.PATHSEG_CURVETO_CUBIC_SMOOTH_ABS:
                 case window.SVGPathSeg.PATHSEG_CURVETO_QUADRATIC_SMOOTH_ABS:
-                    const absSeg = segment as SvgAbsoluteCoordinatesTypes;
+                    const absSeg = segment as SVGAbsoluteCoordinatesTypes;
 
                     p.x = absSeg.x;
                     p.y = absSeg.y;
@@ -191,7 +194,7 @@ export class PolygonMask {
                 case window.SVGPathSeg.PATHSEG_ARC_REL:
                 case window.SVGPathSeg.PATHSEG_CURVETO_CUBIC_SMOOTH_REL:
                 case window.SVGPathSeg.PATHSEG_CURVETO_QUADRATIC_SMOOTH_REL:
-                    const relSeg = segment as SvgRelativeCoordinatesTypes;
+                    const relSeg = segment as SVGRelativeCoordinatesTypes;
 
                     p.x += relSeg.x;
                     p.y += relSeg.y;

@@ -23,8 +23,9 @@ export class Container {
     public canvas: Canvas;
     public particles: Particles;
     public polygon: PolygonMask;
-    public checkAnimFrame?: number;
-    public drawAnimFrame?: number;
+    //change Anim to Animation for consistency
+    public checkAnimationFrame?: number;
+    public drawAnimationFrame?: number;
     public bubble: IBubble;
     public repulse: IRepulse;
     public svg: ISvg;
@@ -77,7 +78,7 @@ export class Container {
     }
 
     private static requestFrame(callback: FrameRequestCallback): number {
-        return window.requestAnimFrame(callback);
+        return window.requestAnimationFrame(callback);
     }
 
     private static cancelAnimation(handle: number): void {
@@ -92,7 +93,7 @@ export class Container {
             let area = this.canvas.element.width * this.canvas.element.height / 1000;
 
             if (this.retina.isRetina) {
-                area /= this.canvas.pxratio * 2;
+                area /= this.canvas.pxRatio * 2;
             }
 
             const optParticlesNumber = this.options.particles.number.value;
@@ -113,8 +114,8 @@ export class Container {
     }
 
     public destroy(): void {
-        if (this.drawAnimFrame !== undefined) {
-            cancelAnimationFrame(this.drawAnimFrame);
+        if (this.drawAnimationFrame !== undefined) {
+            cancelAnimationFrame(this.drawAnimationFrame);
         }
 
         this.retina.reset();
@@ -153,12 +154,12 @@ export class Container {
 
     public async refresh(): Promise<void> {
         /* init all */
-        if (this.checkAnimFrame) {
-            Container.cancelAnimation(this.checkAnimFrame);
+        if (this.checkAnimationFrame) {
+            Container.cancelAnimation(this.checkAnimationFrame);
         }
 
-        if (this.drawAnimFrame) {
-            Container.cancelAnimation(this.drawAnimFrame);
+        if (this.drawAnimationFrame) {
+            Container.cancelAnimation(this.drawAnimationFrame);
         }
 
         this.svg.source = undefined;
@@ -180,7 +181,7 @@ export class Container {
          * works only with single path SVG
          */
         if (this.options.polygon.url) {
-            this.polygon.raw = await this.polygon.parseSvgPathToPolygon(this.options.polygon.url);
+            this.polygon.raw = await this.polygon.parseSVGPathToPolygon(this.options.polygon.url);
         }
 
         if (this.options.particles.shape.type === ShapeType.image) {
@@ -206,8 +207,8 @@ export class Container {
         if (document.hidden) {
             this.pageHidden = true;
 
-            if (this.drawAnimFrame) {
-                Container.cancelAnimation(this.drawAnimFrame);
+            if (this.drawAnimationFrame) {
+                Container.cancelAnimation(this.drawAnimationFrame);
             }
         } else {
             this.pageHidden = false;
@@ -222,7 +223,7 @@ export class Container {
         const fpsLimit = this.options.fps_limit;
 
         if (fpsLimit > 0 && timestamp < this.lastFrameTime + (1000 / fpsLimit)) {
-            this.drawAnimFrame = Container.requestFrame((t) => this.draw(t));
+            this.drawAnimationFrame = Container.requestFrame((t) => this.draw(t));
             return;
         }
 
@@ -236,17 +237,17 @@ export class Container {
 
         this.particles.draw(delta);
 
-        if (this.drawAnimFrame !== undefined && !this.options.particles.move.enable) {
-            Container.cancelAnimation(this.drawAnimFrame);
+        if (this.drawAnimationFrame !== undefined && !this.options.particles.move.enable) {
+            Container.cancelAnimation(this.drawAnimationFrame);
         } else {
-            this.drawAnimFrame = Container.requestFrame((t) => this.draw(t));
+            this.drawAnimationFrame = Container.requestFrame((t) => this.draw(t));
         }
     }
 
     private checkBeforeDraw(): void {
         if (this.options.particles.shape.type === ShapeType.image) {
-            if (this.checkAnimFrame) {
-                Container.cancelAnimation(this.checkAnimFrame);
+            if (this.checkAnimationFrame) {
+                Container.cancelAnimation(this.checkAnimationFrame);
             }
 
             if (this.image.error) {

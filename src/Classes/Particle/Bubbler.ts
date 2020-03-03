@@ -87,8 +87,8 @@ export class Bubbler {
                 }
             } else if (pObjBubble) {
                 const tmpValue = pObj - (timeSpent * (pObj - bubbleParam) / bubbleDuration);
-                const dif = bubbleParam - tmpValue;
-                const value = bubbleParam + dif;
+                const diff = bubbleParam - tmpValue;
+                const value = bubbleParam + diff;
 
                 if (type === ProcessBubbleType.size) {
                     this.radius = value;
@@ -199,8 +199,8 @@ export class Bubbler {
                     this.radius = size;
                 }
             } else {
-                const dif = particle.radius - options.interactivity.modes.bubble.size;
-                const size = particle.radius - (dif * ratio);
+                const diff = particle.radius - options.interactivity.modes.bubble.size;
+                const size = particle.radius - (diff * ratio);
 
                 if (size > 0) {
                     this.radius = size;

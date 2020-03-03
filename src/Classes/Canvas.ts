@@ -10,7 +10,8 @@ export class Canvas {
     public width: number;
     public height: number;
     public tagId: string;
-    public pxratio: number;
+    //change the pxratio to pxRatio
+    public pxRatio: number;
 
     private readonly container: Container;
 
@@ -22,7 +23,7 @@ export class Canvas {
         this.width = canvasEl.offsetWidth;
         this.height = canvasEl.offsetHeight;
         this.tagId = tagId;
-        this.pxratio = 1;
+        this.pxRatio = 1;
         this.context = this.element.getContext("2d");
     }
 
@@ -46,8 +47,8 @@ export class Canvas {
 
                 /* resize canvas */
                 if (container.retina.isRetina) {
-                    this.width *= this.pxratio;
-                    this.height *= this.pxratio;
+                    this.width *= this.pxRatio;
+                    this.height *= this.pxRatio;
                 }
 
                 this.element.width = this.width;
@@ -69,7 +70,7 @@ export class Canvas {
                     }
 
                     container.polygon.redrawTimeout = setTimeout(async () => {
-                        container.polygon.raw = await container.polygon.parseSvgPathToPolygon();
+                        container.polygon.raw = await container.polygon.parseSVGPathToPolygon();
                         container.particles.clear();
                         container.particles.init();
                         container.particles.draw(0);

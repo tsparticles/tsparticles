@@ -232,10 +232,11 @@ export class Particle {
                 pos.x = position.x;
                 pos.y = position.y;
             } else {
-                const randp = container.polygon.randomPointInPolygon();
+                //changed randp to randP
+                const randP = container.polygon.randomPointInPolygon();
 
-                pos.x = randp.x;
-                pos.y = randp.y;
+                pos.x = randP.x;
+                pos.y = randP.y;
             }
         } else {
             pos.x = position ? position.x : Math.random() * container.canvas.width;
