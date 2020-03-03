@@ -56,10 +56,10 @@
 					<a href="../globals.html">Globals</a>
 				</li>
 				<li>
-					<a href="../modules/_interfaces_options_interactivity_ioptionsinteractivityevents_.html">&quot;Interfaces/Options/Interactivity/IOptionsInteractivityEvents&quot;</a>
+					<a href="../modules/_interfaces_options_interactivity_events_ioptionsinteractivityevents_.html">&quot;Interfaces/Options/Interactivity/Events/IOptionsInteractivityEvents&quot;</a>
 				</li>
 				<li>
-					<a href="_interfaces_options_interactivity_ioptionsinteractivityevents_.ioptionsinteractivityevents.html">IOptionsInteractivityEvents</a>
+					<a href="_interfaces_options_interactivity_events_ioptionsinteractivityevents_.ioptionsinteractivityevents.html">IOptionsInteractivityEvents</a>
 				</li>
 			</ul>
 			<h1>Interface IOptionsInteractivityEvents</h1>
@@ -84,10 +84,10 @@
 						<section class="tsd-index-section ">
 							<h3>Properties</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_interfaces_options_interactivity_ioptionsinteractivityevents_.ioptionsinteractivityevents.html#onclick" class="tsd-kind-icon">onclick</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_interfaces_options_interactivity_ioptionsinteractivityevents_.ioptionsinteractivityevents.html#ondiv" class="tsd-kind-icon">ondiv</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_interfaces_options_interactivity_ioptionsinteractivityevents_.ioptionsinteractivityevents.html#onhover" class="tsd-kind-icon">onhover</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_interfaces_options_interactivity_ioptionsinteractivityevents_.ioptionsinteractivityevents.html#resize" class="tsd-kind-icon">resize</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_interfaces_options_interactivity_events_ioptionsinteractivityevents_.ioptionsinteractivityevents.html#onclick" class="tsd-kind-icon">onclick</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_interfaces_options_interactivity_events_ioptionsinteractivityevents_.ioptionsinteractivityevents.html#ondiv" class="tsd-kind-icon">ondiv</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_interfaces_options_interactivity_events_ioptionsinteractivityevents_.ioptionsinteractivityevents.html#onhover" class="tsd-kind-icon">onhover</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_interfaces_options_interactivity_events_ioptionsinteractivityevents_.ioptionsinteractivityevents.html#resize" class="tsd-kind-icon">resize</a></li>
 							</ul>
 						</section>
 					</div>
@@ -98,82 +98,32 @@
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
 					<a name="onclick" class="tsd-anchor"></a>
 					<h3>onclick</h3>
-					<div class="tsd-signature tsd-kind-icon">onclick<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol">{ </span>enable<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol">; </span>mode<span class="tsd-signature-symbol">: </span><a href="../enums/_enums_clickmode_.clickmode.html" class="tsd-signature-type">ClickMode</a><span class="tsd-signature-symbol"> | </span><a href="../enums/_enums_clickmode_.clickmode.html" class="tsd-signature-type">ClickMode</a><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol"> }</span></div>
+					<div class="tsd-signature tsd-kind-icon">onclick<span class="tsd-signature-symbol">:</span> <a href="_interfaces_options_interactivity_events_ioptionsinteractivityeventclick_.ioptionsinteractivityeventclick.html" class="tsd-signature-type">IOptionsInteractivityEventClick</a></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/matteobruni/tsparticles/blob/5f9f720/src/Interfaces/Options/Interactivity/IOptionsInteractivityEvents.ts#L6">Interfaces/Options/Interactivity/IOptionsInteractivityEvents.ts:6</a></li>
+							<li>Defined in <a href="https://github.com/matteobruni/tsparticles/blob/0ac29a8/src/Interfaces/Options/Interactivity/Events/IOptionsInteractivityEvents.ts#L6">Interfaces/Options/Interactivity/Events/IOptionsInteractivityEvents.ts:6</a></li>
 						</ul>
 					</aside>
-					<div class="tsd-type-declaration">
-						<h4>Type declaration</h4>
-						<ul class="tsd-parameters">
-							<li class="tsd-parameter">
-								<h5>enable<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span></h5>
-							</li>
-							<li class="tsd-parameter">
-								<h5>mode<span class="tsd-signature-symbol">: </span><a href="../enums/_enums_clickmode_.clickmode.html" class="tsd-signature-type">ClickMode</a><span class="tsd-signature-symbol"> | </span><a href="../enums/_enums_clickmode_.clickmode.html" class="tsd-signature-type">ClickMode</a><span class="tsd-signature-symbol">[]</span></h5>
-							</li>
-						</ul>
-					</div>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
 					<a name="ondiv" class="tsd-anchor"></a>
 					<h3>ondiv</h3>
-					<div class="tsd-signature tsd-kind-icon">ondiv<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol">{ </span>el<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">; </span>enable<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol">; </span>mode<span class="tsd-signature-symbol">: </span><a href="../enums/_enums_divmode_.divmode.html" class="tsd-signature-type">DivMode</a><span class="tsd-signature-symbol"> | </span><a href="../enums/_enums_divmode_.divmode.html" class="tsd-signature-type">DivMode</a><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol"> }</span></div>
+					<div class="tsd-signature tsd-kind-icon">ondiv<span class="tsd-signature-symbol">:</span> <a href="_interfaces_options_interactivity_events_ioptionsinteractivityeventdiv_.ioptionsinteractivityeventdiv.html" class="tsd-signature-type">IOptionsInteractivityEventDiv</a></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/matteobruni/tsparticles/blob/5f9f720/src/Interfaces/Options/Interactivity/IOptionsInteractivityEvents.ts#L19">Interfaces/Options/Interactivity/IOptionsInteractivityEvents.ts:19</a></li>
+							<li>Defined in <a href="https://github.com/matteobruni/tsparticles/blob/0ac29a8/src/Interfaces/Options/Interactivity/Events/IOptionsInteractivityEvents.ts#L8">Interfaces/Options/Interactivity/Events/IOptionsInteractivityEvents.ts:8</a></li>
 						</ul>
 					</aside>
-					<div class="tsd-type-declaration">
-						<h4>Type declaration</h4>
-						<ul class="tsd-parameters">
-							<li class="tsd-parameter">
-								<h5>el<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span></h5>
-							</li>
-							<li class="tsd-parameter">
-								<h5>enable<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span></h5>
-							</li>
-							<li class="tsd-parameter">
-								<h5>mode<span class="tsd-signature-symbol">: </span><a href="../enums/_enums_divmode_.divmode.html" class="tsd-signature-type">DivMode</a><span class="tsd-signature-symbol"> | </span><a href="../enums/_enums_divmode_.divmode.html" class="tsd-signature-type">DivMode</a><span class="tsd-signature-symbol">[]</span></h5>
-							</li>
-						</ul>
-					</div>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
 					<a name="onhover" class="tsd-anchor"></a>
 					<h3>onhover</h3>
-					<div class="tsd-signature tsd-kind-icon">onhover<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol">{ </span>enable<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol">; </span>mode<span class="tsd-signature-symbol">: </span><a href="../enums/_enums_hovermode_.hovermode.html" class="tsd-signature-type">HoverMode</a><span class="tsd-signature-symbol"> | </span><a href="../enums/_enums_hovermode_.hovermode.html" class="tsd-signature-type">HoverMode</a><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">; </span>parallax<span class="tsd-signature-symbol">: </span><span class="tsd-signature-symbol">{ </span>enable<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol">; </span>force<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">; </span>smooth<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> }</span><span class="tsd-signature-symbol"> }</span></div>
+					<div class="tsd-signature tsd-kind-icon">onhover<span class="tsd-signature-symbol">:</span> <a href="_interfaces_options_interactivity_events_ioptionsinteractivityeventhover_.ioptionsinteractivityeventhover.html" class="tsd-signature-type">IOptionsInteractivityEventHover</a></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/matteobruni/tsparticles/blob/5f9f720/src/Interfaces/Options/Interactivity/IOptionsInteractivityEvents.ts#L10">Interfaces/Options/Interactivity/IOptionsInteractivityEvents.ts:10</a></li>
+							<li>Defined in <a href="https://github.com/matteobruni/tsparticles/blob/0ac29a8/src/Interfaces/Options/Interactivity/Events/IOptionsInteractivityEvents.ts#L7">Interfaces/Options/Interactivity/Events/IOptionsInteractivityEvents.ts:7</a></li>
 						</ul>
 					</aside>
-					<div class="tsd-type-declaration">
-						<h4>Type declaration</h4>
-						<ul class="tsd-parameters">
-							<li class="tsd-parameter">
-								<h5>enable<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span></h5>
-							</li>
-							<li class="tsd-parameter">
-								<h5>mode<span class="tsd-signature-symbol">: </span><a href="../enums/_enums_hovermode_.hovermode.html" class="tsd-signature-type">HoverMode</a><span class="tsd-signature-symbol"> | </span><a href="../enums/_enums_hovermode_.hovermode.html" class="tsd-signature-type">HoverMode</a><span class="tsd-signature-symbol">[]</span></h5>
-							</li>
-							<li class="tsd-parameter">
-								<h5>parallax<span class="tsd-signature-symbol">: </span><span class="tsd-signature-symbol">{ </span>enable<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol">; </span>force<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">; </span>smooth<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> }</span></h5>
-								<ul class="tsd-parameters">
-									<li class="tsd-parameter">
-										<h5>enable<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span></h5>
-									</li>
-									<li class="tsd-parameter">
-										<h5>force<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span></h5>
-									</li>
-									<li class="tsd-parameter">
-										<h5>smooth<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span></h5>
-									</li>
-								</ul>
-							</li>
-						</ul>
-					</div>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
 					<a name="resize" class="tsd-anchor"></a>
@@ -181,7 +131,7 @@
 					<div class="tsd-signature tsd-kind-icon">resize<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">boolean</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/matteobruni/tsparticles/blob/5f9f720/src/Interfaces/Options/Interactivity/IOptionsInteractivityEvents.ts#L24">Interfaces/Options/Interactivity/IOptionsInteractivityEvents.ts:24</a></li>
+							<li>Defined in <a href="https://github.com/matteobruni/tsparticles/blob/0ac29a8/src/Interfaces/Options/Interactivity/Events/IOptionsInteractivityEvents.ts#L9">Interfaces/Options/Interactivity/Events/IOptionsInteractivityEvents.ts:9</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -194,7 +144,7 @@
 						<a href="../globals.html"><em>Globals</em></a>
 					</li>
 					<li class="current tsd-kind-external-module">
-						<a href="../modules/_interfaces_options_interactivity_ioptionsinteractivityevents_.html">&quot;<wbr>Interfaces/<wbr>Options/<wbr>Interactivity/IOptions<wbr>Interactivity<wbr>Events&quot;</a>
+						<a href="../modules/_interfaces_options_interactivity_events_ioptionsinteractivityevents_.html">&quot;<wbr>Interfaces/<wbr>Options/<wbr>Interactivity/<wbr>Events/IOptions<wbr>Interactivity<wbr>Events&quot;</a>
 					</li>
 				</ul>
 			</nav>
@@ -203,19 +153,19 @@
 				</ul>
 				<ul class="current">
 					<li class="current tsd-kind-interface tsd-parent-kind-external-module">
-						<a href="_interfaces_options_interactivity_ioptionsinteractivityevents_.ioptionsinteractivityevents.html" class="tsd-kind-icon">IOptions<wbr>Interactivity<wbr>Events</a>
+						<a href="_interfaces_options_interactivity_events_ioptionsinteractivityevents_.ioptionsinteractivityevents.html" class="tsd-kind-icon">IOptions<wbr>Interactivity<wbr>Events</a>
 						<ul>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="_interfaces_options_interactivity_ioptionsinteractivityevents_.ioptionsinteractivityevents.html#onclick" class="tsd-kind-icon">onclick</a>
+								<a href="_interfaces_options_interactivity_events_ioptionsinteractivityevents_.ioptionsinteractivityevents.html#onclick" class="tsd-kind-icon">onclick</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="_interfaces_options_interactivity_ioptionsinteractivityevents_.ioptionsinteractivityevents.html#ondiv" class="tsd-kind-icon">ondiv</a>
+								<a href="_interfaces_options_interactivity_events_ioptionsinteractivityevents_.ioptionsinteractivityevents.html#ondiv" class="tsd-kind-icon">ondiv</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="_interfaces_options_interactivity_ioptionsinteractivityevents_.ioptionsinteractivityevents.html#onhover" class="tsd-kind-icon">onhover</a>
+								<a href="_interfaces_options_interactivity_events_ioptionsinteractivityevents_.ioptionsinteractivityevents.html#onhover" class="tsd-kind-icon">onhover</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="_interfaces_options_interactivity_ioptionsinteractivityevents_.ioptionsinteractivityevents.html#resize" class="tsd-kind-icon">resize</a>
+								<a href="_interfaces_options_interactivity_events_ioptionsinteractivityevents_.ioptionsinteractivityevents.html#resize" class="tsd-kind-icon">resize</a>
 							</li>
 						</ul>
 					</li>
