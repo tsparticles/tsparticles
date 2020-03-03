@@ -21,28 +21,27 @@ export class Connecter {
         const container = this.container;
         const options = container.options;
         const particle = this.particle;
+        const ctx = container.canvas.context;
+
+        if (!ctx) {
+            return;
+        }
 
         if (options.interactivity.events.onhover.enable && container.interactivity.status == 'mousemove') {
-            const xDiff = particle.position.x - destParticle.position.x;
-            const yDiff = particle.position.y - destParticle.position.y;
+            const xDiff = Math.abs(particle.position.x - destParticle.position.x);
+            const yDiff = Math.abs(particle.position.y - destParticle.position.y);
             const mousePos = container.interactivity.mouse.position || {x: 0, y: 0};
-            const xCoreDiff = particle.position.x - mousePos.x;
-            const yCoreDiff = particle.position.y - mousePos.y;
-            const distMax = options.interactivity.modes.connect.distance;
-            const connectAreaRadius = options.interactivity.modes.connect.radius;
+            const xCoreDiff = Math.abs(particle.position.x - mousePos.x);
+            const yCoreDiff = Math.abs(particle.position.y - mousePos.y);
+            const distMax = Math.abs(options.interactivity.modes.connect.distance);
+            const connectAreaRadius = Math.abs(options.interactivity.modes.connect.radius);
 
-            if ((xDiff < distMax && xDiff > -distMax)
-                && (yDiff < distMax && yDiff > -distMax)
-                && (xCoreDiff < connectAreaRadius && xCoreDiff > -connectAreaRadius)
-                && (yCoreDiff < connectAreaRadius && yCoreDiff > -connectAreaRadius)) {
-
-                const ctx = container.canvas.context;
-
-                if (!ctx) return;
-
+            if (xDiff < distMax && yDiff < distMax && xCoreDiff < connectAreaRadius && yCoreDiff < connectAreaRadius) {
                 const lineStyle = this.lineStyle(destParticle);
 
-                if (!lineStyle) return;
+                if (!lineStyle) {
+                    return;
+                }
 
                 ctx.beginPath();
                 ctx.strokeStyle = lineStyle;
@@ -51,7 +50,6 @@ export class Connecter {
                 ctx.stroke();
                 ctx.closePath();
             }
-
         }
     }
 

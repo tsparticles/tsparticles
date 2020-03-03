@@ -1,5 +1,5 @@
 import {InteractivityDetect} from "../../../Enums/InteractivityDetect";
-import {IOptionsInteractivityEvents} from "./IOptionsInteractivityEvents";
+import {IOptionsInteractivityEvents} from "./Events/IOptionsInteractivityEvents";
 import {IOptionsInteractivityModes} from "./Modes/IOptionsInteractivityModes";
 
 export interface IOptionsInteractivity {
