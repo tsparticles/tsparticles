@@ -19,6 +19,7 @@ import {ClickMode} from "../Enums/ClickMode";
 import {PolygonMaskType} from "../Enums/PolygonMaskType";
 import {Connecter} from "./Particle/Connecter";
 import {IRgb} from "../Interfaces/IRgb";
+import {InteractionManager} from "./Particle/InteractionManager";
 
 /**
  * The single particle object
@@ -42,6 +43,7 @@ export class Particle {
     private readonly connecter: Connecter;
     private readonly drawer: Drawer;
     private readonly grabber: Grabber;
+    private readonly interactionManager: InteractionManager;
     private readonly container: Container;
 
     /* --------- tsParticles functions - particles ----------- */
@@ -137,6 +139,7 @@ export class Particle {
         this.drawer = new Drawer(this.container, this, this.bubbler);
         this.grabber = new Grabber(this.container, this);
         this.connecter = new Connecter(this.container, this);
+        this.interactionManager = new InteractionManager(this.container, this);
     }
 
     private static calcVelocity(options: IOptions): IVelocity {
@@ -200,23 +203,7 @@ export class Particle {
     }
 
     public interact(p2: Particle): void {
-        const container = this.container;
-        const options = container.options;
-
-        /* link particles */
-        if (options.particles.line_linked.enable) {
-            this.updater.link(p2);
-        }
-
-        /* attract particles */
-        if (options.particles.move.attract.enable) {
-            this.updater.attract(p2);
-        }
-
-        /* bounce particles */
-        if (options.particles.move.bounce) {
-            this.updater.bounce(p2);
-        }
+        this.interactionManager.interact(p2);
     }
 
     public draw(): void {

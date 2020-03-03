@@ -78,11 +78,12 @@ export class Connecter {
         const gradStop = Math.floor(destParticle.radius / particle.radius);
         const ctx = container.canvas.context;
 
-        if (!ctx || !particle.color || !destParticle.color) return;
+        if (!ctx || !particle.color || !destParticle.color) {
+            return;
+        }
 
         const sourcePos = particle.position;
         const destPos = destParticle.position;
-
         const grad = ctx.createLinearGradient(sourcePos.x, sourcePos.y, destPos.x, destPos.y);
 
         grad.addColorStop(0, Utils.getStyleFromColor(particle.color));
