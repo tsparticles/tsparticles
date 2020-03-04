@@ -5,6 +5,7 @@ import {Grab} from "./Grab";
 import {Remove} from "./Remove";
 import {Push} from "./Push";
 import {Repulse} from "./Repulse";
+import { Slow } from "./Slow";
 
 export class Modes implements IOptionsInteractivityModes {
     public bubble: Bubble;
@@ -13,6 +14,7 @@ export class Modes implements IOptionsInteractivityModes {
     public push: Push;
     public remove: Remove;
     public repulse: Repulse;
+    public slow: Slow;
 
     constructor() {
         this.bubble = new Bubble();
@@ -21,5 +23,6 @@ export class Modes implements IOptionsInteractivityModes {
         this.push = new Push();
         this.remove = new Remove();
         this.repulse = new Repulse();
+        this.slow = new Slow();
     }
 }
