@@ -1,4 +1,4 @@
-export interface IOptionsInteractivityModeSlow {
+export interface ISlow {
   active: boolean;
   radius: number;
   factor: number;
