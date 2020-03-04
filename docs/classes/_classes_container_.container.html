@@ -97,11 +97,11 @@
 						<section class="tsd-index-section ">
 							<h3>Properties</h3>
 							<ul class="tsd-index-list">
+								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private"><a href="_classes_container_.container.html#_eventlisteners" class="tsd-kind-icon">_event<wbr>Listeners</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-class"><a href="_classes_container_.container.html#bubble" class="tsd-kind-icon">bubble</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-class"><a href="_classes_container_.container.html#canvas" class="tsd-kind-icon">canvas</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-class"><a href="_classes_container_.container.html#checkanimframe" class="tsd-kind-icon">check<wbr>Anim<wbr>Frame</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-class"><a href="_classes_container_.container.html#drawanimframe" class="tsd-kind-icon">draw<wbr>Anim<wbr>Frame</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private"><a href="_classes_container_.container.html#eventlisteners" class="tsd-kind-icon">event<wbr>Listeners</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class"><a href="_classes_container_.container.html#checkanimationframe" class="tsd-kind-icon">check<wbr>Animation<wbr>Frame</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class"><a href="_classes_container_.container.html#drawanimationframe" class="tsd-kind-icon">draw<wbr>Animation<wbr>Frame</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-class"><a href="_classes_container_.container.html#images" class="tsd-kind-icon">images</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-class"><a href="_classes_container_.container.html#interactivity" class="tsd-kind-icon">interactivity</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-class"><a href="_classes_container_.container.html#lastframetime" class="tsd-kind-icon">last<wbr>Frame<wbr>Time</a></li>
@@ -112,6 +112,13 @@
 								<li class="tsd-kind-property tsd-parent-kind-class"><a href="_classes_container_.container.html#repulse" class="tsd-kind-icon">repulse</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-class"><a href="_classes_container_.container.html#retina" class="tsd-kind-icon">retina</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-class"><a href="_classes_container_.container.html#svg" class="tsd-kind-icon">svg</a></li>
+							</ul>
+						</section>
+						<section class="tsd-index-section ">
+							<h3>Accessors</h3>
+							<ul class="tsd-index-list">
+								<li class="tsd-kind-accessor tsd-parent-kind-class"><a href="_classes_container_.container.html#checkanimframe" class="tsd-kind-icon">check<wbr>Anim<wbr>Frame</a></li>
+								<li class="tsd-kind-accessor tsd-parent-kind-class"><a href="_classes_container_.container.html#drawanimframe" class="tsd-kind-icon">draw<wbr>Anim<wbr>Frame</a></li>
 							</ul>
 						</section>
 						<section class="tsd-index-section ">
@@ -140,13 +147,13 @@
 					<a name="constructor" class="tsd-anchor"></a>
 					<h3>constructor</h3>
 					<ul class="tsd-signatures tsd-kind-constructor tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">new <wbr>Container<span class="tsd-signature-symbol">(</span>tagId<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, params<span class="tsd-signature-symbol">: </span><a href="../interfaces/_interfaces_options_ioptions_.ioptions.html" class="tsd-signature-type">IOptions</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="_classes_container_.container.html" class="tsd-signature-type">Container</a></li>
+						<li class="tsd-signature tsd-kind-icon">new <wbr>Container<span class="tsd-signature-symbol">(</span>tagId<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, params<span class="tsd-signature-symbol">: </span><a href="_classes_options_options_.options.html" class="tsd-signature-type">Options</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="_classes_container_.container.html" class="tsd-signature-type">Container</a></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/matteobruni/tsparticles/blob/d98596d/src/Classes/Container.ts#L39">Classes/Container.ts:39</a></li>
+									<li>Defined in <a href="https://github.com/matteobruni/tsparticles/blob/7e91198/src/Classes/Container.ts#L69">Classes/Container.ts:69</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -155,7 +162,7 @@
 									<h5>tagId: <span class="tsd-signature-type">string</span></h5>
 								</li>
 								<li>
-									<h5>params: <a href="../interfaces/_interfaces_options_ioptions_.ioptions.html" class="tsd-signature-type">IOptions</a></h5>
+									<h5>params: <a href="_classes_options_options_.options.html" class="tsd-signature-type">Options</a></h5>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <a href="_classes_container_.container.html" class="tsd-signature-type">Container</a></h4>
@@ -165,13 +172,23 @@
 			</section>
 			<section class="tsd-panel-group tsd-member-group ">
 				<h2>Properties</h2>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-private">
+					<a name="_eventlisteners" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagPrivate">Private</span> _event<wbr>Listeners</h3>
+					<div class="tsd-signature tsd-kind-icon">_event<wbr>Listeners<span class="tsd-signature-symbol">:</span> <a href="_classes_utils_eventlisteners_.eventlisteners.html" class="tsd-signature-type">EventListeners</a></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/matteobruni/tsparticles/blob/7e91198/src/Classes/Container.ts#L69">Classes/Container.ts:69</a></li>
+						</ul>
+					</aside>
+				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class">
 					<a name="bubble" class="tsd-anchor"></a>
 					<h3>bubble</h3>
 					<div class="tsd-signature tsd-kind-icon">bubble<span class="tsd-signature-symbol">:</span> <a href="../interfaces/_interfaces_ibubble_.ibubble.html" class="tsd-signature-type">IBubble</a></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/matteobruni/tsparticles/blob/d98596d/src/Classes/Container.ts#L32">Classes/Container.ts:32</a></li>
+							<li>Defined in <a href="https://github.com/matteobruni/tsparticles/blob/7e91198/src/Classes/Container.ts#L62">Classes/Container.ts:62</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -181,47 +198,37 @@
 					<div class="tsd-signature tsd-kind-icon">canvas<span class="tsd-signature-symbol">:</span> <a href="_classes_canvas_.canvas.html" class="tsd-signature-type">Canvas</a></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/matteobruni/tsparticles/blob/d98596d/src/Classes/Container.ts#L27">Classes/Container.ts:27</a></li>
+							<li>Defined in <a href="https://github.com/matteobruni/tsparticles/blob/7e91198/src/Classes/Container.ts#L57">Classes/Container.ts:57</a></li>
 						</ul>
 					</aside>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class">
-					<a name="checkanimframe" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagOptional">Optional</span> check<wbr>Anim<wbr>Frame</h3>
-					<div class="tsd-signature tsd-kind-icon">check<wbr>Anim<wbr>Frame<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">number</span></div>
+					<a name="checkanimationframe" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagOptional">Optional</span> check<wbr>Animation<wbr>Frame</h3>
+					<div class="tsd-signature tsd-kind-icon">check<wbr>Animation<wbr>Frame<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">number</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/matteobruni/tsparticles/blob/d98596d/src/Classes/Container.ts#L30">Classes/Container.ts:30</a></li>
+							<li>Defined in <a href="https://github.com/matteobruni/tsparticles/blob/7e91198/src/Classes/Container.ts#L60">Classes/Container.ts:60</a></li>
 						</ul>
 					</aside>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class">
-					<a name="drawanimframe" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagOptional">Optional</span> draw<wbr>Anim<wbr>Frame</h3>
-					<div class="tsd-signature tsd-kind-icon">draw<wbr>Anim<wbr>Frame<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">number</span></div>
+					<a name="drawanimationframe" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagOptional">Optional</span> draw<wbr>Animation<wbr>Frame</h3>
+					<div class="tsd-signature tsd-kind-icon">draw<wbr>Animation<wbr>Frame<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">number</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/matteobruni/tsparticles/blob/d98596d/src/Classes/Container.ts#L31">Classes/Container.ts:31</a></li>
-						</ul>
-					</aside>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-private">
-					<a name="eventlisteners" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagPrivate">Private</span> event<wbr>Listeners</h3>
-					<div class="tsd-signature tsd-kind-icon">event<wbr>Listeners<span class="tsd-signature-symbol">:</span> <a href="_classes_utils_eventlisteners_.eventlisteners.html" class="tsd-signature-type">EventListeners</a></div>
-					<aside class="tsd-sources">
-						<ul>
-							<li>Defined in <a href="https://github.com/matteobruni/tsparticles/blob/d98596d/src/Classes/Container.ts#L39">Classes/Container.ts:39</a></li>
+							<li>Defined in <a href="https://github.com/matteobruni/tsparticles/blob/7e91198/src/Classes/Container.ts#L61">Classes/Container.ts:61</a></li>
 						</ul>
 					</aside>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class">
 					<a name="images" class="tsd-anchor"></a>
 					<h3>images</h3>
-					<div class="tsd-signature tsd-kind-icon">images<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Array</span><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/_interfaces_iimage_.iimage.html" class="tsd-signature-type">IImage</a><span class="tsd-signature-symbol">&gt;</span></div>
+					<div class="tsd-signature tsd-kind-icon">images<span class="tsd-signature-symbol">:</span> <a href="../interfaces/_interfaces_iimage_.iimage.html" class="tsd-signature-type">IImage</a><span class="tsd-signature-symbol">[]</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/matteobruni/tsparticles/blob/d98596d/src/Classes/Container.ts#L35">Classes/Container.ts:35</a></li>
+							<li>Defined in <a href="https://github.com/matteobruni/tsparticles/blob/7e91198/src/Classes/Container.ts#L65">Classes/Container.ts:65</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -231,7 +238,7 @@
 					<div class="tsd-signature tsd-kind-icon">interactivity<span class="tsd-signature-symbol">:</span> <a href="../interfaces/_interfaces_icontainerinteractivity_.icontainerinteractivity.html" class="tsd-signature-type">IContainerInteractivity</a></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/matteobruni/tsparticles/blob/d98596d/src/Classes/Container.ts#L24">Classes/Container.ts:24</a></li>
+							<li>Defined in <a href="https://github.com/matteobruni/tsparticles/blob/7e91198/src/Classes/Container.ts#L54">Classes/Container.ts:54</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -241,17 +248,17 @@
 					<div class="tsd-signature tsd-kind-icon">last<wbr>Frame<wbr>Time<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/matteobruni/tsparticles/blob/d98596d/src/Classes/Container.ts#L36">Classes/Container.ts:36</a></li>
+							<li>Defined in <a href="https://github.com/matteobruni/tsparticles/blob/7e91198/src/Classes/Container.ts#L66">Classes/Container.ts:66</a></li>
 						</ul>
 					</aside>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class">
 					<a name="options" class="tsd-anchor"></a>
 					<h3>options</h3>
-					<div class="tsd-signature tsd-kind-icon">options<span class="tsd-signature-symbol">:</span> <a href="../interfaces/_interfaces_options_ioptions_.ioptions.html" class="tsd-signature-type">IOptions</a></div>
+					<div class="tsd-signature tsd-kind-icon">options<span class="tsd-signature-symbol">:</span> <a href="_classes_options_options_.options.html" class="tsd-signature-type">Options</a></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/matteobruni/tsparticles/blob/d98596d/src/Classes/Container.ts#L25">Classes/Container.ts:25</a></li>
+							<li>Defined in <a href="https://github.com/matteobruni/tsparticles/blob/7e91198/src/Classes/Container.ts#L55">Classes/Container.ts:55</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -261,7 +268,7 @@
 					<div class="tsd-signature tsd-kind-icon">page<wbr>Hidden<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">boolean</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/matteobruni/tsparticles/blob/d98596d/src/Classes/Container.ts#L37">Classes/Container.ts:37</a></li>
+							<li>Defined in <a href="https://github.com/matteobruni/tsparticles/blob/7e91198/src/Classes/Container.ts#L67">Classes/Container.ts:67</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -271,7 +278,7 @@
 					<div class="tsd-signature tsd-kind-icon">particles<span class="tsd-signature-symbol">:</span> <a href="_classes_particles_.particles.html" class="tsd-signature-type">Particles</a></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/matteobruni/tsparticles/blob/d98596d/src/Classes/Container.ts#L28">Classes/Container.ts:28</a></li>
+							<li>Defined in <a href="https://github.com/matteobruni/tsparticles/blob/7e91198/src/Classes/Container.ts#L58">Classes/Container.ts:58</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -281,7 +288,7 @@
 					<div class="tsd-signature tsd-kind-icon">polygon<span class="tsd-signature-symbol">:</span> <a href="_classes_polygonmask_.polygonmask.html" class="tsd-signature-type">PolygonMask</a></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/matteobruni/tsparticles/blob/d98596d/src/Classes/Container.ts#L29">Classes/Container.ts:29</a></li>
+							<li>Defined in <a href="https://github.com/matteobruni/tsparticles/blob/7e91198/src/Classes/Container.ts#L59">Classes/Container.ts:59</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -291,7 +298,7 @@
 					<div class="tsd-signature tsd-kind-icon">repulse<span class="tsd-signature-symbol">:</span> <a href="../interfaces/_interfaces_irepulse_.irepulse.html" class="tsd-signature-type">IRepulse</a></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/matteobruni/tsparticles/blob/d98596d/src/Classes/Container.ts#L33">Classes/Container.ts:33</a></li>
+							<li>Defined in <a href="https://github.com/matteobruni/tsparticles/blob/7e91198/src/Classes/Container.ts#L63">Classes/Container.ts:63</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -301,7 +308,7 @@
 					<div class="tsd-signature tsd-kind-icon">retina<span class="tsd-signature-symbol">:</span> <a href="_classes_retina_.retina.html" class="tsd-signature-type">Retina</a></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/matteobruni/tsparticles/blob/d98596d/src/Classes/Container.ts#L26">Classes/Container.ts:26</a></li>
+							<li>Defined in <a href="https://github.com/matteobruni/tsparticles/blob/7e91198/src/Classes/Container.ts#L56">Classes/Container.ts:56</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -311,9 +318,112 @@
 					<div class="tsd-signature tsd-kind-icon">svg<span class="tsd-signature-symbol">:</span> <a href="../interfaces/_interfaces_isvg_.isvg.html" class="tsd-signature-type">ISvg</a></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/matteobruni/tsparticles/blob/d98596d/src/Classes/Container.ts#L34">Classes/Container.ts:34</a></li>
+							<li>Defined in <a href="https://github.com/matteobruni/tsparticles/blob/7e91198/src/Classes/Container.ts#L64">Classes/Container.ts:64</a></li>
 						</ul>
 					</aside>
+				</section>
+			</section>
+			<section class="tsd-panel-group tsd-member-group ">
+				<h2>Accessors</h2>
+				<section class="tsd-panel tsd-member tsd-kind-accessor tsd-parent-kind-class">
+					<a name="checkanimframe" class="tsd-anchor"></a>
+					<h3>check<wbr>Anim<wbr>Frame</h3>
+					<ul class="tsd-signatures tsd-kind-accessor tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">get</span> checkAnimFrame<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">undefined</span></li>
+						<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">set</span> checkAnimFrame<span class="tsd-signature-symbol">(</span>value<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/matteobruni/tsparticles/blob/7e91198/src/Classes/Container.ts#L42">Classes/Container.ts:42</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<dl class="tsd-comment-tags">
+									<dt>deprecated</dt>
+									<dd><p>this property is obsolete, please use the new checkAnimationFrame</p>
+									</dd>
+								</dl>
+							</div>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">undefined</span></h4>
+						</li>
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/matteobruni/tsparticles/blob/7e91198/src/Classes/Container.ts#L50">Classes/Container.ts:50</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<dl class="tsd-comment-tags">
+									<dt>deprecated</dt>
+									<dd><p>this property is obsolete, please use the new checkAnimationFrame</p>
+									</dd>
+								</dl>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>value: <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">undefined</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<div class="lead">
+										</div>
+									</div>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-accessor tsd-parent-kind-class">
+					<a name="drawanimframe" class="tsd-anchor"></a>
+					<h3>draw<wbr>Anim<wbr>Frame</h3>
+					<ul class="tsd-signatures tsd-kind-accessor tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">get</span> drawAnimFrame<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">undefined</span></li>
+						<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">set</span> drawAnimFrame<span class="tsd-signature-symbol">(</span>value<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/matteobruni/tsparticles/blob/7e91198/src/Classes/Container.ts#L27">Classes/Container.ts:27</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<dl class="tsd-comment-tags">
+									<dt>deprecated</dt>
+									<dd><p>this property is obsolete, please use the new drawAnimationFrame</p>
+									</dd>
+								</dl>
+							</div>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">undefined</span></h4>
+						</li>
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/matteobruni/tsparticles/blob/7e91198/src/Classes/Container.ts#L35">Classes/Container.ts:35</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<dl class="tsd-comment-tags">
+									<dt>deprecated</dt>
+									<dd><p>this property is obsolete, please use the new drawAnimationFrame</p>
+									</dd>
+								</dl>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>value: <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">undefined</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<div class="lead">
+										</div>
+									</div>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+						</li>
+					</ul>
 				</section>
 			</section>
 			<section class="tsd-panel-group tsd-member-group ">
@@ -328,7 +438,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/matteobruni/tsparticles/blob/d98596d/src/Classes/Container.ts#L266">Classes/Container.ts:266</a></li>
+									<li>Defined in <a href="https://github.com/matteobruni/tsparticles/blob/7e91198/src/Classes/Container.ts#L297">Classes/Container.ts:297</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
@@ -345,7 +455,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/matteobruni/tsparticles/blob/d98596d/src/Classes/Container.ts#L93">Classes/Container.ts:93</a></li>
+									<li>Defined in <a href="https://github.com/matteobruni/tsparticles/blob/7e91198/src/Classes/Container.ts#L124">Classes/Container.ts:124</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
@@ -362,7 +472,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/matteobruni/tsparticles/blob/d98596d/src/Classes/Container.ts#L119">Classes/Container.ts:119</a></li>
+									<li>Defined in <a href="https://github.com/matteobruni/tsparticles/blob/7e91198/src/Classes/Container.ts#L150">Classes/Container.ts:150</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
@@ -379,7 +489,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/matteobruni/tsparticles/blob/d98596d/src/Classes/Container.ts#L239">Classes/Container.ts:239</a></li>
+									<li>Defined in <a href="https://github.com/matteobruni/tsparticles/blob/7e91198/src/Classes/Container.ts#L270">Classes/Container.ts:270</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -402,7 +512,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/matteobruni/tsparticles/blob/d98596d/src/Classes/Container.ts#L134">Classes/Container.ts:134</a></li>
+									<li>Defined in <a href="https://github.com/matteobruni/tsparticles/blob/7e91198/src/Classes/Container.ts#L165">Classes/Container.ts:165</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
@@ -419,7 +529,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/matteobruni/tsparticles/blob/d98596d/src/Classes/Container.ts#L225">Classes/Container.ts:225</a></li>
+									<li>Defined in <a href="https://github.com/matteobruni/tsparticles/blob/7e91198/src/Classes/Container.ts#L256">Classes/Container.ts:256</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
@@ -436,7 +546,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/matteobruni/tsparticles/blob/d98596d/src/Classes/Container.ts#L217">Classes/Container.ts:217</a></li>
+									<li>Defined in <a href="https://github.com/matteobruni/tsparticles/blob/7e91198/src/Classes/Container.ts#L248">Classes/Container.ts:248</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
@@ -447,13 +557,13 @@
 					<a name="loadimg" class="tsd-anchor"></a>
 					<h3>load<wbr>Img</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">load<wbr>Img<span class="tsd-signature-symbol">(</span>image<span class="tsd-signature-symbol">: </span><a href="../interfaces/_interfaces_iimage_.iimage.html" class="tsd-signature-type">IImage</a>, optionsImage<span class="tsd-signature-symbol">: </span><a href="../interfaces/_interfaces_options_shape_ioptionsshapeimage_.ioptionsshapeimage.html" class="tsd-signature-type">IOptionsShapeImage</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></li>
+						<li class="tsd-signature tsd-kind-icon">load<wbr>Img<span class="tsd-signature-symbol">(</span>image<span class="tsd-signature-symbol">: </span><a href="../interfaces/_interfaces_iimage_.iimage.html" class="tsd-signature-type">IImage</a>, optionsImage<span class="tsd-signature-symbol">: </span><a href="_classes_options_particles_shape_imageshape_.imageshape.html" class="tsd-signature-type">ImageShape</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/matteobruni/tsparticles/blob/d98596d/src/Classes/Container.ts#L138">Classes/Container.ts:138</a></li>
+									<li>Defined in <a href="https://github.com/matteobruni/tsparticles/blob/7e91198/src/Classes/Container.ts#L169">Classes/Container.ts:169</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -462,7 +572,7 @@
 									<h5>image: <a href="../interfaces/_interfaces_iimage_.iimage.html" class="tsd-signature-type">IImage</a></h5>
 								</li>
 								<li>
-									<h5>optionsImage: <a href="../interfaces/_interfaces_options_shape_ioptionsshapeimage_.ioptionsshapeimage.html" class="tsd-signature-type">IOptionsShapeImage</a></h5>
+									<h5>optionsImage: <a href="_classes_options_particles_shape_imageshape_.imageshape.html" class="tsd-signature-type">ImageShape</a></h5>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></h4>
@@ -479,7 +589,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/matteobruni/tsparticles/blob/d98596d/src/Classes/Container.ts#L158">Classes/Container.ts:158</a></li>
+									<li>Defined in <a href="https://github.com/matteobruni/tsparticles/blob/7e91198/src/Classes/Container.ts#L189">Classes/Container.ts:189</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></h4>
@@ -496,7 +606,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/matteobruni/tsparticles/blob/d98596d/src/Classes/Container.ts#L181">Classes/Container.ts:181</a></li>
+									<li>Defined in <a href="https://github.com/matteobruni/tsparticles/blob/7e91198/src/Classes/Container.ts#L212">Classes/Container.ts:212</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></h4>
@@ -513,7 +623,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/matteobruni/tsparticles/blob/d98596d/src/Classes/Container.ts#L87">Classes/Container.ts:87</a></li>
+									<li>Defined in <a href="https://github.com/matteobruni/tsparticles/blob/7e91198/src/Classes/Container.ts#L118">Classes/Container.ts:118</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -536,7 +646,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/matteobruni/tsparticles/blob/d98596d/src/Classes/Container.ts#L83">Classes/Container.ts:83</a></li>
+									<li>Defined in <a href="https://github.com/matteobruni/tsparticles/blob/7e91198/src/Classes/Container.ts#L114">Classes/Container.ts:114</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -572,6 +682,9 @@
 							<li class=" tsd-kind-constructor tsd-parent-kind-class">
 								<a href="_classes_container_.container.html#constructor" class="tsd-kind-icon">constructor</a>
 							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-private">
+								<a href="_classes_container_.container.html#_eventlisteners" class="tsd-kind-icon">_event<wbr>Listeners</a>
+							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-class">
 								<a href="_classes_container_.container.html#bubble" class="tsd-kind-icon">bubble</a>
 							</li>
@@ -579,13 +692,10 @@
 								<a href="_classes_container_.container.html#canvas" class="tsd-kind-icon">canvas</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-class">
-								<a href="_classes_container_.container.html#checkanimframe" class="tsd-kind-icon">check<wbr>Anim<wbr>Frame</a>
+								<a href="_classes_container_.container.html#checkanimationframe" class="tsd-kind-icon">check<wbr>Animation<wbr>Frame</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-class">
-								<a href="_classes_container_.container.html#drawanimframe" class="tsd-kind-icon">draw<wbr>Anim<wbr>Frame</a>
-							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-private">
-								<a href="_classes_container_.container.html#eventlisteners" class="tsd-kind-icon">event<wbr>Listeners</a>
+								<a href="_classes_container_.container.html#drawanimationframe" class="tsd-kind-icon">draw<wbr>Animation<wbr>Frame</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-class">
 								<a href="_classes_container_.container.html#images" class="tsd-kind-icon">images</a>
@@ -616,6 +726,12 @@
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-class">
 								<a href="_classes_container_.container.html#svg" class="tsd-kind-icon">svg</a>
+							</li>
+							<li class=" tsd-kind-accessor tsd-parent-kind-class">
+								<a href="_classes_container_.container.html#checkanimframe" class="tsd-kind-icon">check<wbr>Anim<wbr>Frame</a>
+							</li>
+							<li class=" tsd-kind-accessor tsd-parent-kind-class">
+								<a href="_classes_container_.container.html#drawanimframe" class="tsd-kind-icon">draw<wbr>Anim<wbr>Frame</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-private">
 								<a href="_classes_container_.container.html#checkbeforedraw" class="tsd-kind-icon">check<wbr>Before<wbr>Draw</a>

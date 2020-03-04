@@ -1,16 +1,16 @@
-import {IOptionsInteractivityModeBubble} from "./IOptionsInteractivityModeBubble";
-import {IOptionsInteractivityModeConnect} from "./IOptionsInteractivityModeConnect";
-import {IOptionsInteractivityModeGrab} from "./IOptionsInteractivityModeGrab";
-import {IOptionsInteractivityModePush} from "./IOptionsInteractivityModePush";
-import {IOptionsInteractivityModeRemove} from "./IOptionsInteractivityModeRemove";
-import {IOptionsInteractivityModeRepulse} from "./IOptionsInteractivityModeRepulse";
+import {IBubble} from "./IBubble";
+import {IConnect} from "./IConnect";
+import {IGrab} from "./IGrab";
+import {IPush} from "./IPush";
+import {IRemove} from "./IRemove";
+import {IRepulse} from "./IRepulse";
 
 export interface IOptionsInteractivityModes {
-    bubble: IOptionsInteractivityModeBubble;
-    connect: IOptionsInteractivityModeConnect;
-    grab: IOptionsInteractivityModeGrab;
-    push: IOptionsInteractivityModePush;
-    remove: IOptionsInteractivityModeRemove;
-    repulse: IOptionsInteractivityModeRepulse;
+    bubble: IBubble;
+    connect: IConnect;
+    grab: IGrab;
+    push: IPush;
+    remove: IRemove;
+    repulse: IRepulse;
 }
 

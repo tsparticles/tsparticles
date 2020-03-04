@@ -1,5 +1,5 @@
-import {IOptions} from "./Interfaces/Options/IOptions";
 import {Container} from "./Classes/Container";
+import {Options} from "./Classes/Options/Options";
 
 /**
  * A wrapper to call the new methods, with deprecation warnings
@@ -11,7 +11,7 @@ declare class ParticlesJS {
      * @param tagId the particles container element id
      * @param params the options object to initialize the [[Container]]
      */
-    public static load(tagId: string, params: IOptions): Container;
+    public static load(tagId: string, params: Options): Container;
 
     /**
      * Loads the provided json with a GET request. The content will be used to create a [[Container]] object.

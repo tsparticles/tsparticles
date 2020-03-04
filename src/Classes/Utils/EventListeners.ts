@@ -28,9 +28,9 @@ export class EventListeners {
         const options = container.options;
 
         /* events target element */
-        if (options.interactivity.detect_on === InteractivityDetect.window) {
+        if (options.interactivity.detectsOn === InteractivityDetect.window) {
             container.interactivity.element = window;
-        } else if (container.options.interactivity.detect_on === InteractivityDetect.parent) {
+        } else if (container.options.interactivity.detectsOn === InteractivityDetect.parent) {
             container.interactivity.element = container.canvas.element.parentNode;
         } else {
             container.interactivity.element = container.canvas.element;
@@ -39,7 +39,7 @@ export class EventListeners {
         const interactivityEl = container.interactivity.element;
 
         /* detect mouse pos - on hover / click event */
-        if (options.interactivity.events.onhover.enable || options.interactivity.events.onclick.enable) {
+        if (options.interactivity.events.onHover.enable || options.interactivity.events.onClick.enable) {
             if (interactivityEl) {
                 /* el on mousemove */
                 interactivityEl.addEventListener("mousemove", (e: Event) => this.mouseTouchMove(e));
@@ -50,7 +50,7 @@ export class EventListeners {
                 /* el on touchmove */
                 interactivityEl.addEventListener("touchmove", (e: Event) => this.mouseTouchMove(e));
 
-                if (!options.interactivity.events.onclick.enable) {
+                if (!options.interactivity.events.onClick.enable) {
                     /* el on touchend */
                     interactivityEl.addEventListener("touchend", () => this.mouseTouchFinish());
                 }
@@ -64,7 +64,7 @@ export class EventListeners {
         }
 
         /* on click event */
-        if (options.interactivity.events.onclick.enable) {
+        if (options.interactivity.events.onClick.enable) {
             if (interactivityEl) {
                 interactivityEl.addEventListener("touchend", (e: Event) => this.mouseTouchClick(e));
                 interactivityEl.addEventListener("mouseup", (e: Event) => this.mouseTouchClick(e));
@@ -92,7 +92,7 @@ export class EventListeners {
                     x: mouseEvent.clientX - clientRect.left,
                     y: mouseEvent.clientY - clientRect.top,
                 };
-            } else if (options.interactivity.detect_on === InteractivityDetect.parent) {
+            } else if (options.interactivity.detectsOn === InteractivityDetect.parent) {
                 const source = mouseEvent.target as HTMLElement;
                 const target = mouseEvent.currentTarget as HTMLElement;
 
@@ -181,17 +181,17 @@ export class EventListeners {
 
         container.interactivity.mouse.clickTime = new Date().getTime();
 
-        const pushNb = options.interactivity.modes.push.particles_nb;
-        const removeNb = options.interactivity.modes.remove.particles_nb;
+        const pushNb = options.interactivity.modes.push.quantity;
+        const removeNb = options.interactivity.modes.remove.quantity;
 
-        switch (options.interactivity.events.onclick.mode) {
+        switch (options.interactivity.events.onClick.mode) {
             case ClickMode.push:
                 if (options.particles.move.enable) {
                     container.particles.push(pushNb, container.interactivity.mouse);
                 } else {
-                    if (options.interactivity.modes.push.particles_nb === 1) {
+                    if (options.interactivity.modes.push.quantity === 1) {
                         container.particles.push(pushNb, container.interactivity.mouse);
-                    } else if (options.interactivity.modes.push.particles_nb > 1) {
+                    } else if (options.interactivity.modes.push.quantity > 1) {
                         container.particles.push(pushNb);
                     }
                 }

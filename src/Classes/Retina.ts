@@ -16,7 +16,7 @@ export class Retina {
         const container = this.container;
         const options = container.options;
 
-        if (options.retina_detect && window.devicePixelRatio > 1) {
+        if (options.detectRetina && window.devicePixelRatio > 1) {
             container.canvas.pxRatio = window.devicePixelRatio;
 
             this.isRetina = true;
@@ -35,11 +35,11 @@ export class Retina {
         options.interactivity.modes.bubble.size *= ratio;
         options.interactivity.modes.grab.distance *= ratio;
         options.interactivity.modes.repulse.distance *= ratio;
-        options.particles.line_linked.distance *= ratio;
-        options.particles.line_linked.width *= ratio;
+        options.particles.lineLinked.distance *= ratio;
+        options.particles.lineLinked.width *= ratio;
         options.particles.move.speed *= ratio;
         options.particles.size.value *= ratio;
-        options.particles.size.anim.speed *= ratio;
+        options.particles.size.animation.speed *= ratio;
     }
 
     public reset(): void {
@@ -51,10 +51,10 @@ export class Retina {
         options.interactivity.modes.bubble.size /= ratio;
         options.interactivity.modes.grab.distance /= ratio;
         options.interactivity.modes.repulse.distance /= ratio;
-        options.particles.line_linked.distance /= ratio;
-        options.particles.line_linked.width /= ratio;
+        options.particles.lineLinked.distance /= ratio;
+        options.particles.lineLinked.width /= ratio;
         options.particles.move.speed /= ratio;
         options.particles.size.value /= ratio;
-        options.particles.size.anim.speed /= ratio;
+        options.particles.size.animation.speed /= ratio;
     }
 }

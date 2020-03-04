@@ -87,7 +87,8 @@
 						<section class="tsd-index-section ">
 							<h3>Properties</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_main_.__global.window.html#cancelrequestanimframe" class="tsd-kind-icon">cancel<wbr>Request<wbr>Anim<wbr>Frame</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_main_.__global.window.html#customcancelrequestanimationframe" class="tsd-kind-icon">custom<wbr>Cancel<wbr>Request<wbr>Animation<wbr>Frame</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_main_.__global.window.html#customrequestanimationframe" class="tsd-kind-icon">custom<wbr>Request<wbr>Animation<wbr>Frame</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_main_.__global.window.html#mozcancelrequestanimationframe" class="tsd-kind-icon">moz<wbr>Cancel<wbr>Request<wbr>Animation<wbr>Frame</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_main_.__global.window.html#mozrequestanimationframe" class="tsd-kind-icon">moz<wbr>Request<wbr>Animation<wbr>Frame</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_main_.__global.window.html#mscancelrequestanimationframe" class="tsd-kind-icon">ms<wbr>Cancel<wbr>Request<wbr>Animation<wbr>Frame</a></li>
@@ -96,7 +97,6 @@
 								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_main_.__global.window.html#orequestanimationframe" class="tsd-kind-icon">o<wbr>Request<wbr>Animation<wbr>Frame</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_main_.__global.window.html#pjsdom" class="tsd-kind-icon">pJSDom</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_main_.__global.window.html#particlesjs" class="tsd-kind-icon">particlesJS</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_main_.__global.window.html#requestanimframe" class="tsd-kind-icon">request<wbr>Anim<wbr>Frame</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_main_.__global.window.html#tsparticles" class="tsd-kind-icon">ts<wbr>Particles</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_main_.__global.window.html#webkitcancelrequestanimationframe" class="tsd-kind-icon">webkit<wbr>Cancel<wbr>Request<wbr>Animation<wbr>Frame</a></li>
 							</ul>
@@ -107,12 +107,12 @@
 			<section class="tsd-panel-group tsd-member-group ">
 				<h2>Properties</h2>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="cancelrequestanimframe" class="tsd-anchor"></a>
-					<h3>cancel<wbr>Request<wbr>Anim<wbr>Frame</h3>
-					<div class="tsd-signature tsd-kind-icon">cancel<wbr>Request<wbr>Anim<wbr>Frame<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol">(</span>handle<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><span class="tsd-signature-type">void</span></div>
+					<a name="customcancelrequestanimationframe" class="tsd-anchor"></a>
+					<h3>custom<wbr>Cancel<wbr>Request<wbr>Animation<wbr>Frame</h3>
+					<div class="tsd-signature tsd-kind-icon">custom<wbr>Cancel<wbr>Request<wbr>Animation<wbr>Frame<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol">(</span>handle<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><span class="tsd-signature-type">void</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/matteobruni/tsparticles/blob/d98596d/src/Main.ts#L23">Main.ts:23</a></li>
+							<li>Defined in <a href="https://github.com/matteobruni/tsparticles/blob/7e91198/src/Main.ts#L23">Main.ts:23</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-type-declaration">
@@ -138,12 +138,43 @@
 					</div>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
+					<a name="customrequestanimationframe" class="tsd-anchor"></a>
+					<h3>custom<wbr>Request<wbr>Animation<wbr>Frame</h3>
+					<div class="tsd-signature tsd-kind-icon">custom<wbr>Request<wbr>Animation<wbr>Frame<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol">(</span>callback<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">FrameRequestCallback</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><span class="tsd-signature-type">number</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/matteobruni/tsparticles/blob/7e91198/src/Main.ts#L19">Main.ts:19</a></li>
+						</ul>
+					</aside>
+					<div class="tsd-type-declaration">
+						<h4>Type declaration</h4>
+						<ul class="tsd-parameters">
+							<li class="tsd-parameter-siganture">
+								<ul class="tsd-signatures tsd-kind-type-literal tsd-parent-kind-property">
+									<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">(</span>callback<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">FrameRequestCallback</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span></li>
+								</ul>
+								<ul class="tsd-descriptions">
+									<li class="tsd-description">
+										<h4 class="tsd-parameters-title">Parameters</h4>
+										<ul class="tsd-parameters">
+											<li>
+												<h5>callback: <span class="tsd-signature-type">FrameRequestCallback</span></h5>
+											</li>
+										</ul>
+										<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">number</span></h4>
+									</li>
+								</ul>
+							</li>
+						</ul>
+					</div>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
 					<a name="mozcancelrequestanimationframe" class="tsd-anchor"></a>
 					<h3>moz<wbr>Cancel<wbr>Request<wbr>Animation<wbr>Frame</h3>
 					<div class="tsd-signature tsd-kind-icon">moz<wbr>Cancel<wbr>Request<wbr>Animation<wbr>Frame<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol">(</span>handle<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><span class="tsd-signature-type">void</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/matteobruni/tsparticles/blob/d98596d/src/Main.ts#L25">Main.ts:25</a></li>
+							<li>Defined in <a href="https://github.com/matteobruni/tsparticles/blob/7e91198/src/Main.ts#L25">Main.ts:25</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-type-declaration">
@@ -174,7 +205,7 @@
 					<div class="tsd-signature tsd-kind-icon">moz<wbr>Request<wbr>Animation<wbr>Frame<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol">(</span>callback<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">FrameRequestCallback</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><span class="tsd-signature-type">number</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/matteobruni/tsparticles/blob/d98596d/src/Main.ts#L20">Main.ts:20</a></li>
+							<li>Defined in <a href="https://github.com/matteobruni/tsparticles/blob/7e91198/src/Main.ts#L20">Main.ts:20</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-type-declaration">
@@ -205,7 +236,7 @@
 					<div class="tsd-signature tsd-kind-icon">ms<wbr>Cancel<wbr>Request<wbr>Animation<wbr>Frame<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol">(</span>handle<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><span class="tsd-signature-type">void</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/matteobruni/tsparticles/blob/d98596d/src/Main.ts#L27">Main.ts:27</a></li>
+							<li>Defined in <a href="https://github.com/matteobruni/tsparticles/blob/7e91198/src/Main.ts#L27">Main.ts:27</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-type-declaration">
@@ -236,7 +267,7 @@
 					<div class="tsd-signature tsd-kind-icon">ms<wbr>Request<wbr>Animation<wbr>Frame<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol">(</span>callback<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">FrameRequestCallback</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><span class="tsd-signature-type">number</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/matteobruni/tsparticles/blob/d98596d/src/Main.ts#L22">Main.ts:22</a></li>
+							<li>Defined in <a href="https://github.com/matteobruni/tsparticles/blob/7e91198/src/Main.ts#L22">Main.ts:22</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-type-declaration">
@@ -267,7 +298,7 @@
 					<div class="tsd-signature tsd-kind-icon">o<wbr>Cancel<wbr>Request<wbr>Animation<wbr>Frame<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol">(</span>handle<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><span class="tsd-signature-type">void</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/matteobruni/tsparticles/blob/d98596d/src/Main.ts#L26">Main.ts:26</a></li>
+							<li>Defined in <a href="https://github.com/matteobruni/tsparticles/blob/7e91198/src/Main.ts#L26">Main.ts:26</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-type-declaration">
@@ -298,7 +329,7 @@
 					<div class="tsd-signature tsd-kind-icon">o<wbr>Request<wbr>Animation<wbr>Frame<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol">(</span>callback<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">FrameRequestCallback</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><span class="tsd-signature-type">number</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/matteobruni/tsparticles/blob/d98596d/src/Main.ts#L21">Main.ts:21</a></li>
+							<li>Defined in <a href="https://github.com/matteobruni/tsparticles/blob/7e91198/src/Main.ts#L21">Main.ts:21</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-type-declaration">
@@ -329,7 +360,7 @@
 					<div class="tsd-signature tsd-kind-icon">pJSDom<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><a href="../classes/_classes_container_.container.html" class="tsd-signature-type">Container</a><span class="tsd-signature-symbol">[]</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/matteobruni/tsparticles/blob/d98596d/src/Main.ts#L30">Main.ts:30</a></li>
+							<li>Defined in <a href="https://github.com/matteobruni/tsparticles/blob/7e91198/src/Main.ts#L30">Main.ts:30</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-type-declaration">
@@ -354,40 +385,9 @@
 					<div class="tsd-signature tsd-kind-icon">particlesJS<span class="tsd-signature-symbol">:</span> <a href="_interfaces_iparticlesjs_.iparticlesjs.html" class="tsd-signature-type">IParticlesJs</a></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/matteobruni/tsparticles/blob/d98596d/src/Main.ts#L28">Main.ts:28</a></li>
+							<li>Defined in <a href="https://github.com/matteobruni/tsparticles/blob/7e91198/src/Main.ts#L28">Main.ts:28</a></li>
 						</ul>
 					</aside>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="requestanimframe" class="tsd-anchor"></a>
-					<h3>request<wbr>Anim<wbr>Frame</h3>
-					<div class="tsd-signature tsd-kind-icon">request<wbr>Anim<wbr>Frame<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol">(</span>callback<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">FrameRequestCallback</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><span class="tsd-signature-type">number</span></div>
-					<aside class="tsd-sources">
-						<ul>
-							<li>Defined in <a href="https://github.com/matteobruni/tsparticles/blob/d98596d/src/Main.ts#L19">Main.ts:19</a></li>
-						</ul>
-					</aside>
-					<div class="tsd-type-declaration">
-						<h4>Type declaration</h4>
-						<ul class="tsd-parameters">
-							<li class="tsd-parameter-siganture">
-								<ul class="tsd-signatures tsd-kind-type-literal tsd-parent-kind-property">
-									<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">(</span>callback<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">FrameRequestCallback</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span></li>
-								</ul>
-								<ul class="tsd-descriptions">
-									<li class="tsd-description">
-										<h4 class="tsd-parameters-title">Parameters</h4>
-										<ul class="tsd-parameters">
-											<li>
-												<h5>callback: <span class="tsd-signature-type">FrameRequestCallback</span></h5>
-											</li>
-										</ul>
-										<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">number</span></h4>
-									</li>
-								</ul>
-							</li>
-						</ul>
-					</div>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
 					<a name="tsparticles" class="tsd-anchor"></a>
@@ -395,7 +395,7 @@
 					<div class="tsd-signature tsd-kind-icon">ts<wbr>Particles<span class="tsd-signature-symbol">:</span> <a href="../classes/_main_.main.html" class="tsd-signature-type">Main</a></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/matteobruni/tsparticles/blob/d98596d/src/Main.ts#L29">Main.ts:29</a></li>
+							<li>Defined in <a href="https://github.com/matteobruni/tsparticles/blob/7e91198/src/Main.ts#L29">Main.ts:29</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -405,7 +405,7 @@
 					<div class="tsd-signature tsd-kind-icon">webkit<wbr>Cancel<wbr>Request<wbr>Animation<wbr>Frame<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol">(</span>handle<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><span class="tsd-signature-type">void</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/matteobruni/tsparticles/blob/d98596d/src/Main.ts#L24">Main.ts:24</a></li>
+							<li>Defined in <a href="https://github.com/matteobruni/tsparticles/blob/7e91198/src/Main.ts#L24">Main.ts:24</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-type-declaration">
@@ -456,7 +456,10 @@
 						<a href="_main_.__global.window.html" class="tsd-kind-icon">Window</a>
 						<ul>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="_main_.__global.window.html#cancelrequestanimframe" class="tsd-kind-icon">cancel<wbr>Request<wbr>Anim<wbr>Frame</a>
+								<a href="_main_.__global.window.html#customcancelrequestanimationframe" class="tsd-kind-icon">custom<wbr>Cancel<wbr>Request<wbr>Animation<wbr>Frame</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-interface">
+								<a href="_main_.__global.window.html#customrequestanimationframe" class="tsd-kind-icon">custom<wbr>Request<wbr>Animation<wbr>Frame</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
 								<a href="_main_.__global.window.html#mozcancelrequestanimationframe" class="tsd-kind-icon">moz<wbr>Cancel<wbr>Request<wbr>Animation<wbr>Frame</a>
@@ -481,9 +484,6 @@
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
 								<a href="_main_.__global.window.html#particlesjs" class="tsd-kind-icon">particlesJS</a>
-							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="_main_.__global.window.html#requestanimframe" class="tsd-kind-icon">request<wbr>Anim<wbr>Frame</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
 								<a href="_main_.__global.window.html#tsparticles" class="tsd-kind-icon">ts<wbr>Particles</a>

@@ -24,7 +24,7 @@ export class Updater {
         this.move(delta);
 
         /* parallax */
-        this.moveParallax(delta);
+        this.moveParallax();
 
         /* change opacity status */
         this.updateOpacity();
@@ -53,19 +53,19 @@ export class Updater {
         }
     }
 
-    private moveParallax(delta: number): void {
+    private moveParallax(): void {
         const container = this.container;
         const options = container.options;
         const particle = this.particle;
-        const parallaxForce = options.interactivity.events.onhover.parallax.force;
+        const parallaxForce = options.interactivity.events.onHover.parallax.force;
         const mousePos = container.interactivity.mouse.position || {x: 0, y: 0};
         const windowDimension = {
             height: window.innerHeight / 2,
             width: window.innerWidth / 2,
         };
-        const parallaxSmooth = options.interactivity.events.onhover.parallax.smooth;
+        const parallaxSmooth = options.interactivity.events.onHover.parallax.smooth;
 
-        if (options.interactivity.events.onhover.parallax.enable) {
+        if (options.interactivity.events.onHover.parallax.enable) {
             /* smaller is the particle, longer is the offset distance */
             const tmp = {
                 x: (mousePos.x - windowDimension.width) * (particle.radius / parallaxForce),
@@ -82,7 +82,7 @@ export class Updater {
         const options = container.options;
         const particle = this.particle;
 
-        if (options.particles.opacity.anim.enable) {
+        if (options.particles.opacity.animation.enable) {
             if (particle.opacity.status) {
                 if (particle.opacity.value >= options.particles.opacity.value) {
                     particle.opacity.status = false;
@@ -90,7 +90,7 @@ export class Updater {
 
                 particle.opacity.value += (particle.opacity.velocity || 0);
             } else {
-                if (particle.opacity.value <= options.particles.opacity.anim.opacity_min) {
+                if (particle.opacity.value <= options.particles.opacity.animation.minimumValue) {
                     particle.opacity.status = true;
                 }
 
@@ -108,7 +108,7 @@ export class Updater {
         const options = container.options;
         const particle = this.particle;
 
-        if (options.particles.size.anim.enable) {
+        if (options.particles.size.animation.enable) {
             if (particle.size.status) {
                 if (particle.radius >= options.particles.size.value) {
                     particle.size.status = false;
@@ -116,7 +116,7 @@ export class Updater {
 
                 particle.radius += (particle.size.velocity || 0);
             } else {
-                if (particle.radius <= options.particles.size.anim.size_min) {
+                if (particle.radius <= options.particles.size.animation.minimumValue) {
                     particle.size.status = true;
                 }
 
@@ -133,7 +133,7 @@ export class Updater {
         const container = this.container;
         const options = container.options;
         const particle = this.particle;
-        const outMode = options.particles.move.out_mode;
+        const outMode = options.particles.move.outMode;
 
         let newPos;
 
@@ -162,7 +162,7 @@ export class Updater {
                 container.particles.array.splice(idx, 1);
 
                 /* remove the canvas if the array is empty */
-                const clickMode = options.interactivity.events.onclick.mode;
+                const clickMode = options.interactivity.events.onClick.mode;
 
                 if (!container.particles.array.length && !Utils.isInArray(ClickMode.push, clickMode)) {
                     container.destroy();
@@ -191,7 +191,7 @@ export class Updater {
         const container = this.container;
         const options = container.options;
 
-        switch (options.particles.move.out_mode) {
+        switch (options.particles.move.outMode) {
             case OutMode.bounce:
                 this.updateBounce();
 

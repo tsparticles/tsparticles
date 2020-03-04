@@ -27,7 +27,7 @@ export class Connecter {
             return;
         }
 
-        if (options.interactivity.events.onhover.enable && container.interactivity.status == 'mousemove') {
+        if (options.interactivity.events.onHover.enable && container.interactivity.status == 'mousemove') {
             const xDiff = Math.abs(particle.position.x - destParticle.position.x);
             const yDiff = Math.abs(particle.position.y - destParticle.position.y);
             const mousePos = container.interactivity.mouse.position || {x: 0, y: 0};

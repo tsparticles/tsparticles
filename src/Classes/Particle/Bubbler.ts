@@ -26,10 +26,10 @@ export class Bubbler {
     public bubble(): void {
         const container = this.container;
         const options = container.options;
-        const hoverEnabled = options.interactivity.events.onhover.enable;
-        const hoverMode = options.interactivity.events.onhover.mode;
-        const clickEnabled = options.interactivity.events.onclick.enable;
-        const clickMode = options.interactivity.events.onclick.mode;
+        const hoverEnabled = options.interactivity.events.onHover.enable;
+        const hoverMode = options.interactivity.events.onHover.mode;
+        const clickEnabled = options.interactivity.events.onClick.enable;
+        const clickMode = options.interactivity.events.onClick.mode;
 
         /* on hover event */
         if (hoverEnabled && Utils.isInArray(HoverMode.bubble, hoverMode)) {

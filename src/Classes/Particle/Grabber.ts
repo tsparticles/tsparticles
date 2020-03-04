@@ -22,7 +22,7 @@ export class Grabber {
         const options = container.options;
         const particle = this.particle;
 
-        if (options.interactivity.events.onhover.enable && container.interactivity.status === "mousemove") {
+        if (options.interactivity.events.onHover.enable && container.interactivity.status === "mousemove") {
             const mousePos = container.interactivity.mouse.position || {x: 0, y: 0};
             const dxMouse = particle.position.x - mousePos.x;
             const dyMouse = particle.position.y - mousePos.y;
@@ -32,13 +32,13 @@ export class Grabber {
                if the distance between them is under the config distance
             */
             if (distMouse <= options.interactivity.modes.grab.distance) {
-                const lineOpacity = options.interactivity.modes.grab.line_linked.opacity;
+                const lineOpacity = options.interactivity.modes.grab.lineLinked.opacity;
                 const grabDistance = options.interactivity.modes.grab.distance;
                 const opacityLine = lineOpacity - (distMouse / (1 / lineOpacity)) / grabDistance;
 
                 if (opacityLine > 0) {
                     /* style */
-                    const optColor = options.particles.line_linked.color;
+                    const optColor = options.particles.lineLinked.color;
                     let lineColor = container.particles.lineLinkedColor || Utils.hexToRgb(optColor);
 
                     if (lineColor == "random") {
@@ -58,7 +58,7 @@ export class Grabber {
                         }
 
                         ctx.strokeStyle = `rgba(${colorLine.r},${colorLine.g},${colorLine.b},${opacityLine})`;
-                        ctx.lineWidth = options.particles.line_linked.width;
+                        ctx.lineWidth = options.particles.lineLinked.width;
                         // container.canvas.ctx.lineCap = "round"; /* performance issue */
                         /* path */
                         ctx.beginPath();
