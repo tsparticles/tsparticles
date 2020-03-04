@@ -215,9 +215,7 @@ export class Particle {
         const p = this;
 
         for (const p2 of container.particles.array) {
-            const dx = p.position.x - p2.position.x;
-            const dy = p.position.y - p2.position.y;
-            const dist = Math.sqrt(dx * dx + dy * dy);
+            const dist = Utils.getDistanceBetweenCoordinates(p.position, p2.position);
 
             if (dist <= p.radius + p2.radius) {
                 p.position.x = position ? position.x : Math.random() * container.canvas.dimension.width;

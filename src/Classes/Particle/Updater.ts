@@ -62,9 +62,7 @@ export class Updater {
         const mousePos = this.container.interactivity.mouse.position;
         if (!mousePos) return false;
         const particlePos = this.particle.position;
-        const dx = mousePos.x - particlePos.x;
-        const dy = mousePos.y - particlePos.y;
-        const dist = Math.sqrt(dx * dx + dy * dy);
+        const dist = Utils.getDistanceBetweenCoordinates(mousePos, particlePos);
         return dist < this.container.options.interactivity.modes.slow.radius;
     }
 
@@ -236,11 +234,7 @@ export class Updater {
             if (!particle.initialPosition) {
                 particle.initialPosition = {x: 0, y: 0};
             }
-
-            const dx = particle.initialPosition.x - particle.position.x;
-            const dy = particle.initialPosition.y - particle.position.y;
-            const dist = Math.sqrt(dx * dx + dy * dy);
-
+            const dist = Utils.getDistanceBetweenCoordinates(particle.initialPosition, particle.position);
             if (dist > options.polygon.move.radius) {
                 particle.velocity.horizontal = -particle.velocity.horizontal + (particle.velocity.vertical / 2);
                 particle.velocity.vertical = -particle.velocity.vertical + (particle.velocity.horizontal / 2);
