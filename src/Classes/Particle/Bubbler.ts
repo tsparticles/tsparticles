@@ -1,12 +1,12 @@
 "use strict";
 
-import {ClickMode} from "../../Enums/Modes/ClickMode";
 import {Container} from "../Container";
-import {HoverMode} from "../../Enums/Modes/HoverMode";
 import {IBubblerProcessParam} from "../../Interfaces/IBubblerProcessParam";
 import {Particle} from "../Particle";
 import {ProcessBubbleType} from "../../Enums/ProcessBubbleType";
 import {Utils} from "../Utils/Utils";
+import {HoverMode} from "../../Enums/Modes/HoverMode";
+import {ClickMode} from "../../Enums/Modes/ClickMode";
 
 /**
  * Particle bubble manager
