@@ -2,21 +2,24 @@
 
 ## tsParticles
 
-[![Slack](https://cdn.brandfolder.io/5H442O3W/as/pl546j-7le8zk-5guop3/Slack_RGB.auto?width=94&height=38)](https://join.slack.com/t/tsparticles/shared_invite/enQtOTcxNTQxNjQ4NzkxLWE2MTZhZWExMWRmOWI5MTMxNjczOGE1Yjk0MjViYjdkYTUzODM3OTc5MGQ5MjFlODc4MzE0N2Q1OWQxZDc1YzI)
+[![Slack](https://cdn.brandfolder.io/5H442O3W/as/pl546j-7le8zk-5guop3/Slack_RGB.auto?width=94&height=38)](https://join.slack.com/t/tsparticles/shared_invite/enQtOTcxNTQxNjQ4NzkxLWE2MTZhZWExMWRmOWI5MTMxNjczOGE1Yjk0MjViYjdkYTUzODM3OTc5MGQ5MjFlODc4MzE0N2Q1OWQxZDc1YzI) [![tsParticles - A lightweight TypeScript library for creating particles | Product Hunt Embed](https://api.producthunt.com/widgets/embed-image/v1/featured.svg?post_id=186113&theme=light)](https://www.producthunt.com/posts/tsparticles?utm_source=badge-featured&utm_medium=badge&utm_souce=badge-tsparticles")
 
 [![CodeFactor](https://www.codefactor.io/repository/github/matteobruni/tsparticles/badge)](https://www.codefactor.io/repository/github/matteobruni/tsparticles)
 [![Codacy Badge](https://api.codacy.com/project/badge/Grade/b983aaf3461a4c48b1e2eecce1ff1d74)](https://www.codacy.com/manual/ar3s/tsparticles?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=matteobruni/tsparticles&amp;utm_campaign=Badge_Grade)
 [![Code Inspector](https://www.code-inspector.com/project/4056/score/svg)](https://frontend.code-inspector.com/public/project/4056/tsparticles/dashboard)
 [![Code Inspector](https://www.code-inspector.com/project/4056/status/svg)](https://frontend.code-inspector.com/public/project/4056/tsparticles/dashboard)
 
+***API documentation and Development references here: <https://particles.matteobruni.it/docs/>***
+
 ### A lightweight TypeScript library for creating particles
 
 [Particles.js](https://github.com/VincentGarreau/particles.js) converted in TypeScript
 
-| Branch | Build Status |
-| - | - |
-| Master | [![Master Build Status](https://dev.azure.com/hollowmatt/particles.ts/_apis/build/status/matteobruni.tsparticles?branchName=master)](https://dev.azure.com/hollowmatt/particles.ts/_build/latest?definitionId=11&branchName=master) |
-| Dev | [![Dev Build Status](https://dev.azure.com/hollowmatt/particles.ts/_apis/build/status/matteobruni.tsparticles?branchName=dev)](https://dev.azure.com/hollowmatt/particles.ts/_build/latest?definitionId=11&branchName=dev)
+Branch | Build Status
+---|----
+Master | [![Master Build Status](https://dev.azure.com/hollowmatt/particles.ts/_apis/build/status/matteobruni.tsparticles?branchName=master)](https://dev.azure.com/hollowmatt/particles.ts/_build/latest?definitionId=11&branchName=master)
+Staging | [![Staging Build Status](https://dev.azure.com/hollowmatt/particles.ts/_apis/build/status/matteobruni.tsparticles?branchName=staging)](https://dev.azure.com/hollowmatt/particles.ts/_build/latest?definitionId=11&branchName=staging)
+Dev | [![Dev Build Status](https://dev.azure.com/hollowmatt/particles.ts/_apis/build/status/matteobruni.tsparticles?branchName=dev)](https://dev.azure.com/hollowmatt/particles.ts/_build/latest?definitionId=11&branchName=dev)
 
 ---
 
@@ -29,6 +32,10 @@
 ```shell
 npm install tsparticles
 ```
+
+### ***NuGet***
+
+[![Nuget](https://img.shields.io/nuget/v/tsParticles)](https://www.nuget.org/packages/tsParticles/)
 
 ---
 
@@ -53,6 +60,7 @@ Load tsParticles and configure the particles:
 **app.js**
 
 ```javascript
+// @path-json can be an object or an array, the first will be loaded directly, the object from the array will be random selected
 /* tsParticles.loadJSON(@dom-id, @path-json, @callback (optional)); */
 tsParticles.loadJSON("tsparticles", "presets/default.json").then((container) => {
   console.log("callback - tsparticles config loaded");
@@ -64,15 +72,28 @@ tsParticles.loadJSON("tsparticles", "presets/default.json").then((container) => 
 
 /* tsParticles.load(@dom-id, @options); */
 tsParticles.load("tsparticles", { /* options here */ });
+
+//or
+
+/* tsParticles.loadFromArray(@dom-id, @options, @index (optional)); */
+tsParticles.loadFromArray("tsparticles", [ { /* options here */ }, { /* other options here */ }]); //random object
+tsParticles.loadFromArray("tsparticles", [ { /* options here */ }, { /* other options here */ }], 1); //the second one
+// Important! If the index is not in range 0...array.length, the index will be ignored.
+
+// after initialization this can be used.
+
+/* tsParticles.setOnClickHandler(@callback); */
+/* this will be fired from all particles loaded */
+tsParticles.setOnClickHandler((e) => { /* custom on click handler */ });
 ```
 
 ---
 
 ### `Demo / Generator`
 
-[![Particles Generator](https://tsparticles.matteobruni.it/demo/img/demo.png)](https://tsparticles.matteobruni.it/demo/)
+[![Particles Generator](https://particles.matteobruni.it/images/demo.png)](https://particles.matteobruni.it/)
 
-<https://tsparticles.matteobruni.it/demo/>
+<https://particles.matteobruni.it/>
 
 ---
 
@@ -86,6 +107,7 @@ tsParticles.load("tsparticles", { /* options here */ });
     },
     "number": {
       "value": 80,
+      "limit": 200,
       "density": {
         "enable": true,
         "value_area": 800
@@ -210,13 +232,15 @@ tsParticles.load("tsparticles", { /* options here */ });
 key | option type / notes | example
 ----|---------|------
 `particles.number.value` | number | `40`
+`particles.number.limit` | number | `200` / `0` or less disables the limit
 `particles.number.density.enable` | boolean | `true` / `false` 
 `particles.number.density.value_area` | number | `800`
 `particles.color.value` | HEX (string) <br /> RGB (object) <br /> HSL (object) <br /> array selection (HEX) <br /> random (string) | `"#b61924"` <br /> `{r:182, g:25, b:36}` <br />  `{h:356, s:76, l:41}` <br /> `["#b61924", "#333333", "999999"]` <br /> `"random"`
 `particles.shape.type` | string <br /> array selection | `"circle"` <br /> `"line"` <br /> `"edge"` <br /> `"triangle"` <br /> `"polygon"` <br /> `"star"` <br /> `"image"` <br /> `["circle", "triangle", "image"]`
 `particles.shape.stroke.width` | number | `2`
-`particles.shape.stroke.color` | HEX (string) | `"#222222"`
+`particles.shape.stroke.color` | HEX (string) <br /> random (string) | `"#222222"` <br /> `"random"`
 `particles.shape.polygon.nb_sides` | number | `5`
+`particles.shape.image` | object / array | A single image object like below or an array of the same objects
 `particles.shape.image.src` | path link <br /> svg / png / gif / jpg | `"assets/img/yop.svg"` <br /> `"http://mywebsite.com/assets/img/yop.png"`
 `particles.shape.image.width` | number <br />(for aspect ratio) | `100`
 `particles.shape.image.height` | number <br />(for aspect ratio) | `100`
@@ -234,7 +258,7 @@ key | option type / notes | example
 `particles.size.anim.sync` | boolean | `true` / `false`
 `particles.line_linked.enable` | boolean | `true` / `false`
 `particles.line_linked.distance` | number | `150`
-`particles.line_linked.color` | HEX (string) | `#ffffff`
+`particles.line_linked.color` | HEX (string)  <br /> random (string) | `#ffffff` <br /> `"random"`
 `particles.line_linked.opacity` | number (0 to 1) | `0.5`
 `particles.line_linked.width` | number | `1.5`
 `particles.move.enable` | boolean | `true` / `false`
@@ -249,9 +273,12 @@ key | option type / notes | example
 `particles.move.attract.rotateY` | number | `1500`
 `interactivity.detect_on` | string | `"canvas", "window","parent"`
 `interactivity.events.onhover.enable` | boolean | `true` / `false`
-`interactivity.events.onhover.mode` | string <br /> array selection | `"grab"` <br /> `"bubble"` <br /> `"repulse"` <br /> `["grab", "bubble"]`
+`interactivity.events.onhover.mode` | string <br /> array selection | `"grab"` <br /> `"bubble"` <br /> `"repulse"` <br /> `"connect"` <br /> `["grab", "bubble"]`
 `interactivity.events.onclick.enable` | boolean | `true` / `false`
 `interactivity.events.onclick.mode` | string <br /> array selection | `"push"` <br /> `"remove"` <br /> `"bubble"` <br /> `"repulse"` <br /> `["push", "repulse"]`
+`interactivity.events.ondiv.mnode` | string <br /> array selection | `"repulse"` <br /> `["repulse"]`
+`interactivity.events.ondiv.enable` | boolean | `true` / `false`
+`interactivity.events.ondiv.el` | string | `repulse-div`
 `interactivity.events.resize` | boolean | `true` / `false`
 `interactivity.events.modes.grab.distance` | number | `100`
 `interactivity.events.modes.grab.line_linked.opacity` | number (0 to 1) | `0.75`

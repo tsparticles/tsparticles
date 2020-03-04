@@ -2,11 +2,17 @@
 
 import {Constants} from "./Utils/Constants";
 import {Container} from "./Container";
-import {IOptions} from "../Interfaces/IOptions";
+import {IOptions} from "../Interfaces/Options/IOptions";
 
 let tsParticlesDom: Container[] = [];
 
+/**
+ * Main class for creating the [[Container]] objects
+ */
 export class Loader {
+    /**
+     * All the [[Container]] objects loaded
+     */
     public static dom(): Container[] {
         if (!tsParticlesDom) {
             tsParticlesDom = [];
@@ -15,10 +21,37 @@ export class Loader {
         return tsParticlesDom;
     }
 
+    /**
+     * Retrieves a [[Container]] from all the objects loaded
+     * @param index the object index
+     */
     public static domItem(index: number): Container {
         return Loader.dom()[index];
     }
 
+    /**
+     * Loads an options object from the provided array to create a [[Container]] object.
+     * @param tagId the particles container element id
+     * @param params the options array to get the item from
+     * @param index if provided gets the corresponding item from the array
+     */
+    public static loadFromArray(tagId: string, params: IOptions[], index?: number): Container | undefined {
+        let idx: number;
+
+        if (index === undefined || index < 0 || index >= params.length) {
+            idx = Math.floor(Math.random() * params.length);
+        } else {
+            idx = index;
+        }
+
+        return Loader.load(tagId, params[idx]);
+    }
+
+    /**
+     * Loads the provided options to create a [[Container]] object.
+     * @param tagId the particles container element id
+     * @param params the options object to initialize the [[Container]]
+     */
     public static load(tagId: string, params: IOptions): Container | undefined {
         /* elements */
         const tag = document.getElementById(tagId);
@@ -66,6 +99,12 @@ export class Loader {
         return newItem;
     }
 
+    /**
+     * Loads the provided json with a GET request. The content will be used to create a [[Container]] object.
+     * This method is async, so if you need a callback refer to JavaScript function `fetch`
+     * @param tagId the particles container element id
+     * @param jsonUrl the json path to use in the GET request
+     */
     public static async loadJSON(tagId: string, jsonUrl: string): Promise<Container | undefined> {
         /* load json config */
         const response = await fetch(jsonUrl);
@@ -73,13 +112,21 @@ export class Loader {
         if (response.ok) {
             const params = await response.json();
 
-            return Loader.load(tagId, params);
+            if (params instanceof Array) {
+                return Loader.loadFromArray(tagId, params);
+            } else {
+                return Loader.load(tagId, params);
+            }
         } else {
             console.error(`Error tsParticles - fetch status: ${response.status}`);
             console.error("Error tsParticles - File config not found");
         }
     };
 
+    /**
+     * Adds an additional click handler to all the loaded [[Container]] objects.
+     * @param callback the function called after the click event is fired
+     */
     public static setOnClickHandler(callback: EventListenerOrEventListenerObject): void {
         const dom = Loader.dom();
 

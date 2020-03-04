@@ -4,9 +4,12 @@ import {Container} from "../Container";
 import {OutMode} from "../../Enums/OutMode";
 import {Particle} from "../Particle";
 import {Utils} from "../Utils/Utils";
-import {ClickMode} from "../../Enums/ClickMode";
+import {ClickMode} from "../../Enums/Modes/ClickMode";
 import {PolygonMaskType} from "../../Enums/PolygonMaskType";
 
+/**
+ * Particle updater, it manages movement
+ */
 export class Updater {
     private readonly particle: Particle;
     private readonly container: Container;
@@ -21,7 +24,7 @@ export class Updater {
         this.move(delta);
 
         /* parallax */
-        this.moveParallax();
+        this.moveParallax(delta);
 
         /* change opacity status */
         this.updateOpacity();
@@ -36,106 +39,21 @@ export class Updater {
         this.updateOutMode();
     }
 
-    public link(p2: Particle): void {
-        const container = this.container;
-        const options = container.options;
-        const particle = this.particle;
-
-        const x1 = particle.position.x + particle.offset.x;
-        const x2 = p2.position.x + p2.offset.x;
-        const dx = x1 - x2;
-        const y1 = particle.position.y + particle.offset.y;
-        const y2 = p2.position.y + p2.offset.y;
-        const dy = y1 - y2;
-        const dist = Math.sqrt(dx * dx + dy * dy);
-        const optOpacity = options.particles.line_linked.opacity;
-        const optDistance = options.particles.line_linked.distance;
-
-        /* draw a line between p1 and p2 if the distance between them is under the config distance */
-        if (dist <= optDistance) {
-            const opacityLine = optOpacity - (dist * optOpacity) / optDistance;
-
-            if (opacityLine > 0) {
-                /* style */
-                if (!container.particles.lineLinkedColor) {
-                    container.particles.lineLinkedColor = Utils.hexToRgb(options.particles.line_linked.color);
-                }
-
-                if (!container.canvas.context) {
-                    return;
-                }
-
-                const ctx = container.canvas.context;
-
-                const colorLine = container.particles.lineLinkedColor;
-
-                if (colorLine) {
-                    ctx.strokeStyle = `rgba(${colorLine.r},${colorLine.g},${colorLine.b},${opacityLine})`;
-                }
-
-                ctx.lineWidth = options.particles.line_linked.width;
-                // container.canvas.ctx.lineCap = "round"; /* performance issue */
-                /* path */
-                ctx.beginPath();
-                ctx.moveTo(x1, y1);
-                ctx.lineTo(x2, y2);
-                ctx.stroke();
-                ctx.closePath();
-            }
-        }
-    }
-
-    public attract(p2: Particle): void {
-        const container = this.container;
-        const options = container.options;
-        const particle = this.particle;
-
-        /* condensed particles */
-        const dx = particle.position.x - p2.position.x;
-        const dy = particle.position.y - p2.position.y;
-        const dist = Math.sqrt(dx * dx + dy * dy);
-
-        if (dist <= options.particles.line_linked.distance) {
-            const ax = dx / (options.particles.move.attract.rotateX * 1000);
-            const ay = dy / (options.particles.move.attract.rotateY * 1000);
-
-            particle.velocity.horizontal -= ax;
-            particle.velocity.vertical -= ay;
-            p2.velocity.horizontal += ax;
-            p2.velocity.vertical += ay;
-        }
-    }
-
-    public bounce(p2: Particle): void {
-        const particle = this.particle;
-
-        const dx = particle.position.x - p2.position.x;
-        const dy = particle.position.y - p2.position.y;
-        const dist = Math.sqrt(dx * dx + dy * dy);
-        const distP = particle.radius + p2.radius;
-
-        if (dist <= distP) {
-            particle.velocity.horizontal = -particle.velocity.horizontal;
-            particle.velocity.vertical = -particle.velocity.vertical;
-            p2.velocity.horizontal = -p2.velocity.horizontal;
-            p2.velocity.vertical = -p2.velocity.vertical;
-        }
-    }
-
     private move(delta: number): void {
         const container = this.container;
         const options = container.options;
         const particle = this.particle;
 
         if (options.particles.move.enable) {
-            const moveSpeed = options.particles.move.speed / 10;
+            const moveSpeed = options.particles.move.speed / 2;
+            const deltaFactor = (60 * delta) / 1000;
 
-            particle.position.x += particle.velocity.horizontal * moveSpeed * delta;
-            particle.position.y += particle.velocity.vertical * moveSpeed * delta;
+            particle.position.x += particle.velocity.horizontal * moveSpeed * deltaFactor;
+            particle.position.y += particle.velocity.vertical * moveSpeed * deltaFactor;
         }
     }
 
-    private moveParallax(): void {
+    private moveParallax(delta: number): void {
         const container = this.container;
         const options = container.options;
         const particle = this.particle;
@@ -222,15 +140,15 @@ export class Updater {
         if (outMode === OutMode.bounce || outMode === OutMode.bounceVertical) {
             newPos = {
                 x_left: particle.radius,
-                x_right: container.canvas.width,
-                y_bottom: container.canvas.height,
+                x_right: container.canvas.dimension.width,
+                y_bottom: container.canvas.dimension.height,
                 y_top: particle.radius,
             };
         } else {
             newPos = {
                 x_left: -particle.radius - particle.offset.x,
-                x_right: container.canvas.width + particle.radius + particle.offset.x,
-                y_bottom: container.canvas.height + particle.radius - particle.offset.y,
+                x_right: container.canvas.dimension.width + particle.radius + particle.offset.x,
+                y_bottom: container.canvas.dimension.height + particle.radius - particle.offset.y,
                 y_top: -particle.radius - particle.offset.y,
             };
         }
@@ -238,8 +156,8 @@ export class Updater {
         if (outMode === OutMode.destroy) {
             if (particle.position.x + particle.radius < 0 ||
                 particle.position.y + particle.radius < 0 ||
-                particle.position.x - particle.radius > container.canvas.width ||
-                particle.position.y - particle.radius > container.canvas.height) {
+                particle.position.x - particle.radius > container.canvas.dimension.width ||
+                particle.position.y - particle.radius > container.canvas.dimension.height) {
                 const idx = container.particles.array.indexOf(particle);
                 container.particles.array.splice(idx, 1);
 
@@ -251,20 +169,20 @@ export class Updater {
                 }
             }
         } else {
-            if (particle.position.x - particle.radius > container.canvas.width - particle.offset.x) {
+            if (particle.position.x - particle.radius > container.canvas.dimension.width - particle.offset.x) {
                 particle.position.x = newPos.x_left;
-                particle.position.y = Math.random() * container.canvas.height;
+                particle.position.y = Math.random() * container.canvas.dimension.height;
             } else if (particle.position.x + particle.radius < 0 - particle.offset.x) {
                 particle.position.x = newPos.x_right;
-                particle.position.y = Math.random() * container.canvas.height;
+                particle.position.y = Math.random() * container.canvas.dimension.height;
             }
 
-            if (particle.position.y - particle.radius > container.canvas.height - particle.offset.y) {
+            if (particle.position.y - particle.radius > container.canvas.dimension.height - particle.offset.y) {
                 particle.position.y = newPos.y_top;
-                particle.position.x = Math.random() * container.canvas.width;
+                particle.position.x = Math.random() * container.canvas.dimension.width;
             } else if (particle.position.y + particle.radius < 0 - particle.offset.y) {
                 particle.position.y = newPos.y_bottom;
-                particle.position.x = Math.random() * container.canvas.width;
+                particle.position.x = Math.random() * container.canvas.dimension.width;
             }
         }
     }
@@ -316,11 +234,11 @@ export class Updater {
             const x = particle.position.x + particle.offset.x;
             const y = particle.position.y + particle.offset.y;
 
-            if (x + particle.radius > container.canvas.width || x - particle.radius < 0) {
+            if (x + particle.radius > container.canvas.dimension.width || x - particle.radius < 0) {
                 particle.velocity.horizontal = -particle.velocity.horizontal;
             }
 
-            if (y + particle.radius > container.canvas.height || y - particle.radius < 0) {
+            if (y + particle.radius > container.canvas.dimension.height || y - particle.radius < 0) {
                 particle.velocity.vertical = -particle.velocity.vertical;
             }
         }
@@ -330,7 +248,7 @@ export class Updater {
         const container = this.container;
         const particle = this.particle;
 
-        if (particle.position.y + particle.radius > container.canvas.height) {
+        if (particle.position.y + particle.radius > container.canvas.dimension.height) {
             particle.velocity.vertical = -particle.velocity.vertical;
         }
 
@@ -343,7 +261,7 @@ export class Updater {
         const container = this.container;
         const particle = this.particle;
 
-        if (particle.position.x + particle.radius > container.canvas.width) {
+        if (particle.position.x + particle.radius > container.canvas.dimension.width) {
             particle.velocity.horizontal = -particle.velocity.horizontal;
         } else if (particle.position.x - particle.radius < 0) {
             particle.velocity.horizontal = -particle.velocity.horizontal;

@@ -3,7 +3,11 @@
 import {Container} from "../Container";
 import {Particle} from "../Particle";
 import {Utils} from "../Utils/Utils";
+import {IRgb} from "../../Interfaces/IRgb";
 
+/**
+ * Particle grab manager
+ */
 export class Grabber {
     private readonly container: Container;
     private readonly particle: Particle;
@@ -35,17 +39,25 @@ export class Grabber {
                 if (opacityLine > 0) {
                     /* style */
                     const optColor = options.particles.line_linked.color;
-                    const lineColor = container.particles.lineLinkedColor || Utils.hexToRgb(optColor);
+                    let lineColor = container.particles.lineLinkedColor || Utils.hexToRgb(optColor);
+
+                    if (lineColor == "random") {
+                        lineColor = Utils.getRandomColorRGBA();
+                    }
 
                     container.particles.lineLinkedColor = lineColor;
 
-                    const colorLine = container.particles.lineLinkedColor || {r: 127, g: 127, b: 127};
+                    let colorLine: IRgb = {r: 127, g: 127, b: 127};
                     const ctx = container.canvas.context;
 
                     if (ctx) {
-                        const strokeStyle = `rgba(${colorLine.r},${colorLine.g},${colorLine.b},${opacityLine})`;
+                        if (container.particles.lineLinkedColor == "random") {
+                            colorLine = Utils.getRandomColorRGBA();
+                        } else {
+                            colorLine = container.particles.lineLinkedColor as IRgb || colorLine;
+                        }
 
-                        ctx.strokeStyle = strokeStyle;
+                        ctx.strokeStyle = `rgba(${colorLine.r},${colorLine.g},${colorLine.b},${opacityLine})`;
                         ctx.lineWidth = options.particles.line_linked.width;
                         // container.canvas.ctx.lineCap = "round"; /* performance issue */
                         /* path */
