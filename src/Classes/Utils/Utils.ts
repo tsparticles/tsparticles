@@ -210,6 +210,17 @@ export class Utils {
     }
 
     /**
+     * Gets the distance between two coordinates
+     * @param pointA the first coordinate
+     * @param pointB the second coordinate
+     */
+    public static getDistanceBetweenCoordinates(pointA: ICoordinates, pointB: ICoordinates): number {
+        const dx = pointA.x - pointB.x;
+        const dy = pointA.y - pointB.y;
+        return Math.sqrt(dx * dx + dy * dy);
+    }
+
+    /**
      *
      * @param p
      * @param q
