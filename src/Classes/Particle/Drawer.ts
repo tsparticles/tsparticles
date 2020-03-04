@@ -15,7 +15,6 @@ export class Drawer {
     private readonly container: Container;
     private readonly bubbler: Bubbler;
     private readonly text?: string;
-    private opacityBubble?: number;
 
     constructor(container: Container, particle: Particle, bubbler: Bubbler) {
         this.container = container;
@@ -73,8 +72,8 @@ export class Drawer {
             radius = particle.radius;
         }
 
-        if (this.opacityBubble !== undefined) {
-            opacity = this.opacityBubble;
+        if (this.bubbler.opacity !== undefined) {
+            opacity = this.bubbler.opacity;
         } else {
             opacity = particle.opacity.value;
         }
