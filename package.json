@@ -1,7 +1,7 @@
 {
   "name": "tsparticles",
   "version": "1.8.0",
-  "description": "Porting of Vincent Garreau's particles.js, converted in TypeScript. Added many new cool features and various bug fixes.",
+  "description": "Porting of the abandoned Vincent Garreau's particles.js, converted in TypeScript. Added many new cool features and various bug fixes.",
   "homepage": "https://particles.matteobruni.it/",
   "scripts": {
     "type-check": "tsc --noEmit",
@@ -19,14 +19,28 @@
     "url": "git+https://github.com/matteobruni/tsparticles.git"
   },
   "keywords": [
+    "tsparticles",
     "particles",
     "particle",
     "canvas",
+    "jsparticles",
+    "xparticles",
     "particles-js",
     "particles.js",
+    "particles-ts",
+    "particles.ts",
     "typescript",
     "javascript",
-    "animation"
+    "animation",
+    "web",
+    "html5",
+    "web-design",
+    "webdesign",
+    "css",
+    "html",
+    "css3",
+    "animated",
+    "background"
   ],
   "author": "Matteo Bruni",
   "license": "MIT",
