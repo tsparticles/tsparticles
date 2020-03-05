@@ -46,24 +46,30 @@ export class Updater {
 
         if (options.particles.move.enable) {
             let moveSpeed = options.particles.move.speed / 2;
+            moveSpeed *= this.getProximitySpeedFactor();
             
-            if(options.interactivity.modes.slow.active && this.particleWithinMouseRadius()) {
-                moveSpeed *= options.interactivity.modes.slow.factor;
-            }
-
             const deltaFactor = (60 * delta) / 1000;
 
             particle.position.x += particle.velocity.horizontal * moveSpeed * deltaFactor;
             particle.position.y += particle.velocity.vertical * moveSpeed * deltaFactor;
         }
     }
+    
+    private getProximitySpeedFactor(): number {
+        const active = this.container.options.interactivity.modes.slow.active;
+        if(active) return 1;
 
-    private particleWithinMouseRadius(): boolean {
         const mousePos = this.container.interactivity.mouse.position;
-        if (!mousePos) return false;
+        if (!mousePos) return 1;
+
         const particlePos = this.particle.position;
         const dist = Utils.getDistanceBetweenCoordinates(mousePos, particlePos);
-        return dist < this.container.options.interactivity.modes.slow.radius;
+        const radius = this.container.options.interactivity.modes.slow.radius;
+        if (dist > radius) return 1;
+
+        const proximityFactor = dist / radius || 0;
+        const slowFactor = this.container.options.interactivity.modes.slow.factor;
+        return slowFactor * proximityFactor;
     }
 
     private moveParallax(): void {
