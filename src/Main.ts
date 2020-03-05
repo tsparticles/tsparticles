@@ -12,7 +12,7 @@ import {Container} from "./Classes/Container";
 import {Loader} from "./Classes/Loader";
 import {IParticlesJs} from "./Interfaces/IParticlesJs";
 import {ParticlesJS} from "./support";
-import {Options} from "./Classes/Options/Options";
+import {IOptions} from "./Interfaces/Options/IOptions";
 
 declare global {
     interface Window {
@@ -64,7 +64,7 @@ class Main {
      * @param params the options array to get the item from
      * @param index if provided gets the corresponding item from the array
      */
-    public loadFromArray(tagId: string, params: Options[], index?: number): Container | undefined {
+    public loadFromArray(tagId: string, params: IOptions[], index?: number): Container | undefined {
         return Loader.loadFromArray(tagId, params, index);
     }
 
@@ -73,7 +73,7 @@ class Main {
      * @param tagId the particles container element id
      * @param params the options object to initialize the [[Container]]
      */
-    public load(tagId: string, params: Options): Container | undefined {
+    public load(tagId: string, params: IOptions): Container | undefined {
         return Loader.load(tagId, params);
     }
 
@@ -126,7 +126,7 @@ Object.freeze(window.tsParticles);
  * @param tagId the particles container element id
  * @param params the options object to initialize the [[Container]]
  */
-window.particlesJS = (tagId: string, params: Options) => ParticlesJS.load(tagId, params);
+window.particlesJS = (tagId: string, params: IOptions) => ParticlesJS.load(tagId, params);
 
 /**
  * Loads the provided json with a GET request. The content will be used to create a [[Container]] object.

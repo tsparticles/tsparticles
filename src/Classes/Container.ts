@@ -1,7 +1,6 @@
 "use strict";
 
 import {Canvas} from "./Canvas";
-import {Constants} from "./Utils/Constants";
 import {EventListeners} from "./Utils/EventListeners";
 import {IRepulse} from "../Interfaces/IRepulse";
 import {IBubble} from "../Interfaces/IBubble";
@@ -14,8 +13,9 @@ import {Retina} from "./Retina";
 import {ShapeType} from "../Enums/ShapeType";
 import {Utils} from "./Utils/Utils";
 import {PolygonMask} from "./PolygonMask";
-import {Options} from "./Options/Options";
 import {ImageShape} from "./Options/Particles/Shape/ImageShape";
+import {IOptions} from "../Interfaces/Options/IOptions";
+import {Options} from "./Options/Options";
 
 /**
  * The object loaded into an HTML element, it'll contain options loaded and all data to let everything working
@@ -52,7 +52,7 @@ export class Container {
     }
 
     public interactivity: IContainerInteractivity;
-    public options: Options;
+    public options: IOptions;
     public retina: Retina;
     public canvas: Canvas;
     public particles: Particles;
@@ -68,7 +68,7 @@ export class Container {
 
     private readonly _eventListeners: EventListeners;
 
-    constructor(tagId: string, params: Options) {
+    constructor(tagId: string, params: IOptions) {
         this.lastFrameTime = 0;
         this.pageHidden = false;
         this.retina = new Retina(this);

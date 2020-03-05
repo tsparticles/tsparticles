@@ -7,7 +7,13 @@ export interface IMove {
     bounce: boolean;
     direction: MoveDirection;
     enable: boolean;
+
+    /**
+     * @deprecated use the new outMode instead
+     */
     out_mode: OutMode;
+
+    outMode: OutMode;
     random: boolean;
     speed: number;
     straight: boolean;

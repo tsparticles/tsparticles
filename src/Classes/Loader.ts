@@ -3,6 +3,7 @@
 import {Constants} from "./Utils/Constants";
 import {Container} from "./Container";
 import {Options} from "./Options/Options";
+import {IOptions} from "../Interfaces/Options/IOptions";
 
 let tsParticlesDom: Container[] = [];
 
@@ -35,7 +36,7 @@ export class Loader {
      * @param params the options array to get the item from
      * @param index if provided gets the corresponding item from the array
      */
-    public static loadFromArray(tagId: string, params: Options[], index?: number): Container | undefined {
+    public static loadFromArray(tagId: string, params: IOptions[], index?: number): Container | undefined {
         let idx: number;
 
         if (index === undefined || index < 0 || index >= params.length) {
@@ -52,7 +53,7 @@ export class Loader {
      * @param tagId the particles container element id
      * @param params the options object to initialize the [[Container]]
      */
-    public static load(tagId: string, params: Options): Container | undefined {
+    public static load(tagId: string, params: IOptions): Container | undefined {
         /* elements */
         const tag = document.getElementById(tagId);
 

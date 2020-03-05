@@ -58,7 +58,7 @@ export class Events implements IEvents {
         this.onHover = value;
     }
 
-    public onClick: ClickEvent;
+    public onClick: IClickEvent;
     public onDiv: IDivEvent;
     public onHover: IHoverEvent;
     public resize: boolean;

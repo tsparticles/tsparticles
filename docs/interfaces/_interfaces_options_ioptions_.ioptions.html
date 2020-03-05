@@ -74,11 +74,6 @@
 					<div class="lead">
 						<p>The Options interface, defines all the options that can be used by <code>tsParticles</code></p>
 					</div>
-					<dl class="tsd-comment-tags">
-						<dt>deprecated</dt>
-						<dd><p>this interface is deprecated, use the new Options class</p>
-						</dd>
-					</dl>
 				</div>
 			</section>
 			<section class="tsd-panel tsd-hierarchy">
@@ -102,6 +97,8 @@
 						<section class="tsd-index-section ">
 							<h3>Properties</h3>
 							<ul class="tsd-index-list">
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_interfaces_options_ioptions_.ioptions.html#detectretina" class="tsd-kind-icon">detect<wbr>Retina</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_interfaces_options_ioptions_.ioptions.html#fpslimit" class="tsd-kind-icon">fps<wbr>Limit</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_interfaces_options_ioptions_.ioptions.html#fps_limit" class="tsd-kind-icon">fps_<wbr>limit</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_interfaces_options_ioptions_.ioptions.html#interactivity" class="tsd-kind-icon">interactivity</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_interfaces_options_ioptions_.ioptions.html#particles" class="tsd-kind-icon">particles</a></li>
@@ -115,12 +112,27 @@
 			<section class="tsd-panel-group tsd-member-group ">
 				<h2>Properties</h2>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="fps_limit" class="tsd-anchor"></a>
-					<h3>fps_<wbr>limit</h3>
-					<div class="tsd-signature tsd-kind-icon">fps_<wbr>limit<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span></div>
+					<a name="detectretina" class="tsd-anchor"></a>
+					<h3>detect<wbr>Retina</h3>
+					<div class="tsd-signature tsd-kind-icon">detect<wbr>Retina<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">boolean</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/matteobruni/tsparticles/blob/2d59566/src/Interfaces/Options/IOptions.ts#L15">Interfaces/Options/IOptions.ts:15</a></li>
+							<li>Defined in <a href="https://github.com/matteobruni/tsparticles/blob/41c2b61/src/Interfaces/Options/IOptions.ts#L46">Interfaces/Options/IOptions.ts:46</a></li>
+						</ul>
+					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>Enables the retina detection, if disabled the ratio used by canvas will be always 1 and not the device setting.</p>
+						</div>
+					</div>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
+					<a name="fpslimit" class="tsd-anchor"></a>
+					<h3>fps<wbr>Limit</h3>
+					<div class="tsd-signature tsd-kind-icon">fps<wbr>Limit<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/matteobruni/tsparticles/blob/41c2b61/src/Interfaces/Options/IOptions.ts#L20">Interfaces/Options/IOptions.ts:20</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -130,12 +142,32 @@
 					</div>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
+					<a name="fps_limit" class="tsd-anchor"></a>
+					<h3>fps_<wbr>limit</h3>
+					<div class="tsd-signature tsd-kind-icon">fps_<wbr>limit<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/matteobruni/tsparticles/blob/41c2b61/src/Interfaces/Options/IOptions.ts#L15">Interfaces/Options/IOptions.ts:15</a></li>
+						</ul>
+					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>The F(rame)P(er)S(econd) limit applied to all particles animations.</p>
+						</div>
+						<dl class="tsd-comment-tags">
+							<dt>obsolete</dt>
+							<dd><p>use the new fpsLimit instead</p>
+							</dd>
+						</dl>
+					</div>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
 					<a name="interactivity" class="tsd-anchor"></a>
 					<h3>interactivity</h3>
 					<div class="tsd-signature tsd-kind-icon">interactivity<span class="tsd-signature-symbol">:</span> <a href="_interfaces_options_interactivity_iinteractivity_.iinteractivity.html" class="tsd-signature-type">IInteractivity</a></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/matteobruni/tsparticles/blob/2d59566/src/Interfaces/Options/IOptions.ts#L19">Interfaces/Options/IOptions.ts:19</a></li>
+							<li>Defined in <a href="https://github.com/matteobruni/tsparticles/blob/41c2b61/src/Interfaces/Options/IOptions.ts#L25">Interfaces/Options/IOptions.ts:25</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -150,7 +182,7 @@
 					<div class="tsd-signature tsd-kind-icon">particles<span class="tsd-signature-symbol">:</span> <a href="_interfaces_options_particles_iparticles_.iparticles.html" class="tsd-signature-type">IParticles</a></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/matteobruni/tsparticles/blob/2d59566/src/Interfaces/Options/IOptions.ts#L23">Interfaces/Options/IOptions.ts:23</a></li>
+							<li>Defined in <a href="https://github.com/matteobruni/tsparticles/blob/41c2b61/src/Interfaces/Options/IOptions.ts#L30">Interfaces/Options/IOptions.ts:30</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -165,7 +197,7 @@
 					<div class="tsd-signature tsd-kind-icon">polygon<span class="tsd-signature-symbol">:</span> <a href="_interfaces_options_polygonmask_ipolygonmask_.ipolygonmask.html" class="tsd-signature-type">IPolygonMask</a></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/matteobruni/tsparticles/blob/2d59566/src/Interfaces/Options/IOptions.ts#L27">Interfaces/Options/IOptions.ts:27</a></li>
+							<li>Defined in <a href="https://github.com/matteobruni/tsparticles/blob/41c2b61/src/Interfaces/Options/IOptions.ts#L35">Interfaces/Options/IOptions.ts:35</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -180,13 +212,18 @@
 					<div class="tsd-signature tsd-kind-icon">retina_<wbr>detect<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">boolean</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/matteobruni/tsparticles/blob/2d59566/src/Interfaces/Options/IOptions.ts#L31">Interfaces/Options/IOptions.ts:31</a></li>
+							<li>Defined in <a href="https://github.com/matteobruni/tsparticles/blob/41c2b61/src/Interfaces/Options/IOptions.ts#L41">Interfaces/Options/IOptions.ts:41</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
 						<div class="lead">
 							<p>Enables the retina detection, if disabled the ratio used by canvas will be always 1 and not the device setting.</p>
 						</div>
+						<dl class="tsd-comment-tags">
+							<dt>deprecated</dt>
+							<dd><p>use the new detectRetina instead</p>
+							</dd>
+						</dl>
 					</div>
 				</section>
 			</section>
@@ -209,6 +246,12 @@
 					<li class="current tsd-kind-interface tsd-parent-kind-external-module">
 						<a href="_interfaces_options_ioptions_.ioptions.html" class="tsd-kind-icon">IOptions</a>
 						<ul>
+							<li class=" tsd-kind-property tsd-parent-kind-interface">
+								<a href="_interfaces_options_ioptions_.ioptions.html#detectretina" class="tsd-kind-icon">detect<wbr>Retina</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-interface">
+								<a href="_interfaces_options_ioptions_.ioptions.html#fpslimit" class="tsd-kind-icon">fps<wbr>Limit</a>
+							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
 								<a href="_interfaces_options_ioptions_.ioptions.html#fps_limit" class="tsd-kind-icon">fps_<wbr>limit</a>
 							</li>
