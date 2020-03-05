@@ -45,12 +45,27 @@ export class Updater {
         const particle = this.particle;
 
         if (options.particles.move.enable) {
-            const moveSpeed = options.particles.move.speed / 2;
+            let moveSpeed = options.particles.move.speed / 2;
+            
+            if(options.interactivity.modes.slow.active && this.particleWithinMouseRadius()) {
+                moveSpeed *= options.interactivity.modes.slow.factor;
+            }
+
             const deltaFactor = (60 * delta) / 1000;
 
             particle.position.x += particle.velocity.horizontal * moveSpeed * deltaFactor;
             particle.position.y += particle.velocity.vertical * moveSpeed * deltaFactor;
         }
+    }
+
+    private particleWithinMouseRadius(): boolean {
+        const mousePos = this.container.interactivity.mouse.position;
+        if (!mousePos) return false;
+        const particlePos = this.particle.position;
+        const dx = mousePos.x - particlePos.x;
+        const dy = mousePos.y - particlePos.y;
+        const dist = Math.sqrt(dx * dx + dy * dy);
+        return dist < this.container.options.interactivity.modes.slow.radius;
     }
 
     private moveParallax(): void {
