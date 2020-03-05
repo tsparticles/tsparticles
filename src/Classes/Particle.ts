@@ -13,13 +13,13 @@ import {Repulser} from "./Particle/Repulser";
 import {ShapeType} from "../Enums/ShapeType";
 import {Updater} from "./Particle/Updater";
 import {Utils} from "./Utils/Utils";
-import {HoverMode} from "../Enums/Modes/HoverMode";
-import {ClickMode} from "../Enums/Modes/ClickMode";
 import {PolygonMaskType} from "../Enums/PolygonMaskType";
 import {Connecter} from "./Particle/Connecter";
 import {IRgb} from "../Interfaces/IRgb";
+import {IOptions} from "../Interfaces/Options/IOptions";
 import {InteractionManager} from "./Particle/InteractionManager";
-import {Options} from "./Options/Options";
+import {HoverMode} from "../Enums/Modes/HoverMode";
+import {ClickMode} from "../Enums/Modes/ClickMode";
 
 /**
  * The single particle object
@@ -142,7 +142,7 @@ export class Particle {
         this._interactionManager = new InteractionManager(this._container, this);
     }
 
-    private static calcVelocity(options: Options): IVelocity {
+    private static calcVelocity(options: IOptions): IVelocity {
         const baseVelocity = Utils.getParticleBaseVelocity(options);
         const res = {
             horizontal: 0,

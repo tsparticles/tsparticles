@@ -8,7 +8,13 @@ import {ISize} from "./ISize";
 
 export interface IParticles {
     color: IParticlesColor;
+
+    /**
+     * @deprecated use the new lineLinked instead
+     */
     line_linked: ILineLinked;
+
+    lineLinked: ILineLinked;
     move: IMove;
     number: IParticlesNumber;
     opacity: IOpacity;

@@ -5,7 +5,7 @@ import {IHsl} from "../../Interfaces/IHsl";
 import {IRgb} from "../../Interfaces/IRgb";
 import {IColor} from "../../Interfaces/IColor";
 import {MoveDirection} from "../../Enums/MoveDirection";
-import {Options} from "../Options/Options";
+import {IOptions} from "../../Interfaces/Options/IOptions";
 
 /* ---------- global functions - vendors ------------ */
 export class Utils {
@@ -131,7 +131,7 @@ export class Utils {
      * Get Particle base velocity
      * @param options the options to use for calculating the velocity
      */
-    public static getParticleBaseVelocity(options: Options): ICoordinates {
+    public static getParticleBaseVelocity(options: IOptions): ICoordinates {
         let velocityBase: ICoordinates;
 
         switch (options.particles.move.direction) {
@@ -172,7 +172,7 @@ export class Utils {
      * @param options the options to use for calculating the color
      * @param color the input color to convert in [[IRgb]] object
      */
-    public static getParticleColor(options: Options, color: { value: string[] | IColor | string }): IRgb | null {
+    public static getParticleColor(options: IOptions, color: { value: string[] | IColor | string }): IRgb | null {
         let res: IRgb | null = null;
 
         if (typeof (color.value) === "object") {

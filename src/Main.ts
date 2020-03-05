@@ -8,10 +8,13 @@
 /* How to use? : Check the GitHub README
 /* v1.8.0
 /* ----------------------------------------------- */
+import "reflect-metadata";
 import {Container} from "./Classes/Container";
 import {Loader} from "./Classes/Loader";
 import {IParticlesJs} from "./Interfaces/IParticlesJs";
 import {ParticlesJS} from "./support";
+import {IOptions} from "./Interfaces/Options/IOptions";
+import {container, singleton} from "tsyringe";
 import {Options} from "./Classes/Options/Options";
 
 declare global {
@@ -57,6 +60,7 @@ window.customCancelRequestAnimationFrame = (() => {
  * Main class for creating the singleton on window.
  * It's a proxy to the static [[Loader]] class
  */
+@singleton()
 class Main {
     /**
      * Loads an options object from the provided array to create a [[Container]] object.
@@ -64,7 +68,7 @@ class Main {
      * @param params the options array to get the item from
      * @param index if provided gets the corresponding item from the array
      */
-    public loadFromArray(tagId: string, params: Options[], index?: number): Container | undefined {
+    public loadFromArray(tagId: string, params: IOptions[], index?: number): Container | undefined {
         return Loader.loadFromArray(tagId, params, index);
     }
 
@@ -73,7 +77,7 @@ class Main {
      * @param tagId the particles container element id
      * @param params the options object to initialize the [[Container]]
      */
-    public load(tagId: string, params: Options): Container | undefined {
+    public load(tagId: string, params: IOptions): Container | undefined {
         return Loader.load(tagId, params);
     }
 
@@ -111,10 +115,14 @@ class Main {
     }
 }
 
+container.register<IOptions>("IOptions", {
+    useClass: Options
+});
+
 /**
  * The new singleton, replacing the old particlesJS
  */
-window.tsParticles = new Main();
+window.tsParticles = container.resolve(Main);
 
 Object.freeze(window.tsParticles);
 
@@ -126,7 +134,7 @@ Object.freeze(window.tsParticles);
  * @param tagId the particles container element id
  * @param params the options object to initialize the [[Container]]
  */
-window.particlesJS = (tagId: string, params: Options) => ParticlesJS.load(tagId, params);
+window.particlesJS = (tagId: string, params: IOptions) => ParticlesJS.load(tagId, params);
 
 /**
  * Loads the provided json with a GET request. The content will be used to create a [[Container]] object.

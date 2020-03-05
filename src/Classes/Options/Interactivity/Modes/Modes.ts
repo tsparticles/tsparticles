@@ -5,16 +5,24 @@ import {Grab} from "./Grab";
 import {Remove} from "./Remove";
 import {Push} from "./Push";
 import {Repulse} from "./Repulse";
-import { Slow } from "./Slow";
+import {Slow} from "./Slow";
+
+import {IBubble} from "../../../../Interfaces/Options/Interactivity/Modes/IBubble";
+import {IConnect} from "../../../../Interfaces/Options/Interactivity/Modes/IConnect";
+import {IGrab} from "../../../../Interfaces/Options/Interactivity/Modes/IGrab";
+import {IPush} from "../../../../Interfaces/Options/Interactivity/Modes/IPush";
+import {IRemove} from "../../../../Interfaces/Options/Interactivity/Modes/IRemove";
+import {IRepulse} from "../../../../Interfaces/Options/Interactivity/Modes/IRepulse";
+import {ISlow} from "../../../../Interfaces/Options/Interactivity/Modes/ISlow";
 
 export class Modes implements IOptionsInteractivityModes {
-    public bubble: Bubble;
-    public connect: Connect;
-    public grab: Grab;
-    public push: Push;
-    public remove: Remove;
-    public repulse: Repulse;
-    public slow: Slow;
+    public bubble: IBubble;
+    public connect: IConnect;
+    public grab: IGrab;
+    public push: IPush;
+    public remove: IRemove;
+    public repulse: IRepulse;
+    public slow: ISlow;
 
     constructor() {
         this.bubble = new Bubble();

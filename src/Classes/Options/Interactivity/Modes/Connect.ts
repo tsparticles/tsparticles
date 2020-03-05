@@ -21,7 +21,7 @@ export class Connect implements IConnect {
     }
 
     public distance: number;
-    public lineLinked: ConnectLineLinked;
+    public lineLinked: IConnectLineLinked;
     public radius: number;
 
     constructor() {

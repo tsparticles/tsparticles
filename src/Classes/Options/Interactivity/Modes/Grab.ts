@@ -21,7 +21,7 @@ export class Grab implements IGrab {
     }
 
     public distance: number;
-    public lineLinked: GrabLineLinked;
+    public lineLinked: IGrabLineLinked;
 
     constructor() {
         this.distance = 100;
