@@ -1,16 +1,18 @@
 {
   "name": "tsparticles",
   "version": "1.8.0",
-  "description": "Porting of Vincent Garreau's particles.js, converted in TypeScript.",
-  "homepage": "https://github.com/matteobruni/tsparticles",
+  "description": "Porting of Vincent Garreau's particles.js, converted in TypeScript. Added many new cool features and various bug fixes.",
+  "homepage": "https://particles.matteobruni.it/",
   "scripts": {
     "type-check": "tsc --noEmit",
     "type-check:watch": "npm run type-check -- --watch",
     "copy:js": "cpx \"src/**/*.{js,d.ts}\" dist/",
-    "build": "npm run build:docs && npm run copy:js && npm run build:types && npm run build:js && npx webpack --mode production",
+    "slimbuild": "npm run copy:js && npm run build:types && npm run build:js && npx webpack --mode production",
+    "build": "npm run build:docs && npm run slimbuild",
     "build:types": "tsc --emitDeclarationOnly",
     "build:js": "babel src --out-dir dist --ignore \"src/**/*.d.ts\" --extensions \".ts,.tsx\" --source-maps inline",
-    "build:docs": "typedoc --out docs --gaID UA-159372955-1 src"
+    "build:docs": "typedoc --out docs --gaID UA-159372955-1 src",
+    "start": "npm run slimbuild && node demo/app.js"
   },
   "repository": {
     "type": "git",
@@ -46,8 +48,15 @@
     "@babel/runtime": "^7.8.4",
     "babel-loader": "^8.0.6",
     "cpx": "^1.5.0",
+    "express": "^4.17.1",
+    "install": "^0.13.0",
+    "node": "^13.9.0",
+    "npm": "^6.14.2",
     "pathseg": "^1.2.0",
+    "pug": "^2.0.4",
     "reflect-metadata": "^0.1.13",
+    "rimraf": "^3.0.2",
+    "stylus": "^0.54.7",
     "terser-webpack-plugin": "^2.3.5",
     "tsyringe": "^4.1.0",
     "typedoc": "^0.16.11",
@@ -56,5 +65,7 @@
     "webpack": "^4.41.6",
     "webpack-cli": "^3.3.11"
   },
-  "dependencies": {}
+  "dependencies": {
+    "jsoneditor": "^8.6.1"
+  }
 }
