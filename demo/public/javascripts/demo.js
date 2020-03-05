@@ -188,6 +188,7 @@
         const editor = new JSONEditor(element, options);
 
         editor.set(tsParticles.domItem(0).options);
+        editor.expandAll();
 
         const btnUpdate = document.getElementById('btnUpdate');
         btnUpdate.onclick = function () {
