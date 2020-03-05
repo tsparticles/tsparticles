@@ -8,11 +8,14 @@
 /* How to use? : Check the GitHub README
 /* v1.8.0
 /* ----------------------------------------------- */
+import "reflect-metadata";
 import {Container} from "./Classes/Container";
 import {Loader} from "./Classes/Loader";
 import {IParticlesJs} from "./Interfaces/IParticlesJs";
 import {ParticlesJS} from "./support";
 import {IOptions} from "./Interfaces/Options/IOptions";
+import {container, singleton} from "tsyringe";
+import {Options} from "./Classes/Options/Options";
 
 declare global {
     interface Window {
@@ -57,6 +60,7 @@ window.customCancelRequestAnimationFrame = (() => {
  * Main class for creating the singleton on window.
  * It's a proxy to the static [[Loader]] class
  */
+@singleton()
 class Main {
     /**
      * Loads an options object from the provided array to create a [[Container]] object.
@@ -111,10 +115,14 @@ class Main {
     }
 }
 
+container.register<IOptions>("IOptions", {
+    useClass: Options
+});
+
 /**
  * The new singleton, replacing the old particlesJS
  */
-window.tsParticles = new Main();
+window.tsParticles = container.resolve(Main);
 
 Object.freeze(window.tsParticles);
 

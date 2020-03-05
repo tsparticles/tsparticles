@@ -16,6 +16,7 @@ import {PolygonMask} from "./PolygonMask";
 import {ImageShape} from "./Options/Particles/Shape/ImageShape";
 import {IOptions} from "../Interfaces/Options/IOptions";
 import {Options} from "./Options/Options";
+import {container} from "tsyringe";
 
 /**
  * The object loaded into an HTML element, it'll contain options loaded and all data to let everything working
@@ -87,7 +88,7 @@ export class Container {
         this.repulse = {};
 
         /* tsParticles variables with default values */
-        this.options = new Options();
+        this.options = container.resolve<IOptions>("IOptions");
 
         /* params settings */
         if (params) {
