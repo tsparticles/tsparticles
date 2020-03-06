@@ -111,9 +111,7 @@ export class Bubbler {
 
         /* on click event */
         const mouseClickPos = container.interactivity.mouse.clickPosition || {x: 0, y: 0};
-        const dxMouse = particle.position.x - mouseClickPos.x;
-        const dyMouse = particle.position.y - mouseClickPos.y;
-        const distMouse = Math.sqrt(dxMouse * dxMouse + dyMouse * dyMouse);
+        const distMouse = Utils.getDistanceBetweenCoordinates(particle.position, mouseClickPos);
         const timeSpent = (new Date().getTime() - (container.interactivity.mouse.clickTime || 0)) / 1000;
 
         if (container.bubble.clicking) {
@@ -165,9 +163,7 @@ export class Bubbler {
         const options = container.options;
         const particle = this.particle;
         const mousePos = container.interactivity.mouse.position || {x: 0, y: 0};
-        const dxMouse = (particle.position.x + particle.offset.x) - mousePos.x;
-        const dyMouse = (particle.position.y + particle.offset.y) - mousePos.y;
-        const distMouse = Math.sqrt(dxMouse * dxMouse + dyMouse * dyMouse);
+        const distMouse = Utils.getDistanceBetweenCoordinates(particle.position, mousePos);
         const ratio = 1 - distMouse / options.interactivity.modes.bubble.distance;
 
         /* mousemove - check ratio */
