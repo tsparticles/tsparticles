@@ -33,8 +33,8 @@ export class Connecter {
             const mousePos = container.interactivity.mouse.position || {x: 0, y: 0};
             const xCoreDiff = Math.abs(particle.position.x - mousePos.x);
             const yCoreDiff = Math.abs(particle.position.y - mousePos.y);
-            const distMax = Math.abs(options.interactivity.modes.connect.distance);
-            const connectAreaRadius = Math.abs(options.interactivity.modes.connect.radius);
+            const distMax = Math.abs(container.retina.connectModeDistance);
+            const connectAreaRadius = Math.abs(container.retina.connectModeRadius);
 
             if (xDiff < distMax && yDiff < distMax && xCoreDiff < connectAreaRadius && yCoreDiff < connectAreaRadius) {
                 const lineStyle = this.lineStyle(destParticle);

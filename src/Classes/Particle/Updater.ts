@@ -47,7 +47,7 @@ export class Updater {
         if (options.particles.move.enable) {
             const slowFactor = this.getProximitySpeedFactor();
             const deltaFactor = (60 * delta) / 1000;
-            const moveSpeed = options.particles.move.speed / 2 * slowFactor * deltaFactor;
+            const moveSpeed = container.retina.moveSpeed / 2 * slowFactor * deltaFactor;
 
             particle.position.x += particle.velocity.horizontal * moveSpeed;
             particle.position.y += particle.velocity.vertical * moveSpeed;
@@ -55,21 +55,33 @@ export class Updater {
     }
 
     private getProximitySpeedFactor(): number {
-        const active = this.container.options.interactivity.modes.slow.active;
-        if (!active) return 1;
+        const container = this.container;
+        const options = container.options;
+        const particle = this.particle;
+        const active = options.interactivity.modes.slow.active;
+
+        if (!active) {
+            return 1;
+        }
 
         const mousePos = this.container.interactivity.mouse.position;
-        if (!mousePos) return 1;
 
-        const particlePos = this.particle.position;
+        if (!mousePos) {
+            return 1;
+        }
+
+        const particlePos = particle.position;
         const dist = Utils.getDistanceBetweenCoordinates(mousePos, particlePos);
-        const radius = this.container.options.interactivity.modes.slow.radius;
-        if (dist > radius) return 1;
+        const radius = container.retina.slowModeRadius;
+
+        if (dist > radius) {
+            return 1;
+        }
 
         const proximityFactor = dist / radius || 0;
-        const slowFactor = 1 / this.container.options.interactivity.modes.slow.factor;
+        const slowFactor = options.interactivity.modes.slow.factor;
 
-        return slowFactor * proximityFactor;
+        return proximityFactor / slowFactor;
     }
 
     private moveParallax(): void {
@@ -129,7 +141,7 @@ export class Updater {
 
         if (options.particles.size.animation.enable) {
             if (particle.size.status) {
-                if (particle.radius >= options.particles.size.value) {
+                if (particle.radius >= container.retina.sizeValue) {
                     particle.size.status = false;
                 }
 
@@ -241,7 +253,7 @@ export class Updater {
                 particle.initialPosition = {x: 0, y: 0};
             }
             const dist = Utils.getDistanceBetweenCoordinates(particle.initialPosition, particle.position);
-            if (dist > options.polygon.move.radius) {
+            if (dist > container.retina.polygonMaskMoveRadius) {
                 particle.velocity.horizontal = -particle.velocity.horizontal + (particle.velocity.vertical / 2);
                 particle.velocity.vertical = -particle.velocity.vertical + (particle.velocity.horizontal / 2);
             }

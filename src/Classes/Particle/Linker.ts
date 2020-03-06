@@ -24,7 +24,7 @@ export class Linker {
         const dy = y1 - y2;
         const dist = Math.sqrt(dx * dx + dy * dy);
         const optOpacity = options.particles.lineLinked.opacity;
-        const optDistance = options.particles.lineLinked.distance;
+        const optDistance = container.retina.lineLinkedDistance;
 
         /* draw a line between p1 and p2 if the distance between them is under the config distance */
         if (dist <= optDistance) {
@@ -88,7 +88,7 @@ export class Linker {
                     ctx.strokeStyle = `rgba(${colorLine.r},${colorLine.g},${colorLine.b},${opacityLine})`;
                 }
 
-                ctx.lineWidth = options.particles.lineLinked.width;
+                ctx.lineWidth = container.retina.lineLinkedWidth;
                 // container.canvas.ctx.lineCap = "round"; /* performance issue */
                 /* path */
                 ctx.beginPath();

@@ -51,7 +51,7 @@ export class Bubbler {
         const options = container.options;
         const bubbleDuration = options.interactivity.modes.bubble.duration;
         const bubbleParam = data.bubbleObj.optValue;
-        const bubbleDistance = options.interactivity.modes.bubble.distance;
+        const bubbleDistance = container.retina.bubbleModeDistance;
         const particlesParam = data.particlesObj.optValue;
         const pObjBubble = data.bubbleObj.value;
         const pObj = data.particlesObj.value || 0;
@@ -129,11 +129,11 @@ export class Bubbler {
             /* size */
             const sizeData: IBubblerProcessParam = {
                 bubbleObj: {
-                    optValue: options.interactivity.modes.bubble.size,
+                    optValue: container.retina.bubbleModeSize,
                     value: this.radius,
                 },
                 particlesObj: {
-                    optValue: options.particles.size.value,
+                    optValue: container.retina.sizeValue,
                     value: this.particle.radius,
                 },
                 type: ProcessBubbleType.size,
@@ -160,14 +160,16 @@ export class Bubbler {
 
     private hoverBubble(): void {
         const container = this.container;
-        const options = container.options;
         const particle = this.particle;
-        const mousePos = container.interactivity.mouse.position || {x: 0, y: 0};
+        const mousePos = container.interactivity.mouse.position || {
+            x: 0,
+            y: 0,
+        };
         const distMouse = Utils.getDistanceBetweenCoordinates(particle.position, mousePos);
-        const ratio = 1 - distMouse / options.interactivity.modes.bubble.distance;
+        const ratio = 1 - distMouse / container.retina.bubbleModeDistance;
 
         /* mousemove - check ratio */
-        if (distMouse <= options.interactivity.modes.bubble.distance) {
+        if (distMouse <= container.retina.bubbleModeDistance) {
             if (ratio >= 0 && container.interactivity.status === "mousemove") {
                 /* size */
                 this.hoverBubbleSize(ratio);
@@ -187,18 +189,17 @@ export class Bubbler {
 
     private hoverBubbleSize(ratio: number): void {
         const container = this.container;
-        const options = container.options;
         const particle = this.particle;
 
-        if (options.interactivity.modes.bubble.size !== options.particles.size.value) {
-            if (options.interactivity.modes.bubble.size > options.particles.size.value) {
-                const size = particle.radius + (options.interactivity.modes.bubble.size * ratio);
+        if (container.retina.bubbleModeSize !== container.retina.sizeValue) {
+            if (container.retina.bubbleModeSize > container.retina.sizeValue) {
+                const size = particle.radius + (container.retina.bubbleModeSize * ratio);
 
                 if (size >= 0) {
                     this.radius = size;
                 }
             } else {
-                const dif = particle.radius - options.interactivity.modes.bubble.size;
+                const dif = particle.radius - container.retina.bubbleModeSize;
                 const size = particle.radius - (dif * ratio);
 
                 if (size > 0) {

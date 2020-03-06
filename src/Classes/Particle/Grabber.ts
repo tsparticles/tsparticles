@@ -29,9 +29,9 @@ export class Grabber {
                draw a line between the cursor and the particle
                if the distance between them is under the config distance
             */
-            if (distMouse <= options.interactivity.modes.grab.distance) {
+            if (distMouse <= container.retina.grabModeDistance) {
                 const lineOpacity = options.interactivity.modes.grab.lineLinked.opacity;
-                const grabDistance = options.interactivity.modes.grab.distance;
+                const grabDistance = container.retina.grabModeDistance;
                 const opacityLine = lineOpacity - (distMouse / (1 / lineOpacity)) / grabDistance;
 
                 if (opacityLine > 0) {
@@ -56,7 +56,7 @@ export class Grabber {
                         }
 
                         ctx.strokeStyle = `rgba(${colorLine.r},${colorLine.g},${colorLine.b},${opacityLine})`;
-                        ctx.lineWidth = options.particles.lineLinked.width;
+                        ctx.lineWidth = container.retina.lineLinkedWidth;
                         // container.canvas.ctx.lineCap = "round"; /* performance issue */
                         /* path */
                         ctx.beginPath();

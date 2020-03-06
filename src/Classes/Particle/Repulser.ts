@@ -74,7 +74,6 @@ export class Repulser {
 
     private clickRepulse(): void {
         const container = this.container;
-        const options = container.options;
         const particle = this.particle;
 
         if (!container.repulse.finish) {
@@ -90,7 +89,7 @@ export class Repulser {
         }
 
         if (container.repulse.clicking) {
-            const repulseDistance = options.interactivity.modes.repulse.distance;
+            const repulseDistance = container.retina.repulseModeDistance;
             const repulseRadius = Math.pow(repulseDistance / 6, 3);
             const mouseClickPos = container.interactivity.mouse.clickPosition || {x: 0, y: 0};
             const dx = mouseClickPos.x - particle.position.x;
@@ -125,7 +124,7 @@ export class Repulser {
         const dyMouse = particle.position.y - mousePos.y;
         const distMouse = Math.sqrt(dxMouse * dxMouse + dyMouse * dyMouse);
         const normVec = {x: dxMouse / distMouse, y: dyMouse / distMouse};
-        const repulseRadius = options.interactivity.modes.repulse.distance;
+        const repulseRadius = container.retina.repulseModeDistance;
         const velocity = 100;
         const repulseFactor = Utils.clamp((1 - Math.pow(distMouse / repulseRadius, 2)) * velocity, 0, 50);
         const pos = {

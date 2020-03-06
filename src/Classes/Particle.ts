@@ -58,11 +58,11 @@ export class Particle {
 
         /* size */
         this.size = {};
-        this.radius = (options.particles.size.random ? Math.random() : 1) * options.particles.size.value;
+        this.radius = (options.particles.size.random ? Math.random() : 1) * container.retina.sizeValue;
 
         if (options.particles.size.animation.enable) {
             this.size.status = false;
-            this.size.velocity = options.particles.size.animation.speed / 100;
+            this.size.velocity = container.retina.sizeAnimationSpeed / 100;
 
             if (!options.particles.size.animation.sync) {
                 this.size.velocity = this.size.velocity * Math.random();
