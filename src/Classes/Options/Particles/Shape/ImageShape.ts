@@ -14,7 +14,7 @@ export class ImageShape implements IImageShape {
      * @deprecated this property is obsolete, please use the new replaceColor
      * @param value
      */
-    public set replace_color(value) {
+    public set replace_color(value: boolean) {
         this.replaceColor = value;
     }
 

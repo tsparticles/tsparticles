@@ -14,7 +14,7 @@ export class PolygonShape implements IPolygonShape {
      * @deprecated this property is obsolete, please use the new sides
      * @param value
      */
-    public set nb_sides(value) {
+    public set nb_sides(value: number) {
         this.sides = value;
     }
 

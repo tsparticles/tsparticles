@@ -14,7 +14,7 @@ export class Remove implements IRemove {
      * @deprecated this property is obsolete, please use the new quantity
      * @param value
      */
-    public set particles_nb(value) {
+    public set particles_nb(value: number) {
         this.quantity = value;
     }
 

@@ -16,7 +16,7 @@ export class Grab implements IGrab {
      * @deprecated this property is obsolete, please use the new lineLinked
      * @param value
      */
-    public set line_linked(value) {
+    public set line_linked(value: IGrabLineLinked) {
         this.lineLinked = value;
     }
 

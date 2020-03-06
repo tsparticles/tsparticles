@@ -17,7 +17,7 @@ export class Interactivity implements IInteractivity {
      * @deprecated this property is obsolete, please use the new detectsOn
      * @param value
      */
-    public set detect_on(value) {
+    public set detect_on(value: InteractivityDetect) {
         this.detectsOn = value;
     }
 

@@ -13,7 +13,7 @@ export class Shadow implements IShadow {
         this.enable = false;
         this.offset = {
             x: 0,
-            y: 0
+            y: 0,
         };
     }
 }

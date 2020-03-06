@@ -20,7 +20,7 @@ export class Events implements IEvents {
      * @deprecated this property is obsolete, please use the new onClick
      * @param value
      */
-    public set onclick(value) {
+    public set onclick(value: IClickEvent) {
         this.onClick = value;
     }
 
@@ -37,7 +37,7 @@ export class Events implements IEvents {
      * @deprecated this property is obsolete, please use the new onDiv
      * @param value
      */
-    public set ondiv(value) {
+    public set ondiv(value: IDivEvent) {
         this.onDiv = value;
     }
 
@@ -54,7 +54,7 @@ export class Events implements IEvents {
      * @deprecated this property is obsolete, please use the new onHover
      * @param value
      */
-    public set onhover(value) {
+    public set onhover(value: IHoverEvent) {
         this.onHover = value;
     }
 

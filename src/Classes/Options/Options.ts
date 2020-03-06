@@ -20,7 +20,7 @@ export class Options implements IOptions {
      * @deprecated this property is obsolete, please use the new fpsLimit
      * @param value
      */
-    public set fps_limit(value) {
+    public set fps_limit(value: number) {
         this.fpsLimit = value;
     }
 
@@ -37,7 +37,7 @@ export class Options implements IOptions {
      * @deprecated this property is obsolete, please use the new retinaDetect
      * @param value
      */
-    public set retina_detect(value) {
+    public set retina_detect(value: boolean) {
         this.detectRetina = value;
     }
 
