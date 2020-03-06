@@ -2,6 +2,7 @@ import {IMove} from "../../../Interfaces/Options/Particles/IMove";
 import {Attract} from "./Attract";
 import {MoveDirection} from "../../../Enums/MoveDirection";
 import {OutMode} from "../../../Enums/OutMode";
+import {IAttract} from "../../../Interfaces/Options/Particles/IAttract";
 
 export class Move implements IMove {
     /**
@@ -21,7 +22,7 @@ export class Move implements IMove {
         this.outMode = value;
     }
 
-    public attract: Attract;
+    public attract: IAttract;
     public bounce: boolean;
     public direction: MoveDirection;
     public enable: boolean;

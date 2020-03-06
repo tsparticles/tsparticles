@@ -6,7 +6,7 @@ export class Slow implements ISlow {
     public factor: number;
 
     constructor() {
-        this.active = false;    
+        this.active = false;
         this.radius = 0;
         this.factor = 1;
     }

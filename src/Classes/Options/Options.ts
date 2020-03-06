@@ -2,6 +2,9 @@ import {IOptions} from "../../Interfaces/Options/IOptions";
 import {Interactivity} from "./Interactivity/Interactivity";
 import {Particles} from "./Particles/Particles";
 import {PolygonMask} from "./PolygonMask/PolygonMask";
+import {IInteractivity} from "../../Interfaces/Options/Interactivity/IInteractivity";
+import {IParticles} from "../../Interfaces/Options/Particles/IParticles";
+import {IPolygonMask} from "../../Interfaces/Options/PolygonMask/IPolygonMask";
 
 export class Options implements IOptions {
     /**
@@ -40,9 +43,9 @@ export class Options implements IOptions {
 
     public detectRetina: boolean;
     public fpsLimit: number;
-    public interactivity: Interactivity;
-    public particles: Particles;
-    public polygon: PolygonMask;
+    public interactivity: IInteractivity;
+    public particles: IParticles;
+    public polygon: IPolygonMask;
 
     constructor() {
         this.detectRetina = false;
