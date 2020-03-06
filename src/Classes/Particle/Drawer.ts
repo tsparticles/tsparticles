@@ -86,20 +86,32 @@ export class Drawer {
             return;
         }
 
-        container.canvas.context.fillStyle = colorValue;
-        container.canvas.context.beginPath();
+        const ctx = container.canvas.context;
+
+        // poor performance - find a solution
+        const shadow = options.particles.shadow;
+
+        if (shadow.enable) {
+            ctx.shadowBlur = shadow.blur;
+            ctx.shadowColor = shadow.color;
+            ctx.shadowOffsetX = shadow.offset.x;
+            ctx.shadowOffsetY = shadow.offset.y;
+        }
+
+        ctx.fillStyle = colorValue;
+        ctx.beginPath();
 
         this.drawShape(radius);
 
-        container.canvas.context.closePath();
+        ctx.closePath();
 
         if (options.particles.shape.stroke.width > 0) {
-            container.canvas.context.strokeStyle = options.particles.shape.stroke.color;
-            container.canvas.context.lineWidth = options.particles.shape.stroke.width;
-            container.canvas.context.stroke();
+            ctx.strokeStyle = options.particles.shape.stroke.color;
+            ctx.lineWidth = options.particles.shape.stroke.width;
+            ctx.stroke();
         }
 
-        container.canvas.context.fill();
+        ctx.fill();
     }
 
     private drawShape(radius: number): void {

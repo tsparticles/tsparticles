@@ -13,6 +13,8 @@ import {IParticlesNumber} from "../../../Interfaces/Options/Particles/IParticles
 import {IOpacity} from "../../../Interfaces/Options/Particles/IOpacity";
 import {IShape} from "../../../Interfaces/Options/Shape/IShape";
 import {ISize} from "../../../Interfaces/Options/Particles/ISize";
+import {IShadow} from "../../../Interfaces/Options/Particles/IShadow";
+import {Shadow} from "./Shadow";
 
 export class Particles implements IParticles {
     /**
@@ -39,6 +41,7 @@ export class Particles implements IParticles {
     public opacity: IOpacity;
     public shape: IShape;
     public size: ISize;
+    public shadow: IShadow;
 
     constructor() {
         this.color = new Color();
@@ -48,6 +51,7 @@ export class Particles implements IParticles {
         this.opacity = new Opacity();
         this.shape = new Shape();
         this.size = new ParticlesSize();
+        this.shadow = new Shadow();
     }
 }
 

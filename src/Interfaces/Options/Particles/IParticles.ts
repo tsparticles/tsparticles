@@ -5,6 +5,7 @@ import {IMove} from "./IMove";
 import {IParticlesNumber} from "./IParticlesNumber";
 import {IOpacity} from "./IOpacity";
 import {ISize} from "./ISize";
+import {IShadow} from "./IShadow";
 
 export interface IParticles {
     color: IParticlesColor;
@@ -18,6 +19,7 @@ export interface IParticles {
     move: IMove;
     number: IParticlesNumber;
     opacity: IOpacity;
+    shadow: IShadow;
     shape: IShape;
     size: ISize;
 }
