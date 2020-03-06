@@ -116,7 +116,7 @@ class Main {
 }
 
 container.register<IOptions>("IOptions", {
-    useClass: Options
+    useClass: Options,
 });
 
 /**

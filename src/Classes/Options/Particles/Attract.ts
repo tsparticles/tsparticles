@@ -43,7 +43,7 @@ export class Attract implements IAttract {
         this.enable = false;
         this.rotate = {
             x: 3000,
-            y: 3000
+            y: 3000,
         };
     }
 }
