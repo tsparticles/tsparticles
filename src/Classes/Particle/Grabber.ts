@@ -24,9 +24,7 @@ export class Grabber {
 
         if (options.interactivity.events.onHover.enable && container.interactivity.status === "mousemove") {
             const mousePos = container.interactivity.mouse.position || {x: 0, y: 0};
-            const dxMouse = particle.position.x - mousePos.x;
-            const dyMouse = particle.position.y - mousePos.y;
-            const distMouse = Math.sqrt(dxMouse * dxMouse + dyMouse * dyMouse);
+            const distMouse = Utils.getDistanceBetweenCoordinates(particle.position, mousePos);
             /*
                draw a line between the cursor and the particle
                if the distance between them is under the config distance

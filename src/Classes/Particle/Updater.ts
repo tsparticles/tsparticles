@@ -45,12 +45,31 @@ export class Updater {
         const particle = this.particle;
 
         if (options.particles.move.enable) {
-            const moveSpeed = options.particles.move.speed / 2;
+            let moveSpeed = options.particles.move.speed / 2;
+            moveSpeed *= this.getProximitySpeedFactor();
+            
             const deltaFactor = (60 * delta) / 1000;
 
             particle.position.x += particle.velocity.horizontal * moveSpeed * deltaFactor;
             particle.position.y += particle.velocity.vertical * moveSpeed * deltaFactor;
         }
+    }
+    
+    private getProximitySpeedFactor(): number {
+        const active = this.container.options.interactivity.modes.slow.active;
+        if(active) return 1;
+
+        const mousePos = this.container.interactivity.mouse.position;
+        if (!mousePos) return 1;
+
+        const particlePos = this.particle.position;
+        const dist = Utils.getDistanceBetweenCoordinates(mousePos, particlePos);
+        const radius = this.container.options.interactivity.modes.slow.radius;
+        if (dist > radius) return 1;
+
+        const proximityFactor = dist / radius || 0;
+        const slowFactor = this.container.options.interactivity.modes.slow.factor;
+        return slowFactor * proximityFactor;
     }
 
     private moveParallax(): void {
@@ -221,11 +240,7 @@ export class Updater {
             if (!particle.initialPosition) {
                 particle.initialPosition = {x: 0, y: 0};
             }
-
-            const dx = particle.initialPosition.x - particle.position.x;
-            const dy = particle.initialPosition.y - particle.position.y;
-            const dist = Math.sqrt(dx * dx + dy * dy);
-
+            const dist = Utils.getDistanceBetweenCoordinates(particle.initialPosition, particle.position);
             if (dist > options.polygon.move.radius) {
                 particle.velocity.horizontal = -particle.velocity.horizontal + (particle.velocity.vertical / 2);
                 particle.velocity.vertical = -particle.velocity.vertical + (particle.velocity.horizontal / 2);
