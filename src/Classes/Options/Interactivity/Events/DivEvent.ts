@@ -15,7 +15,7 @@ export class DivEvent implements IDivEvent {
      * @deprecated this property is obsolete, please use the new elementId
      * @param value
      */
-    public set el(value:string) {
+    public set el(value: string) {
         this.elementId = value;
     }
 
