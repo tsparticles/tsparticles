@@ -15,8 +15,8 @@ import {Utils} from "./Utils/Utils";
 import {PolygonMask} from "./PolygonMask";
 import {ImageShape} from "./Options/Particles/Shape/ImageShape";
 import {IOptions} from "../Interfaces/Options/IOptions";
-import {Options} from "./Options/Options";
 import {container} from "tsyringe";
+import {Drawer} from "./Drawer";
 
 /**
  * The object loaded into an HTML element, it'll contain options loaded and all data to let everything working
@@ -66,6 +66,7 @@ export class Container {
     public images: IImage[];
     public lastFrameTime: number;
     public pageHidden: boolean;
+    public drawer: Drawer;
 
     private readonly _eventListeners: EventListeners;
 
@@ -76,6 +77,7 @@ export class Container {
         this.canvas = new Canvas(this, tagId);
         this.particles = new Particles(this);
         this.polygon = new PolygonMask(this);
+        this.drawer = new Drawer(this);
         this.interactivity = {
             mouse: {},
         };
@@ -112,11 +114,11 @@ export class Container {
         });
     }
 
-    private static requestFrame(callback: FrameRequestCallback): number {
+    public static requestFrame(callback: FrameRequestCallback): number {
         return window.customRequestAnimationFrame(callback);
     }
 
-    private static cancelAnimation(handle: number): void {
+    public static cancelAnimation(handle: number): void {
         window.cancelAnimationFrame(handle);
     }
 
@@ -132,7 +134,7 @@ export class Container {
             }
 
             const optParticlesNumber = this.options.particles.number.value;
-            const density = this.options.particles.number.density.value_area;
+            const density = this.options.particles.number.density.area;
 
             /* calc number of particles based on density area */
             const particlesNumber = area * optParticlesNumber / density;
@@ -264,34 +266,7 @@ export class Container {
         } else {
             this.pageHidden = false;
             this.lastFrameTime = performance.now();
-            this.draw(0);
-        }
-    }
-
-    private draw(timestamp: DOMHighResTimeStamp): void {
-        // FPS limit logic
-        // If we are too fast, just draw without updating
-        const fpsLimit = this.options.fpsLimit;
-
-        if (fpsLimit > 0 && timestamp < this.lastFrameTime + (1000 / fpsLimit)) {
-            this.drawAnimationFrame = Container.requestFrame((t) => this.draw(t));
-            return;
-        }
-
-        const delta = timestamp - this.lastFrameTime;
-
-        this.lastFrameTime = timestamp;
-
-        if (this.options.particles.shape.type === ShapeType.image && this.images.every((img) => img.error)) {
-            return;
-        }
-
-        this.particles.draw(delta);
-
-        if (this.drawAnimationFrame !== undefined && !this.options.particles.move.enable) {
-            Container.cancelAnimation(this.drawAnimationFrame);
-        } else {
-            this.drawAnimationFrame = Container.requestFrame((t) => this.draw(t));
+            this.drawer.draw(0);
         }
     }
 
@@ -307,6 +282,6 @@ export class Container {
         }
 
         this.init();
-        this.draw(0);
+        this.drawer.draw(0);
     }
 }
