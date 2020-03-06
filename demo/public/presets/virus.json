@@ -8,8 +8,8 @@
         "mode": "push"
       },
       "onhover": {
-        "enable": false,
-        "mode": "repulse",
+        "enable": true,
+        "mode": "bubble",
         "parallax": {
           "enable": false,
           "force": 60,
