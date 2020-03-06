@@ -45,19 +45,18 @@ export class Updater {
         const particle = this.particle;
 
         if (options.particles.move.enable) {
-            let moveSpeed = options.particles.move.speed / 2;
-            moveSpeed *= this.getProximitySpeedFactor();
-            
+            const slowFactor = this.getProximitySpeedFactor();
             const deltaFactor = (60 * delta) / 1000;
+            const moveSpeed = options.particles.move.speed / 2 * slowFactor * deltaFactor;
 
-            particle.position.x += particle.velocity.horizontal * moveSpeed * deltaFactor;
-            particle.position.y += particle.velocity.vertical * moveSpeed * deltaFactor;
+            particle.position.x += particle.velocity.horizontal * moveSpeed;
+            particle.position.y += particle.velocity.vertical * moveSpeed;
         }
     }
-    
+
     private getProximitySpeedFactor(): number {
         const active = this.container.options.interactivity.modes.slow.active;
-        if(active) return 1;
+        if (active) return 1;
 
         const mousePos = this.container.interactivity.mouse.position;
         if (!mousePos) return 1;

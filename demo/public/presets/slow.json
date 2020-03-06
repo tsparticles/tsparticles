@@ -10,15 +10,6 @@
     "color": {
       "value": "#ffffff"
     },
-    "shadow": {
-      "enable": true,
-      "color": "#000000",
-      "blur": 5,
-      "offset": {
-        "x": 3,
-        "y": 3
-      }
-    },
     "shape": {
       "type": "circle",
       "stroke": {
@@ -80,7 +71,7 @@
     "events": {
       "onhover": {
         "enable": true,
-        "mode": "repulse",
+        "mode": "slow",
         "parallax": {
           "enable": false,
           "force": 60,
@@ -115,6 +106,11 @@
       },
       "remove": {
         "particles_nb": 2
+      },
+      "slow": {
+        "active": true,
+        "radius": 10,
+        "factor": 3
       }
     }
   },
