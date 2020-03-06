@@ -56,7 +56,7 @@ export class Updater {
 
     private getProximitySpeedFactor(): number {
         const active = this.container.options.interactivity.modes.slow.active;
-        if (active) return 1;
+        if (!active) return 1;
 
         const mousePos = this.container.interactivity.mouse.position;
         if (!mousePos) return 1;
@@ -67,7 +67,8 @@ export class Updater {
         if (dist > radius) return 1;
 
         const proximityFactor = dist / radius || 0;
-        const slowFactor = this.container.options.interactivity.modes.slow.factor;
+        const slowFactor = 1 / this.container.options.interactivity.modes.slow.factor;
+
         return slowFactor * proximityFactor;
     }
 

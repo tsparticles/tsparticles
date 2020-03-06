@@ -96,6 +96,11 @@ export class Drawer {
             ctx.shadowColor = shadow.color;
             ctx.shadowOffsetX = shadow.offset.x;
             ctx.shadowOffsetY = shadow.offset.y;
+        } else {
+            delete ctx.shadowBlur;
+            delete ctx.shadowColor;
+            delete ctx.shadowOffsetX;
+            delete ctx.shadowOffsetY;
         }
 
         ctx.fillStyle = colorValue;

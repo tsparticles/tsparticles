@@ -54,7 +54,7 @@
     },
     "move": {
       "enable": true,
-      "speed": 2,
+      "speed": 20,
       "direction": "none",
       "random": false,
       "straight": false,
@@ -109,7 +109,7 @@
       },
       "slow": {
         "active": true,
-        "radius": 10,
+        "radius": 100,
         "factor": 3
       }
     }
