@@ -168,10 +168,24 @@ export class Updater {
 
         let newPos;
 
-        if (outMode === OutMode.bounce || outMode === OutMode.bounceVertical) {
+        if (outMode === OutMode.bounce) {
             newPos = {
                 x_left: particle.radius,
                 x_right: container.canvas.dimension.width,
+                y_bottom: container.canvas.dimension.height,
+                y_top: particle.radius,
+            };
+        } else if (outMode === OutMode.bounceHorizontal) {
+            newPos = {
+                x_left: particle.radius,
+                x_right: container.canvas.dimension.width,
+                y_bottom: container.canvas.dimension.height + particle.radius - particle.offset.y,
+                y_top: -particle.radius - particle.offset.y,
+            };
+        } else if (outMode === OutMode.bounceVertical) {
+            newPos = {
+                x_left: -particle.radius - particle.offset.x,
+                x_right: container.canvas.dimension.width + particle.radius + particle.offset.x,
                 y_bottom: container.canvas.dimension.height,
                 y_top: particle.radius,
             };
@@ -224,15 +238,10 @@ export class Updater {
 
         switch (options.particles.move.outMode) {
             case OutMode.bounce:
+            case OutMode.bounceVertical:
+            case OutMode.bounceHorizontal:
                 this.updateBounce();
 
-                break;
-            case OutMode.bounceVertical:
-                this.updateBounceVertical();
-
-                break;
-            case OutMode.bounceHorizontal:
-                this.updateBounceHorizontal();
                 break;
         }
     }
@@ -245,8 +254,7 @@ export class Updater {
         /* check bounce against polygon boundaries */
         if (options.polygon.type !== PolygonMaskType.none && options.polygon.type !== PolygonMaskType.inline) {
             if (!container.polygon.checkInsidePolygon(particle.position)) {
-                particle.velocity.horizontal = -particle.velocity.horizontal + (particle.velocity.vertical / 2);
-                particle.velocity.vertical = -particle.velocity.vertical + (particle.velocity.horizontal / 2);
+                this.polygonBounce();
             }
         } else if (options.polygon.type === PolygonMaskType.inline) {
             if (!particle.initialPosition) {
@@ -254,44 +262,37 @@ export class Updater {
             }
             const dist = Utils.getDistanceBetweenCoordinates(particle.initialPosition, particle.position);
             if (dist > container.retina.polygonMaskMoveRadius) {
-                particle.velocity.horizontal = -particle.velocity.horizontal + (particle.velocity.vertical / 2);
-                particle.velocity.vertical = -particle.velocity.vertical + (particle.velocity.horizontal / 2);
+                this.polygonBounce();
             }
         } else {
+            const outMode = options.particles.move.outMode;
             const x = particle.position.x + particle.offset.x;
             const y = particle.position.y + particle.offset.y;
 
-            if (x + particle.radius > container.canvas.dimension.width || x - particle.radius < 0) {
-                particle.velocity.horizontal = -particle.velocity.horizontal;
+            if (outMode === OutMode.bounce || outMode === OutMode.bounceHorizontal) {
+                Updater.checkBounds(x, particle.radius, container.canvas.dimension.width, () => {
+                    particle.velocity.horizontal = -particle.velocity.horizontal;
+                });
             }
 
-            if (y + particle.radius > container.canvas.dimension.height || y - particle.radius < 0) {
-                particle.velocity.vertical = -particle.velocity.vertical;
+            if (outMode === OutMode.bounce || outMode === OutMode.bounceVertical) {
+                Updater.checkBounds(y, particle.radius, container.canvas.dimension.height, () => {
+                    particle.velocity.vertical = -particle.velocity.vertical;
+                });
             }
         }
     }
 
-    private updateBounceVertical(): void {
-        const container = this.container;
-        const particle = this.particle;
-
-        if (particle.position.y + particle.radius > container.canvas.dimension.height) {
-            particle.velocity.vertical = -particle.velocity.vertical;
-        }
-
-        if (particle.position.y - particle.radius < 0) {
-            particle.velocity.vertical = -particle.velocity.vertical;
+    private static checkBounds(coordinate: number, radius: number, size: number, outside: () => void): void {
+        if ((coordinate + radius > size) || (coordinate - radius < 0)) {
+            outside();
         }
     }
 
-    private updateBounceHorizontal(): void {
-        const container = this.container;
+    private polygonBounce(): void {
         const particle = this.particle;
 
-        if (particle.position.x + particle.radius > container.canvas.dimension.width) {
-            particle.velocity.horizontal = -particle.velocity.horizontal;
-        } else if (particle.position.x - particle.radius < 0) {
-            particle.velocity.horizontal = -particle.velocity.horizontal;
-        }
+        particle.velocity.horizontal = -particle.velocity.horizontal + (particle.velocity.vertical / 2);
+        particle.velocity.vertical = -particle.velocity.vertical + (particle.velocity.horizontal / 2);
     }
 }

@@ -101,7 +101,7 @@ export class Particle {
         }
 
         /* animation - velocity for speed */
-        this.initialVelocity = Particle.calcVelocity(options);
+        this.initialVelocity = Particle.calculateVelocity(options);
         this.velocity = {
             horizontal: this.initialVelocity.horizontal,
             vertical: this.initialVelocity.vertical,
@@ -142,7 +142,7 @@ export class Particle {
         this._interactionManager = new InteractionManager(this._container, this);
     }
 
-    private static calcVelocity(options: IOptions): IVelocity {
+    private static calculateVelocity(options: IOptions): IVelocity {
         const baseVelocity = Utils.getParticleBaseVelocity(options);
         const res = {
             horizontal: 0,
@@ -234,10 +234,10 @@ export class Particle {
                 pos.x = position.x;
                 pos.y = position.y;
             } else {
-                const randp = container.polygon.randomPointInPolygon();
+                const randomPoint = container.polygon.randomPointInPolygon();
 
-                pos.x = randp.x;
-                pos.y = randp.y;
+                pos.x = randomPoint.x;
+                pos.y = randomPoint.y;
             }
         } else {
             pos.x = position ? position.x : Math.random() * container.canvas.dimension.width;

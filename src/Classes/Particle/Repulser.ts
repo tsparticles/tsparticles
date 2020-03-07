@@ -133,12 +133,12 @@ export class Repulser {
         };
         const outMode = options.particles.move.outMode;
 
-        if (outMode === OutMode.bounce || outMode === OutMode.bounceVertical) {
-            if (pos.x - particle.radius > 0 && pos.x + particle.radius < container.canvas.dimension.width) {
+        if (outMode === OutMode.bounce || outMode === OutMode.bounceVertical || outMode === OutMode.bounceHorizontal) {
+            if (outMode === OutMode.bounceVertical || (pos.x - particle.radius > 0 && pos.x + particle.radius < container.canvas.dimension.width)) {
                 particle.position.x = pos.x;
             }
 
-            if (pos.y - particle.radius > 0 && pos.y + particle.radius < container.canvas.dimension.height) {
+            if (outMode === OutMode.bounceHorizontal || (pos.y - particle.radius > 0 && pos.y + particle.radius < container.canvas.dimension.height)) {
                 particle.position.y = pos.y;
             }
         } else {
@@ -158,22 +158,26 @@ export class Repulser {
 
         const outMode = options.particles.move.outMode;
 
-        if (outMode === OutMode.bounce || outMode === OutMode.bounceVertical) {
+        if (outMode === OutMode.bounce || outMode === OutMode.bounceHorizontal || outMode === OutMode.bounceVertical) {
             const pos = {
                 x: particle.position.x + particle.velocity.horizontal,
                 y: particle.position.y + particle.velocity.vertical,
             };
 
-            if (pos.x + particle.radius > container.canvas.dimension.width) {
-                particle.velocity.horizontal = -particle.velocity.horizontal;
-            } else if (pos.x - particle.radius < 0) {
-                particle.velocity.horizontal = -particle.velocity.horizontal;
+            if (outMode !== OutMode.bounceVertical) {
+                if (pos.x + particle.radius > container.canvas.dimension.width) {
+                    particle.velocity.horizontal = -particle.velocity.horizontal;
+                } else if (pos.x - particle.radius < 0) {
+                    particle.velocity.horizontal = -particle.velocity.horizontal;
+                }
             }
 
-            if (pos.y + particle.radius > container.canvas.dimension.height) {
-                particle.velocity.vertical = -particle.velocity.vertical;
-            } else if (pos.y - particle.radius < 0) {
-                particle.velocity.vertical = -particle.velocity.vertical;
+            if (outMode !== OutMode.bounceHorizontal) {
+                if (pos.y + particle.radius > container.canvas.dimension.height) {
+                    particle.velocity.vertical = -particle.velocity.vertical;
+                } else if (pos.y - particle.radius < 0) {
+                    particle.velocity.vertical = -particle.velocity.vertical;
+                }
             }
         }
     }

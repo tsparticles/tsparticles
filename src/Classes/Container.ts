@@ -5,7 +5,6 @@ import {EventListeners} from "./Utils/EventListeners";
 import {IRepulse} from "../Interfaces/IRepulse";
 import {IBubble} from "../Interfaces/IBubble";
 import {IImage} from "../Interfaces/IImage";
-import {ISvg} from "../Interfaces/ISvg";
 import {IContainerInteractivity} from "../Interfaces/IContainerInteractivity";
 import {Loader} from "./Loader";
 import {Particles} from "./Particles";
@@ -62,7 +61,6 @@ export class Container {
     public drawAnimationFrame?: number;
     public bubble: IBubble;
     public repulse: IRepulse;
-    public svg: ISvg;
     public images: IImage[];
     public lastFrameTime: number;
     public pageHidden: boolean;
@@ -80,10 +78,6 @@ export class Container {
         this.drawer = new Drawer(this);
         this.interactivity = {
             mouse: {},
-        };
-        this.svg = {
-            count: 0,
-            source: undefined,
         };
         this.images = [];
         this.bubble = {};
@@ -199,8 +193,6 @@ export class Container {
             Container.cancelAnimation(this.drawAnimationFrame);
         }
 
-        this.svg.source = undefined;
-        this.svg.count = 0;
         this.images = [];
         this.particles.clear();
         this.retina.reset();
