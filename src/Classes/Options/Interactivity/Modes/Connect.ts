@@ -9,7 +9,7 @@ export class Connect implements IConnect {
      * @deprecated this property is obsolete, please use the new lineLinked
      */
     public get line_linked(): IConnectLineLinked {
-        Messages.deprecationMessage("interactivity.modes.connect.line_linked", "interactivity.modes.connect.lineLinked");
+        Messages.deprecated("interactivity.modes.connect.line_linked", "interactivity.modes.connect.lineLinked");
 
         return this.lineLinked;
     }
@@ -20,7 +20,7 @@ export class Connect implements IConnect {
      * @param value
      */
     public set line_linked(value: IConnectLineLinked) {
-        Messages.deprecationMessage("interactivity.modes.connect.line_linked", "interactivity.modes.connect.lineLinked");
+        Messages.deprecated("interactivity.modes.connect.line_linked", "interactivity.modes.connect.lineLinked");
 
         this.lineLinked = value;
     }

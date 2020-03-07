@@ -9,7 +9,7 @@ export class Grab implements IGrab {
      * @deprecated this property is obsolete, please use the new lineLinked
      */
     public get line_linked(): IGrabLineLinked {
-        Messages.deprecationMessage("interactivity.modes.grab.line_linked", "interactivity.modes.grab.lineLinked");
+        Messages.deprecated("interactivity.modes.grab.line_linked", "interactivity.modes.grab.lineLinked");
 
         return this.lineLinked;
     }
@@ -20,7 +20,7 @@ export class Grab implements IGrab {
      * @param value
      */
     public set line_linked(value: IGrabLineLinked) {
-        Messages.deprecationMessage("interactivity.modes.grab.line_linked", "interactivity.modes.grab.lineLinked");
+        Messages.deprecated("interactivity.modes.grab.line_linked", "interactivity.modes.grab.lineLinked");
 
         this.lineLinked = value;
     }

@@ -13,7 +13,7 @@ export class Events implements IEvents {
      * @deprecated this property is obsolete, please use the new onClick
      */
     public get onclick(): IClickEvent {
-        Messages.deprecationMessage("interactivity.events.onclick", "interactivity.events.onClick");
+        Messages.deprecated("interactivity.events.onclick", "interactivity.events.onClick");
 
         return this.onClick;
     }
@@ -24,7 +24,7 @@ export class Events implements IEvents {
      * @param value
      */
     public set onclick(value: IClickEvent) {
-        Messages.deprecationMessage("interactivity.events.onclick", "interactivity.events.onClick");
+        Messages.deprecated("interactivity.events.onclick", "interactivity.events.onClick");
 
         this.onClick = value;
     }
@@ -34,7 +34,7 @@ export class Events implements IEvents {
      * @deprecated this property is obsolete, please use the new onDiv
      */
     public get ondiv(): IDivEvent {
-        Messages.deprecationMessage("interactivity.events.ondiv", "interactivity.events.onDiv");
+        Messages.deprecated("interactivity.events.ondiv", "interactivity.events.onDiv");
 
         return this.onDiv;
     }
@@ -45,7 +45,7 @@ export class Events implements IEvents {
      * @param value
      */
     public set ondiv(value: IDivEvent) {
-        Messages.deprecationMessage("interactivity.events.ondiv", "interactivity.events.onDiv");
+        Messages.deprecated("interactivity.events.ondiv", "interactivity.events.onDiv");
 
         this.onDiv = value;
     }
@@ -55,7 +55,7 @@ export class Events implements IEvents {
      * @deprecated this property is obsolete, please use the new onHover
      */
     public get onhover(): IHoverEvent {
-        Messages.deprecationMessage("interactivity.events.onhover", "interactivity.events.onHover");
+        Messages.deprecated("interactivity.events.onhover", "interactivity.events.onHover");
 
         return this.onHover;
     }
@@ -66,7 +66,7 @@ export class Events implements IEvents {
      * @param value
      */
     public set onhover(value: IHoverEvent) {
-        Messages.deprecationMessage("interactivity.events.onhover", "interactivity.events.onHover");
+        Messages.deprecated("interactivity.events.onhover", "interactivity.events.onHover");
 
         this.onHover = value;
     }

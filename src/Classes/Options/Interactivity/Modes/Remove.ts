@@ -7,7 +7,7 @@ export class Remove implements IRemove {
      * @deprecated this property is obsolete, please use the new quantity
      */
     public get particles_nb(): number {
-        Messages.deprecationMessage("interactivity.modes.remove.particles_nb", "interactivity.modes.remove.quantity");
+        Messages.deprecated("interactivity.modes.remove.particles_nb", "interactivity.modes.remove.quantity");
 
         return this.quantity;
     }
@@ -18,7 +18,7 @@ export class Remove implements IRemove {
      * @param value
      */
     public set particles_nb(value: number) {
-        Messages.deprecationMessage("interactivity.modes.remove.particles_nb", "interactivity.modes.remove.quantity");
+        Messages.deprecated("interactivity.modes.remove.particles_nb", "interactivity.modes.remove.quantity");
 
         this.quantity = value;
     }

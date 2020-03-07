@@ -7,7 +7,7 @@ export class PolygonShape implements IPolygonShape {
      * @deprecated this property is obsolete, please use the new sides
      */
     public get nb_sides(): number {
-        Messages.deprecationMessage("particles.shape.polygon.nb_sides", "particles.shape.polygon.sides");
+        Messages.deprecated("particles.shape.polygon.nb_sides", "particles.shape.polygon.sides");
 
         return this.sides;
     }
@@ -18,7 +18,7 @@ export class PolygonShape implements IPolygonShape {
      * @param value
      */
     public set nb_sides(value: number) {
-        Messages.deprecationMessage("particles.shape.polygon.nb_sides", "particles.shape.polygon.sides");
+        Messages.deprecated("particles.shape.polygon.nb_sides", "particles.shape.polygon.sides");
 
         this.sides = value;
     }

@@ -7,7 +7,7 @@ export class OpacityAnimation implements IOpacityAnimation {
      * @deprecated this property is obsolete, please use the new minimumValue
      */
     public get opacity_min(): number {
-        Messages.deprecationMessage("particles.opacity.animation.opacity_min", "particles.opacity.animation.minimumValue");
+        Messages.deprecated("particles.opacity.animation.opacity_min", "particles.opacity.animation.minimumValue");
 
         return this.minimumValue;
     }
@@ -18,7 +18,7 @@ export class OpacityAnimation implements IOpacityAnimation {
      * @param value
      */
     public set opacity_min(value: number) {
-        Messages.deprecationMessage("particles.opacity.animation.opacity_min", "particles.opacity.animation.minimumValue");
+        Messages.deprecated("particles.opacity.animation.opacity_min", "particles.opacity.animation.minimumValue");
 
         this.minimumValue = value;
     }

@@ -21,7 +21,7 @@ export class Particles implements IParticles {
      * @deprecated this property is obsolete, please use the new lineLinked
      */
     public get line_linked(): LineLinked {
-        Messages.deprecationMessage("particles.line_linked", "particles.lineLinked");
+        Messages.deprecated("particles.line_linked", "particles.lineLinked");
 
         return this.lineLinked;
     }
@@ -32,7 +32,7 @@ export class Particles implements IParticles {
      * @param value
      */
     public set line_linked(value: LineLinked) {
-        Messages.deprecationMessage("particles.line_linked", "particles.lineLinked");
+        Messages.deprecated("particles.line_linked", "particles.lineLinked");
 
         this.lineLinked = value;
     }

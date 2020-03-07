@@ -7,7 +7,7 @@ export class ParticlesSizeAnimation implements ISizeAnimation {
      * @deprecated this property is obsolete, please use the new minimumValue
      */
     public get size_min(): number {
-        Messages.deprecationMessage("particles.size.animation.size_min", "particles.size.animation.minimumValue");
+        Messages.deprecated("particles.size.animation.size_min", "particles.size.animation.minimumValue");
 
         return this.minimumValue;
     }
@@ -18,7 +18,7 @@ export class ParticlesSizeAnimation implements ISizeAnimation {
      * @param value
      */
     public set size_min(value: number) {
-        Messages.deprecationMessage("particles.size.animation.size_min", "particles.size.animation.minimumValue");
+        Messages.deprecated("particles.size.animation.size_min", "particles.size.animation.minimumValue");
 
         this.minimumValue = value;
     }
