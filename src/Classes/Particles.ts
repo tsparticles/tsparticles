@@ -16,10 +16,12 @@ export class Particles {
     public lineLinkedColor?: IRgb | string | null;
 
     private readonly container: Container;
+    private interactionsEnabled: boolean;
 
     constructor(container: Container) {
         this.container = container;
         this.array = [];
+        this.interactionsEnabled = false;
     }
 
     /* --------- tsParticles functions - particles ----------- */
@@ -36,15 +38,17 @@ export class Particles {
                 this.array.push(p);
             }
         }
+
+        this.interactionsEnabled = options.particles.lineLinked.enable ||
+            options.particles.move.attract.enable ||
+            options.particles.move.bounce;
     }
 
     public update(delta: number): void {
-        const container = this.container;
-        const options = container.options;
-
         for (let i = 0; i < this.array.length; i++) {
             /* the particle */
             const p = this.array[i];
+
             // let d = ( dx = container.interactivity.mouse.click_pos_x - p.x ) * dx +
             //         ( dy = container.interactivity.mouse.click_pos_y - p.y ) * dy;
             // let f = -BANG_SIZE / d;
@@ -57,9 +61,7 @@ export class Particles {
             p.update(i, delta);
 
             /* interaction auto between particles */
-            if (options.particles.lineLinked.enable ||
-                options.particles.move.attract.enable ||
-                options.particles.move.bounce) {
+            if (this.interactionsEnabled) {
                 for (let j = i + 1; j < this.array.length; j++) {
                     const p2 = this.array[j];
 
