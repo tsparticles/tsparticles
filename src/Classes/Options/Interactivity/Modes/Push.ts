@@ -1,4 +1,5 @@
 import {IPush} from "../../../../Interfaces/Options/Interactivity/Modes/IPush";
+import {Messages} from "../../../Utils/Messages";
 
 export class Push implements IPush {
     /**
@@ -6,6 +7,8 @@ export class Push implements IPush {
      * @deprecated this property is obsolete, please use the new quantity
      */
     public get particles_nb(): number {
+        Messages.deprecationMessage("interactivity.modes.push.particles_nb", "interactivity.modes.push.quantity");
+
         return this.quantity;
     }
 
@@ -15,6 +18,8 @@ export class Push implements IPush {
      * @param value
      */
     public set particles_nb(value: number) {
+        Messages.deprecationMessage("interactivity.modes.push.particles_nb", "interactivity.modes.push.quantity");
+
         this.quantity = value;
     }
 

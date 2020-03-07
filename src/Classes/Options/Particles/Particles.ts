@@ -13,6 +13,7 @@ import {IParticlesNumber} from "../../../Interfaces/Options/Particles/IParticles
 import {IOpacity} from "../../../Interfaces/Options/Particles/IOpacity";
 import {IShape} from "../../../Interfaces/Options/Shape/IShape";
 import {ISize} from "../../../Interfaces/Options/Particles/ISize";
+import {Messages} from "../../Utils/Messages";
 
 export class Particles implements IParticles {
     /**
@@ -20,6 +21,8 @@ export class Particles implements IParticles {
      * @deprecated this property is obsolete, please use the new lineLinked
      */
     public get line_linked(): LineLinked {
+        Messages.deprecationMessage("particles.line_linked", "particles.lineLinked");
+
         return this.lineLinked;
     }
 
@@ -29,6 +32,8 @@ export class Particles implements IParticles {
      * @param value
      */
     public set line_linked(value: LineLinked) {
+        Messages.deprecationMessage("particles.line_linked", "particles.lineLinked");
+
         this.lineLinked = value;
     }
 
@@ -39,6 +44,7 @@ export class Particles implements IParticles {
     public opacity: IOpacity;
     public shape: IShape;
     public size: ISize;
+
     // public shadow: IShadow;
 
     constructor() {

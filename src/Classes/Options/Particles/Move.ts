@@ -3,6 +3,7 @@ import {Attract} from "./Attract";
 import {MoveDirection} from "../../../Enums/MoveDirection";
 import {OutMode} from "../../../Enums/OutMode";
 import {IAttract} from "../../../Interfaces/Options/Particles/IAttract";
+import {Messages} from "../../Utils/Messages";
 
 export class Move implements IMove {
     /**
@@ -10,6 +11,8 @@ export class Move implements IMove {
      * @deprecated this property is obsolete, please use the new outMode
      */
     public get out_mode(): OutMode {
+        Messages.deprecationMessage("particles.move.out_mode", "particles.move.outMode");
+
         return this.outMode;
     }
 
@@ -19,6 +22,8 @@ export class Move implements IMove {
      * @param value
      */
     public set out_mode(value: OutMode) {
+        Messages.deprecationMessage("particles.move.out_mode", "particles.move.outMode");
+
         this.outMode = value;
     }
 
