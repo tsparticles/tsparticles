@@ -134,11 +134,15 @@ export class Repulser {
         const outMode = options.particles.move.outMode;
 
         if (outMode === OutMode.bounce || outMode === OutMode.bounceVertical || outMode === OutMode.bounceHorizontal) {
-            if (outMode === OutMode.bounceVertical || (pos.x - particle.radius > 0 && pos.x + particle.radius < container.canvas.dimension.width)) {
+            const isInside = {
+                horizontal: pos.x - particle.radius > 0 && pos.x + particle.radius < container.canvas.dimension.width,
+                vertical: pos.y - particle.radius > 0 && pos.y + particle.radius < container.canvas.dimension.height,
+            };
+            if (outMode === OutMode.bounceVertical || isInside.horizontal) {
                 particle.position.x = pos.x;
             }
 
-            if (outMode === OutMode.bounceHorizontal || (pos.y - particle.radius > 0 && pos.y + particle.radius < container.canvas.dimension.height)) {
+            if (outMode === OutMode.bounceHorizontal || isInside.vertical) {
                 particle.position.y = pos.y;
             }
         } else {
