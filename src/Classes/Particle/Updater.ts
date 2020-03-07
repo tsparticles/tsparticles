@@ -214,18 +214,26 @@ export class Updater {
                 }
             }
         } else {
-            if (particle.position.x - particle.radius > container.canvas.dimension.width - particle.offset.x) {
+            const nextPos = {
+                x_left: particle.position.x - particle.radius,
+                x_right: particle.position.x + particle.radius,
+                y_top: particle.position.y - particle.radius,
+                y_bottom: particle.position.y + particle.radius,
+            };
+            const dimension = container.canvas.dimension;
+
+            if (nextPos.x_left > dimension.width - particle.offset.x) {
                 particle.position.x = newPos.x_left;
-                particle.position.y = Math.random() * container.canvas.dimension.height;
-            } else if (particle.position.x + particle.radius < 0 - particle.offset.x) {
+                particle.position.y = Math.random() * dimension.height;
+            } else if (nextPos.x_right < -particle.offset.x) {
                 particle.position.x = newPos.x_right;
-                particle.position.y = Math.random() * container.canvas.dimension.height;
+                particle.position.y = Math.random() * dimension.height;
             }
 
-            if (particle.position.y - particle.radius > container.canvas.dimension.height - particle.offset.y) {
+            if (nextPos.y_top > container.canvas.dimension.height - particle.offset.y) {
                 particle.position.y = newPos.y_top;
                 particle.position.x = Math.random() * container.canvas.dimension.width;
-            } else if (particle.position.y + particle.radius < 0 - particle.offset.y) {
+            } else if (nextPos.y_bottom < -particle.offset.y) {
                 particle.position.y = newPos.y_bottom;
                 particle.position.x = Math.random() * container.canvas.dimension.width;
             }
