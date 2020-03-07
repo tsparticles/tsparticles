@@ -3,9 +3,9 @@
 import {ICoordinates} from "../../Interfaces/ICoordinates";
 import {IHsl} from "../../Interfaces/IHsl";
 import {IRgb} from "../../Interfaces/IRgb";
-import {IOptions} from "../../Interfaces/Options/IOptions";
 import {IColor} from "../../Interfaces/IColor";
 import {MoveDirection} from "../../Enums/MoveDirection";
+import {IOptions} from "../../Interfaces/Options/IOptions";
 
 /* ---------- global functions - vendors ------------ */
 export class Utils {
@@ -207,6 +207,17 @@ export class Utils {
         }
 
         return res;
+    }
+
+    /**
+     * Gets the distance between two coordinates
+     * @param pointA the first coordinate
+     * @param pointB the second coordinate
+     */
+    public static getDistanceBetweenCoordinates(pointA: ICoordinates, pointB: ICoordinates): number {
+        const dx = pointA.x - pointB.x;
+        const dy = pointA.y - pointB.y;
+        return Math.sqrt(dx * dx + dy * dy);
     }
 
     /**

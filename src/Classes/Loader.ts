@@ -2,6 +2,7 @@
 
 import {Constants} from "./Utils/Constants";
 import {Container} from "./Container";
+import {Options} from "./Options/Options";
 import {IOptions} from "../Interfaces/Options/IOptions";
 
 let tsParticlesDom: Container[] = [];

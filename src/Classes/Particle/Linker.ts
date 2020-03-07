@@ -23,8 +23,8 @@ export class Linker {
         const y2 = p2.position.y + p2.offset.y;
         const dy = y1 - y2;
         const dist = Math.sqrt(dx * dx + dy * dy);
-        const optOpacity = options.particles.line_linked.opacity;
-        const optDistance = options.particles.line_linked.distance;
+        const optOpacity = options.particles.lineLinked.opacity;
+        const optDistance = container.retina.lineLinkedDistance;
 
         /* draw a line between p1 and p2 if the distance between them is under the config distance */
         if (dist <= optDistance) {
@@ -33,16 +33,16 @@ export class Linker {
             if (opacityLine > 0) {
                 /* style */
                 if (!container.particles.lineLinkedColor) {
-                    const color = options.particles.line_linked.color;
+                    const color = options.particles.lineLinked.color;
 
                     /* particles.line_linked - convert hex colors to rgb */
                     //  check for the color profile requested and
                     //  then return appropriate value
 
                     if (color === "random") {
-                        if (options.particles.line_linked.consent) {
+                        if (options.particles.lineLinked.consent) {
                             container.particles.lineLinkedColor = Utils.hexToRgb(color);
-                        } else if (options.particles.line_linked.blink) {
+                        } else if (options.particles.lineLinked.blink) {
                             container.particles.lineLinkedColor = "random";
                         } else {
                             container.particles.lineLinkedColor = "mid";
@@ -88,7 +88,7 @@ export class Linker {
                     ctx.strokeStyle = `rgba(${colorLine.r},${colorLine.g},${colorLine.b},${opacityLine})`;
                 }
 
-                ctx.lineWidth = options.particles.line_linked.width;
+                ctx.lineWidth = container.retina.lineLinkedWidth;
                 // container.canvas.ctx.lineCap = "round"; /* performance issue */
                 /* path */
                 ctx.beginPath();

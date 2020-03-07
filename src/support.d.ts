@@ -1,5 +1,5 @@
-import {IOptions} from "./Interfaces/Options/IOptions";
 import {Container} from "./Classes/Container";
+import {IOptions} from "./Interfaces/Options/IOptions";
 
 /**
  * A wrapper to call the new methods, with deprecation warnings

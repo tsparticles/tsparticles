@@ -27,14 +27,14 @@ export class Connecter {
             return;
         }
 
-        if (options.interactivity.events.onhover.enable && container.interactivity.status == 'mousemove') {
+        if (options.interactivity.events.onHover.enable && container.interactivity.status == 'mousemove') {
             const xDiff = Math.abs(particle.position.x - destParticle.position.x);
             const yDiff = Math.abs(particle.position.y - destParticle.position.y);
             const mousePos = container.interactivity.mouse.position || {x: 0, y: 0};
             const xCoreDiff = Math.abs(particle.position.x - mousePos.x);
             const yCoreDiff = Math.abs(particle.position.y - mousePos.y);
-            const distMax = Math.abs(options.interactivity.modes.connect.distance);
-            const connectAreaRadius = Math.abs(options.interactivity.modes.connect.radius);
+            const distMax = Math.abs(container.retina.connectModeDistance);
+            const connectAreaRadius = Math.abs(container.retina.connectModeRadius);
 
             if (xDiff < distMax && yDiff < distMax && xCoreDiff < connectAreaRadius && yCoreDiff < connectAreaRadius) {
                 const lineStyle = this.lineStyle(destParticle);
