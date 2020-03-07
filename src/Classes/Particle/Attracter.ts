@@ -20,9 +20,9 @@ export class Attracter {
         const dy = particle.position.y - p2.position.y;
         const dist = Math.sqrt(dx * dx + dy * dy);
 
-        if (dist <= options.particles.line_linked.distance) {
-            const ax = dx / (options.particles.move.attract.rotateX * 1000);
-            const ay = dy / (options.particles.move.attract.rotateY * 1000);
+        if (dist <= container.retina.lineLinkedDistance) {
+            const ax = dx / (options.particles.move.attract.rotate.x * 1000);
+            const ay = dy / (options.particles.move.attract.rotate.y * 1000);
 
             particle.velocity.horizontal -= ax;
             particle.velocity.vertical -= ay;

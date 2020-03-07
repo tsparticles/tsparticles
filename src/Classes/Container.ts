@@ -1,13 +1,10 @@
 "use strict";
 
 import {Canvas} from "./Canvas";
-import {Constants} from "./Utils/Constants";
 import {EventListeners} from "./Utils/EventListeners";
 import {IRepulse} from "../Interfaces/IRepulse";
 import {IBubble} from "../Interfaces/IBubble";
 import {IImage} from "../Interfaces/IImage";
-import {ISvg} from "../Interfaces/ISvg";
-import {IOptions} from "../Interfaces/Options/IOptions";
 import {IContainerInteractivity} from "../Interfaces/IContainerInteractivity";
 import {Loader} from "./Loader";
 import {Particles} from "./Particles";
@@ -15,28 +12,61 @@ import {Retina} from "./Retina";
 import {ShapeType} from "../Enums/ShapeType";
 import {Utils} from "./Utils/Utils";
 import {PolygonMask} from "./PolygonMask";
-import {IOptionsShapeImage} from "../Interfaces/Options/Shape/IOptionsShapeImage";
+import {ImageShape} from "./Options/Particles/Shape/ImageShape";
+import {IOptions} from "../Interfaces/Options/IOptions";
+import {container} from "tsyringe";
+import {Drawer} from "./Drawer";
 
 /**
  * The object loaded into an HTML element, it'll contain options loaded and all data to let everything working
  */
 export class Container {
+    /**
+     * @deprecated this property is obsolete, please use the new drawAnimationFrame
+     */
+    public get drawAnimFrame(): number | undefined {
+        return this.drawAnimationFrame;
+    }
+
+    /**
+     * @deprecated this property is obsolete, please use the new drawAnimationFrame
+     * @param value
+     */
+    public set drawAnimFrame(value: number | undefined) {
+        this.drawAnimationFrame = value;
+    }
+
+    /**
+     * @deprecated this property is obsolete, please use the new checkAnimationFrame
+     */
+    public get checkAnimFrame(): number | undefined {
+        return this.checkAnimationFrame;
+    }
+
+    /**
+     * @deprecated this property is obsolete, please use the new checkAnimationFrame
+     * @param value
+     */
+    public set checkAnimFrame(value: number | undefined) {
+        this.checkAnimationFrame = value;
+    }
+
     public interactivity: IContainerInteractivity;
     public options: IOptions;
     public retina: Retina;
     public canvas: Canvas;
     public particles: Particles;
     public polygon: PolygonMask;
-    public checkAnimFrame?: number;
-    public drawAnimFrame?: number;
+    public checkAnimationFrame?: number;
+    public drawAnimationFrame?: number;
     public bubble: IBubble;
     public repulse: IRepulse;
-    public svg: ISvg;
-    public images: Array<IImage>;
+    public images: IImage[];
     public lastFrameTime: number;
     public pageHidden: boolean;
+    public drawer: Drawer;
 
-    private readonly eventListeners: EventListeners;
+    private readonly _eventListeners: EventListeners;
 
     constructor(tagId: string, params: IOptions) {
         this.lastFrameTime = 0;
@@ -45,19 +75,16 @@ export class Container {
         this.canvas = new Canvas(this, tagId);
         this.particles = new Particles(this);
         this.polygon = new PolygonMask(this);
+        this.drawer = new Drawer(this);
         this.interactivity = {
             mouse: {},
-        };
-        this.svg = {
-            count: 0,
-            source: undefined,
         };
         this.images = [];
         this.bubble = {};
         this.repulse = {};
 
         /* tsParticles variables with default values */
-        this.options = Constants.defaultOptions;
+        this.options = container.resolve<IOptions>("IOptions");
 
         /* params settings */
         if (params) {
@@ -65,8 +92,9 @@ export class Container {
         }
 
         /* ---------- tsParticles - start ------------ */
-        this.eventListeners = new EventListeners(this);
-        this.eventListeners.addEventsListeners();
+        this._eventListeners = new EventListeners(this);
+        this._eventListeners.addEventsListeners();
+
         this.start().then(() => {
             /*
                 Cancel animation if page is not in focus
@@ -80,11 +108,11 @@ export class Container {
         });
     }
 
-    private static requestFrame(callback: FrameRequestCallback): number {
-        return window.requestAnimFrame(callback);
+    public static requestFrame(callback: FrameRequestCallback): number {
+        return window.customRequestAnimationFrame(callback);
     }
 
-    private static cancelAnimation(handle: number): void {
+    public static cancelAnimation(handle: number): void {
         window.cancelAnimationFrame(handle);
     }
 
@@ -100,7 +128,7 @@ export class Container {
             }
 
             const optParticlesNumber = this.options.particles.number.value;
-            const density = this.options.particles.number.density.value_area;
+            const density = this.options.particles.number.density.area;
 
             /* calc number of particles based on density area */
             const particlesNumber = area * optParticlesNumber / density;
@@ -117,8 +145,8 @@ export class Container {
     }
 
     public destroy(): void {
-        if (this.drawAnimFrame !== undefined) {
-            cancelAnimationFrame(this.drawAnimFrame);
+        if (this.drawAnimationFrame !== undefined) {
+            cancelAnimationFrame(this.drawAnimationFrame);
         }
 
         this.retina.reset();
@@ -135,7 +163,7 @@ export class Container {
         window.open(this.canvas.element.toDataURL("image/png"), "_blank");
     }
 
-    public async loadImg(image: IImage, optionsImage: IOptionsShapeImage): Promise<void> {
+    public async loadImg(image: IImage, optionsImage: ImageShape): Promise<void> {
         image.error = false;
 
         if (optionsImage.src) {
@@ -157,16 +185,14 @@ export class Container {
 
     public async refresh(): Promise<void> {
         /* init all */
-        if (this.checkAnimFrame) {
-            Container.cancelAnimation(this.checkAnimFrame);
+        if (this.checkAnimationFrame) {
+            Container.cancelAnimation(this.checkAnimationFrame);
         }
 
-        if (this.drawAnimFrame) {
-            Container.cancelAnimation(this.drawAnimFrame);
+        if (this.drawAnimationFrame) {
+            Container.cancelAnimation(this.drawAnimationFrame);
         }
 
-        this.svg.source = undefined;
-        this.svg.count = 0;
         this.images = [];
         this.particles.clear();
         this.retina.reset();
@@ -198,7 +224,7 @@ export class Container {
 
                     this.images.push(image);
                 }
-            }  else {
+            } else {
                 const optionsImage = this.options.particles.shape.image;
                 const src = optionsImage.src;
                 const image: IImage = {error: false};
@@ -226,47 +252,20 @@ export class Container {
         if (document.hidden) {
             this.pageHidden = true;
 
-            if (this.drawAnimFrame) {
-                Container.cancelAnimation(this.drawAnimFrame);
+            if (this.drawAnimationFrame) {
+                Container.cancelAnimation(this.drawAnimationFrame);
             }
         } else {
             this.pageHidden = false;
             this.lastFrameTime = performance.now();
-            this.draw(0);
-        }
-    }
-
-    private draw(timestamp: DOMHighResTimeStamp): void {
-        // FPS limit logic
-        // If we are too fast, just draw without updating
-        const fpsLimit = this.options.fps_limit;
-
-        if (fpsLimit > 0 && timestamp < this.lastFrameTime + (1000 / fpsLimit)) {
-            this.drawAnimFrame = Container.requestFrame((t) => this.draw(t));
-            return;
-        }
-
-        const delta = timestamp - this.lastFrameTime;
-
-        this.lastFrameTime = timestamp;
-
-        if (this.options.particles.shape.type === ShapeType.image && this.images.every((img) => img.error)) {
-            return;
-        }
-
-        this.particles.draw(delta);
-
-        if (this.drawAnimFrame !== undefined && !this.options.particles.move.enable) {
-            Container.cancelAnimation(this.drawAnimFrame);
-        } else {
-            this.drawAnimFrame = Container.requestFrame((t) => this.draw(t));
+            this.drawer.draw(0);
         }
     }
 
     private checkBeforeDraw(): void {
         if (this.options.particles.shape.type === ShapeType.image) {
-            if (this.checkAnimFrame) {
-                Container.cancelAnimation(this.checkAnimFrame);
+            if (this.checkAnimationFrame) {
+                Container.cancelAnimation(this.checkAnimationFrame);
             }
 
             if (this.images.every((img) => img.error)) {
@@ -275,6 +274,6 @@ export class Container {
         }
 
         this.init();
-        this.draw(0);
+        this.drawer.draw(0);
     }
 }

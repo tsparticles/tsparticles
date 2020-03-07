@@ -24,7 +24,7 @@ export class InteractionManager {
         const options = container.options;
 
         /* link particles */
-        if (options.particles.line_linked.enable) {
+        if (options.particles.lineLinked.enable) {
             this.link(p2);
         }
 

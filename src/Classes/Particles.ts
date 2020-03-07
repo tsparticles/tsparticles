@@ -57,7 +57,7 @@ export class Particles {
             p.update(i, delta);
 
             /* interaction auto between particles */
-            if (options.particles.line_linked.enable || options.particles.move.attract.enable) {
+            if (options.particles.lineLinked.enable || options.particles.move.attract.enable) {
                 for (let j = i + 1; j < this.array.length; j++) {
                     const p2 = this.array[j];
 

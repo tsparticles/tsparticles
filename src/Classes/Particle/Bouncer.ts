@@ -1,5 +1,6 @@
 import {Container} from "../Container";
 import {Particle} from "../Particle";
+import { Utils } from "../Utils/Utils";
 
 export class Bouncer {
     private readonly container: Container;
@@ -12,9 +13,7 @@ export class Bouncer {
 
     public bounce(p2: Particle): void {
         const particle = this.particle;
-        const dx = particle.position.x - p2.position.x;
-        const dy = particle.position.y - p2.position.y;
-        const dist = Math.sqrt(dx * dx + dy * dy);
+        const dist = Utils.getDistanceBetweenCoordinates(particle.position, p2.position);
         const distP = particle.radius + p2.radius;
 
         if (dist <= distP) {

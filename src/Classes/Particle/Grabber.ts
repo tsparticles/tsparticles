@@ -22,23 +22,21 @@ export class Grabber {
         const options = container.options;
         const particle = this.particle;
 
-        if (options.interactivity.events.onhover.enable && container.interactivity.status === "mousemove") {
+        if (options.interactivity.events.onHover.enable && container.interactivity.status === "mousemove") {
             const mousePos = container.interactivity.mouse.position || {x: 0, y: 0};
-            const dxMouse = particle.position.x - mousePos.x;
-            const dyMouse = particle.position.y - mousePos.y;
-            const distMouse = Math.sqrt(dxMouse * dxMouse + dyMouse * dyMouse);
+            const distMouse = Utils.getDistanceBetweenCoordinates(particle.position, mousePos);
             /*
                draw a line between the cursor and the particle
                if the distance between them is under the config distance
             */
-            if (distMouse <= options.interactivity.modes.grab.distance) {
-                const lineOpacity = options.interactivity.modes.grab.line_linked.opacity;
-                const grabDistance = options.interactivity.modes.grab.distance;
+            if (distMouse <= container.retina.grabModeDistance) {
+                const lineOpacity = options.interactivity.modes.grab.lineLinked.opacity;
+                const grabDistance = container.retina.grabModeDistance;
                 const opacityLine = lineOpacity - (distMouse / (1 / lineOpacity)) / grabDistance;
 
                 if (opacityLine > 0) {
                     /* style */
-                    const optColor = options.particles.line_linked.color;
+                    const optColor = options.particles.lineLinked.color;
                     let lineColor = container.particles.lineLinkedColor || Utils.hexToRgb(optColor);
 
                     if (lineColor == "random") {
@@ -58,7 +56,7 @@ export class Grabber {
                         }
 
                         ctx.strokeStyle = `rgba(${colorLine.r},${colorLine.g},${colorLine.b},${opacityLine})`;
-                        ctx.lineWidth = options.particles.line_linked.width;
+                        ctx.lineWidth = container.retina.lineLinkedWidth;
                         // container.canvas.ctx.lineCap = "round"; /* performance issue */
                         /* path */
                         ctx.beginPath();

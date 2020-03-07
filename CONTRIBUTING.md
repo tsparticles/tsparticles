@@ -1,6 +1,26 @@
 *This file is still Work in Progress*
 
+# Start development
+
+Before you can start making changes it's mandatory to run a `npm install` for installing all the dependencies.
+
+After that you can start coding, all the sources are inside the */src* folder.
+
+Once done you can check if everything builds running `npm run slimbuild` or `npm run build`.
+
+The difference is the first does not create the docs folder and it can be unnecessary while coding.
+
+## Testing
+
+There's a small demo app inside the repository, just run `npm start` and go to http://localhost:3000
+
+---
+
 # Pull Requests
+
+**Before opening any pull request check that `npm run build` completes**
+
+*The build task will be performed automatically by the CI\CD but a first local check should be done*
 
 If you want to contribute to the project please use *dev* as base branch.
 
