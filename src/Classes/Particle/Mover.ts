@@ -21,8 +21,23 @@ export class Mover {
             const deltaFactor = (60 * delta) / 1000;
             const moveSpeed = container.retina.moveSpeed / 2 * slowFactor * deltaFactor;
 
-            particle.position.x += particle.velocity.horizontal * moveSpeed;
-            particle.position.y += particle.velocity.vertical * moveSpeed;
+            // TODO: Check if bounce is enabled and the particle is not overlapping
+            if (options.particles.move.bounce) {
+                const pos = {
+                    x: particle.position.x + particle.velocity.horizontal * moveSpeed,
+                    y: particle.position.y = particle.velocity.vertical * moveSpeed
+                };
+
+                if (particle.isOverlapping(pos).collisionFound) {
+                    // TODO: Handle the overlap
+                } else {
+                    particle.position.x = pos.x;
+                    particle.position.y = pos.y;
+                }
+            } else {
+                particle.position.x += particle.velocity.horizontal * moveSpeed;
+                particle.position.y += particle.velocity.vertical * moveSpeed;
+            }
         }
 
         /* parallax */

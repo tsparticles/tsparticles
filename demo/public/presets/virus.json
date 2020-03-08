@@ -3,12 +3,12 @@
   "interactivity": {
     "detectsOn": "canvas",
     "events": {
-      "onclick": {
+      "onClick": {
         "enable": true,
         "mode": "push"
       },
-      "onhover": {
-        "enable": true,
+      "onHover": {
+        "enable": false,
         "mode": "bubble",
         "parallax": {
           "enable": false,
@@ -48,7 +48,7 @@
     "color": {
       "value": "#ffffff"
     },
-    "line_linked": {
+    "lineLinked": {
       "color": "#323031",
       "distance": 150,
       "enable": false,
@@ -61,7 +61,7 @@
         "rotateX": 600,
         "rotateY": 1200
       },
-      "bounce": false,
+      "bounce": true,
       "direction": "none",
       "enable": true,
       "out_mode": "bounce",
@@ -77,9 +77,9 @@
       "value": 170
     },
     "opacity": {
-      "anim": {
+      "animation": {
         "enable": false,
-        "opacity_min": 0.1,
+        "minimumValue": 0.1,
         "speed": 1,
         "sync": false
       },
@@ -110,9 +110,9 @@
       "type": "image"
     },
     "size": {
-      "anim": {
+      "animation": {
         "enable": false,
-        "size_min": 0.1,
+        "minimumValue": 0.1,
         "speed": 40,
         "sync": false
       },

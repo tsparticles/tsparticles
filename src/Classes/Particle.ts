@@ -210,19 +210,47 @@ export class Particle {
         this._drawer.draw();
     }
 
-    public checkOverlap(position?: ICoordinates): void {
+    public isOverlapping(position?: ICoordinates): { collisionFound: boolean, iterations: number } {
         const container = this._container;
         const p = this;
+        let collisionFound = false;
+        let iterations = 0;
 
         for (const p2 of container.particles.array) {
+            iterations++;
             const dist = Utils.getDistanceBetweenCoordinates(p.position, p2.position);
 
             if (dist <= p.radius + p2.radius) {
-                p.position.x = position ? position.x : Math.random() * container.canvas.dimension.width;
-                p.position.y = position ? position.y : Math.random() * container.canvas.dimension.height;
-
-                p.checkOverlap();
+                collisionFound = true;
+                break;
             }
+        }
+
+        return {
+            collisionFound: collisionFound,
+            iterations: iterations
+        };
+    }
+
+    public checkOverlap(position?: ICoordinates): void {
+        const container = this._container;
+        const p = this;
+        const overlapResult = p.isOverlapping(position);
+
+        if (overlapResult.iterations >= container.particles.array.length) {
+            const idx = container.particles.array.indexOf(this);
+
+            if (idx >= 0) {
+                // too many particles, removing from the current
+                container.particles.array.splice(idx);
+            }
+        }
+
+        if (overlapResult.collisionFound) {
+            p.position.x = position ? position.x : Math.random() * container.canvas.dimension.width;
+            p.position.y = position ? position.y : Math.random() * container.canvas.dimension.height;
+
+            p.checkOverlap();
         }
     }
 
@@ -242,19 +270,19 @@ export class Particle {
         } else {
             pos.x = position ? position.x : Math.random() * container.canvas.dimension.width;
             pos.y = position ? position.y : Math.random() * container.canvas.dimension.height;
-        }
 
-        /* check position  - into the canvas */
-        if (pos.x > container.canvas.dimension.width - this.radius * 2) {
-            pos.x -= this.radius;
-        } else if (pos.x < this.radius * 2) {
-            pos.x += this.radius;
-        }
+            /* check position  - into the canvas */
+            if (pos.x > container.canvas.dimension.width - this.radius * 2) {
+                pos.x -= this.radius;
+            } else if (pos.x < this.radius * 2) {
+                pos.x += this.radius;
+            }
 
-        if (pos.y > container.canvas.dimension.height - this.radius * 2) {
-            pos.y -= this.radius;
-        } else if (pos.y < this.radius * 2) {
-            pos.y += this.radius;
+            if (pos.y > container.canvas.dimension.height - this.radius * 2) {
+                pos.y -= this.radius;
+            } else if (pos.y < this.radius * 2) {
+                pos.y += this.radius;
+            }
         }
 
         return pos;
