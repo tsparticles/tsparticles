@@ -227,24 +227,26 @@ export class Utils {
      * @param t
      */
     private static hue2rgb(p: number, q: number, t: number): number {
-        if (t < 0) {
-            t += 1;
+        let tCalc = t;
+
+        if (tCalc < 0) {
+            tCalc += 1;
         }
 
-        if (t > 1) {
-            t -= 1;
+        if (tCalc > 1) {
+            tCalc -= 1;
         }
 
-        if (t < 1 / 6) {
-            return p + (q - p) * 6 * t;
+        if (tCalc < 1 / 6) {
+            return p + (q - p) * 6 * tCalc;
         }
 
-        if (t < 1 / 2) {
+        if (tCalc < 1 / 2) {
             return q;
         }
 
-        if (t < 2 / 3) {
-            return p + (q - p) * (2 / 3 - t) * 6;
+        if (tCalc < 2 / 3) {
+            return p + (q - p) * (2 / 3 - tCalc) * 6;
         }
 
         return p;

@@ -1,4 +1,4 @@
-import {IOptionsInteractivityModes} from "../../../../Interfaces/Options/Interactivity/Modes/IOptionsInteractivityModes";
+import {IModes} from "../../../../Interfaces/Options/Interactivity/Modes/IModes";
 import {Bubble} from "./Bubble";
 import {Connect} from "./Connect";
 import {Grab} from "./Grab";
@@ -15,7 +15,7 @@ import {IRemove} from "../../../../Interfaces/Options/Interactivity/Modes/IRemov
 import {IRepulse} from "../../../../Interfaces/Options/Interactivity/Modes/IRepulse";
 import {ISlow} from "../../../../Interfaces/Options/Interactivity/Modes/ISlow";
 
-export class Modes implements IOptionsInteractivityModes {
+export class Modes implements IModes {
     public bubble: IBubble;
     public connect: IConnect;
     public grab: IGrab;
