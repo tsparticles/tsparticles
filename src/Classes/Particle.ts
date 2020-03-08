@@ -170,7 +170,7 @@ export class Particle {
         return res;
     }
 
-    public resetVelocity() {
+    public resetVelocity(): void {
         const container = this.container;
         const options = container.options;
 
@@ -235,7 +235,7 @@ export class Particle {
 
         return {
             collisionFound: collisionFound,
-            iterations: iterations
+            iterations: iterations,
         };
     }
 
