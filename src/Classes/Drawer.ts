@@ -21,13 +21,13 @@ export class Drawer {
             return;
         }
 
+        const delta = timestamp - container.lastFrameTime;
+        
         container.lastFrameTime = timestamp;
 
         if (options.particles.shape.type === ShapeType.image && container.images.every((img) => img.error)) {
             return;
         }
-
-        const delta = timestamp - container.lastFrameTime;
 
         container.particles.draw(delta);
 
