@@ -15,4 +15,3 @@ export interface IModes {
     repulse: IRepulse;
     slow: ISlow;
 }
-
