@@ -37,18 +37,18 @@ export class Particle {
     public image?: IParticleImage;
     public readonly initialVelocity: IVelocity;
 
-    private readonly _updater: Updater;
-    private readonly _bubbler: Bubbler;
-    private readonly _repulser: Repulser;
-    private readonly _connecter: Connecter;
-    private readonly _drawer: Drawer;
-    private readonly _grabber: Grabber;
-    private readonly _interactionManager: InteractionManager;
-    private readonly _container: Container;
+    public readonly updater: Updater;
+    public readonly bubbler: Bubbler;
+    public readonly repulser: Repulser;
+    public readonly connecter: Connecter;
+    public readonly drawer: Drawer;
+    public readonly grabber: Grabber;
+    public readonly interactionManager: InteractionManager;
+    public readonly container: Container;
 
     /* --------- tsParticles functions - particles ----------- */
     constructor(container: Container, position?: ICoordinates) {
-        this._container = container;
+        this.container = container;
         const options = container.options;
         const color = options.particles.color;
 
@@ -70,7 +70,7 @@ export class Particle {
         }
 
         /* position */
-        this.position = this.calcPosition(this._container, position);
+        this.position = this.calcPosition(this.container, position);
 
         /* parallax */
         this.offset = {
@@ -133,13 +133,13 @@ export class Particle {
             }
         }
 
-        this._updater = new Updater(this._container, this);
-        this._bubbler = new Bubbler(this._container, this);
-        this._repulser = new Repulser(this._container, this);
-        this._drawer = new Drawer(this._container, this, this._bubbler);
-        this._grabber = new Grabber(this._container, this);
-        this._connecter = new Connecter(this._container, this);
-        this._interactionManager = new InteractionManager(this._container, this);
+        this.updater = new Updater(this.container, this);
+        this.bubbler = new Bubbler(this.container, this);
+        this.repulser = new Repulser(this.container, this);
+        this.drawer = new Drawer(this.container, this, this.bubbler);
+        this.grabber = new Grabber(this.container, this);
+        this.connecter = new Connecter(this.container, this);
+        this.interactionManager = new InteractionManager(this.container, this);
     }
 
     private static calculateVelocity(options: IOptions): IVelocity {
@@ -170,18 +170,25 @@ export class Particle {
         return res;
     }
 
-    public update(index: number, delta: number): void {
-        const container = this._container;
+    public resetVelocity() {
+        const container = this.container;
         const options = container.options;
 
-        this._updater.update(delta);
+        this.velocity = Particle.calculateVelocity(options);
+    }
+
+    public update(index: number, delta: number): void {
+        const container = this.container;
+        const options = container.options;
+
+        this.updater.update(delta);
 
         const hoverMode = options.interactivity.events.onHover.mode;
         const clickMode = options.interactivity.events.onClick.mode;
 
         /* events */
         if (Utils.isInArray(HoverMode.grab, hoverMode)) {
-            this._grabber.grab();
+            this.grabber.grab();
         }
 
         //  New interactivity `connect` which would just connect the particles on hover
@@ -189,34 +196,34 @@ export class Particle {
         if (Utils.isInArray(HoverMode.connect, options.interactivity.events.onHover.mode)) {
             for (let j = index + 1; j < container.particles.array.length; j++) {
                 const p2 = container.particles.array[j];
-                this._connecter.connect(p2);
+                this.connecter.connect(p2);
             }
         }
 
         if (Utils.isInArray(HoverMode.bubble, hoverMode) || Utils.isInArray(ClickMode.bubble, clickMode)) {
-            this._bubbler.bubble();
+            this.bubbler.bubble();
         }
 
         if (Utils.isInArray(HoverMode.repulse, hoverMode) || Utils.isInArray(ClickMode.repulse, clickMode)) {
-            this._repulser.repulse();
+            this.repulser.repulse();
         }
     }
 
     public interact(p2: Particle): void {
-        this._interactionManager.interact(p2);
+        this.interactionManager.interact(p2);
     }
 
     public draw(): void {
-        this._drawer.draw();
+        this.drawer.draw();
     }
 
-    public isOverlapping(position?: ICoordinates): { collisionFound: boolean, iterations: number } {
-        const container = this._container;
+    public isOverlapping(): { collisionFound: boolean, iterations: number } {
+        const container = this.container;
         const p = this;
         let collisionFound = false;
         let iterations = 0;
 
-        for (const p2 of container.particles.array) {
+        for (const p2 of container.particles.array.filter((t) => t != p)) {
             iterations++;
             const dist = Utils.getDistanceBetweenCoordinates(p.position, p2.position);
 
@@ -233,9 +240,9 @@ export class Particle {
     }
 
     public checkOverlap(position?: ICoordinates): void {
-        const container = this._container;
+        const container = this.container;
         const p = this;
-        const overlapResult = p.isOverlapping(position);
+        const overlapResult = p.isOverlapping();
 
         if (overlapResult.iterations >= container.particles.array.length) {
             const idx = container.particles.array.indexOf(this);
