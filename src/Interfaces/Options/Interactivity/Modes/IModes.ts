@@ -4,9 +4,9 @@ import {IGrab} from "./IGrab";
 import {IPush} from "./IPush";
 import {IRemove} from "./IRemove";
 import {IRepulse} from "./IRepulse";
-import { ISlow } from "./ISlow";
+import {ISlow} from "./ISlow";
 
-export interface IOptionsInteractivityModes {
+export interface IModes {
     bubble: IBubble;
     connect: IConnect;
     grab: IGrab;
@@ -15,4 +15,3 @@ export interface IOptionsInteractivityModes {
     repulse: IRepulse;
     slow: ISlow;
 }
-

@@ -1,4 +1,3 @@
-import {IDimension} from "../../IDimension";
 import {ICoordinates} from "../../ICoordinates";
 
 export interface IAttract {
