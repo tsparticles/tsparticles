@@ -22,7 +22,7 @@ export class Drawer {
         }
 
         const delta = timestamp - container.lastFrameTime;
-        
+
         container.lastFrameTime = timestamp;
 
         if (options.particles.shape.type === ShapeType.image && container.images.every((img) => img.error)) {
