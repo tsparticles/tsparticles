@@ -19,7 +19,7 @@ Master | [![Master Build Status](https://dev.azure.com/hollowmatt/particles.ts/_
 Staging | [![Staging Build Status](https://dev.azure.com/hollowmatt/particles.ts/_apis/build/status/matteobruni.tsparticles?branchName=staging)](https://dev.azure.com/hollowmatt/particles.ts/_build/latest?definitionId=11&branchName=staging)
 Dev | [![Dev Build Status](https://dev.azure.com/hollowmatt/particles.ts/_apis/build/status/matteobruni.tsparticles?branchName=dev)](https://dev.azure.com/hollowmatt/particles.ts/_build/latest?definitionId=11&branchName=dev)
 
-[![tsParticles demo](https://particles.matteobruni.it/images/gifs/covid.gif)](https://particles.matteobruni.it/#virus)
+[![tsParticles demo](https://particles.matteobruni.it/images/gifs/covid.gif?v=1.8.1)](https://particles.matteobruni.it/#virus)
 
 ---
 
@@ -49,7 +49,7 @@ npm install tsparticles
 
 Load tsParticles and configure the particles:
 
-[![tsParticles demo](https://particles.matteobruni.it/images/gifs/demo.gif)](https://particles.matteobruni.it)
+[![tsParticles demo](https://particles.matteobruni.it/images/gifs/demo.gif?v=1.8.1)](https://particles.matteobruni.it)
 
 **index.html**
 
@@ -95,21 +95,21 @@ tsParticles.setOnClickHandler((e) => { /* custom on click handler */ });
 
 <https://particles.matteobruni.it/>
 
-[![Particles demo](https://particles.matteobruni.it/images/demo.png)](https://particles.matteobruni.it/)
+[![Particles demo](https://particles.matteobruni.it/images/demo.png?v=1.8.1)](https://particles.matteobruni.it/)
 
-[![Particles demo](https://particles.matteobruni.it/images/gifs/chars.gif)](https://particles.matteobruni.it/#chars)
+[![Particles demo](https://particles.matteobruni.it/images/gifs/chars.gif?v=1.8.1)](https://particles.matteobruni.it/#chars)
 
-[![Particles demo](https://particles.matteobruni.it/images/gifs/connect.gif)](https://particles.matteobruni.it/#connect)
+[![Particles demo](https://particles.matteobruni.it/images/gifs/connect.gif?v=1.8.1)](https://particles.matteobruni.it/#connect)
 
-[![tsParticles demo](https://particles.matteobruni.it/images/gifs/mask.gif)](https://particles.matteobruni.it/#mask)
+[![tsParticles demo](https://particles.matteobruni.it/images/gifs/mask.gif?v=1.8.1)](https://particles.matteobruni.it/#mask)
 
-[![Particles demo](https://particles.matteobruni.it/images/gifs/nasa.gif)](https://particles.matteobruni.it/#nasa)
+[![Particles demo](https://particles.matteobruni.it/images/gifs/nasa.gif?v=1.8.1)](https://particles.matteobruni.it/#nasa)
 
-[![Particles demo](https://particles.matteobruni.it/images/gifs/nyancat.gif)](https://particles.matteobruni.it/#nyancat2)
+[![Particles demo](https://particles.matteobruni.it/images/gifs/nyancat.gif?v=1.8.1)](https://particles.matteobruni.it/#nyancat2)
 
-[![tsParticles demo](https://particles.matteobruni.it/images/gifs/snow.gif)](https://particles.matteobruni.it/#snow)
+[![tsParticles demo](https://particles.matteobruni.it/images/gifs/snow.gif?v=1.8.1)](https://particles.matteobruni.it/#snow)
 
-[![tsParticles demo](https://particles.matteobruni.it/images/gifs/covid.gif)](https://particles.matteobruni.it/#virus)
+[![tsParticles demo](https://particles.matteobruni.it/images/gifs/covid.gif?v=1.8.1)](https://particles.matteobruni.it/#virus)
 
 ---
 
