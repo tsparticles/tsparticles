@@ -205,7 +205,9 @@ export class Updater {
             if (!particle.initialPosition) {
                 particle.initialPosition = {x: 0, y: 0};
             }
+
             const dist = Utils.getDistanceBetweenCoordinates(particle.initialPosition, particle.position);
+
             if (dist > container.retina.polygonMaskMoveRadius) {
                 this.polygonBounce();
             }

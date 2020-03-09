@@ -108,7 +108,7 @@ export class PolygonMask {
                     position = this.getRandomPointOnPolygonPathByLength();
                     break;
                 case PolygonMaskInlineArrangement.equidistant:
-                    position = this.getEquidistantPoingOnPolygonPathByIndex(
+                    position = this.getEquidistantPointOnPolygonPathByIndex(
                         container.particles.array.length
                     );
                     break;
@@ -309,7 +309,7 @@ export class PolygonMask {
         };
     }
 
-    private getEquidistantPoingOnPolygonPathByIndex(index: number): ICoordinates {
+    private getEquidistantPointOnPolygonPathByIndex(index: number): ICoordinates {
         const container = this.container;
         const options = container.options;
 
