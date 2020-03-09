@@ -69,7 +69,7 @@ export class Container {
     private readonly _eventListeners: EventListeners;
 
     constructor(tagId: string, params: IOptions) {
-        this.lastFrameTime = performance.now();
+        this.lastFrameTime = 0;
         this.pageHidden = false;
         this.retina = new Retina(this);
         this.canvas = new Canvas(this, tagId);
@@ -193,7 +193,6 @@ export class Container {
             Container.cancelAnimation(this.drawAnimationFrame);
         }
 
-        this.lastFrameTime = performance.now();
         this.images = [];
         this.particles.clear();
         this.retina.reset();
@@ -212,6 +211,8 @@ export class Container {
         if (this.options.polygon.url) {
             this.polygon.raw = await this.polygon.parseSvgPathToPolygon(this.options.polygon.url);
         }
+
+        this.lastFrameTime = performance.now();
 
         if (this.options.particles.shape.type === ShapeType.image) {
             if (this.options.particles.shape.image instanceof Array) {
