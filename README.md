@@ -97,19 +97,50 @@ tsParticles.setOnClickHandler((e) => { /* custom on click handler */ });
 
 [![Particles demo](https://particles.matteobruni.it/images/demo.png?v=1.8.1)](https://particles.matteobruni.it/)
 
+---
+
+#### Characters as particles
+
 [![Particles demo](https://media.giphy.com/media/JsssOXz72bM6jGEZ0s/giphy.gif)](https://particles.matteobruni.it/#chars)
+
+---
+
+#### Mouse hover connections
+
 
 [![Particles demo](https://media.giphy.com/media/XzvZThpVbxHxMYz5xt/giphy.gif)](https://particles.matteobruni.it/#connect)
 
+---
+
+#### Polygon mask
+
 [![tsParticles demo](https://media.giphy.com/media/lNRfiSgaMFbL4FMhW6/giphy.gif)](https://particles.matteobruni.it/#mask)
+
+---
+
+#### Animated stars
 
 [![Particles demo](https://media.giphy.com/media/cLqGsnh7FKRVMgPIWE/giphy.gif)](https://particles.matteobruni.it/#nasa)
 
+---
+
+#### Nyan cat flying on scrolling stars
+
 [![Particles demo](https://media.giphy.com/media/LpX2oNc9ZMgIhIXQL9/giphy.gif)](https://particles.matteobruni.it/#nyancat2)
+
+---
+
+#### Snow particles
 
 [![tsParticles demo](https://media.giphy.com/media/gihwUFbmiubbkdzEMX/giphy.gif)](https://particles.matteobruni.it/#snow)
 
+---
+
+#### COVID-19 SARS-CoV-2 particles
+
 [![tsParticles demo](https://media.giphy.com/media/fsVN1ZHksgBIXNIbr1/giphy.gif)](https://particles.matteobruni.it/#virus)
+
+*Don't click! DON'T CLICK! OH NO IT'S SPREADING!!!!*
 
 ---
 
