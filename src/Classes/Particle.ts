@@ -52,10 +52,6 @@ export class Particle {
         const options = container.options;
         const color = options.particles.color;
 
-        if (options.polygon.type === PolygonMaskType.inline) {
-            this.initialPosition = position;
-        }
-
         /* size */
         this.size = {};
         this.radius = (options.particles.size.random ? Math.random() : 1) * container.retina.sizeValue;
@@ -71,6 +67,13 @@ export class Particle {
 
         /* position */
         this.position = this.calcPosition(this.container, position);
+
+        if (options.polygon.type === PolygonMaskType.inline) {
+            this.initialPosition = {
+                x: this.position.x,
+                y: this.position.y,
+            };
+        }
 
         /* parallax */
         this.offset = {
