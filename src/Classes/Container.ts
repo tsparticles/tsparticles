@@ -69,7 +69,7 @@ export class Container {
     private readonly _eventListeners: EventListeners;
 
     constructor(tagId: string, params: IOptions) {
-        this.lastFrameTime = 0;
+        this.lastFrameTime = performance.now();
         this.pageHidden = false;
         this.retina = new Retina(this);
         this.canvas = new Canvas(this, tagId);
@@ -193,6 +193,7 @@ export class Container {
             Container.cancelAnimation(this.drawAnimationFrame);
         }
 
+        this.lastFrameTime = performance.now();
         this.images = [];
         this.particles.clear();
         this.retina.reset();

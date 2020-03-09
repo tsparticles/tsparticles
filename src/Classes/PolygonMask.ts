@@ -99,7 +99,7 @@ export class PolygonMask {
 
         let position: ICoordinates;
 
-        if (options.polygon.type == PolygonMaskType.inline) {
+        if (options.polygon.type === PolygonMaskType.inline) {
             switch (options.polygon.inlineArrangement) {
                 case PolygonMaskInlineArrangement.randomPoint:
                     position = this.getRandomPointOnPolygonPath();
@@ -108,9 +108,7 @@ export class PolygonMask {
                     position = this.getRandomPointOnPolygonPathByLength();
                     break;
                 case PolygonMaskInlineArrangement.equidistant:
-                    position = this.getEquidistantPointOnPolygonPathByIndex(
-                        container.particles.array.length
-                    );
+                    position = this.getEquidistantPointOnPolygonPathByIndex(container.particles.array.length);
                     break;
                 case PolygonMaskInlineArrangement.onePerPoint:
                 default:
