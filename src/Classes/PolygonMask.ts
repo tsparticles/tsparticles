@@ -238,7 +238,7 @@ export class PolygonMask {
 
             polygonRaw.push({
                 x: p.x * scale + this.offset.x,
-                y: p.y * scale + this.offset.y
+                y: p.y * scale + this.offset.y,
             });
         }
 
