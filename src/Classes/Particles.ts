@@ -6,6 +6,7 @@ import {IMouseData} from "../Interfaces/IMouseData";
 import {IRgb} from "../Interfaces/IRgb";
 import {Particle} from "./Particle";
 import {PolygonMaskType} from "../Enums/PolygonMaskType";
+import {PolygonMaskInlineArrangement} from "../Enums/PolygonMaskInlineArrangement";
 
 /**
  * Particles manager
@@ -29,7 +30,8 @@ export class Particles {
         const container = this.container;
         const options = container.options;
 
-        if (options.polygon.type === PolygonMaskType.inline) {
+        if (options.polygon.type === PolygonMaskType.inline &&
+            options.polygon.inlineArrangement === PolygonMaskInlineArrangement.onePerPoint) {
             container.polygon.drawPointsOnPolygonPath();
         } else {
             for (let i = this.array.length; i < options.particles.number.value; i++) {
