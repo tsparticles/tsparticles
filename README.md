@@ -49,7 +49,7 @@ npm install tsparticles
 
 Load tsParticles and configure the particles:
 
-[![tsParticles demo](https://particles.matteobruni.it/images/gifs/demo.gif?v=1.8.1)](https://particles.matteobruni.it)
+[![tsParticles demo](https://media.giphy.com/media/ftHwBpp3b0qNyCXRuu/giphy.gif)](https://particles.matteobruni.it)
 
 **index.html**
 
@@ -97,15 +97,15 @@ tsParticles.setOnClickHandler((e) => { /* custom on click handler */ });
 
 [![Particles demo](https://particles.matteobruni.it/images/demo.png?v=1.8.1)](https://particles.matteobruni.it/)
 
-[![Particles demo](https://particles.matteobruni.it/images/gifs/chars.gif?v=1.8.1)](https://particles.matteobruni.it/#chars)
+[![Particles demo](https://media.giphy.com/media/JsssOXz72bM6jGEZ0s/giphy.gif)](https://particles.matteobruni.it/#chars)
 
-[![Particles demo](https://particles.matteobruni.it/images/gifs/connect.gif?v=1.8.1)](https://particles.matteobruni.it/#connect)
+[![Particles demo](https://media.giphy.com/media/XzvZThpVbxHxMYz5xt/giphy.gif)](https://particles.matteobruni.it/#connect)
 
-[![tsParticles demo](https://particles.matteobruni.it/images/gifs/mask.gif?v=1.8.1)](https://particles.matteobruni.it/#mask)
+[![tsParticles demo](https://media.giphy.com/media/lNRfiSgaMFbL4FMhW6/giphy.gif)](https://particles.matteobruni.it/#mask)
 
-[![Particles demo](https://particles.matteobruni.it/images/gifs/nasa.gif?v=1.8.1)](https://particles.matteobruni.it/#nasa)
+[![Particles demo](https://media.giphy.com/media/cLqGsnh7FKRVMgPIWE/giphy.gif)](https://particles.matteobruni.it/#nasa)
 
-[![Particles demo](https://particles.matteobruni.it/images/gifs/nyancat.gif?v=1.8.1)](https://particles.matteobruni.it/#nyancat2)
+[![Particles demo](https://media.giphy.com/media/LpX2oNc9ZMgIhIXQL9/giphy.gif)](https://particles.matteobruni.it/#nyancat2)
 
 [![tsParticles demo](https://media.giphy.com/media/gihwUFbmiubbkdzEMX/giphy.gif)](https://particles.matteobruni.it/#snow)
 
