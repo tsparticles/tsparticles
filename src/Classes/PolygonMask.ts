@@ -29,7 +29,7 @@ type SvgRelativeCoordinatesTypes =
  */
 export class PolygonMask {
     public redrawTimeout?: number;
-    public raw?: number[][];
+    public raw?: ICoordinates[];
     public svg?: SVGSVGElement;
     public path?: SVGPathElement;
 
@@ -66,10 +66,10 @@ export class PolygonMask {
                 let inside = false;
 
                 for (let i = 0, j = this.raw.length - 1; i < this.raw.length; j = i++) {
-                    const xi = this.raw[i][0];
-                    const yi = this.raw[i][1];
-                    const xj = this.raw[j][0];
-                    const yj = this.raw[j][1];
+                    const xi = this.raw[i].x;
+                    const yi = this.raw[i].y;
+                    const xj = this.raw[j].x;
+                    const yj = this.raw[j].y;
                     const intersect = ((yi > y) !== (yj > y)) && (x < (xj - xi) * (y - yi) / (yj - yi) + xi);
 
                     if (intersect) {
@@ -141,7 +141,7 @@ export class PolygonMask {
      * Opera release 49
      * Opera for Android release 49
      */
-    public async parseSvgPathToPolygon(svgUrl?: string): Promise<number[][] | undefined> {
+    public async parseSvgPathToPolygon(svgUrl?: string): Promise<ICoordinates[] | undefined> {
         const container = this.container;
         const options = container.options;
         const url = svgUrl || options.polygon.url;
@@ -176,7 +176,7 @@ export class PolygonMask {
         };
 
         const len = this.path.pathSegList.numberOfItems;
-        const polygonRaw = [];
+        const polygonRaw: ICoordinates[] = [];
         const p = {
             x: 0,
             y: 0,
@@ -238,7 +238,10 @@ export class PolygonMask {
                     continue; // Skip the closing path (and the UNKNOWN)
             }
 
-            polygonRaw.push([p.x * scale + this.offset.x, p.y * scale + this.offset.y]);
+            polygonRaw.push({
+                x: p.x * scale + this.offset.x,
+                y: p.y * scale + this.offset.y
+            });
         }
 
         return polygonRaw;
@@ -251,10 +254,10 @@ export class PolygonMask {
 
         if (context && this.raw) {
             context.beginPath();
-            context.moveTo(this.raw[0][0], this.raw[0][1]);
+            context.moveTo(this.raw[0].x, this.raw[0].y);
 
             for (let i = 1; i < this.raw.length; i++) {
-                context.lineTo(this.raw[i][0], this.raw[i][1]);
+                context.lineTo(this.raw[i].x, this.raw[i].y);
             }
 
             context.closePath();
@@ -270,8 +273,8 @@ export class PolygonMask {
         if (this.raw) {
             for (const item of this.raw) {
                 const position = {
-                    x: item[0],
-                    y: item[1],
+                    x: item.x,
+                    y: item.y,
                 };
                 const particle = new Particle(container, position);
 
@@ -283,11 +286,11 @@ export class PolygonMask {
     private getRandomPointOnPolygonPath(): ICoordinates {
         if (!this.raw || !this.raw.length) throw new Error(`No polygon data loaded.`);
 
-        const [x, y] = this.raw[Math.floor(Math.random() * this.raw.length)];
+        const coords = this.raw[Math.floor(Math.random() * this.raw.length)];
 
         return {
-            x: x,
-            y: y
+            x: coords.x,
+            y: coords.y,
         };
     }
 
@@ -324,11 +327,11 @@ export class PolygonMask {
     private getPoingOnPolygonPathByIndex(index: number): ICoordinates {
         if (!this.raw || !this.raw.length) throw new Error(`No polygon data loaded.`);
 
-        const [x, y] = this.raw[index % this.raw.length];
+        const coords = this.raw[index % this.raw.length];
 
         return {
-            x: x,
-            y: y
+            x: coords.x,
+            y: coords.y,
         };
     }
 }
