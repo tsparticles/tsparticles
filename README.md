@@ -107,7 +107,7 @@ tsParticles.setOnClickHandler((e) => { /* custom on click handler */ });
 
 [![Particles demo](https://particles.matteobruni.it/images/gifs/nyancat.gif?v=1.8.1)](https://particles.matteobruni.it/#nyancat2)
 
-[![tsParticles demo](https://particles.matteobruni.it/images/gifs/snow.gif?v=1.8.1)](https://particles.matteobruni.it/#snow)
+[![tsParticles demo](https://media.giphy.com/media/gihwUFbmiubbkdzEMX/giphy.gif)](https://particles.matteobruni.it/#snow)
 
 [![tsParticles demo](https://media.giphy.com/media/fsVN1ZHksgBIXNIbr1/giphy.gif)](https://particles.matteobruni.it/#virus)
 
