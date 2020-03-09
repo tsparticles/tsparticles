@@ -4,6 +4,7 @@ import {Container} from "./Container";
 import {ICoordinates} from "../Interfaces/ICoordinates";
 import {PolygonMaskType} from "../Enums/PolygonMaskType";
 import {Particle} from "./Particle";
+import {PolygonMaskInlineArrangement} from "../Enums/PolygonMaskInlineArrangement";
 
 type SvgAbsoluteCoordinatesTypes =
     | SVGPathSegArcAbs
@@ -94,10 +95,35 @@ export class PolygonMask {
 
     public randomPointInPolygon(): ICoordinates {
         const container = this.container;
-        const position = {
-            x: Math.random() * container.canvas.dimension.width,
-            y: Math.random() * container.canvas.dimension.height,
-        };
+        const options = container.options;
+
+        let position: ICoordinates;
+
+        if (options.polygon.type == PolygonMaskType.inline) {
+            switch (options.polygon.inlineArrangement) {
+                case PolygonMaskInlineArrangement.randomPoint:
+                    position = this.getRandomPointOnPolygonPath();
+                    break;
+                case PolygonMaskInlineArrangement.randomLength:
+                    position = this.getRandomPointOnPolygonPathByLength();
+                    break;
+                case PolygonMaskInlineArrangement.equidistant:
+                    position = this.getEquidistantPoingOnPolygonPathByIndex(
+                        container.particles.array.length
+                    );
+                    break;
+                case PolygonMaskInlineArrangement.onePerPoint:
+                default:
+                    position = this.getPoingOnPolygonPathByIndex(
+                        container.particles.array.length
+                    );
+            }
+        } else {
+            position = {
+                x: Math.random() * container.canvas.dimension.width,
+                y: Math.random() * container.canvas.dimension.height,
+            };
+        }
 
         if (this.checkInsidePolygon(position)) {
             return position;
@@ -252,5 +278,57 @@ export class PolygonMask {
                 container.particles.array.push(particle);
             }
         }
+    }
+
+    private getRandomPointOnPolygonPath(): ICoordinates {
+        if (!this.raw || !this.raw.length) throw new Error(`No polygon data loaded.`);
+
+        const [x, y] = this.raw[Math.floor(Math.random() * this.raw.length)];
+
+        return {
+            x: x,
+            y: y
+        };
+    }
+
+    private getRandomPointOnPolygonPathByLength(): ICoordinates {
+        const container = this.container;
+        const options = container.options;
+
+        if (!this.raw || !this.raw.length || !this.path) throw new Error(`No polygon data loaded.`);
+
+        const distance = Math.floor(Math.random() * this.path.getTotalLength()) + 1;
+        const point = this.path.getPointAtLength(distance);
+
+        return {
+            x: point.x * options.polygon.scale + (this.offset?.x || 0),
+            y: point.y * options.polygon.scale + (this.offset?.y || 0),
+        };
+    }
+
+    private getEquidistantPoingOnPolygonPathByIndex(index: number): ICoordinates {
+        const container = this.container;
+        const options = container.options;
+
+        if (!this.raw || !this.raw.length || !this.path) throw new Error(`No polygon data loaded.`);
+
+        const distance = (this.path.getTotalLength() / options.particles.number.value) * index;
+        const point = this.path.getPointAtLength(distance);
+
+        return {
+            x: point.x * options.polygon.scale + (this.offset?.x || 0),
+            y: point.y * options.polygon.scale + (this.offset?.y || 0),
+        };
+    }
+
+    private getPoingOnPolygonPathByIndex(index: number): ICoordinates {
+        if (!this.raw || !this.raw.length) throw new Error(`No polygon data loaded.`);
+
+        const [x, y] = this.raw[index % this.raw.length];
+
+        return {
+            x: x,
+            y: y
+        };
     }
 }
