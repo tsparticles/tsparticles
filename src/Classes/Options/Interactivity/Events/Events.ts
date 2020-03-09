@@ -82,4 +82,11 @@ export class Events implements IEvents {
         this.onHover = new HoverEvent();
         this.resize = true;
     }
+
+    public load(data: IEvents): void {
+        this.onClick.load(data.onClick);
+        this.onDiv.load(data.onDiv);
+        this.onHover.load(data.onHover);
+        this.resize = data.resize;
+    }
 }

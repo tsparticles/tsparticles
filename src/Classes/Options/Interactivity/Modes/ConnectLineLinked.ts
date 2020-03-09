@@ -6,4 +6,8 @@ export class ConnectLineLinked implements IConnectLineLinked {
     constructor() {
         this.opacity = 0.5;
     }
+
+    public load(data: IConnectLineLinked): void {
+        this.opacity = data.opacity;
+    }
 }

@@ -32,4 +32,9 @@ export class Grab implements IGrab {
         this.distance = 100;
         this.lineLinked = new GrabLineLinked();
     }
+
+    public load(data: IGrab): void {
+        this.distance = data.distance;
+        this.lineLinked.load(data.lineLinked);
+    }
 }

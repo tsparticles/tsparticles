@@ -28,4 +28,8 @@ export class Push implements IPush {
     constructor() {
         this.quantity = 4;
     }
+
+    public load(data: IPush): void {
+        this.quantity = data.quantity;
+    }
 }

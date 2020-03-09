@@ -57,5 +57,15 @@ export class Particles implements IParticles {
         this.size = new ParticlesSize();
         //this.shadow = new Shadow();
     }
+
+    public load(data: IParticles): void {
+        this.color.load(data.color);
+        this.lineLinked.load(data.lineLinked);
+        this.move.load(data.move);
+        this.number.load(data.number);
+        this.opacity.load(data.opacity);
+        this.shape.load(data.shape);
+        this.size.load(data.size);
+    }
 }
 

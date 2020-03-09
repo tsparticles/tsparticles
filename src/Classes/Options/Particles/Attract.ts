@@ -55,4 +55,10 @@ export class Attract implements IAttract {
             y: 3000,
         };
     }
+
+    public load(data: IAttract): void {
+        this.enable = data.enable;
+        this.rotate.x = data.rotate.x;
+        this.rotate.y = data.rotate.y;
+    }
 }

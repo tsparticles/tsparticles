@@ -10,4 +10,10 @@ export class Parallax implements IParallax {
         this.force = 2;
         this.smooth = 10;
     }
+
+    public load(data: IParallax): void {
+        this.enable = data.enable;
+        this.force = data.force;
+        this.smooth = data.smooth;
+    }
 }

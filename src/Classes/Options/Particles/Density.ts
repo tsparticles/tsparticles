@@ -30,4 +30,9 @@ export class Density implements IDensity {
         this.enable = true;
         this.area = 800;
     }
+
+    public load(data: IDensity): void {
+        this.enable = data.enable;
+        this.area = data.area;
+    }
 }

@@ -22,4 +22,13 @@ export class PolygonMask implements IPolygonMask {
         this.type = PolygonMaskType.none;
         this.url = "";
     }
+
+    public load(data: IPolygonMask): void {
+        this.draw.load(data.draw);
+        this.inlineArrangement = data.inlineArrangement;
+        this.move.load(data.move);
+        this.scale = data.scale;
+        this.type = data.type;
+        this.url = data.url;
+    }
 }

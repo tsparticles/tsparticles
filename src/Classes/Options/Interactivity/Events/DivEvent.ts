@@ -33,4 +33,10 @@ export class DivEvent implements IDivEvent {
         this.enable = false;
         this.mode = DivMode.repulse;
     }
+
+    public load(data: IDivEvent): void {
+        this.elementId = data.elementId;
+        this.enable = data.enable;
+        this.mode = data.mode;
+    }
 }

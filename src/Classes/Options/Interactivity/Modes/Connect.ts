@@ -34,4 +34,10 @@ export class Connect implements IConnect {
         this.lineLinked = new ConnectLineLinked();
         this.radius = 60;
     }
+
+    public load(data: IConnect): void {
+        this.distance = data.distance;
+        this.lineLinked.load(data.lineLinked);
+        this.radius = data.radius;
+    }
 }

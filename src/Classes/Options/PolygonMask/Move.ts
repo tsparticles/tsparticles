@@ -6,4 +6,8 @@ export class Move implements IPolygonMaskMove {
     constructor() {
         this.radius = 10;
     }
+
+    public load(data: IPolygonMaskMove): void {
+        this.radius = data.radius;
+    }
 }

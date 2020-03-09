@@ -1,4 +1,6 @@
-export interface IPolygonShape {
+import {IOptionLoader} from "../IOptionLoader";
+
+export interface IPolygonShape extends IOptionLoader<IPolygonShape> {
     /**
      * @deprecated use the new sides instead
      */

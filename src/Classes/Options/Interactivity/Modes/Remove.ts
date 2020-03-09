@@ -28,4 +28,8 @@ export class Remove implements IRemove {
     constructor() {
         this.quantity = 2;
     }
+
+    public load(data: IRemove): void {
+        this.quantity = data.quantity;
+    }
 }

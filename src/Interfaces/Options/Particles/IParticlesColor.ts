@@ -1,5 +1,6 @@
 import {IColor} from "../../IColor";
+import {IOptionLoader} from "../IOptionLoader";
 
-export interface IParticlesColor {
+export interface IParticlesColor extends IOptionLoader<IParticlesColor> {
     value: string | IColor | string[];
 }

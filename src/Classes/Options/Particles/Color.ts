@@ -7,4 +7,8 @@ export class Color implements IParticlesColor {
     constructor() {
         this.value = "#fff";
     }
+
+    public load(data: IParticlesColor): void {
+        this.value = data.value;
+    }
 }

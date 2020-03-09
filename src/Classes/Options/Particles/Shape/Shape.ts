@@ -23,5 +23,25 @@ export class Shape implements IShape {
         this.stroke = new Stroke();
         this.type = ShapeType.circle;
     }
+
+    public load(data: IShape): void {
+        this.character.load(data.character);
+
+        if (data.image instanceof Array) {
+            this.image = data.image.map((s) => {
+                const tmp = new ImageShape();
+
+                tmp.load(s);
+
+                return tmp;
+            });
+        } else {
+            this.image = new ImageShape();
+            this.image.load(data.image);
+        }
+
+        this.stroke.load(data.stroke);
+        this.type = data.type;
+    }
 }
 

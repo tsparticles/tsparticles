@@ -34,4 +34,11 @@ export class ImageShape implements IImageShape {
         this.src = "";
         this.width = 100;
     }
+
+    public load(data: IImageShape): void {
+        this.height = data.height;
+        this.replaceColor = data.replaceColor;
+        this.src = data.src;
+        this.width = data.width;
+    }
 }

@@ -33,4 +33,14 @@ export class Modes implements IModes {
         this.repulse = new Repulse();
         this.slow = new Slow();
     }
+
+    public load(data: IModes): void {
+        this.bubble.load(data.bubble);
+        this.connect.load(data.connect);
+        this.grab.load(data.grab);
+        this.push.load(data.push);
+        this.remove.load(data.remove);
+        this.repulse.load(data.repulse);
+        this.slow.load(data.slow);
+    }
 }

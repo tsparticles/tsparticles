@@ -10,7 +10,6 @@ import {Loader} from "./Loader";
 import {Particles} from "./Particles";
 import {Retina} from "./Retina";
 import {ShapeType} from "../Enums/ShapeType";
-import {Utils} from "./Utils/Utils";
 import {PolygonMask} from "./PolygonMask";
 import {ImageShape} from "./Options/Particles/Shape/ImageShape";
 import {IOptions} from "../Interfaces/Options/IOptions";
@@ -88,7 +87,7 @@ export class Container {
 
         /* params settings */
         if (params) {
-            Utils.deepExtend(this.options, params);
+            this.options.load(params);
         }
 
         /* ---------- tsParticles - start ------------ */

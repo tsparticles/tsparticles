@@ -12,4 +12,10 @@ export class ParticlesNumber implements IParticlesNumber {
         this.limit = 0;
         this.value = 400;
     }
+
+    public load(data: IParticlesNumber): void {
+        this.density.load(data.density);
+        this.limit = data.limit;
+        this.value = data.value;
+    }
 }

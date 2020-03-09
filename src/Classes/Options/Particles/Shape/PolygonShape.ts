@@ -28,4 +28,8 @@ export class PolygonShape implements IPolygonShape {
     constructor() {
         this.sides = 5;
     }
+
+    public load(data: IPolygonShape): void {
+        this.sides = data.sides;
+    }
 }

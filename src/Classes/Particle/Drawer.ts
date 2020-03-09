@@ -2,7 +2,7 @@
 
 import {Bubbler} from "./Bubbler";
 import {Container} from "../Container";
-import {ISide} from "../../Interfaces/Options/Shape/ISide";
+import {ISide} from "../../Interfaces/ISide";
 import {ICoordinates} from "../../Interfaces/ICoordinates";
 import {Particle} from "../Particle";
 import {ShapeType} from "../../Enums/ShapeType";
@@ -63,8 +63,8 @@ export class Drawer {
         const particle = this.particle;
 
         let radius: number;
-        let opacity;
-        let colorValue;
+        let opacity: number;
+        let colorValue: string | undefined;
 
         if (this.bubbler.radius !== undefined) {
             radius = this.bubbler.radius;

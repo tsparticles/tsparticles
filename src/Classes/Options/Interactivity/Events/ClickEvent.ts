@@ -9,4 +9,9 @@ export class ClickEvent implements IClickEvent {
         this.enable = true;
         this.mode = ClickMode.push;
     }
+
+    public load(data: IClickEvent): void {
+        this.enable = data.enable;
+        this.mode = data.mode;
+    }
 }

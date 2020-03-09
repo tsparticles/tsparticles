@@ -3,11 +3,12 @@
 import {IInteractivity} from "./Interactivity/IInteractivity";
 import {IParticles} from "./Particles/IParticles";
 import {IPolygonMask} from "./PolygonMask/IPolygonMask";
+import {IOptionLoader} from "./IOptionLoader";
 
 /**
  * The Options interface, defines all the options that can be used by `tsParticles`
  */
-export interface IOptions {
+export interface IOptions extends IOptionLoader<IOptions> {
     /**
      * The F(rame)P(er)S(econd) limit applied to all particles animations.
      * @obsolete use the new fpsLimit instead

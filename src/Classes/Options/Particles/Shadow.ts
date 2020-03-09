@@ -16,4 +16,12 @@ export class Shadow implements IShadow {
             y: 0,
         };
     }
+
+    public load(data: IShadow): void {
+        this.blur = data.blur;
+        this.color = data.color;
+        this.enable = data.enable;
+        this.offset.x = data.offset.x;
+        this.offset.y = data.offset.y;
+    }
 }

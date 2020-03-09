@@ -34,4 +34,11 @@ export class ParticlesSizeAnimation implements ISizeAnimation {
         this.speed = 20;
         this.sync = false;
     }
+
+    public load(data: ISizeAnimation): void {
+        this.enable = data.enable;
+        this.minimumValue = data.minimumValue;
+        this.speed = data.speed;
+        this.sync = data.sync;
+    }
 }

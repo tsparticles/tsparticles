@@ -34,4 +34,11 @@ export class OpacityAnimation implements IOpacityAnimation {
         this.speed = 2;
         this.sync = false;
     }
+
+    public load(data: IOpacityAnimation): void {
+        this.enable = data.enable;
+        this.minimumValue = data.minimumValue;
+        this.speed = data.speed;
+        this.sync = data.sync;
+    }
 }

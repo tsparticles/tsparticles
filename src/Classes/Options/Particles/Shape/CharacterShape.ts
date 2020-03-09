@@ -14,4 +14,12 @@ export class CharacterShape implements ICharacterShape {
         this.value = "*";
         this.weight = "400";
     }
+
+    public load(data: ICharacterShape): void {
+        this.fill = data.fill;
+        this.font = data.font;
+        this.style = data.style;
+        this.value = data.value;
+        this.weight = data.weight;
+    }
 }

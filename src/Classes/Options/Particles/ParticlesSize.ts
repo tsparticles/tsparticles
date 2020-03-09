@@ -34,4 +34,10 @@ export class ParticlesSize implements ISize {
         this.random = false;
         this.value = 20;
     }
+
+    public load(data: ISize): void {
+        this.animation.load(data.animation);
+        this.random = data.random;
+        this.value = data.value;
+    }
 }

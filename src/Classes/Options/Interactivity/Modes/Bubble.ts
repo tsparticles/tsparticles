@@ -12,4 +12,11 @@ export class Bubble implements IBubble {
         this.opacity = 1;
         this.size = 80;
     }
+
+    public load(data: IBubble): void {
+        this.distance = data.distance;
+        this.duration = data.duration;
+        this.opacity = data.opacity;
+        this.size = data.size;
+    }
 }

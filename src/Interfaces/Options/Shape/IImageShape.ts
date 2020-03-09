@@ -1,4 +1,6 @@
-export interface IImageShape {
+import {IOptionLoader} from "../IOptionLoader";
+
+export interface IImageShape extends IOptionLoader<IImageShape> {
     src: string;
     width: number;
     height: number;

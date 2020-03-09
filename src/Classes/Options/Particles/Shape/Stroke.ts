@@ -8,4 +8,9 @@ export class Stroke implements IStroke {
         this.color = "#ff0000";
         this.width = 0;
     }
+
+    public load(data: IStroke): void {
+        this.color = data.color;
+        this.width = data.width;
+    }
 }

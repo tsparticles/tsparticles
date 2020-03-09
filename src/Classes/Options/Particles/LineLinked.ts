@@ -18,4 +18,14 @@ export class LineLinked implements ILineLinked {
         this.opacity = 1;
         this.width = 1;
     }
+
+    public load(data: ILineLinked): void {
+        this.blink = data.blink;
+        this.color = data.color;
+        this.consent = data.consent;
+        this.distance = data.distance;
+        this.enable = data.enable;
+        this.opacity = data.opacity;
+        this.width = data.width;
+    }
 }

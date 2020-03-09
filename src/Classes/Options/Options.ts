@@ -63,4 +63,12 @@ export class Options implements IOptions {
         this.particles = new Particles();
         this.polygon = new PolygonMask();
     }
+
+    public load(data: IOptions): void {
+        this.detectRetina = data.detectRetina;
+        this.fpsLimit = data.fpsLimit;
+        this.interactivity.load(data.interactivity);
+        this.particles.load(data.particles);
+        this.polygon.load(data.polygon);
+    }
 }

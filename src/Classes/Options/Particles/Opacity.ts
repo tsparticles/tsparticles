@@ -34,4 +34,10 @@ export class Opacity implements IOpacity {
         this.random = false;
         this.value = 1;
     }
+
+    public load(data: IOpacity): void {
+        this.animation.load(data.animation);
+        this.random = data.random;
+        this.value = data.value;
+    }
 }

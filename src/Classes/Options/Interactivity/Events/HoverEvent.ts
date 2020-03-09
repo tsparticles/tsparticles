@@ -13,4 +13,10 @@ export class HoverEvent implements IHoverEvent {
         this.mode = HoverMode.grab;
         this.parallax = new Parallax();
     }
+
+    public load(data: IHoverEvent): void {
+        this.enable = data.enable;
+        this.mode = data.mode;
+        this.parallax.load(data.parallax);
+    }
 }

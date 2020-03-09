@@ -35,4 +35,10 @@ export class Interactivity implements IInteractivity {
         this.events = new Events();
         this.modes = new Modes();
     }
+
+    public load(data: IInteractivity): void {
+        this.detectsOn = data.detectsOn;
+        this.events.load(data.events);
+        this.modes.load(data.modes);
+    }
 }

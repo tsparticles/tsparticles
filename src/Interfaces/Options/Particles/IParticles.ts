@@ -5,8 +5,9 @@ import {IMove} from "./IMove";
 import {IParticlesNumber} from "./IParticlesNumber";
 import {IOpacity} from "./IOpacity";
 import {ISize} from "./ISize";
+import {IOptionLoader} from "../IOptionLoader";
 
-export interface IParticles {
+export interface IParticles extends IOptionLoader<IParticles> {
     color: IParticlesColor;
 
     /**

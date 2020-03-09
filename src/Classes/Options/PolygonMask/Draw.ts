@@ -10,4 +10,10 @@ export class Draw implements IPolygonMaskDraw {
         this.lineColor = "#ffffff";
         this.lineWidth = 0.5;
     }
+
+    public load(data: IPolygonMaskDraw): void {
+        this.enable = data.enable;
+        this.lineColor = data.lineColor;
+        this.lineWidth = data.lineWidth;
+    }
 }

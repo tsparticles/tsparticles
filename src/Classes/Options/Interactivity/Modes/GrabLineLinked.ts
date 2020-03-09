@@ -6,4 +6,8 @@ export class GrabLineLinked implements IGrabLineLinked {
     constructor() {
         this.opacity = 1;
     }
+
+    public load(data: IGrabLineLinked): void {
+        this.opacity = data.opacity;
+    }
 }

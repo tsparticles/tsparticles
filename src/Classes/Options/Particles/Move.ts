@@ -46,4 +46,15 @@ export class Move implements IMove {
         this.speed = 2;
         this.straight = false;
     }
+
+    public load(data: IMove): void {
+        this.attract.load(data.attract);
+        this.bounce = data.bounce;
+        this.direction = data.direction;
+        this.enable = data.enable;
+        this.outMode = data.outMode;
+        this.random = data.random;
+        this.speed = data.speed;
+        this.straight = data.straight;
+    }
 }

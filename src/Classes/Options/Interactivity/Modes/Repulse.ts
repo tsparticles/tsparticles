@@ -8,4 +8,9 @@ export class Repulse implements IRepulse {
         this.distance = 200;
         this.duration = 0.4;
     }
+
+    public load(data: IRepulse): void {
+        this.distance = data.distance;
+        this.duration = data.duration;
+    }
 }
