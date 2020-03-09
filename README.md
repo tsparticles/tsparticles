@@ -19,7 +19,7 @@ Master | [![Master Build Status](https://dev.azure.com/hollowmatt/particles.ts/_
 Staging | [![Staging Build Status](https://dev.azure.com/hollowmatt/particles.ts/_apis/build/status/matteobruni.tsparticles?branchName=staging)](https://dev.azure.com/hollowmatt/particles.ts/_build/latest?definitionId=11&branchName=staging)
 Dev | [![Dev Build Status](https://dev.azure.com/hollowmatt/particles.ts/_apis/build/status/matteobruni.tsparticles?branchName=dev)](https://dev.azure.com/hollowmatt/particles.ts/_build/latest?definitionId=11&branchName=dev)
 
-[![tsParticles demo](https://particles.matteobruni.it/images/gifs/covid.gif?v=1.8.1)](https://particles.matteobruni.it/#virus)
+[![tsParticles demo](https://media.giphy.com/media/fsVN1ZHksgBIXNIbr1/giphy.gif)](https://particles.matteobruni.it/#virus)
 
 ---
 
@@ -109,7 +109,7 @@ tsParticles.setOnClickHandler((e) => { /* custom on click handler */ });
 
 [![tsParticles demo](https://particles.matteobruni.it/images/gifs/snow.gif?v=1.8.1)](https://particles.matteobruni.it/#snow)
 
-[![tsParticles demo](https://particles.matteobruni.it/images/gifs/covid.gif?v=1.8.1)](https://particles.matteobruni.it/#virus)
+[![tsParticles demo](https://media.giphy.com/media/fsVN1ZHksgBIXNIbr1/giphy.gif)](https://particles.matteobruni.it/#virus)
 
 ---
 
