@@ -32,6 +32,11 @@ export class Mover {
     private moveParallax(): void {
         const container = this.container;
         const options = container.options;
+
+        if (!options.interactivity.events.onHover.parallax.enable) {
+            return;
+        }
+
         const particle = this.particle;
         const parallaxForce = options.interactivity.events.onHover.parallax.force;
         const mousePos = container.interactivity.mouse.position || {x: 0, y: 0};
@@ -41,16 +46,14 @@ export class Mover {
         };
         const parallaxSmooth = options.interactivity.events.onHover.parallax.smooth;
 
-        if (options.interactivity.events.onHover.parallax.enable) {
-            /* smaller is the particle, longer is the offset distance */
-            const tmp = {
-                x: (mousePos.x - windowDimension.width) * (particle.radius / parallaxForce),
-                y: (mousePos.y - windowDimension.height) * (particle.radius / parallaxForce),
-            };
+        /* smaller is the particle, longer is the offset distance */
+        const tmp = {
+            x: (mousePos.x - windowDimension.width) * (particle.radius / parallaxForce),
+            y: (mousePos.y - windowDimension.height) * (particle.radius / parallaxForce),
+        };
 
-            particle.offset.x += (tmp.x - particle.offset.x) / parallaxSmooth; // Easing equation
-            particle.offset.y += (tmp.y - particle.offset.y) / parallaxSmooth; // Easing equation
-        }
+        particle.offset.x += (tmp.x - particle.offset.x) / parallaxSmooth; // Easing equation
+        particle.offset.y += (tmp.y - particle.offset.y) / parallaxSmooth; // Easing equation
     }
 
     private getProximitySpeedFactor(): number {

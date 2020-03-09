@@ -212,6 +212,8 @@ export class Container {
             this.polygon.raw = await this.polygon.parseSvgPathToPolygon(this.options.polygon.url);
         }
 
+        this.lastFrameTime = performance.now();
+
         if (this.options.particles.shape.type === ShapeType.image) {
             if (this.options.particles.shape.image instanceof Array) {
                 for (const optionsImage of this.options.particles.shape.image) {

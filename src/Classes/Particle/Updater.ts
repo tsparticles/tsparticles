@@ -202,12 +202,12 @@ export class Updater {
                 this.polygonBounce();
             }
         } else if (options.polygon.type === PolygonMaskType.inline) {
-            if (!particle.initialPosition) {
-                particle.initialPosition = {x: 0, y: 0};
-            }
-            const dist = Utils.getDistanceBetweenCoordinates(particle.initialPosition, particle.position);
-            if (dist > container.retina.polygonMaskMoveRadius) {
-                this.polygonBounce();
+            if (particle.initialPosition) {
+                const dist = Utils.getDistanceBetweenCoordinates(particle.initialPosition, particle.position);
+
+                if (dist > container.retina.polygonMaskMoveRadius) {
+                    this.polygonBounce();
+                }
             }
         } else {
             const outMode = options.particles.move.outMode;

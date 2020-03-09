@@ -26,15 +26,15 @@ import {ClickMode} from "../Enums/Modes/ClickMode";
  */
 export class Particle {
     public radius: number;
-    public size: ISize;
-    public initialPosition?: ICoordinates;
-    public position: ICoordinates;
-    public offset: ICoordinates;
-    public color: IRgb | null;
-    public opacity: IOpacity;
-    public velocity: IVelocity;
-    public shape?: ShapeType;
-    public image?: IParticleImage;
+    public readonly size: ISize;
+    public readonly initialPosition?: ICoordinates;
+    public readonly position: ICoordinates;
+    public readonly offset: ICoordinates;
+    public readonly color: IRgb | null;
+    public readonly opacity: IOpacity;
+    public readonly velocity: IVelocity;
+    public readonly shape?: ShapeType;
+    public readonly image?: IParticleImage;
     public readonly initialVelocity: IVelocity;
 
     public readonly updater: Updater;
@@ -52,10 +52,6 @@ export class Particle {
         const options = container.options;
         const color = options.particles.color;
 
-        if (options.polygon.type === PolygonMaskType.inline) {
-            this.initialPosition = position;
-        }
-
         /* size */
         this.size = {};
         this.radius = (options.particles.size.random ? Math.random() : 1) * container.retina.sizeValue;
@@ -71,6 +67,13 @@ export class Particle {
 
         /* position */
         this.position = this.calcPosition(this.container, position);
+
+        if (options.polygon.type === PolygonMaskType.inline) {
+            this.initialPosition = {
+                x: this.position.x,
+                y: this.position.y,
+            };
+        }
 
         /* parallax */
         this.offset = {
@@ -173,8 +176,10 @@ export class Particle {
     public resetVelocity(): void {
         const container = this.container;
         const options = container.options;
+        const velocity = Particle.calculateVelocity(options);
 
-        this.velocity = Particle.calculateVelocity(options);
+        this.velocity.horizontal = velocity.horizontal;
+        this.velocity.vertical = velocity.vertical;
     }
 
     public update(index: number, delta: number): void {

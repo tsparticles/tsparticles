@@ -1,17 +1,19 @@
 {
   "name": "tsparticles",
-  "version": "1.8.1",
+  "version": "1.8.2",
   "description": "Porting of the abandoned Vincent Garreau's particles.js, converted in TypeScript. Added many new cool features and various bug fixes.",
   "homepage": "https://particles.matteobruni.it/",
   "scripts": {
     "type-check": "tsc --noEmit",
     "type-check:watch": "npm run type-check -- --watch",
+    "clear:dist": "rimraf -f dist/**/*",
+    "clear:docs": "rimraf -f docs/**/*",
     "copy:js": "cpx \"src/**/*.{js,d.ts}\" dist/",
-    "slimbuild": "npm run copy:js && npm run build:types && npm run build:js && npx webpack --mode production",
+    "slimbuild": "npm run clear:dist && npm run copy:js && npm run build:types && npm run build:js && npx webpack --mode production",
     "build": "npm run build:docs && npm run slimbuild",
     "build:types": "tsc --emitDeclarationOnly",
     "build:js": "babel src --out-dir dist --ignore \"src/**/*.d.ts\" --extensions \".ts,.tsx\" --source-maps inline",
-    "build:docs": "typedoc --out docs --gaID UA-159372955-1 src",
+    "build:docs": "npm run clear:docs && typedoc --out docs --gaID UA-159372955-1 src",
     "start": "npm run slimbuild && node demo/app.js"
   },
   "repository": {
