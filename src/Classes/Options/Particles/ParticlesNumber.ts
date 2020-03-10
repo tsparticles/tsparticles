@@ -1,6 +1,7 @@
 import {IParticlesNumber} from "../../../Interfaces/Options/Particles/IParticlesNumber";
 import {IDensity} from "../../../Interfaces/Options/Particles/IDensity";
 import {Density} from "./Density";
+import {Utils} from "../../Utils/Utils";
 
 export class ParticlesNumber implements IParticlesNumber {
     public density: IDensity;
@@ -14,8 +15,16 @@ export class ParticlesNumber implements IParticlesNumber {
     }
 
     public load(data: IParticlesNumber): void {
-        this.density.load(data.density);
-        this.limit = data.limit;
-        this.value = data.value;
+        if (Utils.hasData(data)) {
+            this.density.load(data.density);
+
+            if (Utils.hasData(data.limit)) {
+                this.limit = data.limit;
+            }
+
+            if (Utils.hasData(data.value)) {
+                this.value = data.value;
+            }
+        }
     }
 }

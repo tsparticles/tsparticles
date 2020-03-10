@@ -1,4 +1,5 @@
 import {IParallax} from "../../../../Interfaces/Options/Interactivity/Events/IParallax";
+import {Utils} from "../../../Utils/Utils";
 
 export class Parallax implements IParallax {
     public enable: boolean;
@@ -12,8 +13,18 @@ export class Parallax implements IParallax {
     }
 
     public load(data: IParallax): void {
-        this.enable = data.enable;
-        this.force = data.force;
-        this.smooth = data.smooth;
+        if (Utils.hasData(data)) {
+            if (Utils.hasData(data.enable)) {
+                this.enable = data.enable;
+            }
+
+            if (Utils.hasData(data.force)) {
+                this.force = data.force;
+            }
+
+            if (Utils.hasData(data.smooth)) {
+                this.smooth = data.smooth;
+            }
+        }
     }
 }

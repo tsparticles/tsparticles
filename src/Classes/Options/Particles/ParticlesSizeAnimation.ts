@@ -1,5 +1,6 @@
 import {ISizeAnimation} from "../../../Interfaces/Options/Particles/ISizeAnimation";
 import {Messages} from "../../Utils/Messages";
+import {Utils} from "../../Utils/Utils";
 
 export class ParticlesSizeAnimation implements ISizeAnimation {
     /**
@@ -36,9 +37,24 @@ export class ParticlesSizeAnimation implements ISizeAnimation {
     }
 
     public load(data: ISizeAnimation): void {
-        this.enable = data.enable;
-        this.minimumValue = data.minimumValue;
-        this.speed = data.speed;
-        this.sync = data.sync;
+        if (Utils.hasData(data)) {
+            if (Utils.hasData(data.enable)) {
+                this.enable = data.enable;
+            }
+
+            const minValue = data.minimumValue ?? data.size_min;
+
+            if (Utils.hasData(minValue)) {
+                this.minimumValue = minValue;
+            }
+
+            if (Utils.hasData(data.speed)) {
+                this.speed = data.speed;
+            }
+
+            if (Utils.hasData(data.sync)) {
+                this.sync = data.sync;
+            }
+        }
     }
 }

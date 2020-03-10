@@ -1,4 +1,5 @@
 import {IPolygonMaskMove} from "../../../Interfaces/Options/PolygonMask/IPolygonMaskMove";
+import {Utils} from "../../Utils/Utils";
 
 export class Move implements IPolygonMaskMove {
     public radius: number;
@@ -8,6 +9,10 @@ export class Move implements IPolygonMaskMove {
     }
 
     public load(data: IPolygonMaskMove): void {
-        this.radius = data.radius;
+        if (Utils.hasData(data)) {
+            if (Utils.hasData(data.radius)) {
+                this.radius = data.radius;
+            }
+        }
     }
 }

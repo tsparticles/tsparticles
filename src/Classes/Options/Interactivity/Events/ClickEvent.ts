@@ -1,5 +1,6 @@
 import {IClickEvent} from "../../../../Interfaces/Options/Interactivity/Events/IClickEvent";
 import {ClickMode} from "../../../../Enums/Modes/ClickMode";
+import {Utils} from "../../../Utils/Utils";
 
 export class ClickEvent implements IClickEvent {
     public enable: boolean;
@@ -11,7 +12,14 @@ export class ClickEvent implements IClickEvent {
     }
 
     public load(data: IClickEvent): void {
-        this.enable = data.enable;
-        this.mode = data.mode;
+        if (Utils.hasData(data)) {
+            if (Utils.hasData(data.enable)) {
+                this.enable = data.enable;
+            }
+
+            if (Utils.hasData(data.mode)) {
+                this.mode = data.mode;
+            }
+        }
     }
 }

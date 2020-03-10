@@ -1,5 +1,6 @@
 import {IImageShape} from "../../../../Interfaces/Options/Shape/IImageShape";
 import {Messages} from "../../../Utils/Messages";
+import {Utils} from "../../../Utils/Utils";
 
 export class ImageShape implements IImageShape {
     /**
@@ -36,9 +37,24 @@ export class ImageShape implements IImageShape {
     }
 
     public load(data: IImageShape): void {
-        this.height = data.height;
-        this.replaceColor = data.replaceColor;
-        this.src = data.src;
-        this.width = data.width;
+        if (Utils.hasData(data)) {
+            if (Utils.hasData(data.height)) {
+                this.height = data.height;
+            }
+
+            const replaceColor = data.replaceColor ?? data.replace_color;
+
+            if (Utils.hasData(replaceColor)) {
+                this.replaceColor = replaceColor;
+            }
+
+            if (Utils.hasData(data.src)) {
+                this.src = data.src;
+            }
+
+            if (Utils.hasData(data.width)) {
+                this.width = data.width;
+            }
+        }
     }
 }

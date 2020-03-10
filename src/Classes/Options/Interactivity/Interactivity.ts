@@ -3,6 +3,7 @@ import {InteractivityDetect} from "../../../Enums/InteractivityDetect";
 import {Events} from "./Events/Events";
 import {Modes} from "./Modes/Modes";
 import {Messages} from "../../Utils/Messages";
+import {Utils} from "../../Utils/Utils";
 
 export class Interactivity implements IInteractivity {
     /**
@@ -37,8 +38,15 @@ export class Interactivity implements IInteractivity {
     }
 
     public load(data: IInteractivity): void {
-        this.detectsOn = data.detectsOn;
-        this.events.load(data.events);
-        this.modes.load(data.modes);
+        if (Utils.hasData(data)) {
+            const detectsOn = data.detectsOn ?? data.detect_on;
+
+            if (Utils.hasData(detectsOn)) {
+                this.detectsOn = data.detectsOn;
+            }
+
+            this.events.load(data.events);
+            this.modes.load(data.modes);
+        }
     }
 }

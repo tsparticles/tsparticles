@@ -50,6 +50,7 @@ export class Container {
         this.checkAnimationFrame = value;
     }
 
+    public readonly sourceOptions: IOptions;
     public interactivity: IContainerInteractivity;
     public options: IOptions;
     public retina: Retina;
@@ -68,6 +69,7 @@ export class Container {
     private readonly _eventListeners: EventListeners;
 
     constructor(tagId: string, params: IOptions) {
+        this.sourceOptions = params;
         this.lastFrameTime = 0;
         this.pageHidden = false;
         this.retina = new Retina(this);
@@ -87,7 +89,7 @@ export class Container {
 
         /* params settings */
         if (params) {
-            this.options.load(params);
+            this.options.load(this.sourceOptions);
         }
 
         /* ---------- tsParticles - start ------------ */

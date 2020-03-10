@@ -4,6 +4,7 @@ import {MoveDirection} from "../../../Enums/MoveDirection";
 import {OutMode} from "../../../Enums/OutMode";
 import {IAttract} from "../../../Interfaces/Options/Particles/IAttract";
 import {Messages} from "../../Utils/Messages";
+import {Utils} from "../../Utils/Utils";
 
 export class Move implements IMove {
     /**
@@ -48,13 +49,38 @@ export class Move implements IMove {
     }
 
     public load(data: IMove): void {
-        this.attract.load(data.attract);
-        this.bounce = data.bounce;
-        this.direction = data.direction;
-        this.enable = data.enable;
-        this.outMode = data.outMode;
-        this.random = data.random;
-        this.speed = data.speed;
-        this.straight = data.straight;
+        if (Utils.hasData(data)) {
+            this.attract.load(data.attract);
+
+            if (Utils.hasData(data.bounce)) {
+                this.bounce = data.bounce;
+            }
+
+            if (Utils.hasData(data.direction)) {
+                this.direction = data.direction;
+            }
+
+            if (Utils.hasData(data.enable)) {
+                this.enable = data.enable;
+            }
+
+            const outMode = data.outMode ?? data.out_mode;
+
+            if (Utils.hasData(outMode)) {
+                this.outMode = outMode;
+            }
+
+            if (Utils.hasData(data.random)) {
+                this.random = data.random;
+            }
+
+            if (Utils.hasData(data.speed)) {
+                this.speed = data.speed;
+            }
+
+            if (Utils.hasData(data.straight)) {
+                this.straight = data.straight;
+            }
+        }
     }
 }

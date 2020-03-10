@@ -6,6 +6,7 @@ import {IInteractivity} from "../../Interfaces/Options/Interactivity/IInteractiv
 import {IParticles} from "../../Interfaces/Options/Particles/IParticles";
 import {IPolygonMask} from "../../Interfaces/Options/PolygonMask/IPolygonMask";
 import {Messages} from "../Utils/Messages";
+import {Utils} from "../Utils/Utils";
 
 export class Options implements IOptions {
     /**
@@ -65,10 +66,22 @@ export class Options implements IOptions {
     }
 
     public load(data: IOptions): void {
-        this.detectRetina = data.detectRetina;
-        this.fpsLimit = data.fpsLimit;
-        this.interactivity.load(data.interactivity);
-        this.particles.load(data.particles);
-        this.polygon.load(data.polygon);
+        if (Utils.hasData(data)) {
+            const detectRetina = data.detectRetina ?? data.retina_detect;
+
+            if (Utils.hasData(detectRetina)) {
+                this.detectRetina = detectRetina;
+            }
+
+            const fpsLimit = data.fpsLimit ?? data.fps_limit;
+
+            if (Utils.hasData(fpsLimit)) {
+                this.fpsLimit = fpsLimit;
+            }
+
+            this.interactivity.load(data.interactivity);
+            this.particles.load(data.particles);
+            this.polygon.load(data.polygon);
+        }
     }
 }

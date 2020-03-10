@@ -14,6 +14,7 @@ import {IPush} from "../../../../Interfaces/Options/Interactivity/Modes/IPush";
 import {IRemove} from "../../../../Interfaces/Options/Interactivity/Modes/IRemove";
 import {IRepulse} from "../../../../Interfaces/Options/Interactivity/Modes/IRepulse";
 import {ISlow} from "../../../../Interfaces/Options/Interactivity/Modes/ISlow";
+import {Utils} from "../../../Utils/Utils";
 
 export class Modes implements IModes {
     public bubble: IBubble;
@@ -35,12 +36,14 @@ export class Modes implements IModes {
     }
 
     public load(data: IModes): void {
-        this.bubble.load(data.bubble);
-        this.connect.load(data.connect);
-        this.grab.load(data.grab);
-        this.push.load(data.push);
-        this.remove.load(data.remove);
-        this.repulse.load(data.repulse);
-        this.slow.load(data.slow);
+        if (Utils.hasData(data)) {
+            this.bubble.load(data.bubble);
+            this.connect.load(data.connect);
+            this.grab.load(data.grab);
+            this.push.load(data.push);
+            this.remove.load(data.remove);
+            this.repulse.load(data.repulse);
+            this.slow.load(data.slow);
+        }
     }
 }

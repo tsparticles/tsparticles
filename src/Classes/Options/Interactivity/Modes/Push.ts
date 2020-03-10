@@ -1,5 +1,6 @@
 import {IPush} from "../../../../Interfaces/Options/Interactivity/Modes/IPush";
 import {Messages} from "../../../Utils/Messages";
+import {Utils} from "../../../Utils/Utils";
 
 export class Push implements IPush {
     /**
@@ -30,6 +31,12 @@ export class Push implements IPush {
     }
 
     public load(data: IPush): void {
-        this.quantity = data.quantity;
+        if (Utils.hasData(data)) {
+            const quantity = data.quantity ?? data.particles_nb;
+
+            if (Utils.hasData(quantity)) {
+                this.quantity = quantity;
+            }
+        }
     }
 }

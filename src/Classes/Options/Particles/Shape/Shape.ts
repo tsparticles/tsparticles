@@ -8,6 +8,7 @@ import {IImageShape} from "../../../../Interfaces/Options/Shape/IImageShape";
 import {ICharacterShape} from "../../../../Interfaces/Options/Shape/ICharacterShape";
 import {IPolygonShape} from "../../../../Interfaces/Options/Shape/IPolygonShape";
 import {IStroke} from "../../../../Interfaces/Options/Shape/IStroke";
+import {Utils} from "../../../Utils/Utils";
 
 export class Shape implements IShape {
     public character: ICharacterShape;
@@ -25,23 +26,30 @@ export class Shape implements IShape {
     }
 
     public load(data: IShape): void {
-        this.character.load(data.character);
+        if (Utils.hasData(data)) {
+            this.character.load(data.character);
 
-        if (data.image instanceof Array) {
-            this.image = data.image.map((s) => {
-                const tmp = new ImageShape();
+            if (Utils.hasData(data.image)) {
+                if (data.image instanceof Array) {
+                    this.image = data.image.map((s) => {
+                        const tmp = new ImageShape();
 
-                tmp.load(s);
+                        tmp.load(s);
 
-                return tmp;
-            });
-        } else {
-            this.image = new ImageShape();
-            this.image.load(data.image);
+                        return tmp;
+                    });
+                } else {
+                    this.image = new ImageShape();
+                    this.image.load(data.image);
+                }
+            }
+
+            this.stroke.load(data.stroke);
+
+            if (Utils.hasData(data.type)) {
+                this.type = data.type;
+            }
         }
-
-        this.stroke.load(data.stroke);
-        this.type = data.type;
     }
 }
 

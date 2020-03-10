@@ -1,4 +1,5 @@
 import {IRepulse} from "../../../../Interfaces/Options/Interactivity/Modes/IRepulse";
+import {Utils} from "../../../Utils/Utils";
 
 export class Repulse implements IRepulse {
     public distance: number;
@@ -10,7 +11,14 @@ export class Repulse implements IRepulse {
     }
 
     public load(data: IRepulse): void {
-        this.distance = data.distance;
-        this.duration = data.duration;
+        if (Utils.hasData(data)) {
+            if (Utils.hasData(data.distance)) {
+                this.distance = data.distance;
+            }
+
+            if (Utils.hasData(data.duration)) {
+                this.duration = data.duration;
+            }
+        }
     }
 }

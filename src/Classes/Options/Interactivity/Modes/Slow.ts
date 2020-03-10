@@ -1,4 +1,5 @@
 import {ISlow} from "../../../../Interfaces/Options/Interactivity/Modes/ISlow";
+import {Utils} from "../../../Utils/Utils";
 
 export class Slow implements ISlow {
     public active: boolean;
@@ -12,8 +13,18 @@ export class Slow implements ISlow {
     }
 
     public load(data: ISlow): void {
-        this.active = data.active;
-        this.factor = data.factor;
-        this.radius = data.radius;
+        if (Utils.hasData(data)) {
+            if (Utils.hasData(data.active)) {
+                this.active = data.active;
+            }
+
+            if (Utils.hasData(data.factor)) {
+                this.factor = data.factor;
+            }
+
+            if (Utils.hasData(data.radius)) {
+                this.radius = data.radius;
+            }
+        }
     }
 }

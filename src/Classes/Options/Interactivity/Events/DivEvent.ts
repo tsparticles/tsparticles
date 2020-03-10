@@ -1,6 +1,7 @@
 import {IDivEvent} from "../../../../Interfaces/Options/Interactivity/Events/IDivEvent";
 import {DivMode} from "../../../../Enums/Modes/DivMode";
 import {Messages} from "../../../Utils/Messages";
+import {Utils} from "../../../Utils/Utils";
 
 export class DivEvent implements IDivEvent {
     /**
@@ -35,8 +36,20 @@ export class DivEvent implements IDivEvent {
     }
 
     public load(data: IDivEvent): void {
-        this.elementId = data.elementId;
-        this.enable = data.enable;
-        this.mode = data.mode;
+        if (Utils.hasData(data)) {
+            const elementId = data.elementId ?? data.el;
+
+            if (Utils.hasData(elementId)) {
+                this.elementId = elementId;
+            }
+
+            if (Utils.hasData(data.enable)) {
+                this.enable = data.enable;
+            }
+
+            if (Utils.hasData(data.mode)) {
+                this.mode = data.mode;
+            }
+        }
     }
 }

@@ -14,6 +14,7 @@ import {IOpacity} from "../../../Interfaces/Options/Particles/IOpacity";
 import {IShape} from "../../../Interfaces/Options/Shape/IShape";
 import {ISize} from "../../../Interfaces/Options/Particles/ISize";
 import {Messages} from "../../Utils/Messages";
+import {Utils} from "../../Utils/Utils";
 
 export class Particles implements IParticles {
     /**
@@ -59,13 +60,15 @@ export class Particles implements IParticles {
     }
 
     public load(data: IParticles): void {
-        this.color.load(data.color);
-        this.lineLinked.load(data.lineLinked);
-        this.move.load(data.move);
-        this.number.load(data.number);
-        this.opacity.load(data.opacity);
-        this.shape.load(data.shape);
-        this.size.load(data.size);
+        if (Utils.hasData(data)) {
+            this.color.load(data.color);
+            this.lineLinked.load(data.lineLinked ?? data.line_linked);
+            this.move.load(data.move);
+            this.number.load(data.number);
+            this.opacity.load(data.opacity);
+            this.shape.load(data.shape);
+            this.size.load(data.size);
+        }
     }
 }
 

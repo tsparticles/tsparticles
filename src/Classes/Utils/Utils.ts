@@ -202,6 +202,10 @@ export class Utils {
         return Math.sqrt(dx * dx + dy * dy);
     }
 
+    public static hasData<T>(value: T): boolean {
+        return value !== undefined && value !== null;
+    }
+
     /**
      *
      * @param p

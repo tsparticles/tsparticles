@@ -1,5 +1,6 @@
 import {IPolygonShape} from "../../../../Interfaces/Options/Shape/IPolygonShape";
 import {Messages} from "../../../Utils/Messages";
+import {Utils} from "../../../Utils/Utils";
 
 export class PolygonShape implements IPolygonShape {
     /**
@@ -30,6 +31,12 @@ export class PolygonShape implements IPolygonShape {
     }
 
     public load(data: IPolygonShape): void {
-        this.sides = data.sides;
+        if (Utils.hasData(data)) {
+            const sides = data.sides ?? data.nb_sides;
+
+            if (Utils.hasData(sides)) {
+                this.sides = sides;
+            }
+        }
     }
 }

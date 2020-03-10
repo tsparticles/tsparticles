@@ -1,5 +1,6 @@
 import {IShadow} from "../../../Interfaces/Options/Particles/IShadow";
 import {ICoordinates} from "../../../Interfaces/ICoordinates";
+import {Utils} from "../../Utils/Utils";
 
 export class Shadow implements IShadow {
     public blur: number;
@@ -18,10 +19,28 @@ export class Shadow implements IShadow {
     }
 
     public load(data: IShadow): void {
-        this.blur = data.blur;
-        this.color = data.color;
-        this.enable = data.enable;
-        this.offset.x = data.offset.x;
-        this.offset.y = data.offset.y;
+        if (Utils.hasData(data)) {
+            if (Utils.hasData(data.blur)) {
+                this.blur = data.blur;
+            }
+
+            if (Utils.hasData(data.color)) {
+                this.color = data.color;
+            }
+
+            if (Utils.hasData(data.enable)) {
+                this.enable = data.enable;
+            }
+
+            if (Utils.hasData(data.offset)) {
+                if (Utils.hasData(data.offset.x)) {
+                    this.offset.x = data.offset.x;
+                }
+
+                if (Utils.hasData(data.offset.y)) {
+                    this.offset.y = data.offset.y;
+                }
+            }
+        }
     }
 }

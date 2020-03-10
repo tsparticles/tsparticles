@@ -7,7 +7,7 @@
 
     let updateBackground = function () {
         const el = document.getElementById("tsparticles");
-        const options = tsParticles.domItem(0).options;
+        const options = tsParticles.domItem(0).sourceOptions;
         const config = options.config_demo;
         let backgroundImage;
 
@@ -61,7 +61,7 @@
 
         const cmbPresets = document.getElementById('presets');
 
-        cmbPresets.onchange = function (e) {
+        cmbPresets.onchange = function () {
             localStorage.presetId = this.value;
 
             updateParticles(editor);

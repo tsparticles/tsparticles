@@ -127,7 +127,7 @@ export class Particle {
             this.image = {
                 data: image,
                 ratio: optionsImage.width / optionsImage.height,
-                replaceColor: optionsImage.replace_color,
+                replaceColor: optionsImage.replaceColor,
                 src: optionsImage.src,
             };
 

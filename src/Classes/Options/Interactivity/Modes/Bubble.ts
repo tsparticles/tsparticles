@@ -1,4 +1,5 @@
 import {IBubble} from "../../../../Interfaces/Options/Interactivity/Modes/IBubble";
+import {Utils} from "../../../Utils/Utils";
 
 export class Bubble implements IBubble {
     public distance: number;
@@ -14,9 +15,22 @@ export class Bubble implements IBubble {
     }
 
     public load(data: IBubble): void {
-        this.distance = data.distance;
-        this.duration = data.duration;
-        this.opacity = data.opacity;
-        this.size = data.size;
+        if (Utils.hasData(data)) {
+            if (Utils.hasData(data.distance)) {
+                this.distance = data.distance;
+            }
+
+            if (Utils.hasData(data.duration)) {
+                this.duration = data.duration;
+            }
+
+            if (Utils.hasData(data.opacity)) {
+                this.opacity = data.opacity;
+            }
+
+            if (Utils.hasData(data.size)) {
+                this.size = data.size;
+            }
+        }
     }
 }

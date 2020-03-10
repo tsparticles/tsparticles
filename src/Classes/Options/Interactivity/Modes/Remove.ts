@@ -1,5 +1,6 @@
 import {IRemove} from "../../../../Interfaces/Options/Interactivity/Modes/IRemove";
 import {Messages} from "../../../Utils/Messages";
+import {Utils} from "../../../Utils/Utils";
 
 export class Remove implements IRemove {
     /**
@@ -30,6 +31,12 @@ export class Remove implements IRemove {
     }
 
     public load(data: IRemove): void {
-        this.quantity = data.quantity;
+        if (Utils.hasData(data)) {
+            const quantity = data.quantity ?? data.particles_nb;
+
+            if (Utils.hasData(quantity)) {
+                this.quantity = quantity;
+            }
+        }
     }
 }

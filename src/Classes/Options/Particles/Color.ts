@@ -1,5 +1,6 @@
 import {IParticlesColor} from "../../../Interfaces/Options/Particles/IParticlesColor";
 import {IColor} from "../../../Interfaces/IColor";
+import {Utils} from "../../Utils/Utils";
 
 export class Color implements IParticlesColor {
     public value: string | IColor | string[];
@@ -9,6 +10,10 @@ export class Color implements IParticlesColor {
     }
 
     public load(data: IParticlesColor): void {
-        this.value = data.value;
+        if (Utils.hasData(data)) {
+            if (Utils.hasData(data.value)) {
+                this.value = data.value;
+            }
+        }
     }
 }

@@ -1,4 +1,5 @@
 import {IGrabLineLinked} from "../../../../Interfaces/Options/Interactivity/Modes/IGrabLineLinked";
+import {Utils} from "../../../Utils/Utils";
 
 export class GrabLineLinked implements IGrabLineLinked {
     public opacity: number;
@@ -8,6 +9,10 @@ export class GrabLineLinked implements IGrabLineLinked {
     }
 
     public load(data: IGrabLineLinked): void {
-        this.opacity = data.opacity;
+        if (Utils.hasData(data)) {
+            if (Utils.hasData(data.opacity)) {
+                this.opacity = data.opacity;
+            }
+        }
     }
 }

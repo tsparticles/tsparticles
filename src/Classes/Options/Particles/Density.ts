@@ -1,5 +1,6 @@
 import {IDensity} from "../../../Interfaces/Options/Particles/IDensity";
 import {Messages} from "../../Utils/Messages";
+import {Utils} from "../../Utils/Utils";
 
 export class Density implements IDensity {
     /**
@@ -32,7 +33,16 @@ export class Density implements IDensity {
     }
 
     public load(data: IDensity): void {
-        this.enable = data.enable;
-        this.area = data.area;
+        if (Utils.hasData(data)) {
+            if (Utils.hasData(data.enable)) {
+                this.enable = data.enable;
+            }
+
+            const area = data.area ?? data.value_area;
+
+            if (Utils.hasData(area)) {
+                this.area = data.area;
+            }
+        }
     }
 }

@@ -1,4 +1,5 @@
 import {IStroke} from "../../../../Interfaces/Options/Shape/IStroke";
+import {Utils} from "../../../Utils/Utils";
 
 export class Stroke implements IStroke {
     public color: string;
@@ -10,7 +11,14 @@ export class Stroke implements IStroke {
     }
 
     public load(data: IStroke): void {
-        this.color = data.color;
-        this.width = data.width;
+        if (Utils.hasData(data)) {
+            if (Utils.hasData(data.color)) {
+                this.color = data.color;
+            }
+
+            if (Utils.hasData(data.width)) {
+                this.width = data.width;
+            }
+        }
     }
 }

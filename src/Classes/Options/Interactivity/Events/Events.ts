@@ -6,6 +6,7 @@ import {DivEvent} from "./DivEvent";
 import {HoverEvent} from "./HoverEvent";
 import {IClickEvent} from "../../../../Interfaces/Options/Interactivity/Events/IClickEvent";
 import {Messages} from "../../../Utils/Messages";
+import {Utils} from "../../../Utils/Utils";
 
 export class Events implements IEvents {
     /**
@@ -84,9 +85,14 @@ export class Events implements IEvents {
     }
 
     public load(data: IEvents): void {
-        this.onClick.load(data.onClick);
-        this.onDiv.load(data.onDiv);
-        this.onHover.load(data.onHover);
-        this.resize = data.resize;
+        if (Utils.hasData(data)) {
+            this.onClick.load(data.onClick ?? data.onclick);
+            this.onDiv.load(data.onDiv ?? data.ondiv);
+            this.onHover.load(data.onHover ?? data.onhover);
+
+            if (Utils.hasData(data.resize)) {
+                this.resize = data.resize;
+            }
+        }
     }
 }
