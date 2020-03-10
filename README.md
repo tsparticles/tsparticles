@@ -6,6 +6,7 @@
 
 [![CodeFactor](https://www.codefactor.io/repository/github/matteobruni/tsparticles/badge)](https://www.codefactor.io/repository/github/matteobruni/tsparticles)
 [![Codacy Badge](https://api.codacy.com/project/badge/Grade/b983aaf3461a4c48b1e2eecce1ff1d74)](https://www.codacy.com/manual/ar3s/tsparticles?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=matteobruni/tsparticles&amp;utm_campaign=Badge_Grade)
+[![Maintainability](https://api.codeclimate.com/v1/badges/5d7a0bb5e36cfd44fee6/maintainability)](https://codeclimate.com/github/matteobruni/tsparticles/maintainability)
 
 ***API documentation and Development references here: <https://particles.matteobruni.it/docs/>***
 
