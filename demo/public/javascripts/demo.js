@@ -5,6 +5,27 @@
         otherLoads = window.onload;
     }
 
+    const stats = new Stats();
+
+    stats.setMode(0);
+    stats.domElement.style.position = "absolute";
+    stats.domElement.style.left = "0px";
+    stats.domElement.style.top = "0px";
+
+    let updateStats = function () {
+        const count_particles = document.querySelector(".js-count-particles");
+        const update = function () {
+            stats.begin();
+            stats.end();
+            if (tsParticles.domItem(0).particles.array) {
+                count_particles.innerText = tsParticles.domItem(0).particles.array.length;
+            }
+            requestAnimationFrame(update);
+        };
+
+        requestAnimationFrame(update);
+    };
+
     let updateBackground = function () {
         const el = document.getElementById("tsparticles");
         const options = tsParticles.domItem(0).sourceOptions;
@@ -36,6 +57,7 @@
             editor.set(particles.options);
             editor.expandAll();
             updateBackground();
+            updateStats();
         });
     };
 
@@ -83,5 +105,7 @@
 
             updateBackground();
         };
+
+        document.body.querySelector('#tsparticles-container').appendChild(stats.domElement);
     };
 })();

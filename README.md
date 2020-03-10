@@ -157,7 +157,7 @@ tsParticles.setOnClickHandler((e) => { /* custom on click handler */ });
       "limit": 200,
       "density": {
         "enable": true,
-        "value_area": 800
+        "area": 800
       }
     },
     "shape": {
@@ -167,7 +167,7 @@ tsParticles.setOnClickHandler((e) => { /* custom on click handler */ });
         "color": "#000000"
       },
       "polygon": {
-        "nb_sides": 5
+        "sides": 5
       },
       "image": {
         "src": "img/github.svg",
@@ -178,24 +178,24 @@ tsParticles.setOnClickHandler((e) => { /* custom on click handler */ });
     "opacity": {
       "value": 0.5,
       "random": false,
-      "anim": {
+      "animation": {
         "enable": false,
         "speed": 1,
-        "opacity_min": 0.1,
+        "minimumValue": 0.1,
         "sync": false
       }
     },
     "size": {
       "value": 10,
       "random": true,
-      "anim": {
+      "animation": {
         "enable": false,
         "speed": 80,
-        "size_min": 0.1,
+        "minimumValue": 0.1,
         "sync": false
       }
     },
-    "line_linked": {
+    "lineLinked": {
       "enable": true,
       "distance": 300,
       "color": "#ffffff",
@@ -208,7 +208,7 @@ tsParticles.setOnClickHandler((e) => { /* custom on click handler */ });
       "direction": "none",
       "random": false,
       "straight": false,
-      "out_mode": "out",
+      "outMode": "out",
       "bounce": false,
       "attract": {
         "enable": false,
@@ -218,7 +218,7 @@ tsParticles.setOnClickHandler((e) => { /* custom on click handler */ });
     }
   },
   "interactivity": {
-    "detect_on": "canvas",
+    "detectsOn": "canvas",
     "events": {
       "onhover": {
         "enable": false,
@@ -240,7 +240,7 @@ tsParticles.setOnClickHandler((e) => { /* custom on click handler */ });
       },
       "grab": {
         "distance": 800,
-        "line_linked": {
+        "lineLinked": {
           "opacity": 1
         }
       },
@@ -256,15 +256,15 @@ tsParticles.setOnClickHandler((e) => { /* custom on click handler */ });
         "duration": 0.4
       },
       "push": {
-        "particles_nb": 4
+        "quantity": 4
       },
       "remove": {
-        "particles_nb": 2
+        "quantity": 2
       }
     }
   },
-  "retina_detect": true,
-  "fps_limit": 60,
+  "detectRetina": true,
+  "fpsLimit": 60,
   "polygon": {
     "debug": {
       "enable": true,

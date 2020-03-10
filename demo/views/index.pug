@@ -22,6 +22,7 @@ html(lang="en")
 
     body
         div#header
+            // stats - count particles
             div#filler
             div#docs
                 a(href="/docs") API Documentation
@@ -49,8 +50,14 @@ html(lang="en")
                         option(value="virus") Virus
 
                 div#editor
-            div#tsparticles
+            div#tsparticles-container
+                div#tsparticles
+                div.count-particles
+                    |
+                    span.js-count-particles --
+                    | particles
 
         script(src="/jsoneditor/jsoneditor.js")
+        script(src="/three/examples/js/libs/stats.min.js")
         script(src="/tsparticles/tsparticles.js")
         script(src="/javascripts/demo.js")
