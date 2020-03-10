@@ -1,5 +1,5 @@
-import {IOptions} from "./Options/IOptions";
 import {Container} from "../Classes/Container";
+import {IOptions} from "./Options/IOptions";
 
 export interface IParticlesJs {
     (tagId: string, params: IOptions): Container;

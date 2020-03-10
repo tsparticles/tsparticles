@@ -6,14 +6,12 @@
 
 [![CodeFactor](https://www.codefactor.io/repository/github/matteobruni/tsparticles/badge)](https://www.codefactor.io/repository/github/matteobruni/tsparticles)
 [![Codacy Badge](https://api.codacy.com/project/badge/Grade/b983aaf3461a4c48b1e2eecce1ff1d74)](https://www.codacy.com/manual/ar3s/tsparticles?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=matteobruni/tsparticles&amp;utm_campaign=Badge_Grade)
-[![Code Inspector](https://www.code-inspector.com/project/4056/score/svg)](https://frontend.code-inspector.com/public/project/4056/tsparticles/dashboard)
-[![Code Inspector](https://www.code-inspector.com/project/4056/status/svg)](https://frontend.code-inspector.com/public/project/4056/tsparticles/dashboard)
 
 ***API documentation and Development references here: <https://particles.matteobruni.it/docs/>***
 
 ### A lightweight TypeScript library for creating particles
 
-[Particles.js](https://github.com/VincentGarreau/particles.js) converted in TypeScript
+[Particles.js](https://github.com/VincentGarreau/particles.js) converted in TypeScript, improved with new cool features and various bugs fixed and **it's currently under development**!
 
 Branch | Build Status
 ---|----
@@ -21,9 +19,11 @@ Master | [![Master Build Status](https://dev.azure.com/hollowmatt/particles.ts/_
 Staging | [![Staging Build Status](https://dev.azure.com/hollowmatt/particles.ts/_apis/build/status/matteobruni.tsparticles?branchName=staging)](https://dev.azure.com/hollowmatt/particles.ts/_build/latest?definitionId=11&branchName=staging)
 Dev | [![Dev Build Status](https://dev.azure.com/hollowmatt/particles.ts/_apis/build/status/matteobruni.tsparticles?branchName=dev)](https://dev.azure.com/hollowmatt/particles.ts/_build/latest?definitionId=11&branchName=dev)
 
+[![tsParticles demo](https://media.giphy.com/media/fsVN1ZHksgBIXNIbr1/giphy.gif)](https://particles.matteobruni.it/#virus)
+
 ---
 
-## `Packages install`
+## ***Packages install***
 
 ### ***npm***
 
@@ -39,15 +39,17 @@ npm install tsparticles
 
 ---
 
-### `Hosting / CDN`
+### ***Hosting / CDN***
 
 ***Please use this host or your own to load tsparticles on your projects***
 
 [![jsDelivr](https://data.jsdelivr.com/v1/package/npm/tsparticles/badge)](https://www.jsdelivr.com/package/npm/tsparticles)
 
-### `Usage`
+### ***Usage***
 
 Load tsParticles and configure the particles:
+
+[![tsParticles demo](https://media.giphy.com/media/ftHwBpp3b0qNyCXRuu/giphy.gif)](https://particles.matteobruni.it)
 
 **index.html**
 
@@ -89,11 +91,56 @@ tsParticles.setOnClickHandler((e) => { /* custom on click handler */ });
 
 ---
 
-### `Demo / Generator`
-
-[![Particles Generator](https://particles.matteobruni.it/images/demo.png)](https://particles.matteobruni.it/)
+### ***Demo / Generator***
 
 <https://particles.matteobruni.it/>
+
+[![Particles demo](https://particles.matteobruni.it/images/demo.png?v=1.8.1)](https://particles.matteobruni.it/)
+
+---
+
+#### Characters as particles
+
+[![Particles demo](https://media.giphy.com/media/JsssOXz72bM6jGEZ0s/giphy.gif)](https://particles.matteobruni.it/#chars)
+
+---
+
+#### Mouse hover connections
+
+
+[![Particles demo](https://media.giphy.com/media/XzvZThpVbxHxMYz5xt/giphy.gif)](https://particles.matteobruni.it/#connect)
+
+---
+
+#### Polygon mask
+
+[![tsParticles demo](https://media.giphy.com/media/lNRfiSgaMFbL4FMhW6/giphy.gif)](https://particles.matteobruni.it/#mask)
+
+---
+
+#### Animated stars
+
+[![Particles demo](https://media.giphy.com/media/cLqGsnh7FKRVMgPIWE/giphy.gif)](https://particles.matteobruni.it/#nasa)
+
+---
+
+#### Nyan cat flying on scrolling stars
+
+[![Particles demo](https://media.giphy.com/media/LpX2oNc9ZMgIhIXQL9/giphy.gif)](https://particles.matteobruni.it/#nyancat2)
+
+---
+
+#### Snow particles
+
+[![tsParticles demo](https://media.giphy.com/media/gihwUFbmiubbkdzEMX/giphy.gif)](https://particles.matteobruni.it/#snow)
+
+---
+
+#### COVID-19 SARS-CoV-2 particles
+
+[![tsParticles demo](https://media.giphy.com/media/fsVN1ZHksgBIXNIbr1/giphy.gif)](https://particles.matteobruni.it/#virus)
+
+*Don't click! DON'T CLICK! OH NO IT'S SPREADING!!!!*
 
 ---
 
@@ -184,6 +231,13 @@ tsParticles.setOnClickHandler((e) => { /* custom on click handler */ });
       "resize": true
     },
     "modes": {
+      "connect": {
+        "distance": 80,
+        "lineLinked": {
+          "opacity": 0.5
+        },
+        "radius": 60
+      },
       "grab": {
         "distance": 800,
         "line_linked": {
@@ -227,70 +281,73 @@ tsParticles.setOnClickHandler((e) => { /* custom on click handler */ });
 
 ---
 
-### `Options`
+### ***Options***
 
 key | option type / notes | example
 ----|---------|------
 `particles.number.value` | number | `40`
 `particles.number.limit` | number | `200` / `0` or less disables the limit
 `particles.number.density.enable` | boolean | `true` / `false` 
-`particles.number.density.value_area` | number | `800`
+`particles.number.density.area` | number | `800`
 `particles.color.value` | HEX (string) <br /> RGB (object) <br /> HSL (object) <br /> array selection (HEX) <br /> random (string) | `"#b61924"` <br /> `{r:182, g:25, b:36}` <br />  `{h:356, s:76, l:41}` <br /> `["#b61924", "#333333", "999999"]` <br /> `"random"`
 `particles.shape.type` | string <br /> array selection | `"circle"` <br /> `"line"` <br /> `"edge"` <br /> `"triangle"` <br /> `"polygon"` <br /> `"star"` <br /> `"image"` <br /> `["circle", "triangle", "image"]`
 `particles.shape.stroke.width` | number | `2`
 `particles.shape.stroke.color` | HEX (string) <br /> random (string) | `"#222222"` <br /> `"random"`
-`particles.shape.polygon.nb_sides` | number | `5`
+`particles.shape.polygon.sides` | number | `5`
 `particles.shape.image` | object / array | A single image object like below or an array of the same objects
 `particles.shape.image.src` | path link <br /> svg / png / gif / jpg | `"assets/img/yop.svg"` <br /> `"http://mywebsite.com/assets/img/yop.png"`
 `particles.shape.image.width` | number <br />(for aspect ratio) | `100`
 `particles.shape.image.height` | number <br />(for aspect ratio) | `100`
 `particles.opacity.value` | number (0 to 1) | `0.75`
 `particles.opacity.random` | boolean | `true` / `false` 
-`particles.opacity.anim.enable` | boolean | `true` / `false` 
-`particles.opacity.anim.speed` | number | `3`
-`particles.opacity.anim.opacity_min` | number (0 to 1) | `0.25`
-`particles.opacity.anim.sync` | boolean | `true` / `false`
+`particles.opacity.animation.enable` | boolean | `true` / `false` 
+`particles.opacity.animation.speed` | number | `3`
+`particles.opacity.animation.minimumValue` | number (0 to 1) | `0.25`
+`particles.opacity.animation.sync` | boolean | `true` / `false`
 `particles.size.value` | number | `20`
 `particles.size.random` | boolean | `true` / `false` 
-`particles.size.anim.enable` | boolean | `true` / `false` 
-`particles.size.anim.speed` | number | `3`
-`particles.size.anim.size_min` | number | `0.25`
-`particles.size.anim.sync` | boolean | `true` / `false`
-`particles.line_linked.enable` | boolean | `true` / `false`
-`particles.line_linked.distance` | number | `150`
-`particles.line_linked.color` | HEX (string)  <br /> random (string) | `#ffffff` <br /> `"random"`
-`particles.line_linked.opacity` | number (0 to 1) | `0.5`
-`particles.line_linked.width` | number | `1.5`
+`particles.size.animation.enable` | boolean | `true` / `false` 
+`particles.size.animation.speed` | number | `3`
+`particles.size.animation.minimumValue` | number | `0.25`
+`particles.size.animation.sync` | boolean | `true` / `false`
+`particles.lineLinked.enable` | boolean | `true` / `false`
+`particles.lineLinked.distance` | number | `150`
+`particles.lineLinked.color` | HEX (string)  <br /> random (string) | `#ffffff` <br /> `"random"`
+`particles.lineLinked.opacity` | number (0 to 1) | `0.5`
+`particles.lineLinked.width` | number | `1.5`
 `particles.move.enable` | boolean | `true` / `false`
 `particles.move.speed` | number | `4`
 `particles.move.direction` | string | `"none"` <br /> `"top"` <br /> `"top-right"` <br /> `"right"` <br /> `"bottom-right"` <br /> `"bottom"` <br /> `"bottom-left"` <br /> `"left"` <br /> `"top-left"`
 `particles.move.random` | boolean | `true` / `false`
 `particles.move.straight` | boolean | `true` / `false`
-`particles.move.out_mode` | string <br /> (out of canvas) | `"out"`<br /> `"destroy"` <br /> `"bounce"` <br /> `"bounce-vertical"` <br /> `"bounce-horizontal"`
+`particles.move.outMode` | string <br /> (out of canvas) | `"out"`<br /> `"destroy"` <br /> `"bounce"` <br /> `"bounce-vertical"` <br /> `"bounce-horizontal"`
 `particles.move.bounce` | boolean <br /> (between particles) | `true` / `false`
 `particles.move.attract.enable` | boolean | `true` / `false`
 `particles.move.attract.rotateX` | number | `3000`
 `particles.move.attract.rotateY` | number | `1500`
-`interactivity.detect_on` | string | `"canvas", "window","parent"`
-`interactivity.events.onhover.enable` | boolean | `true` / `false`
-`interactivity.events.onhover.mode` | string <br /> array selection | `"grab"` <br /> `"bubble"` <br /> `"repulse"` <br /> `"connect"` <br /> `["grab", "bubble"]`
-`interactivity.events.onclick.enable` | boolean | `true` / `false`
-`interactivity.events.onclick.mode` | string <br /> array selection | `"push"` <br /> `"remove"` <br /> `"bubble"` <br /> `"repulse"` <br /> `["push", "repulse"]`
-`interactivity.events.ondiv.mnode` | string <br /> array selection | `"repulse"` <br /> `["repulse"]`
-`interactivity.events.ondiv.enable` | boolean | `true` / `false`
-`interactivity.events.ondiv.el` | string | `repulse-div`
+`interactivity.detectsOn` | string | `"canvas", "window","parent"`
+`interactivity.events.onHover.enable` | boolean | `true` / `false`
+`interactivity.events.onHover.mode` | string <br /> array selection | `"grab"` <br /> `"bubble"` <br /> `"repulse"` <br /> `"connect"` <br /> `["grab", "bubble"]`
+`interactivity.events.onClick.enable` | boolean | `true` / `false`
+`interactivity.events.onClick.mode` | string <br /> array selection | `"push"` <br /> `"remove"` <br /> `"bubble"` <br /> `"repulse"` <br /> `["push", "repulse"]`
+`interactivity.events.onDiv.mnode` | string <br /> array selection | `"repulse"` <br /> `["repulse"]`
+`interactivity.events.onDiv.enable` | boolean | `true` / `false`
+`interactivity.events.onDiv.el` | string | `repulse-div`
 `interactivity.events.resize` | boolean | `true` / `false`
+`interactivity.events.modes.connect.distance` | number | `100`
+`interactivity.events.modes.connect.radius` | number | `60`
+`interactivity.events.modes.connect.lineLinked.opacity` | number (0 to 1) | `0.75`
 `interactivity.events.modes.grab.distance` | number | `100`
-`interactivity.events.modes.grab.line_linked.opacity` | number (0 to 1) | `0.75`
+`interactivity.events.modes.grab.lineLinked.opacity` | number (0 to 1) | `0.75`
 `interactivity.events.modes.bubble.distance` | number | `100`
 `interactivity.events.modes.bubble.size` | number | `40`
 `interactivity.events.modes.bubble.duration` | number <br /> (second) | `0.4`
 `interactivity.events.modes.repulse.distance` | number | `200`
 `interactivity.events.modes.repulse.duration` | number <br /> (second) | `1.2`
-`interactivity.events.modes.push.particles_nb` | number | `4`
-`interactivity.events.modes.remove.particles_nb` | number | `4`
-`retina_detect` | boolean | `true` / `false`
-`fps_limit` | number | `60`
+`interactivity.events.modes.push.quantity` | number | `4`
+`interactivity.events.modes.remove.quantity` | number | `4`
+`detectRetina` | boolean | `true` / `false`
+`fpsLimit` | number | `60`
 `polygon.draw.enable` | boolean | `true` / `false`
 `polygon.draw.lineWidth` | number | `0.5`
 `polygon.draw.lineColor` | HEX (string) | `#ffffff`

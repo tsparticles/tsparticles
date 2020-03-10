@@ -2,7 +2,7 @@
 
 import {Bubbler} from "./Bubbler";
 import {Container} from "../Container";
-import {IOptionsShapeSide} from "../../Interfaces/Options/Shape/IOptionsShapeSide";
+import {ISide} from "../../Interfaces/Options/Shape/ISide";
 import {ICoordinates} from "../../Interfaces/ICoordinates";
 import {Particle} from "../Particle";
 import {ShapeType} from "../../Enums/ShapeType";
@@ -15,7 +15,6 @@ export class Drawer {
     private readonly container: Container;
     private readonly bubbler: Bubbler;
     private readonly text?: string;
-    private opacityBubble?: number;
 
     constructor(container: Container, particle: Particle, bubbler: Bubbler) {
         this.container = container;
@@ -35,7 +34,7 @@ export class Drawer {
         }
     }
 
-    private static subDrawShape(ctx: CanvasRenderingContext2D, start: ICoordinates, side: IOptionsShapeSide): void {
+    private static subDrawShape(ctx: CanvasRenderingContext2D, start: ICoordinates, side: ISide): void {
         // By Programming Thomas - https://programmingthomas.wordpress.com/2013/04/03/n-sided-shapes/
         const sideCount = side.count.numerator * side.count.denominator;
         const decimalSides = side.count.numerator / side.count.denominator;
@@ -73,8 +72,8 @@ export class Drawer {
             radius = particle.radius;
         }
 
-        if (this.opacityBubble !== undefined) {
-            opacity = this.opacityBubble;
+        if (this.bubbler.opacity !== undefined) {
+            opacity = this.bubbler.opacity;
         } else {
             opacity = particle.opacity.value;
         }
@@ -87,20 +86,37 @@ export class Drawer {
             return;
         }
 
-        container.canvas.context.fillStyle = colorValue;
-        container.canvas.context.beginPath();
+        const ctx = container.canvas.context;
+
+        // TODO: Performance issues, the canvas shadow is really slow
+        // const shadow = options.particles.shadow;
+
+        // if (shadow.enable) {
+        //     ctx.shadowBlur = shadow.blur;
+        //     ctx.shadowColor = shadow.color;
+        //     ctx.shadowOffsetX = shadow.offset.x;
+        //     ctx.shadowOffsetY = shadow.offset.y;
+        // } else {
+        //     delete ctx.shadowBlur;
+        //     delete ctx.shadowColor;
+        //     delete ctx.shadowOffsetX;
+        //     delete ctx.shadowOffsetY;
+        // }
+
+        ctx.fillStyle = colorValue;
+        ctx.beginPath();
 
         this.drawShape(radius);
 
-        container.canvas.context.closePath();
+        ctx.closePath();
 
         if (options.particles.shape.stroke.width > 0) {
-            container.canvas.context.strokeStyle = options.particles.shape.stroke.color;
-            container.canvas.context.lineWidth = options.particles.shape.stroke.width;
-            container.canvas.context.stroke();
+            ctx.strokeStyle = options.particles.shape.stroke.color;
+            ctx.lineWidth = options.particles.shape.stroke.width;
+            ctx.stroke();
         }
 
-        container.canvas.context.fill();
+        ctx.fill();
     }
 
     private drawShape(radius: number): void {
@@ -140,7 +156,7 @@ export class Drawer {
                     y: particle.position.y + radius / 1.66,
                 };
 
-                const side: IOptionsShapeSide = {
+                const side: ISide = {
                     count: {
                         denominator: 2,
                         numerator: 3,
@@ -153,15 +169,15 @@ export class Drawer {
                 break;
             case ShapeType.polygon: {
                 const start: ICoordinates = {
-                    x: particle.position.x - radius / (options.particles.shape.polygon.nb_sides / 3.5),
+                    x: particle.position.x - radius / (options.particles.shape.polygon.sides / 3.5),
                     y: particle.position.y - radius / (2.66 / 3.5),
                 };
-                const side: IOptionsShapeSide = {
+                const side: ISide = {
                     count: {
                         denominator: 1,
-                        numerator: options.particles.shape.polygon.nb_sides,
+                        numerator: options.particles.shape.polygon.sides,
                     },
-                    length: radius * 2.66 / (options.particles.shape.polygon.nb_sides / 3),
+                    length: radius * 2.66 / (options.particles.shape.polygon.sides / 3),
                 };
 
                 Drawer.subDrawShape(ctx, start, side);
@@ -169,15 +185,15 @@ export class Drawer {
                 break;
             case ShapeType.star: {
                 const start: ICoordinates = {
-                    x: particle.position.x - radius * 2 / (options.particles.shape.polygon.nb_sides / 4),
+                    x: particle.position.x - radius * 2 / (options.particles.shape.polygon.sides / 4),
                     y: particle.position.y - radius / (2 * 2.66 / 3.5),
                 };
-                const side: IOptionsShapeSide = {
+                const side: ISide = {
                     count: {
                         denominator: 2,
-                        numerator: options.particles.shape.polygon.nb_sides,
+                        numerator: options.particles.shape.polygon.sides,
                     },
-                    length: radius * 2 * 2.66 / (options.particles.shape.polygon.nb_sides / 3),
+                    length: radius * 2 * 2.66 / (options.particles.shape.polygon.sides / 3),
                 };
 
                 Drawer.subDrawShape(ctx, start, side);

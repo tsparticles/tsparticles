@@ -3,24 +3,27 @@
 /* -----------------------------------------------
 /* Author : Matteo Bruni - www.matteobruni.it
 /* MIT license: https://opensource.org/licenses/MIT
-/* Demo / Generator : https://tsparticles.matteobruni.it/demo
+/* Demo / Generator : https://particles.matteobruni.it/
 /* GitHub : https://www.github.com/matteobruni/tsparticles
 /* How to use? : Check the GitHub README
-/* v1.7.0
+/* v1.8.2
 /* ----------------------------------------------- */
+import "reflect-metadata";
 import {Container} from "./Classes/Container";
 import {Loader} from "./Classes/Loader";
-import {IOptions} from "./Interfaces/Options/IOptions";
 import {IParticlesJs} from "./Interfaces/IParticlesJs";
 import {ParticlesJS} from "./support";
+import {IOptions} from "./Interfaces/Options/IOptions";
+import {container, singleton} from "tsyringe";
+import {Options} from "./Classes/Options/Options";
 
 declare global {
     interface Window {
-        requestAnimFrame: (callback: FrameRequestCallback) => number;
+        customRequestAnimationFrame: (callback: FrameRequestCallback) => number;
         mozRequestAnimationFrame: (callback: FrameRequestCallback) => number;
         oRequestAnimationFrame: (callback: FrameRequestCallback) => number;
         msRequestAnimationFrame: (callback: FrameRequestCallback) => number;
-        cancelRequestAnimFrame: (handle: number) => void;
+        customCancelRequestAnimationFrame: (handle: number) => void;
         webkitCancelRequestAnimationFrame: (handle: number) => void;
         mozCancelRequestAnimationFrame: (handle: number) => void;
         oCancelRequestAnimationFrame: (handle: number) => void;
@@ -33,7 +36,7 @@ declare global {
 
 /* ---------- global functions - vendors ------------ */
 
-window.requestAnimFrame = (() => {
+window.customRequestAnimationFrame = (() => {
     return window.requestAnimationFrame ||
         window.webkitRequestAnimationFrame ||
         window.mozRequestAnimationFrame ||
@@ -42,7 +45,7 @@ window.requestAnimFrame = (() => {
         ((callback) => window.setTimeout(callback, 1000 / 60));
 })();
 
-window.cancelRequestAnimFrame = (() => {
+window.customCancelRequestAnimationFrame = (() => {
     return window.cancelAnimationFrame ||
         window.webkitCancelRequestAnimationFrame ||
         window.mozCancelRequestAnimationFrame ||
@@ -57,6 +60,7 @@ window.cancelRequestAnimFrame = (() => {
  * Main class for creating the singleton on window.
  * It's a proxy to the static [[Loader]] class
  */
+@singleton()
 class Main {
     /**
      * Loads an options object from the provided array to create a [[Container]] object.
@@ -111,10 +115,14 @@ class Main {
     }
 }
 
+container.register<IOptions>("IOptions", {
+    useClass: Options,
+});
+
 /**
  * The new singleton, replacing the old particlesJS
  */
-window.tsParticles = new Main();
+window.tsParticles = container.resolve(Main);
 
 Object.freeze(window.tsParticles);
 

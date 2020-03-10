@@ -6,6 +6,7 @@ import {IMouseData} from "../Interfaces/IMouseData";
 import {IRgb} from "../Interfaces/IRgb";
 import {Particle} from "./Particle";
 import {PolygonMaskType} from "../Enums/PolygonMaskType";
+import {PolygonMaskInlineArrangement} from "../Enums/PolygonMaskInlineArrangement";
 
 /**
  * Particles manager
@@ -16,10 +17,12 @@ export class Particles {
     public lineLinkedColor?: IRgb | string | null;
 
     private readonly container: Container;
+    private interactionsEnabled: boolean;
 
     constructor(container: Container) {
         this.container = container;
         this.array = [];
+        this.interactionsEnabled = false;
     }
 
     /* --------- tsParticles functions - particles ----------- */
@@ -27,7 +30,8 @@ export class Particles {
         const container = this.container;
         const options = container.options;
 
-        if (options.polygon.type === PolygonMaskType.inline) {
+        if (options.polygon.type === PolygonMaskType.inline &&
+            options.polygon.inlineArrangement === PolygonMaskInlineArrangement.onePerPoint) {
             container.polygon.drawPointsOnPolygonPath();
         } else {
             for (let i = this.array.length; i < options.particles.number.value; i++) {
@@ -36,15 +40,17 @@ export class Particles {
                 this.array.push(p);
             }
         }
+
+        this.interactionsEnabled = options.particles.lineLinked.enable ||
+            options.particles.move.attract.enable ||
+            options.particles.move.bounce;
     }
 
     public update(delta: number): void {
-        const container = this.container;
-        const options = container.options;
-
         for (let i = 0; i < this.array.length; i++) {
             /* the particle */
             const p = this.array[i];
+
             // let d = ( dx = container.interactivity.mouse.click_pos_x - p.x ) * dx +
             //         ( dy = container.interactivity.mouse.click_pos_y - p.y ) * dy;
             // let f = -BANG_SIZE / d;
@@ -57,7 +63,7 @@ export class Particles {
             p.update(i, delta);
 
             /* interaction auto between particles */
-            if (options.particles.line_linked.enable || options.particles.move.attract.enable) {
+            if (this.interactionsEnabled) {
                 for (let j = i + 1; j < this.array.length; j++) {
                     const p2 = this.array[j];
 

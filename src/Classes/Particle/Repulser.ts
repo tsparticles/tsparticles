@@ -23,18 +23,18 @@ export class Repulser {
     public repulse(): void {
         const container = this.container;
         const options = container.options;
-        const hoverEnabled = options.interactivity.events.onhover.enable;
-        const clickEnabled = options.interactivity.events.onclick.enable;
+        const hoverEnabled = options.interactivity.events.onHover.enable;
+        const clickEnabled = options.interactivity.events.onClick.enable;
         const mouseMoveStatus = container.interactivity.status === "mousemove";
-        const hoverMode = options.interactivity.events.onhover.mode;
-        const clickMode = options.interactivity.events.onclick.mode;
-        const divMode = options.interactivity.events.ondiv.mode;
+        const hoverMode = options.interactivity.events.onHover.mode;
+        const clickMode = options.interactivity.events.onClick.mode;
+        const divMode = options.interactivity.events.onDiv.mode;
 
         if (mouseMoveStatus && hoverEnabled && Utils.isInArray(HoverMode.repulse, hoverMode)) {
             this.hoverRepulse();
         } else if (clickEnabled && Utils.isInArray(ClickMode.repulse, clickMode)) {
             this.clickRepulse();
-        } else if (options.interactivity.events.ondiv.enable && Utils.isInArray(DivMode.repulse, divMode)) {
+        } else if (options.interactivity.events.onDiv.enable && Utils.isInArray(DivMode.repulse, divMode)) {
             this.divRepulse();
         }
     }
@@ -44,7 +44,7 @@ export class Repulser {
         const options = container.options;
         const particle = this.particle;
 
-        const elem = document.getElementById(options.interactivity.events.ondiv.el) as HTMLElement;
+        const elem = document.getElementById(options.interactivity.events.onDiv.el) as HTMLElement;
         const pos = {
             x: (elem.offsetLeft + elem.offsetWidth / 2),
             y: (elem.offsetTop + elem.offsetHeight / 2),
@@ -74,7 +74,6 @@ export class Repulser {
 
     private clickRepulse(): void {
         const container = this.container;
-        const options = container.options;
         const particle = this.particle;
 
         if (!container.repulse.finish) {
@@ -90,7 +89,7 @@ export class Repulser {
         }
 
         if (container.repulse.clicking) {
-            const repulseDistance = options.interactivity.modes.repulse.distance;
+            const repulseDistance = container.retina.repulseModeDistance;
             const repulseRadius = Math.pow(repulseDistance / 6, 3);
             const mouseClickPos = container.interactivity.mouse.clickPosition || {x: 0, y: 0};
             const dx = mouseClickPos.x - particle.position.x;
@@ -125,21 +124,25 @@ export class Repulser {
         const dyMouse = particle.position.y - mousePos.y;
         const distMouse = Math.sqrt(dxMouse * dxMouse + dyMouse * dyMouse);
         const normVec = {x: dxMouse / distMouse, y: dyMouse / distMouse};
-        const repulseRadius = options.interactivity.modes.repulse.distance;
+        const repulseRadius = container.retina.repulseModeDistance;
         const velocity = 100;
         const repulseFactor = Utils.clamp((1 - Math.pow(distMouse / repulseRadius, 2)) * velocity, 0, 50);
         const pos = {
             x: particle.position.x + normVec.x * repulseFactor,
             y: particle.position.y + normVec.y * repulseFactor,
         };
-        const outMode = options.particles.move.out_mode;
+        const outMode = options.particles.move.outMode;
 
-        if (outMode === OutMode.bounce || outMode === OutMode.bounceVertical) {
-            if (pos.x - particle.radius > 0 && pos.x + particle.radius < container.canvas.dimension.width) {
+        if (outMode === OutMode.bounce || outMode === OutMode.bounceVertical || outMode === OutMode.bounceHorizontal) {
+            const isInside = {
+                horizontal: pos.x - particle.radius > 0 && pos.x + particle.radius < container.canvas.dimension.width,
+                vertical: pos.y - particle.radius > 0 && pos.y + particle.radius < container.canvas.dimension.height,
+            };
+            if (outMode === OutMode.bounceVertical || isInside.horizontal) {
                 particle.position.x = pos.x;
             }
 
-            if (pos.y - particle.radius > 0 && pos.y + particle.radius < container.canvas.dimension.height) {
+            if (outMode === OutMode.bounceHorizontal || isInside.vertical) {
                 particle.position.y = pos.y;
             }
         } else {
@@ -157,24 +160,28 @@ export class Repulser {
         particle.velocity.horizontal = force * Math.cos(f);
         particle.velocity.vertical = force * Math.sin(f);
 
-        const outMode = options.particles.move.out_mode;
+        const outMode = options.particles.move.outMode;
 
-        if (outMode === OutMode.bounce || outMode === OutMode.bounceVertical) {
+        if (outMode === OutMode.bounce || outMode === OutMode.bounceHorizontal || outMode === OutMode.bounceVertical) {
             const pos = {
                 x: particle.position.x + particle.velocity.horizontal,
                 y: particle.position.y + particle.velocity.vertical,
             };
 
-            if (pos.x + particle.radius > container.canvas.dimension.width) {
-                particle.velocity.horizontal = -particle.velocity.horizontal;
-            } else if (pos.x - particle.radius < 0) {
-                particle.velocity.horizontal = -particle.velocity.horizontal;
+            if (outMode !== OutMode.bounceVertical) {
+                if (pos.x + particle.radius > container.canvas.dimension.width) {
+                    particle.velocity.horizontal = -particle.velocity.horizontal;
+                } else if (pos.x - particle.radius < 0) {
+                    particle.velocity.horizontal = -particle.velocity.horizontal;
+                }
             }
 
-            if (pos.y + particle.radius > container.canvas.dimension.height) {
-                particle.velocity.vertical = -particle.velocity.vertical;
-            } else if (pos.y - particle.radius < 0) {
-                particle.velocity.vertical = -particle.velocity.vertical;
+            if (outMode !== OutMode.bounceHorizontal) {
+                if (pos.y + particle.radius > container.canvas.dimension.height) {
+                    particle.velocity.vertical = -particle.velocity.vertical;
+                } else if (pos.y - particle.radius < 0) {
+                    particle.velocity.vertical = -particle.velocity.vertical;
+                }
             }
         }
     }
