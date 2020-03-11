@@ -6,6 +6,7 @@ import {IParticlesNumber} from "./IParticlesNumber";
 import {IOpacity} from "./IOpacity";
 import {ISize} from "./ISize";
 import {IOptionLoader} from "../IOptionLoader";
+import {IRotate} from "./IRotate";
 
 export interface IParticles extends IOptionLoader<IParticles> {
     color: IParticlesColor;
@@ -19,6 +20,7 @@ export interface IParticles extends IOptionLoader<IParticles> {
     move: IMove;
     number: IParticlesNumber;
     opacity: IOpacity;
+    rotate: IRotate;
     //shadow: IShadow;
     shape: IShape;
     size: ISize;
