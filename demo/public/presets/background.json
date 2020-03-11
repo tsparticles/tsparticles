@@ -111,7 +111,13 @@
   },
   "backgroundMask": {
     "enable": true,
-    "cover": "#ffffff"
+    "cover": {
+      "value": {
+        "r": 255,
+        "g": 255,
+        "b": 255
+      }
+    }
   },
   "retina_detect": true,
   "config_demo": {

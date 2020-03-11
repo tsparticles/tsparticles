@@ -31,7 +31,7 @@ export class Particle {
     public readonly initialPosition?: ICoordinates;
     public readonly position: ICoordinates;
     public readonly offset: ICoordinates;
-    public readonly color: IRgb | null;
+    public readonly color: IRgb | undefined;
     public readonly opacity: IOpacity;
     public readonly velocity: IVelocity;
     public readonly shape?: ShapeType;
@@ -95,7 +95,7 @@ export class Particle {
         }
 
         /* color */
-        this.color = Utils.getParticleColor(options, color);
+        this.color = Utils.getParticleColor(color);
 
         /* opacity */
         this.opacity = {

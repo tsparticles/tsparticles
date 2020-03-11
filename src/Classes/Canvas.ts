@@ -4,6 +4,7 @@ import {Constants} from "./Utils/Constants";
 import {Container} from "./Container";
 import {PolygonMaskType} from "../Enums/PolygonMaskType";
 import {IDimension} from "../Interfaces/IDimension";
+import {Utils} from "./Utils/Utils";
 
 /**
  * Canvas manager
@@ -121,15 +122,21 @@ export class Canvas {
         const options = container.options;
 
         if (this.context) {
-            if (options.backgroundMask.enable) {
-                this.paintBase(options.backgroundMask.cover);
+            if (options.backgroundMask.enable && options.backgroundMask.cover) {
+                const color = Utils.getParticleColor(options.backgroundMask.cover);
+
+                if (color) {
+                    this.paintBase(Utils.getStyleFromColor(color));
+                } else {
+                    this.paintBase();
+                }
             } else {
                 this.paintBase();
             }
         }
     }
 
-    private paintBase(baseColor: string = "rgba(255, 255, 255, 0)"): void {
+    private paintBase(baseColor = "rgba(255, 255, 255, 0)"): void {
         if (this.context) {
             this.context.fillStyle = baseColor;
             this.context.fillRect(0, 0, this.dimension.width, this.dimension.height);
