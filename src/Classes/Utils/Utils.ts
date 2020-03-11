@@ -154,7 +154,7 @@ export class Utils {
      * @param color the input color to convert in [[IRgb]] object
      */
     public static getParticleColor(color: IParticlesColor): IRgb | undefined {
-        let res: IRgb | undefined = undefined;
+        let res: IRgb | undefined;
 
         if (typeof (color.value) === "object") {
             if (color.value instanceof Array) {
