@@ -12,7 +12,7 @@ import {IBackgroundMask} from "./BackgroundMask/IBackgroundMask";
 export interface IOptions extends IOptionLoader<IOptions> {
     /**
      * The F(rame)P(er)S(econd) limit applied to all particles animations.
-     * @obsolete use the new fpsLimit instead
+     * @deprecated use the new fpsLimit instead
      */
     fps_limit: number;
 

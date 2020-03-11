@@ -39,10 +39,12 @@ export class Interactivity implements IInteractivity {
 
     public load(data: IInteractivity): void {
         if (Utils.hasData(data)) {
-            const detectsOn = data.detectsOn ?? data.detect_on;
-
-            if (Utils.hasData(detectsOn)) {
+            if (Utils.hasData(data.detectsOn)) {
                 this.detectsOn = data.detectsOn;
+            }
+
+            if (Utils.hasData(data.detect_on)) {
+                this.detect_on = data.detect_on;
             }
 
             this.events.load(data.events);

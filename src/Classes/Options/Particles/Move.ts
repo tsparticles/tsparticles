@@ -64,10 +64,12 @@ export class Move implements IMove {
                 this.enable = data.enable;
             }
 
-            const outMode = data.outMode ?? data.out_mode;
+            if (Utils.hasData(data.outMode)) {
+                this.outMode = data.outMode;
+            }
 
-            if (Utils.hasData(outMode)) {
-                this.outMode = outMode;
+            if (Utils.hasData(data.out_mode)) {
+                this.out_mode = data.out_mode;
             }
 
             if (Utils.hasData(data.random)) {

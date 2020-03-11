@@ -32,10 +32,12 @@ export class PolygonShape implements IPolygonShape {
 
     public load(data: IPolygonShape): void {
         if (Utils.hasData(data)) {
-            const sides = data.sides ?? data.nb_sides;
+            if (Utils.hasData(data.sides)) {
+                this.sides = data.sides;
+            }
 
-            if (Utils.hasData(sides)) {
-                this.sides = sides;
+            if (Utils.hasData(data.nb_sides)) {
+                this.nb_sides = data.nb_sides;
             }
         }
     }

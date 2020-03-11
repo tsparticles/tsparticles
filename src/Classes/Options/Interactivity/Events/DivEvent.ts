@@ -37,10 +37,12 @@ export class DivEvent implements IDivEvent {
 
     public load(data: IDivEvent): void {
         if (Utils.hasData(data)) {
-            const elementId = data.elementId ?? data.el;
+            if (Utils.hasData(data.elementId)) {
+                this.elementId = data.elementId;
+            }
 
-            if (Utils.hasData(elementId)) {
-                this.elementId = elementId;
+            if (Utils.hasData(data.el)) {
+                this.el = data.el;
             }
 
             if (Utils.hasData(data.enable)) {

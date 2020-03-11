@@ -71,16 +71,20 @@ export class Options implements IOptions {
 
     public load(data: IOptions): void {
         if (Utils.hasData(data)) {
-            const detectRetina = data.detectRetina ?? data.retina_detect;
-
-            if (Utils.hasData(detectRetina)) {
-                this.detectRetina = detectRetina;
+            if (Utils.hasData(data.detectRetina)) {
+                this.detectRetina = data.detectRetina;
             }
 
-            const fpsLimit = data.fpsLimit ?? data.fps_limit;
+            if (Utils.hasData(data.retina_detect)) {
+                this.retina_detect = data.retina_detect;
+            }
 
-            if (Utils.hasData(fpsLimit)) {
-                this.fpsLimit = fpsLimit;
+            if (Utils.hasData(data.fpsLimit)) {
+                this.fpsLimit = data.fpsLimit;
+            }
+
+            if (Utils.hasData(data.fps_limit)) {
+                this.fps_limit = data.fps_limit;
             }
 
             this.interactivity.load(data.interactivity);

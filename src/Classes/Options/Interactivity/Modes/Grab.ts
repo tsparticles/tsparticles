@@ -40,7 +40,13 @@ export class Grab implements IGrab {
                 this.distance = data.distance;
             }
 
-            this.lineLinked.load(data.lineLinked ?? data.line_linked);
+            if (Utils.hasData(data.lineLinked)) {
+                this.lineLinked.load(data.lineLinked);
+            }
+
+            if (Utils.hasData(data.line_linked)) {
+                this.line_linked.load(data.line_linked);
+            }
         }
     }
 }

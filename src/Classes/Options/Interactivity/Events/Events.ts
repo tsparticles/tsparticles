@@ -86,9 +86,29 @@ export class Events implements IEvents {
 
     public load(data: IEvents): void {
         if (Utils.hasData(data)) {
-            this.onClick.load(data.onClick ?? data.onclick);
-            this.onDiv.load(data.onDiv ?? data.ondiv);
-            this.onHover.load(data.onHover ?? data.onhover);
+            if (Utils.hasData(data.onClick)) {
+                this.onClick.load(data.onClick);
+            }
+
+            if (Utils.hasData(data.onclick)) {
+                data.onclick.load(data.onclick);
+            }
+
+            if (Utils.hasData(data.onDiv)) {
+                this.onDiv.load(data.onDiv);
+            }
+
+            if (Utils.hasData(data.ondiv)) {
+                data.ondiv.load(data.ondiv);
+            }
+
+            if (Utils.hasData(data.onHover)) {
+                this.onHover.load(data.onHover);
+            }
+
+            if (Utils.hasData(data.onhover)) {
+                data.onhover.load(data.onhover);
+            }
 
             if (Utils.hasData(data.resize)) {
                 this.resize = data.resize;

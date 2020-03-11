@@ -66,7 +66,15 @@ export class Particles implements IParticles {
     public load(data: IParticles): void {
         if (Utils.hasData(data)) {
             this.color.load(data.color);
-            this.lineLinked.load(data.lineLinked ?? data.line_linked);
+
+            if (Utils.hasData(data.lineLinked)) {
+                this.lineLinked.load(data.lineLinked);
+            }
+
+            if (Utils.hasData(data.line_linked)) {
+                this.line_linked.load(data.line_linked);
+            }
+
             this.move.load(data.move);
             this.number.load(data.number);
             this.opacity.load(data.opacity);

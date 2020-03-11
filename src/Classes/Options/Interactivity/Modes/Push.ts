@@ -32,10 +32,12 @@ export class Push implements IPush {
 
     public load(data: IPush): void {
         if (Utils.hasData(data)) {
-            const quantity = data.quantity ?? data.particles_nb;
+            if (Utils.hasData(data.quantity)) {
+                this.quantity = data.quantity;
+            }
 
-            if (Utils.hasData(quantity)) {
-                this.quantity = quantity;
+            if (Utils.hasData(data.particles_nb)) {
+                this.particles_nb = data.particles_nb;
             }
         }
     }

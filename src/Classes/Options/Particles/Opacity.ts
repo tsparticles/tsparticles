@@ -38,7 +38,13 @@ export class Opacity implements IOpacity {
 
     public load(data: IOpacity): void {
         if (Utils.hasData(data)) {
-            this.animation.load(data.animation ?? data.anim);
+            if (Utils.hasData(data.animation)) {
+                this.animation.load(data.animation);
+            }
+
+            if (Utils.hasData(data.anim)) {
+                this.anim.load(data.anim);
+            }
 
             if (Utils.hasData(data.random)) {
                 this.random = data.random;

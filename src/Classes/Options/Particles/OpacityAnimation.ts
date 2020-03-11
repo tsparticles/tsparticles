@@ -42,10 +42,12 @@ export class OpacityAnimation implements IOpacityAnimation {
                 this.enable = data.enable;
             }
 
-            const minValue = data.minimumValue ?? data.opacity_min;
+            if (Utils.hasData(data.minimumValue)) {
+                this.minimumValue = data.minimumValue;
+            }
 
-            if (Utils.hasData(minValue)) {
-                this.minimumValue = minValue;
+            if (Utils.hasData(data.opacity_min)) {
+                this.opacity_min = data.opacity_min;
             }
 
             if (Utils.hasData(data.speed)) {

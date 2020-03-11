@@ -42,10 +42,12 @@ export class ImageShape implements IImageShape {
                 this.height = data.height;
             }
 
-            const replaceColor = data.replaceColor ?? data.replace_color;
+            if (Utils.hasData(data.replaceColor)) {
+                this.replaceColor = data.replaceColor;
+            }
 
-            if (Utils.hasData(replaceColor)) {
-                this.replaceColor = replaceColor;
+            if (Utils.hasData(data.replace_color)) {
+                this.replace_color = data.replace_color;
             }
 
             if (Utils.hasData(data.src)) {

@@ -42,10 +42,12 @@ export class ParticlesSizeAnimation implements ISizeAnimation {
                 this.enable = data.enable;
             }
 
-            const minValue = data.minimumValue ?? data.size_min;
+            if (Utils.hasData(data.minimumValue)) {
+                this.minimumValue = data.minimumValue;
+            }
 
-            if (Utils.hasData(minValue)) {
-                this.minimumValue = minValue;
+            if (Utils.hasData(data.size_min)) {
+                this.size_min = data.size_min;
             }
 
             if (Utils.hasData(data.speed)) {

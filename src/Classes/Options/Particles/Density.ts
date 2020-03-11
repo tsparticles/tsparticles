@@ -38,10 +38,12 @@ export class Density implements IDensity {
                 this.enable = data.enable;
             }
 
-            const area = data.area ?? data.value_area;
-
-            if (Utils.hasData(area)) {
+            if (Utils.hasData(data.area)) {
                 this.area = data.area;
+            }
+
+            if (Utils.hasData(data.value_area)) {
+                this.value_area = data.value_area;
             }
         }
     }
