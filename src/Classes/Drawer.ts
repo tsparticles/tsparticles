@@ -14,9 +14,9 @@ export class Drawer {
 
         // FPS limit logic
         // If we are too fast, just draw without updating
-        const fpsLimit = options.fpsLimit;
+        const fpsLimit = options.fpsLimit > 0 ? options.fpsLimit : 60;
 
-        if (fpsLimit > 0 && timestamp < container.lastFrameTime + (1000 / fpsLimit)) {
+        if (timestamp < container.lastFrameTime + (1000 / fpsLimit)) {
             container.drawAnimationFrame = Container.requestFrame((t) => this.draw(t));
             return;
         }

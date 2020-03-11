@@ -1,4 +1,6 @@
-export interface ISizeAnimation {
+import {IOptionLoader} from "../IOptionLoader";
+
+export interface ISizeAnimation extends IOptionLoader<ISizeAnimation> {
     enable: boolean;
 
     /**

@@ -1,12 +1,12 @@
 "use strict";
 
 /* -----------------------------------------------
-/* Author : Matteo Bruni - www.matteobruni.it
+/* Author : Matteo Bruni - https://www.matteobruni.it
 /* MIT license: https://opensource.org/licenses/MIT
 /* Demo / Generator : https://particles.matteobruni.it/
 /* GitHub : https://www.github.com/matteobruni/tsparticles
 /* How to use? : Check the GitHub README
-/* v1.8.2
+/* v1.9.0
 /* ----------------------------------------------- */
 import "reflect-metadata";
 import {Container} from "./Classes/Container";

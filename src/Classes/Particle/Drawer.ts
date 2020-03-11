@@ -2,7 +2,7 @@
 
 import {Bubbler} from "./Bubbler";
 import {Container} from "../Container";
-import {ISide} from "../../Interfaces/Options/Shape/ISide";
+import {ISide} from "../../Interfaces/ISide";
 import {ICoordinates} from "../../Interfaces/ICoordinates";
 import {Particle} from "../Particle";
 import {ShapeType} from "../../Enums/ShapeType";
@@ -63,8 +63,8 @@ export class Drawer {
         const particle = this.particle;
 
         let radius: number;
-        let opacity;
-        let colorValue;
+        let opacity: number;
+        let colorValue: string | undefined;
 
         if (this.bubbler.radius !== undefined) {
             radius = this.bubbler.radius;
@@ -87,6 +87,7 @@ export class Drawer {
         }
 
         const ctx = container.canvas.context;
+        ctx.save();
 
         // TODO: Performance issues, the canvas shadow is really slow
         // const shadow = options.particles.shadow;
@@ -104,7 +105,22 @@ export class Drawer {
         // }
 
         ctx.fillStyle = colorValue;
+
+        const pos = {
+            x: particle.position.x,
+            y: particle.position.y,
+        };
+
+        ctx.translate(pos.x, pos.y);
         ctx.beginPath();
+
+        if (particle.angle !== 0) {
+            ctx.rotate(particle.angle * Math.PI / 180);
+        }
+
+        if (options.backgroundMask.enable) {
+            ctx.globalCompositeOperation = 'destination-out';
+        }
 
         this.drawShape(radius);
 
@@ -117,6 +133,7 @@ export class Drawer {
         }
 
         ctx.fill();
+        ctx.restore();
     }
 
     private drawShape(radius: number): void {
@@ -130,14 +147,14 @@ export class Drawer {
         }
 
         const pos = {
-            x: particle.position.x + particle.offset.x,
-            y: particle.position.y + particle.offset.y,
+            x: particle.offset.x,
+            y: particle.offset.y,
         };
 
         switch (particle.shape) {
             case ShapeType.line:
-                ctx.moveTo(particle.position.x, particle.position.y);
-                ctx.lineTo(particle.position.x, particle.position.y + radius);
+                ctx.moveTo(0, 0);
+                ctx.lineTo(0, radius);
                 ctx.strokeStyle = options.particles.shape.stroke.color;
                 ctx.lineWidth = options.particles.shape.stroke.width;
                 ctx.stroke();
@@ -148,12 +165,12 @@ export class Drawer {
                 break;
             case ShapeType.edge:
             case ShapeType.square:
-                ctx.rect(particle.position.x - radius, particle.position.y - radius, radius * 2, radius * 2);
+                ctx.rect(-radius, -radius, radius * 2, radius * 2);
                 break;
             case ShapeType.triangle: {
                 const start: ICoordinates = {
-                    x: particle.position.x - radius,
-                    y: particle.position.y + radius / 1.66,
+                    x: -radius,
+                    y: radius / 1.66,
                 };
 
                 const side: ISide = {
@@ -169,8 +186,8 @@ export class Drawer {
                 break;
             case ShapeType.polygon: {
                 const start: ICoordinates = {
-                    x: particle.position.x - radius / (options.particles.shape.polygon.sides / 3.5),
-                    y: particle.position.y - radius / (2.66 / 3.5),
+                    x: -radius / (options.particles.shape.polygon.sides / 3.5),
+                    y: -radius / (2.66 / 3.5),
                 };
                 const side: ISide = {
                     count: {
@@ -185,8 +202,8 @@ export class Drawer {
                 break;
             case ShapeType.star: {
                 const start: ICoordinates = {
-                    x: particle.position.x - radius * 2 / (options.particles.shape.polygon.sides / 4),
-                    y: particle.position.y - radius / (2 * 2.66 / 3.5),
+                    x: -radius * 2 / (options.particles.shape.polygon.sides / 4),
+                    y: -radius / (2 * 2.66 / 3.5),
                 };
                 const side: ISide = {
                     count: {
@@ -201,8 +218,8 @@ export class Drawer {
                 break;
 
             case ShapeType.heart: {
-                const x = particle.position.x - radius / 2;
-                const y = particle.position.y - radius / 2;
+                const x = -radius / 2;
+                const y = -radius / 2;
 
                 ctx.moveTo(x, y + radius / 4);
                 ctx.quadraticCurveTo(x, y, x + radius / 4, y);
@@ -227,8 +244,8 @@ export class Drawer {
                 ctx.font = `${style} ${weight} ${size}px ${font}`;
 
                 if (text) {
-                    const x = particle.position.x - radius / 2;
-                    const y = particle.position.y + radius / 2;
+                    const x = -radius / 2;
+                    const y = radius / 2;
 
                     if (options.particles.shape.character.fill) {
                         ctx.fillText(text, x, y);
@@ -258,8 +275,8 @@ export class Drawer {
         }
 
         const pos = {
-            x: particle.position.x - radius,
-            y: particle.position.y - radius,
+            x: -radius,
+            y: -radius,
         };
 
         ctx.drawImage(imgObj, pos.x, pos.y, radius * 2, radius * 2 / ratio);

@@ -3,9 +3,9 @@
 import {ICoordinates} from "../../Interfaces/ICoordinates";
 import {IHsl} from "../../Interfaces/IHsl";
 import {IRgb} from "../../Interfaces/IRgb";
-import {IColor} from "../../Interfaces/IColor";
 import {MoveDirection} from "../../Enums/MoveDirection";
 import {IOptions} from "../../Interfaces/Options/IOptions";
+import {IParticlesColor} from "../../Interfaces/Options/Particles/IParticlesColor";
 
 /* ---------- global functions - vendors ------------ */
 export class Utils {
@@ -13,7 +13,7 @@ export class Utils {
      * Converts hexadecimal string (HTML color code) in a [[IRgb]] object
      * @param hex the hexadecimal string (#f70 or #ff7700)
      */
-    public static hexToRgb(hex: string): IRgb | null {
+    public static hexToRgb(hex: string): IRgb | undefined {
         // By Tim Down - http://stackoverflow.com/a/5624139/3493650
         // Expand shorthand form (e.g. "03F") to full form (e.g. "0033FF")
         const shorthandRegex = /^#?([a-f\d])([a-f\d])([a-f\d])$/i;
@@ -28,7 +28,7 @@ export class Utils {
             b: parseInt(result[3], 16),
             g: parseInt(result[2], 16),
             r: parseInt(result[1], 16),
-        } : null;
+        } : undefined;
     }
 
     /**
@@ -88,24 +88,6 @@ export class Utils {
      */
     public static isInArray<T>(value: T, array: T[] | T): boolean {
         return value === array || (array as T[]).indexOf(value) > -1;
-    }
-
-    /**
-     * Extend destination object with source values
-     * @param destination the object to extend
-     * @param source the source providing new values
-     */
-    public static deepExtend(destination: any, source: any): any {
-        for (const property in source) {
-            if (source[property] && source[property].constructor && source[property].constructor === Object) {
-                destination[property] = destination[property] || {};
-
-                Utils.deepExtend(destination[property], source[property]);
-            } else {
-                destination[property] = source[property];
-            }
-        }
-        return destination;
     }
 
     /**
@@ -169,15 +151,14 @@ export class Utils {
 
     /**
      * Gets the particles color
-     * @param options the options to use for calculating the color
      * @param color the input color to convert in [[IRgb]] object
      */
-    public static getParticleColor(options: IOptions, color: { value: string[] | IColor | string }): IRgb | null {
-        let res: IRgb | null = null;
+    public static getParticleColor(color: IParticlesColor): IRgb | undefined {
+        let res: IRgb | undefined;
 
         if (typeof (color.value) === "object") {
             if (color.value instanceof Array) {
-                const arr = options.particles.color.value as string[];
+                const arr = color.value as string[];
                 const colorSelected = color.value[Math.floor(Math.random() * arr.length)];
 
                 res = Utils.hexToRgb(colorSelected);
@@ -218,6 +199,10 @@ export class Utils {
         const dx = pointA.x - pointB.x;
         const dy = pointA.y - pointB.y;
         return Math.sqrt(dx * dx + dy * dy);
+    }
+
+    public static hasData<T>(value: T): boolean {
+        return value !== undefined && value !== null;
     }
 
     /**

@@ -1,6 +1,7 @@
 import {ISizeAnimation} from "./ISizeAnimation";
+import {IOptionLoader} from "../IOptionLoader";
 
-export interface ISize {
+export interface ISize extends IOptionLoader<ISize> {
     /**
      * @deprecated use the new animation instead
      */

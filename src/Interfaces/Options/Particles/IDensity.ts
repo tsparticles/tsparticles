@@ -1,4 +1,6 @@
-export interface IDensity {
+import {IOptionLoader} from "../IOptionLoader";
+
+export interface IDensity extends IOptionLoader<IDensity> {
     enable: boolean;
 
     /**

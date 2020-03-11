@@ -1,5 +1,6 @@
-import {IPolygonShape} from "../../../../Interfaces/Options/Shape/IPolygonShape";
+import {IPolygonShape} from "../../../../Interfaces/Options/Particles/Shape/IPolygonShape";
 import {Messages} from "../../../Utils/Messages";
+import {Utils} from "../../../Utils/Utils";
 
 export class PolygonShape implements IPolygonShape {
     /**
@@ -27,5 +28,17 @@ export class PolygonShape implements IPolygonShape {
 
     constructor() {
         this.sides = 5;
+    }
+
+    public load(data: IPolygonShape): void {
+        if (Utils.hasData(data)) {
+            if (Utils.hasData(data.sides)) {
+                this.sides = data.sides;
+            }
+
+            if (Utils.hasData(data.nb_sides)) {
+                this.nb_sides = data.nb_sides;
+            }
+        }
     }
 }

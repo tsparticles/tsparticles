@@ -1,4 +1,6 @@
-export interface IPush {
+import {IOptionLoader} from "../../IOptionLoader";
+
+export interface IPush extends IOptionLoader<IPush> {
     /**
      * @deprecated use the new quantity instead
      */

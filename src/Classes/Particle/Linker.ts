@@ -84,6 +84,12 @@ export class Linker {
                     colorLine = container.particles.lineLinkedColor as IRgb;
                 }
 
+                ctx.save();
+
+                if (options.backgroundMask.enable) {
+                    ctx.globalCompositeOperation = 'destination-out';
+                }
+
                 if (colorLine) {
                     ctx.strokeStyle = `rgba(${colorLine.r},${colorLine.g},${colorLine.b},${opacityLine})`;
                 }
@@ -96,6 +102,7 @@ export class Linker {
                 ctx.lineTo(x2, y2);
                 ctx.stroke();
                 ctx.closePath();
+                ctx.restore();
             }
         }
     }

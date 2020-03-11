@@ -1,8 +1,9 @@
 import {IClickEvent} from "./IClickEvent";
 import {IHoverEvent} from "./IHoverEvent";
 import {IDivEvent} from "./IDivEvent";
+import {IOptionLoader} from "../../IOptionLoader";
 
-export interface IEvents {
+export interface IEvents extends IOptionLoader<IEvents> {
     /**
      * @deprecated use the new onClick instead
      */

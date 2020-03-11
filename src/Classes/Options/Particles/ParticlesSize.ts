@@ -2,6 +2,7 @@ import {ISize} from "../../../Interfaces/Options/Particles/ISize";
 import {ParticlesSizeAnimation} from "./ParticlesSizeAnimation";
 import {ISizeAnimation} from "../../../Interfaces/Options/Particles/ISizeAnimation";
 import {Messages} from "../../Utils/Messages";
+import {Utils} from "../../Utils/Utils";
 
 export class ParticlesSize implements ISize {
     /**
@@ -33,5 +34,25 @@ export class ParticlesSize implements ISize {
         this.animation = new ParticlesSizeAnimation();
         this.random = false;
         this.value = 20;
+    }
+
+    public load(data: ISize): void {
+        if (Utils.hasData(data)) {
+            if (Utils.hasData(data.animation)) {
+                this.animation.load(data.animation);
+            }
+
+            if (Utils.hasData(data.anim)) {
+                this.anim.load(data.anim);
+            }
+
+            if (Utils.hasData(data.random)) {
+                this.random = data.random;
+            }
+
+            if (Utils.hasData(data.value)) {
+                this.value = data.value;
+            }
+        }
     }
 }
