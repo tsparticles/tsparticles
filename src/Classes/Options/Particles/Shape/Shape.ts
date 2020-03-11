@@ -1,13 +1,13 @@
-import {IShape} from "../../../../Interfaces/Options/Shape/IShape";
+import {IShape} from "../../../../Interfaces/Options/Particles/Shape/IShape";
 import {ShapeType} from "../../../../Enums/ShapeType";
 import {CharacterShape} from "./CharacterShape";
 import {ImageShape} from "./ImageShape";
 import {PolygonShape} from "./PolygonShape";
 import {Stroke} from "./Stroke";
-import {IImageShape} from "../../../../Interfaces/Options/Shape/IImageShape";
-import {ICharacterShape} from "../../../../Interfaces/Options/Shape/ICharacterShape";
-import {IPolygonShape} from "../../../../Interfaces/Options/Shape/IPolygonShape";
-import {IStroke} from "../../../../Interfaces/Options/Shape/IStroke";
+import {IImageShape} from "../../../../Interfaces/Options/Particles/Shape/IImageShape";
+import {ICharacterShape} from "../../../../Interfaces/Options/Particles/Shape/ICharacterShape";
+import {IPolygonShape} from "../../../../Interfaces/Options/Particles/Shape/IPolygonShape";
+import {IStroke} from "../../../../Interfaces/Options/Particles/Shape/IStroke";
 import {Utils} from "../../../Utils/Utils";
 
 export class Shape implements IShape {

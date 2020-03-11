@@ -1,4 +1,4 @@
-import {IPolygonShape} from "../../../../Interfaces/Options/Shape/IPolygonShape";
+import {IPolygonShape} from "../../../../Interfaces/Options/Particles/Shape/IPolygonShape";
 import {Messages} from "../../../Utils/Messages";
 import {Utils} from "../../../Utils/Utils";
 

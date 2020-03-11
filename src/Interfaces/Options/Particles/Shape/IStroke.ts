@@ -1,4 +1,4 @@
-import {IOptionLoader} from "../IOptionLoader";
+import {IOptionLoader} from "../../IOptionLoader";
 
 export interface IStroke extends IOptionLoader<IStroke> {
     width: number;

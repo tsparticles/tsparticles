@@ -1,4 +1,4 @@
-import {IImageShape} from "../../../../Interfaces/Options/Shape/IImageShape";
+import {IImageShape} from "../../../../Interfaces/Options/Particles/Shape/IImageShape";
 import {Messages} from "../../../Utils/Messages";
 import {Utils} from "../../../Utils/Utils";
 

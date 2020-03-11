@@ -117,8 +117,21 @@ export class Canvas {
      * Paints the canvas background
      */
     public paint(): void {
+        const container = this.container;
+        const options = container.options;
+
         if (this.context) {
-            this.context.fillStyle = "rgba(255, 255, 255, 0)";
+            if (options.backgroundMask.enable) {
+                this.paintBase(options.backgroundMask.cover);
+            } else {
+                this.paintBase();
+            }
+        }
+    }
+
+    private paintBase(baseColor: string = "rgba(255, 255, 255, 0)"): void {
+        if (this.context) {
+            this.context.fillStyle = baseColor;
             this.context.fillRect(0, 0, this.dimension.width, this.dimension.height);
         }
     }
@@ -127,8 +140,15 @@ export class Canvas {
      * Clears the canvas content
      */
     public clear(): void {
-        if (this.context) {
-            this.context.clearRect(0, 0, this.dimension.width, this.dimension.height);
+        const container = this.container;
+        const options = container.options;
+
+        if (options.backgroundMask.enable) {
+            this.paint();
+        } else {
+            if (this.context) {
+                this.context.clearRect(0, 0, this.dimension.width, this.dimension.height);
+            }
         }
     }
 }

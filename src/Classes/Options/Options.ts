@@ -7,6 +7,8 @@ import {IParticles} from "../../Interfaces/Options/Particles/IParticles";
 import {IPolygonMask} from "../../Interfaces/Options/PolygonMask/IPolygonMask";
 import {Messages} from "../Utils/Messages";
 import {Utils} from "../Utils/Utils";
+import {IBackgroundMask} from "../../Interfaces/Options/BackgroundMask/IBackgroundMask";
+import {BackgroundMask} from "./BackgroundMask/BackgroundMask";
 
 export class Options implements IOptions {
     /**
@@ -56,6 +58,7 @@ export class Options implements IOptions {
     public interactivity: IInteractivity;
     public particles: IParticles;
     public polygon: IPolygonMask;
+    public backgroundMask: IBackgroundMask;
 
     constructor() {
         this.detectRetina = false;
@@ -63,6 +66,7 @@ export class Options implements IOptions {
         this.interactivity = new Interactivity();
         this.particles = new Particles();
         this.polygon = new PolygonMask();
+        this.backgroundMask = new BackgroundMask();
     }
 
     public load(data: IOptions): void {
@@ -82,6 +86,7 @@ export class Options implements IOptions {
             this.interactivity.load(data.interactivity);
             this.particles.load(data.particles);
             this.polygon.load(data.polygon);
+            this.backgroundMask.load(data.backgroundMask);
         }
     }
 }

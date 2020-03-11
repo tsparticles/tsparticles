@@ -1,4 +1,4 @@
-import {ICharacterShape} from "../../../../Interfaces/Options/Shape/ICharacterShape";
+import {ICharacterShape} from "../../../../Interfaces/Options/Particles/Shape/ICharacterShape";
 import {Utils} from "../../../Utils/Utils";
 
 export class CharacterShape implements ICharacterShape {

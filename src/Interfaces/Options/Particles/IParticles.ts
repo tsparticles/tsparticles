@@ -1,4 +1,4 @@
-import {IShape} from "../Shape/IShape";
+import {IShape} from "./Shape/IShape";
 import {IParticlesColor} from "./IParticlesColor";
 import {ILineLinked} from "./ILineLinked";
 import {IMove} from "./IMove";

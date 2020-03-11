@@ -1,4 +1,4 @@
-import {IStroke} from "../../../../Interfaces/Options/Shape/IStroke";
+import {IStroke} from "../../../../Interfaces/Options/Particles/Shape/IStroke";
 import {Utils} from "../../../Utils/Utils";
 
 export class Stroke implements IStroke {

@@ -118,6 +118,10 @@ export class Drawer {
             ctx.rotate(particle.angle * Math.PI / 180);
         }
 
+        if (options.backgroundMask.enable) {
+            ctx.globalCompositeOperation = 'destination-out';
+        }
+
         this.drawShape(radius);
 
         ctx.closePath();
