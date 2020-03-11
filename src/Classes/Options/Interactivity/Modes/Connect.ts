@@ -2,6 +2,7 @@ import {IConnect} from "../../../../Interfaces/Options/Interactivity/Modes/IConn
 import {ConnectLineLinked} from "./ConnectLineLinked";
 import {IConnectLineLinked} from "../../../../Interfaces/Options/Interactivity/Modes/IConnectLineLinked";
 import {Messages} from "../../../Utils/Messages";
+import {Utils} from "../../../Utils/Utils";
 
 export class Connect implements IConnect {
     /**
@@ -33,5 +34,25 @@ export class Connect implements IConnect {
         this.distance = 80;
         this.lineLinked = new ConnectLineLinked();
         this.radius = 60;
+    }
+
+    public load(data: IConnect): void {
+        if (Utils.hasData(data)) {
+            if (Utils.hasData(data.distance)) {
+                this.distance = data.distance;
+            }
+
+            if (Utils.hasData(data.lineLinked)) {
+                this.lineLinked.load(data.lineLinked);
+            }
+
+            if (Utils.hasData(data.line_linked)) {
+                this.line_linked.load(data.line_linked);
+            }
+
+            if (Utils.hasData(data.radius)) {
+                this.radius = data.radius;
+            }
+        }
     }
 }

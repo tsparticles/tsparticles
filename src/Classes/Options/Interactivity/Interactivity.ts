@@ -3,6 +3,7 @@ import {InteractivityDetect} from "../../../Enums/InteractivityDetect";
 import {Events} from "./Events/Events";
 import {Modes} from "./Modes/Modes";
 import {Messages} from "../../Utils/Messages";
+import {Utils} from "../../Utils/Utils";
 
 export class Interactivity implements IInteractivity {
     /**
@@ -34,5 +35,20 @@ export class Interactivity implements IInteractivity {
         this.detectsOn = InteractivityDetect.canvas;
         this.events = new Events();
         this.modes = new Modes();
+    }
+
+    public load(data: IInteractivity): void {
+        if (Utils.hasData(data)) {
+            if (Utils.hasData(data.detectsOn)) {
+                this.detectsOn = data.detectsOn;
+            }
+
+            if (Utils.hasData(data.detect_on)) {
+                this.detect_on = data.detect_on;
+            }
+
+            this.events.load(data.events);
+            this.modes.load(data.modes);
+        }
     }
 }

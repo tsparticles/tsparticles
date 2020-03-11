@@ -7,6 +7,7 @@ import {Utils} from "../Utils/Utils";
 import {ClickMode} from "../../Enums/Modes/ClickMode";
 import {PolygonMaskType} from "../../Enums/PolygonMaskType";
 import {Mover} from "./Mover";
+import {RotateDirection} from "../../Enums/RotateDirection";
 
 /**
  * Particle updater, it manages movement
@@ -37,6 +38,9 @@ export class Updater {
 
         /* change size */
         this.updateSize();
+
+        /* change size */
+        this.updateAngle();
 
         /* change particle position if it is out of canvas */
         this.fixOutOfCanvasPosition();
@@ -93,6 +97,24 @@ export class Updater {
 
             if (particle.radius < 0) {
                 particle.radius = 0;
+            }
+        }
+    }
+
+    private updateAngle(): void {
+        const container = this.container;
+        const options = container.options;
+        const particle = this.particle;
+
+        if (options.particles.rotate.animation.enable) {
+            switch (options.particles.rotate.direction) {
+                case RotateDirection.clockwise:
+                    particle.angle += options.particles.rotate.animation.speed * Math.PI / 18;
+                    break;
+                case RotateDirection.counterClockwise:
+                default:
+                    particle.angle -= options.particles.rotate.animation.speed * Math.PI / 18;
+                    break;
             }
         }
     }

@@ -5,9 +5,30 @@
         otherLoads = window.onload;
     }
 
+    const stats = new Stats();
+
+    stats.setMode(0);
+    stats.domElement.style.position = "absolute";
+    stats.domElement.style.left = "0px";
+    stats.domElement.style.top = "0px";
+
+    let updateStats = function () {
+        const count_particles = document.querySelector(".js-count-particles");
+        const update = function () {
+            stats.begin();
+            stats.end();
+            if (tsParticles.domItem(0).particles.array) {
+                count_particles.innerText = tsParticles.domItem(0).particles.array.length;
+            }
+            requestAnimationFrame(update);
+        };
+
+        requestAnimationFrame(update);
+    };
+
     let updateBackground = function () {
         const el = document.getElementById("tsparticles");
-        const options = tsParticles.domItem(0).options;
+        const options = tsParticles.domItem(0).sourceOptions;
         const config = options.config_demo;
         let backgroundImage;
 
@@ -36,6 +57,7 @@
             editor.set(particles.options);
             editor.expandAll();
             updateBackground();
+            updateStats();
         });
     };
 
@@ -61,7 +83,7 @@
 
         const cmbPresets = document.getElementById('presets');
 
-        cmbPresets.onchange = function (e) {
+        cmbPresets.onchange = function () {
             localStorage.presetId = this.value;
 
             updateParticles(editor);
@@ -83,5 +105,7 @@
 
             updateBackground();
         };
+
+        document.body.querySelector('#tsparticles-container').appendChild(stats.domElement);
     };
 })();

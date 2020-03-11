@@ -1,6 +1,7 @@
 import {ICoordinates} from "../../ICoordinates";
+import {IOptionLoader} from "../IOptionLoader";
 
-export interface IAttract {
+export interface IAttract extends IOptionLoader<IAttract> {
     enable: boolean;
 
     /**
