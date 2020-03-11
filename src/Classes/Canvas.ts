@@ -136,7 +136,7 @@ export class Canvas {
         }
     }
 
-    private paintBase(baseColor = "rgba(255, 255, 255, 0)"): void {
+    private paintBase(baseColor: string = "rgba(255, 255, 255, 0)"): void {
         if (this.context) {
             this.context.fillStyle = baseColor;
             this.context.fillRect(0, 0, this.dimension.width, this.dimension.height);
