@@ -111,8 +111,8 @@ export class Updater {
                 case RotateDirection.clockwise:
                     particle.angle += options.particles.rotate.animation.speed * Math.PI / 18;
 
-                    if (particle.angle > 2 * Math.PI) {
-                        particle.angle -= 2 * Math.PI;
+                    if (particle.angle > 360) {
+                        particle.angle -= 360;
                     }
                     break;
                 case RotateDirection.counterClockwise:
@@ -120,7 +120,7 @@ export class Updater {
                     particle.angle -= options.particles.rotate.animation.speed * Math.PI / 18;
 
                     if (particle.angle < 0) {
-                        particle.angle += 2 * Math.PI;
+                        particle.angle += 360;
                     }
                     break;
             }

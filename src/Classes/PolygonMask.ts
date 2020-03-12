@@ -247,21 +247,9 @@ export class PolygonMask {
 
     public drawPolygon(): void {
         const container = this.container;
-        const options = container.options;
-        const context = container.canvas.context;
 
-        if (context && this.raw) {
-            context.beginPath();
-            context.moveTo(this.raw[0].x, this.raw[0].y);
-
-            for (let i = 1; i < this.raw.length; i++) {
-                context.lineTo(this.raw[i].x, this.raw[i].y);
-            }
-
-            context.closePath();
-            context.strokeStyle = options.polygon.draw.lineColor;
-            context.lineWidth = options.polygon.draw.lineWidth;
-            context.stroke();
+        if (this.raw) {
+            container.canvas.drawPolygon(this.raw);
         }
     }
 

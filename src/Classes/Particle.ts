@@ -25,8 +25,9 @@ import {ClickMode} from "../Enums/Modes/ClickMode";
  * The single particle object
  */
 export class Particle {
-    public radius: number;
     public angle: number;
+    public radius: number;
+    public text?: string;
     public readonly size: ISize;
     public readonly initialPosition?: ICoordinates;
     public readonly position: ICoordinates;
@@ -69,7 +70,7 @@ export class Particle {
 
         if (options.particles.rotate.animation.enable) {
             if (!options.particles.rotate.animation.sync) {
-                this.angle = Math.random() * 2 * Math.PI;
+                this.angle = Math.random() * 360;
             }
         }
 
@@ -144,10 +145,20 @@ export class Particle {
             }
         }
 
+        if (this.shape === ShapeType.char || this.shape === ShapeType.character) {
+            const value = options.particles.shape.character.value;
+
+            if (typeof value === "string") {
+                this.text = value;
+            } else {
+                this.text = value[Math.floor(Math.random() * value.length)]
+            }
+        }
+
         this.updater = new Updater(this.container, this);
         this.bubbler = new Bubbler(this.container, this);
         this.repulser = new Repulser(this.container, this);
-        this.drawer = new Drawer(this.container, this, this.bubbler);
+        this.drawer = new Drawer(this.container, this);
         this.grabber = new Grabber(this.container, this);
         this.connecter = new Connecter(this.container, this);
         this.interactionManager = new InteractionManager(this.container, this);
