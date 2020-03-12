@@ -18,7 +18,7 @@ export class Canvas {
     /**
      * The particles canvas context
      */
-    private context: CanvasRenderingContext2D | null;
+    private readonly context: CanvasRenderingContext2D | null;
 
     /**
      * The particles canvas
