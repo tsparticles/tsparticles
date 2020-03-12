@@ -110,10 +110,18 @@ export class Updater {
             switch (options.particles.rotate.direction) {
                 case RotateDirection.clockwise:
                     particle.angle += options.particles.rotate.animation.speed * Math.PI / 18;
+
+                    if (particle.angle > 2 * Math.PI) {
+                        particle.angle -= 2 * Math.PI;
+                    }
                     break;
                 case RotateDirection.counterClockwise:
                 default:
                     particle.angle -= options.particles.rotate.animation.speed * Math.PI / 18;
+
+                    if (particle.angle < 0) {
+                        particle.angle += 2 * Math.PI;
+                    }
                     break;
             }
         }
