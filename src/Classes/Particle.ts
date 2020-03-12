@@ -56,7 +56,7 @@ export class Particle {
 
         /* size */
         this.size = {};
-        this.angle = options.particles.rotate.random ? Math.random() * 2 * Math.PI : options.particles.rotate.value;
+        this.angle = options.particles.rotate.random ? Math.random() * 360 : options.particles.rotate.value;
         this.radius = (options.particles.size.random ? Math.random() : 1) * container.retina.sizeValue;
 
         if (options.particles.size.animation.enable) {
