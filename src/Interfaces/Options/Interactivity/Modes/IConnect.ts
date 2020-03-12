@@ -1,6 +1,7 @@
 import {IConnectLineLinked} from "./IConnectLineLinked";
+import {IOptionLoader} from "../../IOptionLoader";
 
-export interface IConnect {
+export interface IConnect extends IOptionLoader<IConnect> {
     distance: number;
 
     /**

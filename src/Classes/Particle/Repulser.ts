@@ -44,7 +44,7 @@ export class Repulser {
         const options = container.options;
         const particle = this.particle;
 
-        const elem = document.getElementById(options.interactivity.events.onDiv.el) as HTMLElement;
+        const elem = document.getElementById(options.interactivity.events.onDiv.elementId) as HTMLElement;
         const pos = {
             x: (elem.offsetLeft + elem.offsetWidth / 2),
             y: (elem.offsetTop + elem.offsetHeight / 2),
@@ -57,16 +57,16 @@ export class Repulser {
             divWidth *= container.canvas.pxRatio
         }
 
-        const dx_div = particle.position.x - pos.x;
-        const dy_div = particle.position.y - pos.y;
-        const dist_div = Math.sqrt(dx_div * dx_div + dy_div * dy_div);
+        const dxDiv = particle.position.x - pos.x;
+        const dyDiv = particle.position.y - pos.y;
+        const distDiv = Math.sqrt(dxDiv * dxDiv + dyDiv * dyDiv);
         const normVec = {
-            x: dx_div / dist_div,
-            y: dy_div / dist_div,
+            x: dxDiv / distDiv,
+            y: dyDiv / distDiv,
         };
         const repulseRadius = divWidth;
         const velocity = 100;
-        const repulseFactor = Utils.clamp((-Math.pow(dist_div / repulseRadius, 4) + 1) * velocity, 0, 50);
+        const repulseFactor = Utils.clamp((-Math.pow(distDiv / repulseRadius, 4) + 1) * velocity, 0, 50);
 
         this.particle.position.x += normVec.x * repulseFactor;
         this.particle.position.y += normVec.y * repulseFactor;
@@ -169,17 +169,13 @@ export class Repulser {
             };
 
             if (outMode !== OutMode.bounceVertical) {
-                if (pos.x + particle.radius > container.canvas.dimension.width) {
-                    particle.velocity.horizontal = -particle.velocity.horizontal;
-                } else if (pos.x - particle.radius < 0) {
+                if (pos.x + particle.radius > container.canvas.dimension.width || pos.x - particle.radius < 0) {
                     particle.velocity.horizontal = -particle.velocity.horizontal;
                 }
             }
 
             if (outMode !== OutMode.bounceHorizontal) {
-                if (pos.y + particle.radius > container.canvas.dimension.height) {
-                    particle.velocity.vertical = -particle.velocity.vertical;
-                } else if (pos.y - particle.radius < 0) {
+                if (pos.y + particle.radius > container.canvas.dimension.height || pos.y - particle.radius < 0) {
                     particle.velocity.vertical = -particle.velocity.vertical;
                 }
             }

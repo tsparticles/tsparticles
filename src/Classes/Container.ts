@@ -10,7 +10,6 @@ import {Loader} from "./Loader";
 import {Particles} from "./Particles";
 import {Retina} from "./Retina";
 import {ShapeType} from "../Enums/ShapeType";
-import {Utils} from "./Utils/Utils";
 import {PolygonMask} from "./PolygonMask";
 import {ImageShape} from "./Options/Particles/Shape/ImageShape";
 import {IOptions} from "../Interfaces/Options/IOptions";
@@ -51,6 +50,7 @@ export class Container {
         this.checkAnimationFrame = value;
     }
 
+    public readonly sourceOptions: IOptions;
     public interactivity: IContainerInteractivity;
     public options: IOptions;
     public retina: Retina;
@@ -69,6 +69,7 @@ export class Container {
     private readonly _eventListeners: EventListeners;
 
     constructor(tagId: string, params: IOptions) {
+        this.sourceOptions = params;
         this.lastFrameTime = 0;
         this.pageHidden = false;
         this.retina = new Retina(this);
@@ -88,7 +89,7 @@ export class Container {
 
         /* params settings */
         if (params) {
-            Utils.deepExtend(this.options, params);
+            this.options.load(this.sourceOptions);
         }
 
         /* ---------- tsParticles - start ------------ */

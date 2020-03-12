@@ -2,6 +2,7 @@ import {IGrab} from "../../../../Interfaces/Options/Interactivity/Modes/IGrab";
 import {IGrabLineLinked} from "../../../../Interfaces/Options/Interactivity/Modes/IGrabLineLinked";
 import {GrabLineLinked} from "./GrabLineLinked";
 import {Messages} from "../../../Utils/Messages";
+import {Utils} from "../../../Utils/Utils";
 
 export class Grab implements IGrab {
     /**
@@ -31,5 +32,21 @@ export class Grab implements IGrab {
     constructor() {
         this.distance = 100;
         this.lineLinked = new GrabLineLinked();
+    }
+
+    public load(data: IGrab): void {
+        if (Utils.hasData(data)) {
+            if (Utils.hasData(data.distance)) {
+                this.distance = data.distance;
+            }
+
+            if (Utils.hasData(data.lineLinked)) {
+                this.lineLinked.load(data.lineLinked);
+            }
+
+            if (Utils.hasData(data.line_linked)) {
+                this.line_linked.load(data.line_linked);
+            }
+        }
     }
 }

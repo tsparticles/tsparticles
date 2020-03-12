@@ -1,6 +1,7 @@
 import {IOpacityAnimation} from "./IOpacityAnimation";
+import {IOptionLoader} from "../IOptionLoader";
 
-export interface IOpacity {
+export interface IOpacity extends IOptionLoader<IOpacity> {
     value: number;
     random: boolean;
 

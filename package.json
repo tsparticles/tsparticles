@@ -1,6 +1,6 @@
 {
   "name": "tsparticles",
-  "version": "1.8.2",
+  "version": "1.9.1",
   "description": "Porting of the abandoned Vincent Garreau's particles.js, converted in TypeScript. Added many new cool features and various bug fixes.",
   "homepage": "https://particles.matteobruni.it/",
   "scripts": {
@@ -74,6 +74,7 @@
     "rimraf": "^3.0.2",
     "stylus": "^0.54.7",
     "terser-webpack-plugin": "^2.3.5",
+    "three": "^0.114.0",
     "tsyringe": "^4.1.0",
     "typedoc": "^0.16.11",
     "typescript": "^3.8.3",

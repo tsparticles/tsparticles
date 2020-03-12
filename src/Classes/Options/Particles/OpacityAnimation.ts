@@ -1,5 +1,6 @@
 import {IOpacityAnimation} from "../../../Interfaces/Options/Particles/IOpacityAnimation";
 import {Messages} from "../../Utils/Messages";
+import {Utils} from "../../Utils/Utils";
 
 export class OpacityAnimation implements IOpacityAnimation {
     /**
@@ -33,5 +34,29 @@ export class OpacityAnimation implements IOpacityAnimation {
         this.minimumValue = 0;
         this.speed = 2;
         this.sync = false;
+    }
+
+    public load(data: IOpacityAnimation): void {
+        if (Utils.hasData(data)) {
+            if (Utils.hasData(data.enable)) {
+                this.enable = data.enable;
+            }
+
+            if (Utils.hasData(data.minimumValue)) {
+                this.minimumValue = data.minimumValue;
+            }
+
+            if (Utils.hasData(data.opacity_min)) {
+                this.opacity_min = data.opacity_min;
+            }
+
+            if (Utils.hasData(data.speed)) {
+                this.speed = data.speed;
+            }
+
+            if (Utils.hasData(data.sync)) {
+                this.sync = data.sync;
+            }
+        }
     }
 }

@@ -26,11 +26,12 @@ import {ClickMode} from "../Enums/Modes/ClickMode";
  */
 export class Particle {
     public radius: number;
+    public angle: number;
     public readonly size: ISize;
     public readonly initialPosition?: ICoordinates;
     public readonly position: ICoordinates;
     public readonly offset: ICoordinates;
-    public readonly color: IRgb | null;
+    public readonly color: IRgb | undefined;
     public readonly opacity: IOpacity;
     public readonly velocity: IVelocity;
     public readonly shape?: ShapeType;
@@ -54,6 +55,7 @@ export class Particle {
 
         /* size */
         this.size = {};
+        this.angle = options.particles.rotate.random ? Math.random() * 2 * Math.PI : options.particles.rotate.value;
         this.radius = (options.particles.size.random ? Math.random() : 1) * container.retina.sizeValue;
 
         if (options.particles.size.animation.enable) {
@@ -62,6 +64,12 @@ export class Particle {
 
             if (!options.particles.size.animation.sync) {
                 this.size.velocity = this.size.velocity * Math.random();
+            }
+        }
+
+        if (options.particles.rotate.animation.enable) {
+            if (!options.particles.rotate.animation.sync) {
+                this.angle = Math.random() * 2 * Math.PI;
             }
         }
 
@@ -87,7 +95,7 @@ export class Particle {
         }
 
         /* color */
-        this.color = Utils.getParticleColor(options, color);
+        this.color = Utils.getParticleColor(color);
 
         /* opacity */
         this.opacity = {
@@ -127,7 +135,7 @@ export class Particle {
             this.image = {
                 data: image,
                 ratio: optionsImage.width / optionsImage.height,
-                replaceColor: optionsImage.replace_color,
+                replaceColor: optionsImage.replaceColor,
                 src: optionsImage.src,
             };
 

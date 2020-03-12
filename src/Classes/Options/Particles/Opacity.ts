@@ -2,6 +2,7 @@ import {IOpacity} from "../../../Interfaces/Options/Particles/IOpacity";
 import {OpacityAnimation} from "./OpacityAnimation";
 import {IOpacityAnimation} from "../../../Interfaces/Options/Particles/IOpacityAnimation";
 import {Messages} from "../../Utils/Messages";
+import {Utils} from "../../Utils/Utils";
 
 export class Opacity implements IOpacity {
     /**
@@ -33,5 +34,25 @@ export class Opacity implements IOpacity {
         this.animation = new OpacityAnimation();
         this.random = false;
         this.value = 1;
+    }
+
+    public load(data: IOpacity): void {
+        if (Utils.hasData(data)) {
+            if (Utils.hasData(data.animation)) {
+                this.animation.load(data.animation);
+            }
+
+            if (Utils.hasData(data.anim)) {
+                this.anim.load(data.anim);
+            }
+
+            if (Utils.hasData(data.random)) {
+                this.random = data.random;
+            }
+
+            if (Utils.hasData(data.value)) {
+                this.value = data.value;
+            }
+        }
     }
 }

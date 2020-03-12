@@ -1,4 +1,5 @@
 import {ILineLinked} from "../../../Interfaces/Options/Particles/ILineLinked";
+import {Utils} from "../../Utils/Utils";
 
 export class LineLinked implements ILineLinked {
     public blink: boolean;
@@ -17,5 +18,37 @@ export class LineLinked implements ILineLinked {
         this.enable = true;
         this.opacity = 1;
         this.width = 1;
+    }
+
+    public load(data: ILineLinked): void {
+        if (Utils.hasData(data)) {
+            if (Utils.hasData(data.blink)) {
+                this.blink = data.blink;
+            }
+
+            if (Utils.hasData(data.color)) {
+                this.color = data.color;
+            }
+
+            if (Utils.hasData(data.consent)) {
+                this.consent = data.consent;
+            }
+
+            if (Utils.hasData(data.distance)) {
+                this.distance = data.distance;
+            }
+
+            if (Utils.hasData(data.enable)) {
+                this.enable = data.enable;
+            }
+
+            if (Utils.hasData(data.opacity)) {
+                this.opacity = data.opacity;
+            }
+
+            if (Utils.hasData(data.width)) {
+                this.width = data.width;
+            }
+        }
     }
 }
