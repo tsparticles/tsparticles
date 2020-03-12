@@ -214,6 +214,16 @@ tsParticles.setOnClickHandler((e) => { /* custom on click handler */ });
         "sync": false
       }
     },
+    "rotate": {
+      "value": 0,
+      "random": true,
+      "direction": "clockwise",
+      "animation": {
+        "enable": true,
+        "speed": 5,
+        "sync": false
+      }
+    },
     "size": {
       "value": 10,
       "random": true,
@@ -294,6 +304,16 @@ tsParticles.setOnClickHandler((e) => { /* custom on click handler */ });
   },
   "detectRetina": true,
   "fpsLimit": 60,
+  "backgroundMask": {
+    "enable": true,
+    "cover": {
+      "value": {
+        "r": 255,
+        "g": 255,
+        "b": 255
+      }
+    }
+  },
   "polygon": {
     "debug": {
       "enable": true,
@@ -333,6 +353,12 @@ key | option type / notes | example
 `particles.opacity.animation.speed` | number | `3`
 `particles.opacity.animation.minimumValue` | number (0 to 1) | `0.25`
 `particles.opacity.animation.sync` | boolean | `true` / `false`
+`particles.rotate.value` | number (angle in degrees) | `45`
+`particles.rotate.random` | boolean | `true` / `false`
+`particles.rotate.direction` | string | `clockwise` / `counterclockwise`
+`particles.rotate.animation.enable` | boolean | `true` / `false`
+`particles.rotate.animation.speed` | number | 5
+`particles.rotate.animation.sync` | boolean | `true` / `false`
 `particles.size.value` | number | `20`
 `particles.size.random` | boolean | `true` / `false` 
 `particles.size.animation.enable` | boolean | `true` / `false` 
@@ -377,6 +403,8 @@ key | option type / notes | example
 `interactivity.events.modes.remove.quantity` | number | `4`
 `detectRetina` | boolean | `true` / `false`
 `fpsLimit` | number | `60`
+`backgroundMask.enable` | boolean | `true` / `false`
+`backgroundMask.cover.value` | HEX (string) <br /> RGB (object) <br /> HSL (object) <br /> random (string) | `"#0d47a1"` <br /> `{r:182, g:25, b:36}` <br />  `{h:356, s:76, l:41}` <br /> `"random"`
 `polygon.draw.enable` | boolean | `true` / `false`
 `polygon.draw.lineWidth` | number | `0.5`
 `polygon.draw.lineColor` | HEX (string) | `#ffffff`
