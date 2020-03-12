@@ -6,7 +6,7 @@
 /* Demo / Generator : https://particles.matteobruni.it/
 /* GitHub : https://www.github.com/matteobruni/tsparticles
 /* How to use? : Check the GitHub README
-/* v1.9.0
+/* v1.9.1
 /* ----------------------------------------------- */
 import "reflect-metadata";
 import {Container} from "./Classes/Container";
