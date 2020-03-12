@@ -249,7 +249,7 @@ export class PolygonMask {
         const container = this.container;
 
         if (this.raw) {
-            container.canvas.drawPolygon(this.raw);
+            container.canvas.drawPolygonMask(this.raw);
         }
     }
 
