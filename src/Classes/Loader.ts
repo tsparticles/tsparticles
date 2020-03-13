@@ -52,20 +52,20 @@ export class Loader {
      * @param tagId the particles container element id
      * @param params the options object to initialize the [[Container]]
      */
-    public static load(tagId: string, params: IOptions): Container | undefined {
+    public static load(tagId: string, params?: IOptions): Container | undefined {
         /* elements */
-        const tag = document.getElementById(tagId);
+        const domContainer = document.getElementById(tagId);
 
-        if (!tag) {
+        if (!domContainer) {
             return;
         }
 
-        const existCanvas = tag.getElementsByClassName(Constants.canvasClass);
+        const existCanvas = domContainer.getElementsByClassName(Constants.canvasClass);
 
         /* remove canvas if exists into the container target tag */
         if (existCanvas.length) {
             while (existCanvas.length > 0) {
-                tag.removeChild(existCanvas[0]);
+                domContainer.removeChild(existCanvas[0]);
             }
         }
 
@@ -86,9 +86,9 @@ export class Loader {
             return;
         }
 
-        const newItem = new Container(tagId, params);
+        const newItem = new Container(tagId, canvasEl, params);
         const dom = Loader.dom();
-        const idx = dom.findIndex((v) => v.canvas.tagId === tagId);
+        const idx = dom.findIndex((v) => v.id === tagId);
 
         if (idx >= 0) {
             dom.splice(idx, 1, newItem);

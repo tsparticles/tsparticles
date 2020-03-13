@@ -5,6 +5,7 @@ import {Particle} from "../Particle";
 import {Utils} from "./Utils";
 import {IStroke} from "../../Interfaces/Options/Particles/Shape/IStroke";
 import {ShapeUtils} from "./ShapeUtils";
+import {ILineLinkedShadow} from "../../Interfaces/Options/Particles/ILineLinkedShadow";
 
 export class CanvasUtils {
     public static paintBase(context: CanvasRenderingContext2D,
@@ -41,7 +42,8 @@ export class CanvasUtils {
                                  end: ICoordinates,
                                  backgroundMask: boolean,
                                  colorLine: IRgb,
-                                 opacity: number): void {
+                                 opacity: number,
+                                 shadow: ILineLinkedShadow): void {
         context.save();
 
         if (backgroundMask) {
@@ -56,6 +58,10 @@ export class CanvasUtils {
         // this.ctx.lineCap = "round"; /* performance issue */
         /* path */
         context.beginPath();
+        if (shadow.enable) {
+            context.shadowBlur = shadow.blur;
+            context.shadowColor = shadow.color;
+        }
         context.moveTo(begin.x, begin.y);
         context.lineTo(end.x, end.y);
         context.stroke();

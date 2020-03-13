@@ -20,7 +20,8 @@ import {Drawer} from "./Drawer";
  * The object loaded into an HTML element, it'll contain options loaded and all data to let everything working
  */
 export class Container {
-    public readonly sourceOptions: IOptions;
+    public readonly sourceOptions?: IOptions;
+    public readonly id: string;
     public interactivity: IContainerInteractivity;
     public options: IOptions;
     public retina: Retina;
@@ -38,13 +39,14 @@ export class Container {
     private drawAnimationFrame?: number;
     private readonly eventListeners: EventListeners;
 
-    constructor(tagId: string, params: IOptions) {
+    constructor(id: string, canvas: HTMLCanvasElement, params?: IOptions) {
+        this.id = id;
         this.paused = true;
         this.sourceOptions = params;
         this.lastFrameTime = 0;
         this.pageHidden = false;
         this.retina = new Retina(this);
-        this.canvas = new Canvas(this, tagId);
+        this.canvas = new Canvas(this, canvas);
         this.particles = new Particles(this);
         this.polygon = new PolygonMask(this);
         this.drawer = new Drawer(this);
@@ -59,7 +61,7 @@ export class Container {
         this.options = container.resolve<IOptions>("IOptions");
 
         /* params settings */
-        if (params) {
+        if (this.sourceOptions) {
             this.options.load(this.sourceOptions);
         }
 

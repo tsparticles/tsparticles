@@ -1,6 +1,5 @@
 "use strict";
 
-import {Constants} from "./Utils/Constants";
 import {Container} from "./Container";
 import {PolygonMaskType} from "../Enums/PolygonMaskType";
 import {IDimension} from "../Interfaces/IDimension";
@@ -23,10 +22,6 @@ export class Canvas {
      */
     public dimension: IDimension;
     /**
-     * The particles canvas container element id
-     */
-    public tagId: string;
-    /**
      * The ratio used by the particles canvas
      */
     public pxRatio: number;
@@ -44,18 +39,15 @@ export class Canvas {
     /**
      * Constructor of canvas manager
      * @param container the parent container
-     * @param tagId the particles container element id
+     * @param canvas the canvas to use
      */
-    constructor(container: Container, tagId: string) {
-        const canvasEl = document.querySelector(`#${tagId} > .${Constants.canvasClass}`) as HTMLCanvasElement;
-
+    constructor(container: Container, canvas: HTMLCanvasElement) {
         this.container = container;
-        this.element = canvasEl;
+        this.element = canvas;
         this.dimension = {
-            height: canvasEl.offsetHeight,
-            width: canvasEl.offsetWidth,
+            height: canvas.offsetHeight,
+            width: canvas.offsetWidth,
         };
-        this.tagId = tagId;
         this.pxRatio = 1;
         this.context = this.element.getContext("2d");
     }
@@ -210,7 +202,14 @@ export class Canvas {
 
         const width = container.retina.lineLinkedWidth;
 
-        CanvasUtils.drawLineLinked(ctx, width, pos1, pos2, options.backgroundMask.enable, colorLine, opacity);
+        CanvasUtils.drawLineLinked(ctx,
+            width,
+            pos1,
+            pos2,
+            options.backgroundMask.enable,
+            colorLine,
+            opacity,
+            options.particles.lineLinked.shadow);
     }
 
     public drawConnectLine(p1: Particle, p2: Particle): void {
