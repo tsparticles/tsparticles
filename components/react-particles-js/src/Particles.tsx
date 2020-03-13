@@ -1,127 +1,131 @@
 import * as React from "react";
-import { Component } from "react";
-
-import { IParams, ParticlesLibrary, deepAssign, RecursivePartial } from "./lib";
+import {Component} from "react";
 import isEqual from 'lodash/isEqual';
+import {IOptions} from "tsparticles/dist/Interfaces/Options/IOptions";
+import {Options} from "tsparticles/dist/Classes/Options/Options";
+import {Container} from "tsparticles/dist/Classes/Container";
 
 export interface ParticlesProps {
-	width: string;
-	height: string;
-	params: RecursivePartial<IParams>;
-	style: any;
-	className?: string;
-	canvasClassName?: string;
+    id: string;
+    width: string;
+    height: string;
+    params: IOptions;
+    style: any;
+    className?: string;
+    canvasClassName?: string;
 }
 
 export interface ParticlesState {
-	canvas?: HTMLCanvasElement;
-	library?: ParticlesLibrary;
+    canvas?: HTMLCanvasElement;
+    library?: Container;
 }
 
-export default class Particles extends Component<
-	ParticlesProps,
-	ParticlesState
-> {
-	public static defaultProps: ParticlesProps = {
-		width: "100%",
-		height: "100%",
-		params: {},
-		style: {}
-	};
+export default class Particles extends Component<ParticlesProps,
+    ParticlesState> {
+    public static defaultProps: ParticlesProps = {
+        width: "100%",
+        height: "100%",
+        params: new Options(),
+        style: {},
+        id: "tsparticles"
+    };
 
-	constructor(props: ParticlesProps) {
-		super(props);
-		this.state = {
-			canvas: undefined,
-			library: undefined
-		};
-		this.loadCanvas = this.loadCanvas.bind(this);
-	}
+    constructor(props: ParticlesProps) {
+        super(props);
+        this.state = {
+            canvas: undefined,
+            library: undefined
+        };
+        this.loadCanvas = this.loadCanvas.bind(this);
+    }
 
-	private buildParticlesLibrary(params: RecursivePartial<IParams>) {
-		try{if (window === undefined) return null; } catch{ return null; } // SSR
-		return new ParticlesLibrary(params);
-	}
+    private buildParticlesLibrary(tagId: string, params?: IOptions) {
+        try {
+            if (window === undefined) return null;
+        } catch {
+            return null;
+        } // SSR
+        return new Container(tagId, params);
+    }
 
-	private refresh(props: Readonly<ParticlesProps>): void {
-		const { canvas } = this.state;
-		if (canvas) {
-			this.destroy();
-			this.setState(
-				{
-					library: this.buildParticlesLibrary(props.params)
-				},
-				() => {
-					this.loadCanvas(canvas);
-				}
-			);
-		}
-	}
+    private refresh(props: Readonly<ParticlesProps>): void {
+        const {canvas} = this.state;
+        if (canvas) {
+            this.destroy();
+            this.setState(
+                {
+                    library: this.buildParticlesLibrary(props.id, props.params)
+                },
+                () => {
+                    this.loadCanvas(canvas);
+                }
+            );
+        }
+    }
 
-	destroy() {
-		if (this.state.library) {
-			this.state.library.destroy();
-		}
-	}
+    destroy() {
+        if (this.state.library) {
+            this.state.library.destroy();
+        }
+    }
 
-	loadCanvas(canvas: HTMLCanvasElement) {
-		if (canvas) {
-			this.setState(
-				{
-					canvas
-				},
-				() => {
-					const { library } = this.state;
-					if (!library) {
-						return;
-					}
-					library.loadCanvas(canvas);
-					library.start();
-				}
-			);
-		}
-	}
+    loadCanvas(canvas: HTMLCanvasElement) {
+        if (canvas) {
+            this.setState(
+                {
+                    canvas
+                },
+                () => {
+                    const {library} = this.state;
+                    if (!library) {
+                        return;
+                    }
+                    canvas = library.canvas.element
+                }
+            );
+        }
+    }
 
-	shouldComponentUpdate(nextProps: Readonly<ParticlesProps>) {
-		return !isEqual(nextProps, this.props);
-	}
+    shouldComponentUpdate(nextProps: Readonly<ParticlesProps>) {
+        return !isEqual(nextProps, this.props);
+    }
 
-	componentDidUpdate() {
-		this.refresh(this.props);
-	}
+    componentDidUpdate() {
+        this.refresh(this.props);
+    }
 
-	forceUpdate() {
-		this.refresh(this.props);
-		super.forceUpdate();
-	}
+    forceUpdate() {
+        this.refresh(this.props);
+        super.forceUpdate();
+    }
 
-	componentDidMount() {
-		this.setState({
-			library: this.buildParticlesLibrary(this.props.params)
-		});
-	}
+    componentDidMount() {
+        this.setState({
+            library: this.buildParticlesLibrary(this.props.id, this.props.params)
+        });
+    }
 
-	componentWillUnmount() {
-		this.destroy();
-		this.setState({
-			library: undefined
-		});
-	}
+    componentWillUnmount() {
+        this.destroy();
+        this.setState({
+            library: undefined
+        });
+    }
 
-	render() {
-		let { width, height, className, canvasClassName } = this.props;
-		return (
-			<div className={className}>
-				<canvas
-					ref={this.loadCanvas}
-					className={canvasClassName}
-					style={{
-						...this.props.style,
-						width,
-						height
-					}}
-				/>
-			</div>
-		);
-	}
+    render() {
+        let {width, height, className, canvasClassName, id} = this.props;
+        return (
+            <div className={className} id={id}>
+                <canvas
+                    ref={this.loadCanvas}
+                    className={canvasClassName}
+                    style={{
+                        ...this.props.style,
+                        width,
+                        height
+                    }}
+                />
+            </div>
+        );
+    }
 }

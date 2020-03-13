@@ -32,7 +32,9 @@
     "webpack-node-externals": "^1.5.4"
   },
   "dependencies": {
-    "lodash": "^4.17.11"
+    "lodash": "^4.17.11",
+    "tsparticles": "^1.9.2",
+    "tsyringe": "^4.1.0"
   },
   "peerDependencies": {
     "react": "^16.0.0"
