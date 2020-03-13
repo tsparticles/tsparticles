@@ -117,6 +117,20 @@ export class Container {
         window.cancelAnimationFrame(handle);
     }
 
+    public play(): void {
+        this.drawAnimationFrame = Container.requestFrame((t) => this.update(t));
+    }
+
+    public pause(): void {
+        if (this.drawAnimationFrame !== undefined) {
+            Container.cancelAnimation(this.drawAnimationFrame);
+        }
+    }
+
+    public update(timestamp?: DOMHighResTimeStamp): void {
+        this.drawer.draw(timestamp ?? 0);
+    }
+
     /* ---------- tsParticles functions - vendors ------------ */
 
     public densityAutoParticles(): void {
@@ -146,9 +160,7 @@ export class Container {
     }
 
     public destroy(): void {
-        if (this.drawAnimationFrame !== undefined) {
-            cancelAnimationFrame(this.drawAnimationFrame);
-        }
+        this.pause();
 
         this.retina.reset();
         this.canvas.element.remove();
@@ -186,13 +198,11 @@ export class Container {
 
     public async refresh(): Promise<void> {
         /* init all */
-        if (this.checkAnimationFrame) {
-            Container.cancelAnimation(this.checkAnimationFrame);
-        }
+        //if (this.checkAnimationFrame) {
+        //    Container.cancelAnimation(this.checkAnimationFrame);
+        //}
 
-        if (this.drawAnimationFrame) {
-            Container.cancelAnimation(this.drawAnimationFrame);
-        }
+        this.pause();
 
         this.images = [];
         this.particles.clear();
@@ -212,8 +222,6 @@ export class Container {
         if (this.options.polygon.url) {
             this.polygon.raw = await this.polygon.parseSvgPathToPolygon(this.options.polygon.url);
         }
-
-        this.lastFrameTime = performance.now();
 
         if (this.options.particles.shape.type === ShapeType.image) {
             if (this.options.particles.shape.image instanceof Array) {
@@ -255,21 +263,20 @@ export class Container {
         if (document.hidden) {
             this.pageHidden = true;
 
-            if (this.drawAnimationFrame) {
-                Container.cancelAnimation(this.drawAnimationFrame);
-            }
+            this.pause();
         } else {
             this.pageHidden = false;
             this.lastFrameTime = performance.now();
-            this.drawer.draw(0);
+
+            this.update();
         }
     }
 
     private checkBeforeDraw(): void {
         if (this.options.particles.shape.type === ShapeType.image) {
-            if (this.checkAnimationFrame) {
-                Container.cancelAnimation(this.checkAnimationFrame);
-            }
+            //if (this.checkAnimationFrame) {
+            //    Container.cancelAnimation(this.checkAnimationFrame);
+            //}
 
             if (this.images.every((img) => img.error)) {
                 return;
@@ -277,6 +284,7 @@ export class Container {
         }
 
         this.init();
-        this.drawer.draw(0);
+        this.lastFrameTime = performance.now();
+        this.update();
     }
 }
