@@ -5,7 +5,13 @@ import {IOptionLoader} from "../IOptionLoader";
 
 export interface IMove extends IOptionLoader<IMove> {
     attract: IAttract;
+
+    /**
+     * @deprecated use the new collisions instead
+     */
     bounce: boolean;
+
+    collisions: boolean;
     direction: MoveDirection;
     enable: boolean;
 

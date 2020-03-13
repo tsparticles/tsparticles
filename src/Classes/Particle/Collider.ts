@@ -2,7 +2,7 @@ import {Container} from "../Container";
 import {Particle} from "../Particle";
 import {Utils} from "../Utils/Utils";
 
-export class Bouncer {
+export class Collider {
     private readonly container: Container;
     private readonly particle: Particle;
 
@@ -11,7 +11,7 @@ export class Bouncer {
         this.particle = particle;
     }
 
-    public bounce(p2: Particle): void {
+    public collide(p2: Particle): void {
         const p1 = this.particle;
 
         if (p1 === p2) {

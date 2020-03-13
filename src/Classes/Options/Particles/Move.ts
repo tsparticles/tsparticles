@@ -9,6 +9,26 @@ import {Utils} from "../../Utils/Utils";
 export class Move implements IMove {
     /**
      *
+     * @deprecated this property is obsolete, please use the new collisions
+     */
+    get bounce(): boolean {
+        Messages.deprecated("particles.move.bounce", "particles.move.collisions");
+
+        return this.collisions;
+    }
+
+    /**
+     *
+     * @deprecated this property is obsolete, please use the new collisions
+     */
+    set bounce(value: boolean) {
+        Messages.deprecated("particles.move.collisions", "particles.move.collisions");
+
+        this.collisions = value;
+    }
+
+    /**
+     *
      * @deprecated this property is obsolete, please use the new outMode
      */
     public get out_mode(): OutMode {
@@ -29,7 +49,7 @@ export class Move implements IMove {
     }
 
     public attract: IAttract;
-    public bounce: boolean;
+    public collisions: boolean;
     public direction: MoveDirection;
     public enable: boolean;
     public outMode: OutMode;
@@ -39,7 +59,7 @@ export class Move implements IMove {
 
     constructor() {
         this.attract = new Attract();
-        this.bounce = false;
+        this.collisions = false;
         this.direction = MoveDirection.none;
         this.enable = true;
         this.outMode = OutMode.out;
@@ -51,6 +71,10 @@ export class Move implements IMove {
     public load(data: IMove): void {
         if (Utils.hasData(data)) {
             this.attract.load(data.attract);
+
+            if (Utils.hasData(data.collisions)) {
+                this.collisions = data.collisions;
+            }
 
             if (Utils.hasData(data.bounce)) {
                 this.bounce = data.bounce;

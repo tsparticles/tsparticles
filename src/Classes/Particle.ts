@@ -106,7 +106,7 @@ export class Particle {
         };
 
         /* check position - avoid overlap */
-        if (options.particles.move.bounce) {
+        if (options.particles.move.collisions) {
             this.checkOverlap(position);
         }
 
