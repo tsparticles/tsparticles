@@ -57,14 +57,8 @@ export class ShapeUtils {
 
                 context.font = `${style} ${weight} ${size}px ${font}`;
 
-                if (text) {
-                    const pos = {
-                        x: -radius / 2,
-                        y: radius / 2,
-                    };
+                this.drawTextShape(context, text, radius, fill);
 
-                    this.drawTextShape(context, text, pos, fill);
-                }
                 break;
 
             case ShapeType.image:
@@ -157,8 +151,17 @@ export class ShapeUtils {
     }
 
     private static drawTextShape(context: CanvasRenderingContext2D,
-                                 text: string,
-                                 pos: ICoordinates, fill: boolean): void {
+                                 text: string | undefined,
+                                 radius: number, fill: boolean): void {
+        if (text === undefined) {
+            return;
+        }
+
+        const pos = {
+            x: -radius / 2,
+            y: radius / 2,
+        };
+
         if (fill) {
             context.fillText(text, pos.x, pos.y);
         } else {
