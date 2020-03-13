@@ -91,7 +91,7 @@ export class Events implements IEvents {
             }
 
             if (Utils.hasData(data.onclick)) {
-                data.onclick.load(data.onclick);
+                this.onclick.load(data.onclick);
             }
 
             if (Utils.hasData(data.onDiv)) {
@@ -99,7 +99,7 @@ export class Events implements IEvents {
             }
 
             if (Utils.hasData(data.ondiv)) {
-                data.ondiv.load(data.ondiv);
+                this.ondiv.load(data.ondiv);
             }
 
             if (Utils.hasData(data.onHover)) {
@@ -107,7 +107,7 @@ export class Events implements IEvents {
             }
 
             if (Utils.hasData(data.onhover)) {
-                data.onhover.load(data.onhover);
+                this.onhover.load(data.onhover);
             }
 
             if (Utils.hasData(data.resize)) {

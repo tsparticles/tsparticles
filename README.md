@@ -124,44 +124,50 @@ tsParticles.setOnClickHandler((e) => { /* custom on click handler */ });
 
 #### Characters as particles
 
-[![Particles demo](https://media.giphy.com/media/JsssOXz72bM6jGEZ0s/giphy.gif)](https://particles.matteobruni.it/#chars)
+[![Particles chars demo](https://media.giphy.com/media/JsssOXz72bM6jGEZ0s/giphy.gif)](https://particles.matteobruni.it/#chars)
 
 ---
 
 #### Mouse hover connections
 
 
-[![Particles demo](https://media.giphy.com/media/XzvZThpVbxHxMYz5xt/giphy.gif)](https://particles.matteobruni.it/#connect)
+[![Particles mouse connections demo](https://media.giphy.com/media/XzvZThpVbxHxMYz5xt/giphy.gif)](https://particles.matteobruni.it/#connect)
 
 ---
 
 #### Polygon mask
 
-[![tsParticles demo](https://media.giphy.com/media/lNRfiSgaMFbL4FMhW6/giphy.gif)](https://particles.matteobruni.it/#mask)
+[![tsParticles Polygon Mask demo](https://media.giphy.com/media/lNRfiSgaMFbL4FMhW6/giphy.gif)](https://particles.matteobruni.it/#mask)
 
 ---
 
 #### Animated stars
 
-[![Particles demo](https://media.giphy.com/media/cLqGsnh7FKRVMgPIWE/giphy.gif)](https://particles.matteobruni.it/#nasa)
+[![Particles NASA demo](https://media.giphy.com/media/cLqGsnh7FKRVMgPIWE/giphy.gif)](https://particles.matteobruni.it/#nasa)
 
 ---
 
 #### Nyan cat flying on scrolling stars
 
-[![Particles demo](https://media.giphy.com/media/LpX2oNc9ZMgIhIXQL9/giphy.gif)](https://particles.matteobruni.it/#nyancat2)
+[![Particles Nyan Cat demo](https://media.giphy.com/media/LpX2oNc9ZMgIhIXQL9/giphy.gif)](https://particles.matteobruni.it/#nyancat2)
 
 ---
 
 #### Snow particles
 
-[![tsParticles demo](https://media.giphy.com/media/gihwUFbmiubbkdzEMX/giphy.gif)](https://particles.matteobruni.it/#snow)
+[![tsParticles Snow demo](https://media.giphy.com/media/gihwUFbmiubbkdzEMX/giphy.gif)](https://particles.matteobruni.it/#snow)
+
+---
+
+#### Background Mask particles
+
+[![tsParticles Background Mask demo](https://media.giphy.com/media/dWraWgqInWFGWiOyRu/giphy.gif)](https://particles.matteobruni.it/#background)
 
 ---
 
 #### COVID-19 SARS-CoV-2 particles
 
-[![tsParticles demo](https://media.giphy.com/media/fsVN1ZHksgBIXNIbr1/giphy.gif)](https://particles.matteobruni.it/#virus)
+[![tsParticles COVID-19 demo](https://media.giphy.com/media/fsVN1ZHksgBIXNIbr1/giphy.gif)](https://particles.matteobruni.it/#virus)
 
 *Don't click! DON'T CLICK! OH NO IT'S SPREADING!!!!*
 
@@ -205,6 +211,16 @@ tsParticles.setOnClickHandler((e) => { /* custom on click handler */ });
         "enable": false,
         "speed": 1,
         "minimumValue": 0.1,
+        "sync": false
+      }
+    },
+    "rotate": {
+      "value": 0,
+      "random": true,
+      "direction": "clockwise",
+      "animation": {
+        "enable": true,
+        "speed": 5,
         "sync": false
       }
     },
@@ -288,6 +304,16 @@ tsParticles.setOnClickHandler((e) => { /* custom on click handler */ });
   },
   "detectRetina": true,
   "fpsLimit": 60,
+  "backgroundMask": {
+    "enable": true,
+    "cover": {
+      "value": {
+        "r": 255,
+        "g": 255,
+        "b": 255
+      }
+    }
+  },
   "polygon": {
     "debug": {
       "enable": true,
@@ -327,6 +353,12 @@ key | option type / notes | example
 `particles.opacity.animation.speed` | number | `3`
 `particles.opacity.animation.minimumValue` | number (0 to 1) | `0.25`
 `particles.opacity.animation.sync` | boolean | `true` / `false`
+`particles.rotate.value` | number (angle in degrees) | `45`
+`particles.rotate.random` | boolean | `true` / `false`
+`particles.rotate.direction` | string | `clockwise` / `counterclockwise`
+`particles.rotate.animation.enable` | boolean | `true` / `false`
+`particles.rotate.animation.speed` | number | 5
+`particles.rotate.animation.sync` | boolean | `true` / `false`
 `particles.size.value` | number | `20`
 `particles.size.random` | boolean | `true` / `false` 
 `particles.size.animation.enable` | boolean | `true` / `false` 
@@ -371,6 +403,8 @@ key | option type / notes | example
 `interactivity.events.modes.remove.quantity` | number | `4`
 `detectRetina` | boolean | `true` / `false`
 `fpsLimit` | number | `60`
+`backgroundMask.enable` | boolean | `true` / `false`
+`backgroundMask.cover.value` | HEX (string) <br /> RGB (object) <br /> HSL (object) <br /> random (string) | `"#0d47a1"` <br /> `{r:182, g:25, b:36}` <br />  `{h:356, s:76, l:41}` <br /> `"random"`
 `polygon.draw.enable` | boolean | `true` / `false`
 `polygon.draw.lineWidth` | number | `0.5`
 `polygon.draw.lineColor` | HEX (string) | `#ffffff`

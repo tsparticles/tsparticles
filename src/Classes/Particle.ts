@@ -20,13 +20,16 @@ import {IOptions} from "../Interfaces/Options/IOptions";
 import {InteractionManager} from "./Particle/InteractionManager";
 import {HoverMode} from "../Enums/Modes/HoverMode";
 import {ClickMode} from "../Enums/Modes/ClickMode";
+import {RotateDirection} from "../Enums/RotateDirection";
 
 /**
  * The single particle object
  */
 export class Particle {
-    public radius: number;
     public angle: number;
+    public rotateDirection: RotateDirection;
+    public radius: number;
+    public text?: string;
     public readonly size: ISize;
     public readonly initialPosition?: ICoordinates;
     public readonly position: ICoordinates;
@@ -55,7 +58,20 @@ export class Particle {
 
         /* size */
         this.size = {};
-        this.angle = options.particles.rotate.random ? Math.random() * 2 * Math.PI : options.particles.rotate.value;
+        this.angle = options.particles.rotate.random ? Math.random() * 360 : options.particles.rotate.value;
+
+        if (options.particles.rotate.direction == RotateDirection.random) {
+            const index = Math.floor(Math.random() * 2);
+
+            if (index > 0) {
+                this.rotateDirection = RotateDirection.counterClockwise;
+            } else {
+                this.rotateDirection = RotateDirection.clockwise;
+            }
+        } else {
+            this.rotateDirection = options.particles.rotate.direction;
+        }
+
         this.radius = (options.particles.size.random ? Math.random() : 1) * container.retina.sizeValue;
 
         if (options.particles.size.animation.enable) {
@@ -69,7 +85,7 @@ export class Particle {
 
         if (options.particles.rotate.animation.enable) {
             if (!options.particles.rotate.animation.sync) {
-                this.angle = Math.random() * 2 * Math.PI;
+                this.angle = Math.random() * 360;
             }
         }
 
@@ -144,10 +160,20 @@ export class Particle {
             }
         }
 
+        if (this.shape === ShapeType.char || this.shape === ShapeType.character) {
+            const value = options.particles.shape.character.value;
+
+            if (typeof value === "string") {
+                this.text = value;
+            } else {
+                this.text = value[Math.floor(Math.random() * value.length)]
+            }
+        }
+
         this.updater = new Updater(this.container, this);
         this.bubbler = new Bubbler(this.container, this);
         this.repulser = new Repulser(this.container, this);
-        this.drawer = new Drawer(this.container, this, this.bubbler);
+        this.drawer = new Drawer(this.container, this);
         this.grabber = new Grabber(this.container, this);
         this.connecter = new Connecter(this.container, this);
         this.interactionManager = new InteractionManager(this.container, this);

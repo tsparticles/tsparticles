@@ -1,6 +1,5 @@
 import {Particle} from "../Particle";
 import {Utils} from "../Utils/Utils";
-import {IRgb} from "../../Interfaces/IRgb";
 import {Container} from "../Container";
 
 export class Linker {
@@ -52,57 +51,7 @@ export class Linker {
                     }
                 }
 
-                if (!container.canvas.context) {
-                    return;
-                }
-
-                const ctx = container.canvas.context;
-
-                let colorLine: IRgb | undefined;
-
-                /*
-                 * particles connecting line color:
-                 *
-                 *  random: in blink mode : in every frame refresh the color would change
-                 *          hence resulting blinking of lines
-                 *  mid: in consent mode: sample particles color and get a mid level color
-                 *                        from those two for the connecting line color
-                 */
-
-                if (container.particles.lineLinkedColor === "random") {
-                    colorLine = Utils.getRandomColorRGBA();
-                } else if (container.particles.lineLinkedColor == "mid" && particle.color && p2.color) {
-                    const sourceColor = particle.color;
-                    const destColor = p2.color;
-
-                    colorLine = {
-                        b: Math.floor(Utils.mixComponents(sourceColor.b, destColor.b, particle.radius, p2.radius)),
-                        g: Math.floor(Utils.mixComponents(sourceColor.g, destColor.g, particle.radius, p2.radius)),
-                        r: Math.floor(Utils.mixComponents(sourceColor.r, destColor.r, particle.radius, p2.radius)),
-                    };
-                } else {
-                    colorLine = container.particles.lineLinkedColor as IRgb;
-                }
-
-                ctx.save();
-
-                if (options.backgroundMask.enable) {
-                    ctx.globalCompositeOperation = 'destination-out';
-                }
-
-                if (colorLine) {
-                    ctx.strokeStyle = `rgba(${colorLine.r},${colorLine.g},${colorLine.b},${opacityLine})`;
-                }
-
-                ctx.lineWidth = container.retina.lineLinkedWidth;
-                // container.canvas.ctx.lineCap = "round"; /* performance issue */
-                /* path */
-                ctx.beginPath();
-                ctx.moveTo(x1, y1);
-                ctx.lineTo(x2, y2);
-                ctx.stroke();
-                ctx.closePath();
-                ctx.restore();
+                container.canvas.drawLinkedLine(particle, p2, {x: x1, y: y1}, {x: x2, y: y2}, opacityLine);
             }
         }
     }

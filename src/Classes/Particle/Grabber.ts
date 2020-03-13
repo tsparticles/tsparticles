@@ -3,7 +3,6 @@
 import {Container} from "../Container";
 import {Particle} from "../Particle";
 import {Utils} from "../Utils/Utils";
-import {IRgb} from "../../Interfaces/IRgb";
 
 /**
  * Particle grab manager
@@ -36,35 +35,8 @@ export class Grabber {
 
                 if (opacityLine > 0) {
                     /* style */
-                    const optColor = options.particles.lineLinked.color;
-                    let lineColor = container.particles.lineLinkedColor || Utils.hexToRgb(optColor);
 
-                    if (lineColor == "random") {
-                        lineColor = Utils.getRandomColorRGBA();
-                    }
-
-                    container.particles.lineLinkedColor = lineColor;
-
-                    let colorLine: IRgb = {r: 127, g: 127, b: 127};
-                    const ctx = container.canvas.context;
-
-                    if (ctx) {
-                        if (container.particles.lineLinkedColor == "random") {
-                            colorLine = Utils.getRandomColorRGBA();
-                        } else {
-                            colorLine = container.particles.lineLinkedColor as IRgb || colorLine;
-                        }
-
-                        ctx.strokeStyle = `rgba(${colorLine.r},${colorLine.g},${colorLine.b},${opacityLine})`;
-                        ctx.lineWidth = container.retina.lineLinkedWidth;
-                        // container.canvas.ctx.lineCap = "round"; /* performance issue */
-                        /* path */
-                        ctx.beginPath();
-                        ctx.moveTo(particle.position.x + particle.offset.x, particle.position.y + particle.offset.y);
-                        ctx.lineTo(mousePos.x, mousePos.y);
-                        ctx.stroke();
-                        ctx.closePath();
-                    }
+                    container.canvas.drawGrabLine(particle, opacityLine, mousePos);
                 }
             }
         }
