@@ -54,6 +54,11 @@ Documentation and Development references here: <https://particles.matteobruni.it
 npm install tsparticles
 ```
 
+### ***yarn***
+```shell
+yarn add tsparticles
+```
+
 ### ***NuGet***
 
 [![Nuget](https://img.shields.io/nuget/v/tsParticles)](https://www.nuget.org/packages/tsParticles/)
