@@ -86,7 +86,7 @@ export class Loader {
             return;
         }
 
-        const newItem = new Container(tagId, canvasEl, params);
+        const newItem = new Container(tagId, params);
         const dom = Loader.dom();
         const idx = dom.findIndex((v) => v.id === tagId);
 

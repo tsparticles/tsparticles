@@ -1,5 +1,6 @@
 "use strict";
 
+import {Constants} from "./Utils/Constants";
 import {Container} from "./Container";
 import {PolygonMaskType} from "../Enums/PolygonMaskType";
 import {IDimension} from "../Interfaces/IDimension";
@@ -39,14 +40,16 @@ export class Canvas {
     /**
      * Constructor of canvas manager
      * @param container the parent container
-     * @param canvas the canvas to use
+     * @param tagId the particles container element id
      */
-    constructor(container: Container, canvas: HTMLCanvasElement) {
+    constructor(container: Container) {
+        const canvasEl = document.querySelector(`#${container.id} > .${Constants.canvasClass}`) as HTMLCanvasElement;
+
         this.container = container;
-        this.element = canvas;
+        this.element = canvasEl;
         this.dimension = {
-            height: canvas.offsetHeight,
-            width: canvas.offsetWidth,
+            height: canvasEl.offsetHeight,
+            width: canvasEl.offsetWidth,
         };
         this.pxRatio = 1;
         this.context = this.element.getContext("2d");

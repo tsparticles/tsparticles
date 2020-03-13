@@ -39,14 +39,14 @@ export class Container {
     private drawAnimationFrame?: number;
     private readonly eventListeners: EventListeners;
 
-    constructor(id: string, canvas: HTMLCanvasElement, params?: IOptions) {
+    constructor(id: string, params?: IOptions) {
         this.id = id;
         this.paused = true;
         this.sourceOptions = params;
         this.lastFrameTime = 0;
         this.pageHidden = false;
         this.retina = new Retina(this);
-        this.canvas = new Canvas(this, canvas);
+        this.canvas = new Canvas(this);
         this.particles = new Particles(this);
         this.polygon = new PolygonMask(this);
         this.drawer = new Drawer(this);
