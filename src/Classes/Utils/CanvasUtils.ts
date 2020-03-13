@@ -15,14 +15,14 @@ export class CanvasUtils {
         context.fillRect(0, 0, dimension.width, dimension.height);
     }
 
-    public static clear(context: CanvasRenderingContext2D, dimension: IDimension) {
+    public static clear(context: CanvasRenderingContext2D, dimension: IDimension): void {
         context.clearRect(0, 0, dimension.width, dimension.height);
     }
 
     public static drawPolygonMask(context: CanvasRenderingContext2D,
                                   rawData: ICoordinates[],
                                   strokeStyle: string,
-                                  lineWidth: number) {
+                                  lineWidth: number): void {
         context.beginPath();
         context.moveTo(rawData[0].x, rawData[0].y);
 
@@ -42,7 +42,7 @@ export class CanvasUtils {
                                  end: ICoordinates,
                                  backgroundMask: boolean,
                                  colorLine: IRgb,
-                                 opacity: number) {
+                                 opacity: number): void {
         context.save();
 
         if (backgroundMask) {
@@ -68,7 +68,7 @@ export class CanvasUtils {
                                   width: number,
                                   lineStyle: CanvasGradient,
                                   begin: ICoordinates,
-                                  end: ICoordinates) {
+                                  end: ICoordinates): void {
         context.beginPath();
         context.lineWidth = width;
         context.strokeStyle = lineStyle;
@@ -104,7 +104,7 @@ export class CanvasUtils {
                                begin: ICoordinates,
                                end: ICoordinates,
                                colorLine: IRgb,
-                               opacity: number) {
+                               opacity: number): void {
         context.strokeStyle = `rgba(${colorLine.r},${colorLine.g},${colorLine.b},${opacity})`;
         context.lineWidth = width;
         context.beginPath();
@@ -119,7 +119,7 @@ export class CanvasUtils {
                                colorValue: string,
                                backgroundMask: boolean,
                                radius: number,
-                               stroke: IStroke) {
+                               stroke: IStroke): void {
         context.save();
 
         // TODO: Performance issues, the canvas shadow is really slow
@@ -240,7 +240,7 @@ export class CanvasUtils {
         }
     }
 
-    private static drawTriangleShape(context: CanvasRenderingContext2D, radius: number) {
+    private static drawTriangleShape(context: CanvasRenderingContext2D, radius: number): void {
         const start: ICoordinates = {
             x: -radius,
             y: radius / 1.66,
@@ -257,7 +257,7 @@ export class CanvasUtils {
         CanvasUtils.drawGenericPolygonShape(context, start, side);
     }
 
-    private static drawPolygonShape(context: CanvasRenderingContext2D, radius: number, sides: number) {
+    private static drawPolygonShape(context: CanvasRenderingContext2D, radius: number, sides: number): void {
         const start: ICoordinates = {
             x: -radius / (sides / 3.5),
             y: -radius / (2.66 / 3.5),
@@ -273,7 +273,7 @@ export class CanvasUtils {
         CanvasUtils.drawGenericPolygonShape(context, start, side);
     }
 
-    private static drawStarShape(context: CanvasRenderingContext2D, radius: number, sides: number) {
+    private static drawStarShape(context: CanvasRenderingContext2D, radius: number, sides: number): void {
         const start: ICoordinates = {
             x: -radius * 2 / (sides / 4),
             y: -radius / (2 * 2.66 / 3.5),
@@ -289,7 +289,7 @@ export class CanvasUtils {
         CanvasUtils.drawGenericPolygonShape(context, start, side);
     }
 
-    private static drawLineShape(context: CanvasRenderingContext2D, length: number, stroke: IStroke) {
+    private static drawLineShape(context: CanvasRenderingContext2D, length: number, stroke: IStroke): void {
         context.moveTo(0, -length / 2);
         context.lineTo(0, length / 2);
         context.strokeStyle = stroke.color;
@@ -297,15 +297,15 @@ export class CanvasUtils {
         context.stroke();
     }
 
-    private static drawCircleShape(context: CanvasRenderingContext2D, radius: number, center: ICoordinates) {
+    private static drawCircleShape(context: CanvasRenderingContext2D, radius: number, center: ICoordinates): void {
         context.arc(center.x, center.y, radius, 0, Math.PI * 2, false);
     }
 
-    private static drawSquareShape(context: CanvasRenderingContext2D, side: number) {
+    private static drawSquareShape(context: CanvasRenderingContext2D, side: number): void {
         context.rect(-side, -side, side * 2, side * 2);
     }
 
-    private static drawHeartShape(context: CanvasRenderingContext2D, radius: number) {
+    private static drawHeartShape(context: CanvasRenderingContext2D, radius: number): void {
         const x = -radius / 2;
         const y = -radius / 2;
 
@@ -320,7 +320,9 @@ export class CanvasUtils {
         context.quadraticCurveTo(x, y + radius / 2, x, y + radius / 4);
     }
 
-    private static drawTextShape(context: CanvasRenderingContext2D, text: string, pos: ICoordinates, fill: boolean) {
+    private static drawTextShape(context: CanvasRenderingContext2D,
+                                 text: string,
+                                 pos: ICoordinates, fill: boolean): void {
         if (fill) {
             context.fillText(text, pos.x, pos.y);
         } else {

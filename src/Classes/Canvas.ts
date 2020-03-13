@@ -141,12 +141,6 @@ export class Canvas {
         }
     }
 
-    private paintBase(baseColor: string = "rgba(255, 255, 255, 0)"): void {
-        if (this.context) {
-            CanvasUtils.paintBase(this.context, this.dimension, baseColor);
-        }
-    }
-
     /**
      * Clears the canvas content
      */
@@ -293,7 +287,17 @@ export class Canvas {
             return;
         }
 
-        CanvasUtils.drawParticle(this.context, particle, colorValue, options.backgroundMask.enable, radius, options.particles.shape.stroke);
+        CanvasUtils.drawParticle(this.context,
+            particle,
+            colorValue,
+            options.backgroundMask.enable,
+            radius, options.particles.shape.stroke);
+    }
+
+    private paintBase(baseColor: string = "rgba(255, 255, 255, 0)"): void {
+        if (this.context) {
+            CanvasUtils.paintBase(this.context, this.dimension, baseColor);
+        }
     }
 
     private lineStyle(p1: Particle, p2: Particle): CanvasGradient | undefined {

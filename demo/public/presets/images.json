@@ -110,6 +110,7 @@
         "speed": 5,
         "sync": false
       },
+      "direction": "random",
       "random": true,
       "value": 0
     },

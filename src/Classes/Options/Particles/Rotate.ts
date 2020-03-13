@@ -22,11 +22,15 @@ export class Rotate implements IRotate {
             this.animation.load(data.animation);
 
             if (Utils.hasData(data.random)) {
-                this.random = data.random
+                this.random = data.random;
+            }
+
+            if (Utils.hasData(data.direction)) {
+                this.direction = data.direction;
             }
 
             if (Utils.hasData(data.random)) {
-                this.value = data.value
+                this.value = data.value;
             }
         }
     }

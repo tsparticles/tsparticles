@@ -107,7 +107,7 @@ export class Updater {
         const particle = this.particle;
 
         if (options.particles.rotate.animation.enable) {
-            switch (options.particles.rotate.direction) {
+            switch (particle.rotateDirection) {
                 case RotateDirection.clockwise:
                     particle.angle += options.particles.rotate.animation.speed * Math.PI / 18;
 

@@ -20,36 +20,6 @@ import {Drawer} from "./Drawer";
  * The object loaded into an HTML element, it'll contain options loaded and all data to let everything working
  */
 export class Container {
-    /**
-     * @deprecated this property is obsolete, please use the new drawAnimationFrame
-     */
-    public get drawAnimFrame(): number | undefined {
-        return this.drawAnimationFrame;
-    }
-
-    /**
-     * @deprecated this property is obsolete, please use the new drawAnimationFrame
-     * @param value
-     */
-    public set drawAnimFrame(value: number | undefined) {
-        this.drawAnimationFrame = value;
-    }
-
-    /**
-     * @deprecated this property is obsolete, please use the new checkAnimationFrame
-     */
-    public get checkAnimFrame(): number | undefined {
-        return this.checkAnimationFrame;
-    }
-
-    /**
-     * @deprecated this property is obsolete, please use the new checkAnimationFrame
-     * @param value
-     */
-    public set checkAnimFrame(value: number | undefined) {
-        this.checkAnimationFrame = value;
-    }
-
     public readonly sourceOptions: IOptions;
     public interactivity: IContainerInteractivity;
     public options: IOptions;
@@ -57,8 +27,6 @@ export class Container {
     public canvas: Canvas;
     public particles: Particles;
     public polygon: PolygonMask;
-    public checkAnimationFrame?: number;
-    public drawAnimationFrame?: number;
     public bubble: IBubble;
     public repulse: IRepulse;
     public images: IImage[];
@@ -66,7 +34,8 @@ export class Container {
     public pageHidden: boolean;
     public drawer: Drawer;
 
-    private readonly _eventListeners: EventListeners;
+    private drawAnimationFrame?: number;
+    private readonly eventListeners: EventListeners;
 
     constructor(tagId: string, params: IOptions) {
         this.sourceOptions = params;
@@ -93,8 +62,8 @@ export class Container {
         }
 
         /* ---------- tsParticles - start ------------ */
-        this._eventListeners = new EventListeners(this);
-        this._eventListeners.addEventsListeners();
+        this.eventListeners = new EventListeners(this);
+        this.eventListeners.addEventsListeners();
 
         this.start().then(() => {
             /*

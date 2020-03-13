@@ -20,12 +20,14 @@ import {IOptions} from "../Interfaces/Options/IOptions";
 import {InteractionManager} from "./Particle/InteractionManager";
 import {HoverMode} from "../Enums/Modes/HoverMode";
 import {ClickMode} from "../Enums/Modes/ClickMode";
+import {RotateDirection} from "../Enums/RotateDirection";
 
 /**
  * The single particle object
  */
 export class Particle {
     public angle: number;
+    public rotateDirection: RotateDirection;
     public radius: number;
     public text?: string;
     public readonly size: ISize;
@@ -57,6 +59,19 @@ export class Particle {
         /* size */
         this.size = {};
         this.angle = options.particles.rotate.random ? Math.random() * 360 : options.particles.rotate.value;
+
+        if (options.particles.rotate.direction == RotateDirection.random) {
+            const index = Math.floor(Math.random() * 2);
+
+            if (index > 0) {
+                this.rotateDirection = RotateDirection.counterClockwise;
+            } else {
+                this.rotateDirection = RotateDirection.clockwise;
+            }
+        } else {
+            this.rotateDirection = options.particles.rotate.direction;
+        }
+
         this.radius = (options.particles.size.random ? Math.random() : 1) * container.retina.sizeValue;
 
         if (options.particles.size.animation.enable) {
