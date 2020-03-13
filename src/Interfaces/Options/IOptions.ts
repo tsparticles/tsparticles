@@ -48,4 +48,6 @@ export interface IOptions extends IOptionLoader<IOptions> {
     detectRetina: boolean;
 
     backgroundMask: IBackgroundMask;
+
+    pauseOnBlur: boolean;
 }

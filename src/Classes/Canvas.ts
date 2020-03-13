@@ -147,9 +147,13 @@ export class Canvas {
     public clear(): void {
         const container = this.container;
         const options = container.options;
+        const trail = options.particles.move.trail;
+        const fillColor = Utils.hexToRgb(trail.fillColor);
 
         if (options.backgroundMask.enable) {
             this.paint();
+        } else if (trail.enable && trail.length > 0 && fillColor) {
+            this.paintBase(`rgba(${fillColor.r}, ${fillColor.g}, ${fillColor.b},${1 / trail.length}`);
         } else {
             if (this.context) {
                 CanvasUtils.clear(this.context, this.dimension);
@@ -294,7 +298,7 @@ export class Canvas {
             radius, options.particles.shape.stroke);
     }
 
-    private paintBase(baseColor: string = "rgba(255, 255, 255, 0)"): void {
+    private paintBase(baseColor?: string): void {
         if (this.context) {
             CanvasUtils.paintBase(this.context, this.dimension, baseColor);
         }

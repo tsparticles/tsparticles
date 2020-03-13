@@ -34,10 +34,12 @@ export class Container {
     public pageHidden: boolean;
     public drawer: Drawer;
 
+    private paused: boolean;
     private drawAnimationFrame?: number;
     private readonly eventListeners: EventListeners;
 
     constructor(tagId: string, params: IOptions) {
+        this.paused = true;
         this.sourceOptions = params;
         this.lastFrameTime = 0;
         this.pageHidden = false;
@@ -87,17 +89,25 @@ export class Container {
     }
 
     public play(): void {
+        if (this.paused) {
+            this.lastFrameTime = performance.now();
+            this.paused = false;
+        }
+
         this.drawAnimationFrame = Container.requestFrame((t) => this.update(t));
     }
 
     public pause(): void {
         if (this.drawAnimationFrame !== undefined) {
             Container.cancelAnimation(this.drawAnimationFrame);
+
+            this.drawAnimationFrame = undefined;
+            this.paused = true;
         }
     }
 
-    public update(timestamp?: DOMHighResTimeStamp): void {
-        this.drawer.draw(timestamp ?? 0);
+    private update(timestamp: DOMHighResTimeStamp): void {
+        this.drawer.draw(timestamp);
     }
 
     /* ---------- tsParticles functions - vendors ------------ */
@@ -229,15 +239,18 @@ export class Container {
     }
 
     private handleVisibilityChange(): void {
+        if (!this.options.pauseOnBlur) {
+            return;
+        }
+
         if (document.hidden) {
             this.pageHidden = true;
 
             this.pause();
         } else {
             this.pageHidden = false;
-            this.lastFrameTime = performance.now();
 
-            this.update();
+            this.play();
         }
     }
 
@@ -253,7 +266,6 @@ export class Container {
         }
 
         this.init();
-        this.lastFrameTime = performance.now();
-        this.update();
+        this.play();
     }
 }

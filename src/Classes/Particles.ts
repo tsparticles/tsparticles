@@ -43,7 +43,7 @@ export class Particles {
 
         this.interactionsEnabled = options.particles.lineLinked.enable ||
             options.particles.move.attract.enable ||
-            options.particles.move.bounce;
+            options.particles.move.collisions;
     }
 
     public update(delta: number): void {
