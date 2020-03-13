@@ -10,8 +10,8 @@ import {ISide} from "../../Interfaces/ISide";
 export class CanvasUtils {
     public static paintBase(context: CanvasRenderingContext2D,
                             dimension: IDimension,
-                            baseColor: string = "rgba(255, 255, 255, 0)"): void {
-        context.fillStyle = baseColor;
+                            baseColor?: string): void {
+        context.fillStyle = baseColor ?? "rgba(255, 255, 255, 0)";
         context.fillRect(0, 0, dimension.width, dimension.height);
     }
 

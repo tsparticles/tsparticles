@@ -15,11 +15,6 @@ import {CanvasUtils} from "./Utils/CanvasUtils";
  */
 export class Canvas {
     /**
-     * The particles canvas context
-     */
-    private readonly context: CanvasRenderingContext2D | null;
-
-    /**
      * The particles canvas
      */
     public element: HTMLCanvasElement;
@@ -40,6 +35,11 @@ export class Canvas {
      * The parent container
      */
     private readonly container: Container;
+
+    /**
+     * The particles canvas context
+     */
+    private readonly context: CanvasRenderingContext2D | null;
 
     /**
      * Constructor of canvas manager
