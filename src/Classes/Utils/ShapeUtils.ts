@@ -62,9 +62,7 @@ export class ShapeUtils {
                 break;
 
             case ShapeType.image:
-                if (particle.image && particle.image.data.obj) {
-                    this.drawImageShape(context, particle, radius);
-                }
+                this.drawImageShape(context, particle, radius);
 
                 break;
         }
