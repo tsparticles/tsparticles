@@ -1,6 +1,5 @@
 import {Particle} from "../Particle";
 import {Utils} from "../Utils/Utils";
-import {IRgb} from "../../Interfaces/IRgb";
 import {Container} from "../Container";
 
 export class Linker {

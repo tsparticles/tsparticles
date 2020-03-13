@@ -1,11 +1,7 @@
 "use strict";
 
-import {Bubbler} from "./Bubbler";
 import {Container} from "../Container";
-import {ISide} from "../../Interfaces/ISide";
-import {ICoordinates} from "../../Interfaces/ICoordinates";
 import {Particle} from "../Particle";
-import {ShapeType} from "../../Enums/ShapeType";
 
 /**
  * Particle draw manager

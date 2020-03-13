@@ -3,7 +3,6 @@
 import {Container} from "../Container";
 import {Particle} from "../Particle";
 import {Utils} from "../Utils/Utils";
-import {IRgb} from "../../Interfaces/IRgb";
 
 /**
  * Particle grab manager
