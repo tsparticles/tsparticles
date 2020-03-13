@@ -8,7 +8,9 @@ import {ShapeType} from "../../Enums/ShapeType";
 import {ISide} from "../../Interfaces/ISide";
 
 export class CanvasUtils {
-    public static paintBase(context: CanvasRenderingContext2D, dimension: IDimension, baseColor: string = "rgba(255, 255, 255, 0)"): void {
+    public static paintBase(context: CanvasRenderingContext2D,
+                            dimension: IDimension,
+                            baseColor: string = "rgba(255, 255, 255, 0)"): void {
         context.fillStyle = baseColor;
         context.fillRect(0, 0, dimension.width, dimension.height);
     }
@@ -17,7 +19,10 @@ export class CanvasUtils {
         context.clearRect(0, 0, dimension.width, dimension.height);
     }
 
-    public static drawPolygonMask(context: CanvasRenderingContext2D, rawData: ICoordinates[], strokeStyle: string, lineWidth: number) {
+    public static drawPolygonMask(context: CanvasRenderingContext2D,
+                                  rawData: ICoordinates[],
+                                  strokeStyle: string,
+                                  lineWidth: number) {
         context.beginPath();
         context.moveTo(rawData[0].x, rawData[0].y);
 
@@ -31,7 +36,13 @@ export class CanvasUtils {
         context.stroke();
     }
 
-    public static drawLineLinked(context: CanvasRenderingContext2D, width: number, begin: ICoordinates, end: ICoordinates, backgroundMask: boolean, colorLine: IRgb, opacity: number) {
+    public static drawLineLinked(context: CanvasRenderingContext2D,
+                                 width: number,
+                                 begin: ICoordinates,
+                                 end: ICoordinates,
+                                 backgroundMask: boolean,
+                                 colorLine: IRgb,
+                                 opacity: number) {
         context.save();
 
         if (backgroundMask) {
@@ -53,7 +64,11 @@ export class CanvasUtils {
         context.restore();
     }
 
-    public static drawConnectLine(context: CanvasRenderingContext2D, width: number, lineStyle: CanvasGradient, begin: ICoordinates, end: ICoordinates) {
+    public static drawConnectLine(context: CanvasRenderingContext2D,
+                                  width: number,
+                                  lineStyle: CanvasGradient,
+                                  begin: ICoordinates,
+                                  end: ICoordinates) {
         context.beginPath();
         context.lineWidth = width;
         context.strokeStyle = lineStyle;
@@ -63,7 +78,10 @@ export class CanvasUtils {
         context.closePath();
     }
 
-    public static gradient(context: CanvasRenderingContext2D, p1: Particle, p2: Particle, midColor: string): CanvasGradient | undefined {
+    public static gradient(context: CanvasRenderingContext2D,
+                           p1: Particle,
+                           p2: Particle,
+                           midColor: string): CanvasGradient | undefined {
         const gradStop = Math.floor(p2.radius / p1.radius);
 
         if (!p1.color || !p2.color) {
@@ -81,7 +99,12 @@ export class CanvasUtils {
         return grad;
     }
 
-    public static drawGrabLine(context: CanvasRenderingContext2D, width: number, begin: ICoordinates, end: ICoordinates, colorLine: IRgb, opacity: number) {
+    public static drawGrabLine(context: CanvasRenderingContext2D,
+                               width: number,
+                               begin: ICoordinates,
+                               end: ICoordinates,
+                               colorLine: IRgb,
+                               opacity: number) {
         context.strokeStyle = `rgba(${colorLine.r},${colorLine.g},${colorLine.b},${opacity})`;
         context.lineWidth = width;
         context.beginPath();
@@ -91,7 +114,12 @@ export class CanvasUtils {
         context.closePath();
     }
 
-    public static drawParticle(context: CanvasRenderingContext2D, particle: Particle, colorValue: string, backgroundMask: boolean, radius: number, stroke: IStroke) {
+    public static drawParticle(context: CanvasRenderingContext2D,
+                               particle: Particle,
+                               colorValue: string,
+                               backgroundMask: boolean,
+                               radius: number,
+                               stroke: IStroke) {
         context.save();
 
         // TODO: Performance issues, the canvas shadow is really slow
@@ -141,11 +169,16 @@ export class CanvasUtils {
         context.restore();
     }
 
-    private static drawShape(context: CanvasRenderingContext2D, particle: Particle, radius: number, stroke: IStroke): void {
+    private static drawShape(context: CanvasRenderingContext2D,
+                             particle: Particle,
+                             radius: number,
+                             stroke: IStroke): void {
         const pos = {
             x: particle.offset.x,
             y: particle.offset.y,
         };
+
+        const sides = particle.container.options.particles.shape.polygon.sides;
 
         switch (particle.shape) {
             case ShapeType.line:
@@ -166,11 +199,11 @@ export class CanvasUtils {
                 break;
 
             case ShapeType.polygon:
-                CanvasUtils.drawPolygonShape(context, radius, particle.container.options.particles.shape.polygon.sides);
+                CanvasUtils.drawPolygonShape(context, radius, sides);
                 break;
 
             case ShapeType.star:
-                CanvasUtils.drawStarShape(context, radius, particle.container.options.particles.shape.polygon.sides);
+                CanvasUtils.drawStarShape(context, radius, sides);
                 break;
 
             case ShapeType.heart:
@@ -184,16 +217,17 @@ export class CanvasUtils {
                 const size = Math.round(radius) * 2;
                 const font = particle.container.options.particles.shape.character.font;
                 const text = particle.text;
+                const fill = particle.container.options.particles.shape.character.fill;
 
                 context.font = `${style} ${weight} ${size}px ${font}`;
 
                 if (text) {
                     const pos = {
                         x: -radius / 2,
-                        y: radius / 2
+                        y: radius / 2,
                     };
 
-                    CanvasUtils.drawTextShape(context, text, pos, particle.container.options.particles.shape.character.fill);
+                    CanvasUtils.drawTextShape(context, text, pos, fill);
                 }
                 break;
 
@@ -256,7 +290,7 @@ export class CanvasUtils {
     }
 
     private static drawLineShape(context: CanvasRenderingContext2D, length: number, stroke: IStroke) {
-        context.moveTo(0, -length/2);
+        context.moveTo(0, -length / 2);
         context.lineTo(0, length / 2);
         context.strokeStyle = stroke.color;
         context.lineWidth = stroke.width;
