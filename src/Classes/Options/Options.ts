@@ -59,6 +59,7 @@ export class Options implements IOptions {
     public particles: IParticles;
     public polygon: IPolygonMask;
     public backgroundMask: IBackgroundMask;
+    public pauseOnBlur: boolean;
 
     constructor() {
         this.detectRetina = false;
@@ -67,6 +68,7 @@ export class Options implements IOptions {
         this.particles = new Particles();
         this.polygon = new PolygonMask();
         this.backgroundMask = new BackgroundMask();
+        this.pauseOnBlur = true;
     }
 
     public load(data: IOptions): void {
@@ -85,6 +87,10 @@ export class Options implements IOptions {
 
             if (Utils.hasData(data.fps_limit)) {
                 this.fps_limit = data.fps_limit;
+            }
+
+            if (Utils.hasData(data.pauseOnBlur)) {
+                this.pauseOnBlur = data.pauseOnBlur;
             }
 
             this.interactivity.load(data.interactivity);

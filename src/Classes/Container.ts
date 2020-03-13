@@ -239,6 +239,10 @@ export class Container {
     }
 
     private handleVisibilityChange(): void {
+        if (!this.options.pauseOnBlur) {
+            return;
+        }
+
         if (document.hidden) {
             this.pageHidden = true;
 

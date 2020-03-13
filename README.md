@@ -263,6 +263,11 @@ particles.pause();
       "straight": false,
       "outMode": "out",
       "bounce": false,
+      "trail": {
+        "enable": false,
+        "length": 10,
+        "fillColor": "#000000"      
+      },
       "attract": {
         "enable": false,
         "rotateX": 600,
@@ -273,11 +278,11 @@ particles.pause();
   "interactivity": {
     "detectsOn": "canvas",
     "events": {
-      "onhover": {
+      "onHover": {
         "enable": false,
         "mode": "repulse"
       },
-      "onclick": {
+      "onClick": {
         "enable": true,
         "mode": "push"
       },
@@ -318,6 +323,7 @@ particles.pause();
   },
   "detectRetina": true,
   "fpsLimit": 60,
+  "pauseOnBlur": true,
   "backgroundMask": {
     "enable": true,
     "cover": {
@@ -391,9 +397,12 @@ key | option type / notes | example
 `particles.move.straight` | boolean | `true` / `false`
 `particles.move.outMode` | string <br /> (out of canvas) | `"out"`<br /> `"destroy"` <br /> `"bounce"` <br /> `"bounce-vertical"` <br /> `"bounce-horizontal"`
 `particles.move.bounce` | boolean <br /> (between particles) | `true` / `false`
+`particles.move.trail.enable` | boolean | `true` / `false`
+`particles.move.trail.length` | number | `10`
+`particles.move.trail.fillColor` | HEX (string) | `#000000`
 `particles.move.attract.enable` | boolean | `true` / `false`
-`particles.move.attract.rotateX` | number | `3000`
-`particles.move.attract.rotateY` | number | `1500`
+`particles.move.attract.rotate.x` | number | `3000`
+`particles.move.attract.rotate.y` | number | `1500`
 `interactivity.detectsOn` | string | `"canvas", "window","parent"`
 `interactivity.events.onHover.enable` | boolean | `true` / `false`
 `interactivity.events.onHover.mode` | string <br /> array selection | `"grab"` <br /> `"bubble"` <br /> `"repulse"` <br /> `"connect"` <br /> `["grab", "bubble"]`
@@ -417,6 +426,7 @@ key | option type / notes | example
 `interactivity.events.modes.remove.quantity` | number | `4`
 `detectRetina` | boolean | `true` / `false`
 `fpsLimit` | number | `60`
+`pauseOnBlur` | boolean | `true` / `false`
 `backgroundMask.enable` | boolean | `true` / `false`
 `backgroundMask.cover.value` | HEX (string) <br /> RGB (object) <br /> HSL (object) <br /> random (string) | `"#0d47a1"` <br /> `{r:182, g:25, b:36}` <br />  `{h:356, s:76, l:41}` <br /> `"random"`
 `polygon.draw.enable` | boolean | `true` / `false`

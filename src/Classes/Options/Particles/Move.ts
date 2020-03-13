@@ -5,6 +5,8 @@ import {OutMode} from "../../../Enums/OutMode";
 import {IAttract} from "../../../Interfaces/Options/Particles/IAttract";
 import {Messages} from "../../Utils/Messages";
 import {Utils} from "../../Utils/Utils";
+import {Trail} from "./Trail";
+import {ITrail} from "../../../Interfaces/Options/Particles/ITrail";
 
 export class Move implements IMove {
     /**
@@ -56,6 +58,7 @@ export class Move implements IMove {
     public random: boolean;
     public speed: number;
     public straight: boolean;
+    public trail: ITrail;
 
     constructor() {
         this.attract = new Attract();
@@ -66,6 +69,7 @@ export class Move implements IMove {
         this.random = false;
         this.speed = 2;
         this.straight = false;
+        this.trail = new Trail();
     }
 
     public load(data: IMove): void {
@@ -107,6 +111,8 @@ export class Move implements IMove {
             if (Utils.hasData(data.straight)) {
                 this.straight = data.straight;
             }
+
+            this.trail.load(data.trail);
         }
     }
 }
