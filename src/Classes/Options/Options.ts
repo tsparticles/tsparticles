@@ -6,9 +6,9 @@ import {IInteractivity} from "../../Interfaces/Options/Interactivity/IInteractiv
 import {IParticles} from "../../Interfaces/Options/Particles/IParticles";
 import {IPolygonMask} from "../../Interfaces/Options/PolygonMask/IPolygonMask";
 import {Messages} from "../Utils/Messages";
-import {Utils} from "../Utils/Utils";
 import {IBackgroundMask} from "../../Interfaces/Options/BackgroundMask/IBackgroundMask";
 import {BackgroundMask} from "./BackgroundMask/BackgroundMask";
+import {RecursivePartial} from "../../Types/RecursivePartial";
 
 export class Options implements IOptions {
     /**
@@ -71,25 +71,21 @@ export class Options implements IOptions {
         this.pauseOnBlur = true;
     }
 
-    public load(data: IOptions): void {
-        if (Utils.hasData(data)) {
-            if (Utils.hasData(data.detectRetina)) {
+    public load(data: RecursivePartial<IOptions>): void {
+        if (data !== undefined) {
+            if (data.detectRetina !== undefined) {
                 this.detectRetina = data.detectRetina;
-            }
-
-            if (Utils.hasData(data.retina_detect)) {
+            } else if (data.retina_detect !== undefined) {
                 this.retina_detect = data.retina_detect;
             }
 
-            if (Utils.hasData(data.fpsLimit)) {
+            if (data.fpsLimit !== undefined) {
                 this.fpsLimit = data.fpsLimit;
-            }
-
-            if (Utils.hasData(data.fps_limit)) {
+            } else if (data.fps_limit !== undefined) {
                 this.fps_limit = data.fps_limit;
             }
 
-            if (Utils.hasData(data.pauseOnBlur)) {
+            if (data.pauseOnBlur !== undefined) {
                 this.pauseOnBlur = data.pauseOnBlur;
             }
 

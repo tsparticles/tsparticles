@@ -1,5 +1,5 @@
 import {IRepulse} from "../../../../Interfaces/Options/Interactivity/Modes/IRepulse";
-import {Utils} from "../../../Utils/Utils";
+import {RecursivePartial} from "../../../../Types/RecursivePartial";
 
 export class Repulse implements IRepulse {
     public distance: number;
@@ -10,13 +10,13 @@ export class Repulse implements IRepulse {
         this.duration = 0.4;
     }
 
-    public load(data: IRepulse): void {
-        if (Utils.hasData(data)) {
-            if (Utils.hasData(data.distance)) {
+    public load(data?: RecursivePartial<IRepulse>): void {
+        if (data !== undefined) {
+            if (data.distance !== undefined) {
                 this.distance = data.distance;
             }
 
-            if (Utils.hasData(data.duration)) {
+            if (data.duration !== undefined) {
                 this.duration = data.duration;
             }
         }

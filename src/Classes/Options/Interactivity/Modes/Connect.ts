@@ -2,7 +2,7 @@ import {IConnect} from "../../../../Interfaces/Options/Interactivity/Modes/IConn
 import {ConnectLineLinked} from "./ConnectLineLinked";
 import {IConnectLineLinked} from "../../../../Interfaces/Options/Interactivity/Modes/IConnectLineLinked";
 import {Messages} from "../../../Utils/Messages";
-import {Utils} from "../../../Utils/Utils";
+import {RecursivePartial} from "../../../../Types/RecursivePartial";
 
 export class Connect implements IConnect {
     /**
@@ -36,21 +36,19 @@ export class Connect implements IConnect {
         this.radius = 60;
     }
 
-    public load(data: IConnect): void {
-        if (Utils.hasData(data)) {
-            if (Utils.hasData(data.distance)) {
+    public load(data?: RecursivePartial<IConnect>): void {
+        if (data !== undefined) {
+            if (data.distance !== undefined) {
                 this.distance = data.distance;
             }
 
-            if (Utils.hasData(data.lineLinked)) {
+            if (data.lineLinked !== undefined) {
                 this.lineLinked.load(data.lineLinked);
-            }
-
-            if (Utils.hasData(data.line_linked)) {
+            } else if (data.line_linked !== undefined) {
                 this.line_linked.load(data.line_linked);
             }
 
-            if (Utils.hasData(data.radius)) {
+            if (data.radius !== undefined) {
                 this.radius = data.radius;
             }
         }

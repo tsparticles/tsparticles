@@ -14,6 +14,18 @@
 
 ---
 
+## Migrating from Particles.js
+
+**tsParticles** are fully compatible with the *particles.js* configuration.
+
+Seriously, you just need to change the script source et-voilà, **you're ready**!
+
+Want to know 5 reasons to do the switch? [Read here](https://dev.to/matteobruni/5-reasons-to-use-tsparticles-and-not-particles-js-1gbe)
+
+*Below you can find all the information you need to install tsParticles and its new syntax.* 
+
+---
+
 ## General Informations
 
 `master` | `staging` | `dev`

@@ -1,7 +1,7 @@
 import {IAttract} from "../../../Interfaces/Options/Particles/IAttract";
 import {ICoordinates} from "../../../Interfaces/ICoordinates";
 import {Messages} from "../../Utils/Messages";
-import {Utils} from "../../Utils/Utils";
+import {RecursivePartial} from "../../../Types/RecursivePartial";
 
 export class Attract implements IAttract {
     /**
@@ -57,25 +57,21 @@ export class Attract implements IAttract {
         };
     }
 
-    public load(data: IAttract): void {
-        if (Utils.hasData(data)) {
-            if (Utils.hasData(data.enable)) {
+    public load(data?: RecursivePartial<IAttract>): void {
+        if (data !== undefined) {
+            if (data.enable !== undefined) {
                 this.enable = data.enable;
             }
 
-            if (Utils.hasData(data.rotate?.x)) {
+            if (data.rotate?.x !== undefined) {
                 this.rotate.x = data.rotate.x;
-            }
-
-            if (Utils.hasData(data.rotate?.y)) {
-                this.rotate.y = data.rotate.y;
-            }
-
-            if (Utils.hasData(data.rotateX)) {
+            } else if (data.rotateX !== undefined) {
                 this.rotateX = data.rotateX;
             }
 
-            if (Utils.hasData(data.rotateY)) {
+            if (data.rotate?.y !== undefined) {
+                this.rotate.y = data.rotate.y;
+            } else if (data.rotateY !== undefined) {
                 this.rotateY = data.rotateY;
             }
         }

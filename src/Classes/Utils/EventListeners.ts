@@ -12,12 +12,34 @@ import {PolygonMaskType} from "../../Enums/PolygonMaskType";
 export class EventListeners {
     private readonly container: Container;
 
+    private readonly mouseMoveHandler: EventListenerOrEventListenerObject;
+    private readonly touchStartHandler: EventListenerOrEventListenerObject;
+    private readonly touchMoveHandler: EventListenerOrEventListenerObject;
+    private readonly touchEndHandler: EventListenerOrEventListenerObject;
+    private readonly mouseLeaveHandler: EventListenerOrEventListenerObject;
+    private readonly touchCancelHandler: EventListenerOrEventListenerObject;
+    private readonly touchEndClickHandler: EventListenerOrEventListenerObject;
+    private readonly mouseUpHandler: EventListenerOrEventListenerObject;
+    private readonly visibilityChangeHandler: EventListenerOrEventListenerObject;
+    private readonly resizeHandler: EventListenerOrEventListenerObject;
+
     /**
      * Events listener constructor
      * @param container the calling container
      */
     constructor(container: Container) {
         this.container = container;
+
+        this.mouseMoveHandler = (e: Event) => this.mouseTouchMove(e);
+        this.touchStartHandler = (e: Event) => this.mouseTouchMove(e);
+        this.touchMoveHandler = (e: Event) => this.mouseTouchMove(e);
+        this.touchEndHandler = () => this.mouseTouchFinish();
+        this.mouseLeaveHandler = () => this.mouseTouchFinish();
+        this.touchCancelHandler = () => this.mouseTouchFinish();
+        this.touchEndClickHandler = (e: Event) => this.mouseTouchClick(e);
+        this.mouseUpHandler = (e: Event) => this.mouseTouchClick(e);
+        this.visibilityChangeHandler = () => this.handleVisibilityChange();
+        this.resizeHandler = () => this.handleWindowResize();
     }
 
     /**
@@ -30,7 +52,7 @@ export class EventListeners {
         /* events target element */
         if (options.interactivity.detectsOn === InteractivityDetect.window) {
             container.interactivity.element = window;
-        } else if (container.options.interactivity.detectsOn === InteractivityDetect.parent) {
+        } else if (options.interactivity.detectsOn === InteractivityDetect.parent && container.canvas.element) {
             container.interactivity.element = container.canvas.element.parentNode;
         } else {
             container.interactivity.element = container.canvas.element;
@@ -42,33 +64,157 @@ export class EventListeners {
         if (options.interactivity.events.onHover.enable || options.interactivity.events.onClick.enable) {
             if (interactivityEl) {
                 /* el on mousemove */
-                interactivityEl.addEventListener("mousemove", (e: Event) => this.mouseTouchMove(e));
+                interactivityEl.addEventListener("mousemove", this.mouseMoveHandler);
 
                 /* el on touchstart */
-                interactivityEl.addEventListener("touchstart", (e: Event) => this.mouseTouchMove(e));
+                interactivityEl.addEventListener("touchstart", this.touchStartHandler);
 
                 /* el on touchmove */
-                interactivityEl.addEventListener("touchmove", (e: Event) => this.mouseTouchMove(e));
+                interactivityEl.addEventListener("touchmove", this.touchMoveHandler);
 
                 if (!options.interactivity.events.onClick.enable) {
                     /* el on touchend */
-                    interactivityEl.addEventListener("touchend", () => this.mouseTouchFinish());
+                    interactivityEl.addEventListener("touchend", this.touchEndHandler);
                 }
 
                 /* el on onmouseleave */
-                interactivityEl.addEventListener("mouseleave", () => this.mouseTouchFinish());
+                interactivityEl.addEventListener("mouseleave", this.mouseLeaveHandler);
 
                 /* el on touchcancel */
-                interactivityEl.addEventListener("touchcancel", () => this.mouseTouchFinish());
+                interactivityEl.addEventListener("touchcancel", this.touchCancelHandler);
             }
         }
 
         /* on click event */
         if (options.interactivity.events.onClick.enable) {
             if (interactivityEl) {
-                interactivityEl.addEventListener("touchend", (e: Event) => this.mouseTouchClick(e));
-                interactivityEl.addEventListener("mouseup", (e: Event) => this.mouseTouchClick(e));
+                interactivityEl.addEventListener("touchend", this.touchEndClickHandler);
+                interactivityEl.addEventListener("mouseup", this.mouseUpHandler);
             }
+        }
+
+        if (options.interactivity.events.resize) {
+            window.addEventListener("resize", this.resizeHandler);
+        }
+
+        document?.addEventListener("visibilitychange", this.visibilityChangeHandler, false);
+    }
+
+    public removeEventsListeners(): void {
+        const container = this.container;
+        const options = container.options;
+
+        /* events target element */
+        if (options.interactivity.detectsOn === InteractivityDetect.window) {
+            container.interactivity.element = window;
+        } else if (options.interactivity.detectsOn === InteractivityDetect.parent && container.canvas.element) {
+            container.interactivity.element = container.canvas.element.parentNode;
+        } else {
+            container.interactivity.element = container.canvas.element;
+        }
+
+        const interactivityEl = container.interactivity.element;
+
+        /* detect mouse pos - on hover / click event */
+        if (options.interactivity.events.onHover.enable || options.interactivity.events.onClick.enable) {
+            if (interactivityEl) {
+                /* el on mousemove */
+                interactivityEl.removeEventListener("mousemove", this.mouseMoveHandler);
+
+                /* el on touchstart */
+                interactivityEl.removeEventListener("touchstart", this.touchStartHandler);
+
+                /* el on touchmove */
+                interactivityEl.removeEventListener("touchmove", this.touchMoveHandler);
+
+                if (!options.interactivity.events.onClick.enable) {
+                    /* el on touchend */
+                    interactivityEl.removeEventListener("touchend", this.touchEndHandler);
+                }
+
+                /* el on onmouseleave */
+                interactivityEl.removeEventListener("mouseleave", this.mouseLeaveHandler);
+
+                /* el on touchcancel */
+                interactivityEl.removeEventListener("touchcancel", this.touchCancelHandler);
+            }
+        }
+
+        /* on click event */
+        if (options.interactivity.events.onClick.enable) {
+            if (interactivityEl) {
+                interactivityEl.removeEventListener("touchend", this.touchEndClickHandler);
+                interactivityEl.removeEventListener("mouseup", this.mouseUpHandler);
+            }
+        }
+
+        if (options.interactivity.events.resize) {
+            window.removeEventListener("resize", this.resizeHandler);
+        }
+
+        document?.removeEventListener("visibilitychange", this.visibilityChangeHandler);
+    }
+
+    private handleWindowResize(): void {
+        const container = this.container;
+        const options = container.options;
+
+        if (!container.canvas.element) {
+            return;
+        }
+
+        container.canvas.dimension.width = container.canvas.element.offsetWidth;
+        container.canvas.dimension.height = container.canvas.element.offsetHeight;
+
+        /* resize canvas */
+        if (container.retina.isRetina) {
+            container.canvas.dimension.width *= container.retina.pxRatio;
+            container.canvas.dimension.height *= container.retina.pxRatio;
+        }
+
+        container.canvas.element.width = container.canvas.dimension.width;
+        container.canvas.element.height = container.canvas.dimension.height;
+
+        /* repaint canvas on anim disabled */
+        if (!options.particles.move.enable) {
+            container.particles.clear();
+            container.particles.init();
+            container.particles.draw(0);
+        }
+
+        /* density particles enabled */
+        container.densityAutoParticles();
+
+        if (options.polygon.type !== PolygonMaskType.none) {
+            if (container.polygon.redrawTimeout) {
+                clearTimeout(container.polygon.redrawTimeout);
+            }
+
+            container.polygon.redrawTimeout = setTimeout(async () => {
+                container.polygon.raw = await container.polygon.parseSvgPathToPolygon();
+                container.particles.clear();
+                container.particles.init();
+                container.particles.draw(0);
+            }, 250);
+        }
+    }
+
+    private handleVisibilityChange(): void {
+        const container = this.container;
+        const options = container.options;
+
+        if (!options.pauseOnBlur) {
+            return;
+        }
+
+        if (document?.hidden) {
+            container.pageHidden = true;
+
+            container.pause();
+        } else {
+            container.pageHidden = false;
+
+            container.play();
         }
     }
 
@@ -85,7 +231,7 @@ export class EventListeners {
         if (e.type.startsWith("mouse")) {
             const mouseEvent = e as MouseEvent;
 
-            if (container.interactivity.element === window) {
+            if (container.interactivity.element === window && container.canvas.element) {
                 const clientRect = container.canvas.element.getBoundingClientRect();
 
                 pos = {
@@ -130,8 +276,8 @@ export class EventListeners {
         container.interactivity.mouse.position = pos;
 
         if (container.retina.isRetina) {
-            container.interactivity.mouse.position.x *= container.canvas.pxRatio;
-            container.interactivity.mouse.position.y *= container.canvas.pxRatio;
+            container.interactivity.mouse.position.x *= container.retina.pxRatio;
+            container.interactivity.mouse.position.y *= container.retina.pxRatio;
         }
 
         container.interactivity.status = "mousemove";

@@ -2,7 +2,6 @@
 
 import {Constants} from "./Utils/Constants";
 import {Container} from "./Container";
-import {PolygonMaskType} from "../Enums/PolygonMaskType";
 import {IDimension} from "../Interfaces/IDimension";
 import {Utils} from "./Utils/Utils";
 import {IRgb} from "../Interfaces/IRgb";
@@ -21,15 +20,7 @@ export class Canvas {
     /**
      * The particles canvas dimension
      */
-    public dimension: IDimension;
-    /**
-     * The particles canvas container element id
-     */
-    public tagId: string;
-    /**
-     * The ratio used by the particles canvas
-     */
-    public pxRatio: number;
+    public readonly dimension: IDimension;
 
     /**
      * The parent container
@@ -39,24 +30,58 @@ export class Canvas {
     /**
      * The particles canvas context
      */
-    private readonly context: CanvasRenderingContext2D | null;
+    private context: CanvasRenderingContext2D | null;
+
+    private generatedCanvas: boolean;
 
     /**
      * Constructor of canvas manager
      * @param container the parent container
-     * @param tagId the particles container element id
      */
-    constructor(container: Container, tagId: string) {
-        const canvasEl = document.querySelector(`#${tagId} > .${Constants.canvasClass}`) as HTMLCanvasElement;
-
+    constructor(container: Container) {
         this.container = container;
-        this.element = canvasEl;
         this.dimension = {
-            height: canvasEl.offsetHeight,
-            width: canvasEl.offsetWidth,
+            height: 0,
+            width: 0,
         };
-        this.tagId = tagId;
-        this.pxRatio = 1;
+
+        const domContainer = document.getElementById(container.id);
+
+        if (!domContainer) {
+            throw new Error(`dom element #${container.id} not found!`);
+        }
+
+        const existingCanvases = domContainer.getElementsByTagName("canvas");
+
+        let canvasEl: HTMLCanvasElement;
+
+        /* get existing canvas if present, otherwise a new one will be created */
+        if (existingCanvases.length) {
+            canvasEl = existingCanvases[0];
+
+            if (!canvasEl.className) {
+                canvasEl.className = Constants.canvasClass;
+            }
+
+            this.generatedCanvas = false;
+        } else {
+            this.generatedCanvas = true;
+            /* create canvas element */
+            canvasEl = document.createElement("canvas");
+
+            canvasEl.className = Constants.canvasClass;
+
+            /* set size canvas */
+            canvasEl.style.width = "100%";
+            canvasEl.style.height = "100%";
+
+            /* append canvas */
+            domContainer.appendChild(canvasEl);
+        }
+
+        this.element = canvasEl;
+        this.dimension.height = canvasEl.offsetHeight;
+        this.dimension.width = canvasEl.offsetWidth;
         this.context = this.element.getContext("2d");
     }
 
@@ -69,53 +94,40 @@ export class Canvas {
         this.paint();
     }
 
+    public changeCanvas(canvas: HTMLCanvasElement): void {
+        if (!canvas.className) {
+            canvas.className = Constants.canvasClass;
+        }
+
+        if (this.generatedCanvas) {
+            this.element.remove();
+        }
+
+        this.generatedCanvas = false;
+        this.element = canvas;
+        this.dimension.height = canvas.offsetHeight;
+        this.dimension.width = canvas.offsetWidth;
+        this.context = this.element.getContext("2d");
+        this.container.retina.init();
+    }
+
+    public destroy(): void {
+        if (this.generatedCanvas) {
+            this.element.remove();
+        }
+
+        if (this.context) {
+            CanvasUtils.clear(this.context, this.dimension);
+        }
+    }
+
     /**
      * Calculates the size of the canvas
      */
     public size(): void {
-        const container = this.container;
-        const options = container.options;
-
-        this.element.width = this.dimension.width;
-        this.element.height = this.dimension.height;
-
-        if (options.interactivity.events.resize) {
-            window.addEventListener("resize", () => {
-                this.dimension.width = this.element.offsetWidth;
-                this.dimension.height = this.element.offsetHeight;
-
-                /* resize canvas */
-                if (container.retina.isRetina) {
-                    this.dimension.width *= this.pxRatio;
-                    this.dimension.height *= this.pxRatio;
-                }
-
-                this.element.width = this.dimension.width;
-                this.element.height = this.dimension.height;
-
-                /* repaint canvas on anim disabled */
-                if (!options.particles.move.enable) {
-                    container.particles.clear();
-                    container.particles.init();
-                    container.particles.draw(0);
-                }
-
-                /* density particles enabled */
-                container.densityAutoParticles();
-
-                if (options.polygon.type !== PolygonMaskType.none) {
-                    if (container.polygon.redrawTimeout) {
-                        clearTimeout(container.polygon.redrawTimeout);
-                    }
-
-                    container.polygon.redrawTimeout = setTimeout(async () => {
-                        container.polygon.raw = await container.polygon.parseSvgPathToPolygon();
-                        container.particles.clear();
-                        container.particles.init();
-                        container.particles.draw(0);
-                    }, 250);
-                }
-            });
+        if (this.element) {
+            this.element.width = this.dimension.width;
+            this.element.height = this.dimension.height;
         }
     }
 
@@ -168,7 +180,7 @@ export class Canvas {
         const polygonDraw = options.polygon.draw;
 
         if (context) {
-            CanvasUtils.drawPolygonMask(context, rawData, polygonDraw.lineColor, polygonDraw.lineWidth);
+            CanvasUtils.drawPolygonMask(context, rawData, polygonDraw.stroke);
         }
     }
 
@@ -210,7 +222,14 @@ export class Canvas {
 
         const width = container.retina.lineLinkedWidth;
 
-        CanvasUtils.drawLineLinked(ctx, width, pos1, pos2, options.backgroundMask.enable, colorLine, opacity);
+        CanvasUtils.drawLineLinked(ctx,
+            width,
+            pos1,
+            pos2,
+            options.backgroundMask.enable,
+            colorLine,
+            opacity,
+            options.particles.lineLinked.shadow);
     }
 
     public drawConnectLine(p1: Particle, p2: Particle): void {

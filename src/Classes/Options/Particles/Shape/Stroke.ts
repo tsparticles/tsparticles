@@ -1,5 +1,5 @@
 import {IStroke} from "../../../../Interfaces/Options/Particles/Shape/IStroke";
-import {Utils} from "../../../Utils/Utils";
+import {RecursivePartial} from "../../../../Types/RecursivePartial";
 
 export class Stroke implements IStroke {
     public color: string;
@@ -10,13 +10,13 @@ export class Stroke implements IStroke {
         this.width = 0;
     }
 
-    public load(data: IStroke): void {
-        if (Utils.hasData(data)) {
-            if (Utils.hasData(data.color)) {
+    public load(data?: RecursivePartial<IStroke>): void {
+        if (data !== undefined) {
+            if (data.color !== undefined) {
                 this.color = data.color;
             }
 
-            if (Utils.hasData(data.width)) {
+            if (data.width !== undefined) {
                 this.width = data.width;
             }
         }

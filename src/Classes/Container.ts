@@ -6,21 +6,56 @@ import {IRepulse} from "../Interfaces/IRepulse";
 import {IBubble} from "../Interfaces/IBubble";
 import {IImage} from "../Interfaces/IImage";
 import {IContainerInteractivity} from "../Interfaces/IContainerInteractivity";
-import {Loader} from "./Loader";
 import {Particles} from "./Particles";
 import {Retina} from "./Retina";
 import {ShapeType} from "../Enums/ShapeType";
 import {PolygonMask} from "./PolygonMask";
 import {ImageShape} from "./Options/Particles/Shape/ImageShape";
 import {IOptions} from "../Interfaces/Options/IOptions";
-import {container} from "tsyringe";
 import {Drawer} from "./Drawer";
+import {RecursivePartial} from "../Types/RecursivePartial";
+import {Options} from "./Options/Options";
+
+declare global {
+    interface Window {
+        customRequestAnimationFrame: (callback: FrameRequestCallback) => number;
+        mozRequestAnimationFrame: (callback: FrameRequestCallback) => number;
+        oRequestAnimationFrame: (callback: FrameRequestCallback) => number;
+        msRequestAnimationFrame: (callback: FrameRequestCallback) => number;
+        customCancelRequestAnimationFrame: (handle: number) => void;
+        webkitCancelRequestAnimationFrame: (handle: number) => void;
+        mozCancelRequestAnimationFrame: (handle: number) => void;
+        oCancelRequestAnimationFrame: (handle: number) => void;
+        msCancelRequestAnimationFrame: (handle: number) => void;
+    }
+}
+
+/* ---------- global functions - vendors ------------ */
+
+window.customRequestAnimationFrame = (() => {
+    return window.requestAnimationFrame ||
+        window.webkitRequestAnimationFrame ||
+        window.mozRequestAnimationFrame ||
+        window.oRequestAnimationFrame ||
+        window.msRequestAnimationFrame ||
+        ((callback) => window.setTimeout(callback, 1000 / 60));
+})();
+
+window.customCancelRequestAnimationFrame = (() => {
+    return window.cancelAnimationFrame ||
+        window.webkitCancelRequestAnimationFrame ||
+        window.mozCancelRequestAnimationFrame ||
+        window.oCancelRequestAnimationFrame ||
+        window.msCancelRequestAnimationFrame ||
+        clearTimeout
+})();
 
 /**
  * The object loaded into an HTML element, it'll contain options loaded and all data to let everything working
  */
 export class Container {
-    public readonly sourceOptions: IOptions;
+    public readonly sourceOptions?: RecursivePartial<IOptions>;
+    public readonly id: string;
     public interactivity: IContainerInteractivity;
     public options: IOptions;
     public retina: Retina;
@@ -33,18 +68,21 @@ export class Container {
     public lastFrameTime: number;
     public pageHidden: boolean;
     public drawer: Drawer;
+    public started: boolean;
 
     private paused: boolean;
     private drawAnimationFrame?: number;
-    private readonly eventListeners: EventListeners;
+    private eventListeners: EventListeners;
 
-    constructor(tagId: string, params: IOptions) {
+    constructor(id: string, params?: RecursivePartial<IOptions>) {
+        this.started = false;
+        this.id = id;
         this.paused = true;
         this.sourceOptions = params;
         this.lastFrameTime = 0;
         this.pageHidden = false;
         this.retina = new Retina(this);
-        this.canvas = new Canvas(this, tagId);
+        this.canvas = new Canvas(this);
         this.particles = new Particles(this);
         this.polygon = new PolygonMask(this);
         this.drawer = new Drawer(this);
@@ -56,10 +94,10 @@ export class Container {
         this.repulse = {};
 
         /* tsParticles variables with default values */
-        this.options = container.resolve<IOptions>("IOptions");
+        this.options = new Options();
 
         /* params settings */
-        if (params) {
+        if (this.sourceOptions) {
             this.options.load(this.sourceOptions);
         }
 
@@ -67,17 +105,7 @@ export class Container {
         this.eventListeners = new EventListeners(this);
         this.eventListeners.addEventsListeners();
 
-        this.start().then(() => {
-            /*
-                Cancel animation if page is not in focus
-                Browsers will do this anyway, however the
-                Delta time must also be reset, so canceling
-                the old frame and starting a new one is necessary
-            */
-            document.addEventListener("visibilitychange", () => this.handleVisibilityChange(), false);
-        }).catch((error) => {
-            throw error;
-        });
+        this.start();
     }
 
     public static requestFrame(callback: FrameRequestCallback): number {
@@ -101,58 +129,55 @@ export class Container {
         if (this.drawAnimationFrame !== undefined) {
             Container.cancelAnimation(this.drawAnimationFrame);
 
-            this.drawAnimationFrame = undefined;
+            delete this.drawAnimationFrame;
             this.paused = true;
         }
-    }
-
-    private update(timestamp: DOMHighResTimeStamp): void {
-        this.drawer.draw(timestamp);
     }
 
     /* ---------- tsParticles functions - vendors ------------ */
 
     public densityAutoParticles(): void {
-        if (this.options.particles.number.density.enable) {
-            /* calc area */
-            let area = this.canvas.element.width * this.canvas.element.height / 1000;
+        if (!(this.canvas.element && this.options.particles.number.density.enable)) {
+            return;
+        }
 
-            if (this.retina.isRetina) {
-                area /= this.canvas.pxRatio * 2;
-            }
+        const area = this.retina.particlesDensityArea;
+        const optParticlesNumber = this.options.particles.number.value;
+        const density = this.options.particles.number.density.area;
+        const particlesNumber = area * optParticlesNumber / density;
+        const missingParticles = this.particles.array.length - particlesNumber;
 
-            const optParticlesNumber = this.options.particles.number.value;
-            const density = this.options.particles.number.density.area;
-
-            /* calc number of particles based on density area */
-            const particlesNumber = area * optParticlesNumber / density;
-
-            /* add or remove X particles */
-            const missingParticles = this.particles.array.length - particlesNumber;
-
-            if (missingParticles < 0) {
-                this.particles.push(Math.abs(missingParticles));
-            } else {
-                this.particles.remove(missingParticles);
-            }
+        if (missingParticles < 0) {
+            this.particles.push(Math.abs(missingParticles));
+        } else {
+            this.particles.remove(missingParticles);
         }
     }
 
     public destroy(): void {
-        this.pause();
+        this.stop();
 
+        this.eventListeners.removeEventsListeners();
         this.retina.reset();
-        this.canvas.element.remove();
+        this.canvas.destroy();
 
-        const idx = Loader.dom().indexOf(this);
-
-        if (idx >= 0) {
-            Loader.dom().splice(idx, 1);
-        }
+        delete this.interactivity;
+        delete this.options;
+        delete this.retina;
+        delete this.canvas;
+        delete this.particles;
+        delete this.polygon;
+        delete this.bubble;
+        delete this.repulse;
+        delete this.images;
+        delete this.drawer;
+        delete this.eventListeners;
     }
 
     public exportImg(): void {
-        window.open(this.canvas.element.toDataURL("image/png"), "_blank");
+        if (this.canvas.element) {
+            window.open(this.canvas.element.toDataURL("image/png"), "_blank");
+        }
     }
 
     public async loadImg(image: IImage, optionsImage: ImageShape): Promise<void> {
@@ -181,6 +206,18 @@ export class Container {
         //    Container.cancelAnimation(this.checkAnimationFrame);
         //}
 
+        /* restart */
+        this.stop();
+        await this.start();
+    }
+
+    public stop(): void {
+        if (!this.started) {
+            return;
+        }
+
+        this.started = false;
+
         this.pause();
 
         this.images = [];
@@ -189,12 +226,17 @@ export class Container {
         this.canvas.clear();
 
         delete this.particles.lineLinkedColor;
-
-        /* restart */
-        await this.start();
+        delete this.polygon.raw;
+        delete this.polygon.path;
+        delete this.polygon.svg;
     }
 
     public async start(): Promise<void> {
+        if (this.started) {
+            return;
+        }
+
+        this.started = true;
         /* If is set the url of svg element, load it and parse into raw polygon data,
          * works only with single path SVG
          */
@@ -230,28 +272,16 @@ export class Container {
         }
     }
 
+    private update(timestamp: DOMHighResTimeStamp): void {
+        this.drawer.draw(timestamp);
+    }
+
     private init(): void {
         /* init canvas + particles */
         this.retina.init();
         this.canvas.init();
         this.particles.init();
         this.densityAutoParticles();
-    }
-
-    private handleVisibilityChange(): void {
-        if (!this.options.pauseOnBlur) {
-            return;
-        }
-
-        if (document.hidden) {
-            this.pageHidden = true;
-
-            this.pause();
-        } else {
-            this.pageHidden = false;
-
-            this.play();
-        }
     }
 
     private checkBeforeDraw(): void {

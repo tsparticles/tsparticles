@@ -1,5 +1,5 @@
 import {ITrail} from "../../../Interfaces/Options/Particles/ITrail";
-import {Utils} from "../../Utils/Utils";
+import {RecursivePartial} from "../../../Types/RecursivePartial";
 
 export class Trail implements ITrail {
     public enable: boolean;
@@ -12,17 +12,17 @@ export class Trail implements ITrail {
         this.fillColor = "#000000";
     }
 
-    public load(data: ITrail): void {
-        if (Utils.hasData(data)) {
-            if (Utils.hasData(data.enable)) {
+    public load(data?: RecursivePartial<ITrail>): void {
+        if (data !== undefined) {
+            if (data.enable !== undefined) {
                 this.enable = data.enable;
             }
 
-            if (Utils.hasData(data.fillColor)) {
+            if (data.fillColor !== undefined) {
                 this.fillColor = data.fillColor;
             }
 
-            if (Utils.hasData(data.length)) {
+            if (data.length !== undefined) {
                 this.length = data.length;
             }
         }

@@ -1,8 +1,8 @@
 "use strict";
 
-import {Constants} from "./Utils/Constants";
 import {Container} from "./Container";
 import {IOptions} from "../Interfaces/Options/IOptions";
+import {RecursivePartial} from "../Types/RecursivePartial";
 
 let tsParticlesDom: Container[] = [];
 
@@ -35,7 +35,9 @@ export class Loader {
      * @param params the options array to get the item from
      * @param index if provided gets the corresponding item from the array
      */
-    public static loadFromArray(tagId: string, params: IOptions[], index?: number): Container | undefined {
+    public static loadFromArray(tagId: string,
+                                params: RecursivePartial<IOptions>[],
+                                index?: number): Container | undefined {
         let idx: number;
 
         if (index === undefined || index < 0 || index >= params.length) {
@@ -52,43 +54,25 @@ export class Loader {
      * @param tagId the particles container element id
      * @param params the options object to initialize the [[Container]]
      */
-    public static load(tagId: string, params: IOptions): Container | undefined {
+    public static load(tagId: string, params?: RecursivePartial<IOptions>): Container | undefined {
         /* elements */
-        const tag = document.getElementById(tagId);
+        const domContainer = document.getElementById(tagId);
 
-        if (!tag) {
+        if (!domContainer) {
             return;
         }
-
-        const existCanvas = tag.getElementsByClassName(Constants.canvasClass);
-
-        /* remove canvas if exists into the container target tag */
-        if (existCanvas.length) {
-            while (existCanvas.length > 0) {
-                tag.removeChild(existCanvas[0]);
-            }
-        }
-
-        /* create canvas element */
-        const canvasEl = document.createElement("canvas");
-
-        canvasEl.className = Constants.canvasClass;
-
-        /* set size canvas */
-        canvasEl.style.width = "100%";
-        canvasEl.style.height = "100%";
-
-        /* append canvas */
-        const canvas = document.getElementById(tagId)?.appendChild(canvasEl);
 
         /* launch tsparticle */
-        if (!canvas) {
-            return;
+        const dom = Loader.dom();
+        const idx = dom.findIndex((v) => v.id === tagId);
+
+        if (idx >= 0) {
+            const old = this.domItem(idx);
+
+            old.destroy();
         }
 
         const newItem = new Container(tagId, params);
-        const dom = Loader.dom();
-        const idx = dom.findIndex((v) => v.canvas.tagId === tagId);
 
         if (idx >= 0) {
             dom.splice(idx, 1, newItem);

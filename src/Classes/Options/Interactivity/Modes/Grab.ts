@@ -2,7 +2,7 @@ import {IGrab} from "../../../../Interfaces/Options/Interactivity/Modes/IGrab";
 import {IGrabLineLinked} from "../../../../Interfaces/Options/Interactivity/Modes/IGrabLineLinked";
 import {GrabLineLinked} from "./GrabLineLinked";
 import {Messages} from "../../../Utils/Messages";
-import {Utils} from "../../../Utils/Utils";
+import {RecursivePartial} from "../../../../Types/RecursivePartial";
 
 export class Grab implements IGrab {
     /**
@@ -34,17 +34,15 @@ export class Grab implements IGrab {
         this.lineLinked = new GrabLineLinked();
     }
 
-    public load(data: IGrab): void {
-        if (Utils.hasData(data)) {
-            if (Utils.hasData(data.distance)) {
+    public load(data?: RecursivePartial<IGrab>): void {
+        if (data !== undefined) {
+            if (data.distance !== undefined) {
                 this.distance = data.distance;
             }
 
-            if (Utils.hasData(data.lineLinked)) {
+            if (data.lineLinked !== undefined) {
                 this.lineLinked.load(data.lineLinked);
-            }
-
-            if (Utils.hasData(data.line_linked)) {
+            } else if (data.line_linked !== undefined) {
                 this.line_linked.load(data.line_linked);
             }
         }

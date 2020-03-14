@@ -5,13 +5,17 @@ import {Particle} from "../Particle";
 import {Utils} from "./Utils";
 import {IStroke} from "../../Interfaces/Options/Particles/Shape/IStroke";
 import {ShapeUtils} from "./ShapeUtils";
+import {ILineLinkedShadow} from "../../Interfaces/Options/Particles/ILineLinkedShadow";
+import {IPolygonMaskDrawStroke} from "../../Interfaces/Options/PolygonMask/IPolygonMaskDrawStroke";
 
 export class CanvasUtils {
     public static paintBase(context: CanvasRenderingContext2D,
                             dimension: IDimension,
                             baseColor?: string): void {
+        context.save();
         context.fillStyle = baseColor ?? "rgba(255, 255, 255, 0)";
         context.fillRect(0, 0, dimension.width, dimension.height);
+        context.restore();
     }
 
     public static clear(context: CanvasRenderingContext2D, dimension: IDimension): void {
@@ -20,8 +24,8 @@ export class CanvasUtils {
 
     public static drawPolygonMask(context: CanvasRenderingContext2D,
                                   rawData: ICoordinates[],
-                                  strokeStyle: string,
-                                  lineWidth: number): void {
+                                  stroke: IPolygonMaskDrawStroke): void {
+        context.save();
         context.beginPath();
         context.moveTo(rawData[0].x, rawData[0].y);
 
@@ -30,9 +34,10 @@ export class CanvasUtils {
         }
 
         context.closePath();
-        context.strokeStyle = strokeStyle;
-        context.lineWidth = lineWidth;
+        context.strokeStyle = stroke.color;
+        context.lineWidth = stroke.width;
         context.stroke();
+        context.restore();
     }
 
     public static drawLineLinked(context: CanvasRenderingContext2D,
@@ -41,7 +46,8 @@ export class CanvasUtils {
                                  end: ICoordinates,
                                  backgroundMask: boolean,
                                  colorLine: IRgb,
-                                 opacity: number): void {
+                                 opacity: number,
+                                 shadow: ILineLinkedShadow): void {
         context.save();
 
         if (backgroundMask) {
@@ -56,6 +62,10 @@ export class CanvasUtils {
         // this.ctx.lineCap = "round"; /* performance issue */
         /* path */
         context.beginPath();
+        if (shadow.enable) {
+            context.shadowBlur = shadow.blur;
+            context.shadowColor = shadow.color;
+        }
         context.moveTo(begin.x, begin.y);
         context.lineTo(end.x, end.y);
         context.stroke();
@@ -68,6 +78,7 @@ export class CanvasUtils {
                                   lineStyle: CanvasGradient,
                                   begin: ICoordinates,
                                   end: ICoordinates): void {
+        context.save();
         context.beginPath();
         context.lineWidth = width;
         context.strokeStyle = lineStyle;
@@ -75,6 +86,7 @@ export class CanvasUtils {
         context.lineTo(end.x, end.y);
         context.stroke();
         context.closePath();
+        context.restore();
     }
 
     public static gradient(context: CanvasRenderingContext2D,
@@ -104,6 +116,7 @@ export class CanvasUtils {
                                end: ICoordinates,
                                colorLine: IRgb,
                                opacity: number): void {
+        context.save();
         context.strokeStyle = `rgba(${colorLine.r},${colorLine.g},${colorLine.b},${opacity})`;
         context.lineWidth = width;
         context.beginPath();
@@ -111,6 +124,7 @@ export class CanvasUtils {
         context.lineTo(end.x, end.y);
         context.stroke();
         context.closePath();
+        context.restore();
     }
 
     public static drawParticle(context: CanvasRenderingContext2D,

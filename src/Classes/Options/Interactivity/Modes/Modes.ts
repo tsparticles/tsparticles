@@ -6,7 +6,6 @@ import {Remove} from "./Remove";
 import {Push} from "./Push";
 import {Repulse} from "./Repulse";
 import {Slow} from "./Slow";
-
 import {IBubble} from "../../../../Interfaces/Options/Interactivity/Modes/IBubble";
 import {IConnect} from "../../../../Interfaces/Options/Interactivity/Modes/IConnect";
 import {IGrab} from "../../../../Interfaces/Options/Interactivity/Modes/IGrab";
@@ -14,7 +13,7 @@ import {IPush} from "../../../../Interfaces/Options/Interactivity/Modes/IPush";
 import {IRemove} from "../../../../Interfaces/Options/Interactivity/Modes/IRemove";
 import {IRepulse} from "../../../../Interfaces/Options/Interactivity/Modes/IRepulse";
 import {ISlow} from "../../../../Interfaces/Options/Interactivity/Modes/ISlow";
-import {Utils} from "../../../Utils/Utils";
+import {RecursivePartial} from "../../../../Types/RecursivePartial";
 
 export class Modes implements IModes {
     public bubble: IBubble;
@@ -35,8 +34,8 @@ export class Modes implements IModes {
         this.slow = new Slow();
     }
 
-    public load(data: IModes): void {
-        if (Utils.hasData(data)) {
+    public load(data?: RecursivePartial<IModes>): void {
+        if (data !== undefined) {
             this.bubble.load(data.bubble);
             this.connect.load(data.connect);
             this.grab.load(data.grab);
