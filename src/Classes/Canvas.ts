@@ -94,7 +94,7 @@ export class Canvas {
         this.paint();
     }
 
-    public changeCanvas(canvas: HTMLCanvasElement) {
+    public changeCanvas(canvas: HTMLCanvasElement): void {
         if (!canvas.className) {
             canvas.className = Constants.canvasClass;
         }

@@ -58,10 +58,8 @@ export class Retina {
 
         const ratio = this.pxRatio;
 
-        if (container.canvas.element) {
-            container.canvas.dimension.width = container.canvas.element.offsetWidth * ratio;
-            container.canvas.dimension.height = container.canvas.element.offsetHeight * ratio;
-        }
+        container.canvas.dimension.width = container.canvas.element.offsetWidth * ratio;
+        container.canvas.dimension.height = container.canvas.element.offsetHeight * ratio;
 
         const densityArea = (container.canvas.element.width * container.canvas.element.height / 1000);
 
@@ -69,7 +67,7 @@ export class Retina {
         this.bubbleModeSize = options.interactivity.modes.bubble.size * ratio;
         this.connectModeDistance = options.interactivity.modes.connect.distance * ratio;
         this.connectModeRadius = options.interactivity.modes.connect.radius * ratio;
-        this.particlesDensityArea = densityArea / (this.isRetina ? this.pxRatio * 2 : 1);
+        this.particlesDensityArea = densityArea / (this.isRetina ? ratio * 2 : 1);
         this.grabModeDistance = options.interactivity.modes.grab.distance * ratio;
         this.repulseModeDistance = options.interactivity.modes.repulse.distance * ratio;
         this.slowModeRadius = options.interactivity.modes.slow.radius * ratio;
