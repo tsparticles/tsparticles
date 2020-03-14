@@ -3077,6 +3077,11 @@ path-to-regexp@0.1.7:
   resolved "https://registry.yarnpkg.com/path-to-regexp/-/path-to-regexp-0.1.7.tgz#df604178005f522f15eb4490e7247a1bfaa67f8c"
   integrity sha1-32BBeABfUi8V60SQ5yR6G/qmf4w=
 
+pathseg@^1.2.0:
+  version "1.2.0"
+  resolved "https://registry.yarnpkg.com/pathseg/-/pathseg-1.2.0.tgz#22af051e28037671e7799e296fe96c5dcbe53acd"
+  integrity sha512-+pQS7lTaoVIXhaCW7R3Wd/165APzZHWzYVqe7dxzdupxQwebgpBaCmf0/XZwmoA/rkDq3qvzO0qv4d5oFVrBRw==
+
 pbkdf2@^3.0.3:
   version "3.0.17"
   resolved "https://registry.yarnpkg.com/pbkdf2/-/pbkdf2-3.0.17.tgz#976c206530617b14ebb32114239f7b09336e93a6"
@@ -3877,10 +3882,12 @@ tslib@^1.9.0:
   resolved "https://registry.yarnpkg.com/tslib/-/tslib-1.10.0.tgz#c3c19f95973fb0a62973fb09d90d961ee43e5c8a"
   integrity sha512-qOebF53frne81cf0S9B41ByenJ3/IuH8yJKngAX35CmiZySA0khhkovshKK+jGCaMnVomla7gVlIcc3EvKPbTQ==
 
-tsparticles@^1.9.2:
-  version "1.9.2"
-  resolved "https://registry.yarnpkg.com/tsparticles/-/tsparticles-1.9.2.tgz#868021d6b9fc5788761837d10aee0f582a40f5e6"
-  integrity sha512-9cuU2zNekfJ7bCTDtmz7JGxW3u2hjPer9gbac4zOePVV9f0i8uM/9iIWhR9l8pLPpYuqcTMUmIVnrFLTOxaMDQ==
+tsparticles@^1.10.1:
+  version "1.10.1"
+  resolved "https://registry.yarnpkg.com/tsparticles/-/tsparticles-1.10.1.tgz#5d934164f907b25b406cb75e1482ef7c0fe72275"
+  integrity sha512-4aHkPMe5dT5O6YXUhA2+vlQa7RnlrpERNJLaF+0usohkG0IkSvBOUnq6Pmb8LITLTspkmAnjBm79tLI3feGPiw==
+  dependencies:
+    pathseg "^1.2.0"
 
 tty-browserify@0.0.0:
   version "0.0.0"
