@@ -72,7 +72,7 @@ export class Container {
 
     private paused: boolean;
     private drawAnimationFrame?: number;
-    private readonly eventListeners: EventListeners;
+    private eventListeners: EventListeners;
 
     constructor(id: string, params?: RecursivePartial<IOptions>) {
         this.started = false;
@@ -141,14 +141,12 @@ export class Container {
             return;
         }
 
-        let area = this.canvas.element.width * this.canvas.element.height / 1000;
-        if (this.retina.isRetina) {
-            area /= this.canvas.pxRatio * 2;
-        }
+        const area = this.retina.particlesDensityArea;
         const optParticlesNumber = this.options.particles.number.value;
         const density = this.options.particles.number.density.area;
         const particlesNumber = area * optParticlesNumber / density;
         const missingParticles = this.particles.array.length - particlesNumber;
+
         if (missingParticles < 0) {
             this.particles.push(Math.abs(missingParticles));
         } else {
@@ -162,6 +160,18 @@ export class Container {
         this.eventListeners.removeEventsListeners();
         this.retina.reset();
         this.canvas.destroy();
+
+        delete this.interactivity;
+        delete this.options;
+        delete this.retina;
+        delete this.canvas;
+        delete this.particles;
+        delete this.polygon;
+        delete this.bubble;
+        delete this.repulse;
+        delete this.images;
+        delete this.drawer;
+        delete this.eventListeners;
     }
 
     public exportImg(): void {

@@ -21,10 +21,6 @@ export class Canvas {
      * The particles canvas dimension
      */
     public readonly dimension: IDimension;
-    /**
-     * The ratio used by the particles canvas
-     */
-    public pxRatio: number;
 
     /**
      * The parent container
@@ -34,9 +30,9 @@ export class Canvas {
     /**
      * The particles canvas context
      */
-    private readonly context: CanvasRenderingContext2D | null;
+    private context: CanvasRenderingContext2D | null;
 
-    private readonly generatedCanvas: boolean;
+    private generatedCanvas: boolean;
 
     /**
      * Constructor of canvas manager
@@ -48,7 +44,6 @@ export class Canvas {
             height: 0,
             width: 0,
         };
-        this.pxRatio = 1;
 
         const domContainer = document.getElementById(container.id);
 
@@ -82,7 +77,6 @@ export class Canvas {
         this.element = canvasEl;
         this.dimension.height = canvasEl.offsetHeight;
         this.dimension.width = canvasEl.offsetWidth;
-        this.pxRatio = 1;
         this.context = this.element.getContext("2d");
     }
 
@@ -93,6 +87,19 @@ export class Canvas {
     public init(): void {
         this.size();
         this.paint();
+    }
+
+    public changeCanvas(canvas: HTMLCanvasElement) {
+        if (this.generatedCanvas) {
+            this.element.remove();
+        }
+
+        this.generatedCanvas = false;
+        this.element = canvas;
+        this.dimension.height = canvas.offsetHeight;
+        this.dimension.width = canvas.offsetWidth;
+        this.context = this.element.getContext("2d");
+        this.container.retina.init();
     }
 
     public destroy(): void {

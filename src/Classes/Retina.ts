@@ -17,6 +17,8 @@ export class Retina {
     public sizeValue: number;
     public sizeAnimationSpeed: number;
     public polygonMaskMoveRadius: number;
+    public particlesDensityArea: number;
+    public pxRatio: number;
 
     private readonly container: Container;
 
@@ -36,6 +38,8 @@ export class Retina {
         this.sizeValue = 0;
         this.sizeAnimationSpeed = 0;
         this.polygonMaskMoveRadius = 0;
+        this.particlesDensityArea = 0;
+        this.pxRatio = 1;
     }
 
     public init(): void {
@@ -43,26 +47,29 @@ export class Retina {
         const options = container.options;
 
         if (options.detectRetina && window.devicePixelRatio > 1) {
-            container.canvas.pxRatio = window.devicePixelRatio;
+            this.pxRatio = window.devicePixelRatio;
 
             this.isRetina = true;
         } else {
-            container.canvas.pxRatio = 1;
+            this.pxRatio = 1;
 
             this.isRetina = false;
         }
 
-        const ratio = container.canvas.pxRatio;
+        const ratio = this.pxRatio;
 
         if (container.canvas.element) {
             container.canvas.dimension.width = container.canvas.element.offsetWidth * ratio;
             container.canvas.dimension.height = container.canvas.element.offsetHeight * ratio;
         }
 
+        const densityArea = (container.canvas.element.width * container.canvas.element.height / 1000);
+
         this.bubbleModeDistance = options.interactivity.modes.bubble.distance * ratio;
         this.bubbleModeSize = options.interactivity.modes.bubble.size * ratio;
         this.connectModeDistance = options.interactivity.modes.connect.distance * ratio;
         this.connectModeRadius = options.interactivity.modes.connect.radius * ratio;
+        this.particlesDensityArea = densityArea / (this.isRetina ? this.pxRatio * 2 : 1);
         this.grabModeDistance = options.interactivity.modes.grab.distance * ratio;
         this.repulseModeDistance = options.interactivity.modes.repulse.distance * ratio;
         this.slowModeRadius = options.interactivity.modes.slow.radius * ratio;

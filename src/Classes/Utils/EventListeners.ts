@@ -168,8 +168,8 @@ export class EventListeners {
 
         /* resize canvas */
         if (container.retina.isRetina) {
-            container.canvas.dimension.width *= container.canvas.pxRatio;
-            container.canvas.dimension.height *= container.canvas.pxRatio;
+            container.canvas.dimension.width *= container.retina.pxRatio;
+            container.canvas.dimension.height *= container.retina.pxRatio;
         }
 
         container.canvas.element.width = container.canvas.dimension.width;
@@ -276,8 +276,8 @@ export class EventListeners {
         container.interactivity.mouse.position = pos;
 
         if (container.retina.isRetina) {
-            container.interactivity.mouse.position.x *= container.canvas.pxRatio;
-            container.interactivity.mouse.position.y *= container.canvas.pxRatio;
+            container.interactivity.mouse.position.x *= container.retina.pxRatio;
+            container.interactivity.mouse.position.y *= container.retina.pxRatio;
         }
 
         container.interactivity.status = "mousemove";

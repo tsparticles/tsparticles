@@ -52,9 +52,9 @@ export class Repulser {
         let divWidth = elem.offsetWidth / 2;
 
         if (container.retina.isRetina) {
-            pos.x *= container.canvas.pxRatio;
-            pos.y *= container.canvas.pxRatio;
-            divWidth *= container.canvas.pxRatio
+            pos.x *= container.retina.pxRatio;
+            pos.y *= container.retina.pxRatio;
+            divWidth *= container.retina.pxRatio
         }
 
         const dxDiv = particle.position.x - pos.x;
