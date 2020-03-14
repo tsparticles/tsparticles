@@ -1,8 +1,8 @@
 import {IPolygonMaskDraw} from "../../../Interfaces/Options/PolygonMask/IPolygonMaskDraw";
-import {Utils} from "../../Utils/Utils";
 import {IPolygonMaskDrawStroke} from "../../../Interfaces/Options/PolygonMask/IPolygonMaskDrawStroke";
 import {Messages} from "../../Utils/Messages";
 import {PolygonMaskDrawStroke} from "./PolygonMaskDrawStroke";
+import {RecursivePartial} from "../../../Types/RecursivePartial";
 
 export class Draw implements IPolygonMaskDraw {
     /**
@@ -49,20 +49,22 @@ export class Draw implements IPolygonMaskDraw {
         this.stroke = new PolygonMaskDrawStroke();
     }
 
-    public load(data: IPolygonMaskDraw): void {
-        if (Utils.hasData(data)) {
-            if (Utils.hasData(data.enable)) {
+    public load(data?: RecursivePartial<IPolygonMaskDraw>): void {
+        if (data !== undefined) {
+            if (data.enable !== undefined) {
                 this.enable = data.enable;
             }
 
-            this.stroke.load(data.stroke);
+            if (data.stroke !== undefined) {
+                this.stroke.load(data.stroke);
+            } else {
+                if (data.lineColor !== undefined) {
+                    this.lineColor = data.lineColor;
+                }
 
-            if (Utils.hasData(data.lineColor)) {
-                this.lineColor = data.lineColor;
-            }
-
-            if (Utils.hasData(data.lineWidth)) {
-                this.lineWidth = data.lineWidth;
+                if (data.lineWidth !== undefined) {
+                    this.lineWidth = data.lineWidth;
+                }
             }
         }
     }

@@ -2,7 +2,6 @@
 
 import {Constants} from "./Utils/Constants";
 import {Container} from "./Container";
-import {PolygonMaskType} from "../Enums/PolygonMaskType";
 import {IDimension} from "../Interfaces/IDimension";
 import {Utils} from "./Utils/Utils";
 import {IRgb} from "../Interfaces/IRgb";
@@ -37,6 +36,8 @@ export class Canvas {
      */
     private readonly context: CanvasRenderingContext2D | null;
 
+    private readonly generatedCanvas: boolean;
+
     /**
      * Constructor of canvas manager
      * @param container the parent container
@@ -44,22 +45,27 @@ export class Canvas {
     constructor(container: Container) {
         this.container = container;
         this.dimension = {
-            width: 0,
             height: 0,
+            width: 0,
         };
         this.pxRatio = 1;
 
-        const domContainer = document.getElementById(container.id)!;
-        const existingCanvases = domContainer.getElementsByTagName("canvas");
+        const domContainer = document.getElementById(container.id);
 
-        console.log(existingCanvases);
+        if (!domContainer) {
+            throw new Error(`dom element #${container.id} not found!`);
+        }
+
+        const existingCanvases = domContainer.getElementsByTagName("canvas");
 
         let canvasEl: HTMLCanvasElement;
 
         /* get existing canvas if present, otherwise a new one will be created */
         if (existingCanvases.length) {
             canvasEl = existingCanvases[0];
+            this.generatedCanvas = false;
         } else {
+            this.generatedCanvas = true;
             /* create canvas element */
             canvasEl = document.createElement("canvas");
 
@@ -89,59 +95,23 @@ export class Canvas {
         this.paint();
     }
 
+    public destroy(): void {
+        if (this.generatedCanvas) {
+            this.element.remove();
+        }
+
+        if (this.context) {
+            CanvasUtils.clear(this.context, this.dimension);
+        }
+    }
+
     /**
      * Calculates the size of the canvas
      */
     public size(): void {
-        const container = this.container;
-        const options = container.options;
-
         if (this.element) {
             this.element.width = this.dimension.width;
             this.element.height = this.dimension.height;
-        }
-
-        if (options.interactivity.events.resize) {
-            window.addEventListener("resize", () => {
-                if (!this.element) {
-                    return;
-                }
-
-                this.dimension.width = this.element.offsetWidth;
-                this.dimension.height = this.element.offsetHeight;
-
-                /* resize canvas */
-                if (container.retina.isRetina) {
-                    this.dimension.width *= this.pxRatio;
-                    this.dimension.height *= this.pxRatio;
-                }
-
-                this.element.width = this.dimension.width;
-                this.element.height = this.dimension.height;
-
-                /* repaint canvas on anim disabled */
-                if (!options.particles.move.enable) {
-                    container.particles.clear();
-                    container.particles.init();
-                    container.particles.draw(0);
-                }
-
-                /* density particles enabled */
-                container.densityAutoParticles();
-
-                if (options.polygon.type !== PolygonMaskType.none) {
-                    if (container.polygon.redrawTimeout) {
-                        clearTimeout(container.polygon.redrawTimeout);
-                    }
-
-                    container.polygon.redrawTimeout = setTimeout(async () => {
-                        container.polygon.raw = await container.polygon.parseSvgPathToPolygon();
-                        container.particles.clear();
-                        container.particles.init();
-                        container.particles.draw(0);
-                    }, 250);
-                }
-            });
         }
     }
 

@@ -1,4 +1,5 @@
 import {IPolygonMaskDrawStroke} from "../../../Interfaces/Options/PolygonMask/IPolygonMaskDrawStroke";
+import {RecursivePartial} from "../../../Types/RecursivePartial";
 
 export class PolygonMaskDrawStroke implements IPolygonMaskDrawStroke {
     public color: string;
@@ -9,6 +10,6 @@ export class PolygonMaskDrawStroke implements IPolygonMaskDrawStroke {
         this.width = 0.5;
     }
 
-    public load(data: IPolygonMaskDrawStroke): void {
+    public load(data?: RecursivePartial<IPolygonMaskDrawStroke>): void {
     }
 }

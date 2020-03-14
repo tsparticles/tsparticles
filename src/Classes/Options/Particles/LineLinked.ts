@@ -1,7 +1,7 @@
 import {ILineLinked} from "../../../Interfaces/Options/Particles/ILineLinked";
-import {Utils} from "../../Utils/Utils";
 import {ILineLinkedShadow} from "../../../Interfaces/Options/Particles/ILineLinkedShadow";
 import {LineLinkedShadow} from "./LineLinkedShadow";
+import {RecursivePartial} from "../../../Types/RecursivePartial";
 
 export class LineLinked implements ILineLinked {
     public blink: boolean;
@@ -24,35 +24,35 @@ export class LineLinked implements ILineLinked {
         this.width = 1;
     }
 
-    public load(data: ILineLinked): void {
-        if (Utils.hasData(data)) {
-            if (Utils.hasData(data.blink)) {
+    public load(data?: RecursivePartial<ILineLinked>): void {
+        if (data !== undefined) {
+            if (data.blink !== undefined) {
                 this.blink = data.blink;
             }
 
-            if (Utils.hasData(data.color)) {
+            if (data.color !== undefined) {
                 this.color = data.color;
             }
 
-            if (Utils.hasData(data.consent)) {
+            if (data.consent !== undefined) {
                 this.consent = data.consent;
             }
 
-            if (Utils.hasData(data.distance)) {
+            if (data.distance !== undefined) {
                 this.distance = data.distance;
             }
 
-            if (Utils.hasData(data.enable)) {
+            if (data.enable !== undefined) {
                 this.enable = data.enable;
             }
 
-            if (Utils.hasData(data.opacity)) {
+            if (data.opacity !== undefined) {
                 this.opacity = data.opacity;
             }
 
             this.shadow.load(data.shadow);
 
-            if (Utils.hasData(data.width)) {
+            if (data.width !== undefined) {
                 this.width = data.width;
             }
         }

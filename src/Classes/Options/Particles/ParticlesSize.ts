@@ -2,7 +2,7 @@ import {ISize} from "../../../Interfaces/Options/Particles/ISize";
 import {ParticlesSizeAnimation} from "./ParticlesSizeAnimation";
 import {ISizeAnimation} from "../../../Interfaces/Options/Particles/ISizeAnimation";
 import {Messages} from "../../Utils/Messages";
-import {Utils} from "../../Utils/Utils";
+import {RecursivePartial} from "../../../Types/RecursivePartial";
 
 export class ParticlesSize implements ISize {
     /**
@@ -36,21 +36,19 @@ export class ParticlesSize implements ISize {
         this.value = 20;
     }
 
-    public load(data: ISize): void {
-        if (Utils.hasData(data)) {
-            if (Utils.hasData(data.animation)) {
+    public load(data?: RecursivePartial<ISize>): void {
+        if (data !== undefined) {
+            if (data.animation !== undefined) {
                 this.animation.load(data.animation);
-            }
-
-            if (Utils.hasData(data.anim)) {
+            } else if (data.anim !== undefined) {
                 this.anim.load(data.anim);
             }
 
-            if (Utils.hasData(data.random)) {
+            if (data.random !== undefined) {
                 this.random = data.random;
             }
 
-            if (Utils.hasData(data.value)) {
+            if (data.value !== undefined) {
                 this.value = data.value;
             }
         }

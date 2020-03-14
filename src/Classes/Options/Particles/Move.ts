@@ -4,9 +4,9 @@ import {MoveDirection} from "../../../Enums/MoveDirection";
 import {OutMode} from "../../../Enums/OutMode";
 import {IAttract} from "../../../Interfaces/Options/Particles/IAttract";
 import {Messages} from "../../Utils/Messages";
-import {Utils} from "../../Utils/Utils";
 import {Trail} from "./Trail";
 import {ITrail} from "../../../Interfaces/Options/Particles/ITrail";
+import {RecursivePartial} from "../../../Types/RecursivePartial";
 
 export class Move implements IMove {
     /**
@@ -72,43 +72,39 @@ export class Move implements IMove {
         this.trail = new Trail();
     }
 
-    public load(data: IMove): void {
-        if (Utils.hasData(data)) {
+    public load(data?: RecursivePartial<IMove>): void {
+        if (data !== undefined) {
             this.attract.load(data.attract);
 
-            if (Utils.hasData(data.collisions)) {
+            if (data.collisions !== undefined) {
                 this.collisions = data.collisions;
-            }
-
-            if (Utils.hasData(data.bounce)) {
+            } else if (data.bounce !== undefined) {
                 this.bounce = data.bounce;
             }
 
-            if (Utils.hasData(data.direction)) {
+            if (data.direction !== undefined) {
                 this.direction = data.direction;
             }
 
-            if (Utils.hasData(data.enable)) {
+            if (data.enable !== undefined) {
                 this.enable = data.enable;
             }
 
-            if (Utils.hasData(data.outMode)) {
+            if (data.outMode !== undefined) {
                 this.outMode = data.outMode;
-            }
-
-            if (Utils.hasData(data.out_mode)) {
+            } else if (data.out_mode !== undefined) {
                 this.out_mode = data.out_mode;
             }
 
-            if (Utils.hasData(data.random)) {
+            if (data.random !== undefined) {
                 this.random = data.random;
             }
 
-            if (Utils.hasData(data.speed)) {
+            if (data.speed !== undefined) {
                 this.speed = data.speed;
             }
 
-            if (Utils.hasData(data.straight)) {
+            if (data.straight !== undefined) {
                 this.straight = data.straight;
             }
 

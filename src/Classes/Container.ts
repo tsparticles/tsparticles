@@ -6,7 +6,6 @@ import {IRepulse} from "../Interfaces/IRepulse";
 import {IBubble} from "../Interfaces/IBubble";
 import {IImage} from "../Interfaces/IImage";
 import {IContainerInteractivity} from "../Interfaces/IContainerInteractivity";
-import {Loader} from "./Loader";
 import {Particles} from "./Particles";
 import {Retina} from "./Retina";
 import {ShapeType} from "../Enums/ShapeType";
@@ -130,13 +129,9 @@ export class Container {
         if (this.drawAnimationFrame !== undefined) {
             Container.cancelAnimation(this.drawAnimationFrame);
 
-            this.drawAnimationFrame = undefined;
+            delete this.drawAnimationFrame;
             this.paused = true;
         }
-    }
-
-    private update(timestamp: DOMHighResTimeStamp): void {
-        this.drawer.draw(timestamp);
     }
 
     /* ---------- tsParticles functions - vendors ------------ */
@@ -164,14 +159,9 @@ export class Container {
     public destroy(): void {
         this.stop();
 
+        this.eventListeners.removeEventsListeners();
         this.retina.reset();
-        this.canvas.element?.remove();
-
-        const idx = Loader.dom().indexOf(this);
-
-        if (idx >= 0) {
-            Loader.dom().splice(idx, 1);
-        }
+        this.canvas.destroy();
     }
 
     public exportImg(): void {
@@ -270,6 +260,10 @@ export class Container {
         } else {
             this.checkBeforeDraw();
         }
+    }
+
+    private update(timestamp: DOMHighResTimeStamp): void {
+        this.drawer.draw(timestamp);
     }
 
     private init(): void {

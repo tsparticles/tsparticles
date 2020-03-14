@@ -1,6 +1,6 @@
 import {IClickEvent} from "../../../../Interfaces/Options/Interactivity/Events/IClickEvent";
 import {ClickMode} from "../../../../Enums/Modes/ClickMode";
-import {Utils} from "../../../Utils/Utils";
+import {RecursivePartial} from "../../../../Types/RecursivePartial";
 
 export class ClickEvent implements IClickEvent {
     public enable: boolean;
@@ -11,13 +11,13 @@ export class ClickEvent implements IClickEvent {
         this.mode = ClickMode.push;
     }
 
-    public load(data: IClickEvent): void {
-        if (Utils.hasData(data)) {
-            if (Utils.hasData(data.enable)) {
+    public load(data?: RecursivePartial<IClickEvent>): void {
+        if (data !== undefined) {
+            if (data.enable !== undefined) {
                 this.enable = data.enable;
             }
 
-            if (Utils.hasData(data.mode)) {
+            if (data.mode !== undefined) {
                 this.mode = data.mode;
             }
         }

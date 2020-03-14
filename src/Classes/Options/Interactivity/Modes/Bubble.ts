@@ -1,5 +1,5 @@
 import {IBubble} from "../../../../Interfaces/Options/Interactivity/Modes/IBubble";
-import {Utils} from "../../../Utils/Utils";
+import {RecursivePartial} from "../../../../Types/RecursivePartial";
 
 export class Bubble implements IBubble {
     public distance: number;
@@ -14,21 +14,21 @@ export class Bubble implements IBubble {
         this.size = 80;
     }
 
-    public load(data: IBubble): void {
-        if (Utils.hasData(data)) {
-            if (Utils.hasData(data.distance)) {
+    public load(data?: RecursivePartial<IBubble>): void {
+        if (data !== undefined) {
+            if (data.distance !== undefined) {
                 this.distance = data.distance;
             }
 
-            if (Utils.hasData(data.duration)) {
+            if (data.duration !== undefined) {
                 this.duration = data.duration;
             }
 
-            if (Utils.hasData(data.opacity)) {
+            if (data.opacity !== undefined) {
                 this.opacity = data.opacity;
             }
 
-            if (Utils.hasData(data.size)) {
+            if (data.size !== undefined) {
                 this.size = data.size;
             }
         }

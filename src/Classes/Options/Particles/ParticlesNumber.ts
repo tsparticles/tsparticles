@@ -1,8 +1,8 @@
 import {IParticlesNumber} from "../../../Interfaces/Options/Particles/IParticlesNumber";
 import {IDensity} from "../../../Interfaces/Options/Particles/IDensity";
 import {Density} from "./Density";
-import {Utils} from "../../Utils/Utils";
 import {Messages} from "../../Utils/Messages";
+import {RecursivePartial} from "../../../Types/RecursivePartial";
 
 export class ParticlesNumber implements IParticlesNumber {
     /**
@@ -33,19 +33,17 @@ export class ParticlesNumber implements IParticlesNumber {
         this.value = 400;
     }
 
-    public load(data: IParticlesNumber): void {
-        if (Utils.hasData(data)) {
+    public load(data?: RecursivePartial<IParticlesNumber>): void {
+        if (data !== undefined) {
             this.density.load(data.density);
 
-            if (Utils.hasData(data.max)) {
+            if (data.max !== undefined) {
                 this.max = data.max;
-            }
-
-            if (Utils.hasData(data.limit)) {
+            } else if (data.limit !== undefined) {
                 this.limit = data.limit;
             }
 
-            if (Utils.hasData(data.value)) {
+            if (data.value !== undefined) {
                 this.value = data.value;
             }
         }

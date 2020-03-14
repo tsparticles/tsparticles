@@ -1,5 +1,5 @@
 import {ILineLinkedShadow} from "../../../Interfaces/Options/Particles/ILineLinkedShadow";
-import {Utils} from "../../Utils/Utils";
+import {RecursivePartial} from "../../../Types/RecursivePartial";
 
 export class LineLinkedShadow implements ILineLinkedShadow {
     public blur: number;
@@ -12,17 +12,17 @@ export class LineLinkedShadow implements ILineLinkedShadow {
         this.enable = false;
     }
 
-    public load(data: ILineLinkedShadow): void {
-        if (Utils.hasData(data)) {
-            if (Utils.hasData(data.blur)) {
+    public load(data?: RecursivePartial<ILineLinkedShadow>): void {
+        if (data !== undefined) {
+            if (data.blur !== undefined) {
                 this.blur = data.blur;
             }
 
-            if (Utils.hasData(data.color)) {
+            if (data.color !== undefined) {
                 this.color = data.color;
             }
 
-            if (Utils.hasData(data.enable)) {
+            if (data.enable !== undefined) {
                 this.enable = data.enable;
             }
         }

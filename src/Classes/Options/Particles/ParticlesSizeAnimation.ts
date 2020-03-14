@@ -1,6 +1,6 @@
 import {ISizeAnimation} from "../../../Interfaces/Options/Particles/ISizeAnimation";
 import {Messages} from "../../Utils/Messages";
-import {Utils} from "../../Utils/Utils";
+import {RecursivePartial} from "../../../Types/RecursivePartial";
 
 export class ParticlesSizeAnimation implements ISizeAnimation {
     /**
@@ -36,25 +36,23 @@ export class ParticlesSizeAnimation implements ISizeAnimation {
         this.sync = false;
     }
 
-    public load(data: ISizeAnimation): void {
-        if (Utils.hasData(data)) {
-            if (Utils.hasData(data.enable)) {
+    public load(data?: RecursivePartial<ISizeAnimation>): void {
+        if (data !== undefined) {
+            if (data.enable !== undefined) {
                 this.enable = data.enable;
             }
 
-            if (Utils.hasData(data.minimumValue)) {
+            if (data.minimumValue !== undefined) {
                 this.minimumValue = data.minimumValue;
-            }
-
-            if (Utils.hasData(data.size_min)) {
+            } else if (data.size_min !== undefined) {
                 this.size_min = data.size_min;
             }
 
-            if (Utils.hasData(data.speed)) {
+            if (data.speed !== undefined) {
                 this.speed = data.speed;
             }
 
-            if (Utils.hasData(data.sync)) {
+            if (data.sync !== undefined) {
                 this.sync = data.sync;
             }
         }

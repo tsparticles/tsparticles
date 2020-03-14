@@ -35,7 +35,9 @@ export class Loader {
      * @param params the options array to get the item from
      * @param index if provided gets the corresponding item from the array
      */
-    public static loadFromArray(tagId: string, params: RecursivePartial<IOptions>[], index?: number): Container | undefined {
+    public static loadFromArray(tagId: string,
+                                params: RecursivePartial<IOptions>[],
+                                index?: number): Container | undefined {
         let idx: number;
 
         if (index === undefined || index < 0 || index >= params.length) {
@@ -66,13 +68,14 @@ export class Loader {
 
         if (idx >= 0) {
             const old = this.domItem(idx);
+
             old.destroy();
         }
 
         const newItem = new Container(tagId, params);
 
         if (idx >= 0) {
-            dom.splice(idx, 0, newItem);
+            dom.splice(idx, 1, newItem);
         } else {
             dom.push(newItem);
         }

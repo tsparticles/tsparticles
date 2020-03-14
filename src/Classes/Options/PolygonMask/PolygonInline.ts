@@ -1,6 +1,6 @@
 import {IPolygonInline} from "../../../Interfaces/Options/PolygonMask/IPolygonInline";
 import {PolygonMaskInlineArrangement} from "../../../Enums/PolygonMaskInlineArrangement";
-import {Utils} from "../../Utils/Utils";
+import {RecursivePartial} from "../../../Types/RecursivePartial";
 
 export class PolygonInline implements IPolygonInline {
     public arrangement: PolygonMaskInlineArrangement;
@@ -9,9 +9,9 @@ export class PolygonInline implements IPolygonInline {
         this.arrangement = PolygonMaskInlineArrangement.onePerPoint;
     }
 
-    public load(data: IPolygonInline): void {
-        if (Utils.hasData(data)) {
-            if (Utils.hasData(data.arrangement)) {
+    public load(data?: RecursivePartial<IPolygonInline>): void {
+        if (data !== undefined) {
+            if (data.arrangement !== undefined) {
                 this.arrangement = data.arrangement;
             }
         }

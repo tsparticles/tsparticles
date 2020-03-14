@@ -5,10 +5,10 @@ import {Move} from "./Move";
 import {IPolygonMaskDraw} from "../../../Interfaces/Options/PolygonMask/IPolygonMaskDraw";
 import {IPolygonMaskMove} from "../../../Interfaces/Options/PolygonMask/IPolygonMaskMove";
 import {PolygonMaskInlineArrangement} from "../../../Enums/PolygonMaskInlineArrangement";
-import {Utils} from "../../Utils/Utils";
 import {IPolygonInline} from "../../../Interfaces/Options/PolygonMask/IPolygonInline";
 import {Messages} from "../../Utils/Messages";
 import {PolygonInline} from "./PolygonInline";
+import {RecursivePartial} from "../../../Types/RecursivePartial";
 
 export class PolygonMask implements IPolygonMask {
     /**
@@ -47,27 +47,27 @@ export class PolygonMask implements IPolygonMask {
         this.url = "";
     }
 
-    public load(data: IPolygonMask): void {
-        if (Utils.hasData(data)) {
+    public load(data?: RecursivePartial<IPolygonMask>): void {
+        if (data !== undefined) {
             this.draw.load(data.draw);
 
-            if (Utils.hasData(data.inlineArrangement)) {
+            if (data.inline !== undefined) {
+                this.inline.load(data.inline);
+            } else if (data.inlineArrangement !== undefined) {
                 this.inlineArrangement = data.inlineArrangement;
             }
 
-            this.inline.load(data.inline);
-
             this.move.load(data.move);
 
-            if (Utils.hasData(data.scale)) {
+            if (data.scale !== undefined) {
                 this.scale = data.scale;
             }
 
-            if (Utils.hasData(data.type)) {
+            if (data.type !== undefined) {
                 this.type = data.type;
             }
 
-            if (Utils.hasData(data.url)) {
+            if (data.url !== undefined) {
                 this.url = data.url;
             }
         }

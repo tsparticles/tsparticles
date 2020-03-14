@@ -6,7 +6,7 @@ import {DivEvent} from "./DivEvent";
 import {HoverEvent} from "./HoverEvent";
 import {IClickEvent} from "../../../../Interfaces/Options/Interactivity/Events/IClickEvent";
 import {Messages} from "../../../Utils/Messages";
-import {Utils} from "../../../Utils/Utils";
+import {RecursivePartial} from "../../../../Types/RecursivePartial";
 
 export class Events implements IEvents {
     /**
@@ -84,33 +84,27 @@ export class Events implements IEvents {
         this.resize = true;
     }
 
-    public load(data: IEvents): void {
-        if (Utils.hasData(data)) {
-            if (Utils.hasData(data.onClick)) {
+    public load(data?: RecursivePartial<IEvents>): void {
+        if (data !== undefined) {
+            if (data.onClick !== undefined) {
                 this.onClick.load(data.onClick);
-            }
-
-            if (Utils.hasData(data.onclick)) {
+            } else if (data.onclick !== undefined) {
                 this.onclick.load(data.onclick);
             }
 
-            if (Utils.hasData(data.onDiv)) {
+            if (data.onDiv !== undefined) {
                 this.onDiv.load(data.onDiv);
-            }
-
-            if (Utils.hasData(data.ondiv)) {
+            } else if (data.ondiv !== undefined) {
                 this.ondiv.load(data.ondiv);
             }
 
-            if (Utils.hasData(data.onHover)) {
+            if (data.onHover !== undefined) {
                 this.onHover.load(data.onHover);
-            }
-
-            if (Utils.hasData(data.onhover)) {
+            } else if (data.onhover !== undefined) {
                 this.onhover.load(data.onhover);
             }
 
-            if (Utils.hasData(data.resize)) {
+            if (data.resize !== undefined) {
                 this.resize = data.resize;
             }
         }

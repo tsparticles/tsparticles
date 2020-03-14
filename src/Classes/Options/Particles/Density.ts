@@ -1,6 +1,6 @@
 import {IDensity} from "../../../Interfaces/Options/Particles/IDensity";
 import {Messages} from "../../Utils/Messages";
-import {Utils} from "../../Utils/Utils";
+import {RecursivePartial} from "../../../Types/RecursivePartial";
 
 export class Density implements IDensity {
     /**
@@ -32,17 +32,15 @@ export class Density implements IDensity {
         this.area = 800;
     }
 
-    public load(data: IDensity): void {
-        if (Utils.hasData(data)) {
-            if (Utils.hasData(data.enable)) {
+    public load(data?: RecursivePartial<IDensity>): void {
+        if (data !== undefined) {
+            if (data.enable !== undefined) {
                 this.enable = data.enable;
             }
 
-            if (Utils.hasData(data.area)) {
+            if (data.area !== undefined) {
                 this.area = data.area;
-            }
-
-            if (Utils.hasData(data.value_area)) {
+            } else if (data.value_area !== undefined) {
                 this.value_area = data.value_area;
             }
         }

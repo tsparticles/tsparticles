@@ -14,9 +14,9 @@ import {IOpacity} from "../../../Interfaces/Options/Particles/IOpacity";
 import {IShape} from "../../../Interfaces/Options/Particles/Shape/IShape";
 import {ISize} from "../../../Interfaces/Options/Particles/ISize";
 import {Messages} from "../../Utils/Messages";
-import {Utils} from "../../Utils/Utils";
 import {IRotate} from "../../../Interfaces/Options/Particles/IRotate";
 import {Rotate} from "./Rotate";
+import {RecursivePartial} from "../../../Types/RecursivePartial";
 
 export class Particles implements IParticles {
     /**
@@ -63,15 +63,13 @@ export class Particles implements IParticles {
         //this.shadow = new Shadow();
     }
 
-    public load(data: IParticles): void {
-        if (Utils.hasData(data)) {
+    public load(data?: RecursivePartial<IParticles>): void {
+        if (data !== undefined) {
             this.color.load(data.color);
 
-            if (Utils.hasData(data.lineLinked)) {
+            if (data.lineLinked !== undefined) {
                 this.lineLinked.load(data.lineLinked);
-            }
-
-            if (Utils.hasData(data.line_linked)) {
+            } else if (data.line_linked !== undefined) {
                 this.line_linked.load(data.line_linked);
             }
 
