@@ -16,8 +16,8 @@ export class Drawer {
         // If we are too fast, just draw without updating
         const fpsLimit = options.fpsLimit > 0 ? options.fpsLimit : 60;
 
-        if (timestamp < container.lastFrameTime + (1000 / fpsLimit)) {
-            container.drawAnimationFrame = Container.requestFrame((t) => this.draw(t));
+        if (container.lastFrameTime !== undefined && timestamp < container.lastFrameTime + (1000 / fpsLimit)) {
+            container.play();
             return;
         }
 
@@ -31,10 +31,10 @@ export class Drawer {
 
         container.particles.draw(delta);
 
-        if (container.drawAnimationFrame !== undefined && !options.particles.move.enable) {
-            Container.cancelAnimation(container.drawAnimationFrame);
+        if (!options.particles.move.enable) {
+            container.pause();
         } else {
-            container.drawAnimationFrame = Container.requestFrame((t) => this.draw(t));
+            container.play();
         }
     }
 }

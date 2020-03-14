@@ -1,5 +1,5 @@
 import {IParallax} from "../../../../Interfaces/Options/Interactivity/Events/IParallax";
-import {Utils} from "../../../Utils/Utils";
+import {RecursivePartial} from "../../../../Types/RecursivePartial";
 
 export class Parallax implements IParallax {
     public enable: boolean;
@@ -12,17 +12,17 @@ export class Parallax implements IParallax {
         this.smooth = 10;
     }
 
-    public load(data: IParallax): void {
-        if (Utils.hasData(data)) {
-            if (Utils.hasData(data.enable)) {
+    public load(data?: RecursivePartial<IParallax>): void {
+        if (data !== undefined) {
+            if (data.enable !== undefined) {
                 this.enable = data.enable;
             }
 
-            if (Utils.hasData(data.force)) {
+            if (data.force !== undefined) {
                 this.force = data.force;
             }
 
-            if (Utils.hasData(data.smooth)) {
+            if (data.smooth !== undefined) {
                 this.smooth = data.smooth;
             }
         }

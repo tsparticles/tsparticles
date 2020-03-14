@@ -1,13 +1,13 @@
 {
   "name": "tsparticles",
-  "version": "1.9.2",
+  "version": "1.10.0",
   "description": "Porting of the abandoned Vincent Garreau's particles.js, converted in TypeScript. Added many new cool features and various bug fixes.",
   "homepage": "https://particles.matteobruni.it/",
   "scripts": {
     "type-check": "tsc --noEmit",
     "type-check:watch": "npm run type-check -- --watch",
     "clear:dist": "rimraf -f dist/**/*",
-    "clear:docs": "rimraf -f docs/**/*",
+    "clear:docs": "rimraf -f docs",
     "copy:js": "cpx \"src/**/*.{js,d.ts}\" dist/",
     "slimbuild": "npm run clear:dist && npm run copy:js && npm run build:types && npm run build:js && npx webpack --mode production",
     "build": "npm run build:docs && npm run slimbuild",
@@ -75,7 +75,6 @@
     "stylus": "^0.54.7",
     "terser-webpack-plugin": "^2.3.5",
     "three": "^0.114.0",
-    "tsyringe": "^4.1.0",
     "typedoc": "^0.16.11",
     "typescript": "^3.8.3",
     "uglifyjs-webpack-plugin": "^2.2.0",

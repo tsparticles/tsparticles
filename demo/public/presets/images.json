@@ -104,6 +104,16 @@
       "random": false,
       "value": 0.5
     },
+    "rotate": {
+      "animation": {
+        "enable": true,
+        "speed": 5,
+        "sync": false
+      },
+      "direction": "random",
+      "random": true,
+      "value": 0
+    },
     "shape": {
       "character": {
         "fill": false,

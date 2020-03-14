@@ -8,9 +8,27 @@ import {IImageShape} from "../../../../Interfaces/Options/Particles/Shape/IImage
 import {ICharacterShape} from "../../../../Interfaces/Options/Particles/Shape/ICharacterShape";
 import {IPolygonShape} from "../../../../Interfaces/Options/Particles/Shape/IPolygonShape";
 import {IStroke} from "../../../../Interfaces/Options/Particles/Shape/IStroke";
-import {Utils} from "../../../Utils/Utils";
+import {RecursivePartial} from "../../../../Types/RecursivePartial";
 
 export class Shape implements IShape {
+    /**
+     * @deprecated the property images is deprecated, please use the image property, it works with one and many
+     */
+    get images(): IImageShape[] {
+        if (this.image instanceof Array) {
+            return this.image;
+        }
+
+        return [];
+    }
+
+    /**
+     * @deprecated the property images is deprecated, please use the image property, it works with one and many
+     */
+    set images(value: IImageShape[]) {
+        this.image = value;
+    }
+
     public character: ICharacterShape;
     public image: IImageShape | IImageShape[];
     public polygon: IPolygonShape;
@@ -25,11 +43,11 @@ export class Shape implements IShape {
         this.type = ShapeType.circle;
     }
 
-    public load(data: IShape): void {
-        if (Utils.hasData(data)) {
+    public load(data?: RecursivePartial<IShape>): void {
+        if (data !== undefined) {
             this.character.load(data.character);
 
-            if (Utils.hasData(data.image)) {
+            if (data.image !== undefined) {
                 if (data.image instanceof Array) {
                     this.image = data.image.map((s) => {
                         const tmp = new ImageShape();
@@ -46,7 +64,7 @@ export class Shape implements IShape {
 
             this.stroke.load(data.stroke);
 
-            if (Utils.hasData(data.type)) {
+            if (data.type !== undefined) {
                 this.type = data.type;
             }
         }

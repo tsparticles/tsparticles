@@ -3,7 +3,7 @@ import {InteractivityDetect} from "../../../Enums/InteractivityDetect";
 import {Events} from "./Events/Events";
 import {Modes} from "./Modes/Modes";
 import {Messages} from "../../Utils/Messages";
-import {Utils} from "../../Utils/Utils";
+import {RecursivePartial} from "../../../Types/RecursivePartial";
 
 export class Interactivity implements IInteractivity {
     /**
@@ -37,13 +37,11 @@ export class Interactivity implements IInteractivity {
         this.modes = new Modes();
     }
 
-    public load(data: IInteractivity): void {
-        if (Utils.hasData(data)) {
-            if (Utils.hasData(data.detectsOn)) {
+    public load(data?: RecursivePartial<IInteractivity>): void {
+        if (data !== undefined) {
+            if (data.detectsOn !== undefined) {
                 this.detectsOn = data.detectsOn;
-            }
-
-            if (Utils.hasData(data.detect_on)) {
+            } else if (data.detect_on !== undefined) {
                 this.detect_on = data.detect_on;
             }
 

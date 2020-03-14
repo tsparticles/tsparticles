@@ -1,6 +1,6 @@
 import {IRemove} from "../../../../Interfaces/Options/Interactivity/Modes/IRemove";
 import {Messages} from "../../../Utils/Messages";
-import {Utils} from "../../../Utils/Utils";
+import {RecursivePartial} from "../../../../Types/RecursivePartial";
 
 export class Remove implements IRemove {
     /**
@@ -30,13 +30,11 @@ export class Remove implements IRemove {
         this.quantity = 2;
     }
 
-    public load(data: IRemove): void {
-        if (Utils.hasData(data)) {
-            if (Utils.hasData(data.quantity)) {
+    public load(data?: RecursivePartial<IRemove>): void {
+        if (data !== undefined) {
+            if (data.quantity !== undefined) {
                 this.quantity = data.quantity;
-            }
-
-            if (Utils.hasData(data.particles_nb)) {
+            } else if (data.particles_nb !== undefined) {
                 this.particles_nb = data.particles_nb;
             }
         }

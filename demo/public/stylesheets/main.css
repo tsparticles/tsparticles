@@ -57,10 +57,10 @@ body {
   display: flex;
 }
 #inputs select {
-  flex: 100%;
+  flex: 2;
 }
 #inputs button {
-  flex: auto;
+  flex: 1;
   white-space: nowrap;
 }
 /* ---- stats.js ---- */

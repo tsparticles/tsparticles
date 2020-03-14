@@ -2,7 +2,7 @@ import {IHoverEvent} from "../../../../Interfaces/Options/Interactivity/Events/I
 import {HoverMode} from "../../../../Enums/Modes/HoverMode";
 import {Parallax} from "./Parallax";
 import {IParallax} from "../../../../Interfaces/Options/Interactivity/Events/IParallax";
-import {Utils} from "../../../Utils/Utils";
+import {RecursivePartial} from "../../../../Types/RecursivePartial";
 
 export class HoverEvent implements IHoverEvent {
     public enable: boolean;
@@ -15,13 +15,13 @@ export class HoverEvent implements IHoverEvent {
         this.parallax = new Parallax();
     }
 
-    public load(data: IHoverEvent): void {
-        if (Utils.hasData(data)) {
-            if (Utils.hasData(data.enable)) {
+    public load(data?: RecursivePartial<IHoverEvent>): void {
+        if (data !== undefined) {
+            if (data.enable !== undefined) {
                 this.enable = data.enable;
             }
 
-            if (Utils.hasData(data.mode)) {
+            if (data.mode !== undefined) {
                 this.mode = data.mode;
             }
 

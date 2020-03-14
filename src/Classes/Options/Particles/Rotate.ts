@@ -1,8 +1,8 @@
 import {IRotate} from "../../../Interfaces/Options/Particles/IRotate";
 import {IRotateAnimation} from "../../../Interfaces/Options/Particles/IRotateAnimation";
-import {Utils} from "../../Utils/Utils";
 import {RotateAnimation} from "./RotateAnimation";
 import {RotateDirection} from "../../../Enums/RotateDirection";
+import {RecursivePartial} from "../../../Types/RecursivePartial";
 
 export class Rotate implements IRotate {
     public animation: IRotateAnimation;
@@ -17,16 +17,20 @@ export class Rotate implements IRotate {
         this.value = 0
     }
 
-    public load(data: IRotate): void {
-        if (Utils.hasData(data)) {
+    public load(data?: RecursivePartial<IRotate>): void {
+        if (data !== undefined) {
             this.animation.load(data.animation);
 
-            if (Utils.hasData(data.random)) {
-                this.random = data.random
+            if (data.random !== undefined) {
+                this.random = data.random;
             }
 
-            if (Utils.hasData(data.random)) {
-                this.value = data.value
+            if (data.direction !== undefined) {
+                this.direction = data.direction;
+            }
+
+            if (data.value !== undefined) {
+                this.value = data.value;
             }
         }
     }
