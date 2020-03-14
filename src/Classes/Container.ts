@@ -149,7 +149,6 @@ export class Container {
         const optParticlesNumber = this.options.particles.number.value;
         const density = this.options.particles.number.density.area;
         const particlesNumber = area * optParticlesNumber / density;
-        console.log(particlesNumber);
         const missingParticles = this.particles.array.length - particlesNumber;
 
         if (missingParticles < 0) {
