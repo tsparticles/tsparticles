@@ -58,6 +58,11 @@ export class Canvas {
         /* get existing canvas if present, otherwise a new one will be created */
         if (existingCanvases.length) {
             canvasEl = existingCanvases[0];
+
+            if (!canvasEl.className) {
+                canvasEl.className = Constants.canvasClass;
+            }
+
             this.generatedCanvas = false;
         } else {
             this.generatedCanvas = true;
@@ -90,6 +95,10 @@ export class Canvas {
     }
 
     public changeCanvas(canvas: HTMLCanvasElement) {
+        if (!canvas.className) {
+            canvas.className = Constants.canvasClass;
+        }
+
         if (this.generatedCanvas) {
             this.element.remove();
         }
