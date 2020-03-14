@@ -11,6 +11,24 @@ import {IStroke} from "../../../../Interfaces/Options/Particles/Shape/IStroke";
 import {Utils} from "../../../Utils/Utils";
 
 export class Shape implements IShape {
+    /**
+     * @deprecated the property images is deprecated, please use the image property, it works with one and many
+     */
+    get images(): IImageShape[] {
+        if (this.image instanceof Array) {
+            return this.image;
+        }
+
+        return [];
+    }
+
+    /**
+     * @deprecated the property images is deprecated, please use the image property, it works with one and many
+     */
+    set images(value: IImageShape[]) {
+        this.image = value;
+    }
+
     public character: ICharacterShape;
     public image: IImageShape | IImageShape[];
     public polygon: IPolygonShape;

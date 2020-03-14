@@ -4,7 +4,6 @@ import {Container} from "../Container";
 import {OutMode} from "../../Enums/OutMode";
 import {Particle} from "../Particle";
 import {Utils} from "../Utils/Utils";
-import {ClickMode} from "../../Enums/Modes/ClickMode";
 import {PolygonMaskType} from "../../Enums/PolygonMaskType";
 import {Mover} from "./Mover";
 import {RotateDirection} from "../../Enums/RotateDirection";
@@ -172,13 +171,6 @@ export class Updater {
                 particle.position.y - particle.radius > container.canvas.dimension.height) {
                 const idx = container.particles.array.indexOf(particle);
                 container.particles.array.splice(idx, 1);
-
-                /* remove the canvas if the array is empty */
-                const clickMode = options.interactivity.events.onClick.mode;
-
-                if (!container.particles.array.length && !Utils.isInArray(ClickMode.push, clickMode)) {
-                    container.destroy();
-                }
             }
         } else {
             const nextPos = {

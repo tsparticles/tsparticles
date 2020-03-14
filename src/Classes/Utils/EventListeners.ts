@@ -30,7 +30,7 @@ export class EventListeners {
         /* events target element */
         if (options.interactivity.detectsOn === InteractivityDetect.window) {
             container.interactivity.element = window;
-        } else if (container.options.interactivity.detectsOn === InteractivityDetect.parent) {
+        } else if (container.options.interactivity.detectsOn === InteractivityDetect.parent && container.canvas.element) {
             container.interactivity.element = container.canvas.element.parentNode;
         } else {
             container.interactivity.element = container.canvas.element;
@@ -70,6 +70,27 @@ export class EventListeners {
                 interactivityEl.addEventListener("mouseup", (e: Event) => this.mouseTouchClick(e));
             }
         }
+
+        document?.addEventListener("visibilitychange", () => this.handleVisibilityChange(), false);
+    }
+
+    private handleVisibilityChange(): void {
+        const container = this.container;
+        const options = container.options;
+
+        if (!options.pauseOnBlur) {
+            return;
+        }
+
+        if (document?.hidden) {
+            container.pageHidden = true;
+
+            container.pause();
+        } else {
+            container.pageHidden = false;
+
+            container.play();
+        }
     }
 
     /**
@@ -85,7 +106,7 @@ export class EventListeners {
         if (e.type.startsWith("mouse")) {
             const mouseEvent = e as MouseEvent;
 
-            if (container.interactivity.element === window) {
+            if (container.interactivity.element === window && container.canvas.element) {
                 const clientRect = container.canvas.element.getBoundingClientRect();
 
                 pos = {

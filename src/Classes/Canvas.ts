@@ -21,7 +21,7 @@ export class Canvas {
     /**
      * The particles canvas dimension
      */
-    public dimension: IDimension;
+    public readonly dimension: IDimension;
     /**
      * The ratio used by the particles canvas
      */
@@ -40,17 +40,42 @@ export class Canvas {
     /**
      * Constructor of canvas manager
      * @param container the parent container
-     * @param tagId the particles container element id
      */
     constructor(container: Container) {
-        const canvasEl = document.querySelector(`#${container.id} > .${Constants.canvasClass}`) as HTMLCanvasElement;
-
         this.container = container;
-        this.element = canvasEl;
         this.dimension = {
-            height: canvasEl.offsetHeight,
-            width: canvasEl.offsetWidth,
+            width: 0,
+            height: 0,
         };
+        this.pxRatio = 1;
+
+        const domContainer = document.getElementById(container.id)!;
+        const existingCanvases = domContainer.getElementsByTagName("canvas");
+
+        console.log(existingCanvases);
+
+        let canvasEl: HTMLCanvasElement;
+
+        /* get existing canvas if present, otherwise a new one will be created */
+        if (existingCanvases.length) {
+            canvasEl = existingCanvases[0];
+        } else {
+            /* create canvas element */
+            canvasEl = document.createElement("canvas");
+
+            canvasEl.className = Constants.canvasClass;
+
+            /* set size canvas */
+            canvasEl.style.width = "100%";
+            canvasEl.style.height = "100%";
+
+            /* append canvas */
+            domContainer.appendChild(canvasEl);
+        }
+
+        this.element = canvasEl;
+        this.dimension.height = canvasEl.offsetHeight;
+        this.dimension.width = canvasEl.offsetWidth;
         this.pxRatio = 1;
         this.context = this.element.getContext("2d");
     }
@@ -71,11 +96,17 @@ export class Canvas {
         const container = this.container;
         const options = container.options;
 
-        this.element.width = this.dimension.width;
-        this.element.height = this.dimension.height;
+        if (this.element) {
+            this.element.width = this.dimension.width;
+            this.element.height = this.dimension.height;
+        }
 
         if (options.interactivity.events.resize) {
             window.addEventListener("resize", () => {
+                if (!this.element) {
+                    return;
+                }
+
                 this.dimension.width = this.element.offsetWidth;
                 this.dimension.height = this.element.offsetHeight;
 
@@ -163,7 +194,7 @@ export class Canvas {
         const polygonDraw = options.polygon.draw;
 
         if (context) {
-            CanvasUtils.drawPolygonMask(context, rawData, polygonDraw.lineColor, polygonDraw.lineWidth);
+            CanvasUtils.drawPolygonMask(context, rawData, polygonDraw.stroke);
         }
     }
 
