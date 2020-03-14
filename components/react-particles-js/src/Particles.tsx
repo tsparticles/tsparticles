@@ -4,12 +4,13 @@ import isEqual from 'lodash/isEqual';
 import {IOptions} from "tsparticles/dist/Interfaces/Options/IOptions";
 import {Options} from "tsparticles/dist/Classes/Options/Options";
 import {Container} from "tsparticles/dist/Classes/Container";
+import {RecursivePartial} from "tsparticles/dist/Types/RecursivePartial";
 
 export interface ParticlesProps {
     id: string;
     width: string;
     height: string;
-    params: IOptions;
+    params: RecursivePartial<IOptions>;
     style: any;
     className?: string;
     canvasClassName?: string;
@@ -54,7 +55,7 @@ export default class Particles extends Component<ParticlesProps,
             this.destroy();
             this.setState(
                 {
-                    library: this.buildParticlesLibrary(props.id, props.params)
+                    library: this.buildParticlesLibrary(props.id, props.params as IOptions)
                 },
                 () => {
                     this.loadCanvas(canvas);
@@ -77,10 +78,10 @@ export default class Particles extends Component<ParticlesProps,
                 },
                 () => {
                     const {library} = this.state;
+
                     if (!library) {
                         return;
                     }
-                    canvas = library.canvas.element
                 }
             );
         }
@@ -101,7 +102,7 @@ export default class Particles extends Component<ParticlesProps,
 
     componentDidMount() {
         this.setState({
-            library: this.buildParticlesLibrary(this.props.id, this.props.params)
+            library: this.buildParticlesLibrary(this.props.id, this.props.params as IOptions)
         });
     }
 

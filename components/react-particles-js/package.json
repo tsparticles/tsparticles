@@ -33,8 +33,7 @@
   },
   "dependencies": {
     "lodash": "^4.17.11",
-    "tsparticles": "^1.9.2",
-    "tsyringe": "^4.1.0"
+    "tsparticles": "^1.9.2"
   },
   "peerDependencies": {
     "react": "^16.0.0"
