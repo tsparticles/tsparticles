@@ -54,13 +54,10 @@ export default class Particles extends Component<ParticlesProps,
 
         const container = new Container(tagId, options);
 
-        console.log(container);
-
         return container;
     }
 
     private refresh(props: Readonly<ParticlesProps>): void {
-        console.log('refresh');
         const {canvas} = this.state;
         if (canvas) {
             this.destroy();
@@ -77,7 +74,6 @@ export default class Particles extends Component<ParticlesProps,
     destroy() {
         if (this.state.library) {
             this.state.library.destroy();
-            delete this.state.library;
         }
     }
 
@@ -93,7 +89,7 @@ export default class Particles extends Component<ParticlesProps,
                         return;
                     }
 
-                    console.log(library.canvas.element);
+                    library.canvas.changeCanvas(canvas);
                 }
             );
         }
@@ -113,7 +109,6 @@ export default class Particles extends Component<ParticlesProps,
     }
 
     componentDidMount() {
-        console.log('didMount');
         this.setState({
             library: this.buildParticlesLibrary(this.props.id, this.props.params)
         });
