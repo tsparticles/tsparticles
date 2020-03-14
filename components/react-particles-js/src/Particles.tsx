@@ -2,9 +2,10 @@ import * as React from "react";
 import {Component} from "react";
 import isEqual from 'lodash/isEqual';
 import {IOptions} from "tsparticles/dist/Interfaces/Options/IOptions";
-import {Options} from "tsparticles/dist/Classes/Options/Options";
 import {Container} from "tsparticles/dist/Classes/Container";
 import {RecursivePartial} from "tsparticles/dist/Types/RecursivePartial";
+import {defaultParams} from "./DefaultOptions";
+import {Options} from "tsparticles/dist/Classes/Options/Options";
 
 export interface ParticlesProps {
     id: string;
@@ -26,7 +27,7 @@ export default class Particles extends Component<ParticlesProps,
     public static defaultProps: ParticlesProps = {
         width: "100%",
         height: "100%",
-        params: new Options(),
+        params: defaultParams,
         style: {},
         id: "tsparticles"
     };
@@ -40,22 +41,31 @@ export default class Particles extends Component<ParticlesProps,
         this.loadCanvas = this.loadCanvas.bind(this);
     }
 
-    private buildParticlesLibrary(tagId: string, params?: IOptions) {
+    private buildParticlesLibrary(tagId: string, params?: RecursivePartial<IOptions>) {
         try {
             if (window === undefined) return null;
         } catch {
             return null;
         } // SSR
-        return new Container(tagId, params);
+        var options = new Options();
+
+        options.load(defaultParams);
+        options.load(params);
+
+        const container = new Container(tagId, options);
+
+        console.log(container);
+
+        return container;
     }
 
     private refresh(props: Readonly<ParticlesProps>): void {
+        console.log('refresh');
         const {canvas} = this.state;
         if (canvas) {
             this.destroy();
-            this.setState(
-                {
-                    library: this.buildParticlesLibrary(props.id, props.params as IOptions)
+            this.setState({
+                    library: this.buildParticlesLibrary(props.id, props.params)
                 },
                 () => {
                     this.loadCanvas(canvas);
@@ -67,13 +77,13 @@ export default class Particles extends Component<ParticlesProps,
     destroy() {
         if (this.state.library) {
             this.state.library.destroy();
+            delete this.state.library;
         }
     }
 
     loadCanvas(canvas: HTMLCanvasElement) {
         if (canvas) {
-            this.setState(
-                {
+            this.setState({
                     canvas
                 },
                 () => {
@@ -82,6 +92,8 @@ export default class Particles extends Component<ParticlesProps,
                     if (!library) {
                         return;
                     }
+
+                    console.log(library.canvas.element);
                 }
             );
         }
@@ -101,8 +113,9 @@ export default class Particles extends Component<ParticlesProps,
     }
 
     componentDidMount() {
+        console.log('didMount');
         this.setState({
-            library: this.buildParticlesLibrary(this.props.id, this.props.params as IOptions)
+            library: this.buildParticlesLibrary(this.props.id, this.props.params)
         });
     }
 
