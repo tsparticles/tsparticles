@@ -5,7 +5,7 @@ export class CharacterShape implements ICharacterShape {
     public fill: boolean;
     public font: string;
     public style: string;
-    public value: string | string[];
+    public value: string | string [];
     public weight: string;
 
     constructor() {

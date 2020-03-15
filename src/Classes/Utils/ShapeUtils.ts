@@ -3,6 +3,7 @@ import {IStroke} from "../../Interfaces/Options/Particles/Shape/IStroke";
 import {ShapeType} from "../../Enums/ShapeType";
 import {ICoordinates} from "../../Interfaces/ICoordinates";
 import {ISide} from "../../Interfaces/ISide";
+import {ICharacterShape} from "../../Interfaces/Options/Particles/Shape/ICharacterShape";
 
 export class ShapeUtils {
     public static drawShape(context: CanvasRenderingContext2D,
@@ -48,16 +49,7 @@ export class ShapeUtils {
 
             case ShapeType.char:
             case ShapeType.character:
-                const style = particle.container.options.particles.shape.character.style;
-                const weight = particle.container.options.particles.shape.character.weight;
-                const size = Math.round(radius) * 2;
-                const font = particle.container.options.particles.shape.character.font;
-                const text = particle.text;
-                const fill = particle.container.options.particles.shape.character.fill;
-
-                context.font = `${style} ${weight} ${size}px ${font}`;
-
-                this.drawTextShape(context, text, radius, fill);
+                this.drawTextShape(context, particle.character, particle.text, radius);
 
                 break;
 
@@ -149,11 +141,20 @@ export class ShapeUtils {
     }
 
     private static drawTextShape(context: CanvasRenderingContext2D,
+                                 character: ICharacterShape | undefined,
                                  text: string | undefined,
-                                 radius: number, fill: boolean): void {
-        if (text === undefined) {
+                                 radius: number): void {
+        if (text === undefined || character === undefined) {
             return;
         }
+
+        const style = character.style;
+        const weight = character.weight;
+        const size = Math.round(radius) * 2;
+        const font = character.font;
+        const fill = character.fill;
+
+        context.font = `${style} ${weight} ${size}px "${font}"`;
 
         const pos = {
             x: -radius / 2,

@@ -16,7 +16,7 @@ export class Canvas {
     /**
      * The particles canvas
      */
-    public element: HTMLCanvasElement;
+    public element?: HTMLCanvasElement;
     /**
      * The particles canvas dimension
      */
@@ -48,7 +48,9 @@ export class Canvas {
         const domContainer = document.getElementById(container.id);
 
         if (!domContainer) {
-            throw new Error(`dom element #${container.id} not found!`);
+            this.context = null;
+            this.generatedCanvas = false;
+            return;
         }
 
         const existingCanvases = domContainer.getElementsByTagName("canvas");
@@ -100,7 +102,7 @@ export class Canvas {
         }
 
         if (this.generatedCanvas) {
-            this.element.remove();
+            this.element?.remove();
         }
 
         this.generatedCanvas = false;
@@ -113,7 +115,7 @@ export class Canvas {
 
     public destroy(): void {
         if (this.generatedCanvas) {
-            this.element.remove();
+            this.element?.remove();
         }
 
         if (this.context) {

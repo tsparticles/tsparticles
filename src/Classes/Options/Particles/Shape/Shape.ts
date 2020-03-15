@@ -29,7 +29,7 @@ export class Shape implements IShape {
         this.image = value;
     }
 
-    public character: ICharacterShape;
+    public character: ICharacterShape | ICharacterShape[];
     public image: IImageShape | IImageShape[];
     public polygon: IPolygonShape;
     public stroke: IStroke;
@@ -45,7 +45,20 @@ export class Shape implements IShape {
 
     public load(data?: RecursivePartial<IShape>): void {
         if (data !== undefined) {
-            this.character.load(data.character);
+            if (data.character !== undefined) {
+                if (data.character instanceof Array) {
+                    this.character = data.character.map((s) => {
+                        const tmp = new CharacterShape();
+
+                        tmp.load(s);
+
+                        return tmp;
+                    });
+                } else {
+                    this.character = new CharacterShape();
+                    this.character.load(data.character);
+                }
+            }
 
             if (data.image !== undefined) {
                 if (data.image instanceof Array) {

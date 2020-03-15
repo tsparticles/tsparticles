@@ -56,8 +56,10 @@ export class Retina {
 
         const ratio = this.pxRatio;
 
-        container.canvas.dimension.width = container.canvas.element.offsetWidth * ratio;
-        container.canvas.dimension.height = container.canvas.element.offsetHeight * ratio;
+        if (container.canvas.element) {
+            container.canvas.dimension.width = container.canvas.element.offsetWidth * ratio;
+            container.canvas.dimension.height = container.canvas.element.offsetHeight * ratio;
+        }
 
         this.bubbleModeDistance = options.interactivity.modes.bubble.distance * ratio;
         this.bubbleModeSize = options.interactivity.modes.bubble.size * ratio;

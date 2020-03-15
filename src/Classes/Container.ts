@@ -15,6 +15,7 @@ import {IOptions} from "../Interfaces/Options/IOptions";
 import {Drawer} from "./Drawer";
 import {RecursivePartial} from "../Types/RecursivePartial";
 import {Options} from "./Options/Options";
+import {Utils} from "./Utils/Utils";
 
 declare global {
     interface Window {
@@ -246,6 +247,18 @@ export class Container {
          */
         if (this.options.polygon.url) {
             this.polygon.raw = await this.polygon.parseSvgPathToPolygon(this.options.polygon.url);
+        }
+
+        if (Utils.isInArray(ShapeType.char, this.options.particles.shape.type) ||
+            Utils.isInArray(ShapeType.character, this.options.particles.shape.type)) {
+            if (this.options.particles.shape.character instanceof Array) {
+                for (const character of this.options.particles.shape.character) {
+                    await Utils.loadFont(character);
+                }
+            } else {
+                const character = this.options.particles.shape.character;
+                await Utils.loadFont(character);
+            }
         }
 
         if (this.options.particles.shape.type === ShapeType.image) {

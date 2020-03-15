@@ -62,6 +62,7 @@
     "@babel/preset-env": "^7.8.4",
     "@babel/preset-typescript": "^7.8.3",
     "@babel/runtime": "^7.8.4",
+    "@fortawesome/fontawesome-free": "^5.12.1",
     "babel-loader": "^8.0.6",
     "cpx": "^1.5.0",
     "express": "^4.17.1",
