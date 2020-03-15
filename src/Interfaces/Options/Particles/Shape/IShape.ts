@@ -11,6 +11,6 @@ export interface IShape extends IOptionLoader<IShape> {
     type: ShapeType | ShapeType[];
     stroke: IStroke;
     polygon: IPolygonShape;
-    character: ICharacterShape;
+    character: ICharacterShape | ICharacterShape[];
     image: IImageShape | IImageShape[];
 }

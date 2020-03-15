@@ -185,7 +185,7 @@ export class EventListeners {
         /* density particles enabled */
         container.densityAutoParticles();
 
-        if (options.polygon.type !== PolygonMaskType.none) {
+        if (options.polygon.enable && options.polygon.type !== PolygonMaskType.none) {
             if (container.polygon.redrawTimeout) {
                 clearTimeout(container.polygon.redrawTimeout);
             }
@@ -301,7 +301,8 @@ export class EventListeners {
         const container = this.container;
         const options = container.options;
 
-        if (options.polygon.type !== PolygonMaskType.none && options.polygon.type !== PolygonMaskType.inline) {
+        if (options.polygon.enable && options.polygon.type !== PolygonMaskType.none &&
+            options.polygon.type !== PolygonMaskType.inline) {
             if (container.polygon.checkInsidePolygon(container.interactivity.mouse.position)) {
                 this.doMouseTouchClick(e);
             }

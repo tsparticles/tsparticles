@@ -219,11 +219,12 @@ export class Updater {
         const particle = this.particle;
 
         /* check bounce against polygon boundaries */
-        if (options.polygon.type !== PolygonMaskType.none && options.polygon.type !== PolygonMaskType.inline) {
+        if (options.polygon.enable && options.polygon.type !== PolygonMaskType.none &&
+            options.polygon.type !== PolygonMaskType.inline) {
             if (!container.polygon.checkInsidePolygon(particle.position)) {
                 this.polygonBounce();
             }
-        } else if (options.polygon.type === PolygonMaskType.inline) {
+        } else if (options.polygon.enable && options.polygon.type === PolygonMaskType.inline) {
             if (particle.initialPosition) {
                 const dist = Utils.getDistanceBetweenCoordinates(particle.initialPosition, particle.position);
 

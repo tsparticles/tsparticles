@@ -67,6 +67,12 @@ export class PolygonMask implements IPolygonMask {
                 this.type = data.type;
             }
 
+            if (data.enable !== undefined) {
+                this.enable = data.enable;
+            } else {
+                this.enable = this.type !== PolygonMaskType.none;
+            }
+
             if (data.url !== undefined) {
                 this.url = data.url;
             }

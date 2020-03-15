@@ -21,6 +21,7 @@ import {InteractionManager} from "./Particle/InteractionManager";
 import {HoverMode} from "../Enums/Modes/HoverMode";
 import {ClickMode} from "../Enums/Modes/ClickMode";
 import {RotateDirection} from "../Enums/RotateDirection";
+import {ICharacterShape} from "../Interfaces/Options/Particles/Shape/ICharacterShape";
 
 /**
  * The single particle object
@@ -29,7 +30,7 @@ export class Particle {
     public angle: number;
     public rotateDirection: RotateDirection;
     public radius: number;
-    public text?: string;
+    public readonly text?: string;
     public readonly size: ISize;
     public readonly initialPosition?: ICoordinates;
     public readonly position: ICoordinates;
@@ -39,6 +40,7 @@ export class Particle {
     public readonly velocity: IVelocity;
     public readonly shape?: ShapeType;
     public readonly image?: IParticleImage;
+    public readonly character?: ICharacterShape;
     public readonly initialVelocity: IVelocity;
 
     public readonly updater: Updater;
@@ -92,7 +94,7 @@ export class Particle {
         /* position */
         this.position = this.calcPosition(this.container, position);
 
-        if (options.polygon.type === PolygonMaskType.inline) {
+        if (options.polygon.enable && options.polygon.type === PolygonMaskType.inline) {
             this.initialPosition = {
                 x: this.position.x,
                 y: this.position.y,
@@ -161,12 +163,19 @@ export class Particle {
         }
 
         if (this.shape === ShapeType.char || this.shape === ShapeType.character) {
-            const value = options.particles.shape.character.value;
-
-            if (typeof value === "string") {
-                this.text = value;
+            if (options.particles.shape.character instanceof Array) {
+                const arr = options.particles.shape.character;
+                this.character = arr[Math.floor(Math.random() * arr.length)];
             } else {
+                this.character = options.particles.shape.character;
+            }
+
+            const value = this.character.value;
+
+            if (value instanceof Array) {
                 this.text = value[Math.floor(Math.random() * value.length)]
+            } else {
+                this.text = value;
             }
         }
 
