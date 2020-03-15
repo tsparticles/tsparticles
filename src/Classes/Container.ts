@@ -104,9 +104,6 @@ export class Container {
 
         /* ---------- tsParticles - start ------------ */
         this.eventListeners = new EventListeners(this);
-        this.eventListeners.addEventsListeners();
-
-        this.start();
     }
 
     public static requestFrame(callback: FrameRequestCallback): number {
@@ -162,7 +159,6 @@ export class Container {
     public destroy(): void {
         this.stop();
 
-        this.eventListeners.removeEventsListeners();
         this.retina.reset();
         this.canvas.destroy();
 
@@ -223,6 +219,7 @@ export class Container {
 
         this.started = false;
 
+        this.eventListeners.removeEventsListeners();
         this.pause();
 
         this.images = [];
@@ -242,6 +239,9 @@ export class Container {
         }
 
         this.started = true;
+
+        this.eventListeners.addEventsListeners();
+
         /* If is set the url of svg element, load it and parse into raw polygon data,
          * works only with single path SVG
          */

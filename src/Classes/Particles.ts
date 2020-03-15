@@ -31,7 +31,7 @@ export class Particles {
         const options = container.options;
 
         if (options.polygon.type === PolygonMaskType.inline &&
-            options.polygon.inlineArrangement === PolygonMaskInlineArrangement.onePerPoint) {
+            options.polygon.inline.arrangement === PolygonMaskInlineArrangement.onePerPoint) {
             container.polygon.drawPointsOnPolygonPath();
         } else {
             for (let i = this.array.length; i < options.particles.number.value; i++) {

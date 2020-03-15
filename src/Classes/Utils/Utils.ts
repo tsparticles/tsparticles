@@ -240,8 +240,7 @@ export class Utils {
     public static async loadFont(character: ICharacterShape): Promise<void> {
         try {
             await document.fonts.load(`${character.weight} 36px '${character.font}'`);
-        } catch (e) {
-            console.log(e);
+        } catch {
         }
     }
 
