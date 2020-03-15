@@ -1,6 +1,6 @@
 {
   "name": "react-particles-js",
-  "version": "2.7.1",
+  "version": "2.8.0",
   "description": "Reactified particles.js",
   "main": "lib/particles.js",
   "types": "index.d.ts",
@@ -33,7 +33,7 @@
   },
   "dependencies": {
     "lodash": "^4.17.11",
-    "tsparticles": "^1.10.1"
+    "tsparticles": "^1.10.2"
   },
   "peerDependencies": {
     "react": "^16.0.0"
