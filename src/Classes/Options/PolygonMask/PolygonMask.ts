@@ -51,12 +51,6 @@ export class PolygonMask implements IPolygonMask {
         if (data !== undefined) {
             this.draw.load(data.draw);
 
-            if (data.enable !== undefined) {
-                this.enable = data.enable;
-            } else {
-                this.enable = this.type !== PolygonMaskType.none;
-            }
-
             if (data.inline !== undefined) {
                 this.inline.load(data.inline);
             } else if (data.inlineArrangement !== undefined) {
@@ -71,6 +65,12 @@ export class PolygonMask implements IPolygonMask {
 
             if (data.type !== undefined) {
                 this.type = data.type;
+            }
+
+            if (data.enable !== undefined) {
+                this.enable = data.enable;
+            } else {
+                this.enable = this.type !== PolygonMaskType.none;
             }
 
             if (data.url !== undefined) {
