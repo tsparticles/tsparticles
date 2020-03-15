@@ -3,6 +3,7 @@
 import {Container} from "./Container";
 import {IOptions} from "../Interfaces/Options/IOptions";
 import {RecursivePartial} from "../Types/RecursivePartial";
+import {Constants} from "./Utils/Constants";
 
 let tsParticlesDom: Container[] = [];
 
@@ -62,7 +63,6 @@ export class Loader {
             return;
         }
 
-        /* launch tsparticle */
         const dom = Loader.dom();
         const idx = dom.findIndex((v) => v.id === tagId);
 
@@ -72,6 +72,36 @@ export class Loader {
             old.destroy();
         }
 
+        const existingCanvases = domContainer.getElementsByTagName("canvas");
+
+        let canvasEl: HTMLCanvasElement;
+        let generatedCanvas: boolean;
+
+        /* get existing canvas if present, otherwise a new one will be created */
+        if (existingCanvases.length) {
+            canvasEl = existingCanvases[0];
+
+            if (!canvasEl.className) {
+                canvasEl.className = Constants.canvasClass;
+            }
+
+            generatedCanvas = false;
+        } else {
+            generatedCanvas = true;
+            /* create canvas element */
+            canvasEl = document.createElement("canvas");
+
+            canvasEl.className = Constants.canvasClass;
+
+            /* set size canvas */
+            canvasEl.style.width = "100%";
+            canvasEl.style.height = "100%";
+
+            /* append canvas */
+            domContainer.appendChild(canvasEl);
+        }
+
+        /* launch tsparticle */
         const newItem = new Container(tagId, params);
 
         if (idx >= 0) {
@@ -79,6 +109,9 @@ export class Loader {
         } else {
             dom.push(newItem);
         }
+
+        newItem.canvas.loadCanvas(canvasEl, generatedCanvas);
+        newItem.start();
 
         return newItem;
     }

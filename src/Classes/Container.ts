@@ -15,6 +15,7 @@ import {IOptions} from "../Interfaces/Options/IOptions";
 import {Drawer} from "./Drawer";
 import {RecursivePartial} from "../Types/RecursivePartial";
 import {Options} from "./Options/Options";
+import {Utils} from "./Utils/Utils";
 
 declare global {
     interface Window {
@@ -103,9 +104,6 @@ export class Container {
 
         /* ---------- tsParticles - start ------------ */
         this.eventListeners = new EventListeners(this);
-        this.eventListeners.addEventsListeners();
-
-        this.start();
     }
 
     public static requestFrame(callback: FrameRequestCallback): number {
@@ -141,7 +139,11 @@ export class Container {
             return;
         }
 
-        const area = this.retina.particlesDensityArea;
+        let area = this.canvas.element.width * this.canvas.element.height / 1000;
+        if (this.retina.isRetina) {
+            area /= this.retina.pxRatio * 2;
+        }
+        //const area = this.retina.particlesDensityArea;
         const optParticlesNumber = this.options.particles.number.value;
         const density = this.options.particles.number.density.area;
         const particlesNumber = area * optParticlesNumber / density;
@@ -157,7 +159,6 @@ export class Container {
     public destroy(): void {
         this.stop();
 
-        this.eventListeners.removeEventsListeners();
         this.retina.reset();
         this.canvas.destroy();
 
@@ -218,6 +219,7 @@ export class Container {
 
         this.started = false;
 
+        this.eventListeners.removeEventsListeners();
         this.pause();
 
         this.images = [];
@@ -237,11 +239,26 @@ export class Container {
         }
 
         this.started = true;
+
+        this.eventListeners.addEventsListeners();
+
         /* If is set the url of svg element, load it and parse into raw polygon data,
          * works only with single path SVG
          */
-        if (this.options.polygon.url) {
+        if (this.options.polygon.enable && this.options.polygon.url) {
             this.polygon.raw = await this.polygon.parseSvgPathToPolygon(this.options.polygon.url);
+        }
+
+        if (Utils.isInArray(ShapeType.char, this.options.particles.shape.type) ||
+            Utils.isInArray(ShapeType.character, this.options.particles.shape.type)) {
+            if (this.options.particles.shape.character instanceof Array) {
+                for (const character of this.options.particles.shape.character) {
+                    await Utils.loadFont(character);
+                }
+            } else {
+                const character = this.options.particles.shape.character;
+                await Utils.loadFont(character);
+            }
         }
 
         if (this.options.particles.shape.type === ShapeType.image) {

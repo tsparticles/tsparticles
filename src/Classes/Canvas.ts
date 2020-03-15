@@ -16,7 +16,7 @@ export class Canvas {
     /**
      * The particles canvas
      */
-    public element: HTMLCanvasElement;
+    public element?: HTMLCanvasElement;
     /**
      * The particles canvas dimension
      */
@@ -45,44 +45,8 @@ export class Canvas {
             width: 0,
         };
 
-        const domContainer = document.getElementById(container.id);
-
-        if (!domContainer) {
-            throw new Error(`dom element #${container.id} not found!`);
-        }
-
-        const existingCanvases = domContainer.getElementsByTagName("canvas");
-
-        let canvasEl: HTMLCanvasElement;
-
-        /* get existing canvas if present, otherwise a new one will be created */
-        if (existingCanvases.length) {
-            canvasEl = existingCanvases[0];
-
-            if (!canvasEl.className) {
-                canvasEl.className = Constants.canvasClass;
-            }
-
-            this.generatedCanvas = false;
-        } else {
-            this.generatedCanvas = true;
-            /* create canvas element */
-            canvasEl = document.createElement("canvas");
-
-            canvasEl.className = Constants.canvasClass;
-
-            /* set size canvas */
-            canvasEl.style.width = "100%";
-            canvasEl.style.height = "100%";
-
-            /* append canvas */
-            domContainer.appendChild(canvasEl);
-        }
-
-        this.element = canvasEl;
-        this.dimension.height = canvasEl.offsetHeight;
-        this.dimension.width = canvasEl.offsetWidth;
-        this.context = this.element.getContext("2d");
+        this.context = null;
+        this.generatedCanvas = false;
     }
 
     /* ---------- tsParticles functions - canvas ------------ */
@@ -94,16 +58,16 @@ export class Canvas {
         this.paint();
     }
 
-    public changeCanvas(canvas: HTMLCanvasElement): void {
+    public loadCanvas(canvas: HTMLCanvasElement, generatedCanvas?: boolean): void {
         if (!canvas.className) {
             canvas.className = Constants.canvasClass;
         }
 
         if (this.generatedCanvas) {
-            this.element.remove();
+            this.element?.remove();
         }
 
-        this.generatedCanvas = false;
+        this.generatedCanvas = generatedCanvas ?? false;
         this.element = canvas;
         this.dimension.height = canvas.offsetHeight;
         this.dimension.width = canvas.offsetWidth;
@@ -113,7 +77,7 @@ export class Canvas {
 
     public destroy(): void {
         if (this.generatedCanvas) {
-            this.element.remove();
+            this.element?.remove();
         }
 
         if (this.context) {
@@ -171,6 +135,10 @@ export class Canvas {
                 CanvasUtils.clear(this.context, this.dimension);
             }
         }
+    }
+
+    public isPointInPath(path: Path2D, point: ICoordinates): boolean {
+        return this.context?.isPointInPath(path, point.x, point.y) ?? false;
     }
 
     public drawPolygonMask(rawData: ICoordinates[]): void {

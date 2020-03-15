@@ -30,8 +30,8 @@ export class Particles {
         const container = this.container;
         const options = container.options;
 
-        if (options.polygon.type === PolygonMaskType.inline &&
-            options.polygon.inlineArrangement === PolygonMaskInlineArrangement.onePerPoint) {
+        if (options.polygon.enable && options.polygon.type === PolygonMaskType.inline &&
+            options.polygon.inline.arrangement === PolygonMaskInlineArrangement.onePerPoint) {
             container.polygon.drawPointsOnPolygonPath();
         } else {
             for (let i = this.array.length; i < options.particles.number.value; i++) {
@@ -84,7 +84,7 @@ export class Particles {
         this.update(delta);
 
         /* draw polygon shape in debug mode */
-        if (options.polygon.draw.enable) {
+        if (options.polygon.enable && options.polygon.draw.enable) {
             container.polygon.drawPolygon();
         }
 
