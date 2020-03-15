@@ -34,7 +34,7 @@ export class PolygonMask {
     public path?: SVGPathElement;
 
     private readonly container: Container;
-    private readonly path2DSupported = !!(window as any)["Path2D"];
+    private readonly path2DSupported = window.hasOwnProperty("Path2D");
     private polygonPath?: Path2D;
     private polygonPathLength: number;
     private width: number;
