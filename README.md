@@ -217,6 +217,13 @@ particles.pause();
     },
     "shape": {
       "type": "circle",
+      "character": {
+        "fill": true,
+        "font": "Font Awesome 5 Brands",
+        "style": "",
+        "value": "\uf179",
+        "weight": "400"
+      },
       "stroke": {
         "width": 0,
         "color": "#000000"
@@ -375,6 +382,12 @@ key | option type / notes | example
 `particles.shape.stroke.width` | number | `2`
 `particles.shape.stroke.color` | HEX (string) <br /> random (string) | `"#222222"` <br /> `"random"`
 `particles.shape.polygon.sides` | number | `5`
+`particles.shape.character` | object / array | A single character object like below or an array of the same objects
+`particles.shape.character.value` | object / array | `\uf179` / `*`
+`particles.shape.character.font` | string | `Font Awesome 5  Brands` 
+`particles.shape.character.style` | string | ``
+`particles.shape.character.weight` | string | `400` (Font weight, for FontAwesome it's required to use the exact weight for every family, Chrome won't render correctly otherwise.)
+`particles.shape.character.fill` | boolean | `true` / `false` (Fills or strokes the text. If the fonts doesn't support the stroke or the fill you won't see any particle. FontAwesome requires `fill: true`)
 `particles.shape.image` | object / array | A single image object like below or an array of the same objects
 `particles.shape.image.src` | path link <br /> svg / png / gif / jpg | `"assets/img/yop.svg"` <br /> `"http://mywebsite.com/assets/img/yop.png"`
 `particles.shape.image.width` | number <br />(for aspect ratio) | `100`
@@ -441,6 +454,7 @@ key | option type / notes | example
 `pauseOnBlur` | boolean | `true` / `false`
 `backgroundMask.enable` | boolean | `true` / `false`
 `backgroundMask.cover.value` | HEX (string) <br /> RGB (object) <br /> HSL (object) <br /> random (string) | `"#0d47a1"` <br /> `{r:182, g:25, b:36}` <br />  `{h:356, s:76, l:41}` <br /> `"random"`
+`polygon.enable` | boolean | `true` / `false`
 `polygon.draw.enable` | boolean | `true` / `false`
 `polygon.draw.lineWidth` | number | `0.5`
 `polygon.draw.lineColor` | HEX (string) | `#ffffff`
