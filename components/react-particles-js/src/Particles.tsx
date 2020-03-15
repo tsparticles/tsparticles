@@ -89,7 +89,8 @@ export default class Particles extends Component<ParticlesProps,
                         return;
                     }
 
-                    library.canvas.changeCanvas(canvas);
+                    library.canvas.loadCanvas(canvas);
+                    library.start();
                 }
             );
         }
