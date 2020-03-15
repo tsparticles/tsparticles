@@ -245,7 +245,7 @@ export class Container {
         /* If is set the url of svg element, load it and parse into raw polygon data,
          * works only with single path SVG
          */
-        if (this.options.polygon.url) {
+        if (this.options.polygon.enable && this.options.polygon.url) {
             this.polygon.raw = await this.polygon.parseSvgPathToPolygon(this.options.polygon.url);
         }
 

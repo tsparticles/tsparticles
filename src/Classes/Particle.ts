@@ -94,7 +94,7 @@ export class Particle {
         /* position */
         this.position = this.calcPosition(this.container, position);
 
-        if (options.polygon.type === PolygonMaskType.inline) {
+        if (options.polygon.enable && options.polygon.type === PolygonMaskType.inline) {
             this.initialPosition = {
                 x: this.position.x,
                 y: this.position.y,

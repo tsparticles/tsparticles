@@ -137,6 +137,10 @@ export class Canvas {
         }
     }
 
+    public isPointInPath(path: Path2D, point: ICoordinates): boolean {
+        return this.context?.isPointInPath(path, point.x, point.y) ?? false;
+    }
+
     public drawPolygonMask(rawData: ICoordinates[]): void {
         const container = this.container;
         const options = container.options;

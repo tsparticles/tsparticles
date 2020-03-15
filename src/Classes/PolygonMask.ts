@@ -34,6 +34,9 @@ export class PolygonMask {
     public path?: SVGPathElement;
 
     private readonly container: Container;
+    private readonly path2DSupported = !!(window as any)["Path2D"];
+    private polygonPath?: Path2D;
+    private polygonPathLength: number;
     private width: number;
     private height: number;
     private offset?: ICoordinates;
@@ -42,52 +45,51 @@ export class PolygonMask {
         this.container = container;
         this.width = 0;
         this.height = 0;
+        this.polygonPathLength = 0;
     }
 
     public checkInsidePolygon(position: ICoordinates | undefined | null): boolean {
         const container = this.container;
         const options = container.options;
 
-        if (options.polygon.type === PolygonMaskType.none) {
+        if (!options.polygon.enable ||
+            options.polygon.type === PolygonMaskType.none ||
+            options.polygon.type === PolygonMaskType.inline) {
             return true;
         }
 
         // https://github.com/substack/point-in-polygon
         // ray-casting algorithm based on
         // http://www.ecse.rpi.edu/Homepages/wrf/Research/Short_Notes/pnpoly.html
-        if (options.polygon.type !== PolygonMaskType.inline) {
-            if (!this.raw) {
-                this.raw = [];
-            }
-
-            if (this.raw.length > 0) {
-                const x = position ? position.x : Math.random() * container.canvas.dimension.width;
-                const y = position ? position.y : Math.random() * container.canvas.dimension.height;
-                let inside = false;
-
-                for (let i = 0, j = this.raw.length - 1; i < this.raw.length; j = i++) {
-                    const xi = this.raw[i].x;
-                    const yi = this.raw[i].y;
-                    const xj = this.raw[j].x;
-                    const yj = this.raw[j].y;
-                    const intersect = ((yi > y) !== (yj > y)) && (x < (xj - xi) * (y - yi) / (yj - yi) + xi);
-
-                    if (intersect) {
-                        inside = !inside;
-                    }
-                }
-
-                if (options.polygon.type === PolygonMaskType.inside) {
-                    return inside;
-                } else if (options.polygon.type === PolygonMaskType.outside) {
-                    return !inside;
-                }
-            } else {
-                console.error('No polygon found, you need to specify SVG url in config.');
-                return true;
-            }
-        } else {
+        if (!this.raw) {
+            console.error('No polygon found, you need to specify SVG url in config.');
             return true;
+        }
+
+        const x = position ? position.x : Math.random() * container.canvas.dimension.width;
+        const y = position ? position.y : Math.random() * container.canvas.dimension.height;
+        let inside = false;
+
+        if (this.path2DSupported && this.polygonPath && position) {
+            inside = container.canvas.isPointInPath(this.polygonPath, position);
+        } else {
+            for (let i = 0, j = this.raw.length - 1; i < this.raw.length; j = i++) {
+                const xi = this.raw[i].x;
+                const yi = this.raw[i].y;
+                const xj = this.raw[j].x;
+                const yj = this.raw[j].y;
+                const intersect = ((yi > y) !== (yj > y)) && (x < (xj - xi) * (y - yi) / (yj - yi) + xi);
+
+                if (intersect) {
+                    inside = !inside;
+                }
+            }
+        }
+
+        if (options.polygon.type === PolygonMaskType.inside) {
+            return inside;
+        } else if (options.polygon.type === PolygonMaskType.outside) {
+            return !inside;
         }
 
         return false;
@@ -100,7 +102,7 @@ export class PolygonMask {
         let position: ICoordinates;
 
         if (options.polygon.type === PolygonMaskType.inline) {
-            switch (options.polygon.inlineArrangement) {
+            switch (options.polygon.inline.arrangement) {
                 case PolygonMaskInlineArrangement.randomPoint:
                     position = this.getRandomPointOnPolygonPath();
                     break;
@@ -156,6 +158,12 @@ export class PolygonMask {
 
                 this.svg = doc.getElementsByTagName("svg")[0];
                 this.path = doc.getElementsByTagName("path")[0];
+
+                if (this.path) {
+                    this.polygonPathLength = this.path.getTotalLength();
+                }
+
+                this.createPath2D();
             } else {
                 console.error("tsParticles Error - during polygon mask download");
                 return;
@@ -286,7 +294,7 @@ export class PolygonMask {
 
         if (!this.raw || !this.raw.length || !this.path) throw new Error(`No polygon data loaded.`);
 
-        const distance = Math.floor(Math.random() * this.path.getTotalLength()) + 1;
+        const distance = Math.floor(Math.random() * this.polygonPathLength) + 1;
         const point = this.path.getPointAtLength(distance);
 
         return {
@@ -301,7 +309,7 @@ export class PolygonMask {
 
         if (!this.raw || !this.raw.length || !this.path) throw new Error(`No polygon data loaded.`);
 
-        const distance = (this.path.getTotalLength() / options.particles.number.value) * index;
+        const distance = (this.polygonPathLength / options.particles.number.value) * index;
         const point = this.path.getPointAtLength(distance);
 
         return {
@@ -319,5 +327,22 @@ export class PolygonMask {
             x: coords.x,
             y: coords.y,
         };
+    }
+
+    private createPath2D(): void {
+        if (!this.path2DSupported || !this.raw) {
+            return;
+        }
+
+        this.polygonPath = new Path2D();
+        this.polygonPath.moveTo(this.raw[0].x, this.raw[0].y);
+
+        this.raw.forEach((pos, i) => {
+            if (i > 0) {
+                this.polygonPath?.lineTo(pos.x, pos.y);
+            }
+        });
+
+        this.polygonPath.closePath();
     }
 }
