@@ -34,7 +34,7 @@ export class PolygonMask {
     public path?: SVGPathElement;
 
     private readonly container: Container;
-    private readonly path2DSupported = window.hasOwnProperty("Path2D");
+    private readonly path2DSupported: boolean;
     private polygonPath?: Path2D;
     private polygonPathLength: number;
     private width: number;
@@ -46,6 +46,7 @@ export class PolygonMask {
         this.width = 0;
         this.height = 0;
         this.polygonPathLength = 0;
+        this.path2DSupported = window.hasOwnProperty("Path2D");
     }
 
     public checkInsidePolygon(position: ICoordinates | undefined | null): boolean {
