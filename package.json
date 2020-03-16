@@ -74,7 +74,7 @@
     "stylus": "^0.54.7",
     "terser-webpack-plugin": "^2.3.5",
     "three": "^0.114.0",
-    "typedoc": "^0.16.11",
+    "typedoc": "^0.17.0",
     "typescript": "^3.8.3",
     "uglifyjs-webpack-plugin": "^2.2.0",
     "webpack": "^4.42.0",
