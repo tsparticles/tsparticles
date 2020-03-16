@@ -76,6 +76,7 @@ export class Shape implements IShape {
             }
 
             this.stroke.load(data.stroke);
+            this.polygon.load(data.polygon);
 
             if (data.type !== undefined) {
                 this.type = data.type;
