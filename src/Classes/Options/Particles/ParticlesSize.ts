@@ -33,7 +33,7 @@ export class ParticlesSize implements ISize {
     constructor() {
         this.animation = new ParticlesSizeAnimation();
         this.random = false;
-        this.value = 20;
+        this.value = 3;
     }
 
     public load(data?: RecursivePartial<ISize>): void {

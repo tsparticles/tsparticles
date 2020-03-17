@@ -64,7 +64,7 @@ export class Move implements IMove {
         this.attract = new Attract();
         this.collisions = false;
         this.direction = MoveDirection.none;
-        this.enable = true;
+        this.enable = false;
         this.outMode = OutMode.out;
         this.random = false;
         this.speed = 2;

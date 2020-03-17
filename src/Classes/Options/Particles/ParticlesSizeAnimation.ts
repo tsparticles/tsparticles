@@ -32,7 +32,7 @@ export class ParticlesSizeAnimation implements ISizeAnimation {
     constructor() {
         this.enable = false;
         this.minimumValue = 0;
-        this.speed = 20;
+        this.speed = 5;
         this.sync = false;
     }
 

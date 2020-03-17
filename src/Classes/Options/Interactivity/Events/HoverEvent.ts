@@ -10,7 +10,7 @@ export class HoverEvent implements IHoverEvent {
     public parallax: IParallax;
 
     constructor() {
-        this.enable = true;
+        this.enable = false;
         this.mode = HoverMode.grab;
         this.parallax = new Parallax();
     }

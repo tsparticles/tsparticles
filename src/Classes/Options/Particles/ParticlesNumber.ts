@@ -30,7 +30,7 @@ export class ParticlesNumber implements IParticlesNumber {
     constructor() {
         this.density = new Density();
         this.limit = 0;
-        this.value = 400;
+        this.value = 100;
     }
 
     public load(data?: RecursivePartial<IParticlesNumber>): void {

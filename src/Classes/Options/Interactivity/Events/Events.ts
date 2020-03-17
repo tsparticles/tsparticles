@@ -81,7 +81,7 @@ export class Events implements IEvents {
         this.onClick = new ClickEvent();
         this.onDiv = new DivEvent();
         this.onHover = new HoverEvent();
-        this.resize = true;
+        this.resize = false;
     }
 
     public load(data?: RecursivePartial<IEvents>): void {
