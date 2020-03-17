@@ -47,7 +47,7 @@ export class Loader {
             idx = index;
         }
 
-        return await Loader.load(tagId, params[idx]);
+        return Loader.load(tagId, params[idx]);
     }
 
     /**
@@ -69,7 +69,7 @@ export class Loader {
             idx = index;
         }
 
-        return await Loader.set(id, domContainer, params[idx]);
+        return Loader.set(id, domContainer, params[idx]);
     }
 
     /**
@@ -85,7 +85,7 @@ export class Loader {
             return;
         }
 
-        return await this.set(tagId, domContainer, params);
+        return this.set(tagId, domContainer, params);
     }
 
     /**
