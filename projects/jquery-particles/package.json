@@ -1,0 +1,66 @@
+{
+  "name": "jquery-particles",
+  "version": "1.10.3",
+  "description": "Particles effect in jQuery",
+  "main": "dist/jquery.particles.min.js",
+  "scripts": {
+    "copy:js": "cpx \"src/**/*.js\" dist/",
+    "minify:js": "uglifyjs --compress --output dist/jquery.particles.min.js dist/jquery.particles.js",
+    "build": "npm run copy:js && npm run minify:js",
+    "start": "npm run build && node demo/app.js"
+  },
+  "files": [
+    "dist/**/*"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/matteobruni/jquery-particles.git"
+  },
+  "keywords": [
+    "jquery",
+    "jquery-plugin",
+    "jquery-plugins",
+    "tsparticles",
+    "particles",
+    "particle",
+    "canvas",
+    "jsparticles",
+    "xparticles",
+    "particles-js",
+    "particles.js",
+    "particles-ts",
+    "particles.ts",
+    "typescript",
+    "javascript",
+    "animation",
+    "web",
+    "html5",
+    "web-design",
+    "webdesign",
+    "css",
+    "html",
+    "css3",
+    "animated",
+    "background"
+  ],
+  "author": "Matteo Bruni",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/matteobruni/jquery-particles/issues"
+  },
+  "homepage": "https://github.com/matteobruni/jquery-particles#readme",
+  "dependencies": {
+    "jquery": "^3.4.1",
+    "tsparticles": "^1.10.3"
+  },
+  "devDependencies": {
+    "@fortawesome/fontawesome-free": "^5.12.1",
+    "cpx": "^1.5.0",
+    "express": "^4.17.1",
+    "jsoneditor": "^8.6.1",
+    "pug": "^2.0.4",
+    "stylus": "^0.54.7",
+    "three": "^0.114.0",
+    "uglifyjs": "^2.4.11"
+  }
+}
