@@ -134,8 +134,7 @@ export class CanvasUtils {
                                radius: number,
                                stroke: IStroke): void {
         context.save();
-
-        // TODO: Performance issues, the canvas shadow is really slow
+        
         const shadow = particle.container.options.particles.shadow;
 
         if (shadow.enable) {
