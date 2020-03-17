@@ -25,14 +25,14 @@ HTML
 ```
 
 ```javascript
-$('#tsparticles').fn.particles().init({ /* params */ }, function (container) {
+$('#tsparticles').particles().init({ /* params */ }, function (container) {
     // container is the particles container where you can play/pause or stop/start.
     // the container is already started, you don't need to start it manually.
 });
 
 // or
 
-$('#tsparticles').fn.particles().ajax('particles.json', function (container) {
+$('#tsparticles').particles().ajax('particles.json', function (container) {
     // container is the particles container where you can play/pause or stop/start.
     // the container is already started, you don't need to start it manually.
 });
