@@ -1,4 +1,5 @@
 const path = require("path");
+const UglifyJsPlugin = require("uglifyjs-webpack-plugin");
 
 module.exports = {
     // Change to your "entry-point".
@@ -24,6 +25,12 @@ module.exports = {
         }],
     },
     optimization: {
-        minimize: true
+        minimize: true,
+        minimizer: [
+            new UglifyJsPlugin({
+                include: /\.min\.js$/,
+                sourceMap: true
+            })
+        ]
     }
 };
