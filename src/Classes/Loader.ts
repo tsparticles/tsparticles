@@ -1,5 +1,3 @@
-"use strict";
-
 import {Container} from "./Container";
 import {IOptions} from "../Interfaces/Options/IOptions";
 import {RecursivePartial} from "../Types/RecursivePartial";

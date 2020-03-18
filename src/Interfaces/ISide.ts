@@ -1,5 +1,3 @@
-"use strict";
-
 import {ISideCount} from "./ISideCount";
 
 export interface ISide {

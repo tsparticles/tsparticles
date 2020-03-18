@@ -1,5 +1,3 @@
-"use strict";
-
 import {Container} from "./Container";
 import {ICoordinates} from "../Interfaces/ICoordinates";
 import {IMouseData} from "../Interfaces/IMouseData";

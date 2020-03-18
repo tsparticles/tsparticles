@@ -1,5 +1,3 @@
-"use strict";
-
 import {IHsl} from "./IHsl";
 import {IRgb} from "./IRgb";
 

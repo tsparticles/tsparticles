@@ -1,5 +1,3 @@
-"use strict";
-
 import {ICoordinates} from "../../Interfaces/ICoordinates";
 import {IHsl} from "../../Interfaces/IHsl";
 import {IRgb} from "../../Interfaces/IRgb";

@@ -1,5 +1,3 @@
-"use strict";
-
 /**
  * Project's constants
  */

@@ -1,5 +1,3 @@
-"use strict";
-
 /* -----------------------------------------------
 /* Author : Matteo Bruni - https://www.matteobruni.it
 /* MIT license: https://opensource.org/licenses/MIT

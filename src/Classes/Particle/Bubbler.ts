@@ -1,5 +1,3 @@
-"use strict";
-
 import {Container} from "../Container";
 import {IBubblerProcessParam} from "../../Interfaces/IBubblerProcessParam";
 import {Particle} from "../Particle";
