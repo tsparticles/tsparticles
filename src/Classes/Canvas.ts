@@ -172,7 +172,7 @@ export class Canvas {
          */
 
         if (container.particles.lineLinkedColor === "random") {
-            colorLine = Utils.getRandomColorRGBA();
+            colorLine = Utils.getRandomColorRGBA() ?? {b: 0, g: 0, r: 0};
         } else if (container.particles.lineLinkedColor == "mid" && p1.color && p2.color) {
             const sourceColor = p1.color;
             const destColor = p2.color;
@@ -235,7 +235,7 @@ export class Canvas {
         }
 
         if (container.particles.lineLinkedColor == "random") {
-            colorLine = Utils.getRandomColorRGBA();
+            colorLine = Utils.getRandomColorRGBA() || colorLine;
         } else {
             colorLine = container.particles.lineLinkedColor as IRgb || colorLine;
         }

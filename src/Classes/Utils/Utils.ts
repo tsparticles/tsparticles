@@ -96,13 +96,13 @@ export class Utils {
      * Generate a random RGBA color
      * @param min a minimum seed value for all 3 values
      */
-    public static getRandomColorRGBA(min?: number): IRgb {
+    public static getRandomColorRGBA(min?: number): IRgb | undefined {
         const fixedMin = min || 0;
-        return {
-            b: Math.floor(Math.random() * (255 * fixedMin) + fixedMin),
-            g: Math.floor(Math.random() * (255 * fixedMin) + fixedMin),
-            r: Math.floor(Math.random() * (255 * fixedMin) + fixedMin),
-        };
+        const minColor = fixedMin + (fixedMin * Math.pow(16, 2)) + (fixedMin * Math.pow(16, 4));
+        const maxColor = minColor ^ 0xFFFFFF;
+        const randomColor = (Math.random() * maxColor + minColor).toString(16);
+
+        return this.hexToRgb(`#${randomColor}`);
     }
 
     /**
