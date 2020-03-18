@@ -148,11 +148,12 @@ export class Container {
         const optParticlesNumber = this.options.particles.number.value;
         const density = this.options.particles.number.density.area;
         const particlesNumber = area * optParticlesNumber / density;
+        const particlesCount = this.particles.count;
 
-        if (this.particles.array.length < particlesNumber) {
-            this.particles.push(Math.abs(particlesNumber - this.particles.array.length));
-        } else if (this.particles.array.length > particlesNumber) {
-            this.particles.remove(this.particles.array.length - particlesNumber);
+        if (particlesCount < particlesNumber) {
+            this.particles.push(Math.abs(particlesNumber - particlesCount));
+        } else if (particlesCount > particlesNumber) {
+            this.particles.removeQuantity(particlesCount - particlesNumber);
         }
     }
 

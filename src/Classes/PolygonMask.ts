@@ -109,12 +109,12 @@ export class PolygonMask {
                     position = this.getRandomPointOnPolygonPathByLength();
                     break;
                 case PolygonMaskInlineArrangement.equidistant:
-                    position = this.getEquidistantPointOnPolygonPathByIndex(container.particles.array.length);
+                    position = this.getEquidistantPointOnPolygonPathByIndex(container.particles.count);
                     break;
                 case PolygonMaskInlineArrangement.onePerPoint:
                 default:
                     position = this.getPoingOnPolygonPathByIndex(
-                        container.particles.array.length
+                        container.particles.count
                     );
             }
         } else {
@@ -271,7 +271,7 @@ export class PolygonMask {
                 };
                 const particle = new Particle(container, position);
 
-                container.particles.array.push(particle);
+                container.particles.addParticle(particle);
             }
         }
     }

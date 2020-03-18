@@ -342,7 +342,7 @@ export class EventListeners {
                 }
                 break;
             case ClickMode.remove:
-                container.particles.remove(removeNb);
+                container.particles.removeQuantity(removeNb);
                 break;
             case ClickMode.bubble:
                 container.bubble.clicking = true;

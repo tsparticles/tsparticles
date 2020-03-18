@@ -10,6 +10,10 @@ import {PolygonMaskInlineArrangement} from "../Enums/PolygonMaskInlineArrangemen
  * Particles manager
  */
 export class Particles {
+    public get count() {
+        return this.array.length;
+    }
+
     public array: Particle[];
     public pushing?: boolean;
     public lineLinkedColor?: IRgb | string | null;
@@ -42,6 +46,16 @@ export class Particles {
         this.interactionsEnabled = options.particles.lineLinked.enable ||
             options.particles.move.attract.enable ||
             options.particles.move.collisions;
+    }
+
+    public removeAt(index: number): void {
+        if (index >= 0 && index <= this.count) {
+            this.array.splice(index, 1);
+        }
+    }
+
+    public remove(particle: Particle): void {
+        this.removeAt(this.array.indexOf(particle));
     }
 
     public update(delta: number): void {
@@ -105,7 +119,7 @@ export class Particles {
 
         if (options.particles.number.limit > 0) {
             if ((this.array.length + nb) > options.particles.number.limit) {
-                this.remove((this.array.length + nb) - options.particles.number.limit);
+                this.removeQuantity((this.array.length + nb) - options.particles.number.limit);
             }
         }
 
@@ -118,24 +132,28 @@ export class Particles {
         for (let i = 0; i < nb; i++) {
             const p = new Particle(container, pos);
 
-            this.array.push(p);
+            this.addParticle(p);
         }
 
         if (!options.particles.move.enable) {
-            this.draw(0);
+            this.container.play();
         }
 
         this.pushing = false;
     }
 
-    public remove(nb: number): void {
+    public addParticle(particle: Particle): void {
+        this.array.push(particle);
+    }
+
+    public removeQuantity(quantity: number): void {
         const container = this.container;
         const options = container.options;
 
-        this.array.splice(0, nb);
+        this.array.splice(0, quantity);
 
         if (!options.particles.move.enable) {
-            this.draw(0);
+            this.container.play();
         }
     }
 }

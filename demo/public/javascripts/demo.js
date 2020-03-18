@@ -17,9 +17,9 @@
         const update = function () {
             stats.begin();
             stats.end();
-            if (tsParticles.domItem(0).particles.array) {
-                count_particles.innerText = tsParticles.domItem(0).particles.array.length;
-            }
+
+            count_particles.innerText = tsParticles.domItem(0).particles.count;
+            
             requestAnimationFrame(update);
         };
 

@@ -81,7 +81,7 @@ export class Repulser {
 
             container.repulse.count++;
 
-            if (container.repulse.count === container.particles.array.length) {
+            if (container.repulse.count === container.particles.count) {
                 container.repulse.finish = true;
             }
         }

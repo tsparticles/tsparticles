@@ -167,8 +167,8 @@ export class Updater {
                 particle.position.y + particle.radius < 0 ||
                 particle.position.x - particle.radius > container.canvas.dimension.width ||
                 particle.position.y - particle.radius > container.canvas.dimension.height) {
-                const idx = container.particles.array.indexOf(particle);
-                container.particles.array.splice(idx, 1);
+
+                container.particles.remove(particle);
             }
         } else {
             const nextPos = {

@@ -1,6 +1,7 @@
 import {Utils} from "../Utils/Utils";
 import {Particle} from "../Particle";
 import {Container} from "../Container";
+import {HoverMode} from "../../Enums/Modes/HoverMode";
 
 export class Mover {
     private readonly container: Container;
@@ -60,7 +61,7 @@ export class Mover {
         const container = this.container;
         const options = container.options;
         const particle = this.particle;
-        const active = options.interactivity.modes.slow.active;
+        const active = Utils.isInArray(HoverMode.slow, options.interactivity.events.onHover.mode);
 
         if (!active) {
             return 1;

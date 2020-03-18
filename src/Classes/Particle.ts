@@ -240,7 +240,7 @@ export class Particle {
         //  New interactivity `connect` which would just connect the particles on hover
 
         if (Utils.isInArray(HoverMode.connect, options.interactivity.events.onHover.mode)) {
-            for (let j = index + 1; j < container.particles.array.length; j++) {
+            for (let j = index + 1; j < container.particles.count; j++) {
                 const p2 = container.particles.array[j];
                 this.connecter.connect(p2);
             }
@@ -290,16 +290,10 @@ export class Particle {
         const p = this;
         const overlapResult = p.isOverlapping();
 
-        if (overlapResult.iterations >= container.particles.array.length) {
-            const idx = container.particles.array.indexOf(this);
-
-            if (idx >= 0) {
-                // too many particles, removing from the current
-                container.particles.array.splice(idx);
-            }
-        }
-
-        if (overlapResult.collisionFound) {
+        if (overlapResult.iterations >= container.particles.count) {
+            // too many particles, removing from the current
+            container.particles.remove(this);
+        } else if (overlapResult.collisionFound) {
             p.position.x = position ? position.x : Math.random() * container.canvas.dimension.width;
             p.position.y = position ? position.y : Math.random() * container.canvas.dimension.height;
 
