@@ -1,11 +1,11 @@
 import {ICharacterShape} from "../../../../Interfaces/Options/Particles/Shape/ICharacterShape";
-import {Utils} from "../../../Utils/Utils";
+import {RecursivePartial} from "../../../../Types/RecursivePartial";
 
 export class CharacterShape implements ICharacterShape {
     public fill: boolean;
     public font: string;
     public style: string;
-    public value: string | string[];
+    public value: string | string [];
     public weight: string;
 
     constructor() {
@@ -16,25 +16,25 @@ export class CharacterShape implements ICharacterShape {
         this.weight = "400";
     }
 
-    public load(data: ICharacterShape): void {
-        if (Utils.hasData(data)) {
-            if (Utils.hasData(data.fill)) {
+    public load(data?: RecursivePartial<ICharacterShape>): void {
+        if (data !== undefined) {
+            if (data.fill !== undefined) {
                 this.fill = data.fill;
             }
 
-            if (Utils.hasData(data.font)) {
+            if (data.font !== undefined) {
                 this.font = data.font;
             }
 
-            if (Utils.hasData(data.style)) {
+            if (data.style !== undefined) {
                 this.style = data.style;
             }
 
-            if (Utils.hasData(data.value)) {
+            if (data.value !== undefined) {
                 this.value = data.value;
             }
 
-            if (Utils.hasData(data.weight)) {
+            if (data.weight !== undefined) {
                 this.weight = data.weight;
             }
         }

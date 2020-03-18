@@ -1,6 +1,6 @@
 import {IPush} from "../../../../Interfaces/Options/Interactivity/Modes/IPush";
 import {Messages} from "../../../Utils/Messages";
-import {Utils} from "../../../Utils/Utils";
+import {RecursivePartial} from "../../../../Types/RecursivePartial";
 
 export class Push implements IPush {
     /**
@@ -30,13 +30,11 @@ export class Push implements IPush {
         this.quantity = 4;
     }
 
-    public load(data: IPush): void {
-        if (Utils.hasData(data)) {
-            if (Utils.hasData(data.quantity)) {
+    public load(data?: RecursivePartial<IPush>): void {
+        if (data !== undefined) {
+            if (data.quantity !== undefined) {
                 this.quantity = data.quantity;
-            }
-
-            if (Utils.hasData(data.particles_nb)) {
+            } else if (data.particles_nb !== undefined) {
                 this.particles_nb = data.particles_nb;
             }
         }

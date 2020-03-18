@@ -1,6 +1,6 @@
 import {IImageShape} from "../../../../Interfaces/Options/Particles/Shape/IImageShape";
 import {Messages} from "../../../Utils/Messages";
-import {Utils} from "../../../Utils/Utils";
+import {RecursivePartial} from "../../../../Types/RecursivePartial";
 
 export class ImageShape implements IImageShape {
     /**
@@ -36,25 +36,23 @@ export class ImageShape implements IImageShape {
         this.width = 100;
     }
 
-    public load(data: IImageShape): void {
-        if (Utils.hasData(data)) {
-            if (Utils.hasData(data.height)) {
+    public load(data?: RecursivePartial<IImageShape>): void {
+        if (data !== undefined) {
+            if (data.height !== undefined) {
                 this.height = data.height;
             }
 
-            if (Utils.hasData(data.replaceColor)) {
+            if (data.replaceColor !== undefined) {
                 this.replaceColor = data.replaceColor;
-            }
-
-            if (Utils.hasData(data.replace_color)) {
+            } else if (data.replace_color !== undefined) {
                 this.replace_color = data.replace_color;
             }
 
-            if (Utils.hasData(data.src)) {
+            if (data.src !== undefined) {
                 this.src = data.src;
             }
 
-            if (Utils.hasData(data.width)) {
+            if (data.width !== undefined) {
                 this.width = data.width;
             }
         }

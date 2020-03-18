@@ -1,6 +1,6 @@
 import {IShadow} from "../../../Interfaces/Options/Particles/IShadow";
 import {ICoordinates} from "../../../Interfaces/ICoordinates";
-import {Utils} from "../../Utils/Utils";
+import {RecursivePartial} from "../../../Types/RecursivePartial";
 
 export class Shadow implements IShadow {
     public blur: number;
@@ -18,26 +18,26 @@ export class Shadow implements IShadow {
         };
     }
 
-    public load(data: IShadow): void {
-        if (Utils.hasData(data)) {
-            if (Utils.hasData(data.blur)) {
+    public load(data?: RecursivePartial<IShadow>): void {
+        if (data !== undefined) {
+            if (data.blur !== undefined) {
                 this.blur = data.blur;
             }
 
-            if (Utils.hasData(data.color)) {
+            if (data.color !== undefined) {
                 this.color = data.color;
             }
 
-            if (Utils.hasData(data.enable)) {
+            if (data.enable !== undefined) {
                 this.enable = data.enable;
             }
 
-            if (Utils.hasData(data.offset)) {
-                if (Utils.hasData(data.offset.x)) {
+            if (data.offset !== undefined) {
+                if (data.offset.x !== undefined) {
                     this.offset.x = data.offset.x;
                 }
 
-                if (Utils.hasData(data.offset.y)) {
+                if (data.offset.y !== undefined) {
                     this.offset.y = data.offset.y;
                 }
             }

@@ -17,6 +17,7 @@ export class Retina {
     public sizeValue: number;
     public sizeAnimationSpeed: number;
     public polygonMaskMoveRadius: number;
+    public pxRatio: number;
 
     private readonly container: Container;
 
@@ -36,6 +37,7 @@ export class Retina {
         this.sizeValue = 0;
         this.sizeAnimationSpeed = 0;
         this.polygonMaskMoveRadius = 0;
+        this.pxRatio = 1;
     }
 
     public init(): void {
@@ -43,19 +45,21 @@ export class Retina {
         const options = container.options;
 
         if (options.detectRetina && window.devicePixelRatio > 1) {
-            container.canvas.pxRatio = window.devicePixelRatio;
+            this.pxRatio = window.devicePixelRatio;
 
             this.isRetina = true;
         } else {
-            container.canvas.pxRatio = 1;
+            this.pxRatio = 1;
 
             this.isRetina = false;
         }
 
-        const ratio = container.canvas.pxRatio;
+        const ratio = this.pxRatio;
 
-        container.canvas.dimension.width = container.canvas.element.offsetWidth * ratio;
-        container.canvas.dimension.height = container.canvas.element.offsetHeight * ratio;
+        if (container.canvas.element) {
+            container.canvas.dimension.width = container.canvas.element.offsetWidth * ratio;
+            container.canvas.dimension.height = container.canvas.element.offsetHeight * ratio;
+        }
 
         this.bubbleModeDistance = options.interactivity.modes.bubble.distance * ratio;
         this.bubbleModeSize = options.interactivity.modes.bubble.size * ratio;

@@ -14,6 +14,18 @@
 
 ---
 
+## Migrating from Particles.js
+
+**tsParticles** are fully compatible with the *particles.js* configuration.
+
+Seriously, you just need to change the script source et-voilà, **you're ready**!
+
+Want to know 5 reasons to do the switch? [Read here](https://dev.to/matteobruni/5-reasons-to-use-tsparticles-and-not-particles-js-1gbe)
+
+*Below you can find all the information you need to install tsParticles and its new syntax.* 
+
+---
+
 ## General Informations
 
 `master` | `staging` | `dev`
@@ -54,6 +66,11 @@ Documentation and Development references here: <https://particles.matteobruni.it
 npm install tsparticles
 ```
 
+### ***yarn***
+```shell
+yarn add tsparticles
+```
+
 ### ***NuGet***
 
 [![Nuget](https://img.shields.io/nuget/v/tsParticles)](https://www.nuget.org/packages/tsParticles/)
@@ -67,6 +84,10 @@ npm install tsparticles
 #### jsDelivr
 
 [![jsDelivr](https://data.jsdelivr.com/v1/package/npm/tsparticles/badge)](https://www.jsdelivr.com/package/npm/tsparticles)
+
+#### cdnjs
+
+[![Cdnjs](https://img.shields.io/cdnjs/v/tsparticles)](https://cdnjs.com/libraries/tsparticles)
 
 ### ***Usage***
 
@@ -110,6 +131,15 @@ tsParticles.loadFromArray("tsparticles", [ { /* options here */ }, { /* other op
 /* tsParticles.setOnClickHandler(@callback); */
 /* this will be fired from all particles loaded */
 tsParticles.setOnClickHandler((e) => { /* custom on click handler */ });
+
+// now you can control the animations too, it's possible to pause and resume the animations
+// these methods don't change the config so you're safe with all your configurations
+// domItem(0) returns the first tsParticles instance loaded in the dom
+const particles = tsParticles.domItem(0);
+// play will start the animations, if the move is not enabled it won't enable it, it just updates the frame
+particles.play();
+// pause will stop the animations
+particles.pause();
 ```
 
 ---
@@ -191,6 +221,13 @@ tsParticles.setOnClickHandler((e) => { /* custom on click handler */ });
     },
     "shape": {
       "type": "circle",
+      "character": {
+        "fill": true,
+        "font": "Font Awesome 5 Brands",
+        "style": "",
+        "value": "\uf179",
+        "weight": "400"
+      },
       "stroke": {
         "width": 0,
         "color": "#000000"
@@ -249,6 +286,11 @@ tsParticles.setOnClickHandler((e) => { /* custom on click handler */ });
       "straight": false,
       "outMode": "out",
       "bounce": false,
+      "trail": {
+        "enable": false,
+        "length": 10,
+        "fillColor": "#000000"      
+      },
       "attract": {
         "enable": false,
         "rotateX": 600,
@@ -259,11 +301,11 @@ tsParticles.setOnClickHandler((e) => { /* custom on click handler */ });
   "interactivity": {
     "detectsOn": "canvas",
     "events": {
-      "onhover": {
+      "onHover": {
         "enable": false,
         "mode": "repulse"
       },
-      "onclick": {
+      "onClick": {
         "enable": true,
         "mode": "push"
       },
@@ -304,6 +346,7 @@ tsParticles.setOnClickHandler((e) => { /* custom on click handler */ });
   },
   "detectRetina": true,
   "fpsLimit": 60,
+  "pauseOnBlur": true,
   "backgroundMask": {
     "enable": true,
     "cover": {
@@ -343,6 +386,12 @@ key | option type / notes | example
 `particles.shape.stroke.width` | number | `2`
 `particles.shape.stroke.color` | HEX (string) <br /> random (string) | `"#222222"` <br /> `"random"`
 `particles.shape.polygon.sides` | number | `5`
+`particles.shape.character` | object / array | A single character object like below or an array of the same objects
+`particles.shape.character.value` | object / array | `\uf179` / `*`
+`particles.shape.character.font` | string | `Font Awesome 5  Brands` 
+`particles.shape.character.style` | string | ``
+`particles.shape.character.weight` | string | `400` (Font weight, for FontAwesome it's required to use the exact weight for every family, Chrome won't render correctly otherwise.)
+`particles.shape.character.fill` | boolean | `true` / `false` (Fills or strokes the text. If the fonts doesn't support the stroke or the fill you won't see any particle. FontAwesome requires `fill: true`)
 `particles.shape.image` | object / array | A single image object like below or an array of the same objects
 `particles.shape.image.src` | path link <br /> svg / png / gif / jpg | `"assets/img/yop.svg"` <br /> `"http://mywebsite.com/assets/img/yop.png"`
 `particles.shape.image.width` | number <br />(for aspect ratio) | `100`
@@ -377,9 +426,12 @@ key | option type / notes | example
 `particles.move.straight` | boolean | `true` / `false`
 `particles.move.outMode` | string <br /> (out of canvas) | `"out"`<br /> `"destroy"` <br /> `"bounce"` <br /> `"bounce-vertical"` <br /> `"bounce-horizontal"`
 `particles.move.bounce` | boolean <br /> (between particles) | `true` / `false`
+`particles.move.trail.enable` | boolean | `true` / `false`
+`particles.move.trail.length` | number | `10`
+`particles.move.trail.fillColor` | HEX (string) | `#000000`
 `particles.move.attract.enable` | boolean | `true` / `false`
-`particles.move.attract.rotateX` | number | `3000`
-`particles.move.attract.rotateY` | number | `1500`
+`particles.move.attract.rotate.x` | number | `3000`
+`particles.move.attract.rotate.y` | number | `1500`
 `interactivity.detectsOn` | string | `"canvas", "window","parent"`
 `interactivity.events.onHover.enable` | boolean | `true` / `false`
 `interactivity.events.onHover.mode` | string <br /> array selection | `"grab"` <br /> `"bubble"` <br /> `"repulse"` <br /> `"connect"` <br /> `["grab", "bubble"]`
@@ -403,8 +455,10 @@ key | option type / notes | example
 `interactivity.events.modes.remove.quantity` | number | `4`
 `detectRetina` | boolean | `true` / `false`
 `fpsLimit` | number | `60`
+`pauseOnBlur` | boolean | `true` / `false`
 `backgroundMask.enable` | boolean | `true` / `false`
 `backgroundMask.cover.value` | HEX (string) <br /> RGB (object) <br /> HSL (object) <br /> random (string) | `"#0d47a1"` <br /> `{r:182, g:25, b:36}` <br />  `{h:356, s:76, l:41}` <br /> `"random"`
+`polygon.enable` | boolean | `true` / `false`
 `polygon.draw.enable` | boolean | `true` / `false`
 `polygon.draw.lineWidth` | number | `0.5`
 `polygon.draw.lineColor` | HEX (string) | `#ffffff`

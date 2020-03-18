@@ -1,7 +1,7 @@
 import {IDivEvent} from "../../../../Interfaces/Options/Interactivity/Events/IDivEvent";
 import {DivMode} from "../../../../Enums/Modes/DivMode";
 import {Messages} from "../../../Utils/Messages";
-import {Utils} from "../../../Utils/Utils";
+import {RecursivePartial} from "../../../../Types/RecursivePartial";
 
 export class DivEvent implements IDivEvent {
     /**
@@ -35,21 +35,19 @@ export class DivEvent implements IDivEvent {
         this.mode = DivMode.repulse;
     }
 
-    public load(data: IDivEvent): void {
-        if (Utils.hasData(data)) {
-            if (Utils.hasData(data.elementId)) {
+    public load(data?: RecursivePartial<IDivEvent>): void {
+        if (data !== undefined) {
+            if (data.elementId !== undefined) {
                 this.elementId = data.elementId;
-            }
-
-            if (Utils.hasData(data.el)) {
+            } else if (data.el !== undefined) {
                 this.el = data.el;
             }
 
-            if (Utils.hasData(data.enable)) {
+            if (data.enable !== undefined) {
                 this.enable = data.enable;
             }
 
-            if (Utils.hasData(data.mode)) {
+            if (data.mode !== undefined) {
                 this.mode = data.mode;
             }
         }

@@ -17,6 +17,7 @@ html(lang="en")
         meta(property="og:image", content="https://particles.matteobruni.it/images/demo.png")
 
         title tsParticles
+        link(href="/fontawesome/css/all.css", rel="stylesheet", type="text/css")
         link(href="/jsoneditor/jsoneditor.css", rel="stylesheet", type="text/css")
         link(href="/stylesheets/main.css", rel="stylesheet", type="text/css")
 
@@ -38,17 +39,21 @@ html(lang="en")
                         option(value="collisions") Collisions
                         option(value="connect") Connect
                         option(value="default") Default
+                        option(value="fontawesome") Font Awesome
                         option(value="hollowknight") Hollow Knight
                         option(value="images") Multiple Images
                         option(value="mask") Polygon Mask
                         option(value="nasa") NASA
                         option(value="nyancat") Nyan Cat
                         option(value="nyancat2") Nyan Cat 2
+                        option(value="polygons") Polygon Shape
+                        option(value="reactDefaults") React Defaults
                         //option(value="shadow") Shadow
                         option(value="slow") Slow on Hover
                         option(value="snow") Snow
                         option(value="star") Star
                         option(value="test") Test
+                        option(value="trail") Trails
                         option(value="virus") Virus
 
                 div#editor
@@ -59,6 +64,7 @@ html(lang="en")
                     span.js-count-particles --
                     | particles
 
+        script(src="/fontawesome/js/all.js")
         script(src="/jsoneditor/jsoneditor.js")
         script(src="/three/examples/js/libs/stats.min.js")
         script(src="/tsparticles/tsparticles.js")

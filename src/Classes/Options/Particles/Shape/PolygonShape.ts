@@ -1,6 +1,6 @@
 import {IPolygonShape} from "../../../../Interfaces/Options/Particles/Shape/IPolygonShape";
 import {Messages} from "../../../Utils/Messages";
-import {Utils} from "../../../Utils/Utils";
+import {RecursivePartial} from "../../../../Types/RecursivePartial";
 
 export class PolygonShape implements IPolygonShape {
     /**
@@ -30,13 +30,11 @@ export class PolygonShape implements IPolygonShape {
         this.sides = 5;
     }
 
-    public load(data: IPolygonShape): void {
-        if (Utils.hasData(data)) {
-            if (Utils.hasData(data.sides)) {
+    public load(data?: RecursivePartial<IPolygonShape>): void {
+        if (data !== undefined) {
+            if (data.sides !== undefined) {
                 this.sides = data.sides;
-            }
-
-            if (Utils.hasData(data.nb_sides)) {
+            } else if (data.nb_sides !== undefined) {
                 this.nb_sides = data.nb_sides;
             }
         }

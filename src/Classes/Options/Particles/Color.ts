@@ -1,6 +1,6 @@
 import {IParticlesColor} from "../../../Interfaces/Options/Particles/IParticlesColor";
 import {IColor} from "../../../Interfaces/IColor";
-import {Utils} from "../../Utils/Utils";
+import {RecursivePartial} from "../../../Types/RecursivePartial";
 
 export class Color implements IParticlesColor {
     public value: string | IColor | string[];
@@ -9,9 +9,9 @@ export class Color implements IParticlesColor {
         this.value = "#fff";
     }
 
-    public load(data: IParticlesColor): void {
-        if (Utils.hasData(data)) {
-            if (Utils.hasData(data.value)) {
+    public load(data?: RecursivePartial<IParticlesColor>): void {
+        if (data !== undefined) {
+            if (data.value !== undefined) {
                 this.value = data.value;
             }
         }

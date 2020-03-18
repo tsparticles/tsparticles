@@ -1,5 +1,5 @@
 import {IRotateAnimation} from "../../../Interfaces/Options/Particles/IRotateAnimation";
-import {Utils} from "../../Utils/Utils";
+import {RecursivePartial} from "../../../Types/RecursivePartial";
 
 export class RotateAnimation implements IRotateAnimation {
     public enable: boolean;
@@ -12,17 +12,17 @@ export class RotateAnimation implements IRotateAnimation {
         this.sync = false;
     }
 
-    public load(data: IRotateAnimation): void {
-        if (Utils.hasData(data)) {
-            if (Utils.hasData(data.enable)) {
+    public load(data?: RecursivePartial<IRotateAnimation>): void {
+        if (data !== undefined) {
+            if (data.enable !== undefined) {
                 this.enable = data.enable;
             }
 
-            if (Utils.hasData(data.speed)) {
+            if (data.speed !== undefined) {
                 this.speed = data.speed;
             }
 
-            if (Utils.hasData(data.sync)) {
+            if (data.sync !== undefined) {
                 this.sync = data.sync;
             }
         }

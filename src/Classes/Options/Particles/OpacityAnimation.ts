@@ -1,6 +1,6 @@
 import {IOpacityAnimation} from "../../../Interfaces/Options/Particles/IOpacityAnimation";
 import {Messages} from "../../Utils/Messages";
-import {Utils} from "../../Utils/Utils";
+import {RecursivePartial} from "../../../Types/RecursivePartial";
 
 export class OpacityAnimation implements IOpacityAnimation {
     /**
@@ -36,25 +36,23 @@ export class OpacityAnimation implements IOpacityAnimation {
         this.sync = false;
     }
 
-    public load(data: IOpacityAnimation): void {
-        if (Utils.hasData(data)) {
-            if (Utils.hasData(data.enable)) {
+    public load(data?: RecursivePartial<IOpacityAnimation>): void {
+        if (data !== undefined) {
+            if (data.enable !== undefined) {
                 this.enable = data.enable;
             }
 
-            if (Utils.hasData(data.minimumValue)) {
+            if (data.minimumValue !== undefined) {
                 this.minimumValue = data.minimumValue;
-            }
-
-            if (Utils.hasData(data.opacity_min)) {
+            } else if (data.opacity_min !== undefined) {
                 this.opacity_min = data.opacity_min;
             }
 
-            if (Utils.hasData(data.speed)) {
+            if (data.speed !== undefined) {
                 this.speed = data.speed;
             }
 
-            if (Utils.hasData(data.sync)) {
+            if (data.sync !== undefined) {
                 this.sync = data.sync;
             }
         }
