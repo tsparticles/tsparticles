@@ -1,5 +1,3 @@
-"use strict";
-
 export enum PolygonMaskType {
     inline = "inline",
     inside = "inside",

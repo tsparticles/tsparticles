@@ -1,5 +1,3 @@
-"use strict";
-
 import {Bubbler} from "./Particle/Bubbler";
 import {Container} from "./Container";
 import {Drawer} from "./Particle/Drawer";

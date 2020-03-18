@@ -1,5 +1,3 @@
-"use strict";
-
 import {IInteractivity} from "./Interactivity/IInteractivity";
 import {IParticles} from "./Particles/IParticles";
 import {IPolygonMask} from "./PolygonMask/IPolygonMask";

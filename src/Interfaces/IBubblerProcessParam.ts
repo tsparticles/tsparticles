@@ -1,5 +1,3 @@
-"use strict";
-
 import {ProcessBubbleType} from "../Enums/ProcessBubbleType";
 import {IBubblerProcessParamObj} from "./IBubblerProcessParamObj";
 

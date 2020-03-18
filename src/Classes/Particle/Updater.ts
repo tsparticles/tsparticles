@@ -1,5 +1,3 @@
-"use strict";
-
 import {Container} from "../Container";
 import {OutMode} from "../../Enums/OutMode";
 import {Particle} from "../Particle";

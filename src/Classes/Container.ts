@@ -1,5 +1,3 @@
-"use strict";
-
 import {Canvas} from "./Canvas";
 import {EventListeners} from "./Utils/EventListeners";
 import {IRepulse} from "../Interfaces/IRepulse";
@@ -12,10 +10,11 @@ import {ShapeType} from "../Enums/ShapeType";
 import {PolygonMask} from "./PolygonMask";
 import {ImageShape} from "./Options/Particles/Shape/ImageShape";
 import {IOptions} from "../Interfaces/Options/IOptions";
-import {Drawer} from "./Drawer";
+import {FrameManager} from "./FrameManager";
 import {RecursivePartial} from "../Types/RecursivePartial";
 import {Options} from "./Options/Options";
 import {Utils} from "./Utils/Utils";
+import {IImageShape} from "../Interfaces/Options/Particles/Shape/IImageShape";
 
 declare global {
     interface Window {
@@ -68,7 +67,7 @@ export class Container {
     public images: IImage[];
     public lastFrameTime: number;
     public pageHidden: boolean;
-    public drawer: Drawer;
+    public drawer: FrameManager;
     public started: boolean;
 
     private paused: boolean;
@@ -86,7 +85,7 @@ export class Container {
         this.canvas = new Canvas(this);
         this.particles = new Particles(this);
         this.polygon = new PolygonMask(this);
-        this.drawer = new Drawer(this);
+        this.drawer = new FrameManager(this);
         this.interactivity = {
             mouse: {},
         };
@@ -120,7 +119,7 @@ export class Container {
             this.paused = false;
         }
 
-        this.drawAnimationFrame = Container.requestFrame((t) => this.update(t));
+        this.drawAnimationFrame = Container.requestFrame((t) => this.drawer.nextFrame(t));
     }
 
     public pause(): void {
@@ -128,6 +127,7 @@ export class Container {
             Container.cancelAnimation(this.drawAnimationFrame);
 
             delete this.drawAnimationFrame;
+
             this.paused = true;
         }
     }
@@ -140,19 +140,19 @@ export class Container {
         }
 
         let area = this.canvas.element.width * this.canvas.element.height / 1000;
+
         if (this.retina.isRetina) {
             area /= this.retina.pxRatio * 2;
         }
-        //const area = this.retina.particlesDensityArea;
+
         const optParticlesNumber = this.options.particles.number.value;
         const density = this.options.particles.number.density.area;
         const particlesNumber = area * optParticlesNumber / density;
-        const missingParticles = this.particles.array.length - particlesNumber;
 
-        if (missingParticles < 0) {
-            this.particles.push(Math.abs(missingParticles));
-        } else {
-            this.particles.remove(missingParticles);
+        if (this.particles.array.length < particlesNumber) {
+            this.particles.push(Math.abs(particlesNumber - this.particles.array.length));
+        } else if (this.particles.array.length > particlesNumber) {
+            this.particles.remove(this.particles.array.length - particlesNumber);
         }
     }
 
@@ -202,11 +202,6 @@ export class Container {
     }
 
     public async refresh(): Promise<void> {
-        /* init all */
-        //if (this.checkAnimationFrame) {
-        //    Container.cancelAnimation(this.checkAnimationFrame);
-        //}
-
         /* restart */
         this.stop();
         await this.start();
@@ -218,10 +213,8 @@ export class Container {
         }
 
         this.started = false;
-
         this.eventListeners.removeEventsListeners();
         this.pause();
-
         this.images = [];
         this.particles.clear();
         this.retina.reset();
@@ -264,33 +257,25 @@ export class Container {
         if (this.options.particles.shape.type === ShapeType.image) {
             if (this.options.particles.shape.image instanceof Array) {
                 for (const optionsImage of this.options.particles.shape.image) {
-                    const src = optionsImage.src;
-                    const image: IImage = {error: false};
-
-                    image.type = src.substr(src.length - 3);
-
-                    await this.loadImg(image, optionsImage);
-
-                    this.images.push(image);
+                    await this.loadImageShape(optionsImage);
                 }
             } else {
-                const optionsImage = this.options.particles.shape.image;
-                const src = optionsImage.src;
-                const image: IImage = {error: false};
-
-                image.type = src.substr(src.length - 3);
-
-                await this.loadImg(image, optionsImage);
-
-                this.images.push(image);
+                await this.loadImageShape(this.options.particles.shape.image);
             }
         } else {
             this.checkBeforeDraw();
         }
     }
 
-    private update(timestamp: DOMHighResTimeStamp): void {
-        this.drawer.draw(timestamp);
+    private async loadImageShape(imageShape: IImageShape): Promise<void> {
+        const src = imageShape.src;
+        const image: IImage = {error: false};
+
+        image.type = src.substr(src.length - 3);
+
+        await this.loadImg(image, imageShape);
+
+        this.images.push(image);
     }
 
     private init(): void {
@@ -303,10 +288,6 @@ export class Container {
 
     private checkBeforeDraw(): void {
         if (this.options.particles.shape.type === ShapeType.image) {
-            //if (this.checkAnimationFrame) {
-            //    Container.cancelAnimation(this.checkAnimationFrame);
-            //}
-
             if (this.images.every((img) => img.error)) {
                 return;
             }

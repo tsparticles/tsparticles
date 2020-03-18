@@ -7,7 +7,7 @@ export class ClickEvent implements IClickEvent {
     public mode: ClickMode | ClickMode[];
 
     constructor() {
-        this.enable = true;
+        this.enable = false;
         this.mode = ClickMode.push;
     }
 

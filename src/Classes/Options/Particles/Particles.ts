@@ -17,6 +17,8 @@ import {Messages} from "../../Utils/Messages";
 import {IRotate} from "../../../Interfaces/Options/Particles/IRotate";
 import {Rotate} from "./Rotate";
 import {RecursivePartial} from "../../../Types/RecursivePartial";
+import {IShadow} from "../../../Interfaces/Options/Particles/IShadow";
+import {Shadow} from "./Shadow";
 
 export class Particles implements IParticles {
     /**
@@ -48,8 +50,7 @@ export class Particles implements IParticles {
     public rotate: IRotate;
     public shape: IShape;
     public size: ISize;
-
-    // public shadow: IShadow;
+    public shadow: IShadow;
 
     constructor() {
         this.color = new Color();
@@ -60,7 +61,7 @@ export class Particles implements IParticles {
         this.rotate = new Rotate();
         this.shape = new Shape();
         this.size = new ParticlesSize();
-        //this.shadow = new Shadow();
+        this.shadow = new Shadow();
     }
 
     public load(data?: RecursivePartial<IParticles>): void {
@@ -79,6 +80,7 @@ export class Particles implements IParticles {
             this.rotate.load(data.rotate);
             this.shape.load(data.shape);
             this.size.load(data.size);
+            this.shadow.load(data.shadow);
         }
     }
 }

@@ -1,5 +1,3 @@
-"use strict";
-
 import {Constants} from "./Utils/Constants";
 import {Container} from "./Container";
 import {IDimension} from "../Interfaces/IDimension";

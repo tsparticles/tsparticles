@@ -18,7 +18,7 @@ export class LineLinked implements ILineLinked {
         this.color = "#fff";
         this.consent = false;
         this.distance = 100;
-        this.enable = true;
+        this.enable = false;
         this.opacity = 1;
         this.shadow = new LineLinkedShadow();
         this.width = 1;

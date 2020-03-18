@@ -28,7 +28,7 @@ export class Density implements IDensity {
     public area: number;
 
     constructor() {
-        this.enable = true;
+        this.enable = false;
         this.area = 800;
     }
 

@@ -1,5 +1,3 @@
-"use strict";
-
 import {Container} from "../Container";
 import {Particle} from "../Particle";
 import {Utils} from "../Utils/Utils";

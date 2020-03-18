@@ -94,16 +94,21 @@
         }
 
         cmbPresets.value = localStorage.presetId;
-        cmbPresets.onchange();
+
+        // Create a new 'change' event
+        const event = new Event('change');
+
+        // Dispatch it.
+        cmbPresets.dispatchEvent(event);
 
         const btnUpdate = document.getElementById('btnUpdate');
         btnUpdate.onclick = function () {
             const particles = tsParticles.domItem(0);
 
             particles.options = editor.get();
-            particles.refresh();
-
-            updateBackground();
+            particles.refresh().then(() => {
+                updateBackground();
+            });
         };
 
         document.body.querySelector('#tsparticles-container').appendChild(stats.domElement);

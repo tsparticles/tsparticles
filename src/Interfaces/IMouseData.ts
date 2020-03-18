@@ -1,5 +1,3 @@
-"use strict";
-
 import {ICoordinates} from "./ICoordinates";
 
 export interface IMouseData {

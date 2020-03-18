@@ -1,5 +1,3 @@
-"use strict";
-
 import {ShapeType} from "../../../../Enums/ShapeType";
 import {IImageShape} from "./IImageShape";
 import {ICharacterShape} from "./ICharacterShape";

@@ -134,21 +134,15 @@ export class CanvasUtils {
                                radius: number,
                                stroke: IStroke): void {
         context.save();
+        
+        const shadow = particle.container.options.particles.shadow;
 
-        // TODO: Performance issues, the canvas shadow is really slow
-        // const shadow = options.particles.shadow;
-
-        // if (shadow.enable) {
-        //     ctx.shadowBlur = shadow.blur;
-        //     ctx.shadowColor = shadow.color;
-        //     ctx.shadowOffsetX = shadow.offset.x;
-        //     ctx.shadowOffsetY = shadow.offset.y;
-        // } else {
-        //     delete ctx.shadowBlur;
-        //     delete ctx.shadowColor;
-        //     delete ctx.shadowOffsetX;
-        //     delete ctx.shadowOffsetY;
-        // }
+        if (shadow.enable) {
+            context.shadowBlur = shadow.blur;
+            context.shadowColor = shadow.color;
+            context.shadowOffsetX = shadow.offset.x;
+            context.shadowOffsetY = shadow.offset.y;
+        }
 
         context.fillStyle = colorValue;
 

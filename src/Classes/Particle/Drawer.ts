@@ -1,5 +1,3 @@
-"use strict";
-
 import {Container} from "../Container";
 import {Particle} from "../Particle";
 
@@ -9,7 +7,6 @@ import {Particle} from "../Particle";
 export class Drawer {
     private readonly particle: Particle;
     private readonly container: Container;
-    private readonly text?: string;
 
     constructor(container: Container, particle: Particle) {
         this.container = container;

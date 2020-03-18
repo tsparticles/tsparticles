@@ -1,5 +1,3 @@
-"use strict";
-
 import {IMouseData} from "./IMouseData";
 
 export interface IContainerInteractivity {

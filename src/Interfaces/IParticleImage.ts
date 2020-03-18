@@ -1,5 +1,3 @@
-"use strict";
-
 import {IImage} from "./IImage";
 
 export interface IParticleImage {
