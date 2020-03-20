@@ -72,7 +72,7 @@ export class Utils {
     public static hslToRgb(hsl: IHsl): IRgb {
         const result: IRgb = {b: 0, g: 0, r: 0};
 
-        if (hsl.s == 0) {
+        if (hsl.s === 0) {
             result.b = hsl.l; // achromatic
             result.g = hsl.l;
             result.r = hsl.l;
