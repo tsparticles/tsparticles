@@ -13,7 +13,7 @@ or from jsDelivr
 [![jsDelivr](https://data.jsdelivr.com/v1/package/npm/jquery-particles/badge)](https://www.jsdelivr.com/package/npm/jquery-particles)
 
 ```html
-<script src="https://cdn.jsdelivr.net/npm/jquery-particles@1.10.3/dist/jquery.particles.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/jquery-particles@1.10.4/dist/jquery.particles.min.js"></script>
 ```
 
 ## How to use
