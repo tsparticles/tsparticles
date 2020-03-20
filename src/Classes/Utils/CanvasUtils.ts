@@ -3,7 +3,6 @@ import {ICoordinates} from "../../Interfaces/ICoordinates";
 import {IRgb} from "../../Interfaces/IRgb";
 import {Particle} from "../Particle";
 import {Utils} from "./Utils";
-import {IStroke} from "../../Interfaces/Options/Particles/Shape/IStroke";
 import {ShapeUtils} from "./ShapeUtils";
 import {ILineLinkedShadow} from "../../Interfaces/Options/Particles/ILineLinkedShadow";
 import {IPolygonMaskDrawStroke} from "../../Interfaces/Options/PolygonMask/IPolygonMaskDrawStroke";
