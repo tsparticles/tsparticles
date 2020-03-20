@@ -32,7 +32,7 @@ export class Shape implements IShape {
     public character: ICharacterShape | ICharacterShape[];
     public image: IImageShape | IImageShape[];
     public polygon: IPolygonShape | IPolygonShape[];
-    public stroke: IStroke;
+    public stroke: IStroke | IStroke[];
     public type: ShapeType | ShapeType[];
 
     constructor() {
@@ -75,7 +75,20 @@ export class Shape implements IShape {
                 }
             }
 
-            this.stroke.load(data.stroke);
+            if (data.stroke !== undefined) {
+                if (data.stroke instanceof Array) {
+                    this.stroke = data.stroke.map((s) => {
+                        const tmp = new Stroke();
+
+                        tmp.load(s);
+
+                        return tmp;
+                    });
+                } else {
+                    this.stroke = new Stroke();
+                    this.stroke.load(data.stroke);
+                }
+            }
 
             if (data.polygon !== undefined) {
                 if (data.polygon instanceof Array) {

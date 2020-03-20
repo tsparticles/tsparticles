@@ -21,6 +21,7 @@ import {ClickMode} from "../Enums/Modes/ClickMode";
 import {RotateDirection} from "../Enums/RotateDirection";
 import {ICharacterShape} from "../Interfaces/Options/Particles/Shape/ICharacterShape";
 import {IPolygonShape} from "../Interfaces/Options/Particles/Shape/IPolygonShape";
+import {IStroke} from "../Interfaces/Options/Particles/Shape/IStroke";
 
 /**
  * The single particle object
@@ -29,6 +30,7 @@ export class Particle {
     public angle: number;
     public rotateDirection: RotateDirection;
     public radius: number;
+    public readonly stroke: IStroke;
     public readonly polygon?: IPolygonShape;
     public readonly text?: string;
     public readonly size: ISize;
@@ -150,6 +152,7 @@ export class Particle {
             const index = Math.floor(Math.random() * container.images.length);
             const image = container.images[index];
             const optionsImage = shape.image instanceof Array ? shape.image[index] : shape.image;
+
             this.image = {
                 data: image,
                 ratio: optionsImage.width / optionsImage.height,
@@ -165,15 +168,25 @@ export class Particle {
         if (this.shape === ShapeType.polygon) {
             if (options.particles.shape.polygon instanceof Array) {
                 const arr = options.particles.shape.polygon;
+
                 this.polygon = arr[Math.floor(Math.random() * arr.length)];
             } else {
                 this.polygon = options.particles.shape.polygon;
             }
         }
 
+        if (options.particles.shape.stroke instanceof Array) {
+            const arr = options.particles.shape.stroke;
+
+            this.stroke = arr[Math.floor(Math.random() * arr.length)];
+        } else {
+            this.stroke = options.particles.shape.stroke;
+        }
+
         if (this.shape === ShapeType.char || this.shape === ShapeType.character) {
             if (options.particles.shape.character instanceof Array) {
                 const arr = options.particles.shape.character;
+
                 this.character = arr[Math.floor(Math.random() * arr.length)];
             } else {
                 this.character = options.particles.shape.character;
@@ -181,11 +194,7 @@ export class Particle {
 
             const value = this.character.value;
 
-            if (value instanceof Array) {
-                this.text = value[Math.floor(Math.random() * value.length)]
-            } else {
-                this.text = value;
-            }
+            this.text = value instanceof Array ? value[Math.floor(Math.random() * value.length)] : value;
         }
 
         this.updater = new Updater(this.container, this);

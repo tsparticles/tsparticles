@@ -283,7 +283,7 @@ export class Canvas {
             particle,
             colorValue,
             options.backgroundMask.enable,
-            radius, options.particles.shape.stroke);
+            radius);
     }
 
     private paintBase(baseColor?: string): void {

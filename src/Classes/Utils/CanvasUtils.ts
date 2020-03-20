@@ -139,10 +139,10 @@ export class CanvasUtils {
                                particle: Particle,
                                colorValue: string,
                                backgroundMask: boolean,
-                               radius: number,
-                               stroke: IStroke): void {
+                               radius: number): void {
         context.save();
 
+        const stroke = particle.stroke;
         const shadow = particle.container.options.particles.shadow;
         const shadowColor = typeof shadow.color === "string" ?
             Utils.hexToRgb(shadow.color) :
