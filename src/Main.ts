@@ -54,7 +54,9 @@ class Main {
      * @param params the options array to get the item from
      * @param index if provided gets the corresponding item from the array
      */
-    public async loadFromArray(tagId: string, params: RecursivePartial<IOptions>[], index?: number): Promise<Container | undefined> {
+    public async loadFromArray(tagId: string,
+                               params: RecursivePartial<IOptions>[],
+                               index?: number): Promise<Container | undefined> {
         return Loader.loadFromArray(tagId, params, index);
     }
 
