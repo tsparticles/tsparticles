@@ -16,7 +16,7 @@ export class ShapeUtils {
             y: particle.offset.y,
         };
 
-        const sides = particle.container.options.particles.shape.polygon.sides;
+        const sides = particle.polygon?.sides ?? 5;
 
         switch (particle.shape) {
             case ShapeType.line:

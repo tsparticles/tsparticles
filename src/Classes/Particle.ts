@@ -20,6 +20,7 @@ import {HoverMode} from "../Enums/Modes/HoverMode";
 import {ClickMode} from "../Enums/Modes/ClickMode";
 import {RotateDirection} from "../Enums/RotateDirection";
 import {ICharacterShape} from "../Interfaces/Options/Particles/Shape/ICharacterShape";
+import {IPolygonShape} from "../Interfaces/Options/Particles/Shape/IPolygonShape";
 
 /**
  * The single particle object
@@ -28,6 +29,7 @@ export class Particle {
     public angle: number;
     public rotateDirection: RotateDirection;
     public radius: number;
+    public readonly polygon?: IPolygonShape;
     public readonly text?: string;
     public readonly size: ISize;
     public readonly initialPosition?: ICoordinates;
@@ -157,6 +159,15 @@ export class Particle {
 
             if (!this.image.ratio) {
                 this.image.ratio = 1;
+            }
+        }
+
+        if (this.shape === ShapeType.polygon) {
+            if (options.particles.shape.polygon instanceof Array) {
+                const arr = options.particles.shape.polygon;
+                this.polygon = arr[Math.floor(Math.random() * arr.length)];
+            } else {
+                this.polygon = options.particles.shape.polygon;
             }
         }
 

@@ -8,7 +8,7 @@ import {IOptionLoader} from "../../IOptionLoader";
 export interface IShape extends IOptionLoader<IShape> {
     type: ShapeType | ShapeType[];
     stroke: IStroke;
-    polygon: IPolygonShape;
+    polygon: IPolygonShape | IPolygonShape[];
     character: ICharacterShape | ICharacterShape[];
     image: IImageShape | IImageShape[];
 }

@@ -31,7 +31,7 @@ export class Shape implements IShape {
 
     public character: ICharacterShape | ICharacterShape[];
     public image: IImageShape | IImageShape[];
-    public polygon: IPolygonShape;
+    public polygon: IPolygonShape | IPolygonShape[];
     public stroke: IStroke;
     public type: ShapeType | ShapeType[];
 
@@ -76,7 +76,21 @@ export class Shape implements IShape {
             }
 
             this.stroke.load(data.stroke);
-            this.polygon.load(data.polygon);
+
+            if (data.polygon !== undefined) {
+                if (data.polygon instanceof Array) {
+                    this.polygon = data.polygon.map((s) => {
+                        const tmp = new PolygonShape();
+
+                        tmp.load(s);
+
+                        return tmp;
+                    });
+                } else {
+                    this.polygon = new PolygonShape();
+                    this.polygon.load(data.polygon);
+                }
+            }
 
             if (data.type !== undefined) {
                 this.type = data.type;

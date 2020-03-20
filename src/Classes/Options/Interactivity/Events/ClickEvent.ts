@@ -3,7 +3,14 @@ import {ClickMode} from "../../../../Enums/Modes/ClickMode";
 import {RecursivePartial} from "../../../../Types/RecursivePartial";
 
 export class ClickEvent implements IClickEvent {
+    /**
+     * The click event handler enabling setting
+     */
     public enable: boolean;
+
+    /**
+     * Click mode values described in [[ClickMode]], an array of these values is also valid
+     */
     public mode: ClickMode | ClickMode[];
 
     constructor() {
