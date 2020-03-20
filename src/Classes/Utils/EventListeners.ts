@@ -68,7 +68,10 @@ export class EventListeners {
         }
 
         /* detect mouse pos - on hover / click event */
-        if (interactivityEl && (options.interactivity.events.onHover.enable || options.interactivity.events.onClick.enable)) {
+        if (interactivityEl && (
+            options.interactivity.events.onHover.enable ||
+            options.interactivity.events.onClick.enable)
+        ) {
             /* el on mousemove */
             interactivityEl.addEventListener("mousemove", this.mouseMoveHandler);
 
@@ -113,7 +116,10 @@ export class EventListeners {
         const interactivityEl = container.interactivity.element;
 
         /* detect mouse pos - on hover / click event */
-        if (interactivityEl && (options.interactivity.events.onHover.enable || options.interactivity.events.onClick.enable)) {
+        if (interactivityEl && (
+            options.interactivity.events.onHover.enable ||
+            options.interactivity.events.onClick.enable
+        )) {
             /* el on mousemove */
             interactivityEl.removeEventListener("mousemove", this.mouseMoveHandler);
 
