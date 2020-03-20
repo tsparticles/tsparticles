@@ -122,7 +122,9 @@ export class Canvas {
         const container = this.container;
         const options = container.options;
         const trail = options.particles.move.trail;
-        const fillColor = typeof trail.fillColor === "string" ? Utils.hexToRgb(trail.fillColor) : Utils.colorToRgb(trail.fillColor);
+        const fillColor = typeof trail.fillColor === "string" ?
+            Utils.hexToRgb(trail.fillColor) :
+            Utils.colorToRgb(trail.fillColor);
 
         if (options.backgroundMask.enable) {
             this.paint();

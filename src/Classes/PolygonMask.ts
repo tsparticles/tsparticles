@@ -113,9 +113,7 @@ export class PolygonMask {
                     break;
                 case PolygonMaskInlineArrangement.onePerPoint:
                 default:
-                    position = this.getPoingOnPolygonPathByIndex(
-                        container.particles.count
-                    );
+                    position = this.getPoingOnPolygonPathByIndex(container.particles.count);
             }
         } else {
             position = {
