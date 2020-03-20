@@ -92,7 +92,8 @@ export class Loader {
      * @param domContainer the dom container
      * @param params the options object to initialize the [[Container]]
      */
-    public static async set(id: string, domContainer: HTMLElement, params?: RecursivePartial<IOptions>): Promise<Container | undefined> {
+    public static async set(id: string, domContainer: HTMLElement,
+                            params?: RecursivePartial<IOptions>): Promise<Container | undefined> {
         const dom = Loader.dom();
         const idx = dom.findIndex((v) => v.id === id);
 
@@ -182,7 +183,8 @@ export class Loader {
      * @param domContainer the container used to contains the particles
      * @param jsonUrl the json path to use in the GET request
      */
-    public static async setJSON(id: string, domContainer: HTMLElement, jsonUrl: string): Promise<Container | undefined> {
+    public static async setJSON(id: string, domContainer: HTMLElement,
+                                jsonUrl: string): Promise<Container | undefined> {
         /* load json config */
         const response = await fetch(jsonUrl);
 
