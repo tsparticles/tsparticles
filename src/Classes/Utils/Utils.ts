@@ -3,7 +3,7 @@ import {IHsl} from "../../Interfaces/IHsl";
 import {IRgb} from "../../Interfaces/IRgb";
 import {MoveDirection} from "../../Enums/MoveDirection";
 import {IOptions} from "../../Interfaces/Options/IOptions";
-import {IParticlesColor} from "../../Interfaces/Options/Particles/IParticlesColor";
+import {IColor} from "../../Interfaces/Options/Particles/IColor";
 import {ICharacterShape} from "../../Interfaces/Options/Particles/Shape/ICharacterShape";
 
 type CSSOMString = string;
@@ -187,7 +187,7 @@ export class Utils {
      * Gets the particles color
      * @param color the input color to convert in [[IRgb]] object
      */
-    public static getParticleColor(color: IParticlesColor): IRgb | undefined {
+    public static colorToRgb(color: IColor): IRgb | undefined {
         let res: IRgb | undefined;
 
         if (typeof (color.value) === "object") {

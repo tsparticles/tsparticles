@@ -111,7 +111,7 @@ export class Particle {
         }
 
         /* color */
-        this.color = Utils.getParticleColor(color);
+        this.color = Utils.colorToRgb(color);
 
         /* opacity */
         this.opacity = {

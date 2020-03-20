@@ -1,9 +1,9 @@
 import {IBackgroundMask} from "../../../Interfaces/Options/BackgroundMask/IBackgroundMask";
-import {IParticlesColor} from "../../../Interfaces/Options/Particles/IParticlesColor";
+import {IColor} from "../../../Interfaces/Options/Particles/IColor";
 import {RecursivePartial} from "../../../Types/RecursivePartial";
 
 export class BackgroundMask implements IBackgroundMask {
-    public cover?: IParticlesColor;
+    public cover?: IColor;
     public enable: boolean;
 
     constructor() {

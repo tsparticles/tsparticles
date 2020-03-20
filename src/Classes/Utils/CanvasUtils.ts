@@ -25,19 +25,23 @@ export class CanvasUtils {
     public static drawPolygonMask(context: CanvasRenderingContext2D,
                                   rawData: ICoordinates[],
                                   stroke: IPolygonMaskDrawStroke): void {
-        context.save();
-        context.beginPath();
-        context.moveTo(rawData[0].x, rawData[0].y);
+        const color = typeof stroke.color === "string" ? Utils.hexToRgb(stroke.color) : Utils.colorToRgb(stroke.color);
 
-        for (let i = 1; i < rawData.length; i++) {
-            context.lineTo(rawData[i].x, rawData[i].y);
+        if (color) {
+            context.save();
+            context.beginPath();
+            context.moveTo(rawData[0].x, rawData[0].y);
+
+            for (let i = 1; i < rawData.length; i++) {
+                context.lineTo(rawData[i].x, rawData[i].y);
+            }
+
+            context.closePath();
+            context.strokeStyle = Utils.getStyleFromColor(color);
+            context.lineWidth = stroke.width;
+            context.stroke();
+            context.restore();
         }
-
-        context.closePath();
-        context.strokeStyle = stroke.color;
-        context.lineWidth = stroke.width;
-        context.stroke();
-        context.restore();
     }
 
     public static drawLineLinked(context: CanvasRenderingContext2D,
@@ -62,10 +66,14 @@ export class CanvasUtils {
         // this.ctx.lineCap = "round"; /* performance issue */
         /* path */
         context.beginPath();
-        if (shadow.enable) {
+
+        const color = typeof shadow.color === "string" ? Utils.hexToRgb(shadow.color) : Utils.colorToRgb(shadow.color);
+
+        if (shadow.enable && color) {
             context.shadowBlur = shadow.blur;
-            context.shadowColor = shadow.color;
+            context.shadowColor = Utils.getStyleFromColor(color);
         }
+
         context.moveTo(begin.x, begin.y);
         context.lineTo(end.x, end.y);
         context.stroke();
@@ -134,12 +142,15 @@ export class CanvasUtils {
                                radius: number,
                                stroke: IStroke): void {
         context.save();
-        
-        const shadow = particle.container.options.particles.shadow;
 
-        if (shadow.enable) {
+        const shadow = particle.container.options.particles.shadow;
+        const shadowColor = typeof shadow.color === "string" ?
+            Utils.hexToRgb(shadow.color) :
+            Utils.colorToRgb(shadow.color);
+
+        if (shadow.enable && shadowColor) {
             context.shadowBlur = shadow.blur;
-            context.shadowColor = shadow.color;
+            context.shadowColor = Utils.getStyleFromColor(shadowColor);
             context.shadowOffsetX = shadow.offset.x;
             context.shadowOffsetY = shadow.offset.y;
         }
@@ -166,8 +177,12 @@ export class CanvasUtils {
 
         context.closePath();
 
-        if (stroke.width > 0) {
-            context.strokeStyle = stroke.color;
+        const strokeColor = typeof stroke.color === "string" ?
+            Utils.hexToRgb(stroke.color) :
+            Utils.colorToRgb(stroke.color);
+
+        if (stroke.width > 0 && strokeColor) {
+            context.strokeStyle = Utils.getStyleFromColor(strokeColor);
             context.lineWidth = stroke.width;
             context.stroke();
         }

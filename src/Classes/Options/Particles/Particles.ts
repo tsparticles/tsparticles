@@ -6,7 +6,7 @@ import {ParticlesNumber} from "./ParticlesNumber";
 import {Opacity} from "./Opacity";
 import {Shape} from "./Shape/Shape";
 import {ParticlesSize} from "./ParticlesSize";
-import {IParticlesColor} from "../../../Interfaces/Options/Particles/IParticlesColor";
+import {IColor} from "../../../Interfaces/Options/Particles/IColor";
 import {ILineLinked} from "../../../Interfaces/Options/Particles/ILineLinked";
 import {IMove} from "../../../Interfaces/Options/Particles/IMove";
 import {IParticlesNumber} from "../../../Interfaces/Options/Particles/IParticlesNumber";
@@ -42,7 +42,7 @@ export class Particles implements IParticles {
         this.lineLinked = value;
     }
 
-    public color: IParticlesColor;
+    public color: IColor;
     public lineLinked: ILineLinked;
     public move: IMove;
     public number: IParticlesNumber;

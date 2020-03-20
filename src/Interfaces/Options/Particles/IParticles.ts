@@ -1,5 +1,5 @@
 import {IShape} from "./Shape/IShape";
-import {IParticlesColor} from "./IParticlesColor";
+import {IColor} from "./IColor";
 import {ILineLinked} from "./ILineLinked";
 import {IMove} from "./IMove";
 import {IParticlesNumber} from "./IParticlesNumber";
@@ -10,7 +10,7 @@ import {IRotate} from "./IRotate";
 import {IShadow} from "./IShadow";
 
 export interface IParticles extends IOptionLoader<IParticles> {
-    color: IParticlesColor;
+    color: IColor;
 
     /**
      * @deprecated use the new lineLinked instead

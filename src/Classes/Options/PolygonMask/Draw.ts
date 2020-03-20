@@ -3,6 +3,7 @@ import {IPolygonMaskDrawStroke} from "../../../Interfaces/Options/PolygonMask/IP
 import {Messages} from "../../Utils/Messages";
 import {PolygonMaskDrawStroke} from "./PolygonMaskDrawStroke";
 import {RecursivePartial} from "../../../Types/RecursivePartial";
+import {IColor} from "../../../Interfaces/Options/Particles/IColor";
 
 export class Draw implements IPolygonMaskDraw {
     /**
@@ -26,7 +27,7 @@ export class Draw implements IPolygonMaskDraw {
     /**
      * @deprecated the property lineColor is deprecated, please use the new stroke.color
      */
-    get lineColor(): string {
+    get lineColor(): string | IColor {
         Messages.deprecated("polygon.draw.lineColor", "polygon.draw.stroke.color");
 
         return this.stroke.color;
@@ -35,7 +36,7 @@ export class Draw implements IPolygonMaskDraw {
     /**
      * @deprecated the property lineColor is deprecated, please use the new stroke.color
      */
-    set lineColor(value: string) {
+    set lineColor(value: string | IColor) {
         Messages.deprecated("polygon.draw.lineColor", "polygon.draw.stroke.color");
 
         this.stroke.color = value;

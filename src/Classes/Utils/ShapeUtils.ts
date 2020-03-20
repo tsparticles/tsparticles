@@ -4,6 +4,7 @@ import {ShapeType} from "../../Enums/ShapeType";
 import {ICoordinates} from "../../Interfaces/ICoordinates";
 import {ISide} from "../../Interfaces/ISide";
 import {ICharacterShape} from "../../Interfaces/Options/Particles/Shape/ICharacterShape";
+import {Utils} from "./Utils";
 
 export class ShapeUtils {
     public static drawShape(context: CanvasRenderingContext2D,
@@ -110,11 +111,15 @@ export class ShapeUtils {
     }
 
     private static drawLineShape(context: CanvasRenderingContext2D, length: number, stroke: IStroke): void {
-        context.moveTo(0, -length / 2);
-        context.lineTo(0, length / 2);
-        context.strokeStyle = stroke.color;
-        context.lineWidth = stroke.width;
-        context.stroke();
+        const color = typeof stroke.color === "string" ? Utils.hexToRgb(stroke.color) : Utils.colorToRgb(stroke.color);
+
+        if (color) {
+            context.moveTo(0, -length / 2);
+            context.lineTo(0, length / 2);
+            context.strokeStyle = Utils.getStyleFromColor(color);
+            context.lineWidth = stroke.width;
+            context.stroke();
+        }
     }
 
     private static drawCircleShape(context: CanvasRenderingContext2D, radius: number, center: ICoordinates): void {

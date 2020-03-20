@@ -1,7 +1,7 @@
 import {IHsl} from "./IHsl";
 import {IRgb} from "./IRgb";
 
-export interface IColor {
+export interface IValueColor {
     rgb?: IRgb | null;
     hsl?: IHsl | null;
 }

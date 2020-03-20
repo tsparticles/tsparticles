@@ -47,7 +47,9 @@ export class Linker {
                             container.particles.lineLinkedColor = "mid";
                         }
                     } else {
-                        container.particles.lineLinkedColor = Utils.hexToRgb(color);
+                        container.particles.lineLinkedColor = typeof color === "string" ?
+                            Utils.hexToRgb(color) :
+                            Utils.colorToRgb(color);
                     }
                 }
 

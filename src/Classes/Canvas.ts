@@ -102,7 +102,7 @@ export class Canvas {
 
         if (this.context) {
             if (options.backgroundMask.enable && options.backgroundMask.cover) {
-                const color = Utils.getParticleColor(options.backgroundMask.cover);
+                const color = Utils.colorToRgb(options.backgroundMask.cover);
 
                 if (color) {
                     this.paintBase(Utils.getStyleFromColor(color));
@@ -122,7 +122,7 @@ export class Canvas {
         const container = this.container;
         const options = container.options;
         const trail = options.particles.move.trail;
-        const fillColor = Utils.hexToRgb(trail.fillColor);
+        const fillColor = typeof trail.fillColor === "string" ? Utils.hexToRgb(trail.fillColor) : Utils.colorToRgb(trail.fillColor);
 
         if (options.backgroundMask.enable) {
             this.paint();
@@ -219,7 +219,8 @@ export class Canvas {
         const options = container.options;
         const optColor = options.particles.lineLinked.color;
 
-        let lineColor = container.particles.lineLinkedColor || Utils.hexToRgb(optColor);
+        let lineColor = container.particles.lineLinkedColor ||
+            (typeof optColor === "string" ? Utils.hexToRgb(optColor) : Utils.colorToRgb(optColor));
 
         if (lineColor == "random") {
             lineColor = Utils.getRandomColorRGBA();
