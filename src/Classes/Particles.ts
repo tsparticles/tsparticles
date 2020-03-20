@@ -10,7 +10,7 @@ import {PolygonMaskInlineArrangement} from "../Enums/PolygonMaskInlineArrangemen
  * Particles manager
  */
 export class Particles {
-    public get count() {
+    public get count(): number {
         return this.array.length;
     }
 
