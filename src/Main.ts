@@ -120,7 +120,7 @@ Object.freeze(window.tsParticles);
  * @param tagId the particles container element id
  * @param params the options object to initialize the [[Container]]
  */
-window.particlesJS = function (tagId: string, params: RecursivePartial<IOptions>) {
+window.particlesJS = (tagId: string, params: RecursivePartial<IOptions>) => {
     tsParticles.load(tagId, params);
 };
 
@@ -131,7 +131,7 @@ window.particlesJS = function (tagId: string, params: RecursivePartial<IOptions>
  * @param pathConfigJson the json path to use in the GET request
  * @param callback the function called after the [[Container]] object is loaded that will be passed as a parameter
  */
-window.particlesJS.load = function (tagId: string, pathConfigJson: string, callback: (container: Container) => void) {
+window.particlesJS.load = (tagId: string, pathConfigJson: string, callback: (container: Container) => void) => {
     tsParticles.loadJSON(tagId, pathConfigJson).then((container) => {
         if (container) {
             callback(container);
@@ -144,7 +144,7 @@ window.particlesJS.load = function (tagId: string, pathConfigJson: string, callb
  * @deprecated this method is obsolete, please use the new tsParticles.setOnClickHandler
  * @param callback the function called after the click event is fired
  */
-window.particlesJS.setOnClickHandler = function (callback: EventListenerOrEventListenerObject) {
+window.particlesJS.setOnClickHandler = (callback: EventListenerOrEventListenerObject) => {
     tsParticles.setOnClickHandler(callback);
 };
 

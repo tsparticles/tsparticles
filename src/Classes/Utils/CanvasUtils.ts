@@ -24,7 +24,9 @@ export class CanvasUtils {
     public static drawPolygonMask(context: CanvasRenderingContext2D,
         rawData: ICoordinates[],
         stroke: IPolygonMaskDrawStroke): void {
-        const color = typeof stroke.color === "string" ? ColorUtils.stringToRgb(stroke.color) : ColorUtils.colorToRgb(stroke.color);
+        const color = typeof stroke.color === "string" ?
+            ColorUtils.stringToRgb(stroke.color) :
+            ColorUtils.colorToRgb(stroke.color);
 
         if (color) {
             context.save();
@@ -66,7 +68,9 @@ export class CanvasUtils {
         /* path */
         context.beginPath();
 
-        const color = typeof shadow.color === "string" ? ColorUtils.stringToRgb(shadow.color) : ColorUtils.colorToRgb(shadow.color);
+        const color = typeof shadow.color === "string" ?
+            ColorUtils.stringToRgb(shadow.color) :
+            ColorUtils.colorToRgb(shadow.color);
 
         if (shadow.enable && color) {
             context.shadowBlur = shadow.blur;

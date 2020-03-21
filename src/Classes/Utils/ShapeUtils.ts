@@ -111,7 +111,9 @@ export class ShapeUtils {
     }
 
     private static drawLineShape(context: CanvasRenderingContext2D, length: number, stroke: IStroke): void {
-        const color = typeof stroke.color === "string" ? ColorUtils.stringToRgb(stroke.color) : ColorUtils.colorToRgb(stroke.color);
+        const color = typeof stroke.color === "string" ?
+            ColorUtils.stringToRgb(stroke.color) :
+            ColorUtils.colorToRgb(stroke.color);
 
         if (color) {
             context.moveTo(0, -length / 2);

@@ -257,11 +257,11 @@ export class Canvas {
         const options = container.options;
 
         let colorValue: string | undefined;
-        let radius = particle.bubbler.radius !== undefined ? particle.bubbler.radius : particle.radius;
-        let opacity = particle.bubbler.opacity !== undefined ? particle.bubbler.opacity : particle.opacity.value;
+        const radius = particle.bubbler.radius !== undefined ? particle.bubbler.radius : particle.radius;
+        const opacity = particle.bubbler.opacity !== undefined ? particle.bubbler.opacity : particle.opacity.value;
 
         if (particle.color) {
-            colorValue = `rgba(${particle.color.r}, ${particle.color.g}, ${particle.color.b}, ${opacity})`;
+            colorValue = ColorUtils.getStyleFromColor(particle.color, opacity);
         }
 
         if (!this.context || !colorValue) {

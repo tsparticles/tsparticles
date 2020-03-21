@@ -47,7 +47,7 @@ export class ColorUtils {
         return res;
     }
 
-    public static stringToAlpha(input: string) {
+    public static stringToAlpha(input: string): number | undefined {
         return ColorUtils.stringToRgba(input)?.a;
     }
 
@@ -57,47 +57,6 @@ export class ColorUtils {
      */
     public static stringToRgb(input: string): IRgb | undefined {
         return ColorUtils.stringToRgba(input);
-    }
-
-    private static stringToRgba(input: string): IRgba | undefined {
-        if (input.startsWith('rgb')) {
-            const regex = /rgba?\(\s*(\d+)\s*,\s*(\d+)\s*,\s*(\d+)\s*(,\s*([\d\.]+)\s*)?\)/i;
-            const result = regex.exec(input);
-
-            return result ? {
-                a: parseInt(result[4]),
-                b: parseInt(result[3]),
-                g: parseInt(result[2]),
-                r: parseInt(result[1]),
-            } : undefined;
-        } else if (input.startsWith('hsl')) {
-            const regex = /hsla?\(\s*(\d+)\s*,\s*(\d+)\%\s*,\s*(\d+)\%\s*(,\s*([\d\.]+)\s*)?\)/i;
-            const result = regex.exec(input);
-
-            return result ? ColorUtils.hslaToRgba({
-                a: parseInt(result[4]),
-                l: parseInt(result[3]),
-                s: parseInt(result[2]),
-                h: parseInt(result[1]),
-            }) : undefined;
-        }
-        else {
-            // By Tim Down - http://stackoverflow.com/a/5624139/3493650
-            // Expand shorthand form (e.g. "03F") to full form (e.g. "0033FF")
-            const shorthandRegex = /^#?([a-f\d])([a-f\d])([a-f\d])([a-f\d])?$/i;
-            const hexFixed = input.replace(shorthandRegex, (_m, r, g, b, a) => {
-                return r + r + g + g + b + b + (a ? a + a : "");
-            });
-            const regex = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})?$/i;
-            const result = regex.exec(hexFixed);
-
-            return result ? {
-                a: parseInt(result[4], 16) / 0xFF,
-                b: parseInt(result[3], 16),
-                g: parseInt(result[2], 16),
-                r: parseInt(result[1], 16),
-            } : undefined;
-        }
     }
 
     /**
@@ -134,7 +93,7 @@ export class ColorUtils {
             a: hsla.a,
             b: rgbResult.b,
             g: rgbResult.g,
-            r: rgbResult.r
+            r: rgbResult.r,
         }
     }
 
@@ -151,7 +110,7 @@ export class ColorUtils {
         return this.stringToRgb(`#${randomColor}`) ?? {
             b: 0,
             g: 0,
-            r: 0
+            r: 0,
         };
     }
 
@@ -195,5 +154,46 @@ export class ColorUtils {
         }
 
         return p;
+    }
+
+    private static stringToRgba(input: string): IRgba | undefined {
+        if (input.startsWith('rgb')) {
+            const regex = /rgba?\(\s*(\d+)\s*,\s*(\d+)\s*,\s*(\d+)\s*(,\s*([\d\.]+)\s*)?\)/i;
+            const result = regex.exec(input);
+
+            return result ? {
+                a: parseInt(result[4]),
+                b: parseInt(result[3]),
+                g: parseInt(result[2]),
+                r: parseInt(result[1]),
+            } : undefined;
+        } else if (input.startsWith('hsl')) {
+            const regex = /hsla?\(\s*(\d+)\s*,\s*(\d+)\%\s*,\s*(\d+)\%\s*(,\s*([\d\.]+)\s*)?\)/i;
+            const result = regex.exec(input);
+
+            return result ? ColorUtils.hslaToRgba({
+                a: parseInt(result[4]),
+                h: parseInt(result[1]),
+                l: parseInt(result[3]),
+                s: parseInt(result[2]),
+            }) : undefined;
+        }
+        else {
+            // By Tim Down - http://stackoverflow.com/a/5624139/3493650
+            // Expand shorthand form (e.g. "03F") to full form (e.g. "0033FF")
+            const shorthandRegex = /^#?([a-f\d])([a-f\d])([a-f\d])([a-f\d])?$/i;
+            const hexFixed = input.replace(shorthandRegex, (_m, r, g, b, a) => {
+                return r + r + g + g + b + b + (a ? a + a : "");
+            });
+            const regex = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})?$/i;
+            const result = regex.exec(hexFixed);
+
+            return result ? {
+                a: parseInt(result[4], 16) / 0xFF,
+                b: parseInt(result[3], 16),
+                g: parseInt(result[2], 16),
+                r: parseInt(result[1], 16),
+            } : undefined;
+        }
     }
 }
