@@ -6,11 +6,39 @@
 
 # tsParticles - TypeScript Particles
 
-**A lightweight TypeScript library for creating particles**
+**A lightweight TypeScript library for creating particles, browser ready!**
 
-*[Particles.js](https://github.com/VincentGarreau/particles.js) converted in TypeScript, improved with new cool features and various bugs fixed and **it's currently under development**!*
+*[Particles.js](https://github.com/VincentGarreau/particles.js) converted in TypeScript, improved with new cool 😎 features and various bugs fixed and **it's currently under development**!*
+
+## Do you want to use it on your website?
+
+**This library is available on the two most popular CDNs and it's easy and ready to use, if you were using particles.js it's even easier**.
+
+You'll find the instructions [below](https://github.com/matteobruni/tsparticles/blob/master/README.md#library-installation), with all the links you need, and *don't be scared by **TypeScript**, it's just the source language*.
+
+**The output files are just ES5 JavaScript**. 🤩
+
+CDNs and `npm` have all the sources you need in **ES5 Javascript**, a bundle browser ready (tsparticles.min.js) and all files splitted for `import` syntax.
+
+Actually the `import` syntax doesn't have instructions, but you can contact me by mail or in the project's Slack, the link is below and I'll help you find the right solution. Until a guide will be ready this is the fastest solution.
+
+**If you are still interested** some lines below there are some instructions for migrating from the old particles.js library.
+
+### Want to see it in action and try it?
+
+I've created a tsParticles collection on [CodePen](https://codepen.io/collection/DPOage) 😮 or you can checkout my [profile](https://codepen.io/matteobruni)
+
+Otherwise there's the demo page link below. Just click/tap the Coronavirus below, don't be scared. **It's safe** 😷.
 
 [![tsParticles demo](https://media.giphy.com/media/fsVN1ZHksgBIXNIbr1/giphy.gif)](https://particles.matteobruni.it/#virus)
+
+Want to see ever more demos? Clone the repository on your computer and follow these instructions
+
+```shell
+npm install && npm start
+```
+
+**Boom! 💥** <http://localhost:3000> and you can checkout other demos, *if you are brave enough* you can switch to the `dev` branch so you can try the features under development.
 
 ---
 
@@ -18,7 +46,9 @@
 
 **tsParticles** are fully compatible with the *particles.js* configuration.
 
-Seriously, you just need to change the script source et-voilà, **you're ready**!
+Seriously, you just need to change the script source et-voilà, **you're ready** 🧙!
+
+You can read more **[here](https://dev.to/matteobruni/migrating-from-particles-js-to-tsparticles-2a6m)**
 
 Want to know 5 reasons to do the switch? [Read here](https://dev.to/matteobruni/5-reasons-to-use-tsparticles-and-not-particles-js-1gbe)
 
@@ -52,11 +82,11 @@ Want to know 5 reasons to do the switch? [Read here](https://dev.to/matteobruni/
 
 ### API Docs
 
-Documentation and Development references here: <https://particles.matteobruni.it/docs/>
+Documentation and Development references here: <https://particles.matteobruni.it/docs/> 📖
 
 ---
 
-## ***Packages install***
+## ***Library installation***
 
 ### ***npm***
 
