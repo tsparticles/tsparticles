@@ -51,32 +51,32 @@ export class Presets {
                 color: {
                     value: "#ffffff",
                 },
-                shape: {
-                    type: ShapeType.circle,
-                },
-                opacity: {
-                    value: 1,
-                    random: false,
-                },
-                size: {
-                    value: 30,
-                    random: true,
-                },
                 lineLinked: {
-                    enable: true,
-                    distance: 150,
                     color: "#ffffff",
+                    distance: 150,
+                    enable: true,
                     opacity: 1,
                     width: 1,
                 },
                 move: {
-                    enable: true,
-                    speed: 2,
                     direction: MoveDirection.none,
-                    random: false,
-                    straight: false,
+                    enable: true,
                     outMode: OutMode.out,
-                }
+                    random: false,
+                    speed: 2,
+                    straight: false,
+                },
+                opacity: {
+                    random: false,
+                    value: 1,
+                },
+                shape: {
+                    type: ShapeType.circle,
+                },
+                size: {
+                    random: true,
+                    value: 30,
+                },
             },
             interactivity: {
                 events: {
@@ -88,21 +88,21 @@ export class Presets {
                 modes: {
                     bubble: {
                         distance: 400,
-                        size: 100,
                         duration: 2,
                         opacity: 1,
+                        size: 100,
                     },
                 },
             },
             backgroundMask: {
-                enable: true,
                 cover: {
                     value: {
-                        r: 255,
-                        g: 255,
                         b: 255,
+                        g: 255,
+                        r: 255,
                     },
                 },
+                enable: true,
             },
         };
     }
@@ -137,7 +137,7 @@ export class Presets {
                     bounce: false,
                     direction: MoveDirection.bottom,
                     enable: true,
-                    out_mode: OutMode.out,
+                    outMode: OutMode.out,
                     random: false,
                     speed: 2,
                     straight: false,
@@ -170,8 +170,10 @@ export class Presets {
     private static get stars(): RecursivePartial<IOptions> {
         return {
             particles: {
-                color: { value: "#ffffff" },
-                line_linked: {
+                color: {
+                    value: "#ffffff",
+                },
+                lineLinked: {
                     enable: false,
                 },
                 move: {
@@ -186,7 +188,7 @@ export class Presets {
                 opacity: {
                     anim: {
                         enable: true,
-                        opacity_min: 0,
+                        minimumValue: 0,
                         speed: 1,
                         sync: false
                     },
