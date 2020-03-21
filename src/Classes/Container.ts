@@ -15,6 +15,8 @@ import {RecursivePartial} from "../Types/RecursivePartial";
 import {Options} from "./Options/Options";
 import {Utils} from "./Utils/Utils";
 import {IImageShape} from "../Interfaces/Options/Particles/Shape/IImageShape";
+import { PresetType } from "../Enums/PresetType";
+import { Presets } from "./Utils/Presets";
 
 declare global {
     interface Window {
@@ -74,7 +76,7 @@ export class Container {
     private drawAnimationFrame?: number;
     private eventListeners: EventListeners;
 
-    constructor(id: string, params?: RecursivePartial<IOptions>) {
+    constructor(id: string, params?: RecursivePartial<IOptions>, ...presets: PresetType[]) {
         this.started = false;
         this.id = id;
         this.paused = true;
@@ -95,6 +97,10 @@ export class Container {
 
         /* tsParticles variables with default values */
         this.options = new Options();
+
+        for (const preset of presets) {
+            this.options.load(Presets.getPreset(preset));
+        }
 
         /* params settings */
         if (this.sourceOptions) {

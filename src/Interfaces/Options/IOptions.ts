@@ -3,6 +3,7 @@ import {IParticles} from "./Particles/IParticles";
 import {IPolygonMask} from "./PolygonMask/IPolygonMask";
 import {IOptionLoader} from "./IOptionLoader";
 import {IBackgroundMask} from "./BackgroundMask/IBackgroundMask";
+import { PresetType } from "../../Enums/PresetType";
 
 /**
  * The Options interface, defines all the options that can be used by `tsParticles`
@@ -48,4 +49,6 @@ export interface IOptions extends IOptionLoader<IOptions> {
     backgroundMask: IBackgroundMask;
 
     pauseOnBlur: boolean;
+
+    preset?: PresetType | PresetType[];
 }

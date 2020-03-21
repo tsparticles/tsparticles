@@ -1,12 +1,12 @@
-import {IEvents} from "../../../../Interfaces/Options/Interactivity/Events/IEvents";
-import {ClickEvent} from "./ClickEvent";
-import {IDivEvent} from "../../../../Interfaces/Options/Interactivity/Events/IDivEvent";
-import {IHoverEvent} from "../../../../Interfaces/Options/Interactivity/Events/IHoverEvent";
-import {DivEvent} from "./DivEvent";
-import {HoverEvent} from "./HoverEvent";
-import {IClickEvent} from "../../../../Interfaces/Options/Interactivity/Events/IClickEvent";
-import {Messages} from "../../../Utils/Messages";
-import {RecursivePartial} from "../../../../Types/RecursivePartial";
+import { IEvents } from "../../../../Interfaces/Options/Interactivity/Events/IEvents";
+import { ClickEvent } from "./ClickEvent";
+import { IDivEvent } from "../../../../Interfaces/Options/Interactivity/Events/IDivEvent";
+import { IHoverEvent } from "../../../../Interfaces/Options/Interactivity/Events/IHoverEvent";
+import { DivEvent } from "./DivEvent";
+import { HoverEvent } from "./HoverEvent";
+import { IClickEvent } from "../../../../Interfaces/Options/Interactivity/Events/IClickEvent";
+import { Messages } from "../../../Utils/Messages";
+import { RecursivePartial } from "../../../../Types/RecursivePartial";
 
 export class Events implements IEvents {
     /**
@@ -81,7 +81,7 @@ export class Events implements IEvents {
         this.onClick = new ClickEvent();
         this.onDiv = new DivEvent();
         this.onHover = new HoverEvent();
-        this.resize = false;
+        this.resize = true;
     }
 
     public load(data?: RecursivePartial<IEvents>): void {
