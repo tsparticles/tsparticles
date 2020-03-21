@@ -1,4 +1,4 @@
-import {IOptionLoader} from "../../IOptionLoader";
+import type { IOptionLoader } from "../../IOptionLoader";
 
 export interface IRepulse extends IOptionLoader<IRepulse> {
     distance: number;

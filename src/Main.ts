@@ -6,10 +6,10 @@
 /* How to use? : Check the GitHub README
 /* v1.11.0
 /* ----------------------------------------------- */
-import { Container } from "./Classes/Container";
+import type { Container } from "./Classes/Container";
 import { Loader } from "./Classes/Loader";
-import { IOptions } from "./Interfaces/Options/IOptions";
-import { RecursivePartial } from "./Types/RecursivePartial";
+import type { IOptions } from "./Interfaces/Options/IOptions";
+import type { RecursivePartial } from "./Types/RecursivePartial";
 
 declare global {
     interface Window {

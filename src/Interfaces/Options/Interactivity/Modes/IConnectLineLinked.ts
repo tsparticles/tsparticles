@@ -1,4 +1,4 @@
-import {IOptionLoader} from "../../IOptionLoader";
+import type { IOptionLoader } from "../../IOptionLoader";
 
 export interface IConnectLineLinked extends IOptionLoader<IConnectLineLinked> {
     opacity: number;

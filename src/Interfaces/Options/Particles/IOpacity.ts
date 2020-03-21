@@ -1,5 +1,5 @@
-import {IOpacityAnimation} from "./IOpacityAnimation";
-import {IOptionLoader} from "../IOptionLoader";
+import type { IOpacityAnimation } from "./IOpacityAnimation";
+import type { IOptionLoader } from "../IOptionLoader";
 
 export interface IOpacity extends IOptionLoader<IOpacity> {
     value: number;

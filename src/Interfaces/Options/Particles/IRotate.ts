@@ -1,6 +1,6 @@
-import {IRotateAnimation} from "./IRotateAnimation";
-import {IOptionLoader} from "../IOptionLoader";
-import {RotateDirection} from "../../../Enums/RotateDirection";
+import type { IRotateAnimation } from "./IRotateAnimation";
+import type { IOptionLoader } from "../IOptionLoader";
+import type { RotateDirection } from "../../../Enums/RotateDirection";
 
 export interface IRotate extends IOptionLoader<IRotate> {
     animation: IRotateAnimation;

@@ -1,13 +1,13 @@
-import {IShape} from "./Shape/IShape";
-import {IColor} from "./IColor";
-import {ILineLinked} from "./ILineLinked";
-import {IMove} from "./IMove";
-import {IParticlesNumber} from "./IParticlesNumber";
-import {IOpacity} from "./IOpacity";
-import {ISize} from "./ISize";
-import {IOptionLoader} from "../IOptionLoader";
-import {IRotate} from "./IRotate";
-import {IShadow} from "./IShadow";
+import type { IShape } from "./Shape/IShape";
+import type { IColor } from "./IColor";
+import type { ILineLinked } from "./ILineLinked";
+import type { IMove } from "./IMove";
+import type { IParticlesNumber } from "./IParticlesNumber";
+import type { IOpacity } from "./IOpacity";
+import type { ISize } from "./ISize";
+import type { IOptionLoader } from "../IOptionLoader";
+import type { IRotate } from "./IRotate";
+import type { IShadow } from "./IShadow";
 
 export interface IParticles extends IOptionLoader<IParticles> {
     color: IColor;

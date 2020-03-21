@@ -1,5 +1,5 @@
-import {IOptionLoader} from "../IOptionLoader";
-import {IColor} from "./IColor";
+import type { IOptionLoader } from "../IOptionLoader";
+import type { IColor } from "./IColor";
 
 export interface ILineLinkedShadow extends IOptionLoader<ILineLinkedShadow> {
     blur: number;
