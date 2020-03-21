@@ -1,8 +1,7 @@
-import {IGrab} from "../../../../Interfaces/Options/Interactivity/Modes/IGrab";
-import {IGrabLineLinked} from "../../../../Interfaces/Options/Interactivity/Modes/IGrabLineLinked";
-import {GrabLineLinked} from "./GrabLineLinked";
-import {Messages} from "../../../Utils/Messages";
-import {RecursivePartial} from "../../../../Types/RecursivePartial";
+import type { IGrab } from "../../../../Interfaces/Options/Interactivity/Modes/IGrab";
+import type { IGrabLineLinked } from "../../../../Interfaces/Options/Interactivity/Modes/IGrabLineLinked";
+import { GrabLineLinked } from "./GrabLineLinked";
+import type { RecursivePartial } from "../../../../Types/RecursivePartial";
 
 export class Grab implements IGrab {
     /**
@@ -10,8 +9,6 @@ export class Grab implements IGrab {
      * @deprecated this property is obsolete, please use the new lineLinked
      */
     public get line_linked(): IGrabLineLinked {
-        Messages.deprecated("interactivity.modes.grab.line_linked", "interactivity.modes.grab.lineLinked");
-
         return this.lineLinked;
     }
 
@@ -21,8 +18,6 @@ export class Grab implements IGrab {
      * @param value
      */
     public set line_linked(value: IGrabLineLinked) {
-        Messages.deprecated("interactivity.modes.grab.line_linked", "interactivity.modes.grab.lineLinked");
-
         this.lineLinked = value;
     }
 

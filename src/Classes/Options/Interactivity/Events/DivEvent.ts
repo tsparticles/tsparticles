@@ -1,7 +1,6 @@
-import {IDivEvent} from "../../../../Interfaces/Options/Interactivity/Events/IDivEvent";
-import {DivMode} from "../../../../Enums/Modes/DivMode";
-import {Messages} from "../../../Utils/Messages";
-import {RecursivePartial} from "../../../../Types/RecursivePartial";
+import type { IDivEvent } from "../../../../Interfaces/Options/Interactivity/Events/IDivEvent";
+import { DivMode } from "../../../../Enums/Modes/DivMode";
+import type { RecursivePartial } from "../../../../Types/RecursivePartial";
 
 export class DivEvent implements IDivEvent {
     /**
@@ -9,8 +8,6 @@ export class DivEvent implements IDivEvent {
      * @deprecated this property is obsolete, please use the new elementId
      */
     public get el(): string {
-        Messages.deprecated("interactivity.events.onDiv.detect_on", "interactivity.events.onDiv.detectsOn");
-
         return this.elementId;
     }
 
@@ -20,8 +17,6 @@ export class DivEvent implements IDivEvent {
      * @param value
      */
     public set el(value: string) {
-        Messages.deprecated("interactivity.events.onDiv.detect_on", "interactivity.events.onDiv.detectsOn");
-
         this.elementId = value;
     }
 

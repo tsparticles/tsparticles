@@ -1,7 +1,7 @@
-import {IStroke} from "../../../../Interfaces/Options/Particles/Shape/IStroke";
-import {RecursivePartial} from "../../../../Types/RecursivePartial";
-import {IColor} from "../../../../Interfaces/Options/Particles/IColor";
-import {Color} from "../Color";
+import type { IStroke } from "../../../../Interfaces/Options/Particles/Shape/IStroke";
+import type { RecursivePartial } from "../../../../Types/RecursivePartial";
+import type { IColor } from "../../../../Interfaces/Options/Particles/IColor";
+import { Color } from "../Color";
 
 export class Stroke implements IStroke {
     public color: string | IColor;

@@ -1,5 +1,5 @@
-import {IGrabLineLinked} from "../../../../Interfaces/Options/Interactivity/Modes/IGrabLineLinked";
-import {RecursivePartial} from "../../../../Types/RecursivePartial";
+import type { IGrabLineLinked } from "../../../../Interfaces/Options/Interactivity/Modes/IGrabLineLinked";
+import type { RecursivePartial } from "../../../../Types/RecursivePartial";
 
 export class GrabLineLinked implements IGrabLineLinked {
     public opacity: number;

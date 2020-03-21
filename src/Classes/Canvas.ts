@@ -1,11 +1,12 @@
-import {Constants} from "./Utils/Constants";
-import {Container} from "./Container";
-import {IDimension} from "../Interfaces/IDimension";
-import {Utils} from "./Utils/Utils";
-import {IRgb} from "../Interfaces/IRgb";
-import {Particle} from "./Particle";
-import {ICoordinates} from "../Interfaces/ICoordinates";
-import {CanvasUtils} from "./Utils/CanvasUtils";
+import { Constants } from "./Utils/Constants";
+import type { Container } from "./Container";
+import type { IDimension } from "../Interfaces/IDimension";
+import { Utils } from "./Utils/Utils";
+import type { IRgb } from "../Interfaces/IRgb";
+import type { Particle } from "./Particle";
+import type { ICoordinates } from "../Interfaces/ICoordinates";
+import { CanvasUtils } from "./Utils/CanvasUtils";
+import { ColorUtils } from "./Utils/ColorUtils";
 
 /**
  * Canvas manager
@@ -102,10 +103,10 @@ export class Canvas {
 
         if (this.context) {
             if (options.backgroundMask.enable && options.backgroundMask.cover) {
-                const color = Utils.colorToRgb(options.backgroundMask.cover);
+                const color = ColorUtils.colorToRgb(options.backgroundMask.cover);
 
                 if (color) {
-                    this.paintBase(Utils.getStyleFromColor(color));
+                    this.paintBase(ColorUtils.getStyleFromColor(color));
                 } else {
                     this.paintBase();
                 }
@@ -123,8 +124,8 @@ export class Canvas {
         const options = container.options;
         const trail = options.particles.move.trail;
         const fillColor = typeof trail.fillColor === "string" ?
-            Utils.hexToRgb(trail.fillColor) :
-            Utils.colorToRgb(trail.fillColor);
+            ColorUtils.stringToRgb(trail.fillColor) :
+            ColorUtils.colorToRgb(trail.fillColor);
 
         if (options.backgroundMask.enable) {
             this.paint();
@@ -174,15 +175,15 @@ export class Canvas {
          */
 
         if (container.particles.lineLinkedColor === "random") {
-            colorLine = Utils.getRandomColorRGBA() ?? {b: 0, g: 0, r: 0};
+            colorLine = ColorUtils.getRandomRgbColor();
         } else if (container.particles.lineLinkedColor == "mid" && p1.color && p2.color) {
             const sourceColor = p1.color;
             const destColor = p2.color;
 
             colorLine = {
-                b: Math.floor(Utils.mixComponents(sourceColor.b, destColor.b, p1.radius, p2.radius)),
-                g: Math.floor(Utils.mixComponents(sourceColor.g, destColor.g, p1.radius, p2.radius)),
-                r: Math.floor(Utils.mixComponents(sourceColor.r, destColor.r, p1.radius, p2.radius)),
+                b: Math.floor(Utils.mix(sourceColor.b, destColor.b, p1.radius, p2.radius)),
+                g: Math.floor(Utils.mix(sourceColor.g, destColor.g, p1.radius, p2.radius)),
+                r: Math.floor(Utils.mix(sourceColor.r, destColor.r, p1.radius, p2.radius)),
             };
         } else {
             colorLine = container.particles.lineLinkedColor as IRgb;
@@ -222,15 +223,15 @@ export class Canvas {
         const optColor = options.particles.lineLinked.color;
 
         let lineColor = container.particles.lineLinkedColor ||
-            (typeof optColor === "string" ? Utils.hexToRgb(optColor) : Utils.colorToRgb(optColor));
+            (typeof optColor === "string" ? ColorUtils.stringToRgb(optColor) : ColorUtils.colorToRgb(optColor));
 
         if (lineColor == "random") {
-            lineColor = Utils.getRandomColorRGBA();
+            lineColor = ColorUtils.getRandomRgbColor();
         }
 
         container.particles.lineLinkedColor = lineColor;
 
-        let colorLine: IRgb = {r: 127, g: 127, b: 127};
+        let colorLine: IRgb = { r: 127, g: 127, b: 127 };
         const ctx = container.canvas.context;
 
         if (!ctx) {
@@ -238,7 +239,7 @@ export class Canvas {
         }
 
         if (container.particles.lineLinkedColor == "random") {
-            colorLine = Utils.getRandomColorRGBA() || colorLine;
+            colorLine = ColorUtils.getRandomRgbColor() || colorLine;
         } else {
             colorLine = container.particles.lineLinkedColor as IRgb || colorLine;
         }
@@ -255,21 +256,9 @@ export class Canvas {
         const container = this.container;
         const options = container.options;
 
-        let radius: number;
-        let opacity: number;
         let colorValue: string | undefined;
-
-        if (particle.bubbler.radius !== undefined) {
-            radius = particle.bubbler.radius;
-        } else {
-            radius = particle.radius;
-        }
-
-        if (particle.bubbler.opacity !== undefined) {
-            opacity = particle.bubbler.opacity;
-        } else {
-            opacity = particle.opacity.value;
-        }
+        let radius = particle.bubbler.radius !== undefined ? particle.bubbler.radius : particle.radius;
+        let opacity = particle.bubbler.opacity !== undefined ? particle.bubbler.opacity : particle.opacity.value;
 
         if (particle.color) {
             colorValue = `rgba(${particle.color.r}, ${particle.color.g}, ${particle.color.b}, ${opacity})`;
@@ -296,14 +285,13 @@ export class Canvas {
         if (p1.color && p2.color) {
             const sourceRgb = p1.color;
             const destRgb = p2.color;
-
             const rgb = {
-                b: Utils.mixComponents(sourceRgb.b, destRgb.b, p1.radius, p2.radius),
-                g: Utils.mixComponents(sourceRgb.g, destRgb.g, p1.radius, p2.radius),
-                r: Utils.mixComponents(sourceRgb.r, destRgb.r, p1.radius, p2.radius),
+                b: Utils.mix(sourceRgb.b, destRgb.b, p1.radius, p2.radius),
+                g: Utils.mix(sourceRgb.g, destRgb.g, p1.radius, p2.radius),
+                r: Utils.mix(sourceRgb.r, destRgb.r, p1.radius, p2.radius),
             };
 
-            const midColor = Utils.getStyleFromColor(rgb);
+            const midColor = ColorUtils.getStyleFromColor(rgb);
 
             if (this.context) {
                 return CanvasUtils.gradient(this.context, p1, p2, midColor);

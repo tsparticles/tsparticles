@@ -1,17 +1,14 @@
-import {IPolygonMaskDraw} from "../../../Interfaces/Options/PolygonMask/IPolygonMaskDraw";
-import {IPolygonMaskDrawStroke} from "../../../Interfaces/Options/PolygonMask/IPolygonMaskDrawStroke";
-import {Messages} from "../../Utils/Messages";
-import {PolygonMaskDrawStroke} from "./PolygonMaskDrawStroke";
-import {RecursivePartial} from "../../../Types/RecursivePartial";
-import {IColor} from "../../../Interfaces/Options/Particles/IColor";
+import type { IPolygonMaskDraw } from "../../../Interfaces/Options/PolygonMask/IPolygonMaskDraw";
+import type { IPolygonMaskDrawStroke } from "../../../Interfaces/Options/PolygonMask/IPolygonMaskDrawStroke";
+import { PolygonMaskDrawStroke } from "./PolygonMaskDrawStroke";
+import type { RecursivePartial } from "../../../Types/RecursivePartial";
+import type { IColor } from "../../../Interfaces/Options/Particles/IColor";
 
 export class Draw implements IPolygonMaskDraw {
     /**
      * @deprecated the property lineWidth is deprecated, please use the new stroke.width
      */
     get lineWidth(): number {
-        Messages.deprecated("polygon.draw.lineWidth", "polygon.draw.stroke.width");
-
         return this.stroke.width;
     }
 
@@ -19,8 +16,6 @@ export class Draw implements IPolygonMaskDraw {
      * @deprecated the property lineWidth is deprecated, please use the new stroke.width
      */
     set lineWidth(value: number) {
-        Messages.deprecated("polygon.draw.lineWidth", "polygon.draw.stroke.width");
-
         this.stroke.width = value;
     }
 
@@ -28,8 +23,6 @@ export class Draw implements IPolygonMaskDraw {
      * @deprecated the property lineColor is deprecated, please use the new stroke.color
      */
     get lineColor(): string | IColor {
-        Messages.deprecated("polygon.draw.lineColor", "polygon.draw.stroke.color");
-
         return this.stroke.color;
     }
 
@@ -37,8 +30,6 @@ export class Draw implements IPolygonMaskDraw {
      * @deprecated the property lineColor is deprecated, please use the new stroke.color
      */
     set lineColor(value: string | IColor) {
-        Messages.deprecated("polygon.draw.lineColor", "polygon.draw.stroke.color");
-
         this.stroke.color = value;
     }
 

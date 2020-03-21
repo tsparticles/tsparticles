@@ -1,6 +1,6 @@
-import {Particle} from "../Particle";
-import {Utils} from "../Utils/Utils";
-import {Container} from "../Container";
+import type { Particle } from "../Particle";
+import type { Container } from "../Container";
+import { ColorUtils } from "../Utils/ColorUtils";
 
 export class Linker {
     private readonly container: Container;
@@ -40,7 +40,7 @@ export class Linker {
 
                     if (color === "random") {
                         if (options.particles.lineLinked.consent) {
-                            container.particles.lineLinkedColor = Utils.hexToRgb(color);
+                            container.particles.lineLinkedColor = ColorUtils.stringToRgb(color);
                         } else if (options.particles.lineLinked.blink) {
                             container.particles.lineLinkedColor = "random";
                         } else {
@@ -48,12 +48,12 @@ export class Linker {
                         }
                     } else {
                         container.particles.lineLinkedColor = typeof color === "string" ?
-                            Utils.hexToRgb(color) :
-                            Utils.colorToRgb(color);
+                            ColorUtils.stringToRgb(color) :
+                            ColorUtils.colorToRgb(color);
                     }
                 }
 
-                container.canvas.drawLinkedLine(particle, p2, {x: x1, y: y1}, {x: x2, y: y2}, opacityLine);
+                container.canvas.drawLinkedLine(particle, p2, { x: x1, y: y1 }, { x: x2, y: y2 }, opacityLine);
             }
         }
     }

@@ -1,5 +1,5 @@
-import {Container} from "../Container";
-import {IBubblerProcessParam} from "../../Interfaces/IBubblerProcessParam";
+import type {Container} from "../Container";
+import type {IBubblerProcessParam} from "../../Interfaces/IBubblerProcessParam";
 import {Particle} from "../Particle";
 import {ProcessBubbleType} from "../../Enums/ProcessBubbleType";
 import {Utils} from "../Utils/Utils";

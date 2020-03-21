@@ -1,20 +1,20 @@
-import {Canvas} from "./Canvas";
-import {EventListeners} from "./Utils/EventListeners";
-import {IRepulse} from "../Interfaces/IRepulse";
-import {IBubble} from "../Interfaces/IBubble";
-import {IImage} from "../Interfaces/IImage";
-import {IContainerInteractivity} from "../Interfaces/IContainerInteractivity";
-import {Particles} from "./Particles";
-import {Retina} from "./Retina";
-import {ShapeType} from "../Enums/ShapeType";
-import {PolygonMask} from "./PolygonMask";
-import {ImageShape} from "./Options/Particles/Shape/ImageShape";
-import {IOptions} from "../Interfaces/Options/IOptions";
-import {FrameManager} from "./FrameManager";
-import {RecursivePartial} from "../Types/RecursivePartial";
-import {Options} from "./Options/Options";
-import {Utils} from "./Utils/Utils";
-import {IImageShape} from "../Interfaces/Options/Particles/Shape/IImageShape";
+import { Canvas } from "./Canvas";
+import { EventListeners } from "./Utils/EventListeners";
+import type { IRepulse } from "../Interfaces/IRepulse";
+import type { IBubble } from "../Interfaces/IBubble";
+import type { IImage } from "../Interfaces/IImage";
+import type { IContainerInteractivity } from "../Interfaces/IContainerInteractivity";
+import { Particles } from "./Particles";
+import { Retina } from "./Retina";
+import { ShapeType } from "../Enums/ShapeType";
+import { PolygonMask } from "./PolygonMask";
+import { ImageShape } from "./Options/Particles/Shape/ImageShape";
+import type { IOptions } from "../Interfaces/Options/IOptions";
+import { FrameManager } from "./FrameManager";
+import type { RecursivePartial } from "../Types/RecursivePartial";
+import { Options } from "./Options/Options";
+import { Utils } from "./Utils/Utils";
+import type { IImageShape } from "../Interfaces/Options/Particles/Shape/IImageShape";
 import { PresetType } from "../Enums/PresetType";
 import { Presets } from "./Utils/Presets";
 
@@ -276,7 +276,7 @@ export class Container {
 
     private async loadImageShape(imageShape: IImageShape): Promise<void> {
         const src = imageShape.src;
-        const image: IImage = {error: false};
+        const image: IImage = { error: false };
 
         image.type = src.substr(src.length - 3);
 

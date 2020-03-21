@@ -1,4 +1,4 @@
-import {Container} from "./Container";
+import type { Container } from "./Container";
 
 export class Retina {
     public isRetina: boolean;

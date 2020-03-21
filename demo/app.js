@@ -16,6 +16,7 @@ app.use("/fontawesome", express.static("./node_modules/@fortawesome/fontawesome-
 app.use("/jsoneditor", express.static("./node_modules/jsoneditor/dist"));
 app.use("/tsparticles", express.static("./dist"));
 app.use("/three", express.static("./node_modules/three/"));
+app.use("/pathseg", express.static("./node_modules/pathseg/"));
 app.use("/docs", express.static("./docs"));
 
 app.get('/', function (req, res) {

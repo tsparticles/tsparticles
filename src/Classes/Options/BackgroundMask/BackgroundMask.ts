@@ -1,6 +1,6 @@
-import {IBackgroundMask} from "../../../Interfaces/Options/BackgroundMask/IBackgroundMask";
-import {IColor} from "../../../Interfaces/Options/Particles/IColor";
-import {RecursivePartial} from "../../../Types/RecursivePartial";
+import type { IBackgroundMask } from "../../../Interfaces/Options/BackgroundMask/IBackgroundMask";
+import type { IColor } from "../../../Interfaces/Options/Particles/IColor";
+import type { RecursivePartial } from "../../../Types/RecursivePartial";
 import { Color } from "../Particles/Color";
 
 export class BackgroundMask implements IBackgroundMask {
@@ -18,7 +18,7 @@ export class BackgroundMask implements IBackgroundMask {
         this.cover = new Color();
         this.enable = false;
     }
-    
+
     public load(data?: RecursivePartial<IBackgroundMask>): void {
         if (data !== undefined) {
             if (data.cover !== undefined) {

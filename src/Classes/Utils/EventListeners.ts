@@ -1,8 +1,8 @@
-import {ClickMode} from "../../Enums/Modes/ClickMode";
-import {Container} from "../Container";
-import {InteractivityDetect} from "../../Enums/InteractivityDetect";
-import {ICoordinates} from "../../Interfaces/ICoordinates";
-import {PolygonMaskType} from "../../Enums/PolygonMaskType";
+import { ClickMode } from "../../Enums/Modes/ClickMode";
+import type { Container } from "../Container";
+import { InteractivityDetect } from "../../Enums/InteractivityDetect";
+import type { ICoordinates } from "../../Interfaces/ICoordinates";
+import { PolygonMaskType } from "../../Enums/PolygonMaskType";
 
 /**
  * Particles container event listeners manager

@@ -1,10 +1,9 @@
-import {IInteractivity} from "../../../Interfaces/Options/Interactivity/IInteractivity";
-import {InteractivityDetect} from "../../../Enums/InteractivityDetect";
-import {Events} from "./Events/Events";
-import {Modes} from "./Modes/Modes";
-import {Messages} from "../../Utils/Messages";
-import {RecursivePartial} from "../../../Types/RecursivePartial";
-import {HoverMode} from "../../../Enums/Modes/HoverMode";
+import type { IInteractivity } from "../../../Interfaces/Options/Interactivity/IInteractivity";
+import { InteractivityDetect } from "../../../Enums/InteractivityDetect";
+import { Events } from "./Events/Events";
+import { Modes } from "./Modes/Modes";
+import type { RecursivePartial } from "../../../Types/RecursivePartial";
+import { HoverMode } from "../../../Enums/Modes/HoverMode";
 
 export class Interactivity implements IInteractivity {
     /**
@@ -12,8 +11,6 @@ export class Interactivity implements IInteractivity {
      * @deprecated this property is obsolete, please use the new detectsOn
      */
     public get detect_on(): InteractivityDetect {
-        Messages.deprecated("interactivity.detect_on", "interactivity.detectsOn");
-
         return this.detectsOn;
     }
 
@@ -23,8 +20,6 @@ export class Interactivity implements IInteractivity {
      * @param value
      */
     public set detect_on(value: InteractivityDetect) {
-        Messages.deprecated("interactivity.detect_on", "interactivity.detectsOn");
-
         this.detectsOn = value;
     }
 

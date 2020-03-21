@@ -6,16 +6,14 @@
 /* How to use? : Check the GitHub README
 /* v1.11.0
 /* ----------------------------------------------- */
-import {Container} from "./Classes/Container";
-import {Loader} from "./Classes/Loader";
-import {IParticlesJs} from "./Interfaces/IParticlesJs";
-import {ParticlesJS} from "./support";
-import {IOptions} from "./Interfaces/Options/IOptions";
-import {RecursivePartial} from "./Types/RecursivePartial";
+import { Container } from "./Classes/Container";
+import { Loader } from "./Classes/Loader";
+import { IOptions } from "./Interfaces/Options/IOptions";
+import { RecursivePartial } from "./Types/RecursivePartial";
 
 declare global {
     interface Window {
-        particlesJS: IParticlesJs;
+        particlesJS: any;
         tsParticles: Main;
         pJSDom: () => Container[];
     }
@@ -55,8 +53,8 @@ class Main {
      * @param index if provided gets the corresponding item from the array
      */
     public async loadFromArray(tagId: string,
-                               params: RecursivePartial<IOptions>[],
-                               index?: number): Promise<Container | undefined> {
+        params: RecursivePartial<IOptions>[],
+        index?: number): Promise<Container | undefined> {
         return Loader.loadFromArray(tagId, params, index);
     }
 
@@ -103,10 +101,14 @@ class Main {
     }
 }
 
+const tsParticles = new Main();
+
+Object.freeze(tsParticles);
+
 /**
  * The new singleton, replacing the old particlesJS
  */
-window.tsParticles = new Main();
+window.tsParticles = tsParticles;
 
 Object.freeze(window.tsParticles);
 
@@ -118,7 +120,9 @@ Object.freeze(window.tsParticles);
  * @param tagId the particles container element id
  * @param params the options object to initialize the [[Container]]
  */
-window.particlesJS = (tagId: string, params: RecursivePartial<IOptions>) => ParticlesJS.load(tagId, params);
+window.particlesJS = function (tagId: string, params: RecursivePartial<IOptions>) {
+    tsParticles.load(tagId, params);
+};
 
 /**
  * Loads the provided json with a GET request. The content will be used to create a [[Container]] object.
@@ -127,16 +131,22 @@ window.particlesJS = (tagId: string, params: RecursivePartial<IOptions>) => Part
  * @param pathConfigJson the json path to use in the GET request
  * @param callback the function called after the [[Container]] object is loaded that will be passed as a parameter
  */
-window.particlesJS.load = (tagId: string, pathConfigJson: string, callback: (container: Container) => void) =>
-    ParticlesJS.loadJson(tagId, pathConfigJson, callback);
+window.particlesJS.load = function (tagId: string, pathConfigJson: string, callback: (container: Container) => void) {
+    tsParticles.loadJSON(tagId, pathConfigJson).then((container) => {
+        if (container) {
+            callback(container);
+        }
+    });
+};
 
 /**
  * Adds an additional click handler to all the loaded [[Container]] objects.
  * @deprecated this method is obsolete, please use the new tsParticles.setOnClickHandler
  * @param callback the function called after the click event is fired
  */
-window.particlesJS.setOnClickHandler = (callback: EventListenerOrEventListenerObject) =>
-    ParticlesJS.setOnClickHandler(callback);
+window.particlesJS.setOnClickHandler = function (callback: EventListenerOrEventListenerObject) {
+    tsParticles.setOnClickHandler(callback);
+};
 
 /**
  * All the [[Container]] objects loaded

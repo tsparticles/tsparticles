@@ -1,6 +1,5 @@
-import {IPolygonShape} from "../../../../Interfaces/Options/Particles/Shape/IPolygonShape";
-import {Messages} from "../../../Utils/Messages";
-import {RecursivePartial} from "../../../../Types/RecursivePartial";
+import type { IPolygonShape } from "../../../../Interfaces/Options/Particles/Shape/IPolygonShape";
+import type { RecursivePartial } from "../../../../Types/RecursivePartial";
 
 export class PolygonShape implements IPolygonShape {
     /**
@@ -8,8 +7,6 @@ export class PolygonShape implements IPolygonShape {
      * @deprecated this property is obsolete, please use the new sides
      */
     public get nb_sides(): number {
-        Messages.deprecated("particles.shape.polygon.nb_sides", "particles.shape.polygon.sides");
-
         return this.sides;
     }
 
@@ -19,8 +16,6 @@ export class PolygonShape implements IPolygonShape {
      * @param value
      */
     public set nb_sides(value: number) {
-        Messages.deprecated("particles.shape.polygon.nb_sides", "particles.shape.polygon.sides");
-
         this.sides = value;
     }
 

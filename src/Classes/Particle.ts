@@ -1,27 +1,28 @@
-import {Bubbler} from "./Particle/Bubbler";
-import {Container} from "./Container";
-import {Drawer} from "./Particle/Drawer";
-import {Grabber} from "./Particle/Grabber";
-import {IVelocity} from "../Interfaces/IVelocity";
-import {ISize} from "../Interfaces/ISize";
-import {IOpacity} from "../Interfaces/IOpacity";
-import {ICoordinates} from "../Interfaces/ICoordinates";
-import {IParticleImage} from "../Interfaces/IParticleImage";
-import {Repulser} from "./Particle/Repulser";
-import {ShapeType} from "../Enums/ShapeType";
-import {Updater} from "./Particle/Updater";
-import {Utils} from "./Utils/Utils";
-import {PolygonMaskType} from "../Enums/PolygonMaskType";
-import {Connecter} from "./Particle/Connecter";
-import {IRgb} from "../Interfaces/IRgb";
-import {IOptions} from "../Interfaces/Options/IOptions";
-import {InteractionManager} from "./Particle/InteractionManager";
-import {HoverMode} from "../Enums/Modes/HoverMode";
-import {ClickMode} from "../Enums/Modes/ClickMode";
-import {RotateDirection} from "../Enums/RotateDirection";
-import {ICharacterShape} from "../Interfaces/Options/Particles/Shape/ICharacterShape";
-import {IPolygonShape} from "../Interfaces/Options/Particles/Shape/IPolygonShape";
-import {IStroke} from "../Interfaces/Options/Particles/Shape/IStroke";
+import { Bubbler } from "./Particle/Bubbler";
+import type { Container } from "./Container";
+import { Drawer } from "./Particle/Drawer";
+import { Grabber } from "./Particle/Grabber";
+import type { IVelocity } from "../Interfaces/IVelocity";
+import type { ISize } from "../Interfaces/ISize";
+import type { IOpacity } from "../Interfaces/IOpacity";
+import type { ICoordinates } from "../Interfaces/ICoordinates";
+import type { IParticleImage } from "../Interfaces/IParticleImage";
+import { Repulser } from "./Particle/Repulser";
+import { ShapeType } from "../Enums/ShapeType";
+import { Updater } from "./Particle/Updater";
+import { Utils } from "./Utils/Utils";
+import { PolygonMaskType } from "../Enums/PolygonMaskType";
+import { Connecter } from "./Particle/Connecter";
+import type { IRgb } from "../Interfaces/IRgb";
+import type { IOptions } from "../Interfaces/Options/IOptions";
+import { InteractionManager } from "./Particle/InteractionManager";
+import { HoverMode } from "../Enums/Modes/HoverMode";
+import { ClickMode } from "../Enums/Modes/ClickMode";
+import { RotateDirection } from "../Enums/RotateDirection";
+import type { ICharacterShape } from "../Interfaces/Options/Particles/Shape/ICharacterShape";
+import type { IPolygonShape } from "../Interfaces/Options/Particles/Shape/IPolygonShape";
+import type { IStroke } from "../Interfaces/Options/Particles/Shape/IStroke";
+import { ColorUtils } from "./Utils/ColorUtils";
 
 /**
  * The single particle object
@@ -115,7 +116,7 @@ export class Particle {
         }
 
         /* color */
-        this.color = Utils.colorToRgb(color);
+        this.color = ColorUtils.colorToRgb(color);
 
         /* opacity */
         this.opacity = {
@@ -322,7 +323,7 @@ export class Particle {
     }
 
     private calcPosition(container: Container, position?: ICoordinates): ICoordinates {
-        const pos = {x: 0, y: 0};
+        const pos = { x: 0, y: 0 };
 
         if (container.polygon.raw && container.polygon.raw.length > 0) {
             if (position) {

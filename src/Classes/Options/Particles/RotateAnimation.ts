@@ -1,5 +1,5 @@
-import {IRotateAnimation} from "../../../Interfaces/Options/Particles/IRotateAnimation";
-import {RecursivePartial} from "../../../Types/RecursivePartial";
+import type { IRotateAnimation } from "../../../Interfaces/Options/Particles/IRotateAnimation";
+import type { RecursivePartial } from "../../../Types/RecursivePartial";
 
 export class RotateAnimation implements IRotateAnimation {
     public enable: boolean;

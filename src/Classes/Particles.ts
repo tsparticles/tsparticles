@@ -1,10 +1,10 @@
-import {Container} from "./Container";
-import {ICoordinates} from "../Interfaces/ICoordinates";
-import {IMouseData} from "../Interfaces/IMouseData";
-import {IRgb} from "../Interfaces/IRgb";
-import {Particle} from "./Particle";
-import {PolygonMaskType} from "../Enums/PolygonMaskType";
-import {PolygonMaskInlineArrangement} from "../Enums/PolygonMaskInlineArrangement";
+import { Container } from "./Container";
+import type { ICoordinates } from "../Interfaces/ICoordinates";
+import type { IMouseData } from "../Interfaces/IMouseData";
+import type { IRgb } from "../Interfaces/IRgb";
+import { Particle } from "./Particle";
+import { PolygonMaskType } from "../Enums/PolygonMaskType";
+import { PolygonMaskInlineArrangement } from "../Enums/PolygonMaskInlineArrangement";
 
 /**
  * Particles manager
@@ -126,7 +126,7 @@ export class Particles {
         let pos: ICoordinates | undefined;
 
         if (mousePosition) {
-            pos = mousePosition.position || {x: 0, y: 0};
+            pos = mousePosition.position || { x: 0, y: 0 };
         }
 
         for (let i = 0; i < nb; i++) {

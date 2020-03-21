@@ -1,14 +1,14 @@
-import {IShape} from "../../../../Interfaces/Options/Particles/Shape/IShape";
-import {ShapeType} from "../../../../Enums/ShapeType";
-import {CharacterShape} from "./CharacterShape";
-import {ImageShape} from "./ImageShape";
-import {PolygonShape} from "./PolygonShape";
-import {Stroke} from "./Stroke";
-import {IImageShape} from "../../../../Interfaces/Options/Particles/Shape/IImageShape";
-import {ICharacterShape} from "../../../../Interfaces/Options/Particles/Shape/ICharacterShape";
-import {IPolygonShape} from "../../../../Interfaces/Options/Particles/Shape/IPolygonShape";
-import {IStroke} from "../../../../Interfaces/Options/Particles/Shape/IStroke";
-import {RecursivePartial} from "../../../../Types/RecursivePartial";
+import type { IShape } from "../../../../Interfaces/Options/Particles/Shape/IShape";
+import { ShapeType } from "../../../../Enums/ShapeType";
+import { CharacterShape } from "./CharacterShape";
+import { ImageShape } from "./ImageShape";
+import { PolygonShape } from "./PolygonShape";
+import { Stroke } from "./Stroke";
+import type { IImageShape } from "../../../../Interfaces/Options/Particles/Shape/IImageShape";
+import type { ICharacterShape } from "../../../../Interfaces/Options/Particles/Shape/ICharacterShape";
+import type { IPolygonShape } from "../../../../Interfaces/Options/Particles/Shape/IPolygonShape";
+import type { IStroke } from "../../../../Interfaces/Options/Particles/Shape/IStroke";
+import type { RecursivePartial } from "../../../../Types/RecursivePartial";
 
 export class Shape implements IShape {
     /**

@@ -1,6 +1,6 @@
-import {Container} from "../Container";
-import {Particle} from "../Particle";
-import {Utils} from "../Utils/Utils";
+import type { Container } from "../Container";
+import type { Particle } from "../Particle";
+import { Utils } from "../Utils/Utils";
 
 /**
  * Particle grab manager
@@ -20,7 +20,7 @@ export class Grabber {
         const particle = this.particle;
 
         if (options.interactivity.events.onHover.enable && container.interactivity.status === "mousemove") {
-            const mousePos = container.interactivity.mouse.position || {x: 0, y: 0};
+            const mousePos = container.interactivity.mouse.position || { x: 0, y: 0 };
             const distMouse = Utils.getDistanceBetweenCoordinates(particle.position, mousePos);
             /*
                draw a line between the cursor and the particle

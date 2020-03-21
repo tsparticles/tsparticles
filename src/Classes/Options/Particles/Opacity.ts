@@ -1,8 +1,7 @@
-import {IOpacity} from "../../../Interfaces/Options/Particles/IOpacity";
-import {OpacityAnimation} from "./OpacityAnimation";
-import {IOpacityAnimation} from "../../../Interfaces/Options/Particles/IOpacityAnimation";
-import {Messages} from "../../Utils/Messages";
-import {RecursivePartial} from "../../../Types/RecursivePartial";
+import type { IOpacity } from "../../../Interfaces/Options/Particles/IOpacity";
+import { OpacityAnimation } from "./OpacityAnimation";
+import type { IOpacityAnimation } from "../../../Interfaces/Options/Particles/IOpacityAnimation";
+import type { RecursivePartial } from "../../../Types/RecursivePartial";
 
 export class Opacity implements IOpacity {
     /**
@@ -10,8 +9,6 @@ export class Opacity implements IOpacity {
      * @deprecated this property is obsolete, please use the new animation
      */
     public get anim(): IOpacityAnimation {
-        Messages.deprecated("particles.opacity.anim", "particles.opacity.animation");
-
         return this.animation;
     }
 
@@ -21,8 +18,6 @@ export class Opacity implements IOpacity {
      * @param value
      */
     public set anim(value: IOpacityAnimation) {
-        Messages.deprecated("particles.opacity.anim", "particles.opacity.animation");
-
         this.animation = value;
     }
 

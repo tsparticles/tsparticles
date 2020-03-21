@@ -1,5 +1,5 @@
 import {Container} from "./Container";
-import {ICoordinates} from "../Interfaces/ICoordinates";
+import type {ICoordinates} from "../Interfaces/ICoordinates";
 import {PolygonMaskType} from "../Enums/PolygonMaskType";
 import {Particle} from "./Particle";
 import {PolygonMaskInlineArrangement} from "../Enums/PolygonMaskInlineArrangement";

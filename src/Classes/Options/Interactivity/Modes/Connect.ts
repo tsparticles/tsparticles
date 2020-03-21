@@ -1,8 +1,7 @@
-import {IConnect} from "../../../../Interfaces/Options/Interactivity/Modes/IConnect";
-import {ConnectLineLinked} from "./ConnectLineLinked";
-import {IConnectLineLinked} from "../../../../Interfaces/Options/Interactivity/Modes/IConnectLineLinked";
-import {Messages} from "../../../Utils/Messages";
-import {RecursivePartial} from "../../../../Types/RecursivePartial";
+import type { IConnect } from "../../../../Interfaces/Options/Interactivity/Modes/IConnect";
+import { ConnectLineLinked } from "./ConnectLineLinked";
+import type { IConnectLineLinked } from "../../../../Interfaces/Options/Interactivity/Modes/IConnectLineLinked";
+import type { RecursivePartial } from "../../../../Types/RecursivePartial";
 
 export class Connect implements IConnect {
     /**
@@ -10,8 +9,6 @@ export class Connect implements IConnect {
      * @deprecated this property is obsolete, please use the new lineLinked
      */
     public get line_linked(): IConnectLineLinked {
-        Messages.deprecated("interactivity.modes.connect.line_linked", "interactivity.modes.connect.lineLinked");
-
         return this.lineLinked;
     }
 
@@ -21,8 +18,6 @@ export class Connect implements IConnect {
      * @param value
      */
     public set line_linked(value: IConnectLineLinked) {
-        Messages.deprecated("interactivity.modes.connect.line_linked", "interactivity.modes.connect.lineLinked");
-
         this.lineLinked = value;
     }
 

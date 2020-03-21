@@ -9,10 +9,11 @@
     "clear:dist": "rimraf -f dist",
     "clear:docs": "rimraf -f docs",
     "copy:js": "cpx \"src/**/*.{js,d.ts}\" dist/",
-    "slimbuild": "npm run clear:dist && npm run copy:js && npm run build:types && npm run build:js && webpack -p",
+    "slimbuild": "npm run clear:dist && npm run copy:js && npm run build:ts && webpack -p",
     "build": "npm run build:docs && npm run slimbuild",
     "build:types": "tsc --emitDeclarationOnly",
     "build:js": "babel src --out-dir dist --ignore \"src/**/*.d.ts\" --extensions \".ts,.tsx\" --source-maps inline",
+    "build:ts": "tsc",
     "build:docs": "npm run clear:docs && typedoc --out docs --gaID UA-159372955-1 src",
     "start": "npm run slimbuild && node demo/app.js"
   },
@@ -70,18 +71,17 @@
     "helmet": "^3.21.3",
     "install": "^0.13.0",
     "jsoneditor": "^8.6.1",
+    "pathseg": "^1.2.0",
     "pug": "^2.0.4",
     "reflect-metadata": "^0.1.13",
     "rimraf": "^3.0.2",
     "stylus": "^0.54.7",
+    "terser-webpack-plugin": "^2.3.5",
     "three": "^0.114.0",
     "typedoc": "^0.17.1",
     "typescript": "^3.8.3",
-    "uglifyjs-webpack-plugin": "^2.2.0",
     "webpack": "^4.42.0",
     "webpack-cli": "^3.3.11"
   },
-  "dependencies": {
-    "pathseg": "^1.2.0"
-  }
+  "dependencies": {}
 }

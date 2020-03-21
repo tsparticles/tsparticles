@@ -1,16 +1,16 @@
-import {Particle} from "../Particle";
-import {IStroke} from "../../Interfaces/Options/Particles/Shape/IStroke";
-import {ShapeType} from "../../Enums/ShapeType";
-import {ICoordinates} from "../../Interfaces/ICoordinates";
-import {ISide} from "../../Interfaces/ISide";
-import {ICharacterShape} from "../../Interfaces/Options/Particles/Shape/ICharacterShape";
-import {Utils} from "./Utils";
+import type { Particle } from "../Particle";
+import type { IStroke } from "../../Interfaces/Options/Particles/Shape/IStroke";
+import { ShapeType } from "../../Enums/ShapeType";
+import type { ICoordinates } from "../../Interfaces/ICoordinates";
+import type { ISide } from "../../Interfaces/ISide";
+import type { ICharacterShape } from "../../Interfaces/Options/Particles/Shape/ICharacterShape";
+import { ColorUtils } from "./ColorUtils";
 
 export class ShapeUtils {
     public static drawShape(context: CanvasRenderingContext2D,
-                            particle: Particle,
-                            radius: number,
-                            stroke: IStroke): void {
+        particle: Particle,
+        radius: number,
+        stroke: IStroke): void {
         const pos = {
             x: particle.offset.x,
             y: particle.offset.y,
@@ -111,12 +111,12 @@ export class ShapeUtils {
     }
 
     private static drawLineShape(context: CanvasRenderingContext2D, length: number, stroke: IStroke): void {
-        const color = typeof stroke.color === "string" ? Utils.hexToRgb(stroke.color) : Utils.colorToRgb(stroke.color);
+        const color = typeof stroke.color === "string" ? ColorUtils.stringToRgb(stroke.color) : ColorUtils.colorToRgb(stroke.color);
 
         if (color) {
             context.moveTo(0, -length / 2);
             context.lineTo(0, length / 2);
-            context.strokeStyle = Utils.getStyleFromColor(color);
+            context.strokeStyle = ColorUtils.getStyleFromColor(color);
             context.lineWidth = stroke.width;
             context.stroke();
         }
@@ -146,9 +146,9 @@ export class ShapeUtils {
     }
 
     private static drawTextShape(context: CanvasRenderingContext2D,
-                                 character: ICharacterShape | undefined,
-                                 text: string | undefined,
-                                 radius: number): void {
+        character: ICharacterShape | undefined,
+        text: string | undefined,
+        radius: number): void {
         if (text === undefined || character === undefined) {
             return;
         }

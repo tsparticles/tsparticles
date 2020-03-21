@@ -1,8 +1,7 @@
-import {ISize} from "../../../Interfaces/Options/Particles/ISize";
-import {ParticlesSizeAnimation} from "./ParticlesSizeAnimation";
-import {ISizeAnimation} from "../../../Interfaces/Options/Particles/ISizeAnimation";
-import {Messages} from "../../Utils/Messages";
-import {RecursivePartial} from "../../../Types/RecursivePartial";
+import type { ISize } from "../../../Interfaces/Options/Particles/ISize";
+import { ParticlesSizeAnimation } from "./ParticlesSizeAnimation";
+import type { ISizeAnimation } from "../../../Interfaces/Options/Particles/ISizeAnimation";
+import type { RecursivePartial } from "../../../Types/RecursivePartial";
 
 export class ParticlesSize implements ISize {
     /**
@@ -10,8 +9,6 @@ export class ParticlesSize implements ISize {
      * @deprecated this property is obsolete, please use the new animation
      */
     public get anim(): ISizeAnimation {
-        Messages.deprecated("particles.size.anim", "particles.size.animation");
-
         return this.animation;
     }
 
@@ -21,8 +18,6 @@ export class ParticlesSize implements ISize {
      * @param value
      */
     public set anim(value: ISizeAnimation) {
-        Messages.deprecated("particles.size.anim", "particles.size.animation");
-
         this.animation = value;
     }
 

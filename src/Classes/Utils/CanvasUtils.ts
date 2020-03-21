@@ -1,16 +1,16 @@
-import {IDimension} from "../../Interfaces/IDimension";
-import {ICoordinates} from "../../Interfaces/ICoordinates";
-import {IRgb} from "../../Interfaces/IRgb";
-import {Particle} from "../Particle";
-import {Utils} from "./Utils";
-import {ShapeUtils} from "./ShapeUtils";
-import {ILineLinkedShadow} from "../../Interfaces/Options/Particles/ILineLinkedShadow";
-import {IPolygonMaskDrawStroke} from "../../Interfaces/Options/PolygonMask/IPolygonMaskDrawStroke";
+import type { IDimension } from "../../Interfaces/IDimension";
+import type { ICoordinates } from "../../Interfaces/ICoordinates";
+import type { IRgb } from "../../Interfaces/IRgb";
+import type { Particle } from "../Particle";
+import { ShapeUtils } from "./ShapeUtils";
+import type { ILineLinkedShadow } from "../../Interfaces/Options/Particles/ILineLinkedShadow";
+import type { IPolygonMaskDrawStroke } from "../../Interfaces/Options/PolygonMask/IPolygonMaskDrawStroke";
+import { ColorUtils } from "./ColorUtils";
 
 export class CanvasUtils {
     public static paintBase(context: CanvasRenderingContext2D,
-                            dimension: IDimension,
-                            baseColor?: string): void {
+        dimension: IDimension,
+        baseColor?: string): void {
         context.save();
         context.fillStyle = baseColor ?? "rgba(255, 255, 255, 0)";
         context.fillRect(0, 0, dimension.width, dimension.height);
@@ -22,9 +22,9 @@ export class CanvasUtils {
     }
 
     public static drawPolygonMask(context: CanvasRenderingContext2D,
-                                  rawData: ICoordinates[],
-                                  stroke: IPolygonMaskDrawStroke): void {
-        const color = typeof stroke.color === "string" ? Utils.hexToRgb(stroke.color) : Utils.colorToRgb(stroke.color);
+        rawData: ICoordinates[],
+        stroke: IPolygonMaskDrawStroke): void {
+        const color = typeof stroke.color === "string" ? ColorUtils.stringToRgb(stroke.color) : ColorUtils.colorToRgb(stroke.color);
 
         if (color) {
             context.save();
@@ -36,7 +36,7 @@ export class CanvasUtils {
             }
 
             context.closePath();
-            context.strokeStyle = Utils.getStyleFromColor(color);
+            context.strokeStyle = ColorUtils.getStyleFromColor(color);
             context.lineWidth = stroke.width;
             context.stroke();
             context.restore();
@@ -44,13 +44,13 @@ export class CanvasUtils {
     }
 
     public static drawLineLinked(context: CanvasRenderingContext2D,
-                                 width: number,
-                                 begin: ICoordinates,
-                                 end: ICoordinates,
-                                 backgroundMask: boolean,
-                                 colorLine: IRgb,
-                                 opacity: number,
-                                 shadow: ILineLinkedShadow): void {
+        width: number,
+        begin: ICoordinates,
+        end: ICoordinates,
+        backgroundMask: boolean,
+        colorLine: IRgb,
+        opacity: number,
+        shadow: ILineLinkedShadow): void {
         context.save();
 
         if (backgroundMask) {
@@ -58,7 +58,7 @@ export class CanvasUtils {
         }
 
         if (colorLine) {
-            context.strokeStyle = `rgba(${colorLine.r},${colorLine.g},${colorLine.b},${opacity})`;
+            context.strokeStyle = ColorUtils.getStyleFromColor(colorLine, opacity);;
         }
 
         context.lineWidth = width;
@@ -66,11 +66,11 @@ export class CanvasUtils {
         /* path */
         context.beginPath();
 
-        const color = typeof shadow.color === "string" ? Utils.hexToRgb(shadow.color) : Utils.colorToRgb(shadow.color);
+        const color = typeof shadow.color === "string" ? ColorUtils.stringToRgb(shadow.color) : ColorUtils.colorToRgb(shadow.color);
 
         if (shadow.enable && color) {
             context.shadowBlur = shadow.blur;
-            context.shadowColor = Utils.getStyleFromColor(color);
+            context.shadowColor = ColorUtils.getStyleFromColor(color);
         }
 
         context.moveTo(begin.x, begin.y);
@@ -81,10 +81,10 @@ export class CanvasUtils {
     }
 
     public static drawConnectLine(context: CanvasRenderingContext2D,
-                                  width: number,
-                                  lineStyle: CanvasGradient,
-                                  begin: ICoordinates,
-                                  end: ICoordinates): void {
+        width: number,
+        lineStyle: CanvasGradient,
+        begin: ICoordinates,
+        end: ICoordinates): void {
         context.save();
         context.beginPath();
         context.lineWidth = width;
@@ -97,9 +97,9 @@ export class CanvasUtils {
     }
 
     public static gradient(context: CanvasRenderingContext2D,
-                           p1: Particle,
-                           p2: Particle,
-                           midColor: string): CanvasGradient | undefined {
+        p1: Particle,
+        p2: Particle,
+        midColor: string): CanvasGradient | undefined {
         const gradStop = Math.floor(p2.radius / p1.radius);
 
         if (!p1.color || !p2.color) {
@@ -110,19 +110,19 @@ export class CanvasUtils {
         const destPos = p2.position;
         const grad = context.createLinearGradient(sourcePos.x, sourcePos.y, destPos.x, destPos.y);
 
-        grad.addColorStop(0, Utils.getStyleFromColor(p1.color));
+        grad.addColorStop(0, ColorUtils.getStyleFromColor(p1.color));
         grad.addColorStop(gradStop > 1 ? 1 : gradStop, midColor);
-        grad.addColorStop(1, Utils.getStyleFromColor(p2.color));
+        grad.addColorStop(1, ColorUtils.getStyleFromColor(p2.color));
 
         return grad;
     }
 
     public static drawGrabLine(context: CanvasRenderingContext2D,
-                               width: number,
-                               begin: ICoordinates,
-                               end: ICoordinates,
-                               colorLine: IRgb,
-                               opacity: number): void {
+        width: number,
+        begin: ICoordinates,
+        end: ICoordinates,
+        colorLine: IRgb,
+        opacity: number): void {
         context.save();
         context.strokeStyle = `rgba(${colorLine.r},${colorLine.g},${colorLine.b},${opacity})`;
         context.lineWidth = width;
@@ -135,21 +135,21 @@ export class CanvasUtils {
     }
 
     public static drawParticle(context: CanvasRenderingContext2D,
-                               particle: Particle,
-                               colorValue: string,
-                               backgroundMask: boolean,
-                               radius: number): void {
+        particle: Particle,
+        colorValue: string,
+        backgroundMask: boolean,
+        radius: number): void {
         context.save();
 
         const stroke = particle.stroke;
         const shadow = particle.container.options.particles.shadow;
         const shadowColor = typeof shadow.color === "string" ?
-            Utils.hexToRgb(shadow.color) :
-            Utils.colorToRgb(shadow.color);
+            ColorUtils.stringToRgb(shadow.color) :
+            ColorUtils.colorToRgb(shadow.color);
 
         if (shadow.enable && shadowColor) {
             context.shadowBlur = shadow.blur;
-            context.shadowColor = Utils.getStyleFromColor(shadowColor);
+            context.shadowColor = ColorUtils.getStyleFromColor(shadowColor);
             context.shadowOffsetX = shadow.offset.x;
             context.shadowOffsetY = shadow.offset.y;
         }
@@ -177,11 +177,11 @@ export class CanvasUtils {
         context.closePath();
 
         const strokeColor = typeof stroke.color === "string" ?
-            Utils.hexToRgb(stroke.color) :
-            Utils.colorToRgb(stroke.color);
+            ColorUtils.stringToRgb(stroke.color) :
+            ColorUtils.colorToRgb(stroke.color);
 
         if (stroke.width > 0 && strokeColor) {
-            context.strokeStyle = Utils.getStyleFromColor(strokeColor);
+            context.strokeStyle = ColorUtils.getStyleFromColor(strokeColor);
             context.lineWidth = stroke.width;
             context.stroke();
         }

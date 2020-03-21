@@ -1,5 +1,5 @@
-import { RecursivePartial } from "../../Types/RecursivePartial";
-import { IOptions } from "../../Interfaces/Options/IOptions";
+import type { RecursivePartial } from "../../Types/RecursivePartial";
+import type { IOptions } from "../../Interfaces/Options/IOptions";
 import { MoveDirection } from "../../Enums/MoveDirection";
 import { OutMode } from "../../Enums/OutMode";
 import { PresetType } from "../../Enums/PresetType";
