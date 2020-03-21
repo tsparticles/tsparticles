@@ -6,9 +6,9 @@
 
 # tsParticles - TypeScript Particles
 
-**A lightweight TypeScript library for creating particles, browser ready!**
+**A lightweight TypeScript library for creating particles. Dependency free and browser ready!**
 
-*[Particles.js](https://github.com/VincentGarreau/particles.js) converted in TypeScript, improved with new cool 😎 features and various bugs fixed and **it's currently under development**!*
+*[Particles.js](https://github.com/VincentGarreau/particles.js) converted in TypeScript, dependency free, improved with new cool 😎 features and various bugs fixed and **it's currently under development**!*
 
 ## Do you want to use it on your website?
 
