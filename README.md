@@ -14,7 +14,7 @@
 
 **This library is available on the two most popular CDNs and it's easy and ready to use, if you were using particles.js it's even easier**.
 
-You'll find the instructions below, with all the links you need, and *don't be scared by **TypeScript**, it's just the source language*.
+You'll find the instructions [below](https://github.com/matteobruni/tsparticles/blob/master/README.md#library-installation), with all the links you need, and *don't be scared by **TypeScript**, it's just the source language*.
 
 **The output files are just ES5 JavaScript**. 🤩
 
