@@ -25,8 +25,7 @@ export class ColorUtils {
             }
         } else {
             if (color.value instanceof Array) {
-                const arr = color.value as string[];
-                const colorSelected = color.value[Math.floor(Math.random() * arr.length)];
+                const colorSelected = Utils.itemFromArray(color.value);
 
                 res = ColorUtils.stringToRgb(colorSelected);
             } else {

@@ -143,14 +143,14 @@ export class Particle {
         const shapeType = options.particles.shape.type;
 
         if (shapeType instanceof Array) {
-            this.shape = shapeType[Math.floor(Math.random() * shapeType.length)];
+            this.shape = Utils.itemFromArray(shapeType);
         } else {
             this.shape = shapeType;
         }
 
         if (this.shape === ShapeType.image) {
             const shape = options.particles.shape;
-            const index = Math.floor(Math.random() * container.images.length);
+            const index = Utils.arrayRandomIndex(container.images);
             const image = container.images[index];
             const optionsImage = shape.image instanceof Array ? shape.image[index] : shape.image;
 
@@ -168,34 +168,28 @@ export class Particle {
 
         if (this.shape === ShapeType.polygon) {
             if (options.particles.shape.polygon instanceof Array) {
-                const arr = options.particles.shape.polygon;
-
-                this.polygon = arr[Math.floor(Math.random() * arr.length)];
+                this.polygon = Utils.itemFromArray(options.particles.shape.polygon);
             } else {
                 this.polygon = options.particles.shape.polygon;
             }
         }
 
         if (options.particles.shape.stroke instanceof Array) {
-            const arr = options.particles.shape.stroke;
-
-            this.stroke = arr[Math.floor(Math.random() * arr.length)];
+            this.stroke = Utils.itemFromArray(options.particles.shape.stroke);
         } else {
             this.stroke = options.particles.shape.stroke;
         }
 
         if (this.shape === ShapeType.char || this.shape === ShapeType.character) {
             if (options.particles.shape.character instanceof Array) {
-                const arr = options.particles.shape.character;
-
-                this.character = arr[Math.floor(Math.random() * arr.length)];
+                this.character = Utils.itemFromArray(options.particles.shape.character);
             } else {
                 this.character = options.particles.shape.character;
             }
 
             const value = this.character.value;
 
-            this.text = value instanceof Array ? value[Math.floor(Math.random() * value.length)] : value;
+            this.text = value instanceof Array ? Utils.itemFromArray(value) : value;
         }
 
         this.updater = new Updater(this.container, this);

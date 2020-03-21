@@ -2,6 +2,7 @@ import { Container } from "./Container";
 import type { IOptions } from "../Interfaces/Options/IOptions";
 import type { RecursivePartial } from "../Types/RecursivePartial";
 import { Constants } from "./Utils/Constants";
+import { Utils } from "./Utils/Utils";
 
 let tsParticlesDom: Container[] = [];
 
@@ -37,15 +38,7 @@ export class Loader {
     public static async loadFromArray(tagId: string,
         params: RecursivePartial<IOptions>[],
         index?: number): Promise<Container | undefined> {
-        let idx: number;
-
-        if (index === undefined || index < 0 || index >= params.length) {
-            idx = Math.floor(Math.random() * params.length);
-        } else {
-            idx = index;
-        }
-
-        return Loader.load(tagId, params[idx]);
+        return Loader.load(tagId, Utils.itemFromArray(params, index));
     }
 
     /**
@@ -59,15 +52,7 @@ export class Loader {
         domContainer: HTMLElement,
         params: RecursivePartial<IOptions>[],
         index?: number): Promise<Container | undefined> {
-        let idx: number;
-
-        if (index === undefined || index < 0 || index >= params.length) {
-            idx = Math.floor(Math.random() * params.length);
-        } else {
-            idx = index;
-        }
-
-        return Loader.set(id, domContainer, params[idx]);
+        return Loader.set(id, domContainer, Utils.itemFromArray(params, index));
     }
 
     /**

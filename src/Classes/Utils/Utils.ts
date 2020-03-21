@@ -130,4 +130,12 @@ export class Utils {
         } catch {
         }
     }
+
+    public static arrayRandomIndex<T>(array: T[]): number {
+        return Math.floor(Math.random() * array.length);
+    }
+
+    public static itemFromArray<T>(array: T[], index?: number): T {
+        return array[index !== undefined ? index : Utils.arrayRandomIndex(array)];
+    }
 }

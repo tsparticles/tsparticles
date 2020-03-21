@@ -1,8 +1,9 @@
-import {Container} from "./Container";
-import type {ICoordinates} from "../Interfaces/ICoordinates";
-import {PolygonMaskType} from "../Enums/PolygonMaskType";
-import {Particle} from "./Particle";
-import {PolygonMaskInlineArrangement} from "../Enums/PolygonMaskInlineArrangement";
+import { Container } from "./Container";
+import type { ICoordinates } from "../Interfaces/ICoordinates";
+import { PolygonMaskType } from "../Enums/PolygonMaskType";
+import { Particle } from "./Particle";
+import { PolygonMaskInlineArrangement } from "../Enums/PolygonMaskInlineArrangement";
+import { Utils } from "./Utils/Utils";
 
 type SvgAbsoluteCoordinatesTypes =
     | SVGPathSegArcAbs
@@ -277,7 +278,7 @@ export class PolygonMask {
     private getRandomPointOnPolygonPath(): ICoordinates {
         if (!this.raw || !this.raw.length) throw new Error(`No polygon data loaded.`);
 
-        const coords = this.raw[Math.floor(Math.random() * this.raw.length)];
+        const coords = Utils.itemFromArray(this.raw);
 
         return {
             x: coords.x,
