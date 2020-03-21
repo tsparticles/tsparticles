@@ -12,7 +12,7 @@
 
 ## Do you want to use it on your website?
 
-**This library is available on the two most popular CDNs and it's ready to use, if you were using particles.js it's even easier**.
+**This library is available on the two most popular CDNs and it's easy and ready to use, if you were using particles.js it's even easier**.
 
 You'll find the instructions below, with all the links you need, and *don't be scared by **TypeScript**, it's just the source language*.
 
