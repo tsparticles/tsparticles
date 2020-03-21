@@ -4,5 +4,5 @@ export enum PresetType {
     fontAwesome = "fontAwesome",
     snow = "snow",
     bouncing = "bouncing",
-    stars = "stars"
+    stars = "stars",
 }

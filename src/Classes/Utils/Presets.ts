@@ -47,6 +47,32 @@ export class Presets {
 
     private static get backgroundMask(): RecursivePartial<IOptions> {
         return {
+            backgroundMask: {
+                cover: {
+                    value: {
+                        b: 255,
+                        g: 255,
+                        r: 255,
+                    },
+                },
+                enable: true,
+            },
+            interactivity: {
+                events: {
+                    onHover: {
+                        enable: true,
+                        mode: HoverMode.bubble,
+                    },
+                },
+                modes: {
+                    bubble: {
+                        distance: 400,
+                        duration: 2,
+                        opacity: 1,
+                        size: 100,
+                    },
+                },
+            },
             particles: {
                 color: {
                     value: "#ffffff",
@@ -77,32 +103,6 @@ export class Presets {
                     random: true,
                     value: 30,
                 },
-            },
-            interactivity: {
-                events: {
-                    onHover: {
-                        enable: true,
-                        mode: HoverMode.bubble,
-                    },
-                },
-                modes: {
-                    bubble: {
-                        distance: 400,
-                        duration: 2,
-                        opacity: 1,
-                        size: 100,
-                    },
-                },
-            },
-            backgroundMask: {
-                cover: {
-                    value: {
-                        b: 255,
-                        g: 255,
-                        r: 255,
-                    },
-                },
-                enable: true,
             },
         };
     }
@@ -190,7 +190,7 @@ export class Presets {
                         enable: true,
                         minimumValue: 0,
                         speed: 1,
-                        sync: false
+                        sync: false,
                     },
                     random: true,
                     value: 1,
