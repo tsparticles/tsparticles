@@ -220,7 +220,7 @@ export class Container {
         }
 
         this.started = false;
-        this.eventListeners.removeEventsListeners();
+        this.eventListeners.removeListeners();
         this.pause();
         this.images = [];
         this.particles.clear();
@@ -240,7 +240,7 @@ export class Container {
 
         this.started = true;
 
-        this.eventListeners.addEventsListeners();
+        this.eventListeners.addListeners();
 
         /* If is set the url of svg element, load it and parse into raw polygon data,
          * works only with single path SVG

@@ -9,7 +9,7 @@
     "clear:dist": "rimraf -f dist",
     "clear:docs": "rimraf -f docs",
     "copy:js": "cpx \"src/**/*.{js,d.ts}\" dist/",
-    "slimbuild": "npm run clear:dist && npm run copy:js && npm run build:ts && webpack -p",
+    "slimbuild": "npm run clear:dist && npm run build:ts && webpack -p",
     "build": "npm run build:docs && npm run slimbuild",
     "build:types": "tsc --emitDeclarationOnly",
     "build:js": "babel src --out-dir dist --ignore \"src/**/*.d.ts\" --extensions \".ts,.tsx\" --source-maps inline",

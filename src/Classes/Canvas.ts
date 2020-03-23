@@ -7,6 +7,8 @@ import type { Particle } from "./Particle";
 import type { ICoordinates } from "../Interfaces/ICoordinates";
 import { CanvasUtils } from "./Utils/CanvasUtils";
 import { ColorUtils } from "./Utils/ColorUtils";
+import type { IColor } from "../Interfaces/Options/Particles/IColor";
+import type { IBackgroundMaskCover } from "../Interfaces/Options/BackgroundMask/IBackgroundMaskCover";
 
 /**
  * Canvas manager
@@ -103,7 +105,11 @@ export class Canvas {
 
         if (this.context) {
             if (options.backgroundMask.enable && options.backgroundMask.cover) {
-                const color = ColorUtils.colorToRgb(options.backgroundMask.cover);
+                const cover = options.backgroundMask.cover as IBackgroundMaskCover;
+
+                const color = ColorUtils.colorToRgb(cover.color !== undefined ?
+                    cover.color :
+                    options.backgroundMask.cover as IColor);
 
                 if (color) {
                     this.paintBase(ColorUtils.getStyleFromColor(color));

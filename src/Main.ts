@@ -153,9 +153,5 @@ window.particlesJS.setOnClickHandler = (callback: EventListenerOrEventListenerOb
  * @deprecated this method is obsolete, please use the new tsParticles.dom
  */
 window.pJSDom = () => {
-    if (console) {
-        console.warn("this method is obsolete, please use the new tsParticles.dom");
-    }
-
     return window.tsParticles.dom();
 };
