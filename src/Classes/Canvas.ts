@@ -9,6 +9,7 @@ import { CanvasUtils } from "./Utils/CanvasUtils";
 import { ColorUtils } from "./Utils/ColorUtils";
 import type { IColor } from "../Interfaces/Options/Particles/IColor";
 import type { IBackgroundMaskCover } from "../Interfaces/Options/BackgroundMask/IBackgroundMaskCover";
+import { IBounds } from "../Interfaces/IBounds";
 
 /**
  * Canvas manager
@@ -84,6 +85,24 @@ export class Canvas {
         if (this.context) {
             CanvasUtils.clear(this.context, this.dimension);
         }
+    }
+
+    public isPointInside(point: ICoordinates, radius?: number): boolean {
+        return this.areBoundsInside(this.calculateBounds(point, radius ?? 0));
+    }
+
+    public areBoundsInside(bounds: IBounds): boolean {
+        return bounds.left >= 0 && bounds.right <= this.dimension.width
+            && bounds.top >= 0 && bounds.bottom <= this.dimension.height;
+    }
+
+    public calculateBounds(point: ICoordinates, radius: number): IBounds {
+        return {
+            bottom: point.y + radius,
+            left: point.x - radius,
+            right: point.x + radius,
+            top: point.y - radius,
+        };
     }
 
     /**
