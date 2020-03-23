@@ -59,5 +59,14 @@
     // "emitDecoratorMetadata": true,         /* Enables experimental support for emitting type metadata for decorators. */
     /* Advanced Options */
     "forceConsistentCasingInFileNames": true /* Disallow inconsistently-cased references to the same file. */
+  },
+  "typedocOptions": {
+    "gaID": "UA-159372955-1",
+    "ignoreCompilerErrors": true,
+    "inputFiles": [
+      "./src/Main.ts"
+    ],
+    "mode": "library",
+    "out": "docs"
   }
 }

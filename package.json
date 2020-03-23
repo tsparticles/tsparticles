@@ -10,11 +10,11 @@
     "clear:docs": "rimraf -f docs",
     "copy:js": "cpx \"src/**/*.{js,d.ts}\" dist/",
     "slimbuild": "npm run clear:dist && npm run build:ts && webpack -p",
-    "build": "npm run build:docs && npm run slimbuild",
+    "build": "npm run slimbuild && npm run build:docs",
     "build:types": "tsc --emitDeclarationOnly",
     "build:js": "babel src --out-dir dist --ignore \"src/**/*.d.ts\" --extensions \".ts,.tsx\" --source-maps inline",
     "build:ts": "tsc",
-    "build:docs": "npm run clear:docs && typedoc --out docs --gaID UA-159372955-1 src",
+    "build:docs": "npm run clear:docs && typedoc",
     "start": "npm run slimbuild && node demo/app.js"
   },
   "repository": {
