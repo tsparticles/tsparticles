@@ -55,7 +55,7 @@ export class EventListeners {
         this.manageListeners(false);
     }
 
-    private manageListeners(add: boolean) {
+    private manageListeners(add: boolean): void {
         const container = this.container;
         const options = container.options;
 
@@ -115,7 +115,7 @@ export class EventListeners {
         event: string,
         handler: EventListenerOrEventListenerObject,
         add: boolean,
-        options?: boolean | AddEventListenerOptions | EventListenerObject) {
+        options?: boolean | AddEventListenerOptions | EventListenerObject): void {
         if (add) {
             this.addListener(element, event, handler, options as boolean | AddEventListenerOptions | undefined);
         } else {
