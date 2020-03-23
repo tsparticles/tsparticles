@@ -24,6 +24,7 @@ import type { IPolygonShape } from "../Interfaces/Options/Particles/Shape/IPolyg
 import type { IStroke } from "../Interfaces/Options/Particles/Shape/IStroke";
 import { ColorUtils } from "./Utils/ColorUtils";
 import { IRandomSize } from "../Interfaces/Options/Particles/IRandomSize";
+import { IRandomOpacity } from "../Interfaces/Options/Particles/IRandomOpacity";
 
 /**
  * The single particle object
@@ -79,8 +80,9 @@ export class Particle {
         }
 
         const randomSize = options.particles.size.random as IRandomSize;
+        const sizeValue = container.retina.sizeValue;
 
-        this.radius = randomSize.enable ? Utils.randomInRange(randomSize.minimumValue, container.retina.sizeValue) : container.retina.sizeValue;
+        this.radius = randomSize.enable ? Utils.randomInRange(randomSize.minimumValue, sizeValue) : sizeValue;
 
         if (options.particles.size.animation.enable) {
             this.size.status = false;
@@ -122,8 +124,11 @@ export class Particle {
         this.color = ColorUtils.colorToRgb(color);
 
         /* opacity */
+        const randomOpacity = options.particles.opacity.random as IRandomOpacity;
+        const opacityValue = options.particles.opacity.value;
+
         this.opacity = {
-            value: (options.particles.opacity.random ? Math.random() : 1) * options.particles.opacity.value,
+            value: randomOpacity.enable ? Utils.randomInRange(randomOpacity.minimumValue, opacityValue) : opacityValue,
         };
 
         if (options.particles.opacity.animation.enable) {

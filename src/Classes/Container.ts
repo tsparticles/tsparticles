@@ -76,6 +76,13 @@ export class Container {
     private drawAnimationFrame?: number;
     private eventListeners: EventListeners;
 
+    /**
+     * This is the core class, create an instance to have a new working particles manager
+     * @constructor
+     * @param id the id to identify this instance
+     * @param params the options to load
+     * @param presets all the presets to load with options
+     */
     constructor(id: string, params?: RecursivePartial<IOptions>, ...presets: PresetType[]) {
         this.started = false;
         this.id = id;
@@ -182,10 +189,21 @@ export class Container {
         delete this.eventListeners;
     }
 
+    /**
+     * @deprecated this method is deprecated, please use the exportImage method
+     */
     public exportImg(): void {
+        this.exportImage();
+    }
+
+    public exportImage(): void {
         if (this.canvas.element) {
             window.open(this.canvas.element.toDataURL("image/png"), "_blank");
         }
+    }
+
+    public exportConfiguration(): void {
+        window.open("text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(this.options)));
     }
 
     public async loadImg(image: IImage, optionsImage: ImageShape): Promise<void> {

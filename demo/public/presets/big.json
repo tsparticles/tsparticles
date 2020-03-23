@@ -8,7 +8,13 @@
             }
         },
         "color": {
-            "value": "random"
+            "value": [
+                "#5bc0eb",
+                "#fde74c",
+                "#9bc53d",
+                "#e55934",
+                "#fa7921"
+            ]
         },
         "shape": {
             "type": "circle",
@@ -26,10 +32,10 @@
             }
         },
         "opacity": {
-            "value": 1,
+            "value": 0.8,
             "random": {
                 "enable": true,
-                "minimumValue": 0.8
+                "minimumValue": 0.4
             },
             "anim": {
                 "enable": false,
@@ -39,15 +45,15 @@
             }
         },
         "size": {
-            "value": 200,
+            "value": 400,
             "random": {
                 "enable": true,
-                "minimumValue": 150
+                "minimumValue": 300
             },
             "anim": {
-                "enable": false,
-                "speed": 40,
-                "size_min": 0.1,
+                "enable": true,
+                "speed": 100,
+                "size_min": 300,
                 "sync": false
             }
         },

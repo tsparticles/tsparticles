@@ -48,9 +48,10 @@ window.customCancelRequestAnimationFrame = (() => {
 class Main {
     /**
      * Loads an options object from the provided array to create a [[Container]] object.
-     * @param tagId the particles container element id
-     * @param params the options array to get the item from
-     * @param index if provided gets the corresponding item from the array
+     * @param tagId The particles container element id
+     * @param params The options array to get the item from
+     * @param index If provided gets the corresponding item from the array
+     * @returns A Promise with the [[Container]] object created
      */
     public async loadFromArray(tagId: string,
         params: RecursivePartial<IOptions>[],
@@ -60,8 +61,9 @@ class Main {
 
     /**
      * Loads the provided options to create a [[Container]] object.
-     * @param tagId the particles container element id
-     * @param params the options object to initialize the [[Container]]
+     * @param tagId The particles container element id
+     * @param params The options object to initialize the [[Container]]
+     * @returns A Promise with the [[Container]] object created
      */
     public async load(tagId: string, params: RecursivePartial<IOptions>): Promise<Container | undefined> {
         return Loader.load(tagId, params);
@@ -72,6 +74,7 @@ class Main {
      * This method is async, so if you need a callback refer to JavaScript function `fetch`
      * @param tagId the particles container element id
      * @param pathConfigJson the json path to use in the GET request
+     * @returns A Promise with the [[Container]] object created
      */
     public loadJSON(tagId: string, pathConfigJson: string): Promise<Container | undefined> {
         return Loader.loadJSON(tagId, pathConfigJson);
@@ -79,7 +82,7 @@ class Main {
 
     /**
      * Adds an additional click handler to all the loaded [[Container]] objects.
-     * @param callback the function called after the click event is fired
+     * @param callback The function called after the click event is fired
      */
     public setOnClickHandler(callback: EventListenerOrEventListenerObject): void {
         Loader.setOnClickHandler(callback);
@@ -87,6 +90,7 @@ class Main {
 
     /**
      * All the [[Container]] objects loaded
+     * @returns All the [[Container]] objects loaded
      */
     public dom(): Container[] {
         return Loader.dom();
@@ -94,7 +98,8 @@ class Main {
 
     /**
      * Retrieves a [[Container]] from all the objects loaded
-     * @param index the object index
+     * @param index The object index
+     * @returns The [[Container]] object at specified index
      */
     public domItem(index: number): Container {
         return Loader.domItem(index);
