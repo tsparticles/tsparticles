@@ -23,8 +23,8 @@ import type { ICharacterShape } from "../Interfaces/Options/Particles/Shape/ICha
 import type { IPolygonShape } from "../Interfaces/Options/Particles/Shape/IPolygonShape";
 import type { IStroke } from "../Interfaces/Options/Particles/Shape/IStroke";
 import { ColorUtils } from "./Utils/ColorUtils";
-import { IRandomSize } from "../Interfaces/Options/Particles/IRandomSize";
-import { IRandomOpacity } from "../Interfaces/Options/Particles/IRandomOpacity";
+import type { IRandomSize } from "../Interfaces/Options/Particles/IRandomSize";
+import type { IRandomOpacity } from "../Interfaces/Options/Particles/IRandomOpacity";
 
 /**
  * The single particle object
@@ -41,6 +41,8 @@ export class Particle {
     public readonly position: ICoordinates;
     public readonly offset: ICoordinates;
     public readonly color: IRgb | undefined;
+    public readonly strokeColor: IRgb | undefined;
+    public readonly shadowColor: IRgb | undefined;
     public readonly opacity: IOpacity;
     public readonly velocity: IVelocity;
     public readonly shape?: ShapeType;
@@ -187,6 +189,14 @@ export class Particle {
         } else {
             this.stroke = options.particles.shape.stroke;
         }
+
+        this.strokeColor = typeof this.stroke.color === "string" ?
+            ColorUtils.stringToRgb(this.stroke.color) :
+            ColorUtils.colorToRgb(this.stroke.color);
+
+        this.shadowColor = typeof options.particles.shadow.color === "string" ?
+            ColorUtils.stringToRgb(options.particles.shadow.color) :
+            ColorUtils.colorToRgb(options.particles.shadow.color);
 
         if (this.shape === ShapeType.char || this.shape === ShapeType.character) {
             if (options.particles.shape.character instanceof Array) {

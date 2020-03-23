@@ -5,12 +5,14 @@ import type { ICoordinates } from "../../Interfaces/ICoordinates";
 import type { ISide } from "../../Interfaces/ISide";
 import type { ICharacterShape } from "../../Interfaces/Options/Particles/Shape/ICharacterShape";
 import { ColorUtils } from "./ColorUtils";
+import { IRgb } from "../../Interfaces/IRgb";
 
 export class ShapeUtils {
     public static drawShape(context: CanvasRenderingContext2D,
         particle: Particle,
         radius: number,
-        stroke: IStroke): void {
+        stroke: IStroke,
+        strokeColor: IRgb | undefined): void {
         const pos = {
             x: particle.offset.x,
             y: particle.offset.y,
@@ -20,7 +22,7 @@ export class ShapeUtils {
 
         switch (particle.shape) {
             case ShapeType.line:
-                this.drawLineShape(context, radius, stroke);
+                this.drawLineShape(context, radius, stroke, strokeColor);
                 break;
 
             case ShapeType.circle:
@@ -110,15 +112,14 @@ export class ShapeUtils {
         this.drawGenericPolygonShape(context, start, side);
     }
 
-    private static drawLineShape(context: CanvasRenderingContext2D, length: number, stroke: IStroke): void {
-        const color = typeof stroke.color === "string" ?
-            ColorUtils.stringToRgb(stroke.color) :
-            ColorUtils.colorToRgb(stroke.color);
-
-        if (color) {
+    private static drawLineShape(context: CanvasRenderingContext2D,
+        length: number,
+        stroke: IStroke,
+        strokeColor: IRgb | undefined): void {
+        if (strokeColor) {
             context.moveTo(0, -length / 2);
             context.lineTo(0, length / 2);
-            context.strokeStyle = ColorUtils.getStyleFromColor(color);
+            context.strokeStyle = ColorUtils.getStyleFromColor(strokeColor);
             context.lineWidth = stroke.width;
             context.stroke();
         }

@@ -146,10 +146,9 @@ export class CanvasUtils {
         context.save();
 
         const stroke = particle.stroke;
+        const strokeColor = particle.strokeColor;
         const shadow = particle.container.options.particles.shadow;
-        const shadowColor = typeof shadow.color === "string" ?
-            ColorUtils.stringToRgb(shadow.color) :
-            ColorUtils.colorToRgb(shadow.color);
+        const shadowColor = particle.shadowColor;
 
         if (shadow.enable && shadowColor) {
             context.shadowBlur = shadow.blur;
@@ -176,16 +175,12 @@ export class CanvasUtils {
             context.globalCompositeOperation = 'destination-out';
         }
 
-        ShapeUtils.drawShape(context, particle, radius, stroke);
+        ShapeUtils.drawShape(context, particle, radius, stroke, strokeColor);
 
         context.closePath();
 
-        const strokeColor = typeof stroke.color === "string" ?
-            ColorUtils.stringToRgb(stroke.color) :
-            ColorUtils.colorToRgb(stroke.color);
-
-        if (stroke.width > 0 && strokeColor) {
-            context.strokeStyle = ColorUtils.getStyleFromColor(strokeColor);
+        if (stroke.width > 0 && particle.strokeColor) {
+            context.strokeStyle = ColorUtils.getStyleFromColor(particle.strokeColor);
             context.lineWidth = stroke.width;
             context.stroke();
         }
