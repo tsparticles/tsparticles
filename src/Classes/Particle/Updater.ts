@@ -169,20 +169,20 @@ export class Updater {
                 container.particles.remove(particle);
             }
         } else {
-            const nextPos = container.canvas.calculateBounds(particle.position, particle.radius);
+            const nextBounds = container.canvas.calculateBounds(particle.position, particle.radius);
 
-            if (nextPos.left > canvasSize.width - particle.offset.x) {
+            if (nextBounds.left > canvasSize.width - particle.offset.x) {
                 particle.position.x = newPos.left;
                 particle.position.y = Math.random() * canvasSize.height;
-            } else if (nextPos.right < -particle.offset.x) {
+            } else if (nextBounds.right < -particle.offset.x) {
                 particle.position.x = newPos.right;
                 particle.position.y = Math.random() * canvasSize.height;
             }
 
-            if (nextPos.top > canvasSize.height - particle.offset.y) {
+            if (nextBounds.top > canvasSize.height - particle.offset.y) {
                 particle.position.y = newPos.top;
                 particle.position.x = Math.random() * canvasSize.width;
-            } else if (nextPos.bottom < -particle.offset.y) {
+            } else if (nextBounds.bottom < -particle.offset.y) {
                 particle.position.y = newPos.bottom;
                 particle.position.x = Math.random() * canvasSize.width;
             }

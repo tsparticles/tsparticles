@@ -23,6 +23,7 @@ import type { ICharacterShape } from "../Interfaces/Options/Particles/Shape/ICha
 import type { IPolygonShape } from "../Interfaces/Options/Particles/Shape/IPolygonShape";
 import type { IStroke } from "../Interfaces/Options/Particles/Shape/IStroke";
 import { ColorUtils } from "./Utils/ColorUtils";
+import { IRandomSize } from "../Interfaces/Options/Particles/IRandomSize";
 
 /**
  * The single particle object
@@ -77,7 +78,9 @@ export class Particle {
             this.rotateDirection = options.particles.rotate.direction;
         }
 
-        this.radius = (options.particles.size.random ? Math.random() : 1) * container.retina.sizeValue;
+        const randomSize = options.particles.size.random as IRandomSize;
+
+        this.radius = randomSize.enable ? Utils.randomInRange(randomSize.minimumValue, container.retina.sizeValue) : container.retina.sizeValue;
 
         if (options.particles.size.animation.enable) {
             this.size.status = false;

@@ -138,4 +138,8 @@ export class Utils {
     public static itemFromArray<T>(array: T[], index?: number): T {
         return array[index !== undefined ? index : Utils.arrayRandomIndex(array)];
     }
+
+    public static randomInRange(min: number, max: number): number {
+        return (Math.random() * (max - min)) + min;
+    }
 }

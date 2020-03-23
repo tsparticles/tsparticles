@@ -2,6 +2,8 @@ import type { IOpacity } from "../../../Interfaces/Options/Particles/IOpacity";
 import { OpacityAnimation } from "./OpacityAnimation";
 import type { IOpacityAnimation } from "../../../Interfaces/Options/Particles/IOpacityAnimation";
 import type { RecursivePartial } from "../../../Types/RecursivePartial";
+import type { IRandomOpacity } from "../../../Interfaces/Options/Particles/IRandomOpacity";
+import { RandomOpacity } from "./RandomOpacity";
 
 export class Opacity implements IOpacity {
     /**
@@ -22,12 +24,12 @@ export class Opacity implements IOpacity {
     }
 
     public animation: IOpacityAnimation;
-    public random: boolean;
+    public random: boolean | IRandomOpacity;
     public value: number;
 
     constructor() {
         this.animation = new OpacityAnimation();
-        this.random = false;
+        this.random = new RandomOpacity();
         this.value = 1;
     }
 
@@ -40,7 +42,13 @@ export class Opacity implements IOpacity {
             }
 
             if (data.random !== undefined) {
-                this.random = data.random;
+                const random = this.random as IRandomOpacity;
+
+                if (typeof data.random === "boolean") {
+                    random.enable = data.random;
+                } else {
+                    random.load(data.random);
+                }
             }
 
             if (data.value !== undefined) {
