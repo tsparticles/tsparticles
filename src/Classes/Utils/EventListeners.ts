@@ -266,7 +266,7 @@ export class EventListeners {
             container.interactivity.mouse.position.y *= container.retina.pxRatio;
         }
 
-        container.interactivity.status = "mousemove";
+        container.interactivity.status = Constants.mouseMoveEvent;
     }
 
     /**
@@ -276,7 +276,7 @@ export class EventListeners {
         const container = this.container;
 
         delete container.interactivity.mouse.position;
-        container.interactivity.status = "mouseleave";
+        container.interactivity.status = Constants.mouseLeaveEvent;
     }
 
     /**

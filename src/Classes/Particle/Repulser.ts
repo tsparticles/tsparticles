@@ -5,6 +5,7 @@ import { OutMode } from "../../Enums/OutMode";
 import type { Particle } from "../Particle";
 import { Utils } from "../Utils/Utils";
 import { DivMode } from "../../Enums/Modes/DivMode";
+import { Constants } from "../Utils/Constants";
 
 /**
  * Particle repulse manager
@@ -23,7 +24,7 @@ export class Repulser {
         const options = container.options;
         const hoverEnabled = options.interactivity.events.onHover.enable;
         const clickEnabled = options.interactivity.events.onClick.enable;
-        const mouseMoveStatus = container.interactivity.status === "mousemove";
+        const mouseMoveStatus = container.interactivity.status === Constants.mouseMoveEvent;
         const hoverMode = options.interactivity.events.onHover.mode;
         const clickMode = options.interactivity.events.onClick.mode;
         const divMode = options.interactivity.events.onDiv.mode;

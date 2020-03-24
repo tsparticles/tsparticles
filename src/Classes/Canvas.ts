@@ -36,6 +36,9 @@ export class Canvas {
 
     private generatedCanvas: boolean;
 
+    private coverColor?: IRgb;
+    private trailFillColor?: IRgb;
+
     /**
      * Constructor of canvas manager
      * @param container the parent container
@@ -57,6 +60,20 @@ export class Canvas {
      */
     public init(): void {
         this.size();
+
+        const container = this.container;
+        const options = container.options;
+        const cover = options.backgroundMask.cover as IBackgroundMaskCover;
+        const trail = options.particles.move.trail;
+
+        this.coverColor = ColorUtils.colorToRgb(cover.color !== undefined ?
+            cover.color :
+            options.backgroundMask.cover as IColor);
+
+        this.trailFillColor = typeof trail.fillColor === "string" ?
+            ColorUtils.stringToRgb(trail.fillColor) :
+            ColorUtils.colorToRgb(trail.fillColor);
+
         this.paint();
     }
 
@@ -124,14 +141,8 @@ export class Canvas {
 
         if (this.context) {
             if (options.backgroundMask.enable && options.backgroundMask.cover) {
-                const cover = options.backgroundMask.cover as IBackgroundMaskCover;
-
-                const color = ColorUtils.colorToRgb(cover.color !== undefined ?
-                    cover.color :
-                    options.backgroundMask.cover as IColor);
-
-                if (color) {
-                    this.paintBase(ColorUtils.getStyleFromColor(color));
+                if (this.coverColor) {
+                    this.paintBase(ColorUtils.getStyleFromColor(this.coverColor));
                 } else {
                     this.paintBase();
                 }
@@ -148,18 +159,13 @@ export class Canvas {
         const container = this.container;
         const options = container.options;
         const trail = options.particles.move.trail;
-        const fillColor = typeof trail.fillColor === "string" ?
-            ColorUtils.stringToRgb(trail.fillColor) :
-            ColorUtils.colorToRgb(trail.fillColor);
 
         if (options.backgroundMask.enable) {
             this.paint();
-        } else if (trail.enable && trail.length > 0 && fillColor) {
-            this.paintBase(`rgba(${fillColor.r}, ${fillColor.g}, ${fillColor.b},${1 / trail.length}`);
-        } else {
-            if (this.context) {
-                CanvasUtils.clear(this.context, this.dimension);
-            }
+        } else if (trail.enable && trail.length > 0 && this.trailFillColor) {
+            this.paintBase(ColorUtils.getStyleFromColor(this.trailFillColor, 1 / trail.length));
+        } else if (this.context) {
+            CanvasUtils.clear(this.context, this.dimension);
         }
     }
 
