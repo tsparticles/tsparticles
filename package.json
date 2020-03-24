@@ -86,7 +86,7 @@
     "three": "^0.114.0",
     "typedoc": "^0.17.3",
     "typescript": "^3.8.3",
-    "webpack": "^4.42.0",
+    "webpack": "^4.42.1",
     "webpack-cli": "^3.3.11"
   },
   "dependencies": {}

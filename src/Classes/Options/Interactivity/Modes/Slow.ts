@@ -16,9 +16,6 @@ export class Slow implements ISlow {
         this._active = value;
     }
 
-    /**
-     * @deprecated this property will be removed soon, please use the HoverMode.slow in the HoverEvent
-     */
     private _active: boolean;
 
     public factor: number;
