@@ -59,7 +59,7 @@ export class Bubbler {
         if (bubbleParam !== particlesParam) {
             if (!container.bubble.durationEnd) {
                 if (distMouse <= bubbleDistance) {
-                    let obj = pObjBubble ?? pObj;
+                    const obj = pObjBubble ?? pObj;
 
                     if (obj !== bubbleParam) {
                         const value = pObj - (timeSpent * (pObj - bubbleParam) / bubbleDuration);
