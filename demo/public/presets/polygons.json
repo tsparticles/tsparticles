@@ -16,9 +16,17 @@
         "width": 0,
         "color": "#000000"
       },
-      "polygon": {
-        "nb_sides": 3
-      },
+      "polygon": [
+        {
+          "nb_sides": 3
+        },
+        {
+          "nb_sides": 5
+        },
+        {
+          "nb_sides": 8
+        }
+      ],
       "image": {
         "src": "images/github.svg",
         "width": 100,
@@ -71,7 +79,7 @@
     "events": {
       "onhover": {
         "enable": true,
-        "mode": "repulse",
+        "mode": "bubble",
         "parallax": {
           "enable": false,
           "force": 60,
