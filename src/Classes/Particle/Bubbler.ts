@@ -59,13 +59,7 @@ export class Bubbler {
         if (bubbleParam !== particlesParam) {
             if (!container.bubble.durationEnd) {
                 if (distMouse <= bubbleDistance) {
-                    let obj;
-
-                    if (pObjBubble) {
-                        obj = pObjBubble;
-                    } else {
-                        obj = pObj;
-                    }
+                    const obj = pObjBubble ?? pObj;
 
                     if (obj !== bubbleParam) {
                         const value = pObj - (timeSpent * (pObj - bubbleParam) / bubbleDuration);
@@ -88,9 +82,7 @@ export class Bubbler {
                     }
                 }
             } else if (pObjBubble) {
-                const tmpValue = pObj - (timeSpent * (pObj - bubbleParam) / bubbleDuration);
-                const dif = bubbleParam - tmpValue;
-                const value = bubbleParam + dif;
+                const value = bubbleParam * 2 - pObj - (timeSpent * (pObj - bubbleParam) / bubbleDuration);
 
                 if (type === ProcessBubbleType.size) {
                     this.radius = value;
@@ -122,9 +114,7 @@ export class Bubbler {
                 container.bubble.clicking = false;
                 container.bubble.durationEnd = false;
             }
-        }
 
-        if (container.bubble.clicking) {
             /* size */
             const sizeData: IBubblerProcessParam = {
                 bubbleObj: {
@@ -188,20 +178,23 @@ export class Bubbler {
 
     private hoverBubbleSize(ratio: number): void {
         const container = this.container;
+        const options = container.options;
         const particle = this.particle;
+        const modeSize = options.interactivity.modes.bubble.size;
+        const optSize = options.particles.size.value;
+        const pSize = particle.radius;
 
-        if (container.retina.bubbleModeSize !== container.retina.sizeValue) {
-            if (container.retina.bubbleModeSize > container.retina.sizeValue) {
-                const size = particle.radius + (container.retina.bubbleModeSize * ratio);
+        if (container.retina.bubbleModeSize > container.retina.sizeValue) {
+            const size = pSize + modeSize * ratio;
 
-                if (size >= 0) {
-                    this.radius = size;
-                }
-            } else {
-                const dif = particle.radius - container.retina.bubbleModeSize;
-                const size = particle.radius - (dif * ratio);
+            if (size > pSize && size <= modeSize) {
+                this.radius = size;
+            }
+        } else if (container.retina.bubbleModeSize < container.retina.sizeValue) {
+            const size = pSize - (optSize - modeSize) * ratio;
 
-                this.radius = Math.max(0, size);
+            if (size < pSize && size >= modeSize) {
+                this.radius = size;
             }
         }
     }
@@ -214,19 +207,17 @@ export class Bubbler {
         const optOpacity = options.particles.opacity.value;
         const pOpacity = particle.opacity.value;
 
-        if (modeOpacity !== optOpacity) {
-            if (modeOpacity > optOpacity) {
-                const opacity = options.interactivity.modes.bubble.opacity * ratio;
+        if (modeOpacity > optOpacity) {
+            const opacity = pOpacity + modeOpacity * ratio;
 
-                if (opacity > pOpacity && opacity <= modeOpacity) {
-                    this.opacity = opacity;
-                }
-            } else {
-                const opacity = pOpacity - (optOpacity - modeOpacity) * ratio;
+            if (opacity > pOpacity && opacity <= modeOpacity) {
+                this.opacity = opacity;
+            }
+        } else if (modeOpacity < optOpacity) {
+            const opacity = pOpacity - (optOpacity - modeOpacity) * ratio;
 
-                if (opacity < pOpacity && opacity >= modeOpacity) {
-                    this.opacity = opacity;
-                }
+            if (opacity < pOpacity && opacity >= modeOpacity) {
+                this.opacity = opacity;
             }
         }
     }
