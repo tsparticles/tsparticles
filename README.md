@@ -72,7 +72,7 @@ Want to know 5 reasons to do the switch? [Read here](https://dev.to/matteobruni/
 
 ### Slack
 
-[![Slack](https://cdn.brandfolder.io/5H442O3W/as/pl546j-7le8zk-5guop3/Slack_RGB.auto?width=94&height=38)](https://join.slack.com/t/tsparticles/shared_invite/enQtOTcxNTQxNjQ4NzkxLWE2MTZhZWExMWRmOWI5MTMxNjczOGE1Yjk0MjViYjdkYTUzODM3OTc5MGQ5MjFlODc4MzE0N2Q1OWQxZDc1YzI)
+[![Slack](https://cdn.matteobruni.it/images/slack.png)](https://join.slack.com/t/tsparticles/shared_invite/enQtOTcxNTQxNjQ4NzkxLWE2MTZhZWExMWRmOWI5MTMxNjczOGE1Yjk0MjViYjdkYTUzODM3OTc5MGQ5MjFlODc4MzE0N2Q1OWQxZDc1YzI)
 
 ### Product Hunt
 
@@ -88,6 +88,20 @@ Documentation and Development references here: <https://particles.matteobruni.it
 
 ## ***Library installation***
 
+### ***Hosting / CDN***
+
+***Please use this hosts or your own to load tsParticles on your projects***
+
+#### jsDelivr
+
+[![jsDelivr](https://data.jsdelivr.com/v1/package/npm/tsparticles/badge)](https://www.jsdelivr.com/package/npm/tsparticles)
+
+#### cdnjs
+
+[![Cdnjs](https://img.shields.io/cdnjs/v/tsparticles)](https://cdnjs.com/libraries/tsparticles)
+
+---
+
 ### ***npm***
 
 [![npmjs](https://badge.fury.io/js/tsparticles.svg)](https://www.npmjs.com/package/tsparticles)
@@ -101,23 +115,13 @@ npm install tsparticles
 yarn add tsparticles
 ```
 
+---
+
 ### ***NuGet***
 
 [![Nuget](https://img.shields.io/nuget/v/tsParticles)](https://www.nuget.org/packages/tsParticles/)
 
 ---
-
-### ***Hosting / CDN***
-
-***Please use this host or your own to load tsParticles on your projects***
-
-#### jsDelivr
-
-[![jsDelivr](https://data.jsdelivr.com/v1/package/npm/tsparticles/badge)](https://www.jsdelivr.com/package/npm/tsparticles)
-
-#### cdnjs
-
-[![Cdnjs](https://img.shields.io/cdnjs/v/tsparticles)](https://cdnjs.com/libraries/tsparticles)
 
 ### ***Usage***
 
