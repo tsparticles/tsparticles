@@ -6,10 +6,12 @@ import type { IBackgroundMaskCover } from "../../../Interfaces/Options/Backgroun
 export class BackgroundMaskCover implements IBackgroundMaskCover {
     public color: IColor;
     public opacity: number;
+
     constructor() {
         this.color = new Color();
         this.opacity = 1;
     }
+
     public load(data?: RecursivePartial<IBackgroundMaskCover> | undefined): void {
         if (data !== undefined) {
             if (data.color !== undefined) {

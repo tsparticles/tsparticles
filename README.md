@@ -465,94 +465,117 @@ particles.pause();
 
 ### ***Options***
 
-key | option type / notes | example
-----|---------|------
-`particles.number.value` | number | `40`
-`particles.number.limit` | number | `200` / `0` or less disables the limit
-`particles.number.density.enable` | boolean | `true` / `false` 
-`particles.number.density.area` | number | `800`
-`particles.color.value` | HEX (string) <br /> RGB (object) <br /> HSL (object) <br /> array selection (HEX) <br /> random (string) | `"#0d47a1"` <br /> `{r:182, g:25, b:36}` <br />  `{h:356, s:76, l:41}` <br /> `["#b61924", "#333333", "999999"]` <br /> `"random"`
-`particles.shape.type` | string <br /> array selection | `"circle"` <br /> `"line"` <br /> `"edge"` <br /> `"triangle"` <br /> `"polygon"` <br /> `"star"` <br /> `"image"` <br /> `["circle", "triangle", "image"]`
-`particles.shape.stroke.width` | number | `2`
-`particles.shape.stroke.color` | HEX (string) <br /> random (string) | `"#222222"` <br /> `"random"`
-`particles.shape.polygon.sides` | number | `5`
-`particles.shape.character` | object / array | A single character object like below or an array of the same objects
-`particles.shape.character.value` | object / array | `\uf179` / `*`
-`particles.shape.character.font` | string | `Font Awesome 5  Brands` 
-`particles.shape.character.style` | string | ``
-`particles.shape.character.weight` | string | `400` (Font weight, for FontAwesome it's required to use the exact weight for every family, Chrome won't render correctly otherwise.)
-`particles.shape.character.fill` | boolean | `true` / `false` (Fills or strokes the text. If the fonts doesn't support the stroke or the fill you won't see any particle. FontAwesome requires `fill: true`)
-`particles.shape.image` | object / array | A single image object like below or an array of the same objects
-`particles.shape.image.src` | path link <br /> svg / png / gif / jpg | `"assets/img/yop.svg"` <br /> `"http://mywebsite.com/assets/img/yop.png"`
-`particles.shape.image.width` | number <br />(for aspect ratio) | `100`
-`particles.shape.image.height` | number <br />(for aspect ratio) | `100`
-`particles.opacity.value` | number (0 to 1) | `0.75`
-`particles.opacity.random` | boolean | `true` / `false` 
-`particles.opacity.animation.enable` | boolean | `true` / `false` 
-`particles.opacity.animation.speed` | number | `3`
-`particles.opacity.animation.minimumValue` | number (0 to 1) | `0.25`
-`particles.opacity.animation.sync` | boolean | `true` / `false`
-`particles.rotate.value` | number (angle in degrees) | `45`
-`particles.rotate.random` | boolean | `true` / `false`
-`particles.rotate.direction` | string | `clockwise` / `counterclockwise`
-`particles.rotate.animation.enable` | boolean | `true` / `false`
-`particles.rotate.animation.speed` | number | 5
-`particles.rotate.animation.sync` | boolean | `true` / `false`
-`particles.size.value` | number | `20`
-`particles.size.random` | boolean | `true` / `false` 
-`particles.size.animation.enable` | boolean | `true` / `false` 
-`particles.size.animation.speed` | number | `3`
-`particles.size.animation.minimumValue` | number | `0.25`
-`particles.size.animation.sync` | boolean | `true` / `false`
-`particles.lineLinked.enable` | boolean | `true` / `false`
-`particles.lineLinked.distance` | number | `150`
-`particles.lineLinked.color` | HEX (string)  <br /> random (string) | `#ffffff` <br /> `"random"`
-`particles.lineLinked.opacity` | number (0 to 1) | `0.5`
-`particles.lineLinked.width` | number | `1.5`
-`particles.move.enable` | boolean | `true` / `false`
-`particles.move.speed` | number | `4`
-`particles.move.direction` | string | `"none"` <br /> `"top"` <br /> `"top-right"` <br /> `"right"` <br /> `"bottom-right"` <br /> `"bottom"` <br /> `"bottom-left"` <br /> `"left"` <br /> `"top-left"`
-`particles.move.random` | boolean | `true` / `false`
-`particles.move.straight` | boolean | `true` / `false`
-`particles.move.outMode` | string <br /> (out of canvas) | `"out"`<br /> `"destroy"` <br /> `"bounce"` <br /> `"bounce-vertical"` <br /> `"bounce-horizontal"`
-`particles.move.bounce` | boolean <br /> (between particles) | `true` / `false`
-`particles.move.trail.enable` | boolean | `true` / `false`
-`particles.move.trail.length` | number | `10`
-`particles.move.trail.fillColor` | HEX (string) | `#000000`
-`particles.move.attract.enable` | boolean | `true` / `false`
-`particles.move.attract.rotate.x` | number | `3000`
-`particles.move.attract.rotate.y` | number | `1500`
-`interactivity.detectsOn` | string | `"canvas", "window","parent"`
-`interactivity.events.onHover.enable` | boolean | `true` / `false`
-`interactivity.events.onHover.mode` | string <br /> array selection | `"grab"` <br /> `"bubble"` <br /> `"repulse"` <br /> `"connect"` <br /> `["grab", "bubble"]`
-`interactivity.events.onClick.enable` | boolean | `true` / `false`
-`interactivity.events.onClick.mode` | string <br /> array selection | `"push"` <br /> `"remove"` <br /> `"bubble"` <br /> `"repulse"` <br /> `["push", "repulse"]`
-`interactivity.events.onDiv.mnode` | string <br /> array selection | `"repulse"` <br /> `["repulse"]`
-`interactivity.events.onDiv.enable` | boolean | `true` / `false`
-`interactivity.events.onDiv.el` | string | `repulse-div`
-`interactivity.events.resize` | boolean | `true` / `false`
-`interactivity.events.modes.connect.distance` | number | `100`
-`interactivity.events.modes.connect.radius` | number | `60`
-`interactivity.events.modes.connect.lineLinked.opacity` | number (0 to 1) | `0.75`
-`interactivity.events.modes.grab.distance` | number | `100`
-`interactivity.events.modes.grab.lineLinked.opacity` | number (0 to 1) | `0.75`
-`interactivity.events.modes.bubble.distance` | number | `100`
-`interactivity.events.modes.bubble.size` | number | `40`
-`interactivity.events.modes.bubble.duration` | number <br /> (second) | `0.4`
-`interactivity.events.modes.repulse.distance` | number | `200`
-`interactivity.events.modes.repulse.duration` | number <br /> (second) | `1.2`
-`interactivity.events.modes.push.quantity` | number | `4`
-`interactivity.events.modes.remove.quantity` | number | `4`
-`detectRetina` | boolean | `true` / `false`
-`fpsLimit` | number | `60`
-`pauseOnBlur` | boolean | `true` / `false`
-`backgroundMask.enable` | boolean | `true` / `false`
-`backgroundMask.cover.value` | HEX (string) <br /> RGB (object) <br /> HSL (object) <br /> random (string) | `"#0d47a1"` <br /> `{r:182, g:25, b:36}` <br />  `{h:356, s:76, l:41}` <br /> `"random"`
-`polygon.enable` | boolean | `true` / `false`
-`polygon.draw.enable` | boolean | `true` / `false`
-`polygon.draw.lineWidth` | number | `0.5`
-`polygon.draw.lineColor` | HEX (string) | `#ffffff`
-`polygon.scale` | number | 1
-`polygon.type` | string | `none` / `inside` / `outside` / `inline`
-`polygon.move.radius` | number | `10`
-`polygon.url` | string | `demo/svg/deer.svg`
+property | option type | example | notes
+---|---|---|---
+`backgroundMask` | `object` | | See Background Mask options below
+`detectRetina` | `boolean` | `true` / `false` | replaces the old `retina_detect` property
+`fpsLimit` | `number` | `60` | *defaults to `60`*, replaces the old `fps_limit` property
+`interactivity` | `object` | | See Interactivity options below
+`pauseOnBlur` | `boolean` | `true` / `false` | pauses the animations when the page isn't on foreground
+
+#### Background Mask
+
+key | option type | example | notes
+---|---|---|---
+`enable` | `boolean` | `true` / `false` | 
+`cover.value` | HEX (`string`) <br /> RGB (`object`) <br /> HSL (`object`) <br /> random (`string`) | `"#0d47a1"` <br /> `{r:182, g:25, b:36}` <br />  `{h:356, s:76, l:41}` <br /> `"random"` | 
+`cover.opacity` | `number` | `0...1` |
+
+#### Interactivity
+
+key | option type | example | notes
+---|---|---|---
+`detectsOn` | `string` | `"canvas", "window", "parent"` | replaces the old `detect_on` property
+`events.onHover.enable` | `boolean` | `true` / `false` | 
+`events.onHover.mode` | `string` <br /> `array` | `"grab"` <br /> `"bubble"` <br /> `"repulse"` <br /> `"connect"` <br /> `["grab", "bubble"]` | the array enables all the specified modes
+`events.onClick.enable` | `boolean` | `true` / `false` |
+`events.onClick.mode` | `string` <br /> `array` | `"push"` <br /> `"remove"` <br /> `"bubble"` <br /> `"repulse"` <br /> `["push", "repulse"]` | the array enables all the specified modes
+`events.onDiv.enable` | `boolean` | `true` / `false`
+`events.onDiv.mode` | `string` <br /> `array` | `"repulse"` <br /> `["repulse"]` | the array enables all the specified modes
+`events.onDiv.elementId` | `string` | `repulse-div` | replaces the old `el` property
+`events.resize` | `boolean` | `true` / `false` | 
+`events.modes.connect.distance` | `number` | `100` |
+`events.modes.connect.radius` | `number` | `60`
+`events.modes.connect.lineLinked.opacity` | `number` | `0...1` |
+`events.modes.grab.distance` | `number` | `100`
+`events.modes.grab.lineLinked.opacity` | `number` | `0...1` |
+`events.modes.bubble.distance` | `number` | `100` |
+`events.modes.bubble.size` | `number` | `40` |
+`events.modes.bubble.duration` | `number` | `0.4` | seconds
+`events.modes.repulse.distance` | `number` | `200`
+`events.modes.repulse.duration` | `number` | `1.2` | seconds
+`events.modes.push.quantity` | `number` | `4` |
+`events.modes.remove.quantity` | `number` | `4` |
+
+#### Particles
+
+key | option type | example | notes
+---|---|---|---
+`number.value` | `number` | `40` |
+`number.limit` | `number` | `200` | `0` or less disables the limit
+`number.density.enable` | `boolean` | `true` / `false` |
+`number.density.area` | `number` | `800` |
+`color.value` | HEX (`string`) <br /> RGB (`object`) <br /> HSL (`object`) <br /> array (`HEX`) <br /> random (`string`) | `"#0d47a1"` <br /> `{r:182, g:25, b:36}` <br />  `{h:356, s:76, l:41}` <br /> `["#b61924", "#333333", "999999"]` <br /> `"random"` | 
+`shape.type` | `string` <br /> `array` | `"circle"` <br /> `"line"` <br /> `"edge"` <br /> `"triangle"` <br /> `"polygon"` <br /> `"star"` <br /> `"image"` <br /> `["circle", "triangle", "image"]`
+`shape.stroke.width` | `number` | `2`
+`shape.stroke.color` | HEX (`string`) <br /> RGB (`object`) <br /> HSL (`object`) <br /> random (`string`) | `"#0d47a1"` <br /> `{r:182, g:25, b:36}` <br />  `{h:356, s:76, l:41}` <br /> `"random"` |
+`shape.polygon.sides` | `number` | `5` |
+`shape.character` | `object` <br /> `array` | | A single character object like below or an array of the same objects
+`shape.character.value` | `object` <br /> array | `\uf179`
+`shape.character.font` | `string` | `Font Awesome 5  Brands` |
+`shape.character.style` | `string` | |
+`shape.character.weight` | `string` | `400` | font weight, for FontAwesome it's required to use the exact weight for every family, Chrome won't render correctly otherwise.
+`shape.character.fill` | `boolean` | `true` / `false` | Fills or strokes the text. If the fonts doesn't support the stroke or the fill you won't see any particle. FontAwesome requires `fill: true`
+`shape.image` | object / array | A single image object like below or an array of the same objects
+`shape.image.src` | path link <br /> svg / png / gif / jpg | `"assets/img/yop.svg"` <br /> `"http://mywebsite.com/assets/img/yop.png"` | 
+`shape.image.width` | `number` | `100` | for aspect ratio
+`shape.image.height` | `number` | `100` | for aspect ratio
+`opacity.value` | `number` | `0...1` |
+`opacity.random` | `boolean` | `true` / `false` |
+`opacity.animation.enable` | `boolean` | `true` / `false` |
+`opacity.animation.speed` | `number` | `3`
+`opacity.animation.minimumValue` | `number` | `0...1` | replaces the old `opacity_min` property
+`opacity.animation.sync` | `boolean` | `true` / `false` |
+`rotate.value` | `number` | `45` | angle in degrees
+`rotate.random` | `boolean` | `true` / `false` |
+`rotate.direction` | `string` | `clockwise` / `counterclockwise` | 
+`rotate.animation.enable` | `boolean` | `true` / `false` |
+`rotate.animation.speed` | `number` | 5 |
+`rotate.animation.sync` | `boolean` | `true` / `false` |
+`size.value` | `number` | `20` |
+`size.random` | `boolean` | `true` / `false` | 
+`size.animation.enable` | `boolean` | `true` / `false` |
+`size.animation.speed` | `number` | `3` |
+`size.animation.minimumValue` | `number` | `0.25` | 
+`size.animation.sync` | `boolean` | `true` / `false` |
+`lineLinked.enable` | `boolean` | `true` / `false` |
+`lineLinked.distance` | `number` | `150` |
+`lineLinked.color` | HEX (`string`) <br /> RGB (`object`) <br /> HSL (`object`) <br /> random (`string`) | `"#0d47a1"` <br /> `{r:182, g:25, b:36}` <br />  `{h:356, s:76, l:41}` <br /> `"random"` |
+`lineLinked.opacity` | `number` | `0...1` |
+`lineLinked.width` | `number` | `1.5`
+`move.enable` | `boolean` | `true` / `false` |
+`move.speed` | `number` | `4` |
+`move.direction` | `string` | `"none"` <br /> `"top"` <br /> `"top-right"` <br /> `"right"` <br /> `"bottom-right"` <br /> `"bottom"` <br /> `"bottom-left"` <br /> `"left"` <br /> `"top-left"` |
+`move.random` | `boolean` | `true` / `false` |
+`move.straight` | `boolean` | `true` / `false` |
+`move.outMode` | `string` | `"out"`<br /> `"destroy"` <br /> `"bounce"` <br /> `"bounce-vertical"` <br /> `"bounce-horizontal"` | out of canvas
+`move.bounce` | `boolean` | `true` / `false` | between particles
+`move.trail.enable` | `boolean` | `true` / `false` |
+`move.trail.length` | `number` | `10` |
+`move.trail.fillColor` | HEX (`string`) <br /> RGB (`object`) <br /> HSL (`object`) <br /> random (`string`) | `"#0d47a1"` <br /> `{r:182, g:25, b:36}` <br />  `{h:356, s:76, l:41}` <br /> `"random"` |
+`move.attract.enable` | `boolean` | `true` / `false` |
+`move.attract.rotate.x` | `number` | `3000` |
+`move.attract.rotate.y` | `number` | `1500` |
+
+#### Polygon Mask
+
+key | option type | example | notes
+---|---|---|---
+`enable` | `boolean` | `true` / `false`
+`draw.enable` | `boolean` | `true` / `false`
+`draw.lineWidth` | `number` | `0.5`
+`draw.lineColor` | HEX (`string`) <br /> RGB (`object`) <br /> HSL (`object`) <br /> random (`string`) | `"#0d47a1"` <br /> `{r:182, g:25, b:36}` <br />  `{h:356, s:76, l:41}` <br /> `"random"` |
+`scale` | `number` | 1 |
+`type` | `string` | `none` <br /> `inside` <br /> `outside` <br /> `inline` |
+`move.radius` | `number` | `10` | 
+`url` | `string` | `demo/svg/deer.svg` | this file will be downloaded with an ajax request, if it won't load you have some **XSS** issues
