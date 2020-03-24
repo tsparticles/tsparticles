@@ -1,8 +1,8 @@
-import {IRotate} from "../../../Interfaces/Options/Particles/IRotate";
-import {IRotateAnimation} from "../../../Interfaces/Options/Particles/IRotateAnimation";
-import {RotateAnimation} from "./RotateAnimation";
-import {RotateDirection} from "../../../Enums/RotateDirection";
-import {RecursivePartial} from "../../../Types/RecursivePartial";
+import type { IRotate } from "../../../Interfaces/Options/Particles/IRotate";
+import type { IRotateAnimation } from "../../../Interfaces/Options/Particles/IRotateAnimation";
+import { RotateAnimation } from "./RotateAnimation";
+import { RotateDirection } from "../../../Enums/RotateDirection";
+import type { RecursivePartial } from "../../../Types/RecursivePartial";
 
 export class Rotate implements IRotate {
     public animation: IRotateAnimation;

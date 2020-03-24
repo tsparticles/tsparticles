@@ -1,21 +1,25 @@
-import {IShadow} from "../../../Interfaces/Options/Particles/IShadow";
-import {ICoordinates} from "../../../Interfaces/ICoordinates";
-import {RecursivePartial} from "../../../Types/RecursivePartial";
+import type { IShadow } from "../../../Interfaces/Options/Particles/IShadow";
+import type { ICoordinates } from "../../../Interfaces/ICoordinates";
+import type { RecursivePartial } from "../../../Types/RecursivePartial";
+import type { IColor } from "../../../Interfaces/Options/Particles/IColor";
+import { Color } from "./Color";
 
 export class Shadow implements IShadow {
     public blur: number;
-    public color: string;
+    public color: string | IColor;
     public enable: boolean;
     public offset: ICoordinates;
 
     constructor() {
         this.blur = 0;
-        this.color = "#000000";
+        this.color = new Color();
         this.enable = false;
         this.offset = {
             x: 0,
             y: 0,
         };
+
+        this.color.value = "#000000";
     }
 
     public load(data?: RecursivePartial<IShadow>): void {
@@ -25,7 +29,11 @@ export class Shadow implements IShadow {
             }
 
             if (data.color !== undefined) {
-                this.color = data.color;
+                if (typeof this.color === "string") {
+                    this.color = data.color;
+                } else {
+                    this.color.load(data.color as IColor);
+                }
             }
 
             if (data.enable !== undefined) {

@@ -1,6 +1,5 @@
-import {IDensity} from "../../../Interfaces/Options/Particles/IDensity";
-import {Messages} from "../../Utils/Messages";
-import {RecursivePartial} from "../../../Types/RecursivePartial";
+import type { IDensity } from "../../../Interfaces/Options/Particles/IDensity";
+import type { RecursivePartial } from "../../../Types/RecursivePartial";
 
 export class Density implements IDensity {
     /**
@@ -8,8 +7,6 @@ export class Density implements IDensity {
      * @deprecated this property is obsolete, please use the new area
      */
     public get value_area(): number {
-        Messages.deprecated("particles.number.density.value_area", "particles.number.density.area");
-
         return this.area;
     }
 
@@ -19,8 +16,6 @@ export class Density implements IDensity {
      * @param value
      */
     public set value_area(value: number) {
-        Messages.deprecated("particles.number.density.value_area", "particles.number.density.area");
-
         this.area = value;
     }
 
@@ -28,7 +23,7 @@ export class Density implements IDensity {
     public area: number;
 
     constructor() {
-        this.enable = true;
+        this.enable = false;
         this.area = 800;
     }
 

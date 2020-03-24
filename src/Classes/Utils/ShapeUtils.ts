@@ -1,25 +1,28 @@
-import {Particle} from "../Particle";
-import {IStroke} from "../../Interfaces/Options/Particles/Shape/IStroke";
-import {ShapeType} from "../../Enums/ShapeType";
-import {ICoordinates} from "../../Interfaces/ICoordinates";
-import {ISide} from "../../Interfaces/ISide";
-import {ICharacterShape} from "../../Interfaces/Options/Particles/Shape/ICharacterShape";
+import type { Particle } from "../Particle";
+import type { IStroke } from "../../Interfaces/Options/Particles/Shape/IStroke";
+import { ShapeType } from "../../Enums/ShapeType";
+import type { ICoordinates } from "../../Interfaces/ICoordinates";
+import type { ISide } from "../../Interfaces/ISide";
+import type { ICharacterShape } from "../../Interfaces/Options/Particles/Shape/ICharacterShape";
+import { ColorUtils } from "./ColorUtils";
+import { IRgb } from "../../Interfaces/IRgb";
 
 export class ShapeUtils {
     public static drawShape(context: CanvasRenderingContext2D,
-                            particle: Particle,
-                            radius: number,
-                            stroke: IStroke): void {
+        particle: Particle,
+        radius: number,
+        stroke: IStroke,
+        strokeColor: IRgb | undefined): void {
         const pos = {
             x: particle.offset.x,
             y: particle.offset.y,
         };
 
-        const sides = particle.container.options.particles.shape.polygon.sides;
+        const sides = particle.polygon?.sides ?? 5;
 
         switch (particle.shape) {
             case ShapeType.line:
-                this.drawLineShape(context, radius, stroke);
+                this.drawLineShape(context, radius, stroke, strokeColor);
                 break;
 
             case ShapeType.circle:
@@ -109,12 +112,17 @@ export class ShapeUtils {
         this.drawGenericPolygonShape(context, start, side);
     }
 
-    private static drawLineShape(context: CanvasRenderingContext2D, length: number, stroke: IStroke): void {
-        context.moveTo(0, -length / 2);
-        context.lineTo(0, length / 2);
-        context.strokeStyle = stroke.color;
-        context.lineWidth = stroke.width;
-        context.stroke();
+    private static drawLineShape(context: CanvasRenderingContext2D,
+        length: number,
+        stroke: IStroke,
+        strokeColor: IRgb | undefined): void {
+        if (strokeColor) {
+            context.moveTo(0, -length / 2);
+            context.lineTo(0, length / 2);
+            context.strokeStyle = ColorUtils.getStyleFromColor(strokeColor);
+            context.lineWidth = stroke.width;
+            context.stroke();
+        }
     }
 
     private static drawCircleShape(context: CanvasRenderingContext2D, radius: number, center: ICoordinates): void {
@@ -141,9 +149,9 @@ export class ShapeUtils {
     }
 
     private static drawTextShape(context: CanvasRenderingContext2D,
-                                 character: ICharacterShape | undefined,
-                                 text: string | undefined,
-                                 radius: number): void {
+        character: ICharacterShape | undefined,
+        text: string | undefined,
+        radius: number): void {
         if (text === undefined || character === undefined) {
             return;
         }

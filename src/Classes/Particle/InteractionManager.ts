@@ -1,19 +1,17 @@
-import {Container} from "../Container";
-import {Particle} from "../Particle";
-import {Linker} from "./Linker";
-import {Attracter} from "./Attracter";
-import {Collider} from "./Collider";
+import type { Container } from "../Container";
+import type { Particle } from "../Particle";
+import { Linker } from "./Linker";
+import { Attracter } from "./Attracter";
+import { Collider } from "./Collider";
 
 export class InteractionManager {
     private readonly container: Container;
-    private readonly particle: Particle;
     private readonly linker: Linker;
     private readonly attracter: Attracter;
     private readonly collider: Collider;
 
     constructor(container: Container, particle: Particle) {
         this.container = container;
-        this.particle = particle;
         this.linker = new Linker(container, particle);
         this.attracter = new Attracter(container, particle);
         this.collider = new Collider(container, particle);

@@ -6,11 +6,39 @@
 
 # tsParticles - TypeScript Particles
 
-**A lightweight TypeScript library for creating particles**
+**A lightweight TypeScript library for creating particles. Dependency free and browser ready!**
 
-*[Particles.js](https://github.com/VincentGarreau/particles.js) converted in TypeScript, improved with new cool features and various bugs fixed and **it's currently under development**!*
+*[Particles.js](https://github.com/VincentGarreau/particles.js) converted in TypeScript, dependency free, improved with new cool 😎 features and various bugs fixed and **it's currently under development**!*
+
+## Do you want to use it on your website?
+
+**This library is available on the two most popular CDNs and it's easy and ready to use, if you were using particles.js it's even easier**.
+
+You'll find the instructions [below](https://github.com/matteobruni/tsparticles/blob/master/README.md#library-installation), with all the links you need, and *don't be scared by **TypeScript**, it's just the source language*.
+
+**The output files are just ES5 JavaScript**. 🤩
+
+CDNs and `npm` have all the sources you need in **ES5 Javascript**, a bundle browser ready (tsparticles.min.js) and all files splitted for `import` syntax.
+
+Actually the `import` syntax doesn't have instructions, but you can contact me by mail or in the project's Slack, the link is below and I'll help you find the right solution. Until a guide will be ready this is the fastest solution.
+
+**If you are still interested** some lines below there are some instructions for migrating from the old particles.js library.
+
+### Want to see it in action and try it?
+
+I've created a tsParticles collection on [CodePen](https://codepen.io/collection/DPOage) 😮 or you can checkout my [profile](https://codepen.io/matteobruni)
+
+Otherwise there's the demo page link below. Just click/tap the Coronavirus below, don't be scared. **It's safe** 😷.
 
 [![tsParticles demo](https://media.giphy.com/media/fsVN1ZHksgBIXNIbr1/giphy.gif)](https://particles.matteobruni.it/#virus)
+
+Want to see ever more demos? Clone the repository on your computer and follow these instructions
+
+```shell
+npm install && npm start
+```
+
+**Boom! 💥** <http://localhost:3000> and you can checkout other demos, *if you are brave enough* you can switch to the `dev` branch so you can try the features under development.
 
 ---
 
@@ -18,7 +46,9 @@
 
 **tsParticles** are fully compatible with the *particles.js* configuration.
 
-Seriously, you just need to change the script source et-voilà, **you're ready**!
+Seriously, you just need to change the script source et-voilà, **you're ready** 🧙!
+
+You can read more **[here](https://dev.to/matteobruni/migrating-from-particles-js-to-tsparticles-2a6m)**
 
 Want to know 5 reasons to do the switch? [Read here](https://dev.to/matteobruni/5-reasons-to-use-tsparticles-and-not-particles-js-1gbe)
 
@@ -52,11 +82,11 @@ Want to know 5 reasons to do the switch? [Read here](https://dev.to/matteobruni/
 
 ### API Docs
 
-Documentation and Development references here: <https://particles.matteobruni.it/docs/>
+Documentation and Development references here: <https://particles.matteobruni.it/docs/> 📖
 
 ---
 
-## ***Packages install***
+## ***Library installation***
 
 ### ***npm***
 
@@ -84,6 +114,10 @@ yarn add tsparticles
 #### jsDelivr
 
 [![jsDelivr](https://data.jsdelivr.com/v1/package/npm/tsparticles/badge)](https://www.jsdelivr.com/package/npm/tsparticles)
+
+#### cdnjs
+
+[![Cdnjs](https://img.shields.io/cdnjs/v/tsparticles)](https://cdnjs.com/libraries/tsparticles)
 
 ### ***Usage***
 
@@ -203,111 +237,38 @@ particles.pause();
 
 ```json
 {
-  "particles": {
-    "color": {
-      "value": "#ffffff"
-    },
-    "number": {
-      "value": 80,
-      "limit": 200,
-      "density": {
-        "enable": true,
-        "area": 800
-      }
-    },
-    "shape": {
-      "type": "circle",
-      "character": {
-        "fill": true,
-        "font": "Font Awesome 5 Brands",
-        "style": "",
-        "value": "\uf179",
-        "weight": "400"
-      },
-      "stroke": {
-        "width": 0,
-        "color": "#000000"
-      },
-      "polygon": {
-        "sides": 5
-      },
-      "image": {
-        "src": "img/github.svg",
-        "width": 100,
-        "height": 100
-      }
-    },
-    "opacity": {
-      "value": 0.5,
-      "random": false,
-      "animation": {
-        "enable": false,
-        "speed": 1,
-        "minimumValue": 0.1,
-        "sync": false
-      }
-    },
-    "rotate": {
-      "value": 0,
-      "random": true,
-      "direction": "clockwise",
-      "animation": {
-        "enable": true,
-        "speed": 5,
-        "sync": false
-      }
-    },
-    "size": {
-      "value": 10,
-      "random": true,
-      "animation": {
-        "enable": false,
-        "speed": 80,
-        "minimumValue": 0.1,
-        "sync": false
-      }
-    },
-    "lineLinked": {
-      "enable": true,
-      "distance": 300,
-      "color": "#ffffff",
-      "opacity": 0.4,
-      "width": 2
-    },
-    "move": {
-      "enable": true,
-      "speed": 12,
-      "direction": "none",
-      "random": false,
-      "straight": false,
-      "outMode": "out",
-      "bounce": false,
-      "trail": {
-        "enable": false,
-        "length": 10,
-        "fillColor": "#000000"      
-      },
-      "attract": {
-        "enable": false,
-        "rotateX": 600,
-        "rotateY": 1200
-      }
-    }
-  },
+  "detectRetina": false,
+  "fpsLimit": 60,
   "interactivity": {
     "detectsOn": "canvas",
     "events": {
-      "onHover": {
+      "onClick": {
+        "enable": false,
+        "mode": "push"
+      },
+      "onDiv": {
+        "elementId": "repulse-div",
         "enable": false,
         "mode": "repulse"
       },
-      "onClick": {
-        "enable": true,
-        "mode": "push"
+      "onHover": {
+        "enable": false,
+        "mode": "grab",
+        "parallax": {
+          "enable": false,
+          "force": 2,
+          "smooth": 10
+        }
       },
       "resize": true
     },
     "modes": {
+      "bubble": {
+        "distance": 200,
+        "duration": 0.4,
+        "opacity": 1,
+        "size": 80
+      },
       "connect": {
         "distance": 80,
         "lineLinked": {
@@ -316,54 +277,187 @@ particles.pause();
         "radius": 60
       },
       "grab": {
-        "distance": 800,
+        "distance": 100,
         "lineLinked": {
           "opacity": 1
         }
-      },
-      "bubble": {
-        "distance": 800,
-        "size": 80,
-        "duration": 2,
-        "opacity": 0.8,
-        "speed": 3
-      },
-      "repulse": {
-        "distance": 400,
-        "duration": 0.4
       },
       "push": {
         "quantity": 4
       },
       "remove": {
         "quantity": 2
+      },
+      "repulse": {
+        "distance": 200,
+        "duration": 0.4
+      },
+      "slow": {
+        "_active": false,
+        "factor": 1,
+        "radius": 0
       }
     }
   },
-  "detectRetina": true,
-  "fpsLimit": 60,
-  "pauseOnBlur": true,
-  "backgroundMask": {
-    "enable": true,
-    "cover": {
-      "value": {
-        "r": 255,
-        "g": 255,
-        "b": 255
+  "particles": {
+    "color": {
+      "value": "#ffffff"
+    },
+    "lineLinked": {
+      "blink": false,
+      "color": {
+        "value": "#fff"
+      },
+      "consent": false,
+      "distance": 150,
+      "enable": true,
+      "opacity": 0.4,
+      "shadow": {
+        "blur": 5,
+        "color": {
+          "value": "lime"
+        },
+        "enable": false
+      },
+      "width": 1
+    },
+    "move": {
+      "attract": {
+        "enable": false,
+        "rotate": {
+          "x": 3000,
+          "y": 3000
+        }
+      },
+      "collisions": false,
+      "direction": "none",
+      "enable": true,
+      "outMode": "out",
+      "random": false,
+      "speed": 2,
+      "straight": false,
+      "trail": {
+        "enable": false,
+        "length": 10,
+        "fillColor": {
+          "value": "#000000"
+        }
+      }
+    },
+    "number": {
+      "density": {
+        "enable": false,
+        "area": 800
+      },
+      "limit": 0,
+      "value": 100
+    },
+    "opacity": {
+      "animation": {
+        "enable": false,
+        "minimumValue": 0,
+        "speed": 2,
+        "sync": false
+      },
+      "random": {
+        "enable": false,
+        "minimumValue": 1
+      },
+      "value": 1
+    },
+    "rotate": {
+      "animation": {
+        "enable": false,
+        "speed": 0,
+        "sync": false
+      },
+      "direction": "clockwise",
+      "random": false,
+      "value": 0
+    },
+    "shape": {
+      "character": {
+        "fill": false,
+        "font": "Verdana",
+        "style": "",
+        "value": "*",
+        "weight": "400"
+      },
+      "image": {
+        "height": 100,
+        "replaceColor": true,
+        "src": "",
+        "width": 100
+      },
+      "polygon": {
+        "sides": 5
+      },
+      "stroke": {
+        "color": {
+          "value": "#ff0000"
+        },
+        "width": 0
+      },
+      "type": "circle"
+    },
+    "size": {
+      "animation": {
+        "enable": false,
+        "minimumValue": 0,
+        "speed": 5,
+        "sync": false
+      },
+      "random": {
+        "enable": false,
+        "minimumValue": 1
+      },
+      "value": 3
+    },
+    "shadow": {
+      "blur": 0,
+      "color": {
+        "value": "#000000"
+      },
+      "enable": false,
+      "offset": {
+        "x": 0,
+        "y": 0
       }
     }
   },
   "polygon": {
-    "debug": {
-      "enable": true,
-      "color": "#000000"
+    "draw": {
+      "enable": false,
+      "stroke": {
+        "color": {
+          "value": "#fff"
+        },
+        "width": 0.5,
+        "opacity": 1
+      }
     },
-    "type": "inside",
+    "enable": false,
+    "inline": {
+      "arrangement": "one-per-point"
+    },
     "move": {
-      "radius": 10
+      "radius": 10,
+      "type": "path"
     },
-    "url": "demo/svg/deer.svg"
-  }
+    "scale": 1,
+    "type": "none",
+    "url": ""
+  },
+  "backgroundMask": {
+    "cover": {
+      "color": {
+        "value": "#fff"
+      },
+      "opacity": 1
+    },
+    "enable": false
+  },
+  "pauseOnBlur": true
 }
 ```
 

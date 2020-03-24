@@ -1,22 +1,19 @@
-import {IPolygonMask} from "../../../Interfaces/Options/PolygonMask/IPolygonMask";
-import {PolygonMaskType} from "../../../Enums/PolygonMaskType";
-import {Draw} from "./Draw";
-import {Move} from "./Move";
-import {IPolygonMaskDraw} from "../../../Interfaces/Options/PolygonMask/IPolygonMaskDraw";
-import {IPolygonMaskMove} from "../../../Interfaces/Options/PolygonMask/IPolygonMaskMove";
-import {PolygonMaskInlineArrangement} from "../../../Enums/PolygonMaskInlineArrangement";
-import {IPolygonInline} from "../../../Interfaces/Options/PolygonMask/IPolygonInline";
-import {Messages} from "../../Utils/Messages";
-import {PolygonInline} from "./PolygonInline";
-import {RecursivePartial} from "../../../Types/RecursivePartial";
+import type { IPolygonMask } from "../../../Interfaces/Options/PolygonMask/IPolygonMask";
+import { PolygonMaskType } from "../../../Enums/PolygonMaskType";
+import { Draw } from "./Draw";
+import { Move } from "./Move";
+import type { IPolygonMaskDraw } from "../../../Interfaces/Options/PolygonMask/IPolygonMaskDraw";
+import type { IPolygonMaskMove } from "../../../Interfaces/Options/PolygonMask/IPolygonMaskMove";
+import { PolygonMaskInlineArrangement } from "../../../Enums/PolygonMaskInlineArrangement";
+import type { IPolygonInline } from "../../../Interfaces/Options/PolygonMask/IPolygonInline";
+import { PolygonInline } from "./PolygonInline";
+import type { RecursivePartial } from "../../../Types/RecursivePartial";
 
 export class PolygonMask implements IPolygonMask {
     /**
      * @deprecated the property inlineArrangement is deprecated, please use the new inline.arrangement
      */
     get inlineArrangement(): PolygonMaskInlineArrangement {
-        Messages.deprecated("polygon.inlineArrangement", "polygon.inline.arrangement");
-
         return this.inline.arrangement;
     }
 
@@ -24,8 +21,6 @@ export class PolygonMask implements IPolygonMask {
      * @deprecated the property inlineArrangement is deprecated, please use the new inline.arrangement
      */
     set inlineArrangement(value: PolygonMaskInlineArrangement) {
-        Messages.deprecated("polygon.inlineArrangement", "polygon.inline.arrangement");
-
         this.inline.arrangement = value;
     }
 

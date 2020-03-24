@@ -1,6 +1,7 @@
-import {Utils} from "../Utils/Utils";
-import {Particle} from "../Particle";
-import {Container} from "../Container";
+import { Utils } from "../Utils/Utils";
+import type { Particle } from "../Particle";
+import type { Container } from "../Container";
+import { HoverMode } from "../../Enums/Modes/HoverMode";
 
 export class Mover {
     private readonly container: Container;
@@ -39,7 +40,7 @@ export class Mover {
 
         const particle = this.particle;
         const parallaxForce = options.interactivity.events.onHover.parallax.force;
-        const mousePos = container.interactivity.mouse.position || {x: 0, y: 0};
+        const mousePos = container.interactivity.mouse.position || { x: 0, y: 0 };
         const windowDimension = {
             height: window.innerHeight / 2,
             width: window.innerWidth / 2,
@@ -60,7 +61,7 @@ export class Mover {
         const container = this.container;
         const options = container.options;
         const particle = this.particle;
-        const active = options.interactivity.modes.slow.active;
+        const active = Utils.isInArray(HoverMode.slow, options.interactivity.events.onHover.mode);
 
         if (!active) {
             return 1;

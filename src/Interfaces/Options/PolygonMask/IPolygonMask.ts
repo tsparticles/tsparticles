@@ -1,9 +1,9 @@
-import {PolygonMaskType} from "../../../Enums/PolygonMaskType";
-import {IPolygonMaskDraw} from "./IPolygonMaskDraw";
-import {IPolygonMaskMove} from "./IPolygonMaskMove";
-import {PolygonMaskInlineArrangement} from "../../../Enums/PolygonMaskInlineArrangement";
-import {IOptionLoader} from "../IOptionLoader";
-import {IPolygonInline} from "./IPolygonInline";
+import type { PolygonMaskType } from "../../../Enums/PolygonMaskType";
+import type { IPolygonMaskDraw } from "./IPolygonMaskDraw";
+import type { IPolygonMaskMove } from "./IPolygonMaskMove";
+import type { PolygonMaskInlineArrangement } from "../../../Enums/PolygonMaskInlineArrangement";
+import type { IOptionLoader } from "../IOptionLoader";
+import type { IPolygonInline } from "./IPolygonInline";
 
 export interface IPolygonMask extends IOptionLoader<IPolygonMask> {
     draw: IPolygonMaskDraw;

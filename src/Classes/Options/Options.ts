@@ -1,14 +1,15 @@
-import {IOptions} from "../../Interfaces/Options/IOptions";
-import {Interactivity} from "./Interactivity/Interactivity";
-import {Particles} from "./Particles/Particles";
-import {PolygonMask} from "./PolygonMask/PolygonMask";
-import {IInteractivity} from "../../Interfaces/Options/Interactivity/IInteractivity";
-import {IParticles} from "../../Interfaces/Options/Particles/IParticles";
-import {IPolygonMask} from "../../Interfaces/Options/PolygonMask/IPolygonMask";
-import {Messages} from "../Utils/Messages";
-import {IBackgroundMask} from "../../Interfaces/Options/BackgroundMask/IBackgroundMask";
-import {BackgroundMask} from "./BackgroundMask/BackgroundMask";
-import {RecursivePartial} from "../../Types/RecursivePartial";
+import type { IOptions } from "../../Interfaces/Options/IOptions";
+import { Interactivity } from "./Interactivity/Interactivity";
+import { Particles } from "./Particles/Particles";
+import { PolygonMask } from "./PolygonMask/PolygonMask";
+import type { IInteractivity } from "../../Interfaces/Options/Interactivity/IInteractivity";
+import type { IParticles } from "../../Interfaces/Options/Particles/IParticles";
+import type { IPolygonMask } from "../../Interfaces/Options/PolygonMask/IPolygonMask";
+import type { IBackgroundMask } from "../../Interfaces/Options/BackgroundMask/IBackgroundMask";
+import { BackgroundMask } from "./BackgroundMask/BackgroundMask";
+import type { RecursivePartial } from "../../Types/RecursivePartial";
+import { PresetType } from "../../Enums/PresetType";
+import { Presets } from "../Utils/Presets";
 
 export class Options implements IOptions {
     /**
@@ -16,8 +17,6 @@ export class Options implements IOptions {
      * @deprecated this property is obsolete, please use the new fpsLimit
      */
     public get fps_limit(): number {
-        Messages.deprecated("fps_limit", "fpsLimit");
-
         return this.fpsLimit;
     }
 
@@ -27,8 +26,6 @@ export class Options implements IOptions {
      * @param value
      */
     public set fps_limit(value: number) {
-        Messages.deprecated("fps_limit", "fpsLimit");
-
         this.fpsLimit = value;
     }
 
@@ -37,8 +34,6 @@ export class Options implements IOptions {
      * @deprecated this property is obsolete, please use the new retinaDetect
      */
     public get retina_detect(): boolean {
-        Messages.deprecated("retina_detect", "detectsRetina");
-
         return this.detectRetina;
     }
 
@@ -48,8 +43,6 @@ export class Options implements IOptions {
      * @param value
      */
     public set retina_detect(value: boolean) {
-        Messages.deprecated("retina_detect", "detectsRetina");
-
         this.detectRetina = value;
     }
 
@@ -60,6 +53,7 @@ export class Options implements IOptions {
     public polygon: IPolygonMask;
     public backgroundMask: IBackgroundMask;
     public pauseOnBlur: boolean;
+    public preset?: PresetType | PresetType[]
 
     constructor() {
         this.detectRetina = false;
@@ -93,6 +87,24 @@ export class Options implements IOptions {
             this.particles.load(data.particles);
             this.polygon.load(data.polygon);
             this.backgroundMask.load(data.backgroundMask);
+
+            if (data.preset !== undefined) {
+                if (data.preset instanceof Array) {
+                    for (const preset of data.preset) {
+                        this.importPreset(preset);
+                    }
+                } else {
+                    this.importPreset(data.preset);
+                }
+            }
+        }
+    }
+
+    private importPreset(preset: PresetType): void {
+        const presetOptions = Presets.getPreset(preset);
+
+        if (presetOptions !== undefined) {
+            this.load(presetOptions);
         }
     }
 }

@@ -1,11 +1,13 @@
-import {ILineLinked} from "../../../Interfaces/Options/Particles/ILineLinked";
-import {ILineLinkedShadow} from "../../../Interfaces/Options/Particles/ILineLinkedShadow";
-import {LineLinkedShadow} from "./LineLinkedShadow";
-import {RecursivePartial} from "../../../Types/RecursivePartial";
+import type { ILineLinked } from "../../../Interfaces/Options/Particles/ILineLinked";
+import type { ILineLinkedShadow } from "../../../Interfaces/Options/Particles/ILineLinkedShadow";
+import { LineLinkedShadow } from "./LineLinkedShadow";
+import type { RecursivePartial } from "../../../Types/RecursivePartial";
+import type { IColor } from "../../../Interfaces/Options/Particles/IColor";
+import { Color } from "./Color";
 
 export class LineLinked implements ILineLinked {
     public blink: boolean;
-    public color: string;
+    public color: string | IColor;
     public consent: boolean;
     public distance: number;
     public enable: boolean;
@@ -15,10 +17,10 @@ export class LineLinked implements ILineLinked {
 
     constructor() {
         this.blink = false;
-        this.color = "#fff";
+        this.color = new Color();
         this.consent = false;
         this.distance = 100;
-        this.enable = true;
+        this.enable = false;
         this.opacity = 1;
         this.shadow = new LineLinkedShadow();
         this.width = 1;
@@ -31,7 +33,11 @@ export class LineLinked implements ILineLinked {
             }
 
             if (data.color !== undefined) {
-                this.color = data.color;
+                if (typeof this.color === "string") {
+                    this.color = data.color;
+                } else {
+                    this.color.load(data.color as IColor);
+                }
             }
 
             if (data.consent !== undefined) {

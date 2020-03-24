@@ -1,12 +1,11 @@
-"use strict";
-
-import {Container} from "../Container";
-import {IBubblerProcessParam} from "../../Interfaces/IBubblerProcessParam";
-import {Particle} from "../Particle";
-import {ProcessBubbleType} from "../../Enums/ProcessBubbleType";
-import {Utils} from "../Utils/Utils";
-import {HoverMode} from "../../Enums/Modes/HoverMode";
-import {ClickMode} from "../../Enums/Modes/ClickMode";
+import type { Container } from "../Container";
+import type { IBubblerProcessParam } from "../../Interfaces/IBubblerProcessParam";
+import { Particle } from "../Particle";
+import { ProcessBubbleType } from "../../Enums/ProcessBubbleType";
+import { Utils } from "../Utils/Utils";
+import { HoverMode } from "../../Enums/Modes/HoverMode";
+import { ClickMode } from "../../Enums/Modes/ClickMode";
+import { Constants } from "../Utils/Constants";
 
 /**
  * Particle bubble manager
@@ -110,7 +109,7 @@ export class Bubbler {
         const particle = this.particle;
 
         /* on click event */
-        const mouseClickPos = container.interactivity.mouse.clickPosition || {x: 0, y: 0};
+        const mouseClickPos = container.interactivity.mouse.clickPosition || { x: 0, y: 0 };
         const distMouse = Utils.getDistanceBetweenCoordinates(particle.position, mouseClickPos);
         const timeSpent = (new Date().getTime() - (container.interactivity.mouse.clickTime || 0)) / 1000;
 
@@ -170,7 +169,7 @@ export class Bubbler {
 
         /* mousemove - check ratio */
         if (distMouse <= container.retina.bubbleModeDistance) {
-            if (ratio >= 0 && container.interactivity.status === "mousemove") {
+            if (ratio >= 0 && container.interactivity.status === Constants.mouseMoveEvent) {
                 /* size */
                 this.hoverBubbleSize(ratio);
 
@@ -182,7 +181,7 @@ export class Bubbler {
         }
 
         /* mouseleave */
-        if (container.interactivity.status === "mouseleave") {
+        if (container.interactivity.status === Constants.mouseLeaveEvent) {
             this.init();
         }
     }
@@ -202,11 +201,7 @@ export class Bubbler {
                 const dif = particle.radius - container.retina.bubbleModeSize;
                 const size = particle.radius - (dif * ratio);
 
-                if (size > 0) {
-                    this.radius = size;
-                } else {
-                    this.radius = 0;
-                }
+                this.radius = Math.max(0, size);
             }
         }
     }

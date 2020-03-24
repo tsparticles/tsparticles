@@ -108,7 +108,6 @@
         "particles_nb": 2
       },
       "slow": {
-        "active": true,
         "radius": 100,
         "factor": 3
       }

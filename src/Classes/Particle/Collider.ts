@@ -1,6 +1,6 @@
-import {Container} from "../Container";
-import {Particle} from "../Particle";
-import {Utils} from "../Utils/Utils";
+import type { Container } from "../Container";
+import type { Particle } from "../Particle";
+import { Utils } from "../Utils/Utils";
 
 export class Collider {
     private readonly container: Container;

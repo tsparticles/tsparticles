@@ -1,5 +1,3 @@
-"use strict";
-
 export enum MoveDirection {
     bottom = "bottom",
     bottomLeft = "bottom-left",

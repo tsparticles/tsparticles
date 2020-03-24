@@ -1,11 +1,11 @@
-import {ICharacterShape} from "../../../../Interfaces/Options/Particles/Shape/ICharacterShape";
-import {RecursivePartial} from "../../../../Types/RecursivePartial";
+import type { ICharacterShape } from "../../../../Interfaces/Options/Particles/Shape/ICharacterShape";
+import type { RecursivePartial } from "../../../../Types/RecursivePartial";
 
 export class CharacterShape implements ICharacterShape {
     public fill: boolean;
     public font: string;
     public style: string;
-    public value: string | string [];
+    public value: string | string[];
     public weight: string;
 
     constructor() {

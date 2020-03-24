@@ -1,5 +1,5 @@
-import {IBubble} from "../../../../Interfaces/Options/Interactivity/Modes/IBubble";
-import {RecursivePartial} from "../../../../Types/RecursivePartial";
+import type { IBubble } from "../../../../Interfaces/Options/Interactivity/Modes/IBubble";
+import type { RecursivePartial } from "../../../../Types/RecursivePartial";
 
 export class Bubble implements IBubble {
     public distance: number;

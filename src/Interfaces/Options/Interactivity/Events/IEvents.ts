@@ -1,7 +1,7 @@
-import {IClickEvent} from "./IClickEvent";
-import {IHoverEvent} from "./IHoverEvent";
-import {IDivEvent} from "./IDivEvent";
-import {IOptionLoader} from "../../IOptionLoader";
+import type { IClickEvent } from "./IClickEvent";
+import type { IHoverEvent } from "./IHoverEvent";
+import type { IDivEvent } from "./IDivEvent";
+import type { IOptionLoader } from "../../IOptionLoader";
 
 export interface IEvents extends IOptionLoader<IEvents> {
     /**

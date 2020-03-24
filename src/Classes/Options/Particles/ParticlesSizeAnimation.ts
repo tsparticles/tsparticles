@@ -1,6 +1,5 @@
-import {ISizeAnimation} from "../../../Interfaces/Options/Particles/ISizeAnimation";
-import {Messages} from "../../Utils/Messages";
-import {RecursivePartial} from "../../../Types/RecursivePartial";
+import type { ISizeAnimation } from "../../../Interfaces/Options/Particles/ISizeAnimation";
+import type { RecursivePartial } from "../../../Types/RecursivePartial";
 
 export class ParticlesSizeAnimation implements ISizeAnimation {
     /**
@@ -8,8 +7,6 @@ export class ParticlesSizeAnimation implements ISizeAnimation {
      * @deprecated this property is obsolete, please use the new minimumValue
      */
     public get size_min(): number {
-        Messages.deprecated("particles.size.animation.size_min", "particles.size.animation.minimumValue");
-
         return this.minimumValue;
     }
 
@@ -19,8 +16,6 @@ export class ParticlesSizeAnimation implements ISizeAnimation {
      * @param value
      */
     public set size_min(value: number) {
-        Messages.deprecated("particles.size.animation.size_min", "particles.size.animation.minimumValue");
-
         this.minimumValue = value;
     }
 
@@ -32,7 +27,7 @@ export class ParticlesSizeAnimation implements ISizeAnimation {
     constructor() {
         this.enable = false;
         this.minimumValue = 0;
-        this.speed = 20;
+        this.speed = 5;
         this.sync = false;
     }
 

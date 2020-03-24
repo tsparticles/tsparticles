@@ -1,6 +1,4 @@
-"use strict";
-
-import {IImage} from "./IImage";
+import type { IImage } from "./IImage";
 
 export interface IParticleImage {
     src: string;
