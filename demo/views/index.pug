@@ -23,53 +23,81 @@ html(lang="en")
         link(href="/stylesheets/main.css" rel="stylesheet" type="text/css")
 
     body
-        div.container-fluid(style="height: 100%;").m-0
-            div.row(style="height: 100%;")
-                div.col-3.p-0(style="height: 100%;")
-                    div.row
-                        div.col
-                            div.row
-                                div.col-auto
-                                    button#btnUpdate.btn.btn-primary.btn-xs(type="button") Reload
-                                div.col
-                                    select.form-control#presets
-                                        option(value="background") Background Mask
-                                        option(value="big") Big Particles
-                                        option(value="bubble") Bubble
-                                        option(value="chars") Chars
-                                        option(value="collisions") Collisions
-                                        option(value="connect") Connect
-                                        option(value="default") Default
-                                        option(value="fontawesome") Font Awesome
-                                        option(value="hollowknight") Hollow Knight
-                                        option(value="images") Multiple Images
-                                        option(value="mask") Polygon Mask
-                                        option(value="nasa") NASA
-                                        option(value="noconfig") No Config
-                                        option(value="nyancat") Nyan Cat
-                                        option(value="nyancat2") Nyan Cat 2
-                                        option(value="polygons") Polygon Shape
-                                        option(value="preset") Presets
-                                        option(value="random") Random Colors
-                                        option(value="reactDefaults") React Defaults
-                                        option(value="shadow") Shadow
-                                        option(value="slow") Slow on Hover
-                                        option(value="snow") Snow
-                                        option(value="star") Star
-                                        option(value="test") Test
-                                        option(value="trail") Trails
-                                        option(value="virus") Virus
-                                div.col-auto
-                                    a.btn.btn-link(href="/docs") API
-                    div.row(style="height: 100%; overflow: auto;")
-                        div.col
-                            div#editor
-                div#tsparticles-container.col-9.p-0(style="height: 100%;")
-                    div#tsparticles
-                    div.count-particles
-                        |
-                        span.js-count-particles --
-                        | particles
+        .container-fluid.m-0.vh-100
+            .row.h-100
+                #sidebar.col-3.p-0.h-100(style="overflow: auto;")
+                    .row.p-1
+                        .col-auto
+                            .btn-group
+                                button#btnUpdate.btn.btn-primary.btn-xs(type="button") Reload
+                                button.btn.btn-primary.dropdown-toggle.dropdown-toggle-split(type="button", data-toggle="dropdown", aria-haspopup="true", aria-expanded="false")
+                                    span.sr-only Toggle Dropdown
+                                .dropdown-menu
+                                    a.dropdown-item(href="/docs") API
+                                    .dropdown-divider
+                                    a#export-image.dropdown-item(href="#") Export Image
+                                    a#export-config.dropdown-item(href="#") Export Config
+                                    .dropdown-divider
+                                    a#toggle-stats.dropdown-item(href="#") Toggle Stats
+                        .col
+                            select.form-control#presets
+                                option(value="background") Background Mask
+                                option(value="big") Big Particles
+                                option(value="bubble") Bubble
+                                option(value="chars") Chars
+                                option(value="collisions") Collisions
+                                option(value="connect") Connect
+                                option(value="default") Default
+                                option(value="fontawesome") Font Awesome
+                                option(value="hollowknight") Hollow Knight
+                                option(value="images") Multiple Images
+                                option(value="mask") Polygon Mask
+                                option(value="nasa") NASA
+                                option(value="noconfig") No Config
+                                option(value="nyancat") Nyan Cat
+                                option(value="nyancat2") Nyan Cat 2
+                                option(value="polygons") Polygon Shape
+                                option(value="preset") Presets
+                                option(value="random") Random Colors
+                                option(value="reactDefaults") React Defaults
+                                option(value="shadow") Shadow
+                                option(value="slow") Slow on Hover
+                                option(value="snow") Snow
+                                option(value="star") Star
+                                option(value="test") Test
+                                option(value="trail") Trails
+                                option(value="virus") Virus
+                    .row
+                        .col
+                            #editor
+                #tsparticles-container.col.p-0.h-100
+                    #tsparticles
+                    .github
+                        a.btn.btn-link(href="https://github.com/matteobruni/tsparticles", title="Find more info on GitHub")
+                            img#gh-mark.img-fluid(src="/images/GitHub-Mark-120px-plus.png", alt="")
+                            img#gh-logo.img-fluid(src="/images/GitHub_Logo.png", alt="GitHub")
+                    span.toggle-sidebar
+                        span.caret-right
+                            i.fas.fa-caret-right
+                        span.caret-left
+                            i.fas.fa-caret-left
+                    #stats(hidden)
+                        .count-particles
+                            |
+                            span.js-count-particles --
+                            | particles
+
+        #exportModal.modal.fade(tabindex="-1", role="dialog", aria-labelledby="exportModalLabel", aria-hidden="true")
+            .modal-dialog.modal-lg(role="document")
+                .modal-content
+                    .modal-header
+                        h5#exportModalLabel.modal-title Export
+                        button.close(type="button", data-dismiss="modal", aria-label="Close")
+                        span(aria-hidden="true") &times;
+                    .modal-body
+                        .modal-body-content
+                    .modal-footer
+                        button.btn.btn-primary(type="button", data-dismiss="modal") Close
 
         script(src="/jquery/jquery.slim.min.js")
         script(src="/popper.js/umd/popper.min.js")
