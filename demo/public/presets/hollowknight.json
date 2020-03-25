@@ -1,6 +1,6 @@
 {
   "detectRetina": false,
-  "fpsLimit": 60,
+  "fpsLimit": 30,
   "interactivity": {
     "detectsOn": "canvas",
     "events": {
@@ -154,7 +154,7 @@
       "radius": 10
     },
     "inlineArrangement": "equidistant",
-    "scale": 3,
+    "scale": 2,
     "type": "inline",
     "url": "images/hollowknight.svg"
   },

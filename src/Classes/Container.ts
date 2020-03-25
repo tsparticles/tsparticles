@@ -192,21 +192,19 @@ export class Container {
     /**
      * @deprecated this method is deprecated, please use the exportImage method
      */
-    public exportImg(): void {
-        this.exportImage();
+    public exportImg(callback: BlobCallback): void {
+        this.exportImage(callback);
     }
 
-    public exportImage(): void {
-        if (this.canvas.element) {
-            window.open(this.canvas.element.toDataURL("image/png"), "_blank");
-        }
+    public exportImage(callback: BlobCallback, type?: string, quality?: number): void {
+        return this.canvas.element?.toBlob(callback, type ?? "image/png", quality);
     }
 
-    public exportConfiguration(): void {
-        window.open("text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(this.options)));
+    public exportConfiguration(): string {
+        return JSON.stringify(this.options, undefined, 2);
     }
 
-    public async loadImg(image: IImage, optionsImage: ImageShape): Promise<void> {
+    public async loadImage(image: IImage, optionsImage: ImageShape): Promise<void> {
         image.error = false;
 
         if (optionsImage.src) {
@@ -298,7 +296,7 @@ export class Container {
 
         image.type = src.substr(src.length - 3);
 
-        await this.loadImg(image, imageShape);
+        await this.loadImage(image, imageShape);
 
         this.images.push(image);
     }

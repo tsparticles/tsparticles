@@ -5,7 +5,7 @@ html
 body
   line-height 1
   height 100%
-  overflow auto
+  overflow hidden
 
 #tsparticles
   width 100%
@@ -23,15 +23,36 @@ body
   -webkit-animation-fill-mode forwards
   animation-fill-mode forwards
 
-#editor
-  height 100%
-
 /* ---- stats.js ---- */
+.github
+  bottom 10px
+  right 10px
+  position absolute
+  border-radius 10px
+  background #fff
+  border 1px solid #000
+
+  img
+    height 30px
+
+.toggle-sidebar
+  top 50%
+  left 0
+  font-size 20px
+  color '#000000'
+  position absolute
+  padding 3px
+  border-top-right-radius 5px
+  border-bottom-right-radius 5px
+  background #e7e7e7
+  border 1px solid #000
+  border-left none
+
 .count-particles
   background #000022
   position absolute
-  top 48px
-  left 0
+  top 51px
+  left 3px
   width 80px
   color #13e8e9
   font-size .8em
@@ -39,18 +60,22 @@ body
   text-indent 4px
   line-height 14px
   padding-bottom 2px
+  border-radius 3px 3px 0 0
   font-family Helvetica, Arial, sans-serif
   font-weight bold
-
-.js-count-particles
-  font-size 1.1em
 
 #stats, .count-particles
   -webkit-user-select none
 
 #stats
-  border-radius 3px 3px 0 0
   overflow hidden
+
+#stats-graph
+  canvas
+    border-radius 3px 3px 0 0
 
 .count-particles
   border-radius 0 0 3px 3px
+
+*[hidden]
+  display none
