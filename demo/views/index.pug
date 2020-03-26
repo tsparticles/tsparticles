@@ -30,7 +30,7 @@ html(lang="en")
                         .col-auto
                             .btn-group
                                 button#btnUpdate.btn.btn-primary.btn-xs(type="button") Reload
-                                button.btn.btn-primary.dropdown-toggle.dropdown-toggle-split(type="button", data-toggle="dropdown", aria-haspopup="true", aria-expanded="false")
+                                button.btn.btn-primary.dropdown-toggle.dropdown-toggle-split(type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false")
                                     span.sr-only Toggle Dropdown
                                 .dropdown-menu
                                     a.dropdown-item(href="/docs") API
@@ -39,6 +39,8 @@ html(lang="en")
                                     a#export-config.dropdown-item(href="#") Export Config
                                     .dropdown-divider
                                     a#toggle-stats.dropdown-item(href="#") Toggle Stats
+                                    .dropdown-divider
+                                    a#codepen-export.dropdown-item(href="#") Export to CodePen
                         .col
                             select.form-control#presets
                                 option(value="background") Background Mask
@@ -73,9 +75,9 @@ html(lang="en")
                 #tsparticles-container.col.p-0.h-100
                     #tsparticles
                     .github
-                        a.btn.btn-link(href="https://github.com/matteobruni/tsparticles", title="Find more info on GitHub")
-                            img#gh-mark.img-fluid(src="/images/GitHub-Mark-120px-plus.png", alt="")
-                            img#gh-logo.img-fluid(src="/images/GitHub_Logo.png", alt="GitHub")
+                        a.btn.btn-link(href="https://github.com/matteobruni/tsparticles" title="Find more info on GitHub")
+                            img#gh-mark.img-fluid(src="/images/GitHub-Mark-120px-plus.png" alt="")
+                            img#gh-logo.img-fluid(src="/images/GitHub_Logo.png" alt="GitHub")
                     span.toggle-sidebar
                         span.caret-right
                             i.fas.fa-caret-right
@@ -87,17 +89,21 @@ html(lang="en")
                             span.js-count-particles --
                             | particles
 
-        #exportModal.modal.fade(tabindex="-1", role="dialog", aria-labelledby="exportModalLabel", aria-hidden="true")
+        #exportModal.modal.fade(tabindex="-1" role="dialog" aria-labelledby="exportModalLabel" aria-hidden="true")
             .modal-dialog.modal-lg(role="document")
                 .modal-content
                     .modal-header
                         h5#exportModalLabel.modal-title Export
-                        button.close(type="button", data-dismiss="modal", aria-label="Close")
+                        button.close(type="button" data-dismiss="modal" aria-label="Close")
                         span(aria-hidden="true") &times;
                     .modal-body
                         .modal-body-content
                     .modal-footer
-                        button.btn.btn-primary(type="button", data-dismiss="modal") Close
+                        button.btn.btn-primary(type="button" data-dismiss="modal") Close
+
+        form(action="https://codepen.io/pen/define" method="POST" target="_blank",hidden,id="code-pen-form")
+            input(type="hidden", name="data", value="", id="code-pen-data")
+            input(type="submit", value="Create Pen")
 
         script(src="/jquery/jquery.slim.min.js")
         script(src="/popper.js/umd/popper.min.js")
