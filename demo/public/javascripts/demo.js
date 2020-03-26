@@ -1,4 +1,5 @@
 (function () {
+    let schema = {};
     const stats = new Stats();
 
     stats.setMode(0);
@@ -25,6 +26,77 @@
         };
 
         requestAnimationFrame(update);
+    };
+
+    function distinct(value, index, self) {
+        return self.indexOf(value) === index;
+    }
+
+    let getValuesFromProp = function (prop, path, index) {
+        console.log(prop);
+        if (prop) {
+            if (prop.type) {
+                switch (prop.type) {
+                    case 'boolean':
+                        return ['true', 'false'];
+                    case 'number':
+                        return prop.enum;
+                    case 'string':
+                        return prop.enum;
+                    case 'array':
+                        return getSchemaValuesFromProp(prop.items);
+                }
+            } else if (prop["$ref"]) {
+                const def = prop["$ref"].split('/');
+                const type = def[def.length - 1];
+                const typeDef = schema.definitions[type];
+                console.log(index);
+                return getSchemaValuesFromPath(typeDef, path, index + (/I[A-Z]/.exec(type) ? 1 : 0));
+            } else if (prop.anyOf) {
+                let res = [];
+
+                for (const type of prop.anyOf) {
+                    const values = getSchemaValuesFromProp(type, path, index);
+
+                    for (const value of values) {
+                        res.push(value);
+                    }
+                }
+
+                return res.filter(distinct);
+            }
+        }
+    }
+
+    let getSchemaValuesFromPath = function (obj, path, index) {
+        const key = path[index];
+
+        console.log(key);
+
+        const prop = obj.properties ? obj.properties[key] : obj;
+
+        console.log(prop);
+
+        const values = getValuesFromProp(prop, path, index);
+
+        console.log(values);
+
+        return values;
+    }
+
+    let jsonEditorAutoComplete = function (text, path, input, editor) {
+        console.log(path);
+
+        switch (input) {
+            case 'field':
+                break;
+            case 'value':
+                return getSchemaValuesFromPath(schema, path, 0).filter(function (v) {
+                    return v.includes(text);
+                });
+        }
+
+        return null;
     };
 
     let updateBackground = function () {
@@ -98,8 +170,13 @@
     window.addEventListener('load', function () {
         const element = document.getElementById('editor');
         const options = {
-            mode: 'tree',
-            modes: ['code', 'form', 'text', 'tree', 'view', 'preview'], // allowed modes
+            mode: 'form',
+            modes: ['form', 'view', 'preview'], // allowed modes
+            autocomplete: {
+                filter: 'contain',
+                trigger: 'focus',
+                getOptions: jsonEditorAutoComplete
+            },
             onError: function (err) {
                 alert(err.toString())
             },
@@ -131,11 +208,17 @@
         // Dispatch it.
         cmbPresets.dispatchEvent(event);
 
+        fetch('/schema/options.schema.json').then(function (response) {
+            response.json().then(function (data) {
+                schema = data;
+                editor.setSchema(schema);
+            });
+        });
+
         const btnUpdate = document.getElementById('btnUpdate');
         btnUpdate.onclick = function () {
             const particles = tsParticles.domItem(0);
-
-            particles.options = editor.get();
+            particles.options.load(editor.get());
             particles.refresh().then(() => {
                 updateBackground();
             });
