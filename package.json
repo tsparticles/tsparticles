@@ -15,7 +15,7 @@
     "build:js": "babel src --out-dir dist --ignore \"src/**/*.d.ts\" --extensions \".ts,.tsx\" --source-maps inline",
     "build:ts": "tsc",
     "build:docs": "npm run clear:docs && typedoc",
-    "start": "npm run slimbuild && npm run build:demo && node demo/app.js",
+    "start": "npm run build && npm run build:demo && node demo/app.js",
     "build:demo": "npm run build:demo:style && npm run build:demo:index",
     "build:demo:index": "pug ./demo/views/index.pug",
     "build:demo:style": "stylus ./demo/public/stylesheets/main.styl"

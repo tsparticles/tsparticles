@@ -32,8 +32,24 @@ body {
   background: #fff;
   border: 1px solid #000;
 }
+.github a {
+  color: #000;
+}
+.github a:hover,
+.github a:link,
+.github a:visited,
+.github a:active {
+  color: #000;
+  text-decoration: none;
+}
 .github img {
   height: 30px;
+}
+.github #gh-project {
+  font-size: 20px;
+  padding-left: 5px;
+  font-weight: bold;
+  vertical-align: bottom;
 }
 .toggle-sidebar {
   top: 50%;
