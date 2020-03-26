@@ -124,82 +124,82 @@
       },
       "image": [
         {
-          "src": "/images/fruits/apple.png",
+          "src": "https://cdn.matteobruni.it/images/particles/fruits/apple.png",
           "width": 32,
           "height": 32
         },
         {
-          "src": "/images/fruits/avocado.png",
+          "src": "https://cdn.matteobruni.it/images/particles/fruits/avocado.png",
           "width": 32,
           "height": 32
         },
         {
-          "src": "/images/fruits/banana.png",
+          "src": "https://cdn.matteobruni.it/images/particles/fruits/banana.png",
           "width": 32,
           "height": 32
         },
         {
-          "src": "/images/fruits/berries.png",
+          "src": "https://cdn.matteobruni.it/images/particles/fruits/berries.png",
           "width": 32,
           "height": 32
         },
         {
-          "src": "/images/fruits/cherry.png",
+          "src": "https://cdn.matteobruni.it/images/particles/fruits/cherry.png",
           "width": 32,
           "height": 32
         },
         {
-          "src": "/images/fruits/grapes.png",
+          "src": "https://cdn.matteobruni.it/images/particles/fruits/grapes.png",
           "width": 32,
           "height": 32
         },
         {
-          "src": "/images/fruits/lemon.png",
+          "src": "https://cdn.matteobruni.it/images/particles/fruits/lemon.png",
           "width": 32,
           "height": 32
         },
         {
-          "src": "/images/fruits/orange.png",
+          "src": "https://cdn.matteobruni.it/images/particles/fruits/orange.png",
           "width": 32,
           "height": 32
         },
         {
-          "src": "/images/fruits/peach.png",
+          "src": "https://cdn.matteobruni.it/images/particles/fruits/peach.png",
           "width": 32,
           "height": 32
         },
         {
-          "src": "/images/fruits/pear.png",
+          "src": "https://cdn.matteobruni.it/images/particles/fruits/pear.png",
           "width": 32,
           "height": 32
         },
         {
-          "src": "/images/fruits/pepper.png",
+          "src": "https://cdn.matteobruni.it/images/particles/fruits/pepper.png",
           "width": 32,
           "height": 32
         },
         {
-          "src": "/images/fruits/plum.png",
+          "src": "https://cdn.matteobruni.it/images/particles/fruits/plum.png",
           "width": 32,
           "height": 32
         },
         {
-          "src": "/images/fruits/star.png",
+          "src": "https://cdn.matteobruni.it/images/particles/fruits/star.png",
           "width": 32,
           "height": 32
         },
         {
-          "src": "/images/fruits/strawberry.png",
+          "src": "https://cdn.matteobruni.it/images/particles/fruits/strawberry.png",
           "width": 32,
           "height": 32
         },
         {
-          "src": "/images/fruits/watermelon.png",
+          "src": "https://cdn.matteobruni.it/images/particles/fruits/watermelon.png",
           "width": 32,
           "height": 32
         },
         {
-          "src": "/images/fruits/watermelon_slice.png",
+          "src": "https://cdn.matteobruni.it/images/particles/fruits/watermelon_slice.png",
           "width": 32,
           "height": 32
         }
