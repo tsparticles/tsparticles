@@ -114,6 +114,16 @@ html(lang="en")
             input(type="hidden" name="data" value="" id="code-pen-data")
             input(type="submit" value="Create Pen")
 
+        // Global site tag (gtag.js) - Google Analytics
+        script(async, src="https://www.googletagmanager.com/gtag/js?id=UA-159372955-1")
+        script.
+            window.dataLayer = window.dataLayer || [];
+            function gtag() { dataLayer.push(arguments); }
+
+            gtag('js', new Date());
+
+            gtag('config', 'UA-159372955-1');
+
         script(src="/jquery/jquery.slim.min.js")
         script(src="/popper.js/umd/popper.min.js")
         script(src="/bootstrap/js/bootstrap.min.js")
