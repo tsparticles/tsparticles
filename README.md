@@ -6,9 +6,9 @@
 
 # tsParticles - TypeScript Particles
 
-**A lightweight TypeScript library for creating particles. Dependency free and browser ready!**
+**A lightweight TypeScript library for creating particles. Dependency free (\*) and browser ready!**
 
-*[Particles.js](https://github.com/VincentGarreau/particles.js) converted in TypeScript, dependency free, improved with new cool 😎 features and various bugs fixed and **it's currently under development**!*
+*[Particles.js](https://github.com/VincentGarreau/particles.js) converted in TypeScript, dependency free (\*), improved with new cool 😎 features and various bugs fixed and **it's currently under development**!*
 
 ## Do you want to use it on your website?
 
@@ -39,6 +39,10 @@ npm install && npm start
 ```
 
 **Boom! 💥** <http://localhost:3000> and you can checkout other demos, *if you are brave enough* you can switch to the `dev` branch so you can try the features under development.
+
+### Dependencies
+
+You may have notices the \* near dependency free. Well almost all features works without any dependency, but... Well there's a but. The **Polygon Mask** feature requires `pathseg` for some browsers to work well, and obviously the Icon Fonts (like `FontAwesome`) must be included in your page.
 
 ---
 
