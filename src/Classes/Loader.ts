@@ -25,8 +25,15 @@ export class Loader {
      * Retrieves a [[Container]] from all the objects loaded
      * @param index the object index
      */
-    public static domItem(index: number): Container {
-        return Loader.dom()[index];
+    public static domItem(index: number): Container | undefined {
+        const dom = Loader.dom();
+        const item = dom[index];
+
+        if (!item.destroyed) {
+            return item;
+        }
+
+        dom.splice(index, 1);
     }
 
     /**
@@ -80,12 +87,15 @@ export class Loader {
     public static async set(id: string, domContainer: HTMLElement,
         params?: RecursivePartial<IOptions>): Promise<Container | undefined> {
         const dom = Loader.dom();
-        const idx = dom.findIndex((v) => v.id === id);
+        const oldIndex = dom.findIndex((v) => v.id === id);
 
-        if (idx >= 0) {
-            const old = this.domItem(idx);
+        if (oldIndex >= 0) {
+            const old = this.domItem(oldIndex);
 
-            old.destroy();
+            if (old && !old.destroyed) {
+                old.destroy();
+                dom.splice(oldIndex, 1);
+            }
         }
 
         let canvasEl: HTMLCanvasElement;
@@ -125,8 +135,8 @@ export class Loader {
         /* launch tsParticles */
         const newItem = new Container(id, params);
 
-        if (idx >= 0) {
-            dom.splice(idx, 1, newItem);
+        if (oldIndex >= 0) {
+            dom.splice(oldIndex, 0, newItem);
         } else {
             dom.push(newItem);
         }
