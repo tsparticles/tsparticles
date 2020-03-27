@@ -71,6 +71,7 @@ export class Container {
     public pageHidden: boolean;
     public drawer: FrameManager;
     public started: boolean;
+    public destroyed: boolean;
 
     private paused: boolean;
     private drawAnimationFrame?: number;
@@ -85,6 +86,7 @@ export class Container {
      */
     constructor(id: string, params?: RecursivePartial<IOptions>, ...presets: PresetType[]) {
         this.started = false;
+        this.destroyed = false;
         this.id = id;
         this.paused = true;
         this.sourceOptions = params;
@@ -187,6 +189,8 @@ export class Container {
         delete this.images;
         delete this.drawer;
         delete this.eventListeners;
+
+        this.destroyed = true;
     }
 
     /**

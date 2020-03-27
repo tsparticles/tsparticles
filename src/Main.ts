@@ -99,9 +99,9 @@ class Main {
     /**
      * Retrieves a [[Container]] from all the objects loaded
      * @param index The object index
-     * @returns The [[Container]] object at specified index
+     * @returns The [[Container]] object at specified index, if present or not destroyed, otherwise undefined
      */
-    public domItem(index: number): Container {
+    public domItem(index: number): Container | undefined {
         return Loader.domItem(index);
     }
 }

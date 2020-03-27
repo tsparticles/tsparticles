@@ -9,7 +9,7 @@
     "clear:dist": "rimraf -f dist",
     "clear:docs": "rimraf -f docs",
     "copy:js": "cpx \"src/**/*.{js,d.ts}\" dist/",
-    "slimbuild": "npm run clear:dist && npm run build:ts && webpack -p",
+    "slimbuild": "npm run clear:dist && npm run build:ts && npm run build:schema && webpack -p",
     "build": "npm run slimbuild && npm run build:docs",
     "build:types": "tsc --emitDeclarationOnly",
     "build:js": "babel src --out-dir dist --ignore \"src/**/*.d.ts\" --extensions \".ts,.tsx\" --source-maps inline",
@@ -18,7 +18,8 @@
     "start": "npm run build && npm run build:demo && node demo/app.js",
     "build:demo": "npm run build:demo:style && npm run build:demo:index",
     "build:demo:index": "pug ./demo/views/index.pug",
-    "build:demo:style": "stylus ./demo/public/stylesheets/main.styl"
+    "build:demo:style": "stylus ./demo/public/stylesheets/main.styl",
+    "build:schema": "typescript-json-schema tsconfig.json IOptions --out schema/options.schema.json"
   },
   "repository": {
     "type": "git",
@@ -76,7 +77,6 @@
     "install": "^0.13.0",
     "jquery": "^3.4.1",
     "jsoneditor": "^8.6.1",
-    "pathseg": "^1.2.0",
     "popper.js": "^1.16.1",
     "pug": "^2.0.4",
     "reflect-metadata": "^0.1.13",
@@ -86,8 +86,11 @@
     "three": "^0.115.0",
     "typedoc": "^0.17.3",
     "typescript": "^3.8.3",
+    "typescript-json-schema": "^0.42.0",
     "webpack": "^4.42.1",
     "webpack-cli": "^3.3.11"
   },
-  "dependencies": {}
+  "dependencies": {
+    "pathseg": "^1.2.0"
+  }
 }
