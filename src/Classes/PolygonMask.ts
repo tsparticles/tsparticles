@@ -1,10 +1,9 @@
-"use strict";
-
-import {Container} from "./Container";
-import {ICoordinates} from "../Interfaces/ICoordinates";
-import {PolygonMaskType} from "../Enums/PolygonMaskType";
-import {Particle} from "./Particle";
-import {PolygonMaskInlineArrangement} from "../Enums/PolygonMaskInlineArrangement";
+import { Container } from "./Container";
+import type { ICoordinates } from "../Interfaces/ICoordinates";
+import { PolygonMaskType } from "../Enums/PolygonMaskType";
+import { Particle } from "./Particle";
+import { PolygonMaskInlineArrangement } from "../Enums/PolygonMaskInlineArrangement";
+import { Utils } from "./Utils/Utils";
 
 type SvgAbsoluteCoordinatesTypes =
     | SVGPathSegArcAbs
@@ -111,13 +110,11 @@ export class PolygonMask {
                     position = this.getRandomPointOnPolygonPathByLength();
                     break;
                 case PolygonMaskInlineArrangement.equidistant:
-                    position = this.getEquidistantPointOnPolygonPathByIndex(container.particles.array.length);
+                    position = this.getEquidistantPointOnPolygonPathByIndex(container.particles.count);
                     break;
                 case PolygonMaskInlineArrangement.onePerPoint:
                 default:
-                    position = this.getPoingOnPolygonPathByIndex(
-                        container.particles.array.length
-                    );
+                    position = this.getPoingOnPolygonPathByIndex(container.particles.count);
             }
         } else {
             position = {
@@ -273,7 +270,7 @@ export class PolygonMask {
                 };
                 const particle = new Particle(container, position);
 
-                container.particles.array.push(particle);
+                container.particles.addParticle(particle);
             }
         }
     }
@@ -281,7 +278,7 @@ export class PolygonMask {
     private getRandomPointOnPolygonPath(): ICoordinates {
         if (!this.raw || !this.raw.length) throw new Error(`No polygon data loaded.`);
 
-        const coords = this.raw[Math.floor(Math.random() * this.raw.length)];
+        const coords = Utils.itemFromArray(this.raw);
 
         return {
             x: coords.x,

@@ -1,6 +1,6 @@
 {
   "detectRetina": false,
-  "fpsLimit": 60,
+  "fpsLimit": 30,
   "interactivity": {
     "detectsOn": "canvas",
     "events": {
@@ -120,7 +120,7 @@
       "image": {
         "height": 100,
         "replaceColor": true,
-        "src": "images/github.svg",
+        "src": "https://cdn.matteobruni.it/images/particles/github.svg",
         "width": 100
       },
       "polygon": {
@@ -156,7 +156,7 @@
     "inlineArrangement": "equidistant",
     "scale": 0.5,
     "type": "inline",
-    "url": "images/smalldeer.svg"
+    "url": "https://cdn.matteobruni.it/images/particles/smalldeer.svg"
   },
   "config_demo": {
     "hide_card": true,

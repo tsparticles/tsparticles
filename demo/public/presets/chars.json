@@ -39,7 +39,7 @@
         "fill": true
       },
       "image": {
-        "src": "images/github.svg",
+        "src": "https://cdn.matteobruni.it/images/particles/github.svg",
         "width": 100,
         "height": 100
       }

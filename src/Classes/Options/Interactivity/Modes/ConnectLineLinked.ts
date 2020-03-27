@@ -1,5 +1,5 @@
-import {IConnectLineLinked} from "../../../../Interfaces/Options/Interactivity/Modes/IConnectLineLinked";
-import {RecursivePartial} from "../../../../Types/RecursivePartial";
+import type { IConnectLineLinked } from "../../../../Interfaces/Options/Interactivity/Modes/IConnectLineLinked";
+import type { RecursivePartial } from "../../../../Types/RecursivePartial";
 
 export class ConnectLineLinked implements IConnectLineLinked {
     public opacity: number;

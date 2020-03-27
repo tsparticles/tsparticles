@@ -1,16 +1,13 @@
-import {IParticlesNumber} from "../../../Interfaces/Options/Particles/IParticlesNumber";
-import {IDensity} from "../../../Interfaces/Options/Particles/IDensity";
-import {Density} from "./Density";
-import {Messages} from "../../Utils/Messages";
-import {RecursivePartial} from "../../../Types/RecursivePartial";
+import type { IParticlesNumber } from "../../../Interfaces/Options/Particles/IParticlesNumber";
+import type { IDensity } from "../../../Interfaces/Options/Particles/IDensity";
+import { Density } from "./Density";
+import type { RecursivePartial } from "../../../Types/RecursivePartial";
 
 export class ParticlesNumber implements IParticlesNumber {
     /**
      * @deprecated the max property is deprecated, please use the new limit
      */
     get max(): number {
-        Messages.deprecated("particles.max", "particles.limit");
-
         return this.limit;
     }
 
@@ -18,8 +15,6 @@ export class ParticlesNumber implements IParticlesNumber {
      * @deprecated the max property is deprecated, please use the new limit
      */
     set max(value: number) {
-        Messages.deprecated("particles.max", "particles.limit");
-
         this.limit = value;
     }
 
@@ -30,7 +25,7 @@ export class ParticlesNumber implements IParticlesNumber {
     constructor() {
         this.density = new Density();
         this.limit = 0;
-        this.value = 400;
+        this.value = 100;
     }
 
     public load(data?: RecursivePartial<IParticlesNumber>): void {

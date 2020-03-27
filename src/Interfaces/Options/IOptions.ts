@@ -1,10 +1,9 @@
-"use strict";
-
-import {IInteractivity} from "./Interactivity/IInteractivity";
-import {IParticles} from "./Particles/IParticles";
-import {IPolygonMask} from "./PolygonMask/IPolygonMask";
-import {IOptionLoader} from "./IOptionLoader";
-import {IBackgroundMask} from "./BackgroundMask/IBackgroundMask";
+import type { IInteractivity } from "./Interactivity/IInteractivity";
+import type { IParticles } from "./Particles/IParticles";
+import type { IPolygonMask } from "./PolygonMask/IPolygonMask";
+import type { IOptionLoader } from "./IOptionLoader";
+import type { IBackgroundMask } from "./BackgroundMask/IBackgroundMask";
+import type { PresetType } from "../../Enums/PresetType";
 
 /**
  * The Options interface, defines all the options that can be used by `tsParticles`
@@ -50,4 +49,6 @@ export interface IOptions extends IOptionLoader<IOptions> {
     backgroundMask: IBackgroundMask;
 
     pauseOnBlur: boolean;
+
+    preset?: PresetType | PresetType[];
 }

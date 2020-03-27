@@ -1,7 +1,7 @@
-import {InteractivityDetect} from "../../../Enums/InteractivityDetect";
-import {IEvents} from "./Events/IEvents";
-import {IModes} from "./Modes/IModes";
-import {IOptionLoader} from "../IOptionLoader";
+import type { InteractivityDetect } from "../../../Enums/InteractivityDetect";
+import type { IEvents } from "./Events/IEvents";
+import type { IModes } from "./Modes/IModes";
+import type { IOptionLoader } from "../IOptionLoader";
 
 export interface IInteractivity extends IOptionLoader<IInteractivity> {
     /**

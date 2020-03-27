@@ -1,21 +1,22 @@
-"use strict";
-
-import {Canvas} from "./Canvas";
-import {EventListeners} from "./Utils/EventListeners";
-import {IRepulse} from "../Interfaces/IRepulse";
-import {IBubble} from "../Interfaces/IBubble";
-import {IImage} from "../Interfaces/IImage";
-import {IContainerInteractivity} from "../Interfaces/IContainerInteractivity";
-import {Particles} from "./Particles";
-import {Retina} from "./Retina";
-import {ShapeType} from "../Enums/ShapeType";
-import {PolygonMask} from "./PolygonMask";
-import {ImageShape} from "./Options/Particles/Shape/ImageShape";
-import {IOptions} from "../Interfaces/Options/IOptions";
-import {Drawer} from "./Drawer";
-import {RecursivePartial} from "../Types/RecursivePartial";
-import {Options} from "./Options/Options";
-import {Utils} from "./Utils/Utils";
+import { Canvas } from "./Canvas";
+import { EventListeners } from "./Utils/EventListeners";
+import type { IRepulse } from "../Interfaces/IRepulse";
+import type { IBubble } from "../Interfaces/IBubble";
+import type { IImage } from "../Interfaces/IImage";
+import type { IContainerInteractivity } from "../Interfaces/IContainerInteractivity";
+import { Particles } from "./Particles";
+import { Retina } from "./Retina";
+import { ShapeType } from "../Enums/ShapeType";
+import { PolygonMask } from "./PolygonMask";
+import { ImageShape } from "./Options/Particles/Shape/ImageShape";
+import type { IOptions } from "../Interfaces/Options/IOptions";
+import { FrameManager } from "./FrameManager";
+import type { RecursivePartial } from "../Types/RecursivePartial";
+import { Options } from "./Options/Options";
+import { Utils } from "./Utils/Utils";
+import type { IImageShape } from "../Interfaces/Options/Particles/Shape/IImageShape";
+import { PresetType } from "../Enums/PresetType";
+import { Presets } from "./Utils/Presets";
 
 declare global {
     interface Window {
@@ -68,15 +69,24 @@ export class Container {
     public images: IImage[];
     public lastFrameTime: number;
     public pageHidden: boolean;
-    public drawer: Drawer;
+    public drawer: FrameManager;
     public started: boolean;
+    public destroyed: boolean;
 
     private paused: boolean;
     private drawAnimationFrame?: number;
     private eventListeners: EventListeners;
 
-    constructor(id: string, params?: RecursivePartial<IOptions>) {
+    /**
+     * This is the core class, create an instance to have a new working particles manager
+     * @constructor
+     * @param id the id to identify this instance
+     * @param params the options to load
+     * @param presets all the presets to load with options
+     */
+    constructor(id: string, params?: RecursivePartial<IOptions>, ...presets: PresetType[]) {
         this.started = false;
+        this.destroyed = false;
         this.id = id;
         this.paused = true;
         this.sourceOptions = params;
@@ -86,7 +96,7 @@ export class Container {
         this.canvas = new Canvas(this);
         this.particles = new Particles(this);
         this.polygon = new PolygonMask(this);
-        this.drawer = new Drawer(this);
+        this.drawer = new FrameManager(this);
         this.interactivity = {
             mouse: {},
         };
@@ -96,6 +106,10 @@ export class Container {
 
         /* tsParticles variables with default values */
         this.options = new Options();
+
+        for (const preset of presets) {
+            this.options.load(Presets.getPreset(preset));
+        }
 
         /* params settings */
         if (this.sourceOptions) {
@@ -120,7 +134,7 @@ export class Container {
             this.paused = false;
         }
 
-        this.drawAnimationFrame = Container.requestFrame((t) => this.update(t));
+        this.drawAnimationFrame = Container.requestFrame((t) => this.drawer.nextFrame(t));
     }
 
     public pause(): void {
@@ -128,6 +142,7 @@ export class Container {
             Container.cancelAnimation(this.drawAnimationFrame);
 
             delete this.drawAnimationFrame;
+
             this.paused = true;
         }
     }
@@ -140,19 +155,20 @@ export class Container {
         }
 
         let area = this.canvas.element.width * this.canvas.element.height / 1000;
+
         if (this.retina.isRetina) {
             area /= this.retina.pxRatio * 2;
         }
-        //const area = this.retina.particlesDensityArea;
+
         const optParticlesNumber = this.options.particles.number.value;
         const density = this.options.particles.number.density.area;
         const particlesNumber = area * optParticlesNumber / density;
-        const missingParticles = this.particles.array.length - particlesNumber;
+        const particlesCount = this.particles.count;
 
-        if (missingParticles < 0) {
-            this.particles.push(Math.abs(missingParticles));
-        } else {
-            this.particles.remove(missingParticles);
+        if (particlesCount < particlesNumber) {
+            this.particles.push(Math.abs(particlesNumber - particlesCount));
+        } else if (particlesCount > particlesNumber) {
+            this.particles.removeQuantity(particlesCount - particlesNumber);
         }
     }
 
@@ -173,15 +189,26 @@ export class Container {
         delete this.images;
         delete this.drawer;
         delete this.eventListeners;
+
+        this.destroyed = true;
     }
 
-    public exportImg(): void {
-        if (this.canvas.element) {
-            window.open(this.canvas.element.toDataURL("image/png"), "_blank");
-        }
+    /**
+     * @deprecated this method is deprecated, please use the exportImage method
+     */
+    public exportImg(callback: BlobCallback): void {
+        this.exportImage(callback);
     }
 
-    public async loadImg(image: IImage, optionsImage: ImageShape): Promise<void> {
+    public exportImage(callback: BlobCallback, type?: string, quality?: number): void {
+        return this.canvas.element?.toBlob(callback, type ?? "image/png", quality);
+    }
+
+    public exportConfiguration(): string {
+        return JSON.stringify(this.options, undefined, 2);
+    }
+
+    public async loadImage(image: IImage, optionsImage: ImageShape): Promise<void> {
         image.error = false;
 
         if (optionsImage.src) {
@@ -202,11 +229,6 @@ export class Container {
     }
 
     public async refresh(): Promise<void> {
-        /* init all */
-        //if (this.checkAnimationFrame) {
-        //    Container.cancelAnimation(this.checkAnimationFrame);
-        //}
-
         /* restart */
         this.stop();
         await this.start();
@@ -218,10 +240,8 @@ export class Container {
         }
 
         this.started = false;
-
-        this.eventListeners.removeEventsListeners();
+        this.eventListeners.removeListeners();
         this.pause();
-
         this.images = [];
         this.particles.clear();
         this.retina.reset();
@@ -240,7 +260,7 @@ export class Container {
 
         this.started = true;
 
-        this.eventListeners.addEventsListeners();
+        this.eventListeners.addListeners();
 
         /* If is set the url of svg element, load it and parse into raw polygon data,
          * works only with single path SVG
@@ -264,33 +284,25 @@ export class Container {
         if (this.options.particles.shape.type === ShapeType.image) {
             if (this.options.particles.shape.image instanceof Array) {
                 for (const optionsImage of this.options.particles.shape.image) {
-                    const src = optionsImage.src;
-                    const image: IImage = {error: false};
-
-                    image.type = src.substr(src.length - 3);
-
-                    await this.loadImg(image, optionsImage);
-
-                    this.images.push(image);
+                    await this.loadImageShape(optionsImage);
                 }
             } else {
-                const optionsImage = this.options.particles.shape.image;
-                const src = optionsImage.src;
-                const image: IImage = {error: false};
-
-                image.type = src.substr(src.length - 3);
-
-                await this.loadImg(image, optionsImage);
-
-                this.images.push(image);
+                await this.loadImageShape(this.options.particles.shape.image);
             }
         } else {
             this.checkBeforeDraw();
         }
     }
 
-    private update(timestamp: DOMHighResTimeStamp): void {
-        this.drawer.draw(timestamp);
+    private async loadImageShape(imageShape: IImageShape): Promise<void> {
+        const src = imageShape.src;
+        const image: IImage = { error: false };
+
+        image.type = src.substr(src.length - 3);
+
+        await this.loadImage(image, imageShape);
+
+        this.images.push(image);
     }
 
     private init(): void {
@@ -303,10 +315,6 @@ export class Container {
 
     private checkBeforeDraw(): void {
         if (this.options.particles.shape.type === ShapeType.image) {
-            //if (this.checkAnimationFrame) {
-            //    Container.cancelAnimation(this.checkAnimationFrame);
-            //}
-
             if (this.images.every((img) => img.error)) {
                 return;
             }

@@ -1,4 +1,4 @@
-import {IOptionLoader} from "../../IOptionLoader";
+import type { IOptionLoader } from "../../IOptionLoader";
 
 export interface ICharacterShape extends IOptionLoader<ICharacterShape> {
     value: string | string[];

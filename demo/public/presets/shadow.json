@@ -29,7 +29,7 @@
         "nb_sides": 5
       },
       "image": {
-        "src": "images/github.svg",
+        "src": "https://cdn.matteobruni.it/images/particles/github.svg",
         "width": 100,
         "height": 100
       }
@@ -59,7 +59,12 @@
       "distance": 150,
       "color": "#ffffff",
       "opacity": 0.4,
-      "width": 1
+      "width": 1,
+      "shadow": {
+        "enable": true,
+        "blur": 5,
+        "color": "#000000"
+      }
     },
     "move": {
       "enable": true,
@@ -118,6 +123,7 @@
       }
     }
   },
+  "fpsLimit": 30,
   "retina_detect": true,
   "config_demo": {
     "hide_card": false,

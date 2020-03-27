@@ -1,6 +1,5 @@
-import {IImageShape} from "../../../../Interfaces/Options/Particles/Shape/IImageShape";
-import {Messages} from "../../../Utils/Messages";
-import {RecursivePartial} from "../../../../Types/RecursivePartial";
+import type { IImageShape } from "../../../../Interfaces/Options/Particles/Shape/IImageShape";
+import type { RecursivePartial } from "../../../../Types/RecursivePartial";
 
 export class ImageShape implements IImageShape {
     /**
@@ -8,8 +7,6 @@ export class ImageShape implements IImageShape {
      * @deprecated this property is obsolete, please use the new replaceColor
      */
     public get replace_color(): boolean {
-        Messages.deprecated("particles.shape.image.replace_color", "particles.shape.image.replaceColor");
-
         return this.replaceColor;
     }
 
@@ -19,8 +16,6 @@ export class ImageShape implements IImageShape {
      * @param value
      */
     public set replace_color(value: boolean) {
-        Messages.deprecated("particles.shape.image.replace_color", "particles.shape.image.replaceColor");
-
         this.replaceColor = value;
     }
 

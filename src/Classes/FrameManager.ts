@@ -1,14 +1,14 @@
-import {Container} from "./Container";
-import {ShapeType} from "../Enums/ShapeType";
+import type { Container } from "./Container";
+import { ShapeType } from "../Enums/ShapeType";
 
-export class Drawer {
+export class FrameManager {
     private readonly container: Container;
 
     constructor(container: Container) {
         this.container = container;
     }
 
-    public draw(timestamp: DOMHighResTimeStamp): void {
+    public nextFrame(timestamp: DOMHighResTimeStamp): void {
         const container = this.container;
         const options = container.options;
 

@@ -1,12 +1,11 @@
-import {IEvents} from "../../../../Interfaces/Options/Interactivity/Events/IEvents";
-import {ClickEvent} from "./ClickEvent";
-import {IDivEvent} from "../../../../Interfaces/Options/Interactivity/Events/IDivEvent";
-import {IHoverEvent} from "../../../../Interfaces/Options/Interactivity/Events/IHoverEvent";
-import {DivEvent} from "./DivEvent";
-import {HoverEvent} from "./HoverEvent";
-import {IClickEvent} from "../../../../Interfaces/Options/Interactivity/Events/IClickEvent";
-import {Messages} from "../../../Utils/Messages";
-import {RecursivePartial} from "../../../../Types/RecursivePartial";
+import type { IEvents } from "../../../../Interfaces/Options/Interactivity/Events/IEvents";
+import { ClickEvent } from "./ClickEvent";
+import type { IDivEvent } from "../../../../Interfaces/Options/Interactivity/Events/IDivEvent";
+import type { IHoverEvent } from "../../../../Interfaces/Options/Interactivity/Events/IHoverEvent";
+import { DivEvent } from "./DivEvent";
+import { HoverEvent } from "./HoverEvent";
+import type { IClickEvent } from "../../../../Interfaces/Options/Interactivity/Events/IClickEvent";
+import type { RecursivePartial } from "../../../../Types/RecursivePartial";
 
 export class Events implements IEvents {
     /**
@@ -14,8 +13,6 @@ export class Events implements IEvents {
      * @deprecated this property is obsolete, please use the new onClick
      */
     public get onclick(): IClickEvent {
-        Messages.deprecated("interactivity.events.onclick", "interactivity.events.onClick");
-
         return this.onClick;
     }
 
@@ -25,8 +22,6 @@ export class Events implements IEvents {
      * @param value
      */
     public set onclick(value: IClickEvent) {
-        Messages.deprecated("interactivity.events.onclick", "interactivity.events.onClick");
-
         this.onClick = value;
     }
 
@@ -35,8 +30,6 @@ export class Events implements IEvents {
      * @deprecated this property is obsolete, please use the new onDiv
      */
     public get ondiv(): IDivEvent {
-        Messages.deprecated("interactivity.events.ondiv", "interactivity.events.onDiv");
-
         return this.onDiv;
     }
 
@@ -46,8 +39,6 @@ export class Events implements IEvents {
      * @param value
      */
     public set ondiv(value: IDivEvent) {
-        Messages.deprecated("interactivity.events.ondiv", "interactivity.events.onDiv");
-
         this.onDiv = value;
     }
 
@@ -56,8 +47,6 @@ export class Events implements IEvents {
      * @deprecated this property is obsolete, please use the new onHover
      */
     public get onhover(): IHoverEvent {
-        Messages.deprecated("interactivity.events.onhover", "interactivity.events.onHover");
-
         return this.onHover;
     }
 
@@ -67,8 +56,6 @@ export class Events implements IEvents {
      * @param value
      */
     public set onhover(value: IHoverEvent) {
-        Messages.deprecated("interactivity.events.onhover", "interactivity.events.onHover");
-
         this.onHover = value;
     }
 

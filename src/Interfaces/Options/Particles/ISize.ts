@@ -1,5 +1,6 @@
-import {ISizeAnimation} from "./ISizeAnimation";
-import {IOptionLoader} from "../IOptionLoader";
+import type { ISizeAnimation } from "./ISizeAnimation";
+import type { IOptionLoader } from "../IOptionLoader";
+import { IRandomSize } from "./IRandomSize";
 
 export interface ISize extends IOptionLoader<ISize> {
     /**
@@ -8,6 +9,6 @@ export interface ISize extends IOptionLoader<ISize> {
     anim: ISizeAnimation;
 
     animation: ISizeAnimation;
-    random: boolean;
+    random: boolean | IRandomSize;
     value: number;
 }

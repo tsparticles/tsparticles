@@ -1,6 +1,8 @@
-import {Particle} from "../Particle";
-import {Utils} from "../Utils/Utils";
-import {Container} from "../Container";
+import type { Particle } from "../Particle";
+import type { Container } from "../Container";
+import { ColorUtils } from "../Utils/ColorUtils";
+import { Utils } from "../Utils/Utils";
+import { ICoordinates } from "../../Interfaces/ICoordinates";
 
 export class Linker {
     private readonly container: Container;
@@ -15,13 +17,15 @@ export class Linker {
         const container = this.container;
         const options = container.options;
         const particle = this.particle;
-        const x1 = particle.position.x + particle.offset.x;
-        const x2 = p2.position.x + p2.offset.x;
-        const dx = x1 - x2;
-        const y1 = particle.position.y + particle.offset.y;
-        const y2 = p2.position.y + p2.offset.y;
-        const dy = y1 - y2;
-        const dist = Math.sqrt(dx * dx + dy * dy);
+        const pos1: ICoordinates = {
+            x: particle.position.x + particle.offset.x,
+            y: particle.position.y + particle.offset.y,
+        };
+        const pos2: ICoordinates = {
+            x: p2.position.x + p2.offset.x,
+            y: p2.position.y + p2.offset.y,
+        };
+        const dist = Utils.getDistanceBetweenCoordinates(pos1, pos2);
         const optOpacity = options.particles.lineLinked.opacity;
         const optDistance = container.retina.lineLinkedDistance;
 
@@ -40,18 +44,20 @@ export class Linker {
 
                     if (color === "random") {
                         if (options.particles.lineLinked.consent) {
-                            container.particles.lineLinkedColor = Utils.hexToRgb(color);
+                            container.particles.lineLinkedColor = ColorUtils.stringToRgb(color);
                         } else if (options.particles.lineLinked.blink) {
                             container.particles.lineLinkedColor = "random";
                         } else {
                             container.particles.lineLinkedColor = "mid";
                         }
                     } else {
-                        container.particles.lineLinkedColor = Utils.hexToRgb(color);
+                        container.particles.lineLinkedColor = typeof color === "string" ?
+                            ColorUtils.stringToRgb(color) :
+                            ColorUtils.colorToRgb(color);
                     }
                 }
 
-                container.canvas.drawLinkedLine(particle, p2, {x: x1, y: y1}, {x: x2, y: y2}, opacityLine);
+                container.canvas.drawLinkedLine(particle, p2, pos1, pos2, opacityLine);
             }
         }
     }

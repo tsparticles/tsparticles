@@ -1,5 +1,6 @@
-import {IOptionLoader} from "../IOptionLoader";
-import {IPolygonMaskDrawStroke} from "./IPolygonMaskDrawStroke";
+import type { IOptionLoader } from "../IOptionLoader";
+import type { IPolygonMaskDrawStroke } from "./IPolygonMaskDrawStroke";
+import type { IColor } from "../Particles/IColor";
 
 export interface IPolygonMaskDraw extends IOptionLoader<IPolygonMaskDraw> {
     enable: boolean;
@@ -7,7 +8,7 @@ export interface IPolygonMaskDraw extends IOptionLoader<IPolygonMaskDraw> {
     /**
      * @deprecated the property lineColor is deprecated, please use the new stroke.color property
      */
-    lineColor: string;
+    lineColor: string | IColor;
 
     /**
      * @deprecated the property lineColor is deprecated, please use the new stroke.width property

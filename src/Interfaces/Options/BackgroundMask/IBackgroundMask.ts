@@ -1,7 +1,8 @@
-import {IOptionLoader} from "../IOptionLoader";
-import {IParticlesColor} from "../Particles/IParticlesColor";
+import type { IOptionLoader } from "../IOptionLoader";
+import type { IColor } from "../Particles/IColor";
+import type { IBackgroundMaskCover } from "./IBackgroundMaskCover";
 
 export interface IBackgroundMask extends IOptionLoader<IBackgroundMask> {
-    cover?: IParticlesColor;
+    cover: IBackgroundMaskCover | IColor;
     enable: boolean;
 }

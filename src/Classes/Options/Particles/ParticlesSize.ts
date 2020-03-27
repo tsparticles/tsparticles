@@ -1,8 +1,9 @@
-import {ISize} from "../../../Interfaces/Options/Particles/ISize";
-import {ParticlesSizeAnimation} from "./ParticlesSizeAnimation";
-import {ISizeAnimation} from "../../../Interfaces/Options/Particles/ISizeAnimation";
-import {Messages} from "../../Utils/Messages";
-import {RecursivePartial} from "../../../Types/RecursivePartial";
+import type { ISize } from "../../../Interfaces/Options/Particles/ISize";
+import { ParticlesSizeAnimation } from "./ParticlesSizeAnimation";
+import type { ISizeAnimation } from "../../../Interfaces/Options/Particles/ISizeAnimation";
+import type { RecursivePartial } from "../../../Types/RecursivePartial";
+import type { IRandomSize } from "../../../Interfaces/Options/Particles/IRandomSize";
+import { RandomSize } from "./RandomSize";
 
 export class ParticlesSize implements ISize {
     /**
@@ -10,8 +11,6 @@ export class ParticlesSize implements ISize {
      * @deprecated this property is obsolete, please use the new animation
      */
     public get anim(): ISizeAnimation {
-        Messages.deprecated("particles.size.anim", "particles.size.animation");
-
         return this.animation;
     }
 
@@ -21,19 +20,17 @@ export class ParticlesSize implements ISize {
      * @param value
      */
     public set anim(value: ISizeAnimation) {
-        Messages.deprecated("particles.size.anim", "particles.size.animation");
-
         this.animation = value;
     }
 
     public animation: ISizeAnimation;
-    public random: boolean;
+    public random: boolean | IRandomSize;
     public value: number;
 
     constructor() {
         this.animation = new ParticlesSizeAnimation();
-        this.random = false;
-        this.value = 20;
+        this.random = new RandomSize;
+        this.value = 3;
     }
 
     public load(data?: RecursivePartial<ISize>): void {
@@ -45,7 +42,13 @@ export class ParticlesSize implements ISize {
             }
 
             if (data.random !== undefined) {
-                this.random = data.random;
+                const random = this.random as IRandomSize;
+
+                if (typeof data.random === "boolean") {
+                    random.enable = data.random;
+                } else {
+                    random.load(data.random);
+                }
             }
 
             if (data.value !== undefined) {

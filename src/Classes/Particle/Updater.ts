@@ -1,12 +1,11 @@
-"use strict";
-
-import {Container} from "../Container";
-import {OutMode} from "../../Enums/OutMode";
-import {Particle} from "../Particle";
-import {Utils} from "../Utils/Utils";
-import {PolygonMaskType} from "../../Enums/PolygonMaskType";
-import {Mover} from "./Mover";
-import {RotateDirection} from "../../Enums/RotateDirection";
+import type { Container } from "../Container";
+import { OutMode } from "../../Enums/OutMode";
+import type { Particle } from "../Particle";
+import { Utils } from "../Utils/Utils";
+import { PolygonMaskType } from "../../Enums/PolygonMaskType";
+import { Mover } from "./Mover";
+import { RotateDirection } from "../../Enums/RotateDirection";
+import { IBounds } from "../../Interfaces/IBounds";
 
 /**
  * Particle updater, it manages movement
@@ -131,70 +130,61 @@ export class Updater {
         const options = container.options;
         const particle = this.particle;
         const outMode = options.particles.move.outMode;
+        const canvasSize = container.canvas.dimension;
 
-        let newPos;
+        let newPos: IBounds;
 
         if (outMode === OutMode.bounce) {
             newPos = {
-                x_left: particle.radius,
-                x_right: container.canvas.dimension.width,
-                y_bottom: container.canvas.dimension.height,
-                y_top: particle.radius,
+                bottom: canvasSize.height,
+                left: particle.radius,
+                right: canvasSize.width,
+                top: particle.radius,
             };
         } else if (outMode === OutMode.bounceHorizontal) {
             newPos = {
-                x_left: particle.radius,
-                x_right: container.canvas.dimension.width,
-                y_bottom: container.canvas.dimension.height + particle.radius - particle.offset.y,
-                y_top: -particle.radius - particle.offset.y,
+                bottom: canvasSize.height + particle.radius - particle.offset.y,
+                left: particle.radius,
+                right: canvasSize.width,
+                top: -particle.radius - particle.offset.y,
             };
         } else if (outMode === OutMode.bounceVertical) {
             newPos = {
-                x_left: -particle.radius - particle.offset.x,
-                x_right: container.canvas.dimension.width + particle.radius + particle.offset.x,
-                y_bottom: container.canvas.dimension.height,
-                y_top: particle.radius,
+                bottom: canvasSize.height,
+                left: -particle.radius - particle.offset.x,
+                right: canvasSize.width + particle.radius + particle.offset.x,
+                top: particle.radius,
             };
         } else {
             newPos = {
-                x_left: -particle.radius - particle.offset.x,
-                x_right: container.canvas.dimension.width + particle.radius + particle.offset.x,
-                y_bottom: container.canvas.dimension.height + particle.radius - particle.offset.y,
-                y_top: -particle.radius - particle.offset.y,
+                bottom: canvasSize.height + particle.radius - particle.offset.y,
+                left: -particle.radius - particle.offset.x,
+                right: canvasSize.width + particle.radius + particle.offset.x,
+                top: -particle.radius - particle.offset.y,
             };
         }
 
         if (outMode === OutMode.destroy) {
-            if (particle.position.x + particle.radius < 0 ||
-                particle.position.y + particle.radius < 0 ||
-                particle.position.x - particle.radius > container.canvas.dimension.width ||
-                particle.position.y - particle.radius > container.canvas.dimension.height) {
-                const idx = container.particles.array.indexOf(particle);
-                container.particles.array.splice(idx, 1);
+            if (container.canvas.isPointInside(particle.position, particle.radius)) {
+                container.particles.remove(particle);
             }
         } else {
-            const nextPos = {
-                x_left: particle.position.x - particle.radius,
-                x_right: particle.position.x + particle.radius,
-                y_bottom: particle.position.y + particle.radius,
-                y_top: particle.position.y - particle.radius,
-            };
-            const dimension = container.canvas.dimension;
+            const nextBounds = container.canvas.calculateBounds(particle.position, particle.radius);
 
-            if (nextPos.x_left > dimension.width - particle.offset.x) {
-                particle.position.x = newPos.x_left;
-                particle.position.y = Math.random() * dimension.height;
-            } else if (nextPos.x_right < -particle.offset.x) {
-                particle.position.x = newPos.x_right;
-                particle.position.y = Math.random() * dimension.height;
+            if (nextBounds.left > canvasSize.width - particle.offset.x) {
+                particle.position.x = newPos.left;
+                particle.position.y = Math.random() * canvasSize.height;
+            } else if (nextBounds.right < -particle.offset.x) {
+                particle.position.x = newPos.right;
+                particle.position.y = Math.random() * canvasSize.height;
             }
 
-            if (nextPos.y_top > container.canvas.dimension.height - particle.offset.y) {
-                particle.position.y = newPos.y_top;
-                particle.position.x = Math.random() * container.canvas.dimension.width;
-            } else if (nextPos.y_bottom < -particle.offset.y) {
-                particle.position.y = newPos.y_bottom;
-                particle.position.x = Math.random() * container.canvas.dimension.width;
+            if (nextBounds.top > canvasSize.height - particle.offset.y) {
+                particle.position.y = newPos.top;
+                particle.position.x = Math.random() * canvasSize.width;
+            } else if (nextBounds.bottom < -particle.offset.y) {
+                particle.position.y = newPos.bottom;
+                particle.position.x = Math.random() * canvasSize.width;
             }
         }
     }

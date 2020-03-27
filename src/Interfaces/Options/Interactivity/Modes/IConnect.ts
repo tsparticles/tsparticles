@@ -1,5 +1,5 @@
-import {IConnectLineLinked} from "./IConnectLineLinked";
-import {IOptionLoader} from "../../IOptionLoader";
+import type { IConnectLineLinked } from "./IConnectLineLinked";
+import type { IOptionLoader } from "../../IOptionLoader";
 
 export interface IConnect extends IOptionLoader<IConnect> {
     distance: number;

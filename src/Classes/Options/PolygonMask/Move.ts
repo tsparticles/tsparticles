@@ -1,6 +1,6 @@
-import {IPolygonMaskMove} from "../../../Interfaces/Options/PolygonMask/IPolygonMaskMove";
-import {PolygonMaskMoveType} from "../../../Enums/PolygonMaskMoveType";
-import {RecursivePartial} from "../../../Types/RecursivePartial";
+import type { IPolygonMaskMove } from "../../../Interfaces/Options/PolygonMask/IPolygonMaskMove";
+import { PolygonMaskMoveType } from "../../../Enums/PolygonMaskMoveType";
+import type { RecursivePartial } from "../../../Types/RecursivePartial";
 
 export class Move implements IPolygonMaskMove {
     public radius: number;

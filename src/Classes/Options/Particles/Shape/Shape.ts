@@ -1,14 +1,14 @@
-import {IShape} from "../../../../Interfaces/Options/Particles/Shape/IShape";
-import {ShapeType} from "../../../../Enums/ShapeType";
-import {CharacterShape} from "./CharacterShape";
-import {ImageShape} from "./ImageShape";
-import {PolygonShape} from "./PolygonShape";
-import {Stroke} from "./Stroke";
-import {IImageShape} from "../../../../Interfaces/Options/Particles/Shape/IImageShape";
-import {ICharacterShape} from "../../../../Interfaces/Options/Particles/Shape/ICharacterShape";
-import {IPolygonShape} from "../../../../Interfaces/Options/Particles/Shape/IPolygonShape";
-import {IStroke} from "../../../../Interfaces/Options/Particles/Shape/IStroke";
-import {RecursivePartial} from "../../../../Types/RecursivePartial";
+import type { IShape } from "../../../../Interfaces/Options/Particles/Shape/IShape";
+import { ShapeType } from "../../../../Enums/ShapeType";
+import { CharacterShape } from "./CharacterShape";
+import { ImageShape } from "./ImageShape";
+import { PolygonShape } from "./PolygonShape";
+import { Stroke } from "./Stroke";
+import type { IImageShape } from "../../../../Interfaces/Options/Particles/Shape/IImageShape";
+import type { ICharacterShape } from "../../../../Interfaces/Options/Particles/Shape/ICharacterShape";
+import type { IPolygonShape } from "../../../../Interfaces/Options/Particles/Shape/IPolygonShape";
+import type { IStroke } from "../../../../Interfaces/Options/Particles/Shape/IStroke";
+import type { RecursivePartial } from "../../../../Types/RecursivePartial";
 
 export class Shape implements IShape {
     /**
@@ -31,8 +31,8 @@ export class Shape implements IShape {
 
     public character: ICharacterShape | ICharacterShape[];
     public image: IImageShape | IImageShape[];
-    public polygon: IPolygonShape;
-    public stroke: IStroke;
+    public polygon: IPolygonShape | IPolygonShape[];
+    public stroke: IStroke | IStroke[];
     public type: ShapeType | ShapeType[];
 
     constructor() {
@@ -75,8 +75,35 @@ export class Shape implements IShape {
                 }
             }
 
-            this.stroke.load(data.stroke);
-            this.polygon.load(data.polygon);
+            if (data.stroke !== undefined) {
+                if (data.stroke instanceof Array) {
+                    this.stroke = data.stroke.map((s) => {
+                        const tmp = new Stroke();
+
+                        tmp.load(s);
+
+                        return tmp;
+                    });
+                } else {
+                    this.stroke = new Stroke();
+                    this.stroke.load(data.stroke);
+                }
+            }
+
+            if (data.polygon !== undefined) {
+                if (data.polygon instanceof Array) {
+                    this.polygon = data.polygon.map((s) => {
+                        const tmp = new PolygonShape();
+
+                        tmp.load(s);
+
+                        return tmp;
+                    });
+                } else {
+                    this.polygon = new PolygonShape();
+                    this.polygon.load(data.polygon);
+                }
+            }
 
             if (data.type !== undefined) {
                 this.type = data.type;

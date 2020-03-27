@@ -1,0 +1,1186 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "definitions": {
+        "IAttract": {
+            "properties": {
+                "enable": {
+                    "type": "boolean"
+                },
+                "rotate": {
+                    "$ref": "#/definitions/ICoordinates"
+                },
+                "rotateX": {
+                    "type": "number"
+                },
+                "rotateY": {
+                    "type": "number"
+                }
+            },
+            "type": "object"
+        },
+        "IBackgroundMask": {
+            "properties": {
+                "cover": {
+                    "anyOf": [
+                        {
+                            "$ref": "#/definitions/IColor"
+                        },
+                        {
+                            "$ref": "#/definitions/IBackgroundMaskCover"
+                        }
+                    ]
+                },
+                "enable": {
+                    "type": "boolean"
+                }
+            },
+            "type": "object"
+        },
+        "IBackgroundMaskCover": {
+            "properties": {
+                "color": {
+                    "$ref": "#/definitions/IColor"
+                },
+                "opacity": {
+                    "type": "number"
+                }
+            },
+            "type": "object"
+        },
+        "IBubble": {
+            "properties": {
+                "distance": {
+                    "type": "number"
+                },
+                "duration": {
+                    "type": "number"
+                },
+                "opacity": {
+                    "type": "number"
+                },
+                "size": {
+                    "type": "number"
+                }
+            },
+            "type": "object"
+        },
+        "ICharacterShape": {
+            "properties": {
+                "fill": {
+                    "type": "boolean"
+                },
+                "font": {
+                    "type": "string"
+                },
+                "style": {
+                    "type": "string"
+                },
+                "value": {
+                    "anyOf": [
+                        {
+                            "items": {
+                                "type": "string"
+                            },
+                            "type": "array"
+                        },
+                        {
+                            "type": "string"
+                        }
+                    ]
+                },
+                "weight": {
+                    "type": "string"
+                }
+            },
+            "type": "object"
+        },
+        "IClickEvent": {
+            "properties": {
+                "enable": {
+                    "type": "boolean"
+                },
+                "mode": {
+                    "anyOf": [
+                        {
+                            "items": {
+                                "enum": [
+                                    "bubble",
+                                    "push",
+                                    "remove",
+                                    "repulse"
+                                ],
+                                "type": "string"
+                            },
+                            "type": "array"
+                        },
+                        {
+                            "enum": [
+                                "bubble",
+                                "push",
+                                "remove",
+                                "repulse"
+                            ],
+                            "type": "string"
+                        }
+                    ]
+                }
+            },
+            "type": "object"
+        },
+        "IColor": {
+            "properties": {
+                "value": {
+                    "anyOf": [
+                        {
+                            "items": {
+                                "type": "string"
+                            },
+                            "type": "array"
+                        },
+                        {
+                            "$ref": "#/definitions/IHsl"
+                        },
+                        {
+                            "$ref": "#/definitions/IRgb"
+                        },
+                        {
+                            "$ref": "#/definitions/IValueColor"
+                        },
+                        {
+                            "type": "string"
+                        }
+                    ]
+                }
+            },
+            "type": "object"
+        },
+        "IConnect": {
+            "properties": {
+                "distance": {
+                    "type": "number"
+                },
+                "lineLinked": {
+                    "$ref": "#/definitions/IConnectLineLinked"
+                },
+                "line_linked": {
+                    "$ref": "#/definitions/IConnectLineLinked"
+                },
+                "radius": {
+                    "type": "number"
+                }
+            },
+            "type": "object"
+        },
+        "IConnectLineLinked": {
+            "properties": {
+                "opacity": {
+                    "type": "number"
+                }
+            },
+            "type": "object"
+        },
+        "ICoordinates": {
+            "properties": {
+                "x": {
+                    "type": "number"
+                },
+                "y": {
+                    "type": "number"
+                }
+            },
+            "type": "object"
+        },
+        "IDensity": {
+            "properties": {
+                "area": {
+                    "type": "number"
+                },
+                "enable": {
+                    "type": "boolean"
+                },
+                "value_area": {
+                    "type": "number"
+                }
+            },
+            "type": "object"
+        },
+        "IDivEvent": {
+            "properties": {
+                "el": {
+                    "type": "string"
+                },
+                "elementId": {
+                    "type": "string"
+                },
+                "enable": {
+                    "type": "boolean"
+                },
+                "mode": {
+                    "anyOf": [
+                        {
+                            "items": {
+                                "enum": [
+                                    "repulse"
+                                ],
+                                "type": "string"
+                            },
+                            "type": "array"
+                        },
+                        {
+                            "enum": [
+                                "repulse"
+                            ],
+                            "type": "string"
+                        }
+                    ]
+                }
+            },
+            "type": "object"
+        },
+        "IEvents": {
+            "properties": {
+                "onClick": {
+                    "$ref": "#/definitions/IClickEvent"
+                },
+                "onDiv": {
+                    "$ref": "#/definitions/IDivEvent"
+                },
+                "onHover": {
+                    "$ref": "#/definitions/IHoverEvent"
+                },
+                "onclick": {
+                    "$ref": "#/definitions/IClickEvent"
+                },
+                "ondiv": {
+                    "$ref": "#/definitions/IDivEvent"
+                },
+                "onhover": {
+                    "$ref": "#/definitions/IHoverEvent"
+                },
+                "resize": {
+                    "type": "boolean"
+                }
+            },
+            "type": "object"
+        },
+        "IGrab": {
+            "properties": {
+                "distance": {
+                    "type": "number"
+                },
+                "lineLinked": {
+                    "$ref": "#/definitions/IGrabLineLinked"
+                },
+                "line_linked": {
+                    "$ref": "#/definitions/IGrabLineLinked"
+                }
+            },
+            "type": "object"
+        },
+        "IGrabLineLinked": {
+            "properties": {
+                "opacity": {
+                    "type": "number"
+                }
+            },
+            "type": "object"
+        },
+        "IHoverEvent": {
+            "properties": {
+                "enable": {
+                    "type": "boolean"
+                },
+                "mode": {
+                    "anyOf": [
+                        {
+                            "items": {
+                                "enum": [
+                                    "bubble",
+                                    "connect",
+                                    "grab",
+                                    "repulse",
+                                    "slow"
+                                ],
+                                "type": "string"
+                            },
+                            "type": "array"
+                        },
+                        {
+                            "enum": [
+                                "bubble",
+                                "connect",
+                                "grab",
+                                "repulse",
+                                "slow"
+                            ],
+                            "type": "string"
+                        }
+                    ]
+                },
+                "parallax": {
+                    "$ref": "#/definitions/IParallax"
+                }
+            },
+            "type": "object"
+        },
+        "IHsl": {
+            "properties": {
+                "h": {
+                    "type": "number"
+                },
+                "l": {
+                    "type": "number"
+                },
+                "s": {
+                    "type": "number"
+                }
+            },
+            "type": "object"
+        },
+        "IImageShape": {
+            "properties": {
+                "height": {
+                    "type": "number"
+                },
+                "replaceColor": {
+                    "type": "boolean"
+                },
+                "replace_color": {
+                    "type": "boolean"
+                },
+                "src": {
+                    "type": "string"
+                },
+                "width": {
+                    "type": "number"
+                }
+            },
+            "type": "object"
+        },
+        "IInteractivity": {
+            "properties": {
+                "detect_on": {
+                    "$ref": "#/definitions/InteractivityDetect"
+                },
+                "detectsOn": {
+                    "$ref": "#/definitions/InteractivityDetect"
+                },
+                "events": {
+                    "$ref": "#/definitions/IEvents"
+                },
+                "modes": {
+                    "$ref": "#/definitions/IModes"
+                }
+            },
+            "type": "object"
+        },
+        "ILineLinked": {
+            "properties": {
+                "blink": {
+                    "type": "boolean"
+                },
+                "color": {
+                    "anyOf": [
+                        {
+                            "$ref": "#/definitions/IColor"
+                        },
+                        {
+                            "type": "string"
+                        }
+                    ]
+                },
+                "consent": {
+                    "type": "boolean"
+                },
+                "distance": {
+                    "type": "number"
+                },
+                "enable": {
+                    "type": "boolean"
+                },
+                "opacity": {
+                    "type": "number"
+                },
+                "shadow": {
+                    "$ref": "#/definitions/ILineLinkedShadow"
+                },
+                "width": {
+                    "type": "number"
+                }
+            },
+            "type": "object"
+        },
+        "ILineLinkedShadow": {
+            "properties": {
+                "blur": {
+                    "type": "number"
+                },
+                "color": {
+                    "anyOf": [
+                        {
+                            "$ref": "#/definitions/IColor"
+                        },
+                        {
+                            "type": "string"
+                        }
+                    ]
+                },
+                "enable": {
+                    "type": "boolean"
+                }
+            },
+            "type": "object"
+        },
+        "IModes": {
+            "properties": {
+                "bubble": {
+                    "$ref": "#/definitions/IBubble"
+                },
+                "connect": {
+                    "$ref": "#/definitions/IConnect"
+                },
+                "grab": {
+                    "$ref": "#/definitions/IGrab"
+                },
+                "push": {
+                    "$ref": "#/definitions/IPush"
+                },
+                "remove": {
+                    "$ref": "#/definitions/IRemove"
+                },
+                "repulse": {
+                    "$ref": "#/definitions/IRepulse"
+                },
+                "slow": {
+                    "$ref": "#/definitions/ISlow"
+                }
+            },
+            "type": "object"
+        },
+        "IMove": {
+            "properties": {
+                "attract": {
+                    "$ref": "#/definitions/IAttract"
+                },
+                "bounce": {
+                    "type": "boolean"
+                },
+                "collisions": {
+                    "type": "boolean"
+                },
+                "direction": {
+                    "$ref": "#/definitions/MoveDirection"
+                },
+                "enable": {
+                    "type": "boolean"
+                },
+                "outMode": {
+                    "$ref": "#/definitions/OutMode"
+                },
+                "out_mode": {
+                    "$ref": "#/definitions/OutMode"
+                },
+                "random": {
+                    "type": "boolean"
+                },
+                "speed": {
+                    "type": "number"
+                },
+                "straight": {
+                    "type": "boolean"
+                },
+                "trail": {
+                    "$ref": "#/definitions/ITrail"
+                }
+            },
+            "type": "object"
+        },
+        "IOpacity": {
+            "properties": {
+                "anim": {
+                    "$ref": "#/definitions/IOpacityAnimation"
+                },
+                "animation": {
+                    "$ref": "#/definitions/IOpacityAnimation"
+                },
+                "random": {
+                    "anyOf": [
+                        {
+                            "$ref": "#/definitions/IRandomOpacity"
+                        },
+                        {
+                            "type": "boolean"
+                        }
+                    ]
+                },
+                "value": {
+                    "type": "number"
+                }
+            },
+            "type": "object"
+        },
+        "IOpacityAnimation": {
+            "properties": {
+                "enable": {
+                    "type": "boolean"
+                },
+                "minimumValue": {
+                    "type": "number"
+                },
+                "opacity_min": {
+                    "type": "number"
+                },
+                "speed": {
+                    "type": "number"
+                },
+                "sync": {
+                    "type": "boolean"
+                }
+            },
+            "type": "object"
+        },
+        "IParallax": {
+            "properties": {
+                "enable": {
+                    "type": "boolean"
+                },
+                "force": {
+                    "type": "number"
+                },
+                "smooth": {
+                    "type": "number"
+                }
+            },
+            "type": "object"
+        },
+        "IParticles": {
+            "properties": {
+                "color": {
+                    "$ref": "#/definitions/IColor"
+                },
+                "lineLinked": {
+                    "$ref": "#/definitions/ILineLinked"
+                },
+                "line_linked": {
+                    "$ref": "#/definitions/ILineLinked"
+                },
+                "move": {
+                    "$ref": "#/definitions/IMove"
+                },
+                "number": {
+                    "$ref": "#/definitions/IParticlesNumber"
+                },
+                "opacity": {
+                    "$ref": "#/definitions/IOpacity"
+                },
+                "rotate": {
+                    "$ref": "#/definitions/IRotate"
+                },
+                "shadow": {
+                    "$ref": "#/definitions/IShadow"
+                },
+                "shape": {
+                    "$ref": "#/definitions/IShape"
+                },
+                "size": {
+                    "$ref": "#/definitions/ISize"
+                }
+            },
+            "type": "object"
+        },
+        "IParticlesNumber": {
+            "properties": {
+                "density": {
+                    "$ref": "#/definitions/IDensity"
+                },
+                "limit": {
+                    "type": "number"
+                },
+                "max": {
+                    "type": "number"
+                },
+                "value": {
+                    "type": "number"
+                }
+            },
+            "type": "object"
+        },
+        "IPolygonInline": {
+            "properties": {
+                "arrangement": {
+                    "$ref": "#/definitions/PolygonMaskInlineArrangement"
+                }
+            },
+            "type": "object"
+        },
+        "IPolygonMask": {
+            "properties": {
+                "draw": {
+                    "$ref": "#/definitions/IPolygonMaskDraw"
+                },
+                "enable": {
+                    "type": "boolean"
+                },
+                "inline": {
+                    "$ref": "#/definitions/IPolygonInline"
+                },
+                "inlineArrangement": {
+                    "$ref": "#/definitions/PolygonMaskInlineArrangement"
+                },
+                "move": {
+                    "$ref": "#/definitions/IPolygonMaskMove"
+                },
+                "scale": {
+                    "type": "number"
+                },
+                "type": {
+                    "$ref": "#/definitions/PolygonMaskType"
+                },
+                "url": {
+                    "type": "string"
+                }
+            },
+            "type": "object"
+        },
+        "IPolygonMaskDraw": {
+            "properties": {
+                "enable": {
+                    "type": "boolean"
+                },
+                "lineColor": {
+                    "anyOf": [
+                        {
+                            "$ref": "#/definitions/IColor"
+                        },
+                        {
+                            "type": "string"
+                        }
+                    ]
+                },
+                "lineWidth": {
+                    "type": "number"
+                },
+                "stroke": {
+                    "$ref": "#/definitions/IPolygonMaskDrawStroke"
+                }
+            },
+            "type": "object"
+        },
+        "IPolygonMaskDrawStroke": {
+            "properties": {
+                "color": {
+                    "anyOf": [
+                        {
+                            "$ref": "#/definitions/IColor"
+                        },
+                        {
+                            "type": "string"
+                        }
+                    ]
+                },
+                "width": {
+                    "type": "number"
+                }
+            },
+            "type": "object"
+        },
+        "IPolygonMaskMove": {
+            "properties": {
+                "radius": {
+                    "type": "number"
+                },
+                "type": {
+                    "$ref": "#/definitions/PolygonMaskMoveType"
+                }
+            },
+            "type": "object"
+        },
+        "IPolygonShape": {
+            "properties": {
+                "nb_sides": {
+                    "type": "number"
+                },
+                "sides": {
+                    "type": "number"
+                }
+            },
+            "type": "object"
+        },
+        "IPush": {
+            "properties": {
+                "particles_nb": {
+                    "type": "number"
+                },
+                "quantity": {
+                    "type": "number"
+                }
+            },
+            "type": "object"
+        },
+        "IRandomOpacity": {
+            "properties": {
+                "enable": {
+                    "type": "boolean"
+                },
+                "minimumValue": {
+                    "type": "number"
+                }
+            },
+            "type": "object"
+        },
+        "IRandomSize": {
+            "properties": {
+                "enable": {
+                    "type": "boolean"
+                },
+                "minimumValue": {
+                    "type": "number"
+                }
+            },
+            "type": "object"
+        },
+        "IRemove": {
+            "properties": {
+                "particles_nb": {
+                    "type": "number"
+                },
+                "quantity": {
+                    "type": "number"
+                }
+            },
+            "type": "object"
+        },
+        "IRepulse": {
+            "properties": {
+                "distance": {
+                    "type": "number"
+                },
+                "duration": {
+                    "type": "number"
+                }
+            },
+            "type": "object"
+        },
+        "IRgb": {
+            "properties": {
+                "b": {
+                    "type": "number"
+                },
+                "g": {
+                    "type": "number"
+                },
+                "r": {
+                    "type": "number"
+                }
+            },
+            "type": "object"
+        },
+        "IRotate": {
+            "properties": {
+                "animation": {
+                    "$ref": "#/definitions/IRotateAnimation"
+                },
+                "direction": {
+                    "$ref": "#/definitions/RotateDirection"
+                },
+                "random": {
+                    "type": "boolean"
+                },
+                "value": {
+                    "type": "number"
+                }
+            },
+            "type": "object"
+        },
+        "IRotateAnimation": {
+            "properties": {
+                "enable": {
+                    "type": "boolean"
+                },
+                "speed": {
+                    "type": "number"
+                },
+                "sync": {
+                    "type": "boolean"
+                }
+            },
+            "type": "object"
+        },
+        "IShadow": {
+            "properties": {
+                "blur": {
+                    "type": "number"
+                },
+                "color": {
+                    "anyOf": [
+                        {
+                            "$ref": "#/definitions/IColor"
+                        },
+                        {
+                            "type": "string"
+                        }
+                    ]
+                },
+                "enable": {
+                    "type": "boolean"
+                },
+                "offset": {
+                    "$ref": "#/definitions/ICoordinates"
+                }
+            },
+            "type": "object"
+        },
+        "IShape": {
+            "properties": {
+                "character": {
+                    "anyOf": [
+                        {
+                            "$ref": "#/definitions/ICharacterShape"
+                        },
+                        {
+                            "items": {
+                                "$ref": "#/definitions/ICharacterShape"
+                            },
+                            "type": "array"
+                        }
+                    ]
+                },
+                "image": {
+                    "anyOf": [
+                        {
+                            "$ref": "#/definitions/IImageShape"
+                        },
+                        {
+                            "items": {
+                                "$ref": "#/definitions/IImageShape"
+                            },
+                            "type": "array"
+                        }
+                    ]
+                },
+                "polygon": {
+                    "anyOf": [
+                        {
+                            "$ref": "#/definitions/IPolygonShape"
+                        },
+                        {
+                            "items": {
+                                "$ref": "#/definitions/IPolygonShape"
+                            },
+                            "type": "array"
+                        }
+                    ]
+                },
+                "stroke": {
+                    "anyOf": [
+                        {
+                            "$ref": "#/definitions/IStroke"
+                        },
+                        {
+                            "items": {
+                                "$ref": "#/definitions/IStroke"
+                            },
+                            "type": "array"
+                        }
+                    ]
+                },
+                "type": {
+                    "anyOf": [
+                        {
+                            "items": {
+                                "enum": [
+                                    "char",
+                                    "character",
+                                    "circle",
+                                    "edge",
+                                    "heart",
+                                    "image",
+                                    "line",
+                                    "polygon",
+                                    "square",
+                                    "star",
+                                    "triangle"
+                                ],
+                                "type": "string"
+                            },
+                            "type": "array"
+                        },
+                        {
+                            "enum": [
+                                "char",
+                                "character",
+                                "circle",
+                                "edge",
+                                "heart",
+                                "image",
+                                "line",
+                                "polygon",
+                                "square",
+                                "star",
+                                "triangle"
+                            ],
+                            "type": "string"
+                        }
+                    ]
+                }
+            },
+            "type": "object"
+        },
+        "ISize": {
+            "properties": {
+                "anim": {
+                    "$ref": "#/definitions/ISizeAnimation"
+                },
+                "animation": {
+                    "$ref": "#/definitions/ISizeAnimation"
+                },
+                "random": {
+                    "anyOf": [
+                        {
+                            "$ref": "#/definitions/IRandomSize"
+                        },
+                        {
+                            "type": "boolean"
+                        }
+                    ]
+                },
+                "value": {
+                    "type": "number"
+                }
+            },
+            "type": "object"
+        },
+        "ISizeAnimation": {
+            "properties": {
+                "enable": {
+                    "type": "boolean"
+                },
+                "minimumValue": {
+                    "type": "number"
+                },
+                "size_min": {
+                    "type": "number"
+                },
+                "speed": {
+                    "type": "number"
+                },
+                "sync": {
+                    "type": "boolean"
+                }
+            },
+            "type": "object"
+        },
+        "ISlow": {
+            "properties": {
+                "active": {
+                    "type": "boolean"
+                },
+                "factor": {
+                    "type": "number"
+                },
+                "radius": {
+                    "type": "number"
+                }
+            },
+            "type": "object"
+        },
+        "IStroke": {
+            "properties": {
+                "color": {
+                    "anyOf": [
+                        {
+                            "$ref": "#/definitions/IColor"
+                        },
+                        {
+                            "type": "string"
+                        }
+                    ]
+                },
+                "width": {
+                    "type": "number"
+                }
+            },
+            "type": "object"
+        },
+        "ITrail": {
+            "properties": {
+                "enable": {
+                    "type": "boolean"
+                },
+                "fillColor": {
+                    "anyOf": [
+                        {
+                            "$ref": "#/definitions/IColor"
+                        },
+                        {
+                            "type": "string"
+                        }
+                    ]
+                },
+                "length": {
+                    "type": "number"
+                }
+            },
+            "type": "object"
+        },
+        "IValueColor": {
+            "properties": {
+                "hsl": {
+                    "anyOf": [
+                        {
+                            "$ref": "#/definitions/IHsl"
+                        },
+                        {
+                            "type": "null"
+                        }
+                    ]
+                },
+                "rgb": {
+                    "anyOf": [
+                        {
+                            "$ref": "#/definitions/IRgb"
+                        },
+                        {
+                            "type": "null"
+                        }
+                    ]
+                }
+            },
+            "type": "object"
+        },
+        "InteractivityDetect": {
+            "enum": [
+                "canvas",
+                "parent",
+                "window"
+            ],
+            "type": "string"
+        },
+        "MoveDirection": {
+            "enum": [
+                "bottom",
+                "bottom-left",
+                "bottom-right",
+                "left",
+                "none",
+                "right",
+                "top",
+                "top-left",
+                "top-right"
+            ],
+            "type": "string"
+        },
+        "OutMode": {
+            "enum": [
+                "bounce",
+                "bounce-horizontal",
+                "bounce-vertical",
+                "destroy",
+                "out"
+            ],
+            "type": "string"
+        },
+        "PolygonMaskInlineArrangement": {
+            "enum": [
+                "equidistant",
+                "one-per-point",
+                "per-point",
+                "random-length",
+                "random-point"
+            ],
+            "type": "string"
+        },
+        "PolygonMaskMoveType": {
+            "enum": [
+                "path",
+                "radius"
+            ],
+            "type": "string"
+        },
+        "PolygonMaskType": {
+            "enum": [
+                "inline",
+                "inside",
+                "none",
+                "outside"
+            ],
+            "type": "string"
+        },
+        "RotateDirection": {
+            "enum": [
+                "clockwise",
+                "counter-clockwise",
+                "random"
+            ],
+            "type": "string"
+        }
+    },
+    "description": "The Options interface, defines all the options that can be used by `tsParticles`",
+    "properties": {
+        "backgroundMask": {
+            "$ref": "#/definitions/IBackgroundMask"
+        },
+        "detectRetina": {
+            "description": "Enables the retina detection, if disabled the ratio used by canvas will be always 1 and not the device setting.",
+            "type": "boolean"
+        },
+        "fpsLimit": {
+            "description": "The F(rame)P(er)S(econd) limit applied to all particles animations.",
+            "type": "number"
+        },
+        "fps_limit": {
+            "description": "The F(rame)P(er)S(econd) limit applied to all particles animations.",
+            "type": "number"
+        },
+        "interactivity": {
+            "$ref": "#/definitions/IInteractivity",
+            "description": "The particles interaction options"
+        },
+        "particles": {
+            "$ref": "#/definitions/IParticles",
+            "description": "The particles options"
+        },
+        "pauseOnBlur": {
+            "type": "boolean"
+        },
+        "polygon": {
+            "$ref": "#/definitions/IPolygonMask",
+            "description": "The polygon mask options."
+        },
+        "preset": {
+            "anyOf": [
+                {
+                    "items": {
+                        "enum": [
+                            "backgroundMask",
+                            "basic",
+                            "bouncing",
+                            "fontAwesome",
+                            "snow",
+                            "stars"
+                        ],
+                        "type": "string"
+                    },
+                    "type": "array"
+                },
+                {
+                    "enum": [
+                        "backgroundMask",
+                        "basic",
+                        "bouncing",
+                        "fontAwesome",
+                        "snow",
+                        "stars"
+                    ],
+                    "type": "string"
+                }
+            ]
+        },
+        "retina_detect": {
+            "description": "Enables the retina detection, if disabled the ratio used by canvas will be always 1 and not the device setting.",
+            "type": "boolean"
+        }
+    },
+    "type": "object"
+}
+

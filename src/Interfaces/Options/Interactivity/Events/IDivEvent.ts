@@ -1,5 +1,5 @@
-import {DivMode} from "../../../../Enums/Modes/DivMode";
-import {IOptionLoader} from "../../IOptionLoader";
+import type { DivMode } from "../../../../Enums/Modes/DivMode";
+import type { IOptionLoader } from "../../IOptionLoader";
 
 export interface IDivEvent extends IOptionLoader<IDivEvent> {
     enable: boolean;

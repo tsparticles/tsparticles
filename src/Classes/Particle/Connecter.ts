@@ -1,5 +1,5 @@
-import {Particle} from "../Particle";
-import {Container} from "../Container";
+import type {Particle} from "../Particle";
+import type {Container} from "../Container";
 
 /**
  * Particle connection manager

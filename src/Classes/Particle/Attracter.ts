@@ -1,5 +1,5 @@
-import {Container} from "../Container";
-import {Particle} from "../Particle";
+import type { Container } from "../Container";
+import type { Particle } from "../Particle";
 
 export class Attracter {
     private readonly container: Container;

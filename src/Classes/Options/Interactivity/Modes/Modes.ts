@@ -1,19 +1,19 @@
-import {IModes} from "../../../../Interfaces/Options/Interactivity/Modes/IModes";
-import {Bubble} from "./Bubble";
-import {Connect} from "./Connect";
-import {Grab} from "./Grab";
-import {Remove} from "./Remove";
-import {Push} from "./Push";
-import {Repulse} from "./Repulse";
-import {Slow} from "./Slow";
-import {IBubble} from "../../../../Interfaces/Options/Interactivity/Modes/IBubble";
-import {IConnect} from "../../../../Interfaces/Options/Interactivity/Modes/IConnect";
-import {IGrab} from "../../../../Interfaces/Options/Interactivity/Modes/IGrab";
-import {IPush} from "../../../../Interfaces/Options/Interactivity/Modes/IPush";
-import {IRemove} from "../../../../Interfaces/Options/Interactivity/Modes/IRemove";
-import {IRepulse} from "../../../../Interfaces/Options/Interactivity/Modes/IRepulse";
-import {ISlow} from "../../../../Interfaces/Options/Interactivity/Modes/ISlow";
-import {RecursivePartial} from "../../../../Types/RecursivePartial";
+import type { IModes } from "../../../../Interfaces/Options/Interactivity/Modes/IModes";
+import { Bubble } from "./Bubble";
+import { Connect } from "./Connect";
+import { Grab } from "./Grab";
+import { Remove } from "./Remove";
+import { Push } from "./Push";
+import { Repulse } from "./Repulse";
+import { Slow } from "./Slow";
+import type { IBubble } from "../../../../Interfaces/Options/Interactivity/Modes/IBubble";
+import type { IConnect } from "../../../../Interfaces/Options/Interactivity/Modes/IConnect";
+import type { IGrab } from "../../../../Interfaces/Options/Interactivity/Modes/IGrab";
+import type { IPush } from "../../../../Interfaces/Options/Interactivity/Modes/IPush";
+import type { IRemove } from "../../../../Interfaces/Options/Interactivity/Modes/IRemove";
+import type { IRepulse } from "../../../../Interfaces/Options/Interactivity/Modes/IRepulse";
+import type { ISlow } from "../../../../Interfaces/Options/Interactivity/Modes/ISlow";
+import type { RecursivePartial } from "../../../../Types/RecursivePartial";
 
 export class Modes implements IModes {
     public bubble: IBubble;

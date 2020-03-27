@@ -97,7 +97,7 @@
       "image": {
         "height": 32,
         "replace_color": true,
-        "src": "/images/sars-cov-2.png",
+        "src": "https://cdn.matteobruni.it/images/particles/sars-cov-2.png",
         "width": 32
       },
       "polygon": {

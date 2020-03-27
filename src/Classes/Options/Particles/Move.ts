@@ -1,12 +1,11 @@
-import {IMove} from "../../../Interfaces/Options/Particles/IMove";
-import {Attract} from "./Attract";
-import {MoveDirection} from "../../../Enums/MoveDirection";
-import {OutMode} from "../../../Enums/OutMode";
-import {IAttract} from "../../../Interfaces/Options/Particles/IAttract";
-import {Messages} from "../../Utils/Messages";
-import {Trail} from "./Trail";
-import {ITrail} from "../../../Interfaces/Options/Particles/ITrail";
-import {RecursivePartial} from "../../../Types/RecursivePartial";
+import type { IMove } from "../../../Interfaces/Options/Particles/IMove";
+import { Attract } from "./Attract";
+import { MoveDirection } from "../../../Enums/MoveDirection";
+import { OutMode } from "../../../Enums/OutMode";
+import type { IAttract } from "../../../Interfaces/Options/Particles/IAttract";
+import { Trail } from "./Trail";
+import type { ITrail } from "../../../Interfaces/Options/Particles/ITrail";
+import type { RecursivePartial } from "../../../Types/RecursivePartial";
 
 export class Move implements IMove {
     /**
@@ -14,8 +13,6 @@ export class Move implements IMove {
      * @deprecated this property is obsolete, please use the new collisions
      */
     get bounce(): boolean {
-        Messages.deprecated("particles.move.bounce", "particles.move.collisions");
-
         return this.collisions;
     }
 
@@ -24,8 +21,6 @@ export class Move implements IMove {
      * @deprecated this property is obsolete, please use the new collisions
      */
     set bounce(value: boolean) {
-        Messages.deprecated("particles.move.collisions", "particles.move.collisions");
-
         this.collisions = value;
     }
 
@@ -34,8 +29,6 @@ export class Move implements IMove {
      * @deprecated this property is obsolete, please use the new outMode
      */
     public get out_mode(): OutMode {
-        Messages.deprecated("particles.move.out_mode", "particles.move.outMode");
-
         return this.outMode;
     }
 
@@ -45,8 +38,6 @@ export class Move implements IMove {
      * @param value
      */
     public set out_mode(value: OutMode) {
-        Messages.deprecated("particles.move.out_mode", "particles.move.outMode");
-
         this.outMode = value;
     }
 
@@ -64,7 +55,7 @@ export class Move implements IMove {
         this.attract = new Attract();
         this.collisions = false;
         this.direction = MoveDirection.none;
-        this.enable = true;
+        this.enable = false;
         this.outMode = OutMode.out;
         this.random = false;
         this.speed = 2;

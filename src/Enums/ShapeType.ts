@@ -1,5 +1,3 @@
-"use strict";
-
 export enum ShapeType {
     char = "char",
     character = "character",

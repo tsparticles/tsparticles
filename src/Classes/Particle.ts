@@ -1,27 +1,30 @@
-"use strict";
-
-import {Bubbler} from "./Particle/Bubbler";
-import {Container} from "./Container";
-import {Drawer} from "./Particle/Drawer";
-import {Grabber} from "./Particle/Grabber";
-import {IVelocity} from "../Interfaces/IVelocity";
-import {ISize} from "../Interfaces/ISize";
-import {IOpacity} from "../Interfaces/IOpacity";
-import {ICoordinates} from "../Interfaces/ICoordinates";
-import {IParticleImage} from "../Interfaces/IParticleImage";
-import {Repulser} from "./Particle/Repulser";
-import {ShapeType} from "../Enums/ShapeType";
-import {Updater} from "./Particle/Updater";
-import {Utils} from "./Utils/Utils";
-import {PolygonMaskType} from "../Enums/PolygonMaskType";
-import {Connecter} from "./Particle/Connecter";
-import {IRgb} from "../Interfaces/IRgb";
-import {IOptions} from "../Interfaces/Options/IOptions";
-import {InteractionManager} from "./Particle/InteractionManager";
-import {HoverMode} from "../Enums/Modes/HoverMode";
-import {ClickMode} from "../Enums/Modes/ClickMode";
-import {RotateDirection} from "../Enums/RotateDirection";
-import {ICharacterShape} from "../Interfaces/Options/Particles/Shape/ICharacterShape";
+import { Bubbler } from "./Particle/Bubbler";
+import type { Container } from "./Container";
+import { Drawer } from "./Particle/Drawer";
+import { Grabber } from "./Particle/Grabber";
+import type { IVelocity } from "../Interfaces/IVelocity";
+import type { ISize } from "../Interfaces/ISize";
+import type { IOpacity } from "../Interfaces/IOpacity";
+import type { ICoordinates } from "../Interfaces/ICoordinates";
+import type { IParticleImage } from "../Interfaces/IParticleImage";
+import { Repulser } from "./Particle/Repulser";
+import { ShapeType } from "../Enums/ShapeType";
+import { Updater } from "./Particle/Updater";
+import { Utils } from "./Utils/Utils";
+import { PolygonMaskType } from "../Enums/PolygonMaskType";
+import { Connecter } from "./Particle/Connecter";
+import type { IRgb } from "../Interfaces/IRgb";
+import type { IOptions } from "../Interfaces/Options/IOptions";
+import { InteractionManager } from "./Particle/InteractionManager";
+import { HoverMode } from "../Enums/Modes/HoverMode";
+import { ClickMode } from "../Enums/Modes/ClickMode";
+import { RotateDirection } from "../Enums/RotateDirection";
+import type { ICharacterShape } from "../Interfaces/Options/Particles/Shape/ICharacterShape";
+import type { IPolygonShape } from "../Interfaces/Options/Particles/Shape/IPolygonShape";
+import type { IStroke } from "../Interfaces/Options/Particles/Shape/IStroke";
+import { ColorUtils } from "./Utils/ColorUtils";
+import type { IRandomSize } from "../Interfaces/Options/Particles/IRandomSize";
+import type { IRandomOpacity } from "../Interfaces/Options/Particles/IRandomOpacity";
 
 /**
  * The single particle object
@@ -30,12 +33,16 @@ export class Particle {
     public angle: number;
     public rotateDirection: RotateDirection;
     public radius: number;
+    public readonly stroke: IStroke;
+    public readonly polygon?: IPolygonShape;
     public readonly text?: string;
     public readonly size: ISize;
     public readonly initialPosition?: ICoordinates;
     public readonly position: ICoordinates;
     public readonly offset: ICoordinates;
     public readonly color: IRgb | undefined;
+    public readonly strokeColor: IRgb | undefined;
+    public readonly shadowColor: IRgb | undefined;
     public readonly opacity: IOpacity;
     public readonly velocity: IVelocity;
     public readonly shape?: ShapeType;
@@ -74,7 +81,10 @@ export class Particle {
             this.rotateDirection = options.particles.rotate.direction;
         }
 
-        this.radius = (options.particles.size.random ? Math.random() : 1) * container.retina.sizeValue;
+        const randomSize = options.particles.size.random as IRandomSize;
+        const sizeValue = container.retina.sizeValue;
+
+        this.radius = randomSize.enable ? Utils.randomInRange(randomSize.minimumValue, sizeValue) : sizeValue;
 
         if (options.particles.size.animation.enable) {
             this.size.status = false;
@@ -113,11 +123,14 @@ export class Particle {
         }
 
         /* color */
-        this.color = Utils.getParticleColor(color);
+        this.color = ColorUtils.colorToRgb(color);
 
         /* opacity */
+        const randomOpacity = options.particles.opacity.random as IRandomOpacity;
+        const opacityValue = options.particles.opacity.value;
+
         this.opacity = {
-            value: (options.particles.opacity.random ? Math.random() : 1) * options.particles.opacity.value,
+            value: randomOpacity.enable ? Utils.randomInRange(randomOpacity.minimumValue, opacityValue) : opacityValue,
         };
 
         if (options.particles.opacity.animation.enable) {
@@ -140,16 +153,17 @@ export class Particle {
         const shapeType = options.particles.shape.type;
 
         if (shapeType instanceof Array) {
-            this.shape = shapeType[Math.floor(Math.random() * shapeType.length)];
+            this.shape = Utils.itemFromArray(shapeType);
         } else {
             this.shape = shapeType;
         }
 
         if (this.shape === ShapeType.image) {
             const shape = options.particles.shape;
-            const index = Math.floor(Math.random() * container.images.length);
+            const index = Utils.arrayRandomIndex(container.images);
             const image = container.images[index];
             const optionsImage = shape.image instanceof Array ? shape.image[index] : shape.image;
+
             this.image = {
                 data: image,
                 ratio: optionsImage.width / optionsImage.height,
@@ -162,21 +176,38 @@ export class Particle {
             }
         }
 
+        if (this.shape === ShapeType.polygon) {
+            if (options.particles.shape.polygon instanceof Array) {
+                this.polygon = Utils.itemFromArray(options.particles.shape.polygon);
+            } else {
+                this.polygon = options.particles.shape.polygon;
+            }
+        }
+
+        if (options.particles.shape.stroke instanceof Array) {
+            this.stroke = Utils.itemFromArray(options.particles.shape.stroke);
+        } else {
+            this.stroke = options.particles.shape.stroke;
+        }
+
+        this.strokeColor = typeof this.stroke.color === "string" ?
+            ColorUtils.stringToRgb(this.stroke.color) :
+            ColorUtils.colorToRgb(this.stroke.color);
+
+        this.shadowColor = typeof options.particles.shadow.color === "string" ?
+            ColorUtils.stringToRgb(options.particles.shadow.color) :
+            ColorUtils.colorToRgb(options.particles.shadow.color);
+
         if (this.shape === ShapeType.char || this.shape === ShapeType.character) {
             if (options.particles.shape.character instanceof Array) {
-                const arr = options.particles.shape.character;
-                this.character = arr[Math.floor(Math.random() * arr.length)];
+                this.character = Utils.itemFromArray(options.particles.shape.character);
             } else {
                 this.character = options.particles.shape.character;
             }
 
             const value = this.character.value;
 
-            if (value instanceof Array) {
-                this.text = value[Math.floor(Math.random() * value.length)]
-            } else {
-                this.text = value;
-            }
+            this.text = value instanceof Array ? Utils.itemFromArray(value) : value;
         }
 
         this.updater = new Updater(this.container, this);
@@ -242,7 +273,7 @@ export class Particle {
         //  New interactivity `connect` which would just connect the particles on hover
 
         if (Utils.isInArray(HoverMode.connect, options.interactivity.events.onHover.mode)) {
-            for (let j = index + 1; j < container.particles.array.length; j++) {
+            for (let j = index + 1; j < container.particles.count; j++) {
                 const p2 = container.particles.array[j];
                 this.connecter.connect(p2);
             }
@@ -292,16 +323,10 @@ export class Particle {
         const p = this;
         const overlapResult = p.isOverlapping();
 
-        if (overlapResult.iterations >= container.particles.array.length) {
-            const idx = container.particles.array.indexOf(this);
-
-            if (idx >= 0) {
-                // too many particles, removing from the current
-                container.particles.array.splice(idx);
-            }
-        }
-
-        if (overlapResult.collisionFound) {
+        if (overlapResult.iterations >= container.particles.count) {
+            // too many particles, removing from the current
+            container.particles.remove(this);
+        } else if (overlapResult.collisionFound) {
             p.position.x = position ? position.x : Math.random() * container.canvas.dimension.width;
             p.position.y = position ? position.y : Math.random() * container.canvas.dimension.height;
 
@@ -310,7 +335,7 @@ export class Particle {
     }
 
     private calcPosition(container: Container, position?: ICoordinates): ICoordinates {
-        const pos = {x: 0, y: 0};
+        const pos = { x: 0, y: 0 };
 
         if (container.polygon.raw && container.polygon.raw.length > 0) {
             if (position) {

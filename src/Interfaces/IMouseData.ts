@@ -1,6 +1,4 @@
-"use strict";
-
-import {ICoordinates} from "./ICoordinates";
+import type { ICoordinates } from "./ICoordinates";
 
 export interface IMouseData {
     clickPosition?: ICoordinates | null,
