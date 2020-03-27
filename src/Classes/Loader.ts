@@ -29,7 +29,7 @@ export class Loader {
         const dom = Loader.dom();
         const item = dom[index];
 
-        if (!item.destroyed) {
+        if (item && !item.destroyed) {
             return item;
         }
 
