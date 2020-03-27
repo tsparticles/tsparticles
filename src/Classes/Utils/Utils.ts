@@ -1,9 +1,6 @@
 import type { ICoordinates } from "../../Interfaces/ICoordinates";
-import type { IHsl } from "../../Interfaces/IHsl";
-import type { IRgb } from "../../Interfaces/IRgb";
 import { MoveDirection } from "../../Enums/MoveDirection";
 import type { IOptions } from "../../Interfaces/Options/IOptions";
-import type { IColor } from "../../Interfaces/Options/Particles/IColor";
 import type { ICharacterShape } from "../../Interfaces/Options/Particles/Shape/ICharacterShape";
 
 type CSSOMString = string;
