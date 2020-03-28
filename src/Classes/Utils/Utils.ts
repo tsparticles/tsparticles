@@ -2,6 +2,8 @@ import type { ICoordinates } from "../../Interfaces/ICoordinates";
 import { MoveDirection } from "../../Enums/MoveDirection";
 import type { IOptions } from "../../Interfaces/Options/IOptions";
 import type { ICharacterShape } from "../../Interfaces/Options/Particles/Shape/ICharacterShape";
+import { IBounds } from "../../Interfaces/IBounds";
+import { IDimension } from "../../Interfaces/IDimension";
 
 type CSSOMString = string;
 type FontFaceLoadStatus = 'unloaded' | 'loading' | 'loaded' | 'error';
@@ -133,10 +135,28 @@ export class Utils {
     }
 
     public static itemFromArray<T>(array: T[], index?: number): T {
-        return array[index !== undefined ? index : Utils.arrayRandomIndex(array)];
+        return array[index !== undefined ? index : this.arrayRandomIndex(array)];
     }
 
     public static randomInRange(min: number, max: number): number {
         return (Math.random() * (max - min)) + min;
+    }
+
+    public static isPointInside(point: ICoordinates, size: IDimension, radius?: number): boolean {
+        return this.areBoundsInside(this.calculateBounds(point, radius ?? 0), size);
+    }
+
+    public static areBoundsInside(bounds: IBounds, size: IDimension): boolean {
+        return bounds.left >= 0 && bounds.right <= size.width
+            && bounds.top >= 0 && bounds.bottom <= size.height;
+    }
+
+    public static calculateBounds(point: ICoordinates, radius: number): IBounds {
+        return {
+            bottom: point.y + radius,
+            left: point.x - radius,
+            right: point.x + radius,
+            top: point.y - radius,
+        };
     }
 }

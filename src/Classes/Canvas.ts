@@ -104,24 +104,6 @@ export class Canvas {
         }
     }
 
-    public isPointInside(point: ICoordinates, radius?: number): boolean {
-        return this.areBoundsInside(this.calculateBounds(point, radius ?? 0));
-    }
-
-    public areBoundsInside(bounds: IBounds): boolean {
-        return bounds.left >= 0 && bounds.right <= this.dimension.width
-            && bounds.top >= 0 && bounds.bottom <= this.dimension.height;
-    }
-
-    public calculateBounds(point: ICoordinates, radius: number): IBounds {
-        return {
-            bottom: point.y + radius,
-            left: point.x - radius,
-            right: point.x + radius,
-            top: point.y - radius,
-        };
-    }
-
     /**
      * Calculates the size of the canvas
      */

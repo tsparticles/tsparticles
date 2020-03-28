@@ -37,9 +37,7 @@ export class Particles {
             container.polygon.drawPointsOnPolygonPath();
         } else {
             for (let i = this.array.length; i < options.particles.number.value; i++) {
-                const p = new Particle(container);
-
-                this.array.push(p);
+                this.addParticle(new Particle(container));
             }
         }
 
@@ -48,9 +46,13 @@ export class Particles {
             options.particles.move.collisions;
     }
 
-    public removeAt(index: number): void {
+    public removeAt(index: number, quantity?: number): void {
         if (index >= 0 && index <= this.count) {
-            this.array.splice(index, 1);
+            const particles = this.array.splice(index, quantity ?? 1);
+
+            for (const particle of particles) {
+                this.container.spatialMap.remove(particle);
+            }
         }
     }
 
@@ -130,9 +132,7 @@ export class Particles {
         }
 
         for (let i = 0; i < nb; i++) {
-            const p = new Particle(container, pos);
-
-            this.addParticle(p);
+            this.addParticle(new Particle(container, pos));
         }
 
         if (!options.particles.move.enable) {
@@ -144,13 +144,15 @@ export class Particles {
 
     public addParticle(particle: Particle): void {
         this.array.push(particle);
+
+        this.container.spatialMap.add(particle);
     }
 
     public removeQuantity(quantity: number): void {
         const container = this.container;
         const options = container.options;
 
-        this.array.splice(0, quantity);
+        this.removeAt(0, quantity);
 
         if (!options.particles.move.enable) {
             this.container.play();
