@@ -46,6 +46,12 @@ export class Particles {
             options.particles.move.collisions;
     }
 
+    public redraw(): void {
+        this.clear();
+        this.init();
+        this.draw(0);
+    }
+
     public removeAt(index: number, quantity?: number): void {
         if (index >= 0 && index <= this.count) {
             this.array.splice(index, quantity ?? 1);
