@@ -33,7 +33,6 @@
     }
 
     let getValuesFromProp = function (prop, path, index) {
-        console.log(prop);
         if (prop) {
             if (prop.type) {
                 switch (prop.type) {
@@ -50,7 +49,7 @@
                 const def = prop["$ref"].split('/');
                 const type = def[def.length - 1];
                 const typeDef = schema.definitions[type];
-                console.log(index);
+
                 return getSchemaValuesFromPath(typeDef, path, index + (/I[A-Z]/.exec(type) ? 1 : 0));
             } else if (prop.anyOf) {
                 let res = [];
@@ -71,22 +70,14 @@
     let getSchemaValuesFromPath = function (obj, path, index) {
         const key = path[index];
 
-        console.log(key);
-
         const prop = obj.properties ? obj.properties[key] : obj;
 
-        console.log(prop);
-
         const values = getValuesFromProp(prop, path, index);
-
-        console.log(values);
 
         return values;
     }
 
     let jsonEditorAutoComplete = function (text, path, input, editor) {
-        console.log(path);
-
         switch (input) {
             case 'field':
                 break;
@@ -248,7 +239,6 @@
 
             if (container) {
                 container.exportImage(function (blob) {
-                    console.log(blob);
                     const modalBody = document.body.querySelector('#exportModal .modal-body .modal-body-content');
                     const particlesContainer = document.getElementById('tsparticles');
 
@@ -259,8 +249,6 @@
                     modalBody.style.backgroundRepeat = particlesContainer.style.backgroundRepeat;
                     modalBody.style.backgroundSize = particlesContainer.style.backgroundSize;
 
-                    console.log(modalBody.style);
-
                     const image = new Image();
 
                     image.className = 'img-fluid';
@@ -269,8 +257,6 @@
                     const url = URL.createObjectURL(blob);
 
                     image.src = url;
-
-                    console.log(url);
 
                     modalBody.appendChild(image);
 
