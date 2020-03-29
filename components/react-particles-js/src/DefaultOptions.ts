@@ -1,14 +1,14 @@
-import {IOptions} from "tsparticles/dist/Interfaces/Options/IOptions";
-import {ShapeType} from "tsparticles/dist/Enums/ShapeType";
-import {RecursivePartial} from "tsparticles/dist/Types/RecursivePartial";
-import {PolygonMaskType} from "tsparticles/dist/Enums/PolygonMaskType";
-import {PolygonMaskInlineArrangement} from "tsparticles/dist/Enums/PolygonMaskInlineArrangement";
-import {PolygonMaskMoveType} from "tsparticles/dist/Enums/PolygonMaskMoveType";
-import {HoverMode} from "tsparticles/dist/Enums/Modes/HoverMode";
-import {ClickMode} from "tsparticles/dist/Enums/Modes/ClickMode";
-import {InteractivityDetect} from "tsparticles/dist/Enums/InteractivityDetect";
-import {OutMode} from "tsparticles/dist/Enums/OutMode";
-import {MoveDirection} from "tsparticles/dist/Enums/MoveDirection";
+import type { IOptions } from "tsparticles/dist/Interfaces/Options/IOptions";
+import { ShapeType } from "tsparticles/dist/Enums/ShapeType";
+import type { RecursivePartial } from "tsparticles/dist/Types/RecursivePartial";
+import { PolygonMaskType } from "tsparticles/dist/Enums/PolygonMaskType";
+import { PolygonMaskInlineArrangement } from "tsparticles/dist/Enums/PolygonMaskInlineArrangement";
+import { PolygonMaskMoveType } from "tsparticles/dist/Enums/PolygonMaskMoveType";
+import { HoverMode } from "tsparticles/dist/Enums/Modes/HoverMode";
+import { ClickMode } from "tsparticles/dist/Enums/Modes/ClickMode";
+import { InteractivityDetect } from "tsparticles/dist/Enums/InteractivityDetect";
+import { OutMode } from "tsparticles/dist/Enums/OutMode";
+import { MoveDirection } from "tsparticles/dist/Enums/MoveDirection";
 
 export const defaultParams: RecursivePartial<IOptions> = {
     particles: {

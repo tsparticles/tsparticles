@@ -1,11 +1,11 @@
 import * as React from "react";
-import {Component} from "react";
+import { Component } from "react";
 import isEqual from 'lodash/isEqual';
-import {IOptions} from "tsparticles/dist/Interfaces/Options/IOptions";
-import {Container} from "tsparticles/dist/Classes/Container";
-import {RecursivePartial} from "tsparticles/dist/Types/RecursivePartial";
-import {defaultParams} from "./DefaultOptions";
-import {Options} from "tsparticles/dist/Classes/Options/Options";
+import type { IOptions } from "tsparticles/dist/Interfaces/Options/IOptions";
+import { Container } from "tsparticles/dist/Classes/Container";
+import type { RecursivePartial } from "tsparticles/dist/Types/RecursivePartial";
+import { defaultParams } from "./DefaultOptions";
+import { Options } from "tsparticles/dist/Classes/Options/Options";
 
 export interface ParticlesProps {
     id: string;
@@ -58,12 +58,12 @@ export default class Particles extends Component<ParticlesProps,
     }
 
     private refresh(props: Readonly<ParticlesProps>): void {
-        const {canvas} = this.state;
+        const { canvas } = this.state;
         if (canvas) {
             this.destroy();
             this.setState({
-                    library: this.buildParticlesLibrary(props.id, props.params)
-                },
+                library: this.buildParticlesLibrary(props.id, props.params)
+            },
                 () => {
                     this.loadCanvas(canvas);
                 }
@@ -80,10 +80,10 @@ export default class Particles extends Component<ParticlesProps,
     loadCanvas(canvas: HTMLCanvasElement) {
         if (canvas) {
             this.setState({
-                    canvas
-                },
+                canvas
+            },
                 () => {
-                    const {library} = this.state;
+                    const { library } = this.state;
 
                     if (!library) {
                         return;
@@ -123,7 +123,7 @@ export default class Particles extends Component<ParticlesProps,
     }
 
     render() {
-        let {width, height, className, canvasClassName, id} = this.props;
+        let { width, height, className, canvasClassName, id } = this.props;
         return (
             <div className={className} id={id}>
                 <canvas
