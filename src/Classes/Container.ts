@@ -255,11 +255,9 @@ export class Container {
         this.particles.clear();
         this.retina.reset();
         this.canvas.clear();
+        this.polygon.reset();
 
         delete this.particles.lineLinkedColor;
-        delete this.polygon.raw;
-        delete this.polygon.path;
-        delete this.polygon.svg;
     }
 
     public async start(): Promise<void> {
@@ -271,12 +269,7 @@ export class Container {
 
         this.eventListeners.addListeners();
 
-        /* If is set the url of svg element, load it and parse into raw polygon data,
-         * works only with single path SVG
-         */
-        if (this.options.polygon.enable && this.options.polygon.url) {
-            this.polygon.raw = await this.polygon.parseSvgPathToPolygon(this.options.polygon.url);
-        }
+        await this.polygon.init();
 
         if (Utils.isInArray(ShapeType.char, this.options.particles.shape.type) ||
             Utils.isInArray(ShapeType.character, this.options.particles.shape.type)) {
