@@ -1,0 +1,32 @@
+{
+  "name": "particles.vue",
+  "version": "1.0.0",
+  "description": "tsParticles vue.js component",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/matteobruni/particles.vue.git"
+  },
+  "keywords": [
+    "vuejs",
+    "vue",
+    "vue.js",
+    "particles.js",
+    "tsparticles",
+    "particles",
+    "particles-js"
+  ],
+  "author": "Matteo Bruni",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/matteobruni/particles.vue/issues"
+  },
+  "homepage": "https://github.com/matteobruni/particles.vue#readme",
+  "dependencies": {
+    "tsparticles": "^1.11.2",
+    "vue": "^2.6.11"
+  }
+}
