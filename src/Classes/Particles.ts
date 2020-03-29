@@ -48,11 +48,7 @@ export class Particles {
 
     public removeAt(index: number, quantity?: number): void {
         if (index >= 0 && index <= this.count) {
-            const particles = this.array.splice(index, quantity ?? 1);
-
-            for (const particle of particles) {
-                this.container.spatialMap.remove(particle);
-            }
+            this.array.splice(index, quantity ?? 1);
         }
     }
 
@@ -144,8 +140,6 @@ export class Particles {
 
     public addParticle(particle: Particle): void {
         this.array.push(particle);
-
-        this.container.spatialMap.add(particle);
     }
 
     public removeQuantity(quantity: number): void {

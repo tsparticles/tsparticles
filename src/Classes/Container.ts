@@ -17,7 +17,6 @@ import { Utils } from "./Utils/Utils";
 import type { IImageShape } from "../Interfaces/Options/Particles/Shape/IImageShape";
 import { PresetType } from "../Enums/PresetType";
 import { Presets } from "./Utils/Presets";
-import { SpatialHashMap } from "./SpatialHashMap";
 
 declare global {
     interface Window {
@@ -63,7 +62,6 @@ export class Container {
     public options: IOptions;
     public retina: Retina;
     public canvas: Canvas;
-    public spatialMap: SpatialHashMap;
     public particles: Particles;
     public polygon: PolygonMask;
     public bubble: IBubble;
@@ -96,7 +94,6 @@ export class Container {
         this.pageHidden = false;
         this.retina = new Retina(this);
         this.canvas = new Canvas(this);
-        this.spatialMap = new SpatialHashMap(this);
         this.particles = new Particles(this);
         this.polygon = new PolygonMask(this);
         this.drawer = new FrameManager(this);
@@ -312,7 +309,6 @@ export class Container {
         /* init canvas + particles */
         this.retina.init();
         this.canvas.init();
-        this.spatialMap.init();
         this.particles.init();
         this.densityAutoParticles();
     }
