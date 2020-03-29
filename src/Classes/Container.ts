@@ -208,24 +208,33 @@ export class Container {
         return JSON.stringify(this.options, undefined, 2);
     }
 
-    public async loadImage(image: IImage, optionsImage: ImageShape): Promise<void> {
-        image.error = false;
+    public loadImage(image: IImage, optionsImage: ImageShape): Promise<void> {
+        return new Promise((resolve: (value?: void | PromiseLike<void> | undefined) => void,
+            reject: (reson?: any) => void) => {
+            image.error = false;
 
-        if (optionsImage.src) {
-            const img = new Image();
+            if (optionsImage.src) {
+                const img = new Image();
 
-            img.addEventListener("load", () => {
-                image.obj = img;
+                img.addEventListener("load", () => {
+                    image.obj = img;
 
-                this.checkBeforeDraw();
-            });
+                    resolve();
+                });
 
-            img.src = optionsImage.src;
-        } else {
-            console.error("Error tsParticles - No image.src");
+                img.addEventListener("error", () => {
+                    image.error = true;
 
-            image.error = true;
-        }
+                    reject(`Error tsParticles - loading image: ${optionsImage.src}`);
+                });
+
+                img.src = optionsImage.src;
+            } else {
+                image.error = true;
+
+                reject("Error tsParticles - No image.src");
+            }
+        });
     }
 
     public async refresh(): Promise<void> {
@@ -281,7 +290,7 @@ export class Container {
             }
         }
 
-        if (this.options.particles.shape.type === ShapeType.image) {
+        if (Utils.isInArray(ShapeType.image, this.options.particles.shape.type)) {
             if (this.options.particles.shape.image instanceof Array) {
                 for (const optionsImage of this.options.particles.shape.image) {
                     await this.loadImageShape(optionsImage);
@@ -289,9 +298,9 @@ export class Container {
             } else {
                 await this.loadImageShape(this.options.particles.shape.image);
             }
-        } else {
-            this.checkBeforeDraw();
         }
+
+        this.checkBeforeDraw();
     }
 
     private async loadImageShape(imageShape: IImageShape): Promise<void> {

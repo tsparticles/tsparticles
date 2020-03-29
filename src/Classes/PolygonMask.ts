@@ -268,6 +268,7 @@ export class PolygonMask {
                     x: item.x,
                     y: item.y,
                 };
+                
                 const particle = new Particle(container, position);
 
                 container.particles.addParticle(particle);

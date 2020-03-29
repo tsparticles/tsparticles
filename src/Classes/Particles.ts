@@ -37,9 +37,7 @@ export class Particles {
             container.polygon.drawPointsOnPolygonPath();
         } else {
             for (let i = this.array.length; i < options.particles.number.value; i++) {
-                const p = new Particle(container);
-
-                this.array.push(p);
+                this.addParticle(new Particle(container));
             }
         }
 
@@ -48,9 +46,9 @@ export class Particles {
             options.particles.move.collisions;
     }
 
-    public removeAt(index: number): void {
+    public removeAt(index: number, quantity?: number): void {
         if (index >= 0 && index <= this.count) {
-            this.array.splice(index, 1);
+            this.array.splice(index, quantity ?? 1);
         }
     }
 
@@ -130,9 +128,7 @@ export class Particles {
         }
 
         for (let i = 0; i < nb; i++) {
-            const p = new Particle(container, pos);
-
-            this.addParticle(p);
+            this.addParticle(new Particle(container, pos));
         }
 
         if (!options.particles.move.enable) {
@@ -150,7 +146,7 @@ export class Particles {
         const container = this.container;
         const options = container.options;
 
-        this.array.splice(0, quantity);
+        this.removeAt(0, quantity);
 
         if (!options.particles.move.enable) {
             this.container.play();
