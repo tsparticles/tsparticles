@@ -145,8 +145,8 @@ class Main {
 
     /**
      * addCustomShape
-     * @param type 
-     * @param drawer 
+     * @param type
+     * @param drawer
      */
     public addCustomShape(type: string, drawer: IShapeDrawer): void {
         ShapeUtils.addShapeDrawer(type, drawer);
@@ -154,7 +154,7 @@ class Main {
 
     /**
      * addCustomPreset
-     * @param preset 
+     * @param preset
      * @param options
      */
     public addCustomPreset(preset: string, options: RecursivePartial<IOptions>): void {
