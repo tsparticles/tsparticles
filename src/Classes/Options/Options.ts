@@ -53,11 +53,11 @@ export class Options implements IOptions {
     public polygon: IPolygonMask;
     public backgroundMask: IBackgroundMask;
     public pauseOnBlur: boolean;
-    public preset?: PresetType | PresetType[]
+    public preset?: PresetType | PresetType[] | string | string[]
 
     constructor() {
         this.detectRetina = false;
-        this.fpsLimit = 60;
+        this.fpsLimit = 30;
         this.interactivity = new Interactivity();
         this.particles = new Particles();
         this.polygon = new PolygonMask();
@@ -100,7 +100,7 @@ export class Options implements IOptions {
         }
     }
 
-    private importPreset(preset: PresetType): void {
+    private importPreset(preset: PresetType | string): void {
         const presetOptions = Presets.getPreset(preset);
 
         if (presetOptions !== undefined) {

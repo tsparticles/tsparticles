@@ -22,6 +22,8 @@ import { HeartDrawer } from "./Classes/ShapeDrawers/HeartDrawer";
 import { TextDrawer } from "./Classes/ShapeDrawers/TextDrawer";
 import { ImageDrawer } from "./Classes/ShapeDrawers/ImageDrawer";
 import { IShapeDrawer } from "./Interfaces/IShapeDrawer";
+import { Presets } from "./Classes/Utils/Presets";
+import { PresetType } from "./Enums/PresetType";
 
 declare global {
     interface Window {
@@ -73,6 +75,14 @@ class Main {
         ShapeUtils.addShapeDrawer(ShapeType.char, textDrawer);
         ShapeUtils.addShapeDrawer(ShapeType.character, textDrawer);
         ShapeUtils.addShapeDrawer(ShapeType.image, new ImageDrawer());
+
+        Presets.addPreset(PresetType.basic, Presets.basic);
+        Presets.addPreset(PresetType.backgroundMask, Presets.backgroundMask);
+        Presets.addPreset(PresetType.fontAwesome, Presets.fontAwesome);
+        Presets.addPreset(PresetType.snow, Presets.snow);
+        Presets.addPreset(PresetType.bouncing, Presets.bouncing);
+        Presets.addPreset(PresetType.stars, Presets.stars);
+        Presets.addPreset(PresetType._60fps, Presets._60fps);
     }
     /**
      * Loads an options object from the provided array to create a [[Container]] object.
@@ -135,9 +145,20 @@ class Main {
 
     /**
      * addCustomShape
+     * @param type 
+     * @param drawer 
      */
-    public addCustomShape(type: string, drawer: IShapeDrawer) {
+    public addCustomShape(type: string, drawer: IShapeDrawer): void {
         ShapeUtils.addShapeDrawer(type, drawer);
+    }
+
+    /**
+     * addCustomPreset
+     * @param preset 
+     * @param options
+     */
+    public addCustomPreset(preset: string, options: RecursivePartial<IOptions>): void {
+        Presets.addPreset(preset, options);
     }
 }
 

@@ -50,5 +50,5 @@ export interface IOptions extends IOptionLoader<IOptions> {
 
     pauseOnBlur: boolean;
 
-    preset?: PresetType | PresetType[];
+    preset?: PresetType | PresetType[] | string | string[];
 }

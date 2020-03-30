@@ -5,4 +5,5 @@ export enum PresetType {
     snow = "snow",
     bouncing = "bouncing",
     stars = "stars",
+    _60fps = "60fps"
 }

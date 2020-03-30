@@ -1144,7 +1144,14 @@
             "anyOf": [
                 {
                     "items": {
+                        "type": "string"
+                    },
+                    "type": "array"
+                },
+                {
+                    "items": {
                         "enum": [
+                            "60fps",
                             "backgroundMask",
                             "basic",
                             "bouncing",
@@ -1157,14 +1164,6 @@
                     "type": "array"
                 },
                 {
-                    "enum": [
-                        "backgroundMask",
-                        "basic",
-                        "bouncing",
-                        "fontAwesome",
-                        "snow",
-                        "stars"
-                    ],
                     "type": "string"
                 }
             ]
