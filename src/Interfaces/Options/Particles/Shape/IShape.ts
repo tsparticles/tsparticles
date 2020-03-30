@@ -6,7 +6,7 @@ import type { IStroke } from "./IStroke";
 import type { IOptionLoader } from "../../IOptionLoader";
 
 export interface IShape extends IOptionLoader<IShape> {
-    type: ShapeType | ShapeType[];
+    type: ShapeType | ShapeType[] | string | string[];
     stroke: IStroke | IStroke[];
     polygon: IPolygonShape | IPolygonShape[];
     character: ICharacterShape | ICharacterShape[];

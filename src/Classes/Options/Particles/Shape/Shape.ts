@@ -33,7 +33,7 @@ export class Shape implements IShape {
     public image: IImageShape | IImageShape[];
     public polygon: IPolygonShape | IPolygonShape[];
     public stroke: IStroke | IStroke[];
-    public type: ShapeType | ShapeType[];
+    public type: ShapeType | ShapeType[] | string | string[];
 
     constructor() {
         this.character = new CharacterShape();

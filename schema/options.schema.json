@@ -888,6 +888,12 @@
                     "anyOf": [
                         {
                             "items": {
+                                "type": "string"
+                            },
+                            "type": "array"
+                        },
+                        {
+                            "items": {
                                 "enum": [
                                     "char",
                                     "character",
@@ -906,19 +912,6 @@
                             "type": "array"
                         },
                         {
-                            "enum": [
-                                "char",
-                                "character",
-                                "circle",
-                                "edge",
-                                "heart",
-                                "image",
-                                "line",
-                                "polygon",
-                                "square",
-                                "star",
-                                "triangle"
-                            ],
                             "type": "string"
                         }
                     ]

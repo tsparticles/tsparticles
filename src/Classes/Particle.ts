@@ -25,11 +25,12 @@ import type { IStroke } from "../Interfaces/Options/Particles/Shape/IStroke";
 import { ColorUtils } from "./Utils/ColorUtils";
 import type { IRandomSize } from "../Interfaces/Options/Particles/IRandomSize";
 import type { IRandomOpacity } from "../Interfaces/Options/Particles/IRandomOpacity";
+import { IParticle } from "../Interfaces/IParticle";
 
 /**
  * The single particle object
  */
-export class Particle {
+export class Particle implements IParticle {
     public angle: number;
     public rotateDirection: RotateDirection;
     public radius: number;
@@ -45,7 +46,7 @@ export class Particle {
     public readonly shadowColor: IRgb | undefined;
     public readonly opacity: IOpacity;
     public readonly velocity: IVelocity;
-    public readonly shape?: ShapeType;
+    public readonly shape?: ShapeType | string;
     public readonly image?: IParticleImage;
     public readonly character?: ICharacterShape;
     public readonly initialVelocity: IVelocity;

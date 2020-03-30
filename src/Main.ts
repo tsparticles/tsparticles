@@ -4,12 +4,24 @@
 /* Demo / Generator : https://particles.matteobruni.it/
 /* GitHub : https://www.github.com/matteobruni/tsparticles
 /* How to use? : Check the GitHub README
-/* v1.11.2
+/* v1.12.0
 /* ----------------------------------------------- */
 import type { Container } from "./Classes/Container";
 import { Loader } from "./Classes/Loader";
 import type { IOptions } from "./Interfaces/Options/IOptions";
 import type { RecursivePartial } from "./Types/RecursivePartial";
+import { ShapeUtils } from "./Classes/Utils/ShapeUtils";
+import { ShapeType } from "./Enums/ShapeType";
+import { LineDrawer } from "./Classes/ShapeDrawers/LineDrawer";
+import { CircleDrawer } from "./Classes/ShapeDrawers/CircleDrawer";
+import { SquareDrawer } from "./Classes/ShapeDrawers/SquareDrawer";
+import { TriangleDrawer } from "./Classes/ShapeDrawers/TriangleDrawer";
+import { StartDrawer } from "./Classes/ShapeDrawers/StarDrawer";
+import { PolygonDrawer } from "./Classes/ShapeDrawers/PolygonDrawer";
+import { HeartDrawer } from "./Classes/ShapeDrawers/HeartDrawer";
+import { TextDrawer } from "./Classes/ShapeDrawers/TextDrawer";
+import { ImageDrawer } from "./Classes/ShapeDrawers/ImageDrawer";
+import { IShapeDrawer } from "./Interfaces/IShapeDrawer";
 
 declare global {
     interface Window {
@@ -46,6 +58,22 @@ window.customCancelRequestAnimationFrame = (() => {
  * It's a proxy to the static [[Loader]] class
  */
 class Main {
+    constructor() {
+        const squareDrawer = new SquareDrawer();
+        const textDrawer = new TextDrawer();
+
+        ShapeUtils.addShapeDrawer(ShapeType.line, new LineDrawer());
+        ShapeUtils.addShapeDrawer(ShapeType.circle, new CircleDrawer());
+        ShapeUtils.addShapeDrawer(ShapeType.edge, squareDrawer);
+        ShapeUtils.addShapeDrawer(ShapeType.square, squareDrawer);
+        ShapeUtils.addShapeDrawer(ShapeType.triangle, new TriangleDrawer());
+        ShapeUtils.addShapeDrawer(ShapeType.star, new StartDrawer());
+        ShapeUtils.addShapeDrawer(ShapeType.polygon, new PolygonDrawer());
+        ShapeUtils.addShapeDrawer(ShapeType.heart, new HeartDrawer());
+        ShapeUtils.addShapeDrawer(ShapeType.char, textDrawer);
+        ShapeUtils.addShapeDrawer(ShapeType.character, textDrawer);
+        ShapeUtils.addShapeDrawer(ShapeType.image, new ImageDrawer());
+    }
     /**
      * Loads an options object from the provided array to create a [[Container]] object.
      * @param tagId The particles container element id
@@ -104,11 +132,20 @@ class Main {
     public domItem(index: number): Container | undefined {
         return Loader.domItem(index);
     }
+
+    /**
+     * addCustomShape
+     */
+    public addCustomShape(type: string, drawer: IShapeDrawer) {
+        ShapeUtils.addShapeDrawer(type, drawer);
+    }
 }
 
 const tsParticles = new Main();
 
 Object.freeze(tsParticles);
+
+export default tsParticles;
 
 /**
  * The new singleton, replacing the old particlesJS
