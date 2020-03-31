@@ -182,13 +182,18 @@ export class CanvasUtils {
 
         ShapeUtils.drawShape(context, particle, radius);
 
-        context.closePath();
+        if (particle.close) {
+            context.closePath();
+        }
 
         if (stroke.width > 0 && particle.strokeColor) {
             context.stroke();
         }
 
-        context.fill();
+        if (particle.fill) {
+            context.fill();
+        }
+
         context.restore();
     }
 }

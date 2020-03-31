@@ -5,7 +5,7 @@ import type { IPolygonShape } from "./IPolygonShape";
 import type { IStroke } from "../IStroke";
 import type { IOptionLoader } from "../../IOptionLoader";
 import type { SingleOrMultiple } from "../../../../Types/SingleOrMultiple";
-import type { CustomShape } from "../../../../Types/CustomShape";
+import { ShapeData } from "../../../../Types/ShapeData";
 
 export interface IShape extends IOptionLoader<IShape> {
     type: SingleOrMultiple<ShapeType | string>;
@@ -18,5 +18,7 @@ export interface IShape extends IOptionLoader<IShape> {
     polygon: SingleOrMultiple<IPolygonShape>;
     character: SingleOrMultiple<ICharacterShape>;
     image: SingleOrMultiple<IImageShape>;
-    custom: CustomShape;
+    custom: ShapeData;
 }
+
+

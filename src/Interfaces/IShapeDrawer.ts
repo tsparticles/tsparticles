@@ -1,7 +1,6 @@
-import type { IShapeDrawerData } from "./IShapeDrawerData";
+import type { IParticle } from "./IParticle";
+import { ShapeDrawerFunction } from "../Types/ShapeDrawerFunction";
 
 export interface IShapeDrawer {
-    draw(context: CanvasRenderingContext2D, data: IShapeDrawerData): void;
-    
-    createData(): IShapeDrawerData;
+    draw: ShapeDrawerFunction;
 }

@@ -27,7 +27,6 @@ import type { IRandomSize } from "../Interfaces/Options/Particles/IRandomSize";
 import type { IRandomOpacity } from "../Interfaces/Options/Particles/IRandomOpacity";
 import { IParticle } from "../Interfaces/IParticle";
 import { IShapeValues } from "../Interfaces/Options/Particles/Shape/IShapeValues";
-import { ShapeUtils } from "./Utils/ShapeUtils";
 
 /**
  * The single particle object
@@ -36,6 +35,8 @@ export class Particle implements IParticle {
     public angle: number;
     public rotateDirection: RotateDirection;
     public radius: number;
+    public readonly fill: boolean;
+    public readonly close: boolean;
     public readonly stroke: IStroke;
     public readonly polygon?: IPolygonShape;
     public readonly text?: string;
@@ -52,7 +53,7 @@ export class Particle implements IParticle {
     public readonly image?: IParticleImage;
     public readonly character?: ICharacterShape;
     public readonly initialVelocity: IVelocity;
-    public readonly customShape?: IShapeValues;
+    public readonly shapeData?: IShapeValues;
 
     public readonly updater: Updater;
     public readonly bubbler: Bubbler;
@@ -157,6 +158,9 @@ export class Particle implements IParticle {
             vertical: this.initialVelocity.vertical,
         };
 
+        this.fill = true;
+        this.close = true;
+
         /* if shape is image */
         const shapeType = options.particles.shape.type;
 
@@ -182,6 +186,9 @@ export class Particle implements IParticle {
             if (!this.image.ratio) {
                 this.image.ratio = 1;
             }
+
+            this.fill = optionsImage.fill ?? this.fill;
+            this.close = optionsImage.close ?? this.close;
         }
 
         if (this.shape === ShapeType.polygon) {
@@ -190,6 +197,9 @@ export class Particle implements IParticle {
             } else {
                 this.polygon = options.particles.shape.polygon;
             }
+
+            this.fill = this.polygon.fill ?? this.fill;
+            this.close = this.polygon.close ?? this.close;
         }
 
         if (options.particles.stroke instanceof Array) {
@@ -216,12 +226,18 @@ export class Particle implements IParticle {
             const value = this.character.value;
 
             this.text = value instanceof Array ? Utils.itemFromArray(value) : value;
+
+            this.fill = this.character.fill ?? this.fill;
+            this.close = this.character.close ?? this.close;
         }
 
-        const customShape = options.particles.shape.custom[this.shape];
+        const shapeData = options.particles.shape.custom[this.shape];
 
-        if (customShape) {
-            this.customShape = customShape;
+        if (shapeData) {
+            this.shapeData = shapeData instanceof Array ? Utils.itemFromArray(shapeData) : shapeData;
+
+            this.fill = this.shapeData.fill ?? this.fill;
+            this.close = this.shapeData.close ?? this.close;
         }
 
         this.updater = new Updater(this.container, this);

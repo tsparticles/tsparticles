@@ -92,6 +92,7 @@ export class Canvas {
         this.dimension.width = canvas.offsetWidth;
         this.context = this.element.getContext("2d");
         this.container.retina.init();
+        this.initBackground();
     }
 
     public destroy(): void {
@@ -309,6 +310,45 @@ export class Canvas {
             if (this.context) {
                 return CanvasUtils.gradient(this.context, p1, p2, midColor);
             }
+        }
+    }
+
+    private initBackground(): void {
+        const container = this.container;
+        const options = container.options;
+        const background = options.background;
+        const element = this.element;
+
+        if (!element) {
+            return;
+        }
+
+        const elementStyle = element.style;
+
+        if (background.color) {
+            const color = typeof background.color === "string" ?
+                ColorUtils.stringToRgb(background.color) :
+                ColorUtils.colorToRgb(background.color);
+
+            if (color) {
+                elementStyle.backgroundColor = ColorUtils.getStyleFromColor(color, background.opacity);
+            }
+        }
+
+        if (background.image) {
+            elementStyle.backgroundImage = background.image;
+        }
+
+        if (background.position) {
+            elementStyle.backgroundPosition = background.position;
+        }
+
+        if (background.repeat) {
+            elementStyle.backgroundRepeat = background.repeat;
+        }
+
+        if (background.size) {
+            elementStyle.backgroundSize = background.size;
         }
     }
 }

@@ -24,13 +24,8 @@ export class ShapeUtils {
             return;
         }
 
-        const drawerData = drawer.createData();
-
-        drawerData.particle = particle;
-        drawerData.radius = radius;
-
-        if (drawer && drawerData) {
-            drawer.draw(context, drawerData);
+        if (drawer) {
+            drawer.draw(context, particle, radius);
         }
     }
 }

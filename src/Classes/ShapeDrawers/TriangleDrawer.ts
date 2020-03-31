@@ -1,25 +1,25 @@
 import { PolygonDrawerBase } from "./PolygonDrawerBase";
 import type { ISide } from "../../Interfaces/ISide";
 import type { ICoordinates } from "../../Interfaces/ICoordinates";
-import { GenericDrawerData } from "./Parameters/GenericDrawerData";
+import type { IParticle } from "../../Interfaces/IParticle";
 
 export class TriangleDrawer extends PolygonDrawerBase {
-    public getSidesData(data: GenericDrawerData): ISide {
+    public getSidesData(particle: IParticle, radius: number): ISide {
         const side: ISide = {
             count: {
                 denominator: 2,
                 numerator: 3,
             },
-            length: data.radius * 2,
+            length: radius * 2,
         };
 
         return side;
     }
 
-    public getCenter(data: GenericDrawerData): ICoordinates {
+    public getCenter(particle: IParticle, radius: number): ICoordinates {
         const start: ICoordinates = {
-            x: -data.radius,
-            y: data.radius / 1.66,
+            x: -radius,
+            y: radius / 1.66,
         };
 
         return start;

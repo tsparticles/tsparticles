@@ -18,6 +18,36 @@
             },
             "type": "object"
         },
+        "IBackground": {
+            "properties": {
+                "color": {
+                    "anyOf": [
+                        {
+                            "$ref": "#/definitions/IColor"
+                        },
+                        {
+                            "type": "string"
+                        }
+                    ]
+                },
+                "image": {
+                    "type": "string"
+                },
+                "opacity": {
+                    "type": "number"
+                },
+                "position": {
+                    "type": "string"
+                },
+                "repeat": {
+                    "type": "string"
+                },
+                "size": {
+                    "type": "string"
+                }
+            },
+            "type": "object"
+        },
         "IBackgroundMask": {
             "properties": {
                 "cover": {
@@ -66,6 +96,9 @@
         },
         "ICharacterShape": {
             "properties": {
+                "close": {
+                    "type": "boolean"
+                },
                 "fill": {
                     "type": "boolean"
                 },
@@ -339,6 +372,12 @@
         },
         "IImageShape": {
             "properties": {
+                "close": {
+                    "type": "boolean"
+                },
+                "fill": {
+                    "type": "boolean"
+                },
                 "height": {
                     "type": "number"
                 },
@@ -720,6 +759,12 @@
         },
         "IPolygonShape": {
             "properties": {
+                "close": {
+                    "type": "boolean"
+                },
+                "fill": {
+                    "type": "boolean"
+                },
                 "nb_sides": {
                     "type": "number"
                 },
@@ -940,6 +985,14 @@
             "type": "object"
         },
         "IShapeValues": {
+            "properties": {
+                "close": {
+                    "type": "boolean"
+                },
+                "fill": {
+                    "type": "boolean"
+                }
+            },
             "type": "object"
         },
         "ISize": {
@@ -1136,6 +1189,9 @@
     },
     "description": "The Options interface, defines all the options that can be used by `tsParticles`",
     "properties": {
+        "background": {
+            "$ref": "#/definitions/IBackground"
+        },
         "backgroundMask": {
             "$ref": "#/definitions/IBackgroundMask"
         },

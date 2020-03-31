@@ -14,14 +14,12 @@ export class Presets {
     }
 
     public static addPreset(presetKey: string, options: RecursivePartial<IOptions>) {
-        const preset = this.presets[presetKey];
-
-        if (!preset) {
-            this.presets[preset] = options;
+        if (!this.presets[presetKey]) {
+            this.presets[presetKey] = options;
         }
     }
 
-    public  static get basic(): RecursivePartial<IOptions> {
+    public static get basic(): RecursivePartial<IOptions> {
         return {
             particles: {
                 color: {
@@ -44,7 +42,7 @@ export class Presets {
         };
     }
 
-    public  static get backgroundMask(): RecursivePartial<IOptions> {
+    public static get backgroundMask(): RecursivePartial<IOptions> {
         return {
             backgroundMask: {
                 cover: {
@@ -106,7 +104,7 @@ export class Presets {
         };
     }
 
-    public  static get fontAwesome(): RecursivePartial<IOptions> {
+    public static get fontAwesome(): RecursivePartial<IOptions> {
         return {
             particles: {
                 shape: {
@@ -126,7 +124,7 @@ export class Presets {
         };
     }
 
-    public  static get snow(): RecursivePartial<IOptions> {
+    public static get snow(): RecursivePartial<IOptions> {
         return {
             particles: {
                 color: {
@@ -156,7 +154,7 @@ export class Presets {
         };
     }
 
-    public  static get bouncing(): RecursivePartial<IOptions> {
+    public static get bouncing(): RecursivePartial<IOptions> {
         return {
             particles: {
                 move: {
@@ -166,7 +164,7 @@ export class Presets {
         };
     }
 
-    public  static get stars(): RecursivePartial<IOptions> {
+    public static get stars(): RecursivePartial<IOptions> {
         return {
             particles: {
                 color: {
@@ -205,7 +203,7 @@ export class Presets {
         };
     }
 
-    public  static get _60fps(): RecursivePartial<IOptions> {
+    public static get _60fps(): RecursivePartial<IOptions> {
         return {
             fpsLimit: 60
         };

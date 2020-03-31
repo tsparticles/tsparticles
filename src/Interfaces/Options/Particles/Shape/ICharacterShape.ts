@@ -6,5 +6,4 @@ export interface ICharacterShape extends IShapeValues, IOptionLoader<ICharacterS
     font: string;
     style: string;
     weight: string;
-    fill: boolean;
 }

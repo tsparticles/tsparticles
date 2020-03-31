@@ -118,7 +118,7 @@ export class ColorUtils {
      * @param color the [[IRgb]] color to convert
      */
     public static getStyleFromColor(color: IRgb, opacity?: number): string {
-        const opacityValue = opacity ?? 0.4;
+        const opacityValue = opacity ?? 1;
 
         return `rgba(${Math.round(color.r)}, ${Math.round(color.g)}, ${Math.round(color.b)}, ${opacityValue})`;
     }

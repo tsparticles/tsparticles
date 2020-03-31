@@ -24,6 +24,7 @@ import { ImageDrawer } from "./Classes/ShapeDrawers/ImageDrawer";
 import { IShapeDrawer } from "./Interfaces/IShapeDrawer";
 import { Presets } from "./Classes/Utils/Presets";
 import { PresetType } from "./Enums/PresetType";
+import { ShapeDrawerFunction } from "./Types/ShapeDrawerFunction";
 
 declare global {
     interface Window {
@@ -148,8 +149,17 @@ class Main {
      * @param type
      * @param drawer
      */
-    public addCustomShape(type: string, drawer: IShapeDrawer): void {
-        ShapeUtils.addShapeDrawer(type, drawer);
+    public addCustomShape(type: string, drawer: IShapeDrawer | ShapeDrawerFunction): void {
+        let customDrawer: IShapeDrawer;
+        if (typeof drawer === "function") {
+            customDrawer = {
+                draw: drawer
+            };
+        } else {
+            customDrawer = drawer;
+        }
+
+        ShapeUtils.addShapeDrawer(type, customDrawer);
     }
 
     /**

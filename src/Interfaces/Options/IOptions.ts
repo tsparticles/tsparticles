@@ -4,6 +4,7 @@ import type { IPolygonMask } from "./PolygonMask/IPolygonMask";
 import type { IOptionLoader } from "./IOptionLoader";
 import type { IBackgroundMask } from "./BackgroundMask/IBackgroundMask";
 import type { PresetType } from "../../Enums/PresetType";
+import { IBackground } from "./Background/IBackground";
 
 /**
  * The Options interface, defines all the options that can be used by `tsParticles`
@@ -45,6 +46,8 @@ export interface IOptions extends IOptionLoader<IOptions> {
      * Enables the retina detection, if disabled the ratio used by canvas will be always 1 and not the device setting.
      */
     detectRetina: boolean;
+
+    background: IBackground;
 
     backgroundMask: IBackgroundMask;
 

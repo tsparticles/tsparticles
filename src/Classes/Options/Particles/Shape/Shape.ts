@@ -3,14 +3,13 @@ import { ShapeType } from "../../../../Enums/ShapeType";
 import { CharacterShape } from "./CharacterShape";
 import { ImageShape } from "./ImageShape";
 import { PolygonShape } from "./PolygonShape";
-import { Stroke } from "../Stroke";
 import type { IImageShape } from "../../../../Interfaces/Options/Particles/Shape/IImageShape";
 import type { ICharacterShape } from "../../../../Interfaces/Options/Particles/Shape/ICharacterShape";
 import type { IPolygonShape } from "../../../../Interfaces/Options/Particles/Shape/IPolygonShape";
 import type { IStroke } from "../../../../Interfaces/Options/Particles/IStroke";
 import type { RecursivePartial } from "../../../../Types/RecursivePartial";
 import type { SingleOrMultiple } from "../../../../Types/SingleOrMultiple";
-import type { CustomShape } from "../../../../Types/CustomShape";
+import { ShapeData } from "../../../../Types/ShapeData";
 
 export class Shape implements IShape {
     /**
@@ -48,7 +47,7 @@ export class Shape implements IShape {
     public image: SingleOrMultiple<IImageShape>;
     public polygon: SingleOrMultiple<IPolygonShape>;
     public type: SingleOrMultiple<ShapeType | string>;
-    public custom: CustomShape;
+    public custom: ShapeData;
 
     constructor() {
         this.character = new CharacterShape();
@@ -60,6 +59,20 @@ export class Shape implements IShape {
 
     public load(data?: RecursivePartial<IShape>): void {
         if (data !== undefined) {
+            if (data.custom !== undefined)
+                for (const customShape in data.custom) {
+                    const item = data.custom[customShape];
+                    if (item !== undefined) {
+                        if (item instanceof Array) {
+                            this.custom[customShape] = item.filter(t => t !== undefined).map((s) => {
+                                return s!;
+                            });
+                        } else {
+                            this.custom[customShape] = item;
+                        }
+                    }
+                }
+
             if (data.character !== undefined) {
                 if (data.character instanceof Array) {
                     this.character = data.character.map((s) => {
@@ -107,14 +120,6 @@ export class Shape implements IShape {
 
             if (data.type !== undefined) {
                 this.type = data.type;
-            }
-
-            if (data.custom !== undefined) {
-                for (const customShape in data.custom) {
-                    if (data.custom[customShape] !== undefined) {
-                        this.custom[customShape] = data.custom[customShape]!;
-                    }
-                }
             }
         }
     }

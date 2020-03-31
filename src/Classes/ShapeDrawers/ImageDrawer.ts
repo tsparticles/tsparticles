@@ -1,14 +1,13 @@
 import type { IShapeDrawer } from "../../Interfaces/IShapeDrawer";
-import type { IShapeDrawerData } from "../../Interfaces/IShapeDrawerData";
-import { GenericDrawerData } from "./Parameters/GenericDrawerData";
+import type { IParticle } from "../../Interfaces/IParticle";
 
 export class ImageDrawer implements IShapeDrawer {
-    public draw(context: CanvasRenderingContext2D, data: IShapeDrawerData): void {
+    public draw(context: CanvasRenderingContext2D, particle: IParticle, radius: number): void {
         if (!context) {
             return;
         }
 
-        const imgObj = data.particle.image?.data.obj;
+        const imgObj = particle.image?.obj;
 
         if (!imgObj) {
             return;
@@ -16,18 +15,15 @@ export class ImageDrawer implements IShapeDrawer {
 
         let ratio = 1;
 
-        if (data.particle.image) {
-            ratio = data.particle.image.ratio;
+        if (particle.image) {
+            ratio = particle.image.ratio;
         }
 
         const pos = {
-            x: -data.radius,
-            y: -data.radius,
+            x: -radius,
+            y: -radius,
         };
 
-        context.drawImage(imgObj, pos.x, pos.y, data.radius * 2, data.radius * 2 / ratio);
-    }
-    public createData(): IShapeDrawerData {
-        return new GenericDrawerData();
+        context.drawImage(imgObj, pos.x, pos.y, radius * 2, radius * 2 / ratio);
     }
 }

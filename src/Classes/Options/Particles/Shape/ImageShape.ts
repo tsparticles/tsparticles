@@ -23,12 +23,16 @@ export class ImageShape implements IImageShape {
     public replaceColor: boolean;
     public src: string;
     public width: number;
+    public fill?: boolean;
+    public close?: boolean;
 
     constructor() {
         this.height = 100;
         this.replaceColor = true;
         this.src = "";
         this.width = 100;
+        this.fill = true;
+        this.close = true;
     }
 
     public load(data?: RecursivePartial<IImageShape>): void {

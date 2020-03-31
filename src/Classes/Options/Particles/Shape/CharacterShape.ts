@@ -2,7 +2,8 @@ import type { ICharacterShape } from "../../../../Interfaces/Options/Particles/S
 import type { RecursivePartial } from "../../../../Types/RecursivePartial";
 
 export class CharacterShape implements ICharacterShape {
-    public fill: boolean;
+    public close?: boolean;
+    public fill?: boolean;
     public font: string;
     public style: string;
     public value: string | string[];
@@ -14,6 +15,8 @@ export class CharacterShape implements ICharacterShape {
         this.style = "";
         this.value = "*";
         this.weight = "400";
+        this.fill = true;
+        this.close = true;
     }
 
     public load(data?: RecursivePartial<ICharacterShape>): void {

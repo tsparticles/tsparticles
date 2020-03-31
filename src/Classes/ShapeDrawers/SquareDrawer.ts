@@ -1,13 +1,8 @@
 import type { IShapeDrawer } from "../../Interfaces/IShapeDrawer";
-import type { IShapeDrawerData } from "../../Interfaces/IShapeDrawerData";
-import { GenericDrawerData } from "./Parameters/GenericDrawerData";
+import type { IParticle } from "../../Interfaces/IParticle";
 
 export class SquareDrawer implements IShapeDrawer {
-    public draw(context: CanvasRenderingContext2D, data: IShapeDrawerData): void {
-        context.rect(-data.radius, -data.radius, data.radius * 2, data.radius * 2);
-    }
-
-    public createData(): IShapeDrawerData {
-        return new GenericDrawerData();
+    public draw(context: CanvasRenderingContext2D, particle: IParticle, radius: number): void {
+        context.rect(-radius, -radius, radius * 2, radius * 2);
     }
 }

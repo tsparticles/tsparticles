@@ -11,7 +11,6 @@ import type { ILineLinked } from "../../../Interfaces/Options/Particles/ILineLin
 import type { IMove } from "../../../Interfaces/Options/Particles/IMove";
 import type { IParticlesNumber } from "../../../Interfaces/Options/Particles/IParticlesNumber";
 import type { IOpacity } from "../../../Interfaces/Options/Particles/IOpacity";
-import type { IShape } from "../../../Interfaces/Options/Particles/Shape/IShape";
 import type { ISize } from "../../../Interfaces/Options/Particles/ISize";
 import type { IRotate } from "../../../Interfaces/Options/Particles/IRotate";
 import { Rotate } from "./Rotate";
@@ -21,6 +20,7 @@ import { Shadow } from "./Shadow";
 import type { SingleOrMultiple } from "../../../Types/SingleOrMultiple";
 import type { IStroke } from "../../../Interfaces/Options/Particles/IStroke";
 import { Stroke } from "./Stroke";
+import type { IShape } from "../../../Interfaces/Options/Particles/Shape/IShape";
 
 export class Particles implements IParticles {
     /**

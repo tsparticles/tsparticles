@@ -120,12 +120,11 @@
     }
   },
   "retina_detect": true,
-  "config_demo": {
-    "hide_card": false,
-    "background_color": "#ffffff",
-    "background_image": "url('https://cdn.matteobruni.it/images/particles/background3.jpg')",
-    "background_position": "50% 50%",
-    "background_repeat": "no-repeat",
-    "background_size": "cover"
+  "background": {
+    "color": "#ffffff",
+    "image": "url('https://cdn.matteobruni.it/images/particles/background3.jpg')",
+    "position": "50% 50%",
+    "repeat": "no-repeat",
+    "size": "cover"
   }
 }
