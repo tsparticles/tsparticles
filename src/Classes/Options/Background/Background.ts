@@ -4,14 +4,14 @@ import { Color } from "../Particles/Color";
 import type { IColor } from "../../../Interfaces/Options/Particles/IColor";
 
 export class Background implements IBackground {
-    color?: IColor | string;
-    image?: string;
-    position?: string;
-    repeat?: string;
-    size?: string;
-    opacity?: number;
+    public color?: IColor | string;
+    public image?: string;
+    public position?: string;
+    public repeat?: string;
+    public size?: string;
+    public opacity?: number;
 
-    load(data?: RecursivePartial<IBackground>): void {
+    public load(data?: RecursivePartial<IBackground>): void {
         if (data !== undefined) {
             if (data.color !== undefined) {
                 if (typeof data.color === "string") {
