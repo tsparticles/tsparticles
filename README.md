@@ -132,8 +132,8 @@ tsParticles.addCustomShape('spiral', new SpiralDrawer());
           "spiral": { 
               "innerRadius": 1,
               "lineSpacing": 1,
-              "fill": false,
-              "close": false
+              "close": false, // this value is used by tsParticles to close the path, if you don't want to close it set this value to false
+              "fill": false // this value is used by tsParticles to fill the shape with the particles color, if you want only the stroke set this value to false
           }
       }
       // [... omitted for brevity]
@@ -636,12 +636,12 @@ property | option type | example | notes
 
 key | option type | example | notes
 ---|---|---|---
-`cover.value` | HEX (`string`) <br /> RGB (`object`) <br /> HSL (`object`) <br /> random (`string`) | `"#0d47a1"` <br /> `{r:182, g:25, b:36}` <br />  `{h:356, s:76, l:41}` <br /> 
+`color.value` | HEX (`string`) <br /> RGB (`object`) <br /> HSL (`object`) <br /> random (`string`) | `"#0d47a1"` <br /> `{r:182, g:25, b:36}` <br />  `{h:356, s:76, l:41}` <br /> | defaults to no color, fully transparent canvas
+`opacity` |  number | | This property works with `color.value`, the `color.value` property has no alpha values, so if you don't use a `string` with alpha values set this for transparency
 `image` | string | | This property is directly set to the CSS background-image, you can use the same syntax.
 `position` | string | | This property is directly set to the CSS background-position, you can use the same syntax.
 `repeat` | string | | This property is directly set to the CSS background-repeat, you can use the same syntax.
 `size` | string | | This property is directly set to the CSS background-size, you can use the same syntax.
-`opacity` |  number | | This property works with color, the color has no alpha values, so if you don't use a `string` with alpha values set this for transparency
 
 #### Background Mask
 
