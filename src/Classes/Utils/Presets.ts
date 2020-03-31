@@ -205,7 +205,7 @@ export class Presets {
 
     public static get _60fps(): RecursivePartial<IOptions> {
         return {
-            fpsLimit: 60
+            fpsLimit: 60,
         };
     }
 }
