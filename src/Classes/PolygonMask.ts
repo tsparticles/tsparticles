@@ -95,6 +95,43 @@ export class PolygonMask {
         return false;
     }
 
+    public redraw(): void {
+        const container = this.container;
+        const options = container.options;
+
+        if (options.polygon.enable && options.polygon.type !== PolygonMaskType.none) {
+            if (this.redrawTimeout) {
+                clearTimeout(this.redrawTimeout);
+            }
+
+            this.redrawTimeout = setTimeout(() => {
+                this.parseSvgPathToPolygon().then((data) => {
+                    this.raw = data;
+
+                    container.particles.redraw();
+                });
+            }, 250);
+        }
+    }
+
+    public async init(): Promise<void> {
+        const container = this.container;
+        const options = container.options;
+
+        /* If is set the url of svg element, load it and parse into raw polygon data,
+         * works only with single path SVG
+         */
+        if (options.polygon.enable && options.polygon.url) {
+            this.raw = await this.parseSvgPathToPolygon(options.polygon.url);
+        }
+    }
+
+    public reset(): void {
+        delete this.raw;
+        delete this.path;
+        delete this.svg;
+    }
+
     public randomPointInPolygon(): ICoordinates {
         const container = this.container;
         const options = container.options;
@@ -149,9 +186,7 @@ export class PolygonMask {
             const req = await fetch(url);
             if (req.ok) {
                 const xml = await req.text();
-
                 const parser = new DOMParser();
-
                 const doc = parser.parseFromString(xml, "image/svg+xml");
 
                 this.svg = doc.getElementsByTagName("svg")[0];
@@ -268,9 +303,8 @@ export class PolygonMask {
                     x: item.x,
                     y: item.y,
                 };
-                const particle = new Particle(container, position);
 
-                container.particles.addParticle(particle);
+                container.particles.addParticle(new Particle(container, position));
             }
         }
     }

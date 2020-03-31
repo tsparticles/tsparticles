@@ -159,26 +159,13 @@ export class EventListeners {
 
         /* repaint canvas on anim disabled */
         if (!options.particles.move.enable) {
-            container.particles.clear();
-            container.particles.init();
-            container.particles.draw(0);
+            container.particles.redraw();
         }
 
         /* density particles enabled */
         container.densityAutoParticles();
 
-        if (options.polygon.enable && options.polygon.type !== PolygonMaskType.none) {
-            if (container.polygon.redrawTimeout) {
-                clearTimeout(container.polygon.redrawTimeout);
-            }
-
-            container.polygon.redrawTimeout = setTimeout(async () => {
-                container.polygon.raw = await container.polygon.parseSvgPathToPolygon();
-                container.particles.clear();
-                container.particles.init();
-                container.particles.draw(0);
-            }, 250);
-        }
+        container.polygon.redraw();
     }
 
     private handleVisibilityChange(): void {

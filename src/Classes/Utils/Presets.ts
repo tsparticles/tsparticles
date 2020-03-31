@@ -7,22 +7,19 @@ import { ShapeType } from "../../Enums/ShapeType";
 import { HoverMode } from "../../Enums/Modes/HoverMode";
 
 export class Presets {
-    public static getPreset(key: PresetType): RecursivePartial<IOptions> | undefined {
-        return this.available[key.toString()];
+    private static presets: { [preset: string]: RecursivePartial<IOptions> } = {};
+
+    public static getPreset(preset: PresetType | string): RecursivePartial<IOptions> | undefined {
+        return this.presets[preset];
     }
 
-    private static get available(): { [key: string]: RecursivePartial<IOptions> } {
-        return {
-            [PresetType.basic]: this.basic,
-            [PresetType.backgroundMask]: this.backgroundMask,
-            [PresetType.fontAwesome]: this.fontAwesome,
-            [PresetType.snow]: this.snow,
-            [PresetType.bouncing]: this.bouncing,
-            [PresetType.stars]: this.stars,
+    public static addPreset(presetKey: string, options: RecursivePartial<IOptions>): void {
+        if (!this.presets[presetKey]) {
+            this.presets[presetKey] = options;
         }
     }
 
-    private static get basic(): RecursivePartial<IOptions> {
+    public static get basic(): RecursivePartial<IOptions> {
         return {
             particles: {
                 color: {
@@ -45,7 +42,7 @@ export class Presets {
         };
     }
 
-    private static get backgroundMask(): RecursivePartial<IOptions> {
+    public static get backgroundMask(): RecursivePartial<IOptions> {
         return {
             backgroundMask: {
                 cover: {
@@ -107,7 +104,7 @@ export class Presets {
         };
     }
 
-    private static get fontAwesome(): RecursivePartial<IOptions> {
+    public static get fontAwesome(): RecursivePartial<IOptions> {
         return {
             particles: {
                 shape: {
@@ -127,7 +124,7 @@ export class Presets {
         };
     }
 
-    private static get snow(): RecursivePartial<IOptions> {
+    public static get snow(): RecursivePartial<IOptions> {
         return {
             particles: {
                 color: {
@@ -157,7 +154,7 @@ export class Presets {
         };
     }
 
-    private static get bouncing(): RecursivePartial<IOptions> {
+    public static get bouncing(): RecursivePartial<IOptions> {
         return {
             particles: {
                 move: {
@@ -167,7 +164,7 @@ export class Presets {
         };
     }
 
-    private static get stars(): RecursivePartial<IOptions> {
+    public static get stars(): RecursivePartial<IOptions> {
         return {
             particles: {
                 color: {
@@ -203,6 +200,12 @@ export class Presets {
                     value: 3,
                 },
             },
+        };
+    }
+
+    public static get _60fps(): RecursivePartial<IOptions> {
+        return {
+            fpsLimit: 60,
         };
     }
 }

@@ -11,13 +11,16 @@ import type { ILineLinked } from "../../../Interfaces/Options/Particles/ILineLin
 import type { IMove } from "../../../Interfaces/Options/Particles/IMove";
 import type { IParticlesNumber } from "../../../Interfaces/Options/Particles/IParticlesNumber";
 import type { IOpacity } from "../../../Interfaces/Options/Particles/IOpacity";
-import type { IShape } from "../../../Interfaces/Options/Particles/Shape/IShape";
 import type { ISize } from "../../../Interfaces/Options/Particles/ISize";
 import type { IRotate } from "../../../Interfaces/Options/Particles/IRotate";
 import { Rotate } from "./Rotate";
 import type { RecursivePartial } from "../../../Types/RecursivePartial";
 import type { IShadow } from "../../../Interfaces/Options/Particles/IShadow";
 import { Shadow } from "./Shadow";
+import type { SingleOrMultiple } from "../../../Types/SingleOrMultiple";
+import type { IStroke } from "../../../Interfaces/Options/Particles/IStroke";
+import { Stroke } from "./Stroke";
+import type { IShape } from "../../../Interfaces/Options/Particles/Shape/IShape";
 
 export class Particles implements IParticles {
     /**
@@ -37,7 +40,7 @@ export class Particles implements IParticles {
         this.lineLinked = value;
     }
 
-    public color: IColor;
+    public color: SingleOrMultiple<IColor>;
     public lineLinked: ILineLinked;
     public move: IMove;
     public number: IParticlesNumber;
@@ -46,6 +49,7 @@ export class Particles implements IParticles {
     public shape: IShape;
     public size: ISize;
     public shadow: IShadow;
+    public stroke: SingleOrMultiple<IStroke>;
 
     constructor() {
         this.color = new Color();
@@ -57,11 +61,25 @@ export class Particles implements IParticles {
         this.shape = new Shape();
         this.size = new ParticlesSize();
         this.shadow = new Shadow();
+        this.stroke = new Stroke();
     }
 
     public load(data?: RecursivePartial<IParticles>): void {
         if (data !== undefined) {
-            this.color.load(data.color);
+            if (data.color !== undefined) {
+                if (data.color instanceof Array) {
+                    this.color = data.color.map((s) => {
+                        const tmp = new Color();
+
+                        tmp.load(s);
+
+                        return tmp;
+                    });
+                } else {
+                    this.color = new Color();
+                    this.color.load(data.color);
+                }
+            }
 
             if (data.lineLinked !== undefined) {
                 this.lineLinked.load(data.lineLinked);
@@ -76,6 +94,23 @@ export class Particles implements IParticles {
             this.shape.load(data.shape);
             this.size.load(data.size);
             this.shadow.load(data.shadow);
+
+            const strokeToLoad = data.stroke ?? data.shape?.stroke;
+
+            if (strokeToLoad !== undefined) {
+                if (strokeToLoad instanceof Array) {
+                    this.stroke = strokeToLoad.map((s) => {
+                        const tmp = new Stroke();
+
+                        tmp.load(s);
+
+                        return tmp;
+                    });
+                } else {
+                    this.stroke = new Stroke();
+                    this.stroke.load(strokeToLoad);
+                }
+            }
         }
     }
 }

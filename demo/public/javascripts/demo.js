@@ -6,7 +6,7 @@
     stats.domElement.style.position = "absolute";
     stats.domElement.style.left = "3px";
     stats.domElement.style.top = "3px";
-    stats.domElement.id = "stats-graph"
+    stats.domElement.id = "stats-graph";
 
     let initStats = function () {
         const count_particles = document.querySelector(".js-count-particles");
@@ -33,7 +33,6 @@
     }
 
     let getValuesFromProp = function (prop, path, index) {
-        console.log(prop);
         if (prop) {
             if (prop.type) {
                 switch (prop.type) {
@@ -50,7 +49,7 @@
                 const def = prop["$ref"].split('/');
                 const type = def[def.length - 1];
                 const typeDef = schema.definitions[type];
-                console.log(index);
+
                 return getSchemaValuesFromPath(typeDef, path, index + (/I[A-Z]/.exec(type) ? 1 : 0));
             } else if (prop.anyOf) {
                 let res = [];
@@ -71,22 +70,14 @@
     let getSchemaValuesFromPath = function (obj, path, index) {
         const key = path[index];
 
-        console.log(key);
-
         const prop = obj.properties ? obj.properties[key] : obj;
 
-        console.log(prop);
-
         const values = getValuesFromProp(prop, path, index);
-
-        console.log(values);
 
         return values;
     }
 
     let jsonEditorAutoComplete = function (text, path, input, editor) {
-        console.log(path);
-
         switch (input) {
             case 'field':
                 break;
@@ -99,29 +90,6 @@
         return null;
     };
 
-    let updateBackground = function () {
-        const el = document.getElementById("tsparticles");
-        const options = tsParticles.domItem(0).sourceOptions;
-        const config = options.config_demo;
-        let backgroundImage;
-
-        if (config.background_image) {
-            if (config.background_image.startsWith("url(")) {
-                backgroundImage = config.background_image;
-            } else {
-                backgroundImage = `url('${config.background_image}')`;
-            }
-        } else {
-            backgroundImage = '';
-        }
-
-        el.style.backgroundColor = config.background_color;
-        el.style.backgroundImage = backgroundImage;
-        el.style.backgroundPosition = config.background_position;
-        el.style.backgroundRepeat = config.background_repeat;
-        el.style.backgroundSize = config.background_size;
-    };
-
     let updateParticles = function (editor) {
         let presetId = localStorage.presetId || 'default';
 
@@ -129,7 +97,6 @@
             localStorage.presetId = presetId;
             editor.set(particles.options);
             editor.expandAll();
-            updateBackground();
         });
     };
 
@@ -183,7 +150,6 @@
             onModeChange: function (newMode, oldMode) {
             },
             onChange: function () {
-                updateBackground();
             }
         };
         const editor = new JSONEditor(element, options);
@@ -220,7 +186,6 @@
             const particles = tsParticles.domItem(0);
             particles.options.load(editor.get());
             particles.refresh().then(() => {
-                updateBackground();
             });
         };
 
@@ -248,18 +213,14 @@
 
             if (container) {
                 container.exportImage(function (blob) {
-                    console.log(blob);
                     const modalBody = document.body.querySelector('#exportModal .modal-body .modal-body-content');
-                    const particlesContainer = document.getElementById('tsparticles');
 
                     modalBody.innerHTML = '';
-                    modalBody.style.backgroundColor = particlesContainer.style.backgroundColor;
-                    modalBody.style.backgroundImage = particlesContainer.style.backgroundImage;
-                    modalBody.style.backgroundPosition = particlesContainer.style.backgroundPosition;
-                    modalBody.style.backgroundRepeat = particlesContainer.style.backgroundRepeat;
-                    modalBody.style.backgroundSize = particlesContainer.style.backgroundSize;
-
-                    console.log(modalBody.style);
+                    modalBody.style.backgroundColor = container.canvas.element.style.backgroundColor;
+                    modalBody.style.backgroundImage = container.canvas.element.style.backgroundImage;
+                    modalBody.style.backgroundPosition = container.canvas.element.style.backgroundPosition;
+                    modalBody.style.backgroundRepeat = container.canvas.element.style.backgroundRepeat;
+                    modalBody.style.backgroundSize = container.canvas.element.style.backgroundSize;
 
                     const image = new Image();
 
@@ -269,8 +230,6 @@
                     const url = URL.createObjectURL(blob);
 
                     image.src = url;
-
-                    console.log(url);
 
                     modalBody.appendChild(image);
 

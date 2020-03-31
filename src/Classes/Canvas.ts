@@ -9,7 +9,6 @@ import { CanvasUtils } from "./Utils/CanvasUtils";
 import { ColorUtils } from "./Utils/ColorUtils";
 import type { IColor } from "../Interfaces/Options/Particles/IColor";
 import type { IBackgroundMaskCover } from "../Interfaces/Options/BackgroundMask/IBackgroundMaskCover";
-import { IBounds } from "../Interfaces/IBounds";
 
 /**
  * Canvas manager
@@ -92,6 +91,7 @@ export class Canvas {
         this.dimension.width = canvas.offsetWidth;
         this.context = this.element.getContext("2d");
         this.container.retina.init();
+        this.initBackground();
     }
 
     public destroy(): void {
@@ -102,24 +102,6 @@ export class Canvas {
         if (this.context) {
             CanvasUtils.clear(this.context, this.dimension);
         }
-    }
-
-    public isPointInside(point: ICoordinates, radius?: number): boolean {
-        return this.areBoundsInside(this.calculateBounds(point, radius ?? 0));
-    }
-
-    public areBoundsInside(bounds: IBounds): boolean {
-        return bounds.left >= 0 && bounds.right <= this.dimension.width
-            && bounds.top >= 0 && bounds.bottom <= this.dimension.height;
-    }
-
-    public calculateBounds(point: ICoordinates, radius: number): IBounds {
-        return {
-            bottom: point.y + radius,
-            left: point.x - radius,
-            right: point.x + radius,
-            top: point.y - radius,
-        };
     }
 
     /**
@@ -327,6 +309,45 @@ export class Canvas {
             if (this.context) {
                 return CanvasUtils.gradient(this.context, p1, p2, midColor);
             }
+        }
+    }
+
+    private initBackground(): void {
+        const container = this.container;
+        const options = container.options;
+        const background = options.background;
+        const element = this.element;
+
+        if (!element) {
+            return;
+        }
+
+        const elementStyle = element.style;
+
+        if (background.color) {
+            const color = typeof background.color === "string" ?
+                ColorUtils.stringToRgb(background.color) :
+                ColorUtils.colorToRgb(background.color);
+
+            if (color) {
+                elementStyle.backgroundColor = ColorUtils.getStyleFromColor(color, background.opacity);
+            }
+        }
+
+        if (background.image) {
+            elementStyle.backgroundImage = background.image;
+        }
+
+        if (background.position) {
+            elementStyle.backgroundPosition = background.position;
+        }
+
+        if (background.repeat) {
+            elementStyle.backgroundRepeat = background.repeat;
+        }
+
+        if (background.size) {
+            elementStyle.backgroundSize = background.size;
         }
     }
 }

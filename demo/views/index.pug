@@ -36,6 +36,8 @@ html(lang="en")
                                     option(value="chars") Chars
                                     option(value="collisions") Collisions
                                     option(value="connect") Connect
+                                    option(value="customShape") Custom Shape
+                                    option(value="customPreset") Custom Preset
                                     option(value="default") Default
                                     option(value="fontawesome") Font Awesome
                                     option(value="hollowknight") Hollow Knight
@@ -114,6 +116,16 @@ html(lang="en")
             input(type="hidden" name="data" value="" id="code-pen-data")
             input(type="submit" value="Create Pen")
 
+        // Global site tag (gtag.js) - Google Analytics
+        script(async, src="https://www.googletagmanager.com/gtag/js?id=UA-159372955-1")
+        script.
+            window.dataLayer = window.dataLayer || [];
+            function gtag() { dataLayer.push(arguments); }
+
+            gtag('js', new Date());
+
+            gtag('config', 'UA-159372955-1');
+
         script(src="/jquery/jquery.slim.min.js")
         script(src="/popper.js/umd/popper.min.js")
         script(src="/bootstrap/js/bootstrap.min.js")
@@ -122,4 +134,6 @@ html(lang="en")
         script(src="/three/examples/js/libs/stats.min.js")
         script(src="/pathseg/pathseg.js")
         script(src="/tsparticles/tsparticles.js")
+        script(src="/javascripts/presetFire.js")
+        script(src="/javascripts/shapeSpiral.js")
         script(src="/javascripts/demo.js")
