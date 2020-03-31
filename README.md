@@ -16,9 +16,9 @@
 
 You'll find the instructions [below](https://github.com/matteobruni/tsparticles/blob/master/README.md#library-installation), with all the links you need, and *don't be scared by **TypeScript**, it's just the source language*.
 
-**The output files are just ES5 JavaScript**. 🤩
+**The output files are just vanilla JavaScript**. 🤩
 
-CDNs and `npm` have all the sources you need in **ES5 Javascript**, a bundle browser ready (tsparticles.min.js) and all files splitted for `import` syntax.
+CDNs and `npm` have all the sources you need in **vanilla Javascript**, a bundle browser ready (tsparticles.min.js) and all files splitted for `import` syntax.
 
 Actually the `import` syntax doesn't have instructions, but you can contact me by mail or in the project's Slack, the link is below and I'll help you find the right solution. Until a guide will be ready this is the fastest solution.
 
@@ -57,6 +57,131 @@ You can read more **[here](https://dev.to/matteobruni/migrating-from-particles-j
 Want to know 5 reasons to do the switch? [Read here](https://dev.to/matteobruni/5-reasons-to-use-tsparticles-and-not-particles-js-1gbe)
 
 *Below you can find all the information you need to install tsParticles and its new syntax.* 
+
+---
+
+## Plugins/Customizations
+
+tsParticles now supports some customizations 🥳.
+
+**NOW YOU CAN CREATE YOUR OWN SHAPES OR PRESETS**
+
+### Creating a custom shape
+
+You can now create a script with your own shape to use in your website or for distributing it to others. All you have to do is a drawing function, give it a name and use it in the config.
+
+You'll find a sample below.
+
+#### Spiral sample
+
+*spiral.js* - The custom shape script, you can distribute it or reuse in all your websites.
+
+```javascript
+// call this method before initializing tsParticles, this shape will be available in all of your tsParticles instances
+// parameters: shape name, drawing method
+tsParticles.addCustomShape('spiral', function (context, particle, radius) {
+  const shapeData = particle.shapeData;
+  const realWidth = (radius - shapeData.innerRadius) / shapeData.lineSpacing;
+
+  for (let i = 0; i < realWidth * 10; i++) {
+    const angle = 0.1 * i;
+    const x = (shapeData.innerRadius + shapeData.lineSpacing * angle) * Math.cos(angle);
+    const y = (shapeData.innerRadius + shapeData.lineSpacing * angle) * Math.sin(angle);
+
+    context.lineTo(x, y);
+  }
+});
+```
+
+*config.json* - The config section to add to your config or in your plugin readme to teach others on how to use it.
+
+```json
+{
+  // [... omitted for brevity]
+  "particles": {
+    // [... omitted for brevity]
+    "shape": {
+      "type": "spiral", // this must match the name above, the type works as always, you can use an array with your custom shape inside
+      "custom": {
+          // this must match the name above, these are the values set in particle.shapeData (the first line of the method above)
+          // you can use array as value here too, the values will be random picked, like in standard shapes
+          "spiral": { 
+              "innerRadius": 1,
+              "lineSpacing": 1,
+              "fill": false,
+              "close": false
+          }
+      }
+      // [... omitted for brevity]
+    }
+    // [... omitted for brevity]
+  }
+  // [... omitted for brevity]
+}
+```
+
+### Creating a custom preset
+
+You can now create a script with your own preset to use in your website or for distributing it to others. All you have to do is give it a name and set all the options you need it to load correctly. Remember to not import all config, properties not needed can be omitted.
+
+You'll find a sample below.
+
+#### Fire preset sample
+
+*fire.preset.js* - The custom preset script, you can distribute it or reuse in all your websites.
+
+```javascript
+// call this method before initializing tsParticles, this preset will be available in all of your tsParticles instances
+// parameters: preset name, preset partial options
+tsParticles.addCustomPreset("fire", {
+  fpsLimit: 40,
+  particles: {
+    number: {
+      value: 80,
+      density: {
+        enable: true,
+        value_area: 800
+      }
+    },
+    color: {
+      value: ["#fdcf58", "#757676", "#f27d0c", "#800909", "#f07f13"]
+    },
+    opacity: {
+      value: 0.5,
+      random: true,
+    },
+    size: {
+      value: 3,
+      random: true
+    },
+    move: {
+      enable: true,
+      speed: 6,
+      random: false
+    }
+  },
+  interactivity: {
+    events: {
+      onclick: {
+        enable: true,
+        mode: "push"
+      },
+      resize: true
+    }
+  },
+  background: {
+    image: "radial-gradient(#4a0000, #000)"
+  }
+});
+```
+
+*config.json* - The config section to add to your config or in your plugin readme to teach others on how to use it.
+
+```json
+{
+  "preset": "fire" // this should match the name above, it can be used in array values too, it will be loaded in order like everyone else
+}
+```
 
 ---
 
@@ -475,11 +600,24 @@ particles.pause();
 
 property | option type | example | notes
 ---|---|---|---
+`background` | `object` | | See Background options below
 `backgroundMask` | `object` | | See Background Mask options below
 `detectRetina` | `boolean` | `true` / `false` | replaces the old `retina_detect` property
-`fpsLimit` | `number` | `60` | *defaults to `60`*, replaces the old `fps_limit` property
+`fpsLimit` | `number` | `30` | *defaults to `30`*, replaces the old `fps_limit` property
 `interactivity` | `object` | | See Interactivity options below
 `pauseOnBlur` | `boolean` | `true` / `false` | pauses the animations when the page isn't on foreground
+`preset` | `string` <br /> `array` | `"basic"` <br /> `[ "basic", "60fps" ]` | You can use this property to load one or more presets for focusing on important properties and not all config. <br /> All values available by default are: <br /> `"basic"` <br /> `"backgroundMask"` <br /> `"fontAwesome"` <br /> `"snow"` <br /> `"bouncing"` <br /> `"stars"` <br /> `"60fps"`
+
+#### Background
+
+key | option type | example | notes
+---|---|---|---
+`cover.value` | HEX (`string`) <br /> RGB (`object`) <br /> HSL (`object`) <br /> random (`string`) | `"#0d47a1"` <br /> `{r:182, g:25, b:36}` <br />  `{h:356, s:76, l:41}` <br /> 
+`image` | string | | This property is directly set to the CSS background-image, you can use the same syntax.
+`position` | string | | This property is directly set to the CSS background-position, you can use the same syntax.
+`repeat` | string | | This property is directly set to the CSS background-repeat, you can use the same syntax.
+`size` | string | | This property is directly set to the CSS background-size, you can use the same syntax.
+`opacity` |  number | | This property works with color, the color has no alpha values, so if you don't use a `string` with alpha values set this for transparency
 
 #### Background Mask
 
