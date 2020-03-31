@@ -124,7 +124,7 @@ tsParticles.addCustomShape("spiral", new SpiralDrawer());
 
 _config.json_ - The config section to add to your config or in your plugin readme to teach others on how to use it.
 
-```json
+```javascript
 {
   // [... omitted for brevity]
   "particles": {
@@ -206,7 +206,7 @@ tsParticles.addCustomPreset("fire", {
 
 _config.json_ - The config section to add to your config or in your plugin readme to teach others on how to use it.
 
-```json
+```javascript
 {
   "preset": "fire" // this should match the name above, it can be used in array values too, it will be loaded in order like everyone else
 }
