@@ -95,7 +95,7 @@ export class Particles implements IParticles {
             this.size.load(data.size);
             this.shadow.load(data.shadow);
 
-            let strokeToLoad = data.stroke ?? data.shape?.stroke;
+            const strokeToLoad = data.stroke ?? data.shape?.stroke;
 
             if (strokeToLoad !== undefined) {
                 if (strokeToLoad instanceof Array) {

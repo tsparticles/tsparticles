@@ -151,9 +151,10 @@ class Main {
      */
     public addCustomShape(type: string, drawer: IShapeDrawer | ShapeDrawerFunction): void {
         let customDrawer: IShapeDrawer;
+
         if (typeof drawer === "function") {
             customDrawer = {
-                draw: drawer
+                draw: drawer,
             };
         } else {
             customDrawer = drawer;
@@ -176,7 +177,7 @@ const tsParticles = new Main();
 
 Object.freeze(tsParticles);
 
-export default tsParticles;
+export { tsParticles };
 
 /**
  * The new singleton, replacing the old particlesJS

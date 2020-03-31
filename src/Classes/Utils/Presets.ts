@@ -13,7 +13,7 @@ export class Presets {
         return this.presets[preset];
     }
 
-    public static addPreset(presetKey: string, options: RecursivePartial<IOptions>) {
+    public static addPreset(presetKey: string, options: RecursivePartial<IOptions>): void {
         if (!this.presets[presetKey]) {
             this.presets[presetKey] = options;
         }

@@ -18,7 +18,6 @@ export abstract class PolygonDrawerBase implements IShapeDrawer {
             return;
         }
 
-        context.save();
         context.beginPath();
         context.translate(start.x, start.y);
         context.moveTo(0, 0);
@@ -28,10 +27,6 @@ export abstract class PolygonDrawerBase implements IShapeDrawer {
             context.translate(side.length, 0);
             context.rotate(interiorAngle);
         }
-
-        // c.stroke();
-        context.fill();
-        context.restore();
     }
 
     public abstract getSidesData(particle: IParticle, radius: number): ISide;
