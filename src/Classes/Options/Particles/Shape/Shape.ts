@@ -3,12 +3,14 @@ import { ShapeType } from "../../../../Enums/ShapeType";
 import { CharacterShape } from "./CharacterShape";
 import { ImageShape } from "./ImageShape";
 import { PolygonShape } from "./PolygonShape";
-import { Stroke } from "./Stroke";
+import { Stroke } from "../Stroke";
 import type { IImageShape } from "../../../../Interfaces/Options/Particles/Shape/IImageShape";
 import type { ICharacterShape } from "../../../../Interfaces/Options/Particles/Shape/ICharacterShape";
 import type { IPolygonShape } from "../../../../Interfaces/Options/Particles/Shape/IPolygonShape";
-import type { IStroke } from "../../../../Interfaces/Options/Particles/Shape/IStroke";
+import type { IStroke } from "../../../../Interfaces/Options/Particles/IStroke";
 import type { RecursivePartial } from "../../../../Types/RecursivePartial";
+import type { SingleOrMultiple } from "../../../../Types/SingleOrMultiple";
+import type { CustomShape } from "../../../../Types/CustomShape";
 
 export class Shape implements IShape {
     /**
@@ -29,18 +31,31 @@ export class Shape implements IShape {
         this.image = value;
     }
 
-    public character: ICharacterShape | ICharacterShape[];
-    public image: IImageShape | IImageShape[];
-    public polygon: IPolygonShape | IPolygonShape[];
-    public stroke: IStroke | IStroke[];
-    public type: ShapeType | ShapeType[] | string | string[];
+    /**
+     * @deprecated this property was moved to particles section
+     */
+    get stroke(): SingleOrMultiple<IStroke> {
+        return [];
+    }
+
+    /**
+     * @deprecated this property was moved to particles section
+     */
+    set stroke(value: SingleOrMultiple<IStroke>) {
+    }
+
+    public character: SingleOrMultiple<ICharacterShape>;
+    public image: SingleOrMultiple<IImageShape>;
+    public polygon: SingleOrMultiple<IPolygonShape>;
+    public type: SingleOrMultiple<ShapeType | string>;
+    public custom: CustomShape;
 
     constructor() {
         this.character = new CharacterShape();
         this.image = new ImageShape();
         this.polygon = new PolygonShape();
-        this.stroke = new Stroke();
         this.type = ShapeType.circle;
+        this.custom = {};
     }
 
     public load(data?: RecursivePartial<IShape>): void {
@@ -75,21 +90,6 @@ export class Shape implements IShape {
                 }
             }
 
-            if (data.stroke !== undefined) {
-                if (data.stroke instanceof Array) {
-                    this.stroke = data.stroke.map((s) => {
-                        const tmp = new Stroke();
-
-                        tmp.load(s);
-
-                        return tmp;
-                    });
-                } else {
-                    this.stroke = new Stroke();
-                    this.stroke.load(data.stroke);
-                }
-            }
-
             if (data.polygon !== undefined) {
                 if (data.polygon instanceof Array) {
                     this.polygon = data.polygon.map((s) => {
@@ -107,6 +107,14 @@ export class Shape implements IShape {
 
             if (data.type !== undefined) {
                 this.type = data.type;
+            }
+
+            if (data.custom !== undefined) {
+                for (const customShape in data.custom) {
+                    if (data.custom[customShape] !== undefined) {
+                        this.custom[customShape] = data.custom[customShape]!;
+                    }
+                }
             }
         }
     }

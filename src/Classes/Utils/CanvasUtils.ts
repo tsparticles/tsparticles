@@ -128,7 +128,7 @@ export class CanvasUtils {
         colorLine: IRgb,
         opacity: number): void {
         context.save();
-        context.strokeStyle = `rgba(${colorLine.r},${colorLine.g},${colorLine.b},${opacity})`;
+        context.strokeStyle = ColorUtils.getStyleFromColor(colorLine, opacity);
         context.lineWidth = width;
         context.beginPath();
         context.moveTo(begin.x, begin.y);
@@ -176,7 +176,7 @@ export class CanvasUtils {
         const stroke = particle.stroke;
 
         if (stroke.width > 0 && particle.strokeColor) {
-            context.strokeStyle = ColorUtils.getStyleFromColor(particle.strokeColor);
+            context.strokeStyle = ColorUtils.getStyleFromColor(particle.strokeColor, particle.stroke.opacity);
             context.lineWidth = stroke.width;
         }
 

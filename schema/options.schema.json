@@ -556,7 +556,17 @@
         "IParticles": {
             "properties": {
                 "color": {
-                    "$ref": "#/definitions/IColor"
+                    "anyOf": [
+                        {
+                            "$ref": "#/definitions/IColor"
+                        },
+                        {
+                            "items": {
+                                "$ref": "#/definitions/IColor"
+                            },
+                            "type": "array"
+                        }
+                    ]
                 },
                 "lineLinked": {
                     "$ref": "#/definitions/ILineLinked"
@@ -584,6 +594,19 @@
                 },
                 "size": {
                     "$ref": "#/definitions/ISize"
+                },
+                "stroke": {
+                    "anyOf": [
+                        {
+                            "$ref": "#/definitions/IStroke"
+                        },
+                        {
+                            "items": {
+                                "$ref": "#/definitions/IStroke"
+                            },
+                            "type": "array"
+                        }
+                    ]
                 }
             },
             "type": "object"
@@ -845,6 +868,22 @@
                         }
                     ]
                 },
+                "custom": {
+                    "additionalProperties": {
+                        "anyOf": [
+                            {
+                                "$ref": "#/definitions/IShapeValues"
+                            },
+                            {
+                                "items": {
+                                    "$ref": "#/definitions/IShapeValues"
+                                },
+                                "type": "array"
+                            }
+                        ]
+                    },
+                    "type": "object"
+                },
                 "image": {
                     "anyOf": [
                         {
@@ -893,30 +932,14 @@
                             "type": "array"
                         },
                         {
-                            "items": {
-                                "enum": [
-                                    "char",
-                                    "character",
-                                    "circle",
-                                    "edge",
-                                    "heart",
-                                    "image",
-                                    "line",
-                                    "polygon",
-                                    "square",
-                                    "star",
-                                    "triangle"
-                                ],
-                                "type": "string"
-                            },
-                            "type": "array"
-                        },
-                        {
                             "type": "string"
                         }
                     ]
                 }
             },
+            "type": "object"
+        },
+        "IShapeValues": {
             "type": "object"
         },
         "ISize": {
@@ -988,6 +1011,9 @@
                             "type": "string"
                         }
                     ]
+                },
+                "opacity": {
+                    "type": "number"
                 },
                 "width": {
                     "type": "number"
