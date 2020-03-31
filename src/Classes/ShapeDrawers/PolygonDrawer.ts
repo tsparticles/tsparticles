@@ -9,7 +9,7 @@ export class PolygonDrawer extends PolygonDrawerBase {
         const side: ISide = {
             count: {
                 denominator: 1,
-                numerator: sides ?? 5,
+                numerator: sides,
             },
             length: radius * 2.66 / (sides / 3),
         };

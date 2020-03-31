@@ -24,8 +24,6 @@ export class ShapeUtils {
             return;
         }
 
-        if (drawer) {
-            drawer.draw(context, particle, radius);
-        }
+        drawer.draw(context, particle, radius);
     }
 }

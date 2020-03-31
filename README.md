@@ -93,6 +93,30 @@ tsParticles.addCustomShape('spiral', function (context, particle, radius) {
 });
 ```
 
+If you prefere using classes you can, `IShapeDrawer` interface can be implemented in your code or at least a class with a method `draw(context, particle, radius)` in it. You can find a sample below.
+
+```javascript
+class SpiralDrawer {
+  draw(context, particle, radius) {
+    const shapeData = particle.shapeData;
+    const realWidth = (radius - shapeData.innerRadius) / shapeData.lineSpacing;
+
+    for (let i = 0; i < realWidth * 10; i++) {
+      const angle = 0.1 * i;
+      const x = (shapeData.innerRadius + shapeData.lineSpacing * angle) * Math.cos(angle);
+      const y = (shapeData.innerRadius + shapeData.lineSpacing * angle) * Math.sin(angle);
+
+      context.lineTo(x, y);
+    }
+  }
+}
+
+// call this method before initializing tsParticles, this shape will be available in all of your tsParticles instances
+// parameters: shape name, drawer class
+tsParticles.addCustomShape('spiral', new SpiralDrawer());
+```
+
+
 *config.json* - The config section to add to your config or in your plugin readme to teach others on how to use it.
 
 ```json

@@ -4,7 +4,6 @@ import type { IOptions } from "../../Interfaces/Options/IOptions";
 import type { ICharacterShape } from "../../Interfaces/Options/Particles/Shape/ICharacterShape";
 import { IBounds } from "../../Interfaces/IBounds";
 import { IDimension } from "../../Interfaces/IDimension";
-import { SingleOrMultiple } from "../../Types/SingleOrMultiple";
 
 type CSSOMString = string;
 type FontFaceLoadStatus = 'unloaded' | 'loading' | 'loaded' | 'error';
