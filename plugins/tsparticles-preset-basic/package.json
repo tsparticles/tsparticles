@@ -1,0 +1,57 @@
+{
+  "name": "tsparticles-preset-basic",
+  "version": "1.0.0",
+  "description": "tsParticles basic preset",
+  "homepage": "https://particles.matteobruni.it/",
+  "scripts": {
+    "copy:js": "cpx \"src/**/*.js\" dist/",
+    "minify:js": "uglifyjs --compress --output dist/tsparticles.preset.basic.min.js dist/tsparticles.preset.basic.js",
+    "build": "npm run copy:js && npm run minify:js",
+    "start": "npm run build && node demo/app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/matteobruni/tsparticles-preset-basic.git"
+  },
+  "keywords": [
+    "tsparticles",
+    "particles",
+    "particle",
+    "canvas",
+    "jsparticles",
+    "xparticles",
+    "particles-js",
+    "particles.js",
+    "particles-ts",
+    "particles.ts",
+    "typescript",
+    "javascript",
+    "animation",
+    "web",
+    "html5",
+    "web-design",
+    "webdesign",
+    "css",
+    "html",
+    "css3",
+    "animated",
+    "background",
+    "tsparticles-preset"
+  ],
+  "author": "Matteo Bruni",
+  "license": "MIT",
+  "files": [
+    "dist/**/*"
+  ],
+  "bugs": {
+    "url": "https://github.com/matteobruni/tsparticles-preset-basic/issues"
+  },
+  "main": "dist/tsparticles.preset.basic.min.js",
+  "devDependencies": {
+    "cpx": "^1.5.0",
+    "uglify-js": "^3.8.1"
+  },
+  "dependencies": {
+    "tsparticles": "latest"
+  }
+}
