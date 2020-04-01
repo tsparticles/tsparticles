@@ -49,6 +49,7 @@
   "files": [
     "dist/**/*"
   ],
+  "types": "dist/Main.d.ts",
   "bugs": {
     "url": "https://github.com/matteobruni/tsparticles/issues"
   },
