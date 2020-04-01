@@ -10,7 +10,7 @@ window.addEventListener('load', function () {
     tsParticles.addPreset('bouncing', {
         particles: {
             move: {
-                outMode: OutMode.bounce,
+                outMode: 'bounce',
             },
         },
     });
