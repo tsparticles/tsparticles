@@ -1,0 +1,57 @@
+{
+  "name": "tsparticles-shape-spiral",
+  "version": "1.0.0",
+  "description": "tsParticles spiral shape",
+  "homepage": "https://particles.matteobruni.it/",
+  "scripts": {
+    "copy:js": "cpx \"src/**/*.js\" dist/",
+    "minify:js": "uglifyjs --compress --output dist/tsparticles.shape.spiral.min.js dist/tsparticles.shape.spiral.js",
+    "build": "npm run copy:js && npm run minify:js",
+    "start": "npm run build && node demo/app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/matteobruni/tsparticles-shape-spiral.git"
+  },
+  "keywords": [
+    "tsparticles",
+    "particles",
+    "particle",
+    "canvas",
+    "jsparticles",
+    "xparticles",
+    "particles-js",
+    "particles.js",
+    "particles-ts",
+    "particles.ts",
+    "typescript",
+    "javascript",
+    "animation",
+    "web",
+    "html5",
+    "web-design",
+    "webdesign",
+    "css",
+    "html",
+    "css3",
+    "animated",
+    "background",
+    "tsparticles-shape"
+  ],
+  "author": "Matteo Bruni",
+  "license": "MIT",
+  "files": [
+    "dist/**/*"
+  ],
+  "bugs": {
+    "url": "https://github.com/matteobruni/tsparticles-shape-spiral/issues"
+  },
+  "main": "dist/tsparticles.shape.spiral.min.js",
+  "devDependencies": {
+    "cpx": "^1.5.0",
+    "uglify-js": "^3.8.1"
+  },
+  "dependencies": {
+    "tsparticles": "latest"
+  }
+}
