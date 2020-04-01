@@ -1,2 +1,2 @@
-# tsparticles-preset-backgroundMask
-tsParticles preset 'backgroundMask'
+# tsparticles-preset-background-mask
+tsParticles preset 'background-mask'
