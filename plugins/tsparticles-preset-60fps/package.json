@@ -1,6 +1,6 @@
 {
   "name": "tsparticles-preset-60fps",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "tsParticles 60fps preset",
   "homepage": "https://particles.matteobruni.it/",
   "scripts": {
