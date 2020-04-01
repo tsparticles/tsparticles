@@ -3,6 +3,7 @@ import type { Container } from "../Container";
 import { ColorUtils } from "../Utils/ColorUtils";
 import { Utils } from "../Utils/Utils";
 import { ICoordinates } from "../../Interfaces/ICoordinates";
+import { Constants } from "../Utils/Constants";
 
 export class Linker {
     private readonly container: Container;
@@ -42,11 +43,11 @@ export class Linker {
                     //  check for the color profile requested and
                     //  then return appropriate value
 
-                    if (color === "random") {
+                    if (color === Constants.randomColorValue) {
                         if (options.particles.lineLinked.consent) {
                             container.particles.lineLinkedColor = ColorUtils.stringToRgb(color);
                         } else if (options.particles.lineLinked.blink) {
-                            container.particles.lineLinkedColor = "random";
+                            container.particles.lineLinkedColor = Constants.randomColorValue;
                         } else {
                             container.particles.lineLinkedColor = "mid";
                         }

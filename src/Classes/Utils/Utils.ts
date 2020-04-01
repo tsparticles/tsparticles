@@ -2,8 +2,8 @@ import type { ICoordinates } from "../../Interfaces/ICoordinates";
 import { MoveDirection } from "../../Enums/MoveDirection";
 import type { IOptions } from "../../Interfaces/Options/IOptions";
 import type { ICharacterShape } from "../../Interfaces/Options/Particles/Shape/ICharacterShape";
-import { IBounds } from "../../Interfaces/IBounds";
-import { IDimension } from "../../Interfaces/IDimension";
+import type { IBounds } from "../../Interfaces/IBounds";
+import type { IDimension } from "../../Interfaces/IDimension";
 
 type CSSOMString = string;
 type FontFaceLoadStatus = 'unloaded' | 'loading' | 'loaded' | 'error';

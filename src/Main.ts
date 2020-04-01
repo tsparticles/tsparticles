@@ -23,7 +23,6 @@ import { TextDrawer } from "./Classes/ShapeDrawers/TextDrawer";
 import { ImageDrawer } from "./Classes/ShapeDrawers/ImageDrawer";
 import { IShapeDrawer } from "./Interfaces/IShapeDrawer";
 import { Presets } from "./Classes/Utils/Presets";
-import { PresetType } from "./Enums/PresetType";
 import { ShapeDrawerFunction } from "./Types/ShapeDrawerFunction";
 
 declare global {
@@ -76,14 +75,6 @@ class Main {
         ShapeUtils.addShapeDrawer(ShapeType.char, textDrawer);
         ShapeUtils.addShapeDrawer(ShapeType.character, textDrawer);
         ShapeUtils.addShapeDrawer(ShapeType.image, new ImageDrawer());
-
-        Presets.addPreset(PresetType.basic, Presets.basic);
-        Presets.addPreset(PresetType.backgroundMask, Presets.backgroundMask);
-        Presets.addPreset(PresetType.fontAwesome, Presets.fontAwesome);
-        Presets.addPreset(PresetType.snow, Presets.snow);
-        Presets.addPreset(PresetType.bouncing, Presets.bouncing);
-        Presets.addPreset(PresetType.stars, Presets.stars);
-        Presets.addPreset(PresetType._60fps, Presets._60fps);
     }
     /**
      * Loads an options object from the provided array to create a [[Container]] object.

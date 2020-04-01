@@ -195,7 +195,7 @@ export class Canvas {
          *                        from those two for the connecting line color
          */
 
-        if (container.particles.lineLinkedColor === "random") {
+        if (container.particles.lineLinkedColor === Constants.randomColorValue) {
             colorLine = ColorUtils.getRandomRgbColor();
         } else if (container.particles.lineLinkedColor == "mid" && p1.color && p2.color) {
             const sourceColor = p1.color;
@@ -246,7 +246,7 @@ export class Canvas {
         let lineColor = container.particles.lineLinkedColor ||
             (typeof optColor === "string" ? ColorUtils.stringToRgb(optColor) : ColorUtils.colorToRgb(optColor));
 
-        if (lineColor == "random") {
+        if (lineColor == Constants.randomColorValue) {
             lineColor = ColorUtils.getRandomRgbColor();
         }
 
@@ -259,7 +259,7 @@ export class Canvas {
             return;
         }
 
-        if (container.particles.lineLinkedColor == "random") {
+        if (container.particles.lineLinkedColor == Constants.randomColorValue) {
             colorLine = ColorUtils.getRandomRgbColor() || colorLine;
         } else {
             colorLine = container.particles.lineLinkedColor as IRgb || colorLine;

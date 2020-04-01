@@ -12,7 +12,7 @@ export class CanvasUtils {
         dimension: IDimension,
         baseColor?: string): void {
         context.save();
-        context.fillStyle = baseColor ?? "rgba(255, 255, 255, 0)";
+        context.fillStyle = baseColor ?? "rgba(0,0,0,0)";
         context.fillRect(0, 0, dimension.width, dimension.height);
         context.restore();
     }
@@ -187,7 +187,7 @@ export class CanvasUtils {
         }
 
         if (backgroundMask) {
-            context.globalCompositeOperation = 'destination-out';
+            context.globalCompositeOperation = "destination-out";
         }
 
         const stroke = particle.stroke;

@@ -8,7 +8,6 @@ import type { IPolygonMask } from "../../Interfaces/Options/PolygonMask/IPolygon
 import type { IBackgroundMask } from "../../Interfaces/Options/BackgroundMask/IBackgroundMask";
 import { BackgroundMask } from "./BackgroundMask/BackgroundMask";
 import type { RecursivePartial } from "../../Types/RecursivePartial";
-import { PresetType } from "../../Enums/PresetType";
 import { Presets } from "../Utils/Presets";
 import type { IBackground } from "../../Interfaces/Options/Background/IBackground";
 import { Background } from "./Background/Background";
@@ -55,7 +54,7 @@ export class Options implements IOptions {
     public polygon: IPolygonMask;
     public backgroundMask: IBackgroundMask;
     public pauseOnBlur: boolean;
-    public preset?: PresetType | PresetType[] | string | string[];
+    public preset?: string | string[];
     public background: IBackground;
 
     constructor() {
@@ -108,7 +107,7 @@ export class Options implements IOptions {
         }
     }
 
-    private importPreset(preset: PresetType | string): void {
+    private importPreset(preset: string): void {
         const presetOptions = Presets.getPreset(preset);
 
         if (presetOptions !== undefined) {
