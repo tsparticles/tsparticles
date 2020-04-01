@@ -22,7 +22,7 @@ window.addEventListener('load', function () {
             events: {
                 onHover: {
                     enable: true,
-                    mode: HoverMode.bubble,
+                    mode: 'bubble',
                 },
             },
             modes: {
@@ -46,9 +46,9 @@ window.addEventListener('load', function () {
                 width: 1,
             },
             move: {
-                direction: MoveDirection.none,
+                direction: 'none',
                 enable: true,
-                outMode: OutMode.out,
+                outMode: 'out',
                 random: false,
                 speed: 2,
                 straight: false,
@@ -58,7 +58,7 @@ window.addEventListener('load', function () {
                 value: 1,
             },
             shape: {
-                type: ShapeType.circle,
+                type: 'circle',
             },
             size: {
                 random: true,
