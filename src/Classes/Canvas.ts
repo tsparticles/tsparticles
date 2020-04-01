@@ -155,14 +155,22 @@ export class Canvas {
         return this.context?.isPointInPath(path, point.x, point.y) ?? false;
     }
 
-    public drawPolygonMask(rawData: ICoordinates[]): void {
+    public drawPolygonMask(): void {
         const container = this.container;
         const options = container.options;
         const context = this.context;
         const polygonDraw = options.polygon.draw;
+        const polygon = container.polygon;
+        const rawData = polygon.raw;
+        const path = polygon.polygonPath;
+        const path2dSupported = polygon.path2DSupported;
 
         if (context) {
-            CanvasUtils.drawPolygonMask(context, rawData, polygonDraw.stroke);
+            if (path2dSupported && path && polygon.offset) {
+                CanvasUtils.drawPolygonMaskPath(context, path, polygonDraw.stroke, polygon.offset);
+            } else if (rawData) {
+                CanvasUtils.drawPolygonMask(context, rawData, polygonDraw.stroke);
+            }
         }
     }
 
