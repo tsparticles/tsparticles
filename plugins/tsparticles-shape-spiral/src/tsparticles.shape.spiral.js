@@ -10,7 +10,7 @@ if (!tsParticles) {
  * usage:
  */
 window.addEventListener('load', function () {
-    tsParticles.addCustomShape('spiral', function (context, particle, radius) {
+    tsParticles.addShape('spiral', function (context, particle, radius) {
         var shapeData = particle.shapeData, realWidth = (radius - shapeData.innerRadius) / shapeData.lineSpacing;
 
         for (var i = 0; i < realWidth * 10; i++) {
