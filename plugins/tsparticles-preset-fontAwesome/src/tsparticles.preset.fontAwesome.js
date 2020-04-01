@@ -16,7 +16,7 @@ window.addEventListener('load', function () {
                     style: "",
                     weight: "400",
                 },
-                type: ShapeType.character,
+                type: 'character',
             },
             size: {
                 random: false,
