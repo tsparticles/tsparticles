@@ -93,7 +93,7 @@ export class EventListeners {
             this.manageListener(interactivityEl, Constants.mouseLeaveEvent, this.mouseLeaveHandler, add);
 
             /* el on touchcancel */
-            this.manageListener(interactivityEl, "touchcancel", this.touchCancelHandler, add);
+            this.manageListener(interactivityEl, Constants.touchCancelEvent, this.touchCancelHandler, add);
         }
 
         /* on click event */
@@ -103,11 +103,11 @@ export class EventListeners {
         }
 
         if (options.interactivity.events.resize) {
-            this.manageListener(window, "resize", this.resizeHandler, add);
+            this.manageListener(window, Constants.resizeEvent, this.resizeHandler, add);
         }
 
         if (document) {
-            this.manageListener(document, "visibilitychange", this.visibilityChangeHandler, add, false);
+            this.manageListener(document, Constants.visibilityChangeEvent, this.visibilityChangeHandler, add, false);
         }
     }
 

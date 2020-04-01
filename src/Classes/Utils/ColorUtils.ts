@@ -1,9 +1,10 @@
-import { IColor } from "../../Interfaces/Options/Particles/IColor";
-import { IRgb } from "../../Interfaces/IRgb";
-import { IRgba } from "../../Interfaces/IRgba";
-import { IHsl } from "../../Interfaces/IHsl";
-import { IHsla } from "../../Interfaces/IHsla";
+import type { IColor } from "../../Interfaces/Options/Particles/IColor";
+import type { IRgb } from "../../Interfaces/IRgb";
+import type { IRgba } from "../../Interfaces/IRgba";
+import type { IHsl } from "../../Interfaces/IHsl";
+import type { IHsla } from "../../Interfaces/IHsla";
 import { Utils } from "./Utils";
+import { Constants } from "./Constants";
 
 export class ColorUtils {
     /**
@@ -14,7 +15,7 @@ export class ColorUtils {
         let res: IRgb | undefined;
 
         if (typeof (color.value) === "string") {
-            if (color.value === "random") {
+            if (color.value === Constants.randomColorValue) {
                 res = {
                     b: Math.floor(Math.random() * 256),
                     g: Math.floor(Math.random() * 256),
