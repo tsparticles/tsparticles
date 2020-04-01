@@ -374,11 +374,17 @@ export class PolygonMask {
             const path = new Path2D(pathData);
             const matrix = document.createElementNS("http://www.w3.org/2000/svg", "svg").createSVGMatrix()
 
-            this.polygonPath = new Path2D();
+            const finalPath = new Path2D();
 
             const transform = matrix.scale(this.container.options.polygon.scale);
 
-            this.polygonPath.addPath(path, transform);
+            if (finalPath.addPath) {
+                finalPath.addPath(path, transform);
+
+                this.polygonPath = finalPath;
+            } else {
+                delete this.polygonPath;
+            }
         } else {
             delete this.polygonPath;
         }
