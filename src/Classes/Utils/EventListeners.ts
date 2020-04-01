@@ -237,12 +237,12 @@ export class EventListeners {
             this.canPush = e.type !== "touchmove";
 
             const touchEvent = e as TouchEvent;
-
             const lastTouch = touchEvent.touches[touchEvent.touches.length - 1];
+            const canvasRect = container.canvas.element?.getBoundingClientRect();
 
             pos = {
-                x: lastTouch.clientX,
-                y: lastTouch.clientY,
+                x: lastTouch.clientX - (canvasRect?.left ?? 0),
+                y: lastTouch.clientY - (canvasRect?.top ?? 0),
             };
         }
 
