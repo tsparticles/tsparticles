@@ -136,11 +136,11 @@ class Main {
     }
 
     /**
-     * addCustomShape
+     * addShape
      * @param type
      * @param drawer
      */
-    public addCustomShape(type: string, drawer: IShapeDrawer | ShapeDrawerFunction): void {
+    public addShape(type: string, drawer: IShapeDrawer | ShapeDrawerFunction): void {
         let customDrawer: IShapeDrawer;
 
         if (typeof drawer === "function") {
@@ -155,11 +155,11 @@ class Main {
     }
 
     /**
-     * addCustomPreset
+     * addPreset
      * @param preset
      * @param options
      */
-    public addCustomPreset(preset: string, options: RecursivePartial<IOptions>): void {
+    public addPreset(preset: string, options: RecursivePartial<IOptions>): void {
         Presets.addPreset(preset, options);
     }
 }

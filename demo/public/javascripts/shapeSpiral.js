@@ -1,5 +1,5 @@
 window.addEventListener('load', function () {
-    tsParticles.addCustomShape('spiral', function (context, particle, radius) {
+    tsParticles.addShape('spiral', function (context, particle, radius) {
         const shapeData = particle.shapeData;
         const realWidth = (radius - shapeData.innerRadius) / shapeData.lineSpacing;
 

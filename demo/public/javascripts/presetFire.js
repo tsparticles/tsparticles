@@ -1,5 +1,5 @@
 window.addEventListener('load', function () {
-    tsParticles.addCustomPreset("fire", {
+    tsParticles.addPreset("fire", {
         fpsLimit: 40,
         particles: {
             number: {
