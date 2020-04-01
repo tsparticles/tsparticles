@@ -14,9 +14,9 @@ window.addEventListener('load', function () {
             },
             move: {
                 bounce: false,
-                direction: MoveDirection.bottom,
+                direction: 'bottom',
                 enable: true,
-                outMode: OutMode.out,
+                outMode: 'out',
                 random: false,
                 speed: 2,
                 straight: false,
@@ -26,7 +26,7 @@ window.addEventListener('load', function () {
                 value: 0.5,
             },
             shape: {
-                type: ShapeType.circle,
+                type: 'circle',
             },
             size: {
                 random: true,
