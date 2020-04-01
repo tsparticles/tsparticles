@@ -3,34 +3,34 @@ import type { IPolygonMaskDrawStroke } from "../../../Interfaces/Options/Polygon
 import { PolygonMaskDrawStroke } from "./PolygonMaskDrawStroke";
 import type { RecursivePartial } from "../../../Types/RecursivePartial";
 import type { IColor } from "../../../Interfaces/Options/Particles/IColor";
+import { Stroke } from "../Particles/Stroke";
+import { IStroke } from "../../../Interfaces/Options/Particles/IStroke";
 
 export class Draw implements IPolygonMaskDraw {
     /**
      * @deprecated the property lineWidth is deprecated, please use the new stroke.width
      */
     get lineWidth(): number {
-        return this.stroke.width;
+        return 0;
     }
 
     /**
      * @deprecated the property lineWidth is deprecated, please use the new stroke.width
      */
     set lineWidth(value: number) {
-        this.stroke.width = value;
     }
 
     /**
      * @deprecated the property lineColor is deprecated, please use the new stroke.color
      */
     get lineColor(): string | IColor {
-        return this.stroke.color;
+        return "";
     }
 
     /**
      * @deprecated the property lineColor is deprecated, please use the new stroke.color
      */
     set lineColor(value: string | IColor) {
-        this.stroke.color = value;
     }
 
     public enable: boolean;
@@ -47,17 +47,12 @@ export class Draw implements IPolygonMaskDraw {
                 this.enable = data.enable;
             }
 
-            if (data.stroke !== undefined) {
-                this.stroke.load(data.stroke);
-            } else {
-                if (data.lineColor !== undefined) {
-                    this.lineColor = data.lineColor;
-                }
+            const stroke = data.stroke ?? {
+                color: data.lineColor,
+                width: data.lineWidth
+            };
 
-                if (data.lineWidth !== undefined) {
-                    this.lineWidth = data.lineWidth;
-                }
-            }
+            this.stroke.load(stroke);
         }
     }
 }

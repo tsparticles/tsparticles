@@ -15,7 +15,6 @@ import type { RecursivePartial } from "../Types/RecursivePartial";
 import { Options } from "./Options/Options";
 import { Utils } from "./Utils/Utils";
 import type { IImageShape } from "../Interfaces/Options/Particles/Shape/IImageShape";
-import { PresetType } from "../Enums/PresetType";
 import { Presets } from "./Utils/Presets";
 
 declare global {
@@ -84,7 +83,7 @@ export class Container {
      * @param params the options to load
      * @param presets all the presets to load with options
      */
-    constructor(id: string, params?: RecursivePartial<IOptions>, ...presets: PresetType[]) {
+    constructor(id: string, params?: RecursivePartial<IOptions>, ...presets: string[]) {
         this.started = false;
         this.destroyed = false;
         this.id = id;

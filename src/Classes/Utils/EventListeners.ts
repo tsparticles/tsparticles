@@ -93,7 +93,7 @@ export class EventListeners {
             this.manageListener(interactivityEl, Constants.mouseLeaveEvent, this.mouseLeaveHandler, add);
 
             /* el on touchcancel */
-            this.manageListener(interactivityEl, "touchcancel", this.touchCancelHandler, add);
+            this.manageListener(interactivityEl, Constants.touchCancelEvent, this.touchCancelHandler, add);
         }
 
         /* on click event */
@@ -103,11 +103,11 @@ export class EventListeners {
         }
 
         if (options.interactivity.events.resize) {
-            this.manageListener(window, "resize", this.resizeHandler, add);
+            this.manageListener(window, Constants.resizeEvent, this.resizeHandler, add);
         }
 
         if (document) {
-            this.manageListener(document, "visibilitychange", this.visibilityChangeHandler, add, false);
+            this.manageListener(document, Constants.visibilityChangeEvent, this.visibilityChangeHandler, add, false);
         }
     }
 
@@ -237,12 +237,12 @@ export class EventListeners {
             this.canPush = e.type !== "touchmove";
 
             const touchEvent = e as TouchEvent;
-
             const lastTouch = touchEvent.touches[touchEvent.touches.length - 1];
+            const canvasRect = container.canvas.element?.getBoundingClientRect();
 
             pos = {
-                x: lastTouch.clientX,
-                y: lastTouch.clientY,
+                x: lastTouch.clientX - (canvasRect?.left ?? 0),
+                y: lastTouch.clientY - (canvasRect?.top ?? 0),
             };
         }
 

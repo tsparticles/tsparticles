@@ -1,18 +1,13 @@
 {
   "name": "tsparticles",
-  "version": "1.11.2",
+  "version": "1.12.0",
   "description": "Porting of the abandoned Vincent Garreau's particles.js, converted in TypeScript. Added many new cool features and various bug fixes.",
   "homepage": "https://particles.matteobruni.it/",
   "scripts": {
-    "type-check": "tsc --noEmit",
-    "type-check:watch": "npm run type-check -- --watch",
     "clear:dist": "rimraf -f dist",
     "clear:docs": "rimraf -f docs",
-    "copy:js": "cpx \"src/**/*.{js,d.ts}\" dist/",
     "slimbuild": "npm run clear:dist && npm run build:ts && npm run build:schema && webpack -p",
     "build": "npm run slimbuild && npm run build:docs",
-    "build:types": "tsc --emitDeclarationOnly",
-    "build:js": "babel src --out-dir dist --ignore \"src/**/*.d.ts\" --extensions \".ts,.tsx\" --source-maps inline",
     "build:ts": "tsc",
     "build:docs": "npm run clear:docs && typedoc",
     "start": "npm run build && npm run build:demo && node demo/app.js",
@@ -54,24 +49,16 @@
   "files": [
     "dist/**/*"
   ],
+  "types": "dist/Main.d.ts",
   "bugs": {
     "url": "https://github.com/matteobruni/tsparticles/issues"
   },
   "main": "dist/tsparticles.min.js",
   "devDependencies": {
-    "@babel/cli": "^7.8.4",
     "@babel/core": "^7.9.0",
-    "@babel/plugin-proposal-class-properties": "^7.8.3",
-    "@babel/plugin-proposal-decorators": "^7.8.3",
-    "@babel/plugin-transform-classes": "^7.9.2",
-    "@babel/plugin-transform-runtime": "^7.9.0",
-    "@babel/preset-env": "^7.9.0",
-    "@babel/preset-typescript": "^7.9.0",
-    "@babel/runtime": "^7.9.2",
     "@fortawesome/fontawesome-free": "^5.13.0",
     "babel-loader": "^8.1.0",
     "bootstrap": "^4.4.1",
-    "cpx": "^1.5.0",
     "express": "^4.17.1",
     "helmet": "^3.22.0",
     "install": "^0.13.0",

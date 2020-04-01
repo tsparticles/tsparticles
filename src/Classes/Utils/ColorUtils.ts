@@ -1,9 +1,10 @@
-import { IColor } from "../../Interfaces/Options/Particles/IColor";
-import { IRgb } from "../../Interfaces/IRgb";
-import { IRgba } from "../../Interfaces/IRgba";
-import { IHsl } from "../../Interfaces/IHsl";
-import { IHsla } from "../../Interfaces/IHsla";
+import type { IColor } from "../../Interfaces/Options/Particles/IColor";
+import type { IRgb } from "../../Interfaces/IRgb";
+import type { IRgba } from "../../Interfaces/IRgba";
+import type { IHsl } from "../../Interfaces/IHsl";
+import type { IHsla } from "../../Interfaces/IHsla";
 import { Utils } from "./Utils";
+import { Constants } from "./Constants";
 
 export class ColorUtils {
     /**
@@ -14,7 +15,7 @@ export class ColorUtils {
         let res: IRgb | undefined;
 
         if (typeof (color.value) === "string") {
-            if (color.value === "random") {
+            if (color.value === Constants.randomColorValue) {
                 res = {
                     b: Math.floor(Math.random() * 256),
                     g: Math.floor(Math.random() * 256),
@@ -118,7 +119,7 @@ export class ColorUtils {
      * @param color the [[IRgb]] color to convert
      */
     public static getStyleFromColor(color: IRgb, opacity?: number): string {
-        const opacityValue = opacity ?? 0.4;
+        const opacityValue = opacity ?? 1;
 
         return `rgba(${Math.round(color.r)}, ${Math.round(color.g)}, ${Math.round(color.b)}, ${opacityValue})`;
     }
@@ -161,7 +162,7 @@ export class ColorUtils {
             const result = regex.exec(input);
 
             return result ? {
-                a: parseInt(result[4]),
+                a: result.length > 4 ? parseFloat(result[5]) : 1,
                 b: parseInt(result[3]),
                 g: parseInt(result[2]),
                 r: parseInt(result[1]),
@@ -171,7 +172,7 @@ export class ColorUtils {
             const result = regex.exec(input);
 
             return result ? ColorUtils.hslaToRgba({
-                a: parseInt(result[4]),
+                a: result.length > 4 ? parseFloat(result[5]) : 1,
                 h: parseInt(result[1]),
                 l: parseInt(result[3]),
                 s: parseInt(result[2]),

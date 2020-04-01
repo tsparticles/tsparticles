@@ -107,12 +107,11 @@
       }
     },
     "retina_detect": true,
-    "config_demo": {
-      "hide_card": true,
-      "background_color": "#0d47a1",
-      "background_image": "http://fc06.deviantart.net/fs71/f/2011/187/1/0/nyan_cat_background_by_kento1-d3l6i50.jpg",
-      "background_position": "50% 50%",
-      "background_repeat": "no-repeat",
-      "background_size": "cover"
+    "background": {
+      "color": "#0d47a1",
+      "image": "url('http://fc06.deviantart.net/fs71/f/2011/187/1/0/nyan_cat_background_by_kento1-d3l6i50.jpg')",
+      "position": "50% 50%",
+      "repeat": "no-repeat",
+      "size": "cover"
     }
   }

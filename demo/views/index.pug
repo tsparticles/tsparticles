@@ -36,6 +36,8 @@ html(lang="en")
                                     option(value="chars") Chars
                                     option(value="collisions") Collisions
                                     option(value="connect") Connect
+                                    option(value="customShape") Custom Shape
+                                    option(value="customPreset") Custom Preset
                                     option(value="default") Default
                                     option(value="fontawesome") Font Awesome
                                     option(value="hollowknight") Hollow Knight
@@ -132,4 +134,7 @@ html(lang="en")
         script(src="/three/examples/js/libs/stats.min.js")
         script(src="/pathseg/pathseg.js")
         script(src="/tsparticles/tsparticles.js")
+        script(src="https://cdn.jsdelivr.net/npm/tsparticles-preset-basic@1.0.0/dist/tsparticles.preset.basic.min.js" integrity="sha256-iWLaNJweAzCgSqOyECKjEJWgnIfFIluMcpGenHXBzY4=" crossorigin="anonymous")
+        script(src="/javascripts/presetFire.js")
+        script(src="/javascripts/shapeSpiral.js")
         script(src="/javascripts/demo.js")

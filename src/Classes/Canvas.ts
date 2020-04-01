@@ -9,7 +9,6 @@ import { CanvasUtils } from "./Utils/CanvasUtils";
 import { ColorUtils } from "./Utils/ColorUtils";
 import type { IColor } from "../Interfaces/Options/Particles/IColor";
 import type { IBackgroundMaskCover } from "../Interfaces/Options/BackgroundMask/IBackgroundMaskCover";
-import { IBounds } from "../Interfaces/IBounds";
 
 /**
  * Canvas manager
@@ -92,6 +91,7 @@ export class Canvas {
         this.dimension.width = canvas.offsetWidth;
         this.context = this.element.getContext("2d");
         this.container.retina.init();
+        this.initBackground();
     }
 
     public destroy(): void {
@@ -155,14 +155,22 @@ export class Canvas {
         return this.context?.isPointInPath(path, point.x, point.y) ?? false;
     }
 
-    public drawPolygonMask(rawData: ICoordinates[]): void {
+    public drawPolygonMask(): void {
         const container = this.container;
         const options = container.options;
         const context = this.context;
         const polygonDraw = options.polygon.draw;
+        const polygon = container.polygon;
+        const rawData = polygon.raw;
+        const path = polygon.polygonPath;
+        const path2dSupported = polygon.path2DSupported;
 
         if (context) {
-            CanvasUtils.drawPolygonMask(context, rawData, polygonDraw.stroke);
+            if (path2dSupported && path && polygon.offset) {
+                CanvasUtils.drawPolygonMaskPath(context, path, polygonDraw.stroke, polygon.offset);
+            } else if (rawData) {
+                CanvasUtils.drawPolygonMask(context, rawData, polygonDraw.stroke);
+            }
         }
     }
 
@@ -187,7 +195,7 @@ export class Canvas {
          *                        from those two for the connecting line color
          */
 
-        if (container.particles.lineLinkedColor === "random") {
+        if (container.particles.lineLinkedColor === Constants.randomColorValue) {
             colorLine = ColorUtils.getRandomRgbColor();
         } else if (container.particles.lineLinkedColor == "mid" && p1.color && p2.color) {
             const sourceColor = p1.color;
@@ -238,7 +246,7 @@ export class Canvas {
         let lineColor = container.particles.lineLinkedColor ||
             (typeof optColor === "string" ? ColorUtils.stringToRgb(optColor) : ColorUtils.colorToRgb(optColor));
 
-        if (lineColor == "random") {
+        if (lineColor == Constants.randomColorValue) {
             lineColor = ColorUtils.getRandomRgbColor();
         }
 
@@ -251,7 +259,7 @@ export class Canvas {
             return;
         }
 
-        if (container.particles.lineLinkedColor == "random") {
+        if (container.particles.lineLinkedColor == Constants.randomColorValue) {
             colorLine = ColorUtils.getRandomRgbColor() || colorLine;
         } else {
             colorLine = container.particles.lineLinkedColor as IRgb || colorLine;
@@ -309,6 +317,45 @@ export class Canvas {
             if (this.context) {
                 return CanvasUtils.gradient(this.context, p1, p2, midColor);
             }
+        }
+    }
+
+    private initBackground(): void {
+        const container = this.container;
+        const options = container.options;
+        const background = options.background;
+        const element = this.element;
+
+        if (!element) {
+            return;
+        }
+
+        const elementStyle = element.style;
+
+        if (background.color) {
+            const color = typeof background.color === "string" ?
+                ColorUtils.stringToRgb(background.color) :
+                ColorUtils.colorToRgb(background.color);
+
+            if (color) {
+                elementStyle.backgroundColor = ColorUtils.getStyleFromColor(color, background.opacity);
+            }
+        }
+
+        if (background.image) {
+            elementStyle.backgroundImage = background.image;
+        }
+
+        if (background.position) {
+            elementStyle.backgroundPosition = background.position;
+        }
+
+        if (background.repeat) {
+            elementStyle.backgroundRepeat = background.repeat;
+        }
+
+        if (background.size) {
+            elementStyle.backgroundSize = background.size;
         }
     }
 }

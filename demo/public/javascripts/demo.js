@@ -6,7 +6,7 @@
     stats.domElement.style.position = "absolute";
     stats.domElement.style.left = "3px";
     stats.domElement.style.top = "3px";
-    stats.domElement.id = "stats-graph"
+    stats.domElement.id = "stats-graph";
 
     let initStats = function () {
         const count_particles = document.querySelector(".js-count-particles");
@@ -90,29 +90,6 @@
         return null;
     };
 
-    let updateBackground = function () {
-        const el = document.getElementById("tsparticles");
-        const options = tsParticles.domItem(0).sourceOptions;
-        const config = options.config_demo;
-        let backgroundImage;
-
-        if (config.background_image) {
-            if (config.background_image.startsWith("url(")) {
-                backgroundImage = config.background_image;
-            } else {
-                backgroundImage = `url('${config.background_image}')`;
-            }
-        } else {
-            backgroundImage = '';
-        }
-
-        el.style.backgroundColor = config.background_color;
-        el.style.backgroundImage = backgroundImage;
-        el.style.backgroundPosition = config.background_position;
-        el.style.backgroundRepeat = config.background_repeat;
-        el.style.backgroundSize = config.background_size;
-    };
-
     let updateParticles = function (editor) {
         let presetId = localStorage.presetId || 'default';
 
@@ -120,7 +97,6 @@
             localStorage.presetId = presetId;
             editor.set(particles.options);
             editor.expandAll();
-            updateBackground();
         });
     };
 
@@ -174,7 +150,6 @@
             onModeChange: function (newMode, oldMode) {
             },
             onChange: function () {
-                updateBackground();
             }
         };
         const editor = new JSONEditor(element, options);
@@ -211,7 +186,6 @@
             const particles = tsParticles.domItem(0);
             particles.options.load(editor.get());
             particles.refresh().then(() => {
-                updateBackground();
             });
         };
 
@@ -240,14 +214,13 @@
             if (container) {
                 container.exportImage(function (blob) {
                     const modalBody = document.body.querySelector('#exportModal .modal-body .modal-body-content');
-                    const particlesContainer = document.getElementById('tsparticles');
 
                     modalBody.innerHTML = '';
-                    modalBody.style.backgroundColor = particlesContainer.style.backgroundColor;
-                    modalBody.style.backgroundImage = particlesContainer.style.backgroundImage;
-                    modalBody.style.backgroundPosition = particlesContainer.style.backgroundPosition;
-                    modalBody.style.backgroundRepeat = particlesContainer.style.backgroundRepeat;
-                    modalBody.style.backgroundSize = particlesContainer.style.backgroundSize;
+                    modalBody.style.backgroundColor = container.canvas.element.style.backgroundColor;
+                    modalBody.style.backgroundImage = container.canvas.element.style.backgroundImage;
+                    modalBody.style.backgroundPosition = container.canvas.element.style.backgroundPosition;
+                    modalBody.style.backgroundRepeat = container.canvas.element.style.backgroundRepeat;
+                    modalBody.style.backgroundSize = container.canvas.element.style.backgroundSize;
 
                     const image = new Image();
 

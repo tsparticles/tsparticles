@@ -12,7 +12,7 @@ export class CanvasUtils {
         dimension: IDimension,
         baseColor?: string): void {
         context.save();
-        context.fillStyle = baseColor ?? "rgba(255, 255, 255, 0)";
+        context.fillStyle = baseColor ?? "rgba(0,0,0,0)";
         context.fillRect(0, 0, dimension.width, dimension.height);
         context.restore();
     }
@@ -43,6 +43,23 @@ export class CanvasUtils {
             context.stroke();
             context.restore();
         }
+    }
+
+    static drawPolygonMaskPath(context: CanvasRenderingContext2D, path: Path2D, stroke: IPolygonMaskDrawStroke, position: ICoordinates) {
+        context.save();
+        context.translate(position.x, position.y);
+
+        const color = typeof stroke.color === "string" ?
+            ColorUtils.stringToRgb(stroke.color) :
+            ColorUtils.colorToRgb(stroke.color);
+
+        if (color) {
+            context.strokeStyle = ColorUtils.getStyleFromColor(color, stroke.opacity);
+            context.lineWidth = stroke.width;
+            context.stroke(path);
+        }
+
+        context.restore();
     }
 
     public static drawLineLinked(context: CanvasRenderingContext2D,
@@ -128,7 +145,7 @@ export class CanvasUtils {
         colorLine: IRgb,
         opacity: number): void {
         context.save();
-        context.strokeStyle = `rgba(${colorLine.r},${colorLine.g},${colorLine.b},${opacity})`;
+        context.strokeStyle = ColorUtils.getStyleFromColor(colorLine, opacity);
         context.lineWidth = width;
         context.beginPath();
         context.moveTo(begin.x, begin.y);
@@ -145,8 +162,6 @@ export class CanvasUtils {
         radius: number): void {
         context.save();
 
-        const stroke = particle.stroke;
-        const strokeColor = particle.strokeColor;
         const shadow = particle.container.options.particles.shadow;
         const shadowColor = particle.shadowColor;
 
@@ -160,8 +175,8 @@ export class CanvasUtils {
         context.fillStyle = colorValue;
 
         const pos = {
-            x: particle.position.x,
-            y: particle.position.y,
+            x: particle.position.x + particle.offset.x,
+            y: particle.position.y + particle.offset.y,
         };
 
         context.translate(pos.x, pos.y);
@@ -172,20 +187,30 @@ export class CanvasUtils {
         }
 
         if (backgroundMask) {
-            context.globalCompositeOperation = 'destination-out';
+            context.globalCompositeOperation = "destination-out";
         }
 
-        ShapeUtils.drawShape(context, particle, radius, stroke, strokeColor);
-
-        context.closePath();
+        const stroke = particle.stroke;
 
         if (stroke.width > 0 && particle.strokeColor) {
-            context.strokeStyle = ColorUtils.getStyleFromColor(particle.strokeColor);
+            context.strokeStyle = ColorUtils.getStyleFromColor(particle.strokeColor, particle.stroke.opacity);
             context.lineWidth = stroke.width;
+        }
+
+        ShapeUtils.drawShape(context, particle, radius);
+
+        if (particle.close) {
+            context.closePath();
+        }
+
+        if (stroke.width > 0 && particle.strokeColor) {
             context.stroke();
         }
 
-        context.fill();
+        if (particle.fill) {
+            context.fill();
+        }
+
         context.restore();
     }
 }

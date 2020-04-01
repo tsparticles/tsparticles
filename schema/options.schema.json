@@ -18,6 +18,36 @@
             },
             "type": "object"
         },
+        "IBackground": {
+            "properties": {
+                "color": {
+                    "anyOf": [
+                        {
+                            "$ref": "#/definitions/IColor"
+                        },
+                        {
+                            "type": "string"
+                        }
+                    ]
+                },
+                "image": {
+                    "type": "string"
+                },
+                "opacity": {
+                    "type": "number"
+                },
+                "position": {
+                    "type": "string"
+                },
+                "repeat": {
+                    "type": "string"
+                },
+                "size": {
+                    "type": "string"
+                }
+            },
+            "type": "object"
+        },
         "IBackgroundMask": {
             "properties": {
                 "cover": {
@@ -66,6 +96,9 @@
         },
         "ICharacterShape": {
             "properties": {
+                "close": {
+                    "type": "boolean"
+                },
                 "fill": {
                     "type": "boolean"
                 },
@@ -339,6 +372,12 @@
         },
         "IImageShape": {
             "properties": {
+                "close": {
+                    "type": "boolean"
+                },
+                "fill": {
+                    "type": "boolean"
+                },
                 "height": {
                     "type": "number"
                 },
@@ -556,7 +595,17 @@
         "IParticles": {
             "properties": {
                 "color": {
-                    "$ref": "#/definitions/IColor"
+                    "anyOf": [
+                        {
+                            "$ref": "#/definitions/IColor"
+                        },
+                        {
+                            "items": {
+                                "$ref": "#/definitions/IColor"
+                            },
+                            "type": "array"
+                        }
+                    ]
                 },
                 "lineLinked": {
                     "$ref": "#/definitions/ILineLinked"
@@ -584,6 +633,19 @@
                 },
                 "size": {
                     "$ref": "#/definitions/ISize"
+                },
+                "stroke": {
+                    "anyOf": [
+                        {
+                            "$ref": "#/definitions/IStroke"
+                        },
+                        {
+                            "items": {
+                                "$ref": "#/definitions/IStroke"
+                            },
+                            "type": "array"
+                        }
+                    ]
                 }
             },
             "type": "object"
@@ -678,6 +740,9 @@
                         }
                     ]
                 },
+                "opacity": {
+                    "type": "number"
+                },
                 "width": {
                     "type": "number"
                 }
@@ -697,6 +762,12 @@
         },
         "IPolygonShape": {
             "properties": {
+                "close": {
+                    "type": "boolean"
+                },
+                "fill": {
+                    "type": "boolean"
+                },
                 "nb_sides": {
                     "type": "number"
                 },
@@ -845,6 +916,22 @@
                         }
                     ]
                 },
+                "custom": {
+                    "additionalProperties": {
+                        "anyOf": [
+                            {
+                                "$ref": "#/definitions/IShapeValues"
+                            },
+                            {
+                                "items": {
+                                    "$ref": "#/definitions/IShapeValues"
+                                },
+                                "type": "array"
+                            }
+                        ]
+                    },
+                    "type": "object"
+                },
                 "image": {
                     "anyOf": [
                         {
@@ -888,40 +975,25 @@
                     "anyOf": [
                         {
                             "items": {
-                                "enum": [
-                                    "char",
-                                    "character",
-                                    "circle",
-                                    "edge",
-                                    "heart",
-                                    "image",
-                                    "line",
-                                    "polygon",
-                                    "square",
-                                    "star",
-                                    "triangle"
-                                ],
                                 "type": "string"
                             },
                             "type": "array"
                         },
                         {
-                            "enum": [
-                                "char",
-                                "character",
-                                "circle",
-                                "edge",
-                                "heart",
-                                "image",
-                                "line",
-                                "polygon",
-                                "square",
-                                "star",
-                                "triangle"
-                            ],
                             "type": "string"
                         }
                     ]
+                }
+            },
+            "type": "object"
+        },
+        "IShapeValues": {
+            "properties": {
+                "close": {
+                    "type": "boolean"
+                },
+                "fill": {
+                    "type": "boolean"
                 }
             },
             "type": "object"
@@ -995,6 +1067,9 @@
                             "type": "string"
                         }
                     ]
+                },
+                "opacity": {
+                    "type": "number"
                 },
                 "width": {
                     "type": "number"
@@ -1117,6 +1192,9 @@
     },
     "description": "The Options interface, defines all the options that can be used by `tsParticles`",
     "properties": {
+        "background": {
+            "$ref": "#/definitions/IBackground"
+        },
         "backgroundMask": {
             "$ref": "#/definitions/IBackgroundMask"
         },
@@ -1151,27 +1229,11 @@
             "anyOf": [
                 {
                     "items": {
-                        "enum": [
-                            "backgroundMask",
-                            "basic",
-                            "bouncing",
-                            "fontAwesome",
-                            "snow",
-                            "stars"
-                        ],
                         "type": "string"
                     },
                     "type": "array"
                 },
                 {
-                    "enum": [
-                        "backgroundMask",
-                        "basic",
-                        "bouncing",
-                        "fontAwesome",
-                        "snow",
-                        "stars"
-                    ],
                     "type": "string"
                 }
             ]

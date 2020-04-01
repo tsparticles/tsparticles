@@ -8,8 +8,9 @@ import type { IPolygonMask } from "../../Interfaces/Options/PolygonMask/IPolygon
 import type { IBackgroundMask } from "../../Interfaces/Options/BackgroundMask/IBackgroundMask";
 import { BackgroundMask } from "./BackgroundMask/BackgroundMask";
 import type { RecursivePartial } from "../../Types/RecursivePartial";
-import { PresetType } from "../../Enums/PresetType";
 import { Presets } from "../Utils/Presets";
+import type { IBackground } from "../../Interfaces/Options/Background/IBackground";
+import { Background } from "./Background/Background";
 
 export class Options implements IOptions {
     /**
@@ -53,20 +54,36 @@ export class Options implements IOptions {
     public polygon: IPolygonMask;
     public backgroundMask: IBackgroundMask;
     public pauseOnBlur: boolean;
-    public preset?: PresetType | PresetType[]
+    public preset?: string | string[];
+    public background: IBackground;
 
     constructor() {
         this.detectRetina = false;
-        this.fpsLimit = 60;
+        this.fpsLimit = 30;
         this.interactivity = new Interactivity();
         this.particles = new Particles();
         this.polygon = new PolygonMask();
         this.backgroundMask = new BackgroundMask();
         this.pauseOnBlur = true;
+        this.background = new Background();
     }
 
     public load(data: RecursivePartial<IOptions>): void {
         if (data !== undefined) {
+            if (data.preset !== undefined) {
+                if (data.preset instanceof Array) {
+                    for (const preset of data.preset) {
+                        this.importPreset(preset);
+                    }
+                } else {
+                    this.importPreset(data.preset);
+                }
+            }
+
+            if (data.background !== undefined) {
+                this.background.load(data.background);
+            }
+
             if (data.detectRetina !== undefined) {
                 this.detectRetina = data.detectRetina;
             } else if (data.retina_detect !== undefined) {
@@ -87,20 +104,10 @@ export class Options implements IOptions {
             this.particles.load(data.particles);
             this.polygon.load(data.polygon);
             this.backgroundMask.load(data.backgroundMask);
-
-            if (data.preset !== undefined) {
-                if (data.preset instanceof Array) {
-                    for (const preset of data.preset) {
-                        this.importPreset(preset);
-                    }
-                } else {
-                    this.importPreset(data.preset);
-                }
-            }
         }
     }
 
-    private importPreset(preset: PresetType): void {
+    private importPreset(preset: string): void {
         const presetOptions = Presets.getPreset(preset);
 
         if (presetOptions !== undefined) {

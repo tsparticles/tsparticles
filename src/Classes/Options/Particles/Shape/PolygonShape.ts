@@ -19,9 +19,13 @@ export class PolygonShape implements IPolygonShape {
         this.sides = value;
     }
 
+    public close?: boolean;
+    public fill?: boolean;
     public sides: number;
 
     constructor() {
+        this.close = true;
+        this.fill = true;
         this.sides = 5;
     }
 
