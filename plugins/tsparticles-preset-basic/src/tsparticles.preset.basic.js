@@ -20,9 +20,9 @@ window.addEventListener('load', function () {
                 width: 1,
             },
             move: {
-                direction: MoveDirection.none,
+                direction: 'none',
                 enable: true,
-                outMode: OutMode.out,
+                outMode: 'out',
                 speed: 2,
             },
         },
