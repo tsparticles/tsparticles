@@ -45,6 +45,23 @@ export class CanvasUtils {
         }
     }
 
+    static drawPolygonMaskPath(context: CanvasRenderingContext2D, path: Path2D, stroke: IPolygonMaskDrawStroke, position: ICoordinates) {
+        context.save();
+        context.translate(position.x, position.y);
+
+        const color = typeof stroke.color === "string" ?
+            ColorUtils.stringToRgb(stroke.color) :
+            ColorUtils.colorToRgb(stroke.color);
+
+        if (color) {
+            context.strokeStyle = ColorUtils.getStyleFromColor(color, stroke.opacity);
+            context.lineWidth = stroke.width;
+            context.stroke(path);
+        }
+
+        context.restore();
+    }
+
     public static drawLineLinked(context: CanvasRenderingContext2D,
         width: number,
         begin: ICoordinates,

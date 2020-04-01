@@ -161,7 +161,7 @@ export class ColorUtils {
             const result = regex.exec(input);
 
             return result ? {
-                a: parseInt(result[4]),
+                a: result.length > 4 ? parseFloat(result[5]) : 1,
                 b: parseInt(result[3]),
                 g: parseInt(result[2]),
                 r: parseInt(result[1]),
@@ -171,7 +171,7 @@ export class ColorUtils {
             const result = regex.exec(input);
 
             return result ? ColorUtils.hslaToRgba({
-                a: parseInt(result[4]),
+                a: result.length > 4 ? parseFloat(result[5]) : 1,
                 h: parseInt(result[1]),
                 l: parseInt(result[3]),
                 s: parseInt(result[2]),

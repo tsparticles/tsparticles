@@ -740,6 +740,9 @@
                         }
                     ]
                 },
+                "opacity": {
+                    "type": "number"
+                },
                 "width": {
                     "type": "number"
                 }
