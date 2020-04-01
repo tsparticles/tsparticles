@@ -81,7 +81,7 @@ _spiral.js_ - The custom shape script, you can distribute it or reuse in all you
 ```javascript
 // call this method before initializing tsParticles, this shape will be available in all of your tsParticles instances
 // parameters: shape name, drawing method
-tsParticles.addCustomShape("spiral", function(context, particle, radius) {
+tsParticles.addShape("spiral", function(context, particle, radius) {
   const shapeData = particle.shapeData;
   const realWidth = (radius - shapeData.innerRadius) / shapeData.lineSpacing;
 
@@ -121,7 +121,7 @@ class SpiralDrawer {
 
 // call this method before initializing tsParticles, this shape will be available in all of your tsParticles instances
 // parameters: shape name, drawer class
-tsParticles.addCustomShape("spiral", new SpiralDrawer());
+tsParticles.addShape("spiral", new SpiralDrawer());
 ```
 
 _config.json_ - The config section to add to your config or in your plugin readme to teach others on how to use it.
@@ -166,7 +166,7 @@ _fire.preset.js_ - The custom preset script, you can distribute it or reuse in a
 ```javascript
 // call this method before initializing tsParticles, this preset will be available in all of your tsParticles instances
 // parameters: preset name, preset partial options
-tsParticles.addCustomPreset("fire", {
+tsParticles.addPreset("fire", {
   fpsLimit: 40,
   particles: {
     number: {
