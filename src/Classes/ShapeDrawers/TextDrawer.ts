@@ -2,7 +2,7 @@ import type { IShapeDrawer } from "../../Interfaces/IShapeDrawer";
 import type { IParticle } from "../../Interfaces/IParticle";
 
 export class TextDrawer implements IShapeDrawer {
-    public draw(context: CanvasRenderingContext2D, particle: IParticle, radius: number): void {
+    public draw(context: CanvasRenderingContext2D, particle: IParticle, radius: number, opacity: number): void {
         const text = particle.text;
         const character = particle.character;
 
