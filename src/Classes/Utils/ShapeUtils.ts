@@ -12,7 +12,8 @@ export class ShapeUtils {
 
     public static drawShape(context: CanvasRenderingContext2D,
         particle: Particle,
-        radius: number): void {
+        radius: number,
+        opacity: number): void {
 
         if (!particle.shape) {
             return;
@@ -24,6 +25,6 @@ export class ShapeUtils {
             return;
         }
 
-        drawer.draw(context, particle, radius);
+        drawer.draw(context, particle, radius, opacity);
     }
 }

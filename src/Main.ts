@@ -4,7 +4,7 @@
 /* Demo / Generator : https://particles.matteobruni.it/
 /* GitHub : https://www.github.com/matteobruni/tsparticles
 /* How to use? : Check the GitHub README
-/* v1.12.0
+/* v1.12.1
 /* ----------------------------------------------- */
 import type { Container } from "./Classes/Container";
 import { Loader } from "./Classes/Loader";
@@ -18,7 +18,6 @@ import { SquareDrawer } from "./Classes/ShapeDrawers/SquareDrawer";
 import { TriangleDrawer } from "./Classes/ShapeDrawers/TriangleDrawer";
 import { StartDrawer } from "./Classes/ShapeDrawers/StarDrawer";
 import { PolygonDrawer } from "./Classes/ShapeDrawers/PolygonDrawer";
-import { HeartDrawer } from "./Classes/ShapeDrawers/HeartDrawer";
 import { TextDrawer } from "./Classes/ShapeDrawers/TextDrawer";
 import { ImageDrawer } from "./Classes/ShapeDrawers/ImageDrawer";
 import { IShapeDrawer } from "./Interfaces/IShapeDrawer";
@@ -71,7 +70,6 @@ class Main {
         ShapeUtils.addShapeDrawer(ShapeType.triangle, new TriangleDrawer());
         ShapeUtils.addShapeDrawer(ShapeType.star, new StartDrawer());
         ShapeUtils.addShapeDrawer(ShapeType.polygon, new PolygonDrawer());
-        ShapeUtils.addShapeDrawer(ShapeType.heart, new HeartDrawer());
         ShapeUtils.addShapeDrawer(ShapeType.char, textDrawer);
         ShapeUtils.addShapeDrawer(ShapeType.character, textDrawer);
         ShapeUtils.addShapeDrawer(ShapeType.image, new ImageDrawer());
@@ -136,11 +134,11 @@ class Main {
     }
 
     /**
-     * addShape
-     * @param type
-     * @param drawer
+     * addShape adds shape to tsParticles, it will be available to all future instances created
+     * @param shape the shape name
+     * @param drawer the shape drawer function or class instance that draws the shape in the canvas
      */
-    public addShape(type: string, drawer: IShapeDrawer | ShapeDrawerFunction): void {
+    public addShape(shape: string, drawer: IShapeDrawer | ShapeDrawerFunction): void {
         let customDrawer: IShapeDrawer;
 
         if (typeof drawer === "function") {
@@ -151,13 +149,13 @@ class Main {
             customDrawer = drawer;
         }
 
-        ShapeUtils.addShapeDrawer(type, customDrawer);
+        ShapeUtils.addShapeDrawer(shape, customDrawer);
     }
 
     /**
-     * addPreset
-     * @param preset
-     * @param options
+     * addPreset adds preset to tsParticles, it will be available to all future instances created
+     * @param preset the preset name
+     * @param options the options to add to the preset
      */
     public addPreset(preset: string, options: RecursivePartial<IOptions>): void {
         Presets.addPreset(preset, options);
