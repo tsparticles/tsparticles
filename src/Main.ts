@@ -18,7 +18,6 @@ import { SquareDrawer } from "./Classes/ShapeDrawers/SquareDrawer";
 import { TriangleDrawer } from "./Classes/ShapeDrawers/TriangleDrawer";
 import { StartDrawer } from "./Classes/ShapeDrawers/StarDrawer";
 import { PolygonDrawer } from "./Classes/ShapeDrawers/PolygonDrawer";
-import { HeartDrawer } from "./Classes/ShapeDrawers/HeartDrawer";
 import { TextDrawer } from "./Classes/ShapeDrawers/TextDrawer";
 import { ImageDrawer } from "./Classes/ShapeDrawers/ImageDrawer";
 import { IShapeDrawer } from "./Interfaces/IShapeDrawer";
@@ -71,7 +70,6 @@ class Main {
         ShapeUtils.addShapeDrawer(ShapeType.triangle, new TriangleDrawer());
         ShapeUtils.addShapeDrawer(ShapeType.star, new StartDrawer());
         ShapeUtils.addShapeDrawer(ShapeType.polygon, new PolygonDrawer());
-        ShapeUtils.addShapeDrawer(ShapeType.heart, new HeartDrawer());
         ShapeUtils.addShapeDrawer(ShapeType.char, textDrawer);
         ShapeUtils.addShapeDrawer(ShapeType.character, textDrawer);
         ShapeUtils.addShapeDrawer(ShapeType.image, new ImageDrawer());
