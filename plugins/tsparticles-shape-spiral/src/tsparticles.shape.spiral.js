@@ -2,7 +2,7 @@ if (!tsParticles) {
     throw new Error('tsParticles not found');
 }
 
-tsParticles.addShape('spiral', function (context, particle, radius) {
+tsParticles.addShape('spiral', function (context, particle, radius, opacity) {
     var shapeData = particle.shapeData, realWidth = (radius - shapeData.innerRadius) / shapeData.lineSpacing;
 
     for (var i = 0; i < realWidth * 10; i++) {
