@@ -134,11 +134,11 @@ class Main {
     }
 
     /**
-     * addShape
-     * @param type
-     * @param drawer
+     * addShape adds shape to tsParticles, it will be available to all future instances created
+     * @param shape the shape name
+     * @param drawer the shape drawer function or class instance that draws the shape in the canvas
      */
-    public addShape(type: string, drawer: IShapeDrawer | ShapeDrawerFunction): void {
+    public addShape(shape: string, drawer: IShapeDrawer | ShapeDrawerFunction): void {
         let customDrawer: IShapeDrawer;
 
         if (typeof drawer === "function") {
@@ -149,13 +149,13 @@ class Main {
             customDrawer = drawer;
         }
 
-        ShapeUtils.addShapeDrawer(type, customDrawer);
+        ShapeUtils.addShapeDrawer(shape, customDrawer);
     }
 
     /**
-     * addPreset
-     * @param preset
-     * @param options
+     * addPreset adds preset to tsParticles, it will be available to all future instances created
+     * @param preset the preset name
+     * @param options the options to add to the preset
      */
     public addPreset(preset: string, options: RecursivePartial<IOptions>): void {
         Presets.addPreset(preset, options);
