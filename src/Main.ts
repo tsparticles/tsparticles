@@ -166,29 +166,7 @@ const tsParticles = new Main();
 
 Object.freeze(tsParticles);
 
-export default {
-    load: function (tagId: string, params: RecursivePartial<IOptions>): Promise<Container | undefined> {
-        return tsParticles.load(tagId, params);
-    },
-    loadJSON: function (tagId: string, pathConfigJson: string): Promise<Container | undefined> {
-        return tsParticles.loadJSON(tagId, pathConfigJson);
-    },
-    setOnClickHandler: function (callback: EventListenerOrEventListenerObject): void {
-        tsParticles.setOnClickHandler(callback);
-    },
-    dom: function (): Container[] {
-        return tsParticles.dom();
-    },
-    domItem: function (index: number): Container | undefined {
-        return tsParticles.domItem(index);
-    },
-    addShape: function (shape: string, drawer: IShapeDrawer | ShapeDrawerFunction): void {
-        tsParticles.addShape(shape, drawer);
-    },
-    addPreset: function (preset: string, options: RecursivePartial<IOptions>): void {
-        tsParticles.addPreset(preset, options);
-    }
-};
+export { tsParticles };
 
 /**
  * The new singleton, replacing the old particlesJS
