@@ -83,7 +83,10 @@ export class Shape implements IShape {
                         return tmp;
                     });
                 } else {
-                    this.character = new CharacterShape();
+                    if (this.character instanceof Array) {
+                        this.character = new CharacterShape();
+                    }
+
                     this.character.load(data.character);
                 }
             }
@@ -98,7 +101,10 @@ export class Shape implements IShape {
                         return tmp;
                     });
                 } else {
-                    this.image = new ImageShape();
+                    if (this.image instanceof Array) {
+                        this.image = new ImageShape();
+                    }
+
                     this.image.load(data.image);
                 }
             }
@@ -113,7 +119,10 @@ export class Shape implements IShape {
                         return tmp;
                     });
                 } else {
-                    this.polygon = new PolygonShape();
+                    if (this.polygon instanceof Array) {
+                        this.polygon = new PolygonShape();
+                    }
+
                     this.polygon.load(data.polygon);
                 }
             }

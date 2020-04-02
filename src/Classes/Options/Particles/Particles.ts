@@ -76,15 +76,17 @@ export class Particles implements IParticles {
                         return tmp;
                     });
                 } else {
-                    this.color = new Color();
+                    if (this.color instanceof Array) {
+                        this.color = new Color();
+                    }
                     this.color.load(data.color);
                 }
             }
 
-            if (data.lineLinked !== undefined) {
-                this.lineLinked.load(data.lineLinked);
-            } else if (data.line_linked !== undefined) {
-                this.line_linked.load(data.line_linked);
+            const lineLinked = data.lineLinked ?? data.line_linked;
+
+            if (lineLinked !== undefined) {
+                this.lineLinked.load(lineLinked);
             }
 
             this.move.load(data.move);
@@ -107,7 +109,10 @@ export class Particles implements IParticles {
                         return tmp;
                     });
                 } else {
-                    this.stroke = new Stroke();
+                    if (this.stroke instanceof Array) {
+                        this.stroke = new Stroke();
+                    }
+
                     this.stroke.load(strokeToLoad);
                 }
             }
