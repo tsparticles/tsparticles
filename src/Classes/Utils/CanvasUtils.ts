@@ -159,7 +159,8 @@ export class CanvasUtils {
         particle: Particle,
         colorValue: string,
         backgroundMask: boolean,
-        radius: number): void {
+        radius: number,
+        opacity: number): void {
         context.save();
 
         const shadow = particle.container.options.particles.shadow;
@@ -197,7 +198,7 @@ export class CanvasUtils {
             context.lineWidth = stroke.width;
         }
 
-        ShapeUtils.drawShape(context, particle, radius);
+        ShapeUtils.drawShape(context, particle, radius, opacity);
 
         if (particle.close) {
             context.closePath();

@@ -2,7 +2,7 @@ import type { IShapeDrawer } from "../../Interfaces/IShapeDrawer";
 import type { IParticle } from "../../Interfaces/IParticle";
 
 export class ImageDrawer implements IShapeDrawer {
-    public draw(context: CanvasRenderingContext2D, particle: IParticle, radius: number): void {
+    public draw(context: CanvasRenderingContext2D, particle: IParticle, radius: number, opacity: number): void {
         if (!context) {
             return;
         }
@@ -24,6 +24,8 @@ export class ImageDrawer implements IShapeDrawer {
             y: -radius,
         };
 
+        context.globalAlpha = opacity;
         context.drawImage(imgObj, pos.x, pos.y, radius * 2, radius * 2 / ratio);
+        context.globalAlpha = 1;
     }
 }

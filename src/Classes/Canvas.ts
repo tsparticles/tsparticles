@@ -293,7 +293,8 @@ export class Canvas {
             particle,
             colorValue,
             options.backgroundMask.enable,
-            radius);
+            radius,
+            opacity);
     }
 
     private paintBase(baseColor?: string): void {
