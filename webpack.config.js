@@ -11,7 +11,7 @@ module.exports = {
         path: path.resolve(__dirname, "dist"),
         filename: "[name].js",
         libraryTarget: "window",
-        library: "tsParticles"
+        library: ""
     },
     resolve: {
         extensions: [".js", ".json"]
