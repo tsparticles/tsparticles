@@ -53,7 +53,9 @@
   "bugs": {
     "url": "https://github.com/matteobruni/tsparticles/issues"
   },
-  "main": "dist/tsparticles.min.js",
+  "main": "dist/index.js",
+  "jsdelivr": "dist/tsparticles.min.js",
+  "browser": "dist/tsparticles.min.js",
   "devDependencies": {
     "@babel/core": "^7.9.0",
     "@fortawesome/fontawesome-free": "^5.13.0",
