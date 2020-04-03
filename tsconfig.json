@@ -64,7 +64,7 @@
     "gaID": "UA-159372955-1",
     "ignoreCompilerErrors": true,
     "inputFiles": [
-      "./src/Main.ts"
+      "./src/index.ts"
     ],
     "mode": "library",
     "out": "docs"
