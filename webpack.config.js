@@ -10,8 +10,8 @@ module.exports = {
     output: {
         path: path.resolve(__dirname, "dist"),
         filename: "[name].js",
-        // libraryTarget: "umd",
-        // library: "particles"
+        libraryTarget: "window",
+        library: "tsParticles"
     },
     resolve: {
         extensions: [".js", ".json"]

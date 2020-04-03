@@ -27,7 +27,6 @@ import { ShapeDrawerFunction } from "./Types/ShapeDrawerFunction";
 declare global {
     interface Window {
         particlesJS: any;
-        tsParticles: Main;
         pJSDom: () => Container[];
     }
 }
@@ -53,127 +52,106 @@ window.customCancelRequestAnimationFrame = (() => {
 })();
 
 /* ---------- tsParticles functions - start ------------ */
+const squareDrawer = new SquareDrawer();
+const textDrawer = new TextDrawer();
+
+ShapeUtils.addShapeDrawer(ShapeType.line, new LineDrawer());
+ShapeUtils.addShapeDrawer(ShapeType.circle, new CircleDrawer());
+ShapeUtils.addShapeDrawer(ShapeType.edge, squareDrawer);
+ShapeUtils.addShapeDrawer(ShapeType.square, squareDrawer);
+ShapeUtils.addShapeDrawer(ShapeType.triangle, new TriangleDrawer());
+ShapeUtils.addShapeDrawer(ShapeType.star, new StartDrawer());
+ShapeUtils.addShapeDrawer(ShapeType.polygon, new PolygonDrawer());
+ShapeUtils.addShapeDrawer(ShapeType.char, textDrawer);
+ShapeUtils.addShapeDrawer(ShapeType.character, textDrawer);
+ShapeUtils.addShapeDrawer(ShapeType.image, new ImageDrawer());
 
 /**
- * Main class for creating the singleton on window.
- * It's a proxy to the static [[Loader]] class
+ * Loads an options object from the provided array to create a [[Container]] object.
+ * @param tagId The particles container element id
+ * @param params The options array to get the item from
+ * @param index If provided gets the corresponding item from the array
+ * @returns A Promise with the [[Container]] object created
  */
-class Main {
-    constructor() {
-        const squareDrawer = new SquareDrawer();
-        const textDrawer = new TextDrawer();
+export function loadFromArray(tagId: string,
+    params: RecursivePartial<IOptions>[],
+    index?: number): Promise<Container | undefined> {
+    return Loader.loadFromArray(tagId, params, index);
+};
 
-        ShapeUtils.addShapeDrawer(ShapeType.line, new LineDrawer());
-        ShapeUtils.addShapeDrawer(ShapeType.circle, new CircleDrawer());
-        ShapeUtils.addShapeDrawer(ShapeType.edge, squareDrawer);
-        ShapeUtils.addShapeDrawer(ShapeType.square, squareDrawer);
-        ShapeUtils.addShapeDrawer(ShapeType.triangle, new TriangleDrawer());
-        ShapeUtils.addShapeDrawer(ShapeType.star, new StartDrawer());
-        ShapeUtils.addShapeDrawer(ShapeType.polygon, new PolygonDrawer());
-        ShapeUtils.addShapeDrawer(ShapeType.char, textDrawer);
-        ShapeUtils.addShapeDrawer(ShapeType.character, textDrawer);
-        ShapeUtils.addShapeDrawer(ShapeType.image, new ImageDrawer());
-    }
-    /**
-     * Loads an options object from the provided array to create a [[Container]] object.
-     * @param tagId The particles container element id
-     * @param params The options array to get the item from
-     * @param index If provided gets the corresponding item from the array
-     * @returns A Promise with the [[Container]] object created
-     */
-    public async loadFromArray(tagId: string,
-        params: RecursivePartial<IOptions>[],
-        index?: number): Promise<Container | undefined> {
-        return Loader.loadFromArray(tagId, params, index);
-    }
-
-    /**
-     * Loads the provided options to create a [[Container]] object.
-     * @param tagId The particles container element id
-     * @param params The options object to initialize the [[Container]]
-     * @returns A Promise with the [[Container]] object created
-     */
-    public async load(tagId: string, params: RecursivePartial<IOptions>): Promise<Container | undefined> {
-        return Loader.load(tagId, params);
-    }
-
-    /**
-     * Loads the provided json with a GET request. The content will be used to create a [[Container]] object.
-     * This method is async, so if you need a callback refer to JavaScript function `fetch`
-     * @param tagId the particles container element id
-     * @param pathConfigJson the json path to use in the GET request
-     * @returns A Promise with the [[Container]] object created
-     */
-    public loadJSON(tagId: string, pathConfigJson: string): Promise<Container | undefined> {
-        return Loader.loadJSON(tagId, pathConfigJson);
-    }
-
-    /**
-     * Adds an additional click handler to all the loaded [[Container]] objects.
-     * @param callback The function called after the click event is fired
-     */
-    public setOnClickHandler(callback: EventListenerOrEventListenerObject): void {
-        Loader.setOnClickHandler(callback);
-    }
-
-    /**
-     * All the [[Container]] objects loaded
-     * @returns All the [[Container]] objects loaded
-     */
-    public dom(): Container[] {
-        return Loader.dom();
-    }
-
-    /**
-     * Retrieves a [[Container]] from all the objects loaded
-     * @param index The object index
-     * @returns The [[Container]] object at specified index, if present or not destroyed, otherwise undefined
-     */
-    public domItem(index: number): Container | undefined {
-        return Loader.domItem(index);
-    }
-
-    /**
-     * addShape adds shape to tsParticles, it will be available to all future instances created
-     * @param shape the shape name
-     * @param drawer the shape drawer function or class instance that draws the shape in the canvas
-     */
-    public addShape(shape: string, drawer: IShapeDrawer | ShapeDrawerFunction): void {
-        let customDrawer: IShapeDrawer;
-
-        if (typeof drawer === "function") {
-            customDrawer = {
-                draw: drawer,
-            };
-        } else {
-            customDrawer = drawer;
-        }
-
-        ShapeUtils.addShapeDrawer(shape, customDrawer);
-    }
-
-    /**
-     * addPreset adds preset to tsParticles, it will be available to all future instances created
-     * @param preset the preset name
-     * @param options the options to add to the preset
-     */
-    public addPreset(preset: string, options: RecursivePartial<IOptions>): void {
-        Presets.addPreset(preset, options);
-    }
+/**
+ * Loads the provided options to create a [[Container]] object.
+ * @param tagId The particles container element id
+ * @param params The options object to initialize the [[Container]]
+ * @returns A Promise with the [[Container]] object created
+ */
+export async function load(tagId: string, params: RecursivePartial<IOptions>): Promise<Container | undefined> {
+    return Loader.load(tagId, params);
 }
 
-const tsParticles = new Main();
-
-Object.freeze(tsParticles);
-
-export { tsParticles };
+/**
+ * Loads the provided json with a GET request. The content will be used to create a [[Container]] object.
+ * This method is async, so if you need a callback refer to JavaScript function `fetch`
+ * @param tagId the particles container element id
+ * @param pathConfigJson the json path to use in the GET request
+ * @returns A Promise with the [[Container]] object created
+ */
+export function loadJSON(tagId: string, pathConfigJson: string): Promise<Container | undefined> {
+    return Loader.loadJSON(tagId, pathConfigJson);
+}
 
 /**
- * The new singleton, replacing the old particlesJS
+ * Adds an additional click handler to all the loaded [[Container]] objects.
+ * @param callback The function called after the click event is fired
  */
-window.tsParticles = tsParticles;
+export function setOnClickHandler(callback: EventListenerOrEventListenerObject): void {
+    Loader.setOnClickHandler(callback);
+}
 
-Object.freeze(window.tsParticles);
+/**
+ * All the [[Container]] objects loaded
+ * @returns All the [[Container]] objects loaded
+ */
+export function dom(): Container[] {
+    return Loader.dom();
+}
+
+/**
+ * Retrieves a [[Container]] from all the objects loaded
+ * @param index The object index
+ * @returns The [[Container]] object at specified index, if present or not destroyed, otherwise undefined
+ */
+export function domItem(index: number): Container | undefined {
+    return Loader.domItem(index);
+}
+
+/**
+ * addShape adds shape to tsParticles, it will be available to all future instances created
+ * @param shape the shape name
+ * @param drawer the shape drawer function or class instance that draws the shape in the canvas
+ */
+export function addShape(shape: string, drawer: IShapeDrawer | ShapeDrawerFunction): void {
+    let customDrawer: IShapeDrawer;
+
+    if (typeof drawer === "function") {
+        customDrawer = {
+            draw: drawer,
+        };
+    } else {
+        customDrawer = drawer;
+    }
+
+    ShapeUtils.addShapeDrawer(shape, customDrawer);
+}
+
+/**
+ * addPreset adds preset to tsParticles, it will be available to all future instances created
+ * @param preset the preset name
+ * @param options the options to add to the preset
+ */
+export function addPreset(preset: string, options: RecursivePartial<IOptions>): void {
+    Presets.addPreset(preset, options);
+}
 
 /* particles.js compatibility */
 
@@ -184,7 +162,7 @@ Object.freeze(window.tsParticles);
  * @param params the options object to initialize the [[Container]]
  */
 window.particlesJS = (tagId: string, params: RecursivePartial<IOptions>) => {
-    tsParticles.load(tagId, params);
+    load(tagId, params);
 };
 
 /**
@@ -195,7 +173,7 @@ window.particlesJS = (tagId: string, params: RecursivePartial<IOptions>) => {
  * @param callback the function called after the [[Container]] object is loaded that will be passed as a parameter
  */
 window.particlesJS.load = (tagId: string, pathConfigJson: string, callback: (container: Container) => void) => {
-    tsParticles.loadJSON(tagId, pathConfigJson).then((container) => {
+    loadJSON(tagId, pathConfigJson).then((container) => {
         if (container) {
             callback(container);
         }
@@ -208,7 +186,7 @@ window.particlesJS.load = (tagId: string, pathConfigJson: string, callback: (con
  * @param callback the function called after the click event is fired
  */
 window.particlesJS.setOnClickHandler = (callback: EventListenerOrEventListenerObject) => {
-    tsParticles.setOnClickHandler(callback);
+    setOnClickHandler(callback);
 };
 
 /**
@@ -216,5 +194,5 @@ window.particlesJS.setOnClickHandler = (callback: EventListenerOrEventListenerOb
  * @deprecated this method is obsolete, please use the new tsParticles.dom
  */
 window.pJSDom = () => {
-    return window.tsParticles.dom();
+    return dom();
 };

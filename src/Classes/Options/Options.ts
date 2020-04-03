@@ -14,7 +14,6 @@ import { Background } from "./Background/Background";
 
 export class Options implements IOptions {
     /**
-     *
      * @deprecated this property is obsolete, please use the new fpsLimit
      */
     public get fps_limit(): number {
@@ -31,7 +30,6 @@ export class Options implements IOptions {
     }
 
     /**
-     *
      * @deprecated this property is obsolete, please use the new retinaDetect
      */
     public get retina_detect(): boolean {
@@ -39,7 +37,6 @@ export class Options implements IOptions {
     }
 
     /**
-     *
      * @deprecated this property is obsolete, please use the new retinaDetect
      * @param value
      */
@@ -68,6 +65,10 @@ export class Options implements IOptions {
         this.background = new Background();
     }
 
+    /**
+     * This methods loads the source object in the current instance
+     * @param data the source data to load into the instance
+     */
     public load(data: RecursivePartial<IOptions>): void {
         if (data !== undefined) {
             if (data.preset !== undefined) {
