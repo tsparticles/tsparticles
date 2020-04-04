@@ -4,7 +4,7 @@
 /* Demo / Generator : https://particles.matteobruni.it/
 /* GitHub : https://www.github.com/matteobruni/tsparticles
 /* How to use? : Check the GitHub README
-/* v1.12.3
+/* v1.12.4
 /* ----------------------------------------------- */
 import type { Container } from "./Classes/Container";
 import { Loader } from "./Classes/Loader";
@@ -20,9 +20,9 @@ import { StartDrawer } from "./Classes/ShapeDrawers/StarDrawer";
 import { PolygonDrawer } from "./Classes/ShapeDrawers/PolygonDrawer";
 import { TextDrawer } from "./Classes/ShapeDrawers/TextDrawer";
 import { ImageDrawer } from "./Classes/ShapeDrawers/ImageDrawer";
-import { IShapeDrawer } from "./Interfaces/IShapeDrawer";
+import type { IShapeDrawer } from "./Interfaces/IShapeDrawer";
 import { Presets } from "./Classes/Utils/Presets";
-import { ShapeDrawerFunction } from "./Types/ShapeDrawerFunction";
+import type { ShapeDrawerFunction } from "./Types/ShapeDrawerFunction";
 
 declare global {
     interface Window {
