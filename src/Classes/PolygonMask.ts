@@ -72,21 +72,21 @@ export class PolygonMask {
         const y = position ? position.y : Math.random() * container.canvas.dimension.height;
         let inside = false;
 
-        if (this.path2DSupported && this.polygonPath && position) {
-            inside = container.canvas.isPointInPath(this.polygonPath, position);
-        } else {
-            for (let i = 0, j = this.raw.length - 1; i < this.raw.length; j = i++) {
-                const xi = this.raw[i].x;
-                const yi = this.raw[i].y;
-                const xj = this.raw[j].x;
-                const yj = this.raw[j].y;
-                const intersect = ((yi > y) !== (yj > y)) && (x < (xj - xi) * (y - yi) / (yj - yi) + xi);
+        // if (this.path2DSupported && this.polygonPath && position) {
+        //     inside = container.canvas.isPointInPath(this.polygonPath, position);
+        // } else {
+        for (let i = 0, j = this.raw.length - 1; i < this.raw.length; j = i++) {
+            const xi = this.raw[i].x;
+            const yi = this.raw[i].y;
+            const xj = this.raw[j].x;
+            const yj = this.raw[j].y;
+            const intersect = ((yi > y) !== (yj > y)) && (x < (xj - xi) * (y - yi) / (yj - yi) + xi);
 
-                if (intersect) {
-                    inside = !inside;
-                }
+            if (intersect) {
+                inside = !inside;
             }
         }
+        // }
 
         if (options.polygon.type === PolygonMaskType.inside) {
             return inside;
