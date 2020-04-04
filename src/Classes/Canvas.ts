@@ -311,16 +311,14 @@ export class Canvas {
         if (p1.color && p2.color) {
             const sourceRgb = p1.color;
             const destRgb = p2.color;
-            const rgb = {
+            const midRgb = {
                 b: Utils.mix(sourceRgb.b, destRgb.b, p1.radius, p2.radius),
                 g: Utils.mix(sourceRgb.g, destRgb.g, p1.radius, p2.radius),
                 r: Utils.mix(sourceRgb.r, destRgb.r, p1.radius, p2.radius),
             };
 
-            const midColor = ColorUtils.getStyleFromColor(rgb, connectOptions.lineLinked.opacity);
-
             if (this.context) {
-                return CanvasUtils.gradient(this.context, p1, p2, midColor);
+                return CanvasUtils.gradient(this.context, p1, p2, midRgb, connectOptions.lineLinked.opacity);
             }
         }
     }
