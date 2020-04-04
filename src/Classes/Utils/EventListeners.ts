@@ -98,8 +98,8 @@ export class EventListeners {
 
         /* on click event */
         if (options.interactivity.events.onClick.enable && interactivityEl) {
-            this.addListener(interactivityEl, Constants.touchEndEvent, this.touchEndClickHandler);
-            this.addListener(interactivityEl, Constants.mouseUpEvent, this.mouseUpHandler);
+            this.manageListener(interactivityEl, Constants.touchEndEvent, this.touchEndClickHandler, add);
+            this.manageListener(interactivityEl, Constants.mouseUpEvent, this.mouseUpHandler, add);
         }
 
         if (options.interactivity.events.resize) {
@@ -328,7 +328,9 @@ export class EventListeners {
                     container.repulse.count = 0;
                     container.repulse.finish = false;
                     setTimeout(() => {
-                        container.repulse.clicking = false;
+                        if (!container.destroyed) {
+                            container.repulse.clicking = false;
+                        }
                     }, options.interactivity.modes.repulse.duration * 1000);
                     break;
             }
