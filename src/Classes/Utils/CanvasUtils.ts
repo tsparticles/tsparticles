@@ -120,7 +120,8 @@ export class CanvasUtils {
     public static gradient(context: CanvasRenderingContext2D,
         p1: Particle,
         p2: Particle,
-        midColor: string): CanvasGradient | undefined {
+        midColor: IRgb,
+        opacity: number): CanvasGradient | undefined {
         const gradStop = Math.floor(p2.radius / p1.radius);
 
         if (!p1.color || !p2.color) {
@@ -131,9 +132,9 @@ export class CanvasUtils {
         const destPos = p2.position;
         const grad = context.createLinearGradient(sourcePos.x, sourcePos.y, destPos.x, destPos.y);
 
-        grad.addColorStop(0, ColorUtils.getStyleFromColor(p1.color));
-        grad.addColorStop(gradStop > 1 ? 1 : gradStop, midColor);
-        grad.addColorStop(1, ColorUtils.getStyleFromColor(p2.color));
+        grad.addColorStop(0, ColorUtils.getStyleFromColor(p1.color, opacity));
+        grad.addColorStop(gradStop > 1 ? 1 : gradStop, ColorUtils.getStyleFromColor(midColor, opacity));
+        grad.addColorStop(1, ColorUtils.getStyleFromColor(p2.color, opacity));
 
         return grad;
     }
