@@ -4,14 +4,14 @@ const TerserPlugin = require('terser-webpack-plugin');
 module.exports = {
     // Change to your "entry-point".
     entry: {
-        "tsparticles": "./dist/Main.js",
-        "tsparticles.min": "./dist/Main.js"
+        "tsparticles": "./dist/index.js",
+        "tsparticles.min": "./dist/index.js"
     },
     output: {
         path: path.resolve(__dirname, "dist"),
         filename: "[name].js",
-        // libraryTarget: "umd",
-        // library: "particles"
+        libraryTarget: "window",
+        library: ""
     },
     resolve: {
         extensions: [".js", ".json"]
