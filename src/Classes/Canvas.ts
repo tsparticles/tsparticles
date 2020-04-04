@@ -304,6 +304,10 @@ export class Canvas {
     }
 
     private lineStyle(p1: Particle, p2: Particle): CanvasGradient | undefined {
+        const container = this.container;
+        const options = container.options;
+        const connectOptions = options.interactivity.modes.connect;
+
         if (p1.color && p2.color) {
             const sourceRgb = p1.color;
             const destRgb = p2.color;
@@ -313,7 +317,7 @@ export class Canvas {
                 r: Utils.mix(sourceRgb.r, destRgb.r, p1.radius, p2.radius),
             };
 
-            const midColor = ColorUtils.getStyleFromColor(rgb);
+            const midColor = ColorUtils.getStyleFromColor(rgb, connectOptions.lineLinked.opacity);
 
             if (this.context) {
                 return CanvasUtils.gradient(this.context, p1, p2, midColor);
