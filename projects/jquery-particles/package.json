@@ -1,6 +1,6 @@
 {
   "name": "jquery-particles",
-  "version": "1.12.3",
+  "version": "1.12.4",
   "description": "Particles effect in jQuery",
   "main": "dist/jquery.particles.min.js",
   "scripts": {
@@ -51,7 +51,7 @@
   "homepage": "https://github.com/matteobruni/jquery-particles#readme",
   "dependencies": {
     "jquery": "^3.4.1",
-    "tsparticles": "^1.12.2"
+    "tsparticles": "^1.12.3"
   },
   "devDependencies": {
     "@fortawesome/fontawesome-free": "^5.12.1",
