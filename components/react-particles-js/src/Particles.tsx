@@ -6,6 +6,7 @@ import { Container } from "tsparticles/dist/Classes/Container";
 import type { RecursivePartial } from "tsparticles/dist/Types/RecursivePartial";
 import { defaultParams } from "./DefaultOptions";
 import { Options } from "tsparticles/dist/Classes/Options/Options";
+import { tsParticles } from "tsparticles/dist/index";
 
 export interface ParticlesProps {
     id: string;
@@ -34,6 +35,7 @@ export default class Particles extends Component<ParticlesProps,
 
     constructor(props: ParticlesProps) {
         super(props);
+        tsParticles.dom();
         this.state = {
             canvas: undefined,
             library: undefined
