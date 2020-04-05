@@ -131,7 +131,7 @@ class App extends Component{
                     particles: {
                         shape: {
                             type: 'images',
-                            images: [
+                            image: [
                                 {src: 'path/to/first/image.svg', height: 20, width: 20},
                                 {src: 'path/to/second/image.jpg', height: 20, width: 20},
                             ]
@@ -200,15 +200,12 @@ class App extends Component{
 
 ---
 
-## Info
+## Info and Major changes
 
-### Refactoring stages
+Starting with v3.0.0 the react-particles-js library has switched its core functionality using [tsparticles](https://github.com/matteobruni/tsparticles).
+This may introduce breaking changes but will allow the library be maintained more frequently.
 
-+ Add comprehensive props to the component.  
-+ Change params names.  
-+ Change variable and function names into more readable/understable/maintainable ones.  
-+ Update the structure of the code detaching defined functions from `this.params.fn` object.  
-+ Tests.
+---
 
 ### What's next
 
@@ -220,11 +217,3 @@ A live demonstration can be found [here](http://timeon.space).
 
 In this simple demo website, a new approach has been used, giving the application a powerful composability.  
 Issues concerning best practices, usability, backward compatibility and performances are raising, so..
-
-**Looking for contributors and mantainers**
-
-All is needed is previous experience with Typescript.
-
-If you are interested contact me privately.
-
-Every PR will always be welcome.
