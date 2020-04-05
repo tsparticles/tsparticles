@@ -17,40 +17,6 @@ import { Utils } from "./Utils/Utils";
 import type { IImageShape } from "../Interfaces/Options/Particles/Shape/IImageShape";
 import { Presets } from "./Utils/Presets";
 
-declare global {
-    interface Window {
-        customRequestAnimationFrame: (callback: FrameRequestCallback) => number;
-        mozRequestAnimationFrame: (callback: FrameRequestCallback) => number;
-        oRequestAnimationFrame: (callback: FrameRequestCallback) => number;
-        msRequestAnimationFrame: (callback: FrameRequestCallback) => number;
-        customCancelRequestAnimationFrame: (handle: number) => void;
-        webkitCancelRequestAnimationFrame: (handle: number) => void;
-        mozCancelRequestAnimationFrame: (handle: number) => void;
-        oCancelRequestAnimationFrame: (handle: number) => void;
-        msCancelRequestAnimationFrame: (handle: number) => void;
-    }
-}
-
-/* ---------- global functions - vendors ------------ */
-
-window.customRequestAnimationFrame = (() => {
-    return window.requestAnimationFrame ||
-        window.webkitRequestAnimationFrame ||
-        window.mozRequestAnimationFrame ||
-        window.oRequestAnimationFrame ||
-        window.msRequestAnimationFrame ||
-        ((callback) => window.setTimeout(callback, 1000 / 60));
-})();
-
-window.customCancelRequestAnimationFrame = (() => {
-    return window.cancelAnimationFrame ||
-        window.webkitCancelRequestAnimationFrame ||
-        window.mozCancelRequestAnimationFrame ||
-        window.oCancelRequestAnimationFrame ||
-        window.msCancelRequestAnimationFrame ||
-        clearTimeout
-})();
-
 /**
  * The object loaded into an HTML element, it'll contain options loaded and all data to let everything working
  */
