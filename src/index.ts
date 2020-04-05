@@ -20,9 +20,9 @@ import { StartDrawer } from "./Classes/ShapeDrawers/StarDrawer";
 import { PolygonDrawer } from "./Classes/ShapeDrawers/PolygonDrawer";
 import { TextDrawer } from "./Classes/ShapeDrawers/TextDrawer";
 import { ImageDrawer } from "./Classes/ShapeDrawers/ImageDrawer";
-import { IShapeDrawer } from "./Interfaces/IShapeDrawer";
+import type { IShapeDrawer } from "./Interfaces/IShapeDrawer";
 import { Presets } from "./Classes/Utils/Presets";
-import { ShapeDrawerFunction } from "./Types/ShapeDrawerFunction";
+import type { ShapeDrawerFunction } from "./Types/ShapeDrawerFunction";
 
 declare global {
     interface Window {
