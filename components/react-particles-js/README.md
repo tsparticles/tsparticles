@@ -5,7 +5,7 @@
   [hyperlink]: https://rpj.bembi.org
   [image]: https://raw.githubusercontent.com/wufe/react-particles-js/master/img/particles.png (Particles)
 
-Implementation in **Typescript** + **React** of [Particles.js](https://github.com/VincentGarreau/particles.js/) by [Vincent Garreau](https://github.com/VincentGarreau).
+Particles React component, using [tsparticles](https://github.com/matteobruni/tsparticles).
 
 Checkout the [demo page](https://rpj.bembi.org).
 
