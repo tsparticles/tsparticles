@@ -49,23 +49,25 @@ declare global {
  */
 class Main {
     constructor() {
-        window.customRequestAnimationFrame = (() => {
-            return window.requestAnimationFrame ||
-                window.webkitRequestAnimationFrame ||
-                window.mozRequestAnimationFrame ||
-                window.oRequestAnimationFrame ||
-                window.msRequestAnimationFrame ||
-                ((callback) => window.setTimeout(callback, 1000 / 60));
-        })();
+        if (typeof window !== "undefined" && window) {
+            window.customRequestAnimationFrame = (() => {
+                return window.requestAnimationFrame ||
+                    window.webkitRequestAnimationFrame ||
+                    window.mozRequestAnimationFrame ||
+                    window.oRequestAnimationFrame ||
+                    window.msRequestAnimationFrame ||
+                    ((callback) => window.setTimeout(callback, 1000 / 60));
+            })();
 
-        window.customCancelRequestAnimationFrame = (() => {
-            return window.cancelAnimationFrame ||
-                window.webkitCancelRequestAnimationFrame ||
-                window.mozCancelRequestAnimationFrame ||
-                window.oCancelRequestAnimationFrame ||
-                window.msCancelRequestAnimationFrame ||
-                clearTimeout
-        })();
+            window.customCancelRequestAnimationFrame = (() => {
+                return window.cancelAnimationFrame ||
+                    window.webkitCancelRequestAnimationFrame ||
+                    window.mozCancelRequestAnimationFrame ||
+                    window.oCancelRequestAnimationFrame ||
+                    window.msCancelRequestAnimationFrame ||
+                    clearTimeout
+            })();
+        }
 
         const squareDrawer = new SquareDrawer();
         const textDrawer = new TextDrawer();
@@ -80,58 +82,58 @@ class Main {
         ShapeUtils.addShapeDrawer(ShapeType.char, textDrawer);
         ShapeUtils.addShapeDrawer(ShapeType.character, textDrawer);
         ShapeUtils.addShapeDrawer(ShapeType.image, new ImageDrawer());
-
-        /* particles.js compatibility */
-        const tsParticles = this;
-
-        /**
-         * Loads the provided options to create a [[Container]] object.
-         * @deprecated this method is obsolete, please use the new tsParticles.load
-         * @param tagId the particles container element id
-         * @param params the options object to initialize the [[Container]]
-         */
-        window.particlesJS = (tagId: string, params: RecursivePartial<IOptions>) => {
-            tsParticles.load(tagId, params);
-        };
-
-        /**
-         * Loads the provided json with a GET request. The content will be used to create a [[Container]] object.
-         * @deprecated this method is obsolete, please use the new tsParticles.loadJSON
-         * @param tagId the particles container element id
-         * @param pathConfigJson the json path to use in the GET request
-         * @param callback the function called after the [[Container]] object is loaded that will be passed as a parameter
-         */
-        window.particlesJS.load = (tagId: string, pathConfigJson: string, callback: (container: Container) => void) => {
-            tsParticles.loadJSON(tagId, pathConfigJson).then((container) => {
-                if (container) {
-                    callback(container);
-                }
-            });
-        };
-
-        /**
-         * Adds an additional click handler to all the loaded [[Container]] objects.
-         * @deprecated this method is obsolete, please use the new tsParticles.setOnClickHandler
-         * @param callback the function called after the click event is fired
-         */
-        window.particlesJS.setOnClickHandler = (callback: EventListenerOrEventListenerObject) => {
-            tsParticles.setOnClickHandler(callback);
-        };
-
-        /**
-         * All the [[Container]] objects loaded
-         * @deprecated this method is obsolete, please use the new tsParticles.dom
-         */
-        window.pJSDom = () => {
-            return window.tsParticles.dom();
-        };
     }
 
     /**
      * init method, used by imports
      */
     public init(): void {
+        if (typeof window !== "undefined" && window) {
+            /* particles.js compatibility */
+            const tsParticles = this;
 
+            /**
+             * Loads the provided options to create a [[Container]] object.
+             * @deprecated this method is obsolete, please use the new tsParticles.load
+             * @param tagId the particles container element id
+             * @param params the options object to initialize the [[Container]]
+             */
+            window.particlesJS = (tagId: string, params: RecursivePartial<IOptions>) => {
+                tsParticles.load(tagId, params);
+            };
+
+            /**
+             * Loads the provided json with a GET request. The content will be used to create a [[Container]] object.
+             * @deprecated this method is obsolete, please use the new tsParticles.loadJSON
+             * @param tagId the particles container element id
+             * @param pathConfigJson the json path to use in the GET request
+             * @param callback the function called after the [[Container]] object is loaded that will be passed as a parameter
+             */
+            window.particlesJS.load = (tagId: string, pathConfigJson: string, callback: (container: Container) => void) => {
+                tsParticles.loadJSON(tagId, pathConfigJson).then((container) => {
+                    if (container) {
+                        callback(container);
+                    }
+                });
+            };
+
+            /**
+             * Adds an additional click handler to all the loaded [[Container]] objects.
+             * @deprecated this method is obsolete, please use the new tsParticles.setOnClickHandler
+             * @param callback the function called after the click event is fired
+             */
+            window.particlesJS.setOnClickHandler = (callback: EventListenerOrEventListenerObject) => {
+                tsParticles.setOnClickHandler(callback);
+            };
+
+            /**
+             * All the [[Container]] objects loaded
+             * @deprecated this method is obsolete, please use the new tsParticles.dom
+             */
+            window.pJSDom = () => {
+                return window.tsParticles.dom();
+            };
+        }
     }
 
     /**
