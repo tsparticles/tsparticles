@@ -5,35 +5,22 @@ import { Attracter } from "./Attracter";
 import { Collider } from "./Collider";
 
 export class InteractionManager {
-    private readonly container: Container;
-    private readonly linker: Linker;
-    private readonly attracter: Attracter;
-    private readonly collider: Collider;
-
-    constructor(container: Container, particle: Particle) {
-        this.container = container;
-        this.linker = new Linker(container, particle);
-        this.attracter = new Attracter(container, particle);
-        this.collider = new Collider(container, particle);
-    }
-
-    public interact(p2: Particle): void {
-        const container = this.container;
+    public static interact(p1: Particle, p2: Particle, container: Container): void {
         const options = container.options;
 
         /* link particles */
         if (options.particles.lineLinked.enable) {
-            this.linker.link(p2);
+            Linker.link(p1, p2, container);
         }
 
         /* attract particles */
         if (options.particles.move.attract.enable) {
-            this.attracter.attract(p2);
+            Attracter.attract(p1, p2, container);
         }
 
         /* bounce particles */
         if (options.particles.move.collisions) {
-            this.collider.collide(p2);
+            Collider.collide(p1, p2);
         }
     }
 }

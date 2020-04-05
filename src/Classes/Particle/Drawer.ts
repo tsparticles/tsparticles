@@ -1,14 +1,14 @@
 import type { Container } from "../Container";
-import type { Particle } from "../Particle";
+import type { IParticle } from "../../Interfaces/IParticle";
 
 /**
  * Particle draw manager
  */
 export class Drawer {
-    private readonly particle: Particle;
+    private readonly particle: IParticle;
     private readonly container: Container;
 
-    constructor(container: Container, particle: Particle) {
+    constructor(container: Container, particle: IParticle) {
         this.container = container;
         this.particle = particle;
     }

@@ -10,11 +10,13 @@ import type { ICharacterShape } from "./Options/Particles/Shape/ICharacterShape"
 import type { ISize } from "./ISize";
 import type { IOpacity } from "./IOpacity";
 import type { IShapeValues } from "./Options/Particles/Shape/IShapeValues";
+import type { IBubbleParticleData } from "./IBubbleParticleData";
 
 export interface IParticle {
     readonly angle: number;
     readonly rotateDirection: RotateDirection;
-    readonly radius: number;
+    readonly fill: boolean;
+    readonly close: boolean;
     readonly stroke: IStroke;
     readonly polygon?: IPolygonShape;
     readonly text?: string;
@@ -32,4 +34,5 @@ export interface IParticle {
     readonly character?: ICharacterShape;
     readonly initialVelocity: IVelocity;
     readonly customShape?: IShapeValues;
+    readonly bubble: IBubbleParticleData;
 }

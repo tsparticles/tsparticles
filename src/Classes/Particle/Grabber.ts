@@ -1,16 +1,16 @@
 import type { Container } from "../Container";
-import type { Particle } from "../Particle";
 import { Utils } from "../Utils/Utils";
 import { Constants } from "../Utils/Constants";
+import type { IParticle } from "../../Interfaces/IParticle";
 
 /**
  * Particle grab manager
  */
 export class Grabber {
     private readonly container: Container;
-    private readonly particle: Particle;
+    private readonly particle: IParticle;
 
-    constructor(container: Container, particle: Particle) {
+    constructor(container: Container, particle: IParticle) {
         this.container = container;
         this.particle = particle;
     }

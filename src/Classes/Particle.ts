@@ -15,7 +15,6 @@ import { PolygonMaskType } from "../Enums/PolygonMaskType";
 import { Connecter } from "./Particle/Connecter";
 import type { IRgb } from "../Interfaces/IRgb";
 import type { IOptions } from "../Interfaces/Options/IOptions";
-import { InteractionManager } from "./Particle/InteractionManager";
 import { HoverMode } from "../Enums/Modes/HoverMode";
 import { ClickMode } from "../Enums/Modes/ClickMode";
 import { RotateDirection } from "../Enums/RotateDirection";
@@ -25,8 +24,9 @@ import type { IStroke } from "../Interfaces/Options/Particles/IStroke";
 import { ColorUtils } from "./Utils/ColorUtils";
 import type { IRandomSize } from "../Interfaces/Options/Particles/IRandomSize";
 import type { IRandomOpacity } from "../Interfaces/Options/Particles/IRandomOpacity";
-import { IParticle } from "../Interfaces/IParticle";
-import { IShapeValues } from "../Interfaces/Options/Particles/Shape/IShapeValues";
+import type { IShapeValues } from "../Interfaces/Options/Particles/Shape/IShapeValues";
+import type { IBubbleParticleData } from "../Interfaces/IBubbleParticleData";
+import type { IParticle } from "../Interfaces/IParticle";
 
 /**
  * The single particle object
@@ -34,7 +34,6 @@ import { IShapeValues } from "../Interfaces/Options/Particles/Shape/IShapeValues
 export class Particle implements IParticle {
     public angle: number;
     public rotateDirection: RotateDirection;
-    public radius: number;
     public readonly fill: boolean;
     public readonly close: boolean;
     public readonly stroke: IStroke;
@@ -54,6 +53,8 @@ export class Particle implements IParticle {
     public readonly character?: ICharacterShape;
     public readonly initialVelocity: IVelocity;
     public readonly shapeData?: IShapeValues;
+    public readonly bubble: IBubbleParticleData;
+    public readonly customShape?: IShapeValues | undefined;
 
     public readonly updater: Updater;
     public readonly bubbler: Bubbler;
@@ -61,7 +62,6 @@ export class Particle implements IParticle {
     public readonly connecter: Connecter;
     public readonly drawer: Drawer;
     public readonly grabber: Grabber;
-    public readonly interactionManager: InteractionManager;
     public readonly container: Container;
 
     /* --------- tsParticles functions - particles ----------- */
@@ -71,7 +71,14 @@ export class Particle implements IParticle {
         const color = options.particles.color;
 
         /* size */
-        this.size = {};
+        const randomSize = options.particles.size.random as IRandomSize;
+        const sizeValue = container.retina.sizeValue;
+
+        this.size = {
+            value: randomSize.enable ? Utils.randomInRange(randomSize.minimumValue, sizeValue) : sizeValue
+        };
+
+        this.bubble = {};
         this.angle = options.particles.rotate.random ? Math.random() * 360 : options.particles.rotate.value;
 
         if (options.particles.rotate.direction == RotateDirection.random) {
@@ -85,11 +92,6 @@ export class Particle implements IParticle {
         } else {
             this.rotateDirection = options.particles.rotate.direction;
         }
-
-        const randomSize = options.particles.size.random as IRandomSize;
-        const sizeValue = container.retina.sizeValue;
-
-        this.radius = randomSize.enable ? Utils.randomInRange(randomSize.minimumValue, sizeValue) : sizeValue;
 
         if (options.particles.size.animation.enable) {
             this.size.status = false;
@@ -246,7 +248,6 @@ export class Particle implements IParticle {
         this.drawer = new Drawer(this.container, this);
         this.grabber = new Grabber(this.container, this);
         this.connecter = new Connecter(this.container, this);
-        this.interactionManager = new InteractionManager(this.container, this);
     }
 
     private static calculateVelocity(options: IOptions): IVelocity {
@@ -318,10 +319,6 @@ export class Particle implements IParticle {
         }
     }
 
-    public interact(p2: Particle): void {
-        this.interactionManager.interact(p2);
-    }
-
     public draw(): void {
         this.drawer.draw();
     }
@@ -336,7 +333,7 @@ export class Particle implements IParticle {
             iterations++;
             const dist = Utils.getDistanceBetweenCoordinates(p.position, p2.position);
 
-            if (dist <= p.radius + p2.radius) {
+            if (dist <= p.size.value + p2.size.value) {
                 collisionFound = true;
                 break;
             }
@@ -383,16 +380,16 @@ export class Particle implements IParticle {
             pos.y = position ? position.y : Math.random() * container.canvas.dimension.height;
 
             /* check position  - into the canvas */
-            if (pos.x > container.canvas.dimension.width - this.radius * 2) {
-                pos.x -= this.radius;
-            } else if (pos.x < this.radius * 2) {
-                pos.x += this.radius;
+            if (pos.x > container.canvas.dimension.width - this.size.value * 2) {
+                pos.x -= this.size.value;
+            } else if (pos.x < this.size.value * 2) {
+                pos.x += this.size.value;
             }
 
-            if (pos.y > container.canvas.dimension.height - this.radius * 2) {
-                pos.y -= this.radius;
-            } else if (pos.y < this.radius * 2) {
-                pos.y += this.radius;
+            if (pos.y > container.canvas.dimension.height - this.size.value * 2) {
+                pos.y -= this.size.value;
+            } else if (pos.y < this.size.value * 2) {
+                pos.y += this.size.value;
             }
         }
 

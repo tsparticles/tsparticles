@@ -5,6 +5,7 @@ import type { IRgb } from "../Interfaces/IRgb";
 import { Particle } from "./Particle";
 import { PolygonMaskType } from "../Enums/PolygonMaskType";
 import { PolygonMaskInlineArrangement } from "../Enums/PolygonMaskInlineArrangement";
+import { InteractionManager } from "./Particle/InteractionManager";
 
 /**
  * Particles manager
@@ -89,7 +90,7 @@ export class Particles {
                 for (let j = i + 1; j < this.array.length; j++) {
                     const p2 = this.array[j];
 
-                    p.interact(p2);
+                    InteractionManager.interact(p, p2, this.container);
                 }
             }
         }

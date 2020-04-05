@@ -10,7 +10,6 @@ import type { Container } from "./Classes/Container";
 import { Loader } from "./Classes/Loader";
 import type { IOptions } from "./Interfaces/Options/IOptions";
 import type { RecursivePartial } from "./Types/RecursivePartial";
-import { ShapeUtils } from "./Classes/Utils/ShapeUtils";
 import { ShapeType } from "./Enums/ShapeType";
 import { LineDrawer } from "./Classes/ShapeDrawers/LineDrawer";
 import { CircleDrawer } from "./Classes/ShapeDrawers/CircleDrawer";
@@ -23,6 +22,7 @@ import { ImageDrawer } from "./Classes/ShapeDrawers/ImageDrawer";
 import type { IShapeDrawer } from "./Interfaces/IShapeDrawer";
 import { Presets } from "./Classes/Utils/Presets";
 import type { ShapeDrawerFunction } from "./Types/ShapeDrawerFunction";
+import { CanvasUtils } from "./Classes/Utils/CanvasUtils";
 
 declare global {
     interface Window {
@@ -63,16 +63,16 @@ class Main {
         const squareDrawer = new SquareDrawer();
         const textDrawer = new TextDrawer();
 
-        ShapeUtils.addShapeDrawer(ShapeType.line, new LineDrawer());
-        ShapeUtils.addShapeDrawer(ShapeType.circle, new CircleDrawer());
-        ShapeUtils.addShapeDrawer(ShapeType.edge, squareDrawer);
-        ShapeUtils.addShapeDrawer(ShapeType.square, squareDrawer);
-        ShapeUtils.addShapeDrawer(ShapeType.triangle, new TriangleDrawer());
-        ShapeUtils.addShapeDrawer(ShapeType.star, new StartDrawer());
-        ShapeUtils.addShapeDrawer(ShapeType.polygon, new PolygonDrawer());
-        ShapeUtils.addShapeDrawer(ShapeType.char, textDrawer);
-        ShapeUtils.addShapeDrawer(ShapeType.character, textDrawer);
-        ShapeUtils.addShapeDrawer(ShapeType.image, new ImageDrawer());
+        CanvasUtils.addShapeDrawer(ShapeType.line, new LineDrawer());
+        CanvasUtils.addShapeDrawer(ShapeType.circle, new CircleDrawer());
+        CanvasUtils.addShapeDrawer(ShapeType.edge, squareDrawer);
+        CanvasUtils.addShapeDrawer(ShapeType.square, squareDrawer);
+        CanvasUtils.addShapeDrawer(ShapeType.triangle, new TriangleDrawer());
+        CanvasUtils.addShapeDrawer(ShapeType.star, new StartDrawer());
+        CanvasUtils.addShapeDrawer(ShapeType.polygon, new PolygonDrawer());
+        CanvasUtils.addShapeDrawer(ShapeType.char, textDrawer);
+        CanvasUtils.addShapeDrawer(ShapeType.character, textDrawer);
+        CanvasUtils.addShapeDrawer(ShapeType.image, new ImageDrawer());
     }
     /**
      * Loads an options object from the provided array to create a [[Container]] object.
@@ -149,7 +149,7 @@ class Main {
             customDrawer = drawer;
         }
 
-        ShapeUtils.addShapeDrawer(shape, customDrawer);
+        CanvasUtils.addShapeDrawer(shape, customDrawer);
     }
 
     /**

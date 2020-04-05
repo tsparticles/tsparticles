@@ -2,19 +2,19 @@ import { ClickMode } from "../../Enums/Modes/ClickMode";
 import type { Container } from "../Container";
 import { HoverMode } from "../../Enums/Modes/HoverMode";
 import { OutMode } from "../../Enums/OutMode";
-import type { Particle } from "../Particle";
 import { Utils } from "../Utils/Utils";
 import { DivMode } from "../../Enums/Modes/DivMode";
 import { Constants } from "../Utils/Constants";
+import type { IParticle } from "../../Interfaces/IParticle";
 
 /**
  * Particle repulse manager
  */
 export class Repulser {
-    private readonly particle: Particle;
+    private readonly particle: IParticle;
     private readonly container: Container;
 
-    constructor(container: Container, particle: Particle) {
+    constructor(container: Container, particle: IParticle) {
         this.container = container;
         this.particle = particle;
     }
@@ -134,8 +134,10 @@ export class Repulser {
 
         if (outMode === OutMode.bounce || outMode === OutMode.bounceVertical || outMode === OutMode.bounceHorizontal) {
             const isInside = {
-                horizontal: pos.x - particle.radius > 0 && pos.x + particle.radius < container.canvas.dimension.width,
-                vertical: pos.y - particle.radius > 0 && pos.y + particle.radius < container.canvas.dimension.height,
+                horizontal: pos.x - particle.size.value > 0 &&
+                    pos.x + particle.size.value < container.canvas.dimension.width,
+                vertical: pos.y - particle.size.value > 0 &&
+                    pos.y + particle.size.value < container.canvas.dimension.height,
             };
             if (outMode === OutMode.bounceVertical || isInside.horizontal) {
                 particle.position.x = pos.x;
@@ -168,13 +170,15 @@ export class Repulser {
             };
 
             if (outMode !== OutMode.bounceVertical) {
-                if (pos.x + particle.radius > container.canvas.dimension.width || pos.x - particle.radius < 0) {
+                if (pos.x + particle.size.value > container.canvas.dimension.width ||
+                    pos.x - particle.size.value < 0) {
                     particle.velocity.horizontal = -particle.velocity.horizontal;
                 }
             }
 
             if (outMode !== OutMode.bounceHorizontal) {
-                if (pos.y + particle.radius > container.canvas.dimension.height || pos.y - particle.radius < 0) {
+                if (pos.y + particle.size.value > container.canvas.dimension.height ||
+                    pos.y - particle.size.value < 0) {
                     particle.velocity.vertical = -particle.velocity.vertical;
                 }
             }

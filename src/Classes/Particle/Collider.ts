@@ -1,25 +1,14 @@
-import type { Container } from "../Container";
-import type { Particle } from "../Particle";
 import { Utils } from "../Utils/Utils";
+import { Particle } from "../Particle";
 
 export class Collider {
-    private readonly container: Container;
-    private readonly particle: Particle;
-
-    constructor(container: Container, particle: Particle) {
-        this.container = container;
-        this.particle = particle;
-    }
-
-    public collide(p2: Particle): void {
-        const p1 = this.particle;
-
+    public static collide(p1: Particle, p2: Particle): void {
         if (p1 === p2) {
             return;
         }
 
         const dist = Utils.getDistanceBetweenCoordinates(p1.position, p2.position);
-        const distP = (p1.bubbler.radius || p1.radius) + (p2.bubbler.radius || p2.radius);
+        const distP = (p1.bubble.radius || p1.size.value) + (p2.bubble.radius || p2.size.value);
 
         if (dist <= distP) {
             p1.resetVelocity();

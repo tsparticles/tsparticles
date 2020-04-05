@@ -3,12 +3,12 @@ import type { Container } from "./Container";
 import type { IDimension } from "../Interfaces/IDimension";
 import { Utils } from "./Utils/Utils";
 import type { IRgb } from "../Interfaces/IRgb";
-import type { Particle } from "./Particle";
 import type { ICoordinates } from "../Interfaces/ICoordinates";
 import { CanvasUtils } from "./Utils/CanvasUtils";
 import { ColorUtils } from "./Utils/ColorUtils";
 import type { IColor } from "../Interfaces/Options/Particles/IColor";
 import type { IBackgroundMaskCover } from "../Interfaces/Options/BackgroundMask/IBackgroundMaskCover";
+import type { IParticle } from "../Interfaces/IParticle";
 
 /**
  * Canvas manager
@@ -174,7 +174,7 @@ export class Canvas {
         }
     }
 
-    public drawLinkedLine(p1: Particle, p2: Particle, pos1: ICoordinates, pos2: ICoordinates, opacity: number): void {
+    public drawLinkedLine(p1: IParticle, p2: IParticle, pos1: ICoordinates, pos2: ICoordinates, opacity: number): void {
         const container = this.container;
         const options = container.options;
 
@@ -202,9 +202,9 @@ export class Canvas {
             const destColor = p2.color;
 
             colorLine = {
-                b: Math.floor(Utils.mix(sourceColor.b, destColor.b, p1.radius, p2.radius)),
-                g: Math.floor(Utils.mix(sourceColor.g, destColor.g, p1.radius, p2.radius)),
-                r: Math.floor(Utils.mix(sourceColor.r, destColor.r, p1.radius, p2.radius)),
+                b: Math.floor(Utils.mix(sourceColor.b, destColor.b, p1.size.value, p2.size.value)),
+                g: Math.floor(Utils.mix(sourceColor.g, destColor.g, p1.size.value, p2.size.value)),
+                r: Math.floor(Utils.mix(sourceColor.r, destColor.r, p1.size.value, p2.size.value)),
             };
         } else {
             colorLine = container.particles.lineLinkedColor as IRgb;
@@ -222,7 +222,7 @@ export class Canvas {
             options.particles.lineLinked.shadow);
     }
 
-    public drawConnectLine(p1: Particle, p2: Particle): void {
+    public drawConnectLine(p1: IParticle, p2: IParticle): void {
         const lineStyle = this.lineStyle(p1, p2);
 
         if (!lineStyle) {
@@ -238,7 +238,7 @@ export class Canvas {
         CanvasUtils.drawConnectLine(ctx, this.container.retina.lineLinkedWidth, lineStyle, p1.position, p2.position);
     }
 
-    public drawGrabLine(particle: Particle, opacity: number, mousePos: ICoordinates): void {
+    public drawGrabLine(particle: IParticle, opacity: number, mousePos: ICoordinates): void {
         const container = this.container;
         const options = container.options;
         const optColor = options.particles.lineLinked.color;
@@ -273,13 +273,13 @@ export class Canvas {
         CanvasUtils.drawGrabLine(ctx, container.retina.lineLinkedWidth, beginPos, mousePos, colorLine, opacity);
     }
 
-    public drawParticle(particle: Particle): void {
+    public drawParticle(particle: IParticle): void {
         const container = this.container;
         const options = container.options;
 
         let colorValue: string | undefined;
-        const radius = particle.bubbler.radius !== undefined ? particle.bubbler.radius : particle.radius;
-        const opacity = particle.bubbler.opacity !== undefined ? particle.bubbler.opacity : particle.opacity.value;
+        const radius = particle.bubble.radius ?? particle.size.value;
+        const opacity = particle.bubble.opacity ?? particle.opacity.value;
 
         if (particle.color) {
             colorValue = ColorUtils.getStyleFromColor(particle.color, opacity);
@@ -294,7 +294,8 @@ export class Canvas {
             colorValue,
             options.backgroundMask.enable,
             radius,
-            opacity);
+            opacity,
+            options.particles.shadow);
     }
 
     private paintBase(baseColor?: string): void {
@@ -303,7 +304,7 @@ export class Canvas {
         }
     }
 
-    private lineStyle(p1: Particle, p2: Particle): CanvasGradient | undefined {
+    private lineStyle(p1: IParticle, p2: IParticle): CanvasGradient | undefined {
         const container = this.container;
         const options = container.options;
         const connectOptions = options.interactivity.modes.connect;
@@ -312,9 +313,9 @@ export class Canvas {
             const sourceRgb = p1.color;
             const destRgb = p2.color;
             const midRgb = {
-                b: Utils.mix(sourceRgb.b, destRgb.b, p1.radius, p2.radius),
-                g: Utils.mix(sourceRgb.g, destRgb.g, p1.radius, p2.radius),
-                r: Utils.mix(sourceRgb.r, destRgb.r, p1.radius, p2.radius),
+                b: Utils.mix(sourceRgb.b, destRgb.b, p1.size.value, p2.size.value),
+                g: Utils.mix(sourceRgb.g, destRgb.g, p1.size.value, p2.size.value),
+                r: Utils.mix(sourceRgb.r, destRgb.r, p1.size.value, p2.size.value),
             };
 
             if (this.context) {

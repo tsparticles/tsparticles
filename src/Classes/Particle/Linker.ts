@@ -1,26 +1,16 @@
-import type { Particle } from "../Particle";
 import type { Container } from "../Container";
 import { ColorUtils } from "../Utils/ColorUtils";
 import { Utils } from "../Utils/Utils";
 import { ICoordinates } from "../../Interfaces/ICoordinates";
 import { Constants } from "../Utils/Constants";
+import type { IParticle } from "../../Interfaces/IParticle";
 
 export class Linker {
-    private readonly container: Container;
-    private readonly particle: Particle;
-
-    constructor(container: Container, particle: Particle) {
-        this.container = container;
-        this.particle = particle;
-    }
-
-    public link(p2: Particle): void {
-        const container = this.container;
+    public static link(p1: IParticle, p2: IParticle, container: Container): void {
         const options = container.options;
-        const particle = this.particle;
         const pos1: ICoordinates = {
-            x: particle.position.x + particle.offset.x,
-            y: particle.position.y + particle.offset.y,
+            x: p1.position.x + p1.offset.x,
+            y: p1.position.y + p1.offset.y,
         };
         const pos2: ICoordinates = {
             x: p2.position.x + p2.offset.x,
@@ -58,7 +48,7 @@ export class Linker {
                     }
                 }
 
-                container.canvas.drawLinkedLine(particle, p2, pos1, pos2, opacityLine);
+                container.canvas.drawLinkedLine(p1, p2, pos1, pos2, opacityLine);
             }
         }
     }

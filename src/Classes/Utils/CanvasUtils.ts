@@ -1,13 +1,16 @@
 import type { IDimension } from "../../Interfaces/IDimension";
 import type { ICoordinates } from "../../Interfaces/ICoordinates";
 import type { IRgb } from "../../Interfaces/IRgb";
-import type { Particle } from "../Particle";
-import { ShapeUtils } from "./ShapeUtils";
 import type { ILineLinkedShadow } from "../../Interfaces/Options/Particles/ILineLinkedShadow";
 import type { IPolygonMaskDrawStroke } from "../../Interfaces/Options/PolygonMask/IPolygonMaskDrawStroke";
 import { ColorUtils } from "./ColorUtils";
+import type { IParticle } from "../../Interfaces/IParticle";
+import type { IShadow } from "../../Interfaces/Options/Particles/IShadow";
+import type { IShapeDrawer } from "../../Interfaces/IShapeDrawer";
 
 export class CanvasUtils {
+    private static readonly drawers: { [type: string]: IShapeDrawer } = {};
+
     public static paintBase(context: CanvasRenderingContext2D,
         dimension: IDimension,
         baseColor?: string): void {
@@ -118,11 +121,11 @@ export class CanvasUtils {
     }
 
     public static gradient(context: CanvasRenderingContext2D,
-        p1: Particle,
-        p2: Particle,
+        p1: IParticle,
+        p2: IParticle,
         midColor: IRgb,
         opacity: number): CanvasGradient | undefined {
-        const gradStop = Math.floor(p2.radius / p1.radius);
+        const gradStop = Math.floor(p2.size.value / p1.size.value);
 
         if (!p1.color || !p2.color) {
             return;
@@ -157,14 +160,13 @@ export class CanvasUtils {
     }
 
     public static drawParticle(context: CanvasRenderingContext2D,
-        particle: Particle,
+        particle: IParticle,
         colorValue: string,
         backgroundMask: boolean,
         radius: number,
-        opacity: number): void {
+        opacity: number,
+        shadow: IShadow): void {
         context.save();
-
-        const shadow = particle.container.options.particles.shadow;
         const shadowColor = particle.shadowColor;
 
         if (shadow.enable && shadowColor) {
@@ -199,7 +201,7 @@ export class CanvasUtils {
             context.lineWidth = stroke.width;
         }
 
-        ShapeUtils.drawShape(context, particle, radius, opacity);
+        this.drawShape(context, particle, radius, opacity);
 
         if (particle.close) {
             context.closePath();
@@ -214,5 +216,29 @@ export class CanvasUtils {
         }
 
         context.restore();
+    }
+
+    public static addShapeDrawer(type: string, drawer: IShapeDrawer): void {
+        if (!this.drawers[type]) {
+            this.drawers[type] = drawer;
+        }
+    }
+
+    public static drawShape(context: CanvasRenderingContext2D,
+        particle: IParticle,
+        radius: number,
+        opacity: number): void {
+
+        if (!particle.shape) {
+            return;
+        }
+
+        const drawer = this.drawers[particle.shape];
+
+        if (!drawer) {
+            return;
+        }
+
+        drawer.draw(context, particle, radius, opacity);
     }
 }
