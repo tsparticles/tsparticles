@@ -5,13 +5,27 @@
 
 /// <reference types="react" />
 
-type RecursivePartial<T> = {
+export type RecursivePartial<T> = {
 	[P in keyof T]?: T[P] extends (infer U)[]
 	? RecursivePartial<U>[]
 	: T[P] extends object ? RecursivePartial<T[P]> : T[P]
 };
 
 import { ComponentClass } from "react";
+import {IOptions} from "tsparticles/dist/Interfaces/Options/IOptions";
+
+export * from 'tsparticles/dist/Enums/InteractivityDetect';
+export * from 'tsparticles/dist/Enums/MoveDirection';
+export * from 'tsparticles/dist/Enums/OutMode';
+export * from 'tsparticles/dist/Enums/PolygonMaskInlineArrangement';
+export * from 'tsparticles/dist/Enums/PolygonMaskMoveType';
+export * from 'tsparticles/dist/Enums/PolygonMaskType';
+export * from 'tsparticles/dist/Enums/ProcessBubbleType';
+export * from 'tsparticles/dist/Enums/RotateDirection';
+export * from 'tsparticles/dist/Enums/ShapeType';
+export * from 'tsparticles/dist/Enums/Modes/ClickMode';
+export * from 'tsparticles/dist/Enums/Modes/DivMode';
+export * from 'tsparticles/dist/Enums/Modes/HoverMode';
 
 type ShapeType =
 	| "circle"
@@ -86,120 +100,7 @@ declare interface IPolygonDefinition {
 	url: string;
 }
 
-export type IParticlesParams = RecursivePartial<{
-	particles: {
-		number: {
-			value: number;
-			max: number;
-			density: {
-				enable: boolean;
-				value_area: number;
-			};
-		};
-		color: {
-			value: string | string[] | RGB | HSL | 'random';
-		};
-		shape: {
-			type: ShapeType | ShapeType[];
-			stroke: {
-				width: number;
-				color: string;
-			};
-			polygon: {
-				nb_sides: number;
-			};
-			image: IImageDefinition;
-			images: IImageDefinition[];
-		};
-		opacity: {
-			value: number;
-			random: boolean;
-			anim: {
-				enable: boolean;
-				speed: number;
-				opacity_min: number;
-				sync: boolean;
-			};
-		};
-		size: {
-			value: number;
-			random: boolean;
-			anim: {
-				enable: boolean;
-				speed: number;
-				size_min: number;
-				sync: boolean;
-			};
-		};
-		line_linked: {
-			enable: boolean;
-			distance: number;
-			color: string;
-			opacity: number;
-			width: number;
-			shadow: {
-				enable: boolean;
-				blur: number;
-				color: string;
-			};
-		};
-		move: {
-			enable: boolean;
-			speed: number;
-			direction: MoveDirection;
-			random: boolean;
-			straight: boolean;
-			out_mode: MoveOutMode;
-			bounce: boolean;
-			attract: {
-				enable: boolean;
-				rotateX: number;
-				rotateY: number;
-			};
-		};
-	};
-	interactivity: {
-		detect_on: string;
-		events: {
-			onhover: {
-				enable: boolean;
-				mode: InteractivityMode | InteractivityMode[];
-			};
-			onclick: {
-				enable: boolean;
-				mode: InteractivityMode | InteractivityMode[];
-			};
-			resize: boolean;
-		};
-		modes: {
-			grab: {
-				distance: number;
-				line_linked: {
-					opacity: number;
-				};
-			};
-			bubble: {
-				distance: number;
-				size: number;
-				duration: number;
-				opacity: number;
-			};
-			repulse: {
-				distance: number;
-				duration: number;
-			};
-			push: {
-				particles_nb: number;
-			};
-			remove: {
-				particles_nb: number;
-			};
-		};
-	};
-	retina_detect: boolean;
-	fps_limit: number;
-	polygon: IPolygonDefinition;
-}>;
+export type IParticlesParams = RecursivePartial<IOptions>;
 
 export interface ParticlesProps {
 	width?: string;
