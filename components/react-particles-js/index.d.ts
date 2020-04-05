@@ -1,4 +1,4 @@
-// Type definitions for react-particles-js v2.4.0-beta.8
+// Type definitions for react-particles-js v3.0.0
 // Project: https://github.com/wufe/react-particles-js
 // Definitions by: Simone Bembi <https://github.com/wufe>
 // Definitions: https://github.com/DefinitelyTyped/DefinitelyTyped
@@ -12,7 +12,7 @@ export type RecursivePartial<T> = {
 };
 
 import { ComponentClass } from "react";
-import {IOptions} from "tsparticles/dist/Interfaces/Options/IOptions";
+import { IOptions } from "tsparticles/dist/Interfaces/Options/IOptions";
 
 export * from 'tsparticles/dist/Enums/InteractivityDetect';
 export * from 'tsparticles/dist/Enums/MoveDirection';
