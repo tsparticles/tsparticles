@@ -35,7 +35,6 @@ export default class Particles extends Component<ParticlesProps,
 
     constructor(props: ParticlesProps) {
         super(props);
-        tsParticles.dom();
         this.state = {
             canvas: undefined,
             library: undefined
@@ -54,6 +53,7 @@ export default class Particles extends Component<ParticlesProps,
         options.load(defaultParams);
         options.load(params);
 
+        tsParticles.dom();
         const container = new Container(tagId, options);
 
         return container;
