@@ -3244,9 +3244,9 @@ p-limit@^1.1.0:
     p-try "^1.0.0"
 
 p-limit@^2.0.0:
-  version "2.2.2"
-  resolved "https://registry.yarnpkg.com/p-limit/-/p-limit-2.2.2.tgz#61279b67721f5287aa1c13a9a7fbbc48c9291b1e"
-  integrity sha512-WGR+xHecKTr7EbUEhyLSh5Dube9JtdiG78ufaeLxTgpudf/20KqyMioIUZJAezlTIi6evxuoUs9YXc11cU+yzQ==
+  version "2.3.0"
+  resolved "https://registry.yarnpkg.com/p-limit/-/p-limit-2.3.0.tgz#3dd33c647a214fdfffd835933eb086da0dc21db1"
+  integrity sha512-//88mFWSJx8lxCzwdAABTJL2MyWB12+eIY7MDL2SqLmAkeKU9qxRvWuSyTjm3FUmpBEMuFfckAIqEaVGUDxb6w==
   dependencies:
     p-try "^2.0.0"
 
@@ -4230,10 +4230,10 @@ tslib@^1.9.0:
   resolved "https://registry.yarnpkg.com/tslib/-/tslib-1.11.1.tgz#eb15d128827fbee2841549e171f45ed338ac7e35"
   integrity sha512-aZW88SY8kQbU7gpV19lN24LtXh/yD4ZZg6qieAJDDg+YBsJcSmLGK9QpnUjAKVG/xefmvJGd1WUmfpT/g6AJGA==
 
-tsparticles@^1.12.5:
-  version "1.12.5"
-  resolved "https://registry.yarnpkg.com/tsparticles/-/tsparticles-1.12.5.tgz#78ee03b6197cb23f7b897c281ae024d4e5c5e09a"
-  integrity sha512-Jd/H/Ed190L8ZWg+1fpQmRzaUHfC4mIDz3wtq6XcLZGuUW/UJ0XpIQ0ndwNK2BXogVdpEplCl80AxMPUM+aKJQ==
+tsparticles@^1.12.6:
+  version "1.12.6"
+  resolved "https://registry.yarnpkg.com/tsparticles/-/tsparticles-1.12.6.tgz#c302c4b2ee3579e0472a935c9569d01824b5ee4c"
+  integrity sha512-u3qev5gPuEOOFzmBSt+XpHDGOEvE7o+qIYJPjfex9pKt+eCC41jfQTVssmrIcv393gaHyrJHwGotAXOCL0ln9w==
   dependencies:
     pathseg "^1.2.0"
 
