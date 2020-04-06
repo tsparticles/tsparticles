@@ -33,9 +33,10 @@ export class LineLinked implements ILineLinked {
             }
 
             if (data.color !== undefined) {
-                if (typeof this.color === "string") {
+                if (typeof data.color === "string") {
                     this.color = data.color;
                 } else {
+                    this.color = new Color();
                     this.color.load(data.color as IColor);
                 }
             }
