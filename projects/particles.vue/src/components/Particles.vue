@@ -24,7 +24,10 @@ import { Component, Prop, Vue } from "vue-property-decorator";
 import { ClickMode } from "tsparticles/dist/Enums/Modes/ClickMode";
 import { HoverMode } from "tsparticles/dist/Enums/Modes/HoverMode";
 import { ShapeType } from "tsparticles/dist/Enums/ShapeType";
-import { Loader } from "tsparticles/dist/Classes/Loader";
+import { InteractivityDetect } from "tsparticles/dist/Enums/InteractivityDetect";
+import { MoveDirection } from "tsparticles/dist/Enums/MoveDirection";
+import { OutMode } from "tsparticles/dist/Enums/OutMode";
+import { tsParticles } from "tsparticles/dist/index";
 
 @Component
 export default class Particles extends Vue {
@@ -84,14 +87,14 @@ export default class Particles extends Vue {
     clickEffect: boolean,
     clickMode: ClickMode
   ): void {
-    Loader.load(this.id, {
+    tsParticles.load(this.id, {
       fps_limit: 60,
       interactivity: {
-        detect_on: "canvas",
+        detect_on: InteractivityDetect.window,
         events: {
           onclick: {
             enable: clickEffect,
-            mode: clickMode
+            mode: clickMode,
           },
           onhover: {
             enable: hoverEffect,
@@ -99,77 +102,77 @@ export default class Particles extends Vue {
             parallax: {
               enable: false,
               force: 2,
-              smooth: 10
-            }
+              smooth: 10,
+            },
           },
-          resize: true
+          resize: true,
         },
         modes: {
           bubble: {
             distance: 200,
             duration: 0.4,
             opacity: 1,
-            size: 80
+            size: 80,
           },
           grab: {
             distance: 100,
             line_linked: {
-              opacity: 1
-            }
+              opacity: 1,
+            },
           },
           push: {
-            particles_nb: 4
+            particles_nb: 4,
           },
           remove: {
-            particles_nb: 2
+            particles_nb: 2,
           },
           repulse: {
             distance: 200,
-            duration: 0.4
-          }
-        }
+            duration: 0.4,
+          },
+        },
       },
       particles: {
         color: {
-          value: color
+          value: color,
         },
         line_linked: {
           enable: lineLinked,
           distance: linesDistance,
           color: linesColor,
           opacity: linesOpacity,
-          width: linesWidth
+          width: linesWidth,
         },
         move: {
           attract: {
             enable: false,
             rotateX: 3000,
-            rotateY: 3000
+            rotateY: 3000,
           },
           bounce: false,
-          direction: "none",
+          direction: MoveDirection.none,
           enable: true,
-          out_mode: "out",
+          out_mode: OutMode.out,
           random: false,
           speed: moveSpeed,
-          straight: false
+          straight: false,
         },
         number: {
           density: {
             enable: true,
-            value_area: 800
+            value_area: 800,
           },
-          value: particlesNumber
+          value: particlesNumber,
         },
         opacity: {
           anim: {
             enable: false,
             opacity_min: 0.1,
             speed: 1,
-            sync: false
+            sync: false,
           },
           random: false,
-          value: particleOpacity
+          value: particleOpacity,
         },
         shape: {
           character: {
@@ -177,35 +180,35 @@ export default class Particles extends Vue {
             font: "Verdana",
             style: "",
             value: "*",
-            weight: "400"
+            weight: "400",
           },
           image: {
             height: 100,
             replace_color: true,
             src: "",
-            width: 100
+            width: 100,
           },
           polygon: {
-            nb_sides: 5
+            nb_sides: 5,
           },
           stroke: {
             color: "#ff0000",
-            width: 0
+            width: 0,
           },
-          type: shapeType
+          type: shapeType,
         },
         size: {
           anim: {
             enable: false,
             size_min: 0.1,
             speed: 40,
-            sync: false
+            sync: false,
           },
           random: true,
-          value: particleSize
-        }
+          value: particleSize,
+        },
       },
-      retina_detect: false
+      retina_detect: false,
     });
   }
 }

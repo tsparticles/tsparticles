@@ -7195,10 +7195,10 @@ tslint@^5.20.1:
     tslib "^1.8.0"
     tsutils "^2.29.0"
 
-tsparticles@^1.11.2:
-  version "1.11.2"
-  resolved "https://registry.yarnpkg.com/tsparticles/-/tsparticles-1.11.2.tgz#ba6b5f15315a2119042e22257e66283bfadff7cb"
-  integrity sha512-MnlkkboEU/60zWyjm2Pd/FAubxVvwQmHzavlWiFXP0dlVBCKa2eymWrbPNGCzxStLlMgedJqqc32rvDuJTYBtQ==
+tsparticles@^1.12.6:
+  version "1.12.6"
+  resolved "https://registry.yarnpkg.com/tsparticles/-/tsparticles-1.12.6.tgz#c302c4b2ee3579e0472a935c9569d01824b5ee4c"
+  integrity sha512-u3qev5gPuEOOFzmBSt+XpHDGOEvE7o+qIYJPjfex9pKt+eCC41jfQTVssmrIcv393gaHyrJHwGotAXOCL0ln9w==
   dependencies:
     pathseg "^1.2.0"
 
@@ -7244,10 +7244,10 @@ typedarray@^0.0.6:
   resolved "https://registry.yarnpkg.com/typedarray/-/typedarray-0.0.6.tgz#867ac74e3864187b1d3d47d996a78ec5c8830777"
   integrity sha1-hnrHTjhkGHsdPUfZlqeOxciDB3c=
 
-typescript@~3.7.5:
-  version "3.7.5"
-  resolved "https://registry.yarnpkg.com/typescript/-/typescript-3.7.5.tgz#0692e21f65fd4108b9330238aac11dd2e177a1ae"
-  integrity sha512-/P5lkRXkWHNAbcJIiHPfRoKqyd7bsyCma1hZNUGfn20qm64T6ZBlrzprymeu918H+mB/0rIg2gGK/BXkhhYgBw==
+typescript@^3.8.3:
+  version "3.8.3"
+  resolved "https://registry.yarnpkg.com/typescript/-/typescript-3.8.3.tgz#409eb8544ea0335711205869ec458ab109ee1061"
+  integrity sha512-MYlEfn5VrLNsgudQTVJeNaQFUAI7DkhnOjdpAp4T+ku1TfQClewlbSuTVHiA+8skNBgaf02TL/kLOvig4y3G8w==
 
 uglify-js@3.4.x:
   version "3.4.10"

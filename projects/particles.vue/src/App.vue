@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <img alt="Vue logo" src="./assets/logo.png" />
-    <Particles id="tsparticles" />
+    <Particles id="tsparticles" lineLinked="true" />
   </div>
 </template>
 
@@ -11,8 +11,8 @@ import Particles from "./components/Particles.vue";
 
 @Component({
   components: {
-    Particles
-  }
+    Particles,
+  },
 })
 export default class App extends Vue {}
 </script>
@@ -25,5 +25,15 @@ export default class App extends Vue {}
   text-align: center;
   color: #2c3e50;
   margin-top: 60px;
+}
+
+#tsparticles {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: #000000;
+  z-index: -10;
 }
 </style>
