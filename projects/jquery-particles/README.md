@@ -13,7 +13,10 @@ or from jsDelivr
 [![jsDelivr](https://data.jsdelivr.com/v1/package/npm/jquery-particles/badge)](https://www.jsdelivr.com/package/npm/jquery-particles)
 
 ```html
-<script src="https://cdn.jsdelivr.net/npm/jquery-particles@1.10.4/dist/jquery.particles.min.js"></script>
+<!-- first include tsParticles -->
+<script src="https://cdn.jsdelivr.net/npm/tsparticles@1.12.7/dist/tsparticles.min.js"></script>
+<!-- then include jquery wrapper -->
+<script src="https://cdn.jsdelivr.net/npm/jquery-particles@1.12.7/dist/jquery.particles.min.js"></script>
 ```
 
 ## How to use
@@ -25,17 +28,26 @@ HTML
 ```
 
 ```javascript
-$('#tsparticles').particles().init({ /* params */ }, function (container) {
-    // container is the particles container where you can play/pause or stop/start.
-    // the container is already started, you don't need to start it manually.
-});
+$("#tsparticles")
+  .particles()
+  .init(
+    {
+      /* params */
+    },
+    function (container) {
+      // container is the particles container where you can play/pause or stop/start.
+      // the container is already started, you don't need to start it manually.
+    }
+  );
 
 // or
 
-$('#tsparticles').particles().ajax('particles.json', function (container) {
+$("#tsparticles")
+  .particles()
+  .ajax("particles.json", function (container) {
     // container is the particles container where you can play/pause or stop/start.
     // the container is already started, you don't need to start it manually.
-});
+  });
 ```
 
-*For all options you can checkout the readme [here](https://github.com/matteobruni/tsparticles/blob/master/README.md).
+\*For all options you can checkout the readme [here](https://github.com/matteobruni/tsparticles/blob/master/README.md).
