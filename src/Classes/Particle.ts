@@ -18,8 +18,6 @@ import type { IOptions } from "../Interfaces/Options/IOptions";
 import { HoverMode } from "../Enums/Modes/HoverMode";
 import { ClickMode } from "../Enums/Modes/ClickMode";
 import { RotateDirection } from "../Enums/RotateDirection";
-import type { ICharacterShape } from "../Interfaces/Options/Particles/Shape/ICharacterShape";
-import type { IPolygonShape } from "../Interfaces/Options/Particles/Shape/IPolygonShape";
 import type { IStroke } from "../Interfaces/Options/Particles/IStroke";
 import { ColorUtils } from "./Utils/ColorUtils";
 import type { IRandomSize } from "../Interfaces/Options/Particles/IRandomSize";
@@ -34,11 +32,10 @@ import type { IParticle } from "../Interfaces/IParticle";
 export class Particle implements IParticle {
     public angle: number;
     public rotateDirection: RotateDirection;
+    public randomIndexData?: number;
     public readonly fill: boolean;
     public readonly close: boolean;
     public readonly stroke: IStroke;
-    public readonly polygon?: IPolygonShape;
-    public readonly text?: string;
     public readonly size: ISize;
     public readonly initialPosition?: ICoordinates;
     public readonly position: ICoordinates;
@@ -50,7 +47,6 @@ export class Particle implements IParticle {
     public readonly velocity: IVelocity;
     public readonly shape?: ShapeType | string;
     public readonly image?: IParticleImage;
-    public readonly character?: ICharacterShape;
     public readonly initialVelocity: IVelocity;
     public readonly shapeData?: IShapeValues;
     public readonly bubble: IBubbleParticleData;
@@ -193,17 +189,6 @@ export class Particle implements IParticle {
             this.close = optionsImage.close ?? this.close;
         }
 
-        if (this.shape === ShapeType.polygon) {
-            if (options.particles.shape.polygon instanceof Array) {
-                this.polygon = Utils.itemFromArray(options.particles.shape.polygon);
-            } else {
-                this.polygon = options.particles.shape.polygon;
-            }
-
-            this.fill = this.polygon.fill ?? this.fill;
-            this.close = this.polygon.close ?? this.close;
-        }
-
         if (options.particles.stroke instanceof Array) {
             this.stroke = Utils.itemFromArray(options.particles.stroke);
         } else {
@@ -217,21 +202,6 @@ export class Particle implements IParticle {
         this.shadowColor = typeof options.particles.shadow.color === "string" ?
             ColorUtils.stringToRgb(options.particles.shadow.color) :
             ColorUtils.colorToRgb(options.particles.shadow.color);
-
-        if (this.shape === ShapeType.char || this.shape === ShapeType.character) {
-            if (options.particles.shape.character instanceof Array) {
-                this.character = Utils.itemFromArray(options.particles.shape.character);
-            } else {
-                this.character = options.particles.shape.character;
-            }
-
-            const value = this.character.value;
-
-            this.text = value instanceof Array ? Utils.itemFromArray(value) : value;
-
-            this.fill = this.character.fill ?? this.fill;
-            this.close = this.character.close ?? this.close;
-        }
 
         const shapeData = options.particles.shape.custom[this.shape];
 

@@ -8,7 +8,6 @@ import { Particles } from "./Particles";
 import { Retina } from "./Retina";
 import { ShapeType } from "../Enums/ShapeType";
 import { PolygonMask } from "./PolygonMask";
-import { ImageShape } from "./Options/Particles/Shape/ImageShape";
 import type { IOptions } from "../Interfaces/Options/IOptions";
 import { FrameManager } from "./FrameManager";
 import type { RecursivePartial } from "../Types/RecursivePartial";
@@ -173,10 +172,14 @@ export class Container {
         return JSON.stringify(this.options, undefined, 2);
     }
 
-    public loadImage(image: IImage, optionsImage: ImageShape): Promise<void> {
-        return new Promise((resolve: (value?: void | PromiseLike<void> | undefined) => void,
+    public loadImage(optionsImage: IImageShape): Promise<IImage> {
+        return new Promise((resolve: (value?: IImage | PromiseLike<IImage> | undefined) => void,
             reject: (reson?: any) => void) => {
-            image.error = false;
+            const src = optionsImage.src;
+
+            const image: IImage = {
+                type: src.substr(src.length - 3)
+            };
 
             if (optionsImage.src) {
                 const img = new Image();
@@ -184,19 +187,15 @@ export class Container {
                 img.addEventListener("load", () => {
                     image.obj = img;
 
-                    resolve();
+                    resolve(image);
                 });
 
                 img.addEventListener("error", () => {
-                    image.error = true;
-
                     reject(`Error tsParticles - loading image: ${optionsImage.src}`);
                 });
 
                 img.src = optionsImage.src;
             } else {
-                image.error = true;
-
                 reject("Error tsParticles - No image.src");
             }
         });
@@ -262,14 +261,10 @@ export class Container {
     }
 
     private async loadImageShape(imageShape: IImageShape): Promise<void> {
-        const src = imageShape.src;
-        const image: IImage = { error: false };
-
-        image.type = src.substr(src.length - 3);
-
-        await this.loadImage(image, imageShape);
-
-        this.images.push(image);
+        try {
+            this.images.push(await this.loadImage(imageShape));
+        } catch {
+        }
     }
 
     private init(): void {
@@ -282,7 +277,7 @@ export class Container {
 
     private checkBeforeDraw(): void {
         if (this.options.particles.shape.type === ShapeType.image) {
-            if (this.images.every((img) => img.error)) {
+            if (!this.images.length) {
                 return;
             }
         }

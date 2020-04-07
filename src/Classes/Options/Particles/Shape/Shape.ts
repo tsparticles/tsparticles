@@ -43,14 +43,37 @@ export class Shape implements IShape {
     set stroke(value: SingleOrMultiple<IStroke>) {
     }
 
-    public character: SingleOrMultiple<ICharacterShape>;
+    /**
+     * @deprecated this property was integrated in custom shape management
+     */
+    get character(): SingleOrMultiple<ICharacterShape> {
+        return [];
+    }
+
+    /**
+     * @deprecated this property was integrated in custom shape management
+     */
+    set character(value: SingleOrMultiple<ICharacterShape>) {
+    }
+
+    /**
+     * @deprecated this property was integrated in custom shape management
+     */
+    get polygon(): SingleOrMultiple<IPolygonShape> {
+        return [];
+    }
+
+    /**
+     * @deprecated this property was integrated in custom shape management
+     */
+    set polygon(value: SingleOrMultiple<IPolygonShape>) {
+    }
+
     public image: SingleOrMultiple<IImageShape>;
-    public polygon: SingleOrMultiple<IPolygonShape>;
     public type: SingleOrMultiple<ShapeType | string>;
     public custom: ShapeData;
 
     constructor() {
-        this.character = new CharacterShape();
         this.image = new ImageShape();
         this.polygon = new PolygonShape();
         this.type = ShapeType.circle;
@@ -59,7 +82,7 @@ export class Shape implements IShape {
 
     public load(data?: RecursivePartial<IShape>): void {
         if (data !== undefined) {
-            if (data.custom !== undefined)
+            if (data.custom !== undefined) {
                 for (const customShape in data.custom) {
                     const item = data.custom[customShape];
                     if (item !== undefined) {
@@ -72,22 +95,41 @@ export class Shape implements IShape {
                         }
                     }
                 }
+            }
 
             if (data.character !== undefined) {
-                if (data.character instanceof Array) {
-                    this.character = data.character.map((s) => {
-                        const tmp = new CharacterShape();
+                const item = data.character;
+                if (item !== undefined) {
+                    if (item instanceof Array) {
+                        this.custom[ShapeType.character] = item.filter(t => t !== undefined).map((s) => {
+                            return s!;
+                        });
 
-                        tmp.load(s);
-
-                        return tmp;
-                    });
-                } else {
-                    if (this.character instanceof Array) {
-                        this.character = new CharacterShape();
+                        this.custom[ShapeType.char] = item.filter(t => t !== undefined).map((s) => {
+                            return s!;
+                        });
+                    } else {
+                        this.custom[ShapeType.character] = item;
+                        this.custom[ShapeType.char] = item;
                     }
+                }
+            }
 
-                    this.character.load(data.character);
+            if (data.polygon !== undefined) {
+                const item = data.polygon;
+                if (item !== undefined) {
+                    if (item instanceof Array) {
+                        this.custom[ShapeType.polygon] = item.filter(t => t !== undefined).map((s) => {
+                            return s!;
+                        });
+
+                        this.custom[ShapeType.star] = item.filter(t => t !== undefined).map((s) => {
+                            return s!;
+                        });
+                    } else {
+                        this.custom[ShapeType.polygon] = item;
+                        this.custom[ShapeType.star] = item;
+                    }
                 }
             }
 
@@ -106,24 +148,6 @@ export class Shape implements IShape {
                     }
 
                     this.image.load(data.image);
-                }
-            }
-
-            if (data.polygon !== undefined) {
-                if (data.polygon instanceof Array) {
-                    this.polygon = data.polygon.map((s) => {
-                        const tmp = new PolygonShape();
-
-                        tmp.load(s);
-
-                        return tmp;
-                    });
-                } else {
-                    if (this.polygon instanceof Array) {
-                        this.polygon = new PolygonShape();
-                    }
-
-                    this.polygon.load(data.polygon);
                 }
             }
 

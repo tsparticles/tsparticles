@@ -15,7 +15,7 @@ import { LineDrawer } from "./Classes/ShapeDrawers/LineDrawer";
 import { CircleDrawer } from "./Classes/ShapeDrawers/CircleDrawer";
 import { SquareDrawer } from "./Classes/ShapeDrawers/SquareDrawer";
 import { TriangleDrawer } from "./Classes/ShapeDrawers/TriangleDrawer";
-import { StartDrawer } from "./Classes/ShapeDrawers/StarDrawer";
+import { StartDrawer as StarDrawer } from "./Classes/ShapeDrawers/StarDrawer";
 import { PolygonDrawer } from "./Classes/ShapeDrawers/PolygonDrawer";
 import { TextDrawer } from "./Classes/ShapeDrawers/TextDrawer";
 import { ImageDrawer } from "./Classes/ShapeDrawers/ImageDrawer";
@@ -81,7 +81,7 @@ class Main {
         CanvasUtils.addShapeDrawer(ShapeType.edge, squareDrawer);
         CanvasUtils.addShapeDrawer(ShapeType.square, squareDrawer);
         CanvasUtils.addShapeDrawer(ShapeType.triangle, new TriangleDrawer());
-        CanvasUtils.addShapeDrawer(ShapeType.star, new StartDrawer());
+        CanvasUtils.addShapeDrawer(ShapeType.star, new StarDrawer());
         CanvasUtils.addShapeDrawer(ShapeType.polygon, new PolygonDrawer());
         CanvasUtils.addShapeDrawer(ShapeType.char, textDrawer);
         CanvasUtils.addShapeDrawer(ShapeType.character, textDrawer);

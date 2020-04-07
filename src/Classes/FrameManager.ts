@@ -25,7 +25,7 @@ export class FrameManager {
 
         container.lastFrameTime = timestamp;
 
-        if (options.particles.shape.type === ShapeType.image && container.images.every((img) => img.error)) {
+        if (options.particles.shape.type === ShapeType.image && !container.images.length) {
             return;
         }
 

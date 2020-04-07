@@ -13,13 +13,13 @@ import type { IShapeValues } from "./Options/Particles/Shape/IShapeValues";
 import type { IBubbleParticleData } from "./IBubbleParticleData";
 
 export interface IParticle {
+    randomIndexData?: number;
+
     readonly angle: number;
     readonly rotateDirection: RotateDirection;
     readonly fill: boolean;
     readonly close: boolean;
     readonly stroke: IStroke;
-    readonly polygon?: IPolygonShape;
-    readonly text?: string;
     readonly size: ISize;
     readonly initialPosition?: ICoordinates;
     readonly position: ICoordinates;
@@ -31,8 +31,7 @@ export interface IParticle {
     readonly velocity: IVelocity;
     readonly shape?: ShapeType | string;
     readonly image?: IParticleImage;
-    readonly character?: ICharacterShape;
     readonly initialVelocity: IVelocity;
-    readonly customShape?: IShapeValues;
+    readonly shapeData?: IShapeValues;
     readonly bubble: IBubbleParticleData;
 }

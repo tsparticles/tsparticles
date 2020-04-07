@@ -29,7 +29,7 @@ module.exports = {
         minimizer: [
             new TerserPlugin({
                 include: /\.min\.js$/,
-                sourceMap: true
+                sourceMap: false
             })
         ]
     }
