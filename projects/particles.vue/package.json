@@ -1,14 +1,13 @@
 {
   "name": "particles.vue",
-  "version": "0.1.0",
-  "private": true,
+  "version": "1.12.7",
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build"
   },
   "dependencies": {
     "core-js": "^3.6.4",
-    "tsparticles": "^1.12.6",
+    "tsparticles": "^1.12.7",
     "vue": "^2.6.11",
     "vue-class-component": "^7.2.2",
     "vue-property-decorator": "^8.3.0"
