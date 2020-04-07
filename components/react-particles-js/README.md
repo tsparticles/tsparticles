@@ -5,7 +5,7 @@
   [hyperlink]: https://rpj.bembi.org
   [image]: https://raw.githubusercontent.com/wufe/react-particles-js/master/img/particles.png (Particles)
 
-Particles React component, using [tsparticles](https://github.com/matteobruni/tsparticles).
+Particles React component, using [tsParticles](https://github.com/matteobruni/tsparticles).
 
 Checkout the [demo page](https://rpj.bembi.org).
 
@@ -47,7 +47,7 @@ class App extends Component{
 | className | string | The class name of the canvas wrapper. |
 | canvasClassName | string | the class name of the canvas. |
 
-Find your parameters configuration [here](http://vincentgarreau.com/particles.js/).
+Find your parameters configuration [here](https://particles.matteobruni.it).
 
 ---
 
@@ -202,7 +202,7 @@ class App extends Component{
 
 ## Info and Major changes
 
-Starting with v3.0.0 the react-particles-js library has switched its core functionality using [tsparticles](https://github.com/matteobruni/tsparticles).
+Starting with v3.0.0 the react-particles-js library has switched its core functionality using [tsParticles](https://github.com/matteobruni/tsparticles).
 This may introduce breaking changes but will allow the library be maintained more frequently.
 
 ---
