@@ -379,6 +379,14 @@ const tsParticles = require('tsparticles');
 import { tsParticles } from 'tsparticles';
 ```
 
+### React.js
+
+**tsParticles ❤️ react-particles-js**
+
+Starting from [react-particles-js](https://github.com/Wufe/react-particles-js) version 3.0.0 it has added tsParticles as a dependency.
+
+You can follow the instructions [here](https://github.com/Wufe/react-particles-js/blob/master/README.md) to install `react-particles-js` and use all the information in this readme to configure the particles.
+
 ---
 
 ### **_Demo / Generator_**

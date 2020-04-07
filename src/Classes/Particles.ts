@@ -64,12 +64,6 @@ export class Particles {
     }
 
     public update(delta: number): void {
-        const container = this.container;
-
-        for (const p of this.array) {
-            container.spatialMap.addParticle(p);
-        }
-
         for (let i = 0; i < this.array.length; i++) {
             /* the particle */
             const p = this.array[i];

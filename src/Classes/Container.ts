@@ -16,7 +16,6 @@ import { Options } from "./Options/Options";
 import { Utils } from "./Utils/Utils";
 import type { IImageShape } from "../Interfaces/Options/Particles/Shape/IImageShape";
 import { Presets } from "./Utils/Presets";
-import { SpatialMap } from "./Utils/SpatialMap";
 
 /**
  * The object loaded into an HTML element, it'll contain options loaded and all data to let everything working
@@ -24,7 +23,6 @@ import { SpatialMap } from "./Utils/SpatialMap";
 export class Container {
     public readonly sourceOptions?: RecursivePartial<IOptions>;
     public readonly id: string;
-    public readonly spatialMap: SpatialMap;
     public interactivity: IContainerInteractivity;
     public options: IOptions;
     public retina: Retina;
@@ -59,7 +57,6 @@ export class Container {
         this.sourceOptions = params;
         this.lastFrameTime = 0;
         this.pageHidden = false;
-        this.spatialMap = new SpatialMap(50);
         this.retina = new Retina(this);
         this.canvas = new Canvas(this);
         this.particles = new Particles(this);

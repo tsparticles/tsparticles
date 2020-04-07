@@ -31,8 +31,6 @@ export class FrameManager {
 
         container.particles.draw(delta);
 
-        container.spatialMap.clear();
-
         if (!options.particles.move.enable) {
             container.pause();
         } else {
