@@ -1,11 +1,3 @@
-/* -----------------------------------------------
-/* Author : Matteo Bruni - https://www.matteobruni.it
-/* MIT license: https://opensource.org/licenses/MIT
-/* Demo / Generator : https://particles.matteobruni.it/
-/* GitHub : https://www.github.com/matteobruni/tsparticles
-/* How to use? : Check the GitHub README
-/* v1.13.0
-/* ----------------------------------------------- */
 import type { Container } from "./Classes/Container";
 import { Loader } from "./Classes/Loader";
 import type { IOptions } from "./Interfaces/Options/IOptions";
