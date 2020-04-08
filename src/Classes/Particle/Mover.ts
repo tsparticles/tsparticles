@@ -1,7 +1,7 @@
-import { Utils } from "../Utils/Utils";
-import type { Container } from "../Container";
-import { HoverMode } from "../../Enums/Modes/HoverMode";
-import type { IParticle } from "../../Interfaces/IParticle";
+import {Utils} from "../Utils/Utils";
+import type {Container} from "../Container";
+import {HoverMode} from "../../Enums/Modes/HoverMode";
+import type {IParticle} from "../../Interfaces/IParticle";
 
 export class Mover {
     private readonly container: Container;
@@ -40,7 +40,7 @@ export class Mover {
 
         const particle = this.particle;
         const parallaxForce = options.interactivity.events.onHover.parallax.force;
-        const mousePos = container.interactivity.mouse.position || { x: 0, y: 0 };
+        const mousePos = container.interactivity.mouse.position || {x: 0, y: 0};
         const windowDimension = {
             height: window.innerHeight / 2,
             width: window.innerWidth / 2,

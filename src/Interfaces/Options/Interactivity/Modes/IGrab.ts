@@ -1,5 +1,5 @@
-import type { IGrabLineLinked } from "./IGrabLineLinked";
-import type { IOptionLoader } from "../../IOptionLoader";
+import type {IGrabLineLinked} from "./IGrabLineLinked";
+import type {IOptionLoader} from "../../IOptionLoader";
 
 export interface IGrab extends IOptionLoader<IGrab> {
     distance: number;

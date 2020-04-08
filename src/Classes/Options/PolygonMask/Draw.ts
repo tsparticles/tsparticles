@@ -1,10 +1,8 @@
-import type { IPolygonMaskDraw } from "../../../Interfaces/Options/PolygonMask/IPolygonMaskDraw";
-import type { IPolygonMaskDrawStroke } from "../../../Interfaces/Options/PolygonMask/IPolygonMaskDrawStroke";
-import { PolygonMaskDrawStroke } from "./PolygonMaskDrawStroke";
-import type { RecursivePartial } from "../../../Types/RecursivePartial";
-import type { IColor } from "../../../Interfaces/Options/Particles/IColor";
-import { Stroke } from "../Particles/Stroke";
-import { IStroke } from "../../../Interfaces/Options/Particles/IStroke";
+import type {IPolygonMaskDraw} from "../../../Interfaces/Options/PolygonMask/IPolygonMaskDraw";
+import type {IPolygonMaskDrawStroke} from "../../../Interfaces/Options/PolygonMask/IPolygonMaskDrawStroke";
+import {PolygonMaskDrawStroke} from "./PolygonMaskDrawStroke";
+import type {RecursivePartial} from "../../../Types/RecursivePartial";
+import type {IColor} from "../../../Interfaces/Options/Particles/IColor";
 
 export class Draw implements IPolygonMaskDraw {
     /**

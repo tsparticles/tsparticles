@@ -1,11 +1,11 @@
-import type { Container } from "../Container";
-import type { IBubblerProcessParam } from "../../Interfaces/IBubblerProcessParam";
-import { ProcessBubbleType } from "../../Enums/ProcessBubbleType";
-import { Utils } from "../Utils/Utils";
-import { HoverMode } from "../../Enums/Modes/HoverMode";
-import { ClickMode } from "../../Enums/Modes/ClickMode";
-import { Constants } from "../Utils/Constants";
-import type { IParticle } from "../../Interfaces/IParticle";
+import type {Container} from "../Container";
+import type {IBubblerProcessParam} from "../../Interfaces/IBubblerProcessParam";
+import {ProcessBubbleType} from "../../Enums/ProcessBubbleType";
+import {Utils} from "../Utils/Utils";
+import {HoverMode} from "../../Enums/Modes/HoverMode";
+import {ClickMode} from "../../Enums/Modes/ClickMode";
+import {Constants} from "../Utils/Constants";
+import type {IParticle} from "../../Interfaces/IParticle";
 
 /**
  * Particle bubble manager
@@ -97,7 +97,7 @@ export class Bubbler {
         const particle = this.particle;
 
         /* on click event */
-        const mouseClickPos = container.interactivity.mouse.clickPosition || { x: 0, y: 0 };
+        const mouseClickPos = container.interactivity.mouse.clickPosition || {x: 0, y: 0};
         const distMouse = Utils.getDistanceBetweenCoordinates(particle.position, mouseClickPos);
         const timeSpent = (new Date().getTime() - (container.interactivity.mouse.clickTime || 0)) / 1000;
 

@@ -1,5 +1,5 @@
-import type { IOptionLoader } from "../../IOptionLoader";
-import type { IShapeValues } from "./IShapeValues";
+import type {IOptionLoader} from "../../IOptionLoader";
+import type {IShapeValues} from "./IShapeValues";
 
 export interface IPolygonShape extends IShapeValues, IOptionLoader<IPolygonShape> {
     /**

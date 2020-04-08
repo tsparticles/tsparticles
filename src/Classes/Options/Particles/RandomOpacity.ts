@@ -1,5 +1,5 @@
-import type { RecursivePartial } from "../../../Types/RecursivePartial";
-import type { IRandomOpacity } from "../../../Interfaces/Options/Particles/IRandomOpacity";
+import type {RecursivePartial} from "../../../Types/RecursivePartial";
+import type {IRandomOpacity} from "../../../Interfaces/Options/Particles/IRandomOpacity";
 
 export class RandomOpacity implements IRandomOpacity {
     public enable: boolean;

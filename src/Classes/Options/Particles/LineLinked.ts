@@ -1,9 +1,9 @@
-import type { ILineLinked } from "../../../Interfaces/Options/Particles/ILineLinked";
-import type { ILineLinkedShadow } from "../../../Interfaces/Options/Particles/ILineLinkedShadow";
-import { LineLinkedShadow } from "./LineLinkedShadow";
-import type { RecursivePartial } from "../../../Types/RecursivePartial";
-import type { IColor } from "../../../Interfaces/Options/Particles/IColor";
-import { Color } from "./Color";
+import type {ILineLinked} from "../../../Interfaces/Options/Particles/ILineLinked";
+import type {ILineLinkedShadow} from "../../../Interfaces/Options/Particles/ILineLinkedShadow";
+import {LineLinkedShadow} from "./LineLinkedShadow";
+import type {RecursivePartial} from "../../../Types/RecursivePartial";
+import type {IColor} from "../../../Interfaces/Options/Particles/IColor";
+import {Color} from "./Color";
 
 export class LineLinked implements ILineLinked {
     public blink: boolean;

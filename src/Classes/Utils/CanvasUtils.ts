@@ -1,19 +1,19 @@
-import type { IDimension } from "../../Interfaces/IDimension";
-import type { ICoordinates } from "../../Interfaces/ICoordinates";
-import type { IRgb } from "../../Interfaces/IRgb";
-import type { ILineLinkedShadow } from "../../Interfaces/Options/Particles/ILineLinkedShadow";
-import type { IPolygonMaskDrawStroke } from "../../Interfaces/Options/PolygonMask/IPolygonMaskDrawStroke";
-import { ColorUtils } from "./ColorUtils";
-import type { IParticle } from "../../Interfaces/IParticle";
-import type { IShadow } from "../../Interfaces/Options/Particles/IShadow";
-import type { IShapeDrawer } from "../../Interfaces/IShapeDrawer";
+import type {IDimension} from "../../Interfaces/IDimension";
+import type {ICoordinates} from "../../Interfaces/ICoordinates";
+import type {IRgb} from "../../Interfaces/IRgb";
+import type {ILineLinkedShadow} from "../../Interfaces/Options/Particles/ILineLinkedShadow";
+import type {IPolygonMaskDrawStroke} from "../../Interfaces/Options/PolygonMask/IPolygonMaskDrawStroke";
+import {ColorUtils} from "./ColorUtils";
+import type {IParticle} from "../../Interfaces/IParticle";
+import type {IShadow} from "../../Interfaces/Options/Particles/IShadow";
+import type {IShapeDrawer} from "../../Interfaces/IShapeDrawer";
 
 export class CanvasUtils {
     private static readonly drawers: { [type: string]: IShapeDrawer } = {};
 
     public static paintBase(context: CanvasRenderingContext2D,
-        dimension: IDimension,
-        baseColor?: string): void {
+                            dimension: IDimension,
+                            baseColor?: string): void {
         context.save();
         context.fillStyle = baseColor ?? "rgba(0,0,0,0)";
         context.fillRect(0, 0, dimension.width, dimension.height);
@@ -25,8 +25,8 @@ export class CanvasUtils {
     }
 
     public static drawPolygonMask(context: CanvasRenderingContext2D,
-        rawData: ICoordinates[],
-        stroke: IPolygonMaskDrawStroke): void {
+                                  rawData: ICoordinates[],
+                                  stroke: IPolygonMaskDrawStroke): void {
         const color = typeof stroke.color === "string" ?
             ColorUtils.stringToRgb(stroke.color) :
             ColorUtils.colorToRgb(stroke.color);
@@ -66,13 +66,13 @@ export class CanvasUtils {
     }
 
     public static drawLineLinked(context: CanvasRenderingContext2D,
-        width: number,
-        begin: ICoordinates,
-        end: ICoordinates,
-        backgroundMask: boolean,
-        colorLine: IRgb,
-        opacity: number,
-        shadow: ILineLinkedShadow): void {
+                                 width: number,
+                                 begin: ICoordinates,
+                                 end: ICoordinates,
+                                 backgroundMask: boolean,
+                                 colorLine: IRgb,
+                                 opacity: number,
+                                 shadow: ILineLinkedShadow): void {
         context.save();
 
         if (backgroundMask) {
@@ -80,7 +80,7 @@ export class CanvasUtils {
         }
 
         if (colorLine) {
-            context.strokeStyle = ColorUtils.getStyleFromColor(colorLine, opacity);;
+            context.strokeStyle = ColorUtils.getStyleFromColor(colorLine, opacity);
         }
 
         context.lineWidth = width;
@@ -105,10 +105,10 @@ export class CanvasUtils {
     }
 
     public static drawConnectLine(context: CanvasRenderingContext2D,
-        width: number,
-        lineStyle: CanvasGradient,
-        begin: ICoordinates,
-        end: ICoordinates): void {
+                                  width: number,
+                                  lineStyle: CanvasGradient,
+                                  begin: ICoordinates,
+                                  end: ICoordinates): void {
         context.save();
         context.beginPath();
         context.lineWidth = width;
@@ -121,10 +121,10 @@ export class CanvasUtils {
     }
 
     public static gradient(context: CanvasRenderingContext2D,
-        p1: IParticle,
-        p2: IParticle,
-        midColor: IRgb,
-        opacity: number): CanvasGradient | undefined {
+                           p1: IParticle,
+                           p2: IParticle,
+                           midColor: IRgb,
+                           opacity: number): CanvasGradient | undefined {
         const gradStop = Math.floor(p2.size.value / p1.size.value);
 
         if (!p1.color || !p2.color) {
@@ -143,11 +143,11 @@ export class CanvasUtils {
     }
 
     public static drawGrabLine(context: CanvasRenderingContext2D,
-        width: number,
-        begin: ICoordinates,
-        end: ICoordinates,
-        colorLine: IRgb,
-        opacity: number): void {
+                               width: number,
+                               begin: ICoordinates,
+                               end: ICoordinates,
+                               colorLine: IRgb,
+                               opacity: number): void {
         context.save();
         context.strokeStyle = ColorUtils.getStyleFromColor(colorLine, opacity);
         context.lineWidth = width;
@@ -160,12 +160,12 @@ export class CanvasUtils {
     }
 
     public static drawParticle(context: CanvasRenderingContext2D,
-        particle: IParticle,
-        colorValue: string,
-        backgroundMask: boolean,
-        radius: number,
-        opacity: number,
-        shadow: IShadow): void {
+                               particle: IParticle,
+                               colorValue: string,
+                               backgroundMask: boolean,
+                               radius: number,
+                               opacity: number,
+                               shadow: IShadow): void {
         context.save();
         const shadowColor = particle.shadowColor;
 
@@ -225,9 +225,9 @@ export class CanvasUtils {
     }
 
     public static drawShape(context: CanvasRenderingContext2D,
-        particle: IParticle,
-        radius: number,
-        opacity: number): void {
+                            particle: IParticle,
+                            radius: number,
+                            opacity: number): void {
 
         if (!particle.shape) {
             return;

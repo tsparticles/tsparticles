@@ -1,7 +1,7 @@
-import type { IBackground } from "../../../Interfaces/Options/Background/IBackground";
-import type { RecursivePartial } from "../../../Types/RecursivePartial";
-import { Color } from "../Particles/Color";
-import type { IColor } from "../../../Interfaces/Options/Particles/IColor";
+import type {IBackground} from "../../../Interfaces/Options/Background/IBackground";
+import type {RecursivePartial} from "../../../Types/RecursivePartial";
+import {Color} from "../Particles/Color";
+import type {IColor} from "../../../Interfaces/Options/Particles/IColor";
 
 export class Background implements IBackground {
     public color?: IColor | string;

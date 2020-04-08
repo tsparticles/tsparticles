@@ -1,7 +1,7 @@
-import type { IColor } from "../../../Interfaces/Options/Particles/IColor";
-import type { RecursivePartial } from "../../../Types/RecursivePartial";
-import { Color } from "../Particles/Color";
-import type { IBackgroundMaskCover } from "../../../Interfaces/Options/BackgroundMask/IBackgroundMaskCover";
+import type {IColor} from "../../../Interfaces/Options/Particles/IColor";
+import type {RecursivePartial} from "../../../Types/RecursivePartial";
+import {Color} from "../Particles/Color";
+import type {IBackgroundMaskCover} from "../../../Interfaces/Options/BackgroundMask/IBackgroundMaskCover";
 
 export class BackgroundMaskCover implements IBackgroundMaskCover {
     public color: IColor;

@@ -1,5 +1,5 @@
-import type { IOpacityAnimation } from "../../../Interfaces/Options/Particles/IOpacityAnimation";
-import type { RecursivePartial } from "../../../Types/RecursivePartial";
+import type {IOpacityAnimation} from "../../../Interfaces/Options/Particles/IOpacityAnimation";
+import type {RecursivePartial} from "../../../Types/RecursivePartial";
 
 export class OpacityAnimation implements IOpacityAnimation {
     /**

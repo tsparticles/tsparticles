@@ -1,12 +1,6 @@
-import type { IImageShape } from "../../../../Interfaces/Options/Particles/Shape/IImageShape";
-import type { RecursivePartial } from "../../../../Types/RecursivePartial";
-import { Color } from "../Color";
-import { Opacity } from "../Opacity";
-import { Rotate } from "../Rotate";
-import { ParticlesSize } from "../ParticlesSize";
-import { Shadow } from "../Shadow";
-import { Stroke } from "../Stroke";
-import { ShapeBase } from "./ShapeBase";
+import type {IImageShape} from "../../../../Interfaces/Options/Particles/Shape/IImageShape";
+import type {RecursivePartial} from "../../../../Types/RecursivePartial";
+import {ShapeBase} from "./ShapeBase";
 
 export class ImageShape extends ShapeBase implements IImageShape {
     /**

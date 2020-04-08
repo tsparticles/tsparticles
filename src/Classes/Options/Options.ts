@@ -1,16 +1,16 @@
-import type { IOptions } from "../../Interfaces/Options/IOptions";
-import { Interactivity } from "./Interactivity/Interactivity";
-import { Particles } from "./Particles/Particles";
-import { PolygonMask } from "./PolygonMask/PolygonMask";
-import type { IInteractivity } from "../../Interfaces/Options/Interactivity/IInteractivity";
-import type { IParticles } from "../../Interfaces/Options/Particles/IParticles";
-import type { IPolygonMask } from "../../Interfaces/Options/PolygonMask/IPolygonMask";
-import type { IBackgroundMask } from "../../Interfaces/Options/BackgroundMask/IBackgroundMask";
-import { BackgroundMask } from "./BackgroundMask/BackgroundMask";
-import type { RecursivePartial } from "../../Types/RecursivePartial";
-import { Presets } from "../Utils/Presets";
-import type { IBackground } from "../../Interfaces/Options/Background/IBackground";
-import { Background } from "./Background/Background";
+import type {IOptions} from "../../Interfaces/Options/IOptions";
+import {Interactivity} from "./Interactivity/Interactivity";
+import {Particles} from "./Particles/Particles";
+import {PolygonMask} from "./PolygonMask/PolygonMask";
+import type {IInteractivity} from "../../Interfaces/Options/Interactivity/IInteractivity";
+import type {IParticles} from "../../Interfaces/Options/Particles/IParticles";
+import type {IPolygonMask} from "../../Interfaces/Options/PolygonMask/IPolygonMask";
+import type {IBackgroundMask} from "../../Interfaces/Options/BackgroundMask/IBackgroundMask";
+import {BackgroundMask} from "./BackgroundMask/BackgroundMask";
+import type {RecursivePartial} from "../../Types/RecursivePartial";
+import {Presets} from "../Utils/Presets";
+import type {IBackground} from "../../Interfaces/Options/Background/IBackground";
+import {Background} from "./Background/Background";
 
 export class Options implements IOptions {
     /**

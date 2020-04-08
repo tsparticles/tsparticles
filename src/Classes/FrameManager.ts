@@ -1,5 +1,5 @@
-import type { Container } from "./Container";
-import { ShapeType } from "../Enums/ShapeType";
+import type {Container} from "./Container";
+import {ShapeType} from "../Enums/ShapeType";
 
 export class FrameManager {
     private readonly container: Container;

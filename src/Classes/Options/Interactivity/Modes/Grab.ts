@@ -1,7 +1,7 @@
-import type { IGrab } from "../../../../Interfaces/Options/Interactivity/Modes/IGrab";
-import type { IGrabLineLinked } from "../../../../Interfaces/Options/Interactivity/Modes/IGrabLineLinked";
-import { GrabLineLinked } from "./GrabLineLinked";
-import type { RecursivePartial } from "../../../../Types/RecursivePartial";
+import type {IGrab} from "../../../../Interfaces/Options/Interactivity/Modes/IGrab";
+import type {IGrabLineLinked} from "../../../../Interfaces/Options/Interactivity/Modes/IGrabLineLinked";
+import {GrabLineLinked} from "./GrabLineLinked";
+import type {RecursivePartial} from "../../../../Types/RecursivePartial";
 
 export class Grab implements IGrab {
     /**

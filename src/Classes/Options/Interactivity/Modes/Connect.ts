@@ -1,7 +1,7 @@
-import type { IConnect } from "../../../../Interfaces/Options/Interactivity/Modes/IConnect";
-import { ConnectLineLinked } from "./ConnectLineLinked";
-import type { IConnectLineLinked } from "../../../../Interfaces/Options/Interactivity/Modes/IConnectLineLinked";
-import type { RecursivePartial } from "../../../../Types/RecursivePartial";
+import type {IConnect} from "../../../../Interfaces/Options/Interactivity/Modes/IConnect";
+import {ConnectLineLinked} from "./ConnectLineLinked";
+import type {IConnectLineLinked} from "../../../../Interfaces/Options/Interactivity/Modes/IConnectLineLinked";
+import type {RecursivePartial} from "../../../../Types/RecursivePartial";
 
 export class Connect implements IConnect {
     /**

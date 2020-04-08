@@ -1,6 +1,6 @@
-import type { ISizeAnimation } from "./ISizeAnimation";
-import type { IOptionLoader } from "../IOptionLoader";
-import { IRandomSize } from "./IRandomSize";
+import type {ISizeAnimation} from "./ISizeAnimation";
+import type {IOptionLoader} from "../IOptionLoader";
+import {IRandomSize} from "./IRandomSize";
 
 export interface ISize extends IOptionLoader<ISize> {
     /**

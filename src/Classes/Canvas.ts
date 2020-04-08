@@ -1,14 +1,14 @@
-import { Constants } from "./Utils/Constants";
-import type { Container } from "./Container";
-import type { IDimension } from "../Interfaces/IDimension";
-import { Utils } from "./Utils/Utils";
-import type { IRgb } from "../Interfaces/IRgb";
-import type { ICoordinates } from "../Interfaces/ICoordinates";
-import { CanvasUtils } from "./Utils/CanvasUtils";
-import { ColorUtils } from "./Utils/ColorUtils";
-import type { IColor } from "../Interfaces/Options/Particles/IColor";
-import type { IBackgroundMaskCover } from "../Interfaces/Options/BackgroundMask/IBackgroundMaskCover";
-import type { IParticle } from "../Interfaces/IParticle";
+import {Constants} from "./Utils/Constants";
+import type {Container} from "./Container";
+import type {IDimension} from "../Interfaces/IDimension";
+import {Utils} from "./Utils/Utils";
+import type {IRgb} from "../Interfaces/IRgb";
+import type {ICoordinates} from "../Interfaces/ICoordinates";
+import {CanvasUtils} from "./Utils/CanvasUtils";
+import {ColorUtils} from "./Utils/ColorUtils";
+import type {IColor} from "../Interfaces/Options/Particles/IColor";
+import type {IBackgroundMaskCover} from "../Interfaces/Options/BackgroundMask/IBackgroundMaskCover";
+import type {IParticle} from "../Interfaces/IParticle";
 
 /**
  * Canvas manager
@@ -252,7 +252,7 @@ export class Canvas {
 
         container.particles.lineLinkedColor = lineColor;
 
-        let colorLine: IRgb = { r: 127, g: 127, b: 127 };
+        let colorLine: IRgb = {r: 127, g: 127, b: 127};
         const ctx = container.canvas.context;
 
         if (!ctx) {

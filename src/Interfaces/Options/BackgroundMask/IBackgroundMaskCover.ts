@@ -1,5 +1,5 @@
-import type { IOptionLoader } from "../IOptionLoader";
-import type { IColor } from "../Particles/IColor";
+import type {IOptionLoader} from "../IOptionLoader";
+import type {IColor} from "../Particles/IColor";
 
 export interface IBackgroundMaskCover extends IOptionLoader<IBackgroundMaskCover> {
     color: IColor;

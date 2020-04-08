@@ -1,7 +1,7 @@
-import type { IShapeDrawer } from "../../Interfaces/IShapeDrawer";
-import type { IParticle } from "../../Interfaces/IParticle";
-import { Utils } from "../Utils/Utils";
-import type { ICharacterShape } from "../../Interfaces/Options/Particles/Shape/ICharacterShape";
+import type {IShapeDrawer} from "../../Interfaces/IShapeDrawer";
+import type {IParticle} from "../../Interfaces/IParticle";
+import {Utils} from "../Utils/Utils";
+import type {ICharacterShape} from "../../Interfaces/Options/Particles/Shape/ICharacterShape";
 
 interface ITextParticle extends IParticle {
     text?: string;

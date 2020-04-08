@@ -1,7 +1,7 @@
-import type { ICharacterShape } from "../../../../Interfaces/Options/Particles/Shape/ICharacterShape";
-import type { RecursivePartial } from "../../../../Types/RecursivePartial";
-import { ShapeBase } from "./ShapeBase";
-import type { SingleOrMultiple } from "../../../../Types/SingleOrMultiple";
+import type {ICharacterShape} from "../../../../Interfaces/Options/Particles/Shape/ICharacterShape";
+import type {RecursivePartial} from "../../../../Types/RecursivePartial";
+import {ShapeBase} from "./ShapeBase";
+import type {SingleOrMultiple} from "../../../../Types/SingleOrMultiple";
 
 export class CharacterShape extends ShapeBase implements ICharacterShape {
     public font: string;

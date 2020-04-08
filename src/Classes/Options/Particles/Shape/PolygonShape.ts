@@ -1,6 +1,6 @@
-import type { IPolygonShape } from "../../../../Interfaces/Options/Particles/Shape/IPolygonShape";
-import type { RecursivePartial } from "../../../../Types/RecursivePartial";
-import { ShapeBase } from "./ShapeBase";
+import type {IPolygonShape} from "../../../../Interfaces/Options/Particles/Shape/IPolygonShape";
+import type {RecursivePartial} from "../../../../Types/RecursivePartial";
+import {ShapeBase} from "./ShapeBase";
 
 export class PolygonShape extends ShapeBase implements IPolygonShape {
     /**

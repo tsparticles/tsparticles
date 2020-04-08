@@ -1,6 +1,6 @@
-import type { IDivEvent } from "../../../../Interfaces/Options/Interactivity/Events/IDivEvent";
-import { DivMode } from "../../../../Enums/Modes/DivMode";
-import type { RecursivePartial } from "../../../../Types/RecursivePartial";
+import type {IDivEvent} from "../../../../Interfaces/Options/Interactivity/Events/IDivEvent";
+import {DivMode} from "../../../../Enums/Modes/DivMode";
+import type {RecursivePartial} from "../../../../Types/RecursivePartial";
 
 export class DivEvent implements IDivEvent {
     /**

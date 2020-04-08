@@ -1,13 +1,13 @@
-import type { IPolygonMask } from "../../../Interfaces/Options/PolygonMask/IPolygonMask";
-import { PolygonMaskType } from "../../../Enums/PolygonMaskType";
-import { Draw } from "./Draw";
-import { Move } from "./Move";
-import type { IPolygonMaskDraw } from "../../../Interfaces/Options/PolygonMask/IPolygonMaskDraw";
-import type { IPolygonMaskMove } from "../../../Interfaces/Options/PolygonMask/IPolygonMaskMove";
-import { PolygonMaskInlineArrangement } from "../../../Enums/PolygonMaskInlineArrangement";
-import type { IPolygonInline } from "../../../Interfaces/Options/PolygonMask/IPolygonInline";
-import { PolygonInline } from "./PolygonInline";
-import type { RecursivePartial } from "../../../Types/RecursivePartial";
+import type {IPolygonMask} from "../../../Interfaces/Options/PolygonMask/IPolygonMask";
+import {PolygonMaskType} from "../../../Enums/PolygonMaskType";
+import {Draw} from "./Draw";
+import {Move} from "./Move";
+import type {IPolygonMaskDraw} from "../../../Interfaces/Options/PolygonMask/IPolygonMaskDraw";
+import type {IPolygonMaskMove} from "../../../Interfaces/Options/PolygonMask/IPolygonMaskMove";
+import {PolygonMaskInlineArrangement} from "../../../Enums/PolygonMaskInlineArrangement";
+import type {IPolygonInline} from "../../../Interfaces/Options/PolygonMask/IPolygonInline";
+import {PolygonInline} from "./PolygonInline";
+import type {RecursivePartial} from "../../../Types/RecursivePartial";
 
 export class PolygonMask implements IPolygonMask {
     /**

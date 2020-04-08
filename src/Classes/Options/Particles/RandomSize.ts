@@ -1,5 +1,5 @@
-import type { RecursivePartial } from "../../../Types/RecursivePartial";
-import type { IRandomSize } from "../../../Interfaces/Options/Particles/IRandomSize";
+import type {RecursivePartial} from "../../../Types/RecursivePartial";
+import type {IRandomSize} from "../../../Interfaces/Options/Particles/IRandomSize";
 
 export class RandomSize implements IRandomSize {
     public enable: boolean;

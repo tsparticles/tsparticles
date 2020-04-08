@@ -1,11 +1,11 @@
-import { Container } from "./Container";
-import type { ICoordinates } from "../Interfaces/ICoordinates";
-import { PolygonMaskType } from "../Enums/PolygonMaskType";
-import { Particle } from "./Particle";
-import { PolygonMaskInlineArrangement } from "../Enums/PolygonMaskInlineArrangement";
-import { Utils } from "./Utils/Utils";
-import { IDimension } from "../Interfaces/IDimension";
-import { Constants } from "./Utils/Constants";
+import {Container} from "./Container";
+import type {ICoordinates} from "../Interfaces/ICoordinates";
+import {PolygonMaskType} from "../Enums/PolygonMaskType";
+import {Particle} from "./Particle";
+import {PolygonMaskInlineArrangement} from "../Enums/PolygonMaskInlineArrangement";
+import {Utils} from "./Utils/Utils";
+import {IDimension} from "../Interfaces/IDimension";
+import {Constants} from "./Utils/Constants";
 
 type SvgAbsoluteCoordinatesTypes =
     | SVGPathSegArcAbs
@@ -157,7 +157,7 @@ export class PolygonMask {
                     break;
                 case PolygonMaskInlineArrangement.onePerPoint:
                 default:
-                    position = this.getPoingOnPolygonPathByIndex(container.particles.count);
+                    position = this.getPointOnPolygonPathByIndex(container.particles.count);
             }
         } else {
             position = {
@@ -351,7 +351,7 @@ export class PolygonMask {
         };
     }
 
-    private getPoingOnPolygonPathByIndex(index: number): ICoordinates {
+    private getPointOnPolygonPathByIndex(index: number): ICoordinates {
         if (!this.raw || !this.raw.length) throw new Error(Constants.noPolygonDataLoaded);
 
         const coords = this.raw[index % this.raw.length];

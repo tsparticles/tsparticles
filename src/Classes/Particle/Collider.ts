@@ -1,5 +1,5 @@
-import { Utils } from "../Utils/Utils";
-import { Particle } from "../Particle";
+import {Utils} from "../Utils/Utils";
+import {Particle} from "../Particle";
 
 export class Collider {
     public static collide(p1: Particle, p2: Particle): void {

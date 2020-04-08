@@ -1,5 +1,5 @@
-import type { IColor } from "../Particles/IColor";
-import type { IOptionLoader } from "../IOptionLoader";
+import type {IColor} from "../Particles/IColor";
+import type {IOptionLoader} from "../IOptionLoader";
 
 export interface IBackground extends IOptionLoader<IBackground> {
     color?: IColor | string;

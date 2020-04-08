@@ -1,5 +1,5 @@
-import type { Container } from "../Container";
-import type { IParticle } from "../../Interfaces/IParticle";
+import type {Container} from "../Container";
+import type {IParticle} from "../../Interfaces/IParticle";
 
 /**
  * Particle draw manager

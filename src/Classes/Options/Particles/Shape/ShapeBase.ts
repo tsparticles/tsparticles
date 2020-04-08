@@ -1,19 +1,19 @@
-import type { ICharacterShape } from "../../../../Interfaces/Options/Particles/Shape/ICharacterShape";
-import type { RecursivePartial } from "../../../../Types/RecursivePartial";
-import type { SingleOrMultiple } from "../../../../Types/SingleOrMultiple";
-import type { IColor } from "../../../../Interfaces/Options/Particles/IColor";
-import type { IOpacity } from "../../../../Interfaces/Options/Particles/IOpacity";
-import type { IRotate } from "../../../../Interfaces/Options/Particles/IRotate";
-import type { ISize } from "../../../../Interfaces/Options/Particles/ISize";
-import type { IShadow } from "../../../../Interfaces/Options/Particles/IShadow";
-import type { IStroke } from "../../../../Interfaces/Options/Particles/IStroke";
-import { Color } from "../Color";
-import { Stroke } from "../Stroke";
-import { Opacity } from "../Opacity";
-import { Rotate } from "../Rotate";
-import { ParticlesSize } from "../ParticlesSize";
-import { Shadow } from "../Shadow";
-import type { IShapeValues } from "../../../../Interfaces/Options/Particles/Shape/IShapeValues";
+import type {ICharacterShape} from "../../../../Interfaces/Options/Particles/Shape/ICharacterShape";
+import type {RecursivePartial} from "../../../../Types/RecursivePartial";
+import type {SingleOrMultiple} from "../../../../Types/SingleOrMultiple";
+import type {IColor} from "../../../../Interfaces/Options/Particles/IColor";
+import type {IOpacity} from "../../../../Interfaces/Options/Particles/IOpacity";
+import type {IRotate} from "../../../../Interfaces/Options/Particles/IRotate";
+import type {ISize} from "../../../../Interfaces/Options/Particles/ISize";
+import type {IShadow} from "../../../../Interfaces/Options/Particles/IShadow";
+import type {IStroke} from "../../../../Interfaces/Options/Particles/IStroke";
+import {Color} from "../Color";
+import {Stroke} from "../Stroke";
+import {Opacity} from "../Opacity";
+import {Rotate} from "../Rotate";
+import {ParticlesSize} from "../ParticlesSize";
+import {Shadow} from "../Shadow";
+import type {IShapeValues} from "../../../../Interfaces/Options/Particles/Shape/IShapeValues";
 
 export class ShapeBase implements IShapeValues {
     public close?: boolean;

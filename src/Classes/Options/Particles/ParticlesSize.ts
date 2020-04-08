@@ -1,9 +1,9 @@
-import type { ISize } from "../../../Interfaces/Options/Particles/ISize";
-import { ParticlesSizeAnimation } from "./ParticlesSizeAnimation";
-import type { ISizeAnimation } from "../../../Interfaces/Options/Particles/ISizeAnimation";
-import type { RecursivePartial } from "../../../Types/RecursivePartial";
-import type { IRandomSize } from "../../../Interfaces/Options/Particles/IRandomSize";
-import { RandomSize } from "./RandomSize";
+import type {ISize} from "../../../Interfaces/Options/Particles/ISize";
+import {ParticlesSizeAnimation} from "./ParticlesSizeAnimation";
+import type {ISizeAnimation} from "../../../Interfaces/Options/Particles/ISizeAnimation";
+import type {RecursivePartial} from "../../../Types/RecursivePartial";
+import type {IRandomSize} from "../../../Interfaces/Options/Particles/IRandomSize";
+import {RandomSize} from "./RandomSize";
 
 export class ParticlesSize implements ISize {
     /**

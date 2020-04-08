@@ -1,16 +1,14 @@
-import type { RotateDirection } from "../Enums/RotateDirection";
-import type { IStroke } from "./Options/Particles/IStroke";
-import type { IPolygonShape } from "./Options/Particles/Shape/IPolygonShape";
-import type { ICoordinates } from "./ICoordinates";
-import type { IRgb } from "./IRgb";
-import type { IVelocity } from "./IVelocity";
-import type { ShapeType } from "../Enums/ShapeType";
-import type { IParticleImage } from "./IParticleImage";
-import type { ICharacterShape } from "./Options/Particles/Shape/ICharacterShape";
-import type { ISize } from "./ISize";
-import type { IOpacity } from "./IOpacity";
-import type { IShapeValues } from "./Options/Particles/Shape/IShapeValues";
-import type { IBubbleParticleData } from "./IBubbleParticleData";
+import type {RotateDirection} from "../Enums/RotateDirection";
+import type {IStroke} from "./Options/Particles/IStroke";
+import type {ICoordinates} from "./ICoordinates";
+import type {IRgb} from "./IRgb";
+import type {IVelocity} from "./IVelocity";
+import type {ShapeType} from "../Enums/ShapeType";
+import type {IParticleImage} from "./IParticleImage";
+import type {ISize} from "./ISize";
+import type {IOpacity} from "./IOpacity";
+import type {IShapeValues} from "./Options/Particles/Shape/IShapeValues";
+import type {IBubbleParticleData} from "./IBubbleParticleData";
 
 export interface IParticle {
     randomIndexData?: number;

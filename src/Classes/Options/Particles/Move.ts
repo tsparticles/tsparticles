@@ -1,11 +1,11 @@
-import type { IMove } from "../../../Interfaces/Options/Particles/IMove";
-import { Attract } from "./Attract";
-import { MoveDirection } from "../../../Enums/MoveDirection";
-import { OutMode } from "../../../Enums/OutMode";
-import type { IAttract } from "../../../Interfaces/Options/Particles/IAttract";
-import { Trail } from "./Trail";
-import type { ITrail } from "../../../Interfaces/Options/Particles/ITrail";
-import type { RecursivePartial } from "../../../Types/RecursivePartial";
+import type {IMove} from "../../../Interfaces/Options/Particles/IMove";
+import {Attract} from "./Attract";
+import {MoveDirection} from "../../../Enums/MoveDirection";
+import {OutMode} from "../../../Enums/OutMode";
+import type {IAttract} from "../../../Interfaces/Options/Particles/IAttract";
+import {Trail} from "./Trail";
+import type {ITrail} from "../../../Interfaces/Options/Particles/ITrail";
+import type {RecursivePartial} from "../../../Types/RecursivePartial";
 
 export class Move implements IMove {
     /**

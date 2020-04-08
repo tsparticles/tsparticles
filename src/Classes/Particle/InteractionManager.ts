@@ -1,8 +1,8 @@
-import type { Container } from "../Container";
-import type { Particle } from "../Particle";
-import { Linker } from "./Linker";
-import { Attracter } from "./Attracter";
-import { Collider } from "./Collider";
+import type {Container} from "../Container";
+import type {Particle} from "../Particle";
+import {Linker} from "./Linker";
+import {Attracter} from "./Attracter";
+import {Collider} from "./Collider";
 
 export class InteractionManager {
     public static interact(p1: Particle, p2: Particle, container: Container): void {

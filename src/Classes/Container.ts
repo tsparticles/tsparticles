@@ -1,20 +1,20 @@
-import { Canvas } from "./Canvas";
-import { EventListeners } from "./Utils/EventListeners";
-import type { IRepulse } from "../Interfaces/IRepulse";
-import type { IBubble } from "../Interfaces/IBubble";
-import type { IImage } from "../Interfaces/IImage";
-import type { IContainerInteractivity } from "../Interfaces/IContainerInteractivity";
-import { Particles } from "./Particles";
-import { Retina } from "./Retina";
-import { ShapeType } from "../Enums/ShapeType";
-import { PolygonMask } from "./PolygonMask";
-import type { IOptions } from "../Interfaces/Options/IOptions";
-import { FrameManager } from "./FrameManager";
-import type { RecursivePartial } from "../Types/RecursivePartial";
-import { Options } from "./Options/Options";
-import { Utils } from "./Utils/Utils";
-import type { IImageShape } from "../Interfaces/Options/Particles/Shape/IImageShape";
-import { Presets } from "./Utils/Presets";
+import {Canvas} from "./Canvas";
+import {EventListeners} from "./Utils/EventListeners";
+import type {IRepulse} from "../Interfaces/IRepulse";
+import type {IBubble} from "../Interfaces/IBubble";
+import type {IImage} from "../Interfaces/IImage";
+import type {IContainerInteractivity} from "../Interfaces/IContainerInteractivity";
+import {Particles} from "./Particles";
+import {Retina} from "./Retina";
+import {ShapeType} from "../Enums/ShapeType";
+import {PolygonMask} from "./PolygonMask";
+import type {IOptions} from "../Interfaces/Options/IOptions";
+import {FrameManager} from "./FrameManager";
+import type {RecursivePartial} from "../Types/RecursivePartial";
+import {Options} from "./Options/Options";
+import {Utils} from "./Utils/Utils";
+import type {IImageShape} from "../Interfaces/Options/Particles/Shape/IImageShape";
+import {Presets} from "./Utils/Presets";
 
 /**
  * The object loaded into an HTML element, it'll contain options loaded and all data to let everything working

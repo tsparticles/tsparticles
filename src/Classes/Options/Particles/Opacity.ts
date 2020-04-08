@@ -1,9 +1,9 @@
-import type { IOpacity } from "../../../Interfaces/Options/Particles/IOpacity";
-import { OpacityAnimation } from "./OpacityAnimation";
-import type { IOpacityAnimation } from "../../../Interfaces/Options/Particles/IOpacityAnimation";
-import type { RecursivePartial } from "../../../Types/RecursivePartial";
-import type { IRandomOpacity } from "../../../Interfaces/Options/Particles/IRandomOpacity";
-import { RandomOpacity } from "./RandomOpacity";
+import type {IOpacity} from "../../../Interfaces/Options/Particles/IOpacity";
+import {OpacityAnimation} from "./OpacityAnimation";
+import type {IOpacityAnimation} from "../../../Interfaces/Options/Particles/IOpacityAnimation";
+import type {RecursivePartial} from "../../../Types/RecursivePartial";
+import type {IRandomOpacity} from "../../../Interfaces/Options/Particles/IRandomOpacity";
+import {RandomOpacity} from "./RandomOpacity";
 
 export class Opacity implements IOpacity {
     /**
