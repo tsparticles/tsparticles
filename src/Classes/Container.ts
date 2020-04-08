@@ -172,35 +172,6 @@ export class Container {
         return JSON.stringify(this.options, undefined, 2);
     }
 
-    public loadImage(optionsImage: IImageShape): Promise<IImage> {
-        return new Promise((resolve: (value?: IImage | PromiseLike<IImage> | undefined) => void,
-            reject: (reson?: any) => void) => {
-            const src = optionsImage.src;
-
-            const image: IImage = {
-                type: src.substr(src.length - 3)
-            };
-
-            if (optionsImage.src) {
-                const img = new Image();
-
-                img.addEventListener("load", () => {
-                    image.obj = img;
-
-                    resolve(image);
-                });
-
-                img.addEventListener("error", () => {
-                    reject(`Error tsParticles - loading image: ${optionsImage.src}`);
-                });
-
-                img.src = optionsImage.src;
-            } else {
-                reject("Error tsParticles - No image.src");
-            }
-        });
-    }
-
     public async refresh(): Promise<void> {
         /* restart */
         this.stop();
@@ -262,7 +233,7 @@ export class Container {
 
     private async loadImageShape(imageShape: IImageShape): Promise<void> {
         try {
-            this.images.push(await this.loadImage(imageShape));
+            this.images.push(await Utils.loadImage(imageShape));
         } catch {
         }
     }
@@ -276,8 +247,11 @@ export class Container {
     }
 
     private checkBeforeDraw(): void {
-        if (this.options.particles.shape.type === ShapeType.image) {
+        if (this.options.particles.shape.type === ShapeType.image ||
+            (this.options.particles.shape.type instanceof Array &&
+                this.options.particles.shape.type.every(v => v === ShapeType.image))) {
             if (!this.images.length) {
+                this.stop();
                 return;
             }
         }
