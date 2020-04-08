@@ -7,7 +7,7 @@
 
 <script lang="ts">
 import { Component, Vue } from "vue-property-decorator";
-import Particles from "./components/Particles.vue";
+import Particles from "./components/Particles/Particles.vue";
 
 @Component({
   components: {

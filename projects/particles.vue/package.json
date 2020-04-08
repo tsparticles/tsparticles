@@ -1,23 +1,50 @@
 {
   "name": "particles.vue",
+  "description": "A Vue.js plugin for tsParticles",
   "version": "1.12.7",
   "scripts": {
     "serve": "vue-cli-service serve",
-    "build": "vue-cli-service build"
+    "build": "vue-cli-service build",
+    "clean": "rm -rf dist/*",
+    "build-plugin": "npm run clean && yarn rollup --config rollup.config.js"
   },
+  "main": "dist/particles.vue.cjs.development.js",
+  "module": "dist/particles.vue.esm.development.js",
+  "types": "dist/install.d.ts",
+  "unpkg": "dist/particles.vue.production.min.js",
+  "jsdelivr": "dist/particles.vue.production.min.js",
+  "repository": "https://github.com/matteobruni/particles.vue",
+  "author": "Matteo Bruni",
+  "license": "MIT",
+  "files": [
+    "dist"
+  ],
+  "bugs": {
+    "url": "https://github.com/matteobruni/particles.vue/issues"
+  },
+  "homepage": "https://particles.matteobruni.it",
   "dependencies": {
     "core-js": "^3.6.4",
+    "tslib": "^1.11.1",
     "tsparticles": "^1.12.7",
     "vue": "^2.6.11",
     "vue-class-component": "^7.2.2",
     "vue-property-decorator": "^8.3.0"
   },
   "devDependencies": {
+    "@babel/core": "^7.9.0",
     "@babel/plugin-proposal-class-properties": "^7.8.3",
     "@babel/plugin-proposal-decorators": "^7.8.3",
+    "@rollup/plugin-node-resolve": "^7.1.1",
+    "@rollup/plugin-replace": "^2.3.1",
     "@vue/cli-plugin-babel": "~4.2.0",
     "@vue/cli-plugin-typescript": "~4.2.0",
     "@vue/cli-service": "~4.2.0",
+    "rollup": "^2.3.4",
+    "rollup-plugin-terser": "^5.3.0",
+    "rollup-plugin-typescript": "^1.0.1",
+    "rollup-plugin-typescript2": "^0.27.0",
+    "rollup-plugin-vue": "^5.1.6",
     "typescript": "^3.8.3",
     "vue-template-compiler": "^2.6.11"
   }
