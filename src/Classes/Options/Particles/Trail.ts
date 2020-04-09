@@ -1,7 +1,7 @@
-import type { ITrail } from "../../../Interfaces/Options/Particles/ITrail";
-import type { RecursivePartial } from "../../../Types/RecursivePartial";
-import type { IColor } from "../../../Interfaces/Options/Particles/IColor";
-import { Color } from "./Color";
+import type {ITrail} from "../../../Interfaces/Options/Particles/ITrail";
+import type {RecursivePartial} from "../../../Types/RecursivePartial";
+import type {IColor} from "../../../Interfaces/Options/Particles/IColor";
+import {Color} from "./Color";
 
 export class Trail implements ITrail {
     public enable: boolean;
@@ -23,9 +23,10 @@ export class Trail implements ITrail {
             }
 
             if (data.fillColor !== undefined) {
-                if (typeof this.fillColor === "string") {
+                if (typeof data.fillColor === "string") {
                     this.fillColor = data.fillColor;
                 } else {
+                    this.fillColor = new Color();
                     this.fillColor.load(data.fillColor as IColor);
                 }
             }
