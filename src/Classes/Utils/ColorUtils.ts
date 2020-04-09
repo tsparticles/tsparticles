@@ -159,7 +159,7 @@ export class ColorUtils {
 
     private static stringToRgba(input: string): IRgba | undefined {
         if (input.startsWith('rgb')) {
-            const regex = /rgba?\(\s*(\d+)\s*,\s*(\d+)\s*,\s*(\d+)\s*(,\s*([\d\.]+)\s*)?\)/i;
+            const regex = /rgba?\(\s*(\d+)\s*,\s*(\d+)\s*,\s*(\d+)\s*(,\s*([\d.]+)\s*)?\)/i;
             const result = regex.exec(input);
 
             return result ? {
@@ -169,7 +169,7 @@ export class ColorUtils {
                 r: parseInt(result[1]),
             } : undefined;
         } else if (input.startsWith('hsl')) {
-            const regex = /hsla?\(\s*(\d+)\s*,\s*(\d+)\%\s*,\s*(\d+)\%\s*(,\s*([\d\.]+)\s*)?\)/i;
+            const regex = /hsla?\(\s*(\d+)\s*,\s*(\d+)%\s*,\s*(\d+)%\s*(,\s*([\d.]+)\s*)?\)/i;
             const result = regex.exec(input);
 
             return result ? ColorUtils.hslaToRgba({
