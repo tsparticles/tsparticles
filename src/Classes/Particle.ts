@@ -381,17 +381,19 @@ export class Particle implements IParticle {
         } else {
             pos.x = position ? position.x : Math.random() * container.canvas.dimension.width;
             pos.y = position ? position.y : Math.random() * container.canvas.dimension.height;
-
+            
             /* check position  - into the canvas */
-            if (pos.x > container.canvas.dimension.width - this.radius * 2) {
+            const diameter = this.radius * 2;
+
+            if (pos.x > container.canvas.dimension.width - diameter) {
                 pos.x -= this.radius;
-            } else if (pos.x < this.radius * 2) {
+            } else if (pos.x < diameter) {
                 pos.x += this.radius;
             }
 
-            if (pos.y > container.canvas.dimension.height - this.radius * 2) {
+            if (pos.y > container.canvas.dimension.height - diameter) {
                 pos.y -= this.radius;
-            } else if (pos.y < this.radius * 2) {
+            } else if (pos.y < diameter) {
                 pos.y += this.radius;
             }
         }
