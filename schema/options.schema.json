@@ -1359,7 +1359,7 @@
             "type": "number"
         },
         "fps_limit": {
-            "description": "The F(rame)P(er)S(econd) limit applied to all particles animations.",
+            "description": "The Frame Per Second limit applied to all particles animations.",
             "type": "number"
         },
         "interactivity": {

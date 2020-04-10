@@ -1,5 +1,4 @@
 import type {Container} from "./Container";
-import {ShapeType} from "../Enums/ShapeType";
 
 export class FrameManager {
     private readonly container: Container;
@@ -24,10 +23,6 @@ export class FrameManager {
         const delta = timestamp - container.lastFrameTime;
 
         container.lastFrameTime = timestamp;
-
-        if (options.particles.shape.type === ShapeType.image && !container.images.length) {
-            return;
-        }
 
         container.particles.draw(delta);
 

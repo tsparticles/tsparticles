@@ -214,7 +214,10 @@ export class Container {
                 }
             } else {
                 const character = this.options.particles.shape.character;
-                await Utils.loadFont(character);
+
+                if (character !== undefined) {
+                    await Utils.loadFont(character);
+                }
             }
         }
 

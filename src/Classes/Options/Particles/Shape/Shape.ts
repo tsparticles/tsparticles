@@ -74,11 +74,11 @@ export class Shape implements IShape {
     public custom: ShapeData;
 
     constructor() {
+        this.custom = {};
         this.character = new CharacterShape();
         this.image = new ImageShape();
         this.polygon = new PolygonShape();
         this.type = ShapeType.circle;
-        this.custom = {};
     }
 
     public load(data?: RecursivePartial<IShape>): void {

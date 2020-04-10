@@ -28,13 +28,7 @@ export class Shadow implements IShadow {
                 this.blur = data.blur;
             }
 
-            if (data.color !== undefined) {
-                if (typeof data.color === "string") {
-                    this.color.value = data.color;
-                } else {
-                    this.color.load(data.color);
-                }
-            }
+            this.color.load(typeof data.color === "string" ? {value: data.color} : data.color);
 
             if (data.enable !== undefined) {
                 this.enable = data.enable;

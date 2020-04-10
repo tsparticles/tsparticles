@@ -22,13 +22,7 @@ export class Trail implements ITrail {
                 this.enable = data.enable;
             }
 
-            if (data.fillColor !== undefined) {
-                if (typeof data.fillColor === "string") {
-                    this.fillColor.value = data.fillColor;
-                } else {
-                    this.fillColor.load(data.fillColor as IColor);
-                }
-            }
+            this.fillColor.load(typeof data.fillColor === "string" ? {value: data.fillColor} : data.fillColor);
 
             if (data.length !== undefined) {
                 this.length = data.length;
