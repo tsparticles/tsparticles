@@ -5,7 +5,7 @@ import {Move} from "./Move";
 import {ParticlesNumber} from "./ParticlesNumber";
 import {Opacity} from "./Opacity";
 import {Shape} from "./Shape/Shape";
-import {ParticlesSize} from "./ParticlesSize";
+import {Size} from "./Size";
 import type {IColor} from "../../../Interfaces/Options/Particles/IColor";
 import type {ILineLinked} from "../../../Interfaces/Options/Particles/ILineLinked";
 import type {IMove} from "../../../Interfaces/Options/Particles/IMove";
@@ -59,7 +59,7 @@ export class Particles implements IParticles {
         this.opacity = new Opacity();
         this.rotate = new Rotate();
         this.shape = new Shape();
-        this.size = new ParticlesSize();
+        this.size = new Size();
         this.shadow = new Shadow();
         this.stroke = new Stroke();
     }

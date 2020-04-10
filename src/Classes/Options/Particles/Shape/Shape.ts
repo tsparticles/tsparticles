@@ -9,17 +9,14 @@ import type {IStroke} from "../../../../Interfaces/Options/Particles/IStroke";
 import type {RecursivePartial} from "../../../../Types/RecursivePartial";
 import type {SingleOrMultiple} from "../../../../Types/SingleOrMultiple";
 import {ShapeData} from "../../../../Types/ShapeData";
+import {CharacterShape} from "./CharacterShape";
 
 export class Shape implements IShape {
     /**
      * @deprecated the property images is deprecated, please use the image property, it works with one and many
      */
     get images(): IImageShape[] {
-        if (this.image instanceof Array) {
-            return this.image;
-        }
-
-        return [];
+        return this.image instanceof Array ? this.image : [this.image];
     }
 
     /**
@@ -46,26 +43,30 @@ export class Shape implements IShape {
      * @deprecated this property was integrated in custom shape management
      */
     get character(): SingleOrMultiple<ICharacterShape> {
-        return [];
+        return (this.custom[ShapeType.character] ?? this.custom[ShapeType.char]) as SingleOrMultiple<ICharacterShape>;
     }
 
     /**
      * @deprecated this property was integrated in custom shape management
      */
     set character(value: SingleOrMultiple<ICharacterShape>) {
+        this.custom[ShapeType.character] = value;
+        this.custom[ShapeType.char] = value;
     }
 
     /**
      * @deprecated this property was integrated in custom shape management
      */
     get polygon(): SingleOrMultiple<IPolygonShape> {
-        return [];
+        return (this.custom[ShapeType.polygon] ?? this.custom[ShapeType.star]) as SingleOrMultiple<IPolygonShape>;
     }
 
     /**
      * @deprecated this property was integrated in custom shape management
      */
     set polygon(value: SingleOrMultiple<IPolygonShape>) {
+        this.custom[ShapeType.polygon] = value;
+        this.custom[ShapeType.star] = value;
     }
 
     public image: SingleOrMultiple<IImageShape>;
@@ -73,6 +74,7 @@ export class Shape implements IShape {
     public custom: ShapeData;
 
     constructor() {
+        this.character = new CharacterShape();
         this.image = new ImageShape();
         this.polygon = new PolygonShape();
         this.type = ShapeType.circle;
@@ -156,4 +158,3 @@ export class Shape implements IShape {
         }
     }
 }
-

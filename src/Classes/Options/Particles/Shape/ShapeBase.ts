@@ -11,7 +11,7 @@ import {Color} from "../Color";
 import {Stroke} from "../Stroke";
 import {Opacity} from "../Opacity";
 import {Rotate} from "../Rotate";
-import {ParticlesSize} from "../ParticlesSize";
+import {Size} from "../Size";
 import {Shadow} from "../Shadow";
 import type {IShapeValues} from "../../../../Interfaces/Options/Particles/Shape/IShapeValues";
 
@@ -69,7 +69,7 @@ export class ShapeBase implements IShapeValues {
             }
 
             if (data.size !== undefined) {
-                this.size = new ParticlesSize();
+                this.size = new Size();
                 this.size.load(data.size);
             }
 
