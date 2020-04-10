@@ -93,10 +93,10 @@ export class Particles {
         const container = this.container;
         const options = container.options;
 
-        /* clear canvas */
+        /* clear canvas and spatial map */
         container.canvas.clear();
 
-        /* update each particles param */
+        /* update each particles param and spatial map */
         this.update(delta);
 
         /* draw polygon shape in debug mode */
