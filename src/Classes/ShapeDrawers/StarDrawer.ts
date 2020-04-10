@@ -3,7 +3,7 @@ import type { ISide } from "../../Interfaces/ISide";
 import type { ICoordinates } from "../../Interfaces/ICoordinates";
 import type { IParticle } from "../../Interfaces/IParticle";
 
-export class StartDrawer extends PolygonDrawerBase {
+export class StarDrawer extends PolygonDrawerBase {
     public getSidesData(particle: IParticle, radius: number): ISide {
         const sides = particle.polygon?.sides ?? 5;
         const side: ISide = {
