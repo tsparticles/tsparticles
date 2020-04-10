@@ -1,5 +1,5 @@
-import type { IDensity } from "../../../Interfaces/Options/Particles/IDensity";
-import type { RecursivePartial } from "../../../Types/RecursivePartial";
+import type {IDensity} from "../../../Interfaces/Options/Particles/IDensity";
+import type {RecursivePartial} from "../../../Types/RecursivePartial";
 
 export class Density implements IDensity {
     /**
@@ -33,10 +33,10 @@ export class Density implements IDensity {
                 this.enable = data.enable;
             }
 
-            if (data.area !== undefined) {
-                this.area = data.area;
-            } else if (data.value_area !== undefined) {
-                this.value_area = data.value_area;
+            const area = data.area ?? data.value_area;
+
+            if (area !== undefined) {
+                this.area = area;
             }
         }
     }

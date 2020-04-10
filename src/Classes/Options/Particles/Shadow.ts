@@ -6,7 +6,7 @@ import {Color} from "./Color";
 
 export class Shadow implements IShadow {
     public blur: number;
-    public color: string | IColor;
+    public color: IColor;
     public enable: boolean;
     public offset: ICoordinates;
 
@@ -30,10 +30,9 @@ export class Shadow implements IShadow {
 
             if (data.color !== undefined) {
                 if (typeof data.color === "string") {
-                    this.color = data.color;
+                    this.color.value = data.color;
                 } else {
-                    this.color = new Color();
-                    this.color.load(data.color as IColor);
+                    this.color.load(data.color);
                 }
             }
 

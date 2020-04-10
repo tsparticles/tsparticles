@@ -5,7 +5,7 @@ import {Color} from "./Color";
 
 export class LineLinkedShadow implements ILineLinkedShadow {
     public blur: number;
-    public color: string | IColor;
+    public color: IColor;
     public enable: boolean;
 
     constructor() {
@@ -24,10 +24,9 @@ export class LineLinkedShadow implements ILineLinkedShadow {
 
             if (data.color !== undefined) {
                 if (typeof data.color === "string") {
-                    this.color = data.color;
+                    this.color.value = data.color;
                 } else {
-                    this.color = new Color();
-                    this.color.load(data.color as IColor);
+                    this.color.load(data.color);
                 }
             }
 

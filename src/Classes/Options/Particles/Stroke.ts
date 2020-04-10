@@ -4,7 +4,7 @@ import type {IColor} from "../../../Interfaces/Options/Particles/IColor";
 import {Color} from "./Color";
 
 export class Stroke implements IStroke {
-    public color: string | IColor;
+    public color: IColor;
     public width: number;
     public opacity: number;
 
@@ -20,10 +20,9 @@ export class Stroke implements IStroke {
         if (data !== undefined) {
             if (data.color !== undefined) {
                 if (typeof data.color === "string") {
-                    this.color = data.color;
+                    this.color.value = data.color;
                 } else {
-                    this.color = new Color();
-                    this.color.load(data.color as IColor);
+                    this.color.load(data.color);
                 }
             }
 

@@ -1,6 +1,6 @@
-import type { IClickEvent } from "../../../../Interfaces/Options/Interactivity/Events/IClickEvent";
-import { ClickMode } from "../../../../Enums/Modes/ClickMode";
-import type { RecursivePartial } from "../../../../Types/RecursivePartial";
+import type {IClickEvent} from "../../../../Interfaces/Options/Interactivity/Events/IClickEvent";
+import {ClickMode} from "../../../../Enums/Modes/ClickMode";
+import type {RecursivePartial} from "../../../../Types/RecursivePartial";
 
 export class ClickEvent implements IClickEvent {
     /**
@@ -15,7 +15,7 @@ export class ClickEvent implements IClickEvent {
 
     constructor() {
         this.enable = false;
-        this.mode = ClickMode.push;
+        this.mode = [];
     }
 
     public load(data?: RecursivePartial<IClickEvent>): void {

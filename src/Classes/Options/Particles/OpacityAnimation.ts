@@ -1,5 +1,5 @@
-import type { IOpacityAnimation } from "../../../Interfaces/Options/Particles/IOpacityAnimation";
-import type { RecursivePartial } from "../../../Types/RecursivePartial";
+import type {IOpacityAnimation} from "../../../Interfaces/Options/Particles/IOpacityAnimation";
+import type {RecursivePartial} from "../../../Types/RecursivePartial";
 
 export class OpacityAnimation implements IOpacityAnimation {
     /**
@@ -37,10 +37,10 @@ export class OpacityAnimation implements IOpacityAnimation {
                 this.enable = data.enable;
             }
 
-            if (data.minimumValue !== undefined) {
-                this.minimumValue = data.minimumValue;
-            } else if (data.opacity_min !== undefined) {
-                this.opacity_min = data.opacity_min;
+            const minimumValue = data.minimumValue ?? data.opacity_min;
+
+            if (minimumValue !== undefined) {
+                this.minimumValue = minimumValue;
             }
 
             if (data.speed !== undefined) {

@@ -1,9 +1,9 @@
-import type { ISize } from "../../../Interfaces/Options/Particles/ISize";
-import { ParticlesSizeAnimation } from "./ParticlesSizeAnimation";
-import type { ISizeAnimation } from "../../../Interfaces/Options/Particles/ISizeAnimation";
-import type { RecursivePartial } from "../../../Types/RecursivePartial";
-import type { IRandomSize } from "../../../Interfaces/Options/Particles/IRandomSize";
-import { RandomSize } from "./RandomSize";
+import type {ISize} from "../../../Interfaces/Options/Particles/ISize";
+import {ParticlesSizeAnimation} from "./ParticlesSizeAnimation";
+import type {ISizeAnimation} from "../../../Interfaces/Options/Particles/ISizeAnimation";
+import type {RecursivePartial} from "../../../Types/RecursivePartial";
+import type {IRandomSize} from "../../../Interfaces/Options/Particles/IRandomSize";
+import {RandomSize} from "./RandomSize";
 
 export class ParticlesSize implements ISize {
     /**
@@ -24,7 +24,7 @@ export class ParticlesSize implements ISize {
     }
 
     public animation: ISizeAnimation;
-    public random: boolean | IRandomSize;
+    public random: IRandomSize;
     public value: number;
 
     constructor() {
@@ -35,19 +35,17 @@ export class ParticlesSize implements ISize {
 
     public load(data?: RecursivePartial<ISize>): void {
         if (data !== undefined) {
-            if (data.animation !== undefined) {
-                this.animation.load(data.animation);
-            } else if (data.anim !== undefined) {
-                this.anim.load(data.anim);
+            const animation = data.animation ?? data.anim;
+
+            if (animation !== undefined) {
+                this.animation.load(animation);
             }
 
             if (data.random !== undefined) {
-                const random = this.random as IRandomSize;
-
                 if (typeof data.random === "boolean") {
-                    random.enable = data.random;
+                    this.random.enable = data.random;
                 } else {
-                    random.load(data.random);
+                    this.random.load(data.random);
                 }
             }
 

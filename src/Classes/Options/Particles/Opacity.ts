@@ -1,9 +1,9 @@
-import type { IOpacity } from "../../../Interfaces/Options/Particles/IOpacity";
-import { OpacityAnimation } from "./OpacityAnimation";
-import type { IOpacityAnimation } from "../../../Interfaces/Options/Particles/IOpacityAnimation";
-import type { RecursivePartial } from "../../../Types/RecursivePartial";
-import type { IRandomOpacity } from "../../../Interfaces/Options/Particles/IRandomOpacity";
-import { RandomOpacity } from "./RandomOpacity";
+import type {IOpacity} from "../../../Interfaces/Options/Particles/IOpacity";
+import {OpacityAnimation} from "./OpacityAnimation";
+import type {IOpacityAnimation} from "../../../Interfaces/Options/Particles/IOpacityAnimation";
+import type {RecursivePartial} from "../../../Types/RecursivePartial";
+import type {IRandomOpacity} from "../../../Interfaces/Options/Particles/IRandomOpacity";
+import {RandomOpacity} from "./RandomOpacity";
 
 export class Opacity implements IOpacity {
     /**
@@ -24,7 +24,7 @@ export class Opacity implements IOpacity {
     }
 
     public animation: IOpacityAnimation;
-    public random: boolean | IRandomOpacity;
+    public random: IRandomOpacity;
     public value: number;
 
     constructor() {
@@ -35,19 +35,17 @@ export class Opacity implements IOpacity {
 
     public load(data?: RecursivePartial<IOpacity>): void {
         if (data !== undefined) {
-            if (data.animation !== undefined) {
-                this.animation.load(data.animation);
-            } else if (data.anim !== undefined) {
-                this.anim.load(data.anim);
+            const animation = data.animation ?? data.anim;
+
+            if (animation !== undefined) {
+                this.animation.load(animation);
             }
 
             if (data.random !== undefined) {
-                const random = this.random as IRandomOpacity;
-
                 if (typeof data.random === "boolean") {
-                    random.enable = data.random;
+                    this.random.enable = data.random;
                 } else {
-                    random.load(data.random);
+                    this.random.load(data.random);
                 }
             }
 

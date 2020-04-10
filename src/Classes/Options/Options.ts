@@ -1,16 +1,16 @@
-import type { IOptions } from "../../Interfaces/Options/IOptions";
-import { Interactivity } from "./Interactivity/Interactivity";
-import { Particles } from "./Particles/Particles";
-import { PolygonMask } from "./PolygonMask/PolygonMask";
-import type { IInteractivity } from "../../Interfaces/Options/Interactivity/IInteractivity";
-import type { IParticles } from "../../Interfaces/Options/Particles/IParticles";
-import type { IPolygonMask } from "../../Interfaces/Options/PolygonMask/IPolygonMask";
-import type { IBackgroundMask } from "../../Interfaces/Options/BackgroundMask/IBackgroundMask";
-import { BackgroundMask } from "./BackgroundMask/BackgroundMask";
-import type { RecursivePartial } from "../../Types/RecursivePartial";
-import { Presets } from "../Utils/Presets";
-import type { IBackground } from "../../Interfaces/Options/Background/IBackground";
-import { Background } from "./Background/Background";
+import type {IOptions} from "../../Interfaces/Options/IOptions";
+import {Interactivity} from "./Interactivity/Interactivity";
+import {Particles} from "./Particles/Particles";
+import {PolygonMask} from "./PolygonMask/PolygonMask";
+import type {IInteractivity} from "../../Interfaces/Options/Interactivity/IInteractivity";
+import type {IParticles} from "../../Interfaces/Options/Particles/IParticles";
+import type {IPolygonMask} from "../../Interfaces/Options/PolygonMask/IPolygonMask";
+import type {IBackgroundMask} from "../../Interfaces/Options/BackgroundMask/IBackgroundMask";
+import {BackgroundMask} from "./BackgroundMask/BackgroundMask";
+import type {RecursivePartial} from "../../Types/RecursivePartial";
+import {Presets} from "../Utils/Presets";
+import type {IBackground} from "../../Interfaces/Options/Background/IBackground";
+import {Background} from "./Background/Background";
 
 export class Options implements IOptions {
     /**
@@ -84,16 +84,16 @@ export class Options implements IOptions {
                 this.background.load(data.background);
             }
 
-            if (data.detectRetina !== undefined) {
-                this.detectRetina = data.detectRetina;
-            } else if (data.retina_detect !== undefined) {
-                this.retina_detect = data.retina_detect;
+            const detectRetina = data.detectRetina ?? data.retina_detect;
+
+            if (detectRetina !== undefined) {
+                this.detectRetina = detectRetina;
             }
 
-            if (data.fpsLimit !== undefined) {
-                this.fpsLimit = data.fpsLimit;
-            } else if (data.fps_limit !== undefined) {
-                this.fps_limit = data.fps_limit;
+            const fpsLimit = data.fpsLimit ?? data.fps_limit;
+
+            if (fpsLimit !== undefined) {
+                this.fpsLimit = fpsLimit;
             }
 
             if (data.pauseOnBlur !== undefined) {
