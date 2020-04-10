@@ -9,26 +9,34 @@ export class Draw implements IPolygonMaskDraw {
      * @deprecated the property lineWidth is deprecated, please use the new stroke.width
      */
     get lineWidth(): number {
-        return 0;
+        return this.stroke.width;
     }
 
     /**
      * @deprecated the property lineWidth is deprecated, please use the new stroke.width
      */
     set lineWidth(value: number) {
+        this.stroke.width = value;
     }
 
     /**
      * @deprecated the property lineColor is deprecated, please use the new stroke.color
      */
     get lineColor(): string | IColor {
-        return "";
+        return this.stroke.color;
     }
 
     /**
      * @deprecated the property lineColor is deprecated, please use the new stroke.color
      */
     set lineColor(value: string | IColor) {
+        const destColor = this.stroke.color as IColor;
+
+        if (typeof value === "string") {
+            destColor.value = value;
+        } else {
+            destColor.load(value);
+        }
     }
 
     public enable: boolean;

@@ -11,7 +11,7 @@ export class HoverEvent implements IHoverEvent {
 
     constructor() {
         this.enable = false;
-        this.mode = HoverMode.grab;
+        this.mode = [];
         this.parallax = new Parallax();
     }
 

@@ -6,7 +6,7 @@ import {Color} from "./Color";
 export class Trail implements ITrail {
     public enable: boolean;
     public length: number;
-    public fillColor: string | IColor;
+    public fillColor: IColor;
 
     constructor() {
         this.enable = false;
@@ -23,8 +23,8 @@ export class Trail implements ITrail {
             }
 
             if (data.fillColor !== undefined) {
-                if (typeof this.fillColor === "string") {
-                    this.fillColor = data.fillColor;
+                if (typeof data.fillColor === "string") {
+                    this.fillColor.value = data.fillColor;
                 } else {
                     this.fillColor.load(data.fillColor as IColor);
                 }

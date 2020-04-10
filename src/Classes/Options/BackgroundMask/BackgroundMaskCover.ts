@@ -17,6 +17,7 @@ export class BackgroundMaskCover implements IBackgroundMaskCover {
             if (data.color !== undefined) {
                 this.color.load(data.color);
             }
+
             if (data.opacity !== undefined) {
                 this.opacity = data.opacity;
             }

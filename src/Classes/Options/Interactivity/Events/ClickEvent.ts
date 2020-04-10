@@ -15,7 +15,7 @@ export class ClickEvent implements IClickEvent {
 
     constructor() {
         this.enable = false;
-        this.mode = ClickMode.push;
+        this.mode = [];
     }
 
     public load(data?: RecursivePartial<IClickEvent>): void {

@@ -37,10 +37,10 @@ export class Connect implements IConnect {
                 this.distance = data.distance;
             }
 
-            if (data.lineLinked !== undefined) {
-                this.lineLinked.load(data.lineLinked);
-            } else if (data.line_linked !== undefined) {
-                this.line_linked.load(data.line_linked);
+            const lineLinked = data.lineLinked ?? data.line_linked
+
+            if (lineLinked !== undefined) {
+                this.lineLinked.load(lineLinked);
             }
 
             if (data.radius !== undefined) {

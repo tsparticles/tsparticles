@@ -46,10 +46,12 @@ export class PolygonMask implements IPolygonMask {
         if (data !== undefined) {
             this.draw.load(data.draw);
 
-            if (data.inline !== undefined) {
-                this.inline.load(data.inline);
-            } else if (data.inlineArrangement !== undefined) {
-                this.inlineArrangement = data.inlineArrangement;
+            const inline = data.inline ?? {
+                arrangement: data.inlineArrangement
+            };
+
+            if (inline !== undefined) {
+                this.inline.load(inline);
             }
 
             this.move.load(data.move);

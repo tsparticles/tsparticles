@@ -67,10 +67,10 @@ export class Move implements IMove {
         if (data !== undefined) {
             this.attract.load(data.attract);
 
-            if (data.collisions !== undefined) {
-                this.collisions = data.collisions;
-            } else if (data.bounce !== undefined) {
-                this.bounce = data.bounce;
+            const collisions = data.collisions ?? data.bounce;
+
+            if (collisions !== undefined) {
+                this.collisions = collisions;
             }
 
             if (data.direction !== undefined) {
@@ -81,10 +81,10 @@ export class Move implements IMove {
                 this.enable = data.enable;
             }
 
-            if (data.outMode !== undefined) {
-                this.outMode = data.outMode;
-            } else if (data.out_mode !== undefined) {
-                this.out_mode = data.out_mode;
+            const outMode = data.outMode ?? data.out_mode;
+
+            if (outMode !== undefined) {
+                this.outMode = outMode;
             }
 
             if (data.random !== undefined) {

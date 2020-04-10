@@ -24,7 +24,7 @@ export class Opacity implements IOpacity {
     }
 
     public animation: IOpacityAnimation;
-    public random: boolean | IRandomOpacity;
+    public random: IRandomOpacity;
     public value: number;
 
     constructor() {
@@ -35,19 +35,17 @@ export class Opacity implements IOpacity {
 
     public load(data?: RecursivePartial<IOpacity>): void {
         if (data !== undefined) {
-            if (data.animation !== undefined) {
-                this.animation.load(data.animation);
-            } else if (data.anim !== undefined) {
-                this.anim.load(data.anim);
+            const animation = data.animation ?? data.anim;
+
+            if (animation !== undefined) {
+                this.animation.load(animation);
             }
 
             if (data.random !== undefined) {
-                const random = this.random as IRandomOpacity;
-
                 if (typeof data.random === "boolean") {
-                    random.enable = data.random;
+                    this.random.enable = data.random;
                 } else {
-                    random.load(data.random);
+                    this.random.load(data.random);
                 }
             }
 

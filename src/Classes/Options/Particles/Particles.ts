@@ -79,6 +79,7 @@ export class Particles implements IParticles {
                     if (this.color instanceof Array) {
                         this.color = new Color();
                     }
+
                     this.color.load(data.color);
                 }
             }

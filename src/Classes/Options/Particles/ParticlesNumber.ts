@@ -32,10 +32,10 @@ export class ParticlesNumber implements IParticlesNumber {
         if (data !== undefined) {
             this.density.load(data.density);
 
-            if (data.max !== undefined) {
-                this.max = data.max;
-            } else if (data.limit !== undefined) {
-                this.limit = data.limit;
+            const limit = data.limit ?? data.max;
+
+            if (limit !== undefined) {
+                this.limit = limit;
             }
 
             if (data.value !== undefined) {

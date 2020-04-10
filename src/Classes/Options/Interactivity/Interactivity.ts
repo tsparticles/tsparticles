@@ -35,11 +35,10 @@ export class Interactivity implements IInteractivity {
 
     public load(data?: RecursivePartial<IInteractivity>): void {
         if (data !== undefined) {
+            const detectsOn = data.detectsOn ?? data.detect_on;
 
-            if (data.detectsOn !== undefined) {
-                this.detectsOn = data.detectsOn;
-            } else if (data.detect_on !== undefined) {
-                this.detect_on = data.detect_on;
+            if (detectsOn !== undefined) {
+                this.detectsOn = detectsOn;
             }
 
             this.events.load(data.events);

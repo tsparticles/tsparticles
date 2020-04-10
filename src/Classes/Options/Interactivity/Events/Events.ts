@@ -73,23 +73,9 @@ export class Events implements IEvents {
 
     public load(data?: RecursivePartial<IEvents>): void {
         if (data !== undefined) {
-            if (data.onClick !== undefined) {
-                this.onClick.load(data.onClick);
-            } else if (data.onclick !== undefined) {
-                this.onclick.load(data.onclick);
-            }
-
-            if (data.onDiv !== undefined) {
-                this.onDiv.load(data.onDiv);
-            } else if (data.ondiv !== undefined) {
-                this.ondiv.load(data.ondiv);
-            }
-
-            if (data.onHover !== undefined) {
-                this.onHover.load(data.onHover);
-            } else if (data.onhover !== undefined) {
-                this.onhover.load(data.onhover);
-            }
+            this.onClick.load(data.onClick ?? data.onclick);
+            this.onDiv.load(data.onDiv ?? data.ondiv);
+            this.onHover.load(data.onHover ?? data.onhover);
 
             if (data.resize !== undefined) {
                 this.resize = data.resize;

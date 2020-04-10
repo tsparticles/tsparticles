@@ -41,10 +41,10 @@ export class ImageShape extends ShapeBase implements IImageShape {
                 this.height = data.height;
             }
 
-            if (data.replaceColor !== undefined) {
-                this.replaceColor = data.replaceColor;
-            } else if (data.replace_color !== undefined) {
-                this.replace_color = data.replace_color;
+            const replaceColor = data.replaceColor ?? data.replace_color;
+
+            if (replaceColor !== undefined) {
+                this.replaceColor = replaceColor;
             }
 
             if (data.src !== undefined) {

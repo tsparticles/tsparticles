@@ -37,10 +37,10 @@ export class SizeAnimation implements ISizeAnimation {
                 this.enable = data.enable;
             }
 
-            if (data.minimumValue !== undefined) {
-                this.minimumValue = data.minimumValue;
-            } else if (data.size_min !== undefined) {
-                this.size_min = data.size_min;
+            const minimumValue = data.minimumValue ?? data.size_min;
+
+            if (minimumValue !== undefined) {
+                this.minimumValue = minimumValue;
             }
 
             if (data.speed !== undefined) {

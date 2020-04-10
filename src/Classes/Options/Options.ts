@@ -85,16 +85,16 @@ export class Options implements IOptions {
                 this.background.load(data.background);
             }
 
-            if (data.detectRetina !== undefined) {
-                this.detectRetina = data.detectRetina;
-            } else if (data.retina_detect !== undefined) {
-                this.retina_detect = data.retina_detect;
+            const detectRetina = data.detectRetina ?? data.retina_detect;
+
+            if (detectRetina !== undefined) {
+                this.detectRetina = detectRetina;
             }
 
-            if (data.fpsLimit !== undefined) {
-                this.fpsLimit = data.fpsLimit;
-            } else if (data.fps_limit !== undefined) {
-                this.fps_limit = data.fps_limit;
+            const fpsLimit = data.fpsLimit ?? data.fps_limit;
+
+            if (fpsLimit !== undefined) {
+                this.fpsLimit = fpsLimit;
             }
 
             if (data.pauseOnBlur !== undefined) {

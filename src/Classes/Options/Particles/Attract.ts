@@ -54,16 +54,16 @@ export class Attract implements IAttract {
                 this.enable = data.enable;
             }
 
-            if (data.rotate?.x !== undefined) {
-                this.rotate.x = data.rotate.x;
-            } else if (data.rotateX !== undefined) {
-                this.rotateX = data.rotateX;
+            const rotateX = data.rotate?.x ?? data.rotateX;
+
+            if (rotateX !== undefined) {
+                this.rotate.x = rotateX;
             }
 
-            if (data.rotate?.y !== undefined) {
-                this.rotate.y = data.rotate.y;
-            } else if (data.rotateY !== undefined) {
-                this.rotateY = data.rotateY;
+            const rotateY = data.rotate?.y ?? data.rotateY;
+
+            if (rotateY !== undefined) {
+                this.rotate.y = rotateY;
             }
         }
     }

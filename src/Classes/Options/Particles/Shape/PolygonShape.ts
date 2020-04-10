@@ -31,10 +31,10 @@ export class PolygonShape extends ShapeBase implements IPolygonShape {
         super.load(data);
 
         if (data !== undefined) {
-            if (data.sides !== undefined) {
-                this.sides = data.sides;
-            } else if (data.nb_sides !== undefined) {
-                this.nb_sides = data.nb_sides;
+            const sides = data.sides ?? data.nb_sides;
+
+            if (sides !== undefined) {
+                this.sides = sides;
             }
         }
     }
