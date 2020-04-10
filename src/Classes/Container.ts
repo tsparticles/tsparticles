@@ -178,7 +178,7 @@ export class Container {
                             reject: (reson?: any) => void) => {
             const src = optionsImage.src;
             const image: IImage = {
-                type: src.substr(src.length - 3)
+                type: src.substr(src.length - 3),
             };
 
             if (optionsImage.src) {

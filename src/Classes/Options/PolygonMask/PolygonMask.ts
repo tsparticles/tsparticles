@@ -47,7 +47,7 @@ export class PolygonMask implements IPolygonMask {
             this.draw.load(data.draw);
 
             const inline = data.inline ?? {
-                arrangement: data.inlineArrangement
+                arrangement: data.inlineArrangement,
             };
 
             if (inline !== undefined) {
