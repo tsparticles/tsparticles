@@ -11,17 +11,21 @@ yarn add particles.vue
 ## Usage
 
 ```javascript
-import Vue from 'vue';
-import VueParticles from 'vue-particles';
+import Particles from 'particles.vue';
 
-Vue.use(VueParticles)
+export default {
+    name: 'App',
+    components: {
+        Particles
+    }
+}
 ```
 ### Simple config
 
 ```html
 <template>
     <div id="app">
-      <particles color="#dedede"></particles>
+      <Particles id="tsparticles" lineLinked="true"/>
     </div>
  </template>
 ```
@@ -32,6 +36,7 @@ Vue.use(VueParticles)
 <template>
     <div id="app">
       <particles
+        id="tsparticles"
         color="#dedede"
         :particleOpacity="0.7"
         :particlesNumber="80"
