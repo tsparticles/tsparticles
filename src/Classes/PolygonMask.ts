@@ -156,6 +156,7 @@ export class PolygonMask {
                     position = this.getEquidistantPointOnPolygonPathByIndex(container.particles.count);
                     break;
                 case PolygonMaskInlineArrangement.onePerPoint:
+                case PolygonMaskInlineArrangement.perPoint:
                 default:
                     position = this.getPointOnPolygonPathByIndex(container.particles.count);
             }

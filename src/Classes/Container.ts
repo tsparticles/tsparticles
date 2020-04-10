@@ -231,7 +231,8 @@ export class Container {
             }
         }
 
-        this.checkBeforeDraw();
+        this.init();
+        this.play();
     }
 
     private async loadImageShape(imageShape: IImageShape): Promise<void> {
@@ -247,19 +248,5 @@ export class Container {
         this.canvas.init();
         this.particles.init();
         this.densityAutoParticles();
-    }
-
-    private checkBeforeDraw(): void {
-        if (this.options.particles.shape.type === ShapeType.image ||
-            (this.options.particles.shape.type instanceof Array &&
-                this.options.particles.shape.type.every(v => v === ShapeType.image))) {
-            if (!this.images.length) {
-                this.stop();
-                return;
-            }
-        }
-
-        this.init();
-        this.play();
     }
 }

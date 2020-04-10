@@ -34,14 +34,15 @@ export class Particles {
         const options = container.options;
 
         if (options.polygon.enable && options.polygon.type === PolygonMaskType.inline &&
-            options.polygon.inline.arrangement === PolygonMaskInlineArrangement.onePerPoint) {
+            (options.polygon.inline.arrangement === PolygonMaskInlineArrangement.onePerPoint ||
+                options.polygon.inline.arrangement === PolygonMaskInlineArrangement.perPoint)) {
             container.polygon.drawPointsOnPolygonPath();
         } else {
             for (let i = this.array.length; i < options.particles.number.value; i++) {
                 this.addParticle(new Particle(container));
             }
         }
-
+        
         this.interactionsEnabled = options.particles.lineLinked.enable ||
             options.particles.move.attract.enable ||
             options.particles.move.collisions;

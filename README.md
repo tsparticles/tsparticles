@@ -20,8 +20,6 @@ You'll find the instructions [below](https://github.com/matteobruni/tsparticles/
 
 CDNs and `npm` have all the sources you need in **vanilla Javascript**, a bundle browser ready (tsparticles.min.js) and all files splitted for `import` syntax.
 
-Actually the `import` syntax doesn't have instructions, but you can contact me by mail or in the project's Slack, the link is below and I'll help you find the right solution. Until a guide will be ready this is the fastest solution.
-
 **If you are still interested** some lines below there are some instructions for migrating from the old particles.js library.
 
 ### Want to see it in action and try it?
@@ -278,6 +276,22 @@ npm install tsparticles
 ```shell
 yarn add tsparticles
 ```
+
+#### Import and require
+
+Starting from version 1.12.7 `import` and `require` can be used to import `tsParticles`.
+
+Now you can write something like this
+
+```javascript
+const tsParticles = require('tsparticles');
+
+// or
+
+import { tsParticles } from 'tsparticles';
+```
+
+the imported `tsParticles` is the same instance you have including the script.
 
 ---
 
