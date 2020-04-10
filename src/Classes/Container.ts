@@ -175,7 +175,7 @@ export class Container {
 
     public loadImage(optionsImage: ImageShape): Promise<IImage> {
         return new Promise((resolve: (value?: IImage | PromiseLike<IImage> | undefined) => void,
-                            reject: (reson?: any) => void) => {
+                            reject: (reason?: any) => void) => {
             const src = optionsImage.src;
             const image: IImage = {
                 type: src.substr(src.length - 3),
