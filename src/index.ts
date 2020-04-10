@@ -4,7 +4,7 @@
 /* Demo / Generator : https://particles.matteobruni.it/
 /* GitHub : https://www.github.com/matteobruni/tsparticles
 /* How to use? : Check the GitHub README
-/* v1.12.7
+/* v1.12.8
 /* ----------------------------------------------- */
 import type { Container } from "./Classes/Container";
 import { Loader } from "./Classes/Loader";
@@ -16,7 +16,7 @@ import { LineDrawer } from "./Classes/ShapeDrawers/LineDrawer";
 import { CircleDrawer } from "./Classes/ShapeDrawers/CircleDrawer";
 import { SquareDrawer } from "./Classes/ShapeDrawers/SquareDrawer";
 import { TriangleDrawer } from "./Classes/ShapeDrawers/TriangleDrawer";
-import { StartDrawer } from "./Classes/ShapeDrawers/StarDrawer";
+import { StarDrawer } from "./Classes/ShapeDrawers/StarDrawer";
 import { PolygonDrawer } from "./Classes/ShapeDrawers/PolygonDrawer";
 import { TextDrawer } from "./Classes/ShapeDrawers/TextDrawer";
 import { ImageDrawer } from "./Classes/ShapeDrawers/ImageDrawer";
@@ -81,7 +81,7 @@ class Main {
         ShapeUtils.addShapeDrawer(ShapeType.edge, squareDrawer);
         ShapeUtils.addShapeDrawer(ShapeType.square, squareDrawer);
         ShapeUtils.addShapeDrawer(ShapeType.triangle, new TriangleDrawer());
-        ShapeUtils.addShapeDrawer(ShapeType.star, new StartDrawer());
+        ShapeUtils.addShapeDrawer(ShapeType.star, new StarDrawer());
         ShapeUtils.addShapeDrawer(ShapeType.polygon, new PolygonDrawer());
         ShapeUtils.addShapeDrawer(ShapeType.char, textDrawer);
         ShapeUtils.addShapeDrawer(ShapeType.character, textDrawer);

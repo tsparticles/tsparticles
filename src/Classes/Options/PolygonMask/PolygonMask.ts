@@ -1,13 +1,13 @@
-import type { IPolygonMask } from "../../../Interfaces/Options/PolygonMask/IPolygonMask";
-import { PolygonMaskType } from "../../../Enums/PolygonMaskType";
-import { Draw } from "./Draw";
-import { Move } from "./Move";
-import type { IPolygonMaskDraw } from "../../../Interfaces/Options/PolygonMask/IPolygonMaskDraw";
-import type { IPolygonMaskMove } from "../../../Interfaces/Options/PolygonMask/IPolygonMaskMove";
-import { PolygonMaskInlineArrangement } from "../../../Enums/PolygonMaskInlineArrangement";
-import type { IPolygonInline } from "../../../Interfaces/Options/PolygonMask/IPolygonInline";
-import { PolygonInline } from "./PolygonInline";
-import type { RecursivePartial } from "../../../Types/RecursivePartial";
+import type {IPolygonMask} from "../../../Interfaces/Options/PolygonMask/IPolygonMask";
+import {PolygonMaskType} from "../../../Enums/PolygonMaskType";
+import {Draw} from "./Draw";
+import {Move} from "./Move";
+import type {IPolygonMaskDraw} from "../../../Interfaces/Options/PolygonMask/IPolygonMaskDraw";
+import type {IPolygonMaskMove} from "../../../Interfaces/Options/PolygonMask/IPolygonMaskMove";
+import {PolygonMaskInlineArrangement} from "../../../Enums/PolygonMaskInlineArrangement";
+import type {IPolygonInline} from "../../../Interfaces/Options/PolygonMask/IPolygonInline";
+import {PolygonInline} from "./PolygonInline";
+import type {RecursivePartial} from "../../../Types/RecursivePartial";
 
 export class PolygonMask implements IPolygonMask {
     /**
@@ -46,10 +46,12 @@ export class PolygonMask implements IPolygonMask {
         if (data !== undefined) {
             this.draw.load(data.draw);
 
-            if (data.inline !== undefined) {
-                this.inline.load(data.inline);
-            } else if (data.inlineArrangement !== undefined) {
-                this.inlineArrangement = data.inlineArrangement;
+            const inline = data.inline ?? {
+                arrangement: data.inlineArrangement,
+            };
+
+            if (inline !== undefined) {
+                this.inline.load(inline);
             }
 
             this.move.load(data.move);

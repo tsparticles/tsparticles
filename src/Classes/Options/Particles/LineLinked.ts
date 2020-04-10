@@ -1,13 +1,13 @@
-import type { ILineLinked } from "../../../Interfaces/Options/Particles/ILineLinked";
-import type { ILineLinkedShadow } from "../../../Interfaces/Options/Particles/ILineLinkedShadow";
-import { LineLinkedShadow } from "./LineLinkedShadow";
-import type { RecursivePartial } from "../../../Types/RecursivePartial";
-import type { IColor } from "../../../Interfaces/Options/Particles/IColor";
-import { Color } from "./Color";
+import type {ILineLinked} from "../../../Interfaces/Options/Particles/ILineLinked";
+import type {ILineLinkedShadow} from "../../../Interfaces/Options/Particles/ILineLinkedShadow";
+import {LineLinkedShadow} from "./LineLinkedShadow";
+import type {RecursivePartial} from "../../../Types/RecursivePartial";
+import type {IColor} from "../../../Interfaces/Options/Particles/IColor";
+import {Color} from "./Color";
 
 export class LineLinked implements ILineLinked {
     public blink: boolean;
-    public color: string | IColor;
+    public color: IColor;
     public consent: boolean;
     public distance: number;
     public enable: boolean;
@@ -34,10 +34,9 @@ export class LineLinked implements ILineLinked {
 
             if (data.color !== undefined) {
                 if (typeof data.color === "string") {
-                    this.color = data.color;
+                    this.color.value = data.color;
                 } else {
-                    this.color = new Color();
-                    this.color.load(data.color as IColor);
+                    this.color.load(data.color);
                 }
             }
 

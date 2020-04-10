@@ -1,21 +1,21 @@
-import { Canvas } from "./Canvas";
-import { EventListeners } from "./Utils/EventListeners";
-import type { IRepulse } from "../Interfaces/IRepulse";
-import type { IBubble } from "../Interfaces/IBubble";
-import type { IImage } from "../Interfaces/IImage";
-import type { IContainerInteractivity } from "../Interfaces/IContainerInteractivity";
-import { Particles } from "./Particles";
-import { Retina } from "./Retina";
-import { ShapeType } from "../Enums/ShapeType";
-import { PolygonMask } from "./PolygonMask";
-import { ImageShape } from "./Options/Particles/Shape/ImageShape";
-import type { IOptions } from "../Interfaces/Options/IOptions";
-import { FrameManager } from "./FrameManager";
-import type { RecursivePartial } from "../Types/RecursivePartial";
-import { Options } from "./Options/Options";
-import { Utils } from "./Utils/Utils";
-import type { IImageShape } from "../Interfaces/Options/Particles/Shape/IImageShape";
-import { Presets } from "./Utils/Presets";
+import {Canvas} from "./Canvas";
+import {EventListeners} from "./Utils/EventListeners";
+import type {IRepulse} from "../Interfaces/IRepulse";
+import type {IBubble} from "../Interfaces/IBubble";
+import type {IImage} from "../Interfaces/IImage";
+import type {IContainerInteractivity} from "../Interfaces/IContainerInteractivity";
+import {Particles} from "./Particles";
+import {Retina} from "./Retina";
+import {ShapeType} from "../Enums/ShapeType";
+import {PolygonMask} from "./PolygonMask";
+import {ImageShape} from "./Options/Particles/Shape/ImageShape";
+import type {IOptions} from "../Interfaces/Options/IOptions";
+import {FrameManager} from "./FrameManager";
+import type {RecursivePartial} from "../Types/RecursivePartial";
+import {Options} from "./Options/Options";
+import {Utils} from "./Utils/Utils";
+import type {IImageShape} from "../Interfaces/Options/Particles/Shape/IImageShape";
+import {Presets} from "./Utils/Presets";
 
 /**
  * The object loaded into an HTML element, it'll contain options loaded and all data to let everything working
@@ -173,10 +173,13 @@ export class Container {
         return JSON.stringify(this.options, undefined, 2);
     }
 
-    public loadImage(image: IImage, optionsImage: ImageShape): Promise<void> {
-        return new Promise((resolve: (value?: void | PromiseLike<void> | undefined) => void,
-            reject: (reson?: any) => void) => {
-            image.error = false;
+    public loadImage(optionsImage: ImageShape): Promise<IImage> {
+        return new Promise((resolve: (value?: IImage | PromiseLike<IImage> | undefined) => void,
+                            reject: (reason?: any) => void) => {
+            const src = optionsImage.src;
+            const image: IImage = {
+                type: src.substr(src.length - 3),
+            };
 
             if (optionsImage.src) {
                 const img = new Image();
@@ -184,19 +187,15 @@ export class Container {
                 img.addEventListener("load", () => {
                     image.obj = img;
 
-                    resolve();
+                    resolve(image);
                 });
 
                 img.addEventListener("error", () => {
-                    image.error = true;
-
                     reject(`Error tsParticles - loading image: ${optionsImage.src}`);
                 });
 
                 img.src = optionsImage.src;
             } else {
-                image.error = true;
-
                 reject("Error tsParticles - No image.src");
             }
         });
@@ -258,18 +257,12 @@ export class Container {
             }
         }
 
-        this.checkBeforeDraw();
+        this.init();
+        this.play();
     }
 
     private async loadImageShape(imageShape: IImageShape): Promise<void> {
-        const src = imageShape.src;
-        const image: IImage = { error: false };
-
-        image.type = src.substr(src.length - 3);
-
-        await this.loadImage(image, imageShape);
-
-        this.images.push(image);
+        this.images.push(await this.loadImage(imageShape));
     }
 
     private init(): void {
@@ -278,16 +271,5 @@ export class Container {
         this.canvas.init();
         this.particles.init();
         this.densityAutoParticles();
-    }
-
-    private checkBeforeDraw(): void {
-        if (this.options.particles.shape.type === ShapeType.image) {
-            if (this.images.every((img) => img.error)) {
-                return;
-            }
-        }
-
-        this.init();
-        this.play();
     }
 }

@@ -1,11 +1,11 @@
-import type { ILineLinkedShadow } from "../../../Interfaces/Options/Particles/ILineLinkedShadow";
-import type { RecursivePartial } from "../../../Types/RecursivePartial";
-import type { IColor } from "../../../Interfaces/Options/Particles/IColor";
-import { Color } from "./Color";
+import type {ILineLinkedShadow} from "../../../Interfaces/Options/Particles/ILineLinkedShadow";
+import type {RecursivePartial} from "../../../Types/RecursivePartial";
+import type {IColor} from "../../../Interfaces/Options/Particles/IColor";
+import {Color} from "./Color";
 
 export class LineLinkedShadow implements ILineLinkedShadow {
     public blur: number;
-    public color: string | IColor;
+    public color: IColor;
     public enable: boolean;
 
     constructor() {
@@ -23,10 +23,10 @@ export class LineLinkedShadow implements ILineLinkedShadow {
             }
 
             if (data.color !== undefined) {
-                if (typeof this.color === "string") {
-                    this.color = data.color;
+                if (typeof data.color === "string") {
+                    this.color.value = data.color;
                 } else {
-                    this.color.load(data.color as IColor);
+                    this.color.load(data.color);
                 }
             }
 

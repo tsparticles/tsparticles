@@ -1,10 +1,10 @@
-import { Container } from "./Container";
-import type { ICoordinates } from "../Interfaces/ICoordinates";
-import { PolygonMaskType } from "../Enums/PolygonMaskType";
-import { Particle } from "./Particle";
-import { PolygonMaskInlineArrangement } from "../Enums/PolygonMaskInlineArrangement";
-import { Utils } from "./Utils/Utils";
-import { IDimension } from "../Interfaces/IDimension";
+import {Container} from "./Container";
+import type {ICoordinates} from "../Interfaces/ICoordinates";
+import {PolygonMaskType} from "../Enums/PolygonMaskType";
+import {Particle} from "./Particle";
+import {PolygonMaskInlineArrangement} from "../Enums/PolygonMaskInlineArrangement";
+import {Utils} from "./Utils/Utils";
+import {IDimension} from "../Interfaces/IDimension";
 
 type SvgAbsoluteCoordinatesTypes =
     | SVGPathSegArcAbs
@@ -156,6 +156,7 @@ export class PolygonMask {
                     position = this.getEquidistantPointOnPolygonPathByIndex(container.particles.count);
                     break;
                 case PolygonMaskInlineArrangement.onePerPoint:
+                case PolygonMaskInlineArrangement.perPoint:
                 default:
                     position = this.getPoingOnPolygonPathByIndex(container.particles.count);
             }

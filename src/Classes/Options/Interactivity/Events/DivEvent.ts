@@ -1,6 +1,6 @@
-import type { IDivEvent } from "../../../../Interfaces/Options/Interactivity/Events/IDivEvent";
-import { DivMode } from "../../../../Enums/Modes/DivMode";
-import type { RecursivePartial } from "../../../../Types/RecursivePartial";
+import type {IDivEvent} from "../../../../Interfaces/Options/Interactivity/Events/IDivEvent";
+import {DivMode} from "../../../../Enums/Modes/DivMode";
+import type {RecursivePartial} from "../../../../Types/RecursivePartial";
 
 export class DivEvent implements IDivEvent {
     /**
@@ -38,15 +38,15 @@ export class DivEvent implements IDivEvent {
     constructor() {
         this.elementId = "repulse-div";
         this.enable = false;
-        this.mode = DivMode.repulse;
+        this.mode = [];
     }
 
     public load(data?: RecursivePartial<IDivEvent>): void {
         if (data !== undefined) {
-            if (data.elementId !== undefined) {
-                this.elementId = data.elementId;
-            } else if (data.el !== undefined) {
-                this.el = data.el;
+            const elementId = data.elementId ?? data.el;
+
+            if (elementId !== undefined) {
+                this.elementId = elementId;
             }
 
             if (data.enable !== undefined) {

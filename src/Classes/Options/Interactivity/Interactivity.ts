@@ -1,9 +1,9 @@
-import type { IInteractivity } from "../../../Interfaces/Options/Interactivity/IInteractivity";
-import { InteractivityDetect } from "../../../Enums/InteractivityDetect";
-import { Events } from "./Events/Events";
-import { Modes } from "./Modes/Modes";
-import type { RecursivePartial } from "../../../Types/RecursivePartial";
-import { HoverMode } from "../../../Enums/Modes/HoverMode";
+import type {IInteractivity} from "../../../Interfaces/Options/Interactivity/IInteractivity";
+import {InteractivityDetect} from "../../../Enums/InteractivityDetect";
+import {Events} from "./Events/Events";
+import {Modes} from "./Modes/Modes";
+import type {RecursivePartial} from "../../../Types/RecursivePartial";
+import {HoverMode} from "../../../Enums/Modes/HoverMode";
 
 export class Interactivity implements IInteractivity {
     /**
@@ -35,11 +35,10 @@ export class Interactivity implements IInteractivity {
 
     public load(data?: RecursivePartial<IInteractivity>): void {
         if (data !== undefined) {
+            const detectsOn = data.detectsOn ?? data.detect_on;
 
-            if (data.detectsOn !== undefined) {
-                this.detectsOn = data.detectsOn;
-            } else if (data.detect_on !== undefined) {
-                this.detect_on = data.detect_on;
+            if (detectsOn !== undefined) {
+                this.detectsOn = detectsOn;
             }
 
             this.events.load(data.events);

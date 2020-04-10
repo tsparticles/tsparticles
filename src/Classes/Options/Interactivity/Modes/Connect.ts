@@ -1,7 +1,7 @@
-import type { IConnect } from "../../../../Interfaces/Options/Interactivity/Modes/IConnect";
-import { ConnectLineLinked } from "./ConnectLineLinked";
-import type { IConnectLineLinked } from "../../../../Interfaces/Options/Interactivity/Modes/IConnectLineLinked";
-import type { RecursivePartial } from "../../../../Types/RecursivePartial";
+import type {IConnect} from "../../../../Interfaces/Options/Interactivity/Modes/IConnect";
+import {ConnectLineLinked} from "./ConnectLineLinked";
+import type {IConnectLineLinked} from "../../../../Interfaces/Options/Interactivity/Modes/IConnectLineLinked";
+import type {RecursivePartial} from "../../../../Types/RecursivePartial";
 
 export class Connect implements IConnect {
     /**
@@ -37,10 +37,10 @@ export class Connect implements IConnect {
                 this.distance = data.distance;
             }
 
-            if (data.lineLinked !== undefined) {
-                this.lineLinked.load(data.lineLinked);
-            } else if (data.line_linked !== undefined) {
-                this.line_linked.load(data.line_linked);
+            const lineLinked = data.lineLinked ?? data.line_linked
+
+            if (lineLinked !== undefined) {
+                this.lineLinked.load(lineLinked);
             }
 
             if (data.radius !== undefined) {

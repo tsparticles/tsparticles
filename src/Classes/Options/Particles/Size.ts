@@ -1,16 +1,16 @@
-import type {IOpacity} from "../../../Interfaces/Options/Particles/IOpacity";
-import {OpacityAnimation} from "./OpacityAnimation";
-import type {IOpacityAnimation} from "../../../Interfaces/Options/Particles/IOpacityAnimation";
+import type {ISize} from "../../../Interfaces/Options/Particles/ISize";
+import {SizeAnimation} from "./SizeAnimation";
+import type {ISizeAnimation} from "../../../Interfaces/Options/Particles/ISizeAnimation";
 import type {RecursivePartial} from "../../../Types/RecursivePartial";
-import type {IRandomOpacity} from "../../../Interfaces/Options/Particles/IRandomOpacity";
-import {RandomOpacity} from "./RandomOpacity";
+import type {IRandomSize} from "../../../Interfaces/Options/Particles/IRandomSize";
+import {RandomSize} from "./RandomSize";
 
-export class Opacity implements IOpacity {
+export class Size implements ISize {
     /**
      *
      * @deprecated this property is obsolete, please use the new animation
      */
-    public get anim(): IOpacityAnimation {
+    public get anim(): ISizeAnimation {
         return this.animation;
     }
 
@@ -19,21 +19,21 @@ export class Opacity implements IOpacity {
      * @deprecated this property is obsolete, please use the new animation
      * @param value
      */
-    public set anim(value: IOpacityAnimation) {
+    public set anim(value: ISizeAnimation) {
         this.animation = value;
     }
 
-    public animation: IOpacityAnimation;
-    public random: IRandomOpacity;
+    public animation: ISizeAnimation;
+    public random: IRandomSize;
     public value: number;
 
     constructor() {
-        this.animation = new OpacityAnimation();
-        this.random = new RandomOpacity();
-        this.value = 1;
+        this.animation = new SizeAnimation();
+        this.random = new RandomSize;
+        this.value = 3;
     }
 
-    public load(data?: RecursivePartial<IOpacity>): void {
+    public load(data?: RecursivePartial<ISize>): void {
         if (data !== undefined) {
             const animation = data.animation ?? data.anim;
 

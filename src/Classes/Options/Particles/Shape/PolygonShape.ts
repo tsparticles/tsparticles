@@ -1,5 +1,5 @@
-import type { IPolygonShape } from "../../../../Interfaces/Options/Particles/Shape/IPolygonShape";
-import type { RecursivePartial } from "../../../../Types/RecursivePartial";
+import type {IPolygonShape} from "../../../../Interfaces/Options/Particles/Shape/IPolygonShape";
+import type {RecursivePartial} from "../../../../Types/RecursivePartial";
 
 export class PolygonShape implements IPolygonShape {
     /**
@@ -31,10 +31,10 @@ export class PolygonShape implements IPolygonShape {
 
     public load(data?: RecursivePartial<IPolygonShape>): void {
         if (data !== undefined) {
-            if (data.sides !== undefined) {
-                this.sides = data.sides;
-            } else if (data.nb_sides !== undefined) {
-                this.nb_sides = data.nb_sides;
+            const sides = data.sides ?? data.nb_sides;
+
+            if (sides !== undefined) {
+                this.sides = sides;
             }
         }
     }

@@ -1,26 +1,26 @@
-import type { IParticles } from "../../../Interfaces/Options/Particles/IParticles";
-import { Color } from "./Color";
-import { LineLinked } from "./LineLinked";
-import { Move } from "./Move";
-import { ParticlesNumber } from "./ParticlesNumber";
-import { Opacity } from "./Opacity";
-import { Shape } from "./Shape/Shape";
-import { ParticlesSize } from "./ParticlesSize";
-import type { IColor } from "../../../Interfaces/Options/Particles/IColor";
-import type { ILineLinked } from "../../../Interfaces/Options/Particles/ILineLinked";
-import type { IMove } from "../../../Interfaces/Options/Particles/IMove";
-import type { IParticlesNumber } from "../../../Interfaces/Options/Particles/IParticlesNumber";
-import type { IOpacity } from "../../../Interfaces/Options/Particles/IOpacity";
-import type { ISize } from "../../../Interfaces/Options/Particles/ISize";
-import type { IRotate } from "../../../Interfaces/Options/Particles/IRotate";
-import { Rotate } from "./Rotate";
-import type { RecursivePartial } from "../../../Types/RecursivePartial";
-import type { IShadow } from "../../../Interfaces/Options/Particles/IShadow";
-import { Shadow } from "./Shadow";
-import type { SingleOrMultiple } from "../../../Types/SingleOrMultiple";
-import type { IStroke } from "../../../Interfaces/Options/Particles/IStroke";
-import { Stroke } from "./Stroke";
-import type { IShape } from "../../../Interfaces/Options/Particles/Shape/IShape";
+import type {IParticles} from "../../../Interfaces/Options/Particles/IParticles";
+import {Color} from "./Color";
+import {LineLinked} from "./LineLinked";
+import {Move} from "./Move";
+import {ParticlesNumber} from "./ParticlesNumber";
+import {Opacity} from "./Opacity";
+import {Shape} from "./Shape/Shape";
+import {Size} from "./Size";
+import type {IColor} from "../../../Interfaces/Options/Particles/IColor";
+import type {ILineLinked} from "../../../Interfaces/Options/Particles/ILineLinked";
+import type {IMove} from "../../../Interfaces/Options/Particles/IMove";
+import type {IParticlesNumber} from "../../../Interfaces/Options/Particles/IParticlesNumber";
+import type {IOpacity} from "../../../Interfaces/Options/Particles/IOpacity";
+import type {ISize} from "../../../Interfaces/Options/Particles/ISize";
+import type {IRotate} from "../../../Interfaces/Options/Particles/IRotate";
+import {Rotate} from "./Rotate";
+import type {RecursivePartial} from "../../../Types/RecursivePartial";
+import type {IShadow} from "../../../Interfaces/Options/Particles/IShadow";
+import {Shadow} from "./Shadow";
+import type {SingleOrMultiple} from "../../../Types/SingleOrMultiple";
+import type {IStroke} from "../../../Interfaces/Options/Particles/IStroke";
+import {Stroke} from "./Stroke";
+import type {IShape} from "../../../Interfaces/Options/Particles/Shape/IShape";
 
 export class Particles implements IParticles {
     /**
@@ -59,7 +59,7 @@ export class Particles implements IParticles {
         this.opacity = new Opacity();
         this.rotate = new Rotate();
         this.shape = new Shape();
-        this.size = new ParticlesSize();
+        this.size = new Size();
         this.shadow = new Shadow();
         this.stroke = new Stroke();
     }
@@ -79,6 +79,7 @@ export class Particles implements IParticles {
                     if (this.color instanceof Array) {
                         this.color = new Color();
                     }
+
                     this.color.load(data.color);
                 }
             }

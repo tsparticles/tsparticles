@@ -1,11 +1,11 @@
-import type { IPolygonMaskDrawStroke } from "../../../Interfaces/Options/PolygonMask/IPolygonMaskDrawStroke";
-import type { RecursivePartial } from "../../../Types/RecursivePartial";
-import type { IColor } from "../../../Interfaces/Options/Particles/IColor";
-import { Color } from "../Particles/Color";
-import { ColorUtils } from "../../Utils/ColorUtils";
+import type {IPolygonMaskDrawStroke} from "../../../Interfaces/Options/PolygonMask/IPolygonMaskDrawStroke";
+import type {RecursivePartial} from "../../../Types/RecursivePartial";
+import type {IColor} from "../../../Interfaces/Options/Particles/IColor";
+import {Color} from "../Particles/Color";
+import {ColorUtils} from "../../Utils/ColorUtils";
 
 export class PolygonMaskDrawStroke implements IPolygonMaskDrawStroke {
-    public color: string | IColor;
+    public color: IColor;
     public width: number;
     public opacity: number;
 
@@ -20,17 +20,13 @@ export class PolygonMaskDrawStroke implements IPolygonMaskDrawStroke {
 
             if (data.color !== undefined) {
                 if (typeof data.color === "string") {
-                    this.color = data.color;
-                    this.opacity = ColorUtils.stringToAlpha(data.color as string) ?? this.opacity;
+                    this.color.value = data.color;
                 } else {
-                    const color = data.color as IColor;
+                    this.color.load(data.color);
+                }
 
-                    this.color = new Color();
-                    this.color.load(color);
-
-                    if (typeof color.value === "string") {
-                        this.opacity = ColorUtils.stringToAlpha(color.value) ?? this.opacity;
-                    }
+                if (typeof this.color.value === "string") {
+                    this.opacity = ColorUtils.stringToAlpha(this.color.value) ?? this.opacity;
                 }
             }
 
