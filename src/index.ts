@@ -7,7 +7,7 @@ import {LineDrawer} from "./Classes/ShapeDrawers/LineDrawer";
 import {CircleDrawer} from "./Classes/ShapeDrawers/CircleDrawer";
 import {SquareDrawer} from "./Classes/ShapeDrawers/SquareDrawer";
 import {TriangleDrawer} from "./Classes/ShapeDrawers/TriangleDrawer";
-import {StartDrawer as StarDrawer} from "./Classes/ShapeDrawers/StarDrawer";
+import {StarDrawer as StarDrawer} from "./Classes/ShapeDrawers/StarDrawer";
 import {PolygonDrawer} from "./Classes/ShapeDrawers/PolygonDrawer";
 import {TextDrawer} from "./Classes/ShapeDrawers/TextDrawer";
 import {ImageDrawer} from "./Classes/ShapeDrawers/ImageDrawer";

@@ -4,7 +4,7 @@ import type {ICoordinates} from "../../Interfaces/ICoordinates";
 import type {IParticle} from "../../Interfaces/IParticle";
 import {IPolygonShape} from "../../Interfaces/Options/Particles/Shape/IPolygonShape";
 
-export class StartDrawer extends PolygonDrawerBase {
+export class StarDrawer extends PolygonDrawerBase {
     public getSidesData(particle: IParticle, radius: number): ISide {
         const polygon = particle.shapeData as IPolygonShape;
         const sides = polygon?.sides ?? 5;
