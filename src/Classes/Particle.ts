@@ -50,7 +50,6 @@ export class Particle implements IParticle {
     public readonly initialVelocity: IVelocity;
     public readonly shapeData?: IShapeValues;
     public readonly bubble: IBubbleParticleData;
-    public readonly customShape?: IShapeValues | undefined;
 
     public readonly updater: Updater;
     public readonly bubbler: Bubbler;
@@ -210,6 +209,23 @@ export class Particle implements IParticle {
 
             this.fill = this.shapeData.fill ?? this.fill;
             this.close = this.shapeData.close ?? this.close;
+
+            /* color */
+            const overrideColor = this.shapeData.color;
+
+            if (overrideColor !== undefined) {
+                if (overrideColor instanceof Array) {
+                    this.color = ColorUtils.colorToRgb(Utils.itemFromArray(overrideColor));
+                } else {
+                    this.color = ColorUtils.colorToRgb(overrideColor);
+                }
+            }
+
+            this.opacity = this.shapeData.opacity ?? this.opacity;
+
+            /*
+            missing: rotate, shadow, size, stroke
+             */
         }
 
         this.updater = new Updater(this.container, this);
