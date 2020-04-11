@@ -1,5 +1,5 @@
-import type {IOptionLoader} from "../../IOptionLoader";
+import type { IOptionLoader } from "../../IOptionLoader";
 
 export interface IGrabLineLinked extends IOptionLoader<IGrabLineLinked> {
-    opacity: number;
+	opacity: number;
 }

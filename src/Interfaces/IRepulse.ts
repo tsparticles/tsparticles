@@ -1,5 +1,5 @@
 export interface IRepulse {
-    finish?: boolean;
-    count?: number;
-    clicking?: boolean;
+	finish?: boolean;
+	count?: number;
+	clicking?: boolean;
 }

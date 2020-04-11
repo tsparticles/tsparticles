@@ -1,6 +1,6 @@
-import type {ISideCount} from "./ISideCount";
+import type { ISideCount } from "./ISideCount";
 
 export interface ISide {
-    count: ISideCount;
-    length: number;
+	count: ISideCount;
+	length: number;
 }

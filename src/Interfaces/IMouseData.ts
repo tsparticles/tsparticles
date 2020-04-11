@@ -1,7 +1,7 @@
-import type {ICoordinates} from "./ICoordinates";
+import type { ICoordinates } from "./ICoordinates";
 
 export interface IMouseData {
-    clickPosition?: ICoordinates | null,
-    position?: ICoordinates | null;
-    clickTime?: number;
+	clickPosition?: ICoordinates | null,
+	position?: ICoordinates | null;
+	clickTime?: number;
 }
