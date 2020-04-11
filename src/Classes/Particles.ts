@@ -6,6 +6,7 @@ import { Particle } from "./Particle";
 import { PolygonMaskType } from "../Enums/PolygonMaskType";
 import { PolygonMaskInlineArrangement } from "../Enums/PolygonMaskInlineArrangement";
 import { InteractionManager } from "./Particle/InteractionManager";
+import { SpatialGrid } from "./Utils/SpatialGrid";
 
 /**
  * Particles manager
