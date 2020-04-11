@@ -30,7 +30,12 @@ steps:
     workingFile: '.npmrc'
     customEndpoint: 'npmjs'
 
-
+- task: Npm@1
+  displayName: npm publish
+  condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/master'))
+  inputs:
+    command: 'publish'
+    publishEndpoint: 'npmjs'
 
 - task: CopyFiles@2
   displayName: Copying files to Artifacts
