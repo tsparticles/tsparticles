@@ -2,7 +2,7 @@
   "name": "react-particles-js",
   "version": "3.0.3",
   "description": "Reactified particles.js",
-  "main": "lib/particles.js",
+  "main": "index.js",
   "types": "index.d.ts",
   "scripts": {
     "compile": "webpack",

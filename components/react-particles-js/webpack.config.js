@@ -45,27 +45,8 @@ const rules = [
     jsonLoader
 ];
 
-const config = {
-    mode: production ? 'production' : 'development',
-    context: __dirname,
-    devtool: production ? false : "source-map-loader",
-    resolve: {
-        extensions: [ ".ts", ".tsx", ".js" ]
-    },
-    entry: "./src/index.ts",
-    output: {
-        path: __dirname + '/lib',
-        filename: "particles.js",
-        library: "Particles",
-        libraryTarget: 'umd',
-        pathinfo: false,
-        globalObject: 'this'
-    },
-    target: 'web',
-    module: {
-        rules
-    },
-    externals: [
+const getExternals = (target = 'cjs') => {
+    const baseExternals = [
         {
             react: {
                 commonjs: "react",
@@ -73,10 +54,65 @@ const config = {
                 amd: "react",
                 root: "React"
             }
-        },
-        /ts[pP]articles/
-    ],
-    plugins
+        }
+    ];
+    if (target === 'cjs') {
+        baseExternals.push(/ts[pP]articles/);
+        baseExternals.push(/lodash/);
+    }
+    return baseExternals;
 };
 
-module.exports = config;
+const getLibraryTarget = (target = 'cjs') => {
+    let libraryTarget = '';
+    switch (target) {
+        case 'umd':
+            libraryTarget = 'umd';
+            break;
+        case 'cjs':
+            libraryTarget = 'commonjs';
+            break;
+        default:
+            libraryTarget = target;
+    }
+    return libraryTarget;
+}
+
+const getOutput = (target = 'cjs') => {
+    const baseOutput = {
+        path: __dirname + `/${target}`,
+        filename: "particles.js",
+        libraryTarget: getLibraryTarget(target)
+    };
+
+    if (target === 'umd') {
+        baseOutput.library = 'Particles';
+        baseOutput.globalObject = 'this';
+    }
+
+    return baseOutput;
+}
+
+const getConfig = (target = 'cjs') => {
+
+    
+    
+    return {
+        mode: production ? 'production' : 'development',
+        context: __dirname,
+        devtool: production ? false : "source-map-loader",
+        resolve: {
+            extensions: [ ".ts", ".tsx", ".js" ]
+        },
+        entry: "./src/index.ts",
+        output: getOutput(target),
+        target: 'web',
+        module: {
+            rules
+        },
+        externals: getExternals(target),
+        plugins
+    }
+};
+
+module.exports = [getConfig('cjs'), getConfig('umd')];
