@@ -73,8 +73,8 @@ const config = {
                 amd: "react",
                 root: "React"
             }
-        }
-        
+        },
+        /ts[pP]articles/
     ],
     plugins
 };
