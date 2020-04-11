@@ -11,7 +11,7 @@ For small particles this is great, but i expect there will need to be allowances
 See https://i.stack.imgur.com/1Gx63.png.
 
  Hence the addition of the radius option for selecting objects in adjacent cells.
-This also allows for broader detection for things like line drawing 
+This also allows for broader detection for things like line drawing
 */
 
 export class SpatialGrid {
