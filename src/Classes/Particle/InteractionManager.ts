@@ -1,26 +1,26 @@
-import type {Container} from "../Container";
-import type {Particle} from "../Particle";
-import {Linker} from "./Linker";
-import {Attracter} from "./Attracter";
-import {Collider} from "./Collider";
+import type { Container } from "../Container";
+import type { Particle } from "../Particle";
+import { Linker } from "./Linker";
+import { Attracter } from "./Attracter";
+import { Collider } from "./Collider";
 
 export class InteractionManager {
-    public static interact(p1: Particle, p2: Particle, container: Container): void {
-        const options = container.options;
+	public static interact(p1: Particle, p2: Particle, container: Container): void {
+		const options = container.options;
 
-        /* link particles */
-        if (options.particles.lineLinked.enable) {
-            Linker.link(p1, p2, container);
-        }
+		/* link particles */
+		if (options.particles.lineLinked.enable) {
+			Linker.link(p1, p2, container);
+		}
 
-        /* attract particles */
-        if (options.particles.move.attract.enable) {
-            Attracter.attract(p1, p2, container);
-        }
+		/* attract particles */
+		if (options.particles.move.attract.enable) {
+			Attracter.attract(p1, p2, container);
+		}
 
-        /* bounce particles */
-        if (options.particles.move.collisions) {
-            Collider.collide(p1, p2);
-        }
-    }
+		/* bounce particles */
+		if (options.particles.move.collisions) {
+			Collider.collide(p1, p2);
+		}
+	}
 }

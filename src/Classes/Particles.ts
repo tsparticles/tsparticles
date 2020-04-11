@@ -1,11 +1,11 @@
-import {Container} from "./Container";
-import type {ICoordinates} from "../Interfaces/ICoordinates";
-import type {IMouseData} from "../Interfaces/IMouseData";
-import type {IRgb} from "../Interfaces/IRgb";
-import {Particle} from "./Particle";
-import {PolygonMaskType} from "../Enums/PolygonMaskType";
-import {PolygonMaskInlineArrangement} from "../Enums/PolygonMaskInlineArrangement";
-import {InteractionManager} from "./Particle/InteractionManager";
+import { Container } from "./Container";
+import type { ICoordinates } from "../Interfaces/ICoordinates";
+import type { IMouseData } from "../Interfaces/IMouseData";
+import type { IRgb } from "../Interfaces/IRgb";
+import { Particle } from "./Particle";
+import { PolygonMaskType } from "../Enums/PolygonMaskType";
+import { PolygonMaskInlineArrangement } from "../Enums/PolygonMaskInlineArrangement";
+import { InteractionManager } from "./Particle/InteractionManager";
 
 /**
  * Particles manager

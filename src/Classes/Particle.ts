@@ -1,30 +1,30 @@
-import {Bubbler} from "./Particle/Bubbler";
-import type {Container} from "./Container";
-import {Drawer} from "./Particle/Drawer";
-import {Grabber} from "./Particle/Grabber";
-import type {IVelocity} from "../Interfaces/IVelocity";
-import type {ISize} from "../Interfaces/ISize";
-import type {IOpacity} from "../Interfaces/IOpacity";
-import type {ICoordinates} from "../Interfaces/ICoordinates";
-import type {IParticleImage} from "../Interfaces/IParticleImage";
-import {Repulser} from "./Particle/Repulser";
-import {ShapeType} from "../Enums/ShapeType";
-import {Updater} from "./Particle/Updater";
-import {Utils} from "./Utils/Utils";
-import {PolygonMaskType} from "../Enums/PolygonMaskType";
-import {Connecter} from "./Particle/Connecter";
-import type {IRgb} from "../Interfaces/IRgb";
-import type {IOptions} from "../Interfaces/Options/IOptions";
-import {HoverMode} from "../Enums/Modes/HoverMode";
-import {ClickMode} from "../Enums/Modes/ClickMode";
-import {RotateDirection} from "../Enums/RotateDirection";
-import type {IStroke} from "../Interfaces/Options/Particles/IStroke";
-import {ColorUtils} from "./Utils/ColorUtils";
-import type {IRandomSize} from "../Interfaces/Options/Particles/IRandomSize";
-import type {IRandomOpacity} from "../Interfaces/Options/Particles/IRandomOpacity";
-import type {IShapeValues} from "../Interfaces/Options/Particles/Shape/IShapeValues";
-import type {IBubbleParticleData} from "../Interfaces/IBubbleParticleData";
-import type {IParticle} from "../Interfaces/IParticle";
+import { Bubbler } from "./Particle/Bubbler";
+import type { Container } from "./Container";
+import { Drawer } from "./Particle/Drawer";
+import { Grabber } from "./Particle/Grabber";
+import type { IVelocity } from "../Interfaces/IVelocity";
+import type { ISize } from "../Interfaces/ISize";
+import type { IOpacity } from "../Interfaces/IOpacity";
+import type { ICoordinates } from "../Interfaces/ICoordinates";
+import type { IParticleImage } from "../Interfaces/IParticleImage";
+import { Repulser } from "./Particle/Repulser";
+import { ShapeType } from "../Enums/ShapeType";
+import { Updater } from "./Particle/Updater";
+import { Utils } from "./Utils/Utils";
+import { PolygonMaskType } from "../Enums/PolygonMaskType";
+import { Connecter } from "./Particle/Connecter";
+import type { IRgb } from "../Interfaces/IRgb";
+import type { IOptions } from "../Interfaces/Options/IOptions";
+import { HoverMode } from "../Enums/Modes/HoverMode";
+import { ClickMode } from "../Enums/Modes/ClickMode";
+import { RotateDirection } from "../Enums/RotateDirection";
+import type { IStroke } from "../Interfaces/Options/Particles/IStroke";
+import { ColorUtils } from "./Utils/ColorUtils";
+import type { IRandomSize } from "../Interfaces/Options/Particles/IRandomSize";
+import type { IRandomOpacity } from "../Interfaces/Options/Particles/IRandomOpacity";
+import type { IShapeValues } from "../Interfaces/Options/Particles/Shape/IShapeValues";
+import type { IBubbleParticleData } from "../Interfaces/IBubbleParticleData";
+import type { IParticle } from "../Interfaces/IParticle";
 
 /**
  * The single particle object
@@ -54,9 +54,6 @@ export class Particle implements IParticle {
     public readonly updater: Updater;
     public readonly bubbler: Bubbler;
     public readonly repulser: Repulser;
-    public readonly connecter: Connecter;
-    public readonly drawer: Drawer;
-    public readonly grabber: Grabber;
     public readonly container: Container;
 
     /* --------- tsParticles functions - particles ----------- */
@@ -231,9 +228,6 @@ export class Particle implements IParticle {
         this.updater = new Updater(this.container, this);
         this.bubbler = new Bubbler(this.container, this);
         this.repulser = new Repulser(this.container, this);
-        this.drawer = new Drawer(this.container, this);
-        this.grabber = new Grabber(this.container, this);
-        this.connecter = new Connecter(this.container, this);
     }
 
     private static calculateVelocity(options: IOptions): IVelocity {
@@ -284,7 +278,7 @@ export class Particle implements IParticle {
 
         /* events */
         if (Utils.isInArray(HoverMode.grab, hoverMode)) {
-            this.grabber.grab();
+            Grabber.grab(this, container);
         }
 
         //  New interactivity `connect` which would just connect the particles on hover
@@ -292,7 +286,8 @@ export class Particle implements IParticle {
         if (Utils.isInArray(HoverMode.connect, options.interactivity.events.onHover.mode)) {
             for (let j = index + 1; j < container.particles.count; j++) {
                 const p2 = container.particles.array[j];
-                this.connecter.connect(p2);
+				
+                Connecter.connect(this, p2, container);
             }
         }
 
@@ -306,7 +301,7 @@ export class Particle implements IParticle {
     }
 
     public draw(): void {
-        this.drawer.draw();
+        Drawer.draw(this, this.container);
     }
 
     public isOverlapping(): { collisionFound: boolean, iterations: number } {

@@ -1,15 +1,15 @@
-import type {InteractivityDetect} from "../../../Enums/InteractivityDetect";
-import type {IEvents} from "./Events/IEvents";
-import type {IModes} from "./Modes/IModes";
-import type {IOptionLoader} from "../IOptionLoader";
+import type { InteractivityDetect } from "../../../Enums/InteractivityDetect";
+import type { IEvents } from "./Events/IEvents";
+import type { IModes } from "./Modes/IModes";
+import type { IOptionLoader } from "../IOptionLoader";
 
 export interface IInteractivity extends IOptionLoader<IInteractivity> {
-    /**
-     * @deprecated use the new detectsOn instead
-     */
-    detect_on: InteractivityDetect;
+	/**
+	 * @deprecated use the new detectsOn instead
+	 */
+	detect_on: InteractivityDetect;
 
-    detectsOn: InteractivityDetect
-    events: IEvents;
-    modes: IModes;
+	detectsOn: InteractivityDetect
+	events: IEvents;
+	modes: IModes;
 }

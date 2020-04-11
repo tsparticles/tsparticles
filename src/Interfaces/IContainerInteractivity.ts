@@ -1,7 +1,7 @@
-import type {IMouseData} from "./IMouseData";
+import type { IMouseData } from "./IMouseData";
 
 export interface IContainerInteractivity {
-    element?: HTMLElement | Window | Node | null;
-    status?: string;
-    mouse: IMouseData;
+	element?: HTMLElement | Window | Node | null;
+	status?: string;
+	mouse: IMouseData;
 }
