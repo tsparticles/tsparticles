@@ -1,7 +1,7 @@
 {
   "particles": {
     "number": {
-      "value": 10,
+      "value": 100,
       "density": {
         "enable": false,
         "value_area": 800
@@ -9,10 +9,6 @@
     },
     "color": {
       "value": "#ffffff"
-    },
-    "emitter": {
-      "speed": 5,
-      "life": 2
     },
     "shape": {
       "type": "circle",
@@ -120,5 +116,30 @@
     "position": "50% 50%",
     "repeat": "no-repeat",
     "size": "cover"
+  },
+  "emitters": {
+    "speed": 5,
+    "particles": {
+      "color": {
+        "value": "#ff0000"
+      },
+      "lineLinked": {
+        "enable": false
+      },
+      "opacity": {
+        "value": 1
+      },
+      "size": {
+        "value": 50,
+        "random": {
+          "enable": true,
+          "minimumValue": 30
+        }
+      },
+      "move": {
+        "speed": 30,
+        "outMode": "destroy"
+      }
+    }
   }
 }

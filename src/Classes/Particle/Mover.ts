@@ -20,7 +20,7 @@ export class Mover {
 		if (options.particles.move.enable) {
 			const slowFactor = this.getProximitySpeedFactor();
 			const deltaFactor = options.fpsLimit > 0 ? (60 * delta) / 1000 : 3.6;
-			const moveSpeed = container.retina.moveSpeed / 2 * slowFactor * deltaFactor;
+			const moveSpeed = (particle.emitter?.moveSpeed ?? container.retina.moveSpeed) / 2 * slowFactor * deltaFactor;
 
 			particle.position.x += particle.velocity.horizontal * moveSpeed;
 			particle.position.y += particle.velocity.vertical * moveSpeed;

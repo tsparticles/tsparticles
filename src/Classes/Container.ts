@@ -264,14 +264,19 @@ export class Container {
 		this.canvas.init();
 		this.particles.init();
 
-		if (this.options.particles.emitter instanceof Array) {
-			for (const emitterOptions of this.options.particles.emitter) {
-				this.emitters.push(new Emitter(this, emitterOptions));
+		if (this.options.emitters instanceof Array) {
+			for (const emitterOptions of this.options.emitters) {
+				const emitter = new Emitter(this, emitterOptions);
+
+				this.retina.initEmitter(emitter);
+				this.emitters.push(emitter);
 			}
 		} else {
-			const emitterOptions = this.options.particles.emitter;
+			const emitterOptions = this.options.emitters;
+			const emitter = new Emitter(this, emitterOptions);
 
-			this.emitters.push(new Emitter(this, emitterOptions));
+			this.retina.initEmitter(emitter);
+			this.emitters.push(emitter);
 		}
 
 		this.densityAutoParticles();

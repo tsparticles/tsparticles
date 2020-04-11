@@ -10,6 +10,8 @@ import type { IOpacity } from "./IOpacity";
 import type { IShapeValues } from "./Options/Particles/Shape/IShapeValues";
 import type { IBubbleParticleData } from "./IBubbleParticleData";
 import type { MoveDirection } from "../Enums/MoveDirection";
+import type { IParticles } from "./Options/Particles/IParticles";
+import type { Emitter } from "../Classes/Emitter";
 
 export interface IParticle {
 	randomIndexData?: number;
@@ -19,12 +21,14 @@ export interface IParticle {
 	readonly color: IRgb | undefined;
 	readonly close: boolean;
 	readonly direction: MoveDirection;
+	readonly emitter?: Emitter;
 	readonly fill: boolean;
 	readonly image?: IParticleImage;
 	readonly initialPosition?: ICoordinates;
 	readonly initialVelocity: IVelocity;
 	readonly offset: ICoordinates;
 	readonly opacity: IOpacity;
+	readonly particlesOptions: IParticles;
 	readonly position: ICoordinates;
 	readonly rotateDirection: RotateDirection;
 	readonly shadowColor: IRgb | undefined;

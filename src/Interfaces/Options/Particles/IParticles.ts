@@ -10,7 +10,6 @@ import type { IRotate } from "./Rotate/IRotate";
 import type { IShadow } from "./IShadow";
 import type { SingleOrMultiple } from "../../../Types/SingleOrMultiple";
 import type { IStroke } from "./IStroke";
-import type { IEmitter } from "./Emitters/IEmitter";
 
 export interface IParticles extends IOptionLoader<IParticles> {
 	color: SingleOrMultiple<IColor>;
@@ -20,7 +19,6 @@ export interface IParticles extends IOptionLoader<IParticles> {
 	 */
 	line_linked: ILineLinked;
 
-	emitter: SingleOrMultiple<IEmitter>;
 	lineLinked: ILineLinked;
 	move: IMove;
 	number: IParticlesNumber;

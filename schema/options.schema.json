@@ -319,6 +319,9 @@
                 "life": {
                     "type": "number"
                 },
+                "particles": {
+                    "$ref": "#/definitions/IParticles"
+                },
                 "position": {
                     "$ref": "#/definitions/ICoordinates"
                 },
@@ -712,19 +715,6 @@
                         {
                             "items": {
                                 "$ref": "#/definitions/IColor"
-                            },
-                            "type": "array"
-                        }
-                    ]
-                },
-                "emitter": {
-                    "anyOf": [
-                        {
-                            "$ref": "#/definitions/IEmitter"
-                        },
-                        {
-                            "items": {
-                                "$ref": "#/definitions/IEmitter"
                             },
                             "type": "array"
                         }
@@ -1389,6 +1379,19 @@
         "detectRetina": {
             "description": "Enables the retina detection, if disabled the ratio used by canvas will be always 1 and not the device setting.",
             "type": "boolean"
+        },
+        "emitters": {
+            "anyOf": [
+                {
+                    "$ref": "#/definitions/IEmitter"
+                },
+                {
+                    "items": {
+                        "$ref": "#/definitions/IEmitter"
+                    },
+                    "type": "array"
+                }
+            ]
         },
         "fpsLimit": {
             "description": "The F(rame)P(er)S(econd) limit applied to all particles animations.",

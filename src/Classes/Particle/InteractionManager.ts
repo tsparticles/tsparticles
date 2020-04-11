@@ -6,20 +6,18 @@ import { Collider } from "./Collider";
 
 export class InteractionManager {
 	public static interact(p1: Particle, p2: Particle, container: Container): void {
-		const options = container.options;
-
 		/* link particles */
-		if (options.particles.lineLinked.enable) {
+		if (p1.particlesOptions.lineLinked.enable && p2.particlesOptions.lineLinked.enable) {
 			Linker.link(p1, p2, container);
 		}
 
 		/* attract particles */
-		if (options.particles.move.attract.enable) {
+		if (p1.particlesOptions.move.attract.enable && p2.particlesOptions.move.attract.enable) {
 			Attracter.attract(p1, p2, container);
 		}
 
 		/* bounce particles */
-		if (options.particles.move.collisions) {
+		if (p1.particlesOptions.move.collisions && p2.particlesOptions.move.collisions) {
 			Collider.collide(p1, p2);
 		}
 	}

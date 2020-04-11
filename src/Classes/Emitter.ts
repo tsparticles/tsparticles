@@ -1,10 +1,15 @@
 import { Container } from "./Container";
 import { ICoordinates } from "../Interfaces/ICoordinates";
-import { IEmitter } from "../Interfaces/Options/Particles/Emitters/IEmitter";
+import { IEmitter } from "../Interfaces/Options/Emitters/IEmitter";
 import { Particle } from "./Particle";
 
 export class Emitter {
 	public position: ICoordinates;
+	public lineLinkedDistance?: number;
+	public lineLinkedWidth?: number;
+	public moveSpeed?: number;
+	public sizeValue?: number;
+	public sizeAnimationSpeed?: number;
 
 	private readonly container: Container;
 	private startInterval?: number;

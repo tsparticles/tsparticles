@@ -14,7 +14,6 @@ import { Utils } from "./Utils/Utils";
 import { PolygonMaskType } from "../Enums/PolygonMaskType";
 import { Connecter } from "./Particle/Connecter";
 import type { IRgb } from "../Interfaces/IRgb";
-import type { IOptions } from "../Interfaces/Options/IOptions";
 import { HoverMode } from "../Enums/Modes/HoverMode";
 import { ClickMode } from "../Enums/Modes/ClickMode";
 import { RotateDirection } from "../Enums/RotateDirection";
@@ -27,6 +26,7 @@ import type { IBubbleParticleData } from "../Interfaces/IBubbleParticleData";
 import type { IParticle } from "../Interfaces/IParticle";
 import { Emitter } from "./Emitter";
 import { MoveDirection } from "../Enums/MoveDirection";
+import { IParticles } from "../Interfaces/Options/Particles/IParticles";
 
 /**
  * The single particle object
@@ -61,25 +61,30 @@ export class Particle implements IParticle {
 	public readonly emitter?: Emitter;
 
 	/* --------- tsParticles functions - particles ----------- */
+	public readonly particlesOptions: IParticles;
+
 	constructor(container: Container, position?: ICoordinates, emitter?: Emitter) {
 		this.container = container;
 		this.emitter = emitter;
+
 		const options = container.options;
-		const color = options.particles.color;
+
+		this.particlesOptions = emitter?.emitterOptions.particles ?? options.particles;
+		const color = this.particlesOptions.color;
 
 		/* size */
-		const randomSize = options.particles.size.random as ISizeRandom;
-		const sizeValue = container.retina.sizeValue;
+		const randomSize = this.particlesOptions.size.random as ISizeRandom;
+		const sizeValue = this.emitter?.sizeValue ?? container.retina.sizeValue;
 
 		this.size = {
 			value: randomSize.enable ? Utils.randomInRange(randomSize.minimumValue, sizeValue) : sizeValue
 		};
 
-		this.direction = emitter ? emitter.emitterOptions.direction : options.particles.move.direction;
+		this.direction = emitter ? emitter.emitterOptions.direction : this.particlesOptions.move.direction;
 		this.bubble = {};
-		this.angle = options.particles.rotate.random ? Math.random() * 360 : options.particles.rotate.value;
+		this.angle = this.particlesOptions.rotate.random ? Math.random() * 360 : this.particlesOptions.rotate.value;
 
-		if (options.particles.rotate.direction == RotateDirection.random) {
+		if (this.particlesOptions.rotate.direction == RotateDirection.random) {
 			const index = Math.floor(Math.random() * 2);
 
 			if (index > 0) {
@@ -88,20 +93,20 @@ export class Particle implements IParticle {
 				this.rotateDirection = RotateDirection.clockwise;
 			}
 		} else {
-			this.rotateDirection = options.particles.rotate.direction;
+			this.rotateDirection = this.particlesOptions.rotate.direction;
 		}
 
-		if (options.particles.size.animation.enable) {
+		if (this.particlesOptions.size.animation.enable) {
 			this.size.status = false;
-			this.size.velocity = container.retina.sizeAnimationSpeed / 100;
+			this.size.velocity = (this.emitter?.sizeAnimationSpeed ?? container.retina.sizeAnimationSpeed) / 100;
 
-			if (!options.particles.size.animation.sync) {
+			if (!this.particlesOptions.size.animation.sync) {
 				this.size.velocity = this.size.velocity * Math.random();
 			}
 		}
 
-		if (options.particles.rotate.animation.enable) {
-			if (!options.particles.rotate.animation.sync) {
+		if (this.particlesOptions.rotate.animation.enable) {
+			if (!this.particlesOptions.rotate.animation.sync) {
 				this.angle = Math.random() * 360;
 			}
 		}
@@ -123,7 +128,7 @@ export class Particle implements IParticle {
 		};
 
 		/* check position - avoid overlap */
-		if (options.particles.move.collisions) {
+		if (this.particlesOptions.move.collisions) {
 			this.checkOverlap(position);
 		}
 
@@ -135,24 +140,24 @@ export class Particle implements IParticle {
 		}
 
 		/* opacity */
-		const randomOpacity = options.particles.opacity.random as IOpacityRandom;
-		const opacityValue = options.particles.opacity.value;
+		const randomOpacity = this.particlesOptions.opacity.random as IOpacityRandom;
+		const opacityValue = this.particlesOptions.opacity.value;
 
 		this.opacity = {
 			value: randomOpacity.enable ? Utils.randomInRange(randomOpacity.minimumValue, opacityValue) : opacityValue,
 		};
 
-		if (options.particles.opacity.animation.enable) {
+		if (this.particlesOptions.opacity.animation.enable) {
 			this.opacity.status = false;
-			this.opacity.velocity = options.particles.opacity.animation.speed / 100;
+			this.opacity.velocity = this.particlesOptions.opacity.animation.speed / 100;
 
-			if (!options.particles.opacity.animation.sync) {
+			if (!this.particlesOptions.opacity.animation.sync) {
 				this.opacity.velocity *= Math.random();
 			}
 		}
 
 		/* animation - velocity for speed */
-		this.initialVelocity = this.calculateVelocity(options);
+		this.initialVelocity = this.calculateVelocity();
 		this.velocity = {
 			horizontal: this.initialVelocity.horizontal,
 			vertical: this.initialVelocity.vertical,
@@ -162,7 +167,7 @@ export class Particle implements IParticle {
 		this.close = true;
 
 		/* if shape is image */
-		const shapeType = options.particles.shape.type;
+		const shapeType = this.particlesOptions.shape.type;
 
 		if (shapeType instanceof Array) {
 			this.shape = Utils.itemFromArray(shapeType);
@@ -171,7 +176,7 @@ export class Particle implements IParticle {
 		}
 
 		if (this.shape === ShapeType.image) {
-			const shape = options.particles.shape;
+			const shape = this.particlesOptions.shape;
 			const index = Utils.arrayRandomIndex(container.images);
 			const image = container.images[index];
 			const optionsImage = shape.image instanceof Array ? shape.image[index] : shape.image;
@@ -191,21 +196,21 @@ export class Particle implements IParticle {
 			this.close = optionsImage.close ?? this.close;
 		}
 
-		if (options.particles.stroke instanceof Array) {
-			this.stroke = Utils.itemFromArray(options.particles.stroke);
+		if (this.particlesOptions.stroke instanceof Array) {
+			this.stroke = Utils.itemFromArray(this.particlesOptions.stroke);
 		} else {
-			this.stroke = options.particles.stroke;
+			this.stroke = this.particlesOptions.stroke;
 		}
 
 		this.strokeColor = typeof this.stroke.color === "string" ?
 			ColorUtils.stringToRgb(this.stroke.color) :
 			ColorUtils.colorToRgb(this.stroke.color);
 
-		this.shadowColor = typeof options.particles.shadow.color === "string" ?
-			ColorUtils.stringToRgb(options.particles.shadow.color) :
-			ColorUtils.colorToRgb(options.particles.shadow.color);
+		this.shadowColor = typeof this.particlesOptions.shadow.color === "string" ?
+			ColorUtils.stringToRgb(this.particlesOptions.shadow.color) :
+			ColorUtils.colorToRgb(this.particlesOptions.shadow.color);
 
-		const shapeData = options.particles.shape.custom[this.shape];
+		const shapeData = this.particlesOptions.shape.custom[this.shape];
 
 		if (shapeData) {
 			this.shapeData = shapeData instanceof Array ? Utils.itemFromArray(shapeData) : shapeData;
@@ -236,38 +241,8 @@ export class Particle implements IParticle {
 		this.repulser = new Repulser(this.container, this);
 	}
 
-	private calculateVelocity(options: IOptions): IVelocity {
-		const baseVelocity = Utils.getParticleBaseVelocity(this);
-		const res = {
-			horizontal: 0,
-			vertical: 0,
-		};
-
-		if (options.particles.move.straight) {
-			res.horizontal = baseVelocity.x;
-			res.vertical = baseVelocity.y;
-
-			if (options.particles.move.random) {
-				res.horizontal *= Math.random();
-				res.vertical *= Math.random();
-			}
-		} else {
-			res.horizontal = baseVelocity.x + Math.random() - 0.5;
-			res.vertical = baseVelocity.y + Math.random() - 0.5;
-		}
-
-		// const theta = 2.0 * Math.PI * Math.random();
-
-		// res.x = Math.cos(theta);
-		// res.y = Math.sin(theta);
-
-		return res;
-	}
-
 	public resetVelocity(): void {
-		const container = this.container;
-		const options = container.options;
-		const velocity = this.calculateVelocity(options);
+		const velocity = this.calculateVelocity();
 
 		this.velocity.horizontal = velocity.horizontal;
 		this.velocity.vertical = velocity.vertical;
@@ -351,6 +326,10 @@ export class Particle implements IParticle {
 		}
 	}
 
+	public destroy(): void {
+		console.log('destroy', this);
+	}
+
 	private calcPosition(container: Container, position?: ICoordinates): ICoordinates {
 		const pos = { x: 0, y: 0 };
 		const options = container.options;
@@ -384,5 +363,33 @@ export class Particle implements IParticle {
 		}
 
 		return pos;
+	}
+
+	private calculateVelocity(): IVelocity {
+		const baseVelocity = Utils.getParticleBaseVelocity(this);
+		const res = {
+			horizontal: 0,
+			vertical: 0,
+		};
+
+		if (this.particlesOptions.move.straight) {
+			res.horizontal = baseVelocity.x;
+			res.vertical = baseVelocity.y;
+
+			if (this.particlesOptions.move.random) {
+				res.horizontal *= Math.random();
+				res.vertical *= Math.random();
+			}
+		} else {
+			res.horizontal = baseVelocity.x + Math.random() - 0.5;
+			res.vertical = baseVelocity.y + Math.random() - 0.5;
+		}
+
+		// const theta = 2.0 * Math.PI * Math.random();
+
+		// res.x = Math.cos(theta);
+		// res.y = Math.sin(theta);
+
+		return res;
 	}
 }

@@ -1,4 +1,5 @@
 import type { Container } from "./Container";
+import { Emitter } from "./Emitter";
 
 export class Retina {
 	public isRetina: boolean;
@@ -72,6 +73,19 @@ export class Retina {
 		this.sizeValue = options.particles.size.value * ratio;
 		this.sizeAnimationSpeed = options.particles.size.animation.speed * ratio;
 		this.polygonMaskMoveRadius = options.polygon.move.radius * ratio;
+	}
+
+	public initEmitter(emitter: Emitter) {
+		const container = this.container;
+		const options = container.options;
+		const particlesOptions = emitter.emitterOptions.particles ?? options.particles;
+		const ratio = this.pxRatio;
+
+		emitter.lineLinkedDistance = particlesOptions.lineLinked.distance * ratio;
+		emitter.lineLinkedWidth = particlesOptions.lineLinked.width * ratio;
+		emitter.moveSpeed = particlesOptions.move.speed * ratio;
+		emitter.sizeValue = particlesOptions.size.value * ratio;
+		emitter.sizeAnimationSpeed = particlesOptions.size.animation.speed * ratio;
 	}
 
 	public reset(): void {

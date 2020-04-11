@@ -210,7 +210,7 @@ export class Canvas {
 			colorLine = container.particles.lineLinkedColor as IRgb;
 		}
 
-		const width = container.retina.lineLinkedWidth;
+		const width = p1.emitter?.lineLinkedWidth ?? container.retina.lineLinkedWidth;
 
 		CanvasUtils.drawLineLinked(ctx,
 			width,
@@ -219,7 +219,7 @@ export class Canvas {
 			options.backgroundMask.enable,
 			colorLine,
 			opacity,
-			options.particles.lineLinked.shadow);
+			p1.particlesOptions.lineLinked.shadow);
 	}
 
 	public drawConnectLine(p1: IParticle, p2: IParticle): void {
@@ -235,13 +235,12 @@ export class Canvas {
 			return;
 		}
 
-		CanvasUtils.drawConnectLine(ctx, this.container.retina.lineLinkedWidth, lineStyle, p1.position, p2.position);
+		CanvasUtils.drawConnectLine(ctx, p1.emitter?.lineLinkedWidth ?? this.container.retina.lineLinkedWidth, lineStyle, p1.position, p2.position);
 	}
 
 	public drawGrabLine(particle: IParticle, opacity: number, mousePos: ICoordinates): void {
 		const container = this.container;
-		const options = container.options;
-		const optColor = options.particles.lineLinked.color;
+		const optColor = particle.particlesOptions.lineLinked.color;
 
 		let lineColor = container.particles.lineLinkedColor ||
 			(typeof optColor === "string" ? ColorUtils.stringToRgb(optColor) : ColorUtils.colorToRgb(optColor));
@@ -270,7 +269,7 @@ export class Canvas {
 			y: particle.position.y + particle.offset.y,
 		};
 
-		CanvasUtils.drawGrabLine(ctx, container.retina.lineLinkedWidth, beginPos, mousePos, colorLine, opacity);
+		CanvasUtils.drawGrabLine(ctx, particle.emitter?.lineLinkedWidth ?? container.retina.lineLinkedWidth, beginPos, mousePos, colorLine, opacity);
 	}
 
 	public drawParticle(particle: IParticle): void {
@@ -295,7 +294,7 @@ export class Canvas {
 			options.backgroundMask.enable,
 			radius,
 			opacity,
-			options.particles.shadow);
+			particle.particlesOptions.shadow);
 	}
 
 	private paintBase(baseColor?: string): void {

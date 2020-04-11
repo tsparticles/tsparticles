@@ -21,8 +21,6 @@ import type { SingleOrMultiple } from "../../../Types/SingleOrMultiple";
 import type { IStroke } from "../../../Interfaces/Options/Particles/IStroke";
 import { Stroke } from "./Stroke";
 import type { IShape } from "../../../Interfaces/Options/Particles/Shape/IShape";
-import { Emitter } from "./Emitters/Emitter";
-import { IEmitter } from "../../../Interfaces/Options/Particles/Emitters/IEmitter";
 
 export class Particles implements IParticles {
 	/**
@@ -43,7 +41,6 @@ export class Particles implements IParticles {
 	}
 
 	public color: SingleOrMultiple<IColor>;
-	public emitter: SingleOrMultiple<IEmitter>;
 	public lineLinked: ILineLinked;
 	public move: IMove;
 	public number: IParticlesNumber;
@@ -56,7 +53,6 @@ export class Particles implements IParticles {
 
 	constructor() {
 		this.color = new Color();
-		this.emitter = new Emitter();
 		this.lineLinked = new LineLinked();
 		this.move = new Move();
 		this.number = new ParticlesNumber();
@@ -92,24 +88,6 @@ export class Particles implements IParticles {
 
 			if (lineLinked !== undefined) {
 				this.lineLinked.load(lineLinked);
-			}
-
-			if (data.emitter !== undefined) {
-				if (data.emitter instanceof Array) {
-					this.emitter = data.emitter.map((s) => {
-						const tmp = new Emitter();
-
-						tmp.load(s);
-
-						return tmp;
-					});
-				} else {
-					if (this.emitter instanceof Array) {
-						this.emitter = new Emitter();
-					}
-
-					this.emitter.load(data.emitter);
-				}
 			}
 
 			this.move.load(data.move);

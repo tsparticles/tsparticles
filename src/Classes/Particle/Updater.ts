@@ -48,19 +48,17 @@ export class Updater {
 	}
 
 	private updateOpacity(): void {
-		const container = this.container;
-		const options = container.options;
 		const particle = this.particle;
 
-		if (options.particles.opacity.animation.enable) {
+		if (particle.particlesOptions.opacity.animation.enable) {
 			if (particle.opacity.status) {
-				if (particle.opacity.value >= options.particles.opacity.value) {
+				if (particle.opacity.value >= particle.particlesOptions.opacity.value) {
 					particle.opacity.status = false;
 				}
 
 				particle.opacity.value += (particle.opacity.velocity || 0);
 			} else {
-				if (particle.opacity.value <= options.particles.opacity.animation.minimumValue) {
+				if (particle.opacity.value <= particle.particlesOptions.opacity.animation.minimumValue) {
 					particle.opacity.status = true;
 				}
 
@@ -75,18 +73,17 @@ export class Updater {
 
 	private updateSize(): void {
 		const container = this.container;
-		const options = container.options;
 		const particle = this.particle;
 
-		if (options.particles.size.animation.enable) {
+		if (particle.particlesOptions.size.animation.enable) {
 			if (particle.size.status) {
-				if (particle.size.value >= container.retina.sizeValue) {
+				if (particle.size.value >= (particle.emitter?.sizeValue ?? container.retina.sizeValue)) {
 					particle.size.status = false;
 				}
 
 				particle.size.value += (particle.size.velocity || 0);
 			} else {
-				if (particle.size.value <= options.particles.size.animation.minimumValue) {
+				if (particle.size.value <= particle.particlesOptions.size.animation.minimumValue) {
 					particle.size.status = true;
 				}
 
@@ -100,14 +97,12 @@ export class Updater {
 	}
 
 	private updateAngle(): void {
-		const container = this.container;
-		const options = container.options;
 		const particle = this.particle;
 
-		if (options.particles.rotate.animation.enable) {
+		if (particle.particlesOptions.rotate.animation.enable) {
 			switch (particle.rotateDirection) {
 				case RotateDirection.clockwise:
-					particle.angle += options.particles.rotate.animation.speed * Math.PI / 18;
+					particle.angle += particle.particlesOptions.rotate.animation.speed * Math.PI / 18;
 
 					if (particle.angle > 360) {
 						particle.angle -= 360;
@@ -115,7 +110,7 @@ export class Updater {
 					break;
 				case RotateDirection.counterClockwise:
 				default:
-					particle.angle -= options.particles.rotate.animation.speed * Math.PI / 18;
+					particle.angle -= particle.particlesOptions.rotate.animation.speed * Math.PI / 18;
 
 					if (particle.angle < 0) {
 						particle.angle += 360;
@@ -127,9 +122,8 @@ export class Updater {
 
 	private fixOutOfCanvasPosition(): void {
 		const container = this.container;
-		const options = container.options;
 		const particle = this.particle;
-		const outMode = options.particles.move.outMode;
+		const outMode = particle.particlesOptions.move.outMode;
 		const canvasSize = container.canvas.dimension;
 
 		let newPos: IBounds;
@@ -165,11 +159,14 @@ export class Updater {
 		}
 
 		if (outMode === OutMode.destroy) {
-			if (Utils.isPointInside(particle.position, container.canvas.dimension, particle.size.value)) {
+			const sizeValue = particle.emitter?.sizeValue ?? container.retina.sizeValue;
+
+			if (!Utils.isPointInside(particle.position, container.canvas.dimension, sizeValue)) {
 				container.particles.remove(particle);
 			}
 		} else {
-			const nextBounds = Utils.calculateBounds(particle.position, particle.size.value);
+			const sizeValue = particle.emitter?.sizeValue ?? container.retina.sizeValue;
+			const nextBounds = Utils.calculateBounds(particle.position, sizeValue);
 
 			if (nextBounds.left > canvasSize.width - particle.offset.x) {
 				particle.position.x = newPos.left;
@@ -190,10 +187,9 @@ export class Updater {
 	}
 
 	private updateOutMode(): void {
-		const container = this.container;
-		const options = container.options;
+		const particle = this.particle;
 
-		switch (options.particles.move.outMode) {
+		switch (particle.particlesOptions.move.outMode) {
 			case OutMode.bounce:
 			case OutMode.bounceVertical:
 			case OutMode.bounceHorizontal:
@@ -223,7 +219,7 @@ export class Updater {
 				}
 			}
 		} else {
-			const outMode = options.particles.move.outMode;
+			const outMode = particle.particlesOptions.move.outMode;
 			const x = particle.position.x + particle.offset.x;
 			const y = particle.position.y + particle.offset.y;
 

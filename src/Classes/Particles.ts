@@ -59,7 +59,9 @@ export class Particles {
 
 	public removeAt(index: number, quantity?: number): void {
 		if (index >= 0 && index <= this.count) {
-			this.array.splice(index, quantity ?? 1);
+			for (const particle of this.array.splice(index, quantity ?? 1)) {
+				particle.destroy();
+			}
 		}
 	}
 

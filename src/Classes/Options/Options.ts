@@ -11,6 +11,9 @@ import type { RecursivePartial } from "../../Types/RecursivePartial";
 import { Presets } from "../Utils/Presets";
 import type { IBackground } from "../../Interfaces/Options/Background/IBackground";
 import { Background } from "./Background/Background";
+import { SingleOrMultiple } from "../../Types/SingleOrMultiple";
+import { IEmitter } from "../../Interfaces/Options/Emitters/IEmitter";
+import { Emitter } from "./Emitters/Emitter";
 
 export class Options implements IOptions {
 	/**
@@ -45,6 +48,7 @@ export class Options implements IOptions {
 	}
 
 	public detectRetina: boolean;
+	public emitters: SingleOrMultiple<IEmitter>;
 	public fpsLimit: number;
 	public interactivity: IInteractivity;
 	public particles: IParticles;
@@ -56,6 +60,7 @@ export class Options implements IOptions {
 
 	constructor() {
 		this.detectRetina = false;
+		this.emitters = [];
 		this.fpsLimit = 30;
 		this.interactivity = new Interactivity();
 		this.particles = new Particles();
@@ -105,6 +110,24 @@ export class Options implements IOptions {
 			this.particles.load(data.particles);
 			this.polygon.load(data.polygon);
 			this.backgroundMask.load(data.backgroundMask);
+
+			if (data.emitters !== undefined) {
+				if (data.emitters instanceof Array) {
+					this.emitters = data.emitters.map((s) => {
+						const tmp = new Emitter();
+
+						tmp.load(s, this.particles);
+
+						return tmp;
+					});
+				} else {
+					if (this.emitters instanceof Array) {
+						this.emitters = new Emitter();
+					}
+
+					(this.emitters as Emitter).load(data.emitters, this.particles);
+				}
+			}
 		}
 	}
 

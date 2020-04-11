@@ -149,8 +149,8 @@ export class Utils {
 	}
 
 	public static areBoundsInside(bounds: IBounds, size: IDimension): boolean {
-		return bounds.left >= 0 && bounds.right <= size.width
-			&& bounds.top >= 0 && bounds.bottom <= size.height;
+		return bounds.left < size.width && bounds.right > 0
+			&& bounds.top < size.height && bounds.bottom > 0;
 	}
 
 	public static calculateBounds(point: ICoordinates, radius: number): IBounds {

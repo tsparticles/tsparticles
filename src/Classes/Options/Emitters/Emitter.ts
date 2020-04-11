@@ -1,12 +1,15 @@
-import type { IEmitter } from "../../../../Interfaces/Options/Particles/Emitters/IEmitter";
-import type { RecursivePartial } from "../../../../Types/RecursivePartial";
-import type { ICoordinates } from "../../../../Interfaces/ICoordinates";
-import { MoveDirection } from "../../../../Enums/MoveDirection";
+import type { IEmitter } from "../../../Interfaces/Options/Emitters/IEmitter";
+import type { RecursivePartial } from "../../../Types/RecursivePartial";
+import type { ICoordinates } from "../../../Interfaces/ICoordinates";
+import { MoveDirection } from "../../../Enums/MoveDirection";
+import { IParticles } from "../../../Interfaces/Options/Particles/IParticles";
+import { Particles } from "../Particles/Particles";
 
 export class Emitter implements IEmitter {
 	public autoStart: boolean;
 	public direction: MoveDirection;
 	public life?: number;
+	public particles: IParticles;
 	public position?: ICoordinates;
 	public quantity: number;
 	public speed: number;
@@ -14,11 +17,12 @@ export class Emitter implements IEmitter {
 	constructor() {
 		this.autoStart = true;
 		this.direction = MoveDirection.none;
+		this.particles = new Particles();
 		this.quantity = 1;
 		this.speed = 1;
 	}
 
-	public load(data?: RecursivePartial<IEmitter>): void {
+	public load(data?: RecursivePartial<IEmitter>, particlesOptions?: IParticles): void {
 		if (data !== undefined) {
 			if (data.autoStart !== undefined) {
 				this.autoStart = data.autoStart;
@@ -31,6 +35,9 @@ export class Emitter implements IEmitter {
 			if (data.life !== undefined) {
 				this.life = data.life;
 			}
+
+			this.particles.load(particlesOptions);
+			this.particles.load(data.particles);
 
 			if (data.quantity !== undefined) {
 				this.quantity = data.quantity;
