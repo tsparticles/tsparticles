@@ -4,7 +4,7 @@
 /* Demo / Generator : https://particles.matteobruni.it/
 /* GitHub : https://www.github.com/matteobruni/tsparticles
 /* How to use? : Check the GitHub README
-/* v1.12.8
+/* v1.12.10
 /* ----------------------------------------------- */
 import type { Container } from "./Classes/Container";
 import { Loader } from "./Classes/Loader";
