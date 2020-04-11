@@ -16,7 +16,7 @@ export class Particles {
 	}
 
 	public array: Particle[];
-	public spatialGrid: SpatialGrid;
+	public SpatialGrid: SpatialGrid;
 	public pushing?: boolean;
 	public lineLinkedColor?: IRgb | string | null;
 
@@ -27,8 +27,7 @@ export class Particles {
 		this.container = container;
 		this.array = [];
 		this.interactionsEnabled = false;
-
-		this.spatialGrid = new SpatialGrid(this.container.canvas.dimension, 10);
+		this.SpatialGrid = new SpatialGrid(this.container.canvas.dimension, 20);
 	}
 
 	/* --------- tsParticles functions - particles ----------- */
@@ -36,12 +35,9 @@ export class Particles {
 		const container = this.container;
 		const options = container.options;
 
-		if (
-			options.polygon.enable &&
-			options.polygon.type === PolygonMaskType.inline &&
-			options.polygon.inline.arrangement ===
-			PolygonMaskInlineArrangement.onePerPoint
-		) {
+		if (options.polygon.enable && options.polygon.type === PolygonMaskType.inline &&
+			(options.polygon.inline.arrangement === PolygonMaskInlineArrangement.onePerPoint ||
+				options.polygon.inline.arrangement === PolygonMaskInlineArrangement.perPoint)) {
 			container.polygon.drawPointsOnPolygonPath();
 		} else {
 			for (let i = this.array.length; i < options.particles.number.value; i++) {
@@ -49,8 +45,7 @@ export class Particles {
 			}
 		}
 
-		this.interactionsEnabled =
-			options.particles.lineLinked.enable ||
+		this.interactionsEnabled = options.particles.lineLinked.enable ||
 			options.particles.move.attract.enable ||
 			options.particles.move.collisions;
 	}
@@ -102,13 +97,11 @@ export class Particles {
 		const container = this.container;
 		const options = container.options;
 
-		/* clear canvas and spatial grid */
+		/* clear canvas */
 		container.canvas.clear();
-		this.spatialGrid.reset(container.canvas.dimension);
 
-		/* update each particles param and spatial grid */
+		/* update each particles param */
 		this.update(delta);
-		this.spatialGrid.addParticles(this.array);
 
 		/* draw polygon shape in debug mode */
 		if (options.polygon.enable && options.polygon.draw.enable) {
@@ -133,10 +126,8 @@ export class Particles {
 		this.pushing = true;
 
 		if (options.particles.number.limit > 0) {
-			if (this.array.length + nb > options.particles.number.limit) {
-				this.removeQuantity(
-					this.array.length + nb - options.particles.number.limit
-				);
+			if ((this.array.length + nb) > options.particles.number.limit) {
+				this.removeQuantity((this.array.length + nb) - options.particles.number.limit);
 			}
 		}
 

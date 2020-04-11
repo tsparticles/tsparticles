@@ -72,9 +72,7 @@ export class Particle implements IParticle {
 
 		/* size */
 		this.size = {};
-		this.angle = options.particles.rotate.random
-			? Math.random() * 360
-			: options.particles.rotate.value;
+		this.angle = options.particles.rotate.random ? Math.random() * 360 : options.particles.rotate.value;
 
 		if (options.particles.rotate.direction == RotateDirection.random) {
 			const index = Math.floor(Math.random() * 2);
@@ -91,9 +89,7 @@ export class Particle implements IParticle {
 		const randomSize = options.particles.size.random as IRandomSize;
 		const sizeValue = container.retina.sizeValue;
 
-		this.radius = randomSize.enable
-			? Utils.randomInRange(randomSize.minimumValue, sizeValue)
-			: sizeValue;
+		this.radius = randomSize.enable ? Utils.randomInRange(randomSize.minimumValue, sizeValue) : sizeValue;
 
 		if (options.particles.size.animation.enable) {
 			this.size.status = false;
@@ -113,10 +109,7 @@ export class Particle implements IParticle {
 		/* position */
 		this.position = this.calcPosition(this.container, position);
 
-		if (
-			options.polygon.enable &&
-			options.polygon.type === PolygonMaskType.inline
-		) {
+		if (options.polygon.enable && options.polygon.type === PolygonMaskType.inline) {
 			this.initialPosition = {
 				x: this.position.x,
 				y: this.position.y,
@@ -146,9 +139,7 @@ export class Particle implements IParticle {
 		const opacityValue = options.particles.opacity.value;
 
 		this.opacity = {
-			value: randomOpacity.enable
-				? Utils.randomInRange(randomOpacity.minimumValue, opacityValue)
-				: opacityValue,
+			value: randomOpacity.enable ? Utils.randomInRange(randomOpacity.minimumValue, opacityValue) : opacityValue,
 		};
 
 		if (options.particles.opacity.animation.enable) {
@@ -183,8 +174,7 @@ export class Particle implements IParticle {
 			const shape = options.particles.shape;
 			const index = Utils.arrayRandomIndex(container.images);
 			const image = container.images[index];
-			const optionsImage =
-				shape.image instanceof Array ? shape.image[index] : shape.image;
+			const optionsImage = shape.image instanceof Array ? shape.image[index] : shape.image;
 
 			this.image = {
 				data: image,
@@ -218,15 +208,13 @@ export class Particle implements IParticle {
 			this.stroke = options.particles.stroke;
 		}
 
-		this.strokeColor =
-			typeof this.stroke.color === "string"
-				? ColorUtils.stringToRgb(this.stroke.color)
-				: ColorUtils.colorToRgb(this.stroke.color);
+		this.strokeColor = typeof this.stroke.color === "string" ?
+			ColorUtils.stringToRgb(this.stroke.color) :
+			ColorUtils.colorToRgb(this.stroke.color);
 
-		this.shadowColor =
-			typeof options.particles.shadow.color === "string"
-				? ColorUtils.stringToRgb(options.particles.shadow.color)
-				: ColorUtils.colorToRgb(options.particles.shadow.color);
+		this.shadowColor = typeof options.particles.shadow.color === "string" ?
+			ColorUtils.stringToRgb(options.particles.shadow.color) :
+			ColorUtils.colorToRgb(options.particles.shadow.color);
 
 		if (this.shape === ShapeType.char || this.shape === ShapeType.character) {
 			if (options.particles.shape.character instanceof Array) {
@@ -246,8 +234,7 @@ export class Particle implements IParticle {
 		const shapeData = options.particles.shape.custom[this.shape];
 
 		if (shapeData) {
-			this.shapeData =
-				shapeData instanceof Array ? Utils.itemFromArray(shapeData) : shapeData;
+			this.shapeData = shapeData instanceof Array ? Utils.itemFromArray(shapeData) : shapeData;
 
 			this.fill = this.shapeData.fill ?? this.fill;
 			this.close = this.shapeData.close ?? this.close;
@@ -315,29 +302,18 @@ export class Particle implements IParticle {
 
 		//  New interactivity `connect` which would just connect the particles on hover
 
-		if (
-			Utils.isInArray(
-				HoverMode.connect,
-				options.interactivity.events.onHover.mode
-			)
-		) {
+		if (Utils.isInArray(HoverMode.connect, options.interactivity.events.onHover.mode)) {
 			for (let j = index + 1; j < container.particles.count; j++) {
 				const p2 = container.particles.array[j];
 				this.connecter.connect(p2);
 			}
 		}
 
-		if (
-			Utils.isInArray(HoverMode.bubble, hoverMode) ||
-			Utils.isInArray(ClickMode.bubble, clickMode)
-		) {
+		if (Utils.isInArray(HoverMode.bubble, hoverMode) || Utils.isInArray(ClickMode.bubble, clickMode)) {
 			this.bubbler.bubble();
 		}
 
-		if (
-			Utils.isInArray(HoverMode.repulse, hoverMode) ||
-			Utils.isInArray(ClickMode.repulse, clickMode)
-		) {
+		if (Utils.isInArray(HoverMode.repulse, hoverMode) || Utils.isInArray(ClickMode.repulse, clickMode)) {
 			this.repulser.repulse();
 		}
 	}
@@ -350,15 +326,13 @@ export class Particle implements IParticle {
 		this.drawer.draw();
 	}
 
-	public isOverlapping(): { collisionFound: boolean; iterations: number } {
+	public isOverlapping(): { collisionFound: boolean, iterations: number } {
 		const container = this.container;
 		const p = this;
 		let collisionFound = false;
 		let iterations = 0;
 
-		for (const p2 of container.particles.spatialGrid.query(
-			p.position
-		) as Particle[]) {
+		for (const p2 of container.particles.spatialGrid.query(p.position) as Particle[]) {
 			iterations++;
 
 			if (p == p2) continue;
@@ -386,21 +360,14 @@ export class Particle implements IParticle {
 			// too many particles, removing from the current
 			container.particles.remove(this);
 		} else if (overlapResult.collisionFound) {
-			p.position.x = position
-				? position.x
-				: Math.random() * container.canvas.dimension.width;
-			p.position.y = position
-				? position.y
-				: Math.random() * container.canvas.dimension.height;
+			p.position.x = position ? position.x : Math.random() * container.canvas.dimension.width;
+			p.position.y = position ? position.y : Math.random() * container.canvas.dimension.height;
 
 			p.checkOverlap();
 		}
 	}
 
-	private calcPosition(
-		container: Container,
-		position?: ICoordinates
-	): ICoordinates {
+	private calcPosition(container: Container, position?: ICoordinates): ICoordinates {
 		const pos = { x: 0, y: 0 };
 		const options = container.options;
 
@@ -415,25 +382,19 @@ export class Particle implements IParticle {
 				pos.y = randomPoint.y;
 			}
 		} else {
-			pos.x = position
-				? position.x
-				: Math.random() * container.canvas.dimension.width;
-			pos.y = position
-				? position.y
-				: Math.random() * container.canvas.dimension.height;
+			pos.x = position ? position.x : Math.random() * container.canvas.dimension.width;
+			pos.y = position ? position.y : Math.random() * container.canvas.dimension.height;
 
 			/* check position  - into the canvas */
-			const diameter = this.radius * 2;
-
-			if (pos.x > container.canvas.dimension.width - diameter) {
+			if (pos.x > container.canvas.dimension.width - this.radius * 2) {
 				pos.x -= this.radius;
-			} else if (pos.x < diameter) {
+			} else if (pos.x < this.radius * 2) {
 				pos.x += this.radius;
 			}
 
-			if (pos.y > container.canvas.dimension.height - diameter) {
+			if (pos.y > container.canvas.dimension.height - this.radius * 2) {
 				pos.y -= this.radius;
-			} else if (pos.y < diameter) {
+			} else if (pos.y < this.radius * 2) {
 				pos.y += this.radius;
 			}
 		}

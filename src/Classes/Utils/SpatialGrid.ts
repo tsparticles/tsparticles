@@ -28,7 +28,7 @@ export class SpatialGrid {
 
     // Bulk load all particles
     public addParticles(particles: Particle[]): void {
-        for (let particle of particles) this.addParticle(particle);
+        for (const particle of particles) this.addParticle(particle);
     }
 
     // Add one individual particle
@@ -44,11 +44,9 @@ export class SpatialGrid {
     }
 
     // Radius returns adjacent cells surrounding the original cell, 1 for every step outwards
-    public query(position: ICoordinates, radius?: number): object[] {
+    public query(position: ICoordinates, radius: number = 0): object[] {
         const ix = Math.round(position.x / this.widthSegment);
         const iy = Math.round(position.y / this.heightSegment);
-
-        radius = radius || 0;
 
         if (radius == 0) return this.grid[ix][iy] || [];
         else return this.select(ix - radius, ix + radius, iy - radius, iy + radius);
