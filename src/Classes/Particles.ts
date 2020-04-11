@@ -1,10 +1,11 @@
-import {Container} from "./Container";
-import type {ICoordinates} from "../Interfaces/ICoordinates";
-import type {IMouseData} from "../Interfaces/IMouseData";
-import type {IRgb} from "../Interfaces/IRgb";
-import {Particle} from "./Particle";
-import {PolygonMaskType} from "../Enums/PolygonMaskType";
-import {PolygonMaskInlineArrangement} from "../Enums/PolygonMaskInlineArrangement";
+import { Container } from "./Container";
+import type { ICoordinates } from "../Interfaces/ICoordinates";
+import type { IMouseData } from "../Interfaces/IMouseData";
+import type { IRgb } from "../Interfaces/IRgb";
+import { Particle } from "./Particle";
+import { PolygonMaskType } from "../Enums/PolygonMaskType";
+import { PolygonMaskInlineArrangement } from "../Enums/PolygonMaskInlineArrangement";
+import { SpatialGrid } from "./Utils/SpatialGrid";
 
 /**
  * Particles manager
@@ -15,6 +16,7 @@ export class Particles {
     }
 
     public array: Particle[];
+    public spatialGrid: SpatialGrid;
     public pushing?: boolean;
     public lineLinkedColor?: IRgb | string | null;
 
@@ -25,6 +27,7 @@ export class Particles {
         this.container = container;
         this.array = [];
         this.interactionsEnabled = false;
+        this.spatialGrid = new SpatialGrid(this.container.canvas.dimension, 20);
     }
 
     /* --------- tsParticles functions - particles ----------- */
@@ -41,7 +44,7 @@ export class Particles {
                 this.addParticle(new Particle(container));
             }
         }
-        
+
         this.interactionsEnabled = options.particles.lineLinked.enable ||
             options.particles.move.attract.enable ||
             options.particles.move.collisions;
@@ -81,11 +84,13 @@ export class Particles {
 
             /* interaction auto between particles */
             if (this.interactionsEnabled) {
+
                 for (let j = i + 1; j < this.array.length; j++) {
                     const p2 = this.array[j];
 
                     p.interact(p2);
                 }
+
             }
         }
     }
@@ -96,9 +101,11 @@ export class Particles {
 
         /* clear canvas */
         container.canvas.clear();
+        this.spatialGrid.reset(this.container.canvas.dimension);
 
         /* update each particles param */
         this.update(delta);
+        this.spatialGrid.addParticles(this.array);
 
         /* draw polygon shape in debug mode */
         if (options.polygon.enable && options.polygon.draw.enable) {
@@ -131,7 +138,7 @@ export class Particles {
         let pos: ICoordinates | undefined;
 
         if (mousePosition) {
-            pos = mousePosition.position ?? {x: 0, y: 0};
+            pos = mousePosition.position ?? { x: 0, y: 0 };
         }
 
         for (let i = 0; i < nb; i++) {

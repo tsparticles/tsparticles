@@ -1,32 +1,32 @@
-import {Bubbler} from "./Particle/Bubbler";
-import type {Container} from "./Container";
-import {Drawer} from "./Particle/Drawer";
-import {Grabber} from "./Particle/Grabber";
-import type {IVelocity} from "../Interfaces/IVelocity";
-import type {ISize} from "../Interfaces/ISize";
-import type {IOpacity} from "../Interfaces/IOpacity";
-import type {ICoordinates} from "../Interfaces/ICoordinates";
-import type {IParticleImage} from "../Interfaces/IParticleImage";
-import {Repulser} from "./Particle/Repulser";
-import {ShapeType} from "../Enums/ShapeType";
-import {Updater} from "./Particle/Updater";
-import {Utils} from "./Utils/Utils";
-import {PolygonMaskType} from "../Enums/PolygonMaskType";
-import {Connecter} from "./Particle/Connecter";
-import type {IRgb} from "../Interfaces/IRgb";
-import type {IOptions} from "../Interfaces/Options/IOptions";
-import {InteractionManager} from "./Particle/InteractionManager";
-import {HoverMode} from "../Enums/Modes/HoverMode";
-import {ClickMode} from "../Enums/Modes/ClickMode";
-import {RotateDirection} from "../Enums/RotateDirection";
-import type {ICharacterShape} from "../Interfaces/Options/Particles/Shape/ICharacterShape";
-import type {IPolygonShape} from "../Interfaces/Options/Particles/Shape/IPolygonShape";
-import type {IStroke} from "../Interfaces/Options/Particles/IStroke";
-import {ColorUtils} from "./Utils/ColorUtils";
-import type {IRandomSize} from "../Interfaces/Options/Particles/IRandomSize";
-import type {IRandomOpacity} from "../Interfaces/Options/Particles/IRandomOpacity";
-import {IParticle} from "../Interfaces/IParticle";
-import {IShapeValues} from "../Interfaces/Options/Particles/Shape/IShapeValues";
+import { Bubbler } from "./Particle/Bubbler";
+import type { Container } from "./Container";
+import { Drawer } from "./Particle/Drawer";
+import { Grabber } from "./Particle/Grabber";
+import type { IVelocity } from "../Interfaces/IVelocity";
+import type { ISize } from "../Interfaces/ISize";
+import type { IOpacity } from "../Interfaces/IOpacity";
+import type { ICoordinates } from "../Interfaces/ICoordinates";
+import type { IParticleImage } from "../Interfaces/IParticleImage";
+import { Repulser } from "./Particle/Repulser";
+import { ShapeType } from "../Enums/ShapeType";
+import { Updater } from "./Particle/Updater";
+import { Utils } from "./Utils/Utils";
+import { PolygonMaskType } from "../Enums/PolygonMaskType";
+import { Connecter } from "./Particle/Connecter";
+import type { IRgb } from "../Interfaces/IRgb";
+import type { IOptions } from "../Interfaces/Options/IOptions";
+import { InteractionManager } from "./Particle/InteractionManager";
+import { HoverMode } from "../Enums/Modes/HoverMode";
+import { ClickMode } from "../Enums/Modes/ClickMode";
+import { RotateDirection } from "../Enums/RotateDirection";
+import type { ICharacterShape } from "../Interfaces/Options/Particles/Shape/ICharacterShape";
+import type { IPolygonShape } from "../Interfaces/Options/Particles/Shape/IPolygonShape";
+import type { IStroke } from "../Interfaces/Options/Particles/IStroke";
+import { ColorUtils } from "./Utils/ColorUtils";
+import type { IRandomSize } from "../Interfaces/Options/Particles/IRandomSize";
+import type { IRandomOpacity } from "../Interfaces/Options/Particles/IRandomOpacity";
+import { IParticle } from "../Interfaces/IParticle";
+import { IShapeValues } from "../Interfaces/Options/Particles/Shape/IShapeValues";
 
 /**
  * The single particle object
@@ -332,8 +332,11 @@ export class Particle implements IParticle {
         let collisionFound = false;
         let iterations = 0;
 
-        for (const p2 of container.particles.array.filter((t) => t != p)) {
+        for (const p2 of container.particles.spatialGrid.queryInCell(p.position) as Particle[]) {
             iterations++;
+
+            if (p == p2) continue;
+
             const dist = Utils.getDistanceBetweenCoordinates(p.position, p2.position);
 
             if (dist <= p.radius + p2.radius) {
@@ -365,7 +368,7 @@ export class Particle implements IParticle {
     }
 
     private calcPosition(container: Container, position?: ICoordinates): ICoordinates {
-        const pos = {x: 0, y: 0};
+        const pos = { x: 0, y: 0 };
         const options = container.options;
 
         if (options.polygon.enable && (container.polygon.raw?.length ?? 0) > 0) {
@@ -379,19 +382,20 @@ export class Particle implements IParticle {
                 pos.y = randomPoint.y;
             }
         } else {
+            const diameter = this.radius * 2;
             pos.x = position ? position.x : Math.random() * container.canvas.dimension.width;
             pos.y = position ? position.y : Math.random() * container.canvas.dimension.height;
 
             /* check position  - into the canvas */
-            if (pos.x > container.canvas.dimension.width - this.radius * 2) {
+            if (pos.x > container.canvas.dimension.width - diameter) {
                 pos.x -= this.radius;
-            } else if (pos.x < this.radius * 2) {
+            } else if (pos.x < diameter) {
                 pos.x += this.radius;
             }
 
-            if (pos.y > container.canvas.dimension.height - this.radius * 2) {
+            if (pos.y > container.canvas.dimension.height - diameter) {
                 pos.y -= this.radius;
-            } else if (pos.y < this.radius * 2) {
+            } else if (pos.y < diameter) {
                 pos.y += this.radius;
             }
         }
