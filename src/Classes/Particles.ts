@@ -27,7 +27,7 @@ export class Particles {
         this.container = container;
         this.array = [];
         this.interactionsEnabled = false;
-        this.spatialGrid = new SpatialGrid(this.container.canvas.dimension, 20);
+        this.spatialGrid = new SpatialGrid(this.container.canvas.dimension);
     }
 
     /* --------- tsParticles functions - particles ----------- */

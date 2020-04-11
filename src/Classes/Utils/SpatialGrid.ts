@@ -21,7 +21,7 @@ export class SpatialGrid {
     private grid: object[][][] = [];
 
     // Cut the grid up into a 2d array with a 3rd dimesion holding the data.
-    constructor(canvas: IDimension, cellSize: number) {
+    constructor(canvas: IDimension, cellSize = 20) {
         this.cellSize = cellSize;
         this.widthSegment = Math.round(canvas.width / this.cellSize);
         this.heightSegment = Math.round(canvas.height / this.cellSize);
@@ -88,3 +88,4 @@ export class SpatialGrid {
         return output;
     }
 }
+
