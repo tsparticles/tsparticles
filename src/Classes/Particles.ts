@@ -6,158 +6,165 @@ import { Particle } from "./Particle";
 import { PolygonMaskType } from "../Enums/PolygonMaskType";
 import { PolygonMaskInlineArrangement } from "../Enums/PolygonMaskInlineArrangement";
 import { InteractionManager } from "./Particle/InteractionManager";
+import { SpatialGrid } from "./Utils/SpatialGrid";
 
 /**
  * Particles manager
  */
 export class Particles {
-	public get count(): number {
-		return this.array.length;
-	}
+    public get count(): number {
+        return this.array.length;
+    }
 
-	public array: Particle[];
-	public pushing?: boolean;
-	public lineLinkedColor?: IRgb | string | null;
+    public array: Particle[];
+    public spatialGrid: SpatialGrid;
+    public pushing?: boolean;
+    public lineLinkedColor?: IRgb | string | null;
 
-	private readonly container: Container;
-	private interactionsEnabled: boolean;
+    private readonly container: Container;
+    private interactionsEnabled: boolean;
 
-	constructor(container: Container) {
-		this.container = container;
-		this.array = [];
-		this.interactionsEnabled = false;
-	}
+    constructor(container: Container) {
+        this.container = container;
+        this.array = [];
+        this.interactionsEnabled = false;
+        this.spatialGrid = new SpatialGrid(this.container.canvas.dimension);
+    }
 
-	/* --------- tsParticles functions - particles ----------- */
-	public init(): void {
-		const container = this.container;
-		const options = container.options;
+    /* --------- tsParticles functions - particles ----------- */
+    public init(): void {
+        const container = this.container;
+        const options = container.options;
 
-		if (options.polygon.enable && options.polygon.type === PolygonMaskType.inline &&
-			(options.polygon.inline.arrangement === PolygonMaskInlineArrangement.onePerPoint ||
-				options.polygon.inline.arrangement === PolygonMaskInlineArrangement.perPoint)) {
-			container.polygon.drawPointsOnPolygonPath();
-		} else {
-			for (let i = this.array.length; i < options.particles.number.value; i++) {
-				this.addParticle(new Particle(container));
-			}
-		}
+        if (options.polygon.enable && options.polygon.type === PolygonMaskType.inline &&
+            (options.polygon.inline.arrangement === PolygonMaskInlineArrangement.onePerPoint ||
+                options.polygon.inline.arrangement === PolygonMaskInlineArrangement.perPoint)) {
+            container.polygon.drawPointsOnPolygonPath();
+        } else {
+            for (let i = this.array.length; i < options.particles.number.value; i++) {
+                this.addParticle(new Particle(container));
+            }
+        }
 
-		this.interactionsEnabled = options.particles.lineLinked.enable ||
-			options.particles.move.attract.enable ||
-			options.particles.move.collisions;
-	}
+        this.interactionsEnabled = options.particles.lineLinked.enable ||
+            options.particles.move.attract.enable ||
+            options.particles.move.collisions;
+    }
 
-	public redraw(): void {
-		this.clear();
-		this.init();
-		this.draw(0);
-	}
+    public redraw(): void {
+        this.clear();
+        this.init();
+        this.draw(0);
+    }
 
-	public removeAt(index: number, quantity?: number): void {
-		if (index >= 0 && index <= this.count) {
-			this.array.splice(index, quantity ?? 1);
-		}
-	}
+    public removeAt(index: number, quantity?: number): void {
+        if (index >= 0 && index <= this.count) {
+            this.array.splice(index, quantity ?? 1);
+        }
+    }
 
-	public remove(particle: Particle): void {
-		this.removeAt(this.array.indexOf(particle));
-	}
+    public remove(particle: Particle): void {
+        this.removeAt(this.array.indexOf(particle));
+    }
 
-	public update(delta: number): void {
-		for (let i = 0; i < this.array.length; i++) {
-			/* the particle */
-			const p = this.array[i];
+    public update(delta: number): void {
+        for (let i = 0; i < this.array.length; i++) {
+            /* the particle */
+            const p = this.array[i];
 
-			// let d = ( dx = container.interactivity.mouse.click_pos_x - p.x ) * dx +
-			//         ( dy = container.interactivity.mouse.click_pos_y - p.y ) * dy;
-			// let f = -BANG_SIZE / d;
-			// if ( d < BANG_SIZE ) {
-			//     let t = Math.atan2( dy, dx );
-			//     p.vx = f * Math.cos(t);
-			//     p.vy = f * Math.sin(t);
-			// }
+            // let d = ( dx = container.interactivity.mouse.click_pos_x - p.x ) * dx +
+            //         ( dy = container.interactivity.mouse.click_pos_y - p.y ) * dy;
+            // let f = -BANG_SIZE / d;
+            // if ( d < BANG_SIZE ) {
+            //     let t = Math.atan2( dy, dx );
+            //     p.vx = f * Math.cos(t);
+            //     p.vy = f * Math.sin(t);
+            // }
 
-			p.update(i, delta);
+            p.update(i, delta);
 
-			/* interaction auto between particles */
-			if (this.interactionsEnabled) {
-				for (let j = i + 1; j < this.array.length; j++) {
-					const p2 = this.array[j];
+            /* interaction auto between particles */
+            if (this.interactionsEnabled) {
 
-					InteractionManager.interact(p, p2, this.container);
-				}
-			}
-		}
-	}
+                for (let j = i + 1; j < this.array.length; j++) {
+                    const p2 = this.array[j];
 
-	public draw(delta: number): void {
-		const container = this.container;
-		const options = container.options;
+                    InteractionManager.interact(p, p2, this.container);
+                }
 
-		/* clear canvas */
-		container.canvas.clear();
+            }
+        }
+    }
 
-		/* update each particles param */
-		this.update(delta);
+    public draw(delta: number): void {
+        const container = this.container;
+        const options = container.options;
 
-		/* draw polygon shape in debug mode */
-		if (options.polygon.enable && options.polygon.draw.enable) {
-			container.polygon.drawPolygon();
-		}
+        /* clear canvas */
+        container.canvas.clear();
+        this.spatialGrid.reset(this.container.canvas.dimension);
 
-		/* draw each particle */
-		for (const p of this.array) {
-			p.draw();
-		}
-	}
+        /* update each particles param */
+        this.update(delta);
+        this.spatialGrid.addParticles(this.array);
 
-	public clear(): void {
-		this.array = [];
-	}
+        /* draw polygon shape in debug mode */
+        if (options.polygon.enable && options.polygon.draw.enable) {
+            container.polygon.drawPolygon();
+        }
 
-	/* ---------- tsParticles functions - modes events ------------ */
-	public push(nb: number, mousePosition?: IMouseData): void {
-		const container = this.container;
-		const options = container.options;
+        /* draw each particle */
+        for (const p of this.array) {
+            p.draw();
+        }
+    }
 
-		this.pushing = true;
+    public clear(): void {
+        this.array = [];
+    }
 
-		if (options.particles.number.limit > 0) {
-			if ((this.array.length + nb) > options.particles.number.limit) {
-				this.removeQuantity((this.array.length + nb) - options.particles.number.limit);
-			}
-		}
+    /* ---------- tsParticles functions - modes events ------------ */
+    public push(nb: number, mousePosition?: IMouseData): void {
+        const container = this.container;
+        const options = container.options;
 
-		let pos: ICoordinates | undefined;
+        this.pushing = true;
 
-		if (mousePosition) {
-			pos = mousePosition.position ?? { x: 0, y: 0 };
-		}
+        if (options.particles.number.limit > 0) {
+            if ((this.array.length + nb) > options.particles.number.limit) {
+                this.removeQuantity((this.array.length + nb) - options.particles.number.limit);
+            }
+        }
 
-		for (let i = 0; i < nb; i++) {
-			this.addParticle(new Particle(container, pos));
-		}
+        let pos: ICoordinates | undefined;
 
-		if (!options.particles.move.enable) {
-			this.container.play();
-		}
+        if (mousePosition) {
+            pos = mousePosition.position ?? { x: 0, y: 0 };
+        }
 
-		this.pushing = false;
-	}
+        for (let i = 0; i < nb; i++) {
+            this.addParticle(new Particle(container, pos));
+        }
 
-	public addParticle(particle: Particle): void {
-		this.array.push(particle);
-	}
+        if (!options.particles.move.enable) {
+            this.container.play();
+        }
 
-	public removeQuantity(quantity: number): void {
-		const container = this.container;
-		const options = container.options;
+        this.pushing = false;
+    }
 
-		this.removeAt(0, quantity);
+    public addParticle(particle: Particle): void {
+        this.array.push(particle);
+    }
 
-		if (!options.particles.move.enable) {
-			this.container.play();
-		}
-	}
+    public removeQuantity(quantity: number): void {
+        const container = this.container;
+        const options = container.options;
+
+        this.removeAt(0, quantity);
+
+        if (!options.particles.move.enable) {
+            this.container.play();
+        }
+    }
 }
