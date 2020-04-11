@@ -44,7 +44,7 @@ export class SpatialGrid {
         this.grid[ix][iy].push(particle);
     }
 
-    // Radius returns adjacent cells surrounding the original cell, 1 for every step outwards
+
     public queryInCell(position: ICoordinates): object[] {
         const ix = Math.round(position.x / this.widthSegment);
         const iy = Math.round(position.y / this.heightSegment);
@@ -52,7 +52,7 @@ export class SpatialGrid {
         return this.grid[ix][iy] || [];
     }
 
-    public queryRadius(position: ICoordinates, radius: number) {
+    public queryRadius(position: ICoordinates, radius: number): object[] {
         const ix = Math.round(position.x / this.widthSegment);
         const iy = Math.round(position.y / this.heightSegment);
 
