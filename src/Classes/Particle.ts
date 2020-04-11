@@ -1,5 +1,3 @@
-/** @format */
-
 import { Bubbler } from "./Particle/Bubbler";
 import type { Container } from "./Container";
 import { Drawer } from "./Particle/Drawer";

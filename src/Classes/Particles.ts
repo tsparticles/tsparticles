@@ -1,5 +1,3 @@
-/** @format */
-
 import { Container } from "./Container";
 import type { ICoordinates } from "../Interfaces/ICoordinates";
 import type { IMouseData } from "../Interfaces/IMouseData";
@@ -42,7 +40,7 @@ export class Particles {
 			options.polygon.enable &&
 			options.polygon.type === PolygonMaskType.inline &&
 			options.polygon.inline.arrangement ===
-				PolygonMaskInlineArrangement.onePerPoint
+			PolygonMaskInlineArrangement.onePerPoint
 		) {
 			container.polygon.drawPointsOnPolygonPath();
 		} else {

@@ -1,8 +1,6 @@
-/** @format */
-
-import { Particle } from "../Particle";
 import { ICoordinates } from "../../Interfaces/ICoordinates";
 import { IDimension } from "../../Interfaces/IDimension";
+import { Particle } from "../Particle";
 
 // This class essentially works by interpreting all particles on the screen as a grid.
 // Grid cells are determined by dividing the width and height by the cell size. so 1920 / 10 = 19 cells of width
