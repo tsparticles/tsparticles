@@ -1,9 +1,11 @@
-import type { ICoordinates } from "../../Interfaces/ICoordinates";
-import { MoveDirection } from "../../Enums/MoveDirection";
-import type { IOptions } from "../../Interfaces/Options/IOptions";
-import type { ICharacterShape } from "../../Interfaces/Options/Particles/Shape/ICharacterShape";
-import type { IBounds } from "../../Interfaces/IBounds";
-import type { IDimension } from "../../Interfaces/IDimension";
+import type {ICoordinates} from "../../Interfaces/ICoordinates";
+import {MoveDirection} from "../../Enums/MoveDirection";
+import type {IOptions} from "../../Interfaces/Options/IOptions";
+import type {ICharacterShape} from "../../Interfaces/Options/Particles/Shape/ICharacterShape";
+import type {IBounds} from "../../Interfaces/IBounds";
+import type {IDimension} from "../../Interfaces/IDimension";
+import type {IImageShape} from "../../Interfaces/Options/Particles/Shape/IImageShape";
+import type {IImage} from "../../Interfaces/IImage";
 
 type CSSOMString = string;
 type FontFaceLoadStatus = 'unloaded' | 'loading' | 'loaded' | 'error';
@@ -81,31 +83,31 @@ export class Utils {
 
         switch (options.particles.move.direction) {
             case MoveDirection.top:
-                velocityBase = { x: 0, y: -1 };
+                velocityBase = {x: 0, y: -1};
                 break;
             case MoveDirection.topRight:
-                velocityBase = { x: 0.5, y: -0.5 };
+                velocityBase = {x: 0.5, y: -0.5};
                 break;
             case MoveDirection.right:
-                velocityBase = { x: 1, y: -0 };
+                velocityBase = {x: 1, y: -0};
                 break;
             case MoveDirection.bottomRight:
-                velocityBase = { x: 0.5, y: 0.5 };
+                velocityBase = {x: 0.5, y: 0.5};
                 break;
             case MoveDirection.bottom:
-                velocityBase = { x: 0, y: 1 };
+                velocityBase = {x: 0, y: 1};
                 break;
             case MoveDirection.bottomLeft:
-                velocityBase = { x: -0.5, y: 1 };
+                velocityBase = {x: -0.5, y: 1};
                 break;
             case MoveDirection.left:
-                velocityBase = { x: -1, y: 0 };
+                velocityBase = {x: -1, y: 0};
                 break;
             case MoveDirection.topLeft:
-                velocityBase = { x: -0.5, y: -0.5 };
+                velocityBase = {x: -0.5, y: -0.5};
                 break;
             default:
-                velocityBase = { x: 0, y: 0 };
+                velocityBase = {x: 0, y: 0};
                 break;
         }
 
@@ -158,5 +160,34 @@ export class Utils {
             right: point.x + radius,
             top: point.y - radius,
         };
+    }
+
+    public static loadImage(optionsImage: IImageShape): Promise<IImage> {
+        return new Promise((resolve: (value?: IImage | PromiseLike<IImage> | undefined) => void,
+                            reject: (reason?: any) => void) => {
+            const src = optionsImage.src;
+
+            const image: IImage = {
+                type: src.substr(src.length - 3)
+            };
+
+            if (optionsImage.src) {
+                const img = new Image();
+
+                img.addEventListener("load", () => {
+                    image.obj = img;
+
+                    resolve(image);
+                });
+
+                img.addEventListener("error", () => {
+                    reject(`Error tsParticles - loading image: ${optionsImage.src}`);
+                });
+
+                img.src = optionsImage.src;
+            } else {
+                reject("Error tsParticles - No image.src");
+            }
+        });
     }
 }

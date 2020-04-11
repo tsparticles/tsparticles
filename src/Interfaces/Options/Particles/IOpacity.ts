@@ -1,6 +1,6 @@
-import type { IOpacityAnimation } from "./IOpacityAnimation";
-import type { IOptionLoader } from "../IOptionLoader";
-import type { IRandomOpacity } from "./IRandomOpacity";
+import type {IOpacityAnimation} from "./IOpacityAnimation";
+import type {IOptionLoader} from "../IOptionLoader";
+import type {IRandomOpacity} from "./IRandomOpacity";
 
 export interface IOpacity extends IOptionLoader<IOpacity> {
     value: number;

@@ -1,14 +1,14 @@
-import type {Particle} from "../Particle";
 import type {Container} from "../Container";
+import type {IParticle} from "../../Interfaces/IParticle";
 
 /**
  * Particle connection manager
  */
 export class Connecter {
-    private readonly particle: Particle;
+    private readonly particle: IParticle;
     private readonly container: Container;
 
-    constructor(container: Container, particle: Particle) {
+    constructor(container: Container, particle: IParticle) {
         this.container = container;
         this.particle = particle;
     }
@@ -16,7 +16,7 @@ export class Connecter {
     /**
      * Connecting particles on hover interactivity
      */
-    public connect(destParticle: Particle): void {
+    public connect(destParticle: IParticle): void {
         const container = this.container;
         const options = container.options;
         const particle = this.particle;

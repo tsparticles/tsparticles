@@ -35,11 +35,7 @@ export class Grab implements IGrab {
                 this.distance = data.distance;
             }
 
-            const lineLinked = data.lineLinked ?? data.line_linked;
-
-            if (lineLinked !== undefined) {
-                this.lineLinked.load(lineLinked);
-            }
+            this.lineLinked.load(data.lineLinked ?? data.line_linked);
         }
     }
 }

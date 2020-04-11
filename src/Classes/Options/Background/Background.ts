@@ -18,11 +18,7 @@ export class Background implements IBackground {
                     this.color = new Color();
                 }
 
-                if (typeof data.color === "string") {
-                    this.color.value = data.color;
-                } else {
-                    this.color.load(data.color);
-                }
+                this.color.load(typeof data.color === "string" ? {value: data.color} : data.color);
             }
 
             if (data.image !== undefined) {

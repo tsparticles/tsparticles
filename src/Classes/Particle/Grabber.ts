@@ -1,16 +1,16 @@
-import type { Container } from "../Container";
-import type { Particle } from "../Particle";
-import { Utils } from "../Utils/Utils";
-import { Constants } from "../Utils/Constants";
+import type {Container} from "../Container";
+import {Utils} from "../Utils/Utils";
+import {Constants} from "../Utils/Constants";
+import type {IParticle} from "../../Interfaces/IParticle";
 
 /**
  * Particle grab manager
  */
 export class Grabber {
     private readonly container: Container;
-    private readonly particle: Particle;
+    private readonly particle: IParticle;
 
-    constructor(container: Container, particle: Particle) {
+    constructor(container: Container, particle: IParticle) {
         this.container = container;
         this.particle = particle;
     }
@@ -22,7 +22,7 @@ export class Grabber {
         const interactivity = options.interactivity;
 
         if (interactivity.events.onHover.enable && container.interactivity.status === Constants.mouseMoveEvent) {
-            const mousePos = container.interactivity.mouse.position || { x: 0, y: 0 };
+            const mousePos = container.interactivity.mouse.position || {x: 0, y: 0};
             const distMouse = Utils.getDistanceBetweenCoordinates(particle.position, mousePos);
             /*
                draw a line between the cursor and the particle

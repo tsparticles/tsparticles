@@ -1,10 +1,10 @@
-import type { IColor } from "../../Interfaces/Options/Particles/IColor";
-import type { IRgb } from "../../Interfaces/IRgb";
-import type { IRgba } from "../../Interfaces/IRgba";
-import type { IHsl } from "../../Interfaces/IHsl";
-import type { IHsla } from "../../Interfaces/IHsla";
-import { Utils } from "./Utils";
-import { Constants } from "./Constants";
+import type {IColor} from "../../Interfaces/Options/Particles/IColor";
+import type {IRgb} from "../../Interfaces/IRgb";
+import type {IRgba} from "../../Interfaces/IRgba";
+import type {IHsl} from "../../Interfaces/IHsl";
+import type {IHsla} from "../../Interfaces/IHsla";
+import {Utils} from "./Utils";
+import {Constants} from "./Constants";
 
 export class ColorUtils {
     /**
@@ -64,7 +64,7 @@ export class ColorUtils {
      * @param hsl
      */
     public static hslToRgb(hsl: IHsl): IRgb {
-        const result: IRgb = { b: 0, g: 0, r: 0 };
+        const result: IRgb = {b: 0, g: 0, r: 0};
 
         if (hsl.s === 0) {
             result.b = hsl.l; // achromatic
@@ -117,6 +117,7 @@ export class ColorUtils {
     /**
      * Prepares a rgba() css function from a [[IRgb]] object
      * @param color the [[IRgb]] color to convert
+     * @param opacity the opacity to apply to color
      */
     public static getStyleFromColor(color: IRgb, opacity?: number): string {
         const opacityValue = opacity ?? 1;
@@ -158,7 +159,7 @@ export class ColorUtils {
 
     private static stringToRgba(input: string): IRgba | undefined {
         if (input.startsWith('rgb')) {
-            const regex = /rgba?\(\s*(\d+)\s*,\s*(\d+)\s*,\s*(\d+)\s*(,\s*([\d\.]+)\s*)?\)/i;
+            const regex = /rgba?\(\s*(\d+)\s*,\s*(\d+)\s*,\s*(\d+)\s*(,\s*([\d.]+)\s*)?\)/i;
             const result = regex.exec(input);
 
             return result ? {
@@ -168,7 +169,7 @@ export class ColorUtils {
                 r: parseInt(result[1]),
             } : undefined;
         } else if (input.startsWith('hsl')) {
-            const regex = /hsla?\(\s*(\d+)\s*,\s*(\d+)\%\s*,\s*(\d+)\%\s*(,\s*([\d\.]+)\s*)?\)/i;
+            const regex = /hsla?\(\s*(\d+)\s*,\s*(\d+)%\s*,\s*(\d+)%\s*(,\s*([\d.]+)\s*)?\)/i;
             const result = regex.exec(input);
 
             return result ? ColorUtils.hslaToRgba({
@@ -177,8 +178,7 @@ export class ColorUtils {
                 l: parseInt(result[3]),
                 s: parseInt(result[2]),
             }) : undefined;
-        }
-        else {
+        } else {
             // By Tim Down - http://stackoverflow.com/a/5624139/3493650
             // Expand shorthand form (e.g. "03F") to full form (e.g. "0033FF")
             const shorthandRegex = /^#?([a-f\d])([a-f\d])([a-f\d])([a-f\d])?$/i;

@@ -1,7 +1,7 @@
-import type { IShapeDrawer } from "../../Interfaces/IShapeDrawer";
-import type { ISide } from "../../Interfaces/ISide";
-import type { ICoordinates } from "../../Interfaces/ICoordinates";
-import type { IParticle } from "../../Interfaces/IParticle";
+import type {IShapeDrawer} from "../../Interfaces/IShapeDrawer";
+import type {ISide} from "../../Interfaces/ISide";
+import type {ICoordinates} from "../../Interfaces/ICoordinates";
+import type {IParticle} from "../../Interfaces/IParticle";
 
 export abstract class PolygonDrawerBase implements IShapeDrawer {
     public draw(context: CanvasRenderingContext2D, particle: IParticle, radius: number, opacity: number): void {
@@ -30,5 +30,6 @@ export abstract class PolygonDrawerBase implements IShapeDrawer {
     }
 
     public abstract getSidesData(particle: IParticle, radius: number): ISide;
+
     public abstract getCenter(particle: IParticle, radius: number): ICoordinates;
 }

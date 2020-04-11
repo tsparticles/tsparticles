@@ -379,6 +379,28 @@ particles.play();
 particles.pause();
 ```
 
+#### Import and require
+
+Starting from version 1.13.0 `import` and `require` can be used to import `tsParticles`.
+
+Now you can write something like this
+
+```javascript
+const tsParticles = require('tsparticles');
+
+// or
+
+import { tsParticles } from 'tsparticles';
+```
+
+### React.js
+
+**tsParticles ❤️ react-particles-js**
+
+Starting from [react-particles-js](https://github.com/Wufe/react-particles-js) version 3.0.0 it has added tsParticles as a dependency.
+
+You can follow the instructions [here](https://github.com/Wufe/react-particles-js/blob/master/README.md) to install `react-particles-js` and use all the information in this readme to configure the particles.
+
 ---
 
 ### **_Demo / Generator_**

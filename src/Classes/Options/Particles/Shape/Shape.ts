@@ -1,26 +1,22 @@
-import type { IShape } from "../../../../Interfaces/Options/Particles/Shape/IShape";
-import { ShapeType } from "../../../../Enums/ShapeType";
-import { CharacterShape } from "./CharacterShape";
-import { ImageShape } from "./ImageShape";
-import { PolygonShape } from "./PolygonShape";
-import type { IImageShape } from "../../../../Interfaces/Options/Particles/Shape/IImageShape";
-import type { ICharacterShape } from "../../../../Interfaces/Options/Particles/Shape/ICharacterShape";
-import type { IPolygonShape } from "../../../../Interfaces/Options/Particles/Shape/IPolygonShape";
-import type { IStroke } from "../../../../Interfaces/Options/Particles/IStroke";
-import type { RecursivePartial } from "../../../../Types/RecursivePartial";
-import type { SingleOrMultiple } from "../../../../Types/SingleOrMultiple";
-import { ShapeData } from "../../../../Types/ShapeData";
+import type {IShape} from "../../../../Interfaces/Options/Particles/Shape/IShape";
+import {ShapeType} from "../../../../Enums/ShapeType";
+import {ImageShape} from "./ImageShape";
+import {PolygonShape} from "./PolygonShape";
+import type {IImageShape} from "../../../../Interfaces/Options/Particles/Shape/IImageShape";
+import type {ICharacterShape} from "../../../../Interfaces/Options/Particles/Shape/ICharacterShape";
+import type {IPolygonShape} from "../../../../Interfaces/Options/Particles/Shape/IPolygonShape";
+import type {IStroke} from "../../../../Interfaces/Options/Particles/IStroke";
+import type {RecursivePartial} from "../../../../Types/RecursivePartial";
+import type {SingleOrMultiple} from "../../../../Types/SingleOrMultiple";
+import {ShapeData} from "../../../../Types/ShapeData";
+import {CharacterShape} from "./CharacterShape";
 
 export class Shape implements IShape {
     /**
      * @deprecated the property images is deprecated, please use the image property, it works with one and many
      */
     get images(): IImageShape[] {
-        if (this.image instanceof Array) {
-            return this.image;
-        }
-
-        return [];
+        return this.image instanceof Array ? this.image : [this.image];
     }
 
     /**
@@ -43,23 +39,51 @@ export class Shape implements IShape {
     set stroke(value: SingleOrMultiple<IStroke>) {
     }
 
-    public character: SingleOrMultiple<ICharacterShape>;
+    /**
+     * @deprecated this property was integrated in custom shape management
+     */
+    get character(): SingleOrMultiple<ICharacterShape> {
+        return (this.custom[ShapeType.character] ?? this.custom[ShapeType.char]) as SingleOrMultiple<ICharacterShape>;
+    }
+
+    /**
+     * @deprecated this property was integrated in custom shape management
+     */
+    set character(value: SingleOrMultiple<ICharacterShape>) {
+        this.custom[ShapeType.character] = value;
+        this.custom[ShapeType.char] = value;
+    }
+
+    /**
+     * @deprecated this property was integrated in custom shape management
+     */
+    get polygon(): SingleOrMultiple<IPolygonShape> {
+        return (this.custom[ShapeType.polygon] ?? this.custom[ShapeType.star]) as SingleOrMultiple<IPolygonShape>;
+    }
+
+    /**
+     * @deprecated this property was integrated in custom shape management
+     */
+    set polygon(value: SingleOrMultiple<IPolygonShape>) {
+        this.custom[ShapeType.polygon] = value;
+        this.custom[ShapeType.star] = value;
+    }
+
     public image: SingleOrMultiple<IImageShape>;
-    public polygon: SingleOrMultiple<IPolygonShape>;
     public type: SingleOrMultiple<ShapeType | string>;
     public custom: ShapeData;
 
     constructor() {
+        this.custom = {};
         this.character = new CharacterShape();
         this.image = new ImageShape();
         this.polygon = new PolygonShape();
         this.type = ShapeType.circle;
-        this.custom = {};
     }
 
     public load(data?: RecursivePartial<IShape>): void {
         if (data !== undefined) {
-            if (data.custom !== undefined)
+            if (data.custom !== undefined) {
                 for (const customShape in data.custom) {
                     const item = data.custom[customShape];
                     if (item !== undefined) {
@@ -72,22 +96,41 @@ export class Shape implements IShape {
                         }
                     }
                 }
+            }
 
             if (data.character !== undefined) {
-                if (data.character instanceof Array) {
-                    this.character = data.character.map((s) => {
-                        const tmp = new CharacterShape();
+                const item = data.character;
+                if (item !== undefined) {
+                    if (item instanceof Array) {
+                        this.custom[ShapeType.character] = item.filter(t => t !== undefined).map((s) => {
+                            return s!;
+                        });
 
-                        tmp.load(s);
-
-                        return tmp;
-                    });
-                } else {
-                    if (this.character instanceof Array) {
-                        this.character = new CharacterShape();
+                        this.custom[ShapeType.char] = item.filter(t => t !== undefined).map((s) => {
+                            return s!;
+                        });
+                    } else {
+                        this.custom[ShapeType.character] = item;
+                        this.custom[ShapeType.char] = item;
                     }
+                }
+            }
 
-                    this.character.load(data.character);
+            if (data.polygon !== undefined) {
+                const item = data.polygon;
+                if (item !== undefined) {
+                    if (item instanceof Array) {
+                        this.custom[ShapeType.polygon] = item.filter(t => t !== undefined).map((s) => {
+                            return s!;
+                        });
+
+                        this.custom[ShapeType.star] = item.filter(t => t !== undefined).map((s) => {
+                            return s!;
+                        });
+                    } else {
+                        this.custom[ShapeType.polygon] = item;
+                        this.custom[ShapeType.star] = item;
+                    }
                 }
             }
 
@@ -109,28 +152,9 @@ export class Shape implements IShape {
                 }
             }
 
-            if (data.polygon !== undefined) {
-                if (data.polygon instanceof Array) {
-                    this.polygon = data.polygon.map((s) => {
-                        const tmp = new PolygonShape();
-
-                        tmp.load(s);
-
-                        return tmp;
-                    });
-                } else {
-                    if (this.polygon instanceof Array) {
-                        this.polygon = new PolygonShape();
-                    }
-
-                    this.polygon.load(data.polygon);
-                }
-            }
-
             if (data.type !== undefined) {
                 this.type = data.type;
             }
         }
     }
 }
-

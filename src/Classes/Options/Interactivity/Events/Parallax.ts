@@ -1,5 +1,5 @@
-import type { IParallax } from "../../../../Interfaces/Options/Interactivity/Events/IParallax";
-import type { RecursivePartial } from "../../../../Types/RecursivePartial";
+import type {IParallax} from "../../../../Interfaces/Options/Interactivity/Events/IParallax";
+import type {RecursivePartial} from "../../../../Types/RecursivePartial";
 
 export class Parallax implements IParallax {
     public enable: boolean;

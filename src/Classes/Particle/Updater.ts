@@ -1,11 +1,11 @@
-import type { Container } from "../Container";
-import { OutMode } from "../../Enums/OutMode";
-import type { Particle } from "../Particle";
-import { Utils } from "../Utils/Utils";
-import { PolygonMaskType } from "../../Enums/PolygonMaskType";
-import { Mover } from "./Mover";
-import { RotateDirection } from "../../Enums/RotateDirection";
-import { IBounds } from "../../Interfaces/IBounds";
+import type {Container} from "../Container";
+import {OutMode} from "../../Enums/OutMode";
+import type {Particle} from "../Particle";
+import {Utils} from "../Utils/Utils";
+import {PolygonMaskType} from "../../Enums/PolygonMaskType";
+import {Mover} from "./Mover";
+import {RotateDirection} from "../../Enums/RotateDirection";
+import type {IBounds} from "../../Interfaces/IBounds";
 
 /**
  * Particle updater, it manages movement
@@ -80,21 +80,21 @@ export class Updater {
 
         if (options.particles.size.animation.enable) {
             if (particle.size.status) {
-                if (particle.radius >= container.retina.sizeValue) {
+                if (particle.size.value >= container.retina.sizeValue) {
                     particle.size.status = false;
                 }
 
-                particle.radius += (particle.size.velocity || 0);
+                particle.size.value += (particle.size.velocity || 0);
             } else {
-                if (particle.radius <= options.particles.size.animation.minimumValue) {
+                if (particle.size.value <= options.particles.size.animation.minimumValue) {
                     particle.size.status = true;
                 }
 
-                particle.radius -= (particle.size.velocity || 0);
+                particle.size.value -= (particle.size.velocity || 0);
             }
 
-            if (particle.radius < 0) {
-                particle.radius = 0;
+            if (particle.size.value < 0) {
+                particle.size.value = 0;
             }
         }
     }
@@ -137,39 +137,39 @@ export class Updater {
         if (outMode === OutMode.bounce) {
             newPos = {
                 bottom: canvasSize.height,
-                left: particle.radius,
+                left: particle.size.value,
                 right: canvasSize.width,
-                top: particle.radius,
+                top: particle.size.value,
             };
         } else if (outMode === OutMode.bounceHorizontal) {
             newPos = {
-                bottom: canvasSize.height + particle.radius - particle.offset.y,
-                left: particle.radius,
+                bottom: canvasSize.height + particle.size.value - particle.offset.y,
+                left: particle.size.value,
                 right: canvasSize.width,
-                top: -particle.radius - particle.offset.y,
+                top: -particle.size.value - particle.offset.y,
             };
         } else if (outMode === OutMode.bounceVertical) {
             newPos = {
                 bottom: canvasSize.height,
-                left: -particle.radius - particle.offset.x,
-                right: canvasSize.width + particle.radius + particle.offset.x,
-                top: particle.radius,
+                left: -particle.size.value - particle.offset.x,
+                right: canvasSize.width + particle.size.value + particle.offset.x,
+                top: particle.size.value,
             };
         } else {
             newPos = {
-                bottom: canvasSize.height + particle.radius - particle.offset.y,
-                left: -particle.radius - particle.offset.x,
-                right: canvasSize.width + particle.radius + particle.offset.x,
-                top: -particle.radius - particle.offset.y,
+                bottom: canvasSize.height + particle.size.value - particle.offset.y,
+                left: -particle.size.value - particle.offset.x,
+                right: canvasSize.width + particle.size.value + particle.offset.x,
+                top: -particle.size.value - particle.offset.y,
             };
         }
 
         if (outMode === OutMode.destroy) {
-            if (Utils.isPointInside(particle.position, container.canvas.dimension, particle.radius)) {
+            if (Utils.isPointInside(particle.position, container.canvas.dimension, particle.size.value)) {
                 container.particles.remove(particle);
             }
         } else {
-            const nextBounds = Utils.calculateBounds(particle.position, particle.radius);
+            const nextBounds = Utils.calculateBounds(particle.position, particle.size.value);
 
             if (nextBounds.left > canvasSize.width - particle.offset.x) {
                 particle.position.x = newPos.left;
@@ -228,13 +228,13 @@ export class Updater {
             const y = particle.position.y + particle.offset.y;
 
             if (outMode === OutMode.bounce || outMode === OutMode.bounceHorizontal) {
-                Updater.checkBounds(x, particle.radius, container.canvas.dimension.width, () => {
+                Updater.checkBounds(x, particle.size.value, container.canvas.dimension.width, () => {
                     particle.velocity.horizontal = -particle.velocity.horizontal;
                 });
             }
 
             if (outMode === OutMode.bounce || outMode === OutMode.bounceVertical) {
-                Updater.checkBounds(y, particle.radius, container.canvas.dimension.height, () => {
+                Updater.checkBounds(y, particle.size.value, container.canvas.dimension.height, () => {
                     particle.velocity.vertical = -particle.velocity.vertical;
                 });
             }

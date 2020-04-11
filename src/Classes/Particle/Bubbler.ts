@@ -1,25 +1,27 @@
-import type { Container } from "../Container";
-import type { IBubblerProcessParam } from "../../Interfaces/IBubblerProcessParam";
-import { Particle } from "../Particle";
-import { ProcessBubbleType } from "../../Enums/ProcessBubbleType";
-import { Utils } from "../Utils/Utils";
-import { HoverMode } from "../../Enums/Modes/HoverMode";
-import { ClickMode } from "../../Enums/Modes/ClickMode";
-import { Constants } from "../Utils/Constants";
+import type {Container} from "../Container";
+import type {IBubblerProcessParam} from "../../Interfaces/IBubblerProcessParam";
+import {ProcessBubbleType} from "../../Enums/ProcessBubbleType";
+import {Utils} from "../Utils/Utils";
+import {HoverMode} from "../../Enums/Modes/HoverMode";
+import {ClickMode} from "../../Enums/Modes/ClickMode";
+import {Constants} from "../Utils/Constants";
+import type {IParticle} from "../../Interfaces/IParticle";
 
 /**
  * Particle bubble manager
  */
 export class Bubbler {
-    public opacity?: number;
-    public radius?: number;
-
-    private readonly particle: Particle;
+    private readonly particle: IParticle;
     private readonly container: Container;
 
-    constructor(container: Container, particle: Particle) {
+    constructor(container: Container, particle: IParticle) {
         this.container = container;
         this.particle = particle;
+    }
+
+    private static reset(particle: IParticle): void {
+        delete particle.bubble.opacity;
+        delete particle.bubble.radius;
     }
 
     public bubble(): void {
@@ -38,15 +40,9 @@ export class Bubbler {
         }
     }
 
-    private init(): void {
-        const particle = this.particle;
-
-        this.opacity = particle.opacity.value;
-        this.radius = particle.radius;
-    }
-
     private process(distMouse: number, timeSpent: number, data: IBubblerProcessParam): void {
         const container = this.container;
+        const particle = this.particle;
         const options = container.options;
         const bubbleDuration = options.interactivity.modes.bubble.duration;
         const bubbleParam = data.bubbleObj.optValue;
@@ -65,31 +61,31 @@ export class Bubbler {
                         const value = pObj - (timeSpent * (pObj - bubbleParam) / bubbleDuration);
 
                         if (type === ProcessBubbleType.size) {
-                            this.radius = value;
+                            particle.bubble.radius = value;
                         }
 
                         if (type === ProcessBubbleType.opacity) {
-                            this.opacity = value;
+                            particle.bubble.opacity = value;
                         }
                     }
                 } else {
                     if (type === ProcessBubbleType.size) {
-                        this.radius = undefined;
+                        particle.bubble.radius = undefined;
                     }
 
                     if (type === ProcessBubbleType.opacity) {
-                        this.opacity = undefined;
+                        particle.bubble.opacity = undefined;
                     }
                 }
             } else if (pObjBubble) {
                 const value = bubbleParam * 2 - pObj - (timeSpent * (pObj - bubbleParam) / bubbleDuration);
 
                 if (type === ProcessBubbleType.size) {
-                    this.radius = value;
+                    particle.bubble.radius = value;
                 }
 
                 if (type === ProcessBubbleType.opacity) {
-                    this.opacity = value;
+                    particle.bubble.opacity = value;
                 }
             }
         }
@@ -101,7 +97,7 @@ export class Bubbler {
         const particle = this.particle;
 
         /* on click event */
-        const mouseClickPos = container.interactivity.mouse.clickPosition || { x: 0, y: 0 };
+        const mouseClickPos = container.interactivity.mouse.clickPosition || {x: 0, y: 0};
         const distMouse = Utils.getDistanceBetweenCoordinates(particle.position, mouseClickPos);
         const timeSpent = (new Date().getTime() - (container.interactivity.mouse.clickTime || 0)) / 1000;
 
@@ -119,11 +115,11 @@ export class Bubbler {
             const sizeData: IBubblerProcessParam = {
                 bubbleObj: {
                     optValue: container.retina.bubbleModeSize,
-                    value: this.radius,
+                    value: particle.bubble.radius,
                 },
                 particlesObj: {
                     optValue: container.retina.sizeValue,
-                    value: this.particle.radius,
+                    value: particle.size.value,
                 },
                 type: ProcessBubbleType.size,
             };
@@ -134,11 +130,11 @@ export class Bubbler {
             const opacityData: IBubblerProcessParam = {
                 bubbleObj: {
                     optValue: options.interactivity.modes.bubble.opacity,
-                    value: this.opacity,
+                    value: particle.bubble.opacity,
                 },
                 particlesObj: {
                     optValue: options.particles.opacity.value,
-                    value: this.particle.opacity.value,
+                    value: particle.opacity.value,
                 },
                 type: ProcessBubbleType.opacity,
             };
@@ -167,12 +163,12 @@ export class Bubbler {
                 this.hoverBubbleOpacity(ratio);
             }
         } else {
-            this.init();
+            Bubbler.reset(particle);
         }
 
         /* mouseleave */
         if (container.interactivity.status === Constants.mouseLeaveEvent) {
-            this.init();
+            Bubbler.reset(particle);
         }
     }
 
@@ -182,19 +178,19 @@ export class Bubbler {
         const particle = this.particle;
         const modeSize = options.interactivity.modes.bubble.size;
         const optSize = options.particles.size.value;
-        const pSize = particle.radius;
+        const pSize = particle.size.value;
 
         if (container.retina.bubbleModeSize > container.retina.sizeValue) {
             const size = pSize + modeSize * ratio;
 
             if (size > pSize && size <= modeSize) {
-                this.radius = size;
+                particle.bubble.radius = size;
             }
         } else if (container.retina.bubbleModeSize < container.retina.sizeValue) {
             const size = pSize - (optSize - modeSize) * ratio;
 
             if (size < pSize && size >= modeSize) {
-                this.radius = size;
+                particle.bubble.radius = size;
             }
         }
     }
@@ -211,13 +207,13 @@ export class Bubbler {
             const opacity = pOpacity + modeOpacity * ratio;
 
             if (opacity > pOpacity && opacity <= modeOpacity) {
-                this.opacity = opacity;
+                particle.bubble.opacity = opacity;
             }
         } else if (modeOpacity < optOpacity) {
             const opacity = pOpacity - (optOpacity - modeOpacity) * ratio;
 
             if (opacity < pOpacity && opacity >= modeOpacity) {
-                this.opacity = opacity;
+                particle.bubble.opacity = opacity;
             }
         }
     }

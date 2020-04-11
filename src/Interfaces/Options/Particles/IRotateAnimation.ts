@@ -1,4 +1,4 @@
-import type { IOptionLoader } from "../IOptionLoader";
+import type {IOptionLoader} from "../IOptionLoader";
 
 export interface IRotateAnimation extends IOptionLoader<IRotateAnimation> {
     enable: boolean;

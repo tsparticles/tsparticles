@@ -1,4 +1,4 @@
-import type { IOptionLoader } from "../../IOptionLoader";
+import type {IOptionLoader} from "../../IOptionLoader";
 
 export interface IRemove extends IOptionLoader<IRemove> {
     /**

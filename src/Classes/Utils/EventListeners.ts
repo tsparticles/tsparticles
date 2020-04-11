@@ -1,9 +1,9 @@
-import { ClickMode } from "../../Enums/Modes/ClickMode";
-import type { Container } from "../Container";
-import { InteractivityDetect } from "../../Enums/InteractivityDetect";
-import type { ICoordinates } from "../../Interfaces/ICoordinates";
-import { PolygonMaskType } from "../../Enums/PolygonMaskType";
-import { Constants } from "./Constants";
+import {ClickMode} from "../../Enums/Modes/ClickMode";
+import type {Container} from "../Container";
+import {InteractivityDetect} from "../../Enums/InteractivityDetect";
+import type {ICoordinates} from "../../Interfaces/ICoordinates";
+import {PolygonMaskType} from "../../Enums/PolygonMaskType";
+import {Constants} from "./Constants";
 
 /**
  * Particles container event listeners manager
@@ -76,64 +76,70 @@ export class EventListeners {
             options.interactivity.events.onClick.enable)
         ) {
             /* el on mousemove */
-            this.manageListener(interactivityEl, Constants.mouseMoveEvent, this.mouseMoveHandler, add);
+            EventListeners.manageListener(interactivityEl, Constants.mouseMoveEvent, this.mouseMoveHandler, add);
 
             /* el on touchstart */
-            this.manageListener(interactivityEl, Constants.touchStartEvent, this.touchStartHandler, add);
+            EventListeners.manageListener(interactivityEl, Constants.touchStartEvent, this.touchStartHandler, add);
 
             /* el on touchmove */
-            this.manageListener(interactivityEl, Constants.touchMoveEvent, this.touchMoveHandler, add);
+            EventListeners.manageListener(interactivityEl, Constants.touchMoveEvent, this.touchMoveHandler, add);
 
             if (!options.interactivity.events.onClick.enable) {
                 /* el on touchend */
-                this.manageListener(interactivityEl, Constants.touchEndEvent, this.touchEndHandler, add);
+                EventListeners.manageListener(interactivityEl, Constants.touchEndEvent, this.touchEndHandler, add);
             }
 
             /* el on onmouseleave */
-            this.manageListener(interactivityEl, Constants.mouseLeaveEvent, this.mouseLeaveHandler, add);
+            EventListeners.manageListener(interactivityEl, Constants.mouseLeaveEvent, this.mouseLeaveHandler, add);
 
             /* el on touchcancel */
-            this.manageListener(interactivityEl, Constants.touchCancelEvent, this.touchCancelHandler, add);
+            EventListeners.manageListener(interactivityEl, Constants.touchCancelEvent, this.touchCancelHandler, add);
         }
 
         /* on click event */
         if (options.interactivity.events.onClick.enable && interactivityEl) {
-            this.manageListener(interactivityEl, Constants.touchEndEvent, this.touchEndClickHandler, add);
-            this.manageListener(interactivityEl, Constants.mouseUpEvent, this.mouseUpHandler, add);
+            EventListeners.manageListener(interactivityEl, Constants.touchEndEvent, this.touchEndClickHandler, add);
+            EventListeners.manageListener(interactivityEl, Constants.mouseUpEvent, this.mouseUpHandler, add);
         }
 
         if (options.interactivity.events.resize) {
-            this.manageListener(window, Constants.resizeEvent, this.resizeHandler, add);
+            EventListeners.manageListener(window, Constants.resizeEvent, this.resizeHandler, add);
         }
 
         if (document) {
-            this.manageListener(document, Constants.visibilityChangeEvent, this.visibilityChangeHandler, add, false);
+            EventListeners.manageListener(document,
+                Constants.visibilityChangeEvent,
+                this.visibilityChangeHandler,
+                add,
+                false);
         }
     }
 
-    private manageListener(element: HTMLElement | Node | Window,
-        event: string,
-        handler: EventListenerOrEventListenerObject,
-        add: boolean,
-        options?: boolean | AddEventListenerOptions | EventListenerObject): void {
+    private static manageListener(element: HTMLElement | Node | Window,
+                                  event: string,
+                                  handler: EventListenerOrEventListenerObject,
+                                  add: boolean,
+                                  options?: boolean | AddEventListenerOptions | EventListenerObject): void {
         if (add) {
-            this.addListener(element, event, handler, options as boolean | AddEventListenerOptions | undefined);
+            EventListeners.addListener(element, event, handler,
+                options as boolean | AddEventListenerOptions | undefined);
         } else {
-            this.removeListener(element, event, handler, options as boolean | EventListenerOptions | undefined);
+            EventListeners.removeListener(element, event, handler,
+                options as boolean | EventListenerOptions | undefined);
         }
     }
 
-    private addListener(element: HTMLElement | Node | Window,
-        event: string,
-        handler: EventListenerOrEventListenerObject,
-        options?: boolean | AddEventListenerOptions | undefined): void {
+    private static addListener(element: HTMLElement | Node | Window,
+                               event: string,
+                               handler: EventListenerOrEventListenerObject,
+                               options?: boolean | AddEventListenerOptions | undefined): void {
         element.addEventListener(event, handler, options);
     }
 
-    private removeListener(element: HTMLElement | Node | Window,
-        event: string,
-        handler: EventListenerOrEventListenerObject,
-        options?: boolean | EventListenerOptions): void {
+    private static removeListener(element: HTMLElement | Node | Window,
+                                  event: string,
+                                  handler: EventListenerOrEventListenerObject,
+                                  options?: boolean | EventListenerOptions): void {
         element.removeEventListener(event, handler, options);
     }
 

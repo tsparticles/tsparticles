@@ -8,7 +8,6 @@ import {Particles} from "./Particles";
 import {Retina} from "./Retina";
 import {ShapeType} from "../Enums/ShapeType";
 import {PolygonMask} from "./PolygonMask";
-import {ImageShape} from "./Options/Particles/Shape/ImageShape";
 import type {IOptions} from "../Interfaces/Options/IOptions";
 import {FrameManager} from "./FrameManager";
 import type {RecursivePartial} from "../Types/RecursivePartial";
@@ -173,34 +172,6 @@ export class Container {
         return JSON.stringify(this.options, undefined, 2);
     }
 
-    public loadImage(optionsImage: ImageShape): Promise<IImage> {
-        return new Promise((resolve: (value?: IImage | PromiseLike<IImage> | undefined) => void,
-                            reject: (reason?: any) => void) => {
-            const src = optionsImage.src;
-            const image: IImage = {
-                type: src.substr(src.length - 3),
-            };
-
-            if (optionsImage.src) {
-                const img = new Image();
-
-                img.addEventListener("load", () => {
-                    image.obj = img;
-
-                    resolve(image);
-                });
-
-                img.addEventListener("error", () => {
-                    reject(`Error tsParticles - loading image: ${optionsImage.src}`);
-                });
-
-                img.src = optionsImage.src;
-            } else {
-                reject("Error tsParticles - No image.src");
-            }
-        });
-    }
-
     public async refresh(): Promise<void> {
         /* restart */
         this.stop();
@@ -243,7 +214,10 @@ export class Container {
                 }
             } else {
                 const character = this.options.particles.shape.character;
-                await Utils.loadFont(character);
+
+                if (character !== undefined) {
+                    await Utils.loadFont(character);
+                }
             }
         }
 
@@ -262,7 +236,10 @@ export class Container {
     }
 
     private async loadImageShape(imageShape: IImageShape): Promise<void> {
-        this.images.push(await this.loadImage(imageShape));
+        try {
+            this.images.push(await Utils.loadImage(imageShape));
+        } catch {
+        }
     }
 
     private init(): void {

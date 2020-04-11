@@ -99,11 +99,49 @@
                 "close": {
                     "type": "boolean"
                 },
+                "color": {
+                    "anyOf": [
+                        {
+                            "$ref": "#/definitions/IColor"
+                        },
+                        {
+                            "items": {
+                                "$ref": "#/definitions/IColor"
+                            },
+                            "type": "array"
+                        }
+                    ]
+                },
                 "fill": {
                     "type": "boolean"
                 },
                 "font": {
                     "type": "string"
+                },
+                "opacity": {
+                    "$ref": "#/definitions/IOpacity"
+                },
+                "rotate": {
+                    "$ref": "#/definitions/IRotate"
+                },
+                "shadow": {
+                    "$ref": "#/definitions/IShadow"
+                },
+                "size": {
+                    "$ref": "#/definitions/ISize"
+                },
+                "stroke": {
+                    "anyOf": [
+                        {
+                            "$ref": "#/definitions/IStroke"
+                        },
+                        {
+                            "items": {
+                                "$ref": "#/definitions/IStroke"
+                            },
+                            "type": "array"
+                        }
+                    ]
                 },
                 "style": {
                     "type": "string"
@@ -375,11 +413,27 @@
                 "close": {
                     "type": "boolean"
                 },
+                "color": {
+                    "anyOf": [
+                        {
+                            "$ref": "#/definitions/IColor"
+                        },
+                        {
+                            "items": {
+                                "$ref": "#/definitions/IColor"
+                            },
+                            "type": "array"
+                        }
+                    ]
+                },
                 "fill": {
                     "type": "boolean"
                 },
                 "height": {
                     "type": "number"
+                },
+                "opacity": {
+                    "$ref": "#/definitions/IOpacity"
                 },
                 "replaceColor": {
                     "type": "boolean"
@@ -387,8 +441,30 @@
                 "replace_color": {
                     "type": "boolean"
                 },
+                "rotate": {
+                    "$ref": "#/definitions/IRotate"
+                },
+                "shadow": {
+                    "$ref": "#/definitions/IShadow"
+                },
+                "size": {
+                    "$ref": "#/definitions/ISize"
+                },
                 "src": {
                     "type": "string"
+                },
+                "stroke": {
+                    "anyOf": [
+                        {
+                            "$ref": "#/definitions/IStroke"
+                        },
+                        {
+                            "items": {
+                                "$ref": "#/definitions/IStroke"
+                            },
+                            "type": "array"
+                        }
+                    ]
                 },
                 "width": {
                     "type": "number"
@@ -765,14 +841,52 @@
                 "close": {
                     "type": "boolean"
                 },
+                "color": {
+                    "anyOf": [
+                        {
+                            "$ref": "#/definitions/IColor"
+                        },
+                        {
+                            "items": {
+                                "$ref": "#/definitions/IColor"
+                            },
+                            "type": "array"
+                        }
+                    ]
+                },
                 "fill": {
                     "type": "boolean"
                 },
                 "nb_sides": {
                     "type": "number"
                 },
+                "opacity": {
+                    "$ref": "#/definitions/IOpacity"
+                },
+                "rotate": {
+                    "$ref": "#/definitions/IRotate"
+                },
+                "shadow": {
+                    "$ref": "#/definitions/IShadow"
+                },
                 "sides": {
                     "type": "number"
+                },
+                "size": {
+                    "$ref": "#/definitions/ISize"
+                },
+                "stroke": {
+                    "anyOf": [
+                        {
+                            "$ref": "#/definitions/IStroke"
+                        },
+                        {
+                            "items": {
+                                "$ref": "#/definitions/IStroke"
+                            },
+                            "type": "array"
+                        }
+                    ]
                 }
             },
             "type": "object"
@@ -992,8 +1106,46 @@
                 "close": {
                     "type": "boolean"
                 },
+                "color": {
+                    "anyOf": [
+                        {
+                            "$ref": "#/definitions/IColor"
+                        },
+                        {
+                            "items": {
+                                "$ref": "#/definitions/IColor"
+                            },
+                            "type": "array"
+                        }
+                    ]
+                },
                 "fill": {
                     "type": "boolean"
+                },
+                "opacity": {
+                    "$ref": "#/definitions/IOpacity"
+                },
+                "rotate": {
+                    "$ref": "#/definitions/IRotate"
+                },
+                "shadow": {
+                    "$ref": "#/definitions/IShadow"
+                },
+                "size": {
+                    "$ref": "#/definitions/ISize"
+                },
+                "stroke": {
+                    "anyOf": [
+                        {
+                            "$ref": "#/definitions/IStroke"
+                        },
+                        {
+                            "items": {
+                                "$ref": "#/definitions/IStroke"
+                            },
+                            "type": "array"
+                        }
+                    ]
                 }
             },
             "type": "object"
@@ -1207,7 +1359,7 @@
             "type": "number"
         },
         "fps_limit": {
-            "description": "The F(rame)P(er)S(econd) limit applied to all particles animations.",
+            "description": "The Frame Per Second limit applied to all particles animations.",
             "type": "number"
         },
         "interactivity": {

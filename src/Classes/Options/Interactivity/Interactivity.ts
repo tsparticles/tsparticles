@@ -44,7 +44,7 @@ export class Interactivity implements IInteractivity {
             this.events.load(data.events);
             this.modes.load(data.modes);
 
-            if (data.modes?.slow?.active) {
+            if (data.modes?.slow?.active === true) {
                 if (this.events.onHover.mode instanceof Array) {
                     if (this.events.onHover.mode.indexOf(HoverMode.slow) < 0) {
                         this.events.onHover.mode.push(HoverMode.slow);

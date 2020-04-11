@@ -35,11 +35,7 @@ export class Opacity implements IOpacity {
 
     public load(data?: RecursivePartial<IOpacity>): void {
         if (data !== undefined) {
-            const animation = data.animation ?? data.anim;
-
-            if (animation !== undefined) {
-                this.animation.load(animation);
-            }
+            this.animation.load(data.animation ?? data.anim);
 
             if (data.random !== undefined) {
                 if (typeof data.random === "boolean") {

@@ -1,5 +1,5 @@
-import type { ISlow } from "../../../../Interfaces/Options/Interactivity/Modes/ISlow";
-import type { RecursivePartial } from "../../../../Types/RecursivePartial";
+import type {ISlow} from "../../../../Interfaces/Options/Interactivity/Modes/ISlow";
+import type {RecursivePartial} from "../../../../Types/RecursivePartial";
 
 export class Slow implements ISlow {
     /**

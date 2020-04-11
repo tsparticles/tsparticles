@@ -5,6 +5,7 @@ import {Particle} from "./Particle";
 import {PolygonMaskInlineArrangement} from "../Enums/PolygonMaskInlineArrangement";
 import {Utils} from "./Utils/Utils";
 import {IDimension} from "../Interfaces/IDimension";
+import {Constants} from "./Utils/Constants";
 
 type SvgAbsoluteCoordinatesTypes =
     | SVGPathSegArcAbs
@@ -64,8 +65,7 @@ export class PolygonMask {
         // ray-casting algorithm based on
         // http://www.ecse.rpi.edu/Homepages/wrf/Research/Short_Notes/pnpoly.html
         if (!this.raw) {
-            console.error('No polygon found, you need to specify SVG url in config.');
-            return true;
+            throw new Error(Constants.noPolygonFound);
         }
 
         const x = position ? position.x : Math.random() * container.canvas.dimension.width;
@@ -158,7 +158,7 @@ export class PolygonMask {
                 case PolygonMaskInlineArrangement.onePerPoint:
                 case PolygonMaskInlineArrangement.perPoint:
                 default:
-                    position = this.getPoingOnPolygonPathByIndex(container.particles.count);
+                    position = this.getPointOnPolygonPathByIndex(container.particles.count);
             }
         } else {
             position = {
@@ -203,8 +203,7 @@ export class PolygonMask {
                     this.polygonPathLength = this.path.getTotalLength();
                 }
             } else {
-                console.error("tsParticles Error - during polygon mask download");
-                return;
+                throw new Error("tsParticles Error - Error occurred during polygon mask download");
             }
         }
 
@@ -313,7 +312,7 @@ export class PolygonMask {
     }
 
     private getRandomPointOnPolygonPath(): ICoordinates {
-        if (!this.raw || !this.raw.length) throw new Error(`No polygon data loaded.`);
+        if (!this.raw || !this.raw.length) throw new Error(Constants.noPolygonDataLoaded);
 
         const coords = Utils.itemFromArray(this.raw);
 
@@ -327,7 +326,7 @@ export class PolygonMask {
         const container = this.container;
         const options = container.options;
 
-        if (!this.raw || !this.raw.length || !this.path) throw new Error(`No polygon data loaded.`);
+        if (!this.raw || !this.raw.length || !this.path) throw new Error(Constants.noPolygonDataLoaded);
 
         const distance = Math.floor(Math.random() * this.polygonPathLength) + 1;
         const point = this.path.getPointAtLength(distance);
@@ -342,7 +341,7 @@ export class PolygonMask {
         const container = this.container;
         const options = container.options;
 
-        if (!this.raw || !this.raw.length || !this.path) throw new Error(`No polygon data loaded.`);
+        if (!this.raw || !this.raw.length || !this.path) throw new Error(Constants.noPolygonDataLoaded);
 
         const distance = (this.polygonPathLength / options.particles.number.value) * index;
         const point = this.path.getPointAtLength(distance);
@@ -353,8 +352,8 @@ export class PolygonMask {
         };
     }
 
-    private getPoingOnPolygonPathByIndex(index: number): ICoordinates {
-        if (!this.raw || !this.raw.length) throw new Error(`No polygon data loaded.`);
+    private getPointOnPolygonPathByIndex(index: number): ICoordinates {
+        if (!this.raw || !this.raw.length) throw new Error(Constants.noPolygonDataLoaded);
 
         const coords = this.raw[index % this.raw.length];
 

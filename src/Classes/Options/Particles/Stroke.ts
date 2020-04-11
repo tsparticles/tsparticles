@@ -18,13 +18,7 @@ export class Stroke implements IStroke {
 
     public load(data?: RecursivePartial<IStroke>): void {
         if (data !== undefined) {
-            if (data.color !== undefined) {
-                if (typeof data.color === "string") {
-                    this.color.value = data.color;
-                } else {
-                    this.color.load(data.color);
-                }
-            }
+            this.color.load(typeof data.color === "string" ? {value: data.color} : data.color);
 
             if (data.width !== undefined) {
                 this.width = data.width;
