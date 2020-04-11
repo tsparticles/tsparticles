@@ -1,6 +1,6 @@
 {
   "name": "tsparticles",
-  "version": "1.12.8",
+  "version": "1.12.9",
   "description": "Porting of the abandoned Vincent Garreau's particles.js, converted in TypeScript. Added many new cool features and various bug fixes.",
   "homepage": "https://particles.matteobruni.it/",
   "scripts": {
@@ -55,7 +55,8 @@
   },
   "main": "dist/index.js",
   "jsdelivr": "dist/tsparticles.min.js",
-  "browser": "dist/tsparticles.min.js",
+  "unpkg": "dist/tsparticles.min.js",
+  "browser": "dist/index.js",
   "devDependencies": {
     "@babel/core": "^7.9.0",
     "@fortawesome/fontawesome-free": "^5.13.0",
