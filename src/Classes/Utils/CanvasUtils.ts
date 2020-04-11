@@ -1,7 +1,7 @@
 import type { IDimension } from "../../Interfaces/IDimension";
 import type { ICoordinates } from "../../Interfaces/ICoordinates";
 import type { IRgb } from "../../Interfaces/IRgb";
-import type { ILineLinkedShadow } from "../../Interfaces/Options/Particles/ILineLinkedShadow";
+import type { ILineLinkedShadow } from "../../Interfaces/Options/Particles/LineLinked/ILineLinkedShadow";
 import type { IPolygonMaskDrawStroke } from "../../Interfaces/Options/PolygonMask/IPolygonMaskDrawStroke";
 import { ColorUtils } from "./ColorUtils";
 import type { IParticle } from "../../Interfaces/IParticle";

@@ -1,9 +1,9 @@
-import type { ISize } from "../../../Interfaces/Options/Particles/ISize";
+import type { ISize } from "../../../../Interfaces/Options/Particles/Size/ISize";
 import { SizeAnimation } from "./SizeAnimation";
-import type { ISizeAnimation } from "../../../Interfaces/Options/Particles/ISizeAnimation";
-import type { RecursivePartial } from "../../../Types/RecursivePartial";
-import type { IRandomSize } from "../../../Interfaces/Options/Particles/IRandomSize";
-import { RandomSize } from "./RandomSize";
+import type { ISizeAnimation } from "../../../../Interfaces/Options/Particles/Size/ISizeAnimation";
+import type { RecursivePartial } from "../../../../Types/RecursivePartial";
+import type { ISizeRandom } from "../../../../Interfaces/Options/Particles/Size/ISizeRandom";
+import { SizeRandom } from "./SizeRandom";
 
 export class Size implements ISize {
 	/**
@@ -24,12 +24,12 @@ export class Size implements ISize {
 	}
 
 	public animation: ISizeAnimation;
-	public random: IRandomSize;
+	public random: ISizeRandom;
 	public value: number;
 
 	constructor() {
 		this.animation = new SizeAnimation();
-		this.random = new RandomSize;
+		this.random = new SizeRandom;
 		this.value = 3;
 	}
 

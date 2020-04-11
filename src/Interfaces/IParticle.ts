@@ -9,27 +9,29 @@ import type { ISize } from "./ISize";
 import type { IOpacity } from "./IOpacity";
 import type { IShapeValues } from "./Options/Particles/Shape/IShapeValues";
 import type { IBubbleParticleData } from "./IBubbleParticleData";
+import type { MoveDirection } from "../Enums/MoveDirection";
 
 export interface IParticle {
 	randomIndexData?: number;
 
 	readonly angle: number;
-	readonly rotateDirection: RotateDirection;
-	readonly fill: boolean;
-	readonly close: boolean;
-	readonly stroke: IStroke;
-	readonly size: ISize;
-	readonly initialPosition?: ICoordinates;
-	readonly position: ICoordinates;
-	readonly offset: ICoordinates;
-	readonly color: IRgb | undefined;
-	readonly strokeColor: IRgb | undefined;
-	readonly shadowColor: IRgb | undefined;
-	readonly opacity: IOpacity;
-	readonly velocity: IVelocity;
-	readonly shape?: ShapeType | string;
-	readonly image?: IParticleImage;
-	readonly initialVelocity: IVelocity;
-	readonly shapeData?: IShapeValues;
 	readonly bubble: IBubbleParticleData;
+	readonly color: IRgb | undefined;
+	readonly close: boolean;
+	readonly direction: MoveDirection;
+	readonly fill: boolean;
+	readonly image?: IParticleImage;
+	readonly initialPosition?: ICoordinates;
+	readonly initialVelocity: IVelocity;
+	readonly offset: ICoordinates;
+	readonly opacity: IOpacity;
+	readonly position: ICoordinates;
+	readonly rotateDirection: RotateDirection;
+	readonly shadowColor: IRgb | undefined;
+	readonly shape?: ShapeType | string;
+	readonly shapeData?: IShapeValues;
+	readonly size: ISize;
+	readonly stroke: IStroke;
+	readonly strokeColor: IRgb | undefined;
+	readonly velocity: IVelocity;
 }

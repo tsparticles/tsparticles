@@ -1,9 +1,9 @@
-import type { IOpacity } from "../../../Interfaces/Options/Particles/IOpacity";
+import type { IOpacity } from "../../../../Interfaces/Options/Particles/Opacity/IOpacity";
 import { OpacityAnimation } from "./OpacityAnimation";
-import type { IOpacityAnimation } from "../../../Interfaces/Options/Particles/IOpacityAnimation";
-import type { RecursivePartial } from "../../../Types/RecursivePartial";
-import type { IRandomOpacity } from "../../../Interfaces/Options/Particles/IRandomOpacity";
-import { RandomOpacity } from "./RandomOpacity";
+import type { IOpacityAnimation } from "../../../../Interfaces/Options/Particles/Opacity/IOpacityAnimation";
+import type { RecursivePartial } from "../../../../Types/RecursivePartial";
+import type { IOpacityRandom } from "../../../../Interfaces/Options/Particles/Opacity/IOpacityRandom";
+import { OpacityRandom } from "./OpacityRandom";
 
 export class Opacity implements IOpacity {
 	/**
@@ -24,12 +24,12 @@ export class Opacity implements IOpacity {
 	}
 
 	public animation: IOpacityAnimation;
-	public random: IRandomOpacity;
+	public random: IOpacityRandom;
 	public value: number;
 
 	constructor() {
 		this.animation = new OpacityAnimation();
-		this.random = new RandomOpacity();
+		this.random = new OpacityRandom();
 		this.value = 1;
 	}
 

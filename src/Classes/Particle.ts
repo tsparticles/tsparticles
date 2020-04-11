@@ -20,11 +20,13 @@ import { ClickMode } from "../Enums/Modes/ClickMode";
 import { RotateDirection } from "../Enums/RotateDirection";
 import type { IStroke } from "../Interfaces/Options/Particles/IStroke";
 import { ColorUtils } from "./Utils/ColorUtils";
-import type { IRandomSize } from "../Interfaces/Options/Particles/IRandomSize";
-import type { IRandomOpacity } from "../Interfaces/Options/Particles/IRandomOpacity";
+import type { ISizeRandom } from "../Interfaces/Options/Particles/Size/ISizeRandom";
+import type { IOpacityRandom } from "../Interfaces/Options/Particles/Opacity/IOpacityRandom";
 import type { IShapeValues } from "../Interfaces/Options/Particles/Shape/IShapeValues";
 import type { IBubbleParticleData } from "../Interfaces/IBubbleParticleData";
 import type { IParticle } from "../Interfaces/IParticle";
+import { Emitter } from "./Emitter";
+import { MoveDirection } from "../Enums/MoveDirection";
 
 /**
  * The single particle object
@@ -33,8 +35,9 @@ export class Particle implements IParticle {
 	public angle: number;
 	public rotateDirection: RotateDirection;
 	public randomIndexData?: number;
-	public readonly fill: boolean;
 	public readonly close: boolean;
+	public readonly direction: MoveDirection;
+	public readonly fill: boolean;
 	public readonly stroke: IStroke;
 	public readonly size: ISize;
 	public readonly initialPosition?: ICoordinates;
@@ -55,21 +58,24 @@ export class Particle implements IParticle {
 	public readonly bubbler: Bubbler;
 	public readonly repulser: Repulser;
 	public readonly container: Container;
+	public readonly emitter?: Emitter;
 
 	/* --------- tsParticles functions - particles ----------- */
-	constructor(container: Container, position?: ICoordinates) {
+	constructor(container: Container, position?: ICoordinates, emitter?: Emitter) {
 		this.container = container;
+		this.emitter = emitter;
 		const options = container.options;
 		const color = options.particles.color;
 
 		/* size */
-		const randomSize = options.particles.size.random as IRandomSize;
+		const randomSize = options.particles.size.random as ISizeRandom;
 		const sizeValue = container.retina.sizeValue;
 
 		this.size = {
 			value: randomSize.enable ? Utils.randomInRange(randomSize.minimumValue, sizeValue) : sizeValue
 		};
 
+		this.direction = emitter ? emitter.emitterOptions.direction : options.particles.move.direction;
 		this.bubble = {};
 		this.angle = options.particles.rotate.random ? Math.random() * 360 : options.particles.rotate.value;
 
@@ -129,7 +135,7 @@ export class Particle implements IParticle {
 		}
 
 		/* opacity */
-		const randomOpacity = options.particles.opacity.random as IRandomOpacity;
+		const randomOpacity = options.particles.opacity.random as IOpacityRandom;
 		const opacityValue = options.particles.opacity.value;
 
 		this.opacity = {
@@ -146,7 +152,7 @@ export class Particle implements IParticle {
 		}
 
 		/* animation - velocity for speed */
-		this.initialVelocity = Particle.calculateVelocity(options);
+		this.initialVelocity = this.calculateVelocity(options);
 		this.velocity = {
 			horizontal: this.initialVelocity.horizontal,
 			vertical: this.initialVelocity.vertical,
@@ -230,8 +236,8 @@ export class Particle implements IParticle {
 		this.repulser = new Repulser(this.container, this);
 	}
 
-	private static calculateVelocity(options: IOptions): IVelocity {
-		const baseVelocity = Utils.getParticleBaseVelocity(options);
+	private calculateVelocity(options: IOptions): IVelocity {
+		const baseVelocity = Utils.getParticleBaseVelocity(this);
 		const res = {
 			horizontal: 0,
 			vertical: 0,
@@ -261,7 +267,7 @@ export class Particle implements IParticle {
 	public resetVelocity(): void {
 		const container = this.container;
 		const options = container.options;
-		const velocity = Particle.calculateVelocity(options);
+		const velocity = this.calculateVelocity(options);
 
 		this.velocity.horizontal = velocity.horizontal;
 		this.velocity.vertical = velocity.vertical;

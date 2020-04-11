@@ -308,6 +308,29 @@
             },
             "type": "object"
         },
+        "IEmitter": {
+            "properties": {
+                "autoStart": {
+                    "type": "boolean"
+                },
+                "direction": {
+                    "$ref": "#/definitions/MoveDirection"
+                },
+                "life": {
+                    "type": "number"
+                },
+                "position": {
+                    "$ref": "#/definitions/ICoordinates"
+                },
+                "quantity": {
+                    "type": "number"
+                },
+                "speed": {
+                    "type": "number"
+                }
+            },
+            "type": "object"
+        },
         "IEvents": {
             "properties": {
                 "onClick": {
@@ -621,7 +644,7 @@
                 "random": {
                     "anyOf": [
                         {
-                            "$ref": "#/definitions/IRandomOpacity"
+                            "$ref": "#/definitions/IOpacityRandom"
                         },
                         {
                             "type": "boolean"
@@ -654,6 +677,17 @@
             },
             "type": "object"
         },
+        "IOpacityRandom": {
+            "properties": {
+                "enable": {
+                    "type": "boolean"
+                },
+                "minimumValue": {
+                    "type": "number"
+                }
+            },
+            "type": "object"
+        },
         "IParallax": {
             "properties": {
                 "enable": {
@@ -678,6 +712,19 @@
                         {
                             "items": {
                                 "$ref": "#/definitions/IColor"
+                            },
+                            "type": "array"
+                        }
+                    ]
+                },
+                "emitter": {
+                    "anyOf": [
+                        {
+                            "$ref": "#/definitions/IEmitter"
+                        },
+                        {
+                            "items": {
+                                "$ref": "#/definitions/IEmitter"
                             },
                             "type": "array"
                         }
@@ -897,28 +944,6 @@
                     "type": "number"
                 },
                 "quantity": {
-                    "type": "number"
-                }
-            },
-            "type": "object"
-        },
-        "IRandomOpacity": {
-            "properties": {
-                "enable": {
-                    "type": "boolean"
-                },
-                "minimumValue": {
-                    "type": "number"
-                }
-            },
-            "type": "object"
-        },
-        "IRandomSize": {
-            "properties": {
-                "enable": {
-                    "type": "boolean"
-                },
-                "minimumValue": {
                     "type": "number"
                 }
             },
@@ -1161,7 +1186,7 @@
                 "random": {
                     "anyOf": [
                         {
-                            "$ref": "#/definitions/IRandomSize"
+                            "$ref": "#/definitions/ISizeRandom"
                         },
                         {
                             "type": "boolean"
@@ -1190,6 +1215,17 @@
                 },
                 "sync": {
                     "type": "boolean"
+                }
+            },
+            "type": "object"
+        },
+        "ISizeRandom": {
+            "properties": {
+                "enable": {
+                    "type": "boolean"
+                },
+                "minimumValue": {
+                    "type": "number"
                 }
             },
             "type": "object"

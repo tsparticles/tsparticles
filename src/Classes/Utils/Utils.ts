@@ -1,11 +1,11 @@
 import type { ICoordinates } from "../../Interfaces/ICoordinates";
 import { MoveDirection } from "../../Enums/MoveDirection";
-import type { IOptions } from "../../Interfaces/Options/IOptions";
 import type { ICharacterShape } from "../../Interfaces/Options/Particles/Shape/ICharacterShape";
 import type { IBounds } from "../../Interfaces/IBounds";
 import type { IDimension } from "../../Interfaces/IDimension";
 import type { IImageShape } from "../../Interfaces/Options/Particles/Shape/IImageShape";
 import type { IImage } from "../../Interfaces/IImage";
+import { IParticle } from "../../Interfaces/IParticle";
 
 type CSSOMString = string;
 type FontFaceLoadStatus = 'unloaded' | 'loading' | 'loaded' | 'error';
@@ -76,12 +76,12 @@ export class Utils {
 
 	/**
 	 * Get Particle base velocity
-	 * @param options the options to use for calculating the velocity
+	 * @param particle the particle to use for calculating the velocity
 	 */
-	public static getParticleBaseVelocity(options: IOptions): ICoordinates {
+	public static getParticleBaseVelocity(particle: IParticle): ICoordinates {
 		let velocityBase: ICoordinates;
 
-		switch (options.particles.move.direction) {
+		switch (particle.direction) {
 			case MoveDirection.top:
 				velocityBase = { x: 0, y: -1 };
 				break;

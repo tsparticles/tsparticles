@@ -15,6 +15,7 @@ import { Options } from "./Options/Options";
 import { Utils } from "./Utils/Utils";
 import type { IImageShape } from "../Interfaces/Options/Particles/Shape/IImageShape";
 import { Presets } from "./Utils/Presets";
+import { Emitter } from "./Emitter";
 
 /**
  * The object loaded into an HTML element, it'll contain options loaded and all data to let everything working
@@ -27,6 +28,7 @@ export class Container {
 	public retina: Retina;
 	public canvas: Canvas;
 	public particles: Particles;
+	public emitters: Emitter[];
 	public polygon: PolygonMask;
 	public bubble: IBubble;
 	public repulse: IRepulse;
@@ -67,6 +69,7 @@ export class Container {
 		this.images = [];
 		this.bubble = {};
 		this.repulse = {};
+		this.emitters = [];
 
 		/* tsParticles variables with default values */
 		this.options = new Options();
@@ -96,6 +99,9 @@ export class Container {
 		if (this.paused) {
 			this.lastFrameTime = performance.now();
 			this.paused = false;
+			for (const emitter of this.emitters) {
+				emitter.start();
+			}
 		}
 
 		this.drawAnimationFrame = Container.requestFrame((t) => this.drawer.nextFrame(t));
@@ -103,6 +109,10 @@ export class Container {
 
 	public pause(): void {
 		if (this.drawAnimationFrame !== undefined) {
+			for (const emitter of this.emitters) {
+				emitter.stop();
+			}
+
 			Container.cancelAnimation(this.drawAnimationFrame);
 
 			delete this.drawAnimationFrame;
@@ -192,6 +202,12 @@ export class Container {
 		this.canvas.clear();
 		this.polygon.reset();
 
+		for (const emitter of this.emitters) {
+			emitter.stop();
+		}
+
+		this.emitters = [];
+
 		delete this.particles.lineLinkedColor;
 	}
 
@@ -247,6 +263,17 @@ export class Container {
 		this.retina.init();
 		this.canvas.init();
 		this.particles.init();
+
+		if (this.options.particles.emitter instanceof Array) {
+			for (const emitterOptions of this.options.particles.emitter) {
+				this.emitters.push(new Emitter(this, emitterOptions));
+			}
+		} else {
+			const emitterOptions = this.options.particles.emitter;
+
+			this.emitters.push(new Emitter(this, emitterOptions));
+		}
+
 		this.densityAutoParticles();
 	}
 }

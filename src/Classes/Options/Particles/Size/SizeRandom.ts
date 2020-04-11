@@ -1,7 +1,7 @@
-import type { RecursivePartial } from "../../../Types/RecursivePartial";
-import type { IRandomOpacity } from "../../../Interfaces/Options/Particles/IRandomOpacity";
+import type { RecursivePartial } from "../../../../Types/RecursivePartial";
+import type { ISizeRandom } from "../../../../Interfaces/Options/Particles/Size/ISizeRandom";
 
-export class RandomOpacity implements IRandomOpacity {
+export class SizeRandom implements ISizeRandom {
 	public enable: boolean;
 	public minimumValue: number;
 
@@ -10,7 +10,7 @@ export class RandomOpacity implements IRandomOpacity {
 		this.minimumValue = 1;
 	}
 
-	public load(data?: RecursivePartial<IRandomOpacity> | undefined): void {
+	public load(data?: RecursivePartial<ISizeRandom> | undefined): void {
 		if (data !== undefined) {
 			if (data.enable !== undefined) {
 				this.enable = data.enable;
