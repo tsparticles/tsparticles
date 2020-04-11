@@ -55,7 +55,8 @@
   },
   "main": "dist/index.js",
   "jsdelivr": "dist/tsparticles.min.js",
-  "browser": "dist/tsparticles.min.js",
+  "unpkg": "dist/tsparticles.min.js",
+  "browser": "dist/index.js",
   "devDependencies": {
     "@babel/core": "^7.9.0",
     "@fortawesome/fontawesome-free": "^5.13.0",
