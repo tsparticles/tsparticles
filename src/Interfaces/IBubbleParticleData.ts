@@ -1,4 +1,4 @@
 export interface IBubbleParticleData {
-    opacity?: number;
-    radius?: number;
+	opacity?: number;
+	radius?: number;
 }

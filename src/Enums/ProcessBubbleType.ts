@@ -1,4 +1,4 @@
 export enum ProcessBubbleType {
-    opacity = "opacity",
-    size = "size",
+	opacity = "opacity",
+	size = "size",
 }

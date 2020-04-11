@@ -1,37 +1,37 @@
-import type {ISlow} from "../../../../Interfaces/Options/Interactivity/Modes/ISlow";
-import type {RecursivePartial} from "../../../../Types/RecursivePartial";
+import type { ISlow } from "../../../../Interfaces/Options/Interactivity/Modes/ISlow";
+import type { RecursivePartial } from "../../../../Types/RecursivePartial";
 
 export class Slow implements ISlow {
-    /**
-     * @deprecated this property will be removed soon, please use the HoverMode.slow in the HoverEvent
-     */
-    get active(): boolean {
-        return false;
-    }
+	/**
+	 * @deprecated this property will be removed soon, please use the HoverMode.slow in the HoverEvent
+	 */
+	get active(): boolean {
+		return false;
+	}
 
-    /**
-     * @deprecated this property will be removed soon, please use the HoverMode.slow in the HoverEvent
-     */
-    set active(value: boolean) {
-    }
+	/**
+	 * @deprecated this property will be removed soon, please use the HoverMode.slow in the HoverEvent
+	 */
+	set active(value: boolean) {
+	}
 
-    public factor: number;
-    public radius: number;
+	public factor: number;
+	public radius: number;
 
-    constructor() {
-        this.factor = 1;
-        this.radius = 0;
-    }
+	constructor() {
+		this.factor = 1;
+		this.radius = 0;
+	}
 
-    public load(data?: RecursivePartial<ISlow>): void {
-        if (data !== undefined) {
-            if (data.factor !== undefined) {
-                this.factor = data.factor;
-            }
+	public load(data?: RecursivePartial<ISlow>): void {
+		if (data !== undefined) {
+			if (data.factor !== undefined) {
+				this.factor = data.factor;
+			}
 
-            if (data.radius !== undefined) {
-                this.radius = data.radius;
-            }
-        }
-    }
+			if (data.radius !== undefined) {
+				this.radius = data.radius;
+			}
+		}
+	}
 }
