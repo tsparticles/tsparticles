@@ -5,7 +5,6 @@
   "main": "index.js",
   "unpkg": "umd/particles.js",
   "jsdelivr": "umd/particles.js",
-  "browser": "umd/particles.js",
   "types": "index.d.ts",
   "scripts": {
     "compile": "webpack",
