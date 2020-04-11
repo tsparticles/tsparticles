@@ -74,12 +74,12 @@ export class SpatialGrid {
     private select(startX : number, endX : number, startY: number, endY: number) {
         let output : object[] = [];
 
-        for (let x = startX; x > endX; x++) {
+        for (let x = startX; x < endX; x++) {
 
-            for (let y = startY; y > endY; y++) {
+            for (let y = startY; y < endY; y++) {
 
                 if (Array.isArray(this.grid[x][y]))
-                    output.concat(this.grid[x][y]);
+                    output = output.concat(this.grid[x][y]);
             }
         }
 
