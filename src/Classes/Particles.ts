@@ -5,6 +5,7 @@ import type { IRgb } from "../Interfaces/IRgb";
 import { Particle } from "./Particle";
 import { PolygonMaskType } from "../Enums/PolygonMaskType";
 import { PolygonMaskInlineArrangement } from "../Enums/PolygonMaskInlineArrangement";
+import { SpatialGrid } from "./Utils/SpatialGrid";
 
 /**
  * Particles manager
@@ -15,6 +16,7 @@ export class Particles {
     }
 
     public array: Particle[];
+    public spatialGrid : SpatialGrid;
     public pushing?: boolean;
     public lineLinkedColor?: IRgb | string | null;
 
@@ -25,6 +27,8 @@ export class Particles {
         this.container = container;
         this.array = [];
         this.interactionsEnabled = false;
+
+        this.spatialGrid = new SpatialGrid(this.container.canvas.dimension, 10);
     }
 
     /* --------- tsParticles functions - particles ----------- */
@@ -93,11 +97,14 @@ export class Particles {
         const container = this.container;
         const options = container.options;
 
-        /* clear canvas and spatial map */
+        /* clear canvas and spatial grid */
         container.canvas.clear();
+        this.spatialGrid.reset(container.canvas.dimension);
 
-        /* update each particles param and spatial map */
+
+        /* update each particles param and spatial grid */
         this.update(delta);
+        this.spatialGrid.addParticles(this.array);
 
         /* draw polygon shape in debug mode */
         if (options.polygon.enable && options.polygon.draw.enable) {

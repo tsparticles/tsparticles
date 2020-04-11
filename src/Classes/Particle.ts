@@ -332,8 +332,11 @@ export class Particle implements IParticle {
         let collisionFound = false;
         let iterations = 0;
 
-        for (const p2 of container.particles.array.filter((t) => t != p) as Particle[]) {
+        for (const p2 of container.particles.spatialGrid.query(p.position) as Particle[]) {
             iterations++;
+            
+            if (p == p2) continue;
+
             const dist = Utils.getDistanceBetweenCoordinates(p.position, p2.position);
 
             if (dist <= p.radius + p2.radius) {
@@ -351,13 +354,7 @@ export class Particle implements IParticle {
     public checkOverlap(position?: ICoordinates): void {
         const container = this.container;
         const p = this;
-
-        var start = performance.now();
-
         const overlapResult = p.isOverlapping();
-
-        var end = performance.now();
-        console.log(end - start);
 
         if (overlapResult.iterations >= container.particles.count) {
             // too many particles, removing from the current
