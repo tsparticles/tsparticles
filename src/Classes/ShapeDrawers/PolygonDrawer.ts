@@ -2,7 +2,7 @@ import { PolygonDrawerBase } from "./PolygonDrawerBase";
 import type { ISide } from "../../Interfaces/ISide";
 import type { ICoordinates } from "../../Interfaces/ICoordinates";
 import type { IParticle } from "../../Interfaces/IParticle";
-import { IPolygonShape } from "../../Interfaces/Options/Particles/Shape/IPolygonShape";
+import type { IPolygonShape } from "../../Interfaces/Options/Particles/Shape/IPolygonShape";
 
 export class PolygonDrawer extends PolygonDrawerBase {
 	public getSidesData(particle: IParticle, radius: number): ISide {

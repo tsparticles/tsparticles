@@ -4,7 +4,7 @@ import { PolygonMaskType } from "../Enums/PolygonMaskType";
 import { Particle } from "./Particle";
 import { PolygonMaskInlineArrangement } from "../Enums/PolygonMaskInlineArrangement";
 import { Utils } from "./Utils/Utils";
-import { IDimension } from "../Interfaces/IDimension";
+import type { IDimension } from "../Interfaces/IDimension";
 import { Constants } from "./Utils/Constants";
 
 type SvgAbsoluteCoordinatesTypes =

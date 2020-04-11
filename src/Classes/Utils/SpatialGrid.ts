@@ -1,7 +1,7 @@
-import { ICoordinates } from "../../Interfaces/ICoordinates";
-import { IDimension } from "../../Interfaces/IDimension";
-import { Particle } from "../Particle";
+import type { ICoordinates } from "../../Interfaces/ICoordinates";
+import type { IDimension } from "../../Interfaces/IDimension";
 import { Utils } from "./Utils";
+import type { IParticle } from "../../Interfaces/IParticle";
 
 /* This class essentially works by interpreting all particles on the screen as a grid.
 Grid cells are determined by dividing the width and height by the cell size. so 1920 / 10 = 19 cells of width
@@ -15,77 +15,77 @@ This also allows for broader detection for things like line drawing
 */
 
 export class SpatialGrid {
-    private cellSize: number;
-    private widthSegment: number;
-    private heightSegment: number;
-    private grid: object[][][] = [];
+	private cellSize: number;
+	private widthSegment: number;
+	private heightSegment: number;
+	private grid: IParticle[][][] = [];
 
-    // Cut the grid up into a 2d array with a 3rd dimesion holding the data.
-    constructor(canvas: IDimension) {
-        this.cellSize = 20;
-        this.widthSegment = Math.round(canvas.width / this.cellSize);
-        this.heightSegment = Math.round(canvas.height / this.cellSize);
-    }
+	// Cut the grid up into a 2d array with a 3rd dimesion holding the data.
+	constructor(canvas: IDimension) {
+		this.cellSize = 20;
+		this.widthSegment = Math.round(canvas.width / this.cellSize);
+		this.heightSegment = Math.round(canvas.height / this.cellSize);
+	}
 
-    // Bulk load all particles
-    public addParticles(particles: Particle[]): void {
-        for (const particle of particles) this.addParticle(particle);
-    }
+	// Bulk load all particles
+	public addParticles(particles: IParticle[]): void {
+		for (const particle of particles) this.addParticle(particle);
+	}
 
-    // Add one individual particle
-    public addParticle(particle: Particle): void {
-        const ix = Math.round(particle.position.x / this.widthSegment);
-        const iy = Math.round(particle.position.y / this.heightSegment);
+	// Add one individual particle
+	public addParticle(particle: IParticle): void {
+		const ix = Math.round(particle.position.x / this.widthSegment);
+		const iy = Math.round(particle.position.y / this.heightSegment);
 
-        if (!Array.isArray(this.grid[ix])) this.grid[ix] = [];
+		if (!Array.isArray(this.grid[ix])) this.grid[ix] = [];
 
-        if (!Array.isArray(this.grid[ix][iy])) this.grid[ix][iy] = [];
+		if (!Array.isArray(this.grid[ix][iy])) this.grid[ix][iy] = [];
 
-        this.grid[ix][iy].push(particle);
-    }
+		this.grid[ix][iy].push(particle);
+	}
 
 
-    public queryInCell(position: ICoordinates): object[] {
-        const ix = Math.round(position.x / this.widthSegment);
-        const iy = Math.round(position.y / this.heightSegment);
+	public queryInCell(position: ICoordinates): IParticle[] {
+		const ix = Math.round(position.x / this.widthSegment);
+		const iy = Math.round(position.y / this.heightSegment);
 
-        return this.grid[ix][iy] || [];
-    }
+		return this.grid[ix][iy] || [];
+	}
 
-    public queryRadius(position: ICoordinates, radius: number): object[] {
-        const ix = Math.round(position.x / this.widthSegment);
-        const iy = Math.round(position.y / this.heightSegment);
+	public queryRadius(position: ICoordinates, radius: number): IParticle[] {
+		const ix = Math.round(position.x / this.widthSegment);
+		const iy = Math.round(position.y / this.heightSegment);
 
-        const rx = Math.ceil(radius / this.widthSegment);
-        const ry = Math.ceil(radius / this.heightSegment);
+		const rx = Math.ceil(radius / this.widthSegment);
+		const ry = Math.ceil(radius / this.heightSegment);
 
-        const items = this.select(ix - rx, ix + rx, iy - ry, iy + ry) as Particle[];
+		const items = this.select(ix - rx, ix + rx, iy - ry, iy + ry);
 
-        return items.filter((particle) => Utils.getDistanceBetweenCoordinates(particle.position, position) <= radius);
-    }
+		return items.filter((particle) => Utils.getDistanceBetweenCoordinates(particle.position, position) <= radius);
+	}
 
-    // Reset the grid contents, also if the screen size changed do it here.
-    public reset(canvas?: IDimension): void {
-        this.grid = [];
+	// Reset the grid contents, also if the screen size changed do it here.
+	public reset(canvas?: IDimension): void {
+		this.grid = [];
 
-        if (canvas) {
-            this.widthSegment = Math.round(canvas.width / this.cellSize);
-            this.heightSegment = Math.round(canvas.height / this.cellSize);
-        }
-    }
+		if (canvas) {
+			this.widthSegment = Math.round(canvas.width / this.cellSize);
+			this.heightSegment = Math.round(canvas.height / this.cellSize);
+		}
+	}
 
-    // Select a broader area of the grid
-    private select(startX: number, endX: number, startY: number, endY: number): object[] {
-        let output: object[] = [];
+	// Select a broader area of the grid
+	private select(startX: number, endX: number, startY: number, endY: number): IParticle[] {
+		let output: IParticle[] = [];
 
-        for (let x = startX; x < endX; x++) {
-            for (let y = startY; y < endY; y++) {
-                if (this.grid[x][y])
-                    output = output.concat(this.grid[x][y]);
-            }
-        }
+		for (let x = startX; x < endX; x++) {
+			for (let y = startY; y < endY; y++) {
+				if (this.grid[x][y])
+					output = output.concat(this.grid[x][y]);
+			}
+		}
 
-        return output;
-    }
+		return output;
+	}
 }
 

@@ -1,7 +1,7 @@
 import type { Container } from "../Container";
 import { ColorUtils } from "../Utils/ColorUtils";
 import { Utils } from "../Utils/Utils";
-import { ICoordinates } from "../../Interfaces/ICoordinates";
+import type { ICoordinates } from "../../Interfaces/ICoordinates";
 import { Constants } from "../Utils/Constants";
 import type { IParticle } from "../../Interfaces/IParticle";
 
