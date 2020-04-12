@@ -290,10 +290,18 @@
                 "position": {
                     "$ref": "#/definitions/ICoordinates"
                 },
+                "rate": {
+                    "$ref": "#/definitions/IEmitterRate"
+                }
+            },
+            "type": "object"
+        },
+        "IEmitterRate": {
+            "properties": {
                 "quantity": {
                     "type": "number"
                 },
-                "speed": {
+                "seconds": {
                     "type": "number"
                 }
             },

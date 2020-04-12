@@ -24,14 +24,16 @@ export class Emitter {
 		const container = this.container;
 		const particle = new Particle(container, this.position, this);
 
-		container.particles.addParticle(particle);
+		for (let i = 0; i < this.emitterOptions.rate.quantity; i++) {
+			container.particles.addParticle(particle);
+		}
 	}
 
 	public start(): void {
 		if (this.startInterval === undefined) {
 			this.startInterval = setInterval(() => {
 				this.emit();
-			}, 1000 / this.emitterOptions.speed);
+			}, 1000 * this.emitterOptions.rate.seconds);
 		}
 
 		this.prepareToDie();
@@ -60,9 +62,14 @@ export class Emitter {
 	private calcPosition(): ICoordinates {
 		const container = this.container;
 
-		return this.emitterOptions.position ?? {
-			x: Math.random() * container.canvas.dimension.width,
-			y: Math.random() * container.canvas.dimension.height,
+		const percentPosition = this.emitterOptions.position ?? {
+			x: Math.random() * 100,
+			y: Math.random() * 100,
+		}
+
+		return {
+			x: percentPosition.x / 100 * container.canvas.dimension.width,
+			y: percentPosition.y / 100 * container.canvas.dimension.height,
 		}
 	}
 }
