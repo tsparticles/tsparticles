@@ -154,8 +154,8 @@
       "radius": 10
     },
     "position": {
-      "x": 30,
-      "y": 40
+      "x": 50,
+      "y": 50
     },
     "inlineArrangement": "equidistant",
     "scale": 0.5,
