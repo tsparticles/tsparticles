@@ -13,71 +13,6 @@ pool:
 
 steps:
 
-- bash: |
-        # get package name from package.json file
-        packageName=$(jq -r ".name" package.json)
-        # define new package version based on
-        var=$BUILD_NUMBER
-        package_version=${var::-3}
-        # REST API URL to get package id from npm feed
-        get_package_id_URL="https://feeds.dev.azure.com/{ORGANIZATION NAME}/_apis/packaging/Feeds/{FEED GUID}/packages?protocolType=Npm&packageNameQuery=$packageName&api-version=5.0-preview.1"
-        # get package id based on package name. if query below returns more than one package id, as some packages might have similar names, we'll take the first returned id
-        package_ids=$(curl -X GET -u PATUSER:$SYSTEM_ACCESSTOKEN $get_package_id_URL | jq -r '.value[].id')
-        package_arr=($package_ids)
-        package_id=${package_arr[0]}
-        # REST API URL to get all available versions of the package
-        all_versions_URL="https://feeds.dev.azure.com/{ORGANIZATION NAME}/_apis/packaging/Feeds/{FEED GUID}/packages/$package_id/versions?api-version=5.0-preview.1"
-        # next, let's get all available versions for our package
-        all_versions=$(curl -X GET -u PATUSER:$SYSTEM_ACCESSTOKEN $all_versions_URL | jq -r '.value[].version')
-        all=($all_versions)
-        # if we find out that the version we're trying to publish already exists in the feed, then let's increment patch version for that package and publish
-        if [[ " ${all[@]} " =~ " ${package_version} " ]]; then
-        # get latest version currently published in the feed for our package
-        latest_version=$(curl -X GET -u PATUSER:$SYSTEM_ACCESSTOKEN $get_package_id_URL| jq -r '.value[].versions[].version')
-        IFS=. read i1 i2 i3 <<< "$latest_version"
-        i3_updated=$((i3 + 1))
-        new_version=$i1.$i2.$i3_updated
-        new_buildnumber=$i1.$i2.$i3_updated.01
-        # update patch number variable
-        echo "##vso[task.setvariable variable=patch;]$i3_updated"
-        # update build number of the current build. let's keep things tidy
-        echo "##vso[build.updatebuildnumber]$new_buildnumber"
-        fi
-  env:
-    BUILD_NUMBER: $(Build.BuildNumber)
-    SYSTEM_ACCESSTOKEN: $(System.AccessToken)
-    displayName: 'get package version'
-
-- task: Npm@1
-  displayName: 'npm version'
-  condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/master'))
-  inputs:
-    command: 'custom'
-    workingDir: $(Build.SourcesDirectory)
-    verbose: false
-    customCommand: 'version $major.$minor.$patch --no-git-tag-version --allow-same-version'
-    customEndpoint: 'npmjs'
-
-- task: Npm@1
-  displayName: 'npm version beta'
-  condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/staging'))
-  inputs:
-    command: 'custom'
-    workingDir: $(Build.SourcesDirectory)
-    verbose: false
-    customCommand: 'version $major.$minor.$patch-beta.$(Build.BuildNumber) --no-git-tag-version --allow-same-version'
-    customEndpoint: 'npmjs'
-
-- task: Npm@1
-  displayName: 'npm version alpha'
-  condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/dev'))
-  inputs:
-    command: 'custom'
-    workingDir: $(Build.SourcesDirectory)
-    verbose: false
-    customCommand: 'version $major.$minor.$patch-beta.$(Build.BuildNumber) --no-git-tag-version --allow-same-version'
-    customEndpoint: 'npmjs'
-
 - task: Npm@1
   displayName: npm ci
   inputs:
@@ -91,6 +26,7 @@ steps:
     
 - task: npmAuthenticate@0
   displayName: npm authenticate
+  condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/master'))
   inputs:
     workingFile: '.npmrc'
     customEndpoint: 'npmjs'
@@ -101,22 +37,6 @@ steps:
   inputs:
     command: 'publish'
     publishEndpoint: 'npmjs'
-
-- task: Npm@1
-  displayName: npm publish beta
-  condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/staging'))
-  inputs:
-    command: 'custom'
-    customCommand: 'publish --tag beta'
-    customEndpoint: 'npmjs'
-
-- task: Npm@1
-  displayName: npm publish alpha
-  condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/dev'))
-  inputs:
-    command: 'custom'
-    customCommand: 'publish --tag alpha'
-    customEndpoint: 'npmjs'
 
 - task: CopyFiles@2
   displayName: Copying files to Artifacts
