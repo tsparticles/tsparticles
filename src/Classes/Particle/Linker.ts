@@ -17,7 +17,7 @@ export class Linker {
 		};
 		const dist = Utils.getDistanceBetweenCoordinates(pos1, pos2);
 		const optOpacity = p1.particlesOptions.lineLinked.opacity;
-		const optDistance = p1.emitter?.lineLinkedDistance ?? container.retina.lineLinkedDistance;
+		const optDistance = p1.lineLinkedDistance ?? container.retina.lineLinkedDistance;
 
 		/* draw a line between p1 and p2 if the distance between them is under the config distance */
 		if (dist <= optDistance) {

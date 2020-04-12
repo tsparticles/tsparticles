@@ -118,7 +118,7 @@ export class Bubbler {
 					value: particle.bubble.radius,
 				},
 				particlesObj: {
-					optValue: particle.emitter?.sizeValue ?? container.retina.sizeValue,
+					optValue: particle.sizeValue ?? container.retina.sizeValue,
 					value: particle.size.value,
 				},
 				type: ProcessBubbleType.size,
@@ -180,13 +180,13 @@ export class Bubbler {
 		const optSize = particle.particlesOptions.size.value;
 		const pSize = particle.size.value;
 
-		if (container.retina.bubbleModeSize > (particle.emitter?.sizeValue ?? container.retina.sizeValue)) {
+		if (container.retina.bubbleModeSize > (particle.sizeValue ?? container.retina.sizeValue)) {
 			const size = pSize + modeSize * ratio;
 
 			if (size > pSize && size <= modeSize) {
 				particle.bubble.radius = size;
 			}
-		} else if (container.retina.bubbleModeSize < (particle.emitter?.sizeValue ?? container.retina.sizeValue)) {
+		} else if (container.retina.bubbleModeSize < (particle.sizeValue ?? container.retina.sizeValue)) {
 			const size = pSize - (optSize - modeSize) * ratio;
 
 			if (size < pSize && size >= modeSize) {

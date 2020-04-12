@@ -88,8 +88,8 @@ export class Shape implements IShape {
 					const item = data.custom[customShape];
 					if (item !== undefined) {
 						if (item instanceof Array) {
-							this.custom[customShape] = item.filter(t => t !== undefined).map((s) => {
-								return s!;
+							this.custom[customShape] = item.filter((t) => t !== undefined).map((t) => {
+								return t!;
 							});
 						} else {
 							this.custom[customShape] = item;

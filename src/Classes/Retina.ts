@@ -1,5 +1,5 @@
 import type { Container } from "./Container";
-import { Emitter } from "./Emitter";
+import { Particle } from "./Particle";
 
 export class Retina {
 	public isRetina: boolean;
@@ -75,17 +75,15 @@ export class Retina {
 		this.polygonMaskMoveRadius = options.polygon.move.radius * ratio;
 	}
 
-	public initEmitter(emitter: Emitter) {
-		const container = this.container;
-		const options = container.options;
-		const particlesOptions = emitter.emitterOptions.particles ?? options.particles;
+	public initParticle(particle: Particle) {
+		const particlesOptions = particle.particlesOptions;
 		const ratio = this.pxRatio;
 
-		emitter.lineLinkedDistance = particlesOptions.lineLinked.distance * ratio;
-		emitter.lineLinkedWidth = particlesOptions.lineLinked.width * ratio;
-		emitter.moveSpeed = particlesOptions.move.speed * ratio;
-		emitter.sizeValue = particlesOptions.size.value * ratio;
-		emitter.sizeAnimationSpeed = particlesOptions.size.animation.speed * ratio;
+		particle.lineLinkedDistance = particlesOptions.lineLinked.distance * ratio;
+		particle.lineLinkedWidth = particlesOptions.lineLinked.width * ratio;
+		particle.moveSpeed = particlesOptions.move.speed * ratio;
+		particle.sizeValue = particlesOptions.size.value * ratio;
+		particle.sizeAnimationSpeed = particlesOptions.size.animation.speed * ratio;
 	}
 
 	public reset(): void {

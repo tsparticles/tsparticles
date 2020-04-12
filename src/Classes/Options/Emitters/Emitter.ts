@@ -9,7 +9,7 @@ export class Emitter implements IEmitter {
 	public autoStart: boolean;
 	public direction: MoveDirection;
 	public life?: number;
-	public particles: IParticles;
+	public particles?: IParticles;
 	public position?: ICoordinates;
 	public quantity: number;
 	public speed: number;
@@ -17,7 +17,6 @@ export class Emitter implements IEmitter {
 	constructor() {
 		this.autoStart = true;
 		this.direction = MoveDirection.none;
-		this.particles = new Particles();
 		this.quantity = 1;
 		this.speed = 1;
 	}
@@ -36,8 +35,11 @@ export class Emitter implements IEmitter {
 				this.life = data.life;
 			}
 
-			this.particles.load(particlesOptions);
-			this.particles.load(data.particles);
+			if (data.particles !== undefined) {
+				this.particles = new Particles();
+
+				this.particles.load(data.particles);
+			}
 
 			if (data.quantity !== undefined) {
 				this.quantity = data.quantity;

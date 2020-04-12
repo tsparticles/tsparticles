@@ -27,6 +27,7 @@ import type { IParticle } from "../Interfaces/IParticle";
 import { Emitter } from "./Emitter";
 import { MoveDirection } from "../Enums/MoveDirection";
 import { IParticles } from "../Interfaces/Options/Particles/IParticles";
+import { Particles } from "./Options/Particles/Particles";
 
 /**
  * The single particle object
@@ -53,6 +54,11 @@ export class Particle implements IParticle {
 	public readonly initialVelocity: IVelocity;
 	public readonly shapeData?: IShapeValues;
 	public readonly bubble: IBubbleParticleData;
+	public lineLinkedDistance?: number;
+	public lineLinkedWidth?: number;
+	public moveSpeed?: number;
+	public sizeValue?: number;
+	public sizeAnimationSpeed?: number;
 
 	public readonly updater: Updater;
 	public readonly bubbler: Bubbler;
@@ -66,15 +72,57 @@ export class Particle implements IParticle {
 	constructor(container: Container, position?: ICoordinates, emitter?: Emitter) {
 		this.container = container;
 		this.emitter = emitter;
+		this.fill = true;
+		this.close = true;
 
 		const options = container.options;
 
-		this.particlesOptions = emitter?.emitterOptions.particles ?? options.particles;
+		const particlesOptions = new Particles();
+
+		particlesOptions.load(options.particles);
+
+		if (emitter?.emitterOptions.particles !== undefined) {
+			const shapeType = emitter.emitterOptions.particles.shape.type;
+
+			this.shape = shapeType instanceof Array ? Utils.itemFromArray(shapeType) : shapeType;
+
+			const shapeData = emitter.emitterOptions.particles.shape.custom[this.shape];
+
+			if (shapeData) {
+				this.shapeData = shapeData instanceof Array ? Utils.itemFromArray(shapeData) : shapeData;
+
+				this.fill = this.shapeData.fill ?? this.fill;
+				this.close = this.shapeData.close ?? this.close;
+			}
+
+			particlesOptions.load(this.shapeData?.particles);
+			particlesOptions.load(emitter.emitterOptions.particles);
+		} else {
+			const shapeType = options.particles.shape.type;
+
+			this.shape = shapeType instanceof Array ? Utils.itemFromArray(shapeType) : shapeType;
+
+			const shapeData = options.particles.shape.custom[this.shape];
+
+			if (shapeData) {
+				this.shapeData = shapeData instanceof Array ? Utils.itemFromArray(shapeData) : shapeData;
+
+				this.fill = this.shapeData.fill ?? this.fill;
+				this.close = this.shapeData.close ?? this.close;
+			}
+
+			particlesOptions.load(this.shapeData?.particles);
+		}
+
+		this.particlesOptions = particlesOptions;
+
+		container.retina.initParticle(this);
+
 		const color = this.particlesOptions.color;
 
 		/* size */
 		const randomSize = this.particlesOptions.size.random as ISizeRandom;
-		const sizeValue = this.emitter?.sizeValue ?? container.retina.sizeValue;
+		const sizeValue = (this.sizeValue ?? container.retina.sizeValue);
 
 		this.size = {
 			value: randomSize.enable ? Utils.randomInRange(randomSize.minimumValue, sizeValue) : sizeValue
@@ -98,7 +146,7 @@ export class Particle implements IParticle {
 
 		if (this.particlesOptions.size.animation.enable) {
 			this.size.status = false;
-			this.size.velocity = (this.emitter?.sizeAnimationSpeed ?? container.retina.sizeAnimationSpeed) / 100;
+			this.size.velocity = (this.sizeAnimationSpeed ?? container.retina.sizeAnimationSpeed) / 100;
 
 			if (!this.particlesOptions.size.animation.sync) {
 				this.size.velocity = this.size.velocity * Math.random();
@@ -163,18 +211,7 @@ export class Particle implements IParticle {
 			vertical: this.initialVelocity.vertical,
 		};
 
-		this.fill = true;
-		this.close = true;
-
 		/* if shape is image */
-		const shapeType = this.particlesOptions.shape.type;
-
-		if (shapeType instanceof Array) {
-			this.shape = Utils.itemFromArray(shapeType);
-		} else {
-			this.shape = shapeType;
-		}
-
 		if (this.shape === ShapeType.image) {
 			const shape = this.particlesOptions.shape;
 			const index = Utils.arrayRandomIndex(container.images);
@@ -196,11 +233,9 @@ export class Particle implements IParticle {
 			this.close = optionsImage.close ?? this.close;
 		}
 
-		if (this.particlesOptions.stroke instanceof Array) {
-			this.stroke = Utils.itemFromArray(this.particlesOptions.stroke);
-		} else {
-			this.stroke = this.particlesOptions.stroke;
-		}
+		this.stroke = this.particlesOptions.stroke instanceof Array ?
+			Utils.itemFromArray(this.particlesOptions.stroke) :
+			this.particlesOptions.stroke;
 
 		this.strokeColor = typeof this.stroke.color === "string" ?
 			ColorUtils.stringToRgb(this.stroke.color) :
@@ -209,32 +244,6 @@ export class Particle implements IParticle {
 		this.shadowColor = typeof this.particlesOptions.shadow.color === "string" ?
 			ColorUtils.stringToRgb(this.particlesOptions.shadow.color) :
 			ColorUtils.colorToRgb(this.particlesOptions.shadow.color);
-
-		const shapeData = this.particlesOptions.shape.custom[this.shape];
-
-		if (shapeData) {
-			this.shapeData = shapeData instanceof Array ? Utils.itemFromArray(shapeData) : shapeData;
-
-			this.fill = this.shapeData.fill ?? this.fill;
-			this.close = this.shapeData.close ?? this.close;
-
-			/* color */
-			const overrideColor = this.shapeData.color;
-
-			if (overrideColor !== undefined) {
-				if (overrideColor instanceof Array) {
-					this.color = ColorUtils.colorToRgb(Utils.itemFromArray(overrideColor));
-				} else {
-					this.color = ColorUtils.colorToRgb(overrideColor);
-				}
-			}
-
-			this.opacity = this.shapeData.opacity ?? this.opacity;
-
-			/*
-			missing: rotate, shadow, size, stroke
-			 */
-		}
 
 		this.updater = new Updater(this.container, this);
 		this.bubbler = new Bubbler(this.container, this);
