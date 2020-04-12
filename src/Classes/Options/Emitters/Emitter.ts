@@ -7,31 +7,7 @@ import { Particles } from "../Particles/Particles";
 import type { IEmitterRate } from "../../../Interfaces/Options/Emitters/IEmitterRate";
 import { EmitterRate } from "./EmitterRate";
 import type { IEmitterLife } from "../../../Interfaces/Options/Emitters/IEmitterLife";
-
-export class EmitterLife implements IEmitterLife {
-	public count?: number;
-	public delay?: number;
-	public duration?: number;
-
-	constructor() {
-	}
-
-	public load(data?: RecursivePartial<IEmitterLife>): void {
-		if (data !== undefined) {
-			if (data.count !== undefined) {
-				this.count = data.count;
-			}
-
-			if (data.delay !== undefined) {
-				this.delay = data.delay;
-			}
-
-			if (data.duration !== undefined) {
-				this.duration = data.duration;
-			}
-		}
-	}
-}
+import { EmitterLife } from "./EmitterLife";
 
 export class Emitter implements IEmitter {
 	public autoStart: boolean;
@@ -69,7 +45,10 @@ export class Emitter implements IEmitter {
 			this.rate.load(data.rate);
 
 			if (data.position !== undefined) {
-				this.position = data.position;
+				this.position = {
+					x: data.position.x,
+					y: data.position.y,
+				};
 			}
 		}
 	}

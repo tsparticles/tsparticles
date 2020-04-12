@@ -3,11 +3,11 @@ import type { RecursivePartial } from "../../../Types/RecursivePartial";
 
 export class EmitterRate implements IEmitterRate {
 	public quantity: number;
-	public seconds: number;
+	public delay: number;
 
 	constructor() {
 		this.quantity = 1;
-		this.seconds = 0.1;
+		this.delay = 0.1;
 	}
 
 	public load(data?: RecursivePartial<IEmitterRate>): void {
@@ -16,8 +16,8 @@ export class EmitterRate implements IEmitterRate {
 				this.quantity = data.quantity;
 			}
 
-			if (data.seconds !== undefined) {
-				this.seconds = data.seconds;
+			if (data.delay !== undefined) {
+				this.delay = data.delay;
 			}
 		}
 	}

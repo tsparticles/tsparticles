@@ -153,6 +153,10 @@
     "move": {
       "radius": 10
     },
+    "position": {
+      "x": 30,
+      "y": 40
+    },
     "inlineArrangement": "equidistant",
     "scale": 0.5,
     "type": "inline",

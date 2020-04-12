@@ -13,6 +13,22 @@ import { CharacterShape } from "./CharacterShape";
 
 export class Shape implements IShape {
 	/**
+	 * @deprecated This options has been renamed options
+	 * @param value
+	 */
+	get custom(): ShapeData {
+		return this.options;
+	}
+
+	/**
+	 * @deprecated This options has been renamed options
+	 * @param value
+	 */
+	set custom(value: ShapeData) {
+		this.options = value;
+	}
+
+	/**
 	 * @deprecated the property images is deprecated, please use the image property, it works with one and many
 	 */
 	get images(): IImageShape[] {
@@ -43,38 +59,38 @@ export class Shape implements IShape {
 	 * @deprecated this property was integrated in custom shape management
 	 */
 	get character(): SingleOrMultiple<ICharacterShape> {
-		return (this.custom[ShapeType.character] ?? this.custom[ShapeType.char]) as SingleOrMultiple<ICharacterShape>;
+		return (this.options[ShapeType.character] ?? this.options[ShapeType.char]) as SingleOrMultiple<ICharacterShape>;
 	}
 
 	/**
 	 * @deprecated this property was integrated in custom shape management
 	 */
 	set character(value: SingleOrMultiple<ICharacterShape>) {
-		this.custom[ShapeType.character] = value;
-		this.custom[ShapeType.char] = value;
+		this.options[ShapeType.character] = value;
+		this.options[ShapeType.char] = value;
 	}
 
 	/**
 	 * @deprecated this property was integrated in custom shape management
 	 */
 	get polygon(): SingleOrMultiple<IPolygonShape> {
-		return (this.custom[ShapeType.polygon] ?? this.custom[ShapeType.star]) as SingleOrMultiple<IPolygonShape>;
+		return (this.options[ShapeType.polygon] ?? this.options[ShapeType.star]) as SingleOrMultiple<IPolygonShape>;
 	}
 
 	/**
 	 * @deprecated this property was integrated in custom shape management
 	 */
 	set polygon(value: SingleOrMultiple<IPolygonShape>) {
-		this.custom[ShapeType.polygon] = value;
-		this.custom[ShapeType.star] = value;
+		this.options[ShapeType.polygon] = value;
+		this.options[ShapeType.star] = value;
 	}
 
 	public image: SingleOrMultiple<IImageShape>;
 	public type: SingleOrMultiple<ShapeType | string>;
-	public custom: ShapeData;
+	public options: ShapeData;
 
 	constructor() {
-		this.custom = {};
+		this.options = {};
 		this.character = new CharacterShape();
 		this.image = new ImageShape();
 		this.polygon = new PolygonShape();
@@ -83,16 +99,16 @@ export class Shape implements IShape {
 
 	public load(data?: RecursivePartial<IShape>): void {
 		if (data !== undefined) {
-			if (data.custom !== undefined) {
-				for (const customShape in data.custom) {
-					const item = data.custom[customShape];
+			if (data.options !== undefined) {
+				for (const shape in data.options) {
+					const item = data.options[shape];
 					if (item !== undefined) {
 						if (item instanceof Array) {
-							this.custom[customShape] = item.filter((t) => t !== undefined).map((t) => {
+							this.options[shape] = item.filter((t) => t !== undefined).map((t) => {
 								return t!;
 							});
 						} else {
-							this.custom[customShape] = item;
+							this.options[shape] = item;
 						}
 					}
 				}
@@ -102,16 +118,16 @@ export class Shape implements IShape {
 				const item = data.character;
 				if (item !== undefined) {
 					if (item instanceof Array) {
-						this.custom[ShapeType.character] = item.filter(t => t !== undefined).map((s) => {
+						this.options[ShapeType.character] = item.filter(t => t !== undefined).map((s) => {
 							return s!;
 						});
 
-						this.custom[ShapeType.char] = item.filter(t => t !== undefined).map((s) => {
+						this.options[ShapeType.char] = item.filter(t => t !== undefined).map((s) => {
 							return s!;
 						});
 					} else {
-						this.custom[ShapeType.character] = item;
-						this.custom[ShapeType.char] = item;
+						this.options[ShapeType.character] = item;
+						this.options[ShapeType.char] = item;
 					}
 				}
 			}
@@ -120,16 +136,16 @@ export class Shape implements IShape {
 				const item = data.polygon;
 				if (item !== undefined) {
 					if (item instanceof Array) {
-						this.custom[ShapeType.polygon] = item.filter(t => t !== undefined).map((s) => {
+						this.options[ShapeType.polygon] = item.filter(t => t !== undefined).map((s) => {
 							return s!;
 						});
 
-						this.custom[ShapeType.star] = item.filter(t => t !== undefined).map((s) => {
+						this.options[ShapeType.star] = item.filter(t => t !== undefined).map((s) => {
 							return s!;
 						});
 					} else {
-						this.custom[ShapeType.polygon] = item;
-						this.custom[ShapeType.star] = item;
+						this.options[ShapeType.polygon] = item;
+						this.options[ShapeType.star] = item;
 					}
 				}
 			}

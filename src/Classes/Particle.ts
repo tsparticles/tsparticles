@@ -86,7 +86,7 @@ export class Particle implements IParticle {
 
 			this.shape = shapeType instanceof Array ? Utils.itemFromArray(shapeType) : shapeType;
 
-			const shapeData = emitter.emitterOptions.particles.shape.custom[this.shape];
+			const shapeData = emitter.emitterOptions.particles.shape.options[this.shape];
 
 			if (shapeData) {
 				this.shapeData = shapeData instanceof Array ? Utils.itemFromArray(shapeData) : shapeData;
@@ -102,7 +102,7 @@ export class Particle implements IParticle {
 
 			this.shape = shapeType instanceof Array ? Utils.itemFromArray(shapeType) : shapeType;
 
-			const shapeData = options.particles.shape.custom[this.shape];
+			const shapeData = options.particles.shape.options[this.shape];
 
 			if (shapeData) {
 				this.shapeData = shapeData instanceof Array ? Utils.itemFromArray(shapeData) : shapeData;
@@ -336,7 +336,6 @@ export class Particle implements IParticle {
 	}
 
 	public destroy(): void {
-		console.log('destroy', this);
 	}
 
 	private calcPosition(container: Container, position?: ICoordinates): ICoordinates {

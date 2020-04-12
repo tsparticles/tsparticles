@@ -27,7 +27,12 @@ export interface IShape extends IOptionLoader<IShape> {
 
 	image: SingleOrMultiple<IImageShape>;
 
+	/**
+	 * @deprecated this property has been renamed to options
+	 */
 	custom: ShapeData;
+
+	options: ShapeData;
 }
 
 

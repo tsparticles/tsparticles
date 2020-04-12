@@ -757,6 +757,9 @@
                 "move": {
                     "$ref": "#/definitions/IPolygonMaskMove"
                 },
+                "position": {
+                    "$ref": "#/definitions/ICoordinates"
+                },
                 "scale": {
                     "type": "number"
                 },

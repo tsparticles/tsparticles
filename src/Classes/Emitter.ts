@@ -36,7 +36,7 @@ export class Emitter {
 			if (this.startInterval === undefined) {
 				this.startInterval = setInterval(() => {
 					this.emit();
-				}, 1000 * this.emitterOptions.rate.seconds);
+				}, 1000 * this.emitterOptions.rate.delay);
 			}
 
 			if (this.lifeCount > 0) {
