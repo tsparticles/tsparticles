@@ -1,18 +1,21 @@
 import { Utils } from "../Utils/Utils";
 import { Particle } from "../Particle";
+import { Container } from "../Container";
 
 export class Collider {
-	public static collide(p1: Particle, p2: Particle): void {
-		if (p1 === p2) {
-			return;
-		}
+	public static collide(p1: Particle, container: Container): void {
 
-		const dist = Utils.getDistanceBetweenCoordinates(p1.position, p2.position);
-		const distP = (p1.bubble.radius || p1.size.value) + (p2.bubble.radius || p2.size.value);
+		for (const p2 of container.particles.spatialGrid.queryInCell(p1.position) as Particle[]) {
 
-		if (dist <= distP) {
-			p1.resetVelocity();
-			p2.resetVelocity();
+			if (p1 === p2) continue;
+
+			const dist = Utils.getDistanceBetweenCoordinates(p1.position, p2.position);
+			const distP = (p1.bubble.radius || p1.size.value) + (p2.bubble.radius || p2.size.value);
+
+			if (dist <= distP) {
+				p1.resetVelocity();
+				p2.resetVelocity();
+			}
 		}
 	}
 }

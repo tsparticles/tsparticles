@@ -12,6 +12,7 @@ import type { IBubbleParticleData } from "./IBubbleParticleData";
 
 export interface IParticle {
 	randomIndexData?: number;
+	links: IParticle[];
 
 	readonly angle: number;
 	readonly rotateDirection: RotateDirection;

@@ -33,6 +33,7 @@ export class Particle implements IParticle {
     public angle: number;
     public rotateDirection: RotateDirection;
     public randomIndexData?: number;
+    public links: IParticle[];
     public readonly fill: boolean;
     public readonly close: boolean;
     public readonly stroke: IStroke;
@@ -59,6 +60,7 @@ export class Particle implements IParticle {
     /* --------- tsParticles functions - particles ----------- */
     constructor(container: Container, position?: ICoordinates) {
         this.container = container;
+        this.links = [];
         const options = container.options;
         const color = options.particles.color;
 
@@ -270,6 +272,7 @@ export class Particle implements IParticle {
     public update(index: number, delta: number): void {
         const container = this.container;
         const options = container.options;
+        this.links = [];
 
         this.updater.update(delta);
 
@@ -286,7 +289,7 @@ export class Particle implements IParticle {
         if (Utils.isInArray(HoverMode.connect, options.interactivity.events.onHover.mode)) {
             for (let j = index + 1; j < container.particles.count; j++) {
                 const p2 = container.particles.array[j];
-				
+
                 Connecter.connect(this, p2, container);
             }
         }
