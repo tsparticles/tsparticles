@@ -313,7 +313,7 @@ export class Particle implements IParticle {
         let collisionFound = false;
         let iterations = 0;
 
-        for (const p2 of container.particles.spatialGrid.queryInCell(p.position) as Particle[]) {
+        for (const p2 of container.particles.spatialGrid.queryRadius(p.position, p.size.value * 2) as Particle[]) {
             iterations++;
 
             if (p == p2) continue;

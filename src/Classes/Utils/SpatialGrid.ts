@@ -48,11 +48,11 @@ export class SpatialGrid {
         this.grid = grid;
     }
 
-    // Query items in the same cell, good for small sized objects
+    // Query items in the same cell, good for static small sized objects
     public queryInCell(position: ICoordinates): IParticle[] {
         const pos = this.index(position);
 
-        if (Array.isArray(this.grid[pos.x][pos.y]))
+        if (Array.isArray(this.grid[pos.x]) && Array.isArray(this.grid[pos.x][pos.y]))
             return this.grid[pos.x][pos.y] || [];
 
         else

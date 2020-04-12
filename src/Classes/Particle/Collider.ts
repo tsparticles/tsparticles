@@ -5,7 +5,7 @@ import { Container } from "../Container";
 export class Collider {
 	public static collide(p1: Particle, container: Container): void {
 
-		for (const p2 of container.particles.spatialGrid.queryInCell(p1.position) as Particle[]) {
+		for (const p2 of container.particles.spatialGrid.queryRadius(p1.position, p1.size.value * 2) as Particle[]) {
 
 			if (p1 === p2) continue;
 

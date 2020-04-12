@@ -18,7 +18,7 @@ export class Linker {
 			y: p1.position.y + p1.offset.y,
 		};
 
-		for (const p2 of container.particles.spatialGrid.queryRadius(pos1, optDistance) as Particle[]) {
+		for (const p2 of container.particles.spatialGrid.queryRadius(pos1, optDistance)) {
 
 			if (p1 === p2) continue;
 
