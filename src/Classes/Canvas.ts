@@ -210,7 +210,7 @@ export class Canvas {
 			colorLine = container.particles.lineLinkedColor as IRgb;
 		}
 
-		const width = p1.emitter?.lineLinkedWidth ?? container.retina.lineLinkedWidth;
+		const width = p1.lineLinkedWidth ?? container.retina.lineLinkedWidth;
 
 		CanvasUtils.drawLineLinked(ctx,
 			width,
@@ -235,7 +235,7 @@ export class Canvas {
 			return;
 		}
 
-		CanvasUtils.drawConnectLine(ctx, p1.emitter?.lineLinkedWidth ?? this.container.retina.lineLinkedWidth, lineStyle, p1.position, p2.position);
+		CanvasUtils.drawConnectLine(ctx, p1.lineLinkedWidth ?? this.container.retina.lineLinkedWidth, lineStyle, p1.position, p2.position);
 	}
 
 	public drawGrabLine(particle: IParticle, opacity: number, mousePos: ICoordinates): void {
@@ -269,7 +269,7 @@ export class Canvas {
 			y: particle.position.y + particle.offset.y,
 		};
 
-		CanvasUtils.drawGrabLine(ctx, particle.emitter?.lineLinkedWidth ?? container.retina.lineLinkedWidth, beginPos, mousePos, colorLine, opacity);
+		CanvasUtils.drawGrabLine(ctx, particle.lineLinkedWidth ?? container.retina.lineLinkedWidth, beginPos, mousePos, colorLine, opacity);
 	}
 
 	public drawParticle(particle: IParticle): void {

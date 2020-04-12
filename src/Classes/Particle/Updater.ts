@@ -77,7 +77,7 @@ export class Updater {
 
 		if (particle.particlesOptions.size.animation.enable) {
 			if (particle.size.status) {
-				if (particle.size.value >= (particle.emitter?.sizeValue ?? container.retina.sizeValue)) {
+				if (particle.size.value >= (particle.sizeValue ?? container.retina.sizeValue)) {
 					particle.size.status = false;
 				}
 
@@ -159,13 +159,13 @@ export class Updater {
 		}
 
 		if (outMode === OutMode.destroy) {
-			const sizeValue = particle.emitter?.sizeValue ?? container.retina.sizeValue;
+			const sizeValue = particle.sizeValue ?? container.retina.sizeValue;
 
 			if (!Utils.isPointInside(particle.position, container.canvas.dimension, sizeValue)) {
 				container.particles.remove(particle);
 			}
 		} else {
-			const sizeValue = particle.emitter?.sizeValue ?? container.retina.sizeValue;
+			const sizeValue = particle.sizeValue ?? container.retina.sizeValue;
 			const nextBounds = Utils.calculateBounds(particle.position, sizeValue);
 
 			if (nextBounds.left > canvasSize.width - particle.offset.x) {

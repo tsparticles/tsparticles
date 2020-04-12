@@ -5,11 +5,6 @@ import { Particle } from "./Particle";
 
 export class Emitter {
 	public position: ICoordinates;
-	public lineLinkedDistance?: number;
-	public lineLinkedWidth?: number;
-	public moveSpeed?: number;
-	public sizeValue?: number;
-	public sizeAnimationSpeed?: number;
 
 	private readonly container: Container;
 	private startInterval?: number;
