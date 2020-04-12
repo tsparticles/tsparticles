@@ -231,6 +231,49 @@
           "outMode": "destroy"
         }
       }
+    },
+    {
+      "life": {
+        "count": 10,
+        "delay": 0.5,
+        "duration": 3
+      },
+      "particles": {
+        "shape": {
+          "type": "polygon",
+          "polygon": {
+            "sides": 6
+          }
+        },
+        "rotate": {
+          "value": 0,
+          "random": true,
+          "direction": "clockwise",
+          "animation": {
+            "enable": true,
+            "speed": 15,
+            "sync": false
+          }
+        },
+        "color": {
+          "value": "#0f0"
+        },
+        "lineLinked": {
+          "enable": false
+        },
+        "opacity": {
+          "value": 1
+        },
+        "size": {
+          "value": 15,
+          "random": false
+        },
+        "move": {
+          "speed": 20,
+          "random": false,
+          "outMode": "destroy"
+        }
+      }
     }
   ]
 }

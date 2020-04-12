@@ -282,7 +282,7 @@
                     "$ref": "#/definitions/MoveDirection"
                 },
                 "life": {
-                    "type": "number"
+                    "$ref": "#/definitions/IEmitterLife"
                 },
                 "particles": {
                     "$ref": "#/definitions/IParticles"
@@ -292,6 +292,20 @@
                 },
                 "rate": {
                     "$ref": "#/definitions/IEmitterRate"
+                }
+            },
+            "type": "object"
+        },
+        "IEmitterLife": {
+            "properties": {
+                "count": {
+                    "type": "number"
+                },
+                "delay": {
+                    "type": "number"
+                },
+                "duration": {
+                    "type": "number"
                 }
             },
             "type": "object"

@@ -5,15 +5,17 @@ import { Particle } from "./Particle";
 
 export class Emitter {
 	public position: ICoordinates;
+	public emitterOptions: IEmitter;
 
 	private readonly container: Container;
 	private startInterval?: number;
-	public emitterOptions: IEmitter;
+	private lifeCount: number
 
 	constructor(container: Container, emitterOptions: IEmitter) {
 		this.container = container;
 		this.emitterOptions = emitterOptions;
 		this.position = this.calcPosition();
+		this.lifeCount = this.emitterOptions.life.count ?? -1;
 
 		if (this.emitterOptions.autoStart) {
 			this.start();
@@ -30,13 +32,17 @@ export class Emitter {
 	}
 
 	public start(): void {
-		if (this.startInterval === undefined) {
-			this.startInterval = setInterval(() => {
-				this.emit();
-			}, 1000 * this.emitterOptions.rate.seconds);
-		}
+		if (this.lifeCount > 0 || !this.emitterOptions.life.count) {
+			if (this.startInterval === undefined) {
+				this.startInterval = setInterval(() => {
+					this.emit();
+				}, 1000 * this.emitterOptions.rate.seconds);
+			}
 
-		this.prepareToDie();
+			if (this.lifeCount > 0) {
+				this.prepareToDie();
+			}
+		}
 	}
 
 	public stop(): void {
@@ -50,12 +56,19 @@ export class Emitter {
 	}
 
 	private prepareToDie(): void {
-		if (this.emitterOptions.life !== undefined) {
+		if (this.lifeCount > 0 && this.emitterOptions.life?.duration !== undefined) {
 			setTimeout(() => {
 				this.stop();
+				this.lifeCount--;
 
-				this.position = this.calcPosition();
-			}, this.emitterOptions.life * 1000);
+				if (this.lifeCount > 0) {
+					this.position = this.calcPosition();
+
+					setTimeout(() => {
+						this.start();
+					}, this.emitterOptions.life.delay ?? 0);
+				}
+			}, this.emitterOptions.life.duration * 1000);
 		}
 	}
 

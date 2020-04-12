@@ -6,11 +6,37 @@ import type { IParticles } from "../../../Interfaces/Options/Particles/IParticle
 import { Particles } from "../Particles/Particles";
 import type { IEmitterRate } from "../../../Interfaces/Options/Emitters/IEmitterRate";
 import { EmitterRate } from "./EmitterRate";
+import type { IEmitterLife } from "../../../Interfaces/Options/Emitters/IEmitterLife";
+
+export class EmitterLife implements IEmitterLife {
+	public count?: number;
+	public delay?: number;
+	public duration?: number;
+
+	constructor() {
+	}
+
+	public load(data?: RecursivePartial<IEmitterLife>): void {
+		if (data !== undefined) {
+			if (data.count !== undefined) {
+				this.count = data.count;
+			}
+
+			if (data.delay !== undefined) {
+				this.delay = data.delay;
+			}
+
+			if (data.duration !== undefined) {
+				this.duration = data.duration;
+			}
+		}
+	}
+}
 
 export class Emitter implements IEmitter {
 	public autoStart: boolean;
 	public direction: MoveDirection;
-	public life?: number;
+	public life: IEmitterLife;
 	public particles?: IParticles;
 	public position?: ICoordinates;
 	public rate: IEmitterRate;
@@ -18,6 +44,7 @@ export class Emitter implements IEmitter {
 	constructor() {
 		this.autoStart = true;
 		this.direction = MoveDirection.none;
+		this.life = new EmitterLife();
 		this.rate = new EmitterRate();
 	}
 
@@ -31,9 +58,7 @@ export class Emitter implements IEmitter {
 				this.direction = data.direction;
 			}
 
-			if (data.life !== undefined) {
-				this.life = data.life;
-			}
+			this.life.load(data.life);
 
 			if (data.particles !== undefined) {
 				this.particles = new Particles();
