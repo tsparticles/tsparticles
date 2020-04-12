@@ -49,6 +49,36 @@ steps:
     displayName: 'get package version'
 
 - task: Npm@1
+  displayName: 'npm version'
+  condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/master'))
+  inputs:
+    command: 'custom'
+    workingDir: $(Build.SourcesDirectory)
+    verbose: false
+    customCommand: 'version $major.$minor.$patch --no-git-tag-version --allow-same-version'
+    customEndpoint: 'npmjs'
+
+- task: Npm@1
+  displayName: 'npm version beta'
+  condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/staging'))
+  inputs:
+    command: 'custom'
+    workingDir: $(Build.SourcesDirectory)
+    verbose: false
+    customCommand: 'version $major.$minor.$patch-beta.$(Build.BuildNumber) --no-git-tag-version --allow-same-version'
+    customEndpoint: 'npmjs'
+
+- task: Npm@1
+  displayName: 'npm version alpha'
+  condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/dev'))
+  inputs:
+    command: 'custom'
+    workingDir: $(Build.SourcesDirectory)
+    verbose: false
+    customCommand: 'version $major.$minor.$patch-beta.$(Build.BuildNumber) --no-git-tag-version --allow-same-version'
+    customEndpoint: 'npmjs'
+
+- task: Npm@1
   displayName: npm ci
   inputs:
     command: 'ci'
@@ -72,6 +102,22 @@ steps:
   inputs:
     command: 'publish'
     publishEndpoint: 'npmjs'
+
+- task: Npm@1
+  displayName: npm publish beta
+  condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/staging'))
+  inputs:
+    command: 'custom'
+    customCommand: 'publish --tag beta'
+    customEndpoint: 'npmjs'
+
+- task: Npm@1
+  displayName: npm publish alpha
+  condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/dev'))
+  inputs:
+    command: 'custom'
+    customCommand: 'publish --tag alpha'
+    customEndpoint: 'npmjs'
 
 - task: CopyFiles@2
   displayName: Copying files to Artifacts
