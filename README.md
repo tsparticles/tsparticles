@@ -225,7 +225,6 @@ _config.json_ - The config section to add to your config or in your plugin readm
 
 [![CodeFactor](https://www.codefactor.io/repository/github/matteobruni/tsparticles/badge)](https://www.codefactor.io/repository/github/matteobruni/tsparticles)
 [![Codacy Badge](https://api.codacy.com/project/badge/Grade/b983aaf3461a4c48b1e2eecce1ff1d74)](https://www.codacy.com/manual/ar3s/tsparticles?utm_source=github.com&utm_medium=referral&utm_content=matteobruni/tsparticles&utm_campaign=Badge_Grade)
-[![Maintainability](https://api.codeclimate.com/v1/badges/5d7a0bb5e36cfd44fee6/maintainability)](https://codeclimate.com/github/matteobruni/tsparticles/maintainability)
 
 ---
 
