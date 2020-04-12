@@ -124,6 +124,9 @@
         "x": 50,
         "y": 105
       },
+      "rate": {
+        "seconds": 0.5
+      },
       "particles": {
         "color": {
           "value": "random"
@@ -141,7 +144,7 @@
           }
         },
         "move": {
-          "speed": 30,
+          "speed": 5,
           "random": false,
           "outMode": "destroy"
         }
