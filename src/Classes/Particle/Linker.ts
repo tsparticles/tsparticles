@@ -4,7 +4,6 @@ import { Utils } from "../Utils/Utils";
 import { ICoordinates } from "../../Interfaces/ICoordinates";
 import { Constants } from "../Utils/Constants";
 import type { IParticle } from "../../Interfaces/IParticle";
-import { Particle } from "../Particle";
 
 export class Linker {
 	public static link(p1: IParticle, container: Container): void {

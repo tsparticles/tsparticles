@@ -1,6 +1,5 @@
 import { ICoordinates } from "../../Interfaces/ICoordinates";
 import { IDimension } from "../../Interfaces/IDimension";
-import { Particle } from "../Particle";
 import { Utils } from "./Utils";
 import { IParticle } from "../../Interfaces/IParticle";
 
