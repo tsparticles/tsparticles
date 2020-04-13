@@ -26,7 +26,7 @@ import type { IBubbleParticleData } from "../Interfaces/IBubbleParticleData";
 import type { IParticle } from "../Interfaces/IParticle";
 import { Emitter } from "./Emitter";
 import { MoveDirection } from "../Enums/MoveDirection";
-import { IParticles } from "../Interfaces/Options/Particles/IParticles";
+import type { IParticles } from "../Interfaces/Options/Particles/IParticles";
 import { Particles } from "./Options/Particles/Particles";
 
 /**

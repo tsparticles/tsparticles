@@ -275,9 +275,6 @@
         },
         "IEmitter": {
             "properties": {
-                "autoStart": {
-                    "type": "boolean"
-                },
                 "direction": {
                     "$ref": "#/definitions/MoveDirection"
                 },
@@ -312,10 +309,10 @@
         },
         "IEmitterRate": {
             "properties": {
-                "quantity": {
+                "delay": {
                     "type": "number"
                 },
-                "seconds": {
+                "quantity": {
                     "type": "number"
                 }
             },
@@ -993,6 +990,22 @@
                             "type": "array"
                         }
                     ]
+                },
+                "options": {
+                    "additionalProperties": {
+                        "anyOf": [
+                            {
+                                "$ref": "#/definitions/IShapeValues"
+                            },
+                            {
+                                "items": {
+                                    "$ref": "#/definitions/IShapeValues"
+                                },
+                                "type": "array"
+                            }
+                        ]
+                    },
+                    "type": "object"
                 },
                 "polygon": {
                     "anyOf": [

@@ -1,6 +1,6 @@
-import { Container } from "./Container";
-import { ICoordinates } from "../Interfaces/ICoordinates";
-import { IEmitter } from "../Interfaces/Options/Emitters/IEmitter";
+import type { Container } from "./Container";
+import type { ICoordinates } from "../Interfaces/ICoordinates";
+import type { IEmitter } from "../Interfaces/Options/Emitters/IEmitter";
 import { Particle } from "./Particle";
 
 export class Emitter {

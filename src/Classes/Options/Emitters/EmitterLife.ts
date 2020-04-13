@@ -1,5 +1,5 @@
-import { IEmitterLife } from "../../../Interfaces/Options/Emitters/IEmitterLife";
-import { RecursivePartial } from "../../../Types/RecursivePartial";
+import type { IEmitterLife } from "../../../Interfaces/Options/Emitters/IEmitterLife";
+import type { RecursivePartial } from "../../../Types/RecursivePartial";
 
 export class EmitterLife implements IEmitterLife {
 	public count?: number;

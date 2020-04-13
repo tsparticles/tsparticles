@@ -1,4 +1,4 @@
-import { IParticles } from "../IParticles";
+import type { IParticles } from "../IParticles";
 
 export interface IShapeValues {
 	close?: boolean;

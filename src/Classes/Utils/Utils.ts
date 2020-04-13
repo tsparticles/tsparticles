@@ -5,7 +5,7 @@ import type { IBounds } from "../../Interfaces/IBounds";
 import type { IDimension } from "../../Interfaces/IDimension";
 import type { IImageShape } from "../../Interfaces/Options/Particles/Shape/IImageShape";
 import type { IImage } from "../../Interfaces/IImage";
-import { IParticle } from "../../Interfaces/IParticle";
+import type { IParticle } from "../../Interfaces/IParticle";
 
 type CSSOMString = string;
 type FontFaceLoadStatus = 'unloaded' | 'loading' | 'loaded' | 'error';
