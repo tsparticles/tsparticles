@@ -107,7 +107,7 @@ export class ColorUtils {
 		const maxColor = minColor ^ 0xFFFFFF;
 		const randomColor = (Math.random() * maxColor + minColor).toString(16);
 
-		return this.stringToRgb(`#${ randomColor }`) ?? {
+		return this.stringToRgb(`#${randomColor}`) ?? {
 			b: 0,
 			g: 0,
 			r: 0,
@@ -122,7 +122,7 @@ export class ColorUtils {
 	public static getStyleFromColor(color: IRgb, opacity?: number): string {
 		const opacityValue = opacity ?? 1;
 
-		return `rgba(${ Math.round(color.r) }, ${ Math.round(color.g) }, ${ Math.round(color.b) }, ${ opacityValue })`;
+		return `rgba(${Math.round(color.r)}, ${Math.round(color.g)}, ${Math.round(color.b)}, ${opacityValue})`;
 	}
 
 	/**

@@ -1,7 +1,5 @@
 import type { Container } from "../Container";
 import { ColorUtils } from "../Utils/ColorUtils";
-import { Utils } from "../Utils/Utils";
-import { ICoordinates } from "../../Interfaces/ICoordinates";
 import { Constants } from "../Utils/Constants";
 import type { IParticle } from "../../Interfaces/IParticle";
 
@@ -47,7 +45,6 @@ export class Linker {
 					p1.links.push(p2.particle);
 					container.canvas.drawLinkedLine(p1, p2.particle, p1.position, p2.particle.position, opacityLine);
 				}
-
 			}
 		}
 	}
