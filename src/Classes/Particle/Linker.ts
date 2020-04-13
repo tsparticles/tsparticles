@@ -20,16 +20,16 @@ export class Linker {
 
 				/* style */
 				if (!container.particles.lineLinkedColor) {
-					const color = options.particles.lineLinked.color;
+					const color = p1.particlesOptions.lineLinked.color;
 
 					/* particles.line_linked - convert hex colors to rgb */
 					//  check for the color profile requested and
 					//  then return appropriate value
 
 					if (color === Constants.randomColorValue) {
-						if (options.particles.lineLinked.consent) {
+						if (p1.particlesOptions.lineLinked.consent) {
 							container.particles.lineLinkedColor = ColorUtils.stringToRgb(color);
-						} else if (options.particles.lineLinked.blink) {
+						} else if (p1.particlesOptions.lineLinked.blink) {
 							container.particles.lineLinkedColor = Constants.randomColorValue;
 						} else {
 							container.particles.lineLinkedColor = "mid";

@@ -177,6 +177,11 @@ export class Particle implements IParticle {
 			y: 0,
 		};
 
+		/* check position - avoid overlap */
+		if (options.particles.move.collisions) {
+			this.checkOverlap(position);
+		}
+
 		/* color */
 		if (color instanceof Array) {
 			this.color = ColorUtils.colorToRgb(Utils.itemFromArray(color));
@@ -290,6 +295,44 @@ export class Particle implements IParticle {
 
 	public draw(): void {
 		Drawer.draw(this, this.container);
+	}
+
+	public isOverlapping(): { collisionFound: boolean, iterations: number } {
+		const container = this.container;
+		const p = this;
+		let collisionFound = false;
+		let iterations = 0;
+
+		for (const p2 of container.particles.array.filter((t) => t != p)) {
+			iterations++;
+			const dist = Utils.getDistanceBetweenCoordinates(p.position, p2.position);
+
+			if (dist <= p.size.value + p2.size.value) {
+				collisionFound = true;
+				break;
+			}
+		}
+
+		return {
+			collisionFound: collisionFound,
+			iterations: iterations,
+		};
+	}
+
+	public checkOverlap(position?: ICoordinates): void {
+		const container = this.container;
+		const p = this;
+		const overlapResult = p.isOverlapping();
+
+		if (overlapResult.iterations >= container.particles.count) {
+			// too many particles, removing from the current
+			container.particles.remove(this);
+		} else if (overlapResult.collisionFound) {
+			p.position.x = position ? position.x : Math.random() * container.canvas.dimension.width;
+			p.position.y = position ? position.y : Math.random() * container.canvas.dimension.height;
+
+			p.checkOverlap();
+		}
 	}
 
 	public destroy(): void {
