@@ -131,7 +131,7 @@ export class Container {
 		let area = this.canvas.element.width * this.canvas.element.height / 1000;
 
 		if (this.retina.isRetina) {
-			area /= this.retina.pxRatio * 2;
+			area /= this.retina.pixelRatio * 2;
 		}
 
 		const optParticlesNumber = this.options.particles.number.value;
