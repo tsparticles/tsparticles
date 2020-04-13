@@ -1,41 +1,50 @@
 import type { Container } from "../Container";
 import { ColorUtils } from "../Utils/ColorUtils";
 import { Utils } from "../Utils/Utils";
-import type { ICoordinates } from "../../Interfaces/ICoordinates";
+import { ICoordinates } from "../../Interfaces/ICoordinates";
 import { Constants } from "../Utils/Constants";
 import type { IParticle } from "../../Interfaces/IParticle";
 
 export class Linker {
-	public static link(p1: IParticle, p2: IParticle, container: Container): void {
+	public static link(p1: IParticle, container: Container): void {
+
+		const options = container.options;
+		const optOpacity = options.particles.lineLinked.opacity;
+		const optDistance = container.retina.lineLinkedDistance;
+
 		const pos1: ICoordinates = {
 			x: p1.position.x + p1.offset.x,
 			y: p1.position.y + p1.offset.y,
 		};
-		const pos2: ICoordinates = {
-			x: p2.position.x + p2.offset.x,
-			y: p2.position.y + p2.offset.y,
-		};
-		const dist = Utils.getDistanceBetweenCoordinates(pos1, pos2);
-		const optOpacity = p1.particlesOptions.lineLinked.opacity;
-		const optDistance = p1.lineLinkedDistance ?? container.retina.lineLinkedDistance;
 
-		/* draw a line between p1 and p2 if the distance between them is under the config distance */
-		if (dist <= optDistance) {
+		for (const p2 of container.particles.spatialGrid.queryRadius(pos1, optDistance)) {
+
+			if (p1 === p2 || !p2.particlesOptions.lineLinked.enable) continue;
+
+			const pos2: ICoordinates = {
+				x: p2.position.x + p2.offset.x,
+				y: p2.position.y + p2.offset.y,
+			};
+
+			const dist = Utils.getDistanceBetweenCoordinates(pos1, pos2);
+
+			/* draw a line between p1 and p2 */
 			const opacityLine = optOpacity - (dist * optOpacity) / optDistance;
 
 			if (opacityLine > 0) {
+
 				/* style */
 				if (!container.particles.lineLinkedColor) {
-					const color = p1.particlesOptions.lineLinked.color;
+					const color = options.particles.lineLinked.color;
 
 					/* particles.line_linked - convert hex colors to rgb */
 					//  check for the color profile requested and
 					//  then return appropriate value
 
 					if (color === Constants.randomColorValue) {
-						if (p1.particlesOptions.lineLinked.consent) {
+						if (options.particles.lineLinked.consent) {
 							container.particles.lineLinkedColor = ColorUtils.stringToRgb(color);
-						} else if (p1.particlesOptions.lineLinked.blink) {
+						} else if (options.particles.lineLinked.blink) {
 							container.particles.lineLinkedColor = Constants.randomColorValue;
 						} else {
 							container.particles.lineLinkedColor = "mid";
@@ -47,7 +56,11 @@ export class Linker {
 					}
 				}
 
-				container.canvas.drawLinkedLine(p1, p2, pos1, pos2, opacityLine);
+				if (p2.links.indexOf(p1) == -1 && p1.links.indexOf(p2) == -1) {
+					p1.links.push(p2);
+					container.canvas.drawLinkedLine(p1, p2, pos1, pos2, opacityLine);
+				}
+
 			}
 		}
 	}
