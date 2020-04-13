@@ -77,10 +77,10 @@ export class SpatialGrid {
     private select(start: ICoordinates, end: ICoordinates): IParticle[] {
         var out: IParticle[] = [];
 
-        for (var x = start.x; x < end.x; x++) {
+        for (var x = start.x; x <= end.x; x++) {
             if (!Array.isArray(this.grid[x])) continue;
 
-            for (var y = start.y; y < end.y; y++) {
+            for (var y = start.y; y <= end.y; y++) {
                 if (!Array.isArray(this.grid[x][y])) continue;
 
                 // Its unconventional but it is the marginally faster approach for adjoining arrays
