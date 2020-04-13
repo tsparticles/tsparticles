@@ -324,3 +324,7 @@ You can find a sample config [here](https://github.com/matteobruni/tsparticles/w
 ### **_Options_**
 
 You can find all options available [here](https://github.com/matteobruni/tsparticles/wiki/tsParticles-Options) 📖
+
+---
+
+### Huge thanks to [JetBrains](https://www.jetbrains.com/) for the 2020 Open Source License!
