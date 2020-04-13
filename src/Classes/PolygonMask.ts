@@ -212,10 +212,17 @@ export class PolygonMask {
 		this.dimension.width = parseFloat(this.svg.getAttribute("width") || "0") * scale;
 		this.dimension.height = parseFloat(this.svg.getAttribute("height") || "0") * scale;
 
+		const position = options.polygon.position ?? {
+			x: 50,
+			y: 50,
+		};
+
+		console.log(position);
+
 		/* centering of the polygon mask */
 		this.offset = {
-			x: container.canvas.dimension.width / 2 - this.dimension.width / 2,
-			y: container.canvas.dimension.height / 2 - this.dimension.height / 2,
+			x: container.canvas.dimension.width * position.x / 100 - this.dimension.width / 2,
+			y: container.canvas.dimension.height * position.y / 100 - this.dimension.height / 2,
 		};
 
 		const len = this.path.pathSegList.numberOfItems;

@@ -12,6 +12,7 @@ pool:
   vmImage: 'ubuntu-latest'
 
 steps:
+
 - task: Npm@1
   displayName: npm ci
   inputs:
@@ -77,8 +78,8 @@ steps:
     gitHubConnection: 'github.com_matteobruni'
     repositoryName: 'matteobruni/tsparticles'
     action: 'create'
-    target: '$(Build.SourceVersion)'
-    tagSource: 'gitTag'
+    tagSource: 'userSpecifiedTag'
+    tag: $(Build.BuildNumber)
     assets: '$(Build.ArtifactStagingDirectory)/dist/*'
     changeLogCompareToRelease: 'lastFullRelease'
     changeLogType: 'commitBased'

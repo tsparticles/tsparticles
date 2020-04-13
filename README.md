@@ -80,7 +80,7 @@ _spiral.js_ - The custom shape script, you can distribute it or reuse in all you
 // call this method before initializing tsParticles, this shape will be available in all of your tsParticles instances
 // parameters: shape name, drawing method
 // opacity is just for shapes that needs a differenc opacity handling like images
-tsParticles.addShape("spiral", function(context, particle, radius, opacity) {
+tsParticles.addShape("spiral", function (context, particle, radius, opacity) {
   const shapeData = particle.shapeData;
   const realWidth = (radius - shapeData.innerRadius) / shapeData.lineSpacing;
 
@@ -172,38 +172,38 @@ tsParticles.addPreset("fire", {
       value: 80,
       density: {
         enable: true,
-        value_area: 800
-      }
+        value_area: 800,
+      },
     },
     color: {
-      value: ["#fdcf58", "#757676", "#f27d0c", "#800909", "#f07f13"]
+      value: ["#fdcf58", "#757676", "#f27d0c", "#800909", "#f07f13"],
     },
     opacity: {
       value: 0.5,
-      random: true
+      random: true,
     },
     size: {
       value: 3,
-      random: true
+      random: true,
     },
     move: {
       enable: true,
       speed: 6,
-      random: false
-    }
+      random: false,
+    },
   },
   interactivity: {
     events: {
       onclick: {
         enable: true,
-        mode: "push"
+        mode: "push",
       },
-      resize: true
-    }
+      resize: true,
+    },
   },
   background: {
-    image: "radial-gradient(#4a0000, #000)"
-  }
+    image: "radial-gradient(#4a0000, #000)",
+  },
 });
 ```
 
@@ -225,7 +225,6 @@ _config.json_ - The config section to add to your config or in your plugin readm
 
 [![CodeFactor](https://www.codefactor.io/repository/github/matteobruni/tsparticles/badge)](https://www.codefactor.io/repository/github/matteobruni/tsparticles)
 [![Codacy Badge](https://api.codacy.com/project/badge/Grade/b983aaf3461a4c48b1e2eecce1ff1d74)](https://www.codacy.com/manual/ar3s/tsparticles?utm_source=github.com&utm_medium=referral&utm_content=matteobruni/tsparticles&utm_campaign=Badge_Grade)
-[![Maintainability](https://api.codeclimate.com/v1/badges/5d7a0bb5e36cfd44fee6/maintainability)](https://codeclimate.com/github/matteobruni/tsparticles/maintainability)
 
 ---
 
@@ -284,11 +283,11 @@ Starting from version 1.12.7 `import` and `require` can be used to import `tsPar
 Now you can write something like this
 
 ```javascript
-const tsParticles = require('tsparticles');
+const tsParticles = require("tsparticles");
 
 // or
 
-import { tsParticles } from 'tsparticles';
+import { tsParticles } from "tsparticles";
 ```
 
 the imported `tsParticles` is the same instance you have including the script.
@@ -322,10 +321,10 @@ Load tsParticles and configure the particles:
 /* tsParticles.loadJSON(@dom-id, @path-json, @callback (optional)); */
 tsParticles
   .loadJSON("tsparticles", "presets/default.json")
-  .then(container => {
+  .then((container) => {
     console.log("callback - tsparticles config loaded");
   })
-  .catch(error => {
+  .catch((error) => {
     console.error(error);
   });
 
@@ -345,7 +344,7 @@ tsParticles.loadFromArray("tsparticles", [
   },
   {
     /* other options here */
-  }
+  },
 ]); //random object
 tsParticles.loadFromArray(
   "tsparticles",
@@ -355,7 +354,7 @@ tsParticles.loadFromArray(
     },
     {
       /* other options here */
-    }
+    },
   ],
   1
 ); //the second one
@@ -365,7 +364,7 @@ tsParticles.loadFromArray(
 
 /* tsParticles.setOnClickHandler(@callback); */
 /* this will be fired from all particles loaded */
-tsParticles.setOnClickHandler(e => {
+tsParticles.setOnClickHandler((e) => {
   /* custom on click handler */
 });
 
@@ -386,11 +385,11 @@ Starting from version 1.13.0 `import` and `require` can be used to import `tsPar
 Now you can write something like this
 
 ```javascript
-const tsParticles = require('tsparticles');
+const tsParticles = require("tsparticles");
 
 // or
 
-import { tsParticles } from 'tsparticles';
+import { tsParticles } from "tsparticles";
 ```
 
 ### React.js
@@ -700,6 +699,7 @@ _Don't click! DON'T CLICK! OH NO IT'S SPREADING!!!!_
 | `detectRetina`   | `boolean`               | `true` / `false`                        | replaces the old `retina_detect` property                                                                                                                                                                                                                                                          |
 | `fpsLimit`       | `number`                | `30`                                    | _defaults to `30`_, replaces the old `fps_limit` property                                                                                                                                                                                                                                          |
 | `interactivity`  | `object`                |                                         | See Interactivity options below                                                                                                                                                                                                                                                                    |
+| `particles`      | `object`                |                                         | See Particles options below                                                                                                                                                                                                                                                                        |
 | `pauseOnBlur`    | `boolean`               | `true` / `false`                        | pauses the animations when the page isn't on foreground                                                                                                                                                                                                                                            |
 | `preset`         | `string` <br /> `array` | `"basic"` <br /> `[ "basic", "60fps" ]` | You can use this property to load one or more presets for focusing on important properties and not all config. <br /> All values available by default are: <br /> `"basic"` <br /> `"backgroundMask"` <br /> `"fontAwesome"` <br /> `"snow"` <br /> `"bouncing"` <br /> `"stars"` <br /> `"60fps"` |
 
@@ -750,34 +750,21 @@ _Don't click! DON'T CLICK! OH NO IT'S SPREADING!!!!_
 
 #### Particles
 
-| key                              | option type                                                                                              | example                                                                                                                                                            | notes                                                                                                                                        |
-| -------------------------------- | -------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------ | -------------------------------------------------------------------------------------------------------------------------------------------- |
+| key                              | option type                                                                                              | example                                                                                                                                                            | notes                                   |
+| -------------------------------- | -------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------ | --------------------------------------- |
 | `number.value`                   | `number`                                                                                                 | `40`                                                                                                                                                               |
-| `number.limit`                   | `number`                                                                                                 | `200`                                                                                                                                                              | `0` or less disables the limit                                                                                                               |
+| `number.limit`                   | `number`                                                                                                 | `200`                                                                                                                                                              | `0` or less disables the limit          |
 | `number.density.enable`          | `boolean`                                                                                                | `true` / `false`                                                                                                                                                   |
 | `number.density.area`            | `number`                                                                                                 | `800`                                                                                                                                                              |
 | `color.value`                    | HEX (`string`) <br /> RGB (`object`) <br /> HSL (`object`) <br /> array (`HEX`) <br /> random (`string`) | `"#0d47a1"` <br /> `{r:182, g:25, b:36}` <br /> `{h:356, s:76, l:41}` <br /> `["#b61924", "#333333", "999999"]` <br /> `"random"`                                  |
-| `shape.type`                     | `string` <br /> `array`                                                                                  | `"circle"` <br /> `"line"` <br /> `"edge"` <br /> `"triangle"` <br /> `"polygon"` <br /> `"star"` <br /> `"image"` <br /> `["circle", "triangle", "image"]`        |
-| `shape.stroke.width`             | `number`                                                                                                 | `2`                                                                                                                                                                |
-| `shape.stroke.color`             | HEX (`string`) <br /> RGB (`object`) <br /> HSL (`object`) <br /> random (`string`)                      | `"#0d47a1"` <br /> `{r:182, g:25, b:36}` <br /> `{h:356, s:76, l:41}` <br /> `"random"`                                                                            |
-| `shape.polygon.sides`            | `number`                                                                                                 | `5`                                                                                                                                                                |
-| `shape.character`                | `object` <br /> `array`                                                                                  |                                                                                                                                                                    | A single character object like below or an array of the same objects                                                                         |
-| `shape.character.value`          | `object` <br /> array                                                                                    | `\uf179`                                                                                                                                                           |
-| `shape.character.font`           | `string`                                                                                                 | `Font Awesome 5 Brands`                                                                                                                                            |
-| `shape.character.style`          | `string`                                                                                                 |                                                                                                                                                                    |
-| `shape.character.weight`         | `string`                                                                                                 | `400`                                                                                                                                                              | font weight, for FontAwesome it's required to use the exact weight for every family, Chrome won't render correctly otherwise.                |
-| `shape.character.fill`           | `boolean`                                                                                                | `true` / `false`                                                                                                                                                   | Fills or strokes the text. If the fonts doesn't support the stroke or the fill you won't see any particle. FontAwesome requires `fill: true` |
-| `shape.image`                    | object / array                                                                                           | A single image object like below or an array of the same objects                                                                                                   |
-| `shape.image.src`                | path link <br /> svg / png / gif / jpg                                                                   | `"assets/img/yop.svg"` <br /> `"http://mywebsite.com/assets/img/yop.png"`                                                                                          |
-| `shape.image.width`              | `number`                                                                                                 | `100`                                                                                                                                                              | for aspect ratio                                                                                                                             |
-| `shape.image.height`             | `number`                                                                                                 | `100`                                                                                                                                                              | for aspect ratio                                                                                                                             |
+| `shape`                          | `object`                                                                                                 |                                                                                                                                                                    | See Shape documentation below           |
 | `opacity.value`                  | `number`                                                                                                 | `0...1`                                                                                                                                                            |
 | `opacity.random`                 | `boolean`                                                                                                | `true` / `false`                                                                                                                                                   |
 | `opacity.animation.enable`       | `boolean`                                                                                                | `true` / `false`                                                                                                                                                   |
 | `opacity.animation.speed`        | `number`                                                                                                 | `3`                                                                                                                                                                |
-| `opacity.animation.minimumValue` | `number`                                                                                                 | `0...1`                                                                                                                                                            | replaces the old `opacity_min` property                                                                                                      |
+| `opacity.animation.minimumValue` | `number`                                                                                                 | `0...1`                                                                                                                                                            | replaces the old `opacity_min` property |
 | `opacity.animation.sync`         | `boolean`                                                                                                | `true` / `false`                                                                                                                                                   |
-| `rotate.value`                   | `number`                                                                                                 | `45`                                                                                                                                                               | angle in degrees                                                                                                                             |
+| `rotate.value`                   | `number`                                                                                                 | `45`                                                                                                                                                               | angle in degrees                        |
 | `rotate.random`                  | `boolean`                                                                                                | `true` / `false`                                                                                                                                                   |
 | `rotate.direction`               | `string`                                                                                                 | `clockwise` / `counterclockwise`                                                                                                                                   |
 | `rotate.animation.enable`        | `boolean`                                                                                                | `true` / `false`                                                                                                                                                   |
@@ -789,6 +776,8 @@ _Don't click! DON'T CLICK! OH NO IT'S SPREADING!!!!_
 | `size.animation.speed`           | `number`                                                                                                 | `3`                                                                                                                                                                |
 | `size.animation.minimumValue`    | `number`                                                                                                 | `0.25`                                                                                                                                                             |
 | `size.animation.sync`            | `boolean`                                                                                                | `true` / `false`                                                                                                                                                   |
+| `stroke.width`                   | `number`                                                                                                 | `2`                                                                                                                                                                |
+| `stroke.color`                   | HEX (`string`) <br /> RGB (`object`) <br /> HSL (`object`) <br /> random (`string`)                      | `"#0d47a1"` <br /> `{r:182, g:25, b:36}` <br /> `{h:356, s:76, l:41}` <br /> `"random"`                                                                            |
 | `lineLinked.enable`              | `boolean`                                                                                                | `true` / `false`                                                                                                                                                   |
 | `lineLinked.distance`            | `number`                                                                                                 | `150`                                                                                                                                                              |
 | `lineLinked.color`               | HEX (`string`) <br /> RGB (`object`) <br /> HSL (`object`) <br /> random (`string`)                      | `"#0d47a1"` <br /> `{r:182, g:25, b:36}` <br /> `{h:356, s:76, l:41}` <br /> `"random"`                                                                            |
@@ -799,8 +788,8 @@ _Don't click! DON'T CLICK! OH NO IT'S SPREADING!!!!_
 | `move.direction`                 | `string`                                                                                                 | `"none"` <br /> `"top"` <br /> `"top-right"` <br /> `"right"` <br /> `"bottom-right"` <br /> `"bottom"` <br /> `"bottom-left"` <br /> `"left"` <br /> `"top-left"` |
 | `move.random`                    | `boolean`                                                                                                | `true` / `false`                                                                                                                                                   |
 | `move.straight`                  | `boolean`                                                                                                | `true` / `false`                                                                                                                                                   |
-| `move.outMode`                   | `string`                                                                                                 | `"out"`<br /> `"destroy"` <br /> `"bounce"` <br /> `"bounce-vertical"` <br /> `"bounce-horizontal"`                                                                | out of canvas                                                                                                                                |
-| `move.bounce`                    | `boolean`                                                                                                | `true` / `false`                                                                                                                                                   | between particles                                                                                                                            |
+| `move.outMode`                   | `string`                                                                                                 | `"out"`<br /> `"destroy"` <br /> `"bounce"` <br /> `"bounce-vertical"` <br /> `"bounce-horizontal"`                                                                | out of canvas                           |
+| `move.bounce`                    | `boolean`                                                                                                | `true` / `false`                                                                                                                                                   | between particles                       |
 | `move.trail.enable`              | `boolean`                                                                                                | `true` / `false`                                                                                                                                                   |
 | `move.trail.length`              | `number`                                                                                                 | `10`                                                                                                                                                               |
 | `move.trail.fillColor`           | HEX (`string`) <br /> RGB (`object`) <br /> HSL (`object`) <br /> random (`string`)                      | `"#0d47a1"` <br /> `{r:182, g:25, b:36}` <br /> `{h:356, s:76, l:41}` <br /> `"random"`                                                                            |
@@ -816,7 +805,88 @@ _Don't click! DON'T CLICK! OH NO IT'S SPREADING!!!!_
 | `draw.enable`    | `boolean`                                                                           | `true` / `false`                                                                        |
 | `draw.lineWidth` | `number`                                                                            | `0.5`                                                                                   |
 | `draw.lineColor` | HEX (`string`) <br /> RGB (`object`) <br /> HSL (`object`) <br /> random (`string`) | `"#0d47a1"` <br /> `{r:182, g:25, b:36}` <br /> `{h:356, s:76, l:41}` <br /> `"random"` |
+| `position`       | `object`                                                                            | `{ "x": 50, "y": 50 }`                                                                  | The position specified is not absolute, it will be used as a percent value.                      |
 | `scale`          | `number`                                                                            | 1                                                                                       |
 | `type`           | `string`                                                                            | `none` <br /> `inside` <br /> `outside` <br /> `inline`                                 |
 | `move.radius`    | `number`                                                                            | `10`                                                                                    |
 | `url`            | `string`                                                                            | `demo/svg/deer.svg`                                                                     | this file will be downloaded with an ajax request, if it won't load you have some **XSS** issues |
+
+#### Emitters
+
+| key           | option type | example                                                                                                                                                            | notes                                                                       |
+| ------------- | ----------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------ | --------------------------------------------------------------------------- |
+| autoStart     | `boolean`   | `true` / `false`                                                                                                                                                   | Specifies if the emitter should start when the particles will be drawn      |
+| direction     | `string`    | `"none"` <br /> `"top"` <br /> `"top-right"` <br /> `"right"` <br /> `"bottom-right"` <br /> `"bottom"` <br /> `"bottom-left"` <br /> `"left"` <br /> `"top-left"` | The generated particles direction                                           |
+| life.count    | `number`    | `1`                                                                                                                                                                | The emitter number of times will appear                                     |
+| life.duration | `number`    | `5`                                                                                                                                                                | The emitter life duration, in seconds                                       |
+| life.delay    | `number`    | `0.1`                                                                                                                                                              | The emitter delay between any appearance                                    |
+| particles     | `object`    |                                                                                                                                                                    | See Particles options above                                                 |
+| position      | `object`    | `{ "x": 50, "y": 50 }`                                                                                                                                             | The position specified is not absolute, it will be used as a percent value. |
+| rate.quantity | `number`    | `1`                                                                                                                                                                | The particles generated everytime the rate event occurs                     |
+| rate.delay    | `number`    | `0.1`                                                                                                                                                              | The rate event event delay time, in seconds                                 |
+
+#### Shape
+
+The Shape section of Particles options has been reworked a lot but for now it's still compatible with all your old configurations.
+
+If you want to customize more you particles you should use the new syntax
+
+| key       | option type             | example                                                                                                                                                     | notes                                               |
+| --------- | ----------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------- |
+| `type`    | `string` <br /> `array` | `"circle"` <br /> `"line"` <br /> `"edge"` <br /> `"triangle"` <br /> `"polygon"` <br /> `"star"` <br /> `"image"` <br /> `["circle", "triangle", "image"]` |
+| `options` | `object`                |                                                                                                                                                             | This object is where new implementations are placed |
+
+##### Options
+
+Options is a dynamic object, is properties are the shape types, even the custom one you created (as you can read above) and the values are objects or arrays that will be used to draw the particles.
+
+This will give us more customization, you can now specify a shape type with a `particles` property that lets you customize almost all the properties of the original object.
+
+`shape` and `number` will be ignored for obvious reasons.
+
+The shape types you find described above are the only implemented here, if you use an external custom shape ask the creator.
+
+All the shapes have in common these properties
+
+| key         | option type | example          | notes                                                                     |
+| ----------- | ----------- | ---------------- | ------------------------------------------------------------------------- |
+| `particles` | `object`    |                  | See Particles options above                                               |
+| `fill`      | `boolean`   | `true` / `false` | Used to specify if its shape particles should be filled with color or not |
+| `close`     | `boolean`   | `true` / `false` | Used to specify if its shape particles should have a closed shape         |
+
+Below you'll find the options of some shape types that need additional properties, you can add to the object below the 3 properties above.
+
+###### Polygon / Star
+
+```javascript
+polygon: {
+  sides: 5; // the number of sides of the polygon
+}
+```
+
+```javascript
+star: {
+  sides: 5; // the number of sides of the polygon
+}
+```
+
+###### Character / Char
+
+```javascript
+character: {
+    value: "*", // the text to use as particles, any string is valid, for escaping unicode char use the `\uXXXX` syntax
+    font: "Verdana", // the font to use to draw the text. If the font needs an external css or javascript like FontAwesome you should include all the necessary files on your own
+    style: "", // any additional css style to add to the text
+    weight: "" // the css weight property, some fonts like font awesome have a specified weight, check the documentation if needed
+}
+```
+
+###### Image
+
+```javascript
+image: {
+    src: "http://mywebsite.com/assets/img/image.png", // any path or url to your image that will be used as a particle
+    width: 100, // the pixel width of the image, you can use any value, the image will be scaled
+    height: 100 // the pixel height of the image, you can use any value, the image will be scaled
+}
+```

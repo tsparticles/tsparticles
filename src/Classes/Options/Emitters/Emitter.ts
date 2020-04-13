@@ -2,23 +2,26 @@ import type { IEmitter } from "../../../Interfaces/Options/Emitters/IEmitter";
 import type { RecursivePartial } from "../../../Types/RecursivePartial";
 import type { ICoordinates } from "../../../Interfaces/ICoordinates";
 import { MoveDirection } from "../../../Enums/MoveDirection";
-import { IParticles } from "../../../Interfaces/Options/Particles/IParticles";
+import type { IParticles } from "../../../Interfaces/Options/Particles/IParticles";
 import { Particles } from "../Particles/Particles";
+import type { IEmitterRate } from "../../../Interfaces/Options/Emitters/IEmitterRate";
+import { EmitterRate } from "./EmitterRate";
+import type { IEmitterLife } from "../../../Interfaces/Options/Emitters/IEmitterLife";
+import { EmitterLife } from "./EmitterLife";
 
 export class Emitter implements IEmitter {
 	public autoStart: boolean;
 	public direction: MoveDirection;
-	public life?: number;
+	public life: IEmitterLife;
 	public particles?: IParticles;
 	public position?: ICoordinates;
-	public quantity: number;
-	public speed: number;
+	public rate: IEmitterRate;
 
 	constructor() {
 		this.autoStart = true;
 		this.direction = MoveDirection.none;
-		this.quantity = 1;
-		this.speed = 1;
+		this.life = new EmitterLife();
+		this.rate = new EmitterRate();
 	}
 
 	public load(data?: RecursivePartial<IEmitter>, particlesOptions?: IParticles): void {
@@ -31,9 +34,7 @@ export class Emitter implements IEmitter {
 				this.direction = data.direction;
 			}
 
-			if (data.life !== undefined) {
-				this.life = data.life;
-			}
+			this.life.load(data.life);
 
 			if (data.particles !== undefined) {
 				this.particles = new Particles();
@@ -41,16 +42,13 @@ export class Emitter implements IEmitter {
 				this.particles.load(data.particles);
 			}
 
-			if (data.quantity !== undefined) {
-				this.quantity = data.quantity;
-			}
+			this.rate.load(data.rate);
 
 			if (data.position !== undefined) {
-				this.position = data.position;
-			}
-
-			if (data.speed !== undefined) {
-				this.speed = data.speed;
+				this.position = {
+					x: data.position.x,
+					y: data.position.y,
+				};
 			}
 		}
 	}

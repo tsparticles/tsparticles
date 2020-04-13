@@ -282,7 +282,7 @@
                     "$ref": "#/definitions/MoveDirection"
                 },
                 "life": {
-                    "type": "number"
+                    "$ref": "#/definitions/IEmitterLife"
                 },
                 "particles": {
                     "$ref": "#/definitions/IParticles"
@@ -290,10 +290,32 @@
                 "position": {
                     "$ref": "#/definitions/ICoordinates"
                 },
+                "rate": {
+                    "$ref": "#/definitions/IEmitterRate"
+                }
+            },
+            "type": "object"
+        },
+        "IEmitterLife": {
+            "properties": {
+                "count": {
+                    "type": "number"
+                },
+                "delay": {
+                    "type": "number"
+                },
+                "duration": {
+                    "type": "number"
+                }
+            },
+            "type": "object"
+        },
+        "IEmitterRate": {
+            "properties": {
                 "quantity": {
                     "type": "number"
                 },
-                "speed": {
+                "seconds": {
                     "type": "number"
                 }
             },
@@ -734,6 +756,9 @@
                 },
                 "move": {
                     "$ref": "#/definitions/IPolygonMaskMove"
+                },
+                "position": {
+                    "$ref": "#/definitions/ICoordinates"
                 },
                 "scale": {
                     "type": "number"
