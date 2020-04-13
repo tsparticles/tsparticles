@@ -17,9 +17,7 @@ export class Emitter {
 		this.position = this.calcPosition();
 		this.lifeCount = this.emitterOptions.life.count ?? -1;
 
-		if (this.emitterOptions.autoStart) {
-			this.start();
-		}
+		this.start();
 	}
 
 	public emit(): void {

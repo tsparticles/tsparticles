@@ -6,7 +6,6 @@ import type { IEmitterRate } from "./IEmitterRate";
 import type { IEmitterLife } from "./IEmitterLife";
 
 export interface IEmitter extends IOptionLoader<IEmitter> {
-	autoStart: boolean;
 	direction: MoveDirection;
 	life: IEmitterLife;
 	particles?: IParticles;
