@@ -168,7 +168,7 @@
         "y": 95
       },
       "rate": {
-        "seconds": 0.5
+        "delay": 0.5
       },
       "size": {
         "width": 100,
