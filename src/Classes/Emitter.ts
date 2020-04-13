@@ -10,13 +10,15 @@ export class Emitter {
 	public emitterOptions: IEmitter;
 
 	private readonly container: Container;
+	private readonly initialPosition?: ICoordinates;
 	private startInterval?: number;
 	private lifeCount: number
 
 	constructor(container: Container, emitterOptions: IEmitter, position?: ICoordinates) {
 		this.container = container;
+		this.initialPosition = position;
 		this.emitterOptions = emitterOptions;
-		this.position = position ?? this.calcPosition();
+		this.position = this.initialPosition ?? this.calcPosition();
 		this.size = this.emitterOptions.size ?? {
 			width: 0,
 			height: 0,
@@ -69,6 +71,10 @@ export class Emitter {
 
 			delete this.startInterval;
 		}
+	}
+
+	public resize() {
+		this.position = this.initialPosition ?? this.calcPosition();
 	}
 
 	private prepareToDie(): void {

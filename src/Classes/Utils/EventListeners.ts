@@ -174,6 +174,10 @@ export class EventListeners {
 		/* density particles enabled */
 		container.densityAutoParticles();
 
+		for (const emitter of container.emitters) {
+			emitter.resize();
+		}
+
 		container.polygon.redraw();
 	}
 
