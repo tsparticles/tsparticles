@@ -86,6 +86,32 @@ export class SpatialGrid {
     }
 
     /**
+    * Returns all items on the canvas inside the radius relative to the position included with their distance. 
+    * @param position The query position
+    * @param radius The radius around the position
+    */
+    public queryRadiusWithDist(position: ICoordinates, radius: number): { dist: number, particle: IParticle }[] {
+        const pos = this.index(position);
+        const rad = this.radius({ x: radius, y: radius } as ICoordinates);
+        const items = this.select(this.indexOp(pos, '-', rad), this.indexOp(pos, '+', rad)) as IParticle[];
+
+        var out = [];
+        for (let i = 0; i < items.length; i++) {
+            if (items[i]) {
+                const dist = Utils.getDistanceBetweenCoordinates(items[i].position, position);
+
+                if (dist <= radius)
+                    out.push({ dist: dist, particle: items[i] });
+            }
+
+        }
+
+        return out;
+    }
+
+
+
+    /**
     * Itterates and returns all values inside the provided X,Y coordinates
     * NOTE: The Icoordinates need to be provided as an index, see index()
     * This function is only for internal use.
