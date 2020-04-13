@@ -79,12 +79,55 @@
         }
       },
       "onclick": {
-        "enable": false,
-        "mode": "push"
+        "enable": true,
+        "mode": "emitter"
       },
       "resize": true
     },
     "modes": {
+      "emitters": {
+        "life": {
+          "count": 10,
+          "delay": 0.5,
+          "duration": 3
+        },
+        "particles": {
+          "shape": {
+            "type": "star",
+            "polygon": {
+              "sides": 7
+            }
+          },
+          "rotate": {
+            "value": 0,
+            "random": true,
+            "direction": "clockwise",
+            "animation": {
+              "enable": true,
+              "speed": 15,
+              "sync": false
+            }
+          },
+          "color": {
+            "value": "#f0f"
+          },
+          "lineLinked": {
+            "enable": false
+          },
+          "opacity": {
+            "value": 1
+          },
+          "size": {
+            "value": 15,
+            "random": false
+          },
+          "move": {
+            "speed": 20,
+            "random": false,
+            "outMode": "destroy"
+          }
+        }
+      },
       "grab": {
         "distance": 400,
         "line_linked": {
@@ -122,10 +165,14 @@
       "direction": "top",
       "position": {
         "x": 50,
-        "y": 105
+        "y": 95
       },
       "rate": {
         "seconds": 0.5
+      },
+      "size": {
+        "width": 100,
+        "height": 10
       },
       "particles": {
         "color": {

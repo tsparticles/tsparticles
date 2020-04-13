@@ -4,6 +4,7 @@ import { Events } from "./Events/Events";
 import { Modes } from "./Modes/Modes";
 import type { RecursivePartial } from "../../../Types/RecursivePartial";
 import { HoverMode } from "../../../Enums/Modes/HoverMode";
+import { IParticles } from "../../../Interfaces/Options/Particles/IParticles";
 
 export class Interactivity implements IInteractivity {
 	/**
@@ -33,7 +34,7 @@ export class Interactivity implements IInteractivity {
 		this.modes = new Modes();
 	}
 
-	public load(data?: RecursivePartial<IInteractivity>): void {
+	public load(data?: RecursivePartial<IInteractivity>, particles?: IParticles): void {
 		if (data !== undefined) {
 			const detectsOn = data.detectsOn ?? data.detect_on;
 
@@ -42,7 +43,7 @@ export class Interactivity implements IInteractivity {
 			}
 
 			this.events.load(data.events);
-			this.modes.load(data.modes);
+			this.modes.load(data.modes, particles);
 
 			if (data.modes?.slow?.active === true) {
 				if (this.events.onHover.mode instanceof Array) {

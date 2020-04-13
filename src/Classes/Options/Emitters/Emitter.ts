@@ -8,8 +8,10 @@ import type { IEmitterRate } from "../../../Interfaces/Options/Emitters/IEmitter
 import { EmitterRate } from "./EmitterRate";
 import type { IEmitterLife } from "../../../Interfaces/Options/Emitters/IEmitterLife";
 import { EmitterLife } from "./EmitterLife";
+import { IDimension } from "../../../Interfaces/IDimension";
 
 export class Emitter implements IEmitter {
+	public size?: IDimension;
 	public direction: MoveDirection;
 	public life: IEmitterLife;
 	public particles?: IParticles;
@@ -24,6 +26,13 @@ export class Emitter implements IEmitter {
 
 	public load(data?: RecursivePartial<IEmitter>, particlesOptions?: IParticles): void {
 		if (data !== undefined) {
+			if (data.size !== undefined) {
+				this.size = {
+					width: data.size.width,
+					height: data.size.height,
+				}
+			}
+
 			if (data.direction !== undefined) {
 				this.direction = data.direction;
 			}

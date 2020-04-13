@@ -106,8 +106,10 @@ export class Options implements IOptions {
 				this.pauseOnBlur = data.pauseOnBlur;
 			}
 
-			this.interactivity.load(data.interactivity);
 			this.particles.load(data.particles);
+
+			(this.interactivity as Interactivity).load(data.interactivity, this.particles);
+			
 			this.polygon.load(data.polygon);
 			this.backgroundMask.load(data.backgroundMask);
 

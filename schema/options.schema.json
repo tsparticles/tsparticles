@@ -141,6 +141,7 @@
                             "items": {
                                 "enum": [
                                     "bubble",
+                                    "emitter",
                                     "push",
                                     "remove",
                                     "repulse"
@@ -152,6 +153,7 @@
                         {
                             "enum": [
                                 "bubble",
+                                "emitter",
                                 "push",
                                 "remove",
                                 "repulse"
@@ -240,6 +242,17 @@
             },
             "type": "object"
         },
+        "IDimension": {
+            "properties": {
+                "height": {
+                    "type": "number"
+                },
+                "width": {
+                    "type": "number"
+                }
+            },
+            "type": "object"
+        },
         "IDivEvent": {
             "properties": {
                 "el": {
@@ -289,6 +302,9 @@
                 },
                 "rate": {
                     "$ref": "#/definitions/IEmitterRate"
+                },
+                "size": {
+                    "$ref": "#/definitions/IDimension"
                 }
             },
             "type": "object"
@@ -528,6 +544,19 @@
                 },
                 "connect": {
                     "$ref": "#/definitions/IConnect"
+                },
+                "emitters": {
+                    "anyOf": [
+                        {
+                            "$ref": "#/definitions/IEmitter"
+                        },
+                        {
+                            "items": {
+                                "$ref": "#/definitions/IEmitter"
+                            },
+                            "type": "array"
+                        }
+                    ]
                 },
                 "grab": {
                     "$ref": "#/definitions/IGrab"

@@ -4,6 +4,9 @@ import { InteractivityDetect } from "../../Enums/InteractivityDetect";
 import type { ICoordinates } from "../../Interfaces/ICoordinates";
 import { PolygonMaskType } from "../../Enums/PolygonMaskType";
 import { Constants } from "./Constants";
+import { Emitter } from "../Emitter";
+import { Utils } from "./Utils";
+import { IEmitter } from "../../Interfaces/Options/Emitters/IEmitter";
 
 /**
  * Particles container event listeners manager
@@ -339,6 +342,24 @@ export class EventListeners {
 						}
 					}, options.interactivity.modes.repulse.duration * 1000);
 					break;
+				case ClickMode.emitter:
+					let emitterModeOptions: IEmitter | undefined;
+					const modeEmitters = options.interactivity.modes.emitters;
+
+					if (modeEmitters instanceof Array) {
+						if (modeEmitters.length > 0) {
+							emitterModeOptions = Utils.itemFromArray(modeEmitters);
+						}
+					} else {
+						emitterModeOptions = modeEmitters;
+					}
+
+					const emitterOptions = emitterModeOptions ?? (options.emitters instanceof Array ?
+						Utils.itemFromArray(options.emitters) :
+						options.emitters);
+					const position = container.interactivity.mouse.clickPosition;
+					const emitter = new Emitter(container, emitterOptions, position);
+					container.emitters.push(emitter);
 			}
 		}
 
