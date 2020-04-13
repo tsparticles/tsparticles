@@ -7,11 +7,10 @@ import { IParticle } from "../../Interfaces/IParticle";
 Grid cells are determined by dividing the width and height by the cell size. so 1920 / 10 = 19 cells of width
 Particles are pushed into their respective cells with the same method.
 
-For small particles this is great, but i expect there will need to be allowances for larger particles.
-See https://i.stack.imgur.com/1Gx63.png.
-
-Hence the addition of the radius option for selecting objects in adjacent cells.
-This also allows for broader detection for things like line drawing
+Before refactoring understand this code is written with an emphasis on speed and efficiency.
+This is because this system is responsible for neighbhour detection. Meaning
+any changes to the efficiency to this code will exponentially change the efficiency
+of the system. 
 */
 
 export class SpatialGrid {
@@ -27,7 +26,11 @@ export class SpatialGrid {
         this.heightSegment = Math.round(canvas.height / this.cellSize);
     }
 
-    // Add all particles
+    /**
+     * Sets the spatial grid. (This is for use in the update loop in Particles.ts)
+     * @param particles the particles array
+     * @param dimesion The current canvas dimensions
+     */
     public setGrid(particles: IParticle[], dimesion?: IDimension): void {
         const grid: IParticle[][][] = [];
         const widthSegment: number = dimesion?.width ? dimesion?.width / this.cellSize : this.widthSegment;
@@ -47,7 +50,12 @@ export class SpatialGrid {
         this.grid = grid;
     }
 
-    // Query items in the same cell, good for static small sized objects
+
+    /**
+    * Returns all particles in the same grid cell as the position.
+    * For more flexible checking see: QueryRadius()
+    * @param position The query position
+    */
     public queryInCell(position: ICoordinates): IParticle[] {
         const pos = this.index(position);
 
@@ -58,7 +66,11 @@ export class SpatialGrid {
             return [];
     }
 
-    // Query items via a radius of the grid. Good for neighbour detection.
+    /**
+    * Returns all items on the canvas inside the radius relative to the position
+    * @param position The query position
+    * @param radius The radius around the position
+    */
     public queryRadius(position: ICoordinates, radius: number): IParticle[] {
         const pos = this.index(position);
         const rad = this.radius({ x: radius, y: radius } as ICoordinates);
@@ -73,7 +85,13 @@ export class SpatialGrid {
         return out;
     }
 
-    // Select a broader area of the grid
+    /**
+    * Itterates and returns all values inside the provided X,Y coordinates
+    * NOTE: The Icoordinates need to be provided as an index, see index()
+    * This function is only for internal use.
+    * @param start The starting X,Y indexes for the selection
+    * @param end The ending X,Y indexes for the selection
+    */
     private select(start: ICoordinates, end: ICoordinates): IParticle[] {
         var out: IParticle[] = [];
 
@@ -93,7 +111,12 @@ export class SpatialGrid {
         return out;
     }
 
-    // Determines the index of the position relative to the grid segments, handles both radius and positional indexes.
+
+    /**
+    * Determines the grid indexes based on the given positional coordinates
+    * This code relies on the segment values stored in this class.
+    * @param position The plain X,Y coordinates to convert.
+    */
     private index(position: ICoordinates): ICoordinates {
         return {
             x: Math.round(position.x / this.widthSegment),
@@ -101,7 +124,11 @@ export class SpatialGrid {
         } as ICoordinates;
     }
 
-    // Determines the index of the radius. NOTE that the rounding operations are different.
+    /**
+    * Determines the grid indexes based on the given radius
+    * This code relies on the segment values stored in this class.
+    * @param position The plain X,Y coordinates to convert.
+    */
     private radius(radius: ICoordinates): ICoordinates {
         return {
             x: Math.ceil(radius.x / this.widthSegment),
@@ -109,7 +136,12 @@ export class SpatialGrid {
         } as ICoordinates;
     }
 
-    // Its basically a binary operator for the coordinates interface.
+    /**
+     * Does basic operations on Icoordinates based on the provided operator.
+    * @param left The left hand side of the equation
+    * @param op The desired operation
+    * @param right The right hand side of the equation
+    */
     private indexOp(left: ICoordinates, op: string, right: ICoordinates): ICoordinates {
         if (op == '+')
             return {
@@ -123,7 +155,11 @@ export class SpatialGrid {
             } as ICoordinates;
     }
 
-    // The fastest way to clamp a number between a minimum and maximum
+    /**
+    * Clamps a number between 0, and the maximum cell size to ensure that 
+    * selections happen inside the grid space
+    * @param num The number to clamp
+    */
     private clamp(num: number): number {
         return num <= 0 ? 0 : num >= this.cellSize ? this.cellSize : num;
     }
