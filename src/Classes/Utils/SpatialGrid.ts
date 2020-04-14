@@ -82,7 +82,7 @@ export class SpatialGrid {
         var out = [];
         for (let i = 0; i < items.length; i++) {
             if (items[i] && Utils.getDistanceBetweenCoordinates(items[i].position, position) <= radius)
-                out.push(items[i]);
+                out[out.length + 1] = items[i];
         }
 
         return out;

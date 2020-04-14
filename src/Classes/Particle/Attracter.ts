@@ -5,7 +5,7 @@ export class Attracter {
 	public static attract(p1: IParticle, container: Container): void {
 		const options = container.options;
 
-		for (const p2 of container.particles.spatialGrid.queryRadius(p1.position, container.retina.lineLinkedDistance)) {
+		for (const p2 of container.particles.spatialGrid.queryRadius(p1.position, p1.lineLinkedDistance ?? container.retina.lineLinkedDistance)) {
 
 			if (p1 === p2 || p2.particlesOptions.move.attract.enable) continue;
 

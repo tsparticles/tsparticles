@@ -6,8 +6,8 @@ import { Particle } from "../Particle";
 export class Linker {
 	public static link(p1: Particle, container: Container): void {
 		const options = container.options;
-		const optOpacity = options.particles.lineLinked.opacity;
-		const optDistance = container.retina.lineLinkedDistance;
+		const optOpacity = p1.particlesOptions.lineLinked.opacity;
+		const optDistance = p1.lineLinkedDistance ?? container.retina.lineLinkedDistance;
 
 		for (const p2 of container.particles.spatialGrid.queryRadiusWithDist(p1.position, optDistance)) {
 
