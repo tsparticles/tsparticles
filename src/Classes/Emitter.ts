@@ -20,8 +20,8 @@ export class Emitter {
 		this.emitterOptions = emitterOptions;
 		this.position = this.initialPosition ?? this.calcPosition();
 		this.size = this.emitterOptions.size ?? {
-			width: 0,
 			height: 0,
+			width: 0,
 		};
 		this.lifeCount = this.emitterOptions.life.count ?? -1;
 

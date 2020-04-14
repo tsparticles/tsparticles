@@ -75,7 +75,7 @@ export class Retina {
 		this.polygonMaskMoveRadius = options.polygon.move.radius * ratio;
 	}
 
-	public initParticle(particle: Particle) {
+	public initParticle(particle: Particle): void {
 		const particlesOptions = particle.particlesOptions;
 		const ratio = this.pixelRatio;
 

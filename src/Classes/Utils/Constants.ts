@@ -19,6 +19,6 @@ export class Constants {
 	public static readonly resizeEvent: string = "resize";
 	public static readonly visibilityChangeEvent: string = "visibilitychange";
 
-	public static readonly noPolygonDataLoaded = "No polygon data loaded.";
-	public static readonly noPolygonFound = "No polygon found, you need to specify SVG url in config.";
+	public static readonly noPolygonDataLoaded: string = "No polygon data loaded.";
+	public static readonly noPolygonFound: string = "No polygon found, you need to specify SVG url in config.";
 }

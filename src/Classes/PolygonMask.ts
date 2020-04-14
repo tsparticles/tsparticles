@@ -45,7 +45,7 @@ export class PolygonMask {
 		this.container = container;
 		this.dimension = {
 			height: 0,
-			width: 0
+			width: 0,
 		};
 		this.polygonPathLength = 0;
 		this.path2DSupported = window.hasOwnProperty("Path2D");

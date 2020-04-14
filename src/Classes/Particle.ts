@@ -128,7 +128,7 @@ export class Particle implements IParticle {
 		this.size = {
 			value: this.randomMinimumSize !== undefined ?
 				Utils.randomInRange(this.randomMinimumSize, sizeValue) * this.container.retina.pixelRatio :
-				sizeValue
+				sizeValue,
 		};
 
 		this.direction = emitter ? emitter.emitterOptions.direction : this.particlesOptions.move.direction;

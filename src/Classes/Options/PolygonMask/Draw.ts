@@ -55,7 +55,7 @@ export class Draw implements IPolygonMaskDraw {
 
 			const stroke = data.stroke ?? {
 				color: data.lineColor,
-				width: data.lineWidth
+				width: data.lineWidth,
 			};
 
 			this.stroke.load(stroke);
