@@ -235,7 +235,7 @@ particles.pause();
 
 #### Import and require
 
-Starting from version 1.13.0 `import` and `require` can be used to import `tsParticles`.
+Starting from version 1.12.7 `import` and `require` can be used to import `tsParticles`.
 
 Now you can write something like this
 
