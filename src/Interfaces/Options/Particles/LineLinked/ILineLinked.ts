@@ -1,6 +1,6 @@
 import type { IOptionLoader } from "../../IOptionLoader";
 import type { ILineLinkedShadow } from "./ILineLinkedShadow";
-import type { IColor } from "../IColor";
+import type { IColor } from "../../../IColor";
 
 export interface ILineLinked extends IOptionLoader<ILineLinked> {
 	blink: boolean;

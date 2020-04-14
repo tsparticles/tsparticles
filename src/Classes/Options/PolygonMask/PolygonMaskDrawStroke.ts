@@ -1,16 +1,16 @@
 import type { IPolygonMaskDrawStroke } from "../../../Interfaces/Options/PolygonMask/IPolygonMaskDrawStroke";
 import type { RecursivePartial } from "../../../Types/RecursivePartial";
-import type { IColor } from "../../../Interfaces/Options/Particles/IColor";
-import { Color } from "../Particles/Color";
+import type { IOptionsColor } from "../../../Interfaces/Options/Particles/IOptionsColor";
+import { OptionsColor } from "../Particles/OptionsColor";
 import { ColorUtils } from "../../Utils/ColorUtils";
 
 export class PolygonMaskDrawStroke implements IPolygonMaskDrawStroke {
-	public color: IColor;
+	public color: IOptionsColor;
 	public width: number;
 	public opacity: number;
 
 	constructor() {
-		this.color = new Color();
+		this.color = new OptionsColor();
 		this.width = 0.5;
 		this.opacity = 1;
 	}

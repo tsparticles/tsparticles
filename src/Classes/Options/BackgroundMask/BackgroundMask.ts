@@ -2,6 +2,7 @@ import type { IBackgroundMask } from "../../../Interfaces/Options/BackgroundMask
 import type { RecursivePartial } from "../../../Types/RecursivePartial";
 import type { IBackgroundMaskCover } from "../../../Interfaces/Options/BackgroundMask/IBackgroundMaskCover";
 import { BackgroundMaskCover } from "./BackgroundMaskCover";
+import type { IColor } from "../../../Interfaces/IColor";
 
 export class BackgroundMask implements IBackgroundMask {
 	/**
@@ -23,8 +24,9 @@ export class BackgroundMask implements IBackgroundMask {
 		if (data !== undefined) {
 			if (data.cover !== undefined) {
 				const cover = data.cover as IBackgroundMaskCover;
+				const color = (typeof data.cover === "string" ? { color: data.cover } : data.cover) as IColor;
 
-				this.cover.load(cover.color !== undefined ? data.cover : { color: data.cover });
+				this.cover.load(cover.color !== undefined ? cover : { color: color });
 			}
 
 			if (data.enable !== undefined) {

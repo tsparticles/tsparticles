@@ -1,10 +1,10 @@
 import type { IBackground } from "../../../Interfaces/Options/Background/IBackground";
 import type { RecursivePartial } from "../../../Types/RecursivePartial";
-import { Color } from "../Particles/Color";
-import type { IColor } from "../../../Interfaces/Options/Particles/IColor";
+import { OptionsColor } from "../Particles/OptionsColor";
+import type { IOptionsColor } from "../../../Interfaces/Options/Particles/IOptionsColor";
 
 export class Background implements IBackground {
-	public color?: IColor;
+	public color?: IOptionsColor;
 	public image?: string;
 	public position?: string;
 	public repeat?: string;
@@ -15,7 +15,7 @@ export class Background implements IBackground {
 		if (data !== undefined) {
 			if (data.color !== undefined) {
 				if (this.color === undefined) {
-					this.color = new Color();
+					this.color = new OptionsColor();
 				}
 
 				this.color.load(typeof data.color === "string" ? { value: data.color } : data.color);

@@ -1,12 +1,12 @@
 import type { IParticles } from "../../../Interfaces/Options/Particles/IParticles";
-import { Color } from "./Color";
+import { OptionsColor } from "./OptionsColor";
 import { LineLinked } from "./LineLinked/LineLinked";
 import { Move } from "./Move";
 import { ParticlesNumber } from "./ParticlesNumber";
 import { Opacity } from "./Opacity/Opacity";
 import { Shape } from "./Shape/Shape";
 import { Size } from "./Size/Size";
-import type { IColor } from "../../../Interfaces/Options/Particles/IColor";
+import type { IOptionsColor } from "../../../Interfaces/Options/Particles/IOptionsColor";
 import type { ILineLinked } from "../../../Interfaces/Options/Particles/LineLinked/ILineLinked";
 import type { IMove } from "../../../Interfaces/Options/Particles/IMove";
 import type { IParticlesNumber } from "../../../Interfaces/Options/Particles/IParticlesNumber";
@@ -40,7 +40,7 @@ export class Particles implements IParticles {
 		this.lineLinked = value;
 	}
 
-	public color: SingleOrMultiple<IColor>;
+	public color: SingleOrMultiple<IOptionsColor>;
 	public lineLinked: ILineLinked;
 	public move: IMove;
 	public number: IParticlesNumber;
@@ -52,7 +52,7 @@ export class Particles implements IParticles {
 	public stroke: SingleOrMultiple<IStroke>;
 
 	constructor() {
-		this.color = new Color();
+		this.color = new OptionsColor();
 		this.lineLinked = new LineLinked();
 		this.move = new Move();
 		this.number = new ParticlesNumber();
@@ -69,7 +69,7 @@ export class Particles implements IParticles {
 			if (data.color !== undefined) {
 				if (data.color instanceof Array) {
 					this.color = data.color.map((s) => {
-						const tmp = new Color();
+						const tmp = new OptionsColor();
 
 						tmp.load(s);
 
@@ -77,7 +77,7 @@ export class Particles implements IParticles {
 					});
 				} else {
 					if (this.color instanceof Array) {
-						this.color = new Color();
+						this.color = new OptionsColor();
 					}
 
 					this.color.load(data.color);

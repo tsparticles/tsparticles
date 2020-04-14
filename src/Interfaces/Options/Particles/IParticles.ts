@@ -1,5 +1,5 @@
 import type { IShape } from "./Shape/IShape";
-import type { IColor } from "./IColor";
+import type { IColor } from "../../IColor";
 import type { ILineLinked } from "./LineLinked/ILineLinked";
 import type { IMove } from "./IMove";
 import type { IParticlesNumber } from "./IParticlesNumber";

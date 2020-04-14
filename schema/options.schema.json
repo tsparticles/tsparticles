@@ -19,6 +19,7 @@
             "type": "object"
         },
         "IBackground": {
+            "description": "The background options used by the canvas element, it's not drawn, it's applied in the style",
             "properties": {
                 "color": {
                     "anyOf": [
@@ -28,27 +29,34 @@
                         {
                             "type": "string"
                         }
-                    ]
+                    ],
+                    "description": "The background color used by the canvas element, string or [[IColor]] value"
                 },
                 "image": {
+                    "description": "The background image used by the canvas element, its value will be used to set CSS property background-image",
                     "type": "string"
                 },
                 "opacity": {
+                    "description": "The background opacity",
                     "type": "number"
                 },
                 "position": {
+                    "description": "The background position, it's used by the CSS property background-position",
                     "type": "string"
                 },
                 "repeat": {
+                    "description": "The background position, it's used by the CSS property background-repeat",
                     "type": "string"
                 },
                 "size": {
+                    "description": "The background size, it's used by the CSS property background-size",
                     "type": "string"
                 }
             },
             "type": "object"
         },
         "IBackgroundMask": {
+            "description": "The options to apply a base color to canvas to cover what's behind\nThe particles will unveil what is covered by the canvas",
             "properties": {
                 "cover": {
                     "anyOf": [
@@ -57,21 +65,36 @@
                         },
                         {
                             "$ref": "#/definitions/IBackgroundMaskCover"
+                        },
+                        {
+                            "type": "string"
                         }
-                    ]
+                    ],
+                    "description": "The color to use as a canvas background to cover"
                 },
                 "enable": {
+                    "description": "This settings enables the cover and the particles behavior as unveiling elements",
                     "type": "boolean"
                 }
             },
             "type": "object"
         },
         "IBackgroundMaskCover": {
+            "description": "The background cover customization",
             "properties": {
                 "color": {
-                    "$ref": "#/definitions/IColor"
+                    "anyOf": [
+                        {
+                            "$ref": "#/definitions/IColor"
+                        },
+                        {
+                            "type": "string"
+                        }
+                    ],
+                    "description": "The background color hiding all elements behind, string or [[IColor]] value."
                 },
                 "opacity": {
+                    "description": "The opacity of the background",
                     "type": "number"
                 }
             },
@@ -131,8 +154,10 @@
             "type": "object"
         },
         "IClickEvent": {
+            "description": "The canvas click event",
             "properties": {
                 "enable": {
+                    "description": "This property enables or disables the click event",
                     "type": "boolean"
                 },
                 "mode": {
@@ -160,7 +185,8 @@
                             ],
                             "type": "string"
                         }
-                    ]
+                    ],
+                    "description": "This property contains a [[ClickMode]] value or an array of those values.\nIf this value is an array, every mode will be used on click."
                 }
             },
             "type": "object"
@@ -287,48 +313,62 @@
             "type": "object"
         },
         "IEmitter": {
+            "description": "Particles emitter object options",
             "properties": {
                 "direction": {
-                    "$ref": "#/definitions/MoveDirection"
+                    "$ref": "#/definitions/MoveDirection",
+                    "description": "The direction of the emitted particles, [[MoveDirection]] is the enum used for values"
                 },
                 "life": {
-                    "$ref": "#/definitions/IEmitterLife"
+                    "$ref": "#/definitions/IEmitterLife",
+                    "description": "The emitter life options"
                 },
                 "particles": {
-                    "$ref": "#/definitions/IParticles"
+                    "$ref": "#/definitions/IParticles",
+                    "description": "Particles emitted customization.\nThese settings will overrides other particles settings for the particles emitted by this emitter\nParticles number options won't override anything, they will be ignored completely"
                 },
                 "position": {
-                    "$ref": "#/definitions/ICoordinates"
+                    "$ref": "#/definitions/ICoordinates",
+                    "description": "The relative position (in percent) of the emitter, where particles spawns.\nIf size is specified the position will be the center of the size options"
                 },
                 "rate": {
-                    "$ref": "#/definitions/IEmitterRate"
+                    "$ref": "#/definitions/IEmitterRate",
+                    "description": "The particles emitting rate options"
                 },
                 "size": {
-                    "$ref": "#/definitions/IDimension"
+                    "$ref": "#/definitions/IDimension",
+                    "description": "The size of the particles emitter area"
                 }
             },
             "type": "object"
         },
         "IEmitterLife": {
+            "description": "The particles emitter life options",
             "properties": {
                 "count": {
+                    "description": "The count of lives the particles emitter has.\nIf <= 0 or not specified infinity will be the value.\nIf the count is > 0 it will spawn only that number of times then it'll be destroyed and removed",
                     "type": "number"
                 },
                 "delay": {
+                    "description": "The delay between any spawn, except first.",
                     "type": "number"
                 },
                 "duration": {
+                    "description": "The duration of any emitter life.\nIf <= 0 or  not specified infinity will be the value.",
                     "type": "number"
                 }
             },
             "type": "object"
         },
         "IEmitterRate": {
+            "description": "The particles emitter rate options",
             "properties": {
                 "delay": {
+                    "description": "The emitting velocity, how many seconds will pass between the next particles creation\nDecimal values allowed",
                     "type": "number"
                 },
                 "quantity": {
+                    "description": "The emitting quantity, how many particles will be created at every creation event",
                     "type": "number"
                 }
             },

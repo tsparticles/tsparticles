@@ -6,9 +6,9 @@ import type { IRgb } from "../Interfaces/IRgb";
 import type { ICoordinates } from "../Interfaces/ICoordinates";
 import { CanvasUtils } from "./Utils/CanvasUtils";
 import { ColorUtils } from "./Utils/ColorUtils";
-import type { IColor } from "../Interfaces/Options/Particles/IColor";
 import type { IBackgroundMaskCover } from "../Interfaces/Options/BackgroundMask/IBackgroundMaskCover";
 import type { IParticle } from "../Interfaces/IParticle";
+import { IColor } from "../Interfaces/IColor";
 
 /**
  * Canvas manager
@@ -63,11 +63,16 @@ export class Canvas {
 		const container = this.container;
 		const options = container.options;
 		const cover = options.backgroundMask.cover as IBackgroundMaskCover;
+		const color = (typeof options.backgroundMask.cover === "string" ?
+			{ value: options.backgroundMask.cover } :
+			options.backgroundMask.cover) as IColor;
 		const trail = options.particles.move.trail;
 
 		this.coverColor = ColorUtils.colorToRgb(cover.color !== undefined ?
-			cover.color :
-			options.backgroundMask.cover as IColor);
+			typeof cover.color === "string" ?
+				{ value: cover.color } :
+				cover.color :
+			color);
 
 		this.trailFillColor = typeof trail.fillColor === "string" ?
 			ColorUtils.stringToRgb(trail.fillColor) :
