@@ -5,7 +5,6 @@ import { Particle } from "../Particle";
 
 export class Linker {
 	public static link(p1: Particle, container: Container): void {
-		const options = container.options;
 		const optOpacity = p1.particlesOptions.lineLinked.opacity;
 		const optDistance = p1.lineLinkedDistance ?? container.retina.lineLinkedDistance;
 
