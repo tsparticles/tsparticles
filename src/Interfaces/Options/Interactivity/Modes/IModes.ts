@@ -6,8 +6,8 @@ import type { IRemove } from "./IRemove";
 import type { IRepulse } from "./IRepulse";
 import type { ISlow } from "./ISlow";
 import type { IOptionLoader } from "../../IOptionLoader";
-import { IEmitter } from "../../Emitters/IEmitter";
-import { SingleOrMultiple } from "../../../../Types/SingleOrMultiple";
+import type { IEmitter } from "../../Emitters/IEmitter";
+import type { SingleOrMultiple } from "../../../../Types/SingleOrMultiple";
 
 export interface IModes extends IOptionLoader<IModes> {
 	bubble: IBubble;

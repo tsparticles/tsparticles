@@ -17,7 +17,7 @@ import type { RecursivePartial } from "../../../../Types/RecursivePartial";
 import type { IEmitter } from "../../../../Interfaces/Options/Emitters/IEmitter";
 import type { SingleOrMultiple } from "../../../../Types/SingleOrMultiple";
 import { Emitter } from "../../Emitters/Emitter";
-import { IParticles } from "../../../../Interfaces/Options/Particles/IParticles";
+import type { IParticles } from "../../../../Interfaces/Options/Particles/IParticles";
 
 export class Modes implements IModes {
 	public bubble: IBubble;

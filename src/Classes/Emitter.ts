@@ -2,7 +2,7 @@ import type { Container } from "./Container";
 import type { ICoordinates } from "../Interfaces/ICoordinates";
 import type { IEmitter } from "../Interfaces/Options/Emitters/IEmitter";
 import { Particle } from "./Particle";
-import { IDimension } from "../Interfaces/IDimension";
+import type { IDimension } from "../Interfaces/IDimension";
 
 export class Emitter {
 	public position: ICoordinates;

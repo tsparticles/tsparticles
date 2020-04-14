@@ -6,7 +6,7 @@ import { PolygonMaskType } from "../../Enums/PolygonMaskType";
 import { Constants } from "./Constants";
 import { Emitter } from "../Emitter";
 import { Utils } from "./Utils";
-import { IEmitter } from "../../Interfaces/Options/Emitters/IEmitter";
+import type { IEmitter } from "../../Interfaces/Options/Emitters/IEmitter";
 
 /**
  * Particles container event listeners manager
@@ -46,7 +46,7 @@ export class EventListeners {
 		this.visibilityChangeHandler = () => this.handleVisibilityChange();
 		this.resizeHandler = () => this.handleWindowResize();
 	}
-	
+
 	private static manageListener(element: HTMLElement | Node | Window,
 	                              event: string,
 	                              handler: EventListenerOrEventListenerObject,

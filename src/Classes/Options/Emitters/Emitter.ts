@@ -8,7 +8,7 @@ import type { IEmitterRate } from "../../../Interfaces/Options/Emitters/IEmitter
 import { EmitterRate } from "./EmitterRate";
 import type { IEmitterLife } from "../../../Interfaces/Options/Emitters/IEmitterLife";
 import { EmitterLife } from "./EmitterLife";
-import { IDimension } from "../../../Interfaces/IDimension";
+import type { IDimension } from "../../../Interfaces/IDimension";
 
 export class Emitter implements IEmitter {
 	public size?: IDimension;
