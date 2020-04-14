@@ -4,8 +4,8 @@ import type { IPolygonMask } from "./PolygonMask/IPolygonMask";
 import type { IOptionLoader } from "./IOptionLoader";
 import type { IBackgroundMask } from "./BackgroundMask/IBackgroundMask";
 import type { IBackground } from "./Background/IBackground";
-import { SingleOrMultiple } from "../../Types/SingleOrMultiple";
-import { IEmitter } from "./Emitters/IEmitter";
+import type { SingleOrMultiple } from "../../Types/SingleOrMultiple";
+import type { IEmitter } from "./Emitters/IEmitter";
 
 /**
  * The Options interface, defines all the options that can be used by `tsParticles`

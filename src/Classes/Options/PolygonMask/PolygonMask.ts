@@ -8,7 +8,7 @@ import { PolygonMaskInlineArrangement } from "../../../Enums/PolygonMaskInlineAr
 import type { IPolygonInline } from "../../../Interfaces/Options/PolygonMask/IPolygonInline";
 import { PolygonInline } from "./PolygonInline";
 import type { RecursivePartial } from "../../../Types/RecursivePartial";
-import { ICoordinates } from "../../../Interfaces/ICoordinates";
+import type { ICoordinates } from "../../../Interfaces/ICoordinates";
 
 export class PolygonMask implements IPolygonMask {
 	/**

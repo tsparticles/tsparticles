@@ -4,6 +4,9 @@ import { InteractivityDetect } from "../../Enums/InteractivityDetect";
 import type { ICoordinates } from "../../Interfaces/ICoordinates";
 import { PolygonMaskType } from "../../Enums/PolygonMaskType";
 import { Constants } from "./Constants";
+import { Emitter } from "../Emitter";
+import { Utils } from "./Utils";
+import { IEmitter } from "../../Interfaces/Options/Emitters/IEmitter";
 
 /**
  * Particles container event listeners manager
@@ -156,8 +159,8 @@ export class EventListeners {
 
 		/* resize canvas */
 		if (container.retina.isRetina) {
-			container.canvas.dimension.width *= container.retina.pxRatio;
-			container.canvas.dimension.height *= container.retina.pxRatio;
+			container.canvas.dimension.width *= container.retina.pixelRatio;
+			container.canvas.dimension.height *= container.retina.pixelRatio;
 		}
 
 		container.canvas.element.width = container.canvas.dimension.width;
@@ -170,6 +173,10 @@ export class EventListeners {
 
 		/* density particles enabled */
 		container.densityAutoParticles();
+
+		for (const emitter of container.emitters) {
+			emitter.resize();
+		}
 
 		container.polygon.redraw();
 	}
@@ -255,8 +262,8 @@ export class EventListeners {
 		container.interactivity.mouse.position = pos;
 
 		if (container.retina.isRetina) {
-			container.interactivity.mouse.position.x *= container.retina.pxRatio;
-			container.interactivity.mouse.position.y *= container.retina.pxRatio;
+			container.interactivity.mouse.position.x *= container.retina.pixelRatio;
+			container.interactivity.mouse.position.y *= container.retina.pixelRatio;
 		}
 
 		container.interactivity.status = Constants.mouseMoveEvent;
@@ -339,6 +346,24 @@ export class EventListeners {
 						}
 					}, options.interactivity.modes.repulse.duration * 1000);
 					break;
+				case ClickMode.emitter:
+					let emitterModeOptions: IEmitter | undefined;
+					const modeEmitters = options.interactivity.modes.emitters;
+
+					if (modeEmitters instanceof Array) {
+						if (modeEmitters.length > 0) {
+							emitterModeOptions = Utils.itemFromArray(modeEmitters);
+						}
+					} else {
+						emitterModeOptions = modeEmitters;
+					}
+
+					const emitterOptions = emitterModeOptions ?? (options.emitters instanceof Array ?
+						Utils.itemFromArray(options.emitters) :
+						options.emitters);
+					const position = container.interactivity.mouse.clickPosition;
+					const emitter = new Emitter(container, emitterOptions, position);
+					container.emitters.push(emitter);
 			}
 		}
 

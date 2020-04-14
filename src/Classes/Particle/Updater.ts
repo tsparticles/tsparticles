@@ -6,6 +6,8 @@ import { PolygonMaskType } from "../../Enums/PolygonMaskType";
 import { Mover } from "./Mover";
 import { RotateDirection } from "../../Enums/RotateDirection";
 import type { IBounds } from "../../Interfaces/IBounds";
+import { SizeAnimationStatus } from "../../Enums/SizeAnimationStatus";
+import { OpacityAnimationStatus } from "../../Enums/OpacityAnimationStatus";
 
 /**
  * Particle updater, it manages movement
@@ -51,18 +53,21 @@ export class Updater {
 		const particle = this.particle;
 
 		if (particle.particlesOptions.opacity.animation.enable) {
-			if (particle.opacity.status) {
-				if (particle.opacity.value >= particle.particlesOptions.opacity.value) {
-					particle.opacity.status = false;
-				}
-
-				particle.opacity.value += (particle.opacity.velocity || 0);
-			} else {
-				if (particle.opacity.value <= particle.particlesOptions.opacity.animation.minimumValue) {
-					particle.opacity.status = true;
-				}
-
-				particle.opacity.value -= (particle.opacity.velocity || 0);
+			switch (particle.opacity.status) {
+				case OpacityAnimationStatus.increasing:
+					if (particle.opacity.value >= particle.particlesOptions.opacity.value) {
+						particle.opacity.status = OpacityAnimationStatus.decreasing;
+					} else {
+						particle.opacity.value += (particle.opacity.velocity || 0);
+					}
+					break;
+				case OpacityAnimationStatus.decreasing:
+					if (particle.opacity.value <= particle.particlesOptions.opacity.animation.minimumValue) {
+						particle.opacity.status = OpacityAnimationStatus.increasing;
+					} else {
+						particle.opacity.value -= (particle.opacity.velocity || 0);
+					}
+					break;
 			}
 
 			if (particle.opacity.value < 0) {
@@ -76,18 +81,20 @@ export class Updater {
 		const particle = this.particle;
 
 		if (particle.particlesOptions.size.animation.enable) {
-			if (particle.size.status) {
-				if (particle.size.value >= (particle.sizeValue ?? container.retina.sizeValue)) {
-					particle.size.status = false;
-				}
-
-				particle.size.value += (particle.size.velocity || 0);
-			} else {
-				if (particle.size.value <= particle.particlesOptions.size.animation.minimumValue) {
-					particle.size.status = true;
-				}
-
-				particle.size.value -= (particle.size.velocity || 0);
+			switch (particle.size.status) {
+				case SizeAnimationStatus.increasing:
+					if (particle.size.value >= (particle.sizeValue ?? container.retina.sizeValue)) {
+						particle.size.status = SizeAnimationStatus.decreasing;
+					} else {
+						particle.size.value += (particle.size.velocity || 0);
+					}
+					break;
+				case SizeAnimationStatus.decreasing:
+					if (particle.size.value <= particle.particlesOptions.size.animation.minimumValue) {
+						particle.size.status = SizeAnimationStatus.increasing;
+					} else {
+						particle.size.value -= (particle.size.velocity || 0);
+					}
 			}
 
 			if (particle.size.value < 0) {

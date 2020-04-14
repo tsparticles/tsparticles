@@ -19,15 +19,16 @@ import { ClickMode } from "../Enums/Modes/ClickMode";
 import { RotateDirection } from "../Enums/RotateDirection";
 import type { IStroke } from "../Interfaces/Options/Particles/IStroke";
 import { ColorUtils } from "./Utils/ColorUtils";
-import type { ISizeRandom } from "../Interfaces/Options/Particles/Size/ISizeRandom";
 import type { IOpacityRandom } from "../Interfaces/Options/Particles/Opacity/IOpacityRandom";
 import type { IShapeValues } from "../Interfaces/Options/Particles/Shape/IShapeValues";
 import type { IBubbleParticleData } from "../Interfaces/IBubbleParticleData";
 import type { IParticle } from "../Interfaces/IParticle";
 import { Emitter } from "./Emitter";
 import { MoveDirection } from "../Enums/MoveDirection";
-import { IParticles } from "../Interfaces/Options/Particles/IParticles";
+import type { IParticles } from "../Interfaces/Options/Particles/IParticles";
 import { Particles } from "./Options/Particles/Particles";
+import { SizeAnimationStatus } from "../Enums/SizeAnimationStatus";
+import { OpacityAnimationStatus } from "../Enums/OpacityAnimationStatus";
 
 /**
  * The single particle object
@@ -59,6 +60,7 @@ export class Particle implements IParticle {
 	public lineLinkedWidth?: number;
 	public moveSpeed?: number;
 	public sizeValue?: number;
+	public randomMinimumSize?: number;
 	public sizeAnimationSpeed?: number;
 
 	public readonly updater: Updater;
@@ -123,11 +125,12 @@ export class Particle implements IParticle {
 		const color = this.particlesOptions.color;
 
 		/* size */
-		const randomSize = this.particlesOptions.size.random as ISizeRandom;
 		const sizeValue = (this.sizeValue ?? container.retina.sizeValue);
 
 		this.size = {
-			value: randomSize.enable ? Utils.randomInRange(randomSize.minimumValue, sizeValue) : sizeValue
+			value: this.randomMinimumSize !== undefined ?
+				Utils.randomInRange(this.randomMinimumSize, sizeValue) * this.container.retina.pixelRatio :
+				sizeValue
 		};
 
 		this.direction = emitter ? emitter.emitterOptions.direction : this.particlesOptions.move.direction;
@@ -147,7 +150,7 @@ export class Particle implements IParticle {
 		}
 
 		if (this.particlesOptions.size.animation.enable) {
-			this.size.status = false;
+			this.size.status = SizeAnimationStatus.increasing;
 			this.size.velocity = (this.sizeAnimationSpeed ?? container.retina.sizeAnimationSpeed) / 100;
 
 			if (!this.particlesOptions.size.animation.sync) {
@@ -198,7 +201,7 @@ export class Particle implements IParticle {
 		};
 
 		if (this.particlesOptions.opacity.animation.enable) {
-			this.opacity.status = false;
+			this.opacity.status = OpacityAnimationStatus.increasing;
 			this.opacity.velocity = this.particlesOptions.opacity.animation.speed / 100;
 
 			if (!this.particlesOptions.opacity.animation.sync) {

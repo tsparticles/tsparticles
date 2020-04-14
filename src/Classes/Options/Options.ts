@@ -11,8 +11,8 @@ import type { RecursivePartial } from "../../Types/RecursivePartial";
 import { Presets } from "../Utils/Presets";
 import type { IBackground } from "../../Interfaces/Options/Background/IBackground";
 import { Background } from "./Background/Background";
-import { SingleOrMultiple } from "../../Types/SingleOrMultiple";
-import { IEmitter } from "../../Interfaces/Options/Emitters/IEmitter";
+import type { SingleOrMultiple } from "../../Types/SingleOrMultiple";
+import type { IEmitter } from "../../Interfaces/Options/Emitters/IEmitter";
 import { Emitter } from "./Emitters/Emitter";
 
 export class Options implements IOptions {
@@ -106,8 +106,10 @@ export class Options implements IOptions {
 				this.pauseOnBlur = data.pauseOnBlur;
 			}
 
-			this.interactivity.load(data.interactivity);
 			this.particles.load(data.particles);
+
+			(this.interactivity as Interactivity).load(data.interactivity, this.particles);
+			
 			this.polygon.load(data.polygon);
 			this.backgroundMask.load(data.backgroundMask);
 

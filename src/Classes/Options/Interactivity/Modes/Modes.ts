@@ -14,6 +14,10 @@ import type { IRemove } from "../../../../Interfaces/Options/Interactivity/Modes
 import type { IRepulse } from "../../../../Interfaces/Options/Interactivity/Modes/IRepulse";
 import type { ISlow } from "../../../../Interfaces/Options/Interactivity/Modes/ISlow";
 import type { RecursivePartial } from "../../../../Types/RecursivePartial";
+import type { IEmitter } from "../../../../Interfaces/Options/Emitters/IEmitter";
+import type { SingleOrMultiple } from "../../../../Types/SingleOrMultiple";
+import { Emitter } from "../../Emitters/Emitter";
+import { IParticles } from "../../../../Interfaces/Options/Particles/IParticles";
 
 export class Modes implements IModes {
 	public bubble: IBubble;
@@ -23,6 +27,7 @@ export class Modes implements IModes {
 	public remove: IRemove;
 	public repulse: IRepulse;
 	public slow: ISlow;
+	public emitters: SingleOrMultiple<IEmitter>;
 
 	constructor() {
 		this.bubble = new Bubble();
@@ -32,9 +37,10 @@ export class Modes implements IModes {
 		this.remove = new Remove();
 		this.repulse = new Repulse();
 		this.slow = new Slow();
+		this.emitters = [];
 	}
 
-	public load(data?: RecursivePartial<IModes>): void {
+	public load(data?: RecursivePartial<IModes>, particles?: IParticles): void {
 		if (data !== undefined) {
 			this.bubble.load(data.bubble);
 			this.connect.load(data.connect);
@@ -43,6 +49,24 @@ export class Modes implements IModes {
 			this.remove.load(data.remove);
 			this.repulse.load(data.repulse);
 			this.slow.load(data.slow);
+
+			if (data.emitters !== undefined && particles !== undefined) {
+				if (data.emitters instanceof Array) {
+					this.emitters = data.emitters.map((s) => {
+						const tmp = new Emitter();
+
+						tmp.load(s, particles);
+
+						return tmp;
+					});
+				} else {
+					if (this.emitters instanceof Array) {
+						this.emitters = new Emitter();
+					}
+
+					(this.emitters as Emitter).load(data.emitters, particles);
+				}
+			}
 		}
 	}
 }

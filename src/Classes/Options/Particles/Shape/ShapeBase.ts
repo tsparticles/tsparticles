@@ -1,6 +1,6 @@
 import type { RecursivePartial } from "../../../../Types/RecursivePartial";
 import type { IShapeValues } from "../../../../Interfaces/Options/Particles/Shape/IShapeValues";
-import { IParticles } from "../../../../Interfaces/Options/Particles/IParticles";
+import type { IParticles } from "../../../../Interfaces/Options/Particles/IParticles";
 import { Particles } from "../Particles";
 
 export class ShapeBase implements IShapeValues {
