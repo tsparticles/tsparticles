@@ -48,7 +48,7 @@ export class CanvasUtils {
 		}
 	}
 
-	static drawPolygonMaskPath(context: CanvasRenderingContext2D, path: Path2D, stroke: IPolygonMaskDrawStroke, position: ICoordinates) {
+	public static drawPolygonMaskPath(context: CanvasRenderingContext2D, path: Path2D, stroke: IPolygonMaskDrawStroke, position: ICoordinates) {
 		context.save();
 		context.translate(position.x, position.y);
 

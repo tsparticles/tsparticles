@@ -46,6 +46,34 @@ export class EventListeners {
 		this.visibilityChangeHandler = () => this.handleVisibilityChange();
 		this.resizeHandler = () => this.handleWindowResize();
 	}
+	
+	private static manageListener(element: HTMLElement | Node | Window,
+	                              event: string,
+	                              handler: EventListenerOrEventListenerObject,
+	                              add: boolean,
+	                              options?: boolean | AddEventListenerOptions | EventListenerObject): void {
+		if (add) {
+			EventListeners.addListener(element, event, handler,
+				options as boolean | AddEventListenerOptions | undefined);
+		} else {
+			EventListeners.removeListener(element, event, handler,
+				options as boolean | EventListenerOptions | undefined);
+		}
+	}
+
+	private static addListener(element: HTMLElement | Node | Window,
+	                           event: string,
+	                           handler: EventListenerOrEventListenerObject,
+	                           options?: boolean | AddEventListenerOptions | undefined): void {
+		element.addEventListener(event, handler, options);
+	}
+
+	private static removeListener(element: HTMLElement | Node | Window,
+	                              event: string,
+	                              handler: EventListenerOrEventListenerObject,
+	                              options?: boolean | EventListenerOptions): void {
+		element.removeEventListener(event, handler, options);
+	}
 
 	/**
 	 * Initializing event listeners
@@ -116,34 +144,6 @@ export class EventListeners {
 				add,
 				false);
 		}
-	}
-
-	private static manageListener(element: HTMLElement | Node | Window,
-	                              event: string,
-	                              handler: EventListenerOrEventListenerObject,
-	                              add: boolean,
-	                              options?: boolean | AddEventListenerOptions | EventListenerObject): void {
-		if (add) {
-			EventListeners.addListener(element, event, handler,
-				options as boolean | AddEventListenerOptions | undefined);
-		} else {
-			EventListeners.removeListener(element, event, handler,
-				options as boolean | EventListenerOptions | undefined);
-		}
-	}
-
-	private static addListener(element: HTMLElement | Node | Window,
-	                           event: string,
-	                           handler: EventListenerOrEventListenerObject,
-	                           options?: boolean | AddEventListenerOptions | undefined): void {
-		element.addEventListener(event, handler, options);
-	}
-
-	private static removeListener(element: HTMLElement | Node | Window,
-	                              event: string,
-	                              handler: EventListenerOrEventListenerObject,
-	                              options?: boolean | EventListenerOptions): void {
-		element.removeEventListener(event, handler, options);
 	}
 
 	private handleWindowResize(): void {
