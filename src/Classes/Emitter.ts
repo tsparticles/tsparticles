@@ -73,7 +73,7 @@ export class Emitter {
 		}
 	}
 
-	public resize() {
+	public resize(): void {
 		this.position = this.initialPosition ?? this.calcPosition();
 	}
 
@@ -96,7 +96,7 @@ export class Emitter {
 		}
 	}
 
-	private destroy() {
+	private destroy(): void {
 		const container = this.container;
 		const index = container.emitters.indexOf(this);
 
