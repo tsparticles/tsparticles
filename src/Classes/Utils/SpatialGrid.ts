@@ -1,7 +1,9 @@
 import { ICoordinates } from "../../Interfaces/ICoordinates";
 import { IDimension } from "../../Interfaces/IDimension";
 import { Utils } from "./Utils";
-import { IParticle } from "../../Interfaces/IParticle";
+import { Particle } from "../Particle";
+
+
 
 /* This class essentially works by interpreting all particles on the screen as a grid.
 Grid cells are determined by dividing the width and height by the cell size. so 1920 / 10 = 19 cells of width
@@ -17,7 +19,7 @@ export class SpatialGrid {
     private cellSize: number;
     private widthSegment: number;
     private heightSegment: number;
-    private grid: IParticle[][][] = [];
+    private grid: Particle[][][] = [];
 
     // Cut the grid up into a 2d array with a 3rd dimesion holding the data.
     constructor(canvas: IDimension) {
@@ -31,8 +33,8 @@ export class SpatialGrid {
      * @param particles the particles array
      * @param dimesion The current canvas dimensions
      */
-    public setGrid(particles: IParticle[], dimesion?: IDimension): void {
-        const grid: IParticle[][][] = [];
+    public setGrid(particles: Particle[], dimesion?: IDimension): void {
+        const grid: Particle[][][] = [];
         const widthSegment: number = dimesion?.width ? dimesion?.width / this.cellSize : this.widthSegment;
         const heightSegment: number = dimesion?.height ? dimesion?.height / this.cellSize : this.heightSegment;
 
@@ -41,6 +43,7 @@ export class SpatialGrid {
 
             if (!Array.isArray(grid[pos.x])) grid[pos.x] = [];
             if (!Array.isArray(grid[pos.x][pos.y])) grid[pos.x][pos.y] = [];
+
 
             grid[pos.x][pos.y].push(particles[i]);
         }
@@ -56,7 +59,7 @@ export class SpatialGrid {
     * For more flexible checking see: QueryRadius()
     * @param position The query position
     */
-    public queryInCell(position: ICoordinates): IParticle[] {
+    public queryInCell(position: ICoordinates): Particle[] {
         const pos = this.index(position);
 
         if (Array.isArray(this.grid[pos.x]) && Array.isArray(this.grid[pos.x][pos.y]))
@@ -71,10 +74,10 @@ export class SpatialGrid {
     * @param position The query position
     * @param radius The radius around the position
     */
-    public queryRadius(position: ICoordinates, radius: number): IParticle[] {
+    public queryRadius(position: ICoordinates, radius: number): Particle[] {
         const pos = this.index(position);
         const rad = this.radius({ x: radius, y: radius } as ICoordinates);
-        const items = this.select(this.indexOp(pos, '-', rad), this.indexOp(pos, '+', rad)) as IParticle[];
+        const items = this.select(this.indexOp(pos, '-', rad), this.indexOp(pos, '+', rad));
 
         var out = [];
         for (let i = 0; i < items.length; i++) {
@@ -90,10 +93,10 @@ export class SpatialGrid {
     * @param position The query position
     * @param radius The radius around the position
     */
-    public queryRadiusWithDist(position: ICoordinates, radius: number): { dist: number, particle: IParticle }[] {
+    public queryRadiusWithDist(position: ICoordinates, radius: number): { dist: number, particle: Particle }[] {
         const pos = this.index(position);
         const rad = this.radius({ x: radius, y: radius } as ICoordinates);
-        const items = this.select(this.indexOp(pos, '-', rad), this.indexOp(pos, '+', rad)) as IParticle[];
+        const items = this.select(this.indexOp(pos, '-', rad), this.indexOp(pos, '+', rad));
 
         var out = [];
         for (let i = 0; i < items.length; i++) {
@@ -118,8 +121,8 @@ export class SpatialGrid {
     * @param start The starting X,Y indexes for the selection
     * @param end The ending X,Y indexes for the selection
     */
-    private select(start: ICoordinates, end: ICoordinates): IParticle[] {
-        var out: IParticle[] = [];
+    private select(start: ICoordinates, end: ICoordinates): Particle[] {
+        var out: Particle[] = [];
 
         for (var x = start.x; x <= end.x; x++) {
             if (!Array.isArray(this.grid[x])) continue;

@@ -1,10 +1,10 @@
 import type { Container } from "../Container";
 import { ColorUtils } from "../Utils/ColorUtils";
 import { Constants } from "../Utils/Constants";
-import type { IParticle } from "../../Interfaces/IParticle";
+import { Particle } from "../Particle";
 
 export class Linker {
-	public static link(p1: IParticle, container: Container): void {
+	public static link(p1: Particle, container: Container): void {
 		const options = container.options;
 		const optOpacity = options.particles.lineLinked.opacity;
 		const optDistance = container.retina.lineLinkedDistance;
