@@ -15,7 +15,6 @@ import type { Emitter } from "../Classes/Emitter";
 
 export interface IParticle {
 	randomIndexData?: number;
-	links: IParticle[];
 
 	readonly angle: number;
 	readonly bubble: IBubbleParticleData;
