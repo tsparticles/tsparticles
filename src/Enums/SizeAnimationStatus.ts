@@ -1,4 +1,4 @@
 export enum SizeAnimationStatus {
 	increasing,
-	decreasing
+	decreasing,
 }
