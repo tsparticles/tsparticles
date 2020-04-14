@@ -178,7 +178,7 @@ export class Particle implements IParticle {
 		};
 
 		/* check position - avoid overlap */
-		if (options.particles.move.collisions) {
+		if (this.particlesOptions.move.collisions) {
 			this.checkOverlap(position);
 		}
 
