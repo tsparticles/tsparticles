@@ -127,8 +127,12 @@ export class Particle implements IParticle {
 		/* size */
 		const sizeValue = (this.sizeValue ?? container.retina.sizeValue);
 
+		const randomSize = typeof this.particlesOptions.size.random === "boolean" ?
+			this.particlesOptions.size.random :
+			this.particlesOptions.size.random.enable;
+
 		this.size = {
-			value: this.randomMinimumSize !== undefined ?
+			value: randomSize && this.randomMinimumSize !== undefined ?
 				Utils.randomInRange(this.randomMinimumSize, sizeValue) * this.container.retina.pixelRatio :
 				sizeValue,
 		};

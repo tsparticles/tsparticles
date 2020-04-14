@@ -14,7 +14,6 @@ import { CharacterShape } from "./CharacterShape";
 export class Shape implements IShape {
 	/**
 	 * @deprecated This options has been renamed options
-	 * @param value
 	 */
 	get custom(): ShapeData {
 		return this.options;
@@ -32,7 +31,7 @@ export class Shape implements IShape {
 	 * @deprecated the property images is deprecated, please use the image property, it works with one and many
 	 */
 	get images(): IImageShape[] {
-		return this.image instanceof Array ? this.image : [this.image];
+		return this.image instanceof Array ? this.image : [ this.image ];
 	}
 
 	/**
@@ -99,9 +98,10 @@ export class Shape implements IShape {
 
 	public load(data?: RecursivePartial<IShape>): void {
 		if (data !== undefined) {
-			if (data.options !== undefined) {
-				for (const shape in data.options) {
-					const item = data.options[shape];
+			const options = data.options ?? data.custom;
+			if (options !== undefined) {
+				for (const shape in options) {
+					const item = options[shape];
 					if (item !== undefined) {
 						if (item instanceof Array) {
 							this.options[shape] = item.filter((t) => t !== undefined).map((t) => {
