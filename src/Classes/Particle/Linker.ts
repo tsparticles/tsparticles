@@ -1,29 +1,22 @@
 import type { Container } from "../Container";
 import { ColorUtils } from "../Utils/ColorUtils";
-import { Utils } from "../Utils/Utils";
-import type { ICoordinates } from "../../Interfaces/ICoordinates";
 import { Constants } from "../Utils/Constants";
-import type { IParticle } from "../../Interfaces/IParticle";
+import { Particle } from "../Particle";
 
 export class Linker {
-	public static link(p1: IParticle, p2: IParticle, container: Container): void {
-		const pos1: ICoordinates = {
-			x: p1.position.x + p1.offset.x,
-			y: p1.position.y + p1.offset.y,
-		};
-		const pos2: ICoordinates = {
-			x: p2.position.x + p2.offset.x,
-			y: p2.position.y + p2.offset.y,
-		};
-		const dist = Utils.getDistanceBetweenCoordinates(pos1, pos2);
+	public static link(p1: Particle, container: Container): void {
 		const optOpacity = p1.particlesOptions.lineLinked.opacity;
 		const optDistance = p1.lineLinkedDistance ?? container.retina.lineLinkedDistance;
 
-		/* draw a line between p1 and p2 if the distance between them is under the config distance */
-		if (dist <= optDistance) {
-			const opacityLine = optOpacity - (dist * optOpacity) / optDistance;
+		for (const p2 of container.particles.spatialGrid.queryRadiusWithDist(p1.position, optDistance)) {
+
+			if (p1 === p2.particle || !p2.particle.particlesOptions.lineLinked.enable) continue;
+
+			/* draw a line between p1 and p2 */
+			const opacityLine = optOpacity - (p2.dist * optOpacity) / optDistance;
 
 			if (opacityLine > 0) {
+
 				/* style */
 				if (!container.particles.lineLinkedColor) {
 					const color = p1.particlesOptions.lineLinked.color;
@@ -47,7 +40,10 @@ export class Linker {
 					}
 				}
 
-				container.canvas.drawLinkedLine(p1, p2, pos1, pos2, opacityLine);
+				if (p2.particle.links.indexOf(p1) == -1 && p1.links.indexOf(p2.particle) == -1) {
+					p1.links.push(p2.particle);
+					container.canvas.drawLinkedLine(p1, p2.particle, p1.position, p2.particle.position, opacityLine);
+				}
 			}
 		}
 	}

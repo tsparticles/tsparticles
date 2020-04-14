@@ -37,6 +37,7 @@ export class Particle implements IParticle {
 	public angle: number;
 	public rotateDirection: RotateDirection;
 	public randomIndexData?: number;
+	public links: IParticle[];
 	public readonly close: boolean;
 	public readonly direction: MoveDirection;
 	public readonly fill: boolean;
@@ -76,6 +77,7 @@ export class Particle implements IParticle {
 		this.emitter = emitter;
 		this.fill = true;
 		this.close = true;
+		this.links = [];
 
 		const options = container.options;
 
@@ -263,6 +265,7 @@ export class Particle implements IParticle {
 	public update(index: number, delta: number): void {
 		const container = this.container;
 		const options = container.options;
+		this.links = [];
 
 		this.updater.update(delta);
 
@@ -303,11 +306,8 @@ export class Particle implements IParticle {
 		let collisionFound = false;
 		let iterations = 0;
 
-		for (const p2 of container.particles.spatialGrid.queryInCell(p.position) as Particle[]) {
+		for (const p2 of container.particles.array.filter((t) => t != p)) {
 			iterations++;
-
-			if (p == p2) continue;
-
 			const dist = Utils.getDistanceBetweenCoordinates(p.position, p2.position);
 
 			if (dist <= p.size.value + p2.size.value) {

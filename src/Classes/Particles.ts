@@ -87,13 +87,7 @@ export class Particles {
 
 			/* interaction auto between particles */
 			if (this.interactionsEnabled) {
-
-				for (let j = i + 1; j < this.array.length; j++) {
-					const p2 = this.array[j];
-
-					InteractionManager.interact(p, p2, this.container);
-				}
-
+				InteractionManager.interact(p, this.container);
 			}
 		}
 	}
@@ -104,11 +98,10 @@ export class Particles {
 
 		/* clear canvas */
 		container.canvas.clear();
-		this.spatialGrid.reset(this.container.canvas.dimension);
 
 		/* update each particles param */
 		this.update(delta);
-		this.spatialGrid.addParticles(this.array);
+		this.spatialGrid.setGrid(this.array, this.container.canvas.dimension);
 
 		/* draw polygon shape in debug mode */
 		if (options.polygon.enable && options.polygon.draw.enable) {
