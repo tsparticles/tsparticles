@@ -293,9 +293,10 @@ export class Canvas {
 		let colorValue: string | undefined;
 		const radius = particle.bubble.radius ?? particle.size.value;
 		const opacity = particle.bubble.opacity ?? particle.opacity.value;
+		const color = particle.bubble.color ?? particle.color;
 
-		if (particle.color) {
-			colorValue = ColorUtils.getStyleFromColor(particle.color, opacity);
+		if (color) {
+			colorValue = ColorUtils.getStyleFromColor(color, opacity);
 		}
 
 		if (!this.context || !colorValue) {

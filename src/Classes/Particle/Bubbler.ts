@@ -6,6 +6,8 @@ import { HoverMode } from "../../Enums/Modes/HoverMode";
 import { ClickMode } from "../../Enums/Modes/ClickMode";
 import { Constants } from "../Utils/Constants";
 import type { IParticle } from "../../Interfaces/IParticle";
+import { ColorUtils } from "../Utils/ColorUtils";
+import { IColor } from "../../Interfaces/IColor";
 
 /**
  * Particle bubble manager
@@ -22,6 +24,7 @@ export class Bubbler {
 	private static reset(particle: IParticle): void {
 		delete particle.bubble.opacity;
 		delete particle.bubble.radius;
+		delete particle.bubble.color;
 	}
 
 	public bubble(): void {
@@ -41,11 +44,16 @@ export class Bubbler {
 	}
 
 	private process(distMouse: number, timeSpent: number, data: IBubblerProcessParam): void {
+		const bubbleParam = data.bubbleObj.optValue;
+
+		if (bubbleParam === undefined) {
+			return;
+		}
+
 		const container = this.container;
 		const particle = this.particle;
 		const options = container.options;
 		const bubbleDuration = options.interactivity.modes.bubble.duration;
-		const bubbleParam = data.bubbleObj.optValue;
 		const bubbleDistance = container.retina.bubbleModeDistance;
 		const particlesParam = data.particlesObj.optValue;
 		const pObjBubble = data.bubbleObj.value;
@@ -70,22 +78,20 @@ export class Bubbler {
 					}
 				} else {
 					if (type === ProcessBubbleType.size) {
-						particle.bubble.radius = undefined;
+						delete particle.bubble.radius;
 					}
 
 					if (type === ProcessBubbleType.opacity) {
-						particle.bubble.opacity = undefined;
+						delete particle.bubble.opacity;
 					}
 				}
 			} else if (pObjBubble) {
-				const value = bubbleParam * 2 - pObj - (timeSpent * (pObj - bubbleParam) / bubbleDuration);
-
 				if (type === ProcessBubbleType.size) {
-					particle.bubble.radius = value;
+					delete particle.bubble.radius;
 				}
 
 				if (type === ProcessBubbleType.opacity) {
-					particle.bubble.opacity = value;
+					delete particle.bubble.opacity;
 				}
 			}
 		}
@@ -140,6 +146,16 @@ export class Bubbler {
 			};
 
 			this.process(distMouse, timeSpent, opacityData);
+
+			if (!container.bubble.durationEnd) {
+				if (distMouse <= container.retina.bubbleModeDistance) {
+					this.hoverBubbleColor();
+				} else {
+					delete particle.bubble.color;
+				}
+			} else {
+				delete particle.bubble.color;
+			}
 		}
 	}
 
@@ -161,6 +177,9 @@ export class Bubbler {
 
 				/* opacity */
 				this.hoverBubbleOpacity(ratio);
+
+				/* color */
+				this.hoverBubbleColor();
 			}
 		} else {
 			Bubbler.reset(particle);
@@ -177,6 +196,11 @@ export class Bubbler {
 		const options = container.options;
 		const particle = this.particle;
 		const modeSize = options.interactivity.modes.bubble.size;
+
+		if (modeSize === undefined) {
+			return;
+		}
+
 		const optSize = particle.particlesOptions.size.value;
 		const pSize = particle.size.value;
 
@@ -200,6 +224,11 @@ export class Bubbler {
 		const options = container.options;
 		const particle = this.particle;
 		const modeOpacity = options.interactivity.modes.bubble.opacity;
+
+		if (modeOpacity === undefined) {
+			return;
+		}
+
 		const optOpacity = particle.particlesOptions.opacity.value;
 		const pOpacity = particle.opacity.value;
 
@@ -215,6 +244,32 @@ export class Bubbler {
 			if (opacity < pOpacity && opacity >= modeOpacity) {
 				particle.bubble.opacity = opacity;
 			}
+		}
+	}
+
+	private hoverBubbleColor(): void {
+		const container = this.container;
+		const options = container.options;
+		const particle = this.particle;
+
+		if (particle.bubble.color === undefined) {
+			const modeColor = options.interactivity.modes.bubble.color;
+
+			if (modeColor === undefined) {
+				return;
+			}
+
+			let color: IColor;
+
+			if (modeColor instanceof Array) {
+				const item = Utils.itemFromArray(modeColor);
+
+				color = typeof item === "string" ? { value: item } : item;
+			} else {
+				color = typeof modeColor === "string" ? { value: modeColor } : modeColor;
+			}
+
+			particle.bubble.color = ColorUtils.colorToRgb(color);
 		}
 	}
 }

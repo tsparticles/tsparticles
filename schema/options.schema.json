@@ -102,6 +102,29 @@
         },
         "IBubble": {
             "properties": {
+                "color": {
+                    "anyOf": [
+                        {
+                            "$ref": "#/definitions/IColor"
+                        },
+                        {
+                            "items": {
+                                "anyOf": [
+                                    {
+                                        "$ref": "#/definitions/IColor"
+                                    },
+                                    {
+                                        "type": "string"
+                                    }
+                                ]
+                            },
+                            "type": "array"
+                        },
+                        {
+                            "type": "string"
+                        }
+                    ]
+                },
                 "distance": {
                     "type": "number"
                 },

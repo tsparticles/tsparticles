@@ -60,8 +60,6 @@ export class Retina {
 			container.canvas.dimension.height = container.canvas.element.offsetHeight * ratio;
 		}
 
-		this.bubbleModeDistance = options.interactivity.modes.bubble.distance * ratio;
-		this.bubbleModeSize = options.interactivity.modes.bubble.size * ratio;
 		this.connectModeDistance = options.interactivity.modes.connect.distance * ratio;
 		this.connectModeRadius = options.interactivity.modes.connect.radius * ratio;
 		this.grabModeDistance = options.interactivity.modes.grab.distance * ratio;
@@ -71,6 +69,8 @@ export class Retina {
 		this.lineLinkedWidth = options.particles.lineLinked.width * ratio;
 		this.moveSpeed = options.particles.move.speed * ratio;
 		this.sizeValue = options.particles.size.value * ratio;
+		this.bubbleModeDistance = options.interactivity.modes.bubble.distance * ratio;
+		this.bubbleModeSize = options.interactivity.modes.bubble.size ?? this.sizeValue * ratio;
 		this.sizeAnimationSpeed = options.particles.size.animation.speed * ratio;
 		this.polygonMaskMoveRadius = options.polygon.move.radius * ratio;
 	}
