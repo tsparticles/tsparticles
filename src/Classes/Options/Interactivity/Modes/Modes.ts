@@ -32,12 +32,12 @@ export class Modes implements IModes {
 	constructor() {
 		this.bubble = new Bubble();
 		this.connect = new Connect();
+		this.emitters = [];
 		this.grab = new Grab();
 		this.push = new Push();
 		this.remove = new Remove();
 		this.repulse = new Repulse();
 		this.slow = new Slow();
-		this.emitters = [];
 	}
 
 	public load(data?: RecursivePartial<IModes>, particles?: IParticles): void {

@@ -14,7 +14,7 @@ export class Rotate implements IRotate {
 		this.animation = new RotateAnimation();
 		this.direction = RotateDirection.clockwise;
 		this.random = false;
-		this.value = 0
+		this.value = 0;
 	}
 
 	public load(data?: RecursivePartial<IRotate>): void {

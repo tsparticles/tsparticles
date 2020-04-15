@@ -58,9 +58,9 @@ export class Particles implements IParticles {
 		this.number = new ParticlesNumber();
 		this.opacity = new Opacity();
 		this.rotate = new Rotate();
+		this.shadow = new Shadow();
 		this.shape = new Shape();
 		this.size = new Size();
-		this.shadow = new Shadow();
 		this.stroke = new Stroke();
 	}
 

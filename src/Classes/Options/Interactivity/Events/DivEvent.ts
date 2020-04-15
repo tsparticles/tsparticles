@@ -36,7 +36,7 @@ export class DivEvent implements IDivEvent {
 	public mode: DivMode | DivMode[];
 
 	constructor() {
-		this.elementId = "repulse-div";
+		this.elementId = "";
 		this.enable = false;
 		this.mode = [];
 	}

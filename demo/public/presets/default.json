@@ -71,12 +71,7 @@
     "events": {
       "onhover": {
         "enable": true,
-        "mode": "repulse",
-        "parallax": {
-          "enable": false,
-          "force": 60,
-          "smooth": 10
-        }
+        "mode": "repulse"
       },
       "onclick": {
         "enable": true,

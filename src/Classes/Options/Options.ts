@@ -59,15 +59,15 @@ export class Options implements IOptions {
 	public background: IBackground;
 
 	constructor() {
+		this.background = new Background();
+		this.backgroundMask = new BackgroundMask();
 		this.detectRetina = false;
 		this.emitters = [];
 		this.fpsLimit = 30;
 		this.interactivity = new Interactivity();
 		this.particles = new Particles();
-		this.polygon = new PolygonMask();
-		this.backgroundMask = new BackgroundMask();
 		this.pauseOnBlur = true;
-		this.background = new Background();
+		this.polygon = new PolygonMask();
 	}
 
 	/**
@@ -109,7 +109,7 @@ export class Options implements IOptions {
 			this.particles.load(data.particles);
 
 			(this.interactivity as Interactivity).load(data.interactivity, this.particles);
-			
+
 			this.polygon.load(data.polygon);
 			this.backgroundMask.load(data.backgroundMask);
 
