@@ -6,7 +6,7 @@
   "scripts": {
     "clear:dist": "rimraf -f dist",
     "clear:docs": "rimraf -f docs",
-    "slimbuild": "npm run clear:dist && npm run build:ts && npm run build:schema && webpack -p",
+    "slimbuild": "npm test && npm run clear:dist && npm run build:ts && npm run build:schema && webpack -p",
     "build": "npm run slimbuild && npm run build:docs",
     "build:ts": "tsc",
     "build:docs": "npm run clear:docs && typedoc",
