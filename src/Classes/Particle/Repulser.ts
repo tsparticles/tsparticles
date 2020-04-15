@@ -22,18 +22,19 @@ export class Repulser {
 	public repulse(): void {
 		const container = this.container;
 		const options = container.options;
-		const hoverEnabled = options.interactivity.events.onHover.enable;
-		const clickEnabled = options.interactivity.events.onClick.enable;
+		const interactivity = options.interactivity;
+		const hoverEnabled = interactivity.events.onHover.enable;
+		const clickEnabled = interactivity.events.onClick.enable;
 		const mouseMoveStatus = container.interactivity.status === Constants.mouseMoveEvent;
-		const hoverMode = options.interactivity.events.onHover.mode;
-		const clickMode = options.interactivity.events.onClick.mode;
-		const divMode = options.interactivity.events.onDiv.mode;
+		const hoverMode = interactivity.events.onHover.mode;
+		const clickMode = interactivity.events.onClick.mode;
+		const divMode = interactivity.events.onDiv.mode;
 
 		if (mouseMoveStatus && hoverEnabled && Utils.isInArray(HoverMode.repulse, hoverMode)) {
 			this.hoverRepulse();
 		} else if (clickEnabled && Utils.isInArray(ClickMode.repulse, clickMode)) {
 			this.clickRepulse();
-		} else if (options.interactivity.events.onDiv.enable && Utils.isInArray(DivMode.repulse, divMode)) {
+		} else if (interactivity.events.onDiv.enable && Utils.isInArray(DivMode.repulse, divMode)) {
 			this.divRepulse();
 		}
 	}

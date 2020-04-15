@@ -42,7 +42,7 @@ export class Linker {
 
 				if (p2.particle.links.indexOf(p1) == -1 && p1.links.indexOf(p2.particle) == -1) {
 					p1.links.push(p2.particle);
-					container.canvas.drawLinkedLine(p1, p2.particle, p1.position, p2.particle.position, opacityLine);
+					container.canvas.drawLinkedLine(p1, p2.particle, opacityLine);
 				}
 			}
 		}

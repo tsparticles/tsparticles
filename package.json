@@ -14,7 +14,8 @@
     "build:demo": "npm run build:demo:style && npm run build:demo:index",
     "build:demo:index": "pug ./demo/views/index.pug",
     "build:demo:style": "stylus ./demo/public/stylesheets/main.styl",
-    "build:schema": "typescript-json-schema tsconfig.json IOptions --out schema/options.schema.json"
+    "build:schema": "typescript-json-schema tsconfig.json IOptions --out schema/options.schema.json",
+    "test": "env TS_NODE_COMPILER_OPTIONS='{\"module\": \"commonjs\" }' mocha -r ts-node/register 'tests/**/*.ts'"
   },
   "repository": {
     "type": "git",
@@ -60,13 +61,17 @@
   "devDependencies": {
     "@babel/core": "^7.9.0",
     "@fortawesome/fontawesome-free": "^5.13.0",
+    "@types/chai": "^4.2.11",
+    "@types/mocha": "^7.0.2",
     "babel-loader": "^8.1.0",
     "bootstrap": "^4.4.1",
+    "chai": "^4.2.0",
     "express": "^4.17.1",
     "helmet": "^3.22.0",
     "install": "^0.13.0",
     "jquery": "^3.4.1",
     "jsoneditor": "^8.6.4",
+    "mocha": "^7.1.1",
     "popper.js": "^1.16.1",
     "pug": "^2.0.4",
     "reflect-metadata": "^0.1.13",
@@ -74,6 +79,7 @@
     "stylus": "^0.54.7",
     "terser-webpack-plugin": "^2.3.5",
     "three": "^0.115.0",
+    "ts-node": "^8.8.2",
     "typedoc": "^0.17.3",
     "typescript": "^3.8.3",
     "typescript-json-schema": "^0.42.0",

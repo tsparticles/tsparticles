@@ -1,6 +1,5 @@
 import { Bubbler } from "./Particle/Bubbler";
 import type { Container } from "./Container";
-import { Drawer } from "./Particle/Drawer";
 import { Grabber } from "./Particle/Grabber";
 import type { IVelocity } from "../Interfaces/IVelocity";
 import type { ISize } from "../Interfaces/ISize";
@@ -301,7 +300,7 @@ export class Particle implements IParticle {
 	}
 
 	public draw(): void {
-		Drawer.draw(this, this.container);
+		this.container.canvas.drawParticle(this);
 	}
 
 	public isOverlapping(): { collisionFound: boolean, iterations: number } {

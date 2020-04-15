@@ -7,7 +7,7 @@ import { ClickMode } from "../../Enums/Modes/ClickMode";
 import { Constants } from "../Utils/Constants";
 import type { IParticle } from "../../Interfaces/IParticle";
 import { ColorUtils } from "../Utils/ColorUtils";
-import { IColor } from "../../Interfaces/IColor";
+import type { IColor } from "../../Interfaces/IColor";
 
 /**
  * Particle bubble manager

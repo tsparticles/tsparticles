@@ -8,7 +8,7 @@ import { CanvasUtils } from "./Utils/CanvasUtils";
 import { ColorUtils } from "./Utils/ColorUtils";
 import type { IBackgroundMaskCover } from "../Interfaces/Options/BackgroundMask/IBackgroundMaskCover";
 import type { IParticle } from "../Interfaces/IParticle";
-import { IColor } from "../Interfaces/IColor";
+import type { IColor } from "../Interfaces/IColor";
 
 /**
  * Canvas manager
@@ -179,9 +179,11 @@ export class Canvas {
 		}
 	}
 
-	public drawLinkedLine(p1: IParticle, p2: IParticle, pos1: ICoordinates, pos2: ICoordinates, opacity: number): void {
+	public drawLinkedLine(p1: IParticle, p2: IParticle, opacity: number): void {
 		const container = this.container;
 		const options = container.options;
+		const pos1 = p1.position;
+		const pos2 = p2.position;
 
 		const ctx = this.context;
 

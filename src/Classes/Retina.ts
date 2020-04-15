@@ -56,22 +56,30 @@ export class Retina {
 		const ratio = this.pixelRatio;
 
 		if (container.canvas.element) {
-			container.canvas.dimension.width = container.canvas.element.offsetWidth * ratio;
-			container.canvas.dimension.height = container.canvas.element.offsetHeight * ratio;
+			const element = container.canvas.element;
+
+			container.canvas.dimension.width = element.offsetWidth * ratio;
+			container.canvas.dimension.height = element.offsetHeight * ratio;
 		}
 
-		this.connectModeDistance = options.interactivity.modes.connect.distance * ratio;
-		this.connectModeRadius = options.interactivity.modes.connect.radius * ratio;
-		this.grabModeDistance = options.interactivity.modes.grab.distance * ratio;
-		this.repulseModeDistance = options.interactivity.modes.repulse.distance * ratio;
-		this.slowModeRadius = options.interactivity.modes.slow.radius * ratio;
-		this.lineLinkedDistance = options.particles.lineLinked.distance * ratio;
-		this.lineLinkedWidth = options.particles.lineLinked.width * ratio;
-		this.moveSpeed = options.particles.move.speed * ratio;
-		this.sizeValue = options.particles.size.value * ratio;
-		this.bubbleModeDistance = options.interactivity.modes.bubble.distance * ratio;
-		this.bubbleModeSize = options.interactivity.modes.bubble.size ?? this.sizeValue * ratio;
-		this.sizeAnimationSpeed = options.particles.size.animation.speed * ratio;
+		const particles = options.particles;
+
+		this.lineLinkedDistance = particles.lineLinked.distance * ratio;
+		this.lineLinkedWidth = particles.lineLinked.width * ratio;
+		this.moveSpeed = particles.move.speed * ratio;
+		this.sizeValue = particles.size.value * ratio;
+		this.sizeAnimationSpeed = particles.size.animation.speed * ratio;
+
+		const interactivity = options.interactivity;
+
+		this.connectModeDistance = interactivity.modes.connect.distance * ratio;
+		this.connectModeRadius = interactivity.modes.connect.radius * ratio;
+		this.grabModeDistance = interactivity.modes.grab.distance * ratio;
+		this.repulseModeDistance = interactivity.modes.repulse.distance * ratio;
+		this.slowModeRadius = interactivity.modes.slow.radius * ratio;
+		this.bubbleModeDistance = interactivity.modes.bubble.distance * ratio;
+		this.bubbleModeSize = interactivity.modes.bubble.size ?? this.sizeValue * ratio;
+
 		this.polygonMaskMoveRadius = options.polygon.move.radius * ratio;
 	}
 

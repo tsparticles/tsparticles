@@ -267,7 +267,7 @@ export class Container {
 		if (this.options.emitters instanceof Array) {
 			for (const emitterOptions of this.options.emitters) {
 				const emitter = new Emitter(this, emitterOptions);
-				
+
 				this.emitters.push(emitter);
 			}
 		} else {
