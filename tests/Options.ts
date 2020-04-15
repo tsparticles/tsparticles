@@ -171,8 +171,7 @@ describe('Options tests', () => {
 
 	it('check default preset options', function () {
 		const options = new Options();
-
-		options.load({
+		const preset = {
 			"background": {
 				"color": "#0d47a1"
 			},
@@ -281,7 +280,9 @@ describe('Options tests', () => {
 				}
 			},
 			"retina_detect": true,
-		});
+		};
+
+		options.load(preset);
 
 		/* background */
 		expect(options.background.color).to.be.an("object").to.have.property("value").to.equal("#0d47a1");
@@ -359,5 +360,207 @@ describe('Options tests', () => {
 		expect(options.particles.size.animation.sync).to.be.false;
 		expect(options.particles.size.random).to.be.an("object").to.have.property("enable").to.be.true;
 		expect(options.particles.size.value).to.equal(5);
+	});
+
+	it('check test preset options', function () {
+		const options = new Options();
+		const preset = {
+			"background": {
+				"color": "#0d47a1"
+			},
+			"interactivity": {
+				"detect_on": InteractivityDetect.canvas,
+				"events": {
+					"onclick": {
+						"enable": true,
+						"mode": ClickMode.repulse
+					},
+					"onhover": {
+						"enable": false,
+						"mode": HoverMode.grab
+					},
+					"resize": true
+				},
+				"modes": {
+					"bubble": {
+						"distance": 400,
+						"size": 40,
+						"duration": 2,
+						"opacity": 8
+					},
+					"grab": {
+						"distance": 200,
+						"line_linked": {
+							"opacity": 1
+						}
+					},
+					"repulse": {
+						"distance": 200
+					},
+					"push": {
+						"particles_nb": 4
+					},
+					"remove": {
+						"particles_nb": 2
+					}
+				}
+			},
+			"particles": {
+				"color": {
+					"value": "#ffffff"
+				},
+				"line_linked": {
+					"enable": false,
+					"distance": 150,
+					"color": "#ffffff",
+					"opacity": 0.4,
+					"width": 1
+				},
+				"move": {
+					"enable": true,
+					"speed": 2,
+					"direction": MoveDirection.none,
+					"random": false,
+					"straight": false,
+					"out_mode": OutMode.bounce,
+					"bounce": false,
+					"attract": {
+						"enable": false,
+						"rotateX": 600,
+						"rotateY": 1200
+					}
+				},
+				"number": {
+					"value": 100,
+					"density": {
+						"enable": false,
+						"value_area": 800
+					}
+				},
+				"shape": {
+					"type": ShapeType.circle,
+					"stroke": {
+						"width": 0,
+						"color": "#000000"
+					},
+					"polygon": {
+						"nb_sides": 5
+					},
+					"image": {
+						"src": "https://cdn.matteobruni.it/images/particles/github.svg",
+						"width": 100,
+						"height": 100
+					}
+				},
+				"opacity": {
+					"value": 0.5,
+					"random": false,
+					"anim": {
+						"enable": false,
+						"speed": 1,
+						"opacity_min": 0.1,
+						"sync": false
+					}
+				},
+				"size": {
+					"value": 4,
+					"random": true,
+					"anim": {
+						"enable": false,
+						"speed": 40,
+						"size_min": 0.1,
+						"sync": false
+					}
+				}
+			},
+			"retina_detect": true,
+		};
+
+		options.load(preset);
+
+		/* background */
+		expect(options.background.color).to.be.an("object").to.have.property("value").to.equal("#0d47a1");
+
+		/* detect retina */
+		expect(options.detectRetina).to.be.true;
+
+		/* interactivity */
+		expect(options.interactivity.detectsOn).to.equal(InteractivityDetect.canvas);
+
+		/* interactivity events */
+		expect(options.interactivity.events.onClick.enable).to.be.true;
+		expect(options.interactivity.events.onClick.mode).to.equal(ClickMode.repulse);
+		expect(options.interactivity.events.onHover.enable).to.be.false;
+		expect(options.interactivity.events.onHover.mode).to.equal(HoverMode.grab);
+		expect(options.interactivity.events.resize).to.be.true;
+
+		/* interactivity modes */
+		expect(options.interactivity.modes.bubble.distance).to.equal(400);
+		expect(options.interactivity.modes.bubble.duration).to.equal(2);
+		expect(options.interactivity.modes.bubble.opacity).to.equal(8);
+		expect(options.interactivity.modes.bubble.size).to.equal(40);
+		expect(options.interactivity.modes.grab.distance).to.equal(200);
+		expect(options.interactivity.modes.grab.lineLinked.opacity).to.equal(1);
+		expect(options.interactivity.modes.push.quantity).to.equal(4);
+		expect(options.interactivity.modes.remove.quantity).to.equal(2);
+		expect(options.interactivity.modes.repulse.distance).to.equal(200);
+
+		/* particles */
+		/* particles color */
+		expect(options.particles.color).to.be.an("object").to.have.property("value").to.equal("#ffffff");
+
+		/* particles line linked */
+		expect(options.particles.lineLinked.color).to.be.an("object").to.have.property("value").to.equal("#ffffff");
+		expect(options.particles.lineLinked.distance).to.equal(150);
+		expect(options.particles.lineLinked.enable).to.be.false;
+		expect(options.particles.lineLinked.opacity).to.equal(0.4);
+		expect(options.particles.lineLinked.width).to.equal(1);
+
+		/* particles move */
+		expect(options.particles.move.attract.enable).to.be.false;
+		expect(options.particles.move.attract.rotate.x).to.equal(600);
+		expect(options.particles.move.attract.rotate.y).to.equal(1200);
+		expect(options.particles.move.collisions).to.be.false;
+		expect(options.particles.move.direction).to.equal(MoveDirection.none);
+		expect(options.particles.move.enable).to.be.true;
+		expect(options.particles.move.outMode).to.equal(OutMode.bounce);
+		expect(options.particles.move.random).to.be.false;
+		expect(options.particles.move.speed).to.equal(2);
+		expect(options.particles.move.straight).to.be.false;
+		expect(options.particles.move.trail.fillColor).to.be.an("object").to.have.property("value").to.equal("#000000");
+		expect(options.particles.move.trail.enable).to.be.false;
+		expect(options.particles.move.trail.length).to.equal(10);
+
+		/* particles number */
+		expect(options.particles.number.density.area).to.equal(800);
+		expect(options.particles.number.density.enable).to.be.false;
+		expect(options.particles.number.value).to.equal(100);
+
+		/* particles opacity */
+		expect(options.particles.opacity.animation.enable).to.be.false;
+		expect(options.particles.opacity.animation.minimumValue).to.equal(0.1);
+		expect(options.particles.opacity.animation.speed).to.equal(1);
+		expect(options.particles.opacity.animation.sync).to.be.false;
+		expect(options.particles.opacity.random).to.be.an("object").to.have.property("enable").to.be.false;
+		expect(options.particles.opacity.value).to.equal(0.5);
+
+		/* particles shape */
+		expect(options.particles.shape.image).to.be.an("object").to.have.property("height").to.equal(100);
+		expect(options.particles.shape.image).to.be.an("object").to.have.property("src").to.equal("https://cdn.matteobruni.it/images/particles/github.svg");
+		expect(options.particles.shape.image).to.be.an("object").to.have.property("width").to.equal(100);
+		expect(options.particles.shape.options).to.be.an("object").to.include.all.keys(ShapeType.character, ShapeType.char, ShapeType.polygon, ShapeType.star);
+		expect(options.particles.shape.type).to.equal(ShapeType.circle);
+
+		/* particles size */
+		expect(options.particles.size.animation.enable).to.be.false;
+		expect(options.particles.size.animation.minimumValue).to.equal(0.1);
+		expect(options.particles.size.animation.speed).to.equal(40);
+		expect(options.particles.size.animation.sync).to.be.false;
+		expect(options.particles.size.random).to.be.an("object").to.have.property("enable").to.be.true;
+		expect(options.particles.size.value).to.equal(4);
+
+		/* particles stroke */
+		expect(options.particles.stroke).to.be.an("object").to.have.property("color").to.be.an("object").to.have.property("value").to.equal("#000000");
+		expect(options.particles.stroke).to.be.an("object").to.have.property("width").to.equal(0);
 	});
 });
