@@ -46,7 +46,11 @@
     "animated",
     "background"
   ],
-  "author": "Matteo Bruni",
+  "author": "Matteo Bruni <matteo.bruni@me.com> (https://www.matteobruni.it)",
+  "contributors": [
+    "Gabriel Barker (https://github.com/gabrielbarker)",
+    "Tyler Burnett (https://github.com/TylerBurnett)"
+  ],
   "license": "MIT",
   "files": [
     "dist/**/*"
