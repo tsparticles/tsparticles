@@ -6,9 +6,10 @@
   "scripts": {
     "clear:dist": "rimraf -f dist",
     "clear:docs": "rimraf -f docs",
-    "slimbuild": "npm run clear:dist && npm run build:ts && npm run build:schema && webpack -p",
+    "slimbuild": "npm run clear:dist && npm run build:ts:es && npm run build:schema && webpack -p && npm run build:ts",
     "build": "npm run slimbuild && npm run build:docs",
     "build:ts": "tsc",
+    "build:ts:es": "tsc --target es6 --module es6",
     "build:docs": "npm run clear:docs && typedoc",
     "start": "npm run build && npm run build:demo && node demo/app.js",
     "build:demo": "npm run build:demo:style && npm run build:demo:index",
