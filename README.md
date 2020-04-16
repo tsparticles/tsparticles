@@ -279,7 +279,7 @@ yarn add tsparticles
 
 #### Import and require
 
-Starting from version 1.12.7 `import` and `require` can be used to import `tsParticles`.
+Starting from version 1.12.11 `import` and `require` can be used to import `tsParticles`.
 
 Now you can write something like this
 
