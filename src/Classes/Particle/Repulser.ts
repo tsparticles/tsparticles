@@ -66,10 +66,31 @@ export class Repulser {
 		};
 		const repulseRadius = divWidth;
 		const velocity = 100;
-		const repulseFactor = Utils.clamp((1 - Math.pow(distDiv / repulseRadius, 4)) * velocity, 0, 50);
+		const repulseFactor = Utils.clamp((1 - Math.pow(distDiv / repulseRadius, 2)) * velocity, 0, 50);
+		const newPos = {
+			x: particle.position.x + normVec.x * repulseFactor,
+			y: particle.position.y + normVec.y * repulseFactor,
+		};
+		const outMode = options.particles.move.outMode;
 
-		this.particle.position.x += normVec.x * repulseFactor;
-		this.particle.position.y += normVec.y * repulseFactor;
+		if (outMode === OutMode.bounce || outMode === OutMode.bounceVertical || outMode === OutMode.bounceHorizontal) {
+			const isInside = {
+				horizontal: newPos.x - particle.size.value > 0 &&
+					newPos.x + particle.size.value < container.canvas.dimension.width,
+				vertical: newPos.y - particle.size.value > 0 &&
+					newPos.y + particle.size.value < container.canvas.dimension.height,
+			};
+			if (outMode === OutMode.bounceVertical || isInside.horizontal) {
+				particle.position.x = newPos.x;
+			}
+
+			if (outMode === OutMode.bounceHorizontal || isInside.vertical) {
+				particle.position.y = newPos.y;
+			}
+		} else {
+			particle.position.x = newPos.x;
+			particle.position.y = newPos.y;
+		}
 	}
 
 	private clickRepulse(): void {
