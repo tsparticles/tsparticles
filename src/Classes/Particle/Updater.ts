@@ -5,7 +5,9 @@ import { Utils } from "../Utils/Utils";
 import { PolygonMaskType } from "../../Enums/PolygonMaskType";
 import { Mover } from "./Mover";
 import { RotateDirection } from "../../Enums/RotateDirection";
-import { IBounds } from "../../Interfaces/IBounds";
+import type { IBounds } from "../../Interfaces/IBounds";
+import { SizeAnimationStatus } from "../../Enums/SizeAnimationStatus";
+import { OpacityAnimationStatus } from "../../Enums/OpacityAnimationStatus";
 
 /**
  * Particle updater, it manages movement
@@ -48,23 +50,24 @@ export class Updater {
 	}
 
 	private updateOpacity(): void {
-		const container = this.container;
-		const options = container.options;
 		const particle = this.particle;
 
-		if (options.particles.opacity.animation.enable) {
-			if (particle.opacity.status) {
-				if (particle.opacity.value >= options.particles.opacity.value) {
-					particle.opacity.status = false;
-				}
-
-				particle.opacity.value += (particle.opacity.velocity || 0);
-			} else {
-				if (particle.opacity.value <= options.particles.opacity.animation.minimumValue) {
-					particle.opacity.status = true;
-				}
-
-				particle.opacity.value -= (particle.opacity.velocity || 0);
+		if (particle.particlesOptions.opacity.animation.enable) {
+			switch (particle.opacity.status) {
+				case OpacityAnimationStatus.increasing:
+					if (particle.opacity.value >= particle.particlesOptions.opacity.value) {
+						particle.opacity.status = OpacityAnimationStatus.decreasing;
+					} else {
+						particle.opacity.value += (particle.opacity.velocity || 0);
+					}
+					break;
+				case OpacityAnimationStatus.decreasing:
+					if (particle.opacity.value <= particle.particlesOptions.opacity.animation.minimumValue) {
+						particle.opacity.status = OpacityAnimationStatus.increasing;
+					} else {
+						particle.opacity.value -= (particle.opacity.velocity || 0);
+					}
+					break;
 			}
 
 			if (particle.opacity.value < 0) {
@@ -75,39 +78,38 @@ export class Updater {
 
 	private updateSize(): void {
 		const container = this.container;
-		const options = container.options;
 		const particle = this.particle;
 
-		if (options.particles.size.animation.enable) {
-			if (particle.size.status) {
-				if (particle.radius >= container.retina.sizeValue) {
-					particle.size.status = false;
-				}
-
-				particle.radius += (particle.size.velocity || 0);
-			} else {
-				if (particle.radius <= options.particles.size.animation.minimumValue) {
-					particle.size.status = true;
-				}
-
-				particle.radius -= (particle.size.velocity || 0);
+		if (particle.particlesOptions.size.animation.enable) {
+			switch (particle.size.status) {
+				case SizeAnimationStatus.increasing:
+					if (particle.size.value >= (particle.sizeValue ?? container.retina.sizeValue)) {
+						particle.size.status = SizeAnimationStatus.decreasing;
+					} else {
+						particle.size.value += (particle.size.velocity || 0);
+					}
+					break;
+				case SizeAnimationStatus.decreasing:
+					if (particle.size.value <= particle.particlesOptions.size.animation.minimumValue) {
+						particle.size.status = SizeAnimationStatus.increasing;
+					} else {
+						particle.size.value -= (particle.size.velocity || 0);
+					}
 			}
 
-			if (particle.radius < 0) {
-				particle.radius = 0;
+			if (particle.size.value < 0) {
+				particle.size.value = 0;
 			}
 		}
 	}
 
 	private updateAngle(): void {
-		const container = this.container;
-		const options = container.options;
 		const particle = this.particle;
 
-		if (options.particles.rotate.animation.enable) {
+		if (particle.particlesOptions.rotate.animation.enable) {
 			switch (particle.rotateDirection) {
 				case RotateDirection.clockwise:
-					particle.angle += options.particles.rotate.animation.speed * Math.PI / 18;
+					particle.angle += particle.particlesOptions.rotate.animation.speed * Math.PI / 18;
 
 					if (particle.angle > 360) {
 						particle.angle -= 360;
@@ -115,7 +117,7 @@ export class Updater {
 					break;
 				case RotateDirection.counterClockwise:
 				default:
-					particle.angle -= options.particles.rotate.animation.speed * Math.PI / 18;
+					particle.angle -= particle.particlesOptions.rotate.animation.speed * Math.PI / 18;
 
 					if (particle.angle < 0) {
 						particle.angle += 360;
@@ -127,9 +129,8 @@ export class Updater {
 
 	private fixOutOfCanvasPosition(): void {
 		const container = this.container;
-		const options = container.options;
 		const particle = this.particle;
-		const outMode = options.particles.move.outMode;
+		const outMode = particle.particlesOptions.move.outMode;
 		const canvasSize = container.canvas.dimension;
 
 		let newPos: IBounds;
@@ -137,39 +138,42 @@ export class Updater {
 		if (outMode === OutMode.bounce) {
 			newPos = {
 				bottom: canvasSize.height,
-				left: particle.radius,
+				left: particle.size.value,
 				right: canvasSize.width,
-				top: particle.radius,
+				top: particle.size.value,
 			};
 		} else if (outMode === OutMode.bounceHorizontal) {
 			newPos = {
-				bottom: canvasSize.height + particle.radius - particle.offset.y,
-				left: particle.radius,
+				bottom: canvasSize.height + particle.size.value - particle.offset.y,
+				left: particle.size.value,
 				right: canvasSize.width,
-				top: -particle.radius - particle.offset.y,
+				top: -particle.size.value - particle.offset.y,
 			};
 		} else if (outMode === OutMode.bounceVertical) {
 			newPos = {
 				bottom: canvasSize.height,
-				left: -particle.radius - particle.offset.x,
-				right: canvasSize.width + particle.radius + particle.offset.x,
-				top: particle.radius,
+				left: -particle.size.value - particle.offset.x,
+				right: canvasSize.width + particle.size.value + particle.offset.x,
+				top: particle.size.value,
 			};
 		} else {
 			newPos = {
-				bottom: canvasSize.height + particle.radius - particle.offset.y,
-				left: -particle.radius - particle.offset.x,
-				right: canvasSize.width + particle.radius + particle.offset.x,
-				top: -particle.radius - particle.offset.y,
+				bottom: canvasSize.height + particle.size.value - particle.offset.y,
+				left: -particle.size.value - particle.offset.x,
+				right: canvasSize.width + particle.size.value + particle.offset.x,
+				top: -particle.size.value - particle.offset.y,
 			};
 		}
 
 		if (outMode === OutMode.destroy) {
-			if (!Utils.isPointInside(particle.position, container.canvas.dimension, particle.radius)) {
+			const sizeValue = particle.sizeValue ?? container.retina.sizeValue;
+
+			if (!Utils.isPointInside(particle.position, container.canvas.dimension, sizeValue)) {
 				container.particles.remove(particle);
 			}
 		} else {
-			const nextBounds = Utils.calculateBounds(particle.position, particle.radius);
+			const sizeValue = particle.sizeValue ?? container.retina.sizeValue;
+			const nextBounds = Utils.calculateBounds(particle.position, sizeValue);
 
 			if (nextBounds.left > canvasSize.width - particle.offset.x) {
 				particle.position.x = newPos.left;
@@ -190,10 +194,9 @@ export class Updater {
 	}
 
 	private updateOutMode(): void {
-		const container = this.container;
-		const options = container.options;
+		const particle = this.particle;
 
-		switch (options.particles.move.outMode) {
+		switch (particle.particlesOptions.move.outMode) {
 			case OutMode.bounce:
 			case OutMode.bounceVertical:
 			case OutMode.bounceHorizontal:
@@ -223,18 +226,18 @@ export class Updater {
 				}
 			}
 		} else {
-			const outMode = options.particles.move.outMode;
+			const outMode = particle.particlesOptions.move.outMode;
 			const x = particle.position.x + particle.offset.x;
 			const y = particle.position.y + particle.offset.y;
 
 			if (outMode === OutMode.bounce || outMode === OutMode.bounceHorizontal) {
-				Updater.checkBounds(x, particle.radius, container.canvas.dimension.width, () => {
+				Updater.checkBounds(x, particle.size.value, container.canvas.dimension.width, () => {
 					particle.velocity.horizontal = -particle.velocity.horizontal;
 				});
 			}
 
 			if (outMode === OutMode.bounce || outMode === OutMode.bounceVertical) {
-				Updater.checkBounds(y, particle.radius, container.canvas.dimension.height, () => {
+				Updater.checkBounds(y, particle.size.value, container.canvas.dimension.height, () => {
 					particle.velocity.vertical = -particle.velocity.vertical;
 				});
 			}

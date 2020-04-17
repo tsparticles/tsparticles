@@ -1,162 +1,165 @@
-import {Container} from "./Container";
-import type {ICoordinates} from "../Interfaces/ICoordinates";
-import type {IMouseData} from "../Interfaces/IMouseData";
-import type {IRgb} from "../Interfaces/IRgb";
-import {Particle} from "./Particle";
-import {PolygonMaskType} from "../Enums/PolygonMaskType";
-import {PolygonMaskInlineArrangement} from "../Enums/PolygonMaskInlineArrangement";
+import { Container } from "./Container";
+import type { ICoordinates } from "../Interfaces/ICoordinates";
+import type { IMouseData } from "../Interfaces/IMouseData";
+import type { IRgb } from "../Interfaces/IRgb";
+import { Particle } from "./Particle";
+import { PolygonMaskType } from "../Enums/PolygonMaskType";
+import { PolygonMaskInlineArrangement } from "../Enums/PolygonMaskInlineArrangement";
+import { InteractionManager } from "./Particle/InteractionManager";
+import { SpatialGrid } from "./Utils/SpatialGrid";
 
 /**
  * Particles manager
  */
 export class Particles {
-    public get count(): number {
-        return this.array.length;
-    }
+	public get count(): number {
+		return this.array.length;
+	}
 
-    public array: Particle[];
-    public pushing?: boolean;
-    public lineLinkedColor?: IRgb | string | null;
+	public array: Particle[];
+	public spatialGrid: SpatialGrid;
+	public pushing?: boolean;
+	public lineLinkedColor?: IRgb | string | null;
 
-    private readonly container: Container;
-    private interactionsEnabled: boolean;
+	private readonly container: Container;
+	private interactionsEnabled: boolean;
 
-    constructor(container: Container) {
-        this.container = container;
-        this.array = [];
-        this.interactionsEnabled = false;
-    }
+	constructor(container: Container) {
+		this.container = container;
+		this.array = [];
+		this.interactionsEnabled = false;
+		this.spatialGrid = new SpatialGrid(this.container.canvas.dimension);
+	}
 
-    /* --------- tsParticles functions - particles ----------- */
-    public init(): void {
-        const container = this.container;
-        const options = container.options;
+	/* --------- tsParticles functions - particles ----------- */
+	public init(): void {
+		const container = this.container;
+		const options = container.options;
 
-        if (options.polygon.enable && options.polygon.type === PolygonMaskType.inline &&
-            (options.polygon.inline.arrangement === PolygonMaskInlineArrangement.onePerPoint ||
-                options.polygon.inline.arrangement === PolygonMaskInlineArrangement.perPoint)) {
-            container.polygon.drawPointsOnPolygonPath();
-        } else {
-            for (let i = this.array.length; i < options.particles.number.value; i++) {
-                this.addParticle(new Particle(container));
-            }
-        }
-        
-        this.interactionsEnabled = options.particles.lineLinked.enable ||
-            options.particles.move.attract.enable ||
-            options.particles.move.collisions;
-    }
+		if (options.polygon.enable && options.polygon.type === PolygonMaskType.inline &&
+			(options.polygon.inline.arrangement === PolygonMaskInlineArrangement.onePerPoint ||
+				options.polygon.inline.arrangement === PolygonMaskInlineArrangement.perPoint)) {
+			container.polygon.drawPointsOnPolygonPath();
+		} else {
+			for (let i = this.array.length; i < options.particles.number.value; i++) {
+				this.addParticle(new Particle(container));
+			}
+		}
 
-    public redraw(): void {
-        this.clear();
-        this.init();
-        this.draw(0);
-    }
+		this.interactionsEnabled = options.particles.lineLinked.enable ||
+			options.particles.move.attract.enable ||
+			options.particles.move.collisions;
+	}
 
-    public removeAt(index: number, quantity?: number): void {
-        if (index >= 0 && index <= this.count) {
-            this.array.splice(index, quantity ?? 1);
-        }
-    }
+	public redraw(): void {
+		this.clear();
+		this.init();
+		this.draw(0);
+	}
 
-    public remove(particle: Particle): void {
-        this.removeAt(this.array.indexOf(particle));
-    }
+	public removeAt(index: number, quantity?: number): void {
+		if (index >= 0 && index <= this.count) {
+			for (const particle of this.array.splice(index, quantity ?? 1)) {
+				particle.destroy();
+			}
+		}
+	}
 
-    public update(delta: number): void {
-        for (let i = 0; i < this.array.length; i++) {
-            /* the particle */
-            const p = this.array[i];
+	public remove(particle: Particle): void {
+		this.removeAt(this.array.indexOf(particle));
+	}
 
-            // let d = ( dx = container.interactivity.mouse.click_pos_x - p.x ) * dx +
-            //         ( dy = container.interactivity.mouse.click_pos_y - p.y ) * dy;
-            // let f = -BANG_SIZE / d;
-            // if ( d < BANG_SIZE ) {
-            //     let t = Math.atan2( dy, dx );
-            //     p.vx = f * Math.cos(t);
-            //     p.vy = f * Math.sin(t);
-            // }
+	public update(delta: number): void {
+		for (let i = 0; i < this.array.length; i++) {
+			/* the particle */
+			const p = this.array[i];
 
-            p.update(i, delta);
+			// let d = ( dx = container.interactivity.mouse.click_pos_x - p.x ) * dx +
+			//         ( dy = container.interactivity.mouse.click_pos_y - p.y ) * dy;
+			// let f = -BANG_SIZE / d;
+			// if ( d < BANG_SIZE ) {
+			//     let t = Math.atan2( dy, dx );
+			//     p.vx = f * Math.cos(t);
+			//     p.vy = f * Math.sin(t);
+			// }
 
-            /* interaction auto between particles */
-            if (this.interactionsEnabled) {
-                for (let j = i + 1; j < this.array.length; j++) {
-                    const p2 = this.array[j];
+			p.update(i, delta);
 
-                    p.interact(p2);
-                }
-            }
-        }
-    }
+			/* interaction auto between particles */
+			if (this.interactionsEnabled) {
+				InteractionManager.interact(p, this.container);
+			}
+		}
+	}
 
-    public draw(delta: number): void {
-        const container = this.container;
-        const options = container.options;
+	public draw(delta: number): void {
+		const container = this.container;
+		const options = container.options;
 
-        /* clear canvas */
-        container.canvas.clear();
+		/* clear canvas */
+		container.canvas.clear();
 
-        /* update each particles param */
-        this.update(delta);
+		/* update each particles param */
+		this.update(delta);
+		this.spatialGrid.setGrid(this.array, this.container.canvas.dimension);
 
-        /* draw polygon shape in debug mode */
-        if (options.polygon.enable && options.polygon.draw.enable) {
-            container.polygon.drawPolygon();
-        }
+		/* draw polygon shape in debug mode */
+		if (options.polygon.enable && options.polygon.draw.enable) {
+			container.polygon.drawPolygon();
+		}
 
-        /* draw each particle */
-        for (const p of this.array) {
-            p.draw();
-        }
-    }
+		/* draw each particle */
+		for (const p of this.array) {
+			p.draw();
+		}
+	}
 
-    public clear(): void {
-        this.array = [];
-    }
+	public clear(): void {
+		this.array = [];
+	}
 
-    /* ---------- tsParticles functions - modes events ------------ */
-    public push(nb: number, mousePosition?: IMouseData): void {
-        const container = this.container;
-        const options = container.options;
+	/* ---------- tsParticles functions - modes events ------------ */
+	public push(nb: number, mousePosition?: IMouseData): void {
+		const container = this.container;
+		const options = container.options;
 
-        this.pushing = true;
+		this.pushing = true;
 
-        if (options.particles.number.limit > 0) {
-            if ((this.array.length + nb) > options.particles.number.limit) {
-                this.removeQuantity((this.array.length + nb) - options.particles.number.limit);
-            }
-        }
+		if (options.particles.number.limit > 0) {
+			if ((this.array.length + nb) > options.particles.number.limit) {
+				this.removeQuantity((this.array.length + nb) - options.particles.number.limit);
+			}
+		}
 
-        let pos: ICoordinates | undefined;
+		let pos: ICoordinates | undefined;
 
-        if (mousePosition) {
-            pos = mousePosition.position ?? {x: 0, y: 0};
-        }
+		if (mousePosition) {
+			pos = mousePosition.position ?? { x: 0, y: 0 };
+		}
 
-        for (let i = 0; i < nb; i++) {
-            this.addParticle(new Particle(container, pos));
-        }
+		for (let i = 0; i < nb; i++) {
+			this.addParticle(new Particle(container, pos));
+		}
 
-        if (!options.particles.move.enable) {
-            this.container.play();
-        }
+		if (!options.particles.move.enable) {
+			this.container.play();
+		}
 
-        this.pushing = false;
-    }
+		this.pushing = false;
+	}
 
-    public addParticle(particle: Particle): void {
-        this.array.push(particle);
-    }
+	public addParticle(particle: Particle): void {
+		this.array.push(particle);
+	}
 
-    public removeQuantity(quantity: number): void {
-        const container = this.container;
-        const options = container.options;
+	public removeQuantity(quantity: number): void {
+		const container = this.container;
+		const options = container.options;
 
-        this.removeAt(0, quantity);
+		this.removeAt(0, quantity);
 
-        if (!options.particles.move.enable) {
-            this.container.play();
-        }
-    }
+		if (!options.particles.move.enable) {
+			this.container.play();
+		}
+	}
 }

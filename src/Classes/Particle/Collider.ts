@@ -1,29 +1,28 @@
-import type { Container } from "../Container";
-import type { Particle } from "../Particle";
 import { Utils } from "../Utils/Utils";
+import { Particle } from "../Particle";
+import { Container } from "../Container";
+import { IParticle } from "../../Interfaces/IParticle";
 
 export class Collider {
-    private readonly container: Container;
-    private readonly particle: Particle;
+	public static collide(p1: Particle, container: Container): void {
+		for (const p2 of container.particles.spatialGrid.queryRadius(p1.position, (p1.sizeValue ?? container.retina.sizeValue) * 2)) {
 
-    constructor(container: Container, particle: Particle) {
-        this.container = container;
-        this.particle = particle;
-    }
+			if (!p2 || p1 === p2 || !p2.particlesOptions.move.collisions) continue;
 
-    public collide(p2: Particle): void {
-        const p1 = this.particle;
+			const dist = Utils.getDistanceBetweenCoordinates(p1.position, p2.position);
+			const defaultSize = container.retina.sizeValue;
+			const radius1 = this.getRadius(p1, defaultSize);
+			const radius2 = this.getRadius(p2, defaultSize);
+			const distP = radius1 + radius2;
 
-        if (p1 === p2) {
-            return;
-        }
+			if (dist <= distP) {
+				p1.resetVelocity();
+				p2.resetVelocity();
+			}
+		}
+	}
 
-        const dist = Utils.getDistanceBetweenCoordinates(p1.position, p2.position);
-        const distP = (p1.bubbler.radius || p1.radius) + (p2.bubbler.radius || p2.radius);
-
-        if (dist <= distP) {
-            p1.resetVelocity();
-            p2.resetVelocity();
-        }
-    }
+	private static getRadius(particle: IParticle, fallback: number): number {
+		return particle.bubble.radius || particle.sizeValue || fallback;
+	}
 }

@@ -1,22 +1,22 @@
 {
   "name": "tsparticles",
-  "version": "1.12.11",
+  "version": "1.13.0-alpha.2",
   "description": "Porting of the abandoned Vincent Garreau's particles.js, converted in TypeScript. Added many new cool features and various bug fixes.",
   "homepage": "https://particles.matteobruni.it/",
   "scripts": {
     "clear:dist": "rimraf -f dist",
     "clear:docs": "rimraf -f docs",
-    "slimbuild": "npm run clear:dist && npm run build:ts:es && npm run build:schema && webpack -p && npm run build:ts",
+    "slimbuild": "npm test && npm run clear:dist && npm run build:ts:es && npm run build:schema && webpack -p && npm run build:ts",
     "build": "npm run slimbuild && npm run build:docs",
-    "build:ts": "tsc",
     "build:ts:es": "tsc --target es6 --module es6",
+    "build:ts": "tsc",
     "build:docs": "npm run clear:docs && typedoc",
     "start": "npm run build && npm run build:demo && node demo/app.js",
     "build:demo": "npm run build:demo:style && npm run build:demo:index",
     "build:demo:index": "pug ./demo/views/index.pug",
     "build:demo:style": "stylus ./demo/public/stylesheets/main.styl",
     "build:schema": "typescript-json-schema tsconfig.json IOptions --out schema/options.schema.json",
-    "test": "mocha -r ts-node/register ./tests/**/*.spec.ts"
+    "test": "mocha -r ts-node/register 'tests/**/*.ts'"
   },
   "repository": {
     "type": "git",
@@ -46,7 +46,11 @@
     "animated",
     "background"
   ],
-  "author": "Matteo Bruni",
+  "author": "Matteo Bruni <matteo.bruni@me.com> (https://www.matteobruni.it)",
+  "contributors": [
+    "Gabriel Barker (https://github.com/gabrielbarker)",
+    "Tyler Burnett (https://github.com/TylerBurnett)"
+  ],
   "license": "MIT",
   "files": [
     "dist/**/*"

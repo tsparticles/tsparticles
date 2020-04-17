@@ -1,7 +1,7 @@
 import type { IOptionLoader } from "../../IOptionLoader";
 
 export interface IParallax extends IOptionLoader<IParallax> {
-    enable: boolean;
-    force: number;
-    smooth: number;
+	enable: boolean;
+	force: number;
+	smooth: number;
 }

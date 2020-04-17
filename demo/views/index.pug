@@ -40,6 +40,7 @@ html(lang="en")
 									option(value="customPreset") Custom Preset
 									option(value="default") Default
 									option(value="destroy") Destroy
+									option(value="emitter") Emitter
 									option(value="fontawesome") Font Awesome
 									option(value="hollowknight") Hollow Knight
 									option(value="images") Multiple Images
@@ -58,6 +59,7 @@ html(lang="en")
 									option(value="reactNightSky") React Night Sky
 									option(value="reactMultipleImages") React Multiple Images
 									option(value="reactPolygonMask") React Polygon Mask
+									option(value="divRepulse") Repulse Div
 									option(value="shadow") Shadow
 									option(value="slow") Slow on Hover
 									option(value="snow") Snow
@@ -91,6 +93,7 @@ html(lang="en")
 						.col
 							#editor
 				#tsparticles-container.col.p-0.h-100
+					#repulse-div(style="width: 200px; height: 200px; background-color: rgba(255, 255, 255, .5); border-radius: 100px; position: absolute; top: 50%; left: 50%; margin-left: -100px; margin-top: -100px; z-index: 200")
 					#tsparticles
 					.github
 						a.btn.btn-link(href="https://github.com/matteobruni/tsparticles" title="Find more info on GitHub")
@@ -119,7 +122,7 @@ html(lang="en")
 					.modal-footer
 						button.btn.btn-primary(type="button" data-dismiss="modal") Close
 
-		form(action="https://codepen.io/pen/define" method="POST" target="_blank",hidden,id="code-pen-form")
+		form(action="https://codepen.io/pen/define" method="POST" target="_blank" hidden id="code-pen-form")
 			input(type="hidden" name="data" value="" id="code-pen-data")
 			input(type="submit" value="Create Pen")
 

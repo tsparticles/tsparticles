@@ -1,4 +1,4 @@
 export interface IImage {
-    type?: string;
-    obj?: HTMLImageElement;
+	type?: string;
+	obj?: HTMLImageElement;
 }

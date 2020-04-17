@@ -1,5 +1,16 @@
 const path = require("path");
 const TerserPlugin = require('terser-webpack-plugin');
+const webpack = require('webpack');
+const version = require('./package.json').version;
+
+const banner = `Author : Matteo Bruni - https://www.matteobruni.it
+MIT license: https://opensource.org/licenses/MIT
+Demo / Generator : https://particles.matteobruni.it/
+GitHub : https://www.github.com/matteobruni/tsparticles
+How to use? : Check the GitHub README
+v${version}`;
+
+const minBanner = `tsParticles v${version} by Matteo Bruni`;
 
 module.exports = {
     // Change to your "entry-point".
@@ -24,12 +35,28 @@ module.exports = {
             loader: "babel-loader"
         }],
     },
+    plugins: [
+        new webpack.BannerPlugin({
+            banner,
+            exclude: /\.min\.js$/
+        }),
+        new webpack.BannerPlugin({
+            banner: minBanner,
+            include: /\.min\.js$/
+        })
+    ],
     optimization: {
         minimize: true,
         minimizer: [
             new TerserPlugin({
                 include: /\.min\.js$/,
-                sourceMap: true
+                sourceMap: false,
+                terserOptions: {
+                    output: {
+                        comments: minBanner
+                    }
+                },
+                extractComments: false
             })
         ]
     }

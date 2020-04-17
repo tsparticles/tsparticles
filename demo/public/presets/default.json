@@ -27,10 +27,10 @@
     },
     "opacity": {
       "value": 0.5,
-      "random": false,
+      "random": true,
       "anim": {
-        "enable": false,
-        "speed": 1,
+        "enable": true,
+        "speed": 3,
         "opacity_min": 0.1,
         "sync": false
       }
@@ -39,8 +39,8 @@
       "value": 5,
       "random": true,
       "anim": {
-        "enable": false,
-        "speed": 40,
+        "enable": true,
+        "speed": 20,
         "size_min": 0.1,
         "sync": false
       }
@@ -71,12 +71,7 @@
     "events": {
       "onhover": {
         "enable": true,
-        "mode": "repulse",
-        "parallax": {
-          "enable": false,
-          "force": 60,
-          "smooth": 10
-        }
+        "mode": "repulse"
       },
       "onclick": {
         "enable": true,

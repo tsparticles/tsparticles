@@ -93,6 +93,12 @@
     let updateParticles = function (editor) {
         let presetId = localStorage.presetId || 'default';
 
+        if (presetId == "divRepulse") {
+            document.getElementById('repulse-div').className = 'd-block';
+        } else {
+            document.getElementById('repulse-div').className = 'd-none';
+        }
+
         tsParticles.loadJSON('tsparticles', `/presets/${presetId}.json`).then((particles) => {
             localStorage.presetId = presetId;
             editor.set(particles.options);

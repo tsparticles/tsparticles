@@ -4,19 +4,21 @@ import type { IPolygonMaskMove } from "./IPolygonMaskMove";
 import type { PolygonMaskInlineArrangement } from "../../../Enums/PolygonMaskInlineArrangement";
 import type { IOptionLoader } from "../IOptionLoader";
 import type { IPolygonInline } from "./IPolygonInline";
+import type { ICoordinates } from "../../ICoordinates";
 
 export interface IPolygonMask extends IOptionLoader<IPolygonMask> {
-    draw: IPolygonMaskDraw;
-    enable: boolean;
-    inline: IPolygonInline;
+	draw: IPolygonMaskDraw;
+	enable: boolean;
+	inline: IPolygonInline;
 
-    /**
-     * @deprecated the inlineArrangement is deprecated, please use the new inline.arrangement property
-     */
-    inlineArrangement: PolygonMaskInlineArrangement;
+	/**
+	 * @deprecated the inlineArrangement is deprecated, please use the new inline.arrangement property
+	 */
+	inlineArrangement: PolygonMaskInlineArrangement;
 
-    move: IPolygonMaskMove;
-    scale: number;
-    type: PolygonMaskType;
-    url: string;
+	move: IPolygonMaskMove;
+	position?: ICoordinates;
+	scale: number;
+	type: PolygonMaskType;
+	url: string;
 }

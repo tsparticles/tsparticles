@@ -2,29 +2,29 @@ import type { IParallax } from "../../../../Interfaces/Options/Interactivity/Eve
 import type { RecursivePartial } from "../../../../Types/RecursivePartial";
 
 export class Parallax implements IParallax {
-    public enable: boolean;
-    public force: number;
-    public smooth: number;
+	public enable: boolean;
+	public force: number;
+	public smooth: number;
 
-    constructor() {
-        this.enable = false;
-        this.force = 2;
-        this.smooth = 10;
-    }
+	constructor() {
+		this.enable = false;
+		this.force = 2;
+		this.smooth = 10;
+	}
 
-    public load(data?: RecursivePartial<IParallax>): void {
-        if (data !== undefined) {
-            if (data.enable !== undefined) {
-                this.enable = data.enable;
-            }
+	public load(data?: RecursivePartial<IParallax>): void {
+		if (data !== undefined) {
+			if (data.enable !== undefined) {
+				this.enable = data.enable;
+			}
 
-            if (data.force !== undefined) {
-                this.force = data.force;
-            }
+			if (data.force !== undefined) {
+				this.force = data.force;
+			}
 
-            if (data.smooth !== undefined) {
-                this.smooth = data.smooth;
-            }
-        }
-    }
+			if (data.smooth !== undefined) {
+				this.smooth = data.smooth;
+			}
+		}
+	}
 }
