@@ -1,4 +1,7 @@
+import type { SizeAnimationStatus } from "../Enums/SizeAnimationStatus";
+
 export interface ISize {
-    status?: boolean;
-    velocity?: number;
+	status?: SizeAnimationStatus;
+	velocity?: number;
+	value: number;
 }

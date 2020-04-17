@@ -1,59 +1,59 @@
 import type { IImageShape } from "../../../../Interfaces/Options/Particles/Shape/IImageShape";
 import type { RecursivePartial } from "../../../../Types/RecursivePartial";
+import { ShapeBase } from "./ShapeBase";
 
-export class ImageShape implements IImageShape {
-    /**
-     *
-     * @deprecated this property is obsolete, please use the new replaceColor
-     */
-    public get replace_color(): boolean {
-        return this.replaceColor;
-    }
+export class ImageShape extends ShapeBase implements IImageShape {
+	/**
+	 *
+	 * @deprecated this property is obsolete, please use the new replaceColor
+	 */
+	public get replace_color(): boolean {
+		return this.replaceColor;
+	}
 
-    /**
-     *
-     * @deprecated this property is obsolete, please use the new replaceColor
-     * @param value
-     */
-    public set replace_color(value: boolean) {
-        this.replaceColor = value;
-    }
+	/**
+	 *
+	 * @deprecated this property is obsolete, please use the new replaceColor
+	 * @param value
+	 */
+	public set replace_color(value: boolean) {
+		this.replaceColor = value;
+	}
 
-    public height: number;
-    public replaceColor: boolean;
-    public src: string;
-    public width: number;
-    public fill?: boolean;
-    public close?: boolean;
+	public height: number;
+	public replaceColor: boolean;
+	public src: string;
+	public width: number;
 
-    constructor() {
-        this.height = 100;
-        this.replaceColor = true;
-        this.src = "";
-        this.width = 100;
-        this.fill = true;
-        this.close = true;
-    }
+	constructor() {
+		super();
+		this.height = 100;
+		this.replaceColor = true;
+		this.src = "";
+		this.width = 100;
+	}
 
-    public load(data?: RecursivePartial<IImageShape>): void {
-        if (data !== undefined) {
-            if (data.height !== undefined) {
-                this.height = data.height;
-            }
+	public load(data?: RecursivePartial<IImageShape>): void {
+		super.load(data);
 
-            if (data.replaceColor !== undefined) {
-                this.replaceColor = data.replaceColor;
-            } else if (data.replace_color !== undefined) {
-                this.replace_color = data.replace_color;
-            }
+		if (data !== undefined) {
+			if (data.height !== undefined) {
+				this.height = data.height;
+			}
 
-            if (data.src !== undefined) {
-                this.src = data.src;
-            }
+			const replaceColor = data.replaceColor ?? data.replace_color;
 
-            if (data.width !== undefined) {
-                this.width = data.width;
-            }
-        }
-    }
+			if (replaceColor !== undefined) {
+				this.replaceColor = replaceColor;
+			}
+
+			if (data.src !== undefined) {
+				this.src = data.src;
+			}
+
+			if (data.width !== undefined) {
+				this.width = data.width;
+			}
+		}
+	}
 }

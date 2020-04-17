@@ -8,7 +8,6 @@ import { Particles } from "./Particles";
 import { Retina } from "./Retina";
 import { ShapeType } from "../Enums/ShapeType";
 import { PolygonMask } from "./PolygonMask";
-import { ImageShape } from "./Options/Particles/Shape/ImageShape";
 import type { IOptions } from "../Interfaces/Options/IOptions";
 import { FrameManager } from "./FrameManager";
 import type { RecursivePartial } from "../Types/RecursivePartial";
@@ -16,312 +15,268 @@ import { Options } from "./Options/Options";
 import { Utils } from "./Utils/Utils";
 import type { IImageShape } from "../Interfaces/Options/Particles/Shape/IImageShape";
 import { Presets } from "./Utils/Presets";
-
-declare global {
-    interface Window {
-        customRequestAnimationFrame: (callback: FrameRequestCallback) => number;
-        mozRequestAnimationFrame: (callback: FrameRequestCallback) => number;
-        oRequestAnimationFrame: (callback: FrameRequestCallback) => number;
-        msRequestAnimationFrame: (callback: FrameRequestCallback) => number;
-        customCancelRequestAnimationFrame: (handle: number) => void;
-        webkitCancelRequestAnimationFrame: (handle: number) => void;
-        mozCancelRequestAnimationFrame: (handle: number) => void;
-        oCancelRequestAnimationFrame: (handle: number) => void;
-        msCancelRequestAnimationFrame: (handle: number) => void;
-    }
-}
-
-/* ---------- global functions - vendors ------------ */
-
-window.customRequestAnimationFrame = (() => {
-    return window.requestAnimationFrame ||
-        window.webkitRequestAnimationFrame ||
-        window.mozRequestAnimationFrame ||
-        window.oRequestAnimationFrame ||
-        window.msRequestAnimationFrame ||
-        ((callback) => window.setTimeout(callback, 1000 / 60));
-})();
-
-window.customCancelRequestAnimationFrame = (() => {
-    return window.cancelAnimationFrame ||
-        window.webkitCancelRequestAnimationFrame ||
-        window.mozCancelRequestAnimationFrame ||
-        window.oCancelRequestAnimationFrame ||
-        window.msCancelRequestAnimationFrame ||
-        clearTimeout
-})();
+import { Emitter } from "./Emitter";
 
 /**
  * The object loaded into an HTML element, it'll contain options loaded and all data to let everything working
  */
 export class Container {
-    public readonly sourceOptions?: RecursivePartial<IOptions>;
-    public readonly id: string;
-    public interactivity: IContainerInteractivity;
-    public options: IOptions;
-    public retina: Retina;
-    public canvas: Canvas;
-    public particles: Particles;
-    public polygon: PolygonMask;
-    public bubble: IBubble;
-    public repulse: IRepulse;
-    public images: IImage[];
-    public lastFrameTime: number;
-    public pageHidden: boolean;
-    public drawer: FrameManager;
-    public started: boolean;
-    public destroyed: boolean;
+	public readonly sourceOptions?: RecursivePartial<IOptions>;
+	public readonly id: string;
+	public interactivity: IContainerInteractivity;
+	public options: IOptions;
+	public retina: Retina;
+	public canvas: Canvas;
+	public particles: Particles;
+	public emitters: Emitter[];
+	public polygon: PolygonMask;
+	public bubble: IBubble;
+	public repulse: IRepulse;
+	public images: IImage[];
+	public lastFrameTime: number;
+	public pageHidden: boolean;
+	public drawer: FrameManager;
+	public started: boolean;
+	public destroyed: boolean;
 
-    private paused: boolean;
-    private drawAnimationFrame?: number;
-    private eventListeners: EventListeners;
+	private paused: boolean;
+	private drawAnimationFrame?: number;
+	private eventListeners: EventListeners;
 
-    /**
-     * This is the core class, create an instance to have a new working particles manager
-     * @constructor
-     * @param id the id to identify this instance
-     * @param params the options to load
-     * @param presets all the presets to load with options
-     */
-    constructor(id: string, params?: RecursivePartial<IOptions>, ...presets: string[]) {
-        this.started = false;
-        this.destroyed = false;
-        this.id = id;
-        this.paused = true;
-        this.sourceOptions = params;
-        this.lastFrameTime = 0;
-        this.pageHidden = false;
-        this.retina = new Retina(this);
-        this.canvas = new Canvas(this);
-        this.particles = new Particles(this);
-        this.polygon = new PolygonMask(this);
-        this.drawer = new FrameManager(this);
-        this.interactivity = {
-            mouse: {},
-        };
-        this.images = [];
-        this.bubble = {};
-        this.repulse = {};
+	/**
+	 * This is the core class, create an instance to have a new working particles manager
+	 * @constructor
+	 * @param id the id to identify this instance
+	 * @param params the options to load
+	 * @param presets all the presets to load with options
+	 */
+	constructor(id: string, params?: RecursivePartial<IOptions>, ...presets: string[]) {
+		this.started = false;
+		this.destroyed = false;
+		this.id = id;
+		this.paused = true;
+		this.sourceOptions = params;
+		this.lastFrameTime = 0;
+		this.pageHidden = false;
+		this.retina = new Retina(this);
+		this.canvas = new Canvas(this);
+		this.particles = new Particles(this);
+		this.polygon = new PolygonMask(this);
+		this.drawer = new FrameManager(this);
+		this.interactivity = {
+			mouse: {},
+		};
+		this.images = [];
+		this.bubble = {};
+		this.repulse = {};
+		this.emitters = [];
 
-        /* tsParticles variables with default values */
-        this.options = new Options();
+		/* tsParticles variables with default values */
+		this.options = new Options();
 
-        for (const preset of presets) {
-            this.options.load(Presets.getPreset(preset));
-        }
+		for (const preset of presets) {
+			this.options.load(Presets.getPreset(preset));
+		}
 
-        /* params settings */
-        if (this.sourceOptions) {
-            this.options.load(this.sourceOptions);
-        }
+		/* params settings */
+		if (this.sourceOptions) {
+			this.options.load(this.sourceOptions);
+		}
 
-        /* ---------- tsParticles - start ------------ */
-        this.eventListeners = new EventListeners(this);
-    }
+		/* ---------- tsParticles - start ------------ */
+		this.eventListeners = new EventListeners(this);
+	}
 
-    public static requestFrame(callback: FrameRequestCallback): number {
-        return window.customRequestAnimationFrame(callback);
-    }
+	public static requestFrame(callback: FrameRequestCallback): number {
+		return window.customRequestAnimationFrame(callback);
+	}
 
-    public static cancelAnimation(handle: number): void {
-        window.cancelAnimationFrame(handle);
-    }
+	public static cancelAnimation(handle: number): void {
+		window.cancelAnimationFrame(handle);
+	}
 
-    public play(): void {
-        if (this.paused) {
-            this.lastFrameTime = performance.now();
-            this.paused = false;
-        }
+	public play(): void {
+		if (this.paused) {
+			this.lastFrameTime = performance.now();
+			this.paused = false;
+			for (const emitter of this.emitters) {
+				emitter.start();
+			}
+		}
 
-        this.drawAnimationFrame = Container.requestFrame((t) => this.drawer.nextFrame(t));
-    }
+		this.drawAnimationFrame = Container.requestFrame((t) => this.drawer.nextFrame(t));
+	}
 
-    public pause(): void {
-        if (this.drawAnimationFrame !== undefined) {
-            Container.cancelAnimation(this.drawAnimationFrame);
+	public pause(): void {
+		if (this.drawAnimationFrame !== undefined) {
+			for (const emitter of this.emitters) {
+				emitter.stop();
+			}
 
-            delete this.drawAnimationFrame;
+			Container.cancelAnimation(this.drawAnimationFrame);
 
-            this.paused = true;
-        }
-    }
+			delete this.drawAnimationFrame;
 
-    /* ---------- tsParticles functions - vendors ------------ */
+			this.paused = true;
+		}
+	}
 
-    public densityAutoParticles(): void {
-        if (!(this.canvas.element && this.options.particles.number.density.enable)) {
-            return;
-        }
+	/* ---------- tsParticles functions - vendors ------------ */
 
-        let area = this.canvas.element.width * this.canvas.element.height / 1000;
+	public densityAutoParticles(): void {
+		if (!(this.canvas.element && this.options.particles.number.density.enable)) {
+			return;
+		}
 
-        if (this.retina.isRetina) {
-            area /= this.retina.pxRatio * 2;
-        }
+		let area = this.canvas.element.width * this.canvas.element.height / 1000;
 
-        const optParticlesNumber = this.options.particles.number.value;
-        const density = this.options.particles.number.density.area;
-        const particlesNumber = area * optParticlesNumber / density;
-        const particlesCount = this.particles.count;
+		if (this.retina.isRetina) {
+			area /= this.retina.pixelRatio * 2;
+		}
 
-        if (particlesCount < particlesNumber) {
-            this.particles.push(Math.abs(particlesNumber - particlesCount));
-        } else if (particlesCount > particlesNumber) {
-            this.particles.removeQuantity(particlesCount - particlesNumber);
-        }
-    }
+		const optParticlesNumber = this.options.particles.number.value;
+		const density = this.options.particles.number.density.area;
+		const particlesNumber = area * optParticlesNumber / density;
+		const particlesCount = this.particles.count;
 
-    public destroy(): void {
-        this.stop();
+		if (particlesCount < particlesNumber) {
+			this.particles.push(Math.abs(particlesNumber - particlesCount));
+		} else if (particlesCount > particlesNumber) {
+			this.particles.removeQuantity(particlesCount - particlesNumber);
+		}
+	}
 
-        this.retina.reset();
-        this.canvas.destroy();
+	public destroy(): void {
+		this.stop();
 
-        delete this.interactivity;
-        delete this.options;
-        delete this.retina;
-        delete this.canvas;
-        delete this.particles;
-        delete this.polygon;
-        delete this.bubble;
-        delete this.repulse;
-        delete this.images;
-        delete this.drawer;
-        delete this.eventListeners;
+		this.retina.reset();
+		this.canvas.destroy();
 
-        this.destroyed = true;
-    }
+		delete this.interactivity;
+		delete this.options;
+		delete this.retina;
+		delete this.canvas;
+		delete this.particles;
+		delete this.polygon;
+		delete this.bubble;
+		delete this.repulse;
+		delete this.images;
+		delete this.drawer;
+		delete this.eventListeners;
 
-    /**
-     * @deprecated this method is deprecated, please use the exportImage method
-     */
-    public exportImg(callback: BlobCallback): void {
-        this.exportImage(callback);
-    }
+		this.destroyed = true;
+	}
 
-    public exportImage(callback: BlobCallback, type?: string, quality?: number): void {
-        return this.canvas.element?.toBlob(callback, type ?? "image/png", quality);
-    }
+	/**
+	 * @deprecated this method is deprecated, please use the exportImage method
+	 */
+	public exportImg(callback: BlobCallback): void {
+		this.exportImage(callback);
+	}
 
-    public exportConfiguration(): string {
-        return JSON.stringify(this.options, undefined, 2);
-    }
+	public exportImage(callback: BlobCallback, type?: string, quality?: number): void {
+		return this.canvas.element?.toBlob(callback, type ?? "image/png", quality);
+	}
 
-    public loadImage(image: IImage, optionsImage: ImageShape): Promise<void> {
-        return new Promise((resolve: (value?: void | PromiseLike<void> | undefined) => void,
-            reject: (reson?: any) => void) => {
-            image.error = false;
+	public exportConfiguration(): string {
+		return JSON.stringify(this.options, undefined, 2);
+	}
 
-            if (optionsImage.src) {
-                const img = new Image();
+	public async refresh(): Promise<void> {
+		/* restart */
+		this.stop();
+		await this.start();
+	}
 
-                img.addEventListener("load", () => {
-                    image.obj = img;
+	public stop(): void {
+		if (!this.started) {
+			return;
+		}
 
-                    resolve();
-                });
+		this.started = false;
+		this.eventListeners.removeListeners();
+		this.pause();
+		this.images = [];
+		this.particles.clear();
+		this.retina.reset();
+		this.canvas.clear();
+		this.polygon.reset();
 
-                img.addEventListener("error", () => {
-                    image.error = true;
+		for (const emitter of this.emitters) {
+			emitter.stop();
+		}
 
-                    reject(`Error tsParticles - loading image: ${optionsImage.src}`);
-                });
+		this.emitters = [];
 
-                img.src = optionsImage.src;
-            } else {
-                image.error = true;
+		delete this.particles.lineLinkedColor;
+	}
 
-                reject("Error tsParticles - No image.src");
-            }
-        });
-    }
+	public async start(): Promise<void> {
+		if (this.started) {
+			return;
+		}
 
-    public async refresh(): Promise<void> {
-        /* restart */
-        this.stop();
-        await this.start();
-    }
+		this.started = true;
 
-    public stop(): void {
-        if (!this.started) {
-            return;
-        }
+		this.eventListeners.addListeners();
 
-        this.started = false;
-        this.eventListeners.removeListeners();
-        this.pause();
-        this.images = [];
-        this.particles.clear();
-        this.retina.reset();
-        this.canvas.clear();
-        this.polygon.reset();
+		await this.polygon.init();
 
-        delete this.particles.lineLinkedColor;
-    }
+		if (Utils.isInArray(ShapeType.char, this.options.particles.shape.type) ||
+			Utils.isInArray(ShapeType.character, this.options.particles.shape.type)) {
+			if (this.options.particles.shape.character instanceof Array) {
+				for (const character of this.options.particles.shape.character) {
+					await Utils.loadFont(character);
+				}
+			} else {
+				const character = this.options.particles.shape.character;
 
-    public async start(): Promise<void> {
-        if (this.started) {
-            return;
-        }
+				if (character !== undefined) {
+					await Utils.loadFont(character);
+				}
+			}
+		}
 
-        this.started = true;
+		if (Utils.isInArray(ShapeType.image, this.options.particles.shape.type)) {
+			if (this.options.particles.shape.image instanceof Array) {
+				for (const optionsImage of this.options.particles.shape.image) {
+					await this.loadImageShape(optionsImage);
+				}
+			} else {
+				await this.loadImageShape(this.options.particles.shape.image);
+			}
+		}
 
-        this.eventListeners.addListeners();
+		this.init();
+		this.play();
+	}
 
-        await this.polygon.init();
+	private async loadImageShape(imageShape: IImageShape): Promise<void> {
+		try {
+			this.images.push(await Utils.loadImage(imageShape));
+		} catch {
+		}
+	}
 
-        if (Utils.isInArray(ShapeType.char, this.options.particles.shape.type) ||
-            Utils.isInArray(ShapeType.character, this.options.particles.shape.type)) {
-            if (this.options.particles.shape.character instanceof Array) {
-                for (const character of this.options.particles.shape.character) {
-                    await Utils.loadFont(character);
-                }
-            } else {
-                const character = this.options.particles.shape.character;
-                await Utils.loadFont(character);
-            }
-        }
+	private init(): void {
+		/* init canvas + particles */
+		this.retina.init();
+		this.canvas.init();
+		this.particles.init();
 
-        if (Utils.isInArray(ShapeType.image, this.options.particles.shape.type)) {
-            if (this.options.particles.shape.image instanceof Array) {
-                for (const optionsImage of this.options.particles.shape.image) {
-                    await this.loadImageShape(optionsImage);
-                }
-            } else {
-                await this.loadImageShape(this.options.particles.shape.image);
-            }
-        }
+		if (this.options.emitters instanceof Array) {
+			for (const emitterOptions of this.options.emitters) {
+				const emitter = new Emitter(this, emitterOptions);
 
-        this.checkBeforeDraw();
-    }
+				this.emitters.push(emitter);
+			}
+		} else {
+			const emitterOptions = this.options.emitters;
+			const emitter = new Emitter(this, emitterOptions);
 
-    private async loadImageShape(imageShape: IImageShape): Promise<void> {
-        const src = imageShape.src;
-        const image: IImage = { error: false };
+			this.emitters.push(emitter);
+		}
 
-        image.type = src.substr(src.length - 3);
-
-        await this.loadImage(image, imageShape);
-
-        this.images.push(image);
-    }
-
-    private init(): void {
-        /* init canvas + particles */
-        this.retina.init();
-        this.canvas.init();
-        this.particles.init();
-        this.densityAutoParticles();
-    }
-
-    private checkBeforeDraw(): void {
-        if (this.options.particles.shape.type === ShapeType.image) {
-            if (this.images.every((img) => img.error)) {
-                return;
-            }
-        }
-
-        this.init();
-        this.play();
-    }
+		this.densityAutoParticles();
+	}
 }

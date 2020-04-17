@@ -81,12 +81,10 @@
     "events": {
       "onhover": {
         "enable": true,
-        "mode": [
-          "grab"
-        ]
+        "mode": "grab"
       },
       "onclick": {
-        "enable": false,
+        "enable": true,
         "mode": "bubble"
       },
       "resize": true
@@ -103,7 +101,8 @@
         "size": 40,
         "duration": 2,
         "opacity": 8,
-        "speed": 3
+        "speed": 3,
+        "color": "#ffff00"
       },
       "repulse": {
         "distance": 200

@@ -1,3 +1,3 @@
 export enum DivMode {
-    repulse = "repulse",
+	repulse = "repulse",
 }

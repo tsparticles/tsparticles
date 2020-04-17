@@ -2,5 +2,5 @@ import type { PolygonMaskInlineArrangement } from "../../../Enums/PolygonMaskInl
 import type { IOptionLoader } from "../IOptionLoader";
 
 export interface IPolygonInline extends IOptionLoader<IPolygonInline> {
-    arrangement: PolygonMaskInlineArrangement
+	arrangement: PolygonMaskInlineArrangement
 }

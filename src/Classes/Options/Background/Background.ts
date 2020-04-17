@@ -1,46 +1,45 @@
 import type { IBackground } from "../../../Interfaces/Options/Background/IBackground";
 import type { RecursivePartial } from "../../../Types/RecursivePartial";
-import { Color } from "../Particles/Color";
-import type { IColor } from "../../../Interfaces/Options/Particles/IColor";
+import { OptionsColor } from "../Particles/OptionsColor";
+import type { IOptionsColor } from "../../../Interfaces/Options/Particles/IOptionsColor";
 
 export class Background implements IBackground {
-    public color?: IColor | string;
-    public image?: string;
-    public position?: string;
-    public repeat?: string;
-    public size?: string;
-    public opacity?: number;
+	public color?: IOptionsColor;
+	public image?: string;
+	public position?: string;
+	public repeat?: string;
+	public size?: string;
+	public opacity?: number;
 
-    public load(data?: RecursivePartial<IBackground>): void {
-        if (data !== undefined) {
-            if (data.color !== undefined) {
-                if (typeof data.color === "string") {
-                    this.color = data.color;
-                } else {
-                    this.color = new Color();
-                    this.color.load(data.color);
-                }
-            }
+	public load(data?: RecursivePartial<IBackground>): void {
+		if (data !== undefined) {
+			if (data.color !== undefined) {
+				if (this.color === undefined) {
+					this.color = new OptionsColor();
+				}
 
-            if (data.image !== undefined) {
-                this.image = data.image;
-            }
+				this.color.load(typeof data.color === "string" ? { value: data.color } : data.color);
+			}
 
-            if (data.position !== undefined) {
-                this.position = data.position;
-            }
+			if (data.image !== undefined) {
+				this.image = data.image;
+			}
 
-            if (data.repeat !== undefined) {
-                this.repeat = data.repeat;
-            }
+			if (data.position !== undefined) {
+				this.position = data.position;
+			}
 
-            if (data.size !== undefined) {
-                this.size = data.size;
-            }
+			if (data.repeat !== undefined) {
+				this.repeat = data.repeat;
+			}
 
-            if (data.opacity !== undefined) {
-                this.opacity = data.opacity;
-            }
-        }
-    }
+			if (data.size !== undefined) {
+				this.size = data.size;
+			}
+
+			if (data.opacity !== undefined) {
+				this.opacity = data.opacity;
+			}
+		}
+	}
 }

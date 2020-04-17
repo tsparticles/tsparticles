@@ -4,48 +4,44 @@ import type { IConnectLineLinked } from "../../../../Interfaces/Options/Interact
 import type { RecursivePartial } from "../../../../Types/RecursivePartial";
 
 export class Connect implements IConnect {
-    /**
-     *
-     * @deprecated this property is obsolete, please use the new lineLinked
-     */
-    public get line_linked(): IConnectLineLinked {
-        return this.lineLinked;
-    }
+	/**
+	 *
+	 * @deprecated this property is obsolete, please use the new lineLinked
+	 */
+	public get line_linked(): IConnectLineLinked {
+		return this.lineLinked;
+	}
 
-    /**
-     *
-     * @deprecated this property is obsolete, please use the new lineLinked
-     * @param value
-     */
-    public set line_linked(value: IConnectLineLinked) {
-        this.lineLinked = value;
-    }
+	/**
+	 *
+	 * @deprecated this property is obsolete, please use the new lineLinked
+	 * @param value
+	 */
+	public set line_linked(value: IConnectLineLinked) {
+		this.lineLinked = value;
+	}
 
-    public distance: number;
-    public lineLinked: IConnectLineLinked;
-    public radius: number;
+	public distance: number;
+	public lineLinked: IConnectLineLinked;
+	public radius: number;
 
-    constructor() {
-        this.distance = 80;
-        this.lineLinked = new ConnectLineLinked();
-        this.radius = 60;
-    }
+	constructor() {
+		this.distance = 80;
+		this.lineLinked = new ConnectLineLinked();
+		this.radius = 60;
+	}
 
-    public load(data?: RecursivePartial<IConnect>): void {
-        if (data !== undefined) {
-            if (data.distance !== undefined) {
-                this.distance = data.distance;
-            }
+	public load(data?: RecursivePartial<IConnect>): void {
+		if (data !== undefined) {
+			if (data.distance !== undefined) {
+				this.distance = data.distance;
+			}
 
-            if (data.lineLinked !== undefined) {
-                this.lineLinked.load(data.lineLinked);
-            } else if (data.line_linked !== undefined) {
-                this.line_linked.load(data.line_linked);
-            }
+			this.lineLinked.load(data.lineLinked ?? data.line_linked);
 
-            if (data.radius !== undefined) {
-                this.radius = data.radius;
-            }
-        }
-    }
+			if (data.radius !== undefined) {
+				this.radius = data.radius;
+			}
+		}
+	}
 }

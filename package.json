@@ -1,20 +1,22 @@
 {
   "name": "tsparticles",
-  "version": "1.12.1",
+  "version": "1.13.0-alpha.2",
   "description": "Porting of the abandoned Vincent Garreau's particles.js, converted in TypeScript. Added many new cool features and various bug fixes.",
   "homepage": "https://particles.matteobruni.it/",
   "scripts": {
     "clear:dist": "rimraf -f dist",
     "clear:docs": "rimraf -f docs",
-    "slimbuild": "npm run clear:dist && npm run build:ts && npm run build:schema && webpack -p",
+    "slimbuild": "npm test && npm run clear:dist && npm run build:ts:es && npm run build:schema && webpack -p && npm run build:ts",
     "build": "npm run slimbuild && npm run build:docs",
+    "build:ts:es": "tsc --target es6 --module es6",
     "build:ts": "tsc",
     "build:docs": "npm run clear:docs && typedoc",
     "start": "npm run build && npm run build:demo && node demo/app.js",
     "build:demo": "npm run build:demo:style && npm run build:demo:index",
     "build:demo:index": "pug ./demo/views/index.pug",
     "build:demo:style": "stylus ./demo/public/stylesheets/main.styl",
-    "build:schema": "typescript-json-schema tsconfig.json IOptions --out schema/options.schema.json"
+    "build:schema": "typescript-json-schema tsconfig.json IOptions --out schema/options.schema.json",
+    "test": "mocha -r ts-node/register 'tests/**/*.ts'"
   },
   "repository": {
     "type": "git",
@@ -44,26 +46,37 @@
     "animated",
     "background"
   ],
-  "author": "Matteo Bruni",
+  "author": "Matteo Bruni <matteo.bruni@me.com> (https://www.matteobruni.it)",
+  "contributors": [
+    "Gabriel Barker (https://github.com/gabrielbarker)",
+    "Tyler Burnett (https://github.com/TylerBurnett)"
+  ],
   "license": "MIT",
   "files": [
     "dist/**/*"
   ],
-  "types": "dist/Main.d.ts",
+  "types": "dist/index.d.ts",
   "bugs": {
     "url": "https://github.com/matteobruni/tsparticles/issues"
   },
-  "main": "dist/tsparticles.min.js",
+  "main": "dist/index.js",
+  "jsdelivr": "dist/tsparticles.min.js",
+  "unpkg": "dist/tsparticles.min.js",
+  "browser": "dist/index.js",
   "devDependencies": {
     "@babel/core": "^7.9.0",
     "@fortawesome/fontawesome-free": "^5.13.0",
+    "@types/chai": "^4.2.11",
+    "@types/mocha": "^7.0.2",
     "babel-loader": "^8.1.0",
     "bootstrap": "^4.4.1",
+    "chai": "^4.2.0",
     "express": "^4.17.1",
     "helmet": "^3.22.0",
     "install": "^0.13.0",
     "jquery": "^3.4.1",
     "jsoneditor": "^8.6.4",
+    "mocha": "^7.1.1",
     "popper.js": "^1.16.1",
     "pug": "^2.0.4",
     "reflect-metadata": "^0.1.13",
@@ -71,6 +84,7 @@
     "stylus": "^0.54.7",
     "terser-webpack-plugin": "^2.3.5",
     "three": "^0.115.0",
+    "ts-node": "^8.8.2",
     "typedoc": "^0.17.3",
     "typescript": "^3.8.3",
     "typescript-json-schema": "^0.42.0",

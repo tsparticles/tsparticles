@@ -19,6 +19,7 @@
             "type": "object"
         },
         "IBackground": {
+            "description": "The background options used by the canvas element, it's not drawn, it's applied in the style",
             "properties": {
                 "color": {
                     "anyOf": [
@@ -28,27 +29,34 @@
                         {
                             "type": "string"
                         }
-                    ]
+                    ],
+                    "description": "The background color used by the canvas element, string or [[IColor]] value"
                 },
                 "image": {
+                    "description": "The background image used by the canvas element, its value will be used to set CSS property background-image",
                     "type": "string"
                 },
                 "opacity": {
+                    "description": "The background opacity",
                     "type": "number"
                 },
                 "position": {
+                    "description": "The background position, it's used by the CSS property background-position",
                     "type": "string"
                 },
                 "repeat": {
+                    "description": "The background position, it's used by the CSS property background-repeat",
                     "type": "string"
                 },
                 "size": {
+                    "description": "The background size, it's used by the CSS property background-size",
                     "type": "string"
                 }
             },
             "type": "object"
         },
         "IBackgroundMask": {
+            "description": "The options to apply a base color to canvas to cover what's behind\nThe particles will unveil what is covered by the canvas",
             "properties": {
                 "cover": {
                     "anyOf": [
@@ -57,21 +65,36 @@
                         },
                         {
                             "$ref": "#/definitions/IBackgroundMaskCover"
+                        },
+                        {
+                            "type": "string"
                         }
-                    ]
+                    ],
+                    "description": "The color to use as a canvas background to cover"
                 },
                 "enable": {
+                    "description": "This settings enables the cover and the particles behavior as unveiling elements",
                     "type": "boolean"
                 }
             },
             "type": "object"
         },
         "IBackgroundMaskCover": {
+            "description": "The background cover customization",
             "properties": {
                 "color": {
-                    "$ref": "#/definitions/IColor"
+                    "anyOf": [
+                        {
+                            "$ref": "#/definitions/IColor"
+                        },
+                        {
+                            "type": "string"
+                        }
+                    ],
+                    "description": "The background color hiding all elements behind, string or [[IColor]] value."
                 },
                 "opacity": {
+                    "description": "The opacity of the background",
                     "type": "number"
                 }
             },
@@ -79,6 +102,29 @@
         },
         "IBubble": {
             "properties": {
+                "color": {
+                    "anyOf": [
+                        {
+                            "$ref": "#/definitions/IColor"
+                        },
+                        {
+                            "items": {
+                                "anyOf": [
+                                    {
+                                        "$ref": "#/definitions/IColor"
+                                    },
+                                    {
+                                        "type": "string"
+                                    }
+                                ]
+                            },
+                            "type": "array"
+                        },
+                        {
+                            "type": "string"
+                        }
+                    ]
+                },
                 "distance": {
                     "type": "number"
                 },
@@ -105,6 +151,9 @@
                 "font": {
                     "type": "string"
                 },
+                "particles": {
+                    "$ref": "#/definitions/IParticles"
+                },
                 "style": {
                     "type": "string"
                 },
@@ -128,8 +177,10 @@
             "type": "object"
         },
         "IClickEvent": {
+            "description": "The canvas click event",
             "properties": {
                 "enable": {
+                    "description": "This property enables or disables the click event",
                     "type": "boolean"
                 },
                 "mode": {
@@ -138,6 +189,7 @@
                             "items": {
                                 "enum": [
                                     "bubble",
+                                    "emitter",
                                     "push",
                                     "remove",
                                     "repulse"
@@ -149,13 +201,15 @@
                         {
                             "enum": [
                                 "bubble",
+                                "emitter",
                                 "push",
                                 "remove",
                                 "repulse"
                             ],
                             "type": "string"
                         }
-                    ]
+                    ],
+                    "description": "This property contains a [[ClickMode]] value or an array of those values.\nIf this value is an array, every mode will be used on click."
                 }
             },
             "type": "object"
@@ -237,6 +291,17 @@
             },
             "type": "object"
         },
+        "IDimension": {
+            "properties": {
+                "height": {
+                    "type": "number"
+                },
+                "width": {
+                    "type": "number"
+                }
+            },
+            "type": "object"
+        },
         "IDivEvent": {
             "properties": {
                 "el": {
@@ -266,6 +331,68 @@
                             "type": "string"
                         }
                     ]
+                }
+            },
+            "type": "object"
+        },
+        "IEmitter": {
+            "description": "Particles emitter object options",
+            "properties": {
+                "direction": {
+                    "$ref": "#/definitions/MoveDirection",
+                    "description": "The direction of the emitted particles, [[MoveDirection]] is the enum used for values"
+                },
+                "life": {
+                    "$ref": "#/definitions/IEmitterLife",
+                    "description": "The emitter life options"
+                },
+                "particles": {
+                    "$ref": "#/definitions/IParticles",
+                    "description": "Particles emitted customization.\nThese settings will overrides other particles settings for the particles emitted by this emitter\nParticles number options won't override anything, they will be ignored completely"
+                },
+                "position": {
+                    "$ref": "#/definitions/ICoordinates",
+                    "description": "The relative position (in percent) of the emitter, where particles spawns.\nIf size is specified the position will be the center of the size options"
+                },
+                "rate": {
+                    "$ref": "#/definitions/IEmitterRate",
+                    "description": "The particles emitting rate options"
+                },
+                "size": {
+                    "$ref": "#/definitions/IDimension",
+                    "description": "The size of the particles emitter area"
+                }
+            },
+            "type": "object"
+        },
+        "IEmitterLife": {
+            "description": "The particles emitter life options",
+            "properties": {
+                "count": {
+                    "description": "The count of lives the particles emitter has.\nIf <= 0 or not specified infinity will be the value.\nIf the count is > 0 it will spawn only that number of times then it'll be destroyed and removed",
+                    "type": "number"
+                },
+                "delay": {
+                    "description": "The delay between any spawn, except first.",
+                    "type": "number"
+                },
+                "duration": {
+                    "description": "The duration of any emitter life.\nIf <= 0 or  not specified infinity will be the value.",
+                    "type": "number"
+                }
+            },
+            "type": "object"
+        },
+        "IEmitterRate": {
+            "description": "The particles emitter rate options",
+            "properties": {
+                "delay": {
+                    "description": "The emitting velocity, how many seconds will pass between the next particles creation\nDecimal values allowed",
+                    "type": "number"
+                },
+                "quantity": {
+                    "description": "The emitting quantity, how many particles will be created at every creation event",
+                    "type": "number"
                 }
             },
             "type": "object"
@@ -381,6 +508,9 @@
                 "height": {
                     "type": "number"
                 },
+                "particles": {
+                    "$ref": "#/definitions/IParticles"
+                },
                 "replaceColor": {
                     "type": "boolean"
                 },
@@ -478,6 +608,19 @@
                 "connect": {
                     "$ref": "#/definitions/IConnect"
                 },
+                "emitters": {
+                    "anyOf": [
+                        {
+                            "$ref": "#/definitions/IEmitter"
+                        },
+                        {
+                            "items": {
+                                "$ref": "#/definitions/IEmitter"
+                            },
+                            "type": "array"
+                        }
+                    ]
+                },
                 "grab": {
                     "$ref": "#/definitions/IGrab"
                 },
@@ -545,7 +688,7 @@
                 "random": {
                     "anyOf": [
                         {
-                            "$ref": "#/definitions/IRandomOpacity"
+                            "$ref": "#/definitions/IOpacityRandom"
                         },
                         {
                             "type": "boolean"
@@ -574,6 +717,17 @@
                 },
                 "sync": {
                     "type": "boolean"
+                }
+            },
+            "type": "object"
+        },
+        "IOpacityRandom": {
+            "properties": {
+                "enable": {
+                    "type": "boolean"
+                },
+                "minimumValue": {
+                    "type": "number"
                 }
             },
             "type": "object"
@@ -692,6 +846,9 @@
                 "move": {
                     "$ref": "#/definitions/IPolygonMaskMove"
                 },
+                "position": {
+                    "$ref": "#/definitions/ICoordinates"
+                },
                 "scale": {
                     "type": "number"
                 },
@@ -771,6 +928,9 @@
                 "nb_sides": {
                     "type": "number"
                 },
+                "particles": {
+                    "$ref": "#/definitions/IParticles"
+                },
                 "sides": {
                     "type": "number"
                 }
@@ -783,28 +943,6 @@
                     "type": "number"
                 },
                 "quantity": {
-                    "type": "number"
-                }
-            },
-            "type": "object"
-        },
-        "IRandomOpacity": {
-            "properties": {
-                "enable": {
-                    "type": "boolean"
-                },
-                "minimumValue": {
-                    "type": "number"
-                }
-            },
-            "type": "object"
-        },
-        "IRandomSize": {
-            "properties": {
-                "enable": {
-                    "type": "boolean"
-                },
-                "minimumValue": {
                     "type": "number"
                 }
             },
@@ -945,6 +1083,22 @@
                         }
                     ]
                 },
+                "options": {
+                    "additionalProperties": {
+                        "anyOf": [
+                            {
+                                "$ref": "#/definitions/IShapeValues"
+                            },
+                            {
+                                "items": {
+                                    "$ref": "#/definitions/IShapeValues"
+                                },
+                                "type": "array"
+                            }
+                        ]
+                    },
+                    "type": "object"
+                },
                 "polygon": {
                     "anyOf": [
                         {
@@ -994,6 +1148,9 @@
                 },
                 "fill": {
                     "type": "boolean"
+                },
+                "particles": {
+                    "$ref": "#/definitions/IParticles"
                 }
             },
             "type": "object"
@@ -1009,7 +1166,7 @@
                 "random": {
                     "anyOf": [
                         {
-                            "$ref": "#/definitions/IRandomSize"
+                            "$ref": "#/definitions/ISizeRandom"
                         },
                         {
                             "type": "boolean"
@@ -1038,6 +1195,17 @@
                 },
                 "sync": {
                     "type": "boolean"
+                }
+            },
+            "type": "object"
+        },
+        "ISizeRandom": {
+            "properties": {
+                "enable": {
+                    "type": "boolean"
+                },
+                "minimumValue": {
+                    "type": "number"
                 }
             },
             "type": "object"
@@ -1202,12 +1370,25 @@
             "description": "Enables the retina detection, if disabled the ratio used by canvas will be always 1 and not the device setting.",
             "type": "boolean"
         },
+        "emitters": {
+            "anyOf": [
+                {
+                    "$ref": "#/definitions/IEmitter"
+                },
+                {
+                    "items": {
+                        "$ref": "#/definitions/IEmitter"
+                    },
+                    "type": "array"
+                }
+            ]
+        },
         "fpsLimit": {
             "description": "The F(rame)P(er)S(econd) limit applied to all particles animations.",
             "type": "number"
         },
         "fps_limit": {
-            "description": "The F(rame)P(er)S(econd) limit applied to all particles animations.",
+            "description": "The Frame Per Second limit applied to all particles animations.",
             "type": "number"
         },
         "interactivity": {
