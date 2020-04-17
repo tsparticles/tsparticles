@@ -16,7 +16,7 @@
     "build:demo:index": "pug ./demo/views/index.pug",
     "build:demo:style": "stylus ./demo/public/stylesheets/main.styl",
     "build:schema": "typescript-json-schema tsconfig.json IOptions --out schema/options.schema.json",
-    "test": "env TS_NODE_COMPILER_OPTIONS='{\"module\":\"commonjs\"}' mocha -r ts-node/register ./tests/**/*.spec.ts"
+    "test": "mocha -r ts-node/register ./tests/**/*.spec.ts"
   },
   "repository": {
     "type": "git",
