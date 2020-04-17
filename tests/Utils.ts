@@ -1,7 +1,7 @@
 import { expect } from 'chai';
 import 'mocha';
 
-import {Utils} from '../../src/Classes/Utils/Utils';
+import {Utils} from '../src/Classes/Utils/Utils';
  
 describe('Utils', () => {
 
