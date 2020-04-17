@@ -43,7 +43,12 @@ export class Repulser {
 	private divRepulse(): void {
 		const container = this.container;
 		const options = container.options;
-		const elem = document.getElementById(options.interactivity.events.onDiv.elementId) as HTMLElement;
+		const elem = document.getElementById(options.interactivity.events.onDiv.elementId);
+
+		if (!elem) {
+			return;
+		}
+
 		const pos = {
 			x: (elem.offsetLeft + elem.offsetWidth / 2),
 			y: (elem.offsetTop + elem.offsetHeight / 2),
