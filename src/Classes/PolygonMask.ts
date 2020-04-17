@@ -51,7 +51,7 @@ export class PolygonMask {
 		this.path2DSupported = window.hasOwnProperty("Path2D");
 	}
 
-	public checkInsidePolygon(position: ICoordinates | undefined | null): boolean {
+	public checkInsidePolygon(position: ICoordinates | undefined): boolean {
 		const container = this.container;
 		const options = container.options;
 

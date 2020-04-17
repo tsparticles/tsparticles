@@ -1269,24 +1269,10 @@
         "IValueColor": {
             "properties": {
                 "hsl": {
-                    "anyOf": [
-                        {
-                            "$ref": "#/definitions/IHsl"
-                        },
-                        {
-                            "type": "null"
-                        }
-                    ]
+                    "$ref": "#/definitions/IHsl"
                 },
                 "rgb": {
-                    "anyOf": [
-                        {
-                            "$ref": "#/definitions/IRgb"
-                        },
-                        {
-                            "type": "null"
-                        }
-                    ]
+                    "$ref": "#/definitions/IRgb"
                 }
             },
             "type": "object"
