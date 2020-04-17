@@ -142,6 +142,69 @@ describe('Utils', () => {
 
     });
 
+    describe('arrayRandomIndex', () => {
+        
+        it('should always return an index that is not out of the bounds of the array', () => {
+            const array = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
+            const randomIndex = Utils.arrayRandomIndex(array);
+
+            expect(randomIndex % 1).to.equal(0); // Make sure it is an integer
+            expect(randomIndex).to.be.at.least(0);
+            expect(randomIndex).to.be.at.most(9);
+            expect(randomIndex).to.equal(array[randomIndex]); // Additional check that index is in bounds
+        });
+    });
+
+    describe('itemFromArray', () => {
+
+        const numericArray = [ 1, 2, 3, Math.PI, Math.E ];
+        const stringArray = [ 'lorem', 'ipsum', 'dolor' ];
+        const objectArray = [ {x: 1}, {y: 2}, {z: 3} ];
+
+        it('should always return a random item from a numeric array', () => {
+            const randomItem = Utils.itemFromArray(numericArray);
+
+            expect(
+                numericArray,
+                'Utils.itemFromArray returned us an item not in the original array'
+            ).to.include(randomItem);
+        });
+
+        it('should return the requested numeric item when specifying index', () => {
+            const index = 3;
+            expect(Utils.itemFromArray(numericArray, index)).to.equal(numericArray[index]);
+        });
+
+        it('should always return a random item from a string array', () => {
+            const randomItem = Utils.itemFromArray(stringArray);
+
+            expect(
+                stringArray,
+                'Utils.itemFromArray returned us an item not in the original array'
+            ).to.include(randomItem);
+        });
+
+        it('should return the requested string item when specifying index', () => {
+            const index = 1;
+            expect(Utils.itemFromArray(stringArray, index)).to.equal(stringArray[index]);
+        });
+        
+        it('should always return a random object from an array of objects', () => {
+            const randomObject = Utils.itemFromArray(objectArray);
+
+            expect(
+                objectArray,
+                'Utils.itemFromArray returned us an item not in the original array'
+            ).to.include(randomObject);
+        });
+
+        it('should return the requested object when specifying index', () => {
+            const index = 1;
+            expect(Utils.itemFromArray(objectArray, index)).to.eql(objectArray[index]);
+        });
+
+    });
+
     describe('randomInRange', () => {
 
         it('should generate a random number in the specified range, range in positive reals', () => {
