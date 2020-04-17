@@ -69,7 +69,12 @@ export class Repulser {
 
 	private hoverRepulse(): void {
 		const container = this.container;
-		const mousePos = container.interactivity.mouse.position || { x: 0, y: 0 };
+		const mousePos = container.interactivity.mouse.position;
+
+		if (!mousePos) {
+			return;
+		}
+
 		const repulseRadius = container.retina.repulseModeDistance;
 
 		this.processRepulse(mousePos, repulseRadius);
