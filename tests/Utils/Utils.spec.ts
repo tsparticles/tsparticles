@@ -94,6 +94,54 @@ describe('Utils', () => {
 
     });
 
+    describe('mix', () => {
+
+        const comp1 = 5;
+        const comp2 = 10;
+        const precision = 1e-10;
+
+        it('should return the average when weights are identical', () => {
+            const weight1 = Math.random();
+            const weight2 = weight1;
+            const mean = (comp1 + comp2) / 2;
+
+            expect(Utils.mix(comp1, comp2, weight1, weight2)).to.be.closeTo(mean, precision);
+        });
+
+        it('should return comp1 when weight2 is 0 (and weight1 > 0)', () => {
+            const weight1 = Math.random();
+            const weight2 = 0;
+
+            expect(Utils.mix(comp1, comp2, weight1, weight2)).to.be.closeTo(comp1, precision);
+        });
+
+        it('should return comp2 when weight1 is 0 (and weight2 > 0)', () => {
+            const weight1 = 0;
+            const weight2 = Math.random();
+
+            expect(Utils.mix(comp1, comp2, weight1, weight2)).to.be.closeTo(comp2, precision);
+        });
+
+        it('should return the expected weighted-average when weights differ', () => {
+            const comp1 = 6;
+            const comp2 = 9;
+            const weight1 = 2;
+            const weight2 = 1;
+
+            expect(Utils.mix(comp1, comp2, weight1, weight2)).to.be.closeTo(7, precision);
+        });
+
+        it('should handle negative components', () => {
+            const comp1 = -6;
+            const comp2 = -9;
+            const weight1 = 2;
+            const weight2 = 1;
+
+            expect(Utils.mix(comp1, comp2, weight1, weight2)).to.be.closeTo(-7, precision);
+        });
+
+    });
+
     describe('randomInRange', () => {
 
         it('should generate a random number in the specified range', () => {
