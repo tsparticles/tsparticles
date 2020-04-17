@@ -144,13 +144,29 @@ describe('Utils', () => {
 
     describe('randomInRange', () => {
 
-        it('should generate a random number in the specified range', () => {
+        it('should generate a random number in the specified range, range in positive reals', () => {
              const min = 1;
              const max = 10;
              const randomNumber = Utils.randomInRange(min, max);
     
              expect(randomNumber).to.be.within(min, max);
         });
+
+        it('should generate a random number in the specified range, range in negative reals', () => {
+            const min = -10;
+            const max = -1;
+            const randomNumber = Utils.randomInRange(min, max);
+   
+            expect(randomNumber).to.be.within(min, max);
+       });
+
+       it('should generate a random number in the specified range, range crossing negative and positive reals', () => {
+           const min = -10;
+           const max = 10;
+           const randomNumber = Utils.randomInRange(min, max);
+  
+           expect(randomNumber).to.be.within(min, max);
+      });
 
     });
 
