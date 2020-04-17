@@ -89,8 +89,5 @@
     ],
     "mode": "library",
     "out": "docs"
-  },
-  "exclude": [
-    "./tests"
-  ]
+  }
 }
