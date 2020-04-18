@@ -64,7 +64,7 @@ describe('Utils', () => {
 			expect(Utils.isInArray(Math.LN2, Math.LN2)).to.be.true;
 		});
 
-		xit('should return false when array is non-array number not matching value', () => {
+		it('should return false when array is non-array number not matching value', () => {
 			expect(Utils.isInArray(Math.LN2, Math.LN10)).to.be.false;
 		});
 

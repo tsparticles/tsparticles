@@ -60,7 +60,7 @@ export class Utils {
 	 * @param array the data array or single value
 	 */
 	public static isInArray<T>(value: T, array: T[] | T): boolean {
-		return value === array || (array as T[]).indexOf(value) > -1;
+		return value === array || (array instanceof Array && array.indexOf(value) > -1);
 	}
 
 	/**

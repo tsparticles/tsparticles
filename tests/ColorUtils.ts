@@ -151,10 +151,10 @@ describe('ColorUtils', () => {
 		});
 	});
 
-	describe('getRandomRgbColor', (min?: number) => {
-		const checkRange = (n: number) => n >= (min ?? 0) && n <= 255;
+	describe('getRandomRgbColor', () => {
+		const checkRange = (n: number, min?: number) => n >= (min ?? 0) && n <= 255;
 
-		const checkColor = (rgb: IRgb, min?: number) => checkRange(rgb.r) && checkRange(rgb.g) && checkRange(rgb.b);
+		const checkColor = (rgb: IRgb, min?: number) => checkRange(rgb.r, min) && checkRange(rgb.g, min) && checkRange(rgb.b, min);
 
 		it('totally random color', () => {
 			expect(ColorUtils.getRandomRgbColor()).to.satisfy((rgb: IRgb) => checkColor(rgb)).and.not.be.undefined.and.not.be.null;

@@ -113,8 +113,8 @@ export class ColorUtils {
 	public static getRandomRgbColor(min?: number): IRgb {
 		const fixedMin = min || 0;
 		const minColor = fixedMin + (fixedMin * Math.pow(16, 2)) + (fixedMin * Math.pow(16, 4));
-		const maxColor = minColor ^ 0xFFFFFF;
-		const randomColor = (Math.random() * maxColor + minColor).toString(16);
+		const factor = minColor ^ 0xFFFFFF;
+		const randomColor = Math.floor(((Math.random() * factor) | minColor)).toString(16);
 
 		return this.stringToRgb(`#${ randomColor }`) ?? {
 			b: 0,
