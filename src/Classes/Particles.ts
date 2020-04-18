@@ -19,7 +19,7 @@ export class Particles {
 	public array: Particle[];
 	public spatialGrid: SpatialGrid;
 	public pushing?: boolean;
-	public lineLinkedColor?: IRgb | string | null;
+	public lineLinkedColor?: IRgb | string;
 
 	private readonly container: Container;
 	private interactionsEnabled: boolean;

@@ -167,14 +167,17 @@ export class Canvas {
 		const polygonDraw = options.polygon.draw;
 		const polygon = container.polygon;
 		const rawData = polygon.raw;
-		const path = polygon.polygonPath;
-		const path2dSupported = polygon.path2DSupported;
 
-		if (context) {
-			if (path2dSupported && path && polygon.offset) {
-				CanvasUtils.drawPolygonMaskPath(context, path, polygonDraw.stroke, polygon.offset);
-			} else if (rawData) {
-				CanvasUtils.drawPolygonMask(context, rawData, polygonDraw.stroke);
+		for (const path of polygon.paths) {
+			const path2d = path.path2d;
+			const path2dSupported = polygon.path2DSupported;
+
+			if (context) {
+				if (path2dSupported && path2d && polygon.offset) {
+					CanvasUtils.drawPolygonMaskPath(context, path2d, polygonDraw.stroke, polygon.offset);
+				} else if (rawData) {
+					CanvasUtils.drawPolygonMask(context, rawData, polygonDraw.stroke);
+				}
 			}
 		}
 	}

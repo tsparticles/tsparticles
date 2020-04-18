@@ -132,7 +132,7 @@ export class SpatialGrid {
 
 				// Its unconventional but it is the marginally faster approach for adjoining arrays
 				for (let i = 0; i < this.grid[x][y].length; i++)
-					if (this.grid[x][y][i] != null)
+					if (this.grid[x][y][i])
 						out[out.length + 1] = this.grid[x][y][i];
 			}
 		}

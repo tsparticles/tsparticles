@@ -169,7 +169,7 @@ describe('Options tests', () => {
 		expect(options.polygon.url).to.be.empty;
 	});
 
-	it('check default preset options', function () {
+	it('check default preset options', () => {
 		const options = new Options();
 		const preset = {
 			"background": {
@@ -362,7 +362,7 @@ describe('Options tests', () => {
 		expect(options.particles.size.value).to.equal(5);
 	});
 
-	it('check test preset options', function () {
+	it('check test preset options', () => {
 		const options = new Options();
 		const preset = {
 			"background": {
