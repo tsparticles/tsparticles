@@ -1,7 +1,7 @@
-import { Utils } from "../Utils/Utils";
-import { Particle } from "../Particle";
-import { Container } from "../Container";
-import { IParticle } from "../../Interfaces/IParticle";
+import { Utils } from "../../Utils/Utils";
+import { Particle } from "../../Particle";
+import { Container } from "../../Container";
+import { IParticle } from "../../../Interfaces/IParticle";
 
 export class Collider {
 	public static collide(p1: Particle, container: Container): void {

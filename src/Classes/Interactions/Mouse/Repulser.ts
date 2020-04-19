@@ -1,12 +1,12 @@
-import { ClickMode } from "../../Enums/Modes/ClickMode";
-import type { Container } from "../Container";
-import { HoverMode } from "../../Enums/Modes/HoverMode";
-import { OutMode } from "../../Enums/OutMode";
-import { Utils } from "../Utils/Utils";
-import { DivMode } from "../../Enums/Modes/DivMode";
-import { Constants } from "../Utils/Constants";
-import { ICoordinates } from "../../Interfaces/ICoordinates";
-import { IParticle } from "../../Interfaces/IParticle";
+import { ClickMode } from "../../../Enums/Modes/ClickMode";
+import type { Container } from "../../Container";
+import { HoverMode } from "../../../Enums/Modes/HoverMode";
+import { OutMode } from "../../../Enums/OutMode";
+import { Utils } from "../../Utils/Utils";
+import { DivMode } from "../../../Enums/Modes/DivMode";
+import { Constants } from "../../Utils/Constants";
+import { ICoordinates } from "../../../Interfaces/ICoordinates";
+import { IParticle } from "../../../Interfaces/IParticle";
 
 /**
  * Particle repulse manager

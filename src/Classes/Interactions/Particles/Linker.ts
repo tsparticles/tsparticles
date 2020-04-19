@@ -1,7 +1,7 @@
-import type { Container } from "../Container";
-import { ColorUtils } from "../Utils/ColorUtils";
-import { Constants } from "../Utils/Constants";
-import { Particle } from "../Particle";
+import type { Container } from "../../Container";
+import { ColorUtils } from "../../Utils/ColorUtils";
+import { Constants } from "../../Utils/Constants";
+import { Particle } from "../../Particle";
 
 export class Linker {
 	public static link(p1: Particle, container: Container): void {

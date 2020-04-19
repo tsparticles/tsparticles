@@ -1,5 +1,5 @@
-import type { Container } from "../Container";
-import { Constants } from "../Utils/Constants";
+import type { Container } from "../../Container";
+import { Constants } from "../../Utils/Constants";
 
 /**
  * Particle grab manager

@@ -1,5 +1,5 @@
-import type { Container } from "../Container";
-import type { Particle } from "../Particle";
+import type { Container } from "../../Container";
+import type { Particle } from "../../Particle";
 import { Linker } from "./Linker";
 import { Attracter } from "./Attracter";
 import { Collider } from "./Collider";

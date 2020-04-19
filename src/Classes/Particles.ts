@@ -5,14 +5,15 @@ import type { IRgb } from "../Interfaces/IRgb";
 import { Particle } from "./Particle";
 import { PolygonMaskType } from "../Enums/PolygonMaskType";
 import { PolygonMaskInlineArrangement } from "../Enums/PolygonMaskInlineArrangement";
-import { InteractionManager } from "./Particle/InteractionManager";
+import { InteractionManager } from "./Interactions/Particles/InteractionManager";
 import { SpatialGrid } from "./Utils/SpatialGrid";
 import { Utils } from "./Utils/Utils";
 import { HoverMode } from "../Enums/Modes/HoverMode";
-import { Grabber } from "./Particle/Grabber";
+import { Grabber } from "./Interactions/Mouse/Grabber";
 import { ClickMode } from "../Enums/Modes/ClickMode";
-import { Repulser } from "./Particle/Repulser";
+import { Repulser } from "./Interactions/Mouse/Repulser";
 import { DivMode } from "../Enums/Modes/DivMode";
+import { Bubbler } from "./Interactions/Mouse/Bubbler";
 
 /**
  * Particles manager
@@ -81,7 +82,9 @@ export class Particles {
 
 		for (let i = 0; i < this.array.length; i++) {
 			/* the particle */
-			const p = this.array[i];
+			const particle = this.array[i];
+
+			Bubbler.reset(particle);
 
 			// let d = ( dx = container.interactivity.mouse.click_pos_x - p.x ) * dx +
 			//         ( dy = container.interactivity.mouse.click_pos_y - p.y ) * dy;
@@ -92,11 +95,11 @@ export class Particles {
 			//     p.vy = f * Math.sin(t);
 			// }
 
-			p.update(i, delta);
+			particle.update(i, delta);
 
 			/* interaction auto between particles */
 			if (this.interactionsEnabled) {
-				InteractionManager.interact(p, container);
+				InteractionManager.interact(particle, container);
 			}
 		}
 
@@ -113,6 +116,10 @@ export class Particles {
 			Utils.isInArray(ClickMode.repulse, clickMode) ||
 			Utils.isInArray(DivMode.repulse, divMode)) {
 			Repulser.repulse(container);
+		}
+
+		if (Utils.isInArray(HoverMode.bubble, hoverMode) || Utils.isInArray(ClickMode.bubble, clickMode)) {
+			Bubbler.bubble(container);
 		}
 	}
 
