@@ -7,6 +7,12 @@ import { PolygonMaskType } from "../Enums/PolygonMaskType";
 import { PolygonMaskInlineArrangement } from "../Enums/PolygonMaskInlineArrangement";
 import { InteractionManager } from "./Particle/InteractionManager";
 import { SpatialGrid } from "./Utils/SpatialGrid";
+import { Utils } from "./Utils/Utils";
+import { HoverMode } from "../Enums/Modes/HoverMode";
+import { Grabber } from "./Particle/Grabber";
+import { ClickMode } from "../Enums/Modes/ClickMode";
+import { Repulser } from "./Particle/Repulser";
+import { DivMode } from "../Enums/Modes/DivMode";
 
 /**
  * Particles manager
@@ -70,6 +76,9 @@ export class Particles {
 	}
 
 	public update(delta: number): void {
+		const container = this.container;
+		const options = container.options;
+
 		for (let i = 0; i < this.array.length; i++) {
 			/* the particle */
 			const p = this.array[i];
@@ -87,8 +96,23 @@ export class Particles {
 
 			/* interaction auto between particles */
 			if (this.interactionsEnabled) {
-				InteractionManager.interact(p, this.container);
+				InteractionManager.interact(p, container);
 			}
+		}
+
+		const hoverMode = options.interactivity.events.onHover.mode;
+		const clickMode = options.interactivity.events.onClick.mode;
+		const divMode = options.interactivity.events.onDiv.mode;
+
+		/* events */
+		if (Utils.isInArray(HoverMode.grab, hoverMode)) {
+			Grabber.grab(container);
+		}
+
+		if (Utils.isInArray(HoverMode.repulse, hoverMode) ||
+			Utils.isInArray(ClickMode.repulse, clickMode) ||
+			Utils.isInArray(DivMode.repulse, divMode)) {
+			Repulser.repulse(container);
 		}
 	}
 

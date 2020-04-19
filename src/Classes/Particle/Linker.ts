@@ -8,12 +8,12 @@ export class Linker {
 		const optOpacity = p1.particlesOptions.lineLinked.opacity;
 		const optDistance = p1.lineLinkedDistance ?? container.retina.lineLinkedDistance;
 
-		for (const p2 of container.particles.spatialGrid.queryRadiusWithDist(p1.position, optDistance)) {
+		for (const p2 of container.particles.spatialGrid.queryRadiusWithDistance(p1.position, optDistance)) {
 
 			if (p1 === p2.particle || !p2.particle.particlesOptions.lineLinked.enable) continue;
 
 			/* draw a line between p1 and p2 */
-			const opacityLine = optOpacity - (p2.dist * optOpacity) / optDistance;
+			const opacityLine = optOpacity - (p2.distance * optOpacity) / optDistance;
 
 			if (opacityLine > 0) {
 

@@ -1,12 +1,10 @@
 import { Bubbler } from "./Particle/Bubbler";
 import type { Container } from "./Container";
-import { Grabber } from "./Particle/Grabber";
 import type { IVelocity } from "../Interfaces/IVelocity";
 import type { ISize } from "../Interfaces/ISize";
 import type { IOpacity } from "../Interfaces/IOpacity";
 import type { ICoordinates } from "../Interfaces/ICoordinates";
 import type { IParticleImage } from "../Interfaces/IParticleImage";
-import { Repulser } from "./Particle/Repulser";
 import { ShapeType } from "../Enums/ShapeType";
 import { Updater } from "./Particle/Updater";
 import { Utils } from "./Utils/Utils";
@@ -64,7 +62,6 @@ export class Particle implements IParticle {
 
 	public readonly updater: Updater;
 	public readonly bubbler: Bubbler;
-	public readonly repulser: Repulser;
 	public readonly container: Container;
 	public readonly emitter?: Emitter;
 
@@ -255,7 +252,6 @@ export class Particle implements IParticle {
 
 		this.updater = new Updater(this.container, this);
 		this.bubbler = new Bubbler(this.container, this);
-		this.repulser = new Repulser(this.container, this);
 	}
 
 	public resetVelocity(): void {
@@ -275,11 +271,6 @@ export class Particle implements IParticle {
 		const hoverMode = options.interactivity.events.onHover.mode;
 		const clickMode = options.interactivity.events.onClick.mode;
 
-		/* events */
-		if (Utils.isInArray(HoverMode.grab, hoverMode)) {
-			Grabber.grab(this, container);
-		}
-
 		//  New interactivity `connect` which would just connect the particles on hover
 
 		if (Utils.isInArray(HoverMode.connect, options.interactivity.events.onHover.mode)) {
@@ -292,10 +283,6 @@ export class Particle implements IParticle {
 
 		if (Utils.isInArray(HoverMode.bubble, hoverMode) || Utils.isInArray(ClickMode.bubble, clickMode)) {
 			this.bubbler.bubble();
-		}
-
-		if (Utils.isInArray(HoverMode.repulse, hoverMode) || Utils.isInArray(ClickMode.repulse, clickMode)) {
-			this.repulser.repulse();
 		}
 	}
 

@@ -1,31 +1,39 @@
 import type { Container } from "../Container";
-import { Utils } from "../Utils/Utils";
 import { Constants } from "../Utils/Constants";
-import type { IParticle } from "../../Interfaces/IParticle";
 
 /**
  * Particle grab manager
  */
 export class Grabber {
-	public static grab(particle: IParticle, container: Container): void {
+	public static grab(container: Container): void {
 		const options = container.options;
 		const interactivity = options.interactivity;
 
 		if (interactivity.events.onHover.enable && container.interactivity.status === Constants.mouseMoveEvent) {
-			const mousePos = container.interactivity.mouse.position || { x: 0, y: 0 };
-			const distMouse = Utils.getDistanceBetweenCoordinates(particle.position, mousePos);
-			/*
-			   draw a line between the cursor and the particle
-			   if the distance between them is under the config distance
-			*/
-			if (distMouse <= container.retina.grabModeDistance) {
-				const lineOpacity = interactivity.modes.grab.lineLinked.opacity;
-				const grabDistance = container.retina.grabModeDistance;
-				const opacityLine = lineOpacity - (distMouse * lineOpacity) / grabDistance;
+			const mousePos = container.interactivity.mouse.position;
 
-				if (opacityLine > 0) {
-					/* style */
-					container.canvas.drawGrabLine(particle, opacityLine, mousePos);
+			if (mousePos === undefined) {
+				return;
+			}
+
+			for (const { distance, particle } of container.particles.spatialGrid.queryRadiusWithDistance(mousePos, container.retina.grabModeDistance)) {
+				if (particle?.position === undefined) {
+					continue;
+				}
+
+				/*
+				   draw a line between the cursor and the particle
+				   if the distance between them is under the config distance
+				*/
+				if (distance <= container.retina.grabModeDistance) {
+					const lineOpacity = interactivity.modes.grab.lineLinked.opacity;
+					const grabDistance = container.retina.grabModeDistance;
+					const opacityLine = lineOpacity - (distance * lineOpacity) / grabDistance;
+
+					if (opacityLine > 0) {
+						/* style */
+						container.canvas.drawGrabLine(particle, opacityLine, mousePos);
+					}
 				}
 			}
 		}

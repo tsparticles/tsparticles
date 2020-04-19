@@ -93,7 +93,10 @@ export class SpatialGrid {
 	 * @param position The query position
 	 * @param radius The radius around the position
 	 */
-	public queryRadiusWithDist(position: ICoordinates, radius: number): { dist: number, particle: Particle }[] {
+	public queryRadiusWithDistance(position: ICoordinates, radius: number): {
+		distance: number,
+		particle: Particle
+	}[] {
 		const pos = this.index(position);
 		const rad = this.radius({ x: radius, y: radius } as ICoordinates);
 		const items = this.select(this.indexOp(pos, '-', rad), this.indexOp(pos, '+', rad));
@@ -102,10 +105,10 @@ export class SpatialGrid {
 
 		for (let i = 0; i < items.length; i++) {
 			if (items[i]) {
-				const dist = Utils.getDistanceBetweenCoordinates(items[i].position, position);
+				const distance = Utils.getDistanceBetweenCoordinates(items[i].position, position);
 
-				if (dist <= radius)
-					out.push({ dist: dist, particle: items[i] });
+				if (distance <= radius)
+					out.push({ distance: distance, particle: items[i] });
 			}
 
 		}
