@@ -1,11 +1,11 @@
-import { Utils } from "../Utils/Utils";
-import { Particle } from "../Particle";
-import { Container } from "../Container";
-import { IParticle } from "../../Interfaces/IParticle";
+import { Utils } from "../../Utils/Utils";
+import { Particle } from "../../Particle";
+import { Container } from "../../Container";
+import { IParticle } from "../../../Interfaces/IParticle";
 
 export class Collider {
 	public static collide(p1: Particle, container: Container): void {
-		for (const p2 of container.particles.spatialGrid.queryRadius(p1.position, (p1.sizeValue ?? container.retina.sizeValue) * 2)) {
+		for (const p2 of container.particles.spatialGrid.queryRadius(p1.position, p1.size.value * 2)) {
 
 			if (!p2 || p1 === p2 || !p2.particlesOptions.move.collisions) continue;
 
@@ -23,6 +23,6 @@ export class Collider {
 	}
 
 	private static getRadius(particle: IParticle, fallback: number): number {
-		return particle.bubble.radius || particle.sizeValue || fallback;
+		return particle.bubble.radius || particle.size.value || fallback;
 	}
 }

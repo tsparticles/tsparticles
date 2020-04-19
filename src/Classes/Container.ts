@@ -68,7 +68,7 @@ export class Container {
 		};
 		this.images = [];
 		this.bubble = {};
-		this.repulse = {};
+		this.repulse = { particles: [] };
 		this.emitters = [];
 
 		/* tsParticles variables with default values */

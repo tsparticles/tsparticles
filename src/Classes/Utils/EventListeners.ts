@@ -208,20 +208,25 @@ export class EventListeners {
 		const container = this.container;
 		const options = container.options;
 
-		let pos: ICoordinates;
+		let pos: ICoordinates | undefined;
 
 		if (e.type.startsWith("mouse")) {
 			this.canPush = true;
 
 			const mouseEvent = e as MouseEvent;
+			if (container.interactivity?.element === undefined) {
+				return;
+			}
 
-			if (container.interactivity.element === window && container.canvas.element) {
-				const clientRect = container.canvas.element.getBoundingClientRect();
+			if (container.interactivity.element === window) {
+				if (container.canvas.element) {
+					const clientRect = container.canvas.element.getBoundingClientRect();
 
-				pos = {
-					x: mouseEvent.clientX - clientRect.left,
-					y: mouseEvent.clientY - clientRect.top,
-				};
+					pos = {
+						x: mouseEvent.clientX - clientRect.left,
+						y: mouseEvent.clientY - clientRect.top,
+					};
+				}
 			} else if (options.interactivity.detectsOn === InteractivityDetect.parent) {
 				const source = mouseEvent.target as HTMLElement;
 				const target = mouseEvent.currentTarget as HTMLElement;
@@ -241,10 +246,12 @@ export class EventListeners {
 					};
 				}
 			} else {
-				pos = {
-					x: mouseEvent.offsetX || mouseEvent.clientX,
-					y: mouseEvent.offsetY || mouseEvent.clientY,
-				};
+				if (mouseEvent.target === container.canvas.element) {
+					pos = {
+						x: mouseEvent.offsetX || mouseEvent.clientX,
+						y: mouseEvent.offsetY || mouseEvent.clientY,
+					};
+				}
 			}
 		} else {
 			this.canPush = e.type !== "touchmove";
@@ -261,7 +268,7 @@ export class EventListeners {
 
 		container.interactivity.mouse.position = pos;
 
-		if (container.retina.isRetina) {
+		if (container.retina.isRetina && container.interactivity.mouse.position) {
 			container.interactivity.mouse.position.x *= container.retina.pixelRatio;
 			container.interactivity.mouse.position.y *= container.retina.pixelRatio;
 		}
@@ -287,6 +294,10 @@ export class EventListeners {
 		const container = this.container;
 		const options = container.options;
 
+		if (options.polygon === undefined) {
+			return;
+		}
+
 		if (options.polygon.enable && options.polygon.type !== PolygonMaskType.none &&
 			options.polygon.type !== PolygonMaskType.inline) {
 			if (container.polygon.checkInsidePolygon(container.interactivity.mouse.position)) {
@@ -311,6 +322,8 @@ export class EventListeners {
 					x: container.interactivity.mouse.position.x,
 					y: container.interactivity.mouse.position.y,
 				};
+			} else {
+				return;
 			}
 
 			container.interactivity.mouse.clickTime = new Date().getTime();
@@ -339,6 +352,11 @@ export class EventListeners {
 				case ClickMode.repulse:
 					container.repulse.clicking = true;
 					container.repulse.count = 0;
+					for (const particle of container.repulse.particles) {
+						particle.velocity.horizontal = particle.initialVelocity.horizontal;
+						particle.velocity.vertical = particle.initialVelocity.vertical;
+					}
+					container.repulse.particles = [];
 					container.repulse.finish = false;
 					setTimeout(() => {
 						if (!container.destroyed) {
