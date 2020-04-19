@@ -70,7 +70,7 @@
       "blink": false,
       "color": "#ffffff",
       "consent": false,
-      "distance": 30,
+      "distance": 25,
       "enable": true,
       "opacity": 0.4,
       "width": 1
@@ -140,7 +140,7 @@
         "sync": false
       },
       "random": true,
-      "value": 3
+      "value": 1
     }
   },
   "polygon": {
