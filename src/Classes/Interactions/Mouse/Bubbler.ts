@@ -202,14 +202,14 @@ export class Bubbler {
 			return;
 		}
 
-		const optSize = container.retina.sizeValue;
-		const pSize = particle.sizeValue ?? container.retina.sizeValue;
+		const optSize = particle.sizeValue ?? container.retina.sizeValue;
+		const pSize = particle.size.value;
 
-		if (modeSize > pSize) {
+		if (modeSize > optSize) {
 			const size = pSize + (modeSize - optSize) * ratio;
 
 			particle.bubble.radius = Utils.clamp(size, pSize, modeSize);
-		} else if (modeSize < pSize) {
+		} else if (modeSize < optSize) {
 			const size = pSize - (optSize - modeSize) * ratio;
 
 			particle.bubble.radius = Utils.clamp(size, modeSize, pSize);

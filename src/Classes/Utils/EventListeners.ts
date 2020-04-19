@@ -214,8 +214,11 @@ export class EventListeners {
 			this.canPush = true;
 
 			const mouseEvent = e as MouseEvent;
+			if (container.interactivity?.element === undefined) {
+				return;
+			}
 
-			if (container.interactivity?.element === window) {
+			if (container.interactivity.element === window) {
 				if (container.canvas.element) {
 					const clientRect = container.canvas.element.getBoundingClientRect();
 

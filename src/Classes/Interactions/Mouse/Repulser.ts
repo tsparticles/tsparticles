@@ -86,7 +86,7 @@ export class Repulser {
 			const velocity = 100;
 			const repulseFactor = Utils.clamp((1 - Math.pow(dist / repulseRadius, 2)) * velocity, 0, 50);
 			const outMode = particle.particlesOptions.move.outMode;
-			const sizeValue = particle.sizeValue ?? container.retina.sizeValue;
+			const sizeValue = particle.size.value;
 			const pos = {
 				x: particle.position.x + normVec.x * repulseFactor,
 				y: particle.position.y + normVec.y * repulseFactor,

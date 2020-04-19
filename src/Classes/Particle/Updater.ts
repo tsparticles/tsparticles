@@ -166,13 +166,13 @@ export class Updater {
 		}
 
 		if (outMode === OutMode.destroy) {
-			const sizeValue = particle.sizeValue ?? container.retina.sizeValue;
+			const sizeValue = particle.size.value;
 
 			if (!Utils.isPointInside(particle.position, container.canvas.dimension, sizeValue)) {
 				container.particles.remove(particle);
 			}
 		} else {
-			const sizeValue = particle.sizeValue ?? container.retina.sizeValue;
+			const sizeValue = particle.size.value;
 			const nextBounds = Utils.calculateBounds(particle.position, sizeValue);
 
 			if (nextBounds.left > canvasSize.width - particle.offset.x) {

@@ -96,11 +96,6 @@ export class Particles {
 			// }
 
 			particle.update(i, delta);
-
-			/* interaction auto between particles */
-			if (this.interactionsEnabled) {
-				InteractionManager.interact(particle, container);
-			}
 		}
 
 		const hoverMode = options.interactivity.events.onHover.mode;
@@ -120,6 +115,14 @@ export class Particles {
 
 		if (Utils.isInArray(HoverMode.bubble, hoverMode) || Utils.isInArray(ClickMode.bubble, clickMode)) {
 			Bubbler.bubble(container);
+		}
+
+		// this loop is required to be done after mouse interactions
+		for (const particle of this.array) {
+			/* interaction auto between particles */
+			if (this.interactionsEnabled) {
+				InteractionManager.interact(particle, container);
+			}
 		}
 	}
 
