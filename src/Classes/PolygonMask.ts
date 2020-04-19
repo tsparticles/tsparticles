@@ -362,12 +362,13 @@ export class PolygonMask {
 		let point: DOMPoint | undefined;
 
 		const totalLength = this.paths.reduce((tot: number, path: ISvgPath) => tot + path.length, 0);
+		const distance = totalLength / options.particles.number.value;
 
 		for (const path of this.paths) {
-			const distance = ((totalLength - offset) / options.particles.number.value) * index;
+			const pathDistance = distance * index - offset;
 
-			if (distance <= path.length) {
-				point = path.element.getPointAtLength(distance);
+			if (pathDistance <= path.length) {
+				point = path.element.getPointAtLength(pathDistance);
 
 				break;
 			} else {

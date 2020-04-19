@@ -154,13 +154,13 @@
       "radius": 10
     },
     "position": {
-      "x": 50,
-      "y": 50
+      "x": 30,
+      "y": 30
     },
     "inlineArrangement": "equidistant",
-    "scale": 2,
+    "scale": 1,
     "type": "inline",
-    "url": "https://cdn.matteobruni.it/images/particles/loveknight.svg"
+    "url": "https://cdn.matteobruni.it/images/particles/google.svg"
   },
   "background": {
     "color": "#000000",
