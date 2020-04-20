@@ -1,10 +1,10 @@
 {
   "particles": {
     "number": {
-      "value": 19,
+      "value": 100,
       "density": {
-        "enable": true,
-        "value_area": 481.0236182596568
+        "enable": false,
+        "value_area": 800
       }
     },
     "color": {
@@ -17,17 +17,17 @@
         "color": "#000000"
       },
       "polygon": {
-        "nb_sides": 12
+        "nb_sides": 5
       },
       "image": {
-        "src": "https://www.sprinklr.com/wp-content/themes/sprinklr/assets/images/logo_sprinklr.svg",
-        "width": 250,
+        "src": "https://cdn.matteobruni.it/images/particles/github.svg",
+        "width": 100,
         "height": 100
       }
     },
     "opacity": {
-      "value": 0.3286994724774322,
-      "random": true,
+      "value": 0.5,
+      "random": false,
       "anim": {
         "enable": false,
         "speed": 1,
@@ -36,17 +36,17 @@
       }
     },
     "size": {
-      "value": 47.34885849793636,
+      "value": 4,
       "random": true,
       "anim": {
-        "enable": true,
-        "speed": 9.59040959040959,
-        "size_min": 5.594405594405594,
-        "sync": true
+        "enable": false,
+        "speed": 40,
+        "size_min": 0.1,
+        "sync": false
       }
     },
     "line_linked": {
-      "enable": true,
+      "enable": false,
       "distance": 150,
       "color": "#ffffff",
       "opacity": 0.4,
@@ -54,16 +54,16 @@
     },
     "move": {
       "enable": true,
-      "speed": 6.413648243462092,
+      "speed": 2,
       "direction": "none",
-      "random": true,
+      "random": false,
       "straight": false,
       "out_mode": "bounce",
       "bounce": false,
       "attract": {
-        "enable": true,
-        "rotateX": 320.6824121731046,
-        "rotateY": 481.0236182596568
+        "enable": false,
+        "rotateX": 600,
+        "rotateY": 1200
       }
     }
   },
@@ -71,18 +71,18 @@
     "detect_on": "canvas",
     "events": {
       "onhover": {
-        "enable": true,
-        "mode": "repulse"
+        "enable": false,
+        "mode": "grab"
       },
       "onclick": {
         "enable": true,
-        "mode": "push"
+        "mode": "repulse"
       },
       "resize": true
     },
     "modes": {
       "grab": {
-        "distance": 400,
+        "distance": 200,
         "line_linked": {
           "opacity": 1
         }
@@ -95,8 +95,7 @@
         "speed": 3
       },
       "repulse": {
-        "distance": 200,
-        "duration": 0.4
+        "distance": 200
       },
       "push": {
         "particles_nb": 4
