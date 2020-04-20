@@ -205,7 +205,7 @@ export class PolygonMask {
 						this.paths.push({
 							element: path,
 							length: path.getTotalLength()
-						})
+						});
 					}
 				}
 			} else {
@@ -213,7 +213,8 @@ export class PolygonMask {
 			}
 		}
 
-		const scale = options.polygon.scale;
+		const pxRatio = container.retina.pixelRatio;
+		const scale = options.polygon.scale / pxRatio;
 
 		this.dimension.width = parseFloat(this.svg.getAttribute("width") || "0") * scale;
 		this.dimension.height = parseFloat(this.svg.getAttribute("height") || "0") * scale;
@@ -225,8 +226,8 @@ export class PolygonMask {
 
 		/* centering of the polygon mask */
 		this.offset = {
-			x: container.canvas.dimension.width * position.x / 100 - this.dimension.width / 2,
-			y: container.canvas.dimension.height * position.y / 100 - this.dimension.height / 2,
+			x: container.canvas.dimension.width * position.x / (100 * pxRatio) - this.dimension.width / 2,
+			y: container.canvas.dimension.height * position.y / (100 * pxRatio) - this.dimension.height / 2,
 		};
 
 		const polygonRaw: ICoordinates[] = [];
