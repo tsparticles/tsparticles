@@ -78,6 +78,14 @@ export class CanvasUtils {
 	                             shadow: ILineLinkedShadow): void {
 		context.save();
 
+		context.lineWidth = width;
+		// this.ctx.lineCap = "round"; /* performance issue */
+		/* path */
+		context.beginPath();
+		context.moveTo(begin.x, begin.y);
+		context.lineTo(end.x, end.y);
+		context.closePath();
+
 		if (backgroundMask) {
 			context.globalCompositeOperation = 'destination-out';
 		}
@@ -86,24 +94,16 @@ export class CanvasUtils {
 			context.strokeStyle = ColorUtils.getStyleFromColor(colorLine, opacity);
 		}
 
-		context.lineWidth = width;
-		// this.ctx.lineCap = "round"; /* performance issue */
-		/* path */
-		context.beginPath();
-
-		const color = typeof shadow.color === "string" ?
+		const shadowColor = typeof shadow.color === "string" ?
 			ColorUtils.stringToRgb(shadow.color) :
 			ColorUtils.colorToRgb(shadow.color);
 
-		if (shadow.enable && color) {
+		if (shadow.enable && shadowColor) {
 			context.shadowBlur = shadow.blur;
-			context.shadowColor = ColorUtils.getStyleFromColor(color);
+			context.shadowColor = ColorUtils.getStyleFromColor(shadowColor);
 		}
 
-		context.moveTo(begin.x, begin.y);
-		context.lineTo(end.x, end.y);
 		context.stroke();
-		context.closePath();
 		context.restore();
 	}
 
@@ -114,12 +114,12 @@ export class CanvasUtils {
 	                              end: ICoordinates): void {
 		context.save();
 		context.beginPath();
-		context.lineWidth = width;
-		context.strokeStyle = lineStyle;
 		context.moveTo(begin.x, begin.y);
 		context.lineTo(end.x, end.y);
-		context.stroke();
 		context.closePath();
+		context.lineWidth = width;
+		context.strokeStyle = lineStyle;
+		context.stroke();
 		context.restore();
 	}
 
@@ -152,13 +152,13 @@ export class CanvasUtils {
 	                           colorLine: IRgb,
 	                           opacity: number): void {
 		context.save();
-		context.strokeStyle = ColorUtils.getStyleFromColor(colorLine, opacity);
-		context.lineWidth = width;
 		context.beginPath();
 		context.moveTo(begin.x, begin.y);
 		context.lineTo(end.x, end.y);
-		context.stroke();
 		context.closePath();
+		context.strokeStyle = ColorUtils.getStyleFromColor(colorLine, opacity);
+		context.lineWidth = width;
+		context.stroke();
 		context.restore();
 	}
 
@@ -169,7 +169,15 @@ export class CanvasUtils {
 	                           radius: number,
 	                           opacity: number,
 	                           shadow: IShadow): void {
+		const pos = {
+			x: particle.position.x + particle.offset.x,
+			y: particle.position.y + particle.offset.y,
+		};
+
 		context.save();
+		context.translate(pos.x, pos.y);
+		context.beginPath();
+
 		const shadowColor = particle.shadowColor;
 
 		if (shadow.enable && shadowColor) {
@@ -180,14 +188,6 @@ export class CanvasUtils {
 		}
 
 		context.fillStyle = colorValue;
-
-		const pos = {
-			x: particle.position.x + particle.offset.x,
-			y: particle.position.y + particle.offset.y,
-		};
-
-		context.translate(pos.x, pos.y);
-		context.beginPath();
 
 		if (particle.angle !== 0) {
 			context.rotate(particle.angle * Math.PI / 180);

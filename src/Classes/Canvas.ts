@@ -127,12 +127,8 @@ export class Canvas {
 		const options = container.options;
 
 		if (this.context) {
-			if (options.backgroundMask.enable && options.backgroundMask.cover) {
-				if (this.coverColor) {
-					this.paintBase(ColorUtils.getStyleFromColor(this.coverColor));
-				} else {
-					this.paintBase();
-				}
+			if (options.backgroundMask.enable && options.backgroundMask.cover && this.coverColor) {
+				this.paintBase(ColorUtils.getStyleFromColor(this.coverColor));
 			} else {
 				this.paintBase();
 			}
@@ -212,9 +208,9 @@ export class Canvas {
 			const destColor = p2.color;
 
 			colorLine = {
-				b: Math.floor(Utils.mix(sourceColor.b, destColor.b, p1.size.value, p2.size.value)),
-				g: Math.floor(Utils.mix(sourceColor.g, destColor.g, p1.size.value, p2.size.value)),
-				r: Math.floor(Utils.mix(sourceColor.r, destColor.r, p1.size.value, p2.size.value)),
+				b: Utils.mix(sourceColor.b, destColor.b, p1.size.value, p2.size.value),
+				g: Utils.mix(sourceColor.g, destColor.g, p1.size.value, p2.size.value),
+				r: Utils.mix(sourceColor.r, destColor.r, p1.size.value, p2.size.value),
 			};
 		} else {
 			colorLine = container.particles.lineLinkedColor as IRgb;
@@ -265,17 +261,22 @@ export class Canvas {
 
 		container.particles.grabLineColor = lineColor;
 
-		let colorLine: IRgb = { r: 127, g: 127, b: 127 };
 		const ctx = container.canvas.context;
 
 		if (!ctx) {
 			return;
 		}
 
-		if (container.particles.grabLineColor == Constants.randomColorValue) {
-			colorLine = ColorUtils.getRandomRgbColor() || colorLine;
+		let colorLine: IRgb;
+
+		if (container.particles.grabLineColor === Constants.randomColorValue) {
+			colorLine = ColorUtils.getRandomRgbColor();
 		} else {
-			colorLine = container.particles.grabLineColor as IRgb || colorLine;
+			colorLine = container.particles.grabLineColor as IRgb;
+		}
+
+		if (colorLine === undefined) {
+			return;
 		}
 
 		const beginPos = {
@@ -295,10 +296,11 @@ export class Canvas {
 		const container = this.container;
 		const options = container.options;
 
-		let colorValue: string | undefined;
 		const radius = particle.bubble.radius ?? particle.size.value;
 		const opacity = particle.bubble.opacity ?? particle.opacity.value;
 		const color = particle.bubble.color ?? particle.color;
+
+		let colorValue: string | undefined;
 
 		if (color) {
 			colorValue = ColorUtils.getStyleFromColor(color, opacity);

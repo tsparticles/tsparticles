@@ -22,7 +22,7 @@ export class SpatialGrid {
 
 	// Cut the grid up into a 2d array with a 3rd dimension holding the data.
 	constructor(canvas: IDimension) {
-		this.cellSize = 5;
+		this.cellSize = 20;
 		this.widthSegment = Math.round(canvas.width / this.cellSize);
 		this.heightSegment = Math.round(canvas.height / this.cellSize);
 	}
@@ -30,12 +30,12 @@ export class SpatialGrid {
 	/**
 	 * Sets the spatial grid. (This is for use in the update loop in Particles.ts)
 	 * @param particles the particles array
-	 * @param dimesion The current canvas dimensions
+	 * @param dimension The current canvas dimensions
 	 */
-	public setGrid(particles: Particle[], dimesion?: IDimension): void {
+	public setGrid(particles: Particle[], dimension?: IDimension): void {
 		const grid: Particle[][][] = [];
-		const widthSegment: number = dimesion?.width ? dimesion?.width / this.cellSize : this.widthSegment;
-		const heightSegment: number = dimesion?.height ? dimesion?.height / this.cellSize : this.heightSegment;
+		const widthSegment = dimension?.width ? dimension?.width / this.cellSize : this.widthSegment;
+		const heightSegment = dimension?.height ? dimension?.height / this.cellSize : this.heightSegment;
 
 		for (let i = 0; i < particles.length; i++) {
 			const pos = this.index(particles[i].position);
@@ -61,11 +61,8 @@ export class SpatialGrid {
 	public queryInCell(position: ICoordinates): Particle[] {
 		const pos = this.index(position);
 
-		if (Array.isArray(this.grid[pos.x]) && Array.isArray(this.grid[pos.x][pos.y]))
-			return this.grid[pos.x][pos.y] || [];
-
-		else
-			return [];
+		return Array.isArray(this.grid[pos.x]) && Array.isArray(this.grid[pos.x][pos.y]) ?
+			this.grid[pos.x][pos.y] || [] : [];
 	}
 
 	/**
@@ -81,8 +78,9 @@ export class SpatialGrid {
 		let out = [];
 
 		for (let i = 0; i < items.length; i++) {
-			if (items[i] && Utils.getDistanceBetweenCoordinates(items[i].position, position) <= radius)
+			if (items[i] && Utils.getDistanceBetweenCoordinates(items[i].position, position) <= radius) {
 				out[out.length + 1] = items[i];
+			}
 		}
 
 		return out;
@@ -107,10 +105,10 @@ export class SpatialGrid {
 			if (items[i]) {
 				const distance = Utils.getDistanceBetweenCoordinates(items[i].position, position);
 
-				if (distance <= radius)
+				if (distance <= radius) {
 					out.push({ distance: distance, particle: items[i] });
+				}
 			}
-
 		}
 
 		return out;
@@ -128,15 +126,21 @@ export class SpatialGrid {
 		let out: Particle[] = [];
 
 		for (let x = start.x; x <= end.x; x++) {
-			if (!Array.isArray(this.grid[x])) continue;
+			if (!Array.isArray(this.grid[x])) {
+				continue;
+			}
 
 			for (let y = start.y; y <= end.y; y++) {
-				if (!Array.isArray(this.grid[x][y])) continue;
+				if (!Array.isArray(this.grid[x][y])) {
+					continue;
+				}
 
 				// Its unconventional but it is the marginally faster approach for adjoining arrays
-				for (let i = 0; i < this.grid[x][y].length; i++)
-					if (this.grid[x][y][i])
+				for (let i = 0; i < this.grid[x][y].length; i++) {
+					if (this.grid[x][y][i]) {
 						out[out.length + 1] = this.grid[x][y][i];
+					}
+				}
 			}
 		}
 
@@ -153,7 +157,7 @@ export class SpatialGrid {
 		return {
 			x: Math.round(position.x / this.widthSegment),
 			y: Math.round(position.y / this.heightSegment)
-		} as ICoordinates;
+		};
 	}
 
 	/**
@@ -165,7 +169,7 @@ export class SpatialGrid {
 		return {
 			x: Math.ceil(radius.x / this.widthSegment),
 			y: Math.ceil(radius.y / this.heightSegment)
-		} as ICoordinates;
+		};
 	}
 
 	/**
@@ -175,16 +179,17 @@ export class SpatialGrid {
 	 * @param right The right hand side of the equation
 	 */
 	private indexOp(left: ICoordinates, op: string, right: ICoordinates): ICoordinates {
-		if (op == '+')
+		if (op == '+') {
 			return {
 				x: this.clamp(left.x + right.x),
 				y: this.clamp(left.y + right.y)
-			} as ICoordinates;
-		else
+			};
+		} else {
 			return {
 				x: this.clamp(left.x - right.x),
 				y: this.clamp(left.y - right.y)
-			} as ICoordinates;
+			};
+		}
 	}
 
 	/**

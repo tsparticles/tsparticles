@@ -71,7 +71,7 @@ export class Utils {
 	 * @param weight2
 	 */
 	public static mix(comp1: number, comp2: number, weight1: number, weight2: number): number {
-		return (comp1 * weight1 + comp2 * weight2) / (weight1 + weight2);
+		return Math.floor((comp1 * weight1 + comp2 * weight2) / (weight1 + weight2));
 	}
 
 	/**
