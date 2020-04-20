@@ -8,6 +8,7 @@ export class Constants {
 	public static readonly canvasClass: string = "tsparticles-canvas-el";
 
 	public static readonly randomColorValue: string = "random";
+	public static readonly midColorValue: string = "mid";
 
 	public static readonly touchEndEvent: string = "touchend";
 	public static readonly mouseUpEvent: string = "mouseup";

@@ -30,9 +30,9 @@ export class Linker {
 						if (p1.particlesOptions.lineLinked.consent) {
 							container.particles.lineLinkedColor = ColorUtils.colorToRgb({ value: color });
 						} else if (p1.particlesOptions.lineLinked.blink) {
-							container.particles.lineLinkedColor = ColorUtils.colorToRgb({ value: color });
+							container.particles.lineLinkedColor = Constants.randomColorValue;
 						} else {
-							container.particles.lineLinkedColor = "mid";
+							container.particles.lineLinkedColor = Constants.midColorValue;
 						}
 					} else {
 						container.particles.lineLinkedColor = ColorUtils.colorToRgb({ value: color });
