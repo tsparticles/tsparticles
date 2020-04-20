@@ -4,6 +4,7 @@ globalThis.window = new Window();
 import { expect } from "chai";
 import { Particle } from "../src/Classes/Particle";
 import { TestContainer } from "./Fixture/TestContainer";
+import { TestParticle } from "./Fixture/TestParticle";
 import { TestSpatialGrid } from "./Fixture/TestSpatialGrid";
 import { Utils } from "../src/Classes/Utils/Utils";
 
@@ -20,81 +21,140 @@ describe('SpatialGrid', () => {
         const particle2 = new Particle(testContainer.container, {x: 2, y: 2});
         const particle3 = new Particle(testContainer.container, {x: 3, y: 3});
         const particle4 = new Particle(testContainer.container, {x: 768, y: 240});
-        testSpatialGrid.spatialGrid.setGrid([particle1, particle2, particle3, particle4]);
+        spatialGrid.setGrid([particle1, particle2, particle3, particle4]);
+
+        it('should return particles 1, 2, and 3 when position is random in top left corner grid', () => {
+            // Top left corner cell should have width in [0, 192) and height in [0, 120).
+            const position = {x: Utils.randomInRange(0, 191), y: Utils.randomInRange(0, 119)};
+            const particles = spatialGrid.queryInCell(position);
+            const positions = TestParticle.sortedPositions(particles);
+            expect(
+                positions,
+                `Failed for position {x: ${position.x}, y: ${position.y}}`
+            ).to.eql([particle1.position, particle2.position, particle3.position]);
+        });
+
+        it('should return particles 1, 2, and 3 when position is on upper left corner of top left grid', () => {
+            const position = {x: 0, y: 0};
+            const particles = spatialGrid.queryInCell(position);
+            const positions = TestParticle.sortedPositions(particles);
+            expect(positions).to.eql([particle1.position, particle2.position, particle3.position]);
+        });
+
+        it('should return particles 1, 2, and 3 when position is on lower left corner of top left grid', () => {
+            const position = {x: 0, y: 119};
+            const particles = spatialGrid.queryInCell(position);
+            const positions = TestParticle.sortedPositions(particles);
+            expect(positions).to.eql([particle1.position, particle2.position, particle3.position]);
+        });
+
+        it('should return particles 1, 2, and 3 when position is on upper right corner of top left grid', () => {
+            const position = {x: 191, y: 0};
+            const particles = spatialGrid.queryInCell(position);
+            const positions = TestParticle.sortedPositions(particles);
+            expect(positions).to.eql([particle1.position, particle2.position, particle3.position]);
+        });
+
+        it('should return particles 1, 2, and 3 when position is on lower right corner of top left grid', () => {
+            const position = {x: 191, y: 119};
+            const particles = spatialGrid.queryInCell(position);
+            const positions = TestParticle.sortedPositions(particles);
+            expect(positions).to.eql([particle1.position, particle2.position, particle3.position]);
+        });
+
+        it('should return empty array when position is just outside upper left corner of top left grid', () => {
+            const position = {x: 0-1, y: 0-1};
+            const particles = spatialGrid.queryInCell(position);
+            const positions = TestParticle.sortedPositions(particles);
+            expect(positions).to.eql([]);
+        });
+
+        it('should return empty array when position is just outside lower left corner of top left grid', () => {
+            const position = {x: 0-1, y: 119+1};
+            const particles = spatialGrid.queryInCell(position);
+            const positions = TestParticle.sortedPositions(particles);
+            expect(positions).to.eql([]);
+        });
+
+        it('should return empty array when position is just outside upper right corner of top left grid', () => {
+            const position = {x: 191+1, y: 0-1};
+            const particles = spatialGrid.queryInCell(position);
+            const positions = TestParticle.sortedPositions(particles);
+            expect(positions).to.eql([]);
+        });
+
+        it('should return empty array when position is just outside lower right corner of top left grid', () => {
+            const position = {x: 191+1, y: 119+1};
+            const particles = spatialGrid.queryInCell(position);
+            const positions = TestParticle.sortedPositions(particles);
+            expect(positions).to.eql([]);
+        });
 
         it('should return particle 4 when position is random in same grid as particle 4', () => {
-
             // Particle 4 cell should have width in [586, 960) and height in [120, 360).
             const position = {x: Utils.randomInRange(586, 959), y: Utils.randomInRange(120, 359)}
+            const particles = spatialGrid.queryInCell(position);
+            const positions = TestParticle.sortedPositions(particles);
             expect(
-                spatialGrid.queryInCell(position),
+                positions,
                 `Failed for position {x: ${position.x}, y: ${position.y}}`
-            ).to.eql([particle4]);
-
+            ).to.eql([particle4.position]);
         });
 
         it('should return particle 4 when position is on upper left corner of grid containing particle 4', () => {
             const position = {x: 586, y: 120};
-            expect(
-                spatialGrid.queryInCell(position),
-                `Failed for position {x: ${position.x}, y: ${position.y}}`
-            ).to.eql([particle4]);
+            const particles = spatialGrid.queryInCell(position);
+            const positions = TestParticle.sortedPositions(particles);
+            expect(positions).to.eql([particle4.position]);
         });
 
         it('should return particle 4 when position is on lower left corner of grid containing particle 4', () => {
             const position = {x: 586, y: 359};
-            expect(
-                spatialGrid.queryInCell(position),
-                `Failed for position {x: ${position.x}, y: ${position.y}}`
-            ).to.eql([particle4]);
+            const particles = spatialGrid.queryInCell(position);
+            const positions = TestParticle.sortedPositions(particles);
+            expect(positions).to.eql([particle4.position]);
         });
 
         it('should return particle 4 when position is on upper right corner of grid containing particle 4', () => {
             const position = {x: 959, y: 120};
-            expect(
-                spatialGrid.queryInCell(position),
-                `Failed for position {x: ${position.x}, y: ${position.y}}`
-            ).to.eql([particle4]);
+            const particles = spatialGrid.queryInCell(position);
+            const positions = TestParticle.sortedPositions(particles);
+            expect(positions).to.eql([particle4.position]);
         });
 
         it('should return particle 4 when position is on lower right corner of grid containing particle 4', () => {
             const position = {x: 959, y: 359};
-            expect(
-                spatialGrid.queryInCell(position),
-                `Failed for position {x: ${position.x}, y: ${position.y}}`
-            ).to.eql([particle4]);
+            const particles = spatialGrid.queryInCell(position);
+            const positions = TestParticle.sortedPositions(particles);
+            expect(positions).to.eql([particle4.position]);
         });
 
         it('should return empty array when position is just outside upper left corner of grid containing particle 4', () => {
             const position = {x: 586-1, y: 120-1};
-            expect(
-                spatialGrid.queryInCell(position),
-                `Failed for position {x: ${position.x}, y: ${position.y}}`
-            ).to.eql([]);
+            const particles = spatialGrid.queryInCell(position);
+            const positions = TestParticle.sortedPositions(particles);
+            expect(positions).to.eql([]);
         });
 
         it('should return empty array when position is just outside lower left corner of grid containing particle 4', () => {
             const position = {x: 586-1, y: 359+1};
-            expect(
-                spatialGrid.queryInCell(position),
-                `Failed for position {x: ${position.x}, y: ${position.y}}`
-            ).to.eql([]);
+            const particles = spatialGrid.queryInCell(position);
+            const positions = TestParticle.sortedPositions(particles);
+            expect(positions).to.eql([]);
         });
 
         it('should return empty array when position is just outside upper right corner of grid containing particle 4', () => {
             const position = {x: 959+1, y: 120-1};
-            expect(
-                spatialGrid.queryInCell(position),
-                `Failed for position {x: ${position.x}, y: ${position.y}}`
-            ).to.eql([]);
+            const particles = spatialGrid.queryInCell(position);
+            const positions = TestParticle.sortedPositions(particles);
+            expect(positions).to.eql([]);
         });
 
         it('should return empty array when position is just outside lower right corner of grid containing particle 4', () => {
             const position = {x: 959+1, y: 359+1};
-            expect(
-                spatialGrid.queryInCell(position),
-                `Failed for position {x: ${position.x}, y: ${position.y}}`
-            ).to.eql([]);
+            const particles = spatialGrid.queryInCell(position);
+            const positions = TestParticle.sortedPositions(particles);
+            expect(positions).to.eql([]);
         });
 
     });
