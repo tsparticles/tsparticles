@@ -256,14 +256,14 @@ export class Canvas {
 		const container = this.container;
 		const optColor = particle.particlesOptions.lineLinked.color;
 
-		let lineColor = container.particles.lineLinkedColor ||
+		let lineColor = container.particles.grabLineColor ||
 			(typeof optColor === "string" ? ColorUtils.stringToRgb(optColor) : ColorUtils.colorToRgb(optColor));
 
 		if (lineColor == Constants.randomColorValue) {
 			lineColor = ColorUtils.getRandomRgbColor();
 		}
 
-		container.particles.lineLinkedColor = lineColor;
+		container.particles.grabLineColor = lineColor;
 
 		let colorLine: IRgb = { r: 127, g: 127, b: 127 };
 		const ctx = container.canvas.context;
@@ -272,10 +272,10 @@ export class Canvas {
 			return;
 		}
 
-		if (container.particles.lineLinkedColor == Constants.randomColorValue) {
+		if (container.particles.grabLineColor == Constants.randomColorValue) {
 			colorLine = ColorUtils.getRandomRgbColor() || colorLine;
 		} else {
-			colorLine = container.particles.lineLinkedColor as IRgb || colorLine;
+			colorLine = container.particles.grabLineColor as IRgb || colorLine;
 		}
 
 		const beginPos = {

@@ -64,15 +64,20 @@
   },
   "particles": {
     "color": {
-      "value": "#ffffff"
+      "value": [
+        "#4285f4",
+        "#34A853",
+        "#FBBC05",
+        "#EA4335"
+      ]
     },
     "lineLinked": {
       "blink": false,
-      "color": "#ffffff",
+      "color": "random",
       "consent": false,
       "distance": 40,
       "enable": true,
-      "opacity": 0.4,
+      "opacity": 1,
       "width": 1
     },
     "move": {
@@ -145,7 +150,7 @@
   },
   "polygon": {
     "draw": {
-      "enable": true,
+      "enable": false,
       "lineColor": "rgba(255,255,255,0.2)",
       "lineWidth": 0.5
     },

@@ -19,7 +19,8 @@ export class Linker {
 
 				/* style */
 				if (!container.particles.lineLinkedColor) {
-					const color = p1.particlesOptions.lineLinked.color;
+					const optColor = p1.particlesOptions.lineLinked.color;
+					const color = typeof optColor === "string" ? optColor : optColor.value;
 
 					/* particles.line_linked - convert hex colors to rgb */
 					//  check for the color profile requested and
@@ -27,16 +28,14 @@ export class Linker {
 
 					if (color === Constants.randomColorValue) {
 						if (p1.particlesOptions.lineLinked.consent) {
-							container.particles.lineLinkedColor = ColorUtils.stringToRgb(color);
+							container.particles.lineLinkedColor = ColorUtils.colorToRgb({ value: color });
 						} else if (p1.particlesOptions.lineLinked.blink) {
 							container.particles.lineLinkedColor = Constants.randomColorValue;
 						} else {
-							container.particles.lineLinkedColor = "mid";
+							container.particles.lineLinkedColor = Constants.midColorValue;
 						}
 					} else {
-						container.particles.lineLinkedColor = typeof color === "string" ?
-							ColorUtils.stringToRgb(color) :
-							ColorUtils.colorToRgb(color);
+						container.particles.lineLinkedColor = ColorUtils.colorToRgb({ value: color });
 					}
 				}
 

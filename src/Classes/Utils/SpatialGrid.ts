@@ -11,7 +11,7 @@ Particles are pushed into their respective cells with the same method.
 Before refactoring understand this code is written with an emphasis on speed and efficiency.
 This is because this system is responsible for neighbhour detection. Meaning
 any changes to the efficiency to this code will exponentially change the efficiency
-of the system. 
+of the system.
 */
 
 export class SpatialGrid {
