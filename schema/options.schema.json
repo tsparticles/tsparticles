@@ -966,6 +966,9 @@
                 },
                 "duration": {
                     "type": "number"
+                },
+                "speed": {
+                    "type": "number"
                 }
             },
             "type": "object"
