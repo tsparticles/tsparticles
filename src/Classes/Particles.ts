@@ -27,6 +27,7 @@ export class Particles {
 	public spatialGrid: SpatialGrid;
 	public pushing?: boolean;
 	public lineLinkedColor?: IRgb | string;
+	public grabLineColor?: IRgb | string;
 
 	private readonly container: Container;
 	private interactionsEnabled: boolean;
