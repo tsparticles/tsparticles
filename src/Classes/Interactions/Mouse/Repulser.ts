@@ -83,7 +83,7 @@ export class Repulser {
 				y: dy / dist,
 			};
 
-			const velocity = 100;
+			const velocity = container.options.interactivity.modes.repulse.speed * 100;
 			const repulseFactor = Utils.clamp((1 - Math.pow(dist / repulseRadius, 2)) * velocity, 0, 50);
 			const outMode = particle.particlesOptions.move.outMode;
 			const sizeValue = particle.size.value;
@@ -142,7 +142,8 @@ export class Repulser {
 				const dx = mouseClickPos.x - particle.position.x;
 				const dy = mouseClickPos.y - particle.position.y;
 				const d = dx * dx + dy * dy;
-				const force = -repulseRadius / d;
+				const velocity = container.options.interactivity.modes.repulse.speed;
+				const force = -repulseRadius * velocity / d;
 
 				// default
 				if (d <= repulseRadius) {
