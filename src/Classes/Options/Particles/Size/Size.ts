@@ -29,7 +29,7 @@ export class Size implements ISize {
 
 	constructor() {
 		this.animation = new SizeAnimation();
-		this.random = new SizeRandom;
+		this.random = new SizeRandom();
 		this.value = 3;
 	}
 
