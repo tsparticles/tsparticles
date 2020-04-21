@@ -1,3 +1,4 @@
+import { tsParticles } from "../../src/index"; // Have to import this to setup custom window functions
 import { Container } from "../../src/Classes/Container";
 import type { IOptions } from "../../src/Interfaces/Options/IOptions";
 import { RecursivePartial } from "../../src/Types/RecursivePartial";
