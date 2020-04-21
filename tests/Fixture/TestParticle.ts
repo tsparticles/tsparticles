@@ -44,4 +44,23 @@ export class TestParticle {
             .map((particle) => particle.position);
     }
 
+    /**
+     * Sorts the particle and distance objects, then returns a new array
+     * of objects and contains the distances and the particle positions.
+     * 
+     * @param queryResults 
+     */
+    public static sortedPositionsWithDistances(queryResults: { dist: number, particle: Particle }[]) : { dist: number, position: ICoordinates }[] {
+        return queryResults
+            .sort((result1: { dist: number, particle: Particle }, result2: { dist: number, particle: Particle }): number => {
+                return TestParticle.sort(result1.particle, result2.particle);
+            })
+            .map((sortedResult) => {
+                return {
+                    dist: sortedResult.dist,
+                    position: sortedResult.particle.position
+                };
+            });
+    }
+
 }
