@@ -14,6 +14,7 @@ import { ClickMode } from "../Enums/Modes/ClickMode";
 import { Repulser } from "./Interactions/Mouse/Repulser";
 import { DivMode } from "../Enums/Modes/DivMode";
 import { Bubbler } from "./Interactions/Mouse/Bubbler";
+import { Connecter } from "./Interactions/Mouse/Connecter";
 
 /**
  * Particles manager
@@ -103,7 +104,7 @@ export class Particles {
         const clickMode = options.interactivity.events.onClick.mode;
         const divMode = options.interactivity.events.onDiv.mode;
 
-        /* events */
+        /* mouse events interactions */
         if (Utils.isInArray(HoverMode.grab, hoverMode)) {
             Grabber.grab(container);
         }
@@ -116,6 +117,10 @@ export class Particles {
 
         if (Utils.isInArray(HoverMode.bubble, hoverMode) || Utils.isInArray(ClickMode.bubble, clickMode)) {
             Bubbler.bubble(container);
+        }
+
+        if (Utils.isInArray(HoverMode.connect, hoverMode)) {
+            Connecter.connect(container);
         }
 
         // this loop is required to be done after mouse interactions

@@ -122,8 +122,8 @@
         "sides": 5
       },
       "stroke": {
-        "color": "#000000",
-        "width": 0
+        "color": "#fff",
+        "width": 1
       },
       "type": "circle"
     },
@@ -135,7 +135,7 @@
         "sync": false
       },
       "random": true,
-      "value": 5
+      "value": 10
     }
   },
   "polygon": {

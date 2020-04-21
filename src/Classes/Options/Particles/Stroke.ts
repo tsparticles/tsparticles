@@ -23,6 +23,10 @@ export class Stroke implements IStroke {
             if (data.width !== undefined) {
                 this.width = data.width;
             }
+
+            if (data.opacity !== undefined) {
+                this.opacity = data.opacity;
+            }
         }
     }
 }

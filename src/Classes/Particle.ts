@@ -8,9 +8,7 @@ import { ShapeType } from "../Enums/ShapeType";
 import { Updater } from "./Particle/Updater";
 import { Utils } from "./Utils/Utils";
 import { PolygonMaskType } from "../Enums/PolygonMaskType";
-import { Connecter } from "./Interactions/Mouse/Connecter";
 import type { IRgb } from "../Interfaces/IRgb";
-import { HoverMode } from "../Enums/Modes/HoverMode";
 import { RotateDirection } from "../Enums/RotateDirection";
 import type { IStroke } from "../Interfaces/Options/Particles/IStroke";
 import { ColorUtils } from "./Utils/ColorUtils";
@@ -258,23 +256,9 @@ export class Particle implements IParticle {
     }
 
     public update(index: number, delta: number): void {
-        const container = this.container;
-        const options = container.options;
         this.links = [];
 
         this.updater.update(delta);
-
-        const hoverMode = options.interactivity.events.onHover.mode;
-
-        //  New interactivity `connect` which would just connect the particles on hover
-
-        if (Utils.isInArray(HoverMode.connect, hoverMode)) {
-            for (let j = index + 1; j < container.particles.count; j++) {
-                const p2 = container.particles.array[j];
-
-                Connecter.connect(this, p2, container);
-            }
-        }
     }
 
     public draw(): void {
