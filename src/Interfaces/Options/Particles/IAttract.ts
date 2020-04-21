@@ -2,17 +2,17 @@ import type { ICoordinates } from "../../ICoordinates";
 import type { IOptionLoader } from "../IOptionLoader";
 
 export interface IAttract extends IOptionLoader<IAttract> {
-	enable: boolean;
+    enable: boolean;
 
-	/**
-	 * @deprecated use the new rotate.x instead
-	 */
-	rotateX: number;
+    /**
+     * @deprecated use the new rotate.x instead
+     */
+    rotateX: number;
 
-	/**
-	 * @deprecated use the new rotate.y instead
-	 */
-	rotateY: number;
+    /**
+     * @deprecated use the new rotate.y instead
+     */
+    rotateY: number;
 
-	rotate: ICoordinates;
+    rotate: ICoordinates;
 }

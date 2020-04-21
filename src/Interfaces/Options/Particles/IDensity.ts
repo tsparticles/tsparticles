@@ -1,12 +1,12 @@
 import type { IOptionLoader } from "../IOptionLoader";
 
 export interface IDensity extends IOptionLoader<IDensity> {
-	enable: boolean;
+    enable: boolean;
 
-	/**
-	 * @deprecated use the new area instead
-	 */
-	value_area: number;
+    /**
+     * @deprecated use the new area instead
+     */
+    value_area: number;
 
-	area: number;
+    area: number;
 }

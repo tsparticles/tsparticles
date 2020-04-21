@@ -10,36 +10,36 @@ import type { IDimension } from "../../IDimension";
  * Particles emitter object options
  */
 export interface IEmitter extends IOptionLoader<IEmitter> {
-	/**
-	 * The size of the particles emitter area
-	 */
-	size?: IDimension;
+    /**
+     * The size of the particles emitter area
+     */
+    size?: IDimension;
 
-	/**
-	 * The direction of the emitted particles, [[MoveDirection]] is the enum used for values
-	 */
-	direction: MoveDirection;
+    /**
+     * The direction of the emitted particles, [[MoveDirection]] is the enum used for values
+     */
+    direction: MoveDirection;
 
-	/**
-	 * The emitter life options
-	 */
-	life: IEmitterLife;
+    /**
+     * The emitter life options
+     */
+    life: IEmitterLife;
 
-	/**
-	 * Particles emitted customization.
-	 * These settings will overrides other particles settings for the particles emitted by this emitter
-	 * Particles number options won't override anything, they will be ignored completely
-	 */
-	particles?: IParticles;
+    /**
+     * Particles emitted customization.
+     * These settings will overrides other particles settings for the particles emitted by this emitter
+     * Particles number options won't override anything, they will be ignored completely
+     */
+    particles?: IParticles;
 
-	/**
-	 * The relative position (in percent) of the emitter, where particles spawns.
-	 * If size is specified the position will be the center of the size options
-	 */
-	position?: ICoordinates;
+    /**
+     * The relative position (in percent) of the emitter, where particles spawns.
+     * If size is specified the position will be the center of the size options
+     */
+    position?: ICoordinates;
 
-	/**
-	 * The particles emitting rate options
-	 */
-	rate: IEmitterRate;
+    /**
+     * The particles emitting rate options
+     */
+    rate: IEmitterRate;
 }

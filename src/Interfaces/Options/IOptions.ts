@@ -11,50 +11,50 @@ import type { IEmitter } from "./Emitters/IEmitter";
  * The Options interface, defines all the options that can be used by `tsParticles`
  */
 export interface IOptions extends IOptionLoader<IOptions> {
-	background: IBackground;
+    background: IBackground;
 
-	backgroundMask: IBackgroundMask;
+    backgroundMask: IBackgroundMask;
 
-	/**
-	 * Enables the retina detection, if disabled the ratio used by canvas will be always 1 and not the device setting.
-	 */
-	detectRetina: boolean;
+    /**
+     * Enables the retina detection, if disabled the ratio used by canvas will be always 1 and not the device setting.
+     */
+    detectRetina: boolean;
 
-	emitters: SingleOrMultiple<IEmitter>;
+    emitters: SingleOrMultiple<IEmitter>;
 
-	/**
-	 * The Frame Per Second limit applied to all particles animations.
-	 * @deprecated use the new fpsLimit instead
-	 */
-	fps_limit: number;
+    /**
+     * The Frame Per Second limit applied to all particles animations.
+     * @deprecated use the new fpsLimit instead
+     */
+    fps_limit: number;
 
-	/**
-	 * The F(rame)P(er)S(econd) limit applied to all particles animations.
-	 */
-	fpsLimit: number;
+    /**
+     * The F(rame)P(er)S(econd) limit applied to all particles animations.
+     */
+    fpsLimit: number;
 
-	/**
-	 * The particles interaction options
-	 */
-	interactivity: IInteractivity;
+    /**
+     * The particles interaction options
+     */
+    interactivity: IInteractivity;
 
-	/**
-	 * The particles options
-	 */
-	particles: IParticles;
+    /**
+     * The particles options
+     */
+    particles: IParticles;
 
-	pauseOnBlur: boolean;
+    pauseOnBlur: boolean;
 
-	/**
-	 * The polygon mask options.
-	 */
-	polygon: IPolygonMask;
+    /**
+     * The polygon mask options.
+     */
+    polygon: IPolygonMask;
 
-	preset?: string | string[];
+    preset?: string | string[];
 
-	/**
-	 * Enables the retina detection, if disabled the ratio used by canvas will be always 1 and not the device setting.
-	 * @deprecated use the new detectRetina instead
-	 */
-	retina_detect: boolean;
+    /**
+     * Enables the retina detection, if disabled the ratio used by canvas will be always 1 and not the device setting.
+     * @deprecated use the new detectRetina instead
+     */
+    retina_detect: boolean;
 }

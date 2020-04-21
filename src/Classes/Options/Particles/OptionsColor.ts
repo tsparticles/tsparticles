@@ -5,17 +5,17 @@ import type { IRgb } from "../../../Interfaces/IRgb";
 import type { IHsl } from "../../../Interfaces/IHsl";
 
 export class OptionsColor implements IOptionsColor {
-	public value: string | IValueColor | IRgb | IHsl | string[];
+    public value: string | IValueColor | IRgb | IHsl | string[];
 
-	constructor() {
-		this.value = "#fff";
-	}
+    constructor() {
+        this.value = "#fff";
+    }
 
-	public load(data?: RecursivePartial<IOptionsColor>): void {
-		if (data !== undefined) {
-			if (data.value !== undefined) {
-				this.value = data.value;
-			}
-		}
-	}
+    public load(data?: RecursivePartial<IOptionsColor>): void {
+        if (data !== undefined) {
+            if (data.value !== undefined) {
+                this.value = data.value;
+            }
+        }
+    }
 }
