@@ -105,7 +105,7 @@ export class PolygonMask {
                 clearTimeout(this.redrawTimeout);
             }
 
-            this.redrawTimeout = setTimeout(() => {
+            this.redrawTimeout = window.setTimeout(() => {
                 this.parseSvgPathToPolygon().then((data) => {
                     this.raw = data;
 
