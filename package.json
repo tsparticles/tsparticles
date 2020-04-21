@@ -93,7 +93,7 @@
     "typedoc": "^0.17.3",
     "typescript": "^3.8.3",
     "typescript-json-schema": "^0.42.0",
-    "webpack": "^4.42.1",
+    "webpack": "^4.43.0",
     "webpack-cli": "^3.3.11"
   },
   "dependencies": {
