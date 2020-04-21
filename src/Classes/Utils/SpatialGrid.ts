@@ -37,14 +37,13 @@ export class SpatialGrid {
         const widthSegment = dimension?.width ? dimension?.width / this.cellSize : this.widthSegment;
         const heightSegment = dimension?.height ? dimension?.height / this.cellSize : this.heightSegment;
 
-        for (let i = 0; i < particles.length; i++) {
-            const pos = this.index(particles[i].position);
+        for (const particle of particles) {
+            const pos = this.index(particle.position);
 
             if (!Array.isArray(grid[pos.x])) grid[pos.x] = [];
             if (!Array.isArray(grid[pos.x][pos.y])) grid[pos.x][pos.y] = [];
 
-
-            grid[pos.x][pos.y].push(particles[i]);
+            grid[pos.x][pos.y].push(particle);
         }
 
         this.widthSegment = widthSegment;
@@ -74,8 +73,7 @@ export class SpatialGrid {
         const pos = this.index(position);
         const rad = this.radius({ x: radius, y: radius } as ICoordinates);
         const items = this.select(this.indexOp(pos, '-', rad), this.indexOp(pos, '+', rad));
-
-        let out = [];
+        const out = [];
 
         for (let i = 0; i < items.length; i++) {
             if (items[i] && Utils.getDistanceBetweenCoordinates(items[i].position, position) <= radius) {
@@ -93,7 +91,7 @@ export class SpatialGrid {
      */
     public queryRadiusWithDistance(position: ICoordinates, radius: number): {
         distance: number,
-        particle: Particle
+        particle: Particle,
     }[] {
         const pos = this.index(position);
         const rad = this.radius({ x: radius, y: radius } as ICoordinates);
@@ -101,12 +99,15 @@ export class SpatialGrid {
 
         let out = [];
 
-        for (let i = 0; i < items.length; i++) {
-            if (items[i]) {
-                const distance = Utils.getDistanceBetweenCoordinates(items[i].position, position);
+        for (const item of items) {
+            if (item) {
+                const distance = Utils.getDistanceBetweenCoordinates(item.position, position);
 
                 if (distance <= radius) {
-                    out.push({ distance: distance, particle: items[i] });
+                    out.push({
+                        distance: distance,
+                        particle: item,
+                    });
                 }
             }
         }
@@ -123,7 +124,7 @@ export class SpatialGrid {
      * @param end The ending X,Y indexes for the selection
      */
     private select(start: ICoordinates, end: ICoordinates): Particle[] {
-        let out: Particle[] = [];
+        const out: Particle[] = [];
 
         for (let x = start.x; x <= end.x; x++) {
             if (!Array.isArray(this.grid[x])) {
@@ -136,9 +137,9 @@ export class SpatialGrid {
                 }
 
                 // Its unconventional but it is the marginally faster approach for adjoining arrays
-                for (let i = 0; i < this.grid[x][y].length; i++) {
-                    if (this.grid[x][y][i]) {
-                        out[out.length + 1] = this.grid[x][y][i];
+                for (const item of this.grid[x][y]) {
+                    if (item) {
+                        out.push(item);
                     }
                 }
             }
@@ -156,7 +157,7 @@ export class SpatialGrid {
     private index(position: ICoordinates): ICoordinates {
         return {
             x: Math.round(position.x / this.widthSegment),
-            y: Math.round(position.y / this.heightSegment)
+            y: Math.round(position.y / this.heightSegment),
         };
     }
 
@@ -168,7 +169,7 @@ export class SpatialGrid {
     private radius(radius: ICoordinates): ICoordinates {
         return {
             x: Math.ceil(radius.x / this.widthSegment),
-            y: Math.ceil(radius.y / this.heightSegment)
+            y: Math.ceil(radius.y / this.heightSegment),
         };
     }
 
@@ -182,12 +183,12 @@ export class SpatialGrid {
         if (op == '+') {
             return {
                 x: this.clamp(left.x + right.x),
-                y: this.clamp(left.y + right.y)
+                y: this.clamp(left.y + right.y),
             };
         } else {
             return {
                 x: this.clamp(left.x - right.x),
-                y: this.clamp(left.y - right.y)
+                y: this.clamp(left.y - right.y),
             };
         }
     }
