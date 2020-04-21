@@ -23,8 +23,13 @@ export class Updater {
 		this.mover = new Mover(container, particle);
 	}
 
-	private static checkBounds(coordinate: number, radius: number, size: number, outside: () => void): void {
-		if ((coordinate + radius > size) || (coordinate - radius < 0)) {
+	private static checkBounds(coordinate: number,
+	                           radius: number,
+	                           size: number,
+	                           velocity: number,
+	                           outside: () => void): void {
+		if ((coordinate + radius > size && velocity > 0) ||
+			(coordinate - radius < 0 && velocity < 0)) {
 			outside();
 		}
 	}
@@ -231,14 +236,18 @@ export class Updater {
 			const y = particle.position.y + particle.offset.y;
 
 			if (outMode === OutMode.bounce || outMode === OutMode.bounceHorizontal) {
-				Updater.checkBounds(x, particle.size.value, container.canvas.dimension.width, () => {
-					particle.velocity.horizontal = -particle.velocity.horizontal;
+				const size = particle.size.value;
+				const velocity = particle.velocity.horizontal;
+				Updater.checkBounds(x, size, container.canvas.dimension.width, velocity, () => {
+					particle.velocity.horizontal *= -1;
 				});
 			}
 
 			if (outMode === OutMode.bounce || outMode === OutMode.bounceVertical) {
-				Updater.checkBounds(y, particle.size.value, container.canvas.dimension.height, () => {
-					particle.velocity.vertical = -particle.velocity.vertical;
+				const size = particle.size.value;
+				const velocity = particle.velocity.vertical;
+				Updater.checkBounds(y, size, container.canvas.dimension.height, velocity, () => {
+					particle.velocity.vertical *= -1;
 				});
 			}
 		}
