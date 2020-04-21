@@ -248,13 +248,6 @@ export class Particle implements IParticle {
         this.updater = new Updater(this.container, this);
     }
 
-    public resetVelocity(): void {
-        const velocity = this.calculateVelocity();
-
-        this.velocity.horizontal = velocity.horizontal;
-        this.velocity.vertical = velocity.vertical;
-    }
-
     public update(index: number, delta: number): void {
         this.links = [];
 
