@@ -52,7 +52,7 @@ export class Emitter {
     public start(): void {
         if (this.lifeCount > 0 || !this.emitterOptions.life.count) {
             if (this.startInterval === undefined) {
-                this.startInterval = setInterval(() => {
+                this.startInterval = window.setInterval(() => {
                     this.emit();
                 }, 1000 * this.emitterOptions.rate.delay);
             }
@@ -79,14 +79,14 @@ export class Emitter {
 
     private prepareToDie(): void {
         if (this.lifeCount > 0 && this.emitterOptions.life?.duration !== undefined) {
-            setTimeout(() => {
+            window.setTimeout(() => {
                 this.stop();
                 this.lifeCount--;
 
                 if (this.lifeCount > 0) {
                     this.position = this.calcPosition();
 
-                    setTimeout(() => {
+                    window.setTimeout(() => {
                         this.start();
                     }, this.emitterOptions.life.delay ?? 0);
                 } else {

@@ -1,16 +1,17 @@
-import { tsParticles } from "../../src/index"; // Have to import this to setup custom window functions
+import { tsParticles } from "../../src";
 import { Container } from "../../src/Classes/Container";
 import type { IOptions } from "../../src/Interfaces/Options/IOptions";
 import { RecursivePartial } from "../../src/Types/RecursivePartial";
 
 export class TestContainer {
-    private id: string;
+    private readonly id: string;
     private params: RecursivePartial<IOptions> | undefined;
     public container: Container;
 
     constructor(params?: RecursivePartial<IOptions>) {
+        tsParticles.init();
         this.id = "test-container";
-        this.params = params || {particles: {size: {value: 0}}}; // This keeps new Particle from offsetting position by 3
+        this.params = params || { particles: { size: { value: 0 } } }; // This keeps new Particle from offsetting position by 3
         this.container = new Container(this.id, this.params);
     }
 
@@ -21,7 +22,7 @@ export class TestContainer {
      * @param params
      */
     public reset(params?: RecursivePartial<IOptions>): void {
-        if(params !== undefined) {
+        if (params !== undefined) {
             this.params = params;
         }
         this.container = new Container(this.id, this.params);
