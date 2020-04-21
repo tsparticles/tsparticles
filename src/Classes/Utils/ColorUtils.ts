@@ -69,8 +69,8 @@ export class ColorUtils {
         const result: IRgb = { b: 0, g: 0, r: 0 };
         const hslPercent: IHsl = {
             h: hsl.h > 1 ? hsl.h / 360 : hsl.h,
-            s: hsl.s > 1 ? hsl.s / 100 : hsl.s,
             l: hsl.l > 1 ? hsl.l / 100 : hsl.l,
+            s: hsl.s > 1 ? hsl.s / 100 : hsl.s,
         };
 
         if (hslPercent.s === 0) {

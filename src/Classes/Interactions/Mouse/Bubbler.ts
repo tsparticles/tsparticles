@@ -35,7 +35,10 @@ export class Bubbler {
         }
     }
 
-    private static process(container: Container, particle: Particle, distMouse: number, timeSpent: number, data: IBubblerProcessParam): void {
+    private static process(container: Container,
+                           particle: Particle,
+                           distMouse: number,
+                           timeSpent: number, data: IBubblerProcessParam): void {
         const bubbleParam = data.bubbleObj.optValue;
 
         if (bubbleParam === undefined) {
@@ -97,7 +100,10 @@ export class Bubbler {
             return;
         }
 
-        for (const particle of container.particles.spatialGrid.queryRadius(mouseClickPos, container.retina.bubbleModeDistance)) {
+        const distance = container.retina.bubbleModeDistance;
+        const query = container.particles.spatialGrid.queryRadius(mouseClickPos, distance);
+
+        for (const particle of query) {
             if (particle?.position === undefined) {
                 continue;
             }
@@ -165,7 +171,10 @@ export class Bubbler {
             return;
         }
 
-        for (const { distance, particle } of container.particles.spatialGrid.queryRadiusWithDistance(mousePos, container.retina.bubbleModeDistance)) {
+        const distance = container.retina.bubbleModeDistance;
+        const query = container.particles.spatialGrid.queryRadiusWithDistance(mousePos, distance);
+
+        for (const { distance, particle } of query) {
             if (particle?.position === undefined) {
                 continue;
             }

@@ -164,11 +164,11 @@ export class Utils {
 
     public static loadImage(optionsImage: IImageShape): Promise<IImage> {
         return new Promise((resolve: (value?: IImage | PromiseLike<IImage> | undefined) => void,
-                            reject: (reason?: any) => void) => {
+                            reject: (reason?: string) => void) => {
             const src = optionsImage.src;
 
             const image: IImage = {
-                type: src.substr(src.length - 3)
+                type: src.substr(src.length - 3),
             };
 
             if (optionsImage.src) {

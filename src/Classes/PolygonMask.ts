@@ -204,7 +204,7 @@ export class PolygonMask {
                     if (path) {
                         this.paths.push({
                             element: path,
-                            length: path.getTotalLength()
+                            length: path.getTotalLength(),
                         });
                     }
                 }

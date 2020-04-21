@@ -69,7 +69,7 @@ export class Repulser {
         this.processRepulse(container, mousePos, repulseRadius);
     }
 
-    private static processRepulse(container: Container, position: ICoordinates, repulseRadius: number) {
+    private static processRepulse(container: Container, position: ICoordinates, repulseRadius: number): void {
         for (const particle of container.particles.spatialGrid.queryRadius(position, repulseRadius)) {
             if (particle?.position === undefined) {
                 continue;
@@ -170,7 +170,11 @@ export class Repulser {
         }
     }
 
-    private static processClickRepulse(container: Container, particle: IParticle, dx: number, dy: number, force: number): void {
+    private static processClickRepulse(container: Container,
+                                       particle: IParticle,
+                                       dx: number,
+                                       dy: number,
+                                       force: number): void {
         const options = container.options;
         const f = Math.atan2(dy, dx);
 
