@@ -16,7 +16,10 @@ export class Grabber {
                 return;
             }
 
-            for (const { distance, particle } of container.particles.spatialGrid.queryRadiusWithDistance(mousePos, container.retina.grabModeDistance)) {
+            const distance = container.retina.grabModeDistance;
+            const query = container.particles.spatialGrid.queryRadiusWithDistance(mousePos, distance);
+
+            for (const { distance, particle } of query) {
                 if (particle?.position === undefined) {
                     continue;
                 }
