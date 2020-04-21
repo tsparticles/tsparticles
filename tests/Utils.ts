@@ -115,7 +115,7 @@ describe('Utils', () => {
             const weight1 = 0;
             const weight2 = Math.random() * size;
 
-            expect(Utils.mix(comp1, comp2, weight1, weight2)).to.be.equal(Math.floor(comp2) - 1);
+            expect(Utils.mix(comp1, comp2, weight1, weight2)).to.be.equal(Math.floor(comp2));
         });
 
         it('should return the expected weighted-average when weights differ', () => {
