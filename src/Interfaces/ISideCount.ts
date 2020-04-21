@@ -1,4 +1,4 @@
 export interface ISideCount {
-	numerator: number;
-	denominator: number;
+    numerator: number;
+    denominator: number;
 }

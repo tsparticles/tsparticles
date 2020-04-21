@@ -12,20 +12,20 @@ import type { SingleOrMultiple } from "../../../Types/SingleOrMultiple";
 import type { IStroke } from "./IStroke";
 
 export interface IParticles extends IOptionLoader<IParticles> {
-	color: SingleOrMultiple<IColor>;
+    color: SingleOrMultiple<IColor>;
 
-	/**
-	 * @deprecated use the new lineLinked instead
-	 */
-	line_linked: ILineLinked;
+    /**
+     * @deprecated use the new lineLinked instead
+     */
+    line_linked: ILineLinked;
 
-	lineLinked: ILineLinked;
-	move: IMove;
-	number: IParticlesNumber;
-	opacity: IOpacity;
-	rotate: IRotate;
-	shadow: IShadow;
-	shape: IShape;
-	size: ISize;
-	stroke: SingleOrMultiple<IStroke>;
+    lineLinked: ILineLinked;
+    move: IMove;
+    number: IParticlesNumber;
+    opacity: IOpacity;
+    rotate: IRotate;
+    shadow: IShadow;
+    shape: IShape;
+    size: ISize;
+    stroke: SingleOrMultiple<IStroke>;
 }

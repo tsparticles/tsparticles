@@ -10,12 +10,12 @@ import type { IEmitter } from "../../Emitters/IEmitter";
 import type { SingleOrMultiple } from "../../../../Types/SingleOrMultiple";
 
 export interface IModes extends IOptionLoader<IModes> {
-	bubble: IBubble;
-	connect: IConnect;
-	grab: IGrab;
-	push: IPush;
-	remove: IRemove;
-	repulse: IRepulse;
-	slow: ISlow;
-	emitters: SingleOrMultiple<IEmitter>;
+    bubble: IBubble;
+    connect: IConnect;
+    grab: IGrab;
+    push: IPush;
+    remove: IRemove;
+    repulse: IRepulse;
+    slow: ISlow;
+    emitters: SingleOrMultiple<IEmitter>;
 }
