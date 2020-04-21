@@ -219,7 +219,7 @@ describe('SpatialGrid', () => {
 
     });
 
-    describe('queryRadiusWithDist', () => {
+    describe('queryRadiusWithDistance', () => {
         testSpatialGrid.reset();
         const spatialGrid = testSpatialGrid.spatialGrid;
         spatialGrid.setGrid([particle1, particle2, particle3, particle4]);
@@ -229,20 +229,20 @@ describe('SpatialGrid', () => {
         const tolerance = 1e-10;
 
         it('should return empty array when position is origin and radius is less than square root of 2', () => {
-            const particlesWithDistances = spatialGrid.queryRadiusWithDist(origin, 1);
+            const particlesWithDistances = spatialGrid.queryRadiusWithDistance(origin, 1);
             const positionsWithDistances = TestParticle.sortedPositionsWithDistances(particlesWithDistances);
             expect(positionsWithDistances).to.eql([]);
         });
 
         it('should return particle 1 with distance when position is origin and radius is between 1 and 2 square roots of 2', () => {
-            const particlesWithDistances = spatialGrid.queryRadiusWithDist(origin, 2);
+            const particlesWithDistances = spatialGrid.queryRadiusWithDistance(origin, 2);
             const positionsWithDistances = TestParticle.sortedPositionsWithDistances(particlesWithDistances);
             const expectedPositionsWithDistances = [{dist: Math.SQRT2, position: particle1.position}];
 
             const actualPositions = positionsWithDistances.map(positionWithDistance => positionWithDistance.position);
             const expectedPositions = expectedPositionsWithDistances.map(positionWithDistance => positionWithDistance.position);
-            const actualDistances = positionsWithDistances.map(positionWithDistance => positionWithDistance.dist);
-            const expectedDistances = positionsWithDistances.map(positionWithDistance => positionWithDistance.dist);
+            const actualDistances = positionsWithDistances.map(positionWithDistance => positionWithDistance.distance);
+            const expectedDistances = positionsWithDistances.map(positionWithDistance => positionWithDistance.distance);
 
             // Long convoluted test required because there is no native way to provide a tolerance for deep equals in chai
             expect(actualPositions).to.eql(expectedPositions);
@@ -253,7 +253,7 @@ describe('SpatialGrid', () => {
         });
 
         it('should return particles 1 and 2 with distance when position is origin and radius is between 2 and 3 square roots of 2', () => {
-            const particlesWithDistances = spatialGrid.queryRadiusWithDist(origin, 3);
+            const particlesWithDistances = spatialGrid.queryRadiusWithDistance(origin, 3);
             const positionsWithDistances = TestParticle.sortedPositionsWithDistances(particlesWithDistances);
             const expectedPositionsWithDistances = [
                 {dist: Math.SQRT2, position: particle1.position},
@@ -262,8 +262,8 @@ describe('SpatialGrid', () => {
 
             const actualPositions = positionsWithDistances.map(positionWithDistance => positionWithDistance.position);
             const expectedPositions = expectedPositionsWithDistances.map(positionWithDistance => positionWithDistance.position);
-            const actualDistances = positionsWithDistances.map(positionWithDistance => positionWithDistance.dist);
-            const expectedDistances = positionsWithDistances.map(positionWithDistance => positionWithDistance.dist);
+            const actualDistances = positionsWithDistances.map(positionWithDistance => positionWithDistance.distance);
+            const expectedDistances = positionsWithDistances.map(positionWithDistance => positionWithDistance.distance);
 
             // Long convoluted test required because there is no native way to provide a tolerance for deep equals in chai
             expect(actualPositions).to.eql(expectedPositions);
@@ -274,7 +274,7 @@ describe('SpatialGrid', () => {
         });
 
         it('should return particles 1, 2, and 3 with distance when position is origin and radius is between 3 and 4 square roots of 2', () => {
-            const particlesWithDistances = spatialGrid.queryRadiusWithDist(origin, 5);
+            const particlesWithDistances = spatialGrid.queryRadiusWithDistance(origin, 5);
             const positionsWithDistances = TestParticle.sortedPositionsWithDistances(particlesWithDistances);
             const expectedPositionsWithDistances = [
                 {dist: Math.SQRT2, position: particle1.position},
@@ -284,8 +284,8 @@ describe('SpatialGrid', () => {
 
             const actualPositions = positionsWithDistances.map(positionWithDistance => positionWithDistance.position);
             const expectedPositions = expectedPositionsWithDistances.map(positionWithDistance => positionWithDistance.position);
-            const actualDistances = positionsWithDistances.map(positionWithDistance => positionWithDistance.dist);
-            const expectedDistances = positionsWithDistances.map(positionWithDistance => positionWithDistance.dist);
+            const actualDistances = positionsWithDistances.map(positionWithDistance => positionWithDistance.distance);
+            const expectedDistances = positionsWithDistances.map(positionWithDistance => positionWithDistance.distance);
 
             // Long convoluted test required because there is no native way to provide a tolerance for deep equals in chai
             expect(actualPositions).to.eql(expectedPositions);
@@ -297,14 +297,14 @@ describe('SpatialGrid', () => {
 
         it('should return empty array when position is center of screen and radius does not cross particle 4', () => {
             // True distance to particle 4 is 408
-            const particlesWithDistances = spatialGrid.queryRadiusWithDist(center, 407);
+            const particlesWithDistances = spatialGrid.queryRadiusWithDistance(center, 407);
             const positionsWithDistances = TestParticle.sortedPositionsWithDistances(particlesWithDistances);
             expect(positionsWithDistances).to.eql([]);
         });
 
         it('should return particle 4 with distance when position is center of screen and radius does cross particle 4', () => {
             // True distance to particle 4 is 408
-            const particlesWithDistances = spatialGrid.queryRadiusWithDist(center, 409);
+            const particlesWithDistances = spatialGrid.queryRadiusWithDistance(center, 409);
             const positionsWithDistances = TestParticle.sortedPositionsWithDistances(particlesWithDistances);
             const expectedPositionsWithDistances = [
                 {dist: 408, position: particle4.position}
@@ -312,8 +312,8 @@ describe('SpatialGrid', () => {
 
             const actualPositions = positionsWithDistances.map(positionWithDistance => positionWithDistance.position);
             const expectedPositions = expectedPositionsWithDistances.map(positionWithDistance => positionWithDistance.position);
-            const actualDistances = positionsWithDistances.map(positionWithDistance => positionWithDistance.dist);
-            const expectedDistances = positionsWithDistances.map(positionWithDistance => positionWithDistance.dist);
+            const actualDistances = positionsWithDistances.map(positionWithDistance => positionWithDistance.distance);
+            const expectedDistances = positionsWithDistances.map(positionWithDistance => positionWithDistance.distance);
 
             // Long convoluted test required because there is no native way to provide a tolerance for deep equals in chai
             expect(actualPositions).to.eql(expectedPositions);
@@ -324,7 +324,7 @@ describe('SpatialGrid', () => {
         });
 
         it('should return all particles with distances when position is center of screen and radius passes edges', () => {
-            const particlesWithDistances = spatialGrid.queryRadiusWithDist(center, 2000);
+            const particlesWithDistances = spatialGrid.queryRadiusWithDistance(center, 2000);
             const positionsWithDistances = TestParticle.sortedPositionsWithDistances(particlesWithDistances);
             const expectedPositionsWithDistances = [
                 {dist: 1130.7, position: particle1.position},
@@ -335,8 +335,8 @@ describe('SpatialGrid', () => {
 
             const actualPositions = positionsWithDistances.map(positionWithDistance => positionWithDistance.position);
             const expectedPositions = expectedPositionsWithDistances.map(positionWithDistance => positionWithDistance.position);
-            const actualDistances = positionsWithDistances.map(positionWithDistance => positionWithDistance.dist);
-            const expectedDistances = positionsWithDistances.map(positionWithDistance => positionWithDistance.dist);
+            const actualDistances = positionsWithDistances.map(positionWithDistance => positionWithDistance.distance);
+            const expectedDistances = positionsWithDistances.map(positionWithDistance => positionWithDistance.distance);
 
             // Long convoluted test required because there is no native way to provide a tolerance for deep equals in chai
             expect(actualPositions).to.eql(expectedPositions);

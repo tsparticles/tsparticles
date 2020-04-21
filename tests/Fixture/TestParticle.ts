@@ -50,14 +50,14 @@ export class TestParticle {
      * 
      * @param queryResults 
      */
-    public static sortedPositionsWithDistances(queryResults: { dist: number, particle: Particle }[]) : { dist: number, position: ICoordinates }[] {
+    public static sortedPositionsWithDistances(queryResults: { distance: number, particle: Particle }[]) : { distance: number, position: ICoordinates }[] {
         return queryResults
-            .sort((result1: { dist: number, particle: Particle }, result2: { dist: number, particle: Particle }): number => {
+            .sort((result1: { distance: number, particle: Particle }, result2: { distance: number, particle: Particle }): number => {
                 return TestParticle.sort(result1.particle, result2.particle);
             })
             .map((sortedResult) => {
                 return {
-                    dist: sortedResult.dist,
+                    distance: sortedResult.distance,
                     position: sortedResult.particle.position
                 };
             });
