@@ -4,29 +4,29 @@ import type { IOptionsColor } from "../../../Interfaces/Options/Particles/IOptio
 import { OptionsColor } from "./OptionsColor";
 
 export class Trail implements ITrail {
-	public enable: boolean;
-	public length: number;
-	public fillColor: IOptionsColor;
+    public enable: boolean;
+    public length: number;
+    public fillColor: IOptionsColor;
 
-	constructor() {
-		this.enable = false;
-		this.length = 10;
-		this.fillColor = new OptionsColor();
+    constructor() {
+        this.enable = false;
+        this.length = 10;
+        this.fillColor = new OptionsColor();
 
-		this.fillColor.value = "#000000";
-	}
+        this.fillColor.value = "#000000";
+    }
 
-	public load(data?: RecursivePartial<ITrail>): void {
-		if (data !== undefined) {
-			if (data.enable !== undefined) {
-				this.enable = data.enable;
-			}
+    public load(data?: RecursivePartial<ITrail>): void {
+        if (data !== undefined) {
+            if (data.enable !== undefined) {
+                this.enable = data.enable;
+            }
 
-			this.fillColor.load(typeof data.fillColor === "string" ? { value: data.fillColor } : data.fillColor);
+            this.fillColor.load(typeof data.fillColor === "string" ? { value: data.fillColor } : data.fillColor);
 
-			if (data.length !== undefined) {
-				this.length = data.length;
-			}
-		}
-	}
+            if (data.length !== undefined) {
+                this.length = data.length;
+            }
+        }
+    }
 }

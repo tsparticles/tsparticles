@@ -1,6 +1,6 @@
 export enum PolygonMaskType {
-	inline = "inline",
-	inside = "inside",
-	outside = "outside",
-	none = "none",
+    inline = "inline",
+    inside = "inside",
+    outside = "outside",
+    none = "none",
 }

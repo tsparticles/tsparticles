@@ -7,53 +7,53 @@ import { HoverMode } from "../../../Enums/Modes/HoverMode";
 import type { IParticles } from "../../../Interfaces/Options/Particles/IParticles";
 
 export class Interactivity implements IInteractivity {
-	/**
-	 *
-	 * @deprecated this property is obsolete, please use the new detectsOn
-	 */
-	public get detect_on(): InteractivityDetect {
-		return this.detectsOn;
-	}
+    /**
+     *
+     * @deprecated this property is obsolete, please use the new detectsOn
+     */
+    public get detect_on(): InteractivityDetect {
+        return this.detectsOn;
+    }
 
-	/**
-	 *
-	 * @deprecated this property is obsolete, please use the new detectsOn
-	 * @param value
-	 */
-	public set detect_on(value: InteractivityDetect) {
-		this.detectsOn = value;
-	}
+    /**
+     *
+     * @deprecated this property is obsolete, please use the new detectsOn
+     * @param value
+     */
+    public set detect_on(value: InteractivityDetect) {
+        this.detectsOn = value;
+    }
 
-	public detectsOn: InteractivityDetect;
-	public events: Events;
-	public modes: Modes;
+    public detectsOn: InteractivityDetect;
+    public events: Events;
+    public modes: Modes;
 
-	constructor() {
-		this.detectsOn = InteractivityDetect.canvas;
-		this.events = new Events();
-		this.modes = new Modes();
-	}
+    constructor() {
+        this.detectsOn = InteractivityDetect.canvas;
+        this.events = new Events();
+        this.modes = new Modes();
+    }
 
-	public load(data?: RecursivePartial<IInteractivity>, particles?: IParticles): void {
-		if (data !== undefined) {
-			const detectsOn = data.detectsOn ?? data.detect_on;
+    public load(data?: RecursivePartial<IInteractivity>, particles?: IParticles): void {
+        if (data !== undefined) {
+            const detectsOn = data.detectsOn ?? data.detect_on;
 
-			if (detectsOn !== undefined) {
-				this.detectsOn = detectsOn;
-			}
+            if (detectsOn !== undefined) {
+                this.detectsOn = detectsOn;
+            }
 
-			this.events.load(data.events);
-			this.modes.load(data.modes, particles);
+            this.events.load(data.events);
+            this.modes.load(data.modes, particles);
 
-			if (data.modes?.slow?.active === true) {
-				if (this.events.onHover.mode instanceof Array) {
-					if (this.events.onHover.mode.indexOf(HoverMode.slow) < 0) {
-						this.events.onHover.mode.push(HoverMode.slow);
-					}
-				} else if (this.events.onHover.mode !== HoverMode.slow) {
-					this.events.onHover.mode = [ this.events.onHover.mode, HoverMode.slow ];
-				}
-			}
-		}
-	}
+            if (data.modes?.slow?.active === true) {
+                if (this.events.onHover.mode instanceof Array) {
+                    if (this.events.onHover.mode.indexOf(HoverMode.slow) < 0) {
+                        this.events.onHover.mode.push(HoverMode.slow);
+                    }
+                } else if (this.events.onHover.mode !== HoverMode.slow) {
+                    this.events.onHover.mode = [ this.events.onHover.mode, HoverMode.slow ];
+                }
+            }
+        }
+    }
 }

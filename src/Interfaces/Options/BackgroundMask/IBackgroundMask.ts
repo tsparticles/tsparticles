@@ -7,13 +7,13 @@ import type { IBackgroundMaskCover } from "./IBackgroundMaskCover";
  * The particles will unveil what is covered by the canvas
  */
 export interface IBackgroundMask extends IOptionLoader<IBackgroundMask> {
-	/**
-	 * The color to use as a canvas background to cover
-	 */
-	cover: IBackgroundMaskCover | IColor | string;
+    /**
+     * The color to use as a canvas background to cover
+     */
+    cover: IBackgroundMaskCover | IColor | string;
 
-	/**
-	 * This settings enables the cover and the particles behavior as unveiling elements
-	 */
-	enable: boolean;
+    /**
+     * This settings enables the cover and the particles behavior as unveiling elements
+     */
+    enable: boolean;
 }

@@ -1,5 +1,5 @@
 export interface IHsl {
-	h: number;
-	s: number;
-	l: number;
+    h: number;
+    s: number;
+    l: number;
 }

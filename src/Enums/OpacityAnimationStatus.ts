@@ -1,4 +1,4 @@
 export enum OpacityAnimationStatus {
-	increasing,
-	decreasing,
+    increasing,
+    decreasing,
 }

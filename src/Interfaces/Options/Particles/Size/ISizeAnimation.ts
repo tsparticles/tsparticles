@@ -1,14 +1,14 @@
 import type { IOptionLoader } from "../../IOptionLoader";
 
 export interface ISizeAnimation extends IOptionLoader<ISizeAnimation> {
-	enable: boolean;
+    enable: boolean;
 
-	/**
-	 * @deprecated use the new minimumValue instead
-	 */
-	size_min: number;
+    /**
+     * @deprecated use the new minimumValue instead
+     */
+    size_min: number;
 
-	minimumValue: number;
-	speed: number;
-	sync: boolean;
+    minimumValue: number;
+    speed: number;
+    sync: boolean;
 }

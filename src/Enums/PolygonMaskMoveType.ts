@@ -1,4 +1,4 @@
 export enum PolygonMaskMoveType {
-	path = "path",
-	radius = "radius",
+    path = "path",
+    radius = "radius",
 }
