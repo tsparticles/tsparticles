@@ -13,8 +13,8 @@ export class TestSpatialGrid {
     /**
      * Reset the spatial grid. If [[canvas]] is provided, then the new spatial grid will be
      * initialized with this [[canvas]]. Otherwise the last-used [[canvas]] will be used.
-     * 
-     * @param canvas 
+     *
+     * @param canvas
      */
     public reset(canvas?: IDimension): void {
         if(canvas !== undefined) {

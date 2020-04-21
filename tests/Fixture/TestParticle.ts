@@ -8,9 +8,9 @@ export class TestParticle {
      * A function that will be passed to [[Array.sort]] to sort particles.
      * It orders them in increasing order based on position, giving priority
      * to x and then y.
-     * 
-     * @param particle1 
-     * @param particle2 
+     *
+     * @param particle1
+     * @param particle2
      */
     public static sort(particle1: Particle, particle2: Particle) : number {
         const position1 = particle1.position;
@@ -35,8 +35,8 @@ export class TestParticle {
 
     /**
      * Sorts the particles and then returns their positions.
-     * 
-     * @param particles 
+     *
+     * @param particles
      */
     public static sortedPositions(particles: Particle[]) : ICoordinates[] {
         return particles
@@ -47,8 +47,8 @@ export class TestParticle {
     /**
      * Sorts the particle and distance objects, then returns a new array
      * of objects and contains the distances and the particle positions.
-     * 
-     * @param queryResults 
+     *
+     * @param queryResults
      */
     public static sortedPositionsWithDistances(queryResults: { distance: number, particle: Particle }[]) : { distance: number, position: ICoordinates }[] {
         return queryResults

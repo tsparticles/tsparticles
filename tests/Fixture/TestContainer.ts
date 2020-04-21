@@ -17,8 +17,8 @@ export class TestContainer {
     /**
      * Reset the container. If [[params]] is provided, then the new spatial grid will be
      * initialized with this [[params]]. Otherwise the last-used [[params]] will be used.
-     * 
-     * @param params 
+     *
+     * @param params
      */
     public reset(params?: RecursivePartial<IOptions>): void {
         if(params !== undefined) {
