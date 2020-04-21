@@ -166,6 +166,7 @@ describe('SpatialGrid', () => {
         spatialGrid.setGrid([particle1, particle2, particle3, particle4]);
 
         const origin = {x: 0, y: 0};
+        const center = {x: mainResolution.width / 2, y: mainResolution.height / 2};
 
         it('should return empty array when position is origin and radius is less than square root of 2', () => {
             const particles = spatialGrid.queryRadius(origin, 1);
@@ -191,6 +192,31 @@ describe('SpatialGrid', () => {
             expect(positions).to.eql([particle1.position, particle2.position, particle3.position]);
         });
 
+        it('should return empty array when position is center of screen and radius does not cross particle 4', () => {
+            // True distance to particle 4 is 408
+            const particles = spatialGrid.queryRadius(center, 407)
+            const positions = TestParticle.sortedPositions(particles);
+            expect(positions).to.eql([]);
+        });
+
+        it('should return particle 4 when position is center of screen and radius does cross particle 4', () => {
+            // True distance to particle 4 is 408
+            const particles = spatialGrid.queryRadius(center, 409)
+            const positions = TestParticle.sortedPositions(particles);
+            expect(positions).to.eql([particle4.position]);
+        });
+
+        it('should return all particles when position is center of screen and radius passes edges', () => {
+            const particles = spatialGrid.queryRadius(center, 2000)
+            const positions = TestParticle.sortedPositions(particles);
+            expect(positions).to.eql([
+                particle1.position,
+                particle2.position,
+                particle3.position,
+                particle4.position
+            ]);
+        });
+
     });
 
     describe('queryRadiusWithDist', () => {
@@ -199,6 +225,7 @@ describe('SpatialGrid', () => {
         spatialGrid.setGrid([particle1, particle2, particle3, particle4]);
 
         const origin = {x: 0, y: 0};
+        const center = {x: mainResolution.width / 2, y: mainResolution.height / 2};
         const tolerance = 1e-10;
 
         it('should return empty array when position is origin and radius is less than square root of 2', () => {
@@ -253,6 +280,57 @@ describe('SpatialGrid', () => {
                 {dist: Math.SQRT2, position: particle1.position},
                 {dist: 2*Math.SQRT2, position: particle2.position},
                 {dist: 3*Math.SQRT2, position: particle3.position}
+            ];
+
+            const actualPositions = positionsWithDistances.map(positionWithDistance => positionWithDistance.position);
+            const expectedPositions = expectedPositionsWithDistances.map(positionWithDistance => positionWithDistance.position);
+            const actualDistances = positionsWithDistances.map(positionWithDistance => positionWithDistance.dist);
+            const expectedDistances = positionsWithDistances.map(positionWithDistance => positionWithDistance.dist);
+
+            // Long convoluted test required because there is no native way to provide a tolerance for deep equals in chai
+            expect(actualPositions).to.eql(expectedPositions);
+            expect(actualDistances.length).to.equal(expectedDistances.length);
+            for(let i = 0; i < actualDistances.length; i++) {
+                expect(actualDistances[i]).to.be.closeTo(expectedDistances[i], tolerance);
+            }
+        });
+
+        it('should return empty array when position is center of screen and radius does not cross particle 4', () => {
+            // True distance to particle 4 is 408
+            const particlesWithDistances = spatialGrid.queryRadiusWithDist(center, 407);
+            const positionsWithDistances = TestParticle.sortedPositionsWithDistances(particlesWithDistances);
+            expect(positionsWithDistances).to.eql([]);
+        });
+
+        it('should return particle 4 with distance when position is center of screen and radius does cross particle 4', () => {
+            // True distance to particle 4 is 408
+            const particlesWithDistances = spatialGrid.queryRadiusWithDist(center, 409);
+            const positionsWithDistances = TestParticle.sortedPositionsWithDistances(particlesWithDistances);
+            const expectedPositionsWithDistances = [
+                {dist: 408, position: particle4.position}
+            ];
+
+            const actualPositions = positionsWithDistances.map(positionWithDistance => positionWithDistance.position);
+            const expectedPositions = expectedPositionsWithDistances.map(positionWithDistance => positionWithDistance.position);
+            const actualDistances = positionsWithDistances.map(positionWithDistance => positionWithDistance.dist);
+            const expectedDistances = positionsWithDistances.map(positionWithDistance => positionWithDistance.dist);
+
+            // Long convoluted test required because there is no native way to provide a tolerance for deep equals in chai
+            expect(actualPositions).to.eql(expectedPositions);
+            expect(actualDistances.length).to.equal(expectedDistances.length);
+            for(let i = 0; i < actualDistances.length; i++) {
+                expect(actualDistances[i]).to.be.closeTo(expectedDistances[i], tolerance);
+            }
+        });
+
+        it('should return all particles with distances when position is center of screen and radius passes edges', () => {
+            const particlesWithDistances = spatialGrid.queryRadiusWithDist(center, 2000);
+            const positionsWithDistances = TestParticle.sortedPositionsWithDistances(particlesWithDistances);
+            const expectedPositionsWithDistances = [
+                {dist: 1130.7, position: particle1.position},
+                {dist: 1129.852, position: particle2.position},
+                {dist: 1127.944, position: particle3.position},
+                {dist: 408, position: particle4.position}
             ];
 
             const actualPositions = positionsWithDistances.map(positionWithDistance => positionWithDistance.position);
