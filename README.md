@@ -327,7 +327,7 @@ You can find all options available [here](https://github.com/matteobruni/tsparti
 
 ---
 
-<p align="center">
+<p>
     <a href="https://www.jetbrains.com/?from=tsParticles">
         <img src="https://cdn.matteobruni.it/images/jetbrains-logos/jetbrains-variant-4.png" height="150" alt="JetBrains" />
     </a>
