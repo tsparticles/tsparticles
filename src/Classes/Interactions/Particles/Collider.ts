@@ -27,7 +27,7 @@ export class Collider {
         return particle.bubble.radius || particle.size.value || fallback;
     }
 
-    private static resolveCollision(p1: Particle, p2: Particle) {
+    private static resolveCollision(p1: Particle, p2: Particle): void {
         const xVelocityDiff = p1.velocity.horizontal - p2.velocity.horizontal;
         const yVelocityDiff = p1.velocity.vertical - p2.velocity.vertical;
 

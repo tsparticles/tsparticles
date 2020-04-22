@@ -96,19 +96,16 @@ export class SpatialGrid {
         const pos = this.index(position);
         const rad = this.radius({ x: radius, y: radius } as ICoordinates);
         const items = this.select(this.indexOp(pos, '-', rad), this.indexOp(pos, '+', rad));
-
-        let out = [];
+        const out = [];
 
         for (const item of items.filter((t) => t !== undefined)) {
-            if (item) {
-                const distance = Utils.getDistanceBetweenCoordinates(item.position, position);
+            const distance = Utils.getDistanceBetweenCoordinates(item.position, position);
 
-                if (distance <= radius) {
-                    out.push({
-                        distance: distance,
-                        particle: item,
-                    });
-                }
+            if (distance <= radius) {
+                out.push({
+                    distance: distance,
+                    particle: item,
+                });
             }
         }
 
