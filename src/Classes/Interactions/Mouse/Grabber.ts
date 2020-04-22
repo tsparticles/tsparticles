@@ -20,10 +20,6 @@ export class Grabber {
             const query = container.particles.spatialGrid.queryRadiusWithDistance(mousePos, distance);
 
             for (const { distance, particle } of query) {
-                if (particle?.position === undefined) {
-                    continue;
-                }
-
                 /*
                    draw a line between the cursor and the particle
                    if the distance between them is under the config distance

@@ -18,15 +18,7 @@ export class Connecter {
 
             let i = 0;
             for (const p1 of query) {
-                if (p1?.position === undefined) {
-                    continue;
-                }
-
                 for (const p2 of query.slice(i + 1)) {
-                    if (p2?.position === undefined) {
-                        continue;
-                    }
-
                     const distMax = Math.abs(container.retina.connectModeDistance);
                     const xDiff = Math.abs(p1.position.x - p2.position.x);
                     const yDiff = Math.abs(p1.position.y - p2.position.y);

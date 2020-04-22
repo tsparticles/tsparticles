@@ -30,21 +30,18 @@ export class Emitter {
 
     public emit(): void {
         const container = this.container;
-        const position = {
-            x: this.position.x,
-            y: this.position.y,
-        };
+        const position = this.position;
         const offset = {
             x: container.canvas.dimension.height * this.size.width / 100,
             y: container.canvas.dimension.height * this.size.height / 100,
-        }
-
-        position.x += offset.x * (Math.random() - 0.5);
-        position.y += offset.y * (Math.random() - 0.5);
-
-        const particle = new Particle(container, position, this);
+        };
 
         for (let i = 0; i < this.emitterOptions.rate.quantity; i++) {
+            const particle = new Particle(container, {
+                x: position.x + offset.x * (Math.random() - 0.5),
+                y: position.y + offset.y * (Math.random() - 0.5),
+            }, this);
+
             container.particles.addParticle(particle);
         }
     }

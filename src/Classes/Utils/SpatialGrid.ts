@@ -75,7 +75,7 @@ export class SpatialGrid {
         const items = this.select(this.indexOp(pos, '-', rad), this.indexOp(pos, '+', rad));
         const out = [];
 
-        for (const item of items.filter((t) => t !== undefined)) {
+        for (const item of items) {
             if (Utils.getDistanceBetweenCoordinates(item.position, position) <= radius) {
                 out.push(item);
             }
@@ -96,19 +96,16 @@ export class SpatialGrid {
         const pos = this.index(position);
         const rad = this.radius({ x: radius, y: radius } as ICoordinates);
         const items = this.select(this.indexOp(pos, '-', rad), this.indexOp(pos, '+', rad));
+        const out = [];
 
-        let out = [];
+        for (const item of items) {
+            const distance = Utils.getDistanceBetweenCoordinates(item.position, position);
 
-        for (const item of items.filter((t) => t !== undefined)) {
-            if (item) {
-                const distance = Utils.getDistanceBetweenCoordinates(item.position, position);
-
-                if (distance <= radius) {
-                    out.push({
-                        distance: distance,
-                        particle: item,
-                    });
-                }
+            if (distance <= radius) {
+                out.push({
+                    distance: distance,
+                    particle: item,
+                });
             }
         }
 
@@ -137,7 +134,7 @@ export class SpatialGrid {
                 }
 
                 // Its unconventional but it is the marginally faster approach for adjoining arrays
-                for (const item of this.grid[x][y].filter(t => t !== undefined)) {
+                for (const item of this.grid[x][y]) {
                     out.push(item);
                 }
             }

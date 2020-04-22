@@ -28,8 +28,8 @@ export class Emitter implements IEmitter {
         if (data !== undefined) {
             if (data.size !== undefined) {
                 this.size = {
-                    width: data.size.width,
                     height: data.size.height,
+                    width: data.size.width,
                 }
             }
 

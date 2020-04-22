@@ -327,4 +327,15 @@ You can find all options available [here](https://github.com/matteobruni/tsparti
 
 ---
 
-### Huge thanks to [JetBrains](https://www.jetbrains.com/) for the 2020 Open Source License!
+<p>
+    <a href="https://www.jetbrains.com/?from=tsParticles">
+        <img src="https://cdn.matteobruni.it/images/jetbrains-logos/jetbrains-variant-4.png" height="150" alt="JetBrains" />
+    </a>
+    <a href="https://www.jetbrains.com/webstorm/?from=tsParticles">
+        <img src="https://cdn.matteobruni.it/images/jetbrains-logos/webstorm_logos/logo.png" height="150" alt="JetBrains" />
+    </a>
+</p>
+
+### Huge thanks to [JetBrains](https://www.jetbrains.com/?from=tsParticles) for the 2020 Open Source License!
+
+[JetBrains WebStorm](https://www.jetbrains.com/webstorm/?from=tsParticles) is used to maintain this project.

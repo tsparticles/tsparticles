@@ -7,7 +7,7 @@ export class Attracter {
         const distance = p1.lineLinkedDistance ?? container.retina.lineLinkedDistance;
 
         for (const p2 of container.particles.spatialGrid.queryRadius(p1.position, distance)) {
-            if (!p2 || p1 === p2 || p2.particlesOptions.move.attract.enable) {
+            if (p1 === p2 || p2.particlesOptions.move.attract.enable) {
                 continue;
             }
 
