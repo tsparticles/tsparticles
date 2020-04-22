@@ -165,33 +165,40 @@
       "direction": "top",
       "position": {
         "x": 50,
-        "y": 95
+        "y": 105
       },
       "rate": {
-        "delay": 0.5
+        "delay": 0.1
       },
       "size": {
         "width": 100,
-        "height": 10
+        "height": 0
       },
       "particles": {
         "color": {
-          "value": "random"
+          "value": [
+            "#5bc0eb",
+            "#fde74c",
+            "#9bc53d",
+            "#e55934",
+            "#fa7921"
+          ]
         },
         "lineLinked": {
           "enable": false
         },
+        "size": {
+          "value": 400,
+          "random": {
+            "enable": true,
+            "minimumValue": 200
+          }
+        },
         "opacity": {
           "value": 0.5
         },
-        "size": {
-          "value": 300,
-          "random": {
-            "enable": true
-          }
-        },
         "move": {
-          "speed": 5,
+          "speed": 10,
           "random": false,
           "outMode": "destroy"
         }

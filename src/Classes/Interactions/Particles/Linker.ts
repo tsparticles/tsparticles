@@ -9,7 +9,7 @@ export class Linker {
         const optDistance = p1.lineLinkedDistance ?? container.retina.lineLinkedDistance;
 
         for (const p2 of container.particles.spatialGrid.queryRadiusWithDistance(p1.position, optDistance)) {
-            if (!p2 || p1 === p2.particle || !p2.particle.particlesOptions.lineLinked.enable) {
+            if (p1 === p2.particle || !p2.particle.particlesOptions.lineLinked.enable) {
                 continue;
             }
 

@@ -71,10 +71,6 @@ export class Repulser {
 
     private static processRepulse(container: Container, position: ICoordinates, repulseRadius: number): void {
         for (const particle of container.particles.spatialGrid.queryRadius(position, repulseRadius)) {
-            if (particle?.position === undefined) {
-                continue;
-            }
-
             const dx = particle.position.x - position.x;
             const dy = particle.position.y - position.y;
             const dist = Math.sqrt(dx * dx + dy * dy);
