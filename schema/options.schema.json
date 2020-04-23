@@ -214,6 +214,20 @@
             },
             "type": "object"
         },
+        "ICollisions": {
+            "properties": {
+                "enable": {
+                    "type": "boolean"
+                },
+                "mode": {
+                    "enum": [
+                        "bounce"
+                    ],
+                    "type": "string"
+                }
+            },
+            "type": "object"
+        },
         "IColor": {
             "properties": {
                 "value": {
@@ -748,6 +762,9 @@
         },
         "IParticles": {
             "properties": {
+                "collisions": {
+                    "$ref": "#/definitions/ICollisions"
+                },
                 "color": {
                     "anyOf": [
                         {

@@ -57,7 +57,7 @@ export class Particles {
 
         this.interactionsEnabled = options.particles.lineLinked.enable ||
             options.particles.move.attract.enable ||
-            options.particles.move.collisions;
+            options.particles.collisions.enable;
     }
 
     public redraw(): void {

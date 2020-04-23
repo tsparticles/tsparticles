@@ -10,6 +10,7 @@ import { ShapeType } from "../src/Enums/ShapeType";
 import { PolygonMaskInlineArrangement } from "../src/Enums/PolygonMaskInlineArrangement";
 import { PolygonMaskMoveType } from "../src/Enums/PolygonMaskMoveType";
 import { PolygonMaskType } from "../src/Enums/PolygonMaskType";
+import { CollisionMode } from "../src/Enums/CollisionMode";
 
 describe('Options tests', () => {
     it('checking default options', () => {
@@ -70,6 +71,10 @@ describe('Options tests', () => {
         expect(options.interactivity.modes.slow.radius).to.equal(200);
 
         /* particles */
+        /* particles collisions */
+        expect(options.particles.collisions.enable).to.be.false;
+        expect(options.particles.collisions.mode).to.equal(CollisionMode.bounce);
+
         /* particles color */
         expect(options.particles.color).to.be.an("object").to.have.property("value").to.equal("#fff");
 
@@ -89,7 +94,6 @@ describe('Options tests', () => {
         expect(options.particles.move.attract.enable).to.be.false;
         expect(options.particles.move.attract.rotate.x).to.equal(3000);
         expect(options.particles.move.attract.rotate.y).to.equal(3000);
-        expect(options.particles.move.collisions).to.be.false;
         expect(options.particles.move.direction).to.equal(MoveDirection.none);
         expect(options.particles.move.enable).to.be.false;
         expect(options.particles.move.outMode).to.equal(OutMode.out);
@@ -506,6 +510,10 @@ describe('Options tests', () => {
         expect(options.interactivity.modes.repulse.distance).to.equal(200);
 
         /* particles */
+        /* particles collisions */
+        expect(options.particles.collisions.enable).to.be.false;
+        expect(options.particles.collisions.mode).to.equal(CollisionMode.bounce);
+
         /* particles color */
         expect(options.particles.color).to.be.an("object").to.have.property("value").to.equal("#ffffff");
 
@@ -520,7 +528,6 @@ describe('Options tests', () => {
         expect(options.particles.move.attract.enable).to.be.false;
         expect(options.particles.move.attract.rotate.x).to.equal(600);
         expect(options.particles.move.attract.rotate.y).to.equal(1200);
-        expect(options.particles.move.collisions).to.be.false;
         expect(options.particles.move.direction).to.equal(MoveDirection.none);
         expect(options.particles.move.enable).to.be.true;
         expect(options.particles.move.outMode).to.equal(OutMode.bounce);

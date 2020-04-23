@@ -17,7 +17,7 @@ export class InteractionManager {
         }
 
         /* bounce particles */
-        if (p1.particlesOptions.move.collisions) {
+        if (p1.particlesOptions.collisions.enable) {
             Collider.collide(p1, container);
         }
     }
