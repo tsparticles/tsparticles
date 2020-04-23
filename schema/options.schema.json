@@ -241,6 +241,7 @@
                         {
                             "items": {
                                 "enum": [
+                                    "blackhole",
                                     "bubble",
                                     "emitter",
                                     "push",
@@ -253,6 +254,7 @@
                         },
                         {
                             "enum": [
+                                "blackhole",
                                 "bubble",
                                 "emitter",
                                 "push",
@@ -669,6 +671,19 @@
         },
         "IModes": {
             "properties": {
+                "blackHoles": {
+                    "anyOf": [
+                        {
+                            "$ref": "#/definitions/IBlackHole"
+                        },
+                        {
+                            "items": {
+                                "$ref": "#/definitions/IBlackHole"
+                            },
+                            "type": "array"
+                        }
+                    ]
+                },
                 "bubble": {
                     "$ref": "#/definitions/IBubble"
                 },

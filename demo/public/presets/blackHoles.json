@@ -75,7 +75,7 @@
       },
       "onclick": {
         "enable": true,
-        "mode": "push"
+        "mode": "blackhole"
       },
       "resize": true
     },
@@ -84,6 +84,17 @@
         "distance": 400,
         "line_linked": {
           "opacity": 1
+        }
+      },
+      "blackHoles": {
+        "color": "#ff0000",
+        "size": {
+          "value": 10,
+          "limit": 50,
+          "random": {
+            "enable": true,
+            "minimumValue": 5
+          }
         }
       },
       "bubble": {

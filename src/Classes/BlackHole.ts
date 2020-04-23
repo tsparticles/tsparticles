@@ -14,7 +14,7 @@ export class BlackHole {
 
     private readonly container: Container;
 
-    constructor(container: Container, options: IBlackHole) {
+    constructor(container: Container, options: IBlackHole, position?: ICoordinates) {
         this.container = container;
 
         let size = options.size.value;
@@ -43,7 +43,7 @@ export class BlackHole {
             y: 50,
         };
 
-        this.position = {
+        this.position = position ?? {
             x: offset.x * container.canvas.dimension.width / 100 - this.size / 2,
             y: offset.y * container.canvas.dimension.height / 100 - this.size / 2,
         };
