@@ -116,9 +116,6 @@ export class Container {
                 emitter.stop();
             }
 
-            this.emitters = [];
-            this.absorbers = [];
-
             Container.cancelAnimation(this.drawAnimationFrame);
 
             delete this.drawAnimationFrame;
@@ -157,6 +154,9 @@ export class Container {
 
         this.retina.reset();
         this.canvas.destroy();
+
+        this.emitters = [];
+        this.absorbers = [];
 
         delete this.interactivity;
         delete this.options;
