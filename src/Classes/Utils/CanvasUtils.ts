@@ -7,6 +7,7 @@ import { ColorUtils } from "./ColorUtils";
 import type { IParticle } from "../../Interfaces/IParticle";
 import type { IShadow } from "../../Interfaces/Options/Particles/IShadow";
 import type { IShapeDrawer } from "../../Interfaces/IShapeDrawer";
+import { BlackHole } from "../BlackHole";
 
 export class CanvasUtils {
     private static readonly drawers: { [type: string]: IShapeDrawer } = {};
@@ -65,6 +66,17 @@ export class CanvasUtils {
             context.stroke(path);
         }
 
+        context.restore();
+    }
+
+    public static drawBlackHole(context: CanvasRenderingContext2D, blackHole: BlackHole) {
+        context.save();
+        context.translate(blackHole.position.x, blackHole.position.y);
+        context.beginPath();
+        context.arc(0, 0, blackHole.size, 0, Math.PI * 2, false);
+        context.closePath();
+        context.fillStyle = ColorUtils.getStyleFromColor(blackHole.color);
+        context.fill();
         context.restore();
     }
 

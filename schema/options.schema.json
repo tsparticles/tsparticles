@@ -100,6 +100,59 @@
             },
             "type": "object"
         },
+        "IBlackHole": {
+            "properties": {
+                "color": {
+                    "anyOf": [
+                        {
+                            "$ref": "#/definitions/IColor"
+                        },
+                        {
+                            "type": "string"
+                        }
+                    ]
+                },
+                "position": {
+                    "$ref": "#/definitions/ICoordinates"
+                },
+                "size": {
+                    "$ref": "#/definitions/IBlackHoleSize"
+                }
+            },
+            "type": "object"
+        },
+        "IBlackHoleRandomSize": {
+            "properties": {
+                "enable": {
+                    "type": "boolean"
+                },
+                "minimumValue": {
+                    "type": "number"
+                }
+            },
+            "type": "object"
+        },
+        "IBlackHoleSize": {
+            "properties": {
+                "limit": {
+                    "type": "number"
+                },
+                "random": {
+                    "anyOf": [
+                        {
+                            "$ref": "#/definitions/IBlackHoleRandomSize"
+                        },
+                        {
+                            "type": "boolean"
+                        }
+                    ]
+                },
+                "value": {
+                    "type": "number"
+                }
+            },
+            "type": "object"
+        },
         "IBubble": {
             "properties": {
                 "color": {
@@ -1371,6 +1424,19 @@
         },
         "backgroundMask": {
             "$ref": "#/definitions/IBackgroundMask"
+        },
+        "blackHoles": {
+            "anyOf": [
+                {
+                    "$ref": "#/definitions/IBlackHole"
+                },
+                {
+                    "items": {
+                        "$ref": "#/definitions/IBlackHole"
+                    },
+                    "type": "array"
+                }
+            ]
         },
         "detectRetina": {
             "description": "Enables the retina detection, if disabled the ratio used by canvas will be always 1 and not the device setting.",

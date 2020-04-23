@@ -14,6 +14,8 @@ import { Background } from "./Background/Background";
 import type { SingleOrMultiple } from "../../Types/SingleOrMultiple";
 import type { IEmitter } from "../../Interfaces/Options/Emitters/IEmitter";
 import { Emitter } from "./Emitters/Emitter";
+import { IBlackHole } from "../../Interfaces/Options/BlackHoles/IBlackHole";
+import { BlackHole } from "./BlackHoles/BlackHole";
 
 export class Options implements IOptions {
     /**
@@ -47,20 +49,22 @@ export class Options implements IOptions {
         this.detectRetina = value;
     }
 
+    public background: IBackground;
+    public backgroundMask: IBackgroundMask;
+    public blackHoles: SingleOrMultiple<IBlackHole>;
     public detectRetina: boolean;
     public emitters: SingleOrMultiple<IEmitter>;
     public fpsLimit: number;
     public interactivity: IInteractivity;
     public particles: IParticles;
     public polygon: IPolygonMask;
-    public backgroundMask: IBackgroundMask;
     public pauseOnBlur: boolean;
     public preset?: string | string[];
-    public background: IBackground;
 
     constructor() {
         this.background = new Background();
         this.backgroundMask = new BackgroundMask();
+        this.blackHoles = [];
         this.detectRetina = false;
         this.emitters = [];
         this.fpsLimit = 30;
@@ -128,6 +132,24 @@ export class Options implements IOptions {
                     }
 
                     (this.emitters as Emitter).load(data.emitters, this.particles);
+                }
+            }
+
+            if (data.blackHoles !== undefined) {
+                if (data.blackHoles instanceof Array) {
+                    this.blackHoles = data.blackHoles.map((s) => {
+                        const tmp = new BlackHole();
+
+                        tmp.load(s);
+
+                        return tmp;
+                    });
+                } else {
+                    if (this.emitters instanceof Array) {
+                        this.blackHoles = new BlackHole();
+                    }
+
+                    (this.blackHoles as BlackHole).load(data.blackHoles);
                 }
             }
         }
