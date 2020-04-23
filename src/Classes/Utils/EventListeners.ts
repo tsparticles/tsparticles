@@ -7,6 +7,8 @@ import { Constants } from "./Constants";
 import { Emitter } from "../Emitter";
 import { Utils } from "./Utils";
 import type { IEmitter } from "../../Interfaces/Options/Emitters/IEmitter";
+import { IBlackHole } from "../../Interfaces/Options/BlackHoles/IBlackHole";
+import { BlackHole } from "../BlackHole";
 
 /**
  * Particles container event listeners manager
@@ -364,6 +366,26 @@ export class EventListeners {
                         }
                     }, options.interactivity.modes.repulse.duration * 1000);
                     break;
+                case ClickMode.blackHole:
+                    let blackHolesModeOptions: IBlackHole | undefined;
+                    const modeBlackHoles = options.interactivity.modes.blackHoles;
+
+                    if (modeBlackHoles instanceof Array) {
+                        if (modeBlackHoles.length > 0) {
+                            blackHolesModeOptions = Utils.itemFromArray(modeBlackHoles);
+                        }
+                    } else {
+                        blackHolesModeOptions = modeBlackHoles;
+                    }
+
+                    const blackHolesOptions = blackHolesModeOptions ?? (options.blackHoles instanceof Array ?
+                        Utils.itemFromArray(options.blackHoles) :
+                        options.blackHoles);
+                    const bhPosition = container.interactivity.mouse.clickPosition;
+                    const blackHole = new BlackHole(container, blackHolesOptions, bhPosition);
+                    container.blackHoles.push(blackHole);
+                    break;
+
                 case ClickMode.emitter:
                     let emitterModeOptions: IEmitter | undefined;
                     const modeEmitters = options.interactivity.modes.emitters;
@@ -379,9 +401,10 @@ export class EventListeners {
                     const emitterOptions = emitterModeOptions ?? (options.emitters instanceof Array ?
                         Utils.itemFromArray(options.emitters) :
                         options.emitters);
-                    const position = container.interactivity.mouse.clickPosition;
-                    const emitter = new Emitter(container, emitterOptions, position);
+                    const ePosition = container.interactivity.mouse.clickPosition;
+                    const emitter = new Emitter(container, emitterOptions, ePosition);
                     container.emitters.push(emitter);
+                    break;
             }
         }
 

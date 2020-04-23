@@ -8,6 +8,7 @@ import type { ISlow } from "./ISlow";
 import type { IOptionLoader } from "../../IOptionLoader";
 import type { IEmitter } from "../../Emitters/IEmitter";
 import type { SingleOrMultiple } from "../../../../Types/SingleOrMultiple";
+import type { IBlackHole } from "../../BlackHoles/IBlackHole";
 
 export interface IModes extends IOptionLoader<IModes> {
     bubble: IBubble;
@@ -18,4 +19,5 @@ export interface IModes extends IOptionLoader<IModes> {
     repulse: IRepulse;
     slow: ISlow;
     emitters: SingleOrMultiple<IEmitter>;
+    blackHoles: SingleOrMultiple<IBlackHole>;
 }

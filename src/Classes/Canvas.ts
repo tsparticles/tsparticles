@@ -9,6 +9,7 @@ import { ColorUtils } from "./Utils/ColorUtils";
 import type { IBackgroundMaskCover } from "../Interfaces/Options/BackgroundMask/IBackgroundMaskCover";
 import type { IParticle } from "../Interfaces/IParticle";
 import type { IColor } from "../Interfaces/IColor";
+import { BlackHole } from "./BlackHole";
 
 /**
  * Canvas manager
@@ -176,6 +177,16 @@ export class Canvas {
                 }
             }
         }
+    }
+
+    public drawBlackHole(blackHole: BlackHole): void {
+        const ctx = this.context;
+
+        if (!ctx) {
+            return;
+        }
+
+        CanvasUtils.drawBlackHole(ctx, blackHole);
     }
 
     public drawLinkedLine(p1: IParticle, p2: IParticle, opacity: number): void {

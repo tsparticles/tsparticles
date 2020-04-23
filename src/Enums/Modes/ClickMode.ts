@@ -4,4 +4,5 @@ export enum ClickMode {
     remove = "remove",
     repulse = "repulse",
     emitter = "emitter",
+    blackHole = "blackhole",
 }

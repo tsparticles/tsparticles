@@ -57,7 +57,7 @@ export class Particles {
 
         this.interactionsEnabled = options.particles.lineLinked.enable ||
             options.particles.move.attract.enable ||
-            options.particles.move.collisions;
+            options.particles.collisions.enable;
     }
 
     public redraw(): void {
@@ -96,6 +96,20 @@ export class Particles {
             //     p.vx = f * Math.cos(t);
             //     p.vy = f * Math.sin(t);
             // }
+
+            let stillExists = true;
+
+            for (const blackHole of container.blackHoles) {
+                stillExists = blackHole.attract(particle);
+
+                if (!stillExists) {
+                    break;
+                }
+            }
+
+            if (!stillExists) {
+                continue;
+            }
 
             particle.update(i, delta);
         }
@@ -146,6 +160,10 @@ export class Particles {
         /* draw polygon shape in debug mode */
         if (options.polygon.enable && options.polygon.draw.enable) {
             container.polygon.drawPolygon();
+        }
+
+        for (const blackHole of container.blackHoles) {
+            blackHole.draw();
         }
 
         /* draw each particle */

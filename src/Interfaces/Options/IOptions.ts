@@ -6,6 +6,7 @@ import type { IBackgroundMask } from "./BackgroundMask/IBackgroundMask";
 import type { IBackground } from "./Background/IBackground";
 import type { SingleOrMultiple } from "../../Types/SingleOrMultiple";
 import type { IEmitter } from "./Emitters/IEmitter";
+import { IBlackHole } from "./BlackHoles/IBlackHole";
 
 /**
  * The Options interface, defines all the options that can be used by `tsParticles`
@@ -14,6 +15,8 @@ export interface IOptions extends IOptionLoader<IOptions> {
     background: IBackground;
 
     backgroundMask: IBackgroundMask;
+
+    blackHoles: SingleOrMultiple<IBlackHole>;
 
     /**
      * Enables the retina detection, if disabled the ratio used by canvas will be always 1 and not the device setting.

@@ -21,6 +21,8 @@ import type { SingleOrMultiple } from "../../../Types/SingleOrMultiple";
 import type { IStroke } from "../../../Interfaces/Options/Particles/IStroke";
 import { Stroke } from "./Stroke";
 import type { IShape } from "../../../Interfaces/Options/Particles/Shape/IShape";
+import { ICollisions } from "../../../Interfaces/Options/Particles/ICollisions";
+import { Collisions } from "./Collisions";
 
 export class Particles implements IParticles {
     /**
@@ -40,6 +42,7 @@ export class Particles implements IParticles {
         this.lineLinked = value;
     }
 
+    public collisions: ICollisions;
     public color: SingleOrMultiple<IOptionsColor>;
     public lineLinked: ILineLinked;
     public move: IMove;
@@ -52,6 +55,7 @@ export class Particles implements IParticles {
     public stroke: SingleOrMultiple<IStroke>;
 
     constructor() {
+        this.collisions = new Collisions();
         this.color = new OptionsColor();
         this.lineLinked = new LineLinked();
         this.move = new Move();
@@ -97,6 +101,14 @@ export class Particles implements IParticles {
             this.shape.load(data.shape);
             this.size.load(data.size);
             this.shadow.load(data.shadow);
+
+            const collisions = data.move?.collisions ?? data.move?.bounce;
+
+            if (collisions !== undefined) {
+                this.collisions.enable = collisions;
+            }
+
+            this.collisions.load(data.collisions);
 
             const strokeToLoad = data.stroke ?? data.shape?.stroke;
 

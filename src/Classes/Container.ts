@@ -16,6 +16,7 @@ import { Utils } from "./Utils/Utils";
 import type { IImageShape } from "../Interfaces/Options/Particles/Shape/IImageShape";
 import { Presets } from "./Utils/Presets";
 import { Emitter } from "./Emitter";
+import { BlackHole } from "./BlackHole";
 
 /**
  * The object loaded into an HTML element, it'll contain options loaded and all data to let everything working
@@ -29,6 +30,7 @@ export class Container {
     public canvas: Canvas;
     public particles: Particles;
     public emitters: Emitter[];
+    public blackHoles: BlackHole[];
     public polygon: PolygonMask;
     public bubble: IBubble;
     public repulse: IRepulse;
@@ -70,6 +72,7 @@ export class Container {
         this.bubble = {};
         this.repulse = { particles: [] };
         this.emitters = [];
+        this.blackHoles = [];
 
         /* tsParticles variables with default values */
         this.options = new Options();
@@ -275,6 +278,19 @@ export class Container {
             const emitter = new Emitter(this, emitterOptions);
 
             this.emitters.push(emitter);
+        }
+
+        if (this.options.blackHoles instanceof Array) {
+            for (const blackHoleOptions of this.options.blackHoles) {
+                const blackHole = new BlackHole(this, blackHoleOptions);
+
+                this.blackHoles.push(blackHole);
+            }
+        } else {
+            const blackHoleOptions = this.options.blackHoles;
+            const blackHole = new BlackHole(this, blackHoleOptions);
+
+            this.blackHoles.push(blackHole);
         }
 
         this.densityAutoParticles();

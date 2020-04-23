@@ -100,6 +100,59 @@
             },
             "type": "object"
         },
+        "IBlackHole": {
+            "properties": {
+                "color": {
+                    "anyOf": [
+                        {
+                            "$ref": "#/definitions/IColor"
+                        },
+                        {
+                            "type": "string"
+                        }
+                    ]
+                },
+                "position": {
+                    "$ref": "#/definitions/ICoordinates"
+                },
+                "size": {
+                    "$ref": "#/definitions/IBlackHoleSize"
+                }
+            },
+            "type": "object"
+        },
+        "IBlackHoleRandomSize": {
+            "properties": {
+                "enable": {
+                    "type": "boolean"
+                },
+                "minimumValue": {
+                    "type": "number"
+                }
+            },
+            "type": "object"
+        },
+        "IBlackHoleSize": {
+            "properties": {
+                "limit": {
+                    "type": "number"
+                },
+                "random": {
+                    "anyOf": [
+                        {
+                            "$ref": "#/definitions/IBlackHoleRandomSize"
+                        },
+                        {
+                            "type": "boolean"
+                        }
+                    ]
+                },
+                "value": {
+                    "type": "number"
+                }
+            },
+            "type": "object"
+        },
         "IBubble": {
             "properties": {
                 "color": {
@@ -188,6 +241,7 @@
                         {
                             "items": {
                                 "enum": [
+                                    "blackhole",
                                     "bubble",
                                     "emitter",
                                     "push",
@@ -200,6 +254,7 @@
                         },
                         {
                             "enum": [
+                                "blackhole",
                                 "bubble",
                                 "emitter",
                                 "push",
@@ -210,6 +265,20 @@
                         }
                     ],
                     "description": "This property contains a [[ClickMode]] value or an array of those values.\nIf this value is an array, every mode will be used on click."
+                }
+            },
+            "type": "object"
+        },
+        "ICollisions": {
+            "properties": {
+                "enable": {
+                    "type": "boolean"
+                },
+                "mode": {
+                    "enum": [
+                        "bounce"
+                    ],
+                    "type": "string"
                 }
             },
             "type": "object"
@@ -602,6 +671,19 @@
         },
         "IModes": {
             "properties": {
+                "blackHoles": {
+                    "anyOf": [
+                        {
+                            "$ref": "#/definitions/IBlackHole"
+                        },
+                        {
+                            "items": {
+                                "$ref": "#/definitions/IBlackHole"
+                            },
+                            "type": "array"
+                        }
+                    ]
+                },
                 "bubble": {
                     "$ref": "#/definitions/IBubble"
                 },
@@ -748,6 +830,9 @@
         },
         "IParticles": {
             "properties": {
+                "collisions": {
+                    "$ref": "#/definitions/ICollisions"
+                },
                 "color": {
                     "anyOf": [
                         {
@@ -1354,6 +1439,19 @@
         },
         "backgroundMask": {
             "$ref": "#/definitions/IBackgroundMask"
+        },
+        "blackHoles": {
+            "anyOf": [
+                {
+                    "$ref": "#/definitions/IBlackHole"
+                },
+                {
+                    "items": {
+                        "$ref": "#/definitions/IBlackHole"
+                    },
+                    "type": "array"
+                }
+            ]
         },
         "detectRetina": {
             "description": "Enables the retina detection, if disabled the ratio used by canvas will be always 1 and not the device setting.",

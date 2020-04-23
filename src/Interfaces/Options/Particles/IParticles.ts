@@ -10,8 +10,10 @@ import type { IRotate } from "./Rotate/IRotate";
 import type { IShadow } from "./IShadow";
 import type { SingleOrMultiple } from "../../../Types/SingleOrMultiple";
 import type { IStroke } from "./IStroke";
+import type { ICollisions } from "./ICollisions";
 
 export interface IParticles extends IOptionLoader<IParticles> {
+    collisions: ICollisions;
     color: SingleOrMultiple<IColor>;
 
     /**

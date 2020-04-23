@@ -18,6 +18,8 @@ import type { IEmitter } from "../../../../Interfaces/Options/Emitters/IEmitter"
 import type { SingleOrMultiple } from "../../../../Types/SingleOrMultiple";
 import { Emitter } from "../../Emitters/Emitter";
 import type { IParticles } from "../../../../Interfaces/Options/Particles/IParticles";
+import { IBlackHole } from "../../../../Interfaces/Options/BlackHoles/IBlackHole";
+import { BlackHole } from "../../BlackHoles/BlackHole";
 
 export class Modes implements IModes {
     public bubble: IBubble;
@@ -28,11 +30,13 @@ export class Modes implements IModes {
     public repulse: IRepulse;
     public slow: ISlow;
     public emitters: SingleOrMultiple<IEmitter>;
+    public blackHoles: SingleOrMultiple<IBlackHole>;
 
     constructor() {
         this.bubble = new Bubble();
         this.connect = new Connect();
         this.emitters = [];
+        this.blackHoles = [];
         this.grab = new Grab();
         this.push = new Push();
         this.remove = new Remove();
@@ -65,6 +69,24 @@ export class Modes implements IModes {
                     }
 
                     (this.emitters as Emitter).load(data.emitters, particles);
+                }
+            }
+
+            if (data.blackHoles !== undefined) {
+                if (data.blackHoles instanceof Array) {
+                    this.blackHoles = data.blackHoles.map((s) => {
+                        const tmp = new BlackHole();
+
+                        tmp.load(s);
+
+                        return tmp;
+                    });
+                } else {
+                    if (this.blackHoles instanceof Array) {
+                        this.blackHoles = new BlackHole();
+                    }
+
+                    (this.blackHoles as BlackHole).load(data.blackHoles);
                 }
             }
         }
