@@ -1,7 +1,7 @@
-import type { IBlackHoleRandomSize } from "../../../Interfaces/Options/BlackHoles/IBlackHoleRandomSize";
+import type { IAbsorberRandomSize } from "../../../Interfaces/Options/Absorbers/IAbsorberRandomSize";
 import type { RecursivePartial } from "../../../Types/RecursivePartial";
 
-export class BlackHoleRandomSize implements IBlackHoleRandomSize {
+export class AbsorberRandomSize implements IAbsorberRandomSize {
     public enable: boolean;
     public minimumValue: number;
 
@@ -10,7 +10,7 @@ export class BlackHoleRandomSize implements IBlackHoleRandomSize {
         this.minimumValue = 1;
     }
 
-    public load(data?: RecursivePartial<IBlackHoleRandomSize>): void {
+    public load(data?: RecursivePartial<IAbsorberRandomSize>): void {
         if (data !== undefined) {
             if (data.enable !== undefined) {
                 this.enable = data.enable;

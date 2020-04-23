@@ -37,7 +37,7 @@ export class Particles {
         this.container = container;
         this.array = [];
         this.interactionsEnabled = false;
-        this.spatialGrid = new SpatialGrid(this.container.canvas.dimension);
+        this.spatialGrid = new SpatialGrid(this.container.canvas.size);
     }
 
     /* --------- tsParticles functions - particles ----------- */
@@ -99,8 +99,8 @@ export class Particles {
 
             let stillExists = true;
 
-            for (const blackHole of container.blackHoles) {
-                stillExists = blackHole.attract(particle);
+            for (const absorber of container.absorbers) {
+                stillExists = absorber.attract(particle);
 
                 if (!stillExists) {
                     break;
@@ -155,15 +155,15 @@ export class Particles {
 
         /* update each particles param */
         this.update(delta);
-        this.spatialGrid.setGrid(this.array, this.container.canvas.dimension);
+        this.spatialGrid.setGrid(this.array, this.container.canvas.size);
 
         /* draw polygon shape in debug mode */
         if (options.polygon.enable && options.polygon.draw.enable) {
             container.polygon.drawPolygon();
         }
 
-        for (const blackHole of container.blackHoles) {
-            blackHole.draw();
+        for (const absorber of container.absorbers) {
+            absorber.draw();
         }
 
         /* draw each particle */

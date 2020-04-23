@@ -97,7 +97,7 @@ describe('Utils', () => {
         const size = 10;
 
         it('should return the average when weights are identical', () => {
-            const weight1 = Math.random() * size;
+            const weight1 = Math.floor(Math.random() * size);
             const weight2 = weight1;
             const mean = Math.floor((comp1 + comp2) / 2);
 
@@ -105,7 +105,7 @@ describe('Utils', () => {
         });
 
         it('should return comp1 when weight2 is 0 (and weight1 > 0)', () => {
-            const weight1 = Math.random() * size;
+            const weight1 = Math.floor(Math.random() * size);
             const weight2 = 0;
 
             expect(Utils.mix(comp1, comp2, weight1, weight2)).to.be.equal(Math.floor(comp1));
@@ -113,7 +113,7 @@ describe('Utils', () => {
 
         it('should return comp2 when weight1 is 0 (and weight2 > 0)', () => {
             const weight1 = 0;
-            const weight2 = Math.random() * size;
+            const weight2 = Math.floor(Math.random() * size);
 
             expect(Utils.mix(comp1, comp2, weight1, weight2)).to.be.equal(Math.floor(comp2));
         });

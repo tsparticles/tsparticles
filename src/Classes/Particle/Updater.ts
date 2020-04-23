@@ -136,7 +136,7 @@ export class Updater {
         const container = this.container;
         const particle = this.particle;
         const outMode = particle.particlesOptions.move.outMode;
-        const canvasSize = container.canvas.dimension;
+        const canvasSize = container.canvas.size;
 
         let newPos: IBounds;
 
@@ -173,7 +173,7 @@ export class Updater {
         if (outMode === OutMode.destroy) {
             const sizeValue = particle.size.value;
 
-            if (!Utils.isPointInside(particle.position, container.canvas.dimension, sizeValue)) {
+            if (!Utils.isPointInside(particle.position, container.canvas.size, sizeValue)) {
                 container.particles.remove(particle);
             }
         } else {
@@ -238,7 +238,7 @@ export class Updater {
             if (outMode === OutMode.bounce || outMode === OutMode.bounceHorizontal) {
                 const size = particle.size.value;
                 const velocity = particle.velocity.horizontal;
-                Updater.checkBounds(x, size, container.canvas.dimension.width, velocity, () => {
+                Updater.checkBounds(x, size, container.canvas.size.width, velocity, () => {
                     particle.velocity.horizontal *= -1;
                 });
             }
@@ -246,7 +246,7 @@ export class Updater {
             if (outMode === OutMode.bounce || outMode === OutMode.bounceVertical) {
                 const size = particle.size.value;
                 const velocity = particle.velocity.vertical;
-                Updater.checkBounds(y, size, container.canvas.dimension.height, velocity, () => {
+                Updater.checkBounds(y, size, container.canvas.size.height, velocity, () => {
                     particle.velocity.vertical *= -1;
                 });
             }

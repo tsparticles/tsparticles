@@ -3,6 +3,7 @@ import type { ICoordinates } from "../Interfaces/ICoordinates";
 import type { IEmitter } from "../Interfaces/Options/Emitters/IEmitter";
 import { Particle } from "./Particle";
 import type { IDimension } from "../Interfaces/IDimension";
+import { Utils } from "./Utils/Utils";
 
 export class Emitter {
     public position: ICoordinates;
@@ -32,8 +33,8 @@ export class Emitter {
         const container = this.container;
         const position = this.position;
         const offset = {
-            x: container.canvas.dimension.height * this.size.width / 100,
-            y: container.canvas.dimension.height * this.size.height / 100,
+            x: container.canvas.size.height * this.size.width / 100,
+            y: container.canvas.size.height * this.size.height / 100,
         };
 
         for (let i = 0; i < this.emitterOptions.rate.quantity; i++) {
@@ -71,7 +72,11 @@ export class Emitter {
     }
 
     public resize(): void {
-        this.position = this.initialPosition ?? this.calcPosition();
+        const initialPosition = this.initialPosition;
+
+        this.position = initialPosition && Utils.isPointInside(initialPosition, this.container.canvas.size) ?
+            initialPosition :
+            this.calcPosition();
     }
 
     private prepareToDie(): void {
@@ -108,11 +113,11 @@ export class Emitter {
         const percentPosition = this.emitterOptions.position ?? {
             x: Math.random() * 100,
             y: Math.random() * 100,
-        }
+        };
 
         return {
-            x: percentPosition.x / 100 * container.canvas.dimension.width,
-            y: percentPosition.y / 100 * container.canvas.dimension.height,
+            x: percentPosition.x / 100 * container.canvas.size.width,
+            y: percentPosition.y / 100 * container.canvas.size.height,
         }
     }
 }

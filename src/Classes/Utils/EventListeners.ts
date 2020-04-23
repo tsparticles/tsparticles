@@ -7,8 +7,8 @@ import { Constants } from "./Constants";
 import { Emitter } from "../Emitter";
 import { Utils } from "./Utils";
 import type { IEmitter } from "../../Interfaces/Options/Emitters/IEmitter";
-import { IBlackHole } from "../../Interfaces/Options/BlackHoles/IBlackHole";
-import { BlackHole } from "../BlackHole";
+import type { IAbsorber } from "../../Interfaces/Options/Absorbers/IAbsorber";
+import { Absorber } from "../Absorber";
 
 /**
  * Particles container event listeners manager
@@ -156,17 +156,17 @@ export class EventListeners {
             return;
         }
 
-        container.canvas.dimension.width = container.canvas.element.offsetWidth;
-        container.canvas.dimension.height = container.canvas.element.offsetHeight;
+        container.canvas.size.width = container.canvas.element.offsetWidth;
+        container.canvas.size.height = container.canvas.element.offsetHeight;
 
         /* resize canvas */
         if (container.retina.isRetina) {
-            container.canvas.dimension.width *= container.retina.pixelRatio;
-            container.canvas.dimension.height *= container.retina.pixelRatio;
+            container.canvas.size.width *= container.retina.pixelRatio;
+            container.canvas.size.height *= container.retina.pixelRatio;
         }
 
-        container.canvas.element.width = container.canvas.dimension.width;
-        container.canvas.element.height = container.canvas.dimension.height;
+        container.canvas.element.width = container.canvas.size.width;
+        container.canvas.element.height = container.canvas.size.height;
 
         /* repaint canvas on anim disabled */
         if (!options.particles.move.enable) {
@@ -178,6 +178,10 @@ export class EventListeners {
 
         for (const emitter of container.emitters) {
             emitter.resize();
+        }
+
+        for (const absorber of container.absorbers) {
+            absorber.resize();
         }
 
         container.polygon.redraw();
@@ -366,24 +370,24 @@ export class EventListeners {
                         }
                     }, options.interactivity.modes.repulse.duration * 1000);
                     break;
-                case ClickMode.blackHole:
-                    let blackHolesModeOptions: IBlackHole | undefined;
-                    const modeBlackHoles = options.interactivity.modes.blackHoles;
+                case ClickMode.absorber:
+                    let absorbersModeOptions: IAbsorber | undefined;
+                    const modeAbsorbers = options.interactivity.modes.absorbers;
 
-                    if (modeBlackHoles instanceof Array) {
-                        if (modeBlackHoles.length > 0) {
-                            blackHolesModeOptions = Utils.itemFromArray(modeBlackHoles);
+                    if (modeAbsorbers instanceof Array) {
+                        if (modeAbsorbers.length > 0) {
+                            absorbersModeOptions = Utils.itemFromArray(modeAbsorbers);
                         }
                     } else {
-                        blackHolesModeOptions = modeBlackHoles;
+                        absorbersModeOptions = modeAbsorbers;
                     }
 
-                    const blackHolesOptions = blackHolesModeOptions ?? (options.blackHoles instanceof Array ?
-                        Utils.itemFromArray(options.blackHoles) :
-                        options.blackHoles);
+                    const absorbersOptions = absorbersModeOptions ?? (options.absorbers instanceof Array ?
+                        Utils.itemFromArray(options.absorbers) :
+                        options.absorbers);
                     const bhPosition = container.interactivity.mouse.clickPosition;
-                    const blackHole = new BlackHole(container, blackHolesOptions, bhPosition);
-                    container.blackHoles.push(blackHole);
+                    const absorber = new Absorber(container, absorbersOptions, bhPosition);
+                    container.absorbers.push(absorber);
                     break;
 
                 case ClickMode.emitter:

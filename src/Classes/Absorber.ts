@@ -2,10 +2,11 @@ import type { ICoordinates } from "../Interfaces/ICoordinates";
 import type { Container } from "./Container";
 import type { Particle } from "./Particle";
 import { IRgb } from "../Interfaces/IRgb";
-import { IBlackHole } from "../Interfaces/Options/BlackHoles/IBlackHole";
+import { IAbsorber } from "../Interfaces/Options/Absorbers/IAbsorber";
 import { ColorUtils } from "./Utils/ColorUtils";
+import { Utils } from "./Utils/Utils";
 
-export class BlackHole {
+export class Absorber {
     public position: ICoordinates;
     public size: number;
     public limit?: number;
@@ -13,19 +14,23 @@ export class BlackHole {
     public mass: number;
 
     private readonly container: Container;
+    private readonly initialPosition?: ICoordinates;
+    private readonly options: IAbsorber;
 
-    constructor(container: Container, options: IBlackHole, position?: ICoordinates) {
+    constructor(container: Container, options: IAbsorber, position?: ICoordinates) {
         this.container = container;
+        this.initialPosition = position;
+        this.options = options;
 
-        let size = options.size.value;
+        let size = options.size.value * container.retina.pixelRatio;
         const random = typeof options.size.random === "boolean" ? options.size.random : options.size.random.enable;
         const minSize = typeof options.size.random === "boolean" ? 1 : options.size.random.minimumValue;
 
         if (random) {
-            size = Math.random() * size + minSize;
+            size = Utils.randomInRange(minSize, size);
         }
 
-        this.size = size;
+        this.size = size * container.retina.pixelRatio;
         this.mass = size * 5;
 
         this.limit = options.size.limit;
@@ -38,15 +43,7 @@ export class BlackHole {
             r: 0,
         };
 
-        const offset = options.position ?? {
-            x: 50,
-            y: 50,
-        };
-
-        this.position = position ?? {
-            x: offset.x * container.canvas.dimension.width / 100 - this.size / 2,
-            y: offset.y * container.canvas.dimension.height / 100 - this.size / 2,
-        };
+        this.position = this.initialPosition ?? this.calcPosition();
     }
 
     public attract(particle: Particle): boolean {
@@ -57,7 +54,7 @@ export class BlackHole {
         const angle = Math.atan2(dx, dy) * (180 / Math.PI);
         const acceleration = this.mass / Math.pow(distance, 2);
 
-        if (distance < this.size) {
+        if (distance < this.size + particle.size.value) {
             let remove = false;
 
             const sizeFactor = particle.size.value * 0.033;
@@ -88,9 +85,31 @@ export class BlackHole {
         }
     }
 
+    public resize(): void {
+        const initialPosition = this.initialPosition;
+
+        this.position = initialPosition && Utils.isPointInside(initialPosition, this.container.canvas.size) ?
+            initialPosition :
+            this.calcPosition();
+    }
+
     public draw(): void {
         const container = this.container;
 
-        container.canvas.drawBlackHole(this);
+        container.canvas.drawAbsorber(this);
+    }
+
+    private calcPosition(): ICoordinates {
+        const container = this.container;
+
+        const percentPosition = this.options.position ?? {
+            x: Math.random() * 100,
+            y: Math.random() * 100,
+        };
+
+        return {
+            x: percentPosition.x / 100 * container.canvas.size.width,
+            y: percentPosition.y / 100 * container.canvas.size.height,
+        };
     }
 }

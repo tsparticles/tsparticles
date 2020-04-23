@@ -9,7 +9,7 @@ import { ColorUtils } from "./Utils/ColorUtils";
 import type { IBackgroundMaskCover } from "../Interfaces/Options/BackgroundMask/IBackgroundMaskCover";
 import type { IParticle } from "../Interfaces/IParticle";
 import type { IColor } from "../Interfaces/IColor";
-import { BlackHole } from "./BlackHole";
+import type { Absorber } from "./Absorber";
 
 /**
  * Canvas manager
@@ -22,7 +22,7 @@ export class Canvas {
     /**
      * The particles canvas dimension
      */
-    public readonly dimension: IDimension;
+    public readonly size: IDimension;
 
     /**
      * The parent container
@@ -45,7 +45,7 @@ export class Canvas {
      */
     constructor(container: Container) {
         this.container = container;
-        this.dimension = {
+        this.size = {
             height: 0,
             width: 0,
         };
@@ -59,7 +59,7 @@ export class Canvas {
      * Initializes the canvas element
      */
     public init(): void {
-        this.size();
+        this.resize();
 
         const container = this.container;
         const options = container.options;
@@ -93,8 +93,8 @@ export class Canvas {
 
         this.generatedCanvas = generatedCanvas ?? false;
         this.element = canvas;
-        this.dimension.height = canvas.offsetHeight;
-        this.dimension.width = canvas.offsetWidth;
+        this.size.height = canvas.offsetHeight;
+        this.size.width = canvas.offsetWidth;
         this.context = this.element.getContext("2d");
         this.container.retina.init();
         this.initBackground();
@@ -106,17 +106,17 @@ export class Canvas {
         }
 
         if (this.context) {
-            CanvasUtils.clear(this.context, this.dimension);
+            CanvasUtils.clear(this.context, this.size);
         }
     }
 
     /**
      * Calculates the size of the canvas
      */
-    public size(): void {
+    public resize(): void {
         if (this.element) {
-            this.element.width = this.dimension.width;
-            this.element.height = this.dimension.height;
+            this.element.width = this.size.width;
+            this.element.height = this.size.height;
         }
     }
 
@@ -149,7 +149,7 @@ export class Canvas {
         } else if (trail.enable && trail.length > 0 && this.trailFillColor) {
             this.paintBase(ColorUtils.getStyleFromColor(this.trailFillColor, 1 / trail.length));
         } else if (this.context) {
-            CanvasUtils.clear(this.context, this.dimension);
+            CanvasUtils.clear(this.context, this.size);
         }
     }
 
@@ -179,14 +179,14 @@ export class Canvas {
         }
     }
 
-    public drawBlackHole(blackHole: BlackHole): void {
+    public drawAbsorber(absorber: Absorber): void {
         const ctx = this.context;
 
         if (!ctx) {
             return;
         }
 
-        CanvasUtils.drawBlackHole(ctx, blackHole);
+        CanvasUtils.drawAbsorber(ctx, absorber);
     }
 
     public drawLinkedLine(p1: IParticle, p2: IParticle, opacity: number): void {
@@ -332,7 +332,7 @@ export class Canvas {
 
     private paintBase(baseColor?: string): void {
         if (this.context) {
-            CanvasUtils.paintBase(this.context, this.dimension, baseColor);
+            CanvasUtils.paintBase(this.context, this.size, baseColor);
         }
     }
 

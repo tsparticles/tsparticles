@@ -53,13 +53,13 @@ export class Retina {
             this.isRetina = false;
         }
 
-        const ratio = this.pixelRatio;
+        let ratio = this.pixelRatio;
 
         if (container.canvas.element) {
             const element = container.canvas.element;
 
-            container.canvas.dimension.width = element.offsetWidth * ratio;
-            container.canvas.dimension.height = element.offsetHeight * ratio;
+            container.canvas.size.width = element.offsetWidth * ratio;
+            container.canvas.size.height = element.offsetHeight * ratio;
         }
 
         const particles = options.particles;
