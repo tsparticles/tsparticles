@@ -155,9 +155,6 @@ export class Container {
         this.retina.reset();
         this.canvas.destroy();
 
-        this.emitters = [];
-        this.absorbers = [];
-
         delete this.interactivity;
         delete this.options;
         delete this.retina;
@@ -207,12 +204,8 @@ export class Container {
         this.retina.reset();
         this.canvas.clear();
         this.polygon.reset();
-
-        for (const emitter of this.emitters) {
-            emitter.stop();
-        }
-
         this.emitters = [];
+        this.absorbers = [];
 
         delete this.particles.lineLinkedColor;
     }
