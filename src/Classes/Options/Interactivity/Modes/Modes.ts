@@ -18,25 +18,25 @@ import type { IEmitter } from "../../../../Interfaces/Options/Emitters/IEmitter"
 import type { SingleOrMultiple } from "../../../../Types/SingleOrMultiple";
 import { Emitter } from "../../Emitters/Emitter";
 import type { IParticles } from "../../../../Interfaces/Options/Particles/IParticles";
-import { IBlackHole } from "../../../../Interfaces/Options/BlackHoles/IBlackHole";
-import { BlackHole } from "../../BlackHoles/BlackHole";
+import type { IAbsorber } from "../../../../Interfaces/Options/Absorbers/IAbsorber";
+import { Absorber } from "../../Absorbers/Absorber";
 
 export class Modes implements IModes {
+    public absorbers: SingleOrMultiple<IAbsorber>;
     public bubble: IBubble;
     public connect: IConnect;
+    public emitters: SingleOrMultiple<IEmitter>;
     public grab: IGrab;
     public push: IPush;
     public remove: IRemove;
     public repulse: IRepulse;
     public slow: ISlow;
-    public emitters: SingleOrMultiple<IEmitter>;
-    public blackHoles: SingleOrMultiple<IBlackHole>;
 
     constructor() {
+        this.absorbers = [];
         this.bubble = new Bubble();
         this.connect = new Connect();
         this.emitters = [];
-        this.blackHoles = [];
         this.grab = new Grab();
         this.push = new Push();
         this.remove = new Remove();
@@ -72,21 +72,21 @@ export class Modes implements IModes {
                 }
             }
 
-            if (data.blackHoles !== undefined) {
-                if (data.blackHoles instanceof Array) {
-                    this.blackHoles = data.blackHoles.map((s) => {
-                        const tmp = new BlackHole();
+            if (data.absorbers !== undefined) {
+                if (data.absorbers instanceof Array) {
+                    this.absorbers = data.absorbers.map((s) => {
+                        const tmp = new Absorber();
 
                         tmp.load(s);
 
                         return tmp;
                     });
                 } else {
-                    if (this.blackHoles instanceof Array) {
-                        this.blackHoles = new BlackHole();
+                    if (this.absorbers instanceof Array) {
+                        this.absorbers = new Absorber();
                     }
 
-                    (this.blackHoles as BlackHole).load(data.blackHoles);
+                    (this.absorbers as Absorber).load(data.absorbers);
                 }
             }
         }

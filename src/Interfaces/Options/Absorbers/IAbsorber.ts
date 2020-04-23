@@ -1,11 +1,11 @@
 import type { IOptionLoader } from "../IOptionLoader";
 import type { ICoordinates } from "../../ICoordinates";
 import type { IColor } from "../../IColor";
-import type { IBlackHoleSize } from "./IBlackHoleSize";
+import type { IAbsorberSize } from "./IAbsorberSize";
 
-export interface IBlackHole extends IOptionLoader<IBlackHole> {
+export interface IAbsorber extends IOptionLoader<IAbsorber> {
     color: IColor | string;
     position?: ICoordinates;
-    size: IBlackHoleSize;
+    size: IAbsorberSize;
 }
 

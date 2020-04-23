@@ -92,8 +92,8 @@ export class Repulser {
                 outMode === OutMode.bounceVertical ||
                 outMode === OutMode.bounceHorizontal) {
                 const isInside = {
-                    horizontal: pos.x - sizeValue > 0 && pos.x + sizeValue < container.canvas.dimension.width,
-                    vertical: pos.y - sizeValue > 0 && pos.y + sizeValue < container.canvas.dimension.height,
+                    horizontal: pos.x - sizeValue > 0 && pos.x + sizeValue < container.canvas.size.width,
+                    vertical: pos.y - sizeValue > 0 && pos.y + sizeValue < container.canvas.size.height,
                 };
 
                 if (outMode === OutMode.bounceVertical || isInside.horizontal) {
@@ -186,14 +186,14 @@ export class Repulser {
             };
 
             if (outMode !== OutMode.bounceVertical) {
-                if (pos.x + particle.size.value > container.canvas.dimension.width ||
+                if (pos.x + particle.size.value > container.canvas.size.width ||
                     pos.x - particle.size.value < 0) {
                     particle.velocity.horizontal = -particle.velocity.horizontal;
                 }
             }
 
             if (outMode !== OutMode.bounceHorizontal) {
-                if (pos.y + particle.size.value > container.canvas.dimension.height ||
+                if (pos.y + particle.size.value > container.canvas.size.height ||
                     pos.y - particle.size.value < 0) {
                     particle.velocity.vertical = -particle.velocity.vertical;
                 }

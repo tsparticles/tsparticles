@@ -1,6 +1,6 @@
 import type { IOptionLoader } from "../IOptionLoader";
 
-export interface IBlackHoleRandomSize extends IOptionLoader<IBlackHoleRandomSize> {
+export interface IAbsorberRandomSize extends IOptionLoader<IAbsorberRandomSize> {
     enable: boolean;
     minimumValue: number;
 }

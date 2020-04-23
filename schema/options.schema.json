@@ -1,6 +1,59 @@
 {
     "$schema": "http://json-schema.org/draft-07/schema#",
     "definitions": {
+        "IAbsorber": {
+            "properties": {
+                "color": {
+                    "anyOf": [
+                        {
+                            "$ref": "#/definitions/IColor"
+                        },
+                        {
+                            "type": "string"
+                        }
+                    ]
+                },
+                "position": {
+                    "$ref": "#/definitions/ICoordinates"
+                },
+                "size": {
+                    "$ref": "#/definitions/IAbsorberSize"
+                }
+            },
+            "type": "object"
+        },
+        "IAbsorberRandomSize": {
+            "properties": {
+                "enable": {
+                    "type": "boolean"
+                },
+                "minimumValue": {
+                    "type": "number"
+                }
+            },
+            "type": "object"
+        },
+        "IAbsorberSize": {
+            "properties": {
+                "limit": {
+                    "type": "number"
+                },
+                "random": {
+                    "anyOf": [
+                        {
+                            "$ref": "#/definitions/IAbsorberRandomSize"
+                        },
+                        {
+                            "type": "boolean"
+                        }
+                    ]
+                },
+                "value": {
+                    "type": "number"
+                }
+            },
+            "type": "object"
+        },
         "IAttract": {
             "properties": {
                 "enable": {
@@ -100,59 +153,6 @@
             },
             "type": "object"
         },
-        "IBlackHole": {
-            "properties": {
-                "color": {
-                    "anyOf": [
-                        {
-                            "$ref": "#/definitions/IColor"
-                        },
-                        {
-                            "type": "string"
-                        }
-                    ]
-                },
-                "position": {
-                    "$ref": "#/definitions/ICoordinates"
-                },
-                "size": {
-                    "$ref": "#/definitions/IBlackHoleSize"
-                }
-            },
-            "type": "object"
-        },
-        "IBlackHoleRandomSize": {
-            "properties": {
-                "enable": {
-                    "type": "boolean"
-                },
-                "minimumValue": {
-                    "type": "number"
-                }
-            },
-            "type": "object"
-        },
-        "IBlackHoleSize": {
-            "properties": {
-                "limit": {
-                    "type": "number"
-                },
-                "random": {
-                    "anyOf": [
-                        {
-                            "$ref": "#/definitions/IBlackHoleRandomSize"
-                        },
-                        {
-                            "type": "boolean"
-                        }
-                    ]
-                },
-                "value": {
-                    "type": "number"
-                }
-            },
-            "type": "object"
-        },
         "IBubble": {
             "properties": {
                 "color": {
@@ -241,7 +241,7 @@
                         {
                             "items": {
                                 "enum": [
-                                    "blackhole",
+                                    "absorber",
                                     "bubble",
                                     "emitter",
                                     "push",
@@ -254,7 +254,7 @@
                         },
                         {
                             "enum": [
-                                "blackhole",
+                                "absorber",
                                 "bubble",
                                 "emitter",
                                 "push",
@@ -671,14 +671,14 @@
         },
         "IModes": {
             "properties": {
-                "blackHoles": {
+                "absorbers": {
                     "anyOf": [
                         {
-                            "$ref": "#/definitions/IBlackHole"
+                            "$ref": "#/definitions/IAbsorber"
                         },
                         {
                             "items": {
-                                "$ref": "#/definitions/IBlackHole"
+                                "$ref": "#/definitions/IAbsorber"
                             },
                             "type": "array"
                         }
@@ -1434,24 +1434,24 @@
     },
     "description": "The Options interface, defines all the options that can be used by `tsParticles`",
     "properties": {
+        "absorbers": {
+            "anyOf": [
+                {
+                    "$ref": "#/definitions/IAbsorber"
+                },
+                {
+                    "items": {
+                        "$ref": "#/definitions/IAbsorber"
+                    },
+                    "type": "array"
+                }
+            ]
+        },
         "background": {
             "$ref": "#/definitions/IBackground"
         },
         "backgroundMask": {
             "$ref": "#/definitions/IBackgroundMask"
-        },
-        "blackHoles": {
-            "anyOf": [
-                {
-                    "$ref": "#/definitions/IBlackHole"
-                },
-                {
-                    "items": {
-                        "$ref": "#/definitions/IBlackHole"
-                    },
-                    "type": "array"
-                }
-            ]
         },
         "detectRetina": {
             "description": "Enables the retina detection, if disabled the ratio used by canvas will be always 1 and not the device setting.",

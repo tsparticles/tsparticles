@@ -14,8 +14,8 @@ import { Background } from "./Background/Background";
 import type { SingleOrMultiple } from "../../Types/SingleOrMultiple";
 import type { IEmitter } from "../../Interfaces/Options/Emitters/IEmitter";
 import { Emitter } from "./Emitters/Emitter";
-import { IBlackHole } from "../../Interfaces/Options/BlackHoles/IBlackHole";
-import { BlackHole } from "./BlackHoles/BlackHole";
+import type { IAbsorber } from "../../Interfaces/Options/Absorbers/IAbsorber";
+import { Absorber } from "./Absorbers/Absorber";
 
 export class Options implements IOptions {
     /**
@@ -49,9 +49,9 @@ export class Options implements IOptions {
         this.detectRetina = value;
     }
 
+    public absorbers: SingleOrMultiple<IAbsorber>;
     public background: IBackground;
     public backgroundMask: IBackgroundMask;
-    public blackHoles: SingleOrMultiple<IBlackHole>;
     public detectRetina: boolean;
     public emitters: SingleOrMultiple<IEmitter>;
     public fpsLimit: number;
@@ -62,9 +62,9 @@ export class Options implements IOptions {
     public preset?: string | string[];
 
     constructor() {
+        this.absorbers = [];
         this.background = new Background();
         this.backgroundMask = new BackgroundMask();
-        this.blackHoles = [];
         this.detectRetina = false;
         this.emitters = [];
         this.fpsLimit = 30;
@@ -135,10 +135,10 @@ export class Options implements IOptions {
                 }
             }
 
-            if (data.blackHoles !== undefined) {
-                if (data.blackHoles instanceof Array) {
-                    this.blackHoles = data.blackHoles.map((s) => {
-                        const tmp = new BlackHole();
+            if (data.absorbers !== undefined) {
+                if (data.absorbers instanceof Array) {
+                    this.absorbers = data.absorbers.map((s) => {
+                        const tmp = new Absorber();
 
                         tmp.load(s);
 
@@ -146,10 +146,10 @@ export class Options implements IOptions {
                     });
                 } else {
                     if (this.emitters instanceof Array) {
-                        this.blackHoles = new BlackHole();
+                        this.absorbers = new Absorber();
                     }
 
-                    (this.blackHoles as BlackHole).load(data.blackHoles);
+                    (this.absorbers as Absorber).load(data.absorbers);
                 }
             }
         }

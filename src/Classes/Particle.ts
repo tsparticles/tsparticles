@@ -289,8 +289,8 @@ export class Particle implements IParticle {
             // too many particles, removing from the current
             container.particles.remove(this);
         } else if (overlapResult.collisionFound) {
-            p.position.x = position ? position.x : Math.random() * container.canvas.dimension.width;
-            p.position.y = position ? position.y : Math.random() * container.canvas.dimension.height;
+            p.position.x = position ? position.x : Math.random() * container.canvas.size.width;
+            p.position.y = position ? position.y : Math.random() * container.canvas.size.height;
 
             p.checkOverlap();
         }
@@ -314,17 +314,17 @@ export class Particle implements IParticle {
                 pos.y = randomPoint.y;
             }
         } else {
-            pos.x = position ? position.x : Math.random() * container.canvas.dimension.width;
-            pos.y = position ? position.y : Math.random() * container.canvas.dimension.height;
+            pos.x = position ? position.x : Math.random() * container.canvas.size.width;
+            pos.y = position ? position.y : Math.random() * container.canvas.size.height;
 
             /* check position  - into the canvas */
-            if (pos.x > container.canvas.dimension.width - this.size.value * 2) {
+            if (pos.x > container.canvas.size.width - this.size.value * 2) {
                 pos.x -= this.size.value;
             } else if (pos.x < this.size.value * 2) {
                 pos.x += this.size.value;
             }
 
-            if (pos.y > container.canvas.dimension.height - this.size.value * 2) {
+            if (pos.y > container.canvas.size.height - this.size.value * 2) {
                 pos.y -= this.size.value;
             } else if (pos.y < this.size.value * 2) {
                 pos.y += this.size.value;

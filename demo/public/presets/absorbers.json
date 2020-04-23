@@ -75,7 +75,7 @@
       },
       "onclick": {
         "enable": true,
-        "mode": "blackhole"
+        "mode": "absorber"
       },
       "resize": true
     },
@@ -86,7 +86,7 @@
           "opacity": 1
         }
       },
-      "blackHoles": {
+      "absorbers": {
         "color": "#ff0000",
         "size": {
           "value": 10,
@@ -116,14 +116,18 @@
     }
   },
   "retina_detect": true,
-  "blackHoles": {
+  "absorbers": {
     "size": {
       "value": 10,
-      "limit": 50,
+      "limit": 100,
       "random": {
         "enable": true,
         "minimumValue": 5
       }
+    },
+    "position": {
+      "x": 50,
+      "y": 50
     }
   },
   "background": {

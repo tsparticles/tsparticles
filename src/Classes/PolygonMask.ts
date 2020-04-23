@@ -67,8 +67,8 @@ export class PolygonMask {
             throw new Error(Constants.noPolygonFound);
         }
 
-        const x = position ? position.x : Math.random() * container.canvas.dimension.width;
-        const y = position ? position.y : Math.random() * container.canvas.dimension.height;
+        const x = position ? position.x : Math.random() * container.canvas.size.width;
+        const y = position ? position.y : Math.random() * container.canvas.size.height;
         let inside = false;
 
         // if (this.path2DSupported && this.polygonPath && position) {
@@ -161,8 +161,8 @@ export class PolygonMask {
             }
         } else {
             position = {
-                x: Math.random() * container.canvas.dimension.width,
-                y: Math.random() * container.canvas.dimension.height,
+                x: Math.random() * container.canvas.size.width,
+                y: Math.random() * container.canvas.size.height,
             };
         }
 
@@ -226,8 +226,8 @@ export class PolygonMask {
 
         /* centering of the polygon mask */
         this.offset = {
-            x: container.canvas.dimension.width * position.x / (100 * pxRatio) - this.dimension.width / 2,
-            y: container.canvas.dimension.height * position.y / (100 * pxRatio) - this.dimension.height / 2,
+            x: container.canvas.size.width * position.x / (100 * pxRatio) - this.dimension.width / 2,
+            y: container.canvas.size.height * position.y / (100 * pxRatio) - this.dimension.height / 2,
         };
 
         const polygonRaw: ICoordinates[] = [];

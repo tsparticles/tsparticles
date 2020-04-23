@@ -16,7 +16,7 @@ import { Utils } from "./Utils/Utils";
 import type { IImageShape } from "../Interfaces/Options/Particles/Shape/IImageShape";
 import { Presets } from "./Utils/Presets";
 import { Emitter } from "./Emitter";
-import { BlackHole } from "./BlackHole";
+import { Absorber } from "./Absorber";
 
 /**
  * The object loaded into an HTML element, it'll contain options loaded and all data to let everything working
@@ -30,7 +30,7 @@ export class Container {
     public canvas: Canvas;
     public particles: Particles;
     public emitters: Emitter[];
-    public blackHoles: BlackHole[];
+    public absorbers: Absorber[];
     public polygon: PolygonMask;
     public bubble: IBubble;
     public repulse: IRepulse;
@@ -72,7 +72,7 @@ export class Container {
         this.bubble = {};
         this.repulse = { particles: [] };
         this.emitters = [];
-        this.blackHoles = [];
+        this.absorbers = [];
 
         /* tsParticles variables with default values */
         this.options = new Options();
@@ -115,6 +115,9 @@ export class Container {
             for (const emitter of this.emitters) {
                 emitter.stop();
             }
+
+            this.emitters = [];
+            this.absorbers = [];
 
             Container.cancelAnimation(this.drawAnimationFrame);
 
@@ -280,17 +283,17 @@ export class Container {
             this.emitters.push(emitter);
         }
 
-        if (this.options.blackHoles instanceof Array) {
-            for (const blackHoleOptions of this.options.blackHoles) {
-                const blackHole = new BlackHole(this, blackHoleOptions);
+        if (this.options.absorbers instanceof Array) {
+            for (const absorberOptions of this.options.absorbers) {
+                const absorber = new Absorber(this, absorberOptions);
 
-                this.blackHoles.push(blackHole);
+                this.absorbers.push(absorber);
             }
         } else {
-            const blackHoleOptions = this.options.blackHoles;
-            const blackHole = new BlackHole(this, blackHoleOptions);
+            const absorberOptions = this.options.absorbers;
+            const absorber = new Absorber(this, absorberOptions);
 
-            this.blackHoles.push(blackHole);
+            this.absorbers.push(absorber);
         }
 
         this.densityAutoParticles();
