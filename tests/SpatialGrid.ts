@@ -74,38 +74,6 @@ describe('SpatialGrid', () => {
             expect(positions).to.eql([ particle1.position, particle2.position, particle3.position ]);
         });
 
-        xit('should return empty array when position is just outside upper left corner of top left grid', () => {
-            const extent = topLeftCellExtent;
-            const position = { x: extent.xmin - 1, y: extent.ymin - 1 };
-            const particles = spatialGrid.queryInCell(position);
-            const positions = TestParticle.sortedPositions(particles);
-            expect(positions).to.eql([]);
-        });
-
-        it('should return empty array when position is just outside lower left corner of top left grid', () => {
-            const extent = topLeftCellExtent;
-            const position = { x: extent.xmin - 1, y: extent.ymax + 1 };
-            const particles = spatialGrid.queryInCell(position);
-            const positions = TestParticle.sortedPositions(particles);
-            expect(positions).to.eql([]);
-        });
-
-        it('should return empty array when position is just outside upper right corner of top left grid', () => {
-            const extent = topLeftCellExtent;
-            const position = { x: extent.xmax + 1, y: extent.ymin - 1 };
-            const particles = spatialGrid.queryInCell(position);
-            const positions = TestParticle.sortedPositions(particles);
-            expect(positions).to.eql([]);
-        });
-
-        it('should return empty array when position is just outside lower right corner of top left grid', () => {
-            const extent = topLeftCellExtent;
-            const position = { x: extent.xmax + 1, y: extent.ymax + 1 };
-            const particles = spatialGrid.queryInCell(position);
-            const positions = TestParticle.sortedPositions(particles);
-            expect(positions).to.eql([]);
-        });
-
         it('should return particle 4 when position is random in same grid as particle 4', () => {
             const extent = particle4CellExtent;
             const position = {
@@ -150,38 +118,6 @@ describe('SpatialGrid', () => {
             const particles = spatialGrid.queryInCell(position);
             const positions = TestParticle.sortedPositions(particles);
             expect(positions).to.eql([ particle4.position ]);
-        });
-
-        it('should return empty array when position is just outside upper left corner of grid containing particle 4', () => {
-            const extent = particle4CellExtent;
-            const position = { x: extent.xmin - 1, y: extent.ymin - 1 };
-            const particles = spatialGrid.queryInCell(position);
-            const positions = TestParticle.sortedPositions(particles);
-            expect(positions).to.eql([]);
-        });
-
-        it('should return empty array when position is just outside lower left corner of grid containing particle 4', () => {
-            const extent = particle4CellExtent;
-            const position = { x: extent.xmin - 1, y: extent.ymax + 1 };
-            const particles = spatialGrid.queryInCell(position);
-            const positions = TestParticle.sortedPositions(particles);
-            expect(positions).to.eql([]);
-        });
-
-        it('should return empty array when position is just outside upper right corner of grid containing particle 4', () => {
-            const extent = particle4CellExtent;
-            const position = { x: extent.xmax + 1, y: extent.ymin - 1 };
-            const particles = spatialGrid.queryInCell(position);
-            const positions = TestParticle.sortedPositions(particles);
-            expect(positions).to.eql([]);
-        });
-
-        it('should return empty array when position is just outside lower right corner of grid containing particle 4', () => {
-            const extent = particle4CellExtent;
-            const position = { x: extent.xmax + 1, y: extent.ymax + 1 };
-            const particles = spatialGrid.queryInCell(position);
-            const positions = TestParticle.sortedPositions(particles);
-            expect(positions).to.eql([]);
         });
 
     });
