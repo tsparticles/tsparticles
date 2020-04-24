@@ -23,8 +23,8 @@ import { Stroke } from "./Stroke";
 import type { IShape } from "../../../Interfaces/Options/Particles/Shape/IShape";
 import { ICollisions } from "../../../Interfaces/Options/Particles/ICollisions";
 import { Collisions } from "./Collisions";
-import { ITwinkle } from "../../../Interfaces/Options/Particles/ITwinkle";
-import { Twinkle } from "./Twinkle";
+import { ITwinkle } from "../../../Interfaces/Options/Particles/Twinkle/ITwinkle";
+import { Twinkle } from "./Twinkle/Twinkle";
 
 export class Particles implements IParticles {
     /**

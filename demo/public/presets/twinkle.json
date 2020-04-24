@@ -66,10 +66,18 @@
       }
     },
     "twinkle": {
-      "enable": true,
-      "color": "#ffff00",
-      "opacity": 1,
-      "frequency": 0.05
+      "particles": {
+        "enable": true,
+        "color": "#ffff00",
+        "frequency": 0.05,
+        "opacity": 1
+      },
+      "lines": {
+        "enable": true,
+        "color": "#ff0000",
+        "frequency": 0.005,
+        "opacity": 1
+      }
     }
   },
   "interactivity": {

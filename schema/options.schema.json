@@ -1359,6 +1359,17 @@
         },
         "ITwinkle": {
             "properties": {
+                "lines": {
+                    "$ref": "#/definitions/ITwinkleValues"
+                },
+                "particles": {
+                    "$ref": "#/definitions/ITwinkleValues"
+                }
+            },
+            "type": "object"
+        },
+        "ITwinkleValues": {
+            "properties": {
                 "color": {
                     "anyOf": [
                         {

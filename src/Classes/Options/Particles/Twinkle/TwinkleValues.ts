@@ -1,9 +1,9 @@
-import type { ITwinkle } from "../../../Interfaces/Options/Particles/ITwinkle";
-import type { RecursivePartial } from "../../../Types/RecursivePartial";
-import type { IOptionsColor } from "../../../Interfaces/Options/Particles/IOptionsColor";
-import { OptionsColor } from "./OptionsColor";
+import type { ITwinkleValues } from "../../../../Interfaces/Options/Particles/Twinkle/ITwinkleValues";
+import type { IOptionsColor } from "../../../../Interfaces/Options/Particles/IOptionsColor";
+import type { RecursivePartial } from "../../../../Types/RecursivePartial";
+import { OptionsColor } from "../OptionsColor";
 
-export class Twinkle implements ITwinkle {
+export class TwinkleValues implements ITwinkleValues {
     public color?: IOptionsColor;
     public enable: boolean;
     public frequency: number;
@@ -15,7 +15,7 @@ export class Twinkle implements ITwinkle {
         this.opacity = 1;
     }
 
-    public load(data?: RecursivePartial<ITwinkle>): void {
+    public load(data?: RecursivePartial<ITwinkleValues>): void {
         if (data !== undefined) {
             if (data.color !== undefined) {
                 if (this.color === undefined) {
@@ -38,5 +38,4 @@ export class Twinkle implements ITwinkle {
             }
         }
     }
-
 }

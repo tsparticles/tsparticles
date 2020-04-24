@@ -11,7 +11,7 @@ import type { IShadow } from "./IShadow";
 import type { SingleOrMultiple } from "../../../Types/SingleOrMultiple";
 import type { IStroke } from "./IStroke";
 import type { ICollisions } from "./ICollisions";
-import type { ITwinkle } from "./ITwinkle";
+import type { ITwinkle } from "./Twinkle/ITwinkle";
 
 export interface IParticles extends IOptionLoader<IParticles> {
     collisions: ICollisions;

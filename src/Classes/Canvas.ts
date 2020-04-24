@@ -212,7 +212,16 @@ export class Canvas {
          *                        from those two for the connecting line color
          */
 
-        if (container.particles.lineLinkedColor === Constants.randomColorValue) {
+        const twinkle = options.particles.twinkle.lines;
+        const twinkleFreq = twinkle.frequency;
+        const twinkleColor = typeof twinkle.color === "string" ? { value: twinkle.color } : twinkle.color;
+        const twinkleRgb = twinkleColor !== undefined ? ColorUtils.colorToRgb(twinkleColor) : undefined;
+        const twinkling = twinkle.enable && Math.random() < twinkleFreq;
+
+        if (twinkling && twinkleRgb !== undefined) {
+            colorLine = twinkleRgb;
+            opacity = twinkle.opacity;
+        } else if (container.particles.lineLinkedColor === Constants.randomColorValue) {
             colorLine = ColorUtils.getRandomRgbColor();
         } else if (container.particles.lineLinkedColor == "mid" && p1.color && p2.color) {
             const sourceColor = p1.color;
@@ -307,7 +316,7 @@ export class Canvas {
         const container = this.container;
         const options = container.options;
 
-        const twinkle = particle.particlesOptions.twinkle;
+        const twinkle = particle.particlesOptions.twinkle.particles;
         const twinkleFreq = twinkle.frequency;
         const twinkleColor = typeof twinkle.color === "string" ? { value: twinkle.color } : twinkle.color;
         const twinkleRgb = twinkleColor !== undefined ? ColorUtils.colorToRgb(twinkleColor) : undefined;
