@@ -1,10 +1,12 @@
-import {Container} from "./Container";
-import type {ICoordinates} from "../Interfaces/ICoordinates";
-import {PolygonMaskType} from "../Enums/PolygonMaskType";
-import {Particle} from "./Particle";
-import {PolygonMaskInlineArrangement} from "../Enums/PolygonMaskInlineArrangement";
-import {Utils} from "./Utils/Utils";
-import {IDimension} from "../Interfaces/IDimension";
+import { Container } from "./Container";
+import type { ICoordinates } from "../Interfaces/ICoordinates";
+import { PolygonMaskType } from "../Enums/PolygonMaskType";
+import { Particle } from "./Particle";
+import { PolygonMaskInlineArrangement } from "../Enums/PolygonMaskInlineArrangement";
+import { Utils } from "./Utils/Utils";
+import type { IDimension } from "../Interfaces/IDimension";
+import { Constants } from "./Utils/Constants";
+import { ISvgPath } from "../Interfaces/ISvgPath";
 
 type SvgAbsoluteCoordinatesTypes =
     | SVGPathSegArcAbs
@@ -31,26 +33,24 @@ export class PolygonMask {
     public redrawTimeout?: number;
     public raw?: ICoordinates[];
     public svg?: SVGSVGElement;
-    public path?: SVGPathElement;
-    public polygonPath?: Path2D;
+    public paths: ISvgPath[];
     public dimension: IDimension;
     public offset?: ICoordinates;
     public readonly path2DSupported: boolean;
 
     private readonly container: Container;
-    private polygonPathLength: number;
 
     constructor(container: Container) {
         this.container = container;
         this.dimension = {
             height: 0,
-            width: 0
+            width: 0,
         };
-        this.polygonPathLength = 0;
+        this.paths = [];
         this.path2DSupported = window.hasOwnProperty("Path2D");
     }
 
-    public checkInsidePolygon(position: ICoordinates | undefined | null): boolean {
+    public checkInsidePolygon(position: ICoordinates | undefined): boolean {
         const container = this.container;
         const options = container.options;
 
@@ -64,12 +64,11 @@ export class PolygonMask {
         // ray-casting algorithm based on
         // http://www.ecse.rpi.edu/Homepages/wrf/Research/Short_Notes/pnpoly.html
         if (!this.raw) {
-            console.error('No polygon found, you need to specify SVG url in config.');
-            return true;
+            throw new Error(Constants.noPolygonFound);
         }
 
-        const x = position ? position.x : Math.random() * container.canvas.dimension.width;
-        const y = position ? position.y : Math.random() * container.canvas.dimension.height;
+        const x = position ? position.x : Math.random() * container.canvas.size.width;
+        const y = position ? position.y : Math.random() * container.canvas.size.height;
         let inside = false;
 
         // if (this.path2DSupported && this.polygonPath && position) {
@@ -106,7 +105,7 @@ export class PolygonMask {
                 clearTimeout(this.redrawTimeout);
             }
 
-            this.redrawTimeout = setTimeout(() => {
+            this.redrawTimeout = window.setTimeout(() => {
                 this.parseSvgPathToPolygon().then((data) => {
                     this.raw = data;
 
@@ -134,7 +133,7 @@ export class PolygonMask {
 
     public reset(): void {
         delete this.raw;
-        delete this.path;
+        this.paths = [];
         delete this.svg;
     }
 
@@ -158,12 +157,12 @@ export class PolygonMask {
                 case PolygonMaskInlineArrangement.onePerPoint:
                 case PolygonMaskInlineArrangement.perPoint:
                 default:
-                    position = this.getPoingOnPolygonPathByIndex(container.particles.count);
+                    position = this.getPointOnPolygonPathByIndex(container.particles.count);
             }
         } else {
             position = {
-                x: Math.random() * container.canvas.dimension.width,
-                y: Math.random() * container.canvas.dimension.height,
+                x: Math.random() * container.canvas.size.width,
+                y: Math.random() * container.canvas.size.height,
             };
         }
 
@@ -189,7 +188,7 @@ export class PolygonMask {
         const url = svgUrl || options.polygon.url;
 
         // Load SVG from file on server
-        if (!this.path || !this.svg) {
+        if (!this.paths.length || !this.svg) {
             const req = await fetch(url);
             if (req.ok) {
                 const xml = await req.text();
@@ -197,95 +196,110 @@ export class PolygonMask {
                 const doc = parser.parseFromString(xml, "image/svg+xml");
 
                 this.svg = doc.getElementsByTagName("svg")[0];
-                this.path = doc.getElementsByTagName("path")[0];
+                const svgPaths = doc.getElementsByTagName("path");
 
-                if (this.path) {
-                    this.polygonPathLength = this.path.getTotalLength();
+                for (let i = 0; i < svgPaths.length; i++) {
+                    const path = svgPaths.item(i);
+
+                    if (path) {
+                        this.paths.push({
+                            element: path,
+                            length: path.getTotalLength(),
+                        });
+                    }
                 }
             } else {
-                console.error("tsParticles Error - during polygon mask download");
-                return;
+                throw new Error("tsParticles Error - Error occurred during polygon mask download");
             }
         }
 
-        const scale = options.polygon.scale;
+        const pxRatio = container.retina.pixelRatio;
+        const scale = options.polygon.scale / pxRatio;
 
         this.dimension.width = parseFloat(this.svg.getAttribute("width") || "0") * scale;
         this.dimension.height = parseFloat(this.svg.getAttribute("height") || "0") * scale;
 
+        const position = options.polygon.position ?? {
+            x: 50,
+            y: 50,
+        };
+
         /* centering of the polygon mask */
         this.offset = {
-            x: container.canvas.dimension.width / 2 - this.dimension.width / 2,
-            y: container.canvas.dimension.height / 2 - this.dimension.height / 2,
+            x: container.canvas.size.width * position.x / (100 * pxRatio) - this.dimension.width / 2,
+            y: container.canvas.size.height * position.y / (100 * pxRatio) - this.dimension.height / 2,
         };
 
-        const len = this.path.pathSegList.numberOfItems;
         const polygonRaw: ICoordinates[] = [];
-        const p = {
-            x: 0,
-            y: 0,
-        };
 
-        for (let i = 0; i < len; i++) {
-            const segment: SVGPathSeg = this.path.pathSegList.getItem(i);
+        for (const path of this.paths) {
+            const len = path.element.pathSegList.numberOfItems;
+            const p = {
+                x: 0,
+                y: 0,
+            };
 
-            switch (segment.pathSegType) {
-                //
-                // Absolute
-                //
-                case window.SVGPathSeg.PATHSEG_MOVETO_ABS:
-                case window.SVGPathSeg.PATHSEG_LINETO_ABS:
-                case window.SVGPathSeg.PATHSEG_CURVETO_CUBIC_ABS:
-                case window.SVGPathSeg.PATHSEG_CURVETO_QUADRATIC_ABS:
-                case window.SVGPathSeg.PATHSEG_ARC_ABS:
-                case window.SVGPathSeg.PATHSEG_CURVETO_CUBIC_SMOOTH_ABS:
-                case window.SVGPathSeg.PATHSEG_CURVETO_QUADRATIC_SMOOTH_ABS:
-                    const absSeg = segment as SvgAbsoluteCoordinatesTypes;
+            for (let i = 0; i < len; i++) {
+                const segment: SVGPathSeg = path.element.pathSegList.getItem(i);
 
-                    p.x = absSeg.x;
-                    p.y = absSeg.y;
-                    break;
+                switch (segment.pathSegType) {
+                    //
+                    // Absolute
+                    //
+                    case window.SVGPathSeg.PATHSEG_MOVETO_ABS:
+                    case window.SVGPathSeg.PATHSEG_LINETO_ABS:
+                    case window.SVGPathSeg.PATHSEG_CURVETO_CUBIC_ABS:
+                    case window.SVGPathSeg.PATHSEG_CURVETO_QUADRATIC_ABS:
+                    case window.SVGPathSeg.PATHSEG_ARC_ABS:
+                    case window.SVGPathSeg.PATHSEG_CURVETO_CUBIC_SMOOTH_ABS:
+                    case window.SVGPathSeg.PATHSEG_CURVETO_QUADRATIC_SMOOTH_ABS:
+                        const absSeg = segment as SvgAbsoluteCoordinatesTypes;
 
-                case window.SVGPathSeg.PATHSEG_LINETO_HORIZONTAL_ABS:
-                    p.x = (segment as SVGPathSegLinetoHorizontalAbs).x;
-                    break;
+                        p.x = absSeg.x;
+                        p.y = absSeg.y;
+                        break;
 
-                case window.SVGPathSeg.PATHSEG_LINETO_VERTICAL_ABS:
-                    p.y = (segment as SVGPathSegLinetoVerticalAbs).y;
-                    break;
+                    case window.SVGPathSeg.PATHSEG_LINETO_HORIZONTAL_ABS:
+                        p.x = (segment as SVGPathSegLinetoHorizontalAbs).x;
+                        break;
 
-                //
-                // Relative
-                //
-                case window.SVGPathSeg.PATHSEG_LINETO_REL:
-                case window.SVGPathSeg.PATHSEG_MOVETO_REL:
-                case window.SVGPathSeg.PATHSEG_CURVETO_CUBIC_REL:
-                case window.SVGPathSeg.PATHSEG_CURVETO_QUADRATIC_REL:
-                case window.SVGPathSeg.PATHSEG_ARC_REL:
-                case window.SVGPathSeg.PATHSEG_CURVETO_CUBIC_SMOOTH_REL:
-                case window.SVGPathSeg.PATHSEG_CURVETO_QUADRATIC_SMOOTH_REL:
-                    const relSeg = segment as SvgRelativeCoordinatesTypes;
+                    case window.SVGPathSeg.PATHSEG_LINETO_VERTICAL_ABS:
+                        p.y = (segment as SVGPathSegLinetoVerticalAbs).y;
+                        break;
 
-                    p.x += relSeg.x;
-                    p.y += relSeg.y;
-                    break;
+                    //
+                    // Relative
+                    //
+                    case window.SVGPathSeg.PATHSEG_LINETO_REL:
+                    case window.SVGPathSeg.PATHSEG_MOVETO_REL:
+                    case window.SVGPathSeg.PATHSEG_CURVETO_CUBIC_REL:
+                    case window.SVGPathSeg.PATHSEG_CURVETO_QUADRATIC_REL:
+                    case window.SVGPathSeg.PATHSEG_ARC_REL:
+                    case window.SVGPathSeg.PATHSEG_CURVETO_CUBIC_SMOOTH_REL:
+                    case window.SVGPathSeg.PATHSEG_CURVETO_QUADRATIC_SMOOTH_REL:
+                        const relSeg = segment as SvgRelativeCoordinatesTypes;
 
-                case window.SVGPathSeg.PATHSEG_LINETO_HORIZONTAL_REL:
-                    p.x += (segment as SVGPathSegLinetoHorizontalRel).x;
-                    break;
-                case window.SVGPathSeg.PATHSEG_LINETO_VERTICAL_REL:
-                    p.y += (segment as SVGPathSegLinetoVerticalRel).y;
-                    break;
+                        p.x += relSeg.x;
+                        p.y += relSeg.y;
+                        break;
 
-                case window.SVGPathSeg.PATHSEG_UNKNOWN:
-                case window.SVGPathSeg.PATHSEG_CLOSEPATH:
-                    continue; // Skip the closing path (and the UNKNOWN)
+                    case window.SVGPathSeg.PATHSEG_LINETO_HORIZONTAL_REL:
+                        p.x += (segment as SVGPathSegLinetoHorizontalRel).x;
+                        break;
+                    case window.SVGPathSeg.PATHSEG_LINETO_VERTICAL_REL:
+                        p.y += (segment as SVGPathSegLinetoVerticalRel).y;
+                        break;
+
+                    case window.SVGPathSeg.PATHSEG_UNKNOWN:
+                    case window.SVGPathSeg.PATHSEG_CLOSEPATH:
+                        continue; // Skip the closing path (and the UNKNOWN)
+                }
+
+                polygonRaw.push({
+                    x: p.x * scale + this.offset.x,
+                    y: p.y * scale + this.offset.y,
+                });
             }
-
-            polygonRaw.push({
-                x: p.x * scale + this.offset.x,
-                y: p.y * scale + this.offset.y,
-            });
         }
 
         return polygonRaw;
@@ -313,7 +327,7 @@ export class PolygonMask {
     }
 
     private getRandomPointOnPolygonPath(): ICoordinates {
-        if (!this.raw || !this.raw.length) throw new Error(`No polygon data loaded.`);
+        if (!this.raw || !this.raw.length) throw new Error(Constants.noPolygonDataLoaded);
 
         const coords = Utils.itemFromArray(this.raw);
 
@@ -327,10 +341,11 @@ export class PolygonMask {
         const container = this.container;
         const options = container.options;
 
-        if (!this.raw || !this.raw.length || !this.path) throw new Error(`No polygon data loaded.`);
+        if (!this.raw || !this.raw.length || !this.paths.length) throw new Error(Constants.noPolygonDataLoaded);
 
-        const distance = Math.floor(Math.random() * this.polygonPathLength) + 1;
-        const point = this.path.getPointAtLength(distance);
+        const path = Utils.itemFromArray(this.paths);
+        const distance = Math.floor(Math.random() * path.length) + 1;
+        const point = path.element.getPointAtLength(distance);
 
         return {
             x: point.x * options.polygon.scale + (this.offset?.x || 0),
@@ -342,19 +357,34 @@ export class PolygonMask {
         const container = this.container;
         const options = container.options;
 
-        if (!this.raw || !this.raw.length || !this.path) throw new Error(`No polygon data loaded.`);
+        if (!this.raw || !this.raw.length || !this.paths.length) throw new Error(Constants.noPolygonDataLoaded);
 
-        const distance = (this.polygonPathLength / options.particles.number.value) * index;
-        const point = this.path.getPointAtLength(distance);
+        let offset = 0;
+        let point: DOMPoint | undefined;
+
+        const totalLength = this.paths.reduce((tot: number, path: ISvgPath) => tot + path.length, 0);
+        const distance = totalLength / options.particles.number.value;
+
+        for (const path of this.paths) {
+            const pathDistance = distance * index - offset;
+
+            if (pathDistance <= path.length) {
+                point = path.element.getPointAtLength(pathDistance);
+
+                break;
+            } else {
+                offset += path.length;
+            }
+        }
 
         return {
-            x: point.x * options.polygon.scale + (this.offset?.x || 0),
-            y: point.y * options.polygon.scale + (this.offset?.y || 0),
+            x: (point?.x ?? 0) * options.polygon.scale + (this.offset?.x ?? 0),
+            y: (point?.y ?? 0) * options.polygon.scale + (this.offset?.y ?? 0),
         };
     }
 
-    private getPoingOnPolygonPathByIndex(index: number): ICoordinates {
-        if (!this.raw || !this.raw.length) throw new Error(`No polygon data loaded.`);
+    private getPointOnPolygonPathByIndex(index: number): ICoordinates {
+        if (!this.raw || !this.raw.length) throw new Error(Constants.noPolygonDataLoaded);
 
         const coords = this.raw[index % this.raw.length];
 
@@ -369,39 +399,41 @@ export class PolygonMask {
             return;
         }
 
-        const pathData = this.path?.getAttribute("d");
+        for (const path of this.paths) {
+            const pathData = path.element?.getAttribute("d");
 
-        if (pathData) {
-            const path = new Path2D(pathData);
-            const matrix = document.createElementNS("http://www.w3.org/2000/svg", "svg").createSVGMatrix()
+            if (pathData) {
+                const path2d = new Path2D(pathData);
+                const matrix = document.createElementNS("http://www.w3.org/2000/svg", "svg").createSVGMatrix()
 
-            const finalPath = new Path2D();
+                const finalPath = new Path2D();
 
-            const transform = matrix.scale(this.container.options.polygon.scale);
+                const transform = matrix.scale(this.container.options.polygon.scale);
 
-            if (finalPath.addPath) {
-                finalPath.addPath(path, transform);
+                if (finalPath.addPath) {
+                    finalPath.addPath(path2d, transform);
 
-                this.polygonPath = finalPath;
-            } else {
-                delete this.polygonPath;
-            }
-        } else {
-            delete this.polygonPath;
-        }
-
-        if (!this.polygonPath && this.raw) {
-            this.polygonPath = new Path2D();
-
-            this.polygonPath.moveTo(this.raw[0].x, this.raw[0].y);
-
-            this.raw.forEach((pos, i) => {
-                if (i > 0) {
-                    this.polygonPath?.lineTo(pos.x, pos.y);
+                    path.path2d = finalPath;
+                } else {
+                    delete path.path2d;
                 }
-            });
+            } else {
+                delete path.path2d;
+            }
 
-            this.polygonPath.closePath();
+            if (!path.path2d && this.raw) {
+                path.path2d = new Path2D();
+
+                path.path2d.moveTo(this.raw[0].x, this.raw[0].y);
+
+                this.raw.forEach((pos, i) => {
+                    if (i > 0) {
+                        path.path2d?.lineTo(pos.x, pos.y);
+                    }
+                });
+
+                path.path2d.closePath();
+            }
         }
     }
 }

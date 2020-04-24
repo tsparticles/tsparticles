@@ -1,8 +1,8 @@
-import type {IPolygonMaskDraw} from "../../../Interfaces/Options/PolygonMask/IPolygonMaskDraw";
-import type {IPolygonMaskDrawStroke} from "../../../Interfaces/Options/PolygonMask/IPolygonMaskDrawStroke";
-import {PolygonMaskDrawStroke} from "./PolygonMaskDrawStroke";
-import type {RecursivePartial} from "../../../Types/RecursivePartial";
-import type {IColor} from "../../../Interfaces/Options/Particles/IColor";
+import type { IPolygonMaskDraw } from "../../../Interfaces/Options/PolygonMask/IPolygonMaskDraw";
+import type { IPolygonMaskDrawStroke } from "../../../Interfaces/Options/PolygonMask/IPolygonMaskDrawStroke";
+import { PolygonMaskDrawStroke } from "./PolygonMaskDrawStroke";
+import type { RecursivePartial } from "../../../Types/RecursivePartial";
+import type { IOptionsColor } from "../../../Interfaces/Options/Particles/IOptionsColor";
 
 export class Draw implements IPolygonMaskDraw {
     /**
@@ -22,15 +22,15 @@ export class Draw implements IPolygonMaskDraw {
     /**
      * @deprecated the property lineColor is deprecated, please use the new stroke.color
      */
-    get lineColor(): string | IColor {
-        return this.stroke.color;
+    get lineColor(): string | IOptionsColor {
+        return this.stroke.color as IOptionsColor;
     }
 
     /**
      * @deprecated the property lineColor is deprecated, please use the new stroke.color
      */
-    set lineColor(value: string | IColor) {
-        const destColor = this.stroke.color as IColor;
+    set lineColor(value: string | IOptionsColor) {
+        const destColor = this.stroke.color as IOptionsColor;
 
         if (typeof value === "string") {
             destColor.value = value;
@@ -55,7 +55,7 @@ export class Draw implements IPolygonMaskDraw {
 
             const stroke = data.stroke ?? {
                 color: data.lineColor,
-                width: data.lineWidth
+                width: data.lineWidth,
             };
 
             this.stroke.load(stroke);

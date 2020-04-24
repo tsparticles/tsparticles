@@ -19,8 +19,8 @@ export class Slow implements ISlow {
     public radius: number;
 
     constructor() {
-        this.factor = 1;
-        this.radius = 0;
+        this.factor = 3;
+        this.radius = 200;
     }
 
     public load(data?: RecursivePartial<ISlow>): void {

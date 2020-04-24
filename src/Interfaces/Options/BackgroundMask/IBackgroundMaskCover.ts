@@ -1,7 +1,17 @@
 import type { IOptionLoader } from "../IOptionLoader";
-import type { IColor } from "../Particles/IColor";
+import type { IColor } from "../../IColor";
 
+/**
+ * The background cover customization
+ */
 export interface IBackgroundMaskCover extends IOptionLoader<IBackgroundMaskCover> {
-    color: IColor;
+    /**
+     * The background color hiding all elements behind, string or [[IColor]] value.
+     */
+    color: IColor | string;
+
+    /**
+     * The opacity of the background
+     */
     opacity: number;
 }

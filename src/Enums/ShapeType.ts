@@ -3,7 +3,6 @@ export enum ShapeType {
     character = "character",
     circle = "circle",
     edge = "edge",
-    heart = "heart",
     image = "image",
     line = "line",
     polygon = "polygon",

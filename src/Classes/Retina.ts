@@ -1,4 +1,5 @@
 import type { Container } from "./Container";
+import { Particle } from "./Particle";
 
 export class Retina {
     public isRetina: boolean;
@@ -15,7 +16,7 @@ export class Retina {
     public sizeValue: number;
     public sizeAnimationSpeed: number;
     public polygonMaskMoveRadius: number;
-    public pxRatio: number;
+    public pixelRatio: number;
 
     private readonly container: Container;
 
@@ -35,7 +36,7 @@ export class Retina {
         this.sizeValue = 0;
         this.sizeAnimationSpeed = 0;
         this.polygonMaskMoveRadius = 0;
-        this.pxRatio = 1;
+        this.pixelRatio = 1;
     }
 
     public init(): void {
@@ -43,35 +44,57 @@ export class Retina {
         const options = container.options;
 
         if (options.detectRetina && window.devicePixelRatio > 1) {
-            this.pxRatio = window.devicePixelRatio;
+            this.pixelRatio = window.devicePixelRatio;
 
             this.isRetina = true;
         } else {
-            this.pxRatio = 1;
+            this.pixelRatio = 1;
 
             this.isRetina = false;
         }
 
-        const ratio = this.pxRatio;
+        let ratio = this.pixelRatio;
 
         if (container.canvas.element) {
-            container.canvas.dimension.width = container.canvas.element.offsetWidth * ratio;
-            container.canvas.dimension.height = container.canvas.element.offsetHeight * ratio;
+            const element = container.canvas.element;
+
+            container.canvas.size.width = element.offsetWidth * ratio;
+            container.canvas.size.height = element.offsetHeight * ratio;
         }
 
-        this.bubbleModeDistance = options.interactivity.modes.bubble.distance * ratio;
-        this.bubbleModeSize = options.interactivity.modes.bubble.size * ratio;
-        this.connectModeDistance = options.interactivity.modes.connect.distance * ratio;
-        this.connectModeRadius = options.interactivity.modes.connect.radius * ratio;
-        this.grabModeDistance = options.interactivity.modes.grab.distance * ratio;
-        this.repulseModeDistance = options.interactivity.modes.repulse.distance * ratio;
-        this.slowModeRadius = options.interactivity.modes.slow.radius * ratio;
-        this.lineLinkedDistance = options.particles.lineLinked.distance * ratio;
-        this.lineLinkedWidth = options.particles.lineLinked.width * ratio;
-        this.moveSpeed = options.particles.move.speed * ratio;
-        this.sizeValue = options.particles.size.value * ratio;
-        this.sizeAnimationSpeed = options.particles.size.animation.speed * ratio;
+        const particles = options.particles;
+
+        this.lineLinkedDistance = particles.lineLinked.distance * ratio;
+        this.lineLinkedWidth = particles.lineLinked.width * ratio;
+        this.moveSpeed = particles.move.speed * ratio;
+        this.sizeValue = particles.size.value * ratio;
+        this.sizeAnimationSpeed = particles.size.animation.speed * ratio;
+
+        const interactivity = options.interactivity;
+
+        this.connectModeDistance = interactivity.modes.connect.distance * ratio;
+        this.connectModeRadius = interactivity.modes.connect.radius * ratio;
+        this.grabModeDistance = interactivity.modes.grab.distance * ratio;
+        this.repulseModeDistance = interactivity.modes.repulse.distance * ratio;
+        this.slowModeRadius = interactivity.modes.slow.radius * ratio;
+        this.bubbleModeDistance = interactivity.modes.bubble.distance * ratio;
+        this.bubbleModeSize = interactivity.modes.bubble.size ?? this.sizeValue * ratio;
+
         this.polygonMaskMoveRadius = options.polygon.move.radius * ratio;
+    }
+
+    public initParticle(particle: Particle): void {
+        const particlesOptions = particle.particlesOptions;
+        const ratio = this.pixelRatio;
+
+        particle.lineLinkedDistance = particlesOptions.lineLinked.distance * ratio;
+        particle.lineLinkedWidth = particlesOptions.lineLinked.width * ratio;
+        particle.moveSpeed = particlesOptions.move.speed * ratio;
+        particle.sizeValue = particlesOptions.size.value * ratio;
+        if (typeof particlesOptions.size.random !== "boolean") {
+            particle.randomMinimumSize = particlesOptions.size.random.minimumValue;
+        }
+        particle.sizeAnimationSpeed = particlesOptions.size.animation.speed * ratio;
     }
 
     public reset(): void {

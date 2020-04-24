@@ -1,4 +1,4 @@
-import type {Container} from "./Container";
+import type { Container } from "./Container";
 
 export class FrameManager {
     private readonly container: Container;

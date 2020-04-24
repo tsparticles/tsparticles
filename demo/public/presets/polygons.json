@@ -18,20 +18,64 @@
       },
       "polygon": [
         {
-          "nb_sides": 3
+          "nb_sides": 3,
+          "particles": {
+            "opacity": {
+              "value": 0.8,
+              "random": {
+                "enable": true,
+                "minimumValue": 0.5
+              }
+            },
+            "size": {
+              "value": 12,
+              "random": {
+                "enable": true,
+                "minimumValue": 10
+              }
+            },
+            "color": {
+              "value": "ff0"
+            }
+          }
         },
         {
-          "nb_sides": 5
+          "nb_sides": 5,
+          "particles": {
+            "opacity": {
+              "value": 0.5
+            },
+            "size": {
+              "value": 8,
+              "random": {
+                "enable": false
+              }
+            },
+            "color": {
+              "value": "0f0"
+            }
+          }
         },
         {
-          "nb_sides": 8
+          "nb_sides": 8,
+          "particles": {
+            "opacity": {
+              "value": 1,
+              "random": false
+            },
+            "size": {
+              "value": 20,
+              "random": {
+                "enable": true,
+                "minimumValue": 15
+              }
+            },
+            "color": {
+              "value": "f00"
+            }
+          }
         }
-      ],
-      "image": {
-        "src": "https://cdn.matteobruni.it/images/particles/github.svg",
-        "width": 100,
-        "height": 100
-      }
+      ]
     },
     "opacity": {
       "value": 0.5,

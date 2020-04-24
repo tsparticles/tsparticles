@@ -4,6 +4,11 @@ import { InteractivityDetect } from "../../Enums/InteractivityDetect";
 import type { ICoordinates } from "../../Interfaces/ICoordinates";
 import { PolygonMaskType } from "../../Enums/PolygonMaskType";
 import { Constants } from "./Constants";
+import { Emitter } from "../Emitter";
+import { Utils } from "./Utils";
+import type { IEmitter } from "../../Interfaces/Options/Emitters/IEmitter";
+import type { IAbsorber } from "../../Interfaces/Options/Absorbers/IAbsorber";
+import { Absorber } from "../Absorber";
 
 /**
  * Particles container event listeners manager
@@ -44,6 +49,41 @@ export class EventListeners {
         this.resizeHandler = () => this.handleWindowResize();
     }
 
+    private static manageListener(element: HTMLElement | Node | Window,
+                                  event: string,
+                                  handler: EventListenerOrEventListenerObject,
+                                  add: boolean,
+                                  options?: boolean | AddEventListenerOptions | EventListenerObject): void {
+        if (add) {
+            let addOptions: AddEventListenerOptions = { passive: true };
+
+            if (typeof options === "boolean") {
+                addOptions.capture = options;
+            } else if (options !== undefined) {
+                addOptions = options as AddEventListenerOptions;
+            }
+
+            EventListeners.addListener(element, event, handler, addOptions);
+        } else {
+            EventListeners.removeListener(element, event, handler,
+                options as boolean | EventListenerOptions | undefined);
+        }
+    }
+
+    private static addListener(element: HTMLElement | Node | Window,
+                               event: string,
+                               handler: EventListenerOrEventListenerObject,
+                               options?: boolean | AddEventListenerOptions | undefined): void {
+        element.addEventListener(event, handler, options);
+    }
+
+    private static removeListener(element: HTMLElement | Node | Window,
+                                  event: string,
+                                  handler: EventListenerOrEventListenerObject,
+                                  options?: boolean | EventListenerOptions): void {
+        element.removeEventListener(event, handler, options);
+    }
+
     /**
      * Initializing event listeners
      */
@@ -76,65 +116,43 @@ export class EventListeners {
             options.interactivity.events.onClick.enable)
         ) {
             /* el on mousemove */
-            this.manageListener(interactivityEl, Constants.mouseMoveEvent, this.mouseMoveHandler, add);
+            EventListeners.manageListener(interactivityEl, Constants.mouseMoveEvent, this.mouseMoveHandler, add);
 
             /* el on touchstart */
-            this.manageListener(interactivityEl, Constants.touchStartEvent, this.touchStartHandler, add);
+            EventListeners.manageListener(interactivityEl, Constants.touchStartEvent, this.touchStartHandler, add);
 
             /* el on touchmove */
-            this.manageListener(interactivityEl, Constants.touchMoveEvent, this.touchMoveHandler, add);
+            EventListeners.manageListener(interactivityEl, Constants.touchMoveEvent, this.touchMoveHandler, add);
 
             if (!options.interactivity.events.onClick.enable) {
                 /* el on touchend */
-                this.manageListener(interactivityEl, Constants.touchEndEvent, this.touchEndHandler, add);
+                EventListeners.manageListener(interactivityEl, Constants.touchEndEvent, this.touchEndHandler, add);
             }
 
             /* el on onmouseleave */
-            this.manageListener(interactivityEl, Constants.mouseLeaveEvent, this.mouseLeaveHandler, add);
+            EventListeners.manageListener(interactivityEl, Constants.mouseLeaveEvent, this.mouseLeaveHandler, add);
 
             /* el on touchcancel */
-            this.manageListener(interactivityEl, Constants.touchCancelEvent, this.touchCancelHandler, add);
+            EventListeners.manageListener(interactivityEl, Constants.touchCancelEvent, this.touchCancelHandler, add);
         }
 
         /* on click event */
         if (options.interactivity.events.onClick.enable && interactivityEl) {
-            this.manageListener(interactivityEl, Constants.touchEndEvent, this.touchEndClickHandler, add);
-            this.manageListener(interactivityEl, Constants.mouseUpEvent, this.mouseUpHandler, add);
+            EventListeners.manageListener(interactivityEl, Constants.touchEndEvent, this.touchEndClickHandler, add);
+            EventListeners.manageListener(interactivityEl, Constants.mouseUpEvent, this.mouseUpHandler, add);
         }
 
         if (options.interactivity.events.resize) {
-            this.manageListener(window, Constants.resizeEvent, this.resizeHandler, add);
+            EventListeners.manageListener(window, Constants.resizeEvent, this.resizeHandler, add);
         }
 
         if (document) {
-            this.manageListener(document, Constants.visibilityChangeEvent, this.visibilityChangeHandler, add, false);
+            EventListeners.manageListener(document,
+                Constants.visibilityChangeEvent,
+                this.visibilityChangeHandler,
+                add,
+                false);
         }
-    }
-
-    private manageListener(element: HTMLElement | Node | Window,
-        event: string,
-        handler: EventListenerOrEventListenerObject,
-        add: boolean,
-        options?: boolean | AddEventListenerOptions | EventListenerObject): void {
-        if (add) {
-            this.addListener(element, event, handler, options as boolean | AddEventListenerOptions | undefined);
-        } else {
-            this.removeListener(element, event, handler, options as boolean | EventListenerOptions | undefined);
-        }
-    }
-
-    private addListener(element: HTMLElement | Node | Window,
-        event: string,
-        handler: EventListenerOrEventListenerObject,
-        options?: boolean | AddEventListenerOptions | undefined): void {
-        element.addEventListener(event, handler, options);
-    }
-
-    private removeListener(element: HTMLElement | Node | Window,
-        event: string,
-        handler: EventListenerOrEventListenerObject,
-        options?: boolean | EventListenerOptions): void {
-        element.removeEventListener(event, handler, options);
     }
 
     private handleWindowResize(): void {
@@ -145,17 +163,17 @@ export class EventListeners {
             return;
         }
 
-        container.canvas.dimension.width = container.canvas.element.offsetWidth;
-        container.canvas.dimension.height = container.canvas.element.offsetHeight;
+        container.canvas.size.width = container.canvas.element.offsetWidth;
+        container.canvas.size.height = container.canvas.element.offsetHeight;
 
         /* resize canvas */
         if (container.retina.isRetina) {
-            container.canvas.dimension.width *= container.retina.pxRatio;
-            container.canvas.dimension.height *= container.retina.pxRatio;
+            container.canvas.size.width *= container.retina.pixelRatio;
+            container.canvas.size.height *= container.retina.pixelRatio;
         }
 
-        container.canvas.element.width = container.canvas.dimension.width;
-        container.canvas.element.height = container.canvas.dimension.height;
+        container.canvas.element.width = container.canvas.size.width;
+        container.canvas.element.height = container.canvas.size.height;
 
         /* repaint canvas on anim disabled */
         if (!options.particles.move.enable) {
@@ -164,6 +182,14 @@ export class EventListeners {
 
         /* density particles enabled */
         container.densityAutoParticles();
+
+        for (const emitter of container.emitters) {
+            emitter.resize();
+        }
+
+        for (const absorber of container.absorbers) {
+            absorber.resize();
+        }
 
         container.polygon.redraw();
     }
@@ -195,20 +221,25 @@ export class EventListeners {
         const container = this.container;
         const options = container.options;
 
-        let pos: ICoordinates;
+        let pos: ICoordinates | undefined;
 
         if (e.type.startsWith("mouse")) {
             this.canPush = true;
 
             const mouseEvent = e as MouseEvent;
+            if (container.interactivity?.element === undefined) {
+                return;
+            }
 
-            if (container.interactivity.element === window && container.canvas.element) {
-                const clientRect = container.canvas.element.getBoundingClientRect();
+            if (container.interactivity.element === window) {
+                if (container.canvas.element) {
+                    const clientRect = container.canvas.element.getBoundingClientRect();
 
-                pos = {
-                    x: mouseEvent.clientX - clientRect.left,
-                    y: mouseEvent.clientY - clientRect.top,
-                };
+                    pos = {
+                        x: mouseEvent.clientX - clientRect.left,
+                        y: mouseEvent.clientY - clientRect.top,
+                    };
+                }
             } else if (options.interactivity.detectsOn === InteractivityDetect.parent) {
                 const source = mouseEvent.target as HTMLElement;
                 const target = mouseEvent.currentTarget as HTMLElement;
@@ -228,10 +259,12 @@ export class EventListeners {
                     };
                 }
             } else {
-                pos = {
-                    x: mouseEvent.offsetX || mouseEvent.clientX,
-                    y: mouseEvent.offsetY || mouseEvent.clientY,
-                };
+                if (mouseEvent.target === container.canvas.element) {
+                    pos = {
+                        x: mouseEvent.offsetX || mouseEvent.clientX,
+                        y: mouseEvent.offsetY || mouseEvent.clientY,
+                    };
+                }
             }
         } else {
             this.canPush = e.type !== "touchmove";
@@ -248,9 +281,9 @@ export class EventListeners {
 
         container.interactivity.mouse.position = pos;
 
-        if (container.retina.isRetina) {
-            container.interactivity.mouse.position.x *= container.retina.pxRatio;
-            container.interactivity.mouse.position.y *= container.retina.pxRatio;
+        if (container.retina.isRetina && container.interactivity.mouse.position) {
+            container.interactivity.mouse.position.x *= container.retina.pixelRatio;
+            container.interactivity.mouse.position.y *= container.retina.pixelRatio;
         }
 
         container.interactivity.status = Constants.mouseMoveEvent;
@@ -273,6 +306,10 @@ export class EventListeners {
     private mouseTouchClick(e: Event): void {
         const container = this.container;
         const options = container.options;
+
+        if (options.polygon === undefined) {
+            return;
+        }
 
         if (options.polygon.enable && options.polygon.type !== PolygonMaskType.none &&
             options.polygon.type !== PolygonMaskType.inline) {
@@ -298,6 +335,8 @@ export class EventListeners {
                     x: container.interactivity.mouse.position.x,
                     y: container.interactivity.mouse.position.y,
                 };
+            } else {
+                return;
             }
 
             container.interactivity.mouse.clickTime = new Date().getTime();
@@ -326,6 +365,11 @@ export class EventListeners {
                 case ClickMode.repulse:
                     container.repulse.clicking = true;
                     container.repulse.count = 0;
+                    for (const particle of container.repulse.particles) {
+                        particle.velocity.horizontal = particle.initialVelocity.horizontal;
+                        particle.velocity.vertical = particle.initialVelocity.vertical;
+                    }
+                    container.repulse.particles = [];
                     container.repulse.finish = false;
                     setTimeout(() => {
                         if (!container.destroyed) {
@@ -333,15 +377,50 @@ export class EventListeners {
                         }
                     }, options.interactivity.modes.repulse.duration * 1000);
                     break;
+                case ClickMode.absorber:
+                    let absorbersModeOptions: IAbsorber | undefined;
+                    const modeAbsorbers = options.interactivity.modes.absorbers;
+
+                    if (modeAbsorbers instanceof Array) {
+                        if (modeAbsorbers.length > 0) {
+                            absorbersModeOptions = Utils.itemFromArray(modeAbsorbers);
+                        }
+                    } else {
+                        absorbersModeOptions = modeAbsorbers;
+                    }
+
+                    const absorbersOptions = absorbersModeOptions ?? (options.absorbers instanceof Array ?
+                        Utils.itemFromArray(options.absorbers) :
+                        options.absorbers);
+                    const bhPosition = container.interactivity.mouse.clickPosition;
+                    const absorber = new Absorber(container, absorbersOptions, bhPosition);
+                    container.absorbers.push(absorber);
+                    break;
+
+                case ClickMode.emitter:
+                    let emitterModeOptions: IEmitter | undefined;
+                    const modeEmitters = options.interactivity.modes.emitters;
+
+                    if (modeEmitters instanceof Array) {
+                        if (modeEmitters.length > 0) {
+                            emitterModeOptions = Utils.itemFromArray(modeEmitters);
+                        }
+                    } else {
+                        emitterModeOptions = modeEmitters;
+                    }
+
+                    const emitterOptions = emitterModeOptions ?? (options.emitters instanceof Array ?
+                        Utils.itemFromArray(options.emitters) :
+                        options.emitters);
+                    const ePosition = container.interactivity.mouse.clickPosition;
+                    const emitter = new Emitter(container, emitterOptions, ePosition);
+                    container.emitters.push(emitter);
+                    break;
             }
         }
-
-        e.preventDefault();
 
         if (e.type === "touchend") {
             setTimeout(() => this.mouseTouchFinish(), 500);
         }
-
-        e.preventDefault();
     }
 }

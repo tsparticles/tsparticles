@@ -4,10 +4,12 @@ import type { RecursivePartial } from "../../../../Types/RecursivePartial";
 export class Repulse implements IRepulse {
     public distance: number;
     public duration: number;
+    public speed: number;
 
     constructor() {
         this.distance = 200;
         this.duration = 0.4;
+        this.speed = 1;
     }
 
     public load(data?: RecursivePartial<IRepulse>): void {
@@ -18,6 +20,10 @@ export class Repulse implements IRepulse {
 
             if (data.duration !== undefined) {
                 this.duration = data.duration;
+            }
+
+            if (data.speed !== undefined) {
+                this.speed = data.speed;
             }
         }
     }

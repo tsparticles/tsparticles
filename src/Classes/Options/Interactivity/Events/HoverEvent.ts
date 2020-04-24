@@ -1,8 +1,8 @@
-import type {IHoverEvent} from "../../../../Interfaces/Options/Interactivity/Events/IHoverEvent";
-import {HoverMode} from "../../../../Enums/Modes/HoverMode";
-import {Parallax} from "./Parallax";
-import type {IParallax} from "../../../../Interfaces/Options/Interactivity/Events/IParallax";
-import type {RecursivePartial} from "../../../../Types/RecursivePartial";
+import type { IHoverEvent } from "../../../../Interfaces/Options/Interactivity/Events/IHoverEvent";
+import { HoverMode } from "../../../../Enums/Modes/HoverMode";
+import { Parallax } from "./Parallax";
+import type { IParallax } from "../../../../Interfaces/Options/Interactivity/Events/IParallax";
+import type { RecursivePartial } from "../../../../Types/RecursivePartial";
 
 export class HoverEvent implements IHoverEvent {
     public enable: boolean;

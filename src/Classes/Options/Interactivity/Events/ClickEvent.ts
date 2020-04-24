@@ -1,6 +1,6 @@
-import type {IClickEvent} from "../../../../Interfaces/Options/Interactivity/Events/IClickEvent";
-import {ClickMode} from "../../../../Enums/Modes/ClickMode";
-import type {RecursivePartial} from "../../../../Types/RecursivePartial";
+import type { IClickEvent } from "../../../../Interfaces/Options/Interactivity/Events/IClickEvent";
+import { ClickMode } from "../../../../Enums/Modes/ClickMode";
+import type { RecursivePartial } from "../../../../Types/RecursivePartial";
 
 export class ClickEvent implements IClickEvent {
     /**

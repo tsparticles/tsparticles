@@ -1,21 +1,22 @@
-import {Canvas} from "./Canvas";
-import {EventListeners} from "./Utils/EventListeners";
-import type {IRepulse} from "../Interfaces/IRepulse";
-import type {IBubble} from "../Interfaces/IBubble";
-import type {IImage} from "../Interfaces/IImage";
-import type {IContainerInteractivity} from "../Interfaces/IContainerInteractivity";
-import {Particles} from "./Particles";
-import {Retina} from "./Retina";
-import {ShapeType} from "../Enums/ShapeType";
-import {PolygonMask} from "./PolygonMask";
-import {ImageShape} from "./Options/Particles/Shape/ImageShape";
-import type {IOptions} from "../Interfaces/Options/IOptions";
-import {FrameManager} from "./FrameManager";
-import type {RecursivePartial} from "../Types/RecursivePartial";
-import {Options} from "./Options/Options";
-import {Utils} from "./Utils/Utils";
-import type {IImageShape} from "../Interfaces/Options/Particles/Shape/IImageShape";
-import {Presets} from "./Utils/Presets";
+import { Canvas } from "./Canvas";
+import { EventListeners } from "./Utils/EventListeners";
+import type { IRepulse } from "../Interfaces/IRepulse";
+import type { IBubble } from "../Interfaces/IBubble";
+import type { IImage } from "../Interfaces/IImage";
+import type { IContainerInteractivity } from "../Interfaces/IContainerInteractivity";
+import { Particles } from "./Particles";
+import { Retina } from "./Retina";
+import { ShapeType } from "../Enums/ShapeType";
+import { PolygonMask } from "./PolygonMask";
+import type { IOptions } from "../Interfaces/Options/IOptions";
+import { FrameManager } from "./FrameManager";
+import type { RecursivePartial } from "../Types/RecursivePartial";
+import { Options } from "./Options/Options";
+import { Utils } from "./Utils/Utils";
+import type { IImageShape } from "../Interfaces/Options/Particles/Shape/IImageShape";
+import { Presets } from "./Utils/Presets";
+import { Emitter } from "./Emitter";
+import { Absorber } from "./Absorber";
 
 /**
  * The object loaded into an HTML element, it'll contain options loaded and all data to let everything working
@@ -28,6 +29,8 @@ export class Container {
     public retina: Retina;
     public canvas: Canvas;
     public particles: Particles;
+    public emitters: Emitter[];
+    public absorbers: Absorber[];
     public polygon: PolygonMask;
     public bubble: IBubble;
     public repulse: IRepulse;
@@ -67,7 +70,9 @@ export class Container {
         };
         this.images = [];
         this.bubble = {};
-        this.repulse = {};
+        this.repulse = { particles: [] };
+        this.emitters = [];
+        this.absorbers = [];
 
         /* tsParticles variables with default values */
         this.options = new Options();
@@ -97,6 +102,9 @@ export class Container {
         if (this.paused) {
             this.lastFrameTime = performance.now();
             this.paused = false;
+            for (const emitter of this.emitters) {
+                emitter.start();
+            }
         }
 
         this.drawAnimationFrame = Container.requestFrame((t) => this.drawer.nextFrame(t));
@@ -104,6 +112,10 @@ export class Container {
 
     public pause(): void {
         if (this.drawAnimationFrame !== undefined) {
+            for (const emitter of this.emitters) {
+                emitter.stop();
+            }
+
             Container.cancelAnimation(this.drawAnimationFrame);
 
             delete this.drawAnimationFrame;
@@ -122,7 +134,7 @@ export class Container {
         let area = this.canvas.element.width * this.canvas.element.height / 1000;
 
         if (this.retina.isRetina) {
-            area /= this.retina.pxRatio * 2;
+            area /= this.retina.pixelRatio * 2;
         }
 
         const optParticlesNumber = this.options.particles.number.value;
@@ -173,34 +185,6 @@ export class Container {
         return JSON.stringify(this.options, undefined, 2);
     }
 
-    public loadImage(optionsImage: ImageShape): Promise<IImage> {
-        return new Promise((resolve: (value?: IImage | PromiseLike<IImage> | undefined) => void,
-                            reject: (reason?: any) => void) => {
-            const src = optionsImage.src;
-            const image: IImage = {
-                type: src.substr(src.length - 3),
-            };
-
-            if (optionsImage.src) {
-                const img = new Image();
-
-                img.addEventListener("load", () => {
-                    image.obj = img;
-
-                    resolve(image);
-                });
-
-                img.addEventListener("error", () => {
-                    reject(`Error tsParticles - loading image: ${optionsImage.src}`);
-                });
-
-                img.src = optionsImage.src;
-            } else {
-                reject("Error tsParticles - No image.src");
-            }
-        });
-    }
-
     public async refresh(): Promise<void> {
         /* restart */
         this.stop();
@@ -220,6 +204,8 @@ export class Container {
         this.retina.reset();
         this.canvas.clear();
         this.polygon.reset();
+        this.emitters = [];
+        this.absorbers = [];
 
         delete this.particles.lineLinkedColor;
     }
@@ -243,7 +229,10 @@ export class Container {
                 }
             } else {
                 const character = this.options.particles.shape.character;
-                await Utils.loadFont(character);
+
+                if (character !== undefined) {
+                    await Utils.loadFont(character);
+                }
             }
         }
 
@@ -262,7 +251,10 @@ export class Container {
     }
 
     private async loadImageShape(imageShape: IImageShape): Promise<void> {
-        this.images.push(await this.loadImage(imageShape));
+        try {
+            this.images.push(await Utils.loadImage(imageShape));
+        } catch {
+        }
     }
 
     private init(): void {
@@ -270,6 +262,33 @@ export class Container {
         this.retina.init();
         this.canvas.init();
         this.particles.init();
+
+        if (this.options.emitters instanceof Array) {
+            for (const emitterOptions of this.options.emitters) {
+                const emitter = new Emitter(this, emitterOptions);
+
+                this.emitters.push(emitter);
+            }
+        } else {
+            const emitterOptions = this.options.emitters;
+            const emitter = new Emitter(this, emitterOptions);
+
+            this.emitters.push(emitter);
+        }
+
+        if (this.options.absorbers instanceof Array) {
+            for (const absorberOptions of this.options.absorbers) {
+                const absorber = new Absorber(this, absorberOptions);
+
+                this.absorbers.push(absorber);
+            }
+        } else {
+            const absorberOptions = this.options.absorbers;
+            const absorber = new Absorber(this, absorberOptions);
+
+            this.absorbers.push(absorber);
+        }
+
         this.densityAutoParticles();
     }
 }

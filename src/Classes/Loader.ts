@@ -43,8 +43,8 @@ export class Loader {
      * @param index if provided gets the corresponding item from the array
      */
     public static async loadFromArray(tagId: string,
-        params: RecursivePartial<IOptions>[],
-        index?: number): Promise<Container | undefined> {
+                                      params: RecursivePartial<IOptions>[],
+                                      index?: number): Promise<Container | undefined> {
         return Loader.load(tagId, Utils.itemFromArray(params, index));
     }
 
@@ -56,9 +56,9 @@ export class Loader {
      * @param index if provided gets the corresponding item from the array
      */
     public static async setFromArray(id: string,
-        domContainer: HTMLElement,
-        params: RecursivePartial<IOptions>[],
-        index?: number): Promise<Container | undefined> {
+                                     domContainer: HTMLElement,
+                                     params: RecursivePartial<IOptions>[],
+                                     index?: number): Promise<Container | undefined> {
         return Loader.set(id, domContainer, Utils.itemFromArray(params, index));
     }
 
@@ -85,7 +85,7 @@ export class Loader {
      * @param params the options object to initialize the [[Container]]
      */
     public static async set(id: string, domContainer: HTMLElement,
-        params?: RecursivePartial<IOptions>): Promise<Container | undefined> {
+                            params?: RecursivePartial<IOptions>): Promise<Container | undefined> {
         const dom = Loader.dom();
         const oldIndex = dom.findIndex((v) => v.id === id);
 
@@ -179,7 +179,7 @@ export class Loader {
      * @param jsonUrl the json path to use in the GET request
      */
     public static async setJSON(id: string, domContainer: HTMLElement,
-        jsonUrl: string): Promise<Container | undefined> {
+                                jsonUrl: string): Promise<Container | undefined> {
         /* load json config */
         const response = await fetch(jsonUrl);
 

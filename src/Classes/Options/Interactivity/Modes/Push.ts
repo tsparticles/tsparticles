@@ -1,5 +1,5 @@
-import type {IPush} from "../../../../Interfaces/Options/Interactivity/Modes/IPush";
-import type {RecursivePartial} from "../../../../Types/RecursivePartial";
+import type { IPush } from "../../../../Interfaces/Options/Interactivity/Modes/IPush";
+import type { RecursivePartial } from "../../../../Types/RecursivePartial";
 
 export class Push implements IPush {
     /**

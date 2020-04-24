@@ -1,28 +1,20 @@
-/* -----------------------------------------------
-/* Author : Matteo Bruni - https://www.matteobruni.it
-/* MIT license: https://opensource.org/licenses/MIT
-/* Demo / Generator : https://particles.matteobruni.it/
-/* GitHub : https://www.github.com/matteobruni/tsparticles
-/* How to use? : Check the GitHub README
-/* v1.12.10
-/* ----------------------------------------------- */
 import type { Container } from "./Classes/Container";
 import { Loader } from "./Classes/Loader";
 import type { IOptions } from "./Interfaces/Options/IOptions";
 import type { RecursivePartial } from "./Types/RecursivePartial";
-import { ShapeUtils } from "./Classes/Utils/ShapeUtils";
 import { ShapeType } from "./Enums/ShapeType";
 import { LineDrawer } from "./Classes/ShapeDrawers/LineDrawer";
 import { CircleDrawer } from "./Classes/ShapeDrawers/CircleDrawer";
 import { SquareDrawer } from "./Classes/ShapeDrawers/SquareDrawer";
 import { TriangleDrawer } from "./Classes/ShapeDrawers/TriangleDrawer";
-import { StarDrawer } from "./Classes/ShapeDrawers/StarDrawer";
+import { StarDrawer as StarDrawer } from "./Classes/ShapeDrawers/StarDrawer";
 import { PolygonDrawer } from "./Classes/ShapeDrawers/PolygonDrawer";
 import { TextDrawer } from "./Classes/ShapeDrawers/TextDrawer";
 import { ImageDrawer } from "./Classes/ShapeDrawers/ImageDrawer";
 import type { IShapeDrawer } from "./Interfaces/IShapeDrawer";
 import { Presets } from "./Classes/Utils/Presets";
 import type { ShapeDrawerFunction } from "./Types/ShapeDrawerFunction";
+import { CanvasUtils } from "./Classes/Utils/CanvasUtils";
 
 declare global {
     interface Window {
@@ -76,16 +68,16 @@ class Main {
         const squareDrawer = new SquareDrawer();
         const textDrawer = new TextDrawer();
 
-        ShapeUtils.addShapeDrawer(ShapeType.line, new LineDrawer());
-        ShapeUtils.addShapeDrawer(ShapeType.circle, new CircleDrawer());
-        ShapeUtils.addShapeDrawer(ShapeType.edge, squareDrawer);
-        ShapeUtils.addShapeDrawer(ShapeType.square, squareDrawer);
-        ShapeUtils.addShapeDrawer(ShapeType.triangle, new TriangleDrawer());
-        ShapeUtils.addShapeDrawer(ShapeType.star, new StarDrawer());
-        ShapeUtils.addShapeDrawer(ShapeType.polygon, new PolygonDrawer());
-        ShapeUtils.addShapeDrawer(ShapeType.char, textDrawer);
-        ShapeUtils.addShapeDrawer(ShapeType.character, textDrawer);
-        ShapeUtils.addShapeDrawer(ShapeType.image, new ImageDrawer());
+        CanvasUtils.addShapeDrawer(ShapeType.line, new LineDrawer());
+        CanvasUtils.addShapeDrawer(ShapeType.circle, new CircleDrawer());
+        CanvasUtils.addShapeDrawer(ShapeType.edge, squareDrawer);
+        CanvasUtils.addShapeDrawer(ShapeType.square, squareDrawer);
+        CanvasUtils.addShapeDrawer(ShapeType.triangle, new TriangleDrawer());
+        CanvasUtils.addShapeDrawer(ShapeType.star, new StarDrawer());
+        CanvasUtils.addShapeDrawer(ShapeType.polygon, new PolygonDrawer());
+        CanvasUtils.addShapeDrawer(ShapeType.char, textDrawer);
+        CanvasUtils.addShapeDrawer(ShapeType.character, textDrawer);
+        CanvasUtils.addShapeDrawer(ShapeType.image, new ImageDrawer());
     }
 
     /**
@@ -104,18 +96,22 @@ class Main {
                  * @param tagId the particles container element id
                  * @param params the options object to initialize the [[Container]]
                  */
-                window.particlesJS = (tagId: string, params: RecursivePartial<IOptions>) => {
-                    tsParticles.load(tagId, params);
+                window.particlesJS = (tagId: string, params: RecursivePartial<IOptions>):
+                    Promise<Container | undefined> => {
+                    return tsParticles.load(tagId, params);
                 };
 
                 /**
-                 * Loads the provided json with a GET request. The content will be used to create a [[Container]] object.
+                 * Loads the provided json with a GET request.
+                 * The content will be used to create a [[Container]] object.
                  * @deprecated this method is obsolete, please use the new tsParticles.loadJSON
                  * @param tagId the particles container element id
                  * @param pathConfigJson the json path to use in the GET request
-                 * @param callback the function called after the [[Container]] object is loaded that will be passed as a parameter
+                 * @param callback called after the [[Container]] is loaded and it will be passed as a parameter
                  */
-                window.particlesJS.load = (tagId: string, pathConfigJson: string, callback: (container: Container) => void) => {
+                window.particlesJS.load = (tagId: string,
+                                           pathConfigJson: string,
+                                           callback: (container: Container) => void) => {
                     tsParticles.loadJSON(tagId, pathConfigJson).then((container) => {
                         if (container) {
                             callback(container);
@@ -151,8 +147,8 @@ class Main {
      * @returns A Promise with the [[Container]] object created
      */
     public async loadFromArray(tagId: string,
-        params: RecursivePartial<IOptions>[],
-        index?: number): Promise<Container | undefined> {
+                               params: RecursivePartial<IOptions>[],
+                               index?: number): Promise<Container | undefined> {
         return Loader.loadFromArray(tagId, params, index);
     }
 
@@ -218,7 +214,7 @@ class Main {
             customDrawer = drawer;
         }
 
-        ShapeUtils.addShapeDrawer(shape, customDrawer);
+        CanvasUtils.addShapeDrawer(shape, customDrawer);
     }
 
     /**
@@ -232,7 +228,5 @@ class Main {
 }
 
 const tsParticles = new Main();
-
-tsParticles.init();
 
 export { tsParticles };

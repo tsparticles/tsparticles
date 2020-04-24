@@ -1,5 +1,5 @@
-import type {IRemove} from "../../../../Interfaces/Options/Interactivity/Modes/IRemove";
-import type {RecursivePartial} from "../../../../Types/RecursivePartial";
+import type { IRemove } from "../../../../Interfaces/Options/Interactivity/Modes/IRemove";
+import type { RecursivePartial } from "../../../../Types/RecursivePartial";
 
 export class Remove implements IRemove {
     /**

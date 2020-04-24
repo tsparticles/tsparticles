@@ -1,13 +1,13 @@
 import { Utils } from "../Utils/Utils";
-import type { Particle } from "../Particle";
 import type { Container } from "../Container";
 import { HoverMode } from "../../Enums/Modes/HoverMode";
+import type { IParticle } from "../../Interfaces/IParticle";
 
 export class Mover {
     private readonly container: Container;
-    private readonly particle: Particle;
+    private readonly particle: IParticle;
 
-    constructor(container: Container, particle: Particle) {
+    constructor(container: Container, particle: IParticle) {
         this.container = container;
         this.particle = particle;
     }
@@ -20,7 +20,8 @@ export class Mover {
         if (options.particles.move.enable) {
             const slowFactor = this.getProximitySpeedFactor();
             const deltaFactor = options.fpsLimit > 0 ? (60 * delta) / 1000 : 3.6;
-            const moveSpeed = container.retina.moveSpeed / 2 * slowFactor * deltaFactor;
+            const baseSpeed = particle.moveSpeed ?? container.retina.moveSpeed;
+            const moveSpeed = baseSpeed / 2 * slowFactor * deltaFactor;
 
             particle.position.x += particle.velocity.horizontal * moveSpeed;
             particle.position.y += particle.velocity.vertical * moveSpeed;
@@ -49,8 +50,8 @@ export class Mover {
 
         /* smaller is the particle, longer is the offset distance */
         const tmp = {
-            x: (mousePos.x - windowDimension.width) * (particle.radius / parallaxForce),
-            y: (mousePos.y - windowDimension.height) * (particle.radius / parallaxForce),
+            x: (mousePos.x - windowDimension.width) * (particle.size.value / parallaxForce),
+            y: (mousePos.y - windowDimension.height) * (particle.size.value / parallaxForce),
         };
 
         particle.offset.x += (tmp.x - particle.offset.x) / parallaxSmooth; // Easing equation

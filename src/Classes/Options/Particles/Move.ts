@@ -1,24 +1,37 @@
-import type {IMove} from "../../../Interfaces/Options/Particles/IMove";
-import {Attract} from "./Attract";
-import {MoveDirection} from "../../../Enums/MoveDirection";
-import {OutMode} from "../../../Enums/OutMode";
-import type {IAttract} from "../../../Interfaces/Options/Particles/IAttract";
-import {Trail} from "./Trail";
-import type {ITrail} from "../../../Interfaces/Options/Particles/ITrail";
-import type {RecursivePartial} from "../../../Types/RecursivePartial";
+import type { IMove } from "../../../Interfaces/Options/Particles/IMove";
+import { Attract } from "./Attract";
+import { MoveDirection } from "../../../Enums/MoveDirection";
+import { OutMode } from "../../../Enums/OutMode";
+import type { IAttract } from "../../../Interfaces/Options/Particles/IAttract";
+import { Trail } from "./Trail";
+import type { ITrail } from "../../../Interfaces/Options/Particles/ITrail";
+import type { RecursivePartial } from "../../../Types/RecursivePartial";
 
 export class Move implements IMove {
     /**
-     *
-     * @deprecated this property is obsolete, please use the new collisions
+     * @deprecated this property is obsolete, please use the new collisions object on particles options
+     */
+    get collisions(): boolean {
+        return false;
+    }
+
+    /**
+     * @deprecated this property is obsolete, please use the new collisions object on particles options
+     * @param value
+     */
+    set collisions(value: boolean) {
+    }
+
+    /**
+     * @deprecated this property is obsolete, please use the new collisions object on particles options
      */
     get bounce(): boolean {
         return this.collisions;
     }
 
     /**
-     *
-     * @deprecated this property is obsolete, please use the new collisions
+     * @deprecated this property is obsolete, please use the new collisions object on particles options
+     * @param value
      */
     set bounce(value: boolean) {
         this.collisions = value;
@@ -42,7 +55,6 @@ export class Move implements IMove {
     }
 
     public attract: IAttract;
-    public collisions: boolean;
     public direction: MoveDirection;
     public enable: boolean;
     public outMode: OutMode;
@@ -53,7 +65,6 @@ export class Move implements IMove {
 
     constructor() {
         this.attract = new Attract();
-        this.collisions = false;
         this.direction = MoveDirection.none;
         this.enable = false;
         this.outMode = OutMode.out;
@@ -66,12 +77,6 @@ export class Move implements IMove {
     public load(data?: RecursivePartial<IMove>): void {
         if (data !== undefined) {
             this.attract.load(data.attract);
-
-            const collisions = data.collisions ?? data.bounce;
-
-            if (collisions !== undefined) {
-                this.collisions = collisions;
-            }
 
             if (data.direction !== undefined) {
                 this.direction = data.direction;

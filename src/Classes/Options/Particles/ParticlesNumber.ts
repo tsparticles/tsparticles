@@ -1,7 +1,7 @@
-import type {IParticlesNumber} from "../../../Interfaces/Options/Particles/IParticlesNumber";
-import type {IDensity} from "../../../Interfaces/Options/Particles/IDensity";
-import {Density} from "./Density";
-import type {RecursivePartial} from "../../../Types/RecursivePartial";
+import type { IParticlesNumber } from "../../../Interfaces/Options/Particles/IParticlesNumber";
+import type { IDensity } from "../../../Interfaces/Options/Particles/IDensity";
+import { Density } from "./Density";
+import type { RecursivePartial } from "../../../Types/RecursivePartial";
 
 export class ParticlesNumber implements IParticlesNumber {
     /**

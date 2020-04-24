@@ -4,6 +4,7 @@ import type { IPolygonMaskMove } from "./IPolygonMaskMove";
 import type { PolygonMaskInlineArrangement } from "../../../Enums/PolygonMaskInlineArrangement";
 import type { IOptionLoader } from "../IOptionLoader";
 import type { IPolygonInline } from "./IPolygonInline";
+import type { ICoordinates } from "../../ICoordinates";
 
 export interface IPolygonMask extends IOptionLoader<IPolygonMask> {
     draw: IPolygonMaskDraw;
@@ -16,6 +17,7 @@ export interface IPolygonMask extends IOptionLoader<IPolygonMask> {
     inlineArrangement: PolygonMaskInlineArrangement;
 
     move: IPolygonMaskMove;
+    position?: ICoordinates;
     scale: number;
     type: PolygonMaskType;
     url: string;

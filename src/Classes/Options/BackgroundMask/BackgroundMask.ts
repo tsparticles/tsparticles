@@ -1,14 +1,14 @@
 import type { IBackgroundMask } from "../../../Interfaces/Options/BackgroundMask/IBackgroundMask";
-import type { IColor } from "../../../Interfaces/Options/Particles/IColor";
 import type { RecursivePartial } from "../../../Types/RecursivePartial";
 import type { IBackgroundMaskCover } from "../../../Interfaces/Options/BackgroundMask/IBackgroundMaskCover";
 import { BackgroundMaskCover } from "./BackgroundMaskCover";
+import type { IColor } from "../../../Interfaces/IColor";
 
 export class BackgroundMask implements IBackgroundMask {
     /**
      * Background covering color
      */
-    public cover: IBackgroundMaskCover | IColor;
+    public cover: IBackgroundMaskCover;
 
     /**
      * Background mask enabling options
@@ -23,7 +23,10 @@ export class BackgroundMask implements IBackgroundMask {
     public load(data?: RecursivePartial<IBackgroundMask>): void {
         if (data !== undefined) {
             if (data.cover !== undefined) {
-                this.cover.load(data.cover);
+                const cover = data.cover as IBackgroundMaskCover;
+                const color = (typeof data.cover === "string" ? { color: data.cover } : data.cover) as IColor;
+
+                this.cover.load(cover.color !== undefined ? cover : { color: color });
             }
 
             if (data.enable !== undefined) {

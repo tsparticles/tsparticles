@@ -1,4 +1,4 @@
 export interface IBubblerProcessParamObj {
-    optValue: number;
-    value: number | undefined;
+    optValue?: number;
+    value?: number;
 }

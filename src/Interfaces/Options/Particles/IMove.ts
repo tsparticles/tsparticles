@@ -8,10 +8,13 @@ export interface IMove extends IOptionLoader<IMove> {
     attract: IAttract;
 
     /**
-     * @deprecated use the new collisions instead
+     * @deprecated use the new collisions property on particles instead
      */
     bounce: boolean;
 
+    /**
+     * @deprecated use the new collisions property on particles instead
+     */
     collisions: boolean;
     direction: MoveDirection;
     enable: boolean;

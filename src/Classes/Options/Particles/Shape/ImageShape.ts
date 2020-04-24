@@ -1,7 +1,8 @@
-import type {IImageShape} from "../../../../Interfaces/Options/Particles/Shape/IImageShape";
-import type {RecursivePartial} from "../../../../Types/RecursivePartial";
+import type { IImageShape } from "../../../../Interfaces/Options/Particles/Shape/IImageShape";
+import type { RecursivePartial } from "../../../../Types/RecursivePartial";
+import { ShapeBase } from "./ShapeBase";
 
-export class ImageShape implements IImageShape {
+export class ImageShape extends ShapeBase implements IImageShape {
     /**
      *
      * @deprecated this property is obsolete, please use the new replaceColor
@@ -23,19 +24,18 @@ export class ImageShape implements IImageShape {
     public replaceColor: boolean;
     public src: string;
     public width: number;
-    public fill?: boolean;
-    public close?: boolean;
 
     constructor() {
+        super();
         this.height = 100;
         this.replaceColor = true;
         this.src = "";
         this.width = 100;
-        this.fill = true;
-        this.close = true;
     }
 
     public load(data?: RecursivePartial<IImageShape>): void {
+        super.load(data);
+
         if (data !== undefined) {
             if (data.height !== undefined) {
                 this.height = data.height;

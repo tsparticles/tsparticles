@@ -1,30 +1,26 @@
 import type { ICharacterShape } from "../../../../Interfaces/Options/Particles/Shape/ICharacterShape";
 import type { RecursivePartial } from "../../../../Types/RecursivePartial";
+import { ShapeBase } from "./ShapeBase";
+import type { SingleOrMultiple } from "../../../../Types/SingleOrMultiple";
 
-export class CharacterShape implements ICharacterShape {
-    public close?: boolean;
-    public fill?: boolean;
+export class CharacterShape extends ShapeBase implements ICharacterShape {
     public font: string;
     public style: string;
-    public value: string | string[];
+    public value: SingleOrMultiple<string>;
     public weight: string;
 
     constructor() {
-        this.fill = false;
+        super();
         this.font = "Verdana";
         this.style = "";
         this.value = "*";
         this.weight = "400";
-        this.fill = true;
-        this.close = true;
     }
 
     public load(data?: RecursivePartial<ICharacterShape>): void {
-        if (data !== undefined) {
-            if (data.fill !== undefined) {
-                this.fill = data.fill;
-            }
+        super.load(data);
 
+        if (data !== undefined) {
             if (data.font !== undefined) {
                 this.font = data.font;
             }

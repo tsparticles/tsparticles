@@ -3,4 +3,6 @@ export enum ClickMode {
     push = "push",
     remove = "remove",
     repulse = "repulse",
+    emitter = "emitter",
+    absorber = "absorber",
 }

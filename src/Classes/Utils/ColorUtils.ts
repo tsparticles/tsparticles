@@ -1,10 +1,11 @@
-import type { IColor } from "../../Interfaces/Options/Particles/IColor";
+import type { IColor } from "../../Interfaces/IColor";
 import type { IRgb } from "../../Interfaces/IRgb";
 import type { IRgba } from "../../Interfaces/IRgba";
 import type { IHsl } from "../../Interfaces/IHsl";
 import type { IHsla } from "../../Interfaces/IHsla";
 import { Utils } from "./Utils";
 import { Constants } from "./Constants";
+import { IValueColor } from "../../Interfaces/IValueColor";
 
 export class ColorUtils {
     /**
@@ -30,16 +31,17 @@ export class ColorUtils {
 
                 res = ColorUtils.stringToRgb(colorSelected);
             } else {
-                const rgbColor = color.value as IRgb;
+                const colorValue = color.value as IValueColor;
+                const rgbColor = colorValue.rgb ?? (color.value as IRgb);
 
                 if (rgbColor.r !== undefined) {
                     res = rgbColor;
-                }
+                } else {
+                    const hslColor = colorValue.hsl ?? (color.value as IHsl);
 
-                const hslColor = color.value as IHsl;
-
-                if (hslColor.h !== undefined) {
-                    res = ColorUtils.hslToRgb(hslColor);
+                    if (hslColor.h !== undefined) {
+                        res = ColorUtils.hslToRgb(hslColor);
+                    }
                 }
             }
         }
@@ -65,18 +67,25 @@ export class ColorUtils {
      */
     public static hslToRgb(hsl: IHsl): IRgb {
         const result: IRgb = { b: 0, g: 0, r: 0 };
+        const hslPercent: IHsl = {
+            h: hsl.h > 1 ? hsl.h / 360 : hsl.h,
+            l: hsl.l > 1 ? hsl.l / 100 : hsl.l,
+            s: hsl.s > 1 ? hsl.s / 100 : hsl.s,
+        };
 
-        if (hsl.s === 0) {
-            result.b = hsl.l; // achromatic
-            result.g = hsl.l;
-            result.r = hsl.l;
+        if (hslPercent.s === 0) {
+            result.b = hslPercent.l; // achromatic
+            result.g = hslPercent.l;
+            result.r = hslPercent.l;
         } else {
-            const q = hsl.l < 0.5 ? hsl.l * (1 + hsl.s) : hsl.l + hsl.s - hsl.l * hsl.s;
-            const p = 2 * hsl.l - q;
+            const q = hslPercent.l < 0.5 ?
+                hslPercent.l * (1 + hslPercent.s) :
+                hslPercent.l + hslPercent.s - hslPercent.l * hslPercent.s;
+            const p = 2 * hslPercent.l - q;
 
-            result.r = ColorUtils.hue2rgb(p, q, hsl.h + 1 / 3);
-            result.g = ColorUtils.hue2rgb(p, q, hsl.h);
-            result.b = ColorUtils.hue2rgb(p, q, hsl.h - 1 / 3);
+            result.r = ColorUtils.hue2rgb(p, q, hslPercent.h + 1 / 3);
+            result.g = ColorUtils.hue2rgb(p, q, hslPercent.h);
+            result.b = ColorUtils.hue2rgb(p, q, hslPercent.h - 1 / 3);
         }
 
         result.r = Math.round(result.r * 255);
@@ -104,8 +113,8 @@ export class ColorUtils {
     public static getRandomRgbColor(min?: number): IRgb {
         const fixedMin = min || 0;
         const minColor = fixedMin + (fixedMin * Math.pow(16, 2)) + (fixedMin * Math.pow(16, 4));
-        const maxColor = minColor ^ 0xFFFFFF;
-        const randomColor = (Math.random() * maxColor + minColor).toString(16);
+        const factor = minColor ^ 0xFFFFFF;
+        const randomColor = Math.floor(((Math.random() * factor) | minColor)).toString(16);
 
         return this.stringToRgb(`#${randomColor}`) ?? {
             b: 0,
@@ -117,6 +126,7 @@ export class ColorUtils {
     /**
      * Prepares a rgba() css function from a [[IRgb]] object
      * @param color the [[IRgb]] color to convert
+     * @param opacity the opacity to apply to color
      */
     public static getStyleFromColor(color: IRgb, opacity?: number): string {
         const opacityValue = opacity ?? 1;
@@ -158,7 +168,7 @@ export class ColorUtils {
 
     private static stringToRgba(input: string): IRgba | undefined {
         if (input.startsWith('rgb')) {
-            const regex = /rgba?\(\s*(\d+)\s*,\s*(\d+)\s*,\s*(\d+)\s*(,\s*([\d\.]+)\s*)?\)/i;
+            const regex = /rgba?\(\s*(\d+)\s*,\s*(\d+)\s*,\s*(\d+)\s*(,\s*([\d.]+)\s*)?\)/i;
             const result = regex.exec(input);
 
             return result ? {
@@ -168,7 +178,7 @@ export class ColorUtils {
                 r: parseInt(result[1]),
             } : undefined;
         } else if (input.startsWith('hsl')) {
-            const regex = /hsla?\(\s*(\d+)\s*,\s*(\d+)\%\s*,\s*(\d+)\%\s*(,\s*([\d\.]+)\s*)?\)/i;
+            const regex = /hsla?\(\s*(\d+)\s*,\s*(\d+)%\s*,\s*(\d+)%\s*(,\s*([\d.]+)\s*)?\)/i;
             const result = regex.exec(input);
 
             return result ? ColorUtils.hslaToRgba({
@@ -177,19 +187,18 @@ export class ColorUtils {
                 l: parseInt(result[3]),
                 s: parseInt(result[2]),
             }) : undefined;
-        }
-        else {
+        } else {
             // By Tim Down - http://stackoverflow.com/a/5624139/3493650
             // Expand shorthand form (e.g. "03F") to full form (e.g. "0033FF")
             const shorthandRegex = /^#?([a-f\d])([a-f\d])([a-f\d])([a-f\d])?$/i;
             const hexFixed = input.replace(shorthandRegex, (_m, r, g, b, a) => {
-                return r + r + g + g + b + b + (a ? a + a : "");
+                return r + r + g + g + b + b + (a !== undefined ? a + a : "");
             });
             const regex = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})?$/i;
             const result = regex.exec(hexFixed);
 
             return result ? {
-                a: parseInt(result[4], 16) / 0xFF,
+                a: result[4] !== undefined ? parseInt(result[4], 16) / 0xFF : 1,
                 b: parseInt(result[3], 16),
                 g: parseInt(result[2], 16),
                 r: parseInt(result[1], 16),

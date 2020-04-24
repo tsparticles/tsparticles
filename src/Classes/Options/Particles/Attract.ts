@@ -1,6 +1,6 @@
-import type {IAttract} from "../../../Interfaces/Options/Particles/IAttract";
-import type {ICoordinates} from "../../../Interfaces/ICoordinates";
-import type {RecursivePartial} from "../../../Types/RecursivePartial";
+import type { IAttract } from "../../../Interfaces/Options/Particles/IAttract";
+import type { ICoordinates } from "../../../Interfaces/ICoordinates";
+import type { RecursivePartial } from "../../../Types/RecursivePartial";
 
 export class Attract implements IAttract {
     /**

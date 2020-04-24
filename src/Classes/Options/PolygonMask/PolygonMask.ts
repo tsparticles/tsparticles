@@ -1,13 +1,14 @@
-import type {IPolygonMask} from "../../../Interfaces/Options/PolygonMask/IPolygonMask";
-import {PolygonMaskType} from "../../../Enums/PolygonMaskType";
-import {Draw} from "./Draw";
-import {Move} from "./Move";
-import type {IPolygonMaskDraw} from "../../../Interfaces/Options/PolygonMask/IPolygonMaskDraw";
-import type {IPolygonMaskMove} from "../../../Interfaces/Options/PolygonMask/IPolygonMaskMove";
-import {PolygonMaskInlineArrangement} from "../../../Enums/PolygonMaskInlineArrangement";
-import type {IPolygonInline} from "../../../Interfaces/Options/PolygonMask/IPolygonInline";
-import {PolygonInline} from "./PolygonInline";
-import type {RecursivePartial} from "../../../Types/RecursivePartial";
+import type { IPolygonMask } from "../../../Interfaces/Options/PolygonMask/IPolygonMask";
+import { PolygonMaskType } from "../../../Enums/PolygonMaskType";
+import { Draw } from "./Draw";
+import { Move } from "./Move";
+import type { IPolygonMaskDraw } from "../../../Interfaces/Options/PolygonMask/IPolygonMaskDraw";
+import type { IPolygonMaskMove } from "../../../Interfaces/Options/PolygonMask/IPolygonMaskMove";
+import { PolygonMaskInlineArrangement } from "../../../Enums/PolygonMaskInlineArrangement";
+import type { IPolygonInline } from "../../../Interfaces/Options/PolygonMask/IPolygonInline";
+import { PolygonInline } from "./PolygonInline";
+import type { RecursivePartial } from "../../../Types/RecursivePartial";
+import type { ICoordinates } from "../../../Interfaces/ICoordinates";
 
 export class PolygonMask implements IPolygonMask {
     /**
@@ -28,6 +29,7 @@ export class PolygonMask implements IPolygonMask {
     public enable: boolean;
     public inline: IPolygonInline;
     public move: IPolygonMaskMove;
+    public position?: ICoordinates;
     public scale: number;
     public type: PolygonMaskType;
     public url: string;
@@ -72,6 +74,13 @@ export class PolygonMask implements IPolygonMask {
 
             if (data.url !== undefined) {
                 this.url = data.url;
+            }
+
+            if (data.position !== undefined) {
+                this.position = {
+                    x: data.position.x,
+                    y: data.position.y,
+                };
             }
         }
     }

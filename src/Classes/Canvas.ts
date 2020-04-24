@@ -3,12 +3,13 @@ import type { Container } from "./Container";
 import type { IDimension } from "../Interfaces/IDimension";
 import { Utils } from "./Utils/Utils";
 import type { IRgb } from "../Interfaces/IRgb";
-import type { Particle } from "./Particle";
 import type { ICoordinates } from "../Interfaces/ICoordinates";
 import { CanvasUtils } from "./Utils/CanvasUtils";
 import { ColorUtils } from "./Utils/ColorUtils";
-import type { IColor } from "../Interfaces/Options/Particles/IColor";
 import type { IBackgroundMaskCover } from "../Interfaces/Options/BackgroundMask/IBackgroundMaskCover";
+import type { IParticle } from "../Interfaces/IParticle";
+import type { IColor } from "../Interfaces/IColor";
+import type { Absorber } from "./Absorber";
 
 /**
  * Canvas manager
@@ -21,7 +22,7 @@ export class Canvas {
     /**
      * The particles canvas dimension
      */
-    public readonly dimension: IDimension;
+    public readonly size: IDimension;
 
     /**
      * The parent container
@@ -44,7 +45,7 @@ export class Canvas {
      */
     constructor(container: Container) {
         this.container = container;
-        this.dimension = {
+        this.size = {
             height: 0,
             width: 0,
         };
@@ -58,16 +59,21 @@ export class Canvas {
      * Initializes the canvas element
      */
     public init(): void {
-        this.size();
+        this.resize();
 
         const container = this.container;
         const options = container.options;
         const cover = options.backgroundMask.cover as IBackgroundMaskCover;
+        const color = (typeof options.backgroundMask.cover === "string" ?
+            { value: options.backgroundMask.cover } :
+            options.backgroundMask.cover) as IColor;
         const trail = options.particles.move.trail;
 
         this.coverColor = ColorUtils.colorToRgb(cover.color !== undefined ?
-            cover.color :
-            options.backgroundMask.cover as IColor);
+            typeof cover.color === "string" ?
+                { value: cover.color } :
+                cover.color :
+            color);
 
         this.trailFillColor = typeof trail.fillColor === "string" ?
             ColorUtils.stringToRgb(trail.fillColor) :
@@ -87,8 +93,8 @@ export class Canvas {
 
         this.generatedCanvas = generatedCanvas ?? false;
         this.element = canvas;
-        this.dimension.height = canvas.offsetHeight;
-        this.dimension.width = canvas.offsetWidth;
+        this.size.height = canvas.offsetHeight;
+        this.size.width = canvas.offsetWidth;
         this.context = this.element.getContext("2d");
         this.container.retina.init();
         this.initBackground();
@@ -100,17 +106,17 @@ export class Canvas {
         }
 
         if (this.context) {
-            CanvasUtils.clear(this.context, this.dimension);
+            CanvasUtils.clear(this.context, this.size);
         }
     }
 
     /**
      * Calculates the size of the canvas
      */
-    public size(): void {
+    public resize(): void {
         if (this.element) {
-            this.element.width = this.dimension.width;
-            this.element.height = this.dimension.height;
+            this.element.width = this.size.width;
+            this.element.height = this.size.height;
         }
     }
 
@@ -122,12 +128,8 @@ export class Canvas {
         const options = container.options;
 
         if (this.context) {
-            if (options.backgroundMask.enable && options.backgroundMask.cover) {
-                if (this.coverColor) {
-                    this.paintBase(ColorUtils.getStyleFromColor(this.coverColor));
-                } else {
-                    this.paintBase();
-                }
+            if (options.backgroundMask.enable && options.backgroundMask.cover && this.coverColor) {
+                this.paintBase(ColorUtils.getStyleFromColor(this.coverColor));
             } else {
                 this.paintBase();
             }
@@ -147,7 +149,7 @@ export class Canvas {
         } else if (trail.enable && trail.length > 0 && this.trailFillColor) {
             this.paintBase(ColorUtils.getStyleFromColor(this.trailFillColor, 1 / trail.length));
         } else if (this.context) {
-            CanvasUtils.clear(this.context, this.dimension);
+            CanvasUtils.clear(this.context, this.size);
         }
     }
 
@@ -162,21 +164,36 @@ export class Canvas {
         const polygonDraw = options.polygon.draw;
         const polygon = container.polygon;
         const rawData = polygon.raw;
-        const path = polygon.polygonPath;
-        const path2dSupported = polygon.path2DSupported;
 
-        if (context) {
-            if (path2dSupported && path && polygon.offset) {
-                CanvasUtils.drawPolygonMaskPath(context, path, polygonDraw.stroke, polygon.offset);
-            } else if (rawData) {
-                CanvasUtils.drawPolygonMask(context, rawData, polygonDraw.stroke);
+        for (const path of polygon.paths) {
+            const path2d = path.path2d;
+            const path2dSupported = polygon.path2DSupported;
+
+            if (context) {
+                if (path2dSupported && path2d && polygon.offset) {
+                    CanvasUtils.drawPolygonMaskPath(context, path2d, polygonDraw.stroke, polygon.offset);
+                } else if (rawData) {
+                    CanvasUtils.drawPolygonMask(context, rawData, polygonDraw.stroke);
+                }
             }
         }
     }
 
-    public drawLinkedLine(p1: Particle, p2: Particle, pos1: ICoordinates, pos2: ICoordinates, opacity: number): void {
+    public drawAbsorber(absorber: Absorber): void {
+        const ctx = this.context;
+
+        if (!ctx) {
+            return;
+        }
+
+        CanvasUtils.drawAbsorber(ctx, absorber);
+    }
+
+    public drawLinkedLine(p1: IParticle, p2: IParticle, opacity: number): void {
         const container = this.container;
         const options = container.options;
+        const pos1 = p1.position;
+        const pos2 = p2.position;
 
         const ctx = this.context;
 
@@ -195,22 +212,31 @@ export class Canvas {
          *                        from those two for the connecting line color
          */
 
-        if (container.particles.lineLinkedColor === Constants.randomColorValue) {
+        const twinkle = options.particles.twinkle.lines;
+        const twinkleFreq = twinkle.frequency;
+        const twinkleColor = typeof twinkle.color === "string" ? { value: twinkle.color } : twinkle.color;
+        const twinkleRgb = twinkleColor !== undefined ? ColorUtils.colorToRgb(twinkleColor) : undefined;
+        const twinkling = twinkle.enable && Math.random() < twinkleFreq;
+
+        if (twinkling && twinkleRgb !== undefined) {
+            colorLine = twinkleRgb;
+            opacity = twinkle.opacity;
+        } else if (container.particles.lineLinkedColor === Constants.randomColorValue) {
             colorLine = ColorUtils.getRandomRgbColor();
         } else if (container.particles.lineLinkedColor == "mid" && p1.color && p2.color) {
             const sourceColor = p1.color;
             const destColor = p2.color;
 
             colorLine = {
-                b: Math.floor(Utils.mix(sourceColor.b, destColor.b, p1.radius, p2.radius)),
-                g: Math.floor(Utils.mix(sourceColor.g, destColor.g, p1.radius, p2.radius)),
-                r: Math.floor(Utils.mix(sourceColor.r, destColor.r, p1.radius, p2.radius)),
+                b: Utils.mix(sourceColor.b, destColor.b, p1.size.value, p2.size.value),
+                g: Utils.mix(sourceColor.g, destColor.g, p1.size.value, p2.size.value),
+                r: Utils.mix(sourceColor.r, destColor.r, p1.size.value, p2.size.value),
             };
         } else {
             colorLine = container.particles.lineLinkedColor as IRgb;
         }
 
-        const width = container.retina.lineLinkedWidth;
+        const width = p1.lineLinkedWidth ?? container.retina.lineLinkedWidth;
 
         CanvasUtils.drawLineLinked(ctx,
             width,
@@ -219,10 +245,10 @@ export class Canvas {
             options.backgroundMask.enable,
             colorLine,
             opacity,
-            options.particles.lineLinked.shadow);
+            p1.particlesOptions.lineLinked.shadow);
     }
 
-    public drawConnectLine(p1: Particle, p2: Particle): void {
+    public drawConnectLine(p1: IParticle, p2: IParticle): void {
         const lineStyle = this.lineStyle(p1, p2);
 
         if (!lineStyle) {
@@ -235,34 +261,42 @@ export class Canvas {
             return;
         }
 
-        CanvasUtils.drawConnectLine(ctx, this.container.retina.lineLinkedWidth, lineStyle, p1.position, p2.position);
+        CanvasUtils.drawConnectLine(ctx,
+            p1.lineLinkedWidth ?? this.container.retina.lineLinkedWidth,
+            lineStyle,
+            p1.position,
+            p2.position);
     }
 
-    public drawGrabLine(particle: Particle, opacity: number, mousePos: ICoordinates): void {
+    public drawGrabLine(particle: IParticle, opacity: number, mousePos: ICoordinates): void {
         const container = this.container;
-        const options = container.options;
-        const optColor = options.particles.lineLinked.color;
+        const optColor = particle.particlesOptions.lineLinked.color;
 
-        let lineColor = container.particles.lineLinkedColor ||
+        let lineColor = container.particles.grabLineColor ||
             (typeof optColor === "string" ? ColorUtils.stringToRgb(optColor) : ColorUtils.colorToRgb(optColor));
 
         if (lineColor == Constants.randomColorValue) {
             lineColor = ColorUtils.getRandomRgbColor();
         }
 
-        container.particles.lineLinkedColor = lineColor;
+        container.particles.grabLineColor = lineColor;
 
-        let colorLine: IRgb = { r: 127, g: 127, b: 127 };
         const ctx = container.canvas.context;
 
         if (!ctx) {
             return;
         }
 
-        if (container.particles.lineLinkedColor == Constants.randomColorValue) {
-            colorLine = ColorUtils.getRandomRgbColor() || colorLine;
+        let colorLine: IRgb;
+
+        if (container.particles.grabLineColor === Constants.randomColorValue) {
+            colorLine = ColorUtils.getRandomRgbColor();
         } else {
-            colorLine = container.particles.lineLinkedColor as IRgb || colorLine;
+            colorLine = container.particles.grabLineColor as IRgb;
+        }
+
+        if (colorLine === undefined) {
+            return;
         }
 
         const beginPos = {
@@ -270,20 +304,30 @@ export class Canvas {
             y: particle.position.y + particle.offset.y,
         };
 
-        CanvasUtils.drawGrabLine(ctx, container.retina.lineLinkedWidth, beginPos, mousePos, colorLine, opacity);
+        CanvasUtils.drawGrabLine(ctx,
+            particle.lineLinkedWidth ?? container.retina.lineLinkedWidth,
+            beginPos,
+            mousePos,
+            colorLine,
+            opacity);
     }
 
-    public drawParticle(particle: Particle): void {
+    public drawParticle(particle: IParticle): void {
         const container = this.container;
         const options = container.options;
 
-        let colorValue: string | undefined;
-        const radius = particle.bubbler.radius !== undefined ? particle.bubbler.radius : particle.radius;
-        const opacity = particle.bubbler.opacity !== undefined ? particle.bubbler.opacity : particle.opacity.value;
+        const twinkle = particle.particlesOptions.twinkle.particles;
+        const twinkleFreq = twinkle.frequency;
+        const twinkleColor = typeof twinkle.color === "string" ? { value: twinkle.color } : twinkle.color;
+        const twinkleRgb = twinkleColor !== undefined ? ColorUtils.colorToRgb(twinkleColor) : undefined;
+        const twinkling = twinkle.enable && Math.random() < twinkleFreq;
+        const radius = particle.bubble.radius ?? particle.size.value;
+        const opacity = twinkling ? twinkle.opacity : particle.bubble.opacity ?? particle.opacity.value;
+        const color = twinkling && twinkleRgb !== undefined ?
+            twinkleRgb :
+            particle.bubble.color ?? particle.color;
 
-        if (particle.color) {
-            colorValue = ColorUtils.getStyleFromColor(particle.color, opacity);
-        }
+        const colorValue = color !== undefined ? ColorUtils.getStyleFromColor(color, opacity) : undefined;
 
         if (!this.context || !colorValue) {
             return;
@@ -294,16 +338,17 @@ export class Canvas {
             colorValue,
             options.backgroundMask.enable,
             radius,
-            opacity);
+            opacity,
+            particle.particlesOptions.shadow);
     }
 
     private paintBase(baseColor?: string): void {
         if (this.context) {
-            CanvasUtils.paintBase(this.context, this.dimension, baseColor);
+            CanvasUtils.paintBase(this.context, this.size, baseColor);
         }
     }
 
-    private lineStyle(p1: Particle, p2: Particle): CanvasGradient | undefined {
+    private lineStyle(p1: IParticle, p2: IParticle): CanvasGradient | undefined {
         const container = this.container;
         const options = container.options;
         const connectOptions = options.interactivity.modes.connect;
@@ -312,9 +357,9 @@ export class Canvas {
             const sourceRgb = p1.color;
             const destRgb = p2.color;
             const midRgb = {
-                b: Utils.mix(sourceRgb.b, destRgb.b, p1.radius, p2.radius),
-                g: Utils.mix(sourceRgb.g, destRgb.g, p1.radius, p2.radius),
-                r: Utils.mix(sourceRgb.r, destRgb.r, p1.radius, p2.radius),
+                b: Utils.mix(sourceRgb.b, destRgb.b, p1.size.value, p2.size.value),
+                g: Utils.mix(sourceRgb.g, destRgb.g, p1.size.value, p2.size.value),
+                r: Utils.mix(sourceRgb.r, destRgb.r, p1.size.value, p2.size.value),
             };
 
             if (this.context) {

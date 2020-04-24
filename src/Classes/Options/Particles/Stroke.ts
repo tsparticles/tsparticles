@@ -1,15 +1,15 @@
-import type {IStroke} from "../../../Interfaces/Options/Particles/IStroke";
-import type {RecursivePartial} from "../../../Types/RecursivePartial";
-import type {IColor} from "../../../Interfaces/Options/Particles/IColor";
-import {Color} from "./Color";
+import type { IStroke } from "../../../Interfaces/Options/Particles/IStroke";
+import type { RecursivePartial } from "../../../Types/RecursivePartial";
+import type { IOptionsColor } from "../../../Interfaces/Options/Particles/IOptionsColor";
+import { OptionsColor } from "./OptionsColor";
 
 export class Stroke implements IStroke {
-    public color: IColor;
+    public color: IOptionsColor;
     public width: number;
     public opacity: number;
 
     constructor() {
-        this.color = new Color();
+        this.color = new OptionsColor();
         this.width = 0;
         this.opacity = 1;
 
@@ -18,16 +18,14 @@ export class Stroke implements IStroke {
 
     public load(data?: RecursivePartial<IStroke>): void {
         if (data !== undefined) {
-            if (data.color !== undefined) {
-                if (typeof data.color === "string") {
-                    this.color.value = data.color;
-                } else {
-                    this.color.load(data.color);
-                }
-            }
+            this.color.load(typeof data.color === "string" ? { value: data.color } : data.color);
 
             if (data.width !== undefined) {
                 this.width = data.width;
+            }
+
+            if (data.opacity !== undefined) {
+                this.opacity = data.opacity;
             }
         }
     }

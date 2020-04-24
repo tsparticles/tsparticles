@@ -1,5 +1,5 @@
-import type {IDensity} from "../../../Interfaces/Options/Particles/IDensity";
-import type {RecursivePartial} from "../../../Types/RecursivePartial";
+import type { IDensity } from "../../../Interfaces/Options/Particles/IDensity";
+import type { RecursivePartial } from "../../../Types/RecursivePartial";
 
 export class Density implements IDensity {
     /**

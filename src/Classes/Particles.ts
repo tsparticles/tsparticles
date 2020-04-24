@@ -1,10 +1,20 @@
-import {Container} from "./Container";
-import type {ICoordinates} from "../Interfaces/ICoordinates";
-import type {IMouseData} from "../Interfaces/IMouseData";
-import type {IRgb} from "../Interfaces/IRgb";
-import {Particle} from "./Particle";
-import {PolygonMaskType} from "../Enums/PolygonMaskType";
-import {PolygonMaskInlineArrangement} from "../Enums/PolygonMaskInlineArrangement";
+import { Container } from "./Container";
+import type { ICoordinates } from "../Interfaces/ICoordinates";
+import type { IMouseData } from "../Interfaces/IMouseData";
+import type { IRgb } from "../Interfaces/IRgb";
+import { Particle } from "./Particle";
+import { PolygonMaskType } from "../Enums/PolygonMaskType";
+import { PolygonMaskInlineArrangement } from "../Enums/PolygonMaskInlineArrangement";
+import { InteractionManager } from "./Interactions/Particles/InteractionManager";
+import { SpatialGrid } from "./Utils/SpatialGrid";
+import { Utils } from "./Utils/Utils";
+import { HoverMode } from "../Enums/Modes/HoverMode";
+import { Grabber } from "./Interactions/Mouse/Grabber";
+import { ClickMode } from "../Enums/Modes/ClickMode";
+import { Repulser } from "./Interactions/Mouse/Repulser";
+import { DivMode } from "../Enums/Modes/DivMode";
+import { Bubbler } from "./Interactions/Mouse/Bubbler";
+import { Connecter } from "./Interactions/Mouse/Connecter";
 
 /**
  * Particles manager
@@ -15,8 +25,10 @@ export class Particles {
     }
 
     public array: Particle[];
+    public spatialGrid: SpatialGrid;
     public pushing?: boolean;
-    public lineLinkedColor?: IRgb | string | null;
+    public lineLinkedColor?: IRgb | string;
+    public grabLineColor?: IRgb | string;
 
     private readonly container: Container;
     private interactionsEnabled: boolean;
@@ -25,6 +37,7 @@ export class Particles {
         this.container = container;
         this.array = [];
         this.interactionsEnabled = false;
+        this.spatialGrid = new SpatialGrid(this.container.canvas.size);
     }
 
     /* --------- tsParticles functions - particles ----------- */
@@ -41,10 +54,10 @@ export class Particles {
                 this.addParticle(new Particle(container));
             }
         }
-        
+
         this.interactionsEnabled = options.particles.lineLinked.enable ||
             options.particles.move.attract.enable ||
-            options.particles.move.collisions;
+            options.particles.collisions.enable;
     }
 
     public redraw(): void {
@@ -55,7 +68,9 @@ export class Particles {
 
     public removeAt(index: number, quantity?: number): void {
         if (index >= 0 && index <= this.count) {
-            this.array.splice(index, quantity ?? 1);
+            for (const particle of this.array.splice(index, quantity ?? 1)) {
+                particle.destroy();
+            }
         }
     }
 
@@ -64,9 +79,14 @@ export class Particles {
     }
 
     public update(delta: number): void {
+        const container = this.container;
+        const options = container.options;
+
         for (let i = 0; i < this.array.length; i++) {
             /* the particle */
-            const p = this.array[i];
+            const particle = this.array[i];
+
+            Bubbler.reset(particle);
 
             // let d = ( dx = container.interactivity.mouse.click_pos_x - p.x ) * dx +
             //         ( dy = container.interactivity.mouse.click_pos_y - p.y ) * dy;
@@ -77,15 +97,51 @@ export class Particles {
             //     p.vy = f * Math.sin(t);
             // }
 
-            p.update(i, delta);
+            let stillExists = true;
 
+            for (const absorber of container.absorbers) {
+                stillExists = absorber.attract(particle);
+
+                if (!stillExists) {
+                    break;
+                }
+            }
+
+            if (!stillExists) {
+                continue;
+            }
+
+            particle.update(i, delta);
+        }
+
+        const hoverMode = options.interactivity.events.onHover.mode;
+        const clickMode = options.interactivity.events.onClick.mode;
+        const divMode = options.interactivity.events.onDiv.mode;
+
+        /* mouse events interactions */
+        if (Utils.isInArray(HoverMode.grab, hoverMode)) {
+            Grabber.grab(container);
+        }
+
+        if (Utils.isInArray(HoverMode.repulse, hoverMode) ||
+            Utils.isInArray(ClickMode.repulse, clickMode) ||
+            Utils.isInArray(DivMode.repulse, divMode)) {
+            Repulser.repulse(container);
+        }
+
+        if (Utils.isInArray(HoverMode.bubble, hoverMode) || Utils.isInArray(ClickMode.bubble, clickMode)) {
+            Bubbler.bubble(container);
+        }
+
+        if (Utils.isInArray(HoverMode.connect, hoverMode)) {
+            Connecter.connect(container);
+        }
+
+        // this loop is required to be done after mouse interactions
+        for (const particle of this.array) {
             /* interaction auto between particles */
             if (this.interactionsEnabled) {
-                for (let j = i + 1; j < this.array.length; j++) {
-                    const p2 = this.array[j];
-
-                    p.interact(p2);
-                }
+                InteractionManager.interact(particle, container);
             }
         }
     }
@@ -99,10 +155,15 @@ export class Particles {
 
         /* update each particles param */
         this.update(delta);
+        this.spatialGrid.setGrid(this.array, this.container.canvas.size);
 
         /* draw polygon shape in debug mode */
         if (options.polygon.enable && options.polygon.draw.enable) {
             container.polygon.drawPolygon();
+        }
+
+        for (const absorber of container.absorbers) {
+            absorber.draw();
         }
 
         /* draw each particle */
@@ -131,7 +192,7 @@ export class Particles {
         let pos: ICoordinates | undefined;
 
         if (mousePosition) {
-            pos = mousePosition.position ?? {x: 0, y: 0};
+            pos = mousePosition.position ?? { x: 0, y: 0 };
         }
 
         for (let i = 0; i < nb; i++) {

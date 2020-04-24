@@ -1,11 +1,11 @@
-import type {IEvents} from "../../../../Interfaces/Options/Interactivity/Events/IEvents";
-import {ClickEvent} from "./ClickEvent";
-import type {IDivEvent} from "../../../../Interfaces/Options/Interactivity/Events/IDivEvent";
-import type {IHoverEvent} from "../../../../Interfaces/Options/Interactivity/Events/IHoverEvent";
-import {DivEvent} from "./DivEvent";
-import {HoverEvent} from "./HoverEvent";
-import type {IClickEvent} from "../../../../Interfaces/Options/Interactivity/Events/IClickEvent";
-import type {RecursivePartial} from "../../../../Types/RecursivePartial";
+import type { IEvents } from "../../../../Interfaces/Options/Interactivity/Events/IEvents";
+import { ClickEvent } from "./ClickEvent";
+import type { IDivEvent } from "../../../../Interfaces/Options/Interactivity/Events/IDivEvent";
+import type { IHoverEvent } from "../../../../Interfaces/Options/Interactivity/Events/IHoverEvent";
+import { DivEvent } from "./DivEvent";
+import { HoverEvent } from "./HoverEvent";
+import type { IClickEvent } from "../../../../Interfaces/Options/Interactivity/Events/IClickEvent";
+import type { RecursivePartial } from "../../../../Types/RecursivePartial";
 
 export class Events implements IEvents {
     /**
