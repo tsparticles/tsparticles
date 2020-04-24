@@ -55,8 +55,15 @@ export class EventListeners {
                                   add: boolean,
                                   options?: boolean | AddEventListenerOptions | EventListenerObject): void {
         if (add) {
-            EventListeners.addListener(element, event, handler,
-                options as boolean | AddEventListenerOptions | undefined);
+            let addOptions: AddEventListenerOptions = { passive: true };
+
+            if (typeof options === "boolean") {
+                addOptions.capture = options;
+            } else if (options !== undefined) {
+                addOptions = options as AddEventListenerOptions;
+            }
+
+            EventListeners.addListener(element, event, handler, addOptions);
         } else {
             EventListeners.removeListener(element, event, handler,
                 options as boolean | EventListenerOptions | undefined);
@@ -412,12 +419,8 @@ export class EventListeners {
             }
         }
 
-        e.preventDefault();
-
         if (e.type === "touchend") {
             setTimeout(() => this.mouseTouchFinish(), 500);
         }
-
-        e.preventDefault();
     }
 }

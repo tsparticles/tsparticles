@@ -11,6 +11,7 @@ import type { IShadow } from "./IShadow";
 import type { SingleOrMultiple } from "../../../Types/SingleOrMultiple";
 import type { IStroke } from "./IStroke";
 import type { ICollisions } from "./ICollisions";
+import type { ITwinkle } from "./Twinkle/ITwinkle";
 
 export interface IParticles extends IOptionLoader<IParticles> {
     collisions: ICollisions;
@@ -30,4 +31,5 @@ export interface IParticles extends IOptionLoader<IParticles> {
     shape: IShape;
     size: ISize;
     stroke: SingleOrMultiple<IStroke>;
+    twinkle: ITwinkle;
 }
