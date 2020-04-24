@@ -7,7 +7,7 @@ export class ImageDrawer implements IShapeDrawer {
             return;
         }
 
-        const imgObj = particle.image?.data.obj;
+        const imgObj = particle.image?.data?.obj;
 
         if (!imgObj) {
             return;
