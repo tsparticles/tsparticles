@@ -885,6 +885,9 @@
                             "type": "array"
                         }
                     ]
+                },
+                "twinkle": {
+                    "$ref": "#/definitions/ITwinkle"
                 }
             },
             "type": "object"
@@ -1349,6 +1352,30 @@
                     ]
                 },
                 "length": {
+                    "type": "number"
+                }
+            },
+            "type": "object"
+        },
+        "ITwinkle": {
+            "properties": {
+                "color": {
+                    "anyOf": [
+                        {
+                            "$ref": "#/definitions/IColor"
+                        },
+                        {
+                            "type": "string"
+                        }
+                    ]
+                },
+                "enable": {
+                    "type": "boolean"
+                },
+                "frequency": {
+                    "type": "number"
+                },
+                "opacity": {
                     "type": "number"
                 }
             },

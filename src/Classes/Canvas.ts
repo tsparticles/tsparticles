@@ -307,15 +307,18 @@ export class Canvas {
         const container = this.container;
         const options = container.options;
 
+        const twinkle = particle.particlesOptions.twinkle;
+        const twinkleFreq = twinkle.frequency;
+        const twinkleColor = typeof twinkle.color === "string" ? { value: twinkle.color } : twinkle.color;
+        const twinkleRgb = twinkleColor !== undefined ? ColorUtils.colorToRgb(twinkleColor) : undefined;
+        const twinkling = twinkle.enable && Math.random() < twinkleFreq;
         const radius = particle.bubble.radius ?? particle.size.value;
-        const opacity = particle.bubble.opacity ?? particle.opacity.value;
-        const color = particle.bubble.color ?? particle.color;
+        const opacity = twinkling ? twinkle.opacity : particle.bubble.opacity ?? particle.opacity.value;
+        const color = twinkling && twinkleRgb !== undefined ?
+            twinkleRgb :
+            particle.bubble.color ?? particle.color;
 
-        let colorValue: string | undefined;
-
-        if (color) {
-            colorValue = ColorUtils.getStyleFromColor(color, opacity);
-        }
+        const colorValue = color !== undefined ? ColorUtils.getStyleFromColor(color, opacity) : undefined;
 
         if (!this.context || !colorValue) {
             return;

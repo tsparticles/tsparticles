@@ -23,6 +23,8 @@ import { Stroke } from "./Stroke";
 import type { IShape } from "../../../Interfaces/Options/Particles/Shape/IShape";
 import { ICollisions } from "../../../Interfaces/Options/Particles/ICollisions";
 import { Collisions } from "./Collisions";
+import { ITwinkle } from "../../../Interfaces/Options/Particles/ITwinkle";
+import { Twinkle } from "./Twinkle";
 
 export class Particles implements IParticles {
     /**
@@ -53,6 +55,7 @@ export class Particles implements IParticles {
     public size: ISize;
     public shadow: IShadow;
     public stroke: SingleOrMultiple<IStroke>;
+    public twinkle: ITwinkle;
 
     constructor() {
         this.collisions = new Collisions();
@@ -66,6 +69,7 @@ export class Particles implements IParticles {
         this.shape = new Shape();
         this.size = new Size();
         this.stroke = new Stroke();
+        this.twinkle = new Twinkle();
     }
 
     public load(data?: RecursivePartial<IParticles>): void {
@@ -101,6 +105,7 @@ export class Particles implements IParticles {
             this.shape.load(data.shape);
             this.size.load(data.size);
             this.shadow.load(data.shadow);
+            this.twinkle.load(data.twinkle);
 
             const collisions = data.move?.collisions ?? data.move?.bounce;
 
@@ -132,4 +137,3 @@ export class Particles implements IParticles {
         }
     }
 }
-
