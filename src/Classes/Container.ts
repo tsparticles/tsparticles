@@ -25,7 +25,7 @@ export class Container {
     public readonly sourceOptions?: RecursivePartial<IOptions>;
     public readonly id: string;
     public interactivity: IContainerInteractivity;
-    public options: IOptions;
+    public options: Options;
     public retina: Retina;
     public canvas: Canvas;
     public particles: Particles;

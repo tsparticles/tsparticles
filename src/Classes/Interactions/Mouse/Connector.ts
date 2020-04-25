@@ -3,7 +3,7 @@ import type { Container } from "../../Container";
 /**
  * Particle connection manager
  */
-export class Connecter {
+export class Connector {
     /**
      * Connecting particles on hover interactivity
      */

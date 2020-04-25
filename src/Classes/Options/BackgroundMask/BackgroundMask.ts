@@ -8,7 +8,7 @@ export class BackgroundMask implements IBackgroundMask {
     /**
      * Background covering color
      */
-    public cover: IBackgroundMaskCover;
+    public cover: BackgroundMaskCover;
 
     /**
      * Background mask enabling options

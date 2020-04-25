@@ -1,10 +1,9 @@
 import type { ITwinkleValues } from "../../../../Interfaces/Options/Particles/Twinkle/ITwinkleValues";
-import type { IOptionsColor } from "../../../../Interfaces/Options/Particles/IOptionsColor";
 import type { RecursivePartial } from "../../../../Types/RecursivePartial";
 import { OptionsColor } from "../OptionsColor";
 
 export class TwinkleValues implements ITwinkleValues {
-    public color?: IOptionsColor;
+    public color?: OptionsColor;
     public enable: boolean;
     public frequency: number;
     public opacity: number;

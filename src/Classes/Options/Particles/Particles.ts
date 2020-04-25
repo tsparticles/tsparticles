@@ -6,24 +6,12 @@ import { ParticlesNumber } from "./ParticlesNumber";
 import { Opacity } from "./Opacity/Opacity";
 import { Shape } from "./Shape/Shape";
 import { Size } from "./Size/Size";
-import type { IOptionsColor } from "../../../Interfaces/Options/Particles/IOptionsColor";
-import type { ILineLinked } from "../../../Interfaces/Options/Particles/LineLinked/ILineLinked";
-import type { IMove } from "../../../Interfaces/Options/Particles/IMove";
-import type { IParticlesNumber } from "../../../Interfaces/Options/Particles/IParticlesNumber";
-import type { IOpacity } from "../../../Interfaces/Options/Particles/Opacity/IOpacity";
-import type { ISize } from "../../../Interfaces/Options/Particles/Size/ISize";
-import type { IRotate } from "../../../Interfaces/Options/Particles/Rotate/IRotate";
 import { Rotate } from "./Rotate/Rotate";
 import type { RecursivePartial } from "../../../Types/RecursivePartial";
-import type { IShadow } from "../../../Interfaces/Options/Particles/IShadow";
 import { Shadow } from "./Shadow";
 import type { SingleOrMultiple } from "../../../Types/SingleOrMultiple";
-import type { IStroke } from "../../../Interfaces/Options/Particles/IStroke";
 import { Stroke } from "./Stroke";
-import type { IShape } from "../../../Interfaces/Options/Particles/Shape/IShape";
-import { ICollisions } from "../../../Interfaces/Options/Particles/ICollisions";
 import { Collisions } from "./Collisions";
-import { ITwinkle } from "../../../Interfaces/Options/Particles/Twinkle/ITwinkle";
 import { Twinkle } from "./Twinkle/Twinkle";
 
 export class Particles implements IParticles {
@@ -31,7 +19,7 @@ export class Particles implements IParticles {
      *
      * @deprecated this property is obsolete, please use the new lineLinked
      */
-    public get line_linked(): ILineLinked {
+    public get line_linked(): LineLinked {
         return this.lineLinked;
     }
 
@@ -40,22 +28,22 @@ export class Particles implements IParticles {
      * @deprecated this property is obsolete, please use the new lineLinked
      * @param value
      */
-    public set line_linked(value: ILineLinked) {
+    public set line_linked(value: LineLinked) {
         this.lineLinked = value;
     }
 
-    public collisions: ICollisions;
-    public color: SingleOrMultiple<IOptionsColor>;
-    public lineLinked: ILineLinked;
-    public move: IMove;
-    public number: IParticlesNumber;
-    public opacity: IOpacity;
-    public rotate: IRotate;
-    public shape: IShape;
-    public size: ISize;
-    public shadow: IShadow;
-    public stroke: SingleOrMultiple<IStroke>;
-    public twinkle: ITwinkle;
+    public collisions: Collisions;
+    public color: SingleOrMultiple<OptionsColor>;
+    public lineLinked: LineLinked;
+    public move: Move;
+    public number: ParticlesNumber;
+    public opacity: Opacity;
+    public rotate: Rotate;
+    public shape: Shape;
+    public size: Size;
+    public shadow: Shadow;
+    public stroke: SingleOrMultiple<Stroke>;
+    public twinkle: Twinkle;
 
     constructor() {
         this.collisions = new Collisions();

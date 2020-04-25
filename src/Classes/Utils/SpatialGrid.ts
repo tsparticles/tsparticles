@@ -9,7 +9,7 @@ Grid cells are determined by dividing the width and height by the cell size. so 
 Particles are pushed into their respective cells with the same method.
 
 Before refactoring understand this code is written with an emphasis on speed and efficiency.
-This is because this system is responsible for neighbhour detection. Meaning
+This is because this system is responsible for neighbour detection. Meaning
 any changes to the efficiency to this code will exponentially change the efficiency
 of the system.
 */
@@ -114,8 +114,8 @@ export class SpatialGrid {
 
 
     /**
-     * Itterates and returns all values inside the provided X,Y coordinates
-     * NOTE: The Icoordinates need to be provided as an index, see index()
+     * Iterates and returns all values inside the provided X,Y coordinates
+     * NOTE: The ICoordinates need to be provided as an index, see index()
      * This function is only for internal use.
      * @param start The starting X,Y indexes for the selection
      * @param end The ending X,Y indexes for the selection
@@ -169,7 +169,7 @@ export class SpatialGrid {
     }
 
     /**
-     * Does basic operations on Icoordinates based on the provided operator.
+     * Does basic operations on ICoordinates based on the provided operator.
      * @param left The left hand side of the equation
      * @param op The desired operation
      * @param right The right hand side of the equation

@@ -1,16 +1,14 @@
 import type { IAbsorber } from "../../../Interfaces/Options/Absorbers/IAbsorber";
 import type { ICoordinates } from "../../../Interfaces/ICoordinates";
-import type { IAbsorberSize } from "../../../Interfaces/Options/Absorbers/IAbsorberSize";
 import type { RecursivePartial } from "../../../Types/RecursivePartial";
 import { AbsorberSize } from "./AbsorberSize";
 import { OptionsColor } from "../Particles/OptionsColor";
-import type { IOptionsColor } from "../../../Interfaces/Options/Particles/IOptionsColor";
 
 export class Absorber implements IAbsorber {
-    public color: IOptionsColor;
+    public color: OptionsColor;
     public opacity: number;
     public position?: ICoordinates;
-    public size: IAbsorberSize;
+    public size: AbsorberSize;
 
     constructor() {
         this.color = new OptionsColor();

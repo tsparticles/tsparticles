@@ -14,7 +14,7 @@ import { ClickMode } from "../Enums/Modes/ClickMode";
 import { Repulser } from "./Interactions/Mouse/Repulser";
 import { DivMode } from "../Enums/Modes/DivMode";
 import { Bubbler } from "./Interactions/Mouse/Bubbler";
-import { Connecter } from "./Interactions/Mouse/Connecter";
+import { Connector } from "./Interactions/Mouse/Connector";
 
 /**
  * Particles manager
@@ -134,7 +134,7 @@ export class Particles {
         }
 
         if (Utils.isInArray(HoverMode.connect, hoverMode)) {
-            Connecter.connect(container);
+            Connector.connect(container);
         }
 
         // this loop is required to be done after mouse interactions

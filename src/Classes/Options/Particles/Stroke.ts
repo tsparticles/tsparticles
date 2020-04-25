@@ -1,10 +1,9 @@
 import type { IStroke } from "../../../Interfaces/Options/Particles/IStroke";
 import type { RecursivePartial } from "../../../Types/RecursivePartial";
-import type { IOptionsColor } from "../../../Interfaces/Options/Particles/IOptionsColor";
 import { OptionsColor } from "./OptionsColor";
 
 export class Stroke implements IStroke {
-    public color: IOptionsColor;
+    public color: OptionsColor;
     public width: number;
     public opacity: number;
 

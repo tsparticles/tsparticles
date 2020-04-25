@@ -4,19 +4,17 @@ import type { ICoordinates } from "../../../Interfaces/ICoordinates";
 import { MoveDirection } from "../../../Enums/MoveDirection";
 import type { IParticles } from "../../../Interfaces/Options/Particles/IParticles";
 import { Particles } from "../Particles/Particles";
-import type { IEmitterRate } from "../../../Interfaces/Options/Emitters/IEmitterRate";
 import { EmitterRate } from "./EmitterRate";
-import type { IEmitterLife } from "../../../Interfaces/Options/Emitters/IEmitterLife";
 import { EmitterLife } from "./EmitterLife";
 import type { IDimension } from "../../../Interfaces/IDimension";
 
 export class Emitter implements IEmitter {
     public size?: IDimension;
     public direction: MoveDirection;
-    public life: IEmitterLife;
-    public particles?: IParticles;
+    public life: EmitterLife;
+    public particles?: Particles;
     public position?: ICoordinates;
-    public rate: IEmitterRate;
+    public rate: EmitterRate;
 
     constructor() {
         this.direction = MoveDirection.none;
@@ -24,7 +22,7 @@ export class Emitter implements IEmitter {
         this.rate = new EmitterRate();
     }
 
-    public load(data?: RecursivePartial<IEmitter>, particlesOptions?: IParticles): void {
+    public load(data?: RecursivePartial<IEmitter>): void {
         if (data !== undefined) {
             if (data.size !== undefined) {
                 this.size = {

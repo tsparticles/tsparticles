@@ -1,11 +1,10 @@
 import type { ITwinkle } from "../../../../Interfaces/Options/Particles/Twinkle/ITwinkle";
 import type { RecursivePartial } from "../../../../Types/RecursivePartial";
-import type { ITwinkleValues } from "../../../../Interfaces/Options/Particles/Twinkle/ITwinkleValues";
 import { TwinkleValues } from "./TwinkleValues";
 
 export class Twinkle implements ITwinkle {
-    public lines: ITwinkleValues;
-    public particles: ITwinkleValues;
+    public lines: TwinkleValues;
+    public particles: TwinkleValues;
 
     constructor() {
         this.lines = new TwinkleValues();

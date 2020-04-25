@@ -1,8 +1,6 @@
 import type { IOpacity } from "../../../../Interfaces/Options/Particles/Opacity/IOpacity";
 import { OpacityAnimation } from "./OpacityAnimation";
-import type { IOpacityAnimation } from "../../../../Interfaces/Options/Particles/Opacity/IOpacityAnimation";
 import type { RecursivePartial } from "../../../../Types/RecursivePartial";
-import type { IOpacityRandom } from "../../../../Interfaces/Options/Particles/Opacity/IOpacityRandom";
 import { OpacityRandom } from "./OpacityRandom";
 
 export class Opacity implements IOpacity {
@@ -10,7 +8,7 @@ export class Opacity implements IOpacity {
      *
      * @deprecated this property is obsolete, please use the new animation
      */
-    public get anim(): IOpacityAnimation {
+    public get anim(): OpacityAnimation {
         return this.animation;
     }
 
@@ -19,12 +17,12 @@ export class Opacity implements IOpacity {
      * @deprecated this property is obsolete, please use the new animation
      * @param value
      */
-    public set anim(value: IOpacityAnimation) {
+    public set anim(value: OpacityAnimation) {
         this.animation = value;
     }
 
-    public animation: IOpacityAnimation;
-    public random: IOpacityRandom;
+    public animation: OpacityAnimation;
+    public random: OpacityRandom;
     public value: number;
 
     constructor() {

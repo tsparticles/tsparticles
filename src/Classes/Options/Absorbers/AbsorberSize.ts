@@ -1,12 +1,11 @@
 import type { IAbsorberSize } from "../../../Interfaces/Options/Absorbers/IAbsorberSize";
-import type { IAbsorberRandomSize } from "../../../Interfaces/Options/Absorbers/IAbsorberRandomSize";
 import { AbsorberRandomSize } from "./AbsorberRandomSize";
 import type { RecursivePartial } from "../../../Types/RecursivePartial";
 
 export class AbsorberSize implements IAbsorberSize {
     public density: number;
     public limit?: number;
-    public random: IAbsorberRandomSize;
+    public random: AbsorberRandomSize;
     public value: number;
 
     constructor() {

@@ -300,10 +300,10 @@
                             "type": "array"
                         },
                         {
-                            "$ref": "#/definitions/IHsl"
+                            "$ref": "#/definitions/IRgb"
                         },
                         {
-                            "$ref": "#/definitions/IRgb"
+                            "$ref": "#/definitions/IHsl"
                         },
                         {
                             "$ref": "#/definitions/IValueColor"

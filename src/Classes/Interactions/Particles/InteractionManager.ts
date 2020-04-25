@@ -1,7 +1,7 @@
 import type { Container } from "../../Container";
 import type { Particle } from "../../Particle";
 import { Linker } from "./Linker";
-import { Attracter } from "./Attracter";
+import { Attractor } from "./Attractor";
 import { Collider } from "./Collider";
 
 export class InteractionManager {
@@ -13,7 +13,7 @@ export class InteractionManager {
 
         /* attract particles */
         if (p1.particlesOptions.move.attract.enable) {
-            Attracter.attract(p1, container);
+            Attractor.attract(p1, container);
         }
 
         /* bounce particles */

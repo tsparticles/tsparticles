@@ -1,8 +1,6 @@
 import type { ISize } from "../../../../Interfaces/Options/Particles/Size/ISize";
 import { SizeAnimation } from "./SizeAnimation";
-import type { ISizeAnimation } from "../../../../Interfaces/Options/Particles/Size/ISizeAnimation";
 import type { RecursivePartial } from "../../../../Types/RecursivePartial";
-import type { ISizeRandom } from "../../../../Interfaces/Options/Particles/Size/ISizeRandom";
 import { SizeRandom } from "./SizeRandom";
 
 export class Size implements ISize {
@@ -10,7 +8,7 @@ export class Size implements ISize {
      *
      * @deprecated this property is obsolete, please use the new animation
      */
-    public get anim(): ISizeAnimation {
+    public get anim(): SizeAnimation {
         return this.animation;
     }
 
@@ -19,12 +17,12 @@ export class Size implements ISize {
      * @deprecated this property is obsolete, please use the new animation
      * @param value
      */
-    public set anim(value: ISizeAnimation) {
+    public set anim(value: SizeAnimation) {
         this.animation = value;
     }
 
-    public animation: ISizeAnimation;
-    public random: ISizeRandom;
+    public animation: SizeAnimation;
+    public random: SizeRandom;
     public value: number;
 
     constructor() {

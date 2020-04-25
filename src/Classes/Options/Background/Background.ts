@@ -1,10 +1,9 @@
 import type { IBackground } from "../../../Interfaces/Options/Background/IBackground";
 import type { RecursivePartial } from "../../../Types/RecursivePartial";
 import { OptionsColor } from "../Particles/OptionsColor";
-import type { IOptionsColor } from "../../../Interfaces/Options/Particles/IOptionsColor";
 
 export class Background implements IBackground {
-    public color?: IOptionsColor;
+    public color?: OptionsColor;
     public image?: string;
     public position?: string;
     public repeat?: string;

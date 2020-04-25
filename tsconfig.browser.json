@@ -9,7 +9,6 @@
     "declaration": true,
     "outDir": "./dist",
     "rootDir": "./src",
-    "composite": true,
     "removeComments": true,
     "importHelpers": true,
     "strict": true,

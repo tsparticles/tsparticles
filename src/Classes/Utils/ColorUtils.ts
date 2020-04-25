@@ -134,6 +134,14 @@ export class ColorUtils {
         return `rgba(${Math.round(color.r)}, ${Math.round(color.g)}, ${Math.round(color.b)}, ${opacityValue})`;
     }
 
+    public static mix(color1: IRgb, color2: IRgb, size1: number, size2: number): IRgb {
+        return {
+            b: Utils.mix(color1.b, color2.b, size1, size2),
+            g: Utils.mix(color1.g, color2.g, size1, size2),
+            r: Utils.mix(color1.r, color2.r, size1, size2),
+        };
+    }
+
     /**
      *
      * @param p

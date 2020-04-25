@@ -1,12 +1,11 @@
 import type { ITrail } from "../../../Interfaces/Options/Particles/ITrail";
 import type { RecursivePartial } from "../../../Types/RecursivePartial";
-import type { IOptionsColor } from "../../../Interfaces/Options/Particles/IOptionsColor";
 import { OptionsColor } from "./OptionsColor";
 
 export class Trail implements ITrail {
     public enable: boolean;
     public length: number;
-    public fillColor: IOptionsColor;
+    public fillColor: OptionsColor;
 
     constructor() {
         this.enable = false;

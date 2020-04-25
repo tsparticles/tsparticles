@@ -1,11 +1,10 @@
 import type { ILineLinkedShadow } from "../../../../Interfaces/Options/Particles/LineLinked/ILineLinkedShadow";
 import type { RecursivePartial } from "../../../../Types/RecursivePartial";
-import type { IOptionsColor } from "../../../../Interfaces/Options/Particles/IOptionsColor";
 import { OptionsColor } from "../OptionsColor";
 
 export class LineLinkedShadow implements ILineLinkedShadow {
     public blur: number;
-    public color: IOptionsColor;
+    public color: OptionsColor;
     public enable: boolean;
 
     constructor() {
