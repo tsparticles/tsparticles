@@ -236,7 +236,8 @@ export class Container {
             }
         }
 
-        if (Utils.isInArray(ShapeType.image, this.options.particles.shape.type)) {
+        if (Utils.isInArray(ShapeType.image, this.options.particles.shape.type) ||
+            Utils.isInArray(ShapeType.images, this.options.particles.shape.type)) {
             if (this.options.particles.shape.image instanceof Array) {
                 for (const optionsImage of this.options.particles.shape.image) {
                     await this.loadImageShape(optionsImage);

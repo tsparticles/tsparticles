@@ -212,7 +212,7 @@ export class Particle implements IParticle {
         };
 
         /* if shape is image */
-        if (this.shape === ShapeType.image) {
+        if (this.shape === ShapeType.image || this.shape === ShapeType.images) {
             const shape = this.particlesOptions.shape;
             const index = Utils.arrayRandomIndex(container.images);
             const image = container.images[index];
