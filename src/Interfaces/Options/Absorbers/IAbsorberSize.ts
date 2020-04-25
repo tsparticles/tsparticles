@@ -5,4 +5,5 @@ export interface IAbsorberSize extends IOptionLoader<IAbsorberSize> {
     limit?: number;
     random: boolean | IAbsorberRandomSize;
     value: number;
+    density: number;
 }

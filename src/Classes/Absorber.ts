@@ -31,7 +31,7 @@ export class Absorber {
         }
 
         this.size = size * container.retina.pixelRatio;
-        this.mass = size * 5;
+        this.mass = size * options.size.density;
 
         this.limit = options.size.limit;
 
@@ -72,7 +72,7 @@ export class Absorber {
                 this.size += sizeFactor;
             }
 
-            this.mass += sizeFactor;
+            this.mass += sizeFactor * this.options.size.density;
 
             return !remove;
         } else {

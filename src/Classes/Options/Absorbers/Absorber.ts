@@ -8,13 +8,14 @@ import type { IOptionsColor } from "../../../Interfaces/Options/Particles/IOptio
 
 export class Absorber implements IAbsorber {
     public color: IOptionsColor;
+    public opacity: number;
     public position?: ICoordinates;
     public size: IAbsorberSize;
 
     constructor() {
         this.color = new OptionsColor();
         this.color.value = "#000000";
-
+        this.opacity = 1;
         this.size = new AbsorberSize();
     }
 
@@ -26,6 +27,10 @@ export class Absorber implements IAbsorber {
                 }
 
                 this.color.load(typeof data.color === "string" ? { value: data.color } : data.color);
+            }
+
+            if (data.opacity !== undefined) {
+                this.opacity = data.opacity;
             }
 
             if (data.position !== undefined) {

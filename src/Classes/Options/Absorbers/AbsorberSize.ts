@@ -4,13 +4,15 @@ import { AbsorberRandomSize } from "./AbsorberRandomSize";
 import type { RecursivePartial } from "../../../Types/RecursivePartial";
 
 export class AbsorberSize implements IAbsorberSize {
+    public density: number;
+    public limit?: number;
     public random: IAbsorberRandomSize;
     public value: number;
-    public limit?: number;
 
     constructor() {
-        this.value = 50;
+        this.density = 5;
         this.random = new AbsorberRandomSize();
+        this.value = 50;
     }
 
     public load(data?: RecursivePartial<IAbsorberSize>): void {

@@ -13,6 +13,9 @@
                         }
                     ]
                 },
+                "opacity": {
+                    "type": "number"
+                },
                 "position": {
                     "$ref": "#/definitions/ICoordinates"
                 },
@@ -35,6 +38,9 @@
         },
         "IAbsorberSize": {
             "properties": {
+                "density": {
+                    "type": "number"
+                },
                 "limit": {
                     "type": "number"
                 },
