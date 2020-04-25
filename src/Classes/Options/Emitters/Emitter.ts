@@ -3,7 +3,6 @@ import type { RecursivePartial } from "../../../Types/RecursivePartial";
 import type { ICoordinates } from "../../../Interfaces/ICoordinates";
 import { MoveDirection } from "../../../Enums/MoveDirection";
 import type { IParticles } from "../../../Interfaces/Options/Particles/IParticles";
-import { Particles } from "../Particles/Particles";
 import { EmitterRate } from "./EmitterRate";
 import { EmitterLife } from "./EmitterLife";
 import type { IDimension } from "../../../Interfaces/IDimension";
@@ -12,7 +11,7 @@ export class Emitter implements IEmitter {
     public size?: IDimension;
     public direction: MoveDirection;
     public life: EmitterLife;
-    public particles?: Particles;
+    public particles?: RecursivePartial<IParticles>;
     public position?: ICoordinates;
     public rate: EmitterRate;
 
@@ -38,9 +37,7 @@ export class Emitter implements IEmitter {
             this.life.load(data.life);
 
             if (data.particles !== undefined) {
-                this.particles = new Particles();
-
-                this.particles.load(data.particles);
+                this.particles = data.particles;
             }
 
             this.rate.load(data.rate);

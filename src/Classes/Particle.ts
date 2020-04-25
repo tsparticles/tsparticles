@@ -76,18 +76,22 @@ export class Particle implements IParticle {
 
         particlesOptions.load(options.particles);
 
-        if (emitter?.emitterOptions.particles !== undefined) {
+        if (emitter?.emitterOptions?.particles?.shape?.type !== undefined) {
             const shapeType = emitter.emitterOptions.particles.shape.type;
 
             this.shape = shapeType instanceof Array ? Utils.itemFromArray(shapeType) : shapeType;
 
-            const shapeData = emitter.emitterOptions.particles.shape.options[this.shape];
+            const shapeOptions = emitter.emitterOptions.particles.shape.options;
 
-            if (shapeData) {
-                this.shapeData = shapeData instanceof Array ? Utils.itemFromArray(shapeData) : shapeData;
+            if (shapeOptions !== undefined) {
+                const shapeData = shapeOptions[this.shape];
 
-                this.fill = this.shapeData.fill ?? this.fill;
-                this.close = this.shapeData.close ?? this.close;
+                if (shapeData !== undefined) {
+                    this.shapeData = shapeData instanceof Array ? Utils.itemFromArray(shapeData) : shapeData;
+
+                    this.fill = this.shapeData?.fill ?? this.fill;
+                    this.close = this.shapeData?.close ?? this.close;
+                }
             }
 
             particlesOptions.load(this.shapeData?.particles);

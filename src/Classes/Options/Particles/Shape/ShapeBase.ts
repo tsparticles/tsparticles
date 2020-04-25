@@ -1,11 +1,11 @@
 import type { RecursivePartial } from "../../../../Types/RecursivePartial";
 import type { IShapeValues } from "../../../../Interfaces/Options/Particles/Shape/IShapeValues";
-import { Particles } from "../Particles";
+import { IParticles } from "../../../../Interfaces/Options/Particles/IParticles";
 
 export class ShapeBase implements IShapeValues {
     public close?: boolean;
     public fill?: boolean;
-    public particles?: Particles;
+    public particles?: RecursivePartial<IParticles>;
 
     constructor() {
         this.fill = true;
@@ -19,9 +19,7 @@ export class ShapeBase implements IShapeValues {
             }
 
             if (data.particles !== undefined) {
-                this.particles = new Particles();
-
-                this.particles.load(data.particles);
+                this.particles = data.particles;
             }
         }
     }

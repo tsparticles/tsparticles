@@ -147,11 +147,7 @@
           "value": "random"
         },
         "lineLinked": {
-          "enable": false,
-          "distance": 150,
-          "color": "#000",
-          "opacity": 0.4,
-          "width": 1
+          "enable": false
         },
         "opacity": {
           "value": 0.3
