@@ -66,8 +66,6 @@ export class Absorber {
                 particle.size.value -= sizeFactor;
                 particle.velocity.horizontal += Math.sin(angle * (Math.PI / 180)) * acceleration;
                 particle.velocity.vertical += Math.cos(angle * (Math.PI / 180)) * acceleration;
-
-                console.log(particle.velocity);
             }
 
             if (this.limit === undefined || this.size < this.limit) {
