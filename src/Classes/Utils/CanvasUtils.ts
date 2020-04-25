@@ -75,7 +75,7 @@ export class CanvasUtils {
         context.beginPath();
         context.arc(0, 0, absorber.size, 0, Math.PI * 2, false);
         context.closePath();
-        context.fillStyle = ColorUtils.getStyleFromColor(absorber.color);
+        context.fillStyle = ColorUtils.getStyleFromColor(absorber.color, absorber.opacity);
         context.fill();
         context.restore();
     }

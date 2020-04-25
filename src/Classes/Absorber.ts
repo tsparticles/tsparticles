@@ -7,11 +7,12 @@ import { ColorUtils } from "./Utils/ColorUtils";
 import { Utils } from "./Utils/Utils";
 
 export class Absorber {
+    public color: IRgb;
+    public limit?: number;
+    public mass: number;
+    public opacity: number;
     public position: ICoordinates;
     public size: number;
-    public limit?: number;
-    public color: IRgb;
-    public mass: number;
 
     private readonly container: Container;
     private readonly initialPosition?: ICoordinates;
@@ -30,6 +31,7 @@ export class Absorber {
             size = Utils.randomInRange(minSize, size);
         }
 
+        this.opacity = this.options.opacity;
         this.size = size * container.retina.pixelRatio;
         this.mass = size * options.size.density;
 
