@@ -8,14 +8,14 @@
     "clear:docs": "rimraf -f docs",
     "slimbuild": "npm test && npm run clear:dist && npm run build:ts:es && npm run build:schema && webpack -p && npm run build:ts",
     "build": "npm run slimbuild && npm run build:docs",
-    "build:ts:es": "tsc --target es6 --module es6",
+    "build:ts:es": "tsc -b tsconfig.browser.json",
     "build:ts": "tsc",
     "build:docs": "npm run clear:docs && typedoc",
     "start": "npm run build && npm run build:demo && node demo/app.js",
     "build:demo": "npm run build:demo:style && npm run build:demo:index",
     "build:demo:index": "pug ./demo/views/index.pug",
     "build:demo:style": "stylus ./demo/public/stylesheets/main.styl",
-    "build:schema": "typescript-json-schema tsconfig.json IOptions --out schema/options.schema.json",
+    "build:schema": "typescript-json-schema tsconfig.schema.json IOptions --out schema/options.schema.json",
     "test": "mocha -r ts-node/register 'tests/**/*.ts'"
   },
   "repository": {
@@ -88,7 +88,7 @@
     "reflect-metadata": "^0.1.13",
     "rimraf": "^3.0.2",
     "stylus": "^0.54.7",
-    "terser-webpack-plugin": "^2.3.5",
+    "terser-webpack-plugin": "^2.3.6",
     "three": "^0.115.0",
     "ts-node": "^8.9.0",
     "typedoc": "^0.17.3",
@@ -99,6 +99,7 @@
     "window": "^4.2.7"
   },
   "dependencies": {
-    "pathseg": "^1.2.0"
+    "pathseg": "^1.2.0",
+    "tslib": "^1.11.1"
   }
 }
