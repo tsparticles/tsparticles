@@ -145,7 +145,7 @@ export class Options implements IOptions {
                         return tmp;
                     });
                 } else {
-                    if (this.emitters instanceof Array) {
+                    if (this.absorbers instanceof Array) {
                         this.absorbers = new Absorber();
                     }
 
