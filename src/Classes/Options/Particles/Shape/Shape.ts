@@ -7,6 +7,7 @@ import type { SingleOrMultiple } from "../../../../Types/SingleOrMultiple";
 import { ShapeData } from "../../../../Types/ShapeData";
 import { CharacterShape } from "./CharacterShape";
 import { Stroke } from "../Stroke";
+import { Utils } from "../../../Utils/Utils";
 
 export class Shape implements IShape {
     /**
@@ -100,31 +101,41 @@ export class Shape implements IShape {
                 for (const shape in options) {
                     const item = options[shape];
                     if (item !== undefined) {
-                        if (item instanceof Array) {
-                            this.options[shape] = item.filter((t) => t !== undefined).map((t) => {
-                                return t!;
-                            });
-                        } else {
-                            this.options[shape] = item;
-                        }
+                        this.options[shape] = Utils.deepExtend(this.options[shape] ?? {}, item);
                     }
                 }
             }
 
             if (data.character !== undefined) {
                 const item = data.character;
+
                 if (item !== undefined) {
                     if (item instanceof Array) {
-                        this.options[ShapeType.character] = item.filter(t => t !== undefined).map((s) => {
-                            return s!;
-                        });
+                        if (this.options[ShapeType.character] instanceof Array) {
+                            this.options[ShapeType.character] = Utils.deepExtend(
+                                this.options[ShapeType.character] ?? [],
+                                item);
 
-                        this.options[ShapeType.char] = item.filter(t => t !== undefined).map((s) => {
-                            return s!;
-                        });
+                            this.options[ShapeType.char] = Utils.deepExtend(this.options[ShapeType.char] ?? [], item);
+                        } else {
+                            this.options[ShapeType.character] = Utils.deepExtend([],
+                                item);
+
+                            this.options[ShapeType.char] = Utils.deepExtend([], item);
+                        }
                     } else {
-                        this.options[ShapeType.character] = item;
-                        this.options[ShapeType.char] = item;
+                        if (this.options[ShapeType.character] instanceof Array) {
+                            this.options[ShapeType.character] = Utils.deepExtend({},
+                                item);
+
+                            this.options[ShapeType.char] = Utils.deepExtend({}, item);
+                        } else {
+                            this.options[ShapeType.character] = Utils.deepExtend(
+                                this.options[ShapeType.character] ?? [],
+                                item);
+
+                            this.options[ShapeType.char] = Utils.deepExtend(this.options[ShapeType.char] ?? [], item);
+                        }
                     }
                 }
             }
@@ -133,16 +144,31 @@ export class Shape implements IShape {
                 const item = data.polygon;
                 if (item !== undefined) {
                     if (item instanceof Array) {
-                        this.options[ShapeType.polygon] = item.filter(t => t !== undefined).map((s) => {
-                            return s!;
-                        });
+                        if (this.options[ShapeType.polygon] instanceof Array) {
+                            this.options[ShapeType.polygon] = Utils.deepExtend(
+                                this.options[ShapeType.polygon] ?? [],
+                                item);
 
-                        this.options[ShapeType.star] = item.filter(t => t !== undefined).map((s) => {
-                            return s!;
-                        });
+                            this.options[ShapeType.star] = Utils.deepExtend(this.options[ShapeType.star] ?? [], item);
+                        } else {
+                            this.options[ShapeType.polygon] = Utils.deepExtend([],
+                                item);
+
+                            this.options[ShapeType.star] = Utils.deepExtend([], item);
+                        }
                     } else {
-                        this.options[ShapeType.polygon] = item;
-                        this.options[ShapeType.star] = item;
+                        if (this.options[ShapeType.polygon] instanceof Array) {
+                            this.options[ShapeType.polygon] = Utils.deepExtend({},
+                                item);
+
+                            this.options[ShapeType.star] = Utils.deepExtend({}, item);
+                        } else {
+                            this.options[ShapeType.polygon] = Utils.deepExtend(
+                                this.options[ShapeType.polygon] ?? [],
+                                item);
+
+                            this.options[ShapeType.star] = Utils.deepExtend(this.options[ShapeType.star] ?? [], item);
+                        }
                     }
                 }
             }

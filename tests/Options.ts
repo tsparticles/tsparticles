@@ -12,6 +12,8 @@ import { PolygonMaskMoveType } from "../src/Enums/PolygonMaskMoveType";
 import { PolygonMaskType } from "../src/Enums/PolygonMaskType";
 import { CollisionMode } from "../src/Enums/CollisionMode";
 import { Particles } from "../src/Classes/Options/Particles/Particles";
+import { RecursivePartial } from "../src/Types/RecursivePartial";
+import { IParticles } from "../src/Interfaces/Options/Particles/IParticles";
 
 describe('Options tests', () => {
     it('checking default options', () => {
@@ -575,28 +577,94 @@ describe('Options tests', () => {
     it('check particlesOptions override', () => {
         const particlesOptions = new Particles();
 
-        particlesOptions.load({
-            line_linked: {
-                enable: true,
-                distance: 150,
-                color: "#000",
-                opacity: 0.4,
-                width: 1
+        const generalOptions: RecursivePartial<IParticles> = {
+            "number": {
+                "value": 100,
+                "density": {
+                    "enable": false,
+                    "value_area": 800
+                }
+            },
+            "color": {
+                "value": "#000"
+            },
+            "shape": {
+                "type": "circle",
+                "stroke": {
+                    "width": 0,
+                    "color": "#000000"
+                },
+                "polygon": {
+                    "nb_sides": 5
+                },
+                "image": {
+                    "src": "https://cdn.matteobruni.it/images/particles/github.svg",
+                    "width": 100,
+                    "height": 100
+                }
+            },
+            "opacity": {
+                "value": 0.5,
+                "random": false,
+                "anim": {
+                    "enable": false,
+                    "speed": 1,
+                    "opacity_min": 0.1,
+                    "sync": false
+                }
+            },
+            "size": {
+                "value": 5,
+                "random": true,
+                "anim": {
+                    "enable": false,
+                    "speed": 40,
+                    "size_min": 0.1,
+                    "sync": false
+                }
+            },
+            "line_linked": {
+                "enable": true,
+                "distance": 150,
+                "color": "#000",
+                "opacity": 0.4,
+                "width": 1
+            },
+            "move": {
+                "enable": true,
+                "speed": 2,
+                "direction": MoveDirection.none,
+                "random": false,
+                "straight": false,
+                "out_mode": OutMode.out,
+                "attract": {
+                    "enable": false,
+                    "rotateX": 600,
+                    "rotateY": 1200
+                }
             }
-        });
+        };
 
-        particlesOptions.load(undefined);
+        particlesOptions.load(generalOptions);
 
-        particlesOptions.load({
-            lineLinked: {
-                enable: true
-            }
-        });
+        const emitterOptions: RecursivePartial<IParticles> = {
+            color: { value: "#f0f" },
+            lineLinked: { enable: false },
+            move: { speed: 20, random: false, outMode: OutMode.destroy },
+            opacity: { value: 1 },
+            rotate: {
+                value: 0,
+                random: true,
+                direction: RotateDirection.clockwise,
+                animation: { enable: true, speed: 15, sync: false },
+            },
+            shape: { type: "star", polygon: { sides: 7 } },
+            size: { value: 15, random: false }
 
-        expect(particlesOptions.lineLinked.color).to.include({ value: "#000" });
-        expect(particlesOptions.lineLinked.distance).to.equal(150);
-        expect(particlesOptions.lineLinked.enable).to.be.true;
-        expect(particlesOptions.lineLinked.opacity).to.equal(0.4);
-        expect(particlesOptions.lineLinked.width).to.equal(1);
+        };
+
+        particlesOptions.load(emitterOptions);
+
+        expect(particlesOptions).to.not.include(generalOptions).and.include(emitterOptions);
     });
 });
