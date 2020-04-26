@@ -18,4 +18,14 @@ export class OptionsColor implements IOptionsColor {
             }
         }
     }
+
+    public static create(source?: OptionsColor, data?: string | RecursivePartial<IOptionsColor>): OptionsColor {
+        const color = source ?? new OptionsColor();
+
+        if (data !== undefined) {
+            color.load(typeof data === "string" ? { value: data } : data);
+        }
+
+        return color;
+    }
 }

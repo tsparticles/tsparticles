@@ -21,7 +21,7 @@ export class Trail implements ITrail {
                 this.enable = data.enable;
             }
 
-            this.fillColor.load(typeof data.fillColor === "string" ? { value: data.fillColor } : data.fillColor);
+            this.fillColor = OptionsColor.create(this.fillColor, data.fillColor);
 
             if (data.length !== undefined) {
                 this.length = data.length;

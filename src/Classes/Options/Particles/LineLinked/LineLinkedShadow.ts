@@ -21,7 +21,7 @@ export class LineLinkedShadow implements ILineLinkedShadow {
                 this.blur = data.blur;
             }
 
-            this.color.load(typeof data.color === "string" ? { value: data.color } : data.color);
+            this.color = OptionsColor.create(this.color, data.color);
 
             if (data.enable !== undefined) {
                 this.enable = data.enable;

@@ -64,19 +64,13 @@ export class Particles implements IParticles {
         if (data !== undefined) {
             if (data.color !== undefined) {
                 if (data.color instanceof Array) {
-                    this.color = data.color.map((s) => {
-                        const tmp = new OptionsColor();
-
-                        tmp.load(s);
-
-                        return tmp;
-                    });
+                    this.color = data.color.map((s) => OptionsColor.create(undefined, s));
                 } else {
                     if (this.color instanceof Array) {
                         this.color = new OptionsColor();
                     }
 
-                    this.color.load(data.color);
+                    this.color = OptionsColor.create(this.color, data.color);
                 }
             }
 
