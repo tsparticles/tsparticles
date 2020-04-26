@@ -18,7 +18,7 @@ export class Emitter {
     constructor(container: Container, emitterOptions: IEmitter, position?: ICoordinates) {
         this.container = container;
         this.initialPosition = position;
-        this.emitterOptions = emitterOptions;
+        this.emitterOptions = Utils.deepExtend({}, emitterOptions);
         this.position = this.initialPosition ?? this.calcPosition();
         this.size = this.emitterOptions.size ?? {
             height: 0,

@@ -413,7 +413,8 @@ export class EventListeners {
                         Utils.itemFromArray(options.emitters) :
                         options.emitters);
                     const ePosition = container.interactivity.mouse.clickPosition;
-                    const emitter = new Emitter(container, emitterOptions, ePosition);
+                    const emitter = new Emitter(container, Utils.deepExtend({}, emitterOptions), ePosition);
+
                     container.emitters.push(emitter);
                     break;
             }

@@ -6,6 +6,7 @@ import type { IParticles } from "../../../Interfaces/Options/Particles/IParticle
 import { EmitterRate } from "./EmitterRate";
 import { EmitterLife } from "./EmitterLife";
 import type { IDimension } from "../../../Interfaces/IDimension";
+import { Utils } from "../../Utils/Utils";
 
 export class Emitter implements IEmitter {
     public size?: IDimension;
@@ -37,7 +38,7 @@ export class Emitter implements IEmitter {
             this.life.load(data.life);
 
             if (data.particles !== undefined) {
-                this.particles = data.particles;
+                this.particles = Utils.deepExtend({}, data.particles);
             }
 
             this.rate.load(data.rate);
