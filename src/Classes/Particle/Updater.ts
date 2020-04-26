@@ -39,13 +39,13 @@ export class Updater {
         this.mover.move(delta);
 
         /* change opacity status */
-        this.updateOpacity();
+        this.updateOpacity(delta);
 
         /* change size */
-        this.updateSize();
+        this.updateSize(delta);
 
         /* change size */
-        this.updateAngle();
+        this.updateAngle(delta);
 
         /* change particle position if it is out of canvas */
         this.fixOutOfCanvasPosition();
@@ -54,8 +54,11 @@ export class Updater {
         this.updateOutMode();
     }
 
-    private updateOpacity(): void {
+    private updateOpacity(delta: number): void {
+        const container = this.container;
+        const options = container.options;
         const particle = this.particle;
+        const deltaFactor = options.fpsLimit > 0 ? (60 * delta) / 1000 : 3.6;
 
         if (particle.particlesOptions.opacity.animation.enable) {
             switch (particle.opacity.status) {
@@ -63,14 +66,14 @@ export class Updater {
                     if (particle.opacity.value >= particle.particlesOptions.opacity.value) {
                         particle.opacity.status = OpacityAnimationStatus.decreasing;
                     } else {
-                        particle.opacity.value += (particle.opacity.velocity || 0);
+                        particle.opacity.value += (particle.opacity.velocity || 0) * deltaFactor;
                     }
                     break;
                 case OpacityAnimationStatus.decreasing:
                     if (particle.opacity.value <= particle.particlesOptions.opacity.animation.minimumValue) {
                         particle.opacity.status = OpacityAnimationStatus.increasing;
                     } else {
-                        particle.opacity.value -= (particle.opacity.velocity || 0);
+                        particle.opacity.value -= (particle.opacity.velocity || 0) * deltaFactor;
                     }
                     break;
             }
@@ -81,9 +84,11 @@ export class Updater {
         }
     }
 
-    private updateSize(): void {
+    private updateSize(delta: number): void {
         const container = this.container;
+        const options = container.options;
         const particle = this.particle;
+        const deltaFactor = options.fpsLimit > 0 ? (60 * delta) / 1000 : 3.6;
 
         if (particle.particlesOptions.size.animation.enable) {
             switch (particle.size.status) {
@@ -91,14 +96,14 @@ export class Updater {
                     if (particle.size.value >= (particle.sizeValue ?? container.retina.sizeValue)) {
                         particle.size.status = SizeAnimationStatus.decreasing;
                     } else {
-                        particle.size.value += (particle.size.velocity || 0);
+                        particle.size.value += (particle.size.velocity || 0) * deltaFactor;
                     }
                     break;
                 case SizeAnimationStatus.decreasing:
                     if (particle.size.value <= particle.particlesOptions.size.animation.minimumValue) {
                         particle.size.status = SizeAnimationStatus.increasing;
                     } else {
-                        particle.size.value -= (particle.size.velocity || 0);
+                        particle.size.value -= (particle.size.velocity || 0) * deltaFactor;
                     }
             }
 
@@ -108,13 +113,16 @@ export class Updater {
         }
     }
 
-    private updateAngle(): void {
+    private updateAngle(delta: number): void {
+        const container = this.container;
+        const options = container.options;
         const particle = this.particle;
+        const deltaFactor = options.fpsLimit > 0 ? (60 * delta) / 1000 : 3.6;
 
         if (particle.particlesOptions.rotate.animation.enable) {
             switch (particle.rotateDirection) {
                 case RotateDirection.clockwise:
-                    particle.angle += particle.particlesOptions.rotate.animation.speed * Math.PI / 18;
+                    particle.angle += particle.particlesOptions.rotate.animation.speed * Math.PI / 18 * deltaFactor;
 
                     if (particle.angle > 360) {
                         particle.angle -= 360;
@@ -122,7 +130,7 @@ export class Updater {
                     break;
                 case RotateDirection.counterClockwise:
                 default:
-                    particle.angle -= particle.particlesOptions.rotate.animation.speed * Math.PI / 18;
+                    particle.angle -= particle.particlesOptions.rotate.animation.speed * Math.PI / 18 * deltaFactor;
 
                     if (particle.angle < 0) {
                         particle.angle += 360;
