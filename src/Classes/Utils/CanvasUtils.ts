@@ -75,7 +75,7 @@ export class CanvasUtils {
         context.beginPath();
         context.arc(0, 0, absorber.size, 0, Math.PI * 2, false);
         context.closePath();
-        context.fillStyle = ColorUtils.getStyleFromColor(absorber.color);
+        context.fillStyle = ColorUtils.getStyleFromColor(absorber.color, absorber.opacity);
         context.fill();
         context.restore();
     }
@@ -138,7 +138,6 @@ export class CanvasUtils {
     public static gradient(context: CanvasRenderingContext2D,
                            p1: IParticle,
                            p2: IParticle,
-                           midColor: IRgb,
                            opacity: number): CanvasGradient | undefined {
         const gradStop = Math.floor(p2.size.value / p1.size.value);
 
@@ -148,10 +147,11 @@ export class CanvasUtils {
 
         const sourcePos = p1.position;
         const destPos = p2.position;
+        const midRgb = ColorUtils.mix(p1.color, p2.color, p1.size.value, p2.size.value);
         const grad = context.createLinearGradient(sourcePos.x, sourcePos.y, destPos.x, destPos.y);
 
         grad.addColorStop(0, ColorUtils.getStyleFromColor(p1.color, opacity));
-        grad.addColorStop(gradStop > 1 ? 1 : gradStop, ColorUtils.getStyleFromColor(midColor, opacity));
+        grad.addColorStop(gradStop > 1 ? 1 : gradStop, ColorUtils.getStyleFromColor(midRgb, opacity));
         grad.addColorStop(1, ColorUtils.getStyleFromColor(p2.color, opacity));
 
         return grad;

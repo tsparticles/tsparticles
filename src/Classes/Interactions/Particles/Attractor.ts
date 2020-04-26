@@ -1,7 +1,7 @@
 import type { IParticle } from "../../../Interfaces/IParticle";
 import type { Container } from "../../Container";
 
-export class Attracter {
+export class Attractor {
     public static attract(p1: IParticle, container: Container): void {
         const options = container.options;
         const distance = p1.lineLinkedDistance ?? container.retina.lineLinkedDistance;

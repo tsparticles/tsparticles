@@ -5,6 +5,7 @@ import type { IAbsorberSize } from "./IAbsorberSize";
 
 export interface IAbsorber extends IOptionLoader<IAbsorber> {
     color: IColor | string;
+    opacity: number;
     position?: ICoordinates;
     size: IAbsorberSize;
 }

@@ -1,5 +1,4 @@
 import type { IParticlesNumber } from "../../../Interfaces/Options/Particles/IParticlesNumber";
-import type { IDensity } from "../../../Interfaces/Options/Particles/IDensity";
 import { Density } from "./Density";
 import type { RecursivePartial } from "../../../Types/RecursivePartial";
 
@@ -18,7 +17,7 @@ export class ParticlesNumber implements IParticlesNumber {
         this.limit = value;
     }
 
-    public density: IDensity;
+    public density: Density;
     public limit: number;
     public value: number;
 

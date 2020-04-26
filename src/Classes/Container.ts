@@ -25,7 +25,7 @@ export class Container {
     public readonly sourceOptions?: RecursivePartial<IOptions>;
     public readonly id: string;
     public interactivity: IContainerInteractivity;
-    public options: IOptions;
+    public options: Options;
     public retina: Retina;
     public canvas: Canvas;
     public particles: Particles;
@@ -236,7 +236,8 @@ export class Container {
             }
         }
 
-        if (Utils.isInArray(ShapeType.image, this.options.particles.shape.type)) {
+        if (Utils.isInArray(ShapeType.image, this.options.particles.shape.type) ||
+            Utils.isInArray(ShapeType.images, this.options.particles.shape.type)) {
             if (this.options.particles.shape.image instanceof Array) {
                 for (const optionsImage of this.options.particles.shape.image) {
                     await this.loadImageShape(optionsImage);

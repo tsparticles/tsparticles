@@ -11,6 +11,7 @@ import { PolygonMaskInlineArrangement } from "../src/Enums/PolygonMaskInlineArra
 import { PolygonMaskMoveType } from "../src/Enums/PolygonMaskMoveType";
 import { PolygonMaskType } from "../src/Enums/PolygonMaskType";
 import { CollisionMode } from "../src/Enums/CollisionMode";
+import { Particles } from "../src/Classes/Options/Particles/Particles";
 
 describe('Options tests', () => {
     it('checking default options', () => {
@@ -569,5 +570,33 @@ describe('Options tests', () => {
         /* particles stroke */
         expect(options.particles.stroke).to.be.an("object").to.have.property("color").to.be.an("object").to.have.property("value").to.equal("#000000");
         expect(options.particles.stroke).to.be.an("object").to.have.property("width").to.equal(0);
+    });
+
+    it('check particlesOptions override', () => {
+        const particlesOptions = new Particles();
+
+        particlesOptions.load({
+            line_linked: {
+                enable: true,
+                distance: 150,
+                color: "#000",
+                opacity: 0.4,
+                width: 1
+            }
+        });
+
+        particlesOptions.load(undefined);
+
+        particlesOptions.load({
+            lineLinked: {
+                enable: true
+            }
+        });
+
+        expect(particlesOptions.lineLinked.color).to.include({ value: "#000" });
+        expect(particlesOptions.lineLinked.distance).to.equal(150);
+        expect(particlesOptions.lineLinked.enable).to.be.true;
+        expect(particlesOptions.lineLinked.opacity).to.equal(0.4);
+        expect(particlesOptions.lineLinked.width).to.equal(1);
     });
 });

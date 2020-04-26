@@ -5,6 +5,7 @@ import type { IParticles } from "../Particles/IParticles";
 import type { IEmitterRate } from "./IEmitterRate";
 import type { IEmitterLife } from "./IEmitterLife";
 import type { IDimension } from "../../IDimension";
+import type { RecursivePartial } from "../../../Types/RecursivePartial";
 
 /**
  * Particles emitter object options
@@ -30,7 +31,7 @@ export interface IEmitter extends IOptionLoader<IEmitter> {
      * These settings will overrides other particles settings for the particles emitted by this emitter
      * Particles number options won't override anything, they will be ignored completely
      */
-    particles?: IParticles;
+    particles?: RecursivePartial<IParticles>;
 
     /**
      * The relative position (in percent) of the emitter, where particles spawns.

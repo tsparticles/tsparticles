@@ -7,7 +7,6 @@ import { ClickMode } from "../../../Enums/Modes/ClickMode";
 import { Constants } from "../../Utils/Constants";
 import type { IParticle } from "../../../Interfaces/IParticle";
 import { ColorUtils } from "../../Utils/ColorUtils";
-import type { IColor } from "../../../Interfaces/IColor";
 import { Particle } from "../../Particle";
 
 /**
@@ -209,15 +208,10 @@ export class Bubbler {
 
         const optSize = particle.sizeValue ?? container.retina.sizeValue;
         const pSize = particle.size.value;
+        const size = this.calculateBubbleValue(pSize, modeSize, optSize, ratio);
 
-        if (modeSize > optSize) {
-            const size = pSize + (modeSize - optSize) * ratio;
-
-            particle.bubble.radius = Utils.clamp(size, pSize, modeSize);
-        } else if (modeSize < optSize) {
-            const size = pSize - (optSize - modeSize) * ratio;
-
-            particle.bubble.radius = Utils.clamp(size, modeSize, pSize);
+        if (size !== undefined) {
+            particle.bubble.radius = size;
         }
     }
 
@@ -231,15 +225,25 @@ export class Bubbler {
 
         const optOpacity = particle.particlesOptions.opacity.value;
         const pOpacity = particle.opacity.value;
+        const opacity = this.calculateBubbleValue(pOpacity, modeOpacity, optOpacity, ratio);
 
-        if (modeOpacity > optOpacity) {
-            const opacity = pOpacity + (modeOpacity - optOpacity) * ratio;
+        if (opacity !== undefined) {
+            particle.bubble.opacity = opacity;
+        }
+    }
 
-            particle.bubble.opacity = Utils.clamp(opacity, pOpacity, modeOpacity);
-        } else if (modeOpacity < optOpacity) {
-            const opacity = pOpacity - (optOpacity - modeOpacity) * ratio;
+    private static calculateBubbleValue(particleValue: number,
+                                        modeValue: number,
+                                        optionsValue: number,
+                                        ratio: number): number | undefined {
+        if (modeValue > optionsValue) {
+            const size = particleValue + (modeValue - optionsValue) * ratio;
 
-            particle.bubble.opacity = Utils.clamp(opacity, modeOpacity, pOpacity);
+            return Utils.clamp(size, particleValue, modeValue);
+        } else if (modeValue < optionsValue) {
+            const size = particleValue - (optionsValue - modeValue) * ratio;
+
+            return Utils.clamp(size, modeValue, particleValue);
         }
     }
 
@@ -253,17 +257,9 @@ export class Bubbler {
                 return;
             }
 
-            let color: IColor;
-
-            if (modeColor instanceof Array) {
-                const item = Utils.itemFromArray(modeColor);
-
-                color = typeof item === "string" ? { value: item } : item;
-            } else {
-                color = typeof modeColor === "string" ? { value: modeColor } : modeColor;
-            }
-
-            particle.bubble.color = ColorUtils.colorToRgb(color);
+            particle.bubble.color = ColorUtils.colorToRgb(modeColor instanceof Array ?
+                Utils.itemFromArray(modeColor) :
+                modeColor);
         }
     }
 }

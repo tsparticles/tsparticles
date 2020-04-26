@@ -1,14 +1,11 @@
 import { Constants } from "./Utils/Constants";
 import type { Container } from "./Container";
 import type { IDimension } from "../Interfaces/IDimension";
-import { Utils } from "./Utils/Utils";
 import type { IRgb } from "../Interfaces/IRgb";
 import type { ICoordinates } from "../Interfaces/ICoordinates";
 import { CanvasUtils } from "./Utils/CanvasUtils";
 import { ColorUtils } from "./Utils/ColorUtils";
-import type { IBackgroundMaskCover } from "../Interfaces/Options/BackgroundMask/IBackgroundMaskCover";
 import type { IParticle } from "../Interfaces/IParticle";
-import type { IColor } from "../Interfaces/IColor";
 import type { Absorber } from "./Absorber";
 
 /**
@@ -63,21 +60,12 @@ export class Canvas {
 
         const container = this.container;
         const options = container.options;
-        const cover = options.backgroundMask.cover as IBackgroundMaskCover;
-        const color = (typeof options.backgroundMask.cover === "string" ?
-            { value: options.backgroundMask.cover } :
-            options.backgroundMask.cover) as IColor;
+        const cover = options.backgroundMask.cover;
+        const color = cover.color;
         const trail = options.particles.move.trail;
 
-        this.coverColor = ColorUtils.colorToRgb(cover.color !== undefined ?
-            typeof cover.color === "string" ?
-                { value: cover.color } :
-                cover.color :
-            color);
-
-        this.trailFillColor = typeof trail.fillColor === "string" ?
-            ColorUtils.stringToRgb(trail.fillColor) :
-            ColorUtils.colorToRgb(trail.fillColor);
+        this.coverColor = ColorUtils.colorToRgb(color);
+        this.trailFillColor = ColorUtils.colorToRgb(trail.fillColor);
 
         this.paint();
     }
@@ -214,7 +202,7 @@ export class Canvas {
 
         const twinkle = options.particles.twinkle.lines;
         const twinkleFreq = twinkle.frequency;
-        const twinkleColor = typeof twinkle.color === "string" ? { value: twinkle.color } : twinkle.color;
+        const twinkleColor = twinkle.color;
         const twinkleRgb = twinkleColor !== undefined ? ColorUtils.colorToRgb(twinkleColor) : undefined;
         const twinkling = twinkle.enable && Math.random() < twinkleFreq;
 
@@ -227,11 +215,7 @@ export class Canvas {
             const sourceColor = p1.color;
             const destColor = p2.color;
 
-            colorLine = {
-                b: Utils.mix(sourceColor.b, destColor.b, p1.size.value, p2.size.value),
-                g: Utils.mix(sourceColor.g, destColor.g, p1.size.value, p2.size.value),
-                r: Utils.mix(sourceColor.r, destColor.r, p1.size.value, p2.size.value),
-            };
+            colorLine = ColorUtils.mix(sourceColor, destColor, p1.size.value, p2.size.value);
         } else {
             colorLine = container.particles.lineLinkedColor as IRgb;
         }
@@ -354,16 +338,8 @@ export class Canvas {
         const connectOptions = options.interactivity.modes.connect;
 
         if (p1.color && p2.color) {
-            const sourceRgb = p1.color;
-            const destRgb = p2.color;
-            const midRgb = {
-                b: Utils.mix(sourceRgb.b, destRgb.b, p1.size.value, p2.size.value),
-                g: Utils.mix(sourceRgb.g, destRgb.g, p1.size.value, p2.size.value),
-                r: Utils.mix(sourceRgb.r, destRgb.r, p1.size.value, p2.size.value),
-            };
-
             if (this.context) {
-                return CanvasUtils.gradient(this.context, p1, p2, midRgb, connectOptions.lineLinked.opacity);
+                return CanvasUtils.gradient(this.context, p1, p2, connectOptions.lineLinked.opacity);
             }
         }
     }
@@ -381,9 +357,7 @@ export class Canvas {
         const elementStyle = element.style;
 
         if (background.color) {
-            const color = typeof background.color === "string" ?
-                ColorUtils.stringToRgb(background.color) :
-                ColorUtils.colorToRgb(background.color);
+            const color = ColorUtils.colorToRgb(background.color);
 
             if (color) {
                 elementStyle.backgroundColor = ColorUtils.getStyleFromColor(color, background.opacity);

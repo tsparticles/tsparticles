@@ -7,11 +7,12 @@ import { ColorUtils } from "./Utils/ColorUtils";
 import { Utils } from "./Utils/Utils";
 
 export class Absorber {
+    public color: IRgb;
+    public limit?: number;
+    public mass: number;
+    public opacity: number;
     public position: ICoordinates;
     public size: number;
-    public limit?: number;
-    public color: IRgb;
-    public mass: number;
 
     private readonly container: Container;
     private readonly initialPosition?: ICoordinates;
@@ -30,8 +31,9 @@ export class Absorber {
             size = Utils.randomInRange(minSize, size);
         }
 
+        this.opacity = this.options.opacity;
         this.size = size * container.retina.pixelRatio;
-        this.mass = size * 5;
+        this.mass = size * options.size.density;
 
         this.limit = options.size.limit;
 
@@ -66,15 +68,13 @@ export class Absorber {
                 particle.size.value -= sizeFactor;
                 particle.velocity.horizontal += Math.sin(angle * (Math.PI / 180)) * acceleration;
                 particle.velocity.vertical += Math.cos(angle * (Math.PI / 180)) * acceleration;
-
-                console.log(particle.velocity);
             }
 
             if (this.limit === undefined || this.size < this.limit) {
                 this.size += sizeFactor;
             }
 
-            this.mass += sizeFactor;
+            this.mass += sizeFactor * this.options.size.density;
 
             return !remove;
         } else {

@@ -1,6 +1,5 @@
 import type { IBubble } from "../../../../Interfaces/Options/Interactivity/Modes/IBubble";
 import type { RecursivePartial } from "../../../../Types/RecursivePartial";
-import { IOptionsColor } from "../../../../Interfaces/Options/Particles/IOptionsColor";
 import { OptionsColor } from "../../Particles/OptionsColor";
 import { SingleOrMultiple } from "../../../../Types/SingleOrMultiple";
 
@@ -9,7 +8,7 @@ export class Bubble implements IBubble {
     public duration: number;
     public opacity?: number;
     public size?: number;
-    public color?: SingleOrMultiple<IOptionsColor>;
+    public color?: SingleOrMultiple<OptionsColor>;
 
     constructor() {
         this.distance = 200;

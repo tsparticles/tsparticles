@@ -13,6 +13,9 @@
                         }
                     ]
                 },
+                "opacity": {
+                    "type": "number"
+                },
                 "position": {
                     "$ref": "#/definitions/ICoordinates"
                 },
@@ -35,6 +38,9 @@
         },
         "IAbsorberSize": {
             "properties": {
+                "density": {
+                    "type": "number"
+                },
                 "limit": {
                     "type": "number"
                 },
@@ -205,7 +211,7 @@
                     "type": "string"
                 },
                 "particles": {
-                    "$ref": "#/definitions/IParticles"
+                    "$ref": "#/definitions/RecursivePartial<IParticles>"
                 },
                 "style": {
                     "type": "string"
@@ -294,10 +300,10 @@
                             "type": "array"
                         },
                         {
-                            "$ref": "#/definitions/IHsl"
+                            "$ref": "#/definitions/IRgb"
                         },
                         {
-                            "$ref": "#/definitions/IRgb"
+                            "$ref": "#/definitions/IHsl"
                         },
                         {
                             "$ref": "#/definitions/IValueColor"
@@ -416,7 +422,7 @@
                     "description": "The emitter life options"
                 },
                 "particles": {
-                    "$ref": "#/definitions/IParticles",
+                    "$ref": "#/definitions/RecursivePartial<IParticles>",
                     "description": "Particles emitted customization.\nThese settings will overrides other particles settings for the particles emitted by this emitter\nParticles number options won't override anything, they will be ignored completely"
                 },
                 "position": {
@@ -578,7 +584,7 @@
                     "type": "number"
                 },
                 "particles": {
-                    "$ref": "#/definitions/IParticles"
+                    "$ref": "#/definitions/RecursivePartial<IParticles>"
                 },
                 "replaceColor": {
                     "type": "boolean"
@@ -1017,7 +1023,7 @@
                     "type": "number"
                 },
                 "particles": {
-                    "$ref": "#/definitions/IParticles"
+                    "$ref": "#/definitions/RecursivePartial<IParticles>"
                 },
                 "sides": {
                     "type": "number"
@@ -1241,7 +1247,7 @@
                     "type": "boolean"
                 },
                 "particles": {
-                    "$ref": "#/definitions/IParticles"
+                    "$ref": "#/definitions/RecursivePartial<IParticles>"
                 }
             },
             "type": "object"
@@ -1460,6 +1466,962 @@
                 "outside"
             ],
             "type": "string"
+        },
+        "RecursivePartial<(data?:RecursivePartial<IAttract>|undefined)=>void>": {
+            "type": "object"
+        },
+        "RecursivePartial<(data?:RecursivePartial<ICharacterShape>|undefined)=>void>": {
+            "type": "object"
+        },
+        "RecursivePartial<(data?:RecursivePartial<ICollisions>|undefined)=>void>": {
+            "type": "object"
+        },
+        "RecursivePartial<(data?:RecursivePartial<IDensity>|undefined)=>void>": {
+            "type": "object"
+        },
+        "RecursivePartial<(data?:RecursivePartial<IImageShape>|undefined)=>void>": {
+            "type": "object"
+        },
+        "RecursivePartial<(data?:RecursivePartial<ILineLinked>|undefined)=>void>": {
+            "type": "object"
+        },
+        "RecursivePartial<(data?:RecursivePartial<ILineLinkedShadow>|undefined)=>void>": {
+            "type": "object"
+        },
+        "RecursivePartial<(data?:RecursivePartial<IMove>|undefined)=>void>": {
+            "type": "object"
+        },
+        "RecursivePartial<(data?:RecursivePartial<IOpacity>|undefined)=>void>": {
+            "type": "object"
+        },
+        "RecursivePartial<(data?:RecursivePartial<IOpacityAnimation>|undefined)=>void>": {
+            "type": "object"
+        },
+        "RecursivePartial<(data?:RecursivePartial<IParticles>|undefined)=>void>": {
+            "type": "object"
+        },
+        "RecursivePartial<(data?:RecursivePartial<IParticlesNumber>|undefined)=>void>": {
+            "type": "object"
+        },
+        "RecursivePartial<(data?:RecursivePartial<IPolygonShape>|undefined)=>void>": {
+            "type": "object"
+        },
+        "RecursivePartial<(data?:RecursivePartial<IRotate>|undefined)=>void>": {
+            "type": "object"
+        },
+        "RecursivePartial<(data?:RecursivePartial<IRotateAnimation>|undefined)=>void>": {
+            "type": "object"
+        },
+        "RecursivePartial<(data?:RecursivePartial<IShadow>|undefined)=>void>": {
+            "type": "object"
+        },
+        "RecursivePartial<(data?:RecursivePartial<IShape>|undefined)=>void>": {
+            "type": "object"
+        },
+        "RecursivePartial<(data?:RecursivePartial<ISize>|undefined)=>void>": {
+            "type": "object"
+        },
+        "RecursivePartial<(data?:RecursivePartial<ISizeAnimation>|undefined)=>void>": {
+            "type": "object"
+        },
+        "RecursivePartial<(data?:RecursivePartial<IStroke>|undefined)=>void>": {
+            "type": "object"
+        },
+        "RecursivePartial<(data?:RecursivePartial<ITrail>|undefined)=>void>": {
+            "type": "object"
+        },
+        "RecursivePartial<(data?:RecursivePartial<ITwinkle>|undefined)=>void>": {
+            "type": "object"
+        },
+        "RecursivePartial<(data?:RecursivePartial<ITwinkleValues>|undefined)=>void>": {
+            "type": "object"
+        },
+        "RecursivePartial<IAttract>": {
+            "properties": {
+                "enable": {
+                    "type": "boolean"
+                },
+                "load": {
+                    "$ref": "#/definitions/RecursivePartial<(data?:RecursivePartial<IAttract>|undefined)=>void>"
+                },
+                "rotate": {
+                    "$ref": "#/definitions/RecursivePartial<ICoordinates>"
+                },
+                "rotateX": {
+                    "type": "number"
+                },
+                "rotateY": {
+                    "type": "number"
+                }
+            },
+            "type": "object"
+        },
+        "RecursivePartial<ICharacterShape>": {
+            "properties": {
+                "close": {
+                    "type": "boolean"
+                },
+                "fill": {
+                    "type": "boolean"
+                },
+                "font": {
+                    "type": "string"
+                },
+                "load": {
+                    "$ref": "#/definitions/RecursivePartial<(data?:RecursivePartial<ICharacterShape>|undefined)=>void>"
+                },
+                "particles": {
+                    "$ref": "#/definitions/RecursivePartial<IParticles>"
+                },
+                "style": {
+                    "type": "string"
+                },
+                "value": {
+                    "anyOf": [
+                        {
+                            "items": {
+                                "type": "string"
+                            },
+                            "type": "array"
+                        },
+                        {
+                            "type": "string"
+                        }
+                    ]
+                },
+                "weight": {
+                    "type": "string"
+                }
+            },
+            "type": "object"
+        },
+        "RecursivePartial<ICharacterShape>_1": {
+            "properties": {
+                "close": {
+                    "type": "boolean"
+                },
+                "fill": {
+                    "type": "boolean"
+                },
+                "font": {
+                    "type": "string"
+                },
+                "load": {
+                    "$ref": "#/definitions/RecursivePartial<(data?:RecursivePartial<ICharacterShape>|undefined)=>void>"
+                },
+                "particles": {
+                    "$ref": "#/definitions/RecursivePartial<IParticles>"
+                },
+                "style": {
+                    "type": "string"
+                },
+                "value": {
+                    "anyOf": [
+                        {
+                            "items": {
+                                "type": "string"
+                            },
+                            "type": "array"
+                        },
+                        {
+                            "type": "string"
+                        }
+                    ]
+                },
+                "weight": {
+                    "type": "string"
+                }
+            },
+            "type": "object"
+        },
+        "RecursivePartial<ICollisions>": {
+            "properties": {
+                "enable": {
+                    "type": "boolean"
+                },
+                "load": {
+                    "$ref": "#/definitions/RecursivePartial<(data?:RecursivePartial<ICollisions>|undefined)=>void>"
+                },
+                "mode": {
+                    "enum": [
+                        "bounce"
+                    ],
+                    "type": "string"
+                }
+            },
+            "type": "object"
+        },
+        "RecursivePartial<IColor>": {
+            "properties": {
+                "value": {
+                    "anyOf": [
+                        {
+                            "items": {
+                                "type": "string"
+                            },
+                            "type": "array"
+                        },
+                        {
+                            "$ref": "#/definitions/IRgb"
+                        },
+                        {
+                            "$ref": "#/definitions/IHsl"
+                        },
+                        {
+                            "$ref": "#/definitions/IValueColor"
+                        },
+                        {
+                            "type": "string"
+                        }
+                    ]
+                }
+            },
+            "type": "object"
+        },
+        "RecursivePartial<IColor>_1": {
+            "properties": {
+                "value": {
+                    "anyOf": [
+                        {
+                            "items": {
+                                "type": "string"
+                            },
+                            "type": "array"
+                        },
+                        {
+                            "$ref": "#/definitions/IRgb"
+                        },
+                        {
+                            "$ref": "#/definitions/IHsl"
+                        },
+                        {
+                            "$ref": "#/definitions/IValueColor"
+                        },
+                        {
+                            "type": "string"
+                        }
+                    ]
+                }
+            },
+            "type": "object"
+        },
+        "RecursivePartial<ICoordinates>": {
+            "properties": {
+                "x": {
+                    "type": "number"
+                },
+                "y": {
+                    "type": "number"
+                }
+            },
+            "type": "object"
+        },
+        "RecursivePartial<IDensity>": {
+            "properties": {
+                "area": {
+                    "type": "number"
+                },
+                "enable": {
+                    "type": "boolean"
+                },
+                "load": {
+                    "$ref": "#/definitions/RecursivePartial<(data?:RecursivePartial<IDensity>|undefined)=>void>"
+                },
+                "value_area": {
+                    "type": "number"
+                }
+            },
+            "type": "object"
+        },
+        "RecursivePartial<IImageShape>": {
+            "properties": {
+                "close": {
+                    "type": "boolean"
+                },
+                "fill": {
+                    "type": "boolean"
+                },
+                "height": {
+                    "type": "number"
+                },
+                "load": {
+                    "$ref": "#/definitions/RecursivePartial<(data?:RecursivePartial<IImageShape>|undefined)=>void>"
+                },
+                "particles": {
+                    "$ref": "#/definitions/RecursivePartial<IParticles>"
+                },
+                "replaceColor": {
+                    "type": "boolean"
+                },
+                "replace_color": {
+                    "type": "boolean"
+                },
+                "src": {
+                    "type": "string"
+                },
+                "width": {
+                    "type": "number"
+                }
+            },
+            "type": "object"
+        },
+        "RecursivePartial<IImageShape>_1": {
+            "properties": {
+                "close": {
+                    "type": "boolean"
+                },
+                "fill": {
+                    "type": "boolean"
+                },
+                "height": {
+                    "type": "number"
+                },
+                "load": {
+                    "$ref": "#/definitions/RecursivePartial<(data?:RecursivePartial<IImageShape>|undefined)=>void>"
+                },
+                "particles": {
+                    "$ref": "#/definitions/RecursivePartial<IParticles>"
+                },
+                "replaceColor": {
+                    "type": "boolean"
+                },
+                "replace_color": {
+                    "type": "boolean"
+                },
+                "src": {
+                    "type": "string"
+                },
+                "width": {
+                    "type": "number"
+                }
+            },
+            "type": "object"
+        },
+        "RecursivePartial<ILineLinked>": {
+            "properties": {
+                "blink": {
+                    "type": "boolean"
+                },
+                "color": {
+                    "anyOf": [
+                        {
+                            "$ref": "#/definitions/IColor"
+                        },
+                        {
+                            "type": "string"
+                        }
+                    ]
+                },
+                "consent": {
+                    "type": "boolean"
+                },
+                "distance": {
+                    "type": "number"
+                },
+                "enable": {
+                    "type": "boolean"
+                },
+                "load": {
+                    "$ref": "#/definitions/RecursivePartial<(data?:RecursivePartial<ILineLinked>|undefined)=>void>"
+                },
+                "opacity": {
+                    "type": "number"
+                },
+                "shadow": {
+                    "$ref": "#/definitions/RecursivePartial<ILineLinkedShadow>"
+                },
+                "width": {
+                    "type": "number"
+                }
+            },
+            "type": "object"
+        },
+        "RecursivePartial<ILineLinkedShadow>": {
+            "properties": {
+                "blur": {
+                    "type": "number"
+                },
+                "color": {
+                    "anyOf": [
+                        {
+                            "$ref": "#/definitions/IColor"
+                        },
+                        {
+                            "type": "string"
+                        }
+                    ]
+                },
+                "enable": {
+                    "type": "boolean"
+                },
+                "load": {
+                    "$ref": "#/definitions/RecursivePartial<(data?:RecursivePartial<ILineLinkedShadow>|undefined)=>void>"
+                }
+            },
+            "type": "object"
+        },
+        "RecursivePartial<IMove>": {
+            "properties": {
+                "attract": {
+                    "$ref": "#/definitions/RecursivePartial<IAttract>"
+                },
+                "bounce": {
+                    "type": "boolean"
+                },
+                "collisions": {
+                    "type": "boolean"
+                },
+                "direction": {
+                    "enum": [
+                        "bottom",
+                        "bottom-left",
+                        "bottom-right",
+                        "left",
+                        "none",
+                        "right",
+                        "top",
+                        "top-left",
+                        "top-right"
+                    ],
+                    "type": "string"
+                },
+                "enable": {
+                    "type": "boolean"
+                },
+                "load": {
+                    "$ref": "#/definitions/RecursivePartial<(data?:RecursivePartial<IMove>|undefined)=>void>"
+                },
+                "outMode": {
+                    "enum": [
+                        "bounce",
+                        "bounce-horizontal",
+                        "bounce-vertical",
+                        "destroy",
+                        "out"
+                    ],
+                    "type": "string"
+                },
+                "out_mode": {
+                    "enum": [
+                        "bounce",
+                        "bounce-horizontal",
+                        "bounce-vertical",
+                        "destroy",
+                        "out"
+                    ],
+                    "type": "string"
+                },
+                "random": {
+                    "type": "boolean"
+                },
+                "speed": {
+                    "type": "number"
+                },
+                "straight": {
+                    "type": "boolean"
+                },
+                "trail": {
+                    "$ref": "#/definitions/RecursivePartial<ITrail>"
+                }
+            },
+            "type": "object"
+        },
+        "RecursivePartial<IOpacity>": {
+            "properties": {
+                "anim": {
+                    "$ref": "#/definitions/RecursivePartial<IOpacityAnimation>"
+                },
+                "animation": {
+                    "$ref": "#/definitions/RecursivePartial<IOpacityAnimation>"
+                },
+                "load": {
+                    "$ref": "#/definitions/RecursivePartial<(data?:RecursivePartial<IOpacity>|undefined)=>void>"
+                },
+                "random": {
+                    "anyOf": [
+                        {
+                            "$ref": "#/definitions/IOpacityRandom"
+                        },
+                        {
+                            "type": "boolean"
+                        }
+                    ]
+                },
+                "value": {
+                    "type": "number"
+                }
+            },
+            "type": "object"
+        },
+        "RecursivePartial<IOpacityAnimation>": {
+            "properties": {
+                "enable": {
+                    "type": "boolean"
+                },
+                "load": {
+                    "$ref": "#/definitions/RecursivePartial<(data?:RecursivePartial<IOpacityAnimation>|undefined)=>void>"
+                },
+                "minimumValue": {
+                    "type": "number"
+                },
+                "opacity_min": {
+                    "type": "number"
+                },
+                "speed": {
+                    "type": "number"
+                },
+                "sync": {
+                    "type": "boolean"
+                }
+            },
+            "type": "object"
+        },
+        "RecursivePartial<IParticles>": {
+            "properties": {
+                "collisions": {
+                    "$ref": "#/definitions/RecursivePartial<ICollisions>"
+                },
+                "color": {
+                    "anyOf": [
+                        {
+                            "$ref": "#/definitions/RecursivePartial<IColor>"
+                        },
+                        {
+                            "items": {
+                                "$ref": "#/definitions/RecursivePartial<IColor>_1"
+                            },
+                            "type": "array"
+                        }
+                    ]
+                },
+                "lineLinked": {
+                    "$ref": "#/definitions/RecursivePartial<ILineLinked>"
+                },
+                "line_linked": {
+                    "$ref": "#/definitions/RecursivePartial<ILineLinked>"
+                },
+                "load": {
+                    "$ref": "#/definitions/RecursivePartial<(data?:RecursivePartial<IParticles>|undefined)=>void>"
+                },
+                "move": {
+                    "$ref": "#/definitions/RecursivePartial<IMove>"
+                },
+                "number": {
+                    "$ref": "#/definitions/RecursivePartial<IParticlesNumber>"
+                },
+                "opacity": {
+                    "$ref": "#/definitions/RecursivePartial<IOpacity>"
+                },
+                "rotate": {
+                    "$ref": "#/definitions/RecursivePartial<IRotate>"
+                },
+                "shadow": {
+                    "$ref": "#/definitions/RecursivePartial<IShadow>"
+                },
+                "shape": {
+                    "$ref": "#/definitions/RecursivePartial<IShape>"
+                },
+                "size": {
+                    "$ref": "#/definitions/RecursivePartial<ISize>"
+                },
+                "stroke": {
+                    "anyOf": [
+                        {
+                            "$ref": "#/definitions/RecursivePartial<IStroke>"
+                        },
+                        {
+                            "items": {
+                                "$ref": "#/definitions/RecursivePartial<IStroke>_1"
+                            },
+                            "type": "array"
+                        }
+                    ]
+                },
+                "twinkle": {
+                    "$ref": "#/definitions/RecursivePartial<ITwinkle>"
+                }
+            },
+            "type": "object"
+        },
+        "RecursivePartial<IParticlesNumber>": {
+            "properties": {
+                "density": {
+                    "$ref": "#/definitions/RecursivePartial<IDensity>"
+                },
+                "limit": {
+                    "type": "number"
+                },
+                "load": {
+                    "$ref": "#/definitions/RecursivePartial<(data?:RecursivePartial<IParticlesNumber>|undefined)=>void>"
+                },
+                "max": {
+                    "type": "number"
+                },
+                "value": {
+                    "type": "number"
+                }
+            },
+            "type": "object"
+        },
+        "RecursivePartial<IPolygonShape>": {
+            "properties": {
+                "close": {
+                    "type": "boolean"
+                },
+                "fill": {
+                    "type": "boolean"
+                },
+                "load": {
+                    "$ref": "#/definitions/RecursivePartial<(data?:RecursivePartial<IPolygonShape>|undefined)=>void>"
+                },
+                "nb_sides": {
+                    "type": "number"
+                },
+                "particles": {
+                    "$ref": "#/definitions/RecursivePartial<IParticles>"
+                },
+                "sides": {
+                    "type": "number"
+                }
+            },
+            "type": "object"
+        },
+        "RecursivePartial<IPolygonShape>_1": {
+            "properties": {
+                "close": {
+                    "type": "boolean"
+                },
+                "fill": {
+                    "type": "boolean"
+                },
+                "load": {
+                    "$ref": "#/definitions/RecursivePartial<(data?:RecursivePartial<IPolygonShape>|undefined)=>void>"
+                },
+                "nb_sides": {
+                    "type": "number"
+                },
+                "particles": {
+                    "$ref": "#/definitions/RecursivePartial<IParticles>"
+                },
+                "sides": {
+                    "type": "number"
+                }
+            },
+            "type": "object"
+        },
+        "RecursivePartial<IRotate>": {
+            "properties": {
+                "animation": {
+                    "$ref": "#/definitions/RecursivePartial<IRotateAnimation>"
+                },
+                "direction": {
+                    "enum": [
+                        "clockwise",
+                        "counter-clockwise",
+                        "random"
+                    ],
+                    "type": "string"
+                },
+                "load": {
+                    "$ref": "#/definitions/RecursivePartial<(data?:RecursivePartial<IRotate>|undefined)=>void>"
+                },
+                "random": {
+                    "type": "boolean"
+                },
+                "value": {
+                    "type": "number"
+                }
+            },
+            "type": "object"
+        },
+        "RecursivePartial<IRotateAnimation>": {
+            "properties": {
+                "enable": {
+                    "type": "boolean"
+                },
+                "load": {
+                    "$ref": "#/definitions/RecursivePartial<(data?:RecursivePartial<IRotateAnimation>|undefined)=>void>"
+                },
+                "speed": {
+                    "type": "number"
+                },
+                "sync": {
+                    "type": "boolean"
+                }
+            },
+            "type": "object"
+        },
+        "RecursivePartial<IShadow>": {
+            "properties": {
+                "blur": {
+                    "type": "number"
+                },
+                "color": {
+                    "anyOf": [
+                        {
+                            "$ref": "#/definitions/IColor"
+                        },
+                        {
+                            "type": "string"
+                        }
+                    ]
+                },
+                "enable": {
+                    "type": "boolean"
+                },
+                "load": {
+                    "$ref": "#/definitions/RecursivePartial<(data?:RecursivePartial<IShadow>|undefined)=>void>"
+                },
+                "offset": {
+                    "$ref": "#/definitions/RecursivePartial<ICoordinates>"
+                }
+            },
+            "type": "object"
+        },
+        "RecursivePartial<IShape>": {
+            "properties": {
+                "character": {
+                    "anyOf": [
+                        {
+                            "$ref": "#/definitions/RecursivePartial<ICharacterShape>"
+                        },
+                        {
+                            "items": {
+                                "$ref": "#/definitions/RecursivePartial<ICharacterShape>_1"
+                            },
+                            "type": "array"
+                        }
+                    ]
+                },
+                "custom": {
+                    "$ref": "#/definitions/RecursivePartial<ShapeData>"
+                },
+                "image": {
+                    "anyOf": [
+                        {
+                            "$ref": "#/definitions/RecursivePartial<IImageShape>"
+                        },
+                        {
+                            "items": {
+                                "$ref": "#/definitions/RecursivePartial<IImageShape>_1"
+                            },
+                            "type": "array"
+                        }
+                    ]
+                },
+                "load": {
+                    "$ref": "#/definitions/RecursivePartial<(data?:RecursivePartial<IShape>|undefined)=>void>"
+                },
+                "options": {
+                    "$ref": "#/definitions/RecursivePartial<ShapeData>"
+                },
+                "polygon": {
+                    "anyOf": [
+                        {
+                            "$ref": "#/definitions/RecursivePartial<IPolygonShape>"
+                        },
+                        {
+                            "items": {
+                                "$ref": "#/definitions/RecursivePartial<IPolygonShape>_1"
+                            },
+                            "type": "array"
+                        }
+                    ]
+                },
+                "stroke": {
+                    "anyOf": [
+                        {
+                            "$ref": "#/definitions/RecursivePartial<IStroke>"
+                        },
+                        {
+                            "items": {
+                                "$ref": "#/definitions/RecursivePartial<IStroke>_1"
+                            },
+                            "type": "array"
+                        }
+                    ]
+                },
+                "type": {
+                    "anyOf": [
+                        {
+                            "items": {
+                                "type": "string"
+                            },
+                            "type": "array"
+                        },
+                        {
+                            "type": "string"
+                        }
+                    ]
+                }
+            },
+            "type": "object"
+        },
+        "RecursivePartial<ISize>": {
+            "properties": {
+                "anim": {
+                    "$ref": "#/definitions/RecursivePartial<ISizeAnimation>"
+                },
+                "animation": {
+                    "$ref": "#/definitions/RecursivePartial<ISizeAnimation>"
+                },
+                "load": {
+                    "$ref": "#/definitions/RecursivePartial<(data?:RecursivePartial<ISize>|undefined)=>void>"
+                },
+                "random": {
+                    "anyOf": [
+                        {
+                            "$ref": "#/definitions/ISizeRandom"
+                        },
+                        {
+                            "type": "boolean"
+                        }
+                    ]
+                },
+                "value": {
+                    "type": "number"
+                }
+            },
+            "type": "object"
+        },
+        "RecursivePartial<ISizeAnimation>": {
+            "properties": {
+                "enable": {
+                    "type": "boolean"
+                },
+                "load": {
+                    "$ref": "#/definitions/RecursivePartial<(data?:RecursivePartial<ISizeAnimation>|undefined)=>void>"
+                },
+                "minimumValue": {
+                    "type": "number"
+                },
+                "size_min": {
+                    "type": "number"
+                },
+                "speed": {
+                    "type": "number"
+                },
+                "sync": {
+                    "type": "boolean"
+                }
+            },
+            "type": "object"
+        },
+        "RecursivePartial<IStroke>": {
+            "properties": {
+                "color": {
+                    "anyOf": [
+                        {
+                            "$ref": "#/definitions/IColor"
+                        },
+                        {
+                            "type": "string"
+                        }
+                    ]
+                },
+                "load": {
+                    "$ref": "#/definitions/RecursivePartial<(data?:RecursivePartial<IStroke>|undefined)=>void>"
+                },
+                "opacity": {
+                    "type": "number"
+                },
+                "width": {
+                    "type": "number"
+                }
+            },
+            "type": "object"
+        },
+        "RecursivePartial<IStroke>_1": {
+            "properties": {
+                "color": {
+                    "anyOf": [
+                        {
+                            "$ref": "#/definitions/IColor"
+                        },
+                        {
+                            "type": "string"
+                        }
+                    ]
+                },
+                "load": {
+                    "$ref": "#/definitions/RecursivePartial<(data?:RecursivePartial<IStroke>|undefined)=>void>"
+                },
+                "opacity": {
+                    "type": "number"
+                },
+                "width": {
+                    "type": "number"
+                }
+            },
+            "type": "object"
+        },
+        "RecursivePartial<ITrail>": {
+            "properties": {
+                "enable": {
+                    "type": "boolean"
+                },
+                "fillColor": {
+                    "anyOf": [
+                        {
+                            "$ref": "#/definitions/IColor"
+                        },
+                        {
+                            "type": "string"
+                        }
+                    ]
+                },
+                "length": {
+                    "type": "number"
+                },
+                "load": {
+                    "$ref": "#/definitions/RecursivePartial<(data?:RecursivePartial<ITrail>|undefined)=>void>"
+                }
+            },
+            "type": "object"
+        },
+        "RecursivePartial<ITwinkle>": {
+            "properties": {
+                "lines": {
+                    "$ref": "#/definitions/RecursivePartial<ITwinkleValues>"
+                },
+                "load": {
+                    "$ref": "#/definitions/RecursivePartial<(data?:RecursivePartial<ITwinkle>|undefined)=>void>"
+                },
+                "particles": {
+                    "$ref": "#/definitions/RecursivePartial<ITwinkleValues>"
+                }
+            },
+            "type": "object"
+        },
+        "RecursivePartial<ITwinkleValues>": {
+            "properties": {
+                "color": {
+                    "anyOf": [
+                        {
+                            "$ref": "#/definitions/IColor"
+                        },
+                        {
+                            "type": "string"
+                        }
+                    ]
+                },
+                "enable": {
+                    "type": "boolean"
+                },
+                "frequency": {
+                    "type": "number"
+                },
+                "load": {
+                    "$ref": "#/definitions/RecursivePartial<(data?:RecursivePartial<ITwinkleValues>|undefined)=>void>"
+                },
+                "opacity": {
+                    "type": "number"
+                }
+            },
+            "type": "object"
+        },
+        "RecursivePartial<ShapeData>": {
+            "type": "object"
         },
         "RotateDirection": {
             "enum": [

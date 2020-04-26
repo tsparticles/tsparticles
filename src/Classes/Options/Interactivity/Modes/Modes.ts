@@ -6,31 +6,21 @@ import { Remove } from "./Remove";
 import { Push } from "./Push";
 import { Repulse } from "./Repulse";
 import { Slow } from "./Slow";
-import type { IBubble } from "../../../../Interfaces/Options/Interactivity/Modes/IBubble";
-import type { IConnect } from "../../../../Interfaces/Options/Interactivity/Modes/IConnect";
-import type { IGrab } from "../../../../Interfaces/Options/Interactivity/Modes/IGrab";
-import type { IPush } from "../../../../Interfaces/Options/Interactivity/Modes/IPush";
-import type { IRemove } from "../../../../Interfaces/Options/Interactivity/Modes/IRemove";
-import type { IRepulse } from "../../../../Interfaces/Options/Interactivity/Modes/IRepulse";
-import type { ISlow } from "../../../../Interfaces/Options/Interactivity/Modes/ISlow";
 import type { RecursivePartial } from "../../../../Types/RecursivePartial";
-import type { IEmitter } from "../../../../Interfaces/Options/Emitters/IEmitter";
 import type { SingleOrMultiple } from "../../../../Types/SingleOrMultiple";
 import { Emitter } from "../../Emitters/Emitter";
-import type { IParticles } from "../../../../Interfaces/Options/Particles/IParticles";
-import type { IAbsorber } from "../../../../Interfaces/Options/Absorbers/IAbsorber";
 import { Absorber } from "../../Absorbers/Absorber";
 
 export class Modes implements IModes {
-    public absorbers: SingleOrMultiple<IAbsorber>;
-    public bubble: IBubble;
-    public connect: IConnect;
-    public emitters: SingleOrMultiple<IEmitter>;
-    public grab: IGrab;
-    public push: IPush;
-    public remove: IRemove;
-    public repulse: IRepulse;
-    public slow: ISlow;
+    public absorbers: SingleOrMultiple<Absorber>;
+    public bubble: Bubble;
+    public connect: Connect;
+    public emitters: SingleOrMultiple<Emitter>;
+    public grab: Grab;
+    public push: Push;
+    public remove: Remove;
+    public repulse: Repulse;
+    public slow: Slow;
 
     constructor() {
         this.absorbers = [];
@@ -44,7 +34,7 @@ export class Modes implements IModes {
         this.slow = new Slow();
     }
 
-    public load(data?: RecursivePartial<IModes>, particles?: IParticles): void {
+    public load(data?: RecursivePartial<IModes>): void {
         if (data !== undefined) {
             this.bubble.load(data.bubble);
             this.connect.load(data.connect);
@@ -54,12 +44,12 @@ export class Modes implements IModes {
             this.repulse.load(data.repulse);
             this.slow.load(data.slow);
 
-            if (data.emitters !== undefined && particles !== undefined) {
+            if (data.emitters !== undefined) {
                 if (data.emitters instanceof Array) {
                     this.emitters = data.emitters.map((s) => {
                         const tmp = new Emitter();
 
-                        tmp.load(s, particles);
+                        tmp.load(s);
 
                         return tmp;
                     });
@@ -68,7 +58,7 @@ export class Modes implements IModes {
                         this.emitters = new Emitter();
                     }
 
-                    (this.emitters as Emitter).load(data.emitters, particles);
+                    (this.emitters as Emitter).load(data.emitters);
                 }
             }
 

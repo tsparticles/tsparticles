@@ -78,6 +78,7 @@ class Main {
         CanvasUtils.addShapeDrawer(ShapeType.char, textDrawer);
         CanvasUtils.addShapeDrawer(ShapeType.character, textDrawer);
         CanvasUtils.addShapeDrawer(ShapeType.image, new ImageDrawer());
+        CanvasUtils.addShapeDrawer(ShapeType.images, new ImageDrawer());
     }
 
     /**

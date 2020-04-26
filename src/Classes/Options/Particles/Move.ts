@@ -2,9 +2,7 @@ import type { IMove } from "../../../Interfaces/Options/Particles/IMove";
 import { Attract } from "./Attract";
 import { MoveDirection } from "../../../Enums/MoveDirection";
 import { OutMode } from "../../../Enums/OutMode";
-import type { IAttract } from "../../../Interfaces/Options/Particles/IAttract";
 import { Trail } from "./Trail";
-import type { ITrail } from "../../../Interfaces/Options/Particles/ITrail";
 import type { RecursivePartial } from "../../../Types/RecursivePartial";
 
 export class Move implements IMove {
@@ -54,14 +52,14 @@ export class Move implements IMove {
         this.outMode = value;
     }
 
-    public attract: IAttract;
+    public attract: Attract;
     public direction: MoveDirection;
     public enable: boolean;
     public outMode: OutMode;
     public random: boolean;
     public speed: number;
     public straight: boolean;
-    public trail: ITrail;
+    public trail: Trail;
 
     constructor() {
         this.attract = new Attract();

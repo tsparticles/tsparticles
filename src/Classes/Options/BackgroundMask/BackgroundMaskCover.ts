@@ -1,10 +1,9 @@
-import type { IOptionsColor } from "../../../Interfaces/Options/Particles/IOptionsColor";
 import type { RecursivePartial } from "../../../Types/RecursivePartial";
 import { OptionsColor } from "../Particles/OptionsColor";
 import type { IBackgroundMaskCover } from "../../../Interfaces/Options/BackgroundMask/IBackgroundMaskCover";
 
 export class BackgroundMaskCover implements IBackgroundMaskCover {
-    public color: IOptionsColor;
+    public color: OptionsColor;
     public opacity: number;
 
     constructor() {

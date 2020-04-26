@@ -1,10 +1,7 @@
 import type { IEvents } from "../../../../Interfaces/Options/Interactivity/Events/IEvents";
 import { ClickEvent } from "./ClickEvent";
-import type { IDivEvent } from "../../../../Interfaces/Options/Interactivity/Events/IDivEvent";
-import type { IHoverEvent } from "../../../../Interfaces/Options/Interactivity/Events/IHoverEvent";
 import { DivEvent } from "./DivEvent";
 import { HoverEvent } from "./HoverEvent";
-import type { IClickEvent } from "../../../../Interfaces/Options/Interactivity/Events/IClickEvent";
 import type { RecursivePartial } from "../../../../Types/RecursivePartial";
 
 export class Events implements IEvents {
@@ -12,7 +9,7 @@ export class Events implements IEvents {
      *
      * @deprecated this property is obsolete, please use the new onClick
      */
-    public get onclick(): IClickEvent {
+    public get onclick(): ClickEvent {
         return this.onClick;
     }
 
@@ -21,7 +18,7 @@ export class Events implements IEvents {
      * @deprecated this property is obsolete, please use the new onClick
      * @param value
      */
-    public set onclick(value: IClickEvent) {
+    public set onclick(value: ClickEvent) {
         this.onClick = value;
     }
 
@@ -29,7 +26,7 @@ export class Events implements IEvents {
      *
      * @deprecated this property is obsolete, please use the new onDiv
      */
-    public get ondiv(): IDivEvent {
+    public get ondiv(): DivEvent {
         return this.onDiv;
     }
 
@@ -38,7 +35,7 @@ export class Events implements IEvents {
      * @deprecated this property is obsolete, please use the new onDiv
      * @param value
      */
-    public set ondiv(value: IDivEvent) {
+    public set ondiv(value: DivEvent) {
         this.onDiv = value;
     }
 
@@ -46,7 +43,7 @@ export class Events implements IEvents {
      *
      * @deprecated this property is obsolete, please use the new onHover
      */
-    public get onhover(): IHoverEvent {
+    public get onhover(): HoverEvent {
         return this.onHover;
     }
 
@@ -55,13 +52,13 @@ export class Events implements IEvents {
      * @deprecated this property is obsolete, please use the new onHover
      * @param value
      */
-    public set onhover(value: IHoverEvent) {
+    public set onhover(value: HoverEvent) {
         this.onHover = value;
     }
 
-    public onClick: IClickEvent;
-    public onDiv: IDivEvent;
-    public onHover: IHoverEvent;
+    public onClick: ClickEvent;
+    public onDiv: DivEvent;
+    public onHover: HoverEvent;
     public resize: boolean;
 
     constructor() {

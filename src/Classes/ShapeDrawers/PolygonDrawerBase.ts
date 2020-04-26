@@ -4,7 +4,7 @@ import type { ICoordinates } from "../../Interfaces/ICoordinates";
 import type { IParticle } from "../../Interfaces/IParticle";
 
 export abstract class PolygonDrawerBase implements IShapeDrawer {
-    public draw(context: CanvasRenderingContext2D, particle: IParticle, radius: number, opacity: number): void {
+    public draw(context: CanvasRenderingContext2D, particle: IParticle, radius: number, _opacity: number): void {
         const start = this.getCenter(particle, radius);
         const side = this.getSidesData(particle, radius);
 

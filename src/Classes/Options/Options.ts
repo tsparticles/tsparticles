@@ -2,19 +2,12 @@ import type { IOptions } from "../../Interfaces/Options/IOptions";
 import { Interactivity } from "./Interactivity/Interactivity";
 import { Particles } from "./Particles/Particles";
 import { PolygonMask } from "./PolygonMask/PolygonMask";
-import type { IInteractivity } from "../../Interfaces/Options/Interactivity/IInteractivity";
-import type { IParticles } from "../../Interfaces/Options/Particles/IParticles";
-import type { IPolygonMask } from "../../Interfaces/Options/PolygonMask/IPolygonMask";
-import type { IBackgroundMask } from "../../Interfaces/Options/BackgroundMask/IBackgroundMask";
 import { BackgroundMask } from "./BackgroundMask/BackgroundMask";
 import type { RecursivePartial } from "../../Types/RecursivePartial";
 import { Presets } from "../Utils/Presets";
-import type { IBackground } from "../../Interfaces/Options/Background/IBackground";
 import { Background } from "./Background/Background";
 import type { SingleOrMultiple } from "../../Types/SingleOrMultiple";
-import type { IEmitter } from "../../Interfaces/Options/Emitters/IEmitter";
 import { Emitter } from "./Emitters/Emitter";
-import type { IAbsorber } from "../../Interfaces/Options/Absorbers/IAbsorber";
 import { Absorber } from "./Absorbers/Absorber";
 
 export class Options implements IOptions {
@@ -49,15 +42,15 @@ export class Options implements IOptions {
         this.detectRetina = value;
     }
 
-    public absorbers: SingleOrMultiple<IAbsorber>;
-    public background: IBackground;
-    public backgroundMask: IBackgroundMask;
+    public absorbers: SingleOrMultiple<Absorber>;
+    public background: Background;
+    public backgroundMask: BackgroundMask;
     public detectRetina: boolean;
-    public emitters: SingleOrMultiple<IEmitter>;
+    public emitters: SingleOrMultiple<Emitter>;
     public fpsLimit: number;
-    public interactivity: IInteractivity;
-    public particles: IParticles;
-    public polygon: IPolygonMask;
+    public interactivity: Interactivity;
+    public particles: Particles;
+    public polygon: PolygonMask;
     public pauseOnBlur: boolean;
     public preset?: string | string[];
 
@@ -78,7 +71,7 @@ export class Options implements IOptions {
      * This methods loads the source object in the current instance
      * @param data the source data to load into the instance
      */
-    public load(data: RecursivePartial<IOptions>): void {
+    public load(data?: RecursivePartial<IOptions>): void {
         if (data !== undefined) {
             if (data.preset !== undefined) {
                 if (data.preset instanceof Array) {
@@ -112,7 +105,7 @@ export class Options implements IOptions {
 
             this.particles.load(data.particles);
 
-            (this.interactivity as Interactivity).load(data.interactivity, this.particles);
+            this.interactivity.load(data.interactivity);
 
             this.polygon.load(data.polygon);
             this.backgroundMask.load(data.backgroundMask);
@@ -122,7 +115,7 @@ export class Options implements IOptions {
                     this.emitters = data.emitters.map((s) => {
                         const tmp = new Emitter();
 
-                        tmp.load(s, this.particles);
+                        tmp.load(s);
 
                         return tmp;
                     });
@@ -131,7 +124,7 @@ export class Options implements IOptions {
                         this.emitters = new Emitter();
                     }
 
-                    (this.emitters as Emitter).load(data.emitters, this.particles);
+                    this.emitters.load(data.emitters);
                 }
             }
 
@@ -145,11 +138,11 @@ export class Options implements IOptions {
                         return tmp;
                     });
                 } else {
-                    if (this.emitters instanceof Array) {
+                    if (this.absorbers instanceof Array) {
                         this.absorbers = new Absorber();
                     }
 
-                    (this.absorbers as Absorber).load(data.absorbers);
+                    this.absorbers.load(data.absorbers);
                 }
             }
         }

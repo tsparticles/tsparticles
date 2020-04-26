@@ -1,6 +1,5 @@
 import type { IConnect } from "../../../../Interfaces/Options/Interactivity/Modes/IConnect";
 import { ConnectLineLinked } from "./ConnectLineLinked";
-import type { IConnectLineLinked } from "../../../../Interfaces/Options/Interactivity/Modes/IConnectLineLinked";
 import type { RecursivePartial } from "../../../../Types/RecursivePartial";
 
 export class Connect implements IConnect {
@@ -8,7 +7,7 @@ export class Connect implements IConnect {
      *
      * @deprecated this property is obsolete, please use the new lineLinked
      */
-    public get line_linked(): IConnectLineLinked {
+    public get line_linked(): ConnectLineLinked {
         return this.lineLinked;
     }
 
@@ -17,12 +16,12 @@ export class Connect implements IConnect {
      * @deprecated this property is obsolete, please use the new lineLinked
      * @param value
      */
-    public set line_linked(value: IConnectLineLinked) {
+    public set line_linked(value: ConnectLineLinked) {
         this.lineLinked = value;
     }
 
     public distance: number;
-    public lineLinked: IConnectLineLinked;
+    public lineLinked: ConnectLineLinked;
     public radius: number;
 
     constructor() {

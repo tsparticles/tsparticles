@@ -1,11 +1,10 @@
 import type { IRotate } from "../../../../Interfaces/Options/Particles/Rotate/IRotate";
-import type { IRotateAnimation } from "../../../../Interfaces/Options/Particles/Rotate/IRotateAnimation";
 import { RotateAnimation } from "./RotateAnimation";
 import { RotateDirection } from "../../../../Enums/RotateDirection";
 import type { RecursivePartial } from "../../../../Types/RecursivePartial";
 
 export class Rotate implements IRotate {
-    public animation: IRotateAnimation;
+    public animation: RotateAnimation;
     public direction: RotateDirection;
     public random: boolean;
     public value: number;

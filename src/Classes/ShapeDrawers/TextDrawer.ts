@@ -8,7 +8,7 @@ interface ITextParticle extends IParticle {
 }
 
 export class TextDrawer implements IShapeDrawer {
-    public draw(context: CanvasRenderingContext2D, particle: IParticle, radius: number, opacity: number): void {
+    public draw(context: CanvasRenderingContext2D, particle: IParticle, radius: number, _opacity: number): void {
         const character = particle.shapeData as ICharacterShape;
 
         if (character === undefined) {

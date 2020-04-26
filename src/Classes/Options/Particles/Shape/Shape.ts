@@ -2,14 +2,11 @@ import type { IShape } from "../../../../Interfaces/Options/Particles/Shape/ISha
 import { ShapeType } from "../../../../Enums/ShapeType";
 import { ImageShape } from "./ImageShape";
 import { PolygonShape } from "./PolygonShape";
-import type { IImageShape } from "../../../../Interfaces/Options/Particles/Shape/IImageShape";
-import type { ICharacterShape } from "../../../../Interfaces/Options/Particles/Shape/ICharacterShape";
-import type { IPolygonShape } from "../../../../Interfaces/Options/Particles/Shape/IPolygonShape";
-import type { IStroke } from "../../../../Interfaces/Options/Particles/IStroke";
 import type { RecursivePartial } from "../../../../Types/RecursivePartial";
 import type { SingleOrMultiple } from "../../../../Types/SingleOrMultiple";
 import { ShapeData } from "../../../../Types/ShapeData";
 import { CharacterShape } from "./CharacterShape";
+import { Stroke } from "../Stroke";
 
 export class Shape implements IShape {
     /**
@@ -30,41 +27,41 @@ export class Shape implements IShape {
     /**
      * @deprecated the property images is deprecated, please use the image property, it works with one and many
      */
-    get images(): IImageShape[] {
+    get images(): ImageShape[] {
         return this.image instanceof Array ? this.image : [ this.image ];
     }
 
     /**
      * @deprecated the property images is deprecated, please use the image property, it works with one and many
      */
-    set images(value: IImageShape[]) {
+    set images(value: ImageShape[]) {
         this.image = value;
     }
 
     /**
      * @deprecated this property was moved to particles section
      */
-    get stroke(): SingleOrMultiple<IStroke> {
+    get stroke(): SingleOrMultiple<Stroke> {
         return [];
     }
 
     /**
      * @deprecated this property was moved to particles section
      */
-    set stroke(value: SingleOrMultiple<IStroke>) {
+    set stroke(_value: SingleOrMultiple<Stroke>) {
     }
 
     /**
      * @deprecated this property was integrated in custom shape management
      */
-    get character(): SingleOrMultiple<ICharacterShape> {
-        return (this.options[ShapeType.character] ?? this.options[ShapeType.char]) as SingleOrMultiple<ICharacterShape>;
+    get character(): SingleOrMultiple<CharacterShape> {
+        return (this.options[ShapeType.character] ?? this.options[ShapeType.char]) as SingleOrMultiple<CharacterShape>;
     }
 
     /**
      * @deprecated this property was integrated in custom shape management
      */
-    set character(value: SingleOrMultiple<ICharacterShape>) {
+    set character(value: SingleOrMultiple<CharacterShape>) {
         this.options[ShapeType.character] = value;
         this.options[ShapeType.char] = value;
     }
@@ -72,19 +69,19 @@ export class Shape implements IShape {
     /**
      * @deprecated this property was integrated in custom shape management
      */
-    get polygon(): SingleOrMultiple<IPolygonShape> {
-        return (this.options[ShapeType.polygon] ?? this.options[ShapeType.star]) as SingleOrMultiple<IPolygonShape>;
+    get polygon(): SingleOrMultiple<PolygonShape> {
+        return (this.options[ShapeType.polygon] ?? this.options[ShapeType.star]) as SingleOrMultiple<PolygonShape>;
     }
 
     /**
      * @deprecated this property was integrated in custom shape management
      */
-    set polygon(value: SingleOrMultiple<IPolygonShape>) {
+    set polygon(value: SingleOrMultiple<PolygonShape>) {
         this.options[ShapeType.polygon] = value;
         this.options[ShapeType.star] = value;
     }
 
-    public image: SingleOrMultiple<IImageShape>;
+    public image: SingleOrMultiple<ImageShape>;
     public type: SingleOrMultiple<ShapeType | string>;
     public options: ShapeData;
 

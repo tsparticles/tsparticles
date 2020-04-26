@@ -189,11 +189,11 @@ export class Updater {
             }
 
             if (nextBounds.top > canvasSize.height - particle.offset.y) {
+                particle.position.x = Math.random() * canvasSize.width;
                 particle.position.y = newPos.top;
-                particle.position.x = Math.random() * canvasSize.width;
             } else if (nextBounds.bottom < -particle.offset.y) {
-                particle.position.y = newPos.bottom;
                 particle.position.x = Math.random() * canvasSize.width;
+                particle.position.y = newPos.bottom;
             }
         }
     }
