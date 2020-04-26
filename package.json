@@ -73,7 +73,7 @@
     "@fortawesome/fontawesome-free": "^5.13.0",
     "@types/chai": "^4.2.11",
     "@types/mocha": "^7.0.2",
-    "@types/node": "^13.13.3",
+    "@types/node": "^13.13.4",
     "babel-loader": "^8.1.0",
     "bootstrap": "^4.4.1",
     "chai": "^4.2.0",
