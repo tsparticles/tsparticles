@@ -3,7 +3,6 @@ import { MoveDirection } from "../../Enums/MoveDirection";
 import type { ICharacterShape } from "../../Interfaces/Options/Particles/Shape/ICharacterShape";
 import type { IBounds } from "../../Interfaces/IBounds";
 import type { IDimension } from "../../Interfaces/IDimension";
-import type { IImageShape } from "../../Interfaces/Options/Particles/Shape/IImageShape";
 import type { IImage } from "../../Interfaces/IImage";
 import type { IParticle } from "../../Interfaces/IParticle";
 
@@ -162,29 +161,27 @@ export class Utils {
         };
     }
 
-    public static loadImage(optionsImage: IImageShape): Promise<IImage> {
+    public static loadImage(source: string): Promise<IImage> {
         return new Promise((resolve: (value?: IImage | PromiseLike<IImage> | undefined) => void,
                             reject: (reason?: string) => void) => {
-            const src = optionsImage.src;
-
             const image: IImage = {
-                type: src.substr(src.length - 3),
+                type: source.substr(source.length - 3),
             };
 
-            if (optionsImage.src) {
+            if (source) {
                 const img = new Image();
 
                 img.addEventListener("load", () => {
-                    image.obj = img;
+                    image.element = img;
 
                     resolve(image);
                 });
 
                 img.addEventListener("error", () => {
-                    reject(`Error tsParticles - loading image: ${optionsImage.src}`);
+                    reject(`Error tsParticles - loading image: ${source}`);
                 });
 
-                img.src = optionsImage.src;
+                img.src = source;
             } else {
                 reject("Error tsParticles - No image.src");
             }

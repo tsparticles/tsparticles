@@ -7,17 +7,14 @@ export class ImageDrawer implements IShapeDrawer {
             return;
         }
 
-        const imgObj = particle.image?.data?.obj;
+        const image = particle.image;
+        const element = image?.data?.element;
 
-        if (!imgObj) {
+        if (!element) {
             return;
         }
 
-        let ratio = 1;
-
-        if (particle.image) {
-            ratio = particle.image.ratio;
-        }
+        const ratio = image?.ratio ?? 1;
 
         const pos = {
             x: -radius,
@@ -25,7 +22,7 @@ export class ImageDrawer implements IShapeDrawer {
         };
 
         context.globalAlpha = opacity;
-        context.drawImage(imgObj, pos.x, pos.y, radius * 2, radius * 2 / ratio);
+        context.drawImage(element, pos.x, pos.y, radius * 2, radius * 2 / ratio);
         context.globalAlpha = 1;
     }
 }

@@ -1,10 +1,10 @@
 import type { IImage } from "./IImage";
 
 export interface IParticleImage {
-    src: string;
+    source: string;
     data: IImage;
     ratio: number;
-    obj?: HTMLImageElement;
+    element?: HTMLImageElement;
     loaded?: boolean;
     replaceColor: boolean;
 }

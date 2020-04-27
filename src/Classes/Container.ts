@@ -253,7 +253,7 @@ export class Container {
 
     private async loadImageShape(imageShape: IImageShape): Promise<void> {
         try {
-            this.images.push(await Utils.loadImage(imageShape));
+            this.images.push(await Utils.loadImage(imageShape.src));
         } catch {
         }
     }

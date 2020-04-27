@@ -233,7 +233,7 @@ export class Particle implements IParticle {
                 data: image,
                 ratio: optionsImage.width / optionsImage.height,
                 replaceColor: optionsImage.replaceColor,
-                src: optionsImage.src,
+                source: optionsImage.src,
             };
 
             if (!this.image.ratio) {
