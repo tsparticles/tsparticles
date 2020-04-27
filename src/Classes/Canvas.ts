@@ -20,16 +20,15 @@ export class Canvas {
      * The particles canvas dimension
      */
     public readonly size: IDimension;
+    /**
+     * The particles canvas context
+     */
+    public context: CanvasRenderingContext2D | null;
 
     /**
      * The parent container
      */
     private readonly container: Container;
-
-    /**
-     * The particles canvas context
-     */
-    private context: CanvasRenderingContext2D | null;
 
     private generatedCanvas: boolean;
 
@@ -143,28 +142,6 @@ export class Canvas {
 
     public isPointInPath(path: Path2D, point: ICoordinates): boolean {
         return this.context?.isPointInPath(path, point.x, point.y) ?? false;
-    }
-
-    public drawPolygonMask(): void {
-        const container = this.container;
-        const options = container.options;
-        const context = this.context;
-        const polygonDraw = options.polygon.draw;
-        const polygon = container.polygon;
-        const rawData = polygon.raw;
-
-        for (const path of polygon.paths) {
-            const path2d = path.path2d;
-            const path2dSupported = polygon.path2DSupported;
-
-            if (context) {
-                if (path2dSupported && path2d && polygon.offset) {
-                    CanvasUtils.drawPolygonMaskPath(context, path2d, polygonDraw.stroke, polygon.offset);
-                } else if (rawData) {
-                    CanvasUtils.drawPolygonMask(context, rawData, polygonDraw.stroke);
-                }
-            }
-        }
     }
 
     public drawAbsorber(absorber: Absorber): void {

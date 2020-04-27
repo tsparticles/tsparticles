@@ -311,35 +311,30 @@ export class Particle implements IParticle {
     }
 
     private calcPosition(container: Container, position?: ICoordinates): ICoordinates {
+        for (const plugin of container.plugins) {
+            const pluginPos = plugin.particlePosition !== undefined ? plugin.particlePosition(position) : undefined;
+
+            if (pluginPos !== undefined) {
+                return pluginPos;
+            }
+        }
+
         const pos = { x: 0, y: 0 };
-        const options = container.options;
 
-        if (options.polygon.enable && (container.polygon.raw?.length ?? 0) > 0) {
-            if (position) {
-                pos.x = position.x;
-                pos.y = position.y;
-            } else {
-                const randomPoint = container.polygon.randomPointInPolygon();
+        pos.x = position ? position.x : Math.random() * container.canvas.size.width;
+        pos.y = position ? position.y : Math.random() * container.canvas.size.height;
 
-                pos.x = randomPoint.x;
-                pos.y = randomPoint.y;
-            }
-        } else {
-            pos.x = position ? position.x : Math.random() * container.canvas.size.width;
-            pos.y = position ? position.y : Math.random() * container.canvas.size.height;
+        /* check position  - into the canvas */
+        if (pos.x > container.canvas.size.width - this.size.value * 2) {
+            pos.x -= this.size.value;
+        } else if (pos.x < this.size.value * 2) {
+            pos.x += this.size.value;
+        }
 
-            /* check position  - into the canvas */
-            if (pos.x > container.canvas.size.width - this.size.value * 2) {
-                pos.x -= this.size.value;
-            } else if (pos.x < this.size.value * 2) {
-                pos.x += this.size.value;
-            }
-
-            if (pos.y > container.canvas.size.height - this.size.value * 2) {
-                pos.y -= this.size.value;
-            } else if (pos.y < this.size.value * 2) {
-                pos.y += this.size.value;
-            }
+        if (pos.y > container.canvas.size.height - this.size.value * 2) {
+            pos.y -= this.size.value;
+        } else if (pos.y < this.size.value * 2) {
+            pos.y += this.size.value;
         }
 
         return pos;

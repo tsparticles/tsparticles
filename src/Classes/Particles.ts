@@ -3,8 +3,6 @@ import type { ICoordinates } from "../Interfaces/ICoordinates";
 import type { IMouseData } from "../Interfaces/IMouseData";
 import type { IRgb } from "../Interfaces/IRgb";
 import { Particle } from "./Particle";
-import { PolygonMaskType } from "../Enums/PolygonMaskType";
-import { PolygonMaskInlineArrangement } from "../Enums/PolygonMaskInlineArrangement";
 import { InteractionManager } from "./Interactions/Particles/InteractionManager";
 import { SpatialGrid } from "./Utils/SpatialGrid";
 import { Utils } from "./Utils/Utils";
@@ -44,16 +42,24 @@ export class Particles {
     public init(): void {
         const container = this.container;
         const options = container.options;
+        let handled = false;
 
-        if (options.polygon.enable && options.polygon.type === PolygonMaskType.inline &&
-            (options.polygon.inline.arrangement === PolygonMaskInlineArrangement.onePerPoint ||
-                options.polygon.inline.arrangement === PolygonMaskInlineArrangement.perPoint)) {
-            container.polygon.drawPointsOnPolygonPath();
-        } else {
+        for (const plugin of container.plugins) {
+            if (plugin.particlesInitialization !== undefined) {
+                handled = plugin.particlesInitialization();
+            }
+
+            if (handled) {
+                break;
+            }
+        }
+
+        if (!handled) {
             for (let i = this.array.length; i < options.particles.number.value; i++) {
                 this.addParticle(new Particle(container));
             }
         }
+
 
         this.interactionsEnabled = options.particles.lineLinked.enable ||
             options.particles.move.attract.enable ||
@@ -148,7 +154,6 @@ export class Particles {
 
     public draw(delta: number): void {
         const container = this.container;
-        const options = container.options;
 
         /* clear canvas */
         container.canvas.clear();
@@ -158,8 +163,10 @@ export class Particles {
         this.spatialGrid.setGrid(this.array, this.container.canvas.size);
 
         /* draw polygon shape in debug mode */
-        if (options.polygon.enable && options.polygon.draw.enable) {
-            container.polygon.drawPolygon();
+        for (const plugin of container.plugins) {
+            if (plugin.draw !== undefined) {
+                plugin.draw();
+            }
         }
 
         for (const absorber of container.absorbers) {

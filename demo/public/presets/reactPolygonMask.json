@@ -90,7 +90,7 @@
                     "y": 3000
                 }
             },
-            "collisions": true,
+            "collisions": false,
             "direction": "none",
             "enable": true,
             "outMode": "bounce",

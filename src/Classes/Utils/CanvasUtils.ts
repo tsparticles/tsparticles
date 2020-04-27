@@ -2,7 +2,6 @@ import type { IDimension } from "../../Interfaces/IDimension";
 import type { ICoordinates } from "../../Interfaces/ICoordinates";
 import type { IRgb } from "../../Interfaces/IRgb";
 import type { ILineLinkedShadow } from "../../Interfaces/Options/Particles/LineLinked/ILineLinkedShadow";
-import type { IPolygonMaskDrawStroke } from "../../Interfaces/Options/PolygonMask/IPolygonMaskDrawStroke";
 import { ColorUtils } from "./ColorUtils";
 import type { IParticle } from "../../Interfaces/IParticle";
 import type { IShadow } from "../../Interfaces/Options/Particles/IShadow";
@@ -23,50 +22,6 @@ export class CanvasUtils {
 
     public static clear(context: CanvasRenderingContext2D, dimension: IDimension): void {
         context.clearRect(0, 0, dimension.width, dimension.height);
-    }
-
-    public static drawPolygonMask(context: CanvasRenderingContext2D,
-                                  rawData: ICoordinates[],
-                                  stroke: IPolygonMaskDrawStroke): void {
-        const color = typeof stroke.color === "string" ?
-            ColorUtils.stringToRgb(stroke.color) :
-            ColorUtils.colorToRgb(stroke.color);
-
-        if (color) {
-            context.save();
-            context.beginPath();
-            context.moveTo(rawData[0].x, rawData[0].y);
-
-            for (let i = 1; i < rawData.length; i++) {
-                context.lineTo(rawData[i].x, rawData[i].y);
-            }
-
-            context.closePath();
-            context.strokeStyle = ColorUtils.getStyleFromColor(color);
-            context.lineWidth = stroke.width;
-            context.stroke();
-            context.restore();
-        }
-    }
-
-    public static drawPolygonMaskPath(context: CanvasRenderingContext2D,
-                                      path: Path2D,
-                                      stroke: IPolygonMaskDrawStroke,
-                                      position: ICoordinates): void {
-        context.save();
-        context.translate(position.x, position.y);
-
-        const color = typeof stroke.color === "string" ?
-            ColorUtils.stringToRgb(stroke.color) :
-            ColorUtils.colorToRgb(stroke.color);
-
-        if (color) {
-            context.strokeStyle = ColorUtils.getStyleFromColor(color, stroke.opacity);
-            context.lineWidth = stroke.width;
-            context.stroke(path);
-        }
-
-        context.restore();
     }
 
     public static drawAbsorber(context: CanvasRenderingContext2D, absorber: Absorber) {

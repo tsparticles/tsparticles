@@ -7,6 +7,9 @@ import { Utils } from "./Utils/Utils";
 import type { IDimension } from "../Interfaces/IDimension";
 import { Constants } from "./Utils/Constants";
 import { ISvgPath } from "../Interfaces/ISvgPath";
+import type { IPlugin } from "../Interfaces/IPlugin";
+import { IPolygonMaskDrawStroke } from "../Interfaces/Options/PolygonMask/IPolygonMaskDrawStroke";
+import { ColorUtils } from "./Utils/ColorUtils";
 
 type SvgAbsoluteCoordinatesTypes =
     | SVGPathSegArcAbs
@@ -29,7 +32,7 @@ type SvgRelativeCoordinatesTypes =
 /**
  * Polygon Mask manager
  */
-export class PolygonMask {
+export class PolygonMask implements IPlugin {
     public redrawTimeout?: number;
     public raw?: ICoordinates[];
     public svg?: SVGSVGElement;
@@ -96,7 +99,7 @@ export class PolygonMask {
         return false;
     }
 
-    public redraw(): void {
+    public resize(): void {
         const container = this.container;
         const options = container.options;
 
@@ -117,7 +120,7 @@ export class PolygonMask {
         }
     }
 
-    public async init(): Promise<void> {
+    public async initAsync(): Promise<void> {
         const container = this.container;
         const options = container.options;
 
@@ -171,6 +174,83 @@ export class PolygonMask {
         } else {
             return this.randomPointInPolygon();
         }
+    }
+
+    public particlesInitialization() {
+        const container = this.container;
+        const options = container.options;
+
+        if (options.polygon.enable && options.polygon.type === PolygonMaskType.inline &&
+            (options.polygon.inline.arrangement === PolygonMaskInlineArrangement.onePerPoint ||
+                options.polygon.inline.arrangement === PolygonMaskInlineArrangement.perPoint)) {
+            this.drawPointsOnPolygonPath();
+
+            return true;
+        }
+
+        return false;
+    }
+
+    public particlePosition(position?: ICoordinates): ICoordinates | undefined {
+        const container = this.container;
+        const options = container.options;
+
+        if (options.polygon.enable && (this.raw?.length ?? 0) > 0) {
+            const pos = { x: 0, y: 0 };
+
+            if (position) {
+                pos.x = position.x;
+                pos.y = position.y;
+            } else {
+                const randomPoint = this.randomPointInPolygon();
+                
+                pos.x = randomPoint.x;
+                pos.y = randomPoint.y;
+            }
+
+            return pos;
+        }
+    }
+
+    public particleBounce(particle: Particle): boolean {
+        const container = this.container;
+        const options = container.options;
+
+        /* check bounce against polygon boundaries */
+        if (options.polygon.enable && options.polygon.type !== PolygonMaskType.none &&
+            options.polygon.type !== PolygonMaskType.inline) {
+            if (!this.checkInsidePolygon(particle.position)) {
+                PolygonMask.polygonBounce(particle);
+
+                return true;
+            }
+        } else if (options.polygon.enable && options.polygon.type === PolygonMaskType.inline) {
+            if (particle.initialPosition) {
+                const dist = Utils.getDistanceBetweenCoordinates(particle.initialPosition, particle.position);
+
+                if (dist > container.retina.polygonMaskMoveRadius) {
+                    PolygonMask.polygonBounce(particle);
+
+                    return true;
+                }
+            }
+        }
+
+        return false;
+    }
+
+    public clickPositionValid(position: ICoordinates): boolean {
+        const container = this.container;
+        const options = container.options;
+
+        if (options.polygon.enable && options.polygon.type !== PolygonMaskType.none &&
+            options.polygon.type !== PolygonMaskType.inline) {
+            if (this.checkInsidePolygon(position)) {
+                return true;
+            }
+        }
+
+        return false;
     }
 
     /**
@@ -305,10 +385,30 @@ export class PolygonMask {
         return polygonRaw;
     }
 
-    public drawPolygon(): void {
+    public draw(): void {
         const container = this.container;
+        const options = container.options;
 
-        container.canvas.drawPolygonMask();
+        if (options.polygon.enable && options.polygon.draw.enable) {
+            const container = this.container;
+            const options = container.options;
+            const context = container.canvas.context;
+            const polygonDraw = options.polygon.draw;
+            const rawData = this.raw;
+
+            for (const path of this.paths) {
+                const path2d = path.path2d;
+                const path2dSupported = this.path2DSupported;
+
+                if (context) {
+                    if (path2dSupported && path2d && this.offset) {
+                        PolygonMask.drawPolygonMaskPath(context, path2d, polygonDraw.stroke, this.offset);
+                    } else if (rawData) {
+                        PolygonMask.drawPolygonMask(context, rawData, polygonDraw.stroke);
+                    }
+                }
+            }
+        }
     }
 
     public drawPointsOnPolygonPath(): void {
@@ -435,5 +535,54 @@ export class PolygonMask {
                 path.path2d.closePath();
             }
         }
+    }
+
+    private static polygonBounce(particle: Particle): void {
+        particle.velocity.horizontal = -particle.velocity.horizontal + (particle.velocity.vertical / 2);
+        particle.velocity.vertical = -particle.velocity.vertical + (particle.velocity.horizontal / 2);
+    }
+
+    private static drawPolygonMask(context: CanvasRenderingContext2D,
+                                   rawData: ICoordinates[],
+                                   stroke: IPolygonMaskDrawStroke): void {
+        const color = typeof stroke.color === "string" ?
+            ColorUtils.stringToRgb(stroke.color) :
+            ColorUtils.colorToRgb(stroke.color);
+
+        if (color) {
+            context.save();
+            context.beginPath();
+            context.moveTo(rawData[0].x, rawData[0].y);
+
+            for (let i = 1; i < rawData.length; i++) {
+                context.lineTo(rawData[i].x, rawData[i].y);
+            }
+
+            context.closePath();
+            context.strokeStyle = ColorUtils.getStyleFromColor(color);
+            context.lineWidth = stroke.width;
+            context.stroke();
+            context.restore();
+        }
+    }
+
+    private static drawPolygonMaskPath(context: CanvasRenderingContext2D,
+                                       path: Path2D,
+                                       stroke: IPolygonMaskDrawStroke,
+                                       position: ICoordinates): void {
+        context.save();
+        context.translate(position.x, position.y);
+
+        const color = typeof stroke.color === "string" ?
+            ColorUtils.stringToRgb(stroke.color) :
+            ColorUtils.colorToRgb(stroke.color);
+
+        if (color) {
+            context.strokeStyle = ColorUtils.getStyleFromColor(color, stroke.opacity);
+            context.lineWidth = stroke.width;
+            context.stroke(path);
+        }
+
+        context.restore();
     }
 }

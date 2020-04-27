@@ -2,7 +2,6 @@ import { ClickMode } from "../../Enums/Modes/ClickMode";
 import type { Container } from "../Container";
 import { InteractivityDetect } from "../../Enums/InteractivityDetect";
 import type { ICoordinates } from "../../Interfaces/ICoordinates";
-import { PolygonMaskType } from "../../Enums/PolygonMaskType";
 import { Constants } from "./Constants";
 import { Emitter } from "../Emitter";
 import { Utils } from "./Utils";
@@ -191,7 +190,11 @@ export class EventListeners {
             absorber.resize();
         }
 
-        container.polygon.redraw();
+        for (const plugin of container.plugins) {
+            if (plugin.resize !== undefined) {
+                plugin.resize();
+            }
+        }
     }
 
     private handleVisibilityChange(): void {
@@ -306,17 +309,24 @@ export class EventListeners {
     private mouseTouchClick(e: Event): void {
         const container = this.container;
         const options = container.options;
+        let handled = false;
+        const mousePosition = container.interactivity.mouse.position;
 
-        if (options.polygon === undefined) {
+        if (mousePosition === undefined || !options.interactivity.events.onClick.enable) {
             return;
         }
 
-        if (options.polygon.enable && options.polygon.type !== PolygonMaskType.none &&
-            options.polygon.type !== PolygonMaskType.inline) {
-            if (container.polygon.checkInsidePolygon(container.interactivity.mouse.position)) {
-                this.doMouseTouchClick(e);
+        for (const plugin of container.plugins) {
+            if (plugin.clickPositionValid !== undefined) {
+                handled = plugin.clickPositionValid(mousePosition);
+
+                if (handled) {
+                    break;
+                }
             }
-        } else {
+        }
+
+        if (!handled) {
             this.doMouseTouchClick(e);
         }
     }

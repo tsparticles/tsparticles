@@ -2,7 +2,6 @@ import type { Container } from "../Container";
 import { OutMode } from "../../Enums/OutMode";
 import type { Particle } from "../Particle";
 import { Utils } from "../Utils/Utils";
-import { PolygonMaskType } from "../../Enums/PolygonMaskType";
 import { Mover } from "./Mover";
 import { RotateDirection } from "../../Enums/RotateDirection";
 import type { IBounds } from "../../Interfaces/IBounds";
@@ -221,24 +220,20 @@ export class Updater {
 
     private updateBounce(): void {
         const container = this.container;
-        const options = container.options;
         const particle = this.particle;
+        let handled = false;
 
-        /* check bounce against polygon boundaries */
-        if (options.polygon.enable && options.polygon.type !== PolygonMaskType.none &&
-            options.polygon.type !== PolygonMaskType.inline) {
-            if (!container.polygon.checkInsidePolygon(particle.position)) {
-                this.polygonBounce();
+        for (const plugin of container.plugins) {
+            if (plugin.particleBounce !== undefined) {
+                handled = plugin.particleBounce(particle);
             }
-        } else if (options.polygon.enable && options.polygon.type === PolygonMaskType.inline) {
-            if (particle.initialPosition) {
-                const dist = Utils.getDistanceBetweenCoordinates(particle.initialPosition, particle.position);
 
-                if (dist > container.retina.polygonMaskMoveRadius) {
-                    this.polygonBounce();
-                }
+            if (handled) {
+                break;
             }
-        } else {
+        }
+
+        if (!handled) {
             const outMode = particle.particlesOptions.move.outMode;
             const x = particle.position.x + particle.offset.x;
             const y = particle.position.y + particle.offset.y;
@@ -259,12 +254,5 @@ export class Updater {
                 });
             }
         }
-    }
-
-    private polygonBounce(): void {
-        const particle = this.particle;
-
-        particle.velocity.horizontal = -particle.velocity.horizontal + (particle.velocity.vertical / 2);
-        particle.velocity.vertical = -particle.velocity.vertical + (particle.velocity.horizontal / 2);
     }
 }

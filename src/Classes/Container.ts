@@ -17,6 +17,7 @@ import type { IImageShape } from "../Interfaces/Options/Particles/Shape/IImageSh
 import { Presets } from "./Utils/Presets";
 import { Emitter } from "./Emitter";
 import { Absorber } from "./Absorber";
+import { IPlugin } from "../Interfaces/IPlugin";
 
 /**
  * The object loaded into an HTML element, it'll contain options loaded and all data to let everything working
@@ -31,7 +32,7 @@ export class Container {
     public particles: Particles;
     public emitters: Emitter[];
     public absorbers: Absorber[];
-    public polygon: PolygonMask;
+    public plugins: IPlugin[];
     public bubble: IBubble;
     public repulse: IRepulse;
     public images: IImage[];
@@ -63,7 +64,6 @@ export class Container {
         this.retina = new Retina(this);
         this.canvas = new Canvas(this);
         this.particles = new Particles(this);
-        this.polygon = new PolygonMask(this);
         this.drawer = new FrameManager(this);
         this.interactivity = {
             mouse: {},
@@ -73,6 +73,7 @@ export class Container {
         this.repulse = { particles: [] };
         this.emitters = [];
         this.absorbers = [];
+        this.plugins = [];
 
         /* tsParticles variables with default values */
         this.options = new Options();
@@ -84,6 +85,10 @@ export class Container {
         /* params settings */
         if (this.sourceOptions) {
             this.options.load(this.sourceOptions);
+        }
+
+        if (this.options.polygon.enable) {
+            this.plugins.push(new PolygonMask(this));
         }
 
         /* ---------- tsParticles - start ------------ */
@@ -155,12 +160,13 @@ export class Container {
         this.retina.reset();
         this.canvas.destroy();
 
+        this.plugins = [];
+
         delete this.interactivity;
         delete this.options;
         delete this.retina;
         delete this.canvas;
         delete this.particles;
-        delete this.polygon;
         delete this.bubble;
         delete this.repulse;
         delete this.images;
@@ -203,7 +209,13 @@ export class Container {
         this.particles.clear();
         this.retina.reset();
         this.canvas.clear();
-        this.polygon.reset();
+
+        for (const plugin of this.plugins) {
+            if (plugin.reset !== undefined) {
+                plugin.reset();
+            }
+        }
+
         this.emitters = [];
         this.absorbers = [];
 
@@ -219,7 +231,13 @@ export class Container {
 
         this.eventListeners.addListeners();
 
-        await this.polygon.init();
+        for (const plugin of this.plugins) {
+            if (plugin.initAsync !== undefined) {
+                await plugin.initAsync();
+            } else if (plugin.init !== undefined) {
+                plugin.init();
+            }
+        }
 
         if (Utils.isInArray(ShapeType.char, this.options.particles.shape.type) ||
             Utils.isInArray(ShapeType.character, this.options.particles.shape.type)) {
