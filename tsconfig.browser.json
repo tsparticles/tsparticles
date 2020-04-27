@@ -25,7 +25,9 @@
   "exclude": [
     "./tests/",
     "./node_modules/",
-    "./dist/"
+    "./dist/",
+    "./typedoc/",
+    "./docs/"
   ],
   "typedocOptions": {
     "gaID": "UA-159372955-1",
@@ -34,6 +36,7 @@
       "./src/index.ts"
     ],
     "mode": "library",
-    "out": "docs"
+    "out": "docs",
+    "theme": "./typedoc/themes/particles"
   }
 }
