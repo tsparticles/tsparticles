@@ -22,20 +22,14 @@ export class Draw implements IPolygonMaskDraw {
      * @deprecated the property lineColor is deprecated, please use the new stroke.color
      */
     get lineColor(): string | OptionsColor {
-        return this.stroke.color as OptionsColor;
+        return this.stroke.color;
     }
 
     /**
      * @deprecated the property lineColor is deprecated, please use the new stroke.color
      */
     set lineColor(value: string | OptionsColor) {
-        const destColor = this.stroke.color as OptionsColor;
-
-        if (typeof value === "string") {
-            destColor.value = value;
-        } else {
-            destColor.load(value);
-        }
+        this.stroke.color = OptionsColor.create(this.stroke.color, value);
     }
 
     public enable: boolean;

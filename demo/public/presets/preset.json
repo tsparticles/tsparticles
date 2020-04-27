@@ -1,4 +1,5 @@
 {
+  "fpsLimit": 60,
   "preset": "basic",
   "background": {
     "color": "#0d47a1",

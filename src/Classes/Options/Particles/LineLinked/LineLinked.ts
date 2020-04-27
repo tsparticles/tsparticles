@@ -30,7 +30,7 @@ export class LineLinked implements ILineLinked {
                 this.blink = data.blink;
             }
 
-            this.color.load(typeof data.color === "string" ? { value: data.color } : data.color);
+            this.color = OptionsColor.create(this.color, data.color);
 
             if (data.consent !== undefined) {
                 this.consent = data.consent;

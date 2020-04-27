@@ -1,3 +1,4 @@
 {
-    "preset": "fire"
+  "fpsLimit": 60,
+  "preset": "fire"
 }

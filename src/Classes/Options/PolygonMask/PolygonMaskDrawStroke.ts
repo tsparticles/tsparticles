@@ -16,8 +16,7 @@ export class PolygonMaskDrawStroke implements IPolygonMaskDrawStroke {
 
     public load(data?: RecursivePartial<IPolygonMaskDrawStroke>): void {
         if (data !== undefined) {
-
-            this.color.load(typeof data.color === "string" ? { value: data.color } : data.color);
+            this.color = OptionsColor.create(this.color, data.color);
 
             if (typeof this.color.value === "string") {
                 this.opacity = ColorUtils.stringToAlpha(this.color.value) ?? this.opacity;

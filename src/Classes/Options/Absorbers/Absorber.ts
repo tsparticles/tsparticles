@@ -20,11 +20,7 @@ export class Absorber implements IAbsorber {
     public load(data?: RecursivePartial<IAbsorber>): void {
         if (data !== undefined) {
             if (data.color !== undefined) {
-                if (this.color === undefined) {
-                    this.color = new OptionsColor();
-                }
-
-                this.color.load(typeof data.color === "string" ? { value: data.color } : data.color);
+                this.color = OptionsColor.create(this.color,  data.color);
             }
 
             if (data.opacity !== undefined) {
