@@ -16,8 +16,9 @@ export class Mover {
         const container = this.container;
         const options = container.options;
         const particle = this.particle;
+        const particlesOptions = particle.particlesOptions;
 
-        if (options.particles.move.enable) {
+        if (particlesOptions.move.enable) {
             const slowFactor = this.getProximitySpeedFactor();
             const deltaFactor = options.fpsLimit > 0 ? (60 * delta) / 1000 : 3.6;
             const baseSpeed = particle.moveSpeed ?? container.retina.moveSpeed;
@@ -25,6 +26,11 @@ export class Mover {
 
             particle.position.x += particle.velocity.horizontal * moveSpeed;
             particle.position.y += particle.velocity.vertical * moveSpeed;
+
+            if (particlesOptions.move.vibrate) { // vibrating
+                particle.position.x += Math.sin(particle.position.x * Math.cos(particle.position.y));
+                particle.position.y += Math.cos(particle.position.y * Math.sin(particle.position.x));
+            }
         }
 
         /* parallax */

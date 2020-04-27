@@ -29,4 +29,5 @@ export interface IMove extends IOptionLoader<IMove> {
     speed: number;
     straight: boolean;
     trail: ITrail;
+    vibrate: boolean;
 }

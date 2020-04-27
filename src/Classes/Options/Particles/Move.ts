@@ -60,6 +60,7 @@ export class Move implements IMove {
     public speed: number;
     public straight: boolean;
     public trail: Trail;
+    public vibrate: boolean;
 
     constructor() {
         this.attract = new Attract();
@@ -70,6 +71,7 @@ export class Move implements IMove {
         this.speed = 2;
         this.straight = false;
         this.trail = new Trail();
+        this.vibrate = false;
     }
 
     public load(data?: RecursivePartial<IMove>): void {
@@ -103,6 +105,10 @@ export class Move implements IMove {
             }
 
             this.trail.load(data.trail);
+
+            if (data.vibrate !== undefined) {
+                this.vibrate = data.vibrate;
+            }
         }
     }
 }

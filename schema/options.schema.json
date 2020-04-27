@@ -761,6 +761,9 @@
                 },
                 "trail": {
                     "$ref": "#/definitions/ITrail"
+                },
+                "vibrate": {
+                    "type": "boolean"
                 }
             },
             "type": "object"
@@ -1922,6 +1925,9 @@
                 },
                 "trail": {
                     "$ref": "#/definitions/RecursivePartial<ITrail>"
+                },
+                "vibrate": {
+                    "type": "boolean"
                 }
             },
             "type": "object"
