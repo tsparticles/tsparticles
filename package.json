@@ -91,7 +91,7 @@
     "terser-webpack-plugin": "^2.3.6",
     "three": "^0.115.0",
     "ts-node": "^8.9.1",
-    "typedoc": "^0.17.5",
+    "typedoc": "^0.17.6",
     "typescript": "^3.8.3",
     "typescript-json-schema": "^0.42.0",
     "webpack": "^4.43.0",
