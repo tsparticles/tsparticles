@@ -26,6 +26,8 @@
   "exclude": [
     "./tests/",
     "./node_modules/",
-    "./dist/"
+    "./dist/",
+    "./typedoc/",
+    "./docs/"
   ]
 }

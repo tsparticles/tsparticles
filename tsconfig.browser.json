@@ -25,15 +25,8 @@
   "exclude": [
     "./tests/",
     "./node_modules/",
-    "./dist/"
-  ],
-  "typedocOptions": {
-    "gaID": "UA-159372955-1",
-    "ignoreCompilerErrors": true,
-    "inputFiles": [
-      "./src/index.ts"
-    ],
-    "mode": "library",
-    "out": "docs"
-  }
+    "./dist/",
+    "./typedoc/",
+    "./docs/"
+  ]
 }
