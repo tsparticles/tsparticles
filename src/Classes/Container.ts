@@ -87,10 +87,6 @@ export class Container {
             this.options.load(this.sourceOptions);
         }
 
-        if (this.options.polygon.enable) {
-            this.plugins.push(new PolygonMask(this));
-        }
-
         /* ---------- tsParticles - start ------------ */
         this.eventListeners = new EventListeners(this);
     }
@@ -160,8 +156,6 @@ export class Container {
         this.retina.reset();
         this.canvas.destroy();
 
-        this.plugins = [];
-
         delete this.interactivity;
         delete this.options;
         delete this.retina;
@@ -218,6 +212,7 @@ export class Container {
 
         this.emitters = [];
         this.absorbers = [];
+        this.plugins = [];
 
         delete this.particles.lineLinkedColor;
     }
@@ -225,6 +220,10 @@ export class Container {
     public async start(): Promise<void> {
         if (this.started) {
             return;
+        }
+
+        if (this.options.polygon.enable) {
+            this.plugins.push(new PolygonMask(this));
         }
 
         this.started = true;
