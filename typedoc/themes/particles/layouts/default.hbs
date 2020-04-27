@@ -1,0 +1,216 @@
+<!doctype html>
+<html class="default no-js">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>{{#ifCond model.name '==' project.name}}{{project.name}}{{else}}{{model.name}}
+        | {{project.name}}{{/ifCond}}</title>
+    <meta name="description" content="Documentation for {{project.name}}">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="stylesheet" href="{{relativeURL "assets/css/main.css"}}">
+    <link rel="stylesheet" href="{{relativeURL "assets/css/particles.css"}}">
+</head>
+<body>
+
+{{> header}}
+
+<div id="tsparticles"></div>
+<div class="container container-main">
+    <div class="row">
+        <div class="col-8 col-content">
+            {{{contents}}}
+        </div>
+        <div class="col-4 col-menu menu-sticky-wrap menu-highlight">
+            <nav class="tsd-navigation primary">
+                <ul>
+                    {{#each navigation.children}}
+                        {{> navigation}}
+                    {{/each}}
+                </ul>
+            </nav>
+
+            <nav class="tsd-navigation secondary menu-sticky">
+                <ul class="before-current">
+                    {{#each toc.children}}
+                        {{> toc.root}}
+                    {{/each}}
+                </ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+{{> footer}}
+
+<div class="overlay"></div>
+<script src="{{relativeURL "assets/js/main.js"}}"></script>
+<script src="{{relativeURL "assets/js/tsparticles.min.js"}}"></script>
+<script>if (location.protocol == 'file:') document.write('<script src="{{relativeURL
+        "assets/js/search.js"}}"><' + '/script>');</script>
+<script type="text/javascript">
+    tsParticles.load('tsparticles', {
+        "fpsLimit": 60,
+        "particles": {
+            "number": {
+                "value": 0,
+                "density": {
+                    "enable": false,
+                    "value_area": 800
+                }
+            },
+            "color": {
+                "value": "#000"
+            },
+            "shape": {
+                "type": "circle",
+                "stroke": {
+                    "width": 0,
+                    "color": "#000000"
+                },
+                "polygon": {
+                    "nb_sides": 5
+                },
+                "image": {
+                    "src": "https://cdn.matteobruni.it/images/particles/github.svg",
+                    "width": 100,
+                    "height": 100
+                }
+            },
+            "opacity": {
+                "value": 0.5,
+                "random": false,
+                "anim": {
+                    "enable": false,
+                    "speed": 1,
+                    "opacity_min": 0.1,
+                    "sync": false
+                }
+            },
+            "size": {
+                "value": 5,
+                "random": true,
+                "anim": {
+                    "enable": false,
+                    "speed": 40,
+                    "size_min": 0.1,
+                    "sync": false
+                }
+            },
+            "line_linked": {
+                "enable": true,
+                "distance": 150,
+                "color": "#000",
+                "opacity": 0.4,
+                "width": 1
+            },
+            "move": {
+                "enable": true,
+                "speed": 2,
+                "direction": "none",
+                "random": false,
+                "straight": false,
+                "out_mode": "out",
+                "attract": {
+                    "enable": false,
+                    "rotateX": 600,
+                    "rotateY": 1200
+                }
+            }
+        },
+        "interactivity": {
+            "detect_on": "canvas",
+            "events": {
+                "onhover": {
+                    "enable": false,
+                    "mode": "repulse",
+                    "parallax": {
+                        "enable": false,
+                        "force": 60,
+                        "smooth": 10
+                    }
+                },
+                "onclick": {
+                    "enable": false,
+                    "mode": "push"
+                },
+                "resize": true
+            },
+            "modes": {
+                "grab": {
+                    "distance": 400,
+                    "line_linked": {
+                        "opacity": 1
+                    }
+                },
+                "bubble": {
+                    "distance": 400,
+                    "size": 40,
+                    "duration": 2,
+                    "opacity": 0.8,
+                    "speed": 3
+                },
+                "repulse": {
+                    "distance": 200
+                },
+                "push": {
+                    "particles_nb": 4
+                },
+                "remove": {
+                    "particles_nb": 2
+                }
+            }
+        },
+        "retina_detect": true,
+        "emitters": [
+            {
+                "direction": "top",
+                "position": {
+                    "x": 50,
+                    "y": 100
+                },
+                "rate": {
+                    "delay": 0.05
+                },
+                "size": {
+                    "width": 150,
+                    "height": 0
+                },
+                "particles": {
+                    "color": {
+                        "value": [
+                            "#5bc0eb",
+                            "#fde74c",
+                            "#9bc53d",
+                            "#e55934",
+                            "#fa7921"
+                        ]
+                    },
+                    "lineLinked": {
+                        "enable": false
+                    },
+                    "size": {
+                        "value": 400,
+                        "random": {
+                            "enable": true,
+                            "minimumValue": 200
+                        }
+                    },
+                    "opacity": {
+                        "value": 0.5
+                    },
+                    "move": {
+                        "speed": 10,
+                        "random": false,
+                        "outMode": "destroy"
+                    }
+                }
+            }
+        ]
+    });
+</script>
+
+{{> analytics}}
+
+</body>
+</html>

@@ -33,7 +33,7 @@ export class Emitter {
         const container = this.container;
         const position = this.position;
         const offset = {
-            x: container.canvas.size.height * this.size.width / 100,
+            x: container.canvas.size.width * this.size.width / 100,
             y: container.canvas.size.height * this.size.height / 100,
         };
 

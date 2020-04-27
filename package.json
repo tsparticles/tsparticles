@@ -1,6 +1,6 @@
 {
   "name": "tsparticles",
-  "version": "1.13.3",
+  "version": "1.13.4",
   "description": "Porting of the abandoned Vincent Garreau's particles.js, converted in TypeScript. Added many new cool features and various bug fixes.",
   "homepage": "https://particles.matteobruni.it/",
   "scripts": {
@@ -10,7 +10,7 @@
     "build": "npm run slimbuild && npm run build:docs",
     "build:ts:es": "tsc -b tsconfig.browser.json",
     "build:ts": "tsc",
-    "build:docs": "npm run clear:docs && typedoc",
+    "build:docs": "copyfiles -f dist/tsparticles.min.js typedoc/themes/particles/assets/js && npm run clear:docs && typedoc",
     "start": "npm run build && npm run build:demo && node demo/app.js",
     "build:demo": "npm run build:demo:style && npm run build:demo:index",
     "build:demo:index": "pug ./demo/views/index.pug",
@@ -77,6 +77,7 @@
     "babel-loader": "^8.1.0",
     "bootstrap": "^4.4.1",
     "chai": "^4.2.0",
+    "copyfiles": "^2.2.0",
     "express": "^4.17.1",
     "helmet": "^3.22.0",
     "install": "^0.13.0",
@@ -91,7 +92,7 @@
     "terser-webpack-plugin": "^2.3.6",
     "three": "^0.115.0",
     "ts-node": "^8.9.1",
-    "typedoc": "^0.17.5",
+    "typedoc": "^0.17.6",
     "typescript": "^3.8.3",
     "typescript-json-schema": "^0.42.0",
     "webpack": "^4.43.0",
