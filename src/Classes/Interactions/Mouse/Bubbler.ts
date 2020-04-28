@@ -103,7 +103,11 @@ export class Bubbler {
         const query = container.particles.spatialGrid.queryRadius(mouseClickPos, distance);
 
         for (const particle of query) {
-            const distMouse = Utils.getDistanceBetweenCoordinates(particle.position, mouseClickPos);
+            const pos = {
+                x: particle.position.x + particle.offset.x,
+                y: particle.position.y + particle.offset.y,
+            };
+            const distMouse = Utils.getDistanceBetweenCoordinates(pos, mouseClickPos);
             const timeSpent = (new Date().getTime() - (container.interactivity.mouse.clickTime || 0)) / 1000;
 
             if (container.bubble.clicking) {
@@ -170,10 +174,6 @@ export class Bubbler {
         const query = container.particles.spatialGrid.queryRadiusWithDistance(mousePos, distance);
 
         for (const { distance, particle } of query) {
-            if (particle?.position === undefined) {
-                continue;
-            }
-
             const ratio = 1 - distance / container.retina.bubbleModeDistance;
 
             /* mousemove - check ratio */

@@ -180,8 +180,14 @@ export class Canvas {
     public drawLinkedLine(p1: IParticle, p2: IParticle, opacity: number): void {
         const container = this.container;
         const options = container.options;
-        const pos1 = p1.position;
-        const pos2 = p2.position;
+        const pos1 = {
+            x: p1.position.x + p1.offset.x,
+            y: p1.position.y + p1.offset.y,
+        };
+        const pos2 = {
+            x: p2.position.x + p2.offset.x,
+            y: p2.position.y + p2.offset.y,
+        };
 
         const ctx = this.context;
 
@@ -245,11 +251,20 @@ export class Canvas {
             return;
         }
 
+        const pos1 = {
+            x: p1.position.x + p1.offset.x,
+            y: p1.position.y + p1.offset.y
+        };
+        const pos2 = {
+            x: p2.position.x + p2.offset.x,
+            y: p2.position.y + p2.offset.y
+        };
+
         CanvasUtils.drawConnectLine(ctx,
             p1.lineLinkedWidth ?? this.container.retina.lineLinkedWidth,
             lineStyle,
-            p1.position,
-            p2.position);
+            pos1,
+            pos2);
     }
 
     public drawGrabLine(particle: IParticle, opacity: number, mousePos: ICoordinates): void {

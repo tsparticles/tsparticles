@@ -13,7 +13,15 @@ export class Collider {
                 continue;
             }
 
-            const dist = Utils.getDistanceBetweenCoordinates(p1.position, p2.position);
+            const pos1 = {
+                x: p1.position.x + p1.offset.x,
+                y: p1.position.y + p1.offset.y
+            };
+            const pos2 = {
+                x: p2.position.x + p2.offset.x,
+                y: p2.position.y + p2.offset.y
+            };
+            const dist = Utils.getDistanceBetweenCoordinates(pos1, pos2);
             const defaultSize = container.retina.sizeValue;
             const radius1 = this.getRadius(p1, defaultSize);
             const radius2 = this.getRadius(p2, defaultSize);
@@ -30,20 +38,29 @@ export class Collider {
     }
 
     private static resolveCollision(p1: Particle, p2: Particle): void {
+        const pos1 = {
+            x: p1.position.x + p1.offset.x,
+            y: p1.position.y + p1.offset.y
+        };
+        const pos2 = {
+            x: p2.position.x + p2.offset.x,
+            y: p2.position.y + p2.offset.y
+        };
+
         switch (p1.particlesOptions.collisions.mode) {
             case CollisionMode.bounce:
                 const xVelocityDiff = p1.velocity.horizontal - p2.velocity.horizontal;
                 const yVelocityDiff = p1.velocity.vertical - p2.velocity.vertical;
 
-                const xDist = p2.position.x - p1.position.x;
-                const yDist = p2.position.y - p1.position.y;
+                const xDist = pos2.x - pos1.x;
+                const yDist = pos2.y - pos1.y;
 
                 // Prevent accidental overlap of particles
                 if (xVelocityDiff * xDist + yVelocityDiff * yDist >= 0) {
 
                     // Grab angle between the two colliding particles
-                    const angle = -Math.atan2(p2.position.y - p1.position.y,
-                        p2.position.x - p1.position.x);
+                    const angle = -Math.atan2(pos2.y - pos1.y,
+                        pos2.x - pos1.x);
 
                     // Store mass in var for better readability in collision equation
                     const m1 = p1.size.value;
