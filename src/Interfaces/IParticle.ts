@@ -24,6 +24,7 @@ export interface IParticle {
     readonly emitter?: Emitter;
     readonly fill: boolean;
     readonly image?: IParticleImage;
+    readonly infectionStage?: number;
     readonly initialPosition?: ICoordinates;
     readonly initialVelocity: IVelocity;
     readonly offset: ICoordinates;

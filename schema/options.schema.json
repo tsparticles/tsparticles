@@ -601,6 +601,56 @@
             },
             "type": "object"
         },
+        "IInfection": {
+            "properties": {
+                "cure": {
+                    "type": "boolean"
+                },
+                "delay": {
+                    "type": "number"
+                },
+                "enable": {
+                    "type": "boolean"
+                },
+                "infections": {
+                    "type": "number"
+                },
+                "stages": {
+                    "items": {
+                        "$ref": "#/definitions/IInfectionStage"
+                    },
+                    "type": "array"
+                }
+            },
+            "type": "object"
+        },
+        "IInfectionStage": {
+            "properties": {
+                "color": {
+                    "anyOf": [
+                        {
+                            "$ref": "#/definitions/IColor"
+                        },
+                        {
+                            "type": "string"
+                        }
+                    ]
+                },
+                "duration": {
+                    "type": "number"
+                },
+                "infectedStage": {
+                    "type": "number"
+                },
+                "radius": {
+                    "type": "number"
+                },
+                "rate": {
+                    "type": "number"
+                }
+            },
+            "type": "object"
+        },
         "IInteractivity": {
             "properties": {
                 "detect_on": {
@@ -2483,6 +2533,10 @@
         "fps_limit": {
             "description": "The Frame Per Second limit applied to all particles animations.",
             "type": "number"
+        },
+        "infection": {
+            "$ref": "#/definitions/IInfection",
+            "description": "The infection options"
         },
         "interactivity": {
             "$ref": "#/definitions/IInteractivity",

@@ -37,6 +37,7 @@ export class Particle implements IParticle {
     public readonly fill: boolean;
     public readonly stroke: IStroke;
     public readonly size: ISize;
+    public infectionStage?: number;
     public readonly initialPosition?: ICoordinates;
     public readonly position: ICoordinates;
     public readonly offset: ICoordinates;
@@ -63,6 +64,8 @@ export class Particle implements IParticle {
 
     /* --------- tsParticles functions - particles ----------- */
     public readonly particlesOptions: IParticles;
+
+    private infectionTimeout?: number;
 
     constructor(container: Container, position?: ICoordinates, emitter?: Emitter) {
         this.container = container;
@@ -313,6 +316,81 @@ export class Particle implements IParticle {
             p.position.y = position ? position.y : Math.random() * container.canvas.size.height;
 
             p.checkOverlap();
+        }
+    }
+
+    public startInfection(stage: number): void {
+        const container = this.container;
+        const options = container.options;
+        const stages = options.infection.stages;
+        const stagesCount = stages.length;
+
+        if (stage > stagesCount || stage < 0) {
+            return;
+        }
+
+        const infection = options.infection;
+        const infectionStage = stages[stage];
+
+        this.infectionTimeout = window.setTimeout(() => {
+            this.infectionStage = stage;
+
+            if (infectionStage.duration !== undefined && infectionStage.duration >= 0) {
+                this.infectionTimeout = window.setTimeout(() => {
+                    this.nextInfectionStage();
+                }, infectionStage.duration * 1000);
+            }
+        }, infection.delay * 1000);
+    }
+
+    public updateInfection(stage: number) {
+        const container = this.container;
+        const options = container.options;
+        const stagesCount = options.infection.stages.length;
+
+        if (stage > stagesCount || stage < 0) {
+            return;
+        }
+
+        if (this.infectionTimeout !== undefined) {
+            window.clearTimeout(this.infectionTimeout);
+        }
+
+        this.infectionStage = stage;
+
+        const infectionStage = options.infection.stages[this.infectionStage];
+
+        if (infectionStage.duration !== undefined && infectionStage.duration >= 0) {
+            this.infectionTimeout = window.setTimeout(() => {
+                this.nextInfectionStage();
+            }, infectionStage.duration * 1000);
+        }
+    }
+
+    private nextInfectionStage(): void {
+        const container = this.container;
+        const options = container.options;
+        const stagesCount = options.infection.stages.length;
+
+        if (stagesCount <= 0 || this.infectionStage === undefined) {
+            return;
+        }
+
+        if (stagesCount <= ++this.infectionStage) {
+            if (options.infection.cure) {
+                delete this.infectionStage;
+                return;
+            } else {
+                this.infectionStage = 0;
+            }
+        }
+
+        const infectionStage = options.infection.stages[this.infectionStage];
+
+        if (infectionStage.duration !== undefined && infectionStage.duration >= 0) {
+            this.infectionTimeout = window.setTimeout(() => {
+                this.nextInfectionStage();
+            }, infectionStage.duration * 1000);
         }
     }
 

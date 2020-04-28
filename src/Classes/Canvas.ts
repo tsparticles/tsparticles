@@ -299,9 +299,15 @@ export class Canvas {
         const twinkling = twinkle.enable && Math.random() < twinkleFreq;
         const radius = particle.bubble.radius ?? particle.size.value;
         const opacity = twinkling ? twinkle.opacity : particle.bubble.opacity ?? particle.opacity.value;
+        const infectionStage = particle.infectionStage;
+        const infection = options.infection;
+        const infectionStages = infection.stages
+        const infectionColor = infectionStage !== undefined ? infectionStages[infectionStage].color : undefined;
+        const infectionRgb = infectionColor ? ColorUtils.colorToRgb(infectionColor) : undefined;
+
         const color = twinkling && twinkleRgb !== undefined ?
             twinkleRgb :
-            particle.bubble.color ?? particle.color;
+            infectionRgb ?? particle.bubble.color ?? particle.color;
 
         const colorValue = color !== undefined ? ColorUtils.getStyleFromColor(color, opacity) : undefined;
 

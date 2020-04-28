@@ -7,6 +7,7 @@ import type { IBackground } from "./Background/IBackground";
 import type { SingleOrMultiple } from "../../Types/SingleOrMultiple";
 import type { IEmitter } from "./Emitters/IEmitter";
 import type { IAbsorber } from "./Absorbers/IAbsorber";
+import { IInfection } from "./Infection/IInfection";
 
 /**
  * The Options interface, defines all the options that can be used by `tsParticles`
@@ -35,6 +36,11 @@ export interface IOptions extends IOptionLoader<IOptions> {
      * The F(rame)P(er)S(econd) limit applied to all particles animations.
      */
     fpsLimit: number;
+
+    /**
+     * The infection options
+     */
+    infection: IInfection;
 
     /**
      * The particles interaction options

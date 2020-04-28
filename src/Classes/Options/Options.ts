@@ -9,6 +9,7 @@ import { Background } from "./Background/Background";
 import type { SingleOrMultiple } from "../../Types/SingleOrMultiple";
 import { Emitter } from "./Emitters/Emitter";
 import { Absorber } from "./Absorbers/Absorber";
+import { Infection } from "./Infection/Infection";
 
 export class Options implements IOptions {
     /**
@@ -48,6 +49,7 @@ export class Options implements IOptions {
     public detectRetina: boolean;
     public emitters: SingleOrMultiple<Emitter>;
     public fpsLimit: number;
+    public infection: Infection;
     public interactivity: Interactivity;
     public particles: Particles;
     public polygon: PolygonMask;
@@ -61,6 +63,7 @@ export class Options implements IOptions {
         this.detectRetina = false;
         this.emitters = [];
         this.fpsLimit = 30;
+        this.infection = new Infection();
         this.interactivity = new Interactivity();
         this.particles = new Particles();
         this.pauseOnBlur = true;
@@ -104,7 +107,7 @@ export class Options implements IOptions {
             }
 
             this.particles.load(data.particles);
-
+            this.infection.load(data.infection);
             this.interactivity.load(data.interactivity);
 
             this.polygon.load(data.polygon);

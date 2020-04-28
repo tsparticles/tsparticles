@@ -63,7 +63,17 @@ export class Particles {
 
         this.interactionsEnabled = options.particles.lineLinked.enable ||
             options.particles.move.attract.enable ||
-            options.particles.collisions.enable;
+            options.particles.collisions.enable ||
+            options.infection.enable;
+
+        if (options.infection.enable) {
+            for (let i = 0; i < options.infection.infections; i++) {
+                const notInfected = this.array.filter((p) => p.infectionStage === undefined);
+                const infected = Utils.itemFromArray(notInfected);
+
+                infected.startInfection(0);
+            }
+        }
     }
 
     public redraw(): void {

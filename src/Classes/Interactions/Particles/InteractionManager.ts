@@ -3,6 +3,7 @@ import type { Particle } from "../../Particle";
 import { Linker } from "./Linker";
 import { Attractor } from "./Attractor";
 import { Collider } from "./Collider";
+import { Infecter } from "./Infecter";
 
 export class InteractionManager {
     public static interact(p1: Particle, container: Container): void {
@@ -19,6 +20,10 @@ export class InteractionManager {
         /* bounce particles */
         if (p1.particlesOptions.collisions.enable) {
             Collider.collide(p1, container);
+        }
+
+        if (container.options.infection.enable) {
+            Infecter.infect(p1, container);
         }
     }
 }
