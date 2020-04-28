@@ -277,7 +277,16 @@ export class Particle implements IParticle {
 
         for (const p2 of container.particles.array.filter((t) => t != p)) {
             iterations++;
-            const dist = Utils.getDistanceBetweenCoordinates(p.position, p2.position);
+            const pos1 = {
+                x: p.position.x + p.offset.x,
+                y: p.position.y + p.offset.y
+            };
+            const pos2 = {
+                x: p2.position.x + p2.offset.x,
+                y: p2.position.y + p2.offset.y
+            };
+
+            const dist = Utils.getDistanceBetweenCoordinates(pos1, pos2);
 
             if (dist <= p.size.value + p2.size.value) {
                 collisionFound = true;

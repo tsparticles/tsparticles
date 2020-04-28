@@ -38,12 +38,17 @@ export class SpatialGrid {
         const heightSegment = dimension?.height ? dimension?.height / this.cellSize : this.heightSegment;
 
         for (const particle of particles) {
-            const pos = this.index(particle.position);
+            const pos = {
+                x: particle.position.x + particle.offset.x,
+                y: particle.position.y + particle.offset.y,
+            }
 
-            if (!Array.isArray(grid[pos.x])) grid[pos.x] = [];
-            if (!Array.isArray(grid[pos.x][pos.y])) grid[pos.x][pos.y] = [];
+            const posIndex = this.index(pos);
 
-            grid[pos.x][pos.y].push(particle);
+            if (!Array.isArray(grid[posIndex.x])) grid[posIndex.x] = [];
+            if (!Array.isArray(grid[posIndex.x][posIndex.y])) grid[posIndex.x][posIndex.y] = [];
+
+            grid[posIndex.x][posIndex.y].push(particle);
         }
 
         this.widthSegment = widthSegment;
@@ -76,7 +81,12 @@ export class SpatialGrid {
         const out = [];
 
         for (const item of items) {
-            if (Utils.getDistanceBetweenCoordinates(item.position, position) <= radius) {
+            const itemPos = {
+                x: item.position.x + item.offset.x,
+                y: item.position.y + item.offset.y,
+            };
+
+            if (Utils.getDistanceBetweenCoordinates(itemPos, position) <= radius) {
                 out.push(item);
             }
         }
@@ -99,7 +109,12 @@ export class SpatialGrid {
         const out = [];
 
         for (const item of items) {
-            const distance = Utils.getDistanceBetweenCoordinates(item.position, position);
+            const itemPos = {
+                x: item.position.x + item.offset.x,
+                y: item.position.y + item.offset.y,
+            };
+
+            const distance = Utils.getDistanceBetweenCoordinates(itemPos, position);
 
             if (distance <= radius) {
                 out.push({

@@ -41,7 +41,12 @@ export class Mover {
 
         const particle = this.particle;
         const parallaxForce = options.interactivity.events.onHover.parallax.force;
-        const mousePos = container.interactivity.mouse.position || { x: 0, y: 0 };
+        const mousePos = container.interactivity.mouse.position;
+
+        if (!mousePos) {
+            return;
+        }
+
         const windowDimension = {
             height: window.innerHeight / 2,
             width: window.innerWidth / 2,
@@ -74,7 +79,11 @@ export class Mover {
             return 1;
         }
 
-        const particlePos = particle.position;
+        const particlePos = {
+            x: particle.position.x + particle.offset.x,
+            y: particle.position.y + particle.offset.y
+        };
+
         const dist = Utils.getDistanceBetweenCoordinates(mousePos, particlePos);
         const radius = container.retina.slowModeRadius;
 

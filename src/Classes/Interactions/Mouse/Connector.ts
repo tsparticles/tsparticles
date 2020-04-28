@@ -18,10 +18,20 @@ export class Connector {
 
             let i = 0;
             for (const p1 of query) {
+                const pos1 = {
+                    x: p1.position.x + p1.offset.x,
+                    y: p1.position.y + p1.offset.y
+                };
+
                 for (const p2 of query.slice(i + 1)) {
+                    const pos2 = {
+                        x: p2.position.x + p2.offset.x,
+                        y: p2.position.y + p2.offset.y
+                    };
+
                     const distMax = Math.abs(container.retina.connectModeDistance);
-                    const xDiff = Math.abs(p1.position.x - p2.position.x);
-                    const yDiff = Math.abs(p1.position.y - p2.position.y);
+                    const xDiff = Math.abs(pos1.x - pos2.x);
+                    const yDiff = Math.abs(pos1.y - pos2.y);
 
                     if (xDiff < distMax && yDiff < distMax) {
                         container.canvas.drawConnectLine(p1, p2);

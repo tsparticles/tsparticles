@@ -7,8 +7,12 @@ export class Linker {
     public static link(p1: Particle, container: Container): void {
         const optOpacity = p1.particlesOptions.lineLinked.opacity;
         const optDistance = p1.lineLinkedDistance ?? container.retina.lineLinkedDistance;
+        const pos = {
+            x: p1.position.x + p1.offset.x,
+            y: p1.position.y + p1.offset.y,
+        };
 
-        for (const p2 of container.particles.spatialGrid.queryRadiusWithDistance(p1.position, optDistance)) {
+        for (const p2 of container.particles.spatialGrid.queryRadiusWithDistance(pos, optDistance)) {
             if (p1 === p2.particle || !p2.particle.particlesOptions.lineLinked.enable) {
                 continue;
             }

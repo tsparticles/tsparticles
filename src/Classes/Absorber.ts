@@ -50,8 +50,8 @@ export class Absorber {
 
     public attract(particle: Particle): boolean {
         const container = this.container;
-        const dx = this.position.x - particle.position.x;
-        const dy = this.position.y - particle.position.y;
+        const dx = this.position.x - (particle.position.x + particle.offset.x);
+        const dy = this.position.y - (particle.position.y + particle.offset.y);
         const distance = Math.sqrt(Math.abs(dx * dx + dy * dy));
         const angle = Math.atan2(dx, dy) * (180 / Math.PI);
         const acceleration = this.mass / Math.pow(distance, 2);
