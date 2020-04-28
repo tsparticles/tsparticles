@@ -358,6 +358,7 @@ lib/
 build/
 docs/
 typedoc/themes/particles/assets/js/tsparticles.min.js
-report.html?
+report.html
+report.htm
 
 .idea/
