@@ -8,6 +8,7 @@ import { Constants } from "../../Utils/Constants";
 import type { IParticle } from "../../../Interfaces/IParticle";
 import { ColorUtils } from "../../Utils/ColorUtils";
 import { Particle } from "../../Particle";
+import { Circle } from "../../Utils/QuadTree";
 
 /**
  * Particle bubble manager
@@ -100,7 +101,8 @@ export class Bubbler {
         }
 
         const distance = container.retina.bubbleModeDistance;
-        const query = container.particles.spatialGrid.queryRadius(mouseClickPos, distance);
+        //const query = container.particles.spatialGrid.queryRadius(mouseClickPos, distance);
+        const query = container.particles.quadTree.query(new Circle(mouseClickPos.x, mouseClickPos.y, distance));
 
         for (const particle of query) {
             const pos = {
@@ -171,9 +173,17 @@ export class Bubbler {
         }
 
         const distance = container.retina.bubbleModeDistance;
-        const query = container.particles.spatialGrid.queryRadiusWithDistance(mousePos, distance);
+        //const query = container.particles.spatialGrid.queryRadiusWithDistance(mousePos, distance);
+        const query = container.particles.quadTree.query(new Circle(mousePos.x, mousePos.y, distance));
 
-        for (const { distance, particle } of query) {
+        //for (const { distance, particle } of query) {
+        for (const particle of query) {
+            const pos = {
+                x: particle.position.x + particle.offset.x,
+                y: particle.position.y + particle.offset.y,
+            };
+
+            const distance = Utils.getDistanceBetweenCoordinates(pos, mousePos);
             const ratio = 1 - distance / container.retina.bubbleModeDistance;
 
             /* mousemove - check ratio */

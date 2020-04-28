@@ -7,6 +7,7 @@ import { DivMode } from "../../../Enums/Modes/DivMode";
 import { Constants } from "../../Utils/Constants";
 import { ICoordinates } from "../../../Interfaces/ICoordinates";
 import { IParticle } from "../../../Interfaces/IParticle";
+import { Circle } from "../../Utils/QuadTree";
 
 /**
  * Particle repulse manager
@@ -70,7 +71,10 @@ export class Repulser {
     }
 
     private static processRepulse(container: Container, position: ICoordinates, repulseRadius: number): void {
-        for (const particle of container.particles.spatialGrid.queryRadius(position, repulseRadius)) {
+        //const query = container.particles.spatialGrid.queryRadius(position, repulseRadius);
+        const query = container.particles.quadTree.query(new Circle(position.x, position.y, repulseRadius));
+
+        for (const particle of query) {
             const dx = particle.position.x - position.x;
             const dy = particle.position.y - position.y;
             const dist = Math.sqrt(dx * dx + dy * dy);
@@ -132,7 +136,10 @@ export class Repulser {
                 return;
             }
 
-            for (const particle of container.particles.spatialGrid.queryRadius(mouseClickPos, repulseRadius)) {
+            //const query = container.particles.spatialGrid.queryRadius(mouseClickPos, repulseRadius);
+            const query = container.particles.quadTree.query(new Circle(mouseClickPos.x, mouseClickPos.y, repulseRadius));
+
+            for (const particle of query) {
                 if (particle?.position === undefined) {
                     continue;
                 }

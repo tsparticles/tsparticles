@@ -4,10 +4,19 @@ import { Container } from "../../Container";
 import { IParticle } from "../../../Interfaces/IParticle";
 import { IVelocity } from "../../../Interfaces/IVelocity";
 import { CollisionMode } from "../../../Enums/CollisionMode";
+import { Circle } from "../../Utils/QuadTree";
 
 export class Collider {
     public static collide(p1: Particle, container: Container): void {
-        for (const p2 of container.particles.spatialGrid.queryRadius(p1.position, p1.size.value * 2)) {
+        const pos1 = {
+            x: p1.position.x + p1.offset.x,
+            y: p1.position.y + p1.offset.y,
+        };
+
+        //const query = container.particles.spatialGrid.queryRadius(pos1, p1.size.value * 2);
+        const query = container.particles.quadTree.query(new Circle(pos1.x, pos1.y, p1.size.value * 2));
+
+        for (const p2 of query) {
             if (p1 === p2 || !p2.particlesOptions.collisions.enable ||
                 p1.particlesOptions.collisions.mode !== p2.particlesOptions.collisions.mode) {
                 continue;

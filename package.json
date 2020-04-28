@@ -96,6 +96,7 @@
     "typescript": "^3.8.3",
     "typescript-json-schema": "^0.42.0",
     "webpack": "^4.43.0",
+    "webpack-bundle-analyzer": "^3.7.0",
     "webpack-cli": "^3.3.11",
     "window": "^4.2.7"
   },

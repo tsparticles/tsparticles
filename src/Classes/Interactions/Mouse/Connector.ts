@@ -1,4 +1,5 @@
 import type { Container } from "../../Container";
+import { Circle } from "../../Utils/QuadTree";
 
 /**
  * Particle connection manager
@@ -14,7 +15,8 @@ export class Connector {
             const mousePos = container.interactivity.mouse.position || { x: 0, y: 0 };
             const distance = Math.abs(container.retina.connectModeRadius);
 
-            const query = container.particles.spatialGrid.queryRadius(mousePos, distance);
+            //const query = container.particles.spatialGrid.queryRadius(mousePos, distance);
+            const query = container.particles.quadTree.query(new Circle(mousePos.x, mousePos.y, distance));
 
             let i = 0;
             for (const p1 of query) {

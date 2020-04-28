@@ -2,6 +2,7 @@ const path = require("path");
 const TerserPlugin = require('terser-webpack-plugin');
 const webpack = require('webpack');
 const version = require('./package.json').version;
+const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
 
 const banner = `Author : Matteo Bruni - https://www.matteobruni.it
 MIT license: https://opensource.org/licenses/MIT
@@ -43,6 +44,12 @@ module.exports = {
         new webpack.BannerPlugin({
             banner: minBanner,
             include: /\.min\.js$/
+        }),
+        new BundleAnalyzerPlugin({
+            openAnalyzer: false,
+            analyzerMode: "static",
+            exclude: /\.min\.js$/,
+            reportFilename: "../report.html"
         })
     ],
     optimization: {

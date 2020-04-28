@@ -27,33 +27,37 @@ export class SpatialGrid {
         this.heightSegment = Math.round(canvas.height / this.cellSize);
     }
 
+    public init(dimension?: IDimension) {
+        this.widthSegment = dimension?.width ? dimension?.width / this.cellSize : this.widthSegment;
+        this.heightSegment = dimension?.height ? dimension?.height / this.cellSize : this.heightSegment;
+        this.grid = [];
+    }
+
     /**
      * Sets the spatial grid. (This is for use in the update loop in Particles.ts)
      * @param particles the particles array
      * @param dimension The current canvas dimensions
      */
     public setGrid(particles: Particle[], dimension?: IDimension): void {
-        const grid: Particle[][][] = [];
-        const widthSegment = dimension?.width ? dimension?.width / this.cellSize : this.widthSegment;
-        const heightSegment = dimension?.height ? dimension?.height / this.cellSize : this.heightSegment;
+        this.init(dimension);
 
         for (const particle of particles) {
-            const pos = {
-                x: particle.position.x + particle.offset.x,
-                y: particle.position.y + particle.offset.y,
-            }
+            this.insert(particle);
+        }
+    }
 
-            const posIndex = this.index(pos);
-
-            if (!Array.isArray(grid[posIndex.x])) grid[posIndex.x] = [];
-            if (!Array.isArray(grid[posIndex.x][posIndex.y])) grid[posIndex.x][posIndex.y] = [];
-
-            grid[posIndex.x][posIndex.y].push(particle);
+    public insert(particle: Particle) {
+        const pos = {
+            x: particle.position.x + particle.offset.x,
+            y: particle.position.y + particle.offset.y,
         }
 
-        this.widthSegment = widthSegment;
-        this.heightSegment = heightSegment;
-        this.grid = grid;
+        const posIndex = this.index(pos);
+
+        if (!Array.isArray(this.grid[posIndex.x])) this.grid[posIndex.x] = [];
+        if (!Array.isArray(this.grid[posIndex.x][posIndex.y])) this.grid[posIndex.x][posIndex.y] = [];
+
+        this.grid[posIndex.x][posIndex.y].push(particle);
     }
 
 

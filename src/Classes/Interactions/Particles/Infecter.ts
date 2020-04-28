@@ -1,5 +1,6 @@
 import { Particle } from "../../Particle";
 import { Container } from "../../Container";
+import { Circle } from "../../Utils/QuadTree";
 
 export class Infecter {
     public static infect(p1: Particle, container: Container): void {
@@ -24,7 +25,8 @@ export class Infecter {
 
         const infectedStage = infectionStage.infectedStage ?? p1.infectionStage;
 
-        const query = container.particles.spatialGrid.queryRadius(pos, radius)
+        //const query = container.particles.spatialGrid.queryRadius(pos, radius)
+        const query = container.particles.quadTree.query(new Circle(pos.x, pos.y, radius))
             .filter((t) => t.infectionStage === undefined || t.infectionStage !== p1.infectionStage);
 
         const infections = infectionStage.rate;

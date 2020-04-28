@@ -1,5 +1,6 @@
 import type { IParticle } from "../../../Interfaces/IParticle";
 import type { Container } from "../../Container";
+import { Circle } from "../../Utils/QuadTree";
 
 export class Attractor {
     public static attract(p1: IParticle, container: Container): void {
@@ -11,7 +12,10 @@ export class Attractor {
             y: p1.position.y + p1.offset.y
         };
 
-        for (const p2 of container.particles.spatialGrid.queryRadius(pos1, distance)) {
+        //const query = container.particles.spatialGrid.queryRadius(pos1, distance);
+        const query = container.particles.quadTree.query(new Circle(pos1.x, pos1.y, distance));
+
+        for (const p2 of query) {
             if (p1 === p2 || p2.particlesOptions.move.attract.enable) {
                 continue;
             }

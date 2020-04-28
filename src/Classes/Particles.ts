@@ -4,7 +4,6 @@ import type { IMouseData } from "../Interfaces/IMouseData";
 import type { IRgb } from "../Interfaces/IRgb";
 import { Particle } from "./Particle";
 import { InteractionManager } from "./Interactions/Particles/InteractionManager";
-import { SpatialGrid } from "./Utils/SpatialGrid";
 import { Utils } from "./Utils/Utils";
 import { HoverMode } from "../Enums/Modes/HoverMode";
 import { Grabber } from "./Interactions/Mouse/Grabber";
@@ -13,6 +12,7 @@ import { Repulser } from "./Interactions/Mouse/Repulser";
 import { DivMode } from "../Enums/Modes/DivMode";
 import { Bubbler } from "./Interactions/Mouse/Bubbler";
 import { Connector } from "./Interactions/Mouse/Connector";
+import { Point, QuadTree, Rectangle } from "./Utils/QuadTree";
 
 /**
  * Particles manager
@@ -23,7 +23,8 @@ export class Particles {
     }
 
     public array: Particle[];
-    public spatialGrid: SpatialGrid;
+    public quadTree: QuadTree;
+    //public spatialGrid: SpatialGrid;
     public pushing?: boolean;
     public lineLinkedColor?: IRgb | string;
     public grabLineColor?: IRgb | string;
@@ -35,7 +36,10 @@ export class Particles {
         this.container = container;
         this.array = [];
         this.interactionsEnabled = false;
-        this.spatialGrid = new SpatialGrid(this.container.canvas.size);
+        //this.spatialGrid = new SpatialGrid(this.container.canvas.size);
+        const canvasSize = this.container.canvas.size;
+
+        this.quadTree = new QuadTree(new Rectangle(0, 0, canvasSize.width, canvasSize.height), 4);
     }
 
     /* --------- tsParticles functions - particles ----------- */
@@ -128,6 +132,15 @@ export class Particles {
             }
 
             particle.update(i, delta);
+
+            //container.particles.spatialGrid.insert(particle);
+
+            const pos = {
+                x: particle.position.x + particle.offset.x,
+                y: particle.position.y + particle.offset.y,
+            };
+
+            container.particles.quadTree.insert(new Point(pos.x, pos.y, particle));
         }
 
         const hoverMode = options.interactivity.events.onHover.mode;
@@ -167,10 +180,14 @@ export class Particles {
 
         /* clear canvas */
         container.canvas.clear();
+        const canvasSize = this.container.canvas.size;
+
+        this.quadTree = new QuadTree(new Rectangle(0, 0, canvasSize.width, canvasSize.height), 4);
 
         /* update each particles param */
+        //this.spatialGrid.init(this.container.canvas.size);
         this.update(delta);
-        this.spatialGrid.setGrid(this.array, this.container.canvas.size);
+        //this.spatialGrid.setGrid(this.array, this.container.canvas.size);
 
         /* draw polygon shape in debug mode */
         for (const plugin of container.plugins) {
@@ -182,6 +199,10 @@ export class Particles {
         for (const absorber of container.absorbers) {
             absorber.draw();
         }
+
+        /*if (container.canvas.context) {
+            this.quadTree.draw(container.canvas.context);
+        }*/
 
         /* draw each particle */
         for (const p of this.array) {
