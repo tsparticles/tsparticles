@@ -88,7 +88,6 @@ describe('Particle', () => {
                 testContainer.reset(multipleShapeTypeOptions);
                 testParticle.reset(testContainer.container);
                 expect(testParticle.particle.shape).to.be.a('string');
-                const chosenShape = testParticle.particle.shape;
                 let expectedShapeData;
                 switch(testParticle.particle.shape) {
                     case(ShapeType.char):
