@@ -7,7 +7,6 @@ import { TestCanvas } from "./Fixture/TestCanvas";
 import { TestContainer } from "./Fixture/TestContainer";
 import { TestParticle } from "./Fixture/TestParticle";
 import { ShapeType } from "../src/Enums/ShapeType";
-import { ShapeData } from "../src/Types/ShapeData";
 import { ICoordinates } from "../src/Interfaces/ICoordinates";
 
 const testContainer = new TestContainer({});
