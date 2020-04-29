@@ -77,6 +77,8 @@ describe('Particle', () => {
                 testParticle.reset(testContainer.container);
 
                 expect(testParticle.particle.shapeData).to.eql(squareShapeOptions.particles.shape.options.square);
+                expect(testParticle.particle.close).to.eql(squareShapeOptions.particles.shape.options.square.close);
+                expect(testParticle.particle.fill).to.eql(squareShapeOptions.particles.shape.options.square.fill);
             });
 
             it('should set shapeData to the configured shape data matching the chosen shape whenever multiple shapes are specified for container Particles', () => {
@@ -103,6 +105,8 @@ describe('Particle', () => {
                 }
 
                 expect(testParticle.particle.shapeData).to.eql(expectedShapeData);
+                expect(testParticle.particle.close).to.eql(expectedShapeData.close);
+                expect(testParticle.particle.fill).to.eql(expectedShapeData.fill);
             });
 
         });
