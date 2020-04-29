@@ -7,6 +7,7 @@ import { TestContainer } from "./Fixture/TestContainer";
 import { TestParticle } from "./Fixture/TestParticle";
 import { ShapeType } from "../src/Enums/ShapeType";
 import { ShapeData } from "../src/Types/ShapeData";
+import { ICoordinates } from "../src/Interfaces/ICoordinates";
 
 const testContainer = new TestContainer({});
 const testParticle = new TestParticle(testContainer.container);
@@ -109,6 +110,17 @@ describe('Particle', () => {
                 expect(testParticle.particle.fill).to.eql(expectedShapeData.fill);
             });
 
+            after(() => {
+                testContainer.reset({});
+                testParticle.reset(testContainer.container);
+            });
+
+        });
+
+        it('should always set an angle in range [0,360]', () => {
+            // Note, the real range should be [0,360) but the function includes 360 and it won't hurt anything
+            expect(testParticle.particle.angle).to.be.at.least(0);
+            expect(testParticle.particle.angle).to.be.at.most(360);
         });
 
     });
