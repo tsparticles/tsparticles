@@ -20,7 +20,7 @@ export class TestCanvas {
     /**
      * If [[container]] is provided, then the new particle will be initialized with
      * this [[container]]. Otherwise the last-used [[container]] will be used.
-     * 
+     *
      * @param width
      * @param height
      * @param container
