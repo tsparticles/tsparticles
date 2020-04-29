@@ -4,6 +4,7 @@ import { MoveDirection } from "../../../Enums/MoveDirection";
 import { OutMode } from "../../../Enums/OutMode";
 import { Trail } from "./Trail";
 import type { RecursivePartial } from "../../../Types/RecursivePartial";
+import { Noise } from "./Noise/Noise";
 
 export class Move implements IMove {
     /**
@@ -55,6 +56,7 @@ export class Move implements IMove {
     public attract: Attract;
     public direction: MoveDirection;
     public enable: boolean;
+    public noise: Noise;
     public outMode: OutMode;
     public random: boolean;
     public speed: number;
@@ -66,6 +68,7 @@ export class Move implements IMove {
         this.attract = new Attract();
         this.direction = MoveDirection.none;
         this.enable = false;
+        this.noise = new Noise();
         this.outMode = OutMode.out;
         this.random = false;
         this.speed = 2;
@@ -85,6 +88,8 @@ export class Move implements IMove {
             if (data.enable !== undefined) {
                 this.enable = data.enable;
             }
+
+            this.noise.load(data.noise);
 
             const outMode = data.outMode ?? data.out_mode;
 

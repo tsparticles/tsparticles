@@ -15,6 +15,7 @@ import type { IShapeDrawer } from "./Interfaces/IShapeDrawer";
 import { Presets } from "./Classes/Utils/Presets";
 import type { ShapeDrawerFunction } from "./Types/ShapeDrawerFunction";
 import { CanvasUtils } from "./Classes/Utils/CanvasUtils";
+import { SimplexNoise } from "./Classes/Utils/SimplexNoise";
 
 declare global {
     interface Window {
@@ -29,6 +30,7 @@ declare global {
         msCancelRequestAnimationFrame: (handle: number) => void;
         particlesJS: any;
         tsParticles: Main;
+        simplex: SimplexNoise;
         pJSDom: () => Container[];
     }
 }
@@ -87,56 +89,6 @@ class Main {
     public init(): void {
         if (!this.initialized) {
             this.initialized = true;
-            if (typeof window !== "undefined" && window) {
-                /* particles.js compatibility */
-                const tsParticles = this;
-
-                /**
-                 * Loads the provided options to create a [[Container]] object.
-                 * @deprecated this method is obsolete, please use the new tsParticles.load
-                 * @param tagId the particles container element id
-                 * @param params the options object to initialize the [[Container]]
-                 */
-                window.particlesJS = (tagId: string, params: RecursivePartial<IOptions>):
-                    Promise<Container | undefined> => {
-                    return tsParticles.load(tagId, params);
-                };
-
-                /**
-                 * Loads the provided json with a GET request.
-                 * The content will be used to create a [[Container]] object.
-                 * @deprecated this method is obsolete, please use the new tsParticles.loadJSON
-                 * @param tagId the particles container element id
-                 * @param pathConfigJson the json path to use in the GET request
-                 * @param callback called after the [[Container]] is loaded and it will be passed as a parameter
-                 */
-                window.particlesJS.load = (tagId: string,
-                                           pathConfigJson: string,
-                                           callback: (container: Container) => void) => {
-                    tsParticles.loadJSON(tagId, pathConfigJson).then((container) => {
-                        if (container) {
-                            callback(container);
-                        }
-                    });
-                };
-
-                /**
-                 * Adds an additional click handler to all the loaded [[Container]] objects.
-                 * @deprecated this method is obsolete, please use the new tsParticles.setOnClickHandler
-                 * @param callback the function called after the click event is fired
-                 */
-                window.particlesJS.setOnClickHandler = (callback: EventListenerOrEventListenerObject) => {
-                    tsParticles.setOnClickHandler(callback);
-                };
-
-                /**
-                 * All the [[Container]] objects loaded
-                 * @deprecated this method is obsolete, please use the new tsParticles.dom
-                 */
-                window.pJSDom = () => {
-                    return window.tsParticles.dom();
-                };
-            }
         }
     }
 
@@ -230,4 +182,48 @@ class Main {
 
 const tsParticles = new Main();
 
-export { tsParticles };
+/**
+ * Loads the provided options to create a [[Container]] object.
+ * @deprecated this method is obsolete, please use the new tsParticles.load
+ * @param tagId the particles container element id
+ * @param params the options object to initialize the [[Container]]
+ */
+const particlesJS: any = (tagId: string, params: RecursivePartial<IOptions>):
+    Promise<Container | undefined> => {
+    return tsParticles.load(tagId, params);
+};
+
+/**
+ * Loads the provided json with a GET request.
+ * The content will be used to create a [[Container]] object.
+ * @deprecated this method is obsolete, please use the new tsParticles.loadJSON
+ * @param tagId the particles container element id
+ * @param pathConfigJson the json path to use in the GET request
+ * @param callback called after the [[Container]] is loaded and it will be passed as a parameter
+ */
+particlesJS.load = (tagId: string,
+                    pathConfigJson: string,
+                    callback: (container: Container) => void) => {
+    tsParticles.loadJSON(tagId, pathConfigJson).then((container) => {
+        if (container) {
+            callback(container);
+        }
+    });
+};
+
+/**
+ * Adds an additional click handler to all the loaded [[Container]] objects.
+ * @deprecated this method is obsolete, please use the new tsParticles.setOnClickHandler
+ * @param callback the function called after the click event is fired
+ */
+particlesJS.setOnClickHandler = (callback: EventListenerOrEventListenerObject) => {
+    tsParticles.setOnClickHandler(callback);
+};
+
+/**
+ * All the [[Container]] objects loaded
+ * @deprecated this method is obsolete, please use the new tsParticles.dom
+ */
+const pJSDom = tsParticles.dom();
+
+export { tsParticles, particlesJS, pJSDom };
