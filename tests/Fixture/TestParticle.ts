@@ -14,13 +14,12 @@ export class TestParticle {
     }
 
     /**
-     * Reset the particle. If [[position]] is provided, then the new particle will be
-     * initialized with this [[position]]. Otherwise the last-used [[position]] will
-     * be used.
-     * 
      * If [[container]] is provided, then the new particle will be initialized with
      * this [[container]]. Otherwise the last-used [[container]] will be used.
-     * 
+     *
+     * [[position]] will be used verbatim, even if it is not provided. The last-used
+     * [[position]] will not be used.
+     *
      * @param container
      * @param position
      */
@@ -28,9 +27,7 @@ export class TestParticle {
         if(container !== undefined) {
             this.container = container;
         }
-        if(position !== undefined) {
-            this.position = position;
-        }
+        this.position = position;
         this.particle = new Particle(this.container, this.position);
     }
 

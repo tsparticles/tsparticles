@@ -3,6 +3,7 @@ const Window = require('window');
 globalThis.window = new Window();
 
 import { expect } from "chai";
+import { TestCanvas } from "./Fixture/TestCanvas";
 import { TestContainer } from "./Fixture/TestContainer";
 import { TestParticle } from "./Fixture/TestParticle";
 import { ShapeType } from "../src/Enums/ShapeType";
@@ -11,6 +12,7 @@ import { ICoordinates } from "../src/Interfaces/ICoordinates";
 
 const testContainer = new TestContainer({});
 const testParticle = new TestParticle(testContainer.container);
+const testCanvas = new TestCanvas(testContainer.container, 1920, 1080);
 
 describe('Particle', () => {
 
@@ -125,4 +127,37 @@ describe('Particle', () => {
 
     });
 
+    describe('calcPosition', () => {
+        const width = 1920;
+        const height = 1080;
+
+        beforeEach(() => {
+            testContainer.reset({});
+            testCanvas.reset(width, height, testContainer.container);
+        });
+
+        it('should always return the position when specified', () => {
+            const x = width * Math.random();
+            const y = height * Math.random();
+            const position: ICoordinates = { x, y };
+            testParticle.reset(testContainer.container, position);
+
+            expect(testParticle.particle.position).to.eql(position);
+        });
+
+        it('should always return a position that is on the canvas when no position specified', () => {
+            testParticle.reset(testContainer.container);
+
+            expect(testParticle.particle.position.x).to.be.at.least(0);
+            expect(testParticle.particle.position.x).to.be.at.most(width);
+            expect(testParticle.particle.position.y).to.be.at.least(0);
+            expect(testParticle.particle.position.y).to.be.at.most(height);
+        });
+
+        after(() => {
+            testContainer.reset({});
+            testParticle.reset(testContainer.container);
+        });
+
+    });
 });
