@@ -160,4 +160,14 @@ describe('Particle', () => {
 
     });
 
+    describe('isOverlapping', () => {
+
+        it('should always return false whenever the container has no other particles', () => {
+            const isOverlapping = testParticle.particle.isOverlapping();
+            expect(isOverlapping.collisionFound).to.be.false;
+            expect(isOverlapping.iterations).to.equal(0);
+        });
+
+    });
+
 });
