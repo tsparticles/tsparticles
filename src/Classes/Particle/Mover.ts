@@ -1,13 +1,14 @@
 import { Utils } from "../Utils/Utils";
 import type { Container } from "../Container";
 import { HoverMode } from "../../Enums/Modes/HoverMode";
-import type { IParticle } from "../../Interfaces/IParticle";
+import type { Particle } from "../Particle";
+import { SimplexNoise } from "../Utils/SimplexNoise";
 
 export class Mover {
     private readonly container: Container;
-    private readonly particle: IParticle;
+    private readonly particle: Particle;
 
-    constructor(container: Container, particle: IParticle) {
+    constructor(container: Container, particle: Particle) {
         this.container = container;
         this.particle = particle;
     }
@@ -24,10 +25,42 @@ export class Mover {
             const baseSpeed = particle.moveSpeed ?? container.retina.moveSpeed;
             const moveSpeed = baseSpeed / 2 * slowFactor * deltaFactor;
 
+            const noiseOptions = particlesOptions.move.noise;
+            const noiseEnabled = noiseOptions.enable;
+
+            if (noiseEnabled) {
+                const simplex = new SimplexNoise();
+
+                if (particle.lastNoiseTime > particle.noiseDelay) {
+                    const position = particle.position;
+                    const noiseFactor = noiseOptions.factor;
+
+                    const noise = {
+                        horizontal: simplex.noise3D(
+                            position.x / noiseFactor.horizontal.value + noiseFactor.horizontal.offset,
+                            position.y / noiseFactor.horizontal.value + noiseFactor.horizontal.offset,
+                            container.particles.noiseZ),
+                        vertical: simplex.noise3D(
+                            position.x / noiseFactor.vertical.value + noiseFactor.vertical.offset,
+                            position.y / noiseFactor.vertical.value + noiseFactor.vertical.offset,
+                            container.particles.noiseZ),
+                    };
+
+                    particle.velocity.horizontal =
+                        Utils.clamp(particle.velocity.horizontal + noise.horizontal, -1, 1);
+                    particle.velocity.vertical =
+                        Utils.clamp(particle.velocity.vertical + noise.vertical, -1, 1);
+
+                    particle.lastNoiseTime -= particle.noiseDelay;
+                } else {
+                    particle.lastNoiseTime += delta;
+                }
+            }
+
             particle.position.x += particle.velocity.horizontal * moveSpeed;
             particle.position.y += particle.velocity.vertical * moveSpeed;
 
-            if (particlesOptions.move.vibrate) { // vibrating
+            if (particlesOptions.move.vibrate) {
                 particle.position.x += Math.sin(particle.position.x * Math.cos(particle.position.y));
                 particle.position.y += Math.cos(particle.position.y * Math.sin(particle.position.x));
             }

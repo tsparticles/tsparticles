@@ -3,6 +3,7 @@ import type { MoveDirection } from "../../../Enums/MoveDirection";
 import type { OutMode } from "../../../Enums/OutMode";
 import type { IOptionLoader } from "../IOptionLoader";
 import type { ITrail } from "./ITrail";
+import { INoise } from "./Noise/INoise";
 
 export interface IMove extends IOptionLoader<IMove> {
     attract: IAttract;
@@ -18,6 +19,7 @@ export interface IMove extends IOptionLoader<IMove> {
     collisions: boolean;
     direction: MoveDirection;
     enable: boolean;
+    noise: INoise;
 
     /**
      * @deprecated use the new outMode instead

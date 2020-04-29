@@ -51,6 +51,8 @@ export class Particle implements IParticle {
     public readonly initialVelocity: IVelocity;
     public readonly shapeData?: IShapeValues;
     public readonly bubble: IBubbleParticleData;
+    public readonly noiseDelay: number;
+    public lastNoiseTime: number;
     public lineLinkedDistance?: number;
     public lineLinkedWidth?: number;
     public moveSpeed?: number;
@@ -73,6 +75,8 @@ export class Particle implements IParticle {
         this.fill = true;
         this.close = true;
         this.links = [];
+        this.lastNoiseTime = 0;
+        this.noiseDelay = Math.random() * 1000;
 
         const options = container.options;
         const particlesOptions = new Particles();

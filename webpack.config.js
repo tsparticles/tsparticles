@@ -49,7 +49,7 @@ module.exports = {
             openAnalyzer: false,
             analyzerMode: "static",
             exclude: /\.min\.js$/,
-            reportFilename: "../report.html"
+            reportFilename: "../demo/public/report.html"
         })
     ],
     optimization: {

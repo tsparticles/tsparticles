@@ -28,6 +28,7 @@ export class Particles {
     public pushing?: boolean;
     public lineLinkedColor?: IRgb | string;
     public grabLineColor?: IRgb | string;
+    public noiseZ: number;
 
     private readonly container: Container;
     private interactionsEnabled: boolean;
@@ -38,6 +39,7 @@ export class Particles {
         this.interactionsEnabled = false;
         //this.spatialGrid = new SpatialGrid(this.container.canvas.size);
         const canvasSize = this.container.canvas.size;
+        this.noiseZ = 0;
 
         this.quadTree = new QuadTree(new Rectangle(0, 0, canvasSize.width, canvasSize.height), 4);
     }
@@ -47,6 +49,7 @@ export class Particles {
         const container = this.container;
         const options = container.options;
         let handled = false;
+        this.noiseZ = 0;
 
         for (const plugin of container.plugins) {
             if (plugin.particlesInitialization !== undefined) {
@@ -188,6 +191,8 @@ export class Particles {
         //this.spatialGrid.init(this.container.canvas.size);
         this.update(delta);
         //this.spatialGrid.setGrid(this.array, this.container.canvas.size);
+
+        this.noiseZ += 0.0004;
 
         /* draw polygon shape in debug mode */
         for (const plugin of container.plugins) {
