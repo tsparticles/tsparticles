@@ -13,6 +13,7 @@ import { DivMode } from "../Enums/Modes/DivMode";
 import { Bubbler } from "./Particle/Interactions/Mouse/Bubbler";
 import { Connector } from "./Particle/Interactions/Mouse/Connector";
 import { Point, QuadTree, Rectangle } from "../Utils/QuadTree";
+import { DestroyType } from "../Enums/DestroyType";
 
 /**
  * Particles manager
@@ -104,6 +105,7 @@ export class Particles {
     public update(delta: number): void {
         const container = this.container;
         const options = container.options;
+        const particlesToDelete = [];
 
         for (let i = 0; i < this.array.length; i++) {
             /* the particle */
@@ -130,7 +132,27 @@ export class Particles {
                 }
             }
 
+            if (stillExists) {
+                const sizeOpt = particle.particlesOptions.size;
+                const sizeAnim = sizeOpt.animation;
+                if (sizeAnim.enable) {
+                    switch (sizeAnim.destroy) {
+                        case DestroyType.max:
+                            if (particle.size.value >= sizeOpt.value * container.retina.pixelRatio) {
+                                stillExists = false;
+                            }
+                            break;
+                        case DestroyType.min:
+                            if (particle.size.value <= sizeAnim.minimumValue * container.retina.pixelRatio) {
+                                stillExists = false;
+                            }
+                            break;
+                    }
+                }
+            }
+
             if (!stillExists) {
+                particlesToDelete.push(particle);
                 continue;
             }
 
@@ -144,6 +166,10 @@ export class Particles {
             };
 
             container.particles.quadTree.insert(new Point(pos.x, pos.y, particle));
+        }
+
+        for (const particle of particlesToDelete) {
+            this.remove(particle);
         }
 
         const hoverMode = options.interactivity.events.onHover.mode;
