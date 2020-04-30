@@ -366,17 +366,6 @@
             },
             "type": "object"
         },
-        "IDimension": {
-            "properties": {
-                "height": {
-                    "type": "number"
-                },
-                "width": {
-                    "type": "number"
-                }
-            },
-            "type": "object"
-        },
         "IDivEvent": {
             "properties": {
                 "el": {
@@ -434,7 +423,7 @@
                     "description": "The particles emitting rate options"
                 },
                 "size": {
-                    "$ref": "#/definitions/IDimension",
+                    "$ref": "#/definitions/IEmitterSize",
                     "description": "The size of the particles emitter area"
                 }
             },
@@ -467,6 +456,20 @@
                 },
                 "quantity": {
                     "description": "The emitting quantity, how many particles will be created at every creation event",
+                    "type": "number"
+                }
+            },
+            "type": "object"
+        },
+        "IEmitterSize": {
+            "properties": {
+                "height": {
+                    "type": "number"
+                },
+                "mode": {
+                    "$ref": "#/definitions/SizeMode"
+                },
+                "width": {
                     "type": "number"
                 }
             },
@@ -2636,6 +2639,13 @@
                 "clockwise",
                 "counter-clockwise",
                 "random"
+            ],
+            "type": "string"
+        },
+        "SizeMode": {
+            "enum": [
+                "percent",
+                "precise"
             ],
             "type": "string"
         }
