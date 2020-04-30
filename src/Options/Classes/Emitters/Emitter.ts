@@ -5,11 +5,11 @@ import { MoveDirection } from "../../../Enums/MoveDirection";
 import type { IParticles } from "../../Interfaces/Particles/IParticles";
 import { EmitterRate } from "./EmitterRate";
 import { EmitterLife } from "./EmitterLife";
-import type { IDimension } from "../../../Core/Interfaces/IDimension";
 import { Utils } from "../../../Utils/Utils";
+import { EmitterSize } from "./EmitterSize";
 
 export class Emitter implements IEmitter {
-    public size?: IDimension;
+    public size?: EmitterSize;
     public direction: MoveDirection;
     public life: EmitterLife;
     public particles?: RecursivePartial<IParticles>;
@@ -25,10 +25,11 @@ export class Emitter implements IEmitter {
     public load(data?: RecursivePartial<IEmitter>): void {
         if (data !== undefined) {
             if (data.size !== undefined) {
-                this.size = {
-                    height: data.size.height,
-                    width: data.size.width,
+                if (this.size === undefined) {
+                    this.size = new EmitterSize();
                 }
+
+                this.size.load(data.size);
             }
 
             if (data.direction !== undefined) {

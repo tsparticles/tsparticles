@@ -7,7 +7,8 @@
     },
     "size": {
       "width": 5,
-      "height": 5
+      "height": 5,
+      "mode": "precise"
     },
     "rate": {
       "delay": 0.1,

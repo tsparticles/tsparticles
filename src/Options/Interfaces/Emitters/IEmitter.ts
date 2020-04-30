@@ -4,8 +4,8 @@ import type { MoveDirection } from "../../../Enums/MoveDirection";
 import type { IParticles } from "../Particles/IParticles";
 import type { IEmitterRate } from "./IEmitterRate";
 import type { IEmitterLife } from "./IEmitterLife";
-import type { IDimension } from "../../../Core/Interfaces/IDimension";
 import type { RecursivePartial } from "../../../Types/RecursivePartial";
+import type { IEmitterSize } from "./IEmitterSize";
 
 /**
  * Particles emitter object options
@@ -14,7 +14,7 @@ export interface IEmitter extends IOptionLoader<IEmitter> {
     /**
      * The size of the particles emitter area
      */
-    size?: IDimension;
+    size?: IEmitterSize;
 
     /**
      * The direction of the emitted particles, [[MoveDirection]] is the enum used for values
