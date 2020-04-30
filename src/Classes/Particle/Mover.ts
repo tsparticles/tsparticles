@@ -37,15 +37,14 @@ export class Mover {
 
                     const noise = {
                         angle: simplex.noise3D(
-                            position.x / noiseFactor.horizontal.value + noiseFactor.horizontal.offset,
-                            position.y / noiseFactor.horizontal.value + noiseFactor.horizontal.offset,
+                            Math.floor(position.x / particle.size.value) / noiseFactor.horizontal.value + noiseFactor.horizontal.offset,
+                            Math.floor(position.y / particle.size.value) / noiseFactor.horizontal.value + noiseFactor.horizontal.offset,
                             container.particles.noiseZ),
                         length: simplex.noise3D(
-                            position.x / noiseFactor.vertical.value + noiseFactor.vertical.offset,
-                            position.y / noiseFactor.vertical.value + noiseFactor.vertical.offset,
+                            Math.floor(position.x / particle.size.value) / noiseFactor.vertical.value + noiseFactor.vertical.offset,
+                            Math.floor(position.y / particle.size.value) / noiseFactor.vertical.value + noiseFactor.vertical.offset,
                             container.particles.noiseZ),
                     };
-
 
                     particle.velocity.horizontal += Math.cos(noise.angle) * noise.length;
                     particle.velocity.horizontal = Utils.clamp(particle.velocity.horizontal, -1, 1);

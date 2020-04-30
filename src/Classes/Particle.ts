@@ -124,8 +124,6 @@ export class Particle implements IParticle {
             particlesOptions.load(emitter.emitterOptions.particles);
         }
 
-        particlesOptions.load(this.shapeData?.particles);
-
         this.particlesOptions = particlesOptions;
 
         const noiseDelay = this.particlesOptions.move.noise.delay;

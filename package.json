@@ -69,7 +69,7 @@
     "url": "https://github.com/sponsors/matteobruni"
   },
   "devDependencies": {
-    "@babel/core": "^7.9.0",
+    "@babel/core": "^7.9.6",
     "@fortawesome/fontawesome-free": "^5.13.0",
     "@types/chai": "^4.2.11",
     "@types/mocha": "^7.0.2",
