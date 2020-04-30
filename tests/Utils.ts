@@ -1,5 +1,5 @@
 import { expect } from "chai";
-import { Utils } from "../src/Classes/Utils/Utils";
+import { Utils } from "../src/Utils/Utils";
 
 describe('Utils', () => {
 

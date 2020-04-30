@@ -1,4 +1,4 @@
-import { Options } from '../src/Classes/Options/Options';
+import { Options } from '../src/Options/Classes/Options';
 import { expect } from 'chai';
 import { InteractivityDetect } from "../src/Enums/InteractivityDetect";
 import { MoveDirection } from "../src/Enums/MoveDirection";
@@ -11,9 +11,9 @@ import { PolygonMaskInlineArrangement } from "../src/Enums/PolygonMaskInlineArra
 import { PolygonMaskMoveType } from "../src/Enums/PolygonMaskMoveType";
 import { PolygonMaskType } from "../src/Enums/PolygonMaskType";
 import { CollisionMode } from "../src/Enums/CollisionMode";
-import { Particles } from "../src/Classes/Options/Particles/Particles";
+import { Particles } from "../src/Options/Classes/Particles/Particles";
 import { RecursivePartial } from "../src/Types/RecursivePartial";
-import { IParticles } from "../src/Interfaces/Options/Particles/IParticles";
+import { IParticles } from "../src/Options/Interfaces/Particles/IParticles";
 
 describe('Options tests', () => {
     it('checking default options', () => {

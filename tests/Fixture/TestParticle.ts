@@ -1,6 +1,6 @@
 
-import type { ICoordinates } from "../../src/Interfaces/ICoordinates";
-import { Particle } from "../../src/Classes/Particle";
+import type { ICoordinates } from "../../src/Core/Interfaces/ICoordinates";
+import { Particle } from "../../src/Core/Particle";
 
 export class TestParticle {
 
