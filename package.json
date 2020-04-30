@@ -90,7 +90,7 @@
     "rimraf": "^3.0.2",
     "stylus": "^0.54.7",
     "terser-webpack-plugin": "^2.3.6",
-    "three": "^0.115.0",
+    "three": "^0.116.0",
     "ts-node": "^8.9.1",
     "typedoc": "^0.17.6",
     "typescript": "^3.8.3",
