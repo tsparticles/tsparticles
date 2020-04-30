@@ -87,7 +87,7 @@
       "noise": {
         "enable": true,
         "delay": {
-          "value": 0
+          "value": 0.1
         }
       },
       "trail": {
