@@ -36,20 +36,21 @@ export class Mover {
                     const noiseFactor = noiseOptions.factor;
 
                     const noise = {
-                        horizontal: simplex.noise3D(
+                        angle: simplex.noise3D(
                             position.x / noiseFactor.horizontal.value + noiseFactor.horizontal.offset,
                             position.y / noiseFactor.horizontal.value + noiseFactor.horizontal.offset,
                             container.particles.noiseZ),
-                        vertical: simplex.noise3D(
+                        length: simplex.noise3D(
                             position.x / noiseFactor.vertical.value + noiseFactor.vertical.offset,
                             position.y / noiseFactor.vertical.value + noiseFactor.vertical.offset,
                             container.particles.noiseZ),
                     };
 
-                    particle.velocity.horizontal =
-                        Utils.clamp(particle.velocity.horizontal + noise.horizontal, -1, 1);
-                    particle.velocity.vertical =
-                        Utils.clamp(particle.velocity.vertical + noise.vertical, -1, 1);
+
+                    particle.velocity.horizontal += Math.cos(noise.angle) * noise.length;
+                    particle.velocity.horizontal = Utils.clamp(particle.velocity.horizontal, -1, 1);
+                    particle.velocity.vertical += Math.sin(noise.angle) * noise.length;
+                    particle.velocity.vertical = Utils.clamp(particle.velocity.vertical, -1, 1);
 
                     particle.lastNoiseTime -= particle.noiseDelay;
                 } else {

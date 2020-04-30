@@ -76,7 +76,6 @@ export class Particle implements IParticle {
         this.close = true;
         this.links = [];
         this.lastNoiseTime = 0;
-        this.noiseDelay = Math.random() * 1000;
 
         const options = container.options;
         const particlesOptions = new Particles();
@@ -128,6 +127,12 @@ export class Particle implements IParticle {
         particlesOptions.load(this.shapeData?.particles);
 
         this.particlesOptions = particlesOptions;
+
+        const noiseDelay = this.particlesOptions.move.noise.delay;
+
+        this.noiseDelay = (noiseDelay.random.enable ?
+            Utils.randomInRange(noiseDelay.random.minimumValue, noiseDelay.value) :
+            noiseDelay.value) * 1000;
 
         container.retina.initParticle(this);
 

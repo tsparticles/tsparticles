@@ -1,5 +1,5 @@
-import { INoiseValue } from "./INoiseValue";
-import { IOptionLoader } from "../../IOptionLoader";
+import type { INoiseValue } from "./INoiseValue";
+import type { IOptionLoader } from "../../IOptionLoader";
 
 export interface INoiseFactor extends IOptionLoader<INoiseFactor> {
     horizontal: INoiseValue;
