@@ -23,6 +23,7 @@ import { Particles } from "../Options/Classes/Particles/Particles";
 import { SizeAnimationStatus } from "../Enums/SizeAnimationStatus";
 import { OpacityAnimationStatus } from "../Enums/OpacityAnimationStatus";
 import { Shape } from "../Options/Classes/Particles/Shape/Shape";
+import { StartValueType } from "../Enums/StartValueType";
 
 /**
  * The single particle object
@@ -166,6 +167,17 @@ export class Particle implements IParticle {
         }
 
         if (this.particlesOptions.size.animation.enable) {
+            switch (this.particlesOptions.size.animation.startValue) {
+                case StartValueType.min:
+                    if (!randomSize) {
+                        const pxRatio = container.retina.pixelRatio;
+
+                        this.size.value = this.particlesOptions.size.animation.minimumValue * pxRatio;
+                    }
+
+                    break;
+            }
+            
             this.size.status = SizeAnimationStatus.increasing;
             this.size.velocity = (this.sizeAnimationSpeed ?? container.retina.sizeAnimationSpeed) / 100;
 

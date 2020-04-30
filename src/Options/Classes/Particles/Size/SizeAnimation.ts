@@ -1,5 +1,7 @@
 import type { ISizeAnimation } from "../../../Interfaces/Particles/Size/ISizeAnimation";
 import type { RecursivePartial } from "../../../../Types/RecursivePartial";
+import { StartValueType } from "../../../../Enums/StartValueType";
+import { DestroyType } from "../../../../Enums/DestroyType";
 
 export class SizeAnimation implements ISizeAnimation {
     /**
@@ -19,20 +21,28 @@ export class SizeAnimation implements ISizeAnimation {
         this.minimumValue = value;
     }
 
+    public destroy: DestroyType;
     public enable: boolean;
     public minimumValue: number;
     public speed: number;
+    public startValue: StartValueType;
     public sync: boolean;
 
     constructor() {
+        this.destroy = DestroyType.none;
         this.enable = false;
         this.minimumValue = 0;
         this.speed = 5;
+        this.startValue = StartValueType.max;
         this.sync = false;
     }
 
     public load(data?: RecursivePartial<ISizeAnimation>): void {
         if (data !== undefined) {
+            if (data.destroy !== undefined) {
+                this.destroy = data.destroy;
+            }
+
             if (data.enable !== undefined) {
                 this.enable = data.enable;
             }
@@ -45,6 +55,10 @@ export class SizeAnimation implements ISizeAnimation {
 
             if (data.speed !== undefined) {
                 this.speed = data.speed;
+            }
+
+            if (data.startValue !== undefined) {
+                this.startValue = data.startValue;
             }
 
             if (data.sync !== undefined) {

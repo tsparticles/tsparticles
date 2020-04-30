@@ -1,6 +1,14 @@
 {
     "$schema": "http://json-schema.org/draft-07/schema#",
     "definitions": {
+        "DestroyType": {
+            "enum": [
+                "max",
+                "min",
+                "none"
+            ],
+            "type": "string"
+        },
         "IAbsorber": {
             "properties": {
                 "color": {
@@ -1395,6 +1403,9 @@
         },
         "ISizeAnimation": {
             "properties": {
+                "destroy": {
+                    "$ref": "#/definitions/DestroyType"
+                },
                 "enable": {
                     "type": "boolean"
                 },
@@ -1406,6 +1417,9 @@
                 },
                 "speed": {
                     "type": "number"
+                },
+                "startValue": {
+                    "$ref": "#/definitions/StartValueType"
                 },
                 "sync": {
                     "type": "boolean"
@@ -2497,6 +2511,14 @@
         },
         "RecursivePartial<ISizeAnimation>": {
             "properties": {
+                "destroy": {
+                    "enum": [
+                        "max",
+                        "min",
+                        "none"
+                    ],
+                    "type": "string"
+                },
                 "enable": {
                     "type": "boolean"
                 },
@@ -2511,6 +2533,13 @@
                 },
                 "speed": {
                     "type": "number"
+                },
+                "startValue": {
+                    "enum": [
+                        "max",
+                        "min"
+                    ],
+                    "type": "string"
                 },
                 "sync": {
                     "type": "boolean"
@@ -2646,6 +2675,13 @@
             "enum": [
                 "percent",
                 "precise"
+            ],
+            "type": "string"
+        },
+        "StartValueType": {
+            "enum": [
+                "max",
+                "min"
             ],
             "type": "string"
         }

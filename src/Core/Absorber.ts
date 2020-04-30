@@ -49,7 +49,6 @@ export class Absorber {
     }
 
     public attract(particle: Particle): boolean {
-        const container = this.container;
         const dx = this.position.x - (particle.position.x + particle.offset.x);
         const dy = this.position.y - (particle.position.y + particle.offset.y);
         const distance = Math.sqrt(Math.abs(dx * dx + dy * dy));
@@ -62,7 +61,6 @@ export class Absorber {
             const sizeFactor = particle.size.value * 0.033;
 
             if (this.size > particle.size.value && distance < this.size - particle.size.value) {
-                container.particles.remove(particle);
                 remove = true;
             } else {
                 particle.size.value -= sizeFactor;

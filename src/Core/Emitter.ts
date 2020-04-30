@@ -52,7 +52,7 @@ export class Emitter {
         for (let i = 0; i < this.emitterOptions.rate.quantity; i++) {
             const particle = new Particle(container, {
                 x: position.x + offset.x * (Math.random() - 0.5),
-                y: position.y + offset.x * (Math.random() - 0.5),
+                y: position.y + offset.y * (Math.random() - 0.5),
             }, this);
 
             container.particles.addParticle(particle);

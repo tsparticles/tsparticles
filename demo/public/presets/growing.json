@@ -1,36 +1,30 @@
 {
   "fpsLimit": 60,
   "emitters": {
+    "direction": "top",
+    "size": {
+      "width": 100,
+      "height": 0
+    },
     "position": {
       "x": 50,
-      "y": 50
-    },
-    "size": {
-      "width": 50,
-      "height": 50,
-      "mode": "precise"
+      "y": 100
     },
     "rate": {
       "delay": 0.1,
-      "quantity": 1
+      "quantity": 2
     }
   },
   "particles": {
     "number": {
       "value": 0,
       "density": {
-        "enable": false,
+        "enable": true,
         "value_area": 800
       }
     },
     "color": {
-      "value": [
-        "#5bc0eb",
-        "#fde74c",
-        "#9bc53d",
-        "#e55934",
-        "#fa7921"
-      ]
+      "value": "#ffffff"
     },
     "shape": {
       "type": "circle",
@@ -48,26 +42,25 @@
       }
     },
     "opacity": {
-      "value": 0.5,
+      "value": 1,
       "random": false,
       "anim": {
         "enable": false,
-        "speed": 1,
+        "speed": 3,
         "opacity_min": 0.1,
         "sync": false
       }
     },
     "size": {
-      "value": 7,
-      "random": {
-        "enable": true,
-        "minimumValue": 4
-      },
+      "value": 20,
+      "random": false,
       "anim": {
-        "enable": false,
-        "speed": 40,
+        "enable": true,
+        "speed": 5,
         "size_min": 0.1,
-        "sync": false
+        "sync": true,
+        "startValue": "min",
+        "destroy": "max"
       }
     },
     "line_linked": {
@@ -79,23 +72,11 @@
     },
     "move": {
       "enable": true,
-      "speed": 4,
+      "speed": 5,
       "direction": "none",
       "random": false,
       "straight": false,
       "out_mode": "destroy",
-      "bounce": false,
-      "noise": {
-        "enable": true,
-        "delay": {
-          "value": 0.1
-        }
-      },
-      "trail": {
-        "enable": true,
-        "fillColor": "#000000",
-        "length": 20
-      },
       "attract": {
         "enable": false,
         "rotateX": 600,
@@ -108,17 +89,17 @@
     "events": {
       "onhover": {
         "enable": false,
-        "mode": "grab"
+        "mode": "repulse"
       },
       "onclick": {
         "enable": false,
-        "mode": "repulse"
+        "mode": "push"
       },
       "resize": true
     },
     "modes": {
       "grab": {
-        "distance": 200,
+        "distance": 400,
         "line_linked": {
           "opacity": 1
         }
@@ -127,7 +108,7 @@
         "distance": 400,
         "size": 40,
         "duration": 2,
-        "opacity": 8,
+        "opacity": 0.8,
         "speed": 3
       },
       "repulse": {
@@ -142,5 +123,11 @@
     }
   },
   "retina_detect": true,
-  "pauseOnBlur": false
+  "background": {
+    "color": "#0d47a1",
+    "image": "",
+    "position": "50% 50%",
+    "repeat": "no-repeat",
+    "size": "cover"
+  }
 }
