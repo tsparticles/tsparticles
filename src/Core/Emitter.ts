@@ -2,12 +2,13 @@ import type { Container } from "./Container";
 import type { ICoordinates } from "./Interfaces/ICoordinates";
 import type { IEmitter } from "../Options/Interfaces/Emitters/IEmitter";
 import { Particle } from "./Particle";
-import type { IDimension } from "./Interfaces/IDimension";
 import { Utils } from "../Utils/Utils";
+import { SizeMode } from "../Enums/SizeMode";
+import { EmitterSize } from "../Options/Classes/Emitters/EmitterSize";
 
 export class Emitter {
     public position: ICoordinates;
-    public size: IDimension;
+    public size: EmitterSize;
     public emitterOptions: IEmitter;
 
     private readonly container: Container;
@@ -20,10 +21,17 @@ export class Emitter {
         this.initialPosition = position;
         this.emitterOptions = Utils.deepExtend({}, emitterOptions);
         this.position = this.initialPosition ?? this.calcPosition();
-        this.size = this.emitterOptions.size ?? {
-            height: 0,
-            width: 0,
-        };
+        this.size = this.emitterOptions.size ?? (() => {
+            const size = new EmitterSize();
+
+            size.load({
+                height: 0,
+                width: 0,
+                mode: SizeMode.percent,
+            });
+
+            return size;
+        })();
         this.lifeCount = this.emitterOptions.life.count ?? -1;
 
         this.start();
@@ -33,14 +41,18 @@ export class Emitter {
         const container = this.container;
         const position = this.position;
         const offset = {
-            x: container.canvas.size.width * this.size.width / 100,
-            y: container.canvas.size.height * this.size.height / 100,
+            x: this.size.mode === SizeMode.percent ?
+                container.canvas.size.width * this.size.width / 100 :
+                this.size.width,
+            y: this.size.mode === SizeMode.percent ?
+                container.canvas.size.height * this.size.height / 100 :
+                this.size.height,
         };
 
         for (let i = 0; i < this.emitterOptions.rate.quantity; i++) {
             const particle = new Particle(container, {
                 x: position.x + offset.x * (Math.random() - 0.5),
-                y: position.y + offset.y * (Math.random() - 0.5),
+                y: position.y + offset.x * (Math.random() - 0.5),
             }, this);
 
             container.particles.addParticle(particle);
