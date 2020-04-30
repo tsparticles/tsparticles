@@ -1,6 +1,6 @@
-import { Container } from "../../src/Classes/Container";
-import type { ICoordinates } from "../../src/Interfaces/ICoordinates";
-import { Particle } from "../../src/Classes/Particle";
+import { Container } from "../../src/Core/Container";
+import type { ICoordinates } from "../../src/Core/Interfaces/ICoordinates";
+import { Particle } from "../../src/Core/Particle";
 
 export class TestParticle {
     private container: Container;

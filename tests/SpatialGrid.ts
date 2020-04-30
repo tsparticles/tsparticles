@@ -3,11 +3,11 @@ const Window = require('window');
 globalThis.window = new Window();
 
 import { expect } from "chai";
-import { Particle } from "../src/Classes/Particle";
+import { Particle } from "../src/Core/Particle";
 import { TestContainer } from "./Fixture/TestContainer";
 import { TestParticle } from "./Fixture/TestParticle";
 import { TestSpatialGrid } from "./Fixture/TestSpatialGrid";
-import { Utils } from "../src/Classes/Utils/Utils";
+import { Utils } from "../src/Utils/Utils";
 
 const testContainer = new TestContainer();
 const particle1 = new Particle(testContainer.container, { x: 1, y: 1 });

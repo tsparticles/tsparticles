@@ -1,21 +1,21 @@
-import type { Container } from "./Classes/Container";
-import { Loader } from "./Classes/Loader";
-import type { IOptions } from "./Interfaces/Options/IOptions";
+import type { Container } from "./Core/Container";
+import { Loader } from "./Core/Loader";
+import type { IOptions } from "./Options/Interfaces/IOptions";
 import type { RecursivePartial } from "./Types/RecursivePartial";
 import { ShapeType } from "./Enums/ShapeType";
-import { LineDrawer } from "./Classes/ShapeDrawers/LineDrawer";
-import { CircleDrawer } from "./Classes/ShapeDrawers/CircleDrawer";
-import { SquareDrawer } from "./Classes/ShapeDrawers/SquareDrawer";
-import { TriangleDrawer } from "./Classes/ShapeDrawers/TriangleDrawer";
-import { StarDrawer as StarDrawer } from "./Classes/ShapeDrawers/StarDrawer";
-import { PolygonDrawer } from "./Classes/ShapeDrawers/PolygonDrawer";
-import { TextDrawer } from "./Classes/ShapeDrawers/TextDrawer";
-import { ImageDrawer } from "./Classes/ShapeDrawers/ImageDrawer";
-import type { IShapeDrawer } from "./Interfaces/IShapeDrawer";
-import { Presets } from "./Classes/Utils/Presets";
+import { LineDrawer } from "./Core/Particle/ShapeDrawers/LineDrawer";
+import { CircleDrawer } from "./Core/Particle/ShapeDrawers/CircleDrawer";
+import { SquareDrawer } from "./Core/Particle/ShapeDrawers/SquareDrawer";
+import { TriangleDrawer } from "./Core/Particle/ShapeDrawers/TriangleDrawer";
+import { StarDrawer as StarDrawer } from "./Core/Particle/ShapeDrawers/StarDrawer";
+import { PolygonDrawer } from "./Core/Particle/ShapeDrawers/PolygonDrawer";
+import { TextDrawer } from "./Core/Particle/ShapeDrawers/TextDrawer";
+import { ImageDrawer } from "./Core/Particle/ShapeDrawers/ImageDrawer";
+import type { IShapeDrawer } from "./Core/Interfaces/IShapeDrawer";
+import { Presets } from "./Utils/Presets";
 import type { ShapeDrawerFunction } from "./Types/ShapeDrawerFunction";
-import { CanvasUtils } from "./Classes/Utils/CanvasUtils";
-import { SimplexNoise } from "./Classes/Utils/SimplexNoise";
+import { CanvasUtils } from "./Utils/CanvasUtils";
+import { SimplexNoise } from "./Utils/SimplexNoise";
 
 declare global {
     interface Window {
