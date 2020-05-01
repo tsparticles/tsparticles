@@ -362,3 +362,4 @@ report.html
 report.htm
 
 .idea/
+typedoc/themes/particles/assets/js/tsparticles.min.js
