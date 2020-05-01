@@ -135,7 +135,7 @@ export class Particle implements IParticle {
 
         this.size = {
             value: randomSize && this.randomMinimumSize !== undefined ?
-                Utils.randomInRange(this.randomMinimumSize, sizeValue) * this.container.retina.pixelRatio :
+                Utils.randomInRange(this.randomMinimumSize, sizeValue) :
                 sizeValue,
         };
 
