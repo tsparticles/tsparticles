@@ -315,7 +315,9 @@ export class Canvas {
             return;
         }
 
-        CanvasUtils.drawParticle(this.context,
+        CanvasUtils.drawParticle(
+            this.container,
+            this.context,
             particle,
             colorValue,
             options.backgroundMask.enable,

@@ -165,6 +165,7 @@ export class Utils {
         return new Promise((resolve: (value?: IImage | PromiseLike<IImage> | undefined) => void,
                             reject: (reason?: string) => void) => {
             const image: IImage = {
+                source: source,
                 type: source.substr(source.length - 3),
             };
 

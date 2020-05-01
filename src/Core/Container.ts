@@ -2,22 +2,20 @@ import { Canvas } from "./Canvas";
 import { EventListeners } from "../Utils/EventListeners";
 import type { IRepulse } from "./Interfaces/IRepulse";
 import type { IBubble } from "./Interfaces/IBubble";
-import type { IImage } from "./Interfaces/IImage";
 import type { IContainerInteractivity } from "./Interfaces/IContainerInteractivity";
 import { Particles } from "./Particles";
 import { Retina } from "./Retina";
-import { ShapeType } from "../Enums/ShapeType";
 import { PolygonMask } from "./PolygonMask";
 import type { IOptions } from "../Options/Interfaces/IOptions";
 import { FrameManager } from "./FrameManager";
 import type { RecursivePartial } from "../Types/RecursivePartial";
 import { Options } from "../Options/Classes/Options";
-import { Utils } from "../Utils/Utils";
-import type { IImageShape } from "../Options/Interfaces/Particles/Shape/IImageShape";
 import { Presets } from "../Utils/Presets";
 import { Emitter } from "./Emitter";
 import { Absorber } from "./Absorber";
 import { IPlugin } from "./Interfaces/IPlugin";
+import { CanvasUtils } from "../Utils/CanvasUtils";
+import { IShapeDrawer } from "./Interfaces/IShapeDrawer";
 
 /**
  * The object loaded into an HTML element, it'll contain options loaded and all data to let everything working
@@ -29,13 +27,13 @@ export class Container {
     public options: Options;
     public retina: Retina;
     public canvas: Canvas;
+    public drawers: { [type: string]: IShapeDrawer };
     public particles: Particles;
     public emitters: Emitter[];
     public absorbers: Absorber[];
     public plugins: IPlugin[];
     public bubble: IBubble;
     public repulse: IRepulse;
-    public images: IImage[];
     public lastFrameTime: number;
     public pageHidden: boolean;
     public drawer: FrameManager;
@@ -68,12 +66,12 @@ export class Container {
         this.interactivity = {
             mouse: {},
         };
-        this.images = [];
         this.bubble = {};
         this.repulse = { particles: [] };
         this.emitters = [];
         this.absorbers = [];
         this.plugins = [];
+        this.drawers = {};
 
         /* tsParticles variables with default values */
         this.options = new Options();
@@ -163,9 +161,18 @@ export class Container {
         delete this.particles;
         delete this.bubble;
         delete this.repulse;
-        delete this.images;
         delete this.drawer;
         delete this.eventListeners;
+
+        for (const type in this.drawers) {
+            const drawer = this.drawers[type];
+
+            if (drawer.destroy !== undefined) {
+                drawer.destroy(this);
+            }
+        }
+
+        this.drawers = {};
 
         this.destroyed = true;
     }
@@ -199,7 +206,6 @@ export class Container {
         this.started = false;
         this.eventListeners.removeListeners();
         this.pause();
-        this.images = [];
         this.particles.clear();
         this.retina.reset();
         this.canvas.clear();
@@ -238,41 +244,26 @@ export class Container {
             }
         }
 
-        if (Utils.isInArray(ShapeType.char, this.options.particles.shape.type) ||
-            Utils.isInArray(ShapeType.character, this.options.particles.shape.type)) {
-            if (this.options.particles.shape.character instanceof Array) {
-                for (const character of this.options.particles.shape.character) {
-                    await Utils.loadFont(character);
-                }
-            } else {
-                const character = this.options.particles.shape.character;
-
-                if (character !== undefined) {
-                    await Utils.loadFont(character);
-                }
+        if (this.options.particles.shape.type instanceof Array) {
+            for (const type of this.options.particles.shape.type) {
+                this.drawers[type] = CanvasUtils.getShapeDrawer(type);
             }
+        } else {
+            const type = this.options.particles.shape.type;
+
+            this.drawers[type] = CanvasUtils.getShapeDrawer(type);
         }
 
-        if (Utils.isInArray(ShapeType.image, this.options.particles.shape.type) ||
-            Utils.isInArray(ShapeType.images, this.options.particles.shape.type)) {
-            if (this.options.particles.shape.image instanceof Array) {
-                for (const optionsImage of this.options.particles.shape.image) {
-                    await this.loadImageShape(optionsImage);
-                }
-            } else {
-                await this.loadImageShape(this.options.particles.shape.image);
+        for (const type in this.drawers) {
+            const drawer = this.drawers[type];
+
+            if (drawer.init !== undefined) {
+                await drawer.init(this);
             }
         }
 
         this.init();
         this.play();
-    }
-
-    private async loadImageShape(imageShape: IImageShape): Promise<void> {
-        try {
-            this.images.push(await Utils.loadImage(imageShape.src));
-        } catch {
-        }
     }
 
     private init(): void {

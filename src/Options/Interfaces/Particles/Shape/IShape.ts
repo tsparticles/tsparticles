@@ -25,6 +25,9 @@ export interface IShape extends IOptionLoader<IShape> {
      */
     character: SingleOrMultiple<ICharacterShape>;
 
+    /**
+     * @deprecated this property was integrated in custom shape management
+     */
     image: SingleOrMultiple<IImageShape>;
 
     /**

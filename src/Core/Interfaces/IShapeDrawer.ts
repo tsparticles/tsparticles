@@ -1,5 +1,12 @@
-import { ShapeDrawerFunction } from "../../Types/ShapeDrawerFunction";
+import {
+    ShapeDrawerAfterEffectFunction, ShapeDrawerDestroyFunction,
+    ShapeDrawerDrawFunction,
+    ShapeDrawerInitFunction
+} from "../../Types/ShapeDrawerFunctions";
 
 export interface IShapeDrawer {
-    draw: ShapeDrawerFunction;
+    init?: ShapeDrawerInitFunction;
+    draw: ShapeDrawerDrawFunction;
+    afterEffect?: ShapeDrawerAfterEffectFunction;
+    destroy?: ShapeDrawerDestroyFunction;
 }

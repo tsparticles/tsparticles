@@ -11,6 +11,22 @@ import { Utils } from "../../../../Utils/Utils";
 
 export class Shape implements IShape {
     /**
+     * @deprecated this property was integrated in custom shape management
+     */
+    get image(): SingleOrMultiple<ImageShape> {
+        return (this.options[ShapeType.image] ?? this.options[ShapeType.images]) as SingleOrMultiple<ImageShape>;
+    }
+
+    /**
+     * @deprecated this property was integrated in custom shape management
+     * @param value
+     */
+    set image(value: SingleOrMultiple<ImageShape>) {
+        this.options[ShapeType.image] = value;
+        this.options[ShapeType.images] = value;
+    }
+
+    /**
      * @deprecated This options has been renamed options
      */
     get custom(): ShapeData {
@@ -82,7 +98,6 @@ export class Shape implements IShape {
         this.options[ShapeType.star] = value;
     }
 
-    public image: SingleOrMultiple<ImageShape>;
     public type: SingleOrMultiple<ShapeType | string>;
     public options: ShapeData;
 
@@ -174,20 +189,36 @@ export class Shape implements IShape {
             }
 
             if (data.image !== undefined) {
-                if (data.image instanceof Array) {
-                    this.image = data.image.map((s) => {
-                        const tmp = new ImageShape();
+                const item = data.image;
 
-                        tmp.load(s);
+                if (item !== undefined) {
+                    if (item instanceof Array) {
+                        if (this.options[ShapeType.image] instanceof Array) {
+                            this.options[ShapeType.image] = Utils.deepExtend(
+                                this.options[ShapeType.image] ?? [],
+                                item);
 
-                        return tmp;
-                    });
-                } else {
-                    if (this.image instanceof Array) {
-                        this.image = new ImageShape();
+                            this.options[ShapeType.images] = Utils.deepExtend(this.options[ShapeType.char] ?? [], item);
+                        } else {
+                            this.options[ShapeType.image] = Utils.deepExtend([],
+                                item);
+
+                            this.options[ShapeType.images] = Utils.deepExtend([], item);
+                        }
+                    } else {
+                        if (this.options[ShapeType.image] instanceof Array) {
+                            this.options[ShapeType.image] = Utils.deepExtend({},
+                                item);
+
+                            this.options[ShapeType.images] = Utils.deepExtend({}, item);
+                        } else {
+                            this.options[ShapeType.image] = Utils.deepExtend(
+                                this.options[ShapeType.character] ?? [],
+                                item);
+
+                            this.options[ShapeType.images] = Utils.deepExtend(this.options[ShapeType.char] ?? [], item);
+                        }
                     }
-
-                    this.image.load(data.image);
                 }
             }
 

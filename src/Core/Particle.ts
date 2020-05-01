@@ -24,6 +24,8 @@ import { SizeAnimationStatus } from "../Enums/SizeAnimationStatus";
 import { OpacityAnimationStatus } from "../Enums/OpacityAnimationStatus";
 import { Shape } from "../Options/Classes/Particles/Shape/Shape";
 import { StartValueType } from "../Enums/StartValueType";
+import { ImageDrawer } from "./Particle/ShapeDrawers/ImageDrawer";
+import { IImageShape } from "../Options/Interfaces/Particles/Shape/IImageShape";
 
 /**
  * The single particle object
@@ -177,7 +179,7 @@ export class Particle implements IParticle {
 
                     break;
             }
-            
+
             this.size.status = SizeAnimationStatus.increasing;
             this.size.velocity = (this.sizeAnimationSpeed ?? container.retina.sizeAnimationSpeed) / 100;
 
@@ -247,14 +249,20 @@ export class Particle implements IParticle {
         /* if shape is image */
         if (this.shape === ShapeType.image || this.shape === ShapeType.images) {
             const shape = this.particlesOptions.shape;
-            const index = Utils.arrayRandomIndex(container.images);
-            const image = container.images[index];
-            const optionsImage = shape.image instanceof Array ? shape.image[index] : shape.image;
+            const drawer = container.drawers[this.shape] as ImageDrawer;
+            const imagesOptions = shape.options[this.shape];
+            const images = drawer.getImages(container).images;
+            const index = Utils.arrayRandomIndex(images);
+            const image = images[index];
+
+            const optionsImage = (imagesOptions instanceof Array ?
+                imagesOptions.filter(t => (t as IImageShape).src === image.source)[0] :
+                imagesOptions) as IImageShape;
 
             this.image = {
                 data: image,
                 ratio: optionsImage.width / optionsImage.height,
-                replaceColor: optionsImage.replaceColor,
+                replaceColor: optionsImage.replaceColor ?? optionsImage.replace_color,
                 source: optionsImage.src,
             };
 
