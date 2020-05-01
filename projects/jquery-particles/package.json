@@ -1,6 +1,6 @@
 {
   "name": "jquery-particles",
-  "version": "1.13.5",
+  "version": "1.13.6",
   "description": "Particles effect in jQuery",
   "main": "dist/jquery.particles.min.js",
   "scripts": {
