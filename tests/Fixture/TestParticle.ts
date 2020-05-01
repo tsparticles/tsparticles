@@ -1,8 +1,35 @@
-
+import { Container } from "../../src/Core/Container";
 import type { ICoordinates } from "../../src/Core/Interfaces/ICoordinates";
 import { Particle } from "../../src/Core/Particle";
 
 export class TestParticle {
+    private container: Container;
+    private position?: ICoordinates;
+    public particle: Particle;
+
+    constructor(container: Container, position?: ICoordinates) {
+        this.container = container;
+        this.position = position;
+        this.particle = new Particle(this.container, this.position);
+    }
+
+    /**
+     * If [[container]] is provided, then the new particle will be initialized with
+     * this [[container]]. Otherwise the last-used [[container]] will be used.
+     *
+     * [[position]] will be used verbatim, even if it is not provided. The last-used
+     * [[position]] will not be used.
+     *
+     * @param container
+     * @param position
+     */
+    public reset(container?: Container, position?: ICoordinates) {
+        if(container !== undefined) {
+            this.container = container;
+        }
+        this.position = position;
+        this.particle = new Particle(this.container, this.position);
+    }
 
     /**
      * A function that will be passed to [[Array.sort]] to sort particles.
