@@ -9,7 +9,7 @@ jobs:
 
     steps:
       - checkout
-      -
+
       - run:
           name: update-npm
           command: 'sudo npm install -g npm@latest'
