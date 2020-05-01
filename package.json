@@ -76,6 +76,7 @@
     "@types/node": "^13.13.4",
     "babel-loader": "^8.1.0",
     "bootstrap": "^4.4.1",
+    "canvas": "^2.6.1",
     "chai": "^4.2.0",
     "copyfiles": "^2.2.0",
     "express": "^4.17.1",
