@@ -7,6 +7,7 @@ import type { IParticle } from "../Core/Interfaces/IParticle";
 import type { IShadow } from "../Options/Interfaces/Particles/IShadow";
 import type { IShapeDrawer } from "../Core/Interfaces/IShapeDrawer";
 import { Absorber } from "../Core/Absorber";
+import { Container } from "../Core/Container";
 
 export class CanvasUtils {
     private static readonly drawers: { [type: string]: IShapeDrawer } = {};
@@ -136,7 +137,8 @@ export class CanvasUtils {
         context.restore();
     }
 
-    public static drawParticle(context: CanvasRenderingContext2D,
+    public static drawParticle(container: Container,
+                               context: CanvasRenderingContext2D,
                                particle: IParticle,
                                colorValue: string,
                                backgroundMask: boolean,
@@ -152,6 +154,14 @@ export class CanvasUtils {
         context.translate(pos.x, pos.y);
         context.beginPath();
 
+        if (particle.angle !== 0) {
+            context.rotate(particle.angle * Math.PI / 180);
+        }
+
+        if (backgroundMask) {
+            context.globalCompositeOperation = "destination-out";
+        }
+
         const shadowColor = particle.shadowColor;
 
         if (shadow.enable && shadowColor) {
@@ -163,14 +173,6 @@ export class CanvasUtils {
 
         context.fillStyle = colorValue;
 
-        if (particle.angle !== 0) {
-            context.rotate(particle.angle * Math.PI / 180);
-        }
-
-        if (backgroundMask) {
-            context.globalCompositeOperation = "destination-out";
-        }
-
         const stroke = particle.stroke;
 
         if (stroke.width > 0 && particle.strokeColor) {
@@ -178,7 +180,7 @@ export class CanvasUtils {
             context.lineWidth = stroke.width;
         }
 
-        this.drawShape(context, particle, radius, opacity);
+        this.drawShape(container, context, particle, radius, opacity);
 
         if (particle.close) {
             context.closePath();
@@ -193,6 +195,20 @@ export class CanvasUtils {
         }
 
         context.restore();
+        context.save();
+        context.translate(pos.x, pos.y);
+
+        if (particle.angle !== 0) {
+            context.rotate(particle.angle * Math.PI / 180);
+        }
+
+        if (backgroundMask) {
+            context.globalCompositeOperation = "destination-out";
+        }
+
+        this.drawShapeAfterEffect(container, context, particle, radius, opacity);
+
+        context.restore();
     }
 
     public static addShapeDrawer(type: string, drawer: IShapeDrawer): void {
@@ -201,7 +217,12 @@ export class CanvasUtils {
         }
     }
 
-    public static drawShape(context: CanvasRenderingContext2D,
+    public static getShapeDrawer(type: string): IShapeDrawer {
+        return this.drawers[type];
+    }
+
+    public static drawShape(container: Container,
+                            context: CanvasRenderingContext2D,
                             particle: IParticle,
                             radius: number,
                             opacity: number): void {
@@ -210,12 +231,33 @@ export class CanvasUtils {
             return;
         }
 
-        const drawer = this.drawers[particle.shape];
+        const drawer = container.drawers[particle.shape];
 
         if (!drawer) {
             return;
         }
 
         drawer.draw(context, particle, radius, opacity);
+    }
+
+    public static drawShapeAfterEffect(container: Container,
+                                       context: CanvasRenderingContext2D,
+                                       particle: IParticle,
+                                       radius: number,
+                                       opacity: number): void {
+
+        if (!particle.shape) {
+            return;
+        }
+
+        const drawer = container.drawers[particle.shape];
+
+        if (!drawer) {
+            return;
+        }
+
+        if (drawer.afterEffect !== undefined) {
+            drawer.afterEffect(context, particle, radius, opacity);
+        }
     }
 }

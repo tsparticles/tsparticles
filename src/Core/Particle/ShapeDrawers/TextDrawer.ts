@@ -2,12 +2,36 @@ import type { IShapeDrawer } from "../../Interfaces/IShapeDrawer";
 import type { IParticle } from "../../Interfaces/IParticle";
 import { Utils } from "../../../Utils/Utils";
 import type { ICharacterShape } from "../../../Options/Interfaces/Particles/Shape/ICharacterShape";
+import { ShapeType } from "../../../Enums/ShapeType";
+import { Container } from "../../Container";
 
 interface ITextParticle extends IParticle {
     text?: string;
 }
 
 export class TextDrawer implements IShapeDrawer {
+    public async init(container: Container): Promise<void> {
+        const options = container.options;
+
+        if (Utils.isInArray(ShapeType.char, options.particles.shape.type) ||
+            Utils.isInArray(ShapeType.character, options.particles.shape.type)) {
+            const shapeOptions = options.particles.shape.options[ShapeType.character] ??
+                options.particles.shape.options[ShapeType.char];
+            if (shapeOptions instanceof Array) {
+                for (const character of shapeOptions) {
+                    await Utils.loadFont(character as ICharacterShape);
+                }
+            } else {
+                const character = options.particles.shape.options[ShapeType.character] ??
+                    options.particles.shape.options[ShapeType.char];
+
+                if (character !== undefined) {
+                    await Utils.loadFont(character as ICharacterShape);
+                }
+            }
+        }
+    }
+
     public draw(context: CanvasRenderingContext2D, particle: IParticle, radius: number, _opacity: number): void {
         const character = particle.shapeData as ICharacterShape;
 

@@ -13,9 +13,14 @@ import { TextDrawer } from "./Core/Particle/ShapeDrawers/TextDrawer";
 import { ImageDrawer } from "./Core/Particle/ShapeDrawers/ImageDrawer";
 import type { IShapeDrawer } from "./Core/Interfaces/IShapeDrawer";
 import { Presets } from "./Utils/Presets";
-import type { ShapeDrawerFunction } from "./Types/ShapeDrawerFunction";
 import { CanvasUtils } from "./Utils/CanvasUtils";
 import { SimplexNoise } from "./Utils/SimplexNoise";
+import type {
+    ShapeDrawerAfterEffectFunction,
+    ShapeDrawerDestroyFunction,
+    ShapeDrawerDrawFunction,
+    ShapeDrawerInitFunction
+} from "./Types/ShapeDrawerFunctions";
 
 declare global {
     interface Window {
@@ -155,13 +160,23 @@ class Main {
      * addShape adds shape to tsParticles, it will be available to all future instances created
      * @param shape the shape name
      * @param drawer the shape drawer function or class instance that draws the shape in the canvas
+     * @param init Optional: the shape drawer init function, used only if the drawer parameter is a function
+     * @param afterEffect Optional: the shape drawer after effect function, used only if the drawer parameter is a function
+     * @param destroy Optional: the shape drawer destroy function, used only if the drawer parameter is a function
      */
-    public addShape(shape: string, drawer: IShapeDrawer | ShapeDrawerFunction): void {
+    public addShape(shape: string,
+                    drawer: IShapeDrawer | ShapeDrawerDrawFunction,
+                    init?: ShapeDrawerInitFunction,
+                    afterEffect?: ShapeDrawerAfterEffectFunction,
+                    destroy?: ShapeDrawerDestroyFunction): void {
         let customDrawer: IShapeDrawer;
 
         if (typeof drawer === "function") {
             customDrawer = {
+                afterEffect: afterEffect,
                 draw: drawer,
+                destroy: destroy,
+                init: init,
             };
         } else {
             customDrawer = drawer;
