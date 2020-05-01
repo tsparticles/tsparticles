@@ -358,8 +358,7 @@ lib/
 build/
 docs/
 typedoc/themes/particles/assets/js/tsparticles.min.js
-report.html
-report.htm
+demo/public/report.html
+demo/public/report.htm
 
 .idea/
-typedoc/themes/particles/assets/js/tsparticles.min.js
