@@ -1,7 +1,7 @@
-import type { ICoordinates } from "./Interfaces/ICoordinates";
-import type { Container } from "./Container";
-import type { Particle } from "./Particle";
-import { IRgb } from "./Interfaces/IRgb";
+import type { ICoordinates } from "../Core/Interfaces/ICoordinates";
+import type { Container } from "../Core/Container";
+import type { Particle } from "../Core/Particle";
+import { IRgb } from "../Core/Interfaces/IRgb";
 import { IAbsorber } from "../Options/Interfaces/Absorbers/IAbsorber";
 import { ColorUtils } from "../Utils/ColorUtils";
 import { Utils } from "../Utils/Utils";
@@ -50,7 +50,7 @@ export class Absorber {
         this.position = this.initialPosition ?? this.calcPosition();
     }
 
-    public attract(particle: Particle): boolean {
+    public attract(particle: Particle): void {
         const dx = this.position.x - (particle.position.x + particle.offset.x);
         const dy = this.position.y - (particle.position.y + particle.offset.y);
         const distance = Math.sqrt(Math.abs(dx * dx + dy * dy));
@@ -58,12 +58,10 @@ export class Absorber {
         const acceleration = this.mass / Math.pow(distance, 2);
 
         if (distance < this.size + particle.size.value) {
-            let remove = false;
-
             const sizeFactor = particle.size.value * 0.033;
 
             if (this.size > particle.size.value && distance < this.size - particle.size.value) {
-                remove = true;
+                particle.destroyed = true;
             } else {
                 particle.size.value -= sizeFactor;
                 particle.velocity.horizontal += Math.sin(angle * (Math.PI / 180)) * acceleration;
@@ -75,13 +73,9 @@ export class Absorber {
             }
 
             this.mass += sizeFactor * this.options.size.density;
-
-            return !remove;
         } else {
             particle.velocity.horizontal += Math.sin(angle * (Math.PI / 180)) * acceleration;
             particle.velocity.vertical += Math.cos(angle * (Math.PI / 180)) * acceleration;
-
-            return true;
         }
     }
 

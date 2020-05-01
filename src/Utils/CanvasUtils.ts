@@ -6,7 +6,7 @@ import { ColorUtils } from "./ColorUtils";
 import type { IParticle } from "../Core/Interfaces/IParticle";
 import type { IShadow } from "../Options/Interfaces/Particles/IShadow";
 import type { IShapeDrawer } from "../Core/Interfaces/IShapeDrawer";
-import { Absorber } from "../Core/Absorber";
+import { Absorber } from "../Plugins/Absorber";
 import { Container } from "../Core/Container";
 
 export class CanvasUtils {

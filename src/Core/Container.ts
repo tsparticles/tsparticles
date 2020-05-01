@@ -5,17 +5,19 @@ import type { IBubble } from "./Interfaces/IBubble";
 import type { IContainerInteractivity } from "./Interfaces/IContainerInteractivity";
 import { Particles } from "./Particles";
 import { Retina } from "./Retina";
-import { PolygonMask } from "./PolygonMask";
+import { PolygonMask } from "../Plugins/PolygonMask";
 import type { IOptions } from "../Options/Interfaces/IOptions";
 import { FrameManager } from "./FrameManager";
 import type { RecursivePartial } from "../Types/RecursivePartial";
 import { Options } from "../Options/Classes/Options";
 import { Presets } from "../Utils/Presets";
 import { Emitter } from "./Emitter";
-import { Absorber } from "./Absorber";
 import { IPlugin } from "./Interfaces/IPlugin";
 import { CanvasUtils } from "../Utils/CanvasUtils";
 import { IShapeDrawer } from "./Interfaces/IShapeDrawer";
+import { Utils } from "../Utils/Utils";
+import { ClickMode } from "../Enums/Modes/ClickMode";
+import { Absorbers } from "../Plugins/Absorbers";
 
 /**
  * The object loaded into an HTML element, it'll contain options loaded and all data to let everything working
@@ -30,7 +32,6 @@ export class Container {
     public drawers: { [type: string]: IShapeDrawer };
     public particles: Particles;
     public emitters: Emitter[];
-    public absorbers: Absorber[];
     public plugins: IPlugin[];
     public bubble: IBubble;
     public repulse: IRepulse;
@@ -69,7 +70,6 @@ export class Container {
         this.bubble = {};
         this.repulse = { particles: [] };
         this.emitters = [];
-        this.absorbers = [];
         this.plugins = [];
         this.drawers = {};
 
@@ -217,7 +217,6 @@ export class Container {
         }
 
         this.emitters = [];
-        this.absorbers = [];
         this.plugins = [];
 
         delete this.particles.lineLinkedColor;
@@ -230,6 +229,23 @@ export class Container {
 
         if (this.options.polygon.enable) {
             this.plugins.push(new PolygonMask(this));
+        }
+
+        const absorbers = this.options.absorbers;
+        let loadAbsorbers = false;
+
+        if (absorbers instanceof Array) {
+            if (absorbers.length) {
+                loadAbsorbers = true;
+            }
+        } else if (absorbers !== undefined) {
+            loadAbsorbers = true;
+        } else if (Utils.isInArray(ClickMode.absorber, this.options.interactivity.events.onClick.mode)) {
+            loadAbsorbers = true;
+        }
+
+        if (loadAbsorbers) {
+            this.plugins.push(new Absorbers(this));
         }
 
         this.started = true;
@@ -283,19 +299,6 @@ export class Container {
             const emitter = new Emitter(this, emitterOptions);
 
             this.emitters.push(emitter);
-        }
-
-        if (this.options.absorbers instanceof Array) {
-            for (const absorberOptions of this.options.absorbers) {
-                const absorber = new Absorber(this, absorberOptions);
-
-                this.absorbers.push(absorber);
-            }
-        } else {
-            const absorberOptions = this.options.absorbers;
-            const absorber = new Absorber(this, absorberOptions);
-
-            this.absorbers.push(absorber);
         }
 
         this.densityAutoParticles();

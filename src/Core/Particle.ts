@@ -32,6 +32,7 @@ import { IImageShape } from "../Options/Interfaces/Particles/Shape/IImageShape";
  */
 export class Particle implements IParticle {
     public angle: number;
+    public destroyed: boolean;
     public rotateDirection: RotateDirection;
     public randomIndexData?: number;
     public links: IParticle[];
@@ -79,6 +80,7 @@ export class Particle implements IParticle {
         this.close = true;
         this.links = [];
         this.lastNoiseTime = 0;
+        this.destroyed = false;
 
         const options = container.options;
         const particlesOptions = new Particles();
@@ -422,6 +424,7 @@ export class Particle implements IParticle {
     }
 
     public destroy(): void {
+        this.destroyed = true;
     }
 
     private calcPosition(container: Container, position?: ICoordinates): ICoordinates {

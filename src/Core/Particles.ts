@@ -68,7 +68,6 @@ export class Particles {
             }
         }
 
-
         this.interactionsEnabled = options.particles.lineLinked.enable ||
             options.particles.move.attract.enable ||
             options.particles.collisions.enable ||
@@ -122,36 +121,36 @@ export class Particles {
             //     p.vy = f * Math.sin(t);
             // }
 
-            let stillExists = true;
-
-            for (const absorber of container.absorbers) {
-                stillExists = absorber.attract(particle);
-
-                if (!stillExists) {
+            for (const plugin of container.plugins) {
+                if (particle.destroyed) {
                     break;
+                }
+
+                if (plugin.particleUpdate) {
+                    plugin.particleUpdate(particle);
                 }
             }
 
-            if (stillExists) {
+            if (!particle.destroyed) {
                 const sizeOpt = particle.particlesOptions.size;
                 const sizeAnim = sizeOpt.animation;
                 if (sizeAnim.enable) {
                     switch (sizeAnim.destroy) {
                         case DestroyType.max:
                             if (particle.size.value >= sizeOpt.value * container.retina.pixelRatio) {
-                                stillExists = false;
+                                particle.destroyed = true;
                             }
                             break;
                         case DestroyType.min:
                             if (particle.size.value <= sizeAnim.minimumValue * container.retina.pixelRatio) {
-                                stillExists = false;
+                                particle.destroyed = true;
                             }
                             break;
                     }
                 }
             }
 
-            if (!stillExists) {
+            if (particle.destroyed) {
                 particlesToDelete.push(particle);
                 continue;
             }
@@ -225,10 +224,6 @@ export class Particles {
             if (plugin.draw !== undefined) {
                 plugin.draw();
             }
-        }
-
-        for (const absorber of container.absorbers) {
-            absorber.draw();
         }
 
         /*if (container.canvas.context) {

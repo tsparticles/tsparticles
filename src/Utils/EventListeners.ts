@@ -6,8 +6,6 @@ import { Constants } from "./Constants";
 import { Emitter } from "../Core/Emitter";
 import { Utils } from "./Utils";
 import type { IEmitter } from "../Options/Interfaces/Emitters/IEmitter";
-import type { IAbsorber } from "../Options/Interfaces/Absorbers/IAbsorber";
-import { Absorber } from "../Core/Absorber";
 
 /**
  * Particles container event listeners manager
@@ -186,10 +184,6 @@ export class EventListeners {
             emitter.resize();
         }
 
-        for (const absorber of container.absorbers) {
-            absorber.resize();
-        }
-
         for (const plugin of container.plugins) {
             if (plugin.resize !== undefined) {
                 plugin.resize();
@@ -351,87 +345,87 @@ export class EventListeners {
 
             container.interactivity.mouse.clickTime = new Date().getTime();
 
-            const pushNb = options.interactivity.modes.push.quantity;
-            const removeNb = options.interactivity.modes.remove.quantity;
+            if (options.interactivity.events.onClick.mode instanceof Array) {
+                for (const mode of options.interactivity.events.onClick.mode) {
+                    this.handleClickMode(mode);
+                }
+            } else {
+                const mode = options.interactivity.events.onClick.mode;
 
-            switch (options.interactivity.events.onClick.mode) {
-                case ClickMode.push:
-                    if (options.particles.move.enable) {
-                        container.particles.push(pushNb, container.interactivity.mouse);
-                    } else {
-                        if (options.interactivity.modes.push.quantity === 1) {
-                            container.particles.push(pushNb, container.interactivity.mouse);
-                        } else if (options.interactivity.modes.push.quantity > 1) {
-                            container.particles.push(pushNb);
-                        }
-                    }
-                    break;
-                case ClickMode.remove:
-                    container.particles.removeQuantity(removeNb);
-                    break;
-                case ClickMode.bubble:
-                    container.bubble.clicking = true;
-                    break;
-                case ClickMode.repulse:
-                    container.repulse.clicking = true;
-                    container.repulse.count = 0;
-                    for (const particle of container.repulse.particles) {
-                        particle.velocity.horizontal = particle.initialVelocity.horizontal;
-                        particle.velocity.vertical = particle.initialVelocity.vertical;
-                    }
-                    container.repulse.particles = [];
-                    container.repulse.finish = false;
-                    setTimeout(() => {
-                        if (!container.destroyed) {
-                            container.repulse.clicking = false;
-                        }
-                    }, options.interactivity.modes.repulse.duration * 1000);
-                    break;
-                case ClickMode.absorber:
-                    let absorbersModeOptions: IAbsorber | undefined;
-                    const modeAbsorbers = options.interactivity.modes.absorbers;
-
-                    if (modeAbsorbers instanceof Array) {
-                        if (modeAbsorbers.length > 0) {
-                            absorbersModeOptions = Utils.itemFromArray(modeAbsorbers);
-                        }
-                    } else {
-                        absorbersModeOptions = modeAbsorbers;
-                    }
-
-                    const absorbersOptions = absorbersModeOptions ?? (options.absorbers instanceof Array ?
-                        Utils.itemFromArray(options.absorbers) :
-                        options.absorbers);
-                    const bhPosition = container.interactivity.mouse.clickPosition;
-                    const absorber = new Absorber(container, absorbersOptions, bhPosition);
-                    container.absorbers.push(absorber);
-                    break;
-
-                case ClickMode.emitter:
-                    let emitterModeOptions: IEmitter | undefined;
-                    const modeEmitters = options.interactivity.modes.emitters;
-
-                    if (modeEmitters instanceof Array) {
-                        if (modeEmitters.length > 0) {
-                            emitterModeOptions = Utils.itemFromArray(modeEmitters);
-                        }
-                    } else {
-                        emitterModeOptions = modeEmitters;
-                    }
-
-                    const emitterOptions = emitterModeOptions ?? (options.emitters instanceof Array ?
-                        Utils.itemFromArray(options.emitters) :
-                        options.emitters);
-                    const ePosition = container.interactivity.mouse.clickPosition;
-                    const emitter = new Emitter(container, Utils.deepExtend({}, emitterOptions), ePosition);
-
-                    container.emitters.push(emitter);
-                    break;
+                this.handleClickMode(mode);
             }
         }
 
         if (e.type === "touchend") {
             setTimeout(() => this.mouseTouchFinish(), 500);
+        }
+    }
+
+    private handleClickMode(mode: ClickMode): void {
+        const container = this.container;
+        const options = container.options;
+        const pushNb = options.interactivity.modes.push.quantity;
+        const removeNb = options.interactivity.modes.remove.quantity;
+
+        switch (mode) {
+            case ClickMode.push:
+                if (options.particles.move.enable) {
+                    container.particles.push(pushNb, container.interactivity.mouse);
+                } else {
+                    if (options.interactivity.modes.push.quantity === 1) {
+                        container.particles.push(pushNb, container.interactivity.mouse);
+                    } else if (options.interactivity.modes.push.quantity > 1) {
+                        container.particles.push(pushNb);
+                    }
+                }
+                break;
+            case ClickMode.remove:
+                container.particles.removeQuantity(removeNb);
+                break;
+            case ClickMode.bubble:
+                container.bubble.clicking = true;
+                break;
+            case ClickMode.repulse:
+                container.repulse.clicking = true;
+                container.repulse.count = 0;
+                for (const particle of container.repulse.particles) {
+                    particle.velocity.horizontal = particle.initialVelocity.horizontal;
+                    particle.velocity.vertical = particle.initialVelocity.vertical;
+                }
+                container.repulse.particles = [];
+                container.repulse.finish = false;
+                setTimeout(() => {
+                    if (!container.destroyed) {
+                        container.repulse.clicking = false;
+                    }
+                }, options.interactivity.modes.repulse.duration * 1000);
+                break;
+            case ClickMode.emitter:
+                let emitterModeOptions: IEmitter | undefined;
+                const modeEmitters = options.interactivity.modes.emitters;
+
+                if (modeEmitters instanceof Array) {
+                    if (modeEmitters.length > 0) {
+                        emitterModeOptions = Utils.itemFromArray(modeEmitters);
+                    }
+                } else {
+                    emitterModeOptions = modeEmitters;
+                }
+
+                const emitterOptions = emitterModeOptions ?? (options.emitters instanceof Array ?
+                    Utils.itemFromArray(options.emitters) :
+                    options.emitters);
+                const ePosition = container.interactivity.mouse.clickPosition;
+                const emitter = new Emitter(container, Utils.deepExtend({}, emitterOptions), ePosition);
+
+                container.emitters.push(emitter);
+                break;
+        }
+
+        for (const plugin of container.plugins) {
+            if (plugin.handleClickMode) {
+                plugin.handleClickMode(mode);
+            }
         }
     }
 }

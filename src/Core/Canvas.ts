@@ -6,7 +6,7 @@ import type { ICoordinates } from "./Interfaces/ICoordinates";
 import { CanvasUtils } from "../Utils/CanvasUtils";
 import { ColorUtils } from "../Utils/ColorUtils";
 import type { IParticle } from "./Interfaces/IParticle";
-import type { Absorber } from "./Absorber";
+import type { Absorber } from "../Plugins/Absorber";
 
 /**
  * Canvas manager

@@ -1,13 +1,13 @@
-import { Container } from "./Container";
-import type { ICoordinates } from "./Interfaces/ICoordinates";
+import { Container } from "../Core/Container";
+import type { ICoordinates } from "../Core/Interfaces/ICoordinates";
 import { PolygonMaskType } from "../Enums/PolygonMaskType";
-import { Particle } from "./Particle";
+import { Particle } from "../Core/Particle";
 import { PolygonMaskInlineArrangement } from "../Enums/PolygonMaskInlineArrangement";
 import { Utils } from "../Utils/Utils";
-import type { IDimension } from "./Interfaces/IDimension";
+import type { IDimension } from "../Core/Interfaces/IDimension";
 import { Constants } from "../Utils/Constants";
-import { ISvgPath } from "./Interfaces/ISvgPath";
-import type { IPlugin } from "./Interfaces/IPlugin";
+import { ISvgPath } from "../Core/Interfaces/ISvgPath";
+import type { IPlugin } from "../Core/Interfaces/IPlugin";
 import { IPolygonMaskDrawStroke } from "../Options/Interfaces/PolygonMask/IPolygonMaskDrawStroke";
 import { ColorUtils } from "../Utils/ColorUtils";
 
