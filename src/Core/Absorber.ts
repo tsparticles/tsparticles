@@ -33,9 +33,11 @@ export class Absorber {
 
         this.opacity = this.options.opacity;
         this.size = size * container.retina.pixelRatio;
-        this.mass = size * options.size.density;
+        this.mass = this.size * options.size.density;
 
-        this.limit = options.size.limit;
+        const limit = options.size.limit;
+
+        this.limit = limit !== undefined ? limit * this.container.retina.pixelRatio : limit;
 
         const color = typeof options.color === "string" ? { value: options.color } : options.color;
 
