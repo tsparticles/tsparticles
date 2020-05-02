@@ -17,20 +17,6 @@ export class TestContainer {
     }
 
     /**
-     * Adds a shape drawer to the current container. Drawers do not persist and will be removed
-     * when `TestContainer.reset` is called.
-     *
-     * @param type
-     * @param drawer
-     */
-    public addShapeDrawer(type: string, drawer: IShapeDrawer): void {
-        // Taken from CanvasUtils.addShapeDrawer
-        if (!this.container.drawers[type]) {
-            this.container.drawers[type] = drawer;
-        }
-    }
-
-    /**
      * Reset the container. If [[params]] is provided, then the new spatial grid will be
      * initialized with this [[params]]. Otherwise the last-used [[params]] will be used.
      *

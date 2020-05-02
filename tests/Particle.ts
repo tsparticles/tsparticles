@@ -86,7 +86,6 @@ describe('Particle', () => {
 
             it('should set shapeData to the configured shape data matching the chosen shape whenever multiple shapes are specified for container Particles', () => {
                 testContainer.reset(multipleShapeTypeOptions);
-                testContainer.addShapeDrawer('image', new ImageDrawer());
                 testParticle.reset(testContainer.container);
                 expect(testParticle.particle.shape).to.be.a('string');
                 let expectedShapeData;
