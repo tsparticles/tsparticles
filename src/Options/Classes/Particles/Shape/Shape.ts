@@ -198,7 +198,7 @@ export class Shape implements IShape {
                                 this.options[ShapeType.image] ?? [],
                                 item);
 
-                            this.options[ShapeType.images] = Utils.deepExtend(this.options[ShapeType.char] ?? [], item);
+                            this.options[ShapeType.images] = Utils.deepExtend(this.options[ShapeType.images] ?? [], item);
                         } else {
                             this.options[ShapeType.image] = Utils.deepExtend([],
                                 item);
@@ -213,10 +213,10 @@ export class Shape implements IShape {
                             this.options[ShapeType.images] = Utils.deepExtend({}, item);
                         } else {
                             this.options[ShapeType.image] = Utils.deepExtend(
-                                this.options[ShapeType.character] ?? [],
+                                this.options[ShapeType.image] ?? [],
                                 item);
 
-                            this.options[ShapeType.images] = Utils.deepExtend(this.options[ShapeType.char] ?? [], item);
+                            this.options[ShapeType.images] = Utils.deepExtend(this.options[ShapeType.images] ?? [], item);
                         }
                     }
                 }
