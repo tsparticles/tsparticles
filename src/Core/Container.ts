@@ -97,7 +97,6 @@ export class Container {
 
     public play(): void {
         if (this.paused) {
-            this.lastFrameTime = performance.now();
             this.paused = false;
 
             for (const plugin of this.plugins) {
@@ -105,6 +104,8 @@ export class Container {
                     plugin.play();
                 }
             }
+
+            this.lastFrameTime = performance.now();
         }
 
         this.drawAnimationFrame = Container.requestFrame((t) => this.drawer.nextFrame(t));
@@ -124,8 +125,14 @@ export class Container {
                 }
             }
 
-            this.paused = true;
+            if (!this.pageHidden) {
+                this.paused = true;
+            }
         }
+    }
+
+    public getAnimationStatus(): boolean {
+        return !this.paused;
     }
 
     /* ---------- tsParticles functions - vendors ------------ */
