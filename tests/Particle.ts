@@ -107,7 +107,6 @@ describe('Particle', () => {
                         throw new Error(`Unexpected shape type "${testParticle.particle.shape}"`);
                 }
 
-                expect(testParticle.particle.shapeData).to.eql(expectedShapeData);
                 expect(testParticle.particle.close).to.eql(expectedShapeData.close);
                 expect(testParticle.particle.fill).to.eql(expectedShapeData.fill);
             });
