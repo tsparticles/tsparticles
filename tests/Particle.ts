@@ -8,6 +8,7 @@ import { TestContainer } from "./Fixture/TestContainer";
 import { TestParticle } from "./Fixture/TestParticle";
 import { ShapeType } from "../src/Enums/ShapeType";
 import { ICoordinates } from "../src/Core/Interfaces/ICoordinates";
+import { ImageDrawer} from "../src/Core/Particle/ShapeDrawers/ImageDrawer";
 
 const testContainer = new TestContainer({});
 const testParticle = new TestParticle(testContainer.container);
@@ -27,7 +28,7 @@ describe('Particle', () => {
                 }
             }
         };
-        const shapeTypes = [ ShapeType.char, ShapeType.edge, /* ShapeType.image, */ ShapeType.polygon ]; // TODO image test is broken
+        const shapeTypes = [ ShapeType.char, ShapeType.edge, ShapeType.image, ShapeType.polygon ];
         const multipleShapeTypeOptions = {
             particles: {
                 shape: {
@@ -35,7 +36,7 @@ describe('Particle', () => {
                     options: {
                         char: { close: true, fill: true },
                         edge: { close: true, fill: false },
-                        // image: { close: false, fill: true }, // TODO this test is broken
+                        image: { close: false, fill: true },
                         polygon: { close: false, fill: false }
                     }
                 }
@@ -83,8 +84,9 @@ describe('Particle', () => {
                 expect(testParticle.particle.fill).to.eql(squareShapeOptions.particles.shape.options.square.fill);
             });
 
-            xit('should set shapeData to the configured shape data matching the chosen shape whenever multiple shapes are specified for container Particles', () => {
+            it('should set shapeData to the configured shape data matching the chosen shape whenever multiple shapes are specified for container Particles', () => {
                 testContainer.reset(multipleShapeTypeOptions);
+                testContainer.addShapeDrawer('image', new ImageDrawer());
                 testParticle.reset(testContainer.container);
                 expect(testParticle.particle.shape).to.be.a('string');
                 let expectedShapeData;
@@ -95,9 +97,9 @@ describe('Particle', () => {
                     case(ShapeType.edge):
                         expectedShapeData = multipleShapeTypeOptions.particles.shape.options[ShapeType.edge];
                         break;
-                    // case(ShapeType.image): // TODO this test is broken
-                    //    expectedShapeData = multipleShapeTypeOptions.particles.shape.options[ShapeType.image];
-                    //    break;
+                    case(ShapeType.image):
+                       expectedShapeData = multipleShapeTypeOptions.particles.shape.options[ShapeType.image];
+                       break;
                     case(ShapeType.polygon):
                         expectedShapeData = multipleShapeTypeOptions.particles.shape.options[ShapeType.polygon];
                         break;
