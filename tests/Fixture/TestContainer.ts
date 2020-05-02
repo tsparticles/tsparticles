@@ -2,7 +2,6 @@ import { tsParticles } from "../../src";
 import { Container } from "../../src/Core/Container";
 import type { IOptions } from "../../src/Options/Interfaces/IOptions";
 import { RecursivePartial } from "../../src/Types/RecursivePartial";
-import { IShapeDrawer } from "../../src/Core/Interfaces/IShapeDrawer";
 
 export class TestContainer {
     private readonly id: string;

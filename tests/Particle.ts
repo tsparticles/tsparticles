@@ -8,7 +8,6 @@ import { TestContainer } from "./Fixture/TestContainer";
 import { TestParticle } from "./Fixture/TestParticle";
 import { ShapeType } from "../src/Enums/ShapeType";
 import { ICoordinates } from "../src/Core/Interfaces/ICoordinates";
-import { ImageDrawer} from "../src/Core/Particle/ShapeDrawers/ImageDrawer";
 
 const testContainer = new TestContainer({});
 const testParticle = new TestParticle(testContainer.container);
