@@ -16,6 +16,7 @@ export interface ParticlesProps {
     style: any;
     className?: string;
     canvasClassName?: string;
+    particlesRef?: React.RefObject<Container>
 }
 
 export interface ParticlesState {
@@ -55,6 +56,10 @@ export default class Particles extends Component<ParticlesProps,
 
         tsParticles.dom();
         const container = new Container(tagId, options);
+
+        if (this.props.particlesRef) {
+            (this.props.particlesRef as React.MutableRefObject<Container>).current = container;
+        }
 
         return container;
     }

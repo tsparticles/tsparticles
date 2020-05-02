@@ -13,6 +13,7 @@ export type RecursivePartial<T> = {
 
 import { ComponentClass } from "react";
 import { IOptions } from "tsparticles/dist/Interfaces/Options/IOptions";
+import { Container } from "tsparticles/dist/Classes/Container";
 
 export * from 'tsparticles/dist/Enums/InteractivityDetect';
 export * from 'tsparticles/dist/Enums/MoveDirection';
@@ -36,6 +37,7 @@ export interface ParticlesProps {
 	style?: any;
 	className?: string;
 	canvasClassName?: string;
+	particlesRef?: React.RefObject<Container>;
 }
 
 type Particles = ComponentClass<ParticlesProps>;
