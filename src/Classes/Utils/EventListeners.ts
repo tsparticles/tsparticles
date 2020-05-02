@@ -209,7 +209,10 @@ export class EventListeners {
         } else {
             container.pageHidden = false;
 
-            container.play();
+            if (container.getAnimationStatus()) {
+                container.lastFrameTime = performance.now();
+                container.play();
+            }
         }
     }
 
