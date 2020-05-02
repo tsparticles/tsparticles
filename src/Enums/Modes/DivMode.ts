@@ -1,5 +1,3 @@
-export enum DivModeEnum {
+export enum DivMode {
     repulse = "repulse",
 }
-
-export type DivMode = DivModeEnum | string;

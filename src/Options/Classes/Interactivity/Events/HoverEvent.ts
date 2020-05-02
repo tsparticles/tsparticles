@@ -2,10 +2,11 @@ import type { IHoverEvent } from "../../../Interfaces/Interactivity/Events/IHove
 import { HoverMode } from "../../../../Enums/Modes/HoverMode";
 import { Parallax } from "./Parallax";
 import type { RecursivePartial } from "../../../../Types/RecursivePartial";
+import type { SingleOrMultiple } from "../../../../Types/SingleOrMultiple";
 
 export class HoverEvent implements IHoverEvent {
     public enable: boolean;
-    public mode: HoverMode | HoverMode[];
+    public mode: SingleOrMultiple<HoverMode | string>;
     public parallax: Parallax;
 
     constructor() {

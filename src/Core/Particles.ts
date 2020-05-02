@@ -5,11 +5,11 @@ import type { IRgb } from "./Interfaces/IRgb";
 import { Particle } from "./Particle";
 import { InteractionManager } from "./Particle/Interactions/Particles/InteractionManager";
 import { Utils } from "../Utils/Utils";
-import { HoverModeEnum } from "../Enums/Modes/HoverMode";
+import { HoverMode } from "../Enums/Modes/HoverMode";
 import { Grabber } from "./Particle/Interactions/Mouse/Grabber";
-import { ClickModeEnum } from "../Enums/Modes/ClickMode";
+import { ClickMode } from "../Enums/Modes/ClickMode";
 import { Repulser } from "./Particle/Interactions/Mouse/Repulser";
-import { DivModeEnum } from "../Enums/Modes/DivMode";
+import { DivMode } from "../Enums/Modes/DivMode";
 import { Bubbler } from "./Particle/Interactions/Mouse/Bubbler";
 import { Connector } from "./Particle/Interactions/Mouse/Connector";
 import { Point, QuadTree, Rectangle } from "../Utils/QuadTree";
@@ -176,21 +176,21 @@ export class Particles {
         const divMode = options.interactivity.events.onDiv.mode;
 
         /* mouse events interactions */
-        if (Utils.isInArray(HoverModeEnum.grab, hoverMode)) {
+        if (Utils.isInArray(HoverMode.grab, hoverMode)) {
             Grabber.grab(container);
         }
 
-        if (Utils.isInArray(HoverModeEnum.repulse, hoverMode) ||
-            Utils.isInArray(ClickModeEnum.repulse, clickMode) ||
-            Utils.isInArray(DivModeEnum.repulse, divMode)) {
+        if (Utils.isInArray(HoverMode.repulse, hoverMode) ||
+            Utils.isInArray(ClickMode.repulse, clickMode) ||
+            Utils.isInArray(DivMode.repulse, divMode)) {
             Repulser.repulse(container);
         }
 
-        if (Utils.isInArray(HoverModeEnum.bubble, hoverMode) || Utils.isInArray(ClickModeEnum.bubble, clickMode)) {
+        if (Utils.isInArray(HoverMode.bubble, hoverMode) || Utils.isInArray(ClickMode.bubble, clickMode)) {
             Bubbler.bubble(container);
         }
 
-        if (Utils.isInArray(HoverModeEnum.connect, hoverMode)) {
+        if (Utils.isInArray(HoverMode.connect, hoverMode)) {
             Connector.connect(container);
         }
 

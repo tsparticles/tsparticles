@@ -1,4 +1,4 @@
-import { ClickMode, ClickModeEnum } from "../Enums/Modes/ClickMode";
+import { ClickMode } from "../Enums/Modes/ClickMode";
 import type { Container } from "../Core/Container";
 import { InteractivityDetect } from "../Enums/InteractivityDetect";
 import type { ICoordinates } from "../Core/Interfaces/ICoordinates";
@@ -368,7 +368,7 @@ export class EventListeners {
         const removeNb = options.interactivity.modes.remove.quantity;
 
         switch (mode) {
-            case ClickModeEnum.push:
+            case ClickMode.push:
                 if (options.particles.move.enable) {
                     container.particles.push(pushNb, container.interactivity.mouse);
                 } else {
@@ -379,13 +379,13 @@ export class EventListeners {
                     }
                 }
                 break;
-            case ClickModeEnum.remove:
+            case ClickMode.remove:
                 container.particles.removeQuantity(removeNb);
                 break;
-            case ClickModeEnum.bubble:
+            case ClickMode.bubble:
                 container.bubble.clicking = true;
                 break;
-            case ClickModeEnum.repulse:
+            case ClickMode.repulse:
                 container.repulse.clicking = true;
                 container.repulse.count = 0;
                 for (const particle of container.repulse.particles) {
@@ -400,7 +400,7 @@ export class EventListeners {
                     }
                 }, options.interactivity.modes.repulse.duration * 1000);
                 break;
-            case ClickModeEnum.emitter:
+            case ClickMode.emitter:
                 let emitterModeOptions: IEmitter | undefined;
                 const modeEmitters = options.interactivity.modes.emitters;
 

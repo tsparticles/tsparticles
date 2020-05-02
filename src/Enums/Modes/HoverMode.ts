@@ -1,9 +1,7 @@
-export enum HoverModeEnum {
+export enum HoverMode {
     bubble = "bubble",
     connect = "connect",
     grab = "grab",
     repulse = "repulse",
     slow = "slow",
 }
-
-export type HoverMode = HoverModeEnum | string;

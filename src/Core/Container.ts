@@ -16,7 +16,7 @@ import { IPlugin } from "./Interfaces/IPlugin";
 import { CanvasUtils } from "../Utils/CanvasUtils";
 import { IShapeDrawer } from "./Interfaces/IShapeDrawer";
 import { Utils } from "../Utils/Utils";
-import { ClickModeEnum } from "../Enums/Modes/ClickMode";
+import { ClickMode } from "../Enums/Modes/ClickMode";
 import { Absorbers } from "../Plugins/Absorbers";
 
 /**
@@ -240,7 +240,7 @@ export class Container {
             }
         } else if (absorbers !== undefined) {
             loadAbsorbers = true;
-        } else if (Utils.isInArray(ClickModeEnum.absorber, this.options.interactivity.events.onClick.mode)) {
+        } else if (Utils.isInArray(ClickMode.absorber, this.options.interactivity.events.onClick.mode)) {
             loadAbsorbers = true;
         }
 

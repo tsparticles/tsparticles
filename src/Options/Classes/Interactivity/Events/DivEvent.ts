@@ -1,6 +1,7 @@
 import type { IDivEvent } from "../../../Interfaces/Interactivity/Events/IDivEvent";
 import { DivMode } from "../../../../Enums/Modes/DivMode";
 import type { RecursivePartial } from "../../../../Types/RecursivePartial";
+import type { SingleOrMultiple } from "../../../../Types/SingleOrMultiple";
 
 export class DivEvent implements IDivEvent {
     /**
@@ -33,7 +34,7 @@ export class DivEvent implements IDivEvent {
     /**
      * Div mode values described in [[DivMode]], an array of these values is also valid.
      */
-    public mode: DivMode | DivMode[];
+    public mode: SingleOrMultiple<DivMode | string>;
 
     constructor() {
         this.elementId = "";

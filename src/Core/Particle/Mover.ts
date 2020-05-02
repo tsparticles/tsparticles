@@ -2,7 +2,7 @@ import { Utils } from "../../Utils/Utils";
 import type { Container } from "../Container";
 import type { Particle } from "../Particle";
 import { SimplexNoise } from "../../Utils/SimplexNoise";
-import { HoverModeEnum } from "../../Enums/Modes/HoverMode";
+import { HoverMode } from "../../Enums/Modes/HoverMode";
 
 export class Mover {
     private readonly container: Container;
@@ -106,7 +106,7 @@ export class Mover {
         const container = this.container;
         const options = container.options;
         const particle = this.particle;
-        const active = Utils.isInArray(HoverModeEnum.slow, options.interactivity.events.onHover.mode);
+        const active = Utils.isInArray(HoverMode.slow, options.interactivity.events.onHover.mode);
 
         if (!active) {
             return 1;

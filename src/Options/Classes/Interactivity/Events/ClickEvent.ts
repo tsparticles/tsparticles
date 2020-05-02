@@ -1,6 +1,7 @@
 import type { IClickEvent } from "../../../Interfaces/Interactivity/Events/IClickEvent";
 import { ClickMode } from "../../../../Enums/Modes/ClickMode";
 import type { RecursivePartial } from "../../../../Types/RecursivePartial";
+import type { SingleOrMultiple } from "../../../../Types/SingleOrMultiple";
 
 export class ClickEvent implements IClickEvent {
     /**
@@ -11,7 +12,7 @@ export class ClickEvent implements IClickEvent {
     /**
      * Click mode values described in [[ClickMode]], an array of these values is also valid
      */
-    public mode: ClickMode | ClickMode[];
+    public mode: SingleOrMultiple<ClickMode | string>;
 
     constructor() {
         this.enable = false;
