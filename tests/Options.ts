@@ -3,8 +3,8 @@ import { expect } from 'chai';
 import { InteractivityDetect } from "../src/Enums/InteractivityDetect";
 import { MoveDirection } from "../src/Enums/MoveDirection";
 import { OutMode } from "../src/Enums/OutMode";
-import { HoverMode } from "../src/Enums/Modes/HoverMode";
-import { ClickMode } from "../src/Enums/Modes/ClickMode";
+import { HoverModeEnum } from "../src/Enums/Modes/HoverMode";
+import { ClickModeEnum } from "../src/Enums/Modes/ClickMode";
 import { RotateDirection } from "../src/Enums/RotateDirection";
 import { ShapeType } from "../src/Enums/ShapeType";
 import { PolygonMaskInlineArrangement } from "../src/Enums/PolygonMaskInlineArrangement";
@@ -187,11 +187,11 @@ describe('Options tests', () => {
                 "events": {
                     "onclick": {
                         "enable": true,
-                        "mode": ClickMode.push
+                        "mode": ClickModeEnum.push
                     },
                     "onhover": {
                         "enable": true,
-                        "mode": HoverMode.repulse
+                        "mode": HoverModeEnum.repulse
                     },
                     "resize": true
                 },
@@ -302,9 +302,9 @@ describe('Options tests', () => {
 
         /* interactivity events */
         expect(options.interactivity.events.onClick.enable).to.be.true;
-        expect(options.interactivity.events.onClick.mode).to.equal(ClickMode.push);
+        expect(options.interactivity.events.onClick.mode).to.equal(ClickModeEnum.push);
         expect(options.interactivity.events.onHover.enable).to.be.true;
-        expect(options.interactivity.events.onHover.mode).to.equal(HoverMode.repulse);
+        expect(options.interactivity.events.onHover.mode).to.equal(HoverModeEnum.repulse);
         expect(options.interactivity.events.resize).to.be.true;
 
         /* interactivity modes */
@@ -380,11 +380,11 @@ describe('Options tests', () => {
                 "events": {
                     "onclick": {
                         "enable": true,
-                        "mode": ClickMode.repulse
+                        "mode": ClickModeEnum.repulse
                     },
                     "onhover": {
                         "enable": false,
-                        "mode": HoverMode.grab
+                        "mode": HoverModeEnum.grab
                     },
                     "resize": true
                 },
@@ -496,9 +496,9 @@ describe('Options tests', () => {
 
         /* interactivity events */
         expect(options.interactivity.events.onClick.enable).to.be.true;
-        expect(options.interactivity.events.onClick.mode).to.equal(ClickMode.repulse);
+        expect(options.interactivity.events.onClick.mode).to.equal(ClickModeEnum.repulse);
         expect(options.interactivity.events.onHover.enable).to.be.false;
-        expect(options.interactivity.events.onHover.mode).to.equal(HoverMode.grab);
+        expect(options.interactivity.events.onHover.mode).to.equal(HoverModeEnum.grab);
         expect(options.interactivity.events.resize).to.be.true;
 
         /* interactivity modes */

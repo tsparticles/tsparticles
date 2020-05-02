@@ -2,7 +2,7 @@ import type { IPlugin } from "../Core/Interfaces/IPlugin";
 import { Absorber } from "./Absorber";
 import { Container } from "../Core/Container";
 import { Particle } from "../Core/Particle";
-import { ClickMode } from "../Enums/Modes/ClickMode";
+import { ClickMode, ClickModeEnum } from "../Enums/Modes/ClickMode";
 import { IAbsorber } from "../Options/Interfaces/Absorbers/IAbsorber";
 import { Utils } from "../Utils/Utils";
 
@@ -63,7 +63,7 @@ export class Absorbers implements IPlugin {
         const container = this.container;
         const options = container.options;
 
-        if (mode === ClickMode.absorber) {
+        if (mode === ClickModeEnum.absorber) {
             let absorbersModeOptions: IAbsorber | undefined;
             const modeAbsorbers = options.interactivity.modes.absorbers;
 

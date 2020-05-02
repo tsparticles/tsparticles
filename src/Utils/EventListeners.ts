@@ -1,4 +1,4 @@
-import { ClickMode } from "../Enums/Modes/ClickMode";
+import { ClickMode, ClickModeEnum } from "../Enums/Modes/ClickMode";
 import type { Container } from "../Core/Container";
 import { InteractivityDetect } from "../Enums/InteractivityDetect";
 import type { ICoordinates } from "../Core/Interfaces/ICoordinates";
@@ -361,14 +361,14 @@ export class EventListeners {
         }
     }
 
-    private handleClickMode(mode: ClickMode): void {
+    private handleClickMode(mode: ClickMode | string): void {
         const container = this.container;
         const options = container.options;
         const pushNb = options.interactivity.modes.push.quantity;
         const removeNb = options.interactivity.modes.remove.quantity;
 
         switch (mode) {
-            case ClickMode.push:
+            case ClickModeEnum.push:
                 if (options.particles.move.enable) {
                     container.particles.push(pushNb, container.interactivity.mouse);
                 } else {
@@ -379,13 +379,13 @@ export class EventListeners {
                     }
                 }
                 break;
-            case ClickMode.remove:
+            case ClickModeEnum.remove:
                 container.particles.removeQuantity(removeNb);
                 break;
-            case ClickMode.bubble:
+            case ClickModeEnum.bubble:
                 container.bubble.clicking = true;
                 break;
-            case ClickMode.repulse:
+            case ClickModeEnum.repulse:
                 container.repulse.clicking = true;
                 container.repulse.count = 0;
                 for (const particle of container.repulse.particles) {
@@ -400,7 +400,7 @@ export class EventListeners {
                     }
                 }, options.interactivity.modes.repulse.duration * 1000);
                 break;
-            case ClickMode.emitter:
+            case ClickModeEnum.emitter:
                 let emitterModeOptions: IEmitter | undefined;
                 const modeEmitters = options.interactivity.modes.emitters;
 

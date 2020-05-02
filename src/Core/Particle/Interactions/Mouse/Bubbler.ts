@@ -2,8 +2,8 @@ import type { Container } from "../../../Container";
 import type { IBubblerProcessParam } from "../../../Interfaces/IBubblerProcessParam";
 import { ProcessBubbleType } from "../../../../Enums/ProcessBubbleType";
 import { Utils } from "../../../../Utils/Utils";
-import { HoverMode } from "../../../../Enums/Modes/HoverMode";
-import { ClickMode } from "../../../../Enums/Modes/ClickMode";
+import { HoverModeEnum } from "../../../../Enums/Modes/HoverMode";
+import { ClickModeEnum } from "../../../../Enums/Modes/ClickMode";
 import { Constants } from "../../../../Utils/Constants";
 import type { IParticle } from "../../../Interfaces/IParticle";
 import { ColorUtils } from "../../../../Utils/ColorUtils";
@@ -28,9 +28,9 @@ export class Bubbler {
         const clickMode = options.interactivity.events.onClick.mode;
 
         /* on hover event */
-        if (hoverEnabled && Utils.isInArray(HoverMode.bubble, hoverMode)) {
+        if (hoverEnabled && Utils.isInArray(HoverModeEnum.bubble, hoverMode)) {
             this.hoverBubble(container);
-        } else if (clickEnabled && Utils.isInArray(ClickMode.bubble, clickMode)) {
+        } else if (clickEnabled && Utils.isInArray(ClickModeEnum.bubble, clickMode)) {
             this.clickBubble(container);
         }
     }

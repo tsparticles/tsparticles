@@ -3,7 +3,7 @@ import { InteractivityDetect } from "../../../Enums/InteractivityDetect";
 import { Events } from "./Events/Events";
 import { Modes } from "./Modes/Modes";
 import type { RecursivePartial } from "../../../Types/RecursivePartial";
-import { HoverMode } from "../../../Enums/Modes/HoverMode";
+import { HoverModeEnum } from "../../../Enums/Modes/HoverMode";
 
 export class Interactivity implements IInteractivity {
     /**
@@ -46,11 +46,11 @@ export class Interactivity implements IInteractivity {
 
             if (data.modes?.slow?.active === true) {
                 if (this.events.onHover.mode instanceof Array) {
-                    if (this.events.onHover.mode.indexOf(HoverMode.slow) < 0) {
-                        this.events.onHover.mode.push(HoverMode.slow);
+                    if (this.events.onHover.mode.indexOf(HoverModeEnum.slow) < 0) {
+                        this.events.onHover.mode.push(HoverModeEnum.slow);
                     }
-                } else if (this.events.onHover.mode !== HoverMode.slow) {
-                    this.events.onHover.mode = [ this.events.onHover.mode, HoverMode.slow ];
+                } else if (this.events.onHover.mode !== HoverModeEnum.slow) {
+                    this.events.onHover.mode = [ this.events.onHover.mode, HoverModeEnum.slow ];
                 }
             }
         }

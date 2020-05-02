@@ -1,4 +1,4 @@
-export enum ClickMode {
+export enum ClickModeEnum {
     bubble = "bubble",
     push = "push",
     remove = "remove",
@@ -6,3 +6,5 @@ export enum ClickMode {
     emitter = "emitter",
     absorber = "absorber",
 }
+
+export type ClickMode = ClickModeEnum | string;

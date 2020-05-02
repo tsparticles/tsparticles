@@ -1,9 +1,9 @@
-import { ClickMode } from "../../../../Enums/Modes/ClickMode";
+import { ClickModeEnum } from "../../../../Enums/Modes/ClickMode";
 import type { Container } from "../../../Container";
-import { HoverMode } from "../../../../Enums/Modes/HoverMode";
+import { HoverModeEnum } from "../../../../Enums/Modes/HoverMode";
 import { OutMode } from "../../../../Enums/OutMode";
 import { Utils } from "../../../../Utils/Utils";
-import { DivMode } from "../../../../Enums/Modes/DivMode";
+import { DivModeEnum } from "../../../../Enums/Modes/DivMode";
 import { Constants } from "../../../../Utils/Constants";
 import { ICoordinates } from "../../../Interfaces/ICoordinates";
 import { IParticle } from "../../../Interfaces/IParticle";
@@ -23,11 +23,11 @@ export class Repulser {
         const clickMode = interactivity.events.onClick.mode;
         const divMode = interactivity.events.onDiv.mode;
 
-        if (mouseMoveStatus && hoverEnabled && Utils.isInArray(HoverMode.repulse, hoverMode)) {
+        if (mouseMoveStatus && hoverEnabled && Utils.isInArray(HoverModeEnum.repulse, hoverMode)) {
             this.hoverRepulse(container);
-        } else if (clickEnabled && Utils.isInArray(ClickMode.repulse, clickMode)) {
+        } else if (clickEnabled && Utils.isInArray(ClickModeEnum.repulse, clickMode)) {
             this.clickRepulse(container);
-        } else if (interactivity.events.onDiv.enable && Utils.isInArray(DivMode.repulse, divMode)) {
+        } else if (interactivity.events.onDiv.enable && Utils.isInArray(DivModeEnum.repulse, divMode)) {
             this.divRepulse(container);
         }
     }

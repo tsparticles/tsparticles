@@ -254,27 +254,11 @@
                     "anyOf": [
                         {
                             "items": {
-                                "enum": [
-                                    "absorber",
-                                    "bubble",
-                                    "emitter",
-                                    "push",
-                                    "remove",
-                                    "repulse"
-                                ],
                                 "type": "string"
                             },
                             "type": "array"
                         },
                         {
-                            "enum": [
-                                "absorber",
-                                "bubble",
-                                "emitter",
-                                "push",
-                                "remove",
-                                "repulse"
-                            ],
                             "type": "string"
                         }
                     ],
@@ -389,17 +373,11 @@
                     "anyOf": [
                         {
                             "items": {
-                                "enum": [
-                                    "repulse"
-                                ],
                                 "type": "string"
                             },
                             "type": "array"
                         },
                         {
-                            "enum": [
-                                "repulse"
-                            ],
                             "type": "string"
                         }
                     ]
@@ -540,25 +518,11 @@
                     "anyOf": [
                         {
                             "items": {
-                                "enum": [
-                                    "bubble",
-                                    "connect",
-                                    "grab",
-                                    "repulse",
-                                    "slow"
-                                ],
                                 "type": "string"
                             },
                             "type": "array"
                         },
                         {
-                            "enum": [
-                                "bubble",
-                                "connect",
-                                "grab",
-                                "repulse",
-                                "slow"
-                            ],
                             "type": "string"
                         }
                     ]
