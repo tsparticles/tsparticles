@@ -221,9 +221,7 @@ export class Particles {
 
         /* draw polygon shape in debug mode */
         for (const plugin of container.plugins) {
-            if (plugin.draw !== undefined) {
-                plugin.draw();
-            }
+                container.canvas.drawPlugin(plugin);
         }
 
         /*if (container.canvas.context) {

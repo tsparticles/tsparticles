@@ -6,8 +6,8 @@ import { ColorUtils } from "./ColorUtils";
 import type { IParticle } from "../Core/Interfaces/IParticle";
 import type { IShadow } from "../Options/Interfaces/Particles/IShadow";
 import type { IShapeDrawer } from "../Core/Interfaces/IShapeDrawer";
-import { Absorber } from "../Plugins/Absorber";
-import { Container } from "../Core/Container";
+import type { Container } from "../Core/Container";
+import { IPlugin } from "../Core/Interfaces/IPlugin";
 
 export class CanvasUtils {
     private static readonly drawers: { [type: string]: IShapeDrawer } = {};
@@ -23,17 +23,6 @@ export class CanvasUtils {
 
     public static clear(context: CanvasRenderingContext2D, dimension: IDimension): void {
         context.clearRect(0, 0, dimension.width, dimension.height);
-    }
-
-    public static drawAbsorber(context: CanvasRenderingContext2D, absorber: Absorber) {
-        context.save();
-        context.translate(absorber.position.x, absorber.position.y);
-        context.beginPath();
-        context.arc(0, 0, absorber.size, 0, Math.PI * 2, false);
-        context.closePath();
-        context.fillStyle = ColorUtils.getStyleFromColor(absorber.color, absorber.opacity);
-        context.fill();
-        context.restore();
     }
 
     public static drawLineLinked(context: CanvasRenderingContext2D,
@@ -259,5 +248,15 @@ export class CanvasUtils {
         if (drawer.afterEffect !== undefined) {
             drawer.afterEffect(context, particle, radius, opacity);
         }
+    }
+
+    public static drawPlugin(context: CanvasRenderingContext2D, plugin: IPlugin) {
+        context.save();
+
+        if (plugin.draw !== undefined) {
+            plugin.draw(context);
+        }
+
+        context.restore();
     }
 }

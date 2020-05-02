@@ -3,7 +3,7 @@ import type { Particle } from "../Particle";
 import { ClickMode } from "../../Enums/Modes/ClickMode";
 
 export interface IPlugin {
-    draw?: () => void;
+    draw?: (context: CanvasRenderingContext2D) => void;
     init?: () => void;
     initAsync?: () => Promise<void>;
     reset?: () => void;

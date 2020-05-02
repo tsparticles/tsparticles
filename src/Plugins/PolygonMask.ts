@@ -203,7 +203,7 @@ export class PolygonMask implements IPlugin {
                 pos.y = position.y;
             } else {
                 const randomPoint = this.randomPointInPolygon();
-                
+
                 pos.x = randomPoint.x;
                 pos.y = randomPoint.y;
             }
@@ -385,14 +385,13 @@ export class PolygonMask implements IPlugin {
         return polygonRaw;
     }
 
-    public draw(): void {
+    public draw(context: CanvasRenderingContext2D): void {
         const container = this.container;
         const options = container.options;
 
         if (options.polygon.enable && options.polygon.draw.enable) {
             const container = this.container;
             const options = container.options;
-            const context = container.canvas.context;
             const polygonDraw = options.polygon.draw;
             const rawData = this.raw;
 
@@ -550,7 +549,6 @@ export class PolygonMask implements IPlugin {
             ColorUtils.colorToRgb(stroke.color);
 
         if (color) {
-            context.save();
             context.beginPath();
             context.moveTo(rawData[0].x, rawData[0].y);
 
@@ -562,7 +560,6 @@ export class PolygonMask implements IPlugin {
             context.strokeStyle = ColorUtils.getStyleFromColor(color);
             context.lineWidth = stroke.width;
             context.stroke();
-            context.restore();
         }
     }
 
@@ -570,7 +567,6 @@ export class PolygonMask implements IPlugin {
                                        path: Path2D,
                                        stroke: IPolygonMaskDrawStroke,
                                        position: ICoordinates): void {
-        context.save();
         context.translate(position.x, position.y);
 
         const color = typeof stroke.color === "string" ?
@@ -582,7 +578,5 @@ export class PolygonMask implements IPlugin {
             context.lineWidth = stroke.width;
             context.stroke(path);
         }
-
-        context.restore();
     }
 }

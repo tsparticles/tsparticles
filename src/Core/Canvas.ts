@@ -6,7 +6,7 @@ import type { ICoordinates } from "./Interfaces/ICoordinates";
 import { CanvasUtils } from "../Utils/CanvasUtils";
 import { ColorUtils } from "../Utils/ColorUtils";
 import type { IParticle } from "./Interfaces/IParticle";
-import type { Absorber } from "../Plugins/Absorber";
+import { IPlugin } from "./Interfaces/IPlugin";
 
 /**
  * Canvas manager
@@ -142,16 +142,6 @@ export class Canvas {
 
     public isPointInPath(path: Path2D, point: ICoordinates): boolean {
         return this.context?.isPointInPath(path, point.x, point.y) ?? false;
-    }
-
-    public drawAbsorber(absorber: Absorber): void {
-        const ctx = this.context;
-
-        if (!ctx) {
-            return;
-        }
-
-        CanvasUtils.drawAbsorber(ctx, absorber);
     }
 
     public drawLinkedLine(p1: IParticle, p2: IParticle, opacity: number): void {
@@ -324,6 +314,15 @@ export class Canvas {
             radius,
             opacity,
             particle.particlesOptions.shadow);
+    }
+
+
+    public drawPlugin(plugin: IPlugin): void {
+        if (!this.context) {
+            return;
+        }
+
+        CanvasUtils.drawPlugin(this.context, plugin);
     }
 
     private paintBase(baseColor?: string): void {

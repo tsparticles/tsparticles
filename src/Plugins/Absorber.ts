@@ -87,10 +87,13 @@ export class Absorber {
             this.calcPosition();
     }
 
-    public draw(): void {
-        const container = this.container;
-
-        container.canvas.drawAbsorber(this);
+    public draw(context: CanvasRenderingContext2D): void {
+        context.translate(this.position.x, this.position.y);
+        context.beginPath();
+        context.arc(0, 0, this.size, 0, Math.PI * 2, false);
+        context.closePath();
+        context.fillStyle = ColorUtils.getStyleFromColor(this.color, this.opacity);
+        context.fill();
     }
 
     private calcPosition(): ICoordinates {

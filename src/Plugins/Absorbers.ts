@@ -43,9 +43,9 @@ export class Absorbers implements IPlugin {
         }
     }
 
-    public draw(): void {
+    public draw(context: CanvasRenderingContext2D): void {
         for (const absorber of this.absorbers) {
-            absorber.draw();
+            absorber.draw(context);
         }
     }
 
