@@ -14,6 +14,29 @@ export class TestParticle {
     }
 
     /**
+     * When creating a particle, the private method `Particle.calcPosition` ensures
+     * the particle is completely inside the canvas. It does this by shifting the
+     * position if any part of the particle is outsize the canvas. This function
+     * returns random positions of particles that are guaranteed to lie completely
+     * inside the canvas.
+     *
+     * @param container
+     */
+    public randomPositionInCanvas(container?: Container): ICoordinates {
+        if(container === undefined) {
+            container = this.container;
+        }
+        const sizeValue = container.retina.sizeValue;
+        const width = container.canvas.size.width;
+        const height = container.canvas.size.height;
+        let x = width * Math.random();
+        x = Math.min(Math.max(x, sizeValue * 2), width - sizeValue * 2);
+        let y = height * Math.random();
+        y = Math.min(Math.max(y, sizeValue * 2), height - sizeValue * 2);
+        return {x, y};
+    }
+
+    /**
      * If [[container]] is provided, then the new particle will be initialized with
      * this [[container]]. Otherwise the last-used [[container]] will be used.
      *

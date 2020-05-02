@@ -136,9 +136,7 @@ describe('Particle', () => {
         });
 
         it('should always return the position when specified', () => {
-            const x = width * Math.random();
-            const y = height * Math.random();
-            const position: ICoordinates = { x, y };
+            const position: ICoordinates = testParticle.randomPositionInCanvas(testContainer.container);
             testParticle.reset(testContainer.container, position);
 
             expect(testParticle.particle.position).to.eql(position);
