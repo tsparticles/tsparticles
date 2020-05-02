@@ -83,7 +83,7 @@ describe('Particle', () => {
                 expect(testParticle.particle.fill).to.eql(squareShapeOptions.particles.shape.options.square.fill);
             });
 
-            xit('should set shapeData to the configured shape data matching the chosen shape whenever multiple shapes are specified for container Particles', () => {
+            it('should set shapeData to the configured shape data matching the chosen shape whenever multiple shapes are specified for container Particles', () => {
                 testContainer.reset(multipleShapeTypeOptions);
                 testParticle.reset(testContainer.container);
                 expect(testParticle.particle.shape).to.be.a('string');
@@ -96,8 +96,8 @@ describe('Particle', () => {
                         expectedShapeData = multipleShapeTypeOptions.particles.shape.options[ShapeType.edge];
                         break;
                     case(ShapeType.image):
-                        expectedShapeData = multipleShapeTypeOptions.particles.shape.options[ShapeType.image];
-                        break;
+                       expectedShapeData = multipleShapeTypeOptions.particles.shape.options[ShapeType.image];
+                       break;
                     case(ShapeType.polygon):
                         expectedShapeData = multipleShapeTypeOptions.particles.shape.options[ShapeType.polygon];
                         break;
@@ -105,7 +105,6 @@ describe('Particle', () => {
                         throw new Error(`Unexpected shape type "${testParticle.particle.shape}"`);
                 }
 
-                expect(testParticle.particle.shapeData).to.eql(expectedShapeData);
                 expect(testParticle.particle.close).to.eql(expectedShapeData.close);
                 expect(testParticle.particle.fill).to.eql(expectedShapeData.fill);
             });
@@ -135,9 +134,7 @@ describe('Particle', () => {
         });
 
         it('should always return the position when specified', () => {
-            const x = width * Math.random();
-            const y = height * Math.random();
-            const position: ICoordinates = { x, y };
+            const position: ICoordinates = testParticle.randomPositionInCanvas(testContainer.container);
             testParticle.reset(testContainer.container, position);
 
             expect(testParticle.particle.position).to.eql(position);
