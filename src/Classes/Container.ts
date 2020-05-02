@@ -100,11 +100,12 @@ export class Container {
 
     public play(): void {
         if (this.paused) {
-            this.lastFrameTime = performance.now();
             this.paused = false;
             for (const emitter of this.emitters) {
                 emitter.start();
             }
+
+            this.lastFrameTime = performance.now();
         }
 
         this.drawAnimationFrame = Container.requestFrame((t) => this.drawer.nextFrame(t));
@@ -120,8 +121,14 @@ export class Container {
 
             delete this.drawAnimationFrame;
 
-            this.paused = true;
+            if (!this.pageHidden) {
+                this.paused = true;
+            }
         }
+    }
+
+    public getAnimationStatus(): boolean {
+        return !this.paused;
     }
 
     /* ---------- tsParticles functions - vendors ------------ */

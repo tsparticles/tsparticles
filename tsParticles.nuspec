@@ -2,7 +2,7 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
   <metadata>
     <id>tsParticles</id>
-    <version>1.13.6</version>
+    <version>1.13.7</version>
     <title>tsparticles</title>
     <authors>Matteo Bruni</authors>
     <owners>Matteo Bruni</owners>
