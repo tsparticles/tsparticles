@@ -74,6 +74,7 @@ class Main {
 
         const squareDrawer = new SquareDrawer();
         const textDrawer = new TextDrawer();
+        const imageDrawer = new ImageDrawer();
 
         CanvasUtils.addShapeDrawer(ShapeType.line, new LineDrawer());
         CanvasUtils.addShapeDrawer(ShapeType.circle, new CircleDrawer());
@@ -84,8 +85,8 @@ class Main {
         CanvasUtils.addShapeDrawer(ShapeType.polygon, new PolygonDrawer());
         CanvasUtils.addShapeDrawer(ShapeType.char, textDrawer);
         CanvasUtils.addShapeDrawer(ShapeType.character, textDrawer);
-        CanvasUtils.addShapeDrawer(ShapeType.image, new ImageDrawer());
-        CanvasUtils.addShapeDrawer(ShapeType.images, new ImageDrawer());
+        CanvasUtils.addShapeDrawer(ShapeType.image, imageDrawer);
+        CanvasUtils.addShapeDrawer(ShapeType.images, imageDrawer);
     }
 
     /**
