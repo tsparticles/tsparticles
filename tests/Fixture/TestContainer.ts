@@ -2,6 +2,7 @@ import { tsParticles } from "../../src";
 import { Container } from "../../src/Core/Container";
 import type { IOptions } from "../../src/Options/Interfaces/IOptions";
 import { RecursivePartial } from "../../src/Types/RecursivePartial";
+import { IShapeDrawer } from "../../src/Core/Interfaces/IShapeDrawer";
 
 export class TestContainer {
     private readonly id: string;
@@ -13,6 +14,20 @@ export class TestContainer {
         this.id = "test-container";
         this.params = params || { particles: { size: { value: 0 } } }; // This keeps new Particle from offsetting position by 3
         this.container = new Container(this.id, this.params);
+    }
+
+    /**
+     * Adds a shape drawer to the current container. Drawers do not persist and will be removed
+     * when `TestContainer.reset` is called.
+     *
+     * @param type
+     * @param drawer
+     */
+    public addShapeDrawer(type: string, drawer: IShapeDrawer): void {
+        // Taken from CanvasUtils.addShapeDrawer
+        if (!this.container.drawers[type]) {
+            this.container.drawers[type] = drawer;
+        }
     }
 
     /**
