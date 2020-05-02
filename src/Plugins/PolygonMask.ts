@@ -120,7 +120,7 @@ export class PolygonMask implements IPlugin {
         }
     }
 
-    public async initAsync(): Promise<void> {
+    public async startAsync(): Promise<void> {
         const container = this.container;
         const options = container.options;
 
@@ -134,7 +134,7 @@ export class PolygonMask implements IPlugin {
         }
     }
 
-    public reset(): void {
+    public stop(): void {
         delete this.raw;
         this.paths = [];
         delete this.svg;

@@ -7,12 +7,12 @@ import { IAbsorber } from "../Options/Interfaces/Absorbers/IAbsorber";
 import { Utils } from "../Utils/Utils";
 
 export class Absorbers implements IPlugin {
-    private readonly container: Container;
-    private absorbers: Absorber[];
+    public readonly container: Container;
+    public array: Absorber[];
 
     constructor(container: Container) {
         this.container = container;
-        this.absorbers = [];
+        this.array = [];
     }
 
     public init(): void {
@@ -21,20 +21,20 @@ export class Absorbers implements IPlugin {
 
         if (options.absorbers instanceof Array) {
             for (const absorberOptions of options.absorbers) {
-                const absorber = new Absorber(container, absorberOptions);
+                const absorber = new Absorber(this, absorberOptions);
 
-                this.absorbers.push(absorber);
+                this.array.push(absorber);
             }
         } else {
             const absorberOptions = options.absorbers;
-            const absorber = new Absorber(container, absorberOptions);
+            const absorber = new Absorber(this, absorberOptions);
 
-            this.absorbers.push(absorber);
+            this.array.push(absorber);
         }
     }
 
     public particleUpdate(particle: Particle): void {
-        for (const absorber of this.absorbers) {
+        for (const absorber of this.array) {
             absorber.attract(particle);
 
             if (particle.destroyed) {
@@ -44,17 +44,17 @@ export class Absorbers implements IPlugin {
     }
 
     public draw(context: CanvasRenderingContext2D): void {
-        for (const absorber of this.absorbers) {
+        for (const absorber of this.array) {
             absorber.draw(context);
         }
     }
 
-    public reset(): void {
-        this.absorbers = [];
+    public stop(): void {
+        this.array = [];
     }
 
     public resize(): void {
-        for (const absorber of this.absorbers) {
+        for (const absorber of this.array) {
             absorber.resize();
         }
     }
@@ -79,9 +79,9 @@ export class Absorbers implements IPlugin {
                 Utils.itemFromArray(options.absorbers) :
                 options.absorbers);
             const bhPosition = container.interactivity.mouse.clickPosition;
-            const absorber = new Absorber(container, absorbersOptions, bhPosition);
+            const absorber = new Absorber(this, absorbersOptions, bhPosition);
 
-            this.absorbers.push(absorber);
+            this.array.push(absorber);
         }
     }
 }

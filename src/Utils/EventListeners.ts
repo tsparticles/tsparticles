@@ -3,9 +3,6 @@ import type { Container } from "../Core/Container";
 import { InteractivityDetect } from "../Enums/InteractivityDetect";
 import type { ICoordinates } from "../Core/Interfaces/ICoordinates";
 import { Constants } from "./Constants";
-import { Emitter } from "../Core/Emitter";
-import { Utils } from "./Utils";
-import type { IEmitter } from "../Options/Interfaces/Emitters/IEmitter";
 
 /**
  * Particles container event listeners manager
@@ -179,10 +176,6 @@ export class EventListeners {
 
         /* density particles enabled */
         container.densityAutoParticles();
-
-        for (const emitter of container.emitters) {
-            emitter.resize();
-        }
 
         for (const plugin of container.plugins) {
             if (plugin.resize !== undefined) {
@@ -399,26 +392,6 @@ export class EventListeners {
                         container.repulse.clicking = false;
                     }
                 }, options.interactivity.modes.repulse.duration * 1000);
-                break;
-            case ClickMode.emitter:
-                let emitterModeOptions: IEmitter | undefined;
-                const modeEmitters = options.interactivity.modes.emitters;
-
-                if (modeEmitters instanceof Array) {
-                    if (modeEmitters.length > 0) {
-                        emitterModeOptions = Utils.itemFromArray(modeEmitters);
-                    }
-                } else {
-                    emitterModeOptions = modeEmitters;
-                }
-
-                const emitterOptions = emitterModeOptions ?? (options.emitters instanceof Array ?
-                    Utils.itemFromArray(options.emitters) :
-                    options.emitters);
-                const ePosition = container.interactivity.mouse.clickPosition;
-                const emitter = new Emitter(container, Utils.deepExtend({}, emitterOptions), ePosition);
-
-                container.emitters.push(emitter);
                 break;
         }
 

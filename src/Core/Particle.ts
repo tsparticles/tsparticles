@@ -16,7 +16,7 @@ import type { IOpacityRandom } from "../Options/Interfaces/Particles/Opacity/IOp
 import type { IShapeValues } from "../Options/Interfaces/Particles/Shape/IShapeValues";
 import type { IBubbleParticleData } from "./Interfaces/IBubbleParticleData";
 import type { IParticle } from "./Interfaces/IParticle";
-import { Emitter } from "./Emitter";
+import { Emitter } from "../Plugins/Emitter";
 import { MoveDirection } from "../Enums/MoveDirection";
 import type { IParticles } from "../Options/Interfaces/Particles/IParticles";
 import { Particles } from "../Options/Classes/Particles/Particles";
@@ -26,6 +26,7 @@ import { Shape } from "../Options/Classes/Particles/Shape/Shape";
 import { StartValueType } from "../Enums/StartValueType";
 import { ImageDrawer } from "./Particle/ShapeDrawers/ImageDrawer";
 import { IImageShape } from "../Options/Interfaces/Particles/Shape/IImageShape";
+import { CanvasUtils } from "../Utils/CanvasUtils";
 
 /**
  * The single particle object
@@ -50,7 +51,7 @@ export class Particle implements IParticle {
     public readonly shadowColor: IRgb | undefined;
     public readonly opacity: IOpacity;
     public readonly velocity: IVelocity;
-    public readonly shape?: ShapeType | string;
+    public readonly shape: ShapeType | string;
     public readonly image?: IParticleImage;
     public readonly initialVelocity: IVelocity;
     public readonly shapeData?: IShapeValues;
@@ -88,7 +89,7 @@ export class Particle implements IParticle {
         particlesOptions.load(options.particles);
 
         if (emitter?.emitterOptions?.particles?.shape !== undefined) {
-            const shapeType = emitter.emitterOptions.particles.shape.type;
+            const shapeType = emitter.emitterOptions.particles.shape.type ?? particlesOptions.shape.type;
 
             this.shape = shapeType instanceof Array ? Utils.itemFromArray(shapeType) : shapeType;
 
@@ -248,12 +249,19 @@ export class Particle implements IParticle {
             vertical: this.initialVelocity.vertical,
         };
 
+        let drawer = container.drawers[this.shape];
+
+        if (!drawer) {
+            drawer = CanvasUtils.getShapeDrawer(this.shape);
+            container.drawers[this.shape] = drawer;
+        }
+
         /* if shape is image */
         if (this.shape === ShapeType.image || this.shape === ShapeType.images) {
             const shape = this.particlesOptions.shape;
-            const drawer = container.drawers[this.shape] as ImageDrawer;
+            const imageDrawer = drawer as ImageDrawer;
             const imagesOptions = shape.options[this.shape];
-            const images = drawer.getImages(container).images;
+            const images = imageDrawer.getImages(container).images;
             const index = Utils.arrayRandomIndex(images);
             const image = images[index];
 

@@ -11,13 +11,13 @@ import { FrameManager } from "./FrameManager";
 import type { RecursivePartial } from "../Types/RecursivePartial";
 import { Options } from "../Options/Classes/Options";
 import { Presets } from "../Utils/Presets";
-import { Emitter } from "./Emitter";
 import { IPlugin } from "./Interfaces/IPlugin";
 import { CanvasUtils } from "../Utils/CanvasUtils";
 import { IShapeDrawer } from "./Interfaces/IShapeDrawer";
 import { Utils } from "../Utils/Utils";
 import { ClickMode } from "../Enums/Modes/ClickMode";
 import { Absorbers } from "../Plugins/Absorbers";
+import { Emitters } from "../Plugins/Emitters";
 
 /**
  * The object loaded into an HTML element, it'll contain options loaded and all data to let everything working
@@ -31,7 +31,6 @@ export class Container {
     public canvas: Canvas;
     public drawers: { [type: string]: IShapeDrawer };
     public particles: Particles;
-    public emitters: Emitter[];
     public plugins: IPlugin[];
     public bubble: IBubble;
     public repulse: IRepulse;
@@ -69,7 +68,6 @@ export class Container {
         };
         this.bubble = {};
         this.repulse = { particles: [] };
-        this.emitters = [];
         this.plugins = [];
         this.drawers = {};
 
@@ -101,8 +99,11 @@ export class Container {
         if (this.paused) {
             this.lastFrameTime = performance.now();
             this.paused = false;
-            for (const emitter of this.emitters) {
-                emitter.start();
+
+            for (const plugin of this.plugins) {
+                if (plugin.play) {
+                    plugin.play();
+                }
             }
         }
 
@@ -111,13 +112,17 @@ export class Container {
 
     public pause(): void {
         if (this.drawAnimationFrame !== undefined) {
-            for (const emitter of this.emitters) {
-                emitter.stop();
-            }
-
             Container.cancelAnimation(this.drawAnimationFrame);
 
             delete this.drawAnimationFrame;
+        }
+
+        if (!this.paused) {
+            for (const plugin of this.plugins) {
+                if (plugin.pause) {
+                    plugin.pause();
+                }
+            }
 
             this.paused = true;
         }
@@ -211,12 +216,11 @@ export class Container {
         this.canvas.clear();
 
         for (const plugin of this.plugins) {
-            if (plugin.reset !== undefined) {
-                plugin.reset();
+            if (plugin.stop !== undefined) {
+                plugin.stop();
             }
         }
 
-        this.emitters = [];
         this.plugins = [];
 
         delete this.particles.lineLinkedColor;
@@ -248,15 +252,32 @@ export class Container {
             this.plugins.push(new Absorbers(this));
         }
 
+        const emitters = this.options.emitters;
+        let loadEmitters = false;
+
+        if (emitters instanceof Array) {
+            if (emitters.length) {
+                loadEmitters = true;
+            }
+        } else if (emitters !== undefined) {
+            loadEmitters = true;
+        } else if (Utils.isInArray(ClickMode.absorber, this.options.interactivity.events.onClick.mode)) {
+            loadEmitters = true;
+        }
+
+        if (loadEmitters) {
+            this.plugins.push(new Emitters(this));
+        }
+
         this.started = true;
 
         this.eventListeners.addListeners();
 
         for (const plugin of this.plugins) {
-            if (plugin.initAsync !== undefined) {
-                await plugin.initAsync();
-            } else if (plugin.init !== undefined) {
-                plugin.init();
+            if (plugin.startAsync !== undefined) {
+                await plugin.startAsync();
+            } else if (plugin.start !== undefined) {
+                plugin.start();
             }
         }
 
@@ -288,17 +309,10 @@ export class Container {
         this.canvas.init();
         this.particles.init();
 
-        if (this.options.emitters instanceof Array) {
-            for (const emitterOptions of this.options.emitters) {
-                const emitter = new Emitter(this, emitterOptions);
-
-                this.emitters.push(emitter);
+        for (const plugin of this.plugins) {
+            if (plugin.init !== undefined) {
+                plugin.init();
             }
-        } else {
-            const emitterOptions = this.options.emitters;
-            const emitter = new Emitter(this, emitterOptions);
-
-            this.emitters.push(emitter);
         }
 
         this.densityAutoParticles();

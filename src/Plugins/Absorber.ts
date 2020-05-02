@@ -5,6 +5,7 @@ import { IRgb } from "../Core/Interfaces/IRgb";
 import { IAbsorber } from "../Options/Interfaces/Absorbers/IAbsorber";
 import { ColorUtils } from "../Utils/ColorUtils";
 import { Utils } from "../Utils/Utils";
+import { Absorbers } from "./Absorbers";
 
 export class Absorber {
     public color: IRgb;
@@ -14,14 +15,18 @@ export class Absorber {
     public position: ICoordinates;
     public size: number;
 
+    private readonly absorbers: Absorbers;
     private readonly container: Container;
     private readonly initialPosition?: ICoordinates;
     private readonly options: IAbsorber;
 
-    constructor(container: Container, options: IAbsorber, position?: ICoordinates) {
-        this.container = container;
+    constructor(absorbers: Absorbers, options: IAbsorber, position?: ICoordinates) {
+        this.absorbers = absorbers;
+        this.container = absorbers.container;
         this.initialPosition = position;
         this.options = options;
+
+        const container = this.container;
 
         let size = options.size.value * container.retina.pixelRatio;
         const random = typeof options.size.random === "boolean" ? options.size.random : options.size.random.enable;
@@ -37,7 +42,7 @@ export class Absorber {
 
         const limit = options.size.limit;
 
-        this.limit = limit !== undefined ? limit * this.container.retina.pixelRatio : limit;
+        this.limit = limit !== undefined ? limit * container.retina.pixelRatio : limit;
 
         const color = typeof options.color === "string" ? { value: options.color } : options.color;
 

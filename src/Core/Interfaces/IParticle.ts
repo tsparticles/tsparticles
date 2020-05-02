@@ -11,7 +11,7 @@ import type { IShapeValues } from "../../Options/Interfaces/Particles/Shape/ISha
 import type { IBubbleParticleData } from "./IBubbleParticleData";
 import type { MoveDirection } from "../../Enums/MoveDirection";
 import type { IParticles } from "../../Options/Interfaces/Particles/IParticles";
-import type { Emitter } from "../Emitter";
+import type { Emitter } from "../../Plugins/Emitter";
 
 export interface IParticle {
     randomIndexData?: number;
