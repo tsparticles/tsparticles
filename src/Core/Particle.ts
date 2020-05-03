@@ -27,6 +27,7 @@ import { StartValueType } from "../Enums/StartValueType";
 import { ImageDrawer } from "./Particle/ShapeDrawers/ImageDrawer";
 import { IImageShape } from "../Options/Interfaces/Particles/Shape/IImageShape";
 import { CanvasUtils } from "../Utils/CanvasUtils";
+import { RecursivePartial } from "../Types/RecursivePartial";
 
 /**
  * The single particle object
@@ -74,9 +75,8 @@ export class Particle implements IParticle {
 
     private infectionTimeout?: number;
 
-    constructor(container: Container, position?: ICoordinates, emitter?: Emitter) {
+    constructor(container: Container, position?: ICoordinates, overrideOptions?: RecursivePartial<IParticles>) {
         this.container = container;
-        this.emitter = emitter;
         this.fill = true;
         this.close = true;
         this.links = [];
@@ -88,14 +88,14 @@ export class Particle implements IParticle {
 
         particlesOptions.load(options.particles);
 
-        if (emitter?.emitterOptions?.particles?.shape !== undefined) {
-            const shapeType = emitter.emitterOptions.particles.shape.type ?? particlesOptions.shape.type;
+        if (overrideOptions?.shape !== undefined) {
+            const shapeType = overrideOptions.shape.type ?? particlesOptions.shape.type;
 
             this.shape = shapeType instanceof Array ? Utils.itemFromArray(shapeType) : shapeType;
 
             const shapeOptions = new Shape();
 
-            shapeOptions.load(emitter.emitterOptions.particles.shape);
+            shapeOptions.load(overrideOptions.shape);
 
             if (this.shape !== undefined) {
                 const shapeData = shapeOptions.options[this.shape];
@@ -126,8 +126,8 @@ export class Particle implements IParticle {
             }
         }
 
-        if (emitter?.emitterOptions?.particles !== undefined) {
-            particlesOptions.load(emitter.emitterOptions.particles);
+        if (overrideOptions !== undefined) {
+            particlesOptions.load(overrideOptions);
         }
 
         this.particlesOptions = particlesOptions;
@@ -155,7 +155,7 @@ export class Particle implements IParticle {
                 sizeValue,
         };
 
-        this.direction = emitter ? emitter.emitterOptions.direction : this.particlesOptions.move.direction;
+        this.direction = this.particlesOptions.move.direction;
         this.bubble = {};
         this.angle = this.particlesOptions.rotate.random ? Math.random() * 360 : this.particlesOptions.rotate.value;
 

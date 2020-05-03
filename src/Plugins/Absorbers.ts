@@ -45,7 +45,9 @@ export class Absorbers implements IPlugin {
 
     public draw(context: CanvasRenderingContext2D): void {
         for (const absorber of this.array) {
+            context.save();
             absorber.draw(context);
+            context.restore();
         }
     }
 
@@ -78,8 +80,8 @@ export class Absorbers implements IPlugin {
             const absorbersOptions = absorbersModeOptions ?? (options.absorbers instanceof Array ?
                 Utils.itemFromArray(options.absorbers) :
                 options.absorbers);
-            const bhPosition = container.interactivity.mouse.clickPosition;
-            const absorber = new Absorber(this, absorbersOptions, bhPosition);
+            const aPosition = container.interactivity.mouse.clickPosition;
+            const absorber = new Absorber(this, absorbersOptions, aPosition);
 
             this.array.push(absorber);
         }

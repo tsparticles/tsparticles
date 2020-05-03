@@ -6,6 +6,8 @@ import { Utils } from "../Utils/Utils";
 import { SizeMode } from "../Enums/SizeMode";
 import { EmitterSize } from "../Options/Classes/Emitters/EmitterSize";
 import { Emitters } from "./Emitters";
+import { RecursivePartial } from "../Types/RecursivePartial";
+import { IParticles } from "../Options/Interfaces/Particles/IParticles";
 
 export class Emitter {
     public position: ICoordinates;
@@ -15,6 +17,7 @@ export class Emitter {
     private readonly emitters: Emitters;
     private readonly container: Container;
     private readonly initialPosition?: ICoordinates;
+    private readonly particlesOptions: RecursivePartial<IParticles>
     private startInterval?: number;
     private lifeCount: number
 
@@ -24,6 +27,23 @@ export class Emitter {
         this.initialPosition = position;
         this.emitterOptions = Utils.deepExtend({}, emitterOptions);
         this.position = this.initialPosition ?? this.calcPosition();
+
+        let particlesOptions = Utils.deepExtend({}, this.emitterOptions.particles);
+
+        if (particlesOptions === undefined) {
+            particlesOptions = {};
+        }
+
+        if (particlesOptions.move === undefined) {
+            particlesOptions.move = {};
+        }
+
+        if (particlesOptions.move.direction === undefined) {
+            particlesOptions.move.direction = this.emitterOptions.direction;
+        }
+
+        this.particlesOptions = particlesOptions;
+
         this.size = this.emitterOptions.size ?? (() => {
             const size = new EmitterSize();
 
@@ -129,7 +149,7 @@ export class Emitter {
             const particle = new Particle(container, {
                 x: position.x + offset.x * (Math.random() - 0.5),
                 y: position.y + offset.y * (Math.random() - 0.5),
-            }, this);
+            }, this.particlesOptions);
 
             container.particles.addParticle(particle);
         }
