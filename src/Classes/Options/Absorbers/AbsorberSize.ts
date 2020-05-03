@@ -16,6 +16,10 @@ export class AbsorberSize implements IAbsorberSize {
 
     public load(data?: RecursivePartial<IAbsorberSize>): void {
         if (data !== undefined) {
+            if (data.density !== undefined) {
+                this.density = data.density;
+            }
+            
             if (data.value !== undefined) {
                 this.value = data.value;
             }
