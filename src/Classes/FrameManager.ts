@@ -22,8 +22,6 @@ export class FrameManager {
 
         const delta = timestamp - container.lastFrameTime;
 
-        console.log(delta, container.lastFrameTime, timestamp);
-
         container.lastFrameTime = timestamp;
 
         container.particles.draw(delta);
