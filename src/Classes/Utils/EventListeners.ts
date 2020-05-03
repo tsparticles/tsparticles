@@ -210,7 +210,6 @@ export class EventListeners {
             container.pageHidden = false;
 
             if (container.getAnimationStatus()) {
-                container.lastFrameTime = performance.now();
                 container.play(true);
             }
         }
