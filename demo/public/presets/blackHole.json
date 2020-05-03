@@ -55,15 +55,20 @@
     },
     "move": {
       "enable": true,
-      "speed": 50,
+      "speed": 3,
       "direction": "none",
       "random": false,
       "straight": false,
-      "out_mode": "out",
+      "out_mode": "destroy",
       "attract": {
         "enable": false,
         "rotateX": 600,
         "rotateY": 1200
+      },
+      "trail": {
+        "enable": true,
+        "fillColor": "#0d47a1",
+        "length": 5
       }
     }
   },
@@ -121,13 +126,13 @@
     "size": {
       "value": 5,
       "limit": 5,
-      "random": false
+      "random": false,
+      "density": 200
     },
     "position": {
       "x": 50,
       "y": 50
-    },
-    "density": 200
+    }
   },
   "background": {
     "color": "#0d47a1",
