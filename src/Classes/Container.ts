@@ -98,9 +98,14 @@ export class Container {
         window.cancelAnimationFrame(handle);
     }
 
-    public play(): void {
+    public play(force?: boolean): void {
+        const needsUpdate = this.paused || force;
+
         if (this.paused) {
             this.paused = false;
+        }
+
+        if (needsUpdate) {
             for (const emitter of this.emitters) {
                 emitter.start();
             }

@@ -211,7 +211,7 @@ export class EventListeners {
 
             if (container.getAnimationStatus()) {
                 container.lastFrameTime = performance.now();
-                container.play();
+                container.play(true);
             }
         }
     }
