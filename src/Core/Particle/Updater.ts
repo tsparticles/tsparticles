@@ -47,10 +47,10 @@ export class Updater {
         this.updateAngle(delta);
 
         /* change particle position if it is out of canvas */
-        this.fixOutOfCanvasPosition();
+        this.fixOutOfCanvasPosition(delta);
 
         /* out of canvas modes */
-        this.updateOutMode();
+        this.updateOutMode(delta);
     }
 
     private updateOpacity(delta: number): void {
@@ -139,7 +139,7 @@ export class Updater {
         }
     }
 
-    private fixOutOfCanvasPosition(): void {
+    private fixOutOfCanvasPosition(_delta: number): void {
         const container = this.container;
         const particle = this.particle;
         const outMode = particle.particlesOptions.move.outMode;
@@ -205,27 +205,27 @@ export class Updater {
         }
     }
 
-    private updateOutMode(): void {
+    private updateOutMode(delta: number): void {
         const particle = this.particle;
 
         switch (particle.particlesOptions.move.outMode) {
             case OutMode.bounce:
             case OutMode.bounceVertical:
             case OutMode.bounceHorizontal:
-                this.updateBounce();
+                this.updateBounce(delta);
 
                 break;
         }
     }
 
-    private updateBounce(): void {
+    private updateBounce(delta: number): void {
         const container = this.container;
         const particle = this.particle;
         let handled = false;
 
         for (const plugin of container.plugins) {
             if (plugin.particleBounce !== undefined) {
-                handled = plugin.particleBounce(particle);
+                handled = plugin.particleBounce(particle, delta);
             }
 
             if (handled) {

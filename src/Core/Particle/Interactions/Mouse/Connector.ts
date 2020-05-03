@@ -8,7 +8,7 @@ export class Connector {
     /**
      * Connecting particles on hover interactivity
      */
-    public static connect(container: Container): void {
+    public static connect(container: Container, _delta: number): void {
         const options = container.options;
 
         if (options.interactivity.events.onHover.enable && container.interactivity.status == 'mousemove') {

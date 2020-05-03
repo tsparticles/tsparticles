@@ -3,7 +3,7 @@ import type { Particle } from "../Particle";
 import { ClickMode } from "../../Enums/Modes/ClickMode";
 
 export interface IPlugin {
-    draw?: (context: CanvasRenderingContext2D) => void;
+    draw?: (context: CanvasRenderingContext2D, delta: number) => void;
     init?: () => void;
     reset?: () => void;
     resize?: () => void;
@@ -16,6 +16,6 @@ export interface IPlugin {
     particlesInitialization?: () => boolean;
     clickPositionValid?: (position: ICoordinates) => boolean;
     handleClickMode?: (mode: ClickMode | string) => void;
-    particleBounce?: (particle: Particle) => boolean;
-    particleUpdate?: (particle: Particle) => void;
+    particleBounce?: (particle: Particle, delta: number) => boolean;
+    particleUpdate?: (particle: Particle, delta: number) => void;
 }

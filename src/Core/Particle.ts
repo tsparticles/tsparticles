@@ -44,6 +44,9 @@ export class Particle implements IParticle {
     public readonly stroke: IStroke;
     public readonly size: ISize;
     public infectionStage?: number;
+    public infectionTime?: number;
+    public infectionDelay?: number;
+    public infectionDelayStage?: number;
     public readonly initialPosition?: ICoordinates;
     public readonly position: ICoordinates;
     public readonly offset: ICoordinates;
@@ -305,8 +308,8 @@ export class Particle implements IParticle {
         this.updater.update(delta);
     }
 
-    public draw(): void {
-        this.container.canvas.drawParticle(this);
+    public draw(delta: number): void {
+        this.container.canvas.drawParticle(this, delta);
     }
 
     public isOverlapping(): { collisionFound: boolean, iterations: number } {
@@ -366,21 +369,11 @@ export class Particle implements IParticle {
             return;
         }
 
-        const infection = options.infection;
-        const infectionStage = stages[stage];
-
-        this.infectionTimeout = window.setTimeout(() => {
-            this.infectionStage = stage;
-
-            if (infectionStage.duration !== undefined && infectionStage.duration >= 0) {
-                this.infectionTimeout = window.setTimeout(() => {
-                    this.nextInfectionStage();
-                }, infectionStage.duration * 1000);
-            }
-        }, infection.delay * 1000);
+        this.infectionDelay = 0;
+        this.infectionDelayStage = stage;
     }
 
-    public updateInfection(stage: number) {
+    public updateInfectionStage(stage: number) {
         const container = this.container;
         const options = container.options;
         const stagesCount = options.infection.stages.length;
@@ -394,13 +387,52 @@ export class Particle implements IParticle {
         }
 
         this.infectionStage = stage;
+        this.infectionTime = 0;
+    }
 
-        const infectionStage = options.infection.stages[this.infectionStage];
+    public updateInfection(delta: number) {
+        const container = this.container;
+        const options = container.options;
+        const infection = options.infection;
+        const stages = options.infection.stages;
+        const stagesCount = stages.length;
 
-        if (infectionStage.duration !== undefined && infectionStage.duration >= 0) {
-            this.infectionTimeout = window.setTimeout(() => {
-                this.nextInfectionStage();
-            }, infectionStage.duration * 1000);
+        if (this.infectionDelay !== undefined && this.infectionDelayStage !== undefined) {
+            const stage = this.infectionDelayStage;
+
+            if (stage > stagesCount || stage < 0) {
+                return;
+            }
+
+            if (this.infectionDelay > infection.delay * 1000) {
+                this.infectionStage = stage;
+                this.infectionTime = 0;
+
+                delete this.infectionDelay;
+                delete this.infectionDelayStage;
+            } else {
+                this.infectionDelay += delta;
+            }
+        } else {
+            delete this.infectionDelay;
+            delete this.infectionDelayStage;
+        }
+
+        if (this.infectionStage !== undefined && this.infectionTime !== undefined) {
+            const infectionStage = stages[this.infectionStage];
+
+            if (infectionStage.duration !== undefined && infectionStage.duration >= 0) {
+                if (this.infectionTime > infectionStage.duration * 1000) {
+                    this.nextInfectionStage();
+                } else {
+                    this.infectionTime += delta;
+                }
+            } else {
+                this.infectionTime += delta;
+            }
+        } else {
+            delete this.infectionStage;
+            delete this.infectionTime;
         }
     }
 
@@ -413,21 +445,17 @@ export class Particle implements IParticle {
             return;
         }
 
+        this.infectionTime = 0;
+
         if (stagesCount <= ++this.infectionStage) {
             if (options.infection.cure) {
                 delete this.infectionStage;
+                delete this.infectionTime;
                 return;
             } else {
                 this.infectionStage = 0;
+                this.infectionTime = 0;
             }
-        }
-
-        const infectionStage = options.infection.stages[this.infectionStage];
-
-        if (infectionStage.duration !== undefined && infectionStage.duration >= 0) {
-            this.infectionTimeout = window.setTimeout(() => {
-                this.nextInfectionStage();
-            }, infectionStage.duration * 1000);
         }
     }
 

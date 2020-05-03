@@ -7,7 +7,7 @@ import { Utils } from "../../../../Utils/Utils";
  * Particle grab manager
  */
 export class Grabber {
-    public static grab(container: Container): void {
+    public static grab(container: Container, _delta: number): void {
         const options = container.options;
         const interactivity = options.interactivity;
 

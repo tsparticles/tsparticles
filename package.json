@@ -6,8 +6,8 @@
   "scripts": {
     "clear:dist": "rimraf -f dist",
     "clear:docs": "rimraf -f docs",
-    "slimbuild": "npm test && npm run clear:dist && npm run build:ts:es && npm run build:schema && webpack -p && npm run build:ts",
-    "build": "npm run slimbuild && npm run build:docs",
+    "slimbuild": "npm run clear:dist && npm run build:ts:es && npm run build:schema && webpack -p && npm run build:ts",
+    "build": "npm run slimbuild && npm test && npm run build:docs",
     "build:ts:es": "tsc -b tsconfig.browser.json",
     "build:ts": "tsc",
     "build:docs": "copyfiles -f dist/tsparticles.min.js typedoc/themes/particles/assets/js && npm run clear:docs && typedoc",

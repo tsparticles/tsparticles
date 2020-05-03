@@ -7,7 +7,7 @@ import { CollisionMode } from "../../../../Enums/CollisionMode";
 import { Circle } from "../../../../Utils/QuadTree";
 
 export class Collider {
-    public static collide(p1: Particle, container: Container): void {
+    public static collide(p1: Particle, container: Container, _delta: number): void {
         const pos1 = {
             x: p1.position.x + p1.offset.x,
             y: p1.position.y + p1.offset.y,

@@ -20,7 +20,7 @@ export class Bubbler {
         delete particle.bubble.color;
     }
 
-    public static bubble(container: Container): void {
+    public static bubble(container: Container, _delta: number): void {
         const options = container.options;
         const hoverEnabled = options.interactivity.events.onHover.enable;
         const hoverMode = options.interactivity.events.onHover.mode;

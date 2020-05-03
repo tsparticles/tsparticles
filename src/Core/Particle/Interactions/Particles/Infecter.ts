@@ -3,7 +3,9 @@ import { Container } from "../../../Container";
 import { Circle } from "../../../../Utils/QuadTree";
 
 export class Infecter {
-    public static infect(p1: Particle, container: Container): void {
+    public static infect(p1: Particle, container: Container, delta: number): void {
+        p1.updateInfection(delta);
+
         if (p1.infectionStage === undefined) {
             return;
         }
@@ -37,12 +39,12 @@ export class Infecter {
                 if (p2.infectionStage === undefined) {
                     p2.startInfection(infectedStage1);
                 } else if (p2.infectionStage < p1.infectionStage) {
-                    p2.updateInfection(infectedStage1);
+                    p2.updateInfectionStage(infectedStage1);
                 } else if (p2.infectionStage > p1.infectionStage) {
                     const infectionStage2 = infectionOptions.stages[p2.infectionStage];
                     const infectedStage2 = infectionStage2?.infectedStage ?? p2.infectionStage;
 
-                    p1.updateInfection(infectedStage2);
+                    p1.updateInfectionStage(infectedStage2);
                 }
             }
         }

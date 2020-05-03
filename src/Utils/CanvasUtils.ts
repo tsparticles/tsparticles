@@ -129,6 +129,7 @@ export class CanvasUtils {
     public static drawParticle(container: Container,
                                context: CanvasRenderingContext2D,
                                particle: IParticle,
+                               delta: number,
                                colorValue: string,
                                backgroundMask: boolean,
                                radius: number,
@@ -169,7 +170,7 @@ export class CanvasUtils {
             context.lineWidth = stroke.width;
         }
 
-        this.drawShape(container, context, particle, radius, opacity);
+        this.drawShape(container, context, particle, radius, opacity, delta);
 
         if (particle.close) {
             context.closePath();
@@ -195,7 +196,7 @@ export class CanvasUtils {
             context.globalCompositeOperation = "destination-out";
         }
 
-        this.drawShapeAfterEffect(container, context, particle, radius, opacity);
+        this.drawShapeAfterEffect(container, context, particle, radius, opacity, delta);
 
         context.restore();
     }
@@ -214,7 +215,8 @@ export class CanvasUtils {
                             context: CanvasRenderingContext2D,
                             particle: IParticle,
                             radius: number,
-                            opacity: number): void {
+                            opacity: number,
+                            delta: number): void {
 
         if (!particle.shape) {
             return;
@@ -226,14 +228,15 @@ export class CanvasUtils {
             return;
         }
 
-        drawer.draw(context, particle, radius, opacity);
+        drawer.draw(context, particle, radius, opacity, delta);
     }
 
     public static drawShapeAfterEffect(container: Container,
                                        context: CanvasRenderingContext2D,
                                        particle: IParticle,
                                        radius: number,
-                                       opacity: number): void {
+                                       opacity: number,
+                                       delta: number): void {
 
         if (!particle.shape) {
             return;
@@ -246,15 +249,15 @@ export class CanvasUtils {
         }
 
         if (drawer.afterEffect !== undefined) {
-            drawer.afterEffect(context, particle, radius, opacity);
+            drawer.afterEffect(context, particle, radius, opacity, delta);
         }
     }
 
-    public static drawPlugin(context: CanvasRenderingContext2D, plugin: IPlugin) {
+    public static drawPlugin(context: CanvasRenderingContext2D, plugin: IPlugin, delta: number) {
         context.save();
 
         if (plugin.draw !== undefined) {
-            plugin.draw(context);
+            plugin.draw(context, delta);
         }
 
         context.restore();

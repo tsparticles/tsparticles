@@ -6,7 +6,7 @@ import { Circle } from "../../../../Utils/QuadTree";
 import { Utils } from "../../../../Utils/Utils";
 
 export class Linker {
-    public static link(p1: Particle, container: Container): void {
+    public static link(p1: Particle, container: Container, _delta: number): void {
         const optOpacity = p1.particlesOptions.lineLinked.opacity;
         const optDistance = p1.lineLinkedDistance ?? container.retina.lineLinkedDistance;
         const pos1 = {

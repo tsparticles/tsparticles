@@ -67,10 +67,10 @@ export class Mover {
         }
 
         /* parallax */
-        this.moveParallax();
+        this.moveParallax(delta);
     }
 
-    private moveParallax(): void {
+    private moveParallax(_delta: number): void {
         const container = this.container;
         const options = container.options;
 

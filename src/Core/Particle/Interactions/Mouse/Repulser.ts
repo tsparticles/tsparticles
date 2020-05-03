@@ -13,7 +13,7 @@ import { Circle } from "../../../../Utils/QuadTree";
  * Particle repulse manager
  */
 export class Repulser {
-    public static repulse(container: Container): void {
+    public static repulse(container: Container, _delta: number): void {
         const options = container.options;
         const interactivity = options.interactivity;
         const hoverEnabled = interactivity.events.onHover.enable;

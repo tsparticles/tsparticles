@@ -3,7 +3,7 @@ import type { Container } from "../../../Container";
 import { Circle } from "../../../../Utils/QuadTree";
 
 export class Attractor {
-    public static attract(p1: IParticle, container: Container): void {
+    public static attract(p1: IParticle, container: Container, _delta: number): void {
         const options = container.options;
         const distance = p1.lineLinkedDistance ?? container.retina.lineLinkedDistance;
 

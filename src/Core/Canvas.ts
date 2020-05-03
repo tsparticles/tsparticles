@@ -278,7 +278,7 @@ export class Canvas {
             opacity);
     }
 
-    public drawParticle(particle: IParticle): void {
+    public drawParticle(particle: IParticle, delta: number): void {
         const container = this.container;
         const options = container.options;
 
@@ -309,6 +309,7 @@ export class Canvas {
             this.container,
             this.context,
             particle,
+            delta,
             colorValue,
             options.backgroundMask.enable,
             radius,
@@ -317,12 +318,12 @@ export class Canvas {
     }
 
 
-    public drawPlugin(plugin: IPlugin): void {
+    public drawPlugin(plugin: IPlugin, delta: number): void {
         if (!this.context) {
             return;
         }
 
-        CanvasUtils.drawPlugin(this.context, plugin);
+        CanvasUtils.drawPlugin(this.context, plugin, delta);
     }
 
     private paintBase(baseColor?: string): void {

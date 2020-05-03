@@ -127,7 +127,7 @@ export class Particles {
                 }
 
                 if (plugin.particleUpdate) {
-                    plugin.particleUpdate(particle);
+                    plugin.particleUpdate(particle, delta);
                 }
             }
 
@@ -177,28 +177,28 @@ export class Particles {
 
         /* mouse events interactions */
         if (Utils.isInArray(HoverMode.grab, hoverMode)) {
-            Grabber.grab(container);
+            Grabber.grab(container, delta);
         }
 
         if (Utils.isInArray(HoverMode.repulse, hoverMode) ||
             Utils.isInArray(ClickMode.repulse, clickMode) ||
             Utils.isInArray(DivMode.repulse, divMode)) {
-            Repulser.repulse(container);
+            Repulser.repulse(container, delta);
         }
 
         if (Utils.isInArray(HoverMode.bubble, hoverMode) || Utils.isInArray(ClickMode.bubble, clickMode)) {
-            Bubbler.bubble(container);
+            Bubbler.bubble(container, delta);
         }
 
         if (Utils.isInArray(HoverMode.connect, hoverMode)) {
-            Connector.connect(container);
+            Connector.connect(container, delta);
         }
 
         // this loop is required to be done after mouse interactions
         for (const particle of this.array) {
             /* interaction auto between particles */
             if (this.interactionsEnabled) {
-                InteractionManager.interact(particle, container);
+                InteractionManager.interact(particle, container, delta);
             }
         }
     }
@@ -221,7 +221,7 @@ export class Particles {
 
         /* draw polygon shape in debug mode */
         for (const plugin of container.plugins) {
-                container.canvas.drawPlugin(plugin);
+            container.canvas.drawPlugin(plugin, delta);
         }
 
         /*if (container.canvas.context) {
@@ -230,7 +230,7 @@ export class Particles {
 
         /* draw each particle */
         for (const p of this.array) {
-            p.draw();
+            p.draw(delta);
         }
     }
 
