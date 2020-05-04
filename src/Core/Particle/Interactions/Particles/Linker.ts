@@ -57,9 +57,11 @@ export class Linker {
                     }
                 }
 
-                if (p2.links.indexOf(p1) == -1 && p1.links.indexOf(p2) == -1) {
-                    p1.links.push(p2);
-                    container.canvas.drawLinkedLine(p1, p2, opacityLine);
+                if (p2.links.map(t => t.destination).indexOf(p1) == -1 && p1.links.map(t => t.destination).indexOf(p2) == -1) {
+                    p1.links.push({
+                        destination: p2,
+                        opacity: opacityLine,
+                    });
                 }
             }
         }

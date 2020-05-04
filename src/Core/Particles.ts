@@ -175,27 +175,31 @@ export class Particles {
             this.remove(particle);
         }
 
-        const hoverMode = options.interactivity.events.onHover.mode;
-        const clickMode = options.interactivity.events.onClick.mode;
-        const divMode = options.interactivity.events.onDiv.mode;
+        if (container.options.interactivity.events.onDiv.enable ||
+            (container.options.interactivity.events.onHover.enable && container.interactivity.mouse.position) ||
+            (container.options.interactivity.events.onClick.enable && container.interactivity.mouse.clickPosition)) {
+            const hoverMode = options.interactivity.events.onHover.mode;
+            const clickMode = options.interactivity.events.onClick.mode;
+            const divMode = options.interactivity.events.onDiv.mode;
 
-        /* mouse events interactions */
-        if (Utils.isInArray(HoverMode.grab, hoverMode)) {
-            Grabber.grab(container, delta);
-        }
+            /* mouse events interactions */
+            if (Utils.isInArray(HoverMode.grab, hoverMode)) {
+                Grabber.grab(container, delta);
+            }
 
-        if (Utils.isInArray(HoverMode.repulse, hoverMode) ||
-            Utils.isInArray(ClickMode.repulse, clickMode) ||
-            Utils.isInArray(DivMode.repulse, divMode)) {
-            Repulser.repulse(container, delta);
-        }
+            if (Utils.isInArray(HoverMode.repulse, hoverMode) ||
+                Utils.isInArray(ClickMode.repulse, clickMode) ||
+                Utils.isInArray(DivMode.repulse, divMode)) {
+                Repulser.repulse(container, delta);
+            }
 
-        if (Utils.isInArray(HoverMode.bubble, hoverMode) || Utils.isInArray(ClickMode.bubble, clickMode)) {
-            Bubbler.bubble(container, delta);
-        }
+            if (Utils.isInArray(HoverMode.bubble, hoverMode) || Utils.isInArray(ClickMode.bubble, clickMode)) {
+                Bubbler.bubble(container, delta);
+            }
 
-        if (Utils.isInArray(HoverMode.connect, hoverMode)) {
-            Connector.connect(container, delta);
+            if (Utils.isInArray(HoverMode.connect, hoverMode)) {
+                Connector.connect(container, delta);
+            }
         }
 
         // this loop is required to be done after mouse interactions

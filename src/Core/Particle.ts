@@ -24,9 +24,10 @@ import { OpacityAnimationStatus } from "../Enums/OpacityAnimationStatus";
 import { Shape } from "../Options/Classes/Particles/Shape/Shape";
 import { StartValueType } from "../Enums/StartValueType";
 import { ImageDrawer } from "./Particle/ShapeDrawers/ImageDrawer";
-import { IImageShape } from "../Options/Interfaces/Particles/Shape/IImageShape";
+import type { IImageShape } from "../Options/Interfaces/Particles/Shape/IImageShape";
 import { RecursivePartial } from "../Types/RecursivePartial";
 import { Plugins } from "../Utils/Plugins";
+import type { ILink } from "./Interfaces/ILink";
 
 /**
  * The single particle object
@@ -36,7 +37,7 @@ export class Particle implements IParticle {
     public destroyed: boolean;
     public rotateDirection: RotateDirection;
     public randomIndexData?: number;
-    public links: IParticle[];
+    public links: ILink[];
     public readonly close: boolean;
     public readonly direction: MoveDirection;
     public readonly fill: boolean;
@@ -268,7 +269,7 @@ export class Particle implements IParticle {
             const image = images[index];
 
             const optionsImage = (imagesOptions instanceof Array ?
-                imagesOptions.filter(t => (t as IImageShape).src === image.source)[0] :
+                imagesOptions.filter((t) => (t as IImageShape).src === image.source)[0] :
                 imagesOptions) as IImageShape;
 
             this.image = {

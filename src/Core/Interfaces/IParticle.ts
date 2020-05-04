@@ -11,6 +11,7 @@ import type { IShapeValues } from "../../Options/Interfaces/Particles/Shape/ISha
 import type { IBubbleParticleData } from "./IBubbleParticleData";
 import type { MoveDirection } from "../../Enums/MoveDirection";
 import type { IParticles } from "../../Options/Interfaces/Particles/IParticles";
+import type { ILink } from "./ILink";
 
 export interface IParticle {
     randomIndexData?: number;
@@ -29,6 +30,7 @@ export interface IParticle {
     readonly infectionDelayStage?: number;
     readonly initialPosition?: ICoordinates;
     readonly initialVelocity: IVelocity;
+    readonly links: ILink[];
     readonly offset: ICoordinates;
     readonly opacity: IOpacity;
     readonly particlesOptions: IParticles;

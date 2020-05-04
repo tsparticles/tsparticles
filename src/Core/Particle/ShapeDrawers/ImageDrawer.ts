@@ -19,7 +19,7 @@ export class ImageDrawer implements IShapeDrawer {
     }
 
     public getImages(container: Container): IContainerImage {
-        const containerImages = this.images.filter(t => t.id == container.id);
+        const containerImages = this.images.filter((t) => t.id == container.id);
 
         if (!containerImages.length) {
             this.images.push({

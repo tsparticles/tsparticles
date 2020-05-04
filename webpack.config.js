@@ -16,6 +16,8 @@ const minBanner = `tsParticles v${version} by Matteo Bruni`;
 module.exports = {
     // Change to your "entry-point".
     entry: {
+        "tsparticles.slim": "./dist/index.slim.js",
+        "tsparticles.slim.min": "./dist/index.slim.js",
         "tsparticles": "./dist/index.js",
         "tsparticles.min": "./dist/index.js"
     },
@@ -26,15 +28,15 @@ module.exports = {
         library: ""
     },
     resolve: {
-        extensions: [".js", ".json"]
+        extensions: [ ".js", ".json" ]
     },
     module: {
-        rules: [{
+        rules: [ {
             // Include ts, tsx, js, and jsx files.
             test: /\.js$/,
             exclude: /node_modules/,
             loader: "babel-loader"
-        }],
+        } ],
     },
     plugins: [
         new webpack.BannerPlugin({

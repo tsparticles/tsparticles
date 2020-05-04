@@ -9,7 +9,7 @@ export class Plugins {
     private static plugins: IPlugin[] = [];
 
     public static getPlugin(plugin: string): IPlugin | undefined {
-        return this.plugins.filter(t => t.id === plugin)[0];
+        return this.plugins.filter((t) => t.id === plugin)[0];
     }
 
     public static addPlugin(plugin: IPlugin): void {
@@ -20,7 +20,7 @@ export class Plugins {
 
     public static getAvailablePlugins(container: Container): { [id: string]: IContainerPlugin } {
         const res: { [id: string]: IContainerPlugin } = {};
-        const availablePlugins = this.plugins.filter(t => t.needsPlugin(container));
+        const availablePlugins = this.plugins.filter((t) => t.needsPlugin(container));
 
         for (const plugin of availablePlugins) {
             res[plugin.id] = plugin.getPlugin(container);

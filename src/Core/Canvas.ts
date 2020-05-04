@@ -7,6 +7,7 @@ import { CanvasUtils } from "../Utils/CanvasUtils";
 import { ColorUtils } from "../Utils/ColorUtils";
 import type { IParticle } from "./Interfaces/IParticle";
 import { IContainerPlugin } from "./Interfaces/IContainerPlugin";
+import { ILink } from "./Interfaces/ILink";
 
 /**
  * Canvas manager
@@ -144,13 +145,15 @@ export class Canvas {
         return this.context?.isPointInPath(path, point.x, point.y) ?? false;
     }
 
-    public drawLinkedLine(p1: IParticle, p2: IParticle, opacity: number): void {
+    public drawLinkedLine(p1: IParticle, link: ILink): void {
         const container = this.container;
         const options = container.options;
         const pos1 = {
             x: p1.position.x + p1.offset.x,
             y: p1.position.y + p1.offset.y,
         };
+        const p2 = link.destination;
+        let opacity = link.opacity;
         const pos2 = {
             x: p2.position.x + p2.offset.x,
             y: p2.position.y + p2.offset.y,
@@ -303,6 +306,10 @@ export class Canvas {
 
         if (!this.context || !colorValue) {
             return;
+        }
+
+        for (const link of particle.links) {
+            container.canvas.drawLinkedLine(particle, link);
         }
 
         CanvasUtils.drawParticle(
