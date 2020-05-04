@@ -18,8 +18,15 @@ export class Plugins {
         }
     }
 
-    public static getAvailablePlugins(container: Container): IPlugin[] {
-        return this.plugins.filter(t => t.needsPlugin(container)).map(t => t.getPlugin(container));
+    public static getAvailablePlugins(container: Container): { [id: string]: IPlugin } {
+        const res: { [id: string]: IPlugin } = {};
+        const availablePlugins = this.plugins.filter(t => t.needsPlugin(container));
+
+        for (const plugin of availablePlugins) {
+            res[plugin.id] = plugin.getPlugin(container);
+        }
+
+        return res;
     }
 
     private static presets: { [preset: string]: RecursivePartial<IOptions> } = {};

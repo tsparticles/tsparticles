@@ -33,9 +33,9 @@ export class Absorbers implements IPlugin {
         }
     }
 
-    public particleUpdate(particle: Particle): void {
+    public particleUpdate(particle: Particle, delta: number): void {
         for (const absorber of this.array) {
-            absorber.attract(particle);
+            absorber.attract(particle, delta);
 
             if (particle.destroyed) {
                 break;

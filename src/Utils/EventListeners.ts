@@ -177,7 +177,9 @@ export class EventListeners {
         /* density particles enabled */
         container.densityAutoParticles();
 
-        for (const plugin of container.plugins) {
+        for (const id in container.plugins) {
+            const plugin = container.plugins[id];
+
             if (plugin.resize !== undefined) {
                 plugin.resize();
             }
@@ -305,7 +307,9 @@ export class EventListeners {
             return;
         }
 
-        for (const plugin of container.plugins) {
+        for (const id in container.plugins) {
+            const plugin = container.plugins[id];
+
             if (plugin.clickPositionValid !== undefined) {
                 handled = plugin.clickPositionValid(mousePosition);
 
@@ -397,7 +401,9 @@ export class EventListeners {
                 break;
         }
 
-        for (const plugin of container.plugins) {
+        for (const id in container.plugins) {
+            const plugin = container.plugins[id];
+
             if (plugin.handleClickMode) {
                 plugin.handleClickMode(mode);
             }

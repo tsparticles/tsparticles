@@ -463,7 +463,8 @@ export class Particle implements IParticle {
     }
 
     private calcPosition(container: Container, position?: ICoordinates): ICoordinates {
-        for (const plugin of container.plugins) {
+        for (const id in container.plugins) {
+            const plugin = container.plugins[id];
             const pluginPos = plugin.particlePosition !== undefined ? plugin.particlePosition(position) : undefined;
 
             if (pluginPos !== undefined) {

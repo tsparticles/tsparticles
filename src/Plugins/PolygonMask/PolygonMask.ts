@@ -212,7 +212,7 @@ export class PolygonMask implements IPlugin {
         }
     }
 
-    public particleBounce(particle: Particle): boolean {
+    public particleBounce(particle: Particle, _delta: number): boolean {
         const container = this.container;
         const options = container.options;
 

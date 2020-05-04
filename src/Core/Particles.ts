@@ -52,7 +52,9 @@ export class Particles {
         let handled = false;
         this.noiseZ = 0;
 
-        for (const plugin of container.plugins) {
+        for (const id in container.plugins) {
+            const plugin = container.plugins[id];
+
             if (plugin.particlesInitialization !== undefined) {
                 handled = plugin.particlesInitialization();
             }
@@ -121,7 +123,9 @@ export class Particles {
             //     p.vy = f * Math.sin(t);
             // }
 
-            for (const plugin of container.plugins) {
+            for (const id in container.plugins) {
+                const plugin = container.plugins[id];
+
                 if (particle.destroyed) {
                     break;
                 }
@@ -220,7 +224,9 @@ export class Particles {
         this.noiseZ += 0.0004;
 
         /* draw polygon shape in debug mode */
-        for (const plugin of container.plugins) {
+        for (const id in container.plugins) {
+            const plugin = container.plugins[id];
+
             container.canvas.drawPlugin(plugin, delta);
         }
 

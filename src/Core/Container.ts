@@ -25,7 +25,7 @@ export class Container {
     public canvas: Canvas;
     public drawers: { [type: string]: IShapeDrawer };
     public particles: Particles;
-    public plugins: IPlugin[];
+    public plugins: { [id: string]: IPlugin };
     public bubble: IBubble;
     public repulse: IRepulse;
     public lastFrameTime: number;
@@ -62,7 +62,7 @@ export class Container {
         };
         this.bubble = {};
         this.repulse = { particles: [] };
-        this.plugins = [];
+        this.plugins = {};
         this.drawers = {};
 
         /* tsParticles variables with default values */
@@ -97,7 +97,9 @@ export class Container {
         }
 
         if (needsUpdate) {
-            for (const plugin of this.plugins) {
+            for (const id in this.plugins) {
+                const plugin = this.plugins[id];
+
                 if (plugin.play) {
                     plugin.play();
                 }
@@ -117,7 +119,9 @@ export class Container {
         }
 
         if (!this.paused) {
-            for (const plugin of this.plugins) {
+            for (const id in this.plugins) {
+                const plugin = this.plugins[id];
+
                 if (plugin.pause) {
                     plugin.pause();
                 }
@@ -220,13 +224,15 @@ export class Container {
         this.retina.reset();
         this.canvas.clear();
 
-        for (const plugin of this.plugins) {
+        for (const id in this.plugins) {
+            const plugin = this.plugins[id] as IPlugin;
+
             if (plugin.stop !== undefined) {
                 plugin.stop();
             }
         }
 
-        this.plugins = [];
+        this.plugins = {};
 
         delete this.particles.lineLinkedColor;
     }
@@ -236,15 +242,19 @@ export class Container {
             return;
         }
 
-        for (const plugin of Plugins.getAvailablePlugins(this)) {
-            this.plugins.push(plugin);
+        const availablePlugins = Plugins.getAvailablePlugins(this);
+
+        for (const id in availablePlugins) {
+            this.plugins[id] = availablePlugins[id];
         }
 
         this.started = true;
 
         this.eventListeners.addListeners();
 
-        for (const plugin of this.plugins) {
+        for (const id in this.plugins) {
+            const plugin = this.plugins[id];
+
             if (plugin.startAsync !== undefined) {
                 await plugin.startAsync();
             } else if (plugin.start !== undefined) {
@@ -270,7 +280,9 @@ export class Container {
         this.canvas.init();
         this.particles.init();
 
-        for (const plugin of this.plugins) {
+        for (const id in this.plugins) {
+            const plugin = this.plugins[id];
+
             if (plugin.init !== undefined) {
                 plugin.init();
             }

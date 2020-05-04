@@ -55,7 +55,7 @@ export class Absorber {
         this.position = this.initialPosition ?? this.calcPosition();
     }
 
-    public attract(particle: Particle): void {
+    public attract(particle: Particle, _delta: number): void {
         const dx = this.position.x - (particle.position.x + particle.offset.x);
         const dy = this.position.y - (particle.position.y + particle.offset.y);
         const distance = Math.sqrt(Math.abs(dx * dx + dy * dy));
