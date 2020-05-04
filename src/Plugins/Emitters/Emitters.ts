@@ -1,8 +1,8 @@
-import { IContainerPlugin } from "../../Core/Interfaces/IContainerPlugin";
+import type { IContainerPlugin } from "../../Core/Interfaces/IContainerPlugin";
 import { Emitter } from "./Emitter";
-import { Container } from "../../Core/Container";
+import type { Container } from "../../Core/Container";
 import { ClickMode } from "../../Enums/Modes/ClickMode";
-import { IEmitter } from "../../Options/Interfaces/Emitters/IEmitter";
+import type { IEmitter } from "../../Options/Interfaces/Emitters/IEmitter";
 import { Utils } from "../../Utils/Utils";
 
 export class Emitters implements IContainerPlugin {

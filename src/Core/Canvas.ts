@@ -6,8 +6,8 @@ import type { ICoordinates } from "./Interfaces/ICoordinates";
 import { CanvasUtils } from "../Utils/CanvasUtils";
 import { ColorUtils } from "../Utils/ColorUtils";
 import type { IParticle } from "./Interfaces/IParticle";
-import { IContainerPlugin } from "./Interfaces/IContainerPlugin";
-import { ILink } from "./Interfaces/ILink";
+import type { IContainerPlugin } from "./Interfaces/IContainerPlugin";
+import type { ILink } from "./Interfaces/ILink";
 
 /**
  * Canvas manager

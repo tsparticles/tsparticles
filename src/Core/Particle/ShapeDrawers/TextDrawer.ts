@@ -3,7 +3,7 @@ import type { IParticle } from "../../Interfaces/IParticle";
 import { Utils } from "../../../Utils/Utils";
 import type { ICharacterShape } from "../../../Options/Interfaces/Particles/Shape/ICharacterShape";
 import { ShapeType } from "../../../Enums/ShapeType";
-import { Container } from "../../Container";
+import type { Container } from "../../Container";
 
 interface ITextParticle extends IParticle {
     text?: string;

@@ -1,11 +1,11 @@
 import type { ICoordinates } from "../../Core/Interfaces/ICoordinates";
 import type { Container } from "../../Core/Container";
 import type { Particle } from "../../Core/Particle";
-import { IRgb } from "../../Core/Interfaces/IRgb";
-import { IAbsorber } from "../../Options/Interfaces/Absorbers/IAbsorber";
+import type { IRgb } from "../../Core/Interfaces/IRgb";
+import type { IAbsorber } from "../../Options/Interfaces/Absorbers/IAbsorber";
 import { ColorUtils } from "../../Utils/ColorUtils";
 import { Utils } from "../../Utils/Utils";
-import { Absorbers } from "./Absorbers";
+import type { Absorbers } from "./Absorbers";
 
 export class Absorber {
     public color: IRgb;

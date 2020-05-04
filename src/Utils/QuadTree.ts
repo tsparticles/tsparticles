@@ -1,6 +1,6 @@
-import { ICoordinates } from "../Core/Interfaces/ICoordinates";
-import { IDimension } from "../Core/Interfaces/IDimension";
-import { Particle } from "../Core/Particle";
+import type { ICoordinates } from "../Core/Interfaces/ICoordinates";
+import type { IDimension } from "../Core/Interfaces/IDimension";
+import type { Particle } from "../Core/Particle";
 
 export abstract class Range {
     public readonly position: ICoordinates;

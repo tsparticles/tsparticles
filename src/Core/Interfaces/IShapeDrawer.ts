@@ -1,5 +1,6 @@
-import {
-    ShapeDrawerAfterEffectFunction, ShapeDrawerDestroyFunction,
+import type {
+    ShapeDrawerAfterEffectFunction,
+    ShapeDrawerDestroyFunction,
     ShapeDrawerDrawFunction,
     ShapeDrawerInitFunction
 } from "../../Types/ShapeDrawerFunctions";

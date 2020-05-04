@@ -12,7 +12,12 @@ export class Connector {
         const options = container.options;
 
         if (options.interactivity.events.onHover.enable && container.interactivity.status == 'mousemove') {
-            const mousePos = container.interactivity.mouse.position || { x: 0, y: 0 };
+            const mousePos = container.interactivity.mouse.position;
+
+            if (!mousePos) {
+                return;
+            }
+
             const distance = Math.abs(container.retina.connectModeRadius);
 
             //const query = container.particles.spatialGrid.queryRadius(mousePos, distance);

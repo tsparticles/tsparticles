@@ -90,7 +90,7 @@ export class SpatialGrid {
                 y: item.position.y + item.offset.y,
             };
 
-            if (Utils.getDistanceBetweenCoordinates(itemPos, position) <= radius) {
+            if (Utils.getDistance(itemPos, position) <= radius) {
                 out.push(item);
             }
         }
@@ -118,7 +118,7 @@ export class SpatialGrid {
                 y: item.position.y + item.offset.y,
             };
 
-            const distance = Utils.getDistanceBetweenCoordinates(itemPos, position);
+            const distance = Utils.getDistance(itemPos, position);
 
             if (distance <= radius) {
                 out.push({

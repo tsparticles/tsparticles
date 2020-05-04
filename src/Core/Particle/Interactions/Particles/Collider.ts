@@ -1,8 +1,8 @@
 import { Utils } from "../../../../Utils/Utils";
 import { Particle } from "../../../Particle";
-import { Container } from "../../../Container";
-import { IParticle } from "../../../Interfaces/IParticle";
-import { IVelocity } from "../../../Interfaces/IVelocity";
+import type { Container } from "../../../Container";
+import type { IParticle } from "../../../Interfaces/IParticle";
+import type { IVelocity } from "../../../Interfaces/IVelocity";
 import { CollisionMode } from "../../../../Enums/CollisionMode";
 import { Circle } from "../../../../Utils/QuadTree";
 
@@ -30,7 +30,7 @@ export class Collider {
                 x: p2.position.x + p2.offset.x,
                 y: p2.position.y + p2.offset.y
             };
-            const dist = Utils.getDistanceBetweenCoordinates(pos1, pos2);
+            const dist = Utils.getDistance(pos1, pos2);
             const defaultSize = container.retina.sizeValue;
             const radius1 = this.getRadius(p1, defaultSize);
             const radius2 = this.getRadius(p2, defaultSize);

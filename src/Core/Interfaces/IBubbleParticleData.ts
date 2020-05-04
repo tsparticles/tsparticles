@@ -1,4 +1,4 @@
-import { IRgb } from "./IRgb";
+import type { IRgb } from "./IRgb";
 
 export interface IBubbleParticleData {
     opacity?: number;

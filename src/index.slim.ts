@@ -7,12 +7,11 @@ import { LineDrawer } from "./Core/Particle/ShapeDrawers/LineDrawer";
 import { CircleDrawer } from "./Core/Particle/ShapeDrawers/CircleDrawer";
 import { SquareDrawer } from "./Core/Particle/ShapeDrawers/SquareDrawer";
 import { TriangleDrawer } from "./Core/Particle/ShapeDrawers/TriangleDrawer";
-import { StarDrawer as StarDrawer } from "./Core/Particle/ShapeDrawers/StarDrawer";
+import { StarDrawer } from "./Core/Particle/ShapeDrawers/StarDrawer";
 import { PolygonDrawer } from "./Core/Particle/ShapeDrawers/PolygonDrawer";
 import { TextDrawer } from "./Core/Particle/ShapeDrawers/TextDrawer";
 import { ImageDrawer } from "./Core/Particle/ShapeDrawers/ImageDrawer";
 import type { IShapeDrawer } from "./Core/Interfaces/IShapeDrawer";
-import { SimplexNoise } from "./Utils/SimplexNoise";
 import type {
     ShapeDrawerAfterEffectFunction,
     ShapeDrawerDestroyFunction,
@@ -33,10 +32,6 @@ declare global {
         mozCancelRequestAnimationFrame: (handle: number) => void;
         oCancelRequestAnimationFrame: (handle: number) => void;
         msCancelRequestAnimationFrame: (handle: number) => void;
-        particlesJS: any;
-        tsParticles: Main;
-        simplex: SimplexNoise;
-        pJSDom: () => Container[];
     }
 }
 

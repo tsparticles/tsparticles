@@ -1,9 +1,9 @@
 import type { IContainerPlugin } from "../../Core/Interfaces/IContainerPlugin";
 import { Absorber } from "./Absorber";
 import { Container } from "../../Core/Container";
-import { Particle } from "../../Core/Particle";
+import type { Particle } from "../../Core/Particle";
 import { ClickMode } from "../../Enums/Modes/ClickMode";
-import { IAbsorber } from "../../Options/Interfaces/Absorbers/IAbsorber";
+import type { IAbsorber } from "../../Options/Interfaces/Absorbers/IAbsorber";
 import { Utils } from "../../Utils/Utils";
 
 export class Absorbers implements IContainerPlugin {

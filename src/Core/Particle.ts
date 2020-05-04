@@ -329,7 +329,7 @@ export class Particle implements IParticle {
                 y: p2.position.y + p2.offset.y
             };
 
-            const dist = Utils.getDistanceBetweenCoordinates(pos1, pos2);
+            const dist = Utils.getDistance(pos1, pos2);
 
             if (dist <= p.size.value + p2.size.value) {
                 collisionFound = true;

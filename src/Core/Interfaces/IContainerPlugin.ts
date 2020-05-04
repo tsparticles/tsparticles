@@ -1,6 +1,6 @@
 import type { ICoordinates } from "./ICoordinates";
 import type { Particle } from "../Particle";
-import { ClickMode } from "../../Enums/Modes/ClickMode";
+import type { ClickMode } from "../../Enums/Modes/ClickMode";
 
 export interface IContainerPlugin {
     draw?: (context: CanvasRenderingContext2D, delta: number) => void;

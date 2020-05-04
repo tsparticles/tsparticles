@@ -6,9 +6,9 @@ import { PolygonMaskInlineArrangement } from "../../Enums/PolygonMaskInlineArran
 import { Utils } from "../../Utils/Utils";
 import type { IDimension } from "../../Core/Interfaces/IDimension";
 import { Constants } from "../../Utils/Constants";
-import { ISvgPath } from "../../Core/Interfaces/ISvgPath";
+import type { ISvgPath } from "../../Core/Interfaces/ISvgPath";
 import type { IContainerPlugin } from "../../Core/Interfaces/IContainerPlugin";
-import { IPolygonMaskDrawStroke } from "../../Options/Interfaces/PolygonMask/IPolygonMaskDrawStroke";
+import type { IPolygonMaskDrawStroke } from "../../Options/Interfaces/PolygonMask/IPolygonMaskDrawStroke";
 import { ColorUtils } from "../../Utils/ColorUtils";
 
 type SvgAbsoluteCoordinatesTypes =
@@ -226,7 +226,7 @@ export class PolygonMask implements IContainerPlugin {
             }
         } else if (options.polygon.enable && options.polygon.type === PolygonMaskType.inline) {
             if (particle.initialPosition) {
-                const dist = Utils.getDistanceBetweenCoordinates(particle.initialPosition, particle.position);
+                const dist = Utils.getDistance(particle.initialPosition, particle.position);
 
                 if (dist > container.retina.polygonMaskMoveRadius) {
                     PolygonMask.polygonBounce(particle);

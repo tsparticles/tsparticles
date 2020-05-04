@@ -1,5 +1,5 @@
 import type { Container } from "../Container";
-import { IContainerPlugin } from "./IContainerPlugin";
+import type { IContainerPlugin } from "./IContainerPlugin";
 
 export interface IPlugin {
     readonly id: string;

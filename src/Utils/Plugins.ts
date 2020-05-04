@@ -1,9 +1,9 @@
-import { IContainerPlugin } from "../Core/Interfaces/IContainerPlugin";
-import { IPlugin } from "../Core/Interfaces/IPlugin";
-import { Container } from "../Core/Container";
-import { RecursivePartial } from "../Types/RecursivePartial";
-import { IOptions } from "../Options/Interfaces/IOptions";
-import { IShapeDrawer } from "../Core/Interfaces/IShapeDrawer";
+import type { IContainerPlugin } from "../Core/Interfaces/IContainerPlugin";
+import type { IPlugin } from "../Core/Interfaces/IPlugin";
+import type { Container } from "../Core/Container";
+import type { RecursivePartial } from "../Types/RecursivePartial";
+import type { IOptions } from "../Options/Interfaces/IOptions";
+import type { IShapeDrawer } from "../Core/Interfaces/IShapeDrawer";
 
 export class Plugins {
     private static plugins: IPlugin[] = [];

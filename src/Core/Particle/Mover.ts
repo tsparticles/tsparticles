@@ -123,7 +123,7 @@ export class Mover {
             y: particle.position.y + particle.offset.y
         };
 
-        const dist = Utils.getDistanceBetweenCoordinates(mousePos, particlePos);
+        const dist = Utils.getDistance(mousePos, particlePos);
         const radius = container.retina.slowModeRadius;
 
         if (dist > radius) {

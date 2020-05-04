@@ -1,4 +1,4 @@
-import { OpacityAnimationStatus } from "../../Enums/OpacityAnimationStatus";
+import type { OpacityAnimationStatus } from "../../Enums/OpacityAnimationStatus";
 
 export interface IOpacity {
     value: number;

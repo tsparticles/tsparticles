@@ -1,5 +1,5 @@
-import { Particle } from "../../../Particle";
-import { Container } from "../../../Container";
+import type { Particle } from "../../../Particle";
+import type { Container } from "../../../Container";
 import { Circle } from "../../../../Utils/QuadTree";
 
 export class Infecter {

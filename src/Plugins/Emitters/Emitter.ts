@@ -5,9 +5,9 @@ import { Particle } from "../../Core/Particle";
 import { Utils } from "../../Utils/Utils";
 import { SizeMode } from "../../Enums/SizeMode";
 import { EmitterSize } from "../../Options/Classes/Emitters/EmitterSize";
-import { Emitters } from "./Emitters";
-import { RecursivePartial } from "../../Types/RecursivePartial";
-import { IParticles } from "../../Options/Interfaces/Particles/IParticles";
+import type { Emitters } from "./Emitters";
+import type { RecursivePartial } from "../../Types/RecursivePartial";
+import type { IParticles } from "../../Options/Interfaces/Particles/IParticles";
 
 export class Emitter {
     public position: ICoordinates;

@@ -1,7 +1,7 @@
 import type { Container } from "../../../Container";
 import { ColorUtils } from "../../../../Utils/ColorUtils";
 import { Constants } from "../../../../Utils/Constants";
-import { Particle } from "../../../Particle";
+import type { Particle } from "../../../Particle";
 import { Circle } from "../../../../Utils/QuadTree";
 import { Utils } from "../../../../Utils/Utils";
 
@@ -28,7 +28,7 @@ export class Linker {
                 y: p2.position.y + p2.offset.y,
             };
 
-            const distance = Utils.getDistanceBetweenCoordinates(pos1, pos2);
+            const distance = Utils.getDistance(pos1, pos2);
 
             /* draw a line between p1 and p2 */
             const opacityLine = optOpacity - (distance * optOpacity) / optDistance;

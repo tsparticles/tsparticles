@@ -6,7 +6,7 @@ import { ColorUtils } from "./ColorUtils";
 import type { IParticle } from "../Core/Interfaces/IParticle";
 import type { IShadow } from "../Options/Interfaces/Particles/IShadow";
 import type { Container } from "../Core/Container";
-import { IContainerPlugin } from "../Core/Interfaces/IContainerPlugin";
+import type { IContainerPlugin } from "../Core/Interfaces/IContainerPlugin";
 
 export class CanvasUtils {
     public static paintBase(context: CanvasRenderingContext2D,

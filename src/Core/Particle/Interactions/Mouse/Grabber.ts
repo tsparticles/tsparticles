@@ -32,7 +32,7 @@ export class Grabber {
                     x: particle.position.x + particle.offset.x,
                     y: particle.position.y + particle.offset.y,
                 };
-                const distance = Utils.getDistanceBetweenCoordinates(pos,  mousePos);
+                const distance = Utils.getDistance(pos,  mousePos);
 
                 if (distance <= container.retina.grabModeDistance) {
                     const lineOpacity = interactivity.modes.grab.lineLinked.opacity;

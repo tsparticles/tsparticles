@@ -1,5 +1,5 @@
 import type { Container } from "./Container";
-import { Particle } from "./Particle";
+import type { Particle } from "./Particle";
 
 export class Retina {
     public isRetina: boolean;

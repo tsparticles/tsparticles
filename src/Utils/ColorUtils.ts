@@ -5,7 +5,7 @@ import type { IHsl } from "../Core/Interfaces/IHsl";
 import type { IHsla } from "../Core/Interfaces/IHsla";
 import { Utils } from "./Utils";
 import { Constants } from "./Constants";
-import { IValueColor } from "../Core/Interfaces/IValueColor";
+import type { IValueColor } from "../Core/Interfaces/IValueColor";
 
 export class ColorUtils {
     /**

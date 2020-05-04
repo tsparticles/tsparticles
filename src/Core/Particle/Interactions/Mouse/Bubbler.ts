@@ -22,10 +22,13 @@ export class Bubbler {
 
     public static bubble(container: Container, _delta: number): void {
         const options = container.options;
-        const hoverEnabled = options.interactivity.events.onHover.enable;
-        const hoverMode = options.interactivity.events.onHover.mode;
-        const clickEnabled = options.interactivity.events.onClick.enable;
-        const clickMode = options.interactivity.events.onClick.mode;
+        const events = options.interactivity.events;
+        const onHover = events.onHover;
+        const onClick = events.onClick;
+        const hoverEnabled = onHover.enable;
+        const hoverMode = onHover.mode;
+        const clickEnabled = onClick.enable;
+        const clickMode = onClick.mode;
 
         /* on hover event */
         if (hoverEnabled && Utils.isInArray(HoverMode.bubble, hoverMode)) {
@@ -109,7 +112,7 @@ export class Bubbler {
                 x: particle.position.x + particle.offset.x,
                 y: particle.position.y + particle.offset.y,
             };
-            const distMouse = Utils.getDistanceBetweenCoordinates(pos, mouseClickPos);
+            const distMouse = Utils.getDistance(pos, mouseClickPos);
             const timeSpent = (new Date().getTime() - (container.interactivity.mouse.clickTime || 0)) / 1000;
 
             if (container.bubble.clicking) {
@@ -183,7 +186,7 @@ export class Bubbler {
                 y: particle.position.y + particle.offset.y,
             };
 
-            const distance = Utils.getDistanceBetweenCoordinates(pos, mousePos);
+            const distance = Utils.getDistance(pos, mousePos);
             const ratio = 1 - distance / container.retina.bubbleModeDistance;
 
             /* mousemove - check ratio */
