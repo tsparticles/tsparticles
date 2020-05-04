@@ -6,7 +6,7 @@ import type { ICoordinates } from "./Interfaces/ICoordinates";
 import { CanvasUtils } from "../Utils/CanvasUtils";
 import { ColorUtils } from "../Utils/ColorUtils";
 import type { IParticle } from "./Interfaces/IParticle";
-import { IPlugin } from "./Interfaces/IPlugin";
+import { IContainerPlugin } from "./Interfaces/IContainerPlugin";
 
 /**
  * Canvas manager
@@ -318,7 +318,7 @@ export class Canvas {
     }
 
 
-    public drawPlugin(plugin: IPlugin, delta: number): void {
+    public drawPlugin(plugin: IContainerPlugin, delta: number): void {
         if (!this.context) {
             return;
         }

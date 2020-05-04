@@ -1,4 +1,4 @@
-import type { IPlugin } from "../../Core/Interfaces/IPlugin";
+import type { IContainerPlugin } from "../../Core/Interfaces/IContainerPlugin";
 import { Absorber } from "./Absorber";
 import { Container } from "../../Core/Container";
 import { Particle } from "../../Core/Particle";
@@ -6,7 +6,7 @@ import { ClickMode } from "../../Enums/Modes/ClickMode";
 import { IAbsorber } from "../../Options/Interfaces/Absorbers/IAbsorber";
 import { Utils } from "../../Utils/Utils";
 
-export class Absorbers implements IPlugin {
+export class Absorbers implements IContainerPlugin {
     public readonly container: Container;
     public array: Absorber[];
 

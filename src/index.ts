@@ -23,6 +23,7 @@ import { Plugins } from "./Utils/Plugins";
 import { AbsorbersPlugin } from "./Plugins/Absorbers/AbsorbersPlugin";
 import { EmittersPlugin } from "./Plugins/Emitters/EmittersPlugin";
 import { PolygonMaskPlugin } from "./Plugins/PolygonMask/PolygonMaskPlugin";
+import type { IPlugin } from "./Core/Interfaces/IPlugin";
 
 declare global {
     interface Window {
@@ -199,6 +200,14 @@ class Main {
      */
     public addPreset(preset: string, options: RecursivePartial<IOptions>): void {
         Plugins.addPreset(preset, options);
+    }
+
+    /**
+     * addPlugin adds plugin to tsParticles, if an instance needs it it will be loaded
+     * @param plugin the plugin implementation of [[IPluginManager]]
+     */
+    public addPlugin(plugin: IPlugin): void {
+        Plugins.addPlugin(plugin);
     }
 }
 

@@ -9,7 +9,7 @@ import type { IOptions } from "../Options/Interfaces/IOptions";
 import { FrameManager } from "./FrameManager";
 import type { RecursivePartial } from "../Types/RecursivePartial";
 import { Options } from "../Options/Classes/Options";
-import type { IPlugin } from "./Interfaces/IPlugin";
+import type { IContainerPlugin } from "./Interfaces/IContainerPlugin";
 import type { IShapeDrawer } from "./Interfaces/IShapeDrawer";
 import { Plugins } from "../Utils/Plugins";
 
@@ -25,7 +25,7 @@ export class Container {
     public canvas: Canvas;
     public drawers: { [type: string]: IShapeDrawer };
     public particles: Particles;
-    public plugins: { [id: string]: IPlugin };
+    public plugins: { [id: string]: IContainerPlugin };
     public bubble: IBubble;
     public repulse: IRepulse;
     public lastFrameTime: number;
@@ -225,7 +225,7 @@ export class Container {
         this.canvas.clear();
 
         for (const id in this.plugins) {
-            const plugin = this.plugins[id] as IPlugin;
+            const plugin = this.plugins[id] as IContainerPlugin;
 
             if (plugin.stop !== undefined) {
                 plugin.stop();

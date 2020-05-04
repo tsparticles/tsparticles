@@ -7,7 +7,7 @@ import { Utils } from "../../Utils/Utils";
 import type { IDimension } from "../../Core/Interfaces/IDimension";
 import { Constants } from "../../Utils/Constants";
 import { ISvgPath } from "../../Core/Interfaces/ISvgPath";
-import type { IPlugin } from "../../Core/Interfaces/IPlugin";
+import type { IContainerPlugin } from "../../Core/Interfaces/IContainerPlugin";
 import { IPolygonMaskDrawStroke } from "../../Options/Interfaces/PolygonMask/IPolygonMaskDrawStroke";
 import { ColorUtils } from "../../Utils/ColorUtils";
 
@@ -32,7 +32,7 @@ type SvgRelativeCoordinatesTypes =
 /**
  * Polygon Mask manager
  */
-export class PolygonMask implements IPlugin {
+export class PolygonMask implements IContainerPlugin {
     public redrawTimeout?: number;
     public raw?: ICoordinates[];
     public svg?: SVGSVGElement;

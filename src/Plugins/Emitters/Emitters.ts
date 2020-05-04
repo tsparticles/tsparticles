@@ -1,11 +1,11 @@
-import { IPlugin } from "../../Core/Interfaces/IPlugin";
+import { IContainerPlugin } from "../../Core/Interfaces/IContainerPlugin";
 import { Emitter } from "./Emitter";
 import { Container } from "../../Core/Container";
 import { ClickMode } from "../../Enums/Modes/ClickMode";
 import { IEmitter } from "../../Options/Interfaces/Emitters/IEmitter";
 import { Utils } from "../../Utils/Utils";
 
-export class Emitters implements IPlugin {
+export class Emitters implements IContainerPlugin {
     public readonly container: Container;
     public array: Emitter[];
 

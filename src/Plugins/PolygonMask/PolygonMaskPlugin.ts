@@ -1,8 +1,8 @@
-import { IPluginManager } from "../../Core/Interfaces/IPluginManager";
+import { IPlugin } from "../../Core/Interfaces/IPlugin";
 import { PolygonMask } from "./PolygonMask";
 import { Container } from "../../Core/Container";
 
-export class PolygonMaskPlugin implements IPluginManager {
+export class PolygonMaskPlugin implements IPlugin {
     readonly id: string;
 
     constructor() {

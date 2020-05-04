@@ -1,10 +1,10 @@
-import type { IPluginManager } from "../../Core/Interfaces/IPluginManager";
+import type { IPlugin } from "../../Core/Interfaces/IPlugin";
 import type { Container } from "../../Core/Container";
 import { Utils } from "../../Utils/Utils";
 import { ClickMode } from "../../Enums/Modes/ClickMode";
 import { Emitters } from "./Emitters";
 
-export class EmittersPlugin implements IPluginManager {
+export class EmittersPlugin implements IPlugin {
     readonly id: string;
 
     constructor() {
