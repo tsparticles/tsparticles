@@ -4,12 +4,12 @@ import { Particles } from "./Particles/Particles";
 import { PolygonMask } from "./PolygonMask/PolygonMask";
 import { BackgroundMask } from "./BackgroundMask/BackgroundMask";
 import type { RecursivePartial } from "../../Types/RecursivePartial";
-import { Presets } from "../../Utils/Presets";
 import { Background } from "./Background/Background";
 import type { SingleOrMultiple } from "../../Types/SingleOrMultiple";
 import { Emitter } from "./Emitters/Emitter";
 import { Absorber } from "./Absorbers/Absorber";
 import { Infection } from "./Infection/Infection";
+import { Plugins } from "../../Utils/Plugins";
 
 export class Options implements IOptions {
     /**
@@ -152,7 +152,7 @@ export class Options implements IOptions {
     }
 
     private importPreset(preset: string): void {
-        const presetOptions = Presets.getPreset(preset);
+        const presetOptions = Plugins.getPreset(preset);
 
         if (presetOptions !== undefined) {
             this.load(presetOptions);

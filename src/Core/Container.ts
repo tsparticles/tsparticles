@@ -9,9 +9,7 @@ import type { IOptions } from "../Options/Interfaces/IOptions";
 import { FrameManager } from "./FrameManager";
 import type { RecursivePartial } from "../Types/RecursivePartial";
 import { Options } from "../Options/Classes/Options";
-import { Presets } from "../Utils/Presets";
 import type { IPlugin } from "./Interfaces/IPlugin";
-import { CanvasUtils } from "../Utils/CanvasUtils";
 import type { IShapeDrawer } from "./Interfaces/IShapeDrawer";
 import { Plugins } from "../Utils/Plugins";
 
@@ -71,7 +69,7 @@ export class Container {
         this.options = new Options();
 
         for (const preset of presets) {
-            this.options.load(Presets.getPreset(preset));
+            this.options.load(Plugins.getPreset(preset));
         }
 
         /* params settings */
@@ -252,16 +250,6 @@ export class Container {
             } else if (plugin.start !== undefined) {
                 plugin.start();
             }
-        }
-
-        if (this.options.particles.shape.type instanceof Array) {
-            for (const type of this.options.particles.shape.type) {
-                this.drawers[type] = CanvasUtils.getShapeDrawer(type);
-            }
-        } else {
-            const type = this.options.particles.shape.type;
-
-            this.drawers[type] = CanvasUtils.getShapeDrawer(type);
         }
 
         for (const type in this.drawers) {

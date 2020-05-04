@@ -24,6 +24,9 @@ export interface IParticle {
     readonly fill: boolean;
     readonly image?: IParticleImage;
     readonly infectionStage?: number;
+    readonly infectionTime?: number;
+    readonly infectionDelay?: number;
+    readonly infectionDelayStage?: number;
     readonly initialPosition?: ICoordinates;
     readonly initialVelocity: IVelocity;
     readonly offset: ICoordinates;

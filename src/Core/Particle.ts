@@ -25,8 +25,8 @@ import { Shape } from "../Options/Classes/Particles/Shape/Shape";
 import { StartValueType } from "../Enums/StartValueType";
 import { ImageDrawer } from "./Particle/ShapeDrawers/ImageDrawer";
 import { IImageShape } from "../Options/Interfaces/Particles/Shape/IImageShape";
-import { CanvasUtils } from "../Utils/CanvasUtils";
 import { RecursivePartial } from "../Types/RecursivePartial";
+import { Plugins } from "../Utils/Plugins";
 
 /**
  * The single particle object
@@ -253,7 +253,8 @@ export class Particle implements IParticle {
         let drawer = container.drawers[this.shape];
 
         if (!drawer) {
-            drawer = CanvasUtils.getShapeDrawer(this.shape);
+            drawer = Plugins.getShapeDrawer(this.shape);
+
             container.drawers[this.shape] = drawer;
         }
 

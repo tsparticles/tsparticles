@@ -12,8 +12,6 @@ import { PolygonDrawer } from "./Core/Particle/ShapeDrawers/PolygonDrawer";
 import { TextDrawer } from "./Core/Particle/ShapeDrawers/TextDrawer";
 import { ImageDrawer } from "./Core/Particle/ShapeDrawers/ImageDrawer";
 import type { IShapeDrawer } from "./Core/Interfaces/IShapeDrawer";
-import { Presets } from "./Utils/Presets";
-import { CanvasUtils } from "./Utils/CanvasUtils";
 import { SimplexNoise } from "./Utils/SimplexNoise";
 import type {
     ShapeDrawerAfterEffectFunction,
@@ -80,17 +78,17 @@ class Main {
         const textDrawer = new TextDrawer();
         const imageDrawer = new ImageDrawer();
 
-        CanvasUtils.addShapeDrawer(ShapeType.line, new LineDrawer());
-        CanvasUtils.addShapeDrawer(ShapeType.circle, new CircleDrawer());
-        CanvasUtils.addShapeDrawer(ShapeType.edge, squareDrawer);
-        CanvasUtils.addShapeDrawer(ShapeType.square, squareDrawer);
-        CanvasUtils.addShapeDrawer(ShapeType.triangle, new TriangleDrawer());
-        CanvasUtils.addShapeDrawer(ShapeType.star, new StarDrawer());
-        CanvasUtils.addShapeDrawer(ShapeType.polygon, new PolygonDrawer());
-        CanvasUtils.addShapeDrawer(ShapeType.char, textDrawer);
-        CanvasUtils.addShapeDrawer(ShapeType.character, textDrawer);
-        CanvasUtils.addShapeDrawer(ShapeType.image, imageDrawer);
-        CanvasUtils.addShapeDrawer(ShapeType.images, imageDrawer);
+        Plugins.addShapeDrawer(ShapeType.line, new LineDrawer());
+        Plugins.addShapeDrawer(ShapeType.circle, new CircleDrawer());
+        Plugins.addShapeDrawer(ShapeType.edge, squareDrawer);
+        Plugins.addShapeDrawer(ShapeType.square, squareDrawer);
+        Plugins.addShapeDrawer(ShapeType.triangle, new TriangleDrawer());
+        Plugins.addShapeDrawer(ShapeType.star, new StarDrawer());
+        Plugins.addShapeDrawer(ShapeType.polygon, new PolygonDrawer());
+        Plugins.addShapeDrawer(ShapeType.char, textDrawer);
+        Plugins.addShapeDrawer(ShapeType.character, textDrawer);
+        Plugins.addShapeDrawer(ShapeType.image, imageDrawer);
+        Plugins.addShapeDrawer(ShapeType.images, imageDrawer);
 
         Plugins.addPlugin(new AbsorbersPlugin());
         Plugins.addPlugin(new EmittersPlugin());
@@ -191,7 +189,7 @@ class Main {
             customDrawer = drawer;
         }
 
-        CanvasUtils.addShapeDrawer(shape, customDrawer);
+        Plugins.addShapeDrawer(shape, customDrawer);
     }
 
     /**
@@ -200,7 +198,7 @@ class Main {
      * @param options the options to add to the preset
      */
     public addPreset(preset: string, options: RecursivePartial<IOptions>): void {
-        Presets.addPreset(preset, options);
+        Plugins.addPreset(preset, options);
     }
 }
 

@@ -5,13 +5,10 @@ import type { ILineLinkedShadow } from "../Options/Interfaces/Particles/LineLink
 import { ColorUtils } from "./ColorUtils";
 import type { IParticle } from "../Core/Interfaces/IParticle";
 import type { IShadow } from "../Options/Interfaces/Particles/IShadow";
-import type { IShapeDrawer } from "../Core/Interfaces/IShapeDrawer";
 import type { Container } from "../Core/Container";
 import { IPlugin } from "../Core/Interfaces/IPlugin";
 
 export class CanvasUtils {
-    private static readonly drawers: { [type: string]: IShapeDrawer } = {};
-
     public static paintBase(context: CanvasRenderingContext2D,
                             dimension: IDimension,
                             baseColor?: string): void {
@@ -199,16 +196,6 @@ export class CanvasUtils {
         this.drawShapeAfterEffect(container, context, particle, radius, opacity, delta);
 
         context.restore();
-    }
-
-    public static addShapeDrawer(type: string, drawer: IShapeDrawer): void {
-        if (!this.drawers[type]) {
-            this.drawers[type] = drawer;
-        }
-    }
-
-    public static getShapeDrawer(type: string): IShapeDrawer {
-        return this.drawers[type];
     }
 
     public static drawShape(container: Container,
