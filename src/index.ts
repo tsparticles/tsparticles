@@ -204,7 +204,7 @@ class Main {
 
     /**
      * addPlugin adds plugin to tsParticles, if an instance needs it it will be loaded
-     * @param plugin the plugin implementation of [[IPluginManager]]
+     * @param plugin the plugin implementation of [[IPlugin]]
      */
     public addPlugin(plugin: IPlugin): void {
         Plugins.addPlugin(plugin);
