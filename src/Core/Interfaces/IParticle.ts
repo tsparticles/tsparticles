@@ -11,7 +11,6 @@ import type { IShapeValues } from "../../Options/Interfaces/Particles/Shape/ISha
 import type { IBubbleParticleData } from "./IBubbleParticleData";
 import type { MoveDirection } from "../../Enums/MoveDirection";
 import type { IParticles } from "../../Options/Interfaces/Particles/IParticles";
-import type { Emitter } from "../../Plugins/Emitter";
 
 export interface IParticle {
     randomIndexData?: number;
@@ -22,7 +21,6 @@ export interface IParticle {
     readonly color: IRgb | undefined;
     readonly close: boolean;
     readonly direction: MoveDirection;
-    readonly emitter?: Emitter;
     readonly fill: boolean;
     readonly image?: IParticleImage;
     readonly infectionStage?: number;

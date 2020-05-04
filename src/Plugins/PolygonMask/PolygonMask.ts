@@ -1,15 +1,15 @@
-import { Container } from "../Core/Container";
-import type { ICoordinates } from "../Core/Interfaces/ICoordinates";
-import { PolygonMaskType } from "../Enums/PolygonMaskType";
-import { Particle } from "../Core/Particle";
-import { PolygonMaskInlineArrangement } from "../Enums/PolygonMaskInlineArrangement";
-import { Utils } from "../Utils/Utils";
-import type { IDimension } from "../Core/Interfaces/IDimension";
-import { Constants } from "../Utils/Constants";
-import { ISvgPath } from "../Core/Interfaces/ISvgPath";
-import type { IPlugin } from "../Core/Interfaces/IPlugin";
-import { IPolygonMaskDrawStroke } from "../Options/Interfaces/PolygonMask/IPolygonMaskDrawStroke";
-import { ColorUtils } from "../Utils/ColorUtils";
+import { Container } from "../../Core/Container";
+import type { ICoordinates } from "../../Core/Interfaces/ICoordinates";
+import { PolygonMaskType } from "../../Enums/PolygonMaskType";
+import { Particle } from "../../Core/Particle";
+import { PolygonMaskInlineArrangement } from "../../Enums/PolygonMaskInlineArrangement";
+import { Utils } from "../../Utils/Utils";
+import type { IDimension } from "../../Core/Interfaces/IDimension";
+import { Constants } from "../../Utils/Constants";
+import { ISvgPath } from "../../Core/Interfaces/ISvgPath";
+import type { IPlugin } from "../../Core/Interfaces/IPlugin";
+import { IPolygonMaskDrawStroke } from "../../Options/Interfaces/PolygonMask/IPolygonMaskDrawStroke";
+import { ColorUtils } from "../../Utils/ColorUtils";
 
 type SvgAbsoluteCoordinatesTypes =
     | SVGPathSegArcAbs

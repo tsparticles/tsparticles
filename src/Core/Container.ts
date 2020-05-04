@@ -5,19 +5,15 @@ import type { IBubble } from "./Interfaces/IBubble";
 import type { IContainerInteractivity } from "./Interfaces/IContainerInteractivity";
 import { Particles } from "./Particles";
 import { Retina } from "./Retina";
-import { PolygonMask } from "../Plugins/PolygonMask";
 import type { IOptions } from "../Options/Interfaces/IOptions";
 import { FrameManager } from "./FrameManager";
 import type { RecursivePartial } from "../Types/RecursivePartial";
 import { Options } from "../Options/Classes/Options";
 import { Presets } from "../Utils/Presets";
-import { IPlugin } from "./Interfaces/IPlugin";
+import type { IPlugin } from "./Interfaces/IPlugin";
 import { CanvasUtils } from "../Utils/CanvasUtils";
-import { IShapeDrawer } from "./Interfaces/IShapeDrawer";
-import { Utils } from "../Utils/Utils";
-import { ClickMode } from "../Enums/Modes/ClickMode";
-import { Absorbers } from "../Plugins/Absorbers";
-import { Emitters } from "../Plugins/Emitters";
+import type { IShapeDrawer } from "./Interfaces/IShapeDrawer";
+import { Plugins } from "../Utils/Plugins";
 
 /**
  * The object loaded into an HTML element, it'll contain options loaded and all data to let everything working
@@ -242,42 +238,8 @@ export class Container {
             return;
         }
 
-        if (this.options.polygon.enable) {
-            this.plugins.push(new PolygonMask(this));
-        }
-
-        const absorbers = this.options.absorbers;
-        let loadAbsorbers = false;
-
-        if (absorbers instanceof Array) {
-            if (absorbers.length) {
-                loadAbsorbers = true;
-            }
-        } else if (absorbers !== undefined) {
-            loadAbsorbers = true;
-        } else if (Utils.isInArray(ClickMode.absorber, this.options.interactivity.events.onClick.mode)) {
-            loadAbsorbers = true;
-        }
-
-        if (loadAbsorbers) {
-            this.plugins.push(new Absorbers(this));
-        }
-
-        const emitters = this.options.emitters;
-        let loadEmitters = false;
-
-        if (emitters instanceof Array) {
-            if (emitters.length) {
-                loadEmitters = true;
-            }
-        } else if (emitters !== undefined) {
-            loadEmitters = true;
-        } else if (Utils.isInArray(ClickMode.absorber, this.options.interactivity.events.onClick.mode)) {
-            loadEmitters = true;
-        }
-
-        if (loadEmitters) {
-            this.plugins.push(new Emitters(this));
+        for (const plugin of Plugins.getAvailablePlugins(this)) {
+            this.plugins.push(plugin);
         }
 
         this.started = true;

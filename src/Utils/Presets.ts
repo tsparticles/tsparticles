@@ -9,7 +9,7 @@ export class Presets {
     }
 
     public static addPreset(presetKey: string, options: RecursivePartial<IOptions>): void {
-        if (!this.presets[presetKey]) {
+        if (!this.getPreset(presetKey)) {
             this.presets[presetKey] = options;
         }
     }

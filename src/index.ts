@@ -21,6 +21,10 @@ import type {
     ShapeDrawerDrawFunction,
     ShapeDrawerInitFunction
 } from "./Types/ShapeDrawerFunctions";
+import { Plugins } from "./Utils/Plugins";
+import { AbsorbersPlugin } from "./Plugins/Absorbers/AbsorbersPlugin";
+import { EmittersPlugin } from "./Plugins/Emitters/EmittersPlugin";
+import { PolygonMaskPlugin } from "./Plugins/PolygonMask/PolygonMaskPlugin";
 
 declare global {
     interface Window {
@@ -87,6 +91,10 @@ class Main {
         CanvasUtils.addShapeDrawer(ShapeType.character, textDrawer);
         CanvasUtils.addShapeDrawer(ShapeType.image, imageDrawer);
         CanvasUtils.addShapeDrawer(ShapeType.images, imageDrawer);
+
+        Plugins.addPlugin(new AbsorbersPlugin());
+        Plugins.addPlugin(new EmittersPlugin());
+        Plugins.addPlugin(new PolygonMaskPlugin());
     }
 
     /**

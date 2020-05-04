@@ -1,9 +1,9 @@
-import { IPlugin } from "../Core/Interfaces/IPlugin";
+import { IPlugin } from "../../Core/Interfaces/IPlugin";
 import { Emitter } from "./Emitter";
-import { Container } from "../Core/Container";
-import { ClickMode } from "../Enums/Modes/ClickMode";
-import { IEmitter } from "../Options/Interfaces/Emitters/IEmitter";
-import { Utils } from "../Utils/Utils";
+import { Container } from "../../Core/Container";
+import { ClickMode } from "../../Enums/Modes/ClickMode";
+import { IEmitter } from "../../Options/Interfaces/Emitters/IEmitter";
+import { Utils } from "../../Utils/Utils";
 
 export class Emitters implements IPlugin {
     public readonly container: Container;

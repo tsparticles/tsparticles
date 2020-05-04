@@ -16,7 +16,6 @@ import type { IOpacityRandom } from "../Options/Interfaces/Particles/Opacity/IOp
 import type { IShapeValues } from "../Options/Interfaces/Particles/Shape/IShapeValues";
 import type { IBubbleParticleData } from "./Interfaces/IBubbleParticleData";
 import type { IParticle } from "./Interfaces/IParticle";
-import { Emitter } from "../Plugins/Emitter";
 import { MoveDirection } from "../Enums/MoveDirection";
 import type { IParticles } from "../Options/Interfaces/Particles/IParticles";
 import { Particles } from "../Options/Classes/Particles/Particles";
@@ -71,7 +70,6 @@ export class Particle implements IParticle {
 
     public readonly updater: Updater;
     public readonly container: Container;
-    public readonly emitter?: Emitter;
 
     /* --------- tsParticles functions - particles ----------- */
     public readonly particlesOptions: IParticles;

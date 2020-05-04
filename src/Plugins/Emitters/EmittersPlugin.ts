@@ -1,0 +1,36 @@
+import type { IPluginManager } from "../../Core/Interfaces/IPluginManager";
+import type { Container } from "../../Core/Container";
+import { Utils } from "../../Utils/Utils";
+import { ClickMode } from "../../Enums/Modes/ClickMode";
+import { Emitters } from "./Emitters";
+
+export class EmittersPlugin implements IPluginManager {
+    readonly id: string;
+
+    constructor() {
+        this.id = "emitters";
+    }
+
+    getPlugin(container: Container): Emitters {
+        return new Emitters(container);
+    }
+
+    needsPlugin(container: Container): boolean {
+        const options = container.options;
+        const emitters = options.emitters;
+        let loadEmitters = false;
+
+        if (emitters instanceof Array) {
+            if (emitters.length) {
+                loadEmitters = true;
+            }
+        } else if (emitters !== undefined) {
+            loadEmitters = true;
+        } else if (Utils.isInArray(ClickMode.absorber, options.interactivity.events.onClick.mode)) {
+            loadEmitters = true;
+        }
+
+        return loadEmitters;
+    }
+
+}
