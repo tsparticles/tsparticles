@@ -49,4 +49,6 @@ export interface IParticle {
     readonly sizeValue?: number;
     readonly randomMinimumSize?: number;
     readonly sizeAnimationSpeed?: number;
+
+    getPosition(): ICoordinates;
 }

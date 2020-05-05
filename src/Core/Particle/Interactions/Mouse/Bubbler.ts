@@ -108,10 +108,7 @@ export class Bubbler {
         const query = container.particles.quadTree.query(new Circle(mouseClickPos.x, mouseClickPos.y, distance));
 
         for (const particle of query) {
-            const pos = {
-                x: particle.position.x + particle.offset.x,
-                y: particle.position.y + particle.offset.y,
-            };
+            const pos = particle.getPosition();
             const distMouse = Utils.getDistance(pos, mouseClickPos);
             const timeSpent = (new Date().getTime() - (container.interactivity.mouse.clickTime || 0)) / 1000;
 
@@ -181,11 +178,7 @@ export class Bubbler {
 
         //for (const { distance, particle } of query) {
         for (const particle of query) {
-            const pos = {
-                x: particle.position.x + particle.offset.x,
-                y: particle.position.y + particle.offset.y,
-            };
-
+            const pos = particle.getPosition();
             const distance = Utils.getDistance(pos, mousePos);
             const ratio = 1 - distance / container.retina.bubbleModeDistance;
 

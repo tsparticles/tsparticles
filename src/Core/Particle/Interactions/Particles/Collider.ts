@@ -8,10 +8,7 @@ import { Circle } from "../../../../Utils/QuadTree";
 
 export class Collider {
     public static collide(p1: Particle, container: Container, _delta: number): void {
-        const pos1 = {
-            x: p1.position.x + p1.offset.x,
-            y: p1.position.y + p1.offset.y,
-        };
+        const pos1 = p1.getPosition();
 
         //const query = container.particles.spatialGrid.queryRadius(pos1, p1.size.value * 2);
         const query = container.particles.quadTree.query(new Circle(pos1.x, pos1.y, p1.size.value * 2));
@@ -22,14 +19,7 @@ export class Collider {
                 continue;
             }
 
-            const pos1 = {
-                x: p1.position.x + p1.offset.x,
-                y: p1.position.y + p1.offset.y
-            };
-            const pos2 = {
-                x: p2.position.x + p2.offset.x,
-                y: p2.position.y + p2.offset.y
-            };
+            const pos2 = p2.getPosition();
             const dist = Utils.getDistance(pos1, pos2);
             const defaultSize = container.retina.sizeValue;
             const radius1 = this.getRadius(p1, defaultSize);
@@ -47,14 +37,8 @@ export class Collider {
     }
 
     private static resolveCollision(p1: Particle, p2: Particle): void {
-        const pos1 = {
-            x: p1.position.x + p1.offset.x,
-            y: p1.position.y + p1.offset.y
-        };
-        const pos2 = {
-            x: p2.position.x + p2.offset.x,
-            y: p2.position.y + p2.offset.y
-        };
+        const pos1 = p1.getPosition();
+        const pos2 = p2.getPosition();
 
         switch (p1.particlesOptions.collisions.mode) {
             case CollisionMode.bounce:

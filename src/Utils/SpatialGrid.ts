@@ -47,11 +47,7 @@ export class SpatialGrid {
     }
 
     public insert(particle: Particle) {
-        const pos = {
-            x: particle.position.x + particle.offset.x,
-            y: particle.position.y + particle.offset.y,
-        }
-
+        const pos = particle.getPosition();
         const posIndex = this.index(pos);
 
         if (!Array.isArray(this.grid[posIndex.x])) this.grid[posIndex.x] = [];
@@ -85,10 +81,7 @@ export class SpatialGrid {
         const out = [];
 
         for (const item of items) {
-            const itemPos = {
-                x: item.position.x + item.offset.x,
-                y: item.position.y + item.offset.y,
-            };
+            const itemPos = item.getPosition();
 
             if (Utils.getDistance(itemPos, position) <= radius) {
                 out.push(item);
@@ -108,15 +101,12 @@ export class SpatialGrid {
         particle: Particle,
     }[] {
         const pos = this.index(position);
-        const rad = this.radius({ x: radius, y: radius } as ICoordinates);
+        const rad = this.radius({ x: radius, y: radius });
         const items = this.select(this.indexOp(pos, '-', rad), this.indexOp(pos, '+', rad));
         const out = [];
 
         for (const item of items) {
-            const itemPos = {
-                x: item.position.x + item.offset.x,
-                y: item.position.y + item.offset.y,
-            };
+            const itemPos = item.getPosition();
 
             const distance = Utils.getDistance(itemPos, position);
 

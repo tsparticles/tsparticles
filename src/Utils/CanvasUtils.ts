@@ -22,7 +22,7 @@ export class CanvasUtils {
         context.clearRect(0, 0, dimension.width, dimension.height);
     }
 
-    public static drawLineLinked(context: CanvasRenderingContext2D,
+    public static drawLinkedLine(context: CanvasRenderingContext2D,
                                  width: number,
                                  begin: ICoordinates,
                                  end: ICoordinates,
@@ -30,9 +30,6 @@ export class CanvasUtils {
                                  colorLine: IRgb,
                                  opacity: number,
                                  shadow: ILineLinkedShadow): void {
-        context.save();
-
-        context.lineWidth = width;
         // this.ctx.lineCap = "round"; /* performance issue */
         /* path */
         context.beginPath();
@@ -40,25 +37,26 @@ export class CanvasUtils {
         context.lineTo(end.x, end.y);
         context.closePath();
 
+        context.lineWidth = width;
+
         if (backgroundMask) {
             context.globalCompositeOperation = 'destination-out';
         }
 
-        if (colorLine) {
-            context.strokeStyle = ColorUtils.getStyleFromColor(colorLine, opacity);
-        }
+        context.strokeStyle = ColorUtils.getStyleFromColor(colorLine, opacity);
 
-        const shadowColor = typeof shadow.color === "string" ?
-            ColorUtils.stringToRgb(shadow.color) :
-            ColorUtils.colorToRgb(shadow.color);
+        if (shadow.enable) {
+            const shadowColor = typeof shadow.color === "string" ?
+                ColorUtils.stringToRgb(shadow.color) :
+                ColorUtils.colorToRgb(shadow.color);
 
-        if (shadow.enable && shadowColor) {
-            context.shadowBlur = shadow.blur;
-            context.shadowColor = ColorUtils.getStyleFromColor(shadowColor);
+            if (shadowColor) {
+                context.shadowBlur = shadow.blur;
+                context.shadowColor = ColorUtils.getStyleFromColor(shadowColor);
+            }
         }
 
         context.stroke();
-        context.restore();
     }
 
     public static drawConnectLine(context: CanvasRenderingContext2D,
@@ -87,14 +85,8 @@ export class CanvasUtils {
             return;
         }
 
-        const sourcePos = {
-            x: p1.position.x + p1.offset.x,
-            y: p1.position.y + p1.offset.y
-        };
-        const destPos = {
-            x: p2.position.x + p2.offset.x,
-            y: p2.position.y + p2.offset.y
-        };
+        const sourcePos = p1.getPosition();
+        const destPos = p2.getPosition();
 
         const midRgb = ColorUtils.mix(p1.color, p2.color, p1.size.value, p2.size.value);
         const grad = context.createLinearGradient(sourcePos.x, sourcePos.y, destPos.x, destPos.y);
@@ -132,10 +124,7 @@ export class CanvasUtils {
                                radius: number,
                                opacity: number,
                                shadow: IShadow): void {
-        const pos = {
-            x: particle.position.x + particle.offset.x,
-            y: particle.position.y + particle.offset.y,
-        };
+        const pos = particle.getPosition();
 
         context.save();
         context.translate(pos.x, pos.y);

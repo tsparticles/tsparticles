@@ -88,9 +88,9 @@ export class ColorUtils {
             result.b = ColorUtils.hue2rgb(p, q, hslPercent.h - 1 / 3);
         }
 
-        result.r = Math.round(result.r * 255);
-        result.g = Math.round(result.g * 255);
-        result.b = Math.round(result.b * 255);
+        result.r = Math.floor(result.r * 255);
+        result.g = Math.floor(result.g * 255);
+        result.b = Math.floor(result.b * 255);
 
         return result;
     }
@@ -131,7 +131,7 @@ export class ColorUtils {
     public static getStyleFromColor(color: IRgb, opacity?: number): string {
         const opacityValue = opacity ?? 1;
 
-        return `rgba(${Math.round(color.r)}, ${Math.round(color.g)}, ${Math.round(color.b)}, ${opacityValue})`;
+        return `rgba(${color.r}, ${color.g}, ${color.b}, ${opacityValue})`;
     }
 
     public static mix(color1: IRgb, color2: IRgb, size1: number, size2: number): IRgb {

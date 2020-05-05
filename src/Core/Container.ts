@@ -12,6 +12,7 @@ import { Options } from "../Options/Classes/Options";
 import type { IContainerPlugin } from "./Interfaces/IContainerPlugin";
 import type { IShapeDrawer } from "./Interfaces/IShapeDrawer";
 import { Plugins } from "../Utils/Plugins";
+import { SimplexNoise } from "../Utils/SimplexNoise";
 
 /**
  * The object loaded into an HTML element, it'll contain options loaded and all data to let everything working
@@ -23,6 +24,7 @@ export class Container {
     public options: Options;
     public retina: Retina;
     public canvas: Canvas;
+    public simplex: SimplexNoise;
     public drawers: { [type: string]: IShapeDrawer };
     public particles: Particles;
     public plugins: { [id: string]: IContainerPlugin };
@@ -76,6 +78,8 @@ export class Container {
         if (this.sourceOptions) {
             this.options.load(this.sourceOptions);
         }
+
+        this.simplex = new SimplexNoise();
 
         /* ---------- tsParticles - start ------------ */
         this.eventListeners = new EventListeners(this);

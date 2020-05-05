@@ -314,24 +314,19 @@ export class Particle implements IParticle {
 
     public isOverlapping(): { collisionFound: boolean, iterations: number } {
         const container = this.container;
-        const p = this;
+        const p1 = this;
+
         let collisionFound = false;
         let iterations = 0;
 
-        for (const p2 of container.particles.array.filter((t) => t != p)) {
-            iterations++;
-            const pos1 = {
-                x: p.position.x + p.offset.x,
-                y: p.position.y + p.offset.y
-            };
-            const pos2 = {
-                x: p2.position.x + p2.offset.x,
-                y: p2.position.y + p2.offset.y
-            };
+        const pos1 = p1.getPosition();
 
+        for (const p2 of container.particles.array.filter((t) => t != p1)) {
+            iterations++;
+            const pos2 = p2.getPosition();
             const dist = Utils.getDistance(pos1, pos2);
 
-            if (dist <= p.size.value + p2.size.value) {
+            if (dist <= p1.size.value + p2.size.value) {
                 collisionFound = true;
                 break;
             }
@@ -434,6 +429,13 @@ export class Particle implements IParticle {
             delete this.infectionStage;
             delete this.infectionTime;
         }
+    }
+
+    public getPosition(): ICoordinates {
+        return {
+            x: this.position.x + this.offset.x,
+            y: this.position.y + this.offset.y,
+        };
     }
 
     private nextInfectionStage(): void {

@@ -28,11 +28,8 @@ export class Grabber {
                    draw a line between the cursor and the particle
                    if the distance between them is under the config distance
                 */
-                const pos = {
-                    x: particle.position.x + particle.offset.x,
-                    y: particle.position.y + particle.offset.y,
-                };
-                const distance = Utils.getDistance(pos,  mousePos);
+                const pos = particle.getPosition();
+                const distance = Utils.getDistance(pos, mousePos);
 
                 if (distance <= container.retina.grabModeDistance) {
                     const lineOpacity = interactivity.modes.grab.lineLinked.opacity;

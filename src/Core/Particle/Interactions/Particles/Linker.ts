@@ -9,10 +9,7 @@ export class Linker {
     public static link(p1: Particle, container: Container, _delta: number): void {
         const optOpacity = p1.particlesOptions.lineLinked.opacity;
         const optDistance = p1.lineLinkedDistance ?? container.retina.lineLinkedDistance;
-        const pos1 = {
-            x: p1.position.x + p1.offset.x,
-            y: p1.position.y + p1.offset.y,
-        };
+        const pos1 = p1.getPosition();
 
         //const query = container.particles.spatialGrid.queryRadiusWithDistance(pos1, optDistance);
         const query = container.particles.quadTree.query(new Circle(pos1.x, pos1.y, optDistance));
@@ -23,10 +20,7 @@ export class Linker {
                 continue;
             }
 
-            const pos2 = {
-                x: p2.position.x + p2.offset.x,
-                y: p2.position.y + p2.offset.y,
-            };
+            const pos2 = p2.getPosition();
 
             const distance = Utils.getDistance(pos1, pos2);
 

@@ -5,7 +5,7 @@ import type { Particle } from "../Core/Particle";
 export abstract class Range {
     public readonly position: ICoordinates;
 
-    constructor(x: number, y: number) {
+    protected constructor(x: number, y: number) {
         this.position = {
             x: x,
             y: y,
@@ -150,26 +150,6 @@ export class QuadTree {
         }
 
         return false;
-    }
-
-    public draw(context: CanvasRenderingContext2D): void {
-        const r = this.rectangle
-
-        context.save();
-        context.beginPath();
-        context.strokeRect(r.position.x, r.position.y, r.size.width, r.size.height);
-        context.closePath();
-        context.strokeStyle = "rgba(255,255,255,0.2)";
-        context.lineWidth = 0.5;
-        context.stroke();
-        context.restore();
-
-        if (this.divided) {
-            this.northEast?.draw(context);
-            this.northWest?.draw(context);
-            this.southEast?.draw(context);
-            this.southWest?.draw(context);
-        }
     }
 
     public query(range: Range, found?: Particle[]): Particle[] {

@@ -148,16 +148,10 @@ export class Canvas {
     public drawLinkedLine(p1: IParticle, link: ILink): void {
         const container = this.container;
         const options = container.options;
-        const pos1 = {
-            x: p1.position.x + p1.offset.x,
-            y: p1.position.y + p1.offset.y,
-        };
         const p2 = link.destination;
         let opacity = link.opacity;
-        const pos2 = {
-            x: p2.position.x + p2.offset.x,
-            y: p2.position.y + p2.offset.y,
-        };
+        const pos1 = p1.getPosition();
+        const pos2 = p2.getPosition();
 
         const ctx = this.context;
 
@@ -176,29 +170,36 @@ export class Canvas {
          *                        from those two for the connecting line color
          */
 
-        const twinkle = options.particles.twinkle.lines;
-        const twinkleFreq = twinkle.frequency;
-        const twinkleColor = twinkle.color;
-        const twinkleRgb = twinkleColor !== undefined ? ColorUtils.colorToRgb(twinkleColor) : undefined;
-        const twinkling = twinkle.enable && Math.random() < twinkleFreq;
+        const twinkle = p1.particlesOptions.twinkle.lines;
 
-        if (twinkling && twinkleRgb !== undefined) {
-            colorLine = twinkleRgb;
-            opacity = twinkle.opacity;
-        } else if (container.particles.lineLinkedColor === Constants.randomColorValue) {
-            colorLine = ColorUtils.getRandomRgbColor();
-        } else if (container.particles.lineLinkedColor == "mid" && p1.color && p2.color) {
-            const sourceColor = p1.color;
-            const destColor = p2.color;
+        if (twinkle.enable) {
+            const twinkleFreq = twinkle.frequency;
+            const twinkleColor = typeof twinkle.color === "string" ? { value: twinkle.color } : twinkle.color;
+            const twinkleRgb = twinkleColor !== undefined ? ColorUtils.colorToRgb(twinkleColor) : undefined;
+            const twinkling = Math.random() < twinkleFreq;
 
-            colorLine = ColorUtils.mix(sourceColor, destColor, p1.size.value, p2.size.value);
-        } else {
-            colorLine = container.particles.lineLinkedColor as IRgb;
+            if (twinkling && twinkleRgb !== undefined) {
+                colorLine = twinkleRgb;
+                opacity = twinkle.opacity;
+            }
+        }
+
+        if (!colorLine) {
+            if (container.particles.lineLinkedColor === Constants.randomColorValue) {
+                colorLine = ColorUtils.getRandomRgbColor();
+            } else if (container.particles.lineLinkedColor == "mid" && p1.color && p2.color) {
+                const sourceColor = p1.color;
+                const destColor = p2.color;
+
+                colorLine = ColorUtils.mix(sourceColor, destColor, p1.size.value, p2.size.value);
+            } else {
+                colorLine = container.particles.lineLinkedColor as IRgb;
+            }
         }
 
         const width = p1.lineLinkedWidth ?? container.retina.lineLinkedWidth;
 
-        CanvasUtils.drawLineLinked(ctx,
+        CanvasUtils.drawLinkedLine(ctx,
             width,
             pos1,
             pos2,
@@ -221,14 +222,8 @@ export class Canvas {
             return;
         }
 
-        const pos1 = {
-            x: p1.position.x + p1.offset.x,
-            y: p1.position.y + p1.offset.y
-        };
-        const pos2 = {
-            x: p2.position.x + p2.offset.x,
-            y: p2.position.y + p2.offset.y
-        };
+        const pos1 = p1.getPosition();
+        const pos2 = p2.getPosition();
 
         CanvasUtils.drawConnectLine(ctx,
             p1.lineLinkedWidth ?? this.container.retina.lineLinkedWidth,
@@ -268,10 +263,7 @@ export class Canvas {
             return;
         }
 
-        const beginPos = {
-            x: particle.position.x + particle.offset.x,
-            y: particle.position.y + particle.offset.y,
-        };
+        const beginPos = particle.getPosition();
 
         CanvasUtils.drawGrabLine(ctx,
             particle.lineLinkedWidth ?? container.retina.lineLinkedWidth,
@@ -308,9 +300,13 @@ export class Canvas {
             return;
         }
 
+        this.context.save();
+
         for (const link of particle.links) {
-            container.canvas.drawLinkedLine(particle, link);
+            this.drawLinkedLine(particle, link);
         }
+
+        this.context.restore();
 
         CanvasUtils.drawParticle(
             this.container,

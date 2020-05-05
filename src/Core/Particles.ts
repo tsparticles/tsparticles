@@ -163,10 +163,7 @@ export class Particles {
 
             //container.particles.spatialGrid.insert(particle);
 
-            const pos = {
-                x: particle.position.x + particle.offset.x,
-                y: particle.position.y + particle.offset.y,
-            };
+            const pos = particle.getPosition();
 
             container.particles.quadTree.insert(new Point(pos.x, pos.y, particle));
         }

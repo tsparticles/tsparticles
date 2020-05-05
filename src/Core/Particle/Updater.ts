@@ -237,13 +237,13 @@ export class Updater {
 
         if (!handled) {
             const outMode = particle.particlesOptions.move.outMode;
-            const x = particle.position.x + particle.offset.x;
-            const y = particle.position.y + particle.offset.y;
+            const pos = particle.getPosition();
 
             if (outMode === OutMode.bounce || outMode === OutMode.bounceHorizontal) {
                 const size = particle.size.value;
                 const velocity = particle.velocity.horizontal;
-                Updater.checkBounds(x, size, container.canvas.size.width, velocity, () => {
+
+                Updater.checkBounds(pos.x, size, container.canvas.size.width, velocity, () => {
                     particle.velocity.horizontal *= -1;
                 });
             }
@@ -251,7 +251,8 @@ export class Updater {
             if (outMode === OutMode.bounce || outMode === OutMode.bounceVertical) {
                 const size = particle.size.value;
                 const velocity = particle.velocity.vertical;
-                Updater.checkBounds(y, size, container.canvas.size.height, velocity, () => {
+
+                Updater.checkBounds(pos.y, size, container.canvas.size.height, velocity, () => {
                     particle.velocity.vertical *= -1;
                 });
             }

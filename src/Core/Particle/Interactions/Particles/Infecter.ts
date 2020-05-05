@@ -20,10 +20,7 @@ export class Infecter {
         const infectionStage1 = infectionOptions.stages[p1.infectionStage];
         const pxRatio = container.retina.pixelRatio;
         const radius = p1.size.value * 2 + infectionStage1.radius * pxRatio;
-        const pos = {
-            x: p1.position.x + p1.offset.x,
-            y: p1.position.y + p1.offset.y,
-        };
+        const pos = p1.getPosition();
 
         const infectedStage1 = infectionStage1.infectedStage ?? p1.infectionStage;
 

@@ -1,7 +1,6 @@
 import { Utils } from "../../Utils/Utils";
 import type { Container } from "../Container";
 import type { Particle } from "../Particle";
-import { SimplexNoise } from "../../Utils/SimplexNoise";
 import { HoverMode } from "../../Enums/Modes/HoverMode";
 
 export class Mover {
@@ -29,11 +28,10 @@ export class Mover {
             const noiseEnabled = noiseOptions.enable;
 
             if (noiseEnabled) {
-                const simplex = new SimplexNoise();
-
                 if (particle.lastNoiseTime > particle.noiseDelay) {
                     const position = particle.position;
                     const noiseFactor = noiseOptions.factor;
+                    const simplex = container.simplex;
 
                     const noise = {
                         angle: simplex.noise3D(
@@ -118,10 +116,7 @@ export class Mover {
             return 1;
         }
 
-        const particlePos = {
-            x: particle.position.x + particle.offset.x,
-            y: particle.position.y + particle.offset.y
-        };
+        const particlePos = particle.getPosition();
 
         const dist = Utils.getDistance(mousePos, particlePos);
         const radius = container.retina.slowModeRadius;
