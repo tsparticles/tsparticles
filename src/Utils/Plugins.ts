@@ -52,4 +52,8 @@ export class Plugins {
     public static getShapeDrawer(type: string): IShapeDrawer {
         return this.drawers[type];
     }
+
+    public static getSupportedShapes(): string[] {
+        return Object.keys(this.drawers);
+    }
 }

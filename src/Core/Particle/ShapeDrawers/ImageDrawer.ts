@@ -63,6 +63,7 @@ export class ImageDrawer implements IShapeDrawer {
 
             this.addImage(container, image);
         } catch {
+            console.log(`tsParticles error - ${imageShape.src} not found`);
         }
     }
 

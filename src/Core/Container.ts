@@ -74,6 +74,10 @@ export class Container {
             this.options.load(Plugins.getPreset(preset));
         }
 
+        for (const type of Plugins.getSupportedShapes()) {
+            this.drawers[type] = Plugins.getShapeDrawer(type);
+        }
+
         /* params settings */
         if (this.sourceOptions) {
             this.options.load(this.sourceOptions);
