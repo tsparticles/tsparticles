@@ -35,6 +35,7 @@ export class Container {
     public drawer: FrameManager;
     public started: boolean;
     public destroyed: boolean;
+    public density: number;
 
     private paused: boolean;
     private drawAnimationFrame?: number;
@@ -66,6 +67,7 @@ export class Container {
         this.repulse = { particles: [] };
         this.plugins = {};
         this.drawers = {};
+        this.density = 1;
 
         /* tsParticles variables with default values */
         this.options = new Options();
@@ -148,19 +150,12 @@ export class Container {
     /* ---------- tsParticles functions - vendors ------------ */
 
     public densityAutoParticles(): void {
-        if (!(this.canvas.element && this.options.particles.number.density.enable)) {
-            return;
-        }
+        this.initDensityFactor();
 
-        let area = this.canvas.element.width * this.canvas.element.height / 1000;
-
-        if (this.retina.isRetina) {
-            area /= this.retina.pixelRatio * 2;
-        }
-
-        const optParticlesNumber = this.options.particles.number.value;
-        const density = this.options.particles.number.density.area;
-        const particlesNumber = area * optParticlesNumber / density;
+        const numberOptions = this.options.particles.number;
+        const optParticlesNumber = numberOptions.value;
+        const optParticlesLimit = numberOptions.limit > 0 ? numberOptions.limit : optParticlesNumber;
+        const particlesNumber = Math.min(optParticlesNumber, optParticlesLimit) * this.density;
         const particlesCount = this.particles.count;
 
         if (particlesCount < particlesNumber) {
@@ -168,6 +163,19 @@ export class Container {
         } else if (particlesCount > particlesNumber) {
             this.particles.removeQuantity(particlesCount - particlesNumber);
         }
+    }
+
+    public initDensityFactor(): void {
+        const densityOptions = this.options.particles.number.density;
+
+        if (!this.canvas.element || !densityOptions.enable) {
+            return;
+        }
+
+        const canvas = this.canvas.element;
+        const pxRatio = this.retina.pixelRatio;
+
+        this.density = (canvas.width * canvas.height) / (densityOptions.factor * pxRatio * densityOptions.area);
     }
 
     public destroy(): void {
@@ -195,7 +203,6 @@ export class Container {
         }
 
         this.drawers = {};
-
         this.destroyed = true;
     }
 
@@ -287,6 +294,7 @@ export class Container {
         this.retina.init();
         this.canvas.init();
         this.particles.init();
+        this.densityAutoParticles();
 
         for (const id in this.plugins) {
             const plugin = this.plugins[id];
@@ -295,7 +303,5 @@ export class Container {
                 plugin.init();
             }
         }
-
-        this.densityAutoParticles();
     }
 }

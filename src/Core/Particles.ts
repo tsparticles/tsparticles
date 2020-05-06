@@ -65,7 +65,7 @@ export class Particles {
         }
 
         if (!handled) {
-            for (let i = this.array.length; i < options.particles.number.value; i++) {
+            for (let i = this.count; i < options.particles.number.value; i++) {
                 this.addParticle(new Particle(container));
             }
         }
@@ -108,7 +108,7 @@ export class Particles {
         const options = container.options;
         const particlesToDelete = [];
 
-        for (let i = 0; i < this.array.length; i++) {
+        for (let i = 0; i < this.count; i++) {
             /* the particle */
             const particle = this.array[i];
 
@@ -249,12 +249,15 @@ export class Particles {
     public push(nb: number, mousePosition?: IMouseData): void {
         const container = this.container;
         const options = container.options;
+        const limit = options.particles.number.limit * container.density;
 
         this.pushing = true;
 
-        if (options.particles.number.limit > 0) {
-            if ((this.array.length + nb) > options.particles.number.limit) {
-                this.removeQuantity((this.array.length + nb) - options.particles.number.limit);
+        if (limit > 0) {
+            const countToRemove = this.count + nb - limit;
+
+            if (countToRemove > 0) {
+                this.removeQuantity(countToRemove);
             }
         }
 

@@ -352,6 +352,9 @@
                 "enable": {
                     "type": "boolean"
                 },
+                "factor": {
+                    "type": "number"
+                },
                 "value_area": {
                     "type": "number"
                 }
@@ -1833,6 +1836,9 @@
                 },
                 "enable": {
                     "type": "boolean"
+                },
+                "factor": {
+                    "type": "number"
                 },
                 "load": {
                     "$ref": "#/definitions/RecursivePartial<(data?:RecursivePartial<IDensity>|undefined)=>void>"

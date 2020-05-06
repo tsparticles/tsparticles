@@ -19,12 +19,14 @@ export class Density implements IDensity {
         this.area = value;
     }
 
-    public enable: boolean;
     public area: number;
+    public enable: boolean;
+    public factor: number;
 
     constructor() {
         this.enable = false;
         this.area = 800;
+        this.factor = 1000;
     }
 
     public load(data?: RecursivePartial<IDensity>): void {
@@ -37,6 +39,10 @@ export class Density implements IDensity {
 
             if (area !== undefined) {
                 this.area = area;
+            }
+
+            if (data.factor !== undefined) {
+                this.factor = data.factor;
             }
         }
     }
