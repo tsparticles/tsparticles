@@ -8,7 +8,7 @@ import { Constants } from "../../../../Utils/Constants";
 import type { IParticle } from "../../../Interfaces/IParticle";
 import { ColorUtils } from "../../../../Utils/ColorUtils";
 import { Particle } from "../../../Particle";
-import { Circle } from "../../../../Utils/QuadTree";
+import { Circle } from "../../../../Utils/Circle";
 
 /**
  * Particle bubble manager

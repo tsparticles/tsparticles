@@ -1,7 +1,7 @@
 import type { Container } from "../../../Container";
 import { Constants } from "../../../../Utils/Constants";
-import { Circle } from "../../../../Utils/QuadTree";
 import { Utils } from "../../../../Utils/Utils";
+import { Circle } from "../../../../Utils/Circle";
 
 /**
  * Particle grab manager

@@ -12,8 +12,10 @@ import { Repulser } from "./Particle/Interactions/Mouse/Repulser";
 import { DivMode } from "../Enums/Modes/DivMode";
 import { Bubbler } from "./Particle/Interactions/Mouse/Bubbler";
 import { Connector } from "./Particle/Interactions/Mouse/Connector";
-import { Point, QuadTree, Rectangle } from "../Utils/QuadTree";
+import { QuadTree} from "../Utils/QuadTree";
 import { DestroyType } from "../Enums/DestroyType";
+import { Point } from "../Utils/Point";
+import { Rectangle } from "../Utils/Rectangle";
 
 /**
  * Particles manager

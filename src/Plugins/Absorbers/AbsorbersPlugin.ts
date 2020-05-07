@@ -5,17 +5,17 @@ import { Utils } from "../../Utils/Utils";
 import { ClickMode } from "../../Enums/Modes/ClickMode";
 
 export class AbsorbersPlugin implements IPlugin {
-    readonly id: string;
+    public readonly id: string;
 
     constructor() {
         this.id = "absorbers";
     }
 
-    getPlugin(container: Container): Absorbers {
+    public getPlugin(container: Container): Absorbers {
         return new Absorbers(container);
     }
 
-    needsPlugin(container: Container): boolean {
+    public needsPlugin(container: Container): boolean {
         const options = container.options;
         const absorbers = options.absorbers;
         let loadAbsorbers = false;
@@ -32,5 +32,4 @@ export class AbsorbersPlugin implements IPlugin {
 
         return loadAbsorbers;
     }
-
 }

@@ -368,7 +368,7 @@ export class Particle implements IParticle {
         this.infectionDelayStage = stage;
     }
 
-    public updateInfectionStage(stage: number) {
+    public updateInfectionStage(stage: number): void {
         const container = this.container;
         const options = container.options;
         const stagesCount = options.infection.stages.length;
@@ -385,7 +385,7 @@ export class Particle implements IParticle {
         this.infectionTime = 0;
     }
 
-    public updateInfection(delta: number) {
+    public updateInfection(delta: number): void {
         const container = this.container;
         const options = container.options;
         const infection = options.infection;
@@ -438,6 +438,10 @@ export class Particle implements IParticle {
         };
     }
 
+    public destroy(): void {
+        this.destroyed = true;
+    }
+
     private nextInfectionStage(): void {
         const container = this.container;
         const options = container.options;
@@ -459,10 +463,6 @@ export class Particle implements IParticle {
                 this.infectionTime = 0;
             }
         }
-    }
-
-    public destroy(): void {
-        this.destroyed = true;
     }
 
     private calcPosition(container: Container, position?: ICoordinates): ICoordinates {

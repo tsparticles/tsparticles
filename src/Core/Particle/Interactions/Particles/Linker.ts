@@ -2,8 +2,8 @@ import type { Container } from "../../../Container";
 import { ColorUtils } from "../../../../Utils/ColorUtils";
 import { Constants } from "../../../../Utils/Constants";
 import type { Particle } from "../../../Particle";
-import { Circle } from "../../../../Utils/QuadTree";
 import { Utils } from "../../../../Utils/Utils";
+import { Circle } from "../../../../Utils/Circle";
 
 export class Linker {
     public static link(p1: Particle, container: Container, _delta: number): void {

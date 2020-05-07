@@ -53,6 +53,50 @@ export class PolygonMask implements IContainerPlugin {
         this.path2DSupported = window.hasOwnProperty("Path2D");
     }
 
+    private static polygonBounce(particle: Particle): void {
+        particle.velocity.horizontal = -particle.velocity.horizontal + (particle.velocity.vertical / 2);
+        particle.velocity.vertical = -particle.velocity.vertical + (particle.velocity.horizontal / 2);
+    }
+
+    private static drawPolygonMask(context: CanvasRenderingContext2D,
+                                   rawData: ICoordinates[],
+                                   stroke: IPolygonMaskDrawStroke): void {
+        const color = typeof stroke.color === "string" ?
+            ColorUtils.stringToRgb(stroke.color) :
+            ColorUtils.colorToRgb(stroke.color);
+
+        if (color) {
+            context.beginPath();
+            context.moveTo(rawData[0].x, rawData[0].y);
+
+            for (let i = 1; i < rawData.length; i++) {
+                context.lineTo(rawData[i].x, rawData[i].y);
+            }
+
+            context.closePath();
+            context.strokeStyle = ColorUtils.getStyleFromColor(color);
+            context.lineWidth = stroke.width;
+            context.stroke();
+        }
+    }
+
+    private static drawPolygonMaskPath(context: CanvasRenderingContext2D,
+                                       path: Path2D,
+                                       stroke: IPolygonMaskDrawStroke,
+                                       position: ICoordinates): void {
+        context.translate(position.x, position.y);
+
+        const color = typeof stroke.color === "string" ?
+            ColorUtils.stringToRgb(stroke.color) :
+            ColorUtils.colorToRgb(stroke.color);
+
+        if (color) {
+            context.strokeStyle = ColorUtils.getStyleFromColor(color, stroke.opacity);
+            context.lineWidth = stroke.width;
+            context.stroke(path);
+        }
+    }
+
     public checkInsidePolygon(position: ICoordinates | undefined): boolean {
         const container = this.container;
         const options = container.options;
@@ -176,7 +220,7 @@ export class PolygonMask implements IContainerPlugin {
         }
     }
 
-    public particlesInitialization() {
+    public particlesInitialization(): boolean {
         const container = this.container;
         const options = container.options;
 
@@ -533,50 +577,6 @@ export class PolygonMask implements IContainerPlugin {
 
                 path.path2d.closePath();
             }
-        }
-    }
-
-    private static polygonBounce(particle: Particle): void {
-        particle.velocity.horizontal = -particle.velocity.horizontal + (particle.velocity.vertical / 2);
-        particle.velocity.vertical = -particle.velocity.vertical + (particle.velocity.horizontal / 2);
-    }
-
-    private static drawPolygonMask(context: CanvasRenderingContext2D,
-                                   rawData: ICoordinates[],
-                                   stroke: IPolygonMaskDrawStroke): void {
-        const color = typeof stroke.color === "string" ?
-            ColorUtils.stringToRgb(stroke.color) :
-            ColorUtils.colorToRgb(stroke.color);
-
-        if (color) {
-            context.beginPath();
-            context.moveTo(rawData[0].x, rawData[0].y);
-
-            for (let i = 1; i < rawData.length; i++) {
-                context.lineTo(rawData[i].x, rawData[i].y);
-            }
-
-            context.closePath();
-            context.strokeStyle = ColorUtils.getStyleFromColor(color);
-            context.lineWidth = stroke.width;
-            context.stroke();
-        }
-    }
-
-    private static drawPolygonMaskPath(context: CanvasRenderingContext2D,
-                                       path: Path2D,
-                                       stroke: IPolygonMaskDrawStroke,
-                                       position: ICoordinates): void {
-        context.translate(position.x, position.y);
-
-        const color = typeof stroke.color === "string" ?
-            ColorUtils.stringToRgb(stroke.color) :
-            ColorUtils.colorToRgb(stroke.color);
-
-        if (color) {
-            context.strokeStyle = ColorUtils.getStyleFromColor(color, stroke.opacity);
-            context.lineWidth = stroke.width;
-            context.stroke(path);
         }
     }
 }

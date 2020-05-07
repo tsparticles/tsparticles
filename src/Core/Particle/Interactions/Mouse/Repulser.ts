@@ -7,7 +7,7 @@ import { DivMode } from "../../../../Enums/Modes/DivMode";
 import { Constants } from "../../../../Utils/Constants";
 import type { ICoordinates } from "../../../Interfaces/ICoordinates";
 import type { IParticle } from "../../../Interfaces/IParticle";
-import { Circle } from "../../../../Utils/QuadTree";
+import { Circle } from "../../../../Utils/Circle";
 
 /**
  * Particle repulse manager

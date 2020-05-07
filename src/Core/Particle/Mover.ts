@@ -2,6 +2,7 @@ import { Utils } from "../../Utils/Utils";
 import type { Container } from "../Container";
 import type { Particle } from "../Particle";
 import { HoverMode } from "../../Enums/Modes/HoverMode";
+import { INoiseValue } from "../../Options/Interfaces/Particles/Noise/INoiseValue";
 
 export class Mover {
     private readonly container: Container;
@@ -10,6 +11,10 @@ export class Mover {
     constructor(container: Container, particle: Particle) {
         this.container = container;
         this.particle = particle;
+    }
+
+    private static calcNoiseValue(input: number, size: number, noiseValue: INoiseValue): number {
+        return Math.floor(input / size) / noiseValue.value + noiseValue.offset;
     }
 
     public move(delta: number): void {
@@ -35,12 +40,12 @@ export class Mover {
 
                     const noise = {
                         angle: simplex.noise3D(
-                            Math.floor(position.x / particle.size.value) / noiseFactor.horizontal.value + noiseFactor.horizontal.offset,
-                            Math.floor(position.y / particle.size.value) / noiseFactor.horizontal.value + noiseFactor.horizontal.offset,
+                            Mover.calcNoiseValue(position.x, particle.size.value, noiseFactor.horizontal),
+                            Mover.calcNoiseValue(position.y, particle.size.value, noiseFactor.horizontal),
                             container.particles.noiseZ),
                         length: simplex.noise3D(
-                            Math.floor(position.x / particle.size.value) / noiseFactor.vertical.value + noiseFactor.vertical.offset,
-                            Math.floor(position.y / particle.size.value) / noiseFactor.vertical.value + noiseFactor.vertical.offset,
+                            Mover.calcNoiseValue(position.x, particle.size.value, noiseFactor.vertical),
+                            Mover.calcNoiseValue(position.y, particle.size.value, noiseFactor.vertical),
                             container.particles.noiseZ),
                     };
 

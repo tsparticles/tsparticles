@@ -3,20 +3,19 @@ import { PolygonMask } from "./PolygonMask";
 import type { Container } from "../../Core/Container";
 
 export class PolygonMaskPlugin implements IPlugin {
-    readonly id: string;
+    public readonly id: string;
 
     constructor() {
         this.id = "polygonMask";
     }
 
-    getPlugin(container: Container): PolygonMask {
+    public getPlugin(container: Container): PolygonMask {
         return new PolygonMask(container);
     }
 
-    needsPlugin(container: Container): boolean {
+    public needsPlugin(container: Container): boolean {
         const options = container.options;
 
         return options.polygon.enable;
     }
-
 }

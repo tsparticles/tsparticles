@@ -1,6 +1,6 @@
 import type { IParticle } from "../../../Interfaces/IParticle";
 import type { Container } from "../../../Container";
-import { Circle } from "../../../../Utils/QuadTree";
+import { Circle } from "../../../../Utils/Circle";
 
 export class Attractor {
     public static attract(p1: IParticle, container: Container, _delta: number): void {

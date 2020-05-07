@@ -5,17 +5,17 @@ import { ClickMode } from "../../Enums/Modes/ClickMode";
 import { Emitters } from "./Emitters";
 
 export class EmittersPlugin implements IPlugin {
-    readonly id: string;
+    public readonly id: string;
 
     constructor() {
         this.id = "emitters";
     }
 
-    getPlugin(container: Container): Emitters {
+    public getPlugin(container: Container): Emitters {
         return new Emitters(container);
     }
 
-    needsPlugin(container: Container): boolean {
+    public needsPlugin(container: Container): boolean {
         const options = container.options;
         const emitters = options.emitters;
         let loadEmitters = false;
@@ -32,5 +32,4 @@ export class EmittersPlugin implements IPlugin {
 
         return loadEmitters;
     }
-
 }
