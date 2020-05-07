@@ -7,6 +7,8 @@ import type { IShapeDrawer } from "../Core/Interfaces/IShapeDrawer";
 
 export class Plugins {
     private static plugins: IPlugin[] = [];
+    private static presets: { [preset: string]: RecursivePartial<IOptions> } = {};
+    private static readonly drawers: { [type: string]: IShapeDrawer } = {};
 
     public static getPlugin(plugin: string): IPlugin | undefined {
         return this.plugins.filter((t) => t.id === plugin)[0];
@@ -29,8 +31,6 @@ export class Plugins {
         return res;
     }
 
-    private static presets: { [preset: string]: RecursivePartial<IOptions> } = {};
-
     public static getPreset(preset: string): RecursivePartial<IOptions> | undefined {
         return this.presets[preset];
     }
@@ -40,8 +40,6 @@ export class Plugins {
             this.presets[presetKey] = options;
         }
     }
-
-    private static readonly drawers: { [type: string]: IShapeDrawer } = {};
 
     public static addShapeDrawer(type: string, drawer: IShapeDrawer): void {
         if (!this.drawers[type]) {
