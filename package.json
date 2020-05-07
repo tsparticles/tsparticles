@@ -16,7 +16,8 @@
     "build:demo:index": "pug ./demo/views/index.pug",
     "build:demo:style": "stylus ./demo/public/stylesheets/main.styl",
     "build:schema": "typescript-json-schema tsconfig.schema.json IOptions --out schema/options.schema.json",
-    "test": "mocha -r ts-node/register 'tests/**/*.ts'"
+    "test": "mocha -r ts-node/register 'tests/**/*.ts'",
+    "postversion": "node ./scripts/postversion.js"
   },
   "repository": {
     "type": "git",
