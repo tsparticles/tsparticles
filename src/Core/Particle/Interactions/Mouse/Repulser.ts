@@ -137,7 +137,8 @@ export class Repulser {
             }
 
             //const query = container.particles.spatialGrid.queryRadius(mouseClickPos, repulseRadius);
-            const query = container.particles.quadTree.query(new Circle(mouseClickPos.x, mouseClickPos.y, repulseRadius));
+            const range = new Circle(mouseClickPos.x, mouseClickPos.y, repulseRadius);
+            const query = container.particles.quadTree.query(range);
 
             for (const particle of query) {
                 if (particle?.position === undefined) {

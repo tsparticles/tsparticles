@@ -7,4 +7,4 @@ tsParticles.addPlugin(new AbsorbersPlugin())
 tsParticles.addPlugin(new EmittersPlugin());
 tsParticles.addPlugin(new PolygonMaskPlugin());
 
-export { tsParticles, particlesJS, pJSDom };
+export { particlesJS, pJSDom, tsParticles };
