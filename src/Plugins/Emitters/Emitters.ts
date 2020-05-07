@@ -80,11 +80,11 @@ export class Emitters implements IContainerPlugin {
         }
     }
 
-    private addEmitter(emitter: Emitter) {
+    public addEmitter(emitter: Emitter): void {
         this.array.push(emitter);
     }
 
-    removeEmitter(emitter: Emitter) {
+    public removeEmitter(emitter: Emitter): void {
         const index = this.array.indexOf(emitter);
 
         if (index >= 0) {

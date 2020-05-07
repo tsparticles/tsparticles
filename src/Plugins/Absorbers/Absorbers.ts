@@ -87,17 +87,15 @@ export class Absorbers implements IContainerPlugin {
         }
     }
 
-    private addAbsorber(absorber: Absorber) {
+    public addAbsorber(absorber: Absorber): void {
         this.array.push(absorber);
     }
 
-    /* unused for now
-    private removeAbsorber(absorber: Absorber) {
+    public removeAbsorber(absorber: Absorber): void {
         const index = this.array.indexOf(absorber);
 
         if (index >= 0) {
             this.array.splice(index, 1);
         }
     }
-    */
 }
