@@ -24,7 +24,7 @@ export class ImageDrawer implements IShapeDrawer {
         if (!containerImages.length) {
             this.images.push({
                 id: container.id,
-                images: []
+                images: [],
             });
 
             return this.getImages(container);
