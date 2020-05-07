@@ -23,13 +23,13 @@ export class Absorbers implements IContainerPlugin {
             for (const absorberOptions of options.absorbers) {
                 const absorber = new Absorber(this, absorberOptions);
 
-                this.array.push(absorber);
+                this.addAbsorber(absorber);
             }
         } else {
             const absorberOptions = options.absorbers;
             const absorber = new Absorber(this, absorberOptions);
 
-            this.array.push(absorber);
+            this.addAbsorber(absorber);
         }
     }
 
@@ -83,7 +83,21 @@ export class Absorbers implements IContainerPlugin {
             const aPosition = container.interactivity.mouse.clickPosition;
             const absorber = new Absorber(this, absorbersOptions, aPosition);
 
-            this.array.push(absorber);
+            this.addAbsorber(absorber);
         }
     }
+
+    private addAbsorber(absorber: Absorber) {
+        this.array.push(absorber);
+    }
+
+    /* unused for now
+    private removeAbsorber(absorber: Absorber) {
+        const index = this.array.indexOf(absorber);
+
+        if (index >= 0) {
+            this.array.splice(index, 1);
+        }
+    }
+    */
 }

@@ -112,11 +112,7 @@ export class Emitter {
     }
 
     private destroy(): void {
-        const index = this.emitters.array.indexOf(this);
-
-        if (index >= 0) {
-            this.emitters.array.splice(index, 1);
-        }
+        this.emitters.removeEmitter(this);
     }
 
     private calcPosition(): ICoordinates {

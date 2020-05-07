@@ -22,13 +22,13 @@ export class Emitters implements IContainerPlugin {
             for (const emitterOptions of options.emitters) {
                 const emitter = new Emitter(this, emitterOptions);
 
-                this.array.push(emitter);
+                this.addEmitter(emitter);
             }
         } else {
             const emitterOptions = options.emitters;
             const emitter = new Emitter(this, emitterOptions);
 
-            this.array.push(emitter);
+            this.addEmitter(emitter);
         }
     }
 
@@ -70,13 +70,25 @@ export class Emitters implements IContainerPlugin {
             const ePosition = container.interactivity.mouse.clickPosition;
             const emitter = new Emitter(this, Utils.deepExtend({}, emitterOptions), ePosition);
 
-            this.array.push(emitter);
+            this.addEmitter(emitter);
         }
     }
 
     public resize(): void {
         for (const emitter of this.array) {
             emitter.resize();
+        }
+    }
+
+    private addEmitter(emitter: Emitter) {
+        this.array.push(emitter);
+    }
+
+    removeEmitter(emitter: Emitter) {
+        const index = this.array.indexOf(emitter);
+
+        if (index >= 0) {
+            this.array.splice(index, 1);
         }
     }
 }
