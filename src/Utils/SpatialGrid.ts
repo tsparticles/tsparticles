@@ -27,7 +27,7 @@ export class SpatialGrid {
         this.heightSegment = Math.round(canvas.height / this.cellSize);
     }
 
-    public init(dimension?: IDimension) {
+    public init(dimension?: IDimension): void {
         this.widthSegment = dimension?.width ? dimension?.width / this.cellSize : this.widthSegment;
         this.heightSegment = dimension?.height ? dimension?.height / this.cellSize : this.heightSegment;
         this.grid = [];
