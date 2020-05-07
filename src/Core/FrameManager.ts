@@ -16,7 +16,7 @@ export class FrameManager {
         const fpsLimit = options.fpsLimit > 0 ? options.fpsLimit : 60;
 
         if (container.lastFrameTime !== undefined && timestamp < container.lastFrameTime + (1000 / fpsLimit)) {
-            container.play();
+            container.draw();
             return;
         }
 
@@ -26,10 +26,8 @@ export class FrameManager {
 
         container.particles.draw(delta);
 
-        if (!options.particles.move.enable) {
-            container.pause();
-        } else {
-            container.play();
+        if (options.particles.move.enable && container.getAnimationStatus()) {
+            container.draw();
         }
     }
 }

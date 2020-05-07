@@ -203,6 +203,8 @@ export class EventListeners {
 
             if (container.getAnimationStatus()) {
                 container.play(true);
+            } else {
+                container.draw();
             }
         }
     }

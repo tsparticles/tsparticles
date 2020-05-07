@@ -118,7 +118,7 @@ export class Container {
             this.lastFrameTime = performance.now();
         }
 
-        this.drawAnimationFrame = Container.requestFrame((t) => this.drawer.nextFrame(t));
+        this.draw();
     }
 
     public pause(): void {
@@ -141,6 +141,10 @@ export class Container {
                 this.paused = true;
             }
         }
+    }
+
+    public draw(): void {
+        this.drawAnimationFrame = Container.requestFrame((t) => this.drawer.nextFrame(t));
     }
 
     public getAnimationStatus(): boolean {
