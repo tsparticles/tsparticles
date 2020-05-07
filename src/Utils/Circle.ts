@@ -12,7 +12,7 @@ export class Circle extends Range {
     }
 
     public contains(point: ICoordinates): boolean {
-        let d = Math.pow((point.x - this.position.x), 2) + Math.pow((point.y - this.position.y), 2);
+        const d = Math.pow((point.x - this.position.x), 2) + Math.pow((point.y - this.position.y), 2);
 
         return d <= this.radius * this.radius;
     }

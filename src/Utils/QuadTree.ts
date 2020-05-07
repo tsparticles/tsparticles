@@ -63,7 +63,7 @@ export class QuadTree {
     }
 
     public query(range: Range, found?: Particle[]): Particle[] {
-        let res = found ?? [];
+        const res = found ?? [];
 
         if (!range.intersects(this.rectangle)) {
             return [];
