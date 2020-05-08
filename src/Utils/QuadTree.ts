@@ -74,10 +74,10 @@ export class QuadTree {
                 }
             }
             if (this.divided) {
-                this.northEast?.query(range, found);
-                this.northWest?.query(range, found);
-                this.southEast?.query(range, found);
-                this.southWest?.query(range, found);
+                this.northEast?.query(range, res);
+                this.northWest?.query(range, res);
+                this.southEast?.query(range, res);
+                this.southWest?.query(range, res);
             }
         }
 

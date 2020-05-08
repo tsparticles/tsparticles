@@ -16,7 +16,7 @@
     "build:demo:index": "pug ./demo/views/index.pug",
     "build:demo:style": "stylus ./demo/public/stylesheets/main.styl",
     "build:schema": "typescript-json-schema tsconfig.schema.json IOptions --out schema/options.schema.json",
-    "test": "mocha -r ts-node/register 'tests/**/*.ts'",
+    "test": "nyc mocha",
     "preversion": "npm test",
     "version": "node ./scripts/postversion.js && git add tsParticles.nuspec",
     "postversion": "git push && git push --tags",
@@ -89,10 +89,12 @@
     "jquery": "^3.5.1",
     "jsoneditor": "^8.6.6",
     "mocha": "^7.1.2",
+    "nyc": "^15.0.1",
     "popper.js": "^1.16.1",
     "pug": "^2.0.4",
     "reflect-metadata": "^0.1.13",
     "rimraf": "^3.0.2",
+    "source-map-support": "^0.5.19",
     "stylus": "^0.54.7",
     "terser-webpack-plugin": "^3.0.1",
     "three": "^0.116.1",
@@ -108,5 +110,22 @@
   "dependencies": {
     "pathseg": "^1.2.0",
     "tslib": "^1.11.2"
+  },
+  "nyc": {
+    "extension": [
+      ".ts",
+      ".tsx"
+    ],
+    "include": [
+      "src/**/*.ts",
+      "tests/**/*.ts"
+    ],
+    "exclude": [
+      "**/*.d.ts"
+    ],
+    "reporter": [
+      "html"
+    ],
+    "all": true
   }
 }
