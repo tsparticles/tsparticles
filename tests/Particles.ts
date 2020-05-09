@@ -89,6 +89,29 @@ describe('Particles', () => {
         expect(testParticles.particles.array).to.eql([particle5]);
     });
 
+    it('should remove specified number of particles', () => {
+        // This is to keep the `removeQuantity` method from executing `container.play`
+        // which is not playing well in Node.
+        const enableParticleMoveOptions = {
+            particles: {
+                number: numParticlesOptions.particles.number,
+                move: {
+                    enable: true
+                }
+            }
+        };
+        testContainer.reset(enableParticleMoveOptions);
+        testParticles.reset(testContainer.container);
+        testParticles.particles.init();
+
+        expect(testParticles.particles.count).to.equal(numParticles);
+        testParticles.particles.removeQuantity(3);
+        expect(testParticles.particles.count).to.equal(numParticles-3);
+        testParticles.particles.removeQuantity(2);
+        expect(testParticles.particles.count).to.equal(numParticles-5);
+        expect(testParticles.particles.array).to.be.empty;
+    });
+
     it('should remove specified particle', () => {
         testContainer.reset(numParticlesOptions);
         testParticles.reset(testContainer.container);
@@ -117,7 +140,7 @@ describe('Particles', () => {
         expect(testParticles.particles.count).to.equal(numParticles);
         testParticles.particles.clear();
         expect(testParticles.particles.count).to.equal(0);
-        expect(testParticles.particles.array).to.eql([]);
+        expect(testParticles.particles.array).to.be.empty;
     });
 
 });
