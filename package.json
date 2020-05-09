@@ -117,14 +117,14 @@
       ".tsx"
     ],
     "include": [
-      "src/**/*.ts",
-      "tests/**/*.ts"
+      "src/**/*.ts"
     ],
     "exclude": [
       "**/*.d.ts"
     ],
     "reporter": [
-      "lcov"
+      "lcov",
+      "html"
     ],
     "all": true
   }
