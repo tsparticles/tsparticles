@@ -109,4 +109,15 @@ describe('Particles', () => {
         expect(testParticles.particles.array).to.not.eql([particle5, particle3, particle2]);
     });
 
+    it('should remove all particles when calling clear', () => {
+        testContainer.reset(numParticlesOptions);
+        testParticles.reset(testContainer.container);
+        testParticles.particles.init();
+
+        expect(testParticles.particles.count).to.equal(numParticles);
+        testParticles.particles.clear();
+        expect(testParticles.particles.count).to.equal(0);
+        expect(testParticles.particles.array).to.eql([]);
+    });
+
 });
