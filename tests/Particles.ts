@@ -3,12 +3,15 @@ const Window = require('window');
 globalThis.window = new Window();
 
 import { expect } from "chai";
+import {ICoordinates} from "../src/Core/Interfaces/ICoordinates";
 import { Particle } from "../src/Core/Particle";
+import { TestCanvas } from "./Fixture/TestCanvas";
 import { TestContainer } from "./Fixture/TestContainer";
 import { TestParticles } from "./Fixture/TestParticles";
 
 const testContainer = new TestContainer({});
 const testParticles = new TestParticles(testContainer.container);
+const testCanvas = new TestCanvas(testContainer.container, 1920, 1080);
 
 describe('Particles', () => {
 
@@ -21,6 +24,16 @@ describe('Particles', () => {
             }
         }
     }
+    // This is to keep the `removeQuantity` method from executing `container.play`
+    // which is not playing well in Node.
+    const enableParticleMoveOptions = {
+        particles: {
+            number: numParticlesOptions.particles.number,
+            move: {
+                enable: true
+            }
+        }
+    };
 
     it('should create the number of particles configured in container', () => {
         testContainer.reset(numParticlesOptions);
@@ -90,16 +103,6 @@ describe('Particles', () => {
     });
 
     it('should remove specified number of particles', () => {
-        // This is to keep the `removeQuantity` method from executing `container.play`
-        // which is not playing well in Node.
-        const enableParticleMoveOptions = {
-            particles: {
-                number: numParticlesOptions.particles.number,
-                move: {
-                    enable: true
-                }
-            }
-        };
         testContainer.reset(enableParticleMoveOptions);
         testParticles.reset(testContainer.container);
         testParticles.particles.init();
@@ -141,6 +144,20 @@ describe('Particles', () => {
         testParticles.particles.clear();
         expect(testParticles.particles.count).to.equal(0);
         expect(testParticles.particles.array).to.be.empty;
+    });
+
+    it('should push multiple particles at the specified position', () => {
+        testContainer.reset(enableParticleMoveOptions);
+        testCanvas.reset(1920, 1080, testContainer.container);
+        testParticles.reset(testContainer.container);
+
+        const position: ICoordinates = {x: 100, y: 100};
+        testParticles.particles.push(numParticles, {position});
+        expect(testParticles.particles.count).to.equal(5);
+
+        for(let i = 0; i < numParticles; i++) {
+            expect(testParticles.particles.array[i].position).to.eql(position);
+        }
     });
 
 });
