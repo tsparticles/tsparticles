@@ -1,5 +1,4 @@
 import type { ICoordinates } from "../Core/Interfaces/ICoordinates";
-import { Rectangle } from "./Rectangle";
 
 export abstract class Range {
     public readonly position: ICoordinates;
@@ -13,5 +12,5 @@ export abstract class Range {
 
     public abstract contains(point: ICoordinates): boolean;
 
-    public abstract intersects(range: Rectangle): boolean;
+    public abstract intersects(range: Range): boolean;
 }

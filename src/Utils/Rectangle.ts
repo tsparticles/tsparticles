@@ -1,6 +1,7 @@
 import { Range } from "./Range";
 import type { IDimension } from "../Core/Interfaces/IDimension";
 import type { ICoordinates } from "../Core/Interfaces/ICoordinates";
+import { Circle } from "./Circle";
 
 export class Rectangle extends Range {
     public readonly size: IDimension;
@@ -21,10 +22,27 @@ export class Rectangle extends Range {
             point.y < this.position.y + this.size.height);
     }
 
-    public intersects(range: Rectangle): boolean {
-        return !(range.position.x - range.size.width > this.position.x + this.size.width ||
-            range.position.x + range.size.width < this.position.x - this.size.width ||
-            range.position.y - range.size.height > this.position.y + this.size.height ||
-            range.position.y + range.size.height < this.position.y - this.size.height);
+    public intersects(range: Range): boolean {
+        const rect = range as Rectangle;
+        const circle = range as Circle;
+        const w = this.size.width;
+        const h = this.size.height;
+        const pos1 = this.position;
+        const pos2 = range.position;
+
+        if (circle.radius !== undefined) {
+            return circle.intersects(this);
+        } else if (rect.size !== undefined) {
+            const size2 = rect.size;
+            const w2 = size2.width;
+            const h2 = size2.height;
+
+            return pos2.x - w2 < pos1.x + w &&
+                pos2.x + w2 > pos1.x - w &&
+                pos2.y - h2 < pos1.y + h &&
+                pos2.y + h2 > pos1.y - h;
+        }
+
+        return false;
     }
 }
