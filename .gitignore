@@ -364,3 +364,4 @@ demo/public/report.htm
 .idea/
 .nyc_output/
 coverage/
+.codacy-coverage/

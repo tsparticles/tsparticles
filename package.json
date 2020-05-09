@@ -124,7 +124,7 @@
       "**/*.d.ts"
     ],
     "reporter": [
-      "html"
+      "lcov"
     ],
     "all": true
   }
