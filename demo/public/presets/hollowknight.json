@@ -1,6 +1,5 @@
 {
   "detectRetina": false,
-  "fpsLimit": 30,
   "interactivity": {
     "detectsOn": "canvas",
     "events": {

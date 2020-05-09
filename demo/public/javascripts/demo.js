@@ -72,9 +72,7 @@
 
         const prop = obj.properties ? obj.properties[key] : obj;
 
-        const values = getValuesFromProp(prop, path, index);
-
-        return values;
+        return getValuesFromProp(prop, path, index);
     }
 
     let jsonEditorAutoComplete = function (text, path, input, editor) {
@@ -93,7 +91,7 @@
     let updateParticles = function (editor) {
         let presetId = localStorage.presetId || 'default';
 
-        if (presetId == "divRepulse") {
+        if (presetId === "divRepulse") {
             document.getElementById('repulse-div').className = 'd-block';
         } else {
             document.getElementById('repulse-div').className = 'd-none';
@@ -232,10 +230,7 @@
 
                     image.className = 'img-fluid';
                     image.onload = () => URL.revokeObjectURL(image.src);
-
-                    const url = URL.createObjectURL(blob);
-
-                    image.src = url;
+                    image.source = URL.createObjectURL(blob);
 
                     modalBody.appendChild(image);
 
@@ -294,11 +289,10 @@ canvas {
                     tags: "tsparticles, javascript, typescript, design, animation",
                     editors: "001"
                 }
-                const JSONstring = JSON.stringify(data)
+
+                inputData.value = JSON.stringify(data)
                     .replace(/"/g, "&quot;")
                     .replace(/'/g, "&apos;");
-
-                inputData.value = JSONstring;
 
                 form.submit()
             }

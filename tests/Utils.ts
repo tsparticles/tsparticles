@@ -1,5 +1,5 @@
 import { expect } from "chai";
-import { Utils } from "../src/Classes/Utils/Utils";
+import { Utils } from "../src/Utils/Utils";
 
 describe('Utils', () => {
 
@@ -235,35 +235,35 @@ describe('Utils', () => {
         const precision = 1e-10;
 
         it('should return 0 whenever points are identical', () => {
-            expect(Utils.getDistanceBetweenCoordinates(point, point)).to.be.closeTo(0, precision);
+            expect(Utils.getDistance(point, point)).to.be.closeTo(0, precision);
         });
 
         it('should calculate correct distance when both points are in first quadrant', () => {
             const pointA = point;
             const pointB = { x: 2, y: 2 };
 
-            expect(Utils.getDistanceBetweenCoordinates(pointA, pointB)).to.be.closeTo(Math.SQRT2, precision);
+            expect(Utils.getDistance(pointA, pointB)).to.be.closeTo(Math.SQRT2, precision);
         });
 
         it('should calculate correct distance when one point is in first quadrant and one is in second quadrant', () => {
             const pointA = point;
             const pointB = { x: -1, y: 1 };
 
-            expect(Utils.getDistanceBetweenCoordinates(pointA, pointB)).to.be.closeTo(2, precision);
+            expect(Utils.getDistance(pointA, pointB)).to.be.closeTo(2, precision);
         });
 
         it('should calculate correct distance when one point is in first quadrant and one is in third quadrant', () => {
             const pointA = point;
             const pointB = { x: -1, y: -1 };
 
-            expect(Utils.getDistanceBetweenCoordinates(pointA, pointB)).to.be.closeTo(2 * Math.SQRT2, precision);
+            expect(Utils.getDistance(pointA, pointB)).to.be.closeTo(2 * Math.SQRT2, precision);
         });
 
         it('should return the same distance regardless of the order of the points', () => {
             const pointA = point;
             const pointB = { x: -1, y: -1 };
 
-            expect(Utils.getDistanceBetweenCoordinates(pointA, pointB)).to.equal(Utils.getDistanceBetweenCoordinates(pointB, pointA));
+            expect(Utils.getDistance(pointA, pointB)).to.equal(Utils.getDistance(pointB, pointA));
         });
 
     });

@@ -1,9 +1,9 @@
-import { ColorUtils } from '../src/Classes/Utils/ColorUtils';
-import { IColor } from "../src/Interfaces/IColor";
+import { ColorUtils } from '../src/Utils/ColorUtils';
+import { IColor } from "../src/Core/Interfaces/IColor";
 import { expect } from "chai";
-import { IRgb } from "../src/Interfaces/IRgb";
-import { IHsl } from "../src/Interfaces/IHsl";
-import { IHsla } from "../src/Interfaces/IHsla";
+import { IRgb } from "../src/Core/Interfaces/IRgb";
+import { IHsl } from "../src/Core/Interfaces/IHsl";
+import { IHsla } from "../src/Core/Interfaces/IHsla";
 
 describe('ColorUtils', () => {
     const red: IRgb = {

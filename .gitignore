@@ -357,5 +357,11 @@ dist/
 lib/
 build/
 docs/
+typedoc/themes/particles/assets/js/tsparticles.min.js
+demo/public/report.html
+demo/public/report.htm
 
 .idea/
+.nyc_output/
+coverage/
+.codacy-coverage/

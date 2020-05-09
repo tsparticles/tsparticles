@@ -1,5 +1,5 @@
-import type { IDimension } from "../../src/Interfaces/IDimension";
-import { SpatialGrid } from "../../src/Classes/Utils/SpatialGrid";
+import type { IDimension } from "../../src/Core/Interfaces/IDimension";
+import { SpatialGrid } from "../../src/Utils/SpatialGrid";
 
 export class TestSpatialGrid {
     private canvas: IDimension;
