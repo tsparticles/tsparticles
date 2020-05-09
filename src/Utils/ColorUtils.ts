@@ -181,9 +181,9 @@ export class ColorUtils {
 
             return result ? {
                 a: result.length > 4 ? parseFloat(result[5]) : 1,
-                b: parseInt(result[3]),
-                g: parseInt(result[2]),
-                r: parseInt(result[1]),
+                b: parseInt(result[3], 10),
+                g: parseInt(result[2], 10),
+                r: parseInt(result[1], 10),
             } : undefined;
         } else if (input.startsWith('hsl')) {
             const regex = /hsla?\(\s*(\d+)\s*,\s*(\d+)%\s*,\s*(\d+)%\s*(,\s*([\d.]+)\s*)?\)/i;
@@ -191,9 +191,9 @@ export class ColorUtils {
 
             return result ? ColorUtils.hslaToRgba({
                 a: result.length > 4 ? parseFloat(result[5]) : 1,
-                h: parseInt(result[1]),
-                l: parseInt(result[3]),
-                s: parseInt(result[2]),
+                h: parseInt(result[1], 10),
+                l: parseInt(result[3], 10),
+                s: parseInt(result[2], 10),
             }) : undefined;
         } else {
             // By Tim Down - http://stackoverflow.com/a/5624139/3493650
