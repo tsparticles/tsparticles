@@ -52,6 +52,6 @@
     "uglify-js": "^3.8.1"
   },
   "dependencies": {
-    "tsparticles": "^1.14.0-alpha.5"
+    "tsparticles": "^1.14.0"
   }
 }
