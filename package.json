@@ -1,6 +1,6 @@
 {
   "name": "tsparticles",
-  "version": "1.14.0-beta.2",
+  "version": "1.14.0",
   "description": "Porting of the abandoned Vincent Garreau's particles.js, converted in TypeScript. Added many new cool features and various bug fixes.",
   "homepage": "https://particles.matteobruni.it/",
   "scripts": {
@@ -87,7 +87,7 @@
     "helmet": "^3.22.0",
     "install": "^0.13.0",
     "jquery": "^3.5.1",
-    "jsoneditor": "^8.6.6",
+    "jsoneditor": "^8.6.7",
     "mocha": "^7.1.2",
     "nyc": "^15.0.1",
     "popper.js": "^1.16.1",
