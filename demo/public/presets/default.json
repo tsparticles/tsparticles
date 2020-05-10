@@ -28,19 +28,19 @@
     },
     "opacity": {
       "value": 0.5,
-      "random": true,
+      "random": false,
       "anim": {
-        "enable": true,
+        "enable": false,
         "speed": 3,
         "opacity_min": 0.1,
         "sync": false
       }
     },
     "size": {
-      "value": 5,
+      "value": 3,
       "random": true,
       "anim": {
-        "enable": true,
+        "enable": false,
         "speed": 20,
         "size_min": 0.1,
         "sync": false
@@ -48,14 +48,14 @@
     },
     "line_linked": {
       "enable": true,
-      "distance": 150,
+      "distance": 100,
       "color": "#ffffff",
       "opacity": 0.4,
       "width": 1
     },
     "move": {
       "enable": true,
-      "speed": 2,
+      "speed": 6,
       "direction": "none",
       "random": false,
       "straight": false,

@@ -124,9 +124,9 @@
       "y": 50
     },
     "size": {
-      "density": 200,
+      "density": 20,
       "value": 50,
-      "limit": 150,
+      "limit": 100,
       "random": {
         "enable": true,
         "minimumValue": 30

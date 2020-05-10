@@ -1,6 +1,14 @@
 {
     "$schema": "http://json-schema.org/draft-07/schema#",
     "definitions": {
+        "DestroyType": {
+            "enum": [
+                "max",
+                "min",
+                "none"
+            ],
+            "type": "string"
+        },
         "IAbsorber": {
             "properties": {
                 "color": {
@@ -246,27 +254,11 @@
                     "anyOf": [
                         {
                             "items": {
-                                "enum": [
-                                    "absorber",
-                                    "bubble",
-                                    "emitter",
-                                    "push",
-                                    "remove",
-                                    "repulse"
-                                ],
                                 "type": "string"
                             },
                             "type": "array"
                         },
                         {
-                            "enum": [
-                                "absorber",
-                                "bubble",
-                                "emitter",
-                                "push",
-                                "remove",
-                                "repulse"
-                            ],
                             "type": "string"
                         }
                     ],
@@ -360,18 +352,10 @@
                 "enable": {
                     "type": "boolean"
                 },
-                "value_area": {
-                    "type": "number"
-                }
-            },
-            "type": "object"
-        },
-        "IDimension": {
-            "properties": {
-                "height": {
+                "factor": {
                     "type": "number"
                 },
-                "width": {
+                "value_area": {
                     "type": "number"
                 }
             },
@@ -392,17 +376,11 @@
                     "anyOf": [
                         {
                             "items": {
-                                "enum": [
-                                    "repulse"
-                                ],
                                 "type": "string"
                             },
                             "type": "array"
                         },
                         {
-                            "enum": [
-                                "repulse"
-                            ],
                             "type": "string"
                         }
                     ]
@@ -434,7 +412,7 @@
                     "description": "The particles emitting rate options"
                 },
                 "size": {
-                    "$ref": "#/definitions/IDimension",
+                    "$ref": "#/definitions/IEmitterSize",
                     "description": "The size of the particles emitter area"
                 }
             },
@@ -467,6 +445,20 @@
                 },
                 "quantity": {
                     "description": "The emitting quantity, how many particles will be created at every creation event",
+                    "type": "number"
+                }
+            },
+            "type": "object"
+        },
+        "IEmitterSize": {
+            "properties": {
+                "height": {
+                    "type": "number"
+                },
+                "mode": {
+                    "$ref": "#/definitions/SizeMode"
+                },
+                "width": {
                     "type": "number"
                 }
             },
@@ -529,25 +521,11 @@
                     "anyOf": [
                         {
                             "items": {
-                                "enum": [
-                                    "bubble",
-                                    "connect",
-                                    "grab",
-                                    "repulse",
-                                    "slow"
-                                ],
                                 "type": "string"
                             },
                             "type": "array"
                         },
                         {
-                            "enum": [
-                                "bubble",
-                                "connect",
-                                "grab",
-                                "repulse",
-                                "slow"
-                            ],
                             "type": "string"
                         }
                     ]
@@ -596,6 +574,56 @@
                     "type": "string"
                 },
                 "width": {
+                    "type": "number"
+                }
+            },
+            "type": "object"
+        },
+        "IInfection": {
+            "properties": {
+                "cure": {
+                    "type": "boolean"
+                },
+                "delay": {
+                    "type": "number"
+                },
+                "enable": {
+                    "type": "boolean"
+                },
+                "infections": {
+                    "type": "number"
+                },
+                "stages": {
+                    "items": {
+                        "$ref": "#/definitions/IInfectionStage"
+                    },
+                    "type": "array"
+                }
+            },
+            "type": "object"
+        },
+        "IInfectionStage": {
+            "properties": {
+                "color": {
+                    "anyOf": [
+                        {
+                            "$ref": "#/definitions/IColor"
+                        },
+                        {
+                            "type": "string"
+                        }
+                    ]
+                },
+                "duration": {
+                    "type": "number"
+                },
+                "infectedStage": {
+                    "type": "number"
+                },
+                "radius": {
+                    "type": "number"
+                },
+                "rate": {
                     "type": "number"
                 }
             },
@@ -744,6 +772,9 @@
                 "enable": {
                     "type": "boolean"
                 },
+                "noise": {
+                    "$ref": "#/definitions/INoise"
+                },
                 "outMode": {
                     "$ref": "#/definitions/OutMode"
                 },
@@ -761,6 +792,67 @@
                 },
                 "trail": {
                     "$ref": "#/definitions/ITrail"
+                },
+                "vibrate": {
+                    "type": "boolean"
+                }
+            },
+            "type": "object"
+        },
+        "INoise": {
+            "properties": {
+                "delay": {
+                    "$ref": "#/definitions/INoiseDelay"
+                },
+                "enable": {
+                    "type": "boolean"
+                },
+                "factor": {
+                    "$ref": "#/definitions/INoiseFactor"
+                }
+            },
+            "type": "object"
+        },
+        "INoiseDelay": {
+            "properties": {
+                "random": {
+                    "$ref": "#/definitions/INoiseRandom"
+                },
+                "value": {
+                    "type": "number"
+                }
+            },
+            "type": "object"
+        },
+        "INoiseFactor": {
+            "properties": {
+                "horizontal": {
+                    "$ref": "#/definitions/INoiseValue"
+                },
+                "vertical": {
+                    "$ref": "#/definitions/INoiseValue"
+                }
+            },
+            "type": "object"
+        },
+        "INoiseRandom": {
+            "properties": {
+                "enable": {
+                    "type": "boolean"
+                },
+                "minimumValue": {
+                    "type": "number"
+                }
+            },
+            "type": "object"
+        },
+        "INoiseValue": {
+            "properties": {
+                "offset": {
+                    "type": "number"
+                },
+                "value": {
+                    "type": "number"
                 }
             },
             "type": "object"
@@ -1278,6 +1370,9 @@
         },
         "ISizeAnimation": {
             "properties": {
+                "destroy": {
+                    "$ref": "#/definitions/DestroyType"
+                },
                 "enable": {
                     "type": "boolean"
                 },
@@ -1289,6 +1384,9 @@
                 },
                 "speed": {
                     "type": "number"
+                },
+                "startValue": {
+                    "$ref": "#/definitions/StartValueType"
                 },
                 "sync": {
                     "type": "boolean"
@@ -1489,6 +1587,21 @@
             "type": "object"
         },
         "RecursivePartial<(data?:RecursivePartial<IMove>|undefined)=>void>": {
+            "type": "object"
+        },
+        "RecursivePartial<(data?:RecursivePartial<INoise>|undefined)=>void>": {
+            "type": "object"
+        },
+        "RecursivePartial<(data?:RecursivePartial<INoiseDelay>|undefined)=>void>": {
+            "type": "object"
+        },
+        "RecursivePartial<(data?:RecursivePartial<INoiseFactor>|undefined)=>void>": {
+            "type": "object"
+        },
+        "RecursivePartial<(data?:RecursivePartial<INoiseRandom>|undefined)=>void>": {
+            "type": "object"
+        },
+        "RecursivePartial<(data?:RecursivePartial<INoiseValue>|undefined)=>void>": {
             "type": "object"
         },
         "RecursivePartial<(data?:RecursivePartial<IOpacity>|undefined)=>void>": {
@@ -1724,6 +1837,9 @@
                 "enable": {
                     "type": "boolean"
                 },
+                "factor": {
+                    "type": "number"
+                },
                 "load": {
                     "$ref": "#/definitions/RecursivePartial<(data?:RecursivePartial<IDensity>|undefined)=>void>"
                 },
@@ -1891,6 +2007,9 @@
                 "load": {
                     "$ref": "#/definitions/RecursivePartial<(data?:RecursivePartial<IMove>|undefined)=>void>"
                 },
+                "noise": {
+                    "$ref": "#/definitions/RecursivePartial<INoise>"
+                },
                 "outMode": {
                     "enum": [
                         "bounce",
@@ -1922,6 +2041,82 @@
                 },
                 "trail": {
                     "$ref": "#/definitions/RecursivePartial<ITrail>"
+                },
+                "vibrate": {
+                    "type": "boolean"
+                }
+            },
+            "type": "object"
+        },
+        "RecursivePartial<INoise>": {
+            "properties": {
+                "delay": {
+                    "$ref": "#/definitions/RecursivePartial<INoiseDelay>"
+                },
+                "enable": {
+                    "type": "boolean"
+                },
+                "factor": {
+                    "$ref": "#/definitions/RecursivePartial<INoiseFactor>"
+                },
+                "load": {
+                    "$ref": "#/definitions/RecursivePartial<(data?:RecursivePartial<INoise>|undefined)=>void>"
+                }
+            },
+            "type": "object"
+        },
+        "RecursivePartial<INoiseDelay>": {
+            "properties": {
+                "load": {
+                    "$ref": "#/definitions/RecursivePartial<(data?:RecursivePartial<INoiseDelay>|undefined)=>void>"
+                },
+                "random": {
+                    "$ref": "#/definitions/RecursivePartial<INoiseRandom>"
+                },
+                "value": {
+                    "type": "number"
+                }
+            },
+            "type": "object"
+        },
+        "RecursivePartial<INoiseFactor>": {
+            "properties": {
+                "horizontal": {
+                    "$ref": "#/definitions/RecursivePartial<INoiseValue>"
+                },
+                "load": {
+                    "$ref": "#/definitions/RecursivePartial<(data?:RecursivePartial<INoiseFactor>|undefined)=>void>"
+                },
+                "vertical": {
+                    "$ref": "#/definitions/RecursivePartial<INoiseValue>"
+                }
+            },
+            "type": "object"
+        },
+        "RecursivePartial<INoiseRandom>": {
+            "properties": {
+                "enable": {
+                    "type": "boolean"
+                },
+                "load": {
+                    "$ref": "#/definitions/RecursivePartial<(data?:RecursivePartial<INoiseRandom>|undefined)=>void>"
+                },
+                "minimumValue": {
+                    "type": "number"
+                }
+            },
+            "type": "object"
+        },
+        "RecursivePartial<INoiseValue>": {
+            "properties": {
+                "load": {
+                    "$ref": "#/definitions/RecursivePartial<(data?:RecursivePartial<INoiseValue>|undefined)=>void>"
+                },
+                "offset": {
+                    "type": "number"
+                },
+                "value": {
+                    "type": "number"
                 }
             },
             "type": "object"
@@ -2286,6 +2481,14 @@
         },
         "RecursivePartial<ISizeAnimation>": {
             "properties": {
+                "destroy": {
+                    "enum": [
+                        "max",
+                        "min",
+                        "none"
+                    ],
+                    "type": "string"
+                },
                 "enable": {
                     "type": "boolean"
                 },
@@ -2300,6 +2503,13 @@
                 },
                 "speed": {
                     "type": "number"
+                },
+                "startValue": {
+                    "enum": [
+                        "max",
+                        "min"
+                    ],
+                    "type": "string"
                 },
                 "sync": {
                     "type": "boolean"
@@ -2430,6 +2640,20 @@
                 "random"
             ],
             "type": "string"
+        },
+        "SizeMode": {
+            "enum": [
+                "percent",
+                "precise"
+            ],
+            "type": "string"
+        },
+        "StartValueType": {
+            "enum": [
+                "max",
+                "min"
+            ],
+            "type": "string"
         }
     },
     "description": "The Options interface, defines all the options that can be used by `tsParticles`",
@@ -2477,6 +2701,10 @@
         "fps_limit": {
             "description": "The Frame Per Second limit applied to all particles animations.",
             "type": "number"
+        },
+        "infection": {
+            "$ref": "#/definitions/IInfection",
+            "description": "The infection options"
         },
         "interactivity": {
             "$ref": "#/definitions/IInteractivity",

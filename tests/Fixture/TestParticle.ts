@@ -1,8 +1,58 @@
-
-import type { ICoordinates } from "../../src/Interfaces/ICoordinates";
-import { Particle } from "../../src/Classes/Particle";
+import { Container } from "../../src/Core/Container";
+import type { ICoordinates } from "../../src/Core/Interfaces/ICoordinates";
+import { Particle } from "../../src/Core/Particle";
 
 export class TestParticle {
+    private container: Container;
+    private position?: ICoordinates;
+    public particle: Particle;
+
+    constructor(container: Container, position?: ICoordinates) {
+        this.container = container;
+        this.position = position;
+        this.particle = new Particle(this.container, this.position);
+    }
+
+    /**
+     * When creating a particle, the private method `Particle.calcPosition` ensures
+     * the particle is completely inside the canvas. It does this by shifting the
+     * position if any part of the particle is outsize the canvas. This function
+     * returns random positions of particles that are guaranteed to lie completely
+     * inside the canvas.
+     *
+     * @param container
+     */
+    public randomPositionInCanvas(container?: Container): ICoordinates {
+        if(container === undefined) {
+            container = this.container;
+        }
+        const sizeValue = container.retina.sizeValue;
+        const width = container.canvas.size.width;
+        const height = container.canvas.size.height;
+        let x = width * Math.random();
+        x = Math.min(Math.max(x, sizeValue * 2), width - sizeValue * 2);
+        let y = height * Math.random();
+        y = Math.min(Math.max(y, sizeValue * 2), height - sizeValue * 2);
+        return {x, y};
+    }
+
+    /**
+     * If [[container]] is provided, then the new particle will be initialized with
+     * this [[container]]. Otherwise the last-used [[container]] will be used.
+     *
+     * [[position]] will be used verbatim, even if it is not provided. The last-used
+     * [[position]] will not be used.
+     *
+     * @param container
+     * @param position
+     */
+    public reset(container?: Container, position?: ICoordinates) {
+        if(container !== undefined) {
+            this.container = container;
+        }
+        this.position = position;
+        this.particle = new Particle(this.container, this.position);
+    }
 
     /**
      * A function that will be passed to [[Array.sort]] to sort particles.

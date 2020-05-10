@@ -28,15 +28,5 @@
     "./dist/",
     "./typedoc/",
     "./docs/"
-  ],
-  "typedocOptions": {
-    "gaID": "UA-159372955-1",
-    "ignoreCompilerErrors": true,
-    "inputFiles": [
-      "./src/index.ts"
-    ],
-    "mode": "library",
-    "out": "docs",
-    "theme": "./typedoc/themes/particles"
-  }
+  ]
 }

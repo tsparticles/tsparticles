@@ -21,6 +21,7 @@ app.use("/tsparticles", express.static("./dist"));
 app.use("/three", express.static("./node_modules/three/"));
 app.use("/pathseg", express.static("./node_modules/pathseg/"));
 app.use("/docs", express.static("./docs"));
+app.use("/coverage", express.static("./coverage"));
 app.use("/schema", express.static("./schema"));
 
 app.get('/', function (req, res) {

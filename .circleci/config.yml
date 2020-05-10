@@ -1,21 +1,23 @@
 version: 2.1
 
-orbs:
-  node: circleci/node@1.1.6
-
 jobs:
   build:
-    executor:
-      name: node/default
+    working_directory: ~/tsparticles
+
+    docker:
+      - image: circleci/node:13.13.0
 
     steps:
       - checkout
-      - node/with-cache:
-          steps:
-            - run: npm ci
-            - run: npm run build
 
-workflows:
-  build:
-    jobs:
-      - build
+      - run:
+          name: update-npm
+          command: 'sudo npm install -g npm@latest'
+
+      - run:
+          name: install
+          command: npm ci
+
+      - run:
+          name: build
+          command: npm run build

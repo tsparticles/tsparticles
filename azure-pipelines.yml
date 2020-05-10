@@ -20,6 +20,7 @@ steps:
 
 - task: Npm@1
   displayName: npm run build
+  condition: and(succeeded(), ne(variables['Build.SourceBranch'], 'refs/heads/master'))
   inputs:
     command: 'custom'
     customCommand: 'run build'

@@ -33,6 +33,7 @@ html(lang="en")
                                     option(value="absorbers") Absorbers
                                     option(value="background") Background Mask
                                     option(value="big") Big Particles
+                                    option(value="blackHole") Black Hole
                                     option(value="bubble") Bubble
                                     option(value="chars") Chars
                                     option(value="collisions") Collisions
@@ -45,9 +46,11 @@ html(lang="en")
                                     option(value="divRepulse") Div Repulse
                                     option(value="emitter") Emitter
                                     option(value="emitterAbsorber") Emitter and Absorber
+                                    option(value="growing") Growing
                                     option(value="fontawesome") Font Awesome
                                     option(value="hollowknight") Hollow Knight
                                     option(value="images") Multiple Images
+                                    option(value="infection") Infection
                                     option(value="multiplePolygonMasks") Multiple Polygon Masks
                                     option(value="nasa") NASA
                                     option(value="noconfig") No Config
@@ -72,6 +75,7 @@ html(lang="en")
                                     option(value="test") Test
                                     option(value="trail") Trails
                                     option(value="twinkle") Twinkle
+                                    option(value="vibrate") Vibrate
                                     option(value="virus") Virus
                                 .btn-group.input-group-append
                                     button#btnUpdate.btn.btn-primary.btn-xs(type="button") Reload Particles
@@ -87,7 +91,9 @@ html(lang="en")
                                     .btn-group
                                         button.btn.btn-primary.dropdown-toggle(type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false") Other
                                         .dropdown-menu
-                                            a.dropdown-item(href="/docs") API Documentation
+                                            a.dropdown-item(href="/docs" target="_blank") API Documentation
+                                            a.dropdown-item(href="/report.html" target="_blank") Size Report
+                                            a.dropdown-item(href="/coverage" target="_blank") Test Coverage
                                             .dropdown-divider
                                             a#export-image.dropdown-item(href="#") Export Image
                                             a#export-config.dropdown-item(href="#") Export Config
