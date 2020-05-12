@@ -120,7 +120,7 @@ Documentation and Development references [here](https://particles.matteobruni.it
 
 #### unpkg
 
-<https://unpkg.com/browse/tsparticles@1.12.10/dist/>
+<https://unpkg.com/tsparticles/>
 
 ---
 
