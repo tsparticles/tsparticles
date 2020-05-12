@@ -2,6 +2,9 @@ import type { Container } from "../../../Container";
 import { Constants } from "../../../../Utils/Constants";
 import { Utils } from "../../../../Utils/Utils";
 import { Circle } from "../../../../Utils/Circle";
+import { ColorUtils } from "../../../../Utils/ColorUtils";
+import { IRgb } from "../../../Interfaces/IRgb";
+import { IColor } from "../../../Interfaces/IColor";
 
 /**
  * Particle grab manager
@@ -32,13 +35,38 @@ export class Grabber {
                 const distance = Utils.getDistance(pos, mousePos);
 
                 if (distance <= container.retina.grabModeDistance) {
-                    const lineOpacity = interactivity.modes.grab.lineLinked.opacity;
+                    const grabLineOptions = interactivity.modes.grab.lineLinked;
+                    const lineOpacity = grabLineOptions.opacity;
                     const grabDistance = container.retina.grabModeDistance;
                     const opacityLine = lineOpacity - (distance * lineOpacity) / grabDistance;
 
                     if (opacityLine > 0) {
                         /* style */
-                        container.canvas.drawGrabLine(particle, opacityLine, mousePos);
+                        const optColor = grabLineOptions.color ?? particle.particlesOptions.lineLinked.color;
+
+                        if (!container.particles.grabLineColor) {
+                            container.particles.grabLineColor =
+                                (typeof optColor === "string" && optColor === Constants.randomColorValue) ||
+                                (optColor as IColor)?.value === Constants.randomColorValue ?
+                                    Constants.randomColorValue :
+                                    (typeof optColor === "string" ?
+                                        ColorUtils.stringToRgb(optColor) :
+                                        ColorUtils.colorToRgb(optColor));
+                        }
+
+                        let colorLine: IRgb;
+
+                        if (container.particles.grabLineColor === Constants.randomColorValue) {
+                            colorLine = ColorUtils.getRandomRgbColor();
+                        } else {
+                            colorLine = container.particles.grabLineColor as IRgb;
+                        }
+
+                        if (colorLine === undefined) {
+                            return;
+                        }
+
+                        container.canvas.drawGrabLine(particle, colorLine, opacityLine, mousePos);
                     }
                 }
             }

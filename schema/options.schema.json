@@ -506,6 +506,16 @@
         },
         "IGrabLineLinked": {
             "properties": {
+                "color": {
+                    "anyOf": [
+                        {
+                            "$ref": "#/definitions/IColor"
+                        },
+                        {
+                            "type": "string"
+                        }
+                    ]
+                },
                 "opacity": {
                     "type": "number"
                 }

@@ -232,34 +232,11 @@ export class Canvas {
             pos2);
     }
 
-    public drawGrabLine(particle: IParticle, opacity: number, mousePos: ICoordinates): void {
+    public drawGrabLine(particle: IParticle, lineColor: IRgb, opacity: number, mousePos: ICoordinates): void {
         const container = this.container;
-        const optColor = particle.particlesOptions.lineLinked.color;
-
-        let lineColor = container.particles.grabLineColor ||
-            (typeof optColor === "string" ? ColorUtils.stringToRgb(optColor) : ColorUtils.colorToRgb(optColor));
-
-        if (lineColor == Constants.randomColorValue) {
-            lineColor = ColorUtils.getRandomRgbColor();
-        }
-
-        container.particles.grabLineColor = lineColor;
-
         const ctx = container.canvas.context;
 
         if (!ctx) {
-            return;
-        }
-
-        let colorLine: IRgb;
-
-        if (container.particles.grabLineColor === Constants.randomColorValue) {
-            colorLine = ColorUtils.getRandomRgbColor();
-        } else {
-            colorLine = container.particles.grabLineColor as IRgb;
-        }
-
-        if (colorLine === undefined) {
             return;
         }
 
@@ -269,7 +246,7 @@ export class Canvas {
             particle.lineLinkedWidth ?? container.retina.lineLinkedWidth,
             beginPos,
             mousePos,
-            colorLine,
+            lineColor,
             opacity);
     }
 
