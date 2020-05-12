@@ -12,6 +12,7 @@ export class LineLinked implements ILineLinked {
     public opacity: number;
     public shadow: LineLinkedShadow;
     public width: number;
+    public warp: boolean;
 
     constructor() {
         this.blink = false;
@@ -22,6 +23,7 @@ export class LineLinked implements ILineLinked {
         this.opacity = 1;
         this.shadow = new LineLinkedShadow();
         this.width = 1;
+        this.warp = false;
     }
 
     public load(data?: RecursivePartial<ILineLinked>): void {
@@ -52,6 +54,10 @@ export class LineLinked implements ILineLinked {
 
             if (data.width !== undefined) {
                 this.width = data.width;
+            }
+
+            if (data.warp !== undefined) {
+                this.warp = data.warp;
             }
         }
     }

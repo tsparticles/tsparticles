@@ -143,6 +143,7 @@ export class Updater {
         const container = this.container;
         const particle = this.particle;
         const outMode = particle.particlesOptions.move.outMode;
+        const wrap = particle.particlesOptions.move.warp;
         const canvasSize = container.canvas.size;
 
         let newPos: IBounds;
@@ -189,17 +190,29 @@ export class Updater {
 
             if (nextBounds.left > canvasSize.width - particle.offset.x) {
                 particle.position.x = newPos.left;
-                particle.position.y = Math.random() * canvasSize.height;
+
+                if (!wrap) {
+                    particle.position.y = Math.random() * canvasSize.height;
+                }
             } else if (nextBounds.right < -particle.offset.x) {
                 particle.position.x = newPos.right;
-                particle.position.y = Math.random() * canvasSize.height;
+
+                if (!wrap) {
+                    particle.position.y = Math.random() * canvasSize.height;
+                }
             }
 
             if (nextBounds.top > canvasSize.height - particle.offset.y) {
-                particle.position.x = Math.random() * canvasSize.width;
+                if (!wrap) {
+                    particle.position.x = Math.random() * canvasSize.width;
+                }
+
                 particle.position.y = newPos.top;
             } else if (nextBounds.bottom < -particle.offset.y) {
-                particle.position.x = Math.random() * canvasSize.width;
+                if (!wrap) {
+                    particle.position.x = Math.random() * canvasSize.width;
+                }
+
                 particle.position.y = newPos.bottom;
             }
         }

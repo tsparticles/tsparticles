@@ -27,6 +27,7 @@ export interface IMove extends IOptionLoader<IMove> {
     out_mode: OutMode;
 
     outMode: OutMode;
+    warp: boolean;
     random: boolean;
     speed: number;
     straight: boolean;

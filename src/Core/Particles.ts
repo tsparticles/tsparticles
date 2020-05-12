@@ -12,7 +12,7 @@ import { Repulser } from "./Particle/Interactions/Mouse/Repulser";
 import { DivMode } from "../Enums/Modes/DivMode";
 import { Bubbler } from "./Particle/Interactions/Mouse/Bubbler";
 import { Connector } from "./Particle/Interactions/Mouse/Connector";
-import { QuadTree} from "../Utils/QuadTree";
+import { QuadTree } from "../Utils/QuadTree";
 import { DestroyType } from "../Enums/DestroyType";
 import { Point } from "../Utils/Point";
 import { Rectangle } from "../Utils/Rectangle";
@@ -167,7 +167,7 @@ export class Particles {
 
             const pos = particle.getPosition();
 
-            container.particles.quadTree.insert(new Point(pos.x, pos.y, particle));
+            this.quadTree.insert(new Point(pos.x, pos.y, particle));
         }
 
         for (const particle of particlesToDelete) {

@@ -203,6 +203,9 @@ export class Canvas {
             width,
             pos1,
             pos2,
+            p1.particlesOptions.lineLinked.distance,
+            container.canvas.size,
+            p1.particlesOptions.lineLinked.warp,
             options.backgroundMask.enable,
             colorLine,
             opacity,
@@ -277,14 +280,6 @@ export class Canvas {
             return;
         }
 
-        this.context.save();
-
-        for (const link of particle.links) {
-            this.drawLinkedLine(particle, link);
-        }
-
-        this.context.restore();
-
         CanvasUtils.drawParticle(
             this.container,
             this.context,
@@ -295,6 +290,14 @@ export class Canvas {
             radius,
             opacity,
             particle.particlesOptions.shadow);
+
+        this.context.save();
+
+        for (const link of particle.links) {
+            this.drawLinkedLine(particle, link);
+        }
+
+        this.context.restore();
     }
 
 

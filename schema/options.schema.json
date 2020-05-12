@@ -686,6 +686,9 @@
                 "shadow": {
                     "$ref": "#/definitions/ILineLinkedShadow"
                 },
+                "warp": {
+                    "type": "boolean"
+                },
                 "width": {
                     "type": "number"
                 }
@@ -804,6 +807,9 @@
                     "$ref": "#/definitions/ITrail"
                 },
                 "vibrate": {
+                    "type": "boolean"
+                },
+                "warp": {
                     "type": "boolean"
                 }
             },
@@ -1956,6 +1962,9 @@
                 "shadow": {
                     "$ref": "#/definitions/RecursivePartial<ILineLinkedShadow>"
                 },
+                "warp": {
+                    "type": "boolean"
+                },
                 "width": {
                     "type": "number"
                 }
@@ -2053,6 +2062,9 @@
                     "$ref": "#/definitions/RecursivePartial<ITrail>"
                 },
                 "vibrate": {
+                    "type": "boolean"
+                },
+                "warp": {
                     "type": "boolean"
                 }
             },

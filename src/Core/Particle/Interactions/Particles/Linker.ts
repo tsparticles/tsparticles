@@ -4,15 +4,23 @@ import { Constants } from "../../../../Utils/Constants";
 import type { Particle } from "../../../Particle";
 import { Utils } from "../../../../Utils/Utils";
 import { Circle } from "../../../../Utils/Circle";
+import { CircleWarp } from "../../../../Utils/CircleWarp";
 
 export class Linker {
     public static link(p1: Particle, container: Container, _delta: number): void {
-        const optOpacity = p1.particlesOptions.lineLinked.opacity;
+        const lineOptions = p1.particlesOptions.lineLinked;
+        const optOpacity = lineOptions.opacity;
         const optDistance = p1.lineLinkedDistance ?? container.retina.lineLinkedDistance;
+        const canvasSize = container.canvas.size;
+        const warp = lineOptions.warp;
         const pos1 = p1.getPosition();
 
         //const query = container.particles.spatialGrid.queryRadiusWithDistance(pos1, optDistance);
-        const query = container.particles.quadTree.query(new Circle(pos1.x, pos1.y, optDistance));
+        const range = warp ?
+            new CircleWarp(pos1.x, pos1.y, optDistance, canvasSize) :
+            new Circle(pos1.x, pos1.y, optDistance);
+
+        const query = container.particles.quadTree.query(range);
 
         //for (const { distance, p2 } of query) {
         for (const p2 of query) {
@@ -22,7 +30,40 @@ export class Linker {
 
             const pos2 = p2.getPosition();
 
-            const distance = Utils.getDistance(pos1, pos2);
+            let distance = Utils.getDistance(pos1, pos2);
+
+            if (warp) {
+                if (distance > optDistance) {
+                    const pos2NE = {
+                        x: pos2.x - canvasSize.width,
+                        y: pos2.y,
+                    };
+
+                    distance = Utils.getDistance(pos1, pos2NE);
+
+                    if (distance > optDistance) {
+                        const pos2SE = {
+                            x: pos2.x - canvasSize.width,
+                            y: pos2.y - canvasSize.height,
+                        };
+
+                        distance = Utils.getDistance(pos1, pos2SE);
+
+                        if (distance > optDistance) {
+                            const pos2SW = {
+                                x: pos2.x,
+                                y: pos2.y - canvasSize.height,
+                            };
+
+                            distance = Utils.getDistance(pos1, pos2SW);
+                        }
+                    }
+                }
+            }
+
+            if (distance > optDistance) {
+                return;
+            }
 
             /* draw a line between p1 and p2 */
             const opacityLine = optOpacity - (distance * optOpacity) / optDistance;

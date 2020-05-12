@@ -10,5 +10,6 @@ export interface ILineLinked extends IOptionLoader<ILineLinked> {
     enable: boolean;
     opacity: number;
     shadow: ILineLinkedShadow;
+    warp: boolean;
     width: number;
 }

@@ -7,6 +7,7 @@ import type { IParticle } from "../Core/Interfaces/IParticle";
 import type { IShadow } from "../Options/Interfaces/Particles/IShadow";
 import type { Container } from "../Core/Container";
 import type { IContainerPlugin } from "../Core/Interfaces/IContainerPlugin";
+import { Utils } from "./Utils";
 
 export class CanvasUtils {
     public static paintBase(context: CanvasRenderingContext2D,
@@ -26,6 +27,9 @@ export class CanvasUtils {
                                  width: number,
                                  begin: ICoordinates,
                                  end: ICoordinates,
+                                 maxDistance: number,
+                                 canvasSize: IDimension,
+                                 warp: boolean,
                                  backgroundMask: boolean,
                                  colorLine: IRgb,
                                  opacity: number,
@@ -33,8 +37,50 @@ export class CanvasUtils {
         // this.ctx.lineCap = "round"; /* performance issue */
         /* path */
         context.beginPath();
-        context.moveTo(begin.x, begin.y);
-        context.lineTo(end.x, end.y);
+
+        let distance = Utils.getDistance(begin, end);
+
+        if (distance <= maxDistance) {
+            context.moveTo(begin.x, begin.y);
+            context.lineTo(end.x, end.y);
+        } else if (warp) {
+            const endNE = {
+                x: end.x - canvasSize.width,
+                y: end.y,
+            };
+
+            distance = Utils.getDistance(begin, endNE);
+
+            if (distance <= maxDistance) {
+                const dx = begin.x - (end.x - canvasSize.width);
+                const dy = begin.y - end.y;
+                const yi = begin.y - ((dy / dx) * begin.x);
+
+                context.moveTo(begin.x, begin.y);
+                context.lineTo(0, yi);
+                context.moveTo(end.x, end.y);
+                context.lineTo(canvasSize.width, yi);
+            } else {
+                const endSW = {
+                    x: end.x,
+                    y: end.y - canvasSize.height,
+                };
+
+                distance = Utils.getDistance(begin, endSW);
+
+                if (distance <= maxDistance) {
+                    const dx = begin.x - end.x;
+                    const dy = begin.y - (end.y - canvasSize.height);
+                    const yi = begin.y - ((dy / dx) * begin.x);
+                    const xi = -yi / (dy / dx);
+
+                    context.moveTo(begin.x, begin.y);
+                    context.lineTo(xi, 0);
+                    context.moveTo(end.x, end.y);
+                    context.lineTo(xi, canvasSize.height);
+                }
+            }
+        }
         context.closePath();
 
         context.lineWidth = width;
