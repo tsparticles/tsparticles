@@ -169,7 +169,7 @@ describe('ColorUtils', () => {
 
     describe('getStyleFromColor', () => {
         it('IRgb to rgba string', () => {
-            expect(ColorUtils.getStyleFromColor(red)).to.equal("rgba(255, 0, 0, 1)");
+            expect(ColorUtils.getStyleFromRgb(red)).to.equal("rgba(255, 0, 0, 1)");
         });
     });
 });

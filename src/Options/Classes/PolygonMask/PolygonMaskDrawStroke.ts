@@ -1,6 +1,6 @@
 import type { IPolygonMaskDrawStroke } from "../../Interfaces/PolygonMask/IPolygonMaskDrawStroke";
 import type { RecursivePartial } from "../../../Types/RecursivePartial";
-import { OptionsColor } from "../Particles/OptionsColor";
+import { OptionsColor } from "../OptionsColor";
 import { ColorUtils } from "../../../Utils/ColorUtils";
 
 export class PolygonMaskDrawStroke implements IPolygonMaskDrawStroke {

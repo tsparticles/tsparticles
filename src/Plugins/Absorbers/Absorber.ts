@@ -98,7 +98,7 @@ export class Absorber {
         context.beginPath();
         context.arc(0, 0, this.size, 0, Math.PI * 2, false);
         context.closePath();
-        context.fillStyle = ColorUtils.getStyleFromColor(this.color, this.opacity);
+        context.fillStyle = ColorUtils.getStyleFromRgb(this.color, this.opacity);
         context.fill();
     }
 

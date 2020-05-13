@@ -1,6 +1,6 @@
 import type { IGrabLineLinked } from "../../../Interfaces/Interactivity/Modes/IGrabLineLinked";
 import type { RecursivePartial } from "../../../../Types/RecursivePartial";
-import { OptionsColor } from "../../Particles/OptionsColor";
+import { OptionsColor } from "../../OptionsColor";
 
 export class GrabLineLinked implements IGrabLineLinked {
     public opacity: number;

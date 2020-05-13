@@ -68,6 +68,49 @@
             },
             "type": "object"
         },
+        "IAnimatableColor": {
+            "properties": {
+                "animation": {
+                    "$ref": "#/definitions/IColorAnimation"
+                },
+                "value": {
+                    "anyOf": [
+                        {
+                            "$ref": "#/definitions/IRgb"
+                        },
+                        {
+                            "$ref": "#/definitions/IHsl"
+                        },
+                        {
+                            "$ref": "#/definitions/IValueColor"
+                        },
+                        {
+                            "items": {
+                                "anyOf": [
+                                    {
+                                        "$ref": "#/definitions/IRgb"
+                                    },
+                                    {
+                                        "$ref": "#/definitions/IHsl"
+                                    },
+                                    {
+                                        "$ref": "#/definitions/IValueColor"
+                                    },
+                                    {
+                                        "type": "string"
+                                    }
+                                ]
+                            },
+                            "type": "array"
+                        },
+                        {
+                            "type": "string"
+                        }
+                    ]
+                }
+            },
+            "type": "object"
+        },
         "IAttract": {
             "properties": {
                 "enable": {
@@ -286,12 +329,6 @@
                 "value": {
                     "anyOf": [
                         {
-                            "items": {
-                                "type": "string"
-                            },
-                            "type": "array"
-                        },
-                        {
                             "$ref": "#/definitions/IRgb"
                         },
                         {
@@ -301,9 +338,42 @@
                             "$ref": "#/definitions/IValueColor"
                         },
                         {
+                            "items": {
+                                "anyOf": [
+                                    {
+                                        "$ref": "#/definitions/IRgb"
+                                    },
+                                    {
+                                        "$ref": "#/definitions/IHsl"
+                                    },
+                                    {
+                                        "$ref": "#/definitions/IValueColor"
+                                    },
+                                    {
+                                        "type": "string"
+                                    }
+                                ]
+                            },
+                            "type": "array"
+                        },
+                        {
                             "type": "string"
                         }
                     ]
+                }
+            },
+            "type": "object"
+        },
+        "IColorAnimation": {
+            "properties": {
+                "enable": {
+                    "type": "boolean"
+                },
+                "speed": {
+                    "type": "number"
+                },
+                "sync": {
+                    "type": "boolean"
                 }
             },
             "type": "object"
@@ -664,7 +734,7 @@
                 "color": {
                     "anyOf": [
                         {
-                            "$ref": "#/definitions/IColor"
+                            "$ref": "#/definitions/IAnimatableColor"
                         },
                         {
                             "type": "string"
@@ -948,17 +1018,7 @@
                     "$ref": "#/definitions/ICollisions"
                 },
                 "color": {
-                    "anyOf": [
-                        {
-                            "$ref": "#/definitions/IColor"
-                        },
-                        {
-                            "items": {
-                                "$ref": "#/definitions/IColor"
-                            },
-                            "type": "array"
-                        }
-                    ]
+                    "$ref": "#/definitions/IAnimatableColor"
                 },
                 "lineLinked": {
                     "$ref": "#/definitions/ILineLinked"
@@ -1590,6 +1650,9 @@
         "RecursivePartial<(data?:RecursivePartial<ICollisions>|undefined)=>void>": {
             "type": "object"
         },
+        "RecursivePartial<(data?:RecursivePartial<IColorAnimation>|undefined)=>void>": {
+            "type": "object"
+        },
         "RecursivePartial<(data?:RecursivePartial<IDensity>|undefined)=>void>": {
             "type": "object"
         },
@@ -1624,6 +1687,9 @@
             "type": "object"
         },
         "RecursivePartial<(data?:RecursivePartial<IOpacityAnimation>|undefined)=>void>": {
+            "type": "object"
+        },
+        "RecursivePartial<(data?:RecursivePartial<IOptionsColor>|undefined)=>void>": {
             "type": "object"
         },
         "RecursivePartial<(data?:RecursivePartial<IParticles>|undefined)=>void>": {
@@ -1663,6 +1729,52 @@
             "type": "object"
         },
         "RecursivePartial<(data?:RecursivePartial<ITwinkleValues>|undefined)=>void>": {
+            "type": "object"
+        },
+        "RecursivePartial<IAnimatableColor>": {
+            "properties": {
+                "animation": {
+                    "$ref": "#/definitions/RecursivePartial<IColorAnimation>"
+                },
+                "load": {
+                    "$ref": "#/definitions/RecursivePartial<(data?:RecursivePartial<IOptionsColor>|undefined)=>void>"
+                },
+                "value": {
+                    "anyOf": [
+                        {
+                            "$ref": "#/definitions/IRgb"
+                        },
+                        {
+                            "$ref": "#/definitions/IHsl"
+                        },
+                        {
+                            "$ref": "#/definitions/IValueColor"
+                        },
+                        {
+                            "items": {
+                                "anyOf": [
+                                    {
+                                        "$ref": "#/definitions/IRgb"
+                                    },
+                                    {
+                                        "$ref": "#/definitions/IHsl"
+                                    },
+                                    {
+                                        "$ref": "#/definitions/IValueColor"
+                                    },
+                                    {
+                                        "type": "string"
+                                    }
+                                ]
+                            },
+                            "type": "array"
+                        },
+                        {
+                            "type": "string"
+                        }
+                    ]
+                }
+            },
             "type": "object"
         },
         "RecursivePartial<IAttract>": {
@@ -1780,56 +1892,19 @@
             },
             "type": "object"
         },
-        "RecursivePartial<IColor>": {
+        "RecursivePartial<IColorAnimation>": {
             "properties": {
-                "value": {
-                    "anyOf": [
-                        {
-                            "items": {
-                                "type": "string"
-                            },
-                            "type": "array"
-                        },
-                        {
-                            "$ref": "#/definitions/IRgb"
-                        },
-                        {
-                            "$ref": "#/definitions/IHsl"
-                        },
-                        {
-                            "$ref": "#/definitions/IValueColor"
-                        },
-                        {
-                            "type": "string"
-                        }
-                    ]
-                }
-            },
-            "type": "object"
-        },
-        "RecursivePartial<IColor>_1": {
-            "properties": {
-                "value": {
-                    "anyOf": [
-                        {
-                            "items": {
-                                "type": "string"
-                            },
-                            "type": "array"
-                        },
-                        {
-                            "$ref": "#/definitions/IRgb"
-                        },
-                        {
-                            "$ref": "#/definitions/IHsl"
-                        },
-                        {
-                            "$ref": "#/definitions/IValueColor"
-                        },
-                        {
-                            "type": "string"
-                        }
-                    ]
+                "enable": {
+                    "type": "boolean"
+                },
+                "load": {
+                    "$ref": "#/definitions/RecursivePartial<(data?:RecursivePartial<IColorAnimation>|undefined)=>void>"
+                },
+                "speed": {
+                    "type": "number"
+                },
+                "sync": {
+                    "type": "boolean"
                 }
             },
             "type": "object"
@@ -1937,7 +2012,7 @@
                 "color": {
                     "anyOf": [
                         {
-                            "$ref": "#/definitions/IColor"
+                            "$ref": "#/definitions/IAnimatableColor"
                         },
                         {
                             "type": "string"
@@ -2199,17 +2274,7 @@
                     "$ref": "#/definitions/RecursivePartial<ICollisions>"
                 },
                 "color": {
-                    "anyOf": [
-                        {
-                            "$ref": "#/definitions/RecursivePartial<IColor>"
-                        },
-                        {
-                            "items": {
-                                "$ref": "#/definitions/RecursivePartial<IColor>_1"
-                            },
-                            "type": "array"
-                        }
-                    ]
+                    "$ref": "#/definitions/RecursivePartial<IAnimatableColor>"
                 },
                 "lineLinked": {
                     "$ref": "#/definitions/RecursivePartial<ILineLinked>"

@@ -1,5 +1,4 @@
 import type { IShape } from "./Shape/IShape";
-import type { IColor } from "../../../Core/Interfaces/IColor";
 import type { ILineLinked } from "./LineLinked/ILineLinked";
 import type { IMove } from "./IMove";
 import type { IParticlesNumber } from "./IParticlesNumber";
@@ -12,10 +11,11 @@ import type { SingleOrMultiple } from "../../../Types/SingleOrMultiple";
 import type { IStroke } from "./IStroke";
 import type { ICollisions } from "./ICollisions";
 import type { ITwinkle } from "./Twinkle/ITwinkle";
+import type { IAnimatableColor } from "./IAnimatableColor";
 
 export interface IParticles extends IOptionLoader<IParticles> {
     collisions: ICollisions;
-    color: SingleOrMultiple<IColor>;
+    color: IAnimatableColor;
 
     /**
      * @deprecated use the new lineLinked instead

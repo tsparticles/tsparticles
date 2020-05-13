@@ -1,11 +1,12 @@
-import type { IOptionsColor } from "../../Interfaces/Particles/IOptionsColor";
-import type { IValueColor } from "../../../Core/Interfaces/IValueColor";
-import type { RecursivePartial } from "../../../Types/RecursivePartial";
-import type { IRgb } from "../../../Core/Interfaces/IRgb";
-import type { IHsl } from "../../../Core/Interfaces/IHsl";
+import type { IOptionsColor } from "../Interfaces/IOptionsColor";
+import type { IValueColor } from "../../Core/Interfaces/IValueColor";
+import type { RecursivePartial } from "../../Types/RecursivePartial";
+import type { IRgb } from "../../Core/Interfaces/IRgb";
+import type { IHsl } from "../../Core/Interfaces/IHsl";
+import { SingleOrMultiple } from "../../Types/SingleOrMultiple";
 
 export class OptionsColor implements IOptionsColor {
-    public value: string | IValueColor | IRgb | IHsl | string[];
+    public value: SingleOrMultiple<string | IValueColor | IRgb | IHsl>;
 
     constructor() {
         this.value = "#fff";

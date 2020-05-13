@@ -29,7 +29,7 @@ export class ColorUtils {
             if (color.value instanceof Array) {
                 const colorSelected = Utils.itemFromArray(color.value);
 
-                res = ColorUtils.stringToRgb(colorSelected);
+                res = ColorUtils.colorToRgb({ value: colorSelected });
             } else {
                 const colorValue = color.value as IValueColor;
                 const rgbColor = colorValue.rgb ?? (color.value as IRgb);
@@ -44,6 +44,57 @@ export class ColorUtils {
                     }
                 }
             }
+        }
+
+        return res;
+    }
+
+    /**
+     * Gets the particles color
+     * @param color the input color to convert in [[IHsl]] object
+     */
+    public static colorToHsl(color: IColor): IHsl | undefined {
+        const rgb = this.colorToRgb(color);
+        return rgb !== undefined ? this.rgbToHsl(rgb) : rgb;
+    }
+
+    public static rgbToHsl(color: IRgb) {
+        const r1 = color.r / 255;
+        const g1 = color.g / 255;
+        const b1 = color.b / 255;
+
+        const maxColor = Math.max(r1, g1, b1);
+        const minColor = Math.min(r1, g1, b1);
+        //Calculate L:
+        const res = {
+            h: 0,
+            l: (maxColor + minColor) / 2,
+            s: 0
+        };
+
+        if (maxColor != minColor) {
+            //Calculate S:
+            if (res.l < 0.5) {
+                res.s = (maxColor - minColor) / (maxColor + minColor);
+            } else {
+                res.s = (maxColor - minColor) / (2.0 - maxColor - minColor);
+            }
+            //Calculate H:
+            if (r1 == maxColor) {
+                res.h = (g1 - b1) / (maxColor - minColor);
+            } else if (g1 == maxColor) {
+                res.h = 2.0 + (b1 - r1) / (maxColor - minColor);
+            } else {
+                res.h = 4.0 + (r1 - g1) / (maxColor - minColor);
+            }
+        }
+
+        res.l *= 100;
+        res.s *= 100;
+        res.h *= 60;
+
+        if (res.h < 0) {
+            res.h += 360;
         }
 
         return res;
@@ -128,17 +179,39 @@ export class ColorUtils {
      * @param color the [[IRgb]] color to convert
      * @param opacity the opacity to apply to color
      */
-    public static getStyleFromColor(color: IRgb, opacity?: number): string {
+    public static getStyleFromRgb(color: IRgb, opacity?: number): string {
         const opacityValue = opacity ?? 1;
 
         return `rgba(${color.r}, ${color.g}, ${color.b}, ${opacityValue})`;
     }
 
-    public static mix(color1: IRgb, color2: IRgb, size1: number, size2: number): IRgb {
+    /**
+     * Prepares a hsla() css function from a [[IHsl]] object
+     * @param color the [[IHsl]] color to convert
+     * @param opacity the opacity to apply to color
+     */
+    public static getStyleFromHsl(color: IHsl, opacity?: number): string {
+        const opacityValue = opacity ?? 1;
+
+        return `hsla(${color.h}, ${color.s}, ${color.l}, ${opacityValue})`;
+    }
+
+    public static mix(color1: IRgb | IHsl, color2: IRgb | IHsl, size1: number, size2: number): IRgb {
+        let rgb1 = color1 as IRgb;
+        let rgb2 = color2 as IRgb;
+
+        if (rgb1.r === undefined) {
+            rgb1 = this.hslToRgb(color1 as IHsl);
+        }
+
+        if (rgb2.r === undefined) {
+            rgb2 = this.hslToRgb(color2 as IHsl);
+        }
+
         return {
-            b: Utils.mix(color1.b, color2.b, size1, size2),
-            g: Utils.mix(color1.g, color2.g, size1, size2),
-            r: Utils.mix(color1.r, color2.r, size1, size2),
+            b: Utils.mix(rgb1.b, rgb2.b, size1, size2),
+            g: Utils.mix(rgb1.g, rgb2.g, size1, size2),
+            r: Utils.mix(rgb1.r, rgb2.r, size1, size2),
         };
     }
 

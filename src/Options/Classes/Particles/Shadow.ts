@@ -1,7 +1,7 @@
 import type { IShadow } from "../../Interfaces/Particles/IShadow";
 import type { ICoordinates } from "../../../Core/Interfaces/ICoordinates";
 import type { RecursivePartial } from "../../../Types/RecursivePartial";
-import { OptionsColor } from "./OptionsColor";
+import { OptionsColor } from "../OptionsColor";
 
 export class Shadow implements IShadow {
     public blur: number;

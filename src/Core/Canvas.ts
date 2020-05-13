@@ -117,7 +117,7 @@ export class Canvas {
 
         if (this.context) {
             if (options.backgroundMask.enable && options.backgroundMask.cover && this.coverColor) {
-                this.paintBase(ColorUtils.getStyleFromColor(this.coverColor));
+                this.paintBase(ColorUtils.getStyleFromRgb(this.coverColor));
             } else {
                 this.paintBase();
             }
@@ -135,7 +135,7 @@ export class Canvas {
         if (options.backgroundMask.enable) {
             this.paint();
         } else if (trail.enable && trail.length > 0 && this.trailFillColor) {
-            this.paintBase(ColorUtils.getStyleFromColor(this.trailFillColor, 1 / trail.length));
+            this.paintBase(ColorUtils.getStyleFromRgb(this.trailFillColor, 1 / trail.length));
         } else if (this.context) {
             CanvasUtils.clear(this.context, this.size);
         }
@@ -254,9 +254,12 @@ export class Canvas {
     }
 
     public drawParticle(particle: IParticle, delta: number): void {
+        if (particle.color === undefined) {
+            return;
+        }
+
         const container = this.container;
         const options = container.options;
-
         const twinkle = particle.particlesOptions.twinkle.particles;
         const twinkleFreq = twinkle.frequency;
         const twinkleColor = typeof twinkle.color === "string" ? { value: twinkle.color } : twinkle.color;
@@ -269,12 +272,11 @@ export class Canvas {
         const infectionStages = infection.stages
         const infectionColor = infectionStage !== undefined ? infectionStages[infectionStage].color : undefined;
         const infectionRgb = infectionColor ? ColorUtils.colorToRgb(infectionColor) : undefined;
-
         const color = twinkling && twinkleRgb !== undefined ?
             twinkleRgb :
-            infectionRgb ?? particle.bubble.color ?? particle.color;
+            infectionRgb ?? particle.bubble.color ?? ColorUtils.hslToRgb(particle.color);
 
-        const colorValue = color !== undefined ? ColorUtils.getStyleFromColor(color, opacity) : undefined;
+        const colorValue = color !== undefined ? ColorUtils.getStyleFromRgb(color, opacity) : undefined;
 
         if (!this.context || !colorValue) {
             return;
@@ -343,7 +345,7 @@ export class Canvas {
             const color = ColorUtils.colorToRgb(background.color);
 
             if (color) {
-                elementStyle.backgroundColor = ColorUtils.getStyleFromColor(color, background.opacity);
+                elementStyle.backgroundColor = ColorUtils.getStyleFromRgb(color, background.opacity);
             }
         }
 

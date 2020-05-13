@@ -1,7 +1,8 @@
 import type { IValueColor } from "./IValueColor";
 import type { IRgb } from "./IRgb";
 import type { IHsl } from "./IHsl";
+import type { SingleOrMultiple } from "../../Types/SingleOrMultiple";
 
 export interface IColor {
-    value: IValueColor | IRgb | IHsl | string | string[];
+    value: SingleOrMultiple<IValueColor | IRgb | IHsl | string>;
 }

@@ -74,7 +74,7 @@ export class PolygonMask implements IContainerPlugin {
             }
 
             context.closePath();
-            context.strokeStyle = ColorUtils.getStyleFromColor(color);
+            context.strokeStyle = ColorUtils.getStyleFromRgb(color);
             context.lineWidth = stroke.width;
             context.stroke();
         }
@@ -91,7 +91,7 @@ export class PolygonMask implements IContainerPlugin {
             ColorUtils.colorToRgb(stroke.color);
 
         if (color) {
-            context.strokeStyle = ColorUtils.getStyleFromColor(color, stroke.opacity);
+            context.strokeStyle = ColorUtils.getStyleFromRgb(color, stroke.opacity);
             context.lineWidth = stroke.width;
             context.stroke(path);
         }

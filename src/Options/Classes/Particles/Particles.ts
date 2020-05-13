@@ -1,5 +1,4 @@
 import type { IParticles } from "../../Interfaces/Particles/IParticles";
-import { OptionsColor } from "./OptionsColor";
 import { LineLinked } from "./LineLinked/LineLinked";
 import { Move } from "./Move";
 import { ParticlesNumber } from "./ParticlesNumber";
@@ -13,6 +12,7 @@ import type { SingleOrMultiple } from "../../../Types/SingleOrMultiple";
 import { Stroke } from "./Stroke";
 import { Collisions } from "./Collisions";
 import { Twinkle } from "./Twinkle/Twinkle";
+import { AnimatableColor } from "./AnimatableColor";
 
 export class Particles implements IParticles {
     /**
@@ -33,7 +33,7 @@ export class Particles implements IParticles {
     }
 
     public collisions: Collisions;
-    public color: SingleOrMultiple<OptionsColor>;
+    public color: AnimatableColor;
     public lineLinked: LineLinked;
     public move: Move;
     public number: ParticlesNumber;
@@ -47,7 +47,7 @@ export class Particles implements IParticles {
 
     constructor() {
         this.collisions = new Collisions();
-        this.color = new OptionsColor();
+        this.color = new AnimatableColor();
         this.lineLinked = new LineLinked();
         this.move = new Move();
         this.number = new ParticlesNumber();
@@ -63,15 +63,7 @@ export class Particles implements IParticles {
     public load(data?: RecursivePartial<IParticles>): void {
         if (data !== undefined) {
             if (data.color !== undefined) {
-                if (data.color instanceof Array) {
-                    this.color = data.color.map((s) => OptionsColor.create(undefined, s));
-                } else {
-                    if (this.color instanceof Array) {
-                        this.color = new OptionsColor();
-                    }
-
-                    this.color = OptionsColor.create(this.color, data.color);
-                }
+                this.color = AnimatableColor.create(this.color, data.color);
             }
 
             const lineLinked = data.lineLinked ?? data.line_linked;

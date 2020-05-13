@@ -1,7 +1,7 @@
 import type { Container } from "./Container";
 import type { IVelocity } from "./Interfaces/IVelocity";
-import type { ISize } from "./Interfaces/ISize";
-import type { IOpacity } from "./Interfaces/IOpacity";
+import type { IParticleSizeAnimation } from "./Interfaces/IParticleSizeAnimation";
+import type { IParticleOpacityAnimation } from "./Interfaces/IParticleOpacityAnimation";
 import type { ICoordinates } from "./Interfaces/ICoordinates";
 import type { IParticleImage } from "./Interfaces/IParticleImage";
 import { ShapeType } from "../Enums/ShapeType";
@@ -28,6 +28,7 @@ import type { IImageShape } from "../Options/Interfaces/Particles/Shape/IImageSh
 import { RecursivePartial } from "../Types/RecursivePartial";
 import { Plugins } from "../Utils/Plugins";
 import type { ILink } from "./Interfaces/ILink";
+import type { IHsl } from "./Interfaces/IHsl";
 
 /**
  * The single particle object
@@ -42,7 +43,7 @@ export class Particle implements IParticle {
     public readonly direction: MoveDirection;
     public readonly fill: boolean;
     public readonly stroke: IStroke;
-    public readonly size: ISize;
+    public readonly size: IParticleSizeAnimation;
     public infectionStage?: number;
     public infectionTime?: number;
     public infectionDelay?: number;
@@ -50,10 +51,10 @@ export class Particle implements IParticle {
     public readonly initialPosition?: ICoordinates;
     public readonly position: ICoordinates;
     public readonly offset: ICoordinates;
-    public readonly color: IRgb | undefined;
+    public readonly color: IHsl | undefined;
     public readonly strokeColor: IRgb | undefined;
     public readonly shadowColor: IRgb | undefined;
-    public readonly opacity: IOpacity;
+    public readonly opacity: IParticleOpacityAnimation;
     public readonly velocity: IVelocity;
     public readonly shape: ShapeType | string;
     public readonly image?: IParticleImage;
@@ -130,6 +131,10 @@ export class Particle implements IParticle {
 
         if (overrideOptions !== undefined) {
             particlesOptions.load(overrideOptions);
+        }
+
+        if (this.shapeData?.particles !== undefined) {
+            particlesOptions.load(this.shapeData?.particles);
         }
 
         this.particlesOptions = particlesOptions;
@@ -221,11 +226,7 @@ export class Particle implements IParticle {
         }
 
         /* color */
-        if (color instanceof Array) {
-            this.color = ColorUtils.colorToRgb(Utils.itemFromArray(color));
-        } else {
-            this.color = ColorUtils.colorToRgb(color);
-        }
+        this.color = ColorUtils.colorToHsl(color);
 
         /* opacity */
         const randomOpacity = this.particlesOptions.opacity.random as IOpacityRandom;

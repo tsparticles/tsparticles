@@ -108,7 +108,7 @@ export class CanvasUtils {
             context.globalCompositeOperation = 'destination-out';
         }
 
-        context.strokeStyle = ColorUtils.getStyleFromColor(colorLine, opacity);
+        context.strokeStyle = ColorUtils.getStyleFromRgb(colorLine, opacity);
 
         if (shadow.enable) {
             const shadowColor = typeof shadow.color === "string" ?
@@ -117,7 +117,7 @@ export class CanvasUtils {
 
             if (shadowColor) {
                 context.shadowBlur = shadow.blur;
-                context.shadowColor = ColorUtils.getStyleFromColor(shadowColor);
+                context.shadowColor = ColorUtils.getStyleFromRgb(shadowColor);
             }
         }
 
@@ -156,9 +156,9 @@ export class CanvasUtils {
         const midRgb = ColorUtils.mix(p1.color, p2.color, p1.size.value, p2.size.value);
         const grad = context.createLinearGradient(sourcePos.x, sourcePos.y, destPos.x, destPos.y);
 
-        grad.addColorStop(0, ColorUtils.getStyleFromColor(p1.color, opacity));
-        grad.addColorStop(gradStop > 1 ? 1 : gradStop, ColorUtils.getStyleFromColor(midRgb, opacity));
-        grad.addColorStop(1, ColorUtils.getStyleFromColor(p2.color, opacity));
+        grad.addColorStop(0, ColorUtils.getStyleFromHsl(p1.color, opacity));
+        grad.addColorStop(gradStop > 1 ? 1 : gradStop, ColorUtils.getStyleFromRgb(midRgb, opacity));
+        grad.addColorStop(1, ColorUtils.getStyleFromHsl(p2.color, opacity));
 
         return grad;
     }
@@ -174,7 +174,7 @@ export class CanvasUtils {
         context.moveTo(begin.x, begin.y);
         context.lineTo(end.x, end.y);
         context.closePath();
-        context.strokeStyle = ColorUtils.getStyleFromColor(colorLine, opacity);
+        context.strokeStyle = ColorUtils.getStyleFromRgb(colorLine, opacity);
         context.lineWidth = width;
         context.stroke();
         context.restore();
@@ -207,7 +207,7 @@ export class CanvasUtils {
 
         if (shadow.enable && shadowColor) {
             context.shadowBlur = shadow.blur;
-            context.shadowColor = ColorUtils.getStyleFromColor(shadowColor);
+            context.shadowColor = ColorUtils.getStyleFromRgb(shadowColor);
             context.shadowOffsetX = shadow.offset.x;
             context.shadowOffsetY = shadow.offset.y;
         }
@@ -217,7 +217,7 @@ export class CanvasUtils {
         const stroke = particle.stroke;
 
         if (stroke.width > 0 && particle.strokeColor) {
-            context.strokeStyle = ColorUtils.getStyleFromColor(particle.strokeColor, particle.stroke.opacity);
+            context.strokeStyle = ColorUtils.getStyleFromRgb(particle.strokeColor, particle.stroke.opacity);
             context.lineWidth = stroke.width;
         }
 
