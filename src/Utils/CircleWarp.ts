@@ -55,66 +55,17 @@ export class CircleWarp extends Circle {
         const rect = range as Rectangle;
         const circle = range as Circle;
 
+        const newPos = {
+            x: range.position.x - this.canvasSize.width,
+            y: range.position.y - this.canvasSize.height,
+        };
+
         if (circle.radius !== undefined) {
-            const posNE = {
-                x: circle.position.x - this.canvasSize.width,
-                y: circle.position.y,
-            };
+            const biggerCircle = new Circle(newPos.x, newPos.y, circle.radius * 2);
 
-            const circleNE = new Circle(posNE.x, posNE.y, circle.radius);
-
-            if (super.intersects(circleNE)) {
-                return true;
-            }
-
-            const posSE = {
-                x: circle.position.x - this.canvasSize.width,
-                y: circle.position.y - this.canvasSize.height,
-            };
-
-            const circleSE = new Circle(posSE.x, posSE.y, circle.radius);
-
-            if (super.intersects(circleSE)) {
-                return true;
-            }
-
-            const posSW = {
-                x: circle.position.x,
-                y: circle.position.y - this.canvasSize.height,
-            };
-
-            const circleSW = new Circle(posSW.x, posSW.y, circle.radius);
-
-            return super.intersects(circleSW);
+            return super.intersects(biggerCircle);
         } else if (rect.size !== undefined) {
-            const posNE = {
-                x: circle.position.x - this.canvasSize.width,
-                y: circle.position.y,
-            };
-
-            const rectNE = new Rectangle(posNE.x, posNE.y, rect.size.width, rect.size.height);
-
-            if (super.intersects(rectNE)) {
-                return true;
-            }
-
-            const posSE = {
-                x: circle.position.x - this.canvasSize.width,
-                y: circle.position.y - this.canvasSize.height,
-            };
-
-            const rectSE = new Rectangle(posSE.x, posSE.y, rect.size.width, rect.size.height);
-
-            if (super.intersects(rectSE)) {
-                return true;
-            }
-
-            const posSW = {
-                x: circle.position.x,
-                y: circle.position.y - this.canvasSize.height,
-            };
-
-            const rectSW = new Rectangle(posSW.x, posSW.y, rect.size.width, rect.size.height);
+            const rectSW = new Rectangle(newPos.x, newPos.y, rect.size.width * 2, rect.size.height * 2);
 
             return super.intersects(rectSW);
         }
