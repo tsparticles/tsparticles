@@ -62,6 +62,7 @@ export class Particle implements IParticle {
     public readonly shapeData?: IShapeValues;
     public readonly bubble: IBubbleParticleData;
     public readonly noiseDelay: number;
+    public readonly colorVelocity: number;
     public lastNoiseTime: number;
     public lineLinkedDistance?: number;
     public lineLinkedWidth?: number;
@@ -132,8 +133,8 @@ export class Particle implements IParticle {
         if (overrideOptions !== undefined) {
             particlesOptions.load(overrideOptions);
         }
-		
-		if (this.shapeData?.particles !== undefined) {
+
+        if (this.shapeData?.particles !== undefined) {
             particlesOptions.load(this.shapeData?.particles);
         }
 
@@ -200,6 +201,16 @@ export class Particle implements IParticle {
             if (!this.particlesOptions.size.animation.sync) {
                 this.size.velocity = this.size.velocity * Math.random();
             }
+        }
+
+        if (this.particlesOptions.color.animation.enable) {
+            this.colorVelocity = this.particlesOptions.color.animation.speed / 100;
+
+            if (!this.particlesOptions.color.animation.sync) {
+                this.colorVelocity = this.colorVelocity * Math.random();
+            }
+        } else {
+            this.colorVelocity = 0;
         }
 
         if (this.particlesOptions.rotate.animation.enable) {

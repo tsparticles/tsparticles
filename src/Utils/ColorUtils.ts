@@ -119,9 +119,9 @@ export class ColorUtils {
     public static hslToRgb(hsl: IHsl): IRgb {
         const result: IRgb = { b: 0, g: 0, r: 0 };
         const hslPercent: IHsl = {
-            h: hsl.h > 1 ? hsl.h / 360 : hsl.h,
-            l: hsl.l > 1 ? hsl.l / 100 : hsl.l,
-            s: hsl.s > 1 ? hsl.s / 100 : hsl.s,
+            h: hsl.h / 360,
+            l: hsl.l / 100,
+            s: hsl.s / 100,
         };
 
         if (hslPercent.s === 0) {

@@ -46,6 +46,9 @@ export class Updater {
         /* change size */
         this.updateAngle(delta);
 
+        /* change color */
+        this.updateColor(delta);
+
         /* change particle position if it is out of canvas */
         this.fixOutOfCanvasPosition(delta);
 
@@ -135,6 +138,26 @@ export class Updater {
                         particle.angle += 360;
                     }
                     break;
+            }
+        }
+    }
+
+    private updateColor(delta: number): void {
+        const container = this.container;
+        const options = container.options;
+        const particle = this.particle;
+
+        if (particle.color === undefined) {
+            return;
+        }
+
+        const deltaFactor = options.fpsLimit > 0 ? (60 * delta) / 1000 : 3.6;
+
+        if (particle.particlesOptions.color.animation.enable) {
+            particle.color.h += (particle.colorVelocity || 0) * deltaFactor;
+
+            if (particle.color.h > 360) {
+                particle.color.h -= 360;
             }
         }
     }
