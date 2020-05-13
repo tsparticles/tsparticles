@@ -401,6 +401,12 @@ export class EventListeners {
                     }
                 }, options.interactivity.modes.repulse.duration * 1000);
                 break;
+            case ClickMode.pause:
+                if (container.getAnimationStatus()) {
+                    container.pause();
+                } else {
+                    container.play();
+                }
         }
 
         for (const id in container.plugins) {

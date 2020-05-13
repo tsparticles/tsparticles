@@ -5,4 +5,5 @@ export enum ClickMode {
     repulse = "repulse",
     emitter = "emitter",
     absorber = "absorber",
+    pause = "pause",
 }
