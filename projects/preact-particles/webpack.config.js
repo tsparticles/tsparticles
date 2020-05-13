@@ -47,17 +47,10 @@ const rules = [
 
 const getExternals = (target = 'cjs') => {
     const baseExternals = [
-        {
-            preact: {
-                commonjs: "preact",
-                commonjs2: "preact",
-                amd: "preact",
-                root: "Preact"
-            }
-        }
+        /[Pp]react/,
+        /[Pp]react\/compat/,
+        /ts[pP]articles/
     ];
-
-    baseExternals.push(/ts[pP]articles/);
 
     if (target === 'cjs') {
         baseExternals.push(/lodash/);

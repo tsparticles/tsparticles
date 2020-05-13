@@ -8,7 +8,7 @@
   "types": "index.d.ts",
   "scripts": {
     "compile": "webpack",
-    "compile:production": "cross-en NODE_ENV=production webpack"
+    "compile:production": "cross-env NODE_ENV=production webpack"
   },
   "repository": {
     "url": "https://github.com/matteobruni/preact-particles",
