@@ -95,7 +95,7 @@ export class CanvasUtils {
                         context.moveTo(begin.x, begin.y);
                         context.lineTo(xi, yi);
                         context.moveTo(end.x, end.y);
-                        context.lineTo(xi, yi);
+                        context.lineTo(xi + canvasSize.width, yi + canvasSize.height);
                     }
                 }
             }
