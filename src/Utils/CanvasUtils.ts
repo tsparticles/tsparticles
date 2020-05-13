@@ -78,25 +78,6 @@ export class CanvasUtils {
                     context.lineTo(xi, 0);
                     context.moveTo(end.x, end.y);
                     context.lineTo(xi, canvasSize.height);
-                } else {
-                    const endSE = {
-                        x: end.x - canvasSize.width,
-                        y: end.y - canvasSize.height,
-                    };
-
-                    distance = Utils.getDistance(begin, endSE);
-
-                    if (distance <= maxDistance) {
-                        const dx = begin.x - (end.x - canvasSize.width);
-                        const dy = begin.y - (end.y - canvasSize.height);
-                        const yi = begin.y - ((dy / dx) * begin.x);
-                        const xi = -yi / (dy / dx);
-
-                        context.moveTo(begin.x, begin.y);
-                        context.lineTo(xi, yi);
-                        context.moveTo(end.x, end.y);
-                        context.lineTo(xi, yi);
-                    }
                 }
             }
         }
