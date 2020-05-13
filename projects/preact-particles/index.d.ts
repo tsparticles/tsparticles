@@ -1,9 +1,9 @@
-// Type definitions for react-tsparticles v1.14.0
+// Type definitions for preact-particles v1.14.0
 // Project: https://github.com/matteobruni/react-tsparticles
 // Definitions by: Matteo Bruni <https://github.com/matteobruni>
 // Definitions: https://github.com/DefinitelyTyped/DefinitelyTyped
 
-/// <reference types="react" />
+/// <reference types="preact/compat" />
 import { PureComponent } from "preact/compat";
 import type { IOptions } from "tsparticles/dist/Interfaces/Options/IOptions";
 import { Container } from "tsparticles/dist/Classes/Container";

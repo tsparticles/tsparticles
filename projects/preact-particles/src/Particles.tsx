@@ -1,11 +1,11 @@
-import { PureComponent } from "preact/compat";
+import * as React from "preact/compat";
+import { Component } from "preact/compat";
+import isEqual from 'lodash/isEqual';
 import type { IOptions } from "tsparticles/dist/Interfaces/Options/IOptions";
 import { Container } from "tsparticles/dist/Classes/Container";
 import type { RecursivePartial } from "tsparticles/dist/Types/RecursivePartial";
 import { Options } from "tsparticles/dist/Classes/Options/Options";
-import { tsParticles } from "tsparticles";
-
-tsParticles.init();
+import { tsParticles } from "tsparticles/dist/index";
 
 export interface ParticlesProps {
     id: string;
@@ -15,7 +15,7 @@ export interface ParticlesProps {
     style: any;
     className?: string;
     canvasClassName?: string;
-    // container?: React.RefObject<Container>;
+    // particlesRef?: React.RefObject<Container>
 }
 
 export interface ParticlesState {
@@ -23,7 +23,7 @@ export interface ParticlesState {
     library?: Container;
 }
 
-export default class Particles extends PureComponent<ParticlesProps,
+export default class Particles extends Component<ParticlesProps,
     ParticlesState> {
     public static defaultProps: ParticlesProps = {
         width: "100%",
@@ -52,11 +52,12 @@ export default class Particles extends PureComponent<ParticlesProps,
 
         options.load(params);
 
+        tsParticles.dom();
         const container = new Container(tagId, options);
 
-        /* if (this.props.container) {
-            (this.props.container as React.MutableRefObject<Container>).current = container;
-        } */
+        // if (this.props.particlesRef) {
+        //    (this.props.particlesRef as React.MutableRefObject<Container>).current = container;
+        // }
 
         return container;
     }
@@ -101,7 +102,7 @@ export default class Particles extends PureComponent<ParticlesProps,
     }
 
     shouldComponentUpdate(nextProps: Readonly<ParticlesProps>) {
-        return true;
+        return !isEqual(nextProps, this.props);
     }
 
     componentDidUpdate() {

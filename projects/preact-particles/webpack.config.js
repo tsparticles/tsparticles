@@ -48,7 +48,7 @@ const rules = [
 const getExternals = (target = 'cjs') => {
     const baseExternals = [
         {
-            react: {
+            preact: {
                 commonjs: "preact",
                 commonjs2: "preact",
                 amd: "preact",
