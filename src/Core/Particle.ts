@@ -131,6 +131,10 @@ export class Particle implements IParticle {
         if (overrideOptions !== undefined) {
             particlesOptions.load(overrideOptions);
         }
+		
+		if (this.shapeData?.particles !== undefined) {
+            particlesOptions.load(this.shapeData?.particles);
+        }
 
         this.particlesOptions = particlesOptions;
 
