@@ -30,14 +30,14 @@ interface FontFaceSet {
     readonly status: FontFaceSetStatus;
     readonly ready: Promise<FontFaceSet>;
 
-    check(font: string, text?: string): Boolean;
+    check(font: string, text?: string): boolean;
 
-    load(font: string, text?: string): Promise<FontFace[]>
+    load(font: string, text?: string): Promise<FontFace[]>;
 }
 
 declare global {
     interface Document {
-        fonts: FontFaceSet
+        fonts: FontFaceSet;
     }
 }
 

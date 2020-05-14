@@ -1,5 +1,5 @@
 export interface IImage {
-    source: string
+    source: string;
     type: string;
     element?: HTMLImageElement;
 }

@@ -328,7 +328,7 @@ export class Particle implements IParticle {
         this.container.canvas.drawParticle(this, delta);
     }
 
-    public isOverlapping(): { collisionFound: boolean, iterations: number } {
+    public isOverlapping(): { collisionFound: boolean; iterations: number } {
         const container = this.container;
         const p1 = this;
 

@@ -169,7 +169,7 @@ export class Loader {
             console.error(`Error tsParticles - fetch status: ${response.status}`);
             console.error("Error tsParticles - File config not found");
         }
-    };
+    }
 
     /**
      * Loads the provided json with a GET request. The content will be used to create a [[Container]] object.
@@ -195,7 +195,7 @@ export class Loader {
             console.error(`Error tsParticles - fetch status: ${response.status}`);
             console.error("Error tsParticles - File config not found");
         }
-    };
+    }
 
     /**
      * Adds an additional click handler to all the loaded [[Container]] objects.

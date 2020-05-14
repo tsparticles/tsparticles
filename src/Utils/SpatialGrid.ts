@@ -1,7 +1,7 @@
-import type { ICoordinates } from "../Core/Interfaces/ICoordinates";
-import type { IDimension } from "../Core/Interfaces/IDimension";
-import { Utils } from "./Utils";
-import type { Particle } from "../Core/Particle";
+import type {ICoordinates} from "../Core/Interfaces/ICoordinates";
+import type {IDimension} from "../Core/Interfaces/IDimension";
+import {Utils} from "./Utils";
+import type {Particle} from "../Core/Particle";
 
 
 /* This class essentially works by interpreting all particles on the screen as a grid.
@@ -46,7 +46,7 @@ export class SpatialGrid {
         }
     }
 
-    public insert(particle: Particle) {
+    public insert(particle: Particle): void {
         const pos = particle.getPosition();
         const posIndex = this.index(pos);
 
@@ -76,7 +76,7 @@ export class SpatialGrid {
      */
     public queryRadius(position: ICoordinates, radius: number): Particle[] {
         const pos = this.index(position);
-        const rad = this.radius({ x: radius, y: radius } as ICoordinates);
+        const rad = this.radius({x: radius, y: radius} as ICoordinates);
         const items = this.select(this.indexOp(pos, '-', rad), this.indexOp(pos, '+', rad));
         const out = [];
 
@@ -97,11 +97,11 @@ export class SpatialGrid {
      * @param radius The radius around the position
      */
     public queryRadiusWithDistance(position: ICoordinates, radius: number): {
-        distance: number,
-        particle: Particle,
+        distance: number;
+        particle: Particle;
     }[] {
         const pos = this.index(position);
-        const rad = this.radius({ x: radius, y: radius });
+        const rad = this.radius({x: radius, y: radius});
         const items = this.select(this.indexOp(pos, '-', rad), this.indexOp(pos, '+', rad));
         const out = [];
 

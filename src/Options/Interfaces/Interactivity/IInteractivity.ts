@@ -9,7 +9,7 @@ export interface IInteractivity extends IOptionLoader<IInteractivity> {
      */
     detect_on: InteractivityDetect;
 
-    detectsOn: InteractivityDetect
+    detectsOn: InteractivityDetect;
     events: IEvents;
     modes: IModes;
 }

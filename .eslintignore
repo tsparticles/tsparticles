@@ -1,0 +1,12 @@
+.circleci
+.github
+.nyc_output
+coverage
+demo
+dist
+docs
+node_modules
+schema
+scripts
+tests
+typedoc

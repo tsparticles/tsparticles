@@ -68,7 +68,7 @@ export class QuadTree {
         if (!range.intersects(this.rectangle)) {
             return [];
         } else {
-            for (let p of this.points) {
+            for (const p of this.points) {
                 if (range.contains(p.position)) {
                     res.push(p.particle);
                 }

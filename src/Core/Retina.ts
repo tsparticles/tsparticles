@@ -53,7 +53,7 @@ export class Retina {
             this.isRetina = false;
         }
 
-        let ratio = this.pixelRatio;
+        const ratio = this.pixelRatio;
 
         if (container.canvas.element) {
             const element = container.canvas.element;
