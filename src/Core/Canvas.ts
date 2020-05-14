@@ -145,7 +145,54 @@ export class Canvas {
         return this.context?.isPointInPath(path, point.x, point.y) ?? false;
     }
 
-    public drawLinkedLine(p1: IParticle, link: ILink): void {
+    public drawLinkTriangle(p1: IParticle, link1: ILink, link2: ILink): void {
+        const container = this.container;
+        const options = container.options;
+        const p2 = link1.destination;
+        const p3 = link2.destination;
+        const triangleOptions = p1.particlesOptions.lineLinked.triangles;
+        const opacityTriangle = triangleOptions.opacity ?? ((link1.opacity + link2.opacity) / 2);
+        const pos1 = p1.getPosition();
+        const pos2 = p2.getPosition();
+        const pos3 = p3.getPosition();
+
+        const ctx = this.context;
+
+        if (!ctx) {
+            return;
+        }
+
+        const color = typeof triangleOptions.color === "string" ?
+            { value: triangleOptions.color } :
+            triangleOptions.color;
+        let colorTriangle = color !== undefined ? ColorUtils.colorToRgb(color) : undefined;
+
+        if (!colorTriangle) {
+            if (container.particles.lineLinkedColor === Constants.randomColorValue) {
+                colorTriangle = ColorUtils.getRandomRgbColor();
+            } else if (container.particles.lineLinkedColor == "mid" && p1.color && p2.color) {
+                const sourceColor = p1.color;
+                const destColor = p2.color;
+
+                colorTriangle = ColorUtils.mix(sourceColor, destColor, p1.size.value, p2.size.value);
+            } else {
+                colorTriangle = container.particles.lineLinkedColor as IRgb;
+            }
+        }
+
+        const width = p1.lineLinkedWidth ?? container.retina.lineLinkedWidth;
+
+        CanvasUtils.drawLinkTriangle(ctx,
+            width,
+            pos1,
+            pos2,
+            pos3,
+            options.backgroundMask.enable,
+            colorTriangle,
+            opacityTriangle);
+    }
+
+    public drawLinkLine(p1: IParticle, link: ILink): void {
         const container = this.container;
         const options = container.options;
         const p2 = link.destination;
@@ -199,7 +246,7 @@ export class Canvas {
 
         const width = p1.lineLinkedWidth ?? container.retina.lineLinkedWidth;
 
-        CanvasUtils.drawLinkedLine(ctx,
+        CanvasUtils.drawLinkLine(ctx,
             width,
             pos1,
             pos2,
@@ -296,7 +343,18 @@ export class Canvas {
         this.context.save();
 
         for (const link of particle.links) {
-            this.drawLinkedLine(particle, link);
+            if (particle.particlesOptions.lineLinked.triangles.enable) {
+                const links = particle.links.map(l => l.destination);
+                const vertices = link.destination.links.filter(t => links.indexOf(t.destination) >= 0)
+
+                if (vertices.length) {
+                    for (const vertice of vertices) {
+                        this.drawLinkTriangle(particle, link, vertice);
+                    }
+                }
+            }
+
+            this.drawLinkLine(particle, link);
         }
 
         this.context.restore();

@@ -2,6 +2,7 @@ import type { ILineLinked } from "../../../Interfaces/Particles/LineLinked/ILine
 import { LineLinkedShadow } from "./LineLinkedShadow";
 import type { RecursivePartial } from "../../../../Types/RecursivePartial";
 import { AnimatableColor } from "../AnimatableColor";
+import { LineLinkedTriangle } from "./LineLinkedTriangle";
 
 export class LineLinked implements ILineLinked {
     public blink: boolean;
@@ -11,6 +12,7 @@ export class LineLinked implements ILineLinked {
     public enable: boolean;
     public opacity: number;
     public shadow: LineLinkedShadow;
+    public triangles: LineLinkedTriangle;
     public width: number;
     public warp: boolean;
 
@@ -22,6 +24,7 @@ export class LineLinked implements ILineLinked {
         this.enable = false;
         this.opacity = 1;
         this.shadow = new LineLinkedShadow();
+        this.triangles = new LineLinkedTriangle();
         this.width = 1;
         this.warp = false;
     }
@@ -51,6 +54,7 @@ export class LineLinked implements ILineLinked {
             }
 
             this.shadow.load(data.shadow);
+            this.triangles.load(data.triangles);
 
             if (data.width !== undefined) {
                 this.width = data.width;

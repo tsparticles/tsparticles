@@ -756,6 +756,9 @@
                 "shadow": {
                     "$ref": "#/definitions/ILineLinkedShadow"
                 },
+                "triangles": {
+                    "$ref": "#/definitions/ILineLinkedTriangle"
+                },
                 "warp": {
                     "type": "boolean"
                 },
@@ -782,6 +785,27 @@
                 },
                 "enable": {
                     "type": "boolean"
+                }
+            },
+            "type": "object"
+        },
+        "ILineLinkedTriangle": {
+            "properties": {
+                "color": {
+                    "anyOf": [
+                        {
+                            "$ref": "#/definitions/IColor"
+                        },
+                        {
+                            "type": "string"
+                        }
+                    ]
+                },
+                "enable": {
+                    "type": "boolean"
+                },
+                "opacity": {
+                    "type": "number"
                 }
             },
             "type": "object"
@@ -1665,6 +1689,9 @@
         "RecursivePartial<(data?:RecursivePartial<ILineLinkedShadow>|undefined)=>void>": {
             "type": "object"
         },
+        "RecursivePartial<(data?:RecursivePartial<ILineLinkedTriangle>|undefined)=>void>": {
+            "type": "object"
+        },
         "RecursivePartial<(data?:RecursivePartial<IMove>|undefined)=>void>": {
             "type": "object"
         },
@@ -2037,6 +2064,9 @@
                 "shadow": {
                     "$ref": "#/definitions/RecursivePartial<ILineLinkedShadow>"
                 },
+                "triangles": {
+                    "$ref": "#/definitions/RecursivePartial<ILineLinkedTriangle>"
+                },
                 "warp": {
                     "type": "boolean"
                 },
@@ -2066,6 +2096,30 @@
                 },
                 "load": {
                     "$ref": "#/definitions/RecursivePartial<(data?:RecursivePartial<ILineLinkedShadow>|undefined)=>void>"
+                }
+            },
+            "type": "object"
+        },
+        "RecursivePartial<ILineLinkedTriangle>": {
+            "properties": {
+                "color": {
+                    "anyOf": [
+                        {
+                            "$ref": "#/definitions/IColor"
+                        },
+                        {
+                            "type": "string"
+                        }
+                    ]
+                },
+                "enable": {
+                    "type": "boolean"
+                },
+                "load": {
+                    "$ref": "#/definitions/RecursivePartial<(data?:RecursivePartial<ILineLinkedTriangle>|undefined)=>void>"
+                },
+                "opacity": {
+                    "type": "number"
                 }
             },
             "type": "object"
