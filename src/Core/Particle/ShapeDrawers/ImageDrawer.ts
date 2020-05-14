@@ -6,19 +6,19 @@ import type { IImageShape } from "../../../Options/Interfaces/Particles/Shape/II
 import type { IImage } from "../../Interfaces/IImage";
 import type { Container } from "../../Container";
 
-interface IContainerImage {
+interface ContainerImage {
     id: string;
     images: IImage[];
 }
 
 export class ImageDrawer implements IShapeDrawer {
-    public images: IContainerImage[];
+    public images: ContainerImage[];
 
     constructor() {
         this.images = [];
     }
 
-    public getImages(container: Container): IContainerImage {
+    public getImages(container: Container): ContainerImage {
         const containerImages = this.images.filter((t) => t.id == container.id);
 
         if (!containerImages.length) {

@@ -19,6 +19,7 @@ export class Move implements IMove {
      * @param value
      */
     set collisions(value: boolean) {
+        // deprecated
     }
 
     /**

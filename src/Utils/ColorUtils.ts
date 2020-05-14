@@ -1,11 +1,11 @@
-import type { IColor } from "../Core/Interfaces/IColor";
-import type { IRgb } from "../Core/Interfaces/IRgb";
-import type { IRgba } from "../Core/Interfaces/IRgba";
-import type { IHsl } from "../Core/Interfaces/IHsl";
-import type { IHsla } from "../Core/Interfaces/IHsla";
-import { Utils } from "./Utils";
-import { Constants } from "./Constants";
-import type { IValueColor } from "../Core/Interfaces/IValueColor";
+import type {IColor} from "../Core/Interfaces/IColor";
+import type {IRgb} from "../Core/Interfaces/IRgb";
+import type {IRgba} from "../Core/Interfaces/IRgba";
+import type {IHsl} from "../Core/Interfaces/IHsl";
+import type {IHsla} from "../Core/Interfaces/IHsla";
+import {Utils} from "./Utils";
+import {Constants} from "./Constants";
+import type {IValueColor} from "../Core/Interfaces/IValueColor";
 
 export class ColorUtils {
     /**
@@ -29,7 +29,7 @@ export class ColorUtils {
             if (color.value instanceof Array) {
                 const colorSelected = Utils.itemFromArray(color.value);
 
-                res = ColorUtils.colorToRgb({ value: colorSelected });
+                res = ColorUtils.colorToRgb({value: colorSelected});
             } else {
                 const colorValue = color.value as IValueColor;
                 const rgbColor = colorValue.rgb ?? (color.value as IRgb);
@@ -58,7 +58,7 @@ export class ColorUtils {
         return rgb !== undefined ? this.rgbToHsl(rgb) : rgb;
     }
 
-    public static rgbToHsl(color: IRgb) {
+    public static rgbToHsl(color: IRgb): IHsl {
         const r1 = color.r / 255;
         const g1 = color.g / 255;
         const b1 = color.b / 255;
@@ -117,7 +117,7 @@ export class ColorUtils {
      * @param hsl
      */
     public static hslToRgb(hsl: IHsl): IRgb {
-        const result: IRgb = { b: 0, g: 0, r: 0 };
+        const result: IRgb = {b: 0, g: 0, r: 0};
         const hslPercent: IHsl = {
             h: hsl.h / 360,
             l: hsl.l / 100,

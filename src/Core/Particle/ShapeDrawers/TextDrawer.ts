@@ -5,7 +5,7 @@ import type { ICharacterShape } from "../../../Options/Interfaces/Particles/Shap
 import { ShapeType } from "../../../Enums/ShapeType";
 import type { Container } from "../../Container";
 
-interface ITextParticle extends IParticle {
+interface TextParticle extends IParticle {
     text?: string;
 }
 
@@ -45,7 +45,7 @@ export class TextDrawer implements IShapeDrawer {
             return;
         }
 
-        const textParticle = particle as ITextParticle;
+        const textParticle = particle as TextParticle;
 
         if (textParticle.text === undefined) {
             if (textData instanceof Array) {

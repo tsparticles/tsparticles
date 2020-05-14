@@ -98,5 +98,6 @@ export class Retina {
     }
 
     public reset(): void {
+        // nothing to reset
     }
 }

@@ -8,7 +8,7 @@
     "lint:fix": "eslint ./src --ext .js,.jsx,.ts,.tsx --fix",
     "clear:dist": "rimraf -f dist",
     "clear:docs": "rimraf -f docs",
-    "slimbuild": "npm run clear:dist && npm run build:ts:es && webpack -p && npm run build:ts",
+    "slimbuild": "npm run clear:dist && npm run build:ts:es && npm run lint && webpack -p && npm run build:ts",
     "build": "npm run slimbuild && npm run build:schema && npm test && npm run build:docs",
     "build:ts:es": "tsc -b tsconfig.browser.json",
     "build:ts": "tsc",

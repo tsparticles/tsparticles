@@ -1,34 +1,34 @@
-import type { Container } from "./Container";
-import type { IVelocity } from "./Interfaces/IVelocity";
-import type { IParticleSizeAnimation } from "./Interfaces/IParticleSizeAnimation";
-import type { IParticleOpacityAnimation } from "./Interfaces/IParticleOpacityAnimation";
-import type { ICoordinates } from "./Interfaces/ICoordinates";
-import type { IParticleImage } from "./Interfaces/IParticleImage";
-import { ShapeType } from "../Enums/ShapeType";
-import { Updater } from "./Particle/Updater";
-import { Utils } from "../Utils/Utils";
-import { PolygonMaskType } from "../Enums/PolygonMaskType";
-import type { IRgb } from "./Interfaces/IRgb";
-import { RotateDirection } from "../Enums/RotateDirection";
-import type { IStroke } from "../Options/Interfaces/Particles/IStroke";
-import { ColorUtils } from "../Utils/ColorUtils";
-import type { IOpacityRandom } from "../Options/Interfaces/Particles/Opacity/IOpacityRandom";
-import type { IShapeValues } from "../Options/Interfaces/Particles/Shape/IShapeValues";
-import type { IBubbleParticleData } from "./Interfaces/IBubbleParticleData";
-import type { IParticle } from "./Interfaces/IParticle";
-import { MoveDirection } from "../Enums/MoveDirection";
-import type { IParticles } from "../Options/Interfaces/Particles/IParticles";
-import { Particles } from "../Options/Classes/Particles/Particles";
-import { SizeAnimationStatus } from "../Enums/SizeAnimationStatus";
-import { OpacityAnimationStatus } from "../Enums/OpacityAnimationStatus";
-import { Shape } from "../Options/Classes/Particles/Shape/Shape";
-import { StartValueType } from "../Enums/StartValueType";
-import { ImageDrawer } from "./Particle/ShapeDrawers/ImageDrawer";
-import type { IImageShape } from "../Options/Interfaces/Particles/Shape/IImageShape";
-import { RecursivePartial } from "../Types/RecursivePartial";
-import { Plugins } from "../Utils/Plugins";
-import type { ILink } from "./Interfaces/ILink";
-import type { IHsl } from "./Interfaces/IHsl";
+import type {Container} from "./Container";
+import type {IVelocity} from "./Interfaces/IVelocity";
+import type {IParticleSizeAnimation} from "./Interfaces/IParticleSizeAnimation";
+import type {IParticleOpacityAnimation} from "./Interfaces/IParticleOpacityAnimation";
+import type {ICoordinates} from "./Interfaces/ICoordinates";
+import type {IParticleImage} from "./Interfaces/IParticleImage";
+import {ShapeType} from "../Enums/ShapeType";
+import {Updater} from "./Particle/Updater";
+import {Utils} from "../Utils/Utils";
+import {PolygonMaskType} from "../Enums/PolygonMaskType";
+import type {IRgb} from "./Interfaces/IRgb";
+import {RotateDirection} from "../Enums/RotateDirection";
+import type {IStroke} from "../Options/Interfaces/Particles/IStroke";
+import {ColorUtils} from "../Utils/ColorUtils";
+import type {IOpacityRandom} from "../Options/Interfaces/Particles/Opacity/IOpacityRandom";
+import type {IShapeValues} from "../Options/Interfaces/Particles/Shape/IShapeValues";
+import type {IBubbleParticleData} from "./Interfaces/IBubbleParticleData";
+import type {IParticle} from "./Interfaces/IParticle";
+import {MoveDirection} from "../Enums/MoveDirection";
+import type {IParticles} from "../Options/Interfaces/Particles/IParticles";
+import {Particles} from "../Options/Classes/Particles/Particles";
+import {SizeAnimationStatus} from "../Enums/SizeAnimationStatus";
+import {OpacityAnimationStatus} from "../Enums/OpacityAnimationStatus";
+import {Shape} from "../Options/Classes/Particles/Shape/Shape";
+import {StartValueType} from "../Enums/StartValueType";
+import {ImageDrawer} from "./Particle/ShapeDrawers/ImageDrawer";
+import type {IImageShape} from "../Options/Interfaces/Particles/Shape/IImageShape";
+import {RecursivePartial} from "../Types/RecursivePartial";
+import {Plugins} from "../Utils/Plugins";
+import type {ILink} from "./Interfaces/ILink";
+import type {IHsl} from "./Interfaces/IHsl";
 
 /**
  * The single particle object
@@ -330,19 +330,18 @@ export class Particle implements IParticle {
 
     public isOverlapping(): { collisionFound: boolean; iterations: number } {
         const container = this.container;
-        const p1 = this;
 
         let collisionFound = false;
         let iterations = 0;
 
-        const pos1 = p1.getPosition();
+        const pos1 = this.getPosition();
 
-        for (const p2 of container.particles.array.filter((t) => t != p1)) {
+        for (const p2 of container.particles.array.filter((t) => t != this)) {
             iterations++;
             const pos2 = p2.getPosition();
             const dist = Utils.getDistance(pos1, pos2);
 
-            if (dist <= p1.size.value + p2.size.value) {
+            if (dist <= this.size.value + p2.size.value) {
                 collisionFound = true;
                 break;
             }
@@ -356,17 +355,16 @@ export class Particle implements IParticle {
 
     public checkOverlap(position?: ICoordinates): void {
         const container = this.container;
-        const p = this;
-        const overlapResult = p.isOverlapping();
+        const overlapResult = this.isOverlapping();
 
         if (overlapResult.iterations >= container.particles.count) {
             // too many particles, removing from the current
             container.particles.remove(this);
         } else if (overlapResult.collisionFound) {
-            p.position.x = position ? position.x : Math.random() * container.canvas.size.width;
-            p.position.y = position ? position.y : Math.random() * container.canvas.size.height;
+            this.position.x = position ? position.x : Math.random() * container.canvas.size.width;
+            this.position.y = position ? position.y : Math.random() * container.canvas.size.height;
 
-            p.checkOverlap();
+            this.checkOverlap();
         }
     }
 
@@ -491,7 +489,7 @@ export class Particle implements IParticle {
             }
         }
 
-        const pos = { x: 0, y: 0 };
+        const pos = {x: 0, y: 0};
 
         pos.x = position ? position.x : Math.random() * container.canvas.size.width;
         pos.y = position ? position.y : Math.random() * container.canvas.size.height;

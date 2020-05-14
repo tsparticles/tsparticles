@@ -66,6 +66,7 @@ export class Shape implements IShape {
      * @deprecated this property was moved to particles section
      */
     set stroke(_value: SingleOrMultiple<Stroke>) {
+        // deprecated
     }
 
     /**

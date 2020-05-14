@@ -1,13 +1,13 @@
-import type { IDimension } from "../Core/Interfaces/IDimension";
-import type { ICoordinates } from "../Core/Interfaces/ICoordinates";
-import type { IRgb } from "../Core/Interfaces/IRgb";
-import type { ILineLinkedShadow } from "../Options/Interfaces/Particles/LineLinked/ILineLinkedShadow";
-import { ColorUtils } from "./ColorUtils";
-import type { IParticle } from "../Core/Interfaces/IParticle";
-import type { IShadow } from "../Options/Interfaces/Particles/IShadow";
-import type { Container } from "../Core/Container";
-import type { IContainerPlugin } from "../Core/Interfaces/IContainerPlugin";
-import { Utils } from "./Utils";
+import type {IDimension} from "../Core/Interfaces/IDimension";
+import type {ICoordinates} from "../Core/Interfaces/ICoordinates";
+import type {IRgb} from "../Core/Interfaces/IRgb";
+import type {ILineLinkedShadow} from "../Options/Interfaces/Particles/LineLinked/ILineLinkedShadow";
+import {ColorUtils} from "./ColorUtils";
+import type {IParticle} from "../Core/Interfaces/IParticle";
+import type {IShadow} from "../Options/Interfaces/Particles/IShadow";
+import type {Container} from "../Core/Container";
+import type {IContainerPlugin} from "../Core/Interfaces/IContainerPlugin";
+import {Utils} from "./Utils";
 
 export class CanvasUtils {
     public static paintBase(context: CanvasRenderingContext2D,
@@ -36,13 +36,11 @@ export class CanvasUtils {
                                  shadow: ILineLinkedShadow): void {
         // this.ctx.lineCap = "round"; /* performance issue */
         /* path */
-        context.beginPath();
 
         let distance = Utils.getDistance(begin, end);
 
         if (distance <= maxDistance) {
-            context.moveTo(begin.x, begin.y);
-            context.lineTo(end.x, end.y);
+            this.drawLine(context, begin, end);
         } else if (warp) {
             const endNE = {
                 x: end.x - canvasSize.width,
@@ -56,10 +54,8 @@ export class CanvasUtils {
                 const dy = begin.y - end.y;
                 const yi = begin.y - ((dy / dx) * begin.x);
 
-                context.moveTo(begin.x, begin.y);
-                context.lineTo(0, yi);
-                context.moveTo(end.x, end.y);
-                context.lineTo(canvasSize.width, yi);
+                this.drawLine(context, begin, {x: 0, y: yi});
+                this.drawLine(context, end, {x: canvasSize.width, y: yi});
             } else {
                 const endSW = {
                     x: end.x,
@@ -74,10 +70,8 @@ export class CanvasUtils {
                     const yi = begin.y - ((dy / dx) * begin.x);
                     const xi = -yi / (dy / dx);
 
-                    context.moveTo(begin.x, begin.y);
-                    context.lineTo(xi, 0);
-                    context.moveTo(end.x, end.y);
-                    context.lineTo(xi, canvasSize.height);
+                    this.drawLine(context, begin, {x: xi, y: 0});
+                    this.drawLine(context, end, {x: xi, y: canvasSize.height});
                 } else {
                     const endSE = {
                         x: end.x - canvasSize.width,
@@ -92,15 +86,12 @@ export class CanvasUtils {
                         const yi = begin.y - ((dy / dx) * begin.x);
                         const xi = -yi / (dy / dx);
 
-                        context.moveTo(begin.x, begin.y);
-                        context.lineTo(xi, yi);
-                        context.moveTo(end.x, end.y);
-                        context.lineTo(xi + canvasSize.width, yi + canvasSize.height);
+                        this.drawLine(context, begin, {x: xi, y: yi});
+                        this.drawLine(context, end, {x: xi + canvasSize.width, y: yi + canvasSize.height});
                     }
                 }
             }
         }
-        context.closePath();
 
         context.lineWidth = width;
 
@@ -130,10 +121,9 @@ export class CanvasUtils {
                                   begin: ICoordinates,
                                   end: ICoordinates): void {
         context.save();
-        context.beginPath();
-        context.moveTo(begin.x, begin.y);
-        context.lineTo(end.x, end.y);
-        context.closePath();
+
+        this.drawLine(context, begin, end);
+
         context.lineWidth = width;
         context.strokeStyle = lineStyle;
         context.stroke();
@@ -170,10 +160,9 @@ export class CanvasUtils {
                                colorLine: IRgb,
                                opacity: number): void {
         context.save();
-        context.beginPath();
-        context.moveTo(begin.x, begin.y);
-        context.lineTo(end.x, end.y);
-        context.closePath();
+
+        this.drawLine(context, begin, end);
+
         context.strokeStyle = ColorUtils.getStyleFromRgb(colorLine, opacity);
         context.lineWidth = width;
         context.stroke();
@@ -294,7 +283,7 @@ export class CanvasUtils {
         }
     }
 
-    public static drawPlugin(context: CanvasRenderingContext2D, plugin: IContainerPlugin, delta: number) {
+    public static drawPlugin(context: CanvasRenderingContext2D, plugin: IContainerPlugin, delta: number): void {
         context.save();
 
         if (plugin.draw !== undefined) {
@@ -302,5 +291,12 @@ export class CanvasUtils {
         }
 
         context.restore();
+    }
+
+    private static drawLine(context: CanvasRenderingContext2D, begin: ICoordinates, end: ICoordinates) {
+        context.beginPath();
+        context.moveTo(begin.x, begin.y);
+        context.lineTo(end.x, end.y);
+        context.closePath();
     }
 }

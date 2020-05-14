@@ -1,10 +1,10 @@
-import type { ICoordinates } from "../Core/Interfaces/ICoordinates";
-import { MoveDirection } from "../Enums/MoveDirection";
-import type { ICharacterShape } from "../Options/Interfaces/Particles/Shape/ICharacterShape";
-import type { IBounds } from "../Core/Interfaces/IBounds";
-import type { IDimension } from "../Core/Interfaces/IDimension";
-import type { IImage } from "../Core/Interfaces/IImage";
-import type { IParticle } from "../Core/Interfaces/IParticle";
+import type {ICoordinates} from "../Core/Interfaces/ICoordinates";
+import {MoveDirection} from "../Enums/MoveDirection";
+import type {ICharacterShape} from "../Options/Interfaces/Particles/Shape/ICharacterShape";
+import type {IBounds} from "../Core/Interfaces/IBounds";
+import type {IDimension} from "../Core/Interfaces/IDimension";
+import type {IImage} from "../Core/Interfaces/IImage";
+import type {IParticle} from "../Core/Interfaces/IParticle";
 
 type CSSOMString = string;
 type FontFaceLoadStatus = 'unloaded' | 'loading' | 'loaded' | 'error';
@@ -82,31 +82,31 @@ export class Utils {
 
         switch (particle.direction) {
             case MoveDirection.top:
-                velocityBase = { x: 0, y: -1 };
+                velocityBase = {x: 0, y: -1};
                 break;
             case MoveDirection.topRight:
-                velocityBase = { x: 0.5, y: -0.5 };
+                velocityBase = {x: 0.5, y: -0.5};
                 break;
             case MoveDirection.right:
-                velocityBase = { x: 1, y: -0 };
+                velocityBase = {x: 1, y: -0};
                 break;
             case MoveDirection.bottomRight:
-                velocityBase = { x: 0.5, y: 0.5 };
+                velocityBase = {x: 0.5, y: 0.5};
                 break;
             case MoveDirection.bottom:
-                velocityBase = { x: 0, y: 1 };
+                velocityBase = {x: 0, y: 1};
                 break;
             case MoveDirection.bottomLeft:
-                velocityBase = { x: -0.5, y: 1 };
+                velocityBase = {x: -0.5, y: 1};
                 break;
             case MoveDirection.left:
-                velocityBase = { x: -1, y: 0 };
+                velocityBase = {x: -1, y: 0};
                 break;
             case MoveDirection.topLeft:
-                velocityBase = { x: -0.5, y: -0.5 };
+                velocityBase = {x: -0.5, y: -0.5};
                 break;
             default:
-                velocityBase = { x: 0, y: 0 };
+                velocityBase = {x: 0, y: 0};
                 break;
         }
 
@@ -128,6 +128,7 @@ export class Utils {
         try {
             await document.fonts.load(`${character.weight} 36px '${character.font}'`);
         } catch {
+            // ignores any error
         }
     }
 

@@ -1,15 +1,15 @@
-import { Container } from "../../Core/Container";
-import type { ICoordinates } from "../../Core/Interfaces/ICoordinates";
-import { PolygonMaskType } from "../../Enums/PolygonMaskType";
-import { Particle } from "../../Core/Particle";
-import { PolygonMaskInlineArrangement } from "../../Enums/PolygonMaskInlineArrangement";
-import { Utils } from "../../Utils/Utils";
-import type { IDimension } from "../../Core/Interfaces/IDimension";
-import { Constants } from "../../Utils/Constants";
-import type { ISvgPath } from "../../Core/Interfaces/ISvgPath";
-import type { IContainerPlugin } from "../../Core/Interfaces/IContainerPlugin";
-import type { IPolygonMaskDrawStroke } from "../../Options/Interfaces/PolygonMask/IPolygonMaskDrawStroke";
-import { ColorUtils } from "../../Utils/ColorUtils";
+import {Container} from "../../Core/Container";
+import type {ICoordinates} from "../../Core/Interfaces/ICoordinates";
+import {PolygonMaskType} from "../../Enums/PolygonMaskType";
+import {Particle} from "../../Core/Particle";
+import {PolygonMaskInlineArrangement} from "../../Enums/PolygonMaskInlineArrangement";
+import {Utils} from "../../Utils/Utils";
+import type {IDimension} from "../../Core/Interfaces/IDimension";
+import {Constants} from "../../Utils/Constants";
+import type {ISvgPath} from "../../Core/Interfaces/ISvgPath";
+import type {IContainerPlugin} from "../../Core/Interfaces/IContainerPlugin";
+import type {IPolygonMaskDrawStroke} from "../../Options/Interfaces/PolygonMask/IPolygonMaskDrawStroke";
+import {ColorUtils} from "../../Utils/ColorUtils";
 
 type SvgAbsoluteCoordinatesTypes =
     | SVGPathSegArcAbs
@@ -50,7 +50,7 @@ export class PolygonMask implements IContainerPlugin {
             width: 0,
         };
         this.paths = [];
-        this.path2DSupported = window.hasOwnProperty("Path2D");
+        this.path2DSupported = Object.prototype.hasOwnProperty.call(window, "Path2D");
     }
 
     private static polygonBounce(particle: Particle): void {
@@ -240,7 +240,7 @@ export class PolygonMask implements IContainerPlugin {
         const options = container.options;
 
         if (options.polygon.enable && (this.raw?.length ?? 0) > 0) {
-            const pos = { x: 0, y: 0 };
+            const pos = {x: 0, y: 0};
 
             if (position) {
                 pos.x = position.x;
@@ -376,13 +376,13 @@ export class PolygonMask implements IContainerPlugin {
                     case window.SVGPathSeg.PATHSEG_CURVETO_QUADRATIC_ABS:
                     case window.SVGPathSeg.PATHSEG_ARC_ABS:
                     case window.SVGPathSeg.PATHSEG_CURVETO_CUBIC_SMOOTH_ABS:
-                    case window.SVGPathSeg.PATHSEG_CURVETO_QUADRATIC_SMOOTH_ABS:
+                    case window.SVGPathSeg.PATHSEG_CURVETO_QUADRATIC_SMOOTH_ABS: {
                         const absSeg = segment as SvgAbsoluteCoordinatesTypes;
 
                         p.x = absSeg.x;
                         p.y = absSeg.y;
                         break;
-
+                    }
                     case window.SVGPathSeg.PATHSEG_LINETO_HORIZONTAL_ABS:
                         p.x = (segment as SVGPathSegLinetoHorizontalAbs).x;
                         break;
@@ -400,16 +400,17 @@ export class PolygonMask implements IContainerPlugin {
                     case window.SVGPathSeg.PATHSEG_CURVETO_QUADRATIC_REL:
                     case window.SVGPathSeg.PATHSEG_ARC_REL:
                     case window.SVGPathSeg.PATHSEG_CURVETO_CUBIC_SMOOTH_REL:
-                    case window.SVGPathSeg.PATHSEG_CURVETO_QUADRATIC_SMOOTH_REL:
+                    case window.SVGPathSeg.PATHSEG_CURVETO_QUADRATIC_SMOOTH_REL: {
                         const relSeg = segment as SvgRelativeCoordinatesTypes;
 
                         p.x += relSeg.x;
                         p.y += relSeg.y;
                         break;
-
+                    }
                     case window.SVGPathSeg.PATHSEG_LINETO_HORIZONTAL_REL:
                         p.x += (segment as SVGPathSegLinetoHorizontalRel).x;
                         break;
+
                     case window.SVGPathSeg.PATHSEG_LINETO_VERTICAL_REL:
                         p.y += (segment as SVGPathSegLinetoVerticalRel).y;
                         break;

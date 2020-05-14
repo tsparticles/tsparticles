@@ -1,10 +1,10 @@
-import { Utils } from "../../../../Utils/Utils";
-import { Particle } from "../../../Particle";
-import type { Container } from "../../../Container";
-import type { IParticle } from "../../../Interfaces/IParticle";
-import type { IVelocity } from "../../../Interfaces/IVelocity";
-import { CollisionMode } from "../../../../Enums/CollisionMode";
-import { Circle } from "../../../../Utils/Circle";
+import {Utils} from "../../../../Utils/Utils";
+import {Particle} from "../../../Particle";
+import type {Container} from "../../../Container";
+import type {IParticle} from "../../../Interfaces/IParticle";
+import type {IVelocity} from "../../../Interfaces/IVelocity";
+import {CollisionMode} from "../../../../Enums/CollisionMode";
+import {Circle} from "../../../../Utils/Circle";
 
 export class Collider {
     public static collide(p1: Particle, container: Container, _delta: number): void {
@@ -41,7 +41,7 @@ export class Collider {
         const pos2 = p2.getPosition();
 
         switch (p1.particlesOptions.collisions.mode) {
-            case CollisionMode.bounce:
+            case CollisionMode.bounce: {
                 const xVelocityDiff = p1.velocity.horizontal - p2.velocity.horizontal;
                 const yVelocityDiff = p1.velocity.vertical - p2.velocity.vertical;
 
@@ -84,6 +84,7 @@ export class Collider {
                     p2.velocity.horizontal = vFinal2.horizontal;
                     p2.velocity.vertical = vFinal2.vertical;
                 }
+            }
         }
     }
 

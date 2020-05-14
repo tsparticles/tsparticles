@@ -1,25 +1,25 @@
-import type { Container } from "./Core/Container";
-import { Loader } from "./Core/Loader";
-import type { IOptions } from "./Options/Interfaces/IOptions";
-import type { RecursivePartial } from "./Types/RecursivePartial";
-import { ShapeType } from "./Enums/ShapeType";
-import { LineDrawer } from "./Core/Particle/ShapeDrawers/LineDrawer";
-import { CircleDrawer } from "./Core/Particle/ShapeDrawers/CircleDrawer";
-import { SquareDrawer } from "./Core/Particle/ShapeDrawers/SquareDrawer";
-import { TriangleDrawer } from "./Core/Particle/ShapeDrawers/TriangleDrawer";
-import { StarDrawer } from "./Core/Particle/ShapeDrawers/StarDrawer";
-import { PolygonDrawer } from "./Core/Particle/ShapeDrawers/PolygonDrawer";
-import { TextDrawer } from "./Core/Particle/ShapeDrawers/TextDrawer";
-import { ImageDrawer } from "./Core/Particle/ShapeDrawers/ImageDrawer";
-import type { IShapeDrawer } from "./Core/Interfaces/IShapeDrawer";
+import type {Container} from "./Core/Container";
+import {Loader} from "./Core/Loader";
+import type {IOptions} from "./Options/Interfaces/IOptions";
+import type {RecursivePartial} from "./Types/RecursivePartial";
+import {ShapeType} from "./Enums/ShapeType";
+import {LineDrawer} from "./Core/Particle/ShapeDrawers/LineDrawer";
+import {CircleDrawer} from "./Core/Particle/ShapeDrawers/CircleDrawer";
+import {SquareDrawer} from "./Core/Particle/ShapeDrawers/SquareDrawer";
+import {TriangleDrawer} from "./Core/Particle/ShapeDrawers/TriangleDrawer";
+import {StarDrawer} from "./Core/Particle/ShapeDrawers/StarDrawer";
+import {PolygonDrawer} from "./Core/Particle/ShapeDrawers/PolygonDrawer";
+import {TextDrawer} from "./Core/Particle/ShapeDrawers/TextDrawer";
+import {ImageDrawer} from "./Core/Particle/ShapeDrawers/ImageDrawer";
+import type {IShapeDrawer} from "./Core/Interfaces/IShapeDrawer";
 import type {
     ShapeDrawerAfterEffectFunction,
     ShapeDrawerDestroyFunction,
     ShapeDrawerDrawFunction,
     ShapeDrawerInitFunction
 } from "./Types/ShapeDrawerFunctions";
-import { Plugins } from "./Utils/Plugins";
-import type { IPlugin } from "./Core/Interfaces/IPlugin";
+import {Plugins} from "./Utils/Plugins";
+import type {IPlugin} from "./Core/Interfaces/IPlugin";
 
 declare global {
     interface Window {
@@ -48,16 +48,16 @@ class Main {
         this.initialized = false;
 
         if (typeof window !== "undefined" && window) {
-            window.customRequestAnimationFrame = (() => {
+            window.customRequestAnimationFrame = ((): (callback: FrameRequestCallback) => number => {
                 return window.requestAnimationFrame ||
                     window.webkitRequestAnimationFrame ||
                     window.mozRequestAnimationFrame ||
                     window.oRequestAnimationFrame ||
                     window.msRequestAnimationFrame ||
-                    ((callback) => window.setTimeout(callback, 1000 / 60));
+                    ((callback): number => window.setTimeout(callback, 1000 / 60));
             })();
 
-            window.customCancelRequestAnimationFrame = (() => {
+            window.customCancelRequestAnimationFrame = ((): (handle: number) => void => {
                 return window.cancelAnimationFrame ||
                     window.webkitCancelRequestAnimationFrame ||
                     window.mozCancelRequestAnimationFrame ||
@@ -222,7 +222,7 @@ const particlesJS: any = (tagId: string, params: RecursivePartial<IOptions>):
  */
 particlesJS.load = (tagId: string,
                     pathConfigJson: string,
-                    callback: (container: Container) => void) => {
+                    callback: (container: Container) => void): void => {
     tsParticles.loadJSON(tagId, pathConfigJson).then((container) => {
         if (container) {
             callback(container);
@@ -235,7 +235,7 @@ particlesJS.load = (tagId: string,
  * @deprecated this method is obsolete, please use the new tsParticles.setOnClickHandler
  * @param callback the function called after the click event is fired
  */
-particlesJS.setOnClickHandler = (callback: EventListenerOrEventListenerObject) => {
+particlesJS.setOnClickHandler = (callback: EventListenerOrEventListenerObject): void => {
     tsParticles.setOnClickHandler(callback);
 };
 
@@ -245,4 +245,4 @@ particlesJS.setOnClickHandler = (callback: EventListenerOrEventListenerObject) =
  */
 const pJSDom = tsParticles.dom();
 
-export { tsParticles, particlesJS, pJSDom };
+export {tsParticles, particlesJS, pJSDom};

@@ -31,16 +31,16 @@ export class EventListeners {
         this.container = container;
         this.canPush = true;
 
-        this.mouseMoveHandler = (e: Event) => this.mouseTouchMove(e);
-        this.touchStartHandler = (e: Event) => this.mouseTouchMove(e);
-        this.touchMoveHandler = (e: Event) => this.mouseTouchMove(e);
-        this.touchEndHandler = () => this.mouseTouchFinish();
-        this.mouseLeaveHandler = () => this.mouseTouchFinish();
-        this.touchCancelHandler = () => this.mouseTouchFinish();
-        this.touchEndClickHandler = (e: Event) => this.mouseTouchClick(e);
-        this.mouseUpHandler = (e: Event) => this.mouseTouchClick(e);
-        this.visibilityChangeHandler = () => this.handleVisibilityChange();
-        this.resizeHandler = () => this.handleWindowResize();
+        this.mouseMoveHandler = (e: Event): void => this.mouseTouchMove(e);
+        this.touchStartHandler = (e: Event): void => this.mouseTouchMove(e);
+        this.touchMoveHandler = (e: Event): void => this.mouseTouchMove(e);
+        this.touchEndHandler = (): void => this.mouseTouchFinish();
+        this.mouseLeaveHandler = (): void => this.mouseTouchFinish();
+        this.touchCancelHandler = (): void => this.mouseTouchFinish();
+        this.touchEndClickHandler = (e: Event): void => this.mouseTouchClick(e);
+        this.mouseUpHandler = (e: Event): void => this.mouseTouchClick(e);
+        this.visibilityChangeHandler = (): void => this.handleVisibilityChange();
+        this.resizeHandler = (): void => this.handleWindowResize();
     }
 
     private static manageListener(element: HTMLElement | Node | Window,

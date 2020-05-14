@@ -19,7 +19,7 @@ const grad3 = new Float32Array([
     0, -1, -1,
 ]);
 
-const buildPermutationTable = (random: () => number) => {
+const buildPermutationTable = (random: () => number): Uint8Array => {
     const p = new Uint8Array(256);
 
     for (let i = 0; i < 256; i++) {
