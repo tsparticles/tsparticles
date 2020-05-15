@@ -1,5 +1,5 @@
 import type { IShape } from "./Shape/IShape";
-import type { ILineLinked } from "./LineLinked/ILineLinked";
+import type { ILinks } from "./Links/ILinks";
 import type { IMove } from "./IMove";
 import type { IParticlesNumber } from "./IParticlesNumber";
 import type { IOpacity } from "./Opacity/IOpacity";
@@ -18,11 +18,16 @@ export interface IParticles extends IOptionLoader<IParticles> {
     color: IAnimatableColor;
 
     /**
-     * @deprecated use the new lineLinked instead
+     * @deprecated use the new links instead
      */
-    line_linked: ILineLinked;
+    line_linked: ILinks;
 
-    lineLinked: ILineLinked;
+    /**
+     * @deprecated use the new links instead
+     */
+    lineLinked: ILinks;
+
+    links: ILinks;
     move: IMove;
     number: IParticlesNumber;
     opacity: IOpacity;

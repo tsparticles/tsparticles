@@ -1,8 +1,8 @@
-import type { ILineLinkedTriangle } from "../../../Interfaces/Particles/LineLinked/ILineLinkedTriangle";
+import type { ILinksTriangle } from "../../../Interfaces/Particles/Links/ILinksTriangle";
 import { OptionsColor } from "../../OptionsColor";
 import type { RecursivePartial } from "../../../../Types/RecursivePartial";
 
-export class LineLinkedTriangle implements ILineLinkedTriangle {
+export class LinksTriangle implements ILinksTriangle {
     public color?: OptionsColor;
     public enable: boolean;
     public opacity?: number;
@@ -11,7 +11,7 @@ export class LineLinkedTriangle implements ILineLinkedTriangle {
         this.enable = false;
     }
 
-    public load(data?: RecursivePartial<ILineLinkedTriangle>): void {
+    public load(data?: RecursivePartial<ILinksTriangle>): void {
         if (data !== undefined) {
             if (data.color !== undefined) {
                 this.color = OptionsColor.create(this.color, data.color);

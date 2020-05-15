@@ -1,7 +1,7 @@
 import type { IColor } from "../../../../Core/Interfaces/IColor";
 import type { IOptionLoader } from "../../IOptionLoader";
 
-export interface ILineLinkedTriangle extends IOptionLoader<ILineLinkedTriangle> {
+export interface ILinksTriangle extends IOptionLoader<ILinksTriangle> {
     color?: string | IColor;
     enable: boolean;
     opacity?: number;

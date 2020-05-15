@@ -8,9 +8,9 @@ import { CircleWarp } from "../../../../Utils/CircleWarp";
 
 export class Linker {
     public static link(p1: Particle, container: Container, _delta: number): void {
-        const lineOptions = p1.particlesOptions.lineLinked;
+        const lineOptions = p1.particlesOptions.links;
         const optOpacity = lineOptions.opacity;
-        const optDistance = p1.lineLinkedDistance ?? container.retina.lineLinkedDistance;
+        const optDistance = p1.linksDistance ?? container.retina.linksDistance;
         const canvasSize = container.canvas.size;
         const warp = lineOptions.warp;
         const pos1 = p1.getPosition();
@@ -24,7 +24,7 @@ export class Linker {
 
         //for (const { distance, p2 } of query) {
         for (const p2 of query) {
-            if (p1 === p2 || !p2.particlesOptions.lineLinked.enable) {
+            if (p1 === p2 || !p2.particlesOptions.links.enable) {
                 continue;
             }
 
@@ -70,8 +70,8 @@ export class Linker {
 
             if (opacityLine > 0) {
                 /* style */
-                if (!container.particles.lineLinkedColor) {
-                    const optColor = p1.particlesOptions.lineLinked.color;
+                if (!container.particles.linksColor) {
+                    const optColor = p1.particlesOptions.links.color;
                     const color = typeof optColor === "string" ? optColor : optColor.value;
 
                     /* particles.line_linked - convert hex colors to rgb */
@@ -79,17 +79,17 @@ export class Linker {
                     //  then return appropriate value
 
                     if (color === Constants.randomColorValue) {
-                        if (p1.particlesOptions.lineLinked.consent) {
-                            container.particles.lineLinkedColor = ColorUtils.colorToRgb({
+                        if (p1.particlesOptions.links.consent) {
+                            container.particles.linksColor = ColorUtils.colorToRgb({
                                 value: color,
                             });
-                        } else if (p1.particlesOptions.lineLinked.blink) {
-                            container.particles.lineLinkedColor = Constants.randomColorValue;
+                        } else if (p1.particlesOptions.links.blink) {
+                            container.particles.linksColor = Constants.randomColorValue;
                         } else {
-                            container.particles.lineLinkedColor = Constants.midColorValue;
+                            container.particles.linksColor = Constants.midColorValue;
                         }
                     } else {
-                        container.particles.lineLinkedColor = ColorUtils.colorToRgb({
+                        container.particles.linksColor = ColorUtils.colorToRgb({
                             value: color,
                         });
                     }

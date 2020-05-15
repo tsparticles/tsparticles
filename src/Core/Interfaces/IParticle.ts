@@ -44,8 +44,8 @@ export interface IParticle {
     readonly stroke: IStroke;
     readonly strokeColor: IRgb | undefined;
     readonly velocity: IVelocity;
-    readonly lineLinkedDistance?: number;
-    readonly lineLinkedWidth?: number;
+    readonly linksDistance?: number;
+    readonly linksWidth?: number;
     readonly moveSpeed?: number;
     readonly sizeValue?: number;
     readonly randomMinimumSize?: number;

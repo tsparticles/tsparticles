@@ -150,7 +150,7 @@ export class Canvas {
         const options = container.options;
         const p2 = link1.destination;
         const p3 = link2.destination;
-        const triangleOptions = p1.particlesOptions.lineLinked.triangles;
+        const triangleOptions = p1.particlesOptions.links.triangles;
         const opacityTriangle = triangleOptions.opacity ?? (link1.opacity + link2.opacity) / 2;
         const pos1 = p1.getPosition();
         const pos2 = p2.getPosition();
@@ -167,19 +167,19 @@ export class Canvas {
         let colorTriangle = color !== undefined ? ColorUtils.colorToRgb(color) : undefined;
 
         if (!colorTriangle) {
-            if (container.particles.lineLinkedColor === Constants.randomColorValue) {
+            if (container.particles.linksColor === Constants.randomColorValue) {
                 colorTriangle = ColorUtils.getRandomRgbColor();
-            } else if (container.particles.lineLinkedColor == "mid" && p1.color && p2.color) {
+            } else if (container.particles.linksColor == "mid" && p1.color && p2.color) {
                 const sourceColor = p1.color;
                 const destColor = p2.color;
 
                 colorTriangle = ColorUtils.mix(sourceColor, destColor, p1.size.value, p2.size.value);
             } else {
-                colorTriangle = container.particles.lineLinkedColor as IRgb;
+                colorTriangle = container.particles.linksColor as IRgb;
             }
         }
 
-        const width = p1.lineLinkedWidth ?? container.retina.lineLinkedWidth;
+        const width = p1.linksWidth ?? container.retina.linksWidth;
 
         CanvasUtils.drawLinkTriangle(
             ctx,
@@ -233,32 +233,32 @@ export class Canvas {
         }
 
         if (!colorLine) {
-            if (container.particles.lineLinkedColor === Constants.randomColorValue) {
+            if (container.particles.linksColor === Constants.randomColorValue) {
                 colorLine = ColorUtils.getRandomRgbColor();
-            } else if (container.particles.lineLinkedColor == "mid" && p1.color && p2.color) {
+            } else if (container.particles.linksColor == "mid" && p1.color && p2.color) {
                 const sourceColor = p1.color;
                 const destColor = p2.color;
 
                 colorLine = ColorUtils.mix(sourceColor, destColor, p1.size.value, p2.size.value);
             } else {
-                colorLine = container.particles.lineLinkedColor as IRgb;
+                colorLine = container.particles.linksColor as IRgb;
             }
         }
 
-        const width = p1.lineLinkedWidth ?? container.retina.lineLinkedWidth;
+        const width = p1.linksWidth ?? container.retina.linksWidth;
 
         CanvasUtils.drawLinkLine(
             ctx,
             width,
             pos1,
             pos2,
-            p1.particlesOptions.lineLinked.distance,
+            p1.particlesOptions.links.distance,
             container.canvas.size,
-            p1.particlesOptions.lineLinked.warp,
+            p1.particlesOptions.links.warp,
             options.backgroundMask.enable,
             colorLine,
             opacity,
-            p1.particlesOptions.lineLinked.shadow
+            p1.particlesOptions.links.shadow
         );
     }
 
@@ -278,13 +278,7 @@ export class Canvas {
         const pos1 = p1.getPosition();
         const pos2 = p2.getPosition();
 
-        CanvasUtils.drawConnectLine(
-            ctx,
-            p1.lineLinkedWidth ?? this.container.retina.lineLinkedWidth,
-            lineStyle,
-            pos1,
-            pos2
-        );
+        CanvasUtils.drawConnectLine(ctx, p1.linksWidth ?? this.container.retina.linksWidth, lineStyle, pos1, pos2);
     }
 
     public drawGrabLine(particle: IParticle, lineColor: IRgb, opacity: number, mousePos: ICoordinates): void {
@@ -299,7 +293,7 @@ export class Canvas {
 
         CanvasUtils.drawGrabLine(
             ctx,
-            particle.lineLinkedWidth ?? container.retina.lineLinkedWidth,
+            particle.linksWidth ?? container.retina.linksWidth,
             beginPos,
             mousePos,
             lineColor,
@@ -352,7 +346,7 @@ export class Canvas {
         this.context.save();
 
         for (const link of particle.links) {
-            if (particle.particlesOptions.lineLinked.triangles.enable) {
+            if (particle.particlesOptions.links.triangles.enable) {
                 const links = particle.links.map((l) => l.destination);
                 const vertices = link.destination.links.filter((t) => links.indexOf(t.destination) >= 0);
 
@@ -390,7 +384,7 @@ export class Canvas {
 
         if (p1.color && p2.color) {
             if (this.context) {
-                return CanvasUtils.gradient(this.context, p1, p2, connectOptions.lineLinked.opacity);
+                return CanvasUtils.gradient(this.context, p1, p2, connectOptions.links.opacity);
             }
         }
     }

@@ -253,7 +253,7 @@ export class Container {
 
         this.plugins = {};
 
-        delete this.particles.lineLinkedColor;
+        delete this.particles.linksColor;
     }
 
     public async start(): Promise<void> {

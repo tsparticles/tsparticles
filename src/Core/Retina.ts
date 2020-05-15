@@ -10,8 +10,8 @@ export class Retina {
     public grabModeDistance: number;
     public repulseModeDistance: number;
     public slowModeRadius: number;
-    public lineLinkedDistance: number;
-    public lineLinkedWidth: number;
+    public linksDistance: number;
+    public linksWidth: number;
     public moveSpeed: number;
     public sizeValue: number;
     public sizeAnimationSpeed: number;
@@ -30,8 +30,8 @@ export class Retina {
         this.grabModeDistance = 0;
         this.repulseModeDistance = 0;
         this.slowModeRadius = 0;
-        this.lineLinkedDistance = 0;
-        this.lineLinkedWidth = 0;
+        this.linksDistance = 0;
+        this.linksWidth = 0;
         this.moveSpeed = 0;
         this.sizeValue = 0;
         this.sizeAnimationSpeed = 0;
@@ -64,8 +64,8 @@ export class Retina {
 
         const particles = options.particles;
 
-        this.lineLinkedDistance = particles.lineLinked.distance * ratio;
-        this.lineLinkedWidth = particles.lineLinked.width * ratio;
+        this.linksDistance = particles.links.distance * ratio;
+        this.linksWidth = particles.links.width * ratio;
         this.moveSpeed = particles.move.speed * ratio;
         this.sizeValue = particles.size.value * ratio;
         this.sizeAnimationSpeed = particles.size.animation.speed * ratio;
@@ -87,8 +87,8 @@ export class Retina {
         const particlesOptions = particle.particlesOptions;
         const ratio = this.pixelRatio;
 
-        particle.lineLinkedDistance = particlesOptions.lineLinked.distance * ratio;
-        particle.lineLinkedWidth = particlesOptions.lineLinked.width * ratio;
+        particle.linksDistance = particlesOptions.links.distance * ratio;
+        particle.linksWidth = particlesOptions.links.width * ratio;
         particle.moveSpeed = particlesOptions.move.speed * ratio;
         particle.sizeValue = particlesOptions.size.value * ratio;
         if (typeof particlesOptions.size.random !== "boolean") {

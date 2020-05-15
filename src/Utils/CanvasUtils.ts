@@ -1,7 +1,7 @@
 import type { IDimension } from "../Core/Interfaces/IDimension";
 import type { ICoordinates } from "../Core/Interfaces/ICoordinates";
 import type { IRgb } from "../Core/Interfaces/IRgb";
-import type { ILineLinkedShadow } from "../Options/Interfaces/Particles/LineLinked/ILineLinkedShadow";
+import type { ILinksShadow } from "../Options/Interfaces/Particles/Links/ILinksShadow";
 import { ColorUtils } from "./ColorUtils";
 import type { IParticle } from "../Core/Interfaces/IParticle";
 import type { IShadow } from "../Options/Interfaces/Particles/IShadow";
@@ -32,7 +32,7 @@ export class CanvasUtils {
         backgroundMask: boolean,
         colorLine: IRgb,
         opacity: number,
-        shadow: ILineLinkedShadow
+        shadow: ILinksShadow
     ): void {
         // this.ctx.lineCap = "round"; /* performance issue */
         /* path */

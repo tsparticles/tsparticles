@@ -1,17 +1,17 @@
 import type { IOptionLoader } from "../../IOptionLoader";
-import type { ILineLinkedShadow } from "./ILineLinkedShadow";
-import { ILineLinkedTriangle } from "./ILineLinkedTriangle";
+import type { ILinksShadow } from "./ILinksShadow";
+import { ILinksTriangle } from "./ILinksTriangle";
 import { IColor } from "../../../../Core/Interfaces/IColor";
 
-export interface ILineLinked extends IOptionLoader<ILineLinked> {
+export interface ILinks extends IOptionLoader<ILinks> {
     blink: boolean;
     color: string | IColor;
     consent: boolean;
     distance: number;
     enable: boolean;
     opacity: number;
-    shadow: ILineLinkedShadow;
-    triangles: ILineLinkedTriangle;
+    shadow: ILinksShadow;
+    triangles: ILinksTriangle;
     warp: boolean;
     width: number;
 }

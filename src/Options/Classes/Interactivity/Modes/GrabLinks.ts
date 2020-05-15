@@ -1,8 +1,8 @@
-import type { IGrabLineLinked } from "../../../Interfaces/Interactivity/Modes/IGrabLineLinked";
+import type { IGrabLinks } from "../../../Interfaces/Interactivity/Modes/IGrabLinks";
 import type { RecursivePartial } from "../../../../Types/RecursivePartial";
 import { OptionsColor } from "../../OptionsColor";
 
-export class GrabLineLinked implements IGrabLineLinked {
+export class GrabLinks implements IGrabLinks {
     public opacity: number;
     public color?: OptionsColor;
 
@@ -10,7 +10,7 @@ export class GrabLineLinked implements IGrabLineLinked {
         this.opacity = 1;
     }
 
-    public load(data?: RecursivePartial<IGrabLineLinked>): void {
+    public load(data?: RecursivePartial<IGrabLinks>): void {
         if (data !== undefined) {
             if (data.opacity !== undefined) {
                 this.opacity = data.opacity;

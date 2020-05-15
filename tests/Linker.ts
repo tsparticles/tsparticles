@@ -17,7 +17,7 @@ describe("Linker in Canvas (200, 200) tests", () => {
         describe("Particle (5, 5)", () => {
             testContainer.reset({
                 particles: {
-                    lineLinked: {
+                    links: {
                         warp: true,
                         distance: 10,
                         enable: true,

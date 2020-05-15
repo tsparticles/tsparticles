@@ -384,10 +384,13 @@
                     "type": "number"
                 },
                 "lineLinked": {
-                    "$ref": "#/definitions/IConnectLineLinked"
+                    "$ref": "#/definitions/IConnectLinks"
                 },
                 "line_linked": {
-                    "$ref": "#/definitions/IConnectLineLinked"
+                    "$ref": "#/definitions/IConnectLinks"
+                },
+                "links": {
+                    "$ref": "#/definitions/IConnectLinks"
                 },
                 "radius": {
                     "type": "number"
@@ -395,7 +398,7 @@
             },
             "type": "object"
         },
-        "IConnectLineLinked": {
+        "IConnectLinks": {
             "properties": {
                 "opacity": {
                     "type": "number"
@@ -566,15 +569,18 @@
                     "type": "number"
                 },
                 "lineLinked": {
-                    "$ref": "#/definitions/IGrabLineLinked"
+                    "$ref": "#/definitions/IGrabLinks"
                 },
                 "line_linked": {
-                    "$ref": "#/definitions/IGrabLineLinked"
+                    "$ref": "#/definitions/IGrabLinks"
+                },
+                "links": {
+                    "$ref": "#/definitions/IGrabLinks"
                 }
             },
             "type": "object"
         },
-        "IGrabLineLinked": {
+        "IGrabLinks": {
             "properties": {
                 "color": {
                     "anyOf": [
@@ -726,7 +732,7 @@
             },
             "type": "object"
         },
-        "ILineLinked": {
+        "ILinks": {
             "properties": {
                 "blink": {
                     "type": "boolean"
@@ -754,10 +760,10 @@
                     "type": "number"
                 },
                 "shadow": {
-                    "$ref": "#/definitions/ILineLinkedShadow"
+                    "$ref": "#/definitions/ILinksShadow"
                 },
                 "triangles": {
-                    "$ref": "#/definitions/ILineLinkedTriangle"
+                    "$ref": "#/definitions/ILinksTriangle"
                 },
                 "warp": {
                     "type": "boolean"
@@ -768,7 +774,7 @@
             },
             "type": "object"
         },
-        "ILineLinkedShadow": {
+        "ILinksShadow": {
             "properties": {
                 "blur": {
                     "type": "number"
@@ -789,7 +795,7 @@
             },
             "type": "object"
         },
-        "ILineLinkedTriangle": {
+        "ILinksTriangle": {
             "properties": {
                 "color": {
                     "anyOf": [
@@ -1045,10 +1051,13 @@
                     "$ref": "#/definitions/IAnimatableColor"
                 },
                 "lineLinked": {
-                    "$ref": "#/definitions/ILineLinked"
+                    "$ref": "#/definitions/ILinks"
                 },
                 "line_linked": {
-                    "$ref": "#/definitions/ILineLinked"
+                    "$ref": "#/definitions/ILinks"
+                },
+                "links": {
+                    "$ref": "#/definitions/ILinks"
                 },
                 "move": {
                     "$ref": "#/definitions/IMove"
@@ -1683,13 +1692,13 @@
         "RecursivePartial<(data?:RecursivePartial<IImageShape>|undefined)=>void>": {
             "type": "object"
         },
-        "RecursivePartial<(data?:RecursivePartial<ILineLinked>|undefined)=>void>": {
+        "RecursivePartial<(data?:RecursivePartial<ILinks>|undefined)=>void>": {
             "type": "object"
         },
-        "RecursivePartial<(data?:RecursivePartial<ILineLinkedShadow>|undefined)=>void>": {
+        "RecursivePartial<(data?:RecursivePartial<ILinksShadow>|undefined)=>void>": {
             "type": "object"
         },
-        "RecursivePartial<(data?:RecursivePartial<ILineLinkedTriangle>|undefined)=>void>": {
+        "RecursivePartial<(data?:RecursivePartial<ILinksTriangle>|undefined)=>void>": {
             "type": "object"
         },
         "RecursivePartial<(data?:RecursivePartial<IMove>|undefined)=>void>": {
@@ -2031,7 +2040,7 @@
             },
             "type": "object"
         },
-        "RecursivePartial<ILineLinked>": {
+        "RecursivePartial<ILinks>": {
             "properties": {
                 "blink": {
                     "type": "boolean"
@@ -2056,16 +2065,16 @@
                     "type": "boolean"
                 },
                 "load": {
-                    "$ref": "#/definitions/RecursivePartial<(data?:RecursivePartial<ILineLinked>|undefined)=>void>"
+                    "$ref": "#/definitions/RecursivePartial<(data?:RecursivePartial<ILinks>|undefined)=>void>"
                 },
                 "opacity": {
                     "type": "number"
                 },
                 "shadow": {
-                    "$ref": "#/definitions/RecursivePartial<ILineLinkedShadow>"
+                    "$ref": "#/definitions/RecursivePartial<ILinksShadow>"
                 },
                 "triangles": {
-                    "$ref": "#/definitions/RecursivePartial<ILineLinkedTriangle>"
+                    "$ref": "#/definitions/RecursivePartial<ILinksTriangle>"
                 },
                 "warp": {
                     "type": "boolean"
@@ -2076,7 +2085,7 @@
             },
             "type": "object"
         },
-        "RecursivePartial<ILineLinkedShadow>": {
+        "RecursivePartial<ILinksShadow>": {
             "properties": {
                 "blur": {
                     "type": "number"
@@ -2095,12 +2104,12 @@
                     "type": "boolean"
                 },
                 "load": {
-                    "$ref": "#/definitions/RecursivePartial<(data?:RecursivePartial<ILineLinkedShadow>|undefined)=>void>"
+                    "$ref": "#/definitions/RecursivePartial<(data?:RecursivePartial<ILinksShadow>|undefined)=>void>"
                 }
             },
             "type": "object"
         },
-        "RecursivePartial<ILineLinkedTriangle>": {
+        "RecursivePartial<ILinksTriangle>": {
             "properties": {
                 "color": {
                     "anyOf": [
@@ -2116,7 +2125,7 @@
                     "type": "boolean"
                 },
                 "load": {
-                    "$ref": "#/definitions/RecursivePartial<(data?:RecursivePartial<ILineLinkedTriangle>|undefined)=>void>"
+                    "$ref": "#/definitions/RecursivePartial<(data?:RecursivePartial<ILinksTriangle>|undefined)=>void>"
                 },
                 "opacity": {
                     "type": "number"
@@ -2331,10 +2340,13 @@
                     "$ref": "#/definitions/RecursivePartial<IAnimatableColor>"
                 },
                 "lineLinked": {
-                    "$ref": "#/definitions/RecursivePartial<ILineLinked>"
+                    "$ref": "#/definitions/RecursivePartial<ILinks>"
                 },
                 "line_linked": {
-                    "$ref": "#/definitions/RecursivePartial<ILineLinked>"
+                    "$ref": "#/definitions/RecursivePartial<ILinks>"
+                },
+                "links": {
+                    "$ref": "#/definitions/RecursivePartial<ILinks>"
                 },
                 "load": {
                     "$ref": "#/definitions/RecursivePartial<(data?:RecursivePartial<IParticles>|undefined)=>void>"

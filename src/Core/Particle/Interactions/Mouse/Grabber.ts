@@ -35,14 +35,14 @@ export class Grabber {
                 const distance = Utils.getDistance(pos, mousePos);
 
                 if (distance <= container.retina.grabModeDistance) {
-                    const grabLineOptions = interactivity.modes.grab.lineLinked;
+                    const grabLineOptions = interactivity.modes.grab.links;
                     const lineOpacity = grabLineOptions.opacity;
                     const grabDistance = container.retina.grabModeDistance;
                     const opacityLine = lineOpacity - (distance * lineOpacity) / grabDistance;
 
                     if (opacityLine > 0) {
                         /* style */
-                        const optColor = grabLineOptions.color ?? particle.particlesOptions.lineLinked.color;
+                        const optColor = grabLineOptions.color ?? particle.particlesOptions.links.color;
 
                         if (!container.particles.grabLineColor) {
                             container.particles.grabLineColor =

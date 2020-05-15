@@ -64,8 +64,8 @@ export class Particle implements IParticle {
     public readonly noiseDelay: number;
     public readonly colorVelocity: number;
     public lastNoiseTime: number;
-    public lineLinkedDistance?: number;
-    public lineLinkedWidth?: number;
+    public linksDistance?: number;
+    public linksWidth?: number;
     public moveSpeed?: number;
     public sizeValue?: number;
     public randomMinimumSize?: number;

@@ -5,7 +5,7 @@ import { Circle } from "../../../../Utils/Circle";
 export class Attractor {
     public static attract(p1: IParticle, container: Container, _delta: number): void {
         const options = container.options;
-        const distance = p1.lineLinkedDistance ?? container.retina.lineLinkedDistance;
+        const distance = p1.linksDistance ?? container.retina.linksDistance;
 
         const pos1 = p1.getPosition();
 

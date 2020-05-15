@@ -1,13 +1,18 @@
-import type { IGrabLineLinked } from "./IGrabLineLinked";
+import type { IGrabLinks } from "./IGrabLinks";
 import type { IOptionLoader } from "../../IOptionLoader";
 
 export interface IGrab extends IOptionLoader<IGrab> {
     distance: number;
 
     /**
-     * @deprecated use the new lineLinked instead
+     * @deprecated use the new links instead
      */
-    line_linked: IGrabLineLinked;
+    line_linked: IGrabLinks;
 
-    lineLinked: IGrabLineLinked;
+    /**
+     * @deprecated use the new links instead
+     */
+    lineLinked: IGrabLinks;
+
+    links: IGrabLinks;
 }

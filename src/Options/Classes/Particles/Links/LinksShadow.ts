@@ -1,8 +1,8 @@
-import type { ILineLinkedShadow } from "../../../Interfaces/Particles/LineLinked/ILineLinkedShadow";
+import type { ILinksShadow } from "../../../Interfaces/Particles/Links/ILinksShadow";
 import type { RecursivePartial } from "../../../../Types/RecursivePartial";
 import { OptionsColor } from "../../OptionsColor";
 
-export class LineLinkedShadow implements ILineLinkedShadow {
+export class LinksShadow implements ILinksShadow {
     public blur: number;
     public color: OptionsColor;
     public enable: boolean;
@@ -15,7 +15,7 @@ export class LineLinkedShadow implements ILineLinkedShadow {
         this.color.value = "lime";
     }
 
-    public load(data?: RecursivePartial<ILineLinkedShadow>): void {
+    public load(data?: RecursivePartial<ILinksShadow>): void {
         if (data !== undefined) {
             if (data.blur !== undefined) {
                 this.blur = data.blur;

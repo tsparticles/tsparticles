@@ -1,18 +1,18 @@
-import type { ILineLinked } from "../../../Interfaces/Particles/LineLinked/ILineLinked";
-import { LineLinkedShadow } from "./LineLinkedShadow";
+import type { ILinks } from "../../../Interfaces/Particles/Links/ILinks";
+import { LinksShadow } from "./LinksShadow";
 import type { RecursivePartial } from "../../../../Types/RecursivePartial";
-import { LineLinkedTriangle } from "./LineLinkedTriangle";
+import { LinksTriangle } from "./LinksTriangle";
 import { OptionsColor } from "../../OptionsColor";
 
-export class LineLinked implements ILineLinked {
+export class Links implements ILinks {
     public blink: boolean;
     public color: OptionsColor;
     public consent: boolean;
     public distance: number;
     public enable: boolean;
     public opacity: number;
-    public shadow: LineLinkedShadow;
-    public triangles: LineLinkedTriangle;
+    public shadow: LinksShadow;
+    public triangles: LinksTriangle;
     public width: number;
     public warp: boolean;
 
@@ -23,13 +23,13 @@ export class LineLinked implements ILineLinked {
         this.distance = 100;
         this.enable = false;
         this.opacity = 1;
-        this.shadow = new LineLinkedShadow();
-        this.triangles = new LineLinkedTriangle();
+        this.shadow = new LinksShadow();
+        this.triangles = new LinksTriangle();
         this.width = 1;
         this.warp = false;
     }
 
-    public load(data?: RecursivePartial<ILineLinked>): void {
+    public load(data?: RecursivePartial<ILinks>): void {
         if (data !== undefined) {
             if (data.blink !== undefined) {
                 this.blink = data.blink;

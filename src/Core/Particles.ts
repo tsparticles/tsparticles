@@ -29,7 +29,7 @@ export class Particles {
     public quadTree: QuadTree;
     //public spatialGrid: SpatialGrid;
     public pushing?: boolean;
-    public lineLinkedColor?: IRgb | string;
+    public linksColor?: IRgb | string;
     public grabLineColor?: IRgb | string;
     public noiseZ: number;
 
@@ -73,7 +73,7 @@ export class Particles {
         }
 
         this.interactionsEnabled =
-            options.particles.lineLinked.enable ||
+            options.particles.links.enable ||
             options.particles.move.attract.enable ||
             options.particles.collisions.enable ||
             options.infection.enable;
