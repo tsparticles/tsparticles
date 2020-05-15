@@ -1,12 +1,12 @@
 import type { ILineLinked } from "../../../Interfaces/Particles/LineLinked/ILineLinked";
 import { LineLinkedShadow } from "./LineLinkedShadow";
 import type { RecursivePartial } from "../../../../Types/RecursivePartial";
-import { AnimatableColor } from "../AnimatableColor";
 import { LineLinkedTriangle } from "./LineLinkedTriangle";
+import { OptionsColor } from "../../OptionsColor";
 
 export class LineLinked implements ILineLinked {
     public blink: boolean;
-    public color: AnimatableColor;
+    public color: OptionsColor;
     public consent: boolean;
     public distance: number;
     public enable: boolean;
@@ -18,7 +18,7 @@ export class LineLinked implements ILineLinked {
 
     constructor() {
         this.blink = false;
-        this.color = new AnimatableColor();
+        this.color = new OptionsColor();
         this.consent = false;
         this.distance = 100;
         this.enable = false;
@@ -35,7 +35,7 @@ export class LineLinked implements ILineLinked {
                 this.blink = data.blink;
             }
 
-            this.color = AnimatableColor.create(this.color, data.color);
+            this.color = OptionsColor.create(this.color, data.color);
 
             if (data.consent !== undefined) {
                 this.consent = data.consent;
