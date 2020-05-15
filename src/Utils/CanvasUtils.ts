@@ -105,10 +105,7 @@ export class CanvasUtils {
         context.strokeStyle = ColorUtils.getStyleFromRgb(colorLine, opacity);
 
         if (shadow.enable) {
-            const shadowColor =
-                typeof shadow.color === "string"
-                    ? ColorUtils.stringToRgb(shadow.color)
-                    : ColorUtils.colorToRgb(shadow.color);
+            const shadowColor = ColorUtils.colorToRgb(shadow.color);
 
             if (shadowColor) {
                 context.shadowBlur = shadow.blur;

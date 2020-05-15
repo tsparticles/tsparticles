@@ -313,16 +313,8 @@ export class Particle implements IParticle {
                 ? Utils.itemFromArray(this.particlesOptions.stroke)
                 : this.particlesOptions.stroke;
 
-        this.strokeColor =
-            typeof this.stroke.color === "string"
-                ? ColorUtils.stringToRgb(this.stroke.color)
-                : ColorUtils.colorToRgb(this.stroke.color);
-
-        this.shadowColor =
-            typeof this.particlesOptions.shadow.color === "string"
-                ? ColorUtils.stringToRgb(this.particlesOptions.shadow.color)
-                : ColorUtils.colorToRgb(this.particlesOptions.shadow.color);
-
+        this.strokeColor = ColorUtils.colorToRgb(this.stroke.color);
+        this.shadowColor = ColorUtils.colorToRgb(this.particlesOptions.shadow.color);
         this.updater = new Updater(this.container, this);
     }
 

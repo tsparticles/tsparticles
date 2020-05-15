@@ -268,9 +268,9 @@ export class Bubbler {
                 return;
             }
 
-            particle.bubble.color = ColorUtils.colorToRgb(
-                modeColor instanceof Array ? Utils.itemFromArray(modeColor) : modeColor
-            );
+            const bubbleColor = modeColor instanceof Array ? Utils.itemFromArray(modeColor) : modeColor;
+
+            particle.bubble.color = ColorUtils.colorToRgb(bubbleColor);
         }
     }
 }

@@ -10,9 +10,15 @@ import type { IValueColor } from "../Core/Interfaces/IValueColor";
 export class ColorUtils {
     /**
      * Gets the particles color
-     * @param color the input color to convert in [[IRgb]] object
+     * @param input the input color to convert in [[IRgb]] object
      */
-    public static colorToRgb(color: IColor): IRgb | undefined {
+    public static colorToRgb(input?: string | IColor): IRgb | undefined {
+        if (input === undefined) {
+            return;
+        }
+
+        const color = typeof input === "string" ? { value: input } : input;
+
         let res: IRgb | undefined;
 
         if (typeof color.value === "string") {

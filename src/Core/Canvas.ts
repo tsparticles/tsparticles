@@ -162,9 +162,7 @@ export class Canvas {
             return;
         }
 
-        const color =
-            typeof triangleOptions.color === "string" ? { value: triangleOptions.color } : triangleOptions.color;
-        let colorTriangle = color !== undefined ? ColorUtils.colorToRgb(color) : undefined;
+        let colorTriangle = ColorUtils.colorToRgb(triangleOptions.color);
 
         if (!colorTriangle) {
             if (container.particles.linksColor === Constants.randomColorValue) {
@@ -222,8 +220,7 @@ export class Canvas {
 
         if (twinkle.enable) {
             const twinkleFreq = twinkle.frequency;
-            const twinkleColor = typeof twinkle.color === "string" ? { value: twinkle.color } : twinkle.color;
-            const twinkleRgb = twinkleColor !== undefined ? ColorUtils.colorToRgb(twinkleColor) : undefined;
+            const twinkleRgb = ColorUtils.colorToRgb(twinkle.color);
             const twinkling = Math.random() < twinkleFreq;
 
             if (twinkling && twinkleRgb !== undefined) {
@@ -310,8 +307,7 @@ export class Canvas {
         const options = container.options;
         const twinkle = particle.particlesOptions.twinkle.particles;
         const twinkleFreq = twinkle.frequency;
-        const twinkleColor = typeof twinkle.color === "string" ? { value: twinkle.color } : twinkle.color;
-        const twinkleRgb = twinkleColor !== undefined ? ColorUtils.colorToRgb(twinkleColor) : undefined;
+        const twinkleRgb = ColorUtils.colorToRgb(twinkle.color);
         const twinkling = twinkle.enable && Math.random() < twinkleFreq;
         const radius = particle.bubble.radius ?? particle.size.value;
         const opacity = twinkling ? twinkle.opacity : particle.bubble.opacity ?? particle.opacity.value;
@@ -319,7 +315,7 @@ export class Canvas {
         const infection = options.infection;
         const infectionStages = infection.stages;
         const infectionColor = infectionStage !== undefined ? infectionStages[infectionStage].color : undefined;
-        const infectionRgb = infectionColor ? ColorUtils.colorToRgb(infectionColor) : undefined;
+        const infectionRgb = ColorUtils.colorToRgb(infectionColor);
         const color =
             twinkling && twinkleRgb !== undefined
                 ? twinkleRgb

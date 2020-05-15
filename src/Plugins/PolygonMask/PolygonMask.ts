@@ -63,10 +63,7 @@ export class PolygonMask implements IContainerPlugin {
         rawData: ICoordinates[],
         stroke: IPolygonMaskDrawStroke
     ): void {
-        const color =
-            typeof stroke.color === "string"
-                ? ColorUtils.stringToRgb(stroke.color)
-                : ColorUtils.colorToRgb(stroke.color);
+        const color = ColorUtils.colorToRgb(stroke.color);
 
         if (color) {
             context.beginPath();
@@ -91,10 +88,7 @@ export class PolygonMask implements IContainerPlugin {
     ): void {
         context.translate(position.x, position.y);
 
-        const color =
-            typeof stroke.color === "string"
-                ? ColorUtils.stringToRgb(stroke.color)
-                : ColorUtils.colorToRgb(stroke.color);
+        const color = ColorUtils.colorToRgb(stroke.color);
 
         if (color) {
             context.strokeStyle = ColorUtils.getStyleFromRgb(color, stroke.opacity);
