@@ -41,8 +41,8 @@ export class ImageDrawer implements IShapeDrawer {
 
     public async init(container: Container): Promise<void> {
         const options = container.options;
-        const imageOptions = options.particles.shape.options[ShapeType.images] ??
-            options.particles.shape.options[ShapeType.image];
+        const imageOptions =
+            options.particles.shape.options[ShapeType.images] ?? options.particles.shape.options[ShapeType.image];
 
         if (imageOptions instanceof Array) {
             for (const optionsImage of imageOptions) {
@@ -87,7 +87,7 @@ export class ImageDrawer implements IShapeDrawer {
         };
 
         context.globalAlpha = opacity;
-        context.drawImage(element, pos.x, pos.y, radius * 2, radius * 2 / ratio);
+        context.drawImage(element, pos.x, pos.y, radius * 2, (radius * 2) / ratio);
         context.globalAlpha = 1;
     }
 }

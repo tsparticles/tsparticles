@@ -31,6 +31,5 @@ export class Attractor {
             p2.velocity.horizontal += ax;
             p2.velocity.vertical += ay;
         }
-
     }
 }

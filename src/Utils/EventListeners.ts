@@ -43,11 +43,13 @@ export class EventListeners {
         this.resizeHandler = (): void => this.handleWindowResize();
     }
 
-    private static manageListener(element: HTMLElement | Node | Window,
-                                  event: string,
-                                  handler: EventListenerOrEventListenerObject,
-                                  add: boolean,
-                                  options?: boolean | AddEventListenerOptions | EventListenerObject): void {
+    private static manageListener(
+        element: HTMLElement | Node | Window,
+        event: string,
+        handler: EventListenerOrEventListenerObject,
+        add: boolean,
+        options?: boolean | AddEventListenerOptions | EventListenerObject
+    ): void {
         if (add) {
             let addOptions: AddEventListenerOptions = { passive: true };
 
@@ -59,22 +61,30 @@ export class EventListeners {
 
             EventListeners.addListener(element, event, handler, addOptions);
         } else {
-            EventListeners.removeListener(element, event, handler,
-                options as boolean | EventListenerOptions | undefined);
+            EventListeners.removeListener(
+                element,
+                event,
+                handler,
+                options as boolean | EventListenerOptions | undefined
+            );
         }
     }
 
-    private static addListener(element: HTMLElement | Node | Window,
-                               event: string,
-                               handler: EventListenerOrEventListenerObject,
-                               options?: boolean | AddEventListenerOptions | undefined): void {
+    private static addListener(
+        element: HTMLElement | Node | Window,
+        event: string,
+        handler: EventListenerOrEventListenerObject,
+        options?: boolean | AddEventListenerOptions | undefined
+    ): void {
         element.addEventListener(event, handler, options);
     }
 
-    private static removeListener(element: HTMLElement | Node | Window,
-                                  event: string,
-                                  handler: EventListenerOrEventListenerObject,
-                                  options?: boolean | EventListenerOptions): void {
+    private static removeListener(
+        element: HTMLElement | Node | Window,
+        event: string,
+        handler: EventListenerOrEventListenerObject,
+        options?: boolean | EventListenerOptions
+    ): void {
         element.removeEventListener(event, handler, options);
     }
 
@@ -105,9 +115,9 @@ export class EventListeners {
         const interactivityEl = container.interactivity.element;
 
         /* detect mouse pos - on hover / click event */
-        if (interactivityEl && (
-            options.interactivity.events.onHover.enable ||
-            options.interactivity.events.onClick.enable)
+        if (
+            interactivityEl &&
+            (options.interactivity.events.onHover.enable || options.interactivity.events.onClick.enable)
         ) {
             /* el on mousemove */
             EventListeners.manageListener(interactivityEl, Constants.mouseMoveEvent, this.mouseMoveHandler, add);
@@ -141,11 +151,13 @@ export class EventListeners {
         }
 
         if (document) {
-            EventListeners.manageListener(document,
+            EventListeners.manageListener(
+                document,
                 Constants.visibilityChangeEvent,
                 this.visibilityChangeHandler,
                 add,
-                false);
+                false
+            );
         }
     }
 

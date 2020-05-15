@@ -10,9 +10,7 @@ import type { IContainerPlugin } from "../Core/Interfaces/IContainerPlugin";
 import { Utils } from "./Utils";
 
 export class CanvasUtils {
-    public static paintBase(context: CanvasRenderingContext2D,
-                            dimension: IDimension,
-                            baseColor?: string): void {
+    public static paintBase(context: CanvasRenderingContext2D, dimension: IDimension, baseColor?: string): void {
         context.save();
         context.fillStyle = baseColor ?? "rgba(0,0,0,0)";
         context.fillRect(0, 0, dimension.width, dimension.height);
@@ -23,17 +21,19 @@ export class CanvasUtils {
         context.clearRect(0, 0, dimension.width, dimension.height);
     }
 
-    public static drawLinkLine(context: CanvasRenderingContext2D,
-                               width: number,
-                               begin: ICoordinates,
-                               end: ICoordinates,
-                               maxDistance: number,
-                               canvasSize: IDimension,
-                               warp: boolean,
-                               backgroundMask: boolean,
-                               colorLine: IRgb,
-                               opacity: number,
-                               shadow: ILineLinkedShadow): void {
+    public static drawLinkLine(
+        context: CanvasRenderingContext2D,
+        width: number,
+        begin: ICoordinates,
+        end: ICoordinates,
+        maxDistance: number,
+        canvasSize: IDimension,
+        warp: boolean,
+        backgroundMask: boolean,
+        colorLine: IRgb,
+        opacity: number,
+        shadow: ILineLinkedShadow
+    ): void {
         // this.ctx.lineCap = "round"; /* performance issue */
         /* path */
 
@@ -52,7 +52,7 @@ export class CanvasUtils {
             if (distance <= maxDistance) {
                 const dx = begin.x - (end.x - canvasSize.width);
                 const dy = begin.y - end.y;
-                const yi = begin.y - ((dy / dx) * begin.x);
+                const yi = begin.y - (dy / dx) * begin.x;
 
                 this.drawLine(context, begin, { x: 0, y: yi });
                 this.drawLine(context, end, { x: canvasSize.width, y: yi });
@@ -67,7 +67,7 @@ export class CanvasUtils {
                 if (distance <= maxDistance) {
                     const dx = begin.x - end.x;
                     const dy = begin.y - (end.y - canvasSize.height);
-                    const yi = begin.y - ((dy / dx) * begin.x);
+                    const yi = begin.y - (dy / dx) * begin.x;
                     const xi = -yi / (dy / dx);
 
                     this.drawLine(context, begin, { x: xi, y: 0 });
@@ -83,11 +83,14 @@ export class CanvasUtils {
                     if (distance <= maxDistance) {
                         const dx = begin.x - (end.x - canvasSize.width);
                         const dy = begin.y - (end.y - canvasSize.height);
-                        const yi = begin.y - ((dy / dx) * begin.x);
+                        const yi = begin.y - (dy / dx) * begin.x;
                         const xi = -yi / (dy / dx);
 
                         this.drawLine(context, begin, { x: xi, y: yi });
-                        this.drawLine(context, end, { x: xi + canvasSize.width, y: yi + canvasSize.height });
+                        this.drawLine(context, end, {
+                            x: xi + canvasSize.width,
+                            y: yi + canvasSize.height,
+                        });
                     }
                 }
             }
@@ -96,15 +99,16 @@ export class CanvasUtils {
         context.lineWidth = width;
 
         if (backgroundMask) {
-            context.globalCompositeOperation = 'destination-out';
+            context.globalCompositeOperation = "destination-out";
         }
 
         context.strokeStyle = ColorUtils.getStyleFromRgb(colorLine, opacity);
 
         if (shadow.enable) {
-            const shadowColor = typeof shadow.color === "string" ?
-                ColorUtils.stringToRgb(shadow.color) :
-                ColorUtils.colorToRgb(shadow.color);
+            const shadowColor =
+                typeof shadow.color === "string"
+                    ? ColorUtils.stringToRgb(shadow.color)
+                    : ColorUtils.colorToRgb(shadow.color);
 
             if (shadowColor) {
                 context.shadowBlur = shadow.blur;
@@ -115,14 +119,16 @@ export class CanvasUtils {
         context.stroke();
     }
 
-    public static drawLinkTriangle(context: CanvasRenderingContext2D,
-                                   width: number,
-                                   pos1: ICoordinates,
-                                   pos2: ICoordinates,
-                                   pos3: ICoordinates,
-                                   backgroundMask: boolean,
-                                   colorTriangle: IRgb,
-                                   opacityTriangle: number): void {
+    public static drawLinkTriangle(
+        context: CanvasRenderingContext2D,
+        width: number,
+        pos1: ICoordinates,
+        pos2: ICoordinates,
+        pos3: ICoordinates,
+        backgroundMask: boolean,
+        colorTriangle: IRgb,
+        opacityTriangle: number
+    ): void {
         // this.ctx.lineCap = "round"; /* performance issue */
         /* path */
 
@@ -131,7 +137,7 @@ export class CanvasUtils {
         context.lineWidth = width;
 
         if (backgroundMask) {
-            context.globalCompositeOperation = 'destination-out';
+            context.globalCompositeOperation = "destination-out";
         }
 
         context.fillStyle = ColorUtils.getStyleFromRgb(colorTriangle, opacityTriangle);
@@ -139,11 +145,13 @@ export class CanvasUtils {
         context.fill();
     }
 
-    public static drawConnectLine(context: CanvasRenderingContext2D,
-                                  width: number,
-                                  lineStyle: CanvasGradient,
-                                  begin: ICoordinates,
-                                  end: ICoordinates): void {
+    public static drawConnectLine(
+        context: CanvasRenderingContext2D,
+        width: number,
+        lineStyle: CanvasGradient,
+        begin: ICoordinates,
+        end: ICoordinates
+    ): void {
         context.save();
 
         this.drawLine(context, begin, end);
@@ -154,10 +162,12 @@ export class CanvasUtils {
         context.restore();
     }
 
-    public static gradient(context: CanvasRenderingContext2D,
-                           p1: IParticle,
-                           p2: IParticle,
-                           opacity: number): CanvasGradient | undefined {
+    public static gradient(
+        context: CanvasRenderingContext2D,
+        p1: IParticle,
+        p2: IParticle,
+        opacity: number
+    ): CanvasGradient | undefined {
         const gradStop = Math.floor(p2.size.value / p1.size.value);
 
         if (!p1.color || !p2.color) {
@@ -177,12 +187,14 @@ export class CanvasUtils {
         return grad;
     }
 
-    public static drawGrabLine(context: CanvasRenderingContext2D,
-                               width: number,
-                               begin: ICoordinates,
-                               end: ICoordinates,
-                               colorLine: IRgb,
-                               opacity: number): void {
+    public static drawGrabLine(
+        context: CanvasRenderingContext2D,
+        width: number,
+        begin: ICoordinates,
+        end: ICoordinates,
+        colorLine: IRgb,
+        opacity: number
+    ): void {
         context.save();
 
         this.drawLine(context, begin, end);
@@ -193,15 +205,17 @@ export class CanvasUtils {
         context.restore();
     }
 
-    public static drawParticle(container: Container,
-                               context: CanvasRenderingContext2D,
-                               particle: IParticle,
-                               delta: number,
-                               colorValue: string,
-                               backgroundMask: boolean,
-                               radius: number,
-                               opacity: number,
-                               shadow: IShadow): void {
+    public static drawParticle(
+        container: Container,
+        context: CanvasRenderingContext2D,
+        particle: IParticle,
+        delta: number,
+        colorValue: string,
+        backgroundMask: boolean,
+        radius: number,
+        opacity: number,
+        shadow: IShadow
+    ): void {
         const pos = particle.getPosition();
 
         context.save();
@@ -209,7 +223,7 @@ export class CanvasUtils {
         context.beginPath();
 
         if (particle.angle !== 0) {
-            context.rotate(particle.angle * Math.PI / 180);
+            context.rotate((particle.angle * Math.PI) / 180);
         }
 
         if (backgroundMask) {
@@ -253,7 +267,7 @@ export class CanvasUtils {
         context.translate(pos.x, pos.y);
 
         if (particle.angle !== 0) {
-            context.rotate(particle.angle * Math.PI / 180);
+            context.rotate((particle.angle * Math.PI) / 180);
         }
 
         if (backgroundMask) {
@@ -265,13 +279,14 @@ export class CanvasUtils {
         context.restore();
     }
 
-    public static drawShape(container: Container,
-                            context: CanvasRenderingContext2D,
-                            particle: IParticle,
-                            radius: number,
-                            opacity: number,
-                            delta: number): void {
-
+    public static drawShape(
+        container: Container,
+        context: CanvasRenderingContext2D,
+        particle: IParticle,
+        radius: number,
+        opacity: number,
+        delta: number
+    ): void {
         if (!particle.shape) {
             return;
         }
@@ -285,13 +300,14 @@ export class CanvasUtils {
         drawer.draw(context, particle, radius, opacity, delta);
     }
 
-    public static drawShapeAfterEffect(container: Container,
-                                       context: CanvasRenderingContext2D,
-                                       particle: IParticle,
-                                       radius: number,
-                                       opacity: number,
-                                       delta: number): void {
-
+    public static drawShapeAfterEffect(
+        container: Container,
+        context: CanvasRenderingContext2D,
+        particle: IParticle,
+        radius: number,
+        opacity: number,
+        delta: number
+    ): void {
         if (!particle.shape) {
             return;
         }
@@ -324,10 +340,12 @@ export class CanvasUtils {
         context.closePath();
     }
 
-    private static drawTriangle(context: CanvasRenderingContext2D,
-                                p1: ICoordinates,
-                                p2: ICoordinates,
-                                p3: ICoordinates) {
+    private static drawTriangle(
+        context: CanvasRenderingContext2D,
+        p1: ICoordinates,
+        p2: ICoordinates,
+        p3: ICoordinates
+    ) {
         context.beginPath();
         context.moveTo(p1.x, p1.y);
         context.lineTo(p2.x, p2.y);

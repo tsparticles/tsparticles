@@ -22,13 +22,14 @@ export class Updater {
         this.mover = new Mover(container, particle);
     }
 
-    private static checkBounds(coordinate: number,
-                               radius: number,
-                               size: number,
-                               velocity: number,
-                               outside: () => void): void {
-        if ((coordinate + radius > size && velocity > 0) ||
-            (coordinate - radius < 0 && velocity < 0)) {
+    private static checkBounds(
+        coordinate: number,
+        radius: number,
+        size: number,
+        velocity: number,
+        outside: () => void
+    ): void {
+        if ((coordinate + radius > size && velocity > 0) || (coordinate - radius < 0 && velocity < 0)) {
             outside();
         }
     }
@@ -124,7 +125,7 @@ export class Updater {
         if (particle.particlesOptions.rotate.animation.enable) {
             switch (particle.rotateDirection) {
                 case RotateDirection.clockwise:
-                    particle.angle += particle.particlesOptions.rotate.animation.speed * Math.PI / 18 * deltaFactor;
+                    particle.angle += ((particle.particlesOptions.rotate.animation.speed * Math.PI) / 18) * deltaFactor;
 
                     if (particle.angle > 360) {
                         particle.angle -= 360;
@@ -132,7 +133,7 @@ export class Updater {
                     break;
                 case RotateDirection.counterClockwise:
                 default:
-                    particle.angle -= particle.particlesOptions.rotate.animation.speed * Math.PI / 18 * deltaFactor;
+                    particle.angle -= ((particle.particlesOptions.rotate.animation.speed * Math.PI) / 18) * deltaFactor;
 
                     if (particle.angle < 0) {
                         particle.angle += 360;

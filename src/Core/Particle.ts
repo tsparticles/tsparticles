@@ -1,34 +1,34 @@
-import type {Container} from "./Container";
-import type {IVelocity} from "./Interfaces/IVelocity";
-import type {IParticleSizeAnimation} from "./Interfaces/IParticleSizeAnimation";
-import type {IParticleOpacityAnimation} from "./Interfaces/IParticleOpacityAnimation";
-import type {ICoordinates} from "./Interfaces/ICoordinates";
-import type {IParticleImage} from "./Interfaces/IParticleImage";
-import {ShapeType} from "../Enums/ShapeType";
-import {Updater} from "./Particle/Updater";
-import {Utils} from "../Utils/Utils";
-import {PolygonMaskType} from "../Enums/PolygonMaskType";
-import type {IRgb} from "./Interfaces/IRgb";
-import {RotateDirection} from "../Enums/RotateDirection";
-import type {IStroke} from "../Options/Interfaces/Particles/IStroke";
-import {ColorUtils} from "../Utils/ColorUtils";
-import type {IOpacityRandom} from "../Options/Interfaces/Particles/Opacity/IOpacityRandom";
-import type {IShapeValues} from "../Options/Interfaces/Particles/Shape/IShapeValues";
-import type {IBubbleParticleData} from "./Interfaces/IBubbleParticleData";
-import type {IParticle} from "./Interfaces/IParticle";
-import {MoveDirection} from "../Enums/MoveDirection";
-import type {IParticles} from "../Options/Interfaces/Particles/IParticles";
-import {Particles} from "../Options/Classes/Particles/Particles";
-import {SizeAnimationStatus} from "../Enums/SizeAnimationStatus";
-import {OpacityAnimationStatus} from "../Enums/OpacityAnimationStatus";
-import {Shape} from "../Options/Classes/Particles/Shape/Shape";
-import {StartValueType} from "../Enums/StartValueType";
-import {ImageDrawer} from "./Particle/ShapeDrawers/ImageDrawer";
-import type {IImageShape} from "../Options/Interfaces/Particles/Shape/IImageShape";
-import {RecursivePartial} from "../Types/RecursivePartial";
-import {Plugins} from "../Utils/Plugins";
-import type {ILink} from "./Interfaces/ILink";
-import type {IHsl} from "./Interfaces/IHsl";
+import type { Container } from "./Container";
+import type { IVelocity } from "./Interfaces/IVelocity";
+import type { IParticleSizeAnimation } from "./Interfaces/IParticleSizeAnimation";
+import type { IParticleOpacityAnimation } from "./Interfaces/IParticleOpacityAnimation";
+import type { ICoordinates } from "./Interfaces/ICoordinates";
+import type { IParticleImage } from "./Interfaces/IParticleImage";
+import { ShapeType } from "../Enums/ShapeType";
+import { Updater } from "./Particle/Updater";
+import { Utils } from "../Utils/Utils";
+import { PolygonMaskType } from "../Enums/PolygonMaskType";
+import type { IRgb } from "./Interfaces/IRgb";
+import { RotateDirection } from "../Enums/RotateDirection";
+import type { IStroke } from "../Options/Interfaces/Particles/IStroke";
+import { ColorUtils } from "../Utils/ColorUtils";
+import type { IOpacityRandom } from "../Options/Interfaces/Particles/Opacity/IOpacityRandom";
+import type { IShapeValues } from "../Options/Interfaces/Particles/Shape/IShapeValues";
+import type { IBubbleParticleData } from "./Interfaces/IBubbleParticleData";
+import type { IParticle } from "./Interfaces/IParticle";
+import { MoveDirection } from "../Enums/MoveDirection";
+import type { IParticles } from "../Options/Interfaces/Particles/IParticles";
+import { Particles } from "../Options/Classes/Particles/Particles";
+import { SizeAnimationStatus } from "../Enums/SizeAnimationStatus";
+import { OpacityAnimationStatus } from "../Enums/OpacityAnimationStatus";
+import { Shape } from "../Options/Classes/Particles/Shape/Shape";
+import { StartValueType } from "../Enums/StartValueType";
+import { ImageDrawer } from "./Particle/ShapeDrawers/ImageDrawer";
+import type { IImageShape } from "../Options/Interfaces/Particles/Shape/IImageShape";
+import { RecursivePartial } from "../Types/RecursivePartial";
+import { Plugins } from "../Utils/Plugins";
+import type { ILink } from "./Interfaces/ILink";
+import type { IHsl } from "./Interfaces/IHsl";
 
 /**
  * The single particle object
@@ -105,9 +105,10 @@ export class Particle implements IParticle {
                 const shapeData = shapeOptions.options[this.shape];
 
                 if (shapeData !== undefined) {
-                    this.shapeData = Utils.deepExtend({}, shapeData instanceof Array ?
-                        Utils.itemFromArray(shapeData) :
-                        shapeData);
+                    this.shapeData = Utils.deepExtend(
+                        {},
+                        shapeData instanceof Array ? Utils.itemFromArray(shapeData) : shapeData
+                    );
 
                     this.fill = this.shapeData?.fill ?? this.fill;
                     this.close = this.shapeData?.close ?? this.close;
@@ -121,9 +122,10 @@ export class Particle implements IParticle {
             const shapeData = particlesOptions.shape.options[this.shape];
 
             if (shapeData) {
-                this.shapeData = Utils.deepExtend({}, shapeData instanceof Array ?
-                    Utils.itemFromArray(shapeData) :
-                    shapeData);
+                this.shapeData = Utils.deepExtend(
+                    {},
+                    shapeData instanceof Array ? Utils.itemFromArray(shapeData) : shapeData
+                );
 
                 this.fill = this.shapeData?.fill ?? this.fill;
                 this.close = this.shapeData?.close ?? this.close;
@@ -146,25 +148,28 @@ export class Particle implements IParticle {
 
         const noiseDelay = this.particlesOptions.move.noise.delay;
 
-        this.noiseDelay = (noiseDelay.random.enable ?
-            Utils.randomInRange(noiseDelay.random.minimumValue, noiseDelay.value) :
-            noiseDelay.value) * 1000;
+        this.noiseDelay =
+            (noiseDelay.random.enable
+                ? Utils.randomInRange(noiseDelay.random.minimumValue, noiseDelay.value)
+                : noiseDelay.value) * 1000;
 
         container.retina.initParticle(this);
 
         const color = this.particlesOptions.color;
 
         /* size */
-        const sizeValue = (this.sizeValue ?? container.retina.sizeValue);
+        const sizeValue = this.sizeValue ?? container.retina.sizeValue;
 
-        const randomSize = typeof this.particlesOptions.size.random === "boolean" ?
-            this.particlesOptions.size.random :
-            this.particlesOptions.size.random.enable;
+        const randomSize =
+            typeof this.particlesOptions.size.random === "boolean"
+                ? this.particlesOptions.size.random
+                : this.particlesOptions.size.random.enable;
 
         this.size = {
-            value: randomSize && this.randomMinimumSize !== undefined ?
-                Utils.randomInRange(this.randomMinimumSize, sizeValue) :
-                sizeValue,
+            value:
+                randomSize && this.randomMinimumSize !== undefined
+                    ? Utils.randomInRange(this.randomMinimumSize, sizeValue)
+                    : sizeValue,
         };
 
         this.direction = this.particlesOptions.move.direction;
@@ -284,9 +289,9 @@ export class Particle implements IParticle {
             const index = Utils.arrayRandomIndex(images);
             const image = images[index];
 
-            const optionsImage = (imagesOptions instanceof Array ?
-                imagesOptions.filter((t) => (t as IImageShape).src === image.source)[0] :
-                imagesOptions) as IImageShape;
+            const optionsImage = (imagesOptions instanceof Array
+                ? imagesOptions.filter((t) => (t as IImageShape).src === image.source)[0]
+                : imagesOptions) as IImageShape;
 
             this.image = {
                 data: image,
@@ -303,17 +308,20 @@ export class Particle implements IParticle {
             this.close = optionsImage.close ?? this.close;
         }
 
-        this.stroke = this.particlesOptions.stroke instanceof Array ?
-            Utils.itemFromArray(this.particlesOptions.stroke) :
-            this.particlesOptions.stroke;
+        this.stroke =
+            this.particlesOptions.stroke instanceof Array
+                ? Utils.itemFromArray(this.particlesOptions.stroke)
+                : this.particlesOptions.stroke;
 
-        this.strokeColor = typeof this.stroke.color === "string" ?
-            ColorUtils.stringToRgb(this.stroke.color) :
-            ColorUtils.colorToRgb(this.stroke.color);
+        this.strokeColor =
+            typeof this.stroke.color === "string"
+                ? ColorUtils.stringToRgb(this.stroke.color)
+                : ColorUtils.colorToRgb(this.stroke.color);
 
-        this.shadowColor = typeof this.particlesOptions.shadow.color === "string" ?
-            ColorUtils.stringToRgb(this.particlesOptions.shadow.color) :
-            ColorUtils.colorToRgb(this.particlesOptions.shadow.color);
+        this.shadowColor =
+            typeof this.particlesOptions.shadow.color === "string"
+                ? ColorUtils.stringToRgb(this.particlesOptions.shadow.color)
+                : ColorUtils.colorToRgb(this.particlesOptions.shadow.color);
 
         this.updater = new Updater(this.container, this);
     }
@@ -489,7 +497,7 @@ export class Particle implements IParticle {
             }
         }
 
-        const pos = {x: 0, y: 0};
+        const pos = { x: 0, y: 0 };
 
         pos.x = position ? position.x : Math.random() * container.canvas.size.width;
         pos.y = position ? position.y : Math.random() * container.canvas.size.height;

@@ -25,7 +25,8 @@ export class Infecter {
         const infectedStage1 = infectionStage1.infectedStage ?? p1.infectionStage;
 
         //const query = container.particles.spatialGrid.queryRadius(pos, radius)
-        const query = container.particles.quadTree.query(new Circle(pos.x, pos.y, radius))
+        const query = container.particles.quadTree
+            .query(new Circle(pos.x, pos.y, radius))
             .filter((t) => t.infectionStage === undefined || t.infectionStage !== p1.infectionStage);
 
         const infections = infectionStage1.rate;

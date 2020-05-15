@@ -1,11 +1,11 @@
-import type {IColor} from "../Core/Interfaces/IColor";
-import type {IRgb} from "../Core/Interfaces/IRgb";
-import type {IRgba} from "../Core/Interfaces/IRgba";
-import type {IHsl} from "../Core/Interfaces/IHsl";
-import type {IHsla} from "../Core/Interfaces/IHsla";
-import {Utils} from "./Utils";
-import {Constants} from "./Constants";
-import type {IValueColor} from "../Core/Interfaces/IValueColor";
+import type { IColor } from "../Core/Interfaces/IColor";
+import type { IRgb } from "../Core/Interfaces/IRgb";
+import type { IRgba } from "../Core/Interfaces/IRgba";
+import type { IHsl } from "../Core/Interfaces/IHsl";
+import type { IHsla } from "../Core/Interfaces/IHsla";
+import { Utils } from "./Utils";
+import { Constants } from "./Constants";
+import type { IValueColor } from "../Core/Interfaces/IValueColor";
 
 export class ColorUtils {
     /**
@@ -15,7 +15,7 @@ export class ColorUtils {
     public static colorToRgb(color: IColor): IRgb | undefined {
         let res: IRgb | undefined;
 
-        if (typeof (color.value) === "string") {
+        if (typeof color.value === "string") {
             if (color.value === Constants.randomColorValue) {
                 res = {
                     b: Math.floor(Math.random() * 256),
@@ -29,7 +29,7 @@ export class ColorUtils {
             if (color.value instanceof Array) {
                 const colorSelected = Utils.itemFromArray(color.value);
 
-                res = ColorUtils.colorToRgb({value: colorSelected});
+                res = ColorUtils.colorToRgb({ value: colorSelected });
             } else {
                 const colorValue = color.value as IValueColor;
                 const rgbColor = colorValue.rgb ?? (color.value as IRgb);
@@ -69,7 +69,7 @@ export class ColorUtils {
         const res = {
             h: 0,
             l: (maxColor + minColor) / 2,
-            s: 0
+            s: 0,
         };
 
         if (maxColor != minColor) {
@@ -117,7 +117,7 @@ export class ColorUtils {
      * @param hsl
      */
     public static hslToRgb(hsl: IHsl): IRgb {
-        const result: IRgb = {b: 0, g: 0, r: 0};
+        const result: IRgb = { b: 0, g: 0, r: 0 };
         const hslPercent: IHsl = {
             h: hsl.h / 360,
             l: hsl.l / 100,
@@ -129,9 +129,10 @@ export class ColorUtils {
             result.g = hslPercent.l;
             result.r = hslPercent.l;
         } else {
-            const q = hslPercent.l < 0.5 ?
-                hslPercent.l * (1 + hslPercent.s) :
-                hslPercent.l + hslPercent.s - hslPercent.l * hslPercent.s;
+            const q =
+                hslPercent.l < 0.5
+                    ? hslPercent.l * (1 + hslPercent.s)
+                    : hslPercent.l + hslPercent.s - hslPercent.l * hslPercent.s;
             const p = 2 * hslPercent.l - q;
 
             result.r = ColorUtils.hue2rgb(p, q, hslPercent.h + 1 / 3);
@@ -154,7 +155,7 @@ export class ColorUtils {
             b: rgbResult.b,
             g: rgbResult.g,
             r: rgbResult.r,
-        }
+        };
     }
 
     /**
@@ -163,15 +164,17 @@ export class ColorUtils {
      */
     public static getRandomRgbColor(min?: number): IRgb {
         const fixedMin = min || 0;
-        const minColor = fixedMin + (fixedMin * Math.pow(16, 2)) + (fixedMin * Math.pow(16, 4));
-        const factor = minColor ^ 0xFFFFFF;
-        const randomColor = Math.floor(((Math.random() * factor) | minColor)).toString(16);
+        const minColor = fixedMin + fixedMin * Math.pow(16, 2) + fixedMin * Math.pow(16, 4);
+        const factor = minColor ^ 0xffffff;
+        const randomColor = Math.floor((Math.random() * factor) | minColor).toString(16);
 
-        return this.stringToRgb(`#${randomColor}`) ?? {
-            b: 0,
-            g: 0,
-            r: 0,
-        };
+        return (
+            this.stringToRgb(`#${randomColor}`) ?? {
+                b: 0,
+                g: 0,
+                r: 0,
+            }
+        );
     }
 
     /**
@@ -248,26 +251,30 @@ export class ColorUtils {
     }
 
     private static stringToRgba(input: string): IRgba | undefined {
-        if (input.startsWith('rgb')) {
+        if (input.startsWith("rgb")) {
             const regex = /rgba?\(\s*(\d+)\s*,\s*(\d+)\s*,\s*(\d+)\s*(,\s*([\d.]+)\s*)?\)/i;
             const result = regex.exec(input);
 
-            return result ? {
-                a: result.length > 4 ? parseFloat(result[5]) : 1,
-                b: parseInt(result[3], 10),
-                g: parseInt(result[2], 10),
-                r: parseInt(result[1], 10),
-            } : undefined;
-        } else if (input.startsWith('hsl')) {
+            return result
+                ? {
+                      a: result.length > 4 ? parseFloat(result[5]) : 1,
+                      b: parseInt(result[3], 10),
+                      g: parseInt(result[2], 10),
+                      r: parseInt(result[1], 10),
+                  }
+                : undefined;
+        } else if (input.startsWith("hsl")) {
             const regex = /hsla?\(\s*(\d+)\s*,\s*(\d+)%\s*,\s*(\d+)%\s*(,\s*([\d.]+)\s*)?\)/i;
             const result = regex.exec(input);
 
-            return result ? ColorUtils.hslaToRgba({
-                a: result.length > 4 ? parseFloat(result[5]) : 1,
-                h: parseInt(result[1], 10),
-                l: parseInt(result[3], 10),
-                s: parseInt(result[2], 10),
-            }) : undefined;
+            return result
+                ? ColorUtils.hslaToRgba({
+                      a: result.length > 4 ? parseFloat(result[5]) : 1,
+                      h: parseInt(result[1], 10),
+                      l: parseInt(result[3], 10),
+                      s: parseInt(result[2], 10),
+                  })
+                : undefined;
         } else {
             // By Tim Down - http://stackoverflow.com/a/5624139/3493650
             // Expand shorthand form (e.g. "03F") to full form (e.g. "0033FF")
@@ -278,12 +285,14 @@ export class ColorUtils {
             const regex = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})?$/i;
             const result = regex.exec(hexFixed);
 
-            return result ? {
-                a: result[4] !== undefined ? parseInt(result[4], 16) / 0xFF : 1,
-                b: parseInt(result[3], 16),
-                g: parseInt(result[2], 16),
-                r: parseInt(result[1], 16),
-            } : undefined;
+            return result
+                ? {
+                      a: result[4] !== undefined ? parseInt(result[4], 16) / 0xff : 1,
+                      b: parseInt(result[3], 16),
+                      g: parseInt(result[2], 16),
+                      r: parseInt(result[1], 16),
+                  }
+                : undefined;
         }
     }
 }

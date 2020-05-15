@@ -38,10 +38,13 @@ export class Bubbler {
         }
     }
 
-    private static process(container: Container,
-                           particle: Particle,
-                           distMouse: number,
-                           timeSpent: number, data: IBubblerProcessParam): void {
+    private static process(
+        container: Container,
+        particle: Particle,
+        distMouse: number,
+        timeSpent: number,
+        data: IBubblerProcessParam
+    ): void {
         const bubbleParam = data.bubbleObj.optValue;
 
         if (bubbleParam === undefined) {
@@ -62,7 +65,7 @@ export class Bubbler {
                     const obj = pObjBubble ?? pObj;
 
                     if (obj !== bubbleParam) {
-                        const value = pObj - (timeSpent * (pObj - bubbleParam) / bubbleDuration);
+                        const value = pObj - (timeSpent * (pObj - bubbleParam)) / bubbleDuration;
 
                         if (type === ProcessBubbleType.size) {
                             particle.bubble.radius = value;
@@ -238,10 +241,12 @@ export class Bubbler {
         }
     }
 
-    private static calculateBubbleValue(particleValue: number,
-                                        modeValue: number,
-                                        optionsValue: number,
-                                        ratio: number): number | undefined {
+    private static calculateBubbleValue(
+        particleValue: number,
+        modeValue: number,
+        optionsValue: number,
+        ratio: number
+    ): number | undefined {
         if (modeValue > optionsValue) {
             const size = particleValue + (modeValue - optionsValue) * ratio;
 
@@ -263,9 +268,9 @@ export class Bubbler {
                 return;
             }
 
-            particle.bubble.color = ColorUtils.colorToRgb(modeColor instanceof Array ?
-                Utils.itemFromArray(modeColor) :
-                modeColor);
+            particle.bubble.color = ColorUtils.colorToRgb(
+                modeColor instanceof Array ? Utils.itemFromArray(modeColor) : modeColor
+            );
         }
     }
 }

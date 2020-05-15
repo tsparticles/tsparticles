@@ -17,9 +17,9 @@ export class Emitter {
     private readonly emitters: Emitters;
     private readonly container: Container;
     private readonly initialPosition?: ICoordinates;
-    private readonly particlesOptions: RecursivePartial<IParticles>
+    private readonly particlesOptions: RecursivePartial<IParticles>;
     private startInterval?: number;
-    private lifeCount: number
+    private lifeCount: number;
 
     constructor(emitters: Emitters, emitterOptions: IEmitter, position?: ICoordinates) {
         this.emitters = emitters;
@@ -44,17 +44,19 @@ export class Emitter {
 
         this.particlesOptions = particlesOptions;
 
-        this.size = this.emitterOptions.size ?? (() => {
-            const size = new EmitterSize();
+        this.size =
+            this.emitterOptions.size ??
+            (() => {
+                const size = new EmitterSize();
 
-            size.load({
-                height: 0,
-                width: 0,
-                mode: SizeMode.percent,
-            });
+                size.load({
+                    height: 0,
+                    width: 0,
+                    mode: SizeMode.percent,
+                });
 
-            return size;
-        })();
+                return size;
+            })();
         this.lifeCount = this.emitterOptions.life.count ?? -1;
 
         this.play();
@@ -87,9 +89,10 @@ export class Emitter {
     public resize(): void {
         const initialPosition = this.initialPosition;
 
-        this.position = initialPosition && Utils.isPointInside(initialPosition, this.container.canvas.size) ?
-            initialPosition :
-            this.calcPosition();
+        this.position =
+            initialPosition && Utils.isPointInside(initialPosition, this.container.canvas.size)
+                ? initialPosition
+                : this.calcPosition();
     }
 
     private prepareToDie(): void {
@@ -124,28 +127,34 @@ export class Emitter {
         };
 
         return {
-            x: percentPosition.x / 100 * container.canvas.size.width,
-            y: percentPosition.y / 100 * container.canvas.size.height,
-        }
+            x: (percentPosition.x / 100) * container.canvas.size.width,
+            y: (percentPosition.y / 100) * container.canvas.size.height,
+        };
     }
 
     private emit(): void {
         const container = this.container;
         const position = this.position;
         const offset = {
-            x: this.size.mode === SizeMode.percent ?
-                container.canvas.size.width * this.size.width / 100 :
-                this.size.width,
-            y: this.size.mode === SizeMode.percent ?
-                container.canvas.size.height * this.size.height / 100 :
-                this.size.height,
+            x:
+                this.size.mode === SizeMode.percent
+                    ? (container.canvas.size.width * this.size.width) / 100
+                    : this.size.width,
+            y:
+                this.size.mode === SizeMode.percent
+                    ? (container.canvas.size.height * this.size.height) / 100
+                    : this.size.height,
         };
 
         for (let i = 0; i < this.emitterOptions.rate.quantity; i++) {
-            const particle = new Particle(container, {
-                x: position.x + offset.x * (Math.random() - 0.5),
-                y: position.y + offset.y * (Math.random() - 0.5),
-            }, this.particlesOptions);
+            const particle = new Particle(
+                container,
+                {
+                    x: position.x + offset.x * (Math.random() - 0.5),
+                    y: position.y + offset.y * (Math.random() - 0.5),
+                },
+                this.particlesOptions
+            );
 
             container.particles.addParticle(particle);
         }

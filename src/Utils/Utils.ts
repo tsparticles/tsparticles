@@ -1,14 +1,14 @@
-import type {ICoordinates} from "../Core/Interfaces/ICoordinates";
-import {MoveDirection} from "../Enums/MoveDirection";
-import type {ICharacterShape} from "../Options/Interfaces/Particles/Shape/ICharacterShape";
-import type {IBounds} from "../Core/Interfaces/IBounds";
-import type {IDimension} from "../Core/Interfaces/IDimension";
-import type {IImage} from "../Core/Interfaces/IImage";
-import type {IParticle} from "../Core/Interfaces/IParticle";
+import type { ICoordinates } from "../Core/Interfaces/ICoordinates";
+import { MoveDirection } from "../Enums/MoveDirection";
+import type { ICharacterShape } from "../Options/Interfaces/Particles/Shape/ICharacterShape";
+import type { IBounds } from "../Core/Interfaces/IBounds";
+import type { IDimension } from "../Core/Interfaces/IDimension";
+import type { IImage } from "../Core/Interfaces/IImage";
+import type { IParticle } from "../Core/Interfaces/IParticle";
 
 type CSSOMString = string;
-type FontFaceLoadStatus = 'unloaded' | 'loading' | 'loaded' | 'error';
-type FontFaceSetStatus = 'loading' | 'loaded';
+type FontFaceLoadStatus = "unloaded" | "loading" | "loaded" | "error";
+type FontFaceSetStatus = "loading" | "loaded";
 
 interface FontFace {
     family: CSSOMString;
@@ -82,31 +82,31 @@ export class Utils {
 
         switch (particle.direction) {
             case MoveDirection.top:
-                velocityBase = {x: 0, y: -1};
+                velocityBase = { x: 0, y: -1 };
                 break;
             case MoveDirection.topRight:
-                velocityBase = {x: 0.5, y: -0.5};
+                velocityBase = { x: 0.5, y: -0.5 };
                 break;
             case MoveDirection.right:
-                velocityBase = {x: 1, y: -0};
+                velocityBase = { x: 1, y: -0 };
                 break;
             case MoveDirection.bottomRight:
-                velocityBase = {x: 0.5, y: 0.5};
+                velocityBase = { x: 0.5, y: 0.5 };
                 break;
             case MoveDirection.bottom:
-                velocityBase = {x: 0, y: 1};
+                velocityBase = { x: 0, y: 1 };
                 break;
             case MoveDirection.bottomLeft:
-                velocityBase = {x: -0.5, y: 1};
+                velocityBase = { x: -0.5, y: 1 };
                 break;
             case MoveDirection.left:
-                velocityBase = {x: -1, y: 0};
+                velocityBase = { x: -1, y: 0 };
                 break;
             case MoveDirection.topLeft:
-                velocityBase = {x: -0.5, y: -0.5};
+                velocityBase = { x: -0.5, y: -0.5 };
                 break;
             default:
-                velocityBase = {x: 0, y: 0};
+                velocityBase = { x: 0, y: 0 };
                 break;
         }
 
@@ -141,7 +141,7 @@ export class Utils {
     }
 
     public static randomInRange(min: number, max: number): number {
-        return (Math.random() * (max - min)) + min;
+        return Math.random() * (max - min) + min;
     }
 
     public static isPointInside(point: ICoordinates, size: IDimension, radius?: number): boolean {
@@ -149,8 +149,7 @@ export class Utils {
     }
 
     public static areBoundsInside(bounds: IBounds, size: IDimension): boolean {
-        return bounds.left < size.width && bounds.right > 0
-            && bounds.top < size.height && bounds.bottom > 0;
+        return bounds.left < size.width && bounds.right > 0 && bounds.top < size.height && bounds.bottom > 0;
     }
 
     public static calculateBounds(point: ICoordinates, radius: number): IBounds {
@@ -163,31 +162,35 @@ export class Utils {
     }
 
     public static loadImage(source: string): Promise<IImage> {
-        return new Promise((resolve: (value?: IImage | PromiseLike<IImage> | undefined) => void,
-                            reject: (reason?: string) => void) => {
-            const image: IImage = {
-                source: source,
-                type: source.substr(source.length - 3),
-            };
+        return new Promise(
+            (
+                resolve: (value?: IImage | PromiseLike<IImage> | undefined) => void,
+                reject: (reason?: string) => void
+            ) => {
+                const image: IImage = {
+                    source: source,
+                    type: source.substr(source.length - 3),
+                };
 
-            if (source) {
-                const img = new Image();
+                if (source) {
+                    const img = new Image();
 
-                img.addEventListener("load", () => {
-                    image.element = img;
+                    img.addEventListener("load", () => {
+                        image.element = img;
 
-                    resolve(image);
-                });
+                        resolve(image);
+                    });
 
-                img.addEventListener("error", () => {
-                    reject(`Error tsParticles - loading image: ${source}`);
-                });
+                    img.addEventListener("error", () => {
+                        reject(`Error tsParticles - loading image: ${source}`);
+                    });
 
-                img.src = source;
-            } else {
-                reject("Error tsParticles - No image.src");
+                    img.src = source;
+                } else {
+                    reject("Error tsParticles - No image.src");
+                }
             }
-        });
+        );
     }
 
     public static deepExtend(destination: any, source: any): any {

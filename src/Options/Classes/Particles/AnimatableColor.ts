@@ -18,7 +18,10 @@ export class AnimatableColor extends OptionsColor implements IAnimatableColor {
         this.animation.load(data?.animation);
     }
 
-    public static create(source?: AnimatableColor, data?: string | RecursivePartial<IAnimatableColor>): AnimatableColor {
+    public static create(
+        source?: AnimatableColor,
+        data?: string | RecursivePartial<IAnimatableColor>
+    ): AnimatableColor {
         const color = source ?? new AnimatableColor();
 
         if (data !== undefined) {
@@ -28,4 +31,3 @@ export class AnimatableColor extends OptionsColor implements IAnimatableColor {
         return color;
     }
 }
-

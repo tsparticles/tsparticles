@@ -77,9 +77,9 @@ export class Absorbers implements IContainerPlugin {
                 absorbersModeOptions = modeAbsorbers;
             }
 
-            const absorbersOptions = absorbersModeOptions ?? (options.absorbers instanceof Array ?
-                Utils.itemFromArray(options.absorbers) :
-                options.absorbers);
+            const absorbersOptions =
+                absorbersModeOptions ??
+                (options.absorbers instanceof Array ? Utils.itemFromArray(options.absorbers) : options.absorbers);
             const aPosition = container.interactivity.mouse.clickPosition;
             const absorber = new Absorber(this, absorbersOptions, aPosition);
 

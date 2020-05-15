@@ -41,8 +41,8 @@ export class Repulser {
         }
 
         const pos = {
-            x: (elem.offsetLeft + elem.offsetWidth / 2),
-            y: (elem.offsetTop + elem.offsetHeight / 2),
+            x: elem.offsetLeft + elem.offsetWidth / 2,
+            y: elem.offsetTop + elem.offsetHeight / 2,
         };
 
         let divWidth = elem.offsetWidth / 2;
@@ -50,7 +50,7 @@ export class Repulser {
         if (container.retina.isRetina) {
             pos.x *= container.retina.pixelRatio;
             pos.y *= container.retina.pixelRatio;
-            divWidth *= container.retina.pixelRatio
+            divWidth *= container.retina.pixelRatio;
         }
 
         const repulseRadius = divWidth;
@@ -92,9 +92,11 @@ export class Repulser {
                 y: particle.position.y + normVec.y * repulseFactor,
             };
 
-            if (outMode === OutMode.bounce ||
+            if (
+                outMode === OutMode.bounce ||
                 outMode === OutMode.bounceVertical ||
-                outMode === OutMode.bounceHorizontal) {
+                outMode === OutMode.bounceHorizontal
+            ) {
                 const isInside = {
                     horizontal: pos.x - sizeValue > 0 && pos.x + sizeValue < container.canvas.size.width,
                     vertical: pos.y - sizeValue > 0 && pos.y + sizeValue < container.canvas.size.height,
@@ -149,7 +151,7 @@ export class Repulser {
                 const dy = mouseClickPos.y - particle.position.y;
                 const d = dx * dx + dy * dy;
                 const velocity = container.options.interactivity.modes.repulse.speed;
-                const force = -repulseRadius * velocity / d;
+                const force = (-repulseRadius * velocity) / d;
 
                 // default
                 if (d <= repulseRadius) {
@@ -174,11 +176,13 @@ export class Repulser {
         }
     }
 
-    private static processClickRepulse(container: Container,
-                                       particle: IParticle,
-                                       dx: number,
-                                       dy: number,
-                                       force: number): void {
+    private static processClickRepulse(
+        container: Container,
+        particle: IParticle,
+        dx: number,
+        dy: number,
+        force: number
+    ): void {
         const options = container.options;
         const f = Math.atan2(dy, dx);
 
@@ -194,15 +198,13 @@ export class Repulser {
             };
 
             if (outMode !== OutMode.bounceVertical) {
-                if (pos.x + particle.size.value > container.canvas.size.width ||
-                    pos.x - particle.size.value < 0) {
+                if (pos.x + particle.size.value > container.canvas.size.width || pos.x - particle.size.value < 0) {
                     particle.velocity.horizontal = -particle.velocity.horizontal;
                 }
             }
 
             if (outMode !== OutMode.bounceHorizontal) {
-                if (pos.y + particle.size.value > container.canvas.size.height ||
-                    pos.y - particle.size.value < 0) {
+                if (pos.y + particle.size.value > container.canvas.size.height || pos.y - particle.size.value < 0) {
                     particle.velocity.vertical = -particle.velocity.vertical;
                 }
             }

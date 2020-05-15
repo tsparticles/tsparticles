@@ -1,5 +1,5 @@
-import { Options } from '../src/Options/Classes/Options';
-import { expect } from 'chai';
+import { Options } from "../src/Options/Classes/Options";
+import { expect } from "chai";
 import { InteractivityDetect } from "../src/Enums/InteractivityDetect";
 import { MoveDirection } from "../src/Enums/MoveDirection";
 import { OutMode } from "../src/Enums/OutMode";
@@ -15,8 +15,8 @@ import { Particles } from "../src/Options/Classes/Particles/Particles";
 import { RecursivePartial } from "../src/Types/RecursivePartial";
 import { IParticles } from "../src/Options/Interfaces/Particles/IParticles";
 
-describe('Options tests', () => {
-    it('checking default options', () => {
+describe("Options tests", () => {
+    it("checking default options", () => {
         const options = new Options();
 
         /* background */
@@ -28,7 +28,12 @@ describe('Options tests', () => {
         expect(options.background.opacity).to.be.undefined;
 
         /* background mask */
-        expect(options.backgroundMask.cover).to.be.an("object").to.have.property("color").to.be.an("object").to.have.property("value").to.equal("#fff");
+        expect(options.backgroundMask.cover)
+            .to.be.an("object")
+            .to.have.property("color")
+            .to.be.an("object")
+            .to.have.property("value")
+            .to.equal("#fff");
         expect(options.backgroundMask.cover).to.be.an("object").to.have.property("opacity").to.equal(1);
         expect(options.backgroundMask.enable).to.be.false;
 
@@ -142,7 +147,9 @@ describe('Options tests', () => {
         expect(options.particles.shape.image).to.be.an("object").to.have.property("replaceColor").to.be.true;
         expect(options.particles.shape.image).to.be.an("object").to.have.property("src").to.be.empty;
         expect(options.particles.shape.image).to.be.an("object").to.have.property("width").to.equal(100);
-        expect(options.particles.shape.options).to.be.an("object").to.include.all.keys(ShapeType.character, ShapeType.char, ShapeType.polygon, ShapeType.star);
+        expect(options.particles.shape.options)
+            .to.be.an("object")
+            .to.include.all.keys(ShapeType.character, ShapeType.char, ShapeType.polygon, ShapeType.star);
         expect(options.particles.shape.type).to.equal(ShapeType.circle);
 
         /* particles size */
@@ -155,7 +162,12 @@ describe('Options tests', () => {
         expect(options.particles.size.value).to.equal(3);
 
         /* particles stroke */
-        expect(options.particles.stroke).to.be.an("object").to.have.property("color").to.be.an("object").to.have.property("value").to.equal("#ff0000");
+        expect(options.particles.stroke)
+            .to.be.an("object")
+            .to.have.property("color")
+            .to.be.an("object")
+            .to.have.property("value")
+            .to.equal("#ff0000");
         expect(options.particles.stroke).to.be.an("object").to.have.property("opacity").to.equal(1);
         expect(options.particles.stroke).to.be.an("object").to.have.property("width").to.equal(0);
 
@@ -176,117 +188,117 @@ describe('Options tests', () => {
         expect(options.polygon.url).to.be.empty;
     });
 
-    it('check default preset options', () => {
+    it("check default preset options", () => {
         const options = new Options();
         const preset = {
-            "background": {
-                "color": "#0d47a1"
+            background: {
+                color: "#0d47a1",
             },
-            "interactivity": {
-                "detect_on": InteractivityDetect.canvas,
-                "events": {
-                    "onclick": {
-                        "enable": true,
-                        "mode": ClickMode.push
+            interactivity: {
+                detect_on: InteractivityDetect.canvas,
+                events: {
+                    onclick: {
+                        enable: true,
+                        mode: ClickMode.push,
                     },
-                    "onhover": {
-                        "enable": true,
-                        "mode": HoverMode.repulse
+                    onhover: {
+                        enable: true,
+                        mode: HoverMode.repulse,
                     },
-                    "resize": true
+                    resize: true,
                 },
-                "modes": {
-                    "bubble": {
-                        "distance": 400,
-                        "size": 40,
-                        "duration": 2,
-                        "opacity": 0.8
+                modes: {
+                    bubble: {
+                        distance: 400,
+                        size: 40,
+                        duration: 2,
+                        opacity: 0.8,
                     },
-                    "grab": {
-                        "distance": 400,
-                        "line_linked": {
-                            "opacity": 1
-                        }
+                    grab: {
+                        distance: 400,
+                        line_linked: {
+                            opacity: 1,
+                        },
                     },
-                    "push": {
-                        "particles_nb": 4
+                    push: {
+                        particles_nb: 4,
                     },
-                    "remove": {
-                        "particles_nb": 2
+                    remove: {
+                        particles_nb: 2,
                     },
-                    "repulse": {
-                        "distance": 200
+                    repulse: {
+                        distance: 200,
                     },
-                }
+                },
             },
-            "particles": {
-                "color": {
-                    "value": "#ffffff"
+            particles: {
+                color: {
+                    value: "#ffffff",
                 },
-                "line_linked": {
-                    "enable": true,
-                    "distance": 150,
-                    "color": "#ffffff",
-                    "opacity": 0.4,
-                    "width": 1
+                line_linked: {
+                    enable: true,
+                    distance: 150,
+                    color: "#ffffff",
+                    opacity: 0.4,
+                    width: 1,
                 },
-                "move": {
-                    "enable": true,
-                    "speed": 2,
-                    "direction": MoveDirection.none,
-                    "random": false,
-                    "straight": false,
-                    "out_mode": OutMode.out,
-                    "attract": {
-                        "enable": false,
-                        "rotateX": 600,
-                        "rotateY": 1200
-                    }
-                },
-                "number": {
-                    "value": 80,
-                    "density": {
-                        "enable": true,
-                        "value_area": 800
-                    }
-                },
-                "shape": {
-                    "type": "circle",
-                    "stroke": {
-                        "width": 0,
-                        "color": "#000000"
+                move: {
+                    enable: true,
+                    speed: 2,
+                    direction: MoveDirection.none,
+                    random: false,
+                    straight: false,
+                    out_mode: OutMode.out,
+                    attract: {
+                        enable: false,
+                        rotateX: 600,
+                        rotateY: 1200,
                     },
-                    "polygon": {
-                        "nb_sides": 5
+                },
+                number: {
+                    value: 80,
+                    density: {
+                        enable: true,
+                        value_area: 800,
                     },
-                    "image": {
-                        "src": "https://cdn.matteobruni.it/images/particles/github.svg",
-                        "width": 100,
-                        "height": 100
-                    }
                 },
-                "opacity": {
-                    "value": 0.5,
-                    "random": true,
-                    "anim": {
-                        "enable": true,
-                        "speed": 3,
-                        "opacity_min": 0.1,
-                        "sync": false
-                    }
+                shape: {
+                    type: "circle",
+                    stroke: {
+                        width: 0,
+                        color: "#000000",
+                    },
+                    polygon: {
+                        nb_sides: 5,
+                    },
+                    image: {
+                        src: "https://cdn.matteobruni.it/images/particles/github.svg",
+                        width: 100,
+                        height: 100,
+                    },
                 },
-                "size": {
-                    "value": 5,
-                    "random": true,
-                    "anim": {
-                        "enable": true,
-                        "speed": 20,
-                        "size_min": 0.1,
-                        "sync": false
-                    }
-                }
+                opacity: {
+                    value: 0.5,
+                    random: true,
+                    anim: {
+                        enable: true,
+                        speed: 3,
+                        opacity_min: 0.1,
+                        sync: false,
+                    },
+                },
+                size: {
+                    value: 5,
+                    random: true,
+                    anim: {
+                        enable: true,
+                        speed: 20,
+                        size_min: 0.1,
+                        sync: false,
+                    },
+                },
             },
-            "retina_detect": true,
+            retina_detect: true,
         };
 
         options.load(preset);
@@ -355,9 +367,14 @@ describe('Options tests', () => {
 
         /* particles shape */
         expect(options.particles.shape.image).to.be.an("object").to.have.property("height").to.equal(100);
-        expect(options.particles.shape.image).to.be.an("object").to.have.property("src").to.equal("https://cdn.matteobruni.it/images/particles/github.svg");
+        expect(options.particles.shape.image)
+            .to.be.an("object")
+            .to.have.property("src")
+            .to.equal("https://cdn.matteobruni.it/images/particles/github.svg");
         expect(options.particles.shape.image).to.be.an("object").to.have.property("width").to.equal(100);
-        expect(options.particles.shape.options).to.be.an("object").to.include.all.keys(ShapeType.character, ShapeType.char, ShapeType.polygon, ShapeType.star);
+        expect(options.particles.shape.options)
+            .to.be.an("object")
+            .to.include.all.keys(ShapeType.character, ShapeType.char, ShapeType.polygon, ShapeType.star);
         expect(options.particles.shape.type).to.equal(ShapeType.circle);
 
         /* particles size */
@@ -369,118 +386,118 @@ describe('Options tests', () => {
         expect(options.particles.size.value).to.equal(5);
     });
 
-    it('check test preset options', () => {
+    it("check test preset options", () => {
         const options = new Options();
         const preset = {
-            "background": {
-                "color": "#0d47a1"
+            background: {
+                color: "#0d47a1",
             },
-            "interactivity": {
-                "detect_on": InteractivityDetect.canvas,
-                "events": {
-                    "onclick": {
-                        "enable": true,
-                        "mode": ClickMode.repulse
+            interactivity: {
+                detect_on: InteractivityDetect.canvas,
+                events: {
+                    onclick: {
+                        enable: true,
+                        mode: ClickMode.repulse,
                     },
-                    "onhover": {
-                        "enable": false,
-                        "mode": HoverMode.grab
+                    onhover: {
+                        enable: false,
+                        mode: HoverMode.grab,
                     },
-                    "resize": true
+                    resize: true,
                 },
-                "modes": {
-                    "bubble": {
-                        "distance": 400,
-                        "size": 40,
-                        "duration": 2,
-                        "opacity": 8
+                modes: {
+                    bubble: {
+                        distance: 400,
+                        size: 40,
+                        duration: 2,
+                        opacity: 8,
                     },
-                    "grab": {
-                        "distance": 200,
-                        "line_linked": {
-                            "opacity": 1
-                        }
+                    grab: {
+                        distance: 200,
+                        line_linked: {
+                            opacity: 1,
+                        },
                     },
-                    "repulse": {
-                        "distance": 200
+                    repulse: {
+                        distance: 200,
                     },
-                    "push": {
-                        "particles_nb": 4
+                    push: {
+                        particles_nb: 4,
                     },
-                    "remove": {
-                        "particles_nb": 2
-                    }
-                }
+                    remove: {
+                        particles_nb: 2,
+                    },
+                },
             },
-            "particles": {
-                "color": {
-                    "value": "#ffffff"
+            particles: {
+                color: {
+                    value: "#ffffff",
                 },
-                "line_linked": {
-                    "enable": false,
-                    "distance": 150,
-                    "color": "#ffffff",
-                    "opacity": 0.4,
-                    "width": 1
+                line_linked: {
+                    enable: false,
+                    distance: 150,
+                    color: "#ffffff",
+                    opacity: 0.4,
+                    width: 1,
                 },
-                "move": {
-                    "enable": true,
-                    "speed": 2,
-                    "direction": MoveDirection.none,
-                    "random": false,
-                    "straight": false,
-                    "out_mode": OutMode.bounce,
-                    "bounce": false,
-                    "attract": {
-                        "enable": false,
-                        "rotateX": 600,
-                        "rotateY": 1200
-                    }
-                },
-                "number": {
-                    "value": 100,
-                    "density": {
-                        "enable": false,
-                        "value_area": 800
-                    }
-                },
-                "shape": {
-                    "type": ShapeType.circle,
-                    "stroke": {
-                        "width": 0,
-                        "color": "#000000"
+                move: {
+                    enable: true,
+                    speed: 2,
+                    direction: MoveDirection.none,
+                    random: false,
+                    straight: false,
+                    out_mode: OutMode.bounce,
+                    bounce: false,
+                    attract: {
+                        enable: false,
+                        rotateX: 600,
+                        rotateY: 1200,
                     },
-                    "polygon": {
-                        "nb_sides": 5
+                },
+                number: {
+                    value: 100,
+                    density: {
+                        enable: false,
+                        value_area: 800,
                     },
-                    "image": {
-                        "src": "https://cdn.matteobruni.it/images/particles/github.svg",
-                        "width": 100,
-                        "height": 100
-                    }
                 },
-                "opacity": {
-                    "value": 0.5,
-                    "random": false,
-                    "anim": {
-                        "enable": false,
-                        "speed": 1,
-                        "opacity_min": 0.1,
-                        "sync": false
-                    }
+                shape: {
+                    type: ShapeType.circle,
+                    stroke: {
+                        width: 0,
+                        color: "#000000",
+                    },
+                    polygon: {
+                        nb_sides: 5,
+                    },
+                    image: {
+                        src: "https://cdn.matteobruni.it/images/particles/github.svg",
+                        width: 100,
+                        height: 100,
+                    },
                 },
-                "size": {
-                    "value": 4,
-                    "random": true,
-                    "anim": {
-                        "enable": false,
-                        "speed": 40,
-                        "size_min": 0.1,
-                        "sync": false
-                    }
-                }
+                opacity: {
+                    value: 0.5,
+                    random: false,
+                    anim: {
+                        enable: false,
+                        speed: 1,
+                        opacity_min: 0.1,
+                        sync: false,
+                    },
+                },
+                size: {
+                    value: 4,
+                    random: true,
+                    anim: {
+                        enable: false,
+                        speed: 40,
+                        size_min: 0.1,
+                        sync: false,
+                    },
+                },
             },
-            "retina_detect": true,
+            retina_detect: true,
         };
 
         options.load(preset);
@@ -556,9 +573,14 @@ describe('Options tests', () => {
 
         /* particles shape */
         expect(options.particles.shape.image).to.be.an("object").to.have.property("height").to.equal(100);
-        expect(options.particles.shape.image).to.be.an("object").to.have.property("src").to.equal("https://cdn.matteobruni.it/images/particles/github.svg");
+        expect(options.particles.shape.image)
+            .to.be.an("object")
+            .to.have.property("src")
+            .to.equal("https://cdn.matteobruni.it/images/particles/github.svg");
         expect(options.particles.shape.image).to.be.an("object").to.have.property("width").to.equal(100);
-        expect(options.particles.shape.options).to.be.an("object").to.include.all.keys(ShapeType.character, ShapeType.char, ShapeType.polygon, ShapeType.star);
+        expect(options.particles.shape.options)
+            .to.be.an("object")
+            .to.include.all.keys(ShapeType.character, ShapeType.char, ShapeType.polygon, ShapeType.star);
         expect(options.particles.shape.type).to.equal(ShapeType.circle);
 
         /* particles size */
@@ -570,79 +592,84 @@ describe('Options tests', () => {
         expect(options.particles.size.value).to.equal(4);
 
         /* particles stroke */
-        expect(options.particles.stroke).to.be.an("object").to.have.property("color").to.be.an("object").to.have.property("value").to.equal("#000000");
+        expect(options.particles.stroke)
+            .to.be.an("object")
+            .to.have.property("color")
+            .to.be.an("object")
+            .to.have.property("value")
+            .to.equal("#000000");
         expect(options.particles.stroke).to.be.an("object").to.have.property("width").to.equal(0);
     });
 
-    it('check particlesOptions override', () => {
+    it("check particlesOptions override", () => {
         const particlesOptions = new Particles();
 
         const generalOptions: RecursivePartial<IParticles> = {
-            "number": {
-                "value": 100,
-                "density": {
-                    "enable": false,
-                    "value_area": 800
-                }
-            },
-            "color": {
-                "value": "#000"
-            },
-            "shape": {
-                "type": "circle",
-                "stroke": {
-                    "width": 0,
-                    "color": "#000000"
+            number: {
+                value: 100,
+                density: {
+                    enable: false,
+                    value_area: 800,
                 },
-                "polygon": {
-                    "nb_sides": 5
+            },
+            color: {
+                value: "#000",
+            },
+            shape: {
+                type: "circle",
+                stroke: {
+                    width: 0,
+                    color: "#000000",
                 },
-                "image": {
-                    "src": "https://cdn.matteobruni.it/images/particles/github.svg",
-                    "width": 100,
-                    "height": 100
-                }
+                polygon: {
+                    nb_sides: 5,
+                },
+                image: {
+                    src: "https://cdn.matteobruni.it/images/particles/github.svg",
+                    width: 100,
+                    height: 100,
+                },
             },
-            "opacity": {
-                "value": 0.5,
-                "random": false,
-                "anim": {
-                    "enable": false,
-                    "speed": 1,
-                    "opacity_min": 0.1,
-                    "sync": false
-                }
+            opacity: {
+                value: 0.5,
+                random: false,
+                anim: {
+                    enable: false,
+                    speed: 1,
+                    opacity_min: 0.1,
+                    sync: false,
+                },
             },
-            "size": {
-                "value": 5,
-                "random": true,
-                "anim": {
-                    "enable": false,
-                    "speed": 40,
-                    "size_min": 0.1,
-                    "sync": false
-                }
+            size: {
+                value: 5,
+                random: true,
+                anim: {
+                    enable: false,
+                    speed: 40,
+                    size_min: 0.1,
+                    sync: false,
+                },
             },
-            "line_linked": {
-                "enable": true,
-                "distance": 150,
-                "color": "#000",
-                "opacity": 0.4,
-                "width": 1
+            line_linked: {
+                enable: true,
+                distance: 150,
+                color: "#000",
+                opacity: 0.4,
+                width: 1,
             },
-            "move": {
-                "enable": true,
-                "speed": 2,
-                "direction": MoveDirection.none,
-                "random": false,
-                "straight": false,
-                "out_mode": OutMode.out,
-                "attract": {
-                    "enable": false,
-                    "rotateX": 600,
-                    "rotateY": 1200
-                }
-            }
+            move: {
+                enable: true,
+                speed: 2,
+                direction: MoveDirection.none,
+                random: false,
+                straight: false,
+                out_mode: OutMode.out,
+                attract: {
+                    enable: false,
+                    rotateX: 600,
+                    rotateY: 1200,
+                },
+            },
         };
 
         particlesOptions.load(generalOptions);
@@ -659,8 +686,7 @@ describe('Options tests', () => {
                 animation: { enable: true, speed: 15, sync: false },
             },
             shape: { type: "star", polygon: { sides: 7 } },
-            size: { value: 15, random: false }
-
+            size: { value: 15, random: false },
         };
 
         particlesOptions.load(emitterOptions);

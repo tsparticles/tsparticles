@@ -13,16 +13,19 @@ export class TextDrawer implements IShapeDrawer {
     public async init(container: Container): Promise<void> {
         const options = container.options;
 
-        if (Utils.isInArray(ShapeType.char, options.particles.shape.type) ||
-            Utils.isInArray(ShapeType.character, options.particles.shape.type)) {
-            const shapeOptions = options.particles.shape.options[ShapeType.character] ??
-                options.particles.shape.options[ShapeType.char];
+        if (
+            Utils.isInArray(ShapeType.char, options.particles.shape.type) ||
+            Utils.isInArray(ShapeType.character, options.particles.shape.type)
+        ) {
+            const shapeOptions =
+                options.particles.shape.options[ShapeType.character] ?? options.particles.shape.options[ShapeType.char];
             if (shapeOptions instanceof Array) {
                 for (const character of shapeOptions) {
                     await Utils.loadFont(character as ICharacterShape);
                 }
             } else {
-                const character = options.particles.shape.options[ShapeType.character] ??
+                const character =
+                    options.particles.shape.options[ShapeType.character] ??
                     options.particles.shape.options[ShapeType.char];
 
                 if (character !== undefined) {

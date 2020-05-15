@@ -16,9 +16,9 @@ export class Linker {
         const pos1 = p1.getPosition();
 
         //const query = container.particles.spatialGrid.queryRadiusWithDistance(pos1, optDistance);
-        const range = warp ?
-            new CircleWarp(pos1.x, pos1.y, optDistance, canvasSize) :
-            new Circle(pos1.x, pos1.y, optDistance);
+        const range = warp
+            ? new CircleWarp(pos1.x, pos1.y, optDistance, canvasSize)
+            : new Circle(pos1.x, pos1.y, optDistance);
 
         const query = container.particles.quadTree.query(range);
 
@@ -69,7 +69,6 @@ export class Linker {
             const opacityLine = optOpacity - (distance * optOpacity) / optDistance;
 
             if (opacityLine > 0) {
-
                 /* style */
                 if (!container.particles.lineLinkedColor) {
                     const optColor = p1.particlesOptions.lineLinked.color;
@@ -81,19 +80,25 @@ export class Linker {
 
                     if (color === Constants.randomColorValue) {
                         if (p1.particlesOptions.lineLinked.consent) {
-                            container.particles.lineLinkedColor = ColorUtils.colorToRgb({ value: color });
+                            container.particles.lineLinkedColor = ColorUtils.colorToRgb({
+                                value: color,
+                            });
                         } else if (p1.particlesOptions.lineLinked.blink) {
                             container.particles.lineLinkedColor = Constants.randomColorValue;
                         } else {
                             container.particles.lineLinkedColor = Constants.midColorValue;
                         }
                     } else {
-                        container.particles.lineLinkedColor = ColorUtils.colorToRgb({ value: color });
+                        container.particles.lineLinkedColor = ColorUtils.colorToRgb({
+                            value: color,
+                        });
                     }
                 }
 
-                if (p2.links.map(t => t.destination).indexOf(p1) == -1 &&
-                    p1.links.map(t => t.destination).indexOf(p2) == -1) {
+                if (
+                    p2.links.map((t) => t.destination).indexOf(p1) == -1 &&
+                    p1.links.map((t) => t.destination).indexOf(p2) == -1
+                ) {
                     p1.links.push({
                         destination: p2,
                         opacity: opacityLine,

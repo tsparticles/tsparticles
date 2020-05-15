@@ -14,7 +14,7 @@ export class PolygonDrawer extends PolygonDrawerBase {
                 denominator: 1,
                 numerator: sides,
             },
-            length: radius * 2.66 / (sides / 3),
+            length: (radius * 2.66) / (sides / 3),
         };
     }
 

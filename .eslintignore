@@ -8,5 +8,4 @@ docs
 node_modules
 schema
 scripts
-tests
 typedoc

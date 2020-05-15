@@ -46,6 +46,4 @@ export class Infection implements IInfection {
             }
         }
     }
-
 }
-

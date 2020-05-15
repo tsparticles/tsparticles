@@ -88,9 +88,10 @@ export class Absorber {
     public resize(): void {
         const initialPosition = this.initialPosition;
 
-        this.position = initialPosition && Utils.isPointInside(initialPosition, this.container.canvas.size) ?
-            initialPosition :
-            this.calcPosition();
+        this.position =
+            initialPosition && Utils.isPointInside(initialPosition, this.container.canvas.size)
+                ? initialPosition
+                : this.calcPosition();
     }
 
     public draw(context: CanvasRenderingContext2D): void {
@@ -111,8 +112,8 @@ export class Absorber {
         };
 
         return {
-            x: percentPosition.x / 100 * container.canvas.size.width,
-            y: percentPosition.y / 100 * container.canvas.size.height,
+            x: (percentPosition.x / 100) * container.canvas.size.width,
+            y: (percentPosition.y / 100) * container.canvas.size.height,
         };
     }
 }

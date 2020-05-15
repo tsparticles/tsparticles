@@ -94,7 +94,7 @@ tsParticles now supports some customizations 🥳.
 
 **NOW YOU CAN CREATE YOUR OWN PLUGINS**
 
-*Read more [here](https://github.com/matteobruni/tsparticles/wiki/Create-a-tsParticles-Plugin)...*
+_Read more [here](https://github.com/matteobruni/tsparticles/wiki/Create-a-tsParticles-Plugin)..._
 
 ---
 

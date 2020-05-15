@@ -151,7 +151,7 @@ export class Canvas {
         const p2 = link1.destination;
         const p3 = link2.destination;
         const triangleOptions = p1.particlesOptions.lineLinked.triangles;
-        const opacityTriangle = triangleOptions.opacity ?? ((link1.opacity + link2.opacity) / 2);
+        const opacityTriangle = triangleOptions.opacity ?? (link1.opacity + link2.opacity) / 2;
         const pos1 = p1.getPosition();
         const pos2 = p2.getPosition();
         const pos3 = p3.getPosition();
@@ -162,9 +162,8 @@ export class Canvas {
             return;
         }
 
-        const color = typeof triangleOptions.color === "string" ?
-            { value: triangleOptions.color } :
-            triangleOptions.color;
+        const color =
+            typeof triangleOptions.color === "string" ? { value: triangleOptions.color } : triangleOptions.color;
         let colorTriangle = color !== undefined ? ColorUtils.colorToRgb(color) : undefined;
 
         if (!colorTriangle) {
@@ -182,14 +181,16 @@ export class Canvas {
 
         const width = p1.lineLinkedWidth ?? container.retina.lineLinkedWidth;
 
-        CanvasUtils.drawLinkTriangle(ctx,
+        CanvasUtils.drawLinkTriangle(
+            ctx,
             width,
             pos1,
             pos2,
             pos3,
             options.backgroundMask.enable,
             colorTriangle,
-            opacityTriangle);
+            opacityTriangle
+        );
     }
 
     public drawLinkLine(p1: IParticle, link: ILink): void {
@@ -246,7 +247,8 @@ export class Canvas {
 
         const width = p1.lineLinkedWidth ?? container.retina.lineLinkedWidth;
 
-        CanvasUtils.drawLinkLine(ctx,
+        CanvasUtils.drawLinkLine(
+            ctx,
             width,
             pos1,
             pos2,
@@ -256,7 +258,8 @@ export class Canvas {
             options.backgroundMask.enable,
             colorLine,
             opacity,
-            p1.particlesOptions.lineLinked.shadow);
+            p1.particlesOptions.lineLinked.shadow
+        );
     }
 
     public drawConnectLine(p1: IParticle, p2: IParticle): void {
@@ -275,11 +278,13 @@ export class Canvas {
         const pos1 = p1.getPosition();
         const pos2 = p2.getPosition();
 
-        CanvasUtils.drawConnectLine(ctx,
+        CanvasUtils.drawConnectLine(
+            ctx,
             p1.lineLinkedWidth ?? this.container.retina.lineLinkedWidth,
             lineStyle,
             pos1,
-            pos2);
+            pos2
+        );
     }
 
     public drawGrabLine(particle: IParticle, lineColor: IRgb, opacity: number, mousePos: ICoordinates): void {
@@ -292,12 +297,14 @@ export class Canvas {
 
         const beginPos = particle.getPosition();
 
-        CanvasUtils.drawGrabLine(ctx,
+        CanvasUtils.drawGrabLine(
+            ctx,
             particle.lineLinkedWidth ?? container.retina.lineLinkedWidth,
             beginPos,
             mousePos,
             lineColor,
-            opacity);
+            opacity
+        );
     }
 
     public drawParticle(particle: IParticle, delta: number): void {
@@ -316,12 +323,13 @@ export class Canvas {
         const opacity = twinkling ? twinkle.opacity : particle.bubble.opacity ?? particle.opacity.value;
         const infectionStage = particle.infectionStage;
         const infection = options.infection;
-        const infectionStages = infection.stages
+        const infectionStages = infection.stages;
         const infectionColor = infectionStage !== undefined ? infectionStages[infectionStage].color : undefined;
         const infectionRgb = infectionColor ? ColorUtils.colorToRgb(infectionColor) : undefined;
-        const color = twinkling && twinkleRgb !== undefined ?
-            twinkleRgb :
-            infectionRgb ?? particle.bubble.color ?? ColorUtils.hslToRgb(particle.color);
+        const color =
+            twinkling && twinkleRgb !== undefined
+                ? twinkleRgb
+                : infectionRgb ?? particle.bubble.color ?? ColorUtils.hslToRgb(particle.color);
 
         const colorValue = color !== undefined ? ColorUtils.getStyleFromRgb(color, opacity) : undefined;
 
@@ -338,14 +346,15 @@ export class Canvas {
             options.backgroundMask.enable,
             radius,
             opacity,
-            particle.particlesOptions.shadow);
+            particle.particlesOptions.shadow
+        );
 
         this.context.save();
 
         for (const link of particle.links) {
             if (particle.particlesOptions.lineLinked.triangles.enable) {
-                const links = particle.links.map(l => l.destination);
-                const vertices = link.destination.links.filter(t => links.indexOf(t.destination) >= 0)
+                const links = particle.links.map((l) => l.destination);
+                const vertices = link.destination.links.filter((t) => links.indexOf(t.destination) >= 0);
 
                 if (vertices.length) {
                     for (const vertice of vertices) {
@@ -359,7 +368,6 @@ export class Canvas {
 
         this.context.restore();
     }
-
 
     public drawPlugin(plugin: IContainerPlugin, delta: number): void {
         if (!this.context) {

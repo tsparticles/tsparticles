@@ -12,7 +12,7 @@ export class Circle extends Range {
     }
 
     public contains(point: ICoordinates): boolean {
-        const d = Math.pow((point.x - this.position.x), 2) + Math.pow((point.y - this.position.y), 2);
+        const d = Math.pow(point.x - this.position.x, 2) + Math.pow(point.y - this.position.y, 2);
 
         return d <= this.radius * this.radius;
     }
@@ -36,9 +36,9 @@ export class Circle extends Range {
         } else if (rect.size !== undefined) {
             const w = rect.size.width;
             const h = rect.size.height;
-            const edges = Math.pow((xDist - w), 2) + Math.pow((yDist - h), 2);
+            const edges = Math.pow(xDist - w, 2) + Math.pow(yDist - h, 2);
 
-            if (xDist > (r + w) || yDist > (r + h)) {
+            if (xDist > r + w || yDist > r + h) {
                 return false;
             }
 

@@ -72,7 +72,8 @@ export class Particles {
             }
         }
 
-        this.interactionsEnabled = options.particles.lineLinked.enable ||
+        this.interactionsEnabled =
+            options.particles.lineLinked.enable ||
             options.particles.move.attract.enable ||
             options.particles.collisions.enable ||
             options.infection.enable;
@@ -174,9 +175,11 @@ export class Particles {
             this.remove(particle);
         }
 
-        if (container.options.interactivity.events.onDiv.enable ||
+        if (
+            container.options.interactivity.events.onDiv.enable ||
             (container.options.interactivity.events.onHover.enable && container.interactivity.mouse.position) ||
-            (container.options.interactivity.events.onClick.enable && container.interactivity.mouse.clickPosition)) {
+            (container.options.interactivity.events.onClick.enable && container.interactivity.mouse.clickPosition)
+        ) {
             const hoverMode = options.interactivity.events.onHover.mode;
             const clickMode = options.interactivity.events.onClick.mode;
             const divMode = options.interactivity.events.onDiv.mode;
@@ -186,9 +189,11 @@ export class Particles {
                 Grabber.grab(container, delta);
             }
 
-            if (Utils.isInArray(HoverMode.repulse, hoverMode) ||
+            if (
+                Utils.isInArray(HoverMode.repulse, hoverMode) ||
                 Utils.isInArray(ClickMode.repulse, clickMode) ||
-                Utils.isInArray(DivMode.repulse, divMode)) {
+                Utils.isInArray(DivMode.repulse, divMode)
+            ) {
                 Repulser.repulse(container, delta);
             }
 

@@ -1,25 +1,25 @@
-import type {Container} from "./Core/Container";
-import {Loader} from "./Core/Loader";
-import type {IOptions} from "./Options/Interfaces/IOptions";
-import type {RecursivePartial} from "./Types/RecursivePartial";
-import {ShapeType} from "./Enums/ShapeType";
-import {LineDrawer} from "./Core/Particle/ShapeDrawers/LineDrawer";
-import {CircleDrawer} from "./Core/Particle/ShapeDrawers/CircleDrawer";
-import {SquareDrawer} from "./Core/Particle/ShapeDrawers/SquareDrawer";
-import {TriangleDrawer} from "./Core/Particle/ShapeDrawers/TriangleDrawer";
-import {StarDrawer} from "./Core/Particle/ShapeDrawers/StarDrawer";
-import {PolygonDrawer} from "./Core/Particle/ShapeDrawers/PolygonDrawer";
-import {TextDrawer} from "./Core/Particle/ShapeDrawers/TextDrawer";
-import {ImageDrawer} from "./Core/Particle/ShapeDrawers/ImageDrawer";
-import type {IShapeDrawer} from "./Core/Interfaces/IShapeDrawer";
+import type { Container } from "./Core/Container";
+import { Loader } from "./Core/Loader";
+import type { IOptions } from "./Options/Interfaces/IOptions";
+import type { RecursivePartial } from "./Types/RecursivePartial";
+import { ShapeType } from "./Enums/ShapeType";
+import { LineDrawer } from "./Core/Particle/ShapeDrawers/LineDrawer";
+import { CircleDrawer } from "./Core/Particle/ShapeDrawers/CircleDrawer";
+import { SquareDrawer } from "./Core/Particle/ShapeDrawers/SquareDrawer";
+import { TriangleDrawer } from "./Core/Particle/ShapeDrawers/TriangleDrawer";
+import { StarDrawer } from "./Core/Particle/ShapeDrawers/StarDrawer";
+import { PolygonDrawer } from "./Core/Particle/ShapeDrawers/PolygonDrawer";
+import { TextDrawer } from "./Core/Particle/ShapeDrawers/TextDrawer";
+import { ImageDrawer } from "./Core/Particle/ShapeDrawers/ImageDrawer";
+import type { IShapeDrawer } from "./Core/Interfaces/IShapeDrawer";
 import type {
     ShapeDrawerAfterEffectFunction,
     ShapeDrawerDestroyFunction,
     ShapeDrawerDrawFunction,
-    ShapeDrawerInitFunction
+    ShapeDrawerInitFunction,
 } from "./Types/ShapeDrawerFunctions";
-import {Plugins} from "./Utils/Plugins";
-import type {IPlugin} from "./Core/Interfaces/IPlugin";
+import { Plugins } from "./Utils/Plugins";
+import type { IPlugin } from "./Core/Interfaces/IPlugin";
 
 declare global {
     interface Window {
@@ -48,22 +48,26 @@ class Main {
         this.initialized = false;
 
         if (typeof window !== "undefined" && window) {
-            window.customRequestAnimationFrame = ((): (callback: FrameRequestCallback) => number => {
-                return window.requestAnimationFrame ||
+            window.customRequestAnimationFrame = ((): ((callback: FrameRequestCallback) => number) => {
+                return (
+                    window.requestAnimationFrame ||
                     window.webkitRequestAnimationFrame ||
                     window.mozRequestAnimationFrame ||
                     window.oRequestAnimationFrame ||
                     window.msRequestAnimationFrame ||
-                    ((callback): number => window.setTimeout(callback, 1000 / 60));
+                    ((callback): number => window.setTimeout(callback, 1000 / 60))
+                );
             })();
 
-            window.customCancelRequestAnimationFrame = ((): (handle: number) => void => {
-                return window.cancelAnimationFrame ||
+            window.customCancelRequestAnimationFrame = ((): ((handle: number) => void) => {
+                return (
+                    window.cancelAnimationFrame ||
                     window.webkitCancelRequestAnimationFrame ||
                     window.mozCancelRequestAnimationFrame ||
                     window.oCancelRequestAnimationFrame ||
                     window.msCancelRequestAnimationFrame ||
                     clearTimeout
+                );
             })();
         }
 
@@ -100,9 +104,11 @@ class Main {
      * @param index If provided gets the corresponding item from the array
      * @returns A Promise with the [[Container]] object created
      */
-    public async loadFromArray(tagId: string,
-                               params: RecursivePartial<IOptions>[],
-                               index?: number): Promise<Container | undefined> {
+    public async loadFromArray(
+        tagId: string,
+        params: RecursivePartial<IOptions>[],
+        index?: number
+    ): Promise<Container | undefined> {
         return Loader.loadFromArray(tagId, params, index);
     }
 
@@ -160,11 +166,13 @@ class Main {
      * @param afterEffect Optional: the shape drawer after effect function, used only if the drawer parameter is a function
      * @param destroy Optional: the shape drawer destroy function, used only if the drawer parameter is a function
      */
-    public addShape(shape: string,
-                    drawer: IShapeDrawer | ShapeDrawerDrawFunction,
-                    init?: ShapeDrawerInitFunction,
-                    afterEffect?: ShapeDrawerAfterEffectFunction,
-                    destroy?: ShapeDrawerDestroyFunction): void {
+    public addShape(
+        shape: string,
+        drawer: IShapeDrawer | ShapeDrawerDrawFunction,
+        init?: ShapeDrawerInitFunction,
+        afterEffect?: ShapeDrawerAfterEffectFunction,
+        destroy?: ShapeDrawerDestroyFunction
+    ): void {
         let customDrawer: IShapeDrawer;
 
         if (typeof drawer === "function") {
@@ -207,8 +215,7 @@ const tsParticles = new Main();
  * @param tagId the particles container element id
  * @param params the options object to initialize the [[Container]]
  */
-const particlesJS: any = (tagId: string, params: RecursivePartial<IOptions>):
-    Promise<Container | undefined> => {
+const particlesJS: any = (tagId: string, params: RecursivePartial<IOptions>): Promise<Container | undefined> => {
     return tsParticles.load(tagId, params);
 };
 
@@ -220,9 +227,7 @@ const particlesJS: any = (tagId: string, params: RecursivePartial<IOptions>):
  * @param pathConfigJson the json path to use in the GET request
  * @param callback called after the [[Container]] is loaded and it will be passed as a parameter
  */
-particlesJS.load = (tagId: string,
-                    pathConfigJson: string,
-                    callback: (container: Container) => void): void => {
+particlesJS.load = (tagId: string, pathConfigJson: string, callback: (container: Container) => void): void => {
     tsParticles.loadJSON(tagId, pathConfigJson).then((container) => {
         if (container) {
             callback(container);
@@ -245,4 +250,4 @@ particlesJS.setOnClickHandler = (callback: EventListenerOrEventListenerObject): 
  */
 const pJSDom = tsParticles.dom();
 
-export {tsParticles, particlesJS, pJSDom};
+export { tsParticles, particlesJS, pJSDom };

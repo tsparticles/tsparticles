@@ -1,10 +1,10 @@
-import {Utils} from "../../../../Utils/Utils";
-import {Particle} from "../../../Particle";
-import type {Container} from "../../../Container";
-import type {IParticle} from "../../../Interfaces/IParticle";
-import type {IVelocity} from "../../../Interfaces/IVelocity";
-import {CollisionMode} from "../../../../Enums/CollisionMode";
-import {Circle} from "../../../../Utils/Circle";
+import { Utils } from "../../../../Utils/Utils";
+import { Particle } from "../../../Particle";
+import type { Container } from "../../../Container";
+import type { IParticle } from "../../../Interfaces/IParticle";
+import type { IVelocity } from "../../../Interfaces/IVelocity";
+import { CollisionMode } from "../../../../Enums/CollisionMode";
+import { Circle } from "../../../../Utils/Circle";
 
 export class Collider {
     public static collide(p1: Particle, container: Container, _delta: number): void {
@@ -14,8 +14,11 @@ export class Collider {
         const query = container.particles.quadTree.query(new Circle(pos1.x, pos1.y, p1.size.value * 2));
 
         for (const p2 of query) {
-            if (p1 === p2 || !p2.particlesOptions.collisions.enable ||
-                p1.particlesOptions.collisions.mode !== p2.particlesOptions.collisions.mode) {
+            if (
+                p1 === p2 ||
+                !p2.particlesOptions.collisions.enable ||
+                p1.particlesOptions.collisions.mode !== p2.particlesOptions.collisions.mode
+            ) {
                 continue;
             }
 
@@ -50,10 +53,8 @@ export class Collider {
 
                 // Prevent accidental overlap of particles
                 if (xVelocityDiff * xDist + yVelocityDiff * yDist >= 0) {
-
                     // Grab angle between the two colliding particles
-                    const angle = -Math.atan2(pos2.y - pos1.y,
-                        pos2.x - pos1.x);
+                    const angle = -Math.atan2(pos2.y - pos1.y, pos2.x - pos1.x);
 
                     // Store mass in var for better readability in collision equation
                     const m1 = p1.size.value;
@@ -65,11 +66,11 @@ export class Collider {
 
                     // Velocity after 1d collision equation
                     const v1 = {
-                        horizontal: u1.horizontal * (m1 - m2) / (m1 + m2) + u2.horizontal * 2 * m2 / (m1 + m2),
+                        horizontal: (u1.horizontal * (m1 - m2)) / (m1 + m2) + (u2.horizontal * 2 * m2) / (m1 + m2),
                         vertical: u1.vertical,
                     };
                     const v2 = {
-                        horizontal: u2.horizontal * (m1 - m2) / (m1 + m2) + u1.horizontal * 2 * m2 / (m1 + m2),
+                        horizontal: (u2.horizontal * (m1 - m2)) / (m1 + m2) + (u1.horizontal * 2 * m2) / (m1 + m2),
                         vertical: u2.vertical,
                     };
 

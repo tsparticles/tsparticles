@@ -47,11 +47,11 @@ export class Grabber {
                         if (!container.particles.grabLineColor) {
                             container.particles.grabLineColor =
                                 (typeof optColor === "string" && optColor === Constants.randomColorValue) ||
-                                (optColor as IColor)?.value === Constants.randomColorValue ?
-                                    Constants.randomColorValue :
-                                    (typeof optColor === "string" ?
-                                        ColorUtils.stringToRgb(optColor) :
-                                        ColorUtils.colorToRgb(optColor));
+                                (optColor as IColor)?.value === Constants.randomColorValue
+                                    ? Constants.randomColorValue
+                                    : typeof optColor === "string"
+                                    ? ColorUtils.stringToRgb(optColor)
+                                    : ColorUtils.colorToRgb(optColor);
                         }
 
                         let colorLine: IRgb;
