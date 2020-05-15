@@ -5,8 +5,7 @@ import { Container } from "tsparticles/dist/Classes/Container";
 import type { RecursivePartial } from "tsparticles/dist/Types/RecursivePartial";
 import { Options } from "tsparticles/dist/Classes/Options/Options";
 import { tsParticles } from "tsparticles";
-
-tsParticles.init();
+import { isEqual } from "lodash";
 
 export interface ParticlesProps {
     id: string;
@@ -49,7 +48,10 @@ export default class Particles extends Component<ParticlesProps,
         } catch {
             return null;
         } // SSR
-        var options = new Options();
+
+        tsParticles.init();
+
+        const options = new Options();
 
         options.load(params);
 
@@ -102,7 +104,7 @@ export default class Particles extends Component<ParticlesProps,
     }
 
     shouldComponentUpdate(nextProps: Readonly<ParticlesProps>) {
-        return true;
+        return !isEqual(nextProps, this.props);
     }
 
     componentDidUpdate() {
