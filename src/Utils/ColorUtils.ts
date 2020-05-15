@@ -196,7 +196,7 @@ export class ColorUtils {
     public static getStyleFromHsl(color: IHsl, opacity?: number): string {
         const opacityValue = opacity ?? 1;
 
-        return `hsla(${color.h}, ${color.s}, ${color.l}, ${opacityValue})`;
+        return `hsla(${color.h}, ${color.s}%, ${color.l}%, ${opacityValue})`;
     }
 
     public static mix(color1: IRgb | IHsl, color2: IRgb | IHsl, size1: number, size2: number): IRgb {
