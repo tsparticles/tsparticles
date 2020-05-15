@@ -2,7 +2,7 @@ module.exports = {
     root: true,
     parser: "@typescript-eslint/parser",
     plugins: [
-        "@typescript-eslint",
+        "@typescript-eslint"
     ],
     extends: [
         "eslint:recommended",
@@ -12,6 +12,7 @@ module.exports = {
     ],
     rules: {
         "@typescript-eslint/interface-name-prefix": 0,
-        "@typescript-eslint/camelcase": 1
+        "@typescript-eslint/camelcase": 1,
+        "@typescript-eslint/no-var-requires": 1
     }
 };

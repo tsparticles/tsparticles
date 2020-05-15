@@ -1,8 +1,8 @@
 const path = require("path");
-const TerserPlugin = require('terser-webpack-plugin');
-const webpack = require('webpack');
-const version = require('./package.json').version;
-const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
+const TerserPlugin = require("terser-webpack-plugin");
+const webpack = require("webpack");
+const version = require("./package.json").version;
+const { BundleAnalyzerPlugin } = require("webpack-bundle-analyzer");
 
 const banner = `Author : Matteo Bruni - https://www.matteobruni.it
 MIT license: https://opensource.org/licenses/MIT
@@ -18,6 +18,12 @@ module.exports = {
     entry: {
         "tsparticles.slim": "./dist/index.slim.js",
         "tsparticles.slim.min": "./dist/index.slim.js",
+        "tsparticles.absorbers": "./dist/Plugins/Absorbers/AbsorbersPlugin.js",
+        "tsparticles.absorbers.min": "./dist/Plugins/Absorbers/AbsorbersPlugin.js",
+        "tsparticles.emitters": "./dist/Plugins/Emitters/EmittersPlugin.js",
+        "tsparticles.emitters.min": "./dist/Plugins/Emitters/EmittersPlugin.js",
+        "tsparticles.polygonMask": "./dist/Plugins/PolygonMask/PolygonMaskPlugin.js",
+        "tsparticles.polygonMask.min": "./dist/Plugins/PolygonMask/PolygonMaskPlugin.js",
         "tsparticles": "./dist/index.js",
         "tsparticles.min": "./dist/index.js"
     },
@@ -36,7 +42,7 @@ module.exports = {
             test: /\.js$/,
             exclude: /node_modules/,
             loader: "babel-loader"
-        } ],
+        } ]
     },
     plugins: [
         new webpack.BannerPlugin({

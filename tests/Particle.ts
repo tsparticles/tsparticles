@@ -1,4 +1,4 @@
-import Window = require("window");
+const Window = require("window");
 
 globalThis.window = new Window();
 
