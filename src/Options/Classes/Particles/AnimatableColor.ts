@@ -12,12 +12,6 @@ export class AnimatableColor extends OptionsColor implements IAnimatableColor {
         this.animation = new ColorAnimation();
     }
 
-    public load(data?: RecursivePartial<IAnimatableColor>) {
-        super.load(data);
-
-        this.animation.load(data?.animation);
-    }
-
     public static create(
         source?: AnimatableColor,
         data?: string | RecursivePartial<IAnimatableColor>
@@ -29,5 +23,11 @@ export class AnimatableColor extends OptionsColor implements IAnimatableColor {
         }
 
         return color;
+    }
+
+    public load(data?: RecursivePartial<IAnimatableColor>): void {
+        super.load(data);
+
+        this.animation.load(data?.animation);
     }
 }

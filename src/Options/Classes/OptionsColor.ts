@@ -12,14 +12,6 @@ export class OptionsColor implements IOptionsColor {
         this.value = "#fff";
     }
 
-    public load(data?: RecursivePartial<IOptionsColor>): void {
-        if (data !== undefined) {
-            if (data.value !== undefined) {
-                this.value = data.value;
-            }
-        }
-    }
-
     public static create(source?: OptionsColor, data?: string | RecursivePartial<IOptionsColor>): OptionsColor {
         const color = source ?? new OptionsColor();
 
@@ -28,5 +20,13 @@ export class OptionsColor implements IOptionsColor {
         }
 
         return color;
+    }
+
+    public load(data?: RecursivePartial<IOptionsColor>): void {
+        if (data !== undefined) {
+            if (data.value !== undefined) {
+                this.value = data.value;
+            }
+        }
     }
 }
