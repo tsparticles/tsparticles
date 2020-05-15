@@ -734,7 +734,7 @@
                 "color": {
                     "anyOf": [
                         {
-                            "$ref": "#/definitions/IAnimatableColor"
+                            "$ref": "#/definitions/IColor"
                         },
                         {
                             "type": "string"
@@ -2039,7 +2039,7 @@
                 "color": {
                     "anyOf": [
                         {
-                            "$ref": "#/definitions/IAnimatableColor"
+                            "$ref": "#/definitions/IColor"
                         },
                         {
                             "type": "string"
