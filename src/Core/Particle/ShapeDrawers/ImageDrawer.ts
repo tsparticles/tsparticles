@@ -24,7 +24,7 @@ export class ImageDrawer implements IShapeDrawer {
         if (!containerImages.length) {
             this.images.push({
                 id: container.id,
-                images: []
+                images: [],
             });
 
             return this.getImages(container);
@@ -91,7 +91,7 @@ export class ImageDrawer implements IShapeDrawer {
 
         const pos = {
             x: -radius,
-            y: -radius
+            y: -radius,
         };
 
         context.globalAlpha = opacity;
