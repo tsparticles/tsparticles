@@ -26,7 +26,9 @@
     "preversion": "npm test",
     "version": "node ./scripts/postversion.js && git add tsParticles.nuspec",
     "postversion": "git push && git push --tags",
-    "prepare": "npm run build"
+    "prepare": "npm run build",
+    "release:alpha": "npm version prerelease --preid alpha && npm publish --tag alpha",
+    "release:beta": "npm version prerelease --preid beta && npm publish --tag beta"
   },
   "repository": {
     "type": "git",
