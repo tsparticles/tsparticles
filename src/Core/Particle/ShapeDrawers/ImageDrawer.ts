@@ -41,8 +41,16 @@ export class ImageDrawer implements IShapeDrawer {
 
     public async init(container: Container): Promise<void> {
         const options = container.options;
-        const imageOptions =
-            options.particles.shape.options[ShapeType.images] ?? options.particles.shape.options[ShapeType.image];
+        const shapeOptions = options.particles.shape;
+
+        if (
+            !Utils.isInArray(ShapeType.image, shapeOptions.type) &&
+            !Utils.isInArray(ShapeType.images, shapeOptions.type)
+        ) {
+            return;
+        }
+
+        const imageOptions = shapeOptions.options[ShapeType.images] ?? shapeOptions.options[ShapeType.image];
 
         if (imageOptions instanceof Array) {
             for (const optionsImage of imageOptions) {
