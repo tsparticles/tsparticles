@@ -90,8 +90,9 @@ export class Particle implements IParticle {
 
         particlesOptions.load(options.particles);
 
-        if (overrideOptions?.shape !== undefined) {
-            const shapeType = overrideOptions.shape.type ?? particlesOptions.shape.type;
+        if (overrideOptions) {
+            const shape = (overrideOptions.shape as Shape | undefined) ?? particlesOptions.shape;
+            const shapeType = shape.type;
 
             this.shape = shapeType instanceof Array ? Utils.itemFromArray(shapeType) : shapeType;
 
