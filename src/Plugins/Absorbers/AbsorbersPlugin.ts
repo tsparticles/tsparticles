@@ -1,7 +1,7 @@
 import type { IPlugin } from "../../Core/Interfaces/IPlugin";
 import type { Container } from "../../Core/Container";
 import { Absorbers } from "./Absorbers";
-import { Utils } from "../../Utils/Utils";
+import { Utils } from "../../Utils";
 import { ClickMode } from "../../Enums/Modes/ClickMode";
 
 export class AbsorbersPlugin implements IPlugin {

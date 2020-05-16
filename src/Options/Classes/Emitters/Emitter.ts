@@ -5,7 +5,7 @@ import { MoveDirection } from "../../../Enums/MoveDirection";
 import type { IParticles } from "../../Interfaces/Particles/IParticles";
 import { EmitterRate } from "./EmitterRate";
 import { EmitterLife } from "./EmitterLife";
-import { Utils } from "../../../Utils/Utils";
+import { Utils } from "../../../Utils";
 import { EmitterSize } from "./EmitterSize";
 
 export class Emitter implements IEmitter {

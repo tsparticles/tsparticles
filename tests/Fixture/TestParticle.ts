@@ -63,8 +63,8 @@ export class TestParticle {
      * @param particle2
      */
     public static sort(particle1: Particle, particle2: Particle): number {
-        const position1 = particle1.position;
-        const position2 = particle2.position;
+        const position1 = particle1.getPosition();
+        const position2 = particle2.getPosition();
 
         if (position1.x === position2.x) {
             if (position1.y < position2.y) {
@@ -89,7 +89,7 @@ export class TestParticle {
      * @param particles
      */
     public static sortedPositions(particles: Particle[]): ICoordinates[] {
-        return particles.sort(this.sort).map((particle) => particle.position);
+        return particles.sort(this.sort).map((particle) => particle.getPosition());
     }
 
     /**
@@ -113,7 +113,7 @@ export class TestParticle {
             .map((sortedResult) => {
                 return {
                     distance: sortedResult.distance,
-                    position: sortedResult.particle.position,
+                    position: sortedResult.particle.getPosition(),
                 };
             });
     }

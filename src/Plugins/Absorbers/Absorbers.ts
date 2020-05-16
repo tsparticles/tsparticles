@@ -4,7 +4,7 @@ import { Container } from "../../Core/Container";
 import type { Particle } from "../../Core/Particle";
 import { ClickMode } from "../../Enums/Modes/ClickMode";
 import type { IAbsorber } from "../../Options/Interfaces/Absorbers/IAbsorber";
-import { Utils } from "../../Utils/Utils";
+import { Utils } from "../../Utils";
 
 export class Absorbers implements IContainerPlugin {
     public readonly container: Container;

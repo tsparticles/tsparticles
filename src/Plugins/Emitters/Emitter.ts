@@ -2,7 +2,7 @@ import type { Container } from "../../Core/Container";
 import type { ICoordinates } from "../../Core/Interfaces/ICoordinates";
 import type { IEmitter } from "../../Options/Interfaces/Emitters/IEmitter";
 import { Particle } from "../../Core/Particle";
-import { Utils } from "../../Utils/Utils";
+import { Utils } from "../../Utils";
 import { SizeMode } from "../../Enums/SizeMode";
 import { EmitterSize } from "../../Options/Classes/Emitters/EmitterSize";
 import type { Emitters } from "./Emitters";

@@ -3,13 +3,11 @@ import type { ICoordinates } from "../../Core/Interfaces/ICoordinates";
 import { PolygonMaskType } from "../../Enums/PolygonMaskType";
 import { Particle } from "../../Core/Particle";
 import { PolygonMaskInlineArrangement } from "../../Enums/PolygonMaskInlineArrangement";
-import { Utils } from "../../Utils/Utils";
+import { ColorUtils, Constants, Utils } from "../../Utils";
 import type { IDimension } from "../../Core/Interfaces/IDimension";
-import { Constants } from "../../Utils/Constants";
 import type { ISvgPath } from "../../Core/Interfaces/ISvgPath";
 import type { IContainerPlugin } from "../../Core/Interfaces/IContainerPlugin";
 import type { IPolygonMaskDrawStroke } from "../../Options/Interfaces/PolygonMask/IPolygonMaskDrawStroke";
-import { ColorUtils } from "../../Utils/ColorUtils";
 
 type SvgAbsoluteCoordinatesTypes =
     | SVGPathSegArcAbs
@@ -271,14 +269,14 @@ export class PolygonMask implements IContainerPlugin {
             options.polygon.type !== PolygonMaskType.none &&
             options.polygon.type !== PolygonMaskType.inline
         ) {
-            if (!this.checkInsidePolygon(particle.position)) {
+            if (!this.checkInsidePolygon(particle.getPosition())) {
                 PolygonMask.polygonBounce(particle);
 
                 return true;
             }
         } else if (options.polygon.enable && options.polygon.type === PolygonMaskType.inline) {
             if (particle.initialPosition) {
-                const dist = Utils.getDistance(particle.initialPosition, particle.position);
+                const dist = Utils.getDistance(particle.initialPosition, particle.getPosition());
 
                 if (dist > container.retina.polygonMaskMoveRadius) {
                     PolygonMask.polygonBounce(particle);

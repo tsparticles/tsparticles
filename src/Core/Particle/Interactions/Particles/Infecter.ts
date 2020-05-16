@@ -1,6 +1,6 @@
 import type { Particle } from "../../../Particle";
 import type { Container } from "../../../Container";
-import { Circle } from "../../../../Utils/Circle";
+import { Circle } from "../../../../Utils";
 
 export class Infecter {
     public static infect(p1: Particle, container: Container, delta: number): void {

@@ -1,7 +1,7 @@
 import { PolygonDrawerBase } from "./PolygonDrawerBase";
-import type { ISide } from "../../Interfaces/ISide";
-import type { ICoordinates } from "../../Interfaces/ICoordinates";
-import type { IParticle } from "../../Interfaces/IParticle";
+import type { ISide } from "../Core/Interfaces/ISide";
+import type { ICoordinates } from "../Core/Interfaces/ICoordinates";
+import type { IParticle } from "../Core/Interfaces/IParticle";
 
 export class TriangleDrawer extends PolygonDrawerBase {
     public getSidesData(particle: IParticle, radius: number): ISide {

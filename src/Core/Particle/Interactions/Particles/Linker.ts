@@ -1,10 +1,6 @@
 import type { Container } from "../../../Container";
-import { ColorUtils } from "../../../../Utils/ColorUtils";
-import { Constants } from "../../../../Utils/Constants";
 import type { Particle } from "../../../Particle";
-import { Utils } from "../../../../Utils/Utils";
-import { Circle } from "../../../../Utils/Circle";
-import { CircleWarp } from "../../../../Utils/CircleWarp";
+import { Circle, CircleWarp, ColorUtils, Constants, Utils } from "../../../../Utils";
 
 export class Linker {
     public static link(p1: Particle, container: Container, _delta: number): void {

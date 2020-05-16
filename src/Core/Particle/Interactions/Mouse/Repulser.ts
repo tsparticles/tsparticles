@@ -2,12 +2,10 @@ import { ClickMode } from "../../../../Enums/Modes/ClickMode";
 import type { Container } from "../../../Container";
 import { HoverMode } from "../../../../Enums/Modes/HoverMode";
 import { OutMode } from "../../../../Enums/OutMode";
-import { Utils } from "../../../../Utils/Utils";
+import { Circle, Constants, Utils } from "../../../../Utils";
 import { DivMode } from "../../../../Enums/Modes/DivMode";
-import { Constants } from "../../../../Utils/Constants";
 import type { ICoordinates } from "../../../Interfaces/ICoordinates";
 import type { IParticle } from "../../../Interfaces/IParticle";
-import { Circle } from "../../../../Utils/Circle";
 
 /**
  * Particle repulse manager
@@ -75,16 +73,14 @@ export class Repulser {
         const query = container.particles.quadTree.query(new Circle(position.x, position.y, repulseRadius));
 
         for (const particle of query) {
-            const dx = particle.position.x - position.x;
-            const dy = particle.position.y - position.y;
-            const dist = Math.sqrt(dx * dx + dy * dy);
+            const { dx, dy, distance } = Utils.getDistances(particle.position, position);
             const normVec = {
-                x: dx / dist,
-                y: dy / dist,
+                x: dx / distance,
+                y: dy / distance,
             };
 
             const velocity = container.options.interactivity.modes.repulse.speed * 100;
-            const repulseFactor = Utils.clamp((1 - Math.pow(dist / repulseRadius, 2)) * velocity, 0, 50);
+            const repulseFactor = Utils.clamp((1 - Math.pow(distance / repulseRadius, 2)) * velocity, 0, 50);
             const outMode = particle.particlesOptions.move.outMode;
             const sizeValue = particle.size.value;
             const pos = {
@@ -143,13 +139,8 @@ export class Repulser {
             const query = container.particles.quadTree.query(range);
 
             for (const particle of query) {
-                if (particle?.position === undefined) {
-                    continue;
-                }
-
-                const dx = mouseClickPos.x - particle.position.x;
-                const dy = mouseClickPos.y - particle.position.y;
-                const d = dx * dx + dy * dy;
+                const { dx, dy, distance } = Utils.getDistances(mouseClickPos, particle.position);
+                const d = distance * distance;
                 const velocity = container.options.interactivity.modes.repulse.speed;
                 const force = (-repulseRadius * velocity) / d;
 
@@ -199,13 +190,13 @@ export class Repulser {
 
             if (outMode !== OutMode.bounceVertical) {
                 if (pos.x + particle.size.value > container.canvas.size.width || pos.x - particle.size.value < 0) {
-                    particle.velocity.horizontal = -particle.velocity.horizontal;
+                    particle.velocity.horizontal *= -1;
                 }
             }
 
             if (outMode !== OutMode.bounceHorizontal) {
                 if (pos.y + particle.size.value > container.canvas.size.height || pos.y - particle.size.value < 0) {
-                    particle.velocity.vertical = -particle.velocity.vertical;
+                    particle.velocity.vertical *= -1;
                 }
             }
         }

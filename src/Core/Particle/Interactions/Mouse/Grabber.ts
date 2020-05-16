@@ -1,8 +1,5 @@
 import type { Container } from "../../../Container";
-import { Constants } from "../../../../Utils/Constants";
-import { Utils } from "../../../../Utils/Utils";
-import { Circle } from "../../../../Utils/Circle";
-import { ColorUtils } from "../../../../Utils/ColorUtils";
+import { Constants, Utils, Circle, ColorUtils } from "../../../../Utils";
 import { IRgb } from "../../../Interfaces/IRgb";
 import { IColor } from "../../../Interfaces/IColor";
 

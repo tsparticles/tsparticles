@@ -63,6 +63,7 @@
         "size": {
           "value": 10,
           "limit": 50,
+          "density": 50,
           "random": {
             "enable": true,
             "minimumValue": 5

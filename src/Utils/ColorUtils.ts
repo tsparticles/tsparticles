@@ -61,6 +61,7 @@ export class ColorUtils {
      */
     public static colorToHsl(color: IColor): IHsl | undefined {
         const rgb = this.colorToRgb(color);
+
         return rgb !== undefined ? this.rgbToHsl(rgb) : rgb;
     }
 
@@ -189,9 +190,7 @@ export class ColorUtils {
      * @param opacity the opacity to apply to color
      */
     public static getStyleFromRgb(color: IRgb, opacity?: number): string {
-        const opacityValue = opacity ?? 1;
-
-        return `rgba(${color.r}, ${color.g}, ${color.b}, ${opacityValue})`;
+        return `rgba(${color.r}, ${color.g}, ${color.b}, ${opacity ?? 1})`;
     }
 
     /**
@@ -200,9 +199,7 @@ export class ColorUtils {
      * @param opacity the opacity to apply to color
      */
     public static getStyleFromHsl(color: IHsl, opacity?: number): string {
-        const opacityValue = opacity ?? 1;
-
-        return `hsla(${color.h}, ${color.s}%, ${color.l}%, ${opacityValue})`;
+        return `hsla(${color.h}, ${color.s}%, ${color.l}%, ${opacity ?? 1})`;
     }
 
     public static mix(color1: IRgb | IHsl, color2: IRgb | IHsl, size1: number, size2: number): IRgb {

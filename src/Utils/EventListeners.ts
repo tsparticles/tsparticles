@@ -59,33 +59,12 @@ export class EventListeners {
                 addOptions = options as AddEventListenerOptions;
             }
 
-            EventListeners.addListener(element, event, handler, addOptions);
+            element.addEventListener(event, handler, addOptions);
         } else {
-            EventListeners.removeListener(
-                element,
-                event,
-                handler,
-                options as boolean | EventListenerOptions | undefined
-            );
+            const removeOptions = options as boolean | EventListenerOptions | undefined;
+
+            element.removeEventListener(event, handler, removeOptions);
         }
-    }
-
-    private static addListener(
-        element: HTMLElement | Node | Window,
-        event: string,
-        handler: EventListenerOrEventListenerObject,
-        options?: boolean | AddEventListenerOptions | undefined
-    ): void {
-        element.addEventListener(event, handler, options);
-    }
-
-    private static removeListener(
-        element: HTMLElement | Node | Window,
-        event: string,
-        handler: EventListenerOrEventListenerObject,
-        options?: boolean | EventListenerOptions
-    ): void {
-        element.removeEventListener(event, handler, options);
     }
 
     /**
@@ -102,11 +81,12 @@ export class EventListeners {
     private manageListeners(add: boolean): void {
         const container = this.container;
         const options = container.options;
+        const detectType = options.interactivity.detectsOn;
 
         /* events target element */
-        if (options.interactivity.detectsOn === InteractivityDetect.window) {
+        if (detectType === InteractivityDetect.window) {
             container.interactivity.element = window;
-        } else if (options.interactivity.detectsOn === InteractivityDetect.parent && container.canvas.element) {
+        } else if (detectType === InteractivityDetect.parent && container.canvas.element) {
             container.interactivity.element = container.canvas.element.parentNode;
         } else {
             container.interactivity.element = container.canvas.element;
@@ -164,13 +144,14 @@ export class EventListeners {
     private handleWindowResize(): void {
         const container = this.container;
         const options = container.options;
+        const canvas = container.canvas.element;
 
-        if (!container.canvas.element) {
+        if (!canvas) {
             return;
         }
 
-        container.canvas.size.width = container.canvas.element.offsetWidth;
-        container.canvas.size.height = container.canvas.element.offsetHeight;
+        container.canvas.size.width = canvas.offsetWidth;
+        container.canvas.size.height = canvas.offsetHeight;
 
         /* resize canvas */
         if (container.retina.isRetina) {
@@ -178,8 +159,8 @@ export class EventListeners {
             container.canvas.size.height *= container.retina.pixelRatio;
         }
 
-        container.canvas.element.width = container.canvas.size.width;
-        container.canvas.element.height = container.canvas.size.height;
+        canvas.width = container.canvas.size.width;
+        canvas.height = container.canvas.size.height;
 
         /* repaint canvas on anim disabled */
         if (!options.particles.move.enable) {
@@ -231,6 +212,8 @@ export class EventListeners {
 
         let pos: ICoordinates | undefined;
 
+        const canvas = container.canvas.element;
+
         if (e.type.startsWith("mouse")) {
             this.canPush = true;
 
@@ -240,8 +223,8 @@ export class EventListeners {
             }
 
             if (container.interactivity.element === window) {
-                if (container.canvas.element) {
-                    const clientRect = container.canvas.element.getBoundingClientRect();
+                if (canvas) {
+                    const clientRect = canvas.getBoundingClientRect();
 
                     pos = {
                         x: mouseEvent.clientX - clientRect.left,
@@ -279,7 +262,7 @@ export class EventListeners {
 
             const touchEvent = e as TouchEvent;
             const lastTouch = touchEvent.touches[touchEvent.touches.length - 1];
-            const canvasRect = container.canvas.element?.getBoundingClientRect();
+            const canvasRect = canvas?.getBoundingClientRect();
 
             pos = {
                 x: lastTouch.clientX - (canvasRect?.left ?? 0),
@@ -287,13 +270,12 @@ export class EventListeners {
             };
         }
 
-        container.interactivity.mouse.position = pos;
-
-        if (container.retina.isRetina && container.interactivity.mouse.position) {
-            container.interactivity.mouse.position.x *= container.retina.pixelRatio;
-            container.interactivity.mouse.position.y *= container.retina.pixelRatio;
+        if (container.retina.isRetina && pos) {
+            pos.x *= container.retina.pixelRatio;
+            pos.y *= container.retina.pixelRatio;
         }
 
+        container.interactivity.mouse.position = pos;
         container.interactivity.status = Constants.mouseMoveEvent;
     }
 
@@ -304,6 +286,7 @@ export class EventListeners {
         const container = this.container;
 
         delete container.interactivity.mouse.position;
+
         container.interactivity.status = Constants.mouseLeaveEvent;
     }
 
@@ -314,7 +297,9 @@ export class EventListeners {
     private mouseTouchClick(e: Event): void {
         const container = this.container;
         const options = container.options;
+
         let handled = false;
+
         const mousePosition = container.interactivity.mouse.position;
 
         if (mousePosition === undefined || !options.interactivity.events.onClick.enable) {
@@ -347,10 +332,11 @@ export class EventListeners {
         const options = container.options;
 
         if (this.canPush) {
-            if (container.interactivity.mouse.position) {
+            const mousePos = container.interactivity.mouse.position;
+            if (mousePos) {
                 container.interactivity.mouse.clickPosition = {
-                    x: container.interactivity.mouse.position.x,
-                    y: container.interactivity.mouse.position.y,
+                    x: mousePos.x,
+                    y: mousePos.y,
                 };
             } else {
                 return;
@@ -381,17 +367,21 @@ export class EventListeners {
         const removeNb = options.interactivity.modes.remove.quantity;
 
         switch (mode) {
-            case ClickMode.push:
-                if (options.particles.move.enable) {
-                    container.particles.push(pushNb, container.interactivity.mouse);
-                } else {
-                    if (options.interactivity.modes.push.quantity === 1) {
+            case ClickMode.push: {
+                if (pushNb > 0) {
+                    if (options.particles.move.enable) {
                         container.particles.push(pushNb, container.interactivity.mouse);
-                    } else if (options.interactivity.modes.push.quantity > 1) {
-                        container.particles.push(pushNb);
+                    } else {
+                        if (pushNb === 1) {
+                            container.particles.push(pushNb, container.interactivity.mouse);
+                        } else if (pushNb > 1) {
+                            container.particles.push(pushNb);
+                        }
                     }
                 }
+
                 break;
+            }
             case ClickMode.remove:
                 container.particles.removeQuantity(removeNb);
                 break;
@@ -401,17 +391,21 @@ export class EventListeners {
             case ClickMode.repulse:
                 container.repulse.clicking = true;
                 container.repulse.count = 0;
+
                 for (const particle of container.repulse.particles) {
                     particle.velocity.horizontal = particle.initialVelocity.horizontal;
                     particle.velocity.vertical = particle.initialVelocity.vertical;
                 }
+
                 container.repulse.particles = [];
                 container.repulse.finish = false;
+
                 setTimeout(() => {
                     if (!container.destroyed) {
                         container.repulse.clicking = false;
                     }
                 }, options.interactivity.modes.repulse.duration * 1000);
+
                 break;
             case ClickMode.pause:
                 if (container.getAnimationStatus()) {
@@ -419,6 +413,8 @@ export class EventListeners {
                 } else {
                     container.play();
                 }
+
+                break;
         }
 
         for (const id in container.plugins) {

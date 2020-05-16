@@ -6,8 +6,8 @@ import type { IOptions } from "../Options/Interfaces/IOptions";
 import type { IShapeDrawer } from "../Core/Interfaces/IShapeDrawer";
 
 export class Plugins {
-    private static plugins: IPlugin[] = [];
-    private static presets: { [preset: string]: RecursivePartial<IOptions> } = {};
+    private static readonly plugins: IPlugin[] = [];
+    private static readonly presets: { [preset: string]: RecursivePartial<IOptions> } = {};
     private static readonly drawers: { [type: string]: IShapeDrawer } = {};
 
     public static getPlugin(plugin: string): IPlugin | undefined {

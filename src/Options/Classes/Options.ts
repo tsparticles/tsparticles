@@ -9,7 +9,7 @@ import type { SingleOrMultiple } from "../../Types/SingleOrMultiple";
 import { Emitter } from "./Emitters/Emitter";
 import { Absorber } from "./Absorbers/Absorber";
 import { Infection } from "./Infection/Infection";
-import { Plugins } from "../../Utils/Plugins";
+import { Plugins } from "../../Utils";
 
 export class Options implements IOptions {
     /**

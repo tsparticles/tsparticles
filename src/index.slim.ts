@@ -3,14 +3,14 @@ import { Loader } from "./Core/Loader";
 import type { IOptions } from "./Options/Interfaces/IOptions";
 import type { RecursivePartial } from "./Types/RecursivePartial";
 import { ShapeType } from "./Enums/ShapeType";
-import { LineDrawer } from "./Core/Particle/ShapeDrawers/LineDrawer";
-import { CircleDrawer } from "./Core/Particle/ShapeDrawers/CircleDrawer";
-import { SquareDrawer } from "./Core/Particle/ShapeDrawers/SquareDrawer";
-import { TriangleDrawer } from "./Core/Particle/ShapeDrawers/TriangleDrawer";
-import { StarDrawer } from "./Core/Particle/ShapeDrawers/StarDrawer";
-import { PolygonDrawer } from "./Core/Particle/ShapeDrawers/PolygonDrawer";
-import { TextDrawer } from "./Core/Particle/ShapeDrawers/TextDrawer";
-import { ImageDrawer } from "./Core/Particle/ShapeDrawers/ImageDrawer";
+import { LineDrawer } from "./ShapeDrawers/LineDrawer";
+import { CircleDrawer } from "./ShapeDrawers/CircleDrawer";
+import { SquareDrawer } from "./ShapeDrawers/SquareDrawer";
+import { TriangleDrawer } from "./ShapeDrawers/TriangleDrawer";
+import { StarDrawer } from "./ShapeDrawers/StarDrawer";
+import { PolygonDrawer } from "./ShapeDrawers/PolygonDrawer";
+import { TextDrawer } from "./ShapeDrawers/TextDrawer";
+import { ImageDrawer } from "./ShapeDrawers/ImageDrawer";
 import type { IShapeDrawer } from "./Core/Interfaces/IShapeDrawer";
 import type {
     ShapeDrawerAfterEffectFunction,
@@ -18,7 +18,7 @@ import type {
     ShapeDrawerDrawFunction,
     ShapeDrawerInitFunction,
 } from "./Types/ShapeDrawerFunctions";
-import { Plugins } from "./Utils/Plugins";
+import { Plugins } from "./Utils";
 import type { IPlugin } from "./Core/Interfaces/IPlugin";
 
 declare global {

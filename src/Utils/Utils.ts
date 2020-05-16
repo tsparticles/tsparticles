@@ -118,10 +118,22 @@ export class Utils {
      * @param pointA the first coordinate
      * @param pointB the second coordinate
      */
-    public static getDistance(pointA: ICoordinates, pointB: ICoordinates): number {
+    public static getDistances(
+        pointA: ICoordinates,
+        pointB: ICoordinates
+    ): { dx: number; dy: number; distance: number } {
         const dx = pointA.x - pointB.x;
         const dy = pointA.y - pointB.y;
-        return Math.sqrt(dx * dx + dy * dy);
+        return { dx: dx, dy: dy, distance: Math.sqrt(dx * dx + dy * dy) };
+    }
+
+    /**
+     * Gets the distance between two coordinates
+     * @param pointA the first coordinate
+     * @param pointB the second coordinate
+     */
+    public static getDistance(pointA: ICoordinates, pointB: ICoordinates): number {
+        return this.getDistances(pointA, pointB).distance;
     }
 
     public static async loadFont(character: ICharacterShape): Promise<void> {

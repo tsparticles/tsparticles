@@ -1,5 +1,5 @@
 import type { Container } from "../../../Container";
-import { Circle } from "../../../../Utils/Circle";
+import { Circle } from "../../../../Utils";
 
 /**
  * Particle connection manager

@@ -1,7 +1,7 @@
-import type { IShapeDrawer } from "../../Interfaces/IShapeDrawer";
-import type { ISide } from "../../Interfaces/ISide";
-import type { ICoordinates } from "../../Interfaces/ICoordinates";
-import type { IParticle } from "../../Interfaces/IParticle";
+import type { IShapeDrawer } from "../Core/Interfaces/IShapeDrawer";
+import type { ISide } from "../Core/Interfaces/ISide";
+import type { ICoordinates } from "../Core/Interfaces/ICoordinates";
+import type { IParticle } from "../Core/Interfaces/IParticle";
 
 export abstract class PolygonDrawerBase implements IShapeDrawer {
     public draw(context: CanvasRenderingContext2D, particle: IParticle, radius: number, _opacity: number): void {

@@ -1,8 +1,7 @@
 import { Container } from "./Container";
 import type { IOptions } from "../Options/Interfaces/IOptions";
 import type { RecursivePartial } from "../Types/RecursivePartial";
-import { Constants } from "../Utils/Constants";
-import { Utils } from "../Utils/Utils";
+import { Constants, Utils } from "../Utils";
 
 let tsParticlesDom: Container[] = [];
 

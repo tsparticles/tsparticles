@@ -1,7 +1,7 @@
 import type { Container } from "../Container";
 import { OutMode } from "../../Enums/OutMode";
 import type { Particle } from "../Particle";
-import { Utils } from "../../Utils/Utils";
+import { Utils } from "../../Utils";
 import { Mover } from "./Mover";
 import { RotateDirection } from "../../Enums/RotateDirection";
 import type { IBounds } from "../Interfaces/IBounds";

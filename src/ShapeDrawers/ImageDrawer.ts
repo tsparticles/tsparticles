@@ -1,10 +1,10 @@
-import type { IShapeDrawer } from "../../Interfaces/IShapeDrawer";
-import type { IParticle } from "../../Interfaces/IParticle";
-import { Utils } from "../../../Utils/Utils";
-import { ShapeType } from "../../../Enums/ShapeType";
-import type { IImageShape } from "../../../Options/Interfaces/Particles/Shape/IImageShape";
-import type { IImage } from "../../Interfaces/IImage";
-import type { Container } from "../../Container";
+import type { IShapeDrawer } from "../Core/Interfaces/IShapeDrawer";
+import type { IParticle } from "../Core/Interfaces/IParticle";
+import { Utils } from "../Utils";
+import { ShapeType } from "../Enums/ShapeType";
+import type { IImageShape } from "../Options/Interfaces/Particles/Shape/IImageShape";
+import type { IImage } from "../Core/Interfaces/IImage";
+import type { Container } from "../Core/Container";
 
 interface ContainerImage {
     id: string;

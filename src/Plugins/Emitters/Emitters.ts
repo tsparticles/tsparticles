@@ -3,7 +3,7 @@ import { Emitter } from "./Emitter";
 import type { Container } from "../../Core/Container";
 import { ClickMode } from "../../Enums/Modes/ClickMode";
 import type { IEmitter } from "../../Options/Interfaces/Emitters/IEmitter";
-import { Utils } from "../../Utils/Utils";
+import { Utils } from "../../Utils";
 
 export class Emitters implements IContainerPlugin {
     public readonly container: Container;

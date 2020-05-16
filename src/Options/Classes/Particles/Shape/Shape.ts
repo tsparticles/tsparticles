@@ -7,7 +7,7 @@ import type { SingleOrMultiple } from "../../../../Types/SingleOrMultiple";
 import { ShapeData } from "../../../../Types/ShapeData";
 import { CharacterShape } from "./CharacterShape";
 import { Stroke } from "../Stroke";
-import { Utils } from "../../../../Utils/Utils";
+import { Utils } from "../../../../Utils";
 
 export class Shape implements IShape {
     /**

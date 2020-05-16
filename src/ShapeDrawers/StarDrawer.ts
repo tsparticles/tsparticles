@@ -1,8 +1,8 @@
 import { PolygonDrawerBase } from "./PolygonDrawerBase";
-import type { ISide } from "../../Interfaces/ISide";
-import type { ICoordinates } from "../../Interfaces/ICoordinates";
-import type { IParticle } from "../../Interfaces/IParticle";
-import type { IPolygonShape } from "../../../Options/Interfaces/Particles/Shape/IPolygonShape";
+import type { ISide } from "../Core/Interfaces/ISide";
+import type { ICoordinates } from "../Core/Interfaces/ICoordinates";
+import type { IParticle } from "../Core/Interfaces/IParticle";
+import type { IPolygonShape } from "../Options/Interfaces/Particles/Shape/IPolygonShape";
 
 export class StarDrawer extends PolygonDrawerBase {
     public getSidesData(particle: IParticle, radius: number): ISide {

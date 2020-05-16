@@ -1,9 +1,9 @@
-import type { IShapeDrawer } from "../../Interfaces/IShapeDrawer";
-import type { IParticle } from "../../Interfaces/IParticle";
-import { Utils } from "../../../Utils/Utils";
-import type { ICharacterShape } from "../../../Options/Interfaces/Particles/Shape/ICharacterShape";
-import { ShapeType } from "../../../Enums/ShapeType";
-import type { Container } from "../../Container";
+import type { IShapeDrawer } from "../Core/Interfaces/IShapeDrawer";
+import type { IParticle } from "../Core/Interfaces/IParticle";
+import { Utils } from "../Utils";
+import type { ICharacterShape } from "../Options/Interfaces/Particles/Shape/ICharacterShape";
+import { ShapeType } from "../Enums/ShapeType";
+import type { Container } from "../Core/Container";
 
 interface TextParticle extends IParticle {
     text?: string;

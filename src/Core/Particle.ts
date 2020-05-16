@@ -6,12 +6,10 @@ import type { ICoordinates } from "./Interfaces/ICoordinates";
 import type { IParticleImage } from "./Interfaces/IParticleImage";
 import { ShapeType } from "../Enums/ShapeType";
 import { Updater } from "./Particle/Updater";
-import { Utils } from "../Utils/Utils";
 import { PolygonMaskType } from "../Enums/PolygonMaskType";
 import type { IRgb } from "./Interfaces/IRgb";
 import { RotateDirection } from "../Enums/RotateDirection";
 import type { IStroke } from "../Options/Interfaces/Particles/IStroke";
-import { ColorUtils } from "../Utils/ColorUtils";
 import type { IOpacityRandom } from "../Options/Interfaces/Particles/Opacity/IOpacityRandom";
 import type { IShapeValues } from "../Options/Interfaces/Particles/Shape/IShapeValues";
 import type { IBubbleParticleData } from "./Interfaces/IBubbleParticleData";
@@ -23,12 +21,12 @@ import { SizeAnimationStatus } from "../Enums/SizeAnimationStatus";
 import { OpacityAnimationStatus } from "../Enums/OpacityAnimationStatus";
 import { Shape } from "../Options/Classes/Particles/Shape/Shape";
 import { StartValueType } from "../Enums/StartValueType";
-import { ImageDrawer } from "./Particle/ShapeDrawers/ImageDrawer";
+import { ImageDrawer } from "../ShapeDrawers/ImageDrawer";
 import type { IImageShape } from "../Options/Interfaces/Particles/Shape/IImageShape";
 import { RecursivePartial } from "../Types/RecursivePartial";
-import { Plugins } from "../Utils/Plugins";
 import type { ILink } from "./Interfaces/ILink";
 import type { IHsl } from "./Interfaces/IHsl";
+import { ColorUtils, Plugins, Utils } from "../Utils";
 
 /**
  * The single particle object

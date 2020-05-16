@@ -4,7 +4,6 @@ import type { IMouseData } from "./Interfaces/IMouseData";
 import type { IRgb } from "./Interfaces/IRgb";
 import { Particle } from "./Particle";
 import { InteractionManager } from "./Particle/Interactions/Particles/InteractionManager";
-import { Utils } from "../Utils/Utils";
 import { HoverMode } from "../Enums/Modes/HoverMode";
 import { Grabber } from "./Particle/Interactions/Mouse/Grabber";
 import { ClickMode } from "../Enums/Modes/ClickMode";
@@ -12,10 +11,8 @@ import { Repulser } from "./Particle/Interactions/Mouse/Repulser";
 import { DivMode } from "../Enums/Modes/DivMode";
 import { Bubbler } from "./Particle/Interactions/Mouse/Bubbler";
 import { Connector } from "./Particle/Interactions/Mouse/Connector";
-import { QuadTree } from "../Utils/QuadTree";
 import { DestroyType } from "../Enums/DestroyType";
-import { Point } from "../Utils/Point";
-import { Rectangle } from "../Utils/Rectangle";
+import { Point, QuadTree, Rectangle, Utils } from "../Utils";
 
 /**
  * Particles manager

@@ -1,13 +1,11 @@
-import { Constants } from "../Utils/Constants";
 import type { Container } from "./Container";
 import type { IDimension } from "./Interfaces/IDimension";
 import type { IRgb } from "./Interfaces/IRgb";
 import type { ICoordinates } from "./Interfaces/ICoordinates";
-import { CanvasUtils } from "../Utils/CanvasUtils";
-import { ColorUtils } from "../Utils/ColorUtils";
 import type { IParticle } from "./Interfaces/IParticle";
 import type { IContainerPlugin } from "./Interfaces/IContainerPlugin";
 import type { ILink } from "./Interfaces/ILink";
+import { CanvasUtils, ColorUtils, Constants } from "../Utils";
 
 /**
  * Canvas manager

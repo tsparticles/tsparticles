@@ -37,62 +37,59 @@ export class CanvasUtils {
         // this.ctx.lineCap = "round"; /* performance issue */
         /* path */
 
-        let distance = Utils.getDistance(begin, end);
-
-        if (distance <= maxDistance) {
+        if (Utils.getDistance(begin, end) <= maxDistance) {
             this.drawLine(context, begin, end);
         } else if (warp) {
+            let pi1: ICoordinates | undefined;
+            let pi2: ICoordinates | undefined;
+
             const endNE = {
                 x: end.x - canvasSize.width,
                 y: end.y,
             };
 
-            distance = Utils.getDistance(begin, endNE);
+            const { dx, dy, distance } = Utils.getDistances(begin, endNE);
 
             if (distance <= maxDistance) {
-                const dx = begin.x - (end.x - canvasSize.width);
-                const dy = begin.y - end.y;
                 const yi = begin.y - (dy / dx) * begin.x;
 
-                this.drawLine(context, begin, { x: 0, y: yi });
-                this.drawLine(context, end, { x: canvasSize.width, y: yi });
+                pi1 = { x: 0, y: yi };
+                pi2 = { x: canvasSize.width, y: yi };
             } else {
                 const endSW = {
                     x: end.x,
                     y: end.y - canvasSize.height,
                 };
 
-                distance = Utils.getDistance(begin, endSW);
+                const { dx, dy, distance } = Utils.getDistances(begin, endSW);
 
                 if (distance <= maxDistance) {
-                    const dx = begin.x - end.x;
-                    const dy = begin.y - (end.y - canvasSize.height);
                     const yi = begin.y - (dy / dx) * begin.x;
                     const xi = -yi / (dy / dx);
 
-                    this.drawLine(context, begin, { x: xi, y: 0 });
-                    this.drawLine(context, end, { x: xi, y: canvasSize.height });
+                    pi1 = { x: xi, y: 0 };
+                    pi2 = { x: xi, y: canvasSize.height };
                 } else {
                     const endSE = {
                         x: end.x - canvasSize.width,
                         y: end.y - canvasSize.height,
                     };
 
-                    distance = Utils.getDistance(begin, endSE);
+                    const { dx, dy, distance } = Utils.getDistances(begin, endSE);
 
                     if (distance <= maxDistance) {
-                        const dx = begin.x - (end.x - canvasSize.width);
-                        const dy = begin.y - (end.y - canvasSize.height);
                         const yi = begin.y - (dy / dx) * begin.x;
                         const xi = -yi / (dy / dx);
 
-                        this.drawLine(context, begin, { x: xi, y: yi });
-                        this.drawLine(context, end, {
-                            x: xi + canvasSize.width,
-                            y: yi + canvasSize.height,
-                        });
+                        pi1 = { x: xi, y: yi };
+                        pi2 = { x: pi1.x + canvasSize.width, y: pi1.y + canvasSize.height };
                     }
                 }
+            }
+
+            if (pi1 && pi2) {
+                this.drawLine(context, begin, pi1);
+                this.drawLine(context, end, pi2);
             }
         }
 
@@ -311,23 +308,19 @@ export class CanvasUtils {
 
         const drawer = container.drawers[particle.shape];
 
-        if (!drawer) {
+        if (!drawer?.afterEffect) {
             return;
         }
 
-        if (drawer.afterEffect !== undefined) {
-            drawer.afterEffect(context, particle, radius, opacity, delta);
-        }
+        drawer.afterEffect(context, particle, radius, opacity, delta);
     }
 
     public static drawPlugin(context: CanvasRenderingContext2D, plugin: IContainerPlugin, delta: number): void {
-        context.save();
-
         if (plugin.draw !== undefined) {
+            context.save();
             plugin.draw(context, delta);
+            context.restore();
         }
-
-        context.restore();
     }
 
     private static drawLine(context: CanvasRenderingContext2D, begin: ICoordinates, end: ICoordinates) {

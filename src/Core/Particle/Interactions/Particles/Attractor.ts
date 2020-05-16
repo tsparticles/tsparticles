@@ -1,6 +1,6 @@
 import type { IParticle } from "../../../Interfaces/IParticle";
 import type { Container } from "../../../Container";
-import { Circle } from "../../../../Utils/Circle";
+import { Circle, Utils } from "../../../../Utils";
 
 export class Attractor {
     public static attract(p1: IParticle, container: Container, _delta: number): void {
@@ -20,8 +20,7 @@ export class Attractor {
             const pos2 = p2.getPosition();
 
             /* condensed particles */
-            const dx = pos1.x - pos2.x;
-            const dy = pos1.y - pos2.y;
+            const { dx, dy } = Utils.getDistances(pos1, pos2);
             const rotate = options.particles.move.attract.rotate;
             const ax = dx / (rotate.x * 1000);
             const ay = dy / (rotate.y * 1000);

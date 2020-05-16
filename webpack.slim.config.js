@@ -17,9 +17,9 @@ module.exports = {
     // Change to your "entry-point".
     entry: {
         /*"tsparticles.utils": "./dist/Utils/index.js",
-        "tsparticles.utils.min": "./dist/Utils/index.js",
+        "tsparticles.utils.min": "./dist/Utils/index.js",*/
         "tsparticles.slim": "./dist/index.slim.js",
-        "tsparticles.slim.min": "./dist/index.slim.js",
+        "tsparticles.slim.min": "./dist/index.slim.js"/*,
         "tsparticles.shape.circle": "./dist/ShapeDrawers/CircleDrawer.js",
         "tsparticles.shape.image": "./dist/ShapeDrawers/ImageDrawer.js",
         "tsparticles.shape.line": "./dist/ShapeDrawers/LineDrawer.js",
@@ -33,9 +33,9 @@ module.exports = {
         "tsparticles.emitters": "./dist/Plugins/Emitters/EmittersPlugin.js",
         "tsparticles.emitters.min": "./dist/Plugins/Emitters/EmittersPlugin.js",
         "tsparticles.polygonMask": "./dist/Plugins/PolygonMask/PolygonMaskPlugin.js",
-        "tsparticles.polygonMask.min": "./dist/Plugins/PolygonMask/PolygonMaskPlugin.js",*/
+        "tsparticles.polygonMask.min": "./dist/Plugins/PolygonMask/PolygonMaskPlugin.js",
         "tsparticles": "./dist/index.js",
-        "tsparticles.min": "./dist/index.js"
+        "tsparticles.min": "./dist/index.js"*/
     },
     output: {
         path: path.resolve(__dirname, "dist"),
@@ -67,7 +67,7 @@ module.exports = {
             openAnalyzer: false,
             analyzerMode: "static",
             exclude: /\.min\.js$/,
-            reportFilename: "../demo/public/report.html"
+            reportFilename: "../demo/public/report.slim.html"
         })
     ],
     optimization: {

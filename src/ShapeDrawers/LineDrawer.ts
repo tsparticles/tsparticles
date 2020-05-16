@@ -1,5 +1,5 @@
-import type { IShapeDrawer } from "../../Interfaces/IShapeDrawer";
-import type { IParticle } from "../../Interfaces/IParticle";
+import type { IShapeDrawer } from "../Core/Interfaces/IShapeDrawer";
+import type { IParticle } from "../Core/Interfaces/IParticle";
 
 export class LineDrawer implements IShapeDrawer {
     public draw(context: CanvasRenderingContext2D, particle: IParticle, radius: number, _opacity: number): void {
