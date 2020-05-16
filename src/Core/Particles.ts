@@ -13,6 +13,8 @@ import { Bubbler } from "./Particle/Interactions/Mouse/Bubbler";
 import { Connector } from "./Particle/Interactions/Mouse/Connector";
 import { DestroyType } from "../Enums/DestroyType";
 import { Point, QuadTree, Rectangle, Utils } from "../Utils";
+import { RecursivePartial } from "../Types/RecursivePartial";
+import { IParticles } from "../Options/Interfaces/Particles/IParticles";
 
 /**
  * Particles manager
@@ -65,7 +67,7 @@ export class Particles {
 
         if (!handled) {
             for (let i = this.count; i < options.particles.number.value; i++) {
-                this.addParticle(new Particle(container));
+                this.addParticle();
             }
         }
 
@@ -272,7 +274,7 @@ export class Particles {
         }
 
         for (let i = 0; i < nb; i++) {
-            this.addParticle(new Particle(container, pos));
+            this.addParticle(pos);
         }
 
         if (!options.particles.move.enable) {
@@ -282,8 +284,12 @@ export class Particles {
         this.pushing = false;
     }
 
-    public addParticle(particle: Particle): void {
+    public addParticle(position?: ICoordinates, overrideOptions?: RecursivePartial<IParticles>): Particle {
+        const particle = new Particle(this.container, position, overrideOptions);
+
         this.array.push(particle);
+
+        return particle;
     }
 
     public removeQuantity(quantity: number): void {

@@ -4,7 +4,6 @@ globalThis.window = new Window();
 
 import { expect } from "chai";
 import { ICoordinates } from "../src/Core/Interfaces/ICoordinates";
-import { Particle } from "../src/Core/Particle";
 import { TestCanvas } from "./Fixture/TestCanvas";
 import { TestContainer } from "./Fixture/TestContainer";
 import { TestParticles } from "./Fixture/TestParticles";
@@ -46,21 +45,17 @@ describe("Particles", () => {
         testContainer.reset({});
         testParticles.reset(testContainer.container);
 
-        const particle1 = new Particle(testContainer.container, { x: 1, y: 1 });
-        const particle2 = new Particle(testContainer.container, { x: 2, y: 2 });
-        const particle3 = new Particle(testContainer.container, { x: 3, y: 3 });
-
         expect(testParticles.particles.count).to.equal(0);
 
-        testParticles.particles.addParticle(particle1);
+        const particle1 = testParticles.particles.addParticle({ x: 1, y: 1 });
         expect(testParticles.particles.count).to.equal(1);
         expect(testParticles.particles.array).to.eql([particle1]);
 
-        testParticles.particles.addParticle(particle2);
+        const particle2 = testParticles.particles.addParticle({ x: 2, y: 2 });
         expect(testParticles.particles.count).to.equal(2);
         expect(testParticles.particles.array).to.eql([particle1, particle2]);
 
-        testParticles.particles.addParticle(particle3);
+        const particle3 = testParticles.particles.addParticle({ x: 3, y: 3 });
         expect(testParticles.particles.count).to.equal(3);
         expect(testParticles.particles.array).to.eql([particle1, particle2, particle3]);
     });

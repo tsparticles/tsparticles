@@ -469,12 +469,10 @@ export class PolygonMask implements IContainerPlugin {
 
         if (this.raw) {
             for (const item of this.raw) {
-                const position = {
+                container.particles.addParticle({
                     x: item.x,
                     y: item.y,
-                };
-
-                container.particles.addParticle(new Particle(container, position));
+                });
             }
         }
     }
