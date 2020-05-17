@@ -7900,10 +7900,10 @@ tslint@^5.20.1:
     tslib "^1.8.0"
     tsutils "^2.29.0"
 
-tsparticles@^1.14.1:
-  version "1.14.1"
-  resolved "https://registry.yarnpkg.com/tsparticles/-/tsparticles-1.14.1.tgz#7e594185c3308cc8cf9a20718efeafb3006bd76e"
-  integrity sha512-uJQ1lpCWionf4I6FIV6fOAiZ5wsU68s/uueD+xZ5cGWdc9lAqN8WctxtkFNT/BxV9CUMD3NM+8ClLWjA5PH0Dw==
+tsparticles@^1.14.2:
+  version "1.14.2"
+  resolved "https://registry.yarnpkg.com/tsparticles/-/tsparticles-1.14.2.tgz#fa181def31fbf79789c0b523679cb59b6557a8d9"
+  integrity sha512-claOdmStCMEH1VWRGMBv6zdDL27miJQ6DO/JiqTWvPr839EZTQkBPQVwGjsMAF6/8/jSMbZJUp22WM6qkX8+ig==
   dependencies:
     pathseg "^1.2.0"
     tslib "^1.11.2"
