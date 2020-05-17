@@ -163,7 +163,7 @@ export class Particle implements IParticle {
             value:
                 randomSize && this.randomMinimumSize !== undefined
                     ? Utils.randomInRange(this.randomMinimumSize, sizeValue)
-                    : sizeValue
+                    : sizeValue,
         };
 
         this.direction = this.particlesOptions.move.direction;
@@ -224,14 +224,14 @@ export class Particle implements IParticle {
         if (options.polygon.enable && options.polygon.type === PolygonMaskType.inline) {
             this.initialPosition = {
                 x: this.position.x,
-                y: this.position.y
+                y: this.position.y,
             };
         }
 
         /* parallax */
         this.offset = {
             x: 0,
-            y: 0
+            y: 0,
         };
 
         /* check position - avoid overlap */
@@ -247,7 +247,7 @@ export class Particle implements IParticle {
         const opacityValue = this.particlesOptions.opacity.value;
 
         this.opacity = {
-            value: randomOpacity.enable ? Utils.randomInRange(randomOpacity.minimumValue, opacityValue) : opacityValue
+            value: randomOpacity.enable ? Utils.randomInRange(randomOpacity.minimumValue, opacityValue) : opacityValue,
         };
 
         if (this.particlesOptions.opacity.animation.enable) {
@@ -263,7 +263,7 @@ export class Particle implements IParticle {
         this.initialVelocity = this.calculateVelocity();
         this.velocity = {
             horizontal: this.initialVelocity.horizontal,
-            vertical: this.initialVelocity.vertical
+            vertical: this.initialVelocity.vertical,
         };
 
         let drawer = container.drawers[this.shape];
@@ -291,7 +291,7 @@ export class Particle implements IParticle {
                 data: image,
                 ratio: optionsImage.width / optionsImage.height,
                 replaceColor: optionsImage.replaceColor ?? optionsImage.replace_color,
-                source: optionsImage.src
+                source: optionsImage.src,
             };
 
             if (!this.image.ratio) {
@@ -343,7 +343,7 @@ export class Particle implements IParticle {
 
         return {
             collisionFound: collisionFound,
-            iterations: iterations
+            iterations: iterations,
         };
     }
 
@@ -442,7 +442,7 @@ export class Particle implements IParticle {
     public getPosition(): ICoordinates {
         return {
             x: this.position.x + this.offset.x,
-            y: this.position.y + this.offset.y
+            y: this.position.y + this.offset.y,
         };
     }
 
@@ -508,7 +508,7 @@ export class Particle implements IParticle {
         const baseVelocity = Utils.getParticleBaseVelocity(this);
         const res = {
             horizontal: 0,
-            vertical: 0
+            vertical: 0,
         };
 
         if (this.particlesOptions.move.straight) {
