@@ -192,55 +192,55 @@ describe("Options tests", () => {
         const options = new Options();
         const preset = {
             background: {
-                color: "#0d47a1",
+                color: "#0d47a1"
             },
             interactivity: {
                 detect_on: InteractivityDetect.canvas,
                 events: {
                     onclick: {
                         enable: true,
-                        mode: ClickMode.push,
+                        mode: ClickMode.push
                     },
                     onhover: {
                         enable: true,
-                        mode: HoverMode.repulse,
+                        mode: HoverMode.repulse
                     },
-                    resize: true,
+                    resize: true
                 },
                 modes: {
                     bubble: {
                         distance: 400,
                         size: 40,
                         duration: 2,
-                        opacity: 0.8,
+                        opacity: 0.8
                     },
                     grab: {
                         distance: 400,
                         line_linked: {
-                            opacity: 1,
-                        },
+                            opacity: 1
+                        }
                     },
                     push: {
-                        particles_nb: 4,
+                        particles_nb: 4
                     },
                     remove: {
-                        particles_nb: 2,
+                        particles_nb: 2
                     },
                     repulse: {
-                        distance: 200,
-                    },
-                },
+                        distance: 200
+                    }
+                }
             },
             particles: {
                 color: {
-                    value: "#ffffff",
+                    value: "#ffffff"
                 },
                 line_linked: {
                     enable: true,
                     distance: 150,
                     color: "#ffffff",
                     opacity: 0.4,
-                    width: 1,
+                    width: 1
                 },
                 move: {
                     enable: true,
@@ -252,30 +252,30 @@ describe("Options tests", () => {
                     attract: {
                         enable: false,
                         rotateX: 600,
-                        rotateY: 1200,
-                    },
+                        rotateY: 1200
+                    }
                 },
                 number: {
                     value: 80,
                     density: {
                         enable: true,
-                        value_area: 800,
-                    },
+                        value_area: 800
+                    }
                 },
                 shape: {
                     type: "circle",
                     stroke: {
                         width: 0,
-                        color: "#000000",
+                        color: "#000000"
                     },
                     polygon: {
-                        nb_sides: 5,
+                        nb_sides: 5
                     },
                     image: {
                         src: "https://cdn.matteobruni.it/images/particles/github.svg",
                         width: 100,
-                        height: 100,
-                    },
+                        height: 100
+                    }
                 },
                 opacity: {
                     value: 0.5,
@@ -284,8 +284,8 @@ describe("Options tests", () => {
                         enable: true,
                         speed: 3,
                         opacity_min: 0.1,
-                        sync: false,
-                    },
+                        sync: false
+                    }
                 },
                 size: {
                     value: 5,
@@ -294,11 +294,11 @@ describe("Options tests", () => {
                         enable: true,
                         speed: 20,
                         size_min: 0.1,
-                        sync: false,
-                    },
-                },
+                        sync: false
+                    }
+                }
             },
-            retina_detect: true,
+            retina_detect: true
         };
 
         options.load(preset);
@@ -390,55 +390,55 @@ describe("Options tests", () => {
         const options = new Options();
         const preset = {
             background: {
-                color: "#0d47a1",
+                color: "#0d47a1"
             },
             interactivity: {
                 detect_on: InteractivityDetect.canvas,
                 events: {
                     onclick: {
                         enable: true,
-                        mode: ClickMode.repulse,
+                        mode: ClickMode.repulse
                     },
                     onhover: {
                         enable: false,
-                        mode: HoverMode.grab,
+                        mode: HoverMode.grab
                     },
-                    resize: true,
+                    resize: true
                 },
                 modes: {
                     bubble: {
                         distance: 400,
                         size: 40,
                         duration: 2,
-                        opacity: 8,
+                        opacity: 8
                     },
                     grab: {
                         distance: 200,
                         line_linked: {
-                            opacity: 1,
-                        },
+                            opacity: 1
+                        }
                     },
                     repulse: {
-                        distance: 200,
+                        distance: 200
                     },
                     push: {
-                        particles_nb: 4,
+                        particles_nb: 4
                     },
                     remove: {
-                        particles_nb: 2,
-                    },
-                },
+                        particles_nb: 2
+                    }
+                }
             },
             particles: {
                 color: {
-                    value: "#ffffff",
+                    value: "#ffffff"
                 },
                 line_linked: {
                     enable: false,
                     distance: 150,
                     color: "#ffffff",
                     opacity: 0.4,
-                    width: 1,
+                    width: 1
                 },
                 move: {
                     enable: true,
@@ -451,30 +451,30 @@ describe("Options tests", () => {
                     attract: {
                         enable: false,
                         rotateX: 600,
-                        rotateY: 1200,
-                    },
+                        rotateY: 1200
+                    }
                 },
                 number: {
                     value: 100,
                     density: {
                         enable: false,
-                        value_area: 800,
-                    },
+                        value_area: 800
+                    }
                 },
                 shape: {
                     type: ShapeType.circle,
                     stroke: {
                         width: 0,
-                        color: "#000000",
+                        color: "#000000"
                     },
                     polygon: {
-                        nb_sides: 5,
+                        nb_sides: 5
                     },
                     image: {
                         src: "https://cdn.matteobruni.it/images/particles/github.svg",
                         width: 100,
-                        height: 100,
-                    },
+                        height: 100
+                    }
                 },
                 opacity: {
                     value: 0.5,
@@ -483,8 +483,8 @@ describe("Options tests", () => {
                         enable: false,
                         speed: 1,
                         opacity_min: 0.1,
-                        sync: false,
-                    },
+                        sync: false
+                    }
                 },
                 size: {
                     value: 4,
@@ -493,11 +493,11 @@ describe("Options tests", () => {
                         enable: false,
                         speed: 40,
                         size_min: 0.1,
-                        sync: false,
-                    },
-                },
+                        sync: false
+                    }
+                }
             },
-            retina_detect: true,
+            retina_detect: true
         };
 
         options.load(preset);
@@ -609,26 +609,26 @@ describe("Options tests", () => {
                 value: 100,
                 density: {
                     enable: false,
-                    value_area: 800,
-                },
+                    value_area: 800
+                }
             },
             color: {
-                value: "#000",
+                value: "#000"
             },
             shape: {
                 type: "circle",
                 stroke: {
                     width: 0,
-                    color: "#000000",
+                    color: "#000000"
                 },
                 polygon: {
-                    nb_sides: 5,
+                    nb_sides: 5
                 },
                 image: {
                     src: "https://cdn.matteobruni.it/images/particles/github.svg",
                     width: 100,
-                    height: 100,
-                },
+                    height: 100
+                }
             },
             opacity: {
                 value: 0.5,
@@ -637,8 +637,8 @@ describe("Options tests", () => {
                     enable: false,
                     speed: 1,
                     opacity_min: 0.1,
-                    sync: false,
-                },
+                    sync: false
+                }
             },
             size: {
                 value: 5,
@@ -647,15 +647,15 @@ describe("Options tests", () => {
                     enable: false,
                     speed: 40,
                     size_min: 0.1,
-                    sync: false,
-                },
+                    sync: false
+                }
             },
-            line_linked: {
+            links: {
                 enable: true,
                 distance: 150,
                 color: "#000",
                 opacity: 0.4,
-                width: 1,
+                width: 1
             },
             move: {
                 enable: true,
@@ -667,9 +667,9 @@ describe("Options tests", () => {
                 attract: {
                     enable: false,
                     rotateX: 600,
-                    rotateY: 1200,
-                },
-            },
+                    rotateY: 1200
+                }
+            }
         };
 
         particlesOptions.load(generalOptions);
@@ -683,10 +683,10 @@ describe("Options tests", () => {
                 value: 0,
                 random: true,
                 direction: RotateDirection.clockwise,
-                animation: { enable: true, speed: 15, sync: false },
+                animation: { enable: true, speed: 15, sync: false }
             },
             shape: { type: "star", polygon: { sides: 7 } },
-            size: { value: 15, random: false },
+            size: { value: 15, random: false }
         };
 
         particlesOptions.load(emitterOptions);
