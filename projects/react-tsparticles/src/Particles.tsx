@@ -104,7 +104,7 @@ export default class Particles extends Component<ParticlesProps,
     }
 
     shouldComponentUpdate(nextProps: Readonly<ParticlesProps>) {
-        return !isEqual(nextProps, this.props);
+        return !this.state.library || !isEqual(nextProps, this.props);
     }
 
     componentDidUpdate() {
