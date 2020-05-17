@@ -8,11 +8,11 @@ Checkout the [demo page](https://particles.matteobruni.it).
 
 ## Installation
 
-`npm install react-tsparticles`
+`npm install preact-particles`
 
 or
 
-`yarn add react-tsparticles`
+`yarn add preact-particles`
 
 ## How to use
 
@@ -21,7 +21,7 @@ or
 Example:
 
 ```javascript
-import Particles from 'react-tsparticles';
+import Particles from 'preact-particles';
 
 class App extends Component{
   
