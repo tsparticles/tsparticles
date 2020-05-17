@@ -1,11 +1,11 @@
-import * as React from "preact/compat";
-import { Component } from "preact/compat";
-import isEqual from 'lodash/isEqual';
+import * as React from "react";
+import { Component } from "react";
+import isEqual from "lodash/isEqual";
 import type { IOptions } from "tsparticles/dist/Interfaces/Options/IOptions";
 import { Container } from "tsparticles/dist/Classes/Container";
 import type { RecursivePartial } from "tsparticles/dist/Types/RecursivePartial";
 import { Options } from "tsparticles/dist/Classes/Options/Options";
-import { tsParticles } from "tsparticles/dist/index";
+import { tsParticles } from "tsparticles";
 
 export interface ParticlesProps {
     id: string;
@@ -15,7 +15,7 @@ export interface ParticlesProps {
     style: any;
     className?: string;
     canvasClassName?: string;
-    // particlesRef?: React.RefObject<Container>
+    particlesRef?: React.RefObject<Container>
 }
 
 export interface ParticlesState {
@@ -48,22 +48,23 @@ export default class Particles extends Component<ParticlesProps,
         } catch {
             return null;
         } // SSR
-        var options = new Options();
+        const options = new Options();
 
         options.load(params);
 
-        tsParticles.dom();
+        tsParticles.init();
         const container = new Container(tagId, options);
 
-        // if (this.props.particlesRef) {
-        //    (this.props.particlesRef as React.MutableRefObject<Container>).current = container;
-        // }
+        if (this.props.particlesRef) {
+            (this.props.particlesRef as React.MutableRefObject<Container>).current = container;
+        }
 
         return container;
     }
 
     private refresh(props: Readonly<ParticlesProps>): void {
         const { canvas } = this.state;
+
         if (canvas) {
             this.destroy();
             this.setState({
@@ -102,7 +103,7 @@ export default class Particles extends Component<ParticlesProps,
     }
 
     shouldComponentUpdate(nextProps: Readonly<ParticlesProps>) {
-        return !isEqual(nextProps, this.props);
+        return !this.state.library || !isEqual(nextProps, this.props);
     }
 
     componentDidUpdate() {
