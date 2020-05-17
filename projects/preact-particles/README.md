@@ -1,6 +1,6 @@
-## tsParticles - React Component
+## tsParticles - Preact Component
 
-tsParticles React component, using [tsParticles](https://github.com/matteobruni/tsparticles).
+tsParticles Preact component, using [tsParticles](https://github.com/matteobruni/tsparticles).
 
 Checkout the [demo page](https://particles.matteobruni.it).
 
