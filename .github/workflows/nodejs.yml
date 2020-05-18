@@ -1,0 +1,32 @@
+name: Node.js CI
+
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        node-version: [10.x, 12.x]
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: Use Node.js ${{ matrix.node-version }}
+      uses: actions/setup-node@v1
+      with:
+        node-version: ${{ matrix.node-version }}
+    - run: npm ci
+    - run: npm run build --if-present
+    - run: npm test
+    - name: Send Coverage Data
+      uses: fnkr/github-action-git-bash@v1
+      with:
+        secrets: "CodacyCoverageToken"
+        args: "export CODACY_PROJECT_TOKEN={{secrets.CodacyCoverageToken}} && curl -Ls https://coverage.codacy.com/get.sh | sh -s report -l TypeScript -r ./coverage/lcov.info --partial"
+      
