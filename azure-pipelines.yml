@@ -39,6 +39,20 @@ steps:
     command: 'publish'
     publishEndpoint: 'npmjs'
 
+- task: Bash@3
+  inputs:
+    targetType: 'inline'
+    script: 'export CODACY_PROJECT_TOKEN=$CODACYCOVERAGETOKEN'
+
+- task: DownloadSecureFile@1
+  inputs:
+    secureFile: 'https://coverage.codacy.com/get.sh'
+
+- task: Bash@3
+  inputs:
+    filePath: 'get.sh'
+    arguments: '-s report -l TypeScript -r ./coverage/lcov.info --partial'
+
 - task: CopyFiles@2
   displayName: Copying files to Artifacts
   inputs:
