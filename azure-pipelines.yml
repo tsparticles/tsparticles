@@ -47,7 +47,7 @@ steps:
 - task: Bash@3
   inputs:
     targetType: 'inline'
-    script: 'curl -Ls https://coverage.codacy.com/get.sh'
+    script: 'curl -Ls https://coverage.codacy.com/get.sh > get.sh'
 
 - task: Bash@3
   inputs:
