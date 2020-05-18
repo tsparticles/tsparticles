@@ -150,14 +150,10 @@ export class EventListeners {
             return;
         }
 
-        container.canvas.size.width = canvas.offsetWidth;
-        container.canvas.size.height = canvas.offsetHeight;
+        const pxRatio = container.retina.pixelRatio;
 
-        /* resize canvas */
-        if (container.retina.isRetina) {
-            container.canvas.size.width *= container.retina.pixelRatio;
-            container.canvas.size.height *= container.retina.pixelRatio;
-        }
+        container.canvas.size.width = canvas.offsetWidth * pxRatio;
+        container.canvas.size.height = canvas.offsetHeight * pxRatio;
 
         canvas.width = container.canvas.size.width;
         canvas.height = container.canvas.size.height;
@@ -270,9 +266,11 @@ export class EventListeners {
             };
         }
 
-        if (container.retina.isRetina && pos) {
-            pos.x *= container.retina.pixelRatio;
-            pos.y *= container.retina.pixelRatio;
+        const pxRatio = container.retina.pixelRatio;
+
+        if (pos) {
+            pos.x *= pxRatio;
+            pos.y *= pxRatio;
         }
 
         container.interactivity.mouse.position = pos;

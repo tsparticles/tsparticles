@@ -2,7 +2,6 @@ import type { Container } from "./Container";
 import type { Particle } from "./Particle";
 
 export class Retina {
-    public isRetina: boolean;
     public bubbleModeDistance: number;
     public bubbleModeSize: number;
     public connectModeDistance: number;
@@ -22,7 +21,6 @@ export class Retina {
 
     constructor(container: Container) {
         this.container = container;
-        this.isRetina = false;
         this.bubbleModeDistance = 0;
         this.bubbleModeSize = 0;
         this.connectModeDistance = 0;
@@ -43,14 +41,10 @@ export class Retina {
         const container = this.container;
         const options = container.options;
 
-        if (options.detectRetina && window.devicePixelRatio > 1) {
+        if (options.detectRetina) {
             this.pixelRatio = window.devicePixelRatio;
-
-            this.isRetina = true;
         } else {
             this.pixelRatio = 1;
-
-            this.isRetina = false;
         }
 
         const ratio = this.pixelRatio;
@@ -70,15 +64,15 @@ export class Retina {
         this.sizeValue = particles.size.value * ratio;
         this.sizeAnimationSpeed = particles.size.animation.speed * ratio;
 
-        const interactivity = options.interactivity;
+        const modes = options.interactivity.modes;
 
-        this.connectModeDistance = interactivity.modes.connect.distance * ratio;
-        this.connectModeRadius = interactivity.modes.connect.radius * ratio;
-        this.grabModeDistance = interactivity.modes.grab.distance * ratio;
-        this.repulseModeDistance = interactivity.modes.repulse.distance * ratio;
-        this.slowModeRadius = interactivity.modes.slow.radius * ratio;
-        this.bubbleModeDistance = interactivity.modes.bubble.distance * ratio;
-        this.bubbleModeSize = interactivity.modes.bubble.size ?? this.sizeValue * ratio;
+        this.connectModeDistance = modes.connect.distance * ratio;
+        this.connectModeRadius = modes.connect.radius * ratio;
+        this.grabModeDistance = modes.grab.distance * ratio;
+        this.repulseModeDistance = modes.repulse.distance * ratio;
+        this.slowModeRadius = modes.slow.radius * ratio;
+        this.bubbleModeDistance = modes.bubble.distance * ratio;
+        this.bubbleModeSize = modes.bubble.size ?? this.sizeValue * ratio;
 
         this.polygonMaskMoveRadius = options.polygon.move.radius * ratio;
     }
@@ -91,9 +85,11 @@ export class Retina {
         particle.linksWidth = particlesOptions.links.width * ratio;
         particle.moveSpeed = particlesOptions.move.speed * ratio;
         particle.sizeValue = particlesOptions.size.value * ratio;
+
         if (typeof particlesOptions.size.random !== "boolean") {
-            particle.randomMinimumSize = particlesOptions.size.random.minimumValue;
+            particle.randomMinimumSize = particlesOptions.size.random.minimumValue * ratio;
         }
+
         particle.sizeAnimationSpeed = particlesOptions.size.animation.speed * ratio;
     }
 

@@ -38,20 +38,12 @@ export class Repulser {
             return;
         }
 
+        const pxRatio = container.retina.pixelRatio;
         const pos = {
-            x: elem.offsetLeft + elem.offsetWidth / 2,
-            y: elem.offsetTop + elem.offsetHeight / 2,
+            x: (elem.offsetLeft + elem.offsetWidth / 2) * pxRatio,
+            y: (elem.offsetTop + elem.offsetHeight / 2) * pxRatio
         };
-
-        let divWidth = elem.offsetWidth / 2;
-
-        if (container.retina.isRetina) {
-            pos.x *= container.retina.pixelRatio;
-            pos.y *= container.retina.pixelRatio;
-            divWidth *= container.retina.pixelRatio;
-        }
-
-        const repulseRadius = divWidth;
+        const repulseRadius = (elem.offsetWidth / 2) * pxRatio;
 
         this.processRepulse(container, pos, repulseRadius);
     }
@@ -76,7 +68,7 @@ export class Repulser {
             const { dx, dy, distance } = Utils.getDistances(particle.position, position);
             const normVec = {
                 x: dx / distance,
-                y: dy / distance,
+                y: dy / distance
             };
 
             const velocity = container.options.interactivity.modes.repulse.speed * 100;
@@ -85,7 +77,7 @@ export class Repulser {
             const sizeValue = particle.size.value;
             const pos = {
                 x: particle.position.x + normVec.x * repulseFactor,
-                y: particle.position.y + normVec.y * repulseFactor,
+                y: particle.position.y + normVec.y * repulseFactor
             };
 
             if (
@@ -95,7 +87,7 @@ export class Repulser {
             ) {
                 const isInside = {
                     horizontal: pos.x - sizeValue > 0 && pos.x + sizeValue < container.canvas.size.width,
-                    vertical: pos.y - sizeValue > 0 && pos.y + sizeValue < container.canvas.size.height,
+                    vertical: pos.y - sizeValue > 0 && pos.y + sizeValue < container.canvas.size.height
                 };
 
                 if (outMode === OutMode.bounceVertical || isInside.horizontal) {
@@ -185,7 +177,7 @@ export class Repulser {
         if (outMode === OutMode.bounce || outMode === OutMode.bounceHorizontal || outMode === OutMode.bounceVertical) {
             const pos = {
                 x: particle.position.x + particle.velocity.horizontal,
-                y: particle.position.y + particle.velocity.vertical,
+                y: particle.position.y + particle.velocity.vertical
             };
 
             if (outMode !== OutMode.bounceVertical) {
