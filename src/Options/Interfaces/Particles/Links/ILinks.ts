@@ -4,6 +4,7 @@ import { ILinksTriangle } from "./ILinksTriangle";
 import { IColor } from "../../../../Core/Interfaces/IColor";
 
 export interface ILinks extends IOptionLoader<ILinks> {
+    id?: string;
     blink: boolean;
     color: string | IColor;
     consent: boolean;

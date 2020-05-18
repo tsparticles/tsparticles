@@ -87,9 +87,9 @@ export class ColorUtils {
                 res.s = (maxColor - minColor) / (2.0 - maxColor - minColor);
             }
             //Calculate H:
-            if (r1 == maxColor) {
+            if (r1 === maxColor) {
                 res.h = (g1 - b1) / (maxColor - minColor);
-            } else if (g1 == maxColor) {
+            } else if (g1 === maxColor) {
                 res.h = 2.0 + (b1 - r1) / (maxColor - minColor);
             } else {
                 res.h = 4.0 + (r1 - g1) / (maxColor - minColor);

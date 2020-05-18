@@ -5,6 +5,7 @@ import { LinksTriangle } from "./LinksTriangle";
 import { OptionsColor } from "../../OptionsColor";
 
 export class Links implements ILinks {
+    public id?: string;
     public blink: boolean;
     public color: OptionsColor;
     public consent: boolean;
@@ -31,6 +32,10 @@ export class Links implements ILinks {
 
     public load(data?: RecursivePartial<ILinks>): void {
         if (data !== undefined) {
+            if (data.id !== undefined) {
+                this.id = data.id;
+            }
+
             if (data.blink !== undefined) {
                 this.blink = data.blink;
             }

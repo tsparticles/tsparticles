@@ -250,6 +250,7 @@ export class Container {
         }
 
         this.plugins = {};
+        this.particles.linksColors = {};
 
         delete this.particles.linksColor;
     }

@@ -4,11 +4,11 @@ import { Circle, CircleWarp, ColorUtils, Constants, Utils } from "../../../../Ut
 
 export class Linker {
     public static link(p1: Particle, container: Container, _delta: number): void {
-        const lineOptions = p1.particlesOptions.links;
-        const optOpacity = lineOptions.opacity;
+        const linkOpt1 = p1.particlesOptions.links;
+        const optOpacity = linkOpt1.opacity;
         const optDistance = p1.linksDistance ?? container.retina.linksDistance;
         const canvasSize = container.canvas.size;
-        const warp = lineOptions.warp;
+        const warp = linkOpt1.warp;
         const pos1 = p1.getPosition();
 
         //const query = container.particles.spatialGrid.queryRadiusWithDistance(pos1, optDistance);
@@ -20,7 +20,9 @@ export class Linker {
 
         //for (const { distance, p2 } of query) {
         for (const p2 of query) {
-            if (p1 === p2 || !p2.particlesOptions.links.enable) {
+            const linkOpt2 = p2.particlesOptions.links;
+
+            if (p1 === p2 || !linkOpt2.enable || linkOpt1.id !== linkOpt2.id) {
                 continue;
             }
 
@@ -66,8 +68,15 @@ export class Linker {
 
             if (opacityLine > 0) {
                 /* style */
-                if (!container.particles.linksColor) {
-                    const optColor = p1.particlesOptions.links.color;
+                const linksOptions = p1.particlesOptions.links;
+
+                let linkColor =
+                    linksOptions.id !== undefined
+                        ? container.particles.linksColors[linksOptions.id]
+                        : container.particles.linksColor;
+
+                if (!linkColor) {
+                    const optColor = linksOptions.color;
                     const color = typeof optColor === "string" ? optColor : optColor.value;
 
                     /* particles.line_linked - convert hex colors to rgb */
@@ -75,25 +84,31 @@ export class Linker {
                     //  then return appropriate value
 
                     if (color === Constants.randomColorValue) {
-                        if (p1.particlesOptions.links.consent) {
-                            container.particles.linksColor = ColorUtils.colorToRgb({
+                        if (linksOptions.consent) {
+                            linkColor = ColorUtils.colorToRgb({
                                 value: color,
                             });
-                        } else if (p1.particlesOptions.links.blink) {
-                            container.particles.linksColor = Constants.randomColorValue;
+                        } else if (linksOptions.blink) {
+                            linkColor = Constants.randomColorValue;
                         } else {
-                            container.particles.linksColor = Constants.midColorValue;
+                            linkColor = Constants.midColorValue;
                         }
                     } else {
-                        container.particles.linksColor = ColorUtils.colorToRgb({
+                        linkColor = ColorUtils.colorToRgb({
                             value: color,
                         });
+                    }
+
+                    if (linksOptions.id !== undefined) {
+                        container.particles.linksColors[linksOptions.id] = linkColor;
+                    } else {
+                        container.particles.linksColor = linkColor;
                     }
                 }
 
                 if (
-                    p2.links.map((t) => t.destination).indexOf(p1) == -1 &&
-                    p1.links.map((t) => t.destination).indexOf(p2) == -1
+                    p2.links.map((t) => t.destination).indexOf(p1) === -1 &&
+                    p1.links.map((t) => t.destination).indexOf(p2) === -1
                 ) {
                     p1.links.push({
                         destination: p2,

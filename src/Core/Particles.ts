@@ -29,6 +29,7 @@ export class Particles {
     //public spatialGrid: SpatialGrid;
     public pushing?: boolean;
     public linksColor?: IRgb | string;
+    public linksColors: { [key: string]: IRgb | string | undefined };
     public grabLineColor?: IRgb | string;
     public noiseZ: number;
 
@@ -42,6 +43,7 @@ export class Particles {
         //this.spatialGrid = new SpatialGrid(this.container.canvas.size);
         const canvasSize = this.container.canvas.size;
         this.noiseZ = 0;
+        this.linksColors = {};
 
         this.quadTree = new QuadTree(new Rectangle(0, 0, canvasSize.width, canvasSize.height), 4);
     }

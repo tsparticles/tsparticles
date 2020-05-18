@@ -163,15 +163,21 @@ export class Canvas {
         let colorTriangle = ColorUtils.colorToRgb(triangleOptions.color);
 
         if (!colorTriangle) {
-            if (container.particles.linksColor === Constants.randomColorValue) {
+            const linksOptions = p1.particlesOptions.links;
+            const linkColor =
+                linksOptions.id !== undefined
+                    ? container.particles.linksColors[linksOptions.id]
+                    : container.particles.linksColor;
+
+            if (linkColor === Constants.randomColorValue) {
                 colorTriangle = ColorUtils.getRandomRgbColor();
-            } else if (container.particles.linksColor == "mid" && p1.color && p2.color) {
+            } else if (linkColor === "mid" && p1.color && p2.color) {
                 const sourceColor = p1.color;
                 const destColor = p2.color;
 
                 colorTriangle = ColorUtils.mix(sourceColor, destColor, p1.size.value, p2.size.value);
             } else {
-                colorTriangle = container.particles.linksColor as IRgb;
+                colorTriangle = linkColor as IRgb;
             }
         }
 
@@ -228,15 +234,21 @@ export class Canvas {
         }
 
         if (!colorLine) {
-            if (container.particles.linksColor === Constants.randomColorValue) {
+            const linksOptions = p1.particlesOptions.links;
+            const linkColor =
+                linksOptions.id !== undefined
+                    ? container.particles.linksColors[linksOptions.id]
+                    : container.particles.linksColor;
+
+            if (linkColor === Constants.randomColorValue) {
                 colorLine = ColorUtils.getRandomRgbColor();
-            } else if (container.particles.linksColor == "mid" && p1.color && p2.color) {
+            } else if (linkColor === "mid" && p1.color && p2.color) {
                 const sourceColor = p1.color;
                 const destColor = p2.color;
 
                 colorLine = ColorUtils.mix(sourceColor, destColor, p1.size.value, p2.size.value);
             } else {
-                colorLine = container.particles.linksColor as IRgb;
+                colorLine = linkColor as IRgb;
             }
         }
 

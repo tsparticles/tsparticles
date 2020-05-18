@@ -750,6 +750,9 @@
         "enable": {
           "type": "boolean"
         },
+        "id": {
+          "type": "string"
+        },
         "opacity": {
           "type": "number"
         },
@@ -2021,6 +2024,9 @@
         },
         "enable": {
           "type": "boolean"
+        },
+        "id": {
+          "type": "string"
         },
         "load": {
           "$ref": "#/definitions/RecursivePartial<(data?:RecursivePartial<ILinks>|undefined)=>void>"

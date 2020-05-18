@@ -184,7 +184,7 @@ export class SpatialGrid {
      * @param right The right hand side of the equation
      */
     private indexOp(left: ICoordinates, op: string, right: ICoordinates): ICoordinates {
-        if (op == "+") {
+        if (op === "+") {
             return {
                 x: this.clamp(left.x + right.x),
                 y: this.clamp(left.y + right.y),
