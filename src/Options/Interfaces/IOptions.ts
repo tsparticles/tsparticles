@@ -13,10 +13,20 @@ import { IInfection } from "./Infection/IInfection";
  * The Options interface, defines all the options that can be used by `tsParticles`
  */
 export interface IOptions extends IOptionLoader<IOptions> {
+    /**
+     * Absorbers options, you can configure particles absorbers with these options
+     * Absorbers act like black holes, a particle is attracted by it and when it's inside it will be destroyed
+     */
     absorbers: SingleOrMultiple<IAbsorber>;
 
+    /**
+     * Background options, these background options will be used to the canvas element, they are all CSS properties
+     */
     background: IBackground;
 
+    /**
+     * Background Mask options, what's behind the canvas will become hidden and particles will uncover it
+     */
     backgroundMask: IBackgroundMask;
 
     /**
@@ -24,6 +34,9 @@ export interface IOptions extends IOptionLoader<IOptions> {
      */
     detectRetina: boolean;
 
+    /**
+     * Emitters options, an emitter is an area that spawns particles
+     */
     emitters: SingleOrMultiple<IEmitter>;
 
     /**
@@ -52,6 +65,9 @@ export interface IOptions extends IOptionLoader<IOptions> {
      */
     particles: IParticles;
 
+    /**
+     * Enables or disabled the animation on window blur
+     */
     pauseOnBlur: boolean;
 
     /**
@@ -59,6 +75,9 @@ export interface IOptions extends IOptionLoader<IOptions> {
      */
     polygon: IPolygonMask;
 
+    /**
+     * This property will be used to add specified presets to the options
+     */
     preset?: string | string[];
 
     /**

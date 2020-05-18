@@ -6,6 +6,7 @@
       "type": "string"
     },
     "IAbsorber": {
+      "description": "Absorber options",
       "properties": {
         "color": {
           "anyOf": [
@@ -15,16 +16,20 @@
             {
               "type": "string"
             }
-          ]
+          ],
+          "description": "Absorber color"
         },
         "opacity": {
+          "description": "Absorber opacity",
           "type": "number"
         },
         "position": {
-          "$ref": "#/definitions/ICoordinates"
+          "$ref": "#/definitions/ICoordinates",
+          "description": "Absorber position, percent values calculated on canvas size"
         },
         "size": {
-          "$ref": "#/definitions/IAbsorberSize"
+          "$ref": "#/definitions/IAbsorberSize",
+          "description": "Absorber size, these values will be used as pixels"
         }
       },
       "type": "object"
@@ -2743,13 +2748,16 @@
           },
           "type": "array"
         }
-      ]
+      ],
+      "description": "Absorbers options, you can configure particles absorbers with these options\nAbsorbers act like black holes, a particle is attracted by it and when it's inside it will be destroyed"
     },
     "background": {
-      "$ref": "#/definitions/IBackground"
+      "$ref": "#/definitions/IBackground",
+      "description": "Background options, these background options will be used to the canvas element, they are all CSS properties"
     },
     "backgroundMask": {
-      "$ref": "#/definitions/IBackgroundMask"
+      "$ref": "#/definitions/IBackgroundMask",
+      "description": "Background Mask options, what's behind the canvas will become hidden and particles will uncover it"
     },
     "detectRetina": {
       "description": "Enables the retina detection, if disabled the ratio used by canvas will be always 1 and not the device setting.",
@@ -2766,7 +2774,8 @@
           },
           "type": "array"
         }
-      ]
+      ],
+      "description": "Emitters options, an emitter is an area that spawns particles"
     },
     "fpsLimit": {
       "description": "The F(rame)P(er)S(econd) limit applied to all particles animations.",
@@ -2789,6 +2798,7 @@
       "description": "The particles options"
     },
     "pauseOnBlur": {
+      "description": "Enables or disabled the animation on window blur",
       "type": "boolean"
     },
     "polygon": {
@@ -2806,7 +2816,8 @@
         {
           "type": "string"
         }
-      ]
+      ],
+      "description": "This property will be used to add specified presets to the options"
     },
     "retina_detect": {
       "description": "Enables the retina detection, if disabled the ratio used by canvas will be always 1 and not the device setting.",
