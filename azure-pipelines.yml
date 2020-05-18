@@ -44,14 +44,10 @@ steps:
     targetType: 'inline'
     script: 'export CODACY_PROJECT_TOKEN=$CODACYCOVERAGETOKEN'
 
-- task: DownloadSecureFile@1
-  inputs:
-    secureFile: 'https://coverage.codacy.com/get.sh'
-
 - task: Bash@3
   inputs:
-    filePath: 'get.sh'
-    arguments: '-s report -l TypeScript -r ./coverage/lcov.info --partial'
+    targetType: 'inline'
+    script: 'curl -Ls https://coverage.codacy.com/get.sh | sh -s report -l TypeScript -r ./coverage/lcov.info --partial'
 
 - task: CopyFiles@2
   displayName: Copying files to Artifacts
