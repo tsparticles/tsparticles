@@ -84,7 +84,7 @@
     "@fortawesome/fontawesome-free": "^5.13.0",
     "@types/chai": "^4.2.11",
     "@types/mocha": "^7.0.2",
-    "@types/node": "^14.0.1",
+    "@types/node": "^14.0.2",
     "@typescript-eslint/eslint-plugin": "^2.34.0",
     "@typescript-eslint/parser": "^2.34.0",
     "babel-loader": "^8.1.0",
@@ -115,7 +115,7 @@
     "typescript": "^3.9.2",
     "typescript-json-schema": "^0.42.0",
     "webpack": "^4.43.0",
-    "webpack-bundle-analyzer": "^3.7.0",
+    "webpack-bundle-analyzer": "^3.8.0",
     "webpack-cli": "^3.3.11",
     "window": "^4.2.7"
   },
