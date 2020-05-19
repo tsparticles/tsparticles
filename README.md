@@ -349,4 +349,4 @@ You can find all options available [here](https://github.com/matteobruni/tsparti
 
 ### Huge thanks to [SauceLabs](https://saucelabs.com) for the Open Source License!
 
-![Testing Powered By SauceLabs](https://raw.githubusercontent.com/saucelabs/opensource/master/assets/powered-by-saucelabs-badge-red.svg "Testing Powered By SauceLabs")
+<img alt="Testing Powered By SauceLabs" src="https://raw.githubusercontent.com/saucelabs/opensource/master/assets/powered-by-saucelabs-badge-red.svg" width="250" />
