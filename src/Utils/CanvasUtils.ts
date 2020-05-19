@@ -170,7 +170,6 @@ export class CanvasUtils {
 
         const sourcePos = p1.getPosition();
         const destPos = p2.getPosition();
-
         const midRgb = ColorUtils.mix(p1.color, p2.color, p1.size.value, p2.size.value);
         const grad = context.createLinearGradient(sourcePos.x, sourcePos.y, destPos.x, destPos.y);
 

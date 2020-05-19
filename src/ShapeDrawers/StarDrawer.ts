@@ -1,30 +1,26 @@
-import { PolygonDrawerBase } from "./PolygonDrawerBase";
-import type { ISide } from "../Core/Interfaces/ISide";
-import type { ICoordinates } from "../Core/Interfaces/ICoordinates";
 import type { IParticle } from "../Core/Interfaces/IParticle";
-import type { IPolygonShape } from "../Options/Interfaces/Particles/Shape/IPolygonShape";
+import type { IShapeDrawer } from "../Core/Interfaces/IShapeDrawer";
+import type { IStarShape } from "../Options/Interfaces/Particles/Shape/IStarShape";
 
-export class StarDrawer extends PolygonDrawerBase {
-    public getSidesData(particle: IParticle, radius: number): ISide {
-        const polygon = particle.shapeData as IPolygonShape;
-        const sides = polygon?.sides ?? 5;
+export class StarDrawer implements IShapeDrawer {
+    public draw(
+        context: CanvasRenderingContext2D,
+        particle: IParticle,
+        radius: number,
+        opacity: number,
+        _delta: number
+    ): void {
+        const star = particle.shapeData as IStarShape;
+        const sides = star?.sides ?? star?.nb_sides ?? 5;
+        const inset = star?.inset ?? 2;
 
-        return {
-            count: {
-                denominator: 2,
-                numerator: sides,
-            },
-            length: (radius * 2 * 2.66) / (sides / 3),
-        };
-    }
+        context.moveTo(0, 0 - radius);
 
-    public getCenter(particle: IParticle, radius: number): ICoordinates {
-        const polygon = particle.shapeData as IPolygonShape;
-        const sides = polygon?.sides ?? 5;
-
-        return {
-            x: (-radius * 2) / (sides / 4),
-            y: -radius / ((2 * 2.66) / 3.5),
-        };
+        for (let i = 0; i < sides; i++) {
+            context.rotate(Math.PI / sides);
+            context.lineTo(0, 0 - radius * inset);
+            context.rotate(Math.PI / sides);
+            context.lineTo(0, 0 - radius);
+        }
     }
 }
