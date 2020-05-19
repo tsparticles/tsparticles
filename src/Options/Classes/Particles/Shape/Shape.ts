@@ -166,24 +166,38 @@ export class Shape implements IShape {
                                 item
                             );
 
-                            this.options[ShapeType.star] = Utils.deepExtend(this.options[ShapeType.star] ?? [], item);
+                            if (this.options[ShapeType.star] === undefined) {
+                                this.options[ShapeType.star] = Utils.deepExtend(
+                                    this.options[ShapeType.star] ?? [],
+                                    item
+                                );
+                            }
                         } else {
                             this.options[ShapeType.polygon] = Utils.deepExtend([], item);
 
-                            this.options[ShapeType.star] = Utils.deepExtend([], item);
+                            if (this.options[ShapeType.star] === undefined) {
+                                this.options[ShapeType.star] = Utils.deepExtend([], item);
+                            }
                         }
                     } else {
                         if (this.options[ShapeType.polygon] instanceof Array) {
                             this.options[ShapeType.polygon] = Utils.deepExtend({}, item);
 
-                            this.options[ShapeType.star] = Utils.deepExtend({}, item);
+                            if (this.options[ShapeType.star] === undefined) {
+                                this.options[ShapeType.star] = Utils.deepExtend({}, item);
+                            }
                         } else {
                             this.options[ShapeType.polygon] = Utils.deepExtend(
                                 this.options[ShapeType.polygon] ?? [],
                                 item
                             );
 
-                            this.options[ShapeType.star] = Utils.deepExtend(this.options[ShapeType.star] ?? [], item);
+                            if (this.options[ShapeType.star] === undefined) {
+                                this.options[ShapeType.star] = Utils.deepExtend(
+                                    this.options[ShapeType.star] ?? [],
+                                    item
+                                );
+                            }
                         }
                     }
                 }
