@@ -19,7 +19,7 @@ export class ImageDrawer implements IShapeDrawer {
     }
 
     public getImages(container: Container): IContainerImage {
-        const containerImages = this.images.filter((t) => t.id == container.id);
+        const containerImages = this.images.filter((t) => t.id === container.id);
 
         if (!containerImages.length) {
             this.images.push({
@@ -67,11 +67,13 @@ export class ImageDrawer implements IShapeDrawer {
 
     private async loadImageShape(container: Container, imageShape: IImageShape): Promise<void> {
         try {
-            const image = await Utils.loadImage(imageShape.src);
+            const image = imageShape.replaceColor ?
+                await Utils.downloadSvgImage(imageShape.src) :
+                await Utils.loadImage(imageShape.src);
 
             this.addImage(container, image);
         } catch {
-            console.log(`tsParticles error - ${imageShape.src} not found`);
+            console.log(`tsParticles error - ${ imageShape.src } not found`);
         }
     }
 
@@ -94,8 +96,14 @@ export class ImageDrawer implements IShapeDrawer {
             y: -radius
         };
 
-        context.globalAlpha = opacity;
+        if (!image?.data.svgData || !image?.replaceColor) {
+            context.globalAlpha = opacity;
+        }
+
         context.drawImage(element, pos.x, pos.y, radius * 2, radius * 2 / ratio);
-        context.globalAlpha = 1;
+
+        if (!image?.data.svgData || !image?.replaceColor) {
+            context.globalAlpha = 1;
+        }
     }
 }
