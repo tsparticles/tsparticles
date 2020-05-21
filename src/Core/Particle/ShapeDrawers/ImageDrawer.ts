@@ -7,105 +7,103 @@ import type { IImage } from "../../Interfaces/IImage";
 import type { Container } from "../../Container";
 
 interface IContainerImage {
-  id: string;
-  images: IImage[];
+    id: string;
+    images: IImage[];
 }
 
 export class ImageDrawer implements IShapeDrawer {
-  public images: IContainerImage[];
+    public images: IContainerImage[];
 
-  constructor() {
-    this.images = [];
-  }
-
-  public getImages(container: Container): IContainerImage {
-    const containerImages = this.images.filter((t) => t.id === container.id);
-
-    if (!containerImages.length) {
-      this.images.push({
-        id: container.id,
-        images: []
-      });
-
-      return this.getImages(container);
-    } else {
-      return containerImages[0];
-    }
-  }
-
-  public addImage(container: Container, image: IImage): void {
-    const containerImages = this.getImages(container);
-
-    containerImages?.images.push(image);
-  }
-
-  public async init(container: Container): Promise<void> {
-    const options = container.options;
-    const shapeOptions = options.particles.shape;
-
-    if (
-      !Utils.isInArray(ShapeType.image, shapeOptions.type) &&
-      !Utils.isInArray(ShapeType.images, shapeOptions.type)
-    ) {
-      return;
+    constructor() {
+        this.images = [];
     }
 
-    const imageOptions = shapeOptions.options[ShapeType.images] ?? shapeOptions.options[ShapeType.image];
+    public getImages(container: Container): IContainerImage {
+        const containerImages = this.images.filter((t) => t.id === container.id);
 
-    if (imageOptions instanceof Array) {
-      for (const optionsImage of imageOptions) {
-        await this.loadImageShape(container, optionsImage as IImageShape);
-      }
-    } else {
-      await this.loadImageShape(container, imageOptions as IImageShape);
-    }
-  }
+        if (!containerImages.length) {
+            this.images.push({
+                id: container.id,
+                images: []
+            });
 
-  public destroy(): void {
-    this.images = [];
-  }
-
-  private async loadImageShape(container: Container, imageShape: IImageShape): Promise<void> {
-    try {
-      const image = imageShape.replaceColor ?
-        await Utils.downloadSvgImage(imageShape.src) :
-        await Utils.loadImage(imageShape.src);
-
-      this.addImage(container, image);
-    } catch {
-      console.log(`tsParticles error - ${imageShape.src} not found`);
-    }
-  }
-
-  public draw(context: CanvasRenderingContext2D, particle: IParticle, radius: number, opacity: number): void {
-    if (!context) {
-      return;
+            return this.getImages(container);
+        } else {
+            return containerImages[0];
+        }
     }
 
-    const image = particle.image;
-    const element = image?.data?.element;
+    public addImage(container: Container, image: IImage): void {
+        const containerImages = this.getImages(container);
 
-    if (!element) {
-      console.log("no element");
-      return;
+        containerImages?.images.push(image);
     }
 
-    const ratio = image?.ratio ?? 1;
+    public async init(container: Container): Promise<void> {
+        const options = container.options;
+        const shapeOptions = options.particles.shape;
 
-    const pos = {
-      x: -radius,
-      y: -radius
-    };
+        if (
+            !Utils.isInArray(ShapeType.image, shapeOptions.type) &&
+            !Utils.isInArray(ShapeType.images, shapeOptions.type)
+        ) {
+            return;
+        }
 
-    if (!image?.data.svgData || !image?.replaceColor) {
-      console.log(opacity);
-      context.globalAlpha = opacity;
+        const imageOptions = shapeOptions.options[ShapeType.images] ?? shapeOptions.options[ShapeType.image];
+
+        if (imageOptions instanceof Array) {
+            for (const optionsImage of imageOptions) {
+                await this.loadImageShape(container, optionsImage as IImageShape);
+            }
+        } else {
+            await this.loadImageShape(container, imageOptions as IImageShape);
+        }
     }
 
-    context.drawImage(element, pos.x, pos.y, radius * 2, radius * 2 / ratio);
-
-    if (!image?.data.svgData || !image?.replaceColor) {
-      context.globalAlpha = 1;
+    public destroy(): void {
+        this.images = [];
     }
-  }
+
+    private async loadImageShape(container: Container, imageShape: IImageShape): Promise<void> {
+        try {
+            const image = imageShape.replaceColor ?
+                await Utils.downloadSvgImage(imageShape.src) :
+                await Utils.loadImage(imageShape.src);
+
+            this.addImage(container, image);
+        } catch {
+            console.log(`tsParticles error - ${ imageShape.src } not found`);
+        }
+    }
+
+    public draw(context: CanvasRenderingContext2D, particle: IParticle, radius: number, opacity: number): void {
+        if (!context) {
+            return;
+        }
+
+        const image = particle.image;
+        const element = image?.data?.element;
+
+        if (!element) {
+            return;
+        }
+
+        const ratio = image?.ratio ?? 1;
+
+        const pos = {
+            x: -radius,
+            y: -radius
+        };
+
+        if (!image?.data.svgData || !image?.replaceColor) {
+            context.globalAlpha = opacity;
+        }
+
+        context.drawImage(element, pos.x, pos.y, radius * 2, radius * 2 / ratio);
+
+        if (!image?.data.svgData || !image?.replaceColor) {
+            context.globalAlpha = 1;
+        }
+    }
 }
