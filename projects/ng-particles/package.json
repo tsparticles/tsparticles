@@ -21,7 +21,7 @@
     "@angular/router": "~9.1.7",
     "rxjs": "~6.5.4",
     "tslib": "^1.13.0",
-    "tsparticles": "^1.14.2",
+    "tsparticles": "^1.14.3",
     "zone.js": "~0.10.2"
   },
   "devDependencies": {
