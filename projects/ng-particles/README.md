@@ -2,7 +2,21 @@
 
 [tsParticles](https://github.com/matteobruni/tsparticles) Angular component
 
-## Usage
+## How to use it
+
+### Install
+
+```shell script
+npm install ng-particles
+```
+
+or
+
+```shell script
+yarn add ng-particles
+```
+
+### Usage
 
 *template.html*
 
