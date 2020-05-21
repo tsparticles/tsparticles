@@ -33,498 +33,545 @@ import type { ILink } from "./Interfaces/ILink";
  * The single particle object
  */
 export class Particle implements IParticle {
-    public angle: number;
-    public destroyed: boolean;
-    public rotateDirection: RotateDirection;
-    public randomIndexData?: number;
-    public links: ILink[];
-    public readonly close: boolean;
-    public readonly direction: MoveDirection;
-    public readonly fill: boolean;
-    public readonly stroke: IStroke;
-    public readonly size: ISize;
-    public infectionStage?: number;
-    public infectionTime?: number;
-    public infectionDelay?: number;
-    public infectionDelayStage?: number;
-    public readonly initialPosition?: ICoordinates;
-    public readonly position: ICoordinates;
-    public readonly offset: ICoordinates;
-    public readonly color: IRgb | undefined;
-    public readonly strokeColor: IRgb | undefined;
-    public readonly shadowColor: IRgb | undefined;
-    public readonly opacity: IOpacity;
-    public readonly velocity: IVelocity;
-    public readonly shape: ShapeType | string;
-    public readonly image?: IParticleImage;
-    public readonly initialVelocity: IVelocity;
-    public readonly shapeData?: IShapeValues;
-    public readonly bubble: IBubbleParticleData;
-    public readonly noiseDelay: number;
-    public lastNoiseTime: number;
-    public lineLinkedDistance?: number;
-    public lineLinkedWidth?: number;
-    public moveSpeed?: number;
-    public sizeValue?: number;
-    public randomMinimumSize?: number;
-    public sizeAnimationSpeed?: number;
+  public angle: number;
+  public destroyed: boolean;
+  public rotateDirection: RotateDirection;
+  public randomIndexData?: number;
+  public links: ILink[];
+  public readonly close: boolean;
+  public readonly direction: MoveDirection;
+  public readonly fill: boolean;
+  public readonly stroke: IStroke;
+  public readonly size: ISize;
+  public infectionStage?: number;
+  public infectionTime?: number;
+  public infectionDelay?: number;
+  public infectionDelayStage?: number;
+  public readonly initialPosition?: ICoordinates;
+  public readonly position: ICoordinates;
+  public readonly offset: ICoordinates;
+  public readonly color: IRgb | undefined;
+  public readonly strokeColor: IRgb | undefined;
+  public readonly shadowColor: IRgb | undefined;
+  public readonly opacity: IOpacity;
+  public readonly velocity: IVelocity;
+  public readonly shape: ShapeType | string;
+  public readonly image?: IParticleImage;
+  public readonly initialVelocity: IVelocity;
+  public readonly shapeData?: IShapeValues;
+  public readonly bubble: IBubbleParticleData;
+  public readonly noiseDelay: number;
+  public lastNoiseTime: number;
+  public lineLinkedDistance?: number;
+  public lineLinkedWidth?: number;
+  public moveSpeed?: number;
+  public sizeValue?: number;
+  public randomMinimumSize?: number;
+  public sizeAnimationSpeed?: number;
 
-    public readonly updater: Updater;
-    public readonly container: Container;
+  public readonly updater: Updater;
+  public readonly container: Container;
 
-    /* --------- tsParticles functions - particles ----------- */
-    public readonly particlesOptions: IParticles;
+  /* --------- tsParticles functions - particles ----------- */
+  public readonly particlesOptions: IParticles;
 
-    private infectionTimeout?: number;
+  private infectionTimeout?: number;
 
-    constructor(container: Container, position?: ICoordinates, overrideOptions?: RecursivePartial<IParticles>) {
-        this.container = container;
-        this.fill = true;
-        this.close = true;
-        this.links = [];
-        this.lastNoiseTime = 0;
-        this.destroyed = false;
+  constructor(container: Container, position?: ICoordinates, overrideOptions?: RecursivePartial<IParticles>) {
+    this.container = container;
+    this.fill = true;
+    this.close = true;
+    this.links = [];
+    this.lastNoiseTime = 0;
+    this.destroyed = false;
 
-        const options = container.options;
-        const particlesOptions = new Particles();
+    const options = container.options;
+    const particlesOptions = new Particles();
 
-        particlesOptions.load(options.particles);
+    particlesOptions.load(options.particles);
 
-        if (overrideOptions?.shape !== undefined) {
-            const shapeType = overrideOptions.shape.type ?? particlesOptions.shape.type;
+    if (overrideOptions?.shape !== undefined) {
+      const shapeType = overrideOptions.shape.type ?? particlesOptions.shape.type;
 
-            this.shape = shapeType instanceof Array ? Utils.itemFromArray(shapeType) : shapeType;
+      this.shape = shapeType instanceof Array ? Utils.itemFromArray(shapeType) : shapeType;
 
-            const shapeOptions = new Shape();
+      const shapeOptions = new Shape();
 
-            shapeOptions.load(overrideOptions.shape);
+      shapeOptions.load(overrideOptions.shape);
 
-            if (this.shape !== undefined) {
-                const shapeData = shapeOptions.options[this.shape];
+      if (this.shape !== undefined) {
+        const shapeData = shapeOptions.options[this.shape];
 
-                if (shapeData !== undefined) {
-                    this.shapeData = Utils.deepExtend({}, shapeData instanceof Array ?
-                        Utils.itemFromArray(shapeData) :
-                        shapeData);
+        if (shapeData !== undefined) {
+          this.shapeData = Utils.deepExtend({}, shapeData instanceof Array ?
+            Utils.itemFromArray(shapeData) :
+            shapeData);
 
-                    this.fill = this.shapeData?.fill ?? this.fill;
-                    this.close = this.shapeData?.close ?? this.close;
-                }
-            }
-        } else {
-            const shapeType = particlesOptions.shape.type;
-
-            this.shape = shapeType instanceof Array ? Utils.itemFromArray(shapeType) : shapeType;
-
-            const shapeData = particlesOptions.shape.options[this.shape];
-
-            if (shapeData) {
-                this.shapeData = Utils.deepExtend({}, shapeData instanceof Array ?
-                    Utils.itemFromArray(shapeData) :
-                    shapeData);
-
-                this.fill = this.shapeData?.fill ?? this.fill;
-                this.close = this.shapeData?.close ?? this.close;
-            }
+          this.fill = this.shapeData?.fill ?? this.fill;
+          this.close = this.shapeData?.close ?? this.close;
         }
+      }
+    } else {
+      const shapeType = particlesOptions.shape.type;
 
-        if (overrideOptions !== undefined) {
-            particlesOptions.load(overrideOptions);
-        }
-		
-		if (this.shapeData?.particles !== undefined) {
-            particlesOptions.load(this.shapeData?.particles);
-        }
+      this.shape = shapeType instanceof Array ? Utils.itemFromArray(shapeType) : shapeType;
 
-        this.particlesOptions = particlesOptions;
+      const shapeData = particlesOptions.shape.options[this.shape];
 
-        const noiseDelay = this.particlesOptions.move.noise.delay;
+      if (shapeData) {
+        this.shapeData = Utils.deepExtend({}, shapeData instanceof Array ?
+          Utils.itemFromArray(shapeData) :
+          shapeData);
 
-        this.noiseDelay = (noiseDelay.random.enable ?
-            Utils.randomInRange(noiseDelay.random.minimumValue, noiseDelay.value) :
-            noiseDelay.value) * 1000;
+        this.fill = this.shapeData?.fill ?? this.fill;
+        this.close = this.shapeData?.close ?? this.close;
+      }
+    }
 
-        container.retina.initParticle(this);
+    if (overrideOptions !== undefined) {
+      particlesOptions.load(overrideOptions);
+    }
 
-        const color = this.particlesOptions.color;
+    if (this.shapeData?.particles !== undefined) {
+      particlesOptions.load(this.shapeData?.particles);
+    }
 
-        /* size */
-        const sizeValue = (this.sizeValue ?? container.retina.sizeValue);
+    this.particlesOptions = particlesOptions;
 
-        const randomSize = typeof this.particlesOptions.size.random === "boolean" ?
-            this.particlesOptions.size.random :
-            this.particlesOptions.size.random.enable;
+    const noiseDelay = this.particlesOptions.move.noise.delay;
 
-        this.size = {
-            value: randomSize && this.randomMinimumSize !== undefined ?
-                Utils.randomInRange(this.randomMinimumSize, sizeValue) :
-                sizeValue,
+    this.noiseDelay = (noiseDelay.random.enable ?
+      Utils.randomInRange(noiseDelay.random.minimumValue, noiseDelay.value) :
+      noiseDelay.value) * 1000;
+
+    container.retina.initParticle(this);
+
+    const color = this.particlesOptions.color;
+
+    /* size */
+    const sizeValue = (this.sizeValue ?? container.retina.sizeValue);
+
+    const randomSize = typeof this.particlesOptions.size.random === "boolean" ?
+      this.particlesOptions.size.random :
+      this.particlesOptions.size.random.enable;
+
+    this.size = {
+      value: randomSize && this.randomMinimumSize !== undefined ?
+        Utils.randomInRange(this.randomMinimumSize, sizeValue) :
+        sizeValue
+    };
+
+    this.direction = this.particlesOptions.move.direction;
+    this.bubble = {};
+    this.angle = this.particlesOptions.rotate.random ? Math.random() * 360 : this.particlesOptions.rotate.value;
+
+    if (this.particlesOptions.rotate.direction == RotateDirection.random) {
+      const index = Math.floor(Math.random() * 2);
+
+      if (index > 0) {
+        this.rotateDirection = RotateDirection.counterClockwise;
+      } else {
+        this.rotateDirection = RotateDirection.clockwise;
+      }
+    } else {
+      this.rotateDirection = this.particlesOptions.rotate.direction;
+    }
+
+    if (this.particlesOptions.size.animation.enable) {
+      switch (this.particlesOptions.size.animation.startValue) {
+        case StartValueType.min:
+          if (!randomSize) {
+            const pxRatio = container.retina.pixelRatio;
+
+            this.size.value = this.particlesOptions.size.animation.minimumValue * pxRatio;
+          }
+
+          break;
+      }
+
+      this.size.status = SizeAnimationStatus.increasing;
+      this.size.velocity = (this.sizeAnimationSpeed ?? container.retina.sizeAnimationSpeed) / 100;
+
+      if (!this.particlesOptions.size.animation.sync) {
+        this.size.velocity = this.size.velocity * Math.random();
+      }
+    }
+
+    if (this.particlesOptions.rotate.animation.enable) {
+      if (!this.particlesOptions.rotate.animation.sync) {
+        this.angle = Math.random() * 360;
+      }
+    }
+
+    /* position */
+    this.position = this.calcPosition(this.container, position);
+
+    if (options.polygon.enable && options.polygon.type === PolygonMaskType.inline) {
+      this.initialPosition = {
+        x: this.position.x,
+        y: this.position.y
+      };
+    }
+
+    /* parallax */
+    this.offset = {
+      x: 0,
+      y: 0
+    };
+
+    /* check position - avoid overlap */
+    if (this.particlesOptions.collisions.enable) {
+      this.checkOverlap(position);
+    }
+
+    /* color */
+    if (color instanceof Array) {
+      this.color = ColorUtils.colorToRgb(Utils.itemFromArray(color));
+    } else {
+      this.color = ColorUtils.colorToRgb(color);
+    }
+
+    /* opacity */
+    const randomOpacity = this.particlesOptions.opacity.random as IOpacityRandom;
+    const opacityValue = this.particlesOptions.opacity.value;
+
+    this.opacity = {
+      value: randomOpacity.enable ? Utils.randomInRange(randomOpacity.minimumValue, opacityValue) : opacityValue
+    };
+
+    if (this.particlesOptions.opacity.animation.enable) {
+      this.opacity.status = OpacityAnimationStatus.increasing;
+      this.opacity.velocity = this.particlesOptions.opacity.animation.speed / 100;
+
+      if (!this.particlesOptions.opacity.animation.sync) {
+        this.opacity.velocity *= Math.random();
+      }
+    }
+
+    /* animation - velocity for speed */
+    this.initialVelocity = this.calculateVelocity();
+    this.velocity = {
+      horizontal: this.initialVelocity.horizontal,
+      vertical: this.initialVelocity.vertical
+    };
+
+    let drawer = container.drawers[this.shape];
+
+    if (!drawer) {
+      drawer = Plugins.getShapeDrawer(this.shape);
+
+      container.drawers[this.shape] = drawer;
+    }
+
+    /* if shape is image */
+    if (this.shape === ShapeType.image || this.shape === ShapeType.images) {
+      const shape = this.particlesOptions.shape;
+      const imageDrawer = drawer as ImageDrawer;
+      const imagesOptions = shape.options[this.shape];
+      const images = imageDrawer.getImages(container).images;
+      const index = Utils.arrayRandomIndex(images);
+      const image = images[index];
+      const optionsImage = (imagesOptions instanceof Array ?
+        imagesOptions.filter((t) => (t as IImageShape).src === image.source)[0] :
+        imagesOptions) as IImageShape;
+
+      if (image?.svgData !== undefined && optionsImage.replaceColor && this.color) {
+        const svgColoredData = Utils.replaceColorSvg(image, this.color, this.opacity.value);
+
+        /* prepare to create img with colored svg */
+        const svg = new Blob([ svgColoredData ], { type: "image/svg+xml" });
+        const domUrl = window.URL || window.webkitURL || window;
+        const url = domUrl.createObjectURL(svg);
+
+        /* create particle img obj */
+        const img = new Image();
+
+        this.image = {
+          data: image,
+          loaded: false,
+          ratio: optionsImage.width / optionsImage.height,
+          replaceColor: optionsImage.replaceColor ?? optionsImage.replace_color,
+          source: optionsImage.src
         };
 
-        this.direction = this.particlesOptions.move.direction;
-        this.bubble = {};
-        this.angle = this.particlesOptions.rotate.random ? Math.random() * 360 : this.particlesOptions.rotate.value;
+        img.addEventListener("load", (e) => {
+          if (this.image) {
+            this.image.loaded = true;
+            image.element = img;
+          }
 
-        if (this.particlesOptions.rotate.direction == RotateDirection.random) {
-            const index = Math.floor(Math.random() * 2);
+          domUrl.revokeObjectURL(url);
+        });
 
-            if (index > 0) {
-                this.rotateDirection = RotateDirection.counterClockwise;
-            } else {
-                this.rotateDirection = RotateDirection.clockwise;
+        img.addEventListener("error", (e) => {
+          domUrl.revokeObjectURL(url);
+
+          Utils.loadImage(optionsImage.src).then(img2 => {
+            if (this.image) {
+              image.element = img2.element;
+              this.image.loaded = true;
             }
-        } else {
-            this.rotateDirection = this.particlesOptions.rotate.direction;
-        }
+          });
+        });
 
-        if (this.particlesOptions.size.animation.enable) {
-            switch (this.particlesOptions.size.animation.startValue) {
-                case StartValueType.min:
-                    if (!randomSize) {
-                        const pxRatio = container.retina.pixelRatio;
-
-                        this.size.value = this.particlesOptions.size.animation.minimumValue * pxRatio;
-                    }
-
-                    break;
-            }
-
-            this.size.status = SizeAnimationStatus.increasing;
-            this.size.velocity = (this.sizeAnimationSpeed ?? container.retina.sizeAnimationSpeed) / 100;
-
-            if (!this.particlesOptions.size.animation.sync) {
-                this.size.velocity = this.size.velocity * Math.random();
-            }
-        }
-
-        if (this.particlesOptions.rotate.animation.enable) {
-            if (!this.particlesOptions.rotate.animation.sync) {
-                this.angle = Math.random() * 360;
-            }
-        }
-
-        /* position */
-        this.position = this.calcPosition(this.container, position);
-
-        if (options.polygon.enable && options.polygon.type === PolygonMaskType.inline) {
-            this.initialPosition = {
-                x: this.position.x,
-                y: this.position.y,
-            };
-        }
-
-        /* parallax */
-        this.offset = {
-            x: 0,
-            y: 0,
+        img.src = url;
+      } else {
+        this.image = {
+          data: image,
+          loaded: true,
+          ratio: optionsImage.width / optionsImage.height,
+          replaceColor: optionsImage.replaceColor ?? optionsImage.replace_color,
+          source: optionsImage.src
         };
+      }
 
-        /* check position - avoid overlap */
-        if (this.particlesOptions.collisions.enable) {
-            this.checkOverlap(position);
-        }
 
-        /* color */
-        if (color instanceof Array) {
-            this.color = ColorUtils.colorToRgb(Utils.itemFromArray(color));
-        } else {
-            this.color = ColorUtils.colorToRgb(color);
-        }
+      if (!this.image.ratio) {
+        this.image.ratio = 1;
+      }
 
-        /* opacity */
-        const randomOpacity = this.particlesOptions.opacity.random as IOpacityRandom;
-        const opacityValue = this.particlesOptions.opacity.value;
-
-        this.opacity = {
-            value: randomOpacity.enable ? Utils.randomInRange(randomOpacity.minimumValue, opacityValue) : opacityValue,
-        };
-
-        if (this.particlesOptions.opacity.animation.enable) {
-            this.opacity.status = OpacityAnimationStatus.increasing;
-            this.opacity.velocity = this.particlesOptions.opacity.animation.speed / 100;
-
-            if (!this.particlesOptions.opacity.animation.sync) {
-                this.opacity.velocity *= Math.random();
-            }
-        }
-
-        /* animation - velocity for speed */
-        this.initialVelocity = this.calculateVelocity();
-        this.velocity = {
-            horizontal: this.initialVelocity.horizontal,
-            vertical: this.initialVelocity.vertical,
-        };
-
-        let drawer = container.drawers[this.shape];
-
-        if (!drawer) {
-            drawer = Plugins.getShapeDrawer(this.shape);
-
-            container.drawers[this.shape] = drawer;
-        }
-
-        /* if shape is image */
-        if (this.shape === ShapeType.image || this.shape === ShapeType.images) {
-            const shape = this.particlesOptions.shape;
-            const imageDrawer = drawer as ImageDrawer;
-            const imagesOptions = shape.options[this.shape];
-            const images = imageDrawer.getImages(container).images;
-            const index = Utils.arrayRandomIndex(images);
-            const image = images[index];
-
-            const optionsImage = (imagesOptions instanceof Array ?
-                imagesOptions.filter((t) => (t as IImageShape).src === image.source)[0] :
-                imagesOptions) as IImageShape;
-
-            this.image = {
-                data: image,
-                ratio: optionsImage.width / optionsImage.height,
-                replaceColor: optionsImage.replaceColor ?? optionsImage.replace_color,
-                source: optionsImage.src,
-            };
-
-            if (!this.image.ratio) {
-                this.image.ratio = 1;
-            }
-
-            this.fill = optionsImage.fill ?? this.fill;
-            this.close = optionsImage.close ?? this.close;
-        }
-
-        this.stroke = this.particlesOptions.stroke instanceof Array ?
-            Utils.itemFromArray(this.particlesOptions.stroke) :
-            this.particlesOptions.stroke;
-
-        this.strokeColor = typeof this.stroke.color === "string" ?
-            ColorUtils.stringToRgb(this.stroke.color) :
-            ColorUtils.colorToRgb(this.stroke.color);
-
-        this.shadowColor = typeof this.particlesOptions.shadow.color === "string" ?
-            ColorUtils.stringToRgb(this.particlesOptions.shadow.color) :
-            ColorUtils.colorToRgb(this.particlesOptions.shadow.color);
-
-        this.updater = new Updater(this.container, this);
+      this.fill = optionsImage.fill ?? this.fill;
+      this.close = optionsImage.close ?? this.close;
     }
 
-    public update(index: number, delta: number): void {
-        this.links = [];
+    this.stroke = this.particlesOptions.stroke instanceof Array ?
+      Utils.itemFromArray(this.particlesOptions.stroke) :
+      this.particlesOptions.stroke;
 
-        this.updater.update(delta);
+    this.strokeColor = typeof this.stroke.color === "string" ?
+      ColorUtils.stringToRgb(this.stroke.color) :
+      ColorUtils.colorToRgb(this.stroke.color);
+
+    this.shadowColor = typeof this.particlesOptions.shadow.color === "string" ?
+      ColorUtils.stringToRgb(this.particlesOptions.shadow.color) :
+      ColorUtils.colorToRgb(this.particlesOptions.shadow.color);
+
+    this.updater = new Updater(this.container, this);
+  }
+
+  public update(index: number, delta: number): void {
+    this.links = [];
+
+    this.updater.update(delta);
+  }
+
+  public draw(delta: number): void {
+    if (this.image?.loaded === false) {
+      return;
     }
 
-    public draw(delta: number): void {
-        this.container.canvas.drawParticle(this, delta);
+    this.container.canvas.drawParticle(this, delta);
+  }
+
+  public isOverlapping(): { collisionFound: boolean, iterations: number } {
+    const container = this.container;
+    const p1 = this;
+
+    let collisionFound = false;
+    let iterations = 0;
+
+    const pos1 = p1.getPosition();
+
+    for (const p2 of container.particles.array.filter((t) => t != p1)) {
+      iterations++;
+      const pos2 = p2.getPosition();
+      const dist = Utils.getDistance(pos1, pos2);
+
+      if (dist <= p1.size.value + p2.size.value) {
+        collisionFound = true;
+        break;
+      }
     }
 
-    public isOverlapping(): { collisionFound: boolean, iterations: number } {
-        const container = this.container;
-        const p1 = this;
+    return {
+      collisionFound: collisionFound,
+      iterations: iterations
+    };
+  }
 
-        let collisionFound = false;
-        let iterations = 0;
+  public checkOverlap(position?: ICoordinates): void {
+    const container = this.container;
+    const p = this;
+    const overlapResult = p.isOverlapping();
 
-        const pos1 = p1.getPosition();
+    if (overlapResult.iterations >= container.particles.count) {
+      // too many particles, removing from the current
+      container.particles.remove(this);
+    } else if (overlapResult.collisionFound) {
+      p.position.x = position ? position.x : Math.random() * container.canvas.size.width;
+      p.position.y = position ? position.y : Math.random() * container.canvas.size.height;
 
-        for (const p2 of container.particles.array.filter((t) => t != p1)) {
-            iterations++;
-            const pos2 = p2.getPosition();
-            const dist = Utils.getDistance(pos1, pos2);
+      p.checkOverlap();
+    }
+  }
 
-            if (dist <= p1.size.value + p2.size.value) {
-                collisionFound = true;
-                break;
-            }
-        }
+  public startInfection(stage: number): void {
+    const container = this.container;
+    const options = container.options;
+    const stages = options.infection.stages;
+    const stagesCount = stages.length;
 
-        return {
-            collisionFound: collisionFound,
-            iterations: iterations,
-        };
+    if (stage > stagesCount || stage < 0) {
+      return;
     }
 
-    public checkOverlap(position?: ICoordinates): void {
-        const container = this.container;
-        const p = this;
-        const overlapResult = p.isOverlapping();
+    this.infectionDelay = 0;
+    this.infectionDelayStage = stage;
+  }
 
-        if (overlapResult.iterations >= container.particles.count) {
-            // too many particles, removing from the current
-            container.particles.remove(this);
-        } else if (overlapResult.collisionFound) {
-            p.position.x = position ? position.x : Math.random() * container.canvas.size.width;
-            p.position.y = position ? position.y : Math.random() * container.canvas.size.height;
+  public updateInfectionStage(stage: number): void {
+    const container = this.container;
+    const options = container.options;
+    const stagesCount = options.infection.stages.length;
 
-            p.checkOverlap();
-        }
+    if (stage > stagesCount || stage < 0 || (this.infectionStage !== undefined && this.infectionStage > stage)) {
+      return;
     }
 
-    public startInfection(stage: number): void {
-        const container = this.container;
-        const options = container.options;
-        const stages = options.infection.stages;
-        const stagesCount = stages.length;
-
-        if (stage > stagesCount || stage < 0) {
-            return;
-        }
-
-        this.infectionDelay = 0;
-        this.infectionDelayStage = stage;
+    if (this.infectionTimeout !== undefined) {
+      window.clearTimeout(this.infectionTimeout);
     }
 
-    public updateInfectionStage(stage: number): void {
-        const container = this.container;
-        const options = container.options;
-        const stagesCount = options.infection.stages.length;
+    this.infectionStage = stage;
+    this.infectionTime = 0;
+  }
 
-        if (stage > stagesCount || stage < 0 || (this.infectionStage !== undefined && this.infectionStage > stage)) {
-            return;
-        }
+  public updateInfection(delta: number): void {
+    const container = this.container;
+    const options = container.options;
+    const infection = options.infection;
+    const stages = options.infection.stages;
+    const stagesCount = stages.length;
 
-        if (this.infectionTimeout !== undefined) {
-            window.clearTimeout(this.infectionTimeout);
-        }
+    if (this.infectionDelay !== undefined && this.infectionDelayStage !== undefined) {
+      const stage = this.infectionDelayStage;
 
+      if (stage > stagesCount || stage < 0) {
+        return;
+      }
+
+      if (this.infectionDelay > infection.delay * 1000) {
         this.infectionStage = stage;
         this.infectionTime = 0;
+
+        delete this.infectionDelay;
+        delete this.infectionDelayStage;
+      } else {
+        this.infectionDelay += delta;
+      }
+    } else {
+      delete this.infectionDelay;
+      delete this.infectionDelayStage;
     }
 
-    public updateInfection(delta: number): void {
-        const container = this.container;
-        const options = container.options;
-        const infection = options.infection;
-        const stages = options.infection.stages;
-        const stagesCount = stages.length;
+    if (this.infectionStage !== undefined && this.infectionTime !== undefined) {
+      const infectionStage = stages[this.infectionStage];
 
-        if (this.infectionDelay !== undefined && this.infectionDelayStage !== undefined) {
-            const stage = this.infectionDelayStage;
-
-            if (stage > stagesCount || stage < 0) {
-                return;
-            }
-
-            if (this.infectionDelay > infection.delay * 1000) {
-                this.infectionStage = stage;
-                this.infectionTime = 0;
-
-                delete this.infectionDelay;
-                delete this.infectionDelayStage;
-            } else {
-                this.infectionDelay += delta;
-            }
+      if (infectionStage.duration !== undefined && infectionStage.duration >= 0) {
+        if (this.infectionTime > infectionStage.duration * 1000) {
+          this.nextInfectionStage();
         } else {
-            delete this.infectionDelay;
-            delete this.infectionDelayStage;
+          this.infectionTime += delta;
         }
+      } else {
+        this.infectionTime += delta;
+      }
+    } else {
+      delete this.infectionStage;
+      delete this.infectionTime;
+    }
+  }
 
-        if (this.infectionStage !== undefined && this.infectionTime !== undefined) {
-            const infectionStage = stages[this.infectionStage];
+  public getPosition(): ICoordinates {
+    return {
+      x: this.position.x + this.offset.x,
+      y: this.position.y + this.offset.y
+    };
+  }
 
-            if (infectionStage.duration !== undefined && infectionStage.duration >= 0) {
-                if (this.infectionTime > infectionStage.duration * 1000) {
-                    this.nextInfectionStage();
-                } else {
-                    this.infectionTime += delta;
-                }
-            } else {
-                this.infectionTime += delta;
-            }
-        } else {
-            delete this.infectionStage;
-            delete this.infectionTime;
-        }
+  public destroy(): void {
+    this.destroyed = true;
+  }
+
+  private nextInfectionStage(): void {
+    const container = this.container;
+    const options = container.options;
+    const stagesCount = options.infection.stages.length;
+
+    if (stagesCount <= 0 || this.infectionStage === undefined) {
+      return;
     }
 
-    public getPosition(): ICoordinates {
-        return {
-            x: this.position.x + this.offset.x,
-            y: this.position.y + this.offset.y,
-        };
-    }
+    this.infectionTime = 0;
 
-    public destroy(): void {
-        this.destroyed = true;
-    }
-
-    private nextInfectionStage(): void {
-        const container = this.container;
-        const options = container.options;
-        const stagesCount = options.infection.stages.length;
-
-        if (stagesCount <= 0 || this.infectionStage === undefined) {
-            return;
-        }
-
+    if (stagesCount <= ++this.infectionStage) {
+      if (options.infection.cure) {
+        delete this.infectionStage;
+        delete this.infectionTime;
+        return;
+      } else {
+        this.infectionStage = 0;
         this.infectionTime = 0;
+      }
+    }
+  }
 
-        if (stagesCount <= ++this.infectionStage) {
-            if (options.infection.cure) {
-                delete this.infectionStage;
-                delete this.infectionTime;
-                return;
-            } else {
-                this.infectionStage = 0;
-                this.infectionTime = 0;
-            }
-        }
+  private calcPosition(container: Container, position?: ICoordinates): ICoordinates {
+    for (const id in container.plugins) {
+      const plugin = container.plugins[id];
+      const pluginPos = plugin.particlePosition !== undefined ? plugin.particlePosition(position) : undefined;
+
+      if (pluginPos !== undefined) {
+        return pluginPos;
+      }
     }
 
-    private calcPosition(container: Container, position?: ICoordinates): ICoordinates {
-        for (const id in container.plugins) {
-            const plugin = container.plugins[id];
-            const pluginPos = plugin.particlePosition !== undefined ? plugin.particlePosition(position) : undefined;
+    const pos = { x: 0, y: 0 };
 
-            if (pluginPos !== undefined) {
-                return pluginPos;
-            }
-        }
+    pos.x = position ? position.x : Math.random() * container.canvas.size.width;
+    pos.y = position ? position.y : Math.random() * container.canvas.size.height;
 
-        const pos = { x: 0, y: 0 };
-
-        pos.x = position ? position.x : Math.random() * container.canvas.size.width;
-        pos.y = position ? position.y : Math.random() * container.canvas.size.height;
-
-        /* check position  - into the canvas */
-        if (pos.x > container.canvas.size.width - this.size.value * 2) {
-            pos.x -= this.size.value;
-        } else if (pos.x < this.size.value * 2) {
-            pos.x += this.size.value;
-        }
-
-        if (pos.y > container.canvas.size.height - this.size.value * 2) {
-            pos.y -= this.size.value;
-        } else if (pos.y < this.size.value * 2) {
-            pos.y += this.size.value;
-        }
-
-        return pos;
+    /* check position  - into the canvas */
+    if (pos.x > container.canvas.size.width - this.size.value * 2) {
+      pos.x -= this.size.value;
+    } else if (pos.x < this.size.value * 2) {
+      pos.x += this.size.value;
     }
 
-    private calculateVelocity(): IVelocity {
-        const baseVelocity = Utils.getParticleBaseVelocity(this);
-        const res = {
-            horizontal: 0,
-            vertical: 0,
-        };
-
-        if (this.particlesOptions.move.straight) {
-            res.horizontal = baseVelocity.x;
-            res.vertical = baseVelocity.y;
-
-            if (this.particlesOptions.move.random) {
-                res.horizontal *= Math.random();
-                res.vertical *= Math.random();
-            }
-        } else {
-            res.horizontal = baseVelocity.x + Math.random() - 0.5;
-            res.vertical = baseVelocity.y + Math.random() - 0.5;
-        }
-
-        // const theta = 2.0 * Math.PI * Math.random();
-
-        // res.x = Math.cos(theta);
-        // res.y = Math.sin(theta);
-
-        return res;
+    if (pos.y > container.canvas.size.height - this.size.value * 2) {
+      pos.y -= this.size.value;
+    } else if (pos.y < this.size.value * 2) {
+      pos.y += this.size.value;
     }
+
+    return pos;
+  }
+
+  private calculateVelocity(): IVelocity {
+    const baseVelocity = Utils.getParticleBaseVelocity(this);
+    const res = {
+      horizontal: 0,
+      vertical: 0
+    };
+
+    if (this.particlesOptions.move.straight) {
+      res.horizontal = baseVelocity.x;
+      res.vertical = baseVelocity.y;
+
+      if (this.particlesOptions.move.random) {
+        res.horizontal *= Math.random();
+        res.vertical *= Math.random();
+      }
+    } else {
+      res.horizontal = baseVelocity.x + Math.random() - 0.5;
+      res.vertical = baseVelocity.y + Math.random() - 0.5;
+    }
+
+    // const theta = 2.0 * Math.PI * Math.random();
+
+    // res.x = Math.cos(theta);
+    // res.y = Math.sin(theta);
+
+    return res;
+  }
 }
