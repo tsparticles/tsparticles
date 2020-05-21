@@ -5,9 +5,7 @@ import type { IBounds } from "../Core/Interfaces/IBounds";
 import type { IDimension } from "../Core/Interfaces/IDimension";
 import type { IImage } from "../Core/Interfaces/IImage";
 import type { IParticle } from "../Core/Interfaces/IParticle";
-import { IRgb } from "../Core/Interfaces/IRgb";
 import { ColorUtils } from "./ColorUtils";
-import { IParticleImage } from "../Core/Interfaces/IParticleImage";
 import { IHsl } from "../Core/Interfaces/IHsl";
 
 type CSSOMString = string;
