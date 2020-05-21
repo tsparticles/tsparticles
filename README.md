@@ -50,6 +50,10 @@ If you want to use tsParticles with ReactJS checkout [this repository](https://g
 
 A 3rd-party component is available too, read more [here](https://github.com/Wufe/react-particles-js)
 
+#### Angular CLI
+
+If you want to use tsParticles with Angular CLI (actually v9) checkout [this repository](https://github.com/matteobruni/ng-particles)
+
 ### Want to see it in action and try it?
 
 I've created a tsParticles collection on [CodePen](https://codepen.io/collection/DPOage) 😮 or you can checkout my [profile](https://codepen.io/matteobruni)
