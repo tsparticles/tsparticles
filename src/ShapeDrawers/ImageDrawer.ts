@@ -67,7 +67,9 @@ export class ImageDrawer implements IShapeDrawer {
 
     private async loadImageShape(container: Container, imageShape: IImageShape): Promise<void> {
         try {
-            const image = await Utils.loadImage(imageShape.src);
+            const image = imageShape.replaceColor
+                ? await Utils.downloadSvgImage(imageShape.src)
+                : await Utils.loadImage(imageShape.src);
 
             this.addImage(container, image);
         } catch {
@@ -94,8 +96,14 @@ export class ImageDrawer implements IShapeDrawer {
             y: -radius,
         };
 
-        context.globalAlpha = opacity;
+        if (!image?.data.svgData || !image?.replaceColor) {
+            context.globalAlpha = opacity;
+        }
+
         context.drawImage(element, pos.x, pos.y, radius * 2, (radius * 2) / ratio);
-        context.globalAlpha = 1;
+
+        if (!image?.data.svgData || !image?.replaceColor) {
+            context.globalAlpha = 1;
+        }
     }
 }

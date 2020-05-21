@@ -5,6 +5,9 @@ import type { IBounds } from "../Core/Interfaces/IBounds";
 import type { IDimension } from "../Core/Interfaces/IDimension";
 import type { IImage } from "../Core/Interfaces/IImage";
 import type { IParticle } from "../Core/Interfaces/IParticle";
+import { IRgb } from "../Core/Interfaces/IRgb";
+import { ColorUtils } from "./ColorUtils";
+import { IParticleImage } from "../Core/Interfaces/IParticleImage";
 
 type CSSOMString = string;
 type FontFaceLoadStatus = "unloaded" | "loading" | "loaded" | "error";
@@ -43,6 +46,18 @@ declare global {
 
 /* ---------- global functions - vendors ------------ */
 export class Utils {
+    public static replaceColorSvg(image: IImage, color: IRgb, opacity: number): string {
+        if (!image.svgData) {
+            return "";
+        }
+
+        /* set color to svg element */
+        const svgXml = image.svgData;
+        const rgbHex = /#([0-9A-F]{3,6})/gi;
+
+        return svgXml.replace(rgbHex, () => ColorUtils.getStyleFromColor(color, opacity));
+    }
+
     /**
      * Clamps a number between a minimum and maximum value
      * @param num the source number
@@ -203,6 +218,31 @@ export class Utils {
                 }
             }
         );
+    }
+
+    public static async downloadSvgImage(source: string): Promise<IImage> {
+        if (source) {
+            const image: IImage = {
+                source: source,
+                type: source.substr(source.length - 3),
+            };
+
+            if (image.type !== "svg") {
+                return this.loadImage(source);
+            }
+
+            const response = await fetch(image.source);
+
+            if (response.ok) {
+                image.svgData = await response.text();
+
+                return image;
+            } else {
+                throw new Error("Error tsParticles - Image not found");
+            }
+        } else {
+            throw new Error("Error tsParticles - No image.src");
+        }
     }
 
     public static deepExtend(destination: any, source: any): any {

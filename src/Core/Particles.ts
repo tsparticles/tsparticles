@@ -240,8 +240,8 @@ export class Particles {
         }
 
         /*if (container.canvas.context) {
-            this.quadTree.draw(container.canvas.context);
-        }*/
+        this.quadTree.draw(container.canvas.context);
+    }*/
 
         /* draw each particle */
         for (const p of this.array) {

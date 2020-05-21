@@ -282,17 +282,59 @@ export class Particle implements IParticle {
             const images = imageDrawer.getImages(container).images;
             const index = Utils.arrayRandomIndex(images);
             const image = images[index];
-
             const optionsImage = (imagesOptions instanceof Array
                 ? imagesOptions.filter((t) => (t as IImageShape).src === image.source)[0]
                 : imagesOptions) as IImageShape;
 
-            this.image = {
-                data: image,
-                ratio: optionsImage.width / optionsImage.height,
-                replaceColor: optionsImage.replaceColor ?? optionsImage.replace_color,
-                source: optionsImage.src,
-            };
+            if (image?.svgData !== undefined && optionsImage.replaceColor && this.color) {
+                const svgColoredData = Utils.replaceColorSvg(image, this.color, this.opacity.value);
+
+                /* prepare to create img with colored svg */
+                const svg = new Blob([svgColoredData], { type: "image/svg+xml" });
+                const domUrl = window.URL || window.webkitURL || window;
+                const url = domUrl.createObjectURL(svg);
+
+                /* create particle img obj */
+                const img = new Image();
+
+                this.image = {
+                    data: image,
+                    loaded: false,
+                    ratio: optionsImage.width / optionsImage.height,
+                    replaceColor: optionsImage.replaceColor ?? optionsImage.replace_color,
+                    source: optionsImage.src,
+                };
+
+                img.addEventListener("load", (e) => {
+                    if (this.image) {
+                        this.image.loaded = true;
+                        image.element = img;
+                    }
+
+                    domUrl.revokeObjectURL(url);
+                });
+
+                img.addEventListener("error", (e) => {
+                    domUrl.revokeObjectURL(url);
+
+                    Utils.loadImage(optionsImage.src).then((img2) => {
+                        if (this.image) {
+                            image.element = img2.element;
+                            this.image.loaded = true;
+                        }
+                    });
+                });
+
+                img.src = url;
+            } else {
+                this.image = {
+                    data: image,
+                    loaded: true,
+                    ratio: optionsImage.width / optionsImage.height,
+                    replaceColor: optionsImage.replaceColor ?? optionsImage.replace_color,
+                    source: optionsImage.src,
+                };
+            }
 
             if (!this.image.ratio) {
                 this.image.ratio = 1;
@@ -319,6 +361,10 @@ export class Particle implements IParticle {
     }
 
     public draw(delta: number): void {
+        if (this.image?.loaded === false) {
+            return;
+        }
+
         this.container.canvas.drawParticle(this, delta);
     }
 
