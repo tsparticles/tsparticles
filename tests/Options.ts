@@ -138,10 +138,6 @@ describe('Options tests', () => {
         expect(options.particles.shadow.offset.y).to.equal(0);
 
         /* particles shape */
-        expect(options.particles.shape.image).to.be.an("object").to.have.property("height").to.equal(100);
-        expect(options.particles.shape.image).to.be.an("object").to.have.property("replaceColor").to.be.true;
-        expect(options.particles.shape.image).to.be.an("object").to.have.property("src").to.be.empty;
-        expect(options.particles.shape.image).to.be.an("object").to.have.property("width").to.equal(100);
         expect(options.particles.shape.options).to.be.an("object").to.include.all.keys(ShapeType.character, ShapeType.char, ShapeType.polygon, ShapeType.star);
         expect(options.particles.shape.type).to.equal(ShapeType.circle);
 
