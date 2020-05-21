@@ -28,7 +28,7 @@ export class ImageShape extends ShapeBase implements IImageShape {
     constructor() {
         super();
         this.height = 100;
-        this.replaceColor = true;
+        this.replaceColor = false;
         this.src = "";
         this.width = 100;
     }
