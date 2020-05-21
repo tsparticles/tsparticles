@@ -9,4 +9,3 @@ export interface IAbsorber extends IOptionLoader<IAbsorber> {
     position?: ICoordinates;
     size: IAbsorberSize;
 }
-

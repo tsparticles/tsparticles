@@ -18,8 +18,7 @@ export class Move implements IMove {
      * @deprecated this property is obsolete, please use the new collisions object on particles options
      * @param value
      */
-    set collisions(value: boolean) {
-    }
+    set collisions(value: boolean) {}
 
     /**
      * @deprecated this property is obsolete, please use the new collisions object on particles options

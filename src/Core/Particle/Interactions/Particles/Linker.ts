@@ -28,7 +28,6 @@ export class Linker {
             const opacityLine = optOpacity - (distance * optOpacity) / optDistance;
 
             if (opacityLine > 0) {
-
                 /* style */
                 if (!container.particles.lineLinkedColor) {
                     const optColor = p1.particlesOptions.lineLinked.color;
@@ -51,8 +50,10 @@ export class Linker {
                     }
                 }
 
-                if (p2.links.map(t => t.destination).indexOf(p1) == -1 &&
-                    p1.links.map(t => t.destination).indexOf(p2) == -1) {
+                if (
+                    p2.links.map((t) => t.destination).indexOf(p1) == -1 &&
+                    p1.links.map((t) => t.destination).indexOf(p2) == -1
+                ) {
                     p1.links.push({
                         destination: p2,
                         opacity: opacityLine,

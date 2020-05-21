@@ -15,7 +15,7 @@ export class FrameManager {
         // If we are too fast, just draw without updating
         const fpsLimit = options.fpsLimit > 0 ? options.fpsLimit : 60;
 
-        if (container.lastFrameTime !== undefined && timestamp < container.lastFrameTime + (1000 / fpsLimit)) {
+        if (container.lastFrameTime !== undefined && timestamp < container.lastFrameTime + 1000 / fpsLimit) {
             container.draw();
             return;
         }

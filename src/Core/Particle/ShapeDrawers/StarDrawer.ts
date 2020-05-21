@@ -14,7 +14,7 @@ export class StarDrawer extends PolygonDrawerBase {
                 denominator: 2,
                 numerator: sides,
             },
-            length: radius * 2 * 2.66 / (sides / 3),
+            length: (radius * 2 * 2.66) / (sides / 3),
         };
     }
 
@@ -23,8 +23,8 @@ export class StarDrawer extends PolygonDrawerBase {
         const sides = polygon?.sides ?? 5;
 
         return {
-            x: -radius * 2 / (sides / 4),
-            y: -radius / (2 * 2.66 / 3.5),
+            x: (-radius * 2) / (sides / 4),
+            y: -radius / ((2 * 2.66) / 3.5),
         };
     }
 }

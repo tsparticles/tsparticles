@@ -37,5 +37,3 @@ export interface IShape extends IOptionLoader<IShape> {
 
     options: ShapeData;
 }
-
-

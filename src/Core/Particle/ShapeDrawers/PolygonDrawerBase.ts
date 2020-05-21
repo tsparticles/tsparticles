@@ -12,7 +12,7 @@ export abstract class PolygonDrawerBase implements IShapeDrawer {
         const sideCount = side.count.numerator * side.count.denominator;
         const decimalSides = side.count.numerator / side.count.denominator;
         const interiorAngleDegrees = (180 * (decimalSides - 2)) / decimalSides;
-        const interiorAngle = Math.PI - Math.PI * interiorAngleDegrees / 180; // convert to radians
+        const interiorAngle = Math.PI - (Math.PI * interiorAngleDegrees) / 180; // convert to radians
 
         if (!context) {
             return;
