@@ -212,7 +212,7 @@ export class Utils {
       };
 
       if (image.type !== "svg") {
-        return await this.loadImage(source);
+        return this.loadImage(source);
       }
 
       const response = await fetch(image.source);
