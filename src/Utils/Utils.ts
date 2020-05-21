@@ -8,6 +8,7 @@ import type { IParticle } from "../Core/Interfaces/IParticle";
 import { IRgb } from "../Core/Interfaces/IRgb";
 import { ColorUtils } from "./ColorUtils";
 import { IParticleImage } from "../Core/Interfaces/IParticleImage";
+import { IHsl } from "../Core/Interfaces/IHsl";
 
 type CSSOMString = string;
 type FontFaceLoadStatus = "unloaded" | "loading" | "loaded" | "error";
@@ -46,7 +47,7 @@ declare global {
 
 /* ---------- global functions - vendors ------------ */
 export class Utils {
-    public static replaceColorSvg(image: IImage, color: IRgb, opacity: number): string {
+    public static replaceColorSvg(image: IImage, color: IHsl, opacity: number): string {
         if (!image.svgData) {
             return "";
         }
@@ -55,7 +56,7 @@ export class Utils {
         const svgXml = image.svgData;
         const rgbHex = /#([0-9A-F]{3,6})/gi;
 
-        return svgXml.replace(rgbHex, () => ColorUtils.getStyleFromColor(color, opacity));
+        return svgXml.replace(rgbHex, () => ColorUtils.getStyleFromHsl(color, opacity));
     }
 
     /**
