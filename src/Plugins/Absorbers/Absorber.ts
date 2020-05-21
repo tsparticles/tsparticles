@@ -3,8 +3,7 @@ import type { Container } from "../../Core/Container";
 import type { Particle } from "../../Core/Particle";
 import type { IRgb } from "../../Core/Interfaces/IRgb";
 import type { IAbsorber } from "../../Options/Interfaces/Absorbers/IAbsorber";
-import { ColorUtils } from "../../Utils/ColorUtils";
-import { Utils } from "../../Utils/Utils";
+import { ColorUtils, Utils } from "../../Utils";
 import type { Absorbers } from "./Absorbers";
 
 export class Absorber {
@@ -57,9 +56,7 @@ export class Absorber {
 
     public attract(particle: Particle, _delta: number): void {
         const pos = particle.getPosition();
-        const dx = this.position.x - pos.x;
-        const dy = this.position.y - pos.y;
-        const distance = Math.sqrt(Math.abs(dx * dx + dy * dy));
+        const { dx, dy, distance } = Utils.getDistances(this.position, pos);
         const angle = Math.atan2(dx, dy) * (180 / Math.PI);
         const acceleration = this.mass / Math.pow(distance, 2);
 
@@ -88,9 +85,10 @@ export class Absorber {
     public resize(): void {
         const initialPosition = this.initialPosition;
 
-        this.position = initialPosition && Utils.isPointInside(initialPosition, this.container.canvas.size) ?
-            initialPosition :
-            this.calcPosition();
+        this.position =
+            initialPosition && Utils.isPointInside(initialPosition, this.container.canvas.size)
+                ? initialPosition
+                : this.calcPosition();
     }
 
     public draw(context: CanvasRenderingContext2D): void {
@@ -98,7 +96,7 @@ export class Absorber {
         context.beginPath();
         context.arc(0, 0, this.size, 0, Math.PI * 2, false);
         context.closePath();
-        context.fillStyle = ColorUtils.getStyleFromColor(this.color, this.opacity);
+        context.fillStyle = ColorUtils.getStyleFromRgb(this.color, this.opacity);
         context.fill();
     }
 
@@ -111,8 +109,8 @@ export class Absorber {
         };
 
         return {
-            x: percentPosition.x / 100 * container.canvas.size.width,
-            y: percentPosition.y / 100 * container.canvas.size.height,
+            x: (percentPosition.x / 100) * container.canvas.size.width,
+            y: (percentPosition.y / 100) * container.canvas.size.height,
         };
     }
 }

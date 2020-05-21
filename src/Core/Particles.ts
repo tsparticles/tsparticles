@@ -4,7 +4,6 @@ import type { IMouseData } from "./Interfaces/IMouseData";
 import type { IRgb } from "./Interfaces/IRgb";
 import { Particle } from "./Particle";
 import { InteractionManager } from "./Particle/Interactions/Particles/InteractionManager";
-import { Utils } from "../Utils/Utils";
 import { HoverMode } from "../Enums/Modes/HoverMode";
 import { Grabber } from "./Particle/Interactions/Mouse/Grabber";
 import { ClickMode } from "../Enums/Modes/ClickMode";
@@ -12,10 +11,10 @@ import { Repulser } from "./Particle/Interactions/Mouse/Repulser";
 import { DivMode } from "../Enums/Modes/DivMode";
 import { Bubbler } from "./Particle/Interactions/Mouse/Bubbler";
 import { Connector } from "./Particle/Interactions/Mouse/Connector";
-import { QuadTree} from "../Utils/QuadTree";
 import { DestroyType } from "../Enums/DestroyType";
-import { Point } from "../Utils/Point";
-import { Rectangle } from "../Utils/Rectangle";
+import { Point, QuadTree, Rectangle, Utils } from "../Utils";
+import { RecursivePartial } from "../Types/RecursivePartial";
+import { IParticles } from "../Options/Interfaces/Particles/IParticles";
 
 /**
  * Particles manager
@@ -29,7 +28,8 @@ export class Particles {
     public quadTree: QuadTree;
     //public spatialGrid: SpatialGrid;
     public pushing?: boolean;
-    public lineLinkedColor?: IRgb | string;
+    public linksColor?: IRgb | string;
+    public linksColors: { [key: string]: IRgb | string | undefined };
     public grabLineColor?: IRgb | string;
     public noiseZ: number;
 
@@ -43,6 +43,7 @@ export class Particles {
         //this.spatialGrid = new SpatialGrid(this.container.canvas.size);
         const canvasSize = this.container.canvas.size;
         this.noiseZ = 0;
+        this.linksColors = {};
 
         this.quadTree = new QuadTree(new Rectangle(0, 0, canvasSize.width, canvasSize.height), 4);
     }
@@ -68,11 +69,12 @@ export class Particles {
 
         if (!handled) {
             for (let i = this.count; i < options.particles.number.value; i++) {
-                this.addParticle(new Particle(container));
+                this.addParticle();
             }
         }
 
-        this.interactionsEnabled = options.particles.lineLinked.enable ||
+        this.interactionsEnabled =
+            options.particles.links.enable ||
             options.particles.move.attract.enable ||
             options.particles.collisions.enable ||
             options.infection.enable;
@@ -167,16 +169,18 @@ export class Particles {
 
             const pos = particle.getPosition();
 
-            container.particles.quadTree.insert(new Point(pos.x, pos.y, particle));
+            this.quadTree.insert(new Point(pos.x, pos.y, particle));
         }
 
         for (const particle of particlesToDelete) {
             this.remove(particle);
         }
 
-        if (container.options.interactivity.events.onDiv.enable ||
+        if (
+            container.options.interactivity.events.onDiv.enable ||
             (container.options.interactivity.events.onHover.enable && container.interactivity.mouse.position) ||
-            (container.options.interactivity.events.onClick.enable && container.interactivity.mouse.clickPosition)) {
+            (container.options.interactivity.events.onClick.enable && container.interactivity.mouse.clickPosition)
+        ) {
             const hoverMode = options.interactivity.events.onHover.mode;
             const clickMode = options.interactivity.events.onClick.mode;
             const divMode = options.interactivity.events.onDiv.mode;
@@ -186,9 +190,11 @@ export class Particles {
                 Grabber.grab(container, delta);
             }
 
-            if (Utils.isInArray(HoverMode.repulse, hoverMode) ||
+            if (
+                Utils.isInArray(HoverMode.repulse, hoverMode) ||
                 Utils.isInArray(ClickMode.repulse, clickMode) ||
-                Utils.isInArray(DivMode.repulse, divMode)) {
+                Utils.isInArray(DivMode.repulse, divMode)
+            ) {
                 Repulser.repulse(container, delta);
             }
 
@@ -234,8 +240,8 @@ export class Particles {
         }
 
         /*if (container.canvas.context) {
-            this.quadTree.draw(container.canvas.context);
-        }*/
+        this.quadTree.draw(container.canvas.context);
+    }*/
 
         /* draw each particle */
         for (const p of this.array) {
@@ -270,7 +276,7 @@ export class Particles {
         }
 
         for (let i = 0; i < nb; i++) {
-            this.addParticle(new Particle(container, pos));
+            this.addParticle(pos);
         }
 
         if (!options.particles.move.enable) {
@@ -280,8 +286,12 @@ export class Particles {
         this.pushing = false;
     }
 
-    public addParticle(particle: Particle): void {
+    public addParticle(position?: ICoordinates, overrideOptions?: RecursivePartial<IParticles>): Particle {
+        const particle = new Particle(this.container, position, overrideOptions);
+
         this.array.push(particle);
+
+        return particle;
     }
 
     public removeQuantity(quantity: number): void {

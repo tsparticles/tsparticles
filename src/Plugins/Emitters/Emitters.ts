@@ -3,7 +3,7 @@ import { Emitter } from "./Emitter";
 import type { Container } from "../../Core/Container";
 import { ClickMode } from "../../Enums/Modes/ClickMode";
 import type { IEmitter } from "../../Options/Interfaces/Emitters/IEmitter";
-import { Utils } from "../../Utils/Utils";
+import { Utils } from "../../Utils";
 
 export class Emitters implements IContainerPlugin {
     public readonly container: Container;
@@ -64,9 +64,9 @@ export class Emitters implements IContainerPlugin {
                 emitterModeOptions = modeEmitters;
             }
 
-            const emitterOptions = emitterModeOptions ?? (options.emitters instanceof Array ?
-                Utils.itemFromArray(options.emitters) :
-                options.emitters);
+            const emitterOptions =
+                emitterModeOptions ??
+                (options.emitters instanceof Array ? Utils.itemFromArray(options.emitters) : options.emitters);
             const ePosition = container.interactivity.mouse.clickPosition;
             const emitter = new Emitter(this, Utils.deepExtend({}, emitterOptions), ePosition);
 

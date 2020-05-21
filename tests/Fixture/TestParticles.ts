@@ -19,11 +19,11 @@ export class TestParticles {
      *
      * @param container
      */
-    public reset(container?: Container) {
-        if(container !== undefined) {
+    public reset(container?: Container): void {
+        if (container !== undefined) {
             this.container = container;
         }
+
         this.particles = new Particles(this.container);
     }
-
 }

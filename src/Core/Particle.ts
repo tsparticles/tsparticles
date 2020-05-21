@@ -1,17 +1,15 @@
 import type { Container } from "./Container";
 import type { IVelocity } from "./Interfaces/IVelocity";
-import type { ISize } from "./Interfaces/ISize";
-import type { IOpacity } from "./Interfaces/IOpacity";
+import type { IParticleSizeAnimation } from "./Interfaces/IParticleSizeAnimation";
+import type { IParticleOpacityAnimation } from "./Interfaces/IParticleOpacityAnimation";
 import type { ICoordinates } from "./Interfaces/ICoordinates";
 import type { IParticleImage } from "./Interfaces/IParticleImage";
 import { ShapeType } from "../Enums/ShapeType";
 import { Updater } from "./Particle/Updater";
-import { Utils } from "../Utils/Utils";
 import { PolygonMaskType } from "../Enums/PolygonMaskType";
 import type { IRgb } from "./Interfaces/IRgb";
 import { RotateDirection } from "../Enums/RotateDirection";
 import type { IStroke } from "../Options/Interfaces/Particles/IStroke";
-import { ColorUtils } from "../Utils/ColorUtils";
 import type { IOpacityRandom } from "../Options/Interfaces/Particles/Opacity/IOpacityRandom";
 import type { IShapeValues } from "../Options/Interfaces/Particles/Shape/IShapeValues";
 import type { IBubbleParticleData } from "./Interfaces/IBubbleParticleData";
@@ -23,11 +21,12 @@ import { SizeAnimationStatus } from "../Enums/SizeAnimationStatus";
 import { OpacityAnimationStatus } from "../Enums/OpacityAnimationStatus";
 import { Shape } from "../Options/Classes/Particles/Shape/Shape";
 import { StartValueType } from "../Enums/StartValueType";
-import { ImageDrawer } from "./Particle/ShapeDrawers/ImageDrawer";
+import { ImageDrawer } from "../ShapeDrawers/ImageDrawer";
 import type { IImageShape } from "../Options/Interfaces/Particles/Shape/IImageShape";
 import { RecursivePartial } from "../Types/RecursivePartial";
-import { Plugins } from "../Utils/Plugins";
 import type { ILink } from "./Interfaces/ILink";
+import type { IHsl } from "./Interfaces/IHsl";
+import { ColorUtils, Plugins, Utils } from "../Utils";
 
 /**
  * The single particle object
@@ -42,7 +41,7 @@ export class Particle implements IParticle {
     public readonly direction: MoveDirection;
     public readonly fill: boolean;
     public readonly stroke: IStroke;
-    public readonly size: ISize;
+    public readonly size: IParticleSizeAnimation;
     public infectionStage?: number;
     public infectionTime?: number;
     public infectionDelay?: number;
@@ -50,10 +49,10 @@ export class Particle implements IParticle {
     public readonly initialPosition?: ICoordinates;
     public readonly position: ICoordinates;
     public readonly offset: ICoordinates;
-    public readonly color: IRgb | undefined;
+    public readonly color: IHsl | undefined;
     public readonly strokeColor: IRgb | undefined;
     public readonly shadowColor: IRgb | undefined;
-    public readonly opacity: IOpacity;
+    public readonly opacity: IParticleOpacityAnimation;
     public readonly velocity: IVelocity;
     public readonly shape: ShapeType | string;
     public readonly image?: IParticleImage;
@@ -61,9 +60,10 @@ export class Particle implements IParticle {
     public readonly shapeData?: IShapeValues;
     public readonly bubble: IBubbleParticleData;
     public readonly noiseDelay: number;
+    public readonly colorVelocity: number;
     public lastNoiseTime: number;
-    public lineLinkedDistance?: number;
-    public lineLinkedWidth?: number;
+    public linksDistance?: number;
+    public linksWidth?: number;
     public moveSpeed?: number;
     public sizeValue?: number;
     public randomMinimumSize?: number;
@@ -103,9 +103,10 @@ export class Particle implements IParticle {
                 const shapeData = shapeOptions.options[this.shape];
 
                 if (shapeData !== undefined) {
-                    this.shapeData = Utils.deepExtend({}, shapeData instanceof Array ?
-                        Utils.itemFromArray(shapeData) :
-                        shapeData);
+                    this.shapeData = Utils.deepExtend(
+                        {},
+                        shapeData instanceof Array ? Utils.itemFromArray(shapeData) : shapeData
+                    );
 
                     this.fill = this.shapeData?.fill ?? this.fill;
                     this.close = this.shapeData?.close ?? this.close;
@@ -119,9 +120,10 @@ export class Particle implements IParticle {
             const shapeData = particlesOptions.shape.options[this.shape];
 
             if (shapeData) {
-                this.shapeData = Utils.deepExtend({}, shapeData instanceof Array ?
-                    Utils.itemFromArray(shapeData) :
-                    shapeData);
+                this.shapeData = Utils.deepExtend(
+                    {},
+                    shapeData instanceof Array ? Utils.itemFromArray(shapeData) : shapeData
+                );
 
                 this.fill = this.shapeData?.fill ?? this.fill;
                 this.close = this.shapeData?.close ?? this.close;
@@ -132,36 +134,43 @@ export class Particle implements IParticle {
             particlesOptions.load(overrideOptions);
         }
 
+        if (this.shapeData?.particles !== undefined) {
+            particlesOptions.load(this.shapeData?.particles);
+        }
+
         this.particlesOptions = particlesOptions;
 
         const noiseDelay = this.particlesOptions.move.noise.delay;
 
-        this.noiseDelay = (noiseDelay.random.enable ?
-            Utils.randomInRange(noiseDelay.random.minimumValue, noiseDelay.value) :
-            noiseDelay.value) * 1000;
+        this.noiseDelay =
+            (noiseDelay.random.enable
+                ? Utils.randomInRange(noiseDelay.random.minimumValue, noiseDelay.value)
+                : noiseDelay.value) * 1000;
 
         container.retina.initParticle(this);
 
         const color = this.particlesOptions.color;
 
         /* size */
-        const sizeValue = (this.sizeValue ?? container.retina.sizeValue);
+        const sizeValue = this.sizeValue ?? container.retina.sizeValue;
 
-        const randomSize = typeof this.particlesOptions.size.random === "boolean" ?
-            this.particlesOptions.size.random :
-            this.particlesOptions.size.random.enable;
+        const randomSize =
+            typeof this.particlesOptions.size.random === "boolean"
+                ? this.particlesOptions.size.random
+                : this.particlesOptions.size.random.enable;
 
         this.size = {
-            value: randomSize && this.randomMinimumSize !== undefined ?
-                Utils.randomInRange(this.randomMinimumSize, sizeValue) :
-                sizeValue,
+            value:
+                randomSize && this.randomMinimumSize !== undefined
+                    ? Utils.randomInRange(this.randomMinimumSize, sizeValue)
+                    : sizeValue,
         };
 
         this.direction = this.particlesOptions.move.direction;
         this.bubble = {};
         this.angle = this.particlesOptions.rotate.random ? Math.random() * 360 : this.particlesOptions.rotate.value;
 
-        if (this.particlesOptions.rotate.direction == RotateDirection.random) {
+        if (this.particlesOptions.rotate.direction === RotateDirection.random) {
             const index = Math.floor(Math.random() * 2);
 
             if (index > 0) {
@@ -193,6 +202,16 @@ export class Particle implements IParticle {
             }
         }
 
+        if (this.particlesOptions.color.animation.enable) {
+            this.colorVelocity = this.particlesOptions.color.animation.speed / 100;
+
+            if (!this.particlesOptions.color.animation.sync) {
+                this.colorVelocity = this.colorVelocity * Math.random();
+            }
+        } else {
+            this.colorVelocity = 0;
+        }
+
         if (this.particlesOptions.rotate.animation.enable) {
             if (!this.particlesOptions.rotate.animation.sync) {
                 this.angle = Math.random() * 360;
@@ -221,11 +240,7 @@ export class Particle implements IParticle {
         }
 
         /* color */
-        if (color instanceof Array) {
-            this.color = ColorUtils.colorToRgb(Utils.itemFromArray(color));
-        } else {
-            this.color = ColorUtils.colorToRgb(color);
-        }
+        this.color = ColorUtils.colorToHsl(color);
 
         /* opacity */
         const randomOpacity = this.particlesOptions.opacity.random as IOpacityRandom;
@@ -267,17 +282,59 @@ export class Particle implements IParticle {
             const images = imageDrawer.getImages(container).images;
             const index = Utils.arrayRandomIndex(images);
             const image = images[index];
+            const optionsImage = (imagesOptions instanceof Array
+                ? imagesOptions.filter((t) => (t as IImageShape).src === image.source)[0]
+                : imagesOptions) as IImageShape;
 
-            const optionsImage = (imagesOptions instanceof Array ?
-                imagesOptions.filter((t) => (t as IImageShape).src === image.source)[0] :
-                imagesOptions) as IImageShape;
+            if (image?.svgData !== undefined && optionsImage.replaceColor && this.color) {
+                const svgColoredData = Utils.replaceColorSvg(image, this.color, this.opacity.value);
 
-            this.image = {
-                data: image,
-                ratio: optionsImage.width / optionsImage.height,
-                replaceColor: optionsImage.replaceColor ?? optionsImage.replace_color,
-                source: optionsImage.src,
-            };
+                /* prepare to create img with colored svg */
+                const svg = new Blob([svgColoredData], { type: "image/svg+xml" });
+                const domUrl = window.URL || window.webkitURL || window;
+                const url = domUrl.createObjectURL(svg);
+
+                /* create particle img obj */
+                const img = new Image();
+
+                this.image = {
+                    data: image,
+                    loaded: false,
+                    ratio: optionsImage.width / optionsImage.height,
+                    replaceColor: optionsImage.replaceColor ?? optionsImage.replace_color,
+                    source: optionsImage.src,
+                };
+
+                img.addEventListener("load", (e) => {
+                    if (this.image) {
+                        this.image.loaded = true;
+                        image.element = img;
+                    }
+
+                    domUrl.revokeObjectURL(url);
+                });
+
+                img.addEventListener("error", (e) => {
+                    domUrl.revokeObjectURL(url);
+
+                    Utils.loadImage(optionsImage.src).then((img2) => {
+                        if (this.image) {
+                            image.element = img2.element;
+                            this.image.loaded = true;
+                        }
+                    });
+                });
+
+                img.src = url;
+            } else {
+                this.image = {
+                    data: image,
+                    loaded: true,
+                    ratio: optionsImage.width / optionsImage.height,
+                    replaceColor: optionsImage.replaceColor ?? optionsImage.replace_color,
+                    source: optionsImage.src,
+                };
+            }
 
             if (!this.image.ratio) {
                 this.image.ratio = 1;
@@ -287,18 +344,13 @@ export class Particle implements IParticle {
             this.close = optionsImage.close ?? this.close;
         }
 
-        this.stroke = this.particlesOptions.stroke instanceof Array ?
-            Utils.itemFromArray(this.particlesOptions.stroke) :
-            this.particlesOptions.stroke;
+        this.stroke =
+            this.particlesOptions.stroke instanceof Array
+                ? Utils.itemFromArray(this.particlesOptions.stroke)
+                : this.particlesOptions.stroke;
 
-        this.strokeColor = typeof this.stroke.color === "string" ?
-            ColorUtils.stringToRgb(this.stroke.color) :
-            ColorUtils.colorToRgb(this.stroke.color);
-
-        this.shadowColor = typeof this.particlesOptions.shadow.color === "string" ?
-            ColorUtils.stringToRgb(this.particlesOptions.shadow.color) :
-            ColorUtils.colorToRgb(this.particlesOptions.shadow.color);
-
+        this.strokeColor = ColorUtils.colorToRgb(this.stroke.color);
+        this.shadowColor = ColorUtils.colorToRgb(this.particlesOptions.shadow.color);
         this.updater = new Updater(this.container, this);
     }
 
@@ -309,24 +361,27 @@ export class Particle implements IParticle {
     }
 
     public draw(delta: number): void {
+        if (this.image?.loaded === false) {
+            return;
+        }
+
         this.container.canvas.drawParticle(this, delta);
     }
 
-    public isOverlapping(): { collisionFound: boolean, iterations: number } {
+    public isOverlapping(): { collisionFound: boolean; iterations: number } {
         const container = this.container;
-        const p1 = this;
 
         let collisionFound = false;
         let iterations = 0;
 
-        const pos1 = p1.getPosition();
+        const pos1 = this.getPosition();
 
-        for (const p2 of container.particles.array.filter((t) => t != p1)) {
+        for (const p2 of container.particles.array.filter((t) => t != this)) {
             iterations++;
             const pos2 = p2.getPosition();
             const dist = Utils.getDistance(pos1, pos2);
 
-            if (dist <= p1.size.value + p2.size.value) {
+            if (dist <= this.size.value + p2.size.value) {
                 collisionFound = true;
                 break;
             }
@@ -340,17 +395,16 @@ export class Particle implements IParticle {
 
     public checkOverlap(position?: ICoordinates): void {
         const container = this.container;
-        const p = this;
-        const overlapResult = p.isOverlapping();
+        const overlapResult = this.isOverlapping();
 
         if (overlapResult.iterations >= container.particles.count) {
             // too many particles, removing from the current
             container.particles.remove(this);
         } else if (overlapResult.collisionFound) {
-            p.position.x = position ? position.x : Math.random() * container.canvas.size.width;
-            p.position.y = position ? position.y : Math.random() * container.canvas.size.height;
+            this.position.x = position ? position.x : Math.random() * container.canvas.size.width;
+            this.position.y = position ? position.y : Math.random() * container.canvas.size.height;
 
-            p.checkOverlap();
+            this.checkOverlap();
         }
     }
 

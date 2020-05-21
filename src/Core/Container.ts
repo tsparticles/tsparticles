@@ -1,5 +1,4 @@
 import { Canvas } from "./Canvas";
-import { EventListeners } from "../Utils/EventListeners";
 import type { IRepulse } from "./Interfaces/IRepulse";
 import type { IBubble } from "./Interfaces/IBubble";
 import type { IContainerInteractivity } from "./Interfaces/IContainerInteractivity";
@@ -11,8 +10,7 @@ import type { RecursivePartial } from "../Types/RecursivePartial";
 import { Options } from "../Options/Classes/Options";
 import type { IContainerPlugin } from "./Interfaces/IContainerPlugin";
 import type { IShapeDrawer } from "./Interfaces/IShapeDrawer";
-import { Plugins } from "../Utils/Plugins";
-import { SimplexNoise } from "../Utils/SimplexNoise";
+import { EventListeners, Plugins, SimplexNoise } from "../Utils";
 
 /**
  * The object loaded into an HTML element, it'll contain options loaded and all data to let everything working
@@ -252,8 +250,9 @@ export class Container {
         }
 
         this.plugins = {};
+        this.particles.linksColors = {};
 
-        delete this.particles.lineLinkedColor;
+        delete this.particles.linksColor;
     }
 
     public async start(): Promise<void> {

@@ -3,7 +3,6 @@ import type { IDimension } from "../Core/Interfaces/IDimension";
 import { Utils } from "./Utils";
 import type { Particle } from "../Core/Particle";
 
-
 /* This class essentially works by interpreting all particles on the screen as a grid.
 Grid cells are determined by dividing the width and height by the cell size. so 1920 / 10 = 19 cells of width
 Particles are pushed into their respective cells with the same method.
@@ -46,7 +45,7 @@ export class SpatialGrid {
         }
     }
 
-    public insert(particle: Particle) {
+    public insert(particle: Particle): void {
         const pos = particle.getPosition();
         const posIndex = this.index(pos);
 
@@ -56,7 +55,6 @@ export class SpatialGrid {
         this.grid[posIndex.x][posIndex.y].push(particle);
     }
 
-
     /**
      * Returns all particles in the same grid cell as the position.
      * For more flexible checking see: QueryRadius()
@@ -65,8 +63,9 @@ export class SpatialGrid {
     public queryInCell(position: ICoordinates): Particle[] {
         const pos = this.index(position);
 
-        return Array.isArray(this.grid[pos.x]) && Array.isArray(this.grid[pos.x][pos.y]) ?
-            this.grid[pos.x][pos.y] || [] : [];
+        return Array.isArray(this.grid[pos.x]) && Array.isArray(this.grid[pos.x][pos.y])
+            ? this.grid[pos.x][pos.y] || []
+            : [];
     }
 
     /**
@@ -77,7 +76,7 @@ export class SpatialGrid {
     public queryRadius(position: ICoordinates, radius: number): Particle[] {
         const pos = this.index(position);
         const rad = this.radius({ x: radius, y: radius } as ICoordinates);
-        const items = this.select(this.indexOp(pos, '-', rad), this.indexOp(pos, '+', rad));
+        const items = this.select(this.indexOp(pos, "-", rad), this.indexOp(pos, "+", rad));
         const out = [];
 
         for (const item of items) {
@@ -96,13 +95,16 @@ export class SpatialGrid {
      * @param position The query position
      * @param radius The radius around the position
      */
-    public queryRadiusWithDistance(position: ICoordinates, radius: number): {
-        distance: number,
-        particle: Particle,
+    public queryRadiusWithDistance(
+        position: ICoordinates,
+        radius: number
+    ): {
+        distance: number;
+        particle: Particle;
     }[] {
         const pos = this.index(position);
         const rad = this.radius({ x: radius, y: radius });
-        const items = this.select(this.indexOp(pos, '-', rad), this.indexOp(pos, '+', rad));
+        const items = this.select(this.indexOp(pos, "-", rad), this.indexOp(pos, "+", rad));
         const out = [];
 
         for (const item of items) {
@@ -120,7 +122,6 @@ export class SpatialGrid {
 
         return out;
     }
-
 
     /**
      * Iterates and returns all values inside the provided X,Y coordinates
@@ -151,7 +152,6 @@ export class SpatialGrid {
 
         return out;
     }
-
 
     /**
      * Determines the grid indexes based on the given positional coordinates
@@ -184,7 +184,7 @@ export class SpatialGrid {
      * @param right The right hand side of the equation
      */
     private indexOp(left: ICoordinates, op: string, right: ICoordinates): ICoordinates {
-        if (op == '+') {
+        if (op === "+") {
             return {
                 x: this.clamp(left.x + right.x),
                 y: this.clamp(left.y + right.y),

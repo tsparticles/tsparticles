@@ -2,7 +2,7 @@ import type {
     ShapeDrawerAfterEffectFunction,
     ShapeDrawerDestroyFunction,
     ShapeDrawerDrawFunction,
-    ShapeDrawerInitFunction
+    ShapeDrawerInitFunction,
 } from "../../Types/ShapeDrawerFunctions";
 
 export interface IShapeDrawer {

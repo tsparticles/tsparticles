@@ -1,6 +1,6 @@
 import type { IPlugin } from "../../Core/Interfaces/IPlugin";
 import type { Container } from "../../Core/Container";
-import { Utils } from "../../Utils/Utils";
+import { Utils } from "../../Utils";
 import { ClickMode } from "../../Enums/Modes/ClickMode";
 import { Emitters } from "./Emitters";
 

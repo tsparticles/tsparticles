@@ -19,7 +19,7 @@ export class AbsorberSize implements IAbsorberSize {
             if (data.density !== undefined) {
                 this.density = data.density;
             }
-            
+
             if (data.value !== undefined) {
                 this.value = data.value;
             }

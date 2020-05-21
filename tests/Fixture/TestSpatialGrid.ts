@@ -17,10 +17,9 @@ export class TestSpatialGrid {
      * @param canvas
      */
     public reset(canvas?: IDimension): void {
-        if(canvas !== undefined) {
+        if (canvas !== undefined) {
             this.canvas = canvas;
         }
         this.spatialGrid = new SpatialGrid(this.canvas);
     }
-
 }

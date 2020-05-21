@@ -6,9 +6,6 @@ export class EmitterLife implements IEmitterLife {
     public delay?: number;
     public duration?: number;
 
-    constructor() {
-    }
-
     public load(data?: RecursivePartial<IEmitterLife>): void {
         if (data !== undefined) {
             if (data.count !== undefined) {

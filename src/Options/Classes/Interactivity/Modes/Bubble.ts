@@ -1,6 +1,6 @@
 import type { IBubble } from "../../../Interfaces/Interactivity/Modes/IBubble";
 import type { RecursivePartial } from "../../../../Types/RecursivePartial";
-import { OptionsColor } from "../../Particles/OptionsColor";
+import { OptionsColor } from "../../OptionsColor";
 import type { SingleOrMultiple } from "../../../../Types/SingleOrMultiple";
 
 export class Bubble implements IBubble {

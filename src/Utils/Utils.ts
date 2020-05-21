@@ -5,10 +5,12 @@ import type { IBounds } from "../Core/Interfaces/IBounds";
 import type { IDimension } from "../Core/Interfaces/IDimension";
 import type { IImage } from "../Core/Interfaces/IImage";
 import type { IParticle } from "../Core/Interfaces/IParticle";
+import { ColorUtils } from "./ColorUtils";
+import { IHsl } from "../Core/Interfaces/IHsl";
 
 type CSSOMString = string;
-type FontFaceLoadStatus = 'unloaded' | 'loading' | 'loaded' | 'error';
-type FontFaceSetStatus = 'loading' | 'loaded';
+type FontFaceLoadStatus = "unloaded" | "loading" | "loaded" | "error";
+type FontFaceSetStatus = "loading" | "loaded";
 
 interface FontFace {
     family: CSSOMString;
@@ -30,19 +32,31 @@ interface FontFaceSet {
     readonly status: FontFaceSetStatus;
     readonly ready: Promise<FontFaceSet>;
 
-    check(font: string, text?: string): Boolean;
+    check(font: string, text?: string): boolean;
 
-    load(font: string, text?: string): Promise<FontFace[]>
+    load(font: string, text?: string): Promise<FontFace[]>;
 }
 
 declare global {
     interface Document {
-        fonts: FontFaceSet
+        fonts: FontFaceSet;
     }
 }
 
 /* ---------- global functions - vendors ------------ */
 export class Utils {
+    public static replaceColorSvg(image: IImage, color: IHsl, opacity: number): string {
+        if (!image.svgData) {
+            return "";
+        }
+
+        /* set color to svg element */
+        const svgXml = image.svgData;
+        const rgbHex = /#([0-9A-F]{3,6})/gi;
+
+        return svgXml.replace(rgbHex, () => ColorUtils.getStyleFromHsl(color, opacity));
+    }
+
     /**
      * Clamps a number between a minimum and maximum value
      * @param num the source number
@@ -118,16 +132,29 @@ export class Utils {
      * @param pointA the first coordinate
      * @param pointB the second coordinate
      */
-    public static getDistance(pointA: ICoordinates, pointB: ICoordinates): number {
+    public static getDistances(
+        pointA: ICoordinates,
+        pointB: ICoordinates
+    ): { dx: number; dy: number; distance: number } {
         const dx = pointA.x - pointB.x;
         const dy = pointA.y - pointB.y;
-        return Math.sqrt(dx * dx + dy * dy);
+        return { dx: dx, dy: dy, distance: Math.sqrt(dx * dx + dy * dy) };
+    }
+
+    /**
+     * Gets the distance between two coordinates
+     * @param pointA the first coordinate
+     * @param pointB the second coordinate
+     */
+    public static getDistance(pointA: ICoordinates, pointB: ICoordinates): number {
+        return this.getDistances(pointA, pointB).distance;
     }
 
     public static async loadFont(character: ICharacterShape): Promise<void> {
         try {
             await document.fonts.load(`${character.weight} 36px '${character.font}'`);
         } catch {
+            // ignores any error
         }
     }
 
@@ -140,7 +167,7 @@ export class Utils {
     }
 
     public static randomInRange(min: number, max: number): number {
-        return (Math.random() * (max - min)) + min;
+        return Math.random() * (max - min) + min;
     }
 
     public static isPointInside(point: ICoordinates, size: IDimension, radius?: number): boolean {
@@ -148,8 +175,7 @@ export class Utils {
     }
 
     public static areBoundsInside(bounds: IBounds, size: IDimension): boolean {
-        return bounds.left < size.width && bounds.right > 0
-            && bounds.top < size.height && bounds.bottom > 0;
+        return bounds.left < size.width && bounds.right > 0 && bounds.top < size.height && bounds.bottom > 0;
     }
 
     public static calculateBounds(point: ICoordinates, radius: number): IBounds {
@@ -162,31 +188,60 @@ export class Utils {
     }
 
     public static loadImage(source: string): Promise<IImage> {
-        return new Promise((resolve: (value?: IImage | PromiseLike<IImage> | undefined) => void,
-                            reject: (reason?: string) => void) => {
+        return new Promise(
+            (
+                resolve: (value?: IImage | PromiseLike<IImage> | undefined) => void,
+                reject: (reason?: string) => void
+            ) => {
+                const image: IImage = {
+                    source: source,
+                    type: source.substr(source.length - 3),
+                };
+
+                if (source) {
+                    const img = new Image();
+
+                    img.addEventListener("load", () => {
+                        image.element = img;
+
+                        resolve(image);
+                    });
+
+                    img.addEventListener("error", () => {
+                        reject(`Error tsParticles - loading image: ${source}`);
+                    });
+
+                    img.src = source;
+                } else {
+                    reject("Error tsParticles - No image.src");
+                }
+            }
+        );
+    }
+
+    public static async downloadSvgImage(source: string): Promise<IImage> {
+        if (source) {
             const image: IImage = {
                 source: source,
                 type: source.substr(source.length - 3),
             };
 
-            if (source) {
-                const img = new Image();
-
-                img.addEventListener("load", () => {
-                    image.element = img;
-
-                    resolve(image);
-                });
-
-                img.addEventListener("error", () => {
-                    reject(`Error tsParticles - loading image: ${source}`);
-                });
-
-                img.src = source;
-            } else {
-                reject("Error tsParticles - No image.src");
+            if (image.type !== "svg") {
+                return this.loadImage(source);
             }
-        });
+
+            const response = await fetch(image.source);
+
+            if (response.ok) {
+                image.svgData = await response.text();
+
+                return image;
+            } else {
+                throw new Error("Error tsParticles - Image not found");
+            }
+        } else {
+            throw new Error("Error tsParticles - No image.src");
+        }
     }
 
     public static deepExtend(destination: any, source: any): any {

@@ -27,11 +27,12 @@ export class QuadTree {
         const y = this.rectangle.position.y;
         const w = this.rectangle.size.width;
         const h = this.rectangle.size.height;
+        const capacity = this.capacity;
 
-        this.northEast = new QuadTree(new Rectangle(x, y, w / 2, h / 2), this.capacity);
-        this.northWest = new QuadTree(new Rectangle(x + w / 2, y, w / 2, h / 2), this.capacity);
-        this.southEast = new QuadTree(new Rectangle(x, y + h / 2, w / 2, h / 2), this.capacity);
-        this.southWest = new QuadTree(new Rectangle(x + w / 2, y + h / 2, w / 2, h / 2), this.capacity);
+        this.northEast = new QuadTree(new Rectangle(x, y, w / 2, h / 2), capacity);
+        this.northWest = new QuadTree(new Rectangle(x + w / 2, y, w / 2, h / 2), capacity);
+        this.southEast = new QuadTree(new Rectangle(x, y + h / 2, w / 2, h / 2), capacity);
+        this.southWest = new QuadTree(new Rectangle(x + w / 2, y + h / 2, w / 2, h / 2), capacity);
         this.divided = true;
     }
 
@@ -49,17 +50,13 @@ export class QuadTree {
             }
         }
 
-        if (this.northEast?.insert(point)) {
-            return true;
-        } else if (this.northWest?.insert(point)) {
-            return true;
-        } else if (this.southEast?.insert(point)) {
-            return true;
-        } else if (this.southWest?.insert(point)) {
-            return true;
-        }
-
-        return false;
+        return (
+            (this.northEast?.insert(point) ||
+                this.northWest?.insert(point) ||
+                this.southEast?.insert(point) ||
+                this.southWest?.insert(point)) ??
+            false
+        );
     }
 
     public query(range: Range, found?: Particle[]): Particle[] {
@@ -68,7 +65,7 @@ export class QuadTree {
         if (!range.intersects(this.rectangle)) {
             return [];
         } else {
-            for (let p of this.points) {
+            for (const p of this.points) {
                 if (range.contains(p.position)) {
                     res.push(p.particle);
                 }

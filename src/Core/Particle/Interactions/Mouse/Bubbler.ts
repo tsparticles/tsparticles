@@ -1,14 +1,11 @@
 import type { Container } from "../../../Container";
 import type { IBubblerProcessParam } from "../../../Interfaces/IBubblerProcessParam";
 import { ProcessBubbleType } from "../../../../Enums/ProcessBubbleType";
-import { Utils } from "../../../../Utils/Utils";
+import { Circle, ColorUtils, Constants, Utils } from "../../../../Utils";
 import { HoverMode } from "../../../../Enums/Modes/HoverMode";
 import { ClickMode } from "../../../../Enums/Modes/ClickMode";
-import { Constants } from "../../../../Utils/Constants";
 import type { IParticle } from "../../../Interfaces/IParticle";
-import { ColorUtils } from "../../../../Utils/ColorUtils";
 import { Particle } from "../../../Particle";
-import { Circle } from "../../../../Utils/Circle";
 
 /**
  * Particle bubble manager
@@ -38,10 +35,13 @@ export class Bubbler {
         }
     }
 
-    private static process(container: Container,
-                           particle: Particle,
-                           distMouse: number,
-                           timeSpent: number, data: IBubblerProcessParam): void {
+    private static process(
+        container: Container,
+        particle: Particle,
+        distMouse: number,
+        timeSpent: number,
+        data: IBubblerProcessParam
+    ): void {
         const bubbleParam = data.bubbleObj.optValue;
 
         if (bubbleParam === undefined) {
@@ -62,7 +62,7 @@ export class Bubbler {
                     const obj = pObjBubble ?? pObj;
 
                     if (obj !== bubbleParam) {
-                        const value = pObj - (timeSpent * (pObj - bubbleParam) / bubbleDuration);
+                        const value = pObj - (timeSpent * (pObj - bubbleParam)) / bubbleDuration;
 
                         if (type === ProcessBubbleType.size) {
                             particle.bubble.radius = value;
@@ -238,10 +238,12 @@ export class Bubbler {
         }
     }
 
-    private static calculateBubbleValue(particleValue: number,
-                                        modeValue: number,
-                                        optionsValue: number,
-                                        ratio: number): number | undefined {
+    private static calculateBubbleValue(
+        particleValue: number,
+        modeValue: number,
+        optionsValue: number,
+        ratio: number
+    ): number | undefined {
         if (modeValue > optionsValue) {
             const size = particleValue + (modeValue - optionsValue) * ratio;
 
@@ -263,9 +265,9 @@ export class Bubbler {
                 return;
             }
 
-            particle.bubble.color = ColorUtils.colorToRgb(modeColor instanceof Array ?
-                Utils.itemFromArray(modeColor) :
-                modeColor);
+            const bubbleColor = modeColor instanceof Array ? Utils.itemFromArray(modeColor) : modeColor;
+
+            particle.bubble.color = ColorUtils.colorToRgb(bubbleColor);
         }
     }
 }

@@ -2,7 +2,7 @@ import type { IAbsorber } from "../../Interfaces/Absorbers/IAbsorber";
 import type { ICoordinates } from "../../../Core/Interfaces/ICoordinates";
 import type { RecursivePartial } from "../../../Types/RecursivePartial";
 import { AbsorberSize } from "./AbsorberSize";
-import { OptionsColor } from "../Particles/OptionsColor";
+import { OptionsColor } from "../OptionsColor";
 
 export class Absorber implements IAbsorber {
     public color: OptionsColor;
@@ -20,7 +20,7 @@ export class Absorber implements IAbsorber {
     public load(data?: RecursivePartial<IAbsorber>): void {
         if (data !== undefined) {
             if (data.color !== undefined) {
-                this.color = OptionsColor.create(this.color,  data.color);
+                this.color = OptionsColor.create(this.color, data.color);
             }
 
             if (data.opacity !== undefined) {

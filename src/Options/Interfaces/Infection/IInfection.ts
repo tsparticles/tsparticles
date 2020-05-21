@@ -5,6 +5,6 @@ export interface IInfection extends IOptionLoader<IInfection> {
     cure: boolean;
     delay: number;
     enable: boolean;
-    stages: IInfectionStage[]
+    stages: IInfectionStage[];
     infections: number;
 }

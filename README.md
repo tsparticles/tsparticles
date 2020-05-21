@@ -4,11 +4,21 @@
     </a>
 </p>
 
-# tsParticles - TypeScript Particles [![jsDelivr](https://data.jsdelivr.com/v1/package/npm/tsparticles/badge)](https://www.jsdelivr.com/package/npm/tsparticles) [![Cdnjs](https://img.shields.io/cdnjs/v/tsparticles)](https://cdnjs.com/libraries/tsparticles) [![npmjs](https://badge.fury.io/js/tsparticles.svg)](https://www.npmjs.com/package/tsparticles)
+# tsParticles - TypeScript Particles
 
 **A lightweight TypeScript library for creating particles. Dependency free (\*) and browser ready!**
 
 _[Particles.js](https://github.com/VincentGarreau/particles.js) converted in TypeScript, dependency free (\*), improved with new cool 😎 features and various bugs fixed and **it's currently under development**!_
+
+[![jsDelivr](https://data.jsdelivr.com/v1/package/npm/tsparticles/badge)](https://www.jsdelivr.com/package/npm/tsparticles) [![Cdnjs](https://img.shields.io/cdnjs/v/tsparticles)](https://cdnjs.com/libraries/tsparticles) [![npmjs](https://badge.fury.io/js/tsparticles.svg)](https://www.npmjs.com/package/tsparticles) ![npm](https://img.shields.io/npm/dm/tsparticles)
+
+| `master`                                                                                                                                                                                                                            | `staging`                                                                                                                                                                                                                              | `dev`                                                                                                                                                                                                                      |
+| ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| [![Master Build Status](https://dev.azure.com/hollowmatt/particles.ts/_apis/build/status/matteobruni.tsparticles?branchName=master)](https://dev.azure.com/hollowmatt/particles.ts/_build/latest?definitionId=11&branchName=master) | [![Staging Build Status](https://dev.azure.com/hollowmatt/particles.ts/_apis/build/status/matteobruni.tsparticles?branchName=staging)](https://dev.azure.com/hollowmatt/particles.ts/_build/latest?definitionId=11&branchName=staging) | [![Dev Build Status](https://dev.azure.com/hollowmatt/particles.ts/_apis/build/status/matteobruni.tsparticles?branchName=dev)](https://dev.azure.com/hollowmatt/particles.ts/_build/latest?definitionId=11&branchName=dev) |
+
+[![CodeFactor](https://www.codefactor.io/repository/github/matteobruni/tsparticles/badge)](https://www.codefactor.io/repository/github/matteobruni/tsparticles) [![Codacy Badge](https://api.codacy.com/project/badge/Grade/b983aaf3461a4c48b1e2eecce1ff1d74)](https://www.codacy.com/manual/ar3s/tsparticles?utm_source=github.com&utm_medium=referral&utm_content=matteobruni/tsparticles&utm_campaign=Badge_Grade) [![Codacy Badge](https://api.codacy.com/project/badge/Coverage/b983aaf3461a4c48b1e2eecce1ff1d74)](https://www.codacy.com/manual/ar3s/tsparticles?utm_source=github.com&utm_medium=referral&utm_content=matteobruni/tsparticles&utm_campaign=Badge_Coverage) [![Sauce Test Status](https://saucelabs.com/buildstatus/matteobruni)](https://app.saucelabs.com/u/matteobruni)
+
+[![Slack](https://cdn.matteobruni.it/images/slack.png)](https://join.slack.com/t/tsparticles/shared_invite/enQtOTcxNTQxNjQ4NzkxLWE2MTZhZWExMWRmOWI5MTMxNjczOGE1Yjk0MjViYjdkYTUzODM3OTc5MGQ5MjFlODc4MzE0N2Q1OWQxZDc1YzI) [![tsParticles Product Hunt](https://api.producthunt.com/widgets/embed-image/v1/featured.svg?post_id=186113&theme=light)](https://www.producthunt.com/posts/tsparticles?utm_source=badge-featured&utm_medium=badge&utm_souce=badge-tsparticles")
 
 ## Do you want to use it on your website?
 
@@ -16,11 +26,29 @@ _[Particles.js](https://github.com/VincentGarreau/particles.js) converted in Typ
 
 You'll find the instructions [below](https://github.com/matteobruni/tsparticles/blob/master/README.md#library-installation), with all the links you need, and _don't be scared by **TypeScript**, it's just the source language_.
 
-**The output files are just vanilla JavaScript**. 🤩
+**The output files are just JavaScript**. 🤩
 
-CDNs and `npm` have all the sources you need in **vanilla Javascript**, a bundle browser ready (tsparticles.min.js) and all files splitted for `import` syntax.
+CDNs and `npm` have all the sources you need in **Javascript**, a bundle browser ready (tsparticles.min.js) and all files splitted for `import` syntax.
 
 **If you are still interested** some lines below there are some instructions for migrating from the old particles.js library.
+
+### Related projects
+
+#### jQuery
+
+If you want to use tsParticles with jQuery checkout [this repository](https://github.com/matteobruni/jquery-particles)
+
+#### VueJS
+
+If you want to use tsParticles with VueJS checkout [this repository](https://github.com/matteobruni/particles.vue)
+
+#### ReactJS
+
+If you want to use tsParticles with ReactJS checkout [this repository](https://github.com/matteobruni/react-tsparticles)
+
+##### 3rd Party
+
+A 3rd-party component is available too, read more [here](https://github.com/Wufe/react-particles-js)
 
 ### Want to see it in action and try it?
 
@@ -36,17 +64,19 @@ Want to see ever more demos? Clone the repository on your computer and follow th
 npm install && npm start
 ```
 
-**Boom! 💥** <http://localhost:3000> and you can checkout other demos, _if you are brave enough_ you can switch to the `dev` branch so you can try the features under development.
+**Boom! 💥** <http://localhost:3000> and you can checkout other demos.
+
+_If you are brave enough_ you can switch to the `dev` branch for trying the features under development.
 
 ### Dependencies
 
-You may have notices the \* near dependency free. Well almost all features works without any dependency, but... Well there's a but. The **Polygon Mask** feature requires `pathseg` for some browsers to work fine, and obviously the Icon Fonts (like `FontAwesome`) must be included in your page.
+You may have notices the \* near dependency free. Well almost all features works without any dependency, but... Well there's a little but. The **Polygon Mask** feature requires `[pathseg](https://github.com/progers/pathseg)` for some browsers to work fine, and obviously the Icon Fonts (like `FontAwesome`) must be included in your page.
 
 ---
 
 ## Migrating from Particles.js
 
-**tsParticles** are fully compatible with the _particles.js_ configuration.
+**tsParticles** library is fully compatible with the _particles.js_ configuration.
 
 Seriously, you just need to change the script source et-voilà, **you're ready** 🧙!
 
@@ -62,34 +92,9 @@ _Below you can find all the information you need to install tsParticles and its 
 
 tsParticles now supports some customizations 🥳.
 
-**NOW YOU CAN CREATE YOUR OWN SHAPES OR PRESETS**
+**NOW YOU CAN CREATE YOUR OWN PLUGINS**
 
-*Read more [here](https://github.com/matteobruni/tsparticles/wiki/Create-a-tsParticles-Plugin)...*
-
----
-
-## General Informations
-
-| `master`                                                                                                                                                                                                                            | `staging`                                                                                                                                                                                                                              | `dev`                                                                                                                                                                                                                      |
-| ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| [![Master Build Status](https://dev.azure.com/hollowmatt/particles.ts/_apis/build/status/matteobruni.tsparticles?branchName=master)](https://dev.azure.com/hollowmatt/particles.ts/_build/latest?definitionId=11&branchName=master) | [![Staging Build Status](https://dev.azure.com/hollowmatt/particles.ts/_apis/build/status/matteobruni.tsparticles?branchName=staging)](https://dev.azure.com/hollowmatt/particles.ts/_build/latest?definitionId=11&branchName=staging) | [![Dev Build Status](https://dev.azure.com/hollowmatt/particles.ts/_apis/build/status/matteobruni.tsparticles?branchName=dev)](https://dev.azure.com/hollowmatt/particles.ts/_build/latest?definitionId=11&branchName=dev) |
-
-
-||||
-|---|---|---|
-[![CodeFactor](https://www.codefactor.io/repository/github/matteobruni/tsparticles/badge)](https://www.codefactor.io/repository/github/matteobruni/tsparticles) | [![Codacy Badge](https://api.codacy.com/project/badge/Grade/b983aaf3461a4c48b1e2eecce1ff1d74)](https://www.codacy.com/manual/ar3s/tsparticles?utm_source=github.com&utm_medium=referral&utm_content=matteobruni/tsparticles&utm_campaign=Badge_Grade) | [![Codacy Badge](https://api.codacy.com/project/badge/Coverage/b983aaf3461a4c48b1e2eecce1ff1d74)](https://www.codacy.com/manual/ar3s/tsparticles?utm_source=github.com&utm_medium=referral&utm_content=matteobruni/tsparticles&utm_campaign=Badge_Coverage)
-
----
-
-## Social
-
-### Slack
-
-[![Slack](https://cdn.matteobruni.it/images/slack.png)](https://join.slack.com/t/tsparticles/shared_invite/enQtOTcxNTQxNjQ4NzkxLWE2MTZhZWExMWRmOWI5MTMxNjczOGE1Yjk0MjViYjdkYTUzODM3OTc5MGQ5MjFlODc4MzE0N2Q1OWQxZDc1YzI)
-
-### Product Hunt
-
-[![tsParticles - A lightweight TypeScript library for creating particles | Product Hunt Embed](https://api.producthunt.com/widgets/embed-image/v1/featured.svg?post_id=186113&theme=light)](https://www.producthunt.com/posts/tsparticles?utm_source=badge-featured&utm_medium=badge&utm_souce=badge-tsparticles")
+_Read more [here](https://github.com/matteobruni/tsparticles/wiki/Create-a-tsParticles-Plugin)..._
 
 ---
 
@@ -115,7 +120,7 @@ Documentation and Development references [here](https://particles.matteobruni.it
 
 #### unpkg
 
-<https://unpkg.com/browse/tsparticles@1.12.10/dist/>
+<https://unpkg.com/tsparticles/>
 
 ---
 
@@ -281,7 +286,7 @@ You can follow the instructions [here](https://github.com/Wufe/react-particles-j
 
 #### Polygon mask
 
-[![tsParticles Polygon Mask demo](https://media.giphy.com/media/lNRfiSgaMFbL4FMhW6/giphy.gif)](https://particles.matteobruni.it/#mask)
+[![tsParticles Polygon Mask demo](https://media.giphy.com/media/lNRfiSgaMFbL4FMhW6/giphy.gif)](https://particles.matteobruni.it/#polygonMask)
 
 ---
 
@@ -341,3 +346,7 @@ You can find all options available [here](https://github.com/matteobruni/tsparti
 ### Huge thanks to [JetBrains](https://www.jetbrains.com/?from=tsParticles) for the 2020 Open Source License!
 
 [JetBrains WebStorm](https://www.jetbrains.com/webstorm/?from=tsParticles) is used to maintain this project.
+
+### Huge thanks to [SauceLabs](https://saucelabs.com) for the Open Source License!
+
+<img alt="Testing Powered By SauceLabs" src="https://raw.githubusercontent.com/saucelabs/opensource/master/assets/powered-by-saucelabs-badge-red.svg" width="250" />
