@@ -1,6 +1,6 @@
 {
   "name": "react-tsparticles",
-  "version": "1.14.5",
+  "version": "1.14.6",
   "description": "Reactified tsParticles",
   "main": "index.js",
   "unpkg": "umd/particles.js",
