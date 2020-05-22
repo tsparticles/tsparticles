@@ -46,7 +46,6 @@ export class Particle implements IParticle {
     public infectionTime?: number;
     public infectionDelay?: number;
     public infectionDelayStage?: number;
-    public readonly initialPosition?: ICoordinates;
     public readonly position: ICoordinates;
     public readonly offset: ICoordinates;
     public readonly color: IHsl | undefined;
@@ -220,13 +219,6 @@ export class Particle implements IParticle {
 
         /* position */
         this.position = this.calcPosition(this.container, position);
-
-        if (options.polygon.enable && options.polygon.type === PolygonMaskType.inline) {
-            this.initialPosition = {
-                x: this.position.x,
-                y: this.position.y,
-            };
-        }
 
         /* parallax */
         this.offset = {
@@ -522,7 +514,8 @@ export class Particle implements IParticle {
     private calcPosition(container: Container, position?: ICoordinates): ICoordinates {
         for (const id in container.plugins) {
             const plugin = container.plugins[id];
-            const pluginPos = plugin.particlePosition !== undefined ? plugin.particlePosition(position) : undefined;
+            const pluginPos =
+                plugin.particlePosition !== undefined ? plugin.particlePosition(position, this) : undefined;
 
             if (pluginPos !== undefined) {
                 return pluginPos;

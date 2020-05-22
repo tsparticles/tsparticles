@@ -22,7 +22,7 @@ export class Plugins {
 
     public static getAvailablePlugins(container: Container): { [id: string]: IContainerPlugin } {
         const res: { [id: string]: IContainerPlugin } = {};
-        const availablePlugins = this.plugins.filter((t) => t.needsPlugin(container));
+        const availablePlugins = this.plugins.filter((t) => t.needsPlugin(container.sourceOptions));
 
         for (const plugin of availablePlugins) {
             res[plugin.id] = plugin.getPlugin(container);

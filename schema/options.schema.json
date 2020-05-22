@@ -5,70 +5,6 @@
       "enum": ["max", "min", "none"],
       "type": "string"
     },
-    "IAbsorber": {
-      "description": "Absorber options",
-      "properties": {
-        "color": {
-          "anyOf": [
-            {
-              "$ref": "#/definitions/IColor"
-            },
-            {
-              "type": "string"
-            }
-          ],
-          "description": "Absorber color"
-        },
-        "opacity": {
-          "description": "Absorber opacity",
-          "type": "number"
-        },
-        "position": {
-          "$ref": "#/definitions/ICoordinates",
-          "description": "Absorber position, percent values calculated on canvas size"
-        },
-        "size": {
-          "$ref": "#/definitions/IAbsorberSize",
-          "description": "Absorber size, these values will be used as pixels"
-        }
-      },
-      "type": "object"
-    },
-    "IAbsorberRandomSize": {
-      "properties": {
-        "enable": {
-          "type": "boolean"
-        },
-        "minimumValue": {
-          "type": "number"
-        }
-      },
-      "type": "object"
-    },
-    "IAbsorberSize": {
-      "properties": {
-        "density": {
-          "type": "number"
-        },
-        "limit": {
-          "type": "number"
-        },
-        "random": {
-          "anyOf": [
-            {
-              "$ref": "#/definitions/IAbsorberRandomSize"
-            },
-            {
-              "type": "boolean"
-            }
-          ]
-        },
-        "value": {
-          "type": "number"
-        }
-      },
-      "type": "object"
-    },
     "IAnimatableColor": {
       "properties": {
         "animation": {
@@ -460,82 +396,6 @@
       },
       "type": "object"
     },
-    "IEmitter": {
-      "description": "Particles emitter object options",
-      "properties": {
-        "direction": {
-          "$ref": "#/definitions/MoveDirection",
-          "description": "The direction of the emitted particles, [[MoveDirection]] is the enum used for values"
-        },
-        "life": {
-          "$ref": "#/definitions/IEmitterLife",
-          "description": "The emitter life options"
-        },
-        "particles": {
-          "$ref": "#/definitions/RecursivePartial<IParticles>",
-          "description": "Particles emitted customization.\nThese settings will overrides other particles settings for the particles emitted by this emitter\nParticles number options won't override anything, they will be ignored completely"
-        },
-        "position": {
-          "$ref": "#/definitions/ICoordinates",
-          "description": "The relative position (in percent) of the emitter, where particles spawns.\nIf size is specified the position will be the center of the size options"
-        },
-        "rate": {
-          "$ref": "#/definitions/IEmitterRate",
-          "description": "The particles emitting rate options"
-        },
-        "size": {
-          "$ref": "#/definitions/IEmitterSize",
-          "description": "The size of the particles emitter area"
-        }
-      },
-      "type": "object"
-    },
-    "IEmitterLife": {
-      "description": "The particles emitter life options",
-      "properties": {
-        "count": {
-          "description": "The count of lives the particles emitter has.\nIf <= 0 or not specified infinity will be the value.\nIf the count is > 0 it will spawn only that number of times then it'll be destroyed and removed",
-          "type": "number"
-        },
-        "delay": {
-          "description": "The delay between any spawn, except first.",
-          "type": "number"
-        },
-        "duration": {
-          "description": "The duration of any emitter life.\nIf <= 0 or  not specified infinity will be the value.",
-          "type": "number"
-        }
-      },
-      "type": "object"
-    },
-    "IEmitterRate": {
-      "description": "The particles emitter rate options",
-      "properties": {
-        "delay": {
-          "description": "The emitting velocity, how many seconds will pass between the next particles creation\nDecimal values allowed",
-          "type": "number"
-        },
-        "quantity": {
-          "description": "The emitting quantity, how many particles will be created at every creation event",
-          "type": "number"
-        }
-      },
-      "type": "object"
-    },
-    "IEmitterSize": {
-      "properties": {
-        "height": {
-          "type": "number"
-        },
-        "mode": {
-          "$ref": "#/definitions/SizeMode"
-        },
-        "width": {
-          "type": "number"
-        }
-      },
-      "type": "object"
-    },
     "IEvents": {
       "properties": {
         "onClick": {
@@ -820,37 +680,11 @@
     },
     "IModes": {
       "properties": {
-        "absorbers": {
-          "anyOf": [
-            {
-              "$ref": "#/definitions/IAbsorber"
-            },
-            {
-              "items": {
-                "$ref": "#/definitions/IAbsorber"
-              },
-              "type": "array"
-            }
-          ]
-        },
         "bubble": {
           "$ref": "#/definitions/IBubble"
         },
         "connect": {
           "$ref": "#/definitions/IConnect"
-        },
-        "emitters": {
-          "anyOf": [
-            {
-              "$ref": "#/definitions/IEmitter"
-            },
-            {
-              "items": {
-                "$ref": "#/definitions/IEmitter"
-              },
-              "type": "array"
-            }
-          ]
         },
         "grab": {
           "$ref": "#/definitions/IGrab"
@@ -1114,102 +948,6 @@
         },
         "value": {
           "type": "number"
-        }
-      },
-      "type": "object"
-    },
-    "IPolygonInline": {
-      "properties": {
-        "arrangement": {
-          "$ref": "#/definitions/PolygonMaskInlineArrangement"
-        }
-      },
-      "type": "object"
-    },
-    "IPolygonMask": {
-      "properties": {
-        "draw": {
-          "$ref": "#/definitions/IPolygonMaskDraw"
-        },
-        "enable": {
-          "type": "boolean"
-        },
-        "inline": {
-          "$ref": "#/definitions/IPolygonInline"
-        },
-        "inlineArrangement": {
-          "$ref": "#/definitions/PolygonMaskInlineArrangement"
-        },
-        "move": {
-          "$ref": "#/definitions/IPolygonMaskMove"
-        },
-        "position": {
-          "$ref": "#/definitions/ICoordinates"
-        },
-        "scale": {
-          "type": "number"
-        },
-        "type": {
-          "$ref": "#/definitions/PolygonMaskType"
-        },
-        "url": {
-          "type": "string"
-        }
-      },
-      "type": "object"
-    },
-    "IPolygonMaskDraw": {
-      "properties": {
-        "enable": {
-          "type": "boolean"
-        },
-        "lineColor": {
-          "anyOf": [
-            {
-              "$ref": "#/definitions/IColor"
-            },
-            {
-              "type": "string"
-            }
-          ]
-        },
-        "lineWidth": {
-          "type": "number"
-        },
-        "stroke": {
-          "$ref": "#/definitions/IPolygonMaskDrawStroke"
-        }
-      },
-      "type": "object"
-    },
-    "IPolygonMaskDrawStroke": {
-      "properties": {
-        "color": {
-          "anyOf": [
-            {
-              "$ref": "#/definitions/IColor"
-            },
-            {
-              "type": "string"
-            }
-          ]
-        },
-        "opacity": {
-          "type": "number"
-        },
-        "width": {
-          "type": "number"
-        }
-      },
-      "type": "object"
-    },
-    "IPolygonMaskMove": {
-      "properties": {
-        "radius": {
-          "type": "number"
-        },
-        "type": {
-          "$ref": "#/definitions/PolygonMaskMoveType"
         }
       },
       "type": "object"
@@ -1628,18 +1366,6 @@
     },
     "OutMode": {
       "enum": ["bounce", "bounce-horizontal", "bounce-vertical", "destroy", "out"],
-      "type": "string"
-    },
-    "PolygonMaskInlineArrangement": {
-      "enum": ["equidistant", "one-per-point", "per-point", "random-length", "random-point"],
-      "type": "string"
-    },
-    "PolygonMaskMoveType": {
-      "enum": ["path", "radius"],
-      "type": "string"
-    },
-    "PolygonMaskType": {
-      "enum": ["inline", "inside", "none", "outside"],
       "type": "string"
     },
     "RecursivePartial<(data?:RecursivePartial<IAttract>|undefined)=>void>": {
@@ -2726,10 +2452,6 @@
       "enum": ["clockwise", "counter-clockwise", "random"],
       "type": "string"
     },
-    "SizeMode": {
-      "enum": ["percent", "precise"],
-      "type": "string"
-    },
     "StartValueType": {
       "enum": ["max", "min"],
       "type": "string"
@@ -2737,20 +2459,6 @@
   },
   "description": "The Options interface, defines all the options that can be used by `tsParticles`",
   "properties": {
-    "absorbers": {
-      "anyOf": [
-        {
-          "$ref": "#/definitions/IAbsorber"
-        },
-        {
-          "items": {
-            "$ref": "#/definitions/IAbsorber"
-          },
-          "type": "array"
-        }
-      ],
-      "description": "Absorbers options, you can configure particles absorbers with these options\nAbsorbers act like black holes, a particle is attracted by it and when it's inside it will be destroyed"
-    },
     "background": {
       "$ref": "#/definitions/IBackground",
       "description": "Background options, these background options will be used to the canvas element, they are all CSS properties"
@@ -2762,20 +2470,6 @@
     "detectRetina": {
       "description": "Enables the retina detection, if disabled the ratio used by canvas will be always 1 and not the device setting.",
       "type": "boolean"
-    },
-    "emitters": {
-      "anyOf": [
-        {
-          "$ref": "#/definitions/IEmitter"
-        },
-        {
-          "items": {
-            "$ref": "#/definitions/IEmitter"
-          },
-          "type": "array"
-        }
-      ],
-      "description": "Emitters options, an emitter is an area that spawns particles"
     },
     "fpsLimit": {
       "description": "The F(rame)P(er)S(econd) limit applied to all particles animations.",
@@ -2800,10 +2494,6 @@
     "pauseOnBlur": {
       "description": "Enables or disabled the animation on window blur",
       "type": "boolean"
-    },
-    "polygon": {
-      "$ref": "#/definitions/IPolygonMask",
-      "description": "The polygon mask options."
     },
     "preset": {
       "anyOf": [

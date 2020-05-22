@@ -29,7 +29,6 @@ export interface IParticle {
     readonly infectionTime?: number;
     readonly infectionDelay?: number;
     readonly infectionDelayStage?: number;
-    readonly initialPosition?: ICoordinates;
     readonly initialVelocity: IVelocity;
     readonly links: ILink[];
     readonly offset: ICoordinates;

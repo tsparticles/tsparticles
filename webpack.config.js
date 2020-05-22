@@ -14,6 +14,8 @@ v${version}`;
 const minBanner = `tsParticles v${version} by Matteo Bruni`;
 
 const getConfig = (entry) => {
+  const reportFileName = Object.keys(entry).find((t) => t.indexOf("slim") >= 0) ? "report.slim" : "report";
+
   return {
     entry: entry,
     output: {
@@ -48,7 +50,7 @@ const getConfig = (entry) => {
         openAnalyzer: false,
         analyzerMode: "static",
         exclude: /\.min\.js$/,
-        reportFilename: "../demo/public/report.html",
+        reportFilename: `../demo/public/${reportFileName}.html`,
       }),
     ],
     optimization: {

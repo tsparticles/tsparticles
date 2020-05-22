@@ -260,11 +260,7 @@ export class Container {
             return;
         }
 
-        const availablePlugins = Plugins.getAvailablePlugins(this);
-
-        for (const id in availablePlugins) {
-            this.plugins[id] = availablePlugins[id];
-        }
+        await this.init();
 
         this.started = true;
 
@@ -280,6 +276,20 @@ export class Container {
             }
         }
 
+        this.play();
+    }
+
+    private async init(): Promise<void> {
+        /* init canvas + particles */
+        this.retina.init();
+        this.canvas.init();
+
+        const availablePlugins = Plugins.getAvailablePlugins(this);
+
+        for (const id in availablePlugins) {
+            this.plugins[id] = availablePlugins[id];
+        }
+
         for (const type in this.drawers) {
             const drawer = this.drawers[type];
 
@@ -288,23 +298,17 @@ export class Container {
             }
         }
 
-        this.init();
-        this.play();
-    }
-
-    private init(): void {
-        /* init canvas + particles */
-        this.retina.init();
-        this.canvas.init();
-        this.particles.init();
-        this.densityAutoParticles();
-
         for (const id in this.plugins) {
             const plugin = this.plugins[id];
 
             if (plugin.init !== undefined) {
-                plugin.init();
+                plugin.init(this.sourceOptions);
+            } else if (plugin.initAsync !== undefined) {
+                await plugin.initAsync(this.sourceOptions);
             }
         }
+
+        this.particles.init();
+        this.densityAutoParticles();
     }
 }

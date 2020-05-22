@@ -360,8 +360,8 @@ docs/
 typedoc/themes/particles/assets/js/tsparticles.min.js
 demo/public/report.html
 demo/public/report.htm
-demo/public/report.slim.html
-demo/public/report.slim.htm
+demo/public/report.*.html
+demo/public/report.*.htm
 
 .idea/
 .nyc_output/

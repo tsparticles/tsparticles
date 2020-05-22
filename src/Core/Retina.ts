@@ -14,7 +14,6 @@ export class Retina {
     public moveSpeed: number;
     public sizeValue: number;
     public sizeAnimationSpeed: number;
-    public polygonMaskMoveRadius: number;
     public pixelRatio: number;
 
     private readonly container: Container;
@@ -33,7 +32,6 @@ export class Retina {
         this.moveSpeed = 0;
         this.sizeValue = 0;
         this.sizeAnimationSpeed = 0;
-        this.polygonMaskMoveRadius = 0;
         this.pixelRatio = 1;
     }
 
@@ -73,8 +71,6 @@ export class Retina {
         this.slowModeRadius = modes.slow.radius * ratio;
         this.bubbleModeDistance = modes.bubble.distance * ratio;
         this.bubbleModeSize = modes.bubble.size ?? this.sizeValue * ratio;
-
-        this.polygonMaskMoveRadius = options.polygon.move.radius * ratio;
     }
 
     public initParticle(particle: Particle): void {
