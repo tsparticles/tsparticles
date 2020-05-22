@@ -50,6 +50,10 @@ If you want to use tsParticles with ReactJS checkout [this repository](https://g
 
 A 3rd-party component is available too, read more [here](https://github.com/Wufe/react-particles-js)
 
+#### Preact
+
+If you want to use tsParticles with Preact checkout [this repository](https://github.com/matteobruni/preact-particles)
+
 #### Angular CLI
 
 If you want to use tsParticles with Angular CLI (actually v9) checkout [this repository](https://github.com/matteobruni/ng-particles)
