@@ -1,12 +1,12 @@
 import * as React from "react";
 import { Component } from "react";
-import isEqual from 'lodash/isEqual';
+import isEqual from "lodash/isEqual";
 import type { IOptions } from "tsparticles/dist/Interfaces/Options/IOptions";
 import { Container } from "tsparticles/dist/Classes/Container";
 import type { RecursivePartial } from "tsparticles/dist/Types/RecursivePartial";
 import { defaultParams } from "./DefaultOptions";
 import { Options } from "tsparticles/dist/Classes/Options/Options";
-import { tsParticles } from "tsparticles/dist/index";
+import { tsParticles } from "tsparticles";
 
 export interface ParticlesProps {
     id: string;
@@ -49,12 +49,13 @@ export default class Particles extends Component<ParticlesProps,
         } catch {
             return null;
         } // SSR
-        var options = new Options();
+        const options = new Options();
 
         options.load(defaultParams);
         options.load(params);
 
-        tsParticles.dom();
+        tsParticles.init();
+
         const container = new Container(tagId, options);
 
         if (this.props.particlesRef) {
@@ -69,8 +70,8 @@ export default class Particles extends Component<ParticlesProps,
         if (canvas) {
             this.destroy();
             this.setState({
-                library: this.buildParticlesLibrary(props.id, props.params)
-            },
+                    library: this.buildParticlesLibrary(props.id, props.params)
+                },
                 () => {
                     this.loadCanvas(canvas);
                 }
@@ -87,8 +88,8 @@ export default class Particles extends Component<ParticlesProps,
     loadCanvas(canvas: HTMLCanvasElement) {
         if (canvas) {
             this.setState({
-                canvas
-            },
+                    canvas
+                },
                 () => {
                     const { library } = this.state;
 
@@ -104,7 +105,7 @@ export default class Particles extends Component<ParticlesProps,
     }
 
     shouldComponentUpdate(nextProps: Readonly<ParticlesProps>) {
-        return !isEqual(nextProps, this.props);
+        return !this.state.library || !isEqual(nextProps, this.props);
     }
 
     componentDidUpdate() {

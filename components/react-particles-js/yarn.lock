@@ -3969,18 +3969,23 @@ tsconfig@^6.0.0:
     strip-bom "^3.0.0"
     strip-json-comments "^2.0.0"
 
-tslib@^1.11.1, tslib@^1.9.0:
+tslib@^1.11.2:
+  version "1.11.2"
+  resolved "https://registry.yarnpkg.com/tslib/-/tslib-1.11.2.tgz#9c79d83272c9a7aaf166f73915c9667ecdde3cc9"
+  integrity sha512-tTSkux6IGPnUGUd1XAZHcpu85MOkIl5zX49pO+jfsie3eP0B6pyhOlLXm3cAC6T7s+euSDDUUV+Acop5WmtkVg==
+
+tslib@^1.9.0:
   version "1.11.1"
   resolved "https://registry.yarnpkg.com/tslib/-/tslib-1.11.1.tgz#eb15d128827fbee2841549e171f45ed338ac7e35"
   integrity sha512-aZW88SY8kQbU7gpV19lN24LtXh/yD4ZZg6qieAJDDg+YBsJcSmLGK9QpnUjAKVG/xefmvJGd1WUmfpT/g6AJGA==
 
-tsparticles@^1.13.6:
-  version "1.13.6"
-  resolved "https://registry.yarnpkg.com/tsparticles/-/tsparticles-1.13.6.tgz#f461415d4f670715f8a48393fc8193fb0663afd7"
-  integrity sha512-ULiKaRNy/3H91A6d56ob7uf03QnVxDS77TVpIGGfoqoyoOU4uOWIF+XtGenrHz9spQu4PO5+mgojXn91sNtDXQ==
+tsparticles@^1.14.3:
+  version "1.14.3"
+  resolved "https://registry.yarnpkg.com/tsparticles/-/tsparticles-1.14.3.tgz#2ec575d5fd94eff951f77e0a72936d7738283167"
+  integrity sha512-2nIsKHf2aPZqIb7YjqsIiyoRtkUItTVbTw8q+lantiqP4mpVzAukF7NW49088mrMku6WnBtxjKqlyzsN/jDbcw==
   dependencies:
     pathseg "^1.2.0"
-    tslib "^1.11.1"
+    tslib "^1.11.2"
 
 tty-browserify@0.0.0:
   version "0.0.0"
