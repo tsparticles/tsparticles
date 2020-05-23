@@ -45,8 +45,7 @@ type PolygonMaskParticle = Particle & {
 export class PolygonMaskInstance implements IContainerPlugin {
     public redrawTimeout?: number;
     public raw?: ICoordinates[];
-    public svg?: SVGSVGElement;
-    public paths: ISvgPath[];
+    public paths?: ISvgPath[];
     public dimension: IDimension;
     public offset?: ICoordinates;
     public readonly path2DSupported: boolean;
@@ -61,7 +60,6 @@ export class PolygonMaskInstance implements IContainerPlugin {
             height: 0,
             width: 0,
         };
-        this.paths = [];
         this.path2DSupported = Object.prototype.hasOwnProperty.call(window, "Path2D");
         this.options = new PolygonMask();
         this.polygonMaskMoveRadius = this.options.move.radius * container.retina.pixelRatio;
@@ -119,8 +117,12 @@ export class PolygonMaskInstance implements IContainerPlugin {
         this.polygonMaskMoveRadius = polygonMaskOptions.move.radius * this.container.retina.pixelRatio;
 
         /* If is set the url of svg element, load it and parse into raw polygon data */
-        if (polygonMaskOptions.enable && polygonMaskOptions.url) {
-            this.raw = await this.parseSvgPathToPolygon(polygonMaskOptions.url);
+        if (polygonMaskOptions.enable) {
+            if (polygonMaskOptions.url) {
+                this.raw = await this.downloadSvgPathToPolygon(polygonMaskOptions.url);
+            } else if (polygonMaskOptions.data) {
+                this.raw = this.parseSvgPathToPolygon(polygonMaskOptions.data);
+            }
 
             this.createPath2D();
         }
@@ -183,22 +185,23 @@ export class PolygonMaskInstance implements IContainerPlugin {
                 clearTimeout(this.redrawTimeout);
             }
 
-            this.redrawTimeout = window.setTimeout(() => {
-                this.parseSvgPathToPolygon().then((data) => {
-                    this.raw = data;
+            this.redrawTimeout = window.setTimeout(async () => {
+                if (polygonMaskOptions.url) {
+                    this.raw = await this.downloadSvgPathToPolygon(polygonMaskOptions.url);
+                } else if (polygonMaskOptions.data) {
+                    this.raw = this.parseSvgPathToPolygon(polygonMaskOptions.data);
+                }
 
-                    this.createPath2D();
+                this.createPath2D();
 
-                    container.particles.redraw();
-                });
+                container.particles.redraw();
             }, 250);
         }
     }
 
     public stop(): void {
         delete this.raw;
-        this.paths = [];
-        delete this.svg;
+        delete this.paths;
     }
 
     public randomPointInPolygon(): ICoordinates {
@@ -335,42 +338,64 @@ export class PolygonMaskInstance implements IContainerPlugin {
      * Opera release 49
      * Opera for Android release 49
      */
-    public async parseSvgPathToPolygon(svgUrl?: string): Promise<ICoordinates[] | undefined> {
-        const container = this.container;
+    public async downloadSvgPathToPolygon(svgUrl?: string, force?: boolean): Promise<ICoordinates[] | undefined> {
         const polygonMaskOptions = this.options;
         const url = svgUrl || polygonMaskOptions.url;
+        const forceDownload = force ?? false;
 
         // Load SVG from file on server
-        if (!this.paths.length || !this.svg) {
-            const req = await fetch(url);
-            if (req.ok) {
-                const xml = await req.text();
-                const parser = new DOMParser();
-                const doc = parser.parseFromString(xml, "image/svg+xml");
+        if (!url || (this.paths !== undefined && !forceDownload)) {
+            return this.raw;
+        }
 
-                this.svg = doc.getElementsByTagName("svg")[0];
-                const svgPaths = doc.getElementsByTagName("path");
+        const req = await fetch(url);
 
-                for (let i = 0; i < svgPaths.length; i++) {
-                    const path = svgPaths.item(i);
+        if (req.ok) {
+            return this.parseSvgPathToPolygon(await req.text());
+        } else {
+            throw new Error("tsParticles Error - Error occurred during polygon mask download");
+        }
+    }
 
-                    if (path) {
-                        this.paths.push({
-                            element: path,
-                            length: path.getTotalLength(),
-                        });
-                    }
-                }
-            } else {
-                throw new Error("tsParticles Error - Error occurred during polygon mask download");
+    public parseSvgPathToPolygon(xml: string, force?: boolean): ICoordinates[] | undefined {
+        const forceDownload = force ?? false;
+
+        if (this.paths !== undefined && !forceDownload) {
+            return this.raw;
+        }
+
+        const container = this.container;
+        const polygonMaskOptions = this.options;
+
+        const parser = new DOMParser();
+        const doc = parser.parseFromString(xml, "image/svg+xml");
+        const svg = doc.getElementsByTagName("svg")[0];
+
+        let svgPaths = svg.getElementsByTagName("path");
+
+        if (!svgPaths.length) {
+            svgPaths = doc.getElementsByTagName("path");
+        }
+
+        this.paths = [];
+
+        for (let i = 0; i < svgPaths.length; i++) {
+            const path = svgPaths.item(i);
+
+            if (path) {
+                console.dir(path);
+                this.paths.push({
+                    element: path,
+                    length: path.getTotalLength(),
+                });
             }
         }
 
         const pxRatio = container.retina.pixelRatio;
         const scale = polygonMaskOptions.scale / pxRatio;
 
-        this.dimension.width = parseFloat(this.svg.getAttribute("width") || "0") * scale;
-        this.dimension.height = parseFloat(this.svg.getAttribute("height") || "0") * scale;
+        this.dimension.width = parseFloat(svg.getAttribute("width") || "0") * scale;
+        this.dimension.height = parseFloat(svg.getAttribute("height") || "0") * scale;
 
         const position = polygonMaskOptions.position ?? {
             x: 50,
@@ -460,6 +485,10 @@ export class PolygonMaskInstance implements IContainerPlugin {
     }
 
     public draw(context: CanvasRenderingContext2D): void {
+        if (!this.paths?.length) {
+            return;
+        }
+
         const polygonMaskOptions = this.options;
 
         if (polygonMaskOptions.enable && polygonMaskOptions.draw.enable) {
@@ -508,7 +537,7 @@ export class PolygonMaskInstance implements IContainerPlugin {
     private getRandomPointOnPolygonPathByLength(): ICoordinates {
         const polygonMaskOptions = this.options;
 
-        if (!this.raw || !this.raw.length || !this.paths.length) throw new Error(Constants.noPolygonDataLoaded);
+        if (!this.raw || !this.raw.length || !this.paths?.length) throw new Error(Constants.noPolygonDataLoaded);
 
         const path = Utils.itemFromArray(this.paths);
         const distance = Math.floor(Math.random() * path.length) + 1;
@@ -525,7 +554,7 @@ export class PolygonMaskInstance implements IContainerPlugin {
         const options = container.options;
         const polygonMaskOptions = this.options;
 
-        if (!this.raw || !this.raw.length || !this.paths.length) throw new Error(Constants.noPolygonDataLoaded);
+        if (!this.raw || !this.raw.length || !this.paths?.length) throw new Error(Constants.noPolygonDataLoaded);
 
         let offset = 0;
         let point: DOMPoint | undefined;
@@ -565,7 +594,7 @@ export class PolygonMaskInstance implements IContainerPlugin {
     private createPath2D(): void {
         const polygonMaskOptions = this.options;
 
-        if (!this.path2DSupported) {
+        if (!this.path2DSupported || !this.paths?.length) {
             return;
         }
 

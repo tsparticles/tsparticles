@@ -20,5 +20,6 @@ export interface IPolygonMask extends IOptionLoader<IPolygonMask> {
     position?: ICoordinates;
     scale: number;
     type: PolygonMaskType;
-    url: string;
+    url?: string;
+    data?: string;
 }

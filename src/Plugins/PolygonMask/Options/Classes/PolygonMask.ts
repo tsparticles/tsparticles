@@ -29,7 +29,8 @@ export class PolygonMask implements IPolygonMask {
     public position?: ICoordinates;
     public scale: number;
     public type: PolygonMaskType;
-    public url: string;
+    public url?: string;
+    public data?: string;
 
     constructor() {
         this.draw = new Draw();
@@ -38,7 +39,6 @@ export class PolygonMask implements IPolygonMask {
         this.move = new Move();
         this.scale = 1;
         this.type = PolygonMaskType.none;
-        this.url = "";
     }
 
     public load(data?: RecursivePartial<IPolygonMask>): void {
@@ -71,6 +71,10 @@ export class PolygonMask implements IPolygonMask {
 
             if (data.url !== undefined) {
                 this.url = data.url;
+            }
+
+            if (data.data !== undefined) {
+                this.data = data.data;
             }
 
             if (data.position !== undefined) {

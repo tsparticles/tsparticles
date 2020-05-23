@@ -4,12 +4,13 @@ import type { Container } from "../../Core/Container";
 import type { RecursivePartial } from "../../Types/RecursivePartial";
 import type { IOptions } from "../../Options/Interfaces/IOptions";
 import type { IPolygonMask } from "./Options/Interfaces/IPolygonMask";
+import { tsParticles } from "../../index.slim";
 
 type IPolygonMaskOptions = IOptions & {
     polygon: IPolygonMask;
 };
 
-export class PolygonMaskPlugin implements IPlugin {
+class PolygonMaskPlugin implements IPlugin {
     public readonly id: string;
 
     constructor() {
@@ -24,3 +25,5 @@ export class PolygonMaskPlugin implements IPlugin {
         return options?.polygon?.enable ?? false;
     }
 }
+
+tsParticles.addPlugin(new PolygonMaskPlugin());

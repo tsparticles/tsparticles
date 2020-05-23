@@ -3,7 +3,7 @@
     "target": "es6",
     "module": "es6",
     "lib": [
-      "ES2015",
+      "ES6",
       "DOM"
     ],
     "declaration": true,

@@ -7,12 +7,13 @@ import { RecursivePartial } from "../../Types/RecursivePartial";
 import { IOptions } from "../../Options/Interfaces/IOptions";
 import { SingleOrMultiple } from "../../Types/SingleOrMultiple";
 import { Emitter } from "./Options/Classes/Emitter";
+import { tsParticles } from "../../index.slim";
 
 type EmitterOptions = IOptions & {
     emitters: SingleOrMultiple<Emitter>;
 };
 
-export class EmittersPlugin implements IPlugin {
+class EmittersPlugin implements IPlugin {
     public readonly id: string;
 
     constructor() {
@@ -47,3 +48,5 @@ export class EmittersPlugin implements IPlugin {
         return loadEmitters;
     }
 }
+
+tsParticles.addPlugin(new EmittersPlugin());

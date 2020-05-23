@@ -9,6 +9,7 @@ import { SingleOrMultiple } from "../../Types/SingleOrMultiple";
 import { Absorber } from "./Options/Classes/Absorber";
 import { IInteractivity } from "../../Options/Interfaces/Interactivity/IInteractivity";
 import { IModes } from "../../Options/Interfaces/Interactivity/Modes/IModes";
+import { tsParticles } from "../../index.slim";
 
 type AbsorberOptions = IOptions & {
     absorbers: SingleOrMultiple<Absorber>;
@@ -19,7 +20,7 @@ type AbsorberOptions = IOptions & {
     };
 };
 
-export class AbsorbersPlugin implements IPlugin {
+class AbsorbersPlugin implements IPlugin {
     public readonly id: string;
 
     constructor() {
@@ -54,3 +55,5 @@ export class AbsorbersPlugin implements IPlugin {
         return loadAbsorbers;
     }
 }
+
+tsParticles.addPlugin(new AbsorbersPlugin());
