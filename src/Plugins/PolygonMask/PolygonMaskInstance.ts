@@ -411,14 +411,15 @@ export class PolygonMaskInstance implements IContainerPlugin {
         const polygonRaw: ICoordinates[] = [];
 
         for (const path of this.paths) {
-            const len = path.element.pathSegList.numberOfItems;
+            const segments = path.element.pathSegList;
+            const len = segments.numberOfItems;
             const p = {
                 x: 0,
                 y: 0,
             };
 
             for (let i = 0; i < len; i++) {
-                const segment: SVGPathSeg = path.element.pathSegList.getItem(i);
+                const segment: SVGPathSeg = segments.getItem(i);
 
                 switch (segment.pathSegType) {
                     //
