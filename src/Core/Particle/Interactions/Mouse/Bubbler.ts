@@ -1,9 +1,7 @@
 import type { Container } from "../../../Container";
 import type { IBubblerProcessParam } from "../../../Interfaces/IBubblerProcessParam";
-import { ProcessBubbleType } from "../../../../Enums/ProcessBubbleType";
 import { Circle, ColorUtils, Constants, Utils } from "../../../../Utils";
-import { HoverMode } from "../../../../Enums/Modes/HoverMode";
-import { ClickMode } from "../../../../Enums/Modes/ClickMode";
+import { HoverMode, ProcessBubbleType, ClickMode } from "../../../../Enums";
 import type { IParticle } from "../../../Interfaces/IParticle";
 import { Particle } from "../../../Particle";
 

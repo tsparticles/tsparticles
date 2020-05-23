@@ -2,7 +2,7 @@ import type { Container } from "./Core/Container";
 import { Loader } from "./Core/Loader";
 import type { IOptions } from "./Options/Interfaces/IOptions";
 import type { RecursivePartial } from "./Types/RecursivePartial";
-import { ShapeType } from "./Enums/ShapeType";
+import { ShapeType } from "./Enums";
 import { LineDrawer } from "./ShapeDrawers/LineDrawer";
 import { CircleDrawer } from "./ShapeDrawers/CircleDrawer";
 import { SquareDrawer } from "./ShapeDrawers/SquareDrawer";
@@ -251,3 +251,4 @@ particlesJS.setOnClickHandler = (callback: EventListenerOrEventListenerObject): 
 const pJSDom = tsParticles.dom();
 
 export { tsParticles, particlesJS, pJSDom };
+export * from "./Enums";

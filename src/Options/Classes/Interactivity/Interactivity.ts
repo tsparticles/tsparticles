@@ -1,9 +1,8 @@
 import type { IInteractivity } from "../../Interfaces/Interactivity/IInteractivity";
-import { InteractivityDetect } from "../../../Enums/InteractivityDetect";
+import { HoverMode, InteractivityDetect } from "../../../Enums";
 import { Events } from "./Events/Events";
 import { Modes } from "./Modes/Modes";
 import type { RecursivePartial } from "../../../Types/RecursivePartial";
-import { HoverMode } from "../../../Enums/Modes/HoverMode";
 
 export class Interactivity implements IInteractivity {
     /**

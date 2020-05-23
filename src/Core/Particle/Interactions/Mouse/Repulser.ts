@@ -1,9 +1,6 @@
-import { ClickMode } from "../../../../Enums/Modes/ClickMode";
 import type { Container } from "../../../Container";
-import { HoverMode } from "../../../../Enums/Modes/HoverMode";
-import { OutMode } from "../../../../Enums/OutMode";
+import { ClickMode, DivMode, HoverMode, OutMode } from "../../../../Enums";
 import { Circle, Constants, Utils } from "../../../../Utils";
-import { DivMode } from "../../../../Enums/Modes/DivMode";
 import type { ICoordinates } from "../../../Interfaces/ICoordinates";
 import type { IParticle } from "../../../Interfaces/IParticle";
 
@@ -13,19 +10,20 @@ import type { IParticle } from "../../../Interfaces/IParticle";
 export class Repulser {
     public static repulse(container: Container, _delta: number): void {
         const options = container.options;
-        const interactivity = options.interactivity;
-        const hoverEnabled = interactivity.events.onHover.enable;
-        const clickEnabled = interactivity.events.onClick.enable;
         const mouseMoveStatus = container.interactivity.status === Constants.mouseMoveEvent;
-        const hoverMode = interactivity.events.onHover.mode;
-        const clickMode = interactivity.events.onClick.mode;
-        const divMode = interactivity.events.onDiv.mode;
+        const events = options.interactivity.events;
+        const hoverEnabled = events.onHover.enable;
+        const hoverMode = events.onHover.mode;
+        const clickEnabled = events.onClick.enable;
+        const clickMode = events.onClick.mode;
+        const divMode = events.onDiv.mode;
+        const divEnabled = events.onDiv.enable;
 
         if (mouseMoveStatus && hoverEnabled && Utils.isInArray(HoverMode.repulse, hoverMode)) {
             this.hoverRepulse(container);
         } else if (clickEnabled && Utils.isInArray(ClickMode.repulse, clickMode)) {
             this.clickRepulse(container);
-        } else if (interactivity.events.onDiv.enable && Utils.isInArray(DivMode.repulse, divMode)) {
+        } else if (divEnabled && Utils.isInArray(DivMode.repulse, divMode)) {
             this.divRepulse(container);
         }
     }

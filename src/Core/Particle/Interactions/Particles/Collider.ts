@@ -3,7 +3,7 @@ import { Particle } from "../../../Particle";
 import type { Container } from "../../../Container";
 import type { IParticle } from "../../../Interfaces/IParticle";
 import type { IVelocity } from "../../../Interfaces/IVelocity";
-import { CollisionMode } from "../../../../Enums/CollisionMode";
+import { CollisionMode } from "../../../../Enums";
 
 export class Collider {
     public static collide(p1: Particle, container: Container, _delta: number): void {

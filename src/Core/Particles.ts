@@ -4,14 +4,11 @@ import type { IMouseData } from "./Interfaces/IMouseData";
 import type { IRgb } from "./Interfaces/IRgb";
 import { Particle } from "./Particle";
 import { InteractionManager } from "./Particle/Interactions/Particles/InteractionManager";
-import { HoverMode } from "../Enums/Modes/HoverMode";
 import { Grabber } from "./Particle/Interactions/Mouse/Grabber";
-import { ClickMode } from "../Enums/Modes/ClickMode";
+import { ClickMode, DestroyType, DivMode, HoverMode } from "../Enums";
 import { Repulser } from "./Particle/Interactions/Mouse/Repulser";
-import { DivMode } from "../Enums/Modes/DivMode";
 import { Bubbler } from "./Particle/Interactions/Mouse/Bubbler";
 import { Connector } from "./Particle/Interactions/Mouse/Connector";
-import { DestroyType } from "../Enums/DestroyType";
 import { Point, QuadTree, Rectangle, Utils } from "../Utils";
 import { RecursivePartial } from "../Types/RecursivePartial";
 import { IParticles } from "../Options/Interfaces/Particles/IParticles";
@@ -169,7 +166,7 @@ export class Particles {
 
             const pos = particle.getPosition();
 
-            this.quadTree.insert(new Point(pos.x, pos.y, particle));
+            this.quadTree.insert(new Point(pos, particle));
         }
 
         for (const particle of particlesToDelete) {

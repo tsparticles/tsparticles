@@ -1,13 +1,13 @@
 import type { IPlugin } from "../../Core/Interfaces/IPlugin";
 import type { Container } from "../../Core/Container";
 import { Utils } from "../../Utils";
-import { ClickMode } from "../../Enums/Modes/ClickMode";
 import { Emitters } from "./Emitters";
 import { RecursivePartial } from "../../Types/RecursivePartial";
 import { IOptions } from "../../Options/Interfaces/IOptions";
 import { SingleOrMultiple } from "../../Types/SingleOrMultiple";
 import { Emitter } from "./Options/Classes/Emitter";
 import { tsParticles } from "../../index.slim";
+import { AbsorberClickMode } from "../Absorbers/Enums/AbsorberClickMode";
 
 type EmitterOptions = IOptions & {
     emitters: SingleOrMultiple<Emitter>;
@@ -40,7 +40,7 @@ class EmittersPlugin implements IPlugin {
             loadEmitters = true;
         } else if (
             options.interactivity?.events?.onClick?.mode &&
-            Utils.isInArray(ClickMode.absorber, options.interactivity.events.onClick.mode)
+            Utils.isInArray(AbsorberClickMode.absorber, options.interactivity.events.onClick.mode)
         ) {
             loadEmitters = true;
         }

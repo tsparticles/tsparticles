@@ -1,5 +1,5 @@
 import type { ICoordinates } from "../Core/Interfaces/ICoordinates";
-import { MoveDirection } from "../Enums/MoveDirection";
+import { MoveDirection } from "../Enums";
 import type { ICharacterShape } from "../Options/Interfaces/Particles/Shape/ICharacterShape";
 import type { IBounds } from "../Core/Interfaces/IBounds";
 import type { IDimension } from "../Core/Interfaces/IDimension";

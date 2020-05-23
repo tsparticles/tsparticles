@@ -1,8 +1,8 @@
 import { Container } from "../../Core/Container";
 import type { ICoordinates } from "../../Core/Interfaces/ICoordinates";
-import { PolygonMaskType } from "../../Enums/PolygonMaskType";
+import { PolygonMaskType } from "./Enums/PolygonMaskType";
 import { Particle } from "../../Core/Particle";
-import { PolygonMaskInlineArrangement } from "../../Enums/PolygonMaskInlineArrangement";
+import { PolygonMaskInlineArrangement } from "./Enums/PolygonMaskInlineArrangement";
 import { ColorUtils, Constants, Utils } from "../../Utils";
 import type { IDimension } from "../../Core/Interfaces/IDimension";
 import type { ISvgPath } from "../../Core/Interfaces/ISvgPath";

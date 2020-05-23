@@ -1,6 +1,6 @@
 import type { IOptionLoader } from "../../../../Options/Interfaces/IOptionLoader";
 import type { ICoordinates } from "../../../../Core/Interfaces/ICoordinates";
-import type { MoveDirection } from "../../../../Enums/MoveDirection";
+import type { MoveDirection } from "../../../../Enums";
 import type { IParticles } from "../../../../Options/Interfaces/Particles/IParticles";
 import type { IEmitterRate } from "./IEmitterRate";
 import type { IEmitterLife } from "./IEmitterLife";

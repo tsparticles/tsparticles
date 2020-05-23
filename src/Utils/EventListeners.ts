@@ -1,6 +1,5 @@
-import { ClickMode } from "../Enums/Modes/ClickMode";
 import type { Container } from "../Core/Container";
-import { InteractivityDetect } from "../Enums/InteractivityDetect";
+import { ClickMode, InteractivityDetect } from "../Enums";
 import type { ICoordinates } from "../Core/Interfaces/ICoordinates";
 import { Constants } from "./Constants";
 

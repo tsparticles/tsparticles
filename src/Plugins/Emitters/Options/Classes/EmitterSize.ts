@@ -1,6 +1,6 @@
 import type { IEmitterSize } from "../Interfaces/IEmitterSize";
 import type { RecursivePartial } from "../../../../Types/RecursivePartial";
-import { SizeMode } from "../../../../Enums/SizeMode";
+import { SizeMode } from "../../../../Enums";
 
 export class EmitterSize implements IEmitterSize {
     public mode: SizeMode;

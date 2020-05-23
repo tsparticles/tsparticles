@@ -1,7 +1,6 @@
 import type { IContainerPlugin } from "../../Core/Interfaces/IContainerPlugin";
 import { EmitterInstance } from "./EmitterInstance";
 import type { Container } from "../../Core/Container";
-import { ClickMode } from "../../Enums/Modes/ClickMode";
 import type { IEmitter } from "./Options/Interfaces/IEmitter";
 import { Utils } from "../../Utils";
 import type { RecursivePartial } from "../../Types/RecursivePartial";
@@ -10,6 +9,7 @@ import type { IOptions } from "../../Options/Interfaces/IOptions";
 import type { SingleOrMultiple } from "../../Types/SingleOrMultiple";
 import { IInteractivity } from "../../Options/Interfaces/Interactivity/IInteractivity";
 import { IModes } from "../../Options/Interfaces/Interactivity/Modes/IModes";
+import { EmitterClickMode } from "./Enums/EmitterClickMode";
 
 type EmitterOptions = IOptions & {
     emitters: SingleOrMultiple<Emitter>;
@@ -106,12 +106,12 @@ export class Emitters implements IContainerPlugin {
         this.array = [];
     }
 
-    public handleClickMode(mode: ClickMode | string): void {
+    public handleClickMode(mode: string): void {
         const container = this.container;
         const emitterOptions = this.emitters;
         const modeEmitters = this.interactivityEmitters;
 
-        if (mode === ClickMode.emitter) {
+        if (mode === EmitterClickMode.emitter) {
             let emitterModeOptions: IEmitter | undefined;
 
             if (modeEmitters instanceof Array) {

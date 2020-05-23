@@ -2,7 +2,7 @@ import type { IShapeDrawer } from "../Core/Interfaces/IShapeDrawer";
 import type { IParticle } from "../Core/Interfaces/IParticle";
 import { Utils } from "../Utils";
 import type { ICharacterShape } from "../Options/Interfaces/Particles/Shape/ICharacterShape";
-import { ShapeType } from "../Enums/ShapeType";
+import { ShapeType } from "../Enums";
 import type { Container } from "../Core/Container";
 
 interface TextParticle extends IParticle {

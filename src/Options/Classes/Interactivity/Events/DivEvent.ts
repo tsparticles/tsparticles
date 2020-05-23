@@ -1,5 +1,5 @@
 import type { IDivEvent } from "../../../Interfaces/Interactivity/Events/IDivEvent";
-import { DivMode } from "../../../../Enums/Modes/DivMode";
+import { DivMode } from "../../../../Enums";
 import type { RecursivePartial } from "../../../../Types/RecursivePartial";
 import type { SingleOrMultiple } from "../../../../Types/SingleOrMultiple";
 

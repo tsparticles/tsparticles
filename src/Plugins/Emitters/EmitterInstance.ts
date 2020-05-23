@@ -2,7 +2,7 @@ import type { Container } from "../../Core/Container";
 import type { ICoordinates } from "../../Core/Interfaces/ICoordinates";
 import type { IEmitter } from "./Options/Interfaces/IEmitter";
 import { Utils } from "../../Utils";
-import { SizeMode } from "../../Enums/SizeMode";
+import { SizeMode } from "../../Enums";
 import { EmitterSize } from "./Options/Classes/EmitterSize";
 import type { Emitters } from "./Emitters";
 import type { RecursivePartial } from "../../Types/RecursivePartial";

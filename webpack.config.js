@@ -14,7 +14,8 @@ v${version}`;
 const minBanner = `tsParticles v${version} by Matteo Bruni`;
 
 const getConfig = (entry) => {
-  const reportFileName = Object.keys(entry).find((t) => t.indexOf("slim") >= 0) ? "report.slim" : "report";
+  const isSlim = Object.keys(entry).find((t) => t.indexOf("slim") >= 0);
+  const reportFileName = isSlim ? "report.slim" : "report";
 
   return {
     entry: entry,
@@ -22,10 +23,10 @@ const getConfig = (entry) => {
       path: path.resolve(__dirname, "dist"),
       filename: "[name].js",
       libraryTarget: "window",
-      library: "",
+      library: ""
     },
     resolve: {
-      extensions: [".js", ".json"],
+      extensions: [ ".js", ".json" ]
     },
     module: {
       rules: [
@@ -33,25 +34,25 @@ const getConfig = (entry) => {
           // Include ts, tsx, js, and jsx files.
           test: /\.js$/,
           exclude: /node_modules/,
-          loader: "babel-loader",
-        },
-      ],
+          loader: "babel-loader"
+        }
+      ]
     },
     plugins: [
       new webpack.BannerPlugin({
         banner,
-        exclude: /\.min\.js$/,
+        exclude: /\.min\.js$/
       }),
       new webpack.BannerPlugin({
         banner: minBanner,
-        include: /\.min\.js$/,
+        include: /\.min\.js$/
       }),
       new BundleAnalyzerPlugin({
         openAnalyzer: false,
         analyzerMode: "static",
         exclude: /\.min\.js$/,
-        reportFilename: `../demo/public/${reportFileName}.html`,
-      }),
+        reportFilename: `../demo/public/${reportFileName}.html`
+      })
     ],
     optimization: {
       minimize: true,
@@ -61,23 +62,23 @@ const getConfig = (entry) => {
           sourceMap: false,
           terserOptions: {
             output: {
-              comments: minBanner,
-            },
+              comments: minBanner
+            }
           },
-          extractComments: false,
-        }),
-      ],
-    },
+          extractComments: false
+        })
+      ]
+    }
   };
 };
 
 module.exports = [
   getConfig({
     "tsparticles.slim": "./dist/index.slim.js",
-    "tsparticles.slim.min": "./dist/index.slim.js",
+    "tsparticles.slim.min": "./dist/index.slim.js"
   }),
   getConfig({
     tsparticles: "./dist/index.js",
-    "tsparticles.min": "./dist/index.js",
-  }),
+    "tsparticles.min": "./dist/index.js"
+  })
 ];

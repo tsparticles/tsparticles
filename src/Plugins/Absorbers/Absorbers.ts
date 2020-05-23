@@ -2,15 +2,15 @@ import type { IContainerPlugin } from "../../Core/Interfaces/IContainerPlugin";
 import { AbsorberInstance } from "./AbsorberInstance";
 import { Container } from "../../Core/Container";
 import type { Particle } from "../../Core/Particle";
-import { ClickMode } from "../../Enums/Modes/ClickMode";
 import type { IAbsorber } from "./Options/Interfaces/IAbsorber";
 import { Utils } from "../../Utils";
 import { Absorber } from "./Options/Classes/Absorber";
-import { SingleOrMultiple } from "../../Types/SingleOrMultiple";
-import { IOptions } from "../../Options/Interfaces/IOptions";
-import { RecursivePartial } from "../../Types/RecursivePartial";
-import { IInteractivity } from "../../Options/Interfaces/Interactivity/IInteractivity";
-import { IModes } from "../../Options/Interfaces/Interactivity/Modes/IModes";
+import type { SingleOrMultiple } from "../../Types/SingleOrMultiple";
+import type { IOptions } from "../../Options/Interfaces/IOptions";
+import type { RecursivePartial } from "../../Types/RecursivePartial";
+import type { IInteractivity } from "../../Options/Interfaces/Interactivity/IInteractivity";
+import type { IModes } from "../../Options/Interfaces/Interactivity/Modes/IModes";
+import { AbsorberClickMode } from "./Enums/AbsorberClickMode";
 
 type AbsorberOptions = IOptions & {
     absorbers: SingleOrMultiple<Absorber>;
@@ -119,12 +119,12 @@ export class Absorbers implements IContainerPlugin {
         }
     }
 
-    public handleClickMode(mode: ClickMode | string): void {
+    public handleClickMode(mode: string): void {
         const container = this.container;
         const absorberOptions = this.absorbers;
         const modeAbsorbers = this.interactivityAbsorbers;
 
-        if (mode === ClickMode.absorber) {
+        if (mode === AbsorberClickMode.absorber) {
             let absorbersModeOptions: IAbsorber | undefined;
 
             if (modeAbsorbers instanceof Array) {

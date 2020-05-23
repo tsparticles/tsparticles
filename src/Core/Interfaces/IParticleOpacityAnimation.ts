@@ -1,4 +1,4 @@
-import type { OpacityAnimationStatus } from "../../Enums/OpacityAnimationStatus";
+import type { OpacityAnimationStatus } from "../../Enums";
 
 export interface IParticleOpacityAnimation {
     value: number;

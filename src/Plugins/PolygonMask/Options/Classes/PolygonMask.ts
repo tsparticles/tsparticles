@@ -1,8 +1,8 @@
 import type { IPolygonMask } from "../Interfaces/IPolygonMask";
-import { PolygonMaskType } from "../../../../Enums/PolygonMaskType";
+import { PolygonMaskType } from "../../Enums/PolygonMaskType";
 import { Draw } from "./Draw";
 import { Move } from "./Move";
-import { PolygonMaskInlineArrangement } from "../../../../Enums/PolygonMaskInlineArrangement";
+import { PolygonMaskInlineArrangement } from "../../Enums/PolygonMaskInlineArrangement";
 import { PolygonInline } from "./PolygonInline";
 import type { RecursivePartial } from "../../../../Types/RecursivePartial";
 import type { ICoordinates } from "../../../../Core/Interfaces/ICoordinates";

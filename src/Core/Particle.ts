@@ -4,23 +4,24 @@ import type { IParticleSizeAnimation } from "./Interfaces/IParticleSizeAnimation
 import type { IParticleOpacityAnimation } from "./Interfaces/IParticleOpacityAnimation";
 import type { ICoordinates } from "./Interfaces/ICoordinates";
 import type { IParticleImage } from "./Interfaces/IParticleImage";
-import { ShapeType } from "../Enums/ShapeType";
 import { Updater } from "./Particle/Updater";
-import { PolygonMaskType } from "../Enums/PolygonMaskType";
 import type { IRgb } from "./Interfaces/IRgb";
-import { RotateDirection } from "../Enums/RotateDirection";
 import type { IStroke } from "../Options/Interfaces/Particles/IStroke";
 import type { IOpacityRandom } from "../Options/Interfaces/Particles/Opacity/IOpacityRandom";
 import type { IShapeValues } from "../Options/Interfaces/Particles/Shape/IShapeValues";
 import type { IBubbleParticleData } from "./Interfaces/IBubbleParticleData";
 import type { IParticle } from "./Interfaces/IParticle";
-import { MoveDirection } from "../Enums/MoveDirection";
 import type { IParticles } from "../Options/Interfaces/Particles/IParticles";
 import { Particles } from "../Options/Classes/Particles/Particles";
-import { SizeAnimationStatus } from "../Enums/SizeAnimationStatus";
-import { OpacityAnimationStatus } from "../Enums/OpacityAnimationStatus";
 import { Shape } from "../Options/Classes/Particles/Shape/Shape";
-import { StartValueType } from "../Enums/StartValueType";
+import {
+    MoveDirection,
+    OpacityAnimationStatus,
+    RotateDirection,
+    ShapeType,
+    SizeAnimationStatus,
+    StartValueType,
+} from "../Enums";
 import { ImageDrawer } from "../ShapeDrawers/ImageDrawer";
 import type { IImageShape } from "../Options/Interfaces/Particles/Shape/IImageShape";
 import { RecursivePartial } from "../Types/RecursivePartial";
@@ -297,7 +298,7 @@ export class Particle implements IParticle {
                     source: optionsImage.src,
                 };
 
-                img.addEventListener("load", (e) => {
+                img.addEventListener("load", () => {
                     if (this.image) {
                         this.image.loaded = true;
                         image.element = img;
@@ -306,7 +307,7 @@ export class Particle implements IParticle {
                     domUrl.revokeObjectURL(url);
                 });
 
-                img.addEventListener("error", (e) => {
+                img.addEventListener("error", () => {
                     domUrl.revokeObjectURL(url);
 
                     Utils.loadImage(optionsImage.src).then((img2) => {

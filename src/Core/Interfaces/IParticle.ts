@@ -1,15 +1,13 @@
-import type { RotateDirection } from "../../Enums/RotateDirection";
 import type { IStroke } from "../../Options/Interfaces/Particles/IStroke";
 import type { ICoordinates } from "./ICoordinates";
 import type { IRgb } from "./IRgb";
 import type { IVelocity } from "./IVelocity";
-import type { ShapeType } from "../../Enums/ShapeType";
+import type { MoveDirection, RotateDirection, ShapeType } from "../../Enums";
 import type { IParticleImage } from "./IParticleImage";
 import type { IParticleSizeAnimation } from "./IParticleSizeAnimation";
 import type { IParticleOpacityAnimation } from "./IParticleOpacityAnimation";
 import type { IShapeValues } from "../../Options/Interfaces/Particles/Shape/IShapeValues";
 import type { IBubbleParticleData } from "./IBubbleParticleData";
-import type { MoveDirection } from "../../Enums/MoveDirection";
 import type { IParticles } from "../../Options/Interfaces/Particles/IParticles";
 import type { ILink } from "./ILink";
 import type { IHsl } from "./IHsl";

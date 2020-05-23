@@ -5,10 +5,10 @@ export class Point {
     public readonly position: ICoordinates;
     public readonly particle: Particle;
 
-    constructor(x: number, y: number, particle: Particle) {
+    constructor(position: ICoordinates, particle: Particle) {
         this.position = {
-            x: x,
-            y: y,
+            x: position.x,
+            y: position.y,
         };
 
         this.particle = particle;

@@ -1,5 +1,5 @@
 import type { IPolygonInline } from "../Interfaces/IPolygonInline";
-import { PolygonMaskInlineArrangement } from "../../../../Enums/PolygonMaskInlineArrangement";
+import { PolygonMaskInlineArrangement } from "../../Enums/PolygonMaskInlineArrangement";
 import type { RecursivePartial } from "../../../../Types/RecursivePartial";
 
 export class PolygonInline implements IPolygonInline {

@@ -1,6 +1,6 @@
 import type { ICoordinates } from "./ICoordinates";
 import type { Particle } from "../Particle";
-import type { ClickMode } from "../../Enums/Modes/ClickMode";
+import type { ClickMode } from "../../Enums";
 import type { RecursivePartial } from "../../Types/RecursivePartial";
 import type { IOptions } from "../../Options/Interfaces/IOptions";
 

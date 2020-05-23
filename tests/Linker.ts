@@ -33,13 +33,13 @@ describe("Linker in Canvas (200, 200) tests", () => {
 
             const pos1 = p1.getPosition();
 
-            testContainer.container.particles.quadTree.insert(new Point(pos1.x, pos1.y, p1));
+            testContainer.container.particles.quadTree.insert(new Point(pos1, p1));
 
             it("should link Particle (10, 10)", function () {
                 const p2 = testContainer.container.particles.addParticle({ x: 10, y: 10 });
                 const pos2 = p2.getPosition();
 
-                testContainer.container.particles.quadTree.insert(new Point(pos2.x, pos2.y, p2));
+                testContainer.container.particles.quadTree.insert(new Point(pos2, p2));
                 testContainer.container.canvas = testCanvas.canvas;
 
                 Linker.link(p1, testContainer.container, 0);
@@ -55,7 +55,7 @@ describe("Linker in Canvas (200, 200) tests", () => {
 
                 const pos2 = p2.getPosition();
 
-                testContainer.container.particles.quadTree.insert(new Point(pos2.x, pos2.y, p2));
+                testContainer.container.particles.quadTree.insert(new Point(pos2, p2));
                 testContainer.container.canvas = testCanvas.canvas;
 
                 Linker.link(p1, testContainer.container, 0);

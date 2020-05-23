@@ -1,5 +1,5 @@
 import type { IClickEvent } from "../../../Interfaces/Interactivity/Events/IClickEvent";
-import { ClickMode } from "../../../../Enums/Modes/ClickMode";
+import { ClickMode } from "../../../../Enums";
 import type { RecursivePartial } from "../../../../Types/RecursivePartial";
 import type { SingleOrMultiple } from "../../../../Types/SingleOrMultiple";
 

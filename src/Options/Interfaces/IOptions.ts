@@ -1,12 +1,9 @@
 import type { IInteractivity } from "./Interactivity/IInteractivity";
 import type { IParticles } from "./Particles/IParticles";
-import type { IPolygonMask } from "../../Plugins/PolygonMask/Options/Interfaces/IPolygonMask";
 import type { IOptionLoader } from "./IOptionLoader";
 import type { IBackgroundMask } from "./BackgroundMask/IBackgroundMask";
 import type { IBackground } from "./Background/IBackground";
-import type { SingleOrMultiple } from "../../Types/SingleOrMultiple";
-import type { IEmitter } from "../../Plugins/Emitters/Options/Interfaces/IEmitter";
-import { IInfection } from "./Infection/IInfection";
+import type { IInfection } from "./Infection/IInfection";
 
 /**
  * The Options interface, defines all the options that can be used by `tsParticles`

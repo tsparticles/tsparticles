@@ -1,13 +1,15 @@
 import { Options } from "../src/Options/Classes/Options";
 import { expect } from "chai";
-import { InteractivityDetect } from "../src/Enums/InteractivityDetect";
-import { MoveDirection } from "../src/Enums/MoveDirection";
-import { OutMode } from "../src/Enums/OutMode";
-import { HoverMode } from "../src/Enums/Modes/HoverMode";
-import { ClickMode } from "../src/Enums/Modes/ClickMode";
-import { RotateDirection } from "../src/Enums/RotateDirection";
-import { ShapeType } from "../src/Enums/ShapeType";
-import { CollisionMode } from "../src/Enums/CollisionMode";
+import {
+    ClickMode,
+    CollisionMode,
+    HoverMode,
+    InteractivityDetect,
+    MoveDirection,
+    OutMode,
+    RotateDirection,
+    ShapeType,
+} from "../src/Enums";
 import { Particles } from "../src/Options/Classes/Particles/Particles";
 import { RecursivePartial } from "../src/Types/RecursivePartial";
 import { IParticles } from "../src/Options/Interfaces/Particles/IParticles";

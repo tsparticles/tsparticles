@@ -2,7 +2,6 @@ import type { IPlugin } from "../../Core/Interfaces/IPlugin";
 import type { Container } from "../../Core/Container";
 import { Absorbers } from "./Absorbers";
 import { Utils } from "../../Utils";
-import { ClickMode } from "../../Enums/Modes/ClickMode";
 import { IOptions } from "../../Options/Interfaces/IOptions";
 import { RecursivePartial } from "../../Types/RecursivePartial";
 import { SingleOrMultiple } from "../../Types/SingleOrMultiple";
@@ -10,6 +9,7 @@ import { Absorber } from "./Options/Classes/Absorber";
 import { IInteractivity } from "../../Options/Interfaces/Interactivity/IInteractivity";
 import { IModes } from "../../Options/Interfaces/Interactivity/Modes/IModes";
 import { tsParticles } from "../../index.slim";
+import { AbsorberClickMode } from "./Enums/AbsorberClickMode";
 
 type AbsorberOptions = IOptions & {
     absorbers: SingleOrMultiple<Absorber>;
@@ -47,7 +47,7 @@ class AbsorbersPlugin implements IPlugin {
             loadAbsorbers = true;
         } else if (
             options.interactivity?.events?.onClick?.mode &&
-            Utils.isInArray(ClickMode.absorber, options.interactivity.events.onClick.mode)
+            Utils.isInArray(AbsorberClickMode.absorber, options.interactivity.events.onClick.mode)
         ) {
             loadAbsorbers = true;
         }

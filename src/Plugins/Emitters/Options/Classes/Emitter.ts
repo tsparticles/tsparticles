@@ -1,7 +1,7 @@
 import type { IEmitter } from "../Interfaces/IEmitter";
 import type { RecursivePartial } from "../../../../Types/RecursivePartial";
 import type { ICoordinates } from "../../../../Core/Interfaces/ICoordinates";
-import { MoveDirection } from "../../../../Enums/MoveDirection";
+import { MoveDirection } from "../../../../Enums";
 import type { IParticles } from "../../../../Options/Interfaces/Particles/IParticles";
 import { EmitterRate } from "./EmitterRate";
 import { EmitterLife } from "./EmitterLife";
