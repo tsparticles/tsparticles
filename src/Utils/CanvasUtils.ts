@@ -339,8 +339,6 @@ export class CanvasUtils {
         context.moveTo(p1.x, p1.y);
         context.lineTo(p2.x, p2.y);
         context.lineTo(p3.x, p3.y);
-        context.moveTo(p2.x, p2.y);
-        context.lineTo(p3.x, p3.y);
         context.closePath();
     }
 }
