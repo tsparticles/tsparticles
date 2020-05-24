@@ -103,7 +103,7 @@
     "helmet": "^3.22.0",
     "install": "^0.13.0",
     "jquery": "^3.5.1",
-    "jsoneditor": "^8.6.8",
+    "jsoneditor": "^9.0.0",
     "mocha": "^7.2.0",
     "nyc": "^15.0.1",
     "popper.js": "^1.16.1",
