@@ -171,11 +171,21 @@ export class Canvas {
 
             if (linkColor === Constants.randomColorValue) {
                 colorTriangle = ColorUtils.getRandomRgbColor();
-            } else if (linkColor === "mid" && p1.color && p2.color) {
-                const sourceColor = p1.color;
-                const destColor = p2.color;
+            } else if (linkColor === "mid") {
+                const sourceColor = p1.getColor();
+                const destColor = p2.getColor();
 
-                colorTriangle = ColorUtils.mix(sourceColor, destColor, p1.size.value, p2.size.value);
+                if (sourceColor && destColor) {
+                    colorTriangle = ColorUtils.mix(sourceColor, destColor, p1.size.value, p2.size.value);
+                } else {
+                    const hslColor = sourceColor ?? destColor;
+
+                    if (!hslColor) {
+                        return;
+                    }
+
+                    colorTriangle = ColorUtils.hslToRgb(hslColor);
+                }
             } else {
                 colorTriangle = linkColor as IRgb;
             }
@@ -242,11 +252,21 @@ export class Canvas {
 
             if (linkColor === Constants.randomColorValue) {
                 colorLine = ColorUtils.getRandomRgbColor();
-            } else if (linkColor === "mid" && p1.color && p2.color) {
-                const sourceColor = p1.color;
-                const destColor = p2.color;
+            } else if (linkColor === "mid") {
+                const sourceColor = p1.getColor();
+                const destColor = p2.getColor();
 
-                colorLine = ColorUtils.mix(sourceColor, destColor, p1.size.value, p2.size.value);
+                if (sourceColor && destColor) {
+                    colorLine = ColorUtils.mix(sourceColor, destColor, p1.size.value, p2.size.value);
+                } else {
+                    const hslColor = sourceColor ?? destColor;
+
+                    if (!hslColor) {
+                        return;
+                    }
+
+                    colorLine = ColorUtils.hslToRgb(hslColor);
+                }
             } else {
                 colorLine = linkColor as IRgb;
             }
@@ -309,7 +329,8 @@ export class Canvas {
     }
 
     public drawParticle(particle: IParticle, delta: number): void {
-        if (particle.color === undefined) {
+        const pColor = particle.getColor();
+        if (pColor === undefined) {
             return;
         }
 
@@ -326,10 +347,7 @@ export class Canvas {
         const infectionStages = infection.stages;
         const infectionColor = infectionStage !== undefined ? infectionStages[infectionStage].color : undefined;
         const infectionRgb = ColorUtils.colorToRgb(infectionColor);
-        const color =
-            twinkling && twinkleRgb !== undefined
-                ? twinkleRgb
-                : infectionRgb ?? particle.bubble.color ?? ColorUtils.hslToRgb(particle.color);
+        const color = twinkling && twinkleRgb !== undefined ? twinkleRgb : infectionRgb ?? ColorUtils.hslToRgb(pColor);
 
         const colorValue = color !== undefined ? ColorUtils.getStyleFromRgb(color, opacity) : undefined;
 
