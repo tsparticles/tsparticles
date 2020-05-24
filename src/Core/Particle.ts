@@ -281,8 +281,10 @@ export class Particle implements IParticle {
                 ? imagesOptions.filter((t) => (t as IImageShape).src === image.source)[0]
                 : imagesOptions) as IImageShape;
 
-            if (image?.svgData !== undefined && optionsImage.replaceColor && this.color) {
-                const svgColoredData = Utils.replaceColorSvg(image, this.color, this.opacity.value);
+            const color = this.getColor();
+
+            if (image?.svgData !== undefined && optionsImage.replaceColor && color) {
+                const svgColoredData = Utils.replaceColorSvg(image, color, this.opacity.value);
 
                 /* prepare to create img with colored svg */
                 const svg = new Blob([svgColoredData], { type: "image/svg+xml" });
@@ -485,6 +487,10 @@ export class Particle implements IParticle {
             x: this.position.x + this.offset.x,
             y: this.position.y + this.offset.y,
         };
+    }
+
+    public getColor(): IHsl | undefined {
+        return this.bubble.color ?? this.color;
     }
 
     public destroy(): void {

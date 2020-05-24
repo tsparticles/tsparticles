@@ -49,4 +49,6 @@ export interface IParticle {
     readonly sizeAnimationSpeed?: number;
 
     getPosition(): ICoordinates;
+
+    getColor(): IHsl | undefined;
 }

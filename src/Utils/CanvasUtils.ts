@@ -163,8 +163,8 @@ export class CanvasUtils {
         opacity: number
     ): CanvasGradient | undefined {
         const gradStop = Math.floor(p2.size.value / p1.size.value);
-        const color1 = p1.bubble.color ?? (p1.color ? ColorUtils.hslToRgb(p1.color) : undefined);
-        const color2 = p2.bubble.color ?? (p2.color ? ColorUtils.hslToRgb(p2.color) : undefined);
+        const color1 = p1.getColor();
+        const color2 = p2.getColor();
 
         if (!color1 || !color2) {
             return;
@@ -175,9 +175,9 @@ export class CanvasUtils {
         const midRgb = ColorUtils.mix(color1, color2, p1.size.value, p2.size.value);
         const grad = context.createLinearGradient(sourcePos.x, sourcePos.y, destPos.x, destPos.y);
 
-        grad.addColorStop(0, ColorUtils.getStyleFromRgb(color1, opacity));
+        grad.addColorStop(0, ColorUtils.getStyleFromHsl(color1, opacity));
         grad.addColorStop(gradStop > 1 ? 1 : gradStop, ColorUtils.getStyleFromRgb(midRgb, opacity));
-        grad.addColorStop(1, ColorUtils.getStyleFromRgb(color2, opacity));
+        grad.addColorStop(1, ColorUtils.getStyleFromHsl(color2, opacity));
 
         return grad;
     }

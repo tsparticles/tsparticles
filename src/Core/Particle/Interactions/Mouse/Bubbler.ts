@@ -271,7 +271,7 @@ export class Bubbler {
 
             const bubbleColor = modeColor instanceof Array ? Utils.itemFromArray(modeColor) : modeColor;
 
-            particle.bubble.color = ColorUtils.colorToRgb(bubbleColor);
+            particle.bubble.color = ColorUtils.colorToHsl(bubbleColor);
         }
     }
 }
