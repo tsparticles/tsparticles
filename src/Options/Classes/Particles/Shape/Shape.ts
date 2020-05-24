@@ -1,5 +1,5 @@
 import type { IShape } from "../../../Interfaces/Particles/Shape/IShape";
-import { ShapeType } from "../../../../Enums/ShapeType";
+import { ShapeType } from "../../../../Enums";
 import { ImageShape } from "./ImageShape";
 import { PolygonShape } from "./PolygonShape";
 import type { RecursivePartial } from "../../../../Types/RecursivePartial";

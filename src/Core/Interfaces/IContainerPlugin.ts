@@ -1,10 +1,13 @@
 import type { ICoordinates } from "./ICoordinates";
 import type { Particle } from "../Particle";
-import type { ClickMode } from "../../Enums/Modes/ClickMode";
+import type { ClickMode } from "../../Enums";
+import type { RecursivePartial } from "../../Types/RecursivePartial";
+import type { IOptions } from "../../Options/Interfaces/IOptions";
 
 export interface IContainerPlugin {
     draw?: (context: CanvasRenderingContext2D, delta: number) => void;
-    init?: () => void;
+    init?: (options?: RecursivePartial<IOptions>) => void;
+    initAsync?: (options?: RecursivePartial<IOptions>) => Promise<void>;
     reset?: () => void;
     resize?: () => void;
     start?: () => void;
@@ -12,7 +15,7 @@ export interface IContainerPlugin {
     stop?: () => void;
     play?: () => void;
     pause?: () => void;
-    particlePosition?: (position?: ICoordinates) => ICoordinates | undefined;
+    particlePosition?: (position?: ICoordinates, particle?: Particle) => ICoordinates | undefined;
     particlesInitialization?: () => boolean;
     clickPositionValid?: (position: ICoordinates) => boolean;
     handleClickMode?: (mode: ClickMode | string) => void;

@@ -1,7 +1,7 @@
 import { Utils } from "../../Utils";
 import type { Container } from "../Container";
 import type { Particle } from "../Particle";
-import { HoverMode } from "../../Enums/Modes/HoverMode";
+import { HoverMode } from "../../Enums";
 import { INoiseValue } from "../../Options/Interfaces/Particles/Noise/INoiseValue";
 
 export class Mover {

@@ -23,11 +23,7 @@ export class ColorUtils {
 
         if (typeof color.value === "string") {
             if (color.value === Constants.randomColorValue) {
-                res = {
-                    b: Math.floor(Math.random() * 256),
-                    g: Math.floor(Math.random() * 256),
-                    r: Math.floor(Math.random() * 256),
-                };
+                res = this.getRandomRgbColor();
             } else {
                 res = ColorUtils.stringToRgb(color.value);
             }

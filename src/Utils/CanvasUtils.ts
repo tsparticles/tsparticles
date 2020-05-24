@@ -163,19 +163,21 @@ export class CanvasUtils {
         opacity: number
     ): CanvasGradient | undefined {
         const gradStop = Math.floor(p2.size.value / p1.size.value);
+        const color1 = p1.bubble.color ?? (p1.color ? ColorUtils.hslToRgb(p1.color) : undefined);
+        const color2 = p2.bubble.color ?? (p2.color ? ColorUtils.hslToRgb(p2.color) : undefined);
 
-        if (!p1.color || !p2.color) {
+        if (!color1 || !color2) {
             return;
         }
 
         const sourcePos = p1.getPosition();
         const destPos = p2.getPosition();
-        const midRgb = ColorUtils.mix(p1.color, p2.color, p1.size.value, p2.size.value);
+        const midRgb = ColorUtils.mix(color1, color2, p1.size.value, p2.size.value);
         const grad = context.createLinearGradient(sourcePos.x, sourcePos.y, destPos.x, destPos.y);
 
-        grad.addColorStop(0, ColorUtils.getStyleFromHsl(p1.color, opacity));
+        grad.addColorStop(0, ColorUtils.getStyleFromRgb(color1, opacity));
         grad.addColorStop(gradStop > 1 ? 1 : gradStop, ColorUtils.getStyleFromRgb(midRgb, opacity));
-        grad.addColorStop(1, ColorUtils.getStyleFromHsl(p2.color, opacity));
+        grad.addColorStop(1, ColorUtils.getStyleFromRgb(color2, opacity));
 
         return grad;
     }
@@ -338,8 +340,6 @@ export class CanvasUtils {
         context.beginPath();
         context.moveTo(p1.x, p1.y);
         context.lineTo(p2.x, p2.y);
-        context.lineTo(p3.x, p3.y);
-        context.moveTo(p2.x, p2.y);
         context.lineTo(p3.x, p3.y);
         context.closePath();
     }

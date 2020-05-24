@@ -1,10 +1,19 @@
 import type { IPlugin } from "../../Core/Interfaces/IPlugin";
 import type { Container } from "../../Core/Container";
 import { Utils } from "../../Utils";
-import { ClickMode } from "../../Enums/Modes/ClickMode";
 import { Emitters } from "./Emitters";
+import { RecursivePartial } from "../../Types/RecursivePartial";
+import { IOptions } from "../../Options/Interfaces/IOptions";
+import { SingleOrMultiple } from "../../Types/SingleOrMultiple";
+import { Emitter } from "./Options/Classes/Emitter";
+import { tsParticles } from "../../index.slim";
+import { AbsorberClickMode } from "../Absorbers/Enums/AbsorberClickMode";
 
-export class EmittersPlugin implements IPlugin {
+type EmitterOptions = IOptions & {
+    emitters: SingleOrMultiple<Emitter>;
+};
+
+class EmittersPlugin implements IPlugin {
     public readonly id: string;
 
     constructor() {
@@ -15,8 +24,11 @@ export class EmittersPlugin implements IPlugin {
         return new Emitters(container);
     }
 
-    public needsPlugin(container: Container): boolean {
-        const options = container.options;
+    public needsPlugin(options?: RecursivePartial<EmitterOptions>): boolean {
+        if (!options?.emitters) {
+            return false;
+        }
+
         const emitters = options.emitters;
         let loadEmitters = false;
 
@@ -26,10 +38,15 @@ export class EmittersPlugin implements IPlugin {
             }
         } else if (emitters !== undefined) {
             loadEmitters = true;
-        } else if (Utils.isInArray(ClickMode.absorber, options.interactivity.events.onClick.mode)) {
+        } else if (
+            options.interactivity?.events?.onClick?.mode &&
+            Utils.isInArray(AbsorberClickMode.absorber, options.interactivity.events.onClick.mode)
+        ) {
             loadEmitters = true;
         }
 
         return loadEmitters;
     }
 }
+
+tsParticles.addPlugin(new EmittersPlugin());

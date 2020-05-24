@@ -7,7 +7,7 @@ import { Particle } from "../src/Core/Particle";
 import { TestContainer } from "./Fixture/TestContainer";
 import { TestParticle } from "./Fixture/TestParticle";
 import { TestSpatialGrid } from "./Fixture/TestSpatialGrid";
-import { Utils } from "../src/Utils/Utils";
+import { Utils } from "../src/Utils";
 
 const testContainer = new TestContainer();
 const particle1 = new Particle(testContainer.container, { x: 1, y: 1 });

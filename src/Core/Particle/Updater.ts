@@ -1,12 +1,9 @@
 import type { Container } from "../Container";
-import { OutMode } from "../../Enums/OutMode";
 import type { Particle } from "../Particle";
 import { Utils } from "../../Utils";
 import { Mover } from "./Mover";
-import { RotateDirection } from "../../Enums/RotateDirection";
+import { OpacityAnimationStatus, OutMode, RotateDirection, SizeAnimationStatus } from "../../Enums";
 import type { IBounds } from "../Interfaces/IBounds";
-import { SizeAnimationStatus } from "../../Enums/SizeAnimationStatus";
-import { OpacityAnimationStatus } from "../../Enums/OpacityAnimationStatus";
 
 /**
  * Particle updater, it manages movement

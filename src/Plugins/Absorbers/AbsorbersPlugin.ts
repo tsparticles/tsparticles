@@ -2,9 +2,25 @@ import type { IPlugin } from "../../Core/Interfaces/IPlugin";
 import type { Container } from "../../Core/Container";
 import { Absorbers } from "./Absorbers";
 import { Utils } from "../../Utils";
-import { ClickMode } from "../../Enums/Modes/ClickMode";
+import { IOptions } from "../../Options/Interfaces/IOptions";
+import { RecursivePartial } from "../../Types/RecursivePartial";
+import { SingleOrMultiple } from "../../Types/SingleOrMultiple";
+import { Absorber } from "./Options/Classes/Absorber";
+import { IInteractivity } from "../../Options/Interfaces/Interactivity/IInteractivity";
+import { IModes } from "../../Options/Interfaces/Interactivity/Modes/IModes";
+import { tsParticles } from "../../index.slim";
+import { AbsorberClickMode } from "./Enums/AbsorberClickMode";
 
-export class AbsorbersPlugin implements IPlugin {
+type AbsorberOptions = IOptions & {
+    absorbers: SingleOrMultiple<Absorber>;
+    interactivity: IInteractivity & {
+        modes: IModes & {
+            absorbers: SingleOrMultiple<Absorber>;
+        };
+    };
+};
+
+class AbsorbersPlugin implements IPlugin {
     public readonly id: string;
 
     constructor() {
@@ -15,8 +31,11 @@ export class AbsorbersPlugin implements IPlugin {
         return new Absorbers(container);
     }
 
-    public needsPlugin(container: Container): boolean {
-        const options = container.options;
+    public needsPlugin(options?: RecursivePartial<AbsorberOptions>): boolean {
+        if (!options?.absorbers) {
+            return false;
+        }
+
         const absorbers = options.absorbers;
         let loadAbsorbers = false;
 
@@ -26,10 +45,15 @@ export class AbsorbersPlugin implements IPlugin {
             }
         } else if (absorbers !== undefined) {
             loadAbsorbers = true;
-        } else if (Utils.isInArray(ClickMode.absorber, options.interactivity.events.onClick.mode)) {
+        } else if (
+            options.interactivity?.events?.onClick?.mode &&
+            Utils.isInArray(AbsorberClickMode.absorber, options.interactivity.events.onClick.mode)
+        ) {
             loadAbsorbers = true;
         }
 
         return loadAbsorbers;
     }
 }
+
+tsParticles.addPlugin(new AbsorbersPlugin());

@@ -1,4 +1,4 @@
-import { ColorUtils } from "../src/Utils/ColorUtils";
+import { ColorUtils } from "../src/Utils";
 import { IColor } from "../src/Core/Interfaces/IColor";
 import { expect } from "chai";
 import { IRgb } from "../src/Core/Interfaces/IRgb";

@@ -1,6 +1,11 @@
 {
   "name": "tsparticles",
-  "version": "1.15.0-alpha.7",
+  "sideEffects": [
+    "./dist/Plugins/Absorbers/AbsorbersPlugin.js",
+    "./dist/Plugins/Emitters/EmittersPlugin.js",
+    "./dist/Plugins/PolygonMask/PolygonMaskPlugin.js"
+  ],
+  "version": "1.15.0-beta.1",
   "description": "Porting of the abandoned Vincent Garreau's particles.js, converted in TypeScript. Added many new cool features and various bug fixes.",
   "homepage": "https://particles.matteobruni.it/",
   "scripts": {
@@ -84,7 +89,7 @@
     "@fortawesome/fontawesome-free": "^5.13.0",
     "@types/chai": "^4.2.11",
     "@types/mocha": "^7.0.2",
-    "@types/node": "^14.0.2",
+    "@types/node": "^14.0.5",
     "@typescript-eslint/eslint-plugin": "^2.34.0",
     "@typescript-eslint/parser": "^2.34.0",
     "babel-loader": "^8.1.0",
@@ -92,14 +97,14 @@
     "canvas": "^2.6.1",
     "chai": "^4.2.0",
     "copyfiles": "^2.2.0",
-    "eslint": "^7.0.0",
+    "eslint": "^7.1.0",
     "eslint-config-prettier": "^6.11.0",
     "express": "^4.17.1",
     "helmet": "^3.22.0",
     "install": "^0.13.0",
     "jquery": "^3.5.1",
     "jsoneditor": "^8.6.8",
-    "mocha": "^7.1.2",
+    "mocha": "^7.2.0",
     "nyc": "^15.0.1",
     "popper.js": "^1.16.1",
     "prettier": "2.0.5",

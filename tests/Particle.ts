@@ -6,7 +6,7 @@ import { expect } from "chai";
 import { TestCanvas } from "./Fixture/TestCanvas";
 import { TestContainer } from "./Fixture/TestContainer";
 import { TestParticle } from "./Fixture/TestParticle";
-import { ShapeType } from "../src/Enums/ShapeType";
+import { ShapeType } from "../src/Enums";
 import { ICoordinates } from "../src/Core/Interfaces/ICoordinates";
 
 const testContainer = new TestContainer({});

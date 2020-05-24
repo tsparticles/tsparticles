@@ -1,16 +1,15 @@
 import { Options } from "../src/Options/Classes/Options";
 import { expect } from "chai";
-import { InteractivityDetect } from "../src/Enums/InteractivityDetect";
-import { MoveDirection } from "../src/Enums/MoveDirection";
-import { OutMode } from "../src/Enums/OutMode";
-import { HoverMode } from "../src/Enums/Modes/HoverMode";
-import { ClickMode } from "../src/Enums/Modes/ClickMode";
-import { RotateDirection } from "../src/Enums/RotateDirection";
-import { ShapeType } from "../src/Enums/ShapeType";
-import { PolygonMaskInlineArrangement } from "../src/Enums/PolygonMaskInlineArrangement";
-import { PolygonMaskMoveType } from "../src/Enums/PolygonMaskMoveType";
-import { PolygonMaskType } from "../src/Enums/PolygonMaskType";
-import { CollisionMode } from "../src/Enums/CollisionMode";
+import {
+    ClickMode,
+    CollisionMode,
+    HoverMode,
+    InteractivityDetect,
+    MoveDirection,
+    OutMode,
+    RotateDirection,
+    ShapeType,
+} from "../src/Enums";
 import { Particles } from "../src/Options/Classes/Particles/Particles";
 import { RecursivePartial } from "../src/Types/RecursivePartial";
 import { IParticles } from "../src/Options/Interfaces/Particles/IParticles";
@@ -68,7 +67,6 @@ describe("Options tests", () => {
         expect(options.interactivity.modes.connect.distance).to.equal(80);
         expect(options.interactivity.modes.connect.links.opacity).to.equal(0.5);
         expect(options.interactivity.modes.connect.radius).to.equal(60);
-        expect(options.interactivity.modes.emitters).to.be.empty;
         expect(options.interactivity.modes.grab.distance).to.equal(100);
         expect(options.interactivity.modes.grab.links.opacity).to.equal(1);
         expect(options.interactivity.modes.push.quantity).to.equal(4);
@@ -169,19 +167,6 @@ describe("Options tests", () => {
 
         /* pause on blur */
         expect(options.pauseOnBlur).to.be.true;
-
-        /* polygon */
-        expect(options.polygon.draw.enable).to.be.false;
-        expect(options.polygon.draw.stroke.color).to.have.property("value").to.equal("#fff");
-        expect(options.polygon.draw.stroke.width).to.equal(0.5);
-        expect(options.polygon.draw.stroke.opacity).to.equal(1);
-        expect(options.polygon.enable).to.be.false;
-        expect(options.polygon.inline.arrangement).to.equal(PolygonMaskInlineArrangement.onePerPoint);
-        expect(options.polygon.move.radius).to.equal(10);
-        expect(options.polygon.move.type).to.equal(PolygonMaskMoveType.path);
-        expect(options.polygon.scale).to.equal(1);
-        expect(options.polygon.type).to.equal(PolygonMaskType.none);
-        expect(options.polygon.url).to.be.empty;
     });
 
     it("check default preset options", () => {

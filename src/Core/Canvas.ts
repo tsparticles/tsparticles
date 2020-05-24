@@ -388,10 +388,8 @@ export class Canvas {
         const options = container.options;
         const connectOptions = options.interactivity.modes.connect;
 
-        if (p1.color && p2.color) {
-            if (this.context) {
-                return CanvasUtils.gradient(this.context, p1, p2, connectOptions.links.opacity);
-            }
+        if (this.context) {
+            return CanvasUtils.gradient(this.context, p1, p2, connectOptions.links.opacity);
         }
     }
 

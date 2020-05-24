@@ -4,23 +4,24 @@ import type { IParticleSizeAnimation } from "./Interfaces/IParticleSizeAnimation
 import type { IParticleOpacityAnimation } from "./Interfaces/IParticleOpacityAnimation";
 import type { ICoordinates } from "./Interfaces/ICoordinates";
 import type { IParticleImage } from "./Interfaces/IParticleImage";
-import { ShapeType } from "../Enums/ShapeType";
 import { Updater } from "./Particle/Updater";
-import { PolygonMaskType } from "../Enums/PolygonMaskType";
 import type { IRgb } from "./Interfaces/IRgb";
-import { RotateDirection } from "../Enums/RotateDirection";
 import type { IStroke } from "../Options/Interfaces/Particles/IStroke";
 import type { IOpacityRandom } from "../Options/Interfaces/Particles/Opacity/IOpacityRandom";
 import type { IShapeValues } from "../Options/Interfaces/Particles/Shape/IShapeValues";
 import type { IBubbleParticleData } from "./Interfaces/IBubbleParticleData";
 import type { IParticle } from "./Interfaces/IParticle";
-import { MoveDirection } from "../Enums/MoveDirection";
 import type { IParticles } from "../Options/Interfaces/Particles/IParticles";
 import { Particles } from "../Options/Classes/Particles/Particles";
-import { SizeAnimationStatus } from "../Enums/SizeAnimationStatus";
-import { OpacityAnimationStatus } from "../Enums/OpacityAnimationStatus";
 import { Shape } from "../Options/Classes/Particles/Shape/Shape";
-import { StartValueType } from "../Enums/StartValueType";
+import {
+    MoveDirection,
+    OpacityAnimationStatus,
+    RotateDirection,
+    ShapeType,
+    SizeAnimationStatus,
+    StartValueType,
+} from "../Enums";
 import { ImageDrawer } from "../ShapeDrawers/ImageDrawer";
 import type { IImageShape } from "../Options/Interfaces/Particles/Shape/IImageShape";
 import { RecursivePartial } from "../Types/RecursivePartial";
@@ -46,7 +47,6 @@ export class Particle implements IParticle {
     public infectionTime?: number;
     public infectionDelay?: number;
     public infectionDelayStage?: number;
-    public readonly initialPosition?: ICoordinates;
     public readonly position: ICoordinates;
     public readonly offset: ICoordinates;
     public readonly color: IHsl | undefined;
@@ -167,7 +167,9 @@ export class Particle implements IParticle {
         };
 
         this.direction = this.particlesOptions.move.direction;
-        this.bubble = {};
+        this.bubble = {
+            inRange: false,
+        };
         this.angle = this.particlesOptions.rotate.random ? Math.random() * 360 : this.particlesOptions.rotate.value;
 
         if (this.particlesOptions.rotate.direction === RotateDirection.random) {
@@ -220,13 +222,6 @@ export class Particle implements IParticle {
 
         /* position */
         this.position = this.calcPosition(this.container, position);
-
-        if (options.polygon.enable && options.polygon.type === PolygonMaskType.inline) {
-            this.initialPosition = {
-                x: this.position.x,
-                y: this.position.y,
-            };
-        }
 
         /* parallax */
         this.offset = {
@@ -305,7 +300,7 @@ export class Particle implements IParticle {
                     source: optionsImage.src,
                 };
 
-                img.addEventListener("load", (e) => {
+                img.addEventListener("load", () => {
                     if (this.image) {
                         this.image.loaded = true;
                         image.element = img;
@@ -314,7 +309,7 @@ export class Particle implements IParticle {
                     domUrl.revokeObjectURL(url);
                 });
 
-                img.addEventListener("error", (e) => {
+                img.addEventListener("error", () => {
                     domUrl.revokeObjectURL(url);
 
                     Utils.loadImage(optionsImage.src).then((img2) => {
@@ -522,7 +517,8 @@ export class Particle implements IParticle {
     private calcPosition(container: Container, position?: ICoordinates): ICoordinates {
         for (const id in container.plugins) {
             const plugin = container.plugins[id];
-            const pluginPos = plugin.particlePosition !== undefined ? plugin.particlePosition(position) : undefined;
+            const pluginPos =
+                plugin.particlePosition !== undefined ? plugin.particlePosition(position, this) : undefined;
 
             if (pluginPos !== undefined) {
                 return pluginPos;
