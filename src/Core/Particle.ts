@@ -167,7 +167,9 @@ export class Particle implements IParticle {
         };
 
         this.direction = this.particlesOptions.move.direction;
-        this.bubble = {};
+        this.bubble = {
+            inRange: false,
+        };
         this.angle = this.particlesOptions.rotate.random ? Math.random() * 360 : this.particlesOptions.rotate.value;
 
         if (this.particlesOptions.rotate.direction === RotateDirection.random) {

@@ -113,7 +113,7 @@ export class Particles {
             /* the particle */
             const particle = this.array[i];
 
-            Bubbler.reset(particle);
+            particle.bubble.inRange = false;
 
             // let d = ( dx = container.interactivity.mouse.click_pos_x - p.x ) * dx +
             //         ( dy = container.interactivity.mouse.click_pos_y - p.y ) * dy;
@@ -206,6 +206,8 @@ export class Particles {
 
         // this loop is required to be done after mouse interactions
         for (const particle of this.array) {
+            Bubbler.reset(particle);
+
             /* interaction auto between particles */
             if (this.interactionsEnabled) {
                 InteractionManager.interact(particle, container, delta);

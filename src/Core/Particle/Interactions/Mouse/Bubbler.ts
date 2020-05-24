@@ -1,7 +1,7 @@
 import type { Container } from "../../../Container";
 import type { IBubblerProcessParam } from "../../../Interfaces/IBubblerProcessParam";
 import { Circle, ColorUtils, Constants, Utils } from "../../../../Utils";
-import { HoverMode, ProcessBubbleType, ClickMode } from "../../../../Enums";
+import { ClickMode, HoverMode, ProcessBubbleType } from "../../../../Enums";
 import type { IParticle } from "../../../Interfaces/IParticle";
 import { Particle } from "../../../Particle";
 
@@ -10,9 +10,11 @@ import { Particle } from "../../../Particle";
  */
 export class Bubbler {
     public static reset(particle: IParticle): void {
-        delete particle.bubble.opacity;
-        delete particle.bubble.radius;
-        delete particle.bubble.color;
+        if (!particle.bubble.inRange) {
+            delete particle.bubble.opacity;
+            delete particle.bubble.radius;
+            delete particle.bubble.color;
+        }
     }
 
     public static bubble(container: Container, _delta: number): void {
@@ -106,6 +108,8 @@ export class Bubbler {
         const query = container.particles.quadTree.query(new Circle(mouseClickPos.x, mouseClickPos.y, distance));
 
         for (const particle of query) {
+            particle.bubble.inRange = true;
+
             const pos = particle.getPosition();
             const distMouse = Utils.getDistance(pos, mouseClickPos);
             const timeSpent = (new Date().getTime() - (container.interactivity.mouse.clickTime || 0)) / 1000;
@@ -176,6 +180,8 @@ export class Bubbler {
 
         //for (const { distance, particle } of query) {
         for (const particle of query) {
+            particle.bubble.inRange = true;
+
             const pos = particle.getPosition();
             const distance = Utils.getDistance(pos, mousePos);
             const ratio = 1 - distance / container.retina.bubbleModeDistance;
