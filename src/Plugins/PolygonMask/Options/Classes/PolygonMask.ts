@@ -1,44 +1,45 @@
 import type { IPolygonMask } from "../Interfaces/IPolygonMask";
-import { PolygonMaskType } from "../../Enums/PolygonMaskType";
+import { Type } from "../../Enums/Type";
 import { Draw } from "./Draw";
 import { Move } from "./Move";
-import { PolygonMaskInlineArrangement } from "../../Enums/PolygonMaskInlineArrangement";
-import { PolygonInline } from "./PolygonInline";
+import { InlineArrangement } from "../../Enums/InlineArrangement";
+import { Inline } from "./Inline";
 import type { RecursivePartial } from "../../../../Types/RecursivePartial";
 import type { ICoordinates } from "../../../../Core/Interfaces/ICoordinates";
+import { LocalSvg } from "./LocalSvg";
 
 export class PolygonMask implements IPolygonMask {
     /**
      * @deprecated the property inlineArrangement is deprecated, please use the new inline.arrangement
      */
-    get inlineArrangement(): PolygonMaskInlineArrangement {
+    get inlineArrangement(): InlineArrangement {
         return this.inline.arrangement;
     }
 
     /**
      * @deprecated the property inlineArrangement is deprecated, please use the new inline.arrangement
      */
-    set inlineArrangement(value: PolygonMaskInlineArrangement) {
+    set inlineArrangement(value: InlineArrangement) {
         this.inline.arrangement = value;
     }
 
     public draw: Draw;
     public enable: boolean;
-    public inline: PolygonInline;
+    public inline: Inline;
     public move: Move;
     public position?: ICoordinates;
     public scale: number;
-    public type: PolygonMaskType;
+    public type: Type;
     public url?: string;
-    public data?: string;
+    public data?: string | LocalSvg;
 
     constructor() {
         this.draw = new Draw();
         this.enable = false;
-        this.inline = new PolygonInline();
+        this.inline = new Inline();
         this.move = new Move();
         this.scale = 1;
-        this.type = PolygonMaskType.none;
+        this.type = Type.none;
     }
 
     public load(data?: RecursivePartial<IPolygonMask>): void {
@@ -66,7 +67,7 @@ export class PolygonMask implements IPolygonMask {
             if (data.enable !== undefined) {
                 this.enable = data.enable;
             } else {
-                this.enable = this.type !== PolygonMaskType.none;
+                this.enable = this.type !== Type.none;
             }
 
             if (data.url !== undefined) {
@@ -74,7 +75,13 @@ export class PolygonMask implements IPolygonMask {
             }
 
             if (data.data !== undefined) {
-                this.data = data.data;
+                if (typeof data.data === "string") {
+                    this.data = data.data;
+                } else {
+                    this.data = new LocalSvg();
+
+                    this.data.load(data.data);
+                }
             }
 
             if (data.position !== undefined) {

@@ -1,9 +1,9 @@
-import type { IPolygonMaskDraw } from "../Interfaces/IPolygonMaskDraw";
-import { PolygonMaskDrawStroke } from "./PolygonMaskDrawStroke";
+import type { IDraw } from "../Interfaces/IDraw";
+import { DrawStroke } from "./DrawStroke";
 import type { RecursivePartial } from "../../../../Types/RecursivePartial";
 import { OptionsColor } from "../../../../Options/Classes/OptionsColor";
 
-export class Draw implements IPolygonMaskDraw {
+export class Draw implements IDraw {
     /**
      * @deprecated the property lineWidth is deprecated, please use the new stroke.width
      */
@@ -33,14 +33,14 @@ export class Draw implements IPolygonMaskDraw {
     }
 
     public enable: boolean;
-    public stroke: PolygonMaskDrawStroke;
+    public stroke: DrawStroke;
 
     constructor() {
         this.enable = false;
-        this.stroke = new PolygonMaskDrawStroke();
+        this.stroke = new DrawStroke();
     }
 
-    public load(data?: RecursivePartial<IPolygonMaskDraw>): void {
+    public load(data?: RecursivePartial<IDraw>): void {
         if (data !== undefined) {
             if (data.enable !== undefined) {
                 this.enable = data.enable;

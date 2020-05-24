@@ -1,9 +1,9 @@
-import type { IPolygonMaskDrawStroke } from "../Interfaces/IPolygonMaskDrawStroke";
+import type { IDrawStroke } from "../Interfaces/IDrawStroke";
 import type { RecursivePartial } from "../../../../Types/RecursivePartial";
 import { OptionsColor } from "../../../../Options/Classes/OptionsColor";
 import { ColorUtils } from "../../../../Utils";
 
-export class PolygonMaskDrawStroke implements IPolygonMaskDrawStroke {
+export class DrawStroke implements IDrawStroke {
     public color: OptionsColor;
     public width: number;
     public opacity: number;
@@ -14,7 +14,7 @@ export class PolygonMaskDrawStroke implements IPolygonMaskDrawStroke {
         this.opacity = 1;
     }
 
-    public load(data?: RecursivePartial<IPolygonMaskDrawStroke>): void {
+    public load(data?: RecursivePartial<IDrawStroke>): void {
         if (data !== undefined) {
             this.color = OptionsColor.create(this.color, data.color);
 

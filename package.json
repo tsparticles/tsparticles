@@ -104,7 +104,7 @@
     "install": "^0.13.0",
     "jquery": "^3.5.1",
     "jsoneditor": "^8.6.8",
-    "mocha": "^7.1.2",
+    "mocha": "^7.2.0",
     "nyc": "^15.0.1",
     "popper.js": "^1.16.1",
     "prettier": "2.0.5",

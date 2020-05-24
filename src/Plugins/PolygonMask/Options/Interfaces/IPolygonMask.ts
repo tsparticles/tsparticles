@@ -1,25 +1,26 @@
-import type { PolygonMaskType } from "../../Enums/PolygonMaskType";
-import type { IPolygonMaskDraw } from "./IPolygonMaskDraw";
-import type { IPolygonMaskMove } from "./IPolygonMaskMove";
-import type { PolygonMaskInlineArrangement } from "../../Enums/PolygonMaskInlineArrangement";
+import type { Type } from "../../Enums/Type";
+import type { IDraw } from "./IDraw";
+import type { IMove } from "./IMove";
+import type { InlineArrangement } from "../../Enums/InlineArrangement";
 import type { IOptionLoader } from "../../../../Options/Interfaces/IOptionLoader";
-import type { IPolygonInline } from "./IPolygonInline";
+import type { IInline } from "./IInline";
 import type { ICoordinates } from "../../../../Core/Interfaces/ICoordinates";
+import { ILocalSvg } from "./ILocalSvg";
 
 export interface IPolygonMask extends IOptionLoader<IPolygonMask> {
-    draw: IPolygonMaskDraw;
+    draw: IDraw;
     enable: boolean;
-    inline: IPolygonInline;
+    inline: IInline;
 
     /**
      * @deprecated the inlineArrangement is deprecated, please use the new inline.arrangement property
      */
-    inlineArrangement: PolygonMaskInlineArrangement;
+    inlineArrangement: InlineArrangement;
 
-    move: IPolygonMaskMove;
+    move: IMove;
     position?: ICoordinates;
     scale: number;
-    type: PolygonMaskType;
+    type: Type;
     url?: string;
-    data?: string;
+    data?: string | ILocalSvg;
 }

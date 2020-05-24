@@ -1,17 +1,17 @@
-import type { IPolygonMaskMove } from "../Interfaces/IPolygonMaskMove";
+import type { IMove } from "../Interfaces/IMove";
 import type { RecursivePartial } from "../../../../Types/RecursivePartial";
-import { PolygonMaskMoveType } from "../../Enums/PolygonMaskMoveType";
+import { MoveType } from "../../Enums/MoveType";
 
-export class Move implements IPolygonMaskMove {
+export class Move implements IMove {
     public radius: number;
-    public type: PolygonMaskMoveType;
+    public type: MoveType;
 
     constructor() {
         this.radius = 10;
-        this.type = PolygonMaskMoveType.path;
+        this.type = MoveType.path;
     }
 
-    public load(data?: RecursivePartial<IPolygonMaskMove>): void {
+    public load(data?: RecursivePartial<IMove>): void {
         if (data !== undefined) {
             if (data.radius !== undefined) {
                 this.radius = data.radius;

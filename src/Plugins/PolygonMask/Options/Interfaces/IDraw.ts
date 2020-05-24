@@ -1,8 +1,8 @@
 import type { IOptionLoader } from "../../../../Options/Interfaces/IOptionLoader";
-import type { IPolygonMaskDrawStroke } from "./IPolygonMaskDrawStroke";
+import type { IDrawStroke } from "./IDrawStroke";
 import type { IColor } from "../../../../Core/Interfaces/IColor";
 
-export interface IPolygonMaskDraw extends IOptionLoader<IPolygonMaskDraw> {
+export interface IDraw extends IOptionLoader<IDraw> {
     enable: boolean;
 
     /**
@@ -15,5 +15,5 @@ export interface IPolygonMaskDraw extends IOptionLoader<IPolygonMaskDraw> {
      */
     lineWidth: number;
 
-    stroke: IPolygonMaskDrawStroke;
+    stroke: IDrawStroke;
 }
