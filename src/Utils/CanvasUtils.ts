@@ -172,7 +172,18 @@ export class CanvasUtils {
 
         const sourcePos = p1.getPosition();
         const destPos = p2.getPosition();
-        const midRgb = ColorUtils.mix(color1, color2, p1.size.value, p2.size.value);
+        const midRgb = ColorUtils.mix(
+            {
+                color: color1,
+                size: p1.size.value,
+            },
+            [
+                {
+                    color: color2,
+                    size: p2.size.value,
+                },
+            ]
+        );
         const grad = context.createLinearGradient(sourcePos.x, sourcePos.y, destPos.x, destPos.y);
 
         grad.addColorStop(0, ColorUtils.getStyleFromHsl(color1, opacity));
@@ -180,6 +191,68 @@ export class CanvasUtils {
         grad.addColorStop(1, ColorUtils.getStyleFromHsl(color2, opacity));
 
         return grad;
+    }
+
+    public static fillGradient(context: CanvasRenderingContext2D, particles: IParticle[], opacity: number): void {
+        const coloredParticles = particles.filter((p) => p.getColor() !== undefined);
+
+        if (!coloredParticles.length) {
+            return;
+        }
+
+        for (let i = 0; i < coloredParticles.length; i++) {
+            const p1 = coloredParticles[i];
+            const p2 = i + 1 >= coloredParticles.length ? coloredParticles[0] : coloredParticles[i + 1];
+            const sourcePos = p1.getPosition();
+            const destPos = p2.getPosition();
+            const color1 = p1.getColor();
+
+            if (!color1) {
+                continue;
+            }
+
+            const grad = context.createRadialGradient(
+                sourcePos.x,
+                sourcePos.y,
+                0,
+                sourcePos.x,
+                sourcePos.y,
+                Utils.getDistance(sourcePos, destPos)
+            );
+
+            grad.addColorStop(0, ColorUtils.getStyleFromHsl(color1, opacity));
+            grad.addColorStop(1, "rgba(0,0,0,0)");
+
+            context.fillStyle = grad;
+            context.fill();
+        }
+
+        for (let i = coloredParticles.length - 1; i >= 0; i--) {
+            const p1 = coloredParticles[i];
+            const p2 = i - 1 < 0 ? coloredParticles[coloredParticles.length - 1] : coloredParticles[i - 1];
+            const sourcePos = p1.getPosition();
+            const destPos = p2.getPosition();
+            const color1 = p1.getColor();
+
+            if (!color1) {
+                continue;
+            }
+
+            const grad = context.createRadialGradient(
+                sourcePos.x,
+                sourcePos.y,
+                0,
+                sourcePos.x,
+                sourcePos.y,
+                Utils.getDistance(sourcePos, destPos)
+            );
+
+            grad.addColorStop(0, ColorUtils.getStyleFromHsl(color1, opacity));
+            grad.addColorStop(1, "rgba(0,0,0,0)");
+
+            context.fillStyle = grad;
+            context.fill();
+        }
     }
 
     public static drawGrabLine(

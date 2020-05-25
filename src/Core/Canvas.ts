@@ -6,6 +6,7 @@ import type { IParticle } from "./Interfaces/IParticle";
 import type { IContainerPlugin } from "./Interfaces/IContainerPlugin";
 import type { ILink } from "./Interfaces/ILink";
 import { CanvasUtils, ColorUtils, Constants } from "../Utils";
+import { IMixColor } from "./Interfaces/IMixColor";
 
 /**
  * Canvas manager
@@ -172,13 +173,51 @@ export class Canvas {
             if (linkColor === Constants.randomColorValue) {
                 colorTriangle = ColorUtils.getRandomRgbColor();
             } else if (linkColor === "mid") {
-                const sourceColor = p1.getColor();
-                const destColor = p2.getColor();
+                const color1 = p1.getColor();
+                const color2 = p2.getColor();
+                const color3 = p3.getColor();
 
-                if (sourceColor && destColor) {
-                    colorTriangle = ColorUtils.mix(sourceColor, destColor, p1.size.value, p2.size.value);
+                if (color1 !== undefined || color2 !== undefined || color3 !== undefined) {
+                    const otherColors: IMixColor[] = [];
+
+                    let color: IMixColor;
+
+                    if (color1 !== undefined) {
+                        color = {
+                            color: color1,
+                            size: p1.size.value,
+                        };
+                    } else if (color2 !== undefined) {
+                        color = {
+                            color: color2,
+                            size: p2.size.value,
+                        };
+                    } else if (color3 !== undefined) {
+                        color = {
+                            color: color3,
+                            size: p3.size.value,
+                        };
+                    } else {
+                        return;
+                    }
+
+                    if (color1 && color2) {
+                        otherColors.push({
+                            color: color2,
+                            size: p2.size.value,
+                        });
+                    }
+
+                    if ((color1 || color2) && color3) {
+                        otherColors.push({
+                            color: color3,
+                            size: p3.size.value,
+                        });
+                    }
+
+                    colorTriangle = ColorUtils.mix(color, otherColors);
                 } else {
-                    const hslColor = sourceColor ?? destColor;
+                    const hslColor = color1 ?? color2 ?? color3;
 
                     if (!hslColor) {
                         return;
@@ -257,7 +296,18 @@ export class Canvas {
                 const destColor = p2.getColor();
 
                 if (sourceColor && destColor) {
-                    colorLine = ColorUtils.mix(sourceColor, destColor, p1.size.value, p2.size.value);
+                    colorLine = ColorUtils.mix(
+                        {
+                            color: sourceColor,
+                            size: p1.size.value,
+                        },
+                        [
+                            {
+                                color: destColor,
+                                size: p2.size.value,
+                            },
+                        ]
+                    );
                 } else {
                     const hslColor = sourceColor ?? destColor;
 
@@ -408,6 +458,16 @@ export class Canvas {
 
         if (this.context) {
             return CanvasUtils.gradient(this.context, p1, p2, connectOptions.links.opacity);
+        }
+    }
+
+    private fillStyle(particles: IParticle[]): void {
+        const container = this.container;
+        const options = container.options;
+        const connectOptions = options.interactivity.modes.connect;
+
+        if (this.context) {
+            CanvasUtils.fillGradient(this.context, particles, connectOptions.links.opacity);
         }
     }
 

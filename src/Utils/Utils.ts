@@ -7,6 +7,7 @@ import type { IImage } from "../Core/Interfaces/IImage";
 import type { IParticle } from "../Core/Interfaces/IParticle";
 import { ColorUtils } from "./ColorUtils";
 import { IHsl } from "../Core/Interfaces/IHsl";
+import { IMixValue } from "../Core/Interfaces/IMixValue";
 
 type CSSOMString = string;
 type FontFaceLoadStatus = "unloaded" | "loading" | "loaded" | "error";
@@ -83,8 +84,14 @@ export class Utils {
      * @param weight1
      * @param weight2
      */
-    public static mix(comp1: number, comp2: number, weight1: number, weight2: number): number {
-        return Math.floor((comp1 * weight1 + comp2 * weight2) / (weight1 + weight2));
+    public static mix(value1: IMixValue, otherValues?: IMixValue[]): number {
+        if (!otherValues?.length) {
+            return Math.floor(value1.value);
+        }
+
+        const sum = otherValues.reduce((prev, v) => prev + v.value * v.weight, value1.value * value1.weight);
+
+        return Math.floor(sum / otherValues.reduce((prev, v) => prev + v.weight, value1.weight));
     }
 
     /**
