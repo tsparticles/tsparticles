@@ -22,7 +22,7 @@ export class Canvas {
     /**
      * The particles canvas context
      */
-    public context: CanvasRenderingContext2D | null;
+    private context: CanvasRenderingContext2D | null;
 
     /**
      * The parent container
