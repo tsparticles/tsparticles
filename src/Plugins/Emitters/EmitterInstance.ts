@@ -50,8 +50,8 @@ export class EmitterInstance {
 
                 size.load({
                     height: 0,
-                    width: 0,
                     mode: SizeMode.percent,
+                    width: 0,
                 });
 
                 return size;
