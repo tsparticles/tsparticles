@@ -6,8 +6,6 @@ import type { IHsla } from "../Core/Interfaces/IHsla";
 import { Utils } from "./Utils";
 import { Constants } from "./Constants";
 import type { IValueColor } from "../Core/Interfaces/IValueColor";
-import { IMixColor } from "../Core/Interfaces/IMixColor";
-import { IMixValue } from "../Core/Interfaces/IMixValue";
 
 export class ColorUtils {
     /**
@@ -200,70 +198,22 @@ export class ColorUtils {
         return `hsla(${color.h}, ${color.s}%, ${color.l}%, ${opacity ?? 1})`;
     }
 
-    public static mix(color1: IMixColor, otherColors: IMixColor[]): IRgb {
-        let rgb1 = color1.color as IRgb;
+    public static mix(color1: IRgb | IHsl, color2: IRgb | IHsl, size1: number, size2: number): IRgb {
+        let rgb1 = color1 as IRgb;
+        let rgb2 = color2 as IRgb;
 
         if (rgb1.r === undefined) {
-            rgb1 = this.hslToRgb(color1.color as IHsl);
+            rgb1 = this.hslToRgb(color1 as IHsl);
         }
 
-        if (!otherColors.length) {
-            return rgb1;
+        if (rgb2.r === undefined) {
+            rgb2 = this.hslToRgb(color2 as IHsl);
         }
-
-        const rgbOtherColors = otherColors.map((t) => {
-            const rgb = t.color as IRgb;
-            const hsl = t.color as IHsl;
-
-            return {
-                color: rgb.r !== undefined ? rgb : this.hslToRgb(hsl),
-                size: t.size,
-            };
-        });
 
         return {
-            b: Utils.mix(
-                {
-                    value: rgb1.b,
-                    weight: color1.size,
-                },
-                rgbOtherColors.map((t) => {
-                    const rgb = t.color as IRgb;
-                    const res: IMixValue = {
-                        value: rgb.b,
-                        weight: t.size,
-                    };
-                    return res;
-                })
-            ),
-            g: Utils.mix(
-                {
-                    value: rgb1.g,
-                    weight: color1.size,
-                },
-                rgbOtherColors.map((t) => {
-                    const rgb = t.color as IRgb;
-                    const res: IMixValue = {
-                        value: rgb.g,
-                        weight: t.size,
-                    };
-                    return res;
-                })
-            ),
-            r: Utils.mix(
-                {
-                    value: rgb1.r,
-                    weight: color1.size,
-                },
-                rgbOtherColors.map((t) => {
-                    const rgb = t.color as IRgb;
-                    const res: IMixValue = {
-                        value: rgb.r,
-                        weight: t.size,
-                    };
-                    return res;
-                })
-            ),
+            b: Utils.mix(rgb1.b, rgb2.b, size1, size2),
+            g: Utils.mix(rgb1.g, rgb2.g, size1, size2),
+            r: Utils.mix(rgb1.r, rgb2.r, size1, size2),
         };
     }
 

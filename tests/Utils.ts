@@ -95,61 +95,21 @@ describe("Utils", () => {
             const weight2 = weight1;
             const mean = Math.floor((comp1 + comp2) / 2);
 
-            expect(
-                Utils.mix(
-                    {
-                        value: comp1,
-                        weight: weight1,
-                    },
-                    [
-                        {
-                            value: comp2,
-                            weight: weight2,
-                        },
-                    ]
-                )
-            ).to.be.equal(mean);
+            expect(Utils.mix(comp1, comp2, weight1, weight2)).to.be.equal(mean);
         });
 
         it("should return comp1 when weight2 is 0 (and weight1 > 0)", () => {
             const weight1 = Math.floor(Math.random() * (size - 1) + 1);
             const weight2 = 0;
 
-            expect(
-                Utils.mix(
-                    {
-                        value: comp1,
-                        weight: weight1,
-                    },
-                    [
-                        {
-                            value: comp2,
-                            weight: weight2,
-                        },
-                    ]
-                ),
-                `weight 1: ${weight1}`
-            ).to.be.equal(Math.floor(comp1));
+            expect(Utils.mix(comp1, comp2, weight1, weight2), `weight 1: ${weight1}`).to.be.equal(Math.floor(comp1));
         });
 
         it("should return comp2 when weight1 is 0 (and weight2 > 0)", () => {
             const weight1 = 0;
             const weight2 = Math.floor(Math.random() * (size - 1) + 1);
 
-            expect(
-                Utils.mix(
-                    {
-                        value: comp1,
-                        weight: weight1,
-                    },
-                    [
-                        {
-                            value: comp2,
-                            weight: weight2,
-                        },
-                    ]
-                )
-            ).to.be.equal(Math.floor(comp2));
+            expect(Utils.mix(comp1, comp2, weight1, weight2)).to.be.equal(Math.floor(comp2));
         });
 
         it("should return the expected weighted-average when weights differ", () => {
@@ -158,20 +118,7 @@ describe("Utils", () => {
             const weight1 = 2;
             const weight2 = 1;
 
-            expect(
-                Utils.mix(
-                    {
-                        value: comp1,
-                        weight: weight1,
-                    },
-                    [
-                        {
-                            value: comp2,
-                            weight: weight2,
-                        },
-                    ]
-                )
-            ).to.be.equal(7);
+            expect(Utils.mix(comp1, comp2, weight1, weight2)).to.be.equal(7);
         });
 
         it("should handle negative components", () => {
@@ -180,20 +127,7 @@ describe("Utils", () => {
             const weight1 = 2;
             const weight2 = 1;
 
-            expect(
-                Utils.mix(
-                    {
-                        value: comp1,
-                        weight: weight1,
-                    },
-                    [
-                        {
-                            value: comp2,
-                            weight: weight2,
-                        },
-                    ]
-                )
-            ).to.be.equal(-7);
+            expect(Utils.mix(comp1, comp2, weight1, weight2)).to.be.equal(-7);
         });
     });
 
