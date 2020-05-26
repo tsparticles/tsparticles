@@ -1,6 +1,6 @@
 {
   "name": "preact-particles",
-  "version": "1.14.3",
+  "version": "1.15.0",
   "description": "Preactified tsParticles",
   "main": "index.js",
   "unpkg": "umd/particles.js",
