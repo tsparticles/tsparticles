@@ -4,14 +4,9 @@ import { Utils } from "../../Utils";
 import { Emitters } from "./Emitters";
 import { RecursivePartial } from "../../Types/RecursivePartial";
 import { IOptions } from "../../Options/Interfaces/IOptions";
-import { SingleOrMultiple } from "../../Types/SingleOrMultiple";
-import { Emitter } from "./Options/Classes/Emitter";
 import { tsParticles } from "../../index.slim";
-import { AbsorberClickMode } from "../Absorbers/Enums/AbsorberClickMode";
-
-type EmitterOptions = IOptions & {
-    emitters: SingleOrMultiple<Emitter>;
-};
+import { IEmitterOptions } from "./Options/Interfaces/IEmitterOptions";
+import { EmitterClickMode } from "./Enums";
 
 class EmittersPlugin implements IPlugin {
     public readonly id: string;
@@ -24,7 +19,7 @@ class EmittersPlugin implements IPlugin {
         return new Emitters(container);
     }
 
-    public needsPlugin(options?: RecursivePartial<EmitterOptions>): boolean {
+    public needsPlugin(options?: RecursivePartial<IOptions & IEmitterOptions>): boolean {
         if (!options?.emitters) {
             return false;
         }
@@ -40,7 +35,7 @@ class EmittersPlugin implements IPlugin {
             loadEmitters = true;
         } else if (
             options.interactivity?.events?.onClick?.mode &&
-            Utils.isInArray(AbsorberClickMode.absorber, options.interactivity.events.onClick.mode)
+            Utils.isInArray(EmitterClickMode.emitter, options.interactivity.events.onClick.mode)
         ) {
             loadEmitters = true;
         }
@@ -49,4 +44,9 @@ class EmittersPlugin implements IPlugin {
     }
 }
 
-tsParticles.addPlugin(new EmittersPlugin());
+const plugin = new EmittersPlugin();
+
+tsParticles.addPlugin(plugin);
+
+export { IEmitterOptions, plugin as EmittersPlugin };
+export * from "./Enums";

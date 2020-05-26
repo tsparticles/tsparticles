@@ -2,23 +2,11 @@ import type { IPlugin } from "../../Core/Interfaces/IPlugin";
 import type { Container } from "../../Core/Container";
 import { Absorbers } from "./Absorbers";
 import { Utils } from "../../Utils";
-import { IOptions } from "../../Options/Interfaces/IOptions";
 import { RecursivePartial } from "../../Types/RecursivePartial";
-import { SingleOrMultiple } from "../../Types/SingleOrMultiple";
-import { Absorber } from "./Options/Classes/Absorber";
-import { IInteractivity } from "../../Options/Interfaces/Interactivity/IInteractivity";
-import { IModes } from "../../Options/Interfaces/Interactivity/Modes/IModes";
 import { tsParticles } from "../../index.slim";
-import { AbsorberClickMode } from "./Enums/AbsorberClickMode";
-
-type AbsorberOptions = IOptions & {
-    absorbers: SingleOrMultiple<Absorber>;
-    interactivity: IInteractivity & {
-        modes: IModes & {
-            absorbers: SingleOrMultiple<Absorber>;
-        };
-    };
-};
+import { AbsorberClickMode } from "./Enums";
+import { IAbsorberOptions } from "./Options/Interfaces/IAbsorberOptions";
+import { IOptions } from "../../Options/Interfaces/IOptions";
 
 class AbsorbersPlugin implements IPlugin {
     public readonly id: string;
@@ -31,7 +19,7 @@ class AbsorbersPlugin implements IPlugin {
         return new Absorbers(container);
     }
 
-    public needsPlugin(options?: RecursivePartial<AbsorberOptions>): boolean {
+    public needsPlugin(options?: RecursivePartial<IOptions & IAbsorberOptions>): boolean {
         if (!options?.absorbers) {
             return false;
         }
@@ -56,4 +44,9 @@ class AbsorbersPlugin implements IPlugin {
     }
 }
 
-tsParticles.addPlugin(new AbsorbersPlugin());
+const plugin = new AbsorbersPlugin();
+
+tsParticles.addPlugin(plugin);
+
+export { IAbsorberOptions, plugin as AbsorbersPlugin };
+export * from "./Enums";

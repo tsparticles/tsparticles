@@ -10,8 +10,8 @@ export class LocalSvg implements ILocalSvg {
     constructor() {
         this.path = [];
         this.size = {
-            width: 0,
             height: 0,
+            width: 0,
         };
     }
 

@@ -3,7 +3,7 @@ import type { IOptions } from "../Options/Interfaces/IOptions";
 import type { RecursivePartial } from "../Types/RecursivePartial";
 import { Constants, Utils } from "../Utils";
 
-let tsParticlesDom: Container[] = [];
+const tsParticlesDom: Container[] = [];
 
 /**
  * Main class for creating the [[Container]] objects
@@ -13,10 +13,6 @@ export class Loader {
      * All the [[Container]] objects loaded
      */
     public static dom(): Container[] {
-        if (!tsParticlesDom) {
-            tsParticlesDom = [];
-        }
-
         return tsParticlesDom;
     }
 

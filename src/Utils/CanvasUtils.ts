@@ -324,7 +324,7 @@ export class CanvasUtils {
         }
     }
 
-    private static drawLine(context: CanvasRenderingContext2D, begin: ICoordinates, end: ICoordinates) {
+    private static drawLine(context: CanvasRenderingContext2D, begin: ICoordinates, end: ICoordinates): void {
         context.beginPath();
         context.moveTo(begin.x, begin.y);
         context.lineTo(end.x, end.y);
@@ -336,7 +336,7 @@ export class CanvasUtils {
         p1: ICoordinates,
         p2: ICoordinates,
         p3: ICoordinates
-    ) {
+    ): void {
         context.beginPath();
         context.moveTo(p1.x, p1.y);
         context.lineTo(p2.x, p2.y);

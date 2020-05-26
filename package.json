@@ -5,7 +5,7 @@
     "./dist/Plugins/Emitters/EmittersPlugin.js",
     "./dist/Plugins/PolygonMask/PolygonMaskPlugin.js"
   ],
-  "version": "1.15.0-beta.1",
+  "version": "1.15.0",
   "description": "Porting of the abandoned Vincent Garreau's particles.js, converted in TypeScript. Added many new cool features and various bug fixes.",
   "homepage": "https://particles.matteobruni.it/",
   "scripts": {
@@ -108,7 +108,7 @@
     "nyc": "^15.0.1",
     "popper.js": "^1.16.1",
     "prettier": "2.0.5",
-    "pug": "^2.0.4",
+    "pug": "^3.0.0",
     "reflect-metadata": "^0.1.13",
     "rimraf": "^3.0.2",
     "source-map-support": "^0.5.19",

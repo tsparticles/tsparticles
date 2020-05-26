@@ -8,18 +8,8 @@ import { Absorber } from "./Options/Classes/Absorber";
 import type { SingleOrMultiple } from "../../Types/SingleOrMultiple";
 import type { IOptions } from "../../Options/Interfaces/IOptions";
 import type { RecursivePartial } from "../../Types/RecursivePartial";
-import type { IInteractivity } from "../../Options/Interfaces/Interactivity/IInteractivity";
-import type { IModes } from "../../Options/Interfaces/Interactivity/Modes/IModes";
-import { AbsorberClickMode } from "./Enums/AbsorberClickMode";
-
-type AbsorberOptions = IOptions & {
-    absorbers: SingleOrMultiple<Absorber>;
-    interactivity: IInteractivity & {
-        modes: IModes & {
-            absorbers: SingleOrMultiple<Absorber>;
-        };
-    };
-};
+import { AbsorberClickMode } from "./Enums";
+import { IAbsorberOptions } from "./Options/Interfaces/IAbsorberOptions";
 
 export class Absorbers implements IContainerPlugin {
     public readonly container: Container;
@@ -34,7 +24,7 @@ export class Absorbers implements IContainerPlugin {
         this.interactivityAbsorbers = [];
     }
 
-    public init(options?: RecursivePartial<AbsorberOptions>): void {
+    public init(options?: RecursivePartial<IOptions & IAbsorberOptions>): void {
         if (!options) {
             return;
         }
