@@ -1,28 +1,21 @@
-// Type definitions for preact-particles v1.14.0
+// Type definitions for preact-particles v1.15.0
 // Project: https://github.com/matteobruni/react-tsparticles
 // Definitions by: Matteo Bruni <https://github.com/matteobruni>
 // Definitions: https://github.com/DefinitelyTyped/DefinitelyTyped
 
 /// <reference types="preact/compat" />
 import { PureComponent } from "preact/compat";
-import type { IOptions } from "tsparticles/dist/Interfaces/Options/IOptions";
-import { Container } from "tsparticles/dist/Classes/Container";
+import * as React from "react";
+import { Container } from "tsparticles/dist/Core/Container";
+import type { IOptions } from "tsparticles/dist/Options/Interfaces/IOptions";
 import type { RecursivePartial } from "tsparticles/dist/Types/RecursivePartial";
+import { IPolygonMaskOptions } from "tsparticles/dist/Plugins/PolygonMask/PolygonMaskPlugin";
+import { IAbsorberOptions } from "tsparticles/dist/Plugins/Absorbers/AbsorbersPlugin";
+import { IEmitterOptions } from "tsparticles/dist/Plugins/Emitters/EmittersPlugin";
 
-export * from 'tsparticles/dist/Enums/InteractivityDetect';
-export * from 'tsparticles/dist/Enums/MoveDirection';
-export * from 'tsparticles/dist/Enums/OutMode';
-export * from 'tsparticles/dist/Enums/PolygonMaskInlineArrangement';
-export * from 'tsparticles/dist/Enums/PolygonMaskMoveType';
-export * from 'tsparticles/dist/Enums/PolygonMaskType';
-export * from 'tsparticles/dist/Enums/ProcessBubbleType';
-export * from 'tsparticles/dist/Enums/RotateDirection';
-export * from 'tsparticles/dist/Enums/ShapeType';
-export * from 'tsparticles/dist/Enums/Modes/ClickMode';
-export * from 'tsparticles/dist/Enums/Modes/DivMode';
-export * from 'tsparticles/dist/Enums/Modes/HoverMode';
+export type IParticlesParams = RecursivePartial<IOptions & IPolygonMaskOptions & IAbsorberOptions & IEmitterOptions>;
 
-export type IParticlesParams = RecursivePartial<IOptions>;
+export * from "tsparticles/dist/Enums";
 
 export interface ParticlesProps {
     width?: string;
@@ -31,7 +24,7 @@ export interface ParticlesProps {
     style?: any;
     className?: string;
     canvasClassName?: string;
-    // particlesRef?: React.RefObject<Container>;
+    particlesRef?: React.RefObject<Container>;
 }
 
 type Particles = PureComponent<ParticlesProps>;

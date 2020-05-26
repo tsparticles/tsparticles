@@ -1,21 +1,24 @@
 import * as React from "react";
 import { Component } from "react";
 import isEqual from "lodash/isEqual";
-import type { IOptions } from "tsparticles/dist/Interfaces/Options/IOptions";
-import { Container } from "tsparticles/dist/Classes/Container";
+import type { IOptions } from "tsparticles/dist/Options/Interfaces/IOptions";
+import { Container } from "tsparticles/dist/Core/Container";
 import type { RecursivePartial } from "tsparticles/dist/Types/RecursivePartial";
-import { Options } from "tsparticles/dist/Classes/Options/Options";
+import { Options } from "tsparticles/dist/Options/Classes/Options";
 import { tsParticles } from "tsparticles";
+import { IPolygonMaskOptions } from "tsparticles/dist/Plugins/PolygonMask/PolygonMaskPlugin";
+import { IAbsorberOptions } from "tsparticles/dist/Plugins/Absorbers/AbsorbersPlugin";
+import { IEmitterOptions } from "tsparticles/dist/Plugins/Emitters/EmittersPlugin";
 
 export interface ParticlesProps {
     id: string;
     width: string;
     height: string;
-    params: RecursivePartial<IOptions>;
+    params: RecursivePartial<IOptions & IPolygonMaskOptions & IAbsorberOptions & IEmitterOptions>;
     style: any;
     className?: string;
     canvasClassName?: string;
-    particlesRef?: React.RefObject<Container>
+    particlesRef?: React.RefObject<Container>;
 }
 
 export interface ParticlesState {
@@ -42,7 +45,10 @@ export default class Particles extends Component<ParticlesProps,
         this.loadCanvas = this.loadCanvas.bind(this);
     }
 
-    private buildParticlesLibrary(tagId: string, params?: RecursivePartial<IOptions>) {
+    private buildParticlesLibrary(
+        tagId: string,
+        params?: RecursivePartial<IOptions>
+    ) {
         try {
             if (window === undefined) return null;
         } catch {
@@ -67,7 +73,8 @@ export default class Particles extends Component<ParticlesProps,
 
         if (canvas) {
             this.destroy();
-            this.setState({
+            this.setState(
+                {
                     library: this.buildParticlesLibrary(props.id, props.params)
                 },
                 () => {
@@ -85,7 +92,8 @@ export default class Particles extends Component<ParticlesProps,
 
     loadCanvas(canvas: HTMLCanvasElement) {
         if (canvas) {
-            this.setState({
+            this.setState(
+                {
                     canvas
                 },
                 () => {
