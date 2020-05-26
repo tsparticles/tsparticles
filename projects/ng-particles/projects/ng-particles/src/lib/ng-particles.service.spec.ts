@@ -1,8 +1,8 @@
-import { TestBed } from '@angular/core/testing';
+import { TestBed } from "@angular/core/testing";
 
-import { NgParticlesService } from './ng-particles.service';
+import { NgParticlesService } from "./ng-particles.service";
 
-describe('NgParticlesService', () => {
+describe("NgParticlesService", () => {
   let service: NgParticlesService;
 
   beforeEach(() => {
@@ -10,7 +10,7 @@ describe('NgParticlesService', () => {
     service = TestBed.inject(NgParticlesService);
   });
 
-  it('should be created', () => {
+  it("should be created", () => {
     expect(service).toBeTruthy();
   });
 });

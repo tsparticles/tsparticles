@@ -1,25 +1,19 @@
-import { NgModule } from '@angular/core';
-import { NgParticlesComponent } from './ng-particles.component';
-import { RecursivePartial } from 'tsparticles/dist/Types/RecursivePartial';
-import { IOptions } from 'tsparticles/dist/Options/Interfaces/IOptions';
+import { NgModule } from "@angular/core";
+import { NgParticlesComponent } from "./ng-particles.component";
+import { RecursivePartial } from "tsparticles/dist/Types/RecursivePartial";
+import { IOptions } from "tsparticles/dist/Options/Interfaces/IOptions";
+import { IPolygonMaskOptions } from "tsparticles/dist/Plugins/PolygonMask/PolygonMaskPlugin";
+import { IAbsorberOptions } from "tsparticles/dist/Plugins/Absorbers/AbsorbersPlugin";
+import { IEmitterOptions } from "tsparticles/dist/Plugins/Emitters/EmittersPlugin";
 
 @NgModule({
-  declarations: [NgParticlesComponent],
+  declarations: [ NgParticlesComponent ],
   imports: [],
-  exports: [NgParticlesComponent],
+  exports: [ NgParticlesComponent ]
 })
-export class NgParticlesModule {}
-export * from 'tsparticles/dist/Enums/InteractivityDetect';
-export * from 'tsparticles/dist/Enums/MoveDirection';
-export * from 'tsparticles/dist/Enums/OutMode';
-export * from 'tsparticles/dist/Enums/PolygonMaskInlineArrangement';
-export * from 'tsparticles/dist/Enums/PolygonMaskMoveType';
-export * from 'tsparticles/dist/Enums/PolygonMaskType';
-export * from 'tsparticles/dist/Enums/ProcessBubbleType';
-export * from 'tsparticles/dist/Enums/RotateDirection';
-export * from 'tsparticles/dist/Enums/ShapeType';
-export * from 'tsparticles/dist/Enums/Modes/ClickMode';
-export * from 'tsparticles/dist/Enums/Modes/DivMode';
-export * from 'tsparticles/dist/Enums/Modes/HoverMode';
+export class NgParticlesModule {
+}
 
-export type IParticlesParams = RecursivePartial<IOptions>;
+export * from "tsparticles/dist/Enums";
+
+export type IParticlesParams = RecursivePartial<IOptions & IAbsorberOptions & IEmitterOptions & IPolygonMaskOptions>;
