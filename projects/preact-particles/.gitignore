@@ -50,5 +50,3 @@ lib/particles.js.map
 /cjs
 /umd
 report.html
-
-package-lock.json

@@ -34,7 +34,8 @@
   },
   "dependencies": {
     "lodash": "^4.17.15",
-    "preact": "^10.4.1"
+    "preact": "^10.4.1",
+    "tsparticles": "^1.15.0-beta.3"
   },
   "peerDependencies": {
     "preact": "^10.0.0"
