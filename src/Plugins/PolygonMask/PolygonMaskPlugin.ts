@@ -3,12 +3,8 @@ import { PolygonMaskInstance } from "./PolygonMaskInstance";
 import type { Container } from "../../Core/Container";
 import type { RecursivePartial } from "../../Types/RecursivePartial";
 import type { IOptions } from "../../Options/Interfaces/IOptions";
-import type { IPolygonMask } from "./Options/Interfaces/IPolygonMask";
 import { tsParticles } from "../../index.slim";
-
-type IPolygonMaskOptions = IOptions & {
-    polygon: IPolygonMask;
-};
+import { IPolygonMaskOptions } from "./Options/Interfaces/IPolygonMaskOptions";
 
 class PolygonMaskPlugin implements IPlugin {
     public readonly id: string;
@@ -21,9 +17,14 @@ class PolygonMaskPlugin implements IPlugin {
         return new PolygonMaskInstance(container);
     }
 
-    public needsPlugin(options?: RecursivePartial<IPolygonMaskOptions>): boolean {
+    public needsPlugin(options?: RecursivePartial<IOptions & IPolygonMaskOptions>): boolean {
         return options?.polygon?.enable ?? false;
     }
 }
 
-tsParticles.addPlugin(new PolygonMaskPlugin());
+const plugin = new PolygonMaskPlugin();
+
+tsParticles.addPlugin(plugin);
+
+export { IPolygonMaskOptions, plugin as PolygonMaskPlugin };
+export * from "./Enums";

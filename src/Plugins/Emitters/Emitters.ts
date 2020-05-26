@@ -7,18 +7,8 @@ import type { RecursivePartial } from "../../Types/RecursivePartial";
 import { Emitter } from "./Options/Classes/Emitter";
 import type { IOptions } from "../../Options/Interfaces/IOptions";
 import type { SingleOrMultiple } from "../../Types/SingleOrMultiple";
-import { IInteractivity } from "../../Options/Interfaces/Interactivity/IInteractivity";
-import { IModes } from "../../Options/Interfaces/Interactivity/Modes/IModes";
-import { EmitterClickMode } from "./Enums/EmitterClickMode";
-
-type EmitterOptions = IOptions & {
-    emitters: SingleOrMultiple<Emitter>;
-    interactivity: IInteractivity & {
-        modes: IModes & {
-            emitters: SingleOrMultiple<Emitter>;
-        };
-    };
-};
+import { EmitterClickMode } from "./Enums";
+import { IEmitterOptions } from "./Options/Interfaces/IEmitterOptions";
 
 export class Emitters implements IContainerPlugin {
     public readonly container: Container;
@@ -33,7 +23,7 @@ export class Emitters implements IContainerPlugin {
         this.interactivityEmitters = [];
     }
 
-    public init(options?: RecursivePartial<EmitterOptions>): void {
+    public init(options?: RecursivePartial<IOptions & IEmitterOptions>): void {
         if (!options) {
             return;
         }
