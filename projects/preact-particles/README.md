@@ -1,4 +1,4 @@
-## tsParticles - Preact Component
+## tsParticles - Preact Component ![Node.js CI](https://github.com/matteobruni/preact-particles/workflows/Node.js%20CI/badge.svg)
 
 tsParticles Preact component, using [tsParticles](https://github.com/matteobruni/tsparticles).
 
