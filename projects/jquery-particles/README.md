@@ -1,4 +1,4 @@
-# jquery-particles
+# tsParticles - jQuery wrapper ![Node.js CI](https://github.com/matteobruni/jquery-particles/workflows/Node.js%20CI/badge.svg)
 
 jQuery plugin for [tsParticles](https://github.com/matteobruni/tsparticles)
 
