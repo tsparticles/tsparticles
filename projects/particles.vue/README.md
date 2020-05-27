@@ -1,4 +1,4 @@
-# particles.vue
+# tsParticles - Vue Component ![Node.js CI](https://github.com/matteobruni/particles.vue/workflows/Node.js%20CI/badge.svg)
 
 Vue.js component for [tsParticles](https://github.com/matteobruni/tsparticles)
 
