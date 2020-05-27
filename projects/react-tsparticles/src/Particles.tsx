@@ -3,7 +3,6 @@ import { Component } from "react";
 import type { IOptions } from "tsparticles/dist/Options/Interfaces/IOptions";
 import { Container } from "tsparticles/dist/Core/Container";
 import type { RecursivePartial } from "tsparticles/dist/Types/RecursivePartial";
-import { Options } from "tsparticles/dist/Options/Classes/Options";
 import { tsParticles } from "tsparticles";
 import { isEqual } from "lodash";
 import { IPolygonMaskOptions } from "tsparticles/dist/Plugins/PolygonMask/PolygonMaskPlugin";
