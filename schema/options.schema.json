@@ -13,10 +13,10 @@
         "value": {
           "anyOf": [
             {
-              "$ref": "#/definitions/IRgb"
+              "$ref": "#/definitions/IHsl"
             },
             {
-              "$ref": "#/definitions/IHsl"
+              "$ref": "#/definitions/IRgb"
             },
             {
               "$ref": "#/definitions/IValueColor"
@@ -25,10 +25,10 @@
               "items": {
                 "anyOf": [
                   {
-                    "$ref": "#/definitions/IRgb"
+                    "$ref": "#/definitions/IHsl"
                   },
                   {
-                    "$ref": "#/definitions/IHsl"
+                    "$ref": "#/definitions/IRgb"
                   },
                   {
                     "$ref": "#/definitions/IValueColor"
@@ -264,10 +264,10 @@
         "value": {
           "anyOf": [
             {
-              "$ref": "#/definitions/IRgb"
+              "$ref": "#/definitions/IHsl"
             },
             {
-              "$ref": "#/definitions/IHsl"
+              "$ref": "#/definitions/IRgb"
             },
             {
               "$ref": "#/definitions/IValueColor"
@@ -276,10 +276,10 @@
               "items": {
                 "anyOf": [
                   {
-                    "$ref": "#/definitions/IRgb"
+                    "$ref": "#/definitions/IHsl"
                   },
                   {
-                    "$ref": "#/definitions/IHsl"
+                    "$ref": "#/definitions/IRgb"
                   },
                   {
                     "$ref": "#/definitions/IValueColor"
@@ -1472,10 +1472,10 @@
         "value": {
           "anyOf": [
             {
-              "$ref": "#/definitions/IRgb"
+              "$ref": "#/definitions/IHsl"
             },
             {
-              "$ref": "#/definitions/IHsl"
+              "$ref": "#/definitions/IRgb"
             },
             {
               "$ref": "#/definitions/IValueColor"
@@ -1484,10 +1484,10 @@
               "items": {
                 "anyOf": [
                   {
-                    "$ref": "#/definitions/IRgb"
+                    "$ref": "#/definitions/IHsl"
                   },
                   {
-                    "$ref": "#/definitions/IHsl"
+                    "$ref": "#/definitions/IRgb"
                   },
                   {
                     "$ref": "#/definitions/IValueColor"

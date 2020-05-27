@@ -1,8 +1,8 @@
-import { particlesJS, pJSDom, tsParticles } from "./index.slim";
+import { initPjs } from "./pjs";
+import { Main } from "./main";
 
-import "./Plugins/Absorbers/AbsorbersPlugin";
-import "./Plugins/Emitters/EmittersPlugin";
-import "./Plugins/PolygonMask/PolygonMaskPlugin";
+const tsParticles = new Main();
+const { particlesJS, pJSDom } = initPjs(tsParticles);
 
-export { particlesJS, pJSDom, tsParticles };
 export * from "./Enums";
+export { particlesJS, pJSDom, tsParticles };

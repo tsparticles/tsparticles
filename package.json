@@ -1,9 +1,8 @@
 {
   "name": "tsparticles",
   "sideEffects": [
-    "./dist/Plugins/Absorbers/AbsorbersPlugin.js",
-    "./dist/Plugins/Emitters/EmittersPlugin.js",
-    "./dist/Plugins/PolygonMask/PolygonMaskPlugin.js"
+    "./dist/index.js",
+    "./dist/tsparticles.js"
   ],
   "version": "1.15.0",
   "description": "Porting of the abandoned Vincent Garreau's particles.js, converted in TypeScript. Added many new cool features and various bug fixes.",

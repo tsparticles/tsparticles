@@ -302,9 +302,9 @@ export class Container {
             const plugin = this.plugins[id];
 
             if (plugin.init !== undefined) {
-                plugin.init(this.sourceOptions);
+                plugin.init(this.options);
             } else if (plugin.initAsync !== undefined) {
-                await plugin.initAsync(this.sourceOptions);
+                await plugin.initAsync(this.options);
             }
         }
 
