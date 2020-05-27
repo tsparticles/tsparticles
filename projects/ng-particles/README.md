@@ -1,4 +1,4 @@
-# ng-particles
+# tsParticles - Angular Component ![Node.js CI](https://github.com/matteobruni/ng-particles/workflows/Node.js%20CI/badge.svg)
 
 [tsParticles](https://github.com/matteobruni/tsparticles) Angular component
 
