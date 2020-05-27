@@ -57,11 +57,7 @@ export default class Particles extends Component<ParticlesProps,
 
         tsParticles.init();
 
-        const options = new Options();
-
-        options.load(params);
-
-        const container = new Container(tagId, options);
+        const container = new Container(tagId, params);
 
         if (this.props.container) {
             (this.props.container as React.MutableRefObject<Container>).current = container;
