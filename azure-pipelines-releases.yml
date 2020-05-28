@@ -18,6 +18,95 @@ steps:
   displayName: 'Install Node.js'
 
 - script: |
-    npm install
+    npm ci
     npm run build
   displayName: 'npm install and build'
+
+- task: npmAuthenticate@0
+  displayName: npm authenticate
+  inputs:
+    workingFile: '.npmrc'
+    customEndpoint: 'npmjs'
+
+- task: Npm@1
+  displayName: npm publish
+  condition: and(succeeded(), not(contains(variables['Build.SourceBranch'], '-'))
+  inputs:
+    command: 'publish'
+    publishEndpoint: 'npmjs'
+
+- task: Npm@1
+  displayName: npm publish alpha
+  condition: and(succeeded(), contains(variables['Build.SourceBranch'], '-alpha.')
+  inputs:
+    command: 'custom'
+    customCommand: 'publish --tag alpha'
+    customEndpoint: 'npmjs'
+
+- task: Npm@1
+  displayName: npm publish alpha
+  condition: and(succeeded(), contains(variables['Build.SourceBranch'], '-beta.')
+  inputs:
+    command: 'custom'
+    customCommand: 'publish --tag alpha'
+    customEndpoint: 'npmjs'
+
+- task: CopyFiles@2
+  displayName: Copying files to Artifacts
+  inputs:
+    Contents: |
+      dist/**
+      docs/**
+    TargetFolder: '$(Build.ArtifactStagingDirectory)'
+    CleanTargetFolder: true
+    OverWrite: true
+
+- task: NuGetCommand@2
+  displayName: 'Nuget Pack'
+  inputs:
+    command: 'pack'
+    packagesToPack: '**/*.nuspec'
+    versioningScheme: 'off'
+
+- task: NuGetCommand@2
+  condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/master'))
+  displayName: 'Nuget Publish'
+  inputs:
+    command: 'push'
+    packagesToPush: '$(Build.ArtifactStagingDirectory)/**/*.nupkg;!$(Build.ArtifactStagingDirectory)/**/*.symbols.nupkg'
+    nuGetFeedType: 'external'
+    publishFeedCredentials: 'Nuget'
+
+- task: PublishBuildArtifacts@1
+  displayName: Publishing Artifacts
+  inputs:
+    PathtoPublish: '$(Build.ArtifactStagingDirectory)'
+    ArtifactName: 'tsparticles'
+    publishLocation: 'Container'
+
+- task: GitHubRelease@1
+  displayName: 'Github Release'
+  condition: and(succeeded(), not(contains(variables['Build.SourceBranch'], '-'))
+  inputs:
+    gitHubConnection: 'github.com_matteobruni'
+    repositoryName: 'matteobruni/tsparticles'
+    action: 'create'
+    tagSource: 'gitTag'
+    assets: '$(Build.ArtifactStagingDirectory)/dist/*'
+    changeLogCompareToRelease: 'lastFullRelease'
+    changeLogType: 'commitBased'
+
+- task: GitHubRelease@1
+  displayName: 'GitHub Release Alpha'
+  condition: and(succeeded(), or(contains(variables['Build.SourceBranch'], '-alpha.'), contains(variables['Build.SourceBranch'], '-beta.'))
+  inputs:
+    gitHubConnection: 'github.com_matteobruni'
+    repositoryName: '$(Build.Repository.Name)'
+    action: 'create'
+    target: '$(Build.SourceVersion)'
+    tagSource: 'gitTag'
+    isPreRelease: true
+    assets: '$(Build.ArtifactStagingDirectory)/dist/*'
+    changeLogCompareToRelease: 'lastFullRelease'
+    changeLogType: 'commitBased'
+
