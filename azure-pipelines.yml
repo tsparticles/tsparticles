@@ -23,9 +23,3 @@ steps:
   inputs:
     command: 'custom'
     customCommand: 'run build'
-
-- task: Npm@1
-  displayName: NPM Test
-  inputs:
-    command: 'custom'
-    customCommand: 'test'
