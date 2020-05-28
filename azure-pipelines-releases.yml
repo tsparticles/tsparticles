@@ -8,6 +8,8 @@ trigger:
     include:
       - refs/tags/*
 
+pr: none
+
 pool:
   vmImage: 'ubuntu-latest'
 
@@ -85,7 +87,7 @@ steps:
 
 - task: GitHubRelease@1
   displayName: 'Github Release'
-  condition: and(succeeded(), not(contains(variables['Build.SourceBranch'], '-'))
+  condition: and(succeeded(), not(contains(variables['Build.SourceBranch'], '-')))
   inputs:
     gitHubConnection: 'github.com_matteobruni'
     repositoryName: 'matteobruni/tsparticles'
@@ -97,7 +99,7 @@ steps:
 
 - task: GitHubRelease@1
   displayName: 'GitHub Release Alpha'
-  condition: and(succeeded(), or(contains(variables['Build.SourceBranch'], '-alpha.'), contains(variables['Build.SourceBranch'], '-beta.'))
+  condition: and(succeeded(), or(contains(variables['Build.SourceBranch'], '-alpha.'), contains(variables['Build.SourceBranch'], '-beta.')))
   inputs:
     gitHubConnection: 'github.com_matteobruni'
     repositoryName: '$(Build.Repository.Name)'
