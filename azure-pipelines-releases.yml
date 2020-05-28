@@ -19,16 +19,23 @@ steps:
     versionSpec: '10.x'
   displayName: 'Install Node.js'
 
-- script: |
-    npm ci
-    npm run build
-  displayName: 'npm install and build'
+
+- task: Npm@1
+  inputs:
+    command: 'ci'
 
 - task: npmAuthenticate@0
   displayName: npm authenticate
   inputs:
     workingFile: '.npmrc'
     customEndpoint: 'npmjs'
+
+- task: Npm@1
+  displayName: npm run build
+  condition: and(succeeded(), and(contains(variables['Build.SourceBranch'], '-'), not(contains(variables['Build.SourceBranch'], '-alpha.')), not(contains(variables['Build.SourceBranch'], '-beta.'))))
+  inputs:
+    command: 'custom'
+    customCommand: 'run build'
 
 - task: Npm@1
   displayName: npm publish
