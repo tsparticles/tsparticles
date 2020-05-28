@@ -38,7 +38,7 @@
     "@rollup/plugin-replace": "^2.3.1",
     "@vue/cli-plugin-babel": "~4.4.1",
     "@vue/cli-plugin-typescript": "~4.2.0",
-    "@vue/cli-service": "~4.2.0",
+    "@vue/cli-service": "~4.4.1",
     "rollup": "^2.3.4",
     "rollup-plugin-terser": "^5.3.0",
     "rollup-plugin-typescript": "^1.0.1",
