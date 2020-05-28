@@ -30,14 +30,14 @@ steps:
 
 - task: Npm@1
   displayName: npm publish
-  condition: and(succeeded(), not(contains(variables['Build.SourceBranch'], '-'))
+  condition: and(succeeded(), not(contains(variables['Build.SourceBranch'], '-')))
   inputs:
     command: 'publish'
     publishEndpoint: 'npmjs'
 
 - task: Npm@1
   displayName: npm publish alpha
-  condition: and(succeeded(), contains(variables['Build.SourceBranch'], '-alpha.')
+  condition: and(succeeded(), contains(variables['Build.SourceBranch'], '-alpha.'))
   inputs:
     command: 'custom'
     customCommand: 'publish --tag alpha'
@@ -45,7 +45,7 @@ steps:
 
 - task: Npm@1
   displayName: npm publish alpha
-  condition: and(succeeded(), contains(variables['Build.SourceBranch'], '-beta.')
+  condition: and(succeeded(), contains(variables['Build.SourceBranch'], '-beta.'))
   inputs:
     command: 'custom'
     customCommand: 'publish --tag alpha'
@@ -69,7 +69,6 @@ steps:
     versioningScheme: 'off'
 
 - task: NuGetCommand@2
-  condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/master'))
   displayName: 'Nuget Publish'
   inputs:
     command: 'push'
