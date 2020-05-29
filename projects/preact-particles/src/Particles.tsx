@@ -4,7 +4,6 @@ import isEqual from "lodash/isEqual";
 import type { IOptions } from "tsparticles/dist/Options/Interfaces/IOptions";
 import { Container } from "tsparticles/dist/Core/Container";
 import type { RecursivePartial } from "tsparticles/dist/Types/RecursivePartial";
-import { Options } from "tsparticles/dist/Options/Classes/Options";
 import { tsParticles } from "tsparticles";
 import { IPolygonMaskOptions } from "tsparticles/dist/Plugins/PolygonMask/PolygonMaskPlugin";
 import { IAbsorberOptions } from "tsparticles/dist/Plugins/Absorbers/AbsorbersPlugin";
@@ -54,12 +53,10 @@ export default class Particles extends Component<ParticlesProps,
         } catch {
             return null;
         } // SSR
-        const options = new Options();
-
-        options.load(params);
 
         tsParticles.init();
-        const container = new Container(tagId, options);
+
+        const container = new Container(tagId, params);
 
         if (this.props.particlesRef) {
             (this.props.particlesRef as React.MutableRefObject<Container>).current = container;
