@@ -351,6 +351,11 @@ You can find all options available [here](https://github.com/matteobruni/tsparti
     </a>
 </p>
 
+
+## Stargazers over time
+
+[![Stargazers over time](https://starchart.cc/matteobruni/tsparticles.svg)](https://starchart.cc/matteobruni/tsparticles)
+
 ### Huge thanks to [JetBrains](https://www.jetbrains.com/?from=tsParticles) for the 2020 Open Source License!
 
 [JetBrains WebStorm](https://www.jetbrains.com/webstorm/?from=tsParticles) is used to maintain this project.
