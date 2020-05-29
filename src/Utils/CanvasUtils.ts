@@ -37,8 +37,12 @@ export class CanvasUtils {
         // this.ctx.lineCap = "round"; /* performance issue */
         /* path */
 
+        let drawn = false;
+
         if (Utils.getDistance(begin, end) <= maxDistance) {
             this.drawLine(context, begin, end);
+
+            drawn = true;
         } else if (warp) {
             let pi1: ICoordinates | undefined;
             let pi2: ICoordinates | undefined;
@@ -90,7 +94,13 @@ export class CanvasUtils {
             if (pi1 && pi2) {
                 this.drawLine(context, begin, pi1);
                 this.drawLine(context, end, pi2);
+
+                drawn = true;
             }
+        }
+
+        if (!drawn) {
+            return;
         }
 
         context.lineWidth = width;
@@ -225,6 +235,8 @@ export class CanvasUtils {
             context.globalCompositeOperation = "destination-out";
         }
 
+        this.drawShape(container, context, particle, radius, opacity, delta);
+
         const shadowColor = particle.shadowColor;
 
         if (shadow.enable && shadowColor) {
@@ -238,12 +250,11 @@ export class CanvasUtils {
 
         const stroke = particle.stroke;
 
-        if (stroke.width > 0 && particle.strokeColor) {
-            context.strokeStyle = ColorUtils.getStyleFromRgb(particle.strokeColor, particle.stroke.opacity);
-            context.lineWidth = stroke.width;
-        }
+        context.lineWidth = stroke.width;
 
-        this.drawShape(container, context, particle, radius, opacity, delta);
+        if (particle.strokeColor) {
+            context.strokeStyle = ColorUtils.getStyleFromRgb(particle.strokeColor, particle.stroke.opacity);
+        }
 
         if (particle.close) {
             context.closePath();
