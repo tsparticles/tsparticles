@@ -342,6 +342,12 @@ You can find all options available [here](https://github.com/matteobruni/tsparti
 
 ---
 
+## Stargazers over time
+
+[![Stargazers over time](https://starchart.cc/matteobruni/tsparticles.svg)](https://starchart.cc/matteobruni/tsparticles)
+
+---
+
 <p>
     <a href="https://www.jetbrains.com/?from=tsParticles">
         <img src="https://cdn.matteobruni.it/images/jetbrains-logos/jetbrains-variant-4.png" height="150" alt="JetBrains" />
@@ -350,11 +356,6 @@ You can find all options available [here](https://github.com/matteobruni/tsparti
         <img src="https://cdn.matteobruni.it/images/jetbrains-logos/webstorm_logos/logo.png" height="150" alt="JetBrains" />
     </a>
 </p>
-
-
-## Stargazers over time
-
-[![Stargazers over time](https://starchart.cc/matteobruni/tsparticles.svg)](https://starchart.cc/matteobruni/tsparticles)
 
 ### Huge thanks to [JetBrains](https://www.jetbrains.com/?from=tsParticles) for the 2020 Open Source License!
 
