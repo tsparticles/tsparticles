@@ -4,6 +4,7 @@ import type { Container } from "../Core/Container";
 import type { RecursivePartial } from "../Types/RecursivePartial";
 import type { IOptions } from "../Options/Interfaces/IOptions";
 import type { IShapeDrawer } from "../Core/Interfaces/IShapeDrawer";
+import { Options } from "../Options/Classes/Options";
 
 export class Plugins {
     private static readonly plugins: IPlugin[] = [];
@@ -29,6 +30,12 @@ export class Plugins {
         }
 
         return res;
+    }
+
+    public static loadOptions(options: Options, sourceOptions: RecursivePartial<IOptions>): void {
+        for (const plugin of this.plugins) {
+            plugin.loadOptions(options, sourceOptions);
+        }
     }
 
     public static getPreset(preset: string): RecursivePartial<IOptions> | undefined {

@@ -30,7 +30,7 @@ export class Container {
     public repulse: IRepulse;
     public lastFrameTime: number;
     public pageHidden: boolean;
-    public drawer: FrameManager;
+    public drawer?: FrameManager;
     public started: boolean;
     public destroyed: boolean;
     public density: number;
@@ -142,7 +142,7 @@ export class Container {
     }
 
     public draw(): void {
-        this.drawAnimationFrame = Container.requestFrame((t) => this.drawer.nextFrame(t));
+        this.drawAnimationFrame = Container.requestFrame((t) => this.drawer?.nextFrame(t));
     }
 
     public getAnimationStatus(): boolean {
@@ -302,9 +302,9 @@ export class Container {
             const plugin = this.plugins[id];
 
             if (plugin.init !== undefined) {
-                plugin.init(this.sourceOptions);
+                plugin.init(this.options);
             } else if (plugin.initAsync !== undefined) {
-                await plugin.initAsync(this.sourceOptions);
+                await plugin.initAsync(this.options);
             }
         }
 

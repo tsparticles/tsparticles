@@ -1,8 +1,7 @@
 import { Container } from "../../Core/Container";
 import type { ICoordinates } from "../../Core/Interfaces/ICoordinates";
-import { Type } from "./Enums/Type";
+import { Type, InlineArrangement } from "./Enums";
 import { Particle } from "../../Core/Particle";
-import { InlineArrangement } from "./Enums/InlineArrangement";
 import { ColorUtils, Constants, Utils } from "../../Utils";
 import type { IDimension } from "../../Core/Interfaces/IDimension";
 import type { ISvgPath } from "./Interfaces/ISvgPath";
@@ -371,7 +370,6 @@ export class PolygonMaskInstance implements IContainerPlugin {
             const path = svgPaths.item(i);
 
             if (path) {
-                console.dir(path);
                 this.paths.push({
                     element: path,
                     length: path.getTotalLength(),

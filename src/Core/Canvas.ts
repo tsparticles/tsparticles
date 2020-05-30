@@ -355,6 +355,27 @@ export class Canvas {
             return;
         }
 
+        if (particle.links.length > 0) {
+            this.context.save();
+
+            for (const link of particle.links) {
+                if (particle.particlesOptions.links.triangles.enable) {
+                    const links = particle.links.map((l) => l.destination);
+                    const vertices = link.destination.links.filter((t) => links.indexOf(t.destination) >= 0);
+
+                    if (vertices.length) {
+                        for (const vertice of vertices) {
+                            this.drawLinkTriangle(particle, link, vertice);
+                        }
+                    }
+                }
+
+                this.drawLinkLine(particle, link);
+            }
+
+            this.context.restore();
+        }
+
         CanvasUtils.drawParticle(
             this.container,
             this.context,
@@ -366,25 +387,6 @@ export class Canvas {
             opacity,
             particle.particlesOptions.shadow
         );
-
-        this.context.save();
-
-        for (const link of particle.links) {
-            if (particle.particlesOptions.links.triangles.enable) {
-                const links = particle.links.map((l) => l.destination);
-                const vertices = link.destination.links.filter((t) => links.indexOf(t.destination) >= 0);
-
-                if (vertices.length) {
-                    for (const vertice of vertices) {
-                        this.drawLinkTriangle(particle, link, vertice);
-                    }
-                }
-            }
-
-            this.drawLinkLine(particle, link);
-        }
-
-        this.context.restore();
     }
 
     public drawPlugin(plugin: IContainerPlugin, delta: number): void {

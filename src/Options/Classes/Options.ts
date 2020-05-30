@@ -101,6 +101,8 @@ export class Options implements IOptions {
             this.interactivity.load(data.interactivity);
 
             this.backgroundMask.load(data.backgroundMask);
+
+            Plugins.loadOptions(this, data);
         }
     }
 

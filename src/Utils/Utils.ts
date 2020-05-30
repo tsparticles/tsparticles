@@ -244,16 +244,42 @@ export class Utils {
         }
     }
 
-    public static deepExtend(destination: any, source: any): any {
-        destination = destination ?? {};
+    public static deepExtend(destination: any, ...sources: any): any {
+        for (const source of sources) {
+            if (source === undefined || source === null) {
+                continue;
+            }
 
-        for (const property in source) {
-            if (source[property] && source[property].constructor && source[property].constructor === Object) {
-                destination[property] = destination[property] ?? {};
+            const typeOfSource = typeof source;
 
-                Utils.deepExtend(destination[property], source[property]);
+            if (typeOfSource === "object") {
+                const sourceIsArray = Array.isArray(source);
+
+                if (sourceIsArray) {
+                    if (typeof destination !== "object" || !destination || !Array.isArray(destination)) {
+                        destination = [];
+                    }
+                } else {
+                    if (typeof destination !== "object" || !destination || Array.isArray(destination)) {
+                        destination = {};
+                    }
+                }
+
+                for (const key in source) {
+                    if (key === "__proto__") {
+                        continue;
+                    }
+
+                    const value = source[key];
+                    const isObject = typeof value === "object";
+
+                    destination[key] =
+                        isObject && Array.isArray(value)
+                            ? value.map((v) => this.deepExtend(destination[key], v))
+                            : this.deepExtend(destination[key], value);
+                }
             } else {
-                destination[property] = source[property];
+                destination = source;
             }
         }
         return destination;
