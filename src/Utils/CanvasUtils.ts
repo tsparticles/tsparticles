@@ -235,8 +235,6 @@ export class CanvasUtils {
             context.globalCompositeOperation = "destination-out";
         }
 
-        this.drawShape(container, context, particle, radius, opacity, delta);
-
         const shadowColor = particle.shadowColor;
 
         if (shadow.enable && shadowColor) {
@@ -259,6 +257,8 @@ export class CanvasUtils {
         if (particle.close) {
             context.closePath();
         }
+
+        this.drawShape(container, context, particle, radius, opacity, delta);
 
         if (stroke.width > 0 && particle.strokeColor) {
             context.stroke();
