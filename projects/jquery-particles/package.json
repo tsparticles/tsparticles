@@ -51,7 +51,7 @@
   "homepage": "https://github.com/matteobruni/jquery-particles#readme",
   "dependencies": {
     "jquery": "^3.4.1",
-    "tsparticles": "^1.15.0"
+    "tsparticles": "^1.15.1"
   },
   "devDependencies": {
     "@fortawesome/fontawesome-free": "^5.12.1",
@@ -61,6 +61,6 @@
     "pug": "^3.0.0",
     "stylus": "^0.54.7",
     "three": "^0.117.0",
-    "uglifyjs": "^2.4.11"
+    "uglify-js": "^3.9.4"
   }
 }
