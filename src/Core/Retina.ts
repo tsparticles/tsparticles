@@ -70,7 +70,7 @@ export class Retina {
         this.repulseModeDistance = modes.repulse.distance * ratio;
         this.slowModeRadius = modes.slow.radius * ratio;
         this.bubbleModeDistance = modes.bubble.distance * ratio;
-        this.bubbleModeSize = modes.bubble.size ?? this.sizeValue * ratio;
+        this.bubbleModeSize = (modes.bubble.size ?? this.sizeValue * 2) * ratio;
     }
 
     public initParticle(particle: Particle): void {
