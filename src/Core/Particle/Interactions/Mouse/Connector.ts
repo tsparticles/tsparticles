@@ -1,5 +1,5 @@
 import type { Container } from "../../../Container";
-import { Circle } from "../../../../Utils/Circle";
+import { Circle } from "../../../../Utils";
 
 /**
  * Particle connection manager
@@ -11,7 +11,7 @@ export class Connector {
     public static connect(container: Container, _delta: number): void {
         const options = container.options;
 
-        if (options.interactivity.events.onHover.enable && container.interactivity.status == 'mousemove') {
+        if (options.interactivity.events.onHover.enable && container.interactivity.status === "mousemove") {
             const mousePos = container.interactivity.mouse.position;
 
             if (!mousePos) {

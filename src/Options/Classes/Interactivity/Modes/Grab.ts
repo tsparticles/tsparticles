@@ -1,31 +1,48 @@
 import type { IGrab } from "../../../Interfaces/Interactivity/Modes/IGrab";
-import { GrabLineLinked } from "./GrabLineLinked";
+import { GrabLinks } from "./GrabLinks";
 import type { RecursivePartial } from "../../../../Types/RecursivePartial";
 
 export class Grab implements IGrab {
     /**
      *
-     * @deprecated this property is obsolete, please use the new lineLinked
+     * @deprecated this property is obsolete, please use the new links
      */
-    public get line_linked(): GrabLineLinked {
-        return this.lineLinked;
+    public get line_linked(): GrabLinks {
+        return this.links;
     }
 
     /**
      *
-     * @deprecated this property is obsolete, please use the new lineLinked
+     * @deprecated this property is obsolete, please use the new links
      * @param value
      */
-    public set line_linked(value: GrabLineLinked) {
-        this.lineLinked = value;
+    public set line_linked(value: GrabLinks) {
+        this.links = value;
+    }
+
+    /**
+     *
+     * @deprecated this property is obsolete, please use the new links
+     */
+    public get lineLinked(): GrabLinks {
+        return this.links;
+    }
+
+    /**
+     *
+     * @deprecated this property is obsolete, please use the new links
+     * @param value
+     */
+    public set lineLinked(value: GrabLinks) {
+        this.links = value;
     }
 
     public distance: number;
-    public lineLinked: GrabLineLinked;
+    public links: GrabLinks;
 
     constructor() {
         this.distance = 100;
-        this.lineLinked = new GrabLineLinked();
+        this.links = new GrabLinks();
     }
 
     public load(data?: RecursivePartial<IGrab>): void {
@@ -34,7 +51,7 @@ export class Grab implements IGrab {
                 this.distance = data.distance;
             }
 
-            this.lineLinked.load(data.lineLinked ?? data.line_linked);
+            this.links.load(data.links ?? data.lineLinked ?? data.line_linked);
         }
     }
 }

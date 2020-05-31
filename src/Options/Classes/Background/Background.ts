@@ -1,6 +1,6 @@
 import type { IBackground } from "../../Interfaces/Background/IBackground";
 import type { RecursivePartial } from "../../../Types/RecursivePartial";
-import { OptionsColor } from "../Particles/OptionsColor";
+import { OptionsColor } from "../OptionsColor";
 
 export class Background implements IBackground {
     public color?: OptionsColor;
@@ -13,7 +13,7 @@ export class Background implements IBackground {
     public load(data?: RecursivePartial<IBackground>): void {
         if (data !== undefined) {
             if (data.color !== undefined) {
-                this.color = OptionsColor.create(this.color,  data.color);
+                this.color = OptionsColor.create(this.color, data.color);
             }
 
             if (data.image !== undefined) {

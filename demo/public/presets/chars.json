@@ -8,7 +8,7 @@
       }
     },
     "color": {
-      "value": "#ffffff"
+      "value": "#ff0000"
     },
     "shape": {
       "type": "char",
@@ -19,25 +19,46 @@
       "polygon": {
         "nb_sides": 5
       },
-      "character": {
-        "value": [
-          "t",
-          "s",
-          "P",
-          "a",
-          "r",
-          "t",
-          "i",
-          "c",
-          "l",
-          "e",
-          "s"
-        ],
-        "font": "Verdana",
-        "style": "",
-        "weight": "400",
-        "fill": true
-      },
+      "character": [
+        {
+          "value": [
+            "t",
+            "s",
+            "P",
+            "a",
+            "r",
+            "t",
+            "i",
+            "c",
+            "l",
+            "e",
+            "s"
+          ],
+          "font": "Verdana",
+          "style": "",
+          "weight": "400",
+          "fill": true
+        },
+        {
+          "value": [
+            "t",
+            "s",
+            "P",
+            "a",
+            "r",
+            "t",
+            "i",
+            "c",
+            "l",
+            "e",
+            "s"
+          ],
+          "font": "Verdana",
+          "style": "",
+          "weight": "400",
+          "fill": false
+        }
+      ],
       "image": {
         "src": "https://cdn.matteobruni.it/images/particles/github.svg",
         "width": 100,

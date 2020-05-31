@@ -102,7 +102,7 @@ tsParticles now supports some customizations 🥳.
 
 **NOW YOU CAN CREATE YOUR OWN PLUGINS**
 
-*Read more [here](https://github.com/matteobruni/tsparticles/wiki/Create-a-tsParticles-Plugin)...*
+_Read more [here](https://github.com/matteobruni/tsparticles/wiki/Create-a-tsParticles-Plugin)..._
 
 ---
 
@@ -339,6 +339,12 @@ You can find a sample config [here](https://github.com/matteobruni/tsparticles/w
 ### **_Options_**
 
 You can find all options available [here](https://github.com/matteobruni/tsparticles/wiki/tsParticles-Options) 📖
+
+---
+
+## Stargazers over time
+
+[![Stargazers over time](https://starchart.cc/matteobruni/tsparticles.svg)](https://starchart.cc/matteobruni/tsparticles)
 
 ---
 

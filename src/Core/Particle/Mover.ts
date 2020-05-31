@@ -1,7 +1,7 @@
-import { Utils } from "../../Utils/Utils";
+import { Utils } from "../../Utils";
 import type { Container } from "../Container";
 import type { Particle } from "../Particle";
-import { HoverMode } from "../../Enums/Modes/HoverMode";
+import { HoverMode } from "../../Enums";
 import { INoiseValue } from "../../Options/Interfaces/Particles/Noise/INoiseValue";
 
 export class Mover {
@@ -27,7 +27,7 @@ export class Mover {
             const slowFactor = this.getProximitySpeedFactor();
             const deltaFactor = options.fpsLimit > 0 ? (60 * delta) / 1000 : 3.6;
             const baseSpeed = particle.moveSpeed ?? container.retina.moveSpeed;
-            const moveSpeed = baseSpeed / 2 * slowFactor * deltaFactor;
+            const moveSpeed = (baseSpeed / 2) * slowFactor * deltaFactor;
 
             const noiseOptions = particlesOptions.move.noise;
             const noiseEnabled = noiseOptions.enable;
@@ -42,11 +42,13 @@ export class Mover {
                         angle: simplex.noise3D(
                             Mover.calcNoiseValue(position.x, particle.size.value, noiseFactor.horizontal),
                             Mover.calcNoiseValue(position.y, particle.size.value, noiseFactor.horizontal),
-                            container.particles.noiseZ),
+                            container.particles.noiseZ
+                        ),
                         length: simplex.noise3D(
                             Mover.calcNoiseValue(position.x, particle.size.value, noiseFactor.vertical),
                             Mover.calcNoiseValue(position.y, particle.size.value, noiseFactor.vertical),
-                            container.particles.noiseZ),
+                            container.particles.noiseZ
+                        ),
                     };
 
                     particle.velocity.horizontal += Math.cos(noise.angle) * noise.length;
@@ -130,7 +132,7 @@ export class Mover {
             return 1;
         }
 
-        const proximityFactor = (dist / radius) || 0;
+        const proximityFactor = dist / radius || 0;
         const slowFactor = options.interactivity.modes.slow.factor;
 
         return proximityFactor / slowFactor;

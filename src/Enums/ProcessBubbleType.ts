@@ -1,5 +1,3 @@
-export enum ProcessBubbleType {
-    color = "color",
-    opacity = "opacity",
-    size = "size",
-}
+import { ProcessBubbleType } from "./Types";
+
+export { ProcessBubbleType };

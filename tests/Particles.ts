@@ -1,10 +1,9 @@
-const Window = require('window');
+const Window = require("window");
 
 globalThis.window = new Window();
 
 import { expect } from "chai";
-import {ICoordinates} from "../src/Core/Interfaces/ICoordinates";
-import { Particle } from "../src/Core/Particle";
+import { ICoordinates } from "../src/Core/Interfaces/ICoordinates";
 import { TestCanvas } from "./Fixture/TestCanvas";
 import { TestContainer } from "./Fixture/TestContainer";
 import { TestParticles } from "./Fixture/TestParticles";
@@ -13,29 +12,28 @@ const testContainer = new TestContainer({});
 const testParticles = new TestParticles(testContainer.container);
 const testCanvas = new TestCanvas(testContainer.container, 1920, 1080);
 
-describe('Particles', () => {
-
+describe("Particles", () => {
     // Common options used when initializing Particles with a set number of particles
     const numParticles = 5;
     const numParticlesOptions = {
         particles: {
             number: {
-                value: numParticles
-            }
-        }
-    }
+                value: numParticles,
+            },
+        },
+    };
     // This is to keep the `removeQuantity` method from executing `container.play`
     // which is not playing well in Node.
     const enableParticleMoveOptions = {
         particles: {
             number: numParticlesOptions.particles.number,
             move: {
-                enable: true
-            }
-        }
+                enable: true,
+            },
+        },
     };
 
-    it('should create the number of particles configured in container', () => {
+    it("should create the number of particles configured in container", () => {
         testContainer.reset(numParticlesOptions);
         testParticles.reset(testContainer.container);
         testParticles.particles.init();
@@ -43,30 +41,26 @@ describe('Particles', () => {
         expect(testParticles.particles.count).to.equal(numParticles);
     });
 
-    it('should add particles to array of particles', () => {
+    it("should add particles to array of particles", () => {
         testContainer.reset({});
         testParticles.reset(testContainer.container);
 
-        const particle1 = new Particle(testContainer.container, {x: 1, y: 1});
-        const particle2 = new Particle(testContainer.container, {x: 2, y: 2});
-        const particle3 = new Particle(testContainer.container, {x: 3, y: 3});
-
         expect(testParticles.particles.count).to.equal(0);
 
-        testParticles.particles.addParticle(particle1);
+        const particle1 = testParticles.particles.addParticle({ x: 1, y: 1 });
         expect(testParticles.particles.count).to.equal(1);
         expect(testParticles.particles.array).to.eql([particle1]);
 
-        testParticles.particles.addParticle(particle2);
+        const particle2 = testParticles.particles.addParticle({ x: 2, y: 2 });
         expect(testParticles.particles.count).to.equal(2);
         expect(testParticles.particles.array).to.eql([particle1, particle2]);
 
-        testParticles.particles.addParticle(particle3);
+        const particle3 = testParticles.particles.addParticle({ x: 3, y: 3 });
         expect(testParticles.particles.count).to.equal(3);
         expect(testParticles.particles.array).to.eql([particle1, particle2, particle3]);
     });
 
-    it('should remove particles at specified indices', () => {
+    it("should remove particles at specified indices", () => {
         testContainer.reset(numParticlesOptions);
         testParticles.reset(testContainer.container);
         testParticles.particles.init();
@@ -85,7 +79,7 @@ describe('Particles', () => {
         expect(testParticles.particles.array).to.not.eql([particle5, particle3, particle1]);
     });
 
-    it('should remove specified quantity of indices, starting at the specified index', () => {
+    it("should remove specified quantity of indices, starting at the specified index", () => {
         testContainer.reset(numParticlesOptions);
         testParticles.reset(testContainer.container);
         testParticles.particles.init();
@@ -102,20 +96,20 @@ describe('Particles', () => {
         expect(testParticles.particles.array).to.eql([particle5]);
     });
 
-    it('should remove specified number of particles', () => {
+    it("should remove specified number of particles", () => {
         testContainer.reset(enableParticleMoveOptions);
         testParticles.reset(testContainer.container);
         testParticles.particles.init();
 
         expect(testParticles.particles.count).to.equal(numParticles);
         testParticles.particles.removeQuantity(3);
-        expect(testParticles.particles.count).to.equal(numParticles-3);
+        expect(testParticles.particles.count).to.equal(numParticles - 3);
         testParticles.particles.removeQuantity(2);
-        expect(testParticles.particles.count).to.equal(numParticles-5);
+        expect(testParticles.particles.count).to.equal(numParticles - 5);
         expect(testParticles.particles.array).to.be.empty;
     });
 
-    it('should remove specified particle', () => {
+    it("should remove specified particle", () => {
         testContainer.reset(numParticlesOptions);
         testParticles.reset(testContainer.container);
         testParticles.particles.init();
@@ -135,7 +129,7 @@ describe('Particles', () => {
         expect(testParticles.particles.array).to.not.eql([particle5, particle3, particle2]);
     });
 
-    it('should remove all particles when calling clear', () => {
+    it("should remove all particles when calling clear", () => {
         testContainer.reset(numParticlesOptions);
         testParticles.reset(testContainer.container);
         testParticles.particles.init();
@@ -146,18 +140,17 @@ describe('Particles', () => {
         expect(testParticles.particles.array).to.be.empty;
     });
 
-    it('should push multiple particles at the specified position', () => {
+    it("should push multiple particles at the specified position", () => {
         testContainer.reset(enableParticleMoveOptions);
         testCanvas.reset(1920, 1080, testContainer.container);
         testParticles.reset(testContainer.container);
 
-        const position: ICoordinates = {x: 100, y: 100};
-        testParticles.particles.push(numParticles, {position});
+        const position: ICoordinates = { x: 100, y: 100 };
+        testParticles.particles.push(numParticles, { position });
         expect(testParticles.particles.count).to.equal(5);
 
-        for(let i = 0; i < numParticles; i++) {
+        for (let i = 0; i < numParticles; i++) {
             expect(testParticles.particles.array[i].position).to.eql(position);
         }
     });
-
 });

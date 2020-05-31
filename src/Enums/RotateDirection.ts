@@ -1,5 +1,3 @@
-export enum RotateDirection {
-    clockwise = "clockwise",
-    counterClockwise = "counter-clockwise",
-    random = "random",
-}
+import { RotateDirection } from "./Directions";
+
+export { RotateDirection };

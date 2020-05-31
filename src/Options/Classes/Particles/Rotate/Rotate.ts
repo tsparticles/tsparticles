@@ -1,6 +1,6 @@
 import type { IRotate } from "../../../Interfaces/Particles/Rotate/IRotate";
 import { RotateAnimation } from "./RotateAnimation";
-import { RotateDirection } from "../../../../Enums/RotateDirection";
+import { RotateDirection } from "../../../../Enums";
 import type { RecursivePartial } from "../../../../Types/RecursivePartial";
 
 export class Rotate implements IRotate {

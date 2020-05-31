@@ -219,7 +219,11 @@
           "value": "#f00"
         },
         "lineLinked": {
-          "enable": true
+          "enable": true,
+          "id": "emitter1",
+          "color": {
+            "value": "#ff7700"
+          }
         },
         "opacity": {
           "value": 0.3

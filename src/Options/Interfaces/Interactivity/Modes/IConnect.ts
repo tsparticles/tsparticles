@@ -1,14 +1,19 @@
-import type { IConnectLineLinked } from "./IConnectLineLinked";
+import type { IConnectLinks } from "./IConnectLinks";
 import type { IOptionLoader } from "../../IOptionLoader";
 
 export interface IConnect extends IOptionLoader<IConnect> {
     distance: number;
 
     /**
-     * @deprecated use the new lineLinked instead
+     * @deprecated use the new links instead
      */
-    line_linked: IConnectLineLinked;
+    line_linked: IConnectLinks;
 
-    lineLinked: IConnectLineLinked;
+    /**
+     * @deprecated use the new links instead
+     */
+    lineLinked: IConnectLinks;
+
+    links: IConnectLinks;
     radius: number;
 }

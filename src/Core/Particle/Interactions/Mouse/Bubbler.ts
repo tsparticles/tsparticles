@@ -1,23 +1,20 @@
 import type { Container } from "../../../Container";
 import type { IBubblerProcessParam } from "../../../Interfaces/IBubblerProcessParam";
-import { ProcessBubbleType } from "../../../../Enums/ProcessBubbleType";
-import { Utils } from "../../../../Utils/Utils";
-import { HoverMode } from "../../../../Enums/Modes/HoverMode";
-import { ClickMode } from "../../../../Enums/Modes/ClickMode";
-import { Constants } from "../../../../Utils/Constants";
+import { Circle, ColorUtils, Constants, Utils } from "../../../../Utils";
+import { ClickMode, HoverMode, ProcessBubbleType } from "../../../../Enums";
 import type { IParticle } from "../../../Interfaces/IParticle";
-import { ColorUtils } from "../../../../Utils/ColorUtils";
 import { Particle } from "../../../Particle";
-import { Circle } from "../../../../Utils/Circle";
 
 /**
  * Particle bubble manager
  */
 export class Bubbler {
     public static reset(particle: IParticle): void {
-        delete particle.bubble.opacity;
-        delete particle.bubble.radius;
-        delete particle.bubble.color;
+        if (!particle.bubble.inRange) {
+            delete particle.bubble.opacity;
+            delete particle.bubble.radius;
+            delete particle.bubble.color;
+        }
     }
 
     public static bubble(container: Container, _delta: number): void {
@@ -38,10 +35,13 @@ export class Bubbler {
         }
     }
 
-    private static process(container: Container,
-                           particle: Particle,
-                           distMouse: number,
-                           timeSpent: number, data: IBubblerProcessParam): void {
+    private static process(
+        container: Container,
+        particle: Particle,
+        distMouse: number,
+        timeSpent: number,
+        data: IBubblerProcessParam
+    ): void {
         const bubbleParam = data.bubbleObj.optValue;
 
         if (bubbleParam === undefined) {
@@ -62,7 +62,7 @@ export class Bubbler {
                     const obj = pObjBubble ?? pObj;
 
                     if (obj !== bubbleParam) {
-                        const value = pObj - (timeSpent * (pObj - bubbleParam) / bubbleDuration);
+                        const value = pObj - (timeSpent * (pObj - bubbleParam)) / bubbleDuration;
 
                         if (type === ProcessBubbleType.size) {
                             particle.bubble.radius = value;
@@ -108,6 +108,8 @@ export class Bubbler {
         const query = container.particles.quadTree.query(new Circle(mouseClickPos.x, mouseClickPos.y, distance));
 
         for (const particle of query) {
+            particle.bubble.inRange = true;
+
             const pos = particle.getPosition();
             const distMouse = Utils.getDistance(pos, mouseClickPos);
             const timeSpent = (new Date().getTime() - (container.interactivity.mouse.clickTime || 0)) / 1000;
@@ -178,6 +180,8 @@ export class Bubbler {
 
         //for (const { distance, particle } of query) {
         for (const particle of query) {
+            particle.bubble.inRange = true;
+
             const pos = particle.getPosition();
             const distance = Utils.getDistance(pos, mousePos);
             const ratio = 1 - distance / container.retina.bubbleModeDistance;
@@ -238,10 +242,12 @@ export class Bubbler {
         }
     }
 
-    private static calculateBubbleValue(particleValue: number,
-                                        modeValue: number,
-                                        optionsValue: number,
-                                        ratio: number): number | undefined {
+    private static calculateBubbleValue(
+        particleValue: number,
+        modeValue: number,
+        optionsValue: number,
+        ratio: number
+    ): number | undefined {
         if (modeValue > optionsValue) {
             const size = particleValue + (modeValue - optionsValue) * ratio;
 
@@ -263,9 +269,9 @@ export class Bubbler {
                 return;
             }
 
-            particle.bubble.color = ColorUtils.colorToRgb(modeColor instanceof Array ?
-                Utils.itemFromArray(modeColor) :
-                modeColor);
+            const bubbleColor = modeColor instanceof Array ? Utils.itemFromArray(modeColor) : modeColor;
+
+            particle.bubble.color = ColorUtils.colorToHsl(bubbleColor);
         }
     }
 }

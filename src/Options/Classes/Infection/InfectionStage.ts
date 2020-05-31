@@ -1,5 +1,5 @@
 import type { IInfectionStage } from "../../Interfaces/Infection/IInfectionStage";
-import { OptionsColor } from "../Particles/OptionsColor";
+import { OptionsColor } from "../OptionsColor";
 import type { RecursivePartial } from "../../../Types/RecursivePartial";
 
 export class InfectionStage implements IInfectionStage {

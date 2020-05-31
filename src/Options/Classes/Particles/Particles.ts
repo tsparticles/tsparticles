@@ -1,6 +1,5 @@
 import type { IParticles } from "../../Interfaces/Particles/IParticles";
-import { OptionsColor } from "./OptionsColor";
-import { LineLinked } from "./LineLinked/LineLinked";
+import { Links } from "./Links/Links";
 import { Move } from "./Move";
 import { ParticlesNumber } from "./ParticlesNumber";
 import { Opacity } from "./Opacity/Opacity";
@@ -13,14 +12,32 @@ import type { SingleOrMultiple } from "../../../Types/SingleOrMultiple";
 import { Stroke } from "./Stroke";
 import { Collisions } from "./Collisions";
 import { Twinkle } from "./Twinkle/Twinkle";
+import { AnimatableColor } from "./AnimatableColor";
 
 export class Particles implements IParticles {
     /**
      *
+     * @deprecated this property is obsolete, please use the new links
+     */
+    public get line_linked(): Links {
+        return this.links;
+    }
+
+    /**
+     *
+     * @deprecated this property is obsolete, please use the new links
+     * @param value
+     */
+    public set line_linked(value: Links) {
+        this.links = value;
+    }
+
+    /**
+     *
      * @deprecated this property is obsolete, please use the new lineLinked
      */
-    public get line_linked(): LineLinked {
-        return this.lineLinked;
+    public get lineLinked(): Links {
+        return this.links;
     }
 
     /**
@@ -28,13 +45,13 @@ export class Particles implements IParticles {
      * @deprecated this property is obsolete, please use the new lineLinked
      * @param value
      */
-    public set line_linked(value: LineLinked) {
-        this.lineLinked = value;
+    public set lineLinked(value: Links) {
+        this.links = value;
     }
 
     public collisions: Collisions;
-    public color: SingleOrMultiple<OptionsColor>;
-    public lineLinked: LineLinked;
+    public color: AnimatableColor;
+    public links: Links;
     public move: Move;
     public number: ParticlesNumber;
     public opacity: Opacity;
@@ -47,8 +64,8 @@ export class Particles implements IParticles {
 
     constructor() {
         this.collisions = new Collisions();
-        this.color = new OptionsColor();
-        this.lineLinked = new LineLinked();
+        this.color = new AnimatableColor();
+        this.links = new Links();
         this.move = new Move();
         this.number = new ParticlesNumber();
         this.opacity = new Opacity();
@@ -63,21 +80,13 @@ export class Particles implements IParticles {
     public load(data?: RecursivePartial<IParticles>): void {
         if (data !== undefined) {
             if (data.color !== undefined) {
-                if (data.color instanceof Array) {
-                    this.color = data.color.map((s) => OptionsColor.create(undefined, s));
-                } else {
-                    if (this.color instanceof Array) {
-                        this.color = new OptionsColor();
-                    }
-
-                    this.color = OptionsColor.create(this.color, data.color);
-                }
+                this.color = AnimatableColor.create(this.color, data.color);
             }
 
-            const lineLinked = data.lineLinked ?? data.line_linked;
+            const links = data.links ?? data.lineLinked ?? data.line_linked;
 
-            if (lineLinked !== undefined) {
-                this.lineLinked.load(lineLinked);
+            if (links !== undefined) {
+                this.links.load(links);
             }
 
             this.move.load(data.move);

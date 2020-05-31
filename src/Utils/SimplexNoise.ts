@@ -1,6 +1,7 @@
 const F3 = 1.0 / 3.0;
 const G3 = 1.0 / 6.0;
 
+// prettier-ignore
 const grad3 = new Float32Array([
     1, 1, 0,
     -1, 1, 0,
@@ -19,7 +20,7 @@ const grad3 = new Float32Array([
     0, -1, -1,
 ]);
 
-const buildPermutationTable = (random: () => number) => {
+const buildPermutationTable = (random: () => number): Uint8Array => {
     const p = new Uint8Array(256);
 
     for (let i = 0; i < 256; i++) {
@@ -101,7 +102,8 @@ export class SimplexNoise {
                 j2 = 0;
                 k2 = 1;
             } // Z X Y order
-        } else { // x0<y0
+        } else {
+            // x0<y0
             if (y0 < z0) {
                 i1 = 0;
                 j1 = 0;

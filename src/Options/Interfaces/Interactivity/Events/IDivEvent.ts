@@ -1,4 +1,4 @@
-import type { DivMode } from "../../../../Enums/Modes/DivMode";
+import type { DivMode } from "../../../../Enums";
 import type { IOptionLoader } from "../../IOptionLoader";
 import type { SingleOrMultiple } from "../../../../Types/SingleOrMultiple";
 

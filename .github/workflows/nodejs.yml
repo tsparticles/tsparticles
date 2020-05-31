@@ -16,19 +16,19 @@ jobs:
 
     strategy:
       matrix:
-        node-version: [10.x, 12.x]
+        node-version: [10.x, 12.x, 14.x]
 
     steps:
-    - uses: actions/checkout@v2
-    - name: Use Node.js ${{ matrix.node-version }}
-      uses: actions/setup-node@v1
-      with:
-        node-version: ${{ matrix.node-version }}
-    - run: npm ci
-    - run: npm run build --if-present
-    - run: npm test
-    - name: Codacy Coverage Reporter
-      uses: codacy/codacy-coverage-reporter-action@0.2.0
-      with:
-          project-token: ${{ secrets.CodacyCoverageToken }}
-          coverage-reports: coverage/lcov.info
+      - uses: actions/checkout@v2
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v1
+        with:
+          node-version: ${{ matrix.node-version }}
+      - run: npm ci
+      - run: npm run build --if-present
+      - run: npm test
+      #- name: Codacy Coverage Reporter
+      #  uses: codacy/codacy-coverage-reporter-action@0.2.0
+      #  with:
+      #    project-token: ${{ secrets.CodacyCoverageToken }}
+      #    coverage-reports: coverage/lcov.info

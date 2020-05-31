@@ -1,7 +1,6 @@
 import type { IMove } from "../../Interfaces/Particles/IMove";
 import { Attract } from "./Attract";
-import { MoveDirection } from "../../../Enums/MoveDirection";
-import { OutMode } from "../../../Enums/OutMode";
+import { MoveDirection, OutMode } from "../../../Enums";
 import { Trail } from "./Trail";
 import type { RecursivePartial } from "../../../Types/RecursivePartial";
 import { Noise } from "./Noise/Noise";
@@ -19,6 +18,7 @@ export class Move implements IMove {
      * @param value
      */
     set collisions(value: boolean) {
+        // deprecated
     }
 
     /**
@@ -63,6 +63,7 @@ export class Move implements IMove {
     public straight: boolean;
     public trail: Trail;
     public vibrate: boolean;
+    public warp: boolean;
 
     constructor() {
         this.attract = new Attract();
@@ -75,6 +76,7 @@ export class Move implements IMove {
         this.straight = false;
         this.trail = new Trail();
         this.vibrate = false;
+        this.warp = false;
     }
 
     public load(data?: RecursivePartial<IMove>): void {
@@ -113,6 +115,10 @@ export class Move implements IMove {
 
             if (data.vibrate !== undefined) {
                 this.vibrate = data.vibrate;
+            }
+
+            if (data.warp !== undefined) {
+                this.warp = data.warp;
             }
         }
     }
