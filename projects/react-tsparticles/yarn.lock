@@ -4106,9 +4106,9 @@ tslib@^2.0.0:
   integrity sha512-lTqkx847PI7xEDYJntxZH89L2/aXInsyF2luSafe/+0fHOMjlBNXdH6th7f70qxLDhul7KZK0zC8V5ZIyHl0/g==
 
 tsparticles@^1.15.0:
-  version "1.15.0"
-  resolved "https://registry.yarnpkg.com/tsparticles/-/tsparticles-1.15.0.tgz#9f291050e3b5505e637bceb6eb6d27e3a906206d"
-  integrity sha512-6r8x/xgSSIceBFNlq7Q5IsF4JSGAmbqeZ8tf25ccGfbbagi6zKHsZXGpO2hGqWGuphnQIWTEpvlaXd2PE16LXA==
+  version "1.15.1"
+  resolved "https://registry.yarnpkg.com/tsparticles/-/tsparticles-1.15.1.tgz#65718d9f8169e6e260fad48572ef0e0631f6c1ab"
+  integrity sha512-yvk613dW6aTqziDUTH2O5q+8K5MyNMnZkqD1Od1FBWi+ekFmwUwVtWGTiEmmhq5+D/a3AEe60TQCLekT910b2w==
   dependencies:
     pathseg "^1.2.0"
     tslib "^2.0.0"
