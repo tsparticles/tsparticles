@@ -4105,7 +4105,7 @@ tslib@^2.0.0:
   resolved "https://registry.yarnpkg.com/tslib/-/tslib-2.0.0.tgz#18d13fc2dce04051e20f074cc8387fd8089ce4f3"
   integrity sha512-lTqkx847PI7xEDYJntxZH89L2/aXInsyF2luSafe/+0fHOMjlBNXdH6th7f70qxLDhul7KZK0zC8V5ZIyHl0/g==
 
-tsparticles@^1.15.0:
+tsparticles@^1.15.1:
   version "1.15.1"
   resolved "https://registry.yarnpkg.com/tsparticles/-/tsparticles-1.15.1.tgz#65718d9f8169e6e260fad48572ef0e0631f6c1ab"
   integrity sha512-yvk613dW6aTqziDUTH2O5q+8K5MyNMnZkqD1Od1FBWi+ekFmwUwVtWGTiEmmhq5+D/a3AEe60TQCLekT910b2w==
