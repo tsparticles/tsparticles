@@ -1,6 +1,6 @@
 {
   "name": "react-tsparticles",
-  "version": "1.15.0",
+  "version": "1.15.1",
   "description": "Reactified tsParticles",
   "main": "index.js",
   "unpkg": "umd/particles.js",
@@ -35,7 +35,7 @@
   },
   "dependencies": {
     "lodash": "^4.17.15",
-    "tsparticles": "^1.15.0"
+    "tsparticles": "^1.15.1"
   },
   "peerDependencies": {
     "react": "^16.0.0"
