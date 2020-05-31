@@ -4,6 +4,6 @@
   "peerDependencies": {
     "@angular/common": "^9.1.9",
     "@angular/core": "^9.1.9",
-    "tsparticles": "^1.15.0-beta.8"
+    "tsparticles": "^1.15.0"
   }
 }
