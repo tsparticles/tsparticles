@@ -8,7 +8,7 @@ import { Infecter } from "./Infecter";
 export class InteractionManager {
     public static interact(p1: Particle, container: Container, delta: number): void {
         /* link particles */
-        if (p1.particlesOptions.lineLinked.enable) {
+        if (p1.particlesOptions.links.enable) {
             Linker.link(p1, container, delta);
         }
 

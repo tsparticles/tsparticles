@@ -2,7 +2,7 @@
   "fpsLimit": 60,
   "particles": {
     "number": {
-      "value": 80,
+      "value": 300,
       "density": {
         "enable": false,
         "value_area": 800
@@ -12,54 +12,25 @@
       "value": "#ffffff"
     },
     "shape": {
-      "type": "circle",
-      "stroke": {
-        "width": 0,
-        "color": "#000000"
-      },
-      "polygon": {
-        "nb_sides": 5
-      },
-      "image": {
-        "src": "https://cdn.matteobruni.it/images/particles/github.svg",
-        "width": 100,
-        "height": 100
-      }
+      "type": "circle"
     },
     "opacity": {
-      "value": 0.5,
-      "random": true,
-      "anim": {
-        "enable": true,
-        "speed": 3,
-        "opacity_min": 0.1,
-        "sync": false
-      }
+      "value": 1,
+      "random": true
     },
     "size": {
-      "value": 50,
-      "random": true,
-      "anim": {
-        "enable": false,
-        "speed": 20,
-        "size_min": 0.1,
-        "sync": false
-      }
-    },
-    "line_linked": {
-      "enable": true,
-      "distance": 150,
-      "color": "#ffffff",
-      "opacity": 0.4,
-      "width": 1
+      "value": 2,
+      "random": true
     },
     "move": {
       "enable": true,
-      "speed": 2,
-      "direction": "none",
+      "speed": 0.5,
+      "direction": "top",
       "random": false,
-      "straight": false,
+      "straight": true,
       "out_mode": "out",
+      "bounce": true,
+      "warp": true,
       "attract": {
         "enable": false,
         "rotateX": 600,
@@ -71,12 +42,12 @@
     "detect_on": "canvas",
     "events": {
       "onhover": {
-        "enable": true,
+        "enable": false,
         "mode": "repulse"
       },
       "onclick": {
         "enable": true,
-        "mode": "absorber"
+        "mode": "push"
       },
       "resize": true
     },
@@ -92,6 +63,7 @@
         "size": {
           "value": 10,
           "limit": 50,
+          "density": 50,
           "random": {
             "enable": true,
             "minimumValue": 5
@@ -109,7 +81,7 @@
         "distance": 200
       },
       "push": {
-        "particles_nb": 4
+        "particles_nb": 10
       },
       "remove": {
         "particles_nb": 2
@@ -120,7 +92,7 @@
   "absorbers": {
     "size": {
       "value": 10,
-      "limit": 100,
+      "limit": 10,
       "random": {
         "enable": true,
         "minimumValue": 5

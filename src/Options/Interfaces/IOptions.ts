@@ -1,30 +1,28 @@
 import type { IInteractivity } from "./Interactivity/IInteractivity";
 import type { IParticles } from "./Particles/IParticles";
-import type { IPolygonMask } from "./PolygonMask/IPolygonMask";
 import type { IOptionLoader } from "./IOptionLoader";
 import type { IBackgroundMask } from "./BackgroundMask/IBackgroundMask";
 import type { IBackground } from "./Background/IBackground";
-import type { SingleOrMultiple } from "../../Types/SingleOrMultiple";
-import type { IEmitter } from "./Emitters/IEmitter";
-import type { IAbsorber } from "./Absorbers/IAbsorber";
-import { IInfection } from "./Infection/IInfection";
+import type { IInfection } from "./Infection/IInfection";
 
 /**
  * The Options interface, defines all the options that can be used by `tsParticles`
  */
 export interface IOptions extends IOptionLoader<IOptions> {
-    absorbers: SingleOrMultiple<IAbsorber>;
-
+    /**
+     * Background options, these background options will be used to the canvas element, they are all CSS properties
+     */
     background: IBackground;
 
+    /**
+     * Background Mask options, what's behind the canvas will become hidden and particles will uncover it
+     */
     backgroundMask: IBackgroundMask;
 
     /**
      * Enables the retina detection, if disabled the ratio used by canvas will be always 1 and not the device setting.
      */
     detectRetina: boolean;
-
-    emitters: SingleOrMultiple<IEmitter>;
 
     /**
      * The Frame Per Second limit applied to all particles animations.
@@ -52,13 +50,14 @@ export interface IOptions extends IOptionLoader<IOptions> {
      */
     particles: IParticles;
 
+    /**
+     * Enables or disabled the animation on window blur
+     */
     pauseOnBlur: boolean;
 
     /**
-     * The polygon mask options.
+     * This property will be used to add specified presets to the options
      */
-    polygon: IPolygonMask;
-
     preset?: string | string[];
 
     /**

@@ -1,10 +1,11 @@
-import { AbsorbersPlugin } from "./Plugins/Absorbers/AbsorbersPlugin";
-import { EmittersPlugin } from "./Plugins/Emitters/EmittersPlugin";
-import { PolygonMaskPlugin } from "./Plugins/PolygonMask/PolygonMaskPlugin";
-import { particlesJS, pJSDom, tsParticles } from "./index.slim";
+import { initPjs } from "./pjs";
+import { Main } from "./main";
 
-tsParticles.addPlugin(new AbsorbersPlugin())
-tsParticles.addPlugin(new EmittersPlugin());
-tsParticles.addPlugin(new PolygonMaskPlugin());
+const tsParticles = new Main();
 
+tsParticles.init();
+
+const { particlesJS, pJSDom } = initPjs(tsParticles);
+
+export * from "./Enums";
 export { particlesJS, pJSDom, tsParticles };

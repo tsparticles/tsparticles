@@ -23,7 +23,7 @@ export class TestParticle {
      * @param container
      */
     public randomPositionInCanvas(container?: Container): ICoordinates {
-        if(container === undefined) {
+        if (container === undefined) {
             container = this.container;
         }
         const sizeValue = container.retina.sizeValue;
@@ -33,7 +33,7 @@ export class TestParticle {
         x = Math.min(Math.max(x, sizeValue * 2), width - sizeValue * 2);
         let y = height * Math.random();
         y = Math.min(Math.max(y, sizeValue * 2), height - sizeValue * 2);
-        return {x, y};
+        return { x, y };
     }
 
     /**
@@ -46,8 +46,8 @@ export class TestParticle {
      * @param container
      * @param position
      */
-    public reset(container?: Container, position?: ICoordinates) {
-        if(container !== undefined) {
+    public reset(container?: Container, position?: ICoordinates): void {
+        if (container !== undefined) {
             this.container = container;
         }
         this.position = position;
@@ -62,21 +62,21 @@ export class TestParticle {
      * @param particle1
      * @param particle2
      */
-    public static sort(particle1: Particle, particle2: Particle) : number {
-        const position1 = particle1.position;
-        const position2 = particle2.position;
+    public static sort(particle1: Particle, particle2: Particle): number {
+        const position1 = particle1.getPosition();
+        const position2 = particle2.getPosition();
 
-        if(position1.x === position2.x) {
-            if(position1.y < position2.y) {
+        if (position1.x === position2.x) {
+            if (position1.y < position2.y) {
                 return -1;
-            } else if(position1.y > position2.y) {
+            } else if (position1.y > position2.y) {
                 return 1;
             } else {
                 return 0;
             }
-        } else if(position1.x < position2.x) {
+        } else if (position1.x < position2.x) {
             return -1;
-        } else if(position1.x > position2.x) {
+        } else if (position1.x > position2.x) {
             return 1;
         } else {
             return 0;
@@ -88,10 +88,8 @@ export class TestParticle {
      *
      * @param particles
      */
-    public static sortedPositions(particles: Particle[]) : ICoordinates[] {
-        return particles
-            .sort(this.sort)
-            .map((particle) => particle.position);
+    public static sortedPositions(particles: Particle[]): ICoordinates[] {
+        return particles.sort(this.sort).map((particle) => particle.getPosition());
     }
 
     /**
@@ -100,17 +98,23 @@ export class TestParticle {
      *
      * @param queryResults
      */
-    public static sortedPositionsWithDistances(queryResults: { distance: number, particle: Particle }[]) : { distance: number, position: ICoordinates }[] {
+    public static sortedPositionsWithDistances(
+        queryResults: { distance: number; particle: Particle }[]
+    ): { distance: number; position: ICoordinates }[] {
         return queryResults
-            .sort((result1: { distance: number, particle: Particle }, result2: { distance: number, particle: Particle }): number => {
-                return TestParticle.sort(result1.particle, result2.particle);
-            })
+            .sort(
+                (
+                    result1: { distance: number; particle: Particle },
+                    result2: { distance: number; particle: Particle }
+                ): number => {
+                    return TestParticle.sort(result1.particle, result2.particle);
+                }
+            )
             .map((sortedResult) => {
                 return {
                     distance: sortedResult.distance,
-                    position: sortedResult.particle.position
+                    position: sortedResult.particle.getPosition(),
                 };
             });
     }
-
 }

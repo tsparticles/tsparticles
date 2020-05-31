@@ -1,5 +1,5 @@
 import type { RecursivePartial } from "../../../Types/RecursivePartial";
-import { OptionsColor } from "../Particles/OptionsColor";
+import { OptionsColor } from "../OptionsColor";
 import type { IBackgroundMaskCover } from "../../Interfaces/BackgroundMask/IBackgroundMaskCover";
 
 export class BackgroundMaskCover implements IBackgroundMaskCover {

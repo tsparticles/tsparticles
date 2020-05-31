@@ -10,18 +10,20 @@ import type { IValueColor } from "../Core/Interfaces/IValueColor";
 export class ColorUtils {
     /**
      * Gets the particles color
-     * @param color the input color to convert in [[IRgb]] object
+     * @param input the input color to convert in [[IRgb]] object
      */
-    public static colorToRgb(color: IColor): IRgb | undefined {
+    public static colorToRgb(input?: string | IColor): IRgb | undefined {
+        if (input === undefined) {
+            return;
+        }
+
+        const color = typeof input === "string" ? { value: input } : input;
+
         let res: IRgb | undefined;
 
-        if (typeof (color.value) === "string") {
+        if (typeof color.value === "string") {
             if (color.value === Constants.randomColorValue) {
-                res = {
-                    b: Math.floor(Math.random() * 256),
-                    g: Math.floor(Math.random() * 256),
-                    r: Math.floor(Math.random() * 256),
-                };
+                res = this.getRandomRgbColor();
             } else {
                 res = ColorUtils.stringToRgb(color.value);
             }
@@ -29,7 +31,7 @@ export class ColorUtils {
             if (color.value instanceof Array) {
                 const colorSelected = Utils.itemFromArray(color.value);
 
-                res = ColorUtils.stringToRgb(colorSelected);
+                res = ColorUtils.colorToRgb({ value: colorSelected });
             } else {
                 const colorValue = color.value as IValueColor;
                 const rgbColor = colorValue.rgb ?? (color.value as IRgb);
@@ -44,6 +46,58 @@ export class ColorUtils {
                     }
                 }
             }
+        }
+
+        return res;
+    }
+
+    /**
+     * Gets the particles color
+     * @param color the input color to convert in [[IHsl]] object
+     */
+    public static colorToHsl(color: IColor): IHsl | undefined {
+        const rgb = this.colorToRgb(color);
+
+        return rgb !== undefined ? this.rgbToHsl(rgb) : rgb;
+    }
+
+    public static rgbToHsl(color: IRgb): IHsl {
+        const r1 = color.r / 255;
+        const g1 = color.g / 255;
+        const b1 = color.b / 255;
+
+        const maxColor = Math.max(r1, g1, b1);
+        const minColor = Math.min(r1, g1, b1);
+        //Calculate L:
+        const res = {
+            h: 0,
+            l: (maxColor + minColor) / 2,
+            s: 0,
+        };
+
+        if (maxColor != minColor) {
+            //Calculate S:
+            if (res.l < 0.5) {
+                res.s = (maxColor - minColor) / (maxColor + minColor);
+            } else {
+                res.s = (maxColor - minColor) / (2.0 - maxColor - minColor);
+            }
+            //Calculate H:
+            if (r1 === maxColor) {
+                res.h = (g1 - b1) / (maxColor - minColor);
+            } else if (g1 === maxColor) {
+                res.h = 2.0 + (b1 - r1) / (maxColor - minColor);
+            } else {
+                res.h = 4.0 + (r1 - g1) / (maxColor - minColor);
+            }
+        }
+
+        res.l *= 100;
+        res.s *= 100;
+        res.h *= 60;
+
+        if (res.h < 0) {
+            res.h += 360;
         }
 
         return res;
@@ -68,9 +122,9 @@ export class ColorUtils {
     public static hslToRgb(hsl: IHsl): IRgb {
         const result: IRgb = { b: 0, g: 0, r: 0 };
         const hslPercent: IHsl = {
-            h: hsl.h > 1 ? hsl.h / 360 : hsl.h,
-            l: hsl.l > 1 ? hsl.l / 100 : hsl.l,
-            s: hsl.s > 1 ? hsl.s / 100 : hsl.s,
+            h: hsl.h / 360,
+            l: hsl.l / 100,
+            s: hsl.s / 100,
         };
 
         if (hslPercent.s === 0) {
@@ -78,9 +132,10 @@ export class ColorUtils {
             result.g = hslPercent.l;
             result.r = hslPercent.l;
         } else {
-            const q = hslPercent.l < 0.5 ?
-                hslPercent.l * (1 + hslPercent.s) :
-                hslPercent.l + hslPercent.s - hslPercent.l * hslPercent.s;
+            const q =
+                hslPercent.l < 0.5
+                    ? hslPercent.l * (1 + hslPercent.s)
+                    : hslPercent.l + hslPercent.s - hslPercent.l * hslPercent.s;
             const p = 2 * hslPercent.l - q;
 
             result.r = ColorUtils.hue2rgb(p, q, hslPercent.h + 1 / 3);
@@ -103,7 +158,7 @@ export class ColorUtils {
             b: rgbResult.b,
             g: rgbResult.g,
             r: rgbResult.r,
-        }
+        };
     }
 
     /**
@@ -112,15 +167,17 @@ export class ColorUtils {
      */
     public static getRandomRgbColor(min?: number): IRgb {
         const fixedMin = min || 0;
-        const minColor = fixedMin + (fixedMin * Math.pow(16, 2)) + (fixedMin * Math.pow(16, 4));
-        const factor = minColor ^ 0xFFFFFF;
-        const randomColor = Math.floor(((Math.random() * factor) | minColor)).toString(16);
+        const minColor = fixedMin + fixedMin * Math.pow(16, 2) + fixedMin * Math.pow(16, 4);
+        const factor = minColor ^ 0xffffff;
+        const randomColor = Math.floor((Math.random() * factor) | minColor).toString(16);
 
-        return this.stringToRgb(`#${randomColor}`) ?? {
-            b: 0,
-            g: 0,
-            r: 0,
-        };
+        return (
+            this.stringToRgb(`#${randomColor}`) ?? {
+                b: 0,
+                g: 0,
+                r: 0,
+            }
+        );
     }
 
     /**
@@ -128,17 +185,35 @@ export class ColorUtils {
      * @param color the [[IRgb]] color to convert
      * @param opacity the opacity to apply to color
      */
-    public static getStyleFromColor(color: IRgb, opacity?: number): string {
-        const opacityValue = opacity ?? 1;
-
-        return `rgba(${color.r}, ${color.g}, ${color.b}, ${opacityValue})`;
+    public static getStyleFromRgb(color: IRgb, opacity?: number): string {
+        return `rgba(${color.r}, ${color.g}, ${color.b}, ${opacity ?? 1})`;
     }
 
-    public static mix(color1: IRgb, color2: IRgb, size1: number, size2: number): IRgb {
+    /**
+     * Prepares a hsla() css function from a [[IHsl]] object
+     * @param color the [[IHsl]] color to convert
+     * @param opacity the opacity to apply to color
+     */
+    public static getStyleFromHsl(color: IHsl, opacity?: number): string {
+        return `hsla(${color.h}, ${color.s}%, ${color.l}%, ${opacity ?? 1})`;
+    }
+
+    public static mix(color1: IRgb | IHsl, color2: IRgb | IHsl, size1: number, size2: number): IRgb {
+        let rgb1 = color1 as IRgb;
+        let rgb2 = color2 as IRgb;
+
+        if (rgb1.r === undefined) {
+            rgb1 = this.hslToRgb(color1 as IHsl);
+        }
+
+        if (rgb2.r === undefined) {
+            rgb2 = this.hslToRgb(color2 as IHsl);
+        }
+
         return {
-            b: Utils.mix(color1.b, color2.b, size1, size2),
-            g: Utils.mix(color1.g, color2.g, size1, size2),
-            r: Utils.mix(color1.r, color2.r, size1, size2),
+            b: Utils.mix(rgb1.b, rgb2.b, size1, size2),
+            g: Utils.mix(rgb1.g, rgb2.g, size1, size2),
+            r: Utils.mix(rgb1.r, rgb2.r, size1, size2),
         };
     }
 
@@ -175,26 +250,30 @@ export class ColorUtils {
     }
 
     private static stringToRgba(input: string): IRgba | undefined {
-        if (input.startsWith('rgb')) {
+        if (input.startsWith("rgb")) {
             const regex = /rgba?\(\s*(\d+)\s*,\s*(\d+)\s*,\s*(\d+)\s*(,\s*([\d.]+)\s*)?\)/i;
             const result = regex.exec(input);
 
-            return result ? {
-                a: result.length > 4 ? parseFloat(result[5]) : 1,
-                b: parseInt(result[3], 10),
-                g: parseInt(result[2], 10),
-                r: parseInt(result[1], 10),
-            } : undefined;
-        } else if (input.startsWith('hsl')) {
+            return result
+                ? {
+                      a: result.length > 4 ? parseFloat(result[5]) : 1,
+                      b: parseInt(result[3], 10),
+                      g: parseInt(result[2], 10),
+                      r: parseInt(result[1], 10),
+                  }
+                : undefined;
+        } else if (input.startsWith("hsl")) {
             const regex = /hsla?\(\s*(\d+)\s*,\s*(\d+)%\s*,\s*(\d+)%\s*(,\s*([\d.]+)\s*)?\)/i;
             const result = regex.exec(input);
 
-            return result ? ColorUtils.hslaToRgba({
-                a: result.length > 4 ? parseFloat(result[5]) : 1,
-                h: parseInt(result[1], 10),
-                l: parseInt(result[3], 10),
-                s: parseInt(result[2], 10),
-            }) : undefined;
+            return result
+                ? ColorUtils.hslaToRgba({
+                      a: result.length > 4 ? parseFloat(result[5]) : 1,
+                      h: parseInt(result[1], 10),
+                      l: parseInt(result[3], 10),
+                      s: parseInt(result[2], 10),
+                  })
+                : undefined;
         } else {
             // By Tim Down - http://stackoverflow.com/a/5624139/3493650
             // Expand shorthand form (e.g. "03F") to full form (e.g. "0033FF")
@@ -205,12 +284,14 @@ export class ColorUtils {
             const regex = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})?$/i;
             const result = regex.exec(hexFixed);
 
-            return result ? {
-                a: result[4] !== undefined ? parseInt(result[4], 16) / 0xFF : 1,
-                b: parseInt(result[3], 16),
-                g: parseInt(result[2], 16),
-                r: parseInt(result[1], 16),
-            } : undefined;
+            return result
+                ? {
+                      a: result[4] !== undefined ? parseInt(result[4], 16) / 0xff : 1,
+                      b: parseInt(result[3], 16),
+                      g: parseInt(result[2], 16),
+                      r: parseInt(result[1], 16),
+                  }
+                : undefined;
         }
     }
 }

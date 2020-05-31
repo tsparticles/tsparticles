@@ -1,13 +1,8 @@
-import { ClickMode } from "../../../../Enums/Modes/ClickMode";
 import type { Container } from "../../../Container";
-import { HoverMode } from "../../../../Enums/Modes/HoverMode";
-import { OutMode } from "../../../../Enums/OutMode";
-import { Utils } from "../../../../Utils/Utils";
-import { DivMode } from "../../../../Enums/Modes/DivMode";
-import { Constants } from "../../../../Utils/Constants";
+import { ClickMode, DivMode, HoverMode, OutMode } from "../../../../Enums";
+import { Circle, Constants, Utils } from "../../../../Utils";
 import type { ICoordinates } from "../../../Interfaces/ICoordinates";
 import type { IParticle } from "../../../Interfaces/IParticle";
-import { Circle } from "../../../../Utils/Circle";
 
 /**
  * Particle repulse manager
@@ -15,19 +10,20 @@ import { Circle } from "../../../../Utils/Circle";
 export class Repulser {
     public static repulse(container: Container, _delta: number): void {
         const options = container.options;
-        const interactivity = options.interactivity;
-        const hoverEnabled = interactivity.events.onHover.enable;
-        const clickEnabled = interactivity.events.onClick.enable;
         const mouseMoveStatus = container.interactivity.status === Constants.mouseMoveEvent;
-        const hoverMode = interactivity.events.onHover.mode;
-        const clickMode = interactivity.events.onClick.mode;
-        const divMode = interactivity.events.onDiv.mode;
+        const events = options.interactivity.events;
+        const hoverEnabled = events.onHover.enable;
+        const hoverMode = events.onHover.mode;
+        const clickEnabled = events.onClick.enable;
+        const clickMode = events.onClick.mode;
+        const divMode = events.onDiv.mode;
+        const divEnabled = events.onDiv.enable;
 
         if (mouseMoveStatus && hoverEnabled && Utils.isInArray(HoverMode.repulse, hoverMode)) {
             this.hoverRepulse(container);
         } else if (clickEnabled && Utils.isInArray(ClickMode.repulse, clickMode)) {
             this.clickRepulse(container);
-        } else if (interactivity.events.onDiv.enable && Utils.isInArray(DivMode.repulse, divMode)) {
+        } else if (divEnabled && Utils.isInArray(DivMode.repulse, divMode)) {
             this.divRepulse(container);
         }
     }
@@ -40,20 +36,12 @@ export class Repulser {
             return;
         }
 
+        const pxRatio = container.retina.pixelRatio;
         const pos = {
-            x: (elem.offsetLeft + elem.offsetWidth / 2),
-            y: (elem.offsetTop + elem.offsetHeight / 2),
+            x: (elem.offsetLeft + elem.offsetWidth / 2) * pxRatio,
+            y: (elem.offsetTop + elem.offsetHeight / 2) * pxRatio,
         };
-
-        let divWidth = elem.offsetWidth / 2;
-
-        if (container.retina.isRetina) {
-            pos.x *= container.retina.pixelRatio;
-            pos.y *= container.retina.pixelRatio;
-            divWidth *= container.retina.pixelRatio
-        }
-
-        const repulseRadius = divWidth;
+        const repulseRadius = (elem.offsetWidth / 2) * pxRatio;
 
         this.processRepulse(container, pos, repulseRadius);
     }
@@ -75,16 +63,14 @@ export class Repulser {
         const query = container.particles.quadTree.query(new Circle(position.x, position.y, repulseRadius));
 
         for (const particle of query) {
-            const dx = particle.position.x - position.x;
-            const dy = particle.position.y - position.y;
-            const dist = Math.sqrt(dx * dx + dy * dy);
+            const { dx, dy, distance } = Utils.getDistances(particle.position, position);
             const normVec = {
-                x: dx / dist,
-                y: dy / dist,
+                x: dx / distance,
+                y: dy / distance,
             };
 
             const velocity = container.options.interactivity.modes.repulse.speed * 100;
-            const repulseFactor = Utils.clamp((1 - Math.pow(dist / repulseRadius, 2)) * velocity, 0, 50);
+            const repulseFactor = Utils.clamp((1 - Math.pow(distance / repulseRadius, 2)) * velocity, 0, 50);
             const outMode = particle.particlesOptions.move.outMode;
             const sizeValue = particle.size.value;
             const pos = {
@@ -92,9 +78,11 @@ export class Repulser {
                 y: particle.position.y + normVec.y * repulseFactor,
             };
 
-            if (outMode === OutMode.bounce ||
+            if (
+                outMode === OutMode.bounce ||
                 outMode === OutMode.bounceVertical ||
-                outMode === OutMode.bounceHorizontal) {
+                outMode === OutMode.bounceHorizontal
+            ) {
                 const isInside = {
                     horizontal: pos.x - sizeValue > 0 && pos.x + sizeValue < container.canvas.size.width,
                     vertical: pos.y - sizeValue > 0 && pos.y + sizeValue < container.canvas.size.height,
@@ -141,15 +129,10 @@ export class Repulser {
             const query = container.particles.quadTree.query(range);
 
             for (const particle of query) {
-                if (particle?.position === undefined) {
-                    continue;
-                }
-
-                const dx = mouseClickPos.x - particle.position.x;
-                const dy = mouseClickPos.y - particle.position.y;
-                const d = dx * dx + dy * dy;
+                const { dx, dy, distance } = Utils.getDistances(mouseClickPos, particle.position);
+                const d = distance * distance;
                 const velocity = container.options.interactivity.modes.repulse.speed;
-                const force = -repulseRadius * velocity / d;
+                const force = (-repulseRadius * velocity) / d;
 
                 // default
                 if (d <= repulseRadius) {
@@ -174,11 +157,13 @@ export class Repulser {
         }
     }
 
-    private static processClickRepulse(container: Container,
-                                       particle: IParticle,
-                                       dx: number,
-                                       dy: number,
-                                       force: number): void {
+    private static processClickRepulse(
+        container: Container,
+        particle: IParticle,
+        dx: number,
+        dy: number,
+        force: number
+    ): void {
         const options = container.options;
         const f = Math.atan2(dy, dx);
 
@@ -194,16 +179,14 @@ export class Repulser {
             };
 
             if (outMode !== OutMode.bounceVertical) {
-                if (pos.x + particle.size.value > container.canvas.size.width ||
-                    pos.x - particle.size.value < 0) {
-                    particle.velocity.horizontal = -particle.velocity.horizontal;
+                if (pos.x + particle.size.value > container.canvas.size.width || pos.x - particle.size.value < 0) {
+                    particle.velocity.horizontal *= -1;
                 }
             }
 
             if (outMode !== OutMode.bounceHorizontal) {
-                if (pos.y + particle.size.value > container.canvas.size.height ||
-                    pos.y - particle.size.value < 0) {
-                    particle.velocity.vertical = -particle.velocity.vertical;
+                if (pos.y + particle.size.value > container.canvas.size.height || pos.y - particle.size.value < 0) {
+                    particle.velocity.vertical *= -1;
                 }
             }
         }

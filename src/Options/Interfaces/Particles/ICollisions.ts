@@ -1,4 +1,4 @@
-import type { CollisionMode } from "../../../Enums/CollisionMode";
+import type { CollisionMode } from "../../../Enums";
 import type { IOptionLoader } from "../IOptionLoader";
 
 export interface ICollisions extends IOptionLoader<ICollisions> {

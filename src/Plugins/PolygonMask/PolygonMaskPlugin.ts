@@ -1,21 +1,43 @@
 import type { IPlugin } from "../../Core/Interfaces/IPlugin";
-import { PolygonMask } from "./PolygonMask";
+import { PolygonMaskInstance } from "./PolygonMaskInstance";
 import type { Container } from "../../Core/Container";
+import type { RecursivePartial } from "../../Types/RecursivePartial";
+import type { IOptions } from "../../Options/Interfaces/IOptions";
+import { IPolygonMaskOptions } from "./Options/Interfaces/IPolygonMaskOptions";
+import { Options } from "../../Options/Classes/Options";
+import { PolygonMask } from "./Options/Classes/PolygonMask";
+import { Type } from "./Enums";
 
-export class PolygonMaskPlugin implements IPlugin {
+class PolygonMaskPlugin implements IPlugin {
     public readonly id: string;
 
     constructor() {
         this.id = "polygonMask";
     }
 
-    public getPlugin(container: Container): PolygonMask {
-        return new PolygonMask(container);
+    public getPlugin(container: Container): PolygonMaskInstance {
+        return new PolygonMaskInstance(container);
     }
 
-    public needsPlugin(container: Container): boolean {
-        const options = container.options;
+    public needsPlugin(options?: RecursivePartial<IOptions & IPolygonMaskOptions>): boolean {
+        return options?.polygon?.enable ?? (options?.polygon?.type !== undefined && options.polygon.type !== Type.none);
+    }
 
-        return options.polygon.enable;
+    public loadOptions(options: Options, source?: RecursivePartial<IOptions & IPolygonMaskOptions>): void {
+        if (!this.needsPlugin(source)) {
+            return;
+        }
+
+        const optionsCast = (options as unknown) as IPolygonMaskOptions;
+        if (optionsCast.polygon === undefined) {
+            optionsCast.polygon = new PolygonMask();
+        }
+
+        optionsCast.polygon.load(source?.polygon);
     }
 }
+
+const plugin = new PolygonMaskPlugin();
+
+export { IPolygonMaskOptions, plugin as PolygonMaskPlugin };
+export * from "./Enums";

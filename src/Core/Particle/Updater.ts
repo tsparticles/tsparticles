@@ -1,12 +1,9 @@
 import type { Container } from "../Container";
-import { OutMode } from "../../Enums/OutMode";
 import type { Particle } from "../Particle";
-import { Utils } from "../../Utils/Utils";
+import { Utils } from "../../Utils";
 import { Mover } from "./Mover";
-import { RotateDirection } from "../../Enums/RotateDirection";
+import { OpacityAnimationStatus, OutMode, RotateDirection, SizeAnimationStatus } from "../../Enums";
 import type { IBounds } from "../Interfaces/IBounds";
-import { SizeAnimationStatus } from "../../Enums/SizeAnimationStatus";
-import { OpacityAnimationStatus } from "../../Enums/OpacityAnimationStatus";
 
 /**
  * Particle updater, it manages movement
@@ -22,13 +19,14 @@ export class Updater {
         this.mover = new Mover(container, particle);
     }
 
-    private static checkBounds(coordinate: number,
-                               radius: number,
-                               size: number,
-                               velocity: number,
-                               outside: () => void): void {
-        if ((coordinate + radius > size && velocity > 0) ||
-            (coordinate - radius < 0 && velocity < 0)) {
+    private static checkBounds(
+        coordinate: number,
+        radius: number,
+        size: number,
+        velocity: number,
+        outside: () => void
+    ): void {
+        if ((coordinate + radius > size && velocity > 0) || (coordinate - radius < 0 && velocity < 0)) {
             outside();
         }
     }
@@ -45,6 +43,9 @@ export class Updater {
 
         /* change size */
         this.updateAngle(delta);
+
+        /* change color */
+        this.updateColor(delta);
 
         /* change particle position if it is out of canvas */
         this.fixOutOfCanvasPosition(delta);
@@ -121,7 +122,7 @@ export class Updater {
         if (particle.particlesOptions.rotate.animation.enable) {
             switch (particle.rotateDirection) {
                 case RotateDirection.clockwise:
-                    particle.angle += particle.particlesOptions.rotate.animation.speed * Math.PI / 18 * deltaFactor;
+                    particle.angle += ((particle.particlesOptions.rotate.animation.speed * Math.PI) / 18) * deltaFactor;
 
                     if (particle.angle > 360) {
                         particle.angle -= 360;
@@ -129,7 +130,7 @@ export class Updater {
                     break;
                 case RotateDirection.counterClockwise:
                 default:
-                    particle.angle -= particle.particlesOptions.rotate.animation.speed * Math.PI / 18 * deltaFactor;
+                    particle.angle -= ((particle.particlesOptions.rotate.animation.speed * Math.PI) / 18) * deltaFactor;
 
                     if (particle.angle < 0) {
                         particle.angle += 360;
@@ -139,10 +140,31 @@ export class Updater {
         }
     }
 
+    private updateColor(delta: number): void {
+        const container = this.container;
+        const options = container.options;
+        const particle = this.particle;
+
+        if (particle.color === undefined) {
+            return;
+        }
+
+        const deltaFactor = options.fpsLimit > 0 ? (60 * delta) / 1000 : 3.6;
+
+        if (particle.particlesOptions.color.animation.enable) {
+            particle.color.h += (particle.colorVelocity || 0) * deltaFactor;
+
+            if (particle.color.h > 360) {
+                particle.color.h -= 360;
+            }
+        }
+    }
+
     private fixOutOfCanvasPosition(_delta: number): void {
         const container = this.container;
         const particle = this.particle;
         const outMode = particle.particlesOptions.move.outMode;
+        const wrap = particle.particlesOptions.move.warp;
         const canvasSize = container.canvas.size;
 
         let newPos: IBounds;
@@ -189,17 +211,29 @@ export class Updater {
 
             if (nextBounds.left > canvasSize.width - particle.offset.x) {
                 particle.position.x = newPos.left;
-                particle.position.y = Math.random() * canvasSize.height;
+
+                if (!wrap) {
+                    particle.position.y = Math.random() * canvasSize.height;
+                }
             } else if (nextBounds.right < -particle.offset.x) {
                 particle.position.x = newPos.right;
-                particle.position.y = Math.random() * canvasSize.height;
+
+                if (!wrap) {
+                    particle.position.y = Math.random() * canvasSize.height;
+                }
             }
 
             if (nextBounds.top > canvasSize.height - particle.offset.y) {
-                particle.position.x = Math.random() * canvasSize.width;
+                if (!wrap) {
+                    particle.position.x = Math.random() * canvasSize.width;
+                }
+
                 particle.position.y = newPos.top;
             } else if (nextBounds.bottom < -particle.offset.y) {
-                particle.position.x = Math.random() * canvasSize.width;
+                if (!wrap) {
+                    particle.position.x = Math.random() * canvasSize.width;
+                }
+
                 particle.position.y = newPos.bottom;
             }
         }

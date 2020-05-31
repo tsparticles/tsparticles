@@ -1,5 +1,5 @@
 import type { ICollisions } from "../../Interfaces/Particles/ICollisions";
-import { CollisionMode } from "../../../Enums/CollisionMode";
+import { CollisionMode } from "../../../Enums";
 import type { RecursivePartial } from "../../../Types/RecursivePartial";
 
 export class Collisions implements ICollisions {

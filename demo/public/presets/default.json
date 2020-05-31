@@ -9,7 +9,12 @@
       }
     },
     "color": {
-      "value": "#ffffff"
+      "value": "#ff0000",
+      "animation": {
+        "enable": true,
+        "speed": 20,
+        "sync": true
+      }
     },
     "shape": {
       "type": "circle",
@@ -107,7 +112,7 @@
   },
   "retina_detect": true,
   "background": {
-    "color": "#0d47a1",
+    "color": "#000000",
     "image": "",
     "position": "50% 50%",
     "repeat": "no-repeat",

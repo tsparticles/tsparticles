@@ -94,7 +94,8 @@
       "grab": {
         "distance": 400,
         "line_linked": {
-          "opacity": 1
+          "opacity": 1,
+          "color": "#f00"
         }
       },
       "bubble": {

@@ -1,6 +1,5 @@
 import type { IOptionLoader } from "../../IOptionLoader";
-import type { StartValueType } from "../../../../Enums/StartValueType";
-import type { DestroyType } from "../../../../Enums/DestroyType";
+import type { DestroyType, StartValueType } from "../../../../Enums";
 
 export interface ISizeAnimation extends IOptionLoader<ISizeAnimation> {
     enable: boolean;

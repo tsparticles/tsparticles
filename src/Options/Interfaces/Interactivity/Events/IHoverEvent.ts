@@ -1,4 +1,4 @@
-import type { HoverMode } from "../../../../Enums/Modes/HoverMode";
+import type { HoverMode } from "../../../../Enums";
 import type { IParallax } from "./IParallax";
 import type { IOptionLoader } from "../../IOptionLoader";
 import type { SingleOrMultiple } from "../../../../Types/SingleOrMultiple";

@@ -1,6 +1,3 @@
-export enum PolygonMaskType {
-    inline = "inline",
-    inside = "inside",
-    outside = "outside",
-    none = "none",
-}
+import { Type as PolygonMaskType } from "../Plugins/PolygonMask/Enums";
+
+export { PolygonMaskType };

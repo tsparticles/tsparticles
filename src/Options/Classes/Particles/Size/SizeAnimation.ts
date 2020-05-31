@@ -1,7 +1,6 @@
 import type { ISizeAnimation } from "../../../Interfaces/Particles/Size/ISizeAnimation";
 import type { RecursivePartial } from "../../../../Types/RecursivePartial";
-import { StartValueType } from "../../../../Enums/StartValueType";
-import { DestroyType } from "../../../../Enums/DestroyType";
+import { DestroyType, StartValueType } from "../../../../Enums";
 
 export class SizeAnimation implements ISizeAnimation {
     /**

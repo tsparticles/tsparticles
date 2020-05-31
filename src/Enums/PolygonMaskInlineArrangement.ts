@@ -1,7 +1,3 @@
-export enum PolygonMaskInlineArrangement {
-    equidistant = "equidistant",
-    onePerPoint = "one-per-point",
-    perPoint = "per-point",
-    randomLength = "random-length",
-    randomPoint = "random-point",
-}
+import { InlineArrangement as PolygonMaskInlineArrangement } from "../Plugins/PolygonMask/Enums";
+
+export { PolygonMaskInlineArrangement };

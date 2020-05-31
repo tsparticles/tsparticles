@@ -1,4 +1,4 @@
-import type { ShapeType } from "../../../../Enums/ShapeType";
+import type { ShapeType } from "../../../../Enums";
 import type { IImageShape } from "./IImageShape";
 import type { ICharacterShape } from "./ICharacterShape";
 import type { IPolygonShape } from "./IPolygonShape";
@@ -37,5 +37,3 @@ export interface IShape extends IOptionLoader<IShape> {
 
     options: ShapeData;
 }
-
-

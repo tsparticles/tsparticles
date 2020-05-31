@@ -1,4 +1,4 @@
-import type { ClickMode } from "../../../../Enums/Modes/ClickMode";
+import type { ClickMode } from "../../../../Enums";
 import type { IOptionLoader } from "../../IOptionLoader";
 import type { SingleOrMultiple } from "../../../../Types/SingleOrMultiple";
 

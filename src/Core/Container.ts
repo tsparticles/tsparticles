@@ -1,5 +1,4 @@
 import { Canvas } from "./Canvas";
-import { EventListeners } from "../Utils/EventListeners";
 import type { IRepulse } from "./Interfaces/IRepulse";
 import type { IBubble } from "./Interfaces/IBubble";
 import type { IContainerInteractivity } from "./Interfaces/IContainerInteractivity";
@@ -11,8 +10,7 @@ import type { RecursivePartial } from "../Types/RecursivePartial";
 import { Options } from "../Options/Classes/Options";
 import type { IContainerPlugin } from "./Interfaces/IContainerPlugin";
 import type { IShapeDrawer } from "./Interfaces/IShapeDrawer";
-import { Plugins } from "../Utils/Plugins";
-import { SimplexNoise } from "../Utils/SimplexNoise";
+import { EventListeners, Plugins, SimplexNoise } from "../Utils";
 
 /**
  * The object loaded into an HTML element, it'll contain options loaded and all data to let everything working
@@ -32,7 +30,7 @@ export class Container {
     public repulse: IRepulse;
     public lastFrameTime: number;
     public pageHidden: boolean;
-    public drawer: FrameManager;
+    public drawer?: FrameManager;
     public started: boolean;
     public destroyed: boolean;
     public density: number;
@@ -144,7 +142,7 @@ export class Container {
     }
 
     public draw(): void {
-        this.drawAnimationFrame = Container.requestFrame((t) => this.drawer.nextFrame(t));
+        this.drawAnimationFrame = Container.requestFrame((t) => this.drawer?.nextFrame(t));
     }
 
     public getAnimationStatus(): boolean {
@@ -252,8 +250,9 @@ export class Container {
         }
 
         this.plugins = {};
+        this.particles.linksColors = {};
 
-        delete this.particles.lineLinkedColor;
+        delete this.particles.linksColor;
     }
 
     public async start(): Promise<void> {
@@ -261,11 +260,7 @@ export class Container {
             return;
         }
 
-        const availablePlugins = Plugins.getAvailablePlugins(this);
-
-        for (const id in availablePlugins) {
-            this.plugins[id] = availablePlugins[id];
-        }
+        await this.init();
 
         this.started = true;
 
@@ -281,6 +276,20 @@ export class Container {
             }
         }
 
+        this.play();
+    }
+
+    private async init(): Promise<void> {
+        /* init canvas + particles */
+        this.retina.init();
+        this.canvas.init();
+
+        const availablePlugins = Plugins.getAvailablePlugins(this);
+
+        for (const id in availablePlugins) {
+            this.plugins[id] = availablePlugins[id];
+        }
+
         for (const type in this.drawers) {
             const drawer = this.drawers[type];
 
@@ -289,23 +298,17 @@ export class Container {
             }
         }
 
-        this.init();
-        this.play();
-    }
-
-    private init(): void {
-        /* init canvas + particles */
-        this.retina.init();
-        this.canvas.init();
-        this.particles.init();
-        this.densityAutoParticles();
-
         for (const id in this.plugins) {
             const plugin = this.plugins[id];
 
             if (plugin.init !== undefined) {
-                plugin.init();
+                plugin.init(this.options);
+            } else if (plugin.initAsync !== undefined) {
+                await plugin.initAsync(this.options);
             }
         }
+
+        this.particles.init();
+        this.densityAutoParticles();
     }
 }

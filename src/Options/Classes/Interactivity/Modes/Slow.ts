@@ -13,6 +13,7 @@ export class Slow implements ISlow {
      * @deprecated this property will be removed soon, please use the HoverMode.slow in the HoverEvent
      */
     set active(_value: boolean) {
+        // deprecated
     }
 
     public factor: number;

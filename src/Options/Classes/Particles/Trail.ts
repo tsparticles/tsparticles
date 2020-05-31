@@ -1,6 +1,6 @@
 import type { ITrail } from "../../Interfaces/Particles/ITrail";
 import type { RecursivePartial } from "../../../Types/RecursivePartial";
-import { OptionsColor } from "./OptionsColor";
+import { OptionsColor } from "../OptionsColor";
 
 export class Trail implements ITrail {
     public enable: boolean;

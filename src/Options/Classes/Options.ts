@@ -1,15 +1,11 @@
 import type { IOptions } from "../Interfaces/IOptions";
 import { Interactivity } from "./Interactivity/Interactivity";
 import { Particles } from "./Particles/Particles";
-import { PolygonMask } from "./PolygonMask/PolygonMask";
 import { BackgroundMask } from "./BackgroundMask/BackgroundMask";
 import type { RecursivePartial } from "../../Types/RecursivePartial";
 import { Background } from "./Background/Background";
-import type { SingleOrMultiple } from "../../Types/SingleOrMultiple";
-import { Emitter } from "./Emitters/Emitter";
-import { Absorber } from "./Absorbers/Absorber";
 import { Infection } from "./Infection/Infection";
-import { Plugins } from "../../Utils/Plugins";
+import { Plugins } from "../../Utils";
 
 export class Options implements IOptions {
     /**
@@ -43,31 +39,25 @@ export class Options implements IOptions {
         this.detectRetina = value;
     }
 
-    public absorbers: SingleOrMultiple<Absorber>;
     public background: Background;
     public backgroundMask: BackgroundMask;
     public detectRetina: boolean;
-    public emitters: SingleOrMultiple<Emitter>;
     public fpsLimit: number;
     public infection: Infection;
     public interactivity: Interactivity;
     public particles: Particles;
-    public polygon: PolygonMask;
     public pauseOnBlur: boolean;
     public preset?: string | string[];
 
     constructor() {
-        this.absorbers = [];
         this.background = new Background();
         this.backgroundMask = new BackgroundMask();
         this.detectRetina = false;
-        this.emitters = [];
         this.fpsLimit = 30;
         this.infection = new Infection();
         this.interactivity = new Interactivity();
         this.particles = new Particles();
         this.pauseOnBlur = true;
-        this.polygon = new PolygonMask();
     }
 
     /**
@@ -110,44 +100,9 @@ export class Options implements IOptions {
             this.infection.load(data.infection);
             this.interactivity.load(data.interactivity);
 
-            this.polygon.load(data.polygon);
             this.backgroundMask.load(data.backgroundMask);
 
-            if (data.emitters !== undefined) {
-                if (data.emitters instanceof Array) {
-                    this.emitters = data.emitters.map((s) => {
-                        const tmp = new Emitter();
-
-                        tmp.load(s);
-
-                        return tmp;
-                    });
-                } else {
-                    if (this.emitters instanceof Array) {
-                        this.emitters = new Emitter();
-                    }
-
-                    this.emitters.load(data.emitters);
-                }
-            }
-
-            if (data.absorbers !== undefined) {
-                if (data.absorbers instanceof Array) {
-                    this.absorbers = data.absorbers.map((s) => {
-                        const tmp = new Absorber();
-
-                        tmp.load(s);
-
-                        return tmp;
-                    });
-                } else {
-                    if (this.absorbers instanceof Array) {
-                        this.absorbers = new Absorber();
-                    }
-
-                    this.absorbers.load(data.absorbers);
-                }
-            }
+            Plugins.loadOptions(this, data);
         }
     }
 
