@@ -4,7 +4,7 @@
     "./dist/index.js",
     "./dist/tsparticles.js"
   ],
-  "version": "1.15.0",
+  "version": "1.15.1",
   "description": "Porting of the abandoned Vincent Garreau's particles.js, converted in TypeScript. Added many new cool features and various bug fixes.",
   "homepage": "https://particles.matteobruni.it/",
   "scripts": {
@@ -30,8 +30,8 @@
     "version": "node ./scripts/postversion.js && git add tsParticles.nuspec",
     "postversion": "git push && git push --tags",
     "prepare": "npm run build",
-    "release:alpha": "npm version prerelease --preid alpha && npm publish --tag alpha",
-    "release:beta": "npm version prerelease --preid beta && npm publish --tag beta"
+    "release:alpha": "npm version prerelease --preid alpha",
+    "release:beta": "npm version prerelease --preid beta"
   },
   "repository": {
     "type": "git",
