@@ -93,7 +93,7 @@ export class Bubbler {
 
         const query = container.particles.quadTree.query(area);
 
-        for (const particle of query) {
+        for (const particle of query.filter((t) => area.contains(t.getPosition()))) {
             particle.bubble.inRange = true;
 
             /* size */
