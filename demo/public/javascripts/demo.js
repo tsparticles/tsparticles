@@ -37,7 +37,7 @@
             if (prop.type) {
                 switch (prop.type) {
                     case 'boolean':
-                        return ['true', 'false'];
+                        return [ 'true', 'false' ];
                     case 'number':
                         return prop.enum;
                     case 'string':
@@ -91,7 +91,7 @@
     let updateParticles = function (editor) {
         let presetId = localStorage.presetId || 'default';
 
-        if (presetId === "divRepulse") {
+        if (presetId === "divRepulse" || presetId === "divBubble") {
             document.getElementById('repulse-div').className = 'd-block';
         } else {
             document.getElementById('repulse-div').className = 'd-none';
@@ -142,7 +142,7 @@
         const element = document.getElementById('editor');
         const options = {
             mode: 'form',
-            modes: ['form', 'view', 'preview'], // allowed modes
+            modes: [ 'form', 'view', 'preview' ], // allowed modes
             autocomplete: {
                 filter: 'contain',
                 trigger: 'focus',

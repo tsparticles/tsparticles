@@ -44,6 +44,7 @@ html(lang="en")
                                     option(value="dataImages") Data URI Images
                                     option(value="default") Default
                                     option(value="destroy") Destroy
+                                    option(value="divBubble") Div Bubble
                                     option(value="divRepulse") Div Repulse
                                     option(value="emitter") Emitter
                                     option(value="emitterAbsorber") Emitter and Absorber
@@ -148,14 +149,14 @@ html(lang="en")
         // Global site tag (gtag.js) - Google Analytics
         script(async, src="https://www.googletagmanager.com/gtag/js?id=UA-159372955-1")
         script.
-          window.dataLayer = window.dataLayer || [];
-          function gtag() {
-            dataLayer.push(arguments);
-          }
+            window.dataLayer = window.dataLayer || [];
+            function gtag() {
+                dataLayer.push(arguments);
+            }
 
-          gtag('js', new Date());
+            gtag('js', new Date());
 
-          gtag('config', 'UA-159372955-1');
+            gtag('config', 'UA-159372955-1');
 
         script(src="/jquery/jquery.slim.min.js")
         script(src="/popper.js/umd/popper.min.js")

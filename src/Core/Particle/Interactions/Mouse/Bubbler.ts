@@ -40,7 +40,7 @@ export class Bubbler {
                     const divMode = div.mode;
                     const divEnabled = div.enable;
 
-                    if (divEnabled && Utils.isInArray(DivMode.repulse, divMode)) {
+                    if (divEnabled && Utils.isInArray(DivMode.bubble, divMode)) {
                         this.divHover(container, div);
                     }
                 }
@@ -48,7 +48,7 @@ export class Bubbler {
                 const divMode = divs.mode;
                 const divEnabled = divs.enable;
 
-                if (divEnabled && Utils.isInArray(DivMode.repulse, divMode)) {
+                if (divEnabled && Utils.isInArray(DivMode.bubble, divMode)) {
                     this.divHover(container, divs);
                 }
             }
