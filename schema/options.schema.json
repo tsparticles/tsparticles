@@ -6,8 +6,8 @@
       "type": "string"
     },
     "DivType": {
-      "enum": [0, 1],
-      "type": "number"
+      "enum": ["circle", "rectangle"],
+      "type": "string"
     },
     "IAnimatableColor": {
       "properties": {

@@ -84,7 +84,12 @@ export class Bubbler {
         const area =
             div.type === DivType.circle
                 ? new Circle(pos.x, pos.y, repulseRadius)
-                : new Rectangle(elem.offsetLeft, elem.offsetTop, elem.offsetWidth, elem.offsetHeight);
+                : new Rectangle(
+                      elem.offsetLeft * pxRatio,
+                      elem.offsetTop * pxRatio,
+                      elem.offsetWidth * pxRatio,
+                      elem.offsetHeight * pxRatio
+                  );
 
         const query = container.particles.quadTree.query(area);
 
