@@ -48,9 +48,6 @@ describe("Options tests", () => {
         /* interactivity events */
         expect(options.interactivity.events.onClick.enable).to.be.false;
         expect(options.interactivity.events.onClick.mode).to.be.empty;
-        expect(options.interactivity.events.onDiv.elementId).to.be.empty;
-        expect(options.interactivity.events.onDiv.enable).to.be.false;
-        expect(options.interactivity.events.onDiv.mode).to.be.empty;
         expect(options.interactivity.events.onHover.enable).to.be.false;
         expect(options.interactivity.events.onHover.mode).to.be.empty;
         expect(options.interactivity.events.onHover.parallax.enable).to.be.false;
