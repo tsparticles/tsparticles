@@ -1,8 +1,10 @@
 import type { Container } from "../../../Container";
-import { ClickMode, DivMode, HoverMode, OutMode } from "../../../../Enums";
-import { Circle, Constants, Utils } from "../../../../Utils";
+import { ClickMode, DivMode, DivType, HoverMode, OutMode } from "../../../../Enums";
+import { Circle, Constants, Rectangle, Utils } from "../../../../Utils";
 import type { ICoordinates } from "../../../Interfaces/ICoordinates";
 import type { IParticle } from "../../../Interfaces/IParticle";
+import { DivEvent } from "../../../../Options/Classes/Interactivity/Events/DivEvent";
+import { Range } from "../../../../Utils";
 
 /**
  * Particle repulse manager
@@ -16,21 +18,47 @@ export class Repulser {
         const hoverMode = events.onHover.mode;
         const clickEnabled = events.onClick.enable;
         const clickMode = events.onClick.mode;
-        const divMode = events.onDiv.mode;
-        const divEnabled = events.onDiv.enable;
+        const divs = events.onDiv;
 
         if (mouseMoveStatus && hoverEnabled && Utils.isInArray(HoverMode.repulse, hoverMode)) {
             this.hoverRepulse(container);
         } else if (clickEnabled && Utils.isInArray(ClickMode.repulse, clickMode)) {
             this.clickRepulse(container);
-        } else if (divEnabled && Utils.isInArray(DivMode.repulse, divMode)) {
-            this.divRepulse(container);
+        } else {
+            if (divs instanceof Array) {
+                for (const div of divs) {
+                    const divMode = div.mode;
+                    const divEnabled = div.enable;
+
+                    if (divEnabled && Utils.isInArray(DivMode.repulse, divMode)) {
+                        this.divRepulse(container, div);
+                    }
+                }
+            } else {
+                const divMode = divs.mode;
+                const divEnabled = divs.enable;
+
+                if (divEnabled && Utils.isInArray(DivMode.repulse, divMode)) {
+                    this.divRepulse(container, divs);
+                }
+            }
         }
     }
 
-    private static divRepulse(container: Container): void {
-        const options = container.options;
-        const elem = document.getElementById(options.interactivity.events.onDiv.elementId);
+    private static divRepulse(container: Container, div: DivEvent): void {
+        const ids = div.ids;
+
+        if (ids instanceof Array) {
+            for (const id of ids) {
+                this.singleDivRepulse(container, id, div);
+            }
+        } else {
+            this.singleDivRepulse(container, ids, div);
+        }
+    }
+
+    private static singleDivRepulse(container: Container, id: string, div: DivEvent) {
+        const elem = document.getElementById(id);
 
         if (!elem) {
             return;
@@ -43,7 +71,17 @@ export class Repulser {
         };
         const repulseRadius = (elem.offsetWidth / 2) * pxRatio;
 
-        this.processRepulse(container, pos, repulseRadius);
+        const area =
+            div.type === DivType.circle
+                ? new Circle(pos.x, pos.y, repulseRadius)
+                : new Rectangle(
+                      elem.offsetLeft * pxRatio,
+                      elem.offsetTop * pxRatio,
+                      elem.offsetWidth * pxRatio,
+                      elem.offsetHeight * pxRatio
+                  );
+
+        this.processRepulse(container, pos, repulseRadius, area);
     }
 
     private static hoverRepulse(container: Container): void {
@@ -55,12 +93,17 @@ export class Repulser {
 
         const repulseRadius = container.retina.repulseModeDistance;
 
-        this.processRepulse(container, mousePos, repulseRadius);
+        this.processRepulse(container, mousePos, repulseRadius, new Circle(mousePos.x, mousePos.y, repulseRadius));
     }
 
-    private static processRepulse(container: Container, position: ICoordinates, repulseRadius: number): void {
+    private static processRepulse(
+        container: Container,
+        position: ICoordinates,
+        repulseRadius: number,
+        area: Range
+    ): void {
         //const query = container.particles.spatialGrid.queryRadius(position, repulseRadius);
-        const query = container.particles.quadTree.query(new Circle(position.x, position.y, repulseRadius));
+        const query = container.particles.quadTree.query(area);
 
         for (const particle of query) {
             const { dx, dy, distance } = Utils.getDistances(particle.position, position);

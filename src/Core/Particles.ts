@@ -106,7 +106,6 @@ export class Particles {
 
     public update(delta: number): void {
         const container = this.container;
-        const options = container.options;
         const particlesToDelete = [];
 
         for (let i = 0; i < this.count; i++) {
@@ -173,14 +172,29 @@ export class Particles {
             this.remove(particle);
         }
 
-        if (
-            container.options.interactivity.events.onDiv.enable ||
-            (container.options.interactivity.events.onHover.enable && container.interactivity.mouse.position) ||
-            (container.options.interactivity.events.onClick.enable && container.interactivity.mouse.clickPosition)
-        ) {
-            const hoverMode = options.interactivity.events.onHover.mode;
-            const clickMode = options.interactivity.events.onClick.mode;
-            const divMode = options.interactivity.events.onDiv.mode;
+        const mouse = container.interactivity.mouse;
+        const events = container.options.interactivity.events;
+        const divs = container.options.interactivity.events.onDiv;
+
+        let divEnabled: boolean;
+        let divRepulse: boolean;
+        let divBubble: boolean;
+
+        if (divs instanceof Array) {
+            const modes = divs.filter((t) => t.enable).map((t) => t.mode);
+
+            divEnabled = modes.length > 0;
+            divRepulse = modes.find((t) => Utils.isInArray(DivMode.repulse, t)) !== undefined;
+            divBubble = modes.find((t) => Utils.isInArray(DivMode.bubble, t)) !== undefined;
+        } else {
+            divEnabled = divs.enable;
+            divRepulse = Utils.isInArray(DivMode.repulse, divs.mode);
+            divBubble = Utils.isInArray(DivMode.bubble, divs.mode);
+        }
+
+        if (divEnabled || (events.onHover.enable && mouse.position) || (events.onClick.enable && mouse.clickPosition)) {
+            const hoverMode = events.onHover.mode;
+            const clickMode = events.onClick.mode;
 
             /* mouse events interactions */
             if (Utils.isInArray(HoverMode.grab, hoverMode)) {
@@ -190,12 +204,16 @@ export class Particles {
             if (
                 Utils.isInArray(HoverMode.repulse, hoverMode) ||
                 Utils.isInArray(ClickMode.repulse, clickMode) ||
-                Utils.isInArray(DivMode.repulse, divMode)
+                divRepulse
             ) {
                 Repulser.repulse(container, delta);
             }
 
-            if (Utils.isInArray(HoverMode.bubble, hoverMode) || Utils.isInArray(ClickMode.bubble, clickMode)) {
+            if (
+                Utils.isInArray(HoverMode.bubble, hoverMode) ||
+                Utils.isInArray(ClickMode.bubble, clickMode) ||
+                divBubble
+            ) {
                 Bubbler.bubble(container, delta);
             }
 

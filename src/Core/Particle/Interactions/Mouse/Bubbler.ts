@@ -1,9 +1,10 @@
 import type { Container } from "../../../Container";
 import type { IBubblerProcessParam } from "../../../Interfaces/IBubblerProcessParam";
-import { Circle, ColorUtils, Constants, Utils } from "../../../../Utils";
-import { ClickMode, HoverMode, ProcessBubbleType } from "../../../../Enums";
+import { Circle, ColorUtils, Constants, Rectangle, Utils } from "../../../../Utils";
+import { ClickMode, DivMode, DivType, HoverMode, ProcessBubbleType } from "../../../../Enums";
 import type { IParticle } from "../../../Interfaces/IParticle";
 import { Particle } from "../../../Particle";
+import { DivEvent } from "../../../../Options/Classes/Interactivity/Events/DivEvent";
 
 /**
  * Particle bubble manager
@@ -26,12 +27,83 @@ export class Bubbler {
         const hoverMode = onHover.mode;
         const clickEnabled = onClick.enable;
         const clickMode = onClick.mode;
+        const divs = events.onDiv;
 
         /* on hover event */
         if (hoverEnabled && Utils.isInArray(HoverMode.bubble, hoverMode)) {
             this.hoverBubble(container);
         } else if (clickEnabled && Utils.isInArray(ClickMode.bubble, clickMode)) {
             this.clickBubble(container);
+        } else {
+            if (divs instanceof Array) {
+                for (const div of divs) {
+                    const divMode = div.mode;
+                    const divEnabled = div.enable;
+
+                    if (divEnabled && Utils.isInArray(DivMode.bubble, divMode)) {
+                        this.divHover(container, div);
+                    }
+                }
+            } else {
+                const divMode = divs.mode;
+                const divEnabled = divs.enable;
+
+                if (divEnabled && Utils.isInArray(DivMode.bubble, divMode)) {
+                    this.divHover(container, divs);
+                }
+            }
+        }
+    }
+
+    private static divHover(container: Container, div: DivEvent): void {
+        const ids = div.ids;
+
+        if (ids instanceof Array) {
+            for (const id of ids) {
+                this.singleDivHover(container, id, div);
+            }
+        } else {
+            this.singleDivHover(container, ids, div);
+        }
+    }
+
+    private static singleDivHover(container: Container, id: string, div: DivEvent) {
+        const elem = document.getElementById(id);
+
+        if (!elem) {
+            return;
+        }
+
+        const pxRatio = container.retina.pixelRatio;
+        const pos = {
+            x: (elem.offsetLeft + elem.offsetWidth / 2) * pxRatio,
+            y: (elem.offsetTop + elem.offsetHeight / 2) * pxRatio,
+        };
+        const repulseRadius = (elem.offsetWidth / 2) * pxRatio;
+
+        const area =
+            div.type === DivType.circle
+                ? new Circle(pos.x, pos.y, repulseRadius)
+                : new Rectangle(
+                      elem.offsetLeft * pxRatio,
+                      elem.offsetTop * pxRatio,
+                      elem.offsetWidth * pxRatio,
+                      elem.offsetHeight * pxRatio
+                  );
+
+        const query = container.particles.quadTree.query(area);
+
+        for (const particle of query.filter((t) => area.contains(t.getPosition()))) {
+            particle.bubble.inRange = true;
+
+            /* size */
+            this.hoverBubbleSize(container, particle, 1);
+
+            /* opacity */
+            this.hoverBubbleOpacity(container, particle, 1);
+
+            /* color */
+            this.hoverBubbleColor(container, particle);
         }
     }
 

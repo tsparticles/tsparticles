@@ -7,6 +7,7 @@ import type { IImage } from "../Core/Interfaces/IImage";
 import type { IParticle } from "../Core/Interfaces/IParticle";
 import { ColorUtils } from "./ColorUtils";
 import { IHsl } from "../Core/Interfaces/IHsl";
+import { SingleOrMultiple } from "../Types/SingleOrMultiple";
 
 type CSSOMString = string;
 type FontFaceLoadStatus = "unloaded" | "loading" | "loaded" | "error";
@@ -72,7 +73,7 @@ export class Utils {
      * @param value the value to check
      * @param array the data array or single value
      */
-    public static isInArray<T>(value: T, array: T[] | T): boolean {
+    public static isInArray<T>(value: T, array: SingleOrMultiple<T>): boolean {
         return value === array || (array instanceof Array && array.indexOf(value) > -1);
     }
 

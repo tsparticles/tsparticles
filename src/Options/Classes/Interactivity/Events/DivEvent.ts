@@ -1,30 +1,47 @@
 import type { IDivEvent } from "../../../Interfaces/Interactivity/Events/IDivEvent";
-import { DivMode } from "../../../../Enums";
+import { DivMode, DivType } from "../../../../Enums";
 import type { RecursivePartial } from "../../../../Types/RecursivePartial";
 import type { SingleOrMultiple } from "../../../../Types/SingleOrMultiple";
 
 export class DivEvent implements IDivEvent {
     /**
      * The element id to detect the event
-     * @deprecated this property is obsolete, please use the new elementId
+     * @deprecated this property is obsolete, please use the new ids
      */
-    public get el(): string {
+    get elementId(): SingleOrMultiple<string> {
+        return this.ids;
+    }
+
+    /**
+     * The element id to detect the event
+     * @deprecated this property is obsolete, please use the new ids
+     * @param value
+     */
+    set elementId(value: SingleOrMultiple<string>) {
+        this.ids = value;
+    }
+
+    /**
+     * The element id to detect the event
+     * @deprecated this property is obsolete, please use the new ids
+     */
+    public get el(): SingleOrMultiple<string> {
         return this.elementId;
     }
 
     /**
      * The element id to detect the event
-     * @deprecated this property is obsolete, please use the new elementId
+     * @deprecated this property is obsolete, please use the new ids
      * @param value
      */
-    public set el(value: string) {
+    public set el(value: SingleOrMultiple<string>) {
         this.elementId = value;
     }
 
     /**
      * The element id to detect the event
      */
-    public elementId: string;
+    public ids: SingleOrMultiple<string>;
 
     /**
      * The div event handler enabling mode
@@ -36,18 +53,21 @@ export class DivEvent implements IDivEvent {
      */
     public mode: SingleOrMultiple<DivMode | string>;
 
+    public type: DivType;
+
     constructor() {
-        this.elementId = "";
+        this.ids = [];
         this.enable = false;
         this.mode = [];
+        this.type = DivType.circle;
     }
 
     public load(data?: RecursivePartial<IDivEvent>): void {
         if (data !== undefined) {
-            const elementId = data.elementId ?? data.el;
+            const ids = data.ids ?? data.elementId ?? data.el;
 
-            if (elementId !== undefined) {
-                this.elementId = elementId;
+            if (ids !== undefined) {
+                this.ids = ids;
             }
 
             if (data.enable !== undefined) {
@@ -56,6 +76,10 @@ export class DivEvent implements IDivEvent {
 
             if (data.mode !== undefined) {
                 this.mode = data.mode;
+            }
+
+            if (data.type !== undefined) {
+                this.type = data.type;
             }
         }
     }

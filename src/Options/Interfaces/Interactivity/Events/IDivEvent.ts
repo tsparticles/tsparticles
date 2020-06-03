@@ -1,4 +1,4 @@
-import type { DivMode } from "../../../../Enums";
+import type { DivMode, DivType } from "../../../../Enums";
 import type { IOptionLoader } from "../../IOptionLoader";
 import type { SingleOrMultiple } from "../../../../Types/SingleOrMultiple";
 
@@ -7,9 +7,16 @@ export interface IDivEvent extends IOptionLoader<IDivEvent> {
     mode: SingleOrMultiple<DivMode | string>;
 
     /**
-     * @deprecated use the new elementId instead
+     * @deprecated use the new ids instead
      */
-    el: string;
+    el: SingleOrMultiple<string>;
 
-    elementId: string;
+    /**
+     * @deprecated use the new ids instead
+     */
+    elementId: SingleOrMultiple<string>;
+
+    ids: SingleOrMultiple<string>;
+
+    type: DivType;
 }

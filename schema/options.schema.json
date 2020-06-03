@@ -5,6 +5,10 @@
       "enum": ["max", "min", "none"],
       "type": "string"
     },
+    "DivType": {
+      "enum": ["circle", "rectangle"],
+      "type": "string"
+    },
     "IAnimatableColor": {
       "properties": {
         "animation": {
@@ -372,13 +376,46 @@
     "IDivEvent": {
       "properties": {
         "el": {
-          "type": "string"
+          "anyOf": [
+            {
+              "items": {
+                "type": "string"
+              },
+              "type": "array"
+            },
+            {
+              "type": "string"
+            }
+          ]
         },
         "elementId": {
-          "type": "string"
+          "anyOf": [
+            {
+              "items": {
+                "type": "string"
+              },
+              "type": "array"
+            },
+            {
+              "type": "string"
+            }
+          ]
         },
         "enable": {
           "type": "boolean"
+        },
+        "ids": {
+          "anyOf": [
+            {
+              "items": {
+                "type": "string"
+              },
+              "type": "array"
+            },
+            {
+              "type": "string"
+            }
+          ]
         },
         "mode": {
           "anyOf": [
@@ -392,6 +429,9 @@
               "type": "string"
             }
           ]
+        },
+        "type": {
+          "$ref": "#/definitions/DivType"
         }
       },
       "type": "object"
@@ -402,7 +442,17 @@
           "$ref": "#/definitions/IClickEvent"
         },
         "onDiv": {
-          "$ref": "#/definitions/IDivEvent"
+          "anyOf": [
+            {
+              "$ref": "#/definitions/IDivEvent"
+            },
+            {
+              "items": {
+                "$ref": "#/definitions/IDivEvent"
+              },
+              "type": "array"
+            }
+          ]
         },
         "onHover": {
           "$ref": "#/definitions/IHoverEvent"
@@ -411,7 +461,17 @@
           "$ref": "#/definitions/IClickEvent"
         },
         "ondiv": {
-          "$ref": "#/definitions/IDivEvent"
+          "anyOf": [
+            {
+              "$ref": "#/definitions/IDivEvent"
+            },
+            {
+              "items": {
+                "$ref": "#/definitions/IDivEvent"
+              },
+              "type": "array"
+            }
+          ]
         },
         "onhover": {
           "$ref": "#/definitions/IHoverEvent"

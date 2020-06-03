@@ -37,7 +37,7 @@
             if (prop.type) {
                 switch (prop.type) {
                     case 'boolean':
-                        return ['true', 'false'];
+                        return [ 'true', 'false' ];
                     case 'number':
                         return prop.enum;
                     case 'string':
@@ -91,10 +91,16 @@
     let updateParticles = function (editor) {
         let presetId = localStorage.presetId || 'default';
 
-        if (presetId === "divRepulse") {
-            document.getElementById('repulse-div').className = 'd-block';
+        if (presetId === "divEvents") {
+            document.getElementById('repulse-circle-div').className = 'd-block';
+            document.getElementById('bubble-circle-div').className = 'd-block';
+            document.getElementById('repulse-rectangle-div').className = 'd-block';
+            document.getElementById('bubble-rectangle-div').className = 'd-block';
         } else {
-            document.getElementById('repulse-div').className = 'd-none';
+            document.getElementById('repulse-circle-div').className = 'd-none';
+            document.getElementById('bubble-circle-div').className = 'd-none';
+            document.getElementById('repulse-rectangle-div').className = 'd-none';
+            document.getElementById('bubble-rectangle-div').className = 'd-none';
         }
 
         tsParticles.loadJSON('tsparticles', `/presets/${presetId}.json`).then((particles) => {
@@ -142,7 +148,7 @@
         const element = document.getElementById('editor');
         const options = {
             mode: 'form',
-            modes: ['form', 'view', 'preview'], // allowed modes
+            modes: [ 'form', 'view', 'preview' ], // allowed modes
             autocomplete: {
                 filter: 'contain',
                 trigger: 'focus',

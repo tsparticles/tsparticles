@@ -3,6 +3,7 @@ import { ClickEvent } from "./ClickEvent";
 import { DivEvent } from "./DivEvent";
 import { HoverEvent } from "./HoverEvent";
 import type { RecursivePartial } from "../../../../Types/RecursivePartial";
+import { SingleOrMultiple } from "../../../../Types/SingleOrMultiple";
 
 export class Events implements IEvents {
     /**
@@ -26,7 +27,7 @@ export class Events implements IEvents {
      *
      * @deprecated this property is obsolete, please use the new onDiv
      */
-    public get ondiv(): DivEvent {
+    public get ondiv(): SingleOrMultiple<DivEvent> {
         return this.onDiv;
     }
 
@@ -35,7 +36,7 @@ export class Events implements IEvents {
      * @deprecated this property is obsolete, please use the new onDiv
      * @param value
      */
-    public set ondiv(value: DivEvent) {
+    public set ondiv(value: SingleOrMultiple<DivEvent>) {
         this.onDiv = value;
     }
 
@@ -57,7 +58,7 @@ export class Events implements IEvents {
     }
 
     public onClick: ClickEvent;
-    public onDiv: DivEvent;
+    public onDiv: SingleOrMultiple<DivEvent>;
     public onHover: HoverEvent;
     public resize: boolean;
 
@@ -71,7 +72,25 @@ export class Events implements IEvents {
     public load(data?: RecursivePartial<IEvents>): void {
         if (data !== undefined) {
             this.onClick.load(data.onClick ?? data.onclick);
-            this.onDiv.load(data.onDiv ?? data.ondiv);
+
+            const onDiv = data.onDiv ?? data.ondiv;
+
+            if (onDiv !== undefined) {
+                if (onDiv instanceof Array) {
+                    this.onDiv = onDiv.map((div) => {
+                        const tmp = new DivEvent();
+
+                        tmp.load(div);
+
+                        return tmp;
+                    });
+                } else {
+                    this.onDiv = new DivEvent();
+
+                    this.onDiv.load(onDiv);
+                }
+            }
+
             this.onHover.load(data.onHover ?? data.onhover);
 
             if (data.resize !== undefined) {

@@ -1,0 +1,23 @@
+name: Issues CI
+
+on:
+  issues:
+    types: [opened,edited]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Run a one-line script
+      run: echo Hello, ${{ github.event.issue.title }}!
+  tweet:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: ethomson/send-tweet-action@v1
+        with:
+          status: "New issue \"${{ github.event.issue.title }}\" on ${{ github.repository}} #opensource #helpwanted "
+          consumer-key: ${{ secrets.TWITTER_CONSUMER_API_KEY }}
+          consumer-secret: ${{ secrets.TWITTER_CONSUMER_API_SECRET }}
+          access-token: ${{ secrets.TWITTER_ACCESS_TOKEN }}
+          access-token-secret: ${{ secrets.TWITTER_ACCESS_TOKEN_SECRET }}
