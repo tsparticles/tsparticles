@@ -51,3 +51,7 @@ $("#tsparticles")
 ```
 
 \*For all options you can checkout the readme [here](https://github.com/matteobruni/tsparticles/blob/master/README.md).
+
+## Need More Help?
+
+[![Slack](https://cdn.matteobruni.it/images/slack.png)](https://join.slack.com/t/tsparticles/shared_invite/enQtOTcxNTQxNjQ4NzkxLWE2MTZhZWExMWRmOWI5MTMxNjczOGE1Yjk0MjViYjdkYTUzODM3OTc5MGQ5MjFlODc4MzE0N2Q1OWQxZDc1YzI)
