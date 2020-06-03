@@ -48,3 +48,11 @@ class App extends Component{
 | container | object | The instance of the [particles container](https://github.com/matteobruni/tsparticles/wiki/Particles-Container-class) |
 
 Find your parameters configuration [here](https://particles.matteobruni.it).
+
+### Errors
+
+If you have typescript errors `tsParticles` uses TypeScript `3.9.3` so try installing at least 3.8 for `import type` syntax.
+
+## Need More Help?
+
+[![Slack](https://cdn.matteobruni.it/images/slack.png)](https://join.slack.com/t/tsparticles/shared_invite/enQtOTcxNTQxNjQ4NzkxLWE2MTZhZWExMWRmOWI5MTMxNjczOGE1Yjk0MjViYjdkYTUzODM3OTc5MGQ5MjFlODc4MzE0N2Q1OWQxZDc1YzI)
