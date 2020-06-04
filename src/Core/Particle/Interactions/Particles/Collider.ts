@@ -29,7 +29,7 @@ export class Collider {
             const distP = radius1 + radius2;
 
             if (dist <= distP) {
-                this.resolveCollision(p1, p2);
+                this.resolveCollision(p1, p2, container);
             }
         }
     }
@@ -38,11 +38,42 @@ export class Collider {
         return particle.bubble.radius || particle.size.value || fallback;
     }
 
-    private static resolveCollision(p1: Particle, p2: Particle): void {
+    private static resolveCollision(p1: Particle, p2: Particle, container: Container): void {
         const pos1 = p1.getPosition();
         const pos2 = p2.getPosition();
+        const fps = container.options.fpsLimit / 1000;
 
         switch (p1.particlesOptions.collisions.mode) {
+            case CollisionMode.absorb: {
+                if (p1.size.value === undefined && p2.size.value !== undefined) {
+                    p1.destroy();
+                } else if (p1.size.value !== undefined && p2.size.value === undefined) {
+                    p2.destroy();
+                } else if (p1.size.value !== undefined && p2.size.value !== undefined) {
+                    if (p1.size.value >= p2.size.value) {
+                        const factor = Utils.clamp(p1.size.value / p2.size.value, 0, p2.size.value) * fps;
+
+                        p1.size.value += factor;
+                        p2.size.value -= factor;
+
+                        if (p2.size.value <= container.retina.pixelRatio) {
+                            p2.size.value = 0;
+                            p2.destroy();
+                        }
+                    } else {
+                        const factor = Utils.clamp(p2.size.value / p1.size.value, 0, p1.size.value) * fps;
+
+                        p1.size.value -= factor;
+                        p2.size.value += factor;
+
+                        if (p1.size.value <= container.retina.pixelRatio) {
+                            p1.size.value = 0;
+                            p1.destroy();
+                        }
+                    }
+                }
+                break;
+            }
             case CollisionMode.bounce: {
                 const xVelocityDiff = p1.velocity.horizontal - p2.velocity.horizontal;
                 const yVelocityDiff = p1.velocity.vertical - p2.velocity.vertical;
@@ -84,6 +115,23 @@ export class Collider {
                     p2.velocity.horizontal = vFinal2.horizontal;
                     p2.velocity.vertical = vFinal2.vertical;
                 }
+
+                break;
+            }
+            case CollisionMode.destroy: {
+                if (p1.size.value === undefined && p2.size.value !== undefined) {
+                    p1.destroy();
+                } else if (p1.size.value !== undefined && p2.size.value === undefined) {
+                    p2.destroy();
+                } else if (p1.size.value !== undefined && p2.size.value !== undefined) {
+                    if (p1.size.value >= p2.size.value) {
+                        p2.destroy();
+                    } else {
+                        p1.destroy();
+                    }
+                }
+
+                break;
             }
         }
     }
