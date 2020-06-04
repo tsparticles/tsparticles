@@ -23,7 +23,6 @@
   },
   "homepage": "https://particles.matteobruni.it",
   "dependencies": {
-    "core-js": "^3.6.4",
     "tslib": "^2.0.0",
     "tsparticles": "^1.15.1",
     "vue": "^2.6.11",
