@@ -261,12 +261,14 @@ export class Particle implements IParticle {
             vertical: this.initialVelocity.vertical,
         };
 
-        let drawer = container.drawers[this.shape];
+        let drawer = container.drawers.get(this.shape);
 
         if (!drawer) {
             drawer = Plugins.getShapeDrawer(this.shape);
 
-            container.drawers[this.shape] = drawer;
+            if (drawer) {
+                container.drawers.set(this.shape, drawer);
+            }
         }
 
         /* if shape is image */
@@ -521,8 +523,7 @@ export class Particle implements IParticle {
     }
 
     private calcPosition(container: Container, position?: ICoordinates): ICoordinates {
-        for (const id in container.plugins) {
-            const plugin = container.plugins[id];
+        for (const [, plugin] of container.plugins) {
             const pluginPos =
                 plugin.particlePosition !== undefined ? plugin.particlePosition(position, this) : undefined;
 

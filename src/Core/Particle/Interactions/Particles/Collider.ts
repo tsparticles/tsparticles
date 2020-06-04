@@ -95,14 +95,8 @@ export class Collider {
                     const u2 = this.rotate(p2.velocity, angle);
 
                     // Velocity after 1d collision equation
-                    const v1 = {
-                        horizontal: (u1.horizontal * (m1 - m2)) / (m1 + m2) + (u2.horizontal * 2 * m2) / (m1 + m2),
-                        vertical: u1.vertical,
-                    };
-                    const v2 = {
-                        horizontal: (u2.horizontal * (m1 - m2)) / (m1 + m2) + (u1.horizontal * 2 * m2) / (m1 + m2),
-                        vertical: u2.vertical,
-                    };
+                    const v1 = this.collisionVelocity(u1, u2, m1, m2);
+                    const v2 = this.collisionVelocity(u2, u1, m1, m2);
 
                     // Final velocity after rotating axis back to original location
                     const vFinal1 = this.rotate(v1, -angle);
@@ -140,6 +134,13 @@ export class Collider {
         return {
             horizontal: velocity.horizontal * Math.cos(angle) - velocity.vertical * Math.sin(angle),
             vertical: velocity.horizontal * Math.sin(angle) + velocity.vertical * Math.cos(angle),
+        };
+    }
+
+    private static collisionVelocity(v1: IVelocity, v2: IVelocity, m1: number, m2: number): IVelocity {
+        return {
+            horizontal: (v1.horizontal * (m1 - m2)) / (m1 + m2) + (v2.horizontal * 2 * m2) / (m1 + m2),
+            vertical: v1.vertical,
         };
     }
 }

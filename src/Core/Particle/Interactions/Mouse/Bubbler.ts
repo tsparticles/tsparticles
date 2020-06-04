@@ -67,7 +67,7 @@ export class Bubbler {
         }
     }
 
-    private static singleDivHover(container: Container, id: string, div: DivEvent) {
+    private static singleDivHover(container: Container, id: string, div: DivEvent): void {
         const elem = document.getElementById(id);
 
         if (!elem) {

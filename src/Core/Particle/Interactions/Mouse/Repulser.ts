@@ -57,7 +57,7 @@ export class Repulser {
         }
     }
 
-    private static singleDivRepulse(container: Container, id: string, div: DivEvent) {
+    private static singleDivRepulse(container: Container, id: string, div: DivEvent): void {
         const elem = document.getElementById(id);
 
         if (!elem) {

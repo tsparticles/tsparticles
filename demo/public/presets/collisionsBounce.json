@@ -59,7 +59,7 @@
     "move": {
       "bounce": true,
       "enable": true,
-      "speed": 2,
+      "speed": 10,
       "direction": "none",
       "random": false,
       "straight": false,

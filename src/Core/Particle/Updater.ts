@@ -257,9 +257,7 @@ export class Updater {
         const particle = this.particle;
         let handled = false;
 
-        for (const id in container.plugins) {
-            const plugin = container.plugins[id];
-
+        for (const [, plugin] of container.plugins) {
             if (plugin.particleBounce !== undefined) {
                 handled = plugin.particleBounce(particle, delta);
             }

@@ -23,9 +23,9 @@ export class Container {
     public retina: Retina;
     public canvas: Canvas;
     public simplex: SimplexNoise;
-    public drawers: { [type: string]: IShapeDrawer };
+    public drawers: Map<string, IShapeDrawer>;
     public particles: Particles;
-    public plugins: { [id: string]: IContainerPlugin };
+    public plugins: Map<string, IContainerPlugin>;
     public bubble: IBubble;
     public repulse: IRepulse;
     public lastFrameTime: number;
@@ -63,8 +63,8 @@ export class Container {
         };
         this.bubble = {};
         this.repulse = { particles: [] };
-        this.plugins = {};
-        this.drawers = {};
+        this.plugins = new Map<string, IContainerPlugin>();
+        this.drawers = new Map<string, IShapeDrawer>();
         this.density = 1;
 
         /* tsParticles variables with default values */
@@ -74,8 +74,14 @@ export class Container {
             this.options.load(Plugins.getPreset(preset));
         }
 
-        for (const type of Plugins.getSupportedShapes()) {
-            this.drawers[type] = Plugins.getShapeDrawer(type);
+        const shapes = Plugins.getSupportedShapes();
+
+        for (const type of shapes) {
+            const drawer = Plugins.getShapeDrawer(type);
+
+            if (drawer) {
+                this.drawers.set(type, drawer);
+            }
         }
 
         /* params settings */
@@ -105,9 +111,7 @@ export class Container {
         }
 
         if (needsUpdate) {
-            for (const id in this.plugins) {
-                const plugin = this.plugins[id];
-
+            for (const [, plugin] of this.plugins) {
                 if (plugin.play) {
                     plugin.play();
                 }
@@ -127,9 +131,7 @@ export class Container {
         }
 
         if (!this.paused) {
-            for (const id in this.plugins) {
-                const plugin = this.plugins[id];
-
+            for (const [, plugin] of this.plugins) {
                 if (plugin.pause) {
                     plugin.pause();
                 }
@@ -196,15 +198,13 @@ export class Container {
         delete this.drawer;
         delete this.eventListeners;
 
-        for (const type in this.drawers) {
-            const drawer = this.drawers[type];
-
-            if (drawer.destroy !== undefined) {
+        for (const [, drawer] of this.drawers) {
+            if (drawer.destroy) {
                 drawer.destroy(this);
             }
         }
 
-        this.drawers = {};
+        this.drawers = new Map<string, IShapeDrawer>();
         this.destroyed = true;
     }
 
@@ -241,15 +241,13 @@ export class Container {
         this.retina.reset();
         this.canvas.clear();
 
-        for (const id in this.plugins) {
-            const plugin = this.plugins[id] as IContainerPlugin;
-
-            if (plugin.stop !== undefined) {
+        for (const [, plugin] of this.plugins) {
+            if (plugin.stop) {
                 plugin.stop();
             }
         }
 
-        this.plugins = {};
+        this.plugins = new Map<string, IContainerPlugin>();
         this.particles.linksColors = {};
 
         delete this.particles.linksColor;
@@ -266,9 +264,7 @@ export class Container {
 
         this.eventListeners.addListeners();
 
-        for (const id in this.plugins) {
-            const plugin = this.plugins[id];
-
+        for (const [, plugin] of this.plugins) {
             if (plugin.startAsync !== undefined) {
                 await plugin.startAsync();
             } else if (plugin.start !== undefined) {
@@ -286,22 +282,18 @@ export class Container {
 
         const availablePlugins = Plugins.getAvailablePlugins(this);
 
-        for (const id in availablePlugins) {
-            this.plugins[id] = availablePlugins[id];
+        for (const [id, plugin] of availablePlugins) {
+            this.plugins.set(id, plugin);
         }
 
-        for (const type in this.drawers) {
-            const drawer = this.drawers[type];
-
-            if (drawer.init !== undefined) {
+        for (const [, drawer] of this.drawers) {
+            if (drawer.init) {
                 await drawer.init(this);
             }
         }
 
-        for (const id in this.plugins) {
-            const plugin = this.plugins[id];
-
-            if (plugin.init !== undefined) {
+        for (const [, plugin] of this.plugins) {
+            if (plugin.init) {
                 plugin.init(this.options);
             } else if (plugin.initAsync !== undefined) {
                 await plugin.initAsync(this.options);
