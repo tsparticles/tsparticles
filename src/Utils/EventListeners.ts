@@ -7,8 +7,6 @@ import { Constants } from "./Constants";
  * Particles container event listeners manager
  */
 export class EventListeners {
-    private readonly container: Container;
-
     private readonly mouseMoveHandler: EventListenerOrEventListenerObject;
     private readonly touchStartHandler: EventListenerOrEventListenerObject;
     private readonly touchMoveHandler: EventListenerOrEventListenerObject;
@@ -26,8 +24,7 @@ export class EventListeners {
      * Events listener constructor
      * @param container the calling container
      */
-    constructor(container: Container) {
-        this.container = container;
+    constructor(private readonly container: Container) {
         this.canPush = true;
 
         this.mouseMoveHandler = (e: Event): void => this.mouseTouchMove(e);

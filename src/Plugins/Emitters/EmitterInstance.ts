@@ -13,16 +13,17 @@ export class EmitterInstance {
     public size: EmitterSize;
     public emitterOptions: IEmitter;
 
-    private readonly emitters: Emitters;
-    private readonly container: Container;
     private readonly initialPosition?: ICoordinates;
     private readonly particlesOptions: RecursivePartial<IParticles>;
     private startInterval?: number;
     private lifeCount: number;
 
-    constructor(emitters: Emitters, emitterOptions: IEmitter, position?: ICoordinates) {
-        this.emitters = emitters;
-        this.container = emitters.container;
+    constructor(
+        private readonly emitters: Emitters,
+        private readonly container: Container,
+        emitterOptions: IEmitter,
+        position?: ICoordinates
+    ) {
         this.initialPosition = position;
         this.emitterOptions = Utils.deepExtend({}, emitterOptions);
         this.position = this.initialPosition ?? this.calcPosition();

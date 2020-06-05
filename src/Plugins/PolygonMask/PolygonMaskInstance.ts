@@ -1,6 +1,6 @@
 import { Container } from "../../Core/Container";
 import type { ICoordinates } from "../../Core/Interfaces/ICoordinates";
-import { Type, InlineArrangement } from "./Enums";
+import { InlineArrangement, Type } from "./Enums";
 import { Particle } from "../../Core/Particle";
 import { ColorUtils, Constants, Utils } from "../../Utils";
 import type { IDimension } from "../../Core/Interfaces/IDimension";
@@ -51,22 +51,20 @@ export class PolygonMaskInstance implements IContainerPlugin {
     public readonly options: PolygonMask;
 
     private polygonMaskMoveRadius: number;
-    private readonly container: Container;
 
-    constructor(container: Container) {
-        this.container = container;
+    constructor(private readonly container: Container) {
         this.dimension = {
             height: 0,
             width: 0,
         };
-        this.path2DSupported = Object.prototype.hasOwnProperty.call(window, "Path2D");
+        this.path2DSupported = !!window.Path2D;
         this.options = new PolygonMask();
         this.polygonMaskMoveRadius = this.options.move.radius * container.retina.pixelRatio;
     }
 
     private static polygonBounce(particle: Particle): void {
-        particle.velocity.horizontal = -particle.velocity.horizontal + particle.velocity.vertical / 2;
-        particle.velocity.vertical = -particle.velocity.vertical + particle.velocity.horizontal / 2;
+        particle.velocity.horizontal = particle.velocity.vertical / 2 - particle.velocity.horizontal;
+        particle.velocity.vertical = particle.velocity.horizontal / 2 - particle.velocity.vertical;
     }
 
     private static drawPolygonMask(
@@ -148,11 +146,9 @@ export class PolygonMaskInstance implements IContainerPlugin {
         //     inside = container.canvas.isPointInPath(this.polygonPath, position);
         // } else {
         for (let i = 0, j = this.raw.length - 1; i < this.raw.length; j = i++) {
-            const xi = this.raw[i].x;
-            const yi = this.raw[i].y;
-            const xj = this.raw[j].x;
-            const yj = this.raw[j].y;
-            const intersect = yi > y !== yj > y && x < ((xj - xi) * (y - yi)) / (yj - yi) + xi;
+            const pi = this.raw[i];
+            const pj = this.raw[j];
+            const intersect = pi.y > y !== pj.y > y && x < ((pj.x - pi.x) * (y - pi.y)) / (pj.y - pi.y) + pi.x;
 
             if (intersect) {
                 inside = !inside;
@@ -394,81 +390,7 @@ export class PolygonMaskInstance implements IContainerPlugin {
             y: (container.canvas.size.height * position.y) / (100 * pxRatio) - this.dimension.height / 2,
         };
 
-        const polygonRaw: ICoordinates[] = [];
-
-        for (const path of this.paths) {
-            const segments = path.element.pathSegList;
-            const len = segments.numberOfItems;
-            const p = {
-                x: 0,
-                y: 0,
-            };
-
-            for (let i = 0; i < len; i++) {
-                const segment: SVGPathSeg = segments.getItem(i);
-
-                switch (segment.pathSegType) {
-                    //
-                    // Absolute
-                    //
-                    case window.SVGPathSeg.PATHSEG_MOVETO_ABS:
-                    case window.SVGPathSeg.PATHSEG_LINETO_ABS:
-                    case window.SVGPathSeg.PATHSEG_CURVETO_CUBIC_ABS:
-                    case window.SVGPathSeg.PATHSEG_CURVETO_QUADRATIC_ABS:
-                    case window.SVGPathSeg.PATHSEG_ARC_ABS:
-                    case window.SVGPathSeg.PATHSEG_CURVETO_CUBIC_SMOOTH_ABS:
-                    case window.SVGPathSeg.PATHSEG_CURVETO_QUADRATIC_SMOOTH_ABS: {
-                        const absSeg = segment as SvgAbsoluteCoordinatesTypes;
-
-                        p.x = absSeg.x;
-                        p.y = absSeg.y;
-                        break;
-                    }
-                    case window.SVGPathSeg.PATHSEG_LINETO_HORIZONTAL_ABS:
-                        p.x = (segment as SVGPathSegLinetoHorizontalAbs).x;
-                        break;
-
-                    case window.SVGPathSeg.PATHSEG_LINETO_VERTICAL_ABS:
-                        p.y = (segment as SVGPathSegLinetoVerticalAbs).y;
-                        break;
-
-                    //
-                    // Relative
-                    //
-                    case window.SVGPathSeg.PATHSEG_LINETO_REL:
-                    case window.SVGPathSeg.PATHSEG_MOVETO_REL:
-                    case window.SVGPathSeg.PATHSEG_CURVETO_CUBIC_REL:
-                    case window.SVGPathSeg.PATHSEG_CURVETO_QUADRATIC_REL:
-                    case window.SVGPathSeg.PATHSEG_ARC_REL:
-                    case window.SVGPathSeg.PATHSEG_CURVETO_CUBIC_SMOOTH_REL:
-                    case window.SVGPathSeg.PATHSEG_CURVETO_QUADRATIC_SMOOTH_REL: {
-                        const relSeg = segment as SvgRelativeCoordinatesTypes;
-
-                        p.x += relSeg.x;
-                        p.y += relSeg.y;
-                        break;
-                    }
-                    case window.SVGPathSeg.PATHSEG_LINETO_HORIZONTAL_REL:
-                        p.x += (segment as SVGPathSegLinetoHorizontalRel).x;
-                        break;
-
-                    case window.SVGPathSeg.PATHSEG_LINETO_VERTICAL_REL:
-                        p.y += (segment as SVGPathSegLinetoVerticalRel).y;
-                        break;
-
-                    case window.SVGPathSeg.PATHSEG_UNKNOWN:
-                    case window.SVGPathSeg.PATHSEG_CLOSEPATH:
-                        continue; // Skip the closing path (and the UNKNOWN)
-                }
-
-                polygonRaw.push({
-                    x: p.x * scale + this.offset.x,
-                    y: p.y * scale + this.offset.y,
-                });
-            }
-        }
-
-        return polygonRaw;
+        return PolygonMaskInstance.parsePaths(this.paths, scale, this.offset);
     }
 
     public draw(context: CanvasRenderingContext2D): void {
@@ -498,11 +420,9 @@ export class PolygonMaskInstance implements IContainerPlugin {
     }
 
     public drawPointsOnPolygonPath(): void {
-        const container = this.container;
-
         if (this.raw) {
             for (const item of this.raw) {
-                container.particles.addParticle({
+                this.container.particles.addParticle({
                     x: item.x,
                     y: item.y,
                 });
@@ -537,8 +457,7 @@ export class PolygonMaskInstance implements IContainerPlugin {
     }
 
     private getEquidistantPointOnPolygonPathByIndex(index: number): ICoordinates {
-        const container = this.container;
-        const options = container.options;
+        const options = this.container.options;
         const polygonMaskOptions = this.options;
 
         if (!this.raw || !this.raw.length || !this.paths?.length) throw new Error(Constants.noPolygonDataLoaded);
@@ -638,7 +557,10 @@ export class PolygonMaskInstance implements IContainerPlugin {
                     data.path instanceof Array
                         ? data.path.map((t) => `<path d="${t}" />`).join("")
                         : `<path d="${data.path}" />`;
-                svg = `<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="${data.size.width}" height="${data.size.height}">${path}</svg>`;
+
+                const namespaces = 'xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"';
+
+                svg = `<svg ${namespaces} width="${data.size.width}" height="${data.size.height}">${path}</svg>`;
             } else {
                 svg = data;
             }
@@ -647,5 +569,84 @@ export class PolygonMaskInstance implements IContainerPlugin {
         }
 
         this.createPath2D();
+    }
+
+    private static parsePaths(paths: ISvgPath[], scale: number, offset: ICoordinates): ICoordinates[] {
+        const res: ICoordinates[] = [];
+
+        for (const path of paths) {
+            const segments = path.element.pathSegList;
+            const len = segments.numberOfItems;
+            const p = {
+                x: 0,
+                y: 0,
+            };
+
+            for (let i = 0; i < len; i++) {
+                const segment: SVGPathSeg = segments.getItem(i);
+                const svgPathSeg = window.SVGPathSeg;
+
+                switch (segment.pathSegType) {
+                    //
+                    // Absolute
+                    //
+                    case svgPathSeg.PATHSEG_MOVETO_ABS:
+                    case svgPathSeg.PATHSEG_LINETO_ABS:
+                    case svgPathSeg.PATHSEG_CURVETO_CUBIC_ABS:
+                    case svgPathSeg.PATHSEG_CURVETO_QUADRATIC_ABS:
+                    case svgPathSeg.PATHSEG_ARC_ABS:
+                    case svgPathSeg.PATHSEG_CURVETO_CUBIC_SMOOTH_ABS:
+                    case svgPathSeg.PATHSEG_CURVETO_QUADRATIC_SMOOTH_ABS: {
+                        const absSeg = segment as SvgAbsoluteCoordinatesTypes;
+
+                        p.x = absSeg.x;
+                        p.y = absSeg.y;
+                        break;
+                    }
+                    case svgPathSeg.PATHSEG_LINETO_HORIZONTAL_ABS:
+                        p.x = (segment as SVGPathSegLinetoHorizontalAbs).x;
+                        break;
+
+                    case svgPathSeg.PATHSEG_LINETO_VERTICAL_ABS:
+                        p.y = (segment as SVGPathSegLinetoVerticalAbs).y;
+                        break;
+
+                    //
+                    // Relative
+                    //
+                    case svgPathSeg.PATHSEG_LINETO_REL:
+                    case svgPathSeg.PATHSEG_MOVETO_REL:
+                    case svgPathSeg.PATHSEG_CURVETO_CUBIC_REL:
+                    case svgPathSeg.PATHSEG_CURVETO_QUADRATIC_REL:
+                    case svgPathSeg.PATHSEG_ARC_REL:
+                    case svgPathSeg.PATHSEG_CURVETO_CUBIC_SMOOTH_REL:
+                    case svgPathSeg.PATHSEG_CURVETO_QUADRATIC_SMOOTH_REL: {
+                        const relSeg = segment as SvgRelativeCoordinatesTypes;
+
+                        p.x += relSeg.x;
+                        p.y += relSeg.y;
+                        break;
+                    }
+                    case svgPathSeg.PATHSEG_LINETO_HORIZONTAL_REL:
+                        p.x += (segment as SVGPathSegLinetoHorizontalRel).x;
+                        break;
+
+                    case svgPathSeg.PATHSEG_LINETO_VERTICAL_REL:
+                        p.y += (segment as SVGPathSegLinetoVerticalRel).y;
+                        break;
+
+                    case svgPathSeg.PATHSEG_UNKNOWN:
+                    case svgPathSeg.PATHSEG_CLOSEPATH:
+                        continue; // Skip the closing path (and the UNKNOWN)
+                }
+
+                res.push({
+                    x: p.x * scale + offset.x,
+                    y: p.y * scale + offset.y,
+                });
+            }
+        }
+
+        return res;
     }
 }

@@ -9,13 +9,9 @@ import type { IBounds } from "../Interfaces/IBounds";
  * Particle updater, it manages movement
  */
 export class Updater {
-    private readonly particle: Particle;
-    private readonly container: Container;
     private readonly mover: Mover;
 
-    constructor(container: Container, particle: Particle) {
-        this.container = container;
-        this.particle = particle;
+    constructor(private readonly container: Container, private readonly particle: Particle) {
         this.mover = new Mover(container, particle);
     }
 

@@ -23,14 +23,7 @@ export class Canvas {
      * The particles canvas context
      */
     private context: CanvasRenderingContext2D | null;
-
-    /**
-     * The parent container
-     */
-    private readonly container: Container;
-
     private generatedCanvas: boolean;
-
     private coverColor?: IRgb;
     private trailFillColor?: IRgb;
 
@@ -38,8 +31,7 @@ export class Canvas {
      * Constructor of canvas manager
      * @param container the parent container
      */
-    constructor(container: Container) {
-        this.container = container;
+    constructor(private readonly container: Container) {
         this.size = {
             height: 0,
             width: 0,

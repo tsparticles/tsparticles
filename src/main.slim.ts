@@ -32,6 +32,7 @@ declare global {
         mozCancelRequestAnimationFrame: (handle: number) => void;
         oCancelRequestAnimationFrame: (handle: number) => void;
         msCancelRequestAnimationFrame: (handle: number) => void;
+        Path2D?: Path2D;
     }
 }
 

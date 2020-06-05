@@ -4,8 +4,6 @@ import type { Point } from "./Point";
 import { Rectangle } from "./Rectangle";
 
 export class QuadTree {
-    public readonly rectangle: Rectangle;
-    public readonly capacity: number;
     public readonly points: Point[];
 
     private northEast?: QuadTree;
@@ -15,9 +13,7 @@ export class QuadTree {
 
     private divided: boolean;
 
-    constructor(rectangle: Rectangle, capacity: number) {
-        this.rectangle = rectangle;
-        this.capacity = capacity;
+    constructor(public readonly rectangle: Rectangle, public readonly capacity: number) {
         this.points = [];
         this.divided = false;
     }

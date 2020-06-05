@@ -1,11 +1,7 @@
 import type { Container } from "./Container";
 
 export class FrameManager {
-    private readonly container: Container;
-
-    constructor(container: Container) {
-        this.container = container;
-    }
+    constructor(private readonly container: Container) {}
 
     public nextFrame(timestamp: DOMHighResTimeStamp): void {
         const container = this.container;

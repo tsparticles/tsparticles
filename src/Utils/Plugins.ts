@@ -26,7 +26,7 @@ export class Plugins {
 
     public static getAvailablePlugins(container: Container): Map<string, IContainerPlugin> {
         const res = new Map<string, IContainerPlugin>();
-        const availablePlugins = this.plugins.filter((t) => t.needsPlugin(container.sourceOptions));
+        const availablePlugins = this.plugins.filter((t) => t.needsPlugin(container.options));
 
         for (const plugin of availablePlugins) {
             res.set(plugin.id, plugin.getPlugin(container));

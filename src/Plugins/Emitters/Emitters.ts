@@ -11,13 +11,11 @@ import { EmitterClickMode } from "./Enums";
 import { IEmitterOptions } from "./Options/Interfaces/IEmitterOptions";
 
 export class Emitters implements IContainerPlugin {
-    public readonly container: Container;
     public array: EmitterInstance[];
     public emitters: SingleOrMultiple<Emitter>;
     public interactivityEmitters: SingleOrMultiple<Emitter>;
 
-    constructor(container: Container) {
-        this.container = container;
+    constructor(private readonly container: Container) {
         this.array = [];
         this.emitters = [];
         this.interactivityEmitters = [];
@@ -68,13 +66,13 @@ export class Emitters implements IContainerPlugin {
 
         if (this.emitters instanceof Array) {
             for (const emitterOptions of this.emitters) {
-                const emitter = new EmitterInstance(this, emitterOptions);
+                const emitter = new EmitterInstance(this, this.container, emitterOptions);
 
                 this.addEmitter(emitter);
             }
         } else {
             const emitterOptions = this.emitters;
-            const emitter = new EmitterInstance(this, emitterOptions);
+            const emitter = new EmitterInstance(this, this.container, emitterOptions);
 
             this.addEmitter(emitter);
         }
@@ -116,7 +114,7 @@ export class Emitters implements IContainerPlugin {
                 emitterModeOptions ??
                 (emitterOptions instanceof Array ? Utils.itemFromArray(emitterOptions) : emitterOptions);
             const ePosition = container.interactivity.mouse.clickPosition;
-            const emitter = new EmitterInstance(this, Utils.deepExtend({}, emittersOptions), ePosition);
+            const emitter = new EmitterInstance(this, this.container, Utils.deepExtend({}, emittersOptions), ePosition);
 
             this.addEmitter(emitter);
         }

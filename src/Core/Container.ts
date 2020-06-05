@@ -16,8 +16,6 @@ import { EventListeners, Plugins, SimplexNoise } from "../Utils";
  * The object loaded into an HTML element, it'll contain options loaded and all data to let everything working
  */
 export class Container {
-    public readonly sourceOptions?: RecursivePartial<IOptions>;
-    public readonly id: string;
     public interactivity: IContainerInteractivity;
     public options: Options;
     public retina: Retina;
@@ -43,15 +41,17 @@ export class Container {
      * This is the core class, create an instance to have a new working particles manager
      * @constructor
      * @param id the id to identify this instance
-     * @param params the options to load
+     * @param sourceOptions the options to load
      * @param presets all the presets to load with options
      */
-    constructor(id: string, params?: RecursivePartial<IOptions>, ...presets: string[]) {
+    constructor(
+        public readonly id: string,
+        public readonly sourceOptions?: RecursivePartial<IOptions>,
+        ...presets: string[]
+    ) {
         this.started = false;
         this.destroyed = false;
-        this.id = id;
         this.paused = true;
-        this.sourceOptions = params;
         this.lastFrameTime = 0;
         this.pageHidden = false;
         this.retina = new Retina(this);

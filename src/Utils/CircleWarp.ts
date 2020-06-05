@@ -5,9 +5,7 @@ import { Circle } from "./Circle";
 import type { IDimension } from "../Core/Interfaces/IDimension";
 
 export class CircleWarp extends Circle {
-    private readonly canvasSize: IDimension;
-
-    constructor(x: number, y: number, radius: number, canvasSize: IDimension) {
+    constructor(x: number, y: number, radius: number, private readonly canvasSize: IDimension) {
         super(x, y, radius);
 
         this.canvasSize = {

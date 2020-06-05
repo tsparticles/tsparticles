@@ -5,7 +5,7 @@ import { Attractor } from "./Attractor";
 import { Collider } from "./Collider";
 import { Infecter } from "./Infecter";
 
-export class InteractionManager {
+export class Interactions {
     public static interact(p1: Particle, container: Container, delta: number): void {
         /* link particles */
         if (p1.particlesOptions.links.enable) {

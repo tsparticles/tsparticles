@@ -70,15 +70,17 @@ export class Particle implements IParticle {
     public sizeAnimationSpeed?: number;
 
     public readonly updater: Updater;
-    public readonly container: Container;
 
     /* --------- tsParticles functions - particles ----------- */
     public readonly particlesOptions: IParticles;
 
     private infectionTimeout?: number;
 
-    constructor(container: Container, position?: ICoordinates, overrideOptions?: RecursivePartial<IParticles>) {
-        this.container = container;
+    constructor(
+        private readonly container: Container,
+        position?: ICoordinates,
+        overrideOptions?: RecursivePartial<IParticles>
+    ) {
         this.fill = true;
         this.close = true;
         this.links = [];

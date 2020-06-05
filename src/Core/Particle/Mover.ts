@@ -2,16 +2,10 @@ import { Utils } from "../../Utils";
 import type { Container } from "../Container";
 import type { Particle } from "../Particle";
 import { HoverMode } from "../../Enums";
-import { INoiseValue } from "../../Options/Interfaces/Particles/Noise/INoiseValue";
+import type { INoiseValue } from "../../Options/Interfaces/Particles/Noise/INoiseValue";
 
 export class Mover {
-    private readonly container: Container;
-    private readonly particle: Particle;
-
-    constructor(container: Container, particle: Particle) {
-        this.container = container;
-        this.particle = particle;
-    }
+    constructor(private readonly container: Container, private readonly particle: Particle) {}
 
     private static calcNoiseValue(input: number, size: number, noiseValue: INoiseValue): number {
         return Math.floor(input / size) / noiseValue.value + noiseValue.offset;

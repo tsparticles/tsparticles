@@ -14,18 +14,17 @@ export class AbsorberInstance {
     public position: ICoordinates;
     public size: number;
 
-    private readonly absorbers: Absorbers;
-    private readonly container: Container;
     private readonly initialPosition?: ICoordinates;
     private readonly options: IAbsorber;
 
-    constructor(absorbers: Absorbers, options: IAbsorber, position?: ICoordinates) {
-        this.absorbers = absorbers;
-        this.container = absorbers.container;
+    constructor(
+        private readonly absorbers: Absorbers,
+        private readonly container: Container,
+        options: IAbsorber,
+        position?: ICoordinates
+    ) {
         this.initialPosition = position;
         this.options = options;
-
-        const container = this.container;
 
         let size = options.size.value * container.retina.pixelRatio;
         const random = typeof options.size.random === "boolean" ? options.size.random : options.size.random.enable;
