@@ -2,7 +2,7 @@ import type { Container } from "../Container";
 import type { Particle } from "../Particle";
 import { Utils } from "../../Utils";
 import { Mover } from "./Mover";
-import { OpacityAnimationStatus, OutMode, RotateDirection, SizeAnimationStatus } from "../../Enums";
+import { DestroyType, OpacityAnimationStatus, OutMode, RotateDirection, SizeAnimationStatus } from "../../Enums";
 import type { IBounds } from "../Interfaces/IBounds";
 
 /**
@@ -89,8 +89,10 @@ export class Updater {
         const options = container.options;
         const particle = this.particle;
         const deltaFactor = options.fpsLimit > 0 ? (60 * delta) / 1000 : 3.6;
+        const sizeOpt = particle.particlesOptions.size;
+        const sizeAnim = sizeOpt.animation;
 
-        if (particle.particlesOptions.size.animation.enable) {
+        if (sizeAnim.enable) {
             switch (particle.size.status) {
                 case SizeAnimationStatus.increasing:
                     if (particle.size.value >= (particle.sizeValue ?? container.retina.sizeValue)) {
@@ -100,14 +102,27 @@ export class Updater {
                     }
                     break;
                 case SizeAnimationStatus.decreasing:
-                    if (particle.size.value <= particle.particlesOptions.size.animation.minimumValue) {
+                    if (particle.size.value <= sizeAnim.minimumValue) {
                         particle.size.status = SizeAnimationStatus.increasing;
                     } else {
                         particle.size.value -= (particle.size.velocity || 0) * deltaFactor;
                     }
             }
 
-            if (particle.size.value < 0) {
+            switch (sizeAnim.destroy) {
+                case DestroyType.max:
+                    if (particle.size.value >= sizeOpt.value * container.retina.pixelRatio) {
+                        particle.destroy();
+                    }
+                    break;
+                case DestroyType.min:
+                    if (particle.size.value <= sizeAnim.minimumValue * container.retina.pixelRatio) {
+                        particle.destroy();
+                    }
+                    break;
+            }
+
+            if (particle.size.value < 0 && !particle.destroyed) {
                 particle.size.value = 0;
             }
         }

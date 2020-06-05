@@ -14,12 +14,12 @@ import type { IHsl } from "./IHsl";
 
 export interface IParticle {
     randomIndexData?: number;
-    destroyed: boolean;
 
     readonly angle: number;
     readonly bubble: IBubbleParticleData;
     readonly color: IHsl | undefined;
     readonly close: boolean;
+    readonly destroyed: boolean;
     readonly direction: MoveDirection;
     readonly fill: boolean;
     readonly image?: IParticleImage;

@@ -106,10 +106,7 @@ export class Particles {
         const container = this.container;
         const particlesToDelete = [];
 
-        for (let i = 0; i < this.count; i++) {
-            /* the particle */
-            const particle = this.array[i];
-
+        for (const particle of this.array) {
             particle.bubble.inRange = false;
 
             // let d = ( dx = container.interactivity.mouse.click_pos_x - p.x ) * dx +
@@ -132,22 +129,7 @@ export class Particles {
             }
 
             if (!particle.destroyed) {
-                const sizeOpt = particle.particlesOptions.size;
-                const sizeAnim = sizeOpt.animation;
-                if (sizeAnim.enable) {
-                    switch (sizeAnim.destroy) {
-                        case DestroyType.max:
-                            if (particle.size.value >= sizeOpt.value * container.retina.pixelRatio) {
-                                particle.destroyed = true;
-                            }
-                            break;
-                        case DestroyType.min:
-                            if (particle.size.value <= sizeAnim.minimumValue * container.retina.pixelRatio) {
-                                particle.destroyed = true;
-                            }
-                            break;
-                    }
-                }
+                particle.update(delta);
             }
 
             if (particle.destroyed) {
@@ -155,78 +137,16 @@ export class Particles {
                 continue;
             }
 
-            particle.update(i, delta);
-
             //container.particles.spatialGrid.insert(particle);
 
-            const pos = particle.getPosition();
-
-            this.quadTree.insert(new Point(pos, particle));
+            this.quadTree.insert(new Point(particle.getPosition(), particle));
         }
 
         for (const particle of particlesToDelete) {
             this.remove(particle);
         }
 
-        const mouse = container.interactivity.mouse;
-        const events = container.options.interactivity.events;
-        const divs = container.options.interactivity.events.onDiv;
-
-        let divEnabled: boolean;
-        let divRepulse: boolean;
-        let divBubble: boolean;
-
-        if (divs instanceof Array) {
-            const modes = divs.filter((t) => t.enable).map((t) => t.mode);
-
-            divEnabled = modes.length > 0;
-            divRepulse = modes.find((t) => Utils.isInArray(DivMode.repulse, t)) !== undefined;
-            divBubble = modes.find((t) => Utils.isInArray(DivMode.bubble, t)) !== undefined;
-        } else {
-            divEnabled = divs.enable;
-            divRepulse = Utils.isInArray(DivMode.repulse, divs.mode);
-            divBubble = Utils.isInArray(DivMode.bubble, divs.mode);
-        }
-
-        if (divEnabled || (events.onHover.enable && mouse.position) || (events.onClick.enable && mouse.clickPosition)) {
-            const hoverMode = events.onHover.mode;
-            const clickMode = events.onClick.mode;
-
-            /* mouse events interactions */
-            if (Utils.isInArray(HoverMode.grab, hoverMode)) {
-                Grabber.grab(container, delta);
-            }
-
-            if (
-                Utils.isInArray(HoverMode.repulse, hoverMode) ||
-                Utils.isInArray(ClickMode.repulse, clickMode) ||
-                divRepulse
-            ) {
-                Repulser.repulse(container, delta);
-            }
-
-            if (
-                Utils.isInArray(HoverMode.bubble, hoverMode) ||
-                Utils.isInArray(ClickMode.bubble, clickMode) ||
-                divBubble
-            ) {
-                Bubbler.bubble(container, delta);
-            }
-
-            if (Utils.isInArray(HoverMode.connect, hoverMode)) {
-                Connector.connect(container, delta);
-            }
-        }
-
-        // this loop is required to be done after mouse interactions
-        for (const particle of this.array) {
-            Bubbler.reset(particle);
-
-            /* interaction auto between particles */
-            if (this.interactionsEnabled) {
-                InteractionManager.interact(particle, container, delta);
-            }
-        }
+        this.interact(delta);
     }
 
     public draw(delta: number): void {
@@ -313,6 +233,70 @@ export class Particles {
 
         if (!options.particles.move.enable) {
             this.container.play();
+        }
+    }
+
+    private interact(delta: number): void {
+        const container = this.container;
+
+        const mouse = container.interactivity.mouse;
+        const events = container.options.interactivity.events;
+        const divs = container.options.interactivity.events.onDiv;
+
+        let divEnabled: boolean;
+        let divRepulse: boolean;
+        let divBubble: boolean;
+
+        if (divs instanceof Array) {
+            const modes = divs.filter((t) => t.enable).map((t) => t.mode);
+
+            divEnabled = modes.length > 0;
+            divRepulse = modes.find((t) => Utils.isInArray(DivMode.repulse, t)) !== undefined;
+            divBubble = modes.find((t) => Utils.isInArray(DivMode.bubble, t)) !== undefined;
+        } else {
+            divEnabled = divs.enable;
+            divRepulse = Utils.isInArray(DivMode.repulse, divs.mode);
+            divBubble = Utils.isInArray(DivMode.bubble, divs.mode);
+        }
+
+        if (divEnabled || (events.onHover.enable && mouse.position) || (events.onClick.enable && mouse.clickPosition)) {
+            const hoverMode = events.onHover.mode;
+            const clickMode = events.onClick.mode;
+
+            /* mouse events interactions */
+            if (Utils.isInArray(HoverMode.grab, hoverMode)) {
+                Grabber.grab(container, delta);
+            }
+
+            if (
+                Utils.isInArray(HoverMode.repulse, hoverMode) ||
+                Utils.isInArray(ClickMode.repulse, clickMode) ||
+                divRepulse
+            ) {
+                Repulser.repulse(container, delta);
+            }
+
+            if (
+                Utils.isInArray(HoverMode.bubble, hoverMode) ||
+                Utils.isInArray(ClickMode.bubble, clickMode) ||
+                divBubble
+            ) {
+                Bubbler.bubble(container, delta);
+            }
+
+            if (Utils.isInArray(HoverMode.connect, hoverMode)) {
+                Connector.connect(container, delta);
+            }
+        }
+
+        // this loop is required to be done after mouse interactions
+        for (const particle of this.array) {
+            Bubbler.reset(particle);
+
+            /* interaction auto between particles */
+            if (this.interactionsEnabled) {
+                InteractionManager.interact(particle, container, delta);
+            }
         }
     }
 }

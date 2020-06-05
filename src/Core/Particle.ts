@@ -353,7 +353,7 @@ export class Particle implements IParticle {
         this.updater = new Updater(this.container, this);
     }
 
-    public update(index: number, delta: number): void {
+    public update(delta: number): void {
         this.links = [];
 
         this.updater.update(delta);

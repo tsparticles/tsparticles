@@ -64,7 +64,7 @@ export class AbsorberInstance {
             const sizeFactor = particle.size.value * 0.033;
 
             if (this.size > particle.size.value && distance < this.size - particle.size.value) {
-                particle.destroyed = true;
+                particle.destroy();
             } else {
                 particle.size.value -= sizeFactor;
                 particle.velocity.horizontal += Math.sin(angle * (Math.PI / 180)) * acceleration;
