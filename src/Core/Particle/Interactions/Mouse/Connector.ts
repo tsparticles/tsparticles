@@ -1,6 +1,5 @@
 import type { Container } from "../../../Container";
 import { Circle, Utils } from "../../../../Utils";
-import { Particle } from "../../../Particle";
 import { HoverMode } from "../../../../Enums/Modes";
 import { IExternalInteractor } from "../../../Interfaces/IExternalInteractor";
 
@@ -8,7 +7,8 @@ import { IExternalInteractor } from "../../../Interfaces/IExternalInteractor";
  * Particle connection manager
  */
 export class Connector implements IExternalInteractor {
-    constructor(private readonly container: Container) {}
+    constructor(private readonly container: Container) {
+    }
 
     public isEnabled(): boolean {
         const container = this.container;
