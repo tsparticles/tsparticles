@@ -1,10 +1,9 @@
 import type { Container } from "../../../Container";
 import { ClickMode, DivMode, DivType, HoverMode, OutMode } from "../../../../Enums";
-import { Circle, Constants, Rectangle, Utils } from "../../../../Utils";
+import { Circle, Constants, Range, Rectangle, Utils } from "../../../../Utils";
 import type { ICoordinates } from "../../../Interfaces/ICoordinates";
 import type { IParticle } from "../../../Interfaces/IParticle";
 import { DivEvent } from "../../../../Options/Classes/Interactivity/Events/DivEvent";
-import { Range } from "../../../../Utils";
 import { IExternalInteractor } from "../../../Interfaces/IExternalInteractor";
 
 /**

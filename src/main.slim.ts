@@ -177,8 +177,8 @@ export class MainSlim {
         if (typeof drawer === "function") {
             customDrawer = {
                 afterEffect: afterEffect,
-                draw: drawer,
                 destroy: destroy,
+                draw: drawer,
                 init: init,
             };
         } else {

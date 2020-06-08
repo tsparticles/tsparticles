@@ -53,7 +53,7 @@ export class AbsorberInstance {
         this.position = this.initialPosition ?? this.calcPosition();
     }
 
-    public attract(particle: Particle, _delta: number): void {
+    public attract(particle: Particle): void {
         const pos = particle.getPosition();
         const { dx, dy, distance } = Utils.getDistances(this.position, pos);
         const angle = Math.atan2(dx, dy) * (180 / Math.PI);

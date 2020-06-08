@@ -44,7 +44,7 @@ export class Updater {
         this.updateColor(delta);
 
         /* change particle position if it is out of canvas */
-        this.fixOutOfCanvasPosition(delta);
+        this.fixOutOfCanvasPosition();
 
         /* out of canvas modes */
         this.updateOutMode(delta);
@@ -168,7 +168,7 @@ export class Updater {
         }
     }
 
-    private fixOutOfCanvasPosition(_delta: number): void {
+    private fixOutOfCanvasPosition(): void {
         const container = this.container;
         const particle = this.particle;
         const outMode = particle.particlesOptions.move.outMode;
@@ -263,7 +263,7 @@ export class Updater {
         const particle = this.particle;
         let handled = false;
 
-        for (const [, plugin] of container.plugins) {
+        for (const [ , plugin ] of container.plugins) {
             if (plugin.particleBounce !== undefined) {
                 handled = plugin.particleBounce(particle, delta);
             }
