@@ -1184,6 +1184,19 @@
             }
           ]
         },
+        "images": {
+          "anyOf": [
+            {
+              "$ref": "#/definitions/IImageShape"
+            },
+            {
+              "items": {
+                "$ref": "#/definitions/IImageShape"
+              },
+              "type": "array"
+            }
+          ]
+        },
         "options": {
           "additionalProperties": {
             "anyOf": [
@@ -2277,6 +2290,19 @@
           "$ref": "#/definitions/RecursivePartial<ShapeData>"
         },
         "image": {
+          "anyOf": [
+            {
+              "$ref": "#/definitions/RecursivePartial<IImageShape>"
+            },
+            {
+              "items": {
+                "$ref": "#/definitions/RecursivePartial<IImageShape>_1"
+              },
+              "type": "array"
+            }
+          ]
+        },
+        "images": {
           "anyOf": [
             {
               "$ref": "#/definitions/RecursivePartial<IImageShape>"

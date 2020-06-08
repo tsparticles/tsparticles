@@ -138,9 +138,6 @@ describe("Options tests", () => {
         expect(options.particles.shadow.offset.y).to.equal(0);
 
         /* particles shape */
-        expect(options.particles.shape.options)
-            .to.be.an("object")
-            .to.include.all.keys(ShapeType.character, ShapeType.char, ShapeType.polygon, ShapeType.star);
         expect(options.particles.shape.type).to.equal(ShapeType.circle);
 
         /* particles size */
@@ -344,15 +341,6 @@ describe("Options tests", () => {
         expect(options.particles.opacity.value).to.equal(0.5);
 
         /* particles shape */
-        expect(options.particles.shape.image).to.be.an("object").to.have.property("height").to.equal(100);
-        expect(options.particles.shape.image)
-            .to.be.an("object")
-            .to.have.property("src")
-            .to.equal("https://cdn.matteobruni.it/images/particles/github.svg");
-        expect(options.particles.shape.image).to.be.an("object").to.have.property("width").to.equal(100);
-        expect(options.particles.shape.options)
-            .to.be.an("object")
-            .to.include.all.keys(ShapeType.character, ShapeType.char, ShapeType.polygon, ShapeType.star);
         expect(options.particles.shape.type).to.equal(ShapeType.circle);
 
         /* particles size */
@@ -550,15 +538,6 @@ describe("Options tests", () => {
         expect(options.particles.opacity.value).to.equal(0.5);
 
         /* particles shape */
-        expect(options.particles.shape.image).to.be.an("object").to.have.property("height").to.equal(100);
-        expect(options.particles.shape.image)
-            .to.be.an("object")
-            .to.have.property("src")
-            .to.equal("https://cdn.matteobruni.it/images/particles/github.svg");
-        expect(options.particles.shape.image).to.be.an("object").to.have.property("width").to.equal(100);
-        expect(options.particles.shape.options)
-            .to.be.an("object")
-            .to.include.all.keys(ShapeType.character, ShapeType.char, ShapeType.polygon, ShapeType.star);
         expect(options.particles.shape.type).to.equal(ShapeType.circle);
 
         /* particles size */

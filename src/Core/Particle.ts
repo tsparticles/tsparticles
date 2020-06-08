@@ -17,6 +17,7 @@ import { Shape } from "../Options/Classes/Particles/Shape/Shape";
 import {
     MoveDirection,
     OpacityAnimationStatus,
+    OutMode,
     RotateDirection,
     ShapeType,
     SizeAnimationStatus,
@@ -530,26 +531,32 @@ export class Particle implements IParticle {
                 plugin.particlePosition !== undefined ? plugin.particlePosition(position, this) : undefined;
 
             if (pluginPos !== undefined) {
-                return pluginPos;
+                return Utils.deepExtend({}, pluginPos);
             }
         }
 
-        const pos = { x: 0, y: 0 };
-
-        pos.x = position ? position.x : Math.random() * container.canvas.size.width;
-        pos.y = position ? position.y : Math.random() * container.canvas.size.height;
+        const pos = {
+            x: position?.x ?? Math.random() * container.canvas.size.width,
+            y: position?.y ?? Math.random() * container.canvas.size.height,
+        };
 
         /* check position  - into the canvas */
-        if (pos.x > container.canvas.size.width - this.size.value * 2) {
-            pos.x -= this.size.value;
-        } else if (pos.x < this.size.value * 2) {
-            pos.x += this.size.value;
+        const outMode = this.particlesOptions.move.outMode;
+
+        if (Utils.isInArray(outMode, OutMode.bounce) || Utils.isInArray(outMode, OutMode.bounceHorizontal)) {
+            if (pos.x > container.canvas.size.width - this.size.value * 2) {
+                pos.x -= this.size.value;
+            } else if (pos.x < this.size.value * 2) {
+                pos.x += this.size.value;
+            }
         }
 
-        if (pos.y > container.canvas.size.height - this.size.value * 2) {
-            pos.y -= this.size.value;
-        } else if (pos.y < this.size.value * 2) {
-            pos.y += this.size.value;
+        if (Utils.isInArray(outMode, OutMode.bounce) || Utils.isInArray(outMode, OutMode.bounceVertical)) {
+            if (pos.y > container.canvas.size.height - this.size.value * 2) {
+                pos.y -= this.size.value;
+            } else if (pos.y < this.size.value * 2) {
+                pos.y += this.size.value;
+            }
         }
 
         return pos;
