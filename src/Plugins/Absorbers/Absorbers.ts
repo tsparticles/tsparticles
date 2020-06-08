@@ -79,9 +79,9 @@ export class Absorbers implements IContainerPlugin {
         }
     }
 
-    public particleUpdate(particle: Particle, delta: number): void {
+    public particleUpdate(particle: Particle): void {
         for (const absorber of this.array) {
-            absorber.attract(particle, delta);
+            absorber.attract(particle);
 
             if (particle.destroyed) {
                 break;

@@ -10,8 +10,7 @@ import { IExternalInteractor } from "../../../Interfaces/IExternalInteractor";
  * Particle repulse manager
  */
 export class Repulser implements IExternalInteractor {
-    constructor(private readonly container: Container) {
-    }
+    constructor(private readonly container: Container) {}
 
     public isEnabled(): boolean {
         const container = this.container;
@@ -111,11 +110,11 @@ export class Repulser implements IExternalInteractor {
             div.type === DivType.circle
                 ? new Circle(pos.x, pos.y, repulseRadius)
                 : new Rectangle(
-                elem.offsetLeft * pxRatio,
-                elem.offsetTop * pxRatio,
-                elem.offsetWidth * pxRatio,
-                elem.offsetHeight * pxRatio
-                );
+                      elem.offsetLeft * pxRatio,
+                      elem.offsetTop * pxRatio,
+                      elem.offsetWidth * pxRatio,
+                      elem.offsetHeight * pxRatio
+                  );
 
         this.processRepulse(pos, repulseRadius, area);
     }

@@ -4,8 +4,7 @@ import type { Particle } from "../Particle";
 import { HoverMode } from "../../Enums";
 
 export class Mover {
-    constructor(private readonly container: Container, private readonly particle: Particle) {
-    }
+    constructor(private readonly container: Container, private readonly particle: Particle) {}
 
     public move(delta: number): void {
         this.moveParticle(delta);
