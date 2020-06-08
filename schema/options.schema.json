@@ -821,9 +821,6 @@
         },
         "enable": {
           "type": "boolean"
-        },
-        "factor": {
-          "$ref": "#/definitions/INoiseFactor"
         }
       },
       "type": "object"
@@ -839,34 +836,12 @@
       },
       "type": "object"
     },
-    "INoiseFactor": {
-      "properties": {
-        "horizontal": {
-          "$ref": "#/definitions/INoiseValue"
-        },
-        "vertical": {
-          "$ref": "#/definitions/INoiseValue"
-        }
-      },
-      "type": "object"
-    },
     "INoiseRandom": {
       "properties": {
         "enable": {
           "type": "boolean"
         },
         "minimumValue": {
-          "type": "number"
-        }
-      },
-      "type": "object"
-    },
-    "INoiseValue": {
-      "properties": {
-        "offset": {
-          "type": "number"
-        },
-        "value": {
           "type": "number"
         }
       },
@@ -1480,13 +1455,7 @@
     "RecursivePartial<(data?:RecursivePartial<INoiseDelay>|undefined)=>void>": {
       "type": "object"
     },
-    "RecursivePartial<(data?:RecursivePartial<INoiseFactor>|undefined)=>void>": {
-      "type": "object"
-    },
     "RecursivePartial<(data?:RecursivePartial<INoiseRandom>|undefined)=>void>": {
-      "type": "object"
-    },
-    "RecursivePartial<(data?:RecursivePartial<INoiseValue>|undefined)=>void>": {
       "type": "object"
     },
     "RecursivePartial<(data?:RecursivePartial<IOpacity>|undefined)=>void>": {
@@ -1965,9 +1934,6 @@
         "enable": {
           "type": "boolean"
         },
-        "factor": {
-          "$ref": "#/definitions/RecursivePartial<INoiseFactor>"
-        },
         "load": {
           "$ref": "#/definitions/RecursivePartial<(data?:RecursivePartial<INoise>|undefined)=>void>"
         }
@@ -1988,20 +1954,6 @@
       },
       "type": "object"
     },
-    "RecursivePartial<INoiseFactor>": {
-      "properties": {
-        "horizontal": {
-          "$ref": "#/definitions/RecursivePartial<INoiseValue>"
-        },
-        "load": {
-          "$ref": "#/definitions/RecursivePartial<(data?:RecursivePartial<INoiseFactor>|undefined)=>void>"
-        },
-        "vertical": {
-          "$ref": "#/definitions/RecursivePartial<INoiseValue>"
-        }
-      },
-      "type": "object"
-    },
     "RecursivePartial<INoiseRandom>": {
       "properties": {
         "enable": {
@@ -2011,20 +1963,6 @@
           "$ref": "#/definitions/RecursivePartial<(data?:RecursivePartial<INoiseRandom>|undefined)=>void>"
         },
         "minimumValue": {
-          "type": "number"
-        }
-      },
-      "type": "object"
-    },
-    "RecursivePartial<INoiseValue>": {
-      "properties": {
-        "load": {
-          "$ref": "#/definitions/RecursivePartial<(data?:RecursivePartial<INoiseValue>|undefined)=>void>"
-        },
-        "offset": {
-          "type": "number"
-        },
-        "value": {
           "type": "number"
         }
       },
