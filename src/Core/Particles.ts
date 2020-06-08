@@ -42,7 +42,7 @@ export class Particles {
         const options = container.options;
         let handled = false;
 
-        for (const [, plugin] of container.plugins) {
+        for (const [ , plugin ] of container.plugins) {
             if (plugin.particlesInitialization !== undefined) {
                 handled = plugin.particlesInitialization();
             }
@@ -92,6 +92,8 @@ export class Particles {
         const container = this.container;
         const particlesToDelete = [];
 
+        container.noiseUpdate();
+
         for (const particle of this.array) {
             particle.bubble.inRange = false;
 
@@ -104,7 +106,7 @@ export class Particles {
             //     p.vy = f * Math.sin(t);
             // }
 
-            for (const [, plugin] of container.plugins) {
+            for (const [ , plugin ] of container.plugins) {
                 if (particle.destroyed) {
                     break;
                 }
@@ -140,6 +142,7 @@ export class Particles {
 
         /* clear canvas */
         container.canvas.clear();
+
         const canvasSize = this.container.canvas.size;
 
         this.quadTree = new QuadTree(new Rectangle(0, 0, canvasSize.width, canvasSize.height), 4);
@@ -150,7 +153,7 @@ export class Particles {
         //this.spatialGrid.setGrid(this.array, this.container.canvas.size);
 
         /* draw polygon shape in debug mode */
-        for (const [, plugin] of container.plugins) {
+        for (const [ , plugin ] of container.plugins) {
             container.canvas.drawPlugin(plugin, delta);
         }
 
