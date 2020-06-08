@@ -4,13 +4,14 @@ import type { Particle } from "../Particle";
 import { HoverMode } from "../../Enums";
 
 export class Mover {
-    constructor(private readonly container: Container, private readonly particle: Particle) {}
+    constructor(private readonly container: Container, private readonly particle: Particle) {
+    }
 
     public move(delta: number): void {
         this.moveParticle(delta);
 
         /* parallax */
-        this.moveParallax(delta);
+        this.moveParallax();
     }
 
     private moveParticle(delta: number): void {
@@ -67,7 +68,7 @@ export class Mover {
         particle.lastNoiseTime -= particle.noiseDelay;
     }
 
-    private moveParallax(_delta: number): void {
+    private moveParallax(): void {
         const container = this.container;
         const options = container.options;
 
