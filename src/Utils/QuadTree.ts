@@ -39,11 +39,12 @@ export class QuadTree {
 
         if (this.points.length < this.capacity) {
             this.points.push(point);
+
             return true;
-        } else {
-            if (!this.divided) {
-                this.subdivide();
-            }
+        }
+
+        if (!this.divided) {
+            this.subdivide();
         }
 
         return (
@@ -61,11 +62,10 @@ export class QuadTree {
         if (!range.intersects(this.rectangle)) {
             return [];
         } else {
-            for (const p of this.points) {
-                if (range.contains(p.position)) {
-                    res.push(p.particle);
-                }
+            for (const p of this.points.filter((p) => range.contains(p.position))) {
+                res.push(p.particle);
             }
+
             if (this.divided) {
                 this.northEast?.query(range, res);
                 this.northWest?.query(range, res);

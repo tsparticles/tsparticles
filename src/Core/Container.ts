@@ -10,7 +10,9 @@ import type { RecursivePartial } from "../Types/RecursivePartial";
 import { Options } from "../Options/Classes/Options";
 import type { IContainerPlugin } from "./Interfaces/IContainerPlugin";
 import type { IShapeDrawer } from "./Interfaces/IShapeDrawer";
-import { EventListeners, Plugins, SimplexNoise } from "../Utils";
+import { EventListeners, Plugins } from "../Utils";
+import { Particle } from "./Particle";
+import { INoiseValue } from "./Interfaces/INoiseValue";
 
 /**
  * The object loaded into an HTML element, it'll contain options loaded and all data to let everything working
@@ -20,7 +22,6 @@ export class Container {
     public options: Options;
     public retina: Retina;
     public canvas: Canvas;
-    public simplex: SimplexNoise;
     public drawers: Map<string, IShapeDrawer>;
     public particles: Particles;
     public plugins: Map<string, IContainerPlugin>;
@@ -32,6 +33,7 @@ export class Container {
     public started: boolean;
     public destroyed: boolean;
     public density: number;
+    public noiseGenerator: (particle: Particle) => INoiseValue;
 
     private paused: boolean;
     private drawAnimationFrame?: number;
@@ -58,6 +60,12 @@ export class Container {
         this.canvas = new Canvas(this);
         this.particles = new Particles(this);
         this.drawer = new FrameManager(this);
+        this.noiseGenerator = () => {
+            return {
+                angle: Math.random() * Math.PI * 2,
+                length: Math.random(),
+            };
+        };
         this.interactivity = {
             mouse: {},
         };
@@ -88,8 +96,6 @@ export class Container {
         if (this.sourceOptions) {
             this.options.load(this.sourceOptions);
         }
-
-        this.simplex = new SimplexNoise();
 
         /* ---------- tsParticles - start ------------ */
         this.eventListeners = new EventListeners(this);

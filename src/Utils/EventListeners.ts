@@ -334,14 +334,14 @@ export class EventListeners {
 
             container.interactivity.mouse.clickTime = new Date().getTime();
 
-            if (options.interactivity.events.onClick.mode instanceof Array) {
-                for (const mode of options.interactivity.events.onClick.mode) {
+            const onClick = options.interactivity.events.onClick;
+
+            if (onClick.mode instanceof Array) {
+                for (const mode of onClick.mode) {
                     this.handleClickMode(mode);
                 }
             } else {
-                const mode = options.interactivity.events.onClick.mode;
-
-                this.handleClickMode(mode);
+                this.handleClickMode(onClick.mode);
             }
         }
 

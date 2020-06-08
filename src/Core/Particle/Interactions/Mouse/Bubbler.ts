@@ -2,15 +2,44 @@ import type { Container } from "../../../Container";
 import type { IBubblerProcessParam } from "../../../Interfaces/IBubblerProcessParam";
 import { Circle, ColorUtils, Constants, Rectangle, Utils } from "../../../../Utils";
 import { ClickMode, DivMode, DivType, HoverMode, ProcessBubbleType } from "../../../../Enums";
-import type { IParticle } from "../../../Interfaces/IParticle";
 import { Particle } from "../../../Particle";
 import { DivEvent } from "../../../../Options/Classes/Interactivity/Events/DivEvent";
+import type { IExternalInteractor } from "../../../Interfaces/IExternalInteractor";
 
 /**
  * Particle bubble manager
  */
-export class Bubbler {
-    public static reset(particle: IParticle): void {
+export class Bubbler implements IExternalInteractor {
+    constructor(private readonly container: Container) {}
+
+    public isEnabled(): boolean {
+        const container = this.container;
+        const options = container.options;
+
+        const mouse = container.interactivity.mouse;
+        const events = options.interactivity.events;
+        const divs = events.onDiv;
+
+        const divBubble: boolean =
+            divs instanceof Array
+                ? divs.filter((t) => t.enable && Utils.isInArray(DivMode.bubble, t.mode)).length > 0
+                : Utils.isInArray(DivMode.bubble, divs.mode);
+
+        if (
+            !(divBubble || (events.onHover.enable && mouse.position) || (events.onClick.enable && mouse.clickPosition))
+        ) {
+            return false;
+        }
+
+        const hoverMode = events.onHover.mode;
+        const clickMode = events.onClick.mode;
+
+        return (
+            Utils.isInArray(HoverMode.bubble, hoverMode) || Utils.isInArray(ClickMode.bubble, clickMode) || divBubble
+        );
+    }
+
+    public reset(particle: Particle): void {
         if (!particle.bubble.inRange) {
             delete particle.bubble.opacity;
             delete particle.bubble.radius;
@@ -18,8 +47,8 @@ export class Bubbler {
         }
     }
 
-    public static bubble(container: Container, _delta: number): void {
-        const options = container.options;
+    public interact(_delta: number): void {
+        const options = this.container.options;
         const events = options.interactivity.events;
         const onHover = events.onHover;
         const onClick = events.onClick;
@@ -31,9 +60,9 @@ export class Bubbler {
 
         /* on hover event */
         if (hoverEnabled && Utils.isInArray(HoverMode.bubble, hoverMode)) {
-            this.hoverBubble(container);
+            this.hoverBubble();
         } else if (clickEnabled && Utils.isInArray(ClickMode.bubble, clickMode)) {
-            this.clickBubble(container);
+            this.clickBubble();
         } else {
             if (divs instanceof Array) {
                 for (const div of divs) {
@@ -41,7 +70,7 @@ export class Bubbler {
                     const divEnabled = div.enable;
 
                     if (divEnabled && Utils.isInArray(DivMode.bubble, divMode)) {
-                        this.divHover(container, div);
+                        this.divHover(div);
                     }
                 }
             } else {
@@ -49,25 +78,26 @@ export class Bubbler {
                 const divEnabled = divs.enable;
 
                 if (divEnabled && Utils.isInArray(DivMode.bubble, divMode)) {
-                    this.divHover(container, divs);
+                    this.divHover(divs);
                 }
             }
         }
     }
 
-    private static divHover(container: Container, div: DivEvent): void {
+    private divHover(div: DivEvent): void {
         const ids = div.ids;
 
         if (ids instanceof Array) {
             for (const id of ids) {
-                this.singleDivHover(container, id, div);
+                this.singleDivHover(id, div);
             }
         } else {
-            this.singleDivHover(container, ids, div);
+            this.singleDivHover(ids, div);
         }
     }
 
-    private static singleDivHover(container: Container, id: string, div: DivEvent): void {
+    private singleDivHover(id: string, div: DivEvent): void {
+        const container = this.container;
         const elem = document.getElementById(id);
 
         if (!elem) {
@@ -97,23 +127,18 @@ export class Bubbler {
             particle.bubble.inRange = true;
 
             /* size */
-            this.hoverBubbleSize(container, particle, 1);
+            this.hoverBubbleSize(particle, 1);
 
             /* opacity */
-            this.hoverBubbleOpacity(container, particle, 1);
+            this.hoverBubbleOpacity(particle, 1);
 
             /* color */
-            this.hoverBubbleColor(container, particle);
+            this.hoverBubbleColor(particle);
         }
     }
 
-    private static process(
-        container: Container,
-        particle: Particle,
-        distMouse: number,
-        timeSpent: number,
-        data: IBubblerProcessParam
-    ): void {
+    private process(particle: Particle, distMouse: number, timeSpent: number, data: IBubblerProcessParam): void {
+        const container = this.container;
         const bubbleParam = data.bubbleObj.optValue;
 
         if (bubbleParam === undefined) {
@@ -165,7 +190,8 @@ export class Bubbler {
         }
     }
 
-    private static clickBubble(container: Container): void {
+    private clickBubble(): void {
+        const container = this.container;
         const options = container.options;
 
         /* on click event */
@@ -209,7 +235,7 @@ export class Bubbler {
                     type: ProcessBubbleType.size,
                 };
 
-                this.process(container, particle, distMouse, timeSpent, sizeData);
+                this.process(particle, distMouse, timeSpent, sizeData);
 
                 /* opacity */
                 const opacityData: IBubblerProcessParam = {
@@ -224,11 +250,11 @@ export class Bubbler {
                     type: ProcessBubbleType.opacity,
                 };
 
-                this.process(container, particle, distMouse, timeSpent, opacityData);
+                this.process(particle, distMouse, timeSpent, opacityData);
 
                 if (!container.bubble.durationEnd) {
                     if (distMouse <= container.retina.bubbleModeDistance) {
-                        this.hoverBubbleColor(container, particle);
+                        this.hoverBubbleColor(particle);
                     } else {
                         delete particle.bubble.color;
                     }
@@ -239,7 +265,8 @@ export class Bubbler {
         }
     }
 
-    private static hoverBubble(container: Container): void {
+    private hoverBubble(): void {
+        const container = this.container;
         const mousePos = container.interactivity.mouse.position;
 
         if (mousePos === undefined) {
@@ -262,13 +289,13 @@ export class Bubbler {
             if (distance <= container.retina.bubbleModeDistance) {
                 if (ratio >= 0 && container.interactivity.status === Constants.mouseMoveEvent) {
                     /* size */
-                    this.hoverBubbleSize(container, particle, ratio);
+                    this.hoverBubbleSize(particle, ratio);
 
                     /* opacity */
-                    this.hoverBubbleOpacity(container, particle, ratio);
+                    this.hoverBubbleOpacity(particle, ratio);
 
                     /* color */
-                    this.hoverBubbleColor(container, particle);
+                    this.hoverBubbleColor(particle);
                 }
             } else {
                 this.reset(particle);
@@ -281,7 +308,8 @@ export class Bubbler {
         }
     }
 
-    private static hoverBubbleSize(container: Container, particle: Particle, ratio: number): void {
+    private hoverBubbleSize(particle: Particle, ratio: number): void {
+        const container = this.container;
         const modeSize = container.retina.bubbleModeSize;
 
         if (modeSize === undefined) {
@@ -290,15 +318,15 @@ export class Bubbler {
 
         const optSize = particle.sizeValue ?? container.retina.sizeValue;
         const pSize = particle.size.value;
-        const size = this.calculateBubbleValue(pSize, modeSize, optSize, ratio);
+        const size = Bubbler.calculateBubbleValue(pSize, modeSize, optSize, ratio);
 
         if (size !== undefined) {
             particle.bubble.radius = size;
         }
     }
 
-    private static hoverBubbleOpacity(container: Container, particle: Particle, ratio: number): void {
-        const options = container.options;
+    private hoverBubbleOpacity(particle: Particle, ratio: number): void {
+        const options = this.container.options;
         const modeOpacity = options.interactivity.modes.bubble.opacity;
 
         if (modeOpacity === undefined) {
@@ -307,7 +335,7 @@ export class Bubbler {
 
         const optOpacity = particle.particlesOptions.opacity.value;
         const pOpacity = particle.opacity.value;
-        const opacity = this.calculateBubbleValue(pOpacity, modeOpacity, optOpacity, ratio);
+        const opacity = Bubbler.calculateBubbleValue(pOpacity, modeOpacity, optOpacity, ratio);
 
         if (opacity !== undefined) {
             particle.bubble.opacity = opacity;
@@ -331,8 +359,8 @@ export class Bubbler {
         }
     }
 
-    private static hoverBubbleColor(container: Container, particle: Particle): void {
-        const options = container.options;
+    private hoverBubbleColor(particle: Particle): void {
+        const options = this.container.options;
 
         if (particle.bubble.color === undefined) {
             const modeColor = options.interactivity.modes.bubble.color;

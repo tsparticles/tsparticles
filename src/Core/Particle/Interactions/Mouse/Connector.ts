@@ -1,14 +1,38 @@
 import type { Container } from "../../../Container";
-import { Circle } from "../../../../Utils";
+import { Circle, Utils } from "../../../../Utils";
+import { Particle } from "../../../Particle";
+import { HoverMode } from "../../../../Enums/Modes";
+import { IExternalInteractor } from "../../../Interfaces/IExternalInteractor";
 
 /**
  * Particle connection manager
  */
-export class Connector {
+export class Connector implements IExternalInteractor {
+    constructor(private readonly container: Container) {}
+
+    public isEnabled(): boolean {
+        const container = this.container;
+        const mouse = container.interactivity.mouse;
+        const events = container.options.interactivity.events;
+
+        if (!(events.onHover.enable && mouse.position)) {
+            return false;
+        }
+
+        const hoverMode = events.onHover.mode;
+
+        return Utils.isInArray(HoverMode.connect, hoverMode);
+    }
+
+    public reset(particle: Particle): void {
+        // do nothing
+    }
+
     /**
      * Connecting particles on hover interactivity
      */
-    public static connect(container: Container, _delta: number): void {
+    public interact(delta: number): void {
+        const container = this.container;
         const options = container.options;
 
         if (options.interactivity.events.onHover.enable && container.interactivity.status === "mousemove") {

@@ -1,9 +1,14 @@
 import type { IParticle } from "../../../Interfaces/IParticle";
 import type { Container } from "../../../Container";
 import { Circle, Utils } from "../../../../Utils";
+import { Particle } from "../../../Particle";
+import { IParticlesInteractor } from "../../../Interfaces/IParticlesInteractor";
 
-export class Attractor {
-    public static attract(p1: IParticle, container: Container, _delta: number): void {
+export class Attractor implements IParticlesInteractor {
+    constructor(private readonly container: Container) {}
+
+    public interact(p1: IParticle, _delta: number): void {
+        const container = this.container;
         const options = container.options;
         const distance = p1.linksDistance ?? container.retina.linksDistance;
 
@@ -30,5 +35,13 @@ export class Attractor {
             p2.velocity.horizontal += ax;
             p2.velocity.vertical += ay;
         }
+    }
+
+    public isEnabled(particle: Particle): boolean {
+        return particle.particlesOptions.move.attract.enable;
+    }
+
+    public reset(particle: Particle): void {
+        // do nothing
     }
 }

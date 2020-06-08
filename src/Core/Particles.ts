@@ -23,7 +23,6 @@ export class Particles {
     public linksColor?: IRgb | string;
     public linksColors: { [key: string]: IRgb | string | undefined };
     public grabLineColor?: IRgb | string;
-    public noiseZ: number;
 
     private interactionManager: InteractionManager;
 
@@ -32,7 +31,6 @@ export class Particles {
         this.interactionManager = new InteractionManager(container);
         //this.spatialGrid = new SpatialGrid(this.container.canvas.size);
         const canvasSize = this.container.canvas.size;
-        this.noiseZ = 0;
         this.linksColors = {};
 
         this.quadTree = new QuadTree(new Rectangle(0, 0, canvasSize.width, canvasSize.height), 4);
@@ -43,7 +41,6 @@ export class Particles {
         const container = this.container;
         const options = container.options;
         let handled = false;
-        this.noiseZ = 0;
 
         for (const [, plugin] of container.plugins) {
             if (plugin.particlesInitialization !== undefined) {
@@ -152,8 +149,6 @@ export class Particles {
         this.update(delta);
         //this.spatialGrid.setGrid(this.array, this.container.canvas.size);
 
-        this.noiseZ += 0.0004;
-
         /* draw polygon shape in debug mode */
         for (const [, plugin] of container.plugins) {
             container.canvas.drawPlugin(plugin, delta);
@@ -215,8 +210,7 @@ export class Particles {
     }
 
     public removeQuantity(quantity: number): void {
-        const container = this.container;
-        const options = container.options;
+        const options = this.container.options;
 
         this.removeAt(0, quantity);
 

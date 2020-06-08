@@ -48,8 +48,7 @@ export class Canvas {
     public init(): void {
         this.resize();
 
-        const container = this.container;
-        const options = container.options;
+        const options = this.container.options;
         const cover = options.backgroundMask.cover;
         const color = cover.color;
         const trail = options.particles.move.trail;
@@ -92,18 +91,19 @@ export class Canvas {
      * Calculates the size of the canvas
      */
     public resize(): void {
-        if (this.element) {
-            this.element.width = this.size.width;
-            this.element.height = this.size.height;
+        if (!this.element) {
+            return;
         }
+
+        this.element.width = this.size.width;
+        this.element.height = this.size.height;
     }
 
     /**
      * Paints the canvas background
      */
     public paint(): void {
-        const container = this.container;
-        const options = container.options;
+        const options = this.container.options;
 
         if (this.context) {
             if (options.backgroundMask.enable && options.backgroundMask.cover && this.coverColor) {
@@ -118,8 +118,7 @@ export class Canvas {
      * Clears the canvas content
      */
     public clear(): void {
-        const container = this.container;
-        const options = container.options;
+        const options = this.container.options;
         const trail = options.particles.move.trail;
 
         if (options.backgroundMask.enable) {
@@ -326,8 +325,7 @@ export class Canvas {
             return;
         }
 
-        const container = this.container;
-        const options = container.options;
+        const options = this.container.options;
         const twinkle = particle.particlesOptions.twinkle.particles;
         const twinkleFreq = twinkle.frequency;
         const twinkleRgb = ColorUtils.colorToRgb(twinkle.color);
@@ -396,8 +394,7 @@ export class Canvas {
     }
 
     private lineStyle(p1: IParticle, p2: IParticle): CanvasGradient | undefined {
-        const container = this.container;
-        const options = container.options;
+        const options = this.container.options;
         const connectOptions = options.interactivity.modes.connect;
 
         if (this.context) {
@@ -406,8 +403,7 @@ export class Canvas {
     }
 
     private initBackground(): void {
-        const container = this.container;
-        const options = container.options;
+        const options = this.container.options;
         const background = options.background;
         const element = this.element;
 

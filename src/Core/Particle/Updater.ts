@@ -51,8 +51,7 @@ export class Updater {
     }
 
     private updateOpacity(delta: number): void {
-        const container = this.container;
-        const options = container.options;
+        const options = this.container.options;
         const particle = this.particle;
         const deltaFactor = options.fpsLimit > 0 ? (60 * delta) / 1000 : 3.6;
 
@@ -125,8 +124,7 @@ export class Updater {
     }
 
     private updateAngle(delta: number): void {
-        const container = this.container;
-        const options = container.options;
+        const options = this.container.options;
         const particle = this.particle;
         const deltaFactor = options.fpsLimit > 0 ? (60 * delta) / 1000 : 3.6;
 
@@ -152,8 +150,7 @@ export class Updater {
     }
 
     private updateColor(delta: number): void {
-        const container = this.container;
-        const options = container.options;
+        const options = this.container.options;
         const particle = this.particle;
 
         if (particle.color === undefined) {
@@ -251,9 +248,7 @@ export class Updater {
     }
 
     private updateOutMode(delta: number): void {
-        const particle = this.particle;
-
-        switch (particle.particlesOptions.move.outMode) {
+        switch (this.particle.particlesOptions.move.outMode) {
             case OutMode.bounce:
             case OutMode.bounceVertical:
             case OutMode.bounceHorizontal:

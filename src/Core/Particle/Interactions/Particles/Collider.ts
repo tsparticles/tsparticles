@@ -4,9 +4,21 @@ import type { Container } from "../../../Container";
 import type { IParticle } from "../../../Interfaces/IParticle";
 import type { IVelocity } from "../../../Interfaces/IVelocity";
 import { CollisionMode } from "../../../../Enums";
+import type { IParticlesInteractor } from "../../../Interfaces/IParticlesInteractor";
 
-export class Collider {
-    public static collide(p1: Particle, container: Container, _delta: number): void {
+export class Collider implements IParticlesInteractor {
+    constructor(private readonly container: Container) {}
+
+    public isEnabled(particle: Particle): boolean {
+        return particle.particlesOptions.collisions.enable;
+    }
+
+    public reset(particle: Particle): void {
+        // do nothing
+    }
+
+    public interact(p1: Particle, _delta: number): void {
+        const container = this.container;
         const pos1 = p1.getPosition();
 
         //const query = container.particles.spatialGrid.queryRadius(pos1, p1.size.value * 2);
@@ -24,12 +36,12 @@ export class Collider {
             const pos2 = p2.getPosition();
             const dist = Utils.getDistance(pos1, pos2);
             const defaultSize = container.retina.sizeValue;
-            const radius1 = this.getRadius(p1, defaultSize);
-            const radius2 = this.getRadius(p2, defaultSize);
+            const radius1 = Collider.getRadius(p1, defaultSize);
+            const radius2 = Collider.getRadius(p2, defaultSize);
             const distP = radius1 + radius2;
 
             if (dist <= distP) {
-                this.resolveCollision(p1, p2, container);
+                this.resolveCollision(p1, p2);
             }
         }
     }
@@ -38,20 +50,18 @@ export class Collider {
         return particle.bubble.radius || particle.size.value || fallback;
     }
 
-    private static resolveCollision(p1: Particle, p2: Particle, container: Container): void {
+    private resolveCollision(p1: Particle, p2: Particle): void {
         switch (p1.particlesOptions.collisions.mode) {
             case CollisionMode.absorb: {
-                this.absorb(p1, p2, container);
+                this.absorb(p1, p2);
                 break;
             }
             case CollisionMode.bounce: {
-                this.bounce(p1, p2);
-
+                Collider.bounce(p1, p2);
                 break;
             }
             case CollisionMode.destroy: {
-                this.destroy(p1, p2);
-
+                Collider.destroy(p1, p2);
                 break;
             }
         }
@@ -71,7 +81,8 @@ export class Collider {
         };
     }
 
-    private static absorb(p1: Particle, p2: Particle, container: Container): void {
+    private absorb(p1: Particle, p2: Particle): void {
+        const container = this.container;
         const fps = container.options.fpsLimit / 1000;
 
         if (p1.size.value === undefined && p2.size.value !== undefined) {
@@ -123,16 +134,16 @@ export class Collider {
             const m2 = p2.size.value;
 
             // Velocity before equation
-            const u1 = this.rotate(p1.velocity, angle);
-            const u2 = this.rotate(p2.velocity, angle);
+            const u1 = Collider.rotate(p1.velocity, angle);
+            const u2 = Collider.rotate(p2.velocity, angle);
 
             // Velocity after 1d collision equation
-            const v1 = this.collisionVelocity(u1, u2, m1, m2);
-            const v2 = this.collisionVelocity(u2, u1, m1, m2);
+            const v1 = Collider.collisionVelocity(u1, u2, m1, m2);
+            const v2 = Collider.collisionVelocity(u2, u1, m1, m2);
 
             // Final velocity after rotating axis back to original location
-            const vFinal1 = this.rotate(v1, -angle);
-            const vFinal2 = this.rotate(v2, -angle);
+            const vFinal1 = Collider.rotate(v1, -angle);
+            const vFinal2 = Collider.rotate(v2, -angle);
 
             // Swap particle velocities for realistic bounce effect
             p1.velocity.horizontal = vFinal1.horizontal;
