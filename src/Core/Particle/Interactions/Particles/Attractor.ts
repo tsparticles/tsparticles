@@ -7,7 +7,7 @@ import { IParticlesInteractor } from "../../../Interfaces/IParticlesInteractor";
 export class Attractor implements IParticlesInteractor {
     constructor(private readonly container: Container) {}
 
-    public interact(p1: IParticle, _delta: number): void {
+    public interact(p1: IParticle): void {
         const container = this.container;
         const options = container.options;
         const distance = p1.linksDistance ?? container.retina.linksDistance;
@@ -41,7 +41,7 @@ export class Attractor implements IParticlesInteractor {
         return particle.particlesOptions.move.attract.enable;
     }
 
-    public reset(particle: Particle): void {
+    public reset(): void {
         // do nothing
     }
 }

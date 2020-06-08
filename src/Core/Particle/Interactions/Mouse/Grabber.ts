@@ -26,11 +26,11 @@ export class Grabber implements IExternalInteractor {
         return Utils.isInArray(HoverMode.grab, hoverMode);
     }
 
-    public reset(particle: Particle): void {
+    public reset(): void {
         // do nothing
     }
 
-    public interact(_delta: number): void {
+    public interact(): void {
         const container = this.container;
         const options = container.options;
         const interactivity = options.interactivity;

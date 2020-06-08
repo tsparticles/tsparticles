@@ -110,6 +110,85 @@ export class PolygonMaskInstance implements IContainerPlugin {
         context.stroke(path);
     }
 
+    private static parsePaths(paths: ISvgPath[], scale: number, offset: ICoordinates): ICoordinates[] {
+        const res: ICoordinates[] = [];
+
+        for (const path of paths) {
+            const segments = path.element.pathSegList;
+            const len = segments.numberOfItems;
+            const p = {
+                x: 0,
+                y: 0,
+            };
+
+            for (let i = 0; i < len; i++) {
+                const segment: SVGPathSeg = segments.getItem(i);
+                const svgPathSeg = window.SVGPathSeg;
+
+                switch (segment.pathSegType) {
+                    //
+                    // Absolute
+                    //
+                    case svgPathSeg.PATHSEG_MOVETO_ABS:
+                    case svgPathSeg.PATHSEG_LINETO_ABS:
+                    case svgPathSeg.PATHSEG_CURVETO_CUBIC_ABS:
+                    case svgPathSeg.PATHSEG_CURVETO_QUADRATIC_ABS:
+                    case svgPathSeg.PATHSEG_ARC_ABS:
+                    case svgPathSeg.PATHSEG_CURVETO_CUBIC_SMOOTH_ABS:
+                    case svgPathSeg.PATHSEG_CURVETO_QUADRATIC_SMOOTH_ABS: {
+                        const absSeg = segment as SvgAbsoluteCoordinatesTypes;
+
+                        p.x = absSeg.x;
+                        p.y = absSeg.y;
+                        break;
+                    }
+                    case svgPathSeg.PATHSEG_LINETO_HORIZONTAL_ABS:
+                        p.x = (segment as SVGPathSegLinetoHorizontalAbs).x;
+                        break;
+
+                    case svgPathSeg.PATHSEG_LINETO_VERTICAL_ABS:
+                        p.y = (segment as SVGPathSegLinetoVerticalAbs).y;
+                        break;
+
+                    //
+                    // Relative
+                    //
+                    case svgPathSeg.PATHSEG_LINETO_REL:
+                    case svgPathSeg.PATHSEG_MOVETO_REL:
+                    case svgPathSeg.PATHSEG_CURVETO_CUBIC_REL:
+                    case svgPathSeg.PATHSEG_CURVETO_QUADRATIC_REL:
+                    case svgPathSeg.PATHSEG_ARC_REL:
+                    case svgPathSeg.PATHSEG_CURVETO_CUBIC_SMOOTH_REL:
+                    case svgPathSeg.PATHSEG_CURVETO_QUADRATIC_SMOOTH_REL: {
+                        const relSeg = segment as SvgRelativeCoordinatesTypes;
+
+                        p.x += relSeg.x;
+                        p.y += relSeg.y;
+                        break;
+                    }
+                    case svgPathSeg.PATHSEG_LINETO_HORIZONTAL_REL:
+                        p.x += (segment as SVGPathSegLinetoHorizontalRel).x;
+                        break;
+
+                    case svgPathSeg.PATHSEG_LINETO_VERTICAL_REL:
+                        p.y += (segment as SVGPathSegLinetoVerticalRel).y;
+                        break;
+
+                    case svgPathSeg.PATHSEG_UNKNOWN:
+                    case svgPathSeg.PATHSEG_CLOSEPATH:
+                        continue; // Skip the closing path (and the UNKNOWN)
+                }
+
+                res.push({
+                    x: p.x * scale + offset.x,
+                    y: p.y * scale + offset.y,
+                });
+            }
+        }
+
+        return res;
+    }
+
     public async initAsync(options?: RecursivePartial<IPolygonMaskOptions>): Promise<void> {
         this.options.load(options?.polygon);
 
@@ -552,84 +631,5 @@ export class PolygonMaskInstance implements IContainerPlugin {
         }
 
         this.createPath2D();
-    }
-
-    private static parsePaths(paths: ISvgPath[], scale: number, offset: ICoordinates): ICoordinates[] {
-        const res: ICoordinates[] = [];
-
-        for (const path of paths) {
-            const segments = path.element.pathSegList;
-            const len = segments.numberOfItems;
-            const p = {
-                x: 0,
-                y: 0,
-            };
-
-            for (let i = 0; i < len; i++) {
-                const segment: SVGPathSeg = segments.getItem(i);
-                const svgPathSeg = window.SVGPathSeg;
-
-                switch (segment.pathSegType) {
-                    //
-                    // Absolute
-                    //
-                    case svgPathSeg.PATHSEG_MOVETO_ABS:
-                    case svgPathSeg.PATHSEG_LINETO_ABS:
-                    case svgPathSeg.PATHSEG_CURVETO_CUBIC_ABS:
-                    case svgPathSeg.PATHSEG_CURVETO_QUADRATIC_ABS:
-                    case svgPathSeg.PATHSEG_ARC_ABS:
-                    case svgPathSeg.PATHSEG_CURVETO_CUBIC_SMOOTH_ABS:
-                    case svgPathSeg.PATHSEG_CURVETO_QUADRATIC_SMOOTH_ABS: {
-                        const absSeg = segment as SvgAbsoluteCoordinatesTypes;
-
-                        p.x = absSeg.x;
-                        p.y = absSeg.y;
-                        break;
-                    }
-                    case svgPathSeg.PATHSEG_LINETO_HORIZONTAL_ABS:
-                        p.x = (segment as SVGPathSegLinetoHorizontalAbs).x;
-                        break;
-
-                    case svgPathSeg.PATHSEG_LINETO_VERTICAL_ABS:
-                        p.y = (segment as SVGPathSegLinetoVerticalAbs).y;
-                        break;
-
-                    //
-                    // Relative
-                    //
-                    case svgPathSeg.PATHSEG_LINETO_REL:
-                    case svgPathSeg.PATHSEG_MOVETO_REL:
-                    case svgPathSeg.PATHSEG_CURVETO_CUBIC_REL:
-                    case svgPathSeg.PATHSEG_CURVETO_QUADRATIC_REL:
-                    case svgPathSeg.PATHSEG_ARC_REL:
-                    case svgPathSeg.PATHSEG_CURVETO_CUBIC_SMOOTH_REL:
-                    case svgPathSeg.PATHSEG_CURVETO_QUADRATIC_SMOOTH_REL: {
-                        const relSeg = segment as SvgRelativeCoordinatesTypes;
-
-                        p.x += relSeg.x;
-                        p.y += relSeg.y;
-                        break;
-                    }
-                    case svgPathSeg.PATHSEG_LINETO_HORIZONTAL_REL:
-                        p.x += (segment as SVGPathSegLinetoHorizontalRel).x;
-                        break;
-
-                    case svgPathSeg.PATHSEG_LINETO_VERTICAL_REL:
-                        p.y += (segment as SVGPathSegLinetoVerticalRel).y;
-                        break;
-
-                    case svgPathSeg.PATHSEG_UNKNOWN:
-                    case svgPathSeg.PATHSEG_CLOSEPATH:
-                        continue; // Skip the closing path (and the UNKNOWN)
-                }
-
-                res.push({
-                    x: p.x * scale + offset.x,
-                    y: p.y * scale + offset.y,
-                });
-            }
-        }
-
-        return res;
     }
 }

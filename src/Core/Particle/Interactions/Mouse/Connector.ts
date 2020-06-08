@@ -24,14 +24,14 @@ export class Connector implements IExternalInteractor {
         return Utils.isInArray(HoverMode.connect, hoverMode);
     }
 
-    public reset(particle: Particle): void {
+    public reset(): void {
         // do nothing
     }
 
     /**
      * Connecting particles on hover interactivity
      */
-    public interact(delta: number): void {
+    public interact(): void {
         const container = this.container;
         const options = container.options;
 

@@ -13,6 +13,7 @@ import type { IShapeDrawer } from "./Interfaces/IShapeDrawer";
 import { EventListeners, Plugins } from "../Utils";
 import { Particle } from "./Particle";
 import { INoiseValue } from "./Interfaces/INoiseValue";
+import { INoise } from "./Interfaces/INoise";
 
 /**
  * The object loaded into an HTML element, it'll contain options loaded and all data to let everything working
@@ -33,8 +34,8 @@ export class Container {
     public started: boolean;
     public destroyed: boolean;
     public density: number;
-    public noiseGenerator: (particle: Particle) => INoiseValue;
-    public noiseUpdate: () => void;
+
+    public readonly noise: INoise;
 
     private paused: boolean;
     private drawAnimationFrame?: number;
@@ -61,14 +62,19 @@ export class Container {
         this.canvas = new Canvas(this);
         this.particles = new Particles(this);
         this.drawer = new FrameManager(this);
-        this.noiseGenerator = (): INoiseValue => {
-            return {
-                angle: Math.random() * Math.PI * 2,
-                length: Math.random(),
-            };
-        };
-        this.noiseUpdate = (): void => {
-            // nothing required
+        this.noise = {
+            init: (): void => {
+                // nothing required
+            },
+            generate: (): INoiseValue => {
+                return {
+                    angle: Math.random() * Math.PI * 2,
+                    length: Math.random(),
+                };
+            },
+            update: (): void => {
+                // nothing required
+            },
         };
         this.interactivity = {
             mouse: {},
@@ -121,7 +127,7 @@ export class Container {
         }
 
         if (needsUpdate) {
-            for (const [ , plugin ] of this.plugins) {
+            for (const [, plugin] of this.plugins) {
                 if (plugin.play) {
                     plugin.play();
                 }
@@ -141,7 +147,7 @@ export class Container {
         }
 
         if (!this.paused) {
-            for (const [ , plugin ] of this.plugins) {
+            for (const [, plugin] of this.plugins) {
                 if (plugin.pause) {
                     plugin.pause();
                 }
@@ -159,6 +165,40 @@ export class Container {
 
     public getAnimationStatus(): boolean {
         return !this.paused;
+    }
+
+    public setNoise(
+        noiseOrGenerator?: INoise | ((particle: Particle) => INoiseValue),
+        init?: () => void,
+        update?: () => void
+    ): void {
+        if (!noiseOrGenerator) {
+            return;
+        }
+
+        if (typeof noiseOrGenerator === "function") {
+            this.noise.generate = noiseOrGenerator;
+
+            if (init) {
+                this.noise.init = init;
+            }
+
+            if (update) {
+                this.noise.update = update;
+            }
+        } else {
+            if (noiseOrGenerator.generate) {
+                this.noise.generate = noiseOrGenerator.generate;
+            }
+
+            if (noiseOrGenerator.init) {
+                this.noise.init = noiseOrGenerator.init;
+            }
+
+            if (noiseOrGenerator.update) {
+                this.noise.update = noiseOrGenerator.update;
+            }
+        }
     }
 
     /* ---------- tsParticles functions - vendors ------------ */
@@ -208,7 +248,7 @@ export class Container {
         delete this.drawer;
         delete this.eventListeners;
 
-        for (const [ , drawer ] of this.drawers) {
+        for (const [, drawer] of this.drawers) {
             if (drawer.destroy) {
                 drawer.destroy(this);
             }
@@ -251,7 +291,7 @@ export class Container {
         this.retina.reset();
         this.canvas.clear();
 
-        for (const [ , plugin ] of this.plugins) {
+        for (const [, plugin] of this.plugins) {
             if (plugin.stop) {
                 plugin.stop();
             }
@@ -274,7 +314,7 @@ export class Container {
 
         this.eventListeners.addListeners();
 
-        for (const [ , plugin ] of this.plugins) {
+        for (const [, plugin] of this.plugins) {
             if (plugin.startAsync !== undefined) {
                 await plugin.startAsync();
             } else if (plugin.start !== undefined) {
@@ -292,17 +332,17 @@ export class Container {
 
         const availablePlugins = Plugins.getAvailablePlugins(this);
 
-        for (const [ id, plugin ] of availablePlugins) {
+        for (const [id, plugin] of availablePlugins) {
             this.plugins.set(id, plugin);
         }
 
-        for (const [ , drawer ] of this.drawers) {
+        for (const [, drawer] of this.drawers) {
             if (drawer.init) {
                 await drawer.init(this);
             }
         }
 
-        for (const [ , plugin ] of this.plugins) {
+        for (const [, plugin] of this.plugins) {
             if (plugin.init) {
                 plugin.init(this.options);
             } else if (plugin.initAsync !== undefined) {

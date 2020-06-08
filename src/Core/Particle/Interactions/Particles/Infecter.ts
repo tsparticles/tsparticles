@@ -1,16 +1,16 @@
 import type { Particle } from "../../../Particle";
 import type { Container } from "../../../Container";
 import { Circle } from "../../../../Utils";
-import { IParticlesInteractor } from "../../../Interfaces/IParticlesInteractor";
+import type { IParticlesInteractor } from "../../../Interfaces/IParticlesInteractor";
 
 export class Infecter implements IParticlesInteractor {
     constructor(private readonly container: Container) {}
 
-    public isEnabled(particle: Particle): boolean {
+    public isEnabled(): boolean {
         return this.container.options.infection.enable;
     }
 
-    public reset(particle: Particle) {
+    public reset() {
         // do nothing
     }
 

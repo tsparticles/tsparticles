@@ -57,7 +57,7 @@ export class Mover {
             return;
         }
 
-        const noise = container.noiseGenerator(particle);
+        const noise = container.noise.generate(particle);
 
         particle.velocity.horizontal += Math.cos(noise.angle) * noise.length;
         particle.velocity.horizontal = Utils.clamp(particle.velocity.horizontal, -1, 1);

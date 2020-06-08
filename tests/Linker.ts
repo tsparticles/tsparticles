@@ -44,7 +44,7 @@ describe("Linker in Canvas (200, 200) tests", () => {
 
                 const linker = new Linker(testContainer.container);
 
-                linker.interact(p1, 0);
+                linker.interact(p1);
 
                 const links = p1.links;
 
@@ -62,7 +62,7 @@ describe("Linker in Canvas (200, 200) tests", () => {
 
                 const linker = new Linker(testContainer.container);
 
-                linker.interact(p1, 0);
+                linker.interact(p1);
 
                 const links = p1.links;
 

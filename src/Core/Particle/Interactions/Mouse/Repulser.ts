@@ -41,11 +41,11 @@ export class Repulser implements IExternalInteractor {
         );
     }
 
-    public reset(particle: Particle): void {
+    public reset(): void {
         // do nothing
     }
 
-    public interact(_delta: number): void {
+    public interact(): void {
         const container = this.container;
         const options = container.options;
         const mouseMoveStatus = container.interactivity.status === Constants.mouseMoveEvent;

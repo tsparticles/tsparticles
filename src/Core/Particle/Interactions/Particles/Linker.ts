@@ -10,11 +10,11 @@ export class Linker implements IParticlesInteractor {
         return particle.particlesOptions.links.enable;
     }
 
-    public reset(particle: Particle) {
+    public reset() {
         // do nothing
     }
 
-    public interact(p1: Particle, _delta: number): void {
+    public interact(p1: Particle): void {
         const container = this.container;
         const linkOpt1 = p1.particlesOptions.links;
         const optOpacity = linkOpt1.opacity;

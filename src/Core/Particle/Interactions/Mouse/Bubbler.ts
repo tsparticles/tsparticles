@@ -12,6 +12,23 @@ import type { IExternalInteractor } from "../../../Interfaces/IExternalInteracto
 export class Bubbler implements IExternalInteractor {
     constructor(private readonly container: Container) {}
 
+    private static calculateBubbleValue(
+        particleValue: number,
+        modeValue: number,
+        optionsValue: number,
+        ratio: number
+    ): number | undefined {
+        if (modeValue > optionsValue) {
+            const size = particleValue + (modeValue - optionsValue) * ratio;
+
+            return Utils.clamp(size, particleValue, modeValue);
+        } else if (modeValue < optionsValue) {
+            const size = particleValue - (optionsValue - modeValue) * ratio;
+
+            return Utils.clamp(size, modeValue, particleValue);
+        }
+    }
+
     public isEnabled(): boolean {
         const container = this.container;
         const options = container.options;
@@ -47,7 +64,7 @@ export class Bubbler implements IExternalInteractor {
         }
     }
 
-    public interact(_delta: number): void {
+    public interact(): void {
         const options = this.container.options;
         const events = options.interactivity.events;
         const onHover = events.onHover;
@@ -339,23 +356,6 @@ export class Bubbler implements IExternalInteractor {
 
         if (opacity !== undefined) {
             particle.bubble.opacity = opacity;
-        }
-    }
-
-    private static calculateBubbleValue(
-        particleValue: number,
-        modeValue: number,
-        optionsValue: number,
-        ratio: number
-    ): number | undefined {
-        if (modeValue > optionsValue) {
-            const size = particleValue + (modeValue - optionsValue) * ratio;
-
-            return Utils.clamp(size, particleValue, modeValue);
-        } else if (modeValue < optionsValue) {
-            const size = particleValue - (optionsValue - modeValue) * ratio;
-
-            return Utils.clamp(size, modeValue, particleValue);
         }
     }
 
