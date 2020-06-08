@@ -6,9 +6,7 @@ export class StarDrawer implements IShapeDrawer {
     public draw(
         context: CanvasRenderingContext2D,
         particle: IParticle,
-        radius: number,
-        opacity: number,
-        _delta: number
+        radius: number
     ): void {
         const star = particle.shapeData as IStarShape;
         const sides = star?.sides ?? star?.nb_sides ?? 5;
