@@ -251,36 +251,35 @@ export class Utils {
                 continue;
             }
 
-            const typeOfSource = typeof source;
-
-            if (typeOfSource === "object") {
-                const sourceIsArray = Array.isArray(source);
-
-                if (sourceIsArray) {
-                    if (typeof destination !== "object" || !destination || !Array.isArray(destination)) {
-                        destination = [];
-                    }
-                } else {
-                    if (typeof destination !== "object" || !destination || Array.isArray(destination)) {
-                        destination = {};
-                    }
-                }
-
-                for (const key in source) {
-                    if (key === "__proto__") {
-                        continue;
-                    }
-
-                    const value = source[key];
-                    const isObject = typeof value === "object";
-
-                    destination[key] =
-                        isObject && Array.isArray(value)
-                            ? value.map((v) => this.deepExtend(destination[key], v))
-                            : this.deepExtend(destination[key], value);
-                }
-            } else {
+            if (typeof source !== "object") {
                 destination = source;
+
+                continue;
+            }
+
+            const sourceIsArray = Array.isArray(source);
+
+            if (sourceIsArray && (typeof destination !== "object" || !destination || !Array.isArray(destination))) {
+                destination = [];
+            } else if (
+                !sourceIsArray &&
+                (typeof destination !== "object" || !destination || Array.isArray(destination))
+            ) {
+                destination = {};
+            }
+
+            for (const key in source) {
+                if (key === "__proto__") {
+                    continue;
+                }
+
+                const value = source[key];
+                const isObject = typeof value === "object";
+
+                destination[key] =
+                    isObject && Array.isArray(value)
+                        ? value.map((v) => this.deepExtend(destination[key], v))
+                        : this.deepExtend(destination[key], value);
             }
         }
         return destination;

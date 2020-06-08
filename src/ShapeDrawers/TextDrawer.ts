@@ -17,19 +17,15 @@ export class TextDrawer implements IShapeDrawer {
             Utils.isInArray(ShapeType.char, options.particles.shape.type) ||
             Utils.isInArray(ShapeType.character, options.particles.shape.type)
         ) {
-            const shapeOptions =
-                options.particles.shape.options[ShapeType.character] ?? options.particles.shape.options[ShapeType.char];
+            const shapeOptions = (options.particles.shape.options[ShapeType.character] ??
+                options.particles.shape.options[ShapeType.char]) as ICharacterShape;
             if (shapeOptions instanceof Array) {
                 for (const character of shapeOptions) {
-                    await Utils.loadFont(character as ICharacterShape);
+                    await Utils.loadFont(character);
                 }
             } else {
-                const character =
-                    options.particles.shape.options[ShapeType.character] ??
-                    options.particles.shape.options[ShapeType.char];
-
-                if (character !== undefined) {
-                    await Utils.loadFont(character as ICharacterShape);
+                if (shapeOptions !== undefined) {
+                    await Utils.loadFont(shapeOptions);
                 }
             }
         }
