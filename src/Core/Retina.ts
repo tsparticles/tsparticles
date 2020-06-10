@@ -3,7 +3,7 @@ import type { Particle } from "./Particle";
 
 export class Retina {
     public bubbleModeDistance!: number;
-    public bubbleModeSize!: number;
+    public bubbleModeSize?: number;
     public connectModeDistance!: number;
     public connectModeRadius!: number;
     public grabModeDistance!: number;
@@ -16,8 +16,7 @@ export class Retina {
     public sizeAnimationSpeed!: number;
     public pixelRatio!: number;
 
-    constructor(private readonly container: Container) {
-    }
+    constructor(private readonly container: Container) {}
 
     public init(): void {
         const container = this.container;
@@ -54,7 +53,10 @@ export class Retina {
         this.repulseModeDistance = modes.repulse.distance * ratio;
         this.slowModeRadius = modes.slow.radius * ratio;
         this.bubbleModeDistance = modes.bubble.distance * ratio;
-        this.bubbleModeSize = modes.bubble.size ? modes.bubble.size * ratio : this.sizeValue;
+
+        if (modes.bubble.size) {
+            this.bubbleModeSize = modes.bubble.size * ratio;
+        }
     }
 
     public initParticle(particle: Particle): void {
