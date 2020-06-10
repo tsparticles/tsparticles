@@ -37,7 +37,7 @@ describe("Options tests", () => {
         expect(options.backgroundMask.enable).to.be.false;
 
         /* detect retina */
-        expect(options.detectRetina).to.be.false;
+        expect(options.detectRetina).to.be.true;
 
         /* fps limit */
         expect(options.fpsLimit).to.equal(30);

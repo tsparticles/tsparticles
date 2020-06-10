@@ -23,7 +23,7 @@ export class Retina {
         const options = container.options;
 
         if (options.detectRetina) {
-            this.pixelRatio = window.devicePixelRatio;
+            this.pixelRatio = typeof window === "undefined" ? 1 : window.devicePixelRatio;
         } else {
             this.pixelRatio = 1;
         }
