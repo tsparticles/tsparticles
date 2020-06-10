@@ -111,14 +111,18 @@ export class Container {
         this.eventListeners = new EventListeners(this);
     }
 
-    public static requestFrame(callback: FrameRequestCallback): number {
+    private static requestFrame(callback: FrameRequestCallback): number {
         return window.customRequestAnimationFrame(callback);
     }
 
-    public static cancelAnimation(handle: number): void {
+    private static cancelAnimation(handle: number): void {
         window.cancelAnimationFrame(handle);
     }
 
+    /**
+     * Starts animations and resume from pause
+     * @param force
+     */
     public play(force?: boolean): void {
         const needsUpdate = this.paused || force;
 
@@ -139,6 +143,9 @@ export class Container {
         this.draw();
     }
 
+    /**
+     * Pauses animations
+     */
     public pause(): void {
         if (this.drawAnimationFrame !== undefined) {
             Container.cancelAnimation(this.drawAnimationFrame);
@@ -146,27 +153,42 @@ export class Container {
             delete this.drawAnimationFrame;
         }
 
-        if (!this.paused) {
-            for (const [, plugin] of this.plugins) {
-                if (plugin.pause) {
-                    plugin.pause();
-                }
-            }
+        if (this.paused) {
+            return;
+        }
 
-            if (!this.pageHidden) {
-                this.paused = true;
+        for (const [, plugin] of this.plugins) {
+            if (plugin.pause) {
+                plugin.pause();
             }
+        }
+
+        if (!this.pageHidden) {
+            this.paused = true;
         }
     }
 
+    /**
+     * Draws a frame
+     */
     public draw(): void {
         this.drawAnimationFrame = Container.requestFrame((t) => this.drawer?.nextFrame(t));
     }
 
+    /**
+     * Gets the animation status
+     * @returns `true` is playing, `false` is paused
+     */
     public getAnimationStatus(): boolean {
         return !this.paused;
     }
 
+    /**
+     * Customise noise generation
+     * @param noiseOrGenerator the [[INoise]] object or a function that generates a [[INoiseValue]] object from [[Particle]]
+     * @param init the [[INoise]] init function, if the first parameter is a generator function
+     * @param update the [[INoise]] update function, if the first parameter is a generator function
+     */
     public setNoise(
         noiseOrGenerator?: INoise | ((particle: Particle) => INoiseValue),
         init?: () => void,
@@ -203,6 +225,9 @@ export class Container {
 
     /* ---------- tsParticles functions - vendors ------------ */
 
+    /**
+     * Aligns particles number to the specified density in the current canvas size
+     */
     public densityAutoParticles(): void {
         this.initDensityFactor();
 
@@ -219,23 +244,12 @@ export class Container {
         }
     }
 
-    public initDensityFactor(): void {
-        const densityOptions = this.options.particles.number.density;
-
-        if (!this.canvas.element || !densityOptions.enable) {
-            return;
-        }
-
-        const canvas = this.canvas.element;
-        const pxRatio = this.retina.pixelRatio;
-
-        this.density = (canvas.width * canvas.height) / (densityOptions.factor * pxRatio * densityOptions.area);
-    }
-
+    /**
+     * Destroys the current container, invalidating it
+     */
     public destroy(): void {
         this.stop();
 
-        this.retina.reset();
         this.canvas.destroy();
 
         delete this.interactivity;
@@ -260,15 +274,26 @@ export class Container {
 
     /**
      * @deprecated this method is deprecated, please use the exportImage method
+     * @param callback The callback to handle the image
      */
     public exportImg(callback: BlobCallback): void {
         this.exportImage(callback);
     }
 
+    /**
+     * Exports the current canvas image, `background` property of `options` won't be rendered because it's css related
+     * @param callback The callback to handle the image
+     * @param type The exported image type
+     * @param quality The exported image quality
+     */
     public exportImage(callback: BlobCallback, type?: string, quality?: number): void {
         return this.canvas.element?.toBlob(callback, type ?? "image/png", quality);
     }
 
+    /**
+     * Exports the current configuration using `options` property
+     * @returns a JSON string created from `options` property
+     */
     public exportConfiguration(): string {
         return JSON.stringify(this.options, undefined, 2);
     }
@@ -279,6 +304,9 @@ export class Container {
         await this.start();
     }
 
+    /**
+     * Stops the container, opposite to `start`. Clears some resources and stops events.
+     */
     public stop(): void {
         if (!this.started) {
             return;
@@ -288,7 +316,6 @@ export class Container {
         this.eventListeners.removeListeners();
         this.pause();
         this.particles.clear();
-        this.retina.reset();
         this.canvas.clear();
 
         for (const [, plugin] of this.plugins) {
@@ -303,6 +330,9 @@ export class Container {
         delete this.particles.linksColor;
     }
 
+    /**
+     * Starts the container, initializes what are needed to create animations and event handling
+     */
     public async start(): Promise<void> {
         if (this.started) {
             return;
@@ -352,5 +382,18 @@ export class Container {
 
         this.particles.init();
         this.densityAutoParticles();
+    }
+
+    private initDensityFactor(): void {
+        const densityOptions = this.options.particles.number.density;
+
+        if (!this.canvas.element || !densityOptions.enable) {
+            return;
+        }
+
+        const canvas = this.canvas.element;
+        const pxRatio = this.retina.pixelRatio;
+
+        this.density = (canvas.width * canvas.height) / (densityOptions.factor * pxRatio * densityOptions.area);
     }
 }

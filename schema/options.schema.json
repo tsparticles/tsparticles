@@ -2499,7 +2499,7 @@
       "type": "boolean"
     },
     "fpsLimit": {
-      "description": "The F(rame)P(er)S(econd) limit applied to all particles animations.",
+      "description": "The FPS (Frame Per Second) limit applied to all particles animations.",
       "type": "number"
     },
     "fps_limit": {

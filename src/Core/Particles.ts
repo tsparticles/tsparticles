@@ -169,6 +169,9 @@ export class Particles {
         }
     }
 
+    /**
+     * Removes all particles from the array
+     */
     public clear(): void {
         this.array = [];
     }

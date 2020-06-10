@@ -130,10 +130,6 @@ export class Canvas {
         }
     }
 
-    public isPointInPath(path: Path2D, point: ICoordinates): boolean {
-        return this.context?.isPointInPath(path, point.x, point.y) ?? false;
-    }
-
     public drawLinkTriangle(p1: IParticle, link1: ILink, link2: ILink): void {
         const container = this.container;
         const options = container.options;

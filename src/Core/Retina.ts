@@ -71,8 +71,4 @@ export class Retina {
 
         particle.sizeAnimationSpeed = particlesOptions.size.animation.speed * ratio;
     }
-
-    public reset(): void {
-        // nothing to reset
-    }
 }
