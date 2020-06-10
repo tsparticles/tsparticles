@@ -52,7 +52,7 @@ export class Options implements IOptions {
     constructor() {
         this.background = new Background();
         this.backgroundMask = new BackgroundMask();
-        this.detectRetina = false;
+        this.detectRetina = true;
         this.fpsLimit = 30;
         this.infection = new Infection();
         this.interactivity = new Interactivity();
