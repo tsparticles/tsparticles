@@ -183,8 +183,74 @@
         "distance": {
           "type": "number"
         },
+        "divs": {
+          "anyOf": [
+            {
+              "$ref": "#/definitions/IBubbleDiv"
+            },
+            {
+              "items": {
+                "$ref": "#/definitions/IBubbleDiv"
+              },
+              "type": "array"
+            }
+          ]
+        },
         "duration": {
           "type": "number"
+        },
+        "opacity": {
+          "type": "number"
+        },
+        "size": {
+          "type": "number"
+        }
+      },
+      "type": "object"
+    },
+    "IBubbleDiv": {
+      "properties": {
+        "color": {
+          "anyOf": [
+            {
+              "$ref": "#/definitions/IColor"
+            },
+            {
+              "items": {
+                "anyOf": [
+                  {
+                    "$ref": "#/definitions/IColor"
+                  },
+                  {
+                    "type": "string"
+                  }
+                ]
+              },
+              "type": "array"
+            },
+            {
+              "type": "string"
+            }
+          ]
+        },
+        "distance": {
+          "type": "number"
+        },
+        "duration": {
+          "type": "number"
+        },
+        "ids": {
+          "anyOf": [
+            {
+              "items": {
+                "type": "string"
+              },
+              "type": "array"
+            },
+            {
+              "type": "string"
+            }
+          ]
         },
         "opacity": {
           "type": "number"
@@ -1037,8 +1103,48 @@
         "distance": {
           "type": "number"
         },
+        "divs": {
+          "anyOf": [
+            {
+              "$ref": "#/definitions/IRepulseDiv"
+            },
+            {
+              "items": {
+                "$ref": "#/definitions/IRepulseDiv"
+              },
+              "type": "array"
+            }
+          ]
+        },
         "duration": {
           "type": "number"
+        },
+        "speed": {
+          "type": "number"
+        }
+      },
+      "type": "object"
+    },
+    "IRepulseDiv": {
+      "properties": {
+        "distance": {
+          "type": "number"
+        },
+        "duration": {
+          "type": "number"
+        },
+        "ids": {
+          "anyOf": [
+            {
+              "items": {
+                "type": "string"
+              },
+              "type": "array"
+            },
+            {
+              "type": "string"
+            }
+          ]
         },
         "speed": {
           "type": "number"

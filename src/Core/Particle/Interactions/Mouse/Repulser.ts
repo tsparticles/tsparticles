@@ -5,6 +5,7 @@ import type { ICoordinates } from "../../../Interfaces/ICoordinates";
 import type { IParticle } from "../../../Interfaces/IParticle";
 import { DivEvent } from "../../../../Options/Classes/Interactivity/Events/DivEvent";
 import { IExternalInteractor } from "../../../Interfaces/IExternalInteractor";
+import { RepulseDiv } from "../../../../Options/Classes/Interactivity/Modes/RepulseDiv";
 
 /**
  * Particle repulse manager
@@ -116,7 +117,7 @@ export class Repulser implements IExternalInteractor {
                       elem.offsetHeight * pxRatio
                   );
 
-        this.processRepulse(pos, repulseRadius, area);
+        this.processRepulse(pos, repulseRadius, area, this.divRepulseMode(id));
     }
 
     private hoverRepulse(): void {
@@ -132,7 +133,7 @@ export class Repulser implements IExternalInteractor {
         this.processRepulse(mousePos, repulseRadius, new Circle(mousePos.x, mousePos.y, repulseRadius));
     }
 
-    private processRepulse(position: ICoordinates, repulseRadius: number, area: Range): void {
+    private processRepulse(position: ICoordinates, repulseRadius: number, area: Range, divRepulse?: RepulseDiv): void {
         const container = this.container;
         //const query = container.particles.spatialGrid.queryRadius(position, repulseRadius);
         const query = container.particles.quadTree.query(area);
@@ -144,7 +145,7 @@ export class Repulser implements IExternalInteractor {
                 y: dy / distance,
             };
 
-            const velocity = container.options.interactivity.modes.repulse.speed * 100;
+            const velocity = (divRepulse?.speed ?? container.options.interactivity.modes.repulse.speed) * 100;
             const repulseFactor = Utils.clamp((1 - Math.pow(distance / repulseRadius, 2)) * velocity, 0, 50);
             const outMode = particle.particlesOptions.move.outMode;
             const sizeValue = particle.size.value;
@@ -261,6 +262,24 @@ export class Repulser implements IExternalInteractor {
                     particle.velocity.vertical *= -1;
                 }
             }
+        }
+    }
+
+    private divRepulseMode(divId?: string): RepulseDiv | undefined {
+        if (!divId) {
+            return;
+        }
+
+        const repulseDiv = this.container.options.interactivity.modes.repulse.divs;
+
+        if (!repulseDiv) {
+            return;
+        }
+
+        if (repulseDiv instanceof Array) {
+            return repulseDiv.find((d) => d.ids.includes(divId));
+        } else if (repulseDiv.ids.includes(divId)) {
+            return repulseDiv;
         }
     }
 }

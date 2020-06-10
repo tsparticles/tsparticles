@@ -1,23 +1,23 @@
-import type { IBubble } from "../../../Interfaces/Interactivity/Modes/IBubble";
 import type { RecursivePartial } from "../../../../Types/RecursivePartial";
 import { OptionsColor } from "../../OptionsColor";
 import type { SingleOrMultiple } from "../../../../Types/SingleOrMultiple";
-import { BubbleDiv } from "./BubbleDiv";
+import { IBubbleDiv } from "../../../Interfaces/Interactivity/Modes/IBubbleDiv";
 
-export class Bubble implements IBubble {
+export class BubbleDiv implements IBubbleDiv {
+    public ids: SingleOrMultiple<string>;
     public distance: number;
     public duration: number;
     public opacity?: number;
     public size?: number;
     public color?: SingleOrMultiple<OptionsColor>;
-    public divs?: SingleOrMultiple<BubbleDiv>;
 
     constructor() {
         this.distance = 200;
         this.duration = 0.4;
+        this.ids = [];
     }
 
-    public load(data?: RecursivePartial<IBubble>): void {
+    public load(data?: RecursivePartial<IBubbleDiv>): void {
         if (data !== undefined) {
             if (data.distance !== undefined) {
                 this.distance = data.distance;
@@ -25,6 +25,10 @@ export class Bubble implements IBubble {
 
             if (data.duration !== undefined) {
                 this.duration = data.duration;
+            }
+
+            if (data.ids !== undefined) {
+                this.ids = data.ids;
             }
 
             if (data.opacity !== undefined) {
@@ -45,24 +49,6 @@ export class Bubble implements IBubble {
 
             if (data.size !== undefined) {
                 this.size = data.size;
-            }
-
-            if (data.divs !== undefined) {
-                if (data.divs instanceof Array) {
-                    this.divs = data.divs.map((s) => {
-                        const tmp = new BubbleDiv();
-
-                        tmp.load(s);
-
-                        return tmp;
-                    });
-                } else {
-                    if (this.divs instanceof Array || !this.divs) {
-                        this.divs = new BubbleDiv();
-                    }
-
-                    this.divs.load(data.divs);
-                }
             }
         }
     }

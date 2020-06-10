@@ -1,13 +1,12 @@
 import type { IOptionLoader } from "../../IOptionLoader";
 import type { IColor } from "../../../../Core/Interfaces/IColor";
-import type { SingleOrMultiple } from "../../../../Types/SingleOrMultiple";
-import type { IBubbleDiv } from "./IBubbleDiv";
+import { SingleOrMultiple } from "../../../../Types/SingleOrMultiple";
 
-export interface IBubble extends IOptionLoader<IBubble> {
+export interface IBubbleDiv extends IOptionLoader<IBubbleDiv> {
+    ids: SingleOrMultiple<string>;
     distance: number;
     duration: number;
     opacity?: number;
     size?: number;
     color?: SingleOrMultiple<IColor | string>;
-    divs?: SingleOrMultiple<IBubbleDiv>;
 }

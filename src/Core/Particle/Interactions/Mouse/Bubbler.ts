@@ -5,6 +5,7 @@ import { ClickMode, DivMode, DivType, HoverMode, ProcessBubbleType } from "../..
 import { Particle } from "../../../Particle";
 import { DivEvent } from "../../../../Options/Classes/Interactivity/Events/DivEvent";
 import type { IExternalInteractor } from "../../../Interfaces/IExternalInteractor";
+import { BubbleDiv } from "../../../../Options/Classes/Interactivity/Modes/BubbleDiv";
 
 /**
  * Particle bubble manager
@@ -143,14 +144,16 @@ export class Bubbler implements IExternalInteractor {
         for (const particle of query.filter((t) => area.contains(t.getPosition()))) {
             particle.bubble.inRange = true;
 
+            const divBubble = this.divBubbleMode(id);
+
             /* size */
-            this.hoverBubbleSize(particle, 1);
+            this.hoverBubbleSize(particle, 1, divBubble);
 
             /* opacity */
-            this.hoverBubbleOpacity(particle, 1);
+            this.hoverBubbleOpacity(particle, 1, divBubble);
 
             /* color */
-            this.hoverBubbleColor(particle);
+            this.hoverBubbleColor(particle, divBubble);
         }
     }
 
@@ -325,9 +328,11 @@ export class Bubbler implements IExternalInteractor {
         }
     }
 
-    private hoverBubbleSize(particle: Particle, ratio: number): void {
+    private hoverBubbleSize(particle: Particle, ratio: number, divBubble?: BubbleDiv): void {
         const container = this.container;
-        const modeSize = container.retina.bubbleModeSize;
+        const modeSize = divBubble?.size
+            ? divBubble.size * container.retina.pixelRatio
+            : container.retina.bubbleModeSize;
 
         if (modeSize === undefined) {
             return;
@@ -342,9 +347,9 @@ export class Bubbler implements IExternalInteractor {
         }
     }
 
-    private hoverBubbleOpacity(particle: Particle, ratio: number): void {
+    private hoverBubbleOpacity(particle: Particle, ratio: number, divBubble?: BubbleDiv): void {
         const options = this.container.options;
-        const modeOpacity = options.interactivity.modes.bubble.opacity;
+        const modeOpacity = divBubble?.opacity ?? options.interactivity.modes.bubble.opacity;
 
         if (modeOpacity === undefined) {
             return;
@@ -359,11 +364,11 @@ export class Bubbler implements IExternalInteractor {
         }
     }
 
-    private hoverBubbleColor(particle: Particle): void {
+    private hoverBubbleColor(particle: Particle, divBubble?: BubbleDiv): void {
         const options = this.container.options;
 
         if (particle.bubble.color === undefined) {
-            const modeColor = options.interactivity.modes.bubble.color;
+            const modeColor = divBubble?.color ?? options.interactivity.modes.bubble.color;
 
             if (modeColor === undefined) {
                 return;
@@ -372,6 +377,24 @@ export class Bubbler implements IExternalInteractor {
             const bubbleColor = modeColor instanceof Array ? Utils.itemFromArray(modeColor) : modeColor;
 
             particle.bubble.color = ColorUtils.colorToHsl(bubbleColor);
+        }
+    }
+
+    private divBubbleMode(divId?: string): BubbleDiv | undefined {
+        if (!divId) {
+            return;
+        }
+
+        const bubbleDivs = this.container.options.interactivity.modes.bubble.divs;
+
+        if (!bubbleDivs) {
+            return;
+        }
+
+        if (bubbleDivs instanceof Array) {
+            return bubbleDivs.find((d) => d.ids.includes(divId));
+        } else if (bubbleDivs.ids.includes(divId)) {
+            return bubbleDivs;
         }
     }
 }
