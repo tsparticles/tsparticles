@@ -1,4 +1,3 @@
-import type { IRepulse } from "../../../Interfaces/Interactivity/Modes/IRepulse";
 import type { RecursivePartial } from "../../../../Types/RecursivePartial";
 import type { SingleOrMultiple } from "../../../../Types/SingleOrMultiple";
 import type { IRepulseDiv } from "../../../Interfaces/Interactivity/Modes/IRepulseDiv";
