@@ -30,6 +30,7 @@
         ShapeType
     } from "tsparticles/dist/Enums";
     import { tsParticles } from "tsparticles/dist/index";
+    import { Container } from "tsparticles/dist/Core/Container";
 
     @Component
     export default class Particles extends Vue {
@@ -49,6 +50,7 @@
         @Prop() private particleSize!: number;
         @Prop() private particlesNumber!: number;
         @Prop() private shapeType!: ShapeType;
+        private particlesContainer?: Container;
 
         private mounted(): void {
             this.$nextTick(() => {
@@ -70,6 +72,10 @@
                     this.clickMode
                 );
             });
+        }
+
+        private beforeDestroy(): void {
+            this.particlesContainer?.destroy();
         }
 
         private initTsParticles(
@@ -211,7 +217,7 @@
                     }
                 },
                 retina_detect: false
-            });
+            }).then(container => this.particlesContainer = container);
         }
     }
 </script>
