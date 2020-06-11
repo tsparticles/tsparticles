@@ -11,7 +11,8 @@ import { BubbleDiv } from "../../../../Options/Classes/Interactivity/Modes/Bubbl
  * Particle bubble manager
  */
 export class Bubbler implements IExternalInteractor {
-    constructor(private readonly container: Container) {}
+    constructor(private readonly container: Container) {
+    }
 
     private static calculateBubbleValue(
         particleValue: number,
@@ -56,6 +57,7 @@ export class Bubbler implements IExternalInteractor {
 
     public reset(particle: Particle): void {
         if (!particle.bubble.inRange) {
+            delete particle.bubble.divId;
             delete particle.bubble.opacity;
             delete particle.bubble.radius;
             delete particle.bubble.color;
@@ -102,11 +104,11 @@ export class Bubbler implements IExternalInteractor {
             div.type === DivType.circle
                 ? new Circle(pos.x, pos.y, repulseRadius)
                 : new Rectangle(
-                      elem.offsetLeft * pxRatio,
-                      elem.offsetTop * pxRatio,
-                      elem.offsetWidth * pxRatio,
-                      elem.offsetHeight * pxRatio
-                  );
+                elem.offsetLeft * pxRatio,
+                elem.offsetTop * pxRatio,
+                elem.offsetWidth * pxRatio,
+                elem.offsetHeight * pxRatio
+                );
 
         const query = container.particles.quadTree.query(area);
 
@@ -203,8 +205,6 @@ export class Bubbler implements IExternalInteractor {
         for (const particle of query) {
             particle.bubble.inRange = true;
 
-            delete particle.bubble.divId;
-
             const pos = particle.getPosition();
             const distMouse = Utils.getDistance(pos, mouseClickPos);
             const timeSpent = (new Date().getTime() - (container.interactivity.mouse.clickTime || 0)) / 1000;
@@ -277,8 +277,6 @@ export class Bubbler implements IExternalInteractor {
         //for (const { distance, particle } of query) {
         for (const particle of query) {
             particle.bubble.inRange = true;
-
-            delete particle.bubble.divId;
 
             const pos = particle.getPosition();
             const distance = Utils.getDistance(pos, mousePos);
