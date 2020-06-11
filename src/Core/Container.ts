@@ -10,7 +10,7 @@ import type { RecursivePartial } from "../Types/RecursivePartial";
 import { Options } from "../Options/Classes/Options";
 import type { IContainerPlugin } from "./Interfaces/IContainerPlugin";
 import type { IShapeDrawer } from "./Interfaces/IShapeDrawer";
-import { EventListeners, Plugins } from "../Utils";
+import { EventListeners, Plugins, Utils } from "../Utils";
 import { Particle } from "./Particle";
 import { INoiseValue } from "./Interfaces/INoiseValue";
 import { INoise } from "./Interfaces/INoise";
@@ -111,14 +111,6 @@ export class Container {
         this.eventListeners = new EventListeners(this);
     }
 
-    private static requestFrame(callback: FrameRequestCallback): number {
-        return window.customRequestAnimationFrame(callback);
-    }
-
-    private static cancelAnimation(handle: number): void {
-        window.cancelAnimationFrame(handle);
-    }
-
     /**
      * Starts animations and resume from pause
      * @param force
@@ -148,7 +140,7 @@ export class Container {
      */
     public pause(): void {
         if (this.drawAnimationFrame !== undefined) {
-            Container.cancelAnimation(this.drawAnimationFrame);
+            Utils.cancelAnimation(this.drawAnimationFrame);
 
             delete this.drawAnimationFrame;
         }
@@ -172,7 +164,7 @@ export class Container {
      * Draws a frame
      */
     public draw(): void {
-        this.drawAnimationFrame = Container.requestFrame((t) => this.drawer?.nextFrame(t));
+        this.drawAnimationFrame = Utils.animate((t) => this.drawer?.nextFrame(t));
     }
 
     /**

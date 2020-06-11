@@ -6,8 +6,8 @@ import type { IDimension } from "../Core/Interfaces/IDimension";
 import type { IImage } from "../Core/Interfaces/IImage";
 import type { IParticle } from "../Core/Interfaces/IParticle";
 import { ColorUtils } from "./ColorUtils";
-import { IHsl } from "../Core/Interfaces/IHsl";
-import { SingleOrMultiple } from "../Types/SingleOrMultiple";
+import type { IHsl } from "../Core/Interfaces/IHsl";
+import type { SingleOrMultiple } from "../Types/SingleOrMultiple";
 
 type CSSOMString = string;
 type FontFaceLoadStatus = "unloaded" | "loading" | "loaded" | "error";
@@ -44,8 +44,53 @@ declare global {
     }
 }
 
+declare global {
+    interface Window {
+        customRequestAnimationFrame: (callback: FrameRequestCallback) => number;
+        mozRequestAnimationFrame: (callback: FrameRequestCallback) => number;
+        oRequestAnimationFrame: (callback: FrameRequestCallback) => number;
+        msRequestAnimationFrame: (callback: FrameRequestCallback) => number;
+        customCancelRequestAnimationFrame: (handle: number) => void;
+        webkitCancelRequestAnimationFrame: (handle: number) => void;
+        mozCancelRequestAnimationFrame: (handle: number) => void;
+        oCancelRequestAnimationFrame: (handle: number) => void;
+        msCancelRequestAnimationFrame: (handle: number) => void;
+        Path2D?: Path2D;
+    }
+}
+
 /* ---------- global functions - vendors ------------ */
 export class Utils {
+    public static isSsr(): boolean {
+        return typeof window === "undefined" || !window;
+    }
+
+    public static get animate(): (callback: FrameRequestCallback) => number {
+        const animate = this.isSsr()
+            ? (callback: FrameRequestCallback): number => setTimeout(callback)
+            : ((callback: FrameRequestCallback): number => window.requestAnimationFrame(callback)) ||
+              ((callback: FrameRequestCallback): number => window.webkitRequestAnimationFrame(callback)) ||
+              ((callback: FrameRequestCallback): number => window.mozRequestAnimationFrame(callback)) ||
+              ((callback: FrameRequestCallback): number => window.oRequestAnimationFrame(callback)) ||
+              ((callback: FrameRequestCallback): number => window.msRequestAnimationFrame(callback)) ||
+              ((callback: FrameRequestCallback): number => window.setTimeout(callback));
+
+        return animate;
+    }
+
+    public static get cancelAnimation(): (handle: number) => void {
+        const cancelAnimation = this.isSsr()
+            ? (handle: number): void => clearTimeout(handle)
+            : ((handle: number): void => window.cancelAnimationFrame(handle)) ||
+              ((handle: number): void => window.webkitCancelRequestAnimationFrame(handle)) ||
+              ((handle: number): void => window.mozCancelRequestAnimationFrame(handle)) ||
+              ((handle: number): void => window.oCancelRequestAnimationFrame(handle)) ||
+              ((handle: number): void => window.msCancelRequestAnimationFrame(handle)) ||
+              ((handle: number): void => window.clearTimeout(handle));
+
+        return cancelAnimation;
+    }
+
     public static replaceColorSvg(image: IImage, color: IHsl, opacity: number): string {
         if (!image.svgData) {
             return "";

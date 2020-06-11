@@ -1,5 +1,6 @@
 import type { Container } from "./Container";
 import type { Particle } from "./Particle";
+import { Utils } from "../Utils";
 
 export class Retina {
     public bubbleModeDistance!: number;
@@ -23,7 +24,7 @@ export class Retina {
         const options = container.options;
 
         if (options.detectRetina) {
-            this.pixelRatio = typeof window === "undefined" ? 1 : window.devicePixelRatio;
+            this.pixelRatio = Utils.isSsr() ? 1 : window.devicePixelRatio;
         } else {
             this.pixelRatio = 1;
         }

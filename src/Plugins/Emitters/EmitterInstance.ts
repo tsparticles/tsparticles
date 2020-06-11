@@ -7,6 +7,7 @@ import { EmitterSize } from "./Options/Classes/EmitterSize";
 import type { Emitters } from "./Emitters";
 import type { RecursivePartial } from "../../Types/RecursivePartial";
 import type { IParticles } from "../../Options/Interfaces/Particles/IParticles";
+import { IEmitterSize } from "./Options/Interfaces/IEmitterSize";
 
 export class EmitterInstance {
     public position: ICoordinates;
@@ -46,7 +47,7 @@ export class EmitterInstance {
 
         this.size =
             this.emitterOptions.size ??
-            (() => {
+            ((): IEmitterSize => {
                 const size = new EmitterSize();
 
                 size.load({

@@ -259,7 +259,7 @@ export class PolygonMaskInstance implements IContainerPlugin {
         return pos;
     }
 
-    public particleBounce(particle: PolygonMaskParticle, _delta: number): boolean {
+    public particleBounce(particle: PolygonMaskParticle): boolean {
         const options = this.options;
 
         /* check bounce against polygon boundaries */

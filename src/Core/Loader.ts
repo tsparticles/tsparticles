@@ -220,7 +220,7 @@ export class Loader {
         }
     }
 
-    private static fetchError(statusCode: number) {
+    private static fetchError(statusCode: number): void {
         console.error(`Error tsParticles - fetch status: ${statusCode}`);
         console.error("Error tsParticles - File config not found");
     }

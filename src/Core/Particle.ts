@@ -578,8 +578,8 @@ export class Particle implements IParticle {
                 res.vertical *= Math.random();
             }
         } else {
-            res.horizontal = baseVelocity.x + Math.random() - 0.5;
-            res.vertical = baseVelocity.y + Math.random() - 0.5;
+            res.horizontal = baseVelocity.x + Math.random() / 2 - 0.25;
+            res.vertical = baseVelocity.y + Math.random() / 2 - 0.25;
         }
 
         // const theta = 2.0 * Math.PI * Math.random();
