@@ -11,8 +11,7 @@ import { BubbleDiv } from "../../../../Options/Classes/Interactivity/Modes/Bubbl
  * Particle bubble manager
  */
 export class Bubbler implements IExternalInteractor {
-    constructor(private readonly container: Container) {
-    }
+    constructor(private readonly container: Container) {}
 
     private static calculateBubbleValue(
         particleValue: number,
@@ -55,8 +54,8 @@ export class Bubbler implements IExternalInteractor {
         );
     }
 
-    public reset(particle: Particle): void {
-        if (!particle.bubble.inRange) {
+    public reset(particle: Particle, force?: boolean): void {
+        if (!particle.bubble.inRange || force) {
             delete particle.bubble.divId;
             delete particle.bubble.opacity;
             delete particle.bubble.radius;
@@ -104,11 +103,11 @@ export class Bubbler implements IExternalInteractor {
             div.type === DivType.circle
                 ? new Circle(pos.x, pos.y, repulseRadius)
                 : new Rectangle(
-                elem.offsetLeft * pxRatio,
-                elem.offsetTop * pxRatio,
-                elem.offsetWidth * pxRatio,
-                elem.offsetHeight * pxRatio
-                );
+                      elem.offsetLeft * pxRatio,
+                      elem.offsetTop * pxRatio,
+                      elem.offsetWidth * pxRatio,
+                      elem.offsetHeight * pxRatio
+                  );
 
         const query = container.particles.quadTree.query(area);
 
@@ -118,7 +117,7 @@ export class Bubbler implements IExternalInteractor {
             const divBubble = this.divBubbleMode(id);
 
             if (!particle.bubble.divId || particle.bubble.divId !== id) {
-                this.reset(particle);
+                this.reset(particle, true);
 
                 particle.bubble.divId = id;
             }
