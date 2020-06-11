@@ -32,24 +32,26 @@ export class OpacityAnimation implements IOpacityAnimation {
     }
 
     public load(data?: RecursivePartial<IOpacityAnimation>): void {
-        if (data !== undefined) {
-            if (data.enable !== undefined) {
-                this.enable = data.enable;
-            }
+        if (data === undefined) {
+            return;
+        }
 
-            const minimumValue = data.minimumValue ?? data.opacity_min;
+        if (data.enable !== undefined) {
+            this.enable = data.enable;
+        }
 
-            if (minimumValue !== undefined) {
-                this.minimumValue = minimumValue;
-            }
+        const minimumValue = data.minimumValue ?? data.opacity_min;
 
-            if (data.speed !== undefined) {
-                this.speed = data.speed;
-            }
+        if (minimumValue !== undefined) {
+            this.minimumValue = minimumValue;
+        }
 
-            if (data.sync !== undefined) {
-                this.sync = data.sync;
-            }
+        if (data.speed !== undefined) {
+            this.speed = data.speed;
+        }
+
+        if (data.sync !== undefined) {
+            this.sync = data.sync;
         }
     }
 }

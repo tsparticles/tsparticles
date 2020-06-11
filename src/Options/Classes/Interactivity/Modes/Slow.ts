@@ -25,14 +25,16 @@ export class Slow implements ISlow {
     }
 
     public load(data?: RecursivePartial<ISlow>): void {
-        if (data !== undefined) {
-            if (data.factor !== undefined) {
-                this.factor = data.factor;
-            }
+        if (data === undefined) {
+            return;
+        }
 
-            if (data.radius !== undefined) {
-                this.radius = data.radius;
-            }
+        if (data.factor !== undefined) {
+            this.factor = data.factor;
+        }
+
+        if (data.radius !== undefined) {
+            this.radius = data.radius;
         }
     }
 }

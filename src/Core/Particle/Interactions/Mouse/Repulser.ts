@@ -21,10 +21,7 @@ export class Repulser implements IExternalInteractor {
         const events = options.interactivity.events;
         const divs = events.onDiv;
 
-        const divBubble: boolean =
-            divs instanceof Array
-                ? divs.filter((t) => t.enable && Utils.isInArray(DivMode.repulse, t.mode)).length > 0
-                : Utils.isInArray(DivMode.bubble, divs.mode);
+        const divBubble = Utils.isDivModeEnabled(DivMode.repulse, divs);
 
         if (
             !(divBubble || (events.onHover.enable && mouse.position) || (events.onClick.enable && mouse.clickPosition))
@@ -60,35 +57,7 @@ export class Repulser implements IExternalInteractor {
         } else if (clickEnabled && Utils.isInArray(ClickMode.repulse, clickMode)) {
             this.clickRepulse();
         } else {
-            if (divs instanceof Array) {
-                for (const div of divs) {
-                    const divMode = div.mode;
-                    const divEnabled = div.enable;
-
-                    if (divEnabled && Utils.isInArray(DivMode.repulse, divMode)) {
-                        this.divRepulse(div);
-                    }
-                }
-            } else {
-                const divMode = divs.mode;
-                const divEnabled = divs.enable;
-
-                if (divEnabled && Utils.isInArray(DivMode.repulse, divMode)) {
-                    this.divRepulse(divs);
-                }
-            }
-        }
-    }
-
-    private divRepulse(div: DivEvent): void {
-        const ids = div.ids;
-
-        if (ids instanceof Array) {
-            for (const id of ids) {
-                this.singleDivRepulse(id, div);
-            }
-        } else {
-            this.singleDivRepulse(ids, div);
+            Utils.divModeExecute(DivMode.repulse, divs, (id, div): void => this.singleDivRepulse(id, div));
         }
     }
 

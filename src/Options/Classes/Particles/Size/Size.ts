@@ -32,24 +32,26 @@ export class Size implements ISize {
     }
 
     public load(data?: RecursivePartial<ISize>): void {
-        if (data !== undefined) {
-            const animation = data.animation ?? data.anim;
+        if (data === undefined) {
+            return;
+        }
 
-            if (animation !== undefined) {
-                this.animation.load(animation);
-            }
+        const animation = data.animation ?? data.anim;
 
-            if (data.random !== undefined) {
-                if (typeof data.random === "boolean") {
-                    this.random.enable = data.random;
-                } else {
-                    this.random.load(data.random);
-                }
-            }
+        if (animation !== undefined) {
+            this.animation.load(animation);
+        }
 
-            if (data.value !== undefined) {
-                this.value = data.value;
+        if (data.random !== undefined) {
+            if (typeof data.random === "boolean") {
+                this.random.enable = data.random;
+            } else {
+                this.random.load(data.random);
             }
+        }
+
+        if (data.value !== undefined) {
+            this.value = data.value;
         }
     }
 }

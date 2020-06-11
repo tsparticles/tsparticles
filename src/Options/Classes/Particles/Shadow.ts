@@ -22,26 +22,30 @@ export class Shadow implements IShadow {
     }
 
     public load(data?: RecursivePartial<IShadow>): void {
-        if (data !== undefined) {
-            if (data.blur !== undefined) {
-                this.blur = data.blur;
-            }
+        if (data === undefined) {
+            return;
+        }
 
-            this.color = OptionsColor.create(this.color, data.color);
+        if (data.blur !== undefined) {
+            this.blur = data.blur;
+        }
 
-            if (data.enable !== undefined) {
-                this.enable = data.enable;
-            }
+        this.color = OptionsColor.create(this.color, data.color);
 
-            if (data.offset !== undefined) {
-                if (data.offset.x !== undefined) {
-                    this.offset.x = data.offset.x;
-                }
+        if (data.enable !== undefined) {
+            this.enable = data.enable;
+        }
 
-                if (data.offset.y !== undefined) {
-                    this.offset.y = data.offset.y;
-                }
-            }
+        if (data.offset === undefined) {
+            return;
+        }
+
+        if (data.offset.x !== undefined) {
+            this.offset.x = data.offset.x;
+        }
+
+        if (data.offset.y !== undefined) {
+            this.offset.y = data.offset.y;
         }
     }
 }

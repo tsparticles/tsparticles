@@ -12,12 +12,14 @@ export class Noise implements INoise {
     }
 
     public load(data?: RecursivePartial<INoise>): void {
-        if (data !== undefined) {
-            this.delay.load(data.delay);
+        if (data === undefined) {
+            return;
+        }
 
-            if (data.enable !== undefined) {
-                this.enable = data.enable;
-            }
+        this.delay.load(data.delay);
+
+        if (data.enable !== undefined) {
+            this.enable = data.enable;
         }
     }
 }

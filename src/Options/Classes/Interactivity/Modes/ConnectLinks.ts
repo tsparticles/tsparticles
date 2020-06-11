@@ -9,10 +9,10 @@ export class ConnectLinks implements IConnectLinks {
     }
 
     public load(data?: RecursivePartial<IConnectLinks>): void {
-        if (data !== undefined) {
-            if (data.opacity !== undefined) {
-                this.opacity = data.opacity;
-            }
+        if (!(data !== undefined && data.opacity !== undefined)) {
+            return;
         }
+
+        this.opacity = data.opacity;
     }
 }

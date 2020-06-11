@@ -48,16 +48,18 @@ export class Connect implements IConnect {
     }
 
     public load(data?: RecursivePartial<IConnect>): void {
-        if (data !== undefined) {
-            if (data.distance !== undefined) {
-                this.distance = data.distance;
-            }
+        if (data === undefined) {
+            return;
+        }
 
-            this.links.load(data.links ?? data.lineLinked ?? data.line_linked);
+        if (data.distance !== undefined) {
+            this.distance = data.distance;
+        }
 
-            if (data.radius !== undefined) {
-                this.radius = data.radius;
-            }
+        this.links.load(data.links ?? data.lineLinked ?? data.line_linked);
+
+        if (data.radius !== undefined) {
+            this.radius = data.radius;
         }
     }
 }

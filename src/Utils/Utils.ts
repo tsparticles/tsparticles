@@ -1,5 +1,5 @@
 import type { ICoordinates } from "../Core/Interfaces/ICoordinates";
-import { MoveDirection } from "../Enums";
+import { DivMode, MoveDirection } from "../Enums";
 import type { ICharacterShape } from "../Options/Interfaces/Particles/Shape/ICharacterShape";
 import type { IBounds } from "../Core/Interfaces/IBounds";
 import type { IDimension } from "../Core/Interfaces/IDimension";
@@ -8,6 +8,7 @@ import type { IParticle } from "../Core/Interfaces/IParticle";
 import { ColorUtils } from "./ColorUtils";
 import type { IHsl } from "../Core/Interfaces/IHsl";
 import type { SingleOrMultiple } from "../Types/SingleOrMultiple";
+import { DivEvent } from "../Options/Classes/Interactivity/Events/DivEvent";
 
 type CSSOMString = string;
 type FontFaceLoadStatus = "unloaded" | "loading" | "loaded" | "error";
@@ -331,5 +332,47 @@ export class Utils {
             }
         }
         return destination;
+    }
+
+    public static isDivModeEnabled(mode: DivMode, divs: SingleOrMultiple<DivEvent>): boolean {
+        return divs instanceof Array
+            ? divs.filter((t) => t.enable && Utils.isInArray(mode, t.mode)).length > 0
+            : Utils.isInArray(mode, divs.mode);
+    }
+
+    public static divModeExecute(
+        mode: DivMode,
+        divs: SingleOrMultiple<DivEvent>,
+        callback: (id: string, div: DivEvent) => void
+    ): void {
+        if (divs instanceof Array) {
+            for (const div of divs) {
+                const divMode = div.mode;
+                const divEnabled = div.enable;
+
+                if (divEnabled && Utils.isInArray(mode, divMode)) {
+                    this.singleDivModeExecute(div, callback);
+                }
+            }
+        } else {
+            const divMode = divs.mode;
+            const divEnabled = divs.enable;
+
+            if (divEnabled && Utils.isInArray(mode, divMode)) {
+                this.singleDivModeExecute(divs, callback);
+            }
+        }
+    }
+
+    public static singleDivModeExecute(div: DivEvent, callback: (id: string, div: DivEvent) => void): void {
+        const ids = div.ids;
+
+        if (ids instanceof Array) {
+            for (const id of ids) {
+                callback(id, div);
+            }
+        } else {
+            callback(ids, div);
+        }
     }
 }

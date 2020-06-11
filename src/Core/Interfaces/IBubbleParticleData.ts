@@ -5,4 +5,5 @@ export interface IBubbleParticleData {
     opacity?: number;
     radius?: number;
     color?: IHsl;
+    divId?: string;
 }

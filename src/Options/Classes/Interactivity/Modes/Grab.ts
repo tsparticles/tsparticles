@@ -46,12 +46,14 @@ export class Grab implements IGrab {
     }
 
     public load(data?: RecursivePartial<IGrab>): void {
-        if (data !== undefined) {
-            if (data.distance !== undefined) {
-                this.distance = data.distance;
-            }
-
-            this.links.load(data.links ?? data.lineLinked ?? data.line_linked);
+        if (data === undefined) {
+            return;
         }
+
+        if (data.distance !== undefined) {
+            this.distance = data.distance;
+        }
+
+        this.links.load(data.links ?? data.lineLinked ?? data.line_linked);
     }
 }

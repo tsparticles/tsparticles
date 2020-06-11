@@ -26,12 +26,14 @@ export class Push implements IPush {
     }
 
     public load(data?: RecursivePartial<IPush>): void {
-        if (data !== undefined) {
-            const quantity = data.quantity ?? data.particles_nb;
+        if (data === undefined) {
+            return;
+        }
 
-            if (quantity !== undefined) {
-                this.quantity = quantity;
-            }
+        const quantity = data.quantity ?? data.particles_nb;
+
+        if (quantity !== undefined) {
+            this.quantity = quantity;
         }
     }
 }

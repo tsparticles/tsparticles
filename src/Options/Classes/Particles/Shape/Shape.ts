@@ -109,26 +109,28 @@ export class Shape implements IShape {
     }
 
     public load(data?: RecursivePartial<IShape>): void {
-        if (data !== undefined) {
-            const options = data.options ?? data.custom;
+        if (data === undefined) {
+            return;
+        }
 
-            if (options !== undefined) {
-                for (const shape in options) {
-                    const item = options[shape];
+        const options = data.options ?? data.custom;
 
-                    if (item !== undefined) {
-                        this.options[shape] = Utils.deepExtend(this.options[shape] ?? {}, item);
-                    }
+        if (options !== undefined) {
+            for (const shape in options) {
+                const item = options[shape];
+
+                if (item !== undefined) {
+                    this.options[shape] = Utils.deepExtend(this.options[shape] ?? {}, item);
                 }
             }
+        }
 
-            this.loadShape(data.character, ShapeType.character, ShapeType.char, true);
-            this.loadShape(data.polygon, ShapeType.polygon, ShapeType.star, false);
-            this.loadShape(data.image ?? data.images, ShapeType.image, ShapeType.images, true);
+        this.loadShape(data.character, ShapeType.character, ShapeType.char, true);
+        this.loadShape(data.polygon, ShapeType.polygon, ShapeType.star, false);
+        this.loadShape(data.image ?? data.images, ShapeType.image, ShapeType.images, true);
 
-            if (data.type !== undefined) {
-                this.type = data.type;
-            }
+        if (data.type !== undefined) {
+            this.type = data.type;
         }
     }
 

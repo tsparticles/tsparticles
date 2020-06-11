@@ -49,22 +49,24 @@ export class Attract implements IAttract {
     }
 
     public load(data?: RecursivePartial<IAttract>): void {
-        if (data !== undefined) {
-            if (data.enable !== undefined) {
-                this.enable = data.enable;
-            }
+        if (data === undefined) {
+            return;
+        }
 
-            const rotateX = data.rotate?.x ?? data.rotateX;
+        if (data.enable !== undefined) {
+            this.enable = data.enable;
+        }
 
-            if (rotateX !== undefined) {
-                this.rotate.x = rotateX;
-            }
+        const rotateX = data.rotate?.x ?? data.rotateX;
 
-            const rotateY = data.rotate?.y ?? data.rotateY;
+        if (rotateX !== undefined) {
+            this.rotate.x = rotateX;
+        }
 
-            if (rotateY !== undefined) {
-                this.rotate.y = rotateY;
-            }
+        const rotateY = data.rotate?.y ?? data.rotateY;
+
+        if (rotateY !== undefined) {
+            this.rotate.y = rotateY;
         }
     }
 }

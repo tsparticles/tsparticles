@@ -30,20 +30,22 @@ export class Density implements IDensity {
     }
 
     public load(data?: RecursivePartial<IDensity>): void {
-        if (data !== undefined) {
-            if (data.enable !== undefined) {
-                this.enable = data.enable;
-            }
+        if (data === undefined) {
+            return;
+        }
 
-            const area = data.area ?? data.value_area;
+        if (data.enable !== undefined) {
+            this.enable = data.enable;
+        }
 
-            if (area !== undefined) {
-                this.area = area;
-            }
+        const area = data.area ?? data.value_area;
 
-            if (data.factor !== undefined) {
-                this.factor = data.factor;
-            }
+        if (area !== undefined) {
+            this.area = area;
+        }
+
+        if (data.factor !== undefined) {
+            this.factor = data.factor;
         }
     }
 }

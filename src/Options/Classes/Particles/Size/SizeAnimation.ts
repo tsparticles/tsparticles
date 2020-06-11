@@ -37,32 +37,34 @@ export class SizeAnimation implements ISizeAnimation {
     }
 
     public load(data?: RecursivePartial<ISizeAnimation>): void {
-        if (data !== undefined) {
-            if (data.destroy !== undefined) {
-                this.destroy = data.destroy;
-            }
+        if (data === undefined) {
+            return;
+        }
 
-            if (data.enable !== undefined) {
-                this.enable = data.enable;
-            }
+        if (data.destroy !== undefined) {
+            this.destroy = data.destroy;
+        }
 
-            const minimumValue = data.minimumValue ?? data.size_min;
+        if (data.enable !== undefined) {
+            this.enable = data.enable;
+        }
 
-            if (minimumValue !== undefined) {
-                this.minimumValue = minimumValue;
-            }
+        const minimumValue = data.minimumValue ?? data.size_min;
 
-            if (data.speed !== undefined) {
-                this.speed = data.speed;
-            }
+        if (minimumValue !== undefined) {
+            this.minimumValue = minimumValue;
+        }
 
-            if (data.startValue !== undefined) {
-                this.startValue = data.startValue;
-            }
+        if (data.speed !== undefined) {
+            this.speed = data.speed;
+        }
 
-            if (data.sync !== undefined) {
-                this.sync = data.sync;
-            }
+        if (data.startValue !== undefined) {
+            this.startValue = data.startValue;
+        }
+
+        if (data.sync !== undefined) {
+            this.sync = data.sync;
         }
     }
 }

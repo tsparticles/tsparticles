@@ -12,12 +12,14 @@ export class NoiseDelay implements INoiseDelay {
     }
 
     public load(data?: RecursivePartial<INoiseDelay>): void {
-        if (data !== undefined) {
-            this.random?.load(data.random);
+        if (data === undefined) {
+            return;
+        }
 
-            if (data.value !== undefined) {
-                this.value = data.value;
-            }
+        this.random?.load(data.random);
+
+        if (data.value !== undefined) {
+            this.value = data.value;
         }
     }
 }

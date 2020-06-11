@@ -82,50 +82,52 @@ export class Move implements IMove {
     }
 
     public load(data?: RecursivePartial<IMove>): void {
-        if (data !== undefined) {
-            if (data.angle !== undefined) {
-                this.angle = data.angle;
-            }
+        if (data === undefined) {
+            return;
+        }
 
-            this.attract.load(data.attract);
+        if (data.angle !== undefined) {
+            this.angle = data.angle;
+        }
 
-            if (data.direction !== undefined) {
-                this.direction = data.direction;
-            }
+        this.attract.load(data.attract);
 
-            if (data.enable !== undefined) {
-                this.enable = data.enable;
-            }
+        if (data.direction !== undefined) {
+            this.direction = data.direction;
+        }
 
-            this.noise.load(data.noise);
+        if (data.enable !== undefined) {
+            this.enable = data.enable;
+        }
 
-            const outMode = data.outMode ?? data.out_mode;
+        this.noise.load(data.noise);
 
-            if (outMode !== undefined) {
-                this.outMode = outMode;
-            }
+        const outMode = data.outMode ?? data.out_mode;
 
-            if (data.random !== undefined) {
-                this.random = data.random;
-            }
+        if (outMode !== undefined) {
+            this.outMode = outMode;
+        }
 
-            if (data.speed !== undefined) {
-                this.speed = data.speed;
-            }
+        if (data.random !== undefined) {
+            this.random = data.random;
+        }
 
-            if (data.straight !== undefined) {
-                this.straight = data.straight;
-            }
+        if (data.speed !== undefined) {
+            this.speed = data.speed;
+        }
 
-            this.trail.load(data.trail);
+        if (data.straight !== undefined) {
+            this.straight = data.straight;
+        }
 
-            if (data.vibrate !== undefined) {
-                this.vibrate = data.vibrate;
-            }
+        this.trail.load(data.trail);
 
-            if (data.warp !== undefined) {
-                this.warp = data.warp;
-            }
+        if (data.vibrate !== undefined) {
+            this.vibrate = data.vibrate;
+        }
+
+        if (data.warp !== undefined) {
+            this.warp = data.warp;
         }
     }
 }

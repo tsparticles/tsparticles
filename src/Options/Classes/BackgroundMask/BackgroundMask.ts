@@ -21,17 +21,19 @@ export class BackgroundMask implements IBackgroundMask {
     }
 
     public load(data?: RecursivePartial<IBackgroundMask>): void {
-        if (data !== undefined) {
-            if (data.cover !== undefined) {
-                const cover = data.cover as IBackgroundMaskCover;
-                const color = (typeof data.cover === "string" ? { color: data.cover } : data.cover) as IColor;
+        if (data === undefined) {
+            return;
+        }
 
-                this.cover.load(cover.color !== undefined ? cover : { color: color });
-            }
+        if (data.cover !== undefined) {
+            const cover = data.cover as IBackgroundMaskCover;
+            const color = (typeof data.cover === "string" ? { color: data.cover } : data.cover) as IColor;
 
-            if (data.enable !== undefined) {
-                this.enable = data.enable;
-            }
+            this.cover.load(cover.color !== undefined ? cover : { color: color });
+        }
+
+        if (data.enable !== undefined) {
+            this.enable = data.enable;
         }
     }
 }

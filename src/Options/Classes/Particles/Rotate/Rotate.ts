@@ -17,20 +17,22 @@ export class Rotate implements IRotate {
     }
 
     public load(data?: RecursivePartial<IRotate>): void {
-        if (data !== undefined) {
-            this.animation.load(data.animation);
+        if (data === undefined) {
+            return;
+        }
 
-            if (data.random !== undefined) {
-                this.random = data.random;
-            }
+        this.animation.load(data.animation);
 
-            if (data.direction !== undefined) {
-                this.direction = data.direction;
-            }
+        if (data.random !== undefined) {
+            this.random = data.random;
+        }
 
-            if (data.value !== undefined) {
-                this.value = data.value;
-            }
+        if (data.direction !== undefined) {
+            this.direction = data.direction;
+        }
+
+        if (data.value !== undefined) {
+            this.value = data.value;
         }
     }
 }

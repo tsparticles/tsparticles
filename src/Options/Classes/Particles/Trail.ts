@@ -16,16 +16,18 @@ export class Trail implements ITrail {
     }
 
     public load(data?: RecursivePartial<ITrail>): void {
-        if (data !== undefined) {
-            if (data.enable !== undefined) {
-                this.enable = data.enable;
-            }
+        if (data === undefined) {
+            return;
+        }
 
-            this.fillColor = OptionsColor.create(this.fillColor, data.fillColor);
+        if (data.enable !== undefined) {
+            this.enable = data.enable;
+        }
 
-            if (data.length !== undefined) {
-                this.length = data.length;
-            }
+        this.fillColor = OptionsColor.create(this.fillColor, data.fillColor);
+
+        if (data.length !== undefined) {
+            this.length = data.length;
         }
     }
 }

@@ -11,13 +11,16 @@ export class OpacityRandom implements IOpacityRandom {
     }
 
     public load(data?: RecursivePartial<IOpacityRandom> | undefined): void {
-        if (data !== undefined) {
-            if (data.enable !== undefined) {
-                this.enable = data.enable;
-            }
-            if (data.minimumValue !== undefined) {
-                this.minimumValue = data.minimumValue;
-            }
+        if (data === undefined) {
+            return;
+        }
+
+        if (data.enable !== undefined) {
+            this.enable = data.enable;
+        }
+
+        if (data.minimumValue !== undefined) {
+            this.minimumValue = data.minimumValue;
         }
     }
 }

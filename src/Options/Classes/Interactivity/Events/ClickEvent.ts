@@ -20,14 +20,16 @@ export class ClickEvent implements IClickEvent {
     }
 
     public load(data?: RecursivePartial<IClickEvent>): void {
-        if (data !== undefined) {
-            if (data.enable !== undefined) {
-                this.enable = data.enable;
-            }
+        if (data === undefined) {
+            return;
+        }
 
-            if (data.mode !== undefined) {
-                this.mode = data.mode;
-            }
+        if (data.enable !== undefined) {
+            this.enable = data.enable;
+        }
+
+        if (data.mode !== undefined) {
+            this.mode = data.mode;
         }
     }
 }

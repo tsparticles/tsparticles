@@ -28,14 +28,16 @@ export class Modes implements IModes {
     }
 
     public load(data?: RecursivePartial<IModes>): void {
-        if (data !== undefined) {
-            this.bubble.load(data.bubble);
-            this.connect.load(data.connect);
-            this.grab.load(data.grab);
-            this.push.load(data.push);
-            this.remove.load(data.remove);
-            this.repulse.load(data.repulse);
-            this.slow.load(data.slow);
+        if (data === undefined) {
+            return;
         }
+
+        this.bubble.load(data.bubble);
+        this.connect.load(data.connect);
+        this.grab.load(data.grab);
+        this.push.load(data.push);
+        this.remove.load(data.remove);
+        this.repulse.load(data.repulse);
+        this.slow.load(data.slow);
     }
 }

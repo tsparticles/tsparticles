@@ -11,7 +11,8 @@ import { BubbleDiv } from "../../../../Options/Classes/Interactivity/Modes/Bubbl
  * Particle bubble manager
  */
 export class Bubbler implements IExternalInteractor {
-    constructor(private readonly container: Container) {}
+    constructor(private readonly container: Container) {
+    }
 
     private static calculateBubbleValue(
         particleValue: number,
@@ -38,10 +39,7 @@ export class Bubbler implements IExternalInteractor {
         const events = options.interactivity.events;
         const divs = events.onDiv;
 
-        const divBubble: boolean =
-            divs instanceof Array
-                ? divs.filter((t) => t.enable && Utils.isInArray(DivMode.bubble, t.mode)).length > 0
-                : Utils.isInArray(DivMode.bubble, divs.mode);
+        const divBubble = Utils.isDivModeEnabled(DivMode.bubble, divs);
 
         if (
             !(divBubble || (events.onHover.enable && mouse.position) || (events.onClick.enable && mouse.clickPosition))
@@ -82,35 +80,7 @@ export class Bubbler implements IExternalInteractor {
         } else if (clickEnabled && Utils.isInArray(ClickMode.bubble, clickMode)) {
             this.clickBubble();
         } else {
-            if (divs instanceof Array) {
-                for (const div of divs) {
-                    const divMode = div.mode;
-                    const divEnabled = div.enable;
-
-                    if (divEnabled && Utils.isInArray(DivMode.bubble, divMode)) {
-                        this.divHover(div);
-                    }
-                }
-            } else {
-                const divMode = divs.mode;
-                const divEnabled = divs.enable;
-
-                if (divEnabled && Utils.isInArray(DivMode.bubble, divMode)) {
-                    this.divHover(divs);
-                }
-            }
-        }
-    }
-
-    private divHover(div: DivEvent): void {
-        const ids = div.ids;
-
-        if (ids instanceof Array) {
-            for (const id of ids) {
-                this.singleDivHover(id, div);
-            }
-        } else {
-            this.singleDivHover(ids, div);
+            Utils.divModeExecute(DivMode.bubble, divs, (id, div): void => this.singleDivHover(id, div));
         }
     }
 
@@ -133,11 +103,11 @@ export class Bubbler implements IExternalInteractor {
             div.type === DivType.circle
                 ? new Circle(pos.x, pos.y, repulseRadius)
                 : new Rectangle(
-                      elem.offsetLeft * pxRatio,
-                      elem.offsetTop * pxRatio,
-                      elem.offsetWidth * pxRatio,
-                      elem.offsetHeight * pxRatio
-                  );
+                elem.offsetLeft * pxRatio,
+                elem.offsetTop * pxRatio,
+                elem.offsetWidth * pxRatio,
+                elem.offsetHeight * pxRatio
+                );
 
         const query = container.particles.quadTree.query(area);
 
@@ -145,6 +115,10 @@ export class Bubbler implements IExternalInteractor {
             particle.bubble.inRange = true;
 
             const divBubble = this.divBubbleMode(id);
+
+            if (particle.bubble.divId !== id) {
+                this.reset(particle);
+            }
 
             /* size */
             this.hoverBubbleSize(particle, 1, divBubble);

@@ -18,32 +18,36 @@ export class Infection implements IInfection {
     }
 
     public load(data?: RecursivePartial<IInfection>): void {
-        if (data !== undefined) {
-            if (data.cure !== undefined) {
-                this.cure = data.cure;
-            }
-
-            if (data.delay !== undefined) {
-                this.delay = data.delay;
-            }
-
-            if (data.enable !== undefined) {
-                this.enable = data.enable;
-            }
-
-            if (data.infections !== undefined) {
-                this.infections = data.infections;
-            }
-
-            if (data.stages !== undefined) {
-                this.stages = data.stages.map((t) => {
-                    const s = new InfectionStage();
-
-                    s.load(t);
-
-                    return s;
-                });
-            }
+        if (data === undefined) {
+            return;
         }
+
+        if (data.cure !== undefined) {
+            this.cure = data.cure;
+        }
+
+        if (data.delay !== undefined) {
+            this.delay = data.delay;
+        }
+
+        if (data.enable !== undefined) {
+            this.enable = data.enable;
+        }
+
+        if (data.infections !== undefined) {
+            this.infections = data.infections;
+        }
+
+        if (data.stages === undefined) {
+            return;
+        }
+
+        this.stages = data.stages.map((t) => {
+            const s = new InfectionStage();
+
+            s.load(t);
+
+            return s;
+        });
     }
 }
