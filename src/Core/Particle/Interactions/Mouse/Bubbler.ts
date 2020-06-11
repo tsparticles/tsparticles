@@ -115,8 +115,10 @@ export class Bubbler implements IExternalInteractor {
 
             const divBubble = this.divBubbleMode(id);
 
-            if (particle.bubble.divId !== id) {
+            if (!particle.bubble.divId || particle.bubble.divId !== id) {
                 this.reset(particle);
+
+                particle.bubble.divId = id;
             }
 
             /* size */
@@ -201,6 +203,8 @@ export class Bubbler implements IExternalInteractor {
         for (const particle of query) {
             particle.bubble.inRange = true;
 
+            delete particle.bubble.divId;
+
             const pos = particle.getPosition();
             const distMouse = Utils.getDistance(pos, mouseClickPos);
             const timeSpent = (new Date().getTime() - (container.interactivity.mouse.clickTime || 0)) / 1000;
@@ -273,6 +277,8 @@ export class Bubbler implements IExternalInteractor {
         //for (const { distance, particle } of query) {
         for (const particle of query) {
             particle.bubble.inRange = true;
+
+            delete particle.bubble.divId;
 
             const pos = particle.getPosition();
             const distance = Utils.getDistance(pos, mousePos);
