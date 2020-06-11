@@ -1,7 +1,7 @@
 {
   "name": "particles.vue",
   "description": "A Vue.js plugin for tsParticles",
-  "version": "1.15.2",
+  "version": "1.15.3",
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
