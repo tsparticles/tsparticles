@@ -835,6 +835,9 @@
     },
     "IMove": {
       "properties": {
+        "angle": {
+          "type": "number"
+        },
         "attract": {
           "$ref": "#/definitions/IAttract"
         },
@@ -1981,6 +1984,9 @@
     },
     "RecursivePartial<IMove>": {
       "properties": {
+        "angle": {
+          "type": "number"
+        },
         "attract": {
           "$ref": "#/definitions/RecursivePartial<IAttract>"
         },

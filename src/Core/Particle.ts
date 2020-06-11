@@ -568,18 +568,25 @@ export class Particle implements IParticle {
             horizontal: 0,
             vertical: 0,
         };
+        const moveOptions = this.particlesOptions.move;
+        const rad = (Math.PI / 180) * moveOptions.angle;
+        const rad45 = Math.PI / 4;
+        const range = {
+            left: Math.sin(rad45 + rad / 2) - Math.sin(rad45 - rad / 2),
+            right: Math.cos(rad45 + rad / 2) - Math.cos(rad45 - rad / 2),
+        };
 
-        if (this.particlesOptions.move.straight) {
+        if (moveOptions.straight) {
             res.horizontal = baseVelocity.x;
             res.vertical = baseVelocity.y;
 
-            if (this.particlesOptions.move.random) {
-                res.horizontal *= Math.random();
-                res.vertical *= Math.random();
+            if (moveOptions.random) {
+                res.horizontal += Utils.randomInRange(range.left, range.right) / 2;
+                res.vertical += Utils.randomInRange(range.left, range.right) / 2;
             }
         } else {
-            res.horizontal = baseVelocity.x + Math.random() / 2 - 0.25;
-            res.vertical = baseVelocity.y + Math.random() / 2 - 0.25;
+            res.horizontal = baseVelocity.x + Utils.randomInRange(range.left, range.right) / 2;
+            res.vertical = baseVelocity.y + Utils.randomInRange(range.left, range.right) / 2;
         }
 
         // const theta = 2.0 * Math.PI * Math.random();

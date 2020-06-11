@@ -53,6 +53,7 @@ export class Move implements IMove {
         this.outMode = value;
     }
 
+    public angle: number;
     public attract: Attract;
     public direction: MoveDirection;
     public enable: boolean;
@@ -66,6 +67,7 @@ export class Move implements IMove {
     public warp: boolean;
 
     constructor() {
+        this.angle = 90;
         this.attract = new Attract();
         this.direction = MoveDirection.none;
         this.enable = false;
@@ -81,6 +83,10 @@ export class Move implements IMove {
 
     public load(data?: RecursivePartial<IMove>): void {
         if (data !== undefined) {
+            if (data.angle !== undefined) {
+                this.angle = data.angle;
+            }
+
             this.attract.load(data.attract);
 
             if (data.direction !== undefined) {

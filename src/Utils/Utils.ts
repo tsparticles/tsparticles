@@ -212,7 +212,10 @@ export class Utils {
         return array[index !== undefined ? index : this.arrayRandomIndex(array)];
     }
 
-    public static randomInRange(min: number, max: number): number {
+    public static randomInRange(r1: number, r2: number): number {
+        const max = Math.max(r1, r2);
+        const min = Math.min(r1, r2);
+
         return Math.random() * (max - min) + min;
     }
 
