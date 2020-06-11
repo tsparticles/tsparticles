@@ -24,7 +24,7 @@
       }
     },
     "color": {
-      "value": "#ffffff"
+      "value": "random"
     },
     "shape": {
       "type": "circle",
@@ -124,7 +124,7 @@
   },
   "retina_detect": true,
   "background": {
-    "color": "#0d47a1",
+    "color": "#000000",
     "image": "",
     "position": "50% 50%",
     "repeat": "no-repeat",

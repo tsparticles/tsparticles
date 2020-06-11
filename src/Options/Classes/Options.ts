@@ -52,7 +52,7 @@ export class Options implements IOptions {
     constructor() {
         this.background = new Background();
         this.backgroundMask = new BackgroundMask();
-        this.detectRetina = false;
+        this.detectRetina = true;
         this.fpsLimit = 30;
         this.infection = new Infection();
         this.interactivity = new Interactivity();
@@ -65,52 +65,46 @@ export class Options implements IOptions {
      * @param data the source data to load into the instance
      */
     public load(data?: RecursivePartial<IOptions>): void {
-        if (data !== undefined) {
-            if (data.preset !== undefined) {
-                if (data.preset instanceof Array) {
-                    for (const preset of data.preset) {
-                        this.importPreset(preset);
-                    }
-                } else {
-                    this.importPreset(data.preset);
-                }
-            }
-
-            if (data.background !== undefined) {
-                this.background.load(data.background);
-            }
-
-            const detectRetina = data.detectRetina ?? data.retina_detect;
-
-            if (detectRetina !== undefined) {
-                this.detectRetina = detectRetina;
-            }
-
-            const fpsLimit = data.fpsLimit ?? data.fps_limit;
-
-            if (fpsLimit !== undefined) {
-                this.fpsLimit = fpsLimit;
-            }
-
-            if (data.pauseOnBlur !== undefined) {
-                this.pauseOnBlur = data.pauseOnBlur;
-            }
-
-            this.particles.load(data.particles);
-            this.infection.load(data.infection);
-            this.interactivity.load(data.interactivity);
-
-            this.backgroundMask.load(data.backgroundMask);
-
-            Plugins.loadOptions(this, data);
+        if (data === undefined) {
+            return;
         }
+
+        if (data.preset !== undefined) {
+            if (data.preset instanceof Array) {
+                for (const preset of data.preset) {
+                    this.importPreset(preset);
+                }
+            } else {
+                this.importPreset(data.preset);
+            }
+        }
+
+        const detectRetina = data.detectRetina ?? data.retina_detect;
+
+        if (detectRetina !== undefined) {
+            this.detectRetina = detectRetina;
+        }
+
+        const fpsLimit = data.fpsLimit ?? data.fps_limit;
+
+        if (fpsLimit !== undefined) {
+            this.fpsLimit = fpsLimit;
+        }
+
+        if (data.pauseOnBlur !== undefined) {
+            this.pauseOnBlur = data.pauseOnBlur;
+        }
+
+        this.background.load(data.background);
+        this.particles.load(data.particles);
+        this.infection.load(data.infection);
+        this.interactivity.load(data.interactivity);
+        this.backgroundMask.load(data.backgroundMask);
+
+        Plugins.loadOptions(this, data);
     }
 
     private importPreset(preset: string): void {
-        const presetOptions = Plugins.getPreset(preset);
-
-        if (presetOptions !== undefined) {
-            this.load(presetOptions);
-        }
+        this.load(Plugins.getPreset(preset));
     }
 }

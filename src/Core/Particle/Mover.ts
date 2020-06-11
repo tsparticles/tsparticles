@@ -2,80 +2,72 @@ import { Utils } from "../../Utils";
 import type { Container } from "../Container";
 import type { Particle } from "../Particle";
 import { HoverMode } from "../../Enums";
-import { INoiseValue } from "../../Options/Interfaces/Particles/Noise/INoiseValue";
 
 export class Mover {
-    private readonly container: Container;
-    private readonly particle: Particle;
-
-    constructor(container: Container, particle: Particle) {
-        this.container = container;
-        this.particle = particle;
-    }
-
-    private static calcNoiseValue(input: number, size: number, noiseValue: INoiseValue): number {
-        return Math.floor(input / size) / noiseValue.value + noiseValue.offset;
-    }
+    constructor(private readonly container: Container, private readonly particle: Particle) {}
 
     public move(delta: number): void {
-        const container = this.container;
-        const options = container.options;
+        this.moveParticle(delta);
+
+        /* parallax */
+        this.moveParallax();
+    }
+
+    private moveParticle(delta: number): void {
         const particle = this.particle;
         const particlesOptions = particle.particlesOptions;
 
-        if (particlesOptions.move.enable) {
-            const slowFactor = this.getProximitySpeedFactor();
-            const deltaFactor = options.fpsLimit > 0 ? (60 * delta) / 1000 : 3.6;
-            const baseSpeed = particle.moveSpeed ?? container.retina.moveSpeed;
-            const moveSpeed = (baseSpeed / 2) * slowFactor * deltaFactor;
-
-            const noiseOptions = particlesOptions.move.noise;
-            const noiseEnabled = noiseOptions.enable;
-
-            if (noiseEnabled) {
-                if (particle.lastNoiseTime > particle.noiseDelay) {
-                    const position = particle.position;
-                    const noiseFactor = noiseOptions.factor;
-                    const simplex = container.simplex;
-
-                    const noise = {
-                        angle: simplex.noise3D(
-                            Mover.calcNoiseValue(position.x, particle.size.value, noiseFactor.horizontal),
-                            Mover.calcNoiseValue(position.y, particle.size.value, noiseFactor.horizontal),
-                            container.particles.noiseZ
-                        ),
-                        length: simplex.noise3D(
-                            Mover.calcNoiseValue(position.x, particle.size.value, noiseFactor.vertical),
-                            Mover.calcNoiseValue(position.y, particle.size.value, noiseFactor.vertical),
-                            container.particles.noiseZ
-                        ),
-                    };
-
-                    particle.velocity.horizontal += Math.cos(noise.angle) * noise.length;
-                    particle.velocity.horizontal = Utils.clamp(particle.velocity.horizontal, -1, 1);
-                    particle.velocity.vertical += Math.sin(noise.angle) * noise.length;
-                    particle.velocity.vertical = Utils.clamp(particle.velocity.vertical, -1, 1);
-
-                    particle.lastNoiseTime -= particle.noiseDelay;
-                } else {
-                    particle.lastNoiseTime += delta;
-                }
-            }
-
-            particle.position.x += particle.velocity.horizontal * moveSpeed;
-            particle.position.y += particle.velocity.vertical * moveSpeed;
-
-            if (particlesOptions.move.vibrate) {
-                particle.position.x += Math.sin(particle.position.x * Math.cos(particle.position.y));
-                particle.position.y += Math.cos(particle.position.y * Math.sin(particle.position.x));
-            }
+        if (!particlesOptions.move.enable) {
+            return;
         }
 
-        /* parallax */
-        this.moveParallax(delta);
+        const container = this.container;
+        const options = container.options;
+        const slowFactor = this.getProximitySpeedFactor();
+        const deltaFactor = options.fpsLimit > 0 ? (60 * delta) / 1000 : 3.6;
+        const baseSpeed = particle.moveSpeed ?? container.retina.moveSpeed;
+        const moveSpeed = (baseSpeed / 2) * slowFactor * deltaFactor;
+
+        this.applyNoise(delta);
+
+        particle.position.x += particle.velocity.horizontal * moveSpeed;
+        particle.position.y += particle.velocity.vertical * moveSpeed;
+
+        if (particlesOptions.move.vibrate) {
+            particle.position.x += Math.sin(particle.position.x * Math.cos(particle.position.y));
+            particle.position.y += Math.cos(particle.position.y * Math.sin(particle.position.x));
+        }
     }
 
-    private moveParallax(_delta: number): void {
+    private applyNoise(delta: number): void {
+        const particle = this.particle;
+        const particlesOptions = particle.particlesOptions;
+        const noiseOptions = particlesOptions.move.noise;
+        const noiseEnabled = noiseOptions.enable;
+
+        if (!noiseEnabled) {
+            return;
+        }
+
+        const container = this.container;
+
+        if (particle.lastNoiseTime <= particle.noiseDelay) {
+            particle.lastNoiseTime += delta;
+
+            return;
+        }
+
+        const noise = container.noise.generate(particle);
+
+        particle.velocity.horizontal += Math.cos(noise.angle) * noise.length;
+        particle.velocity.horizontal = Utils.clamp(particle.velocity.horizontal, -1, 1);
+        particle.velocity.vertical += Math.sin(noise.angle) * noise.length;
+        particle.velocity.vertical = Utils.clamp(particle.velocity.vertical, -1, 1);
+
+        particle.lastNoiseTime -= particle.noiseDelay;
+    }
+
+    private moveParallax(): void {
         const container = this.container;
         const options = container.options;
 
@@ -110,7 +102,6 @@ export class Mover {
     private getProximitySpeedFactor(): number {
         const container = this.container;
         const options = container.options;
-        const particle = this.particle;
         const active = Utils.isInArray(HoverMode.slow, options.interactivity.events.onHover.mode);
 
         if (!active) {
@@ -123,8 +114,7 @@ export class Mover {
             return 1;
         }
 
-        const particlePos = particle.getPosition();
-
+        const particlePos = this.particle.getPosition();
         const dist = Utils.getDistance(mousePos, particlePos);
         const radius = container.retina.slowModeRadius;
 

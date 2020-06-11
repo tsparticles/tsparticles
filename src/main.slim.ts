@@ -21,20 +21,6 @@ import {
 } from "./Types/ShapeDrawerFunctions";
 import { IPlugin } from "./Core/Interfaces/IPlugin";
 
-declare global {
-    interface Window {
-        customRequestAnimationFrame: (callback: FrameRequestCallback) => number;
-        mozRequestAnimationFrame: (callback: FrameRequestCallback) => number;
-        oRequestAnimationFrame: (callback: FrameRequestCallback) => number;
-        msRequestAnimationFrame: (callback: FrameRequestCallback) => number;
-        customCancelRequestAnimationFrame: (handle: number) => void;
-        webkitCancelRequestAnimationFrame: (handle: number) => void;
-        mozCancelRequestAnimationFrame: (handle: number) => void;
-        oCancelRequestAnimationFrame: (handle: number) => void;
-        msCancelRequestAnimationFrame: (handle: number) => void;
-    }
-}
-
 /**
  * Main class for creating the singleton on window.
  * It's a proxy to the static [[Loader]] class
@@ -44,30 +30,6 @@ export class MainSlim {
 
     constructor() {
         this.initialized = false;
-
-        if (typeof window !== "undefined" && window) {
-            window.customRequestAnimationFrame = ((): ((callback: FrameRequestCallback) => number) => {
-                return (
-                    window.requestAnimationFrame ||
-                    window.webkitRequestAnimationFrame ||
-                    window.mozRequestAnimationFrame ||
-                    window.oRequestAnimationFrame ||
-                    window.msRequestAnimationFrame ||
-                    ((callback): number => window.setTimeout(callback, 1000 / 60))
-                );
-            })();
-
-            window.customCancelRequestAnimationFrame = ((): ((handle: number) => void) => {
-                return (
-                    window.cancelAnimationFrame ||
-                    window.webkitCancelRequestAnimationFrame ||
-                    window.mozCancelRequestAnimationFrame ||
-                    window.oCancelRequestAnimationFrame ||
-                    window.msCancelRequestAnimationFrame ||
-                    clearTimeout
-                );
-            })();
-        }
 
         const squareDrawer = new SquareDrawer();
         const textDrawer = new TextDrawer();
@@ -176,8 +138,8 @@ export class MainSlim {
         if (typeof drawer === "function") {
             customDrawer = {
                 afterEffect: afterEffect,
-                draw: drawer,
                 destroy: destroy,
+                draw: drawer,
                 init: init,
             };
         } else {

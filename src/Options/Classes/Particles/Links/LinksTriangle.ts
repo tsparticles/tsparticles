@@ -12,18 +12,20 @@ export class LinksTriangle implements ILinksTriangle {
     }
 
     public load(data?: RecursivePartial<ILinksTriangle>): void {
-        if (data !== undefined) {
-            if (data.color !== undefined) {
-                this.color = OptionsColor.create(this.color, data.color);
-            }
+        if (data === undefined) {
+            return;
+        }
 
-            if (data.enable !== undefined) {
-                this.enable = data.enable;
-            }
+        if (data.color !== undefined) {
+            this.color = OptionsColor.create(this.color, data.color);
+        }
 
-            if (data.opacity !== undefined) {
-                this.opacity = data.opacity;
-            }
+        if (data.enable !== undefined) {
+            this.enable = data.enable;
+        }
+
+        if (data.opacity !== undefined) {
+            this.opacity = data.opacity;
         }
     }
 }

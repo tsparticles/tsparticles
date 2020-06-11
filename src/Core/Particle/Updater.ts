@@ -2,20 +2,16 @@ import type { Container } from "../Container";
 import type { Particle } from "../Particle";
 import { Utils } from "../../Utils";
 import { Mover } from "./Mover";
-import { OpacityAnimationStatus, OutMode, RotateDirection, SizeAnimationStatus } from "../../Enums";
+import { DestroyType, OpacityAnimationStatus, OutMode, RotateDirection, SizeAnimationStatus } from "../../Enums";
 import type { IBounds } from "../Interfaces/IBounds";
 
 /**
  * Particle updater, it manages movement
  */
 export class Updater {
-    private readonly particle: Particle;
-    private readonly container: Container;
     private readonly mover: Mover;
 
-    constructor(container: Container, particle: Particle) {
-        this.container = container;
-        this.particle = particle;
+    constructor(private readonly container: Container, private readonly particle: Particle) {
         this.mover = new Mover(container, particle);
     }
 
@@ -48,15 +44,14 @@ export class Updater {
         this.updateColor(delta);
 
         /* change particle position if it is out of canvas */
-        this.fixOutOfCanvasPosition(delta);
+        this.fixOutOfCanvasPosition();
 
         /* out of canvas modes */
         this.updateOutMode(delta);
     }
 
     private updateOpacity(delta: number): void {
-        const container = this.container;
-        const options = container.options;
+        const options = this.container.options;
         const particle = this.particle;
         const deltaFactor = options.fpsLimit > 0 ? (60 * delta) / 1000 : 3.6;
 
@@ -89,8 +84,10 @@ export class Updater {
         const options = container.options;
         const particle = this.particle;
         const deltaFactor = options.fpsLimit > 0 ? (60 * delta) / 1000 : 3.6;
+        const sizeOpt = particle.particlesOptions.size;
+        const sizeAnim = sizeOpt.animation;
 
-        if (particle.particlesOptions.size.animation.enable) {
+        if (sizeAnim.enable) {
             switch (particle.size.status) {
                 case SizeAnimationStatus.increasing:
                     if (particle.size.value >= (particle.sizeValue ?? container.retina.sizeValue)) {
@@ -100,22 +97,34 @@ export class Updater {
                     }
                     break;
                 case SizeAnimationStatus.decreasing:
-                    if (particle.size.value <= particle.particlesOptions.size.animation.minimumValue) {
+                    if (particle.size.value <= sizeAnim.minimumValue) {
                         particle.size.status = SizeAnimationStatus.increasing;
                     } else {
                         particle.size.value -= (particle.size.velocity || 0) * deltaFactor;
                     }
             }
 
-            if (particle.size.value < 0) {
+            switch (sizeAnim.destroy) {
+                case DestroyType.max:
+                    if (particle.size.value >= sizeOpt.value * container.retina.pixelRatio) {
+                        particle.destroy();
+                    }
+                    break;
+                case DestroyType.min:
+                    if (particle.size.value <= sizeAnim.minimumValue * container.retina.pixelRatio) {
+                        particle.destroy();
+                    }
+                    break;
+            }
+
+            if (particle.size.value < 0 && !particle.destroyed) {
                 particle.size.value = 0;
             }
         }
     }
 
     private updateAngle(delta: number): void {
-        const container = this.container;
-        const options = container.options;
+        const options = this.container.options;
         const particle = this.particle;
         const deltaFactor = options.fpsLimit > 0 ? (60 * delta) / 1000 : 3.6;
 
@@ -141,8 +150,7 @@ export class Updater {
     }
 
     private updateColor(delta: number): void {
-        const container = this.container;
-        const options = container.options;
+        const options = this.container.options;
         const particle = this.particle;
 
         if (particle.color === undefined) {
@@ -160,7 +168,7 @@ export class Updater {
         }
     }
 
-    private fixOutOfCanvasPosition(_delta: number): void {
+    private fixOutOfCanvasPosition(): void {
         const container = this.container;
         const particle = this.particle;
         const outMode = particle.particlesOptions.move.outMode;
@@ -240,9 +248,7 @@ export class Updater {
     }
 
     private updateOutMode(delta: number): void {
-        const particle = this.particle;
-
-        switch (particle.particlesOptions.move.outMode) {
+        switch (this.particle.particlesOptions.move.outMode) {
             case OutMode.bounce:
             case OutMode.bounceVertical:
             case OutMode.bounceHorizontal:
@@ -257,9 +263,7 @@ export class Updater {
         const particle = this.particle;
         let handled = false;
 
-        for (const id in container.plugins) {
-            const plugin = container.plugins[id];
-
+        for (const [, plugin] of container.plugins) {
             if (plugin.particleBounce !== undefined) {
                 handled = plugin.particleBounce(particle, delta);
             }

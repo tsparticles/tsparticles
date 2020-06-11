@@ -14,18 +14,17 @@ export class AbsorberInstance {
     public position: ICoordinates;
     public size: number;
 
-    private readonly absorbers: Absorbers;
-    private readonly container: Container;
     private readonly initialPosition?: ICoordinates;
     private readonly options: IAbsorber;
 
-    constructor(absorbers: Absorbers, options: IAbsorber, position?: ICoordinates) {
-        this.absorbers = absorbers;
-        this.container = absorbers.container;
+    constructor(
+        private readonly absorbers: Absorbers,
+        private readonly container: Container,
+        options: IAbsorber,
+        position?: ICoordinates
+    ) {
         this.initialPosition = position;
         this.options = options;
-
-        const container = this.container;
 
         let size = options.size.value * container.retina.pixelRatio;
         const random = typeof options.size.random === "boolean" ? options.size.random : options.size.random.enable;
@@ -54,7 +53,7 @@ export class AbsorberInstance {
         this.position = this.initialPosition ?? this.calcPosition();
     }
 
-    public attract(particle: Particle, _delta: number): void {
+    public attract(particle: Particle): void {
         const pos = particle.getPosition();
         const { dx, dy, distance } = Utils.getDistances(this.position, pos);
         const angle = Math.atan2(dx, dy) * (180 / Math.PI);
@@ -64,7 +63,7 @@ export class AbsorberInstance {
             const sizeFactor = particle.size.value * 0.033;
 
             if (this.size > particle.size.value && distance < this.size - particle.size.value) {
-                particle.destroyed = true;
+                particle.destroy();
             } else {
                 particle.size.value -= sizeFactor;
                 particle.velocity.horizontal += Math.sin(angle * (Math.PI / 180)) * acceleration;

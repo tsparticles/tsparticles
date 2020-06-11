@@ -17,6 +17,7 @@ import { Shape } from "../Options/Classes/Particles/Shape/Shape";
 import {
     MoveDirection,
     OpacityAnimationStatus,
+    OutMode,
     RotateDirection,
     ShapeType,
     SizeAnimationStatus,
@@ -70,15 +71,17 @@ export class Particle implements IParticle {
     public sizeAnimationSpeed?: number;
 
     public readonly updater: Updater;
-    public readonly container: Container;
 
     /* --------- tsParticles functions - particles ----------- */
     public readonly particlesOptions: IParticles;
 
     private infectionTimeout?: number;
 
-    constructor(container: Container, position?: ICoordinates, overrideOptions?: RecursivePartial<IParticles>) {
-        this.container = container;
+    constructor(
+        private readonly container: Container,
+        position?: ICoordinates,
+        overrideOptions?: RecursivePartial<IParticles>
+    ) {
         this.fill = true;
         this.close = true;
         this.links = [];
@@ -261,12 +264,14 @@ export class Particle implements IParticle {
             vertical: this.initialVelocity.vertical,
         };
 
-        let drawer = container.drawers[this.shape];
+        let drawer = container.drawers.get(this.shape);
 
         if (!drawer) {
             drawer = Plugins.getShapeDrawer(this.shape);
 
-            container.drawers[this.shape] = drawer;
+            if (drawer) {
+                container.drawers.set(this.shape, drawer);
+            }
         }
 
         /* if shape is image */
@@ -351,7 +356,7 @@ export class Particle implements IParticle {
         this.updater = new Updater(this.container, this);
     }
 
-    public update(index: number, delta: number): void {
+    public update(delta: number): void {
         this.links = [];
 
         this.updater.update(delta);
@@ -521,32 +526,37 @@ export class Particle implements IParticle {
     }
 
     private calcPosition(container: Container, position?: ICoordinates): ICoordinates {
-        for (const id in container.plugins) {
-            const plugin = container.plugins[id];
+        for (const [, plugin] of container.plugins) {
             const pluginPos =
                 plugin.particlePosition !== undefined ? plugin.particlePosition(position, this) : undefined;
 
             if (pluginPos !== undefined) {
-                return pluginPos;
+                return Utils.deepExtend({}, pluginPos);
             }
         }
 
-        const pos = { x: 0, y: 0 };
-
-        pos.x = position ? position.x : Math.random() * container.canvas.size.width;
-        pos.y = position ? position.y : Math.random() * container.canvas.size.height;
+        const pos = {
+            x: position?.x ?? Math.random() * container.canvas.size.width,
+            y: position?.y ?? Math.random() * container.canvas.size.height,
+        };
 
         /* check position  - into the canvas */
-        if (pos.x > container.canvas.size.width - this.size.value * 2) {
-            pos.x -= this.size.value;
-        } else if (pos.x < this.size.value * 2) {
-            pos.x += this.size.value;
+        const outMode = this.particlesOptions.move.outMode;
+
+        if (Utils.isInArray(outMode, OutMode.bounce) || Utils.isInArray(outMode, OutMode.bounceHorizontal)) {
+            if (pos.x > container.canvas.size.width - this.size.value * 2) {
+                pos.x -= this.size.value;
+            } else if (pos.x < this.size.value * 2) {
+                pos.x += this.size.value;
+            }
         }
 
-        if (pos.y > container.canvas.size.height - this.size.value * 2) {
-            pos.y -= this.size.value;
-        } else if (pos.y < this.size.value * 2) {
-            pos.y += this.size.value;
+        if (Utils.isInArray(outMode, OutMode.bounce) || Utils.isInArray(outMode, OutMode.bounceVertical)) {
+            if (pos.y > container.canvas.size.height - this.size.value * 2) {
+                pos.y -= this.size.value;
+            } else if (pos.y < this.size.value * 2) {
+                pos.y += this.size.value;
+            }
         }
 
         return pos;
@@ -558,18 +568,25 @@ export class Particle implements IParticle {
             horizontal: 0,
             vertical: 0,
         };
+        const moveOptions = this.particlesOptions.move;
+        const rad = (Math.PI / 180) * moveOptions.angle;
+        const rad45 = Math.PI / 4;
+        const range = {
+            left: Math.sin(rad45 + rad / 2) - Math.sin(rad45 - rad / 2),
+            right: Math.cos(rad45 + rad / 2) - Math.cos(rad45 - rad / 2),
+        };
 
-        if (this.particlesOptions.move.straight) {
+        if (moveOptions.straight) {
             res.horizontal = baseVelocity.x;
             res.vertical = baseVelocity.y;
 
-            if (this.particlesOptions.move.random) {
-                res.horizontal *= Math.random();
-                res.vertical *= Math.random();
+            if (moveOptions.random) {
+                res.horizontal += Utils.randomInRange(range.left, range.right) / 2;
+                res.vertical += Utils.randomInRange(range.left, range.right) / 2;
             }
         } else {
-            res.horizontal = baseVelocity.x + Math.random() - 0.5;
-            res.vertical = baseVelocity.y + Math.random() - 0.5;
+            res.horizontal = baseVelocity.x + Utils.randomInRange(range.left, range.right) / 2;
+            res.vertical = baseVelocity.y + Utils.randomInRange(range.left, range.right) / 2;
         }
 
         // const theta = 2.0 * Math.PI * Math.random();

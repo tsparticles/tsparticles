@@ -1,15 +1,27 @@
 import type { Particle } from "../../../Particle";
 import type { Container } from "../../../Container";
 import { Circle } from "../../../../Utils";
+import type { IParticlesInteractor } from "../../../Interfaces/IParticlesInteractor";
 
-export class Infecter {
-    public static infect(p1: Particle, container: Container, delta: number): void {
+export class Infecter implements IParticlesInteractor {
+    constructor(private readonly container: Container) {}
+
+    public isEnabled(): boolean {
+        return this.container.options.infection.enable;
+    }
+
+    public reset(): void {
+        // do nothing
+    }
+
+    public interact(p1: Particle, delta: number): void {
         p1.updateInfection(delta);
 
         if (p1.infectionStage === undefined) {
             return;
         }
 
+        const container = this.container;
         const options = container.options;
         const infectionOptions = options.infection;
 

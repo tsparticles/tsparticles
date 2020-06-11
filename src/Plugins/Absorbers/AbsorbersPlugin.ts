@@ -99,5 +99,6 @@ class AbsorbersPlugin implements IPlugin {
 
 const plugin = new AbsorbersPlugin();
 
-export { IAbsorberOptions, plugin as AbsorbersPlugin };
+export type { IAbsorberOptions };
+export { plugin as AbsorbersPlugin };
 export * from "./Enums";

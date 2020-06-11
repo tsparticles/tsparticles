@@ -9,6 +9,5 @@ export * from "./Point";
 export * from "./QuadTree";
 export * from "./Range";
 export * from "./Rectangle";
-export * from "./SimplexNoise";
 //export * from "./SpatialGrid";
 export * from "./Utils";

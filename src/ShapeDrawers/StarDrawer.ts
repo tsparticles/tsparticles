@@ -3,13 +3,7 @@ import type { IShapeDrawer } from "../Core/Interfaces/IShapeDrawer";
 import type { IStarShape } from "../Options/Interfaces/Particles/Shape/IStarShape";
 
 export class StarDrawer implements IShapeDrawer {
-    public draw(
-        context: CanvasRenderingContext2D,
-        particle: IParticle,
-        radius: number,
-        opacity: number,
-        _delta: number
-    ): void {
+    public draw(context: CanvasRenderingContext2D, particle: IParticle, radius: number): void {
         const star = particle.shapeData as IStarShape;
         const sides = star?.sides ?? star?.nb_sides ?? 5;
         const inset = star?.inset ?? 2;

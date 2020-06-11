@@ -53,6 +53,7 @@ export class Move implements IMove {
         this.outMode = value;
     }
 
+    public angle: number;
     public attract: Attract;
     public direction: MoveDirection;
     public enable: boolean;
@@ -66,6 +67,7 @@ export class Move implements IMove {
     public warp: boolean;
 
     constructor() {
+        this.angle = 90;
         this.attract = new Attract();
         this.direction = MoveDirection.none;
         this.enable = false;
@@ -80,46 +82,52 @@ export class Move implements IMove {
     }
 
     public load(data?: RecursivePartial<IMove>): void {
-        if (data !== undefined) {
-            this.attract.load(data.attract);
+        if (data === undefined) {
+            return;
+        }
 
-            if (data.direction !== undefined) {
-                this.direction = data.direction;
-            }
+        if (data.angle !== undefined) {
+            this.angle = data.angle;
+        }
 
-            if (data.enable !== undefined) {
-                this.enable = data.enable;
-            }
+        this.attract.load(data.attract);
 
-            this.noise.load(data.noise);
+        if (data.direction !== undefined) {
+            this.direction = data.direction;
+        }
 
-            const outMode = data.outMode ?? data.out_mode;
+        if (data.enable !== undefined) {
+            this.enable = data.enable;
+        }
 
-            if (outMode !== undefined) {
-                this.outMode = outMode;
-            }
+        this.noise.load(data.noise);
 
-            if (data.random !== undefined) {
-                this.random = data.random;
-            }
+        const outMode = data.outMode ?? data.out_mode;
 
-            if (data.speed !== undefined) {
-                this.speed = data.speed;
-            }
+        if (outMode !== undefined) {
+            this.outMode = outMode;
+        }
 
-            if (data.straight !== undefined) {
-                this.straight = data.straight;
-            }
+        if (data.random !== undefined) {
+            this.random = data.random;
+        }
 
-            this.trail.load(data.trail);
+        if (data.speed !== undefined) {
+            this.speed = data.speed;
+        }
 
-            if (data.vibrate !== undefined) {
-                this.vibrate = data.vibrate;
-            }
+        if (data.straight !== undefined) {
+            this.straight = data.straight;
+        }
 
-            if (data.warp !== undefined) {
-                this.warp = data.warp;
-            }
+        this.trail.load(data.trail);
+
+        if (data.vibrate !== undefined) {
+            this.vibrate = data.vibrate;
+        }
+
+        if (data.warp !== undefined) {
+            this.warp = data.warp;
         }
     }
 }

@@ -78,53 +78,57 @@ export class Particles implements IParticles {
     }
 
     public load(data?: RecursivePartial<IParticles>): void {
-        if (data !== undefined) {
-            if (data.color !== undefined) {
-                this.color = AnimatableColor.create(this.color, data.color);
+        if (data === undefined) {
+            return;
+        }
+
+        if (data.color !== undefined) {
+            this.color = AnimatableColor.create(this.color, data.color);
+        }
+
+        const links = data.links ?? data.lineLinked ?? data.line_linked;
+
+        if (links !== undefined) {
+            this.links.load(links);
+        }
+
+        this.move.load(data.move);
+        this.number.load(data.number);
+        this.opacity.load(data.opacity);
+        this.rotate.load(data.rotate);
+        this.shape.load(data.shape);
+        this.size.load(data.size);
+        this.shadow.load(data.shadow);
+        this.twinkle.load(data.twinkle);
+
+        const collisions = data.move?.collisions ?? data.move?.bounce;
+
+        if (collisions !== undefined) {
+            this.collisions.enable = collisions;
+        }
+
+        this.collisions.load(data.collisions);
+
+        const strokeToLoad = data.stroke ?? data.shape?.stroke;
+
+        if (strokeToLoad === undefined) {
+            return;
+        }
+
+        if (strokeToLoad instanceof Array) {
+            this.stroke = strokeToLoad.map((s) => {
+                const tmp = new Stroke();
+
+                tmp.load(s);
+
+                return tmp;
+            });
+        } else {
+            if (this.stroke instanceof Array) {
+                this.stroke = new Stroke();
             }
 
-            const links = data.links ?? data.lineLinked ?? data.line_linked;
-
-            if (links !== undefined) {
-                this.links.load(links);
-            }
-
-            this.move.load(data.move);
-            this.number.load(data.number);
-            this.opacity.load(data.opacity);
-            this.rotate.load(data.rotate);
-            this.shape.load(data.shape);
-            this.size.load(data.size);
-            this.shadow.load(data.shadow);
-            this.twinkle.load(data.twinkle);
-
-            const collisions = data.move?.collisions ?? data.move?.bounce;
-
-            if (collisions !== undefined) {
-                this.collisions.enable = collisions;
-            }
-
-            this.collisions.load(data.collisions);
-
-            const strokeToLoad = data.stroke ?? data.shape?.stroke;
-
-            if (strokeToLoad !== undefined) {
-                if (strokeToLoad instanceof Array) {
-                    this.stroke = strokeToLoad.map((s) => {
-                        const tmp = new Stroke();
-
-                        tmp.load(s);
-
-                        return tmp;
-                    });
-                } else {
-                    if (this.stroke instanceof Array) {
-                        this.stroke = new Stroke();
-                    }
-
-                    this.stroke.load(strokeToLoad);
-                }
-            }
+            this.stroke.load(strokeToLoad);
         }
     }
 }

@@ -11,30 +11,32 @@ export class Background implements IBackground {
     public opacity?: number;
 
     public load(data?: RecursivePartial<IBackground>): void {
-        if (data !== undefined) {
-            if (data.color !== undefined) {
-                this.color = OptionsColor.create(this.color, data.color);
-            }
+        if (data === undefined) {
+            return;
+        }
 
-            if (data.image !== undefined) {
-                this.image = data.image;
-            }
+        if (data.color !== undefined) {
+            this.color = OptionsColor.create(this.color, data.color);
+        }
 
-            if (data.position !== undefined) {
-                this.position = data.position;
-            }
+        if (data.image !== undefined) {
+            this.image = data.image;
+        }
 
-            if (data.repeat !== undefined) {
-                this.repeat = data.repeat;
-            }
+        if (data.position !== undefined) {
+            this.position = data.position;
+        }
 
-            if (data.size !== undefined) {
-                this.size = data.size;
-            }
+        if (data.repeat !== undefined) {
+            this.repeat = data.repeat;
+        }
 
-            if (data.opacity !== undefined) {
-                this.opacity = data.opacity;
-            }
+        if (data.size !== undefined) {
+            this.size = data.size;
+        }
+
+        if (data.opacity !== undefined) {
+            this.opacity = data.opacity;
         }
     }
 }

@@ -23,10 +23,10 @@ export class OptionsColor implements IOptionsColor {
     }
 
     public load(data?: RecursivePartial<IOptionsColor>): void {
-        if (data !== undefined) {
-            if (data.value !== undefined) {
-                this.value = data.value;
-            }
+        if (data?.value === undefined) {
+            return;
         }
+
+        this.value = data.value;
     }
 }

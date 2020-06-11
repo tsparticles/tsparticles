@@ -99,5 +99,6 @@ class EmittersPlugin implements IPlugin {
 
 const plugin = new EmittersPlugin();
 
-export { IEmitterOptions, plugin as EmittersPlugin };
+export type { IEmitterOptions };
+export { plugin as EmittersPlugin };
 export * from "./Enums";

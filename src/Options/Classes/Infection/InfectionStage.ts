@@ -17,21 +17,23 @@ export class InfectionStage implements IInfectionStage {
     }
 
     public load(data?: RecursivePartial<IInfectionStage>): void {
-        if (data !== undefined) {
-            if (data.color !== undefined) {
-                this.color = OptionsColor.create(this.color, data.color);
-            }
+        if (data === undefined) {
+            return;
+        }
 
-            this.duration = data.duration;
-            this.infectedStage = data.infectedStage;
+        if (data.color !== undefined) {
+            this.color = OptionsColor.create(this.color, data.color);
+        }
 
-            if (data.radius !== undefined) {
-                this.radius = data.radius;
-            }
+        this.duration = data.duration;
+        this.infectedStage = data.infectedStage;
 
-            if (data.rate !== undefined) {
-                this.rate = data.rate;
-            }
+        if (data.radius !== undefined) {
+            this.radius = data.radius;
+        }
+
+        if (data.rate !== undefined) {
+            this.rate = data.rate;
         }
     }
 }

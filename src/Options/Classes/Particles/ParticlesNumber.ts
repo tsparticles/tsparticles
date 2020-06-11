@@ -28,18 +28,20 @@ export class ParticlesNumber implements IParticlesNumber {
     }
 
     public load(data?: RecursivePartial<IParticlesNumber>): void {
-        if (data !== undefined) {
-            this.density.load(data.density);
+        if (data === undefined) {
+            return;
+        }
 
-            const limit = data.limit ?? data.max;
+        this.density.load(data.density);
 
-            if (limit !== undefined) {
-                this.limit = limit;
-            }
+        const limit = data.limit ?? data.max;
 
-            if (data.value !== undefined) {
-                this.value = data.value;
-            }
+        if (limit !== undefined) {
+            this.limit = limit;
+        }
+
+        if (data.value !== undefined) {
+            this.value = data.value;
         }
     }
 }

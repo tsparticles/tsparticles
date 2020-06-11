@@ -7,22 +7,24 @@ import { EmitterSize } from "./Options/Classes/EmitterSize";
 import type { Emitters } from "./Emitters";
 import type { RecursivePartial } from "../../Types/RecursivePartial";
 import type { IParticles } from "../../Options/Interfaces/Particles/IParticles";
+import { IEmitterSize } from "./Options/Interfaces/IEmitterSize";
 
 export class EmitterInstance {
     public position: ICoordinates;
     public size: EmitterSize;
     public emitterOptions: IEmitter;
 
-    private readonly emitters: Emitters;
-    private readonly container: Container;
     private readonly initialPosition?: ICoordinates;
     private readonly particlesOptions: RecursivePartial<IParticles>;
     private startInterval?: number;
     private lifeCount: number;
 
-    constructor(emitters: Emitters, emitterOptions: IEmitter, position?: ICoordinates) {
-        this.emitters = emitters;
-        this.container = emitters.container;
+    constructor(
+        private readonly emitters: Emitters,
+        private readonly container: Container,
+        emitterOptions: IEmitter,
+        position?: ICoordinates
+    ) {
         this.initialPosition = position;
         this.emitterOptions = Utils.deepExtend({}, emitterOptions);
         this.position = this.initialPosition ?? this.calcPosition();
@@ -45,7 +47,7 @@ export class EmitterInstance {
 
         this.size =
             this.emitterOptions.size ??
-            (() => {
+            ((): IEmitterSize => {
                 const size = new EmitterSize();
 
                 size.load({

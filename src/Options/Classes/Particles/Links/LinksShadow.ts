@@ -16,16 +16,18 @@ export class LinksShadow implements ILinksShadow {
     }
 
     public load(data?: RecursivePartial<ILinksShadow>): void {
-        if (data !== undefined) {
-            if (data.blur !== undefined) {
-                this.blur = data.blur;
-            }
+        if (data === undefined) {
+            return;
+        }
 
-            this.color = OptionsColor.create(this.color, data.color);
+        if (data.blur !== undefined) {
+            this.blur = data.blur;
+        }
 
-            if (data.enable !== undefined) {
-                this.enable = data.enable;
-            }
+        this.color = OptionsColor.create(this.color, data.color);
+
+        if (data.enable !== undefined) {
+            this.enable = data.enable;
         }
     }
 }

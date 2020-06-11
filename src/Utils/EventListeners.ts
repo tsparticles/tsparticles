@@ -7,8 +7,6 @@ import { Constants } from "./Constants";
  * Particles container event listeners manager
  */
 export class EventListeners {
-    private readonly container: Container;
-
     private readonly mouseMoveHandler: EventListenerOrEventListenerObject;
     private readonly touchStartHandler: EventListenerOrEventListenerObject;
     private readonly touchMoveHandler: EventListenerOrEventListenerObject;
@@ -26,8 +24,7 @@ export class EventListeners {
      * Events listener constructor
      * @param container the calling container
      */
-    constructor(container: Container) {
-        this.container = container;
+    constructor(private readonly container: Container) {
         this.canPush = true;
 
         this.mouseMoveHandler = (e: Event): void => this.mouseTouchMove(e);
@@ -165,9 +162,7 @@ export class EventListeners {
         /* density particles enabled */
         container.densityAutoParticles();
 
-        for (const id in container.plugins) {
-            const plugin = container.plugins[id];
-
+        for (const [, plugin] of container.plugins) {
             if (plugin.resize !== undefined) {
                 plugin.resize();
             }
@@ -303,9 +298,7 @@ export class EventListeners {
             return;
         }
 
-        for (const id in container.plugins) {
-            const plugin = container.plugins[id];
-
+        for (const [, plugin] of container.plugins) {
             if (plugin.clickPositionValid !== undefined) {
                 handled = plugin.clickPositionValid(mousePosition);
 
@@ -341,14 +334,14 @@ export class EventListeners {
 
             container.interactivity.mouse.clickTime = new Date().getTime();
 
-            if (options.interactivity.events.onClick.mode instanceof Array) {
-                for (const mode of options.interactivity.events.onClick.mode) {
+            const onClick = options.interactivity.events.onClick;
+
+            if (onClick.mode instanceof Array) {
+                for (const mode of onClick.mode) {
                     this.handleClickMode(mode);
                 }
             } else {
-                const mode = options.interactivity.events.onClick.mode;
-
-                this.handleClickMode(mode);
+                this.handleClickMode(onClick.mode);
             }
         }
 
@@ -414,9 +407,7 @@ export class EventListeners {
                 break;
         }
 
-        for (const id in container.plugins) {
-            const plugin = container.plugins[id];
-
+        for (const [, plugin] of container.plugins) {
             if (plugin.handleClickMode) {
                 plugin.handleClickMode(mode);
             }

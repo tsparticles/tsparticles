@@ -1,46 +1,30 @@
 import type { Container } from "./Container";
 import type { Particle } from "./Particle";
+import { Utils } from "../Utils";
 
 export class Retina {
-    public bubbleModeDistance: number;
-    public bubbleModeSize: number;
-    public connectModeDistance: number;
-    public connectModeRadius: number;
-    public grabModeDistance: number;
-    public repulseModeDistance: number;
-    public slowModeRadius: number;
-    public linksDistance: number;
-    public linksWidth: number;
-    public moveSpeed: number;
-    public sizeValue: number;
-    public sizeAnimationSpeed: number;
-    public pixelRatio: number;
+    public bubbleModeDistance!: number;
+    public bubbleModeSize?: number;
+    public connectModeDistance!: number;
+    public connectModeRadius!: number;
+    public grabModeDistance!: number;
+    public repulseModeDistance!: number;
+    public slowModeRadius!: number;
+    public linksDistance!: number;
+    public linksWidth!: number;
+    public moveSpeed!: number;
+    public sizeValue!: number;
+    public sizeAnimationSpeed!: number;
+    public pixelRatio!: number;
 
-    private readonly container: Container;
-
-    constructor(container: Container) {
-        this.container = container;
-        this.bubbleModeDistance = 0;
-        this.bubbleModeSize = 0;
-        this.connectModeDistance = 0;
-        this.connectModeRadius = 0;
-        this.grabModeDistance = 0;
-        this.repulseModeDistance = 0;
-        this.slowModeRadius = 0;
-        this.linksDistance = 0;
-        this.linksWidth = 0;
-        this.moveSpeed = 0;
-        this.sizeValue = 0;
-        this.sizeAnimationSpeed = 0;
-        this.pixelRatio = 1;
-    }
+    constructor(private readonly container: Container) {}
 
     public init(): void {
         const container = this.container;
         const options = container.options;
 
         if (options.detectRetina) {
-            this.pixelRatio = window.devicePixelRatio;
+            this.pixelRatio = Utils.isSsr() ? 1 : window.devicePixelRatio;
         } else {
             this.pixelRatio = 1;
         }
@@ -70,7 +54,10 @@ export class Retina {
         this.repulseModeDistance = modes.repulse.distance * ratio;
         this.slowModeRadius = modes.slow.radius * ratio;
         this.bubbleModeDistance = modes.bubble.distance * ratio;
-        this.bubbleModeSize = (modes.bubble.size ?? this.sizeValue * 2) * ratio;
+
+        if (modes.bubble.size) {
+            this.bubbleModeSize = modes.bubble.size * ratio;
+        }
     }
 
     public initParticle(particle: Particle): void {
@@ -87,9 +74,5 @@ export class Retina {
         }
 
         particle.sizeAnimationSpeed = particlesOptions.size.animation.speed * ratio;
-    }
-
-    public reset(): void {
-        // nothing to reset
     }
 }

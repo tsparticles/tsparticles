@@ -12,9 +12,11 @@ export class Twinkle implements ITwinkle {
     }
 
     public load(data?: RecursivePartial<ITwinkle>): void {
-        if (data !== undefined) {
-            this.lines.load(data.lines);
-            this.particles.load(data.particles);
+        if (data === undefined) {
+            return;
         }
+
+        this.lines.load(data.lines);
+        this.particles.load(data.particles);
     }
 }

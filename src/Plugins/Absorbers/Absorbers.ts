@@ -12,13 +12,11 @@ import { AbsorberClickMode } from "./Enums";
 import { IAbsorberOptions } from "./Options/Interfaces/IAbsorberOptions";
 
 export class Absorbers implements IContainerPlugin {
-    public readonly container: Container;
     public array: AbsorberInstance[];
     public absorbers: SingleOrMultiple<Absorber>;
     public interactivityAbsorbers: SingleOrMultiple<Absorber>;
 
-    constructor(container: Container) {
-        this.container = container;
+    constructor(private readonly container: Container) {
         this.array = [];
         this.absorbers = [];
         this.interactivityAbsorbers = [];
@@ -69,21 +67,21 @@ export class Absorbers implements IContainerPlugin {
 
         if (this.absorbers instanceof Array) {
             for (const absorberOptions of this.absorbers) {
-                const absorber = new AbsorberInstance(this, absorberOptions);
+                const absorber = new AbsorberInstance(this, this.container, absorberOptions);
 
                 this.addAbsorber(absorber);
             }
         } else {
             const absorberOptions = this.absorbers;
-            const absorber = new AbsorberInstance(this, absorberOptions);
+            const absorber = new AbsorberInstance(this, this.container, absorberOptions);
 
             this.addAbsorber(absorber);
         }
     }
 
-    public particleUpdate(particle: Particle, delta: number): void {
+    public particleUpdate(particle: Particle): void {
         for (const absorber of this.array) {
-            absorber.attract(particle, delta);
+            absorber.attract(particle);
 
             if (particle.destroyed) {
                 break;
@@ -129,7 +127,7 @@ export class Absorbers implements IContainerPlugin {
                 absorbersModeOptions ??
                 (absorberOptions instanceof Array ? Utils.itemFromArray(absorberOptions) : absorberOptions);
             const aPosition = container.interactivity.mouse.clickPosition;
-            const absorber = new AbsorberInstance(this, absorbersOptions, aPosition);
+            const absorber = new AbsorberInstance(this, this.container, absorbersOptions, aPosition);
 
             this.addAbsorber(absorber);
         }

@@ -77,19 +77,18 @@ export class ColorUtils {
 
         if (maxColor != minColor) {
             //Calculate S:
-            if (res.l < 0.5) {
-                res.s = (maxColor - minColor) / (maxColor + minColor);
-            } else {
-                res.s = (maxColor - minColor) / (2.0 - maxColor - minColor);
-            }
+            res.s =
+                res.l < 0.5
+                    ? (maxColor - minColor) / (maxColor + minColor)
+                    : (maxColor - minColor) / (2.0 - maxColor - minColor);
             //Calculate H:
-            if (r1 === maxColor) {
-                res.h = (g1 - b1) / (maxColor - minColor);
-            } else if (g1 === maxColor) {
-                res.h = 2.0 + (b1 - r1) / (maxColor - minColor);
-            } else {
-                res.h = 4.0 + (r1 - g1) / (maxColor - minColor);
-            }
+            res.h =
+                r1 === maxColor
+                    ? (g1 - b1) / (maxColor - minColor)
+                    : (res.h =
+                          g1 === maxColor
+                              ? 2.0 + (b1 - r1) / (maxColor - minColor)
+                              : 4.0 + (r1 - g1) / (maxColor - minColor));
         }
 
         res.l *= 100;

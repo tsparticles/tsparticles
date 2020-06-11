@@ -10,22 +10,22 @@ import type { RecursivePartial } from "../Types/RecursivePartial";
 import { Options } from "../Options/Classes/Options";
 import type { IContainerPlugin } from "./Interfaces/IContainerPlugin";
 import type { IShapeDrawer } from "./Interfaces/IShapeDrawer";
-import { EventListeners, Plugins, SimplexNoise } from "../Utils";
+import { EventListeners, Plugins, Utils } from "../Utils";
+import { Particle } from "./Particle";
+import { INoiseValue } from "./Interfaces/INoiseValue";
+import { INoise } from "./Interfaces/INoise";
 
 /**
  * The object loaded into an HTML element, it'll contain options loaded and all data to let everything working
  */
 export class Container {
-    public readonly sourceOptions?: RecursivePartial<IOptions>;
-    public readonly id: string;
     public interactivity: IContainerInteractivity;
     public options: Options;
     public retina: Retina;
     public canvas: Canvas;
-    public simplex: SimplexNoise;
-    public drawers: { [type: string]: IShapeDrawer };
+    public drawers: Map<string, IShapeDrawer>;
     public particles: Particles;
-    public plugins: { [id: string]: IContainerPlugin };
+    public plugins: Map<string, IContainerPlugin>;
     public bubble: IBubble;
     public repulse: IRepulse;
     public lastFrameTime: number;
@@ -35,6 +35,8 @@ export class Container {
     public destroyed: boolean;
     public density: number;
 
+    public readonly noise: INoise;
+
     private paused: boolean;
     private drawAnimationFrame?: number;
     private eventListeners: EventListeners;
@@ -43,28 +45,44 @@ export class Container {
      * This is the core class, create an instance to have a new working particles manager
      * @constructor
      * @param id the id to identify this instance
-     * @param params the options to load
+     * @param sourceOptions the options to load
      * @param presets all the presets to load with options
      */
-    constructor(id: string, params?: RecursivePartial<IOptions>, ...presets: string[]) {
+    constructor(
+        public readonly id: string,
+        public readonly sourceOptions?: RecursivePartial<IOptions>,
+        ...presets: string[]
+    ) {
         this.started = false;
         this.destroyed = false;
-        this.id = id;
         this.paused = true;
-        this.sourceOptions = params;
         this.lastFrameTime = 0;
         this.pageHidden = false;
         this.retina = new Retina(this);
         this.canvas = new Canvas(this);
         this.particles = new Particles(this);
         this.drawer = new FrameManager(this);
+        this.noise = {
+            generate: (): INoiseValue => {
+                return {
+                    angle: Math.random() * Math.PI * 2,
+                    length: Math.random(),
+                };
+            },
+            init: (): void => {
+                // nothing required
+            },
+            update: (): void => {
+                // nothing required
+            },
+        };
         this.interactivity = {
             mouse: {},
         };
         this.bubble = {};
         this.repulse = { particles: [] };
-        this.plugins = {};
-        this.drawers = {};
+        this.plugins = new Map<string, IContainerPlugin>();
+        this.drawers = new Map<string, IShapeDrawer>();
         this.density = 1;
 
         /* tsParticles variables with default values */
@@ -74,8 +92,14 @@ export class Container {
             this.options.load(Plugins.getPreset(preset));
         }
 
-        for (const type of Plugins.getSupportedShapes()) {
-            this.drawers[type] = Plugins.getShapeDrawer(type);
+        const shapes = Plugins.getSupportedShapes();
+
+        for (const type of shapes) {
+            const drawer = Plugins.getShapeDrawer(type);
+
+            if (drawer) {
+                this.drawers.set(type, drawer);
+            }
         }
 
         /* params settings */
@@ -83,20 +107,14 @@ export class Container {
             this.options.load(this.sourceOptions);
         }
 
-        this.simplex = new SimplexNoise();
-
         /* ---------- tsParticles - start ------------ */
         this.eventListeners = new EventListeners(this);
     }
 
-    public static requestFrame(callback: FrameRequestCallback): number {
-        return window.customRequestAnimationFrame(callback);
-    }
-
-    public static cancelAnimation(handle: number): void {
-        window.cancelAnimationFrame(handle);
-    }
-
+    /**
+     * Starts animations and resume from pause
+     * @param force
+     */
     public play(force?: boolean): void {
         const needsUpdate = this.paused || force;
 
@@ -105,9 +123,7 @@ export class Container {
         }
 
         if (needsUpdate) {
-            for (const id in this.plugins) {
-                const plugin = this.plugins[id];
-
+            for (const [, plugin] of this.plugins) {
                 if (plugin.play) {
                     plugin.play();
                 }
@@ -119,38 +135,91 @@ export class Container {
         this.draw();
     }
 
+    /**
+     * Pauses animations
+     */
     public pause(): void {
         if (this.drawAnimationFrame !== undefined) {
-            Container.cancelAnimation(this.drawAnimationFrame);
+            Utils.cancelAnimation(this.drawAnimationFrame);
 
             delete this.drawAnimationFrame;
         }
 
-        if (!this.paused) {
-            for (const id in this.plugins) {
-                const plugin = this.plugins[id];
+        if (this.paused) {
+            return;
+        }
 
-                if (plugin.pause) {
-                    plugin.pause();
-                }
+        for (const [, plugin] of this.plugins) {
+            if (plugin.pause) {
+                plugin.pause();
             }
+        }
 
-            if (!this.pageHidden) {
-                this.paused = true;
-            }
+        if (!this.pageHidden) {
+            this.paused = true;
         }
     }
 
+    /**
+     * Draws a frame
+     */
     public draw(): void {
-        this.drawAnimationFrame = Container.requestFrame((t) => this.drawer?.nextFrame(t));
+        this.drawAnimationFrame = Utils.animate((t) => this.drawer?.nextFrame(t));
     }
 
+    /**
+     * Gets the animation status
+     * @returns `true` is playing, `false` is paused
+     */
     public getAnimationStatus(): boolean {
         return !this.paused;
     }
 
+    /**
+     * Customise noise generation
+     * @param noiseOrGenerator the [[INoise]] object or a function that generates a [[INoiseValue]] object from [[Particle]]
+     * @param init the [[INoise]] init function, if the first parameter is a generator function
+     * @param update the [[INoise]] update function, if the first parameter is a generator function
+     */
+    public setNoise(
+        noiseOrGenerator?: INoise | ((particle: Particle) => INoiseValue),
+        init?: () => void,
+        update?: () => void
+    ): void {
+        if (!noiseOrGenerator) {
+            return;
+        }
+
+        if (typeof noiseOrGenerator === "function") {
+            this.noise.generate = noiseOrGenerator;
+
+            if (init) {
+                this.noise.init = init;
+            }
+
+            if (update) {
+                this.noise.update = update;
+            }
+        } else {
+            if (noiseOrGenerator.generate) {
+                this.noise.generate = noiseOrGenerator.generate;
+            }
+
+            if (noiseOrGenerator.init) {
+                this.noise.init = noiseOrGenerator.init;
+            }
+
+            if (noiseOrGenerator.update) {
+                this.noise.update = noiseOrGenerator.update;
+            }
+        }
+    }
+
     /* ---------- tsParticles functions - vendors ------------ */
 
+    /**
+     * Aligns particles number to the specified density in the current canvas size
+     */
     public densityAutoParticles(): void {
         this.initDensityFactor();
 
@@ -167,23 +236,12 @@ export class Container {
         }
     }
 
-    public initDensityFactor(): void {
-        const densityOptions = this.options.particles.number.density;
-
-        if (!this.canvas.element || !densityOptions.enable) {
-            return;
-        }
-
-        const canvas = this.canvas.element;
-        const pxRatio = this.retina.pixelRatio;
-
-        this.density = (canvas.width * canvas.height) / (densityOptions.factor * pxRatio * densityOptions.area);
-    }
-
+    /**
+     * Destroys the current container, invalidating it
+     */
     public destroy(): void {
         this.stop();
 
-        this.retina.reset();
         this.canvas.destroy();
 
         delete this.interactivity;
@@ -196,29 +254,38 @@ export class Container {
         delete this.drawer;
         delete this.eventListeners;
 
-        for (const type in this.drawers) {
-            const drawer = this.drawers[type];
-
-            if (drawer.destroy !== undefined) {
+        for (const [, drawer] of this.drawers) {
+            if (drawer.destroy) {
                 drawer.destroy(this);
             }
         }
 
-        this.drawers = {};
+        this.drawers = new Map<string, IShapeDrawer>();
         this.destroyed = true;
     }
 
     /**
      * @deprecated this method is deprecated, please use the exportImage method
+     * @param callback The callback to handle the image
      */
     public exportImg(callback: BlobCallback): void {
         this.exportImage(callback);
     }
 
+    /**
+     * Exports the current canvas image, `background` property of `options` won't be rendered because it's css related
+     * @param callback The callback to handle the image
+     * @param type The exported image type
+     * @param quality The exported image quality
+     */
     public exportImage(callback: BlobCallback, type?: string, quality?: number): void {
         return this.canvas.element?.toBlob(callback, type ?? "image/png", quality);
     }
 
+    /**
+     * Exports the current configuration using `options` property
+     * @returns a JSON string created from `options` property
+     */
     public exportConfiguration(): string {
         return JSON.stringify(this.options, undefined, 2);
     }
@@ -229,6 +296,9 @@ export class Container {
         await this.start();
     }
 
+    /**
+     * Stops the container, opposite to `start`. Clears some resources and stops events.
+     */
     public stop(): void {
         if (!this.started) {
             return;
@@ -238,23 +308,23 @@ export class Container {
         this.eventListeners.removeListeners();
         this.pause();
         this.particles.clear();
-        this.retina.reset();
         this.canvas.clear();
 
-        for (const id in this.plugins) {
-            const plugin = this.plugins[id] as IContainerPlugin;
-
-            if (plugin.stop !== undefined) {
+        for (const [, plugin] of this.plugins) {
+            if (plugin.stop) {
                 plugin.stop();
             }
         }
 
-        this.plugins = {};
+        this.plugins = new Map<string, IContainerPlugin>();
         this.particles.linksColors = {};
 
         delete this.particles.linksColor;
     }
 
+    /**
+     * Starts the container, initializes what are needed to create animations and event handling
+     */
     public async start(): Promise<void> {
         if (this.started) {
             return;
@@ -266,9 +336,7 @@ export class Container {
 
         this.eventListeners.addListeners();
 
-        for (const id in this.plugins) {
-            const plugin = this.plugins[id];
-
+        for (const [, plugin] of this.plugins) {
             if (plugin.startAsync !== undefined) {
                 await plugin.startAsync();
             } else if (plugin.start !== undefined) {
@@ -286,22 +354,18 @@ export class Container {
 
         const availablePlugins = Plugins.getAvailablePlugins(this);
 
-        for (const id in availablePlugins) {
-            this.plugins[id] = availablePlugins[id];
+        for (const [id, plugin] of availablePlugins) {
+            this.plugins.set(id, plugin);
         }
 
-        for (const type in this.drawers) {
-            const drawer = this.drawers[type];
-
-            if (drawer.init !== undefined) {
+        for (const [, drawer] of this.drawers) {
+            if (drawer.init) {
                 await drawer.init(this);
             }
         }
 
-        for (const id in this.plugins) {
-            const plugin = this.plugins[id];
-
-            if (plugin.init !== undefined) {
+        for (const [, plugin] of this.plugins) {
+            if (plugin.init) {
                 plugin.init(this.options);
             } else if (plugin.initAsync !== undefined) {
                 await plugin.initAsync(this.options);
@@ -310,5 +374,18 @@ export class Container {
 
         this.particles.init();
         this.densityAutoParticles();
+    }
+
+    private initDensityFactor(): void {
+        const densityOptions = this.options.particles.number.density;
+
+        if (!this.canvas.element || !densityOptions.enable) {
+            return;
+        }
+
+        const canvas = this.canvas.element;
+        const pxRatio = this.retina.pixelRatio;
+
+        this.density = (canvas.width * canvas.height) / (densityOptions.factor * pxRatio * densityOptions.area);
     }
 }

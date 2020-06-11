@@ -39,5 +39,6 @@ class PolygonMaskPlugin implements IPlugin {
 
 const plugin = new PolygonMaskPlugin();
 
-export { IPolygonMaskOptions, plugin as PolygonMaskPlugin };
+export type { IPolygonMaskOptions };
+export { plugin as PolygonMaskPlugin };
 export * from "./Enums";

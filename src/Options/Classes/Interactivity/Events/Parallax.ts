@@ -13,18 +13,20 @@ export class Parallax implements IParallax {
     }
 
     public load(data?: RecursivePartial<IParallax>): void {
-        if (data !== undefined) {
-            if (data.enable !== undefined) {
-                this.enable = data.enable;
-            }
+        if (data === undefined) {
+            return;
+        }
 
-            if (data.force !== undefined) {
-                this.force = data.force;
-            }
+        if (data.enable !== undefined) {
+            this.enable = data.enable;
+        }
 
-            if (data.smooth !== undefined) {
-                this.smooth = data.smooth;
-            }
+        if (data.force !== undefined) {
+            this.force = data.force;
+        }
+
+        if (data.smooth !== undefined) {
+            this.smooth = data.smooth;
         }
     }
 }

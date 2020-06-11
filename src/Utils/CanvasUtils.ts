@@ -297,7 +297,7 @@ export class CanvasUtils {
             return;
         }
 
-        const drawer = container.drawers[particle.shape];
+        const drawer = container.drawers.get(particle.shape);
 
         if (!drawer) {
             return;
@@ -318,7 +318,7 @@ export class CanvasUtils {
             return;
         }
 
-        const drawer = container.drawers[particle.shape];
+        const drawer = container.drawers.get(particle.shape);
 
         if (!drawer?.afterEffect) {
             return;

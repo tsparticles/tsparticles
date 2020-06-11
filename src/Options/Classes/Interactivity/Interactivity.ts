@@ -33,24 +33,26 @@ export class Interactivity implements IInteractivity {
     }
 
     public load(data?: RecursivePartial<IInteractivity>): void {
-        if (data !== undefined) {
-            const detectsOn = data.detectsOn ?? data.detect_on;
+        if (data === undefined) {
+            return;
+        }
 
-            if (detectsOn !== undefined) {
-                this.detectsOn = detectsOn;
-            }
+        const detectsOn = data.detectsOn ?? data.detect_on;
 
-            this.events.load(data.events);
-            this.modes.load(data.modes);
+        if (detectsOn !== undefined) {
+            this.detectsOn = detectsOn;
+        }
 
-            if (data.modes?.slow?.active === true) {
-                if (this.events.onHover.mode instanceof Array) {
-                    if (this.events.onHover.mode.indexOf(HoverMode.slow) < 0) {
-                        this.events.onHover.mode.push(HoverMode.slow);
-                    }
-                } else if (this.events.onHover.mode !== HoverMode.slow) {
-                    this.events.onHover.mode = [this.events.onHover.mode, HoverMode.slow];
+        this.events.load(data.events);
+        this.modes.load(data.modes);
+
+        if (data.modes?.slow?.active === true) {
+            if (this.events.onHover.mode instanceof Array) {
+                if (this.events.onHover.mode.indexOf(HoverMode.slow) < 0) {
+                    this.events.onHover.mode.push(HoverMode.slow);
                 }
+            } else if (this.events.onHover.mode !== HoverMode.slow) {
+                this.events.onHover.mode = [this.events.onHover.mode, HoverMode.slow];
             }
         }
     }

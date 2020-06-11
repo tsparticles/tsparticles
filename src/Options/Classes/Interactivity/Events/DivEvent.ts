@@ -63,24 +63,26 @@ export class DivEvent implements IDivEvent {
     }
 
     public load(data?: RecursivePartial<IDivEvent>): void {
-        if (data !== undefined) {
-            const ids = data.ids ?? data.elementId ?? data.el;
+        if (data === undefined) {
+            return;
+        }
 
-            if (ids !== undefined) {
-                this.ids = ids;
-            }
+        const ids = data.ids ?? data.elementId ?? data.el;
 
-            if (data.enable !== undefined) {
-                this.enable = data.enable;
-            }
+        if (ids !== undefined) {
+            this.ids = ids;
+        }
 
-            if (data.mode !== undefined) {
-                this.mode = data.mode;
-            }
+        if (data.enable !== undefined) {
+            this.enable = data.enable;
+        }
 
-            if (data.type !== undefined) {
-                this.type = data.type;
-            }
+        if (data.mode !== undefined) {
+            this.mode = data.mode;
+        }
+
+        if (data.type !== undefined) {
+            this.type = data.type;
         }
     }
 }

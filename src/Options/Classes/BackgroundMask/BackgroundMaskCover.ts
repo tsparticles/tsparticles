@@ -12,14 +12,16 @@ export class BackgroundMaskCover implements IBackgroundMaskCover {
     }
 
     public load(data?: RecursivePartial<IBackgroundMaskCover> | undefined): void {
-        if (data !== undefined) {
-            if (data.color !== undefined) {
-                this.color = OptionsColor.create(this.color, data.color);
-            }
+        if (data === undefined) {
+            return;
+        }
 
-            if (data.opacity !== undefined) {
-                this.opacity = data.opacity;
-            }
+        if (data.color !== undefined) {
+            this.color = OptionsColor.create(this.color, data.color);
+        }
+
+        if (data.opacity !== undefined) {
+            this.opacity = data.opacity;
         }
     }
 }

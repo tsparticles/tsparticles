@@ -13,18 +13,20 @@ export class RotateAnimation implements IRotateAnimation {
     }
 
     public load(data?: RecursivePartial<IRotateAnimation>): void {
-        if (data !== undefined) {
-            if (data.enable !== undefined) {
-                this.enable = data.enable;
-            }
+        if (data === undefined) {
+            return;
+        }
 
-            if (data.speed !== undefined) {
-                this.speed = data.speed;
-            }
+        if (data.enable !== undefined) {
+            this.enable = data.enable;
+        }
 
-            if (data.sync !== undefined) {
-                this.sync = data.sync;
-            }
+        if (data.speed !== undefined) {
+            this.speed = data.speed;
+        }
+
+        if (data.sync !== undefined) {
+            this.sync = data.sync;
         }
     }
 }

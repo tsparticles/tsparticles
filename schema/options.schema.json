@@ -1,6 +1,10 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
   "definitions": {
+    "CollisionMode": {
+      "enum": ["absorb", "bounce", "destroy"],
+      "type": "string"
+    },
     "DestroyType": {
       "enum": ["max", "min", "none"],
       "type": "string"
@@ -179,8 +183,74 @@
         "distance": {
           "type": "number"
         },
+        "divs": {
+          "anyOf": [
+            {
+              "$ref": "#/definitions/IBubbleDiv"
+            },
+            {
+              "items": {
+                "$ref": "#/definitions/IBubbleDiv"
+              },
+              "type": "array"
+            }
+          ]
+        },
         "duration": {
           "type": "number"
+        },
+        "opacity": {
+          "type": "number"
+        },
+        "size": {
+          "type": "number"
+        }
+      },
+      "type": "object"
+    },
+    "IBubbleDiv": {
+      "properties": {
+        "color": {
+          "anyOf": [
+            {
+              "$ref": "#/definitions/IColor"
+            },
+            {
+              "items": {
+                "anyOf": [
+                  {
+                    "$ref": "#/definitions/IColor"
+                  },
+                  {
+                    "type": "string"
+                  }
+                ]
+              },
+              "type": "array"
+            },
+            {
+              "type": "string"
+            }
+          ]
+        },
+        "distance": {
+          "type": "number"
+        },
+        "duration": {
+          "type": "number"
+        },
+        "ids": {
+          "anyOf": [
+            {
+              "items": {
+                "type": "string"
+              },
+              "type": "array"
+            },
+            {
+              "type": "string"
+            }
+          ]
         },
         "opacity": {
           "type": "number"
@@ -257,8 +327,7 @@
           "type": "boolean"
         },
         "mode": {
-          "enum": ["bounce"],
-          "type": "string"
+          "$ref": "#/definitions/CollisionMode"
         }
       },
       "type": "object"
@@ -766,6 +835,9 @@
     },
     "IMove": {
       "properties": {
+        "angle": {
+          "type": "number"
+        },
         "attract": {
           "$ref": "#/definitions/IAttract"
         },
@@ -818,9 +890,6 @@
         },
         "enable": {
           "type": "boolean"
-        },
-        "factor": {
-          "$ref": "#/definitions/INoiseFactor"
         }
       },
       "type": "object"
@@ -836,34 +905,12 @@
       },
       "type": "object"
     },
-    "INoiseFactor": {
-      "properties": {
-        "horizontal": {
-          "$ref": "#/definitions/INoiseValue"
-        },
-        "vertical": {
-          "$ref": "#/definitions/INoiseValue"
-        }
-      },
-      "type": "object"
-    },
     "INoiseRandom": {
       "properties": {
         "enable": {
           "type": "boolean"
         },
         "minimumValue": {
-          "type": "number"
-        }
-      },
-      "type": "object"
-    },
-    "INoiseValue": {
-      "properties": {
-        "offset": {
-          "type": "number"
-        },
-        "value": {
           "type": "number"
         }
       },
@@ -1059,8 +1106,48 @@
         "distance": {
           "type": "number"
         },
+        "divs": {
+          "anyOf": [
+            {
+              "$ref": "#/definitions/IRepulseDiv"
+            },
+            {
+              "items": {
+                "$ref": "#/definitions/IRepulseDiv"
+              },
+              "type": "array"
+            }
+          ]
+        },
         "duration": {
           "type": "number"
+        },
+        "speed": {
+          "type": "number"
+        }
+      },
+      "type": "object"
+    },
+    "IRepulseDiv": {
+      "properties": {
+        "distance": {
+          "type": "number"
+        },
+        "duration": {
+          "type": "number"
+        },
+        "ids": {
+          "anyOf": [
+            {
+              "items": {
+                "type": "string"
+              },
+              "type": "array"
+            },
+            {
+              "type": "string"
+            }
+          ]
         },
         "speed": {
           "type": "number"
@@ -1169,6 +1256,19 @@
           "type": "object"
         },
         "image": {
+          "anyOf": [
+            {
+              "$ref": "#/definitions/IImageShape"
+            },
+            {
+              "items": {
+                "$ref": "#/definitions/IImageShape"
+              },
+              "type": "array"
+            }
+          ]
+        },
+        "images": {
           "anyOf": [
             {
               "$ref": "#/definitions/IImageShape"
@@ -1464,13 +1564,7 @@
     "RecursivePartial<(data?:RecursivePartial<INoiseDelay>|undefined)=>void>": {
       "type": "object"
     },
-    "RecursivePartial<(data?:RecursivePartial<INoiseFactor>|undefined)=>void>": {
-      "type": "object"
-    },
     "RecursivePartial<(data?:RecursivePartial<INoiseRandom>|undefined)=>void>": {
-      "type": "object"
-    },
-    "RecursivePartial<(data?:RecursivePartial<INoiseValue>|undefined)=>void>": {
       "type": "object"
     },
     "RecursivePartial<(data?:RecursivePartial<IOpacity>|undefined)=>void>": {
@@ -1674,7 +1768,7 @@
           "$ref": "#/definitions/RecursivePartial<(data?:RecursivePartial<ICollisions>|undefined)=>void>"
         },
         "mode": {
-          "enum": ["bounce"],
+          "enum": ["absorb", "bounce", "destroy"],
           "type": "string"
         }
       },
@@ -1890,6 +1984,9 @@
     },
     "RecursivePartial<IMove>": {
       "properties": {
+        "angle": {
+          "type": "number"
+        },
         "attract": {
           "$ref": "#/definitions/RecursivePartial<IAttract>"
         },
@@ -1949,9 +2046,6 @@
         "enable": {
           "type": "boolean"
         },
-        "factor": {
-          "$ref": "#/definitions/RecursivePartial<INoiseFactor>"
-        },
         "load": {
           "$ref": "#/definitions/RecursivePartial<(data?:RecursivePartial<INoise>|undefined)=>void>"
         }
@@ -1972,20 +2066,6 @@
       },
       "type": "object"
     },
-    "RecursivePartial<INoiseFactor>": {
-      "properties": {
-        "horizontal": {
-          "$ref": "#/definitions/RecursivePartial<INoiseValue>"
-        },
-        "load": {
-          "$ref": "#/definitions/RecursivePartial<(data?:RecursivePartial<INoiseFactor>|undefined)=>void>"
-        },
-        "vertical": {
-          "$ref": "#/definitions/RecursivePartial<INoiseValue>"
-        }
-      },
-      "type": "object"
-    },
     "RecursivePartial<INoiseRandom>": {
       "properties": {
         "enable": {
@@ -1995,20 +2075,6 @@
           "$ref": "#/definitions/RecursivePartial<(data?:RecursivePartial<INoiseRandom>|undefined)=>void>"
         },
         "minimumValue": {
-          "type": "number"
-        }
-      },
-      "type": "object"
-    },
-    "RecursivePartial<INoiseValue>": {
-      "properties": {
-        "load": {
-          "$ref": "#/definitions/RecursivePartial<(data?:RecursivePartial<INoiseValue>|undefined)=>void>"
-        },
-        "offset": {
-          "type": "number"
-        },
-        "value": {
           "type": "number"
         }
       },
@@ -2286,6 +2352,19 @@
             }
           ]
         },
+        "images": {
+          "anyOf": [
+            {
+              "$ref": "#/definitions/RecursivePartial<IImageShape>"
+            },
+            {
+              "items": {
+                "$ref": "#/definitions/RecursivePartial<IImageShape>_1"
+              },
+              "type": "array"
+            }
+          ]
+        },
         "load": {
           "$ref": "#/definitions/RecursivePartial<(data?:RecursivePartial<IShape>|undefined)=>void>"
         },
@@ -2532,7 +2611,7 @@
       "type": "boolean"
     },
     "fpsLimit": {
-      "description": "The F(rame)P(er)S(econd) limit applied to all particles animations.",
+      "description": "The FPS (Frame Per Second) limit applied to all particles animations.",
       "type": "number"
     },
     "fps_limit": {

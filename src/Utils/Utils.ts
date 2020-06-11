@@ -1,13 +1,14 @@
 import type { ICoordinates } from "../Core/Interfaces/ICoordinates";
-import { MoveDirection } from "../Enums";
+import { DivMode, MoveDirection } from "../Enums";
 import type { ICharacterShape } from "../Options/Interfaces/Particles/Shape/ICharacterShape";
 import type { IBounds } from "../Core/Interfaces/IBounds";
 import type { IDimension } from "../Core/Interfaces/IDimension";
 import type { IImage } from "../Core/Interfaces/IImage";
 import type { IParticle } from "../Core/Interfaces/IParticle";
 import { ColorUtils } from "./ColorUtils";
-import { IHsl } from "../Core/Interfaces/IHsl";
-import { SingleOrMultiple } from "../Types/SingleOrMultiple";
+import type { IHsl } from "../Core/Interfaces/IHsl";
+import type { SingleOrMultiple } from "../Types/SingleOrMultiple";
+import { DivEvent } from "../Options/Classes/Interactivity/Events/DivEvent";
 
 type CSSOMString = string;
 type FontFaceLoadStatus = "unloaded" | "loading" | "loaded" | "error";
@@ -44,8 +45,53 @@ declare global {
     }
 }
 
+declare global {
+    interface Window {
+        customRequestAnimationFrame: (callback: FrameRequestCallback) => number;
+        mozRequestAnimationFrame: (callback: FrameRequestCallback) => number;
+        oRequestAnimationFrame: (callback: FrameRequestCallback) => number;
+        msRequestAnimationFrame: (callback: FrameRequestCallback) => number;
+        customCancelRequestAnimationFrame: (handle: number) => void;
+        webkitCancelRequestAnimationFrame: (handle: number) => void;
+        mozCancelRequestAnimationFrame: (handle: number) => void;
+        oCancelRequestAnimationFrame: (handle: number) => void;
+        msCancelRequestAnimationFrame: (handle: number) => void;
+        Path2D?: Path2D;
+    }
+}
+
 /* ---------- global functions - vendors ------------ */
 export class Utils {
+    public static isSsr(): boolean {
+        return typeof window === "undefined" || !window;
+    }
+
+    public static get animate(): (callback: FrameRequestCallback) => number {
+        const animate = this.isSsr()
+            ? (callback: FrameRequestCallback): number => setTimeout(callback)
+            : ((callback: FrameRequestCallback): number => window.requestAnimationFrame(callback)) ||
+              ((callback: FrameRequestCallback): number => window.webkitRequestAnimationFrame(callback)) ||
+              ((callback: FrameRequestCallback): number => window.mozRequestAnimationFrame(callback)) ||
+              ((callback: FrameRequestCallback): number => window.oRequestAnimationFrame(callback)) ||
+              ((callback: FrameRequestCallback): number => window.msRequestAnimationFrame(callback)) ||
+              ((callback: FrameRequestCallback): number => window.setTimeout(callback));
+
+        return animate;
+    }
+
+    public static get cancelAnimation(): (handle: number) => void {
+        const cancelAnimation = this.isSsr()
+            ? (handle: number): void => clearTimeout(handle)
+            : ((handle: number): void => window.cancelAnimationFrame(handle)) ||
+              ((handle: number): void => window.webkitCancelRequestAnimationFrame(handle)) ||
+              ((handle: number): void => window.mozCancelRequestAnimationFrame(handle)) ||
+              ((handle: number): void => window.oCancelRequestAnimationFrame(handle)) ||
+              ((handle: number): void => window.msCancelRequestAnimationFrame(handle)) ||
+              ((handle: number): void => window.clearTimeout(handle));
+
+        return cancelAnimation;
+    }
+
     public static replaceColorSvg(image: IImage, color: IHsl, opacity: number): string {
         if (!image.svgData) {
             return "";
@@ -167,7 +213,10 @@ export class Utils {
         return array[index !== undefined ? index : this.arrayRandomIndex(array)];
     }
 
-    public static randomInRange(min: number, max: number): number {
+    public static randomInRange(r1: number, r2: number): number {
+        const max = Math.max(r1, r2);
+        const min = Math.min(r1, r2);
+
         return Math.random() * (max - min) + min;
     }
 
@@ -251,38 +300,79 @@ export class Utils {
                 continue;
             }
 
-            const typeOfSource = typeof source;
-
-            if (typeOfSource === "object") {
-                const sourceIsArray = Array.isArray(source);
-
-                if (sourceIsArray) {
-                    if (typeof destination !== "object" || !destination || !Array.isArray(destination)) {
-                        destination = [];
-                    }
-                } else {
-                    if (typeof destination !== "object" || !destination || Array.isArray(destination)) {
-                        destination = {};
-                    }
-                }
-
-                for (const key in source) {
-                    if (key === "__proto__") {
-                        continue;
-                    }
-
-                    const value = source[key];
-                    const isObject = typeof value === "object";
-
-                    destination[key] =
-                        isObject && Array.isArray(value)
-                            ? value.map((v) => this.deepExtend(destination[key], v))
-                            : this.deepExtend(destination[key], value);
-                }
-            } else {
+            if (typeof source !== "object") {
                 destination = source;
+
+                continue;
+            }
+
+            const sourceIsArray = Array.isArray(source);
+
+            if (sourceIsArray && (typeof destination !== "object" || !destination || !Array.isArray(destination))) {
+                destination = [];
+            } else if (
+                !sourceIsArray &&
+                (typeof destination !== "object" || !destination || Array.isArray(destination))
+            ) {
+                destination = {};
+            }
+
+            for (const key in source) {
+                if (key === "__proto__") {
+                    continue;
+                }
+
+                const value = source[key];
+                const isObject = typeof value === "object";
+
+                destination[key] =
+                    isObject && Array.isArray(value)
+                        ? value.map((v) => this.deepExtend(destination[key], v))
+                        : this.deepExtend(destination[key], value);
             }
         }
         return destination;
+    }
+
+    public static isDivModeEnabled(mode: DivMode, divs: SingleOrMultiple<DivEvent>): boolean {
+        return divs instanceof Array
+            ? divs.filter((t) => t.enable && Utils.isInArray(mode, t.mode)).length > 0
+            : Utils.isInArray(mode, divs.mode);
+    }
+
+    public static divModeExecute(
+        mode: DivMode,
+        divs: SingleOrMultiple<DivEvent>,
+        callback: (id: string, div: DivEvent) => void
+    ): void {
+        if (divs instanceof Array) {
+            for (const div of divs) {
+                const divMode = div.mode;
+                const divEnabled = div.enable;
+
+                if (divEnabled && Utils.isInArray(mode, divMode)) {
+                    this.singleDivModeExecute(div, callback);
+                }
+            }
+        } else {
+            const divMode = divs.mode;
+            const divEnabled = divs.enable;
+
+            if (divEnabled && Utils.isInArray(mode, divMode)) {
+                this.singleDivModeExecute(divs, callback);
+            }
+        }
+    }
+
+    public static singleDivModeExecute(div: DivEvent, callback: (id: string, div: DivEvent) => void): void {
+        const ids = div.ids;
+
+        if (ids instanceof Array) {
+            for (const id of ids) {
+                callback(id, div);
+            }
+        } else {
+            callback(ids, div);
+        }
     }
 }

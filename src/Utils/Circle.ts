@@ -3,12 +3,8 @@ import type { ICoordinates } from "../Core/Interfaces/ICoordinates";
 import { Rectangle } from "./Rectangle";
 
 export class Circle extends Range {
-    public readonly radius: number;
-
-    constructor(x: number, y: number, radius: number) {
+    constructor(x: number, y: number, public readonly radius: number) {
         super(x, y);
-
-        this.radius = radius;
     }
 
     public contains(point: ICoordinates): boolean {

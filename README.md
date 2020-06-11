@@ -36,13 +36,19 @@ CDNs and `npm` have all the sources you need in **Javascript**, a bundle browser
 
 #### jQuery
 
+![npm](https://img.shields.io/npm/v/jquery-particles) ![npm](https://img.shields.io/npm/dm/jquery-particles)
+
 If you want to use tsParticles with jQuery checkout [this repository](https://github.com/matteobruni/jquery-particles)
 
 #### VueJS
 
+![npm](https://img.shields.io/npm/v/particles.vue) ![npm](https://img.shields.io/npm/dm/particles.vue)
+
 If you want to use tsParticles with VueJS checkout [this repository](https://github.com/matteobruni/particles.vue)
 
 #### ReactJS
+
+![npm](https://img.shields.io/npm/v/react-tsparticles) ![npm](https://img.shields.io/npm/dm/react-tsparticles)
 
 If you want to use tsParticles with ReactJS checkout [this repository](https://github.com/matteobruni/react-tsparticles)
 
@@ -52,9 +58,13 @@ A 3rd-party component is available too, read more [here](https://github.com/Wufe
 
 #### Preact
 
+![npm](https://img.shields.io/npm/v/preact-particles) ![npm](https://img.shields.io/npm/dm/preact-particles)
+
 If you want to use tsParticles with Preact checkout [this repository](https://github.com/matteobruni/preact-particles)
 
 #### Angular CLI
+
+![npm](https://img.shields.io/npm/v/ng-particles) ![npm](https://img.shields.io/npm/dm/ng-particles)
 
 If you want to use tsParticles with Angular CLI (actually v9) checkout [this repository](https://github.com/matteobruni/ng-particles)
 

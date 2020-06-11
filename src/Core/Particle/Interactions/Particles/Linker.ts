@@ -1,9 +1,21 @@
 import type { Container } from "../../../Container";
 import type { Particle } from "../../../Particle";
 import { Circle, CircleWarp, ColorUtils, Constants, Utils } from "../../../../Utils";
+import type { IParticlesInteractor } from "../../../Interfaces/IParticlesInteractor";
 
-export class Linker {
-    public static link(p1: Particle, container: Container, _delta: number): void {
+export class Linker implements IParticlesInteractor {
+    constructor(private readonly container: Container) {}
+
+    public isEnabled(particle: Particle): boolean {
+        return particle.particlesOptions.links.enable;
+    }
+
+    public reset(): void {
+        // do nothing
+    }
+
+    public interact(p1: Particle): void {
+        const container = this.container;
         const linkOpt1 = p1.particlesOptions.links;
         const optOpacity = linkOpt1.opacity;
         const optDistance = p1.linksDistance ?? container.retina.linksDistance;

@@ -16,16 +16,18 @@ export class HoverEvent implements IHoverEvent {
     }
 
     public load(data?: RecursivePartial<IHoverEvent>): void {
-        if (data !== undefined) {
-            if (data.enable !== undefined) {
-                this.enable = data.enable;
-            }
-
-            if (data.mode !== undefined) {
-                this.mode = data.mode;
-            }
-
-            this.parallax.load(data.parallax);
+        if (data === undefined) {
+            return;
         }
+
+        if (data.enable !== undefined) {
+            this.enable = data.enable;
+        }
+
+        if (data.mode !== undefined) {
+            this.mode = data.mode;
+        }
+
+        this.parallax.load(data.parallax);
     }
 }

@@ -11,14 +11,16 @@ export class GrabLinks implements IGrabLinks {
     }
 
     public load(data?: RecursivePartial<IGrabLinks>): void {
-        if (data !== undefined) {
-            if (data.opacity !== undefined) {
-                this.opacity = data.opacity;
-            }
+        if (data === undefined) {
+            return;
+        }
 
-            if (data.color !== undefined) {
-                this.color = OptionsColor.create(this.color, data.color);
-            }
+        if (data.opacity !== undefined) {
+            this.opacity = data.opacity;
+        }
+
+        if (data.color !== undefined) {
+            this.color = OptionsColor.create(this.color, data.color);
         }
     }
 }

@@ -168,8 +168,7 @@ export class Loader {
                 return Loader.load(tagId, params);
             }
         } else {
-            console.error(`Error tsParticles - fetch status: ${response.status}`);
-            console.error("Error tsParticles - File config not found");
+            this.fetchError(response.status);
         }
     }
 
@@ -197,8 +196,7 @@ export class Loader {
                 return Loader.set(id, domContainer, params);
             }
         } else {
-            console.error(`Error tsParticles - fetch status: ${response.status}`);
-            console.error("Error tsParticles - File config not found");
+            this.fetchError(response.status);
         }
     }
 
@@ -220,5 +218,10 @@ export class Loader {
                 el.addEventListener("click", callback);
             }
         }
+    }
+
+    private static fetchError(statusCode: number): void {
+        console.error(`Error tsParticles - fetch status: ${statusCode}`);
+        console.error("Error tsParticles - File config not found");
     }
 }

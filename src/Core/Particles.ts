@@ -3,15 +3,10 @@ import type { ICoordinates } from "./Interfaces/ICoordinates";
 import type { IMouseData } from "./Interfaces/IMouseData";
 import type { IRgb } from "./Interfaces/IRgb";
 import { Particle } from "./Particle";
-import { InteractionManager } from "./Particle/Interactions/Particles/InteractionManager";
-import { Grabber } from "./Particle/Interactions/Mouse/Grabber";
-import { ClickMode, DestroyType, DivMode, HoverMode } from "../Enums";
-import { Repulser } from "./Particle/Interactions/Mouse/Repulser";
-import { Bubbler } from "./Particle/Interactions/Mouse/Bubbler";
-import { Connector } from "./Particle/Interactions/Mouse/Connector";
 import { Point, QuadTree, Rectangle, Utils } from "../Utils";
 import { RecursivePartial } from "../Types/RecursivePartial";
 import { IParticles } from "../Options/Interfaces/Particles/IParticles";
+import { InteractionManager } from "./Particle/InteractionManager";
 
 /**
  * Particles manager
@@ -28,18 +23,14 @@ export class Particles {
     public linksColor?: IRgb | string;
     public linksColors: { [key: string]: IRgb | string | undefined };
     public grabLineColor?: IRgb | string;
-    public noiseZ: number;
 
-    private readonly container: Container;
-    private interactionsEnabled: boolean;
+    private interactionManager: InteractionManager;
 
-    constructor(container: Container) {
-        this.container = container;
+    constructor(private readonly container: Container) {
         this.array = [];
-        this.interactionsEnabled = false;
+        this.interactionManager = new InteractionManager(container);
         //this.spatialGrid = new SpatialGrid(this.container.canvas.size);
         const canvasSize = this.container.canvas.size;
-        this.noiseZ = 0;
         this.linksColors = {};
 
         this.quadTree = new QuadTree(new Rectangle(0, 0, canvasSize.width, canvasSize.height), 4);
@@ -50,11 +41,8 @@ export class Particles {
         const container = this.container;
         const options = container.options;
         let handled = false;
-        this.noiseZ = 0;
 
-        for (const id in container.plugins) {
-            const plugin = container.plugins[id];
-
+        for (const [, plugin] of container.plugins) {
             if (plugin.particlesInitialization !== undefined) {
                 handled = plugin.particlesInitialization();
             }
@@ -70,12 +58,6 @@ export class Particles {
             }
         }
 
-        this.interactionsEnabled =
-            options.particles.links.enable ||
-            options.particles.move.attract.enable ||
-            options.particles.collisions.enable ||
-            options.infection.enable;
-
         if (options.infection.enable) {
             for (let i = 0; i < options.infection.infections; i++) {
                 const notInfected = this.array.filter((p) => p.infectionStage === undefined);
@@ -84,6 +66,10 @@ export class Particles {
                 infected.startInfection(0);
             }
         }
+
+        this.interactionManager.init();
+
+        container.noise.init();
     }
 
     public redraw(): void {
@@ -108,10 +94,9 @@ export class Particles {
         const container = this.container;
         const particlesToDelete = [];
 
-        for (let i = 0; i < this.count; i++) {
-            /* the particle */
-            const particle = this.array[i];
+        container.noise.update();
 
+        for (const particle of this.array) {
             particle.bubble.inRange = false;
 
             // let d = ( dx = container.interactivity.mouse.click_pos_x - p.x ) * dx +
@@ -123,9 +108,7 @@ export class Particles {
             //     p.vy = f * Math.sin(t);
             // }
 
-            for (const id in container.plugins) {
-                const plugin = container.plugins[id];
-
+            for (const [, plugin] of container.plugins) {
                 if (particle.destroyed) {
                     break;
                 }
@@ -136,22 +119,7 @@ export class Particles {
             }
 
             if (!particle.destroyed) {
-                const sizeOpt = particle.particlesOptions.size;
-                const sizeAnim = sizeOpt.animation;
-                if (sizeAnim.enable) {
-                    switch (sizeAnim.destroy) {
-                        case DestroyType.max:
-                            if (particle.size.value >= sizeOpt.value * container.retina.pixelRatio) {
-                                particle.destroyed = true;
-                            }
-                            break;
-                        case DestroyType.min:
-                            if (particle.size.value <= sizeAnim.minimumValue * container.retina.pixelRatio) {
-                                particle.destroyed = true;
-                            }
-                            break;
-                    }
-                }
+                particle.update(delta);
             }
 
             if (particle.destroyed) {
@@ -159,78 +127,16 @@ export class Particles {
                 continue;
             }
 
-            particle.update(i, delta);
-
             //container.particles.spatialGrid.insert(particle);
 
-            const pos = particle.getPosition();
-
-            this.quadTree.insert(new Point(pos, particle));
+            this.quadTree.insert(new Point(particle.getPosition(), particle));
         }
 
         for (const particle of particlesToDelete) {
             this.remove(particle);
         }
 
-        const mouse = container.interactivity.mouse;
-        const events = container.options.interactivity.events;
-        const divs = container.options.interactivity.events.onDiv;
-
-        let divEnabled: boolean;
-        let divRepulse: boolean;
-        let divBubble: boolean;
-
-        if (divs instanceof Array) {
-            const modes = divs.filter((t) => t.enable).map((t) => t.mode);
-
-            divEnabled = modes.length > 0;
-            divRepulse = modes.find((t) => Utils.isInArray(DivMode.repulse, t)) !== undefined;
-            divBubble = modes.find((t) => Utils.isInArray(DivMode.bubble, t)) !== undefined;
-        } else {
-            divEnabled = divs.enable;
-            divRepulse = Utils.isInArray(DivMode.repulse, divs.mode);
-            divBubble = Utils.isInArray(DivMode.bubble, divs.mode);
-        }
-
-        if (divEnabled || (events.onHover.enable && mouse.position) || (events.onClick.enable && mouse.clickPosition)) {
-            const hoverMode = events.onHover.mode;
-            const clickMode = events.onClick.mode;
-
-            /* mouse events interactions */
-            if (Utils.isInArray(HoverMode.grab, hoverMode)) {
-                Grabber.grab(container, delta);
-            }
-
-            if (
-                Utils.isInArray(HoverMode.repulse, hoverMode) ||
-                Utils.isInArray(ClickMode.repulse, clickMode) ||
-                divRepulse
-            ) {
-                Repulser.repulse(container, delta);
-            }
-
-            if (
-                Utils.isInArray(HoverMode.bubble, hoverMode) ||
-                Utils.isInArray(ClickMode.bubble, clickMode) ||
-                divBubble
-            ) {
-                Bubbler.bubble(container, delta);
-            }
-
-            if (Utils.isInArray(HoverMode.connect, hoverMode)) {
-                Connector.connect(container, delta);
-            }
-        }
-
-        // this loop is required to be done after mouse interactions
-        for (const particle of this.array) {
-            Bubbler.reset(particle);
-
-            /* interaction auto between particles */
-            if (this.interactionsEnabled) {
-                InteractionManager.interact(particle, container, delta);
-            }
-        }
+        this.interactionManager.interact(delta);
     }
 
     public draw(delta: number): void {
@@ -238,6 +144,7 @@ export class Particles {
 
         /* clear canvas */
         container.canvas.clear();
+
         const canvasSize = this.container.canvas.size;
 
         this.quadTree = new QuadTree(new Rectangle(0, 0, canvasSize.width, canvasSize.height), 4);
@@ -247,12 +154,8 @@ export class Particles {
         this.update(delta);
         //this.spatialGrid.setGrid(this.array, this.container.canvas.size);
 
-        this.noiseZ += 0.0004;
-
         /* draw polygon shape in debug mode */
-        for (const id in container.plugins) {
-            const plugin = container.plugins[id];
-
+        for (const [, plugin] of container.plugins) {
             container.canvas.drawPlugin(plugin, delta);
         }
 
@@ -266,6 +169,9 @@ export class Particles {
         }
     }
 
+    /**
+     * Removes all particles from the array
+     */
     public clear(): void {
         this.array = [];
     }
@@ -312,8 +218,7 @@ export class Particles {
     }
 
     public removeQuantity(quantity: number): void {
-        const container = this.container;
-        const options = container.options;
+        const options = this.container.options;
 
         this.removeAt(0, quantity);
 

@@ -31,7 +31,7 @@ export interface IOptions extends IOptionLoader<IOptions> {
     fps_limit: number;
 
     /**
-     * The F(rame)P(er)S(econd) limit applied to all particles animations.
+     * The FPS (Frame Per Second) limit applied to all particles animations.
      */
     fpsLimit: number;
 

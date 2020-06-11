@@ -13,18 +13,20 @@ export class ColorAnimation implements IColorAnimation {
     }
 
     public load(data?: RecursivePartial<IColorAnimation>): void {
-        if (data !== undefined) {
-            if (data.enable !== undefined) {
-                this.enable = data.enable;
-            }
+        if (data === undefined) {
+            return;
+        }
 
-            if (data.speed !== undefined) {
-                this.speed = data.speed;
-            }
+        if (data.enable !== undefined) {
+            this.enable = data.enable;
+        }
 
-            if (data.sync !== undefined) {
-                this.sync = data.sync;
-            }
+        if (data.speed !== undefined) {
+            this.speed = data.speed;
+        }
+
+        if (data.sync !== undefined) {
+            this.sync = data.sync;
         }
     }
 }

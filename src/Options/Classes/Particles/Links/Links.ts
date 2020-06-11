@@ -31,43 +31,45 @@ export class Links implements ILinks {
     }
 
     public load(data?: RecursivePartial<ILinks>): void {
-        if (data !== undefined) {
-            if (data.id !== undefined) {
-                this.id = data.id;
-            }
+        if (data === undefined) {
+            return;
+        }
 
-            if (data.blink !== undefined) {
-                this.blink = data.blink;
-            }
+        if (data.id !== undefined) {
+            this.id = data.id;
+        }
 
-            this.color = OptionsColor.create(this.color, data.color);
+        if (data.blink !== undefined) {
+            this.blink = data.blink;
+        }
 
-            if (data.consent !== undefined) {
-                this.consent = data.consent;
-            }
+        this.color = OptionsColor.create(this.color, data.color);
 
-            if (data.distance !== undefined) {
-                this.distance = data.distance;
-            }
+        if (data.consent !== undefined) {
+            this.consent = data.consent;
+        }
 
-            if (data.enable !== undefined) {
-                this.enable = data.enable;
-            }
+        if (data.distance !== undefined) {
+            this.distance = data.distance;
+        }
 
-            if (data.opacity !== undefined) {
-                this.opacity = data.opacity;
-            }
+        if (data.enable !== undefined) {
+            this.enable = data.enable;
+        }
 
-            this.shadow.load(data.shadow);
-            this.triangles.load(data.triangles);
+        if (data.opacity !== undefined) {
+            this.opacity = data.opacity;
+        }
 
-            if (data.width !== undefined) {
-                this.width = data.width;
-            }
+        this.shadow.load(data.shadow);
+        this.triangles.load(data.triangles);
 
-            if (data.warp !== undefined) {
-                this.warp = data.warp;
-            }
+        if (data.width !== undefined) {
+            this.width = data.width;
+        }
+
+        if (data.warp !== undefined) {
+            this.warp = data.warp;
         }
     }
 }

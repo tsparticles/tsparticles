@@ -32,20 +32,22 @@ export class Opacity implements IOpacity {
     }
 
     public load(data?: RecursivePartial<IOpacity>): void {
-        if (data !== undefined) {
-            this.animation.load(data.animation ?? data.anim);
+        if (data === undefined) {
+            return;
+        }
 
-            if (data.random !== undefined) {
-                if (typeof data.random === "boolean") {
-                    this.random.enable = data.random;
-                } else {
-                    this.random.load(data.random);
-                }
-            }
+        this.animation.load(data.animation ?? data.anim);
 
-            if (data.value !== undefined) {
-                this.value = data.value;
+        if (data.random !== undefined) {
+            if (typeof data.random === "boolean") {
+                this.random.enable = data.random;
+            } else {
+                this.random.load(data.random);
             }
+        }
+
+        if (data.value !== undefined) {
+            this.value = data.value;
         }
     }
 }

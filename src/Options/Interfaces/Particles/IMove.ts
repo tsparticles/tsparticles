@@ -5,6 +5,7 @@ import type { ITrail } from "./ITrail";
 import { INoise } from "./Noise/INoise";
 
 export interface IMove extends IOptionLoader<IMove> {
+    angle: number;
     attract: IAttract;
 
     /**
