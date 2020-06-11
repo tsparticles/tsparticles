@@ -67,7 +67,7 @@ export class Utils {
     }
 
     public static get animate(): (callback: FrameRequestCallback) => number {
-        const animate = this.isSsr()
+        return this.isSsr()
             ? (callback: FrameRequestCallback): number => setTimeout(callback)
             : (callback: FrameRequestCallback): number =>
                   (
@@ -78,12 +78,10 @@ export class Utils {
                       window.msRequestAnimationFrame ||
                       window.setTimeout
                   )(callback);
-
-        return animate;
     }
 
     public static get cancelAnimation(): (handle: number) => void {
-        const cancelAnimation = this.isSsr()
+        return this.isSsr()
             ? (handle: number): void => clearTimeout(handle)
             : (handle: number): void =>
                   (
@@ -94,8 +92,6 @@ export class Utils {
                       window.msCancelRequestAnimationFrame ||
                       window.clearTimeout
                   )(handle);
-
-        return cancelAnimation;
     }
 
     public static replaceColorSvg(image: IImage, color: IHsl, opacity: number): string {
