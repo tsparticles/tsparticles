@@ -69,12 +69,15 @@ export class Utils {
     public static get animate(): (callback: FrameRequestCallback) => number {
         const animate = this.isSsr()
             ? (callback: FrameRequestCallback): number => setTimeout(callback)
-            : ((callback: FrameRequestCallback): number => window.requestAnimationFrame(callback)) ||
-              ((callback: FrameRequestCallback): number => window.webkitRequestAnimationFrame(callback)) ||
-              ((callback: FrameRequestCallback): number => window.mozRequestAnimationFrame(callback)) ||
-              ((callback: FrameRequestCallback): number => window.oRequestAnimationFrame(callback)) ||
-              ((callback: FrameRequestCallback): number => window.msRequestAnimationFrame(callback)) ||
-              ((callback: FrameRequestCallback): number => window.setTimeout(callback));
+            : (callback: FrameRequestCallback): number =>
+                  (
+                      window.requestAnimationFrame ||
+                      window.webkitRequestAnimationFrame ||
+                      window.mozRequestAnimationFrame ||
+                      window.oRequestAnimationFrame ||
+                      window.msRequestAnimationFrame ||
+                      window.setTimeout
+                  )(callback);
 
         return animate;
     }
@@ -82,12 +85,15 @@ export class Utils {
     public static get cancelAnimation(): (handle: number) => void {
         const cancelAnimation = this.isSsr()
             ? (handle: number): void => clearTimeout(handle)
-            : ((handle: number): void => window.cancelAnimationFrame(handle)) ||
-              ((handle: number): void => window.webkitCancelRequestAnimationFrame(handle)) ||
-              ((handle: number): void => window.mozCancelRequestAnimationFrame(handle)) ||
-              ((handle: number): void => window.oCancelRequestAnimationFrame(handle)) ||
-              ((handle: number): void => window.msCancelRequestAnimationFrame(handle)) ||
-              ((handle: number): void => window.clearTimeout(handle));
+            : (handle: number): void =>
+                  (
+                      window.cancelAnimationFrame ||
+                      window.webkitCancelRequestAnimationFrame ||
+                      window.mozCancelRequestAnimationFrame ||
+                      window.oCancelRequestAnimationFrame ||
+                      window.msCancelRequestAnimationFrame ||
+                      window.clearTimeout
+                  )(handle);
 
         return cancelAnimation;
     }
