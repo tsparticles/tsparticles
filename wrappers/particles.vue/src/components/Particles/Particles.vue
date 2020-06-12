@@ -34,7 +34,7 @@
 
     @Component
     export default class Particles extends Vue {
-        @Prop() private id!: string;
+        @Prop({ required: true }) private id!: string;
         @Prop() private clickEffect!: boolean;
         @Prop() private clickMode!: ClickMode;
         @Prop() private color!: string;
@@ -95,6 +95,10 @@
             clickEffect: boolean,
             clickMode: ClickMode
         ): void {
+            if (!this.id) {
+                throw new Error("Prop 'id' is required!")
+            }
+
             tsParticles.load(this.id, {
                 fps_limit: 60,
                 interactivity: {
