@@ -114,7 +114,8 @@ export class Bubbler implements IExternalInteractor {
         for (const particle of query.filter((t) => area.contains(t.getPosition()))) {
             particle.bubble.inRange = true;
 
-            const divBubble = this.divBubbleMode(id);
+            const divs = container.options.interactivity.modes.bubble.divs;
+            const divBubble = Utils.divMode(divs, id);
 
             if (!particle.bubble.divId || particle.bubble.divId !== id) {
                 this.reset(particle, true);
@@ -353,24 +354,6 @@ export class Bubbler implements IExternalInteractor {
             const bubbleColor = modeColor instanceof Array ? Utils.itemFromArray(modeColor) : modeColor;
 
             particle.bubble.color = ColorUtils.colorToHsl(bubbleColor);
-        }
-    }
-
-    private divBubbleMode(divId?: string): BubbleDiv | undefined {
-        if (!divId) {
-            return;
-        }
-
-        const bubbleDivs = this.container.options.interactivity.modes.bubble.divs;
-
-        if (!bubbleDivs) {
-            return;
-        }
-
-        if (bubbleDivs instanceof Array) {
-            return bubbleDivs.find((d) => d.ids.includes(divId));
-        } else if (bubbleDivs.ids.includes(divId)) {
-            return bubbleDivs;
         }
     }
 }

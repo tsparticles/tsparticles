@@ -2,8 +2,12 @@
   "compilerOptions": {
     "target": "es2015",
     "module": "esnext",
+    "lib": [
+      "ES2015",
+      "DOM"
+    ],
     "declaration": true,
-    "outDir": "../../dist",
+    "outDir": "./dist",
     "rootDir": "./src",
     "removeComments": true,
     "importHelpers": true,
@@ -19,8 +23,9 @@
     "forceConsistentCasingInFileNames": true
   },
   "exclude": [
-    "./packages/tsparticles/tests/",
+    "./tests/",
     "./node_modules/",
+    "../../node_modules/",
     "./dist/",
     "./typedoc/",
     "./docs/"

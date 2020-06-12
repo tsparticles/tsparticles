@@ -1,13 +1,12 @@
 {
   "compilerOptions": {
-    "target": "es2015",
-    "module": "commonjs",
+    "target": "esnext",
+    "module": "es6",
     "lib": [
       "ES2015",
       "DOM"
     ],
     "declaration": true,
-    "outDir": "../../dist",
     "rootDir": "./src",
     "removeComments": true,
     "noEmit": true,
@@ -24,8 +23,9 @@
     "forceConsistentCasingInFileNames": true
   },
   "exclude": [
-    "./packages/tsparticles/tests/",
+    "./tests/",
     "./node_modules/",
+    "../../node_modules/",
     "./dist/",
     "./typedoc/",
     "./docs/"

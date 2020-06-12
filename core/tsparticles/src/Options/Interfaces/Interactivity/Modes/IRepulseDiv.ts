@@ -1,7 +1,5 @@
 import type { IOptionLoader } from "../../IOptionLoader";
-import type { SingleOrMultiple } from "../../../../Types/SingleOrMultiple";
 import type { IRepulseBase } from "./IRepulseBase";
+import type { IModeDiv } from "./IModeDiv";
 
-export interface IRepulseDiv extends IOptionLoader<IRepulseDiv>, IRepulseBase {
-    ids: SingleOrMultiple<string>;
-}
+export interface IRepulseDiv extends IOptionLoader<IRepulseDiv>, IRepulseBase, IModeDiv {}

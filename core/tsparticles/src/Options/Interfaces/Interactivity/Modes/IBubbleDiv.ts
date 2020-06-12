@@ -1,7 +1,5 @@
 import type { IOptionLoader } from "../../IOptionLoader";
-import type { SingleOrMultiple } from "../../../../Types/SingleOrMultiple";
 import type { IBubbleBase } from "./IBubbleBase";
+import type { IModeDiv } from "./IModeDiv";
 
-export interface IBubbleDiv extends IOptionLoader<IBubbleDiv>, IBubbleBase {
-    ids: SingleOrMultiple<string>;
-}
+export interface IBubbleDiv extends IOptionLoader<IBubbleDiv>, IBubbleBase, IModeDiv {}

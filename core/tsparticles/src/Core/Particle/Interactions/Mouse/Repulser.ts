@@ -86,7 +86,10 @@ export class Repulser implements IExternalInteractor {
                       elem.offsetHeight * pxRatio
                   );
 
-        this.processRepulse(pos, repulseRadius, area, this.divRepulseMode(id));
+        const divs = container.options.interactivity.modes.repulse.divs;
+        const divRepulse = Utils.divMode(divs, id);
+
+        this.processRepulse(pos, repulseRadius, area, divRepulse);
     }
 
     private hoverRepulse(): void {
@@ -231,24 +234,6 @@ export class Repulser implements IExternalInteractor {
                     particle.velocity.vertical *= -1;
                 }
             }
-        }
-    }
-
-    private divRepulseMode(divId?: string): RepulseDiv | undefined {
-        if (!divId) {
-            return;
-        }
-
-        const repulseDiv = this.container.options.interactivity.modes.repulse.divs;
-
-        if (!repulseDiv) {
-            return;
-        }
-
-        if (repulseDiv instanceof Array) {
-            return repulseDiv.find((d) => d.ids.includes(divId));
-        } else if (repulseDiv.ids.includes(divId)) {
-            return repulseDiv;
         }
     }
 }
