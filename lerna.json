@@ -4,5 +4,6 @@
     "plugins/*"
   ],
   "version": "independent",
-  "npmClient": "yarn"
+  "npmClient": "yarn",
+  "useWorkspaces": true
 }
