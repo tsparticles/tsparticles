@@ -371,3 +371,4 @@ coverage/
 .codacy-coverage/
 
 package-lock.json
+(preact-particles|react-tsparticles)/(cjs|umd)

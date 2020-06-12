@@ -83,6 +83,10 @@ export default class Particles extends Component<ParticlesProps,
     destroy() {
         if (this.state.library) {
             this.state.library.destroy();
+
+            this.setState({
+                library: undefined
+            });
         }
     }
 
@@ -127,9 +131,6 @@ export default class Particles extends Component<ParticlesProps,
 
     componentWillUnmount() {
         this.destroy();
-        this.setState({
-            library: undefined
-        });
     }
 
     render() {

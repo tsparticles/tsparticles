@@ -9,7 +9,6 @@ import { ColorUtils } from "./ColorUtils";
 import type { IHsl } from "../Core/Interfaces/IHsl";
 import type { SingleOrMultiple } from "../Types/SingleOrMultiple";
 import { DivEvent } from "../Options/Classes/Interactivity/Events/DivEvent";
-import { BubbleDiv } from "../Options/Classes/Interactivity/Modes/BubbleDiv";
 import { IModeDiv } from "../Options/Interfaces/Interactivity/Modes/IModeDiv";
 
 type CSSOMString = string;
