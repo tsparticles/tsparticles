@@ -5,8 +5,7 @@ import { Particle } from "../../../Particle";
 import { IParticlesInteractor } from "../../../Interfaces/IParticlesInteractor";
 
 export class Attractor implements IParticlesInteractor {
-    constructor(private readonly container: Container) {
-    }
+    constructor(private readonly container: Container) {}
 
     public interact(p1: IParticle): void {
         const container = this.container;

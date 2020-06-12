@@ -7,8 +7,7 @@ import { CollisionMode } from "../../../../Enums";
 import type { IParticlesInteractor } from "../../../Interfaces/IParticlesInteractor";
 
 export class Collider implements IParticlesInteractor {
-    constructor(private readonly container: Container) {
-    }
+    constructor(private readonly container: Container) {}
 
     private static rotate(velocity: IVelocity, angle: number): IVelocity {
         return {

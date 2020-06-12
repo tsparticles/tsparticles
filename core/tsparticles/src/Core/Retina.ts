@@ -17,8 +17,7 @@ export class Retina {
     public sizeAnimationSpeed!: number;
     public pixelRatio!: number;
 
-    constructor(private readonly container: Container) {
-    }
+    constructor(private readonly container: Container) {}
 
     public init(): void {
         const container = this.container;

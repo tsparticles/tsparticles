@@ -72,28 +72,28 @@ export class Utils {
         return this.isSsr()
             ? (callback: FrameRequestCallback): number => setTimeout(callback)
             : (callback: FrameRequestCallback): number =>
-                (
-                    window.requestAnimationFrame ||
-                    window.webkitRequestAnimationFrame ||
-                    window.mozRequestAnimationFrame ||
-                    window.oRequestAnimationFrame ||
-                    window.msRequestAnimationFrame ||
-                    window.setTimeout
-                )(callback);
+                  (
+                      window.requestAnimationFrame ||
+                      window.webkitRequestAnimationFrame ||
+                      window.mozRequestAnimationFrame ||
+                      window.oRequestAnimationFrame ||
+                      window.msRequestAnimationFrame ||
+                      window.setTimeout
+                  )(callback);
     }
 
     public static get cancelAnimation(): (handle: number) => void {
         return this.isSsr()
             ? (handle: number): void => clearTimeout(handle)
             : (handle: number): void =>
-                (
-                    window.cancelAnimationFrame ||
-                    window.webkitCancelRequestAnimationFrame ||
-                    window.mozCancelRequestAnimationFrame ||
-                    window.oCancelRequestAnimationFrame ||
-                    window.msCancelRequestAnimationFrame ||
-                    window.clearTimeout
-                )(handle);
+                  (
+                      window.cancelAnimationFrame ||
+                      window.webkitCancelRequestAnimationFrame ||
+                      window.mozCancelRequestAnimationFrame ||
+                      window.oCancelRequestAnimationFrame ||
+                      window.msCancelRequestAnimationFrame ||
+                      window.clearTimeout
+                  )(handle);
     }
 
     public static replaceColorSvg(image: IImage, color: IHsl, opacity: number): string {

@@ -7,8 +7,7 @@ import { IExternalInteractor } from "../../../Interfaces/IExternalInteractor";
  * Particle connection manager
  */
 export class Connector implements IExternalInteractor {
-    constructor(private readonly container: Container) {
-    }
+    constructor(private readonly container: Container) {}
 
     public isEnabled(): boolean {
         const container = this.container;

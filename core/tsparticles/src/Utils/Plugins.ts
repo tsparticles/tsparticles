@@ -8,8 +8,10 @@ import type { Options } from "../Options/Classes/Options";
 
 export class Plugins {
     private static readonly plugins: IPlugin[] = [];
-    private static readonly presets: Map<string, RecursivePartial<IOptions>> = new Map<string,
-        RecursivePartial<IOptions>>();
+    private static readonly presets: Map<string, RecursivePartial<IOptions>> = new Map<
+        string,
+        RecursivePartial<IOptions>
+    >();
     private static readonly drawers: Map<string, IShapeDrawer> = new Map<string, IShapeDrawer>();
 
     public static getPlugin(plugin: string): IPlugin | undefined {
