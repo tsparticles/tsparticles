@@ -13,5 +13,5 @@ pool:
 
 steps:
   - script: yarn install
-  - script: lerna bootstrap
-  - script: lerna run build
+  - script: npx lerna bootstrap
+  - script: npx lerna run build

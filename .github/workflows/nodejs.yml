@@ -25,8 +25,8 @@ jobs:
         with:
           node-version: ${{ matrix.node-version }}
       - run: yarn install
-      - run: lerna bootstrap
-      - run: lerna run build
+      - run: npx lerna bootstrap
+      - run: npx lerna run build
       #- run: lerna test
       #- name: Codacy Coverage Reporter
       #  uses: codacy/codacy-coverage-reporter-action@0.2.0

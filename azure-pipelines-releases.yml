@@ -15,7 +15,7 @@ pool:
 
 steps:
   - script: yarn install
-  - script: lerna bootstrap
+  - script: npx lerna bootstrap
 
   - task: npmAuthenticate@0
     displayName: npm authenticate
@@ -23,7 +23,7 @@ steps:
       workingFile: '.npmrc'
       customEndpoint: 'npmjs'
 
-  - script: lerna run build
+  - script: npx lerna run build
     condition: and(succeeded(), and(contains(variables['Build.SourceBranch'], '-'), not(contains(variables['Build.SourceBranch'], '-alpha.')), not(contains(variables['Build.SourceBranch'], '-beta.'))))
 
   - task: Npm@1
