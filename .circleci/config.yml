@@ -11,6 +11,10 @@ jobs:
       - checkout
 
       - run:
+          name: go to tsparticles
+          command: cd core/tsparticles
+
+      - run:
           name: install
           command: yarn install
 

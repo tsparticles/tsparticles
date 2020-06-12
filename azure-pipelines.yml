@@ -4,15 +4,17 @@
 # https://aka.ms/yaml
 
 trigger:
-- master
-- staging
-- dev
+  - master
+  - staging
+  - dev
 
 pool:
   vmImage: 'ubuntu-latest'
 
 steps:
 
-- script: yarn install
+  - script: cd core/tsparticles
 
-- script: yarn build
+  - script: yarn install
+
+  - script: yarn build
