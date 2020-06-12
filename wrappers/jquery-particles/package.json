@@ -4,10 +4,11 @@
   "description": "Particles effect in jQuery",
   "main": "dist/jquery.particles.min.js",
   "scripts": {
-    "copy:js": "cpx \"src/**/*.js\" dist/",
-    "minify:js": "uglifyjs --compress --output dist/jquery.particles.min.js dist/jquery.particles.js",
-    "build": "npm run copy:js && npm run minify:js",
-    "start": "npm run build && node demo/app.js"
+    "compile": "tsc",
+    "bundle": "rollup -c",
+    "minify": "uglifyjs dist/jquery.particles.js --output dist/jquery.particles.min.js --source-map \"filename='dist/jquery.particles.min.js.map',url='jquery.particles.min.js.map',content='dist/jquery.particles.js.map'\"",
+    "build": "yarn compile && yarn bundle && yarn minify",
+    "start": "yarn build && node ./demo/app.js"
   },
   "files": [
     "dist/**/*"
@@ -50,16 +51,23 @@
   },
   "homepage": "https://github.com/matteobruni/jquery-particles#readme",
   "dependencies": {
+    "@types/jquery": "^3.3.38",
     "jquery": "^3.4.1",
-    "tsparticles": "^1.16.0-beta.0"
+    "tslib": "^2.0.0",
+    "tsparticles": "^1.16.0-beta.0",
+    "typescript": "^3.9.5"
   },
   "devDependencies": {
     "@fortawesome/fontawesome-free": "^5.12.1",
-    "helmet": "^3.22.0",
+    "babel-preset-env": "^1.7.0",
     "cpx": "^1.5.0",
     "express": "^4.17.1",
+    "helmet": "^3.23.0",
     "jsoneditor": "^9.0.0",
     "pug": "^3.0.0",
+    "rollup": "^2.16.0",
+    "rollup-plugin-babel": "^4.4.0",
+    "rollup-plugin-sourcemaps": "^0.6.2",
     "stylus": "^0.54.7",
     "three": "^0.117.0",
     "uglify-js": "^3.9.4"
