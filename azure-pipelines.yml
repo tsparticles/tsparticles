@@ -13,13 +13,6 @@ pool:
 
 steps:
 
-- task: Npm@1
-  displayName: NPM CI
-  inputs:
-    command: 'ci'
+- script: yarn install
 
-- task: Npm@1
-  displayName: NPM Build
-  inputs:
-    command: 'custom'
-    customCommand: 'run build'
+- script: yarn build

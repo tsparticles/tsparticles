@@ -14,15 +14,7 @@ pool:
   vmImage: 'ubuntu-latest'
 
 steps:
-- task: NodeTool@0
-  inputs:
-    versionSpec: '10.x'
-  displayName: 'Install Node.js'
-
-
-- task: Npm@1
-  inputs:
-    command: 'ci'
+- script: yarn install
 
 - task: npmAuthenticate@0
   displayName: npm authenticate
@@ -30,12 +22,8 @@ steps:
     workingFile: '.npmrc'
     customEndpoint: 'npmjs'
 
-- task: Npm@1
-  displayName: npm run build
+- script: yarn build
   condition: and(succeeded(), and(contains(variables['Build.SourceBranch'], '-'), not(contains(variables['Build.SourceBranch'], '-alpha.')), not(contains(variables['Build.SourceBranch'], '-beta.'))))
-  inputs:
-    command: 'custom'
-    customCommand: 'run build'
 
 - task: Npm@1
   displayName: npm publish
