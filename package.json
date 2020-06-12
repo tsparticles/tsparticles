@@ -3,8 +3,9 @@
   "name": "tsparticles",
   "version": "0.0.0",
   "workspaces": [
-    "projects/*",
-    "plugins/*"
+    "core/*",
+    "plugins/*",
+    "wrappers/*"
   ],
   "devDependencies": {
     "lerna": "^3.22.1"
