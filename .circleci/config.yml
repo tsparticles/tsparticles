@@ -16,8 +16,8 @@ jobs:
 
       - run:
           name: bootstrap
-          command: lerna bootstrap
+          command: npx lerna bootstrap
 
       - run:
           name: build
-          command: lerna run build
+          command: npx lerna run build
