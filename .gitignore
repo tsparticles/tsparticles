@@ -367,3 +367,5 @@ demo/public/report.*.htm
 .nyc_output/
 coverage/
 .codacy-coverage/
+
+package-lock.json
