@@ -19,7 +19,7 @@
     // "declarationMap": true,                /* Generates a sourcemap for each corresponding '.d.ts' file. */
     // "sourceMap": true, /* Generates corresponding '.map' file. */
     // "outFile": "./",                       /* Concatenate and emit output to single file. */
-    "outDir": "./dist",
+    "outDir": "../../dist",
     /* Redirect output structure to the directory. */
     "rootDir": "./src",
     /* Specify the root directory of input files. Use to control the output directory structure with --outDir. */
@@ -80,7 +80,7 @@
     /* Disallow inconsistently-cased references to the same file. */
   },
   "exclude": [
-    "./tests/",
+    "./packages/tsparticles/tests/",
     "./node_modules/",
     "./dist/",
     "./typedoc/",
@@ -93,7 +93,7 @@
       "./src/index.ts"
     ],
     "mode": "library",
-    "out": "docs",
+    "out": "../../docs",
     "theme": "./typedoc/themes/particles"
   }
 }
