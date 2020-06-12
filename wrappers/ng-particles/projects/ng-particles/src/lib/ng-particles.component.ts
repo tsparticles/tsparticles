@@ -1,9 +1,9 @@
-import { Component, Input, OnInit } from "@angular/core";
-import { tsParticles } from "tsparticles";
-import { IParticlesParams } from "./ng-particles.module";
+import { Component, Input, OnInit } from '@angular/core';
+import { tsParticles } from 'tsparticles';
+import { IParticlesParams } from './ng-particles.module';
 
 @Component({
-  selector: "ng-particles",
+  selector: 'ng-particles',
   template: `
     <div [id]="id"></div> `,
   styles: []
