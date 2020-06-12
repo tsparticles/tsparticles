@@ -11,10 +11,6 @@ jobs:
       - checkout
 
       - run:
-          name: update-yarn
-          command: 'sudo npm install -g yarn@latest'
-
-      - run:
           name: install
           command: yarn install
 
