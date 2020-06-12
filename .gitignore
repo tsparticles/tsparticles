@@ -357,11 +357,11 @@ dist/
 lib/
 build/
 docs/
-projects/tsparticles/typedoc/themes/particles/assets/js/tsparticles.min.js
-projects/tsparticles/demo/public/report.html
-projects/tsparticles/demo/public/report.htm
-projects/tsparticles/demo/public/report.*.html
-projects/tsparticles/demo/public/report.*.htm
+core/tsparticles/typedoc/themes/particles/assets/js/tsparticles.min.js
+core/tsparticles/demo/public/report.html
+core/tsparticles/demo/public/report.htm
+core/tsparticles/demo/public/report.*.html
+core/tsparticles/demo/public/report.*.htm
 
 .idea/
 .nyc_output/
