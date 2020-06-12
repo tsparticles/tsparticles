@@ -4,7 +4,8 @@ import { Circle } from "../../../../Utils";
 import type { IParticlesInteractor } from "../../../Interfaces/IParticlesInteractor";
 
 export class Infecter implements IParticlesInteractor {
-    constructor(private readonly container: Container) {}
+    constructor(private readonly container: Container) {
+    }
 
     public isEnabled(): boolean {
         return this.container.options.infection.enable;

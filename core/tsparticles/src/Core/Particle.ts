@@ -292,7 +292,7 @@ export class Particle implements IParticle {
                 const svgColoredData = Utils.replaceColorSvg(image, color, this.opacity.value);
 
                 /* prepare to create img with colored svg */
-                const svg = new Blob([svgColoredData], { type: "image/svg+xml" });
+                const svg = new Blob([ svgColoredData ], { type: "image/svg+xml" });
                 const domUrl = window.URL || window.webkitURL || window;
                 const url = domUrl.createObjectURL(svg);
 
@@ -526,7 +526,7 @@ export class Particle implements IParticle {
     }
 
     private calcPosition(container: Container, position?: ICoordinates): ICoordinates {
-        for (const [, plugin] of container.plugins) {
+        for (const [ , plugin ] of container.plugins) {
             const pluginPos =
                 plugin.particlePosition !== undefined ? plugin.particlePosition(position, this) : undefined;
 

@@ -7,8 +7,8 @@
   "jsdelivr": "umd/particles.js",
   "types": "index.d.ts",
   "scripts": {
-    "compile": "webpack",
-    "compile:production": "cross-env NODE_ENV=production webpack"
+    "build:debug": "webpack",
+    "build": "cross-env NODE_ENV=production webpack"
   },
   "repository": {
     "url": "https://github.com/matteobruni/preact-particles",

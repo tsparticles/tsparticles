@@ -12,9 +12,6 @@ pool:
   vmImage: 'ubuntu-latest'
 
 steps:
-
-  - script: cd core/tsparticles
-
   - script: yarn install
-
-  - script: yarn build
+  - script: lerna bootstrap
+  - script: lerna run build

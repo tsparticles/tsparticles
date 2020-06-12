@@ -46,7 +46,7 @@ export class Shape implements IShape {
      * @deprecated the property images is deprecated, please use the image property, it works with one and many
      */
     get images(): IImageShape[] {
-        return this.image instanceof Array ? this.image : [this.image];
+        return this.image instanceof Array ? this.image : [ this.image ];
     }
 
     /**

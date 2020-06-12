@@ -24,10 +24,10 @@ jobs:
         uses: actions/setup-node@v1
         with:
           node-version: ${{ matrix.node-version }}
-      - run: cd core/tsparticles
       - run: yarn install
-      - run: yarn build
-      - run: yarn test
+      - run: lerna bootstrap
+      - run: lerna run build
+      #- run: lerna test
       #- name: Codacy Coverage Reporter
       #  uses: codacy/codacy-coverage-reporter-action@0.2.0
       #  with:

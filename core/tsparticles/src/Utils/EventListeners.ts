@@ -162,7 +162,7 @@ export class EventListeners {
         /* density particles enabled */
         container.densityAutoParticles();
 
-        for (const [, plugin] of container.plugins) {
+        for (const [ , plugin ] of container.plugins) {
             if (plugin.resize !== undefined) {
                 plugin.resize();
             }
@@ -298,7 +298,7 @@ export class EventListeners {
             return;
         }
 
-        for (const [, plugin] of container.plugins) {
+        for (const [ , plugin ] of container.plugins) {
             if (plugin.clickPositionValid !== undefined) {
                 handled = plugin.clickPositionValid(mousePosition);
 
@@ -407,7 +407,7 @@ export class EventListeners {
                 break;
         }
 
-        for (const [, plugin] of container.plugins) {
+        for (const [ , plugin ] of container.plugins) {
             if (plugin.handleClickMode) {
                 plugin.handleClickMode(mode);
             }

@@ -42,7 +42,7 @@ export class Particles {
         const options = container.options;
         let handled = false;
 
-        for (const [, plugin] of container.plugins) {
+        for (const [ , plugin ] of container.plugins) {
             if (plugin.particlesInitialization !== undefined) {
                 handled = plugin.particlesInitialization();
             }
@@ -108,7 +108,7 @@ export class Particles {
             //     p.vy = f * Math.sin(t);
             // }
 
-            for (const [, plugin] of container.plugins) {
+            for (const [ , plugin ] of container.plugins) {
                 if (particle.destroyed) {
                     break;
                 }
@@ -155,7 +155,7 @@ export class Particles {
         //this.spatialGrid.setGrid(this.array, this.container.canvas.size);
 
         /* draw polygon shape in debug mode */
-        for (const [, plugin] of container.plugins) {
+        for (const [ , plugin ] of container.plugins) {
             container.canvas.drawPlugin(plugin, delta);
         }
 

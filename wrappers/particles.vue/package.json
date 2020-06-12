@@ -4,9 +4,9 @@
   "version": "1.16.0-beta.0",
   "scripts": {
     "serve": "vue-cli-service serve",
-    "build": "vue-cli-service build",
+    "build:all": "vue-cli-service build",
     "clean": "rm -rf dist/*",
-    "build-plugin": "npm run clean && yarn rollup --config rollup.config.js"
+    "build": "npm run clean && yarn rollup --config rollup.config.js"
   },
   "main": "dist/particles.vue.js",
   "module": "dist/particles.vue.js",
