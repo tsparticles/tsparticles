@@ -2,6 +2,9 @@ const express = require('express');
 const stylus = require('stylus');
 
 const app = express();
+
+app.use(helmet());
+
 const port = 3000;
 
 app.set('views', './demo/views');
