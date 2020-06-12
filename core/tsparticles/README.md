@@ -99,51 +99,52 @@ yarn add particles.vue
 ##### Usage
 
 ```javascript
-import Particles from 'particles.vue';
+import Particles from "particles.vue";
 
 export default {
-    name: 'App',
-    components: {
-        Particles
-    }
-}
+  name: "App",
+  components: {
+    Particles,
+  },
+};
 ```
+
 ###### Simple config
 
 ```html
 <template>
-    <div id="app">
-      <Particles id="tsparticles" lineLinked="true"/>
-    </div>
- </template>
+  <div id="app">
+    <Particles id="tsparticles" lineLinked="true" />
+  </div>
+</template>
 ```
 
 ###### Full Config
 
 ```html
 <template>
-    <div id="app">
-      <particles
-        id="tsparticles"
-        color="#dedede"
-        :particleOpacity="0.7"
-        :particlesNumber="80"
-        shapeType="circle"
-        :particleSize="4"
-        linesColor="#dedede"
-        :linesWidth="1"
-        :lineLinked="true"
-        :lineOpacity="0.4"
-        :linesDistance="150"
-        :moveSpeed="3"
-        :hoverEffect="true"
-        hoverMode="grab"
-        :clickEffect="true"
-        clickMode="push"
-      >
-      </particles>
-    </div>
- </template>
+  <div id="app">
+    <particles
+      id="tsparticles"
+      color="#dedede"
+      :particleOpacity="0.7"
+      :particlesNumber="80"
+      shapeType="circle"
+      :particleSize="4"
+      linesColor="#dedede"
+      :linesWidth="1"
+      :lineLinked="true"
+      :lineOpacity="0.4"
+      :linesDistance="150"
+      :moveSpeed="3"
+      :hoverEffect="true"
+      hoverMode="grab"
+      :clickEffect="true"
+      clickMode="push"
+    >
+    </particles>
+  </div>
+</template>
 ```
 
 #### ReactJS
@@ -165,31 +166,26 @@ or
 Example:
 
 ```javascript
-import Particles from 'react-tsparticles';
+import Particles from "react-tsparticles";
 
-class App extends Component{
-  
-    render(){
-        return (
-            <Particles />
-        );
-    };
-
+class App extends Component {
+  render() {
+    return <Particles />;
+  }
 }
-
 ```
 
 ###### Props
 
-| Prop | Type | Definition |
-| --- | --- | --- |
-| width | string | The width of the canvas. |
-| height | string | The height of the canvas. |
-| params | object | The parameters of the particles instance. |
-| style | object | The style of the canvas element. |
-| className | string | The class name of the canvas wrapper. |
-| canvasClassName | string | the class name of the canvas. |
-| container | object | The instance of the [particles container](https://github.com/matteobruni/tsparticles/wiki/Particles-Container-class) |
+| Prop            | Type   | Definition                                                                                                           |
+| --------------- | ------ | -------------------------------------------------------------------------------------------------------------------- |
+| width           | string | The width of the canvas.                                                                                             |
+| height          | string | The height of the canvas.                                                                                            |
+| params          | object | The parameters of the particles instance.                                                                            |
+| style           | object | The style of the canvas element.                                                                                     |
+| className       | string | The class name of the canvas wrapper.                                                                                |
+| canvasClassName | string | the class name of the canvas.                                                                                        |
+| container       | object | The instance of the [particles container](https://github.com/matteobruni/tsparticles/wiki/Particles-Container-class) |
 
 Find your parameters configuration [here](https://particles.matteobruni.it).
 
@@ -220,31 +216,26 @@ or
 Example:
 
 ```javascript
-import Particles from 'preact-particles';
+import Particles from "preact-particles";
 
-class App extends Component{
-  
-    render(){
-        return (
-            <Particles />
-        );
-    };
-
+class App extends Component {
+  render() {
+    return <Particles />;
+  }
 }
-
 ```
 
 ###### Props
 
-| Prop | Type | Definition |
-| --- | --- | --- |
-| width | string | The width of the canvas. |
-| height | string | The height of the canvas. |
-| params | object | The parameters of the particles instance. |
-| style | object | The style of the canvas element. |
-| className | string | The class name of the canvas wrapper. |
-| canvasClassName | string | the class name of the canvas. |
-| container | object | The instance of the [particles container](https://github.com/matteobruni/tsparticles/wiki/Particles-Container-class) |
+| Prop            | Type   | Definition                                                                                                           |
+| --------------- | ------ | -------------------------------------------------------------------------------------------------------------------- |
+| width           | string | The width of the canvas.                                                                                             |
+| height          | string | The height of the canvas.                                                                                            |
+| params          | object | The parameters of the particles instance.                                                                            |
+| style           | object | The style of the canvas element.                                                                                     |
+| className       | string | The class name of the canvas wrapper.                                                                                |
+| canvasClassName | string | the class name of the canvas.                                                                                        |
+| container       | object | The instance of the [particles container](https://github.com/matteobruni/tsparticles/wiki/Particles-Container-class) |
 
 Find your parameters configuration [here](https://particles.matteobruni.it).
 
@@ -272,38 +263,38 @@ yarn add ng-particles
 
 ###### Usage
 
-*template.html*
+_template.html_
 
 ```html
 <ng-particles id="tsparticles" [options]="particlesOptions"></ng-particles>
 ```
 
-*app.ts*
+_app.ts_
 
 ```typescript
 export class AppComponent {
   particlesOptions = {
     particles: {
       color: {
-        value: [ '#ff0000', '#0000ff' ]
+        value: ["#ff0000", "#0000ff"],
       },
       lineLinked: {
         enable: true,
-        color: 'random'
+        color: "random",
       },
       move: {
         enable: true,
-        speed: 5
-      }
-    }
+        speed: 5,
+      },
+    },
   };
 }
 ```
 
-*app.module.ts*
+_app.module.ts_
 
 ```typescript
-import { NgParticlesModule } from 'ng-particles';
+import { NgParticlesModule } from "ng-particles";
 import { NgModule } from "@angular/core";
 
 @NgModule({
@@ -311,12 +302,14 @@ import { NgModule } from "@angular/core";
     /* AppComponent */
   ],
   imports: [
-    /* other imports */ NgParticlesModule // NgParticlesModule is required
+    /* other imports */ NgParticlesModule, // NgParticlesModule is required
   ],
   providers: [],
-  bootstrap: [ /* AppComponent */ ]
+  bootstrap: [
+    /* AppComponent */
+  ],
 })
-export class AppModule { }
+export class AppModule {}
 ```
 
 ### Want to see it in action and try it?
