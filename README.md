@@ -79,7 +79,7 @@ Otherwise there's the demo page link below. Just click/tap the Coronavirus below
 Want to see ever more demos? Clone the repository on your computer and follow these instructions
 
 ```shell
-npm install && npm start
+yarn install && yarn start
 ```
 
 **Boom! 💥** <http://localhost:3000> and you can checkout other demos.
