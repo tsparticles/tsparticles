@@ -10,6 +10,9 @@
     "lint": "ng lint",
     "e2e": "ng e2e"
   },
+  "publishConfig": {
+    "directory": "dist/ng-particles"
+  },
   "private": true,
   "dependencies": {
     "@angular/animations": "^9.1.9",
