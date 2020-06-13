@@ -358,10 +358,10 @@ lib/
 build/
 docs/
 core/tsparticles/typedoc/themes/particles/assets/js/tsparticles.min.js
-demo/main/public/report.html
-demo/main/public/report.htm
-demo/main/public/report.*.html
-demo/main/public/report.*.htm
+demo/main/report.html
+demo/main/report.htm
+demo/main/report.*.html
+demo/main/report.*.htm
 wrappers/preact-particles/report.html
 wrappers/react-tsparticles/report.html
 
