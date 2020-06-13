@@ -12,14 +12,14 @@
   "module": "dist/particles.vue.js",
   "unpkg": "dist/particles.vue.min.js",
   "jsdelivr": "dist/particles.vue.min.js",
-  "repository": "https://github.com/matteobruni/particles.vue",
+  "repository": "https://github.com/matteobruni/tsparticles",
   "author": "Matteo Bruni",
   "license": "MIT",
   "files": [
     "dist"
   ],
   "bugs": {
-    "url": "https://github.com/matteobruni/particles.vue/issues"
+    "url": "https://github.com/matteobruni/tsparticles/issues"
   },
   "homepage": "https://particles.matteobruni.it",
   "dependencies": {

@@ -11,7 +11,7 @@
     "build": "cross-env NODE_ENV=production webpack"
   },
   "repository": {
-    "url": "https://github.com/matteobruni/react-tsparticles",
+    "url": "https://github.com/matteobruni/tsparticles",
     "type": "git"
   },
   "author": "Matteo Bruni <matteo.bruni@me.com> (https://www.matteobruni.it)",

@@ -4,7 +4,7 @@ import sourcemaps from 'rollup-plugin-sourcemaps';
 export default {
     input: 'dist/preset.js',
     output: {
-        file: 'dist/tsparticles.preset.60fps.js',
+        file: 'dist/tsparticles.preset.bouncing.js',
         format: 'iife',
         sourcemap: true,
         globals: {

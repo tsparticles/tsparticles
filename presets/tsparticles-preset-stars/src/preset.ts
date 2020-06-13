@@ -1,6 +1,4 @@
-if (!tsParticles) {
-    throw new Error('tsParticles not found');
-}
+import { MoveDirection, OutMode, tsParticles } from "tsparticles";
 
 tsParticles.addPreset('stars', {
     particles: {
@@ -12,9 +10,9 @@ tsParticles.addPreset('stars', {
         },
         move: {
             bounce: false,
-            direction: 'none',
+            direction: MoveDirection.none,
             enable: true,
-            outMode: 'out',
+            outMode: OutMode.out,
             random: true,
             speed: 0.3,
             straight: false,

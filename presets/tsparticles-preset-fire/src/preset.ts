@@ -1,6 +1,4 @@
-if (!tsParticles) {
-    throw new Error('tsParticles not found');
-}
+import { ClickMode, tsParticles } from "tsparticles";
 
 tsParticles.addPreset('fire', {
     fpsLimit: 40,
@@ -13,7 +11,7 @@ tsParticles.addPreset('fire', {
             }
         },
         color: {
-            value: ["#fdcf58", "#757676", "#f27d0c", "#800909", "#f07f13"]
+            value: [ "#fdcf58", "#757676", "#f27d0c", "#800909", "#f07f13" ]
         },
         opacity: {
             value: 0.5,
@@ -33,7 +31,7 @@ tsParticles.addPreset('fire', {
         events: {
             onclick: {
                 enable: true,
-                mode: "push"
+                mode: ClickMode.push
             },
             resize: true
         }

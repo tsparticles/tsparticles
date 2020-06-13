@@ -15,7 +15,7 @@
   ],
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/matteobruni/jquery-particles.git"
+    "url": "git+https://github.com/matteobruni/tsparticles.git"
   },
   "keywords": [
     "jquery",
@@ -47,9 +47,9 @@
   "author": "Matteo Bruni",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/matteobruni/jquery-particles/issues"
+    "url": "https://github.com/matteobruni/tsparticles/issues"
   },
-  "homepage": "https://github.com/matteobruni/jquery-particles#readme",
+  "homepage": "https://particles.matteobruni.it/",
   "dependencies": {
     "@types/jquery": "^3.3.38",
     "jquery": "^3.4.1",

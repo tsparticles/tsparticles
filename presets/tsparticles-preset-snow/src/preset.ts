@@ -1,6 +1,4 @@
-if (!tsParticles) {
-    throw new Error('tsParticles not found');
-}
+import { MoveDirection, tsParticles } from "tsparticles";
 
 tsParticles.addPreset('snow', {
     particles: {
@@ -9,11 +7,9 @@ tsParticles.addPreset('snow', {
         },
         move: {
             bounce: false,
-            direction: 'bottom',
+            direction: MoveDirection.bottom,
             enable: true,
-            outMode: 'out',
             random: false,
-            speed: 2,
             straight: false,
         },
         opacity: {

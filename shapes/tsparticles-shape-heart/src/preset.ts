@@ -1,10 +1,9 @@
-if (!tsParticles) {
-    throw new Error('tsParticles not found');
-}
+import { tsParticles } from "tsparticles";
+import { IParticle } from "tsparticles/dist/Core/Interfaces/IParticle";
 
-tsParticles.addShape('heart', function (context, particle, radius, opacity) {
-    var x = -radius;
-    var y = -radius;
+tsParticles.addShape('heart', function (context: CanvasRenderingContext2D, particle: IParticle, radius: number): void {
+    const x = -radius;
+    const y = -radius;
 
     context.moveTo(x, y + radius / 2);
     context.quadraticCurveTo(x, y, x + radius / 2, y);
