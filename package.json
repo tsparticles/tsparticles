@@ -4,6 +4,7 @@
   "version": "0.0.0",
   "workspaces": [
     "core/*",
+    "demo/*",
     "presets/*",
     "shapes/*",
     "wrappers/*"
