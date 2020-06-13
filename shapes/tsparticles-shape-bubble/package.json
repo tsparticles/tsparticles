@@ -1,17 +1,17 @@
 {
-  "name": "tsparticles-preset-bouncing",
-  "version": "1.0.2",
-  "description": "tsParticles bouncing preset",
+  "name": "tsparticles-shape-bubble",
+  "version": "1.0.0",
+  "description": "tsParticles bubble shape",
   "homepage": "https://particles.matteobruni.it/",
   "scripts": {
-    "compile": "tsc",
-    "bundle": "rollup -c",
+    "compile": "node_modules/.bin/tsc",
+    "bundle": "node_modules/.bin/rollup -c",
     "minify": "node_modules/.bin/uglifyjs dist/tsparticles.preset.60fps.js --output dist/tsparticles.preset.60fps.min.js --source-map \\\"filename='dist/tsparticles.preset.60fps.min.js.map',url='tsparticles.preset.60fps.min.js.map',content='dist/tsparticles.preset.60fps.js.map'\\\"",
     "build": "yarn compile && yarn bundle && yarn minify"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/matteobruni/tsparticles-preset-bouncing.git"
+    "url": "git+https://github.com/matteobruni/tsparticles-shape-bubble.git"
   },
   "keywords": [
     "tsparticles",
@@ -36,7 +36,7 @@
     "css3",
     "animated",
     "background",
-    "tsparticles-preset"
+    "tsparticles-shape"
   ],
   "author": "Matteo Bruni",
   "license": "MIT",
@@ -44,9 +44,9 @@
     "dist/**/*"
   ],
   "bugs": {
-    "url": "https://github.com/matteobruni/tsparticles-preset-bouncing/issues"
+    "url": "https://github.com/matteobruni/tsparticles-shape-bubble/issues"
   },
-  "main": "dist/tsparticles.preset.bouncing.min.js",
+  "main": "dist/tsparticles.shape.bubble.min.js",
   "devDependencies": {
     "babel-preset-env": "^1.7.0",
     "cpx": "^1.5.0",
@@ -57,6 +57,6 @@
     "uglify-js": "^3.8.1"
   },
   "dependencies": {
-    "tsparticles": "latest"
+    "tsparticles": "^1.14.0"
   }
 }

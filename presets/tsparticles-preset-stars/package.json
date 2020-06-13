@@ -1,17 +1,17 @@
 {
-  "name": "tsparticles-preset-background-mask",
-  "version": "1.0.2",
-  "description": "tsParticles backgroundMask preset",
+  "name": "tsparticles-preset-stars",
+  "version": "1.0.1",
+  "description": "tsParticles stars preset",
   "homepage": "https://particles.matteobruni.it/",
   "scripts": {
-    "compile": "tsc",
-    "bundle": "rollup -c",
+    "compile": "node_modules/.bin/tsc",
+    "bundle": "node_modules/.bin/rollup -c",
     "minify": "node_modules/.bin/uglifyjs dist/tsparticles.preset.60fps.js --output dist/tsparticles.preset.60fps.min.js --source-map \\\"filename='dist/tsparticles.preset.60fps.min.js.map',url='tsparticles.preset.60fps.min.js.map',content='dist/tsparticles.preset.60fps.js.map'\\\"",
     "build": "yarn compile && yarn bundle && yarn minify"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/matteobruni/tsparticles-preset-backgroundMask.git"
+    "url": "git+https://github.com/matteobruni/tsparticles-preset-stars.git"
   },
   "keywords": [
     "tsparticles",
@@ -44,9 +44,9 @@
     "dist/**/*"
   ],
   "bugs": {
-    "url": "https://github.com/matteobruni/tsparticles-preset-backgroundMask/issues"
+    "url": "https://github.com/matteobruni/tsparticles-preset-stars/issues"
   },
-  "main": "dist/tsparticles.preset.background-mask.min.js",
+  "main": "dist/tsparticles.preset.stars.min.js",
   "devDependencies": {
     "babel-preset-env": "^1.7.0",
     "cpx": "^1.5.0",
