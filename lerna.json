@@ -1,8 +1,8 @@
 {
   "packages": [
     "core/*",
-    "plugins/*",
-    "wrappers/*"
+    "plugins/**",
+    "wrappers/**"
   ],
   "version": "independent",
   "npmClient": "yarn",
