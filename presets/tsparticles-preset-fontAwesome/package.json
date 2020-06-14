@@ -1,6 +1,6 @@
 {
   "name": "tsparticles-preset-font-awesome",
-  "version": "1.0.1",
+  "version": "1.0.2-beta.0",
   "description": "tsParticles fontAwesome preset",
   "homepage": "https://particles.matteobruni.it/",
   "scripts": {

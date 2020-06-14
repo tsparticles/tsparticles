@@ -1,6 +1,6 @@
 {
   "name": "tsparticles-preset-bouncing",
-  "version": "1.0.2",
+  "version": "1.0.3-beta.0",
   "description": "tsParticles bouncing preset",
   "homepage": "https://particles.matteobruni.it/",
   "scripts": {

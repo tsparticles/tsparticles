@@ -1,6 +1,6 @@
 const fs = require('fs');
 const mainPackage = require('../package.json');
-const libPackage = '../projects/ng-particles/particles.json';
+const libPackage = './projects/ng-particles/package.json';
 
 fs.readFile(libPackage, function (error, data) {
     if (error) {
@@ -13,7 +13,7 @@ fs.readFile(libPackage, function (error, data) {
 
     libObj.version = mainPackage.version;
 
-    fs.writeFile(filePath, JSON.stringify(libObj), 'utf-8', function () {
+    fs.writeFile(libPackage, JSON.stringify(libObj), 'utf-8', function () {
         console.log(`lib package.json updated successfully to version ${mainPackage.version}`);
     });
 });

@@ -1,6 +1,6 @@
 {
   "name": "tsparticles-shape-spiral",
-  "version": "1.0.4",
+  "version": "1.0.5-beta.0",
   "description": "tsParticles spiral shape",
   "homepage": "https://particles.matteobruni.it/",
   "scripts": {
