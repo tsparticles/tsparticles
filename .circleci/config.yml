@@ -11,13 +11,13 @@ jobs:
       - checkout
 
       - run:
-          name: update-npm
-          command: 'sudo npm install -g npm@latest'
+          name: install
+          command: yarn install
 
       - run:
-          name: install
-          command: npm ci
+          name: bootstrap
+          command: npx lerna bootstrap
 
       - run:
           name: build
-          command: npm run build
+          command: npx lerna run build

@@ -2,23 +2,33 @@
 
 # Start development
 
-Before you can start making changes it's mandatory to run a `npm install` for installing all the dependencies.
+Before you can start making changes it's mandatory to run a `lerna bootstrap` for installing all the dependencies.
 
-After that you can start coding, all the sources are inside the */src* folder.
+After that you can start coding, the source folders are `core`, `wrappers` and `plugins`.
 
-Once done you can check if everything builds running `npm run slimbuild` or `npm run build`.
+The `core` folder contains tsParticles library, the main library.
+
+The `wrappers` folder contains all javascript frameworks wrappers built around tsParticles: Angular, jQuery, Preact, React, Vue.
+
+The `plugins` folder contains all external presets and shapes.
+
+Once done editing you can check if everything builds running `lerna run build`.
 
 The difference is the first does not create the docs folder and it can be unnecessary while coding.
 
 ## Testing
 
-There's a small demo app inside the repository, just run `npm start` and go to http://localhost:3000
+There's a small demo app inside the repository in the `core` folder, just run `yarn start` and go to http://localhost:3000
+
+The `wrappers` and `plugins` doesn't have a demo app inside the repository for now.
+
+A demo folder will be probably created in near future with all the demo apps needed.
 
 ---
 
 # Pull Requests
 
-**Before opening any pull request check that `npm run build` completes**
+**Before opening any pull request check that `lerna run build` completes**
 
 *The build task will be performed automatically by the CI\CD but a first local check should be done*
 
@@ -42,7 +52,7 @@ This branch is the one used to make PR to *master* so this branch **MUST** build
 ### *master*
 This branch is the production one.
 
-**This must be used for PR only for bug fixes** and always **MUST** build.
+**This must be used for PR only for critical bug fixes** and always **MUST** build.
 
 Changes to README.md or other markdown files are not priorities so for these changes use *dev* or *staging* and they'll be implemented in the next release.
 

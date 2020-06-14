@@ -4,22 +4,14 @@
 # https://aka.ms/yaml
 
 trigger:
-- master
-- staging
-- dev
+  - master
+  - staging
+  - dev
 
 pool:
   vmImage: 'ubuntu-latest'
 
 steps:
-
-- task: Npm@1
-  displayName: NPM CI
-  inputs:
-    command: 'ci'
-
-- task: Npm@1
-  displayName: NPM Build
-  inputs:
-    command: 'custom'
-    customCommand: 'run build'
+  - script: yarn install
+  - script: npx lerna bootstrap
+  - script: npx lerna run build

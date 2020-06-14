@@ -357,13 +357,21 @@ dist/
 lib/
 build/
 docs/
-typedoc/themes/particles/assets/js/tsparticles.min.js
-demo/public/report.html
-demo/public/report.htm
-demo/public/report.*.html
-demo/public/report.*.htm
+core/tsparticles/typedoc/themes/particles/assets/js/tsparticles.min.js
+demo/main/report.html
+demo/main/report.htm
+demo/main/report.*.html
+demo/main/report.*.htm
+wrappers/preact-particles/report.html
+wrappers/react-tsparticles/report.html
 
 .idea/
 .nyc_output/
 coverage/
 .codacy-coverage/
+
+package-lock.json
+wrappers/preact-particles/cjs/
+wrappers/preact-particles/umd/
+wrappers/react-tsparticles/cjs/
+wrappers/react-tsparticles/umd/
