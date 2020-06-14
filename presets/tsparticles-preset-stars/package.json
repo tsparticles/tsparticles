@@ -1,6 +1,6 @@
 {
   "name": "tsparticles-preset-stars",
-  "version": "1.0.2-beta.1",
+  "version": "1.0.2-beta.3",
   "description": "tsParticles stars preset",
   "homepage": "https://particles.matteobruni.it/",
   "scripts": {
@@ -58,5 +58,6 @@
   },
   "dependencies": {
     "tsparticles": "latest"
-  }
+  },
+  "gitHead": "55cbca2c9958755b0e66b3f6bec1e6b109a70afd"
 }

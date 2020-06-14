@@ -215,7 +215,7 @@ export class PolygonMaskInstance implements IContainerPlugin {
         }
 
         this.redrawTimeout = window.setTimeout(async () => {
-            await this.initRawData();
+            await this.initRawData(true);
 
             container.particles.redraw();
         }, 250);
@@ -299,13 +299,14 @@ export class PolygonMaskInstance implements IContainerPlugin {
         }
 
         const options = this.options;
+        const polygonDraw = options.draw;
 
-        if (!(options.enable && options.draw.enable)) {
+        if (!(options.enable && polygonDraw.enable)) {
             return;
         }
 
-        const polygonDraw = options.draw;
         const rawData = this.raw;
+
         for (const path of this.paths) {
             const path2d = path.path2d;
             const path2dSupported = this.path2DSupported;
@@ -437,7 +438,7 @@ export class PolygonMaskInstance implements IContainerPlugin {
             throw new Error("tsParticles Error - Error occurred during polygon mask download");
         }
 
-        return this.parseSvgPath(await req.text());
+        return this.parseSvgPath(await req.text(), force);
     }
 
     private drawPoints(): void {
@@ -604,11 +605,11 @@ export class PolygonMaskInstance implements IContainerPlugin {
         }
     }
 
-    private async initRawData(): Promise<void> {
+    private async initRawData(force?: boolean): Promise<void> {
         const options = this.options;
 
         if (options.url) {
-            this.raw = await this.downloadSvgPath(options.url);
+            this.raw = await this.downloadSvgPath(options.url, force);
         } else if (options.data) {
             const data = options.data;
 
@@ -627,7 +628,7 @@ export class PolygonMaskInstance implements IContainerPlugin {
                 svg = data;
             }
 
-            this.raw = this.parseSvgPath(svg);
+            this.raw = this.parseSvgPath(svg, force);
         }
 
         this.createPath2D();

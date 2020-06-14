@@ -4,7 +4,7 @@
     "./dist/index.js",
     "./dist/tsparticles.js"
   ],
-  "version": "1.16.0-beta.2",
+  "version": "1.16.0-beta.4",
   "description": "Porting of the abandoned Vincent Garreau's particles.js, converted in TypeScript. Added many new cool features and various bug fixes.",
   "homepage": "https://particles.matteobruni.it/",
   "scripts": {
@@ -129,5 +129,6 @@
       "html"
     ],
     "all": true
-  }
+  },
+  "gitHead": "55cbca2c9958755b0e66b3f6bec1e6b109a70afd"
 }
