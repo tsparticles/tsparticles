@@ -1,6 +1,6 @@
 {
   "name": "ng-particles",
-  "version": "1.16.0-beta.1",
+  "version": "1.16.0-beta.2",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
