@@ -1,7 +1,7 @@
-import { RecursivePartial } from "./Types/RecursivePartial";
-import { IOptions } from "./Options/Interfaces/IOptions";
-import { Container } from "./Core/Container";
-import { MainSlim } from "./main.slim";
+import type { RecursivePartial } from "./Types/RecursivePartial";
+import type { IOptions } from "./Options/Interfaces/IOptions";
+import type { Container } from "./Core/Container";
+import type { MainSlim } from "./main.slim";
 
 const initPjs = (main: MainSlim): { particlesJS: any; pJSDom: Container[] } => {
     /**

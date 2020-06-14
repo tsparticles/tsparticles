@@ -44,5 +44,6 @@
     "rollup-plugin-vue": "^5.1.6",
     "typescript": "^3.8.3",
     "vue-template-compiler": "^2.6.11"
-  }
+  },
+  "gitHead": "55cbca2c9958755b0e66b3f6bec1e6b109a70afd"
 }
