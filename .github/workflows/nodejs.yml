@@ -24,8 +24,6 @@ jobs:
         uses: actions/setup-node@v1
         with:
           node-version: ${{ matrix.node-version }}
-      - run: npm install -g pug
-      - run: npm install -g stylus
       - run: yarn install
       - run: npx lerna bootstrap
       - run: npx lerna run build

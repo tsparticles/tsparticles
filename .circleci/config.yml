@@ -11,14 +11,6 @@ jobs:
       - checkout
 
       - run:
-          name: install pug
-          command: npm install -g pug
-
-      - run:
-          name: install stylus
-          command: npm install -g stylus
-
-      - run:
           name: install
           command: yarn install
 

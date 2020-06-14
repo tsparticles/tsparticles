@@ -20,8 +20,8 @@
   "scripts": {
     "start": "yarn build && node ./app.js",
     "build": "yarn build:style && yarn build:index",
-    "build:index": "pug ./views/index.pug",
-    "build:style": "stylus ./public/stylesheets/main.styl"
+    "build:index": "npx pug ./views/index.pug",
+    "build:style": "npx stylus ./public/stylesheets/main.styl"
   },
   "devDependencies": {
     "@fortawesome/fontawesome-free": "^5.13.0",
