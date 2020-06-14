@@ -127,13 +127,6 @@
         // Dispatch it.
         cmbPresets.dispatchEvent(event);
 
-        fetch('/schema/options.schema.json').then(function (response) {
-            response.json().then(function (data) {
-                schema = data;
-                editor.setSchema(schema);
-            });
-        });
-
         const btnUpdate = document.getElementById('btnUpdate');
         btnUpdate.onclick = function () {
             const particles = tsParticles.domItem(0);
