@@ -12,6 +12,8 @@ pool:
   vmImage: 'ubuntu-latest'
 
 steps:
+  - script: npm install -g pug
+  - script: npm install -g stylus
   - script: yarn install
   - script: npx lerna bootstrap
   - script: npx lerna run build
