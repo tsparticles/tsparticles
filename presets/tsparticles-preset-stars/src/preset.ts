@@ -1,4 +1,4 @@
-import { MoveDirection, OutMode, tsParticles } from "tsparticles";
+import { MoveDirection, OutMode, ShapeType, tsParticles } from "tsparticles";
 
 tsParticles.addPreset('stars', {
     particles: {
@@ -28,7 +28,7 @@ tsParticles.addPreset('stars', {
             value: 1,
         },
         shape: {
-            type: 'circle',
+            type: ShapeType.circle,
         },
         size: {
             random: true,
