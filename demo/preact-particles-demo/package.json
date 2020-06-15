@@ -34,7 +34,7 @@
     "identity-obj-proxy": "^3.0.0",
     "preact-cli": "^3.0.0-rc.6",
     "preact-render-spy": "^1.2.1",
-    "sirv-cli": "^0.4.5"
+    "sirv-cli": "^1.0.0"
   },
   "dependencies": {
     "preact": "^10.3.2",
