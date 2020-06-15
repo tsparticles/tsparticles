@@ -1,0 +1,67 @@
+{
+  "name": "jquery-particles",
+  "version": "1.16.0",
+  "description": "Particles effect in jQuery",
+  "main": "dist/jquery.particles.min.js",
+  "scripts": {
+    "compile": "tsc",
+    "bundle": "rollup -c",
+    "minify": "uglifyjs dist/jquery.particles.js --output dist/jquery.particles.min.js --source-map \"filename='dist/jquery.particles.min.js.map',url='jquery.particles.min.js.map',content='dist/jquery.particles.js.map'\"",
+    "build": "yarn compile && yarn bundle && yarn minify"
+  },
+  "files": [
+    "dist/**/*"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/matteobruni/tsparticles.git"
+  },
+  "keywords": [
+    "jquery",
+    "jquery-plugin",
+    "jquery-plugins",
+    "tsparticles",
+    "particles",
+    "particle",
+    "canvas",
+    "jsparticles",
+    "xparticles",
+    "particles-js",
+    "particles.js",
+    "particles-ts",
+    "particles.ts",
+    "typescript",
+    "javascript",
+    "animation",
+    "web",
+    "html5",
+    "web-design",
+    "webdesign",
+    "css",
+    "html",
+    "css3",
+    "animated",
+    "background"
+  ],
+  "author": "Matteo Bruni",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/matteobruni/tsparticles/issues"
+  },
+  "homepage": "https://particles.matteobruni.it/",
+  "dependencies": {
+    "jquery": "^3.4.1",
+    "tslib": "^2.0.0",
+    "tsparticles": "^1.16.0"
+  },
+  "devDependencies": {
+    "@types/jquery": "^3.3.38",
+    "babel-preset-env": "^1.7.0",
+    "rollup": "^2.16.0",
+    "rollup-plugin-babel": "^4.4.0",
+    "rollup-plugin-sourcemaps": "^0.6.2",
+    "typescript": "^3.9.5",
+    "uglify-js": "^3.9.4"
+  },
+  "gitHead": "7024687a6c12642f762f2520f220273b26cc3e93"
+}

@@ -1,0 +1,62 @@
+{
+  "name": "tsparticles-shape-heart",
+  "version": "1.1.0",
+  "description": "tsParticles heart shape",
+  "homepage": "https://particles.matteobruni.it/",
+  "scripts": {
+    "compile": "node_modules/.bin/tsc",
+    "bundle": "node_modules/.bin/rollup -c",
+    "minify": "node_modules/.bin/uglifyjs dist/tsparticles.shape.heart.js --output dist/tsparticles.shape.heart.min.js --source-map \"filename='dist/tsparticles.shape.heart.min.js.map',url='tsparticles.shape.heart.min.js.map',content='dist/tsparticles.shape.heart.js.map'\"",
+    "build": "yarn compile && yarn bundle && yarn minify"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/matteobruni/tsparticles.git"
+  },
+  "keywords": [
+    "tsparticles",
+    "particles",
+    "particle",
+    "canvas",
+    "jsparticles",
+    "xparticles",
+    "particles-js",
+    "particles.js",
+    "particles-ts",
+    "particles.ts",
+    "typescript",
+    "javascript",
+    "animation",
+    "web",
+    "html5",
+    "web-design",
+    "webdesign",
+    "css",
+    "html",
+    "css3",
+    "animated",
+    "background",
+    "tsparticles-shape"
+  ],
+  "author": "Matteo Bruni",
+  "license": "MIT",
+  "files": [
+    "dist/**/*"
+  ],
+  "bugs": {
+    "url": "https://github.com/matteobruni/tsparticles/issues"
+  },
+  "main": "dist/tsparticles.shape.heart.min.js",
+  "devDependencies": {
+    "babel-preset-env": "^1.7.0",
+    "cpx": "^1.5.0",
+    "rollup": "^2.16.0",
+    "rollup-plugin-babel": "^4.4.0",
+    "rollup-plugin-sourcemaps": "^0.6.2",
+    "typescript": "^3.9.5",
+    "uglify-js": "^3.8.1"
+  },
+  "dependencies": {
+    "tsparticles": "latest"
+  }
+}

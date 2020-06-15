@@ -1,0 +1,12 @@
+{
+  "packages": [
+    "core/*",
+    "demo/*",
+    "presets/*",
+    "shapes/*",
+    "wrappers/*"
+  ],
+  "version": "independent",
+  "npmClient": "yarn",
+  "useWorkspaces": true
+}

@@ -10,13 +10,13 @@
 
 _[Particles.js](https://github.com/VincentGarreau/particles.js) converted in TypeScript, dependency free (\*), improved with new cool 😎 features and various bugs fixed and **it's currently under development**!_
 
-[![jsDelivr](https://data.jsdelivr.com/v1/package/npm/tsparticles/badge)](https://www.jsdelivr.com/package/npm/tsparticles) [![Cdnjs](https://img.shields.io/cdnjs/v/tsparticles)](https://cdnjs.com/libraries/tsparticles) [![npmjs](https://badge.fury.io/js/tsparticles.svg)](https://www.npmjs.com/package/tsparticles) ![npm](https://img.shields.io/npm/dm/tsparticles)
+[![jsDelivr](https://data.jsdelivr.com/v1/package/npm/tsparticles/badge?style=rounded)](https://www.jsdelivr.com/package/npm/tsparticles) [![Cdnjs](https://img.shields.io/cdnjs/v/tsparticles)](https://cdnjs.com/libraries/tsparticles) [![npmjs](https://badge.fury.io/js/tsparticles.svg)](https://www.npmjs.com/package/tsparticles) ![npm](https://img.shields.io/npm/dm/tsparticles)
 
 | `master`                                                                                                                                                                                                                            | `staging`                                                                                                                                                                                                                              | `dev`                                                                                                                                                                                                                      |
 | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | [![Master Build Status](https://dev.azure.com/hollowmatt/particles.ts/_apis/build/status/matteobruni.tsparticles?branchName=master)](https://dev.azure.com/hollowmatt/particles.ts/_build/latest?definitionId=11&branchName=master) | [![Staging Build Status](https://dev.azure.com/hollowmatt/particles.ts/_apis/build/status/matteobruni.tsparticles?branchName=staging)](https://dev.azure.com/hollowmatt/particles.ts/_build/latest?definitionId=11&branchName=staging) | [![Dev Build Status](https://dev.azure.com/hollowmatt/particles.ts/_apis/build/status/matteobruni.tsparticles?branchName=dev)](https://dev.azure.com/hollowmatt/particles.ts/_build/latest?definitionId=11&branchName=dev) |
 
-[![CodeFactor](https://www.codefactor.io/repository/github/matteobruni/tsparticles/badge)](https://www.codefactor.io/repository/github/matteobruni/tsparticles) [![Codacy Badge](https://api.codacy.com/project/badge/Grade/b983aaf3461a4c48b1e2eecce1ff1d74)](https://www.codacy.com/manual/ar3s/tsparticles?utm_source=github.com&utm_medium=referral&utm_content=matteobruni/tsparticles&utm_campaign=Badge_Grade) [![Codacy Badge](https://api.codacy.com/project/badge/Coverage/b983aaf3461a4c48b1e2eecce1ff1d74)](https://www.codacy.com/manual/ar3s/tsparticles?utm_source=github.com&utm_medium=referral&utm_content=matteobruni/tsparticles&utm_campaign=Badge_Coverage) [![Sauce Test Status](https://saucelabs.com/buildstatus/matteobruni)](https://app.saucelabs.com/u/matteobruni)
+[![lerna](https://img.shields.io/badge/maintained%20with-lerna-cc00ff.svg)](https://lerna.js.org/) [![CodeFactor](https://www.codefactor.io/repository/github/matteobruni/tsparticles/badge)](https://www.codefactor.io/repository/github/matteobruni/tsparticles) [![Codacy Badge](https://api.codacy.com/project/badge/Grade/b983aaf3461a4c48b1e2eecce1ff1d74)](https://www.codacy.com/manual/ar3s/tsparticles?utm_source=github.com&utm_medium=referral&utm_content=matteobruni/tsparticles&utm_campaign=Badge_Grade) [![Codacy Badge](https://api.codacy.com/project/badge/Coverage/b983aaf3461a4c48b1e2eecce1ff1d74)](https://www.codacy.com/manual/ar3s/tsparticles?utm_source=github.com&utm_medium=referral&utm_content=matteobruni/tsparticles&utm_campaign=Badge_Coverage) [![Sauce Test Status](https://saucelabs.com/buildstatus/matteobruni)](https://app.saucelabs.com/u/matteobruni)
 
 [![Slack](https://cdn.matteobruni.it/images/slack.png)](https://join.slack.com/t/tsparticles/shared_invite/enQtOTcxNTQxNjQ4NzkxLWE2MTZhZWExMWRmOWI5MTMxNjczOGE1Yjk0MjViYjdkYTUzODM3OTc5MGQ5MjFlODc4MzE0N2Q1OWQxZDc1YzI) [![tsParticles Product Hunt](https://api.producthunt.com/widgets/embed-image/v1/featured.svg?post_id=186113&theme=light)](https://www.producthunt.com/posts/tsparticles?utm_source=badge-featured&utm_medium=badge&utm_souce=badge-tsparticles")
 
@@ -38,19 +38,164 @@ CDNs and `npm` have all the sources you need in **Javascript**, a bundle browser
 
 ![npm](https://img.shields.io/npm/v/jquery-particles) ![npm](https://img.shields.io/npm/dm/jquery-particles)
 
-If you want to use tsParticles with jQuery checkout [this repository](https://github.com/matteobruni/jquery-particles)
+##### Installation
+
+```shell script
+npm install jquery-particles
+```
+
+or from jsDelivr
+
+[![jsDelivr](https://data.jsdelivr.com/v1/package/npm/jquery-particles/badge)](https://www.jsdelivr.com/package/npm/jquery-particles)
+
+```html
+<!-- first include tsParticles -->
+<script src="https://cdn.jsdelivr.net/npm/tsparticles@1.12.7/dist/tsparticles.min.js"></script>
+<!-- then include jquery wrapper -->
+<script src="https://cdn.jsdelivr.net/npm/jquery-particles@1.12.7/dist/jquery.particles.min.js"></script>
+```
+
+##### How to use
+
+HTML
+
+```html
+<div id="tsparticles"></div>
+```
+
+```javascript
+$("#tsparticles")
+  .particles()
+  .init(
+    {
+      /* params */
+    },
+    function (container) {
+      // container is the particles container where you can play/pause or stop/start.
+      // the container is already started, you don't need to start it manually.
+    }
+  );
+
+// or
+
+$("#tsparticles")
+  .particles()
+  .ajax("particles.json", function (container) {
+    // container is the particles container where you can play/pause or stop/start.
+    // the container is already started, you don't need to start it manually.
+  });
+```
 
 #### VueJS
 
 ![npm](https://img.shields.io/npm/v/particles.vue) ![npm](https://img.shields.io/npm/dm/particles.vue)
 
-If you want to use tsParticles with VueJS checkout [this repository](https://github.com/matteobruni/particles.vue)
+##### Installation
+
+```shell script
+yarn add particles.vue
+```
+
+##### Usage
+
+```javascript
+import Particles from 'particles.vue';
+
+export default {
+    name: 'App',
+    components: {
+        Particles
+    }
+}
+```
+###### Simple config
+
+```html
+<template>
+    <div id="app">
+      <Particles id="tsparticles" lineLinked="true"/>
+    </div>
+ </template>
+```
+
+###### Full Config
+
+```html
+<template>
+    <div id="app">
+      <particles
+        id="tsparticles"
+        color="#dedede"
+        :particleOpacity="0.7"
+        :particlesNumber="80"
+        shapeType="circle"
+        :particleSize="4"
+        linesColor="#dedede"
+        :linesWidth="1"
+        :lineLinked="true"
+        :lineOpacity="0.4"
+        :linesDistance="150"
+        :moveSpeed="3"
+        :hoverEffect="true"
+        hoverMode="grab"
+        :clickEffect="true"
+        clickMode="push"
+      >
+      </particles>
+    </div>
+ </template>
+```
 
 #### ReactJS
 
 ![npm](https://img.shields.io/npm/v/react-tsparticles) ![npm](https://img.shields.io/npm/dm/react-tsparticles)
 
-If you want to use tsParticles with ReactJS checkout [this repository](https://github.com/matteobruni/react-tsparticles)
+##### Installation
+
+`npm install react-tsparticles`
+
+or
+
+`yarn add react-tsparticles`
+
+##### How to use
+
+###### Code
+
+Example:
+
+```javascript
+import Particles from 'react-tsparticles';
+
+class App extends Component{
+  
+    render(){
+        return (
+            <Particles />
+        );
+    };
+
+}
+
+```
+
+###### Props
+
+| Prop | Type | Definition |
+| --- | --- | --- |
+| width | string | The width of the canvas. |
+| height | string | The height of the canvas. |
+| params | object | The parameters of the particles instance. |
+| style | object | The style of the canvas element. |
+| className | string | The class name of the canvas wrapper. |
+| canvasClassName | string | the class name of the canvas. |
+| container | object | The instance of the [particles container](https://github.com/matteobruni/tsparticles/wiki/Particles-Container-class) |
+
+Find your parameters configuration [here](https://particles.matteobruni.it).
+
+###### Errors
+
+If you have typescript errors `tsParticles` uses TypeScript `3.9.3` so try installing at least 3.8 for `import type` syntax.
 
 ##### 3rd Party
 
@@ -60,13 +205,119 @@ A 3rd-party component is available too, read more [here](https://github.com/Wufe
 
 ![npm](https://img.shields.io/npm/v/preact-particles) ![npm](https://img.shields.io/npm/dm/preact-particles)
 
-If you want to use tsParticles with Preact checkout [this repository](https://github.com/matteobruni/preact-particles)
+##### Installation
+
+`npm install preact-particles`
+
+or
+
+`yarn add preact-particles`
+
+##### How to use
+
+###### Code
+
+Example:
+
+```javascript
+import Particles from 'preact-particles';
+
+class App extends Component{
+  
+    render(){
+        return (
+            <Particles />
+        );
+    };
+
+}
+
+```
+
+###### Props
+
+| Prop | Type | Definition |
+| --- | --- | --- |
+| width | string | The width of the canvas. |
+| height | string | The height of the canvas. |
+| params | object | The parameters of the particles instance. |
+| style | object | The style of the canvas element. |
+| className | string | The class name of the canvas wrapper. |
+| canvasClassName | string | the class name of the canvas. |
+| container | object | The instance of the [particles container](https://github.com/matteobruni/tsparticles/wiki/Particles-Container-class) |
+
+Find your parameters configuration [here](https://particles.matteobruni.it).
+
+###### Errors
+
+If you have typescript errors `tsParticles` uses TypeScript `3.9.3` so try installing at least 3.8 for `import type` syntax.
 
 #### Angular CLI
 
 ![npm](https://img.shields.io/npm/v/ng-particles) ![npm](https://img.shields.io/npm/dm/ng-particles)
 
-If you want to use tsParticles with Angular CLI (actually v9) checkout [this repository](https://github.com/matteobruni/ng-particles)
+##### How to use it
+
+###### Install
+
+```shell script
+npm install ng-particles
+```
+
+or
+
+```shell script
+yarn add ng-particles
+```
+
+###### Usage
+
+*template.html*
+
+```html
+<ng-particles id="tsparticles" [options]="particlesOptions"></ng-particles>
+```
+
+*app.ts*
+
+```typescript
+export class AppComponent {
+  particlesOptions = {
+    particles: {
+      color: {
+        value: [ '#ff0000', '#0000ff' ]
+      },
+      lineLinked: {
+        enable: true,
+        color: 'random'
+      },
+      move: {
+        enable: true,
+        speed: 5
+      }
+    }
+  };
+}
+```
+
+*app.module.ts*
+
+```typescript
+import { NgParticlesModule } from 'ng-particles';
+import { NgModule } from "@angular/core";
+
+@NgModule({
+  declarations: [
+    /* AppComponent */
+  ],
+  imports: [
+    /* other imports */ NgParticlesModule // NgParticlesModule is required
+  ],
+  providers: [],
+  bootstrap: [ /* AppComponent */ ]
+})
+export class AppModule { }
+```
 
 ### Want to see it in action and try it?
 
@@ -79,7 +330,7 @@ Otherwise there's the demo page link below. Just click/tap the Coronavirus below
 Want to see ever more demos? Clone the repository on your computer and follow these instructions
 
 ```shell
-npm install && npm start
+yarn install && yarn start
 ```
 
 **Boom! 💥** <http://localhost:3000> and you can checkout other demos.

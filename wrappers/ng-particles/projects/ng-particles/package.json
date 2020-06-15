@@ -1,0 +1,1 @@
+{"name":"ng-particles","version":"1.16.0","peerDependencies":{"@angular/common":"^9.1.9","@angular/core":"^9.1.9","tsparticles":"^1.16.0"},"scripts":{"build":"yarn -v"}}

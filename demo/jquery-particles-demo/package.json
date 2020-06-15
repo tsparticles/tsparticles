@@ -1,0 +1,37 @@
+{
+  "name": "jquery-particles-demo",
+  "private": true,
+  "version": "1.1.0",
+  "description": "> TODO: description",
+  "author": "Matteo Bruni <ar3s@icloud.com>",
+  "homepage": "https://github.com/matteobruni/tsparticles#readme",
+  "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/matteobruni/tsparticles.git"
+  },
+  "scripts": {
+    "build": "yarn build:style && yarn build:index",
+    "build:index": "npx pug ./views/index.pug",
+    "build:style": "npx stylus ./public/stylesheets/main.styl",
+    "start": "yarn build && node ./app.js"
+  },
+  "bugs": {
+    "url": "https://github.com/matteobruni/tsparticles/issues"
+  },
+  "dependencies": {
+    "jquery": "^3.4.1",
+    "jquery-particles": "^1.16.0",
+    "tsparticles": "^1.16.0"
+  },
+  "devDependencies": {
+    "@fortawesome/fontawesome-free": "^5.12.1",
+    "babel-preset-env": "^1.7.0",
+    "express": "^4.17.1",
+    "helmet": "^3.23.0",
+    "jsoneditor": "^9.0.0",
+    "pug": "^3.0.0",
+    "stylus": "^0.54.7",
+    "three": "^0.117.0"
+  }
+}
