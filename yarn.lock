@@ -2535,10 +2535,10 @@
   dependencies:
     "@types/react" "*"
 
-"@types/react-syntax-highlighter@0.0.6":
-  version "0.0.6"
-  resolved "https://registry.yarnpkg.com/@types/react-syntax-highlighter/-/react-syntax-highlighter-0.0.6.tgz#df076f4aa69b46760a56606bcd6d5ca1d6a42741"
-  integrity sha512-aNYtmptTBpJzn/4OS6qoBl57yVCU8xUl0ICEeW943mvMk20lB+KziP9IW2hzKb3Q8iUkX9xhglNd/Ntpg+OFGA==
+"@types/react-syntax-highlighter@11.0.4":
+  version "11.0.4"
+  resolved "https://registry.yarnpkg.com/@types/react-syntax-highlighter/-/react-syntax-highlighter-11.0.4.tgz#d86d17697db62f98046874f62fdb3e53a0bbc4cd"
+  integrity sha512-9GfTo3a0PHwQeTVoqs0g5bS28KkSY48pp5659wA+Dp4MqceDEa8EHBqrllJvvtyusszyJhViUEap0FDvlk/9Zg==
   dependencies:
     "@types/react" "*"
 
