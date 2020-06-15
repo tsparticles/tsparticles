@@ -1,6 +1,6 @@
 {
   "name": "jquery-particles",
-  "version": "1.16.0-beta.3",
+  "version": "1.16.0-beta.4",
   "description": "Particles effect in jQuery",
   "main": "dist/jquery.particles.min.js",
   "scripts": {
@@ -52,7 +52,7 @@
   "dependencies": {
     "jquery": "^3.4.1",
     "tslib": "^2.0.0",
-    "tsparticles": "^1.16.0-beta.4"
+    "tsparticles": "^1.16.0-beta.5"
   },
   "devDependencies": {
     "@types/jquery": "^3.3.38",
@@ -60,8 +60,8 @@
     "rollup": "^2.16.0",
     "rollup-plugin-babel": "^4.4.0",
     "rollup-plugin-sourcemaps": "^0.6.2",
-    "uglify-js": "^3.9.4",
-    "typescript": "^3.9.5"
+    "typescript": "^3.9.5",
+    "uglify-js": "^3.9.4"
   },
   "gitHead": "55cbca2c9958755b0e66b3f6bec1e6b109a70afd"
 }
