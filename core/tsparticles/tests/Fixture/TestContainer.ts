@@ -11,7 +11,8 @@ export class TestContainer {
     constructor(params?: RecursivePartial<IOptions>) {
         tsParticles.init();
         this.id = "test-container";
-        this.params = params || { particles: { size: { value: 0 } } }; // This keeps new Particle from offsetting position by 3
+        const defaultOptions: RecursivePartial<IOptions> = { particles: { size: { value: 0 } } };
+        this.params = params; // This keeps new Particle from offsetting position by 3
         this.container = new Container(this.id, this.params);
         this.container.retina.init();
     }

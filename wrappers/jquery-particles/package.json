@@ -7,8 +7,7 @@
     "compile": "tsc",
     "bundle": "rollup -c",
     "minify": "uglifyjs dist/jquery.particles.js --output dist/jquery.particles.min.js --source-map \"filename='dist/jquery.particles.min.js.map',url='jquery.particles.min.js.map',content='dist/jquery.particles.js.map'\"",
-    "build": "yarn compile && yarn bundle && yarn minify",
-    "start": "yarn build && node ./demo/app.js"
+    "build": "yarn compile && yarn bundle && yarn minify"
   },
   "files": [
     "dist/**/*"
@@ -51,26 +50,18 @@
   },
   "homepage": "https://particles.matteobruni.it/",
   "dependencies": {
-    "@types/jquery": "^3.3.38",
     "jquery": "^3.4.1",
     "tslib": "^2.0.0",
-    "tsparticles": "^1.16.0-beta.4",
-    "typescript": "^3.9.5"
+    "tsparticles": "^1.16.0-beta.4"
   },
   "devDependencies": {
-    "@fortawesome/fontawesome-free": "^5.12.1",
+    "@types/jquery": "^3.3.38",
     "babel-preset-env": "^1.7.0",
-    "cpx": "^1.5.0",
-    "express": "^4.17.1",
-    "helmet": "^3.23.0",
-    "jsoneditor": "^9.0.0",
-    "pug": "^3.0.0",
     "rollup": "^2.16.0",
     "rollup-plugin-babel": "^4.4.0",
     "rollup-plugin-sourcemaps": "^0.6.2",
-    "stylus": "^0.54.7",
-    "three": "^0.117.0",
-    "uglify-js": "^3.9.4"
+    "uglify-js": "^3.9.4",
+    "typescript": "^3.9.5"
   },
   "gitHead": "55cbca2c9958755b0e66b3f6bec1e6b109a70afd"
 }
