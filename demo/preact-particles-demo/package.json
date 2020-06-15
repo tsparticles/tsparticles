@@ -1,0 +1,45 @@
+{
+  "name": "preact-particles-demo",
+  "private": true,
+  "version": "1.1.0",
+  "description": "> TODO: description",
+  "author": "Matteo Bruni <ar3s@icloud.com>",
+  "homepage": "https://github.com/matteobruni/tsparticles#readme",
+  "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/matteobruni/tsparticles.git"
+  },
+  "eslintConfig": {
+    "extends": "preact",
+    "ignorePatterns": [
+      "build/"
+    ]
+  },
+  "scripts": {
+    "build": "npx copyfiles -a ../../node_modules/preact/* ./node_modules/preact/ && npx copyfiles -a ../../node_modules/preact/**/* ./node_modules/preact/ && npx copyfiles -a ../../node_modules/preact-render-to-string/* ./node_modules/preact-render-to-string/ && npx copyfiles -a ../../node_modules/preact-render-to-string/**/* ./node_modules/preact-render-to-string/ && preact build",
+    "start": "sirv build --cors --single",
+    "dev": "preact watch",
+    "lint": "eslint src"
+  },
+  "bugs": {
+    "url": "https://github.com/matteobruni/tsparticles/issues"
+  },
+  "devDependencies": {
+    "copyfiles": "^2.3.0",
+    "enzyme": "^3.10.0",
+    "enzyme-adapter-preact-pure": "^2.0.0",
+    "eslint": "^6.0.1",
+    "eslint-config-preact": "^1.1.0",
+    "identity-obj-proxy": "^3.0.0",
+    "preact-cli": "^3.0.0-rc.6",
+    "preact-render-spy": "^1.2.1",
+    "sirv-cli": "^1.0.0"
+  },
+  "dependencies": {
+    "preact": "^10.3.2",
+    "preact-particles": "^1.16.0",
+    "preact-render-to-string": "^5.1.4",
+    "preact-router": "^3.2.1"
+  }
+}

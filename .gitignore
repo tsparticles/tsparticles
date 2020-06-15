@@ -375,3 +375,5 @@ wrappers/preact-particles/cjs/
 wrappers/preact-particles/umd/
 wrappers/react-tsparticles/cjs/
 wrappers/react-tsparticles/umd/
+
+size-plugin.json
