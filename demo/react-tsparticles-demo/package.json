@@ -20,7 +20,7 @@
   "devDependencies": {
     "@types/react": "^16.4.8",
     "@types/react-dom": "^16.0.7",
-    "@types/react-syntax-highlighter": "0.0.6",
+    "@types/react-syntax-highlighter": "11.0.4",
     "node-sass": "^4.9.3",
     "parcel": "^1.10.3",
     "react-syntax-highlighter": "^8.0.1",
