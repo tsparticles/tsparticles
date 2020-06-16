@@ -1,4 +1,4 @@
-declare module 'react-syntax-highligter/prism' {
+declare module 'react-syntax-highligter' {
     type Prism = any;
     export default Prism;
 }

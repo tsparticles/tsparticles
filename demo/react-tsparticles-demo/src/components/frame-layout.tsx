@@ -1,10 +1,10 @@
 import * as React from 'react';
-import SyntaxHighlighter from 'react-syntax-highlighter/prism';
-import {base16AteliersulphurpoolLight as theme} from 'react-syntax-highlighter/styles/prism';
-import {FrameThumbsContainer} from './frame-thumbs-container';
-import {ParticlesContainer} from './particles-container';
-import {Subscription} from 'rxjs';
-import {onKeyPressed} from '../streams/key-pressed';
+import SyntaxHighlighter from 'react-syntax-highlighter';
+import { base16AteliersulphurpoolLight as theme } from 'react-syntax-highlighter/dist/esm/styles/prism';
+import { FrameThumbsContainer } from './frame-thumbs-container';
+import { ParticlesContainer } from './particles-container';
+import { Subscription } from 'rxjs';
+import { onKeyPressed } from '../streams/key-pressed';
 import { IParticlesParams } from 'react-tsparticles';
 
 
