@@ -1,12 +1,13 @@
 import * as React from 'react';
 import { render } from 'react-dom';
 import { FrameLayout } from './components/frame-layout';
-import { frames } from './frames';
+import { frames } from './frames';
 import { FrameContext } from './contexts/frame-context';
 import { Subject } from 'rxjs';
 import { onKeyPressed } from './streams/key-pressed';
 
-interface IProps {}
+interface IProps {
+}
 
 interface IState {
     chosenFrame: number;
@@ -34,7 +35,7 @@ export class App extends React.Component<IProps, IState> {
     }
 
     private onKeyUp(event: KeyboardEvent) {
-        this.state.onKeyPressed.next(event.keyCode);
+        this.state.onKeyPressed.next(event.key.charCodeAt(0));
     }
 
     private checkHash() {
@@ -67,16 +68,16 @@ export class App extends React.Component<IProps, IState> {
                 switchFrame: this.switchFrame
             }}>
                 <FrameContext.Consumer>
-                    {({chosenFrame}) => 
+                    {({ chosenFrame }) =>
                         <FrameLayout
                             backgroundColor={frames[chosenFrame].backgroundColor}
                             name={frames[chosenFrame].name}
-                            params={frames[chosenFrame].params} />}
+                            params={frames[chosenFrame].params}/>}
                 </FrameContext.Consumer>
             </FrameContext.Provider>
-            
+
         );
     }
 }
 
-render(<App />, document.getElementById('app'));
+render(<App/>, document.getElementById('app'));

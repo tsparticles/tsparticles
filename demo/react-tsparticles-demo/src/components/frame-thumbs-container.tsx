@@ -13,7 +13,7 @@ export class FrameThumbsContainer extends React.Component<IProps> {
             <div className="frame-thumbs__container">
                 <div className="frame-thumbs__title">Presets</div>
                 <FrameContext.Consumer>
-                    {({chosenFrame, switchFrame}) =>
+                    {({switchFrame}) =>
                         <React.Fragment>
                             {frames.map((f, i) =>
                                 <div
