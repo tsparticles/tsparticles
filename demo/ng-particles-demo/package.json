@@ -38,7 +38,7 @@
     "@angular/compiler-cli": "~9.1.9",
     "@types/node": "^12.11.1",
     "codelyzer": "^5.1.2",
-    "protractor": "~5.4.3",
+    "protractor": "~7.0.0",
     "ts-node": "~8.3.0",
     "tslint": "~6.1.0",
     "typescript": "~3.8.3"
