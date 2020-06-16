@@ -1,4 +1,5 @@
 import * as React from 'react';
+import * as pkgInfo from '../../package.json';
 import SyntaxHighlighter from 'react-syntax-highlighter';
 import { base16AteliersulphurpoolLight as theme } from 'react-syntax-highlighter/dist/esm/styles/prism';
 import { FrameThumbsContainer } from './frame-thumbs-container';
@@ -29,6 +30,7 @@ interface IDefaultProps {
 
 interface IState {
     codeVisible: boolean;
+    version: string;
 }
 
 export class FrameLayout extends React.Component<IProps, IState> {
@@ -43,7 +45,8 @@ export class FrameLayout extends React.Component<IProps, IState> {
         super(props);
         this.onCodeContainerClick = this.onCodeContainerClick.bind(this);
         this.state = {
-            codeVisible: false
+            codeVisible: false,
+            version: pkgInfo.version
         };
     }
 
@@ -78,7 +81,7 @@ export class FrameLayout extends React.Component<IProps, IState> {
                     background: this.props.backgroundColor
                 }}>
                 <div className="frame-layout__particles-container">
-                    <ParticlesContainer params={this.props.params}></ParticlesContainer>
+                    <ParticlesContainer params={this.props.params}/>
                 </div>
                 <div className="frame-layout__container">
                     <div className="frame-layout__content">
@@ -107,8 +110,8 @@ export class FrameLayout extends React.Component<IProps, IState> {
                     <a
                         className="github-mark"
                         href="https://github.com/matteobruni/react-tsparticles"
-                        target="_blank"></a>
-                    <span>v1.16.0-beta.3</span>
+                        target="_blank"/>
+                    <span>v{this.state.version}</span>
                 </div>
 
             </div>
