@@ -12,7 +12,7 @@ export class LinksShadow implements ILinksShadow {
         this.color = new OptionsColor();
         this.enable = false;
 
-        this.color.value = "lime";
+        this.color.value = "#00ff00";
     }
 
     public load(data?: RecursivePartial<ILinksShadow>): void {

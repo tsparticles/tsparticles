@@ -56,6 +56,7 @@ export class Canvas {
         this.coverColor = ColorUtils.colorToRgb(color);
         this.trailFillColor = ColorUtils.colorToRgb(trail.fillColor);
 
+        this.initBackground();
         this.paint();
     }
 
