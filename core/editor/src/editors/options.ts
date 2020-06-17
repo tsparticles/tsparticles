@@ -12,9 +12,9 @@ export function addOptions(gui: GUI, container: Container) {
     addInteractivity(fOptions, container);
     addParticles(fOptions, container);
 
-    fOptions.add(container.options, "fpsLimit", 0, 60).onChange(async () => await changeHandler(container));
-    fOptions.add(container.options, "detectRetina").onChange(async () => await changeHandler(container));
-    fOptions.add(container.options, "pauseOnBlur").onChange(async () => await changeHandler(container));
+    fOptions.add(container.options, "fpsLimit", 0, 60).onChange(async () => changeHandler(container));
+    fOptions.add(container.options, "detectRetina").onChange(async () => changeHandler(container));
+    fOptions.add(container.options, "pauseOnBlur").onChange(async () => changeHandler(container));
 
     fOptions.open();
 }
