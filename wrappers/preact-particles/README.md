@@ -21,7 +21,8 @@ import Particles from 'preact-particles';
   
 class App extends Component{  
      render(){  
- return ( <Particles id="tsparticles" params={{
+ return (
+ <Particles id="tsparticles" params={{
   background: {
     color: {
       value: "#0d47a1"
@@ -99,7 +100,9 @@ class App extends Component{
     }
   },
   detectRetina: true
-}} /> ); };  
+}} />
+  );
+ }
 }  
   
 ```  
