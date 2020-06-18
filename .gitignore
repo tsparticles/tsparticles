@@ -354,7 +354,6 @@ MigrationBackup/
 
 .DS_Store
 dist/
-lib/
 build/
 docs/
 core/tsparticles/typedoc/themes/particles/assets/js/tsparticles.min.js
