@@ -7,7 +7,8 @@
     "compile": "tsc",
     "bundle": "rollup -c",
     "minify": "uglifyjs dist/jquery.particles.js --output dist/jquery.particles.min.js --source-map \"filename='dist/jquery.particles.min.js.map',url='jquery.particles.min.js.map',content='dist/jquery.particles.js.map'\"",
-    "build": "yarn compile && yarn bundle && yarn minify"
+    "build": "yarn compile && yarn bundle && yarn minify",
+    "prepare": "yarn build"
   },
   "files": [
     "dist/**/*"

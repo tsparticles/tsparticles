@@ -7,7 +7,8 @@
     "compile": "node_modules/.bin/tsc",
     "bundle": "node_modules/.bin/rollup -c",
     "minify": "node_modules/.bin/uglifyjs dist/tsparticles.shape.spiral.js --output dist/tsparticles.shape.spiral.min.js --source-map \"filename='dist/tsparticles.shape.spiral.min.js.map',url='tsparticles.shape.spiral.min.js.map',content='dist/tsparticles.shape.spiral.js.map'\"",
-    "build": "yarn compile && yarn bundle && yarn minify"
+    "build": "yarn compile && yarn bundle && yarn minify",
+    "prepare": "yarn build"
   },
   "repository": {
     "type": "git",

@@ -7,7 +7,8 @@
     "compile": "node_modules/.bin/tsc",
     "bundle": "node_modules/.bin/rollup -c",
     "minify": "node_modules/.bin/uglifyjs dist/tsparticles.preset.basic.js --output dist/tsparticles.preset.basic.min.js --source-map \"filename='dist/tsparticles.preset.basic.min.js.map',url='tsparticles.preset.basic.min.js.map',content='dist/tsparticles.preset.basic.js.map'\"",
-    "build": "yarn compile && yarn bundle && yarn minify"
+    "build": "yarn compile && yarn bundle && yarn minify",
+    "prepare": "yarn build"
   },
   "repository": {
     "type": "git",

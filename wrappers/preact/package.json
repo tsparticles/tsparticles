@@ -8,7 +8,8 @@
   "types": "index.d.ts",
   "scripts": {
     "build:debug": "webpack",
-    "build": "cross-env NODE_ENV=production webpack"
+    "build": "cross-env NODE_ENV=production webpack",
+    "prepare": "yarn build"
   },
   "repository": {
     "url": "https://github.com/matteobruni/tsparticles",

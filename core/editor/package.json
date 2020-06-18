@@ -29,7 +29,8 @@
     "clear:dist": "rimraf -f ./dist",
     "build:ts:es": "tsc -b tsconfig.browser.json",
     "build:ts": "tsc",
-    "build": "yarn clear:dist && yarn build:ts:es && webpack -p && yarn build:ts"
+    "build": "yarn clear:dist && yarn build:ts:es && webpack -p && yarn build:ts",
+    "prepare": "yarn build"
   },
   "bugs": {
     "url": "https://github.com/matteobruni/tsparticles/issues"

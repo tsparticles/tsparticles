@@ -4,7 +4,8 @@
   "version": "1.16.0",
   "scripts": {
     "clean": "rm -rf dist/*",
-    "build": "npm run clean && yarn rollup --config rollup.config.js"
+    "build": "npm run clean && yarn rollup --config rollup.config.js",
+    "prepare": "yarn build"
   },
   "main": "dist/particles.vue.js",
   "module": "dist/particles.vue.js",

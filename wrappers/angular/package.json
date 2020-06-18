@@ -9,7 +9,8 @@
     "version": "yarn build && git add ./projects/ng-particles/package.json",
     "test": "ng test",
     "lint": "ng lint",
-    "e2e": "ng e2e"
+    "e2e": "ng e2e",
+    "prepare": "yarn build"
   },
   "publishConfig": {
     "directory": "dist/ng-particles"
