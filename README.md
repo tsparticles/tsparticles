@@ -143,7 +143,8 @@ $("#tsparticles")
 // or  
   
 $("#tsparticles")  
- .particles() .ajax("particles.json", function (container) { // container is the particles container where you can play/pause or stop/start. // the container is already started, you don't need to start it manually. });```  
+ .particles() .ajax("particles.json", function (container) { // container is the particles container where you can play/pause or stop/start. // the container is already started, you don't need to start it manually. });
+```  
   
 #### VueJS  
   
@@ -167,13 +168,34 @@ export default {
   
 ```html  
 <template>  
- <div id="app"> <Particles id="tsparticles" lineLinked="true"/> </div> </template>```  
+ <div id="app"> <Particles id="tsparticles" lineLinked="true"/> </div>
+</template>
+```  
   
 ###### Full Config  
   
 ```html  
 <template>  
- <div id="app"> <particles id="tsparticles" color="#dedede" :particleOpacity="0.7" :particlesNumber="80" shapeType="circle" :particleSize="5" linesColor="#dedede" :linesWidth="1" :lineLinked="true" :lineOpacity="0.4" :linesDistance="150" :moveSpeed="6" :hoverEffect="true" hoverMode="bubble" :clickEffect="true" clickMode="push" > </particles> </div> </template>```  
+ <div id="app">
+   <particles id="tsparticles"
+              color="#dedede"
+              particleOpacity="0.7"
+              particlesNumber="80"
+              shapeType="circle"
+              particleSize="5"
+              linesColor="#dedede"
+              linesWidth="1"
+              lineLinked="true"
+              lineOpacity="0.4"
+              linesDistance="150"
+              moveSpeed="6"
+              hoverEffect="true"
+              hoverMode="bubble"
+              clickEffect="true"
+              clickMode="push"></particles>
+  </div>
+</template>
+```
   
 #### ReactJS  
   
@@ -198,7 +220,8 @@ import Particles from 'react-tsparticles';
   
 class App extends Component{  
      render(){  
- return ( <Particles id="tsparticles" params={{
+ return (
+ <Particles id="tsparticles" params={{
   background: {
     color: {
       value: "#0d47a1"
@@ -276,9 +299,10 @@ class App extends Component{
     }
   },
   detectRetina: true
-}} /> ); };  
-}  
-  
+}} />
+     );
+  } 
+}
 ```  
   
 ###### Props  
@@ -326,7 +350,8 @@ import Particles from 'preact-particles';
   
 class App extends Component{  
      render(){  
- return ( <Particles id="tsparticles" params={{
+ return (
+ <Particles id="tsparticles" params={{
   background: {
     color: {
       value: "#0d47a1"
@@ -404,7 +429,9 @@ class App extends Component{
     }
   },
   detectRetina: true
-}} /> ); };  
+}} />
+    );
+  };  
 }  
   
 ```  
