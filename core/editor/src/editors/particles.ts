@@ -1,8 +1,27 @@
 import { GUI } from "dat.gui";
 import { Container } from "tsparticles/dist/Core/Container";
 import { changeHandler } from "../utils";
-import { DestroyType, MoveDirection, OutMode, RotateDirection, StartValueType } from "tsparticles";
-import { IHsl } from "tsparticles/dist/Core/Interfaces/IHsl";
+
+interface IHsl {
+    h: number;
+    s: number;
+    l: number;
+}
+
+interface IHsv {
+    h: number;
+    s: number;
+    v: number;
+}
+
+function hsl2hsv(hsl: IHsl): IHsv {
+    const v = hsl.l + hsl.s * Math.min(hsl.l, 1 - hsl.l);
+    return {
+        h: hsl.h,
+        s: v ? 2 * (1 - hsl.l / v) : 0,
+        v: v
+    };
+}
 
 export function addParticles(gui: GUI, container: Container) {
     const fParticles = gui.addFolder("particles");
@@ -11,10 +30,12 @@ export function addParticles(gui: GUI, container: Container) {
 
     const hsl = container.options.particles.color.value as IHsl;
     if (hsl.h !== undefined && hsl.s !== undefined && hsl.l !== undefined) {
+        const hsv = hsl2hsv(hsl);
 
+        fColor.addColor(hsv, "value").onChange(async () => changeHandler(container));
+    } else {
+        fColor.addColor(container.options.particles.color, "value").onChange(async () => changeHandler(container));
     }
-
-    fColor.addColor(container.options.particles.color, "value").onChange(async () => changeHandler(container));
 
     const fColorAnimation = fColor.addFolder("animation");
 
@@ -199,7 +220,7 @@ export function addParticles(gui: GUI, container: Container) {
 
     const fShape = fParticles.addFolder("shape");
 
-    fShape.add(container.options.particles.shape, "type", container.drawers.keys()).onChange(async () => changeHandler(container));
+    fShape.add(container.options.particles.shape, "type", Array.from(container.drawers.keys())).onChange(async () => changeHandler(container));
 
     const fShapeOptions = fShape.addFolder("options");
 
@@ -221,7 +242,7 @@ export function addParticles(gui: GUI, container: Container) {
         "none"
     ]).onChange(async () => changeHandler(container));
     fSizeAnimation.add(container.options.particles.size.animation, "enable").onChange(async () => changeHandler(container));
-    fSizeAnimation.add(container.options.particles.size.animation, "minimumValue").min(0).max(1).step(0.01).onChange(async () => changeHandler(container));
+    fSizeAnimation.add(container.options.particles.size.animation, "minimumValue").min(0).step(0.01).onChange(async () => changeHandler(container));
     fSizeAnimation.add(container.options.particles.size.animation, "speed").min(0).max(100).onChange(async () => changeHandler(container));
     fSizeAnimation.add(container.options.particles.size.animation, "startValue", [
         "max",
@@ -232,9 +253,9 @@ export function addParticles(gui: GUI, container: Container) {
     const fSizeRandom = fSize.addFolder("random");
 
     fSizeRandom.add(container.options.particles.size.random, "enable").onChange(async () => changeHandler(container));
-    fSizeRandom.add(container.options.particles.size.random, "minimumValue").min(0).max(1).step(0.01).onChange(async () => changeHandler(container));
+    fSizeRandom.add(container.options.particles.size.random, "minimumValue").min(0).onChange(async () => changeHandler(container));
 
-    fSize.add(container.options.particles.size, "value").min(0).max(1).step(0.01).onChange(async () => changeHandler(container));
+    fSize.add(container.options.particles.size, "value").min(0).onChange(async () => changeHandler(container));
 
     const fStroke = fParticles.addFolder("stroke");
 
