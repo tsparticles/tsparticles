@@ -7,6 +7,7 @@ import { Push } from "./Push";
 import { Repulse } from "./Repulse";
 import { Slow } from "./Slow";
 import type { RecursivePartial } from "../../../../Types/RecursivePartial";
+import { Trail } from "./Trail";
 
 export class Modes implements IModes {
     public bubble: Bubble;
@@ -16,6 +17,7 @@ export class Modes implements IModes {
     public remove: Remove;
     public repulse: Repulse;
     public slow: Slow;
+    public trail: Trail;
 
     constructor() {
         this.bubble = new Bubble();
@@ -25,6 +27,7 @@ export class Modes implements IModes {
         this.remove = new Remove();
         this.repulse = new Repulse();
         this.slow = new Slow();
+        this.trail = new Trail();
     }
 
     public load(data?: RecursivePartial<IModes>): void {
@@ -39,5 +42,6 @@ export class Modes implements IModes {
         this.remove.load(data.remove);
         this.repulse.load(data.repulse);
         this.slow.load(data.slow);
+        this.trail.load(data.trail);
     }
 }
