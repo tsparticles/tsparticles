@@ -1,12 +1,18 @@
 import { GUI } from "dat.gui";
 import { Container } from "tsparticles/dist/Core/Container";
 import { changeHandler } from "../utils";
-import { MoveDirection, OutMode, RotateDirection } from "tsparticles";
+import { DestroyType, MoveDirection, OutMode, RotateDirection, StartValueType } from "tsparticles";
+import { IHsl } from "tsparticles/dist/Core/Interfaces/IHsl";
 
 export function addParticles(gui: GUI, container: Container) {
     const fParticles = gui.addFolder("particles");
 
     const fColor = fParticles.addFolder("color");
+
+    const hsl = container.options.particles.color.value as IHsl;
+    if (hsl.h !== undefined && hsl.s !== undefined && hsl.l !== undefined) {
+
+    }
 
     fColor.addColor(container.options.particles.color, "value").onChange(async () => changeHandler(container));
 
@@ -191,8 +197,90 @@ export function addParticles(gui: GUI, container: Container) {
     fShadowOffset.add(container.options.particles.shadow.offset, "x").min(-100).max(100).onChange(async () => changeHandler(container));
     fShadowOffset.add(container.options.particles.shadow.offset, "y").min(-100).max(100).onChange(async () => changeHandler(container));
 
-    // TODO shape
-    // TODO size
-    // TODO stroke
-    // TODO twinkle
+    const fShape = fParticles.addFolder("shape");
+
+    fShape.add(container.options.particles.shape, "type", container.drawers.keys()).onChange(async () => changeHandler(container));
+
+    const fShapeOptions = fShape.addFolder("options");
+
+    for (const shape in container.options.particles.shape.options) {
+        const fOptionsShape = fShapeOptions.addFolder(shape);
+
+        for (const value in container.options.particles.shape.options[shape]) {
+            fOptionsShape.add(container.options.particles.shape.options[shape], value).onChange(async () => changeHandler(container));
+        }
+    }
+
+    const fSize = fParticles.addFolder("size");
+
+    const fSizeAnimation = fSize.addFolder("animation");
+
+    fSizeAnimation.add(container.options.particles.size.animation, "destroy", [
+        "max",
+        "min",
+        "none"
+    ]).onChange(async () => changeHandler(container));
+    fSizeAnimation.add(container.options.particles.size.animation, "enable").onChange(async () => changeHandler(container));
+    fSizeAnimation.add(container.options.particles.size.animation, "minimumValue").min(0).max(1).step(0.01).onChange(async () => changeHandler(container));
+    fSizeAnimation.add(container.options.particles.size.animation, "speed").min(0).max(100).onChange(async () => changeHandler(container));
+    fSizeAnimation.add(container.options.particles.size.animation, "startValue", [
+        "max",
+        "min"
+    ]).onChange(async () => changeHandler(container));
+    fSizeAnimation.add(container.options.particles.size.animation, "sync").onChange(async () => changeHandler(container));
+
+    const fSizeRandom = fSize.addFolder("random");
+
+    fSizeRandom.add(container.options.particles.size.random, "enable").onChange(async () => changeHandler(container));
+    fSizeRandom.add(container.options.particles.size.random, "minimumValue").min(0).max(1).step(0.01).onChange(async () => changeHandler(container));
+
+    fSize.add(container.options.particles.size, "value").min(0).max(1).step(0.01).onChange(async () => changeHandler(container));
+
+    const fStroke = fParticles.addFolder("stroke");
+
+    if (container.options.particles.stroke instanceof Array) {
+        container.options.particles.stroke.forEach((value, index) => {
+            const fStrokeItem = fStroke.addFolder(index.toString(10));
+
+            const fStrokeColor = fStrokeItem.addFolder("color");
+
+            fStrokeColor.addColor(value.color, "value").onChange(async () => changeHandler(container));
+
+            fStrokeItem.add(value, "opacity").min(0).max(1).step(0.01).onChange(async () => changeHandler(container));
+            fStrokeItem.add(value, "width").min(0).max(50).onChange(async () => changeHandler(container));
+        });
+    } else {
+        const fStrokeColor = fStroke.addFolder("color");
+
+        fStrokeColor.addColor(container.options.particles.stroke.color, "value").onChange(async () => changeHandler(container));
+
+        fStroke.add(container.options.particles.stroke, "opacity").min(0).max(1).step(0.01).onChange(async () => changeHandler(container));
+        fStroke.add(container.options.particles.stroke, "width").min(0).max(50).onChange(async () => changeHandler(container));
+    }
+
+    const fTwinkle = fParticles.addFolder("twinkle");
+
+    const fTwinkleLines = fTwinkle.addFolder("lines");
+
+    if (container.options.particles.twinkle.lines.color) {
+        const fTwinkleLinesColor = fTwinkleLines.addFolder("color");
+
+        fTwinkleLinesColor.addColor(container.options.particles.twinkle.lines.color, "value").onChange(async () => changeHandler(container));
+    }
+
+    fTwinkleLines.add(container.options.particles.twinkle.lines, "enable").onChange(async () => changeHandler(container));
+    fTwinkleLines.add(container.options.particles.twinkle.lines, "frequency").min(0).max(1).step(0.01).onChange(async () => changeHandler(container));
+    fTwinkleLines.add(container.options.particles.twinkle.lines, "opacity").min(0).max(1).step(0.01).onChange(async () => changeHandler(container));
+
+    const fTwinkleParticles = fTwinkle.addFolder("particles");
+
+    if (container.options.particles.twinkle.particles.color) {
+        const fTwinkleParticlesColor = fTwinkleParticles.addFolder("color");
+
+        fTwinkleParticlesColor.addColor(container.options.particles.twinkle.particles.color, "value").onChange(async () => changeHandler(container));
+    }
+
+    fTwinkleParticles.add(container.options.particles.twinkle.particles, "enable").onChange(async () => changeHandler(container));
+    fTwinkleParticles.add(container.options.particles.twinkle.particles, "frequency").min(0).max(1).step(0.01).onChange(async () => changeHandler(container));
+    fTwinkleParticles.add(container.options.particles.twinkle.particles, "opacity").min(0).max(1).step(0.01).onChange(async () => changeHandler(container));
 }
