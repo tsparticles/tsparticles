@@ -14,7 +14,8 @@ yarn add particles.vue
 import Particles from 'particles.vue';  
   
 export default {  
- name: 'App', components: { Particles }}  
+ name: 'App', components: { Particles }
+}  
 ```  
 ### Simple config  
   
