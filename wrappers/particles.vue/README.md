@@ -20,7 +20,9 @@ export default {
   
 ```html  
 <template>  
- <div id="app"> <Particles id="tsparticles" lineLinked="true"/> </div>
+ <div id="app">
+   <Particles id="tsparticles" lineLinked="true"/>
+  </div>
 </template>
 ```  
   
