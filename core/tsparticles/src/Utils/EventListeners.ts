@@ -14,6 +14,7 @@ export class EventListeners {
     private readonly mouseLeaveHandler: EventListenerOrEventListenerObject;
     private readonly touchCancelHandler: EventListenerOrEventListenerObject;
     private readonly touchEndClickHandler: EventListenerOrEventListenerObject;
+    private readonly mouseDownHandler: EventListenerOrEventListenerObject;
     private readonly mouseUpHandler: EventListenerOrEventListenerObject;
     private readonly visibilityChangeHandler: EventListenerOrEventListenerObject;
     private readonly resizeHandler: EventListenerOrEventListenerObject;
@@ -35,6 +36,7 @@ export class EventListeners {
         this.touchCancelHandler = (): void => this.mouseTouchFinish();
         this.touchEndClickHandler = (e: Event): void => this.mouseTouchClick(e);
         this.mouseUpHandler = (e: Event): void => this.mouseTouchClick(e);
+        this.mouseDownHandler = (): void => this.mouseDown();
         this.visibilityChangeHandler = (): void => this.handleVisibilityChange();
         this.resizeHandler = (): void => this.handleWindowResize();
     }
@@ -64,16 +66,22 @@ export class EventListeners {
     }
 
     /**
-     * Initializing event listeners
+     * Adding all listeners
      */
     public addListeners(): void {
         this.manageListeners(true);
     }
 
+    /**
+     * Removing all listeners
+     */
     public removeListeners(): void {
         this.manageListeners(false);
     }
 
+    /**
+     * Initializing event listeners
+     */
     private manageListeners(add: boolean): void {
         const container = this.container;
         const options = container.options;
@@ -162,7 +170,7 @@ export class EventListeners {
         /* density particles enabled */
         container.densityAutoParticles();
 
-        for (const [, plugin] of container.plugins) {
+        for (const [ , plugin ] of container.plugins) {
             if (plugin.resize !== undefined) {
                 plugin.resize();
             }
@@ -192,6 +200,10 @@ export class EventListeners {
         }
     }
 
+    private mouseDown(): void {
+        this.container.interactivity.mouse.clicking = true;
+    }
+
     /**
      * Mouse/Touch move event
      * @param e the event arguments
@@ -199,6 +211,8 @@ export class EventListeners {
     private mouseTouchMove(e: Event): void {
         const container = this.container;
         const options = container.options;
+
+        container.interactivity.mouse.inside = true;
 
         let pos: ICoordinates | undefined;
 
@@ -280,6 +294,8 @@ export class EventListeners {
         delete container.interactivity.mouse.position;
 
         container.interactivity.status = Constants.mouseLeaveEvent;
+        container.interactivity.mouse.inside = false;
+        container.interactivity.mouse.clicking = false;
     }
 
     /**
@@ -290,6 +306,8 @@ export class EventListeners {
         const container = this.container;
         const options = container.options;
 
+        container.interactivity.mouse.inside = true;
+
         let handled = false;
 
         const mousePosition = container.interactivity.mouse.position;
@@ -298,7 +316,7 @@ export class EventListeners {
             return;
         }
 
-        for (const [, plugin] of container.plugins) {
+        for (const [ , plugin ] of container.plugins) {
             if (plugin.clickPositionValid !== undefined) {
                 handled = plugin.clickPositionValid(mousePosition);
 
@@ -311,6 +329,8 @@ export class EventListeners {
         if (!handled) {
             this.doMouseTouchClick(e);
         }
+
+        container.interactivity.mouse.clicking = false;
     }
 
     /**
@@ -407,7 +427,7 @@ export class EventListeners {
                 break;
         }
 
-        for (const [, plugin] of container.plugins) {
+        for (const [ , plugin ] of container.plugins) {
             if (plugin.handleClickMode) {
                 plugin.handleClickMode(mode);
             }

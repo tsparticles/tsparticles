@@ -11,6 +11,7 @@ export class Constants {
     public static readonly midColorValue: string = "mid";
 
     public static readonly touchEndEvent: string = "touchend";
+    public static readonly mouseDownEvent: string = "mousedown";
     public static readonly mouseUpEvent: string = "mouseup";
     public static readonly mouseMoveEvent: string = "mousemove";
     public static readonly touchStartEvent: string = "touchstart";
