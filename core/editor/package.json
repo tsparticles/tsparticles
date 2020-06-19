@@ -40,7 +40,7 @@
   "dependencies": {
     "dat.gui": "^0.7.7",
     "tslib": "^2.0.0",
-    "tsparticles": "^1.16.0"
+    "tsparticles": "^1.17.0-alpha.0"
   },
   "devDependencies": {
     "@babel/core": "^7.10.2",
