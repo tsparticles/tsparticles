@@ -212,6 +212,10 @@ export class EventListeners {
         const container = this.container;
         const options = container.options;
 
+        if (container.interactivity?.element === undefined) {
+            return;
+        }
+
         container.interactivity.mouse.inside = true;
 
         let pos: ICoordinates | undefined;
@@ -222,9 +226,6 @@ export class EventListeners {
             this.canPush = true;
 
             const mouseEvent = e as MouseEvent;
-            if (container.interactivity?.element === undefined) {
-                return;
-            }
 
             if (container.interactivity.element === window) {
                 if (canvas) {
