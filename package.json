@@ -2,6 +2,10 @@
   "private": true,
   "name": "tsparticles",
   "version": "0.0.0",
+  "scripts": {
+    "publish:alpha": "lerna publish prerelease --pre-dist-tag alpha --preid alpha",
+    "publish:beta": "lerna publish prerelease --pre-dist-tag beta --preid beta"
+  },
   "workspaces": [
     "core/*",
     "demo/*",
