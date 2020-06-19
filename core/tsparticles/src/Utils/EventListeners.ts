@@ -202,11 +202,7 @@ export class EventListeners {
     }
 
     private mouseDown(): void {
-        console.log("mouse down");
-
         if (this.container.interactivity) {
-            console.log(this.container.interactivity.mouse);
-
             this.container.interactivity.mouse.clicking = true;
         }
     }
