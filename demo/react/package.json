@@ -21,8 +21,13 @@
     "@types/react": "^16.4.8",
     "@types/react-dom": "^16.0.7",
     "@types/react-syntax-highlighter": "11.0.4",
+    "@typescript-eslint/eslint-plugin": "^3.3.0",
+    "@typescript-eslint/parser": "^3.3.0",
+    "eslint": "^7.2.0",
+    "eslint-config-prettier": "^6.11.0",
     "node-sass": "^4.9.3",
     "parcel": "^1.10.3",
+    "prettier": "^2.0.5",
     "react-syntax-highlighter": "^12.2.1",
     "rxjs": "^6.2.2",
     "typescript": "^3.9.5"

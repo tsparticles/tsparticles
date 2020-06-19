@@ -3,10 +3,10 @@ import { Container } from "tsparticles/dist/Core/Container";
 import { addOptions } from "./editors/options";
 import { IEditorSettings } from "./IEditorSettings";
 
-function addEditor(container: Container, params?: IEditorSettings): void {
+const addEditor = (container: Container, params?: IEditorSettings): void => {
     const settings = params ?? {
         buttons: true,
-        options: true
+        options: true,
     };
 
     const gui = new GUI();
@@ -22,7 +22,7 @@ function addEditor(container: Container, params?: IEditorSettings): void {
         gui.add(container, "start");
         gui.add(container, "stop");
     }
-}
+};
 
 export type { IEditorSettings };
 export { addEditor };

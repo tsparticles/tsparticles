@@ -10,144 +10,140 @@ import { IAbsorberOptions } from "tsparticles/dist/Plugins/Absorbers/AbsorbersPl
 import { IEmitterOptions } from "tsparticles/dist/Plugins/Emitters/EmittersPlugin";
 
 export interface ParticlesProps {
-    id: string;
-    width: string;
-    height: string;
-    params: RecursivePartial<IOptions & IPolygonMaskOptions & IAbsorberOptions & IEmitterOptions>;
-    style: any;
-    className?: string;
-    canvasClassName?: string;
-    particlesRef?: React.RefObject<Container>;
+  id: string;
+  width: string;
+  height: string;
+  params: RecursivePartial<IOptions & IPolygonMaskOptions & IAbsorberOptions & IEmitterOptions>;
+  style: any;
+  className?: string;
+  canvasClassName?: string;
+  particlesRef?: React.RefObject<Container>;
 }
 
 export interface ParticlesState {
-    canvas?: HTMLCanvasElement;
-    library?: Container;
+  canvas?: HTMLCanvasElement;
+  library?: Container;
 }
 
-export default class Particles extends Component<ParticlesProps,
-    ParticlesState> {
-    public static defaultProps: ParticlesProps = {
-        width: "100%",
-        height: "100%",
-        params: {},
-        style: {},
-        id: "tsparticles"
+export default class Particles extends Component<ParticlesProps, ParticlesState> {
+  public static defaultProps: ParticlesProps = {
+    width: "100%",
+    height: "100%",
+    params: {},
+    style: {},
+    id: "tsparticles",
+  };
+
+  constructor(props: ParticlesProps) {
+    super(props);
+    this.state = {
+      canvas: undefined,
+      library: undefined,
     };
+    this.loadCanvas = this.loadCanvas.bind(this);
+  }
 
-    constructor(props: ParticlesProps) {
-        super(props);
-        this.state = {
-            canvas: undefined,
-            library: undefined
-        };
-        this.loadCanvas = this.loadCanvas.bind(this);
+  private buildParticlesLibrary(tagId: string, params?: RecursivePartial<IOptions>) {
+    try {
+      if (window === undefined) return null;
+    } catch {
+      return null;
+    } // SSR
+
+    tsParticles.init();
+
+    const container = new Container(tagId, params);
+
+    if (this.props.particlesRef) {
+      (this.props.particlesRef as React.MutableRefObject<Container>).current = container;
     }
 
-    private buildParticlesLibrary(
-        tagId: string,
-        params?: RecursivePartial<IOptions>
-    ) {
-        try {
-            if (window === undefined) return null;
-        } catch {
-            return null;
-        } // SSR
+    return container;
+  }
 
-        tsParticles.init();
+  private refresh(props: Readonly<ParticlesProps>): void {
+    const { canvas } = this.state;
 
-        const container = new Container(tagId, params);
-
-        if (this.props.particlesRef) {
-            (this.props.particlesRef as React.MutableRefObject<Container>).current = container;
+    if (canvas) {
+      this.destroy();
+      this.setState(
+        {
+          library: this.buildParticlesLibrary(props.id, props.params),
+        },
+        () => {
+          this.loadCanvas(canvas);
         }
-
-        return container;
+      );
     }
+  }
 
-    private refresh(props: Readonly<ParticlesProps>): void {
-        const { canvas } = this.state;
+  destroy() {
+    if (this.state.library) {
+      this.state.library.destroy();
 
-        if (canvas) {
-            this.destroy();
-            this.setState(
-                {
-                    library: this.buildParticlesLibrary(props.id, props.params)
-                },
-                () => {
-                    this.loadCanvas(canvas);
-                }
-            );
+      this.setState({
+        library: undefined,
+      });
+    }
+  }
+
+  loadCanvas(canvas: HTMLCanvasElement) {
+    if (canvas) {
+      this.setState(
+        {
+          canvas,
+        },
+        () => {
+          const { library } = this.state;
+
+          if (!library) {
+            return;
+          }
+
+          library.canvas.loadCanvas(canvas);
+          library.start();
         }
+      );
     }
+  }
 
-    destroy() {
-        if (this.state.library) {
-            this.state.library.destroy();
+  shouldComponentUpdate(nextProps: Readonly<ParticlesProps>) {
+    return !this.state.library || !isEqual(nextProps, this.props);
+  }
 
-            this.setState({
-                library: undefined
-            });
-        }
-    }
+  componentDidUpdate() {
+    this.refresh(this.props);
+  }
 
-    loadCanvas(canvas: HTMLCanvasElement) {
-        if (canvas) {
-            this.setState(
-                {
-                    canvas
-                },
-                () => {
-                    const { library } = this.state;
+  forceUpdate() {
+    this.refresh(this.props);
+    super.forceUpdate();
+  }
 
-                    if (!library) {
-                        return;
-                    }
+  componentDidMount() {
+    this.setState({
+      library: this.buildParticlesLibrary(this.props.id, this.props.params),
+    });
+  }
 
-                    library.canvas.loadCanvas(canvas);
-                    library.start();
-                }
-            );
-        }
-    }
+  componentWillUnmount() {
+    this.destroy();
+  }
 
-    shouldComponentUpdate(nextProps: Readonly<ParticlesProps>) {
-        return !this.state.library || !isEqual(nextProps, this.props);
-    }
-
-    componentDidUpdate() {
-        this.refresh(this.props);
-    }
-
-    forceUpdate() {
-        this.refresh(this.props);
-        super.forceUpdate();
-    }
-
-    componentDidMount() {
-        this.setState({
-            library: this.buildParticlesLibrary(this.props.id, this.props.params)
-        });
-    }
-
-    componentWillUnmount() {
-        this.destroy();
-    }
-
-    render() {
-        let { width, height, className, canvasClassName, id } = this.props;
-        return (
-            <div className={className} id={id}>
-                <canvas
-                    ref={this.loadCanvas}
-                    className={canvasClassName}
-                    style={{
-                        ...this.props.style,
-                        width,
-                        height
-                    }}
-                />
-            </div>
-        );
-    }
+  render() {
+    const { width, height, className, canvasClassName, id } = this.props;
+    return (
+      <div className={className} id={id}>
+        <canvas
+          ref={this.loadCanvas}
+          className={canvasClassName}
+          style={{
+            ...this.props.style,
+            width,
+            height,
+          }}
+        />
+      </div>
+    );
+  }
 }

@@ -4,10 +4,12 @@
   "description": "Particles effect in jQuery",
   "main": "dist/jquery.particles.min.js",
   "scripts": {
+    "prettify:src": "prettier --write ./src/",
+    "lint": "eslint src --ext .js,.jsx,.ts,.tsx --fix",
     "compile": "tsc",
     "bundle": "rollup -c",
     "minify": "uglifyjs dist/jquery.particles.js --output dist/jquery.particles.min.js --source-map \"filename='dist/jquery.particles.min.js.map',url='jquery.particles.min.js.map',content='dist/jquery.particles.js.map'\"",
-    "build": "yarn compile && yarn bundle && yarn minify",
+    "build": "yarn prettify:src && yarn lint && yarn compile && yarn bundle && yarn minify",
     "prepare": "yarn build"
   },
   "files": [
@@ -57,7 +59,12 @@
   },
   "devDependencies": {
     "@types/jquery": "^3.3.38",
+    "@typescript-eslint/eslint-plugin": "^3.3.0",
+    "@typescript-eslint/parser": "^3.3.0",
     "babel-preset-env": "^1.7.0",
+    "eslint": "^7.2.0",
+    "eslint-config-prettier": "^6.11.0",
+    "prettier": "^2.0.5",
     "rollup": "^2.16.0",
     "rollup-plugin-babel": "^4.4.0",
     "rollup-plugin-sourcemaps": "^0.6.2",

@@ -2,15 +2,13 @@ import { GUI } from "dat.gui";
 import { Container } from "tsparticles/dist/Core/Container";
 import { changeHandler } from "../utils";
 
-export function addBackground(gui: GUI, container: Container) {
+const addBackground = (gui: GUI, container: Container): void => {
     const fBg = gui.addFolder("background");
 
     if (container.options.background.color) {
         const fBgColor = fBg.addFolder("color");
 
-        fBgColor
-            .addColor(container.options.background.color, "value")
-            .onChange(async (v) => changeHandler(container));
+        fBgColor.addColor(container.options.background.color, "value").onChange(async () => changeHandler(container));
 
         fBgColor.open();
     }
@@ -36,4 +34,6 @@ export function addBackground(gui: GUI, container: Container) {
     }
 
     fBg.open();
-}
+};
+
+export { addBackground };

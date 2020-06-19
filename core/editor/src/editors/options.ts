@@ -5,7 +5,7 @@ import { addInteractivity } from "./interactivity";
 import { changeHandler } from "../utils";
 import { addParticles } from "./particles";
 
-export function addOptions(gui: GUI, container: Container) {
+const addOptions = (gui: GUI, container: Container): void => {
     const fOptions = gui.addFolder("options");
 
     addBackground(fOptions, container);
@@ -17,4 +17,6 @@ export function addOptions(gui: GUI, container: Container) {
     fOptions.add(container.options, "pauseOnBlur").onChange(async () => changeHandler(container));
 
     fOptions.open();
-}
+};
+
+export { addOptions };

@@ -26,10 +26,12 @@
     "url": "git+https://github.com/matteobruni/tsparticles.git"
   },
   "scripts": {
+    "prettify:src": "prettier --write ./src/",
+    "lint": "eslint src --ext .js,.jsx,.ts,.tsx --fix",
     "clear:dist": "rimraf -f ./dist",
     "build:ts:es": "tsc -b tsconfig.browser.json",
     "build:ts": "tsc",
-    "build": "yarn clear:dist && yarn build:ts:es && webpack -p && yarn build:ts",
+    "build": "yarn clear:dist && yarn prettify:src && yarn build:ts:es && yarn lint && webpack -p && yarn build:ts",
     "prepare": "yarn build"
   },
   "bugs": {
@@ -43,7 +45,12 @@
   "devDependencies": {
     "@babel/core": "^7.10.2",
     "@types/dat.gui": "^0.7.5",
+    "@typescript-eslint/eslint-plugin": "^3.3.0",
+    "@typescript-eslint/parser": "^3.3.0",
     "babel-loader": "^8.1.0",
+    "eslint": "^7.2.0",
+    "eslint-config-prettier": "^6.11.0",
+    "prettier": "^2.0.5",
     "rimraf": "^3.0.2",
     "terser-webpack-plugin": "^3.0.5",
     "typescript": "^3.9.5",

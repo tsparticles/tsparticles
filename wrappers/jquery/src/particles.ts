@@ -1,4 +1,4 @@
-import $ from 'jquery';
+import $ from "jquery";
 import { tsParticles } from "tsparticles";
 import { IOptions } from "tsparticles/dist/Options/Interfaces/IOptions";
 import { Container } from "tsparticles/dist/Core/Container";
@@ -15,27 +15,26 @@ declare global {
     }
 }
 
-$.fn.particles = function () {
-    let items = this;
+$.fn.particles = () => {
+    const init = (params: IOptions, callback: (container: Container | undefined) => Promise<void>) => {
+        $.fn.each((index, element) => {
+            if (element.id === undefined) {
+                element.id = "tsparticles" + Math.floor(Math.random() * 1000);
+            }
 
-    return {
-        init: function (params: IOptions, callback: (container: Container | undefined) => Promise<void>) {
-            items.each(function (index, element) {
-                if (element.id === undefined) {
-                    element.id = "tsparticles" + Math.floor(Math.random() * 1000);
-                }
-
-                tsParticles.load(element.id, params).then(callback);
-            });
-        },
-        ajax: function (jsonUrl: string, callback: (container: Container | undefined) => Promise<void>) {
-            items.each(function (index, element) {
-                if (element.id === undefined) {
-                    element.id = "tsparticles" + Math.floor(Math.random() * 1000);
-                }
-
-                tsParticles.loadJSON(element.id, jsonUrl).then(callback);
-            });
-        }
+            tsParticles.load(element.id, params).then(callback);
+        });
     };
+
+    const ajax = (jsonUrl: string, callback: (container: Container | undefined) => Promise<void>) => {
+        $.fn.each((index, element) => {
+            if (element.id === undefined) {
+                element.id = "tsparticles" + Math.floor(Math.random() * 1000);
+            }
+
+            tsParticles.loadJSON(element.id, jsonUrl).then(callback);
+        });
+    };
+
+    return { init, ajax };
 };
