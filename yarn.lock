@@ -16994,10 +16994,10 @@ tslint@~6.1.0:
     tslib "^1.10.0"
     tsutils "^2.29.0"
 
-tsparticles@latest:
-  version "1.15.1"
-  resolved "https://registry.yarnpkg.com/tsparticles/-/tsparticles-1.15.1.tgz#65718d9f8169e6e260fad48572ef0e0631f6c1ab"
-  integrity sha512-yvk613dW6aTqziDUTH2O5q+8K5MyNMnZkqD1Od1FBWi+ekFmwUwVtWGTiEmmhq5+D/a3AEe60TQCLekT910b2w==
+tsparticles@^1.15.1, tsparticles@^1.16.0:
+  version "1.16.0"
+  resolved "https://registry.yarnpkg.com/tsparticles/-/tsparticles-1.16.0.tgz#0e09fce68010def7c6cb874c7f52288b93d74259"
+  integrity sha512-CQ2ajIS7uWut5HoJhTFrvSgK00abg4PNTrw9H67LCIgq4GnN86roSa1rUb86PfweuN2sM2ikqVXcTYfFha9djQ==
   dependencies:
     pathseg "^1.2.0"
     tslib "^2.0.0"
