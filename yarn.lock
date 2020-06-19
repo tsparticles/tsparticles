@@ -1422,9 +1422,9 @@
     which "^1.3.1"
 
 "@fortawesome/fontawesome-free@^5.12.1", "@fortawesome/fontawesome-free@^5.13.0":
-  version "5.13.0"
-  resolved "https://registry.yarnpkg.com/@fortawesome/fontawesome-free/-/fontawesome-free-5.13.0.tgz#fcb113d1aca4b471b709e8c9c168674fbd6e06d9"
-  integrity sha512-xKOeQEl5O47GPZYIMToj6uuA2syyFlq9EMSl2ui0uytjY9xbe8XS0pexNWmxrdcCyNGyDmLyYw5FtKsalBUeOg==
+  version "5.13.1"
+  resolved "https://registry.yarnpkg.com/@fortawesome/fontawesome-free/-/fontawesome-free-5.13.1.tgz#c53b4066edae16cd1fd669f687baf031b45fb9d6"
+  integrity sha512-D819f34FLHeBN/4xvw0HR0u7U2G7RqjPSggXqf7LktsxWQ48VAfGwvMrhcVuaZV2fF069c/619RdgCCms0DHhw==
 
 "@hapi/address@2.x.x":
   version "2.1.4"
@@ -15251,9 +15251,9 @@ rollup@^1.31.1:
     acorn "^7.1.0"
 
 rollup@^2.16.0, rollup@^2.3.4:
-  version "2.17.0"
-  resolved "https://registry.yarnpkg.com/rollup/-/rollup-2.17.0.tgz#3db289792c567242b600d88cf3718dd206c7f3f2"
-  integrity sha512-4Um68vKyyTLzT+EWClgc+nyxSlunlmx8wgCO16RDicwxvccnyBHguoNqxPaJL/YPAdvuAJkqaFPf/BfDojzEZA==
+  version "2.17.1"
+  resolved "https://registry.yarnpkg.com/rollup/-/rollup-2.17.1.tgz#d01a27c1b76e42efe2cd786609589f6332e81aa6"
+  integrity sha512-lVrtCXJ+08Eapa0SfApLmRNWNWm2FsYFnLPIJZJvZz2uI2Gv+dfPyu1zgF7KKF/HYFJDvjxbdCbI8lUVMnG7Sg==
   optionalDependencies:
     fsevents "~2.1.2"
 
@@ -17638,10 +17638,10 @@ vue-loader@^15.9.2:
     vue-hot-reload-api "^2.3.0"
     vue-style-loader "^4.1.0"
 
-vue-property-decorator@^8.3.0:
-  version "8.5.0"
-  resolved "https://registry.yarnpkg.com/vue-property-decorator/-/vue-property-decorator-8.5.0.tgz#9af64c5301413f4732640cc0d046879417e64994"
-  integrity sha512-0RueJN/shPWf5gM8GLUD6bYiXr+q7bu+S1tgr7XwgBSng10H5DLQjVYfJ5XHAOPFo7fBfY1nxljBQ95qryAiWg==
+vue-property-decorator@^9.0.0:
+  version "9.0.0"
+  resolved "https://registry.yarnpkg.com/vue-property-decorator/-/vue-property-decorator-9.0.0.tgz#0a5f6d47d33ca62a8876108ccfa65c2c4fb7325a"
+  integrity sha512-oegTNPItuHOkW0AP1MnbdNwkmyhfsUIIXvIRHpgC18tVoEo21/i6kItyeekjMs8JgZJeuHzsaTc/DZaJFH4IWQ==
 
 vue-runtime-helpers@^1.1.2:
   version "1.1.2"
