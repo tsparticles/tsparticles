@@ -15,6 +15,7 @@ const addInteractivityEvents = (gui: GUI, container: Container): void => {
             "push",
             "remove",
             "repulse",
+            "trail",
             // "emitter", // TODO: single or multiple, plugin
             // "absorber" // TODO: single or multiple, plugin
         ])
@@ -24,7 +25,14 @@ const addInteractivityEvents = (gui: GUI, container: Container): void => {
 
     fHover.add(container.options.interactivity.events.onHover, "enable").onChange(async () => changeHandler(container));
     fHover
-        .add(container.options.interactivity.events.onHover, "mode", ["bubble", "connect", "grab", "repulse", "slow"])
+        .add(container.options.interactivity.events.onHover, "mode", [
+            "bubble",
+            "connect",
+            "grab",
+            "repulse",
+            "slow",
+            "trail",
+        ])
         .onChange(async () => changeHandler(container));
 
     // TODO: onDiv
@@ -163,6 +171,20 @@ const addInteractivityModes = (gui: GUI, container: Container): void => {
         .min(0)
         .max(500)
         .step(1)
+        .onChange(async () => changeHandler(container));
+
+    const fTrail = fModes.addFolder("trail");
+
+    fTrail
+        .add(container.options.interactivity.modes.trail, "quantity")
+        .min(0)
+        .max(50)
+        .onChange(async () => changeHandler(container));
+    fTrail
+        .add(container.options.interactivity.modes.trail, "delay")
+        .min(0)
+        .max(1)
+        .step(0.0001)
         .onChange(async () => changeHandler(container));
 
     // TODO: absorber
