@@ -17,6 +17,7 @@ export class Constants {
     public static readonly touchStartEvent: string = "touchstart";
     public static readonly touchMoveEvent: string = "touchmove";
     public static readonly mouseLeaveEvent: string = "mouseleave";
+    public static readonly mouseOutEvent: string = "mouseout";
     public static readonly touchCancelEvent: string = "touchcancel";
     public static readonly resizeEvent: string = "resize";
     public static readonly visibilityChangeEvent: string = "visibilitychange";

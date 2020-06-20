@@ -86,10 +86,13 @@ export class EventListeners {
         const container = this.container;
         const options = container.options;
         const detectType = options.interactivity.detectsOn;
+        let mouseLeaveEvent = Constants.mouseLeaveEvent;
 
         /* events target element */
         if (detectType === InteractivityDetect.window) {
             container.interactivity.element = window;
+
+            mouseLeaveEvent = Constants.mouseOutEvent;
         } else if (detectType === InteractivityDetect.parent && container.canvas.element) {
             container.interactivity.element = container.canvas.element.parentNode;
         } else {
@@ -118,7 +121,7 @@ export class EventListeners {
             }
 
             /* el on onmouseleave */
-            EventListeners.manageListener(interactivityEl, Constants.mouseLeaveEvent, this.mouseLeaveHandler, add);
+            EventListeners.manageListener(interactivityEl, mouseLeaveEvent, this.mouseLeaveHandler, add);
 
             /* el on touchcancel */
             EventListeners.manageListener(interactivityEl, Constants.touchCancelEvent, this.touchCancelHandler, add);
@@ -181,6 +184,8 @@ export class EventListeners {
     private handleVisibilityChange(): void {
         const container = this.container;
         const options = container.options;
+
+        this.mouseTouchFinish();
 
         if (!options.pauseOnBlur) {
             return;
