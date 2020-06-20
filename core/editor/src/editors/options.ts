@@ -4,11 +4,13 @@ import { addBackground } from "./background";
 import { addInteractivity } from "./interactivity";
 import { changeHandler } from "../utils";
 import { addParticles } from "./particles";
+import { addBackgroundMask } from "./backgroundMask";
 
 const addOptions = (gui: GUI, container: Container): void => {
     const fOptions = gui.addFolder("options");
 
     addBackground(fOptions, container);
+    addBackgroundMask(fOptions, container);
     addInteractivity(fOptions, container);
     addParticles(fOptions, container);
 
