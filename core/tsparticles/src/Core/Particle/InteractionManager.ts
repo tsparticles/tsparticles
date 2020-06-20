@@ -9,6 +9,7 @@ import { Collider } from "./Interactions/Particles/Collider";
 import { Infecter } from "./Interactions/Particles/Infecter";
 import { IExternalInteractor } from "../Interfaces/IExternalInteractor";
 import { IParticlesInteractor } from "../Interfaces/IParticlesInteractor";
+import { TrailMaker } from "./Interactions/Mouse/TrailMaker";
 
 export class InteractionManager {
     private readonly externalInteractors: IExternalInteractor[];
@@ -20,6 +21,7 @@ export class InteractionManager {
             new Connector(container),
             new Grabber(container),
             new Repulser(container),
+            new TrailMaker(container),
         ];
 
         this.particleInteractors = [

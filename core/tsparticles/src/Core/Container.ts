@@ -77,7 +77,10 @@ export class Container {
             },
         };
         this.interactivity = {
-            mouse: {},
+            mouse: {
+                clicking: false,
+                inside: false,
+            },
         };
         this.bubble = {};
         this.repulse = { particles: [] };

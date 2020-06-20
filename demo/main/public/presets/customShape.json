@@ -1,0 +1,46 @@
+{
+  "fpsLimit": 60,
+  "particles": {
+    "lineLinked": {
+      "enable": false
+    },
+    "stroke": {
+      "color": {
+        "value": "random"
+      },
+      "width": 1
+    },
+    "shape": {
+      "type": "spiral",
+      "custom": {
+        "spiral": {
+          "innerRadius": 1,
+          "lineSpacing": 1,
+          "fill": false,
+          "close": false
+        }
+      }
+    },
+    "size": {
+      "value": 20
+    },
+    "rotate": {
+      "value": 0,
+      "random": true,
+      "direction": "clockwise",
+      "animation": {
+        "enable": true,
+        "speed": 50,
+        "sync": false
+      }
+    }
+  },
+  "preset": "basic",
+  "background": {
+    "color": "#000000",
+    "image": "",
+    "position": "50% 50%",
+    "repeat": "no-repeat",
+    "size": "cover"
+  }
+}

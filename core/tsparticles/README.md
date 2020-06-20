@@ -1,8 +1,4 @@
-<p align="center">
-    <a href="https://particles.matteobruni.it/">
-        <img src="https://particles.matteobruni.it/images/icons/rounded/tsParticles-96.png" alt="tsParticles" />
-    </a>
-</p>
+![banner](https://cdn.matteobruni.it/images/particles/banner.png)
 
 # tsParticles - TypeScript Particles
 
@@ -10,13 +6,13 @@
 
 _[Particles.js](https://github.com/VincentGarreau/particles.js) converted in TypeScript, dependency free (\*), improved with new cool 😎 features and various bugs fixed and **it's currently under development**!_
 
-[![jsDelivr](https://data.jsdelivr.com/v1/package/npm/tsparticles/badge)](https://www.jsdelivr.com/package/npm/tsparticles) [![Cdnjs](https://img.shields.io/cdnjs/v/tsparticles)](https://cdnjs.com/libraries/tsparticles) [![npmjs](https://badge.fury.io/js/tsparticles.svg)](https://www.npmjs.com/package/tsparticles) ![npm](https://img.shields.io/npm/dm/tsparticles)
+[![jsDelivr](https://data.jsdelivr.com/v1/package/npm/tsparticles/badge?style=rounded)](https://www.jsdelivr.com/package/npm/tsparticles) [![Cdnjs](https://img.shields.io/cdnjs/v/tsparticles)](https://cdnjs.com/libraries/tsparticles) [![npmjs](https://badge.fury.io/js/tsparticles.svg)](https://www.npmjs.com/package/tsparticles) ![npm](https://img.shields.io/npm/dm/tsparticles)
 
 | `master`                                                                                                                                                                                                                            | `staging`                                                                                                                                                                                                                              | `dev`                                                                                                                                                                                                                      |
 | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | [![Master Build Status](https://dev.azure.com/hollowmatt/particles.ts/_apis/build/status/matteobruni.tsparticles?branchName=master)](https://dev.azure.com/hollowmatt/particles.ts/_build/latest?definitionId=11&branchName=master) | [![Staging Build Status](https://dev.azure.com/hollowmatt/particles.ts/_apis/build/status/matteobruni.tsparticles?branchName=staging)](https://dev.azure.com/hollowmatt/particles.ts/_build/latest?definitionId=11&branchName=staging) | [![Dev Build Status](https://dev.azure.com/hollowmatt/particles.ts/_apis/build/status/matteobruni.tsparticles?branchName=dev)](https://dev.azure.com/hollowmatt/particles.ts/_build/latest?definitionId=11&branchName=dev) |
 
-[![CodeFactor](https://www.codefactor.io/repository/github/matteobruni/tsparticles/badge)](https://www.codefactor.io/repository/github/matteobruni/tsparticles) [![Codacy Badge](https://api.codacy.com/project/badge/Grade/b983aaf3461a4c48b1e2eecce1ff1d74)](https://www.codacy.com/manual/ar3s/tsparticles?utm_source=github.com&utm_medium=referral&utm_content=matteobruni/tsparticles&utm_campaign=Badge_Grade) [![Codacy Badge](https://api.codacy.com/project/badge/Coverage/b983aaf3461a4c48b1e2eecce1ff1d74)](https://www.codacy.com/manual/ar3s/tsparticles?utm_source=github.com&utm_medium=referral&utm_content=matteobruni/tsparticles&utm_campaign=Badge_Coverage) [![Sauce Test Status](https://saucelabs.com/buildstatus/matteobruni)](https://app.saucelabs.com/u/matteobruni)
+[![lerna](https://img.shields.io/badge/maintained%20with-lerna-cc00ff.svg)](https://lerna.js.org/) [![CodeFactor](https://www.codefactor.io/repository/github/matteobruni/tsparticles/badge)](https://www.codefactor.io/repository/github/matteobruni/tsparticles) [![Codacy Badge](https://api.codacy.com/project/badge/Grade/b983aaf3461a4c48b1e2eecce1ff1d74)](https://www.codacy.com/manual/ar3s/tsparticles?utm_source=github.com&utm_medium=referral&utm_content=matteobruni/tsparticles&utm_campaign=Badge_Grade) [![Codacy Badge](https://api.codacy.com/project/badge/Coverage/b983aaf3461a4c48b1e2eecce1ff1d74)](https://www.codacy.com/manual/ar3s/tsparticles?utm_source=github.com&utm_medium=referral&utm_content=matteobruni/tsparticles&utm_campaign=Badge_Coverage) [![Sauce Test Status](https://saucelabs.com/buildstatus/matteobruni)](https://app.saucelabs.com/u/matteobruni)
 
 [![Slack](https://cdn.matteobruni.it/images/slack.png)](https://join.slack.com/t/tsparticles/shared_invite/enQtOTcxNTQxNjQ4NzkxLWE2MTZhZWExMWRmOWI5MTMxNjczOGE1Yjk0MjViYjdkYTUzODM3OTc5MGQ5MjFlODc4MzE0N2Q1OWQxZDc1YzI) [![tsParticles Product Hunt](https://api.producthunt.com/widgets/embed-image/v1/featured.svg?post_id=186113&theme=light)](https://www.producthunt.com/posts/tsparticles?utm_source=badge-featured&utm_medium=badge&utm_souce=badge-tsparticles")
 
@@ -50,9 +46,9 @@ or from jsDelivr
 
 ```html
 <!-- first include tsParticles -->
-<script src="https://cdn.jsdelivr.net/npm/tsparticles@1.12.7/dist/tsparticles.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/tsparticles@1.16.0/dist/tsparticles.min.js"></script>
 <!-- then include jquery wrapper -->
-<script src="https://cdn.jsdelivr.net/npm/jquery-particles@1.12.7/dist/jquery.particles.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/jquery-particles@1.16.0/dist/jquery.particles.min.js"></script>
 ```
 
 ##### How to use
@@ -65,25 +61,89 @@ HTML
 
 ```javascript
 $("#tsparticles")
-  .particles()
-  .init(
-    {
-      /* params */
-    },
-    function (container) {
-      // container is the particles container where you can play/pause or stop/start.
-      // the container is already started, you don't need to start it manually.
+ .particles() .init({
+  background: {
+    color: {
+      value: "#0d47a1"
     }
-  );
-
+  },
+  fpsLimit: 60,
+  interactivity: {
+    detectsOn: "canvas",
+    events: {
+      onClick: {
+        enable: true,
+        mode: "push"
+      },
+      onHover: {
+        enable: true,
+        mode: "repulse"
+      },
+      resize: true
+    },
+    modes: {
+      bubble: {
+        distance: 400,
+        duration: 2,
+        opacity: 0.8,
+        size: 40,
+        speed: 3
+      },
+      push: {
+        quantity: 4
+      },
+      repulse: {
+        distance: 200,
+        duration: 0.4
+      }
+    }
+  },
+  particles: {
+    color: {
+      value: "#ffffff"
+    },
+    links: {
+      color: "#ffffff",
+      distance: 150,
+      enable: true,
+      opacity: 0.5,
+      width: 1
+    },
+    collisions: {
+      enable: true
+    },
+    move: {
+      direction: "none",
+      enable: true,
+      outMode: "bounce",
+      random: false,
+      speed: 6,
+      straight: false
+    },
+    number: {
+      density: {
+        enable: true,
+        value_area: 800
+      },
+      value: 80
+    },
+    opacity: {
+      value: 0.5
+    },
+    shape: {
+      type: "circle"
+    },
+    size: {
+      random: true,
+      value: 5
+    }
+  },
+  detectRetina: true
+}, function (container) { // container is the particles container where you can play/pause or stop/start. // the container is already started, you don't need to start it manually. } );
 // or
 
 $("#tsparticles")
-  .particles()
-  .ajax("particles.json", function (container) {
-    // container is the particles container where you can play/pause or stop/start.
-    // the container is already started, you don't need to start it manually.
-  });
+ .particles() .ajax("particles.json", function (container) { // container is the particles container where you can play/pause or stop/start. // the container is already started, you don't need to start it manually. });
 ```
 
 #### VueJS
@@ -103,9 +163,7 @@ import Particles from "particles.vue";
 
 export default {
   name: "App",
-  components: {
-    Particles,
-  },
+  components: { Particles },
 };
 ```
 
@@ -113,9 +171,7 @@ export default {
 
 ```html
 <template>
-  <div id="app">
-    <Particles id="tsparticles" lineLinked="true" />
-  </div>
+  <div id="app"><Particles id="tsparticles" lineLinked="true" /></div>
 </template>
 ```
 
@@ -127,22 +183,21 @@ export default {
     <particles
       id="tsparticles"
       color="#dedede"
-      :particleOpacity="0.7"
-      :particlesNumber="80"
+      particleOpacity="0.7"
+      particlesNumber="80"
       shapeType="circle"
-      :particleSize="4"
+      particleSize="5"
       linesColor="#dedede"
-      :linesWidth="1"
-      :lineLinked="true"
-      :lineOpacity="0.4"
-      :linesDistance="150"
-      :moveSpeed="3"
-      :hoverEffect="true"
-      hoverMode="grab"
-      :clickEffect="true"
+      linesWidth="1"
+      lineLinked="true"
+      lineOpacity="0.4"
+      linesDistance="150"
+      moveSpeed="6"
+      hoverEffect="true"
+      hoverMode="bubble"
+      clickEffect="true"
       clickMode="push"
-    >
-    </particles>
+    ></particles>
   </div>
 </template>
 ```
@@ -170,7 +225,90 @@ import Particles from "react-tsparticles";
 
 class App extends Component {
   render() {
-    return <Particles />;
+    return (
+      <Particles
+        id="tsparticles"
+        params={{
+          background: {
+            color: {
+              value: "#0d47a1",
+            },
+          },
+          fpsLimit: 60,
+          interactivity: {
+            detectsOn: "canvas",
+            events: {
+              onClick: {
+                enable: true,
+                mode: "push",
+              },
+              onHover: {
+                enable: true,
+                mode: "repulse",
+              },
+              resize: true,
+            },
+            modes: {
+              bubble: {
+                distance: 400,
+                duration: 2,
+                opacity: 0.8,
+                size: 40,
+                speed: 3,
+              },
+              push: {
+                quantity: 4,
+              },
+              repulse: {
+                distance: 200,
+                duration: 0.4,
+              },
+            },
+          },
+          particles: {
+            color: {
+              value: "#ffffff",
+            },
+            links: {
+              color: "#ffffff",
+              distance: 150,
+              enable: true,
+              opacity: 0.5,
+              width: 1,
+            },
+            collisions: {
+              enable: true,
+            },
+            move: {
+              direction: "none",
+              enable: true,
+              outMode: "bounce",
+              random: false,
+              speed: 6,
+              straight: false,
+            },
+            number: {
+              density: {
+                enable: true,
+                value_area: 800,
+              },
+              value: 80,
+            },
+            opacity: {
+              value: 0.5,
+            },
+            shape: {
+              type: "circle",
+            },
+            size: {
+              random: true,
+              value: 5,
+            },
+          },
+          detectRetina: true,
+        }}
+      />
+    );
   }
 }
 ```
@@ -220,7 +358,90 @@ import Particles from "preact-particles";
 
 class App extends Component {
   render() {
-    return <Particles />;
+    return (
+      <Particles
+        id="tsparticles"
+        params={{
+          background: {
+            color: {
+              value: "#0d47a1",
+            },
+          },
+          fpsLimit: 60,
+          interactivity: {
+            detectsOn: "canvas",
+            events: {
+              onClick: {
+                enable: true,
+                mode: "push",
+              },
+              onHover: {
+                enable: true,
+                mode: "repulse",
+              },
+              resize: true,
+            },
+            modes: {
+              bubble: {
+                distance: 400,
+                duration: 2,
+                opacity: 0.8,
+                size: 40,
+                speed: 3,
+              },
+              push: {
+                quantity: 4,
+              },
+              repulse: {
+                distance: 200,
+                duration: 0.4,
+              },
+            },
+          },
+          particles: {
+            color: {
+              value: "#ffffff",
+            },
+            links: {
+              color: "#ffffff",
+              distance: 150,
+              enable: true,
+              opacity: 0.5,
+              width: 1,
+            },
+            collisions: {
+              enable: true,
+            },
+            move: {
+              direction: "none",
+              enable: true,
+              outMode: "bounce",
+              random: false,
+              speed: 6,
+              straight: false,
+            },
+            number: {
+              density: {
+                enable: true,
+                value_area: 800,
+              },
+              value: 80,
+            },
+            opacity: {
+              value: 0.5,
+            },
+            shape: {
+              type: "circle",
+            },
+            size: {
+              random: true,
+              value: 5,
+            },
+          },
+          detectRetina: true,
+        }}
+      />
+    );
   }
 }
 ```
@@ -274,19 +495,83 @@ _app.ts_
 ```typescript
 export class AppComponent {
   particlesOptions = {
-    particles: {
+    background: {
       color: {
-        value: ["#ff0000", "#0000ff"],
-      },
-      lineLinked: {
-        enable: true,
-        color: "random",
-      },
-      move: {
-        enable: true,
-        speed: 5,
+        value: "#0d47a1",
       },
     },
+    fpsLimit: 60,
+    interactivity: {
+      detectsOn: "canvas",
+      events: {
+        onClick: {
+          enable: true,
+          mode: "push",
+        },
+        onHover: {
+          enable: true,
+          mode: "repulse",
+        },
+        resize: true,
+      },
+      modes: {
+        bubble: {
+          distance: 400,
+          duration: 2,
+          opacity: 0.8,
+          size: 40,
+          speed: 3,
+        },
+        push: {
+          quantity: 4,
+        },
+        repulse: {
+          distance: 200,
+          duration: 0.4,
+        },
+      },
+    },
+    particles: {
+      color: {
+        value: "#ffffff",
+      },
+      links: {
+        color: "#ffffff",
+        distance: 150,
+        enable: true,
+        opacity: 0.5,
+        width: 1,
+      },
+      collisions: {
+        enable: true,
+      },
+      move: {
+        direction: "none",
+        enable: true,
+        outMode: "bounce",
+        random: false,
+        speed: 6,
+        straight: false,
+      },
+      number: {
+        density: {
+          enable: true,
+          value_area: 800,
+        },
+        value: 80,
+      },
+      opacity: {
+        value: 0.5,
+      },
+      shape: {
+        type: "circle",
+      },
+      size: {
+        random: true,
+        value: 5,
+      },
+    },
+    detectRetina: true,
   };
 }
 ```
@@ -294,22 +579,16 @@ export class AppComponent {
 _app.module.ts_
 
 ```typescript
-import { NgParticlesModule } from "ng-particles";
+import { NgParticlesModule } from 'ng-particles';
 import { NgModule } from "@angular/core";
 
 @NgModule({
-  declarations: [
-    /* AppComponent */
-  ],
-  imports: [
-    /* other imports */ NgParticlesModule, // NgParticlesModule is required
-  ],
-  providers: [],
-  bootstrap: [
-    /* AppComponent */
-  ],
-})
-export class AppModule {}
+ declarations: [ /* AppComponent */ ],
+ imports: [ /* other imports */ NgParticlesModule // NgParticlesModule is required ],
+ providers: [],
+ bootstrap: [ /* AppComponent */ ]
+ })
+export class AppModule { }
 ```
 
 ### Want to see it in action and try it?
@@ -443,6 +722,7 @@ Load tsParticles and configure the particles:
 ```javascript
 // @path-json can be an object or an array, the first will be loaded directly, the object from the array will be random selected
 /* tsParticles.loadJSON(@dom-id, @path-json, @callback (optional)); */
+
 tsParticles
   .loadJSON("tsparticles", "presets/default.json")
   .then((container) => {
@@ -451,10 +731,10 @@ tsParticles
   .catch((error) => {
     console.error(error);
   });
-
 //or
 
 /* tsParticles.load(@dom-id, @options); */
+
 tsParticles.load("tsparticles", {
   /* options here */
 });
@@ -462,6 +742,7 @@ tsParticles.load("tsparticles", {
 //or
 
 /* tsParticles.loadFromArray(@dom-id, @options, @index (optional)); */
+
 tsParticles.loadFromArray("tsparticles", [
   {
     /* options here */
@@ -487,7 +768,9 @@ tsParticles.loadFromArray(
 // after initialization this can be used.
 
 /* tsParticles.setOnClickHandler(@callback); */
+
 /* this will be fired from all particles loaded */
+
 tsParticles.setOnClickHandler((e) => {
   /* custom on click handler */
 });
@@ -602,19 +885,19 @@ You can find all options available [here](https://github.com/matteobruni/tsparti
 
 ---
 
-<p>
-    <a href="https://www.jetbrains.com/?from=tsParticles">
-        <img src="https://cdn.matteobruni.it/images/jetbrains-logos/jetbrains-variant-4.png" height="150" alt="JetBrains" />
-    </a>
-    <a href="https://www.jetbrains.com/webstorm/?from=tsParticles">
-        <img src="https://cdn.matteobruni.it/images/jetbrains-logos/webstorm_logos/logo.png" height="150" alt="JetBrains" />
-    </a>
-</p>
-
-### Huge thanks to [JetBrains](https://www.jetbrains.com/?from=tsParticles) for the 2020 Open Source License!
-
-[JetBrains WebStorm](https://www.jetbrains.com/webstorm/?from=tsParticles) is used to maintain this project.
-
-### Huge thanks to [SauceLabs](https://saucelabs.com) for the Open Source License!
-
+<p>  
+    <a href="https://www.jetbrains.com/?from=tsParticles">  
+        <img src="https://cdn.matteobruni.it/images/jetbrains-logos/jetbrains-variant-4.png" height="150" alt="JetBrains" />  
+    </a>  
+    <a href="https://www.jetbrains.com/webstorm/?from=tsParticles">  
+        <img src="https://cdn.matteobruni.it/images/jetbrains-logos/webstorm_logos/logo.png" height="150" alt="JetBrains" />  
+    </a>  
+</p>  
+  
+### Huge thanks to [JetBrains](https://www.jetbrains.com/?from=tsParticles) for the 2020 Open Source License!  
+  
+[JetBrains WebStorm](https://www.jetbrains.com/webstorm/?from=tsParticles) is used to maintain this project.  
+  
+### Huge thanks to [SauceLabs](https://saucelabs.com) for the Open Source License!  
+  
 <img alt="Testing Powered By SauceLabs" src="https://raw.githubusercontent.com/saucelabs/opensource/master/assets/powered-by-saucelabs-badge-red.svg" width="250" />

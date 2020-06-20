@@ -1,0 +1,40 @@
+{
+  "name": "editor-demo",
+  "private": true,
+  "version": "1.0.0-alpha.1",
+  "description": "> TODO: description",
+  "author": "Matteo Bruni <ar3s@icloud.com>",
+  "homepage": "https://github.com/matteobruni/tsparticles#readme",
+  "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/matteobruni/tsparticles.git"
+  },
+  "scripts": {
+    "start": "node app.js"
+  },
+  "bugs": {
+    "url": "https://github.com/matteobruni/tsparticles/issues"
+  },
+  "devDependencies": {
+    "@fortawesome/fontawesome-free": "^5.13.0",
+    "@typescript-eslint/eslint-plugin": "^3.3.0",
+    "@typescript-eslint/parser": "^3.3.0",
+    "bootstrap": "^4.5.0",
+    "eslint": "^7.2.0",
+    "eslint-config-prettier": "^6.11.0",
+    "express": "^4.17.1",
+    "helmet": "^3.23.0",
+    "jquery": "^3.5.1",
+    "jsoneditor": "^9.0.0",
+    "popper.js": "^1.16.1",
+    "prettier": "^2.0.5",
+    "pug": "^3.0.0",
+    "pug-cli": "^1.0.0-alpha6",
+    "stylus": "^0.54.7",
+    "three": "^0.117.1"
+  },
+  "dependencies": {
+    "tsparticles-editor": "^1.0.0-alpha.2"
+  }
+}

@@ -8,5 +8,6 @@
   ],
   "version": "independent",
   "npmClient": "yarn",
-  "useWorkspaces": true
+  "useWorkspaces": true,
+  "conventionalCommits": true
 }

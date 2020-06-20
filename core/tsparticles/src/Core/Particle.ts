@@ -442,8 +442,7 @@ export class Particle implements IParticle {
     }
 
     public updateInfection(delta: number): void {
-        const container = this.container;
-        const options = container.options;
+        const options = this.container.options;
         const infection = options.infection;
         const stages = options.infection.stages;
         const stagesCount = stages.length;

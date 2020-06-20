@@ -1,0 +1,86 @@
+html {
+  height: 100%;
+  overflow: hidden;
+}
+body {
+  line-height: 1;
+  height: 100%;
+  overflow: hidden;
+}
+#tsparticles {
+  width: 100%;
+  height: 100%;
+}
+/* ---- stats.js ---- */
+.github {
+  bottom: 10px;
+  right: 10px;
+  position: absolute;
+  border-radius: 10px;
+  background: #fff;
+  border: 1px solid #000;
+}
+.github a {
+  color: #000;
+}
+.github a:hover,
+.github a:link,
+.github a:visited,
+.github a:active {
+  color: #000;
+  text-decoration: none;
+}
+.github img {
+  height: 30px;
+}
+.github #gh-project {
+  font-size: 20px;
+  padding-left: 5px;
+  font-weight: bold;
+  vertical-align: bottom;
+}
+.toggle-sidebar {
+  top: 50%;
+  left: 0;
+  font-size: 20px;
+  color: #000;
+  position: absolute;
+  padding: 3px;
+  border-top-right-radius: 5px;
+  border-bottom-right-radius: 5px;
+  background: #e7e7e7;
+  border: 1px solid #000;
+  border-left: none;
+}
+.count-particles {
+  background: #002;
+  position: absolute;
+  top: 51px;
+  left: 3px;
+  width: 80px;
+  color: #13e8e9;
+  font-size: 0.8em;
+  text-align: left;
+  text-indent: 4px;
+  line-height: 14px;
+  padding-bottom: 2px;
+  border-radius: 3px 3px 0 0;
+  font-family: Helvetica, Arial, sans-serif;
+  font-weight: bold;
+}
+#stats,
+.count-particles {
+  -webkit-user-select: none;
+}
+#stats {
+  overflow: hidden;
+}
+#stats-graph canvas {
+  border-radius: 3px 3px 0 0;
+}
+.count-particles {
+  border-radius: 0 0 3px 3px;
+}
+*[hidden] {
+  display: none;
+}

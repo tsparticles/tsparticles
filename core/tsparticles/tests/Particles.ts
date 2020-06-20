@@ -146,7 +146,7 @@ describe("Particles", () => {
         testParticles.reset(testContainer.container);
 
         const position: ICoordinates = { x: 100, y: 100 };
-        testParticles.particles.push(numParticles, { position });
+        testParticles.particles.push(numParticles, { position, clicking: false, inside: false });
         expect(testParticles.particles.count).to.equal(5);
 
         for (let i = 0; i < numParticles; i++) {

@@ -4,4 +4,6 @@ export interface IMouseData {
     clickPosition?: ICoordinates;
     position?: ICoordinates;
     clickTime?: number;
+    inside: boolean;
+    clicking: boolean;
 }

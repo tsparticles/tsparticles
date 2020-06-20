@@ -1,0 +1,234 @@
+{
+    "detectRetina": true,
+    "fpsLimit": 999,
+    "interactivity": {
+        "detectsOn": "canvas",
+        "events": {
+            "onClick": {
+                "enable": true,
+                "mode": "remove"
+            },
+            "onDiv": {
+                "elementId": "repulse-div",
+                "enable": false,
+                "mode": "repulse"
+            },
+            "onHover": {
+                "enable": false,
+                "mode": "grab",
+                "parallax": {
+                    "enable": false,
+                    "force": 2,
+                    "smooth": 10
+                }
+            },
+            "resize": true
+        },
+        "modes": {
+            "bubble": {
+                "distance": 200,
+                "duration": 0.4,
+                "opacity": 1,
+                "size": 80
+            },
+            "connect": {
+                "distance": 80,
+                "lineLinked": {
+                    "opacity": 0.5
+                },
+                "radius": 60
+            },
+            "grab": {
+                "distance": 180,
+                "lineLinked": {
+                    "opacity": 0.35
+                }
+            },
+            "push": {
+                "quantity": 4
+            },
+            "remove": {
+                "quantity": 10
+            },
+            "repulse": {
+                "distance": 100,
+                "duration": 5
+            },
+            "slow": {
+                "factor": 1,
+                "radius": 0
+            }
+        }
+    },
+    "particles": {
+        "color": {
+            "value": "#FFF"
+        },
+        "lineLinked": {
+            "blink": false,
+            "color": {
+                "value": "#fff"
+            },
+            "consent": false,
+            "distance": 150,
+            "enable": false,
+            "opacity": 0.6,
+            "shadow": {
+                "blur": 5,
+                "color": {
+                    "value": "lime"
+                },
+                "enable": false
+            },
+            "width": 1
+        },
+        "move": {
+            "attract": {
+                "enable": false,
+                "rotate": {
+                    "x": 3000,
+                    "y": 3000
+                }
+            },
+            "collisions": true,
+            "direction": "bottom",
+            "enable": true,
+            "outMode": "out",
+            "random": false,
+            "speed": 3,
+            "straight": false,
+            "trail": {
+                "enable": false,
+                "length": 10,
+                "fillColor": {
+                    "value": "#000000"
+                }
+            }
+        },
+        "number": {
+            "density": {
+                "enable": false,
+                "area": 1200
+            },
+            "limit": -1,
+            "value": 160
+        },
+        "opacity": {
+            "animation": {
+                "enable": true,
+                "minimumValue": 0.1,
+                "speed": 1,
+                "sync": false
+            },
+            "random": {
+                "enable": false,
+                "minimumValue": 1
+            },
+            "value": 0.5
+        },
+        "rotate": {
+            "animation": {
+                "enable": false,
+                "speed": 0,
+                "sync": false
+            },
+            "direction": "clockwise",
+            "random": false,
+            "value": 0
+        },
+        "shape": {
+            "character": {
+                "fill": true,
+                "font": "Verdana",
+                "style": "",
+                "value": "*",
+                "weight": "400",
+                "close": true
+            },
+            "image": {
+                "height": 100,
+                "replaceColor": true,
+                "src": "",
+                "width": 100,
+                "fill": true,
+                "close": true
+            },
+            "polygon": {
+                "close": true,
+                "fill": true,
+                "sides": 5
+            },
+            "type": "circle",
+            "custom": {}
+        },
+        "size": {
+            "animation": {
+                "enable": false,
+                "minimumValue": 0,
+                "speed": 40,
+                "sync": false
+            },
+            "random": {
+                "enable": true,
+                "minimumValue": 1
+            },
+            "value": 10
+        },
+        "shadow": {
+            "blur": 0,
+            "color": {
+                "value": "#000000"
+            },
+            "enable": false,
+            "offset": {
+                "x": 0,
+                "y": 0
+            }
+        },
+        "stroke": {
+            "color": {
+                "value": "#ff0000"
+            },
+            "width": 0,
+            "opacity": 1
+        }
+    },
+    "polygon": {
+        "draw": {
+            "enable": false,
+            "stroke": {
+                "color": "rgba(255, 255, 255, .1)",
+                "width": 0.5,
+                "opacity": 0.1
+            }
+        },
+        "enable": false,
+        "inline": {
+            "arrangement": "one-per-point"
+        },
+        "move": {
+            "radius": 10,
+            "type": "path"
+        },
+        "scale": 1,
+        "type": "inline",
+        "url": ""
+    },
+    "backgroundMask": {
+        "cover": {
+            "color": {
+                "value": "#fff"
+            },
+            "opacity": 1
+        },
+        "enable": false
+    },
+    "pauseOnBlur": true,
+    "background": {
+        "color": "#0d47a1",
+        "image": "",
+        "position": "50% 50%",
+        "repeat": "no-repeat",
+        "size": "cover"
+    }
+}

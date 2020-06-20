@@ -829,6 +829,9 @@
         },
         "slow": {
           "$ref": "#/definitions/ISlow"
+        },
+        "trail": {
+          "$ref": "#/definitions/ITrail"
         }
       },
       "type": "object"
@@ -872,7 +875,7 @@
           "type": "boolean"
         },
         "trail": {
-          "$ref": "#/definitions/ITrail"
+          "$ref": "#/definitions/ITrail_1"
         },
         "vibrate": {
           "type": "boolean"
@@ -1450,6 +1453,20 @@
       "type": "object"
     },
     "ITrail": {
+      "properties": {
+        "delay": {
+          "type": "number"
+        },
+        "particles": {
+          "$ref": "#/definitions/RecursivePartial<IParticles>"
+        },
+        "quantity": {
+          "type": "number"
+        }
+      },
+      "type": "object"
+    },
+    "ITrail_1": {
       "properties": {
         "enable": {
           "type": "boolean"

@@ -14,6 +14,7 @@ export class EventListeners {
     private readonly mouseLeaveHandler: EventListenerOrEventListenerObject;
     private readonly touchCancelHandler: EventListenerOrEventListenerObject;
     private readonly touchEndClickHandler: EventListenerOrEventListenerObject;
+    private readonly mouseDownHandler: EventListenerOrEventListenerObject;
     private readonly mouseUpHandler: EventListenerOrEventListenerObject;
     private readonly visibilityChangeHandler: EventListenerOrEventListenerObject;
     private readonly resizeHandler: EventListenerOrEventListenerObject;
@@ -35,6 +36,7 @@ export class EventListeners {
         this.touchCancelHandler = (): void => this.mouseTouchFinish();
         this.touchEndClickHandler = (e: Event): void => this.mouseTouchClick(e);
         this.mouseUpHandler = (e: Event): void => this.mouseTouchClick(e);
+        this.mouseDownHandler = (): void => this.mouseDown();
         this.visibilityChangeHandler = (): void => this.handleVisibilityChange();
         this.resizeHandler = (): void => this.handleWindowResize();
     }
@@ -64,24 +66,33 @@ export class EventListeners {
     }
 
     /**
-     * Initializing event listeners
+     * Adding all listeners
      */
     public addListeners(): void {
         this.manageListeners(true);
     }
 
+    /**
+     * Removing all listeners
+     */
     public removeListeners(): void {
         this.manageListeners(false);
     }
 
+    /**
+     * Initializing event listeners
+     */
     private manageListeners(add: boolean): void {
         const container = this.container;
         const options = container.options;
         const detectType = options.interactivity.detectsOn;
+        let mouseLeaveEvent = Constants.mouseLeaveEvent;
 
         /* events target element */
         if (detectType === InteractivityDetect.window) {
             container.interactivity.element = window;
+
+            mouseLeaveEvent = Constants.mouseOutEvent;
         } else if (detectType === InteractivityDetect.parent && container.canvas.element) {
             container.interactivity.element = container.canvas.element.parentNode;
         } else {
@@ -110,7 +121,7 @@ export class EventListeners {
             }
 
             /* el on onmouseleave */
-            EventListeners.manageListener(interactivityEl, Constants.mouseLeaveEvent, this.mouseLeaveHandler, add);
+            EventListeners.manageListener(interactivityEl, mouseLeaveEvent, this.mouseLeaveHandler, add);
 
             /* el on touchcancel */
             EventListeners.manageListener(interactivityEl, Constants.touchCancelEvent, this.touchCancelHandler, add);
@@ -120,6 +131,7 @@ export class EventListeners {
         if (options.interactivity.events.onClick.enable && interactivityEl) {
             EventListeners.manageListener(interactivityEl, Constants.touchEndEvent, this.touchEndClickHandler, add);
             EventListeners.manageListener(interactivityEl, Constants.mouseUpEvent, this.mouseUpHandler, add);
+            EventListeners.manageListener(interactivityEl, Constants.mouseDownEvent, this.mouseDownHandler, add);
         }
 
         if (options.interactivity.events.resize) {
@@ -173,6 +185,8 @@ export class EventListeners {
         const container = this.container;
         const options = container.options;
 
+        this.mouseTouchFinish();
+
         if (!options.pauseOnBlur) {
             return;
         }
@@ -192,6 +206,12 @@ export class EventListeners {
         }
     }
 
+    private mouseDown(): void {
+        if (this.container.interactivity) {
+            this.container.interactivity.mouse.clicking = true;
+        }
+    }
+
     /**
      * Mouse/Touch move event
      * @param e the event arguments
@@ -199,6 +219,12 @@ export class EventListeners {
     private mouseTouchMove(e: Event): void {
         const container = this.container;
         const options = container.options;
+
+        if (container.interactivity?.element === undefined) {
+            return;
+        }
+
+        container.interactivity.mouse.inside = true;
 
         let pos: ICoordinates | undefined;
 
@@ -208,9 +234,6 @@ export class EventListeners {
             this.canPush = true;
 
             const mouseEvent = e as MouseEvent;
-            if (container.interactivity?.element === undefined) {
-                return;
-            }
 
             if (container.interactivity.element === window) {
                 if (canvas) {
@@ -280,6 +303,8 @@ export class EventListeners {
         delete container.interactivity.mouse.position;
 
         container.interactivity.status = Constants.mouseLeaveEvent;
+        container.interactivity.mouse.inside = false;
+        container.interactivity.mouse.clicking = false;
     }
 
     /**
@@ -289,6 +314,8 @@ export class EventListeners {
     private mouseTouchClick(e: Event): void {
         const container = this.container;
         const options = container.options;
+
+        container.interactivity.mouse.inside = true;
 
         let handled = false;
 
@@ -311,6 +338,8 @@ export class EventListeners {
         if (!handled) {
             this.doMouseTouchClick(e);
         }
+
+        container.interactivity.mouse.clicking = false;
     }
 
     /**

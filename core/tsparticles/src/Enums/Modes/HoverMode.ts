@@ -4,4 +4,5 @@ export enum HoverMode {
     grab = "grab",
     repulse = "repulse",
     slow = "slow",
+    trail = "trail",
 }

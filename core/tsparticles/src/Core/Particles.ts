@@ -177,7 +177,7 @@ export class Particles {
     }
 
     /* ---------- tsParticles functions - modes events ------------ */
-    public push(nb: number, mousePosition?: IMouseData): void {
+    public push(nb: number, mouse?: IMouseData, overrideOptions?: RecursivePartial<IParticles>): void {
         const container = this.container;
         const options = container.options;
         const limit = options.particles.number.limit * container.density;
@@ -192,14 +192,8 @@ export class Particles {
             }
         }
 
-        let pos: ICoordinates | undefined;
-
-        if (mousePosition) {
-            pos = mousePosition.position ?? { x: 0, y: 0 };
-        }
-
         for (let i = 0; i < nb; i++) {
-            this.addParticle(pos);
+            this.addParticle(mouse?.position, overrideOptions);
         }
 
         if (!options.particles.move.enable) {
