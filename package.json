@@ -3,8 +3,10 @@
   "name": "tsparticles",
   "version": "0.0.0",
   "scripts": {
-    "publish:alpha": "lerna publish prerelease --pre-dist-tag alpha --preid alpha",
-    "publish:beta": "lerna publish prerelease --pre-dist-tag beta --preid beta"
+    "version:alpha": "lerna version prerelease --preid alpha --conventionalCommits",
+    "version:beta": "lerna version prerelease --preid beta --conventionalCommits",
+    "publish:alpha": "lerna publish frompackage --pre-dist-tag alpha --preid alpha",
+    "publish:beta": "lerna publish frompackage --pre-dist-tag beta --preid beta"
   },
   "workspaces": [
     "core/*",

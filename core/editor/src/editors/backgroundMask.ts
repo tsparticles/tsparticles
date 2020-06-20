@@ -7,7 +7,9 @@ const addBackgroundMask = (gui: GUI, container: Container): void => {
     const fCover = fBgMask.addFolder("cover");
     const fCoverColor = fBgMask.addFolder("color");
 
-    fCoverColor.addColor(container.options.backgroundMask.cover.color, "value").onChange(async () => changeHandler(container));
+    fCoverColor
+        .addColor(container.options.backgroundMask.cover.color, "value")
+        .onChange(async () => changeHandler(container));
 
     fCover.add(container.options.backgroundMask.cover, "opacity").onChange(async () => changeHandler(container));
 
