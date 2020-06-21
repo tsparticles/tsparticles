@@ -26,4 +26,9 @@ export interface IAbsorber extends IOptionLoader<IAbsorber> {
      * Absorber size, these values will be used as pixels
      */
     size: IAbsorberSize;
+
+    /**
+     * Absorber draggable, this enables dragging on absorbers
+     */
+    draggable: boolean;
 }

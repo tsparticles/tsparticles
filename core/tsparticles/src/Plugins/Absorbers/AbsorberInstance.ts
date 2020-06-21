@@ -16,6 +16,7 @@ export class AbsorberInstance {
 
     private readonly initialPosition?: ICoordinates;
     private readonly options: IAbsorber;
+    private dragging: boolean;
 
     constructor(
         private readonly absorbers: Absorbers,
@@ -25,6 +26,7 @@ export class AbsorberInstance {
     ) {
         this.initialPosition = position;
         this.options = options;
+        this.dragging = false;
 
         let size = options.size.value * container.retina.pixelRatio;
         const random = typeof options.size.random === "boolean" ? options.size.random : options.size.random.enable;
@@ -54,6 +56,28 @@ export class AbsorberInstance {
     }
 
     public attract(particle: Particle): void {
+        if (this.options.draggable) {
+            const container = this.container;
+            const mouse = container.interactivity.mouse;
+
+            if (mouse.clicking && mouse.downPosition) {
+                const mouseDist = Utils.getDistance(this.position, mouse.downPosition);
+
+                if (mouseDist <= this.size) {
+                    this.dragging = true;
+                }
+            } else {
+                this.dragging = false;
+            }
+
+            if (this.dragging && mouse.position) {
+                const pxRatio = container.retina.pixelRatio;
+
+                this.position.x = mouse.position.x;
+                this.position.y = mouse.position.y;
+            }
+        }
+
         const pos = particle.getPosition();
         const { dx, dy, distance } = Utils.getDistances(this.position, pos);
         const angle = Math.atan2(dx, dy) * (180 / Math.PI);

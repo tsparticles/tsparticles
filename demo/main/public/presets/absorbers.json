@@ -60,6 +60,7 @@
       },
       "absorbers": {
         "color": "#ff0000",
+        "draggable": true,
         "size": {
           "value": 10,
           "limit": 50,
@@ -90,6 +91,7 @@
   },
   "retina_detect": true,
   "absorbers": {
+    "draggable": true,
     "size": {
       "value": 10,
       "limit": 10,
