@@ -1,6 +1,6 @@
 {
   "name": "preact-particles",
-  "version": "1.17.0-alpha.1",
+  "version": "1.17.0-alpha.2",
   "description": "Preactified tsParticles",
   "main": "index.js",
   "unpkg": "umd/particles.js",
@@ -43,7 +43,7 @@
   "dependencies": {
     "lodash": "^4.17.15",
     "preact": "^10.4.1",
-    "tsparticles": "^1.17.0-alpha.1"
+    "tsparticles": "^1.17.0-alpha.2"
   },
   "peerDependencies": {
     "preact": "^10.0.0"
