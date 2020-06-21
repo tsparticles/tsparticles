@@ -1,6 +1,6 @@
 {
   "name": "tsparticles-preset-basic",
-  "version": "1.2.0-alpha.2",
+  "version": "1.2.0-alpha.3",
   "description": "tsParticles basic preset",
   "homepage": "https://particles.matteobruni.it/",
   "scripts": {
@@ -65,6 +65,6 @@
     "uglify-js": "^3.8.1"
   },
   "dependencies": {
-    "tsparticles": "^1.17.0-alpha.2"
+    "tsparticles": "^1.17.0-alpha.3"
   }
 }
