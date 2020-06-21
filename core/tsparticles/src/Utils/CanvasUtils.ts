@@ -228,7 +228,7 @@ export class CanvasUtils {
         context.beginPath();
 
         if (particle.angle !== 0) {
-            context.rotate((particle.angle * Math.PI) / 180);
+            context.rotate(particle.angle);
         }
 
         if (backgroundMask) {
@@ -273,7 +273,7 @@ export class CanvasUtils {
         context.translate(pos.x, pos.y);
 
         if (particle.angle !== 0) {
-            context.rotate((particle.angle * Math.PI) / 180);
+            context.rotate(particle.angle);
         }
 
         if (backgroundMask) {

@@ -4,7 +4,8 @@ import type { RotateDirection } from "../../../../Enums";
 
 export interface IRotate extends IOptionLoader<IRotate> {
     animation: IRotateAnimation;
+    direction: RotateDirection;
+    path: boolean;
     random: boolean;
     value: number;
-    direction: RotateDirection;
 }

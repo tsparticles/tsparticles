@@ -127,22 +127,25 @@ export class Updater {
         const options = this.container.options;
         const particle = this.particle;
         const deltaFactor = options.fpsLimit > 0 ? (60 * delta) / 1000 : 3.6;
+        const rotateAnimation = particle.particlesOptions.rotate.animation;
+        const speed = (rotateAnimation.speed / 360) * deltaFactor;
+        const max = 2 * Math.PI;
 
-        if (particle.particlesOptions.rotate.animation.enable) {
+        if (rotateAnimation.enable) {
             switch (particle.rotateDirection) {
                 case RotateDirection.clockwise:
-                    particle.angle += ((particle.particlesOptions.rotate.animation.speed * Math.PI) / 18) * deltaFactor;
+                    particle.angle += speed;
 
-                    if (particle.angle > 360) {
-                        particle.angle -= 360;
+                    if (particle.angle > max) {
+                        particle.angle -= max;
                     }
                     break;
                 case RotateDirection.counterClockwise:
                 default:
-                    particle.angle -= ((particle.particlesOptions.rotate.animation.speed * Math.PI) / 18) * deltaFactor;
+                    particle.angle -= speed;
 
                     if (particle.angle < 0) {
-                        particle.angle += 360;
+                        particle.angle += max;
                     }
                     break;
             }

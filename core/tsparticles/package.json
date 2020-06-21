@@ -4,7 +4,7 @@
     "./dist/index.js",
     "./dist/tsparticles.js"
   ],
-  "version": "1.17.0-alpha.1",
+  "version": "1.17.0-alpha.3",
   "description": "Porting of the abandoned Vincent Garreau's particles.js, converted in TypeScript. Added many new cool features and various bug fixes.",
   "homepage": "https://particles.matteobruni.it/",
   "scripts": {
