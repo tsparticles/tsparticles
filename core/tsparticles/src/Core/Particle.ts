@@ -173,7 +173,19 @@ export class Particle implements IParticle {
         this.bubble = {
             inRange: false,
         };
-        this.angle = this.particlesOptions.rotate.random ? Math.random() * 360 : this.particlesOptions.rotate.value;
+
+        /* animation - velocity for speed */
+        this.initialVelocity = this.calculateVelocity();
+        this.velocity = {
+            horizontal: this.initialVelocity.horizontal,
+            vertical: this.initialVelocity.vertical,
+        };
+
+        this.angle = Math.atan2(this.initialVelocity.vertical, this.initialVelocity.horizontal);
+
+        const degAngle = this.particlesOptions.rotate.random ? Math.random() * 360 : this.particlesOptions.rotate.value;
+
+        this.angle += (degAngle * Math.PI) / 180;
 
         if (this.particlesOptions.rotate.direction === RotateDirection.random) {
             const index = Math.floor(Math.random() * 2);
@@ -219,7 +231,7 @@ export class Particle implements IParticle {
 
         if (this.particlesOptions.rotate.animation.enable) {
             if (!this.particlesOptions.rotate.animation.sync) {
-                this.angle = Math.random() * 360;
+                this.angle = Math.random() * Math.PI * 2;
             }
         }
 
@@ -256,13 +268,6 @@ export class Particle implements IParticle {
                 this.opacity.velocity *= Math.random();
             }
         }
-
-        /* animation - velocity for speed */
-        this.initialVelocity = this.calculateVelocity();
-        this.velocity = {
-            horizontal: this.initialVelocity.horizontal,
-            vertical: this.initialVelocity.vertical,
-        };
 
         let drawer = container.drawers.get(this.shape);
 

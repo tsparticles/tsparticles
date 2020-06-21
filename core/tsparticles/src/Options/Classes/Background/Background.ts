@@ -3,12 +3,22 @@ import type { RecursivePartial } from "../../../Types/RecursivePartial";
 import { OptionsColor } from "../OptionsColor";
 
 export class Background implements IBackground {
-    public color?: OptionsColor;
-    public image?: string;
-    public position?: string;
-    public repeat?: string;
-    public size?: string;
-    public opacity?: number;
+    public color: OptionsColor;
+    public image: string;
+    public position: string;
+    public repeat: string;
+    public size: string;
+    public opacity: number;
+
+    constructor() {
+        this.color = new OptionsColor();
+        this.color.value = "";
+        this.image = "";
+        this.position = "";
+        this.repeat = "";
+        this.size = "";
+        this.opacity = 1;
+    }
 
     public load(data?: RecursivePartial<IBackground>): void {
         if (data === undefined) {

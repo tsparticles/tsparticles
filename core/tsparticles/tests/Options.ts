@@ -19,12 +19,12 @@ describe("Options tests", () => {
         const options = new Options();
 
         /* background */
-        expect(options.background.color).to.be.undefined;
-        expect(options.background.image).to.be.undefined;
-        expect(options.background.position).to.be.undefined;
-        expect(options.background.repeat).to.be.undefined;
-        expect(options.background.size).to.be.undefined;
-        expect(options.background.opacity).to.be.undefined;
+        expect(options.background.color).to.include({ value: "" });
+        expect(options.background.image).to.be.equal("");
+        expect(options.background.position).to.be.equal("");
+        expect(options.background.repeat).to.be.equal("");
+        expect(options.background.size).to.be.equal("");
+        expect(options.background.opacity).to.be.equal(1);
 
         /* background mask */
         expect(options.backgroundMask.cover)

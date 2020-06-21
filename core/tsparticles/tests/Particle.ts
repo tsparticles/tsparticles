@@ -26,7 +26,7 @@ describe("Particle", () => {
                 },
             },
         };
-        const shapeTypes = [ShapeType.char, ShapeType.edge, ShapeType.image, ShapeType.polygon];
+        const shapeTypes = [ ShapeType.char, ShapeType.edge, ShapeType.image, ShapeType.polygon ];
         const multipleShapeTypeOptions = {
             particles: {
                 shape: {
@@ -116,7 +116,7 @@ describe("Particle", () => {
         it("should always set an angle in range [0,360]", () => {
             // Note, the real range should be [0,360) but the function includes 360 and it won't hurt anything
             expect(testParticle.particle.angle).to.be.at.least(0);
-            expect(testParticle.particle.angle).to.be.at.most(360);
+            expect(testParticle.particle.angle).to.be.at.most(2 * Math.PI);
         });
     });
 
