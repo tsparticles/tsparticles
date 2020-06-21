@@ -318,6 +318,7 @@ const addParticles = (gui: GUI, container: Container): void => {
     fRotate
         .add(container.options.particles.rotate, "direction", ["clockwise", "counterClockwise", "random"])
         .onChange(async () => changeHandler(container));
+    fRotate.add(container.options.particles.rotate, "path").onChange(async () => changeHandler(container));
     fRotate.add(container.options.particles.rotate, "random").onChange(async () => changeHandler(container));
     fRotate
         .add(container.options.particles.rotate, "value")

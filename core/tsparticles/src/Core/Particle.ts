@@ -181,31 +181,31 @@ export class Particle implements IParticle {
             vertical: this.initialVelocity.vertical,
         };
 
-        this.angle = Math.atan2(this.initialVelocity.vertical, this.initialVelocity.horizontal);
+        const rotateOptions = this.particlesOptions.rotate;
+        const initialAngle = rotateOptions.path
+            ? Math.atan2(this.initialVelocity.vertical, this.initialVelocity.horizontal)
+            : 0;
+        const degAngle = rotateOptions.random ? Math.random() * 360 : rotateOptions.value;
 
-        const degAngle = this.particlesOptions.rotate.random ? Math.random() * 360 : this.particlesOptions.rotate.value;
+        this.angle = initialAngle + (degAngle * Math.PI) / 180;
 
-        this.angle += (degAngle * Math.PI) / 180;
+        this.rotateDirection = rotateOptions.direction;
 
-        if (this.particlesOptions.rotate.direction === RotateDirection.random) {
+        if (this.rotateDirection === RotateDirection.random) {
             const index = Math.floor(Math.random() * 2);
 
-            if (index > 0) {
-                this.rotateDirection = RotateDirection.counterClockwise;
-            } else {
-                this.rotateDirection = RotateDirection.clockwise;
-            }
-        } else {
-            this.rotateDirection = this.particlesOptions.rotate.direction;
+            this.rotateDirection = index > 0 ? RotateDirection.counterClockwise : RotateDirection.clockwise;
         }
 
-        if (this.particlesOptions.size.animation.enable) {
-            switch (this.particlesOptions.size.animation.startValue) {
+        const sizeAnimation = this.particlesOptions.size.animation;
+
+        if (sizeAnimation.enable) {
+            switch (sizeAnimation.startValue) {
                 case StartValueType.min:
                     if (!randomSize) {
                         const pxRatio = container.retina.pixelRatio;
 
-                        this.size.value = this.particlesOptions.size.animation.minimumValue * pxRatio;
+                        this.size.value = sizeAnimation.minimumValue * pxRatio;
                     }
 
                     break;
@@ -214,23 +214,25 @@ export class Particle implements IParticle {
             this.size.status = SizeAnimationStatus.increasing;
             this.size.velocity = (this.sizeAnimationSpeed ?? container.retina.sizeAnimationSpeed) / 100;
 
-            if (!this.particlesOptions.size.animation.sync) {
+            if (!sizeAnimation.sync) {
                 this.size.velocity = this.size.velocity * Math.random();
             }
         }
 
-        if (this.particlesOptions.color.animation.enable) {
-            this.colorVelocity = this.particlesOptions.color.animation.speed / 100;
+        const colorAnimation = this.particlesOptions.color.animation;
 
-            if (!this.particlesOptions.color.animation.sync) {
+        if (colorAnimation.enable) {
+            this.colorVelocity = colorAnimation.speed / 100;
+
+            if (!colorAnimation.sync) {
                 this.colorVelocity = this.colorVelocity * Math.random();
             }
         } else {
             this.colorVelocity = 0;
         }
 
-        if (this.particlesOptions.rotate.animation.enable) {
-            if (!this.particlesOptions.rotate.animation.sync) {
+        if (colorAnimation.enable) {
+            if (!colorAnimation.sync) {
                 this.angle = Math.random() * Math.PI * 2;
             }
         }
@@ -253,18 +255,21 @@ export class Particle implements IParticle {
         this.color = ColorUtils.colorToHsl(color);
 
         /* opacity */
-        const randomOpacity = this.particlesOptions.opacity.random as IOpacityRandom;
-        const opacityValue = this.particlesOptions.opacity.value;
+        const opacityOptions = this.particlesOptions.opacity;
+        const randomOpacity = opacityOptions.random as IOpacityRandom;
+        const opacityValue = opacityOptions.value;
 
         this.opacity = {
             value: randomOpacity.enable ? Utils.randomInRange(randomOpacity.minimumValue, opacityValue) : opacityValue,
         };
 
-        if (this.particlesOptions.opacity.animation.enable) {
-            this.opacity.status = OpacityAnimationStatus.increasing;
-            this.opacity.velocity = this.particlesOptions.opacity.animation.speed / 100;
+        const opacityAnimation = opacityOptions.animation;
 
-            if (!this.particlesOptions.opacity.animation.sync) {
+        if (opacityAnimation.enable) {
+            this.opacity.status = OpacityAnimationStatus.increasing;
+            this.opacity.velocity = opacityAnimation.speed / 100;
+
+            if (!opacityAnimation.sync) {
                 this.opacity.velocity *= Math.random();
             }
         }

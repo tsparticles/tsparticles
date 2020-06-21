@@ -8,6 +8,9 @@
         "value_area": 800
       }
     },
+    "rotate": {
+      "path": true
+    },
     "color": {
       "value": "#ff0000",
       "animation": {

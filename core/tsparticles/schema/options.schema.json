@@ -1180,6 +1180,9 @@
         "direction": {
           "$ref": "#/definitions/RotateDirection"
         },
+        "path": {
+          "type": "boolean"
+        },
         "random": {
           "type": "boolean"
         },
@@ -2284,6 +2287,9 @@
         },
         "load": {
           "$ref": "#/definitions/RecursivePartial<(data?:RecursivePartial<IRotate>|undefined)=>void>"
+        },
+        "path": {
+          "type": "boolean"
         },
         "random": {
           "type": "boolean"
