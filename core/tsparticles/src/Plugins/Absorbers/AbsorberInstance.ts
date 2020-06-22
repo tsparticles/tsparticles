@@ -71,8 +71,6 @@ export class AbsorberInstance {
             }
 
             if (this.dragging && mouse.position) {
-                const pxRatio = container.retina.pixelRatio;
-
                 this.position.x = mouse.position.x;
                 this.position.y = mouse.position.y;
             }
