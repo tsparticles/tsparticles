@@ -78,9 +78,34 @@ const getJsConfig = (entry) => {
     };
 };
 
+const getCssConfig = (entry) => {
+    module: {
+        rules: [
+            {
+                test: /\.s[ac]ss$/i,
+                use: [
+                    'style-loader',
+                    'css-loader',
+                    {
+                        loader: 'sass-loader',
+                        options: {
+                            // Prefer `dart-sass`
+                            implementation: require('sass'),
+                        }
+                    }
+                ]
+            }
+        ]
+    }
+};
+
 module.exports = [
     getJsConfig({
         "js/tsparticles.editor": "./dist/js/editor.js",
         "js/tsparticles.editor.min": "./dist/js/editor.js"
+    }),
+    getJsConfig({
+        "css/tsparticles.editor": "./src/sass/editor.scss",
+        "css/tsparticles.editor.min": "./src/sass/editor.scss",
     })
 ];

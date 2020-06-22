@@ -38,18 +38,17 @@
     "url": "https://github.com/matteobruni/tsparticles/issues"
   },
   "dependencies": {
-    "dat.gui": "^0.7.7",
     "tslib": "^2.0.0",
     "tsparticles": "^1.17.0-alpha.4"
   },
   "devDependencies": {
     "@babel/core": "^7.10.2",
-    "@types/dat.gui": "^0.7.5",
     "@typescript-eslint/eslint-plugin": "^3.3.0",
     "@typescript-eslint/parser": "^3.3.0",
     "babel-loader": "^8.1.0",
     "eslint": "^7.2.0",
     "eslint-config-prettier": "^6.11.0",
+    "fibers": "^5.0.0",
     "prettier": "^2.0.5",
     "rimraf": "^3.0.2",
     "sass": "^1.26.8",

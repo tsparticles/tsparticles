@@ -1,9 +1,8 @@
-import { GUI } from "dat.gui";
 import { Container } from "tsparticles/dist/Core/Container";
 import { changeHandler } from "../utils";
 
-const addInfection = (gui: GUI, container: Container): void => {
-    const fInfection = gui.addFolder("infection");
+const addInfection = (container: Container): void => {
+    /*const fInfection = addFolder("infection");
 
     fInfection.add(container.options.infection, "cure").onChange(async () => changeHandler(container));
     fInfection
@@ -53,6 +52,7 @@ const addInfection = (gui: GUI, container: Container): void => {
             .max(50)
             .onChange(async () => changeHandler(container));
     });
+     */
 };
 
 export { addInfection };
