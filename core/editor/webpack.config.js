@@ -79,8 +79,8 @@ const getJsConfig = (entry) => {
 };
 
 const getCssConfig = (entry) => {
-    module: {
-        rules: [
+    {
+        [
             {
                 test: /\.s[ac]ss$/i,
                 use: [
