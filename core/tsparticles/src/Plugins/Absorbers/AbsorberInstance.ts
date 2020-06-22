@@ -57,8 +57,7 @@ export class AbsorberInstance {
 
     public attract(particle: Particle): void {
         if (this.options.draggable) {
-            const container = this.container;
-            const mouse = container.interactivity.mouse;
+            const mouse = this.container.interactivity.mouse;
 
             if (mouse.clicking && mouse.downPosition) {
                 const mouseDist = Utils.getDistance(this.position, mouse.downPosition);
