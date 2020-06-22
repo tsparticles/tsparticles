@@ -24,8 +24,7 @@ export class Circle extends Range {
         const r = this.radius;
 
         if (circle.radius !== undefined) {
-            const r2 = circle.radius;
-            const rSum = r + r2;
+            const rSum = r + circle.radius;
             const dist = Math.sqrt(xDist * xDist + yDist + yDist);
 
             return rSum > dist;
