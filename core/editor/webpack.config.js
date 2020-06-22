@@ -13,7 +13,7 @@ v${version}`;
 
 const minBanner = `tsParticles Editor v${version} by Matteo Bruni`;
 
-const getConfig = (entry) => {
+const getJsConfig = (entry) => {
     const reportFileName = "report";
 
     return {
@@ -79,8 +79,8 @@ const getConfig = (entry) => {
 };
 
 module.exports = [
-    getConfig({
-        "tsparticles.editor": "./dist/editor.js",
-        "tsparticles.editor.min": "./dist/editor.js"
+    getJsConfig({
+        "js/tsparticles.editor": "./dist/js/editor.js",
+        "js/tsparticles.editor.min": "./dist/js/editor.js"
     })
 ];
