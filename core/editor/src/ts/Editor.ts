@@ -2,7 +2,7 @@ import { EditorContainer } from "./editors/EditorContainer";
 import { OptionsEditor } from "./sections/options";
 import { Container } from "tsparticles/dist/Core/Container";
 
-export class EditorClass {
+export class Editor {
     public readonly root: EditorContainer;
 
     constructor(private readonly container: Container) {
