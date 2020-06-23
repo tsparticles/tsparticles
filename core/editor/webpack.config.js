@@ -104,8 +104,8 @@ module.exports = [
         "js/tsparticles.editor": "./dist/js/editor.js",
         "js/tsparticles.editor.min": "./dist/js/editor.js"
     }),
-    getJsConfig({
-        "css/tsparticles.editor": "./src/sass/editor.scss",
-        "css/tsparticles.editor.min": "./src/sass/editor.scss",
+    getCssConfig({
+        "css/tsparticles.editor": "./src/scss/editor.scss",
+        "css/tsparticles.editor.min": "./src/scss/editor.scss",
     })
 ];
