@@ -80,6 +80,7 @@ const getJsConfig = (entry) => {
 
 const getCssConfig = (entry) => {
     return {
+        entry: entry,
         module: {
             rules: [
                 {
