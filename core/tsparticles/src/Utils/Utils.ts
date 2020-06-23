@@ -297,7 +297,7 @@ export class Utils {
         }
     }
 
-    public static deepExtend(destination: any, ...sources: any): any {
+    public static deepExtend(destination: any, ...sources: any[]): any {
         for (const source of sources) {
             if (source === undefined || source === null) {
                 continue;
