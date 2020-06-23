@@ -512,8 +512,7 @@ export class Particle implements IParticle {
     }
 
     private nextInfectionStage(): void {
-        const container = this.container;
-        const options = container.options;
+        const options = this.container.options;
         const stagesCount = options.infection.stages.length;
 
         if (stagesCount <= 0 || this.infectionStage === undefined) {

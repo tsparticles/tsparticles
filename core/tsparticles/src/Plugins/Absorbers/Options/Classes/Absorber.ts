@@ -10,12 +10,16 @@ export class Absorber implements IAbsorber {
     public opacity: number;
     public position?: ICoordinates;
     public size: AbsorberSize;
+    public destroy: boolean;
+    public orbits: boolean;
 
     constructor() {
         this.color = new OptionsColor();
         this.color.value = "#000000";
         this.draggable = false;
         this.opacity = 1;
+        this.destroy = true;
+        this.orbits = false;
         this.size = new AbsorberSize();
     }
 
@@ -42,6 +46,14 @@ export class Absorber implements IAbsorber {
 
             if (data.size !== undefined) {
                 this.size.load(data.size);
+            }
+
+            if (data.destroy !== undefined) {
+                this.destroy = data.destroy;
+            }
+
+            if (data.orbits !== undefined) {
+                this.orbits = data.orbits;
             }
         }
     }

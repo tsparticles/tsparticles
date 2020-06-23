@@ -14,8 +14,8 @@
     "shape": {
       "type": "circle",
       "stroke": {
-        "width": 0,
-        "color": "#000000"
+        "width": 1,
+        "color": "#ffffff"
       },
       "polygon": {
         "nb_sides": 5
@@ -37,8 +37,8 @@
       }
     },
     "size": {
-      "value": 1,
-      "random": false,
+      "value": 5,
+      "random": true,
       "anim": {
         "enable": false,
         "speed": 20,
@@ -59,7 +59,7 @@
       "direction": "none",
       "random": false,
       "straight": false,
-      "out_mode": "destroy",
+      "out_mode": "out",
       "attract": {
         "enable": false,
         "rotateX": 600,
@@ -69,7 +69,8 @@
         "enable": true,
         "fillColor": "#0d47a1",
         "length": 5
-      }
+      },
+      "warp": true
     }
   },
   "interactivity": {
@@ -123,6 +124,8 @@
   },
   "retina_detect": true,
   "absorbers": {
+    "orbits": true,
+    "destroy": false,
     "size": {
       "value": 5,
       "limit": 5,
