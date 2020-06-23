@@ -27,7 +27,7 @@
   },
   "scripts": {
     "prettify:src": "prettier --write ./src/",
-    "lint": "eslint src --ext .js,.jsx,.ts,.tsx --fix",
+    "lint": "eslint src/ts --ext .js,.jsx,.ts,.tsx --fix",
     "clear:dist": "rimraf -f ./dist",
     "build:ts:es": "tsc -b tsconfig.browser.json",
     "build:ts": "tsc",

@@ -71,7 +71,7 @@
   "bugs": {
     "url": "https://github.com/matteobruni/tsparticles/issues"
   },
-  "main": "../../dist/index.js",
+  "main": "dist/index.js",
   "jsdelivr": "dist/tsparticles.min.js",
   "unpkg": "dist/tsparticles.min.js",
   "browser": "dist/index.js",
