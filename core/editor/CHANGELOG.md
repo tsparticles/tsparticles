@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.0.0-alpha.6](https://github.com/matteobruni/tsparticles/compare/tsparticles-editor@1.0.0-alpha.5...tsparticles-editor@1.0.0-alpha.6) (2020-06-23)
+
+
+### Features
+
+* changing editor to a custom one ([a5c5e24](https://github.com/matteobruni/tsparticles/commit/a5c5e2461d79f57391a1a9c30e03b2bbf0eeb28d))
+
+
+
+
+
 # 1.0.0-alpha.5 (2020-06-22)
 
 

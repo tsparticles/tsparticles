@@ -1,6 +1,6 @@
 {
   "name": "tsparticles-editor",
-  "version": "1.0.0-alpha.5",
+  "version": "1.0.0-alpha.6",
   "private": true,
   "description": "tsParticles Configuration Editor",
   "keywords": [
@@ -40,7 +40,7 @@
   },
   "dependencies": {
     "tslib": "^2.0.0",
-    "tsparticles": "^1.17.0-alpha.4"
+    "tsparticles": "^1.17.0-alpha.5"
   },
   "devDependencies": {
     "@babel/core": "^7.10.2",
