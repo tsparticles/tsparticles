@@ -1,6 +1,7 @@
 {
   "name": "tsparticles-editor",
   "version": "1.0.0-alpha.5",
+  "private": true,
   "description": "tsParticles Configuration Editor",
   "keywords": [
     "tsparticles",
