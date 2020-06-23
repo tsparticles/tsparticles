@@ -103,8 +103,8 @@ const getCssConfig = (entry) => {
 
 module.exports = [
     getJsConfig({
-        "js/tsparticles.editor": "./dist/js/editor.js",
-        "js/tsparticles.editor.min": "./dist/js/editor.js"
+        "js/tsparticles.editor": "./dist/js/Editor.js",
+        "js/tsparticles.editor.min": "./dist/js/Editor.js"
     }),
     getCssConfig({
         "css/tsparticles.editor": "./src/scss/editor.scss",
