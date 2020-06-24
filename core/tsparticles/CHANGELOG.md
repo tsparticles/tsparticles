@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.17.0-alpha.6](https://github.com/matteobruni/tsparticles/compare/tsparticles@1.17.0-alpha.5...tsparticles@1.17.0-alpha.6) (2020-06-24)
+
+
+### Features
+
+* working on orbits for absorbers ([480c25b](https://github.com/matteobruni/tsparticles/commit/480c25b3da96ecc4df46f7a05e57eea9fdcf64c6))
+* working on orbits for absorbers ([1f55430](https://github.com/matteobruni/tsparticles/commit/1f55430b51a108236940e6a8c3d2ae97c82583b2))
+
+
+
+
+
 # [1.17.0-alpha.5](https://github.com/matteobruni/tsparticles/compare/tsparticles@1.16.1...tsparticles@1.17.0-alpha.5) (2020-06-23)
 
 
