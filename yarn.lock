@@ -6923,11 +6923,6 @@ dns-packet@^1.3.1:
     ip "^1.1.0"
     safe-buffer "^5.0.1"
 
-dns-prefetch-control@0.2.0:
-  version "0.2.0"
-  resolved "https://registry.yarnpkg.com/dns-prefetch-control/-/dns-prefetch-control-0.2.0.tgz#73988161841f3dcc81f47686d539a2c702c88624"
-  integrity sha512-hvSnros73+qyZXhHFjx2CMLwoj3Fe7eR9EJsFsqmcI1bB2OBWL/+0YzaEaKssCHnj/6crawNnUyw74Gm2EKe+Q==
-
 dns-txt@^2.0.2:
   version "2.0.2"
   resolved "https://registry.yarnpkg.com/dns-txt/-/dns-txt-2.0.2.tgz#b91d806f5d27188e4ab3e7d107d881a1cc4642b6"
@@ -9005,12 +9000,11 @@ helmet-csp@2.10.0:
     dasherize "2.0.0"
 
 helmet@^3.23.0:
-  version "3.23.1"
-  resolved "https://registry.yarnpkg.com/helmet/-/helmet-3.23.1.tgz#97067661c678d6c8d730dda001406f1946a6c6d1"
-  integrity sha512-e034HHfRK4065BFjYbffn5jXaTWWrhTNgmLIppsGEOjpdDB1MBQkWlAFW/auULXAu6uKk2X76n7a7gvz5sSjkg==
+  version "3.23.2"
+  resolved "https://registry.yarnpkg.com/helmet/-/helmet-3.23.2.tgz#390bb6f3f5e593f90f441bdd91000912c543a898"
+  integrity sha512-pe0UiHw3aHbP8Lon9McCq4AN2XLUMSbhwxJnUY6U2t8wTda7F1SsYg0/pBa1BPugaRqAtx9e1/FyF6E9PsUU5A==
   dependencies:
     depd "2.0.0"
-    dns-prefetch-control "0.2.0"
     dont-sniff-mimetype "1.1.0"
     expect-ct "0.2.0"
     feature-policy "0.3.0"
