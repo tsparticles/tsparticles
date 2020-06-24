@@ -89,7 +89,7 @@ export class AbsorberInstance {
         const acceleration = this.mass / Math.pow(distance, 2);
 
         if (distance < this.size + particle.size.value) {
-            const sizeFactor = particle.size.value * 0.033;
+            const sizeFactor = particle.size.value * 0.033 * this.container.retina.pixelRatio;
 
             if (this.size > particle.size.value && distance < this.size - particle.size.value) {
                 if (options.destroy) {
@@ -149,7 +149,11 @@ export class AbsorberInstance {
         };
     }
 
-    private updateParticlePosition(particle: OrbitingParticle, angle: number, acceleration: number) {
+    private updateParticlePosition(particle: OrbitingParticle, angle: number, acceleration: number): void {
+        if (particle.destroyed) {
+            return;
+        }
+
         const canvasSize = this.container.canvas.size;
 
         if (particle.needsNewPosition) {
@@ -164,7 +168,7 @@ export class AbsorberInstance {
                 particle.orbitRadius = Utils.getDistance(particle.getPosition(), this.position);
             }
 
-            if (particle.orbitRadius <= this.size) {
+            if (particle.orbitRadius <= this.size && !this.options.destroy) {
                 particle.orbitRadius = Math.min(canvasSize.width, canvasSize.height);
             }
 
@@ -181,8 +185,8 @@ export class AbsorberInstance {
             particle.position.x = this.position.x + orbitRadius * Math.cos(orbitAngle);
             particle.position.y = this.position.y + orbitRadius * Math.sin(orbitAngle);
 
-            particle.orbitRadius -= 0.5;
-            particle.orbitAngle += 0.01;
+            particle.orbitRadius -= acceleration;
+            particle.orbitAngle += (particle.moveSpeed ?? this.container.retina.moveSpeed) / 100;
         } else {
             particle.velocity.horizontal += Math.sin(angle) * acceleration;
             particle.velocity.vertical += Math.cos(angle) * acceleration;
