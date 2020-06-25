@@ -39,7 +39,7 @@
     "pug": "^3.0.0",
     "pug-cli": "^1.0.0-alpha6",
     "stylus": "^0.54.7",
-    "three": "^0.117.1",
+    "three": "^0.118.1",
     "tsparticles": "^1.17.0-alpha.6"
   }
 }
