@@ -15,13 +15,13 @@
     "url": "git+https://github.com/matteobruni/tsparticles.git"
   },
   "dependencies": {
-    "@angular/animations": "~9.1.9",
-    "@angular/common": "~9.1.9",
+    "@angular/animations": "~10.0.0",
+    "@angular/common": "~10.0.0",
     "@angular/compiler": "~9.1.9",
     "@angular/core": "~9.1.9",
-    "@angular/forms": "~9.1.9",
+    "@angular/forms": "~10.0.0",
     "@angular/platform-browser": "~9.1.9",
-    "@angular/platform-browser-dynamic": "~9.1.9",
+    "@angular/platform-browser-dynamic": "~10.0.0",
     "@angular/router": "~9.1.9",
     "ng-particles": "^1.17.0-alpha.6",
     "rxjs": "~6.5.4",
@@ -33,7 +33,7 @@
     "url": "https://github.com/matteobruni/tsparticles/issues"
   },
   "devDependencies": {
-    "@angular-devkit/build-angular": "~0.901.6",
+    "@angular-devkit/build-angular": "~0.1000.0",
     "@angular/cli": "~10.0.0",
     "@angular/compiler-cli": "~9.1.9",
     "@types/node": "^14.0.14",
