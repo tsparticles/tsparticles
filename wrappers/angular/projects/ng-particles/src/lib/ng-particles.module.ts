@@ -7,13 +7,13 @@ import { IAbsorberOptions } from 'tsparticles/dist/Plugins/Absorbers/AbsorbersPl
 import { IEmitterOptions } from 'tsparticles/dist/Plugins/Emitters/EmittersPlugin';
 
 @NgModule({
-  declarations: [ NgParticlesComponent ],
-  imports: [],
-  exports: [ NgParticlesComponent ]
+    declarations: [ NgParticlesComponent ],
+    imports: [],
+    exports: [ NgParticlesComponent ]
 })
 export class NgParticlesModule {
 }
 
-export * from 'tsparticles/dist/Enums';
+export * from 'tsparticles';
 
 export type IParticlesParams = RecursivePartial<IOptions & IAbsorberOptions & IEmitterOptions & IPolygonMaskOptions>;
