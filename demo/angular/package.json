@@ -21,7 +21,7 @@
     "@angular/core": "~9.1.9",
     "@angular/forms": "~9.1.9",
     "@angular/platform-browser": "~9.1.9",
-    "@angular/platform-browser-dynamic": "~9.1.9",
+    "@angular/platform-browser-dynamic": "~10.0.0",
     "@angular/router": "~9.1.9",
     "ng-particles": "^1.17.0-alpha.6",
     "rxjs": "~6.5.4",
