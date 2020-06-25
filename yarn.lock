@@ -201,10 +201,12 @@
   dependencies:
     tslib "^2.0.0"
 
-"@angular/platform-browser@^9.1.9", "@angular/platform-browser@~9.1.9":
-  version "9.1.11"
-  resolved "https://registry.yarnpkg.com/@angular/platform-browser/-/platform-browser-9.1.11.tgz#4da8e2a4231d5162304746a39f54cb2d3f241b7c"
-  integrity sha512-KDxoiFhW4UD+EqchcKpQVSLwg9Rd3JbWytZLchFV6nH8BFnshfJtw2tyPT8bMhFVG9n9zSR4QSGaozWgoDs9mw==
+"@angular/platform-browser@^10.0.0", "@angular/platform-browser@~10.0.0":
+  version "10.0.0"
+  resolved "https://registry.yarnpkg.com/@angular/platform-browser/-/platform-browser-10.0.0.tgz#88cb200f611032c8fd2a54d3d87bda85c09f9dca"
+  integrity sha512-2gp53WjGUrL1uReewU21IZJa4KFpbigCyDYB0j/KwTkIGrdwYCOjD0/04oHYjkpazPe/VIu3aN7Gb3PgUa3X/Q==
+  dependencies:
+    tslib "^2.0.0"
 
 "@angular/router@^9.1.9", "@angular/router@~9.1.9":
   version "9.1.11"
