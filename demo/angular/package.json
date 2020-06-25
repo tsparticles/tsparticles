@@ -15,11 +15,11 @@
     "url": "git+https://github.com/matteobruni/tsparticles.git"
   },
   "dependencies": {
-    "@angular/animations": "~9.1.9",
-    "@angular/common": "~9.1.9",
+    "@angular/animations": "~10.0.0",
+    "@angular/common": "~10.0.0",
     "@angular/compiler": "~9.1.9",
     "@angular/core": "~9.1.9",
-    "@angular/forms": "~9.1.9",
+    "@angular/forms": "~10.0.0"
     "@angular/platform-browser": "~10.0.0",
     "@angular/platform-browser-dynamic": "~10.0.0",
     "@angular/router": "~9.1.9",
@@ -33,8 +33,8 @@
     "url": "https://github.com/matteobruni/tsparticles/issues"
   },
   "devDependencies": {
-    "@angular-devkit/build-angular": "~0.901.6",
-    "@angular/cli": "~9.1.6",
+    "@angular-devkit/build-angular": "~0.1000.0",
+    "@angular/cli": "~10.0.0",
     "@angular/compiler-cli": "~9.1.9",
     "@types/node": "^14.0.14",
     "@typescript-eslint/eslint-plugin": "^3.3.0",
