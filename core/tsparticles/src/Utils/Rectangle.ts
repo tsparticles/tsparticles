@@ -16,12 +16,11 @@ export class Rectangle extends Range {
     }
 
     public contains(point: ICoordinates): boolean {
-        return (
-            point.x >= this.position.x &&
-            point.x <= this.position.x + this.size.width &&
-            point.y >= this.position.y &&
-            point.y <= this.position.y + this.size.height
-        );
+        const w = this.size.width;
+        const h = this.size.height;
+        const pos = this.position;
+
+        return point.x >= pos.x - w && point.x <= pos.x + w && point.y >= pos.y - h && point.y <= pos.y + h;
     }
 
     public intersects(range: Range): boolean {
@@ -36,15 +35,10 @@ export class Rectangle extends Range {
             return circle.intersects(this);
         } else if (rect.size !== undefined) {
             const size2 = rect.size;
-            const w2 = size2.width;
-            const h2 = size2.height;
+            const w2 = size2.width / 2;
+            const h2 = size2.height / 2;
 
-            return (
-                pos2.x - w2 < pos1.x + w &&
-                pos2.x + w2 > pos1.x - w &&
-                pos2.y - h2 < pos1.y + h &&
-                pos2.y + h2 > pos1.y - h
-            );
+            return pos2.x < pos1.x + w && pos2.x + w2 > pos1.x && pos2.y < pos1.y + h && pos2.y + h2 > pos1.y;
         }
 
         return false;

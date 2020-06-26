@@ -13,7 +13,7 @@ v${version}`;
 
 const minBanner = `tsParticles Editor v${version} by Matteo Bruni`;
 
-const getConfig = (entry) => {
+const getJsConfig = (entry) => {
     const reportFileName = "report";
 
     return {
@@ -78,9 +78,37 @@ const getConfig = (entry) => {
     };
 };
 
+const getCssConfig = (entry) => {
+    return {
+        entry: entry,
+        module: {
+            rules: [
+                {
+                    test: /\.s[ac]ss$/i,
+                    use: [
+                        'style-loader',
+                        'css-loader',
+                        {
+                            loader: 'sass-loader',
+                            options: {
+                                // Prefer `dart-sass`
+                                implementation: require('sass'),
+                            }
+                        }
+                    ]
+                }
+            ]
+        }
+    }
+};
+
 module.exports = [
-    getConfig({
-        "tsparticles.editor": "./dist/editor.js",
-        "tsparticles.editor.min": "./dist/editor.js"
-    })
+    getJsConfig({
+        "js/tsparticles.editor": "./dist/js/Editor.js",
+        "js/tsparticles.editor.min": "./dist/js/Editor.js"
+    })/*,
+    getCssConfig({
+        "css/tsparticles.editor": "./src/scss/editor.scss",
+        "css/tsparticles.editor.min": "./src/scss/editor.scss",
+    })*/
 ];

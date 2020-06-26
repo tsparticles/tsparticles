@@ -1,6 +1,7 @@
 {
   "name": "tsparticles-editor",
-  "version": "1.0.0-alpha.4",
+  "version": "1.0.0-alpha.9",
+  "private": true,
   "description": "tsParticles Configuration Editor",
   "keywords": [
     "tsparticles",
@@ -20,14 +21,14 @@
   "files": [
     "dist/**/*"
   ],
-  "main": "dist/tsparticles.editor.min.js",
+  "main": "dist/js/tsparticles.editor.min.js",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/matteobruni/tsparticles.git"
   },
   "scripts": {
     "prettify:src": "prettier --write ./src/",
-    "lint": "eslint src --ext .js,.jsx,.ts,.tsx --fix",
+    "lint": "eslint src/ts --ext .js,.jsx,.ts,.tsx --fix",
     "clear:dist": "rimraf -f ./dist",
     "build:ts:es": "tsc -b tsconfig.browser.json",
     "build:ts": "tsc",
@@ -38,20 +39,21 @@
     "url": "https://github.com/matteobruni/tsparticles/issues"
   },
   "dependencies": {
-    "dat.gui": "^0.7.7",
     "tslib": "^2.0.0",
-    "tsparticles": "^1.17.0-alpha.3"
+    "tsparticles": "^1.17.0-alpha.8"
   },
   "devDependencies": {
     "@babel/core": "^7.10.2",
-    "@types/dat.gui": "^0.7.5",
     "@typescript-eslint/eslint-plugin": "^3.3.0",
     "@typescript-eslint/parser": "^3.3.0",
     "babel-loader": "^8.1.0",
     "eslint": "^7.2.0",
     "eslint-config-prettier": "^6.11.0",
+    "fibers": "^5.0.0",
     "prettier": "^2.0.5",
     "rimraf": "^3.0.2",
+    "sass": "^1.26.8",
+    "sass-loader": "^8.0.2",
     "terser-webpack-plugin": "^3.0.5",
     "typescript": "^3.9.5",
     "webpack": "^4.43.0",

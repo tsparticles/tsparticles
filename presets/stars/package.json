@@ -1,6 +1,6 @@
 {
   "name": "tsparticles-preset-stars",
-  "version": "1.2.0-alpha.3",
+  "version": "1.2.0-alpha.8",
   "description": "tsParticles stars preset",
   "homepage": "https://particles.matteobruni.it/",
   "scripts": {
@@ -65,7 +65,7 @@
     "uglify-js": "^3.8.1"
   },
   "dependencies": {
-    "tsparticles": "^1.17.0-alpha.3"
+    "tsparticles": "^1.17.0-alpha.8"
   },
   "gitHead": "55cbca2c9958755b0e66b3f6bec1e6b109a70afd"
 }

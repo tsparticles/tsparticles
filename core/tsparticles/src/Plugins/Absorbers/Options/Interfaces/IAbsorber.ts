@@ -26,4 +26,19 @@ export interface IAbsorber extends IOptionLoader<IAbsorber> {
      * Absorber size, these values will be used as pixels
      */
     size: IAbsorberSize;
+
+    /**
+     * Absorber draggable, this enables dragging on absorbers
+     */
+    draggable: boolean;
+
+    /**
+     * Absorber destroy, this enable particle destruction, if disabled the particle will randomly respawn
+     */
+    destroy: boolean;
+
+    /**
+     * Absorber orbits, this enable particles orbiting while being attracted by the attracter
+     */
+    orbits: boolean;
 }

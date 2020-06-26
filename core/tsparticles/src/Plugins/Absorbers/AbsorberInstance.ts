@@ -6,6 +6,12 @@ import type { IAbsorber } from "./Options/Interfaces/IAbsorber";
 import { ColorUtils, Utils } from "../../Utils";
 import type { Absorbers } from "./Absorbers";
 
+type OrbitingParticle = Particle & {
+    orbitRadius?: number;
+    orbitAngle?: number;
+    needsNewPosition?: boolean;
+};
+
 export class AbsorberInstance {
     public color: IRgb;
     public limit?: number;
@@ -16,6 +22,7 @@ export class AbsorberInstance {
 
     private readonly initialPosition?: ICoordinates;
     private readonly options: IAbsorber;
+    private dragging: boolean;
 
     constructor(
         private readonly absorbers: Absorbers,
@@ -25,6 +32,7 @@ export class AbsorberInstance {
     ) {
         this.initialPosition = position;
         this.options = options;
+        this.dragging = false;
 
         let size = options.size.value * container.retina.pixelRatio;
         const random = typeof options.size.random === "boolean" ? options.size.random : options.size.random.enable;
@@ -53,21 +61,50 @@ export class AbsorberInstance {
         this.position = this.initialPosition ?? this.calcPosition();
     }
 
-    public attract(particle: Particle): void {
+    public attract(particle: OrbitingParticle): void {
+        const options = this.options;
+
+        if (options.draggable) {
+            const mouse = this.container.interactivity.mouse;
+
+            if (mouse.clicking && mouse.downPosition) {
+                const mouseDist = Utils.getDistance(this.position, mouse.downPosition);
+
+                if (mouseDist <= this.size) {
+                    this.dragging = true;
+                }
+            } else {
+                this.dragging = false;
+            }
+
+            if (this.dragging && mouse.position) {
+                this.position.x = mouse.position.x;
+                this.position.y = mouse.position.y;
+            }
+        }
+
         const pos = particle.getPosition();
         const { dx, dy, distance } = Utils.getDistances(this.position, pos);
-        const angle = Math.atan2(dx, dy) * (180 / Math.PI);
+        const angle = Math.atan2(dx, dy);
         const acceleration = this.mass / Math.pow(distance, 2);
 
         if (distance < this.size + particle.size.value) {
-            const sizeFactor = particle.size.value * 0.033;
+            const sizeFactor = particle.size.value * 0.033 * this.container.retina.pixelRatio;
 
             if (this.size > particle.size.value && distance < this.size - particle.size.value) {
-                particle.destroy();
+                if (options.destroy) {
+                    particle.destroy();
+                } else {
+                    particle.needsNewPosition = true;
+
+                    this.updateParticlePosition(particle, angle, acceleration);
+                }
             } else {
-                particle.size.value -= sizeFactor;
-                particle.velocity.horizontal += Math.sin(angle * (Math.PI / 180)) * acceleration;
-                particle.velocity.vertical += Math.cos(angle * (Math.PI / 180)) * acceleration;
+                if (options.destroy) {
+                    particle.size.value -= sizeFactor;
+                }
+
+                this.updateParticlePosition(particle, angle, acceleration);
             }
 
             if (this.limit === undefined || this.size < this.limit) {
@@ -76,8 +113,7 @@ export class AbsorberInstance {
 
             this.mass += sizeFactor * this.options.size.density;
         } else {
-            particle.velocity.horizontal += Math.sin(angle * (Math.PI / 180)) * acceleration;
-            particle.velocity.vertical += Math.cos(angle * (Math.PI / 180)) * acceleration;
+            this.updateParticlePosition(particle, angle, acceleration);
         }
     }
 
@@ -111,5 +147,49 @@ export class AbsorberInstance {
             x: (percentPosition.x / 100) * container.canvas.size.width,
             y: (percentPosition.y / 100) * container.canvas.size.height,
         };
+    }
+
+    private updateParticlePosition(particle: OrbitingParticle, angle: number, acceleration: number): void {
+        if (particle.destroyed) {
+            return;
+        }
+
+        const canvasSize = this.container.canvas.size;
+
+        if (particle.needsNewPosition) {
+            const pSize = particle.size.value;
+            particle.position.x = Math.random() * (canvasSize.width - pSize * 2) + pSize;
+            particle.position.y = Math.random() * (canvasSize.height - pSize * 2) + pSize;
+            particle.needsNewPosition = false;
+        }
+
+        if (this.options.orbits) {
+            if (particle.orbitRadius === undefined) {
+                particle.orbitRadius = Utils.getDistance(particle.getPosition(), this.position);
+            }
+
+            if (particle.orbitRadius <= this.size && !this.options.destroy) {
+                particle.orbitRadius = Math.random() * Math.max(canvasSize.width, canvasSize.height);
+            }
+
+            if (particle.orbitAngle === undefined) {
+                particle.orbitAngle = Math.random() * Math.PI * 2;
+            }
+
+            const orbitRadius = particle.orbitRadius;
+            const orbitAngle = particle.orbitAngle;
+
+            particle.velocity.horizontal = 0;
+            particle.velocity.vertical = 0;
+
+            particle.position.x = this.position.x + orbitRadius * Math.cos(orbitAngle);
+            particle.position.y = this.position.y + orbitRadius * Math.sin(orbitAngle);
+
+            particle.orbitRadius -= acceleration;
+            particle.orbitAngle += (particle.moveSpeed ?? this.container.retina.moveSpeed) / 100;
+        } else {
+            particle.velocity.horizontal += Math.sin(angle) * acceleration;
+            particle.velocity.vertical += Math.cos(angle) * acceleration;
+        }
     }
 }

@@ -5,7 +5,7 @@ import type { ICoordinates } from "./Interfaces/ICoordinates";
 import type { IParticle } from "./Interfaces/IParticle";
 import type { IContainerPlugin } from "./Interfaces/IContainerPlugin";
 import type { ILink } from "./Interfaces/ILink";
-import { CanvasUtils, ColorUtils, Constants } from "../Utils";
+import { CanvasUtils, ColorUtils, Constants, Rectangle } from "../Utils";
 
 /**
  * Canvas manager
@@ -15,10 +15,12 @@ export class Canvas {
      * The particles canvas
      */
     public element?: HTMLCanvasElement;
+
     /**
      * The particles canvas dimension
      */
     public readonly size: IDimension;
+
     /**
      * The particles canvas context
      */

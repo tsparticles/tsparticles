@@ -207,8 +207,13 @@ export class EventListeners {
     }
 
     private mouseDown(): void {
-        if (this.container.interactivity) {
-            this.container.interactivity.mouse.clicking = true;
+        const interactivity = this.container.interactivity;
+
+        if (interactivity) {
+            const mouse = interactivity.mouse;
+
+            mouse.clicking = true;
+            mouse.downPosition = mouse.position;
         }
     }
 
@@ -299,12 +304,16 @@ export class EventListeners {
      */
     private mouseTouchFinish(): void {
         const container = this.container;
+        const interactivity = container.interactivity;
+        const mouse = interactivity.mouse;
 
-        delete container.interactivity.mouse.position;
+        delete mouse.position;
+        delete mouse.clickPosition;
+        delete mouse.downPosition;
 
-        container.interactivity.status = Constants.mouseLeaveEvent;
-        container.interactivity.mouse.inside = false;
-        container.interactivity.mouse.clicking = false;
+        interactivity.status = Constants.mouseLeaveEvent;
+        mouse.inside = false;
+        mouse.clicking = false;
     }
 
     /**
@@ -314,12 +323,13 @@ export class EventListeners {
     private mouseTouchClick(e: Event): void {
         const container = this.container;
         const options = container.options;
+        const mouse = container.interactivity.mouse;
 
-        container.interactivity.mouse.inside = true;
+        mouse.inside = true;
 
         let handled = false;
 
-        const mousePosition = container.interactivity.mouse.position;
+        const mousePosition = mouse.position;
 
         if (mousePosition === undefined || !options.interactivity.events.onClick.enable) {
             return;
@@ -339,7 +349,7 @@ export class EventListeners {
             this.doMouseTouchClick(e);
         }
 
-        container.interactivity.mouse.clicking = false;
+        mouse.clicking = false;
     }
 
     /**

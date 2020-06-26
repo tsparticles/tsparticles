@@ -1,4 +1,3 @@
-import { GUI } from "dat.gui";
 import { Container } from "tsparticles/dist/Core/Container";
 import { changeHandler } from "../utils";
 
@@ -23,8 +22,8 @@ const hsl2hsv = (hsl: IHsl): IHsv => {
     };
 };
 
-const addParticles = (gui: GUI, container: Container): void => {
-    const fParticles = gui.addFolder("particles");
+const addParticles = (container: Container): void => {
+    /*const fParticles = addFolder("particles");
 
     const fColor = fParticles.addFolder("color");
 
@@ -56,7 +55,7 @@ const addParticles = (gui: GUI, container: Container): void => {
 
     fCollisions.add(container.options.particles.collisions, "enable").onChange(async () => changeHandler(container));
     fCollisions
-        .add(container.options.particles.collisions, "mode", ["absorb", "bounce", "destroy"])
+        .add(container.options.particles.collisions, "mode", [ "absorb", "bounce", "destroy" ])
         .onChange(async () => changeHandler(container));
 
     const fLinks = fParticles.addFolder("links");
@@ -316,7 +315,7 @@ const addParticles = (gui: GUI, container: Container): void => {
         .onChange(async () => changeHandler(container));
 
     fRotate
-        .add(container.options.particles.rotate, "direction", ["clockwise", "counterClockwise", "random"])
+        .add(container.options.particles.rotate, "direction", [ "clockwise", "counterClockwise", "random" ])
         .onChange(async () => changeHandler(container));
     fRotate.add(container.options.particles.rotate, "path").onChange(async () => changeHandler(container));
     fRotate.add(container.options.particles.rotate, "random").onChange(async () => changeHandler(container));
@@ -379,7 +378,7 @@ const addParticles = (gui: GUI, container: Container): void => {
     const fSizeAnimation = fSize.addFolder("animation");
 
     fSizeAnimation
-        .add(container.options.particles.size.animation, "destroy", ["max", "min", "none"])
+        .add(container.options.particles.size.animation, "destroy", [ "max", "min", "none" ])
         .onChange(async () => changeHandler(container));
     fSizeAnimation
         .add(container.options.particles.size.animation, "enable")
@@ -395,7 +394,7 @@ const addParticles = (gui: GUI, container: Container): void => {
         .max(100)
         .onChange(async () => changeHandler(container));
     fSizeAnimation
-        .add(container.options.particles.size.animation, "startValue", ["max", "min"])
+        .add(container.options.particles.size.animation, "startValue", [ "max", "min" ])
         .onChange(async () => changeHandler(container));
     fSizeAnimation
         .add(container.options.particles.size.animation, "sync")
@@ -509,6 +508,7 @@ const addParticles = (gui: GUI, container: Container): void => {
         .max(1)
         .step(0.01)
         .onChange(async () => changeHandler(container));
+     */
 };
 
 export { addParticles };

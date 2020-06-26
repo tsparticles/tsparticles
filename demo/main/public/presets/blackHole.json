@@ -2,20 +2,25 @@
   "fpsLimit": 60,
   "particles": {
     "number": {
-      "value": 400,
+      "value": 1000,
       "density": {
-        "enable": false,
+        "enable": true,
         "value_area": 800
       }
     },
     "color": {
-      "value": "#ffffff"
+      "value": [
+        "#ffffff",
+        "#77ccff",
+        "#ff3333",
+        "#ffff33"
+      ]
     },
     "shape": {
       "type": "circle",
       "stroke": {
         "width": 0,
-        "color": "#000000"
+        "color": "#ffffff"
       },
       "polygon": {
         "nb_sides": 5
@@ -37,8 +42,8 @@
       }
     },
     "size": {
-      "value": 1,
-      "random": false,
+      "value": 10,
+      "random": true,
       "anim": {
         "enable": false,
         "speed": 20,
@@ -55,21 +60,17 @@
     },
     "move": {
       "enable": true,
-      "speed": 3,
+      "speed": 0.5,
       "direction": "none",
       "random": false,
       "straight": false,
-      "out_mode": "destroy",
+      "out_mode": "out",
       "attract": {
         "enable": false,
         "rotateX": 600,
         "rotateY": 1200
       },
-      "trail": {
-        "enable": true,
-        "fillColor": "#0d47a1",
-        "length": 5
-      }
+      "warp": true
     }
   },
   "interactivity": {
@@ -123,11 +124,13 @@
   },
   "retina_detect": true,
   "absorbers": {
+    "orbits": true,
+    "destroy": false,
     "size": {
       "value": 5,
-      "limit": 5,
+      "limit": 50,
       "random": false,
-      "density": 200
+      "density": 1500
     },
     "position": {
       "x": 50,
@@ -135,7 +138,7 @@
     }
   },
   "background": {
-    "color": "#0d47a1",
+    "color": "#000",
     "image": "",
     "position": "50% 50%",
     "repeat": "no-repeat",

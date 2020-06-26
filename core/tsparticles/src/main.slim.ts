@@ -20,6 +20,7 @@ import {
     ShapeDrawerInitFunction,
 } from "./Types/ShapeDrawerFunctions";
 import { IPlugin } from "./Core/Interfaces/IPlugin";
+import { Particle } from "./Core/Particle";
 
 /**
  * Main class for creating the singleton on window.
@@ -97,7 +98,7 @@ export class MainSlim {
      * Adds an additional click handler to all the loaded [[Container]] objects.
      * @param callback The function called after the click event is fired
      */
-    public setOnClickHandler(callback: EventListenerOrEventListenerObject): void {
+    public setOnClickHandler(callback: (e: Event, particles?: Particle[]) => void): void {
         Loader.setOnClickHandler(callback);
     }
 

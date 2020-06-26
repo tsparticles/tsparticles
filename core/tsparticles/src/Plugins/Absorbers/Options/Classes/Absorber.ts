@@ -6,14 +6,20 @@ import { OptionsColor } from "../../../../Options/Classes/OptionsColor";
 
 export class Absorber implements IAbsorber {
     public color: OptionsColor;
+    public draggable: boolean;
     public opacity: number;
     public position?: ICoordinates;
     public size: AbsorberSize;
+    public destroy: boolean;
+    public orbits: boolean;
 
     constructor() {
         this.color = new OptionsColor();
         this.color.value = "#000000";
+        this.draggable = false;
         this.opacity = 1;
+        this.destroy = true;
+        this.orbits = false;
         this.size = new AbsorberSize();
     }
 
@@ -21,6 +27,10 @@ export class Absorber implements IAbsorber {
         if (data !== undefined) {
             if (data.color !== undefined) {
                 this.color = OptionsColor.create(this.color, data.color);
+            }
+
+            if (data.draggable !== undefined) {
+                this.draggable = data.draggable;
             }
 
             if (data.opacity !== undefined) {
@@ -36,6 +46,14 @@ export class Absorber implements IAbsorber {
 
             if (data.size !== undefined) {
                 this.size.load(data.size);
+            }
+
+            if (data.destroy !== undefined) {
+                this.destroy = data.destroy;
+            }
+
+            if (data.orbits !== undefined) {
+                this.orbits = data.orbits;
             }
         }
     }

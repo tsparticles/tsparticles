@@ -1,6 +1,6 @@
 {
   "name": "tsparticles-shape-heart",
-  "version": "1.2.0-alpha.3",
+  "version": "1.2.0-alpha.8",
   "description": "tsParticles heart shape",
   "homepage": "https://particles.matteobruni.it/",
   "scripts": {
@@ -65,6 +65,6 @@
     "uglify-js": "^3.8.1"
   },
   "dependencies": {
-    "tsparticles": "^1.17.0-alpha.3"
+    "tsparticles": "^1.17.0-alpha.8"
   }
 }

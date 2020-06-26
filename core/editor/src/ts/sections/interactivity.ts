@@ -1,9 +1,8 @@
-import { GUI } from "dat.gui";
 import { Container } from "tsparticles/dist/Core/Container";
 import { changeHandler } from "../utils";
 
-const addInteractivityEvents = (gui: GUI, container: Container): void => {
-    const fEvents = gui.addFolder("events");
+const addInteractivityEvents = (container: Container): void => {
+    /*const fEvents = addFolder("events");
 
     const fClick = fEvents.addFolder("onClick");
 
@@ -38,10 +37,11 @@ const addInteractivityEvents = (gui: GUI, container: Container): void => {
     // TODO: onDiv
 
     fEvents.add(container.options.interactivity.events, "resize").onChange(async () => changeHandler(container));
+     */
 };
 
-const addInteractivityModes = (gui: GUI, container: Container): void => {
-    const fModes = gui.addFolder("modes");
+const addInteractivityModes = (container: Container): void => {
+    /*const fModes = addFolder("modes");
 
     const fBubble = fModes.addFolder("bubble");
 
@@ -50,7 +50,7 @@ const addInteractivityModes = (gui: GUI, container: Container): void => {
 
         fBubbleColor
             .addColor(container.options.interactivity.modes.bubble.color, "value")
-            .onChange(async (v) => changeHandler(container));
+            .onChange(async () => changeHandler(container));
     }
 
     fBubble
@@ -189,17 +189,19 @@ const addInteractivityModes = (gui: GUI, container: Container): void => {
 
     // TODO: absorber
     // TODO: emitter
+     */
 };
 
-const addInteractivity = (gui: GUI, container: Container): void => {
-    const fInteract = gui.addFolder("interactivity");
+const addInteractivity = (container: Container): void => {
+    /* const fInteract = addFolder("interactivity");
 
-    addInteractivityEvents(fInteract, container);
-    addInteractivityModes(fInteract, container);
+    addInteractivityEvents(container);
+    addInteractivityModes(container);
 
     fInteract
-        .add(container.options.interactivity, "detectsOn", ["canvas", "parent", "window"])
+        .add(container.options.interactivity, "detectsOn", [ "canvas", "parent", "window" ])
         .onChange(async () => changeHandler(container));
+     */
 };
 
 export { addInteractivity };
