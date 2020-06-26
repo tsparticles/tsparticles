@@ -11,7 +11,7 @@
   "useWorkspaces": true,
   "command": {
     "version": {
-      "message": "chore(release): version %s"
+      "message": "chore(release): published new version"
     }
   }
 }
