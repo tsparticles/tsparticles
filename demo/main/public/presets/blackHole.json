@@ -2,19 +2,24 @@
   "fpsLimit": 60,
   "particles": {
     "number": {
-      "value": 400,
+      "value": 1000,
       "density": {
-        "enable": false,
+        "enable": true,
         "value_area": 800
       }
     },
     "color": {
-      "value": "#ffffff"
+      "value": [
+        "#ffffff",
+        "#77ccff",
+        "#ff3333",
+        "#ffff33"
+      ]
     },
     "shape": {
       "type": "circle",
       "stroke": {
-        "width": 1,
+        "width": 0,
         "color": "#ffffff"
       },
       "polygon": {
@@ -37,7 +42,7 @@
       }
     },
     "size": {
-      "value": 5,
+      "value": 10,
       "random": true,
       "anim": {
         "enable": false,
@@ -55,7 +60,7 @@
     },
     "move": {
       "enable": true,
-      "speed": 3,
+      "speed": 0.5,
       "direction": "none",
       "random": false,
       "straight": false,
@@ -64,11 +69,6 @@
         "enable": false,
         "rotateX": 600,
         "rotateY": 1200
-      },
-      "trail": {
-        "enable": true,
-        "fillColor": "#0d47a1",
-        "length": 5
       },
       "warp": true
     }
@@ -128,9 +128,9 @@
     "destroy": false,
     "size": {
       "value": 5,
-      "limit": 5,
+      "limit": 50,
       "random": false,
-      "density": 200
+      "density": 1500
     },
     "position": {
       "x": 50,
@@ -138,7 +138,7 @@
     }
   },
   "background": {
-    "color": "#0d47a1",
+    "color": "#000",
     "image": "",
     "position": "50% 50%",
     "repeat": "no-repeat",

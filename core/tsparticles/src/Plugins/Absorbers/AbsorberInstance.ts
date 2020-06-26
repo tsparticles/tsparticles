@@ -169,7 +169,7 @@ export class AbsorberInstance {
             }
 
             if (particle.orbitRadius <= this.size && !this.options.destroy) {
-                particle.orbitRadius = Math.min(canvasSize.width, canvasSize.height);
+                particle.orbitRadius = Math.random() * Math.max(canvasSize.width, canvasSize.height);
             }
 
             if (particle.orbitAngle === undefined) {

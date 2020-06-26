@@ -225,7 +225,10 @@ export class Loader {
                     return;
                 }
 
-                const particles = domItem.particles.quadTree.query(new Circle(pos.x, pos.y, 1));
+                const pxRatio = domItem.retina.pixelRatio;
+                const particles = domItem.particles.quadTree.query(
+                    new Circle(pos.x * pxRatio, pos.y * pxRatio, domItem.retina.sizeValue)
+                );
 
                 callback(e, particles);
             };
