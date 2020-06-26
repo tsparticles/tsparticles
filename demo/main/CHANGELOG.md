@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.2.0-alpha.8](https://github.com/matteobruni/tsparticles/compare/tsparticles-demo@1.2.0-alpha.7...tsparticles-demo@1.2.0-alpha.8) (2020-06-26)
+
+
+### Bug Fixes
+
+* click handler with particle size gives better results, little fixes for absorber orbits ([e851049](https://github.com/matteobruni/tsparticles/commit/e851049b480a205813b9df786ad7c5761645de1c))
+
+
+
+
+
 # [1.2.0-alpha.7](https://github.com/matteobruni/tsparticles/compare/tsparticles-demo@1.2.0-alpha.6...tsparticles-demo@1.2.0-alpha.7) (2020-06-26)
 
 **Note:** Version bump only for package tsparticles-demo
