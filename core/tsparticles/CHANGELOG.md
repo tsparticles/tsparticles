@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.17.0-alpha.7](https://github.com/matteobruni/tsparticles/compare/tsparticles@1.17.0-alpha.6...tsparticles@1.17.0-alpha.7) (2020-06-26)
+
+
+### Bug Fixes
+
+* text particles are now rendered correctly with more than 1 char ([a803508](https://github.com/matteobruni/tsparticles/commit/a8035087dc6754a0c95600f115f9dcfa92a1783d))
+
+
+### Features
+
+* improved setOnClickHandler with clicked/touched particles search, closes [#450](https://github.com/matteobruni/tsparticles/issues/450) ([35cf30f](https://github.com/matteobruni/tsparticles/commit/35cf30fed0710bbc1412f6d4bf1ae3421004cc47))
+
+
+
+
+
 # [1.17.0-alpha.6](https://github.com/matteobruni/tsparticles/compare/tsparticles@1.17.0-alpha.5...tsparticles@1.17.0-alpha.6) (2020-06-24)
 
 
