@@ -1,7 +1,9 @@
 import { Container } from "./Container";
 import type { IOptions } from "../Options/Interfaces/IOptions";
 import type { RecursivePartial } from "../Types/RecursivePartial";
-import { Constants, Utils } from "../Utils";
+import { Circle, Constants, Utils } from "../Utils";
+import { Particle } from "./Particle";
+import { ICoordinates } from "./Interfaces/ICoordinates";
 
 const tsParticlesDom: Container[] = [];
 
@@ -204,7 +206,7 @@ export class Loader {
      * Adds an additional click handler to all the loaded [[Container]] objects.
      * @param callback the function called after the click event is fired
      */
-    public static setOnClickHandler(callback: EventListenerOrEventListenerObject): void {
+    public static setOnClickHandler(callback: (evt: Event, particles?: Particle[]) => void): void {
         const dom = Loader.dom();
 
         if (dom.length === 0) {
@@ -214,9 +216,89 @@ export class Loader {
         for (const domItem of dom) {
             const el = domItem.interactivity.element;
 
-            if (el) {
-                el.addEventListener("click", callback);
+            if (!el) {
+                continue;
             }
+
+            const clickOrTouchHandler = (e: Event, pos: ICoordinates) => {
+                if (domItem.destroyed) {
+                    return;
+                }
+
+                const particles = domItem.particles.quadTree.query(new Circle(pos.x, pos.y, 1));
+
+                callback(e, particles);
+            };
+
+            const clickHandler = (e: Event) => {
+                if (domItem.destroyed) {
+                    return;
+                }
+
+                const mouseEvent = e as MouseEvent;
+                const pos = {
+                    x: mouseEvent.offsetX || mouseEvent.clientX,
+                    y: mouseEvent.offsetY || mouseEvent.clientY,
+                };
+
+                clickOrTouchHandler(e, pos);
+            };
+
+            const touchStartHandler = () => {
+                if (domItem.destroyed) {
+                    return;
+                }
+
+                touched = true;
+                touchMoved = false;
+            };
+
+            const touchMoveHandler = () => {
+                if (domItem.destroyed) {
+                    return;
+                }
+
+                touchMoved = true;
+            };
+
+            const touchEndHandler = (e: Event) => {
+                if (domItem.destroyed) {
+                    return;
+                }
+
+                if (touched && !touchMoved) {
+                    const touchEvent = e as TouchEvent;
+                    const lastTouch = touchEvent.touches[touchEvent.touches.length - 1];
+                    const canvasRect = domItem.canvas.element?.getBoundingClientRect();
+                    const pos = {
+                        x: lastTouch.clientX - (canvasRect?.left ?? 0),
+                        y: lastTouch.clientY - (canvasRect?.top ?? 0),
+                    };
+
+                    clickOrTouchHandler(e, pos);
+                }
+
+                touched = false;
+                touchMoved = false;
+            };
+
+            const touchCancelHandler = () => {
+                if (domItem.destroyed) {
+                    return;
+                }
+
+                touched = false;
+                touchMoved = false;
+            };
+
+            let touched = false;
+            let touchMoved = false;
+
+            el.addEventListener("click", clickHandler);
+            el.addEventListener("touchstart", touchStartHandler);
+            el.addEventListener("touchmove", touchMoveHandler);
+            el.addEventListener("touchend", touchEndHandler);
+            el.addEventListener("touchcancel", touchCancelHandler);
         }
     }
 

@@ -2,6 +2,7 @@ import type { RecursivePartial } from "./Types/RecursivePartial";
 import type { IOptions } from "./Options/Interfaces/IOptions";
 import type { Container } from "./Core/Container";
 import type { MainSlim } from "./main.slim";
+import { Particle } from "./Core/Particle";
 
 export interface IParticlesJS {
     (tagId: string, params: RecursivePartial<IOptions>): Promise<Container | undefined>;
@@ -43,7 +44,7 @@ const initPjs = (main: MainSlim): { particlesJS: IParticlesJS; pJSDom: Container
      * @deprecated this method is obsolete, please use the new tsParticles.setOnClickHandler
      * @param callback the function called after the click event is fired
      */
-    particlesJS.setOnClickHandler = (callback: EventListenerOrEventListenerObject): void => {
+    particlesJS.setOnClickHandler = (callback: (e: Event, particles?: Particle[]) => void): void => {
         main.setOnClickHandler(callback);
     };
 
