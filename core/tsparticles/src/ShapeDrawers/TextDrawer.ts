@@ -4,6 +4,7 @@ import { Utils } from "../Utils";
 import type { ICharacterShape } from "../Options/Interfaces/Particles/Shape/ICharacterShape";
 import { ShapeType } from "../Enums";
 import type { Container } from "../Core/Container";
+import { SingleOrMultiple } from "../Types/SingleOrMultiple";
 
 interface TextParticle extends IParticle {
     text?: string;
@@ -18,7 +19,7 @@ export class TextDrawer implements IShapeDrawer {
             Utils.isInArray(ShapeType.character, options.particles.shape.type)
         ) {
             const shapeOptions = (options.particles.shape.options[ShapeType.character] ??
-                options.particles.shape.options[ShapeType.char]) as ICharacterShape;
+                options.particles.shape.options[ShapeType.char]) as SingleOrMultiple<ICharacterShape>;
             if (shapeOptions instanceof Array) {
                 for (const character of shapeOptions) {
                     await Utils.loadFont(character);
@@ -60,11 +61,12 @@ export class TextDrawer implements IShapeDrawer {
         const size = Math.round(radius) * 2;
         const font = character.font;
         const fill = particle.fill;
+        const offsetX = (text.length * radius) / 2;
 
         context.font = `${style} ${weight} ${size}px "${font}"`;
 
         const pos = {
-            x: -radius / 2,
+            x: -offsetX,
             y: radius / 2,
         };
 
