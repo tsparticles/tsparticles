@@ -15585,7 +15585,7 @@ simple-swizzle@^0.2.2:
   dependencies:
     is-arrayish "^0.3.1"
 
-sirv-cli@^1.0.0:
+sirv-cli@^1.0.2:
   version "1.0.2"
   resolved "https://registry.yarnpkg.com/sirv-cli/-/sirv-cli-1.0.2.tgz#aecb518d61dc11f2fa22a77649640d5cbb8708ba"
   integrity sha512-uwxUX6and/Ra74GTJM/z0JPcFI7GPVCT3lKuEc6A/1CfdRbldi/0ztvEJOEl1OzpcmSOo/U+3PRXts0xEVM34A==
