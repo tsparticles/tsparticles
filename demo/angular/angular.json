@@ -13,6 +13,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
+            "preserveSymlinks": true,
             "outputPath": "dist/ng-particles-demo",
             "index": "src/index.html",
             "main": "src/main.ts",
