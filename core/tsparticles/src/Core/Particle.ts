@@ -29,6 +29,7 @@ import { RecursivePartial } from "../Types/RecursivePartial";
 import type { ILink } from "./Interfaces/ILink";
 import type { IHsl } from "./Interfaces/IHsl";
 import { ColorUtils, Plugins, Utils } from "../Utils";
+import { IShapeDrawer } from "./Interfaces/IShapeDrawer";
 
 /**
  * The single particle object
@@ -285,76 +286,7 @@ export class Particle implements IParticle {
         }
 
         /* if shape is image */
-        if (this.shape === ShapeType.image || this.shape === ShapeType.images) {
-            const shape = this.particlesOptions.shape;
-            const imageDrawer = drawer as ImageDrawer;
-            const imagesOptions = shape.options[this.shape];
-            const images = imageDrawer.getImages(container).images;
-            const index = Utils.arrayRandomIndex(images);
-            const image = images[index];
-            const optionsImage = (imagesOptions instanceof Array
-                ? imagesOptions.filter((t) => (t as IImageShape).src === image.source)[0]
-                : imagesOptions) as IImageShape;
-
-            const color = this.getColor();
-
-            if (image?.svgData !== undefined && optionsImage.replaceColor && color) {
-                const svgColoredData = Utils.replaceColorSvg(image, color, this.opacity.value);
-
-                /* prepare to create img with colored svg */
-                const svg = new Blob([svgColoredData], { type: "image/svg+xml" });
-                const domUrl = window.URL || window.webkitURL || window;
-                const url = domUrl.createObjectURL(svg);
-
-                /* create particle img obj */
-                const img = new Image();
-
-                this.image = {
-                    data: image,
-                    loaded: false,
-                    ratio: optionsImage.width / optionsImage.height,
-                    replaceColor: optionsImage.replaceColor ?? optionsImage.replace_color,
-                    source: optionsImage.src,
-                };
-
-                img.addEventListener("load", () => {
-                    if (this.image) {
-                        this.image.loaded = true;
-                        image.element = img;
-                    }
-
-                    domUrl.revokeObjectURL(url);
-                });
-
-                img.addEventListener("error", () => {
-                    domUrl.revokeObjectURL(url);
-
-                    Utils.loadImage(optionsImage.src).then((img2) => {
-                        if (this.image) {
-                            image.element = img2.element;
-                            this.image.loaded = true;
-                        }
-                    });
-                });
-
-                img.src = url;
-            } else {
-                this.image = {
-                    data: image,
-                    loaded: true,
-                    ratio: optionsImage.width / optionsImage.height,
-                    replaceColor: optionsImage.replaceColor ?? optionsImage.replace_color,
-                    source: optionsImage.src,
-                };
-            }
-
-            if (!this.image.ratio) {
-                this.image.ratio = 1;
-            }
-
-            this.fill = optionsImage.fill ?? this.fill;
-            this.close = optionsImage.close ?? this.close;
-        }
+        this.loadImageShape(container, drawer);
 
         this.stroke =
             this.particlesOptions.stroke instanceof Array
@@ -603,5 +535,93 @@ export class Particle implements IParticle {
         // res.y = Math.sin(theta);
 
         return res;
+    }
+
+    private loadImageShape(
+        container: Container,
+        drawer?: IShapeDrawer
+    ):
+        | {
+              image: IParticleImage | undefined;
+              fill: boolean;
+              close: boolean;
+          }
+        | undefined {
+        if (!(this.shape === ShapeType.image || this.shape === ShapeType.images)) {
+            return;
+        }
+
+        const shape = this.particlesOptions.shape;
+        const imageDrawer = drawer as ImageDrawer;
+        const imagesOptions = shape.options[this.shape];
+        const images = imageDrawer.getImages(container).images;
+        const image = Utils.itemFromArray(images);
+        const optionsImage = (imagesOptions instanceof Array
+            ? imagesOptions.find((t) => (t as IImageShape).src === image.source)
+            : imagesOptions) as IImageShape;
+        const color = this.getColor();
+        let imageRes: IParticleImage;
+
+        if (image?.svgData !== undefined && optionsImage.replaceColor && color) {
+            const svgColoredData = Utils.replaceColorSvg(image, color, this.opacity.value);
+
+            /* prepare to create img with colored svg */
+            const svg = new Blob([svgColoredData], { type: "image/svg+xml" });
+            const domUrl = window.URL || window.webkitURL || window;
+            const url = domUrl.createObjectURL(svg);
+
+            /* create particle img obj */
+            const img = new Image();
+
+            imageRes = {
+                data: image,
+                loaded: false,
+                ratio: optionsImage.width / optionsImage.height,
+                replaceColor: optionsImage.replaceColor ?? optionsImage.replace_color,
+                source: optionsImage.src,
+            };
+
+            img.addEventListener("load", () => {
+                if (this.image) {
+                    this.image.loaded = true;
+                    image.element = img;
+                }
+
+                domUrl.revokeObjectURL(url);
+            });
+
+            img.addEventListener("error", () => {
+                domUrl.revokeObjectURL(url);
+
+                // deepcode ignore PromiseNotCaughtGeneral: catch can be ignored
+                Utils.loadImage(optionsImage.src).then((img2) => {
+                    if (this.image) {
+                        image.element = img2.element;
+                        this.image.loaded = true;
+                    }
+                });
+            });
+
+            img.src = url;
+        } else {
+            imageRes = {
+                data: image,
+                loaded: true,
+                ratio: optionsImage.width / optionsImage.height,
+                replaceColor: optionsImage.replaceColor ?? optionsImage.replace_color,
+                source: optionsImage.src,
+            };
+        }
+        if (!imageRes.ratio) {
+            imageRes.ratio = 1;
+        }
+        const fill = optionsImage.fill ?? this.fill;
+        const close = optionsImage.close ?? this.close;
+
+        return {
+            image: imageRes,
+            fill,
+            close,
+        };
     }
 }
