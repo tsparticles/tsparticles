@@ -32,8 +32,8 @@ export class EditorContainer extends EditorItem {
 
     public addProperty(name: string, label: string): void {}
 
-    public addButton(name: string, label: string): void {
-        const button = new EditorButton(name, label);
+    public addButton(name: string, label: string, click: () => void): void {
+        const button = new EditorButton(name, label, click);
 
         this.element.append(button.element);
     }

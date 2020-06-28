@@ -1,7 +1,7 @@
 import { EditorItem } from "./EditorItem";
 
 export class EditorButton extends EditorItem {
-    constructor(private readonly name: string, private readonly label: string) {
+    constructor(private readonly name: string, private readonly label: string, click: () => void) {
         super();
 
         this.element.id = `button_${name}`;
