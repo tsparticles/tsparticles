@@ -6,7 +6,7 @@ export class Editor {
     public readonly root: EditorContainer;
 
     constructor(private readonly container: Container) {
-        this.root = new EditorContainer("root", document.body);
+        this.root = new EditorContainer("root", "tsParticles", document.body);
 
         this.addOptions();
         this.addButtons();
@@ -17,10 +17,10 @@ export class Editor {
     }
 
     private addButtons() {
-        this.root.addButton("play");
-        this.root.addButton("pause");
-        this.root.addButton("refresh");
-        this.root.addButton("start");
-        this.root.addButton("stop");
+        this.root.addButton("play", "Play");
+        this.root.addButton("pause", "Pause");
+        this.root.addButton("refresh", "Refresh");
+        this.root.addButton("start", "Start");
+        this.root.addButton("stop", "Stop");
     }
 }

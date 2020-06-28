@@ -4,7 +4,7 @@ export class OptionsEditor {
     public readonly container: EditorContainer;
 
     constructor(private readonly parent: EditorContainer) {
-        this.container = parent.addContainer("options");
+        this.container = parent.addContainer("options", "Options");
 
         this.addBackground();
         this.addBackgroundMask();
@@ -16,9 +16,9 @@ export class OptionsEditor {
     }
 
     private addProperties(): void {
-        this.container.addProperty("fpsLimit");
-        this.container.addProperty("detectRetina");
-        this.container.addProperty("pauseOnBlur");
+        this.container.addProperty("fpsLimit", "FPS Limit");
+        this.container.addProperty("detectRetina", "Detect Retina");
+        this.container.addProperty("pauseOnBlur", "Pause on Blur");
     }
 
     private addBackground(): void {}

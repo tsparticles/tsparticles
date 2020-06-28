@@ -4,7 +4,7 @@ import { EditorButton } from "./EditorButton";
 export class EditorContainer extends EditorItem {
     public readonly children: EditorItem[];
 
-    constructor(public readonly name: string, parent: HTMLElement) {
+    constructor(public readonly name: string, private readonly title: string, parent: HTMLElement) {
         super();
 
         this.children = [];
@@ -13,6 +13,12 @@ export class EditorContainer extends EditorItem {
 
         this.element.classList.add("editor", "container");
 
+        const h6 = document.createElement("h6");
+
+        h6.innerText = title;
+
+        this.element.append(h6);
+
         parent.append(this.element);
     }
 
@@ -20,14 +26,14 @@ export class EditorContainer extends EditorItem {
         return document.createElement("div");
     }
 
-    public addContainer(name: string): EditorContainer {
-        return new EditorContainer(name, this.element);
+    public addContainer(name: string, title: string): EditorContainer {
+        return new EditorContainer(name, title, this.element);
     }
 
-    public addProperty(name: string): void {}
+    public addProperty(name: string, label: string): void {}
 
-    public addButton(name: string): void {
-        const button = new EditorButton(name);
+    public addButton(name: string, label: string): void {
+        const button = new EditorButton(name, label);
 
         this.element.append(button.element);
     }
