@@ -16,9 +16,38 @@ export class OptionsEditor {
     }
 
     private addProperties(): void {
-        this.container.addProperty("fpsLimit", "FPS Limit");
-        this.container.addProperty("detectRetina", "Detect Retina");
-        this.container.addProperty("pauseOnBlur", "Pause on Blur");
+        const options = this.container.container.options;
+
+        this.container.addProperty(
+            "fpsLimit",
+            "FPS Limit",
+            typeof options.fpsLimit,
+            (value: string | number | boolean) => {
+                if (typeof value === "number") {
+                    options.fpsLimit = value;
+                }
+            }
+        );
+        this.container.addProperty(
+            "detectRetina",
+            "Detect Retina",
+            typeof options.detectRetina,
+            (value: string | number | boolean) => {
+                if (typeof value === "boolean") {
+                    options.detectRetina = value;
+                }
+            }
+        );
+        this.container.addProperty(
+            "pauseOnBlur",
+            "Pause on Blur",
+            typeof options.pauseOnBlur,
+            (value: string | number | boolean) => {
+                if (typeof value === "boolean") {
+                    options.pauseOnBlur = value;
+                }
+            }
+        );
     }
 
     private addBackground(): void {}
