@@ -15586,9 +15586,9 @@ simple-swizzle@^0.2.2:
     is-arrayish "^0.3.1"
 
 sirv-cli@^1.0.2:
-  version "1.0.2"
-  resolved "https://registry.yarnpkg.com/sirv-cli/-/sirv-cli-1.0.2.tgz#aecb518d61dc11f2fa22a77649640d5cbb8708ba"
-  integrity sha512-uwxUX6and/Ra74GTJM/z0JPcFI7GPVCT3lKuEc6A/1CfdRbldi/0ztvEJOEl1OzpcmSOo/U+3PRXts0xEVM34A==
+  version "1.0.3"
+  resolved "https://registry.yarnpkg.com/sirv-cli/-/sirv-cli-1.0.3.tgz#33789a8f9d6dcee2aca2e35c3c97051b462ca00f"
+  integrity sha512-pLWMreVMKvK/7Zwdi/8AMjVPaOhkW24a6GRsXtLbvgvbZNHjAb0J8vs3x86ES5radO06AxGRVp8oMWbuf+ExTw==
   dependencies:
     console-clear "^1.1.0"
     get-port "^3.2.0"
@@ -17034,7 +17034,7 @@ typedoc-default-themes@^0.10.2:
   dependencies:
     lunr "^2.3.8"
 
-typedoc@^0.17.7:
+typedoc@^0.17.8:
   version "0.17.8"
   resolved "https://registry.yarnpkg.com/typedoc/-/typedoc-0.17.8.tgz#96b67e9454aa7853bfc4dc9a55c8a07adfd5478e"
   integrity sha512-/OyrHCJ8jtzu+QZ+771YaxQ9s4g5Z3XsQE3Ma7q+BL392xxBn4UMvvCdVnqKC2T/dz03/VXSLVKOP3lHmDdc/w==
