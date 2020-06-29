@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.17.0-alpha.9](https://github.com/matteobruni/tsparticles/compare/react-tsparticles@1.17.0-alpha.8...react-tsparticles@1.17.0-alpha.9) (2020-06-29)
+
+**Note:** Version bump only for package react-tsparticles
+
+
+
+
+
 # [1.17.0-alpha.8](https://github.com/matteobruni/tsparticles/compare/react-tsparticles@1.17.0-alpha.7...react-tsparticles@1.17.0-alpha.8) (2020-06-26)
 
 **Note:** Version bump only for package react-tsparticles

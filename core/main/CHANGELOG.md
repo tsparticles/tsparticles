@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.17.0-alpha.9](https://github.com/matteobruni/tsparticles/compare/tsparticles@1.17.0-alpha.8...tsparticles@1.17.0-alpha.9) (2020-06-29)
+
+
+### Bug Fixes
+
+* color un-sync animation start value ([40fed71](https://github.com/matteobruni/tsparticles/commit/40fed71eb560c1608e888e1c1b8344fd6b3e2abf))
+
+
+
+
+
 # [1.17.0-alpha.8](https://github.com/matteobruni/tsparticles/compare/tsparticles@1.17.0-alpha.7...tsparticles@1.17.0-alpha.8) (2020-06-26)
 
 
