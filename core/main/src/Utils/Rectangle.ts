@@ -20,7 +20,7 @@ export class Rectangle extends Range {
         const h = this.size.height;
         const pos = this.position;
 
-        return point.x >= pos.x - w && point.x <= pos.x + w && point.y >= pos.y - h && point.y <= pos.y + h;
+        return point.x >= pos.x && point.x <= pos.x + w && point.y >= pos.y && point.y <= pos.y + h;
     }
 
     public intersects(range: Range): boolean {
@@ -35,8 +35,8 @@ export class Rectangle extends Range {
             return circle.intersects(this);
         } else if (rect.size !== undefined) {
             const size2 = rect.size;
-            const w2 = size2.width / 2;
-            const h2 = size2.height / 2;
+            const w2 = size2.width;
+            const h2 = size2.height;
 
             return pos2.x < pos1.x + w && pos2.x + w2 > pos1.x && pos2.y < pos1.y + h && pos2.y + h2 > pos1.y;
         }
