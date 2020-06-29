@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.17.0-alpha.10](https://github.com/matteobruni/tsparticles/compare/tsparticles@1.17.0-alpha.9...tsparticles@1.17.0-alpha.10) (2020-06-29)
+
+
+### Bug Fixes
+
+* rectangle query fix ([b210390](https://github.com/matteobruni/tsparticles/commit/b21039091991aecc58498d66fbeb875851939469))
+
+
+
+
+
 # [1.17.0-alpha.9](https://github.com/matteobruni/tsparticles/compare/tsparticles@1.17.0-alpha.8...tsparticles@1.17.0-alpha.9) (2020-06-29)
 
 
