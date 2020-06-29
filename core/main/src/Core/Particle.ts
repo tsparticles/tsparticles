@@ -220,6 +220,9 @@ export class Particle implements IParticle {
             }
         }
 
+        /* color */
+        this.color = ColorUtils.colorToHsl(color);
+
         const colorAnimation = this.particlesOptions.color.animation;
 
         if (colorAnimation.enable) {
@@ -232,10 +235,8 @@ export class Particle implements IParticle {
             this.colorVelocity = 0;
         }
 
-        if (colorAnimation.enable) {
-            if (!colorAnimation.sync) {
-                this.angle = Math.random() * Math.PI * 2;
-            }
+        if (colorAnimation.enable && !colorAnimation.sync && this.color) {
+            this.color.h = Math.random() * 360;
         }
 
         /* position */
@@ -251,9 +252,6 @@ export class Particle implements IParticle {
         if (this.particlesOptions.collisions.enable) {
             this.checkOverlap(position);
         }
-
-        /* color */
-        this.color = ColorUtils.colorToHsl(color);
 
         /* opacity */
         const opacityOptions = this.particlesOptions.opacity;
