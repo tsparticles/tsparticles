@@ -5,8 +5,6 @@
       "DOM"
     ],
     "rootDir": "./src",
-    //"baseUrl": "./src",
-    //"paths": {},
     "declaration": true,
     "removeComments": true,
     "importHelpers": true,
