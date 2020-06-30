@@ -17,6 +17,7 @@
             :particlesNumber="particlesNumber"
             :shapeType="shapeType"
             :moveDirection="moveDirection"
+            :detectOn="detectOn"
     ></div>
 </template>
 
@@ -36,22 +37,23 @@
     @Component
     export default class Particles extends Vue {
         @Prop({ required: true }) private id!: string;
-        @Prop() private clickEffect!: boolean;
-        @Prop() private clickMode!: ClickMode;
-        @Prop() private color!: string;
-        @Prop() private hoverEffect!: boolean;
-        @Prop() private hoverMode!: HoverMode;
-        @Prop() private lineLinked!: boolean;
-        @Prop() private linesColor!: string;
-        @Prop() private linesDistance!: number;
-        @Prop() private linesOpacity!: number;
-        @Prop() private linesWidth!: number;
-        @Prop() private moveSpeed!: number;
-        @Prop() private particleOpacity!: number;
-        @Prop() private particleSize!: number;
-        @Prop() private particlesNumber!: number;
-        @Prop() private shapeType!: ShapeType;
-        @Prop() private moveDirection!: MoveDirection;
+        @Prop({ default: true }) private clickEffect?: boolean;
+        @Prop({ default: ClickMode.push }) private clickMode?: ClickMode;
+        @Prop({ default: "#dedede" }) private color?: string;
+        @Prop({ default: true }) private hoverEffect?: boolean;
+        @Prop({ default: HoverMode.grab }) private hoverMode?: HoverMode;
+        @Prop({ default: true }) private lineLinked?: boolean;
+        @Prop({ default: "#dedede" }) private linesColor?: string;
+        @Prop({ default: 150 }) private linesDistance?: number;
+        @Prop({ default: 0, 4 }) private linesOpacity?: number;
+        @Prop({ default: 1 }) private linesWidth?: number;
+        @Prop({ default: 3 }) private moveSpeed?: number;
+        @Prop({ default: 0.7 }) private particleOpacity?: number;
+        @Prop({ default: 4 }) private particleSize?: number;
+        @Prop({ default: 80 }) private particlesNumber?: number;
+        @Prop({ default: ShapeType.circle }) private shapeType?: ShapeType;
+        @Prop({ default: MoveDirection.none }) private moveDirection?: MoveDirection;
+        @Prop({ default: InteractivityDetect.canvas }) private detectOn?: InteractivityDetect;
         private particlesContainer?: Container;
 
         private mounted(): void {
@@ -72,7 +74,8 @@
                     this.hoverMode,
                     this.clickEffect,
                     this.clickMode,
-                    this.moveDirection
+                    this.moveDirection,
+                    this.detectOn
                 );
             });
         }
@@ -82,22 +85,23 @@
         }
 
         private initTsParticles(
-            color: string,
-            particleOpacity: number,
-            particlesNumber: number,
-            shapeType: ShapeType,
-            particleSize: number,
-            linesColor: string,
-            linesWidth: number,
-            lineLinked: boolean,
-            linesOpacity: number,
-            linesDistance: number,
-            moveSpeed: number,
-            hoverEffect: boolean,
-            hoverMode: HoverMode,
-            clickEffect: boolean,
-            clickMode: ClickMode,
-            moveDirection: MoveDirection
+            color?: string,
+            particleOpacity?: number,
+            particlesNumber?: number,
+            shapeType?: ShapeType,
+            particleSize?: number,
+            linesColor?: string,
+            linesWidth?: number,
+            lineLinked?: boolean,
+            linesOpacity?: number,
+            linesDistance?: number,
+            moveSpeed?: number,
+            hoverEffect?: boolean,
+            hoverMode?: HoverMode,
+            clickEffect?: boolean,
+            clickMode?: ClickMode,
+            moveDirection?: MoveDirection,
+            detectOn?: InteractivityDetect
         ): void {
             if (!this.id) {
                 throw new Error("Prop 'id' is required!")
@@ -106,7 +110,7 @@
             tsParticles.load(this.id, {
                 fps_limit: 60,
                 interactivity: {
-                    detect_on: InteractivityDetect.window,
+                    detect_on: detectOn,
                     events: {
                         onclick: {
                             enable: clickEffect,
