@@ -47,11 +47,8 @@ export class TextDrawer implements IShapeDrawer {
         const textParticle = particle as TextParticle;
 
         if (textParticle.text === undefined) {
-            if (textData instanceof Array) {
-                textParticle.text = Utils.itemFromArray(textData, particle.randomIndexData);
-            } else {
-                textParticle.text = textData;
-            }
+            textParticle.text =
+                textData instanceof Array ? Utils.itemFromArray(textData, particle.randomIndexData) : textData;
         }
 
         const text = textParticle.text;

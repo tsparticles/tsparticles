@@ -21,7 +21,7 @@ class AbsorbersPlugin implements IPlugin {
     }
 
     public needsPlugin(options?: RecursivePartial<IOptions & IAbsorberOptions>): boolean {
-        if (!options?.absorbers) {
+        if (options === undefined) {
             return false;
         }
 
@@ -45,14 +45,11 @@ class AbsorbersPlugin implements IPlugin {
     }
 
     public loadOptions(options: Options, source?: RecursivePartial<IOptions & IAbsorberOptions>): void {
-        if (!this.needsPlugin(source)) {
+        if (!this.needsPlugin(options) && !this.needsPlugin(source)) {
             return;
         }
 
         const optionsCast = (options as unknown) as IAbsorberOptions;
-        if (optionsCast.absorbers === undefined) {
-            optionsCast.absorbers = new Absorber();
-        }
 
         if (source?.absorbers) {
             if (source?.absorbers instanceof Array) {
@@ -64,7 +61,7 @@ class AbsorbersPlugin implements IPlugin {
                     return tmp;
                 });
             } else {
-                if (optionsCast.absorbers instanceof Array) {
+                if (optionsCast.absorbers instanceof Array || optionsCast.absorbers === undefined) {
                     optionsCast.absorbers = new Absorber();
                 }
 
