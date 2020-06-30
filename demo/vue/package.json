@@ -20,7 +20,8 @@
     "url": "https://github.com/matteobruni/tsparticles/issues"
   },
   "dependencies": {
-    "particles.vue": "^1.17.0-alpha.10",
+    "particles.vue": "^2.0.0-alpha.0",
+    "tsparticles": "^1.17.0-alpha.10",
     "vue": "^2.6.11",
     "vue-class-component": "^7.2.2",
     "vue-property-decorator": "^9.0.0"
@@ -44,7 +45,7 @@
     "rollup-plugin-typescript": "^1.0.1",
     "rollup-plugin-typescript2": "^0.27.0",
     "rollup-plugin-vue": "^5.1.6",
-    "typescript": "^3.8.3",
+    "typescript": "^3.9.5",
     "vue-template-compiler": "^2.6.11"
   }
 }

@@ -1,14 +1,14 @@
 import vue from 'rollup-plugin-vue';
 import typescript from 'rollup-plugin-typescript';
-import {terser} from 'rollup-plugin-terser';
+import { terser } from 'rollup-plugin-terser';
 
-export default [{
+export default [ {
     input: 'src/components/Particles/Particles.vue',
     output: {
         format: 'esm',
-        file: 'dist/particles.vue.js'
+        file: 'dist/particles.vue.js',
     },
-    external: ['vue'],
+    external: [ 'vue', 'vue-property-decorator', 'tsparticles' ],
     plugins: [
         typescript({
             //tsconfig: true//,
@@ -24,7 +24,7 @@ export default [{
             format: 'esm',
             file: 'dist/particles.vue.min.js'
         },
-        external: ['vue'],
+        external: [ 'vue', 'vue-property-decorator', 'tsparticles' ],
         plugins: [
             typescript({
                 //tsconfig: true//,
@@ -34,4 +34,4 @@ export default [{
             vue(),
             terser()
         ]
-    }];
+    } ];

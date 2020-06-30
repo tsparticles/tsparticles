@@ -21,7 +21,7 @@ yarn add ng-particles
 *template.html*  
   
 ```html  
-<ng-particles id="tsparticles" [options]="particlesOptions"></ng-particles>  
+<Particles id="tsparticles" [options]="particlesOptions"></Particles>  
 ```  
   
 *app.ts*  
