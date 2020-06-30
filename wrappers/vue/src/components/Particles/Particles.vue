@@ -16,6 +16,7 @@
             :particleSize="particleSize"
             :particlesNumber="particlesNumber"
             :shapeType="shapeType"
+            :moveDirection="moveDirection"
     ></div>
 </template>
 
@@ -50,6 +51,7 @@
         @Prop() private particleSize!: number;
         @Prop() private particlesNumber!: number;
         @Prop() private shapeType!: ShapeType;
+        @Prop() private moveDirection!: MoveDirection;
         private particlesContainer?: Container;
 
         private mounted(): void {
@@ -69,7 +71,8 @@
                     this.hoverEffect,
                     this.hoverMode,
                     this.clickEffect,
-                    this.clickMode
+                    this.clickMode,
+                    this.moveDirection
                 );
             });
         }
@@ -93,7 +96,8 @@
             hoverEffect: boolean,
             hoverMode: HoverMode,
             clickEffect: boolean,
-            clickMode: ClickMode
+            clickMode: ClickMode,
+            moveDirection: MoveDirection
         ): void {
             if (!this.id) {
                 throw new Error("Prop 'id' is required!")
@@ -162,7 +166,7 @@
                             rotateY: 3000
                         },
                         bounce: false,
-                        direction: MoveDirection.none,
+                        direction: moveDirection,
                         enable: true,
                         out_mode: OutMode.out,
                         random: false,
