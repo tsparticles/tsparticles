@@ -1,4 +1,4 @@
-![banner](https://cdn.matteobruni.it/images/particles/banner.png)
+![banner](https://cdn.matteobruni.it/images/particles/banner2.png)
 
 # tsParticles - TypeScript Particles  
   
@@ -46,9 +46,9 @@ or from jsDelivr
   
 ```html  
 <!-- first include tsParticles -->  
-<script src="https://cdn.jsdelivr.net/npm/tsparticles@1.16.0/dist/tsparticles.min.js"></script>  
+<script src="https://cdn.jsdelivr.net/npm/tsparticles@1.16.1/dist/tsparticles.min.js"></script>  
 <!-- then include jquery wrapper -->  
-<script src="https://cdn.jsdelivr.net/npm/jquery-particles@1.16.0/dist/jquery.particles.min.js"></script>  
+<script src="https://cdn.jsdelivr.net/npm/jquery-particles@1.16.1/dist/jquery.particles.min.js"></script>  
 ```  
   
 ##### How to use  
