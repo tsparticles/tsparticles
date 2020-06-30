@@ -1,6 +1,6 @@
 {
   "name": "tsparticles-shape-bubble",
-  "version": "1.1.1",
+  "version": "1.1.2",
   "description": "tsParticles bubble shape",
   "homepage": "https://particles.matteobruni.it/",
   "scripts": {
@@ -57,6 +57,6 @@
     "uglify-js": "^3.8.1"
   },
   "dependencies": {
-    "tsparticles": "^1.16.1"
+    "tsparticles": "^1.16.2"
   }
 }

@@ -21,7 +21,7 @@ class EmittersPlugin implements IPlugin {
     }
 
     public needsPlugin(options?: RecursivePartial<IOptions & IEmitterOptions>): boolean {
-        if (!options?.emitters) {
+        if (options === undefined) {
             return false;
         }
 
@@ -45,14 +45,11 @@ class EmittersPlugin implements IPlugin {
     }
 
     public loadOptions(options: Options, source?: RecursivePartial<IOptions & IEmitterOptions>): void {
-        if (!this.needsPlugin(source)) {
+        if (!this.needsPlugin(options) && !this.needsPlugin(source)) {
             return;
         }
 
         const optionsCast = (options as unknown) as IEmitterOptions;
-        if (optionsCast.emitters === undefined) {
-            optionsCast.emitters = new Emitter();
-        }
 
         if (source?.emitters) {
             if (source?.emitters instanceof Array) {
@@ -64,7 +61,7 @@ class EmittersPlugin implements IPlugin {
                     return tmp;
                 });
             } else {
-                if (optionsCast.emitters instanceof Array) {
+                if (optionsCast.emitters instanceof Array || optionsCast.emitters === undefined) {
                     optionsCast.emitters = new Emitter();
                 }
 
