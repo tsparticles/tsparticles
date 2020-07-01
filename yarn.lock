@@ -10,6 +10,14 @@
     "@angular-devkit/core" "10.0.0"
     rxjs "6.5.5"
 
+"@angular-devkit/architect@0.1000.1":
+  version "0.1000.1"
+  resolved "https://registry.yarnpkg.com/@angular-devkit/architect/-/architect-0.1000.1.tgz#6ca8529d888b3f5fc1f28863bb744855b67b811e"
+  integrity sha512-GpoJ+p38feerxwfpJgrjwv/2c47qIX+TMdfKVqbswxLnzK21hXjd0zn6UfovAFwLeL1hRu2O00NDsmQn01gdoA==
+  dependencies:
+    "@angular-devkit/core" "10.0.1"
+    rxjs "6.5.5"
+
 "@angular-devkit/build-angular@~0.1000.0":
   version "0.1000.0"
   resolved "https://registry.yarnpkg.com/@angular-devkit/build-angular/-/build-angular-0.1000.0.tgz#7325e49537c772003434c7db0426af779a9c8d66"
@@ -82,11 +90,11 @@
     worker-plugin "4.0.3"
 
 "@angular-devkit/build-ng-packagr@~0.1000.0":
-  version "0.1000.0"
-  resolved "https://registry.yarnpkg.com/@angular-devkit/build-ng-packagr/-/build-ng-packagr-0.1000.0.tgz#0aed841e3bbe10c122b7463702d838dea2420812"
-  integrity sha512-afYb8fGrtYyt8qoFEKqVv96tyMEf3AA0VMbyaI5w70gEGM+YkFmt66zfEsdNFojNHzOGgDvfVTjP6J4ip0Opng==
+  version "0.1000.1"
+  resolved "https://registry.yarnpkg.com/@angular-devkit/build-ng-packagr/-/build-ng-packagr-0.1000.1.tgz#60e1143866ca000d3e7a9e46d3bcd3f918160276"
+  integrity sha512-y8w1DPtBp/mW12JJnKYx/56cMG8m4g7XHllsDvYuxHZ0XW3iqA967DKsE0xcyYBMn84yKybgqyibZVKZiXNTIA==
   dependencies:
-    "@angular-devkit/architect" "0.1000.0"
+    "@angular-devkit/architect" "0.1000.1"
     rxjs "6.5.5"
 
 "@angular-devkit/build-optimizer@0.1000.0":
@@ -112,6 +120,17 @@
   version "10.0.0"
   resolved "https://registry.yarnpkg.com/@angular-devkit/core/-/core-10.0.0.tgz#9f6378a295a559d1a0bf12af200c0c9d59428a65"
   integrity sha512-IvX9IMaCjDkN9vDVnYcgWbSBinlUUb7jdFhDGeTtK6rGSnjX1GoLvWneVI2hoccS07fPbnfMoYXBoZLwVxiIxw==
+  dependencies:
+    ajv "6.12.2"
+    fast-json-stable-stringify "2.1.0"
+    magic-string "0.25.7"
+    rxjs "6.5.5"
+    source-map "0.7.3"
+
+"@angular-devkit/core@10.0.1":
+  version "10.0.1"
+  resolved "https://registry.yarnpkg.com/@angular-devkit/core/-/core-10.0.1.tgz#acc1c6a088507e7340964c8cbf85e91781e86686"
+  integrity sha512-AXsxN00zbixi/9HyzzsDGm6rtMferxKfhG8WPJfp/0TLeJrmiLs5wdNjk8LhfTZABSTYx/QxRgOI6OnBoXePgg==
   dependencies:
     ajv "6.12.2"
     fast-json-stable-stringify "2.1.0"
