@@ -13,7 +13,7 @@
     "demo/*",
     "presets/*",
     "shapes/*",
-    "wrappers/*"
+    "components/*"
   ],
   "devDependencies": {
     "@commitlint/cli": "^9.0.1",
