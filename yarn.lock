@@ -16489,7 +16489,7 @@ terser-webpack-plugin@^2.3.6:
     terser "^4.6.12"
     webpack-sources "^1.4.3"
 
-terser-webpack-plugin@^3.0.3, terser-webpack-plugin@^3.0.5:
+terser-webpack-plugin@^3.0.3, terser-webpack-plugin@^3.0.5, terser-webpack-plugin@^3.0.6:
   version "3.0.6"
   resolved "https://registry.yarnpkg.com/terser-webpack-plugin/-/terser-webpack-plugin-3.0.6.tgz#db0a108bbdd3680d72c9b491fbabad09ba207b99"
   integrity sha512-z3HLOOPUHkCNGkeEHqqiMAIy1pjpHwS1o+i6Zn0Ws3EAvHJj46737efNNEvJ0Vx9BdDQM83d56qySDJOSORA0A==
@@ -16882,6 +16882,14 @@ tslint@~6.1.0:
     semver "^5.3.0"
     tslib "^1.10.0"
     tsutils "^2.29.0"
+
+tsparticles@^1.16.2:
+  version "1.16.2"
+  resolved "https://registry.yarnpkg.com/tsparticles/-/tsparticles-1.16.2.tgz#b516913d08ffcdd61791a142b3d81e722c6befa2"
+  integrity sha512-9Pha9vcTDGrQ8yJyvSIEG76TRd99Q+jkL58MV8VM3vD6ddgvSxLwXkUcbFtXMB3gjfVgHemazUwwKHDfVzZ2jw==
+  dependencies:
+    pathseg "^1.2.0"
+    tslib "^2.0.0"
 
 tsutils@^2.29.0:
   version "2.29.0"
@@ -17599,7 +17607,7 @@ webpack-chain@^6.4.0:
     deepmerge "^1.5.2"
     javascript-stringify "^2.0.1"
 
-webpack-cli@^3.1.0, webpack-cli@^3.3.11:
+webpack-cli@^3.1.0, webpack-cli@^3.3.11, webpack-cli@^3.3.12:
   version "3.3.12"
   resolved "https://registry.yarnpkg.com/webpack-cli/-/webpack-cli-3.3.12.tgz#94e9ada081453cd0aa609c99e500012fd3ad2d4a"
   integrity sha512-NVWBaz9k839ZH/sinurM+HcDvJOTXwSjYp1ku+5XKeOC03z8v5QitnK/x+lAxGXFyhdayoIf/GOpv85z3/xPag==
