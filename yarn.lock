@@ -10470,9 +10470,9 @@ json5@^2.1.2:
     minimist "^1.2.5"
 
 jsoneditor@^9.0.0:
-  version "9.0.2"
-  resolved "https://registry.yarnpkg.com/jsoneditor/-/jsoneditor-9.0.2.tgz#87dbe659f1b7e7593396f89b6534405be6743098"
-  integrity sha512-RDG/dqtmHqrcZm1YT6HgEh6Hi6903BhEbSdgTtLdKXGAr2iIQLXmMQZzK+o8R2mrmxkL4bsVBGSdSif62J+DIg==
+  version "9.0.3"
+  resolved "https://registry.yarnpkg.com/jsoneditor/-/jsoneditor-9.0.3.tgz#8e476ef327043e2f8fdc5dca67950f19accb0518"
+  integrity sha512-4uwT7nmNBAlC2KUUpsHaX2GZ+KoOohjtE/HzGToufYASGjnMzkf6EcLS+pAwwVHLv7VUnXmAuMY4NaQ9cS25lA==
   dependencies:
     ace-builds "^1.4.11"
     ajv "^6.12.2"
