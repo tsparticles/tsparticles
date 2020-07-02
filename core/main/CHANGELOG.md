@@ -3,6 +3,24 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.17.0-alpha.11](https://github.com/matteobruni/tsparticles/compare/tsparticles@1.16.2...tsparticles@1.17.0-alpha.11) (2020-07-02)
+
+
+### Bug Fixes
+
+* color un-sync animation start value ([40fed71](https://github.com/matteobruni/tsparticles/commit/40fed71eb560c1608e888e1c1b8344fd6b3e2abf))
+* options interfaces don't have load function anymore ([62cfc82](https://github.com/matteobruni/tsparticles/commit/62cfc82a28b7fcadbe5ad3db816bd5d4614d1dc0))
+* rectangle query fix ([b210390](https://github.com/matteobruni/tsparticles/commit/b21039091991aecc58498d66fbeb875851939469))
+
+
+### Features
+
+* stroke color animation ([deabadd](https://github.com/matteobruni/tsparticles/commit/deabadd7fad1b78f76e5afeea64ae5d4ac87fd61))
+
+
+
+
+
 # [1.17.0-alpha.10](https://github.com/matteobruni/tsparticles/compare/tsparticles@1.17.0-alpha.9...tsparticles@1.17.0-alpha.10) (2020-06-29)
 
 

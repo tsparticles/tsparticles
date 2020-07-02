@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.17.0-alpha.11](https://github.com/matteobruni/tsparticles/compare/preact-particles@1.16.2...preact-particles@1.17.0-alpha.11) (2020-07-02)
+
+**Note:** Version bump only for package preact-particles
+
+
+
+
+
 # [1.17.0-alpha.10](https://github.com/matteobruni/tsparticles/compare/preact-particles@1.17.0-alpha.9...preact-particles@1.17.0-alpha.10) (2020-06-29)
 
 **Note:** Version bump only for package preact-particles

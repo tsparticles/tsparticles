@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.0.0-alpha.1](https://github.com/matteobruni/tsparticles/compare/particles.vue@1.16.2...particles.vue@2.0.0-alpha.1) (2020-07-02)
+
+**Note:** Version bump only for package particles.vue
+
+
+
+
+
 # [1.17.0-alpha.10](https://github.com/matteobruni/tsparticles/compare/particles.vue@1.17.0-alpha.9...particles.vue@1.17.0-alpha.10) (2020-06-29)
 
 **Note:** Version bump only for package particles.vue

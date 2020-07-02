@@ -1,6 +1,6 @@
 {
   "name": "tsparticles-preset-font-awesome",
-  "version": "1.2.0-alpha.10",
+  "version": "1.2.0-alpha.11",
   "description": "tsParticles fontAwesome preset",
   "homepage": "https://particles.matteobruni.it/",
   "scripts": {
@@ -65,6 +65,6 @@
     "uglify-js": "^3.8.1"
   },
   "dependencies": {
-    "tsparticles": "^1.17.0-alpha.10"
+    "tsparticles": "^1.17.0-alpha.11"
   }
 }
