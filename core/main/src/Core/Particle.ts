@@ -52,7 +52,7 @@ export class Particle implements IParticle {
     public readonly position: ICoordinates;
     public readonly offset: ICoordinates;
     public readonly color: IHsl | undefined;
-    public readonly strokeColor: IRgb | undefined;
+    public readonly strokeColor: IHsl | undefined;
     public readonly shadowColor: IRgb | undefined;
     public readonly opacity: IParticleOpacityAnimation;
     public readonly velocity: IVelocity;
@@ -77,6 +77,7 @@ export class Particle implements IParticle {
     public readonly particlesOptions: IParticles;
 
     private infectionTimeout?: number;
+    private readonly strokeColorVelocity?: number;
 
     constructor(
         private readonly container: Container,
@@ -291,7 +292,29 @@ export class Particle implements IParticle {
                 ? Utils.itemFromArray(this.particlesOptions.stroke)
                 : this.particlesOptions.stroke;
 
-        this.strokeColor = ColorUtils.colorToRgb(this.stroke.color);
+        /* strokeColor */
+        this.strokeColor = ColorUtils.colorToHsl(this.stroke.color);
+
+        if (typeof this.stroke.color !== "string") {
+            const strokeColorAnimation = this.stroke.color?.animation;
+
+            if (strokeColorAnimation && this.strokeColor) {
+                if (strokeColorAnimation.enable) {
+                    this.strokeColorVelocity = colorAnimation.speed / 100;
+
+                    if (!strokeColorAnimation.sync) {
+                        this.strokeColorVelocity = this.strokeColorVelocity * Math.random();
+                    }
+                } else {
+                    this.strokeColorVelocity = 0;
+                }
+
+                if (strokeColorAnimation.enable && !strokeColorAnimation.sync && this.color) {
+                    this.strokeColor.h = Math.random() * 360;
+                }
+            }
+        }
+
         this.shadowColor = ColorUtils.colorToRgb(this.particlesOptions.shadow.color);
         this.updater = new Updater(this.container, this);
     }
@@ -433,8 +456,12 @@ export class Particle implements IParticle {
         };
     }
 
-    public getColor(): IHsl | undefined {
+    public getFillColor(): IHsl | undefined {
         return this.bubble.color ?? this.color;
+    }
+
+    public getStrokeColor(): IHsl | undefined {
+        return this.bubble.color ?? this.strokeColor ?? this.color;
     }
 
     public destroy(): void {
@@ -557,7 +584,7 @@ export class Particle implements IParticle {
         const optionsImage = (imagesOptions instanceof Array
             ? imagesOptions.find((t) => (t as IImageShape).src === image.source)
             : imagesOptions) as IImageShape;
-        const color = this.getColor();
+        const color = this.getFillColor();
         let imageRes: IParticleImage;
 
         if (image?.svgData !== undefined && optionsImage.replaceColor && color) {

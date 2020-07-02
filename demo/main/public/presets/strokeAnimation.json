@@ -12,15 +12,23 @@
       "value": "#ff0000",
       "animation": {
         "enable": true,
-        "speed": 20,
+        "speed": 60,
         "sync": true
+      }
+    },
+    "stroke": {
+      "width": 3,
+      "color": {
+        "value": "#0000ff",
+        "animation": {
+          "enable": true,
+          "speed": 60,
+          "sync": true
+        }
       }
     },
     "shape": {
       "type": "circle",
-      "stroke": {
-        "width": 0
-      },
       "polygon": {
         "nb_sides": 5
       },

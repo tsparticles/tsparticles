@@ -39,7 +39,7 @@ export interface IParticle {
     readonly shapeData?: IShapeValues;
     readonly size: IParticleSizeAnimation;
     readonly stroke: IStroke;
-    readonly strokeColor: IRgb | undefined;
+    readonly strokeColor: IHsl | undefined;
     readonly velocity: IVelocity;
     readonly linksDistance?: number;
     readonly linksWidth?: number;
@@ -50,5 +50,7 @@ export interface IParticle {
 
     getPosition(): ICoordinates;
 
-    getColor(): IHsl | undefined;
+    getFillColor(): IHsl | undefined;
+
+    getStrokeColor(): IHsl | undefined;
 }

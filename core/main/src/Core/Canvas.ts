@@ -162,8 +162,8 @@ export class Canvas {
             if (linkColor === Constants.randomColorValue) {
                 colorTriangle = ColorUtils.getRandomRgbColor();
             } else if (linkColor === "mid") {
-                const sourceColor = p1.getColor();
-                const destColor = p2.getColor();
+                const sourceColor = p1.getFillColor();
+                const destColor = p2.getFillColor();
 
                 if (sourceColor && destColor) {
                     colorTriangle = ColorUtils.mix(sourceColor, destColor, p1.size.value, p2.size.value);
@@ -243,8 +243,8 @@ export class Canvas {
             if (linkColor === Constants.randomColorValue) {
                 colorLine = ColorUtils.getRandomRgbColor();
             } else if (linkColor === "mid") {
-                const sourceColor = p1.getColor();
-                const destColor = p2.getColor();
+                const sourceColor = p1.getFillColor();
+                const destColor = p2.getFillColor();
 
                 if (sourceColor && destColor) {
                     colorLine = ColorUtils.mix(sourceColor, destColor, p1.size.value, p2.size.value);
@@ -319,11 +319,12 @@ export class Canvas {
     }
 
     public drawParticle(particle: IParticle, delta: number): void {
-        const pColor = particle.getColor();
-        if (pColor === undefined) {
+        const pfColor = particle.getFillColor();
+        if (pfColor === undefined) {
             return;
         }
 
+        const psColor = particle.getStrokeColor() ?? pfColor;
         const options = this.container.options;
         const twinkle = particle.particlesOptions.twinkle.particles;
         const twinkleFreq = twinkle.frequency;
@@ -336,13 +337,21 @@ export class Canvas {
         const infectionStages = infection.stages;
         const infectionColor = infectionStage !== undefined ? infectionStages[infectionStage].color : undefined;
         const infectionRgb = ColorUtils.colorToRgb(infectionColor);
-        const color = twinkling && twinkleRgb !== undefined ? twinkleRgb : infectionRgb ?? ColorUtils.hslToRgb(pColor);
+        const fColor =
+            twinkling && twinkleRgb !== undefined ? twinkleRgb : infectionRgb ?? ColorUtils.hslToRgb(pfColor);
+        const sColor =
+            twinkling && twinkleRgb !== undefined ? twinkleRgb : infectionRgb ?? ColorUtils.hslToRgb(psColor);
 
-        const colorValue = color !== undefined ? ColorUtils.getStyleFromRgb(color, opacity) : undefined;
+        const fillColorValue = fColor !== undefined ? ColorUtils.getStyleFromRgb(fColor, opacity) : undefined;
 
-        if (!this.context || !colorValue) {
+        if (!this.context || !fillColorValue) {
             return;
         }
+
+        const strokeColorValue =
+            sColor !== undefined
+                ? ColorUtils.getStyleFromRgb(sColor, particle.stroke.opacity ?? opacity)
+                : fillColorValue;
 
         if (particle.links.length > 0) {
             this.context.save();
@@ -370,7 +379,8 @@ export class Canvas {
             this.context,
             particle,
             delta,
-            colorValue,
+            fillColorValue,
+            strokeColorValue,
             options.backgroundMask.enable,
             radius,
             opacity,

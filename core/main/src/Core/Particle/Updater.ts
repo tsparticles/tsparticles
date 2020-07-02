@@ -43,6 +43,9 @@ export class Updater {
         /* change color */
         this.updateColor(delta);
 
+        /* change stroke color */
+        this.updateStrokeColor(delta);
+
         /* change particle position if it is out of canvas */
         this.fixOutOfCanvasPosition();
 
@@ -167,6 +170,31 @@ export class Updater {
 
             if (particle.color.h > 360) {
                 particle.color.h -= 360;
+            }
+        }
+    }
+
+    private updateStrokeColor(delta: number): void {
+        const options = this.container.options;
+        const particle = this.particle;
+
+        const color = particle.stroke.color;
+
+        if (typeof color === "string" || color === undefined) {
+            return;
+        }
+
+        if (particle.strokeColor === undefined) {
+            return;
+        }
+
+        const deltaFactor = options.fpsLimit > 0 ? (60 * delta) / 1000 : 3.6;
+
+        if (color.animation.enable) {
+            particle.strokeColor.h += (particle.colorVelocity || 0) * deltaFactor;
+
+            if (particle.strokeColor.h > 360) {
+                particle.strokeColor.h -= 360;
             }
         }
     }

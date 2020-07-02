@@ -150,13 +150,6 @@ describe("Options tests", () => {
         expect(options.particles.size.value).to.equal(3);
 
         /* particles stroke */
-        expect(options.particles.stroke)
-            .to.be.an("object")
-            .to.have.property("color")
-            .to.be.an("object")
-            .to.have.property("value")
-            .to.equal("#ff0000");
-        expect(options.particles.stroke).to.be.an("object").to.have.property("opacity").to.equal(1);
         expect(options.particles.stroke).to.be.an("object").to.have.property("width").to.equal(0);
 
         /* pause on blur */

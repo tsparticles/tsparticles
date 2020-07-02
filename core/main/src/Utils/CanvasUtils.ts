@@ -173,8 +173,8 @@ export class CanvasUtils {
         opacity: number
     ): CanvasGradient | undefined {
         const gradStop = Math.floor(p2.size.value / p1.size.value);
-        const color1 = p1.getColor();
-        const color2 = p2.getColor();
+        const color1 = p1.getFillColor();
+        const color2 = p2.getFillColor();
 
         if (!color1 || !color2) {
             return;
@@ -215,7 +215,8 @@ export class CanvasUtils {
         context: CanvasRenderingContext2D,
         particle: IParticle,
         delta: number,
-        colorValue: string,
+        fillColorValue: string,
+        strokeColorValue: string,
         backgroundMask: boolean,
         radius: number,
         opacity: number,
@@ -244,15 +245,12 @@ export class CanvasUtils {
             context.shadowOffsetY = shadow.offset.y;
         }
 
-        context.fillStyle = colorValue;
+        context.fillStyle = fillColorValue;
 
         const stroke = particle.stroke;
 
         context.lineWidth = stroke.width;
-
-        if (particle.strokeColor) {
-            context.strokeStyle = ColorUtils.getStyleFromRgb(particle.strokeColor, particle.stroke.opacity);
-        }
+        context.strokeStyle = strokeColorValue;
 
         if (particle.close) {
             context.closePath();
@@ -260,7 +258,7 @@ export class CanvasUtils {
 
         this.drawShape(container, context, particle, radius, opacity, delta);
 
-        if (stroke.width > 0 && particle.strokeColor) {
+        if (stroke.width > 0) {
             context.stroke();
         }
 

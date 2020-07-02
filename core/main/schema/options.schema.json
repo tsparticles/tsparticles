@@ -1439,7 +1439,7 @@
         "color": {
           "anyOf": [
             {
-              "$ref": "#/definitions/IColor"
+              "$ref": "#/definitions/IAnimatableColor"
             },
             {
               "type": "string"
@@ -2499,7 +2499,7 @@
         "color": {
           "anyOf": [
             {
-              "$ref": "#/definitions/IColor"
+              "$ref": "#/definitions/IAnimatableColor"
             },
             {
               "type": "string"
@@ -2523,7 +2523,7 @@
         "color": {
           "anyOf": [
             {
-              "$ref": "#/definitions/IColor"
+              "$ref": "#/definitions/IAnimatableColor"
             },
             {
               "type": "string"

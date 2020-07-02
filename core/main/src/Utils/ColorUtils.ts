@@ -55,7 +55,7 @@ export class ColorUtils {
      * Gets the particles color
      * @param color the input color to convert in [[IHsl]] object
      */
-    public static colorToHsl(color: IColor): IHsl | undefined {
+    public static colorToHsl(color: string | IColor | undefined): IHsl | undefined {
         const rgb = this.colorToRgb(color);
 
         return rgb !== undefined ? this.rgbToHsl(rgb) : rgb;

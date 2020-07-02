@@ -1,8 +1,8 @@
 import type { IOptionLoader } from "../IOptionLoader";
-import type { IColor } from "../../../Core/Interfaces/IColor";
+import type { IAnimatableColor } from "./IAnimatableColor";
 
 export interface IStroke extends IOptionLoader<IStroke> {
-    color: string | IColor;
-    opacity: number;
+    color?: string | IAnimatableColor;
+    opacity?: number;
     width: number;
 }
