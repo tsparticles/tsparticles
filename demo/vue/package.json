@@ -45,7 +45,7 @@
     "rollup-plugin-typescript": "^1.0.1",
     "rollup-plugin-typescript2": "^0.27.0",
     "rollup-plugin-vue": "^5.1.6",
-    "typescript": "^3.9.5",
+    "typescript": "^3.9.6",
     "vue-template-compiler": "^2.6.11"
   }
 }

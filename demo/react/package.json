@@ -30,7 +30,7 @@
     "prettier": "^2.0.5",
     "react-syntax-highlighter": "^12.2.1",
     "rxjs": "^6.2.2",
-    "typescript": "^3.9.5"
+    "typescript": "^3.9.6"
   },
   "dependencies": {
     "react": "^16.4.2",

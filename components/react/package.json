@@ -35,7 +35,7 @@
     "react-dom": "^16.0.0",
     "ts-loader": "^7.0.5",
     "ts-node": "^8.10.1",
-    "typescript": "^3.8.3",
+    "typescript": "^3.9.6",
     "webpack": "^4.16.5",
     "webpack-bundle-analyzer": "^3.3.2",
     "webpack-cli": "^3.1.0",

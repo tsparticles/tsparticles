@@ -16890,14 +16890,6 @@ tslint@~6.1.0:
     tslib "^1.10.0"
     tsutils "^2.29.0"
 
-tsparticles@^1.16.2:
-  version "1.16.2"
-  resolved "https://registry.yarnpkg.com/tsparticles/-/tsparticles-1.16.2.tgz#b516913d08ffcdd61791a142b3d81e722c6befa2"
-  integrity sha512-9Pha9vcTDGrQ8yJyvSIEG76TRd99Q+jkL58MV8VM3vD6ddgvSxLwXkUcbFtXMB3gjfVgHemazUwwKHDfVzZ2jw==
-  dependencies:
-    pathseg "^1.2.0"
-    tslib "^2.0.0"
-
 tsutils@^2.29.0:
   version "2.29.0"
   resolved "https://registry.yarnpkg.com/tsutils/-/tsutils-2.29.0.tgz#32b488501467acbedd4b85498673a0812aca0b99"
@@ -17037,7 +17029,7 @@ typescript-json-schema@^0.42.0:
     typescript "^3.5.3"
     yargs "^14.0.0"
 
-typescript@^3.4.5, typescript@^3.5.3, typescript@^3.8.3, typescript@^3.9.5, typescript@~3.9.5:
+typescript@^3.4.5, typescript@^3.5.3, typescript@^3.9.6, typescript@~3.9.5:
   version "3.9.6"
   resolved "https://registry.yarnpkg.com/typescript/-/typescript-3.9.6.tgz#8f3e0198a34c3ae17091b35571d3afd31999365a"
   integrity sha512-Pspx3oKAPJtjNwE92YS05HQoY7z2SFyOpHo9MqJor3BXAGNaPUs83CuVp9VISFkSjyRfiTpmKuAYGJB7S7hOxw==

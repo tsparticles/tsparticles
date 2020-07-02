@@ -7,9 +7,8 @@
     "prettify:src": "prettier --write ./src/",
     "lint": "eslint src --ext .js,.jsx,.ts,.tsx --fix",
     "compile": "tsc",
-    "bundle": "rollup -c",
-    "minify": "uglifyjs dist/tsparticles.shape.spiral.js --output dist/tsparticles.shape.spiral.min.js --source-map \"filename='dist/tsparticles.shape.spiral.min.js.map',url='tsparticles.shape.spiral.min.js.map',content='dist/tsparticles.shape.spiral.js.map'\"",
-    "build": "yarn prettify:src && yarn lint && yarn compile && yarn bundle && yarn minify",
+    "bundle": "webpack -p",
+    "build": "yarn prettify:src && yarn compile && yarn lint && yarn bundle",
     "prepare": "yarn build"
   },
   "repository": {
@@ -53,16 +52,14 @@
   "devDependencies": {
     "@typescript-eslint/eslint-plugin": "^3.3.0",
     "@typescript-eslint/parser": "^3.3.0",
-    "babel-preset-env": "^1.7.0",
     "cpx": "^1.5.0",
+    "terser-webpack-plugin": "^3.0.6",
     "eslint": "^7.2.0",
     "eslint-config-prettier": "^6.11.0",
     "prettier": "^2.0.5",
-    "rollup": "^2.16.0",
-    "rollup-plugin-babel": "^4.4.0",
-    "rollup-plugin-sourcemaps": "^0.6.2",
-    "typescript": "^3.9.5",
-    "uglify-js": "^3.8.1"
+    "typescript": "^3.9.6",
+    "webpack": "^4.43.0",
+    "webpack-cli": "^3.3.12"
   },
   "dependencies": {
     "tsparticles": "^1.17.0-alpha.10"

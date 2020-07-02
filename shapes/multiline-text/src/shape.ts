@@ -65,7 +65,7 @@ function itemFromArray<T>(array: T[], index?: number): T {
 
 async function loadFont(character: IMultilineTextShape): Promise<void> {
     try {
-        console.log('load font', character);
+        console.log("load font", character);
 
         await document.fonts.load(`${character.weight} 36px '${character.font}'`);
     } catch {
@@ -121,21 +121,30 @@ export class MultilineTextDrawer implements IShapeDrawer {
 
         context.font = `${style} ${weight} ${size}px "${font}"`;
 
-        const pos = {
-            x: -radius / 2,
-            y: radius / 2,
-        };
-
         if (fill) {
-            text?.split('\n').forEach((line, index) => {
+            text?.split("\n").forEach((line, index) => {
+                const offsetX = (line.length * radius) / 2;
+
+                const pos = {
+                    x: -offsetX,
+                    y: radius / 2,
+                };
+
                 context.fillText(line, pos.x, pos.y + radius * 2 * index);
             });
         } else {
-            text?.split('\n').forEach((line, index) => {
+            text?.split("\n").forEach((line, index) => {
+                const offsetX = (line.length * radius) / 2;
+
+                const pos = {
+                    x: -offsetX,
+                    y: radius / 2,
+                };
+
                 context.strokeText(line, pos.x, pos.y + radius * 2 * index);
             });
         }
     }
 }
 
-tsParticles.addShape('multiline-text', new MultilineTextDrawer());
+tsParticles.addShape("multiline-text", new MultilineTextDrawer());
