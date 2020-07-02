@@ -35,7 +35,7 @@
     "@angular/cli": "~10.0.0",
     "@angular/compiler-cli": "^10.0.1",
     "@types/node": "^14.0.13",
-    "codelyzer": "^5.1.2",
+    "codelyzer": "^6.0.0",
     "fs": "^0.0.1-security",
     "ng-packagr": "^10.0.0",
     "protractor": "~7.0.0",
