@@ -66,5 +66,6 @@
   },
   "dependencies": {
     "tsparticles": "^1.17.0-alpha.11"
-  }
+  },
+  "gitHead": "56365d27922eb470d02c4a5bd98fb4f124d3aacc"
 }
