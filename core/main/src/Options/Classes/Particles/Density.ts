@@ -1,7 +1,8 @@
 import type { IDensity } from "../../Interfaces/Particles/IDensity";
 import type { RecursivePartial } from "../../../Types/RecursivePartial";
+import type { IOptionLoader } from "../../Interfaces/IOptionLoader";
 
-export class Density implements IDensity {
+export class Density implements IDensity, IOptionLoader<IDensity> {
     /**
      *
      * @deprecated this property is obsolete, please use the new area

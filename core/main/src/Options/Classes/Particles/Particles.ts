@@ -13,8 +13,9 @@ import { Stroke } from "./Stroke";
 import { Collisions } from "./Collisions";
 import { Twinkle } from "./Twinkle/Twinkle";
 import { AnimatableColor } from "./AnimatableColor";
+import type { IOptionLoader } from "../../Interfaces/IOptionLoader";
 
-export class Particles implements IParticles {
+export class Particles implements IParticles, IOptionLoader<IParticles> {
     /**
      *
      * @deprecated this property is obsolete, please use the new links

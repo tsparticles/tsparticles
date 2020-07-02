@@ -1,10 +1,9 @@
 import type { IClickEvent } from "./IClickEvent";
 import type { IHoverEvent } from "./IHoverEvent";
 import type { IDivEvent } from "./IDivEvent";
-import type { IOptionLoader } from "../../IOptionLoader";
-import { SingleOrMultiple } from "../../../../Types/SingleOrMultiple";
+import type { SingleOrMultiple } from "../../../../Types/SingleOrMultiple";
 
-export interface IEvents extends IOptionLoader<IEvents> {
+export interface IEvents {
     /**
      * @deprecated use the new onClick instead
      */

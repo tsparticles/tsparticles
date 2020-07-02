@@ -1,8 +1,9 @@
 import type { IAttract } from "../../Interfaces/Particles/IAttract";
 import type { ICoordinates } from "../../../Core/Interfaces/ICoordinates";
 import type { RecursivePartial } from "../../../Types/RecursivePartial";
+import type { IOptionLoader } from "../../Interfaces/IOptionLoader";
 
-export class Attract implements IAttract {
+export class Attract implements IAttract, IOptionLoader<IAttract> {
     /**
      *
      * @deprecated this property is obsolete, please use the new rotate.x

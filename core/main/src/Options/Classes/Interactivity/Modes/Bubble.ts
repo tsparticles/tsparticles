@@ -3,8 +3,9 @@ import type { RecursivePartial } from "../../../../Types/RecursivePartial";
 import type { SingleOrMultiple } from "../../../../Types/SingleOrMultiple";
 import { BubbleDiv } from "./BubbleDiv";
 import { BubbleBase } from "./BubbleBase";
+import type { IOptionLoader } from "../../../Interfaces/IOptionLoader";
 
-export class Bubble extends BubbleBase implements IBubble {
+export class Bubble extends BubbleBase implements IBubble, IOptionLoader<IBubble> {
     public divs?: SingleOrMultiple<BubbleDiv>;
 
     public load(data?: RecursivePartial<IBubble>): void {

@@ -1,7 +1,6 @@
-import type { IOptionLoader } from "../../IOptionLoader";
 import type { IColor } from "../../../../Core/Interfaces/IColor";
 
-export interface IGrabLinks extends IOptionLoader<IGrabLinks> {
+export interface IGrabLinks {
     opacity: number;
     color?: string | IColor;
 }

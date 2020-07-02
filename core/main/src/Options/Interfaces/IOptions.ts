@@ -1,6 +1,5 @@
 import type { IInteractivity } from "./Interactivity/IInteractivity";
 import type { IParticles } from "./Particles/IParticles";
-import type { IOptionLoader } from "./IOptionLoader";
 import type { IBackgroundMask } from "./BackgroundMask/IBackgroundMask";
 import type { IBackground } from "./Background/IBackground";
 import type { IInfection } from "./Infection/IInfection";
@@ -8,7 +7,7 @@ import type { IInfection } from "./Infection/IInfection";
 /**
  * The Options interface, defines all the options that can be used by `tsParticles`
  */
-export interface IOptions extends IOptionLoader<IOptions> {
+export interface IOptions {
     /**
      * Background options, these background options will be used to the canvas element, they are all CSS properties
      */

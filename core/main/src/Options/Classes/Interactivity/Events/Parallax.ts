@@ -1,7 +1,8 @@
 import type { IParallax } from "../../../Interfaces/Interactivity/Events/IParallax";
 import type { RecursivePartial } from "../../../../Types/RecursivePartial";
+import type { IOptionLoader } from "../../../Interfaces/IOptionLoader";
 
-export class Parallax implements IParallax {
+export class Parallax implements IParallax, IOptionLoader<IParallax> {
     public enable: boolean;
     public force: number;
     public smooth: number;

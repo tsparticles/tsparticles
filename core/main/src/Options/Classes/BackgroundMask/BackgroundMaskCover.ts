@@ -1,8 +1,9 @@
 import type { RecursivePartial } from "../../../Types/RecursivePartial";
 import { OptionsColor } from "../OptionsColor";
 import type { IBackgroundMaskCover } from "../../Interfaces/BackgroundMask/IBackgroundMaskCover";
+import type { IOptionLoader } from "../../Interfaces/IOptionLoader";
 
-export class BackgroundMaskCover implements IBackgroundMaskCover {
+export class BackgroundMaskCover implements IBackgroundMaskCover, IOptionLoader<IBackgroundMaskCover> {
     public color: OptionsColor;
     public opacity: number;
 

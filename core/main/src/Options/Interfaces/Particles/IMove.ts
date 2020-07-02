@@ -1,10 +1,9 @@
 import type { IAttract } from "./IAttract";
 import type { MoveDirection, OutMode } from "../../../Enums";
-import type { IOptionLoader } from "../IOptionLoader";
 import type { ITrail } from "./ITrail";
-import { INoise } from "./Noise/INoise";
+import type { INoise } from "./Noise/INoise";
 
-export interface IMove extends IOptionLoader<IMove> {
+export interface IMove {
     angle: number;
     attract: IAttract;
 

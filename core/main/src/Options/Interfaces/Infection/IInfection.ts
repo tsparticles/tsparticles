@@ -1,7 +1,6 @@
-import type { IOptionLoader } from "../IOptionLoader";
 import type { IInfectionStage } from "./IInfectionStage";
 
-export interface IInfection extends IOptionLoader<IInfection> {
+export interface IInfection {
     cure: boolean;
     delay: number;
     enable: boolean;

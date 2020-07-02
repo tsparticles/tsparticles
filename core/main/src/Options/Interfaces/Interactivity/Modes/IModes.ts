@@ -5,10 +5,9 @@ import type { IPush } from "./IPush";
 import type { IRemove } from "./IRemove";
 import type { IRepulse } from "./IRepulse";
 import type { ISlow } from "./ISlow";
-import type { IOptionLoader } from "../../IOptionLoader";
-import { ITrail } from "./ITrail";
+import type { ITrail } from "./ITrail";
 
-export interface IModes extends IOptionLoader<IModes> {
+export interface IModes {
     bubble: IBubble;
     connect: IConnect;
     grab: IGrab;

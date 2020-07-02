@@ -1,7 +1,6 @@
-import type { IOptionLoader } from "../../IOptionLoader";
 import type { IShapeValues } from "./IShapeValues";
 
-export interface IImageShape extends IShapeValues, IOptionLoader<IImageShape> {
+export interface IImageShape extends IShapeValues {
     /**
      * @deprecated use the new replaceColor instead
      */

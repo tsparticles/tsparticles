@@ -3,8 +3,9 @@ import type { RecursivePartial } from "../../../../Types/RecursivePartial";
 import type { SingleOrMultiple } from "../../../../Types/SingleOrMultiple";
 import { RepulseDiv } from "./RepulseDiv";
 import { RepulseBase } from "./RepulseBase";
+import type { IOptionLoader } from "../../../Interfaces/IOptionLoader";
 
-export class Repulse extends RepulseBase implements IRepulse {
+export class Repulse extends RepulseBase implements IRepulse, IOptionLoader<IRepulse> {
     public divs?: SingleOrMultiple<RepulseDiv>;
 
     public load(data?: RecursivePartial<IRepulse>): void {

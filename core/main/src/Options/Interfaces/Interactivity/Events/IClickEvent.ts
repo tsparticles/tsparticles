@@ -1,11 +1,10 @@
 import type { ClickMode } from "../../../../Enums";
-import type { IOptionLoader } from "../../IOptionLoader";
 import type { SingleOrMultiple } from "../../../../Types/SingleOrMultiple";
 
 /**
  * The canvas click event
  */
-export interface IClickEvent extends IOptionLoader<IClickEvent> {
+export interface IClickEvent {
     /**
      * This property enables or disables the click event
      */

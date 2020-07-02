@@ -1,8 +1,9 @@
 import type { IConnect } from "../../../Interfaces/Interactivity/Modes/IConnect";
 import { ConnectLinks } from "./ConnectLinks";
 import type { RecursivePartial } from "../../../../Types/RecursivePartial";
+import type { IOptionLoader } from "../../../Interfaces/IOptionLoader";
 
-export class Connect implements IConnect {
+export class Connect implements IConnect, IOptionLoader<IConnect> {
     /**
      *
      * @deprecated this property is obsolete, please use the new links

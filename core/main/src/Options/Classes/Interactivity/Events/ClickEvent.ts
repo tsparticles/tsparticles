@@ -2,8 +2,9 @@ import type { IClickEvent } from "../../../Interfaces/Interactivity/Events/IClic
 import { ClickMode } from "../../../../Enums";
 import type { RecursivePartial } from "../../../../Types/RecursivePartial";
 import type { SingleOrMultiple } from "../../../../Types/SingleOrMultiple";
+import type { IOptionLoader } from "../../../Interfaces/IOptionLoader";
 
-export class ClickEvent implements IClickEvent {
+export class ClickEvent implements IClickEvent, IOptionLoader<IClickEvent> {
     /**
      * The click event handler enabling setting
      */

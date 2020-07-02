@@ -1,8 +1,9 @@
 import type { ISizeAnimation } from "../../../Interfaces/Particles/Size/ISizeAnimation";
 import type { RecursivePartial } from "../../../../Types/RecursivePartial";
 import { DestroyType, StartValueType } from "../../../../Enums";
+import type { IOptionLoader } from "../../../Interfaces/IOptionLoader";
 
-export class SizeAnimation implements ISizeAnimation {
+export class SizeAnimation implements ISizeAnimation, IOptionLoader<ISizeAnimation> {
     /**
      *
      * @deprecated this property is obsolete, please use the new minimumValue

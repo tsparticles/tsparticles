@@ -1,7 +1,6 @@
-import type { IOptionLoader } from "../../IOptionLoader";
 import type { DestroyType, StartValueType } from "../../../../Enums";
 
-export interface ISizeAnimation extends IOptionLoader<ISizeAnimation> {
+export interface ISizeAnimation {
     enable: boolean;
 
     /**

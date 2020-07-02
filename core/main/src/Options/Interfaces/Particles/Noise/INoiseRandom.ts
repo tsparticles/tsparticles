@@ -1,6 +1,4 @@
-import type { IOptionLoader } from "../../IOptionLoader";
-
-export interface INoiseRandom extends IOptionLoader<INoiseRandom> {
+export interface INoiseRandom {
     enable: boolean;
     minimumValue: number;
 }

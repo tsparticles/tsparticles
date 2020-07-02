@@ -8,8 +8,9 @@ import { Repulse } from "./Repulse";
 import { Slow } from "./Slow";
 import type { RecursivePartial } from "../../../../Types/RecursivePartial";
 import { Trail } from "./Trail";
+import type { IOptionLoader } from "../../../Interfaces/IOptionLoader";
 
-export class Modes implements IModes {
+export class Modes implements IModes, IOptionLoader<IModes> {
     public bubble: Bubble;
     public connect: Connect;
     public grab: Grab;

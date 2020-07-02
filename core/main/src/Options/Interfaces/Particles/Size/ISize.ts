@@ -1,8 +1,7 @@
 import type { ISizeAnimation } from "./ISizeAnimation";
-import type { IOptionLoader } from "../../IOptionLoader";
 import type { ISizeRandom } from "./ISizeRandom";
 
-export interface ISize extends IOptionLoader<ISize> {
+export interface ISize {
     /**
      * @deprecated use the new animation instead
      */

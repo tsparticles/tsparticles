@@ -2,8 +2,9 @@ import type { IOpacity } from "../../../Interfaces/Particles/Opacity/IOpacity";
 import { OpacityAnimation } from "./OpacityAnimation";
 import type { RecursivePartial } from "../../../../Types/RecursivePartial";
 import { OpacityRandom } from "./OpacityRandom";
+import type { IOptionLoader } from "../../../Interfaces/IOptionLoader";
 
-export class Opacity implements IOpacity {
+export class Opacity implements IOpacity, IOptionLoader<IOpacity> {
     /**
      *
      * @deprecated this property is obsolete, please use the new animation

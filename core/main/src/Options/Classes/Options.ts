@@ -6,8 +6,9 @@ import type { RecursivePartial } from "../../Types/RecursivePartial";
 import { Background } from "./Background/Background";
 import { Infection } from "./Infection/Infection";
 import { Plugins } from "../../Utils";
+import type { IOptionLoader } from "../Interfaces/IOptionLoader";
 
-export class Options implements IOptions {
+export class Options implements IOptions, IOptionLoader<IOptions> {
     /**
      * @deprecated this property is obsolete, please use the new fpsLimit
      */

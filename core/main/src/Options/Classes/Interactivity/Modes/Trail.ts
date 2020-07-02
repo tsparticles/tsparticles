@@ -2,8 +2,9 @@ import type { ITrail } from "../../../Interfaces/Interactivity/Modes/ITrail";
 import type { IParticles } from "../../../Interfaces/Particles/IParticles";
 import type { RecursivePartial } from "../../../../Types/RecursivePartial";
 import { Utils } from "../../../../Utils";
+import type { IOptionLoader } from "../../../Interfaces/IOptionLoader";
 
-export class Trail implements ITrail {
+export class Trail implements ITrail, IOptionLoader<ITrail> {
     public delay: number;
     public particles?: RecursivePartial<IParticles>;
     public quantity: number;

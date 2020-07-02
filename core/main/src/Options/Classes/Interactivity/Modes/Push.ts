@@ -1,7 +1,8 @@
 import type { IPush } from "../../../Interfaces/Interactivity/Modes/IPush";
 import type { RecursivePartial } from "../../../../Types/RecursivePartial";
+import type { IOptionLoader } from "../../../Interfaces/IOptionLoader";
 
-export class Push implements IPush {
+export class Push implements IPush, IOptionLoader<IPush> {
     /**
      *
      * @deprecated this property is obsolete, please use the new quantity

@@ -1,7 +1,8 @@
 import type { IRemove } from "../../../Interfaces/Interactivity/Modes/IRemove";
 import type { RecursivePartial } from "../../../../Types/RecursivePartial";
+import type { IOptionLoader } from "../../../Interfaces/IOptionLoader";
 
-export class Remove implements IRemove {
+export class Remove implements IRemove, IOptionLoader<IRemove> {
     /**
      *
      * @deprecated this property is obsolete, please use the new quantity

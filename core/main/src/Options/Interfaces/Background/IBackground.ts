@@ -4,7 +4,7 @@ import type { IOptionLoader } from "../IOptionLoader";
 /**
  * The background options used by the canvas element, it's not drawn, it's applied in the style
  */
-export interface IBackground extends IOptionLoader<IBackground> {
+export interface IBackground {
     /**
      * The background color used by the canvas element, string or [[IColor]] value
      */

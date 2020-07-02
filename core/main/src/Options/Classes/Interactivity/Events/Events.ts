@@ -3,9 +3,10 @@ import { ClickEvent } from "./ClickEvent";
 import { DivEvent } from "./DivEvent";
 import { HoverEvent } from "./HoverEvent";
 import type { RecursivePartial } from "../../../../Types/RecursivePartial";
-import { SingleOrMultiple } from "../../../../Types/SingleOrMultiple";
+import type { SingleOrMultiple } from "../../../../Types/SingleOrMultiple";
+import type { IOptionLoader } from "../../../Interfaces/IOptionLoader";
 
-export class Events implements IEvents {
+export class Events implements IEvents, IOptionLoader<IEvents> {
     /**
      *
      * @deprecated this property is obsolete, please use the new onClick

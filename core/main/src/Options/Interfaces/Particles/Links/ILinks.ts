@@ -1,9 +1,8 @@
-import type { IOptionLoader } from "../../IOptionLoader";
 import type { ILinksShadow } from "./ILinksShadow";
-import { ILinksTriangle } from "./ILinksTriangle";
-import { IColor } from "../../../../Core/Interfaces/IColor";
+import type { ILinksTriangle } from "./ILinksTriangle";
+import type { IColor } from "../../../../Core/Interfaces/IColor";
 
-export interface ILinks extends IOptionLoader<ILinks> {
+export interface ILinks {
     id?: string;
     blink: boolean;
     color: string | IColor;

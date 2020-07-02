@@ -1,6 +1,4 @@
-import type { IOptionLoader } from "../../IOptionLoader";
-
-export interface IOpacityAnimation extends IOptionLoader<IOpacityAnimation> {
+export interface IOpacityAnimation {
     enable: boolean;
     speed: number;
 

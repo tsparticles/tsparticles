@@ -1548,100 +1548,10 @@
       "enum": ["bounce", "bounce-horizontal", "bounce-vertical", "destroy", "out"],
       "type": "string"
     },
-    "RecursivePartial<(data?:RecursivePartial<IAttract>|undefined)=>void>": {
-      "type": "object"
-    },
-    "RecursivePartial<(data?:RecursivePartial<ICharacterShape>|undefined)=>void>": {
-      "type": "object"
-    },
-    "RecursivePartial<(data?:RecursivePartial<ICollisions>|undefined)=>void>": {
-      "type": "object"
-    },
-    "RecursivePartial<(data?:RecursivePartial<IColorAnimation>|undefined)=>void>": {
-      "type": "object"
-    },
-    "RecursivePartial<(data?:RecursivePartial<IDensity>|undefined)=>void>": {
-      "type": "object"
-    },
-    "RecursivePartial<(data?:RecursivePartial<IImageShape>|undefined)=>void>": {
-      "type": "object"
-    },
-    "RecursivePartial<(data?:RecursivePartial<ILinks>|undefined)=>void>": {
-      "type": "object"
-    },
-    "RecursivePartial<(data?:RecursivePartial<ILinksShadow>|undefined)=>void>": {
-      "type": "object"
-    },
-    "RecursivePartial<(data?:RecursivePartial<ILinksTriangle>|undefined)=>void>": {
-      "type": "object"
-    },
-    "RecursivePartial<(data?:RecursivePartial<IMove>|undefined)=>void>": {
-      "type": "object"
-    },
-    "RecursivePartial<(data?:RecursivePartial<INoise>|undefined)=>void>": {
-      "type": "object"
-    },
-    "RecursivePartial<(data?:RecursivePartial<INoiseDelay>|undefined)=>void>": {
-      "type": "object"
-    },
-    "RecursivePartial<(data?:RecursivePartial<INoiseRandom>|undefined)=>void>": {
-      "type": "object"
-    },
-    "RecursivePartial<(data?:RecursivePartial<IOpacity>|undefined)=>void>": {
-      "type": "object"
-    },
-    "RecursivePartial<(data?:RecursivePartial<IOpacityAnimation>|undefined)=>void>": {
-      "type": "object"
-    },
-    "RecursivePartial<(data?:RecursivePartial<IOptionsColor>|undefined)=>void>": {
-      "type": "object"
-    },
-    "RecursivePartial<(data?:RecursivePartial<IParticles>|undefined)=>void>": {
-      "type": "object"
-    },
-    "RecursivePartial<(data?:RecursivePartial<IParticlesNumber>|undefined)=>void>": {
-      "type": "object"
-    },
-    "RecursivePartial<(data?:RecursivePartial<IPolygonShape>|undefined)=>void>": {
-      "type": "object"
-    },
-    "RecursivePartial<(data?:RecursivePartial<IRotate>|undefined)=>void>": {
-      "type": "object"
-    },
-    "RecursivePartial<(data?:RecursivePartial<IRotateAnimation>|undefined)=>void>": {
-      "type": "object"
-    },
-    "RecursivePartial<(data?:RecursivePartial<IShadow>|undefined)=>void>": {
-      "type": "object"
-    },
-    "RecursivePartial<(data?:RecursivePartial<IShape>|undefined)=>void>": {
-      "type": "object"
-    },
-    "RecursivePartial<(data?:RecursivePartial<ISize>|undefined)=>void>": {
-      "type": "object"
-    },
-    "RecursivePartial<(data?:RecursivePartial<ISizeAnimation>|undefined)=>void>": {
-      "type": "object"
-    },
-    "RecursivePartial<(data?:RecursivePartial<IStroke>|undefined)=>void>": {
-      "type": "object"
-    },
-    "RecursivePartial<(data?:RecursivePartial<ITrail>|undefined)=>void>": {
-      "type": "object"
-    },
-    "RecursivePartial<(data?:RecursivePartial<ITwinkle>|undefined)=>void>": {
-      "type": "object"
-    },
-    "RecursivePartial<(data?:RecursivePartial<ITwinkleValues>|undefined)=>void>": {
-      "type": "object"
-    },
     "RecursivePartial<IAnimatableColor>": {
       "properties": {
         "animation": {
           "$ref": "#/definitions/RecursivePartial<IColorAnimation>"
-        },
-        "load": {
-          "$ref": "#/definitions/RecursivePartial<(data?:RecursivePartial<IOptionsColor>|undefined)=>void>"
         },
         "value": {
           "anyOf": [
@@ -1686,9 +1596,6 @@
         "enable": {
           "type": "boolean"
         },
-        "load": {
-          "$ref": "#/definitions/RecursivePartial<(data?:RecursivePartial<IAttract>|undefined)=>void>"
-        },
         "rotate": {
           "$ref": "#/definitions/RecursivePartial<ICoordinates>"
         },
@@ -1711,9 +1618,6 @@
         },
         "font": {
           "type": "string"
-        },
-        "load": {
-          "$ref": "#/definitions/RecursivePartial<(data?:RecursivePartial<ICharacterShape>|undefined)=>void>"
         },
         "particles": {
           "$ref": "#/definitions/RecursivePartial<IParticles>"
@@ -1751,9 +1655,6 @@
         "font": {
           "type": "string"
         },
-        "load": {
-          "$ref": "#/definitions/RecursivePartial<(data?:RecursivePartial<ICharacterShape>|undefined)=>void>"
-        },
         "particles": {
           "$ref": "#/definitions/RecursivePartial<IParticles>"
         },
@@ -1784,9 +1685,6 @@
         "enable": {
           "type": "boolean"
         },
-        "load": {
-          "$ref": "#/definitions/RecursivePartial<(data?:RecursivePartial<ICollisions>|undefined)=>void>"
-        },
         "mode": {
           "enum": ["absorb", "bounce", "destroy"],
           "type": "string"
@@ -1798,9 +1696,6 @@
       "properties": {
         "enable": {
           "type": "boolean"
-        },
-        "load": {
-          "$ref": "#/definitions/RecursivePartial<(data?:RecursivePartial<IColorAnimation>|undefined)=>void>"
         },
         "speed": {
           "type": "number"
@@ -1833,9 +1728,6 @@
         "factor": {
           "type": "number"
         },
-        "load": {
-          "$ref": "#/definitions/RecursivePartial<(data?:RecursivePartial<IDensity>|undefined)=>void>"
-        },
         "value_area": {
           "type": "number"
         }
@@ -1852,9 +1744,6 @@
         },
         "height": {
           "type": "number"
-        },
-        "load": {
-          "$ref": "#/definitions/RecursivePartial<(data?:RecursivePartial<IImageShape>|undefined)=>void>"
         },
         "particles": {
           "$ref": "#/definitions/RecursivePartial<IParticles>"
@@ -1884,9 +1773,6 @@
         },
         "height": {
           "type": "number"
-        },
-        "load": {
-          "$ref": "#/definitions/RecursivePartial<(data?:RecursivePartial<IImageShape>|undefined)=>void>"
         },
         "particles": {
           "$ref": "#/definitions/RecursivePartial<IParticles>"
@@ -1933,9 +1819,6 @@
         "id": {
           "type": "string"
         },
-        "load": {
-          "$ref": "#/definitions/RecursivePartial<(data?:RecursivePartial<ILinks>|undefined)=>void>"
-        },
         "opacity": {
           "type": "number"
         },
@@ -1971,9 +1854,6 @@
         },
         "enable": {
           "type": "boolean"
-        },
-        "load": {
-          "$ref": "#/definitions/RecursivePartial<(data?:RecursivePartial<ILinksShadow>|undefined)=>void>"
         }
       },
       "type": "object"
@@ -1992,9 +1872,6 @@
         },
         "enable": {
           "type": "boolean"
-        },
-        "load": {
-          "$ref": "#/definitions/RecursivePartial<(data?:RecursivePartial<ILinksTriangle>|undefined)=>void>"
         },
         "opacity": {
           "type": "number"
@@ -2022,9 +1899,6 @@
         },
         "enable": {
           "type": "boolean"
-        },
-        "load": {
-          "$ref": "#/definitions/RecursivePartial<(data?:RecursivePartial<IMove>|undefined)=>void>"
         },
         "noise": {
           "$ref": "#/definitions/RecursivePartial<INoise>"
@@ -2065,18 +1939,12 @@
         },
         "enable": {
           "type": "boolean"
-        },
-        "load": {
-          "$ref": "#/definitions/RecursivePartial<(data?:RecursivePartial<INoise>|undefined)=>void>"
         }
       },
       "type": "object"
     },
     "RecursivePartial<INoiseDelay>": {
       "properties": {
-        "load": {
-          "$ref": "#/definitions/RecursivePartial<(data?:RecursivePartial<INoiseDelay>|undefined)=>void>"
-        },
         "random": {
           "$ref": "#/definitions/RecursivePartial<INoiseRandom>"
         },
@@ -2091,9 +1959,6 @@
         "enable": {
           "type": "boolean"
         },
-        "load": {
-          "$ref": "#/definitions/RecursivePartial<(data?:RecursivePartial<INoiseRandom>|undefined)=>void>"
-        },
         "minimumValue": {
           "type": "number"
         }
@@ -2107,9 +1972,6 @@
         },
         "animation": {
           "$ref": "#/definitions/RecursivePartial<IOpacityAnimation>"
-        },
-        "load": {
-          "$ref": "#/definitions/RecursivePartial<(data?:RecursivePartial<IOpacity>|undefined)=>void>"
         },
         "random": {
           "anyOf": [
@@ -2131,9 +1993,6 @@
       "properties": {
         "enable": {
           "type": "boolean"
-        },
-        "load": {
-          "$ref": "#/definitions/RecursivePartial<(data?:RecursivePartial<IOpacityAnimation>|undefined)=>void>"
         },
         "minimumValue": {
           "type": "number"
@@ -2166,9 +2025,6 @@
         },
         "links": {
           "$ref": "#/definitions/RecursivePartial<ILinks>"
-        },
-        "load": {
-          "$ref": "#/definitions/RecursivePartial<(data?:RecursivePartial<IParticles>|undefined)=>void>"
         },
         "move": {
           "$ref": "#/definitions/RecursivePartial<IMove>"
@@ -2218,9 +2074,6 @@
         "limit": {
           "type": "number"
         },
-        "load": {
-          "$ref": "#/definitions/RecursivePartial<(data?:RecursivePartial<IParticlesNumber>|undefined)=>void>"
-        },
         "max": {
           "type": "number"
         },
@@ -2237,9 +2090,6 @@
         },
         "fill": {
           "type": "boolean"
-        },
-        "load": {
-          "$ref": "#/definitions/RecursivePartial<(data?:RecursivePartial<IPolygonShape>|undefined)=>void>"
         },
         "nb_sides": {
           "type": "number"
@@ -2260,9 +2110,6 @@
         },
         "fill": {
           "type": "boolean"
-        },
-        "load": {
-          "$ref": "#/definitions/RecursivePartial<(data?:RecursivePartial<IPolygonShape>|undefined)=>void>"
         },
         "nb_sides": {
           "type": "number"
@@ -2285,9 +2132,6 @@
           "enum": ["clockwise", "counter-clockwise", "random"],
           "type": "string"
         },
-        "load": {
-          "$ref": "#/definitions/RecursivePartial<(data?:RecursivePartial<IRotate>|undefined)=>void>"
-        },
         "path": {
           "type": "boolean"
         },
@@ -2304,9 +2148,6 @@
       "properties": {
         "enable": {
           "type": "boolean"
-        },
-        "load": {
-          "$ref": "#/definitions/RecursivePartial<(data?:RecursivePartial<IRotateAnimation>|undefined)=>void>"
         },
         "speed": {
           "type": "number"
@@ -2334,9 +2175,6 @@
         },
         "enable": {
           "type": "boolean"
-        },
-        "load": {
-          "$ref": "#/definitions/RecursivePartial<(data?:RecursivePartial<IShadow>|undefined)=>void>"
         },
         "offset": {
           "$ref": "#/definitions/RecursivePartial<ICoordinates>"
@@ -2387,9 +2225,6 @@
               "type": "array"
             }
           ]
-        },
-        "load": {
-          "$ref": "#/definitions/RecursivePartial<(data?:RecursivePartial<IShape>|undefined)=>void>"
         },
         "options": {
           "$ref": "#/definitions/RecursivePartial<ShapeData>"
@@ -2444,9 +2279,6 @@
         "animation": {
           "$ref": "#/definitions/RecursivePartial<ISizeAnimation>"
         },
-        "load": {
-          "$ref": "#/definitions/RecursivePartial<(data?:RecursivePartial<ISize>|undefined)=>void>"
-        },
         "random": {
           "anyOf": [
             {
@@ -2471,9 +2303,6 @@
         },
         "enable": {
           "type": "boolean"
-        },
-        "load": {
-          "$ref": "#/definitions/RecursivePartial<(data?:RecursivePartial<ISizeAnimation>|undefined)=>void>"
         },
         "minimumValue": {
           "type": "number"
@@ -2506,9 +2335,6 @@
             }
           ]
         },
-        "load": {
-          "$ref": "#/definitions/RecursivePartial<(data?:RecursivePartial<IStroke>|undefined)=>void>"
-        },
         "opacity": {
           "type": "number"
         },
@@ -2529,9 +2355,6 @@
               "type": "string"
             }
           ]
-        },
-        "load": {
-          "$ref": "#/definitions/RecursivePartial<(data?:RecursivePartial<IStroke>|undefined)=>void>"
         },
         "opacity": {
           "type": "number"
@@ -2559,9 +2382,6 @@
         },
         "length": {
           "type": "number"
-        },
-        "load": {
-          "$ref": "#/definitions/RecursivePartial<(data?:RecursivePartial<ITrail>|undefined)=>void>"
         }
       },
       "type": "object"
@@ -2570,9 +2390,6 @@
       "properties": {
         "lines": {
           "$ref": "#/definitions/RecursivePartial<ITwinkleValues>"
-        },
-        "load": {
-          "$ref": "#/definitions/RecursivePartial<(data?:RecursivePartial<ITwinkle>|undefined)=>void>"
         },
         "particles": {
           "$ref": "#/definitions/RecursivePartial<ITwinkleValues>"
@@ -2597,9 +2414,6 @@
         },
         "frequency": {
           "type": "number"
-        },
-        "load": {
-          "$ref": "#/definitions/RecursivePartial<(data?:RecursivePartial<ITwinkleValues>|undefined)=>void>"
         },
         "opacity": {
           "type": "number"

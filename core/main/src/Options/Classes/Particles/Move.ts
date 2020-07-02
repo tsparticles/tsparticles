@@ -4,8 +4,9 @@ import { MoveDirection, OutMode } from "../../../Enums";
 import { Trail } from "./Trail";
 import type { RecursivePartial } from "../../../Types/RecursivePartial";
 import { Noise } from "./Noise/Noise";
+import type { IOptionLoader } from "../../Interfaces/IOptionLoader";
 
-export class Move implements IMove {
+export class Move implements IMove, IOptionLoader<IMove> {
     /**
      * @deprecated this property is obsolete, please use the new collisions object on particles options
      */

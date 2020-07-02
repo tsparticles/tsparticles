@@ -1,7 +1,8 @@
 import type { IConnectLinks } from "../../../Interfaces/Interactivity/Modes/IConnectLinks";
 import type { RecursivePartial } from "../../../../Types/RecursivePartial";
+import type { IOptionLoader } from "../../../Interfaces/IOptionLoader";
 
-export class ConnectLinks implements IConnectLinks {
+export class ConnectLinks implements IConnectLinks, IOptionLoader<IConnectLinks> {
     public opacity: number;
 
     constructor() {

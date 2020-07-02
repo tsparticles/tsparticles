@@ -1,6 +1,4 @@
-import type { IOptionLoader } from "../IOptionLoader";
-
-export interface IColorAnimation extends IOptionLoader<IColorAnimation> {
+export interface IColorAnimation {
     enable: boolean;
     speed: number;
     sync: boolean;

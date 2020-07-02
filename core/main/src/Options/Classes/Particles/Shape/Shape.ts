@@ -2,15 +2,16 @@ import type { IShape } from "../../../Interfaces/Particles/Shape/IShape";
 import { ShapeType } from "../../../../Enums";
 import type { RecursivePartial } from "../../../../Types/RecursivePartial";
 import type { SingleOrMultiple } from "../../../../Types/SingleOrMultiple";
-import { ShapeData } from "../../../../Types/ShapeData";
+import type { ShapeData } from "../../../../Types/ShapeData";
 import { Stroke } from "../Stroke";
 import { Utils } from "../../../../Utils";
-import { IShapeValues } from "../../../Interfaces/Particles/Shape/IShapeValues";
-import { IPolygonShape } from "../../../Interfaces/Particles/Shape/IPolygonShape";
-import { IImageShape } from "../../../Interfaces/Particles/Shape/IImageShape";
-import { ICharacterShape } from "../../../Interfaces/Particles/Shape/ICharacterShape";
+import type { IShapeValues } from "../../../Interfaces/Particles/Shape/IShapeValues";
+import type { IPolygonShape } from "../../../Interfaces/Particles/Shape/IPolygonShape";
+import type { IImageShape } from "../../../Interfaces/Particles/Shape/IImageShape";
+import type { ICharacterShape } from "../../../Interfaces/Particles/Shape/ICharacterShape";
+import type { IOptionLoader } from "../../../Interfaces/IOptionLoader";
 
-export class Shape implements IShape {
+export class Shape implements IShape, IOptionLoader<IShape> {
     /**
      * @deprecated this property was integrated in custom shape management
      */

@@ -1,10 +1,9 @@
-import type { IOptionLoader } from "../IOptionLoader";
 import type { IColor } from "../../../Core/Interfaces/IColor";
 
 /**
  * The background cover customization
  */
-export interface IBackgroundMaskCover extends IOptionLoader<IBackgroundMaskCover> {
+export interface IBackgroundMaskCover {
     /**
      * The background color hiding all elements behind, string or [[IColor]] value.
      */

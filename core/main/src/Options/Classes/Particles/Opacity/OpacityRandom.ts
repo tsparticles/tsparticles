@@ -1,7 +1,8 @@
 import type { RecursivePartial } from "../../../../Types/RecursivePartial";
 import type { IOpacityRandom } from "../../../Interfaces/Particles/Opacity/IOpacityRandom";
+import type { IOptionLoader } from "../../../Interfaces/IOptionLoader";
 
-export class OpacityRandom implements IOpacityRandom {
+export class OpacityRandom implements IOpacityRandom, IOptionLoader<IOpacityRandom> {
     public enable: boolean;
     public minimumValue: number;
 

@@ -2,8 +2,9 @@ import type { ISize } from "../../../Interfaces/Particles/Size/ISize";
 import { SizeAnimation } from "./SizeAnimation";
 import type { RecursivePartial } from "../../../../Types/RecursivePartial";
 import { SizeRandom } from "./SizeRandom";
+import type { IOptionLoader } from "../../../Interfaces/IOptionLoader";
 
-export class Size implements ISize {
+export class Size implements ISize, IOptionLoader<ISize> {
     /**
      *
      * @deprecated this property is obsolete, please use the new animation

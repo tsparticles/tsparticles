@@ -1,8 +1,9 @@
 import type { IInfection } from "../../Interfaces/Infection/IInfection";
 import type { RecursivePartial } from "../../../Types/RecursivePartial";
 import { InfectionStage } from "./InfectionStage";
+import type { IOptionLoader } from "../../Interfaces/IOptionLoader";
 
-export class Infection implements IInfection {
+export class Infection implements IInfection, IOptionLoader<IInfection> {
     public cure: boolean;
     public delay: number;
     public enable: boolean;

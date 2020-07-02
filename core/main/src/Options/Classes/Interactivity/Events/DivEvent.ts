@@ -2,8 +2,9 @@ import type { IDivEvent } from "../../../Interfaces/Interactivity/Events/IDivEve
 import { DivMode, DivType } from "../../../../Enums";
 import type { RecursivePartial } from "../../../../Types/RecursivePartial";
 import type { SingleOrMultiple } from "../../../../Types/SingleOrMultiple";
+import type { IOptionLoader } from "../../../Interfaces/IOptionLoader";
 
-export class DivEvent implements IDivEvent {
+export class DivEvent implements IDivEvent, IOptionLoader<IDivEvent> {
     /**
      * The element id to detect the event
      * @deprecated this property is obsolete, please use the new ids

@@ -1,6 +1,4 @@
-import type { IOptionLoader } from "../../IOptionLoader";
-
-export interface IRemove extends IOptionLoader<IRemove> {
+export interface IRemove {
     /**
      * @deprecated use the new quantity instead
      */

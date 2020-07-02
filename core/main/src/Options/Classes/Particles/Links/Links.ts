@@ -3,8 +3,9 @@ import { LinksShadow } from "./LinksShadow";
 import type { RecursivePartial } from "../../../../Types/RecursivePartial";
 import { LinksTriangle } from "./LinksTriangle";
 import { OptionsColor } from "../../OptionsColor";
+import type { IOptionLoader } from "../../../Interfaces/IOptionLoader";
 
-export class Links implements ILinks {
+export class Links implements ILinks, IOptionLoader<ILinks> {
     public id?: string;
     public blink: boolean;
     public color: OptionsColor;

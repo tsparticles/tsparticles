@@ -1,7 +1,6 @@
 import { IShapeValues } from "./IShapeValues";
-import { IOptionLoader } from "../../IOptionLoader";
 
-export interface IStarShape extends IShapeValues, IOptionLoader<IStarShape> {
+export interface IStarShape extends IShapeValues {
     /**
      * @deprecated use the new sides instead
      */

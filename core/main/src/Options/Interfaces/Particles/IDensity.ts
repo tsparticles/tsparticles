@@ -1,6 +1,4 @@
-import type { IOptionLoader } from "../IOptionLoader";
-
-export interface IDensity extends IOptionLoader<IDensity> {
+export interface IDensity {
     area: number;
     enable: boolean;
     factor: number;

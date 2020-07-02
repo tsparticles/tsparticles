@@ -1,7 +1,6 @@
 import type { IDensity } from "./IDensity";
-import type { IOptionLoader } from "../IOptionLoader";
 
-export interface IParticlesNumber extends IOptionLoader<IParticlesNumber> {
+export interface IParticlesNumber {
     density: IDensity;
     limit: number;
 

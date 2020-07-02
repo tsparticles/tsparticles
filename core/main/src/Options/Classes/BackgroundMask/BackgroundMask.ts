@@ -3,8 +3,9 @@ import type { RecursivePartial } from "../../../Types/RecursivePartial";
 import type { IBackgroundMaskCover } from "../../Interfaces/BackgroundMask/IBackgroundMaskCover";
 import { BackgroundMaskCover } from "./BackgroundMaskCover";
 import type { IColor } from "../../../Core/Interfaces/IColor";
+import type { IOptionLoader } from "../../Interfaces/IOptionLoader";
 
-export class BackgroundMask implements IBackgroundMask {
+export class BackgroundMask implements IBackgroundMask, IOptionLoader<IBackgroundMask> {
     /**
      * Background covering color
      */

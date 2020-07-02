@@ -1,8 +1,9 @@
 import type { IGrab } from "../../../Interfaces/Interactivity/Modes/IGrab";
 import { GrabLinks } from "./GrabLinks";
 import type { RecursivePartial } from "../../../../Types/RecursivePartial";
+import type { IOptionLoader } from "../../../Interfaces/IOptionLoader";
 
-export class Grab implements IGrab {
+export class Grab implements IGrab, IOptionLoader<IGrab> {
     /**
      *
      * @deprecated this property is obsolete, please use the new links

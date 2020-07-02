@@ -3,8 +3,9 @@ import { HoverMode, InteractivityDetect } from "../../../Enums";
 import { Events } from "./Events/Events";
 import { Modes } from "./Modes/Modes";
 import type { RecursivePartial } from "../../../Types/RecursivePartial";
+import type { IOptionLoader } from "../../Interfaces/IOptionLoader";
 
-export class Interactivity implements IInteractivity {
+export class Interactivity implements IInteractivity, IOptionLoader<IInteractivity> {
     /**
      *
      * @deprecated this property is obsolete, please use the new detectsOn
