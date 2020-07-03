@@ -47,6 +47,5 @@
   },
   "peerDependencies": {
     "preact": "^10.0.0"
-  },
-  "gitHead": "56365d27922eb470d02c4a5bd98fb4f124d3aacc"
+  }
 }

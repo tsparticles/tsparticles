@@ -70,6 +70,5 @@
     "rollup-plugin-sourcemaps": "^0.6.2",
     "typescript": "^3.9.6",
     "uglify-js": "^3.9.4"
-  },
-  "gitHead": "56365d27922eb470d02c4a5bd98fb4f124d3aacc"
+  }
 }
