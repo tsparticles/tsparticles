@@ -203,12 +203,18 @@ export class Particles {
         this.pushing = false;
     }
 
-    public addParticle(position?: ICoordinates, overrideOptions?: RecursivePartial<IParticles>): Particle {
-        const particle = new Particle(this.container, position, overrideOptions);
+    public addParticle(position?: ICoordinates, overrideOptions?: RecursivePartial<IParticles>): Particle | undefined {
+        try {
+            const particle = new Particle(this.container, position, overrideOptions);
 
-        this.array.push(particle);
+            this.array.push(particle);
 
-        return particle;
+            return particle;
+        } catch {
+            console.log("error adding particle");
+
+            return;
+        }
     }
 
     public removeQuantity(quantity: number): void {

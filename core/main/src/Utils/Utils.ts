@@ -213,12 +213,12 @@ export class Utils {
     }
 
     public static itemFromArray<T>(array: T[], index?: number): T {
-        return array[index !== undefined ? index : this.arrayRandomIndex(array)];
+        return array[index ?? this.arrayRandomIndex(array)];
     }
 
     public static randomInRange(r1: number, r2: number): number {
-        const max = Math.max(r1, r2);
-        const min = Math.min(r1, r2);
+        const max = Math.max(r1, r2),
+            min = Math.min(r1, r2);
 
         return Math.random() * (max - min) + min;
     }
@@ -246,63 +246,60 @@ export class Utils {
                 resolve: (value?: IImage | PromiseLike<IImage> | undefined) => void,
                 reject: (reason?: string) => void
             ) => {
+                if (!source) {
+                    reject("Error tsParticles - No image.src");
+                    return;
+                }
+
                 const image: IImage = {
                     source: source,
                     type: source.substr(source.length - 3),
                 };
 
-                if (source) {
-                    const img = new Image();
+                const img = new Image();
 
-                    img.addEventListener("load", () => {
-                        image.element = img;
+                img.addEventListener("load", () => {
+                    image.element = img;
 
-                        resolve(image);
-                    });
+                    resolve(image);
+                });
 
-                    img.addEventListener("error", () => {
-                        reject(`Error tsParticles - loading image: ${source}`);
-                    });
+                img.addEventListener("error", () => {
+                    reject(`Error tsParticles - loading image: ${source}`);
+                });
 
-                    img.src = source;
-                } else {
-                    reject("Error tsParticles - No image.src");
-                }
+                img.src = source;
             }
         );
     }
 
     public static async downloadSvgImage(source: string): Promise<IImage> {
-        if (source) {
-            const image: IImage = {
-                source: source,
-                type: source.substr(source.length - 3),
-            };
-
-            if (image.type !== "svg") {
-                return this.loadImage(source);
-            }
-
-            const response = await fetch(image.source);
-
-            if (response.ok) {
-                image.svgData = await response.text();
-
-                return image;
-            } else {
-                throw new Error("Error tsParticles - Image not found");
-            }
-        } else {
+        if (!source) {
             throw new Error("Error tsParticles - No image.src");
         }
+
+        const image: IImage = {
+            source: source,
+            type: source.substr(source.length - 3),
+        };
+
+        if (image.type !== "svg") {
+            return this.loadImage(source);
+        }
+
+        const response = await fetch(image.source);
+
+        if (!response.ok) {
+            throw new Error("Error tsParticles - Image not found");
+        }
+
+        image.svgData = await response.text();
+
+        return image;
     }
 
     public static deepExtend(destination: any, ...sources: any[]): any {
-        for (const source of sources) {
-            if (source === undefined || source === null) {
-                continue;
-            }
-
+        for (const source of sources.filter((s) => s !== undefined && s !== null)) {
             if (typeof source !== "object") {
                 destination = source;
 
@@ -339,7 +336,7 @@ export class Utils {
 
     public static isDivModeEnabled(mode: DivMode, divs: SingleOrMultiple<DivEvent>): boolean {
         return divs instanceof Array
-            ? divs.filter((t) => t.enable && Utils.isInArray(mode, t.mode)).length > 0
+            ? !!divs.find((t) => t.enable && Utils.isInArray(mode, t.mode))
             : Utils.isInArray(mode, divs.mode);
     }
 
@@ -380,11 +377,7 @@ export class Utils {
     }
 
     public static divMode<T extends IModeDiv>(divs?: SingleOrMultiple<T>, divId?: string): T | undefined {
-        if (!divId) {
-            return;
-        }
-
-        if (!divs) {
+        if (!divId || !divs) {
             return;
         }
 

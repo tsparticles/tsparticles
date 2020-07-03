@@ -95,8 +95,8 @@ export class Particle implements IParticle {
 
         particlesOptions.load(options.particles);
 
-        if (overrideOptions?.shape !== undefined) {
-            const shapeType = overrideOptions.shape.type ?? particlesOptions.shape.type;
+        if (overrideOptions?.shape?.type) {
+            const shapeType = overrideOptions.shape.type;
 
             this.shape = shapeType instanceof Array ? Utils.itemFromArray(shapeType) : shapeType;
 
@@ -104,17 +104,14 @@ export class Particle implements IParticle {
 
             shapeOptions.load(overrideOptions.shape);
 
-            if (this.shape !== undefined) {
+            if (this.shape) {
                 const shapeData = shapeOptions.options[this.shape];
 
-                if (shapeData !== undefined) {
+                if (shapeData) {
                     this.shapeData = Utils.deepExtend(
                         {},
                         shapeData instanceof Array ? Utils.itemFromArray(shapeData) : shapeData
                     );
-
-                    this.fill = this.shapeData?.fill ?? this.fill;
-                    this.close = this.shapeData?.close ?? this.close;
                 }
             }
         } else {
@@ -129,9 +126,6 @@ export class Particle implements IParticle {
                     {},
                     shapeData instanceof Array ? Utils.itemFromArray(shapeData) : shapeData
                 );
-
-                this.fill = this.shapeData?.fill ?? this.fill;
-                this.close = this.shapeData?.close ?? this.close;
             }
         }
 
@@ -142,6 +136,9 @@ export class Particle implements IParticle {
         if (this.shapeData?.particles !== undefined) {
             particlesOptions.load(this.shapeData?.particles);
         }
+
+        this.fill = this.shapeData?.fill ?? this.fill;
+        this.close = this.shapeData?.close ?? this.close;
 
         this.particlesOptions = particlesOptions;
 
@@ -250,8 +247,8 @@ export class Particle implements IParticle {
         };
 
         /* check position - avoid overlap */
-        if (this.particlesOptions.collisions.enable) {
-            this.checkOverlap(position);
+        if (this.particlesOptions.collisions.enable && !this.checkOverlap(position)) {
+            throw new Error();
         }
 
         /* opacity */
@@ -333,16 +330,14 @@ export class Particle implements IParticle {
         this.container.canvas.drawParticle(this, delta);
     }
 
-    public isOverlapping(): { collisionFound: boolean; iterations: number } {
+    public isOverlapping(): boolean {
         const container = this.container;
 
         let collisionFound = false;
-        let iterations = 0;
 
         const pos1 = this.getPosition();
 
         for (const p2 of container.particles.array.filter((t) => t != this)) {
-            iterations++;
             const pos2 = p2.getPosition();
             const dist = Utils.getDistance(pos1, pos2);
 
@@ -352,25 +347,7 @@ export class Particle implements IParticle {
             }
         }
 
-        return {
-            collisionFound: collisionFound,
-            iterations: iterations,
-        };
-    }
-
-    public checkOverlap(position?: ICoordinates): void {
-        const container = this.container;
-        const overlapResult = this.isOverlapping();
-
-        if (overlapResult.iterations >= container.particles.count) {
-            // too many particles, removing from the current
-            container.particles.remove(this);
-        } else if (overlapResult.collisionFound) {
-            this.position.x = position ? position.x : Math.random() * container.canvas.size.width;
-            this.position.y = position ? position.y : Math.random() * container.canvas.size.height;
-
-            this.checkOverlap();
-        }
+        return collisionFound;
     }
 
     public startInfection(stage: number): void {
@@ -466,6 +443,32 @@ export class Particle implements IParticle {
 
     public destroy(): void {
         this.destroyed = true;
+    }
+
+    private checkOverlap(position?: ICoordinates, iterations = 0): boolean {
+        const container = this.container;
+
+        if (!container.particles.count) {
+            return true;
+        }
+
+        if (iterations >= container.particles.count) {
+            // too many particles
+            return false;
+        }
+
+        const overlapping = this.isOverlapping();
+
+        console.log(overlapping);
+
+        if (overlapping) {
+            this.position.x = position ? position.x : Math.random() * container.canvas.size.width;
+            this.position.y = position ? position.y : Math.random() * container.canvas.size.height;
+
+            return this.checkOverlap(undefined, iterations + 1);
+        }
+
+        return true;
     }
 
     private nextInfectionStage(): void {

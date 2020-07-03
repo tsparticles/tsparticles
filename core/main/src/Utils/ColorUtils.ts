@@ -66,29 +66,24 @@ export class ColorUtils {
         const g1 = color.g / 255;
         const b1 = color.b / 255;
 
-        const maxColor = Math.max(r1, g1, b1);
-        const minColor = Math.min(r1, g1, b1);
+        const max = Math.max(r1, g1, b1);
+        const min = Math.min(r1, g1, b1);
+
         //Calculate L:
         const res = {
             h: 0,
-            l: (maxColor + minColor) / 2,
+            l: (max + min) / 2,
             s: 0,
         };
 
-        if (maxColor != minColor) {
+        if (max != min) {
             //Calculate S:
-            res.s =
-                res.l < 0.5
-                    ? (maxColor - minColor) / (maxColor + minColor)
-                    : (maxColor - minColor) / (2.0 - maxColor - minColor);
+            res.s = res.l < 0.5 ? (max - min) / (max + min) : (max - min) / (2.0 - max - min);
             //Calculate H:
             res.h =
-                r1 === maxColor
-                    ? (g1 - b1) / (maxColor - minColor)
-                    : (res.h =
-                          g1 === maxColor
-                              ? 2.0 + (b1 - r1) / (maxColor - minColor)
-                              : 4.0 + (r1 - g1) / (maxColor - minColor));
+                r1 === max
+                    ? (g1 - b1) / (max - min)
+                    : (res.h = g1 === max ? 2.0 + (b1 - r1) / (max - min) : 4.0 + (r1 - g1) / (max - min));
         }
 
         res.l *= 100;
@@ -165,18 +160,13 @@ export class ColorUtils {
      * @param min a minimum seed value for all 3 values
      */
     public static getRandomRgbColor(min?: number): IRgb {
-        const fixedMin = min || 0;
-        const minColor = fixedMin + fixedMin * Math.pow(16, 2) + fixedMin * Math.pow(16, 4);
-        const factor = minColor ^ 0xffffff;
-        const randomColor = Math.floor((Math.random() * factor) | minColor).toString(16);
+        const fixedMin = min ?? 0;
 
-        return (
-            this.stringToRgb(`#${randomColor}`) ?? {
-                b: 0,
-                g: 0,
-                r: 0,
-            }
-        );
+        return {
+            b: Utils.randomInRange(fixedMin, 256),
+            g: Utils.randomInRange(fixedMin, 256),
+            r: Utils.randomInRange(fixedMin, 256),
+        };
     }
 
     /**
