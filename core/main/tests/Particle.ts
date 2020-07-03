@@ -26,7 +26,7 @@ describe("Particle", () => {
                 },
             },
         };
-        const shapeTypes = [ShapeType.char, ShapeType.edge, ShapeType.image, ShapeType.polygon];
+        const shapeTypes = [ ShapeType.char, ShapeType.edge, ShapeType.image, ShapeType.polygon ];
         const multipleShapeTypeOptions = {
             particles: {
                 shape: {
@@ -154,8 +154,7 @@ describe("Particle", () => {
     describe("isOverlapping", () => {
         it("should always return false whenever the container has no other particles", () => {
             const isOverlapping = testParticle.particle.isOverlapping();
-            expect(isOverlapping.collisionFound).to.be.false;
-            expect(isOverlapping.iterations).to.equal(0);
+            expect(isOverlapping).to.be.false;
         });
     });
 });

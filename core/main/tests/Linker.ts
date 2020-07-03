@@ -31,12 +31,25 @@ describe("Linker in Canvas (200, 200) tests", () => {
 
             const p1 = testContainer.container.particles.addParticle({ x: 5, y: 5 });
 
+            expect(p1).to.not.be.undefined;
+
+            if (p1 === undefined) {
+                return;
+            }
+
             const pos1 = p1.getPosition();
 
             testContainer.container.particles.quadTree.insert(new Point(pos1, p1));
 
             it("should link Particle (10, 10)", function () {
                 const p2 = testContainer.container.particles.addParticle({ x: 10, y: 10 });
+
+                expect(p2).to.not.be.undefined;
+
+                if (p2 === undefined) {
+                    return;
+                }
+
                 const pos2 = p2.getPosition();
 
                 testContainer.container.particles.quadTree.insert(new Point(pos2, p2));
@@ -54,6 +67,12 @@ describe("Linker in Canvas (200, 200) tests", () => {
 
             it("should link Particle (199, 199)", function () {
                 const p2 = testContainer.container.particles.addParticle({ x: 199, y: 199 });
+
+                expect(p2).to.not.be.undefined;
+
+                if (p2 === undefined) {
+                    return;
+                }
 
                 const pos2 = p2.getPosition();
 
