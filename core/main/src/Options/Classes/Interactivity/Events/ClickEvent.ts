@@ -13,7 +13,7 @@ export class ClickEvent implements IClickEvent, IOptionLoader<IClickEvent> {
     /**
      * Click mode values described in [[ClickMode]], an array of these values is also valid
      */
-    public mode: SingleOrMultiple<ClickMode | string>;
+    public mode: SingleOrMultiple<ClickMode | keyof typeof ClickMode | string>;
 
     constructor() {
         this.enable = false;

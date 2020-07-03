@@ -6,9 +6,9 @@ export interface IInteractivity {
     /**
      * @deprecated use the new detectsOn instead
      */
-    detect_on: InteractivityDetect;
+    detect_on: InteractivityDetect | keyof typeof InteractivityDetect;
 
-    detectsOn: InteractivityDetect;
+    detectsOn: InteractivityDetect | keyof typeof InteractivityDetect;
     events: IEvents;
     modes: IModes;
 }

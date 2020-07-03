@@ -16,16 +16,16 @@ export interface IMove {
      * @deprecated use the new collisions property on particles instead
      */
     collisions: boolean;
-    direction: MoveDirection;
+    direction: MoveDirection | keyof typeof MoveDirection;
     enable: boolean;
     noise: INoise;
 
     /**
      * @deprecated use the new outMode instead
      */
-    out_mode: OutMode;
+    out_mode: OutMode | keyof typeof OutMode;
 
-    outMode: OutMode;
+    outMode: OutMode | keyof typeof OutMode;
     warp: boolean;
     random: boolean;
     speed: number;

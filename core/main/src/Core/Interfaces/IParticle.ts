@@ -11,6 +11,7 @@ import type { IBubbleParticleData } from "./IBubbleParticleData";
 import type { IParticles } from "../../Options/Interfaces/Particles/IParticles";
 import type { ILink } from "./ILink";
 import type { IHsl } from "./IHsl";
+import { ClickMode } from "../../Enums";
 
 export interface IParticle {
     randomIndexData?: number;
@@ -20,7 +21,7 @@ export interface IParticle {
     readonly color: IHsl | undefined;
     readonly close: boolean;
     readonly destroyed: boolean;
-    readonly direction: MoveDirection;
+    readonly direction: MoveDirection | keyof typeof MoveDirection;
     readonly fill: boolean;
     readonly image?: IParticleImage;
     readonly infectionStage?: number;
@@ -33,7 +34,7 @@ export interface IParticle {
     readonly opacity: IParticleOpacityAnimation;
     readonly particlesOptions: IParticles;
     readonly position: ICoordinates;
-    readonly rotateDirection: RotateDirection;
+    readonly rotateDirection: RotateDirection | keyof typeof RotateDirection;
     readonly shadowColor: IRgb | undefined;
     readonly shape?: ShapeType | string;
     readonly shapeData?: IShapeValues;

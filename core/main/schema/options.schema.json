@@ -1,14 +1,6 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
   "definitions": {
-    "CollisionMode": {
-      "enum": ["absorb", "bounce", "destroy"],
-      "type": "string"
-    },
-    "DestroyType": {
-      "enum": ["max", "min", "none"],
-      "type": "string"
-    },
     "DivType": {
       "enum": ["circle", "rectangle"],
       "type": "string"
@@ -327,7 +319,8 @@
           "type": "boolean"
         },
         "mode": {
-          "$ref": "#/definitions/CollisionMode"
+          "enum": ["absorb", "bounce", "destroy"],
+          "type": "string"
         }
       },
       "type": "object"
@@ -706,10 +699,12 @@
     "IInteractivity": {
       "properties": {
         "detect_on": {
-          "$ref": "#/definitions/InteractivityDetect"
+          "enum": ["canvas", "parent", "window"],
+          "type": "string"
         },
         "detectsOn": {
-          "$ref": "#/definitions/InteractivityDetect"
+          "enum": ["canvas", "parent", "window"],
+          "type": "string"
         },
         "events": {
           "$ref": "#/definitions/IEvents"
@@ -851,7 +846,22 @@
           "type": "boolean"
         },
         "direction": {
-          "$ref": "#/definitions/MoveDirection"
+          "enum": [
+            "bottom",
+            "bottom-left",
+            "bottom-right",
+            "bottomLeft",
+            "bottomRight",
+            "left",
+            "none",
+            "right",
+            "top",
+            "top-left",
+            "top-right",
+            "topLeft",
+            "topRight"
+          ],
+          "type": "string"
         },
         "enable": {
           "type": "boolean"
@@ -860,10 +870,28 @@
           "$ref": "#/definitions/INoise"
         },
         "outMode": {
-          "$ref": "#/definitions/OutMode"
+          "enum": [
+            "bounce",
+            "bounce-horizontal",
+            "bounce-vertical",
+            "bounceHorizontal",
+            "bounceVertical",
+            "destroy",
+            "out"
+          ],
+          "type": "string"
         },
         "out_mode": {
-          "$ref": "#/definitions/OutMode"
+          "enum": [
+            "bounce",
+            "bounce-horizontal",
+            "bounce-vertical",
+            "bounceHorizontal",
+            "bounceVertical",
+            "destroy",
+            "out"
+          ],
+          "type": "string"
         },
         "random": {
           "type": "boolean"
@@ -1178,7 +1206,8 @@
           "$ref": "#/definitions/IRotateAnimation"
         },
         "direction": {
-          "$ref": "#/definitions/RotateDirection"
+          "enum": ["clockwise", "counter-clockwise", "counterClockwise", "random"],
+          "type": "string"
         },
         "path": {
           "type": "boolean"
@@ -1386,7 +1415,8 @@
     "ISizeAnimation": {
       "properties": {
         "destroy": {
-          "$ref": "#/definitions/DestroyType"
+          "enum": ["max", "min", "none"],
+          "type": "string"
         },
         "enable": {
           "type": "boolean"
@@ -1401,7 +1431,8 @@
           "type": "number"
         },
         "startValue": {
-          "$ref": "#/definitions/StartValueType"
+          "enum": ["max", "min"],
+          "type": "string"
         },
         "sync": {
           "type": "boolean"
@@ -1535,18 +1566,6 @@
         }
       },
       "type": "object"
-    },
-    "InteractivityDetect": {
-      "enum": ["canvas", "parent", "window"],
-      "type": "string"
-    },
-    "MoveDirection": {
-      "enum": ["bottom", "bottom-left", "bottom-right", "left", "none", "right", "top", "top-left", "top-right"],
-      "type": "string"
-    },
-    "OutMode": {
-      "enum": ["bounce", "bounce-horizontal", "bounce-vertical", "destroy", "out"],
-      "type": "string"
     },
     "RecursivePartial<IAnimatableColor>": {
       "properties": {
@@ -1894,7 +1913,21 @@
           "type": "boolean"
         },
         "direction": {
-          "enum": ["bottom", "bottom-left", "bottom-right", "left", "none", "right", "top", "top-left", "top-right"],
+          "enum": [
+            "bottom",
+            "bottom-left",
+            "bottom-right",
+            "bottomLeft",
+            "bottomRight",
+            "left",
+            "none",
+            "right",
+            "top",
+            "top-left",
+            "top-right",
+            "topLeft",
+            "topRight"
+          ],
           "type": "string"
         },
         "enable": {
@@ -1904,11 +1937,27 @@
           "$ref": "#/definitions/RecursivePartial<INoise>"
         },
         "outMode": {
-          "enum": ["bounce", "bounce-horizontal", "bounce-vertical", "destroy", "out"],
+          "enum": [
+            "bounce",
+            "bounce-horizontal",
+            "bounce-vertical",
+            "bounceHorizontal",
+            "bounceVertical",
+            "destroy",
+            "out"
+          ],
           "type": "string"
         },
         "out_mode": {
-          "enum": ["bounce", "bounce-horizontal", "bounce-vertical", "destroy", "out"],
+          "enum": [
+            "bounce",
+            "bounce-horizontal",
+            "bounce-vertical",
+            "bounceHorizontal",
+            "bounceVertical",
+            "destroy",
+            "out"
+          ],
           "type": "string"
         },
         "random": {
@@ -2129,7 +2178,7 @@
           "$ref": "#/definitions/RecursivePartial<IRotateAnimation>"
         },
         "direction": {
-          "enum": ["clockwise", "counter-clockwise", "random"],
+          "enum": ["clockwise", "counter-clockwise", "counterClockwise", "random"],
           "type": "string"
         },
         "path": {
@@ -2423,14 +2472,6 @@
     },
     "RecursivePartial<ShapeData>": {
       "type": "object"
-    },
-    "RotateDirection": {
-      "enum": ["clockwise", "counter-clockwise", "random"],
-      "type": "string"
-    },
-    "StartValueType": {
-      "enum": ["max", "min"],
-      "type": "string"
     }
   },
   "description": "The Options interface, defines all the options that can be used by `tsParticles`",

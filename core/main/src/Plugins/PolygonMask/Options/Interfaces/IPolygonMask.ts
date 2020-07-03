@@ -15,7 +15,7 @@ export interface IPolygonMask extends IOptionLoader<IPolygonMask> {
     /**
      * @deprecated the inlineArrangement is deprecated, please use the new inline.arrangement property
      */
-    inlineArrangement: InlineArrangement;
+    inlineArrangement: InlineArrangement | keyof typeof InlineArrangement;
 
     move: IMove;
     position?: ICoordinates;

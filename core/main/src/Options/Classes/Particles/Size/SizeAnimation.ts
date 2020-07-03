@@ -1,6 +1,6 @@
 import type { ISizeAnimation } from "../../../Interfaces/Particles/Size/ISizeAnimation";
 import type { RecursivePartial } from "../../../../Types/RecursivePartial";
-import { DestroyType, StartValueType } from "../../../../Enums";
+import { ClickMode, DestroyType, StartValueType } from "../../../../Enums";
 import type { IOptionLoader } from "../../../Interfaces/IOptionLoader";
 
 export class SizeAnimation implements ISizeAnimation, IOptionLoader<ISizeAnimation> {
@@ -21,11 +21,11 @@ export class SizeAnimation implements ISizeAnimation, IOptionLoader<ISizeAnimati
         this.minimumValue = value;
     }
 
-    public destroy: DestroyType;
+    public destroy: DestroyType | keyof typeof DestroyType;
     public enable: boolean;
     public minimumValue: number;
     public speed: number;
-    public startValue: StartValueType;
+    public startValue: StartValueType | keyof typeof StartValueType;
     public sync: boolean;
 
     constructor() {

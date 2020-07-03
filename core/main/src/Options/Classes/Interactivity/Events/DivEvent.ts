@@ -1,5 +1,5 @@
 import type { IDivEvent } from "../../../Interfaces/Interactivity/Events/IDivEvent";
-import { DivMode, DivType } from "../../../../Enums";
+import { ClickMode, DivMode, DivType } from "../../../../Enums";
 import type { RecursivePartial } from "../../../../Types/RecursivePartial";
 import type { SingleOrMultiple } from "../../../../Types/SingleOrMultiple";
 import type { IOptionLoader } from "../../../Interfaces/IOptionLoader";
@@ -52,7 +52,7 @@ export class DivEvent implements IDivEvent, IOptionLoader<IDivEvent> {
     /**
      * Div mode values described in [[DivMode]], an array of these values is also valid.
      */
-    public mode: SingleOrMultiple<DivMode | string>;
+    public mode: SingleOrMultiple<DivMode | keyof typeof DivMode | string>;
 
     public type: DivType;
 

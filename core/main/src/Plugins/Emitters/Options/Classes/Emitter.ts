@@ -10,7 +10,7 @@ import { EmitterSize } from "./EmitterSize";
 
 export class Emitter implements IEmitter {
     public size?: EmitterSize;
-    public direction: MoveDirection;
+    public direction: MoveDirection | keyof typeof MoveDirection;
     public life: EmitterLife;
     public particles?: RecursivePartial<IParticles>;
     public position?: ICoordinates;

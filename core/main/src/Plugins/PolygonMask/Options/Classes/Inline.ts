@@ -3,7 +3,7 @@ import { InlineArrangement } from "../../Enums/InlineArrangement";
 import type { RecursivePartial } from "../../../../Types/RecursivePartial";
 
 export class Inline implements IInline {
-    public arrangement: InlineArrangement;
+    public arrangement: InlineArrangement | keyof typeof InlineArrangement;
 
     constructor() {
         this.arrangement = InlineArrangement.onePerPoint;

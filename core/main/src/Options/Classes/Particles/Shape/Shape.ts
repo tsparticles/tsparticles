@@ -1,5 +1,5 @@
 import type { IShape } from "../../../Interfaces/Particles/Shape/IShape";
-import { ShapeType } from "../../../../Enums";
+import { ClickMode, ShapeType } from "../../../../Enums";
 import type { RecursivePartial } from "../../../../Types/RecursivePartial";
 import type { SingleOrMultiple } from "../../../../Types/SingleOrMultiple";
 import type { ShapeData } from "../../../../Types/ShapeData";
@@ -101,7 +101,7 @@ export class Shape implements IShape, IOptionLoader<IShape> {
         this.options[ShapeType.star] = value;
     }
 
-    public type: SingleOrMultiple<ShapeType | string>;
+    public type: SingleOrMultiple<ShapeType | keyof typeof ShapeType | string>;
     public options: ShapeData;
 
     constructor() {

@@ -3,7 +3,7 @@ import type { RecursivePartial } from "../../../../Types/RecursivePartial";
 import { SizeMode } from "../../../../Enums";
 
 export class EmitterSize implements IEmitterSize {
-    public mode: SizeMode;
+    public mode: SizeMode | keyof typeof SizeMode;
     public height: number;
     public width: number;
 

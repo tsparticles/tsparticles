@@ -3,5 +3,5 @@ import type { MoveType } from "../../Enums/MoveType";
 
 export interface IMove extends IOptionLoader<IMove> {
     radius: number;
-    type: MoveType;
+    type: MoveType | keyof typeof MoveType;
 }

@@ -3,7 +3,7 @@ import type { SingleOrMultiple } from "../../../../Types/SingleOrMultiple";
 
 export interface IDivEvent {
     enable: boolean;
-    mode: SingleOrMultiple<DivMode | string>;
+    mode: SingleOrMultiple<DivMode | keyof typeof DivMode | string>;
 
     /**
      * @deprecated use the new ids instead

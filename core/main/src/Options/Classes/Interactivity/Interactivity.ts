@@ -1,5 +1,5 @@
 import type { IInteractivity } from "../../Interfaces/Interactivity/IInteractivity";
-import { HoverMode, InteractivityDetect } from "../../../Enums";
+import { ClickMode, HoverMode, InteractivityDetect } from "../../../Enums";
 import { Events } from "./Events/Events";
 import { Modes } from "./Modes/Modes";
 import type { RecursivePartial } from "../../../Types/RecursivePartial";
@@ -10,7 +10,7 @@ export class Interactivity implements IInteractivity, IOptionLoader<IInteractivi
      *
      * @deprecated this property is obsolete, please use the new detectsOn
      */
-    public get detect_on(): InteractivityDetect {
+    public get detect_on(): InteractivityDetect | keyof typeof InteractivityDetect {
         return this.detectsOn;
     }
 
@@ -19,11 +19,11 @@ export class Interactivity implements IInteractivity, IOptionLoader<IInteractivi
      * @deprecated this property is obsolete, please use the new detectsOn
      * @param value
      */
-    public set detect_on(value: InteractivityDetect) {
+    public set detect_on(value: InteractivityDetect | keyof typeof InteractivityDetect) {
         this.detectsOn = value;
     }
 
-    public detectsOn: InteractivityDetect;
+    public detectsOn: InteractivityDetect | keyof typeof InteractivityDetect;
     public events: Events;
     public modes: Modes;
 

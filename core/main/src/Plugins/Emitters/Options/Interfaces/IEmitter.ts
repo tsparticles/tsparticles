@@ -19,7 +19,7 @@ export interface IEmitter extends IOptionLoader<IEmitter> {
     /**
      * The direction of the emitted particles, [[MoveDirection]] is the enum used for values
      */
-    direction: MoveDirection;
+    direction: MoveDirection | keyof typeof MoveDirection;
 
     /**
      * The emitter life options

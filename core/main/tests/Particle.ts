@@ -26,7 +26,7 @@ describe("Particle", () => {
                 },
             },
         };
-        const shapeTypes = [ ShapeType.char, ShapeType.edge, ShapeType.image, ShapeType.polygon ];
+        const shapeTypes = [ShapeType.char, ShapeType.edge, ShapeType.image, ShapeType.polygon];
         const multipleShapeTypeOptions = {
             particles: {
                 shape: {

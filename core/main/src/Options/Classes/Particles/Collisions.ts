@@ -1,11 +1,11 @@
 import type { ICollisions } from "../../Interfaces/Particles/ICollisions";
-import { CollisionMode } from "../../../Enums";
+import { ClickMode, CollisionMode } from "../../../Enums";
 import type { RecursivePartial } from "../../../Types/RecursivePartial";
 import type { IOptionLoader } from "../../Interfaces/IOptionLoader";
 
 export class Collisions implements ICollisions, IOptionLoader<ICollisions> {
     public enable: boolean;
-    public mode: CollisionMode;
+    public mode: CollisionMode | keyof typeof CollisionMode;
 
     constructor() {
         this.enable = false;

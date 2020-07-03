@@ -11,6 +11,6 @@ export interface ISizeAnimation {
     minimumValue: number;
     speed: number;
     sync: boolean;
-    startValue: StartValueType;
-    destroy: DestroyType;
+    startValue: StartValueType | keyof typeof StartValueType;
+    destroy: DestroyType | keyof typeof DestroyType;
 }

@@ -7,7 +7,7 @@ import type { SingleOrMultiple } from "../../../../Types/SingleOrMultiple";
 import type { ShapeData } from "../../../../Types/ShapeData";
 
 export interface IShape {
-    type: SingleOrMultiple<ShapeType | string>;
+    type: SingleOrMultiple<ShapeType | keyof typeof ShapeType | string>;
 
     /**
      * @deprecated this property was moved to particles section

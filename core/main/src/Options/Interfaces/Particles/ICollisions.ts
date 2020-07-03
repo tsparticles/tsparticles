@@ -2,5 +2,5 @@ import type { CollisionMode } from "../../../Enums";
 
 export interface ICollisions {
     enable: boolean;
-    mode: CollisionMode;
+    mode: CollisionMode | keyof typeof CollisionMode;
 }

@@ -1,6 +1,6 @@
 import type { IMove } from "../../Interfaces/Particles/IMove";
 import { Attract } from "./Attract";
-import { MoveDirection, OutMode } from "../../../Enums";
+import { ClickMode, MoveDirection, OutMode } from "../../../Enums";
 import { Trail } from "./Trail";
 import type { RecursivePartial } from "../../../Types/RecursivePartial";
 import { Noise } from "./Noise/Noise";
@@ -41,7 +41,7 @@ export class Move implements IMove, IOptionLoader<IMove> {
      *
      * @deprecated this property is obsolete, please use the new outMode
      */
-    public get out_mode(): OutMode {
+    public get out_mode(): OutMode | keyof typeof OutMode {
         return this.outMode;
     }
 
@@ -50,16 +50,16 @@ export class Move implements IMove, IOptionLoader<IMove> {
      * @deprecated this property is obsolete, please use the new outMode
      * @param value
      */
-    public set out_mode(value: OutMode) {
+    public set out_mode(value: OutMode | keyof typeof OutMode) {
         this.outMode = value;
     }
 
     public angle: number;
     public attract: Attract;
-    public direction: MoveDirection;
+    public direction: MoveDirection | keyof typeof MoveDirection;
     public enable: boolean;
     public noise: Noise;
-    public outMode: OutMode;
+    public outMode: OutMode | keyof typeof OutMode;
     public random: boolean;
     public speed: number;
     public straight: boolean;

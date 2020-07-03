@@ -14,5 +14,5 @@ export interface IClickEvent {
      * This property contains a [[ClickMode]] value or an array of those values.
      * If this value is an array, every mode will be used on click.
      */
-    mode: SingleOrMultiple<ClickMode | string>;
+    mode: SingleOrMultiple<ClickMode | keyof typeof ClickMode | string>;
 }

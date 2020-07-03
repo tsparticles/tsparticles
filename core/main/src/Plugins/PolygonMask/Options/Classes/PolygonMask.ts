@@ -12,14 +12,14 @@ export class PolygonMask implements IPolygonMask {
     /**
      * @deprecated the property inlineArrangement is deprecated, please use the new inline.arrangement
      */
-    get inlineArrangement(): InlineArrangement {
+    get inlineArrangement(): InlineArrangement | keyof typeof InlineArrangement {
         return this.inline.arrangement;
     }
 
     /**
      * @deprecated the property inlineArrangement is deprecated, please use the new inline.arrangement
      */
-    set inlineArrangement(value: InlineArrangement) {
+    set inlineArrangement(value: InlineArrangement | keyof typeof InlineArrangement) {
         this.inline.arrangement = value;
     }
 

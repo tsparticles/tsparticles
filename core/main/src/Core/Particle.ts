@@ -15,6 +15,7 @@ import type { IParticles } from "../Options/Interfaces/Particles/IParticles";
 import { Particles } from "../Options/Classes/Particles/Particles";
 import { Shape } from "../Options/Classes/Particles/Shape/Shape";
 import {
+    ClickMode,
     MoveDirection,
     OpacityAnimationStatus,
     OutMode,
@@ -37,11 +38,11 @@ import { IShapeDrawer } from "./Interfaces/IShapeDrawer";
 export class Particle implements IParticle {
     public angle: number;
     public destroyed: boolean;
-    public rotateDirection: RotateDirection;
+    public rotateDirection: RotateDirection | keyof typeof RotateDirection;
     public randomIndexData?: number;
     public links: ILink[];
     public readonly close: boolean;
-    public readonly direction: MoveDirection;
+    public readonly direction: MoveDirection | keyof typeof MoveDirection;
     public readonly fill: boolean;
     public readonly stroke: IStroke;
     public readonly size: IParticleSizeAnimation;

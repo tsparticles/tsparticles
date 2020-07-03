@@ -4,7 +4,7 @@ import { MoveType } from "../../Enums/MoveType";
 
 export class Move implements IMove {
     public radius: number;
-    public type: MoveType;
+    public type: MoveType | keyof typeof MoveType;
 
     constructor() {
         this.radius = 10;
