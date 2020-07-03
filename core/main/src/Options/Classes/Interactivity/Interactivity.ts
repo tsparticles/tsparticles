@@ -1,5 +1,5 @@
 import type { IInteractivity } from "../../Interfaces/Interactivity/IInteractivity";
-import { ClickMode, HoverMode, InteractivityDetect } from "../../../Enums";
+import { HoverMode, InteractivityDetect } from "../../../Enums";
 import { Events } from "./Events/Events";
 import { Modes } from "./Modes/Modes";
 import type { RecursivePartial } from "../../../Types/RecursivePartial";
@@ -53,7 +53,7 @@ export class Interactivity implements IInteractivity, IOptionLoader<IInteractivi
                     this.events.onHover.mode.push(HoverMode.slow);
                 }
             } else if (this.events.onHover.mode !== HoverMode.slow) {
-                this.events.onHover.mode = [this.events.onHover.mode, HoverMode.slow];
+                this.events.onHover.mode = [ this.events.onHover.mode, HoverMode.slow ];
             }
         }
     }

@@ -1,5 +1,5 @@
 import type { IShape } from "../../../Interfaces/Particles/Shape/IShape";
-import { ClickMode, ShapeType } from "../../../../Enums";
+import { ShapeType } from "../../../../Enums";
 import type { RecursivePartial } from "../../../../Types/RecursivePartial";
 import type { SingleOrMultiple } from "../../../../Types/SingleOrMultiple";
 import type { ShapeData } from "../../../../Types/ShapeData";
@@ -47,7 +47,7 @@ export class Shape implements IShape, IOptionLoader<IShape> {
      * @deprecated the property images is deprecated, please use the image property, it works with one and many
      */
     get images(): IImageShape[] {
-        return this.image instanceof Array ? this.image : [this.image];
+        return this.image instanceof Array ? this.image : [ this.image ];
     }
 
     /**

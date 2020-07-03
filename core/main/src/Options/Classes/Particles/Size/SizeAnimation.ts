@@ -1,6 +1,6 @@
 import type { ISizeAnimation } from "../../../Interfaces/Particles/Size/ISizeAnimation";
 import type { RecursivePartial } from "../../../../Types/RecursivePartial";
-import { ClickMode, DestroyType, StartValueType } from "../../../../Enums";
+import { DestroyType, StartValueType } from "../../../../Enums";
 import type { IOptionLoader } from "../../../Interfaces/IOptionLoader";
 
 export class SizeAnimation implements ISizeAnimation, IOptionLoader<ISizeAnimation> {

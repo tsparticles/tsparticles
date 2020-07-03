@@ -1,6 +1,6 @@
 import type { IMove } from "../../Interfaces/Particles/IMove";
 import { Attract } from "./Attract";
-import { ClickMode, MoveDirection, OutMode } from "../../../Enums";
+import { MoveDirection, OutMode } from "../../../Enums";
 import { Trail } from "./Trail";
 import type { RecursivePartial } from "../../../Types/RecursivePartial";
 import { Noise } from "./Noise/Noise";

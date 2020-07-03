@@ -1,5 +1,5 @@
 import type { ICollisions } from "../../Interfaces/Particles/ICollisions";
-import { ClickMode, CollisionMode } from "../../../Enums";
+import { CollisionMode } from "../../../Enums";
 import type { RecursivePartial } from "../../../Types/RecursivePartial";
 import type { IOptionLoader } from "../../Interfaces/IOptionLoader";
 

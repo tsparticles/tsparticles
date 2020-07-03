@@ -11,7 +11,6 @@ import type { IBubbleParticleData } from "./IBubbleParticleData";
 import type { IParticles } from "../../Options/Interfaces/Particles/IParticles";
 import type { ILink } from "./ILink";
 import type { IHsl } from "./IHsl";
-import { ClickMode } from "../../Enums";
 
 export interface IParticle {
     randomIndexData?: number;

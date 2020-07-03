@@ -1,6 +1,5 @@
 import type { IRotateAnimation } from "./IRotateAnimation";
 import type { RotateDirection } from "../../../../Enums";
-import { ClickMode } from "../../../../Enums";
 
 export interface IRotate {
     animation: IRotateAnimation;

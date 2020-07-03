@@ -15,7 +15,6 @@ import type { IParticles } from "../Options/Interfaces/Particles/IParticles";
 import { Particles } from "../Options/Classes/Particles/Particles";
 import { Shape } from "../Options/Classes/Particles/Shape/Shape";
 import {
-    ClickMode,
     MoveDirection,
     OpacityAnimationStatus,
     OutMode,
@@ -495,7 +494,7 @@ export class Particle implements IParticle {
     }
 
     private calcPosition(container: Container, position?: ICoordinates): ICoordinates {
-        for (const [, plugin] of container.plugins) {
+        for (const [ , plugin ] of container.plugins) {
             const pluginPos =
                 plugin.particlePosition !== undefined ? plugin.particlePosition(position, this) : undefined;
 
@@ -571,10 +570,10 @@ export class Particle implements IParticle {
         drawer?: IShapeDrawer
     ):
         | {
-              image: IParticleImage | undefined;
-              fill: boolean;
-              close: boolean;
-          }
+        image: IParticleImage | undefined;
+        fill: boolean;
+        close: boolean;
+    }
         | undefined {
         if (!(this.shape === ShapeType.image || this.shape === ShapeType.images)) {
             return;
@@ -595,7 +594,7 @@ export class Particle implements IParticle {
             const svgColoredData = Utils.replaceColorSvg(image, color, this.opacity.value);
 
             /* prepare to create img with colored svg */
-            const svg = new Blob([svgColoredData], { type: "image/svg+xml" });
+            const svg = new Blob([ svgColoredData ], { type: "image/svg+xml" });
             const domUrl = window.URL || window.webkitURL || window;
             const url = domUrl.createObjectURL(svg);
 

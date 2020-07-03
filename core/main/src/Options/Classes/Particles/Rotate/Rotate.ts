@@ -1,6 +1,6 @@
 import type { IRotate } from "../../../Interfaces/Particles/Rotate/IRotate";
 import { RotateAnimation } from "./RotateAnimation";
-import { ClickMode, RotateDirection } from "../../../../Enums";
+import { RotateDirection } from "../../../../Enums";
 import type { RecursivePartial } from "../../../../Types/RecursivePartial";
 import type { IOptionLoader } from "../../../Interfaces/IOptionLoader";
 
