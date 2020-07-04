@@ -1,6 +1,6 @@
 import type { IOptionLoader } from "../../../../Options/Interfaces/IOptionLoader";
 import type { ICoordinates } from "../../../../Core/Interfaces/ICoordinates";
-import type { MoveDirection } from "../../../../Enums";
+import type { MoveDirection, MoveDirectionAlt } from "../../../../Enums";
 import type { IParticles } from "../../../../Options/Interfaces/Particles/IParticles";
 import type { IEmitterRate } from "./IEmitterRate";
 import type { IEmitterLife } from "./IEmitterLife";
@@ -19,7 +19,7 @@ export interface IEmitter extends IOptionLoader<IEmitter> {
     /**
      * The direction of the emitted particles, [[MoveDirection]] is the enum used for values
      */
-    direction: MoveDirection | keyof typeof MoveDirection;
+    direction: MoveDirection | keyof typeof MoveDirection | MoveDirectionAlt;
 
     /**
      * The emitter life options

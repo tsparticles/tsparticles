@@ -1,7 +1,7 @@
 import type { IEmitter } from "../Interfaces/IEmitter";
 import type { RecursivePartial } from "../../../../Types/RecursivePartial";
 import type { ICoordinates } from "../../../../Core/Interfaces/ICoordinates";
-import { MoveDirection } from "../../../../Enums";
+import { MoveDirection, MoveDirectionAlt } from "../../../../Enums";
 import type { IParticles } from "../../../../Options/Interfaces/Particles/IParticles";
 import { EmitterRate } from "./EmitterRate";
 import { EmitterLife } from "./EmitterLife";
@@ -10,7 +10,7 @@ import { EmitterSize } from "./EmitterSize";
 
 export class Emitter implements IEmitter {
     public size?: EmitterSize;
-    public direction: MoveDirection | keyof typeof MoveDirection;
+    public direction: MoveDirection | keyof typeof MoveDirection | MoveDirectionAlt;
     public life: EmitterLife;
     public particles?: RecursivePartial<IParticles>;
     public position?: ICoordinates;

@@ -2,7 +2,7 @@ import type { IStroke } from "../../Options/Interfaces/Particles/IStroke";
 import type { ICoordinates } from "./ICoordinates";
 import type { IRgb } from "./IRgb";
 import type { IVelocity } from "./IVelocity";
-import type { MoveDirection, RotateDirection, ShapeType } from "../../Enums";
+import type { MoveDirection, MoveDirectionAlt, RotateDirection, RotateDirectionAlt, ShapeType } from "../../Enums";
 import type { IParticleImage } from "./IParticleImage";
 import type { IParticleSizeAnimation } from "./IParticleSizeAnimation";
 import type { IParticleOpacityAnimation } from "./IParticleOpacityAnimation";
@@ -20,7 +20,7 @@ export interface IParticle {
     readonly color: IHsl | undefined;
     readonly close: boolean;
     readonly destroyed: boolean;
-    readonly direction: MoveDirection | keyof typeof MoveDirection;
+    readonly direction: MoveDirection | keyof typeof MoveDirection | MoveDirectionAlt;
     readonly fill: boolean;
     readonly image?: IParticleImage;
     readonly infectionStage?: number;
@@ -33,7 +33,7 @@ export interface IParticle {
     readonly opacity: IParticleOpacityAnimation;
     readonly particlesOptions: IParticles;
     readonly position: ICoordinates;
-    readonly rotateDirection: RotateDirection | keyof typeof RotateDirection;
+    readonly rotateDirection: RotateDirection | keyof typeof RotateDirection | RotateDirectionAlt;
     readonly shadowColor: IRgb | undefined;
     readonly shape?: ShapeType | string;
     readonly shapeData?: IShapeValues;

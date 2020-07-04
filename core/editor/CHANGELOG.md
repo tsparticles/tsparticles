@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.0.0-alpha.13](https://github.com/matteobruni/tsparticles/compare/tsparticles-editor@1.0.0-alpha.12...tsparticles-editor@1.0.0-alpha.13) (2020-07-04)
+
+
+### Bug Fixes
+
+* fixes [#508](https://github.com/matteobruni/tsparticles/issues/508), some values were excluded ([f0cb970](https://github.com/matteobruni/tsparticles/commit/f0cb97015ff39c3a3db5ce5cdb8301b316cc8405))
+
+
+
+
+
 # [1.0.0-alpha.12](https://github.com/matteobruni/tsparticles/compare/tsparticles-editor@1.0.0-alpha.11...tsparticles-editor@1.0.0-alpha.12) (2020-07-02)
 
 **Note:** Version bump only for package tsparticles-editor

@@ -3,6 +3,20 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.17.0-alpha.12](https://github.com/matteobruni/tsparticles/compare/tsparticles@1.17.0-alpha.11...tsparticles@1.17.0-alpha.12) (2020-07-04)
+
+
+### Bug Fixes
+
+* added valid string values to option enum properties, fixes [#508](https://github.com/matteobruni/tsparticles/issues/508) ([b6328cf](https://github.com/matteobruni/tsparticles/commit/b6328cf97a50e8cee736db0ac641f742cd09b38d))
+* fixed overlapping issues ([442777c](https://github.com/matteobruni/tsparticles/commit/442777cac2428168e099bb2c95cd8c580206ee50))
+* fixed random color ([a9ff25a](https://github.com/matteobruni/tsparticles/commit/a9ff25aa47dd9095c117844b6c0c6d9601851948))
+* fixes [#508](https://github.com/matteobruni/tsparticles/issues/508), some values were excluded ([f0cb970](https://github.com/matteobruni/tsparticles/commit/f0cb97015ff39c3a3db5ce5cdb8301b316cc8405))
+
+
+
+
+
 # [1.17.0-alpha.11](https://github.com/matteobruni/tsparticles/compare/tsparticles@1.16.2...tsparticles@1.17.0-alpha.11) (2020-07-02)
 
 

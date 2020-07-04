@@ -22,6 +22,8 @@ import {
     ShapeType,
     SizeAnimationStatus,
     StartValueType,
+    MoveDirectionAlt,
+    RotateDirectionAlt,
 } from "../Enums";
 import { ImageDrawer } from "../ShapeDrawers/ImageDrawer";
 import type { IImageShape } from "../Options/Interfaces/Particles/Shape/IImageShape";
@@ -37,11 +39,11 @@ import { IShapeDrawer } from "./Interfaces/IShapeDrawer";
 export class Particle implements IParticle {
     public angle: number;
     public destroyed: boolean;
-    public rotateDirection: RotateDirection | keyof typeof RotateDirection;
+    public rotateDirection: RotateDirection | keyof typeof RotateDirection | RotateDirectionAlt;
     public randomIndexData?: number;
     public links: ILink[];
     public readonly close: boolean;
-    public readonly direction: MoveDirection | keyof typeof MoveDirection;
+    public readonly direction: MoveDirection | keyof typeof MoveDirection | MoveDirectionAlt;
     public readonly fill: boolean;
     public readonly stroke: IStroke;
     public readonly size: IParticleSizeAnimation;
@@ -494,7 +496,7 @@ export class Particle implements IParticle {
     }
 
     private calcPosition(container: Container, position?: ICoordinates): ICoordinates {
-        for (const [ , plugin ] of container.plugins) {
+        for (const [, plugin] of container.plugins) {
             const pluginPos =
                 plugin.particlePosition !== undefined ? plugin.particlePosition(position, this) : undefined;
 
@@ -570,10 +572,10 @@ export class Particle implements IParticle {
         drawer?: IShapeDrawer
     ):
         | {
-        image: IParticleImage | undefined;
-        fill: boolean;
-        close: boolean;
-    }
+              image: IParticleImage | undefined;
+              fill: boolean;
+              close: boolean;
+          }
         | undefined {
         if (!(this.shape === ShapeType.image || this.shape === ShapeType.images)) {
             return;
@@ -594,7 +596,7 @@ export class Particle implements IParticle {
             const svgColoredData = Utils.replaceColorSvg(image, color, this.opacity.value);
 
             /* prepare to create img with colored svg */
-            const svg = new Blob([ svgColoredData ], { type: "image/svg+xml" });
+            const svg = new Blob([svgColoredData], { type: "image/svg+xml" });
             const domUrl = window.URL || window.webkitURL || window;
             const url = domUrl.createObjectURL(svg);
 

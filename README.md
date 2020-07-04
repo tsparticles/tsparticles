@@ -4,7 +4,7 @@
   
 **A lightweight TypeScript library for creating particles. Dependency free (\*) and browser ready!**  
   
-_[Particles.js](https://github.com/VincentGarreau/particles.js) converted in TypeScript, dependency free (\*), improved with new cool 😎 features and various bugs fixed and **it's currently under development**!_  
+_[Particles.js](https://github.com/VincentGarreau/particles.js) converted in TypeScript, dependency free (\*), improved with new cool 😎 features and various bugs fixed and **it's actively maintained**!_  
   
 [![jsDelivr](https://data.jsdelivr.com/v1/package/npm/tsparticles/badge?style=rounded)](https://www.jsdelivr.com/package/npm/tsparticles) [![Cdnjs](https://img.shields.io/cdnjs/v/tsparticles)](https://cdnjs.com/libraries/tsparticles) [![npmjs](https://badge.fury.io/js/tsparticles.svg)](https://www.npmjs.com/package/tsparticles) ![npm](https://img.shields.io/npm/dm/tsparticles)  
   
@@ -814,15 +814,7 @@ const tsParticles = require("tsparticles");
   
 import { tsParticles } from "tsparticles";  
 ```  
-  
-### React.js  
-  
-**tsParticles ❤️ react-particles-js**  
-  
-Starting from [react-particles-js](https://github.com/Wufe/react-particles-js) version 3.0.0 it has added tsParticles as a dependency.  
-  
-You can follow the instructions [here](https://github.com/Wufe/react-particles-js/blob/master/README.md) to install `react-particles-js` and use all the configurations described in this readme to configure the particles.  
-  
+
 ---  
   
 ### **_Demo / Generator_**  

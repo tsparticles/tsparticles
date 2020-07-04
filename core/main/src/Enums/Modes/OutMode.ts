@@ -5,3 +5,5 @@ export enum OutMode {
     out = "out",
     destroy = "destroy",
 }
+
+export type OutModeAlt = "bounce-horizontal" | "bounce-vertical";
