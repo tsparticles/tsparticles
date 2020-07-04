@@ -23,7 +23,7 @@ describe("ColorUtils", () => {
 
         it("string value", function () {
             const color: IColor = {
-                value: [ "#ff0000", "#00ff00", "#0000ff" ],
+                value: ["#ff0000", "#00ff00", "#0000ff"],
             };
 
             expect(ColorUtils.colorToRgb(color)).to.satisfy((rgb: IRgb) => {
