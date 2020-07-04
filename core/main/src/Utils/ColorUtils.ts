@@ -163,9 +163,9 @@ export class ColorUtils {
         const fixedMin = min ?? 0;
 
         return {
-            b: Utils.randomInRange(fixedMin, 256),
-            g: Utils.randomInRange(fixedMin, 256),
-            r: Utils.randomInRange(fixedMin, 256),
+            b: Math.floor(Utils.randomInRange(fixedMin, 256)),
+            g: Math.floor(Utils.randomInRange(fixedMin, 256)),
+            r: Math.floor(Utils.randomInRange(fixedMin, 256)),
         };
     }
 
@@ -245,11 +245,11 @@ export class ColorUtils {
 
             return result
                 ? {
-                      a: result.length > 4 ? parseFloat(result[5]) : 1,
-                      b: parseInt(result[3], 10),
-                      g: parseInt(result[2], 10),
-                      r: parseInt(result[1], 10),
-                  }
+                    a: result.length > 4 ? parseFloat(result[5]) : 1,
+                    b: parseInt(result[3], 10),
+                    g: parseInt(result[2], 10),
+                    r: parseInt(result[1], 10),
+                }
                 : undefined;
         } else if (input.startsWith("hsl")) {
             const regex = /hsla?\(\s*(\d+)\s*,\s*(\d+)%\s*,\s*(\d+)%\s*(,\s*([\d.]+)\s*)?\)/i;
@@ -257,11 +257,11 @@ export class ColorUtils {
 
             return result
                 ? ColorUtils.hslaToRgba({
-                      a: result.length > 4 ? parseFloat(result[5]) : 1,
-                      h: parseInt(result[1], 10),
-                      l: parseInt(result[3], 10),
-                      s: parseInt(result[2], 10),
-                  })
+                    a: result.length > 4 ? parseFloat(result[5]) : 1,
+                    h: parseInt(result[1], 10),
+                    l: parseInt(result[3], 10),
+                    s: parseInt(result[2], 10),
+                })
                 : undefined;
         } else {
             // By Tim Down - http://stackoverflow.com/a/5624139/3493650
@@ -275,11 +275,11 @@ export class ColorUtils {
 
             return result
                 ? {
-                      a: result[4] !== undefined ? parseInt(result[4], 16) / 0xff : 1,
-                      b: parseInt(result[3], 16),
-                      g: parseInt(result[2], 16),
-                      r: parseInt(result[1], 16),
-                  }
+                    a: result[4] !== undefined ? parseInt(result[4], 16) / 0xff : 1,
+                    b: parseInt(result[3], 16),
+                    g: parseInt(result[2], 16),
+                    r: parseInt(result[1], 16),
+                }
                 : undefined;
         }
     }

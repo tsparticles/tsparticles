@@ -23,7 +23,7 @@ describe("ColorUtils", () => {
 
         it("string value", function () {
             const color: IColor = {
-                value: ["#ff0000", "#00ff00", "#0000ff"],
+                value: [ "#ff0000", "#00ff00", "#0000ff" ],
             };
 
             expect(ColorUtils.colorToRgb(color)).to.satisfy((rgb: IRgb) => {
@@ -153,7 +153,7 @@ describe("ColorUtils", () => {
     });
 
     describe("getRandomRgbColor", () => {
-        const checkRange = (n: number, min?: number): boolean => n >= (min ?? 0) && n <= 255;
+        const checkRange = (n: number, min?: number): boolean => n >= (min ?? 0) && n < 256;
 
         const checkColor = (rgb: IRgb, min?: number): boolean =>
             checkRange(rgb.r, min) && checkRange(rgb.g, min) && checkRange(rgb.b, min);
