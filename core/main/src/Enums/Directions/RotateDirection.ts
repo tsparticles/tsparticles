@@ -3,3 +3,5 @@ export enum RotateDirection {
     counterClockwise = "counter-clockwise",
     random = "random",
 }
+
+export type RotateDirectionAlt = "counter-clockwise";

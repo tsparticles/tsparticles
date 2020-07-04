@@ -1,9 +1,9 @@
 import type { IRotateAnimation } from "./IRotateAnimation";
-import type { RotateDirection } from "../../../../Enums";
+import type { RotateDirection, RotateDirectionAlt } from "../../../../Enums";
 
 export interface IRotate {
     animation: IRotateAnimation;
-    direction: RotateDirection | keyof typeof RotateDirection;
+    direction: RotateDirection | keyof typeof RotateDirection | RotateDirectionAlt;
     path: boolean;
     random: boolean;
     value: number;

@@ -1,12 +1,12 @@
 import type { IRotate } from "../../../Interfaces/Particles/Rotate/IRotate";
 import { RotateAnimation } from "./RotateAnimation";
-import { RotateDirection } from "../../../../Enums";
+import { RotateDirection, RotateDirectionAlt } from "../../../../Enums";
 import type { RecursivePartial } from "../../../../Types/RecursivePartial";
 import type { IOptionLoader } from "../../../Interfaces/IOptionLoader";
 
 export class Rotate implements IRotate, IOptionLoader<IRotate> {
     public animation: RotateAnimation;
-    public direction: RotateDirection | keyof typeof RotateDirection;
+    public direction: RotateDirection | keyof typeof RotateDirection | RotateDirectionAlt;
     public path: boolean;
     public random: boolean;
     public value: number;
