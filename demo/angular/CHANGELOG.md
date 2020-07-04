@@ -3,6 +3,33 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.2.0-alpha.11](https://github.com/matteobruni/tsparticles/compare/ng-particles-demo@1.1.2...ng-particles-demo@1.2.0-alpha.11) (2020-07-02)
+
+
+### Features
+
+* changed angular and vue component name and syntax, changed version to 2.0.0 for breaking changes ([58d58f9](https://github.com/matteobruni/tsparticles/commit/58d58f9a37a116cab7ad656331f59ee9236ccf1b))
+
+
+
+
+
+# [1.2.0-alpha.10](https://github.com/matteobruni/tsparticles/compare/ng-particles-demo@1.2.0-alpha.9...ng-particles-demo@1.2.0-alpha.10) (2020-06-29)
+
+**Note:** Version bump only for package ng-particles-demo
+
+
+
+
+
+# [1.2.0-alpha.9](https://github.com/matteobruni/tsparticles/compare/ng-particles-demo@1.2.0-alpha.8...ng-particles-demo@1.2.0-alpha.9) (2020-06-29)
+
+**Note:** Version bump only for package ng-particles-demo
+
+
+
+
+
 # [1.2.0-alpha.8](https://github.com/matteobruni/tsparticles/compare/ng-particles-demo@1.2.0-alpha.7...ng-particles-demo@1.2.0-alpha.8) (2020-06-26)
 
 **Note:** Version bump only for package ng-particles-demo

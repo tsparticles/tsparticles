@@ -1,10 +1,10 @@
 {
   "name": "ng-particles-demo",
-  "version": "1.2.0-alpha.8",
+  "version": "1.2.0-alpha.11",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
-    "build:disabled": "ng build",
+    "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e"
@@ -15,18 +15,18 @@
     "url": "git+https://github.com/matteobruni/tsparticles.git"
   },
   "dependencies": {
-    "@angular/animations": "~10.0.0",
-    "@angular/common": "~10.0.0",
-    "@angular/compiler": "~10.0.0",
-    "@angular/core": "~10.0.0",
-    "@angular/forms": "~10.0.0",
-    "@angular/platform-browser": "~10.0.0",
-    "@angular/platform-browser-dynamic": "~10.0.0",
-    "@angular/router": "~10.0.0",
-    "ng-particles": "^1.17.0-alpha.8",
-    "rxjs": "~6.5.4",
+    "@angular/animations": "~10.0.1",
+    "@angular/common": "~10.0.1",
+    "@angular/compiler": "~10.0.1",
+    "@angular/core": "~10.0.1",
+    "@angular/forms": "~10.0.1",
+    "@angular/platform-browser": "~10.0.1",
+    "@angular/platform-browser-dynamic": "~10.0.1",
+    "@angular/router": "~10.0.1",
+    "ng-particles": "^2.0.0-alpha.1",
+    "rxjs": "~6.6.0",
     "tslib": "^2.0.0",
-    "tsparticles": "^1.17.0-alpha.8",
+    "tsparticles": "^1.17.0-alpha.11",
     "zone.js": "~0.10.2"
   },
   "bugs": {
@@ -35,11 +35,11 @@
   "devDependencies": {
     "@angular-devkit/build-angular": "~0.1000.0",
     "@angular/cli": "~10.0.0",
-    "@angular/compiler-cli": "~10.0.0",
+    "@angular/compiler-cli": "~10.0.1",
     "@types/node": "^14.0.14",
     "@typescript-eslint/eslint-plugin": "^3.3.0",
     "@typescript-eslint/parser": "^3.3.0",
-    "codelyzer": "^5.1.2",
+    "codelyzer": "^6.0.0",
     "eslint": "^7.2.0",
     "eslint-config-prettier": "^6.11.0",
     "prettier": "^2.0.5",

@@ -5,8 +5,8 @@ import { Container } from "tsparticles/dist/Core/Container";
 export class Editor {
     public readonly root: EditorContainer;
 
-    constructor(private readonly container: Container) {
-        this.root = new EditorContainer("root", document.body);
+    constructor(public readonly container: Container) {
+        this.root = new EditorContainer(container, "root", "tsParticles", document.body);
 
         this.addOptions();
         this.addButtons();
@@ -17,10 +17,20 @@ export class Editor {
     }
 
     private addButtons() {
-        this.root.addButton("play");
-        this.root.addButton("pause");
-        this.root.addButton("refresh");
-        this.root.addButton("start");
-        this.root.addButton("stop");
+        this.root.addButton("play", "Play", () => {
+            this.container.play();
+        });
+        this.root.addButton("pause", "Pause", () => {
+            this.container.pause();
+        });
+        this.root.addButton("refresh", "Refresh", async () => {
+            await this.container.refresh();
+        });
+        this.root.addButton("start", "Start", async () => {
+            await this.container.start();
+        });
+        this.root.addButton("stop", "Stop", () => {
+            this.container.stop();
+        });
     }
 }

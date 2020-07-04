@@ -3,6 +3,30 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.2.0-alpha.11](https://github.com/matteobruni/tsparticles/compare/jquery-particles-demo@1.1.2...jquery-particles-demo@1.2.0-alpha.11) (2020-07-02)
+
+**Note:** Version bump only for package jquery-particles-demo
+
+
+
+
+
+# [1.2.0-alpha.10](https://github.com/matteobruni/tsparticles/compare/jquery-particles-demo@1.2.0-alpha.9...jquery-particles-demo@1.2.0-alpha.10) (2020-06-29)
+
+**Note:** Version bump only for package jquery-particles-demo
+
+
+
+
+
+# [1.2.0-alpha.9](https://github.com/matteobruni/tsparticles/compare/jquery-particles-demo@1.2.0-alpha.8...jquery-particles-demo@1.2.0-alpha.9) (2020-06-29)
+
+**Note:** Version bump only for package jquery-particles-demo
+
+
+
+
+
 # [1.2.0-alpha.8](https://github.com/matteobruni/tsparticles/compare/jquery-particles-demo@1.2.0-alpha.7...jquery-particles-demo@1.2.0-alpha.8) (2020-06-26)
 
 **Note:** Version bump only for package jquery-particles-demo

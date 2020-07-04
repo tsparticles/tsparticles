@@ -3,6 +3,35 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.0.0-alpha.12](https://github.com/matteobruni/tsparticles/compare/tsparticles-editor@1.0.0-alpha.11...tsparticles-editor@1.0.0-alpha.12) (2020-07-02)
+
+**Note:** Version bump only for package tsparticles-editor
+
+
+
+
+
+# [1.0.0-alpha.11](https://github.com/matteobruni/tsparticles/compare/tsparticles-editor@1.0.0-alpha.10...tsparticles-editor@1.0.0-alpha.11) (2020-06-29)
+
+**Note:** Version bump only for package tsparticles-editor
+
+
+
+
+
+# [1.0.0-alpha.10](https://github.com/matteobruni/tsparticles/compare/tsparticles-editor@1.0.0-alpha.9...tsparticles-editor@1.0.0-alpha.10) (2020-06-29)
+
+
+### Features
+
+* adding inputs to editor ([e2c1d18](https://github.com/matteobruni/tsparticles/commit/e2c1d1852c035c2b7fbe89024ac4eb103df0ca82))
+* adding labels to editor ([fd97284](https://github.com/matteobruni/tsparticles/commit/fd97284aa0cfad7f96dd5f42859b2873a98ec62b))
+* adding real code to editor ([d2bb1bf](https://github.com/matteobruni/tsparticles/commit/d2bb1bf29839640809cea4f334189fe1551bb6b5))
+
+
+
+
+
 # [1.0.0-alpha.9](https://github.com/matteobruni/tsparticles/compare/tsparticles-editor@1.0.0-alpha.8...tsparticles-editor@1.0.0-alpha.9) (2020-06-26)
 
 **Note:** Version bump only for package tsparticles-editor

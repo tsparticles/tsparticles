@@ -356,15 +356,13 @@ MigrationBackup/
 dist/
 build/
 docs/
-core/tsparticles/typedoc/themes/particles/assets/js/tsparticles.min.js
+core/main/typedoc/themes/particles/assets/js/tsparticles.min.js
 demo/main/report.html
 demo/main/report.htm
 demo/main/report.*.html
 demo/main/report.*.htm
-wrappers/preact-particles/report.html
-wrappers/react-tsparticles/report.html
-wrappers/preact/report.html
-wrappers/react/report.html
+components/preact/report.html
+components/react/report.html
 
 .idea/
 .nyc_output/
@@ -372,13 +370,9 @@ coverage/
 .codacy-coverage/
 
 package-lock.json
-wrappers/preact-particles/cjs/
-wrappers/preact-particles/umd/
-wrappers/react-tsparticles/cjs/
-wrappers/react-tsparticles/umd/
-wrappers/preact/cjs/
-wrappers/preact/umd/
-wrappers/react/cjs/
-wrappers/react/umd/
+components/preact/cjs/
+components/preact/umd/
+components/react/cjs/
+components/react/umd/
 
 size-plugin.json
