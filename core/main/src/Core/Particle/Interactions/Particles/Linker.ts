@@ -84,7 +84,7 @@ export class Linker implements IParticlesInteractor {
 
                 let linkColor =
                     linksOptions.id !== undefined
-                        ? container.particles.linksColors[linksOptions.id]
+                        ? container.particles.linksColors.get(linksOptions.id)
                         : container.particles.linksColor;
 
                 if (!linkColor) {
@@ -112,7 +112,7 @@ export class Linker implements IParticlesInteractor {
                     }
 
                     if (linksOptions.id !== undefined) {
-                        container.particles.linksColors[linksOptions.id] = linkColor;
+                        container.particles.linksColors.set(linksOptions.id, linkColor);
                     } else {
                         container.particles.linksColor = linkColor;
                     }

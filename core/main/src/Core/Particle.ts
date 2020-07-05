@@ -31,8 +31,9 @@ import { RecursivePartial } from "../Types/RecursivePartial";
 import type { ILink } from "./Interfaces/ILink";
 import type { IHsl } from "./Interfaces/IHsl";
 import { ColorUtils, Plugins, Utils } from "../Utils";
-import { IShapeDrawer } from "./Interfaces/IShapeDrawer";
+import type { IShapeDrawer } from "./Interfaces/IShapeDrawer";
 import { Infecter } from "./Particle/Infecter";
+import type { IDelta } from "./Interfaces/IDelta";
 
 /**
  * The single particle object
@@ -316,11 +317,11 @@ export class Particle implements IParticle {
         this.infecter = new Infecter(this.container, this);
     }
 
-    public update(delta: number): void {
+    public update(delta: IDelta): void {
         this.updater.update(delta);
     }
 
-    public draw(delta: number): void {
+    public draw(delta: IDelta): void {
         this.container.canvas.drawParticle(this, delta);
     }
 

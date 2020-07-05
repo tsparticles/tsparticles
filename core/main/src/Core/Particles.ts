@@ -5,8 +5,9 @@ import type { IRgb } from "./Interfaces/IRgb";
 import { Particle } from "./Particle";
 import { Point, QuadTree, Rectangle, Utils } from "../Utils";
 import { RecursivePartial } from "../Types/RecursivePartial";
-import { IParticles } from "../Options/Interfaces/Particles/IParticles";
+import type { IParticles } from "../Options/Interfaces/Particles/IParticles";
 import { InteractionManager } from "./Particle/InteractionManager";
+import type { IDelta } from "./Interfaces/IDelta";
 
 /**
  * Particles manager
@@ -21,7 +22,7 @@ export class Particles {
     //public spatialGrid: SpatialGrid;
     public pushing?: boolean;
     public linksColor?: IRgb | string;
-    public linksColors: { [key: string]: IRgb | string | undefined };
+    public linksColors: Map<string, IRgb | string | undefined>;
     public grabLineColor?: IRgb | string;
 
     private interactionManager: InteractionManager;
@@ -31,7 +32,7 @@ export class Particles {
         this.interactionManager = new InteractionManager(container);
         //this.spatialGrid = new SpatialGrid(this.container.canvas.size);
         const canvasSize = this.container.canvas.size;
-        this.linksColors = {};
+        this.linksColors = new Map<string, IRgb | string | undefined>();
 
         this.quadTree = new QuadTree(new Rectangle(0, 0, canvasSize.width, canvasSize.height), 4);
     }
@@ -75,7 +76,7 @@ export class Particles {
     public redraw(): void {
         this.clear();
         this.init();
-        this.draw(0);
+        this.draw({ value: 0, factor: 0 });
     }
 
     public removeAt(index: number, quantity?: number): void {
@@ -90,7 +91,7 @@ export class Particles {
         this.removeAt(this.array.indexOf(particle));
     }
 
-    public update(delta: number): void {
+    public update(delta: IDelta): void {
         const container = this.container;
         const particlesToDelete = [];
 
@@ -139,7 +140,7 @@ export class Particles {
         this.interactionManager.interact(delta);
     }
 
-    public draw(delta: number): void {
+    public draw(delta: IDelta): void {
         const container = this.container;
 
         /* clear canvas */

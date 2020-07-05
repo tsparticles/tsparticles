@@ -2,6 +2,7 @@ import type { Particle } from "../../../Particle";
 import type { Container } from "../../../Container";
 import { Circle } from "../../../../Utils";
 import type { IParticlesInteractor } from "../../../Interfaces/IParticlesInteractor";
+import type { IDelta } from "../../../Interfaces/IDelta";
 
 export class Infecter implements IParticlesInteractor {
     constructor(private readonly container: Container) {}
@@ -14,10 +15,10 @@ export class Infecter implements IParticlesInteractor {
         // do nothing
     }
 
-    public interact(p1: Particle, delta: number): void {
+    public interact(p1: Particle, delta: IDelta): void {
         const infecter1 = p1.infecter;
 
-        infecter1.updateInfection(delta);
+        infecter1.updateInfection(delta.value);
 
         if (infecter1.infectionStage === undefined) {
             return;

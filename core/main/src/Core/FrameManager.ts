@@ -16,7 +16,12 @@ export class FrameManager {
             return;
         }
 
-        const delta = timestamp - container.lastFrameTime;
+        const deltaValue = timestamp - container.lastFrameTime;
+
+        const delta = {
+            value: deltaValue,
+            factor: options.fpsLimit > 0 ? (60 * deltaValue) / 1000 : 3.6,
+        };
 
         container.lastFrameTime = timestamp;
 

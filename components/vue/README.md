@@ -11,12 +11,11 @@ yarn add particles.vue
 ## Usage  
   
 ```javascript  
-import Particles from 'particles.vue';  
-  
-export default {  
- name: 'App', components: { Particles }
-}  
-```  
+import Particles from "particles.vue";
+
+Vue.use(Particles);
+```
+
 ### Simple config  
   
 ```html  
@@ -128,4 +127,12 @@ export default {
               clickMode="push"></particles>
   </div>
 </template>
+```
+
+### TypeScript errors
+
+If TypeScript returns error while importing/using Particles plugin try adding the following import before the previous code:
+
+```typescript
+declare module 'particles.vue';
 ```

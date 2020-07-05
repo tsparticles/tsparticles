@@ -1,7 +1,7 @@
 {
   "name": "jquery-particles",
   "version": "1.17.0-alpha.13",
-  "description": "Particles effect in jQuery",
+  "description": "tsParticles official jQuery plugin",
   "main": "dist/jquery.particles.min.js",
   "scripts": {
     "prettify:src": "prettier --write ./src/",
@@ -20,19 +20,29 @@
     "url": "git+https://github.com/matteobruni/tsparticles.git"
   },
   "keywords": [
-    "jquery",
-    "jquery-plugin",
-    "jquery-plugins",
     "tsparticles",
+    "particles.js",
+    "particlesjs",
     "particles",
     "particle",
     "canvas",
     "jsparticles",
     "xparticles",
     "particles-js",
-    "particles.js",
+    "particles-bg",
+    "particles-bg-vue",
     "particles-ts",
     "particles.ts",
+    "react-particles-js",
+    "react",
+    "reactjs",
+    "vue",
+    "vuejs",
+    "preact",
+    "preactjs",
+    "jquery",
+    "angularjs",
+    "angular",
     "typescript",
     "javascript",
     "animation",
@@ -52,6 +62,10 @@
     "url": "https://github.com/matteobruni/tsparticles/issues"
   },
   "homepage": "https://particles.matteobruni.it/",
+  "funding": {
+    "type": "github",
+    "url": "https://github.com/sponsors/matteobruni"
+  },
   "dependencies": {
     "jquery": "^3.4.1",
     "tslib": "^2.0.0",
