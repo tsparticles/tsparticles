@@ -32,6 +32,7 @@ import type { ILink } from "./Interfaces/ILink";
 import type { IHsl } from "./Interfaces/IHsl";
 import { ColorUtils, Plugins, Utils } from "../Utils";
 import { IShapeDrawer } from "./Interfaces/IShapeDrawer";
+import { Infecter } from "./Particle/Infecter";
 
 /**
  * The single particle object
@@ -47,10 +48,6 @@ export class Particle implements IParticle {
     public readonly fill: boolean;
     public readonly stroke: IStroke;
     public readonly size: IParticleSizeAnimation;
-    public infectionStage?: number;
-    public infectionTime?: number;
-    public infectionDelay?: number;
-    public infectionDelayStage?: number;
     public readonly position: ICoordinates;
     public readonly offset: ICoordinates;
     public readonly color: IHsl | undefined;
@@ -74,11 +71,11 @@ export class Particle implements IParticle {
     public sizeAnimationSpeed?: number;
 
     public readonly updater: Updater;
+    public readonly infecter: Infecter;
 
     /* --------- tsParticles functions - particles ----------- */
     public readonly particlesOptions: IParticles;
 
-    private infectionTimeout?: number;
     private readonly strokeColorVelocity?: number;
 
     constructor(
@@ -216,7 +213,7 @@ export class Particle implements IParticle {
             this.size.velocity = (this.sizeAnimationSpeed ?? container.retina.sizeAnimationSpeed) / 100;
 
             if (!sizeAnimation.sync) {
-                this.size.velocity = this.size.velocity * Math.random();
+                this.size.velocity *= Math.random();
             }
         }
 
@@ -316,19 +313,14 @@ export class Particle implements IParticle {
 
         this.shadowColor = ColorUtils.colorToRgb(this.particlesOptions.shadow.color);
         this.updater = new Updater(this.container, this);
+        this.infecter = new Infecter(this.container, this);
     }
 
     public update(delta: number): void {
-        this.links = [];
-
         this.updater.update(delta);
     }
 
     public draw(delta: number): void {
-        if (this.image?.loaded === false) {
-            return;
-        }
-
         this.container.canvas.drawParticle(this, delta);
     }
 
@@ -350,82 +342,6 @@ export class Particle implements IParticle {
         }
 
         return collisionFound;
-    }
-
-    public startInfection(stage: number): void {
-        const container = this.container;
-        const options = container.options;
-        const stages = options.infection.stages;
-        const stagesCount = stages.length;
-
-        if (stage > stagesCount || stage < 0) {
-            return;
-        }
-
-        this.infectionDelay = 0;
-        this.infectionDelayStage = stage;
-    }
-
-    public updateInfectionStage(stage: number): void {
-        const container = this.container;
-        const options = container.options;
-        const stagesCount = options.infection.stages.length;
-
-        if (stage > stagesCount || stage < 0 || (this.infectionStage !== undefined && this.infectionStage > stage)) {
-            return;
-        }
-
-        if (this.infectionTimeout !== undefined) {
-            window.clearTimeout(this.infectionTimeout);
-        }
-
-        this.infectionStage = stage;
-        this.infectionTime = 0;
-    }
-
-    public updateInfection(delta: number): void {
-        const options = this.container.options;
-        const infection = options.infection;
-        const stages = options.infection.stages;
-        const stagesCount = stages.length;
-
-        if (this.infectionDelay !== undefined && this.infectionDelayStage !== undefined) {
-            const stage = this.infectionDelayStage;
-
-            if (stage > stagesCount || stage < 0) {
-                return;
-            }
-
-            if (this.infectionDelay > infection.delay * 1000) {
-                this.infectionStage = stage;
-                this.infectionTime = 0;
-
-                delete this.infectionDelay;
-                delete this.infectionDelayStage;
-            } else {
-                this.infectionDelay += delta;
-            }
-        } else {
-            delete this.infectionDelay;
-            delete this.infectionDelayStage;
-        }
-
-        if (this.infectionStage !== undefined && this.infectionTime !== undefined) {
-            const infectionStage = stages[this.infectionStage];
-
-            if (infectionStage.duration !== undefined && infectionStage.duration >= 0) {
-                if (this.infectionTime > infectionStage.duration * 1000) {
-                    this.nextInfectionStage();
-                } else {
-                    this.infectionTime += delta;
-                }
-            } else {
-                this.infectionTime += delta;
-            }
-        } else {
-            delete this.infectionStage;
-            delete this.infectionTime;
-        }
     }
 
     public getPosition(): ICoordinates {
@@ -471,28 +387,6 @@ export class Particle implements IParticle {
         }
 
         return true;
-    }
-
-    private nextInfectionStage(): void {
-        const options = this.container.options;
-        const stagesCount = options.infection.stages.length;
-
-        if (stagesCount <= 0 || this.infectionStage === undefined) {
-            return;
-        }
-
-        this.infectionTime = 0;
-
-        if (stagesCount <= ++this.infectionStage) {
-            if (options.infection.cure) {
-                delete this.infectionStage;
-                delete this.infectionTime;
-                return;
-            } else {
-                this.infectionStage = 0;
-                this.infectionTime = 0;
-            }
-        }
     }
 
     private calcPosition(container: Container, position?: ICoordinates): ICoordinates {

@@ -23,10 +23,6 @@ export interface IParticle {
     readonly direction: MoveDirection | keyof typeof MoveDirection | MoveDirectionAlt;
     readonly fill: boolean;
     readonly image?: IParticleImage;
-    readonly infectionStage?: number;
-    readonly infectionTime?: number;
-    readonly infectionDelay?: number;
-    readonly infectionDelayStage?: number;
     readonly initialVelocity: IVelocity;
     readonly links: ILink[];
     readonly offset: ICoordinates;

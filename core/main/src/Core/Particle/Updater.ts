@@ -28,6 +28,8 @@ export class Updater {
     }
 
     public update(delta: number): void {
+        this.particle.links = [];
+
         /* move the particle */
         this.mover.move(delta);
 

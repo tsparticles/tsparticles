@@ -6,6 +6,7 @@ import type { IParticle } from "./Interfaces/IParticle";
 import type { IContainerPlugin } from "./Interfaces/IContainerPlugin";
 import type { ILink } from "./Interfaces/ILink";
 import { CanvasUtils, ColorUtils, Constants } from "../Utils";
+import type { Particle } from "./Particle";
 
 /**
  * Canvas manager
@@ -318,7 +319,11 @@ export class Canvas {
         );
     }
 
-    public drawParticle(particle: IParticle, delta: number): void {
+    public drawParticle(particle: Particle, delta: number): void {
+        if (particle.image?.loaded === false) {
+            return;
+        }
+
         const pfColor = particle.getFillColor();
         if (pfColor === undefined) {
             return;
@@ -332,7 +337,7 @@ export class Canvas {
         const twinkling = twinkle.enable && Math.random() < twinkleFreq;
         const radius = particle.bubble.radius ?? particle.size.value;
         const opacity = twinkling ? twinkle.opacity : particle.bubble.opacity ?? particle.opacity.value;
-        const infectionStage = particle.infectionStage;
+        const infectionStage = particle.infecter.infectionStage;
         const infection = options.infection;
         const infectionStages = infection.stages;
         const infectionColor = infectionStage !== undefined ? infectionStages[infectionStage].color : undefined;

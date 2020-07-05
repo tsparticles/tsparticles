@@ -60,7 +60,7 @@ export class Particles {
 
         if (options.infection.enable) {
             for (let i = 0; i < options.infection.infections; i++) {
-                const notInfected = this.array.filter((p) => p.infectionStage === undefined);
+                const notInfected = this.array.map((p) => p.infecter).filter((p) => p.infectionStage === undefined);
                 const infected = Utils.itemFromArray(notInfected);
 
                 infected.startInfection(0);
