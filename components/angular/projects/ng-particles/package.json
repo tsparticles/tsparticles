@@ -1,9 +1,9 @@
 {
   "name": "ng-particles",
-  "version": "2.0.0-alpha.2",
+  "version": "2.0.0-alpha.3",
   "peerDependencies": {
     "@angular/common": "^10.0.0",
     "@angular/core": "^10.0.0",
-    "tsparticles": "^1.17.0-alpha.12"
+    "tsparticles": "^1.17.0-alpha.13"
   }
 }

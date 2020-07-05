@@ -1,6 +1,6 @@
 {
   "name": "tsparticles-shape-spiral",
-  "version": "1.2.0-alpha.12",
+  "version": "1.2.0-alpha.13",
   "description": "tsParticles spiral shape",
   "homepage": "https://particles.matteobruni.it/",
   "scripts": {
@@ -62,6 +62,6 @@
     "webpack-cli": "^3.3.12"
   },
   "dependencies": {
-    "tsparticles": "^1.17.0-alpha.12"
+    "tsparticles": "^1.17.0-alpha.13"
   }
 }
