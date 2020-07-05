@@ -8,7 +8,6 @@ import type { IAbsorberOptions } from "./Options/Interfaces/IAbsorberOptions";
 import type { IOptions } from "../../Options/Interfaces/IOptions";
 import { Options } from "../../Options/Classes/Options";
 import { Absorber } from "./Options/Classes/Absorber";
-import { Emitter } from "../Emitters/Options/Classes/Emitter";
 
 class AbsorbersPlugin implements IPlugin {
     public readonly id: string;

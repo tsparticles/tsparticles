@@ -1,4 +1,3 @@
-import type { IOptionLoader } from "../../../../Options/Interfaces/IOptionLoader";
 import type { MoveType } from "../../Enums";
 
 export interface IMove {

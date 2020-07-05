@@ -1,5 +1,3 @@
-import type { IOptionLoader } from "../../../../Options/Interfaces/IOptionLoader";
-
 /**
  * The particles emitter rate options
  */
