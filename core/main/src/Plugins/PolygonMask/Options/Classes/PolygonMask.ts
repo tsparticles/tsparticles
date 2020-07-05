@@ -1,25 +1,25 @@
 import type { IPolygonMask } from "../Interfaces/IPolygonMask";
-import { Type } from "../../Enums/Type";
+import { InlineArrangement, InlineArrangementAlt, Type } from "../../Enums";
 import { Draw } from "./Draw";
 import { Move } from "./Move";
-import { InlineArrangement } from "../../Enums/InlineArrangement";
 import { Inline } from "./Inline";
 import type { RecursivePartial } from "../../../../Types/RecursivePartial";
 import type { ICoordinates } from "../../../../Core/Interfaces/ICoordinates";
 import { LocalSvg } from "./LocalSvg";
+import { IOptionLoader } from "../../../../Options/Interfaces/IOptionLoader";
 
-export class PolygonMask implements IPolygonMask {
+export class PolygonMask implements IPolygonMask, IOptionLoader<IPolygonMask> {
     /**
      * @deprecated the property inlineArrangement is deprecated, please use the new inline.arrangement
      */
-    get inlineArrangement(): InlineArrangement | keyof typeof InlineArrangement {
+    get inlineArrangement(): InlineArrangement | keyof typeof InlineArrangement | InlineArrangementAlt {
         return this.inline.arrangement;
     }
 
     /**
      * @deprecated the property inlineArrangement is deprecated, please use the new inline.arrangement
      */
-    set inlineArrangement(value: InlineArrangement | keyof typeof InlineArrangement) {
+    set inlineArrangement(value: InlineArrangement | keyof typeof InlineArrangement | InlineArrangementAlt) {
         this.inline.arrangement = value;
     }
 

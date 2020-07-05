@@ -1,4 +1,3 @@
-import type { IOptionLoader } from "../../../../Options/Interfaces/IOptionLoader";
 import type { ICoordinates } from "../../../../Core/Interfaces/ICoordinates";
 import type { IColor } from "../../../../Core/Interfaces/IColor";
 import type { IAbsorberSize } from "./IAbsorberSize";
@@ -6,7 +5,7 @@ import type { IAbsorberSize } from "./IAbsorberSize";
 /**
  * Absorber options
  */
-export interface IAbsorber extends IOptionLoader<IAbsorber> {
+export interface IAbsorber {
     /**
      * Absorber color
      */

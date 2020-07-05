@@ -1,4 +1,3 @@
-import type { IOptionLoader } from "../../../../Options/Interfaces/IOptionLoader";
 import type { ICoordinates } from "../../../../Core/Interfaces/ICoordinates";
 import type { MoveDirection, MoveDirectionAlt } from "../../../../Enums";
 import type { IParticles } from "../../../../Options/Interfaces/Particles/IParticles";
@@ -10,7 +9,7 @@ import type { IEmitterSize } from "./IEmitterSize";
 /**
  * Particles emitter object options
  */
-export interface IEmitter extends IOptionLoader<IEmitter> {
+export interface IEmitter {
     /**
      * The size of the particles emitter area
      */

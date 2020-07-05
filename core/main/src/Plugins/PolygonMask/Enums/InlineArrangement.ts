@@ -5,3 +5,5 @@ export enum InlineArrangement {
     randomLength = "random-length",
     randomPoint = "random-point",
 }
+
+export type InlineArrangementAlt = "one-per-point" | "per-point" | "random-length" | "random-point";

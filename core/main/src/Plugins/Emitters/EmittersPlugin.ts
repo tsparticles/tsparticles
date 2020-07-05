@@ -61,11 +61,13 @@ class EmittersPlugin implements IPlugin {
                     return tmp;
                 });
             } else {
-                if (optionsCast.emitters instanceof Array || optionsCast.emitters === undefined) {
-                    optionsCast.emitters = new Emitter();
+                let emitterOptions = optionsCast.emitters as Emitter;
+
+                if (emitterOptions?.load === undefined) {
+                    optionsCast.emitters = emitterOptions = new Emitter();
                 }
 
-                optionsCast.emitters.load(source?.emitters);
+                emitterOptions.load(source?.emitters);
             }
         }
 
@@ -81,14 +83,13 @@ class EmittersPlugin implements IPlugin {
                     return tmp;
                 });
             } else {
-                if (
-                    optionsCast.interactivity.modes.emitters instanceof Array ||
-                    optionsCast.interactivity.modes.emitters === undefined
-                ) {
-                    optionsCast.interactivity.modes.emitters = new Emitter();
+                let emitterOptions = optionsCast.interactivity.modes.emitters as Emitter;
+
+                if (emitterOptions?.load === undefined) {
+                    optionsCast.interactivity.modes.emitters = emitterOptions = new Emitter();
                 }
 
-                optionsCast.interactivity.modes.emitters.load(interactivityEmitters);
+                emitterOptions.load(interactivityEmitters);
             }
         }
     }

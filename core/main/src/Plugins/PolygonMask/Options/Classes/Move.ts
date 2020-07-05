@@ -1,8 +1,9 @@
 import type { IMove } from "../Interfaces/IMove";
 import type { RecursivePartial } from "../../../../Types/RecursivePartial";
-import { MoveType } from "../../Enums/MoveType";
+import { MoveType } from "../../Enums";
+import type { IOptionLoader } from "../../../../Options/Interfaces/IOptionLoader";
 
-export class Move implements IMove {
+export class Move implements IMove, IOptionLoader<IMove> {
     public radius: number;
     public type: MoveType | keyof typeof MoveType;
 

@@ -2,8 +2,9 @@ import type { IDraw } from "../Interfaces/IDraw";
 import { DrawStroke } from "./DrawStroke";
 import type { RecursivePartial } from "../../../../Types/RecursivePartial";
 import { OptionsColor } from "../../../../Options/Classes/OptionsColor";
+import type { IOptionLoader } from "../../../../Options/Interfaces/IOptionLoader";
 
-export class Draw implements IDraw {
+export class Draw implements IDraw, IOptionLoader<IDraw> {
     /**
      * @deprecated the property lineWidth is deprecated, please use the new stroke.width
      */

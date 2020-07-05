@@ -1,7 +1,8 @@
 import type { IEmitterRate } from "../Interfaces/IEmitterRate";
 import type { RecursivePartial } from "../../../../Types/RecursivePartial";
+import type { IOptionLoader } from "../../../../Options/Interfaces/IOptionLoader";
 
-export class EmitterRate implements IEmitterRate {
+export class EmitterRate implements IEmitterRate, IOptionLoader<IEmitterRate> {
     public quantity: number;
     public delay: number;
 

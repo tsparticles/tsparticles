@@ -8,7 +8,7 @@ import type { ISvgPath } from "./Interfaces/ISvgPath";
 import type { IContainerPlugin } from "../../Core/Interfaces/IContainerPlugin";
 import type { IDrawStroke } from "./Options/Interfaces/IDrawStroke";
 import type { IOptions } from "../../Options/Interfaces/IOptions";
-import { RecursivePartial } from "../../Types/RecursivePartial";
+import type { RecursivePartial } from "../../Types/RecursivePartial";
 import type { IPolygonMask } from "./Options/Interfaces/IPolygonMask";
 import { PolygonMask } from "./Options/Classes/PolygonMask";
 

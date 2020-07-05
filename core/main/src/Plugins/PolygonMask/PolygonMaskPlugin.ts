@@ -3,7 +3,7 @@ import { PolygonMaskInstance } from "./PolygonMaskInstance";
 import type { Container } from "../../Core/Container";
 import type { RecursivePartial } from "../../Types/RecursivePartial";
 import type { IOptions } from "../../Options/Interfaces/IOptions";
-import { IPolygonMaskOptions } from "./Options/Interfaces/IPolygonMaskOptions";
+import type { IPolygonMaskOptions } from "./Options/Interfaces/IPolygonMaskOptions";
 import { Options } from "../../Options/Classes/Options";
 import { PolygonMask } from "./Options/Classes/PolygonMask";
 import { Type } from "./Enums";
@@ -29,11 +29,13 @@ class PolygonMaskPlugin implements IPlugin {
         }
 
         const optionsCast = (options as unknown) as IPolygonMaskOptions;
-        if (optionsCast.polygon === undefined) {
-            optionsCast.polygon = new PolygonMask();
+        let polygonOptions = optionsCast.polygon as PolygonMask;
+
+        if (polygonOptions?.load === undefined) {
+            optionsCast.polygon = polygonOptions = new PolygonMask();
         }
 
-        optionsCast.polygon.load(source?.polygon);
+        polygonOptions.load(source?.polygon);
     }
 }
 

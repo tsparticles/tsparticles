@@ -1,6 +1,5 @@
-import type { InlineArrangement } from "../../Enums/InlineArrangement";
-import type { IOptionLoader } from "../../../../Options/Interfaces/IOptionLoader";
+import type { InlineArrangement, InlineArrangementAlt } from "../../Enums";
 
-export interface IInline extends IOptionLoader<IInline> {
-    arrangement: InlineArrangement | keyof typeof InlineArrangement;
+export interface IInline {
+    arrangement: InlineArrangement | keyof typeof InlineArrangement | InlineArrangementAlt;
 }

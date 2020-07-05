@@ -11,7 +11,7 @@ import { IEmitterSize } from "./Options/Interfaces/IEmitterSize";
 
 export class EmitterInstance {
     public position: ICoordinates;
-    public size: EmitterSize;
+    public size: IEmitterSize;
     public emitterOptions: IEmitter;
 
     private readonly initialPosition?: ICoordinates;

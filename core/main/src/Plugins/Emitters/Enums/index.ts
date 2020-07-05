@@ -1,3 +1,1 @@
-import { EmitterClickMode } from "./EmitterClickMode";
-
-export { EmitterClickMode };
+export * from "./EmitterClickMode";
