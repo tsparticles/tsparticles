@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.2.0-alpha.14](https://github.com/matteobruni/tsparticles/compare/tsparticles-preset-60fps@1.2.0-alpha.13...tsparticles-preset-60fps@1.2.0-alpha.14) (2020-07-05)
+
+**Note:** Version bump only for package tsparticles-preset-60fps
+
+
+
+
+
 # [1.2.0-alpha.13](https://github.com/matteobruni/tsparticles/compare/tsparticles-preset-60fps@1.2.0-alpha.12...tsparticles-preset-60fps@1.2.0-alpha.13) (2020-07-05)
 
 **Note:** Version bump only for package tsparticles-preset-60fps

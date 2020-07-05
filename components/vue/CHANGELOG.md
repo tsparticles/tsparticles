@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.0.0-alpha.4](https://github.com/matteobruni/tsparticles/compare/particles.vue@2.0.0-alpha.3...particles.vue@2.0.0-alpha.4) (2020-07-05)
+
+
+### Features
+
+* added vue plugin for simpler usage ([930a892](https://github.com/matteobruni/tsparticles/commit/930a892a65d6742c315a68eb63ee84b4c3736aa9))
+
+
+
+
+
 # [2.0.0-alpha.3](https://github.com/matteobruni/tsparticles/compare/particles.vue@2.0.0-alpha.2...particles.vue@2.0.0-alpha.3) (2020-07-05)
 
 **Note:** Version bump only for package particles.vue
