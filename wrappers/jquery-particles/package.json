@@ -1,6 +1,6 @@
 {
   "name": "jquery-particles",
-  "version": "1.16.2",
+  "version": "1.16.3",
   "description": "Particles effect in jQuery",
   "main": "dist/jquery.particles.min.js",
   "scripts": {
@@ -52,7 +52,7 @@
   "dependencies": {
     "jquery": "^3.4.1",
     "tslib": "^2.0.0",
-    "tsparticles": "^1.16.2"
+    "tsparticles": "^1.16.3"
   },
   "devDependencies": {
     "@types/jquery": "^3.3.38",

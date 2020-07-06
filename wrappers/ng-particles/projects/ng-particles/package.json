@@ -1,10 +1,10 @@
 {
   "name": "ng-particles",
-  "version": "1.16.2",
+  "version": "1.16.3",
   "peerDependencies": {
     "@angular/common": "^9.1.9",
     "@angular/core": "^9.1.9",
-    "tsparticles": "^1.16.2"
+    "tsparticles": "^1.16.3"
   },
   "scripts": {
     "build": "yarn -v"
