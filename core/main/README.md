@@ -6,7 +6,9 @@
 
 _[Particles.js](https://github.com/VincentGarreau/particles.js) converted in TypeScript, dependency free (\*), improved with new cool 😎 features and various bugs fixed and **it's actively maintained**!_
 
-[![jsDelivr](https://data.jsdelivr.com/v1/package/npm/tsparticles/badge?style=rounded)](https://www.jsdelivr.com/package/npm/tsparticles) [![Cdnjs](https://img.shields.io/cdnjs/v/tsparticles)](https://cdnjs.com/libraries/tsparticles) [![npmjs](https://badge.fury.io/js/tsparticles.svg)](https://www.npmjs.com/package/tsparticles) ![npm](https://img.shields.io/npm/dm/tsparticles)
+[![jsDelivr](https://data.jsdelivr.com/v1/package/npm/tsparticles/badge?style=rounded)](https://www.jsdelivr.com/package/npm/tsparticles) [![Cdnjs](https://img.shields.io/cdnjs/v/tsparticles)](https://cdnjs.com/libraries/tsparticles) [![npmjs](https://badge.fury.io/js/tsparticles.svg)](https://www.npmjs.com/package/tsparticles)
+
+![npm](https://img.shields.io/npm/dm/tsparticles)
 
 | `master`                                                                                                                                                                                                                            | `staging`                                                                                                                                                                                                                              | `dev`                                                                                                                                                                                                                      |
 | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -28,16 +30,173 @@ CDNs and `npm` have all the sources you need in **Javascript**, a bundle browser
 
 **If you are still interested** some lines below there are some instructions for migrating from the old particles.js library.
 
+## **_Library installation_**
+
+### **_Hosting / CDN_**
+
+**_Please use this hosts or your own to load tsParticles on your projects_**
+
+#### jsDelivr
+
+[![jsDelivr](https://data.jsdelivr.com/v1/package/npm/tsparticles/badge)](https://www.jsdelivr.com/package/npm/tsparticles)
+
+#### cdnjs
+
+[![Cdnjs](https://img.shields.io/cdnjs/v/tsparticles)](https://cdnjs.com/libraries/tsparticles)
+
+#### unpkg
+
+<https://unpkg.com/tsparticles/>
+
+---
+
+### **_npm_**
+
+[![npmjs](https://badge.fury.io/js/tsparticles.svg)](https://www.npmjs.com/package/tsparticles) [![npmjs](https://img.shields.io/npm/dt/tsparticles)](https://www.npmjs.com/package/tsparticles)
+
+```shell
+npm install tsparticles
+```
+
+### **_yarn_**
+
+```shell
+yarn add tsparticles
+```
+
+#### Import and require
+
+Starting from version 1.12.11 `import` and `require` can be used to import `tsParticles` .
+
+Now you can write something like this
+
+```javascript
+const tsParticles = require("tsparticles");
+
+// or
+
+import { tsParticles } from "tsparticles";
+```
+
+the imported `tsParticles` is the same instance you have including the script.
+
+---
+
+### **_NuGet_**
+
+[![Nuget](https://img.shields.io/nuget/v/tsParticles)](https://www.nuget.org/packages/tsParticles/)
+
+---
+
+### **_Usage_**
+
+Load tsParticles and configure the particles:
+
+[![tsParticles demo](https://media.giphy.com/media/ftHwBpp3b0qNyCXRuu/giphy.gif)](https://particles.matteobruni.it)
+
+**index.html**
+
+```html
+<div id="tsparticles"></div>
+
+<script src="tsparticles.min.js"></script>
+```
+
+**app.js**
+
+```javascript
+// @path-json can be an object or an array, the first will be loaded directly, the object from the array will be random selected
+/* tsParticles.loadJSON(@dom-id, @path-json, @callback (optional)); */
+
+tsParticles
+  .loadJSON("tsparticles", "presets/default.json")
+  .then((container) => {
+    console.log("callback - tsparticles config loaded");
+  })
+  .catch((error) => {
+    console.error(error);
+  });
+//or
+
+/* tsParticles.load(@dom-id, @options); */
+
+tsParticles.load("tsparticles", {
+  /* options here */
+});
+
+//or
+
+/* tsParticles.loadFromArray(@dom-id, @options, @index (optional)); */
+
+tsParticles.loadFromArray("tsparticles", [
+  {
+    /* options here */
+  },
+  {
+    /* other options here */
+  },
+]); //random object
+tsParticles.loadFromArray(
+  "tsparticles",
+  [
+    {
+      /* options here */
+    },
+    {
+      /* other options here */
+    },
+  ],
+  1
+); //the second one
+// Important! If the index is not in range 0...array.length, the index will be ignored.
+
+// after initialization this can be used.
+
+/* tsParticles.setOnClickHandler(@callback); */
+
+/* this will be fired from all particles loaded */
+
+tsParticles.setOnClickHandler((e) => {
+  /* custom on click handler */
+});
+
+// now you can control the animations too, it's possible to pause and resume the animations
+// these methods don't change the config so you're safe with all your configurations
+// domItem(0) returns the first tsParticles instance loaded in the dom
+const particles = tsParticles.domItem(0);
+// play will start the animations, if the move is not enabled it won't enable it, it just updates the frame
+particles.play();
+// pause will stop the animations
+particles.pause();
+```
+
+#### Import and require
+
+Starting from version 1.12.7 `import` and `require` can be used to import `tsParticles` .
+
+Now you can write something like this
+
+```javascript
+const tsParticles = require("tsparticles");
+
+// or
+
+import { tsParticles } from "tsparticles";
+```
+
+---
+
 ### Related projects
 
 #### jQuery
 
-![npm](https://img.shields.io/npm/v/jquery-particles) ![npm](https://img.shields.io/npm/dm/jquery-particles)
+[![npm](https://img.shields.io/npm/v/jquery-particles)](https://www.npmjs.com/package/jquery-particles) [![npm](https://img.shields.io/npm/dm/jquery-particles)](https://www.npmjs.com/package/jquery-particles)
 
 ##### Installation
 
 ```shell script
 npm install jquery-particles
+
 ```
 
 or from jsDelivr
@@ -47,6 +206,7 @@ or from jsDelivr
 ```html
 <!-- first include tsParticles -->
 <script src="https://cdn.jsdelivr.net/npm/tsparticles@1.16.1/dist/tsparticles.min.js"></script>
+
 <!-- then include jquery wrapper -->
 <script src="https://cdn.jsdelivr.net/npm/jquery-particles@1.16.1/dist/jquery.particles.min.js"></script>
 ```
@@ -61,94 +221,105 @@ HTML
 
 ```javascript
 $("#tsparticles")
- .particles() .init({
-  background: {
-    color: {
-      value: "#0d47a1"
+  .particles()
+  .init(
+    {
+      background: {
+        color: {
+          value: "#0d47a1",
+        },
+      },
+      fpsLimit: 60,
+      interactivity: {
+        detectsOn: "canvas",
+        events: {
+          onClick: {
+            enable: true,
+            mode: "push",
+          },
+          onHover: {
+            enable: true,
+            mode: "repulse",
+          },
+          resize: true,
+        },
+        modes: {
+          bubble: {
+            distance: 400,
+            duration: 2,
+            opacity: 0.8,
+            size: 40,
+            speed: 3,
+          },
+          push: {
+            quantity: 4,
+          },
+          repulse: {
+            distance: 200,
+            duration: 0.4,
+          },
+        },
+      },
+      particles: {
+        color: {
+          value: "#ffffff",
+        },
+        links: {
+          color: "#ffffff",
+          distance: 150,
+          enable: true,
+          opacity: 0.5,
+          width: 1,
+        },
+        collisions: {
+          enable: true,
+        },
+        move: {
+          direction: "none",
+          enable: true,
+          outMode: "bounce",
+          random: false,
+          speed: 6,
+          straight: false,
+        },
+        number: {
+          density: {
+            enable: true,
+            value_area: 800,
+          },
+          value: 80,
+        },
+        opacity: {
+          value: 0.5,
+        },
+        shape: {
+          type: "circle",
+        },
+        size: {
+          random: true,
+          value: 5,
+        },
+      },
+      detectRetina: true,
+    },
+    function (container) {
+      // container is the particles container where you can play/pause or stop/start.
+      // the container is already started, you don't need to start it manually.
     }
-  },
-  fpsLimit: 60,
-  interactivity: {
-    detectsOn: "canvas",
-    events: {
-      onClick: {
-        enable: true,
-        mode: "push"
-      },
-      onHover: {
-        enable: true,
-        mode: "repulse"
-      },
-      resize: true
-    },
-    modes: {
-      bubble: {
-        distance: 400,
-        duration: 2,
-        opacity: 0.8,
-        size: 40,
-        speed: 3
-      },
-      push: {
-        quantity: 4
-      },
-      repulse: {
-        distance: 200,
-        duration: 0.4
-      }
-    }
-  },
-  particles: {
-    color: {
-      value: "#ffffff"
-    },
-    links: {
-      color: "#ffffff",
-      distance: 150,
-      enable: true,
-      opacity: 0.5,
-      width: 1
-    },
-    collisions: {
-      enable: true
-    },
-    move: {
-      direction: "none",
-      enable: true,
-      outMode: "bounce",
-      random: false,
-      speed: 6,
-      straight: false
-    },
-    number: {
-      density: {
-        enable: true,
-        value_area: 800
-      },
-      value: 80
-    },
-    opacity: {
-      value: 0.5
-    },
-    shape: {
-      type: "circle"
-    },
-    size: {
-      random: true,
-      value: 5
-    }
-  },
-  detectRetina: true
-}, function (container) { // container is the particles container where you can play/pause or stop/start. // the container is already started, you don't need to start it manually. } );
+  );
 // or
 
 $("#tsparticles")
- .particles() .ajax("particles.json", function (container) { // container is the particles container where you can play/pause or stop/start. // the container is already started, you don't need to start it manually. });
+  .particles()
+  .ajax("particles.json", function (container) {
+    // container is the particles container where you can play/pause or stop/start.
+    // the container is already started, you don't need to start it manually.
+  });
 ```
 
 #### VueJS
 
-![npm](https://img.shields.io/npm/v/particles.vue) ![npm](https://img.shields.io/npm/dm/particles.vue)
+[![npm](https://img.shields.io/npm/v/particles.vue)](https://www.npmjs.com/package/particles.vue) [![npm](https://img.shields.io/npm/dm/particles.vue)](https://www.npmjs.com/package/particles.vue)
 
 ##### Installation
 
@@ -164,7 +335,7 @@ import Particles from "particles.vue";
 Vue.use(Particles);
 ```
 
-###### Simple config
+###### Demo config
 
 ```html
 <template>
@@ -172,112 +343,85 @@ Vue.use(Particles);
     <Particles
       id="tsparticles"
       :options="{
-                                          background: {
-                                            color: {
-                                              value: '#0d47a1'
-                                            }
-                                          },
-                                          fpsLimit: 60,
-                                          interactivity: {
-                                            detectsOn: 'canvas',
-                                            events: {
-                                              onClick: {
-                                                enable: true,
-                                                mode: 'push'
-                                              },
-                                              onHover: {
-                                                enable: true,
-                                                mode: 'repulse'
-                                              },
-                                              resize: true
-                                            },
-                                            modes: {
-                                              bubble: {
-                                                distance: 400,
-                                                duration: 2,
-                                                opacity: 0.8,
-                                                size: 40,
-                                                speed: 3
-                                              },
-                                              push: {
-                                                quantity: 4
-                                              },
-                                              repulse: {
-                                                distance: 200,
-                                                duration: 0.4
-                                              }
-                                            }
-                                          },
-                                          particles: {
-                                            color: {
-                                              value: '#ffffff'
-                                            },
-                                            links: {
-                                              color: '#ffffff',
-                                              distance: 150,
-                                              enable: true,
-                                              opacity: 0.5,
-                                              width: 1
-                                            },
-                                            collisions: {
-                                              enable: true
-                                            },
-                                            move: {
-                                              direction: 'none',
-                                              enable: true,
-                                              outMode: 'bounce',
-                                              random: false,
-                                              speed: 6,
-                                              straight: false
-                                            },
-                                            number: {
-                                              density: {
-                                                enable: true,
-                                                value_area: 800
-                                              },
-                                              value: 80
-                                            },
-                                            opacity: {
-                                              value: 0.5
-                                            },
-                                            shape: {
-                                              type: 'circle'
-                                            },
-                                            size: {
-                                              random: true,
-                                              value: 5
-                                            }
-                                          },
-                                          detectRetina: true
-                                        }"
+            background: {
+                color: {
+                    value: '#0d47a1'
+                }
+            },
+            fpsLimit: 60,
+            interactivity: {
+                detectsOn: 'canvas',
+                events: {
+                    onClick: {
+                        enable: true,
+                        mode: 'push'
+                    },
+                    onHover: {
+                        enable: true,
+                        mode: 'repulse'
+                    },
+                    resize: true
+                },
+                modes: {
+                    bubble: {
+                        distance: 400,
+                        duration: 2,
+                        opacity: 0.8,
+                        size: 40,
+                        speed: 3
+                    },
+                    push: {
+                        quantity: 4
+                    },
+                    repulse: {
+                        distance: 200,
+                        duration: 0.4
+                    }
+                }
+            },
+            particles: {
+                color: {
+                    value: '#ffffff'
+                },
+                links: {
+                    color: '#ffffff',
+                    distance: 150,
+                    enable: true,
+                    opacity: 0.5,
+                    width: 1
+                },
+                collisions: {
+                    enable: true
+                },
+                move: {
+                    direction: 'none',
+                    enable: true,
+                    outMode: 'bounce',
+                    random: false,
+                    speed: 6,
+                    straight: false
+                },
+                number: {
+                    density: {
+                        enable: true,
+                        value_area: 800
+                    },
+                    value: 80
+                },
+                opacity: {
+                    value: 0.5
+                },
+                shape: {
+                    type: 'circle'
+                },
+                size: {
+                    random: true,
+                    value: 5
+                }
+            },
+            detectRetina: true
+        }"
     />
-  </div>
-</template>
-```
-
-###### Full Config
-
-```html
-<template>
-  <div id="app">
-    <particles
-      id="tsparticles"
-      color="#dedede"
-      particleOpacity="0.7"
-      particlesNumber="80"
-      shapeType="circle"
-      particleSize="5"
-      linesColor="#dedede"
-      linesWidth="1"
-      lineLinked="true"
-      lineOpacity="0.4"
-      linesDistance="150"
-      moveSpeed="6"
-      hoverEffect="true"
-      hoverMode="bubble"
-      clickEffect="true"
-      clickMode="push"
-    ></particles>
   </div>
 </template>
 ```
@@ -292,15 +436,19 @@ declare module "particles.vue";
 
 #### ReactJS
 
-![npm](https://img.shields.io/npm/v/react-tsparticles) ![npm](https://img.shields.io/npm/dm/react-tsparticles)
+[![npm](https://img.shields.io/npm/v/react-tsparticles)](https://www.npmjs.com/package/react-tsparticles) [![npm](https://img.shields.io/npm/dm/react-tsparticles)](https://www.npmjs.com/package/react-tsparticles)
 
 ##### Installation
 
-`npm install react-tsparticles`
+```shell
+npm install react-tsparticles
+```
 
 or
 
-`yarn add react-tsparticles`
+```shell
+yarn add react-tsparticles
+```
 
 ##### How to use
 
@@ -425,15 +573,19 @@ A 3rd-party component is available too, read more [here](https://github.com/Wufe
 
 #### Preact
 
-![npm](https://img.shields.io/npm/v/preact-particles) ![npm](https://img.shields.io/npm/dm/preact-particles)
+[![npm](https://img.shields.io/npm/v/preact-particles)](https://www.npmjs.com/package/preact-particles) [![npm](https://img.shields.io/npm/dm/preact-particles)](https://www.npmjs.com/package/preact-particles)
 
 ##### Installation
 
-`npm install preact-particles`
+```shell
+npm install preact-particles
+```
 
 or
 
-`yarn add preact-particles`
+```shell
+yarn add preact-particles
+```
 
 ##### How to use
 
@@ -554,7 +706,7 @@ If you have typescript errors `tsParticles` uses TypeScript `3.9.3` so try insta
 
 #### Angular CLI
 
-![npm](https://img.shields.io/npm/v/ng-particles) ![npm](https://img.shields.io/npm/dm/ng-particles)
+[![npm](https://img.shields.io/npm/v/ng-particles)](https://www.npmjs.com/package/ng-particles) [![npm](https://img.shields.io/npm/dm/ng-particles)](https://www.npmjs.com/package/ng-particles)
 
 ##### How to use it
 
@@ -667,19 +819,128 @@ export class AppComponent {
 _app.module.ts_
 
 ```typescript
-import { NgParticlesModule } from 'ng-particles';
+import { NgParticlesModule } from "ng-particles";
 import { NgModule } from "@angular/core";
 
 @NgModule({
- declarations: [ /* AppComponent */ ],
- imports: [ /* other imports */ NgParticlesModule // NgParticlesModule is required ],
- providers: [],
- bootstrap: [ /* AppComponent */ ]
- })
-export class AppModule { }
+  declarations: [
+    /* AppComponent */
+  ],
+  imports: [/* other imports */ NgParticlesModule /* NgParticlesModule is required*/],
+  providers: [],
+  bootstrap: [
+    /* AppComponent */
+  ],
+})
+export class AppModule {}
 ```
 
-### Want to see it in action and try it?
+---
+
+#### tsParticles Svelte component
+
+[![npm](https://img.shields.io/npm/v/svelte-particles)](https://www.npmjs.com/package/svelte-particles) [![npm downloads](https://img.shields.io/npm/dm/svelte-particles)](https://www.npmjs.com/package/svelte-particles)
+
+Official tsParticles Svelte component
+
+##### Usage
+
+```html
+<script>
+  import Particles from "svelte-particles";
+
+  let particlesConfig = {
+    particles: {
+      color: {
+        value: "#000",
+      },
+      links: {
+        enable: true,
+        color: "#000",
+      },
+      move: {
+        enable: true,
+      },
+    },
+  };
+</script>
+
+<Particles id="tsparticles" options="{particlesConfig}" />
+```
+
+---
+
+## **_Demo / Generator_**
+
+<https://particles.matteobruni.it/>
+
+[![Particles demo](https://particles.matteobruni.it/images/demo.png?v=1.8.1)](https://particles.matteobruni.it/)
+
+---
+
+### Characters as particles
+
+[![Particles chars demo](https://media.giphy.com/media/JsssOXz72bM6jGEZ0s/giphy.gif)](https://particles.matteobruni.it/#chars)
+
+---
+
+### Mouse hover connections
+
+[![Particles mouse connections demo](https://media.giphy.com/media/XzvZThpVbxHxMYz5xt/giphy.gif)](https://particles.matteobruni.it/#connect)
+
+---
+
+### Polygon mask
+
+[![tsParticles Polygon Mask demo](https://media.giphy.com/media/lNRfiSgaMFbL4FMhW6/giphy.gif)](https://particles.matteobruni.it/#polygonMask)
+
+---
+
+### Animated stars
+
+[![Particles NASA demo](https://media.giphy.com/media/cLqGsnh7FKRVMgPIWE/giphy.gif)](https://particles.matteobruni.it/#nasa)
+
+---
+
+### Nyan cat flying on scrolling stars
+
+[![Particles Nyan Cat demo](https://media.giphy.com/media/LpX2oNc9ZMgIhIXQL9/giphy.gif)](https://particles.matteobruni.it/#nyancat2)
+
+---
+
+### Snow particles
+
+[![tsParticles Snow demo](https://media.giphy.com/media/gihwUFbmiubbkdzEMX/giphy.gif)](https://particles.matteobruni.it/#snow)
+
+---
+
+### Background Mask particles
+
+[![tsParticles Background Mask demo](https://media.giphy.com/media/dWraWgqInWFGWiOyRu/giphy.gif)](https://particles.matteobruni.it/#background)
+
+---
+
+#### COVID-19 SARS-CoV-2 particles
+
+[![tsParticles COVID-19 demo](https://media.giphy.com/media/fsVN1ZHksgBIXNIbr1/giphy.gif)](https://particles.matteobruni.it/#virus)
+
+_Don't click! DON'T CLICK! OH NO IT'S SPREADING!!!!_
+
+**COVID-19 is a serious disease. Please stay at home, wear a mask and stay safe!**
+
+---
+
+**particles.json**
+
+You can find a sample config [here](https://github.com/matteobruni/tsparticles/wiki/tsParticles-Sample-Config) 📖
+
+---
+
+## **_Options_**
+
+You can find all options available [here](https://github.com/matteobruni/tsparticles/wiki/tsParticles-Options) 📖
+
+## Want to see it in action and try it?
 
 I've created a tsParticles collection on [CodePen](https://codepen.io/collection/DPOage) 😮 or you can checkout my [profile](https://codepen.io/matteobruni)
 
@@ -697,9 +958,9 @@ yarn install && yarn start
 
 _If you are brave enough_ you can switch to the `dev` branch for trying the features under development.
 
-### Dependencies
+## Dependencies
 
-You may have notices the \* near dependency free. Well almost all features works without any dependency, but... Well there's a little but. The **Polygon Mask** feature requires `[pathseg](https://github.com/progers/pathseg)` for some browsers to work fine, and obviously the Icon Fonts (like `FontAwesome`) must be included in your page.
+You may have notices the \* near dependency free. Well almost all features works without any dependency, but... Well there's a little but. The **Polygon Mask** feature requires `[pathseg](https://github.com/progers/pathseg)` for some browsers to work fine, and obviously the Icon Fonts (like `FontAwesome` ) must be included in your page.
 
 ---
 
@@ -733,251 +994,27 @@ Documentation and Development references [here](https://particles.matteobruni.it
 
 ---
 
-## **_Library installation_**
-
-### **_Hosting / CDN_**
-
-**_Please use this hosts or your own to load tsParticles on your projects_**
-
-#### jsDelivr
-
-[![jsDelivr](https://data.jsdelivr.com/v1/package/npm/tsparticles/badge)](https://www.jsdelivr.com/package/npm/tsparticles)
-
-#### cdnjs
-
-[![Cdnjs](https://img.shields.io/cdnjs/v/tsparticles)](https://cdnjs.com/libraries/tsparticles)
-
-#### unpkg
-
-<https://unpkg.com/tsparticles/>
-
----
-
-### **_npm_**
-
-[![npmjs](https://badge.fury.io/js/tsparticles.svg)](https://www.npmjs.com/package/tsparticles) [![npmjs](https://img.shields.io/npm/dt/tsparticles)](https://www.npmjs.com/package/tsparticles)
-
-```shell
-npm install tsparticles
-```
-
-### **_yarn_**
-
-```shell
-yarn add tsparticles
-```
-
-#### Import and require
-
-Starting from version 1.12.11 `import` and `require` can be used to import `tsParticles`.
-
-Now you can write something like this
-
-```javascript
-const tsParticles = require("tsparticles");
-
-// or
-
-import { tsParticles } from "tsparticles";
-```
-
-the imported `tsParticles` is the same instance you have including the script.
-
----
-
-### **_NuGet_**
-
-[![Nuget](https://img.shields.io/nuget/v/tsParticles)](https://www.nuget.org/packages/tsParticles/)
-
----
-
-### **_Usage_**
-
-Load tsParticles and configure the particles:
-
-[![tsParticles demo](https://media.giphy.com/media/ftHwBpp3b0qNyCXRuu/giphy.gif)](https://particles.matteobruni.it)
-
-**index.html**
-
-```html
-<div id="tsparticles"></div>
-
-<script src="tsparticles.min.js"></script>
-```
-
-**app.js**
-
-```javascript
-// @path-json can be an object or an array, the first will be loaded directly, the object from the array will be random selected
-/* tsParticles.loadJSON(@dom-id, @path-json, @callback (optional)); */
-
-tsParticles
-  .loadJSON("tsparticles", "presets/default.json")
-  .then((container) => {
-    console.log("callback - tsparticles config loaded");
-  })
-  .catch((error) => {
-    console.error(error);
-  });
-//or
-
-/* tsParticles.load(@dom-id, @options); */
-
-tsParticles.load("tsparticles", {
-  /* options here */
-});
-
-//or
-
-/* tsParticles.loadFromArray(@dom-id, @options, @index (optional)); */
-
-tsParticles.loadFromArray("tsparticles", [
-  {
-    /* options here */
-  },
-  {
-    /* other options here */
-  },
-]); //random object
-tsParticles.loadFromArray(
-  "tsparticles",
-  [
-    {
-      /* options here */
-    },
-    {
-      /* other options here */
-    },
-  ],
-  1
-); //the second one
-// Important! If the index is not in range 0...array.length, the index will be ignored.
-
-// after initialization this can be used.
-
-/* tsParticles.setOnClickHandler(@callback); */
-
-/* this will be fired from all particles loaded */
-
-tsParticles.setOnClickHandler((e) => {
-  /* custom on click handler */
-});
-
-// now you can control the animations too, it's possible to pause and resume the animations
-// these methods don't change the config so you're safe with all your configurations
-// domItem(0) returns the first tsParticles instance loaded in the dom
-const particles = tsParticles.domItem(0);
-// play will start the animations, if the move is not enabled it won't enable it, it just updates the frame
-particles.play();
-// pause will stop the animations
-particles.pause();
-```
-
-#### Import and require
-
-Starting from version 1.12.7 `import` and `require` can be used to import `tsParticles`.
-
-Now you can write something like this
-
-```javascript
-const tsParticles = require("tsparticles");
-
-// or
-
-import { tsParticles } from "tsparticles";
-```
-
----
-
-### **_Demo / Generator_**
-
-<https://particles.matteobruni.it/>
-
-[![Particles demo](https://particles.matteobruni.it/images/demo.png?v=1.8.1)](https://particles.matteobruni.it/)
-
----
-
-#### Characters as particles
-
-[![Particles chars demo](https://media.giphy.com/media/JsssOXz72bM6jGEZ0s/giphy.gif)](https://particles.matteobruni.it/#chars)
-
----
-
-#### Mouse hover connections
-
-[![Particles mouse connections demo](https://media.giphy.com/media/XzvZThpVbxHxMYz5xt/giphy.gif)](https://particles.matteobruni.it/#connect)
-
----
-
-#### Polygon mask
-
-[![tsParticles Polygon Mask demo](https://media.giphy.com/media/lNRfiSgaMFbL4FMhW6/giphy.gif)](https://particles.matteobruni.it/#polygonMask)
-
----
-
-#### Animated stars
-
-[![Particles NASA demo](https://media.giphy.com/media/cLqGsnh7FKRVMgPIWE/giphy.gif)](https://particles.matteobruni.it/#nasa)
-
----
-
-#### Nyan cat flying on scrolling stars
-
-[![Particles Nyan Cat demo](https://media.giphy.com/media/LpX2oNc9ZMgIhIXQL9/giphy.gif)](https://particles.matteobruni.it/#nyancat2)
-
----
-
-#### Snow particles
-
-[![tsParticles Snow demo](https://media.giphy.com/media/gihwUFbmiubbkdzEMX/giphy.gif)](https://particles.matteobruni.it/#snow)
-
----
-
-#### Background Mask particles
-
-[![tsParticles Background Mask demo](https://media.giphy.com/media/dWraWgqInWFGWiOyRu/giphy.gif)](https://particles.matteobruni.it/#background)
-
----
-
-#### COVID-19 SARS-CoV-2 particles
-
-[![tsParticles COVID-19 demo](https://media.giphy.com/media/fsVN1ZHksgBIXNIbr1/giphy.gif)](https://particles.matteobruni.it/#virus)
-
-_Don't click! DON'T CLICK! OH NO IT'S SPREADING!!!!_
-
----
-
-**particles.json**
-
-You can find a sample config [here](https://github.com/matteobruni/tsparticles/wiki/tsParticles-Sample-Config) 📖
-
----
-
-### **_Options_**
-
-You can find all options available [here](https://github.com/matteobruni/tsparticles/wiki/tsParticles-Options) 📖
-
----
-
 ## Stargazers over time
 
 [![Stargazers over time](https://starchart.cc/matteobruni/tsparticles.svg)](https://starchart.cc/matteobruni/tsparticles)
 
 ---
 
-<p>  
-    <a href="https://www.jetbrains.com/?from=tsParticles">  
-        <img src="https://cdn.matteobruni.it/images/jetbrains-logos/jetbrains-variant-4.png" height="150" alt="JetBrains" />  
-    </a>  
-    <a href="https://www.jetbrains.com/webstorm/?from=tsParticles">  
-        <img src="https://cdn.matteobruni.it/images/jetbrains-logos/webstorm_logos/logo.png" height="150" alt="JetBrains" />  
-    </a>  
-</p>  
-  
-### Huge thanks to [JetBrains](https://www.jetbrains.com/?from=tsParticles) for the 2020 Open Source License!  
-  
-[JetBrains WebStorm](https://www.jetbrains.com/webstorm/?from=tsParticles) is used to maintain this project.  
-  
-### Huge thanks to [SauceLabs](https://saucelabs.com) for the Open Source License!  
-  
+<p>
+
+    <a href="https://www.jetbrains.com/?from=tsParticles">
+        <img src="https://cdn.matteobruni.it/images/jetbrains-logos/jetbrains-variant-4.png" height="150" alt="JetBrains" />
+    </a>
+    <a href="https://www.jetbrains.com/webstorm/?from=tsParticles">
+        <img src="https://cdn.matteobruni.it/images/jetbrains-logos/webstorm_logos/logo.png" height="150" alt="JetBrains" />
+    </a>
+
+</p>
+
+### Huge thanks to [JetBrains](https://www.jetbrains.com/?from=tsParticles) for the 2020 Open Source License!
+
+[JetBrains WebStorm](https://www.jetbrains.com/webstorm/?from=tsParticles) is used to maintain this project.
+
+### Huge thanks to [SauceLabs](https://saucelabs.com) for the Open Source License!
+
 <img alt="Testing Powered By SauceLabs" src="https://raw.githubusercontent.com/saucelabs/opensource/master/assets/powered-by-saucelabs-badge-red.svg" width="250" />

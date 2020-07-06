@@ -19,6 +19,6 @@
   },
   "dependencies": {
     "sirv-cli": "^0.4.4",
-    "svelte-particles": "^1.0.0"
+    "svelte-particles": "^1.0.0-alpha.0"
   }
 }
