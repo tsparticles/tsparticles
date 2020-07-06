@@ -1,11 +1,13 @@
 {
   "name": "svelte-app",
-  "version": "1.0.0",
+  "version": "1.0.0-alpha.0",
+  "private": true,
   "scripts": {
     "build": "rollup -c",
     "dev": "rollup -c -w",
-    "start": "sirv dist"
+    "start": "sirv public"
   },
+  "license": "MIT",
   "devDependencies": {
     "@rollup/plugin-commonjs": "^12.0.0",
     "@rollup/plugin-node-resolve": "^8.0.0",

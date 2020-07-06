@@ -1,33 +1,28 @@
 <script>
-	import particles from "tsparticles";
+    import { afterUpdate } from "svelte";
+    import { tsParticles } from "tsparticles";
 
-	export let options;
+    export let options = {};
+    export let id = "tsparticles";
+    let oldId = id;
 
-	onMount(() => particles.tsParticles.load("tsparticles", options));
+    afterUpdate(() => {
+        if (oldId) {
+            const oldContainer = tsParticles.dom().find(c => c.id == oldId);
+
+            if (oldContainer) {
+                oldContainer.destroy();
+            }
+        }
+
+        if (id) {
+            tsParticles.load(id, options).then(() => {
+                oldId = id;
+            });
+        }
+    });
 </script>
 
-<svelte:options tag="svelte-particles" immutable={true} />
+<svelte:options tag="svelte-particles" accessors={true}/>
 
-<style>
-	main {
-		text-align: center;
-		padding: 1em;
-		max-width: 240px;
-		margin: 0 auto;
-	}
-
-	h1 {
-		color: #ff3e00;
-		text-transform: uppercase;
-		font-size: 4em;
-		font-weight: 100;
-	}
-
-	@media (min-width: 640px) {
-		main {
-			max-width: none;
-		}
-	}
-</style>
-
-<div id="tsparticles" options={options}></div>
+<div id={id}></div>

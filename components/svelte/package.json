@@ -1,11 +1,56 @@
 {
   "name": "svelte-particles",
-  "version": "1.0.0",
+  "version": "1.0.0-alpha.0",
   "scripts": {
-    "build": "rollup -c",
-    "dev": "rollup -c -w",
-    "start": "sirv public"
+    "build": "rollup -c"
   },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/matteobruni/tsparticles.git"
+  },
+  "keywords": [
+    "tsparticles",
+    "particles.js",
+    "particlesjs",
+    "particles",
+    "particle",
+    "canvas",
+    "jsparticles",
+    "xparticles",
+    "particles-js",
+    "particles-bg",
+    "particles-bg-vue",
+    "particles-ts",
+    "particles.ts",
+    "react-particles-js",
+    "react",
+    "reactjs",
+    "vue",
+    "vuejs",
+    "preact",
+    "preactjs",
+    "jquery",
+    "angularjs",
+    "angular",
+    "typescript",
+    "javascript",
+    "animation",
+    "web",
+    "html5",
+    "web-design",
+    "webdesign",
+    "css",
+    "html",
+    "css3",
+    "animated",
+    "background"
+  ],
+  "author": "Matteo Bruni <matteo.bruni@me.com> (https://www.matteobruni.it)",
+  "license": "MIT",
+  "files": [
+    "dist/**/*"
+  ],
+  "main": "dist/svelte-particles.js",
   "devDependencies": {
     "@rollup/plugin-commonjs": "^12.0.0",
     "@rollup/plugin-node-resolve": "^8.0.0",
@@ -18,5 +63,12 @@
   "dependencies": {
     "sirv-cli": "^0.4.4",
     "tsparticles": "^1.17.0-alpha.14"
+  },
+  "bugs": {
+    "url": "https://github.com/matteobruni/tsparticles/issues"
+  },
+  "funding": {
+    "type": "github",
+    "url": "https://github.com/sponsors/matteobruni"
   }
 }
