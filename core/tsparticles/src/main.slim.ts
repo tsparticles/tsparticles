@@ -83,6 +83,20 @@ export class MainSlim {
     }
 
     /**
+     * Loads the provided option to create a [[Container]] object using the element parameter as a container
+     * @param id The particles container id
+     * @param element The dom element used to contain the particles
+     * @param params The options object to initialize the [[Container]]
+     */
+    public async set(
+        id: string,
+        element: HTMLElement,
+        params: RecursivePartial<IOptions>
+    ): Promise<Container | undefined> {
+        return Loader.set(id, element, params);
+    }
+
+    /**
      * Loads the provided json with a GET request. The content will be used to create a [[Container]] object.
      * This method is async, so if you need a callback refer to JavaScript function `fetch`
      * @param tagId the particles container element id
