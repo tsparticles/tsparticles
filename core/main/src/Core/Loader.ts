@@ -105,7 +105,7 @@ export class Loader {
         let canvasEl: HTMLCanvasElement;
         let generatedCanvas: boolean;
 
-        if (domContainer.tagName === "canvas") {
+        if (domContainer.tagName.toLowerCase() === "canvas") {
             canvasEl = domContainer as HTMLCanvasElement;
             generatedCanvas = false;
         } else {
