@@ -3,7 +3,7 @@ import typescript from 'rollup-plugin-typescript';
 import { terser } from 'rollup-plugin-terser';
 
 export default [ {
-    input: 'src/components/Particles/Particles.vue',
+    input: 'src/Particles/index.ts',
     output: {
         format: 'esm',
         file: 'dist/particles.vue.js',
@@ -19,7 +19,7 @@ export default [ {
     ]
 },
     {
-        input: 'src/components/Particles/Particles.vue',
+        input: 'src/Particles/index.ts',
         output: {
             format: 'esm',
             file: 'dist/particles.vue.min.js'

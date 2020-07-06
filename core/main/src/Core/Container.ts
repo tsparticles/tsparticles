@@ -12,8 +12,9 @@ import type { IContainerPlugin } from "./Interfaces/IContainerPlugin";
 import type { IShapeDrawer } from "./Interfaces/IShapeDrawer";
 import { EventListeners, Plugins, Utils } from "../Utils";
 import { Particle } from "./Particle";
-import { INoiseValue } from "./Interfaces/INoiseValue";
-import { INoise } from "./Interfaces/INoise";
+import type { INoiseValue } from "./Interfaces/INoiseValue";
+import type { INoise } from "./Interfaces/INoise";
+import type { IRgb } from "./Interfaces/IRgb";
 
 /**
  * The object loaded into an HTML element, it'll contain options loaded and all data to let everything working
@@ -320,7 +321,7 @@ export class Container {
         }
 
         this.plugins = new Map<string, IContainerPlugin>();
-        this.particles.linksColors = {};
+        this.particles.linksColors = new Map<string, IRgb | string | undefined>();
 
         delete this.particles.linksColor;
     }

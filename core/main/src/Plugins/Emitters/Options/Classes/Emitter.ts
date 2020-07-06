@@ -7,8 +7,9 @@ import { EmitterRate } from "./EmitterRate";
 import { EmitterLife } from "./EmitterLife";
 import { Utils } from "../../../../Utils";
 import { EmitterSize } from "./EmitterSize";
+import type { IOptionLoader } from "../../../../Options/Interfaces/IOptionLoader";
 
-export class Emitter implements IEmitter {
+export class Emitter implements IEmitter, IOptionLoader<IEmitter> {
     public size?: EmitterSize;
     public direction: MoveDirection | keyof typeof MoveDirection | MoveDirectionAlt;
     public life: EmitterLife;

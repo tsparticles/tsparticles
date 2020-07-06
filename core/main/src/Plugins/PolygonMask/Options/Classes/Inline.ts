@@ -1,9 +1,10 @@
 import type { IInline } from "../Interfaces/IInline";
-import { InlineArrangement } from "../../Enums/InlineArrangement";
+import { InlineArrangement, InlineArrangementAlt } from "../../Enums";
 import type { RecursivePartial } from "../../../../Types/RecursivePartial";
+import type { IOptionLoader } from "../../../../Options/Interfaces/IOptionLoader";
 
-export class Inline implements IInline {
-    public arrangement: InlineArrangement | keyof typeof InlineArrangement;
+export class Inline implements IInline, IOptionLoader<IInline> {
+    public arrangement: InlineArrangement | keyof typeof InlineArrangement | InlineArrangementAlt;
 
     constructor() {
         this.arrangement = InlineArrangement.onePerPoint;

@@ -3,8 +3,9 @@ import type { ICoordinates } from "../../../../Core/Interfaces/ICoordinates";
 import type { RecursivePartial } from "../../../../Types/RecursivePartial";
 import { AbsorberSize } from "./AbsorberSize";
 import { OptionsColor } from "../../../../Options/Classes/OptionsColor";
+import type { IOptionLoader } from "../../../../Options/Interfaces/IOptionLoader";
 
-export class Absorber implements IAbsorber {
+export class Absorber implements IAbsorber, IOptionLoader<IAbsorber> {
     public color: OptionsColor;
     public draggable: boolean;
     public opacity: number;

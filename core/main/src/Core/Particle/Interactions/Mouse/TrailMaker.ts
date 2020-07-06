@@ -2,6 +2,7 @@ import type { IExternalInteractor } from "../../../Interfaces/IExternalInteracto
 import type { Container } from "../../../Container";
 import { Utils } from "../../../../Utils";
 import { ClickMode, HoverMode } from "../../../../Enums/Modes";
+import type { IDelta } from "../../../Interfaces/IDelta";
 
 export class TrailMaker implements IExternalInteractor {
     private delay: number;
@@ -10,7 +11,7 @@ export class TrailMaker implements IExternalInteractor {
         this.delay = 0;
     }
 
-    public interact(delta: number): void {
+    public interact(delta: IDelta): void {
         const container = this.container;
         const options = container.options;
 
@@ -18,7 +19,7 @@ export class TrailMaker implements IExternalInteractor {
         const optDelay = trailOptions.delay * 1000;
 
         if (this.delay < optDelay) {
-            this.delay += delta;
+            this.delay += delta.value;
         }
 
         if (this.delay >= optDelay) {

@@ -2,8 +2,9 @@ import type { ILocalSvg } from "../Interfaces/ILocalSvg";
 import type { SingleOrMultiple } from "../../../../Types/SingleOrMultiple";
 import type { IDimension } from "../../../../Core/Interfaces/IDimension";
 import type { RecursivePartial } from "../../../../Types/RecursivePartial";
+import type { IOptionLoader } from "../../../../Options/Interfaces/IOptionLoader";
 
-export class LocalSvg implements ILocalSvg {
+export class LocalSvg implements ILocalSvg, IOptionLoader<ILocalSvg> {
     public path: SingleOrMultiple<string>;
     public size: IDimension;
 

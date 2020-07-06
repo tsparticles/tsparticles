@@ -2,18 +2,19 @@ import { Utils } from "../../Utils";
 import type { Container } from "../Container";
 import type { Particle } from "../Particle";
 import { HoverMode } from "../../Enums";
+import type { IDelta } from "../Interfaces/IDelta";
 
 export class Mover {
     constructor(private readonly container: Container, private readonly particle: Particle) {}
 
-    public move(delta: number): void {
+    public move(delta: IDelta): void {
         this.moveParticle(delta);
 
         /* parallax */
         this.moveParallax();
     }
 
-    private moveParticle(delta: number): void {
+    private moveParticle(delta: IDelta): void {
         const particle = this.particle;
         const particlesOptions = particle.particlesOptions;
 
@@ -22,11 +23,9 @@ export class Mover {
         }
 
         const container = this.container;
-        const options = container.options;
         const slowFactor = this.getProximitySpeedFactor();
-        const deltaFactor = options.fpsLimit > 0 ? (60 * delta) / 1000 : 3.6;
         const baseSpeed = particle.moveSpeed ?? container.retina.moveSpeed;
-        const moveSpeed = (baseSpeed / 2) * slowFactor * deltaFactor;
+        const moveSpeed = (baseSpeed / 2) * slowFactor * delta.factor;
 
         this.applyNoise(delta);
 
@@ -39,7 +38,7 @@ export class Mover {
         }
     }
 
-    private applyNoise(delta: number): void {
+    private applyNoise(delta: IDelta): void {
         const particle = this.particle;
         const particlesOptions = particle.particlesOptions;
         const noiseOptions = particlesOptions.move.noise;
@@ -52,7 +51,7 @@ export class Mover {
         const container = this.container;
 
         if (particle.lastNoiseTime <= particle.noiseDelay) {
-            particle.lastNoiseTime += delta;
+            particle.lastNoiseTime += delta.value;
 
             return;
         }

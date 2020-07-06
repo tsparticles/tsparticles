@@ -4,6 +4,7 @@ import { Utils } from "../../Utils";
 import { Mover } from "./Mover";
 import { DestroyType, OpacityAnimationStatus, OutMode, RotateDirection, SizeAnimationStatus } from "../../Enums";
 import type { IBounds } from "../Interfaces/IBounds";
+import type { IDelta } from "../Interfaces/IDelta";
 
 /**
  * Particle updater, it manages movement
@@ -27,7 +28,9 @@ export class Updater {
         }
     }
 
-    public update(delta: number): void {
+    public update(delta: IDelta): void {
+        this.particle.links = [];
+
         /* move the particle */
         this.mover.move(delta);
 
@@ -53,10 +56,8 @@ export class Updater {
         this.updateOutMode(delta);
     }
 
-    private updateOpacity(delta: number): void {
-        const options = this.container.options;
+    private updateOpacity(delta: IDelta): void {
         const particle = this.particle;
-        const deltaFactor = options.fpsLimit > 0 ? (60 * delta) / 1000 : 3.6;
 
         if (particle.particlesOptions.opacity.animation.enable) {
             switch (particle.opacity.status) {
@@ -64,14 +65,14 @@ export class Updater {
                     if (particle.opacity.value >= particle.particlesOptions.opacity.value) {
                         particle.opacity.status = OpacityAnimationStatus.decreasing;
                     } else {
-                        particle.opacity.value += (particle.opacity.velocity || 0) * deltaFactor;
+                        particle.opacity.value += (particle.opacity.velocity || 0) * delta.factor;
                     }
                     break;
                 case OpacityAnimationStatus.decreasing:
                     if (particle.opacity.value <= particle.particlesOptions.opacity.animation.minimumValue) {
                         particle.opacity.status = OpacityAnimationStatus.increasing;
                     } else {
-                        particle.opacity.value -= (particle.opacity.velocity || 0) * deltaFactor;
+                        particle.opacity.value -= (particle.opacity.velocity || 0) * delta.factor;
                     }
                     break;
             }
@@ -82,11 +83,9 @@ export class Updater {
         }
     }
 
-    private updateSize(delta: number): void {
+    private updateSize(delta: IDelta): void {
         const container = this.container;
-        const options = container.options;
         const particle = this.particle;
-        const deltaFactor = options.fpsLimit > 0 ? (60 * delta) / 1000 : 3.6;
         const sizeOpt = particle.particlesOptions.size;
         const sizeAnim = sizeOpt.animation;
 
@@ -96,14 +95,14 @@ export class Updater {
                     if (particle.size.value >= (particle.sizeValue ?? container.retina.sizeValue)) {
                         particle.size.status = SizeAnimationStatus.decreasing;
                     } else {
-                        particle.size.value += (particle.size.velocity || 0) * deltaFactor;
+                        particle.size.value += (particle.size.velocity || 0) * delta.factor;
                     }
                     break;
                 case SizeAnimationStatus.decreasing:
                     if (particle.size.value <= sizeAnim.minimumValue) {
                         particle.size.status = SizeAnimationStatus.increasing;
                     } else {
-                        particle.size.value -= (particle.size.velocity || 0) * deltaFactor;
+                        particle.size.value -= (particle.size.velocity || 0) * delta.factor;
                     }
             }
 
@@ -126,12 +125,10 @@ export class Updater {
         }
     }
 
-    private updateAngle(delta: number): void {
-        const options = this.container.options;
+    private updateAngle(delta: IDelta): void {
         const particle = this.particle;
-        const deltaFactor = options.fpsLimit > 0 ? (60 * delta) / 1000 : 3.6;
         const rotateAnimation = particle.particlesOptions.rotate.animation;
-        const speed = (rotateAnimation.speed / 360) * deltaFactor;
+        const speed = (rotateAnimation.speed / 360) * delta.factor;
         const max = 2 * Math.PI;
 
         if (rotateAnimation.enable) {
@@ -155,18 +152,15 @@ export class Updater {
         }
     }
 
-    private updateColor(delta: number): void {
-        const options = this.container.options;
+    private updateColor(delta: IDelta): void {
         const particle = this.particle;
 
         if (particle.color === undefined) {
             return;
         }
 
-        const deltaFactor = options.fpsLimit > 0 ? (60 * delta) / 1000 : 3.6;
-
         if (particle.particlesOptions.color.animation.enable) {
-            particle.color.h += (particle.colorVelocity || 0) * deltaFactor;
+            particle.color.h += (particle.colorVelocity || 0) * delta.factor;
 
             if (particle.color.h > 360) {
                 particle.color.h -= 360;
@@ -174,8 +168,7 @@ export class Updater {
         }
     }
 
-    private updateStrokeColor(delta: number): void {
-        const options = this.container.options;
+    private updateStrokeColor(delta: IDelta): void {
         const particle = this.particle;
 
         const color = particle.stroke.color;
@@ -188,10 +181,8 @@ export class Updater {
             return;
         }
 
-        const deltaFactor = options.fpsLimit > 0 ? (60 * delta) / 1000 : 3.6;
-
         if (color.animation.enable) {
-            particle.strokeColor.h += (particle.colorVelocity || 0) * deltaFactor;
+            particle.strokeColor.h += (particle.colorVelocity || 0) * delta.factor;
 
             if (particle.strokeColor.h > 360) {
                 particle.strokeColor.h -= 360;
@@ -278,7 +269,7 @@ export class Updater {
         }
     }
 
-    private updateOutMode(delta: number): void {
+    private updateOutMode(delta: IDelta): void {
         switch (this.particle.particlesOptions.move.outMode) {
             case OutMode.bounce:
             case OutMode.bounceVertical:
@@ -289,7 +280,7 @@ export class Updater {
         }
     }
 
-    private updateBounce(delta: number): void {
+    private updateBounce(delta: IDelta): void {
         const container = this.container;
         const particle = this.particle;
         let handled = false;

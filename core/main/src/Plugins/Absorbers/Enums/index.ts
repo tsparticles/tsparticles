@@ -1,3 +1,1 @@
-import { AbsorberClickMode } from "./AbsorberClickMode";
-
-export { AbsorberClickMode };
+export * from "./AbsorberClickMode";

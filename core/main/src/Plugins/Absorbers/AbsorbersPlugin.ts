@@ -61,11 +61,13 @@ class AbsorbersPlugin implements IPlugin {
                     return tmp;
                 });
             } else {
-                if (optionsCast.absorbers instanceof Array || optionsCast.absorbers === undefined) {
-                    optionsCast.absorbers = new Absorber();
+                let absorberOptions = optionsCast.absorbers as Absorber;
+
+                if (absorberOptions?.load === undefined) {
+                    optionsCast.absorbers = absorberOptions = new Absorber();
                 }
 
-                optionsCast.absorbers.load(source?.absorbers);
+                absorberOptions.load(source?.absorbers);
             }
         }
 
@@ -81,14 +83,13 @@ class AbsorbersPlugin implements IPlugin {
                     return tmp;
                 });
             } else {
-                if (
-                    optionsCast.interactivity.modes.absorbers instanceof Array ||
-                    optionsCast.interactivity.modes.absorbers === undefined
-                ) {
-                    optionsCast.interactivity.modes.absorbers = new Absorber();
+                let absorberOptions = optionsCast.interactivity.modes.absorbers as Absorber;
+
+                if (absorberOptions?.load === undefined) {
+                    optionsCast.interactivity.modes.absorbers = absorberOptions = new Absorber();
                 }
 
-                optionsCast.interactivity.modes.absorbers.load(interactivityAbsorbers);
+                absorberOptions.load(interactivityAbsorbers);
             }
         }
     }

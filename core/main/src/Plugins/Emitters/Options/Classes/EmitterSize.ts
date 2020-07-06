@@ -1,8 +1,9 @@
 import type { IEmitterSize } from "../Interfaces/IEmitterSize";
 import type { RecursivePartial } from "../../../../Types/RecursivePartial";
 import { SizeMode } from "../../../../Enums";
+import type { IOptionLoader } from "../../../../Options/Interfaces/IOptionLoader";
 
-export class EmitterSize implements IEmitterSize {
+export class EmitterSize implements IEmitterSize, IOptionLoader<IEmitterSize> {
     public mode: SizeMode | keyof typeof SizeMode;
     public height: number;
     public width: number;

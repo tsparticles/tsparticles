@@ -7,9 +7,10 @@ import { Linker } from "./Interactions/Particles/Linker";
 import { Attractor } from "./Interactions/Particles/Attractor";
 import { Collider } from "./Interactions/Particles/Collider";
 import { Infecter } from "./Interactions/Particles/Infecter";
-import { IExternalInteractor } from "../Interfaces/IExternalInteractor";
-import { IParticlesInteractor } from "../Interfaces/IParticlesInteractor";
+import type { IExternalInteractor } from "../Interfaces/IExternalInteractor";
+import type { IParticlesInteractor } from "../Interfaces/IParticlesInteractor";
 import { TrailMaker } from "./Interactions/Mouse/TrailMaker";
+import type { IDelta } from "../Interfaces/IDelta";
 
 export class InteractionManager {
     private readonly externalInteractors: IExternalInteractor[];
@@ -36,13 +37,13 @@ export class InteractionManager {
         // TODO: filter interactors
     }
 
-    public interact(delta: number): void {
+    public interact(delta: IDelta): void {
         this.externalInteract(delta);
 
         this.particlesInteract(delta);
     }
 
-    private externalInteract(delta: number): void {
+    private externalInteract(delta: IDelta): void {
         for (const interactor of this.externalInteractors) {
             if (interactor.isEnabled()) {
                 interactor.interact(delta);
@@ -50,7 +51,7 @@ export class InteractionManager {
         }
     }
 
-    private particlesInteract(delta: number): void {
+    private particlesInteract(delta: IDelta): void {
         // this loop is required to be done after mouse interactions
         for (const particle of this.container.particles.array) {
             for (const interactor of this.externalInteractors) {

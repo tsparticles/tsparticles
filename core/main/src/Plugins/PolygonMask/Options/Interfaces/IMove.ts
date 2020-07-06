@@ -1,7 +1,6 @@
-import type { IOptionLoader } from "../../../../Options/Interfaces/IOptionLoader";
-import type { MoveType } from "../../Enums/MoveType";
+import type { MoveType } from "../../Enums";
 
-export interface IMove extends IOptionLoader<IMove> {
+export interface IMove {
     radius: number;
     type: MoveType | keyof typeof MoveType;
 }

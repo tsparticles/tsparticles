@@ -1,7 +1,8 @@
 import type { IAbsorberRandomSize } from "../Interfaces/IAbsorberRandomSize";
 import type { RecursivePartial } from "../../../../Types/RecursivePartial";
+import type { IOptionLoader } from "../../../../Options/Interfaces/IOptionLoader";
 
-export class AbsorberRandomSize implements IAbsorberRandomSize {
+export class AbsorberRandomSize implements IAbsorberRandomSize, IOptionLoader<IAbsorberRandomSize> {
     public enable: boolean;
     public minimumValue: number;
 

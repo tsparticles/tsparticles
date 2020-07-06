@@ -1,7 +1,6 @@
-import type { IOptionLoader } from "../../../../Options/Interfaces/IOptionLoader";
 import type { IAbsorberRandomSize } from "./IAbsorberRandomSize";
 
-export interface IAbsorberSize extends IOptionLoader<IAbsorberSize> {
+export interface IAbsorberSize {
     limit?: number;
     random: boolean | IAbsorberRandomSize;
     value: number;

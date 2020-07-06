@@ -85,13 +85,11 @@
 
 <script lang="ts">
     import { Component, Vue } from "vue-property-decorator";
+    declare module 'particles.vue';
     import Particles from "particles.vue";
 
-    @Component({
-        components: {
-            Particles,
-        },
-    })
+    Vue.use(Particles);
+
     export default class App extends Vue {
     }
 </script>

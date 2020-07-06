@@ -8,6 +8,7 @@ import type { IShadow } from "../Options/Interfaces/Particles/IShadow";
 import type { Container } from "../Core/Container";
 import type { IContainerPlugin } from "../Core/Interfaces/IContainerPlugin";
 import { Utils } from "./Utils";
+import { IDelta } from "../Core/Interfaces/IDelta";
 
 export class CanvasUtils {
     public static paintBase(context: CanvasRenderingContext2D, dimension: IDimension, baseColor?: string): void {
@@ -214,7 +215,7 @@ export class CanvasUtils {
         container: Container,
         context: CanvasRenderingContext2D,
         particle: IParticle,
-        delta: number,
+        delta: IDelta,
         fillColorValue: string,
         strokeColorValue: string,
         backgroundMask: boolean,
@@ -289,7 +290,7 @@ export class CanvasUtils {
         particle: IParticle,
         radius: number,
         opacity: number,
-        delta: number
+        delta: IDelta
     ): void {
         if (!particle.shape) {
             return;
@@ -301,7 +302,7 @@ export class CanvasUtils {
             return;
         }
 
-        drawer.draw(context, particle, radius, opacity, delta);
+        drawer.draw(context, particle, radius, opacity, delta.value);
     }
 
     public static drawShapeAfterEffect(
@@ -310,7 +311,7 @@ export class CanvasUtils {
         particle: IParticle,
         radius: number,
         opacity: number,
-        delta: number
+        delta: IDelta
     ): void {
         if (!particle.shape) {
             return;
@@ -322,10 +323,10 @@ export class CanvasUtils {
             return;
         }
 
-        drawer.afterEffect(context, particle, radius, opacity, delta);
+        drawer.afterEffect(context, particle, radius, opacity, delta.value);
     }
 
-    public static drawPlugin(context: CanvasRenderingContext2D, plugin: IContainerPlugin, delta: number): void {
+    public static drawPlugin(context: CanvasRenderingContext2D, plugin: IContainerPlugin, delta: IDelta): void {
         if (plugin.draw !== undefined) {
             context.save();
             plugin.draw(context, delta);

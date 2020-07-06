@@ -1,9 +1,7 @@
-import type { IOptionLoader } from "../../../../Options/Interfaces/IOptionLoader";
-
 /**
  * The particles emitter life options
  */
-export interface IEmitterLife extends IOptionLoader<IEmitterLife> {
+export interface IEmitterLife {
     /**
      * The count of lives the particles emitter has.
      * If <= 0 or not specified infinity will be the value.

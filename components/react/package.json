@@ -1,7 +1,7 @@
 {
   "name": "react-tsparticles",
-  "version": "1.17.0-alpha.12",
-  "description": "Reactified tsParticles",
+  "version": "1.17.0-alpha.14",
+  "description": "tsParticles official React component",
   "main": "index.js",
   "unpkg": "umd/particles.js",
   "jsdelivr": "umd/particles.js",
@@ -16,6 +16,50 @@
   "repository": {
     "url": "https://github.com/matteobruni/tsparticles",
     "type": "git"
+  },
+  "keywords": [
+    "tsparticles",
+    "particles.js",
+    "particlesjs",
+    "particles",
+    "particle",
+    "canvas",
+    "jsparticles",
+    "xparticles",
+    "particles-js",
+    "particles-bg",
+    "particles-bg-vue",
+    "particles-ts",
+    "particles.ts",
+    "react-particles-js",
+    "react",
+    "reactjs",
+    "vue",
+    "vuejs",
+    "preact",
+    "preactjs",
+    "jquery",
+    "angularjs",
+    "angular",
+    "typescript",
+    "javascript",
+    "animation",
+    "web",
+    "html5",
+    "web-design",
+    "webdesign",
+    "css",
+    "html",
+    "css3",
+    "animated",
+    "background"
+  ],
+  "funding": {
+    "type": "github",
+    "url": "https://github.com/sponsors/matteobruni"
+  },
+  "bugs": {
+    "url": "https://github.com/matteobruni/tsparticles/issues"
   },
   "author": "Matteo Bruni <matteo.bruni@me.com> (https://www.matteobruni.it)",
   "license": "MIT",
@@ -43,7 +87,7 @@
   },
   "dependencies": {
     "lodash": "^4.17.15",
-    "tsparticles": "^1.17.0-alpha.12"
+    "tsparticles": "^1.17.0-alpha.14"
   },
   "peerDependencies": {
     "react": "^16.0.0"
