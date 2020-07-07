@@ -4,13 +4,14 @@ import { Bubbler } from "./Interactions/Mouse/Bubbler";
 import { Connector } from "./Interactions/Mouse/Connector";
 import { Container } from "../Container";
 import { Linker } from "./Interactions/Particles/Linker";
-import { Attractor } from "./Interactions/Particles/Attractor";
+import { Attractor as ParticlesAttractor } from "./Interactions/Particles/Attractor";
 import { Collider } from "./Interactions/Particles/Collider";
 import { Infecter } from "./Interactions/Particles/Infecter";
 import type { IExternalInteractor } from "../Interfaces/IExternalInteractor";
 import type { IParticlesInteractor } from "../Interfaces/IParticlesInteractor";
 import { TrailMaker } from "./Interactions/Mouse/TrailMaker";
 import type { IDelta } from "../Interfaces/IDelta";
+import { Attractor as MouseAttractor } from "./Interactions/Mouse/Attractor";
 
 export class InteractionManager {
     private readonly externalInteractors: IExternalInteractor[];
@@ -18,6 +19,7 @@ export class InteractionManager {
 
     constructor(private readonly container: Container) {
         this.externalInteractors = [
+            new MouseAttractor(container),
             new Bubbler(container),
             new Connector(container),
             new Grabber(container),
@@ -26,7 +28,7 @@ export class InteractionManager {
         ];
 
         this.particleInteractors = [
-            new Attractor(container),
+            new ParticlesAttractor(container),
             new Collider(container),
             new Infecter(container),
             new Linker(container),

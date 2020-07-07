@@ -79,8 +79,8 @@ export class Attractor implements IExternalInteractor {
             const outMode = particle.particlesOptions.move.outMode;
             const sizeValue = particle.size.value;
             const pos = {
-                x: particle.position.x + normVec.x * repulseFactor,
-                y: particle.position.y + normVec.y * repulseFactor,
+                x: particle.position.x - normVec.x * repulseFactor,
+                y: particle.position.y - normVec.y * repulseFactor,
             };
 
             if (
@@ -176,8 +176,8 @@ export class Attractor implements IExternalInteractor {
 
         if (outMode === OutMode.bounce || outMode === OutMode.bounceHorizontal || outMode === OutMode.bounceVertical) {
             const pos = {
-                x: particle.position.x + particle.velocity.horizontal,
-                y: particle.position.y + particle.velocity.vertical,
+                x: particle.position.x - particle.velocity.horizontal,
+                y: particle.position.y - particle.velocity.vertical,
             };
 
             if (outMode !== OutMode.bounceVertical) {
