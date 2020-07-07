@@ -50,6 +50,20 @@
     },
     "IAttract": {
       "properties": {
+        "distance": {
+          "type": "number"
+        },
+        "duration": {
+          "type": "number"
+        },
+        "speed": {
+          "type": "number"
+        }
+      },
+      "type": "object"
+    },
+    "IAttract_1": {
+      "properties": {
         "enable": {
           "type": "boolean"
         },
@@ -804,6 +818,9 @@
     },
     "IModes": {
       "properties": {
+        "attract": {
+          "$ref": "#/definitions/IAttract"
+        },
         "bubble": {
           "$ref": "#/definitions/IBubble"
         },
@@ -837,7 +854,7 @@
           "type": "number"
         },
         "attract": {
-          "$ref": "#/definitions/IAttract"
+          "$ref": "#/definitions/IAttract_1"
         },
         "bounce": {
           "type": "boolean"
