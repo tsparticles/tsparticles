@@ -5,25 +5,25 @@
 Official tsParticles Svelte component
 
 ## Usage
-
+   
 ```html
 <script>
-    import Particles from "svelte-particles";
-    
-    let particlesConfig = {
-        particles: {
-            color: {
-                value: '#000'
-            },
-            links: {
-                enable: true,
-                color: '#000'
-            },
-            move: {
-                enable: true
-            }
-        }
-    };
+   import Particles from "svelte-particles";
+   
+   let particlesConfig = {
+       particles: {
+           color: {
+               value: '#000'
+           },
+           links: {
+               enable: true,
+               color: '#000'
+           },
+           move: {
+               enable: true
+           }
+       }
+   };
 </script>
 
 <Particles id="tsparticles" options={particlesConfig} />

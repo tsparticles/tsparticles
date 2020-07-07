@@ -116,6 +116,7 @@ tsParticles
   .catch((error) => {
     console.error(error);
   });
+
 //or
 
 /* tsParticles.load(@dom-id, @options); */
@@ -135,7 +136,9 @@ tsParticles.loadFromArray("tsparticles", [
   {
     /* other options here */
   },
-]); //random object
+]);
+//random object
+
 tsParticles.loadFromArray(
   "tsparticles",
   [
@@ -148,7 +151,7 @@ tsParticles.loadFromArray(
   ],
   1
 ); //the second one
-// Important! If the index is not in range 0...array.length, the index will be ignored.
+// Important! If the index is not in range 0...<array.length, the index will be ignored.
 
 // after initialization this can be used.
 
@@ -156,7 +159,7 @@ tsParticles.loadFromArray(
 
 /* this will be fired from all particles loaded */
 
-tsParticles.setOnClickHandler((e) => {
+tsParticles.setOnClickHandler((event, particles) => {
   /* custom on click handler */
 });
 
@@ -164,8 +167,10 @@ tsParticles.setOnClickHandler((e) => {
 // these methods don't change the config so you're safe with all your configurations
 // domItem(0) returns the first tsParticles instance loaded in the dom
 const particles = tsParticles.domItem(0);
+
 // play will start the animations, if the move is not enabled it won't enable it, it just updates the frame
 particles.play();
+
 // pause will stop the animations
 particles.pause();
 ```
@@ -186,687 +191,47 @@ import { tsParticles } from "tsparticles";
 
 ---
 
-### Related projects
+## Official components for some of the most used frameworks
 
-#### jQuery
-
-[![npm](https://img.shields.io/npm/v/jquery-particles)](https://www.npmjs.com/package/jquery-particles) [![npm](https://img.shields.io/npm/dm/jquery-particles)](https://www.npmjs.com/package/jquery-particles)
-
-##### Installation
-
-```shell script
-npm install jquery-particles
-
-```
-
-or from jsDelivr
-
-[![jsDelivr](https://data.jsdelivr.com/v1/package/npm/jquery-particles/badge)](https://www.jsdelivr.com/package/npm/jquery-particles)
-
-```html
-<!-- first include tsParticles -->
-<script src="https://cdn.jsdelivr.net/npm/tsparticles@1.16.1/dist/tsparticles.min.js"></script>
-
-<!-- then include jquery wrapper -->
-<script src="https://cdn.jsdelivr.net/npm/jquery-particles@1.16.1/dist/jquery.particles.min.js"></script>
-```
-
-##### How to use
-
-HTML
-
-```html
-<div id="tsparticles"></div>
-```
-
-```javascript
-$("#tsparticles")
-  .particles()
-  .init(
-    {
-      background: {
-        color: {
-          value: "#0d47a1",
-        },
-      },
-      fpsLimit: 60,
-      interactivity: {
-        detectsOn: "canvas",
-        events: {
-          onClick: {
-            enable: true,
-            mode: "push",
-          },
-          onHover: {
-            enable: true,
-            mode: "repulse",
-          },
-          resize: true,
-        },
-        modes: {
-          bubble: {
-            distance: 400,
-            duration: 2,
-            opacity: 0.8,
-            size: 40,
-            speed: 3,
-          },
-          push: {
-            quantity: 4,
-          },
-          repulse: {
-            distance: 200,
-            duration: 0.4,
-          },
-        },
-      },
-      particles: {
-        color: {
-          value: "#ffffff",
-        },
-        links: {
-          color: "#ffffff",
-          distance: 150,
-          enable: true,
-          opacity: 0.5,
-          width: 1,
-        },
-        collisions: {
-          enable: true,
-        },
-        move: {
-          direction: "none",
-          enable: true,
-          outMode: "bounce",
-          random: false,
-          speed: 6,
-          straight: false,
-        },
-        number: {
-          density: {
-            enable: true,
-            value_area: 800,
-          },
-          value: 80,
-        },
-        opacity: {
-          value: 0.5,
-        },
-        shape: {
-          type: "circle",
-        },
-        size: {
-          random: true,
-          value: 5,
-        },
-      },
-      detectRetina: true,
-    },
-    function (container) {
-      // container is the particles container where you can play/pause or stop/start.
-      // the container is already started, you don't need to start it manually.
-    }
-  );
-// or
-
-$("#tsparticles")
-  .particles()
-  .ajax("particles.json", function (container) {
-    // container is the particles container where you can play/pause or stop/start.
-    // the container is already started, you don't need to start it manually.
-  });
-```
-
-#### VueJS
-
-[![npm](https://img.shields.io/npm/v/particles.vue)](https://www.npmjs.com/package/particles.vue) [![npm](https://img.shields.io/npm/dm/particles.vue)](https://www.npmjs.com/package/particles.vue)
-
-##### Installation
-
-```shell script
-yarn add particles.vue
-```
-
-##### Usage
-
-```javascript
-import Particles from "particles.vue";
-
-Vue.use(Particles);
-```
-
-###### Demo config
-
-```html
-<template>
-  <div id="app">
-    <Particles
-      id="tsparticles"
-      :options="{
-            background: {
-                color: {
-                    value: '#0d47a1'
-                }
-            },
-            fpsLimit: 60,
-            interactivity: {
-                detectsOn: 'canvas',
-                events: {
-                    onClick: {
-                        enable: true,
-                        mode: 'push'
-                    },
-                    onHover: {
-                        enable: true,
-                        mode: 'repulse'
-                    },
-                    resize: true
-                },
-                modes: {
-                    bubble: {
-                        distance: 400,
-                        duration: 2,
-                        opacity: 0.8,
-                        size: 40,
-                        speed: 3
-                    },
-                    push: {
-                        quantity: 4
-                    },
-                    repulse: {
-                        distance: 200,
-                        duration: 0.4
-                    }
-                }
-            },
-            particles: {
-                color: {
-                    value: '#ffffff'
-                },
-                links: {
-                    color: '#ffffff',
-                    distance: 150,
-                    enable: true,
-                    opacity: 0.5,
-                    width: 1
-                },
-                collisions: {
-                    enable: true
-                },
-                move: {
-                    direction: 'none',
-                    enable: true,
-                    outMode: 'bounce',
-                    random: false,
-                    speed: 6,
-                    straight: false
-                },
-                number: {
-                    density: {
-                        enable: true,
-                        value_area: 800
-                    },
-                    value: 80
-                },
-                opacity: {
-                    value: 0.5
-                },
-                shape: {
-                    type: 'circle'
-                },
-                size: {
-                    random: true,
-                    value: 5
-                }
-            },
-            detectRetina: true
-        }"
-    />
-  </div>
-</template>
-```
-
-###### TypeScript errors
-
-If TypeScript returns error while importing/using Particles plugin try adding the following import before the previous code:
-
-```typescript
-declare module "particles.vue";
-```
-
-#### ReactJS
-
-[![npm](https://img.shields.io/npm/v/react-tsparticles)](https://www.npmjs.com/package/react-tsparticles) [![npm](https://img.shields.io/npm/dm/react-tsparticles)](https://www.npmjs.com/package/react-tsparticles)
-
-##### Installation
-
-```shell
-npm install react-tsparticles
-```
-
-or
-
-```shell
-yarn add react-tsparticles
-```
-
-##### How to use
-
-###### Code
-
-Example:
-
-```javascript
-import Particles from "react-tsparticles";
-
-class App extends Component {
-  render() {
-    return (
-      <Particles
-        id="tsparticles"
-        params={{
-          background: {
-            color: {
-              value: "#0d47a1",
-            },
-          },
-          fpsLimit: 60,
-          interactivity: {
-            detectsOn: "canvas",
-            events: {
-              onClick: {
-                enable: true,
-                mode: "push",
-              },
-              onHover: {
-                enable: true,
-                mode: "repulse",
-              },
-              resize: true,
-            },
-            modes: {
-              bubble: {
-                distance: 400,
-                duration: 2,
-                opacity: 0.8,
-                size: 40,
-                speed: 3,
-              },
-              push: {
-                quantity: 4,
-              },
-              repulse: {
-                distance: 200,
-                duration: 0.4,
-              },
-            },
-          },
-          particles: {
-            color: {
-              value: "#ffffff",
-            },
-            links: {
-              color: "#ffffff",
-              distance: 150,
-              enable: true,
-              opacity: 0.5,
-              width: 1,
-            },
-            collisions: {
-              enable: true,
-            },
-            move: {
-              direction: "none",
-              enable: true,
-              outMode: "bounce",
-              random: false,
-              speed: 6,
-              straight: false,
-            },
-            number: {
-              density: {
-                enable: true,
-                value_area: 800,
-              },
-              value: 80,
-            },
-            opacity: {
-              value: 0.5,
-            },
-            shape: {
-              type: "circle",
-            },
-            size: {
-              random: true,
-              value: 5,
-            },
-          },
-          detectRetina: true,
-        }}
-      />
-    );
-  }
-}
-```
-
-###### Props
-
-| Prop            | Type   | Definition                                                                                                           |
-| --------------- | ------ | -------------------------------------------------------------------------------------------------------------------- |
-| width           | string | The width of the canvas.                                                                                             |
-| height          | string | The height of the canvas.                                                                                            |
-| params          | object | The parameters of the particles instance.                                                                            |
-| style           | object | The style of the canvas element.                                                                                     |
-| className       | string | The class name of the canvas wrapper.                                                                                |
-| canvasClassName | string | the class name of the canvas.                                                                                        |
-| container       | object | The instance of the [particles container](https://github.com/matteobruni/tsparticles/wiki/Particles-Container-class) |
-
-Find your parameters configuration [here](https://particles.matteobruni.it).
-
-###### Errors
-
-If you have typescript errors `tsParticles` uses TypeScript `3.9.3` so try installing at least 3.8 for `import type` syntax.
-
-##### 3rd Party
-
-A 3rd-party component is available too, read more [here](https://github.com/Wufe/react-particles-js)
-
-#### Preact
-
-[![npm](https://img.shields.io/npm/v/preact-particles)](https://www.npmjs.com/package/preact-particles) [![npm](https://img.shields.io/npm/dm/preact-particles)](https://www.npmjs.com/package/preact-particles)
-
-##### Installation
-
-```shell
-npm install preact-particles
-```
-
-or
-
-```shell
-yarn add preact-particles
-```
-
-##### How to use
-
-###### Code
-
-Example:
-
-```javascript
-import Particles from "preact-particles";
-
-class App extends Component {
-  render() {
-    return (
-      <Particles
-        id="tsparticles"
-        params={{
-          background: {
-            color: {
-              value: "#0d47a1",
-            },
-          },
-          fpsLimit: 60,
-          interactivity: {
-            detectsOn: "canvas",
-            events: {
-              onClick: {
-                enable: true,
-                mode: "push",
-              },
-              onHover: {
-                enable: true,
-                mode: "repulse",
-              },
-              resize: true,
-            },
-            modes: {
-              bubble: {
-                distance: 400,
-                duration: 2,
-                opacity: 0.8,
-                size: 40,
-                speed: 3,
-              },
-              push: {
-                quantity: 4,
-              },
-              repulse: {
-                distance: 200,
-                duration: 0.4,
-              },
-            },
-          },
-          particles: {
-            color: {
-              value: "#ffffff",
-            },
-            links: {
-              color: "#ffffff",
-              distance: 150,
-              enable: true,
-              opacity: 0.5,
-              width: 1,
-            },
-            collisions: {
-              enable: true,
-            },
-            move: {
-              direction: "none",
-              enable: true,
-              outMode: "bounce",
-              random: false,
-              speed: 6,
-              straight: false,
-            },
-            number: {
-              density: {
-                enable: true,
-                value_area: 800,
-              },
-              value: 80,
-            },
-            opacity: {
-              value: 0.5,
-            },
-            shape: {
-              type: "circle",
-            },
-            size: {
-              random: true,
-              value: 5,
-            },
-          },
-          detectRetina: true,
-        }}
-      />
-    );
-  }
-}
-```
-
-###### Props
-
-| Prop            | Type   | Definition                                                                                                           |
-| --------------- | ------ | -------------------------------------------------------------------------------------------------------------------- |
-| width           | string | The width of the canvas.                                                                                             |
-| height          | string | The height of the canvas.                                                                                            |
-| params          | object | The parameters of the particles instance.                                                                            |
-| style           | object | The style of the canvas element.                                                                                     |
-| className       | string | The class name of the canvas wrapper.                                                                                |
-| canvasClassName | string | the class name of the canvas.                                                                                        |
-| container       | object | The instance of the [particles container](https://github.com/matteobruni/tsparticles/wiki/Particles-Container-class) |
-
-Find your parameters configuration [here](https://particles.matteobruni.it).
-
-###### Errors
-
-If you have typescript errors `tsParticles` uses TypeScript `3.9.3` so try installing at least 3.8 for `import type` syntax.
-
-#### Angular CLI
+### Angular
 
 [![npm](https://img.shields.io/npm/v/ng-particles)](https://www.npmjs.com/package/ng-particles) [![npm](https://img.shields.io/npm/dm/ng-particles)](https://www.npmjs.com/package/ng-particles)
 
-##### How to use it
+You can find the instructions [here](https://github.com/matteobruni/tsparticles/blob/master/components/angular/README.md)
 
-###### Install
+### jQuery
 
-```shell script
-npm install ng-particles
-```
+[![npm](https://img.shields.io/npm/v/jquery-particles)](https://www.npmjs.com/package/jquery-particles) [![npm](https://img.shields.io/npm/dm/jquery-particles)](https://www.npmjs.com/package/jquery-particles)
 
-or
+You can find the instructions [here](https://github.com/matteobruni/tsparticles/blob/master/components/jquery/README.md)
 
-```shell script
-yarn add ng-particles
-```
+### Preact
 
-###### Usage
+[![npm](https://img.shields.io/npm/v/preact-particles)](https://www.npmjs.com/package/preact-particles) [![npm](https://img.shields.io/npm/dm/preact-particles)](https://www.npmjs.com/package/preact-particles)
 
-_template.html_
+You can find the instructions [here](https://github.com/matteobruni/tsparticles/blob/master/components/preact/README.md)
 
-```html
-<Particles id="tsparticles" [options]="particlesOptions"></Particles>
-```
+### ReactJS
 
-_app.ts_
+[![npm](https://img.shields.io/npm/v/react-tsparticles)](https://www.npmjs.com/package/react-tsparticles) [![npm](https://img.shields.io/npm/dm/react-tsparticles)](https://www.npmjs.com/package/react-tsparticles)
 
-```typescript
-export class AppComponent {
-  particlesOptions = {
-    background: {
-      color: {
-        value: "#0d47a1",
-      },
-    },
-    fpsLimit: 60,
-    interactivity: {
-      detectsOn: "canvas",
-      events: {
-        onClick: {
-          enable: true,
-          mode: "push",
-        },
-        onHover: {
-          enable: true,
-          mode: "repulse",
-        },
-        resize: true,
-      },
-      modes: {
-        bubble: {
-          distance: 400,
-          duration: 2,
-          opacity: 0.8,
-          size: 40,
-          speed: 3,
-        },
-        push: {
-          quantity: 4,
-        },
-        repulse: {
-          distance: 200,
-          duration: 0.4,
-        },
-      },
-    },
-    particles: {
-      color: {
-        value: "#ffffff",
-      },
-      links: {
-        color: "#ffffff",
-        distance: 150,
-        enable: true,
-        opacity: 0.5,
-        width: 1,
-      },
-      collisions: {
-        enable: true,
-      },
-      move: {
-        direction: "none",
-        enable: true,
-        outMode: "bounce",
-        random: false,
-        speed: 6,
-        straight: false,
-      },
-      number: {
-        density: {
-          enable: true,
-          value_area: 800,
-        },
-        value: 80,
-      },
-      opacity: {
-        value: 0.5,
-      },
-      shape: {
-        type: "circle",
-      },
-      size: {
-        random: true,
-        value: 5,
-      },
-    },
-    detectRetina: true,
-  };
-}
-```
+You can find the instructions [here](https://github.com/matteobruni/tsparticles/blob/master/components/react/README.md)
 
-_app.module.ts_
+#### 3rd Party
 
-```typescript
-import { NgParticlesModule } from "ng-particles";
-import { NgModule } from "@angular/core";
+A 3rd-party component is available too, read more [here](https://github.com/Wufe/react-particles-js)
 
-@NgModule({
-  declarations: [
-    /* AppComponent */
-  ],
-  imports: [/* other imports */ NgParticlesModule /* NgParticlesModule is required*/],
-  providers: [],
-  bootstrap: [
-    /* AppComponent */
-  ],
-})
-export class AppModule {}
-```
-
----
-
-#### tsParticles Svelte component
+### Svelte
 
 [![npm](https://img.shields.io/npm/v/svelte-particles)](https://www.npmjs.com/package/svelte-particles) [![npm downloads](https://img.shields.io/npm/dm/svelte-particles)](https://www.npmjs.com/package/svelte-particles)
 
-Official tsParticles Svelte component
+You can find the instructions [here](https://github.com/matteobruni/tsparticles/blob/master/components/svelte/README.md)
 
-##### Usage
+### VueJS
 
-```html
-<script>
-  import Particles from "svelte-particles";
+[![npm](https://img.shields.io/npm/v/particles.vue)](https://www.npmjs.com/package/particles.vue) [![npm](https://img.shields.io/npm/dm/particles.vue)](https://www.npmjs.com/package/particles.vue)
 
-  let particlesConfig = {
-    particles: {
-      color: {
-        value: "#000",
-      },
-      links: {
-        enable: true,
-        color: "#000",
-      },
-      move: {
-        enable: true,
-      },
-    },
-  };
-</script>
-
-<Particles id="tsparticles" options="{particlesConfig}" />
-```
+You can find the instructions [here](https://github.com/matteobruni/tsparticles/blob/master/components/vue/README.md)
 
 ---
 
@@ -994,21 +359,13 @@ Documentation and Development references [here](https://particles.matteobruni.it
 
 ---
 
-## Stargazers over time
-
-[![Stargazers over time](https://starchart.cc/matteobruni/tsparticles.svg)](https://starchart.cc/matteobruni/tsparticles)
-
----
-
-<p>
-
-    <a href="https://www.jetbrains.com/?from=tsParticles">
-        <img src="https://cdn.matteobruni.it/images/jetbrains-logos/jetbrains-variant-4.png" height="150" alt="JetBrains" />
-    </a>
-    <a href="https://www.jetbrains.com/webstorm/?from=tsParticles">
-        <img src="https://cdn.matteobruni.it/images/jetbrains-logos/webstorm_logos/logo.png" height="150" alt="JetBrains" />
-    </a>
-
+<p>  
+    <a href="https://www.jetbrains.com/?from=tsParticles">  
+        <img src="https://cdn.matteobruni.it/images/jetbrains-logos/jetbrains-variant-4.png" height="150" alt="JetBrains" />  
+    </a>  
+    <a href="https://www.jetbrains.com/webstorm/?from=tsParticles">  
+        <img src="https://cdn.matteobruni.it/images/jetbrains-logos/webstorm_logos/logo.png" height="150" alt="JetBrains" />  
+    </a>  
 </p>
 
 ### Huge thanks to [JetBrains](https://www.jetbrains.com/?from=tsParticles) for the 2020 Open Source License!
