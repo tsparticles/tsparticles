@@ -9,16 +9,16 @@
   },
   "license": "MIT",
   "devDependencies": {
-    "@rollup/plugin-commonjs": "^12.0.0",
-    "@rollup/plugin-node-resolve": "^8.0.0",
-    "rollup": "^2.3.4",
-    "rollup-plugin-livereload": "^1.0.0",
-    "rollup-plugin-svelte": "^5.0.3",
-    "rollup-plugin-terser": "^5.1.2",
-    "svelte": "^3.0.0"
+    "@rollup/plugin-commonjs": "^13.0.0",
+    "@rollup/plugin-node-resolve": "^8.1.0",
+    "rollup": "^2.20.0",
+    "rollup-plugin-livereload": "^1.3.0",
+    "rollup-plugin-svelte": "^5.2.3",
+    "rollup-plugin-terser": "^6.1.0",
+    "svelte": "^3.23.2"
   },
   "dependencies": {
-    "sirv-cli": "^0.4.4",
+    "sirv-cli": "^1.0.3",
     "svelte-particles": "^1.0.0-alpha.0"
   }
 }

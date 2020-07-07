@@ -67,22 +67,22 @@
     "url": "https://github.com/sponsors/matteobruni"
   },
   "dependencies": {
-    "jquery": "^3.4.1",
+    "jquery": "^3.5.1",
     "tslib": "^2.0.0",
     "tsparticles": "^1.17.0-alpha.14"
   },
   "devDependencies": {
-    "@types/jquery": "^3.3.38",
-    "@typescript-eslint/eslint-plugin": "^3.3.0",
-    "@typescript-eslint/parser": "^3.3.0",
+    "@types/jquery": "^3.5.0",
+    "@typescript-eslint/eslint-plugin": "^3.6.0",
+    "@typescript-eslint/parser": "^3.6.0",
     "babel-preset-env": "^1.7.0",
-    "eslint": "^7.2.0",
+    "eslint": "^7.4.0",
     "eslint-config-prettier": "^6.11.0",
     "prettier": "^2.0.5",
-    "rollup": "^2.16.0",
+    "rollup": "^2.20.0",
     "rollup-plugin-babel": "^4.4.0",
     "rollup-plugin-sourcemaps": "^0.6.2",
     "typescript": "^3.9.6",
-    "uglify-js": "^3.9.4"
+    "uglify-js": "^3.10.0"
   }
 }
