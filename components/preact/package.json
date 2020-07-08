@@ -74,7 +74,7 @@
     "eslint": "^7.4.0",
     "eslint-config-prettier": "^6.11.0",
     "prettier": "^2.0.5",
-    "ts-loader": "^7.0.5",
+    "ts-loader": "^8.0.0",
     "ts-node": "^8.10.2",
     "typescript": "^3.9.6",
     "webpack": "^4.43.0",
