@@ -8,9 +8,10 @@
   "types": "index.d.ts",
   "scripts": {
     "prettify:src": "prettier --write ./src/",
+    "prettify:readme": "prettier --write ./README.md",
     "lint": "eslint src --ext .js,.jsx,.ts,.tsx --fix",
     "build:debug": "webpack",
-    "build": "yarn prettify:src && yarn lint && cross-env NODE_ENV=production webpack",
+    "build": "yarn prettify:src && yarn lint && cross-env NODE_ENV=production webpack && yarn prettify:readme",
     "prepare": "yarn build"
   },
   "repository": {

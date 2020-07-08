@@ -28,11 +28,12 @@
   },
   "scripts": {
     "prettify:src": "prettier --write ./src/",
+    "prettify:readme": "prettier --write ./README.md",
     "lint": "eslint src/ts --ext .js,.jsx,.ts,.tsx --fix",
     "clear:dist": "rimraf -f ./dist",
     "build:ts:es": "tsc -b tsconfig.browser.json",
     "build:ts": "tsc",
-    "build": "yarn clear:dist && yarn prettify:src && yarn build:ts:es && yarn lint && webpack -p && yarn build:ts",
+    "build": "yarn clear:dist && yarn prettify:src && yarn build:ts:es && yarn lint && webpack -p && yarn build:ts && yarn prettify:readme",
     "prepare": "yarn build"
   },
   "bugs": {

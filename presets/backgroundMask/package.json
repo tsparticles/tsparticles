@@ -5,10 +5,11 @@
   "homepage": "https://particles.matteobruni.it/",
   "scripts": {
     "prettify:src": "prettier --write ./src/",
+    "prettify:readme": "prettier --write ./README.md",
     "lint": "eslint src --ext .js,.jsx,.ts,.tsx --fix",
     "compile": "tsc",
     "bundle": "webpack -p",
-    "build": "yarn prettify:src && yarn compile && yarn lint && yarn bundle",
+    "build": "yarn prettify:src && yarn compile && yarn lint && yarn bundle && yarn prettify:readme",
     "prepare": "yarn build"
   },
   "repository": {
