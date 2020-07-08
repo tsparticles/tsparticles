@@ -39,6 +39,7 @@ export class Modes implements IModes, IOptionLoader<IModes> {
             return;
         }
 
+        this.attract.load(data.attract);
         this.bubble.load(data.bubble);
         this.connect.load(data.connect);
         this.grab.load(data.grab);

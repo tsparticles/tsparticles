@@ -184,19 +184,10 @@ export class Repulser implements IExternalInteractor {
                 const velocity = container.options.interactivity.modes.repulse.speed;
                 const force = (-repulseRadius * velocity) / d;
 
-                // default
                 if (d <= repulseRadius) {
                     container.repulse.particles.push(particle);
                     this.processClickRepulse(particle, dx, dy, force);
                 }
-                // bang - slow motion mode
-                // if(!container.repulse_finish){
-                //   if(d <= repulseRadius){
-                //     process();
-                //   }
-                // }else{
-                //   process();
-                // }
             }
         } else if (container.repulse.clicking === false) {
             for (const particle of container.repulse.particles) {

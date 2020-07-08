@@ -436,6 +436,25 @@ export class EventListeners {
                 }, options.interactivity.modes.repulse.duration * 1000);
 
                 break;
+            case ClickMode.attract:
+                container.attract.clicking = true;
+                container.attract.count = 0;
+
+                for (const particle of container.attract.particles) {
+                    particle.velocity.horizontal = particle.initialVelocity.horizontal;
+                    particle.velocity.vertical = particle.initialVelocity.vertical;
+                }
+
+                container.attract.particles = [];
+                container.attract.finish = false;
+
+                setTimeout(() => {
+                    if (!container.destroyed) {
+                        container.attract.clicking = false;
+                    }
+                }, options.interactivity.modes.attract.duration * 1000);
+
+                break;
             case ClickMode.pause:
                 if (container.getAnimationStatus()) {
                     container.pause();

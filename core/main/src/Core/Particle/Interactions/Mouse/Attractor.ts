@@ -57,14 +57,14 @@ export class Attractor implements IExternalInteractor {
             return;
         }
 
-        const repulseRadius = container.retina.repulseModeDistance;
+        const attractRadius = container.retina.attractModeDistance;
 
-        this.processAttract(mousePos, repulseRadius, new Circle(mousePos.x, mousePos.y, repulseRadius));
+        this.processAttract(mousePos, attractRadius, new Circle(mousePos.x, mousePos.y, attractRadius));
     }
 
-    private processAttract(position: ICoordinates, repulseRadius: number, area: Range): void {
+    private processAttract(position: ICoordinates, attractRadius: number, area: Range): void {
         const container = this.container;
-        //const query = container.particles.spatialGrid.queryRadius(position, repulseRadius);
+        //const query = container.particles.spatialGrid.queryRadius(position, attractRadius);
         const query = container.particles.quadTree.query(area);
 
         for (const particle of query) {
@@ -75,12 +75,12 @@ export class Attractor implements IExternalInteractor {
             };
 
             const velocity = container.options.interactivity.modes.attract.speed * 100;
-            const repulseFactor = Utils.clamp((1 - Math.pow(distance / repulseRadius, 2)) * velocity, 0, 50);
+            const attractFactor = Utils.clamp((1 - Math.pow(distance / attractRadius, 2)) * velocity, 0, 50);
             const outMode = particle.particlesOptions.move.outMode;
             const sizeValue = particle.size.value;
             const pos = {
-                x: particle.position.x - normVec.x * repulseFactor,
-                y: particle.position.y - normVec.y * repulseFactor,
+                x: particle.position.x - normVec.x * attractFactor,
+                y: particle.position.y - normVec.y * attractFactor,
             };
 
             if (
@@ -110,57 +110,48 @@ export class Attractor implements IExternalInteractor {
     private clickAttract(): void {
         const container = this.container;
 
-        if (!container.repulse.finish) {
-            if (!container.repulse.count) {
-                container.repulse.count = 0;
+        if (!container.attract.finish) {
+            if (!container.attract.count) {
+                container.attract.count = 0;
             }
 
-            container.repulse.count++;
+            container.attract.count++;
 
-            if (container.repulse.count === container.particles.count) {
-                container.repulse.finish = true;
+            if (container.attract.count === container.particles.count) {
+                container.attract.finish = true;
             }
         }
 
-        if (container.repulse.clicking) {
-            const repulseDistance = container.retina.repulseModeDistance;
-            const repulseRadius = Math.pow(repulseDistance / 6, 3);
+        if (container.attract.clicking) {
+            const attractDistance = container.retina.attractModeDistance;
+            const attractRadius = Math.pow(attractDistance / 6, 3);
             const mouseClickPos = container.interactivity.mouse.clickPosition;
 
             if (mouseClickPos === undefined) {
                 return;
             }
 
-            //const query = container.particles.spatialGrid.queryRadius(mouseClickPos, repulseRadius);
-            const range = new Circle(mouseClickPos.x, mouseClickPos.y, repulseRadius);
+            //const query = container.particles.spatialGrid.queryRadius(mouseClickPos, attractRadius);
+            const range = new Circle(mouseClickPos.x, mouseClickPos.y, attractRadius);
             const query = container.particles.quadTree.query(range);
 
             for (const particle of query) {
                 const { dx, dy, distance } = Utils.getDistances(mouseClickPos, particle.position);
                 const d = distance * distance;
                 const velocity = container.options.interactivity.modes.attract.speed;
-                const force = (-repulseRadius * velocity) / d;
+                const force = (-attractRadius * velocity) / d;
 
-                // default
-                if (d <= repulseRadius) {
-                    container.repulse.particles.push(particle);
+                if (d <= attractRadius) {
+                    container.attract.particles.push(particle);
                     this.processClickAttract(particle, dx, dy, force);
                 }
-                // bang - slow motion mode
-                // if(!container.repulse_finish){
-                //   if(d <= repulseRadius){
-                //     process();
-                //   }
-                // }else{
-                //   process();
-                // }
             }
-        } else if (container.repulse.clicking === false) {
-            for (const particle of container.repulse.particles) {
+        } else if (container.attract.clicking === false) {
+            for (const particle of container.attract.particles) {
                 particle.velocity.horizontal = particle.initialVelocity.horizontal;
                 particle.velocity.vertical = particle.initialVelocity.vertical;
             }
-            container.repulse.particles = [];
+            container.attract.particles = [];
         }
     }
 
@@ -169,15 +160,15 @@ export class Attractor implements IExternalInteractor {
         const options = container.options;
         const f = Math.atan2(dy, dx);
 
-        particle.velocity.horizontal = force * Math.cos(f);
-        particle.velocity.vertical = force * Math.sin(f);
+        particle.velocity.horizontal = -force * Math.cos(f);
+        particle.velocity.vertical = -force * Math.sin(f);
 
         const outMode = options.particles.move.outMode;
 
         if (outMode === OutMode.bounce || outMode === OutMode.bounceHorizontal || outMode === OutMode.bounceVertical) {
             const pos = {
-                x: particle.position.x - particle.velocity.horizontal,
-                y: particle.position.y - particle.velocity.vertical,
+                x: particle.position.x + particle.velocity.horizontal,
+                y: particle.position.y + particle.velocity.vertical,
             };
 
             if (outMode !== OutMode.bounceVertical) {

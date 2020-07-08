@@ -9,6 +9,7 @@ export class Retina {
     public connectModeRadius!: number;
     public grabModeDistance!: number;
     public repulseModeDistance!: number;
+    public attractModeDistance!: number;
     public slowModeRadius!: number;
     public linksDistance!: number;
     public linksWidth!: number;
@@ -52,6 +53,7 @@ export class Retina {
         this.connectModeRadius = modes.connect.radius * ratio;
         this.grabModeDistance = modes.grab.distance * ratio;
         this.repulseModeDistance = modes.repulse.distance * ratio;
+        this.attractModeDistance = modes.attract.distance * ratio;
         this.slowModeRadius = modes.slow.radius * ratio;
         this.bubbleModeDistance = modes.bubble.distance * ratio;
 
