@@ -11757,7 +11757,7 @@ next-tick@~1.0.0:
   resolved "https://registry.yarnpkg.com/next-tick/-/next-tick-1.0.0.tgz#ca86d1fe8828169b0120208e3dc8424b9db8342c"
   integrity sha1-yobR/ogoFpsBICCOPchCS524NCw=
 
-ng-packagr@^10.0.0:
+ng-packagr@^10.0.1:
   version "10.0.1"
   resolved "https://registry.yarnpkg.com/ng-packagr/-/ng-packagr-10.0.1.tgz#077b38121a7b7cd26e37127e8c4160eeaa7528f4"
   integrity sha512-jTG79Dg/FuSuDIcCzbd/MOyJDrb+DUBXNT2NZbHxQ7y5Tm0tlqJs/9ffr0q0879A8TYuV8GH3+4uP3Oup6LBFw==
@@ -13616,7 +13616,7 @@ posthtml@^0.12.0:
     posthtml-parser "^0.4.2"
     posthtml-render "^1.2.2"
 
-preact-cli@^3.0.0-rc.16:
+preact-cli@^3.0.0-rc.17:
   version "3.0.0-rc.17"
   resolved "https://registry.yarnpkg.com/preact-cli/-/preact-cli-3.0.0-rc.17.tgz#b1545e334b53f84b8752dd1822acacae25bc94ec"
   integrity sha512-WRYotBvqiPABAoJuErtaVsUr1PgbffP+qMElz3l88ykR9BPEhy9LFddwxRV3M6wphBfZLYT/XZJYWuLqq6uoNA==
