@@ -134,7 +134,7 @@ export default {
       linesColor="#dedede"
       :linesWidth="1"
       :lineLinked="true"
-      :lineOpacity="0.4"
+      :linesOpacity="0.4"
       :linesDistance="150"
       :moveSpeed="3"
       :hoverEffect="true"
