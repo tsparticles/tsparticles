@@ -74,7 +74,7 @@ export class Attractor implements IExternalInteractor {
                 y: dy / distance,
             };
 
-            const velocity = container.options.interactivity.modes.attract.speed * 100;
+            const velocity = container.options.interactivity.modes.attract.speed;
             const attractFactor = Utils.clamp((1 - Math.pow(distance / attractRadius, 2)) * velocity, 0, 50);
 
             particle.position.x = particle.position.x - normVec.x * attractFactor;

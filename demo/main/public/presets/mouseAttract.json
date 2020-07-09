@@ -101,7 +101,7 @@
       "attract": {
         "distance": 600,
         "duration": 0.4,
-        "speed": 0.03
+        "speed": 3
       },
       "repulse": {
         "distance": 200
