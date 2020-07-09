@@ -113,7 +113,7 @@ export class Attractor implements IExternalInteractor {
             for (const particle of query) {
                 const { dx, dy, distance } = Utils.getDistances(mouseClickPos, particle.position);
                 const d = distance * distance;
-                const velocity = container.options.interactivity.modes.attract.speed;
+                const velocity = container.options.interactivity.modes.attract.speed / 100;
                 const force = (-attractRadius * velocity) / d;
 
                 if (d <= attractRadius) {
