@@ -1,24 +1,132 @@
-# NgParticles
+# Angular CLI  
+  
+![npm](https://img.shields.io/npm/v/ng-particles) ![npm](https://img.shields.io/npm/dm/ng-particles)  
+  
+## How to use it  
 
-This library was generated with [Angular CLI](https://github.com/angular/angular-cli) version 9.1.7.
+### Install  
+  
+```shell script  
+npm install ng-particles  
+```  
+  
+or  
+  
+```shell script  
+yarn add ng-particles  
+```  
 
-## Code scaffolding
+### Usage  
 
-Run `ng generate component component-name --project ng-particles` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module --project ng-particles`.
-> Note: Don't forget to add `--project ng-particles` or else it will be added to the default project in your `angular.json` file. 
+*template.html*  
+  
+```html  
+<Particles id="tsparticles" [options]="particlesOptions"></Particles>  
+```  
+  
+*app.ts*  
+  
+```typescript  
+export class AppComponent {
+    particlesOptions = {
+        background: {
 
-## Build
+            color: {
+                value: "#0d47a1"
+            }
 
-Run `ng build ng-particles` to build the project. The build artifacts will be stored in the `dist/` directory.
+        },
+        fpsLimit: 60,
+        interactivity: {
 
-## Publishing
+            detectsOn: "canvas",
+            events: {
+                onClick: {
+                    enable: true,
+                    mode: "push"
+                },
+                onHover: {
+                    enable: true,
+                    mode: "repulse"
+                },
+                resize: true
+            },
+            modes: {
+                bubble: {
+                    distance: 400,
+                    duration: 2,
+                    opacity: 0.8,
+                    size: 40,
+                    speed: 3
+                },
+                push: {
+                    quantity: 4
+                },
+                repulse: {
+                    distance: 200,
+                    duration: 0.4
+                }
+            }
 
-After building your library with `ng build ng-particles`, go to the dist folder `cd dist/ng-particles` and run `npm publish`.
+        },
+        particles: {
 
-## Running unit tests
+            color: {
+                value: "#ffffff"
+            },
+            links: {
+                color: "#ffffff",
+                distance: 150,
+                enable: true,
+                opacity: 0.5,
+                width: 1
+            },
+            collisions: {
+                enable: true
+            },
+            move: {
+                direction: "none",
+                enable: true,
+                outMode: "bounce",
+                random: false,
+                speed: 6,
+                straight: false
+            },
+            number: {
+                density: {
+                    enable: true,
+                    value_area: 800
+                },
+                value: 80
+            },
+            opacity: {
+                value: 0.5
+            },
+            shape: {
+                type: "circle"
+            },
+            size: {
+                random: true,
+                value: 5
+            }
 
-Run `ng test ng-particles` to execute the unit tests via [Karma](https://karma-runner.github.io).
+        },
+        detectRetina: true
+    };
+}
+```  
+  
+*app.module.ts*  
+  
+```typescript  
+import { NgParticlesModule } from 'ng-particles';
+import { NgModule } from "@angular/core";
 
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+@NgModule({
+    declarations: [ /* AppComponent */],
+    imports: [ /* other imports */ NgParticlesModule /* NgParticlesModule is required*/],
+    providers: [],
+    bootstrap: [ /* AppComponent */]
+})
+export class AppModule { }  
+```
