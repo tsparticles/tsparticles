@@ -12,6 +12,7 @@ import type { IParticlesInteractor } from "../Interfaces/IParticlesInteractor";
 import { TrailMaker } from "./Interactions/Mouse/TrailMaker";
 import type { IDelta } from "../Interfaces/IDelta";
 import { Attractor as MouseAttractor } from "./Interactions/Mouse/Attractor";
+import { Particle } from "../Particle";
 
 export class InteractionManager {
     private readonly externalInteractors: IExternalInteractor[];
@@ -39,13 +40,7 @@ export class InteractionManager {
         // TODO: filter interactors
     }
 
-    public interact(delta: IDelta): void {
-        this.externalInteract(delta);
-
-        this.particlesInteract(delta);
-    }
-
-    private externalInteract(delta: IDelta): void {
+    public externalInteract(delta: IDelta): void {
         for (const interactor of this.externalInteractors) {
             if (interactor.isEnabled()) {
                 interactor.interact(delta);
@@ -53,18 +48,15 @@ export class InteractionManager {
         }
     }
 
-    private particlesInteract(delta: IDelta): void {
-        // this loop is required to be done after mouse interactions
-        for (const particle of this.container.particles.array) {
-            for (const interactor of this.externalInteractors) {
-                interactor.reset(particle);
-            }
+    public particlesInteract(particle: Particle, delta: IDelta): void {
+        for (const interactor of this.externalInteractors) {
+            interactor.reset(particle);
+        }
 
-            /* interaction auto between particles */
-            for (const interactor of this.particleInteractors) {
-                if (interactor.isEnabled(particle)) {
-                    interactor.interact(particle, delta);
-                }
+        /* interaction auto between particles */
+        for (const interactor of this.particleInteractors) {
+            if (interactor.isEnabled(particle)) {
+                interactor.interact(particle, delta);
             }
         }
     }

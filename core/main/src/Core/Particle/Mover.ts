@@ -8,6 +8,25 @@ export class Mover {
     constructor(private readonly container: Container, private readonly particle: Particle) {}
 
     public move(delta: IDelta): void {
+        const particle = this.particle;
+
+        particle.bubble.inRange = false;
+        particle.links = [];
+
+        for (const [, plugin] of this.container.plugins) {
+            if (particle.destroyed) {
+                break;
+            }
+
+            if (plugin.particleUpdate) {
+                plugin.particleUpdate(particle, delta);
+            }
+        }
+
+        if (particle.destroyed) {
+            return;
+        }
+
         this.moveParticle(delta);
 
         /* parallax */

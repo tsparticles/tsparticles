@@ -1,7 +1,6 @@
 import type { Container } from "../Container";
 import type { Particle } from "../Particle";
 import { Utils } from "../../Utils";
-import { Mover } from "./Mover";
 import { DestroyType, OpacityAnimationStatus, OutMode, RotateDirection, SizeAnimationStatus } from "../../Enums";
 import type { IBounds } from "../Interfaces/IBounds";
 import type { IDelta } from "../Interfaces/IDelta";
@@ -10,11 +9,7 @@ import type { IDelta } from "../Interfaces/IDelta";
  * Particle updater, it manages movement
  */
 export class Updater {
-    private readonly mover: Mover;
-
-    constructor(private readonly container: Container, private readonly particle: Particle) {
-        this.mover = new Mover(container, particle);
-    }
+    constructor(private readonly container: Container, private readonly particle: Particle) {}
 
     private static checkBounds(
         coordinate: number,
@@ -29,10 +24,11 @@ export class Updater {
     }
 
     public update(delta: IDelta): void {
-        this.particle.links = [];
+        const particle = this.particle;
 
-        /* move the particle */
-        this.mover.move(delta);
+        if (particle.destroyed) {
+            return;
+        }
 
         /* change opacity status */
         this.updateOpacity(delta);
@@ -194,31 +190,44 @@ export class Updater {
         const container = this.container;
         const particle = this.particle;
         const outMode = particle.particlesOptions.move.outMode;
-        const wrap = particle.particlesOptions.move.warp;
+
+        if (outMode === OutMode.destroy) {
+            const sizeValue = particle.size.value;
+
+            if (!Utils.isPointInside(particle.position, container.canvas.size, sizeValue)) {
+                particle.destroy();
+                container.particles.remove(particle);
+                return;
+            }
+        }
+
+        const wrap = outMode === OutMode.out && particle.particlesOptions.move.warp;
+        const bounce =
+            outMode === OutMode.bounce || outMode === OutMode.bounceHorizontal || outMode === OutMode.bounceVertical;
         const canvasSize = container.canvas.size;
 
         let newPos: IBounds;
 
         if (outMode === OutMode.bounce) {
             newPos = {
-                bottom: canvasSize.height,
-                left: particle.size.value,
-                right: canvasSize.width,
-                top: particle.size.value,
+                bottom: particle.size.value,
+                left: canvasSize.width,
+                right: particle.size.value,
+                top: canvasSize.height,
             };
         } else if (outMode === OutMode.bounceHorizontal) {
             newPos = {
                 bottom: canvasSize.height + particle.size.value - particle.offset.y,
-                left: particle.size.value,
-                right: canvasSize.width,
+                left: canvasSize.width,
+                right: particle.size.value,
                 top: -particle.size.value - particle.offset.y,
             };
         } else if (outMode === OutMode.bounceVertical) {
             newPos = {
-                bottom: canvasSize.height,
+                bottom: particle.size.value,
                 left: -particle.size.value - particle.offset.x,
                 right: canvasSize.width + particle.size.value + particle.offset.x,
-                top: particle.size.value,
+                top: canvasSize.height,
             };
         } else {
             newPos = {
@@ -229,43 +238,35 @@ export class Updater {
             };
         }
 
-        if (outMode === OutMode.destroy) {
-            const sizeValue = particle.size.value;
+        const sizeValue = particle.size.value;
+        const nextBounds = Utils.calculateBounds(particle.position, sizeValue);
 
-            if (!Utils.isPointInside(particle.position, container.canvas.size, sizeValue)) {
-                container.particles.remove(particle);
+        if (nextBounds.left > canvasSize.width - particle.offset.x) {
+            particle.position.x = newPos.left;
+
+            if (!wrap && !bounce) {
+                particle.position.y = Math.random() * canvasSize.height;
             }
-        } else {
-            const sizeValue = particle.size.value;
-            const nextBounds = Utils.calculateBounds(particle.position, sizeValue);
+        } else if (nextBounds.right < -particle.offset.x) {
+            particle.position.x = newPos.right;
 
-            if (nextBounds.left > canvasSize.width - particle.offset.x) {
-                particle.position.x = newPos.left;
+            if (!wrap && !bounce) {
+                particle.position.y = Math.random() * canvasSize.height;
+            }
+        }
 
-                if (!wrap) {
-                    particle.position.y = Math.random() * canvasSize.height;
-                }
-            } else if (nextBounds.right < -particle.offset.x) {
-                particle.position.x = newPos.right;
-
-                if (!wrap) {
-                    particle.position.y = Math.random() * canvasSize.height;
-                }
+        if (nextBounds.top > canvasSize.height - particle.offset.y) {
+            if (!wrap && !bounce) {
+                particle.position.x = Math.random() * canvasSize.width;
             }
 
-            if (nextBounds.top > canvasSize.height - particle.offset.y) {
-                if (!wrap) {
-                    particle.position.x = Math.random() * canvasSize.width;
-                }
-
-                particle.position.y = newPos.top;
-            } else if (nextBounds.bottom < -particle.offset.y) {
-                if (!wrap) {
-                    particle.position.x = Math.random() * canvasSize.width;
-                }
-
-                particle.position.y = newPos.bottom;
+            particle.position.y = newPos.top;
+        } else if (nextBounds.bottom < -particle.offset.y) {
+            if (!wrap && !bounce) {
+                particle.position.x = Math.random() * canvasSize.width;
             }
+
+            particle.position.y = newPos.bottom;
         }
     }
 

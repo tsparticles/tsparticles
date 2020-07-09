@@ -1,11 +1,11 @@
 import type { Container } from "../../../Container";
-import { ClickMode, DivMode, DivType, HoverMode, OutMode } from "../../../../Enums";
+import { ClickMode, DivMode, DivType, HoverMode } from "../../../../Enums";
 import { Circle, Constants, Range, Rectangle, Utils } from "../../../../Utils";
 import type { ICoordinates } from "../../../Interfaces/ICoordinates";
 import type { IParticle } from "../../../Interfaces/IParticle";
-import { DivEvent } from "../../../../Options/Classes/Interactivity/Events/DivEvent";
-import { IExternalInteractor } from "../../../Interfaces/IExternalInteractor";
-import { RepulseDiv } from "../../../../Options/Classes/Interactivity/Modes/RepulseDiv";
+import type { DivEvent } from "../../../../Options/Classes/Interactivity/Events/DivEvent";
+import type { IExternalInteractor } from "../../../Interfaces/IExternalInteractor";
+import type { RepulseDiv } from "../../../../Options/Classes/Interactivity/Modes/RepulseDiv";
 
 /**
  * Particle repulse manager
@@ -119,34 +119,9 @@ export class Repulser implements IExternalInteractor {
 
             const velocity = (divRepulse?.speed ?? container.options.interactivity.modes.repulse.speed) * 100;
             const repulseFactor = Utils.clamp((1 - Math.pow(distance / repulseRadius, 2)) * velocity, 0, 50);
-            const outMode = particle.particlesOptions.move.outMode;
-            const sizeValue = particle.size.value;
-            const pos = {
-                x: particle.position.x + normVec.x * repulseFactor,
-                y: particle.position.y + normVec.y * repulseFactor,
-            };
 
-            if (
-                outMode === OutMode.bounce ||
-                outMode === OutMode.bounceVertical ||
-                outMode === OutMode.bounceHorizontal
-            ) {
-                const isInside = {
-                    horizontal: pos.x - sizeValue > 0 && pos.x + sizeValue < container.canvas.size.width,
-                    vertical: pos.y - sizeValue > 0 && pos.y + sizeValue < container.canvas.size.height,
-                };
-
-                if (outMode === OutMode.bounceVertical || isInside.horizontal) {
-                    particle.position.x = pos.x;
-                }
-
-                if (outMode === OutMode.bounceHorizontal || isInside.vertical) {
-                    particle.position.y = pos.y;
-                }
-            } else {
-                particle.position.x = pos.x;
-                particle.position.y = pos.y;
-            }
+            particle.position.x = particle.position.x + normVec.x * repulseFactor;
+            particle.position.y = particle.position.y + normVec.y * repulseFactor;
         }
     }
 
@@ -200,31 +175,9 @@ export class Repulser implements IExternalInteractor {
 
     private processClickRepulse(particle: IParticle, dx: number, dy: number, force: number): void {
         const container = this.container;
-        const options = container.options;
-        const f = Math.atan2(dy, dx);
+        const angle = Math.atan2(dy, dx);
 
-        particle.velocity.horizontal = force * Math.cos(f);
-        particle.velocity.vertical = force * Math.sin(f);
-
-        const outMode = options.particles.move.outMode;
-
-        if (outMode === OutMode.bounce || outMode === OutMode.bounceHorizontal || outMode === OutMode.bounceVertical) {
-            const pos = {
-                x: particle.position.x + particle.velocity.horizontal,
-                y: particle.position.y + particle.velocity.vertical,
-            };
-
-            if (outMode !== OutMode.bounceVertical) {
-                if (pos.x + particle.size.value > container.canvas.size.width || pos.x - particle.size.value < 0) {
-                    particle.velocity.horizontal *= -1;
-                }
-            }
-
-            if (outMode !== OutMode.bounceHorizontal) {
-                if (pos.y + particle.size.value > container.canvas.size.height || pos.y - particle.size.value < 0) {
-                    particle.velocity.vertical *= -1;
-                }
-            }
-        }
+        particle.velocity.horizontal = force * Math.cos(angle);
+        particle.velocity.vertical = force * Math.sin(angle);
     }
 }

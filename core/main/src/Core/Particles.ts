@@ -98,8 +98,6 @@ export class Particles {
         container.noise.update();
 
         for (const particle of this.array) {
-            particle.bubble.inRange = false;
-
             // let d = ( dx = container.interactivity.mouse.click_pos_x - p.x ) * dx +
             //         ( dy = container.interactivity.mouse.click_pos_y - p.y ) * dy;
             // let f = -BANG_SIZE / d;
@@ -109,19 +107,7 @@ export class Particles {
             //     p.vy = f * Math.sin(t);
             // }
 
-            for (const [, plugin] of container.plugins) {
-                if (particle.destroyed) {
-                    break;
-                }
-
-                if (plugin.particleUpdate) {
-                    plugin.particleUpdate(particle, delta);
-                }
-            }
-
-            if (!particle.destroyed) {
-                particle.update(delta);
-            }
+            particle.move(delta);
 
             if (particle.destroyed) {
                 particlesToDelete.push(particle);
@@ -137,7 +123,14 @@ export class Particles {
             this.remove(particle);
         }
 
-        this.interactionManager.interact(delta);
+        this.interactionManager.externalInteract(delta);
+
+        // this loop is required to be done after mouse interactions
+        for (const particle of this.container.particles.array) {
+            this.interactionManager.particlesInteract(particle, delta);
+
+            particle.update(delta);
+        }
     }
 
     public draw(delta: IDelta): void {
