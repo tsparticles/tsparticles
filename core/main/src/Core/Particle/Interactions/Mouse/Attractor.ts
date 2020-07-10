@@ -98,36 +98,20 @@ export class Attractor implements IExternalInteractor {
         }
 
         if (container.attract.clicking) {
-            const attractDistance = container.retina.attractModeDistance;
-            const attractRadius = Math.pow(attractDistance / 6, 3);
-            const mouseClickPos = container.interactivity.mouse.clickPosition;
+            const mousePos = container.interactivity.mouse.clickPosition;
 
-            if (mouseClickPos === undefined) {
+            if (!mousePos) {
                 return;
             }
 
-            //const query = container.particles.spatialGrid.queryRadius(mouseClickPos, attractRadius);
-            const range = new Circle(mouseClickPos.x, mouseClickPos.y, attractRadius);
-            const query = container.particles.quadTree.query(range);
+            const attractRadius = container.retina.attractModeDistance;
 
-            for (const particle of query) {
-                const { dx, dy, distance } = Utils.getDistances(mouseClickPos, particle.position);
-                const d = distance * distance;
-                const velocity = container.options.interactivity.modes.attract.speed / 100;
-                const force = (-attractRadius * velocity) / d;
-
-                if (d <= attractRadius) {
-                    container.attract.particles.push(particle);
-                    this.processClickAttract(particle, dx, dy, force);
-                }
-            }
+            this.processAttract(mousePos, attractRadius, new Circle(mousePos.x, mousePos.y, attractRadius));
         } else if (container.attract.clicking === false) {
-            for (const particle of container.attract.particles) {
-                particle.velocity.horizontal = particle.initialVelocity.horizontal;
-                particle.velocity.vertical = particle.initialVelocity.vertical;
-            }
             container.attract.particles = [];
         }
+
+        return;
     }
 
     private processClickAttract(particle: IParticle, dx: number, dy: number, force: number): void {
