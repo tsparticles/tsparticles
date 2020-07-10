@@ -2,14 +2,14 @@ import type { Container } from "../../../Container";
 import { ClickMode, HoverMode } from "../../../../Enums";
 import { Circle, Constants, Range, Utils } from "../../../../Utils";
 import type { ICoordinates } from "../../../Interfaces/ICoordinates";
-import type { IParticle } from "../../../Interfaces/IParticle";
 import type { IExternalInteractor } from "../../../Interfaces/IExternalInteractor";
 
 /**
  * Particle attract manager
  */
 export class Attractor implements IExternalInteractor {
-    constructor(private readonly container: Container) {}
+    constructor(private readonly container: Container) {
+    }
 
     public isEnabled(): boolean {
         const container = this.container;
@@ -112,13 +112,5 @@ export class Attractor implements IExternalInteractor {
         }
 
         return;
-    }
-
-    private processClickAttract(particle: IParticle, dx: number, dy: number, force: number): void {
-        const container = this.container;
-        const f = Math.atan2(dy, dx);
-
-        particle.velocity.horizontal = -force * Math.cos(f);
-        particle.velocity.vertical = -force * Math.sin(f);
     }
 }
