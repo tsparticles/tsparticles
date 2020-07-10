@@ -1,6 +1,6 @@
 {
   "name": "preact-particles",
-  "version": "1.17.0-beta.0",
+  "version": "1.17.0-beta.1",
   "description": "tsParticles official Preact component",
   "main": "index.js",
   "unpkg": "umd/particles.js",
@@ -88,7 +88,7 @@
   },
   "dependencies": {
     "lodash": "^4.17.19",
-    "tsparticles": "^1.17.0-beta.0"
+    "tsparticles": "^1.17.0-beta.1"
   },
   "peerDependencies": {
     "preact": "^10.0.0"
