@@ -1,7 +1,8 @@
-import type { IRepulseBase } from "../../../Interfaces/Interactivity/Modes/IRepulseBase";
+import type { IAttract } from "../../../Interfaces/Interactivity/Modes/IAttract";
 import type { RecursivePartial } from "../../../../Types/RecursivePartial";
+import type { IOptionLoader } from "../../../Interfaces/IOptionLoader";
 
-export abstract class RepulseBase implements IRepulseBase {
+export class Attract implements IAttract, IOptionLoader<IAttract> {
     public distance: number;
     public duration: number;
     public speed: number;
@@ -12,7 +13,7 @@ export abstract class RepulseBase implements IRepulseBase {
         this.speed = 1;
     }
 
-    public load(data?: RecursivePartial<IRepulseBase>): void {
+    public load(data?: RecursivePartial<IAttract>): void {
         if (data === undefined) {
             return;
         }

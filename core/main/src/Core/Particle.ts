@@ -34,6 +34,7 @@ import { ColorUtils, Plugins, Utils } from "../Utils";
 import type { IShapeDrawer } from "./Interfaces/IShapeDrawer";
 import { Infecter } from "./Particle/Infecter";
 import type { IDelta } from "./Interfaces/IDelta";
+import { Mover } from "./Particle/Mover";
 
 /**
  * The single particle object
@@ -73,6 +74,7 @@ export class Particle implements IParticle {
 
     public readonly updater: Updater;
     public readonly infecter: Infecter;
+    private readonly mover: Mover;
 
     /* --------- tsParticles functions - particles ----------- */
     public readonly particlesOptions: IParticles;
@@ -313,8 +315,14 @@ export class Particle implements IParticle {
         }
 
         this.shadowColor = ColorUtils.colorToRgb(this.particlesOptions.shadow.color);
-        this.updater = new Updater(this.container, this);
-        this.infecter = new Infecter(this.container, this);
+        this.updater = new Updater(container, this);
+        this.infecter = new Infecter(container, this);
+        this.mover = new Mover(container, this);
+    }
+
+    public move(delta: IDelta): void {
+        /* move the particle */
+        this.mover.move(delta);
     }
 
     public update(delta: IDelta): void {

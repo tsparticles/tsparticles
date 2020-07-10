@@ -15,6 +15,7 @@ import { Particle } from "./Particle";
 import type { INoiseValue } from "./Interfaces/INoiseValue";
 import type { INoise } from "./Interfaces/INoise";
 import type { IRgb } from "./Interfaces/IRgb";
+import { IAttract } from "./Interfaces/IAttract";
 
 /**
  * The object loaded into an HTML element, it'll contain options loaded and all data to let everything working
@@ -29,6 +30,7 @@ export class Container {
     public plugins: Map<string, IContainerPlugin>;
     public bubble: IBubble;
     public repulse: IRepulse;
+    public attract: IAttract;
     public lastFrameTime: number;
     public pageHidden: boolean;
     public drawer?: FrameManager;
@@ -85,6 +87,7 @@ export class Container {
         };
         this.bubble = {};
         this.repulse = { particles: [] };
+        this.attract = { particles: [] };
         this.plugins = new Map<string, IContainerPlugin>();
         this.drawers = new Map<string, IShapeDrawer>();
         this.density = 1;
@@ -255,6 +258,7 @@ export class Container {
         delete this.particles;
         delete this.bubble;
         delete this.repulse;
+        delete this.attract;
         delete this.drawer;
         delete this.eventListeners;
 

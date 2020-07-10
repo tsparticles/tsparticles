@@ -1,14 +1,15 @@
 {
   "name": "tsparticles-preset-stars",
-  "version": "1.2.0-alpha.14",
+  "version": "1.2.0-beta.1",
   "description": "tsParticles stars preset",
   "homepage": "https://particles.matteobruni.it/",
   "scripts": {
     "prettify:src": "prettier --write ./src/",
+    "prettify:readme": "prettier --write ./README.md",
     "lint": "eslint src --ext .js,.jsx,.ts,.tsx --fix",
     "compile": "tsc",
     "bundle": "webpack -p",
-    "build": "yarn prettify:src && yarn compile && yarn lint && yarn bundle",
+    "build": "yarn prettify:src && yarn compile && yarn lint && yarn bundle && yarn prettify:readme",
     "prepare": "yarn build"
   },
   "repository": {
@@ -62,6 +63,6 @@
     "webpack-cli": "^3.3.12"
   },
   "dependencies": {
-    "tsparticles": "^1.17.0-alpha.14"
+    "tsparticles": "^1.17.0-beta.1"
   }
 }

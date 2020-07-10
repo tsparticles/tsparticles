@@ -1,6 +1,6 @@
 {
   "name": "preact-particles",
-  "version": "1.17.0-alpha.14",
+  "version": "1.17.0-beta.1",
   "description": "tsParticles official Preact component",
   "main": "index.js",
   "unpkg": "umd/particles.js",
@@ -8,9 +8,10 @@
   "types": "index.d.ts",
   "scripts": {
     "prettify:src": "prettier --write ./src/",
+    "prettify:readme": "prettier --write ./README.md",
     "lint": "eslint src --ext .js,.jsx,.ts,.tsx --fix",
     "build:debug": "webpack",
-    "build": "yarn prettify:src && yarn lint && cross-env NODE_ENV=production webpack",
+    "build": "yarn prettify:src && yarn lint && cross-env NODE_ENV=production webpack && yarn prettify:readme",
     "prepare": "yarn build"
   },
   "repository": {
@@ -64,7 +65,7 @@
     "@babel/core": "^7.10.4",
     "@babel/preset-env": "^7.10.4",
     "@types/lodash": "^4.14.157",
-    "@types/node": "^14.0.18",
+    "@types/node": "^14.0.20",
     "@types/react": "^16.9.41",
     "@typescript-eslint/eslint-plugin": "^3.6.0",
     "@typescript-eslint/parser": "^3.6.0",
@@ -73,21 +74,21 @@
     "eslint": "^7.4.0",
     "eslint-config-prettier": "^6.11.0",
     "prettier": "^2.0.5",
-    "ts-loader": "^7.0.5",
+    "ts-loader": "^8.0.0",
     "ts-node": "^8.10.2",
     "typescript": "^3.9.6",
     "webpack": "^4.43.0",
     "webpack-bundle-analyzer": "^3.8.0",
     "webpack-cli": "^3.3.12",
-    "webpack-node-externals": "^1.7.2"
+    "webpack-node-externals": "^2.3.0"
   },
   "funding": {
     "type": "github",
     "url": "https://github.com/sponsors/matteobruni"
   },
   "dependencies": {
-    "lodash": "^4.17.15",
-    "tsparticles": "^1.17.0-alpha.14"
+    "lodash": "^4.17.19",
+    "tsparticles": "^1.17.0-beta.1"
   },
   "peerDependencies": {
     "preact": "^10.0.0"
