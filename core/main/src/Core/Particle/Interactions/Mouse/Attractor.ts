@@ -8,8 +8,7 @@ import type { IExternalInteractor } from "../../../Interfaces/IExternalInteracto
  * Particle attract manager
  */
 export class Attractor implements IExternalInteractor {
-    constructor(private readonly container: Container) {
-    }
+    constructor(private readonly container: Container) {}
 
     public isEnabled(): boolean {
         const container = this.container;
