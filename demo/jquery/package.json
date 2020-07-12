@@ -22,7 +22,8 @@
   "dependencies": {
     "jquery": "^3.5.1",
     "jquery-particles": "^1.17.0-beta.3",
-    "tsparticles": "^1.17.0-beta.3"
+    "tsparticles": "^1.17.0-beta.3",
+    "tsparticles-preset-basic": "^1.2.0-beta.3"
   },
   "devDependencies": {
     "@fortawesome/fontawesome-free": "^5.13.1",
