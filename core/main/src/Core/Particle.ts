@@ -284,7 +284,13 @@ export class Particle implements IParticle {
         }
 
         /* if shape is image */
-        this.loadImageShape(container, drawer);
+        const imageShape = this.loadImageShape(container, drawer);
+
+        if (imageShape) {
+            this.image = imageShape.image;
+            this.fill = imageShape.fill;
+            this.close = imageShape.close;
+        }
 
         this.stroke =
             this.particlesOptions.stroke instanceof Array
