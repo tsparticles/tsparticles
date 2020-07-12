@@ -1,7 +1,7 @@
 {
   "name": "particles.vue",
   "description": "tsParticles official Vue plugin.",
-  "version": "2.0.0-beta.1",
+  "version": "2.0.0-beta.2",
   "scripts": {
     "clean": "rm -rf dist/*",
     "build": "npm run clean && yarn rollup --config rollup.config.js",
@@ -63,7 +63,7 @@
     "url": "https://github.com/sponsors/matteobruni"
   },
   "dependencies": {
-    "tsparticles": "^1.17.0-beta.1",
+    "tsparticles": "^1.17.0-beta.2",
     "vue": "^2.6.11",
     "vue-class-component": "^7.2.3",
     "vue-property-decorator": "^9.0.0"
