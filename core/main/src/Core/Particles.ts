@@ -127,9 +127,9 @@ export class Particles {
 
         // this loop is required to be done after mouse interactions
         for (const particle of this.container.particles.array) {
-            this.interactionManager.particlesInteract(particle, delta);
-
             particle.update(delta);
+
+            this.interactionManager.particlesInteract(particle, delta);
         }
     }
 

@@ -1,6 +1,6 @@
 {
   "name": "react-tsparticles",
-  "version": "1.17.0-beta.2",
+  "version": "1.17.0-beta.3",
   "description": "tsParticles official React component",
   "main": "index.js",
   "unpkg": "umd/particles.js",
@@ -88,7 +88,7 @@
   },
   "dependencies": {
     "lodash": "^4.17.19",
-    "tsparticles": "^1.17.0-beta.2"
+    "tsparticles": "^1.17.0-beta.3"
   },
   "peerDependencies": {
     "react": "^16.0.0"
