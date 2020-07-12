@@ -1,4 +1,3 @@
-import $ from "jquery";
 import { tsParticles } from "tsparticles";
 import { IOptions } from "tsparticles/dist/Options/Interfaces/IOptions";
 import { Container } from "tsparticles/dist/Core/Container";
@@ -11,11 +10,14 @@ declare global {
         /**
          * Extension of the example plugin.
          */
-        particles: () => void;
+        particles: () => {
+            init: (params: IOptions, callback: (container: Container | undefined) => Promise<void>) => void;
+            ajax: (jsonUrl: string, callback: (container: Container | undefined) => Promise<void>) => void;
+        };
     }
 }
 
-$.fn.particles = () => {
+$.fn.particles = function () {
     const init = (params: IOptions, callback: (container: Container | undefined) => Promise<void>) => {
         $.fn.each((index, element) => {
             if (element.id === undefined) {
