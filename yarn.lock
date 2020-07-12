@@ -17760,9 +17760,9 @@ webpack-merge@4.2.2, webpack-merge@^4.1.0, webpack-merge@^4.2.2:
     lodash "^4.17.15"
 
 webpack-node-externals@^2.3.0:
-  version "2.3.0"
-  resolved "https://registry.yarnpkg.com/webpack-node-externals/-/webpack-node-externals-2.3.0.tgz#c884c07103de080284e17c195fe87c68e2b9c668"
-  integrity sha512-d1scCn/L5hv73GMOlqSTO6ykLWOiUrZfn54xQYf7u0yGLlUSf5trq6HV/Gw8JIpH2NEyXS7bJec1gk9YR/Qdqw==
+  version "2.4.0"
+  resolved "https://registry.yarnpkg.com/webpack-node-externals/-/webpack-node-externals-2.4.0.tgz#4dc0168e942ed0758ec2fafd0e12aa2c9fa9b333"
+  integrity sha512-0GIg+uUq2xQpKs7Hd85JrR7fU7yyV+kOMiyymzoukBbFrl++0OC1j04yTsxPuml+T+N4r7zj2KNf0OMDQPplGw==
 
 webpack-plugin-replace@^1.2.0:
   version "1.2.0"
