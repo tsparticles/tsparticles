@@ -18,6 +18,7 @@ app.use("/jquery", express.static("../../node_modules/jquery/dist"));
 app.use("/popper.js", express.static("../../node_modules/popper.js/dist"));
 app.use("/bootstrap", express.static("../../node_modules/bootstrap/dist"));
 app.use("/tsparticles", express.static("../../node_modules/tsparticles/dist"));
+app.use("/preset-basic", express.static("../../node_modules/tsparticles-preset-basic/dist"));
 app.use("/three", express.static("../../node_modules/three/"));
 app.use("/pathseg", express.static("../../node_modules/pathseg/"));
 
