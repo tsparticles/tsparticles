@@ -1,10 +1,11 @@
 {
   "packages": [
+    "components/*",
     "core/*",
     "demo/*",
     "presets/*",
     "shapes/*",
-    "components/*"
+    "templates/*"
   ],
   "version": "independent",
   "npmClient": "yarn",
