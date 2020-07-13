@@ -61,7 +61,7 @@
     "url": "https://github.com/matteobruni/tsparticles/issues"
   },
   "dependencies": {
-    "react-tsparticles": "^1.17.0-beta.5"
+    "react-tsparticles": "^1.17.0-beta.6"
   },
   "scripts": {
     "build": "node scripts/prebuild.js",
