@@ -5,8 +5,6 @@ import type { IBounds } from "../Core/Interfaces/IBounds";
 import type { IDimension } from "../Core/Interfaces/IDimension";
 import type { IImage } from "../Core/Interfaces/IImage";
 import type { IParticle } from "../Core/Interfaces/IParticle";
-import { ColorUtils } from "./ColorUtils";
-import type { IHsl } from "../Core/Interfaces/IHsl";
 import type { SingleOrMultiple } from "../Types/SingleOrMultiple";
 import { DivEvent } from "../Options/Classes/Interactivity/Events/DivEvent";
 import { IModeDiv } from "../Options/Interfaces/Interactivity/Modes/IModeDiv";
@@ -93,18 +91,6 @@ export class Utils {
                       window.msCancelRequestAnimationFrame ||
                       window.clearTimeout
                   )(handle);
-    }
-
-    public static replaceColorSvg(image: IImage, color: IHsl, opacity: number): string {
-        if (!image.svgData) {
-            return "";
-        }
-
-        /* set color to svg element */
-        const svgXml = image.svgData;
-        const rgbHex = /#([0-9A-F]{3,6})/gi;
-
-        return svgXml.replace(rgbHex, () => ColorUtils.getStyleFromHsl(color, opacity));
     }
 
     /**

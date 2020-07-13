@@ -392,8 +392,6 @@ export class Particle implements IParticle {
 
         const overlapping = this.isOverlapping();
 
-        console.log(overlapping);
-
         if (overlapping) {
             this.position.x = position ? position.x : Math.random() * container.canvas.size.width;
             this.position.y = position ? position.y : Math.random() * container.canvas.size.height;
@@ -502,7 +500,7 @@ export class Particle implements IParticle {
         let imageRes: IParticleImage;
 
         if (image?.svgData !== undefined && optionsImage.replaceColor && color) {
-            const svgColoredData = Utils.replaceColorSvg(image, color, this.opacity.value);
+            const svgColoredData = ColorUtils.replaceColorSvg(image, color, this.opacity.value);
 
             /* prepare to create img with colored svg */
             const svg = new Blob([svgColoredData], { type: "image/svg+xml" });
