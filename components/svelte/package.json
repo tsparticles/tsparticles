@@ -1,6 +1,6 @@
 {
   "name": "svelte-particles",
-  "version": "1.0.0-beta.3",
+  "version": "1.0.0-beta.4",
   "scripts": {
     "build": "rollup -c"
   },
@@ -60,7 +60,7 @@
     "svelte": "^3.24.0"
   },
   "dependencies": {
-    "tsparticles": "^1.17.0-beta.3"
+    "tsparticles": "^1.17.0-beta.4"
   },
   "bugs": {
     "url": "https://github.com/matteobruni/tsparticles/issues"
