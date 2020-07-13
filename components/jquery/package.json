@@ -1,6 +1,6 @@
 {
   "name": "jquery-particles",
-  "version": "1.17.0-beta.4",
+  "version": "1.17.0-beta.5",
   "description": "tsParticles official jQuery plugin",
   "main": "dist/jquery.particles.min.js",
   "scripts": {
