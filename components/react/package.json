@@ -16,6 +16,7 @@
   },
   "repository": {
     "url": "https://github.com/matteobruni/tsparticles",
+    "directory": "components/react",
     "type": "git"
   },
   "keywords": [

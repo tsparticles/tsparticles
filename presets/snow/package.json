@@ -14,7 +14,8 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/matteobruni/tsparticles.git"
+    "url": "git+https://github.com/matteobruni/tsparticles.git",
+    "directory": "presets/snow"
   },
   "keywords": [
     "tsparticles",

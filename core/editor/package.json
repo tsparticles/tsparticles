@@ -24,7 +24,8 @@
   "main": "dist/js/tsparticles.editor.min.js",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/matteobruni/tsparticles.git"
+    "url": "git+https://github.com/matteobruni/tsparticles.git",
+    "directory": "core/editor"
   },
   "scripts": {
     "prettify:src": "prettier --write ./src/",

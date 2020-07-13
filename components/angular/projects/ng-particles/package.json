@@ -5,7 +5,8 @@
   "homepage": "https://particles.matteobruni.it/",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/matteobruni/tsparticles.git"
+    "url": "git+https://github.com/matteobruni/tsparticles.git",
+    "directory": "components/angular"
   },
   "keywords": [
     "tsparticles",

@@ -48,7 +48,11 @@
   "module": "dist/particles.vue.js",
   "unpkg": "dist/particles.vue.min.js",
   "jsdelivr": "dist/particles.vue.min.js",
-  "repository": "https://github.com/matteobruni/tsparticles",
+  "repository": {
+    "url": "https://github.com/matteobruni/tsparticles",
+    "type": "git",
+    "directory": "components/vue"
+  },
   "author": "Matteo Bruni",
   "license": "MIT",
   "files": [
