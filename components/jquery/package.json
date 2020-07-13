@@ -21,6 +21,8 @@
     "url": "git+https://github.com/matteobruni/tsparticles.git"
   },
   "keywords": [
+    "jquery-plugin",
+    "ecosystem:jquery",
     "tsparticles",
     "particles.js",
     "particlesjs",
