@@ -1,11 +1,21 @@
-# `react-ts`
+# cra-template-particles-typescript
 
-> TODO: description
+This is the official TypeScript template for [React tsParticles](https://github.com/matteobruni/tsparticles) with [Create React App](https://github.com/facebook/create-react-app).
 
-## Usage
+To use this template, add `--template particles-typescript` when creating a new app.
 
+For example:
+
+```sh
+npx create-react-app my-app --template particles-typescript
+
+# or
+
+yarn create react-app my-app --template particles-typescript
 ```
-const reactTs = require('react-ts');
 
-// TODO: DEMONSTRATE API
-```
+For more information, please refer to:
+
+- [Getting Started](https://create-react-app.dev/docs/getting-started) – How to create a new app.
+- [User Guide](https://create-react-app.dev) – How to develop apps bootstrapped with Create React App.
+- [Particles Guide](https://github.com/matteobruni/tsparticles) - How to customize tsParticles options.

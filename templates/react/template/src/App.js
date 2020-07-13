@@ -13,6 +13,9 @@ function App() {
                 <p>
                     Edit <code>src/App.js</code> and save to reload.
                 </p>
+                <p>
+                    Edit <code>src/particles.json</code> to customize Particles, then save to reload.
+                </p>
                 <a
                     className="App-link"
                     href="https://reactjs.org"
@@ -20,6 +23,14 @@ function App() {
                     rel="noopener noreferrer"
                 >
                     Learn React
+                </a>
+                <a
+                    className="App-link"
+                    href="https://particles.matteobruni.it"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                >
+                    See Particles samples
                 </a>
             </header>
         </div>
