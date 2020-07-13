@@ -6,6 +6,7 @@ import type { IHsla } from "../Core/Interfaces/IHsla";
 import { Utils } from "./Utils";
 import { Constants } from "./Constants";
 import type { IValueColor } from "../Core/Interfaces/IValueColor";
+import { IImage } from "../Core/Interfaces/IImage";
 
 export class ColorUtils {
     /**
@@ -204,6 +205,18 @@ export class ColorUtils {
             g: Utils.mix(rgb1.g, rgb2.g, size1, size2),
             r: Utils.mix(rgb1.r, rgb2.r, size1, size2),
         };
+    }
+
+    public static replaceColorSvg(image: IImage, color: IHsl, opacity: number): string {
+        if (!image.svgData) {
+            return "";
+        }
+
+        /* set color to svg element */
+        const svgXml = image.svgData;
+        const rgbHex = /#([0-9A-F]{3,6})/gi;
+
+        return svgXml.replace(rgbHex, () => ColorUtils.getStyleFromHsl(color, opacity));
     }
 
     /**

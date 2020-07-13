@@ -1,6 +1,6 @@
 {
   "name": "jquery-particles",
-  "version": "1.17.0-beta.3",
+  "version": "1.17.0-beta.7",
   "description": "tsParticles official jQuery plugin",
   "main": "dist/jquery.particles.min.js",
   "scripts": {
@@ -21,6 +21,8 @@
     "url": "git+https://github.com/matteobruni/tsparticles.git"
   },
   "keywords": [
+    "jquery-plugin",
+    "ecosystem:jquery",
     "tsparticles",
     "particles.js",
     "particlesjs",
@@ -70,7 +72,7 @@
   "dependencies": {
     "jquery": "^3.5.1",
     "tslib": "^2.0.0",
-    "tsparticles": "^1.17.0-beta.3"
+    "tsparticles": "^1.17.0-beta.6"
   },
   "devDependencies": {
     "@types/jquery": "^3.5.0",

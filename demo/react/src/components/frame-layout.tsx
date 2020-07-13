@@ -1,6 +1,6 @@
 import * as React from 'react';
 import * as pkgInfo from '../../package.json';
-import SyntaxHighlighter from 'react-syntax-highlighter';
+import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
 import { base16AteliersulphurpoolLight as theme } from 'react-syntax-highlighter/dist/esm/styles/prism';
 import { FrameThumbsContainer } from './frame-thumbs-container';
 import { ParticlesContainer } from './particles-container';
@@ -84,6 +84,8 @@ export class FrameLayout extends React.Component<IProps, IState> {
                     <ParticlesContainer params={this.props.params}/>
                 </div>
                 <div className="frame-layout__container">
+                    {/*
+                    The syntax highlighter component is broken
                     <div className="frame-layout__content">
                         <div className="frame-layout__name">React Particles JS - {this.props.name} Preset</div>
                         <div
@@ -101,6 +103,7 @@ export class FrameLayout extends React.Component<IProps, IState> {
                             </SyntaxHighlighter>
                         </div>
                     </div>
+                    */}
                     <div className="frame-layout__thumbs">
                         <FrameThumbsContainer/>
                     </div>

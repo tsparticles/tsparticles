@@ -4,7 +4,7 @@
     "./dist/index.js",
     "./dist/tsparticles.js"
   ],
-  "version": "1.17.0-beta.3",
+  "version": "1.17.0-beta.6",
   "description": "Particles.js rewritten in TypeScript (100% compatible), dependency free, improved with many new features and various bugs fixed. Browser ready and with official React/Vue/Angular/jQuery/Preact components.",
   "homepage": "https://particles.matteobruni.it/",
   "scripts": {
@@ -48,6 +48,8 @@
     "particles-ts",
     "particles.ts",
     "react-particles-js",
+    "react-particles.js",
+    "react-particles",
     "react",
     "reactjs",
     "vue",

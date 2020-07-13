@@ -1,4 +1,3 @@
-import $ from "jquery";
 import { tsParticles } from "tsparticles";
 import { IOptions } from "tsparticles/dist/Options/Interfaces/IOptions";
 import { Container } from "tsparticles/dist/Core/Container";
@@ -6,30 +5,37 @@ import { Container } from "tsparticles/dist/Core/Container";
 /**
  * Extend the jQuery result declaration with the example plugin.
  */
+type ParticlesResult = {
+    init: (params: IOptions, callback: (container: Container | undefined) => Promise<void>) => void;
+    ajax: (jsonUrl: string, callback: (container: Container | undefined) => Promise<void>) => void;
+};
+
 declare global {
     interface JQuery {
         /**
          * Extension of the example plugin.
          */
-        particles: () => void;
+        particles: () => ParticlesResult;
     }
 }
 
-$.fn.particles = () => {
-    const init = (params: IOptions, callback: (container: Container | undefined) => Promise<void>) => {
-        $.fn.each((index, element) => {
+$.fn.particles = function (): ParticlesResult {
+    const baseId = "tsparticles";
+
+    const init = (params: IOptions, callback: (container: Container | undefined) => Promise<void>): void => {
+        this.each((index, element) => {
             if (element.id === undefined) {
-                element.id = "tsparticles" + Math.floor(Math.random() * 1000);
+                element.id = baseId + Math.floor(Math.random() * 1000);
             }
 
             tsParticles.load(element.id, params).then(callback);
         });
     };
 
-    const ajax = (jsonUrl: string, callback: (container: Container | undefined) => Promise<void>) => {
-        $.fn.each((index, element) => {
+    const ajax = (jsonUrl: string, callback: (container: Container | undefined) => Promise<void>): void => {
+        this.each((index, element) => {
             if (element.id === undefined) {
-                element.id = "tsparticles" + Math.floor(Math.random() * 1000);
+                element.id = baseId + Math.floor(Math.random() * 1000);
             }
 
             tsParticles.loadJSON(element.id, jsonUrl).then(callback);
