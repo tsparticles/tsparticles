@@ -18,10 +18,12 @@ declare global {
 }
 
 $.fn.particles = function () {
+    const baseId = "tsparticles";
+
     const init = (params: IOptions, callback: (container: Container | undefined) => Promise<void>) => {
-        $.fn.each((index, element) => {
+        this.each((index, element) => {
             if (element.id === undefined) {
-                element.id = "tsparticles" + Math.floor(Math.random() * 1000);
+                element.id = baseId + Math.floor(Math.random() * 1000);
             }
 
             tsParticles.load(element.id, params).then(callback);
@@ -29,9 +31,9 @@ $.fn.particles = function () {
     };
 
     const ajax = (jsonUrl: string, callback: (container: Container | undefined) => Promise<void>) => {
-        $.fn.each((index, element) => {
+        this.each((index, element) => {
             if (element.id === undefined) {
-                element.id = "tsparticles" + Math.floor(Math.random() * 1000);
+                element.id = baseId + Math.floor(Math.random() * 1000);
             }
 
             tsParticles.loadJSON(element.id, jsonUrl).then(callback);
