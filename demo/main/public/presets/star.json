@@ -103,7 +103,6 @@
         "size": 40,
         "duration": 2,
         "opacity": 8,
-        "speed": 3,
         "color": "#ffff00"
       },
       "repulse": {

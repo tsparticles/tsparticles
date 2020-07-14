@@ -29,8 +29,7 @@
         "distance": 40,
         "duration": 2,
         "opacity": 8,
-        "size": 6,
-        "speed": 3
+        "size": 6
       },
       "connect": {
         "distance": 80,

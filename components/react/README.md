@@ -14,6 +14,25 @@ or
 yarn add react-tsparticles
 ```
 
+#### create-react-app
+
+Starting from version 1.17.0 there are two official `create-react-app` templates:
+
+- `cra-template-particles`: Simple ReactJS template with full screen particles, using JavaScript
+- `cra-template-particles-typescript`: Simple ReactJS template with full screen particles, using TypeScript
+
+You can simply install them using the `create-react-app` command like this:
+
+```shell script
+create-react-app your_app --template particles
+```
+
+or
+
+```shell script
+create-react-app your_app --template particles-typescript
+```
+
 ## How to use
 
 ### Code
@@ -54,7 +73,6 @@ class App extends Component {
                 duration: 2,
                 opacity: 0.8,
                 size: 40,
-                speed: 3,
               },
               push: {
                 quantity: 4,
