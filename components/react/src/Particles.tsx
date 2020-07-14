@@ -13,7 +13,8 @@ export interface ParticlesProps {
   id: string;
   width: string;
   height: string;
-  params: RecursivePartial<IOptions & IPolygonMaskOptions & IAbsorberOptions & IEmitterOptions>;
+  options: RecursivePartial<IOptions & IPolygonMaskOptions & IAbsorberOptions & IEmitterOptions>;
+  params?: RecursivePartial<IOptions & IPolygonMaskOptions & IAbsorberOptions & IEmitterOptions>;
   style: any;
   className?: string;
   canvasClassName?: string;
@@ -29,7 +30,7 @@ export default class Particles extends Component<ParticlesProps, ParticlesState>
   public static defaultProps: ParticlesProps = {
     width: "100%",
     height: "100%",
-    params: {},
+    options: {},
     style: {},
     id: "tsparticles",
   };
@@ -43,7 +44,7 @@ export default class Particles extends Component<ParticlesProps, ParticlesState>
     this.loadCanvas = this.loadCanvas.bind(this);
   }
 
-  private buildParticlesLibrary(tagId: string, params?: RecursivePartial<IOptions>) {
+  private buildParticlesLibrary(tagId: string, options?: RecursivePartial<IOptions>) {
     try {
       if (window === undefined) return null;
     } catch {
@@ -52,7 +53,7 @@ export default class Particles extends Component<ParticlesProps, ParticlesState>
 
     tsParticles.init();
 
-    const container = new Container(tagId, params);
+    const container = new Container(tagId, options);
 
     if (this.props.container) {
       (this.props.container as React.MutableRefObject<Container>).current = container;
@@ -67,7 +68,7 @@ export default class Particles extends Component<ParticlesProps, ParticlesState>
       this.destroy();
       this.setState(
         {
-          library: this.buildParticlesLibrary(props.id, props.params),
+          library: this.buildParticlesLibrary(props.id, props.params ?? props.options),
         },
         () => {
           this.loadCanvas(canvas);
@@ -121,7 +122,7 @@ export default class Particles extends Component<ParticlesProps, ParticlesState>
 
   componentDidMount() {
     this.setState({
-      library: this.buildParticlesLibrary(this.props.id, this.props.params),
+      library: this.buildParticlesLibrary(this.props.id, this.props.params ?? this.props.options),
     });
   }
 

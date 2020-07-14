@@ -9,19 +9,19 @@ import { onKeyPressed } from '../streams/key-pressed';
 import { IParticlesParams } from 'react-tsparticles';
 
 
-const getFrameCode = (params: IParticlesParams) => {
-    const paramsCode = JSON.stringify(params, null, 4)
+const getFrameCode = (options: IParticlesParams) => {
+    const paramsCode = JSON.stringify(options, null, 4)
         .split('\n')
         .map((x, i) => i > 0 ? `\t${x}` : x)
         .join('\n');
     return `<Particles
-    params={${paramsCode}} />`;
+    options={${paramsCode}} />`;
 }
 
 interface IProps extends Partial<IDefaultProps> {
     name: string;
     backgroundColor: string;
-    params: IParticlesParams;
+    options: IParticlesParams;
 }
 
 interface IDefaultProps {
@@ -81,7 +81,7 @@ export class FrameLayout extends React.Component<IProps, IState> {
                     background: this.props.backgroundColor
                 }}>
                 <div className="frame-layout__particles-container">
-                    <ParticlesContainer params={this.props.params}/>
+                    <ParticlesContainer options={this.props.options}/>
                 </div>
                 <div className="frame-layout__container">
                     {/*
@@ -99,7 +99,7 @@ export class FrameLayout extends React.Component<IProps, IState> {
                                 }}
                                 language={this.state.codeVisible ? 'jsx' : 'text'}
                                 style={theme}>
-                                {this.state.codeVisible ? getFrameCode(this.props.params) : 'View code'}
+                                {this.state.codeVisible ? getFrameCode(this.props.options) : 'View code'}
                             </SyntaxHighlighter>
                         </div>
                     </div>

@@ -72,7 +72,7 @@ export class App extends React.Component<IProps, IState> {
                         <FrameLayout
                             backgroundColor={frames[chosenFrame].backgroundColor}
                             name={frames[chosenFrame].name}
-                            params={frames[chosenFrame].params}/>}
+                            options={frames[chosenFrame].options}/>}
                 </FrameContext.Consumer>
             </FrameContext.Provider>
 
