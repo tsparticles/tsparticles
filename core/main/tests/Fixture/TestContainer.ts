@@ -5,32 +5,32 @@ import { RecursivePartial } from "../../src/Types/RecursivePartial";
 
 export class TestContainer {
     private readonly id: string;
-    private params: RecursivePartial<IOptions> | undefined;
+    private options: RecursivePartial<IOptions> | undefined;
     public container: Container;
 
-    constructor(params?: RecursivePartial<IOptions>) {
+    constructor(options?: RecursivePartial<IOptions>) {
         tsParticles.init();
 
         const defaultOptions: RecursivePartial<IOptions> = { particles: { size: { value: 0 } } };
 
         this.id = "test-container";
 
-        this.params = params ?? defaultOptions; // This keeps new Particle from offsetting position by 3
-        this.container = new Container(this.id, this.params);
+        this.options = options ?? defaultOptions; // This keeps new Particle from offsetting position by 3
+        this.container = new Container(this.id, this.options);
         this.container.retina.init();
     }
 
     /**
-     * Reset the container. If [[params]] is provided, then the new spatial grid will be
-     * initialized with this [[params]]. Otherwise the last-used [[params]] will be used.
+     * Reset the container. If [[options]] is provided, then the new spatial grid will be
+     * initialized with this [[options]]. Otherwise the last-used [[options]] will be used.
      *
-     * @param params
+     * @param options
      */
-    public reset(params?: RecursivePartial<IOptions>): void {
-        if (params !== undefined) {
-            this.params = params;
+    public reset(options?: RecursivePartial<IOptions>): void {
+        if (options !== undefined) {
+            this.options = options;
         }
-        this.container = new Container(this.id, this.params);
+        this.container = new Container(this.id, this.options);
         this.container.retina.init();
     }
 }

@@ -61,40 +61,40 @@ export class MainSlim {
     /**
      * Loads an options object from the provided array to create a [[Container]] object.
      * @param tagId The particles container element id
-     * @param params The options array to get the item from
+     * @param options The options array to get the item from
      * @param index If provided gets the corresponding item from the array
      * @returns A Promise with the [[Container]] object created
      */
     public async loadFromArray(
         tagId: string,
-        params: RecursivePartial<IOptions>[],
+        options: RecursivePartial<IOptions>[],
         index?: number
     ): Promise<Container | undefined> {
-        return Loader.loadFromArray(tagId, params, index);
+        return Loader.loadFromArray(tagId, options, index);
     }
 
     /**
      * Loads the provided options to create a [[Container]] object.
      * @param tagId The particles container element id
-     * @param params The options object to initialize the [[Container]]
+     * @param options The options object to initialize the [[Container]]
      * @returns A Promise with the [[Container]] object created
      */
-    public async load(tagId: string, params: RecursivePartial<IOptions>): Promise<Container | undefined> {
-        return Loader.load(tagId, params);
+    public async load(tagId: string, options: RecursivePartial<IOptions>): Promise<Container | undefined> {
+        return Loader.load(tagId, options);
     }
 
     /**
      * Loads the provided option to create a [[Container]] object using the element parameter as a container
      * @param id The particles container id
      * @param element The dom element used to contain the particles
-     * @param params The options object to initialize the [[Container]]
+     * @param options The options object to initialize the [[Container]]
      */
     public async set(
         id: string,
         element: HTMLElement,
-        params: RecursivePartial<IOptions>
+        options: RecursivePartial<IOptions>
     ): Promise<Container | undefined> {
-        return Loader.set(id, element, params);
+        return Loader.set(id, element, options);
     }
 
     /**

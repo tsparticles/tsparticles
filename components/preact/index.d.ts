@@ -21,6 +21,7 @@ export interface ParticlesProps {
     width?: string;
     height?: string;
     params?: IParticlesParams;
+    options?: IParticlesParams;
     style?: any;
     className?: string;
     canvasClassName?: string;

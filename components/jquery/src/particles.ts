@@ -6,7 +6,7 @@ import { Container } from "tsparticles/dist/Core/Container";
  * Extend the jQuery result declaration with the example plugin.
  */
 type ParticlesResult = {
-    init: (params: IOptions, callback: (container: Container | undefined) => Promise<void>) => void;
+    init: (options: IOptions, callback: (container: Container | undefined) => Promise<void>) => void;
     ajax: (jsonUrl: string, callback: (container: Container | undefined) => Promise<void>) => void;
 };
 
@@ -22,13 +22,13 @@ declare global {
 $.fn.particles = function (): ParticlesResult {
     const baseId = "tsparticles";
 
-    const init = (params: IOptions, callback: (container: Container | undefined) => Promise<void>): void => {
+    const init = (options: IOptions, callback: (container: Container | undefined) => Promise<void>): void => {
         this.each((index, element) => {
             if (element.id === undefined) {
                 element.id = baseId + Math.floor(Math.random() * 1000);
             }
 
-            tsParticles.load(element.id, params).then(callback);
+            tsParticles.load(element.id, options).then(callback);
         });
     };
 
