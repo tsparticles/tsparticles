@@ -1,7 +1,7 @@
 {
   "name": "preact-particles-demo",
   "private": true,
-  "version": "1.2.0-beta.6",
+  "version": "1.2.0",
   "description": "> TODO: description",
   "author": "Matteo Bruni <ar3s@icloud.com>",
   "homepage": "https://github.com/matteobruni/tsparticles#readme",
@@ -26,8 +26,8 @@
     "url": "https://github.com/matteobruni/tsparticles/issues"
   },
   "devDependencies": {
-    "@typescript-eslint/eslint-plugin": "^3.6.0",
-    "@typescript-eslint/parser": "^3.6.0",
+    "@typescript-eslint/eslint-plugin": "^3.6.1",
+    "@typescript-eslint/parser": "^3.6.1",
     "copyfiles": "^2.3.0",
     "enzyme": "^3.11.0",
     "enzyme-adapter-preact-pure": "^2.2.0",
@@ -42,7 +42,7 @@
   },
   "dependencies": {
     "preact": "^10.4.5",
-    "preact-particles": "^1.17.0-beta.6",
+    "preact-particles": "^1.17.0",
     "preact-render-to-string": "^5.1.9",
     "preact-router": "^3.2.1"
   }

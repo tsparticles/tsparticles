@@ -1,11 +1,12 @@
 {
   "name": "ng-particles",
-  "version": "2.0.0-beta.6",
+  "version": "2.0.0",
   "description": "tsParticles official Angular component",
   "homepage": "https://particles.matteobruni.it/",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/matteobruni/tsparticles.git"
+    "url": "git+https://github.com/matteobruni/tsparticles.git",
+    "directory": "components/angular"
   },
   "keywords": [
     "tsparticles",
@@ -57,6 +58,6 @@
   "peerDependencies": {
     "@angular/common": ">=2.0.0",
     "@angular/core": ">=2.0.0",
-    "tsparticles": "^1.17.0-beta.6"
+    "tsparticles": "^1.17.0"
   }
 }

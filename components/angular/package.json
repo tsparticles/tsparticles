@@ -1,6 +1,6 @@
 {
   "name": "ng-particles",
-  "version": "2.0.0-beta.6",
+  "version": "2.0.0",
   "keywords": [
     "tsparticles",
     "particles.js",
@@ -63,7 +63,7 @@
     "@angular/router": "^10.0.3",
     "rxjs": "~6.6.0",
     "tslib": "^2.0.0",
-    "tsparticles": "^1.17.0-beta.6",
+    "tsparticles": "^1.17.0",
     "zone.js": "~0.10.3"
   },
   "devDependencies": {
@@ -71,7 +71,7 @@
     "@angular-devkit/build-ng-packagr": "~0.1000.2",
     "@angular/cli": "~10.0.2",
     "@angular/compiler-cli": "^10.0.2",
-    "@types/node": "^14.0.18",
+    "@types/node": "^14.0.23",
     "codelyzer": "^6.0.0",
     "fs": "^0.0.1-security",
     "ng-packagr": "^10.0.1",

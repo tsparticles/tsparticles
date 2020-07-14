@@ -1,6 +1,6 @@
 {
   "name": "tsparticles-shape-spiral",
-  "version": "1.2.0-beta.6",
+  "version": "1.2.0",
   "description": "tsParticles spiral shape",
   "homepage": "https://particles.matteobruni.it/",
   "scripts": {
@@ -14,7 +14,8 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/matteobruni/tsparticles.git"
+    "url": "git+https://github.com/matteobruni/tsparticles.git",
+    "directory": "shapes/spiral"
   },
   "keywords": [
     "tsparticles",
@@ -51,8 +52,8 @@
   },
   "main": "dist/tsparticles.shape.spiral.min.js",
   "devDependencies": {
-    "@typescript-eslint/eslint-plugin": "^3.6.0",
-    "@typescript-eslint/parser": "^3.6.0",
+    "@typescript-eslint/eslint-plugin": "^3.6.1",
+    "@typescript-eslint/parser": "^3.6.1",
     "cpx": "^1.5.0",
     "eslint": "^7.4.0",
     "eslint-config-prettier": "^6.11.0",
@@ -63,6 +64,6 @@
     "webpack-cli": "^3.3.12"
   },
   "dependencies": {
-    "tsparticles": "^1.17.0-beta.6"
+    "tsparticles": "^1.17.0"
   }
 }

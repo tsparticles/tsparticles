@@ -11,7 +11,7 @@ import {
 export type TFrame = {
     backgroundColor: string;
     name: string;
-    params: IParticlesParams;
+    options: IParticlesParams;
     slug: string;
 };
 
@@ -19,7 +19,7 @@ export const frames: TFrame[] = [
     {
         backgroundColor: 'linear-gradient(135deg, #606c88 0%, #3f4c6b 100%)',
         name: 'Simple',
-        params: {
+        options: {
             fpsLimit: 60,
             particles: {
                 number: {
@@ -49,7 +49,7 @@ export const frames: TFrame[] = [
     {
         backgroundColor: '#232741',
         name: 'Bubbles',
-        params: {
+        options: {
             fpsLimit: 60,
             particles: {
                 number: {
@@ -107,7 +107,7 @@ export const frames: TFrame[] = [
     {
         backgroundColor: 'linear-gradient(to bottom, #a90329 0%,#8f0222 44%,#6d0019 100%)',
         name: 'Snow',
-        params: {
+        options: {
             fpsLimit: 60,
             particles: {
                 number: {
@@ -148,7 +148,7 @@ export const frames: TFrame[] = [
     {
         backgroundColor: 'linear-gradient(45deg, #2d364c 0%,#252d3f 100%)',
         name: 'Night Sky',
-        params: {
+        options: {
             fpsLimit: 60,
             particles: {
                 number: {
@@ -198,7 +198,7 @@ export const frames: TFrame[] = [
     {
         backgroundColor: 'linear-gradient(45deg, #7d7e7d 0%,#0e0e0e 100%)',
         name: 'Multiple images',
-        params: {
+        options: {
             fpsLimit: 60,
             particles: {
                 number: {
@@ -257,7 +257,7 @@ export const frames: TFrame[] = [
     {
         backgroundColor: 'linear-gradient(45deg, #45484d 0%,#000000 100%)',
         name: 'Polygon mask',
-        params: {
+        options: {
             fps_limit: 60,
             particles: {
                 number: {

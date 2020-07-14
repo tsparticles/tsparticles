@@ -119,7 +119,7 @@ class App extends Component {
 | --------------- | ------ | -------------------------------------------------------------------------------------------------------------------- |
 | width           | string | The width of the canvas.                                                                                             |
 | height          | string | The height of the canvas.                                                                                            |
-| params          | object | The parameters of the particles instance.                                                                            |
+| options         | object | The options of the particles instance.                                                                               |
 | style           | object | The style of the canvas element.                                                                                     |
 | className       | string | The class name of the canvas wrapper.                                                                                |
 | canvasClassName | string | the class name of the canvas.                                                                                        |
@@ -129,4 +129,4 @@ Find your parameters configuration [here](https://particles.matteobruni.it).
 
 ### Errors
 
-If you have typescript errors `tsParticles` uses TypeScript `3.9.3` so try installing at least 3.8 for `import type` syntax.
+If you have typescript errors `tsParticles` uses TypeScript `3.9.6` so try installing at least 3.8 for `import type` syntax.

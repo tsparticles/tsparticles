@@ -27,8 +27,7 @@
       "bubble": {
         "distance": 400,
         "duration": 2,
-        "opacity": 0.8,
-        "size": 40
+        "opacity": 0.8
       },
       "connect": {
         "distance": 80,

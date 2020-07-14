@@ -95,8 +95,7 @@
         "distance": 400,
         "size": 100,
         "duration": 2,
-        "opacity": 1,
-        "speed": 3
+        "opacity": 1
       },
       "repulse": {
         "distance": 200

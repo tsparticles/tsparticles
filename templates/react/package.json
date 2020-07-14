@@ -1,6 +1,6 @@
 {
   "name": "cra-template-particles",
-  "version": "1.0.0-alpha.1",
+  "version": "1.0.0",
   "description": "Official React tsParticles template",
   "keywords": [
     "tsparticles",
@@ -55,13 +55,14 @@
   ],
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/matteobruni/tsparticles.git"
+    "url": "git+https://github.com/matteobruni/tsparticles.git",
+    "directory": "templates/react"
   },
   "bugs": {
     "url": "https://github.com/matteobruni/tsparticles/issues"
   },
   "dependencies": {
-    "react-tsparticles": "^1.17.0-beta.6"
+    "react-tsparticles": "^1.17.0"
   },
   "scripts": {
     "build": "node scripts/prebuild.js",

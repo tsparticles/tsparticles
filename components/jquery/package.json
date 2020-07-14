@@ -1,6 +1,6 @@
 {
   "name": "jquery-particles",
-  "version": "1.17.0-beta.7",
+  "version": "1.17.0",
   "description": "tsParticles official jQuery plugin",
   "main": "dist/jquery.particles.min.js",
   "scripts": {
@@ -18,7 +18,8 @@
   ],
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/matteobruni/tsparticles.git"
+    "url": "git+https://github.com/matteobruni/tsparticles.git",
+    "directory": "components/jquery"
   },
   "keywords": [
     "jquery-plugin",
@@ -72,12 +73,12 @@
   "dependencies": {
     "jquery": "^3.5.1",
     "tslib": "^2.0.0",
-    "tsparticles": "^1.17.0-beta.6"
+    "tsparticles": "^1.17.0"
   },
   "devDependencies": {
     "@types/jquery": "^3.5.0",
-    "@typescript-eslint/eslint-plugin": "^3.6.0",
-    "@typescript-eslint/parser": "^3.6.0",
+    "@typescript-eslint/eslint-plugin": "^3.6.1",
+    "@typescript-eslint/parser": "^3.6.1",
     "babel-preset-env": "^1.7.0",
     "eslint": "^7.4.0",
     "eslint-config-prettier": "^6.11.0",

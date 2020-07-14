@@ -14,6 +14,25 @@ or
 yarn add react-tsparticles
 ```
 
+#### create-react-app
+
+Starting from version 1.17.0 there are two official `create-react-app` templates:
+
+- `cra-template-particles`: Simple ReactJS template with full screen particles, using JavaScript
+- `cra-template-particles-typescript`: Simple ReactJS template with full screen particles, using TypeScript
+
+You can simply install them using the `create-react-app` command like this:
+
+```shell script
+create-react-app your_app --template particles
+```
+
+or
+
+```shell script
+create-react-app your_app --template particles-typescript
+```
+
 ## How to use
 
 ### Code
@@ -28,7 +47,7 @@ class App extends Component {
     return (
       <Particles
         id="tsparticles"
-        params={{
+        options={{
           background: {
             color: {
               value: "#0d47a1",
@@ -54,7 +73,6 @@ class App extends Component {
                 duration: 2,
                 opacity: 0.8,
                 size: 40,
-                speed: 3,
               },
               push: {
                 quantity: 4,
@@ -119,7 +137,7 @@ class App extends Component {
 | --------------- | ------ | -------------------------------------------------------------------------------------------------------------------- |
 | width           | string | The width of the canvas.                                                                                             |
 | height          | string | The height of the canvas.                                                                                            |
-| params          | object | The parameters of the particles instance.                                                                            |
+| options         | object | The options of the particles instance.                                                                               |
 | style           | object | The style of the canvas element.                                                                                     |
 | className       | string | The class name of the canvas wrapper.                                                                                |
 | canvasClassName | string | the class name of the canvas.                                                                                        |
@@ -129,4 +147,4 @@ Find your parameters configuration [here](https://particles.matteobruni.it).
 
 ### Errors
 
-If you have typescript errors `tsParticles` uses TypeScript `3.9.3` so try installing at least 3.8 for `import type` syntax.
+If you have typescript errors `tsParticles` uses TypeScript `3.9.6` so try installing at least 3.8 for `import type` syntax.

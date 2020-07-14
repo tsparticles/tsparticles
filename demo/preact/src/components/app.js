@@ -10,7 +10,7 @@ import Profile from '../routes/profile';
 
 export default class App extends Component {
     key = "simple1";
-    params = {
+    options = {
         simple1: {
             background: {
                 color: "#000000",
@@ -33,7 +33,13 @@ export default class App extends Component {
                 links: {
                     enable: true,
                 },
-                color: { value: "#ff0000" }
+                color: {
+                    value: "#ff0000",
+                    animation: {
+                        enable: true,
+                        speed: 20
+                    }
+                }
             }
         }
     }
@@ -77,7 +83,7 @@ export default class App extends Component {
                         </button>
                     </div>
                 </div>
-                <Particles id="tsparticles" params={this.params[this.state.key]}/>
+                <Particles id="tsparticles" options={this.options[this.state.key]}/>
                 <Router onChange={this.handleRoute}>
                     <Home path="/"/>
                     <Profile path="/profile/" user="me"/>
