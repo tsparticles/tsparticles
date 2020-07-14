@@ -36,39 +36,39 @@ export class Loader {
     /**
      * Loads an options object from the provided array to create a [[Container]] object.
      * @param tagId the particles container element id
-     * @param params the options array to get the item from
+     * @param options the options array to get the item from
      * @param index if provided gets the corresponding item from the array
      */
     public static async loadFromArray(
         tagId: string,
-        params: RecursivePartial<IOptions>[],
+        options: RecursivePartial<IOptions>[],
         index?: number
     ): Promise<Container | undefined> {
-        return Loader.load(tagId, Utils.itemFromArray(params, index));
+        return Loader.load(tagId, Utils.itemFromArray(options, index));
     }
 
     /**
      * Loads an options object from the provided array to create a [[Container]] object.
      * @param id the container id
      * @param domContainer the dom container for keeping
-     * @param params the options array to get the item from
+     * @param options the options array to get the item from
      * @param index if provided gets the corresponding item from the array
      */
     public static async setFromArray(
         id: string,
         domContainer: HTMLElement,
-        params: RecursivePartial<IOptions>[],
+        options: RecursivePartial<IOptions>[],
         index?: number
     ): Promise<Container | undefined> {
-        return Loader.set(id, domContainer, Utils.itemFromArray(params, index));
+        return Loader.set(id, domContainer, Utils.itemFromArray(options, index));
     }
 
     /**
      * Loads the provided options to create a [[Container]] object.
      * @param tagId the particles container element id
-     * @param params the options object to initialize the [[Container]]
+     * @param options the options object to initialize the [[Container]]
      */
-    public static async load(tagId: string, params?: RecursivePartial<IOptions>): Promise<Container | undefined> {
+    public static async load(tagId: string, options?: RecursivePartial<IOptions>): Promise<Container | undefined> {
         /* elements */
         const domContainer = document.getElementById(tagId);
 
@@ -76,25 +76,25 @@ export class Loader {
             return;
         }
 
-        return this.set(tagId, domContainer, params);
+        return Loader.set(tagId, domContainer, options);
     }
 
     /**
      * Loads the provided options to create a [[Container]] object.
      * @param id the particles container element id
      * @param domContainer the dom container
-     * @param params the options object to initialize the [[Container]]
+     * @param options the options object to initialize the [[Container]]
      */
     public static async set(
         id: string,
         domContainer: HTMLElement,
-        params?: RecursivePartial<IOptions>
+        options?: RecursivePartial<IOptions>
     ): Promise<Container | undefined> {
         const dom = Loader.dom();
         const oldIndex = dom.findIndex((v) => v.id === id);
 
         if (oldIndex >= 0) {
-            const old = this.domItem(oldIndex);
+            const old = Loader.domItem(oldIndex);
 
             if (old && !old.destroyed) {
                 old.destroy();
@@ -137,7 +137,7 @@ export class Loader {
         }
 
         /* launch tsParticles */
-        const newItem = new Container(id, params);
+        const newItem = new Container(id, options);
 
         if (oldIndex >= 0) {
             dom.splice(oldIndex, 0, newItem);
@@ -162,15 +162,15 @@ export class Loader {
         const response = await fetch(jsonUrl);
 
         if (response.ok) {
-            const params = await response.json();
+            const options = await response.json();
 
-            if (params instanceof Array) {
-                return Loader.loadFromArray(tagId, params);
+            if (options instanceof Array) {
+                return Loader.loadFromArray(tagId, options);
             } else {
-                return Loader.load(tagId, params);
+                return Loader.load(tagId, options);
             }
         } else {
-            this.fetchError(response.status);
+            Loader.fetchError(response.status);
         }
     }
 
@@ -190,15 +190,15 @@ export class Loader {
         const response = await fetch(jsonUrl);
 
         if (response.ok) {
-            const params = await response.json();
+            const options = await response.json();
 
-            if (params instanceof Array) {
-                return Loader.setFromArray(id, domContainer, params);
+            if (options instanceof Array) {
+                return Loader.setFromArray(id, domContainer, options);
             } else {
-                return Loader.set(id, domContainer, params);
+                return Loader.set(id, domContainer, options);
             }
         } else {
-            this.fetchError(response.status);
+            Loader.fetchError(response.status);
         }
     }
 

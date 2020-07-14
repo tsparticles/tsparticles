@@ -109,7 +109,7 @@ export class Container {
             }
         }
 
-        /* params settings */
+        /* options settings */
         if (this.sourceOptions) {
             this.options.load(this.sourceOptions);
         }

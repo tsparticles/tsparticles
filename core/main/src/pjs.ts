@@ -5,7 +5,7 @@ import type { MainSlim } from "./main.slim";
 import { Particle } from "./Core/Particle";
 
 export interface IParticlesJS {
-    (tagId: string, params: RecursivePartial<IOptions>): Promise<Container | undefined>;
+    (tagId: string, options: RecursivePartial<IOptions>): Promise<Container | undefined>;
 
     load(tagId: string, pathConfigJson: string, callback: (container: Container) => void): void;
 
@@ -17,10 +17,10 @@ const initPjs = (main: MainSlim): { particlesJS: IParticlesJS; pJSDom: Container
      * Loads the provided options to create a [[Container]] object.
      * @deprecated this method is obsolete, please use the new tsParticles.load
      * @param tagId the particles container element id
-     * @param params the options object to initialize the [[Container]]
+     * @param options the options object to initialize the [[Container]]
      */
-    const particlesJS = (tagId: string, params: RecursivePartial<IOptions>): Promise<Container | undefined> => {
-        return main.load(tagId, params);
+    const particlesJS = (tagId: string, options: RecursivePartial<IOptions>): Promise<Container | undefined> => {
+        return main.load(tagId, options);
     };
 
     /**
