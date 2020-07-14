@@ -1,12 +1,18 @@
 {
   "packages": [
+    "components/*",
     "core/*",
     "demo/*",
     "presets/*",
     "shapes/*",
-    "wrappers/*"
+    "templates/*"
   ],
   "version": "independent",
   "npmClient": "yarn",
-  "useWorkspaces": true
+  "useWorkspaces": true,
+  "command": {
+    "version": {
+      "message": "chore(release): published new version"
+    }
+  }
 }

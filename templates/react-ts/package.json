@@ -1,0 +1,72 @@
+{
+  "name": "cra-template-particles-typescript",
+  "version": "1.0.0",
+  "description": "Official TypeScript React tsParticles template",
+  "keywords": [
+    "tsparticles",
+    "particles",
+    "particles.js",
+    "react-particles-js",
+    "cra-template",
+    "create-react-app",
+    "react",
+    "react.js",
+    "reactjs",
+    "react-particles.js",
+    "react-tsparticles",
+    "react-particles",
+    "particlesjs",
+    "particle",
+    "canvas",
+    "jsparticles",
+    "xparticles",
+    "particles-js",
+    "particles-bg",
+    "particles-bg-vue",
+    "particles-ts",
+    "particles.ts",
+    "vue",
+    "vuejs",
+    "preact",
+    "preactjs",
+    "jquery",
+    "angularjs",
+    "angular",
+    "typescript",
+    "javascript",
+    "animation",
+    "web",
+    "html5",
+    "web-design",
+    "webdesign",
+    "css",
+    "html",
+    "css3",
+    "animated",
+    "background"
+  ],
+  "author": "Matteo Bruni <ar3s@icloud.com>",
+  "homepage": "https://particles.matteobruni.it",
+  "license": "MIT",
+  "main": "template.json",
+  "files": [
+    "template",
+    "template.json"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/matteobruni/tsparticles.git",
+    "directory": "templates/react-ts"
+  },
+  "bugs": {
+    "url": "https://github.com/matteobruni/tsparticles/issues"
+  },
+  "dependencies": {
+    "react-tsparticles": "^1.17.0"
+  },
+  "scripts": {
+    "build": "node scripts/prebuild.js",
+    "version": "yarn build && git add ./template.json",
+    "prepare": "yarn build"
+  }
+}

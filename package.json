@@ -2,14 +2,29 @@
   "private": true,
   "name": "tsparticles",
   "version": "0.0.0",
+  "scripts": {
+    "version:alpha": "lerna version prerelease --preid alpha --conventional-commits",
+    "version:beta": "lerna version prerelease --preid beta --conventional-commits",
+    "publish:alpha": "lerna publish from-package --pre-dist-tag alpha --preid alpha",
+    "publish:beta": "lerna publish from-package --pre-dist-tag beta --preid beta"
+  },
   "workspaces": [
+    "components/*",
     "core/*",
     "demo/*",
     "presets/*",
     "shapes/*",
-    "wrappers/*"
+    "templates/*"
   ],
   "devDependencies": {
+    "@commitlint/cli": "^9.1.1",
+    "@commitlint/config-conventional": "^9.1.1",
+    "husky": "^4.2.5",
     "lerna": "^3.22.1"
+  },
+  "husky": {
+    "hooks": {
+      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
+    }
   }
 }
