@@ -53,7 +53,7 @@
   ],
   "main": "dist/svelte-particles.js",
   "devDependencies": {
-    "@rollup/plugin-commonjs": "^13.0.0",
+    "@rollup/plugin-commonjs": "^14.0.0",
     "@rollup/plugin-node-resolve": "^8.1.0",
     "rollup": "^2.21.0",
     "rollup-plugin-svelte": "^5.2.3",
