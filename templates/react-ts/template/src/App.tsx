@@ -9,7 +9,7 @@ import { IOptions } from "tsparticles/dist/Options/Interfaces/IOptions";
 function App() {
     return (
         <div className="App">
-            <Particles params={particlesOptions as RecursivePartial<IOptions>}/>
+            <Particles options={particlesOptions as RecursivePartial<IOptions>}/>
             <header className="App-header">
                 <img src={logo} className="App-logo" alt="logo"/>
                 <p>

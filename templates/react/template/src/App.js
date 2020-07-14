@@ -7,7 +7,7 @@ import particlesOptions from "./particles.json";
 function App() {
     return (
         <div className="App">
-            <Particles params={particlesOptions}/>
+            <Particles options={particlesOptions}/>
             <header className="App-header">
                 <img src={logo} className="App-logo" alt="logo"/>
                 <p>
