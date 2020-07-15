@@ -35,6 +35,7 @@ export interface IParticle {
     readonly shapeData?: IShapeValues;
     readonly size: IParticleSizeAnimation;
     readonly stroke: IStroke;
+    readonly strokeWidth: number;
     readonly strokeColor: IHsl | undefined;
     readonly velocity: IVelocity;
     readonly linksDistance?: number;

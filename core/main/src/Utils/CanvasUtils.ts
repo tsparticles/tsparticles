@@ -250,7 +250,7 @@ export class CanvasUtils {
 
         const stroke = particle.stroke;
 
-        context.lineWidth = stroke.width;
+        context.lineWidth = particle.strokeWidth;
         context.strokeStyle = strokeColorValue;
 
         if (particle.close) {
@@ -302,7 +302,7 @@ export class CanvasUtils {
             return;
         }
 
-        drawer.draw(context, particle, radius, opacity, delta.value);
+        drawer.draw(context, particle, radius, opacity, delta.value, container.retina.pixelRatio);
     }
 
     public static drawShapeAfterEffect(
@@ -323,7 +323,7 @@ export class CanvasUtils {
             return;
         }
 
-        drawer.afterEffect(context, particle, radius, opacity, delta.value);
+        drawer.afterEffect(context, particle, radius, opacity, delta.value, container.retina.pixelRatio);
     }
 
     public static drawPlugin(context: CanvasRenderingContext2D, plugin: IContainerPlugin, delta: IDelta): void {

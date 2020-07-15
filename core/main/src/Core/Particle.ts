@@ -53,6 +53,7 @@ export class Particle implements IParticle {
     public readonly position: ICoordinates;
     public readonly offset: ICoordinates;
     public readonly color: IHsl | undefined;
+    public readonly strokeWidth: number;
     public readonly strokeColor: IHsl | undefined;
     public readonly shadowColor: IRgb | undefined;
     public readonly opacity: IParticleOpacityAnimation;
@@ -299,6 +300,8 @@ export class Particle implements IParticle {
             this.particlesOptions.stroke instanceof Array
                 ? Utils.itemFromArray(this.particlesOptions.stroke)
                 : this.particlesOptions.stroke;
+
+        this.strokeWidth = this.stroke.width * container.retina.pixelRatio;
 
         /* strokeColor */
         this.strokeColor = ColorUtils.colorToHsl(this.stroke.color);
