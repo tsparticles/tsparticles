@@ -1,6 +1,10 @@
-# jQuery
+[![banner](https://cdn.matteobruni.it/images/particles/banner2.png)](https://particles.matteobruni.it)
 
-![npm](https://img.shields.io/npm/v/jquery-particles) ![npm](https://img.shields.io/npm/dm/jquery-particles)
+# jquery-particles
+
+[![npm](https://img.shields.io/npm/v/jquery-particles)](https://www.npmjs.com/package/jquery-particles) [![npm](https://img.shields.io/npm/dm/jquery-particles)](https://www.npmjs.com/package/jquery-particles)
+
+Official [tsParticles](https://github.com/matteobruni/tsparticles) jQuery plugin
 
 ## Installation
 
@@ -125,3 +129,13 @@ $("#tsparticles")
     // the container is already started, you don't need to start it manually.
   });
 ```
+
+## Demos
+
+The demo website is [here](https://particles.matteobruni.it)
+
+<https://particles.matteobruni.it>
+
+There's also a CodePen collection actively maintained and updated [here](https://codepen.io/collection/DPOage)
+
+<https://codepen.io/collection/DPOage>

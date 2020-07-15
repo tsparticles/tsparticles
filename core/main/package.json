@@ -96,7 +96,7 @@
     "url": "https://github.com/sponsors/matteobruni"
   },
   "devDependencies": {
-    "@babel/core": "^7.10.4",
+    "@babel/core": "^7.10.5",
     "@types/chai": "^4.2.11",
     "@types/mocha": "^8.0.0",
     "@types/node": "^14.0.23",

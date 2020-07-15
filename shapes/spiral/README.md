@@ -1,3 +1,5 @@
+[![banner](https://cdn.matteobruni.it/images/particles/banner2.png)](https://particles.matteobruni.it)
+
 # tsparticles-shape-spiral
 
 Spiral shape for [tsParticles](https://github.com/matteobruni/tsparticles)
