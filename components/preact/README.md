@@ -1,6 +1,10 @@
-# Preact
+[![banner](https://cdn.matteobruni.it/images/particles/banner2.png)](https://particles.matteobruni.it)
 
-![npm](https://img.shields.io/npm/v/preact-particles) ![npm](https://img.shields.io/npm/dm/preact-particles)
+# preact-particles
+
+[![npm](https://img.shields.io/npm/v/preact-particles)](https://www.npmjs.com/package/preact-particles) [![npm](https://img.shields.io/npm/dm/preact-particles)](https://www.npmjs.com/package/preact-particles)
+
+Official [tsParticles](https://github.com/matteobruni/tsparticles) Preact component
 
 ## Installation
 
@@ -130,3 +134,13 @@ Find your parameters configuration [here](https://particles.matteobruni.it).
 ### Errors
 
 If you have typescript errors `tsParticles` uses TypeScript `3.9.6` so try installing at least 3.8 for `import type` syntax.
+
+## Demos
+
+The demo website is [here](https://particles.matteobruni.it)
+
+<https://particles.matteobruni.it>
+
+There's also a CodePen collection actively maintained and updated [here](https://codepen.io/collection/DPOage)
+
+<https://codepen.io/collection/DPOage>
