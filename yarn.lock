@@ -226,9 +226,9 @@
     tslib "^2.0.0"
 
 "@angular/platform-browser@^10.0.3", "@angular/platform-browser@~10.0.3":
-  version "10.0.3"
-  resolved "https://registry.yarnpkg.com/@angular/platform-browser/-/platform-browser-10.0.3.tgz#6efee2bb57a608ecfa22990c66497a9384dbdca8"
-  integrity sha512-f6JsFMunJNn7fPtwwWbZsXZ/JFA5RlwbyHKKkLAPMLLJwabOcSh/bUpPWKoRMHpUxr53PGEX4XY6QNPJXrUaag==
+  version "10.0.4"
+  resolved "https://registry.yarnpkg.com/@angular/platform-browser/-/platform-browser-10.0.4.tgz#58131215e414be7ee9d4024e47f61b4a02166b28"
+  integrity sha512-iaZ8pFS5XUgPCO6/C47TzSFPzlzgleayq099cVOOx9z0t/SwUCSKt4AdAVhyQ8RTnx6l1JmmwBgRaXpScZlqzg==
   dependencies:
     tslib "^2.0.0"
 
