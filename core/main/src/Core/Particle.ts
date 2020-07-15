@@ -97,10 +97,17 @@ export class Particle implements IParticle {
 
         particlesOptions.load(options.particles);
 
-        if (overrideOptions?.shape?.type) {
-            const shapeType = overrideOptions.shape.type;
+        const shapeType = particlesOptions.shape.type;
 
-            this.shape = shapeType instanceof Array ? Utils.itemFromArray(shapeType) : shapeType;
+        this.shape = shapeType instanceof Array ? Utils.itemFromArray(shapeType) : shapeType;
+
+        if (overrideOptions?.shape) {
+            if (overrideOptions.shape.type) {
+                const overrideShapeType = overrideOptions.shape.type;
+
+                this.shape =
+                    overrideShapeType instanceof Array ? Utils.itemFromArray(overrideShapeType) : overrideShapeType;
+            }
 
             const shapeOptions = new Shape();
 
@@ -117,10 +124,6 @@ export class Particle implements IParticle {
                 }
             }
         } else {
-            const shapeType = particlesOptions.shape.type;
-
-            this.shape = shapeType instanceof Array ? Utils.itemFromArray(shapeType) : shapeType;
-
             const shapeData = particlesOptions.shape.options[this.shape];
 
             if (shapeData) {
