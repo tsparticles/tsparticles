@@ -171,11 +171,23 @@ particles.pause();
 
 ### Angular
 
+#### `ng-particles`
+
 [![npm](https://img.shields.io/npm/v/ng-particles)](https://www.npmjs.com/package/ng-particles) [![npm](https://img.shields.io/npm/dm/ng-particles)](https://www.npmjs.com/package/ng-particles)
 
 You can find the instructions [here](https://github.com/matteobruni/tsparticles/blob/master/components/angular/README.md)
 
+### Inferno
+
+#### `inferno-particles`
+
+[![npm](https://img.shields.io/npm/v/inferno-particles)](https://www.npmjs.com/package/inferno-particles) [![npm](https://img.shields.io/npm/dm/inferno-particles)](https://www.npmjs.com/package/inferno-particles)
+
+You can find the instructions [here](https://github.com/matteobruni/tsparticles/blob/master/components/inferno/README.md)
+
 ### jQuery
+
+#### `jquery-particles`
 
 [![npm](https://img.shields.io/npm/v/jquery-particles)](https://www.npmjs.com/package/jquery-particles) [![npm](https://img.shields.io/npm/dm/jquery-particles)](https://www.npmjs.com/package/jquery-particles)
 
@@ -183,11 +195,15 @@ You can find the instructions [here](https://github.com/matteobruni/tsparticles/
 
 ### Preact
 
+#### `preact-particles`
+
 [![npm](https://img.shields.io/npm/v/preact-particles)](https://www.npmjs.com/package/preact-particles) [![npm](https://img.shields.io/npm/dm/preact-particles)](https://www.npmjs.com/package/preact-particles)
 
 You can find the instructions [here](https://github.com/matteobruni/tsparticles/blob/master/components/preact/README.md)
 
 ### ReactJS
+
+#### `react-tsparticles`
 
 [![npm](https://img.shields.io/npm/v/react-tsparticles)](https://www.npmjs.com/package/react-tsparticles) [![npm](https://img.shields.io/npm/dm/react-tsparticles)](https://www.npmjs.com/package/react-tsparticles)
 
@@ -199,11 +215,15 @@ A 3rd-party component is available too, read more [here](https://github.com/Wufe
 
 ### Svelte
 
+#### `svelte-particles`
+
 [![npm](https://img.shields.io/npm/v/svelte-particles)](https://www.npmjs.com/package/svelte-particles) [![npm downloads](https://img.shields.io/npm/dm/svelte-particles)](https://www.npmjs.com/package/svelte-particles)
 
 You can find the instructions [here](https://github.com/matteobruni/tsparticles/blob/master/components/svelte/README.md)
 
 ### VueJS
+
+#### `particles.vue`
 
 [![npm](https://img.shields.io/npm/v/particles.vue)](https://www.npmjs.com/package/particles.vue) [![npm](https://img.shields.io/npm/dm/particles.vue)](https://www.npmjs.com/package/particles.vue)
 

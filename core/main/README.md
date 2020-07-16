@@ -177,6 +177,14 @@ particles.pause();
 
 You can find the instructions [here](https://github.com/matteobruni/tsparticles/blob/master/components/angular/README.md)
 
+### Inferno
+
+#### `inferno-particles`
+
+[![npm](https://img.shields.io/npm/v/inferno-particles)](https://www.npmjs.com/package/inferno-particles) [![npm](https://img.shields.io/npm/dm/inferno-particles)](https://www.npmjs.com/package/inferno-particles)
+
+You can find the instructions [here](https://github.com/matteobruni/tsparticles/blob/master/components/inferno/README.md)
+
 ### jQuery
 
 #### `jquery-particles`
@@ -348,22 +356,3 @@ Documentation and Development references [here](https://particles.matteobruni.it
 ---
 
 [![Slack](https://cdn.matteobruni.it/images/slack.png)](https://join.slack.com/t/tsparticles/shared_invite/enQtOTcxNTQxNjQ4NzkxLWE2MTZhZWExMWRmOWI5MTMxNjczOGE1Yjk0MjViYjdkYTUzODM3OTc5MGQ5MjFlODc4MzE0N2Q1OWQxZDc1YzI) [![tsParticles Product Hunt](https://api.producthunt.com/widgets/embed-image/v1/featured.svg?post_id=186113&theme=light)](https://www.producthunt.com/posts/tsparticles?utm_source=badge-featured&utm_medium=badge&utm_souce=badge-tsparticles")
-
----
-
-<p>  
-    <a href="https://www.jetbrains.com/?from=tsParticles">  
-        <img src="https://cdn.matteobruni.it/images/jetbrains-logos/jetbrains-variant-4.png" height="150" alt="JetBrains" />  
-    </a>  
-    <a href="https://www.jetbrains.com/webstorm/?from=tsParticles">  
-        <img src="https://cdn.matteobruni.it/images/jetbrains-logos/webstorm_logos/logo.png" height="150" alt="JetBrains" />  
-    </a>  
-</p>
-
-### Huge thanks to [JetBrains](https://www.jetbrains.com/?from=tsParticles) for the 2020 Open Source License!
-
-[JetBrains WebStorm](https://www.jetbrains.com/webstorm/?from=tsParticles) is used to maintain this project.
-
-### Huge thanks to [SauceLabs](https://saucelabs.com) for the Open Source License!
-
-<img alt="Testing Powered By SauceLabs" src="https://raw.githubusercontent.com/saucelabs/opensource/master/assets/powered-by-saucelabs-badge-red.svg" width="250" />
