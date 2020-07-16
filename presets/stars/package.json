@@ -1,6 +1,6 @@
 {
   "name": "tsparticles-preset-stars",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "description": "tsParticles stars preset",
   "homepage": "https://particles.matteobruni.it/",
   "scripts": {
@@ -64,6 +64,6 @@
     "webpack-cli": "^3.3.12"
   },
   "dependencies": {
-    "tsparticles": "^1.17.0"
+    "tsparticles": "^1.17.1"
   }
 }
