@@ -24,7 +24,7 @@ export interface ParticlesProps {
     style?: any;
     className?: string;
     canvasClassName?: string;
-    particlesRef?: React.RefObject<Container>;
+    container?: React.RefObject<Container>;
 }
 
 type Particles = ComponentClass<ParticlesProps>;

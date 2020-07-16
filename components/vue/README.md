@@ -1,27 +1,33 @@
-# VueJS  
-  
-![npm](https://img.shields.io/npm/v/particles.vue) ![npm](https://img.shields.io/npm/dm/particles.vue)  
-  
-## Installation  
- 
-```shell script  
-yarn add particles.vue  
-```  
+[![banner](https://cdn.matteobruni.it/images/particles/banner2.png)](https://particles.matteobruni.it)
 
-## Usage  
- 
-```javascript  
+# particles.vue
+
+[![npm](https://img.shields.io/npm/v/particles.vue)](https://www.npmjs.com/package/particles.vue) [![npm](https://img.shields.io/npm/dm/particles.vue)](https://www.npmjs.com/package/particles.vue)
+
+Official [tsParticles](https://github.com/matteobruni/tsparticles) VueJS component
+
+## Installation
+
+```shell script
+yarn add particles.vue
+```
+
+## Usage
+
+```javascript
 import Particles from "particles.vue";
 
 Vue.use(Particles);
 ```
 
-### Demo config  
- 
-```html  
+### Demo config
+
+```html
 <template>
-    <div id="app">
-        <Particles id="tsparticles" :options="{
+  <div id="app">
+    <Particles
+      id="tsparticles"
+      :options="{
             background: {
                 color: {
                     value: '#0d47a1'
@@ -99,16 +105,26 @@ Vue.use(Particles);
                 }
             },
             detectRetina: true
-        }" />
-
-    </div>
+        }"
+    />
+  </div>
 </template>
-``` 
+```
 
 ### TypeScript errors
 
 If TypeScript returns error while importing/using Particles plugin try adding the following import before the previous code:
 
-``` typescript
-declare module 'particles.vue';
+```typescript
+declare module "particles.vue";
 ```
+
+## Demos
+
+The demo website is [here](https://particles.matteobruni.it)
+
+<https://particles.matteobruni.it>
+
+There's also a CodePen collection actively maintained and updated [here](https://codepen.io/collection/DPOage)
+
+<https://codepen.io/collection/DPOage>

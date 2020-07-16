@@ -6,7 +6,8 @@ export type ShapeDrawerDrawFunction = (
     particle: IParticle,
     radius: number,
     opacity: number,
-    delta: number
+    delta: number,
+    pixelRatio: number
 ) => void;
 
 export type ShapeDrawerInitFunction = (container: Container) => Promise<void>;
@@ -16,7 +17,8 @@ export type ShapeDrawerAfterEffectFunction = (
     particle: IParticle,
     radius: number,
     opacity: number,
-    delta: number
+    delta: number,
+    pixelRatio: number
 ) => void;
 
 export type ShapeDrawerDestroyFunction = (container: Container) => void;

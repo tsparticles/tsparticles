@@ -37,10 +37,12 @@ export default class Particles extends Component<ParticlesProps, ParticlesState>
 
   constructor(props: ParticlesProps) {
     super(props);
+
     this.state = {
       canvas: undefined,
       library: undefined,
     };
+
     this.loadCanvas = this.loadCanvas.bind(this);
   }
 
@@ -64,47 +66,55 @@ export default class Particles extends Component<ParticlesProps, ParticlesState>
 
   private refresh(props: Readonly<ParticlesProps>): void {
     const { canvas } = this.state;
-    if (canvas) {
-      this.destroy();
-      this.setState(
-        {
-          library: this.buildParticlesLibrary(props.id, props.params ?? props.options),
-        },
-        () => {
-          this.loadCanvas(canvas);
-        }
-      );
+
+    if (!canvas) {
+      return;
     }
+
+    this.destroy();
+
+    this.setState(
+      {
+        library: this.buildParticlesLibrary(props.id, props.params ?? props.options),
+      },
+      () => {
+        this.loadCanvas(canvas);
+      }
+    );
   }
 
   destroy() {
-    if (this.state.library) {
-      this.state.library.destroy();
-
-      this.setState({
-        library: undefined,
-      });
+    if (!this.state.library) {
+      return;
     }
+
+    this.state.library.destroy();
+
+    this.setState({
+      library: undefined,
+    });
   }
 
   loadCanvas(canvas: HTMLCanvasElement) {
-    if (canvas) {
-      this.setState(
-        {
-          canvas,
-        },
-        () => {
-          const { library } = this.state;
-
-          if (!library) {
-            return;
-          }
-
-          library.canvas.loadCanvas(canvas);
-          library.start();
-        }
-      );
+    if (!canvas) {
+      return;
     }
+
+    this.setState(
+      {
+        canvas,
+      },
+      () => {
+        const { library } = this.state;
+
+        if (!library) {
+          return;
+        }
+
+        library.canvas.loadCanvas(canvas);
+        library.start();
+      }
+    );
   }
 
   shouldComponentUpdate(nextProps: Readonly<ParticlesProps>) {

@@ -1,6 +1,6 @@
 {
   "name": "preact-particles",
-  "version": "1.17.0",
+  "version": "1.17.1",
   "description": "tsParticles official Preact component",
   "main": "index.js",
   "unpkg": "umd/particles.js",
@@ -63,7 +63,7 @@
   "license": "MIT",
   "homepage": "https://particles.matteobruni.it/",
   "devDependencies": {
-    "@babel/core": "^7.10.4",
+    "@babel/core": "^7.10.5",
     "@babel/preset-env": "^7.10.4",
     "@types/lodash": "^4.14.157",
     "@types/node": "^14.0.23",
@@ -75,7 +75,7 @@
     "eslint": "^7.4.0",
     "eslint-config-prettier": "^6.11.0",
     "prettier": "^2.0.5",
-    "ts-loader": "^8.0.0",
+    "ts-loader": "^8.0.1",
     "ts-node": "^8.10.2",
     "typescript": "^3.9.6",
     "webpack": "^4.43.0",
@@ -89,7 +89,7 @@
   },
   "dependencies": {
     "lodash": "^4.17.19",
-    "tsparticles": "^1.17.0"
+    "tsparticles": "^1.17.1"
   },
   "peerDependencies": {
     "preact": "^10.0.0"

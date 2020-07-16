@@ -1,0 +1,84 @@
+{
+	"name": "inferno-particles",
+	"version": "1.0.0",
+	"description": "tsParticles official Inferno component",
+	"main": "index.js",
+	"scripts": {
+		"build": "webpack -p",
+		"check": "tsc"
+	},
+	"bugs": {
+		"url": "https://github.com/matteobruni/tsparticles/issues"
+	},
+	"repository": {
+		"url": "https://github.com/matteobruni/tsparticles",
+		"directory": "components/preact",
+		"type": "git"
+	},
+	"keywords": [
+		"tsparticles",
+		"particles.js",
+		"particlesjs",
+		"particles",
+		"particle",
+		"canvas",
+		"jsparticles",
+		"xparticles",
+		"particles-js",
+		"particles-bg",
+		"particles-bg-vue",
+		"particles-ts",
+		"particles.ts",
+		"react-particles-js",
+		"react",
+		"reactjs",
+		"vue",
+		"vuejs",
+		"preact",
+		"preactjs",
+		"jquery",
+		"angularjs",
+		"angular",
+		"typescript",
+		"javascript",
+		"animation",
+		"web",
+		"html5",
+		"web-design",
+		"webdesign",
+		"css",
+		"html",
+		"css3",
+		"animated",
+		"background"
+	],
+	"author": "Matteo Bruni <matteo.bruni@me.com> (https://www.matteobruni.it)",
+	"license": "MIT",
+	"homepage": "https://particles.matteobruni.it/",
+	"dependencies": {
+		"lodash": "^4.17.19",
+		"tsparticles": "^1.17.1"
+	},
+	"peerDependencies": {
+		"inferno": "^7.0.0"
+	},
+	"devDependencies": {
+		"@babel/core": "^7.10.5",
+		"@babel/plugin-proposal-class-properties": "7.10.4",
+		"@babel/preset-env": "7.10.4",
+		"@babel/preset-typescript": "^7.10.4",
+		"babel-loader": "^8.1.0",
+		"babel-plugin-inferno": "^6.1.1",
+		"clean-webpack-plugin": "^3.0.0",
+		"css-loader": "^3.6.0",
+		"html-webpack-plugin": "^4.3.0",
+		"node-sass": "^4.14.1",
+		"sass-loader": "^9.0.2",
+		"source-map-loader": "^1.0.1",
+		"style-loader": "^1.2.1",
+		"typescript": "^3.9.6",
+		"webpack": "4.43.0",
+		"webpack-cli": "^3.3.12",
+		"webpack-dev-server": "3.11.0"
+	}
+}

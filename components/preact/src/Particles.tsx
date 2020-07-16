@@ -18,7 +18,7 @@ export interface ParticlesProps {
   style: any;
   className?: string;
   canvasClassName?: string;
-  particlesRef?: React.RefObject<Container>;
+  container?: React.RefObject<Container>;
 }
 
 export interface ParticlesState {
@@ -55,8 +55,8 @@ export default class Particles extends Component<ParticlesProps, ParticlesState>
 
     const container = new Container(tagId, options);
 
-    if (this.props.particlesRef) {
-      (this.props.particlesRef as React.MutableRefObject<Container>).current = container;
+    if (this.props.container) {
+      (this.props.container as React.MutableRefObject<Container>).current = container;
     }
 
     return container;
@@ -65,51 +65,58 @@ export default class Particles extends Component<ParticlesProps, ParticlesState>
   private refresh(props: Readonly<ParticlesProps>): void {
     const { canvas } = this.state;
 
-    if (canvas) {
-      this.destroy();
-      this.setState(
-        {
-          library: this.buildParticlesLibrary(props.id, props.params ?? props.options),
-        },
-        () => {
-          this.loadCanvas(canvas);
-        }
-      );
+    if (!canvas) {
+      return;
     }
+
+    this.destroy();
+
+    this.setState(
+      {
+        library: this.buildParticlesLibrary(props.id, props.params ?? props.options),
+      },
+      () => {
+        this.loadCanvas(canvas);
+      }
+    );
   }
 
   destroy() {
-    if (this.state.library) {
-      this.state.library.destroy();
-
-      this.setState({
-        library: undefined,
-      });
+    if (!this.state.library) {
+      return;
     }
+
+    this.state.library.destroy();
+
+    this.setState({
+      library: undefined,
+    });
   }
 
   loadCanvas(canvas: HTMLCanvasElement) {
-    if (canvas) {
-      this.setState(
-        {
-          canvas,
-        },
-        () => {
-          const { library } = this.state;
-
-          if (!library) {
-            return;
-          }
-
-          library.canvas.loadCanvas(canvas);
-          library.start();
-        }
-      );
+    if (!canvas) {
+      return;
     }
+
+    this.setState(
+      {
+        canvas,
+      },
+      () => {
+        const { library } = this.state;
+
+        if (!library?.canvas) {
+          return;
+        }
+
+        library.canvas.loadCanvas(canvas);
+        library.start();
+      }
+    );
   }
 
   shouldComponentUpdate(nextProps: Readonly<ParticlesProps>) {
-    return !this.state.library || !isEqual(nextProps, this.props);
+    return !isEqual(nextProps, this.props);
   }
 
   componentDidUpdate() {
@@ -118,6 +125,7 @@ export default class Particles extends Component<ParticlesProps, ParticlesState>
 
   forceUpdate() {
     this.refresh(this.props);
+
     super.forceUpdate();
   }
 
