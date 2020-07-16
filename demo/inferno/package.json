@@ -1,6 +1,7 @@
 {
 	"name": "inferno-particles-demo",
 	"version": "1.0.0",
+	"private": true,
 	"description": "> TODO: description",
 	"main": "index.js",
 	"scripts": {
