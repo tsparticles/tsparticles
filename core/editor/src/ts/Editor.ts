@@ -1,36 +1,36 @@
 import { EditorContainer } from "./editors/EditorContainer";
-import { OptionsEditor } from "./sections/options";
 import { Container } from "tsparticles/dist/Core/Container";
+import { OptionsEditor } from "./sections/OptionsEditor";
 
 export class Editor {
-    public readonly particles: EditorContainer;
+    public readonly container: EditorContainer;
 
-    constructor(public readonly container: Container) {
-        this.particles = new EditorContainer(container, "root", "tsParticles", document.body);
+    constructor(public readonly particles: Container) {
+        this.container = new EditorContainer(particles, "root", "tsParticles", document.body);
 
         this.addOptions();
         this.addButtons();
     }
 
     private addOptions() {
-        const options = new OptionsEditor(this.particles);
+        const options = new OptionsEditor(this.container);
     }
 
     private addButtons() {
-        this.particles.addButton("play", "Play", () => {
-            this.container.play();
+        this.container.addButton("play", "Play", () => {
+            this.particles.play();
         });
-        this.particles.addButton("pause", "Pause", () => {
-            this.container.pause();
+        this.container.addButton("pause", "Pause", () => {
+            this.particles.pause();
         });
-        this.particles.addButton("refresh", "Refresh", async () => {
-            await this.container.refresh();
+        this.container.addButton("refresh", "Refresh", async () => {
+            await this.particles.refresh();
         });
-        this.particles.addButton("start", "Start", async () => {
-            await this.container.start();
+        this.container.addButton("start", "Start", async () => {
+            await this.particles.start();
         });
-        this.particles.addButton("stop", "Stop", () => {
-            this.container.stop();
+        this.container.addButton("stop", "Stop", () => {
+            this.particles.stop();
         });
     }
 }

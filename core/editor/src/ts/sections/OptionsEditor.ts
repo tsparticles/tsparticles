@@ -1,4 +1,6 @@
 import { EditorContainer } from "../editors/EditorContainer";
+import { BackgroundOptionsEditor } from "./BackgroundOptionsEditor";
+import { ParticlesOptionsEditor } from "./ParticlesOptionsEditor";
 
 export class OptionsEditor {
     public readonly container: EditorContainer;
@@ -27,10 +29,12 @@ export class OptionsEditor {
             async (value: string | number | boolean) => {
                 if (typeof value === "number") {
                     options.fpsLimit = value;
+
                     await particles.refresh();
                 }
             }
         );
+
         this.container.addProperty(
             "detectRetina",
             "Detect Retina",
@@ -39,10 +43,12 @@ export class OptionsEditor {
             async (value: string | number | boolean) => {
                 if (typeof value === "boolean") {
                     options.detectRetina = value;
+
                     await particles.refresh();
                 }
             }
         );
+
         this.container.addProperty(
             "pauseOnBlur",
             "Pause on Blur",
@@ -51,13 +57,16 @@ export class OptionsEditor {
             async (value: string | number | boolean) => {
                 if (typeof value === "boolean") {
                     options.pauseOnBlur = value;
+
                     await particles.refresh();
                 }
             }
         );
     }
 
-    private addBackground(): void {}
+    private addBackground(): void {
+        const options = new BackgroundOptionsEditor(this.container);
+    }
 
     private addBackgroundMask(): void {}
 
@@ -65,5 +74,7 @@ export class OptionsEditor {
 
     private addInfection(): void {}
 
-    private addParticles(): void {}
+    private addParticles(): void {
+        const options = new ParticlesOptionsEditor(this.container);
+    }
 }

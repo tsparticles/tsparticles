@@ -42,7 +42,7 @@ export class EditorContainer extends EditorItem {
     public addProperty(
         name: string,
         label: string,
-        value: number | string | boolean,
+        value: number | string | boolean | undefined | null,
         type: string,
         change: (value: number | string | boolean) => void
     ): void {
