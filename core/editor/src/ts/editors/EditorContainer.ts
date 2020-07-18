@@ -3,6 +3,7 @@ import { EditorButton } from "./EditorButton";
 import { EditorStringInput } from "./EditorStringInput";
 import { EditorNumberInput } from "./EditorNumberInput";
 import { Container } from "tsparticles/dist/Core/Container";
+import { EditorCheckboxInput } from "./EditorCheckboxInput";
 
 export class EditorContainer extends EditorItem {
     public readonly children: EditorItem[];
@@ -21,11 +22,11 @@ export class EditorContainer extends EditorItem {
 
         this.element.classList.add("editor", "container");
 
-        const h6 = document.createElement("h6");
+        const b = document.createElement("b");
 
-        h6.innerText = title;
+        b.textContent = title;
 
-        this.element.append(h6);
+        this.element.append(b);
 
         parent.append(this.element);
     }
@@ -35,36 +36,49 @@ export class EditorContainer extends EditorItem {
     }
 
     public addContainer(name: string, title: string): EditorContainer {
-        return new EditorContainer(this.container, name, title, this.element);
+        return new EditorContainer(this.particles, name, title, this.element);
     }
 
     public addProperty(
         name: string,
         label: string,
+        value: number | string | boolean,
         type: string,
         change: (value: number | string | boolean) => void
     ): void {
+        const divContainer = document.createElement("div");
+        const htmlLabel = document.createElement("label");
+
+        console.log({ name, value });
+
+        htmlLabel.textContent = label;
+
+        divContainer.append(htmlLabel);
+
         let item: EditorItem;
 
         switch (type) {
             case "number":
-                item = new EditorNumberInput(this.container, name, label, change);
+                item = new EditorNumberInput(this.particles, name, label, value as number, change);
                 break;
-            // case "boolean":
-            //    break;
+            case "boolean":
+                item = new EditorCheckboxInput(this.particles, name, label, value as boolean, change);
+                break;
             // case "color":
             //    break;
             // case "range":
             //    break;
             default:
-                item = new EditorStringInput(this.container, name, label, change);
+                item = new EditorStringInput(this.particles, name, label, value as string, change);
         }
 
-        this.element.append(item.element);
+        divContainer.append(item.element);
+
+        this.element.append(divContainer);
     }
 
     public addButton(name: string, label: string, click: () => void): void {
-        const button = new EditorButton(this.container, name, label, click);
+        const button = new EditorButton(this.particles, name, label, click);
 
         this.element.append(button.element);
     }

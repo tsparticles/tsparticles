@@ -16,35 +16,42 @@ export class OptionsEditor {
     }
 
     private addProperties(): void {
-        const options = this.container.container.options;
+        const particles = this.container.particles;
+        const options = particles.options;
 
         this.container.addProperty(
             "fpsLimit",
             "FPS Limit",
+            options.fpsLimit,
             typeof options.fpsLimit,
-            (value: string | number | boolean) => {
+            async (value: string | number | boolean) => {
                 if (typeof value === "number") {
                     options.fpsLimit = value;
+                    await particles.refresh();
                 }
             }
         );
         this.container.addProperty(
             "detectRetina",
             "Detect Retina",
+            options.detectRetina,
             typeof options.detectRetina,
-            (value: string | number | boolean) => {
+            async (value: string | number | boolean) => {
                 if (typeof value === "boolean") {
                     options.detectRetina = value;
+                    await particles.refresh();
                 }
             }
         );
         this.container.addProperty(
             "pauseOnBlur",
             "Pause on Blur",
+            options.pauseOnBlur,
             typeof options.pauseOnBlur,
-            (value: string | number | boolean) => {
+            async (value: string | number | boolean) => {
                 if (typeof value === "boolean") {
                     options.pauseOnBlur = value;
+                    await particles.refresh();
                 }
             }
         );

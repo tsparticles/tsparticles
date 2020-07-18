@@ -3,33 +3,33 @@ import { OptionsEditor } from "./sections/options";
 import { Container } from "tsparticles/dist/Core/Container";
 
 export class Editor {
-    public readonly root: EditorContainer;
+    public readonly particles: EditorContainer;
 
     constructor(public readonly container: Container) {
-        this.root = new EditorContainer(container, "root", "tsParticles", document.body);
+        this.particles = new EditorContainer(container, "root", "tsParticles", document.body);
 
         this.addOptions();
         this.addButtons();
     }
 
     private addOptions() {
-        const options = new OptionsEditor(this.root);
+        const options = new OptionsEditor(this.particles);
     }
 
     private addButtons() {
-        this.root.addButton("play", "Play", () => {
+        this.particles.addButton("play", "Play", () => {
             this.container.play();
         });
-        this.root.addButton("pause", "Pause", () => {
+        this.particles.addButton("pause", "Pause", () => {
             this.container.pause();
         });
-        this.root.addButton("refresh", "Refresh", async () => {
+        this.particles.addButton("refresh", "Refresh", async () => {
             await this.container.refresh();
         });
-        this.root.addButton("start", "Start", async () => {
+        this.particles.addButton("start", "Start", async () => {
             await this.container.start();
         });
-        this.root.addButton("stop", "Stop", () => {
+        this.particles.addButton("stop", "Stop", () => {
             this.container.stop();
         });
     }

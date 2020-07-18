@@ -6,12 +6,18 @@ export class EditorStringInput extends EditorItem {
         container: Container,
         private readonly name: string,
         private readonly label: string,
+        private readonly value: string,
         private readonly change: (value: string) => void
     ) {
         super(container);
+        const input = this.element as HTMLInputElement;
 
-        this.element.id = `input_${this.name}`;
-        this.element.addEventListener("change", () => this.change((this.element as HTMLInputElement).value));
+        input.id = `input_${this.name}`;
+        input.value = this.value;
+
+        input.addEventListener("change", () => {
+            this.change((this.element as HTMLInputElement).value);
+        });
     }
 
     createElement(): HTMLElement {

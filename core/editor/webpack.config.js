@@ -38,11 +38,7 @@ const getJsConfig = (entry) => {
             ]
         },
         externals: [
-            {
-                tsparticles: "tsParticles",
-                tsParticles: "tsParticles",
-                "dat.gui": "dat"
-            }
+            /ts[pP]articles/
         ],
         plugins: [
             new webpack.BannerPlugin({
@@ -104,8 +100,8 @@ const getCssConfig = (entry) => {
 
 module.exports = [
     getJsConfig({
-        "js/tsparticles.editor": "./dist/js/Editor.js",
-        "js/tsparticles.editor.min": "./dist/js/Editor.js"
+        "js/tsparticles.editor": "./dist/js/index.js",
+        "js/tsparticles.editor.min": "./dist/js/index.js"
     })/*,
     getCssConfig({
         "css/tsparticles.editor": "./src/scss/editor.scss",
