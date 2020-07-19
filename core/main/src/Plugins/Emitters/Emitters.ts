@@ -3,10 +3,9 @@ import { EmitterInstance } from "./EmitterInstance";
 import type { Container } from "../../Core/Container";
 import type { IEmitter } from "./Options/Interfaces/IEmitter";
 import { Utils } from "../../Utils";
-import type { RecursivePartial } from "../../Types/RecursivePartial";
+import type { RecursivePartial, SingleOrMultiple } from "../../Types";
 import { Emitter } from "./Options/Classes/Emitter";
 import type { IOptions } from "../../Options/Interfaces/IOptions";
-import type { SingleOrMultiple } from "../../Types/SingleOrMultiple";
 import { EmitterClickMode } from "./Enums";
 import { IEmitterOptions } from "./Options/Interfaces/IEmitterOptions";
 

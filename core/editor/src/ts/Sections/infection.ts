@@ -1,5 +1,5 @@
 import { Container } from "tsparticles/dist/Core/Container";
-import { changeHandler } from "../utils";
+import { changeHandler } from "../Utils";
 
 const addInfection = (container: Container): void => {
     /*const fInfection = addFolder("infection");

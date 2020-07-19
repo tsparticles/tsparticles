@@ -1,5 +1,5 @@
 import type { IEmitterSize } from "../Interfaces/IEmitterSize";
-import type { RecursivePartial } from "../../../../Types/RecursivePartial";
+import type { RecursivePartial } from "../../../../Types";
 import { SizeMode } from "../../../../Enums";
 import type { IOptionLoader } from "../../../../Options/Interfaces/IOptionLoader";
 

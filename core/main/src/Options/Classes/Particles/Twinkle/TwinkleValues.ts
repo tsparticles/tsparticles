@@ -1,5 +1,5 @@
 import type { ITwinkleValues } from "../../../Interfaces/Particles/Twinkle/ITwinkleValues";
-import type { RecursivePartial } from "../../../../Types/RecursivePartial";
+import type { RecursivePartial } from "../../../../Types";
 import { OptionsColor } from "../../OptionsColor";
 import type { IOptionLoader } from "../../../Interfaces/IOptionLoader";
 

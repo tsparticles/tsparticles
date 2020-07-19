@@ -1,13 +1,18 @@
-import { EditorContainer } from "../editors/EditorContainer";
+import type { EditorContainer } from "../../../Editors/EditorContainer";
 import type { IRgb } from "tsparticles/dist/Core/Interfaces/IRgb";
 import type { IHsl } from "tsparticles/dist/Core/Interfaces/IHsl";
-import { hslToRgb } from "../Utils/Utils";
+import type { IBackground } from "tsparticles/dist/Options/Interfaces/Background/IBackground";
+import type { IColor } from "tsparticles/dist/Core/Interfaces/IColor";
+import type { Container } from "tsparticles/dist/Core/Container";
+import { ColorUtils } from "tsparticles";
 
 export class BackgroundOptionsEditor {
     public readonly container: EditorContainer;
+    private readonly particles: Container;
 
-    constructor(private readonly parent: EditorContainer) {
+    constructor(private readonly parent: EditorContainer, private readonly options: IBackground) {
         this.container = parent.addContainer("background", "Background");
+        this.particles = this.container.particles;
 
         this.addColor();
 
@@ -15,8 +20,8 @@ export class BackgroundOptionsEditor {
     }
 
     private addColor(): void {
-        const particles = this.container.particles;
-        const options = particles.options.background.color;
+        const particles = this.particles;
+        const options = this.options.color as IColor;
         let colorStringValue: string | undefined;
 
         if (typeof options.value === "string") {
@@ -26,7 +31,7 @@ export class BackgroundOptionsEditor {
             const hsl = options.value as IHsl;
 
             if (hsl.h !== undefined) {
-                rgb = hslToRgb(hsl);
+                rgb = ColorUtils.hslToRgb(hsl);
             }
 
             colorStringValue = `${rgb.r.toString(16)}${rgb.g.toString(16)}${rgb.b.toString(16)}`;
@@ -48,8 +53,8 @@ export class BackgroundOptionsEditor {
     }
 
     private addProperties(): void {
-        const particles = this.container.particles;
-        const options = particles.options.background;
+        const particles = this.particles;
+        const options = this.options;
 
         this.container.addProperty(
             "image",

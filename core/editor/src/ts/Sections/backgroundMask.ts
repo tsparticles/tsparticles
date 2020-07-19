@@ -1,5 +1,5 @@
 import { Container } from "tsparticles/dist/Core/Container";
-import { changeHandler } from "../utils";
+import { changeHandler } from "../Utils";
 
 const addBackgroundMask = (container: Container): void => {
     /*const fBgMask = addFolder("backgroundMask");

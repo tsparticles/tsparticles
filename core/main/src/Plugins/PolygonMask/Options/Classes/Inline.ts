@@ -1,6 +1,6 @@
 import type { IInline } from "../Interfaces/IInline";
 import { InlineArrangement, InlineArrangementAlt } from "../../Enums";
-import type { RecursivePartial } from "../../../../Types/RecursivePartial";
+import type { RecursivePartial } from "../../../../Types";
 import type { IOptionLoader } from "../../../../Options/Interfaces/IOptionLoader";
 
 export class Inline implements IInline, IOptionLoader<IInline> {

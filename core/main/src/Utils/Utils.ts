@@ -5,7 +5,7 @@ import type { IBounds } from "../Core/Interfaces/IBounds";
 import type { IDimension } from "../Core/Interfaces/IDimension";
 import type { IImage } from "../Core/Interfaces/IImage";
 import type { IParticle } from "../Core/Interfaces/IParticle";
-import type { SingleOrMultiple } from "../Types/SingleOrMultiple";
+import type { SingleOrMultiple } from "../Types";
 import { DivEvent } from "../Options/Classes/Interactivity/Events/DivEvent";
 import { IModeDiv } from "../Options/Interfaces/Interactivity/Modes/IModeDiv";
 

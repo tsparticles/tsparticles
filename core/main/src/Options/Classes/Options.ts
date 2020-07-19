@@ -2,7 +2,7 @@ import type { IOptions } from "../Interfaces/IOptions";
 import { Interactivity } from "./Interactivity/Interactivity";
 import { Particles } from "./Particles/Particles";
 import { BackgroundMask } from "./BackgroundMask/BackgroundMask";
-import type { RecursivePartial } from "../../Types/RecursivePartial";
+import type { RecursivePartial } from "../../Types";
 import { Background } from "./Background/Background";
 import { Infection } from "./Infection/Infection";
 import { Plugins } from "../../Utils";

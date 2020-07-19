@@ -3,7 +3,7 @@ import { InlineArrangement, InlineArrangementAlt, Type } from "../../Enums";
 import { Draw } from "./Draw";
 import { Move } from "./Move";
 import { Inline } from "./Inline";
-import type { RecursivePartial } from "../../../../Types/RecursivePartial";
+import type { RecursivePartial } from "../../../../Types";
 import type { ICoordinates } from "../../../../Core/Interfaces/ICoordinates";
 import { LocalSvg } from "./LocalSvg";
 import { IOptionLoader } from "../../../../Options/Interfaces/IOptionLoader";

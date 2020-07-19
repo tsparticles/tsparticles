@@ -1,6 +1,6 @@
-import { EditorContainer } from "./editors/EditorContainer";
-import { Container } from "tsparticles/dist/Core/Container";
-import { OptionsEditor } from "./sections/OptionsEditor";
+import { EditorContainer } from "./Editors/EditorContainer";
+import type { Container } from "tsparticles/dist/Core/Container";
+import { OptionsEditor } from "./Sections/Options/OptionsEditor";
 
 export class Editor {
     public readonly container: EditorContainer;

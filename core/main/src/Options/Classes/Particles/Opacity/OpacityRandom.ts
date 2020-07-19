@@ -1,4 +1,4 @@
-import type { RecursivePartial } from "../../../../Types/RecursivePartial";
+import type { RecursivePartial } from "../../../../Types";
 import type { IOpacityRandom } from "../../../Interfaces/Particles/Opacity/IOpacityRandom";
 import type { IOptionLoader } from "../../../Interfaces/IOptionLoader";
 

@@ -8,7 +8,6 @@ import { CircleDrawer } from "./ShapeDrawers/CircleDrawer";
 import { TriangleDrawer } from "./ShapeDrawers/TriangleDrawer";
 import { StarDrawer } from "./ShapeDrawers/StarDrawer";
 import { PolygonDrawer } from "./ShapeDrawers/PolygonDrawer";
-import { RecursivePartial } from "./Types/RecursivePartial";
 import { IOptions } from "./Options/Interfaces/IOptions";
 import { Container } from "./Core/Container";
 import { Loader } from "./Core/Loader";
@@ -18,7 +17,8 @@ import {
     ShapeDrawerDestroyFunction,
     ShapeDrawerDrawFunction,
     ShapeDrawerInitFunction,
-} from "./Types/ShapeDrawerFunctions";
+    RecursivePartial,
+} from "./Types";
 import { IPlugin } from "./Core/Interfaces/IPlugin";
 import { Particle } from "./Core/Particle";
 

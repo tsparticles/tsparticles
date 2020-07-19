@@ -1,4 +1,4 @@
-import { Container } from "tsparticles/dist/Core/Container";
+import type { Container } from "tsparticles/dist/Core/Container";
 
 const changeHandler = async (container: Container, callback?: (container: Container) => void): Promise<void> => {
     if (callback) {

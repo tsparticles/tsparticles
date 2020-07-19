@@ -1,5 +1,5 @@
 import type { IRemove } from "../../../Interfaces/Interactivity/Modes/IRemove";
-import type { RecursivePartial } from "../../../../Types/RecursivePartial";
+import type { RecursivePartial } from "../../../../Types";
 import type { IOptionLoader } from "../../../Interfaces/IOptionLoader";
 
 export class Remove implements IRemove, IOptionLoader<IRemove> {

@@ -1,6 +1,6 @@
 import type { IInfectionStage } from "../../Interfaces/Infection/IInfectionStage";
 import { OptionsColor } from "../OptionsColor";
-import type { RecursivePartial } from "../../../Types/RecursivePartial";
+import type { RecursivePartial } from "../../../Types";
 import type { IOptionLoader } from "../../Interfaces/IOptionLoader";
 
 export class InfectionStage implements IInfectionStage, IOptionLoader<IInfectionStage> {

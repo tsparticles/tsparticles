@@ -4,7 +4,7 @@ import type { IMouseData } from "./Interfaces/IMouseData";
 import type { IRgb } from "./Interfaces/IRgb";
 import { Particle } from "./Particle";
 import { Point, QuadTree, Rectangle, Utils } from "../Utils";
-import { RecursivePartial } from "../Types/RecursivePartial";
+import { RecursivePartial } from "../Types";
 import type { IParticles } from "../Options/Interfaces/Particles/IParticles";
 import { InteractionManager } from "./Particle/InteractionManager";
 import type { IDelta } from "./Interfaces/IDelta";

@@ -2,7 +2,7 @@ import type { IPlugin } from "../../Core/Interfaces/IPlugin";
 import type { Container } from "../../Core/Container";
 import { Utils } from "../../Utils";
 import { Emitters } from "./Emitters";
-import { RecursivePartial } from "../../Types/RecursivePartial";
+import type { RecursivePartial } from "../../Types";
 import type { IOptions } from "../../Options/Interfaces/IOptions";
 import type { IEmitterOptions } from "./Options/Interfaces/IEmitterOptions";
 import { EmitterClickMode } from "./Enums";

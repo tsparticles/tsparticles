@@ -1,5 +1,5 @@
 import { Container } from "tsparticles/dist/Core/Container";
-import { changeHandler } from "../utils";
+import { changeHandler } from "../Utils";
 
 const addInteractivityEvents = (container: Container): void => {
     /*const fEvents = addFolder("events");

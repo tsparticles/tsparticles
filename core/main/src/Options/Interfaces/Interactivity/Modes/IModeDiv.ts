@@ -1,4 +1,4 @@
-import { SingleOrMultiple } from "../../../../Types/SingleOrMultiple";
+import { SingleOrMultiple } from "../../../../Types";
 
 export interface IModeDiv {
     ids: SingleOrMultiple<string>;

@@ -6,7 +6,7 @@ import { Remove } from "./Remove";
 import { Push } from "./Push";
 import { Repulse } from "./Repulse";
 import { Slow } from "./Slow";
-import type { RecursivePartial } from "../../../../Types/RecursivePartial";
+import type { RecursivePartial } from "../../../../Types";
 import { Trail } from "./Trail";
 import type { IOptionLoader } from "../../../Interfaces/IOptionLoader";
 import { Attract } from "./Attract";

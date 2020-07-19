@@ -1,7 +1,6 @@
 import type { IBubbleBase } from "../../../Interfaces/Interactivity/Modes/IBubbleBase";
-import type { SingleOrMultiple } from "../../../../Types/SingleOrMultiple";
+import type { RecursivePartial, SingleOrMultiple } from "../../../../Types";
 import { OptionsColor } from "../../OptionsColor";
-import type { RecursivePartial } from "../../../../Types/RecursivePartial";
 
 export abstract class BubbleBase implements IBubbleBase {
     public distance: number;

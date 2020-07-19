@@ -1,6 +1,6 @@
 import type { ISize } from "../../../Interfaces/Particles/Size/ISize";
 import { SizeAnimation } from "./SizeAnimation";
-import type { RecursivePartial } from "../../../../Types/RecursivePartial";
+import type { RecursivePartial } from "../../../../Types";
 import { SizeRandom } from "./SizeRandom";
 import type { IOptionLoader } from "../../../Interfaces/IOptionLoader";
 

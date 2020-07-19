@@ -1,7 +1,7 @@
 import type { Container } from "../Container";
 import type { IContainerPlugin } from "./IContainerPlugin";
 import { IOptions } from "../../Options/Interfaces/IOptions";
-import { RecursivePartial } from "../../Types/RecursivePartial";
+import { RecursivePartial } from "../../Types";
 import { Options } from "../../Options/Classes/Options";
 
 export interface IPlugin {

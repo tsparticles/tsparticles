@@ -6,7 +6,7 @@ import { Particles } from "./Particles";
 import { Retina } from "./Retina";
 import type { IOptions } from "../Options/Interfaces/IOptions";
 import { FrameManager } from "./FrameManager";
-import type { RecursivePartial } from "../Types/RecursivePartial";
+import type { RecursivePartial } from "../Types";
 import { Options } from "../Options/Classes/Options";
 import type { IContainerPlugin } from "./Interfaces/IContainerPlugin";
 import type { IShapeDrawer } from "./Interfaces/IShapeDrawer";

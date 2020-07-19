@@ -1,4 +1,4 @@
-import { SingleOrMultiple } from "../../../../Types/SingleOrMultiple";
+import { SingleOrMultiple } from "../../../../Types";
 import { IEmitter } from "./IEmitter";
 import { IInteractivity } from "../../../../Options/Interfaces/Interactivity/IInteractivity";
 import { IModes } from "../../../../Options/Interfaces/Interactivity/Modes/IModes";

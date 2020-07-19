@@ -1,4 +1,4 @@
-import type { RecursivePartial } from "./Types/RecursivePartial";
+import type { RecursivePartial } from "./Types";
 import type { IOptions } from "./Options/Interfaces/IOptions";
 import type { Container } from "./Core/Container";
 import type { MainSlim } from "./main.slim";

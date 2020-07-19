@@ -1,7 +1,7 @@
 import type { IContainerPlugin } from "../Core/Interfaces/IContainerPlugin";
 import type { IPlugin } from "../Core/Interfaces/IPlugin";
 import type { Container } from "../Core/Container";
-import type { RecursivePartial } from "../Types/RecursivePartial";
+import type { RecursivePartial } from "../Types";
 import type { IOptions } from "../Options/Interfaces/IOptions";
 import type { IShapeDrawer } from "../Core/Interfaces/IShapeDrawer";
 import type { Options } from "../Options/Classes/Options";

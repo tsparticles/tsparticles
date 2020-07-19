@@ -3,7 +3,7 @@ import type {
     ShapeDrawerDestroyFunction,
     ShapeDrawerDrawFunction,
     ShapeDrawerInitFunction,
-} from "../../Types/ShapeDrawerFunctions";
+} from "../../Types";
 
 export interface IShapeDrawer {
     init?: ShapeDrawerInitFunction;

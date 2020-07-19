@@ -1,4 +1,4 @@
-import type { RecursivePartial } from "../../../../Types/RecursivePartial";
+import type { RecursivePartial } from "../../../../Types";
 import type { ISizeRandom } from "../../../Interfaces/Particles/Size/ISizeRandom";
 import type { IOptionLoader } from "../../../Interfaces/IOptionLoader";
 

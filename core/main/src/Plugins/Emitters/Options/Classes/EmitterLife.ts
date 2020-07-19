@@ -1,5 +1,5 @@
 import type { IEmitterLife } from "../Interfaces/IEmitterLife";
-import type { RecursivePartial } from "../../../../Types/RecursivePartial";
+import type { RecursivePartial } from "../../../../Types";
 import type { IOptionLoader } from "../../../../Options/Interfaces/IOptionLoader";
 
 export class EmitterLife implements IEmitterLife, IOptionLoader<IEmitterLife> {

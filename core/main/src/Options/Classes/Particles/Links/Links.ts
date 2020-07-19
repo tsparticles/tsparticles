@@ -1,6 +1,6 @@
 import type { ILinks } from "../../../Interfaces/Particles/Links/ILinks";
 import { LinksShadow } from "./LinksShadow";
-import type { RecursivePartial } from "../../../../Types/RecursivePartial";
+import type { RecursivePartial } from "../../../../Types";
 import { LinksTriangle } from "./LinksTriangle";
 import { OptionsColor } from "../../OptionsColor";
 import type { IOptionLoader } from "../../../Interfaces/IOptionLoader";

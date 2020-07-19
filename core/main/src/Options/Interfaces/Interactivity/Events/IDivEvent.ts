@@ -1,5 +1,5 @@
 import type { DivMode, DivType } from "../../../../Enums";
-import type { SingleOrMultiple } from "../../../../Types/SingleOrMultiple";
+import type { SingleOrMultiple } from "../../../../Types";
 
 export interface IDivEvent {
     enable: boolean;

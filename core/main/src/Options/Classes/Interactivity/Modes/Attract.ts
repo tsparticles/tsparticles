@@ -1,5 +1,5 @@
 import type { IAttract } from "../../../Interfaces/Interactivity/Modes/IAttract";
-import type { RecursivePartial } from "../../../../Types/RecursivePartial";
+import type { RecursivePartial } from "../../../../Types";
 import type { IOptionLoader } from "../../../Interfaces/IOptionLoader";
 
 export class Attract implements IAttract, IOptionLoader<IAttract> {
