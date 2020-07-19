@@ -70,7 +70,7 @@ export class BackgroundOptionsEditor {
             }
         );
 
-        this.container.addProperty(
+        const opacityItem = this.container.addProperty(
             "opacity",
             "Opacity",
             options.opacity,
@@ -83,6 +83,8 @@ export class BackgroundOptionsEditor {
                 }
             }
         );
+
+        (opacityItem.element as HTMLInputElement).step = "0.01";
 
         this.container.addProperty(
             "position",

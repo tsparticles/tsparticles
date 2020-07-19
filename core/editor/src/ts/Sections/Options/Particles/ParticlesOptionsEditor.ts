@@ -49,6 +49,50 @@ export class ParticlesOptionsEditor {
                 }
             }
         );
+
+        const animationContainer = this.container.addContainer("animation", "Animation");
+
+        animationContainer.addProperty(
+            "enable",
+            "Enable",
+            options.animation.enable,
+            typeof options.animation.enable,
+            async (value: number | string | boolean) => {
+                if (typeof value === "boolean") {
+                    options.animation.enable = value;
+
+                    await particles.refresh();
+                }
+            }
+        );
+
+        animationContainer.addProperty(
+            "speed",
+            "Speed",
+            options.animation.speed,
+            typeof options.animation.speed,
+            async (value: number | string | boolean) => {
+                if (typeof value === "number") {
+                    options.animation.speed = value;
+
+                    await particles.refresh();
+                }
+            }
+        );
+
+        animationContainer.addProperty(
+            "sync",
+            "Sync",
+            options.animation.sync,
+            typeof options.animation.sync,
+            async (value: number | string | boolean) => {
+                if (typeof value === "boolean") {
+                    options.animation.sync = value;
+
+                    await particles.refresh();
+                }
+            }
+        );
     }
 
     private addLinks(): void {

@@ -45,7 +45,7 @@ export class EditorContainer extends EditorItem {
         value: number | string | boolean | undefined | null,
         type: string,
         change: (value: number | string | boolean) => void
-    ): void {
+    ): EditorItem {
         const divContainer = document.createElement("div");
         const htmlLabel = document.createElement("label");
 
@@ -75,6 +75,8 @@ export class EditorContainer extends EditorItem {
         divContainer.append(item.element);
 
         this.element.append(divContainer);
+
+        return item;
     }
 
     public addButton(name: string, label: string, click: () => void): void {
