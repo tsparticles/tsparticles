@@ -1,56 +1,37 @@
-import type { EditorContainer } from "../../../Editors/EditorContainer";
-import type { IRgb } from "tsparticles/dist/Core/Interfaces/IRgb";
-import type { IHsl } from "tsparticles/dist/Core/Interfaces/IHsl";
-import type { IParticles } from "tsparticles/dist/Options/Interfaces/Particles/IParticles";
+import type { EditorContainer } from "../../../../Editors/EditorContainer";
 import type { Container } from "tsparticles/dist/Core/Container";
-import { ColorUtils } from "tsparticles";
-import { LinksOptionsEditor } from "./Links/LinksOptionsEditor";
-import { OpacityOptionsEditor } from "./Opacity/OpacityOptionsEditor";
+import type { IOpacity } from "tsparticles/dist/Options/Interfaces/Particles/Opacity/IOpacity";
 
-export class ParticlesOptionsEditor {
+export class OpacityOptionsEditor {
     public readonly container: EditorContainer;
     private readonly particles: Container;
 
-    constructor(private readonly parent: EditorContainer, private readonly options: IParticles) {
-        this.container = parent.addContainer("particles", "Particles");
+    constructor(private readonly parent: EditorContainer, private readonly options: IOpacity) {
+        this.container = parent.addContainer("opacity", "Opacity");
         this.particles = this.container.particles;
 
-        this.addColor();
-        this.addLinks();
         this.addOpacity();
     }
 
-    private addColor(): void {
+    private addOpacity(): void {
         const particles = this.container.particles;
-        const options = this.options.color;
-        let colorStringValue: string | undefined;
+        const options = this.options;
 
-        if (typeof options.value === "string") {
-            colorStringValue = options.value;
-        } else {
-            let rgb = options.value as IRgb;
-            const hsl = options.value as IHsl;
-
-            if (hsl.h !== undefined) {
-                rgb = ColorUtils.hslToRgb(hsl);
-            }
-
-            colorStringValue = `${rgb.r.toString(16)}${rgb.g.toString(16)}${rgb.b.toString(16)}`;
-        }
-
-        this.container.addProperty(
-            "color",
-            "Color",
-            colorStringValue,
-            "color",
+        const opacityInput = this.container.addProperty(
+            "opacity",
+            "Opacity",
+            options.value,
+            typeof options.value,
             async (value: string | number | boolean) => {
-                if (typeof value === "string") {
+                if (typeof value === "number") {
                     options.value = value;
 
                     await particles.refresh();
                 }
             }
         );
+
+        (opacityInput.element as HTMLInputElement).step = "0.01";
 
         const animationContainer = this.container.addContainer("animation", "Animation");
 
@@ -68,7 +49,23 @@ export class ParticlesOptionsEditor {
             }
         );
 
-        animationContainer.addProperty(
+        const minInput = animationContainer.addProperty(
+            "minimumValue",
+            "Minimum Value",
+            options.animation.minimumValue,
+            typeof options.animation.minimumValue,
+            async (value: number | string | boolean) => {
+                if (typeof value === "number") {
+                    options.animation.minimumValue = value;
+
+                    await particles.refresh();
+                }
+            }
+        );
+
+        (minInput.element as HTMLInputElement).step = "0.01";
+
+        const speedInput = animationContainer.addProperty(
             "speed",
             "Speed",
             options.animation.speed,
@@ -81,6 +78,8 @@ export class ParticlesOptionsEditor {
                 }
             }
         );
+
+        (speedInput.element as HTMLInputElement).step = "0.01";
 
         animationContainer.addProperty(
             "sync",
@@ -95,13 +94,5 @@ export class ParticlesOptionsEditor {
                 }
             }
         );
-    }
-
-    private addLinks(): void {
-        const options = new LinksOptionsEditor(this.container, this.options.links);
-    }
-
-    private addOpacity(): void {
-        const options = new OpacityOptionsEditor(this.container, this.options.opacity);
     }
 }
