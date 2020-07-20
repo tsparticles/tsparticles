@@ -4,6 +4,9 @@ import type { Container } from "tsparticles/dist/Core/Container";
 import { LinksOptionsEditor } from "./Links/LinksOptionsEditor";
 import { OpacityOptionsEditor } from "./Opacity/OpacityOptionsEditor";
 import { ColorOptionsEditor } from "./Color/ColorOptionsEditor";
+import { NumberOptionsEditor } from "./Number/NumberOptionsEditor";
+import { SizeOptionsEditor } from "./Size/SizeOptionsEditor";
+import { RotateOptionsEditor } from "./Rotate/RotateOptionsEditor";
 
 export class ParticlesOptionsEditor {
     public readonly container: EditorContainer;
@@ -15,7 +18,10 @@ export class ParticlesOptionsEditor {
 
         this.addColor();
         this.addLinks();
+        this.addNumber();
         this.addOpacity();
+        this.addRotate();
+        this.addSize();
     }
 
     private addColor(): void {
@@ -26,7 +32,19 @@ export class ParticlesOptionsEditor {
         const options = new LinksOptionsEditor(this.container, this.options.links);
     }
 
+    private addNumber(): void {
+        const options = new NumberOptionsEditor(this.container, this.options.number);
+    }
+
     private addOpacity(): void {
         const options = new OpacityOptionsEditor(this.container, this.options.opacity);
+    }
+
+    private addRotate(): void {
+        const options = new RotateOptionsEditor(this.container, this.options.rotate);
+    }
+
+    private addSize(): void {
+        const options = new SizeOptionsEditor(this.container, this.options.size);
     }
 }

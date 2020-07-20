@@ -53,5 +53,19 @@ export class LinksOptionsEditor {
                 }
             }
         );
+
+        this.container.addProperty(
+            "enable",
+            "Enable",
+            options.enable,
+            typeof options.enable,
+            async (value: number | string | boolean) => {
+                if (typeof value === "boolean") {
+                    options.enable = value;
+
+                    await particles.refresh();
+                }
+            }
+        );
     }
 }
