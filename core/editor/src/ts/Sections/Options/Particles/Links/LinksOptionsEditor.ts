@@ -37,6 +37,20 @@ export class LinksOptionsEditor {
         }
 
         this.container.addProperty(
+            "blink",
+            "Blink",
+            options.blink,
+            typeof options.blink,
+            async (value: number | string | boolean) => {
+                if (typeof value === "boolean") {
+                    options.blink = value;
+
+                    await particles.refresh();
+                }
+            }
+        );
+
+        this.container.addProperty(
             "color",
             "Color",
             colorStringValue,
@@ -48,6 +62,34 @@ export class LinksOptionsEditor {
                     } else {
                         options.color.value = value;
                     }
+
+                    await particles.refresh();
+                }
+            }
+        );
+
+        this.container.addProperty(
+            "consent",
+            "Consent",
+            options.consent,
+            typeof options.consent,
+            async (value: number | string | boolean) => {
+                if (typeof value === "boolean") {
+                    options.consent = value;
+
+                    await particles.refresh();
+                }
+            }
+        );
+
+        this.container.addProperty(
+            "distance",
+            "Distance",
+            options.distance,
+            typeof options.distance,
+            async (value: number | string | boolean) => {
+                if (typeof value === "number") {
+                    options.distance = value;
 
                     await particles.refresh();
                 }
@@ -83,6 +125,20 @@ export class LinksOptionsEditor {
         );
 
         (opacityInput.element as HTMLInputElement).step = "0.01";
+
+        this.container.addProperty(
+            "warp",
+            "Warp",
+            options.warp,
+            typeof options.warp,
+            async (value: number | string | boolean) => {
+                if (typeof value === "boolean") {
+                    options.warp = value;
+
+                    await particles.refresh();
+                }
+            }
+        );
 
         this.container.addProperty(
             "width",

@@ -8,6 +8,7 @@ import { NumberOptionsEditor } from "./Number/NumberOptionsEditor";
 import { SizeOptionsEditor } from "./Size/SizeOptionsEditor";
 import { RotateOptionsEditor } from "./Rotate/RotateOptionsEditor";
 import { ShapeOptionsEditor } from "./Shape/ShapeOptionsEditor";
+import { MoveOptionsEditor } from "./Move/MoveOptionsEditor";
 
 export class ParticlesOptionsEditor {
     public readonly container: EditorContainer;
@@ -19,6 +20,7 @@ export class ParticlesOptionsEditor {
 
         this.addColor();
         this.addLinks();
+        this.addMove();
         this.addNumber();
         this.addOpacity();
         this.addRotate();
@@ -32,6 +34,10 @@ export class ParticlesOptionsEditor {
 
     private addLinks(): void {
         const options = new LinksOptionsEditor(this.container, this.options.links);
+    }
+
+    private addMove(): void {
+        const options = new MoveOptionsEditor(this.container, this.options.move);
     }
 
     private addNumber(): void {
