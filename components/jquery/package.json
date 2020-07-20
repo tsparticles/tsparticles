@@ -86,7 +86,7 @@
     "rollup": "^2.21.0",
     "rollup-plugin-babel": "^4.4.0",
     "rollup-plugin-sourcemaps": "^0.6.2",
-    "typescript": "^3.9.6",
+    "typescript": "^3.9.7",
     "uglify-js": "^3.10.0"
   }
 }
