@@ -89,7 +89,7 @@ export class Mover {
         const container = this.container;
         const options = container.options;
 
-        if (!options.interactivity.events.onHover.parallax.enable) {
+        if (Utils.isSsr() || !options.interactivity.events.onHover.parallax.enable) {
             return;
         }
 

@@ -510,7 +510,7 @@ export class Particle implements IParticle {
 
             /* prepare to create img with colored svg */
             const svg = new Blob([svgColoredData], { type: "image/svg+xml" });
-            const domUrl = window.URL || window.webkitURL || window;
+            const domUrl = URL || window.URL || window.webkitURL || window;
             const url = domUrl.createObjectURL(svg);
 
             /* create particle img obj */

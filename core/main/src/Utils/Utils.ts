@@ -66,7 +66,7 @@ export class Utils {
     }
 
     public static get animate(): (callback: FrameRequestCallback) => number {
-        return this.isSsr()
+        return Utils.isSsr()
             ? (callback: FrameRequestCallback): number => setTimeout(callback)
             : (callback: FrameRequestCallback): number =>
                   (
@@ -80,7 +80,7 @@ export class Utils {
     }
 
     public static get cancelAnimation(): (handle: number) => void {
-        return this.isSsr()
+        return Utils.isSsr()
             ? (handle: number): void => clearTimeout(handle)
             : (handle: number): void =>
                   (
