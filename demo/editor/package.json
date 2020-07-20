@@ -29,7 +29,7 @@
     "prettier": "^2.0.5",
     "pug": "^3.0.0",
     "pug-cli": "^1.0.0-alpha6",
-    "stylus": "^0.54.7"
+    "stylus": "^0.54.8"
   },
   "dependencies": {
     "tsparticles-editor": "^1.0.0-alpha.25"
