@@ -11,7 +11,7 @@ export class BackgroundOptionsEditor {
     private readonly particles: Container;
 
     constructor(private readonly parent: EditorContainer, private readonly options: IBackground) {
-        this.container = parent.addContainer("background", "Background");
+        this.container = parent.addContainer("background", "Background", true);
         this.particles = this.container.particles;
 
         this.addColor();

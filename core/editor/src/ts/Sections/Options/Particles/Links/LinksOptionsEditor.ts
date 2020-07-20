@@ -10,7 +10,7 @@ export class LinksOptionsEditor {
     private readonly particles: Container;
 
     constructor(private readonly parent: EditorContainer, private readonly options: ILinks) {
-        this.container = parent.addContainer("links", "Links");
+        this.container = parent.addContainer("links", "Links", true);
         this.particles = this.container.particles;
 
         this.addColor();

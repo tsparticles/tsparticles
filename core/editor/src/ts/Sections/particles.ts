@@ -1,27 +1,6 @@
 import { Container } from "tsparticles/dist/Core/Container";
 import { changeHandler } from "../Utils";
 
-interface IHsl {
-    h: number;
-    s: number;
-    l: number;
-}
-
-interface IHsv {
-    h: number;
-    s: number;
-    v: number;
-}
-
-const hsl2hsv = (hsl: IHsl): IHsv => {
-    const v = hsl.l + hsl.s * Math.min(hsl.l, 1 - hsl.l);
-    return {
-        h: hsl.h,
-        s: v ? 2 * (1 - hsl.l / v) : 0,
-        v: v,
-    };
-};
-
 const addParticles = (container: Container): void => {
     /*const fParticles = addFolder("particles");
 

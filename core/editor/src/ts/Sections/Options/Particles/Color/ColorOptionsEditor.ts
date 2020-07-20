@@ -1,37 +1,53 @@
 import type { EditorContainer } from "../../../../Editors/EditorContainer";
 import type { Container } from "tsparticles/dist/Core/Container";
-import type { IOpacity } from "tsparticles/dist/Options/Interfaces/Particles/Opacity/IOpacity";
+import type { IRgb } from "tsparticles/dist/Core/Interfaces/IRgb";
+import type { IHsl } from "tsparticles/dist/Core/Interfaces/IHsl";
+import { ColorUtils } from "tsparticles";
+import type { IAnimatableColor } from "tsparticles/dist/Options/Interfaces/Particles/IAnimatableColor";
 
-export class OpacityOptionsEditor {
+export class ColorOptionsEditor {
     public readonly container: EditorContainer;
     private readonly particles: Container;
 
-    constructor(private readonly parent: EditorContainer, private readonly options: IOpacity) {
-        this.container = parent.addContainer("opacity", "Opacity", true);
+    constructor(private readonly parent: EditorContainer, private readonly options: IAnimatableColor) {
+        this.container = parent.addContainer("color", "Color", true);
         this.particles = this.container.particles;
 
-        this.addOpacity();
+        this.addColor();
     }
 
-    private addOpacity(): void {
+    private addColor(): void {
         const particles = this.container.particles;
         const options = this.options;
 
-        const opacityInput = this.container.addProperty(
-            "opacity",
-            "Opacity",
-            options.value,
-            typeof options.value,
+        let colorStringValue: string | undefined;
+
+        if (typeof options.value === "string") {
+            colorStringValue = options.value;
+        } else {
+            let rgb = options.value as IRgb;
+            const hsl = options.value as IHsl;
+
+            if (hsl.h !== undefined) {
+                rgb = ColorUtils.hslToRgb(hsl);
+            }
+
+            colorStringValue = `${rgb.r.toString(16)}${rgb.g.toString(16)}${rgb.b.toString(16)}`;
+        }
+
+        this.container.addProperty(
+            "color",
+            "Color",
+            colorStringValue,
+            "color",
             async (value: string | number | boolean) => {
-                if (typeof value === "number") {
+                if (typeof value === "string") {
                     options.value = value;
 
                     await particles.refresh();
                 }
             }
         );
-
-        (opacityInput.element as HTMLInputElement).step = "0.01";
 
         const animationContainer = this.container.addContainer("animation", "Animation", true);
 
@@ -49,23 +65,7 @@ export class OpacityOptionsEditor {
             }
         );
 
-        const minInput = animationContainer.addProperty(
-            "minimumValue",
-            "Minimum Value",
-            options.animation.minimumValue,
-            typeof options.animation.minimumValue,
-            async (value: number | string | boolean) => {
-                if (typeof value === "number") {
-                    options.animation.minimumValue = value;
-
-                    await particles.refresh();
-                }
-            }
-        );
-
-        (minInput.element as HTMLInputElement).step = "0.01";
-
-        const speedInput = animationContainer.addProperty(
+        animationContainer.addProperty(
             "speed",
             "Speed",
             options.animation.speed,
@@ -78,8 +78,6 @@ export class OpacityOptionsEditor {
                 }
             }
         );
-
-        (speedInput.element as HTMLInputElement).step = "0.01";
 
         animationContainer.addProperty(
             "sync",

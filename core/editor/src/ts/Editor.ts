@@ -6,7 +6,7 @@ export class Editor {
     public readonly container: EditorContainer;
 
     constructor(public readonly particles: Container) {
-        this.container = new EditorContainer(particles, "root", "tsParticles", document.body);
+        this.container = new EditorContainer(particles, "root", "tsParticles", false, document.body);
 
         this.addOptions();
         this.addButtons();

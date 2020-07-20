@@ -10,7 +10,7 @@ export class OptionsEditor {
     private readonly options: IOptions;
 
     constructor(private readonly parent: EditorContainer) {
-        this.container = parent.addContainer("options", "Options");
+        this.container = parent.addContainer("options", "Options", false);
         this.particles = this.container.particles;
         this.options = this.particles.options;
 

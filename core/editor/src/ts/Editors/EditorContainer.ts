@@ -7,11 +7,14 @@ import { EditorCheckboxInput } from "./EditorCheckboxInput";
 
 export class EditorContainer extends EditorItem {
     public readonly children: EditorItem[];
+    private readonly childrenContainer: HTMLElement;
+    private readonly collapseButton: HTMLButtonElement;
 
     constructor(
         container: Container,
         public readonly name: string,
         private readonly title: string,
+        private collapsed: boolean,
         parent: HTMLElement
     ) {
         super(container);
@@ -28,15 +31,31 @@ export class EditorContainer extends EditorItem {
 
         this.element.append(b);
 
+        this.collapseButton = document.createElement("button");
+
+        this.collapseButton.type = "button";
+
+        this.collapseButton.addEventListener("click", () => {
+            this.toggleCollapse();
+        });
+
+        this.element.append(this.collapseButton);
+
+        this.childrenContainer = document.createElement("div");
+
+        this.element.append(this.childrenContainer);
+
         parent.append(this.element);
+
+        this.setCollapse();
     }
 
     public createElement(): HTMLElement {
         return document.createElement("div");
     }
 
-    public addContainer(name: string, title: string): EditorContainer {
-        return new EditorContainer(this.particles, name, title, this.element);
+    public addContainer(name: string, title: string, collapsed: boolean): EditorContainer {
+        return new EditorContainer(this.particles, name, title, collapsed, this.childrenContainer);
     }
 
     public addProperty(
@@ -48,8 +67,6 @@ export class EditorContainer extends EditorItem {
     ): EditorItem {
         const divContainer = document.createElement("div");
         const htmlLabel = document.createElement("label");
-
-        console.log({ name, value });
 
         htmlLabel.textContent = label;
 
@@ -74,7 +91,7 @@ export class EditorContainer extends EditorItem {
 
         divContainer.append(item.element);
 
-        this.element.append(divContainer);
+        this.childrenContainer.append(divContainer);
 
         return item;
     }
@@ -82,6 +99,26 @@ export class EditorContainer extends EditorItem {
     public addButton(name: string, label: string, click: () => void): void {
         const button = new EditorButton(this.particles, name, label, click);
 
-        this.element.append(button.element);
+        this.childrenContainer.append(button.element);
+    }
+
+    private setCollapse(): void {
+        if (this.collapsed) {
+            this.childrenContainer.style.display = "none";
+        } else {
+            this.childrenContainer.style.display = "block";
+        }
+
+        if (this.collapsed) {
+            this.collapseButton.textContent = "Expand";
+        } else {
+            this.collapseButton.textContent = "Collapse";
+        }
+    }
+
+    public toggleCollapse(): void {
+        this.collapsed = !this.collapsed;
+
+        this.setCollapse();
     }
 }
