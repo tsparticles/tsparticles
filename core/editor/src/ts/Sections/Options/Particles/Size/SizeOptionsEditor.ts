@@ -1,6 +1,8 @@
 import type { EditorContainer } from "../../../../Editors/EditorContainer";
 import type { Container } from "tsparticles/dist/Core/Container";
 import type { ISize } from "tsparticles/dist/Options/Interfaces/Particles/Size/ISize";
+import { ISizeRandom } from "tsparticles/dist/Options/Interfaces/Particles/Size/ISizeRandom";
+import { DestroyType, StartValueType } from "tsparticles";
 
 export class SizeOptionsEditor {
     public readonly container: EditorContainer;
@@ -32,6 +34,23 @@ export class SizeOptionsEditor {
         );
 
         const animationContainer = this.container.addContainer("animation", "Animation", true);
+
+        animationContainer.addProperty(
+            "destroy",
+            "Destroy",
+            options.animation.destroy,
+            typeof options.animation.destroy,
+            async (value: number | string | boolean) => {
+                if (
+                    typeof value === "string" &&
+                    (value === DestroyType.min || value === DestroyType.max || value === DestroyType.none)
+                ) {
+                    options.animation.destroy = value;
+
+                    await particles.refresh();
+                }
+            }
+        );
 
         animationContainer.addProperty(
             "enable",
@@ -76,6 +95,20 @@ export class SizeOptionsEditor {
         );
 
         animationContainer.addProperty(
+            "startValue",
+            "Start Value",
+            options.animation.startValue,
+            typeof options.animation.startValue,
+            async (value: number | string | boolean) => {
+                if (typeof value === "string" && (value === StartValueType.min || value === StartValueType.max)) {
+                    options.animation.startValue = value;
+
+                    await particles.refresh();
+                }
+            }
+        );
+
+        animationContainer.addProperty(
             "sync",
             "Sync",
             options.animation.sync,
@@ -83,6 +116,38 @@ export class SizeOptionsEditor {
             async (value: number | string | boolean) => {
                 if (typeof value === "boolean") {
                     options.animation.sync = value;
+
+                    await particles.refresh();
+                }
+            }
+        );
+
+        const randomContainer = this.container.addContainer("random", "Random", true);
+
+        const randomOptions = options.random as ISizeRandom;
+
+        randomContainer.addProperty(
+            "enable",
+            "Enable",
+            randomOptions.enable,
+            typeof randomOptions.enable,
+            async (value: number | string | boolean) => {
+                if (typeof value === "boolean") {
+                    randomOptions.enable = value;
+
+                    await particles.refresh();
+                }
+            }
+        );
+
+        randomContainer.addProperty(
+            "minimumValue",
+            "Minimum Value",
+            randomOptions.minimumValue,
+            typeof randomOptions.minimumValue,
+            async (value: number | string | boolean) => {
+                if (typeof value === "number") {
+                    randomOptions.minimumValue = value;
 
                     await particles.refresh();
                 }
