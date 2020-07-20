@@ -10,10 +10,10 @@ export class RotateOptionsEditor {
         this.container = parent.addContainer("rotate", "Rotate", true);
         this.particles = this.container.particles;
 
-        this.addOpacity();
+        this.addRotate();
     }
 
-    private addOpacity(): void {
+    private addRotate(): void {
         const particles = this.container.particles;
         const options = this.options;
 

@@ -12,10 +12,10 @@ export class SizeOptionsEditor {
         this.container = parent.addContainer("size", "Size", true);
         this.particles = this.container.particles;
 
-        this.addOpacity();
+        this.addSize();
     }
 
-    private addOpacity(): void {
+    private addSize(): void {
         const particles = this.container.particles;
         const options = this.options;
 

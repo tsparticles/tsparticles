@@ -4,6 +4,7 @@ import { EditorStringInput } from "./EditorStringInput";
 import { EditorNumberInput } from "./EditorNumberInput";
 import { Container } from "tsparticles/dist/Core/Container";
 import { EditorCheckboxInput } from "./EditorCheckboxInput";
+import { SingleOrMultiple } from "tsparticles";
 
 export class EditorContainer extends EditorItem {
     public readonly children: EditorItem[];
@@ -61,7 +62,7 @@ export class EditorContainer extends EditorItem {
     public addProperty(
         name: string,
         label: string,
-        value: number | string | boolean | undefined | null,
+        value: SingleOrMultiple<number | string | boolean | undefined | null>,
         type: string,
         change: (value: number | string | boolean) => void
     ): EditorItem {

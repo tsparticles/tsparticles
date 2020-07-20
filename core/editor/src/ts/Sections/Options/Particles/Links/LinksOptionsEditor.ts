@@ -13,10 +13,10 @@ export class LinksOptionsEditor {
         this.container = parent.addContainer("links", "Links", true);
         this.particles = this.container.particles;
 
-        this.addColor();
+        this.addLinks();
     }
 
-    private addColor(): void {
+    private addLinks(): void {
         const particles = this.container.particles;
         const options = this.options;
         let colorStringValue: string | undefined;

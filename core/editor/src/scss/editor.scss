@@ -1,4 +1,13 @@
 .container {
   border: 1px solid #000;
-  padding: 1em;
+  padding: 0.5em;
+}
+
+#editor_root {
+  background: #fff;
+  position: fixed;
+  min-height: 30vh;
+  max-height: 100vh;
+  width: 15vw;
+  overflow: auto;
 }

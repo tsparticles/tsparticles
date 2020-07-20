@@ -7,6 +7,7 @@ import { ColorOptionsEditor } from "./Color/ColorOptionsEditor";
 import { NumberOptionsEditor } from "./Number/NumberOptionsEditor";
 import { SizeOptionsEditor } from "./Size/SizeOptionsEditor";
 import { RotateOptionsEditor } from "./Rotate/RotateOptionsEditor";
+import { ShapeOptionsEditor } from "./Shape/ShapeOptionsEditor";
 
 export class ParticlesOptionsEditor {
     public readonly container: EditorContainer;
@@ -21,6 +22,7 @@ export class ParticlesOptionsEditor {
         this.addNumber();
         this.addOpacity();
         this.addRotate();
+        this.addShape();
         this.addSize();
     }
 
@@ -42,6 +44,10 @@ export class ParticlesOptionsEditor {
 
     private addRotate(): void {
         const options = new RotateOptionsEditor(this.container, this.options.rotate);
+    }
+
+    private addShape(): void {
+        const options = new ShapeOptionsEditor(this.container, this.options.shape);
     }
 
     private addSize(): void {
