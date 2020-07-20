@@ -1,6 +1,7 @@
 import type { EditorContainer } from "../../../../Editors/EditorContainer";
 import type { Container } from "tsparticles/dist/Core/Container";
 import type { IShape } from "tsparticles/dist/Options/Interfaces/Particles/Shape/IShape";
+import { EditorSelectInput } from "../../../../Editors/EditorSelectInput";
 
 export class ShapeOptionsEditor {
     public readonly container: EditorContainer;
@@ -17,12 +18,22 @@ export class ShapeOptionsEditor {
         const particles = this.container.particles;
         const options = this.options;
 
-        this.container.addProperty("type", "Type", options.type, "string", async (value: string | number | boolean) => {
-            if (typeof value === "string") {
-                options.type = value;
+        const selectType = this.container.addProperty(
+            "type",
+            "Type",
+            options.type,
+            "select",
+            async (value: string | number | boolean) => {
+                if (typeof value === "string") {
+                    options.type = value;
 
-                await particles.refresh();
+                    await particles.refresh();
+                }
             }
-        });
+        ) as EditorSelectInput;
+
+        for (const key of particles.drawers.keys()) {
+            selectType.addItem(key, key);
+        }
     }
 }

@@ -10,6 +10,9 @@ tsParticles.load("tsparticles", {
         },
         move: {
             enable: true
+        },
+        size: {
+            value: 1
         }
     }
 }).then(container => {

@@ -6,9 +6,8 @@
 #editor_root {
   background: #fff;
   position: fixed;
-  min-height: 30vh;
   max-height: 100vh;
-  width: 15vw;
+  width: 252px;
   overflow: auto;
 }
 

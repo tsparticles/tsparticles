@@ -67,5 +67,35 @@ export class LinksOptionsEditor {
                 }
             }
         );
+
+        const opacityInput = this.container.addProperty(
+            "opacity",
+            "Opacity",
+            options.opacity,
+            typeof options.opacity,
+            async (value: number | string | boolean) => {
+                if (typeof value === "number") {
+                    options.opacity = value;
+
+                    await particles.refresh();
+                }
+            }
+        );
+
+        (opacityInput.element as HTMLInputElement).step = "0.01";
+
+        this.container.addProperty(
+            "width",
+            "Width",
+            options.width,
+            typeof options.width,
+            async (value: number | string | boolean) => {
+                if (typeof value === "number") {
+                    options.width = value;
+
+                    await particles.refresh();
+                }
+            }
+        );
     }
 }

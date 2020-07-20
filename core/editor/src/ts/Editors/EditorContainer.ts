@@ -5,6 +5,7 @@ import { EditorNumberInput } from "./EditorNumberInput";
 import { Container } from "tsparticles/dist/Core/Container";
 import { EditorCheckboxInput } from "./EditorCheckboxInput";
 import { SingleOrMultiple } from "tsparticles";
+import { EditorSelectInput } from "./EditorSelectInput";
 
 export class EditorContainer extends EditorItem {
     public readonly children: EditorItem[];
@@ -86,6 +87,9 @@ export class EditorContainer extends EditorItem {
             //    break;
             // case "range":
             //    break;
+            case "select":
+                item = new EditorSelectInput(this.particles, name, label, value as string, change);
+                break;
             default:
                 item = new EditorStringInput(this.particles, name, label, value as string, change);
         }
