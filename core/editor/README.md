@@ -1,11 +1,23 @@
-# `editor`
+# tsParticles editor
 
-> TODO: description
+tsParticles editor
 
 ## Usage
 
+```javascript
+tsParticles
+  .load("tsparticles", {
+    /* your options here */
+  })
+  .then((container) => {
+    createEditor(container);
+  });
 ```
-const editor = require('editor');
 
-// TODO: DEMONSTRATE API
+or
+
+```javascript
+tsParticles.loadJSON("tsparticles", "particles.json").then((container) => {
+  createEditor(container);
+});
 ```
