@@ -1,10 +1,11 @@
-import type { IAttract } from "./IAttract";
-import type { MoveDirection, MoveDirectionAlt, OutMode, OutModeAlt } from "../../../Enums";
-import type { ITrail } from "./ITrail";
-import type { INoise } from "./Noise/INoise";
+import type { IAttract } from "../IAttract";
+import type { MoveDirection, MoveDirectionAlt, OutMode, OutModeAlt } from "../../../../Enums";
+import type { ITrail } from "../ITrail";
+import type { INoise } from "../Noise/INoise";
+import type { IMoveAngle } from "./IMoveAngle";
 
 export interface IMove {
-    angle: number;
+    angle: number | IMoveAngle;
     attract: IAttract;
 
     /**
