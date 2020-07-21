@@ -35,7 +35,20 @@ export class Editor {
             this.particles.stop();
         });
         this.container.addButton("exportConfig", "Export configuration", () => {
-            this.particles.exportConfiguration();
+            const json = this.particles.exportConfiguration();
+            const contentType = "application/json";
+            const blob = new Blob([json], { type: contentType });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement("a");
+
+            a.download = "particles.json";
+            a.href = url;
+            a.dataset.downloadUrl = [contentType, a.download, a.href].join(":");
+
+            const e = document.createEvent("MouseEvents");
+
+            e.initMouseEvent("click", true, false, window, 0, 0, 0, 0, 0, false, false, false, false, 0, null);
+            a.dispatchEvent(e);
         });
     }
 }

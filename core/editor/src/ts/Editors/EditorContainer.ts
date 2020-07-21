@@ -95,6 +95,10 @@ export class EditorContainer extends EditorItem {
                 item = new EditorStringInput(this.particles, inputName, label, value as string, change);
         }
 
+        if (value === undefined) {
+            (item.element as HTMLInputElement).value = "";
+        }
+
         divContainer.append(item.element);
 
         this.childrenContainer.append(divContainer);

@@ -126,6 +126,81 @@ export class LinksOptionsEditor {
 
         (opacityInput.element as HTMLInputElement).step = "0.01";
 
+        let trianglesColorStringValue = "";
+
+        if (options.triangles.color !== undefined) {
+            if (typeof options.triangles.color === "string") {
+                trianglesColorStringValue = options.triangles.color;
+            } else if (typeof options.triangles.color.value === "string") {
+                trianglesColorStringValue = options.triangles.color.value;
+            } else {
+                let rgb = options.triangles.color.value as IRgb;
+                const hsl = options.triangles.color.value as IHsl;
+
+                if (hsl.h !== undefined) {
+                    rgb = ColorUtils.hslToRgb(hsl);
+                }
+
+                trianglesColorStringValue = `${rgb.r.toString(16)}${rgb.g.toString(16)}${rgb.b.toString(16)}`;
+            }
+        }
+
+        const triangleContainer = this.container.addContainer("triangles", "Triangles", true);
+
+        triangleContainer.addProperty(
+            "color",
+            "Color",
+            trianglesColorStringValue,
+            "color",
+            async (value: string | number | boolean) => {
+                if (typeof value === "string") {
+                    if (typeof options.triangles.color === "string") {
+                        options.triangles.color = value;
+                    } else {
+                        if (options.triangles.color === undefined) {
+                            options.triangles.color = {
+                                value: value,
+                            };
+                        } else {
+                            options.triangles.color.value = value;
+                        }
+                    }
+
+                    await particles.refresh();
+                }
+            }
+        );
+
+        triangleContainer.addProperty(
+            "enable",
+            "Enable",
+            options.triangles.enable,
+            typeof options.triangles.enable,
+            (value: number | string | boolean) => {
+                if (typeof value === "boolean") {
+                    options.triangles.enable = value;
+
+                    particles.refresh();
+                }
+            }
+        );
+
+        const trianglesOpacityInput = triangleContainer.addProperty(
+            "opacity",
+            "Opacity",
+            options.triangles.opacity,
+            typeof options.triangles.opacity,
+            (value: number | string | boolean) => {
+                if (typeof value === "number") {
+                    options.triangles.opacity = value;
+
+                    particles.refresh();
+                }
+            }
+        );
+
+        (trianglesOpacityInput.element as HTMLInputElement).step = "0.01";
+
         this.container.addProperty(
             "warp",
             "Warp",

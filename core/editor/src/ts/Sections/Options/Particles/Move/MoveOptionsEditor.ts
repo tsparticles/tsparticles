@@ -1,7 +1,7 @@
 import type { EditorContainer } from "../../../../Editors/EditorContainer";
 import type { Container } from "tsparticles/dist/Core/Container";
-import type { IParticlesNumber } from "tsparticles/dist/Options/Interfaces/Particles/IParticlesNumber";
-import { IMove } from "tsparticles/dist/Options/Interfaces/Particles/IMove";
+import { IMove } from "tsparticles/dist/Options/Interfaces/Particles/Move/IMove";
+import { IMoveAngle } from "tsparticles/dist/Options/Interfaces/Particles/Move/IMoveAngle";
 
 export class MoveOptionsEditor {
     public readonly container: EditorContainer;
@@ -18,14 +18,31 @@ export class MoveOptionsEditor {
         const particles = this.container.particles;
         const options = this.options;
 
-        this.container.addProperty(
+        const angleContainer = this.container.addContainer("angle", "Angle", true);
+        const angle = options.angle as IMoveAngle;
+
+        angleContainer.addProperty(
             "angle",
             "Angle",
-            options.angle,
-            typeof options.angle,
+            angle.value,
+            typeof angle.value,
             async (value: string | number | boolean) => {
                 if (typeof value === "number") {
-                    options.angle = value;
+                    angle.value = value;
+
+                    await particles.refresh();
+                }
+            }
+        );
+
+        angleContainer.addProperty(
+            "offset",
+            "Offset",
+            angle.offset,
+            typeof angle.offset,
+            async (value: string | number | boolean) => {
+                if (typeof value === "number") {
+                    angle.offset = value;
 
                     await particles.refresh();
                 }
