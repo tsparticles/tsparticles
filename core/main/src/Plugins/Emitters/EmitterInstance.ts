@@ -100,7 +100,9 @@ export class EmitterInstance {
     }
 
     private prepareToDie(): void {
-        if ((this.lifeCount > 0 || this.immortal) && this.emitterOptions.life?.duration !== undefined) {
+        const duration = this.emitterOptions.life?.duration;
+
+        if ((this.lifeCount > 0 || this.immortal) && duration !== undefined && duration > 0) {
             window.setTimeout(() => {
                 this.pause();
 
@@ -117,7 +119,7 @@ export class EmitterInstance {
                 } else {
                     this.destroy();
                 }
-            }, this.emitterOptions.life.duration * 1000);
+            }, duration * 1000);
         }
     }
 
