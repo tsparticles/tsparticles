@@ -6,6 +6,7 @@ import { Container } from "tsparticles/dist/Core/Container";
 import { EditorCheckboxInput } from "./EditorCheckboxInput";
 import { SingleOrMultiple } from "tsparticles";
 import { EditorSelectInput } from "./EditorSelectInput";
+import { EditorColorInput } from "./EditorColorInput";
 
 export class EditorContainer extends EditorItem {
     public readonly children: EditorItem[];
@@ -84,8 +85,9 @@ export class EditorContainer extends EditorItem {
             case "boolean":
                 item = new EditorCheckboxInput(this.particles, inputName, label, value as boolean, change);
                 break;
-            // case "color":
-            //    break;
+            case "color":
+                item = new EditorColorInput(this.particles, inputName, label, value as string, change);
+                break;
             // case "range":
             //    break;
             case "select":
