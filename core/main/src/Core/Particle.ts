@@ -452,11 +452,20 @@ export class Particle implements IParticle {
             vertical: 0,
         };
         const moveOptions = this.particlesOptions.move;
-        const rad = (Math.PI / 180) * moveOptions.angle;
-        const rad45 = Math.PI / 4;
+
+        let rad: number;
+        let radOffset = Math.PI / 4;
+
+        if (typeof moveOptions.angle === "number") {
+            rad = (Math.PI / 180) * moveOptions.angle;
+        } else {
+            rad = (Math.PI / 180) * moveOptions.angle.value;
+            radOffset = (Math.PI / 180) * moveOptions.angle.offset;
+        }
+
         const range = {
-            left: Math.sin(rad45 + rad / 2) - Math.sin(rad45 - rad / 2),
-            right: Math.cos(rad45 + rad / 2) - Math.cos(rad45 - rad / 2),
+            left: Math.sin(radOffset + rad / 2) - Math.sin(radOffset - rad / 2),
+            right: Math.cos(radOffset + rad / 2) - Math.cos(radOffset - rad / 2),
         };
 
         if (moveOptions.straight) {

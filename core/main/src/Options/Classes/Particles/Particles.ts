@@ -1,6 +1,6 @@
 import type { IParticles } from "../../Interfaces/Particles/IParticles";
 import { Links } from "./Links/Links";
-import { Move } from "./Move";
+import { Move } from "./Move/Move";
 import { ParticlesNumber } from "./ParticlesNumber";
 import { Opacity } from "./Opacity/Opacity";
 import { Shape } from "./Shape/Shape";

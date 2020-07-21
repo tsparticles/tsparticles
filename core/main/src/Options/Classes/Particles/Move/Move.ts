@@ -1,10 +1,11 @@
-import type { IMove } from "../../Interfaces/Particles/IMove";
-import { Attract } from "./Attract";
-import { MoveDirection, MoveDirectionAlt, OutMode, OutModeAlt } from "../../../Enums";
-import { Trail } from "./Trail";
-import type { RecursivePartial } from "../../../Types";
-import { Noise } from "./Noise/Noise";
-import type { IOptionLoader } from "../../Interfaces/IOptionLoader";
+import type { IMove } from "../../../Interfaces/Particles/Move/IMove";
+import { Attract } from "../Attract";
+import { MoveDirection, MoveDirectionAlt, OutMode, OutModeAlt } from "../../../../Enums";
+import { Trail } from "../Trail";
+import type { RecursivePartial } from "../../../../Types/RecursivePartial";
+import { Noise } from "../Noise/Noise";
+import type { IOptionLoader } from "../../../Interfaces/IOptionLoader";
+import { MoveAngle } from "./MoveAngle";
 
 export class Move implements IMove, IOptionLoader<IMove> {
     /**
@@ -54,7 +55,7 @@ export class Move implements IMove, IOptionLoader<IMove> {
         this.outMode = value;
     }
 
-    public angle: number;
+    public angle: MoveAngle;
     public attract: Attract;
     public direction: MoveDirection | keyof typeof MoveDirection | MoveDirectionAlt;
     public enable: boolean;
@@ -68,7 +69,7 @@ export class Move implements IMove, IOptionLoader<IMove> {
     public warp: boolean;
 
     constructor() {
-        this.angle = 90;
+        this.angle = new MoveAngle();
         this.attract = new Attract();
         this.direction = MoveDirection.none;
         this.enable = false;
@@ -88,7 +89,11 @@ export class Move implements IMove, IOptionLoader<IMove> {
         }
 
         if (data.angle !== undefined) {
-            this.angle = data.angle;
+            if (typeof data.angle === "number") {
+                this.angle.value = data.angle;
+            } else {
+                this.angle.load(data.angle);
+            }
         }
 
         this.attract.load(data.attract);
