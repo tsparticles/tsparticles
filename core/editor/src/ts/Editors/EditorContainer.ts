@@ -23,7 +23,7 @@ export class EditorContainer extends EditorItem {
 
         this.children = [];
 
-        this.element.id = `editor_${name}`;
+        this.element.id = name;
 
         this.element.classList.add("editor", "container");
 
@@ -57,7 +57,7 @@ export class EditorContainer extends EditorItem {
     }
 
     public addContainer(name: string, title: string, collapsed: boolean): EditorContainer {
-        return new EditorContainer(this.particles, name, title, collapsed, this.childrenContainer);
+        return new EditorContainer(this.particles, `${this.name}_${name}`, title, collapsed, this.childrenContainer);
     }
 
     public addProperty(
@@ -75,23 +75,24 @@ export class EditorContainer extends EditorItem {
         divContainer.append(htmlLabel);
 
         let item: EditorItem;
+        const inputName = `${this.name}_${name}`;
 
         switch (type) {
             case "number":
-                item = new EditorNumberInput(this.particles, name, label, value as number, change);
+                item = new EditorNumberInput(this.particles, inputName, label, value as number, change);
                 break;
             case "boolean":
-                item = new EditorCheckboxInput(this.particles, name, label, value as boolean, change);
+                item = new EditorCheckboxInput(this.particles, inputName, label, value as boolean, change);
                 break;
             // case "color":
             //    break;
             // case "range":
             //    break;
             case "select":
-                item = new EditorSelectInput(this.particles, name, label, value as string, change);
+                item = new EditorSelectInput(this.particles, inputName, label, value as string, change);
                 break;
             default:
-                item = new EditorStringInput(this.particles, name, label, value as string, change);
+                item = new EditorStringInput(this.particles, inputName, label, value as string, change);
         }
 
         divContainer.append(item.element);
@@ -102,7 +103,7 @@ export class EditorContainer extends EditorItem {
     }
 
     public addButton(name: string, label: string, click: () => void): void {
-        const button = new EditorButton(this.particles, name, label, click);
+        const button = new EditorButton(this.particles, `${this.name}_${name}`, label, click);
 
         this.childrenContainer.append(button.element);
     }

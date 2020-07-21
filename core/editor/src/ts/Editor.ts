@@ -6,7 +6,9 @@ export class Editor {
     public readonly container: EditorContainer;
 
     constructor(public readonly particles: Container) {
-        this.container = new EditorContainer(particles, "root", "tsParticles", false, document.body);
+        this.container = new EditorContainer(particles, `${particles.id}_editor`, "tsParticles", false, document.body);
+
+        this.container.element.classList.add("editor-root");
 
         this.addOptions();
         this.addButtons();
@@ -31,6 +33,9 @@ export class Editor {
         });
         this.container.addButton("stop", "Stop", () => {
             this.particles.stop();
+        });
+        this.container.addButton("exportConfig", "Export configuration", () => {
+            this.particles.exportConfiguration();
         });
     }
 }
