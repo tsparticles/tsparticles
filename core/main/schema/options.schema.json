@@ -851,7 +851,14 @@
     "IMove": {
       "properties": {
         "angle": {
-          "type": "number"
+          "anyOf": [
+            {
+              "$ref": "#/definitions/IMoveAngle"
+            },
+            {
+              "type": "number"
+            }
+          ]
         },
         "attract": {
           "$ref": "#/definitions/IAttract_1"
@@ -927,6 +934,17 @@
         },
         "warp": {
           "type": "boolean"
+        }
+      },
+      "type": "object"
+    },
+    "IMoveAngle": {
+      "properties": {
+        "offset": {
+          "type": "number"
+        },
+        "value": {
+          "type": "number"
         }
       },
       "type": "object"
@@ -1918,7 +1936,14 @@
     "RecursivePartial<IMove>": {
       "properties": {
         "angle": {
-          "type": "number"
+          "anyOf": [
+            {
+              "$ref": "#/definitions/IMoveAngle"
+            },
+            {
+              "type": "number"
+            }
+          ]
         },
         "attract": {
           "$ref": "#/definitions/RecursivePartial<IAttract>"

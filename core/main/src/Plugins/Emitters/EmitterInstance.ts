@@ -14,6 +14,7 @@ export class EmitterInstance {
     public size: IEmitterSize;
     public emitterOptions: IEmitter;
 
+    private readonly immortal: boolean;
     private readonly initialPosition?: ICoordinates;
     private readonly particlesOptions: RecursivePartial<IParticles>;
     private startInterval?: number;
@@ -58,20 +59,22 @@ export class EmitterInstance {
 
                 return size;
             })();
+
         this.lifeCount = this.emitterOptions.life.count ?? -1;
+        this.immortal = this.lifeCount <= 0;
 
         this.play();
     }
 
     public play(): void {
-        if (this.lifeCount > 0 || !this.emitterOptions.life.count) {
+        if (this.lifeCount > 0 || this.immortal || !this.emitterOptions.life.count) {
             if (this.startInterval === undefined) {
                 this.startInterval = window.setInterval(() => {
                     this.emit();
                 }, 1000 * this.emitterOptions.rate.delay);
             }
 
-            if (this.lifeCount > 0) {
+            if (this.lifeCount > 0 || this.immortal) {
                 this.prepareToDie();
             }
         }
@@ -97,21 +100,26 @@ export class EmitterInstance {
     }
 
     private prepareToDie(): void {
-        if (this.lifeCount > 0 && this.emitterOptions.life?.duration !== undefined) {
+        const duration = this.emitterOptions.life?.duration;
+
+        if ((this.lifeCount > 0 || this.immortal) && duration !== undefined && duration > 0) {
             window.setTimeout(() => {
                 this.pause();
-                this.lifeCount--;
 
-                if (this.lifeCount > 0) {
+                if (!this.immortal) {
+                    this.lifeCount--;
+                }
+
+                if (this.lifeCount > 0 || this.immortal) {
                     this.position = this.calcPosition();
 
                     window.setTimeout(() => {
                         this.play();
-                    }, this.emitterOptions.life.delay ?? 0);
+                    }, (this.emitterOptions.life.delay ?? 0) * 1000);
                 } else {
                     this.destroy();
                 }
-            }, this.emitterOptions.life.duration * 1000);
+            }, duration * 1000);
         }
     }
 
