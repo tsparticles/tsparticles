@@ -1,18 +1,23 @@
 import * as React from "react";
 import { Component } from "react";
 import isEqual from "lodash/isEqual";
-import type { IOptions } from "tsparticles/dist/Interfaces/Options/IOptions";
-import { Container } from "tsparticles/dist/Classes/Container";
+import type { IOptions } from "tsparticles/dist/Options/Interfaces/IOptions";
+import { Options } from "tsparticles/dist/Options/Classes/Options";
+import { Container } from "tsparticles/dist/Core/Container";
 import type { RecursivePartial } from "tsparticles/dist/Types/RecursivePartial";
 import { defaultParams } from "./DefaultOptions";
-import { Options } from "tsparticles/dist/Classes/Options/Options";
 import { tsParticles } from "tsparticles";
+import { IPolygonMaskOptions } from "tsparticles/dist/Plugins/PolygonMask/PolygonMaskPlugin";
+import { IAbsorberOptions } from "tsparticles/dist/Plugins/Absorbers/AbsorbersPlugin";
+import { IEmitterOptions } from "tsparticles/dist/Plugins/Emitters/EmittersPlugin";
+
+export type IParticlesParams = RecursivePartial<IOptions & IPolygonMaskOptions & IAbsorberOptions & IEmitterOptions>;
 
 export interface ParticlesProps {
     id: string;
     width: string;
     height: string;
-    params: RecursivePartial<IOptions>;
+    params: IParticlesParams;
     style: any;
     className?: string;
     canvasClassName?: string;
@@ -49,12 +54,13 @@ export default class Particles extends Component<ParticlesProps,
         } catch {
             return null;
         } // SSR
+
+        tsParticles.init();
+
         const options = new Options();
 
         options.load(defaultParams);
         options.load(params);
-
-        tsParticles.init();
 
         const container = new Container(tagId, options);
 

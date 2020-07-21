@@ -1,23 +1,23 @@
-import type { IOptions } from "tsparticles/dist/Interfaces/Options/IOptions";
-import { ShapeType } from "tsparticles/dist/Enums/ShapeType";
-import type { RecursivePartial } from "tsparticles/dist/Types/RecursivePartial";
-import { PolygonMaskType } from "tsparticles/dist/Enums/PolygonMaskType";
-import { PolygonMaskInlineArrangement } from "tsparticles/dist/Enums/PolygonMaskInlineArrangement";
-import { PolygonMaskMoveType } from "tsparticles/dist/Enums/PolygonMaskMoveType";
-import { HoverMode } from "tsparticles/dist/Enums/Modes/HoverMode";
-import { ClickMode } from "tsparticles/dist/Enums/Modes/ClickMode";
-import { InteractivityDetect } from "tsparticles/dist/Enums/InteractivityDetect";
-import { OutMode } from "tsparticles/dist/Enums/OutMode";
-import { MoveDirection } from "tsparticles/dist/Enums/MoveDirection";
+import { RecursivePartial } from "tsparticles/dist/Types/RecursivePartial";
+import { ClickMode, HoverMode, InteractivityDetect, MoveDirection, OutMode, ShapeType } from "tsparticles/dist/Enums";
+import type { IOptions } from "tsparticles/dist/Options/Interfaces/IOptions";
+import {
+    InlineArrangement as PolygonMaskInlineArrangement,
+    IPolygonMaskOptions,
+    MoveType as PolygonMaskMoveType,
+    Type as PolygonMaskType
+} from "tsparticles/dist/Plugins/PolygonMask/PolygonMaskPlugin";
+import { IAbsorberOptions } from "tsparticles/dist/Plugins/Absorbers/AbsorbersPlugin";
+import { IEmitterOptions } from "tsparticles/dist/Plugins/Emitters/EmittersPlugin";
 
-export const defaultParams: RecursivePartial<IOptions> = {
+export const defaultParams: RecursivePartial<IOptions & IPolygonMaskOptions & IAbsorberOptions & IEmitterOptions> = {
     particles: {
         number: {
             value: 40,
             max: -1,
             density: {
                 enable: false,
-                value_area: 1200
+                area: 1200
             }
         },
         color: {
@@ -25,18 +25,18 @@ export const defaultParams: RecursivePartial<IOptions> = {
         },
         shape: {
             type: ShapeType.circle,
-            stroke: {
-                width: 0,
-                color: "#000000"
-            },
             polygon: {
-                nb_sides: 5
+                sides: 5
             },
             image: {
                 src: "",
                 width: 100,
                 height: 100
-            },
+            }
+        },
+        stroke: {
+            width: 0,
+            color: "#000000"
         },
         opacity: {
             value: 0.5,
@@ -44,7 +44,7 @@ export const defaultParams: RecursivePartial<IOptions> = {
             anim: {
                 enable: true,
                 speed: 1,
-                opacity_min: 0.1,
+                minimumValue: 0.1,
                 sync: false
             }
         },
@@ -54,11 +54,11 @@ export const defaultParams: RecursivePartial<IOptions> = {
             anim: {
                 enable: false,
                 speed: 40,
-                size_min: 0,
+                minimumValue: 0,
                 sync: false
             }
         },
-        line_linked: {
+        links: {
             enable: true,
             distance: 150,
             color: "#FFF",
@@ -76,14 +76,14 @@ export const defaultParams: RecursivePartial<IOptions> = {
             direction: MoveDirection.none,
             random: false,
             straight: false,
-            out_mode: OutMode.bounce,
+            outMode: OutMode.bounce,
             bounce: true,
             attract: {
                 enable: false,
                 rotateX: 3000,
                 rotateY: 3000
             }
-        },
+        }
     },
     interactivity: {
         detectsOn: InteractivityDetect.canvas,
@@ -101,7 +101,7 @@ export const defaultParams: RecursivePartial<IOptions> = {
         modes: {
             grab: {
                 distance: 180,
-                line_linked: {
+                links: {
                     opacity: 0.35
                 }
             },
@@ -115,15 +115,15 @@ export const defaultParams: RecursivePartial<IOptions> = {
                 duration: 5
             },
             push: {
-                particles_nb: 4
+                quantity: 4
             },
             remove: {
-                particles_nb: 2
+                quantity: 2
             }
         }
     },
-    retina_detect: true,
-    fps_limit: 999,
+    detectRetina: true,
+    fpsLimit: 999,
     polygon: {
         enable: false,
         scale: 1,
