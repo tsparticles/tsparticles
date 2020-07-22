@@ -10,7 +10,7 @@ tsParticles
     /* your options here */
   })
   .then((container) => {
-    createEditor(container);
+    showEditor(container);
   });
 ```
 
@@ -18,6 +18,6 @@ or
 
 ```javascript
 tsParticles.loadJSON("tsparticles", "particles.json").then((container) => {
-  createEditor(container);
+  showEditor(container);
 });
 ```

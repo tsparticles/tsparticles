@@ -16,6 +16,6 @@ tsParticles.load("particles", {
         }
     }
 }).then(container => {
-    var editor = createEditor(container);
+    showEditor(container);
 })
 
