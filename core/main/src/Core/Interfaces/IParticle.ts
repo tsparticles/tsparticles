@@ -16,6 +16,7 @@ export interface IParticle {
     randomIndexData?: number;
 
     readonly angle: number;
+    readonly pathAngle: number;
     readonly bubble: IBubbleParticleData;
     readonly color: IHsl | undefined;
     readonly close: boolean;

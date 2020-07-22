@@ -1,0 +1,125 @@
+{
+  "fpsLimit": 60,
+  "interactivity": {
+    "detect_on": "canvas",
+    "events": {
+      "onclick": {
+        "enable": true,
+        "mode": "push"
+      },
+      "onhover": {
+        "enable": false,
+        "mode": "repulse",
+        "parallax": {
+          "enable": false,
+          "force": 60,
+          "smooth": 10
+        }
+      },
+      "resize": true
+    },
+    "modes": {
+      "bubble": {
+        "distance": 400,
+        "duration": 2,
+        "opacity": 0.8,
+        "size": 40,
+        "speed": 3
+      },
+      "grab": {
+        "distance": 400,
+        "line_linked": {
+          "opacity": 1
+        }
+      },
+      "push": {
+        "particles_nb": 4
+      },
+      "remove": {
+        "particles_nb": 2
+      },
+      "repulse": {
+        "distance": 200,
+        "duration": 0.4
+      }
+    }
+  },
+  "particles": {
+    "color": {
+      "value": "#ffffff"
+    },
+    "move": {
+      "attract": {
+        "enable": false,
+        "rotateX": 600,
+        "rotateY": 1200
+      },
+      "noise": {
+        "enable": true
+      },
+      "bounce": false,
+      "direction": "none",
+      "enable": true,
+      "out_mode": "out",
+      "random": false,
+      "speed": 6,
+      "straight": false
+    },
+    "number": {
+      "density": {
+        "enable": true,
+        "value_area": 800
+      },
+      "value": 80
+    },
+    "rotate": {
+      "value": 45,
+      "path": true
+    },
+    "opacity": {
+      "anim": {
+        "enable": false,
+        "opacity_min": 0.1,
+        "speed": 1,
+        "sync": false
+      },
+      "random": false,
+      "value": 1
+    },
+    "shape": {
+      "image": {
+        "height": 128,
+        "src": "https://cdn.matteobruni.it/images/particles/plane_alt.png",
+        "width": 128
+      },
+      "type": "image"
+    },
+    "size": {
+      "anim": {
+        "enable": false,
+        "size_min": 0.1,
+        "speed": 40,
+        "sync": false
+      },
+      "random": {
+        "enable": true,
+        "minimumValue": 16
+      },
+      "value": 32
+    }
+  },
+  "polygon": {
+    "draw": {
+      "enable": false,
+      "lineColor": "#ffffff",
+      "lineWidth": 0.5
+    },
+    "move": {
+      "radius": 10
+    },
+    "scale": 1,
+    "type": "none",
+    "url": ""
+  },
+  "retina_detect": true
+}
