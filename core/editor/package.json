@@ -34,7 +34,7 @@
     "clear:dist": "rimraf -f ./dist",
     "build:ts:es": "tsc -b tsconfig.browser.json",
     "build:ts": "tsc",
-    "build:css": " sass src/scss/editor.scss dist/css/tsparticles.editor.css",
+    "build:css": "sass src/scss/editor.scss dist/css/tsparticles.editor.css",
     "build": "yarn clear:dist && yarn prettify:src && yarn build:ts:es && yarn lint && webpack -p && yarn build:ts && yarn build:css && yarn prettify:readme",
     "prepare": "yarn build"
   },

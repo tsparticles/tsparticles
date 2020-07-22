@@ -1,4 +1,4 @@
-tsParticles.load("tsparticles", {
+tsParticles.load("particles", {
     fpsLimit: 60,
     particles: {
         color: {
