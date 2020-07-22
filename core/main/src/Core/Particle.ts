@@ -41,6 +41,7 @@ import { Mover } from "./Particle/Mover";
  */
 export class Particle implements IParticle {
     public angle: number;
+    public pathAngle: number;
     public destroyed: boolean;
     public rotateDirection: RotateDirection | keyof typeof RotateDirection | RotateDirectionAlt;
     public randomIndexData?: number;
@@ -187,12 +188,11 @@ export class Particle implements IParticle {
         };
 
         const rotateOptions = this.particlesOptions.rotate;
-        const initialAngle = rotateOptions.path
-            ? Math.atan2(this.initialVelocity.vertical, this.initialVelocity.horizontal)
-            : 0;
+
         const degAngle = rotateOptions.random ? Math.random() * 360 : rotateOptions.value;
 
-        this.angle = initialAngle + (degAngle * Math.PI) / 180;
+        this.angle = (degAngle * Math.PI) / 180;
+        this.pathAngle = Math.atan2(this.initialVelocity.vertical, this.initialVelocity.horizontal);
 
         this.rotateDirection = rotateOptions.direction;
 
