@@ -105,27 +105,32 @@ export class Updater {
 
     private updateAngle(delta: IDelta): void {
         const particle = this.particle;
-        const rotateAnimation = particle.particlesOptions.rotate.animation;
+        const rotate = particle.particlesOptions.rotate;
+        const rotateAnimation = rotate.animation;
         const speed = (rotateAnimation.speed / 360) * delta.factor;
         const max = 2 * Math.PI;
 
-        if (rotateAnimation.enable) {
-            switch (particle.rotateDirection) {
-                case RotateDirection.clockwise:
-                    particle.angle += speed;
+        if (rotate.path) {
+            particle.pathAngle = Math.atan2(particle.velocity.vertical, particle.velocity.horizontal);
+        } else {
+            if (rotateAnimation.enable) {
+                switch (particle.rotateDirection) {
+                    case RotateDirection.clockwise:
+                        particle.angle += speed;
 
-                    if (particle.angle > max) {
-                        particle.angle -= max;
-                    }
-                    break;
-                case RotateDirection.counterClockwise:
-                default:
-                    particle.angle -= speed;
+                        if (particle.angle > max) {
+                            particle.angle -= max;
+                        }
+                        break;
+                    case RotateDirection.counterClockwise:
+                    default:
+                        particle.angle -= speed;
 
-                    if (particle.angle < 0) {
-                        particle.angle += max;
-                    }
-                    break;
+                        if (particle.angle < 0) {
+                            particle.angle += max;
+                        }
+                        break;
+                }
             }
         }
     }
