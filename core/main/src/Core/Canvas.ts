@@ -121,13 +121,15 @@ export class Canvas {
     public paint(): void {
         const options = this.container.options;
 
-        if (this.context) {
-            if (options.backgroundMask.enable && options.backgroundMask.cover && this.coverColor) {
-                CanvasUtils.clear(this.context, this.size);
-                this.paintBase(ColorUtils.getStyleFromRgb(this.coverColor, this.coverColor.a));
-            } else {
-                this.paintBase();
-            }
+        if (!this.context) {
+            return;
+        }
+
+        if (options.backgroundMask.enable && options.backgroundMask.cover && this.coverColor) {
+            CanvasUtils.clear(this.context, this.size);
+            this.paintBase(ColorUtils.getStyleFromRgb(this.coverColor, this.coverColor.a));
+        } else {
+            this.paintBase();
         }
     }
 
@@ -415,9 +417,11 @@ export class Canvas {
     }
 
     private paintBase(baseColor?: string): void {
-        if (this.context) {
-            CanvasUtils.paintBase(this.context, this.size, baseColor);
+        if (!this.context) {
+            return;
         }
+
+        CanvasUtils.paintBase(this.context, this.size, baseColor);
     }
 
     private lineStyle(p1: IParticle, p2: IParticle): CanvasGradient | undefined {
