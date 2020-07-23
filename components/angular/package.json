@@ -71,7 +71,7 @@
     "@angular-devkit/build-ng-packagr": "~0.1000.3",
     "@angular/cli": "~10.0.3",
     "@angular/compiler-cli": "^10.0.4",
-    "@types/node": "^14.0.23",
+    "@types/node": "^14.0.24",
     "codelyzer": "^6.0.0",
     "fs": "^0.0.1-security",
     "ng-packagr": "^10.0.1",
