@@ -2459,19 +2459,6 @@
     "@prefresh/core" "^0.7.2"
     "@prefresh/utils" "^0.2.1"
 
-"@rollup/plugin-commonjs@^13.0.0":
-  version "13.0.2"
-  resolved "https://registry.yarnpkg.com/@rollup/plugin-commonjs/-/plugin-commonjs-13.0.2.tgz#b7783f0db049450c72d60bc06cf48d4951515e58"
-  integrity sha512-9JXf2k8xqvMYfqmhgtB6eCgMN9fbxwF1XDF3mGKJc6pkAmt0jnsqurxQ0tC1akQKNSXCm7c3unQxa3zuxtZ7mQ==
-  dependencies:
-    "@rollup/pluginutils" "^3.0.8"
-    commondir "^1.0.1"
-    estree-walker "^1.0.1"
-    glob "^7.1.2"
-    is-reference "^1.1.2"
-    magic-string "^0.25.2"
-    resolve "^1.11.0"
-
 "@rollup/plugin-commonjs@^14.0.0":
   version "14.0.0"
   resolved "https://registry.yarnpkg.com/@rollup/plugin-commonjs/-/plugin-commonjs-14.0.0.tgz#4285f9ec2db686a31129e5a2b415c94aa1f836f0"
@@ -3509,7 +3496,7 @@ ajv@6.12.2:
     json-schema-traverse "^0.4.1"
     uri-js "^4.2.2"
 
-ajv@^6.1.0, ajv@^6.10.0, ajv@^6.10.2, ajv@^6.12.2, ajv@^6.5.5:
+ajv@^6.1.0, ajv@^6.10.0, ajv@^6.10.2, ajv@^6.12.2, ajv@^6.12.3, ajv@^6.5.5:
   version "6.12.3"
   resolved "https://registry.yarnpkg.com/ajv/-/ajv-6.12.3.tgz#18c5af38a111ddeb4f2697bd78d68abc1cabd706"
   integrity sha512-4K0cK3L1hsqk9xIb2z9vs/XU+PGJZ9PNpJRDS9YLzmNdX6jmVPfamLvTJr0aDAusnHyCHO6MjzlkAsgtqp9teA==
@@ -11929,15 +11916,15 @@ next-tick@~1.0.0:
   resolved "https://registry.yarnpkg.com/next-tick/-/next-tick-1.0.0.tgz#ca86d1fe8828169b0120208e3dc8424b9db8342c"
   integrity sha1-yobR/ogoFpsBICCOPchCS524NCw=
 
-ng-packagr@^10.0.1:
-  version "10.0.1"
-  resolved "https://registry.yarnpkg.com/ng-packagr/-/ng-packagr-10.0.1.tgz#077b38121a7b7cd26e37127e8c4160eeaa7528f4"
-  integrity sha512-jTG79Dg/FuSuDIcCzbd/MOyJDrb+DUBXNT2NZbHxQ7y5Tm0tlqJs/9ffr0q0879A8TYuV8GH3+4uP3Oup6LBFw==
+ng-packagr@^10.0.3:
+  version "10.0.3"
+  resolved "https://registry.yarnpkg.com/ng-packagr/-/ng-packagr-10.0.3.tgz#ef3fa4c3dbc826695b8e12b307172e23504e1229"
+  integrity sha512-M10y3eeAbIaU+NvNZEeGnuoWxZis0GFj9EKetYmmsXMjHxsPqEAZ1PUkKioIo0RPXuR1N4QGW0MSegHp5kBFeg==
   dependencies:
-    "@rollup/plugin-commonjs" "^13.0.0"
+    "@rollup/plugin-commonjs" "^14.0.0"
     "@rollup/plugin-json" "^4.0.0"
     "@rollup/plugin-node-resolve" "^8.0.0"
-    ajv "^6.10.2"
+    ajv "^6.12.3"
     autoprefixer "^9.6.5"
     browserslist "^4.7.0"
     chalk "^4.0.0"
