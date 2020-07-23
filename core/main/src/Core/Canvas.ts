@@ -8,6 +8,7 @@ import type { ILink } from "./Interfaces/ILink";
 import { CanvasUtils, ColorUtils, Constants } from "../Utils";
 import type { Particle } from "./Particle";
 import type { IDelta } from "./Interfaces/IDelta";
+import type { IRgba } from "./Interfaces/IRgba";
 
 /**
  * Canvas manager
@@ -28,7 +29,7 @@ export class Canvas {
      */
     private context: CanvasRenderingContext2D | null;
     private generatedCanvas: boolean;
-    private coverColor?: IRgb;
+    private coverColor?: IRgba;
     private trailFillColor?: IRgb;
 
     /**
@@ -57,7 +58,17 @@ export class Canvas {
         const color = cover.color;
         const trail = options.particles.move.trail;
 
-        this.coverColor = ColorUtils.colorToRgb(color);
+        const coverRgb = ColorUtils.colorToRgb(color);
+
+        this.coverColor =
+            coverRgb !== undefined
+                ? {
+                      r: coverRgb.r,
+                      g: coverRgb.g,
+                      b: coverRgb.b,
+                      a: cover.opacity,
+                  }
+                : undefined;
         this.trailFillColor = ColorUtils.colorToRgb(trail.fillColor);
 
         this.initBackground();
@@ -112,7 +123,8 @@ export class Canvas {
 
         if (this.context) {
             if (options.backgroundMask.enable && options.backgroundMask.cover && this.coverColor) {
-                this.paintBase(ColorUtils.getStyleFromRgb(this.coverColor));
+                CanvasUtils.clear(this.context, this.size);
+                this.paintBase(ColorUtils.getStyleFromRgb(this.coverColor, this.coverColor.a));
             } else {
                 this.paintBase();
             }
