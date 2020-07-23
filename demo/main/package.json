@@ -1,7 +1,7 @@
 {
   "name": "tsparticles-demo",
   "private": true,
-  "version": "1.2.3",
+  "version": "1.2.4",
   "description": "> TODO: description",
   "author": "Matteo Bruni <ar3s@icloud.com>",
   "homepage": "https://github.com/matteobruni/tsparticles#readme",
@@ -40,9 +40,9 @@
     "pug-cli": "^1.0.0-alpha6",
     "stylus": "^0.54.8",
     "three": "^0.118.3",
-    "tsparticles": "^1.17.3"
+    "tsparticles": "^1.17.4"
   },
   "dependencies": {
-    "tsparticles-preset-basic": "^1.2.3"
+    "tsparticles-preset-basic": "^1.2.4"
   }
 }
