@@ -1,19 +1,75 @@
 .container {
-  border: 1px solid #000;
   padding: 0.25em;
+}
+.container .element,
+.container .title {
+  display: flex;
+}
+.container input,
+.container select,
+.container label,
+.container .name,
+.container .collapse {
+  flex: 1;
+}
+.container .collapse {
+  text-align: right;
 }
 
 .container-content {
-  border: 1px solid #000;
   padding: 0.5em;
 }
 
 .editor-root {
-  background: #fff;
   position: fixed;
   max-height: 100vh;
-  width: 252px;
+  min-width: 252px;
+  max-width: 400px;
   overflow: auto;
+}
+
+.top {
+  top: 0;
+}
+
+.bottom {
+  bottom: 0;
+}
+
+.left {
+  left: 0;
+}
+
+.right {
+  right: 0;
+}
+
+.editor-dark {
+  color: #fff;
+  background: #000;
+}
+.editor-dark input,
+.editor-dark select,
+.editor-dark label {
+  color: #fff;
+  background: #000;
+}
+.editor-dark .container {
+  border: 1px solid #fff;
+}
+
+.editor-light {
+  color: #000;
+  background: #fff;
+}
+.editor-light input,
+.editor-light select,
+.editor-light label {
+  color: #000;
+  background: #fff;
+}
+.editor-light .container {
+  border: 1px solid #000;
 }
 
 /*# sourceMappingURL=editor.css.map */

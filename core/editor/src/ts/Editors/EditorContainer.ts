@@ -28,11 +28,24 @@ export class EditorContainer extends EditorItem {
 
         this.element.classList.add("editor", "container");
 
+        const divTitle = document.createElement("div");
+
+        divTitle.classList.add("title");
+
+        const divName = document.createElement("div");
+
+        divName.classList.add("name");
+
         const b = document.createElement("b");
 
         b.textContent = title;
 
-        this.element.append(b);
+        divName.append(b);
+        divTitle.append(divName);
+
+        const divCollapse = document.createElement("div");
+
+        divCollapse.classList.add("collapse");
 
         this.collapseButton = document.createElement("button");
 
@@ -42,7 +55,10 @@ export class EditorContainer extends EditorItem {
             this.toggleCollapse();
         });
 
-        this.element.append(this.collapseButton);
+        divCollapse.append(this.collapseButton);
+        divTitle.append(divCollapse);
+
+        this.element.append(divTitle);
 
         this.childrenContainer = document.createElement("div");
 
@@ -71,6 +87,9 @@ export class EditorContainer extends EditorItem {
         change: (value: number | string | boolean) => void
     ): EditorItem {
         const divContainer = document.createElement("div");
+
+        divContainer.classList.add("element");
+
         const htmlLabel = document.createElement("label");
 
         htmlLabel.textContent = label;

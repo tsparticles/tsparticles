@@ -14,6 +14,34 @@ export class Editor {
         this.addButtons();
     }
 
+    public top(): Editor {
+        this.container.element.classList.add("top");
+
+        return this;
+    }
+
+    public bottom(): Editor {
+        this.container.element.classList.add("bottom");
+
+        return this;
+    }
+
+    public left(): Editor {
+        this.container.element.classList.add("left");
+
+        return this;
+    }
+
+    public right(): Editor {
+        this.container.element.classList.add("right");
+
+        return this;
+    }
+
+    public theme(theme: string) {
+        this.container.element.classList.add(`editor-${theme}`);
+    }
+
     private addOptions() {
         const options = new OptionsEditor(this.container);
     }

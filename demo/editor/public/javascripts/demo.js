@@ -16,6 +16,6 @@ tsParticles.load("particles", {
         }
     }
 }).then(container => {
-    showEditor(container);
+    showEditor(container).top().left().theme("dark");
 })
 

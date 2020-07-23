@@ -16,20 +16,18 @@ export class EditorColorInput extends EditorItem {
         input.id = `input_${this.name}`;
         input.value = this.value;
 
-        this.element.style.backgroundColor = input.value;
-        this.element.style.color = this.textColor(input.value);
+        this.updateStyle(input.value);
 
         input.addEventListener("change", () => {
             const currentValue = (this.element as HTMLInputElement).value;
 
             this.change(currentValue);
 
-            this.element.style.backgroundColor = currentValue;
-            this.element.style.color = this.textColor(currentValue);
+            this.updateStyle(currentValue);
         });
     }
 
-    createElement(): HTMLElement {
+    protected createElement(): HTMLElement {
         const element = document.createElement("input");
 
         element.setAttribute("type", "text");
@@ -37,15 +35,25 @@ export class EditorColorInput extends EditorItem {
         return element;
     }
 
-    textColor(value: string | undefined): string {
+    private updateStyle(bgColor: string) {
+        this.element.style.backgroundColor = bgColor;
+
+        const textColor = this.textColor(bgColor);
+
+        if (textColor !== undefined) {
+            this.element.style.color = textColor;
+        }
+    }
+
+    private textColor(value: string | undefined): string | undefined {
         if (value === undefined) {
-            return "#000";
+            return undefined;
         }
 
         const rgb = ColorUtils.stringToRgb(value);
 
         if (!rgb) {
-            return "#000";
+            return undefined;
         }
 
         const color = Math.round((rgb.r * 299 + rgb.g * 587 + rgb.b * 114) / 1000);

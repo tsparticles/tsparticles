@@ -7,5 +7,5 @@ export abstract class EditorItem {
         this.element = this.createElement();
     }
 
-    public abstract createElement(): HTMLElement;
+    protected abstract createElement(): HTMLElement;
 }
