@@ -4,6 +4,7 @@ import { ParticlesOptionsEditor } from "./Particles/ParticlesOptionsEditor";
 import type { Container } from "tsparticles/dist/Core/Container";
 import type { IOptions } from "tsparticles/dist/Options/Interfaces/IOptions";
 import { InteractivityOptionsEditor } from "./Interactivity/InteractivityOptionsEditor";
+import { BackgroundMaskOptionsEditor } from "./BackgroundMask/BackgroundMaskOptionsEditor";
 
 export class OptionsEditor {
     public readonly container: EditorContainer;
@@ -75,7 +76,9 @@ export class OptionsEditor {
         const options = new BackgroundOptionsEditor(this.container, this.options.background);
     }
 
-    private addBackgroundMask(): void {}
+    private addBackgroundMask(): void {
+        const options = new BackgroundMaskOptionsEditor(this.container, this.options.backgroundMask);
+    }
 
     private addInteractivity(): void {
         const options = new InteractivityOptionsEditor(this.container, this.options.interactivity);

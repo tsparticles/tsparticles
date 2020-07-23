@@ -46,6 +46,8 @@ export class EditorContainer extends EditorItem {
 
         this.childrenContainer = document.createElement("div");
 
+        this.childrenContainer.classList.add("container-content");
+
         this.element.append(this.childrenContainer);
 
         parent.append(this.element);

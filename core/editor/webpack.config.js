@@ -21,7 +21,7 @@ const getJsConfig = (entry) => {
         output: {
             path: path.resolve(__dirname, "dist"),
             filename: "[name].js",
-            libraryTarget: "window",
+            libraryTarget: "umd",
             library: ""
         },
         resolve: {
