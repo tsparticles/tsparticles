@@ -3,11 +3,22 @@
     color: $textColor;
     background-color: $bgColor;
 
-    input,
-    select,
-    label {
+    input:not([type="button"]),
+    select {
+      color: #000;
+      background-color: #fff;
+      border: 1px solid $borderColor;
+    }
+
+    button,
+    input[type="button"] {
       color: $textColor;
       background-color: $bgColor;
+      border: 1px solid $borderColor;
+
+      &:hover {
+        background-color: darken($bgColor, 10%);
+      }
     }
 
     .container {

@@ -62,7 +62,7 @@ export class Editor {
         this.container.addButton("stop", "Stop", () => {
             this.particles.stop();
         });
-        this.container.addButton("exportConfig", "Export configuration", () => {
+        this.container.addButton("exportConfig", "Export", () => {
             const json = this.particles.exportConfiguration();
             const contentType = "application/json";
             const blob = new Blob([json], { type: contentType });
