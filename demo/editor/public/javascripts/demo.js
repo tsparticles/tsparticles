@@ -5,7 +5,7 @@ tsParticles.load("particles", {
             "value": 80,
             "density": {
                 "enable": true,
-                "value_area": 800
+                "area": 800
             }
         },
         "color": {
@@ -18,39 +18,41 @@ tsParticles.load("particles", {
         },
         "shape": {
             "type": "circle",
-            "stroke": {
-                "width": 0
-            },
-            "polygon": {
-                "nb_sides": 5
-            },
-            "image": {
-                "src": "https://cdn.matteobruni.it/images/particles/github.svg",
-                "width": 100,
-                "height": 100
+            options: {
+                "polygon": {
+                    "sides": 5
+                },
+                "image": {
+                    "src": "https://cdn.matteobruni.it/images/particles/github.svg",
+                    "width": 100,
+                    "height": 100
+                }
             }
+        },
+        "stroke": {
+            "width": 0
         },
         "opacity": {
             "value": 0.5,
             "random": false,
-            "anim": {
+            "animation": {
                 "enable": false,
                 "speed": 3,
-                "opacity_min": 0.1,
+                "minimumValue": 0.1,
                 "sync": false
             }
         },
         "size": {
             "value": 3,
             "random": true,
-            "anim": {
+            "animation": {
                 "enable": false,
                 "speed": 20,
-                "size_min": 0.1,
+                "minimumValue": 0.1,
                 "sync": false
             }
         },
-        "line_linked": {
+        "links": {
             "enable": true,
             "distance": 100,
             "color": "#ffffff",
@@ -63,7 +65,7 @@ tsParticles.load("particles", {
             "direction": "none",
             "random": false,
             "straight": false,
-            "out_mode": "out",
+            "outMode": "out",
             "attract": {
                 "enable": false,
                 "rotateX": 600,
@@ -72,13 +74,13 @@ tsParticles.load("particles", {
         }
     },
     "interactivity": {
-        "detect_on": "canvas",
+        "detectsOn": "canvas",
         "events": {
-            "onhover": {
+            "onHover": {
                 "enable": true,
                 "mode": "repulse"
             },
-            "onclick": {
+            "onClick": {
                 "enable": true,
                 "mode": "push"
             },
@@ -87,7 +89,7 @@ tsParticles.load("particles", {
         "modes": {
             "grab": {
                 "distance": 400,
-                "line_linked": {
+                "links": {
                     "opacity": 1
                 }
             },
@@ -101,14 +103,14 @@ tsParticles.load("particles", {
                 "distance": 200
             },
             "push": {
-                "particles_nb": 4
+                "quantity": 4
             },
             "remove": {
-                "particles_nb": 2
+                "quantity": 2
             }
         }
     },
-    "retina_detect": true,
+    "detectRetina": true,
     "background": {
         "color": "#000000",
         "image": "",
