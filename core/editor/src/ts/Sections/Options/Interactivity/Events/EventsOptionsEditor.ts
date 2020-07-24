@@ -1,7 +1,8 @@
 import type { EditorContainer } from "../../../../Editors/EditorContainer";
 import type { Container } from "tsparticles/dist/Core/Container";
-import type { IParticlesNumber } from "tsparticles/dist/Options/Interfaces/Particles/IParticlesNumber";
 import { IEvents } from "tsparticles/dist/Options/Interfaces/Interactivity/Events/IEvents";
+import { ClickMode, AbsorberClickMode, EmitterClickMode, HoverMode } from "tsparticles";
+import { EditorSelectInput } from "../../../../Editors/EditorSelectInput";
 
 export class EventsOptionsEditor {
     public readonly container: EditorContainer;
@@ -11,7 +12,101 @@ export class EventsOptionsEditor {
         this.container = parent.addContainer("events", "Events", true);
         this.particles = this.container.particles;
 
+        this.addClick();
+        this.addHover();
         this.addEvents();
+    }
+
+    private addClick(): void {
+        const particles = this.container.particles;
+        const options = this.options.onClick;
+
+        const clickContainer = this.container.addContainer("onClick", "Mouse Click", true);
+
+        clickContainer.addProperty(
+            "enable",
+            "Enable",
+            options.enable,
+            typeof options.enable,
+            async (value: string | number | boolean) => {
+                if (typeof value === "boolean") {
+                    options.enable = value;
+
+                    await particles.refresh();
+                }
+            }
+        );
+
+        const modeSelectInput = clickContainer.addProperty(
+            "mode",
+            "Mode",
+            options.mode,
+            "select",
+            async (value: string | number | boolean) => {
+                if (typeof value === "string") {
+                    options.mode = value;
+
+                    await particles.refresh();
+                }
+            }
+        ) as EditorSelectInput;
+
+        modeSelectInput.addItem(ClickMode.attract);
+        modeSelectInput.addItem(ClickMode.bubble);
+        modeSelectInput.addItem(ClickMode.pause);
+        modeSelectInput.addItem(ClickMode.push);
+        modeSelectInput.addItem(ClickMode.remove);
+        modeSelectInput.addItem(ClickMode.repulse);
+        modeSelectInput.addItem(ClickMode.trail);
+        const absorbersGroup = "Absorbers";
+        modeSelectInput.addItemGroup(absorbersGroup);
+        modeSelectInput.addItem(AbsorberClickMode.absorber, undefined, absorbersGroup);
+        const emittersGroup = "Emitters";
+        modeSelectInput.addItemGroup(emittersGroup);
+        modeSelectInput.addItem(EmitterClickMode.emitter, undefined, emittersGroup);
+    }
+
+    private addHover(): void {
+        const particles = this.container.particles;
+        const options = this.options.onHover;
+
+        const hoverContainer = this.container.addContainer("onHover", "Mouse Hover", true);
+
+        hoverContainer.addProperty(
+            "enable",
+            "Enable",
+            options.enable,
+            typeof options.enable,
+            async (value: string | number | boolean) => {
+                if (typeof value === "boolean") {
+                    options.enable = value;
+
+                    await particles.refresh();
+                }
+            }
+        );
+
+        const modeSelectInput = hoverContainer.addProperty(
+            "mode",
+            "Mode",
+            options.mode,
+            "select",
+            async (value: string | number | boolean) => {
+                if (typeof value === "string") {
+                    options.mode = value;
+
+                    await particles.refresh();
+                }
+            }
+        ) as EditorSelectInput;
+
+        modeSelectInput.addItem(HoverMode.attract);
+        modeSelectInput.addItem(HoverMode.bubble);
+        modeSelectInput.addItem(HoverMode.connect);
+        modeSelectInput.addItem(HoverMode.grab);
+        modeSelectInput.addItem(HoverMode.repulse);
+        modeSelectInput.addItem(HoverMode.slow);
+        modeSelectInput.addItem(HoverMode.trail);
     }
 
     private addEvents(): void {

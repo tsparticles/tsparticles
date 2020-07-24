@@ -33,7 +33,7 @@ export class ShapeOptionsEditor {
         ) as EditorSelectInput;
 
         for (const key of particles.drawers.keys()) {
-            selectType.addItem(key, key);
+            selectType.addItem(key);
         }
     }
 }

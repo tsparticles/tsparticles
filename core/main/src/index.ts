@@ -10,6 +10,9 @@ tsParticles.init();
 const { particlesJS, pJSDom } = initPjs(tsParticles);
 
 export * from "./Enums";
+export * from "./Plugins/Absorbers/Enums";
+export * from "./Plugins/Emitters/Enums";
+export * from "./Plugins/PolygonMask/Enums";
 export { CanvasUtils, Circle, CircleWarp, ColorUtils, Constants, Point, Rectangle, Utils };
 export * from "./Types";
 export { particlesJS, pJSDom, tsParticles };

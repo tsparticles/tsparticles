@@ -25,13 +25,23 @@ export class EditorSelectInput extends EditorItem {
         return document.createElement("select");
     }
 
-    public addItem(value: string, text: string): void {
+    public addItem(value: string, text?: string, group?: string): void {
         const select = this.element as HTMLSelectElement;
         const item = document.createElement("option");
+        const groupElement = select.querySelector(`[label=${group}]`);
 
         item.value = value;
-        item.text = text;
+        item.text = text ?? value;
 
-        select.append(item);
+        (groupElement ?? select).append(item);
+    }
+
+    public addItemGroup(name: string): void {
+        const select = this.element as HTMLSelectElement;
+        const group = document.createElement("optgroup");
+
+        group.label = name;
+
+        select.append(group);
     }
 }

@@ -49,8 +49,8 @@ export class InteractivityOptionsEditor {
             }
         ) as EditorSelectInput;
 
-        selectDetect.addItem(InteractivityDetect.canvas, InteractivityDetect.canvas);
-        selectDetect.addItem(InteractivityDetect.parent, InteractivityDetect.parent);
-        selectDetect.addItem(InteractivityDetect.window, InteractivityDetect.window);
+        selectDetect.addItem(InteractivityDetect.canvas);
+        selectDetect.addItem(InteractivityDetect.parent);
+        selectDetect.addItem(InteractivityDetect.window);
     }
 }
