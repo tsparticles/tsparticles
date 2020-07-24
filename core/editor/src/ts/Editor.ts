@@ -6,7 +6,13 @@ export class Editor {
     public readonly container: EditorContainer;
 
     constructor(public readonly particles: Container) {
-        this.container = new EditorContainer(particles, `${particles.id}_editor`, "tsParticles", false, document.body);
+        this.container = new EditorContainer(
+            particles,
+            `${particles.id}_editor`,
+            "tsParticles Editor",
+            false,
+            document.body
+        );
 
         this.container.element.classList.add("editor-root");
 

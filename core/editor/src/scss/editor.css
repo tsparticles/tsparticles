@@ -108,8 +108,8 @@
 }
 .editor-dark input:not([type=button]),
 .editor-dark select {
-  color: #fff;
-  background-color: #000;
+  color: #000;
+  background-color: #fff;
   border: 1px solid #fff;
 }
 .editor-dark button,
@@ -132,8 +132,8 @@
 }
 .editor-red input:not([type=button]),
 .editor-red select {
-  color: #fff;
-  background-color: #dc3545;
+  color: #000;
+  background-color: #fff;
   border: 1px solid rgba(0, 0, 0, 0.125);
 }
 .editor-red button,
@@ -156,8 +156,8 @@
 }
 .editor-blue input:not([type=button]),
 .editor-blue select {
-  color: #fff;
-  background-color: #007bff;
+  color: #000;
+  background-color: #fff;
   border: 1px solid rgba(0, 0, 0, 0.125);
 }
 .editor-blue button,
@@ -180,8 +180,8 @@
 }
 .editor-green input:not([type=button]),
 .editor-green select {
-  color: #fff;
-  background-color: #28a745;
+  color: #000;
+  background-color: #fff;
   border: 1px solid rgba(0, 0, 0, 0.125);
 }
 .editor-green button,
