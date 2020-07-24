@@ -10,7 +10,7 @@ export class ColorOptionsEditor {
     private readonly particles: Container;
 
     constructor(private readonly parent: EditorContainer, private readonly options: IAnimatableColor) {
-        this.container = parent.addContainer("color", "Color", true);
+        this.container = parent.addContainer("color", "Color");
         this.particles = this.container.particles;
 
         this.addColor();
@@ -49,7 +49,7 @@ export class ColorOptionsEditor {
             }
         );
 
-        const animationContainer = this.container.addContainer("animation", "Animation", true);
+        const animationContainer = this.container.addContainer("animation", "Animation");
 
         animationContainer.addProperty(
             "enable",

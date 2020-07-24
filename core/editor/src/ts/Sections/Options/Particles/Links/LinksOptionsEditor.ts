@@ -10,7 +10,7 @@ export class LinksOptionsEditor {
     private readonly particles: Container;
 
     constructor(private readonly parent: EditorContainer, private readonly options: ILinks) {
-        this.container = parent.addContainer("links", "Links", true);
+        this.container = parent.addContainer("links", "Links");
         this.particles = this.container.particles;
 
         this.addLinks();
@@ -125,6 +125,8 @@ export class LinksOptionsEditor {
         );
 
         (opacityInput.element as HTMLInputElement).step = "0.01";
+        (opacityInput.element as HTMLInputElement).min = "0";
+        (opacityInput.element as HTMLInputElement).max = "1";
 
         let trianglesColorStringValue = "";
 
@@ -145,7 +147,7 @@ export class LinksOptionsEditor {
             }
         }
 
-        const triangleContainer = this.container.addContainer("triangles", "Triangles", true);
+        const triangleContainer = this.container.addContainer("triangles", "Triangles");
 
         triangleContainer.addProperty(
             "color",

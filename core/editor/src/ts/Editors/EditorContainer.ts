@@ -75,7 +75,7 @@ export class EditorContainer extends EditorItem {
         return document.createElement("div");
     }
 
-    public addContainer(name: string, title: string, collapsed: boolean): EditorContainer {
+    public addContainer(name: string, title: string, collapsed = true): EditorContainer {
         return new EditorContainer(this.particles, `${this.name}_${name}`, title, collapsed, this.childrenContainer);
     }
 

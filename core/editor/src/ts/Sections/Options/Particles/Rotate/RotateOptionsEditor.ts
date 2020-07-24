@@ -7,7 +7,7 @@ export class RotateOptionsEditor {
     private readonly particles: Container;
 
     constructor(private readonly parent: EditorContainer, private readonly options: IRotate) {
-        this.container = parent.addContainer("rotate", "Rotate", true);
+        this.container = parent.addContainer("rotate", "Rotate");
         this.particles = this.container.particles;
 
         this.addRotate();
@@ -31,7 +31,7 @@ export class RotateOptionsEditor {
             }
         );
 
-        const animationContainer = this.container.addContainer("animation", "Animation", true);
+        const animationContainer = this.container.addContainer("animation", "Animation");
 
         animationContainer.addProperty(
             "enable",

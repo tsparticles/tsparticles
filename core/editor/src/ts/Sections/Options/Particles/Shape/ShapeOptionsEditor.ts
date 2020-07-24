@@ -8,7 +8,7 @@ export class ShapeOptionsEditor {
     private readonly particles: Container;
 
     constructor(private readonly parent: EditorContainer, private readonly options: IShape) {
-        this.container = parent.addContainer("shape", "Shape", true);
+        this.container = parent.addContainer("shape", "Shape");
         this.particles = this.container.particles;
 
         this.addShape();

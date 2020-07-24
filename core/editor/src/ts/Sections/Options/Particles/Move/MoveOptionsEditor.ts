@@ -8,7 +8,7 @@ export class MoveOptionsEditor {
     private readonly particles: Container;
 
     constructor(private readonly parent: EditorContainer, private readonly options: IMove) {
-        this.container = parent.addContainer("move", "Move", true);
+        this.container = parent.addContainer("move", "Move");
         this.particles = this.container.particles;
 
         this.addMove();
@@ -18,7 +18,7 @@ export class MoveOptionsEditor {
         const particles = this.container.particles;
         const options = this.options;
 
-        const angleContainer = this.container.addContainer("angle", "Angle", true);
+        const angleContainer = this.container.addContainer("angle", "Angle");
         const angle = options.angle as IMoveAngle;
 
         angleContainer.addProperty(

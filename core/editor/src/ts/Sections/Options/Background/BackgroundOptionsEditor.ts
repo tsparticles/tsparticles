@@ -11,7 +11,7 @@ export class BackgroundOptionsEditor {
     private readonly particles: Container;
 
     constructor(private readonly parent: EditorContainer, private readonly options: IBackground) {
-        this.container = parent.addContainer("background", "Background", true);
+        this.container = parent.addContainer("background", "Background");
         this.particles = this.container.particles;
 
         this.addColor();
@@ -85,6 +85,8 @@ export class BackgroundOptionsEditor {
         );
 
         (opacityItem.element as HTMLInputElement).step = "0.01";
+        (opacityItem.element as HTMLInputElement).min = "0";
+        (opacityItem.element as HTMLInputElement).max = "1";
 
         this.container.addProperty(
             "position",

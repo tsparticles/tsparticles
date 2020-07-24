@@ -9,7 +9,7 @@ export class SizeOptionsEditor {
     private readonly particles: Container;
 
     constructor(private readonly parent: EditorContainer, private readonly options: ISize) {
-        this.container = parent.addContainer("size", "Size", true);
+        this.container = parent.addContainer("size", "Size");
         this.particles = this.container.particles;
 
         this.addSize();
@@ -33,7 +33,7 @@ export class SizeOptionsEditor {
             }
         );
 
-        const animationContainer = this.container.addContainer("animation", "Animation", true);
+        const animationContainer = this.container.addContainer("animation", "Animation");
 
         animationContainer.addProperty(
             "destroy",
@@ -122,7 +122,7 @@ export class SizeOptionsEditor {
             }
         );
 
-        const randomContainer = this.container.addContainer("random", "Random", true);
+        const randomContainer = this.container.addContainer("random", "Random");
 
         const randomOptions = options.random as ISizeRandom;
 

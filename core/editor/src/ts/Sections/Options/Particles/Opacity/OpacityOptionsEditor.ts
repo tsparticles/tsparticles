@@ -7,7 +7,7 @@ export class OpacityOptionsEditor {
     private readonly particles: Container;
 
     constructor(private readonly parent: EditorContainer, private readonly options: IOpacity) {
-        this.container = parent.addContainer("opacity", "Opacity", true);
+        this.container = parent.addContainer("opacity", "Opacity");
         this.particles = this.container.particles;
 
         this.addOpacity();
@@ -32,8 +32,10 @@ export class OpacityOptionsEditor {
         );
 
         (opacityInput.element as HTMLInputElement).step = "0.01";
+        (opacityInput.element as HTMLInputElement).min = "0";
+        (opacityInput.element as HTMLInputElement).max = "1";
 
-        const animationContainer = this.container.addContainer("animation", "Animation", true);
+        const animationContainer = this.container.addContainer("animation", "Animation");
 
         animationContainer.addProperty(
             "enable",
@@ -64,6 +66,8 @@ export class OpacityOptionsEditor {
         );
 
         (minInput.element as HTMLInputElement).step = "0.01";
+        (minInput.element as HTMLInputElement).min = "0";
+        (minInput.element as HTMLInputElement).max = "1";
 
         const speedInput = animationContainer.addProperty(
             "speed",

@@ -11,7 +11,7 @@ export class InteractivityOptionsEditor {
     private readonly particles: Container;
 
     constructor(private readonly parent: EditorContainer, private readonly options: IInteractivity) {
-        this.container = parent.addContainer("interactivity", "Interactivity", true);
+        this.container = parent.addContainer("interactivity", "Interactivity");
         this.particles = this.container.particles;
 
         this.addEvents();

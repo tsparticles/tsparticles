@@ -9,7 +9,7 @@ export class EventsOptionsEditor {
     private readonly particles: Container;
 
     constructor(private readonly parent: EditorContainer, private readonly options: IEvents) {
-        this.container = parent.addContainer("events", "Events", true);
+        this.container = parent.addContainer("events", "Events");
         this.particles = this.container.particles;
 
         this.addClick();
@@ -20,8 +20,7 @@ export class EventsOptionsEditor {
     private addClick(): void {
         const particles = this.container.particles;
         const options = this.options.onClick;
-
-        const clickContainer = this.container.addContainer("onClick", "Mouse Click", true);
+        const clickContainer = this.container.addContainer("onClick", "Mouse Click");
 
         clickContainer.addProperty(
             "enable",
@@ -52,7 +51,7 @@ export class EventsOptionsEditor {
         ) as EditorSelectInput;
 
         modeSelectInput.addItem(ClickMode.attract);
-        modeSelectInput.addItem(ClickMode.bubble);
+        // modeSelectInput.addItem(ClickMode.bubble); // TODO: This mode seems buggy
         modeSelectInput.addItem(ClickMode.pause);
         modeSelectInput.addItem(ClickMode.push);
         modeSelectInput.addItem(ClickMode.remove);
@@ -69,8 +68,7 @@ export class EventsOptionsEditor {
     private addHover(): void {
         const particles = this.container.particles;
         const options = this.options.onHover;
-
-        const hoverContainer = this.container.addContainer("onHover", "Mouse Hover", true);
+        const hoverContainer = this.container.addContainer("onHover", "Mouse Hover");
 
         hoverContainer.addProperty(
             "enable",

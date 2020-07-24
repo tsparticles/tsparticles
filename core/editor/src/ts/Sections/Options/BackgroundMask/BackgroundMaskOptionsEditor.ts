@@ -12,7 +12,7 @@ export class BackgroundMaskOptionsEditor {
     private readonly particles: Container;
 
     constructor(private readonly parent: EditorContainer, private readonly options: IBackgroundMask) {
-        this.container = parent.addContainer("backgroundMask", "Background Mask", true);
+        this.container = parent.addContainer("backgroundMask", "Background Mask");
         this.particles = this.container.particles;
 
         this.addCover();
@@ -39,7 +39,7 @@ export class BackgroundMaskOptionsEditor {
             colorStringValue = `${rgb.r.toString(16)}${rgb.g.toString(16)}${rgb.b.toString(16)}`;
         }
 
-        const coverContainer = this.container.addContainer("cover", "Cover", true);
+        const coverContainer = this.container.addContainer("cover", "Cover");
 
         coverContainer.addProperty(
             "color",
@@ -70,6 +70,8 @@ export class BackgroundMaskOptionsEditor {
         );
 
         (opacityInput.element as HTMLInputElement).step = "0.01";
+        (opacityInput.element as HTMLInputElement).min = "0";
+        (opacityInput.element as HTMLInputElement).max = "1";
     }
 
     private addProperties(): void {

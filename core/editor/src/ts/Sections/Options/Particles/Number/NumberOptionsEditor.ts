@@ -7,7 +7,7 @@ export class NumberOptionsEditor {
     private readonly particles: Container;
 
     constructor(private readonly parent: EditorContainer, private readonly options: IParticlesNumber) {
-        this.container = parent.addContainer("number", "Number", true);
+        this.container = parent.addContainer("number", "Number");
         this.particles = this.container.particles;
 
         this.addNumber();
@@ -31,7 +31,7 @@ export class NumberOptionsEditor {
             }
         );
 
-        const densityContainer = this.container.addContainer("density", "Density", true);
+        const densityContainer = this.container.addContainer("density", "Density");
 
         densityContainer.addProperty(
             "area",

@@ -15,7 +15,7 @@ export class ParticlesOptionsEditor {
     private readonly particles: Container;
 
     constructor(private readonly parent: EditorContainer, private readonly options: IParticles) {
-        this.container = parent.addContainer("particles", "Particles", true);
+        this.container = parent.addContainer("particles", "Particles");
         this.particles = this.container.particles;
 
         this.addColor();
