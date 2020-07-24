@@ -44,32 +44,32 @@
   right: 0;
 }
 
-.editor-dark {
-  color: #fff;
-  background: #000;
-}
-.editor-dark input,
-.editor-dark select,
-.editor-dark label {
-  color: #fff;
-  background: #000;
-}
-.editor-dark .container {
-  border: 1px solid #fff;
-}
-
 .editor-light {
   color: #000;
-  background: #fff;
+  background-color: #fff;
 }
 .editor-light input,
 .editor-light select,
 .editor-light label {
   color: #000;
-  background: #fff;
+  background-color: #fff;
 }
 .editor-light .container {
   border: 1px solid #000;
+}
+
+.editor-dark {
+  color: #fff;
+  background-color: #000;
+}
+.editor-dark input,
+.editor-dark select,
+.editor-dark label {
+  color: #fff;
+  background-color: #000;
+}
+.editor-dark .container {
+  border: 1px solid #fff;
 }
 
 /*# sourceMappingURL=editor.css.map */

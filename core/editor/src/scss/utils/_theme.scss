@@ -1,0 +1,17 @@
+@mixin create-theme($name, $bgColor, $textColor, $borderColor) {
+  .editor-#{$name} {
+    color: $textColor;
+    background-color: $bgColor;
+
+    input,
+    select,
+    label {
+      color: $textColor;
+      background-color: $bgColor;
+    }
+
+    .container {
+      border: 1px solid $borderColor;
+    }
+  }
+}

@@ -1,3 +1,5 @@
+@use "utils/theme";
+
 .container {
   padding: 0.25em;
 
@@ -47,34 +49,5 @@
   right: 0;
 }
 
-.editor-dark {
-  color: #fff;
-  background: #000;
-
-  input,
-  select,
-  label {
-    color: #fff;
-    background: #000;
-  }
-
-  .container {
-    border: 1px solid #fff;
-  }
-}
-
-.editor-light {
-  color: #000;
-  background: #fff;
-
-  input,
-  select,
-  label {
-    color: #000;
-    background: #fff;
-  }
-
-  .container {
-    border: 1px solid #000;
-  }
-}
+@include theme.create-theme("light", #fff, #000, #000);
+@include theme.create-theme("dark", #000, #fff, #fff);
