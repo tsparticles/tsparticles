@@ -5,6 +5,7 @@ import type { Container } from "tsparticles/dist/Core/Container";
 import type { IOptions } from "tsparticles/dist/Options/Interfaces/IOptions";
 import { InteractivityOptionsEditor } from "./Interactivity/InteractivityOptionsEditor";
 import { BackgroundMaskOptionsEditor } from "./BackgroundMask/BackgroundMaskOptionsEditor";
+import { InfectionOptionsEditor } from "./Infection/InfectionOptionsEditor";
 
 export class OptionsEditor {
     public readonly container: EditorContainer;
@@ -84,7 +85,9 @@ export class OptionsEditor {
         const options = new InteractivityOptionsEditor(this.container, this.options.interactivity);
     }
 
-    private addInfection(): void {}
+    private addInfection(): void {
+        const options = new InfectionOptionsEditor(this.container, this.options.infection);
+    }
 
     private addParticles(): void {
         const options = new ParticlesOptionsEditor(this.container, this.options.particles);

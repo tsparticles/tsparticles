@@ -25,6 +25,8 @@ export class BackgroundMaskOptionsEditor {
         const particles = this.particles;
         const options = this.options.cover as IBackgroundMaskCover;
         const coverColor = options.color as IColor;
+        const coverContainer = this.container.addContainer("cover", "Cover");
+
         let colorStringValue: string | undefined;
 
         if (typeof coverColor.value === "string") {
@@ -39,8 +41,6 @@ export class BackgroundMaskOptionsEditor {
 
             colorStringValue = `${rgb.r.toString(16)}${rgb.g.toString(16)}${rgb.b.toString(16)}`;
         }
-
-        const coverContainer = this.container.addContainer("cover", "Cover");
 
         coverContainer.addProperty(
             "color",
