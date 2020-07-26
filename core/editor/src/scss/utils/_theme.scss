@@ -1,4 +1,8 @@
 @mixin create-theme($name, $bgColor, $textColor, $borderColor) {
+  .editor-root.editor-#{$name} {
+    border: 1px solid $borderColor;
+  }
+
   .editor-#{$name} {
     color: $textColor;
     background-color: $bgColor;
