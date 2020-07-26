@@ -58,15 +58,19 @@ export class EventsOptionsEditor {
         modeSelectInput.addItem(ClickMode.repulse);
         modeSelectInput.addItem(ClickMode.trail);
 
-        const absorbersGroup = "Absorbers";
+        if (typeof AbsorberClickMode !== "undefined") {
+            const absorbersGroup = "Absorbers";
 
-        modeSelectInput.addItemGroup(absorbersGroup);
-        modeSelectInput.addItem(AbsorberClickMode.absorber, undefined, absorbersGroup);
+            modeSelectInput.addItemGroup(absorbersGroup);
+            modeSelectInput.addItem(AbsorberClickMode.absorber, undefined, absorbersGroup);
+        }
 
-        const emittersGroup = "Emitters";
+        if (typeof EmitterClickMode !== "undefined") {
+            const emittersGroup = "Emitters";
 
-        modeSelectInput.addItemGroup(emittersGroup);
-        modeSelectInput.addItem(EmitterClickMode.emitter, undefined, emittersGroup);
+            modeSelectInput.addItemGroup(emittersGroup);
+            modeSelectInput.addItem(EmitterClickMode.emitter, undefined, emittersGroup);
+        }
     }
 
     private addHover(): void {

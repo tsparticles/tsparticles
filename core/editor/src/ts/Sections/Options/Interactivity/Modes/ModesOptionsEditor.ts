@@ -5,8 +5,6 @@ import type { EditorNumberInput } from "../../../../Editors/EditorNumberInput";
 import type { IRgb } from "tsparticles/dist/Core/Interfaces/IRgb";
 import type { IHsl } from "tsparticles/dist/Core/Interfaces/IHsl";
 import { ColorUtils } from "tsparticles";
-import { ParticlesOptionsEditor } from "../../Particles/ParticlesOptionsEditor";
-import type { IParticles } from "tsparticles/dist/Options/Interfaces/Particles/IParticles";
 
 export class ModesOptionsEditor {
     public readonly container: EditorContainer;
@@ -258,8 +256,6 @@ export class ModesOptionsEditor {
         if (options.links.color !== undefined) {
             if (typeof options.links.color === "string") {
                 colorStringValue = options.links.color;
-            } else if (options.links.color instanceof Array) {
-                colorStringValue = undefined;
             } else if (typeof options.links.color.value === "string") {
                 colorStringValue = options.links.color.value;
             } else {
