@@ -20,11 +20,29 @@ export class EditorNumberInput extends EditorItem {
         });
     }
 
-    createElement(): HTMLElement {
+    protected createElement(): HTMLElement {
         const element = document.createElement("input");
 
         element.setAttribute("type", "number");
 
         return element;
+    }
+
+    public step(step: number): EditorNumberInput {
+        (this.element as HTMLInputElement).step = step.toString(10);
+
+        return this;
+    }
+
+    public min(min: number): EditorNumberInput {
+        (this.element as HTMLInputElement).min = min.toString(10);
+
+        return this;
+    }
+
+    public max(max: number): EditorNumberInput {
+        (this.element as HTMLInputElement).min = max.toString(10);
+
+        return this;
     }
 }

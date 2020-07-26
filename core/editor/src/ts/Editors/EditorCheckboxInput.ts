@@ -20,7 +20,7 @@ export class EditorCheckboxInput extends EditorItem {
         });
     }
 
-    createElement(): HTMLElement {
+    protected createElement(): HTMLElement {
         const element = document.createElement("input");
 
         element.setAttribute("type", "checkbox");

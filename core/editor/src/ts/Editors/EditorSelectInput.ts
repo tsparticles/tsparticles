@@ -21,7 +21,7 @@ export class EditorSelectInput extends EditorItem {
         });
     }
 
-    public createElement(): HTMLElement {
+    protected createElement(): HTMLElement {
         return document.createElement("select");
     }
 

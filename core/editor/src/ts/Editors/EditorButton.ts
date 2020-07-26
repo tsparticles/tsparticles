@@ -15,7 +15,7 @@ export class EditorButton extends EditorItem {
         this.element.addEventListener("click", () => click());
     }
 
-    createElement(): HTMLElement {
+    protected createElement(): HTMLElement {
         return document.createElement("button");
     }
 }

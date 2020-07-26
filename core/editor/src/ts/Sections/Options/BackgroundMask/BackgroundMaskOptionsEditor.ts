@@ -6,6 +6,7 @@ import type { Container } from "tsparticles/dist/Core/Container";
 import { ColorUtils } from "tsparticles";
 import type { IBackgroundMask } from "tsparticles/dist/Options/Interfaces/BackgroundMask/IBackgroundMask";
 import type { IBackgroundMaskCover } from "tsparticles/dist/Options/Interfaces/BackgroundMask/IBackgroundMaskCover";
+import { EditorNumberInput } from "../../../Editors/EditorNumberInput";
 
 export class BackgroundMaskOptionsEditor {
     public readonly container: EditorContainer;
@@ -67,11 +68,9 @@ export class BackgroundMaskOptionsEditor {
                     await particles.refresh();
                 }
             }
-        );
+        ) as EditorNumberInput;
 
-        (opacityInput.element as HTMLInputElement).step = "0.01";
-        (opacityInput.element as HTMLInputElement).min = "0";
-        (opacityInput.element as HTMLInputElement).max = "1";
+        opacityInput.step(0.01).min(0).max(1);
     }
 
     private addProperties(): void {

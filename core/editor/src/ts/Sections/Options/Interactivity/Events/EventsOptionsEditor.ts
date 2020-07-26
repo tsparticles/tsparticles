@@ -57,10 +57,14 @@ export class EventsOptionsEditor {
         modeSelectInput.addItem(ClickMode.remove);
         modeSelectInput.addItem(ClickMode.repulse);
         modeSelectInput.addItem(ClickMode.trail);
+
         const absorbersGroup = "Absorbers";
+
         modeSelectInput.addItemGroup(absorbersGroup);
         modeSelectInput.addItem(AbsorberClickMode.absorber, undefined, absorbersGroup);
+
         const emittersGroup = "Emitters";
+
         modeSelectInput.addItemGroup(emittersGroup);
         modeSelectInput.addItem(EmitterClickMode.emitter, undefined, emittersGroup);
     }

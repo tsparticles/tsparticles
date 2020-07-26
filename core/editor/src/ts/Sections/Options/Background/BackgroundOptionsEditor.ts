@@ -5,6 +5,8 @@ import type { IBackground } from "tsparticles/dist/Options/Interfaces/Background
 import type { IColor } from "tsparticles/dist/Core/Interfaces/IColor";
 import type { Container } from "tsparticles/dist/Core/Container";
 import { ColorUtils } from "tsparticles";
+import { NumberOptionsEditor } from "../Particles/Number/NumberOptionsEditor";
+import { EditorNumberInput } from "../../../Editors/EditorNumberInput";
 
 export class BackgroundOptionsEditor {
     public readonly container: EditorContainer;
@@ -82,11 +84,9 @@ export class BackgroundOptionsEditor {
                     await particles.refresh();
                 }
             }
-        );
+        ) as EditorNumberInput;
 
-        (opacityItem.element as HTMLInputElement).step = "0.01";
-        (opacityItem.element as HTMLInputElement).min = "0";
-        (opacityItem.element as HTMLInputElement).max = "1";
+        opacityItem.step(0.01).min(0).max(1);
 
         this.container.addProperty(
             "position",

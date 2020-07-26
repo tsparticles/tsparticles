@@ -9,6 +9,7 @@ import { SizeOptionsEditor } from "./Size/SizeOptionsEditor";
 import { RotateOptionsEditor } from "./Rotate/RotateOptionsEditor";
 import { ShapeOptionsEditor } from "./Shape/ShapeOptionsEditor";
 import { MoveOptionsEditor } from "./Move/MoveOptionsEditor";
+import { RecursivePartial } from "tsparticles";
 
 export class ParticlesOptionsEditor {
     public readonly container: EditorContainer;

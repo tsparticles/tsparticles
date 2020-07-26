@@ -71,7 +71,7 @@ export class EditorContainer extends EditorItem {
         this.setCollapse();
     }
 
-    public createElement(): HTMLElement {
+    protected createElement(): HTMLElement {
         return document.createElement("div");
     }
 
