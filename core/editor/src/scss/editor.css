@@ -78,6 +78,10 @@
   right: 0;
 }
 
+.editor-root.editor-light {
+  border: 1px solid #000;
+}
+
 .editor-light {
   color: #000;
   background-color: #fff;
@@ -100,6 +104,10 @@
 }
 .editor-light .container {
   border: 1px solid #000;
+}
+
+.editor-root.editor-dark {
+  border: 1px solid #fff;
 }
 
 .editor-dark {
@@ -126,6 +134,10 @@
   border: 1px solid #fff;
 }
 
+.editor-root.editor-red {
+  border: 1px solid rgba(0, 0, 0, 0.125);
+}
+
 .editor-red {
   color: #fff;
   background-color: #dc3545;
@@ -150,6 +162,10 @@
   border: 1px solid rgba(0, 0, 0, 0.125);
 }
 
+.editor-root.editor-blue {
+  border: 1px solid rgba(0, 0, 0, 0.125);
+}
+
 .editor-blue {
   color: #fff;
   background-color: #007bff;
@@ -171,6 +187,10 @@
   background-color: #0062cc;
 }
 .editor-blue .container {
+  border: 1px solid rgba(0, 0, 0, 0.125);
+}
+
+.editor-root.editor-green {
   border: 1px solid rgba(0, 0, 0, 0.125);
 }
 
