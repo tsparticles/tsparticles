@@ -9,7 +9,10 @@ import { SizeOptionsEditor } from "./Size/SizeOptionsEditor";
 import { RotateOptionsEditor } from "./Rotate/RotateOptionsEditor";
 import { ShapeOptionsEditor } from "./Shape/ShapeOptionsEditor";
 import { MoveOptionsEditor } from "./Move/MoveOptionsEditor";
-import { RecursivePartial } from "tsparticles";
+import { CollisionsOptionsEditor } from "./Collisions/CollisionsOptionsEditor";
+import { StrokeOptionsEditor } from "./Stroke/StrokeOptionsEditor";
+import { ShadowOptionsEditor } from "./Shadow/ShadowOptionsEditor";
+import { TwinkleOptionsEditor } from "./Twinkle/TwinkleOptionsEditor";
 
 export class ParticlesOptionsEditor {
     public readonly container: EditorContainer;
@@ -19,14 +22,22 @@ export class ParticlesOptionsEditor {
         this.container = parent.addContainer("particles", "Particles");
         this.particles = this.container.particles;
 
+        this.addCollisions();
         this.addColor();
         this.addLinks();
         this.addMove();
         this.addNumber();
         this.addOpacity();
         this.addRotate();
+        this.addShadow();
         this.addShape();
         this.addSize();
+        this.addStroke();
+        this.addTwinkle();
+    }
+
+    private addCollisions(): void {
+        const options = new CollisionsOptionsEditor(this.container, this.options.collisions);
     }
 
     private addColor(): void {
@@ -53,11 +64,23 @@ export class ParticlesOptionsEditor {
         const options = new RotateOptionsEditor(this.container, this.options.rotate);
     }
 
+    private addShadow(): void {
+        const options = new ShadowOptionsEditor(this.container, this.options.shadow);
+    }
+
     private addShape(): void {
         const options = new ShapeOptionsEditor(this.container, this.options.shape);
     }
 
     private addSize(): void {
         const options = new SizeOptionsEditor(this.container, this.options.size);
+    }
+
+    private addStroke(): void {
+        const options = new StrokeOptionsEditor(this.container, this.options.stroke);
+    }
+
+    private addTwinkle(): void {
+        const options = new TwinkleOptionsEditor(this.container, this.options.twinkle);
     }
 }
