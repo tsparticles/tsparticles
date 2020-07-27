@@ -41,7 +41,7 @@ export class EditorNumberInput extends EditorItem {
     }
 
     public max(max: number): EditorNumberInput {
-        (this.element as HTMLInputElement).min = max.toString(10);
+        (this.element as HTMLInputElement).max = max.toString(10);
 
         return this;
     }

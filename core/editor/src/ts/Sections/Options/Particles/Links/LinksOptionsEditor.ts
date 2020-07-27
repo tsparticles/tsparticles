@@ -4,6 +4,8 @@ import type { IHsl } from "tsparticles/dist/Core/Interfaces/IHsl";
 import type { Container } from "tsparticles/dist/Core/Container";
 import { ColorUtils } from "tsparticles";
 import type { ILinks } from "tsparticles/dist/Options/Interfaces/Particles/Links/ILinks";
+import { NumberOptionsEditor } from "../Number/NumberOptionsEditor";
+import { EditorNumberInput } from "../../../../Editors/EditorNumberInput";
 
 export class LinksOptionsEditor {
     public readonly container: EditorContainer;
@@ -122,11 +124,9 @@ export class LinksOptionsEditor {
                     await particles.refresh();
                 }
             }
-        );
+        ) as EditorNumberInput;
 
-        (opacityInput.element as HTMLInputElement).step = "0.01";
-        (opacityInput.element as HTMLInputElement).min = "0";
-        (opacityInput.element as HTMLInputElement).max = "1";
+        opacityInput.step(0.01).min(0).max(1);
 
         let trianglesColorStringValue = "";
 
