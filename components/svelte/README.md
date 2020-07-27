@@ -27,20 +27,61 @@ yarn add svelte-particles
   let particlesConfig = {
     particles: {
       color: {
-        value: "#000"
+        value: "#000",
       },
       links: {
         enable: true,
-        color: "#000"
+        color: "#000",
       },
       move: {
-        enable: true
-      }
-    }
+        enable: true,
+      },
+    },
   };
 </script>
 
 <Particles id="tsparticles" options="{particlesConfig}" />
+```
+
+### SSR
+
+The particles component isn't built for SSR, so you have to force the component to be called client side with `async import`.
+
+You can see a sample below:
+
+```html
+<script>
+  import { onMount } from "svelte";
+
+  let ParticlesComponent;
+
+  onMount(async () => {
+    const module = await import("svelte-particles");
+
+    ParticlesComponent = module.default;
+  });
+
+  let particlesConfig = {
+    particles: {
+      color: {
+        value: "#000",
+      },
+      links: {
+        enable: true,
+        color: "#000",
+      },
+      move: {
+        enable: true,
+      },
+    },
+  };
+</script>
+
+<svelte:component
+  this="{ParticlesComponent}"
+  id="tsparticles"
+  options="{particlesConfig}"
+/>
 ```
 
 ## Demos

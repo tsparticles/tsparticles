@@ -305,6 +305,11 @@ export class EventListeners {
     private mouseTouchFinish(): void {
         const container = this.container;
         const interactivity = container.interactivity;
+
+        if (interactivity === undefined) {
+            return;
+        }
+
         const mouse = interactivity.mouse;
 
         delete mouse.position;

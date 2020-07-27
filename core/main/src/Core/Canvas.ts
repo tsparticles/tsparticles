@@ -394,18 +394,20 @@ export class Canvas {
             this.context.restore();
         }
 
-        CanvasUtils.drawParticle(
-            this.container,
-            this.context,
-            particle,
-            delta,
-            fillColorValue,
-            strokeColorValue,
-            options.backgroundMask.enable,
-            radius,
-            opacity,
-            particle.particlesOptions.shadow
-        );
+        if (radius > 0) {
+            CanvasUtils.drawParticle(
+                this.container,
+                this.context,
+                particle,
+                delta,
+                fillColorValue,
+                strokeColorValue,
+                options.backgroundMask.enable,
+                radius,
+                opacity,
+                particle.particlesOptions.shadow
+            );
+        }
     }
 
     public drawPlugin(plugin: IContainerPlugin, delta: IDelta): void {
