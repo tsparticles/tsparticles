@@ -2,7 +2,7 @@
   "name": "svelte-particles",
   "version": "1.0.4",
   "scripts": {
-    "build": "rollup -c"
+    "build": "prettier --write ./README.md && rollup -c"
   },
   "repository": {
     "type": "git",
@@ -56,6 +56,7 @@
   "devDependencies": {
     "@rollup/plugin-commonjs": "^14.0.0",
     "@rollup/plugin-node-resolve": "^8.4.0",
+    "prettier": "^2.0.5",
     "rollup": "^2.21.0",
     "rollup-plugin-svelte": "^5.2.3",
     "rollup-plugin-terser": "^6.1.0",
