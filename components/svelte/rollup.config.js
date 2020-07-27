@@ -1,31 +1,22 @@
 import svelte from 'rollup-plugin-svelte';
 import resolve from '@rollup/plugin-node-resolve';
 import commonjs from '@rollup/plugin-commonjs';
-import { terser } from 'rollup-plugin-terser';
+import pkg from './package.json';
 
-const production = !process.env.ROLLUP_WATCH;
+const name = pkg.name
+	.replace(/^(@\S+\/)?(svelte-)?(\S+)/, '$3')
+	.replace(/^\w/, m => m.toUpperCase())
+	.replace(/-\w/g, m => m[1].toUpperCase());
 
 export default {
-    input: 'src/main.js',
-    output: {
-        sourcemap: true,
-        format: 'umd',
-        name: 'particles',
-        file: 'dist/svelte-particles.js'
-    },
-    plugins: [
-        svelte({
-            customElement: true,
-            dev: !production,
-        }),
-
-        resolve({
-            browser: true,
-            dedupe: [ 'svelte', 'tsparticles' ]
-        }),
-
-        commonjs(),
-
-        production && terser()
-    ]
+	input: 'src/index.js',
+	output: [
+		{ file: pkg.module, 'format': 'es', file: 'dist/es/svelte-particles.js' },
+		{ file: pkg.main, 'format': 'umd', name, file: 'dist/umd/svelte-particles.js' }
+	],
+	plugins: [
+		svelte(),
+		resolve(),
+		commonjs()
+	]
 };

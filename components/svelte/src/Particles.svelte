@@ -23,6 +23,7 @@
     });
 </script>
 
-<svelte:options tag="svelte-particles" accessors={true}/>
+<svelte:options accessors={true}/>
 
 <div id={id}></div>
+

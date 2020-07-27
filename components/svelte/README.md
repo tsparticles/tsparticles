@@ -52,3 +52,4 @@ The demo website is [here](https://particles.matteobruni.it)
 There's also a CodePen collection actively maintained and updated [here](https://codepen.io/collection/DPOage)
 
 <https://codepen.io/collection/DPOage>
+

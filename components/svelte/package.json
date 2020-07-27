@@ -51,7 +51,8 @@
   "files": [
     "dist/**/*"
   ],
-  "main": "dist/svelte-particles.js",
+  "main": "dist/umd/svelte-particles.js",
+  "module": "dist/es/svelte-particles.js",
   "devDependencies": {
     "@rollup/plugin-commonjs": "^14.0.0",
     "@rollup/plugin-node-resolve": "^8.4.0",
