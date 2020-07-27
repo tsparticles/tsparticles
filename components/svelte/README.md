@@ -43,9 +43,9 @@ yarn add svelte-particles
 <Particles id="tsparticles" options="{particlesConfig}" />
 ```
 
-### Sapper
+### SSR
 
-This component is not built for SSR so you have to force Sapper to use it client side with async import.
+The particles component isn't built for SSR, so you have to force the component to be called client side with `async import`.
 
 You can see a sample below:
 
