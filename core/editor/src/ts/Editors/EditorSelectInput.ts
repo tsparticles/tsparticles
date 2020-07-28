@@ -6,7 +6,7 @@ export class EditorSelectInput extends EditorItem {
         container: Container,
         private readonly name: string,
         private readonly label: string,
-        private readonly value: string,
+        private value: string,
         private readonly change: (value: string) => void
     ) {
         super(container);
@@ -16,7 +16,9 @@ export class EditorSelectInput extends EditorItem {
         select.id = `input_${this.name}`;
 
         select.addEventListener("change", () => {
-            this.change((this.element as HTMLInputElement).value);
+            this.value = (this.element as HTMLInputElement).value;
+
+            this.change(this.value);
         });
     }
 

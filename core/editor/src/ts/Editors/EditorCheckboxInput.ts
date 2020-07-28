@@ -6,7 +6,7 @@ export class EditorCheckboxInput extends EditorItem {
         container: Container,
         private readonly name: string,
         private readonly label: string,
-        private readonly value: boolean,
+        private value: boolean,
         private readonly change: (value: boolean) => void
     ) {
         super(container);
@@ -16,7 +16,9 @@ export class EditorCheckboxInput extends EditorItem {
         input.checked = this.value;
 
         input.addEventListener("change", () => {
-            this.change((this.element as HTMLInputElement).checked);
+            this.value = (this.element as HTMLInputElement).checked;
+
+            this.change(this.value);
         });
     }
 

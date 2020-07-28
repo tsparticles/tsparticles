@@ -7,7 +7,7 @@ export class EditorColorInput extends EditorItem {
         container: Container,
         private readonly name: string,
         private readonly label: string,
-        private readonly value: string,
+        private value: string,
         private readonly change: (value: string) => void
     ) {
         super(container);
@@ -19,11 +19,11 @@ export class EditorColorInput extends EditorItem {
         this.updateStyle(input.value);
 
         input.addEventListener("change", () => {
-            const currentValue = (this.element as HTMLInputElement).value;
+            this.value = (this.element as HTMLInputElement).value;
 
-            this.change(currentValue);
+            this.change(this.value);
 
-            this.updateStyle(currentValue);
+            this.updateStyle(this.value);
         });
     }
 
