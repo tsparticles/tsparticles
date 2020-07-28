@@ -14,7 +14,6 @@ export class EditorSelectInput extends EditorItem {
         const select = this.element as HTMLSelectElement;
 
         select.id = `input_${this.name}`;
-        select.value = this.value;
 
         select.addEventListener("change", () => {
             this.change((this.element as HTMLInputElement).value);
@@ -32,6 +31,7 @@ export class EditorSelectInput extends EditorItem {
 
         item.value = value;
         item.text = text ?? value;
+        item.selected = this.value === value;
 
         (groupElement ?? select).append(item);
     }
