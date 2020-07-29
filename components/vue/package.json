@@ -81,7 +81,7 @@
     "@vue/cli-plugin-babel": "~4.4.6",
     "@vue/cli-plugin-typescript": "~4.4.6",
     "@vue/cli-service": "~4.4.6",
-    "rollup": "^2.22.1",
+    "rollup": "^2.23.0",
     "rollup-plugin-terser": "^6.1.0",
     "rollup-plugin-typescript": "^1.0.1",
     "rollup-plugin-typescript2": "^0.27.1",
