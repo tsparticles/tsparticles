@@ -2452,10 +2452,10 @@
   resolved "https://registry.yarnpkg.com/@polka/url/-/url-1.0.0-next.11.tgz#aeb16f50649a91af79dbe36574b66d0f9e4d9f71"
   integrity sha512-3NsZsJIA/22P3QUyrEDNA2D133H4j224twJrdipXN38dpnIOzAbUDtOwkcJ5pXmn75w7LSQDjA4tO9dm1XlqlA==
 
-"@preact/async-loader@^3.0.0-rc.12":
-  version "3.0.0-rc.12"
-  resolved "https://registry.yarnpkg.com/@preact/async-loader/-/async-loader-3.0.0-rc.12.tgz#c3deaa25006c325188c986983671b6d472409170"
-  integrity sha512-n6WM3dlUolgKbk/C9DnSNRttBTakzoCW0/YWvOzoe8YjPTS6UM/aJu80Il1KTHI1N2WczLQRSqDusyfoocp0jw==
+"@preact/async-loader@^3.0.1":
+  version "3.0.1"
+  resolved "https://registry.yarnpkg.com/@preact/async-loader/-/async-loader-3.0.1.tgz#aeca7b029ad1e3e70eda684191a3cf050b9055a4"
+  integrity sha512-BoUN24hxEfAQYnWjliAmkZLuliv+ONQi7AWn+/+VOJHTIHmbFiXrvmSxITf7PDkKiK0a5xy4OErZtVVLlk96Tg==
   dependencies:
     kleur "^4.0.2"
     loader-utils "^2.0.0"
@@ -13832,10 +13832,10 @@ posthtml@^0.13.1:
     posthtml-parser "^0.4.2"
     posthtml-render "^1.2.2"
 
-preact-cli@^3.0.0-rc.17:
-  version "3.0.0-rc.18"
-  resolved "https://registry.yarnpkg.com/preact-cli/-/preact-cli-3.0.0-rc.18.tgz#be598f1f19efed48bd68e2b1485b2c5ebe7cfa73"
-  integrity sha512-GLlZ2tpe+24hnELmQV2eDSdyBTErjVgDcwuoWronowtwftW80dkxRMBR1hrG2YJxIYbyiPR75LyOzP1SxsKIeQ==
+preact-cli@^3.0.1:
+  version "3.0.1"
+  resolved "https://registry.yarnpkg.com/preact-cli/-/preact-cli-3.0.1.tgz#e8913998df38854e1f1efde21aa1da1e66146b84"
+  integrity sha512-C5fvHo/P9MScpUYp2cwu9w/UBQsVwnOugIbcikY6MS+nEiNX9nE4xpnEghUuZxC+Mr8R2z1WiMAWKQQA4/D78A==
   dependencies:
     "@babel/core" "^7.9.0"
     "@babel/plugin-proposal-class-properties" "^7.8.3"
@@ -13846,7 +13846,7 @@ preact-cli@^3.0.0-rc.17:
     "@babel/plugin-transform-react-jsx" "^7.9.0"
     "@babel/preset-env" "^7.9.0"
     "@babel/preset-typescript" "^7.9.0"
-    "@preact/async-loader" "^3.0.0-rc.12"
+    "@preact/async-loader" "^3.0.1"
     "@prefresh/webpack" "^0.8.1"
     autoprefixer "^9.6.0"
     babel-esm-plugin "^0.9.0"
