@@ -15817,10 +15817,10 @@ simple-swizzle@^0.2.2:
   dependencies:
     is-arrayish "^0.3.1"
 
-sirv-cli@^1.0.3:
-  version "1.0.3"
-  resolved "https://registry.yarnpkg.com/sirv-cli/-/sirv-cli-1.0.3.tgz#33789a8f9d6dcee2aca2e35c3c97051b462ca00f"
-  integrity sha512-pLWMreVMKvK/7Zwdi/8AMjVPaOhkW24a6GRsXtLbvgvbZNHjAb0J8vs3x86ES5radO06AxGRVp8oMWbuf+ExTw==
+sirv-cli@^1.0.4:
+  version "1.0.4"
+  resolved "https://registry.yarnpkg.com/sirv-cli/-/sirv-cli-1.0.4.tgz#240871b084f7dbbf788a9410d21ae1cb6f2aa9a3"
+  integrity sha512-PheRvgJMQNzeFqDrc7TynGMq+IcUwcfrkvkAligWMWCw7vFKKkyr7QDNlT2rWQySsEg13tAxtqiwMJNMlSfT+w==
   dependencies:
     console-clear "^1.1.0"
     get-port "^3.2.0"
