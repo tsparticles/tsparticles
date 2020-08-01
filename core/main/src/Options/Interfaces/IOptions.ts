@@ -3,7 +3,7 @@ import type { IParticles } from "./Particles/IParticles";
 import type { IBackgroundMask } from "./BackgroundMask/IBackgroundMask";
 import type { IBackground } from "./Background/IBackground";
 import type { IInfection } from "./Infection/IInfection";
-import { SingleOrMultiple } from "../../Types";
+import type { SingleOrMultiple } from "../../Types";
 
 /**
  * The Options interface, defines all the options that can be used by `tsParticles`
