@@ -3,6 +3,7 @@ import type { IParticles } from "./Particles/IParticles";
 import type { IBackgroundMask } from "./BackgroundMask/IBackgroundMask";
 import type { IBackground } from "./Background/IBackground";
 import type { IInfection } from "./Infection/IInfection";
+import { SingleOrMultiple } from "../../Types";
 
 /**
  * The Options interface, defines all the options that can be used by `tsParticles`
@@ -57,7 +58,7 @@ export interface IOptions {
     /**
      * This property will be used to add specified presets to the options
      */
-    preset?: string | string[];
+    preset?: SingleOrMultiple<string>;
 
     /**
      * Enables the retina detection, if disabled the ratio used by canvas will be always 1 and not the device setting.
