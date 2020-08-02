@@ -27,10 +27,10 @@ export interface IMove {
     out_mode: OutMode | keyof typeof OutMode | OutModeAlt;
 
     outMode: OutMode | keyof typeof OutMode | OutModeAlt;
-    warp: boolean;
     random: boolean;
     speed: number;
     straight: boolean;
     trail: ITrail;
     vibrate: boolean;
+    warp: boolean;
 }

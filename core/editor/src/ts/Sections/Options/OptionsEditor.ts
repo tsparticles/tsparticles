@@ -19,8 +19,8 @@ export class OptionsEditor {
 
         this.addBackground();
         this.addBackgroundMask();
-        this.addInteractivity();
         this.addInfection();
+        this.addInteractivity();
         this.addParticles();
 
         this.addProperties();

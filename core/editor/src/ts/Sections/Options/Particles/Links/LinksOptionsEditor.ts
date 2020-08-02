@@ -4,7 +4,6 @@ import type { IHsl } from "tsparticles/dist/Core/Interfaces/IHsl";
 import type { Container } from "tsparticles/dist/Core/Container";
 import { ColorUtils } from "tsparticles";
 import type { ILinks } from "tsparticles/dist/Options/Interfaces/Particles/Links/ILinks";
-import { NumberOptionsEditor } from "../Number/NumberOptionsEditor";
 import { EditorNumberInput } from "../../../../Editors/EditorNumberInput";
 
 export class LinksOptionsEditor {
@@ -15,7 +14,165 @@ export class LinksOptionsEditor {
         this.container = parent.addContainer("links", "Links");
         this.particles = this.container.particles;
 
+        this.addShadow();
+        this.addTriangles();
         this.addLinks();
+    }
+
+    private addShadow(): void {
+        const particles = this.particles;
+        const container = this.container.addContainer("shadow", "Shadow");
+        const options = this.options.shadow;
+
+        let shadowColorStringValue = "";
+
+        if (options.color !== undefined) {
+            if (typeof options.color === "string") {
+                shadowColorStringValue = options.color;
+            } else if (typeof options.color.value === "string") {
+                shadowColorStringValue = options.color.value;
+            } else {
+                let rgb = options.color.value as IRgb;
+                const hsl = options.color.value as IHsl;
+
+                if (hsl.h !== undefined) {
+                    rgb = ColorUtils.hslToRgb(hsl);
+                }
+
+                shadowColorStringValue = `${rgb.r.toString(16)}${rgb.g.toString(16)}${rgb.b.toString(16)}`;
+            }
+        }
+
+        container.addProperty(
+            "blur",
+            "Blur",
+            options.blur,
+            typeof options.blur,
+            async (value: string | number | boolean) => {
+                if (typeof value === "number") {
+                    options.blur = value;
+
+                    await particles.refresh();
+                }
+            }
+        );
+
+        container.addProperty(
+            "color",
+            "Color",
+            shadowColorStringValue,
+            "color",
+            async (value: string | number | boolean) => {
+                if (typeof value === "string") {
+                    if (typeof options.color === "string") {
+                        options.color = value;
+                    } else {
+                        if (options.color === undefined) {
+                            options.color = {
+                                value: value,
+                            };
+                        } else {
+                            options.color.value = value;
+                        }
+                    }
+
+                    await particles.refresh();
+                }
+            }
+        );
+
+        container.addProperty(
+            "enable",
+            "Enable",
+            options.enable,
+            typeof options.enable,
+            (value: number | string | boolean) => {
+                if (typeof value === "boolean") {
+                    options.enable = value;
+
+                    particles.refresh();
+                }
+            }
+        );
+    }
+
+    private addTriangles(): void {
+        const particles = this.particles;
+        const container = this.container.addContainer("triangles", "Triangles");
+        const options = this.options.triangles;
+
+        let trianglesColorStringValue = "";
+
+        if (options.color !== undefined) {
+            if (typeof options.color === "string") {
+                trianglesColorStringValue = options.color;
+            } else if (typeof options.color.value === "string") {
+                trianglesColorStringValue = options.color.value;
+            } else {
+                let rgb = options.color.value as IRgb;
+                const hsl = options.color.value as IHsl;
+
+                if (hsl.h !== undefined) {
+                    rgb = ColorUtils.hslToRgb(hsl);
+                }
+
+                trianglesColorStringValue = `${rgb.r.toString(16)}${rgb.g.toString(16)}${rgb.b.toString(16)}`;
+            }
+        }
+
+        container.addProperty(
+            "color",
+            "Color",
+            trianglesColorStringValue,
+            "color",
+            async (value: string | number | boolean) => {
+                if (typeof value === "string") {
+                    if (typeof options.color === "string") {
+                        options.color = value;
+                    } else {
+                        if (options.color === undefined) {
+                            options.color = {
+                                value: value,
+                            };
+                        } else {
+                            options.color.value = value;
+                        }
+                    }
+
+                    await particles.refresh();
+                }
+            }
+        );
+
+        container.addProperty(
+            "enable",
+            "Enable",
+            options.enable,
+            typeof options.enable,
+            (value: number | string | boolean) => {
+                if (typeof value === "boolean") {
+                    options.enable = value;
+
+                    particles.refresh();
+                }
+            }
+        );
+
+        const trianglesOpacityInput = container.addProperty(
+            "opacity",
+            "Opacity",
+            options.opacity,
+            typeof options.opacity,
+            (value: number | string | boolean) => {
+                if (typeof value === "number") {
+                    options.opacity = value;
+
+                    particles.refresh();
+                }
+            }
+        );
+
+        (trianglesOpacityInput.element as HTMLInputElement).step = "0.01";
     }
 
     private addLinks(): void {
@@ -112,6 +269,14 @@ export class LinksOptionsEditor {
             }
         );
 
+        this.container.addProperty("id", "Id", options.id, "string", async (value: number | string | boolean) => {
+            if (typeof value === "string") {
+                options.id = value;
+
+                await particles.refresh();
+            }
+        });
+
         const opacityInput = this.container.addProperty(
             "opacity",
             "Opacity",
@@ -127,81 +292,6 @@ export class LinksOptionsEditor {
         ) as EditorNumberInput;
 
         opacityInput.step(0.01).min(0).max(1);
-
-        let trianglesColorStringValue = "";
-
-        if (options.triangles.color !== undefined) {
-            if (typeof options.triangles.color === "string") {
-                trianglesColorStringValue = options.triangles.color;
-            } else if (typeof options.triangles.color.value === "string") {
-                trianglesColorStringValue = options.triangles.color.value;
-            } else {
-                let rgb = options.triangles.color.value as IRgb;
-                const hsl = options.triangles.color.value as IHsl;
-
-                if (hsl.h !== undefined) {
-                    rgb = ColorUtils.hslToRgb(hsl);
-                }
-
-                trianglesColorStringValue = `${rgb.r.toString(16)}${rgb.g.toString(16)}${rgb.b.toString(16)}`;
-            }
-        }
-
-        const triangleContainer = this.container.addContainer("triangles", "Triangles");
-
-        triangleContainer.addProperty(
-            "color",
-            "Color",
-            trianglesColorStringValue,
-            "color",
-            async (value: string | number | boolean) => {
-                if (typeof value === "string") {
-                    if (typeof options.triangles.color === "string") {
-                        options.triangles.color = value;
-                    } else {
-                        if (options.triangles.color === undefined) {
-                            options.triangles.color = {
-                                value: value,
-                            };
-                        } else {
-                            options.triangles.color.value = value;
-                        }
-                    }
-
-                    await particles.refresh();
-                }
-            }
-        );
-
-        triangleContainer.addProperty(
-            "enable",
-            "Enable",
-            options.triangles.enable,
-            typeof options.triangles.enable,
-            (value: number | string | boolean) => {
-                if (typeof value === "boolean") {
-                    options.triangles.enable = value;
-
-                    particles.refresh();
-                }
-            }
-        );
-
-        const trianglesOpacityInput = triangleContainer.addProperty(
-            "opacity",
-            "Opacity",
-            options.triangles.opacity,
-            typeof options.triangles.opacity,
-            (value: number | string | boolean) => {
-                if (typeof value === "number") {
-                    options.triangles.opacity = value;
-
-                    particles.refresh();
-                }
-            }
-        );
-
-        (trianglesOpacityInput.element as HTMLInputElement).step = "0.01";
 
         this.container.addProperty(
             "warp",

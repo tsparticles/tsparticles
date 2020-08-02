@@ -10,14 +10,14 @@ export interface IBackground {
     color: IColor | string;
 
     /**
-     * The background opacity
-     */
-    opacity: number;
-
-    /**
      * The background image used by the canvas element, its value will be used to set CSS property background-image
      */
     image: string;
+
+    /**
+     * The background opacity
+     */
+    opacity: number;
 
     /**
      * The background position, it's used by the CSS property background-position

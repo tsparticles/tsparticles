@@ -1,6 +1,7 @@
 import type { EditorContainer } from "../../../../Editors/EditorContainer";
 import type { Container } from "tsparticles/dist/Core/Container";
 import type { IOpacity } from "tsparticles/dist/Options/Interfaces/Particles/Opacity/IOpacity";
+import { IOpacityRandom } from "tsparticles/dist/Options/Interfaces/Particles/Opacity/IOpacityRandom";
 
 export class OpacityOptionsEditor {
     public readonly container: EditorContainer;
@@ -93,6 +94,37 @@ export class OpacityOptionsEditor {
             async (value: number | string | boolean) => {
                 if (typeof value === "boolean") {
                     options.animation.sync = value;
+
+                    await particles.refresh();
+                }
+            }
+        );
+
+        const randomContainer = this.container.addContainer("random", "Random");
+        const random = options.random as IOpacityRandom;
+
+        randomContainer.addProperty(
+            "enable",
+            "Enable",
+            random.enable,
+            typeof random.enable,
+            async (value: number | string | boolean) => {
+                if (typeof value === "boolean") {
+                    random.enable = value;
+
+                    await particles.refresh();
+                }
+            }
+        );
+
+        randomContainer.addProperty(
+            "minimumValue",
+            "Minimum Value",
+            random.minimumValue,
+            typeof random.minimumValue,
+            async (value: number | string | boolean) => {
+                if (typeof value === "number") {
+                    random.minimumValue = value;
 
                     await particles.refresh();
                 }

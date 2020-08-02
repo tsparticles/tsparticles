@@ -10,30 +10,16 @@ export class NumberOptionsEditor {
         this.container = parent.addContainer("number", "Number");
         this.particles = this.container.particles;
 
+        this.addDensity();
         this.addNumber();
     }
 
-    private addNumber(): void {
+    private addDensity(): void {
         const particles = this.container.particles;
         const options = this.options;
+        const container = this.container.addContainer("density", "Density");
 
-        this.container.addProperty(
-            "number",
-            "Number",
-            options.value,
-            typeof options.value,
-            async (value: string | number | boolean) => {
-                if (typeof value === "number") {
-                    options.value = value;
-
-                    await particles.refresh();
-                }
-            }
-        );
-
-        const densityContainer = this.container.addContainer("density", "Density");
-
-        densityContainer.addProperty(
+        container.addProperty(
             "area",
             "Area",
             options.density.area,
@@ -47,7 +33,7 @@ export class NumberOptionsEditor {
             }
         );
 
-        densityContainer.addProperty(
+        container.addProperty(
             "enable",
             "Enable",
             options.density.enable,
@@ -61,7 +47,7 @@ export class NumberOptionsEditor {
             }
         );
 
-        densityContainer.addProperty(
+        container.addProperty(
             "factor",
             "Factor",
             options.density.factor,
@@ -69,6 +55,39 @@ export class NumberOptionsEditor {
             async (value: number | string | boolean) => {
                 if (typeof value === "number") {
                     options.density.factor = value;
+
+                    await particles.refresh();
+                }
+            }
+        );
+    }
+
+    private addNumber(): void {
+        const particles = this.container.particles;
+        const options = this.options;
+
+        this.container.addProperty(
+            "limit",
+            "Limit",
+            options.limit,
+            typeof options.limit,
+            async (value: string | number | boolean) => {
+                if (typeof value === "number") {
+                    options.limit = value;
+
+                    await particles.refresh();
+                }
+            }
+        );
+
+        this.container.addProperty(
+            "value",
+            "Number",
+            options.value,
+            typeof options.value,
+            async (value: string | number | boolean) => {
+                if (typeof value === "number") {
+                    options.value = value;
 
                     await particles.refresh();
                 }

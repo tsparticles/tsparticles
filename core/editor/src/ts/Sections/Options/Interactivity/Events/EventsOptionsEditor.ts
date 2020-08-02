@@ -1,8 +1,9 @@
 import type { EditorContainer } from "../../../../Editors/EditorContainer";
 import type { Container } from "tsparticles/dist/Core/Container";
-import { IEvents } from "tsparticles/dist/Options/Interfaces/Interactivity/Events/IEvents";
-import { ClickMode, AbsorberClickMode, EmitterClickMode, HoverMode } from "tsparticles";
-import { EditorSelectInput } from "../../../../Editors/EditorSelectInput";
+import type { IEvents } from "tsparticles/dist/Options/Interfaces/Interactivity/Events/IEvents";
+import { ClickEventsOptionsEditor } from "./ClickEventsOptionsEditor";
+import { HoverEventsOptionsEditor } from "./HoverEventsOptionsEditor";
+import { DivsEventsOptionsEditor } from "./DivsEventsOptionsEditor";
 
 export class EventsOptionsEditor {
     public readonly container: EditorContainer;
@@ -13,109 +14,24 @@ export class EventsOptionsEditor {
         this.particles = this.container.particles;
 
         this.addClick();
+        this.addDivs();
         this.addHover();
-        this.addEvents();
+        this.addProperties();
     }
 
     private addClick(): void {
-        const particles = this.container.particles;
-        const options = this.options.onClick;
-        const clickContainer = this.container.addContainer("onClick", "Mouse Click");
+        const clickEditor = new ClickEventsOptionsEditor(this.container, this.options.onClick);
+    }
 
-        clickContainer.addProperty(
-            "enable",
-            "Enable",
-            options.enable,
-            typeof options.enable,
-            async (value: string | number | boolean) => {
-                if (typeof value === "boolean") {
-                    options.enable = value;
-
-                    await particles.refresh();
-                }
-            }
-        );
-
-        const modeSelectInput = clickContainer.addProperty(
-            "mode",
-            "Mode",
-            options.mode,
-            "select",
-            async (value: string | number | boolean) => {
-                if (typeof value === "string") {
-                    options.mode = value;
-
-                    await particles.refresh();
-                }
-            }
-        ) as EditorSelectInput;
-
-        modeSelectInput.addItem(ClickMode.attract);
-        // modeSelectInput.addItem(ClickMode.bubble); // TODO: This mode seems buggy
-        modeSelectInput.addItem(ClickMode.pause);
-        modeSelectInput.addItem(ClickMode.push);
-        modeSelectInput.addItem(ClickMode.remove);
-        modeSelectInput.addItem(ClickMode.repulse);
-        modeSelectInput.addItem(ClickMode.trail);
-
-        if (typeof AbsorberClickMode !== "undefined") {
-            const absorbersGroup = "Absorbers";
-
-            modeSelectInput.addItemGroup(absorbersGroup);
-            modeSelectInput.addItem(AbsorberClickMode.absorber, undefined, absorbersGroup);
-        }
-
-        if (typeof EmitterClickMode !== "undefined") {
-            const emittersGroup = "Emitters";
-
-            modeSelectInput.addItemGroup(emittersGroup);
-            modeSelectInput.addItem(EmitterClickMode.emitter, undefined, emittersGroup);
-        }
+    private addDivs(): void {
+        const divsEditor = new DivsEventsOptionsEditor(this.container, this.options.onDiv);
     }
 
     private addHover(): void {
-        const particles = this.container.particles;
-        const options = this.options.onHover;
-        const hoverContainer = this.container.addContainer("onHover", "Mouse Hover");
-
-        hoverContainer.addProperty(
-            "enable",
-            "Enable",
-            options.enable,
-            typeof options.enable,
-            async (value: string | number | boolean) => {
-                if (typeof value === "boolean") {
-                    options.enable = value;
-
-                    await particles.refresh();
-                }
-            }
-        );
-
-        const modeSelectInput = hoverContainer.addProperty(
-            "mode",
-            "Mode",
-            options.mode,
-            "select",
-            async (value: string | number | boolean) => {
-                if (typeof value === "string") {
-                    options.mode = value;
-
-                    await particles.refresh();
-                }
-            }
-        ) as EditorSelectInput;
-
-        modeSelectInput.addItem(HoverMode.attract);
-        modeSelectInput.addItem(HoverMode.bubble);
-        modeSelectInput.addItem(HoverMode.connect);
-        modeSelectInput.addItem(HoverMode.grab);
-        modeSelectInput.addItem(HoverMode.repulse);
-        modeSelectInput.addItem(HoverMode.slow);
-        modeSelectInput.addItem(HoverMode.trail);
+        const hoverEditor = new HoverEventsOptionsEditor(this.container, this.options.onHover);
     }
 
-    private addEvents(): void {
+    private addProperties(): void {
         const particles = this.container.particles;
         const options = this.options;
 
