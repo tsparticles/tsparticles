@@ -3,6 +3,7 @@ import type { Container } from "tsparticles/dist/Core/Container";
 import type { ISize } from "tsparticles/dist/Options/Interfaces/Particles/Size/ISize";
 import { ISizeRandom } from "tsparticles/dist/Options/Interfaces/Particles/Size/ISizeRandom";
 import { DestroyType, StartValueType } from "tsparticles";
+import { EditorSelectInput } from "../../../../Editors/EditorSelectInput";
 
 export class SizeOptionsEditor {
     public readonly container: EditorContainer;
@@ -22,11 +23,11 @@ export class SizeOptionsEditor {
         const options = this.options.animation;
         const container = this.container.addContainer("animation", "Animation");
 
-        container.addProperty(
+        const destroySelectInput = container.addProperty(
             "destroy",
             "Destroy",
             options.destroy,
-            typeof options.destroy,
+            "select",
             async (value: number | string | boolean) => {
                 if (
                     typeof value === "string" &&
@@ -37,7 +38,11 @@ export class SizeOptionsEditor {
                     await particles.refresh();
                 }
             }
-        );
+        ) as EditorSelectInput;
+
+        destroySelectInput.addItem(DestroyType.max);
+        destroySelectInput.addItem(DestroyType.min);
+        destroySelectInput.addItem(DestroyType.none);
 
         container.addProperty(
             "enable",
@@ -81,7 +86,7 @@ export class SizeOptionsEditor {
             }
         );
 
-        container.addProperty(
+        const startValueSelectInput = container.addProperty(
             "startValue",
             "Start Value",
             options.startValue,
@@ -93,7 +98,10 @@ export class SizeOptionsEditor {
                     await particles.refresh();
                 }
             }
-        );
+        ) as EditorSelectInput;
+
+        startValueSelectInput.addItem(StartValueType.max);
+        startValueSelectInput.addItem(StartValueType.min);
 
         container.addProperty(
             "sync",
@@ -149,7 +157,7 @@ export class SizeOptionsEditor {
         const options = this.options;
 
         this.container.addProperty(
-            "size",
+            "value",
             "Size",
             options.value,
             typeof options.value,
