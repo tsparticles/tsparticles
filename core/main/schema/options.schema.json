@@ -2557,7 +2557,7 @@
   },
   "description": "The Options interface, defines all the options that can be used by `tsParticles`",
   "properties": {
-    "autoStart": {
+    "autoPlay": {
       "type": "boolean"
     },
     "background": {
