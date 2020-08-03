@@ -261,6 +261,19 @@
         "opacity": {
           "type": "number"
         },
+        "selectors": {
+          "anyOf": [
+            {
+              "items": {
+                "type": "string"
+              },
+              "type": "array"
+            },
+            {
+              "type": "string"
+            }
+          ]
+        },
         "size": {
           "type": "number"
         }
@@ -494,6 +507,19 @@
           ]
         },
         "mode": {
+          "anyOf": [
+            {
+              "items": {
+                "type": "string"
+              },
+              "type": "array"
+            },
+            {
+              "type": "string"
+            }
+          ]
+        },
+        "selectors": {
           "anyOf": [
             {
               "items": {
@@ -1215,6 +1241,19 @@
             }
           ]
         },
+        "selectors": {
+          "anyOf": [
+            {
+              "items": {
+                "type": "string"
+              },
+              "type": "array"
+            },
+            {
+              "type": "string"
+            }
+          ]
+        },
         "speed": {
           "type": "number"
         }
@@ -1466,7 +1505,7 @@
           "type": "number"
         },
         "startValue": {
-          "enum": ["max", "min"],
+          "enum": ["max", "min", "random"],
           "type": "string"
         },
         "sync": {
@@ -2405,7 +2444,7 @@
           "type": "number"
         },
         "startValue": {
-          "enum": ["max", "min"],
+          "enum": ["max", "min", "random"],
           "type": "string"
         },
         "sync": {

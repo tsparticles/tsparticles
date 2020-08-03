@@ -56,7 +56,7 @@ export class Bubbler implements IExternalInteractor {
 
     public reset(particle: Particle, force?: boolean): void {
         if (!particle.bubble.inRange || force) {
-            delete particle.bubble.divId;
+            delete particle.bubble.div;
             delete particle.bubble.opacity;
             delete particle.bubble.radius;
             delete particle.bubble.color;
@@ -80,58 +80,63 @@ export class Bubbler implements IExternalInteractor {
         } else if (clickEnabled && Utils.isInArray(ClickMode.bubble, clickMode)) {
             this.clickBubble();
         } else {
-            Utils.divModeExecute(DivMode.bubble, divs, (id, div): void => this.singleDivHover(id, div));
+            Utils.divModeExecute(DivMode.bubble, divs, (selector, div): void =>
+                this.singleSelectorHover(selector, div)
+            );
         }
     }
 
-    private singleDivHover(id: string, div: DivEvent): void {
+    private singleSelectorHover(selector: string, div: DivEvent): void {
         const container = this.container;
-        const elem = document.getElementById(id);
+        const query = document.querySelectorAll(selector);
 
-        if (!elem) {
+        if (!query.length) {
             return;
         }
 
-        const pxRatio = container.retina.pixelRatio;
-        const pos = {
-            x: (elem.offsetLeft + elem.offsetWidth / 2) * pxRatio,
-            y: (elem.offsetTop + elem.offsetHeight / 2) * pxRatio,
-        };
-        const repulseRadius = (elem.offsetWidth / 2) * pxRatio;
+        query.forEach((item) => {
+            const elem = item as HTMLElement;
+            const pxRatio = container.retina.pixelRatio;
+            const pos = {
+                x: (elem.offsetLeft + elem.offsetWidth / 2) * pxRatio,
+                y: (elem.offsetTop + elem.offsetHeight / 2) * pxRatio,
+            };
+            const repulseRadius = (elem.offsetWidth / 2) * pxRatio;
 
-        const area =
-            div.type === DivType.circle
-                ? new Circle(pos.x, pos.y, repulseRadius)
-                : new Rectangle(
-                      elem.offsetLeft * pxRatio,
-                      elem.offsetTop * pxRatio,
-                      elem.offsetWidth * pxRatio,
-                      elem.offsetHeight * pxRatio
-                  );
+            const area =
+                div.type === DivType.circle
+                    ? new Circle(pos.x, pos.y, repulseRadius)
+                    : new Rectangle(
+                          elem.offsetLeft * pxRatio,
+                          elem.offsetTop * pxRatio,
+                          elem.offsetWidth * pxRatio,
+                          elem.offsetHeight * pxRatio
+                      );
 
-        const query = container.particles.quadTree.query(area);
+            const query = container.particles.quadTree.query(area);
 
-        for (const particle of query.filter((t) => area.contains(t.getPosition()))) {
-            particle.bubble.inRange = true;
+            for (const particle of query.filter((t) => area.contains(t.getPosition()))) {
+                particle.bubble.inRange = true;
 
-            const divs = container.options.interactivity.modes.bubble.divs;
-            const divBubble = Utils.divMode(divs, id);
+                const divs = container.options.interactivity.modes.bubble.divs;
+                const divBubble = Utils.divMode(divs, elem);
 
-            if (!particle.bubble.divId || particle.bubble.divId !== id) {
-                this.reset(particle, true);
+                if (!particle.bubble.div || particle.bubble.div !== elem) {
+                    this.reset(particle, true);
 
-                particle.bubble.divId = id;
+                    particle.bubble.div = elem;
+                }
+
+                /* size */
+                this.hoverBubbleSize(particle, 1, divBubble);
+
+                /* opacity */
+                this.hoverBubbleOpacity(particle, 1, divBubble);
+
+                /* color */
+                this.hoverBubbleColor(particle, divBubble);
             }
-
-            /* size */
-            this.hoverBubbleSize(particle, 1, divBubble);
-
-            /* opacity */
-            this.hoverBubbleOpacity(particle, 1, divBubble);
-
-            /* color */
-            this.hoverBubbleColor(particle, divBubble);
-        }
+        });
     }
 
     private process(particle: Particle, distMouse: number, timeSpent: number, data: IBubblerProcessParam): void {

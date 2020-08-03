@@ -16,14 +16,14 @@ import { Particles } from "../Options/Classes/Particles/Particles";
 import { Shape } from "../Options/Classes/Particles/Shape/Shape";
 import {
     MoveDirection,
+    MoveDirectionAlt,
     OpacityAnimationStatus,
     OutMode,
     RotateDirection,
+    RotateDirectionAlt,
     ShapeType,
     SizeAnimationStatus,
     StartValueType,
-    MoveDirectionAlt,
-    RotateDirectionAlt,
 } from "../Enums";
 import { ImageDrawer } from "../ShapeDrawers/ImageDrawer";
 import type { IImageShape } from "../Options/Interfaces/Particles/Shape/IImageShape";
@@ -94,6 +94,7 @@ export class Particle implements IParticle {
         this.lastNoiseTime = 0;
         this.destroyed = false;
 
+        const pxRatio = container.retina.pixelRatio;
         const options = container.options;
         const particlesOptions = new Particles();
 
@@ -205,18 +206,27 @@ export class Particle implements IParticle {
         const sizeAnimation = this.particlesOptions.size.animation;
 
         if (sizeAnimation.enable) {
-            switch (sizeAnimation.startValue) {
-                case StartValueType.min:
-                    if (!randomSize) {
-                        const pxRatio = container.retina.pixelRatio;
-
+            if (!randomSize) {
+                switch (sizeAnimation.startValue) {
+                    case StartValueType.min:
                         this.size.value = sizeAnimation.minimumValue * pxRatio;
-                    }
+                        this.size.status = SizeAnimationStatus.increasing;
 
-                    break;
+                        break;
+
+                    case StartValueType.random:
+                        this.size.value = Utils.randomInRange(sizeAnimation.minimumValue * pxRatio, this.size.value);
+                        this.size.status = SizeAnimationStatus.increasing;
+
+                        break;
+
+                    case StartValueType.max:
+                    default:
+                        this.size.status = SizeAnimationStatus.decreasing;
+
+                        break;
+                }
             }
-
-            this.size.status = SizeAnimationStatus.increasing;
             this.size.velocity = (this.sizeAnimationSpeed ?? container.retina.sizeAnimationSpeed) / 100;
 
             if (!sizeAnimation.sync) {
