@@ -9,7 +9,7 @@ import { Plugins } from "../../Utils";
 import type { IOptionLoader } from "../Interfaces/IOptionLoader";
 
 export class Options implements IOptions, IOptionLoader<IOptions> {
-    public autoStart: boolean;
+    public autoPlay: boolean;
 
     /**
      * @deprecated this property is obsolete, please use the new fpsLimit
@@ -53,7 +53,7 @@ export class Options implements IOptions, IOptionLoader<IOptions> {
     public preset?: string | string[];
 
     constructor() {
-        this.autoStart = true;
+        this.autoPlay = true;
         this.background = new Background();
         this.backgroundMask = new BackgroundMask();
         this.detectRetina = true;
@@ -83,8 +83,8 @@ export class Options implements IOptions, IOptionLoader<IOptions> {
             }
         }
 
-        if (data.autoStart !== undefined) {
-            this.autoStart = data.autoStart;
+        if (data.autoPlay !== undefined) {
+            this.autoPlay = data.autoPlay;
         }
 
         const detectRetina = data.detectRetina ?? data.retina_detect;

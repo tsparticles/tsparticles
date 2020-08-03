@@ -127,7 +127,7 @@ export class Container {
     public play(force?: boolean): void {
         const needsUpdate = this.paused || force;
 
-        if (this.firstStart && !this.options.autoStart) {
+        if (this.firstStart && !this.options.autoPlay) {
             this.firstStart = false;
             return;
         }
