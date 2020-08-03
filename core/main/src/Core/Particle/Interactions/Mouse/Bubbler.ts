@@ -205,7 +205,7 @@ export class Bubbler implements IExternalInteractor {
 
         const distance = container.retina.bubbleModeDistance;
         //const query = container.particles.spatialGrid.queryRadius(mouseClickPos, distance);
-        const query = container.particles.quadTree.query(new Circle(mouseClickPos.x, mouseClickPos.y, distance));
+        const query = container.particles.quadTree.queryCircle(mouseClickPos, distance);
 
         for (const particle of query) {
             particle.bubble.inRange = true;
@@ -277,7 +277,7 @@ export class Bubbler implements IExternalInteractor {
 
         const distance = container.retina.bubbleModeDistance;
         //const query = container.particles.spatialGrid.queryRadiusWithDistance(mousePos, distance);
-        const query = container.particles.quadTree.query(new Circle(mousePos.x, mousePos.y, distance));
+        const query = container.particles.quadTree.queryCircle(mousePos, distance);
 
         //for (const { distance, particle } of query) {
         for (const particle of query) {

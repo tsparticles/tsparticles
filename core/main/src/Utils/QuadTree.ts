@@ -2,6 +2,11 @@ import type { Particle } from "../Core/Particle";
 import type { Range } from "./Range";
 import type { Point } from "./Point";
 import { Rectangle } from "./Rectangle";
+import { Circle } from "./Circle";
+import type { ICoordinates } from "../Core/Interfaces/ICoordinates";
+import { CircleWarp } from "./CircleWarp";
+import type { Container } from "../Core/Container";
+import { IDimension } from "../Core/Interfaces/IDimension";
 
 export class QuadTree {
     public readonly points: Point[];
@@ -54,6 +59,32 @@ export class QuadTree {
                 this.southWest?.insert(point)) ??
             false
         );
+    }
+
+    public queryCircle(position: ICoordinates, radius: number): Particle[] {
+        return this.query(new Circle(position.x, position.y, radius));
+    }
+
+    public queryCircleWarp(
+        position: ICoordinates,
+        radius: number,
+        containerOrSize: Container | IDimension
+    ): Particle[] {
+        const container = containerOrSize as Container;
+        const size = containerOrSize as IDimension;
+
+        return this.query(
+            new CircleWarp(
+                position.x,
+                position.y,
+                radius,
+                container.canvas !== undefined ? container.canvas.size : size
+            )
+        );
+    }
+
+    public queryRectangle(position: ICoordinates, size: IDimension): Particle[] {
+        return this.query(new Rectangle(position.x, position.y, size.width, size.height));
     }
 
     public query(range: Range, found?: Particle[]): Particle[] {

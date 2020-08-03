@@ -41,7 +41,7 @@ export class Infecter implements IParticlesInteractor {
 
         //const query = container.particles.spatialGrid.queryRadius(pos, radius)
         const query = container.particles.quadTree
-            .query(new Circle(pos.x, pos.y, radius))
+            .queryCircle(pos, radius)
             .filter(
                 (p) => p.infecter.infectionStage === undefined || p.infecter.infectionStage !== infecter1.infectionStage
             );

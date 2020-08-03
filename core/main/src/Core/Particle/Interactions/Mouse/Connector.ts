@@ -44,7 +44,7 @@ export class Connector implements IExternalInteractor {
             const distance = Math.abs(container.retina.connectModeRadius);
 
             //const query = container.particles.spatialGrid.queryRadius(mousePos, distance);
-            const query = container.particles.quadTree.query(new Circle(mousePos.x, mousePos.y, distance));
+            const query = container.particles.quadTree.queryCircle(mousePos, distance);
 
             let i = 0;
             for (const p1 of query) {
