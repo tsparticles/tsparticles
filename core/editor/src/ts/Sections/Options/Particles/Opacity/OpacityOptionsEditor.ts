@@ -19,7 +19,7 @@ export class OpacityOptionsEditor {
         const options = this.options;
 
         const opacityInput = this.container.addProperty(
-            "opacity",
+            "value",
             "Opacity",
             options.value,
             typeof options.value,
