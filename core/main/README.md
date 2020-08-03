@@ -209,10 +209,6 @@ You can find the instructions [here](https://github.com/matteobruni/tsparticles/
 
 You can find the instructions [here](https://github.com/matteobruni/tsparticles/blob/master/components/react/README.md)
 
-#### 3rd Party
-
-A 3rd-party component is available too, read more [here](https://github.com/Wufe/react-particles-js)
-
 ### Svelte
 
 #### `svelte-particles`
