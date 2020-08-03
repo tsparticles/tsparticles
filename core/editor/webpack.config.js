@@ -22,7 +22,7 @@ const getJsConfig = (entry) => {
             path: path.resolve(__dirname, "dist"),
             filename: "[name].js",
             libraryTarget: "umd",
-            library: ""
+            globalObject: "this"
         },
         resolve: {
             extensions: [ ".js", ".json" ]
@@ -38,7 +38,14 @@ const getJsConfig = (entry) => {
             ]
         },
         externals: [
-            /ts[pP]articles/
+            {
+                "tsparticles": {
+                    commonjs: "tsparticles",
+                    commonjs2: "tsparticles",
+                    amd: "tsparticles",
+                    root: "window"
+                }
+            }
         ],
         plugins: [
             new webpack.BannerPlugin({
