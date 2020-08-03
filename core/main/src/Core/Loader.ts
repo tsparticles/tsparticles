@@ -146,6 +146,7 @@ export class Loader {
         }
 
         newItem.canvas.loadCanvas(canvasEl, generatedCanvas);
+
         await newItem.start();
 
         return newItem;

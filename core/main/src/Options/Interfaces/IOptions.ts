@@ -9,6 +9,8 @@ import type { SingleOrMultiple } from "../../Types";
  * The Options interface, defines all the options that can be used by `tsParticles`
  */
 export interface IOptions {
+    autoStart: boolean;
+
     /**
      * Background options, these background options will be used to the canvas element, they are all CSS properties
      */
