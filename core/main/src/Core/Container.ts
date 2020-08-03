@@ -15,7 +15,7 @@ import { Particle } from "./Particle";
 import type { INoiseValue } from "./Interfaces/INoiseValue";
 import type { INoise } from "./Interfaces/INoise";
 import type { IRgb } from "./Interfaces/IRgb";
-import { IAttract } from "./Interfaces/IAttract";
+import type { IAttract } from "./Interfaces/IAttract";
 
 /**
  * The object loaded into an HTML element, it'll contain options loaded and all data to let everything working
@@ -43,6 +43,8 @@ export class Container {
     private paused: boolean;
     private drawAnimationFrame?: number;
     private eventListeners: EventListeners;
+    private animationLoop: (callback: FrameRequestCallback) => number;
+    private animationStop: (id: number) => void;
 
     /**
      * This is the core class, create an instance to have a new working particles manager
@@ -65,6 +67,8 @@ export class Container {
         this.canvas = new Canvas(this);
         this.particles = new Particles(this);
         this.drawer = new FrameManager(this);
+        this.animationLoop = Utils.animate;
+        this.animationStop = Utils.cancelAnimation;
         this.noise = {
             generate: (): INoiseValue => {
                 return {
@@ -130,7 +134,7 @@ export class Container {
         }
 
         if (needsUpdate) {
-            for (const [, plugin] of this.plugins) {
+            for (const [ , plugin ] of this.plugins) {
                 if (plugin.play) {
                     plugin.play();
                 }
@@ -147,7 +151,7 @@ export class Container {
      */
     public pause(): void {
         if (this.drawAnimationFrame !== undefined) {
-            Utils.cancelAnimation(this.drawAnimationFrame);
+            this.animationStop(this.drawAnimationFrame);
 
             delete this.drawAnimationFrame;
         }
@@ -156,7 +160,7 @@ export class Container {
             return;
         }
 
-        for (const [, plugin] of this.plugins) {
+        for (const [ , plugin ] of this.plugins) {
             if (plugin.pause) {
                 plugin.pause();
             }
@@ -171,7 +175,17 @@ export class Container {
      * Draws a frame
      */
     public draw(): void {
-        this.drawAnimationFrame = Utils.animate((t) => this.drawer?.nextFrame(t));
+        this.drawAnimationFrame = this.animationLoop((timestamp) => this.drawer?.nextFrame(timestamp));
+    }
+
+    /**
+     * Use this method to customize the main loop
+     * @param loop Loop function, it's drawAnimationFrame by default
+     * @param stop Stopping Loop function, it's cancelAnimationFrame by default
+     */
+    public setAnimationLoop(loop: (callback: FrameRequestCallback) => number, stop: (id: number) => void): void {
+        this.animationLoop = loop;
+        this.animationStop = stop;
     }
 
     /**
@@ -262,7 +276,7 @@ export class Container {
         delete this.drawer;
         delete this.eventListeners;
 
-        for (const [, drawer] of this.drawers) {
+        for (const [ , drawer ] of this.drawers) {
             if (drawer.destroy) {
                 drawer.destroy(this);
             }
@@ -318,7 +332,7 @@ export class Container {
         this.particles.clear();
         this.canvas.clear();
 
-        for (const [, plugin] of this.plugins) {
+        for (const [ , plugin ] of this.plugins) {
             if (plugin.stop) {
                 plugin.stop();
             }
@@ -344,7 +358,7 @@ export class Container {
 
         this.eventListeners.addListeners();
 
-        for (const [, plugin] of this.plugins) {
+        for (const [ , plugin ] of this.plugins) {
             if (plugin.startAsync !== undefined) {
                 await plugin.startAsync();
             } else if (plugin.start !== undefined) {
@@ -362,17 +376,17 @@ export class Container {
 
         const availablePlugins = Plugins.getAvailablePlugins(this);
 
-        for (const [id, plugin] of availablePlugins) {
+        for (const [ id, plugin ] of availablePlugins) {
             this.plugins.set(id, plugin);
         }
 
-        for (const [, drawer] of this.drawers) {
+        for (const [ , drawer ] of this.drawers) {
             if (drawer.init) {
                 await drawer.init(this);
             }
         }
 
-        for (const [, plugin] of this.plugins) {
+        for (const [ , plugin ] of this.plugins) {
             if (plugin.init) {
                 plugin.init(this.options);
             } else if (plugin.initAsync !== undefined) {
