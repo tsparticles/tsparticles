@@ -31,13 +31,13 @@ export class OptionsEditor {
         const options = particles.options;
 
         this.container.addProperty(
-            "fpsLimit",
-            "FPS Limit",
-            options.fpsLimit,
-            typeof options.fpsLimit,
+            "autoPlay",
+            "Auto Play",
+            options.autoPlay,
+            typeof options.autoPlay,
             async (value: string | number | boolean) => {
-                if (typeof value === "number") {
-                    options.fpsLimit = value;
+                if (typeof value === "boolean") {
+                    options.autoPlay = value;
 
                     await particles.refresh();
                 }
@@ -52,6 +52,20 @@ export class OptionsEditor {
             async (value: string | number | boolean) => {
                 if (typeof value === "boolean") {
                     options.detectRetina = value;
+
+                    await particles.refresh();
+                }
+            }
+        );
+
+        this.container.addProperty(
+            "fpsLimit",
+            "FPS Limit",
+            options.fpsLimit,
+            typeof options.fpsLimit,
+            async (value: string | number | boolean) => {
+                if (typeof value === "number") {
+                    options.fpsLimit = value;
 
                     await particles.refresh();
                 }

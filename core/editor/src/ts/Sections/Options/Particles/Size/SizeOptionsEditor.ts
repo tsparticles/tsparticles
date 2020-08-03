@@ -90,9 +90,12 @@ export class SizeOptionsEditor {
             "startValue",
             "Start Value",
             options.startValue,
-            typeof options.startValue,
+            "select",
             async (value: number | string | boolean) => {
-                if (typeof value === "string" && (value === StartValueType.min || value === StartValueType.max)) {
+                if (
+                    typeof value === "string" &&
+                    (value === StartValueType.min || value === StartValueType.max || value === StartValueType.random)
+                ) {
                     options.startValue = value;
 
                     await particles.refresh();
@@ -102,6 +105,7 @@ export class SizeOptionsEditor {
 
         startValueSelectInput.addItem(StartValueType.max);
         startValueSelectInput.addItem(StartValueType.min);
+        startValueSelectInput.addItem(StartValueType.random);
 
         container.addProperty(
             "sync",
