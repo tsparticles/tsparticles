@@ -9,25 +9,25 @@
       "ondiv": [
         {
           "enable": true,
-          "elementId": "bubble-circle-div",
+          "selectors": ".bubble.circle",
           "mode": "bubble",
           "type": "circle"
         },
         {
           "enable": true,
-          "elementId": "repulse-circle-div",
+          "selectors": ".repulse.circle",
           "mode": "repulse",
           "type": "circle"
         },
         {
           "enable": true,
-          "elementId": "bubble-rectangle-div",
+          "selectors": ".bubble.rectangle",
           "mode": "bubble",
           "type": "rectangle"
         },
         {
           "enable": true,
-          "elementId": "repulse-rectangle-div",
+          "selectors": ".repulse.rectangle",
           "mode": "repulse",
           "type": "rectangle"
         }
