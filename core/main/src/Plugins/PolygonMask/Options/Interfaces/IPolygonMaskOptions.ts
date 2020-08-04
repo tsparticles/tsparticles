@@ -1,4 +1,4 @@
-import { IPolygonMask } from "./IPolygonMask";
+import type { IPolygonMask } from "./IPolygonMask";
 
 export interface IPolygonMaskOptions {
     polygon: IPolygonMask;

@@ -1,4 +1,4 @@
-import { Container } from "./Container";
+import type { Container } from "./Container";
 import type { ICoordinates } from "./Interfaces/ICoordinates";
 import type { IMouseData } from "./Interfaces/IMouseData";
 import type { IRgb } from "./Interfaces/IRgb";

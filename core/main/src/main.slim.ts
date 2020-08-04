@@ -8,10 +8,10 @@ import { CircleDrawer } from "./ShapeDrawers/CircleDrawer";
 import { TriangleDrawer } from "./ShapeDrawers/TriangleDrawer";
 import { StarDrawer } from "./ShapeDrawers/StarDrawer";
 import { PolygonDrawer } from "./ShapeDrawers/PolygonDrawer";
-import { IOptions } from "./Options/Interfaces/IOptions";
-import { Container } from "./Core/Container";
+import type { IOptions } from "./Options/Interfaces/IOptions";
+import type { Container } from "./Core/Container";
 import { Loader } from "./Core/Loader";
-import { IShapeDrawer } from "./Core/Interfaces/IShapeDrawer";
+import type { IShapeDrawer } from "./Core/Interfaces/IShapeDrawer";
 import {
     ShapeDrawerAfterEffectFunction,
     ShapeDrawerDestroyFunction,
@@ -19,7 +19,7 @@ import {
     ShapeDrawerInitFunction,
     RecursivePartial,
 } from "./Types";
-import { IPlugin } from "./Core/Interfaces/IPlugin";
+import type { IPlugin } from "./Core/Interfaces/IPlugin";
 import { Particle } from "./Core/Particle";
 
 /**

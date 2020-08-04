@@ -1,7 +1,7 @@
 import { Container } from "./Container";
 import type { IOptions } from "../Options/Interfaces/IOptions";
 import type { RecursivePartial } from "../Types";
-import { Circle, Constants, Utils } from "../Utils";
+import { Constants, Utils } from "../Utils";
 import { Particle } from "./Particle";
 import { ICoordinates } from "./Interfaces/ICoordinates";
 

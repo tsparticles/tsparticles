@@ -1,7 +1,7 @@
 import type { Container } from "../../../Container";
-import { Circle, Utils } from "../../../../Utils";
+import { Utils } from "../../../../Utils";
 import { HoverMode } from "../../../../Enums/Modes";
-import { IExternalInteractor } from "../../../Interfaces/IExternalInteractor";
+import type { IExternalInteractor } from "../../../Interfaces/IExternalInteractor";
 
 /**
  * Particle connection manager

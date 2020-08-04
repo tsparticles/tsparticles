@@ -1,8 +1,8 @@
 import type { IParticle } from "../../../Interfaces/IParticle";
 import type { Container } from "../../../Container";
-import { Circle, Utils } from "../../../../Utils";
+import { Utils } from "../../../../Utils";
 import { Particle } from "../../../Particle";
-import { IParticlesInteractor } from "../../../Interfaces/IParticlesInteractor";
+import type { IParticlesInteractor } from "../../../Interfaces/IParticlesInteractor";
 
 export class Attractor implements IParticlesInteractor {
     constructor(private readonly container: Container) {}

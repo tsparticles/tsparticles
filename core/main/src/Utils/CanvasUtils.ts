@@ -8,7 +8,7 @@ import type { IShadow } from "../Options/Interfaces/Particles/IShadow";
 import type { Container } from "../Core/Container";
 import type { IContainerPlugin } from "../Core/Interfaces/IContainerPlugin";
 import { Utils } from "./Utils";
-import { IDelta } from "../Core/Interfaces/IDelta";
+import type { IDelta } from "../Core/Interfaces/IDelta";
 
 export class CanvasUtils {
     public static paintBase(context: CanvasRenderingContext2D, dimension: IDimension, baseColor?: string): void {

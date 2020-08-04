@@ -1,6 +1,5 @@
 import type { Particle } from "../../../Particle";
 import type { Container } from "../../../Container";
-import { Circle } from "../../../../Utils";
 import type { IParticlesInteractor } from "../../../Interfaces/IParticlesInteractor";
 import type { IDelta } from "../../../Interfaces/IDelta";
 

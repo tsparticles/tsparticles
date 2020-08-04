@@ -3,7 +3,7 @@ import type { Particle } from "../Particle";
 import type { ClickMode } from "../../Enums";
 import type { RecursivePartial } from "../../Types";
 import type { IOptions } from "../../Options/Interfaces/IOptions";
-import { IDelta } from "./IDelta";
+import type { IDelta } from "./IDelta";
 
 export interface IContainerPlugin {
     draw?: (context: CanvasRenderingContext2D, delta: IDelta) => void;

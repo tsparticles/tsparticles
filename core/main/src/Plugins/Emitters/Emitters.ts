@@ -7,7 +7,7 @@ import type { RecursivePartial, SingleOrMultiple } from "../../Types";
 import { Emitter } from "./Options/Classes/Emitter";
 import type { IOptions } from "../../Options/Interfaces/IOptions";
 import { EmitterClickMode } from "./Enums";
-import { IEmitterOptions } from "./Options/Interfaces/IEmitterOptions";
+import type { IEmitterOptions } from "./Options/Interfaces/IEmitterOptions";
 
 export class Emitters implements IContainerPlugin {
     public array: EmitterInstance[];

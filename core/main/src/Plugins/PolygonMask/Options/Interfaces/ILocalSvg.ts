@@ -1,4 +1,4 @@
-import type { SingleOrMultiple } from "../../../../Types/SingleOrMultiple";
+import type { SingleOrMultiple } from "../../../../Types";
 import type { IDimension } from "../../../../Core/Interfaces/IDimension";
 
 export interface ILocalSvg {

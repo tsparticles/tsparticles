@@ -6,7 +6,7 @@ import { Circle } from "./Circle";
 import type { ICoordinates } from "../Core/Interfaces/ICoordinates";
 import { CircleWarp } from "./CircleWarp";
 import type { Container } from "../Core/Container";
-import { IDimension } from "../Core/Interfaces/IDimension";
+import type { IDimension } from "../Core/Interfaces/IDimension";
 
 export class QuadTree {
     public readonly points: Point[];

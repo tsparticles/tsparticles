@@ -8,7 +8,7 @@ import { Absorber } from "./Options/Classes/Absorber";
 import type { SingleOrMultiple, RecursivePartial } from "../../Types";
 import type { IOptions } from "../../Options/Interfaces/IOptions";
 import { AbsorberClickMode } from "./Enums";
-import { IAbsorberOptions } from "./Options/Interfaces/IAbsorberOptions";
+import type { IAbsorberOptions } from "./Options/Interfaces/IAbsorberOptions";
 
 export class Absorbers implements IContainerPlugin {
     public array: AbsorberInstance[];

@@ -27,7 +27,7 @@ import {
 } from "../Enums";
 import { ImageDrawer } from "../ShapeDrawers/ImageDrawer";
 import type { IImageShape } from "../Options/Interfaces/Particles/Shape/IImageShape";
-import { RecursivePartial } from "../Types/RecursivePartial";
+import type { RecursivePartial } from "../Types";
 import type { ILink } from "./Interfaces/ILink";
 import type { IHsl } from "./Interfaces/IHsl";
 import { ColorUtils, Plugins, Utils } from "../Utils";
@@ -338,7 +338,7 @@ export class Particle implements IParticle {
 
         this.shadowColor = ColorUtils.colorToRgb(this.particlesOptions.shadow.color);
         this.updater = new Updater(container, this);
-        this.infecter = new Infecter(container, this);
+        this.infecter = new Infecter(container);
         this.mover = new Mover(container, this);
     }
 

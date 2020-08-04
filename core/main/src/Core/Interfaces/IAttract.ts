@@ -1,4 +1,4 @@
-import { IParticle } from "./IParticle";
+import type { IParticle } from "./IParticle";
 
 export interface IAttract {
     particles: IParticle[];

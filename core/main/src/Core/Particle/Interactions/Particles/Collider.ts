@@ -1,4 +1,4 @@
-import { Circle, Utils } from "../../../../Utils";
+import { Utils } from "../../../../Utils";
 import { Particle } from "../../../Particle";
 import type { Container } from "../../../Container";
 import type { IParticle } from "../../../Interfaces/IParticle";

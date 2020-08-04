@@ -1,8 +1,8 @@
 import type { Container } from "../Container";
 import type { IContainerPlugin } from "./IContainerPlugin";
-import { IOptions } from "../../Options/Interfaces/IOptions";
-import { RecursivePartial } from "../../Types";
-import { Options } from "../../Options/Classes/Options";
+import type { IOptions } from "../../Options/Interfaces/IOptions";
+import type { RecursivePartial } from "../../Types";
+import type { Options } from "../../Options/Classes/Options";
 
 export interface IPlugin {
     readonly id: string;

@@ -60,7 +60,7 @@ export class DivEvent implements IDivEvent, IOptionLoader<IDivEvent> {
      */
     set ids(value: SingleOrMultiple<string>) {
         if (value instanceof Array) {
-            this.selectors = value.map((t) => `#${value}`);
+            this.selectors = value.map((t) => `#${t}`);
         } else {
             this.selectors = `#${value}`;
         }

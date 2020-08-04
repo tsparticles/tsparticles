@@ -20,7 +20,7 @@ export class BubbleDiv extends BubbleBase implements IBubbleDiv, IOptionLoader<I
      */
     set ids(value: SingleOrMultiple<string>) {
         if (value instanceof Array) {
-            this.selectors = value.map((t) => `#${value}`);
+            this.selectors = value.map((t) => `#${t}`);
         } else {
             this.selectors = `#${value}`;
         }

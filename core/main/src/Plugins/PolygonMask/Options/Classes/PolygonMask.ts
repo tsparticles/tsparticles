@@ -6,7 +6,7 @@ import { Inline } from "./Inline";
 import type { RecursivePartial } from "../../../../Types";
 import type { ICoordinates } from "../../../../Core/Interfaces/ICoordinates";
 import { LocalSvg } from "./LocalSvg";
-import { IOptionLoader } from "../../../../Options/Interfaces/IOptionLoader";
+import type { IOptionLoader } from "../../../../Options/Interfaces/IOptionLoader";
 
 export class PolygonMask implements IPolygonMask, IOptionLoader<IPolygonMask> {
     /**
