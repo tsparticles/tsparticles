@@ -5,7 +5,6 @@ import type { IBackground } from "tsparticles/dist/Options/Interfaces/Background
 import type { IColor } from "tsparticles/dist/Core/Interfaces/IColor";
 import type { Container } from "tsparticles/dist/Core/Container";
 import { ColorUtils } from "tsparticles";
-import { NumberOptionsEditor } from "../Particles/Number/NumberOptionsEditor";
 import { EditorNumberInput } from "../../../Editors/EditorNumberInput";
 
 export class BackgroundOptionsEditor {

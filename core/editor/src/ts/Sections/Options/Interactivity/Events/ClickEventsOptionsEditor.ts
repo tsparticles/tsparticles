@@ -1,6 +1,6 @@
 import { EditorContainer } from "../../../../Editors/EditorContainer";
-import { Container } from "tsparticles/dist/Core/Container";
-import { IClickEvent } from "tsparticles/dist/Options/Interfaces/Interactivity/Events/IClickEvent";
+import type { Container } from "tsparticles/dist/Core/Container";
+import type { IClickEvent } from "tsparticles/dist/Options/Interfaces/Interactivity/Events/IClickEvent";
 import { EditorSelectInput } from "../../../../Editors/EditorSelectInput";
 import { AbsorberClickMode, ClickMode, EmitterClickMode } from "tsparticles";
 
