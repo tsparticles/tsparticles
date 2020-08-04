@@ -1,10 +1,6 @@
-import type { EditorContainer } from "../../../../Editors/EditorContainer";
 import type { Container } from "tsparticles/dist/Core/Container";
 import type { IModes } from "tsparticles/dist/Options/Interfaces/Interactivity/Modes/IModes";
-import type { EditorNumberInput } from "../../../../Editors/EditorNumberInput";
-import type { IRgb } from "tsparticles/dist/Core/Interfaces/IRgb";
-import type { IHsl } from "tsparticles/dist/Core/Interfaces/IHsl";
-import { ColorUtils } from "tsparticles";
+import { ColorUtils, IHsl, IRgb, EditorNumberInput, EditorContainer } from "object-gui";
 
 export class ModesOptionsEditor {
     public readonly container: EditorContainer;
@@ -12,7 +8,7 @@ export class ModesOptionsEditor {
 
     constructor(private readonly parent: EditorContainer, private readonly options: IModes) {
         this.container = parent.addContainer("modes", "Modes");
-        this.particles = this.container.particles;
+        this.particles = this.container.data as Container;
 
         this.addAttract();
         this.addBubble();
@@ -26,7 +22,7 @@ export class ModesOptionsEditor {
     }
 
     private addAttract(): void {
-        const particles = this.container.particles;
+        const particles = this.particles;
         const options = this.options.attract;
         const attractContainer = this.container.addContainer("attract", "Attract");
 
@@ -74,7 +70,7 @@ export class ModesOptionsEditor {
     }
 
     private addBubble(): void {
-        const particles = this.container.particles;
+        const particles = this.particles;
         const options = this.options.bubble;
         const bubbleContainer = this.container.addContainer("bubble", "Bubble");
 
@@ -179,7 +175,7 @@ export class ModesOptionsEditor {
     }
 
     private addConnect(): void {
-        const particles = this.container.particles;
+        const particles = this.particles;
         const options = this.options.connect;
         const connectContainer = this.container.addContainer("connect", "Connect");
 
@@ -231,7 +227,7 @@ export class ModesOptionsEditor {
     }
 
     private addGrab(): void {
-        const particles = this.container.particles;
+        const particles = this.particles;
         const options = this.options.grab;
         const connectContainer = this.container.addContainer("grab", "Grab");
 
@@ -308,7 +304,7 @@ export class ModesOptionsEditor {
     }
 
     private addPush(): void {
-        const particles = this.container.particles;
+        const particles = this.particles;
         const options = this.options.push;
         const pushContainer = this.container.addContainer("push", "Push");
 
@@ -328,7 +324,7 @@ export class ModesOptionsEditor {
     }
 
     private addRemove(): void {
-        const particles = this.container.particles;
+        const particles = this.particles;
         const options = this.options.remove;
         const pushContainer = this.container.addContainer("remove", "Remove");
 
@@ -348,7 +344,7 @@ export class ModesOptionsEditor {
     }
 
     private addRepulse(): void {
-        const particles = this.container.particles;
+        const particles = this.particles;
         const options = this.options.repulse;
         const repulseContainer = this.container.addContainer("repulse", "Repulse");
 
@@ -396,7 +392,7 @@ export class ModesOptionsEditor {
     }
 
     private addSlow(): void {
-        const particles = this.container.particles;
+        const particles = this.particles;
         const options = this.options.slow;
         const slowContainer = this.container.addContainer("slow", "Slow");
 
@@ -430,7 +426,7 @@ export class ModesOptionsEditor {
     }
 
     private addTrail(): void {
-        const particles = this.container.particles;
+        const particles = this.particles;
         const options = this.options.trail;
         const trailContainer = this.container.addContainer("trail", "Trail");
 

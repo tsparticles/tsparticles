@@ -1,9 +1,8 @@
-import type { EditorContainer } from "../../../../Editors/EditorContainer";
 import type { Container } from "tsparticles/dist/Core/Container";
 import type { ISize } from "tsparticles/dist/Options/Interfaces/Particles/Size/ISize";
-import { ISizeRandom } from "tsparticles/dist/Options/Interfaces/Particles/Size/ISizeRandom";
+import type { ISizeRandom } from "tsparticles/dist/Options/Interfaces/Particles/Size/ISizeRandom";
 import { DestroyType, StartValueType } from "tsparticles";
-import { EditorSelectInput } from "../../../../Editors/EditorSelectInput";
+import { EditorSelectInput, EditorContainer } from "object-gui";
 
 export class SizeOptionsEditor {
     public readonly container: EditorContainer;
@@ -11,7 +10,7 @@ export class SizeOptionsEditor {
 
     constructor(private readonly parent: EditorContainer, private readonly options: ISize) {
         this.container = parent.addContainer("size", "Size");
-        this.particles = this.container.particles;
+        this.particles = this.container.data as Container;
 
         this.addAnimation();
         this.addRandom();
@@ -19,7 +18,7 @@ export class SizeOptionsEditor {
     }
 
     private addAnimation(): void {
-        const particles = this.container.particles;
+        const particles = this.particles;
         const options = this.options.animation;
         const container = this.container.addContainer("animation", "Animation");
 
@@ -157,7 +156,7 @@ export class SizeOptionsEditor {
     }
 
     private addProperties(): void {
-        const particles = this.container.particles;
+        const particles = this.particles;
         const options = this.options;
 
         this.container.addProperty(

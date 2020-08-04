@@ -1,11 +1,8 @@
-import type { EditorContainer } from "../../../../Editors/EditorContainer";
+import { EditorContainer, ColorUtils, IRgb, IHsl, EditorSelectInput } from "object-gui";
 import type { Container } from "tsparticles/dist/Core/Container";
 import type { IMove } from "tsparticles/dist/Options/Interfaces/Particles/Move/IMove";
 import type { IMoveAngle } from "tsparticles/dist/Options/Interfaces/Particles/Move/IMoveAngle";
-import { ColorUtils, MoveDirection, OutMode } from "tsparticles";
-import { EditorSelectInput } from "../../../../Editors/EditorSelectInput";
-import { IRgb } from "tsparticles/dist/Core/Interfaces/IRgb";
-import { IHsl } from "tsparticles/dist/Core/Interfaces/IHsl";
+import { MoveDirection, OutMode } from "tsparticles";
 
 export class MoveOptionsEditor {
     public readonly container: EditorContainer;
@@ -13,7 +10,7 @@ export class MoveOptionsEditor {
 
     constructor(private readonly parent: EditorContainer, private readonly options: IMove) {
         this.container = parent.addContainer("move", "Move");
-        this.particles = this.container.particles;
+        this.particles = this.container.data as Container;
 
         this.addAngle();
         this.addAttract();
@@ -23,7 +20,7 @@ export class MoveOptionsEditor {
     }
 
     private addAngle(): void {
-        const particles = this.container.particles;
+        const particles = this.particles;
         const container = this.container.addContainer("angle", "Angle");
         const options = this.options.angle as IMoveAngle;
 
@@ -57,7 +54,7 @@ export class MoveOptionsEditor {
     }
 
     private addAttract(): void {
-        const particles = this.container.particles;
+        const particles = this.particles;
         const container = this.container.addContainer("attract", "Attract");
         const options = this.options.attract;
 
@@ -107,7 +104,7 @@ export class MoveOptionsEditor {
     }
 
     private addNoise(): void {
-        const particles = this.container.particles;
+        const particles = this.particles;
         const container = this.container.addContainer("noise", "Noise");
         const options = this.options.noise;
 
@@ -173,7 +170,7 @@ export class MoveOptionsEditor {
     }
 
     private addTrail(): void {
-        const particles = this.container.particles;
+        const particles = this.particles;
         const container = this.container.addContainer("trail", "Trail");
         const options = this.options.trail;
 
@@ -248,7 +245,7 @@ export class MoveOptionsEditor {
     }
 
     private addProperties(): void {
-        const particles = this.container.particles;
+        const particles = this.particles;
         const options = this.options;
         const container = this.container;
 

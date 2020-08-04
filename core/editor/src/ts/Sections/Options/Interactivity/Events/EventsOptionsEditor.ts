@@ -1,4 +1,4 @@
-import type { EditorContainer } from "../../../../Editors/EditorContainer";
+import type { EditorContainer } from "object-gui";
 import type { Container } from "tsparticles/dist/Core/Container";
 import type { IEvents } from "tsparticles/dist/Options/Interfaces/Interactivity/Events/IEvents";
 import { ClickEventsOptionsEditor } from "./ClickEventsOptionsEditor";
@@ -11,7 +11,7 @@ export class EventsOptionsEditor {
 
     constructor(private readonly parent: EditorContainer, private readonly options: IEvents) {
         this.container = parent.addContainer("events", "Events");
-        this.particles = this.container.particles;
+        this.particles = this.container.data as Container;
 
         this.addClick();
         this.addDivs();
@@ -32,7 +32,7 @@ export class EventsOptionsEditor {
     }
 
     private addProperties(): void {
-        const particles = this.container.particles;
+        const particles = this.particles;
         const options = this.options;
 
         this.container.addProperty(

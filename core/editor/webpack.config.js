@@ -39,10 +39,16 @@ const getJsConfig = (entry) => {
         },
         externals: [
             {
-                "tsparticles": {
+                tsparticles: {
                     commonjs: "tsparticles",
                     commonjs2: "tsparticles",
                     amd: "tsparticles",
+                    root: "window"
+                },
+                objectgui: {
+                    commonjs: "objectgui",
+                    commonjs2: "objectgui",
+                    amd: "objectgui",
                     root: "window"
                 }
             }
@@ -81,37 +87,9 @@ const getJsConfig = (entry) => {
     };
 };
 
-const getCssConfig = (entry) => {
-    return {
-        entry: entry,
-        module: {
-            rules: [
-                {
-                    test: /\.s[ac]ss$/i,
-                    use: [
-                        'style-loader',
-                        'css-loader',
-                        {
-                            loader: 'sass-loader',
-                            options: {
-                                // Prefer `dart-sass`
-                                implementation: require('sass'),
-                            }
-                        }
-                    ]
-                }
-            ]
-        }
-    }
-};
-
 module.exports = [
     getJsConfig({
         "js/tsparticles.editor": "./dist/js/index.js",
         "js/tsparticles.editor.min": "./dist/js/index.js"
-    })/*,
-    getCssConfig({
-        "css/tsparticles.editor": "./src/scss/editor.scss",
-        "css/tsparticles.editor.min": "./src/scss/editor.scss",
-    })*/
+    })
 ];

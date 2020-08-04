@@ -1,7 +1,6 @@
-import { EditorContainer } from "../../../../Editors/EditorContainer";
 import type { Container } from "tsparticles/dist/Core/Container";
 import type { IClickEvent } from "tsparticles/dist/Options/Interfaces/Interactivity/Events/IClickEvent";
-import { EditorSelectInput } from "../../../../Editors/EditorSelectInput";
+import { EditorSelectInput, EditorContainer } from "object-gui";
 import { AbsorberClickMode, ClickMode, EmitterClickMode } from "tsparticles";
 
 export class ClickEventsOptionsEditor {
@@ -10,13 +9,13 @@ export class ClickEventsOptionsEditor {
 
     constructor(private readonly parent: EditorContainer, private readonly options: IClickEvent) {
         this.container = parent.addContainer("onClick", "Click Events");
-        this.particles = this.container.particles;
+        this.particles = this.container.data as Container;
 
         this.addClick();
     }
 
     private addClick(): void {
-        const particles = this.container.particles;
+        const particles = this.particles;
         const options = this.options;
         const clickContainer = this.container;
 

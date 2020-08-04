@@ -1,9 +1,6 @@
-import { EditorContainer } from "../../../../Editors/EditorContainer";
 import { Container } from "tsparticles/dist/Core/Container";
 import { IShadow } from "tsparticles/dist/Options/Interfaces/Particles/IShadow";
-import { IRgb } from "tsparticles/dist/Core/Interfaces/IRgb";
-import { IHsl } from "tsparticles/dist/Core/Interfaces/IHsl";
-import { ColorUtils } from "tsparticles";
+import { ColorUtils, EditorContainer, IRgb, IHsl } from "object-gui";
 
 export class ShadowOptionsEditor {
     public readonly container: EditorContainer;
@@ -11,7 +8,7 @@ export class ShadowOptionsEditor {
 
     constructor(private readonly parent: EditorContainer, private readonly options: IShadow) {
         this.container = parent.addContainer("shadow", "Shadow");
-        this.particles = this.container.particles;
+        this.particles = this.container.data as Container;
 
         this.addShadow();
     }

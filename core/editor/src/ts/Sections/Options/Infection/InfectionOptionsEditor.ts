@@ -1,10 +1,7 @@
-import { EditorContainer } from "../../../Editors/EditorContainer";
 import { Container } from "tsparticles/dist/Core/Container";
 import { IInfection } from "tsparticles/dist/Options/Interfaces/Infection/IInfection";
 import { IInfectionStage } from "tsparticles/dist/Options/Interfaces/Infection/IInfectionStage";
-import { IRgb } from "tsparticles/dist/Core/Interfaces/IRgb";
-import { IHsl } from "tsparticles/dist/Core/Interfaces/IHsl";
-import { ColorUtils } from "tsparticles";
+import { EditorContainer, ColorUtils, IRgb, IHsl } from "object-gui";
 
 export class InfectionOptionsEditor {
     public readonly container: EditorContainer;
@@ -12,7 +9,7 @@ export class InfectionOptionsEditor {
 
     constructor(private readonly parent: EditorContainer, private readonly options: IInfection) {
         this.container = parent.addContainer("infection", "Infection");
-        this.particles = this.container.particles;
+        this.particles = this.container.data as Container;
 
         this.addStages();
         this.addProperties();

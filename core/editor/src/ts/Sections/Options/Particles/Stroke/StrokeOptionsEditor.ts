@@ -1,10 +1,8 @@
-import { EditorContainer } from "../../../../Editors/EditorContainer";
 import { Container } from "tsparticles/dist/Core/Container";
 import { IStroke } from "tsparticles/dist/Options/Interfaces/Particles/IStroke";
-import { SingleOrMultiple } from "tsparticles";
 import { ColorOptionsEditor } from "../Color/ColorOptionsEditor";
 import { IAnimatableColor } from "tsparticles/dist/Options/Interfaces/Particles/IAnimatableColor";
-import { EditorNumberInput } from "../../../../Editors/EditorNumberInput";
+import { EditorNumberInput, EditorContainer, SingleOrMultiple } from "object-gui";
 
 export class StrokeOptionsEditor {
     public readonly container: EditorContainer;
@@ -12,7 +10,7 @@ export class StrokeOptionsEditor {
 
     constructor(private readonly parent: EditorContainer, private readonly options: SingleOrMultiple<IStroke>) {
         this.container = parent.addContainer("stroke", "Stroke");
-        this.particles = this.container.particles;
+        this.particles = this.container.data as Container;
 
         if (options instanceof Array) {
             for (let i = 0; i < options.length; i++) {

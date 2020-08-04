@@ -12349,6 +12349,13 @@ object-copy@^0.1.0:
     define-property "^0.2.5"
     kind-of "^3.0.3"
 
+object-gui@^1.0.0-alpha.1:
+  version "1.0.0-alpha.1"
+  resolved "https://registry.yarnpkg.com/object-gui/-/object-gui-1.0.0-alpha.1.tgz#3a79f40afc506978f5fc4bed943569ecec472493"
+  integrity sha512-x+1dhxqi2B+OJW4Vl3xmSwwSi9BfyS7O3jPChputdg4RaOtui6jAuBe1X3gcC7C7UmiYA5GFfw5hlkz9Y8Of4Q==
+  dependencies:
+    tslib "^2.0.0"
+
 object-inspect@^1.7.0:
   version "1.8.0"
   resolved "https://registry.yarnpkg.com/object-inspect/-/object-inspect-1.8.0.tgz#df807e5ecf53a609cc6bfe93eac3cc7be5b3a9d0"

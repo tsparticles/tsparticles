@@ -1,6 +1,6 @@
-import { Editor } from "./Editor";
+import { ParticlesEditor } from "./ParticlesEditor";
 import type { Container } from "tsparticles/dist/Core/Container";
 
-export function showEditor(container: Container): Editor {
-    return new Editor(container);
+export function showEditor(container: Container): ParticlesEditor {
+    return new ParticlesEditor(container);
 }

@@ -1,7 +1,5 @@
-import type { EditorContainer } from "../../../../Editors/EditorContainer";
+import type { EditorContainer, IRgb, IHsl } from "object-gui";
 import type { Container } from "tsparticles/dist/Core/Container";
-import type { IRgb } from "tsparticles/dist/Core/Interfaces/IRgb";
-import type { IHsl } from "tsparticles/dist/Core/Interfaces/IHsl";
 import { ColorUtils } from "tsparticles";
 import type { IAnimatableColor } from "tsparticles/dist/Options/Interfaces/Particles/IAnimatableColor";
 
@@ -11,13 +9,13 @@ export class ColorOptionsEditor {
 
     constructor(private readonly parent: EditorContainer, private readonly options: IAnimatableColor) {
         this.container = parent.addContainer("color", "Color");
-        this.particles = this.container.particles;
+        this.particles = this.container.data as Container;
 
         this.addColor();
     }
 
     private addColor(): void {
-        const particles = this.container.particles;
+        const particles = this.particles;
         const options = this.options;
 
         let colorStringValue: string | undefined;

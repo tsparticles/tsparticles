@@ -1,7 +1,7 @@
-import type { EditorContainer } from "../../../../Editors/EditorContainer";
+import type { EditorContainer } from "object-gui";
 import type { Container } from "tsparticles/dist/Core/Container";
 import type { IOpacity } from "tsparticles/dist/Options/Interfaces/Particles/Opacity/IOpacity";
-import { IOpacityRandom } from "tsparticles/dist/Options/Interfaces/Particles/Opacity/IOpacityRandom";
+import type { IOpacityRandom } from "tsparticles/dist/Options/Interfaces/Particles/Opacity/IOpacityRandom";
 
 export class OpacityOptionsEditor {
     public readonly container: EditorContainer;
@@ -9,13 +9,13 @@ export class OpacityOptionsEditor {
 
     constructor(private readonly parent: EditorContainer, private readonly options: IOpacity) {
         this.container = parent.addContainer("opacity", "Opacity");
-        this.particles = this.container.particles;
+        this.particles = this.container.data as Container;
 
         this.addOpacity();
     }
 
     private addOpacity(): void {
-        const particles = this.container.particles;
+        const particles = this.particles;
         const options = this.options;
 
         const opacityInput = this.container.addProperty(

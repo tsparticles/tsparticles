@@ -1,8 +1,7 @@
-import { EditorContainer } from "../../../../Editors/EditorContainer";
+import { EditorContainer, EditorSelectInput } from "object-gui";
 import { Container } from "tsparticles/dist/Core/Container";
-import { EditorSelectInput } from "../../../../Editors/EditorSelectInput";
 import { HoverMode } from "tsparticles";
-import { IHoverEvent } from "tsparticles/dist/Options/Interfaces/Interactivity/Events/IHoverEvent";
+import type { IHoverEvent } from "tsparticles/dist/Options/Interfaces/Interactivity/Events/IHoverEvent";
 
 export class HoverEventsOptionsEditor {
     public readonly container: EditorContainer;
@@ -10,13 +9,13 @@ export class HoverEventsOptionsEditor {
 
     constructor(private readonly parent: EditorContainer, private readonly options: IHoverEvent) {
         this.container = parent.addContainer("onHover", "Hover Events");
-        this.particles = this.container.particles;
+        this.particles = this.container.data as Container;
 
         this.addHover();
     }
 
     private addHover(): void {
-        const particles = this.container.particles;
+        const particles = this.particles;
         const options = this.options;
         const hoverContainer = this.container;
 

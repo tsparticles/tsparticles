@@ -1,7 +1,6 @@
-import type { EditorContainer } from "../../../../Editors/EditorContainer";
 import type { Container } from "tsparticles/dist/Core/Container";
 import type { IRotate } from "tsparticles/dist/Options/Interfaces/Particles/Rotate/IRotate";
-import { EditorSelectInput } from "../../../../Editors/EditorSelectInput";
+import { EditorSelectInput, EditorContainer } from "object-gui";
 
 export class RotateOptionsEditor {
     public readonly container: EditorContainer;
@@ -9,7 +8,7 @@ export class RotateOptionsEditor {
 
     constructor(private readonly parent: EditorContainer, private readonly options: IRotate) {
         this.container = parent.addContainer("rotate", "Rotate");
-        this.particles = this.container.particles;
+        this.particles = this.container.data as Container;
 
         this.addAnimation();
         this.addProperties();
@@ -17,7 +16,7 @@ export class RotateOptionsEditor {
 
     private addAnimation(): void {
         const container = this.container.addContainer("animation", "Animation");
-        const particles = this.container.particles;
+        const particles = this.particles;
         const options = this.options;
 
         container.addProperty(
@@ -64,7 +63,7 @@ export class RotateOptionsEditor {
     }
 
     private addProperties(): void {
-        const particles = this.container.particles;
+        const particles = this.particles;
         const options = this.options;
 
         const directionSelectInput = this.container.addProperty(

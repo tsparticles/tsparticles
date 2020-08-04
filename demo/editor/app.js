@@ -4,7 +4,7 @@ const stylus = require('stylus');
 
 const app = express();
 
-app.use(helmet());
+// app.use(helmet()); // Safari requires https, probably a bug
 
 const port = 3000;
 
@@ -13,6 +13,7 @@ app.set('view engine', 'pug');
 app.use(stylus.middleware('./public'));
 app.use(express.static('./public'));
 app.use("/tsparticles", express.static("../../node_modules/tsparticles/dist"));
+app.use("/object-gui", express.static("../../node_modules/object-gui/dist"));
 app.use("/tsparticles-editor", express.static("../../node_modules/tsparticles-editor/dist"));
 app.use("/pathseg", express.static("../../node_modules/pathseg/"));
 

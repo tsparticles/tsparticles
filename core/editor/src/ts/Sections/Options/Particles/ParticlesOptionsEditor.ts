@@ -1,4 +1,4 @@
-import type { EditorContainer } from "../../../Editors/EditorContainer";
+import type { EditorContainer } from "object-gui";
 import type { IParticles } from "tsparticles/dist/Options/Interfaces/Particles/IParticles";
 import type { Container } from "tsparticles/dist/Core/Container";
 import { LinksOptionsEditor } from "./Links/LinksOptionsEditor";
@@ -20,7 +20,7 @@ export class ParticlesOptionsEditor {
 
     constructor(private readonly parent: EditorContainer, private readonly options: IParticles) {
         this.container = parent.addContainer("particles", "Particles");
-        this.particles = this.container.particles;
+        this.particles = this.container.data as Container;
 
         this.addCollisions();
         this.addColor();

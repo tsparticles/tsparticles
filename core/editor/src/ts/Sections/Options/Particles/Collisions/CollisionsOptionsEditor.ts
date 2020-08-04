@@ -1,7 +1,6 @@
-import { EditorContainer } from "../../../../Editors/EditorContainer";
+import { EditorContainer, EditorSelectInput } from "object-gui";
 import { Container } from "tsparticles/dist/Core/Container";
-import { ICollisions } from "tsparticles/dist/Options/Interfaces/Particles/ICollisions";
-import { EditorSelectInput } from "../../../../Editors/EditorSelectInput";
+import type { ICollisions } from "tsparticles/dist/Options/Interfaces/Particles/ICollisions";
 import { CollisionMode } from "tsparticles";
 
 export class CollisionsOptionsEditor {
@@ -10,7 +9,7 @@ export class CollisionsOptionsEditor {
 
     constructor(private readonly parent: EditorContainer, private readonly options: ICollisions) {
         this.container = parent.addContainer("collisions", "Collisions");
-        this.particles = this.container.particles;
+        this.particles = this.container.data as Container;
 
         this.addCollisions();
     }

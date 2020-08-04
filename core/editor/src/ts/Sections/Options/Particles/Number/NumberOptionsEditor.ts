@@ -1,4 +1,4 @@
-import type { EditorContainer } from "../../../../Editors/EditorContainer";
+import type { EditorContainer } from "object-gui";
 import type { Container } from "tsparticles/dist/Core/Container";
 import type { IParticlesNumber } from "tsparticles/dist/Options/Interfaces/Particles/IParticlesNumber";
 
@@ -8,14 +8,14 @@ export class NumberOptionsEditor {
 
     constructor(private readonly parent: EditorContainer, private readonly options: IParticlesNumber) {
         this.container = parent.addContainer("number", "Number");
-        this.particles = this.container.particles;
+        this.particles = this.container.data as Container;
 
         this.addDensity();
         this.addNumber();
     }
 
     private addDensity(): void {
-        const particles = this.container.particles;
+        const particles = this.particles;
         const options = this.options;
         const container = this.container.addContainer("density", "Density");
 
@@ -63,7 +63,7 @@ export class NumberOptionsEditor {
     }
 
     private addNumber(): void {
-        const particles = this.container.particles;
+        const particles = this.particles;
         const options = this.options;
 
         this.container.addProperty(

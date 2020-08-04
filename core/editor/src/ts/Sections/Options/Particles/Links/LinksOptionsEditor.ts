@@ -1,10 +1,6 @@
-import type { EditorContainer } from "../../../../Editors/EditorContainer";
-import type { IRgb } from "tsparticles/dist/Core/Interfaces/IRgb";
-import type { IHsl } from "tsparticles/dist/Core/Interfaces/IHsl";
 import type { Container } from "tsparticles/dist/Core/Container";
-import { ColorUtils } from "tsparticles";
+import { ColorUtils, EditorContainer, IRgb, IHsl, EditorNumberInput } from "object-gui";
 import type { ILinks } from "tsparticles/dist/Options/Interfaces/Particles/Links/ILinks";
-import { EditorNumberInput } from "../../../../Editors/EditorNumberInput";
 
 export class LinksOptionsEditor {
     public readonly container: EditorContainer;
@@ -12,7 +8,7 @@ export class LinksOptionsEditor {
 
     constructor(private readonly parent: EditorContainer, private readonly options: ILinks) {
         this.container = parent.addContainer("links", "Links");
-        this.particles = this.container.particles;
+        this.particles = this.container.data as Container;
 
         this.addShadow();
         this.addTriangles();
@@ -176,7 +172,7 @@ export class LinksOptionsEditor {
     }
 
     private addLinks(): void {
-        const particles = this.container.particles;
+        const particles = this.particles;
         const options = this.options;
         let colorStringValue: string | undefined;
 

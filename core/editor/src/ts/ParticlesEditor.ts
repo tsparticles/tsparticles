@@ -1,51 +1,18 @@
 import { EditorContainer } from "./Editors/EditorContainer";
 import type { Container } from "tsparticles/dist/Core/Container";
 import { OptionsEditor } from "./Sections/Options/OptionsEditor";
+import { Editor } from "object-gui";
 
-export class Editor {
-    public readonly container: EditorContainer;
-
+export class ParticlesEditor extends Editor {
     constructor(public readonly particles: Container) {
-        this.container = new EditorContainer(
-            particles,
-            `${particles.id}_editor`,
-            "tsParticles Editor",
-            false,
-            document.body
-        );
+        super(particles.id, "tsParticles", particles);
+    }
 
-        this.container.element.classList.add("editor-root");
+    protected customize() {
+        super.customize();
 
         this.addOptions();
         this.addButtons();
-    }
-
-    public top(): Editor {
-        this.container.element.classList.add("top");
-
-        return this;
-    }
-
-    public bottom(): Editor {
-        this.container.element.classList.add("bottom");
-
-        return this;
-    }
-
-    public left(): Editor {
-        this.container.element.classList.add("left");
-
-        return this;
-    }
-
-    public right(): Editor {
-        this.container.element.classList.add("right");
-
-        return this;
-    }
-
-    public theme(theme: string) {
-        this.container.element.classList.add(`editor-${theme}`);
     }
 
     private addOptions() {

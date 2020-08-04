@@ -1,11 +1,10 @@
-import type { EditorContainer } from "../../../Editors/EditorContainer";
 import type { IRgb } from "tsparticles/dist/Core/Interfaces/IRgb";
 import type { IHsl } from "tsparticles/dist/Core/Interfaces/IHsl";
 import type { IBackground } from "tsparticles/dist/Options/Interfaces/Background/IBackground";
 import type { IColor } from "tsparticles/dist/Core/Interfaces/IColor";
 import type { Container } from "tsparticles/dist/Core/Container";
 import { ColorUtils } from "tsparticles";
-import { EditorNumberInput } from "../../../Editors/EditorNumberInput";
+import { EditorNumberInput, EditorContainer } from "object-gui";
 
 export class BackgroundOptionsEditor {
     public readonly container: EditorContainer;
@@ -13,7 +12,7 @@ export class BackgroundOptionsEditor {
 
     constructor(private readonly parent: EditorContainer, private readonly options: IBackground) {
         this.container = parent.addContainer("background", "Background");
-        this.particles = this.container.particles;
+        this.particles = this.container.data as Container;
 
         this.addColor();
 

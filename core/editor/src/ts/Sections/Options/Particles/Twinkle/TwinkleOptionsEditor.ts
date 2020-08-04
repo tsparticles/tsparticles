@@ -1,12 +1,8 @@
-import { EditorContainer } from "../../../../Editors/EditorContainer";
-import { Container } from "tsparticles/dist/Core/Container";
-import { ITwinkle } from "tsparticles/dist/Options/Interfaces/Particles/Twinkle/ITwinkle";
-import { Editor } from "../../../../Editor";
-import { ITwinkleValues } from "tsparticles/dist/Options/Interfaces/Particles/Twinkle/ITwinkleValues";
-import { IRgb } from "tsparticles/dist/Core/Interfaces/IRgb";
-import { IHsl } from "tsparticles/dist/Core/Interfaces/IHsl";
+import type { Container } from "tsparticles/dist/Core/Container";
+import type { ITwinkle } from "tsparticles/dist/Options/Interfaces/Particles/Twinkle/ITwinkle";
+import type { ITwinkleValues } from "tsparticles/dist/Options/Interfaces/Particles/Twinkle/ITwinkleValues";
 import { ColorUtils } from "tsparticles";
-import { EditorNumberInput } from "../../../../Editors/EditorNumberInput";
+import { EditorNumberInput, EditorContainer, IRgb, IHsl } from "object-gui";
 
 export class TwinkleOptionsEditor {
     public readonly container: EditorContainer;
@@ -14,7 +10,7 @@ export class TwinkleOptionsEditor {
 
     constructor(private readonly parent: EditorContainer, private readonly options: ITwinkle) {
         this.container = parent.addContainer("twinkle", "Twinkle");
-        this.particles = this.container.particles;
+        this.particles = this.container.data as Container;
 
         this.addTwinkle();
     }

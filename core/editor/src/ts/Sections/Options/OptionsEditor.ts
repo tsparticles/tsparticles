@@ -1,4 +1,3 @@
-import type { EditorContainer } from "../../Editors/EditorContainer";
 import { BackgroundOptionsEditor } from "./Background/BackgroundOptionsEditor";
 import { ParticlesOptionsEditor } from "./Particles/ParticlesOptionsEditor";
 import type { Container } from "tsparticles/dist/Core/Container";
@@ -6,6 +5,7 @@ import type { IOptions } from "tsparticles/dist/Options/Interfaces/IOptions";
 import { InteractivityOptionsEditor } from "./Interactivity/InteractivityOptionsEditor";
 import { BackgroundMaskOptionsEditor } from "./BackgroundMask/BackgroundMaskOptionsEditor";
 import { InfectionOptionsEditor } from "./Infection/InfectionOptionsEditor";
+import { EditorContainer } from "object-gui/dist/js/Editors/EditorContainer";
 
 export class OptionsEditor {
     public readonly container: EditorContainer;
@@ -14,7 +14,7 @@ export class OptionsEditor {
 
     constructor(private readonly parent: EditorContainer) {
         this.container = parent.addContainer("options", "Options", false);
-        this.particles = this.container.particles;
+        this.particles = this.container.data as Container;
         this.options = this.particles.options;
 
         this.addBackground();
@@ -27,7 +27,7 @@ export class OptionsEditor {
     }
 
     private addProperties(): void {
-        const particles = this.container.particles;
+        const particles = this.particles;
         const options = particles.options;
 
         this.container.addProperty(

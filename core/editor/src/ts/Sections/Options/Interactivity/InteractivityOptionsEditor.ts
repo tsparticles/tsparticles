@@ -1,8 +1,7 @@
-import { EditorContainer } from "../../../Editors/EditorContainer";
 import { Container } from "tsparticles/dist/Core/Container";
 import { IInteractivity } from "tsparticles/dist/Options/Interfaces/Interactivity/IInteractivity";
 import { InteractivityDetect } from "tsparticles";
-import { EditorSelectInput } from "../../../Editors/EditorSelectInput";
+import { EditorSelectInput, EditorContainer } from "object-gui";
 import { ModesOptionsEditor } from "./Modes/ModesOptionsEditor";
 import { EventsOptionsEditor } from "./Events/EventsOptionsEditor";
 
@@ -12,7 +11,7 @@ export class InteractivityOptionsEditor {
 
     constructor(private readonly parent: EditorContainer, private readonly options: IInteractivity) {
         this.container = parent.addContainer("interactivity", "Interactivity");
-        this.particles = this.container.particles;
+        this.particles = this.container.data as Container;
 
         this.addEvents();
         this.addModes();
@@ -29,7 +28,7 @@ export class InteractivityOptionsEditor {
     }
 
     private addProperties(): void {
-        const particles = this.container.particles;
+        const particles = this.particles;
 
         const selectDetect = this.container.addProperty(
             "detectsOn",
