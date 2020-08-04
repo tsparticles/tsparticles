@@ -7,7 +7,10 @@
 		"preserveConstEnums": true,
 		"sourceMap": true,
 		"moduleResolution": "node",
-		"lib": ["es2017", "dom"],
+		"lib": [
+			"es2017",
+			"dom"
+		],
 		"types": [
 			"inferno"
 		],
@@ -18,7 +21,7 @@
 		"skipLibCheck": true,
 		"noUnusedParameters": true,
 		"noImplicitReturns": true,
-		"noFallthroughCasesInSwitch": true,
+		"noFallthroughCasesInSwitch": true
 	},
 	"include": [
 		"src/**/*",

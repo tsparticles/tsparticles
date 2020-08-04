@@ -17,7 +17,7 @@
     ]
   },
   "scripts": {
-    "build:disabled": "npx copyfiles -a ../../node_modules/preact/* ./node_modules/preact/ && npx copyfiles -a ../../node_modules/preact/**/* ./node_modules/preact/ && npx copyfiles -a ../../node_modules/preact-render-to-string/* ./node_modules/preact-render-to-string/ && npx copyfiles -a ../../node_modules/preact-render-to-string/**/* ./node_modules/preact-render-to-string/ && preact build",
+    "build": "npx copyfiles -a ../../node_modules/preact/* ./node_modules/preact/ && npx copyfiles -a ../../node_modules/preact/**/* ./node_modules/preact/ && npx copyfiles -a ../../node_modules/preact-render-to-string/* ./node_modules/preact-render-to-string/ && npx copyfiles -a ../../node_modules/preact-render-to-string/**/* ./node_modules/preact-render-to-string/ && preact build",
     "start": "sirv build --cors --single",
     "dev": "preact watch",
     "lint": "eslint src"
