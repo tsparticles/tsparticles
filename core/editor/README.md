@@ -1,6 +1,6 @@
-# tsParticles editor
+# tsParticles options GUI editor
 
-tsParticles editor
+tsParticles options GUI editor made with [Object GUI](https://github.com/matteobruni/object-gui)
 
 ## Usage
 
@@ -10,7 +10,7 @@ tsParticles
     /* your options here */
   })
   .then((container) => {
-    showEditor(container);
+    showEditor(container).top().right().theme('dark');
   });
 ```
 
@@ -18,6 +18,6 @@ or
 
 ```javascript
 tsParticles.loadJSON("tsparticles", "particles.json").then((container) => {
-  showEditor(container);
+  showEditor(container).top().right().theme('dark');
 });
 ```
