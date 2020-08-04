@@ -10,7 +10,7 @@ tsParticles
     /* your options here */
   })
   .then((container) => {
-    showEditor(container).top().right().theme('dark');
+    showEditor(container).top().right().theme("dark");
   });
 ```
 
@@ -18,6 +18,6 @@ or
 
 ```javascript
 tsParticles.loadJSON("tsparticles", "particles.json").then((container) => {
-  showEditor(container).top().right().theme('dark');
+  showEditor(container).top().right().theme("dark");
 });
 ```
