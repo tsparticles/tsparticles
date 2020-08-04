@@ -5,9 +5,9 @@ import type { IOptions } from "tsparticles/dist/Options/Interfaces/IOptions";
 import { Container } from "tsparticles/dist/Core/Container";
 import type { RecursivePartial } from "tsparticles/dist/Types/RecursivePartial";
 import { tsParticles } from "tsparticles";
-import { IPolygonMaskOptions } from "tsparticles/dist/Plugins/PolygonMask/PolygonMaskPlugin";
-import { IAbsorberOptions } from "tsparticles/dist/Plugins/Absorbers/AbsorbersPlugin";
-import { IEmitterOptions } from "tsparticles/dist/Plugins/Emitters/EmittersPlugin";
+import type { IPolygonMaskOptions } from "tsparticles/dist/Plugins/PolygonMask/PolygonMaskPlugin";
+import type { IAbsorberOptions } from "tsparticles/dist/Plugins/Absorbers/AbsorbersPlugin";
+import type { IEmitterOptions } from "tsparticles/dist/Plugins/Emitters/EmittersPlugin";
 
 export interface ParticlesProps {
   id: string;
@@ -116,7 +116,7 @@ export default class Particles extends Component<ParticlesProps, ParticlesState>
   }
 
   shouldComponentUpdate(nextProps: Readonly<ParticlesProps>) {
-    return !isEqual(nextProps, this.props);
+    return !this.state.library || !isEqual(nextProps, this.props);
   }
 
   componentDidUpdate() {
