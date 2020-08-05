@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.0.0-alpha.11](https://github.com/matteobruni/tsparticles/compare/editor-demo@1.0.0-alpha.3...editor-demo@1.0.0-alpha.11) (2020-08-05)
+
+**Note:** Version bump only for package editor-demo
+
+
+
+
+
 # [1.0.0-alpha.4](https://github.com/matteobruni/tsparticles/compare/editor-demo@1.0.0-alpha.3...editor-demo@1.0.0-alpha.4) (2020-08-05)
 
 **Note:** Version bump only for package editor-demo
