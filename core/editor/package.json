@@ -40,7 +40,7 @@
     "url": "https://github.com/matteobruni/tsparticles/issues"
   },
   "dependencies": {
-    "object-gui": "^1.0.0-alpha.10",
+    "object-gui": "^1.0.0-alpha.12",
     "tslib": "^2.0.0",
     "tsparticles": "^1.18.0-alpha.0"
   },
