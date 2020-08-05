@@ -2,15 +2,15 @@ import type { IColor } from "tsparticles/dist/Core/Interfaces/IColor";
 import type { Container } from "tsparticles/dist/Core/Container";
 import type { IBackgroundMask } from "tsparticles/dist/Options/Interfaces/BackgroundMask/IBackgroundMask";
 import type { IBackgroundMaskCover } from "tsparticles/dist/Options/Interfaces/BackgroundMask/IBackgroundMaskCover";
-import { EditorNumberInput, EditorContainer, IRgb, IHsl, ColorUtils } from "object-gui";
+import { EditorNumberInput, EditorGroup, IRgb, IHsl, ColorUtils } from "object-gui";
 
 export class BackgroundMaskOptionsEditor {
-    public readonly container: EditorContainer;
+    public readonly group: EditorGroup;
     private readonly particles: Container;
 
-    constructor(private readonly parent: EditorContainer, private readonly options: IBackgroundMask) {
-        this.container = parent.addContainer("backgroundMask", "Background Mask");
-        this.particles = this.container.data as Container;
+    constructor(private readonly parent: EditorGroup, private readonly options: IBackgroundMask) {
+        this.group = parent.addGroup("backgroundMask", "Background Mask");
+        this.particles = this.group.data as Container;
 
         this.addCover();
 
@@ -21,7 +21,7 @@ export class BackgroundMaskOptionsEditor {
         const particles = this.particles;
         const options = this.options.cover as IBackgroundMaskCover;
         const coverColor = options.color as IColor;
-        const coverContainer = this.container.addContainer("cover", "Cover");
+        const coverGroup = this.group.addGroup("cover", "Cover");
 
         let colorStringValue: string | undefined;
 
@@ -38,7 +38,7 @@ export class BackgroundMaskOptionsEditor {
             colorStringValue = `${rgb.r.toString(16)}${rgb.g.toString(16)}${rgb.b.toString(16)}`;
         }
 
-        coverContainer.addProperty(
+        coverGroup.addProperty(
             "color",
             "Color",
             colorStringValue,
@@ -52,7 +52,7 @@ export class BackgroundMaskOptionsEditor {
             }
         );
 
-        const opacityInput = coverContainer.addProperty(
+        const opacityInput = coverGroup.addProperty(
             "opacity",
             "Opacity",
             options.opacity,
@@ -73,7 +73,7 @@ export class BackgroundMaskOptionsEditor {
         const particles = this.particles;
         const options = this.options;
 
-        this.container.addProperty(
+        this.group.addProperty(
             "enable",
             "Enable",
             options.enable,

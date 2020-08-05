@@ -1,15 +1,15 @@
-import { EditorContainer, EditorSelectInput } from "object-gui";
+import { EditorGroup, EditorSelectInput } from "object-gui";
 import { Container } from "tsparticles/dist/Core/Container";
 import type { ICollisions } from "tsparticles/dist/Options/Interfaces/Particles/ICollisions";
 import { CollisionMode } from "tsparticles";
 
 export class CollisionsOptionsEditor {
-    public readonly container: EditorContainer;
+    public readonly group: EditorGroup;
     private readonly particles: Container;
 
-    constructor(private readonly parent: EditorContainer, private readonly options: ICollisions) {
-        this.container = parent.addContainer("collisions", "Collisions");
-        this.particles = this.container.data as Container;
+    constructor(private readonly parent: EditorGroup, private readonly options: ICollisions) {
+        this.group = parent.addGroup("collisions", "Collisions");
+        this.particles = this.group.data as Container;
 
         this.addCollisions();
     }
@@ -18,7 +18,7 @@ export class CollisionsOptionsEditor {
         const options = this.options;
         const particles = this.particles;
 
-        this.container.addProperty(
+        this.group.addProperty(
             "enable",
             "Enable",
             options.enable,
@@ -32,7 +32,7 @@ export class CollisionsOptionsEditor {
             }
         );
 
-        const selectType = this.container.addProperty(
+        const selectType = this.group.addProperty(
             "mode",
             "Mode",
             options.mode,

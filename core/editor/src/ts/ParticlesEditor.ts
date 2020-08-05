@@ -1,4 +1,3 @@
-import { EditorContainer } from "./Editors/EditorContainer";
 import type { Container } from "tsparticles/dist/Core/Container";
 import { OptionsEditor } from "./Sections/Options/OptionsEditor";
 import { Editor } from "object-gui";
@@ -16,26 +15,26 @@ export class ParticlesEditor extends Editor {
     }
 
     private addOptions() {
-        const options = new OptionsEditor(this.container);
+        const options = new OptionsEditor(this.root);
     }
 
     private addButtons() {
-        this.container.addButton("play", "Play", () => {
+        this.root.addButton("play", "Play", () => {
             this.particles.play();
         });
-        this.container.addButton("pause", "Pause", () => {
+        this.root.addButton("pause", "Pause", () => {
             this.particles.pause();
         });
-        this.container.addButton("refresh", "Refresh", async () => {
+        this.root.addButton("refresh", "Refresh", async () => {
             await this.particles.refresh();
         });
-        this.container.addButton("start", "Start", async () => {
+        this.root.addButton("start", "Start", async () => {
             await this.particles.start();
         });
-        this.container.addButton("stop", "Stop", () => {
+        this.root.addButton("stop", "Stop", () => {
             this.particles.stop();
         });
-        this.container.addButton("exportConfig", "Export", () => {
+        this.root.addButton("exportConfig", "Export", () => {
             const json = this.particles.exportConfiguration();
             const contentType = "application/json";
             const blob = new Blob([json], { type: contentType });

@@ -1,15 +1,15 @@
-import type { EditorContainer } from "object-gui";
+import type { EditorGroup } from "object-gui";
 import type { Container } from "tsparticles/dist/Core/Container";
 import type { IOpacity } from "tsparticles/dist/Options/Interfaces/Particles/Opacity/IOpacity";
 import type { IOpacityRandom } from "tsparticles/dist/Options/Interfaces/Particles/Opacity/IOpacityRandom";
 
 export class OpacityOptionsEditor {
-    public readonly container: EditorContainer;
+    public readonly group: EditorGroup;
     private readonly particles: Container;
 
-    constructor(private readonly parent: EditorContainer, private readonly options: IOpacity) {
-        this.container = parent.addContainer("opacity", "Opacity");
-        this.particles = this.container.data as Container;
+    constructor(private readonly parent: EditorGroup, private readonly options: IOpacity) {
+        this.group = parent.addGroup("opacity", "Opacity");
+        this.particles = this.group.data as Container;
 
         this.addOpacity();
     }
@@ -18,7 +18,7 @@ export class OpacityOptionsEditor {
         const particles = this.particles;
         const options = this.options;
 
-        const opacityInput = this.container.addProperty(
+        const opacityInput = this.group.addProperty(
             "value",
             "Opacity",
             options.value,
@@ -36,9 +36,9 @@ export class OpacityOptionsEditor {
         (opacityInput.element as HTMLInputElement).min = "0";
         (opacityInput.element as HTMLInputElement).max = "1";
 
-        const animationContainer = this.container.addContainer("animation", "Animation");
+        const animationGroup = this.group.addGroup("animation", "Animation");
 
-        animationContainer.addProperty(
+        animationGroup.addProperty(
             "enable",
             "Enable",
             options.animation.enable,
@@ -52,7 +52,7 @@ export class OpacityOptionsEditor {
             }
         );
 
-        const minInput = animationContainer.addProperty(
+        const minInput = animationGroup.addProperty(
             "minimumValue",
             "Minimum Value",
             options.animation.minimumValue,
@@ -70,7 +70,7 @@ export class OpacityOptionsEditor {
         (minInput.element as HTMLInputElement).min = "0";
         (minInput.element as HTMLInputElement).max = "1";
 
-        const speedInput = animationContainer.addProperty(
+        const speedInput = animationGroup.addProperty(
             "speed",
             "Speed",
             options.animation.speed,
@@ -86,7 +86,7 @@ export class OpacityOptionsEditor {
 
         (speedInput.element as HTMLInputElement).step = "0.01";
 
-        animationContainer.addProperty(
+        animationGroup.addProperty(
             "sync",
             "Sync",
             options.animation.sync,
@@ -100,10 +100,10 @@ export class OpacityOptionsEditor {
             }
         );
 
-        const randomContainer = this.container.addContainer("random", "Random");
+        const randomGroup = this.group.addGroup("random", "Random");
         const random = options.random as IOpacityRandom;
 
-        randomContainer.addProperty(
+        randomGroup.addProperty(
             "enable",
             "Enable",
             random.enable,
@@ -117,7 +117,7 @@ export class OpacityOptionsEditor {
             }
         );
 
-        randomContainer.addProperty(
+        randomGroup.addProperty(
             "minimumValue",
             "Minimum Value",
             random.minimumValue,

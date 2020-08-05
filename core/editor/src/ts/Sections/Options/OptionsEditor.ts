@@ -5,16 +5,16 @@ import type { IOptions } from "tsparticles/dist/Options/Interfaces/IOptions";
 import { InteractivityOptionsEditor } from "./Interactivity/InteractivityOptionsEditor";
 import { BackgroundMaskOptionsEditor } from "./BackgroundMask/BackgroundMaskOptionsEditor";
 import { InfectionOptionsEditor } from "./Infection/InfectionOptionsEditor";
-import { EditorContainer } from "object-gui/dist/js/Editors/EditorContainer";
+import { EditorGroup } from "object-gui";
 
 export class OptionsEditor {
-    public readonly container: EditorContainer;
+    public readonly group: EditorGroup;
     private readonly particles: Container;
     private readonly options: IOptions;
 
-    constructor(private readonly parent: EditorContainer) {
-        this.container = parent.addContainer("options", "Options", false);
-        this.particles = this.container.data as Container;
+    constructor(private readonly parent: EditorGroup) {
+        this.group = parent.addGroup("options", "Options", false);
+        this.particles = this.group.data as Container;
         this.options = this.particles.options;
 
         this.addBackground();
@@ -30,7 +30,7 @@ export class OptionsEditor {
         const particles = this.particles;
         const options = particles.options;
 
-        this.container.addProperty(
+        this.group.addProperty(
             "autoPlay",
             "Auto Play",
             options.autoPlay,
@@ -44,7 +44,7 @@ export class OptionsEditor {
             }
         );
 
-        this.container.addProperty(
+        this.group.addProperty(
             "detectRetina",
             "Detect Retina",
             options.detectRetina,
@@ -58,7 +58,7 @@ export class OptionsEditor {
             }
         );
 
-        this.container.addProperty(
+        this.group.addProperty(
             "fpsLimit",
             "FPS Limit",
             options.fpsLimit,
@@ -72,7 +72,7 @@ export class OptionsEditor {
             }
         );
 
-        this.container.addProperty(
+        this.group.addProperty(
             "pauseOnBlur",
             "Pause on Blur",
             options.pauseOnBlur,
@@ -88,22 +88,22 @@ export class OptionsEditor {
     }
 
     private addBackground(): void {
-        const options = new BackgroundOptionsEditor(this.container, this.options.background);
+        const options = new BackgroundOptionsEditor(this.group, this.options.background);
     }
 
     private addBackgroundMask(): void {
-        const options = new BackgroundMaskOptionsEditor(this.container, this.options.backgroundMask);
+        const options = new BackgroundMaskOptionsEditor(this.group, this.options.backgroundMask);
     }
 
     private addInteractivity(): void {
-        const options = new InteractivityOptionsEditor(this.container, this.options.interactivity);
+        const options = new InteractivityOptionsEditor(this.group, this.options.interactivity);
     }
 
     private addInfection(): void {
-        const options = new InfectionOptionsEditor(this.container, this.options.infection);
+        const options = new InfectionOptionsEditor(this.group, this.options.infection);
     }
 
     private addParticles(): void {
-        const options = new ParticlesOptionsEditor(this.container, this.options.particles);
+        const options = new ParticlesOptionsEditor(this.group, this.options.particles);
     }
 }

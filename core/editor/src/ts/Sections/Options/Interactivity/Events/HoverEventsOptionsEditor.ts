@@ -1,15 +1,15 @@
-import { EditorContainer, EditorSelectInput } from "object-gui";
+import { EditorGroup, EditorSelectInput } from "object-gui";
 import { Container } from "tsparticles/dist/Core/Container";
 import { HoverMode } from "tsparticles";
 import type { IHoverEvent } from "tsparticles/dist/Options/Interfaces/Interactivity/Events/IHoverEvent";
 
 export class HoverEventsOptionsEditor {
-    public readonly container: EditorContainer;
+    public readonly group: EditorGroup;
     private readonly particles: Container;
 
-    constructor(private readonly parent: EditorContainer, private readonly options: IHoverEvent) {
-        this.container = parent.addContainer("onHover", "Hover Events");
-        this.particles = this.container.data as Container;
+    constructor(private readonly parent: EditorGroup, private readonly options: IHoverEvent) {
+        this.group = parent.addGroup("onHover", "Hover Events");
+        this.particles = this.group.data as Container;
 
         this.addHover();
     }
@@ -17,9 +17,9 @@ export class HoverEventsOptionsEditor {
     private addHover(): void {
         const particles = this.particles;
         const options = this.options;
-        const hoverContainer = this.container;
+        const hoverGroup = this.group;
 
-        hoverContainer.addProperty(
+        hoverGroup.addProperty(
             "enable",
             "Enable",
             options.enable,
@@ -33,7 +33,7 @@ export class HoverEventsOptionsEditor {
             }
         );
 
-        const modeSelectInput = hoverContainer.addProperty(
+        const modeSelectInput = hoverGroup.addProperty(
             "mode",
             "Mode",
             options.mode,
@@ -55,10 +55,10 @@ export class HoverEventsOptionsEditor {
         modeSelectInput.addItem(HoverMode.slow);
         modeSelectInput.addItem(HoverMode.trail);
 
-        const parallaxContainer = hoverContainer.addContainer("parallax", "Parallax");
+        const parallaxGroup = hoverGroup.addGroup("parallax", "Parallax");
         const parallaxOptions = options.parallax;
 
-        parallaxContainer.addProperty(
+        parallaxGroup.addProperty(
             "enable",
             "Enable",
             parallaxOptions.enable,
@@ -72,7 +72,7 @@ export class HoverEventsOptionsEditor {
             }
         );
 
-        parallaxContainer.addProperty(
+        parallaxGroup.addProperty(
             "force",
             "Force",
             parallaxOptions.force,
@@ -86,7 +86,7 @@ export class HoverEventsOptionsEditor {
             }
         );
 
-        parallaxContainer.addProperty(
+        parallaxGroup.addProperty(
             "smooth",
             "Smooth",
             parallaxOptions.smooth,

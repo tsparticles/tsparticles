@@ -1,16 +1,16 @@
-import { EditorContainer, ColorUtils, IRgb, IHsl, EditorSelectInput } from "object-gui";
+import { EditorGroup, ColorUtils, IRgb, IHsl, EditorSelectInput } from "object-gui";
 import type { Container } from "tsparticles/dist/Core/Container";
 import type { IMove } from "tsparticles/dist/Options/Interfaces/Particles/Move/IMove";
 import type { IMoveAngle } from "tsparticles/dist/Options/Interfaces/Particles/Move/IMoveAngle";
 import { MoveDirection, OutMode } from "tsparticles";
 
 export class MoveOptionsEditor {
-    public readonly container: EditorContainer;
+    public readonly group: EditorGroup;
     private readonly particles: Container;
 
-    constructor(private readonly parent: EditorContainer, private readonly options: IMove) {
-        this.container = parent.addContainer("move", "Move");
-        this.particles = this.container.data as Container;
+    constructor(private readonly parent: EditorGroup, private readonly options: IMove) {
+        this.group = parent.addGroup("move", "Move");
+        this.particles = this.group.data as Container;
 
         this.addAngle();
         this.addAttract();
@@ -21,10 +21,10 @@ export class MoveOptionsEditor {
 
     private addAngle(): void {
         const particles = this.particles;
-        const container = this.container.addContainer("angle", "Angle");
+        const group = this.group.addGroup("angle", "Angle");
         const options = this.options.angle as IMoveAngle;
 
-        container.addProperty(
+        group.addProperty(
             "angle",
             "Angle",
             options.value,
@@ -38,7 +38,7 @@ export class MoveOptionsEditor {
             }
         );
 
-        container.addProperty(
+        group.addProperty(
             "offset",
             "Offset",
             options.offset,
@@ -55,10 +55,10 @@ export class MoveOptionsEditor {
 
     private addAttract(): void {
         const particles = this.particles;
-        const container = this.container.addContainer("attract", "Attract");
+        const group = this.group.addGroup("attract", "Attract");
         const options = this.options.attract;
 
-        container.addProperty(
+        group.addProperty(
             "enable",
             "Enable",
             options.enable,
@@ -72,9 +72,9 @@ export class MoveOptionsEditor {
             }
         );
 
-        const rotateContainer = container.addContainer("rotate", "Rotate", false);
+        const rotateGroup = group.addGroup("rotate", "Rotate", false);
 
-        rotateContainer.addProperty(
+        rotateGroup.addProperty(
             "x",
             "X",
             options.rotate.x,
@@ -88,7 +88,7 @@ export class MoveOptionsEditor {
             }
         );
 
-        rotateContainer.addProperty(
+        rotateGroup.addProperty(
             "y",
             "Y",
             options.rotate.y,
@@ -105,12 +105,12 @@ export class MoveOptionsEditor {
 
     private addNoise(): void {
         const particles = this.particles;
-        const container = this.container.addContainer("noise", "Noise");
+        const group = this.group.addGroup("noise", "Noise");
         const options = this.options.noise;
 
-        const delayContainer = container.addContainer("delay", "Delay");
+        const delayGroup = group.addGroup("delay", "Delay");
 
-        delayContainer.addProperty(
+        delayGroup.addProperty(
             "value",
             "value",
             options.delay.value,
@@ -124,9 +124,9 @@ export class MoveOptionsEditor {
             }
         );
 
-        const randomContainer = delayContainer.addContainer("random", "Random");
+        const randomGroup = delayGroup.addGroup("random", "Random");
 
-        randomContainer.addProperty(
+        randomGroup.addProperty(
             "enable",
             "Enable",
             options.delay.random.enable,
@@ -140,7 +140,7 @@ export class MoveOptionsEditor {
             }
         );
 
-        randomContainer.addProperty(
+        randomGroup.addProperty(
             "minimumValue",
             "Minimum Value",
             options.delay.random.minimumValue,
@@ -154,7 +154,7 @@ export class MoveOptionsEditor {
             }
         );
 
-        container.addProperty(
+        group.addProperty(
             "enable",
             "Enable",
             options.enable,
@@ -171,10 +171,10 @@ export class MoveOptionsEditor {
 
     private addTrail(): void {
         const particles = this.particles;
-        const container = this.container.addContainer("trail", "Trail");
+        const group = this.group.addGroup("trail", "Trail");
         const options = this.options.trail;
 
-        container.addProperty(
+        group.addProperty(
             "enable",
             "Enable",
             options.enable,
@@ -205,7 +205,7 @@ export class MoveOptionsEditor {
             fillColorStringValue = `${rgb.r.toString(16)}${rgb.g.toString(16)}${rgb.b.toString(16)}`;
         }
 
-        container.addProperty(
+        group.addProperty(
             "fillColor",
             "Fill Color",
             fillColorStringValue,
@@ -229,7 +229,7 @@ export class MoveOptionsEditor {
             }
         );
 
-        container.addProperty(
+        group.addProperty(
             "length",
             "Length",
             options.length,
@@ -247,9 +247,9 @@ export class MoveOptionsEditor {
     private addProperties(): void {
         const particles = this.particles;
         const options = this.options;
-        const container = this.container;
+        const group = this.group;
 
-        const directionSelectInput = container.addProperty(
+        const directionSelectInput = group.addProperty(
             "direction",
             "Direction",
             options.direction,
@@ -283,7 +283,7 @@ export class MoveOptionsEditor {
         directionSelectInput.addItem(MoveDirection.topLeft);
         directionSelectInput.addItem(MoveDirection.topRight);
 
-        container.addProperty(
+        group.addProperty(
             "enable",
             "Enable",
             options.enable,
@@ -297,7 +297,7 @@ export class MoveOptionsEditor {
             }
         );
 
-        const outModeSelectInput = container.addProperty(
+        const outModeSelectInput = group.addProperty(
             "outMode",
             "Out Mode",
             options.outMode,
@@ -323,7 +323,7 @@ export class MoveOptionsEditor {
         outModeSelectInput.addItem(OutMode.destroy);
         outModeSelectInput.addItem(OutMode.out);
 
-        container.addProperty(
+        group.addProperty(
             "random",
             "Random",
             options.random,
@@ -337,7 +337,7 @@ export class MoveOptionsEditor {
             }
         );
 
-        container.addProperty(
+        group.addProperty(
             "speed",
             "Speed",
             options.speed,
@@ -351,7 +351,7 @@ export class MoveOptionsEditor {
             }
         );
 
-        container.addProperty(
+        group.addProperty(
             "straight",
             "Straight",
             options.straight,
@@ -365,7 +365,7 @@ export class MoveOptionsEditor {
             }
         );
 
-        container.addProperty(
+        group.addProperty(
             "vibrate",
             "Vibrate",
             options.vibrate,
@@ -379,7 +379,7 @@ export class MoveOptionsEditor {
             }
         );
 
-        container.addProperty(
+        group.addProperty(
             "warp",
             "Warp",
             options.warp,

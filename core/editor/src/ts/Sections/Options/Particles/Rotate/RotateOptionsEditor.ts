@@ -1,25 +1,25 @@
 import type { Container } from "tsparticles/dist/Core/Container";
 import type { IRotate } from "tsparticles/dist/Options/Interfaces/Particles/Rotate/IRotate";
-import { EditorSelectInput, EditorContainer } from "object-gui";
+import { EditorSelectInput, EditorGroup } from "object-gui";
 
 export class RotateOptionsEditor {
-    public readonly container: EditorContainer;
+    public readonly group: EditorGroup;
     private readonly particles: Container;
 
-    constructor(private readonly parent: EditorContainer, private readonly options: IRotate) {
-        this.container = parent.addContainer("rotate", "Rotate");
-        this.particles = this.container.data as Container;
+    constructor(private readonly parent: EditorGroup, private readonly options: IRotate) {
+        this.group = parent.addGroup("rotate", "Rotate");
+        this.particles = this.group.data as Container;
 
         this.addAnimation();
         this.addProperties();
     }
 
     private addAnimation(): void {
-        const container = this.container.addContainer("animation", "Animation");
+        const group = this.group.addGroup("animation", "Animation");
         const particles = this.particles;
         const options = this.options;
 
-        container.addProperty(
+        group.addProperty(
             "enable",
             "Enable",
             options.animation.enable,
@@ -33,7 +33,7 @@ export class RotateOptionsEditor {
             }
         );
 
-        container.addProperty(
+        group.addProperty(
             "speed",
             "Speed",
             options.animation.speed,
@@ -47,7 +47,7 @@ export class RotateOptionsEditor {
             }
         );
 
-        container.addProperty(
+        group.addProperty(
             "sync",
             "Sync",
             options.animation.sync,
@@ -66,7 +66,7 @@ export class RotateOptionsEditor {
         const particles = this.particles;
         const options = this.options;
 
-        const directionSelectInput = this.container.addProperty(
+        const directionSelectInput = this.group.addProperty(
             "direction",
             "Direction",
             options.direction,
@@ -83,7 +83,7 @@ export class RotateOptionsEditor {
         directionSelectInput.addItem("clockwise");
         directionSelectInput.addItem("counter-clockwise");
 
-        this.container.addProperty(
+        this.group.addProperty(
             "path",
             "Path",
             options.path,
@@ -97,7 +97,7 @@ export class RotateOptionsEditor {
             }
         );
 
-        this.container.addProperty(
+        this.group.addProperty(
             "random",
             "Random",
             options.random,
@@ -111,7 +111,7 @@ export class RotateOptionsEditor {
             }
         );
 
-        this.container.addProperty(
+        this.group.addProperty(
             "value",
             "Rotate",
             options.value,

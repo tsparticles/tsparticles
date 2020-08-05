@@ -1,4 +1,4 @@
-import type { EditorContainer } from "object-gui";
+import type { EditorGroup } from "object-gui";
 import type { Container } from "tsparticles/dist/Core/Container";
 import type { IEvents } from "tsparticles/dist/Options/Interfaces/Interactivity/Events/IEvents";
 import { ClickEventsOptionsEditor } from "./ClickEventsOptionsEditor";
@@ -6,12 +6,12 @@ import { HoverEventsOptionsEditor } from "./HoverEventsOptionsEditor";
 import { DivsEventsOptionsEditor } from "./DivsEventsOptionsEditor";
 
 export class EventsOptionsEditor {
-    public readonly container: EditorContainer;
+    public readonly group: EditorGroup;
     private readonly particles: Container;
 
-    constructor(private readonly parent: EditorContainer, private readonly options: IEvents) {
-        this.container = parent.addContainer("events", "Events");
-        this.particles = this.container.data as Container;
+    constructor(private readonly parent: EditorGroup, private readonly options: IEvents) {
+        this.group = parent.addGroup("events", "Events");
+        this.particles = this.group.data as Container;
 
         this.addClick();
         this.addDivs();
@@ -20,22 +20,22 @@ export class EventsOptionsEditor {
     }
 
     private addClick(): void {
-        const clickEditor = new ClickEventsOptionsEditor(this.container, this.options.onClick);
+        const clickEditor = new ClickEventsOptionsEditor(this.group, this.options.onClick);
     }
 
     private addDivs(): void {
-        const divsEditor = new DivsEventsOptionsEditor(this.container, this.options.onDiv);
+        const divsEditor = new DivsEventsOptionsEditor(this.group, this.options.onDiv);
     }
 
     private addHover(): void {
-        const hoverEditor = new HoverEventsOptionsEditor(this.container, this.options.onHover);
+        const hoverEditor = new HoverEventsOptionsEditor(this.group, this.options.onHover);
     }
 
     private addProperties(): void {
         const particles = this.particles;
         const options = this.options;
 
-        this.container.addProperty(
+        this.group.addProperty(
             "resize",
             "Resize",
             options.resize,

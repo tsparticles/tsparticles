@@ -2,15 +2,15 @@ import type { Container } from "tsparticles/dist/Core/Container";
 import type { ISize } from "tsparticles/dist/Options/Interfaces/Particles/Size/ISize";
 import type { ISizeRandom } from "tsparticles/dist/Options/Interfaces/Particles/Size/ISizeRandom";
 import { DestroyType, StartValueType } from "tsparticles";
-import { EditorSelectInput, EditorContainer } from "object-gui";
+import { EditorSelectInput, EditorGroup } from "object-gui";
 
 export class SizeOptionsEditor {
-    public readonly container: EditorContainer;
+    public readonly group: EditorGroup;
     private readonly particles: Container;
 
-    constructor(private readonly parent: EditorContainer, private readonly options: ISize) {
-        this.container = parent.addContainer("size", "Size");
-        this.particles = this.container.data as Container;
+    constructor(private readonly parent: EditorGroup, private readonly options: ISize) {
+        this.group = parent.addGroup("size", "Size");
+        this.particles = this.group.data as Container;
 
         this.addAnimation();
         this.addRandom();
@@ -20,9 +20,9 @@ export class SizeOptionsEditor {
     private addAnimation(): void {
         const particles = this.particles;
         const options = this.options.animation;
-        const container = this.container.addContainer("animation", "Animation");
+        const group = this.group.addGroup("animation", "Animation");
 
-        const destroySelectInput = container.addProperty(
+        const destroySelectInput = group.addProperty(
             "destroy",
             "Destroy",
             options.destroy,
@@ -43,7 +43,7 @@ export class SizeOptionsEditor {
         destroySelectInput.addItem(DestroyType.min);
         destroySelectInput.addItem(DestroyType.none);
 
-        container.addProperty(
+        group.addProperty(
             "enable",
             "Enable",
             options.enable,
@@ -57,7 +57,7 @@ export class SizeOptionsEditor {
             }
         );
 
-        container.addProperty(
+        group.addProperty(
             "minimumValue",
             "Minimum Value",
             options.minimumValue,
@@ -71,7 +71,7 @@ export class SizeOptionsEditor {
             }
         );
 
-        container.addProperty(
+        group.addProperty(
             "speed",
             "Speed",
             options.speed,
@@ -85,7 +85,7 @@ export class SizeOptionsEditor {
             }
         );
 
-        const startValueSelectInput = container.addProperty(
+        const startValueSelectInput = group.addProperty(
             "startValue",
             "Start Value",
             options.startValue,
@@ -106,7 +106,7 @@ export class SizeOptionsEditor {
         startValueSelectInput.addItem(StartValueType.min);
         startValueSelectInput.addItem(StartValueType.random);
 
-        container.addProperty(
+        group.addProperty(
             "sync",
             "Sync",
             options.sync,
@@ -122,11 +122,11 @@ export class SizeOptionsEditor {
     }
 
     private addRandom(): void {
-        const container = this.container.addContainer("random", "Random");
+        const group = this.group.addGroup("random", "Random");
         const particles = this.particles;
         const options = this.options.random as ISizeRandom;
 
-        container.addProperty(
+        group.addProperty(
             "enable",
             "Enable",
             options.enable,
@@ -140,7 +140,7 @@ export class SizeOptionsEditor {
             }
         );
 
-        container.addProperty(
+        group.addProperty(
             "minimumValue",
             "Minimum Value",
             options.minimumValue,
@@ -159,7 +159,7 @@ export class SizeOptionsEditor {
         const particles = this.particles;
         const options = this.options;
 
-        this.container.addProperty(
+        this.group.addProperty(
             "value",
             "Size",
             options.value,

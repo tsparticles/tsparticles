@@ -1,14 +1,14 @@
-import type { EditorContainer } from "object-gui";
+import type { EditorGroup } from "object-gui";
 import type { Container } from "tsparticles/dist/Core/Container";
 import type { IParticlesNumber } from "tsparticles/dist/Options/Interfaces/Particles/IParticlesNumber";
 
 export class NumberOptionsEditor {
-    public readonly container: EditorContainer;
+    public readonly group: EditorGroup;
     private readonly particles: Container;
 
-    constructor(private readonly parent: EditorContainer, private readonly options: IParticlesNumber) {
-        this.container = parent.addContainer("number", "Number");
-        this.particles = this.container.data as Container;
+    constructor(private readonly parent: EditorGroup, private readonly options: IParticlesNumber) {
+        this.group = parent.addGroup("number", "Number");
+        this.particles = this.group.data as Container;
 
         this.addDensity();
         this.addNumber();
@@ -17,9 +17,9 @@ export class NumberOptionsEditor {
     private addDensity(): void {
         const particles = this.particles;
         const options = this.options;
-        const container = this.container.addContainer("density", "Density");
+        const group = this.group.addGroup("density", "Density");
 
-        container.addProperty(
+        group.addProperty(
             "area",
             "Area",
             options.density.area,
@@ -33,7 +33,7 @@ export class NumberOptionsEditor {
             }
         );
 
-        container.addProperty(
+        group.addProperty(
             "enable",
             "Enable",
             options.density.enable,
@@ -47,7 +47,7 @@ export class NumberOptionsEditor {
             }
         );
 
-        container.addProperty(
+        group.addProperty(
             "factor",
             "Factor",
             options.density.factor,
@@ -66,7 +66,7 @@ export class NumberOptionsEditor {
         const particles = this.particles;
         const options = this.options;
 
-        this.container.addProperty(
+        this.group.addProperty(
             "limit",
             "Limit",
             options.limit,
@@ -80,7 +80,7 @@ export class NumberOptionsEditor {
             }
         );
 
-        this.container.addProperty(
+        this.group.addProperty(
             "value",
             "Number",
             options.value,

@@ -4,15 +4,15 @@ import type { IBackground } from "tsparticles/dist/Options/Interfaces/Background
 import type { IColor } from "tsparticles/dist/Core/Interfaces/IColor";
 import type { Container } from "tsparticles/dist/Core/Container";
 import { ColorUtils } from "tsparticles";
-import { EditorNumberInput, EditorContainer } from "object-gui";
+import { EditorNumberInput, EditorGroup } from "object-gui";
 
 export class BackgroundOptionsEditor {
-    public readonly container: EditorContainer;
+    public readonly group: EditorGroup;
     private readonly particles: Container;
 
-    constructor(private readonly parent: EditorContainer, private readonly options: IBackground) {
-        this.container = parent.addContainer("background", "Background");
-        this.particles = this.container.data as Container;
+    constructor(private readonly parent: EditorGroup, private readonly options: IBackground) {
+        this.group = parent.addGroup("background", "Background");
+        this.particles = this.group.data as Container;
 
         this.addColor();
 
@@ -37,7 +37,7 @@ export class BackgroundOptionsEditor {
             colorStringValue = `${rgb.r.toString(16)}${rgb.g.toString(16)}${rgb.b.toString(16)}`;
         }
 
-        this.container.addProperty(
+        this.group.addProperty(
             "color",
             "Color",
             colorStringValue,
@@ -56,7 +56,7 @@ export class BackgroundOptionsEditor {
         const particles = this.particles;
         const options = this.options;
 
-        this.container.addProperty(
+        this.group.addProperty(
             "image",
             "Image",
             options.image,
@@ -70,7 +70,7 @@ export class BackgroundOptionsEditor {
             }
         );
 
-        const opacityItem = this.container.addProperty(
+        const opacityItem = this.group.addProperty(
             "opacity",
             "Opacity",
             options.opacity,
@@ -86,7 +86,7 @@ export class BackgroundOptionsEditor {
 
         opacityItem.step(0.01).min(0).max(1);
 
-        this.container.addProperty(
+        this.group.addProperty(
             "position",
             "Position",
             options.position,
@@ -100,7 +100,7 @@ export class BackgroundOptionsEditor {
             }
         );
 
-        this.container.addProperty(
+        this.group.addProperty(
             "repeat",
             "Repeat",
             options.repeat,
@@ -114,7 +114,7 @@ export class BackgroundOptionsEditor {
             }
         );
 
-        this.container.addProperty(
+        this.group.addProperty(
             "size",
             "Size",
             options.size,

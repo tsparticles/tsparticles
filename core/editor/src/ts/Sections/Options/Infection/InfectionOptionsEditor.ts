@@ -1,15 +1,15 @@
 import { Container } from "tsparticles/dist/Core/Container";
 import { IInfection } from "tsparticles/dist/Options/Interfaces/Infection/IInfection";
 import { IInfectionStage } from "tsparticles/dist/Options/Interfaces/Infection/IInfectionStage";
-import { EditorContainer, ColorUtils, IRgb, IHsl } from "object-gui";
+import { EditorGroup, ColorUtils, IRgb, IHsl } from "object-gui";
 
 export class InfectionOptionsEditor {
-    public readonly container: EditorContainer;
+    public readonly group: EditorGroup;
     private readonly particles: Container;
 
-    constructor(private readonly parent: EditorContainer, private readonly options: IInfection) {
-        this.container = parent.addContainer("infection", "Infection");
-        this.particles = this.container.data as Container;
+    constructor(private readonly parent: EditorGroup, private readonly options: IInfection) {
+        this.group = parent.addGroup("infection", "Infection");
+        this.particles = this.group.data as Container;
 
         this.addStages();
         this.addProperties();
@@ -19,7 +19,7 @@ export class InfectionOptionsEditor {
         const particles = this.particles;
         const options = this.options;
 
-        this.container.addProperty(
+        this.group.addProperty(
             "cure",
             "Cure",
             options.cure,
@@ -33,7 +33,7 @@ export class InfectionOptionsEditor {
             }
         );
 
-        this.container.addProperty(
+        this.group.addProperty(
             "delay",
             "Delay",
             options.delay,
@@ -47,7 +47,7 @@ export class InfectionOptionsEditor {
             }
         );
 
-        this.container.addProperty(
+        this.group.addProperty(
             "enable",
             "Enable",
             options.enable,
@@ -61,7 +61,7 @@ export class InfectionOptionsEditor {
             }
         );
 
-        this.container.addProperty(
+        this.group.addProperty(
             "infections",
             "Infections",
             options.infections,
@@ -79,15 +79,15 @@ export class InfectionOptionsEditor {
     private addStages() {
         const particles = this.particles;
         const options = this.options;
-        const stagesContainer = this.container.addContainer("stages", "Stages");
+        const stagesGroup = this.group.addGroup("stages", "Stages");
 
         for (let i = 0; i < options.stages.length; i++) {
             const stage = options.stages[i];
 
-            this.addStage(stagesContainer, stage, i + 1);
+            this.addStage(stagesGroup, stage, i + 1);
         }
 
-        stagesContainer.addButton("addStage", "Add Stage", () => {
+        stagesGroup.addButton("addStage", "Add Stage", () => {
             const defaultValues = {
                 color: {
                     value: "#ff0000",
@@ -98,15 +98,15 @@ export class InfectionOptionsEditor {
 
             options.stages.push(defaultValues);
 
-            this.addStage(stagesContainer, defaultValues, options.stages.length);
+            this.addStage(stagesGroup, defaultValues, options.stages.length);
 
             particles.refresh();
         });
     }
 
-    private addStage(parent: EditorContainer, stage: IInfectionStage, index: number) {
+    private addStage(parent: EditorGroup, stage: IInfectionStage, index: number) {
         const particles = this.particles;
-        const stageContainer = parent.addContainer(`stage_${index}`, `Stage ${index}`);
+        const stageGroup = parent.addGroup(`stage_${index}`, `Stage ${index}`);
 
         let colorStringValue: string | undefined;
 
@@ -127,7 +127,7 @@ export class InfectionOptionsEditor {
             }
         }
 
-        stageContainer.addProperty(
+        stageGroup.addProperty(
             "color",
             "Color",
             colorStringValue,
@@ -147,7 +147,7 @@ export class InfectionOptionsEditor {
             }
         );
 
-        stageContainer.addProperty(
+        stageGroup.addProperty(
             "duration",
             "Duration",
             stage.duration,
@@ -161,7 +161,7 @@ export class InfectionOptionsEditor {
             }
         );
 
-        stageContainer.addProperty(
+        stageGroup.addProperty(
             "infectedStage",
             "Infected Stage",
             stage.infectedStage,
@@ -175,7 +175,7 @@ export class InfectionOptionsEditor {
             }
         );
 
-        stageContainer.addProperty(
+        stageGroup.addProperty(
             "radius",
             "Radius",
             stage.radius,
@@ -189,7 +189,7 @@ export class InfectionOptionsEditor {
             }
         );
 
-        stageContainer.addProperty(
+        stageGroup.addProperty(
             "rate",
             "Rate",
             stage.rate,

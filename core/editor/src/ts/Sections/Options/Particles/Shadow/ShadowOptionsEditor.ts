@@ -1,14 +1,14 @@
 import { Container } from "tsparticles/dist/Core/Container";
 import { IShadow } from "tsparticles/dist/Options/Interfaces/Particles/IShadow";
-import { ColorUtils, EditorContainer, IRgb, IHsl } from "object-gui";
+import { ColorUtils, EditorGroup, IRgb, IHsl } from "object-gui";
 
 export class ShadowOptionsEditor {
-    public readonly container: EditorContainer;
+    public readonly group: EditorGroup;
     private readonly particles: Container;
 
-    constructor(private readonly parent: EditorContainer, private readonly options: IShadow) {
-        this.container = parent.addContainer("shadow", "Shadow");
-        this.particles = this.container.data as Container;
+    constructor(private readonly parent: EditorGroup, private readonly options: IShadow) {
+        this.group = parent.addGroup("shadow", "Shadow");
+        this.particles = this.group.data as Container;
 
         this.addShadow();
     }
@@ -34,7 +34,7 @@ export class ShadowOptionsEditor {
             colorStringValue = `${rgb.r.toString(16)}${rgb.g.toString(16)}${rgb.b.toString(16)}`;
         }
 
-        this.container.addProperty(
+        this.group.addProperty(
             "blur",
             "Blur",
             options.blur,
@@ -48,7 +48,7 @@ export class ShadowOptionsEditor {
             }
         );
 
-        this.container.addProperty(
+        this.group.addProperty(
             "color",
             "Color",
             colorStringValue,
@@ -66,7 +66,7 @@ export class ShadowOptionsEditor {
             }
         );
 
-        this.container.addProperty(
+        this.group.addProperty(
             "enable",
             "Enable",
             options.enable,
@@ -80,9 +80,9 @@ export class ShadowOptionsEditor {
             }
         );
 
-        const offsetContainer = this.container.addContainer("offset", "Offset");
+        const offsetGroup = this.group.addGroup("offset", "Offset");
 
-        offsetContainer.addProperty(
+        offsetGroup.addProperty(
             "x",
             "X",
             options.offset.x,
@@ -96,7 +96,7 @@ export class ShadowOptionsEditor {
             }
         );
 
-        offsetContainer.addProperty(
+        offsetGroup.addProperty(
             "y",
             "Y",
             options.offset.y,

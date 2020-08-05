@@ -1,14 +1,14 @@
 import type { Container } from "tsparticles/dist/Core/Container";
-import { ColorUtils, EditorContainer, IRgb, IHsl, EditorNumberInput } from "object-gui";
+import { ColorUtils, EditorGroup, IRgb, IHsl, EditorNumberInput } from "object-gui";
 import type { ILinks } from "tsparticles/dist/Options/Interfaces/Particles/Links/ILinks";
 
 export class LinksOptionsEditor {
-    public readonly container: EditorContainer;
+    public readonly group: EditorGroup;
     private readonly particles: Container;
 
-    constructor(private readonly parent: EditorContainer, private readonly options: ILinks) {
-        this.container = parent.addContainer("links", "Links");
-        this.particles = this.container.data as Container;
+    constructor(private readonly parent: EditorGroup, private readonly options: ILinks) {
+        this.group = parent.addGroup("links", "Links");
+        this.particles = this.group.data as Container;
 
         this.addShadow();
         this.addTriangles();
@@ -17,7 +17,7 @@ export class LinksOptionsEditor {
 
     private addShadow(): void {
         const particles = this.particles;
-        const container = this.container.addContainer("shadow", "Shadow");
+        const group = this.group.addGroup("shadow", "Shadow");
         const options = this.options.shadow;
 
         let shadowColorStringValue = "";
@@ -39,7 +39,7 @@ export class LinksOptionsEditor {
             }
         }
 
-        container.addProperty(
+        group.addProperty(
             "blur",
             "Blur",
             options.blur,
@@ -53,7 +53,7 @@ export class LinksOptionsEditor {
             }
         );
 
-        container.addProperty(
+        group.addProperty(
             "color",
             "Color",
             shadowColorStringValue,
@@ -77,7 +77,7 @@ export class LinksOptionsEditor {
             }
         );
 
-        container.addProperty(
+        group.addProperty(
             "enable",
             "Enable",
             options.enable,
@@ -94,7 +94,7 @@ export class LinksOptionsEditor {
 
     private addTriangles(): void {
         const particles = this.particles;
-        const container = this.container.addContainer("triangles", "Triangles");
+        const group = this.group.addGroup("triangles", "Triangles");
         const options = this.options.triangles;
 
         let trianglesColorStringValue = "";
@@ -116,7 +116,7 @@ export class LinksOptionsEditor {
             }
         }
 
-        container.addProperty(
+        group.addProperty(
             "color",
             "Color",
             trianglesColorStringValue,
@@ -140,7 +140,7 @@ export class LinksOptionsEditor {
             }
         );
 
-        container.addProperty(
+        group.addProperty(
             "enable",
             "Enable",
             options.enable,
@@ -154,7 +154,7 @@ export class LinksOptionsEditor {
             }
         );
 
-        const trianglesOpacityInput = container.addProperty(
+        const trianglesOpacityInput = group.addProperty(
             "opacity",
             "Opacity",
             options.opacity,
@@ -191,7 +191,7 @@ export class LinksOptionsEditor {
             colorStringValue = `${rgb.r.toString(16)}${rgb.g.toString(16)}${rgb.b.toString(16)}`;
         }
 
-        this.container.addProperty(
+        this.group.addProperty(
             "blink",
             "Blink",
             options.blink,
@@ -205,7 +205,7 @@ export class LinksOptionsEditor {
             }
         );
 
-        this.container.addProperty(
+        this.group.addProperty(
             "color",
             "Color",
             colorStringValue,
@@ -223,7 +223,7 @@ export class LinksOptionsEditor {
             }
         );
 
-        this.container.addProperty(
+        this.group.addProperty(
             "consent",
             "Consent",
             options.consent,
@@ -237,7 +237,7 @@ export class LinksOptionsEditor {
             }
         );
 
-        this.container.addProperty(
+        this.group.addProperty(
             "distance",
             "Distance",
             options.distance,
@@ -251,7 +251,7 @@ export class LinksOptionsEditor {
             }
         );
 
-        this.container.addProperty(
+        this.group.addProperty(
             "enable",
             "Enable",
             options.enable,
@@ -265,7 +265,7 @@ export class LinksOptionsEditor {
             }
         );
 
-        this.container.addProperty("id", "Id", options.id, "string", async (value: number | string | boolean) => {
+        this.group.addProperty("id", "Id", options.id, "string", async (value: number | string | boolean) => {
             if (typeof value === "string") {
                 options.id = value;
 
@@ -273,7 +273,7 @@ export class LinksOptionsEditor {
             }
         });
 
-        const opacityInput = this.container.addProperty(
+        const opacityInput = this.group.addProperty(
             "opacity",
             "Opacity",
             options.opacity,
@@ -289,7 +289,7 @@ export class LinksOptionsEditor {
 
         opacityInput.step(0.01).min(0).max(1);
 
-        this.container.addProperty(
+        this.group.addProperty(
             "warp",
             "Warp",
             options.warp,
@@ -303,7 +303,7 @@ export class LinksOptionsEditor {
             }
         );
 
-        this.container.addProperty(
+        this.group.addProperty(
             "width",
             "Width",
             options.width,

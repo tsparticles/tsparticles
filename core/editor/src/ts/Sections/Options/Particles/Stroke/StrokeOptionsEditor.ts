@@ -2,28 +2,28 @@ import { Container } from "tsparticles/dist/Core/Container";
 import { IStroke } from "tsparticles/dist/Options/Interfaces/Particles/IStroke";
 import { ColorOptionsEditor } from "../Color/ColorOptionsEditor";
 import { IAnimatableColor } from "tsparticles/dist/Options/Interfaces/Particles/IAnimatableColor";
-import { EditorNumberInput, EditorContainer, SingleOrMultiple } from "object-gui";
+import { EditorNumberInput, EditorGroup, SingleOrMultiple } from "object-gui";
 
 export class StrokeOptionsEditor {
-    public readonly container: EditorContainer;
+    public readonly group: EditorGroup;
     private readonly particles: Container;
 
-    constructor(private readonly parent: EditorContainer, private readonly options: SingleOrMultiple<IStroke>) {
-        this.container = parent.addContainer("stroke", "Stroke");
-        this.particles = this.container.data as Container;
+    constructor(private readonly parent: EditorGroup, private readonly options: SingleOrMultiple<IStroke>) {
+        this.group = parent.addGroup("stroke", "Stroke");
+        this.particles = this.group.data as Container;
 
         if (options instanceof Array) {
             for (let i = 0; i < options.length; i++) {
-                const container = this.container.addContainer(`stroke_${i + 1}`, `Stroke_${i + 1}`);
+                const group = this.group.addGroup(`stroke_${i + 1}`, `Stroke_${i + 1}`);
 
-                this.addStroke(container, options[i]);
+                this.addStroke(group, options[i]);
             }
         } else {
-            this.addStroke(this.container, options);
+            this.addStroke(this.group, options);
         }
     }
 
-    private addStroke(container: EditorContainer, options: IStroke): void {
+    private addStroke(group: EditorGroup, options: IStroke): void {
         const particles = this.particles;
 
         if (options.color === undefined) {
@@ -37,9 +37,9 @@ export class StrokeOptionsEditor {
             };
         }
 
-        const colorOptions = new ColorOptionsEditor(container, options.color as IAnimatableColor);
+        const colorOptions = new ColorOptionsEditor(group, options.color as IAnimatableColor);
 
-        const opacityInput = container.addProperty(
+        const opacityInput = group.addProperty(
             "opacity",
             "Opacity",
             options.opacity,
@@ -55,7 +55,7 @@ export class StrokeOptionsEditor {
 
         opacityInput.step(0.01).min(0).max(1);
 
-        container.addProperty("width", "Width", options.width, "number", async (value: number | string | boolean) => {
+        group.addProperty("width", "Width", options.width, "number", async (value: number | string | boolean) => {
             if (typeof value === "number") {
                 options.width = value;
 

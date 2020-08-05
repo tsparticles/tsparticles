@@ -1,14 +1,14 @@
 import type { Container } from "tsparticles/dist/Core/Container";
 import type { IModes } from "tsparticles/dist/Options/Interfaces/Interactivity/Modes/IModes";
-import { ColorUtils, IHsl, IRgb, EditorNumberInput, EditorContainer } from "object-gui";
+import { ColorUtils, IHsl, IRgb, EditorNumberInput, EditorGroup } from "object-gui";
 
 export class ModesOptionsEditor {
-    public readonly container: EditorContainer;
+    public readonly group: EditorGroup;
     private readonly particles: Container;
 
-    constructor(private readonly parent: EditorContainer, private readonly options: IModes) {
-        this.container = parent.addContainer("modes", "Modes");
-        this.particles = this.container.data as Container;
+    constructor(private readonly parent: EditorGroup, private readonly options: IModes) {
+        this.group = parent.addGroup("modes", "Modes");
+        this.particles = this.group.data as Container;
 
         this.addAttract();
         this.addBubble();
@@ -24,9 +24,9 @@ export class ModesOptionsEditor {
     private addAttract(): void {
         const particles = this.particles;
         const options = this.options.attract;
-        const attractContainer = this.container.addContainer("attract", "Attract");
+        const attractGroup = this.group.addGroup("attract", "Attract");
 
-        attractContainer.addProperty(
+        attractGroup.addProperty(
             "distance",
             "Distance",
             options.distance,
@@ -40,7 +40,7 @@ export class ModesOptionsEditor {
             }
         );
 
-        attractContainer.addProperty(
+        attractGroup.addProperty(
             "duration",
             "Duration",
             options.duration,
@@ -54,7 +54,7 @@ export class ModesOptionsEditor {
             }
         );
 
-        attractContainer.addProperty(
+        attractGroup.addProperty(
             "speed",
             "Speed",
             options.speed,
@@ -72,7 +72,7 @@ export class ModesOptionsEditor {
     private addBubble(): void {
         const particles = this.particles;
         const options = this.options.bubble;
-        const bubbleContainer = this.container.addContainer("bubble", "Bubble");
+        const bubbleGroup = this.group.addGroup("bubble", "Bubble");
 
         let colorStringValue: string | undefined;
 
@@ -95,7 +95,7 @@ export class ModesOptionsEditor {
             }
         }
 
-        bubbleContainer.addProperty(
+        bubbleGroup.addProperty(
             "color",
             "Color",
             colorStringValue,
@@ -115,7 +115,7 @@ export class ModesOptionsEditor {
             }
         );
 
-        bubbleContainer.addProperty(
+        bubbleGroup.addProperty(
             "distance",
             "Distance",
             options.distance,
@@ -129,7 +129,7 @@ export class ModesOptionsEditor {
             }
         );
 
-        bubbleContainer.addProperty(
+        bubbleGroup.addProperty(
             "duration",
             "Duration",
             options.duration,
@@ -143,7 +143,7 @@ export class ModesOptionsEditor {
             }
         );
 
-        const opacityInput = bubbleContainer.addProperty(
+        const opacityInput = bubbleGroup.addProperty(
             "opacity",
             "Opacity",
             options.opacity,
@@ -159,27 +159,21 @@ export class ModesOptionsEditor {
 
         opacityInput.step(0.01).min(0).max(1);
 
-        bubbleContainer.addProperty(
-            "size",
-            "Size",
-            options.size,
-            "number",
-            async (value: string | number | boolean) => {
-                if (typeof value === "number") {
-                    options.size = value;
+        bubbleGroup.addProperty("size", "Size", options.size, "number", async (value: string | number | boolean) => {
+            if (typeof value === "number") {
+                options.size = value;
 
-                    await particles.refresh();
-                }
+                await particles.refresh();
             }
-        );
+        });
     }
 
     private addConnect(): void {
         const particles = this.particles;
         const options = this.options.connect;
-        const connectContainer = this.container.addContainer("connect", "Connect");
+        const connectGroup = this.group.addGroup("connect", "Connect");
 
-        connectContainer.addProperty(
+        connectGroup.addProperty(
             "distance",
             "Distance",
             options.distance,
@@ -193,9 +187,9 @@ export class ModesOptionsEditor {
             }
         );
 
-        const connectLinksContainer = connectContainer.addContainer("links", "Links");
+        const connectLinksGroup = connectGroup.addGroup("links", "Links");
 
-        const opacityInput = connectLinksContainer.addProperty(
+        const opacityInput = connectLinksGroup.addProperty(
             "opacity",
             "Opacity",
             options.links.opacity,
@@ -211,7 +205,7 @@ export class ModesOptionsEditor {
 
         opacityInput.step(0.01).min(0).max(1);
 
-        connectContainer.addProperty(
+        connectGroup.addProperty(
             "radius",
             "Radius",
             options.radius,
@@ -229,9 +223,9 @@ export class ModesOptionsEditor {
     private addGrab(): void {
         const particles = this.particles;
         const options = this.options.grab;
-        const connectContainer = this.container.addContainer("grab", "Grab");
+        const connectGroup = this.group.addGroup("grab", "Grab");
 
-        connectContainer.addProperty(
+        connectGroup.addProperty(
             "distance",
             "Distance",
             options.distance,
@@ -245,7 +239,7 @@ export class ModesOptionsEditor {
             }
         );
 
-        const grabLinksContainer = connectContainer.addContainer("links", "Links");
+        const grabLinksGroup = connectGroup.addGroup("links", "Links");
 
         let colorStringValue: string | undefined;
 
@@ -266,7 +260,7 @@ export class ModesOptionsEditor {
             }
         }
 
-        grabLinksContainer.addProperty(
+        grabLinksGroup.addProperty(
             "color",
             "Color",
             colorStringValue,
@@ -286,7 +280,7 @@ export class ModesOptionsEditor {
             }
         );
 
-        const opacityInput = grabLinksContainer.addProperty(
+        const opacityInput = grabLinksGroup.addProperty(
             "opacity",
             "Opacity",
             options.links.opacity,
@@ -306,9 +300,9 @@ export class ModesOptionsEditor {
     private addPush(): void {
         const particles = this.particles;
         const options = this.options.push;
-        const pushContainer = this.container.addContainer("push", "Push");
+        const pushGroup = this.group.addGroup("push", "Push");
 
-        pushContainer.addProperty(
+        pushGroup.addProperty(
             "quantity",
             "Quantity",
             options.quantity,
@@ -326,9 +320,9 @@ export class ModesOptionsEditor {
     private addRemove(): void {
         const particles = this.particles;
         const options = this.options.remove;
-        const pushContainer = this.container.addContainer("remove", "Remove");
+        const removeGroup = this.group.addGroup("remove", "Remove");
 
-        pushContainer.addProperty(
+        removeGroup.addProperty(
             "remove",
             "Remove",
             options.quantity,
@@ -346,9 +340,9 @@ export class ModesOptionsEditor {
     private addRepulse(): void {
         const particles = this.particles;
         const options = this.options.repulse;
-        const repulseContainer = this.container.addContainer("repulse", "Repulse");
+        const repulseGroup = this.group.addGroup("repulse", "Repulse");
 
-        repulseContainer.addProperty(
+        repulseGroup.addProperty(
             "distance",
             "Distance",
             options.distance,
@@ -362,7 +356,7 @@ export class ModesOptionsEditor {
             }
         );
 
-        repulseContainer.addProperty(
+        repulseGroup.addProperty(
             "duration",
             "Duration",
             options.duration,
@@ -376,7 +370,7 @@ export class ModesOptionsEditor {
             }
         );
 
-        repulseContainer.addProperty(
+        repulseGroup.addProperty(
             "speed",
             "Speed",
             options.speed,
@@ -394,9 +388,9 @@ export class ModesOptionsEditor {
     private addSlow(): void {
         const particles = this.particles;
         const options = this.options.slow;
-        const slowContainer = this.container.addContainer("slow", "Slow");
+        const slowGroup = this.group.addGroup("slow", "Slow");
 
-        slowContainer.addProperty(
+        slowGroup.addProperty(
             "factor",
             "Factor",
             options.factor,
@@ -410,7 +404,7 @@ export class ModesOptionsEditor {
             }
         );
 
-        slowContainer.addProperty(
+        slowGroup.addProperty(
             "radius",
             "Radius",
             options.radius,
@@ -428,23 +422,17 @@ export class ModesOptionsEditor {
     private addTrail(): void {
         const particles = this.particles;
         const options = this.options.trail;
-        const trailContainer = this.container.addContainer("trail", "Trail");
+        const trailGroup = this.group.addGroup("trail", "Trail");
 
-        trailContainer.addProperty(
-            "delay",
-            "Delay",
-            options.delay,
-            "number",
-            async (value: string | number | boolean) => {
-                if (typeof value === "number") {
-                    options.delay = value;
+        trailGroup.addProperty("delay", "Delay", options.delay, "number", async (value: string | number | boolean) => {
+            if (typeof value === "number") {
+                options.delay = value;
 
-                    await particles.refresh();
-                }
+                await particles.refresh();
             }
-        );
+        });
 
-        trailContainer.addProperty(
+        trailGroup.addProperty(
             "quantity",
             "Quantity",
             options.quantity,

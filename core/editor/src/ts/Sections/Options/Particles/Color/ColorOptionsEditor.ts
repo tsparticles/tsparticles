@@ -1,15 +1,15 @@
-import type { EditorContainer, IRgb, IHsl } from "object-gui";
+import type { EditorGroup, IRgb, IHsl } from "object-gui";
 import type { Container } from "tsparticles/dist/Core/Container";
 import { ColorUtils } from "tsparticles";
 import type { IAnimatableColor } from "tsparticles/dist/Options/Interfaces/Particles/IAnimatableColor";
 
 export class ColorOptionsEditor {
-    public readonly container: EditorContainer;
+    public readonly group: EditorGroup;
     private readonly particles: Container;
 
-    constructor(private readonly parent: EditorContainer, private readonly options: IAnimatableColor) {
-        this.container = parent.addContainer("color", "Color");
-        this.particles = this.container.data as Container;
+    constructor(private readonly parent: EditorGroup, private readonly options: IAnimatableColor) {
+        this.group = parent.addGroup("color", "Color");
+        this.particles = this.group.data as Container;
 
         this.addColor();
     }
@@ -35,7 +35,7 @@ export class ColorOptionsEditor {
             }
         }
 
-        this.container.addProperty(
+        this.group.addProperty(
             "color",
             "Color",
             colorStringValue,
@@ -49,9 +49,9 @@ export class ColorOptionsEditor {
             }
         );
 
-        const animationContainer = this.container.addContainer("animation", "Animation");
+        const animationGroup = this.group.addGroup("animation", "Animation");
 
-        animationContainer.addProperty(
+        animationGroup.addProperty(
             "enable",
             "Enable",
             options.animation.enable,
@@ -65,7 +65,7 @@ export class ColorOptionsEditor {
             }
         );
 
-        animationContainer.addProperty(
+        animationGroup.addProperty(
             "speed",
             "Speed",
             options.animation.speed,
@@ -79,7 +79,7 @@ export class ColorOptionsEditor {
             }
         );
 
-        animationContainer.addProperty(
+        animationGroup.addProperty(
             "sync",
             "Sync",
             options.animation.sync,
