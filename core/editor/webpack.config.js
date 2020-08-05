@@ -45,10 +45,10 @@ const getJsConfig = (entry) => {
                     amd: "tsparticles",
                     root: "window"
                 },
-                objectgui: {
-                    commonjs: "objectgui",
-                    commonjs2: "objectgui",
-                    amd: "objectgui",
+                "object-gui": {
+                    commonjs: "object-gui",
+                    commonjs2: "object-gui",
+                    amd: "object-gui",
                     root: "window"
                 }
             }
