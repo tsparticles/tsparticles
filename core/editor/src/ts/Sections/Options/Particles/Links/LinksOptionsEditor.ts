@@ -158,7 +158,7 @@ export class LinksOptionsEditor {
             "opacity",
             "Opacity",
             options.opacity,
-            typeof options.opacity,
+            "number",
             (value: number | string | boolean) => {
                 if (typeof value === "number") {
                     options.opacity = value;
@@ -166,9 +166,9 @@ export class LinksOptionsEditor {
                     particles.refresh();
                 }
             }
-        );
+        ) as EditorNumberInput;
 
-        (trianglesOpacityInput.element as HTMLInputElement).step = "0.01";
+        trianglesOpacityInput.step(0.01).min(0).max(1);
     }
 
     private addLinks(): void {

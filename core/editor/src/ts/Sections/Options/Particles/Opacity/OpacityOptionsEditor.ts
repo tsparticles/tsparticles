@@ -2,6 +2,7 @@ import type { EditorGroup } from "object-gui";
 import type { Container } from "tsparticles/dist/Core/Container";
 import type { IOpacity } from "tsparticles/dist/Options/Interfaces/Particles/Opacity/IOpacity";
 import type { IOpacityRandom } from "tsparticles/dist/Options/Interfaces/Particles/Opacity/IOpacityRandom";
+import { EditorNumberInput } from "object-gui/dist/js";
 
 export class OpacityOptionsEditor {
     public readonly group: EditorGroup;
@@ -30,11 +31,9 @@ export class OpacityOptionsEditor {
                     await particles.refresh();
                 }
             }
-        );
+        ) as EditorNumberInput;
 
-        (opacityInput.element as HTMLInputElement).step = "0.01";
-        (opacityInput.element as HTMLInputElement).min = "0";
-        (opacityInput.element as HTMLInputElement).max = "1";
+        opacityInput.min(0).max(1).step(0.01);
 
         const animationGroup = this.group.addGroup("animation", "Animation");
 
@@ -64,11 +63,9 @@ export class OpacityOptionsEditor {
                     await particles.refresh();
                 }
             }
-        );
+        ) as EditorNumberInput;
 
-        (minInput.element as HTMLInputElement).step = "0.01";
-        (minInput.element as HTMLInputElement).min = "0";
-        (minInput.element as HTMLInputElement).max = "1";
+        minInput.min(0).max(0).step(0.01);
 
         const speedInput = animationGroup.addProperty(
             "speed",
@@ -82,9 +79,9 @@ export class OpacityOptionsEditor {
                     await particles.refresh();
                 }
             }
-        );
+        ) as EditorNumberInput;
 
-        (speedInput.element as HTMLInputElement).step = "0.01";
+        speedInput.step(0.01);
 
         animationGroup.addProperty(
             "sync",
