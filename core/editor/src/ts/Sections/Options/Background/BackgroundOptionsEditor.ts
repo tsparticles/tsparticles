@@ -8,11 +8,13 @@ import { EditorNumberInput, EditorGroup } from "object-gui";
 
 export class BackgroundOptionsEditor {
     public readonly group: EditorGroup;
-    private readonly particles: Container;
+    private readonly options: IBackground;
 
-    constructor(private readonly parent: EditorGroup, private readonly options: IBackground) {
+    constructor(private readonly parent: EditorGroup, private readonly particles: Container) {
         this.group = parent.addGroup("background", "Background");
-        this.particles = this.group.data as Container;
+        this.options = this.group.data as IBackground;
+
+        console.log(particles);
 
         this.addColor();
 
@@ -45,10 +47,10 @@ export class BackgroundOptionsEditor {
             async (value: string | number | boolean) => {
                 if (typeof value === "string") {
                     options.value = value;
-
-                    await particles.refresh();
                 }
-            }
+                await particles.refresh();
+            },
+            false
         );
     }
 
@@ -56,76 +58,32 @@ export class BackgroundOptionsEditor {
         const particles = this.particles;
         const options = this.options;
 
-        this.group.addProperty(
-            "image",
-            "Image",
-            options.image,
-            typeof options.image,
-            async (value: string | number | boolean) => {
-                if (typeof value === "string") {
-                    options.image = value;
-
-                    await particles.refresh();
-                }
-            }
-        );
+        this.group.addProperty("image", "Image", options.image, typeof options.image, async () => {
+            await particles.refresh();
+        });
 
         const opacityItem = this.group.addProperty(
             "opacity",
             "Opacity",
             options.opacity,
             typeof options.opacity,
-            async (value: string | number | boolean) => {
-                if (typeof value === "number") {
-                    options.opacity = value;
-
-                    await particles.refresh();
-                }
+            async () => {
+                await particles.refresh();
             }
         ) as EditorNumberInput;
 
         opacityItem.step(0.01).min(0).max(1);
 
-        this.group.addProperty(
-            "position",
-            "Position",
-            options.position,
-            typeof options.position,
-            async (value: string | number | boolean) => {
-                if (typeof value === "string") {
-                    options.position = value;
+        this.group.addProperty("position", "Position", options.position, typeof options.position, async () => {
+            await particles.refresh();
+        });
 
-                    await particles.refresh();
-                }
-            }
-        );
+        this.group.addProperty("repeat", "Repeat", options.repeat, typeof options.repeat, async () => {
+            await particles.refresh();
+        });
 
-        this.group.addProperty(
-            "repeat",
-            "Repeat",
-            options.repeat,
-            typeof options.repeat,
-            async (value: string | number | boolean) => {
-                if (typeof value === "string") {
-                    options.repeat = value;
-
-                    await particles.refresh();
-                }
-            }
-        );
-
-        this.group.addProperty(
-            "size",
-            "Size",
-            options.size,
-            typeof options.size,
-            async (value: string | number | boolean) => {
-                if (typeof value === "string") {
-                    options.size = value;
-
-                    await particles.refresh();
-                }
-            }
-        );
+        this.group.addProperty("size", "Size", options.size, typeof options.size, async () => {
+            await particles.refresh();
+        });
     }
 }

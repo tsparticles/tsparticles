@@ -9,21 +9,21 @@ import { EditorGroup } from "object-gui";
 
 export class OptionsEditor {
     public readonly group: EditorGroup;
-    private readonly particles: Container;
     private readonly options: IOptions;
 
-    constructor(private readonly parent: EditorGroup) {
+    constructor(private readonly parent: EditorGroup, private readonly particles: Container) {
         this.group = parent.addGroup("options", "Options", false);
-        this.particles = this.group.data as Container;
-        this.options = this.particles.options;
+        this.options = this.group.data as IOptions;
+
+        console.log(this.particles);
 
         this.addBackground();
-        this.addBackgroundMask();
-        this.addInfection();
-        this.addInteractivity();
-        this.addParticles();
+        //this.addBackgroundMask();
+        //this.addInfection();
+        //this.addInteractivity();
+        //this.addParticles();
 
-        this.addProperties();
+        //this.addProperties();
     }
 
     private addProperties(): void {
@@ -88,7 +88,9 @@ export class OptionsEditor {
     }
 
     private addBackground(): void {
-        const options = new BackgroundOptionsEditor(this.group, this.options.background);
+        console.log(this.particles);
+
+        const options = new BackgroundOptionsEditor(this.group, this.particles);
     }
 
     private addBackgroundMask(): void {
