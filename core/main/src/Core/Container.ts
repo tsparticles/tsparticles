@@ -33,7 +33,7 @@ export class Container {
     public attract: IAttract;
     public lastFrameTime: number;
     public pageHidden: boolean;
-    public drawer?: FrameManager;
+    public drawer: FrameManager;
     public started: boolean;
     public destroyed: boolean;
     public density: number;
@@ -178,7 +178,7 @@ export class Container {
      * Draws a frame
      */
     public draw(): void {
-        this.drawAnimationFrame = Utils.animate((timestamp) => this.drawer?.nextFrame(timestamp));
+        this.drawAnimationFrame = Utils.animate((timestamp) => this.drawer.nextFrame(timestamp));
     }
 
     /**
@@ -257,17 +257,6 @@ export class Container {
         this.stop();
 
         this.canvas.destroy();
-
-        delete this.interactivity;
-        delete this.options;
-        delete this.retina;
-        delete this.canvas;
-        delete this.particles;
-        delete this.bubble;
-        delete this.repulse;
-        delete this.attract;
-        delete this.drawer;
-        delete this.eventListeners;
 
         for (const [, drawer] of this.drawers) {
             if (drawer.destroy) {
