@@ -259,8 +259,8 @@ export class Canvas {
             if (linkColor === Constants.randomColorValue) {
                 colorLine = ColorUtils.getRandomRgbColor();
             } else if (linkColor === "mid") {
-                const sourceColor = p1.getFillColor();
-                const destColor = p2.getFillColor();
+                const sourceColor = p1.getFillColor() ?? p1.getStrokeColor();
+                const destColor = p2.getFillColor() ?? p2.getStrokeColor();
 
                 if (sourceColor && destColor) {
                     colorLine = ColorUtils.mix(sourceColor, destColor, p1.size.value, p2.size.value);

@@ -4,10 +4,14 @@ import { OptionsColor } from "../../OptionsColor";
 import type { IOptionLoader } from "../../../Interfaces/IOptionLoader";
 
 export class GrabLinks implements IGrabLinks, IOptionLoader<IGrabLinks> {
-    public opacity: number;
+    public blink: boolean;
     public color?: OptionsColor;
+    public consent: boolean;
+    public opacity: number;
 
     constructor() {
+        this.blink = false;
+        this.consent = false;
         this.opacity = 1;
     }
 
@@ -16,12 +20,20 @@ export class GrabLinks implements IGrabLinks, IOptionLoader<IGrabLinks> {
             return;
         }
 
-        if (data.opacity !== undefined) {
-            this.opacity = data.opacity;
+        if (data.blink !== undefined) {
+            this.blink = data.blink;
         }
 
         if (data.color !== undefined) {
             this.color = OptionsColor.create(this.color, data.color);
+        }
+
+        if (data.consent !== undefined) {
+            this.consent = data.consent;
+        }
+
+        if (data.opacity !== undefined) {
+            this.opacity = data.opacity;
         }
     }
 }

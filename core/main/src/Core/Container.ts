@@ -323,6 +323,7 @@ export class Container {
         this.plugins = new Map<string, IContainerPlugin>();
         this.particles.linksColors = new Map<string, IRgb | string | undefined>();
 
+        delete this.particles.grabLineColor;
         delete this.particles.linksColor;
     }
 

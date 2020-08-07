@@ -603,6 +603,9 @@
     },
     "IGrabLinks": {
       "properties": {
+        "blink": {
+          "type": "boolean"
+        },
         "color": {
           "anyOf": [
             {
@@ -612,6 +615,9 @@
               "type": "string"
             }
           ]
+        },
+        "consent": {
+          "type": "boolean"
         },
         "opacity": {
           "type": "number"
