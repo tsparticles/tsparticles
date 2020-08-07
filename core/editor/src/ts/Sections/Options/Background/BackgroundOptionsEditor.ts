@@ -14,8 +14,6 @@ export class BackgroundOptionsEditor {
         this.group = parent.addGroup("background", "Background");
         this.options = this.group.data as IBackground;
 
-        console.log(particles);
-
         this.addColor();
 
         this.addProperties();

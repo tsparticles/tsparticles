@@ -15,8 +15,6 @@ export class OptionsEditor {
         this.group = parent.addGroup("options", "Options", false);
         this.options = this.group.data as IOptions;
 
-        console.log(this.particles);
-
         this.addBackground();
         //this.addBackgroundMask();
         //this.addInfection();
@@ -88,8 +86,6 @@ export class OptionsEditor {
     }
 
     private addBackground(): void {
-        console.log(this.particles);
-
         const options = new BackgroundOptionsEditor(this.group, this.particles);
     }
 
