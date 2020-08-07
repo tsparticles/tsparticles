@@ -1,6 +1,8 @@
 import type { IColor } from "../../../../Core/Interfaces/IColor";
 
 export interface IGrabLinks {
-    opacity: number;
+    blink: boolean;
     color?: string | IColor;
+    consent: boolean;
+    opacity: number;
 }

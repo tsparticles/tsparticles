@@ -1,7 +1,6 @@
 import type { Container } from "../../../Container";
 import { Constants, Utils, Circle, ColorUtils } from "../../../../Utils";
 import { IRgb } from "../../../Interfaces/IRgb";
-import { IColor } from "../../../Interfaces/IColor";
 import { HoverMode } from "../../../../Enums/Modes";
 import { IExternalInteractor } from "../../../Interfaces/IExternalInteractor";
 
@@ -9,7 +8,8 @@ import { IExternalInteractor } from "../../../Interfaces/IExternalInteractor";
  * Particle grab manager
  */
 export class Grabber implements IExternalInteractor {
-    constructor(private readonly container: Container) {}
+    constructor(private readonly container: Container) {
+    }
 
     public isEnabled(): boolean {
         const container = this.container;
@@ -65,17 +65,38 @@ export class Grabber implements IExternalInteractor {
                         const optColor = grabLineOptions.color ?? particle.particlesOptions.links.color;
 
                         if (!container.particles.grabLineColor) {
-                            container.particles.grabLineColor =
-                                optColor === Constants.randomColorValue ||
-                                (optColor as IColor)?.value === Constants.randomColorValue
-                                    ? Constants.randomColorValue
-                                    : ColorUtils.colorToRgb(optColor);
+                            const linksOptions = container.options.interactivity.modes.grab.links;
+                            const color = typeof optColor === "string" ? optColor : optColor.value;
+
+                            /* particles.line_linked - convert hex colors to rgb */
+                            //  check for the color profile requested and
+                            //  then return appropriate value
+
+                            if (color === Constants.randomColorValue) {
+                                if (linksOptions.consent) {
+                                    container.particles.grabLineColor = ColorUtils.colorToRgb({
+                                        value: color,
+                                    });
+                                } else if (linksOptions.blink) {
+                                    container.particles.grabLineColor = Constants.randomColorValue;
+                                } else {
+                                    container.particles.grabLineColor = Constants.midColorValue;
+                                }
+                            } else if (color !== undefined) {
+                                container.particles.grabLineColor = ColorUtils.colorToRgb({
+                                    value: color,
+                                });
+                            }
                         }
 
-                        let colorLine: IRgb;
+                        let colorLine: IRgb | undefined;
 
                         if (container.particles.grabLineColor === Constants.randomColorValue) {
                             colorLine = ColorUtils.getRandomRgbColor();
+                        } else if (container.particles.grabLineColor === "mid") {
+                            const sourceColor = particle.getFillColor() ?? particle.getStrokeColor();
+
+                            colorLine = sourceColor ? ColorUtils.hslToRgb(sourceColor) : undefined;
                         } else {
                             colorLine = container.particles.grabLineColor as IRgb;
                         }
