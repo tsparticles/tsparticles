@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.0.0-alpha.38](https://github.com/matteobruni/tsparticles/compare/tsparticles-editor@1.0.0-1.0.0-alpha.37.0...tsparticles-editor@1.0.0-alpha.38) (2020-08-08)
+
+**Note:** Version bump only for package tsparticles-editor
+
+
+
+
+
 # [1.0.0-alpha.36](https://github.com/matteobruni/tsparticles/compare/tsparticles-editor@1.0.0-alpha.35...tsparticles-editor@1.0.0-alpha.36) (2020-08-05)
 
 **Note:** Version bump only for package tsparticles-editor
