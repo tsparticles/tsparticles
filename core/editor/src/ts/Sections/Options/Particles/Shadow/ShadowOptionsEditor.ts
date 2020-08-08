@@ -4,16 +4,31 @@ import { ColorUtils, EditorGroup, IRgb, IHsl } from "object-gui";
 
 export class ShadowOptionsEditor {
     public readonly group: EditorGroup;
-    private readonly particles: Container;
+    private readonly options: IShadow;
 
-    constructor(private readonly parent: EditorGroup, private readonly options: IShadow) {
+    constructor(private readonly parent: EditorGroup, private readonly particles: Container) {
         this.group = parent.addGroup("shadow", "Shadow");
-        this.particles = this.group.data as Container;
+        this.options = this.group.data as IShadow;
 
-        this.addShadow();
+        this.addOffset();
+        this.addProperties();
     }
 
-    private addShadow(): void {
+    private addOffset(): void {
+        const particles = this.particles;
+        const group = this.group.addGroup("offset", "Offset");
+        const options = this.options.offset;
+
+        group.addProperty("x", "X", options.x, typeof options.x, async () => {
+            await particles.refresh();
+        });
+
+        group.addProperty("y", "Y", options.y, typeof options.y, async () => {
+            await particles.refresh();
+        });
+    }
+
+    private addProperties(): void {
         const particles = this.particles;
         const options = this.options;
 
@@ -34,19 +49,9 @@ export class ShadowOptionsEditor {
             colorStringValue = `${rgb.r.toString(16)}${rgb.g.toString(16)}${rgb.b.toString(16)}`;
         }
 
-        this.group.addProperty(
-            "blur",
-            "Blur",
-            options.blur,
-            typeof options.blur,
-            async (value: number | string | boolean) => {
-                if (typeof value === "number") {
-                    options.blur = value;
-
-                    await particles.refresh();
-                }
-            }
-        );
+        this.group.addProperty("blur", "Blur", options.blur, typeof options.blur, async () => {
+            await particles.refresh();
+        });
 
         this.group.addProperty(
             "color",
@@ -63,51 +68,12 @@ export class ShadowOptionsEditor {
 
                     await particles.refresh();
                 }
-            }
+            },
+            false
         );
 
-        this.group.addProperty(
-            "enable",
-            "Enable",
-            options.enable,
-            typeof options.enable,
-            async (value: number | string | boolean) => {
-                if (typeof value === "boolean") {
-                    options.enable = value;
-
-                    await particles.refresh();
-                }
-            }
-        );
-
-        const offsetGroup = this.group.addGroup("offset", "Offset");
-
-        offsetGroup.addProperty(
-            "x",
-            "X",
-            options.offset.x,
-            typeof options.offset.x,
-            async (value: number | string | boolean) => {
-                if (typeof value === "number") {
-                    options.offset.x = value;
-
-                    await particles.refresh();
-                }
-            }
-        );
-
-        offsetGroup.addProperty(
-            "y",
-            "Y",
-            options.offset.y,
-            typeof options.offset.y,
-            async (value: number | string | boolean) => {
-                if (typeof value === "number") {
-                    options.offset.y = value;
-
-                    await particles.refresh();
-                }
-            }
-        );
+        this.group.addProperty("enable", "Enable", options.enable, typeof options.enable, async () => {
+            await particles.refresh();
+        });
     }
 }

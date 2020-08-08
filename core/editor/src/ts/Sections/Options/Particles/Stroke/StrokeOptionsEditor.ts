@@ -6,20 +6,20 @@ import { EditorNumberInput, EditorGroup, SingleOrMultiple } from "object-gui";
 
 export class StrokeOptionsEditor {
     public readonly group: EditorGroup;
-    private readonly particles: Container;
+    private readonly options: SingleOrMultiple<IStroke>;
 
-    constructor(private readonly parent: EditorGroup, private readonly options: SingleOrMultiple<IStroke>) {
+    constructor(private readonly parent: EditorGroup, private readonly particles: Container) {
         this.group = parent.addGroup("stroke", "Stroke");
-        this.particles = this.group.data as Container;
+        this.options = this.group.data as SingleOrMultiple<IStroke>;
 
-        if (options instanceof Array) {
-            for (let i = 0; i < options.length; i++) {
+        if (this.options instanceof Array) {
+            for (let i = 0; i < this.options.length; i++) {
                 const group = this.group.addGroup(`stroke_${i + 1}`, `Stroke_${i + 1}`);
 
-                this.addStroke(group, options[i]);
+                this.addStroke(group, this.options[i]);
             }
         } else {
-            this.addStroke(this.group, options);
+            this.addStroke(this.group, this.options);
         }
     }
 
@@ -37,7 +37,7 @@ export class StrokeOptionsEditor {
             };
         }
 
-        const colorOptions = new ColorOptionsEditor(group, options.color as IAnimatableColor);
+        const colorOptions = new ColorOptionsEditor(group, this.particles, options.color as IAnimatableColor);
 
         const opacityInput = group.addProperty(
             "opacity",
@@ -50,17 +50,25 @@ export class StrokeOptionsEditor {
 
                     await particles.refresh();
                 }
-            }
+            },
+            false
         ) as EditorNumberInput;
 
         opacityInput.step(0.01).min(0).max(1);
 
-        group.addProperty("width", "Width", options.width, "number", async (value: number | string | boolean) => {
-            if (typeof value === "number") {
-                options.width = value;
+        group.addProperty(
+            "width",
+            "Width",
+            options.width,
+            "number",
+            async (value: number | string | boolean) => {
+                if (typeof value === "number") {
+                    options.width = value;
 
-                await particles.refresh();
-            }
-        });
+                    await particles.refresh();
+                }
+            },
+            false
+        );
     }
 }

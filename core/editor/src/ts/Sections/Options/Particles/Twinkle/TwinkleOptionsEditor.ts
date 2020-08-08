@@ -6,11 +6,11 @@ import { EditorNumberInput, EditorGroup, IRgb, IHsl } from "object-gui";
 
 export class TwinkleOptionsEditor {
     public readonly group: EditorGroup;
-    private readonly particles: Container;
+    private readonly options: ITwinkle;
 
-    constructor(private readonly parent: EditorGroup, private readonly options: ITwinkle) {
+    constructor(private readonly parent: EditorGroup, private readonly particles: Container) {
         this.group = parent.addGroup("twinkle", "Twinkle");
-        this.particles = this.group.data as Container;
+        this.options = this.group.data as ITwinkle;
 
         this.addTwinkle();
     }
@@ -42,59 +42,42 @@ export class TwinkleOptionsEditor {
             }
         }
 
-        group.addProperty("color", "Color", colorStringValue, "color", async (value: string | number | boolean) => {
-            if (typeof value === "string") {
-                if (typeof options.color === "string") {
-                    options.color = value;
-                } else {
-                    options.color = {
-                        value,
-                    };
-                }
+        group.addProperty(
+            "color",
+            "Color",
+            colorStringValue,
+            "color",
+            async (value: string | number | boolean) => {
+                if (typeof value === "string") {
+                    if (typeof options.color === "string") {
+                        options.color = value;
+                    } else {
+                        options.color = {
+                            value,
+                        };
+                    }
 
-                await particles.refresh();
-            }
+                    await particles.refresh();
+                }
+            },
+            false
+        );
+
+        group.addProperty("enable", "Enable", options.enable, typeof options.enable, async () => {
+            await particles.refresh();
         });
 
-        group.addProperty(
-            "enable",
-            "Enable",
-            options.enable,
-            typeof options.enable,
-            async (value: string | number | boolean) => {
-                if (typeof value === "boolean") {
-                    options.enable = value;
-
-                    await particles.refresh();
-                }
-            }
-        );
-
-        group.addProperty(
-            "frequency",
-            "Frequency",
-            options.frequency,
-            typeof options.frequency,
-            async (value: string | number | boolean) => {
-                if (typeof value === "number") {
-                    options.frequency = value;
-
-                    await particles.refresh();
-                }
-            }
-        );
+        group.addProperty("frequency", "Frequency", options.frequency, typeof options.frequency, async () => {
+            await particles.refresh();
+        });
 
         const opacityInput = group.addProperty(
             "opacity",
             "Opacity",
             options.opacity,
             typeof options.opacity,
-            async (value: string | number | boolean) => {
-                if (typeof value === "number") {
-                    options.opacity = value;
-
-                    await particles.refresh();
-                }
+            async () => {
+                await particles.refresh();
             }
         ) as EditorNumberInput;
 

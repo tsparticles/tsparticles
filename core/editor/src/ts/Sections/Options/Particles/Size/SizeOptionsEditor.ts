@@ -6,11 +6,11 @@ import { EditorSelectInput, EditorGroup } from "object-gui";
 
 export class SizeOptionsEditor {
     public readonly group: EditorGroup;
-    private readonly particles: Container;
+    private readonly options: ISize;
 
-    constructor(private readonly parent: EditorGroup, private readonly options: ISize) {
+    constructor(private readonly parent: EditorGroup, private readonly particles: Container) {
         this.group = parent.addGroup("size", "Size");
-        this.particles = this.group.data as Container;
+        this.options = this.group.data as ISize;
 
         this.addAnimation();
         this.addRandom();
@@ -22,83 +22,39 @@ export class SizeOptionsEditor {
         const options = this.options.animation;
         const group = this.group.addGroup("animation", "Animation");
 
-        const destroySelectInput = group.addProperty(
-            "destroy",
-            "Destroy",
-            options.destroy,
-            "select",
-            async (value: number | string | boolean) => {
-                if (
-                    typeof value === "string" &&
-                    (value === DestroyType.min || value === DestroyType.max || value === DestroyType.none)
-                ) {
-                    options.destroy = value;
-
-                    await particles.refresh();
-                }
-            }
-        ) as EditorSelectInput;
+        const destroySelectInput = group.addProperty("destroy", "Destroy", options.destroy, "select", async () => {
+            await particles.refresh();
+        }) as EditorSelectInput;
 
         destroySelectInput.addItem(DestroyType.max);
         destroySelectInput.addItem(DestroyType.min);
         destroySelectInput.addItem(DestroyType.none);
 
-        group.addProperty(
-            "enable",
-            "Enable",
-            options.enable,
-            typeof options.enable,
-            async (value: number | string | boolean) => {
-                if (typeof value === "boolean") {
-                    options.enable = value;
-
-                    await particles.refresh();
-                }
-            }
-        );
+        group.addProperty("enable", "Enable", options.enable, typeof options.enable, async () => {
+            await particles.refresh();
+        });
 
         group.addProperty(
             "minimumValue",
             "Minimum Value",
             options.minimumValue,
             typeof options.minimumValue,
-            async (value: number | string | boolean) => {
-                if (typeof value === "number") {
-                    options.minimumValue = value;
-
-                    await particles.refresh();
-                }
+            async () => {
+                await particles.refresh();
             }
         );
 
-        group.addProperty(
-            "speed",
-            "Speed",
-            options.speed,
-            typeof options.speed,
-            async (value: number | string | boolean) => {
-                if (typeof value === "number") {
-                    options.speed = value;
-
-                    await particles.refresh();
-                }
-            }
-        );
+        group.addProperty("speed", "Speed", options.speed, typeof options.speed, async () => {
+            await particles.refresh();
+        });
 
         const startValueSelectInput = group.addProperty(
             "startValue",
             "Start Value",
             options.startValue,
             "select",
-            async (value: number | string | boolean) => {
-                if (
-                    typeof value === "string" &&
-                    (value === StartValueType.min || value === StartValueType.max || value === StartValueType.random)
-                ) {
-                    options.startValue = value;
-
-                    await particles.refresh();
-                }
+            async () => {
+                await particles.refresh();
             }
         ) as EditorSelectInput;
 
@@ -106,19 +62,9 @@ export class SizeOptionsEditor {
         startValueSelectInput.addItem(StartValueType.min);
         startValueSelectInput.addItem(StartValueType.random);
 
-        group.addProperty(
-            "sync",
-            "Sync",
-            options.sync,
-            typeof options.sync,
-            async (value: number | string | boolean) => {
-                if (typeof value === "boolean") {
-                    options.sync = value;
-
-                    await particles.refresh();
-                }
-            }
-        );
+        group.addProperty("sync", "Sync", options.sync, typeof options.sync, async () => {
+            await particles.refresh();
+        });
     }
 
     private addRandom(): void {
@@ -126,31 +72,17 @@ export class SizeOptionsEditor {
         const particles = this.particles;
         const options = this.options.random as ISizeRandom;
 
-        group.addProperty(
-            "enable",
-            "Enable",
-            options.enable,
-            typeof options.enable,
-            async (value: number | string | boolean) => {
-                if (typeof value === "boolean") {
-                    options.enable = value;
-
-                    await particles.refresh();
-                }
-            }
-        );
+        group.addProperty("enable", "Enable", options.enable, typeof options.enable, async () => {
+            await particles.refresh();
+        });
 
         group.addProperty(
             "minimumValue",
             "Minimum Value",
             options.minimumValue,
             typeof options.minimumValue,
-            async (value: number | string | boolean) => {
-                if (typeof value === "number") {
-                    options.minimumValue = value;
-
-                    await particles.refresh();
-                }
+            async () => {
+                await particles.refresh();
             }
         );
     }
@@ -159,18 +91,8 @@ export class SizeOptionsEditor {
         const particles = this.particles;
         const options = this.options;
 
-        this.group.addProperty(
-            "value",
-            "Size",
-            options.value,
-            typeof options.value,
-            async (value: string | number | boolean) => {
-                if (typeof value === "number") {
-                    options.value = value;
-
-                    await particles.refresh();
-                }
-            }
-        );
+        this.group.addProperty("value", "Value", options.value, typeof options.value, async () => {
+            await particles.refresh();
+        });
     }
 }

@@ -4,11 +4,11 @@ import { EditorSelectInput, EditorGroup } from "object-gui";
 
 export class RotateOptionsEditor {
     public readonly group: EditorGroup;
-    private readonly particles: Container;
+    private readonly options: IRotate;
 
-    constructor(private readonly parent: EditorGroup, private readonly options: IRotate) {
+    constructor(private readonly parent: EditorGroup, private readonly particles: Container) {
         this.group = parent.addGroup("rotate", "Rotate");
-        this.particles = this.group.data as Container;
+        this.options = this.group.data as IRotate;
 
         this.addAnimation();
         this.addProperties();
@@ -17,49 +17,19 @@ export class RotateOptionsEditor {
     private addAnimation(): void {
         const group = this.group.addGroup("animation", "Animation");
         const particles = this.particles;
-        const options = this.options;
+        const options = this.options.animation;
 
-        group.addProperty(
-            "enable",
-            "Enable",
-            options.animation.enable,
-            typeof options.animation.enable,
-            async (value: number | string | boolean) => {
-                if (typeof value === "boolean") {
-                    options.animation.enable = value;
+        group.addProperty("enable", "Enable", options.enable, typeof options.enable, async () => {
+            await particles.refresh();
+        });
 
-                    await particles.refresh();
-                }
-            }
-        );
+        group.addProperty("speed", "Speed", options.speed, typeof options.speed, async () => {
+            await particles.refresh();
+        });
 
-        group.addProperty(
-            "speed",
-            "Speed",
-            options.animation.speed,
-            typeof options.animation.speed,
-            async (value: number | string | boolean) => {
-                if (typeof value === "number") {
-                    options.animation.speed = value;
-
-                    await particles.refresh();
-                }
-            }
-        );
-
-        group.addProperty(
-            "sync",
-            "Sync",
-            options.animation.sync,
-            typeof options.animation.sync,
-            async (value: number | string | boolean) => {
-                if (typeof value === "boolean") {
-                    options.animation.sync = value;
-
-                    await particles.refresh();
-                }
-            }
-        );
+        group.addProperty("sync", "Sync", options.sync, typeof options.sync, async () => {
+            await particles.refresh();
+        });
     }
 
     private addProperties(): void {
@@ -71,58 +41,24 @@ export class RotateOptionsEditor {
             "Direction",
             options.direction,
             "select",
-            async (value: string | number | boolean) => {
-                if (value === "clockwise" || value === "counter-clockwise") {
-                    options.direction = value;
-
-                    await particles.refresh();
-                }
+            async () => {
+                await particles.refresh();
             }
         ) as EditorSelectInput;
 
         directionSelectInput.addItem("clockwise");
         directionSelectInput.addItem("counter-clockwise");
 
-        this.group.addProperty(
-            "path",
-            "Path",
-            options.path,
-            typeof options.path,
-            async (value: string | number | boolean) => {
-                if (typeof value === "boolean") {
-                    options.path = value;
+        this.group.addProperty("path", "Path", options.path, typeof options.path, async () => {
+            await particles.refresh();
+        });
 
-                    await particles.refresh();
-                }
-            }
-        );
+        this.group.addProperty("random", "Random", options.random, typeof options.random, async () => {
+            await particles.refresh();
+        });
 
-        this.group.addProperty(
-            "random",
-            "Random",
-            options.random,
-            typeof options.random,
-            async (value: string | number | boolean) => {
-                if (typeof value === "boolean") {
-                    options.random = value;
-
-                    await particles.refresh();
-                }
-            }
-        );
-
-        this.group.addProperty(
-            "value",
-            "Rotate",
-            options.value,
-            typeof options.value,
-            async (value: string | number | boolean) => {
-                if (typeof value === "number") {
-                    options.value = value;
-
-                    await particles.refresh();
-                }
-            }
-        );
+        this.group.addProperty("value", "Value", options.value, typeof options.value, async () => {
+            await particles.refresh();
+        });
     }
 }

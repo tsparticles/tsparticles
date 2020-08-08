@@ -19,7 +19,7 @@ export class OptionsEditor {
         this.addBackgroundMask();
         this.addInfection();
         this.addInteractivity();
-        //this.addParticles();
+        this.addParticles();
 
         this.addProperties();
     }
@@ -74,6 +74,6 @@ export class OptionsEditor {
     }
 
     private addParticles(): void {
-        const options = new ParticlesOptionsEditor(this.group, this.options.particles);
+        const options = new ParticlesOptionsEditor(this.group, this.particles);
     }
 }

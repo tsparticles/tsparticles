@@ -16,11 +16,11 @@ import { TwinkleOptionsEditor } from "./Twinkle/TwinkleOptionsEditor";
 
 export class ParticlesOptionsEditor {
     public readonly group: EditorGroup;
-    private readonly particles: Container;
+    private readonly options: IParticles;
 
-    constructor(private readonly parent: EditorGroup, private readonly options: IParticles) {
+    constructor(private readonly parent: EditorGroup, private readonly particles: Container) {
         this.group = parent.addGroup("particles", "Particles");
-        this.particles = this.group.data as Container;
+        this.options = this.group.data as IParticles;
 
         this.addCollisions();
         this.addColor();
@@ -37,50 +37,50 @@ export class ParticlesOptionsEditor {
     }
 
     private addCollisions(): void {
-        const options = new CollisionsOptionsEditor(this.group, this.options.collisions);
+        const options = new CollisionsOptionsEditor(this.group, this.particles);
     }
 
     private addColor(): void {
-        const options = new ColorOptionsEditor(this.group, this.options.color);
+        const options = new ColorOptionsEditor(this.group, this.particles);
     }
 
     private addLinks(): void {
-        const options = new LinksOptionsEditor(this.group, this.options.links);
+        const options = new LinksOptionsEditor(this.group, this.particles);
     }
 
     private addMove(): void {
-        const options = new MoveOptionsEditor(this.group, this.options.move);
+        const options = new MoveOptionsEditor(this.group, this.particles);
     }
 
     private addNumber(): void {
-        const options = new NumberOptionsEditor(this.group, this.options.number);
+        const options = new NumberOptionsEditor(this.group, this.particles);
     }
 
     private addOpacity(): void {
-        const options = new OpacityOptionsEditor(this.group, this.options.opacity);
+        const options = new OpacityOptionsEditor(this.group, this.particles);
     }
 
     private addRotate(): void {
-        const options = new RotateOptionsEditor(this.group, this.options.rotate);
+        const options = new RotateOptionsEditor(this.group, this.particles);
     }
 
     private addShadow(): void {
-        const options = new ShadowOptionsEditor(this.group, this.options.shadow);
+        const options = new ShadowOptionsEditor(this.group, this.particles);
     }
 
     private addShape(): void {
-        const options = new ShapeOptionsEditor(this.group, this.options.shape);
+        const options = new ShapeOptionsEditor(this.group, this.particles);
     }
 
     private addSize(): void {
-        const options = new SizeOptionsEditor(this.group, this.options.size);
+        const options = new SizeOptionsEditor(this.group, this.particles);
     }
 
     private addStroke(): void {
-        const options = new StrokeOptionsEditor(this.group, this.options.stroke);
+        const options = new StrokeOptionsEditor(this.group, this.particles);
     }
 
     private addTwinkle(): void {
-        const options = new TwinkleOptionsEditor(this.group, this.options.twinkle);
+        const options = new TwinkleOptionsEditor(this.group, this.particles);
     }
 }

@@ -5,16 +5,39 @@ import type { IAnimatableColor } from "tsparticles/dist/Options/Interfaces/Parti
 
 export class ColorOptionsEditor {
     public readonly group: EditorGroup;
-    private readonly particles: Container;
+    private readonly options: IAnimatableColor;
 
-    constructor(private readonly parent: EditorGroup, private readonly options: IAnimatableColor) {
+    constructor(
+        private readonly parent: EditorGroup,
+        private readonly particles: Container,
+        options?: IAnimatableColor
+    ) {
         this.group = parent.addGroup("color", "Color");
-        this.particles = this.group.data as Container;
+        this.options = options ?? (this.group.data as IAnimatableColor);
 
-        this.addColor();
+        this.addAnimation();
+        this.addProperties();
     }
 
-    private addColor(): void {
+    private addAnimation(): void {
+        const particles = this.particles;
+        const options = this.options.animation;
+        const group = this.group.addGroup("animation", "Animation");
+
+        group.addProperty("enable", "Enable", options.enable, typeof options.enable, async () => {
+            await particles.refresh();
+        });
+
+        group.addProperty("speed", "Speed", options.speed, typeof options.speed, async () => {
+            await particles.refresh();
+        });
+
+        group.addProperty("sync", "Sync", options.sync, typeof options.sync, async () => {
+            await particles.refresh();
+        });
+    }
+
+    private addProperties(): void {
         const particles = this.particles;
         const options = this.options;
 
@@ -35,62 +58,8 @@ export class ColorOptionsEditor {
             }
         }
 
-        this.group.addProperty(
-            "color",
-            "Color",
-            colorStringValue,
-            "color",
-            async (value: string | number | boolean) => {
-                if (typeof value === "string") {
-                    options.value = value;
-
-                    await particles.refresh();
-                }
-            }
-        );
-
-        const animationGroup = this.group.addGroup("animation", "Animation");
-
-        animationGroup.addProperty(
-            "enable",
-            "Enable",
-            options.animation.enable,
-            typeof options.animation.enable,
-            async (value: number | string | boolean) => {
-                if (typeof value === "boolean") {
-                    options.animation.enable = value;
-
-                    await particles.refresh();
-                }
-            }
-        );
-
-        animationGroup.addProperty(
-            "speed",
-            "Speed",
-            options.animation.speed,
-            typeof options.animation.speed,
-            async (value: number | string | boolean) => {
-                if (typeof value === "number") {
-                    options.animation.speed = value;
-
-                    await particles.refresh();
-                }
-            }
-        );
-
-        animationGroup.addProperty(
-            "sync",
-            "Sync",
-            options.animation.sync,
-            typeof options.animation.sync,
-            async (value: number | string | boolean) => {
-                if (typeof value === "boolean") {
-                    options.animation.sync = value;
-
-                    await particles.refresh();
-                }
-            }
-        );
+        this.group.addProperty("value", "Value", colorStringValue, "color", async () => {
+            await particles.refresh();
+        });
     }
 }

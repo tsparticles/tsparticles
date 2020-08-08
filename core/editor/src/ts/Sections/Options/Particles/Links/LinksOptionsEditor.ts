@@ -4,15 +4,15 @@ import type { ILinks } from "tsparticles/dist/Options/Interfaces/Particles/Links
 
 export class LinksOptionsEditor {
     public readonly group: EditorGroup;
-    private readonly particles: Container;
+    private readonly options: ILinks;
 
-    constructor(private readonly parent: EditorGroup, private readonly options: ILinks) {
+    constructor(private readonly parent: EditorGroup, private readonly particles: Container) {
         this.group = parent.addGroup("links", "Links");
-        this.particles = this.group.data as Container;
+        this.options = this.group.data as ILinks;
 
         this.addShadow();
         this.addTriangles();
-        this.addLinks();
+        this.addProperties();
     }
 
     private addShadow(): void {
@@ -39,19 +39,9 @@ export class LinksOptionsEditor {
             }
         }
 
-        group.addProperty(
-            "blur",
-            "Blur",
-            options.blur,
-            typeof options.blur,
-            async (value: string | number | boolean) => {
-                if (typeof value === "number") {
-                    options.blur = value;
-
-                    await particles.refresh();
-                }
-            }
-        );
+        group.addProperty("blur", "Blur", options.blur, typeof options.blur, async () => {
+            await particles.refresh();
+        });
 
         group.addProperty(
             "color",
@@ -74,22 +64,13 @@ export class LinksOptionsEditor {
 
                     await particles.refresh();
                 }
-            }
+            },
+            false
         );
 
-        group.addProperty(
-            "enable",
-            "Enable",
-            options.enable,
-            typeof options.enable,
-            (value: number | string | boolean) => {
-                if (typeof value === "boolean") {
-                    options.enable = value;
-
-                    particles.refresh();
-                }
-            }
-        );
+        group.addProperty("enable", "Enable", options.enable, typeof options.enable, () => {
+            particles.refresh();
+        });
     }
 
     private addTriangles(): void {
@@ -137,41 +118,22 @@ export class LinksOptionsEditor {
 
                     await particles.refresh();
                 }
-            }
+            },
+            false
         );
 
-        group.addProperty(
-            "enable",
-            "Enable",
-            options.enable,
-            typeof options.enable,
-            (value: number | string | boolean) => {
-                if (typeof value === "boolean") {
-                    options.enable = value;
+        group.addProperty("enable", "Enable", options.enable, typeof options.enable, () => {
+            particles.refresh();
+        });
 
-                    particles.refresh();
-                }
-            }
-        );
-
-        const trianglesOpacityInput = group.addProperty(
-            "opacity",
-            "Opacity",
-            options.opacity,
-            "number",
-            (value: number | string | boolean) => {
-                if (typeof value === "number") {
-                    options.opacity = value;
-
-                    particles.refresh();
-                }
-            }
-        ) as EditorNumberInput;
+        const trianglesOpacityInput = group.addProperty("opacity", "Opacity", options.opacity, "number", () => {
+            particles.refresh();
+        }) as EditorNumberInput;
 
         trianglesOpacityInput.step(0.01).min(0).max(1);
     }
 
-    private addLinks(): void {
+    private addProperties(): void {
         const particles = this.particles;
         const options = this.options;
         let colorStringValue: string | undefined;
@@ -191,19 +153,9 @@ export class LinksOptionsEditor {
             colorStringValue = `${rgb.r.toString(16)}${rgb.g.toString(16)}${rgb.b.toString(16)}`;
         }
 
-        this.group.addProperty(
-            "blink",
-            "Blink",
-            options.blink,
-            typeof options.blink,
-            async (value: number | string | boolean) => {
-                if (typeof value === "boolean") {
-                    options.blink = value;
-
-                    await particles.refresh();
-                }
-            }
-        );
+        this.group.addProperty("blink", "Blink", options.blink, typeof options.blink, async () => {
+            await particles.refresh();
+        });
 
         this.group.addProperty(
             "color",
@@ -220,57 +172,24 @@ export class LinksOptionsEditor {
 
                     await particles.refresh();
                 }
-            }
+            },
+            false
         );
 
-        this.group.addProperty(
-            "consent",
-            "Consent",
-            options.consent,
-            typeof options.consent,
-            async (value: number | string | boolean) => {
-                if (typeof value === "boolean") {
-                    options.consent = value;
+        this.group.addProperty("consent", "Consent", options.consent, typeof options.consent, async () => {
+            await particles.refresh();
+        });
 
-                    await particles.refresh();
-                }
-            }
-        );
+        this.group.addProperty("distance", "Distance", options.distance, typeof options.distance, async () => {
+            await particles.refresh();
+        });
 
-        this.group.addProperty(
-            "distance",
-            "Distance",
-            options.distance,
-            typeof options.distance,
-            async (value: number | string | boolean) => {
-                if (typeof value === "number") {
-                    options.distance = value;
+        this.group.addProperty("enable", "Enable", options.enable, typeof options.enable, async () => {
+            await particles.refresh();
+        });
 
-                    await particles.refresh();
-                }
-            }
-        );
-
-        this.group.addProperty(
-            "enable",
-            "Enable",
-            options.enable,
-            typeof options.enable,
-            async (value: number | string | boolean) => {
-                if (typeof value === "boolean") {
-                    options.enable = value;
-
-                    await particles.refresh();
-                }
-            }
-        );
-
-        this.group.addProperty("id", "Id", options.id, "string", async (value: number | string | boolean) => {
-            if (typeof value === "string") {
-                options.id = value;
-
-                await particles.refresh();
-            }
+        this.group.addProperty("id", "Id", options.id, "string", async () => {
+            await particles.refresh();
         });
 
         const opacityInput = this.group.addProperty(
@@ -278,43 +197,19 @@ export class LinksOptionsEditor {
             "Opacity",
             options.opacity,
             typeof options.opacity,
-            async (value: number | string | boolean) => {
-                if (typeof value === "number") {
-                    options.opacity = value;
-
-                    await particles.refresh();
-                }
+            async () => {
+                await particles.refresh();
             }
         ) as EditorNumberInput;
 
         opacityInput.step(0.01).min(0).max(1);
 
-        this.group.addProperty(
-            "warp",
-            "Warp",
-            options.warp,
-            typeof options.warp,
-            async (value: number | string | boolean) => {
-                if (typeof value === "boolean") {
-                    options.warp = value;
+        this.group.addProperty("warp", "Warp", options.warp, typeof options.warp, async () => {
+            await particles.refresh();
+        });
 
-                    await particles.refresh();
-                }
-            }
-        );
-
-        this.group.addProperty(
-            "width",
-            "Width",
-            options.width,
-            typeof options.width,
-            async (value: number | string | boolean) => {
-                if (typeof value === "number") {
-                    options.width = value;
-
-                    await particles.refresh();
-                }
-            }
-        );
+        this.group.addProperty("width", "Width", options.width, typeof options.width, async () => {
+            await particles.refresh();
+        });
     }
 }

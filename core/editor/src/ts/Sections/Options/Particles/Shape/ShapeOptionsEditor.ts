@@ -4,32 +4,22 @@ import { EditorSelectInput, EditorGroup } from "object-gui";
 
 export class ShapeOptionsEditor {
     public readonly group: EditorGroup;
-    private readonly particles: Container;
+    private readonly options: IShape;
 
-    constructor(private readonly parent: EditorGroup, private readonly options: IShape) {
+    constructor(private readonly parent: EditorGroup, private readonly particles: Container) {
         this.group = parent.addGroup("shape", "Shape");
-        this.particles = this.group.data as Container;
+        this.options = this.group.data as IShape;
 
-        this.addShape();
+        this.addProperties();
     }
 
-    private addShape(): void {
-        const particles = this.group.data as Container;
+    private addProperties(): void {
+        const particles = this.particles;
         const options = this.options;
 
-        const selectType = this.group.addProperty(
-            "type",
-            "Type",
-            options.type,
-            "select",
-            async (value: string | number | boolean) => {
-                if (typeof value === "string") {
-                    options.type = value;
-
-                    await particles.refresh();
-                }
-            }
-        ) as EditorSelectInput;
+        const selectType = this.group.addProperty("type", "Type", options.type, "select", async () => {
+            await particles.refresh();
+        }) as EditorSelectInput;
 
         for (const key of particles.drawers.keys()) {
             selectType.addItem(key);
