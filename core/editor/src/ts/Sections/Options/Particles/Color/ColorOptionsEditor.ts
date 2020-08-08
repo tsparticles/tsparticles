@@ -12,8 +12,8 @@ export class ColorOptionsEditor {
         private readonly particles: Container,
         options?: IAnimatableColor
     ) {
-        this.group = parent.addGroup("color", "Color");
-        this.options = options ?? (this.group.data as IAnimatableColor);
+        this.group = parent.addGroup("color", "Color", options);
+        this.options = this.group.data as IAnimatableColor;
 
         this.addAnimation();
         this.addProperties();

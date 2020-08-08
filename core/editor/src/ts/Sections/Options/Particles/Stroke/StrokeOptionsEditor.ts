@@ -14,17 +14,18 @@ export class StrokeOptionsEditor {
 
         if (this.options instanceof Array) {
             for (let i = 0; i < this.options.length; i++) {
-                const group = this.group.addGroup(`stroke_${i + 1}`, `Stroke_${i + 1}`);
+                const group = this.group.addGroup(`stroke_${i + 1}`, `Stroke_${i + 1}`, this.options[i]);
 
-                this.addStroke(group, this.options[i]);
+                this.addStroke(group);
             }
         } else {
-            this.addStroke(this.group, this.options);
+            this.addStroke(this.group);
         }
     }
 
-    private addStroke(group: EditorGroup, options: IStroke): void {
+    private addStroke(group: EditorGroup): void {
         const particles = this.particles;
+        const options = group.data as IStroke;
 
         if (options.color === undefined) {
             options.color = {

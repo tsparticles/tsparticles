@@ -39,7 +39,7 @@ export class MoveOptionsEditor {
         const options = this.options.attract;
 
         const rotateOptions = options.rotate;
-        const rotateGroup = group.addGroup("rotate", "Rotate", false);
+        const rotateGroup = group.addGroup("rotate", "Rotate", undefined, false);
 
         rotateGroup.addProperty("x", "X", rotateOptions.x, typeof rotateOptions.x, async () => {
             await particles.refresh();

@@ -12,7 +12,7 @@ export class OptionsEditor {
     private readonly options: IOptions;
 
     constructor(private readonly parent: EditorGroup, private readonly particles: Container) {
-        this.group = parent.addGroup("options", "Options", false);
+        this.group = parent.addGroup("options", "Options", undefined, false);
         this.options = this.group.data as IOptions;
 
         this.addBackground();

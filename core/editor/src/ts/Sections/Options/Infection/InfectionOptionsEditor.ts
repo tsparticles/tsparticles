@@ -71,7 +71,7 @@ export class InfectionOptionsEditor {
 
     private addStage(parent: EditorGroup, stage: IInfectionStage, index: number) {
         const particles = this.particles;
-        const stageGroup = parent.addGroup(`stage_${index}`, `Stage ${index}`);
+        const stageGroup = parent.addGroup(`stage_${index}`, `Stage ${index}`, stage);
 
         let colorStringValue: string | undefined;
 
@@ -113,64 +113,20 @@ export class InfectionOptionsEditor {
             false
         );
 
-        stageGroup.addProperty(
-            "duration",
-            "Duration",
-            stage.duration,
-            typeof stage.duration,
-            async (value: string | number | boolean) => {
-                if (typeof value === "number") {
-                    stage.duration = value;
+        stageGroup.addProperty("duration", "Duration", stage.duration, typeof stage.duration, async () => {
+            await particles.refresh();
+        });
 
-                    await particles.refresh();
-                }
-            },
-            false
-        );
+        stageGroup.addProperty("infectedStage", "Infected Stage", stage.infectedStage, "number", async () => {
+            await particles.refresh();
+        });
 
-        stageGroup.addProperty(
-            "infectedStage",
-            "Infected Stage",
-            stage.infectedStage,
-            "number",
-            async (value: string | number | boolean) => {
-                if (typeof value === "number") {
-                    stage.infectedStage = value;
+        stageGroup.addProperty("radius", "Radius", stage.radius, typeof stage.radius, async () => {
+            await particles.refresh();
+        });
 
-                    await particles.refresh();
-                }
-            },
-            false
-        );
-
-        stageGroup.addProperty(
-            "radius",
-            "Radius",
-            stage.radius,
-            typeof stage.radius,
-            async (value: string | number | boolean) => {
-                if (typeof value === "number") {
-                    stage.radius = value;
-
-                    await particles.refresh();
-                }
-            },
-            false
-        );
-
-        stageGroup.addProperty(
-            "rate",
-            "Rate",
-            stage.rate,
-            typeof stage.rate,
-            async (value: string | number | boolean) => {
-                if (typeof value === "number") {
-                    stage.rate = value;
-
-                    await particles.refresh();
-                }
-            },
-            false
-        );
+        stageGroup.addProperty("rate", "Rate", stage.rate, typeof stage.rate, async () => {
+            await particles.refresh();
+        });
     }
 }
