@@ -5,11 +5,11 @@ import { EditorGroup, ColorUtils, IRgb, IHsl } from "object-gui";
 
 export class InfectionOptionsEditor {
     public readonly group: EditorGroup;
-    private readonly particles: Container;
+    private readonly options: IInfection;
 
-    constructor(private readonly parent: EditorGroup, private readonly options: IInfection) {
+    constructor(private readonly parent: EditorGroup, private readonly particles: Container) {
         this.group = parent.addGroup("infection", "Infection");
-        this.particles = this.group.data as Container;
+        this.options = this.group.data as IInfection;
 
         this.addStages();
         this.addProperties();
@@ -19,61 +19,21 @@ export class InfectionOptionsEditor {
         const particles = this.particles;
         const options = this.options;
 
-        this.group.addProperty(
-            "cure",
-            "Cure",
-            options.cure,
-            typeof options.cure,
-            async (value: string | number | boolean) => {
-                if (typeof value === "boolean") {
-                    options.cure = value;
+        this.group.addProperty("cure", "Cure", options.cure, typeof options.cure, async () => {
+            await particles.refresh();
+        });
 
-                    await particles.refresh();
-                }
-            }
-        );
+        this.group.addProperty("delay", "Delay", options.delay, typeof options.delay, async () => {
+            await particles.refresh();
+        });
 
-        this.group.addProperty(
-            "delay",
-            "Delay",
-            options.delay,
-            typeof options.delay,
-            async (value: string | number | boolean) => {
-                if (typeof value === "number") {
-                    options.delay = value;
+        this.group.addProperty("enable", "Enable", options.enable, typeof options.enable, async () => {
+            await particles.refresh();
+        });
 
-                    await particles.refresh();
-                }
-            }
-        );
-
-        this.group.addProperty(
-            "enable",
-            "Enable",
-            options.enable,
-            typeof options.enable,
-            async (value: string | number | boolean) => {
-                if (typeof value === "boolean") {
-                    options.enable = value;
-
-                    await particles.refresh();
-                }
-            }
-        );
-
-        this.group.addProperty(
-            "infections",
-            "Infections",
-            options.infections,
-            typeof options.infections,
-            async (value: string | number | boolean) => {
-                if (typeof value === "number") {
-                    options.infections = value;
-
-                    await particles.refresh();
-                }
-            }
-        );
+        this.group.addProperty("infections", "Infections", options.infections, typeof options.infections, async () => {
+            await particles.refresh();
+        });
     }
 
     private addStages() {
@@ -87,21 +47,26 @@ export class InfectionOptionsEditor {
             this.addStage(stagesGroup, stage, i + 1);
         }
 
-        stagesGroup.addButton("addStage", "Add Stage", () => {
-            const defaultValues = {
-                color: {
-                    value: "#ff0000",
-                },
-                radius: 0,
-                rate: 1,
-            };
+        stagesGroup.addButton(
+            "addStage",
+            "Add Stage",
+            () => {
+                const defaultValues = {
+                    color: {
+                        value: "#ff0000",
+                    },
+                    radius: 0,
+                    rate: 1,
+                };
 
-            options.stages.push(defaultValues);
+                options.stages.push(defaultValues);
 
-            this.addStage(stagesGroup, defaultValues, options.stages.length);
+                this.addStage(stagesGroup, defaultValues, options.stages.length);
 
-            particles.refresh();
-        });
+                particles.refresh();
+            },
+            false
+        );
     }
 
     private addStage(parent: EditorGroup, stage: IInfectionStage, index: number) {
@@ -144,7 +109,8 @@ export class InfectionOptionsEditor {
 
                     await particles.refresh();
                 }
-            }
+            },
+            false
         );
 
         stageGroup.addProperty(
@@ -158,7 +124,8 @@ export class InfectionOptionsEditor {
 
                     await particles.refresh();
                 }
-            }
+            },
+            false
         );
 
         stageGroup.addProperty(
@@ -172,7 +139,8 @@ export class InfectionOptionsEditor {
 
                     await particles.refresh();
                 }
-            }
+            },
+            false
         );
 
         stageGroup.addProperty(
@@ -186,7 +154,8 @@ export class InfectionOptionsEditor {
 
                     await particles.refresh();
                 }
-            }
+            },
+            false
         );
 
         stageGroup.addProperty(
@@ -200,7 +169,8 @@ export class InfectionOptionsEditor {
 
                     await particles.refresh();
                 }
-            }
+            },
+            false
         );
     }
 }

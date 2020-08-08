@@ -17,11 +17,11 @@ export class OptionsEditor {
 
         this.addBackground();
         this.addBackgroundMask();
-        //this.addInfection();
-        //this.addInteractivity();
+        this.addInfection();
+        this.addInteractivity();
         //this.addParticles();
 
-        //this.addProperties();
+        this.addProperties();
     }
 
     private addProperties(): void {
@@ -65,12 +65,12 @@ export class OptionsEditor {
         const options = new BackgroundMaskOptionsEditor(this.group, this.particles);
     }
 
-    private addInteractivity(): void {
-        const options = new InteractivityOptionsEditor(this.group, this.options.interactivity);
+    private addInfection(): void {
+        const options = new InfectionOptionsEditor(this.group, this.particles);
     }
 
-    private addInfection(): void {
-        const options = new InfectionOptionsEditor(this.group, this.options.infection);
+    private addInteractivity(): void {
+        const options = new InteractivityOptionsEditor(this.group, this.particles);
     }
 
     private addParticles(): void {

@@ -7,11 +7,11 @@ import { DivsEventsOptionsEditor } from "./DivsEventsOptionsEditor";
 
 export class EventsOptionsEditor {
     public readonly group: EditorGroup;
-    private readonly particles: Container;
+    private readonly options: IEvents;
 
-    constructor(private readonly parent: EditorGroup, private readonly options: IEvents) {
+    constructor(private readonly parent: EditorGroup, private readonly particles: Container) {
         this.group = parent.addGroup("events", "Events");
-        this.particles = this.group.data as Container;
+        this.options = this.group.data as IEvents;
 
         this.addClick();
         this.addDivs();
@@ -20,15 +20,15 @@ export class EventsOptionsEditor {
     }
 
     private addClick(): void {
-        const clickEditor = new ClickEventsOptionsEditor(this.group, this.options.onClick);
+        const clickEditor = new ClickEventsOptionsEditor(this.group, this.particles);
     }
 
     private addDivs(): void {
-        const divsEditor = new DivsEventsOptionsEditor(this.group, this.options.onDiv);
+        const divsEditor = new DivsEventsOptionsEditor(this.group, this.particles);
     }
 
     private addHover(): void {
-        const hoverEditor = new HoverEventsOptionsEditor(this.group, this.options.onHover);
+        const hoverEditor = new HoverEventsOptionsEditor(this.group, this.particles);
     }
 
     private addProperties(): void {
@@ -41,11 +41,7 @@ export class EventsOptionsEditor {
             options.resize,
             typeof options.resize,
             async (value: string | number | boolean) => {
-                if (typeof value === "boolean") {
-                    options.resize = value;
-
-                    await particles.refresh();
-                }
+                await particles.refresh();
             }
         );
     }

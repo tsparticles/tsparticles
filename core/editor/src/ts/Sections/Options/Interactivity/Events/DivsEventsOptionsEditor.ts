@@ -5,11 +5,11 @@ import type { IDivEvent } from "tsparticles/dist/Options/Interfaces/Interactivit
 
 export class DivsEventsOptionsEditor {
     public readonly group: EditorGroup;
-    private readonly particles: Container;
+    private readonly options: SingleOrMultiple<IDivEvent>;
 
-    constructor(private readonly parent: EditorGroup, private readonly options: SingleOrMultiple<IDivEvent>) {
+    constructor(private readonly parent: EditorGroup, private readonly particles: Container) {
         this.group = parent.addGroup("onDiv", "Divs Events");
-        this.particles = this.group.data as Container;
+        this.options = this.group.data as SingleOrMultiple<IDivEvent>;
 
         this.addDivs();
     }

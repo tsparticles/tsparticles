@@ -7,11 +7,11 @@ import { EventsOptionsEditor } from "./Events/EventsOptionsEditor";
 
 export class InteractivityOptionsEditor {
     public readonly group: EditorGroup;
-    private readonly particles: Container;
+    private readonly options: IInteractivity;
 
-    constructor(private readonly parent: EditorGroup, private readonly options: IInteractivity) {
+    constructor(private readonly parent: EditorGroup, private readonly particles: Container) {
         this.group = parent.addGroup("interactivity", "Interactivity");
-        this.particles = this.group.data as Container;
+        this.options = this.group.data as IInteractivity;
 
         this.addEvents();
         this.addModes();
@@ -20,11 +20,11 @@ export class InteractivityOptionsEditor {
     }
 
     private addModes(): void {
-        const options = new ModesOptionsEditor(this.group, this.options.modes);
+        const options = new ModesOptionsEditor(this.group, this.particles);
     }
 
     private addEvents(): void {
-        const options = new EventsOptionsEditor(this.group, this.options.events);
+        const options = new EventsOptionsEditor(this.group, this.particles);
     }
 
     private addProperties(): void {
@@ -35,16 +35,8 @@ export class InteractivityOptionsEditor {
             "Detects On",
             this.options.detectsOn,
             "select",
-            async (value: string | number | boolean) => {
-                if (
-                    value === InteractivityDetect.canvas ||
-                    value === InteractivityDetect.window ||
-                    value === InteractivityDetect.parent
-                ) {
-                    this.options.detectsOn = value;
-
-                    await particles.refresh();
-                }
+            async () => {
+                await particles.refresh();
             }
         ) as EditorSelectInput;
 

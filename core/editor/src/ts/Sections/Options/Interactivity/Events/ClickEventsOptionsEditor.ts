@@ -5,47 +5,26 @@ import { AbsorberClickMode, ClickMode, EmitterClickMode } from "tsparticles";
 
 export class ClickEventsOptionsEditor {
     public readonly group: EditorGroup;
-    private readonly particles: Container;
+    private readonly options: IClickEvent;
 
-    constructor(private readonly parent: EditorGroup, private readonly options: IClickEvent) {
+    constructor(private readonly parent: EditorGroup, private readonly particles: Container) {
         this.group = parent.addGroup("onClick", "Click Events");
-        this.particles = this.group.data as Container;
+        this.options = this.group.data as IClickEvent;
 
-        this.addClick();
+        this.addProperties();
     }
 
-    private addClick(): void {
+    private addProperties(): void {
         const particles = this.particles;
         const options = this.options;
-        const clickGroup = this.group;
 
-        clickGroup.addProperty(
-            "enable",
-            "Enable",
-            options.enable,
-            typeof options.enable,
-            async (value: string | number | boolean) => {
-                if (typeof value === "boolean") {
-                    options.enable = value;
+        this.group.addProperty("enable", "Enable", options.enable, typeof options.enable, async () => {
+            await particles.refresh();
+        });
 
-                    await particles.refresh();
-                }
-            }
-        );
-
-        const modeSelectInput = clickGroup.addProperty(
-            "mode",
-            "Mode",
-            options.mode,
-            "select",
-            async (value: string | number | boolean) => {
-                if (typeof value === "string") {
-                    options.mode = value;
-
-                    await particles.refresh();
-                }
-            }
-        ) as EditorSelectInput;
+        const modeSelectInput = this.group.addProperty("mode", "Mode", options.mode, "select", async () => {
+            await particles.refresh();
+        }) as EditorSelectInput;
 
         modeSelectInput.addItem(ClickMode.attract);
         // modeSelectInput.addItem(ClickMode.bubble); // TODO: This mode seems buggy
