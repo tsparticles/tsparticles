@@ -260,6 +260,10 @@ export class ModesOptionsEditor {
             }
         }
 
+        grabLinksGroup.addProperty("blink", "Blink", options.links.blink, typeof options.links.blink, async () => {
+            await particles.refresh();
+        });
+
         grabLinksGroup.addProperty(
             "color",
             "Color",
@@ -277,6 +281,16 @@ export class ModesOptionsEditor {
 
                     await particles.refresh();
                 }
+            }
+        );
+
+        grabLinksGroup.addProperty(
+            "consent",
+            "Consent",
+            options.links.consent,
+            typeof options.links.consent,
+            async () => {
+                await particles.refresh();
             }
         );
 

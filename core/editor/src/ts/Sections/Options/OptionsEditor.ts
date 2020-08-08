@@ -16,7 +16,7 @@ export class OptionsEditor {
         this.options = this.group.data as IOptions;
 
         this.addBackground();
-        //this.addBackgroundMask();
+        this.addBackgroundMask();
         //this.addInfection();
         //this.addInteractivity();
         //this.addParticles();
@@ -28,59 +28,31 @@ export class OptionsEditor {
         const particles = this.particles;
         const options = particles.options;
 
-        this.group.addProperty(
-            "autoPlay",
-            "Auto Play",
-            options.autoPlay,
-            typeof options.autoPlay,
-            async (value: string | number | boolean) => {
-                if (typeof value === "boolean") {
-                    options.autoPlay = value;
-
-                    await particles.refresh();
-                }
-            }
-        );
+        this.group.addProperty("autoPlay", "Auto Play", options.autoPlay, typeof options.autoPlay, async () => {
+            await particles.refresh();
+        });
 
         this.group.addProperty(
             "detectRetina",
             "Detect Retina",
             options.detectRetina,
             typeof options.detectRetina,
-            async (value: string | number | boolean) => {
-                if (typeof value === "boolean") {
-                    options.detectRetina = value;
-
-                    await particles.refresh();
-                }
+            async () => {
+                await particles.refresh();
             }
         );
 
-        this.group.addProperty(
-            "fpsLimit",
-            "FPS Limit",
-            options.fpsLimit,
-            typeof options.fpsLimit,
-            async (value: string | number | boolean) => {
-                if (typeof value === "number") {
-                    options.fpsLimit = value;
-
-                    await particles.refresh();
-                }
-            }
-        );
+        this.group.addProperty("fpsLimit", "FPS Limit", options.fpsLimit, typeof options.fpsLimit, async () => {
+            await particles.refresh();
+        });
 
         this.group.addProperty(
             "pauseOnBlur",
             "Pause on Blur",
             options.pauseOnBlur,
             typeof options.pauseOnBlur,
-            async (value: string | number | boolean) => {
-                if (typeof value === "boolean") {
-                    options.pauseOnBlur = value;
-
-                    await particles.refresh();
-                }
+            async () => {
+                await particles.refresh();
             }
         );
     }
@@ -90,7 +62,7 @@ export class OptionsEditor {
     }
 
     private addBackgroundMask(): void {
-        const options = new BackgroundMaskOptionsEditor(this.group, this.options.backgroundMask);
+        const options = new BackgroundMaskOptionsEditor(this.group, this.particles);
     }
 
     private addInteractivity(): void {
