@@ -4,6 +4,8 @@ import type { IBackgroundMask } from "./BackgroundMask/IBackgroundMask";
 import type { IBackground } from "./Background/IBackground";
 import type { IInfection } from "./Infection/IInfection";
 import type { SingleOrMultiple } from "../../Types";
+import type {Itheme} from "./ITheme";
+
 
 /**
  * The Options interface, defines all the options that can be used by `tsParticles`
@@ -67,4 +69,7 @@ export interface IOptions {
      * @deprecated use the new detectRetina instead
      */
     retina_detect: boolean;
+    
+    // Optional theme
+    theme?: Itheme;
 }
