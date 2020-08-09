@@ -38,7 +38,6 @@ export class Container {
     public started: boolean;
     public destroyed: boolean;
     public density: number;
-    public themes: Theme | ITheme[];
 
     public readonly noise: INoise;
 
@@ -119,8 +118,6 @@ export class Container {
 
         /* ---------- tsParticles - start ------------ */
         this.eventListeners = new EventListeners(this);
-        // load theme
-        this.loadTheme()
     }
 
     /**
@@ -397,8 +394,10 @@ export class Container {
         this.density = (canvas.width * canvas.height) / (densityOptions.factor * pxRatio * densityOptions.area);
     }
 
-    private loadTheme(): void {
-        this.themes = new Theme();
-        this.themes = this.options.themes;
+    private loadTheme(name?: string): void {
+        if(name){
+        for(const themeOption in this.options.themes.)
+
+        }
     }
 }

@@ -53,7 +53,7 @@ export class Options implements IOptions, IOptionLoader<IOptions> {
     public particles: Particles;
     public pauseOnBlur: boolean;
     public preset?: string | string[];
-    public themes: Theme | ITheme[];
+    public themes: Theme[];
     constructor() {
         this.autoPlay = true;
         this.background = new Background();
@@ -64,7 +64,7 @@ export class Options implements IOptions, IOptionLoader<IOptions> {
         this.interactivity = new Interactivity();
         this.particles = new Particles();
         this.pauseOnBlur = true;
-        this.themes = new Theme();
+        this.themes = [];
     }
 
     /**
@@ -110,7 +110,11 @@ export class Options implements IOptions, IOptionLoader<IOptions> {
         this.infection.load(data.infection);
         this.interactivity.load(data.interactivity);
         this.backgroundMask.load(data.backgroundMask);
-        this.themes.load(data.themes);
+        if(data.themes !== undefined){
+            for(const theme in data.themes){
+                this.themes.load(theme)
+            }
+        }
 
         Plugins.loadOptions(this, data);
     }
