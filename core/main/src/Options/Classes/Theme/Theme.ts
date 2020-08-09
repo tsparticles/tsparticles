@@ -10,7 +10,7 @@ export class Theme implements ITheme, IOptionLoader<ITheme>{
     public default: boolean;
     public options?: RecursivePartial<IOptions>
     constructor() {
-        this.name = "dark";
+        this.name = "";
         this.default = false;
     }
     public load(data?: RecursivePartial<ITheme>): void {
