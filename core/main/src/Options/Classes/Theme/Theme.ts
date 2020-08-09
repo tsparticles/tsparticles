@@ -1,7 +1,7 @@
 import type {ITheme} from "../../Interfaces/Theme/ITheme"
 import type { RecursivePartial } from "../../../Types";
-
-export class Theme implements ITheme{
+import {IOptionLoader} from "../../Interfaces/IOptionLoader"
+export class Theme implements ITheme, IOptionLoader<ITheme>{
    
     public name: string;
     public default: boolean;

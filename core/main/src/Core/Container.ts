@@ -17,7 +17,7 @@ import type { INoise } from "./Interfaces/INoise";
 import type { IRgb } from "./Interfaces/IRgb";
 import type { IAttract } from "./Interfaces/IAttract";
 import { Theme } from '../Options/Classes/Theme/Theme';
-
+import {ITheme} from "../../src/Options/Interfaces/Theme/ITheme"
 /**
  * The object loaded into an HTML element, it'll contain options loaded and all data to let everything working
  */
@@ -38,7 +38,7 @@ export class Container {
     public started: boolean;
     public destroyed: boolean;
     public density: number;
-    public theme: Theme;
+    public themes: Theme | ITheme[];
 
     public readonly noise: INoise;
 
@@ -398,7 +398,7 @@ export class Container {
     }
 
     private loadTheme(): void {
-        this.theme = new Theme();
-        this.theme = this.options.theme;
+        this.themes = new Theme();
+        this.themes = this.options.themes;
     }
 }
