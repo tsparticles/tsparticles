@@ -16,8 +16,7 @@ import type { INoiseValue } from "./Interfaces/INoiseValue";
 import type { INoise } from "./Interfaces/INoise";
 import type { IRgb } from "./Interfaces/IRgb";
 import type { IAttract } from "./Interfaces/IAttract";
-import { Theme } from '../Options/Classes/Theme/Theme';
-import {ITheme} from "../../src/Options/Interfaces/Theme/ITheme"
+
 /**
  * The object loaded into an HTML element, it'll contain options loaded and all data to let everything working
  */
@@ -395,11 +394,11 @@ export class Container {
     }
 
     private loadTheme(name?: string): void {
-        /* if(name){
-            for(const currentTheme in this.options.themes){
-                if(name === currentTheme.name)
+        if(name){
+           let choosenTheme = this.options.themes.find(theme => theme.name === name)
+            if(choosenTheme){
+                this.options.load(choosenTheme.options)
             }
-
-        } */
+        }
     }
 }
