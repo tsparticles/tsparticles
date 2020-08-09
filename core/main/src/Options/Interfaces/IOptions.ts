@@ -71,5 +71,5 @@ export interface IOptions {
     retina_detect: boolean;
     
     // Optional theme
-    themes?: Theme | ITheme[];
+    themes?: ITheme[];
 }
