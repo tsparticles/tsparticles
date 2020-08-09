@@ -34,6 +34,7 @@
     },
     "rotate": {
       "value": 0,
+      "direction": "clockwise",
       "animation": {
         "speed": 5,
         "enable": true

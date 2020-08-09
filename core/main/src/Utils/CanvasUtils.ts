@@ -259,31 +259,31 @@ export class CanvasUtils {
         context.save();
 
         const full = (Math.PI * 2) / 4;
-        const angle = particle.angle + Math.PI / 4;
+        const angle = -particle.angle + Math.PI / 4;
+        const factor = 1; //Math.sqrt(2);
 
         const p1 = {
-            x: pos.x + radius * Math.sin(angle),
-            y: pos.y + radius * Math.cos(angle),
+            x: pos.x + radius * Math.sin(angle) * factor,
+            y: pos.y + radius * Math.cos(angle) * factor,
         };
 
         const p2 = {
-            x: pos.x + radius * Math.sin(angle + full),
-            y: pos.y + radius * Math.cos(angle + full),
+            x: pos.x + radius * Math.sin(angle + full) * factor,
+            y: pos.y + radius * Math.cos(angle + full) * factor,
         };
 
         const p3 = {
-            x: pos.x + radius * Math.sin(angle + full * 2),
-            y: pos.y + radius * Math.cos(angle + full * 2),
+            x: pos.x + radius * Math.sin(angle + full * 2) * factor,
+            y: pos.y + radius * Math.cos(angle + full * 2) * factor,
         };
 
         const p4 = {
-            x: pos.x + radius * Math.sin(angle + full * 3),
-            y: pos.y + radius * Math.cos(angle + full * 3),
+            x: pos.x + radius * Math.sin(angle + full * 3) * factor,
+            y: pos.y + radius * Math.cos(angle + full * 3) * factor,
         };
 
         const dots = [p1, p2, p3, p4];
 
-        const angles = [];
         const points = [];
 
         const shadowLength = 2000;
@@ -292,8 +292,6 @@ export class CanvasUtils {
             const angle = Math.atan2(mousePos.y - dots[dot].y, mousePos.x - dots[dot].x);
             const endX = dots[dot].x + shadowLength * Math.sin(-angle - Math.PI / 2);
             const endY = dots[dot].y + shadowLength * Math.cos(-angle - Math.PI / 2);
-
-            angles.push(angle);
 
             points.push({
                 endX: endX,
