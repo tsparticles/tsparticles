@@ -16,6 +16,7 @@ import type { INoiseValue } from "./Interfaces/INoiseValue";
 import type { INoise } from "./Interfaces/INoise";
 import type { IRgb } from "./Interfaces/IRgb";
 import type { IAttract } from "./Interfaces/IAttract";
+import { Theme } from '../Options/Classes/Theme/Theme';
 
 /**
  * The object loaded into an HTML element, it'll contain options loaded and all data to let everything working
@@ -37,6 +38,7 @@ export class Container {
     public started: boolean;
     public destroyed: boolean;
     public density: number;
+    public theme: Theme;
 
     public readonly noise: INoise;
 
@@ -93,7 +95,6 @@ export class Container {
         this.plugins = new Map<string, IContainerPlugin>();
         this.drawers = new Map<string, IShapeDrawer>();
         this.density = 1;
-
         /* tsParticles variables with default values */
         this.options = new Options();
 
@@ -118,6 +119,8 @@ export class Container {
 
         /* ---------- tsParticles - start ------------ */
         this.eventListeners = new EventListeners(this);
+        // load theme
+        this.loadTheme()
     }
 
     /**
@@ -392,5 +395,10 @@ export class Container {
         const pxRatio = this.retina.pixelRatio;
 
         this.density = (canvas.width * canvas.height) / (densityOptions.factor * pxRatio * densityOptions.area);
+    }
+
+    private loadTheme(): void {
+        this.theme = new Theme();
+        this.theme = this.options.theme;
     }
 }
