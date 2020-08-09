@@ -4,7 +4,7 @@ import type { IBackgroundMask } from "./BackgroundMask/IBackgroundMask";
 import type { IBackground } from "./Background/IBackground";
 import type { IInfection } from "./Infection/IInfection";
 import type { SingleOrMultiple } from "../../Types";
-import type {ITheme} from "./ITheme";
+import type {ITheme} from "./Theme/ITheme";
 
 
 /**

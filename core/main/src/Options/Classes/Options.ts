@@ -7,6 +7,7 @@ import { Background } from "./Background/Background";
 import { Infection } from "./Infection/Infection";
 import { Plugins } from "../../Utils";
 import type { IOptionLoader } from "../Interfaces/IOptionLoader";
+import { Theme } from './Theme/Theme';
 
 export class Options implements IOptions, IOptionLoader<IOptions> {
     public autoPlay: boolean;
@@ -51,7 +52,7 @@ export class Options implements IOptions, IOptionLoader<IOptions> {
     public particles: Particles;
     public pauseOnBlur: boolean;
     public preset?: string | string[];
-
+    public theme?: Theme;
     constructor() {
         this.autoPlay = true;
         this.background = new Background();
@@ -62,6 +63,7 @@ export class Options implements IOptions, IOptionLoader<IOptions> {
         this.interactivity = new Interactivity();
         this.particles = new Particles();
         this.pauseOnBlur = true;
+        this.theme = new Theme();
     }
 
     /**
@@ -102,7 +104,9 @@ export class Options implements IOptions, IOptionLoader<IOptions> {
         if (data.pauseOnBlur !== undefined) {
             this.pauseOnBlur = data.pauseOnBlur;
         }
-
+        if(data.theme !== undefined){
+            this.theme = data.theme;
+        }
         this.background.load(data.background);
         this.particles.load(data.particles);
         this.infection.load(data.infection);
