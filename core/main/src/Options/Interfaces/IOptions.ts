@@ -4,7 +4,7 @@ import type { IBackgroundMask } from "./BackgroundMask/IBackgroundMask";
 import type { IBackground } from "./Background/IBackground";
 import type { IInfection } from "./Infection/IInfection";
 import type { SingleOrMultiple } from "../../Types";
-import type {Itheme} from "./ITheme";
+import type {ITheme} from "./ITheme";
 
 
 /**
@@ -71,5 +71,5 @@ export interface IOptions {
     retina_detect: boolean;
     
     // Optional theme
-    theme?: Itheme;
+    theme?: ITheme;
 }
