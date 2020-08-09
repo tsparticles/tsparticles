@@ -258,31 +258,18 @@ export class CanvasUtils {
 
         context.save();
 
-        const full = (Math.PI * 2) / 4;
+        const sides = 24;
+        const full = (Math.PI * 2) / sides;
         const angle = -particle.angle + Math.PI / 4;
         const factor = 1; //Math.sqrt(2);
+        const dots = [];
 
-        const p1 = {
-            x: pos.x + radius * Math.sin(angle) * factor,
-            y: pos.y + radius * Math.cos(angle) * factor,
-        };
-
-        const p2 = {
-            x: pos.x + radius * Math.sin(angle + full) * factor,
-            y: pos.y + radius * Math.cos(angle + full) * factor,
-        };
-
-        const p3 = {
-            x: pos.x + radius * Math.sin(angle + full * 2) * factor,
-            y: pos.y + radius * Math.cos(angle + full * 2) * factor,
-        };
-
-        const p4 = {
-            x: pos.x + radius * Math.sin(angle + full * 3) * factor,
-            y: pos.y + radius * Math.cos(angle + full * 3) * factor,
-        };
-
-        const dots = [p1, p2, p3, p4];
+        for (let i = 0; i < sides; i++) {
+            dots.push({
+                x: pos.x + radius * Math.sin(angle + full * i) * factor,
+                y: pos.y + radius * Math.cos(angle + full * i) * factor,
+            });
+        }
 
         const points = [];
 
@@ -302,7 +289,7 @@ export class CanvasUtils {
         }
 
         for (let i = points.length - 1; i >= 0; i--) {
-            const n = i == 3 ? 0 : i + 1;
+            const n = i == points.length - 1 ? 0 : i + 1;
 
             context.beginPath();
 
