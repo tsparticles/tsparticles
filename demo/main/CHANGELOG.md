@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.3.0-alpha.2](https://github.com/matteobruni/tsparticles/compare/tsparticles-demo@1.3.0-alpha.1...tsparticles-demo@1.3.0-alpha.2) (2020-08-09)
+
+
+### Features
+
+* mouse acts like a light source, closes [#606](https://github.com/matteobruni/tsparticles/issues/606) ([84aad25](https://github.com/matteobruni/tsparticles/commit/84aad25f3dfd5da9e99818e87c9b3f6a30c6f590))
+
+
+
+
+
 # [1.3.0-alpha.1](https://github.com/matteobruni/tsparticles/compare/tsparticles-demo@1.2.7...tsparticles-demo@1.3.0-alpha.1) (2020-08-08)
 
 **Note:** Version bump only for package tsparticles-demo
