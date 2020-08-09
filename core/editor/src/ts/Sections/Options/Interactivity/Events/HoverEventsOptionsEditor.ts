@@ -49,6 +49,7 @@ export class HoverEventsOptionsEditor {
         modeSelectInput.addItem(HoverMode.bubble);
         modeSelectInput.addItem(HoverMode.connect);
         modeSelectInput.addItem(HoverMode.grab);
+        modeSelectInput.addItem(HoverMode.light);
         modeSelectInput.addItem(HoverMode.repulse);
         modeSelectInput.addItem(HoverMode.slow);
         modeSelectInput.addItem(HoverMode.trail);
