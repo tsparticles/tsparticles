@@ -8,7 +8,6 @@ import { Infection } from "./Infection/Infection";
 import { Plugins } from "../../Utils";
 import type { IOptionLoader } from "../Interfaces/IOptionLoader";
 import { Theme } from './Theme/Theme';
-import type {ITheme} from "../Interfaces/Theme/ITheme"
 
 export class Options implements IOptions, IOptionLoader<IOptions> {
     public autoPlay: boolean;
