@@ -1,3 +1,3 @@
-export interface Itheme{
+export interface ITheme{
     name: string, default: boolean
 }
