@@ -205,7 +205,7 @@ export class Particles {
 
             return particle;
         } catch {
-            console.log("error adding particle");
+            console.warn("error adding particle");
 
             return;
         }

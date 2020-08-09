@@ -9,6 +9,8 @@ import type { Container } from "../Core/Container";
 import type { IContainerPlugin } from "../Core/Interfaces/IContainerPlugin";
 import { Utils } from "./Utils";
 import type { IDelta } from "../Core/Interfaces/IDelta";
+import { HoverMode } from "../Enums/Modes";
+import { Particle } from "../Core/Particle";
 
 export class CanvasUtils {
     public static paintBase(context: CanvasRenderingContext2D, dimension: IDimension, baseColor?: string): void {
@@ -41,7 +43,7 @@ export class CanvasUtils {
         let drawn = false;
 
         if (Utils.getDistance(begin, end) <= maxDistance) {
-            this.drawLine(context, begin, end);
+            CanvasUtils.drawLine(context, begin, end);
 
             drawn = true;
         } else if (warp) {
@@ -93,8 +95,8 @@ export class CanvasUtils {
             }
 
             if (pi1 && pi2) {
-                this.drawLine(context, begin, pi1);
-                this.drawLine(context, end, pi2);
+                CanvasUtils.drawLine(context, begin, pi1);
+                CanvasUtils.drawLine(context, end, pi2);
 
                 drawn = true;
             }
@@ -137,7 +139,7 @@ export class CanvasUtils {
         // this.ctx.lineCap = "round"; /* performance issue */
         /* path */
 
-        this.drawTriangle(context, pos1, pos2, pos3);
+        CanvasUtils.drawTriangle(context, pos1, pos2, pos3);
 
         context.lineWidth = width;
 
@@ -159,7 +161,7 @@ export class CanvasUtils {
     ): void {
         context.save();
 
-        this.drawLine(context, begin, end);
+        CanvasUtils.drawLine(context, begin, end);
 
         context.lineWidth = width;
         context.strokeStyle = lineStyle;
@@ -203,11 +205,120 @@ export class CanvasUtils {
     ): void {
         context.save();
 
-        this.drawLine(context, begin, end);
+        CanvasUtils.drawLine(context, begin, end);
 
         context.strokeStyle = ColorUtils.getStyleFromRgb(colorLine, opacity);
         context.lineWidth = width;
         context.stroke();
+        context.restore();
+    }
+
+    public static drawLight(container: Container, context: CanvasRenderingContext2D, mousePos: ICoordinates): void {
+        context.beginPath();
+        context.arc(
+            mousePos.x,
+            mousePos.y,
+            Math.max(container.canvas.size.height, container.canvas.size.width),
+            0,
+            2 * Math.PI
+        );
+
+        const gradientAmbientLight = context.createRadialGradient(
+            mousePos.x,
+            mousePos.y,
+            0,
+            mousePos.x,
+            mousePos.y,
+            1000
+        );
+
+        gradientAmbientLight.addColorStop(0, "#3b4654");
+        gradientAmbientLight.addColorStop(1, "#2c343f");
+        context.fillStyle = gradientAmbientLight;
+        context.fill();
+
+        /*context.beginPath();
+        context.arc(mousePos.x, mousePos.y, 20, 0, 2 * Math.PI);
+
+        const gradientPointerLight = context.createRadialGradient(mousePos.x, mousePos.y, 0, mousePos.x, mousePos.y, 5);
+        gradientPointerLight.addColorStop(0, "#fff");
+        gradientPointerLight.addColorStop(1, "#3b4654");
+        context.fillStyle = gradientPointerLight;
+        context.fill();*/
+    }
+
+    public static drawParticleShadow(
+        container: Container,
+        context: CanvasRenderingContext2D,
+        particle: Particle,
+        radius: number,
+        mousePos: ICoordinates
+    ): void {
+        const pos = particle.getPosition();
+
+        context.save();
+
+        const full = (Math.PI * 2) / 4;
+        const angle = particle.angle + Math.PI / 4;
+
+        const p1 = {
+            x: pos.x + radius * Math.sin(angle),
+            y: pos.y + radius * Math.cos(angle),
+        };
+
+        const p2 = {
+            x: pos.x + radius * Math.sin(angle + full),
+            y: pos.y + radius * Math.cos(angle + full),
+        };
+
+        const p3 = {
+            x: pos.x + radius * Math.sin(angle + full * 2),
+            y: pos.y + radius * Math.cos(angle + full * 2),
+        };
+
+        const p4 = {
+            x: pos.x + radius * Math.sin(angle + full * 3),
+            y: pos.y + radius * Math.cos(angle + full * 3),
+        };
+
+        const dots = [p1, p2, p3, p4];
+
+        const angles = [];
+        const points = [];
+
+        const shadowLength = 2000;
+
+        for (const dot in dots) {
+            const angle = Math.atan2(mousePos.y - dots[dot].y, mousePos.x - dots[dot].x);
+            const endX = dots[dot].x + shadowLength * Math.sin(-angle - Math.PI / 2);
+            const endY = dots[dot].y + shadowLength * Math.cos(-angle - Math.PI / 2);
+
+            angles.push(angle);
+
+            points.push({
+                endX: endX,
+                endY: endY,
+                startX: dots[dot].x,
+                startY: dots[dot].y,
+            });
+        }
+
+        for (let i = points.length - 1; i >= 0; i--) {
+            const n = i == 3 ? 0 : i + 1;
+
+            context.beginPath();
+
+            context.moveTo(points[i].startX, points[i].startY);
+
+            context.lineTo(points[n].startX, points[n].startY);
+            context.lineTo(points[n].endX, points[n].endY);
+            context.lineTo(points[i].endX, points[i].endY);
+
+            context.fillStyle = "#2c343f";
+
+            context.fill();
+        }
+
         context.restore();
     }
 
@@ -216,8 +327,8 @@ export class CanvasUtils {
         context: CanvasRenderingContext2D,
         particle: IParticle,
         delta: IDelta,
-        fillColorValue: string,
-        strokeColorValue: string,
+        fillColorValue: string | undefined,
+        strokeColorValue: string | undefined,
         backgroundMask: boolean,
         radius: number,
         opacity: number,
@@ -250,21 +361,26 @@ export class CanvasUtils {
             context.shadowOffsetY = shadow.offset.y;
         }
 
-        context.fillStyle = fillColorValue;
+        if (fillColorValue) {
+            context.fillStyle = fillColorValue;
+        }
 
         const stroke = particle.stroke;
 
         context.lineWidth = particle.strokeWidth;
-        context.strokeStyle = strokeColorValue;
 
-        if (particle.close) {
-            context.closePath();
+        if (strokeColorValue) {
+            context.strokeStyle = strokeColorValue;
         }
 
-        this.drawShape(container, context, particle, radius, opacity, delta);
+        CanvasUtils.drawShape(container, context, particle, radius, opacity, delta);
 
         if (stroke.width > 0) {
             context.stroke();
+        }
+
+        if (particle.close) {
+            context.closePath();
         }
 
         if (particle.fill) {
@@ -272,6 +388,7 @@ export class CanvasUtils {
         }
 
         context.restore();
+
         context.save();
         context.translate(pos.x, pos.y);
 
@@ -283,7 +400,7 @@ export class CanvasUtils {
             context.globalCompositeOperation = "destination-out";
         }
 
-        this.drawShapeAfterEffect(container, context, particle, radius, opacity, delta);
+        CanvasUtils.drawShapeAfterEffect(container, context, particle, radius, opacity, delta);
 
         context.restore();
     }

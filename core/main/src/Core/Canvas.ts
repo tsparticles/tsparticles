@@ -334,17 +334,28 @@ export class Canvas {
         );
     }
 
+    public drawParticleShadow(particle: Particle, mousePos: ICoordinates): void {
+        if (!this.context) {
+            return;
+        }
+
+        const radius = particle.bubble.radius ?? particle.size.value;
+
+        CanvasUtils.drawParticleShadow(this.container, this.context, particle, radius, mousePos);
+    }
+
     public drawParticle(particle: Particle, delta: IDelta): void {
         if (particle.image?.loaded === false) {
             return;
         }
 
         const pfColor = particle.getFillColor();
-        if (pfColor === undefined) {
+        const psColor = particle.getStrokeColor() ?? pfColor;
+
+        if (!pfColor && !psColor) {
             return;
         }
 
-        const psColor = particle.getStrokeColor() ?? pfColor;
         const options = this.container.options;
         const twinkle = particle.particlesOptions.twinkle.particles;
         const twinkleFreq = twinkle.frequency;
@@ -358,13 +369,17 @@ export class Canvas {
         const infectionColor = infectionStage !== undefined ? infectionStages[infectionStage].color : undefined;
         const infectionRgb = ColorUtils.colorToRgb(infectionColor);
         const fColor =
-            twinkling && twinkleRgb !== undefined ? twinkleRgb : infectionRgb ?? ColorUtils.hslToRgb(pfColor);
+            twinkling && twinkleRgb !== undefined
+                ? twinkleRgb
+                : infectionRgb ?? (pfColor ? ColorUtils.hslToRgb(pfColor) : undefined);
         const sColor =
-            twinkling && twinkleRgb !== undefined ? twinkleRgb : infectionRgb ?? ColorUtils.hslToRgb(psColor);
+            twinkling && twinkleRgb !== undefined
+                ? twinkleRgb
+                : infectionRgb ?? (psColor ? ColorUtils.hslToRgb(psColor) : undefined);
 
         const fillColorValue = fColor !== undefined ? ColorUtils.getStyleFromRgb(fColor, opacity) : undefined;
 
-        if (!this.context || !fillColorValue) {
+        if (!this.context || (!fillColorValue && !sColor)) {
             return;
         }
 
@@ -469,5 +484,13 @@ export class Canvas {
         if (background.size) {
             elementStyle.backgroundSize = background.size;
         }
+    }
+
+    public drawLight(mousePos: ICoordinates): void {
+        if (!this.context) {
+            return;
+        }
+
+        CanvasUtils.drawLight(this.container, this.context, mousePos);
     }
 }
