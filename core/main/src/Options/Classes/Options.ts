@@ -112,7 +112,9 @@ export class Options implements IOptions, IOptionLoader<IOptions> {
         this.backgroundMask.load(data.backgroundMask);
         if(data.themes !== undefined){
             for(const theme in data.themes){
-                this.themes.load(theme)
+               const optTheme = new Theme()
+                optTheme.load(theme)
+                this.themes.push(optTheme);
             }
         }
 

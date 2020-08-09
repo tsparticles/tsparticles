@@ -395,9 +395,11 @@ export class Container {
     }
 
     private loadTheme(name?: string): void {
-        if(name){
-        for(const themeOption in this.options.themes.)
+        /* if(name){
+            for(const currentTheme in this.options.themes){
+                if(name === currentTheme.name)
+            }
 
-        }
+        } */
     }
 }
