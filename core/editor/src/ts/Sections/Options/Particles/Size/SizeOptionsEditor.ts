@@ -3,12 +3,17 @@ import type { ISize } from "tsparticles/dist/Options/Interfaces/Particles/Size/I
 import type { ISizeRandom } from "tsparticles/dist/Options/Interfaces/Particles/Size/ISizeRandom";
 import { DestroyType, StartValueType } from "tsparticles";
 import { EditorSelectInput, EditorGroup } from "object-gui";
+import { EditorBase } from "../../../../EditorBase";
 
-export class SizeOptionsEditor {
-    public readonly group: EditorGroup;
-    private readonly options: ISize;
+export class SizeOptionsEditor extends EditorBase {
+    public group!: EditorGroup;
+    private options!: ISize;
 
-    constructor(private readonly parent: EditorGroup, private readonly particles: Container) {
+    constructor(particles: Container) {
+        super(particles);
+    }
+
+    public addToGroup(parent: EditorGroup): void {
         this.group = parent.addGroup("size", "Size");
         this.options = this.group.data as ISize;
 

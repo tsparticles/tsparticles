@@ -1,12 +1,17 @@
 import type { Container } from "tsparticles/dist/Core/Container";
 import type { IRotate } from "tsparticles/dist/Options/Interfaces/Particles/Rotate/IRotate";
 import { EditorSelectInput, EditorGroup } from "object-gui";
+import { EditorBase } from "../../../../EditorBase";
 
-export class RotateOptionsEditor {
-    public readonly group: EditorGroup;
-    private readonly options: IRotate;
+export class RotateOptionsEditor extends EditorBase {
+    public group!: EditorGroup;
+    private options!: IRotate;
 
-    constructor(private readonly parent: EditorGroup, private readonly particles: Container) {
+    constructor(particles: Container) {
+        super(particles);
+    }
+
+    public addToGroup(parent: EditorGroup): void {
         this.group = parent.addGroup("rotate", "Rotate");
         this.options = this.group.data as IRotate;
 

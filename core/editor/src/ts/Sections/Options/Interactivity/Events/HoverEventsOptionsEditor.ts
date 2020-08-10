@@ -2,12 +2,17 @@ import { EditorGroup, EditorSelectInput } from "object-gui";
 import type { Container } from "tsparticles/dist/Core/Container";
 import { HoverMode } from "tsparticles";
 import type { IHoverEvent } from "tsparticles/dist/Options/Interfaces/Interactivity/Events/IHoverEvent";
+import { EditorBase } from "../../../../EditorBase";
 
-export class HoverEventsOptionsEditor {
-    public readonly group: EditorGroup;
-    private readonly options: IHoverEvent;
+export class HoverEventsOptionsEditor extends EditorBase {
+    public group!: EditorGroup;
+    private options!: IHoverEvent;
 
-    constructor(private readonly parent: EditorGroup, private readonly particles: Container) {
+    constructor(particles: Container) {
+        super(particles);
+    }
+
+    public addToGroup(parent: EditorGroup): void {
         this.group = parent.addGroup("onHover", "Hover Events");
         this.options = this.group.data as IHoverEvent;
 

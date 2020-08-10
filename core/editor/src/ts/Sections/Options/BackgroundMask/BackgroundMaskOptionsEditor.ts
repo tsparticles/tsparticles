@@ -3,12 +3,17 @@ import type { Container } from "tsparticles/dist/Core/Container";
 import type { IBackgroundMask } from "tsparticles/dist/Options/Interfaces/BackgroundMask/IBackgroundMask";
 import type { IBackgroundMaskCover } from "tsparticles/dist/Options/Interfaces/BackgroundMask/IBackgroundMaskCover";
 import { EditorNumberInput, EditorGroup, IRgb, IHsl, ColorUtils } from "object-gui";
+import { EditorBase } from "../../../EditorBase";
 
-export class BackgroundMaskOptionsEditor {
-    public readonly group: EditorGroup;
-    private readonly options: IBackgroundMask;
+export class BackgroundMaskOptionsEditor extends EditorBase {
+    public group!: EditorGroup;
+    private options!: IBackgroundMask;
 
-    constructor(private readonly parent: EditorGroup, private readonly particles: Container) {
+    constructor(particles: Container) {
+        super(particles);
+    }
+
+    public addToGroup(parent: EditorGroup): void {
         this.group = parent.addGroup("backgroundMask", "Background Mask");
         this.options = this.group.data as IBackgroundMask;
 

@@ -1,12 +1,17 @@
 import type { Container } from "tsparticles/dist/Core/Container";
 import type { IModes } from "tsparticles/dist/Options/Interfaces/Interactivity/Modes/IModes";
 import { ColorUtils, IHsl, IRgb, EditorNumberInput, EditorGroup } from "object-gui";
+import { EditorBase } from "../../../../EditorBase";
 
-export class ModesOptionsEditor {
-    public readonly group: EditorGroup;
-    private readonly options: IModes;
+export class ModesOptionsEditor extends EditorBase {
+    public group!: EditorGroup;
+    private options!: IModes;
 
-    constructor(private readonly parent: EditorGroup, private readonly particles: Container) {
+    constructor(particles: Container) {
+        super(particles);
+    }
+
+    public addToGroup(parent: EditorGroup): void {
         this.group = parent.addGroup("modes", "Modes");
         this.options = this.group.data as IModes;
 

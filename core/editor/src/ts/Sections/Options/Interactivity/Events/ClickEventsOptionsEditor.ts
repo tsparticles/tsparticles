@@ -2,12 +2,17 @@ import type { Container } from "tsparticles/dist/Core/Container";
 import type { IClickEvent } from "tsparticles/dist/Options/Interfaces/Interactivity/Events/IClickEvent";
 import { EditorSelectInput, EditorGroup } from "object-gui";
 import { AbsorberClickMode, ClickMode, EmitterClickMode } from "tsparticles";
+import { EditorBase } from "../../../../EditorBase";
 
-export class ClickEventsOptionsEditor {
-    public readonly group: EditorGroup;
-    private readonly options: IClickEvent;
+export class ClickEventsOptionsEditor extends EditorBase {
+    public group!: EditorGroup;
+    private options!: IClickEvent;
 
-    constructor(private readonly parent: EditorGroup, private readonly particles: Container) {
+    constructor(particles: Container) {
+        super(particles);
+    }
+
+    public addToGroup(parent: EditorGroup): void {
         this.group = parent.addGroup("onClick", "Click Events");
         this.options = this.group.data as IClickEvent;
 

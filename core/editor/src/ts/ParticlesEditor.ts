@@ -15,7 +15,9 @@ export class ParticlesEditor extends Editor {
     }
 
     private addOptions() {
-        const options = new OptionsEditor(this.root, this.root.data as Container);
+        const options = new OptionsEditor(this.root.data as Container);
+
+        options.addToGroup(this.root);
     }
 
     private addButtons() {

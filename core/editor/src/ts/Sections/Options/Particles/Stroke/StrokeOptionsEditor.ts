@@ -3,12 +3,17 @@ import { IStroke } from "tsparticles/dist/Options/Interfaces/Particles/IStroke";
 import { ColorOptionsEditor } from "../Color/ColorOptionsEditor";
 import { IAnimatableColor } from "tsparticles/dist/Options/Interfaces/Particles/IAnimatableColor";
 import { EditorNumberInput, EditorGroup, SingleOrMultiple } from "object-gui";
+import { EditorBase } from "../../../../EditorBase";
 
-export class StrokeOptionsEditor {
-    public readonly group: EditorGroup;
-    private readonly options: SingleOrMultiple<IStroke>;
+export class StrokeOptionsEditor extends EditorBase {
+    public group!: EditorGroup;
+    private options!: SingleOrMultiple<IStroke>;
 
-    constructor(private readonly parent: EditorGroup, private readonly particles: Container) {
+    constructor(particles: Container) {
+        super(particles);
+    }
+
+    public addToGroup(parent: EditorGroup) {
         this.group = parent.addGroup("stroke", "Stroke");
         this.options = this.group.data as SingleOrMultiple<IStroke>;
 
@@ -38,7 +43,9 @@ export class StrokeOptionsEditor {
             };
         }
 
-        const colorOptions = new ColorOptionsEditor(group, this.particles, options.color as IAnimatableColor);
+        const colorOptions = new ColorOptionsEditor(this.particles);
+
+        colorOptions.addToGroup(group, options.color as IAnimatableColor);
 
         const opacityInput = group.addProperty(
             "opacity",

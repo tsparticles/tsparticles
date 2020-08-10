@@ -4,12 +4,17 @@ import type { IEvents } from "tsparticles/dist/Options/Interfaces/Interactivity/
 import { ClickEventsOptionsEditor } from "./ClickEventsOptionsEditor";
 import { HoverEventsOptionsEditor } from "./HoverEventsOptionsEditor";
 import { DivsEventsOptionsEditor } from "./DivsEventsOptionsEditor";
+import { EditorBase } from "../../../../EditorBase";
 
-export class EventsOptionsEditor {
-    public readonly group: EditorGroup;
-    private readonly options: IEvents;
+export class EventsOptionsEditor extends EditorBase {
+    public group!: EditorGroup;
+    private options!: IEvents;
 
-    constructor(private readonly parent: EditorGroup, private readonly particles: Container) {
+    constructor(particles: Container) {
+        super(particles);
+    }
+
+    public addToGroup(parent: EditorGroup): void {
         this.group = parent.addGroup("events", "Events");
         this.options = this.group.data as IEvents;
 
@@ -20,29 +25,29 @@ export class EventsOptionsEditor {
     }
 
     private addClick(): void {
-        const clickEditor = new ClickEventsOptionsEditor(this.group, this.particles);
+        const clickEditor = new ClickEventsOptionsEditor(this.particles);
+
+        clickEditor.addToGroup(this.group);
     }
 
     private addDivs(): void {
-        const divsEditor = new DivsEventsOptionsEditor(this.group, this.particles);
+        const divsEditor = new DivsEventsOptionsEditor(this.particles);
+
+        divsEditor.addToGroup(this.group);
     }
 
     private addHover(): void {
-        const hoverEditor = new HoverEventsOptionsEditor(this.group, this.particles);
+        const hoverEditor = new HoverEventsOptionsEditor(this.particles);
+
+        hoverEditor.addToGroup(this.group);
     }
 
     private addProperties(): void {
         const particles = this.particles;
         const options = this.options;
 
-        this.group.addProperty(
-            "resize",
-            "Resize",
-            options.resize,
-            typeof options.resize,
-            async (value: string | number | boolean) => {
-                await particles.refresh();
-            }
-        );
+        this.group.addProperty("resize", "Resize", options.resize, typeof options.resize, async () => {
+            await particles.refresh();
+        });
     }
 }

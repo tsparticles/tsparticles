@@ -6,12 +6,17 @@ import { InteractivityOptionsEditor } from "./Interactivity/InteractivityOptions
 import { BackgroundMaskOptionsEditor } from "./BackgroundMask/BackgroundMaskOptionsEditor";
 import { InfectionOptionsEditor } from "./Infection/InfectionOptionsEditor";
 import { EditorGroup } from "object-gui";
+import { EditorBase } from "../../EditorBase";
 
-export class OptionsEditor {
-    public readonly group: EditorGroup;
-    private readonly options: IOptions;
+export class OptionsEditor extends EditorBase {
+    public group!: EditorGroup;
+    private options!: IOptions;
 
-    constructor(private readonly parent: EditorGroup, private readonly particles: Container) {
+    constructor(particles: Container) {
+        super(particles);
+    }
+
+    public addToGroup(parent: EditorGroup): void {
         this.group = parent.addGroup("options", "Options", undefined, false);
         this.options = this.group.data as IOptions;
 
@@ -58,22 +63,32 @@ export class OptionsEditor {
     }
 
     private addBackground(): void {
-        const options = new BackgroundOptionsEditor(this.group, this.particles);
+        const options = new BackgroundOptionsEditor(this.particles);
+
+        options.addToGroup(this.group);
     }
 
     private addBackgroundMask(): void {
-        const options = new BackgroundMaskOptionsEditor(this.group, this.particles);
+        const options = new BackgroundMaskOptionsEditor(this.particles);
+
+        options.addToGroup(this.group);
     }
 
     private addInfection(): void {
-        const options = new InfectionOptionsEditor(this.group, this.particles);
+        const options = new InfectionOptionsEditor(this.particles);
+
+        options.addToGroup(this.group);
     }
 
     private addInteractivity(): void {
-        const options = new InteractivityOptionsEditor(this.group, this.particles);
+        const options = new InteractivityOptionsEditor(this.particles);
+
+        options.addToGroup(this.group);
     }
 
     private addParticles(): void {
-        const options = new ParticlesOptionsEditor(this.group, this.particles);
+        const options = new ParticlesOptionsEditor(this.particles);
+
+        options.addToGroup(this.group);
     }
 }

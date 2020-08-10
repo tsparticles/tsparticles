@@ -3,12 +3,17 @@ import type { Container } from "tsparticles/dist/Core/Container";
 import type { IOpacity } from "tsparticles/dist/Options/Interfaces/Particles/Opacity/IOpacity";
 import type { IOpacityRandom } from "tsparticles/dist/Options/Interfaces/Particles/Opacity/IOpacityRandom";
 import type { EditorNumberInput } from "object-gui/dist/js";
+import { EditorBase } from "../../../../EditorBase";
 
-export class OpacityOptionsEditor {
-    public readonly group: EditorGroup;
-    private readonly options: IOpacity;
+export class OpacityOptionsEditor extends EditorBase {
+    public group!: EditorGroup;
+    private options!: IOpacity;
 
-    constructor(private readonly parent: EditorGroup, private readonly particles: Container) {
+    constructor(particles: Container) {
+        super(particles);
+    }
+
+    public addToGroup(parent: EditorGroup, options?: unknown): void {
         this.group = parent.addGroup("opacity", "Opacity");
         this.options = this.group.data as IOpacity;
 

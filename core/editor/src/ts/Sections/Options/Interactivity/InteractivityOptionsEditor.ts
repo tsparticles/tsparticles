@@ -4,12 +4,17 @@ import { InteractivityDetect } from "tsparticles";
 import { EditorSelectInput, EditorGroup } from "object-gui";
 import { ModesOptionsEditor } from "./Modes/ModesOptionsEditor";
 import { EventsOptionsEditor } from "./Events/EventsOptionsEditor";
+import { EditorBase } from "../../../EditorBase";
 
-export class InteractivityOptionsEditor {
-    public readonly group: EditorGroup;
-    private readonly options: IInteractivity;
+export class InteractivityOptionsEditor extends EditorBase {
+    public group!: EditorGroup;
+    private options!: IInteractivity;
 
-    constructor(private readonly parent: EditorGroup, private readonly particles: Container) {
+    constructor(particles: Container) {
+        super(particles);
+    }
+
+    public addToGroup(parent: EditorGroup): void {
         this.group = parent.addGroup("interactivity", "Interactivity");
         this.options = this.group.data as IInteractivity;
 
@@ -20,11 +25,15 @@ export class InteractivityOptionsEditor {
     }
 
     private addModes(): void {
-        const options = new ModesOptionsEditor(this.group, this.particles);
+        const options = new ModesOptionsEditor(this.particles);
+
+        options.addToGroup(this.group);
     }
 
     private addEvents(): void {
-        const options = new EventsOptionsEditor(this.group, this.particles);
+        const options = new EventsOptionsEditor(this.particles);
+
+        options.addToGroup(this.group);
     }
 
     private addProperties(): void {

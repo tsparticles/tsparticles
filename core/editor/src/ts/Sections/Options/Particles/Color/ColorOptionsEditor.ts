@@ -2,16 +2,17 @@ import type { EditorGroup, IRgb, IHsl } from "object-gui";
 import type { Container } from "tsparticles/dist/Core/Container";
 import { ColorUtils } from "tsparticles";
 import type { IAnimatableColor } from "tsparticles/dist/Options/Interfaces/Particles/IAnimatableColor";
+import { EditorBase } from "../../../../EditorBase";
 
-export class ColorOptionsEditor {
-    public readonly group: EditorGroup;
-    private readonly options: IAnimatableColor;
+export class ColorOptionsEditor extends EditorBase {
+    public group!: EditorGroup;
+    private options!: IAnimatableColor;
 
-    constructor(
-        private readonly parent: EditorGroup,
-        private readonly particles: Container,
-        options?: IAnimatableColor
-    ) {
+    constructor(particles: Container) {
+        super(particles);
+    }
+
+    public addToGroup(parent: EditorGroup, options?: unknown): void {
         this.group = parent.addGroup("color", "Color", options);
         this.options = this.group.data as IAnimatableColor;
 

@@ -5,12 +5,17 @@ import type { IColor } from "tsparticles/dist/Core/Interfaces/IColor";
 import type { Container } from "tsparticles/dist/Core/Container";
 import { ColorUtils } from "tsparticles";
 import { EditorNumberInput, EditorGroup } from "object-gui";
+import { EditorBase } from "../../../EditorBase";
 
-export class BackgroundOptionsEditor {
-    public readonly group: EditorGroup;
-    private readonly options: IBackground;
+export class BackgroundOptionsEditor extends EditorBase {
+    private group!: EditorGroup;
+    private options!: IBackground;
 
-    constructor(private readonly parent: EditorGroup, private readonly particles: Container) {
+    constructor(particles: Container) {
+        super(particles);
+    }
+
+    public addToGroup(parent: EditorGroup): void {
         this.group = parent.addGroup("background", "Background");
         this.options = this.group.data as IBackground;
 

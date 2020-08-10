@@ -3,12 +3,17 @@ import type { Container } from "tsparticles/dist/Core/Container";
 import type { IMove } from "tsparticles/dist/Options/Interfaces/Particles/Move/IMove";
 import type { IMoveAngle } from "tsparticles/dist/Options/Interfaces/Particles/Move/IMoveAngle";
 import { MoveDirection, OutMode } from "tsparticles";
+import { EditorBase } from "../../../../EditorBase";
 
-export class MoveOptionsEditor {
-    public readonly group: EditorGroup;
-    private readonly options: IMove;
+export class MoveOptionsEditor extends EditorBase {
+    public group!: EditorGroup;
+    private options!: IMove;
 
-    constructor(private readonly parent: EditorGroup, private readonly particles: Container) {
+    constructor(particles: Container) {
+        super(particles);
+    }
+
+    public addToGroup(parent: EditorGroup): void {
         this.group = parent.addGroup("move", "Move");
         this.options = this.group.data as IMove;
 

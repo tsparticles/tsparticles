@@ -1,12 +1,17 @@
 import { Container } from "tsparticles/dist/Core/Container";
 import { IShadow } from "tsparticles/dist/Options/Interfaces/Particles/IShadow";
 import { ColorUtils, EditorGroup, IRgb, IHsl } from "object-gui";
+import { EditorBase } from "../../../../EditorBase";
 
-export class ShadowOptionsEditor {
-    public readonly group: EditorGroup;
-    private readonly options: IShadow;
+export class ShadowOptionsEditor extends EditorBase {
+    public group!: EditorGroup;
+    private options!: IShadow;
 
-    constructor(private readonly parent: EditorGroup, private readonly particles: Container) {
+    constructor(particles: Container) {
+        super(particles);
+    }
+
+    public addToGroup(parent: EditorGroup): void {
         this.group = parent.addGroup("shadow", "Shadow");
         this.options = this.group.data as IShadow;
 

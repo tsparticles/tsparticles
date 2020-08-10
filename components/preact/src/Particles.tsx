@@ -8,7 +8,7 @@ import type { IAbsorberOptions } from "tsparticles/dist/Plugins/Absorbers/Absorb
 import type { IEmitterOptions } from "tsparticles/dist/Plugins/Emitters/EmittersPlugin";
 import React, { Component } from "preact/compat";
 import { RefObject } from "preact";
-import { CSSProperties, MutableRefObject } from "react"
+import { CSSProperties, MutableRefObject } from "react";
 
 export interface ParticlesProps {
     id: string;

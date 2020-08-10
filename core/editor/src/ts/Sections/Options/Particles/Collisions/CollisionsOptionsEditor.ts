@@ -2,12 +2,17 @@ import { EditorGroup, EditorSelectInput } from "object-gui";
 import type { Container } from "tsparticles/dist/Core/Container";
 import type { ICollisions } from "tsparticles/dist/Options/Interfaces/Particles/ICollisions";
 import { CollisionMode } from "tsparticles";
+import { EditorBase } from "../../../../EditorBase";
 
-export class CollisionsOptionsEditor {
-    public readonly group: EditorGroup;
-    private readonly options: ICollisions;
+export class CollisionsOptionsEditor extends EditorBase {
+    public group!: EditorGroup;
+    private options!: ICollisions;
 
-    constructor(private readonly parent: EditorGroup, private readonly particles: Container) {
+    constructor(particles: Container) {
+        super(particles);
+    }
+
+    public addToGroup(parent: EditorGroup): void {
         this.group = parent.addGroup("collisions", "Collisions");
         this.options = this.group.data as ICollisions;
 

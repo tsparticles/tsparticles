@@ -1,12 +1,17 @@
 import type { Container } from "tsparticles/dist/Core/Container";
 import { ColorUtils, EditorGroup, IRgb, IHsl, EditorNumberInput } from "object-gui";
 import type { ILinks } from "tsparticles/dist/Options/Interfaces/Particles/Links/ILinks";
+import { EditorBase } from "../../../../EditorBase";
 
-export class LinksOptionsEditor {
-    public readonly group: EditorGroup;
-    private readonly options: ILinks;
+export class LinksOptionsEditor extends EditorBase {
+    public group!: EditorGroup;
+    private options!: ILinks;
 
-    constructor(private readonly parent: EditorGroup, private readonly particles: Container) {
+    constructor(particles: Container) {
+        super(particles);
+    }
+
+    public addToGroup(parent: EditorGroup): void {
         this.group = parent.addGroup("links", "Links");
         this.options = this.group.data as ILinks;
 

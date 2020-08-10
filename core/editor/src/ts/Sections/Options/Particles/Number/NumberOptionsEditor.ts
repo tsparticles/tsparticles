@@ -1,12 +1,17 @@
 import type { EditorGroup } from "object-gui";
 import type { Container } from "tsparticles/dist/Core/Container";
 import type { IParticlesNumber } from "tsparticles/dist/Options/Interfaces/Particles/IParticlesNumber";
+import { EditorBase } from "../../../../EditorBase";
 
-export class NumberOptionsEditor {
-    public readonly group: EditorGroup;
-    private readonly options: IParticlesNumber;
+export class NumberOptionsEditor extends EditorBase {
+    public group!: EditorGroup;
+    private options!: IParticlesNumber;
 
-    constructor(private readonly parent: EditorGroup, private readonly particles: Container) {
+    constructor(particles: Container) {
+        super(particles);
+    }
+
+    public addToGroup(parent: EditorGroup): void {
         this.group = parent.addGroup("number", "Number");
         this.options = this.group.data as IParticlesNumber;
 

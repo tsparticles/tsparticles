@@ -1,12 +1,17 @@
 import type { Container } from "tsparticles/dist/Core/Container";
 import type { IShape } from "tsparticles/dist/Options/Interfaces/Particles/Shape/IShape";
 import { EditorSelectInput, EditorGroup } from "object-gui";
+import { EditorBase } from "../../../../EditorBase";
 
-export class ShapeOptionsEditor {
-    public readonly group: EditorGroup;
-    private readonly options: IShape;
+export class ShapeOptionsEditor extends EditorBase {
+    public group!: EditorGroup;
+    private options!: IShape;
 
-    constructor(private readonly parent: EditorGroup, private readonly particles: Container) {
+    constructor(particles: Container) {
+        super(particles);
+    }
+
+    public addToGroup(parent: EditorGroup): void {
         this.group = parent.addGroup("shape", "Shape");
         this.options = this.group.data as IShape;
 

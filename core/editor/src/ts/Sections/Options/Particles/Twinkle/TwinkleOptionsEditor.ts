@@ -3,12 +3,17 @@ import type { ITwinkle } from "tsparticles/dist/Options/Interfaces/Particles/Twi
 import type { ITwinkleValues } from "tsparticles/dist/Options/Interfaces/Particles/Twinkle/ITwinkleValues";
 import { ColorUtils } from "tsparticles";
 import { EditorNumberInput, EditorGroup, IRgb, IHsl } from "object-gui";
+import { EditorBase } from "../../../../EditorBase";
 
-export class TwinkleOptionsEditor {
-    public readonly group: EditorGroup;
-    private readonly options: ITwinkle;
+export class TwinkleOptionsEditor extends EditorBase {
+    public group!: EditorGroup;
+    private options!: ITwinkle;
 
-    constructor(private readonly parent: EditorGroup, private readonly particles: Container) {
+    constructor(particles: Container) {
+        super(particles);
+    }
+
+    public addToGroup(parent: EditorGroup, options?: unknown): void {
         this.group = parent.addGroup("twinkle", "Twinkle");
         this.options = this.group.data as ITwinkle;
 
