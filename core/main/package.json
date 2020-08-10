@@ -109,7 +109,7 @@
     "eslint": "^7.5.0",
     "eslint-config-prettier": "^6.11.0",
     "install": "^0.13.0",
-    "mocha": "^8.0.1",
+    "mocha": "^8.1.1",
     "nyc": "^15.1.0",
     "prettier": "^2.0.5",
     "reflect-metadata": "^0.1.13",
