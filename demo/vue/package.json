@@ -43,7 +43,7 @@
     "rollup": "^2.23.1",
     "rollup-plugin-terser": "^6.1.0",
     "rollup-plugin-typescript": "^1.0.1",
-    "rollup-plugin-typescript2": "^0.27.1",
+    "rollup-plugin-typescript2": "^0.27.2",
     "rollup-plugin-vue": "^5.1.9",
     "typescript": "^3.9.7",
     "vue-template-compiler": "^2.6.11"
