@@ -9,7 +9,6 @@ import type { Container } from "../Core/Container";
 import type { IContainerPlugin } from "../Core/Interfaces/IContainerPlugin";
 import { Utils } from "./Utils";
 import type { IDelta } from "../Core/Interfaces/IDelta";
-import { HoverMode } from "../Enums/Modes";
 import { Particle } from "../Core/Particle";
 
 export class CanvasUtils {
