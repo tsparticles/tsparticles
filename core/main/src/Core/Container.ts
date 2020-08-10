@@ -16,6 +16,7 @@ import type { INoiseValue } from "./Interfaces/INoiseValue";
 import type { INoise } from "./Interfaces/INoise";
 import type { IRgb } from "./Interfaces/IRgb";
 import type { IAttract } from "./Interfaces/IAttract";
+import { Theme } from '../Options/Classes/Theme/Theme';
 
 /**
  * The object loaded into an HTML element, it'll contain options loaded and all data to let everything working
@@ -393,12 +394,15 @@ export class Container {
         this.density = (canvas.width * canvas.height) / (densityOptions.factor * pxRatio * densityOptions.area);
     }
 
-    private loadTheme(name?: string): void {
+    public loadTheme(name?: string): void {
         if(name){
            let choosenTheme = this.options.themes.find(theme => theme.name === name)
             if(choosenTheme){
                 this.options.load(choosenTheme.options)
             }
+        }else{
+            let defaultTheme = new Theme()
+            this.options.load(defaultTheme.options)
         }
     }
 }
