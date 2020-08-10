@@ -14,6 +14,7 @@ import { Collisions } from "./Collisions";
 import { Twinkle } from "./Twinkle/Twinkle";
 import { AnimatableColor } from "./AnimatableColor";
 import type { IOptionLoader } from "../../Interfaces/IOptionLoader";
+import { Life } from "./Life/Life";
 
 export class Particles implements IParticles, IOptionLoader<IParticles> {
     /**
@@ -52,6 +53,7 @@ export class Particles implements IParticles, IOptionLoader<IParticles> {
 
     public collisions: Collisions;
     public color: AnimatableColor;
+    public life: Life;
     public links: Links;
     public move: Move;
     public number: ParticlesNumber;
@@ -66,6 +68,7 @@ export class Particles implements IParticles, IOptionLoader<IParticles> {
     constructor() {
         this.collisions = new Collisions();
         this.color = new AnimatableColor();
+        this.life = new Life();
         this.links = new Links();
         this.move = new Move();
         this.number = new ParticlesNumber();
@@ -83,9 +86,9 @@ export class Particles implements IParticles, IOptionLoader<IParticles> {
             return;
         }
 
-        if (data.color !== undefined) {
-            this.color = AnimatableColor.create(this.color, data.color);
-        }
+        this.color = AnimatableColor.create(this.color, data.color);
+
+        this.life.load(data.life);
 
         const links = data.links ?? data.lineLinked ?? data.line_linked;
 

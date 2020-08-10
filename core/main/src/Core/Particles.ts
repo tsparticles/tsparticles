@@ -129,7 +129,9 @@ export class Particles {
         for (const particle of this.container.particles.array) {
             particle.update(delta);
 
-            this.interactionManager.particlesInteract(particle, delta);
+            if (!particle.destroyed && !particle.spawning) {
+                this.interactionManager.particlesInteract(particle, delta);
+            }
         }
     }
 

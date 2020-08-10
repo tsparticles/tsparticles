@@ -100,7 +100,9 @@ export class Collider implements IParticlesInteractor {
             if (
                 p1 === p2 ||
                 !p2.particlesOptions.collisions.enable ||
-                p1.particlesOptions.collisions.mode !== p2.particlesOptions.collisions.mode
+                p1.particlesOptions.collisions.mode !== p2.particlesOptions.collisions.mode ||
+                p2.destroyed ||
+                p2.spawning
             ) {
                 continue;
             }

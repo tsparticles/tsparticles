@@ -73,6 +73,12 @@ export class Particle implements IParticle {
     public sizeValue?: number;
     public randomMinimumSize?: number;
     public sizeAnimationSpeed?: number;
+    public lifeDelay: number;
+    public lifeDelayTime: number;
+    public lifeDuration: number;
+    public lifeTime: number;
+    public livesRemaining: number;
+    public spawning: boolean;
 
     public readonly updater: Updater;
     public readonly infecter: Infecter;
@@ -334,6 +340,39 @@ export class Particle implements IParticle {
                     this.strokeColor.h = Math.random() * 360;
                 }
             }
+        }
+
+        const lifeOptions = particlesOptions.life;
+
+        let lifeDelay = lifeOptions.delay.value;
+
+        if (lifeOptions.delay.random.enable) {
+            lifeDelay = Utils.randomInRange(lifeOptions.delay.random.minimumValue, lifeDelay);
+        } else if (!lifeOptions.delay.sync) {
+            lifeDelay *= Math.random();
+        }
+
+        let lifeDuration = lifeOptions.duration.value;
+
+        if (lifeOptions.duration.random.enable) {
+            lifeDuration = Utils.randomInRange(lifeOptions.duration.random.minimumValue, lifeDuration);
+        } else if (!lifeOptions.duration.sync) {
+            lifeDuration *= Math.random() + 0.0001;
+        }
+
+        this.lifeDelay = lifeDelay * 1000;
+        this.lifeDelayTime = 0;
+        this.lifeDuration = lifeDuration * 1000;
+        this.lifeTime = 0;
+        this.livesRemaining = particlesOptions.life.count;
+        this.spawning = true;
+
+        if (this.lifeDuration <= 0) {
+            this.lifeDuration = -1;
+        }
+
+        if (this.livesRemaining <= 0) {
+            this.livesRemaining = -1;
         }
 
         this.shadowColor = ColorUtils.colorToRgb(this.particlesOptions.shadow.color);

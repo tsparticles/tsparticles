@@ -11,10 +11,12 @@ import type { IStroke } from "./IStroke";
 import type { ICollisions } from "./ICollisions";
 import type { ITwinkle } from "./Twinkle/ITwinkle";
 import type { IAnimatableColor } from "./IAnimatableColor";
+import { ILife } from "./Life/ILife";
 
 export interface IParticles {
     collisions: ICollisions;
     color: IAnimatableColor;
+    life: ILife;
 
     /**
      * @deprecated use the new links instead

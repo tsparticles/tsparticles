@@ -49,6 +49,10 @@ export class Infecter implements IParticlesInteractor {
         const neighbors = query.length;
 
         for (const p2 of query) {
+            if (p2 === p1 || p2.destroyed || p2.spawning) {
+                continue;
+            }
+
             const infecter2 = p2.infecter;
 
             if (Math.random() < infections / neighbors) {
