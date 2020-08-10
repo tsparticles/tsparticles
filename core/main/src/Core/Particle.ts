@@ -365,7 +365,7 @@ export class Particle implements IParticle {
         this.lifeDuration = lifeDuration * 1000;
         this.lifeTime = 0;
         this.livesRemaining = particlesOptions.life.count;
-        this.spawning = true;
+        this.spawning = this.lifeDelay > 0;
 
         if (this.lifeDuration <= 0) {
             this.lifeDuration = -1;
