@@ -2,9 +2,7 @@
 // Project: https://github.com/matteobruni/react-tsparticles
 // Definitions by: Matteo Bruni <https://github.com/matteobruni>
 // Definitions: https://github.com/DefinitelyTyped/DefinitelyTyped
-
-/// <reference types="react" />
-import { ComponentClass } from "react";
+import { ComponentClass, RefObject } from "react";
 import { Container } from "tsparticles/dist/Core/Container";
 import type { IOptions } from "tsparticles/dist/Options/Interfaces/IOptions";
 import type { RecursivePartial } from "tsparticles/dist/Types/RecursivePartial";
@@ -21,10 +19,10 @@ export interface ParticlesProps {
     height?: string;
     params?: IParticlesParams;
     options?: IParticlesParams;
-    style?: any;
+    style?: unknown;
     className?: string;
     canvasClassName?: string;
-    container?: React.RefObject<Container>;
+    container?: RefObject<Container>;
 }
 
 type Particles = ComponentClass<ParticlesProps>;

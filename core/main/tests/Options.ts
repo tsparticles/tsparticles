@@ -11,7 +11,7 @@ import {
     ShapeType,
 } from "../src/Enums";
 import { Particles } from "../src/Options/Classes/Particles/Particles";
-import { RecursivePartial } from "../src/Types/RecursivePartial";
+import { RecursivePartial } from "../src/Types";
 import { IParticles } from "../src/Options/Interfaces/Particles/IParticles";
 
 describe("Options tests", () => {

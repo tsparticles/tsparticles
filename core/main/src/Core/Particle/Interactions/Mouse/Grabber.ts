@@ -1,5 +1,5 @@
 import type { Container } from "../../../Container";
-import { Constants, Utils, Circle, ColorUtils } from "../../../../Utils";
+import { Constants, Utils, ColorUtils } from "../../../../Utils";
 import { IRgb } from "../../../Interfaces/IRgb";
 import { HoverMode } from "../../../../Enums/Modes";
 import type { IExternalInteractor } from "../../../Interfaces/IExternalInteractor";
@@ -8,7 +8,8 @@ import type { IExternalInteractor } from "../../../Interfaces/IExternalInteracto
  * Particle grab manager
  */
 export class Grabber implements IExternalInteractor {
-    constructor(private readonly container: Container) {}
+    constructor(private readonly container: Container) {
+    }
 
     public isEnabled(): boolean {
         const container = this.container;

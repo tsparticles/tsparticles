@@ -50,7 +50,7 @@ export class StrokeOptionsEditor {
                     options.opacity = value;
 
                     await particles.refresh();
-                }
+                }º
             },
             false
         ) as EditorNumberInput;

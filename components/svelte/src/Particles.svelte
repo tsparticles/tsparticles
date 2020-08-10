@@ -4,11 +4,12 @@
 
     export let options = {};
     export let id = "tsparticles";
+
     let oldId = id;
 
     afterUpdate(() => {
         if (oldId) {
-            const oldContainer = tsParticles.dom().find(c => c.id == oldId);
+            const oldContainer = tsParticles.dom().find(c => c.id === oldId);
 
             if (oldContainer) {
                 oldContainer.destroy();

@@ -1,5 +1,3 @@
-import * as React from "react";
-import { Component } from "react";
 import isEqual from "lodash/isEqual";
 import type { IOptions } from "tsparticles/dist/Options/Interfaces/IOptions";
 import { Container } from "tsparticles/dist/Core/Container";
@@ -8,6 +6,9 @@ import { tsParticles } from "tsparticles";
 import type { IPolygonMaskOptions } from "tsparticles/dist/Plugins/PolygonMask/PolygonMaskPlugin";
 import type { IAbsorberOptions } from "tsparticles/dist/Plugins/Absorbers/AbsorbersPlugin";
 import type { IEmitterOptions } from "tsparticles/dist/Plugins/Emitters/EmittersPlugin";
+import React, { Component } from "preact/compat";
+import { RefObject } from "preact";
+import { CSSProperties, MutableRefObject } from "react"
 
 export interface ParticlesProps {
     id: string;
@@ -15,10 +16,10 @@ export interface ParticlesProps {
     height: string;
     options: RecursivePartial<IOptions & IPolygonMaskOptions & IAbsorberOptions & IEmitterOptions>;
     params?: RecursivePartial<IOptions & IPolygonMaskOptions & IAbsorberOptions & IEmitterOptions>;
-    style: any;
+    style: CSSProperties;
     className?: string;
     canvasClassName?: string;
-    container?: React.RefObject<Container>;
+    container?: RefObject<Container>;
 }
 
 export interface ParticlesState {
@@ -44,7 +45,7 @@ export default class Particles extends Component<ParticlesProps, ParticlesState>
         this.loadCanvas = this.loadCanvas.bind(this);
     }
 
-    private buildParticlesLibrary(tagId: string, options?: RecursivePartial<IOptions>) {
+    private buildParticlesLibrary(tagId: string, options?: RecursivePartial<IOptions>): Container {
         try {
             if (window === undefined) return null;
         } catch {
@@ -56,7 +57,7 @@ export default class Particles extends Component<ParticlesProps, ParticlesState>
         const container = new Container(tagId, options);
 
         if (this.props.container) {
-            (this.props.container as React.MutableRefObject<Container>).current = container;
+            (this.props.container as MutableRefObject<Container>).current = container;
         }
 
         return container;
@@ -81,7 +82,7 @@ export default class Particles extends Component<ParticlesProps, ParticlesState>
         );
     }
 
-    destroy() {
+    destroy(): void {
         if (!this.state.library) {
             return;
         }
@@ -93,7 +94,7 @@ export default class Particles extends Component<ParticlesProps, ParticlesState>
         });
     }
 
-    loadCanvas(canvas: HTMLCanvasElement) {
+    loadCanvas(canvas: HTMLCanvasElement): void {
         if (!canvas) {
             return;
         }
@@ -115,31 +116,31 @@ export default class Particles extends Component<ParticlesProps, ParticlesState>
         );
     }
 
-    shouldComponentUpdate(nextProps: Readonly<ParticlesProps>) {
+    shouldComponentUpdate(nextProps: Readonly<ParticlesProps>): boolean {
         return !this.state.library || !isEqual(nextProps, this.props);
     }
 
-    componentDidUpdate() {
+    componentDidUpdate(): void {
         this.refresh(this.props);
     }
 
-    forceUpdate() {
+    forceUpdate(): void {
         this.refresh(this.props);
 
         super.forceUpdate();
     }
 
-    componentDidMount() {
+    componentDidMount(): void {
         this.setState({
             library: this.buildParticlesLibrary(this.props.id, this.props.params ?? this.props.options),
         });
     }
 
-    componentWillUnmount() {
+    componentWillUnmount(): void {
         this.destroy();
     }
 
-    render() {
+    render(): JSX.Element {
         const { width, height, className, canvasClassName, id } = this.props;
         return (
             <div className={className} id={id}>

@@ -23,7 +23,7 @@ export class RepulseDiv extends RepulseBase implements IRepulseDiv, IOptionLoade
      */
     set ids(value: SingleOrMultiple<string>) {
         if (value instanceof Array) {
-            this.selectors = value.map((t) => `#${value}`);
+            this.selectors = value.map(() => `#${value}`);
         } else {
             this.selectors = `#${value}`;
         }
