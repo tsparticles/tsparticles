@@ -7,12 +7,14 @@ import type { IRepulse } from "./IRepulse";
 import type { ISlow } from "./ISlow";
 import type { ITrail } from "./ITrail";
 import type { IAttract } from "./IAttract";
+import type { ILight } from "./ILight";
 
 export interface IModes {
     attract: IAttract;
     bubble: IBubble;
     connect: IConnect;
     grab: IGrab;
+    light: ILight;
     push: IPush;
     remove: IRemove;
     repulse: IRepulse;

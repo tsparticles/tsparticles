@@ -55,10 +55,23 @@
         "mode": "light"
       },
       "resize": true
+    },
+    "modes": {
+      "light": {
+        "light": {
+          "gradient": {
+            "start": "3b5e98",
+            "stop": "#17163e"
+          }
+        },
+        "shadow": {
+          "color": "#17163e"
+        }
+      }
     }
   },
   "detectRetina": true,
   "background": {
-    "color": "#000000"
+    "color": "#17163e"
   }
 }

@@ -213,14 +213,10 @@ export class CanvasUtils {
     }
 
     public static drawLight(container: Container, context: CanvasRenderingContext2D, mousePos: ICoordinates): void {
+        const lightOptions = container.options.interactivity.modes.light.light;
+
         context.beginPath();
-        context.arc(
-            mousePos.x,
-            mousePos.y,
-            Math.max(container.canvas.size.height, container.canvas.size.width),
-            0,
-            2 * Math.PI
-        );
+        context.arc(mousePos.x, mousePos.y, lightOptions.radius, 0, 2 * Math.PI);
 
         const gradientAmbientLight = context.createRadialGradient(
             mousePos.x,
@@ -228,22 +224,23 @@ export class CanvasUtils {
             0,
             mousePos.x,
             mousePos.y,
-            1000
+            lightOptions.radius
         );
 
-        gradientAmbientLight.addColorStop(0, "#3b4654");
-        gradientAmbientLight.addColorStop(1, "#2c343f");
+        const gradient = lightOptions.gradient;
+        const gradientRgb = {
+            start: ColorUtils.colorToRgb(gradient.start),
+            stop: ColorUtils.colorToRgb(gradient.stop),
+        };
+
+        if (!gradientRgb.start || !gradientRgb.stop) {
+            return;
+        }
+
+        gradientAmbientLight.addColorStop(0, ColorUtils.getStyleFromRgb(gradientRgb.start));
+        gradientAmbientLight.addColorStop(1, ColorUtils.getStyleFromRgb(gradientRgb.stop));
         context.fillStyle = gradientAmbientLight;
         context.fill();
-
-        /*context.beginPath();
-        context.arc(mousePos.x, mousePos.y, 20, 0, 2 * Math.PI);
-
-        const gradientPointerLight = context.createRadialGradient(mousePos.x, mousePos.y, 0, mousePos.x, mousePos.y, 5);
-        gradientPointerLight.addColorStop(0, "#fff");
-        gradientPointerLight.addColorStop(1, "#3b4654");
-        context.fillStyle = gradientPointerLight;
-        context.fill();*/
     }
 
     public static drawParticleShadow(
@@ -254,6 +251,7 @@ export class CanvasUtils {
         mousePos: ICoordinates
     ): void {
         const pos = particle.getPosition();
+        const shadowOptions = container.options.interactivity.modes.light.shadow;
 
         context.save();
 
@@ -272,7 +270,7 @@ export class CanvasUtils {
 
         const points = [];
 
-        const shadowLength = 2000;
+        const shadowLength = shadowOptions.length;
 
         for (const dot in dots) {
             const angle = Math.atan2(mousePos.y - dots[dot].y, mousePos.x - dots[dot].x);
@@ -287,6 +285,14 @@ export class CanvasUtils {
             });
         }
 
+        const shadowRgb = ColorUtils.colorToRgb(shadowOptions.color);
+
+        if (!shadowRgb) {
+            return;
+        }
+
+        const shadowColor = ColorUtils.getStyleFromRgb(shadowRgb);
+
         for (let i = points.length - 1; i >= 0; i--) {
             const n = i == points.length - 1 ? 0 : i + 1;
 
@@ -298,7 +304,7 @@ export class CanvasUtils {
             context.lineTo(points[n].endX, points[n].endY);
             context.lineTo(points[i].endX, points[i].endY);
 
-            context.fillStyle = "#2c343f";
+            context.fillStyle = shadowColor;
 
             context.fill();
         }
