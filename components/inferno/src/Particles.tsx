@@ -8,6 +8,7 @@ import { tsParticles } from "tsparticles";
 import { IPolygonMaskOptions } from "tsparticles/dist/Plugins/PolygonMask/PolygonMaskPlugin";
 import { IAbsorberOptions } from "tsparticles/dist/Plugins/Absorbers/AbsorbersPlugin";
 import { IEmitterOptions } from "tsparticles/dist/Plugins/Emitters/EmittersPlugin";
+import { CSSProperties } from "react";
 
 interface MutableRefObject<T> {
 	current: T | null;
@@ -19,7 +20,7 @@ export interface ParticlesProps {
 	height: string;
 	options: RecursivePartial<IOptions & IPolygonMaskOptions & IAbsorberOptions & IEmitterOptions>;
 	params?: RecursivePartial<IOptions & IPolygonMaskOptions & IAbsorberOptions & IEmitterOptions>;
-	style: any;
+	style: CSSProperties;
 	className?: string;
 	canvasClassName?: string;
 	container?: Inferno.RefObject<Container>;
@@ -50,9 +51,87 @@ export default class Particles extends Component<ParticlesProps, ParticlesState>
 		this.loadCanvas = this.loadCanvas.bind(this);
 	}
 
-	private buildParticlesLibrary(tagId: string, options?: RecursivePartial<IOptions>) {
+	public destroy(): void {
+		if (!this.state.library) {
+			return;
+		}
+
+		this.state.library.destroy();
+
+		this.setState({
+			library: undefined,
+		});
+	}
+
+	public loadCanvas(canvas: HTMLCanvasElement): void {
+		if (!canvas) {
+			return;
+		}
+
+		this.setState(
+			{
+				canvas,
+			},
+			() => {
+				const { library } = this.state;
+
+				if (!library) {
+					return;
+				}
+
+				library.canvas.loadCanvas(canvas);
+
+				library.start();
+			}
+		);
+	}
+
+	public shouldComponentUpdate(nextProps: Readonly<ParticlesProps>): boolean {
+		return !isEqual(nextProps, this.props);
+	}
+
+	public componentDidUpdate(): void {
+		this.refresh(this.props);
+	}
+
+	public forceUpdate(): void {
+		this.refresh(this.props);
+
+		super.forceUpdate();
+	}
+
+	public componentDidMount(): void {
+		this.setState({
+			library: this.buildParticlesLibrary(this.props.id, this.props.params ?? this.props.options),
+		});
+	}
+
+	public componentWillUnmount(): void {
+		this.destroy();
+	}
+
+	public render(): JSX.Element {
+		const { width, height, className, canvasClassName, id } = this.props;
+		return (
+			<div className={className} id={id}>
+				<canvas
+					ref={this.loadCanvas}
+					className={canvasClassName}
+					style={{
+						...this.props.style,
+						width,
+						height,
+					}}
+				/>
+			</div>
+		);
+	}
+
+	private buildParticlesLibrary(tagId: string, options?: RecursivePartial<IOptions>): Container | null {
 		try {
-			if (window === undefined) return null;
+			if (window === undefined) {
+				return null;
+			}
 		} catch {
 			return null;
 		} // SSR
@@ -84,82 +163,6 @@ export default class Particles extends Component<ParticlesProps, ParticlesState>
 			() => {
 				this.loadCanvas(canvas);
 			}
-		);
-	}
-
-	destroy() {
-		if (!this.state.library) {
-			return;
-		}
-
-		this.state.library.destroy();
-
-		this.setState({
-			library: undefined,
-		});
-	}
-
-	loadCanvas(canvas: HTMLCanvasElement) {
-		if (!canvas) {
-			return;
-		}
-
-		this.setState(
-			{
-				canvas,
-			},
-			() => {
-				const { library } = this.state;
-
-				if (!library) {
-					return;
-				}
-
-				library.canvas.loadCanvas(canvas);
-
-				library.start();
-			}
-		);
-	}
-
-	shouldComponentUpdate(nextProps: Readonly<ParticlesProps>) {
-		return !isEqual(nextProps, this.props);
-	}
-
-	componentDidUpdate() {
-		this.refresh(this.props);
-	}
-
-	forceUpdate() {
-		this.refresh(this.props);
-
-		super.forceUpdate();
-	}
-
-	componentDidMount() {
-		this.setState({
-			library: this.buildParticlesLibrary(this.props.id, this.props.params ?? this.props.options),
-		});
-	}
-
-	componentWillUnmount() {
-		this.destroy();
-	}
-
-	render() {
-		const { width, height, className, canvasClassName, id } = this.props;
-		return (
-			<div className={className} id={id}>
-				<canvas
-					ref={this.loadCanvas}
-					className={canvasClassName}
-					style={{
-						...this.props.style,
-						width,
-						height,
-					}}
-				/>
-			</div>
 		);
 	}
 }

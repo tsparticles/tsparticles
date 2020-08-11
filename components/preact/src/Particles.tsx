@@ -45,7 +45,82 @@ export default class Particles extends Component<ParticlesProps, ParticlesState>
         this.loadCanvas = this.loadCanvas.bind(this);
     }
 
-    private buildParticlesLibrary(tagId: string, options?: RecursivePartial<IOptions>): Container {
+    public destroy(): void {
+        if (!this.state.library) {
+            return;
+        }
+
+        this.state.library.destroy();
+
+        this.setState({
+            library: undefined,
+        });
+    }
+
+    public loadCanvas(canvas: HTMLCanvasElement): void {
+        if (!canvas) {
+            return;
+        }
+
+        this.setState(
+            {
+                canvas,
+            },
+            () => {
+                const { library } = this.state;
+
+                if (!library?.canvas) {
+                    return;
+                }
+
+                library.canvas.loadCanvas(canvas);
+                library.start();
+            }
+        );
+    }
+
+    public shouldComponentUpdate(nextProps: Readonly<ParticlesProps>): boolean {
+        return !this.state.library || !isEqual(nextProps, this.props);
+    }
+
+    public componentDidUpdate(): void {
+        this.refresh(this.props);
+    }
+
+    public forceUpdate(): void {
+        this.refresh(this.props);
+
+        super.forceUpdate();
+    }
+
+    public componentDidMount(): void {
+        this.setState({
+            library: this.buildParticlesLibrary(this.props.id, this.props.params ?? this.props.options),
+        });
+    }
+
+    public componentWillUnmount(): void {
+        this.destroy();
+    }
+
+    public render(): JSX.Element {
+        const { width, height, className, canvasClassName, id } = this.props;
+        return (
+            <div className={className} id={id}>
+                <canvas
+                    ref={this.loadCanvas}
+                    className={canvasClassName}
+                    style={{
+                        ...this.props.style,
+                        width,
+                        height,
+                    }}
+                />
+            </div>
+        );
+    }
+
+    private buildParticlesLibrary(tagId: string, options?: RecursivePartial<IOptions>): Container | null {
         try {
             if (window === undefined) return null;
         } catch {
@@ -79,81 +154,6 @@ export default class Particles extends Component<ParticlesProps, ParticlesState>
             () => {
                 this.loadCanvas(canvas);
             }
-        );
-    }
-
-    destroy(): void {
-        if (!this.state.library) {
-            return;
-        }
-
-        this.state.library.destroy();
-
-        this.setState({
-            library: undefined,
-        });
-    }
-
-    loadCanvas(canvas: HTMLCanvasElement): void {
-        if (!canvas) {
-            return;
-        }
-
-        this.setState(
-            {
-                canvas,
-            },
-            () => {
-                const { library } = this.state;
-
-                if (!library?.canvas) {
-                    return;
-                }
-
-                library.canvas.loadCanvas(canvas);
-                library.start();
-            }
-        );
-    }
-
-    shouldComponentUpdate(nextProps: Readonly<ParticlesProps>): boolean {
-        return !this.state.library || !isEqual(nextProps, this.props);
-    }
-
-    componentDidUpdate(): void {
-        this.refresh(this.props);
-    }
-
-    forceUpdate(): void {
-        this.refresh(this.props);
-
-        super.forceUpdate();
-    }
-
-    componentDidMount(): void {
-        this.setState({
-            library: this.buildParticlesLibrary(this.props.id, this.props.params ?? this.props.options),
-        });
-    }
-
-    componentWillUnmount(): void {
-        this.destroy();
-    }
-
-    render(): JSX.Element {
-        const { width, height, className, canvasClassName, id } = this.props;
-        return (
-            <div className={className} id={id}>
-                <canvas
-                    ref={this.loadCanvas}
-                    className={canvasClassName}
-                    style={{
-                        ...this.props.style,
-                        width,
-                        height,
-                    }}
-                />
-            </div>
         );
     }
 }
