@@ -272,16 +272,16 @@ export class CanvasUtils {
 
         const shadowLength = shadowOptions.length;
 
-        for (const dot in dots) {
-            const angle = Math.atan2(mousePos.y - dots[dot].y, mousePos.x - dots[dot].x);
-            const endX = dots[dot].x + shadowLength * Math.sin(-angle - Math.PI / 2);
-            const endY = dots[dot].y + shadowLength * Math.cos(-angle - Math.PI / 2);
+        for (const dot of dots) {
+            const angle = Math.atan2(mousePos.y - dot.y, mousePos.x - dot.x);
+            const endX = dot.x + shadowLength * Math.sin(-angle - Math.PI / 2);
+            const endY = dot.y + shadowLength * Math.cos(-angle - Math.PI / 2);
 
             points.push({
                 endX: endX,
                 endY: endY,
-                startX: dots[dot].x,
-                startY: dots[dot].y,
+                startX: dot.x,
+                startY: dot.y,
             });
         }
 
