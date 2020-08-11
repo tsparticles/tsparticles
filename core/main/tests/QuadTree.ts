@@ -14,7 +14,7 @@ describe("QuadTree tests", () => {
     describe("Rectangle (0, 0, 50, 50) tests", () => {
         const rect1 = new Rectangle(0, 0, 50, 50);
 
-        it("should intersect with a (40, 40, 10, 10) rectangle", function () {
+        it("should intersect with a (40, 40, 10, 10) rectangle", () => {
             const rect2 = new Rectangle(40, 40, 10, 10);
 
             expect(rect1.intersects(rect2)).to.be.true;
@@ -24,7 +24,7 @@ describe("QuadTree tests", () => {
     describe("Circle (0, 0, 30) tests", () => {
         const circle1 = new Circle(0, 0, 30);
 
-        it("should intersect with a (0, 0, 20, 20) rectangle", function () {
+        it("should intersect with a (0, 0, 20, 20) rectangle", () => {
             const rect2 = new Rectangle(0, 0, 20, 20);
 
             expect(circle1.intersects(rect2)).to.be.true;
@@ -34,13 +34,13 @@ describe("QuadTree tests", () => {
     describe("CircleWarp (0, 0, 30) in canvas (200, 200) tests", () => {
         const circle1 = new CircleWarp(0, 0, 30, canvasSize);
 
-        it("should intersect with a (180, 180, 20, 20) rectangle", function () {
+        it("should intersect with a (180, 180, 20, 20) rectangle", () => {
             const rect2 = new Rectangle(180, 180, 20, 20);
 
             expect(circle1.intersects(rect2)).to.be.true;
         });
 
-        it("should intersect with a (0, 0, 20, 20) rectangle", function () {
+        it("should intersect with a (0, 0, 20, 20) rectangle", () => {
             const rect2 = new Rectangle(0, 0, 20, 20);
 
             expect(circle1.intersects(rect2)).to.be.true;

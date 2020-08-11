@@ -136,7 +136,7 @@ export class Container {
         }
 
         if (needsUpdate) {
-            for (const [, plugin] of this.plugins) {
+            for (const [ , plugin ] of this.plugins) {
                 if (plugin.play) {
                     plugin.play();
                 }
@@ -162,7 +162,7 @@ export class Container {
             return;
         }
 
-        for (const [, plugin] of this.plugins) {
+        for (const [ , plugin ] of this.plugins) {
             if (plugin.pause) {
                 plugin.pause();
             }
@@ -257,7 +257,7 @@ export class Container {
 
         this.canvas.destroy();
 
-        for (const [, drawer] of this.drawers) {
+        for (const [ , drawer ] of this.drawers) {
             if (drawer.destroy) {
                 drawer.destroy(this);
             }
@@ -313,7 +313,7 @@ export class Container {
         this.particles.clear();
         this.canvas.clear();
 
-        for (const [, plugin] of this.plugins) {
+        for (const [ , plugin ] of this.plugins) {
             if (plugin.stop) {
                 plugin.stop();
             }
@@ -324,75 +324,6 @@ export class Container {
 
         delete this.particles.grabLineColor;
         delete this.particles.linksColor;
-    }
-
-    /**
-     * Starts the container, initializes what are needed to create animations and event handling
-     */
-    public async start(): Promise<void> {
-        if (this.started) {
-            return;
-        }
-
-        await this.init();
-
-        this.started = true;
-
-        this.eventListeners.addListeners();
-
-        await this.loadTheme(undefined, false);
-
-        for (const [, plugin] of this.plugins) {
-            if (plugin.startAsync !== undefined) {
-                await plugin.startAsync();
-            } else if (plugin.start !== undefined) {
-                plugin.start();
-            }
-        }
-
-        this.play();
-    }
-
-    private async init(): Promise<void> {
-        /* init canvas + particles */
-        this.retina.init();
-        this.canvas.init();
-
-        const availablePlugins = Plugins.getAvailablePlugins(this);
-
-        for (const [id, plugin] of availablePlugins) {
-            this.plugins.set(id, plugin);
-        }
-
-        for (const [, drawer] of this.drawers) {
-            if (drawer.init) {
-                await drawer.init(this);
-            }
-        }
-
-        for (const [, plugin] of this.plugins) {
-            if (plugin.init) {
-                plugin.init(this.options);
-            } else if (plugin.initAsync !== undefined) {
-                await plugin.initAsync(this.options);
-            }
-        }
-
-        this.particles.init();
-        this.densityAutoParticles();
-    }
-
-    private initDensityFactor(): void {
-        const densityOptions = this.options.particles.number.density;
-
-        if (!this.canvas.element || !densityOptions.enable) {
-            return;
-        }
-
-        const canvas = this.canvas.element;
-        const pxRatio = this.retina.pixelRatio;
-
-        this.density = (canvas.width * canvas.height) / (densityOptions.factor * pxRatio * densityOptions.area);
     }
 
     public async loadTheme(name?: string, refresh = true): Promise<void> {
@@ -417,5 +348,74 @@ export class Container {
                 }
             }
         }
+    }
+
+    /**
+     * Starts the container, initializes what are needed to create animations and event handling
+     */
+    public async start(): Promise<void> {
+        if (this.started) {
+            return;
+        }
+
+        await this.init();
+
+        this.started = true;
+
+        this.eventListeners.addListeners();
+
+        await this.loadTheme(undefined, false);
+
+        for (const [ , plugin ] of this.plugins) {
+            if (plugin.startAsync !== undefined) {
+                await plugin.startAsync();
+            } else if (plugin.start !== undefined) {
+                plugin.start();
+            }
+        }
+
+        this.play();
+    }
+
+    private async init(): Promise<void> {
+        /* init canvas + particles */
+        this.retina.init();
+        this.canvas.init();
+
+        const availablePlugins = Plugins.getAvailablePlugins(this);
+
+        for (const [ id, plugin ] of availablePlugins) {
+            this.plugins.set(id, plugin);
+        }
+
+        for (const [ , drawer ] of this.drawers) {
+            if (drawer.init) {
+                await drawer.init(this);
+            }
+        }
+
+        for (const [ , plugin ] of this.plugins) {
+            if (plugin.init) {
+                plugin.init(this.options);
+            } else if (plugin.initAsync !== undefined) {
+                await plugin.initAsync(this.options);
+            }
+        }
+
+        this.particles.init();
+        this.densityAutoParticles();
+    }
+
+    private initDensityFactor(): void {
+        const densityOptions = this.options.particles.number.density;
+
+        if (!this.canvas.element || !densityOptions.enable) {
+            return;
+        }
+
+        const canvas = this.canvas.element;
+        const pxRatio = this.retina.pixelRatio;
+
+        this.density = (canvas.width * canvas.height) / (densityOptions.factor * pxRatio * densityOptions.area);
     }
 }
