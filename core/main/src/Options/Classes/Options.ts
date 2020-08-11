@@ -124,13 +124,13 @@ export class Options implements IOptions, IOptionLoader<IOptions> {
 
     public setTheme(name?: string): void {
         if (name) {
-            const chosenTheme = this.themes.find(theme => theme.name === name);
+            const chosenTheme = this.themes.find((theme) => theme.name === name);
 
             if (chosenTheme) {
                 this.load(chosenTheme.options);
             }
         } else {
-            const defaultTheme = this.themes.find(theme => theme.default);
+            const defaultTheme = this.themes.find((theme) => theme.default);
 
             if (defaultTheme) {
                 this.load(defaultTheme.options);

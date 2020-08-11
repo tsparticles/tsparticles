@@ -10,28 +10,28 @@ const sourceOptions = {
             default: true,
             options: {
                 background: {
-                    color: "#ffffff"
+                    color: "#ffffff",
                 },
                 particles: {
                     color: {
-                        value: "#000000"
-                    }
-                }
-            }
+                        value: "#000000",
+                    },
+                },
+            },
         },
         {
             name: "dark",
             options: {
                 background: {
-                    color: "#000000"
+                    color: "#000000",
                 },
                 particles: {
                     color: {
-                        value: "#ffffff"
-                    }
-                }
-            }
-        }
+                        value: "#ffffff",
+                    },
+                },
+            },
+        },
     ],
     fpsLimit: 60,
     particles: {
@@ -39,51 +39,51 @@ const sourceOptions = {
             value: 30,
             density: {
                 enable: true,
-                value_area: 800
-            }
+                value_area: 800,
+            },
         },
         shape: {
-            type: [ ShapeType.circle, ShapeType.square ]
+            type: [ShapeType.circle, ShapeType.square],
         },
         opacity: {
-            value: 1
+            value: 1,
         },
         size: {
             value: 30,
             random: {
                 enable: true,
-                minimumValue: 15
-            }
+                minimumValue: 15,
+            },
         },
         rotate: {
             value: 0,
             direction: RotateDirection.random,
             animation: {
                 speed: 5,
-                enable: true
-            }
+                enable: true,
+            },
         },
         move: {
             enable: true,
             speed: 6,
             direction: MoveDirection.none,
-            outMode: OutMode.out
-        }
+            outMode: OutMode.out,
+        },
     },
     interactivity: {
         events: {
             onHover: {
                 enable: true,
-                mode: HoverMode.repulse
+                mode: HoverMode.repulse,
             },
             onClick: {
                 enable: true,
-                mode: ClickMode.push
+                mode: ClickMode.push,
             },
-            resize: true
-        }
+            resize: true,
+        },
     },
-    detectRetina: true
+    detectRetina: true,
 };
 
 describe("Themes", () => {
@@ -93,7 +93,7 @@ describe("Themes", () => {
 
     it("Set theme", () => {
         options.setTheme();
-        const theme = options.themes.find(t => t.default);
+        const theme = options.themes.find((t) => t.default);
 
         expect(options.particles.color.value).to.be.equal(theme?.options?.particles?.color?.value);
     });
@@ -103,7 +103,7 @@ describe("Themes", () => {
 
         options.setTheme(themeName);
 
-        const theme = options.themes.find(t => t.name === themeName);
+        const theme = options.themes.find((t) => t.name === themeName);
 
         if (!theme?.options) {
             // no theme
@@ -118,7 +118,7 @@ describe("Themes", () => {
 
         options.setTheme(themeName);
 
-        const theme = options.themes.find(t => t.name === themeName);
+        const theme = options.themes.find((t) => t.name === themeName);
 
         if (!theme?.options) {
             // no theme
