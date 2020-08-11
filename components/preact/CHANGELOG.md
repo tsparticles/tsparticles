@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.18.0-alpha.5](https://github.com/matteobruni/tsparticles/compare/preact-particles@1.18.0-alpha.4...preact-particles@1.18.0-alpha.5) (2020-08-11)
+
+**Note:** Version bump only for package preact-particles
+
+
+
+
+
 # [1.18.0-alpha.4](https://github.com/matteobruni/tsparticles/compare/preact-particles@1.18.0-alpha.3...preact-particles@1.18.0-alpha.4) (2020-08-11)
 
 **Note:** Version bump only for package preact-particles
