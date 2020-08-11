@@ -1,6 +1,5 @@
 import type { Particle } from "../../../Particle";
 import type { Container } from "../../../Container";
-import { Circle } from "../../../../Utils";
 import type { IParticlesInteractor } from "../../../Interfaces/IParticlesInteractor";
 import type { IDelta } from "../../../Interfaces/IDelta";
 
@@ -41,7 +40,7 @@ export class Infecter implements IParticlesInteractor {
 
         //const query = container.particles.spatialGrid.queryRadius(pos, radius)
         const query = container.particles.quadTree
-            .query(new Circle(pos.x, pos.y, radius))
+            .queryCircle(pos, radius)
             .filter(
                 (p) => p.infecter.infectionStage === undefined || p.infecter.infectionStage !== infecter1.infectionStage
             );
@@ -50,6 +49,10 @@ export class Infecter implements IParticlesInteractor {
         const neighbors = query.length;
 
         for (const p2 of query) {
+            if (p2 === p1 || p2.destroyed || p2.spawning) {
+                continue;
+            }
+
             const infecter2 = p2.infecter;
 
             if (Math.random() < infections / neighbors) {

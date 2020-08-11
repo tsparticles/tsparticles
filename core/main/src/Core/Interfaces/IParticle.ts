@@ -16,6 +16,7 @@ export interface IParticle {
     randomIndexData?: number;
 
     readonly angle: number;
+    readonly pathAngle: number;
     readonly bubble: IBubbleParticleData;
     readonly color: IHsl | undefined;
     readonly close: boolean;
@@ -35,6 +36,7 @@ export interface IParticle {
     readonly shapeData?: IShapeValues;
     readonly size: IParticleSizeAnimation;
     readonly stroke: IStroke;
+    readonly strokeWidth: number;
     readonly strokeColor: IHsl | undefined;
     readonly velocity: IVelocity;
     readonly linksDistance?: number;

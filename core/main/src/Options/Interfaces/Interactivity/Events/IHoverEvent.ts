@@ -1,6 +1,6 @@
 import type { HoverMode } from "../../../../Enums";
 import type { IParallax } from "./IParallax";
-import type { SingleOrMultiple } from "../../../../Types/SingleOrMultiple";
+import type { SingleOrMultiple } from "../../../../Types";
 
 export interface IHoverEvent {
     enable: boolean;

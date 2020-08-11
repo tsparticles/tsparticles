@@ -3,6 +3,110 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.0.0-alpha.44](https://github.com/matteobruni/tsparticles/compare/editor-demo@1.0.0-alpha.43...editor-demo@1.0.0-alpha.44) (2020-08-11)
+
+**Note:** Version bump only for package editor-demo
+
+
+
+
+
+# [1.0.0-alpha.43](https://github.com/matteobruni/tsparticles/compare/editor-demo@1.0.0-alpha.42...editor-demo@1.0.0-alpha.43) (2020-08-11)
+
+**Note:** Version bump only for package editor-demo
+
+
+
+
+
+# [1.0.0-alpha.42](https://github.com/matteobruni/tsparticles/compare/editor-demo@1.0.0-alpha.41...editor-demo@1.0.0-alpha.42) (2020-08-11)
+
+**Note:** Version bump only for package editor-demo
+
+
+
+
+
+# [1.0.0-alpha.41](https://github.com/matteobruni/tsparticles/compare/editor-demo@1.0.0-alpha.40...editor-demo@1.0.0-alpha.41) (2020-08-10)
+
+**Note:** Version bump only for package editor-demo
+
+
+
+
+
+# [1.0.0-alpha.40](https://github.com/matteobruni/tsparticles/compare/editor-demo@1.0.0-alpha.39...editor-demo@1.0.0-alpha.40) (2020-08-09)
+
+**Note:** Version bump only for package editor-demo
+
+
+
+
+
+# [1.0.0-alpha.39](https://github.com/matteobruni/tsparticles/compare/editor-demo@1.0.0-1.0.0-alpha.38.0...editor-demo@1.0.0-alpha.39) (2020-08-08)
+
+**Note:** Version bump only for package editor-demo
+
+
+
+
+
+# [1.0.0-alpha.37](https://github.com/matteobruni/tsparticles/compare/editor-demo@1.0.0-alpha.3...editor-demo@1.0.0-alpha.37) (2020-08-05)
+
+**Note:** Version bump only for package editor-demo
+
+
+
+
+
+# [1.0.0-alpha.11](https://github.com/matteobruni/tsparticles/compare/editor-demo@1.0.0-alpha.3...editor-demo@1.0.0-alpha.11) (2020-08-05)
+
+**Note:** Version bump only for package editor-demo
+
+
+
+
+
+# [1.0.0-alpha.4](https://github.com/matteobruni/tsparticles/compare/editor-demo@1.0.0-alpha.3...editor-demo@1.0.0-alpha.4) (2020-08-05)
+
+**Note:** Version bump only for package editor-demo
+
+
+
+
+
+# [1.0.0-alpha.3](https://github.com/matteobruni/tsparticles/compare/editor-demo@1.0.0-alpha.2...editor-demo@1.0.0-alpha.3) (2020-08-05)
+
+**Note:** Version bump only for package editor-demo
+
+
+
+
+
+# [1.0.0-alpha.2](https://github.com/matteobruni/tsparticles/compare/editor-demo@1.0.0-alpha.1...editor-demo@1.0.0-alpha.2) (2020-08-05)
+
+**Note:** Version bump only for package editor-demo
+
+
+
+
+
+# [1.0.0-alpha.1](https://github.com/matteobruni/tsparticles/compare/editor-demo@1.0.0-alpha.0...editor-demo@1.0.0-alpha.1) (2020-08-05)
+
+**Note:** Version bump only for package editor-demo
+
+
+
+
+
+# [1.0.0-alpha.0](https://github.com/matteobruni/tsparticles/compare/editor-demo@1.0.0-beta.15...editor-demo@1.0.0-alpha.0) (2020-08-04)
+
+**Note:** Version bump only for package editor-demo
+
+
+
+
+
 # [1.0.0-alpha.14](https://github.com/matteobruni/tsparticles/compare/editor-demo@1.0.0-alpha.13...editor-demo@1.0.0-alpha.14) (2020-07-05)
 
 **Note:** Version bump only for package editor-demo

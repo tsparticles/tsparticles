@@ -15,6 +15,12 @@ export class Updater {
             return;
         }
 
+        this.updateLife(delta);
+
+        if (this.particle.destroyed || this.particle.spawning) {
+            return;
+        }
+
         /* change opacity status */
         this.updateOpacity(delta);
 
@@ -32,6 +38,69 @@ export class Updater {
 
         /* out of canvas modes */
         this.updateOutMode(delta);
+    }
+
+    private updateLife(delta: IDelta): void {
+        const particle = this.particle;
+        let justSpawned = false;
+
+        if (particle.spawning) {
+            particle.lifeDelayTime += delta.value;
+
+            if (particle.lifeDelayTime >= particle.lifeDelay) {
+                justSpawned = true;
+                particle.spawning = false;
+                particle.lifeDelayTime = 0;
+                particle.lifeTime = 0;
+            }
+        }
+
+        if (particle.lifeDuration === -1) {
+            return;
+        }
+
+        if (!particle.spawning) {
+            if (justSpawned) {
+                particle.lifeTime = 0;
+            } else {
+                particle.lifeTime += delta.value;
+            }
+
+            if (particle.lifeTime >= particle.lifeDuration) {
+                particle.lifeTime = 0;
+
+                if (particle.livesRemaining > 0) {
+                    particle.livesRemaining--;
+                }
+
+                if (particle.livesRemaining === 0) {
+                    particle.destroy();
+                    return;
+                }
+
+                const canvasSize = this.container.canvas.size;
+
+                particle.position.x = Utils.randomInRange(0, canvasSize.width);
+                particle.position.y = Utils.randomInRange(0, canvasSize.height);
+
+                particle.spawning = true;
+                particle.lifeDelayTime = 0;
+                particle.lifeTime = 0;
+
+                const lifeOptions = particle.particlesOptions.life;
+
+                if (lifeOptions.delay.random.enable) {
+                    particle.lifeDelay =
+                        Utils.randomInRange(lifeOptions.delay.random.minimumValue, lifeOptions.delay.value) * 1000;
+                }
+
+                if (lifeOptions.duration.random.enable) {
+                    particle.lifeDuration =
+                        Utils.randomInRange(lifeOptions.duration.random.minimumValue, lifeOptions.duration.value) *
+                        1000;
+                }
+            }
+        }
     }
 
     private updateOpacity(delta: IDelta): void {
@@ -105,27 +174,32 @@ export class Updater {
 
     private updateAngle(delta: IDelta): void {
         const particle = this.particle;
-        const rotateAnimation = particle.particlesOptions.rotate.animation;
+        const rotate = particle.particlesOptions.rotate;
+        const rotateAnimation = rotate.animation;
         const speed = (rotateAnimation.speed / 360) * delta.factor;
         const max = 2 * Math.PI;
 
-        if (rotateAnimation.enable) {
-            switch (particle.rotateDirection) {
-                case RotateDirection.clockwise:
-                    particle.angle += speed;
+        if (rotate.path) {
+            particle.pathAngle = Math.atan2(particle.velocity.vertical, particle.velocity.horizontal);
+        } else {
+            if (rotateAnimation.enable) {
+                switch (particle.rotateDirection) {
+                    case RotateDirection.clockwise:
+                        particle.angle += speed;
 
-                    if (particle.angle > max) {
-                        particle.angle -= max;
-                    }
-                    break;
-                case RotateDirection.counterClockwise:
-                default:
-                    particle.angle -= speed;
+                        if (particle.angle > max) {
+                            particle.angle -= max;
+                        }
+                        break;
+                    case RotateDirection.counterClockwise:
+                    default:
+                        particle.angle -= speed;
 
-                    if (particle.angle < 0) {
-                        particle.angle += max;
-                    }
-                    break;
+                        if (particle.angle < 0) {
+                            particle.angle += max;
+                        }
+                        break;
+                }
             }
         }
     }

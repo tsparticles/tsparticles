@@ -1,6 +1,6 @@
 import type { IOpacity } from "../../../Interfaces/Particles/Opacity/IOpacity";
 import { OpacityAnimation } from "./OpacityAnimation";
-import type { RecursivePartial } from "../../../../Types/RecursivePartial";
+import type { RecursivePartial } from "../../../../Types";
 import { OpacityRandom } from "./OpacityRandom";
 import type { IOptionLoader } from "../../../Interfaces/IOptionLoader";
 

@@ -1,13 +1,12 @@
 import type { IDivEvent } from "../../../Interfaces/Interactivity/Events/IDivEvent";
 import { DivMode, DivType } from "../../../../Enums";
-import type { RecursivePartial } from "../../../../Types/RecursivePartial";
-import type { SingleOrMultiple } from "../../../../Types/SingleOrMultiple";
+import type { RecursivePartial, SingleOrMultiple } from "../../../../Types";
 import type { IOptionLoader } from "../../../Interfaces/IOptionLoader";
 
 export class DivEvent implements IDivEvent, IOptionLoader<IDivEvent> {
     /**
      * The element id to detect the event
-     * @deprecated this property is obsolete, please use the new ids
+     * @deprecated this property is obsolete, please use the new selectors
      */
     get elementId(): SingleOrMultiple<string> {
         return this.ids;
@@ -15,7 +14,7 @@ export class DivEvent implements IDivEvent, IOptionLoader<IDivEvent> {
 
     /**
      * The element id to detect the event
-     * @deprecated this property is obsolete, please use the new ids
+     * @deprecated this property is obsolete, please use the new selectors
      * @param value
      */
     set elementId(value: SingleOrMultiple<string>) {
@@ -24,7 +23,7 @@ export class DivEvent implements IDivEvent, IOptionLoader<IDivEvent> {
 
     /**
      * The element id to detect the event
-     * @deprecated this property is obsolete, please use the new ids
+     * @deprecated this property is obsolete, please use the new selectors
      */
     public get el(): SingleOrMultiple<string> {
         return this.elementId;
@@ -32,7 +31,7 @@ export class DivEvent implements IDivEvent, IOptionLoader<IDivEvent> {
 
     /**
      * The element id to detect the event
-     * @deprecated this property is obsolete, please use the new ids
+     * @deprecated this property is obsolete, please use the new selectors
      * @param value
      */
     public set el(value: SingleOrMultiple<string>) {
@@ -41,8 +40,33 @@ export class DivEvent implements IDivEvent, IOptionLoader<IDivEvent> {
 
     /**
      * The element id to detect the event
+     * @deprecated this property is obsolete, please use the new ids
      */
-    public ids: SingleOrMultiple<string>;
+    get ids(): SingleOrMultiple<string> {
+        if (this.selectors instanceof Array) {
+            return this.selectors.map((t) => t.replace("#", ""));
+        } else {
+            return this.selectors.replace("#", "");
+        }
+
+        // this is the best we can do, if a non-id selector is used the old property won't work
+        // but ids is deprecated so who cares.
+    }
+
+    /**
+     * The element id to detect the event
+     * @deprecated this property is obsolete, please use the new ids
+     * @param value
+     */
+    set ids(value: SingleOrMultiple<string>) {
+        if (value instanceof Array) {
+            this.selectors = value.map((t) => `#${t}`);
+        } else {
+            this.selectors = `#${value}`;
+        }
+    }
+
+    public selectors: SingleOrMultiple<string>;
 
     /**
      * The div event handler enabling mode
@@ -57,7 +81,7 @@ export class DivEvent implements IDivEvent, IOptionLoader<IDivEvent> {
     public type: DivType;
 
     constructor() {
-        this.ids = [];
+        this.selectors = [];
         this.enable = false;
         this.mode = [];
         this.type = DivType.circle;
@@ -72,6 +96,10 @@ export class DivEvent implements IDivEvent, IOptionLoader<IDivEvent> {
 
         if (ids !== undefined) {
             this.ids = ids;
+        }
+
+        if (data.selectors !== undefined) {
+            this.selectors = data.selectors;
         }
 
         if (data.enable !== undefined) {

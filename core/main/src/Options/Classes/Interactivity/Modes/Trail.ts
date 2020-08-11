@@ -1,6 +1,6 @@
 import type { ITrail } from "../../../Interfaces/Interactivity/Modes/ITrail";
 import type { IParticles } from "../../../Interfaces/Particles/IParticles";
-import type { RecursivePartial } from "../../../../Types/RecursivePartial";
+import type { RecursivePartial } from "../../../../Types";
 import { Utils } from "../../../../Utils";
 import type { IOptionLoader } from "../../../Interfaces/IOptionLoader";
 

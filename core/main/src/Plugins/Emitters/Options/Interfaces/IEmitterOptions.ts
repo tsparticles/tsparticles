@@ -1,7 +1,7 @@
-import { SingleOrMultiple } from "../../../../Types/SingleOrMultiple";
-import { IEmitter } from "./IEmitter";
-import { IInteractivity } from "../../../../Options/Interfaces/Interactivity/IInteractivity";
-import { IModes } from "../../../../Options/Interfaces/Interactivity/Modes/IModes";
+import type { SingleOrMultiple } from "../../../../Types";
+import type { IEmitter } from "./IEmitter";
+import type { IInteractivity } from "../../../../Options/Interfaces/Interactivity/IInteractivity";
+import type { IModes } from "../../../../Options/Interfaces/Interactivity/Modes/IModes";
 
 export interface IEmitterOptions {
     emitters: SingleOrMultiple<IEmitter>;

@@ -1,7 +1,7 @@
 import { Container } from "./Container";
 import type { IOptions } from "../Options/Interfaces/IOptions";
-import type { RecursivePartial } from "../Types/RecursivePartial";
-import { Circle, Constants, Utils } from "../Utils";
+import type { RecursivePartial } from "../Types";
+import { Constants, Utils } from "../Utils";
 import { Particle } from "./Particle";
 import { ICoordinates } from "./Interfaces/ICoordinates";
 
@@ -146,6 +146,7 @@ export class Loader {
         }
 
         newItem.canvas.loadCanvas(canvasEl, generatedCanvas);
+
         await newItem.start();
 
         return newItem;
@@ -226,9 +227,12 @@ export class Loader {
                 }
 
                 const pxRatio = domItem.retina.pixelRatio;
-                const particles = domItem.particles.quadTree.query(
-                    new Circle(pos.x * pxRatio, pos.y * pxRatio, domItem.retina.sizeValue)
-                );
+                const posRetina = {
+                    x: pos.x * pxRatio,
+                    y: pos.y * pxRatio,
+                };
+
+                const particles = domItem.particles.quadTree.queryCircle(posRetina, domItem.retina.sizeValue);
 
                 callback(e, particles);
             };

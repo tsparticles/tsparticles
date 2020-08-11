@@ -1,6 +1,6 @@
 import type { IParticlesNumber } from "../../Interfaces/Particles/IParticlesNumber";
 import { Density } from "./Density";
-import type { RecursivePartial } from "../../../Types/RecursivePartial";
+import type { RecursivePartial } from "../../../Types";
 import type { IOptionLoader } from "../../Interfaces/IOptionLoader";
 
 export class ParticlesNumber implements IParticlesNumber, IOptionLoader<IParticlesNumber> {

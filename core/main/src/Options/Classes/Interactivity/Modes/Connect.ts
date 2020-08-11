@@ -1,6 +1,6 @@
 import type { IConnect } from "../../../Interfaces/Interactivity/Modes/IConnect";
 import { ConnectLinks } from "./ConnectLinks";
-import type { RecursivePartial } from "../../../../Types/RecursivePartial";
+import type { RecursivePartial } from "../../../../Types";
 import type { IOptionLoader } from "../../../Interfaces/IOptionLoader";
 
 export class Connect implements IConnect, IOptionLoader<IConnect> {

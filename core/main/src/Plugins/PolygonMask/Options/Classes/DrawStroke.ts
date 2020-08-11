@@ -1,5 +1,5 @@
 import type { IDrawStroke } from "../Interfaces/IDrawStroke";
-import type { RecursivePartial } from "../../../../Types/RecursivePartial";
+import type { RecursivePartial } from "../../../../Types";
 import { OptionsColor } from "../../../../Options/Classes/OptionsColor";
 import { ColorUtils } from "../../../../Utils";
 import type { IOptionLoader } from "../../../../Options/Interfaces/IOptionLoader";

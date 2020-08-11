@@ -5,7 +5,7 @@ import { IParticlesParams } from './ng-particles.module';
 @Component({
     selector: 'Particles',
     template: `
-        <div [id]="id"></div> `,
+      <div [id]="id"></div> `,
     styles: []
 })
 export class NgParticlesComponent implements OnInit {

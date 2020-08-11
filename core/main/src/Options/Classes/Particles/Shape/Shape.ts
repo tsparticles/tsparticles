@@ -1,8 +1,6 @@
 import type { IShape } from "../../../Interfaces/Particles/Shape/IShape";
 import { ShapeType } from "../../../../Enums";
-import type { RecursivePartial } from "../../../../Types/RecursivePartial";
-import type { SingleOrMultiple } from "../../../../Types/SingleOrMultiple";
-import type { ShapeData } from "../../../../Types/ShapeData";
+import type { RecursivePartial, ShapeData, SingleOrMultiple } from "../../../../Types";
 import { Stroke } from "../Stroke";
 import { Utils } from "../../../../Utils";
 import type { IShapeValues } from "../../../Interfaces/Particles/Shape/IShapeValues";

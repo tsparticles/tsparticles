@@ -1,10 +1,10 @@
-import { Container } from "./Container";
+import type { Container } from "./Container";
 import type { ICoordinates } from "./Interfaces/ICoordinates";
 import type { IMouseData } from "./Interfaces/IMouseData";
 import type { IRgb } from "./Interfaces/IRgb";
 import { Particle } from "./Particle";
 import { Point, QuadTree, Rectangle, Utils } from "../Utils";
-import { RecursivePartial } from "../Types/RecursivePartial";
+import { RecursivePartial } from "../Types";
 import type { IParticles } from "../Options/Interfaces/Particles/IParticles";
 import { InteractionManager } from "./Particle/InteractionManager";
 import type { IDelta } from "./Interfaces/IDelta";
@@ -129,7 +129,9 @@ export class Particles {
         for (const particle of this.container.particles.array) {
             particle.update(delta);
 
-            this.interactionManager.particlesInteract(particle, delta);
+            if (!particle.destroyed && !particle.spawning) {
+                this.interactionManager.particlesInteract(particle, delta);
+            }
         }
     }
 
@@ -205,7 +207,7 @@ export class Particles {
 
             return particle;
         } catch {
-            console.log("error adding particle");
+            console.warn("error adding particle");
 
             return;
         }

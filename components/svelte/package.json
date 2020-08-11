@@ -1,8 +1,8 @@
 {
   "name": "svelte-particles",
-  "version": "1.0.0",
+  "version": "1.1.0-alpha.6",
   "scripts": {
-    "build": "rollup -c"
+    "build": "prettier --write ./README.md && rollup -c"
   },
   "repository": {
     "type": "git",
@@ -51,17 +51,19 @@
   "files": [
     "dist/**/*"
   ],
-  "main": "dist/svelte-particles.js",
+  "main": "dist/umd/svelte-particles.js",
+  "module": "dist/es/svelte-particles.js",
   "devDependencies": {
     "@rollup/plugin-commonjs": "^14.0.0",
     "@rollup/plugin-node-resolve": "^8.4.0",
-    "rollup": "^2.21.0",
+    "prettier": "^2.0.5",
+    "rollup": "^2.23.1",
     "rollup-plugin-svelte": "^5.2.3",
-    "rollup-plugin-terser": "^6.1.0",
-    "svelte": "^3.24.0"
+    "rollup-plugin-terser": "^7.0.0",
+    "svelte": "^3.24.1"
   },
   "dependencies": {
-    "tsparticles": "^1.17.0"
+    "tsparticles": "^1.18.0-alpha.6"
   },
   "bugs": {
     "url": "https://github.com/matteobruni/tsparticles/issues"

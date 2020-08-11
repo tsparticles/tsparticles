@@ -8,6 +8,7 @@ import type { ILink } from "./Interfaces/ILink";
 import { CanvasUtils, ColorUtils, Constants } from "../Utils";
 import type { Particle } from "./Particle";
 import type { IDelta } from "./Interfaces/IDelta";
+import type { IRgba } from "./Interfaces/IRgba";
 
 /**
  * Canvas manager
@@ -28,7 +29,7 @@ export class Canvas {
      */
     private context: CanvasRenderingContext2D | null;
     private generatedCanvas: boolean;
-    private coverColor?: IRgb;
+    private coverColor?: IRgba;
     private trailFillColor?: IRgb;
 
     /**
@@ -57,7 +58,17 @@ export class Canvas {
         const color = cover.color;
         const trail = options.particles.move.trail;
 
-        this.coverColor = ColorUtils.colorToRgb(color);
+        const coverRgb = ColorUtils.colorToRgb(color);
+
+        this.coverColor =
+            coverRgb !== undefined
+                ? {
+                      r: coverRgb.r,
+                      g: coverRgb.g,
+                      b: coverRgb.b,
+                      a: cover.opacity,
+                  }
+                : undefined;
         this.trailFillColor = ColorUtils.colorToRgb(trail.fillColor);
 
         this.initBackground();
@@ -110,12 +121,15 @@ export class Canvas {
     public paint(): void {
         const options = this.container.options;
 
-        if (this.context) {
-            if (options.backgroundMask.enable && options.backgroundMask.cover && this.coverColor) {
-                this.paintBase(ColorUtils.getStyleFromRgb(this.coverColor));
-            } else {
-                this.paintBase();
-            }
+        if (!this.context) {
+            return;
+        }
+
+        if (options.backgroundMask.enable && options.backgroundMask.cover && this.coverColor) {
+            CanvasUtils.clear(this.context, this.size);
+            this.paintBase(ColorUtils.getStyleFromRgb(this.coverColor, this.coverColor.a));
+        } else {
+            this.paintBase();
         }
     }
 
@@ -245,8 +259,8 @@ export class Canvas {
             if (linkColor === Constants.randomColorValue) {
                 colorLine = ColorUtils.getRandomRgbColor();
             } else if (linkColor === "mid") {
-                const sourceColor = p1.getFillColor();
-                const destColor = p2.getFillColor();
+                const sourceColor = p1.getFillColor() ?? p1.getStrokeColor();
+                const destColor = p2.getFillColor() ?? p2.getStrokeColor();
 
                 if (sourceColor && destColor) {
                     colorLine = ColorUtils.mix(sourceColor, destColor, p1.size.value, p2.size.value);
@@ -320,17 +334,28 @@ export class Canvas {
         );
     }
 
+    public drawParticleShadow(particle: Particle, mousePos: ICoordinates): void {
+        if (!this.context) {
+            return;
+        }
+
+        const radius = particle.bubble.radius ?? particle.size.value;
+
+        CanvasUtils.drawParticleShadow(this.container, this.context, particle, radius, mousePos);
+    }
+
     public drawParticle(particle: Particle, delta: IDelta): void {
-        if (particle.image?.loaded === false) {
+        if (particle.image?.loaded === false || particle.spawning || particle.destroyed) {
             return;
         }
 
         const pfColor = particle.getFillColor();
-        if (pfColor === undefined) {
+        const psColor = particle.getStrokeColor() ?? pfColor;
+
+        if (!pfColor && !psColor) {
             return;
         }
 
-        const psColor = particle.getStrokeColor() ?? pfColor;
         const options = this.container.options;
         const twinkle = particle.particlesOptions.twinkle.particles;
         const twinkleFreq = twinkle.frequency;
@@ -344,13 +369,17 @@ export class Canvas {
         const infectionColor = infectionStage !== undefined ? infectionStages[infectionStage].color : undefined;
         const infectionRgb = ColorUtils.colorToRgb(infectionColor);
         const fColor =
-            twinkling && twinkleRgb !== undefined ? twinkleRgb : infectionRgb ?? ColorUtils.hslToRgb(pfColor);
+            twinkling && twinkleRgb !== undefined
+                ? twinkleRgb
+                : infectionRgb ?? (pfColor ? ColorUtils.hslToRgb(pfColor) : undefined);
         const sColor =
-            twinkling && twinkleRgb !== undefined ? twinkleRgb : infectionRgb ?? ColorUtils.hslToRgb(psColor);
+            twinkling && twinkleRgb !== undefined
+                ? twinkleRgb
+                : infectionRgb ?? (psColor ? ColorUtils.hslToRgb(psColor) : undefined);
 
         const fillColorValue = fColor !== undefined ? ColorUtils.getStyleFromRgb(fColor, opacity) : undefined;
 
-        if (!this.context || !fillColorValue) {
+        if (!this.context || (!fillColorValue && !sColor)) {
             return;
         }
 
@@ -380,18 +409,20 @@ export class Canvas {
             this.context.restore();
         }
 
-        CanvasUtils.drawParticle(
-            this.container,
-            this.context,
-            particle,
-            delta,
-            fillColorValue,
-            strokeColorValue,
-            options.backgroundMask.enable,
-            radius,
-            opacity,
-            particle.particlesOptions.shadow
-        );
+        if (radius > 0) {
+            CanvasUtils.drawParticle(
+                this.container,
+                this.context,
+                particle,
+                delta,
+                fillColorValue,
+                strokeColorValue,
+                options.backgroundMask.enable,
+                radius,
+                opacity,
+                particle.particlesOptions.shadow
+            );
+        }
     }
 
     public drawPlugin(plugin: IContainerPlugin, delta: IDelta): void {
@@ -403,9 +434,11 @@ export class Canvas {
     }
 
     private paintBase(baseColor?: string): void {
-        if (this.context) {
-            CanvasUtils.paintBase(this.context, this.size, baseColor);
+        if (!this.context) {
+            return;
         }
+
+        CanvasUtils.paintBase(this.context, this.size, baseColor);
     }
 
     private lineStyle(p1: IParticle, p2: IParticle): CanvasGradient | undefined {
@@ -451,5 +484,13 @@ export class Canvas {
         if (background.size) {
             elementStyle.backgroundSize = background.size;
         }
+    }
+
+    public drawLight(mousePos: ICoordinates): void {
+        if (!this.context) {
+            return;
+        }
+
+        CanvasUtils.drawLight(this.container, this.context, mousePos);
     }
 }

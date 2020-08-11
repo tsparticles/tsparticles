@@ -1,6 +1,6 @@
 import type { IAbsorberSize } from "../Interfaces/IAbsorberSize";
 import { AbsorberRandomSize } from "./AbsorberRandomSize";
-import type { RecursivePartial } from "../../../../Types/RecursivePartial";
+import type { RecursivePartial } from "../../../../Types";
 import type { IOptionLoader } from "../../../../Options/Interfaces/IOptionLoader";
 
 export class AbsorberSize implements IAbsorberSize, IOptionLoader<IAbsorberSize> {

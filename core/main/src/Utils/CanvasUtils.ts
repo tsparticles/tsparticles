@@ -8,7 +8,8 @@ import type { IShadow } from "../Options/Interfaces/Particles/IShadow";
 import type { Container } from "../Core/Container";
 import type { IContainerPlugin } from "../Core/Interfaces/IContainerPlugin";
 import { Utils } from "./Utils";
-import { IDelta } from "../Core/Interfaces/IDelta";
+import type { IDelta } from "../Core/Interfaces/IDelta";
+import { Particle } from "../Core/Particle";
 
 export class CanvasUtils {
     public static paintBase(context: CanvasRenderingContext2D, dimension: IDimension, baseColor?: string): void {
@@ -41,7 +42,7 @@ export class CanvasUtils {
         let drawn = false;
 
         if (Utils.getDistance(begin, end) <= maxDistance) {
-            this.drawLine(context, begin, end);
+            CanvasUtils.drawLine(context, begin, end);
 
             drawn = true;
         } else if (warp) {
@@ -93,8 +94,8 @@ export class CanvasUtils {
             }
 
             if (pi1 && pi2) {
-                this.drawLine(context, begin, pi1);
-                this.drawLine(context, end, pi2);
+                CanvasUtils.drawLine(context, begin, pi1);
+                CanvasUtils.drawLine(context, end, pi2);
 
                 drawn = true;
             }
@@ -137,7 +138,7 @@ export class CanvasUtils {
         // this.ctx.lineCap = "round"; /* performance issue */
         /* path */
 
-        this.drawTriangle(context, pos1, pos2, pos3);
+        CanvasUtils.drawTriangle(context, pos1, pos2, pos3);
 
         context.lineWidth = width;
 
@@ -159,7 +160,7 @@ export class CanvasUtils {
     ): void {
         context.save();
 
-        this.drawLine(context, begin, end);
+        CanvasUtils.drawLine(context, begin, end);
 
         context.lineWidth = width;
         context.strokeStyle = lineStyle;
@@ -203,11 +204,111 @@ export class CanvasUtils {
     ): void {
         context.save();
 
-        this.drawLine(context, begin, end);
+        CanvasUtils.drawLine(context, begin, end);
 
         context.strokeStyle = ColorUtils.getStyleFromRgb(colorLine, opacity);
         context.lineWidth = width;
         context.stroke();
+        context.restore();
+    }
+
+    public static drawLight(container: Container, context: CanvasRenderingContext2D, mousePos: ICoordinates): void {
+        const lightOptions = container.options.interactivity.modes.light.light;
+
+        context.beginPath();
+        context.arc(mousePos.x, mousePos.y, lightOptions.radius, 0, 2 * Math.PI);
+
+        const gradientAmbientLight = context.createRadialGradient(
+            mousePos.x,
+            mousePos.y,
+            0,
+            mousePos.x,
+            mousePos.y,
+            lightOptions.radius
+        );
+
+        const gradient = lightOptions.gradient;
+        const gradientRgb = {
+            start: ColorUtils.colorToRgb(gradient.start),
+            stop: ColorUtils.colorToRgb(gradient.stop),
+        };
+
+        if (!gradientRgb.start || !gradientRgb.stop) {
+            return;
+        }
+
+        gradientAmbientLight.addColorStop(0, ColorUtils.getStyleFromRgb(gradientRgb.start));
+        gradientAmbientLight.addColorStop(1, ColorUtils.getStyleFromRgb(gradientRgb.stop));
+        context.fillStyle = gradientAmbientLight;
+        context.fill();
+    }
+
+    public static drawParticleShadow(
+        container: Container,
+        context: CanvasRenderingContext2D,
+        particle: Particle,
+        radius: number,
+        mousePos: ICoordinates
+    ): void {
+        const pos = particle.getPosition();
+        const shadowOptions = container.options.interactivity.modes.light.shadow;
+
+        context.save();
+
+        const sides = 24;
+        const full = (Math.PI * 2) / sides;
+        const angle = -particle.angle + Math.PI / 4;
+        const factor = 1; //Math.sqrt(2);
+        const dots = [];
+
+        for (let i = 0; i < sides; i++) {
+            dots.push({
+                x: pos.x + radius * Math.sin(angle + full * i) * factor,
+                y: pos.y + radius * Math.cos(angle + full * i) * factor,
+            });
+        }
+
+        const points = [];
+
+        const shadowLength = shadowOptions.length;
+
+        for (const dot of dots) {
+            const angle = Math.atan2(mousePos.y - dot.y, mousePos.x - dot.x);
+            const endX = dot.x + shadowLength * Math.sin(-angle - Math.PI / 2);
+            const endY = dot.y + shadowLength * Math.cos(-angle - Math.PI / 2);
+
+            points.push({
+                endX: endX,
+                endY: endY,
+                startX: dot.x,
+                startY: dot.y,
+            });
+        }
+
+        const shadowRgb = ColorUtils.colorToRgb(shadowOptions.color);
+
+        if (!shadowRgb) {
+            return;
+        }
+
+        const shadowColor = ColorUtils.getStyleFromRgb(shadowRgb);
+
+        for (let i = points.length - 1; i >= 0; i--) {
+            const n = i == points.length - 1 ? 0 : i + 1;
+
+            context.beginPath();
+
+            context.moveTo(points[i].startX, points[i].startY);
+
+            context.lineTo(points[n].startX, points[n].startY);
+            context.lineTo(points[n].endX, points[n].endY);
+            context.lineTo(points[i].endX, points[i].endY);
+
+            context.fillStyle = shadowColor;
+
+            context.fill();
+        }
+
         context.restore();
     }
 
@@ -216,8 +317,8 @@ export class CanvasUtils {
         context: CanvasRenderingContext2D,
         particle: IParticle,
         delta: IDelta,
-        fillColorValue: string,
-        strokeColorValue: string,
+        fillColorValue: string | undefined,
+        strokeColorValue: string | undefined,
         backgroundMask: boolean,
         radius: number,
         opacity: number,
@@ -230,7 +331,11 @@ export class CanvasUtils {
         context.beginPath();
 
         if (particle.angle !== 0) {
-            context.rotate(particle.angle);
+            if (particle.particlesOptions.rotate.path) {
+                context.rotate(particle.angle + particle.pathAngle);
+            } else {
+                context.rotate(particle.angle);
+            }
         }
 
         if (backgroundMask) {
@@ -246,21 +351,26 @@ export class CanvasUtils {
             context.shadowOffsetY = shadow.offset.y;
         }
 
-        context.fillStyle = fillColorValue;
+        if (fillColorValue) {
+            context.fillStyle = fillColorValue;
+        }
 
         const stroke = particle.stroke;
 
-        context.lineWidth = stroke.width;
-        context.strokeStyle = strokeColorValue;
+        context.lineWidth = particle.strokeWidth;
 
-        if (particle.close) {
-            context.closePath();
+        if (strokeColorValue) {
+            context.strokeStyle = strokeColorValue;
         }
 
-        this.drawShape(container, context, particle, radius, opacity, delta);
+        CanvasUtils.drawShape(container, context, particle, radius, opacity, delta);
 
         if (stroke.width > 0) {
             context.stroke();
+        }
+
+        if (particle.close) {
+            context.closePath();
         }
 
         if (particle.fill) {
@@ -268,6 +378,7 @@ export class CanvasUtils {
         }
 
         context.restore();
+
         context.save();
         context.translate(pos.x, pos.y);
 
@@ -279,7 +390,7 @@ export class CanvasUtils {
             context.globalCompositeOperation = "destination-out";
         }
 
-        this.drawShapeAfterEffect(container, context, particle, radius, opacity, delta);
+        CanvasUtils.drawShapeAfterEffect(container, context, particle, radius, opacity, delta);
 
         context.restore();
     }
@@ -302,7 +413,7 @@ export class CanvasUtils {
             return;
         }
 
-        drawer.draw(context, particle, radius, opacity, delta.value);
+        drawer.draw(context, particle, radius, opacity, delta.value, container.retina.pixelRatio);
     }
 
     public static drawShapeAfterEffect(
@@ -323,7 +434,7 @@ export class CanvasUtils {
             return;
         }
 
-        drawer.afterEffect(context, particle, radius, opacity, delta.value);
+        drawer.afterEffect(context, particle, radius, opacity, delta.value, container.retina.pixelRatio);
     }
 
     public static drawPlugin(context: CanvasRenderingContext2D, plugin: IContainerPlugin, delta: IDelta): void {

@@ -1,11 +1,11 @@
 {
   "name": "react-tsparticles-demo",
   "private": true,
-  "version": "1.2.0",
+  "version": "1.3.0-alpha.6",
   "description": "> TODO: description",
   "author": "Matteo Bruni <ar3s@icloud.com>",
   "homepage": "https://github.com/matteobruni/tsparticles#readme",
-  "license": "ISC",
+  "license": "MIT",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/matteobruni/tsparticles.git"
@@ -21,20 +21,20 @@
     "@types/react": "^16.9.43",
     "@types/react-dom": "^16.9.8",
     "@types/react-syntax-highlighter": "^11.0.4",
-    "@typescript-eslint/eslint-plugin": "^3.6.1",
+    "@typescript-eslint/eslint-plugin": "^3.7.0",
     "@typescript-eslint/parser": "^3.6.1",
-    "eslint": "^7.4.0",
+    "eslint": "^7.5.0",
     "eslint-config-prettier": "^6.11.0",
     "node-sass": "^4.14.1",
     "parcel": "^1.12.4",
     "prettier": "^2.0.5",
-    "react-syntax-highlighter": "^12.2.1",
-    "rxjs": "^6.6.0",
-    "typescript": "^3.9.6"
+    "react-syntax-highlighter": "^13.0.0",
+    "rxjs": "^6.6.2",
+    "typescript": "^3.9.7"
   },
   "dependencies": {
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
-    "react-tsparticles": "^1.17.0"
+    "react-tsparticles": "^1.18.0-alpha.6"
   }
 }

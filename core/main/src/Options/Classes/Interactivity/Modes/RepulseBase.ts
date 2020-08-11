@@ -1,5 +1,5 @@
 import type { IRepulseBase } from "../../../Interfaces/Interactivity/Modes/IRepulseBase";
-import type { RecursivePartial } from "../../../../Types/RecursivePartial";
+import type { RecursivePartial } from "../../../../Types";
 
 export abstract class RepulseBase implements IRepulseBase {
     public distance: number;

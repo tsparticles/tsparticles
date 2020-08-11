@@ -13,6 +13,8 @@ import { TrailMaker } from "./Interactions/Mouse/TrailMaker";
 import type { IDelta } from "../Interfaces/IDelta";
 import { Attractor as MouseAttractor } from "./Interactions/Mouse/Attractor";
 import { Particle } from "../Particle";
+import { Lighter as ParticlesLighter } from "./Interactions/Particles/Lighter";
+import { Lighter as MouseLighter } from "./Interactions/Mouse/Lighter";
 
 export class InteractionManager {
     private readonly externalInteractors: IExternalInteractor[];
@@ -20,16 +22,18 @@ export class InteractionManager {
 
     constructor(private readonly container: Container) {
         this.externalInteractors = [
-            new MouseAttractor(container),
             new Bubbler(container),
             new Connector(container),
             new Grabber(container),
+            new MouseLighter(container),
+            new MouseAttractor(container),
             new Repulser(container),
             new TrailMaker(container),
         ];
 
         this.particleInteractors = [
             new ParticlesAttractor(container),
+            new ParticlesLighter(container),
             new Collider(container),
             new Infecter(container),
             new Linker(container),

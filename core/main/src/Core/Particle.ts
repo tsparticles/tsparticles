@@ -16,18 +16,18 @@ import { Particles } from "../Options/Classes/Particles/Particles";
 import { Shape } from "../Options/Classes/Particles/Shape/Shape";
 import {
     MoveDirection,
+    MoveDirectionAlt,
     OpacityAnimationStatus,
     OutMode,
     RotateDirection,
+    RotateDirectionAlt,
     ShapeType,
     SizeAnimationStatus,
     StartValueType,
-    MoveDirectionAlt,
-    RotateDirectionAlt,
 } from "../Enums";
 import { ImageDrawer } from "../ShapeDrawers/ImageDrawer";
 import type { IImageShape } from "../Options/Interfaces/Particles/Shape/IImageShape";
-import { RecursivePartial } from "../Types/RecursivePartial";
+import type { RecursivePartial } from "../Types";
 import type { ILink } from "./Interfaces/ILink";
 import type { IHsl } from "./Interfaces/IHsl";
 import { ColorUtils, Plugins, Utils } from "../Utils";
@@ -41,6 +41,7 @@ import { Mover } from "./Particle/Mover";
  */
 export class Particle implements IParticle {
     public angle: number;
+    public pathAngle: number;
     public destroyed: boolean;
     public rotateDirection: RotateDirection | keyof typeof RotateDirection | RotateDirectionAlt;
     public randomIndexData?: number;
@@ -53,6 +54,7 @@ export class Particle implements IParticle {
     public readonly position: ICoordinates;
     public readonly offset: ICoordinates;
     public readonly color: IHsl | undefined;
+    public readonly strokeWidth: number;
     public readonly strokeColor: IHsl | undefined;
     public readonly shadowColor: IRgb | undefined;
     public readonly opacity: IParticleOpacityAnimation;
@@ -71,6 +73,12 @@ export class Particle implements IParticle {
     public sizeValue?: number;
     public randomMinimumSize?: number;
     public sizeAnimationSpeed?: number;
+    public lifeDelay: number;
+    public lifeDelayTime: number;
+    public lifeDuration: number;
+    public lifeTime: number;
+    public livesRemaining: number;
+    public spawning: boolean;
 
     public readonly updater: Updater;
     public readonly infecter: Infecter;
@@ -92,15 +100,23 @@ export class Particle implements IParticle {
         this.lastNoiseTime = 0;
         this.destroyed = false;
 
+        const pxRatio = container.retina.pixelRatio;
         const options = container.options;
         const particlesOptions = new Particles();
 
         particlesOptions.load(options.particles);
 
-        if (overrideOptions?.shape?.type) {
-            const shapeType = overrideOptions.shape.type;
+        const shapeType = particlesOptions.shape.type;
 
-            this.shape = shapeType instanceof Array ? Utils.itemFromArray(shapeType) : shapeType;
+        this.shape = shapeType instanceof Array ? Utils.itemFromArray(shapeType) : shapeType;
+
+        if (overrideOptions?.shape) {
+            if (overrideOptions.shape.type) {
+                const overrideShapeType = overrideOptions.shape.type;
+
+                this.shape =
+                    overrideShapeType instanceof Array ? Utils.itemFromArray(overrideShapeType) : overrideShapeType;
+            }
 
             const shapeOptions = new Shape();
 
@@ -117,10 +133,6 @@ export class Particle implements IParticle {
                 }
             }
         } else {
-            const shapeType = particlesOptions.shape.type;
-
-            this.shape = shapeType instanceof Array ? Utils.itemFromArray(shapeType) : shapeType;
-
             const shapeData = particlesOptions.shape.options[this.shape];
 
             if (shapeData) {
@@ -183,12 +195,11 @@ export class Particle implements IParticle {
         };
 
         const rotateOptions = this.particlesOptions.rotate;
-        const initialAngle = rotateOptions.path
-            ? Math.atan2(this.initialVelocity.vertical, this.initialVelocity.horizontal)
-            : 0;
+
         const degAngle = rotateOptions.random ? Math.random() * 360 : rotateOptions.value;
 
-        this.angle = initialAngle + (degAngle * Math.PI) / 180;
+        this.angle = (degAngle * Math.PI) / 180;
+        this.pathAngle = Math.atan2(this.initialVelocity.vertical, this.initialVelocity.horizontal);
 
         this.rotateDirection = rotateOptions.direction;
 
@@ -201,18 +212,27 @@ export class Particle implements IParticle {
         const sizeAnimation = this.particlesOptions.size.animation;
 
         if (sizeAnimation.enable) {
-            switch (sizeAnimation.startValue) {
-                case StartValueType.min:
-                    if (!randomSize) {
-                        const pxRatio = container.retina.pixelRatio;
-
+            if (!randomSize) {
+                switch (sizeAnimation.startValue) {
+                    case StartValueType.min:
                         this.size.value = sizeAnimation.minimumValue * pxRatio;
-                    }
+                        this.size.status = SizeAnimationStatus.increasing;
 
-                    break;
+                        break;
+
+                    case StartValueType.random:
+                        this.size.value = Utils.randomInRange(sizeAnimation.minimumValue * pxRatio, this.size.value);
+                        this.size.status = SizeAnimationStatus.increasing;
+
+                        break;
+
+                    case StartValueType.max:
+                    default:
+                        this.size.status = SizeAnimationStatus.decreasing;
+
+                        break;
+                }
             }
-
-            this.size.status = SizeAnimationStatus.increasing;
             this.size.velocity = (this.sizeAnimationSpeed ?? container.retina.sizeAnimationSpeed) / 100;
 
             if (!sizeAnimation.sync) {
@@ -297,6 +317,8 @@ export class Particle implements IParticle {
                 ? Utils.itemFromArray(this.particlesOptions.stroke)
                 : this.particlesOptions.stroke;
 
+        this.strokeWidth = this.stroke.width * container.retina.pixelRatio;
+
         /* strokeColor */
         this.strokeColor = ColorUtils.colorToHsl(this.stroke.color);
 
@@ -320,9 +342,42 @@ export class Particle implements IParticle {
             }
         }
 
+        const lifeOptions = particlesOptions.life;
+
+        let lifeDelay = lifeOptions.delay.value;
+
+        if (lifeOptions.delay.random.enable) {
+            lifeDelay = Utils.randomInRange(lifeOptions.delay.random.minimumValue, lifeDelay);
+        } else if (!lifeOptions.delay.sync) {
+            lifeDelay *= Math.random();
+        }
+
+        let lifeDuration = lifeOptions.duration.value;
+
+        if (lifeOptions.duration.random.enable) {
+            lifeDuration = Utils.randomInRange(lifeOptions.duration.random.minimumValue, lifeDuration);
+        } else if (!lifeOptions.duration.sync) {
+            lifeDuration *= Math.random() + 0.0001;
+        }
+
+        this.lifeDelay = lifeDelay * 1000;
+        this.lifeDelayTime = 0;
+        this.lifeDuration = lifeDuration * 1000;
+        this.lifeTime = 0;
+        this.livesRemaining = particlesOptions.life.count;
+        this.spawning = this.lifeDelay > 0;
+
+        if (this.lifeDuration <= 0) {
+            this.lifeDuration = -1;
+        }
+
+        if (this.livesRemaining <= 0) {
+            this.livesRemaining = -1;
+        }
+
         this.shadowColor = ColorUtils.colorToRgb(this.particlesOptions.shadow.color);
         this.updater = new Updater(container, this);
-        this.infecter = new Infecter(container, this);
+        this.infecter = new Infecter(container);
         this.mover = new Mover(container, this);
     }
 
@@ -446,11 +501,20 @@ export class Particle implements IParticle {
             vertical: 0,
         };
         const moveOptions = this.particlesOptions.move;
-        const rad = (Math.PI / 180) * moveOptions.angle;
-        const rad45 = Math.PI / 4;
+
+        let rad: number;
+        let radOffset = Math.PI / 4;
+
+        if (typeof moveOptions.angle === "number") {
+            rad = (Math.PI / 180) * moveOptions.angle;
+        } else {
+            rad = (Math.PI / 180) * moveOptions.angle.value;
+            radOffset = (Math.PI / 180) * moveOptions.angle.offset;
+        }
+
         const range = {
-            left: Math.sin(rad45 + rad / 2) - Math.sin(rad45 - rad / 2),
-            right: Math.cos(rad45 + rad / 2) - Math.cos(rad45 - rad / 2),
+            left: Math.sin(radOffset + rad / 2) - Math.sin(radOffset - rad / 2),
+            right: Math.cos(radOffset + rad / 2) - Math.cos(radOffset - rad / 2),
         };
 
         if (moveOptions.straight) {
@@ -504,7 +568,7 @@ export class Particle implements IParticle {
 
             /* prepare to create img with colored svg */
             const svg = new Blob([svgColoredData], { type: "image/svg+xml" });
-            const domUrl = window.URL || window.webkitURL || window;
+            const domUrl = URL || window.URL || window.webkitURL || window;
             const url = domUrl.createObjectURL(svg);
 
             /* create particle img obj */

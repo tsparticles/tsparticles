@@ -1,5 +1,5 @@
 import type { IBackgroundMask } from "../../Interfaces/BackgroundMask/IBackgroundMask";
-import type { RecursivePartial } from "../../../Types/RecursivePartial";
+import type { RecursivePartial } from "../../../Types";
 import type { IBackgroundMaskCover } from "../../Interfaces/BackgroundMask/IBackgroundMaskCover";
 import { BackgroundMaskCover } from "./BackgroundMaskCover";
 import type { IColor } from "../../../Core/Interfaces/IColor";

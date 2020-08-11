@@ -1,5 +1,5 @@
 import type { INoise } from "../../../Interfaces/Particles/Noise/INoise";
-import type { RecursivePartial } from "../../../../Types/RecursivePartial";
+import type { RecursivePartial } from "../../../../Types";
 import { NoiseDelay } from "./NoiseDelay";
 import type { IOptionLoader } from "../../../Interfaces/IOptionLoader";
 

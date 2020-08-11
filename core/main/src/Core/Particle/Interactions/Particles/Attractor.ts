@@ -1,8 +1,8 @@
 import type { IParticle } from "../../../Interfaces/IParticle";
 import type { Container } from "../../../Container";
-import { Circle, Utils } from "../../../../Utils";
+import { Utils } from "../../../../Utils";
 import { Particle } from "../../../Particle";
-import { IParticlesInteractor } from "../../../Interfaces/IParticlesInteractor";
+import type { IParticlesInteractor } from "../../../Interfaces/IParticlesInteractor";
 
 export class Attractor implements IParticlesInteractor {
     constructor(private readonly container: Container) {}
@@ -15,10 +15,10 @@ export class Attractor implements IParticlesInteractor {
         const pos1 = p1.getPosition();
 
         //const query = container.particles.spatialGrid.queryRadius(pos1, distance);
-        const query = container.particles.quadTree.query(new Circle(pos1.x, pos1.y, distance));
+        const query = container.particles.quadTree.queryCircle(pos1, distance);
 
         for (const p2 of query) {
-            if (p1 === p2 || p2.particlesOptions.move.attract.enable) {
+            if (p1 === p2 || p2.particlesOptions.move.attract.enable || p2.destroyed || p2.spawning) {
                 continue;
             }
 

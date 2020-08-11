@@ -3,12 +3,12 @@ import type { ILinksTriangle } from "./ILinksTriangle";
 import type { IColor } from "../../../../Core/Interfaces/IColor";
 
 export interface ILinks {
-    id?: string;
     blink: boolean;
     color: string | IColor;
     consent: boolean;
     distance: number;
     enable: boolean;
+    id?: string;
     opacity: number;
     shadow: ILinksShadow;
     triangles: ILinksTriangle;

@@ -1,6 +1,6 @@
 import type { IShadow } from "../../Interfaces/Particles/IShadow";
 import type { ICoordinates } from "../../../Core/Interfaces/ICoordinates";
-import type { RecursivePartial } from "../../../Types/RecursivePartial";
+import type { RecursivePartial } from "../../../Types";
 import { OptionsColor } from "../OptionsColor";
 import type { IOptionLoader } from "../../Interfaces/IOptionLoader";
 

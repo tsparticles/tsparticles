@@ -3,6 +3,94 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.0.0-alpha.43](https://github.com/matteobruni/tsparticles/compare/tsparticles-editor@1.0.0-alpha.42...tsparticles-editor@1.0.0-alpha.43) (2020-08-11)
+
+**Note:** Version bump only for package tsparticles-editor
+
+
+
+
+
+# [1.0.0-alpha.42](https://github.com/matteobruni/tsparticles/compare/tsparticles-editor@1.0.0-alpha.41...tsparticles-editor@1.0.0-alpha.42) (2020-08-11)
+
+**Note:** Version bump only for package tsparticles-editor
+
+
+
+
+
+# [1.0.0-alpha.41](https://github.com/matteobruni/tsparticles/compare/tsparticles-editor@1.0.0-alpha.40...tsparticles-editor@1.0.0-alpha.41) (2020-08-11)
+
+**Note:** Version bump only for package tsparticles-editor
+
+
+
+
+
+# [1.0.0-alpha.40](https://github.com/matteobruni/tsparticles/compare/tsparticles-editor@1.0.0-alpha.39...tsparticles-editor@1.0.0-alpha.40) (2020-08-10)
+
+**Note:** Version bump only for package tsparticles-editor
+
+
+
+
+
+# [1.0.0-alpha.39](https://github.com/matteobruni/tsparticles/compare/tsparticles-editor@1.0.0-alpha.38...tsparticles-editor@1.0.0-alpha.39) (2020-08-09)
+
+**Note:** Version bump only for package tsparticles-editor
+
+
+
+
+
+# [1.0.0-alpha.38](https://github.com/matteobruni/tsparticles/compare/tsparticles-editor@1.0.0-1.0.0-alpha.37.0...tsparticles-editor@1.0.0-alpha.38) (2020-08-08)
+
+**Note:** Version bump only for package tsparticles-editor
+
+
+
+
+
+# [1.0.0-alpha.36](https://github.com/matteobruni/tsparticles/compare/tsparticles-editor@1.0.0-alpha.35...tsparticles-editor@1.0.0-alpha.36) (2020-08-05)
+
+**Note:** Version bump only for package tsparticles-editor
+
+
+
+
+
+# [1.0.0-alpha.35](https://github.com/matteobruni/tsparticles/compare/tsparticles-editor@1.0.0-alpha.34...tsparticles-editor@1.0.0-alpha.35) (2020-08-05)
+
+**Note:** Version bump only for package tsparticles-editor
+
+
+
+
+
+# [1.0.0-alpha.34](https://github.com/matteobruni/tsparticles/compare/tsparticles-editor@1.0.0-alpha.33...tsparticles-editor@1.0.0-alpha.34) (2020-08-05)
+
+**Note:** Version bump only for package tsparticles-editor
+
+
+
+
+
+# [1.0.0-alpha.33](https://github.com/matteobruni/tsparticles/compare/tsparticles-editor@1.0.0-alpha.32...tsparticles-editor@1.0.0-alpha.33) (2020-08-05)
+
+**Note:** Version bump only for package tsparticles-editor
+
+
+
+
+
+# [1.0.0-alpha.32](https://github.com/matteobruni/tsparticles/compare/tsparticles-editor@1.0.0-alpha.31...tsparticles-editor@1.0.0-alpha.32) (2020-08-04)
+
+**Note:** Version bump only for package tsparticles-editor
+
+
+
+
+
 # [1.0.0-alpha.15](https://github.com/matteobruni/tsparticles/compare/tsparticles-editor@1.0.0-alpha.14...tsparticles-editor@1.0.0-alpha.15) (2020-07-05)
 
 **Note:** Version bump only for package tsparticles-editor

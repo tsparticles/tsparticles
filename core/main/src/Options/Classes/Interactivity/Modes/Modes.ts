@@ -6,16 +6,18 @@ import { Remove } from "./Remove";
 import { Push } from "./Push";
 import { Repulse } from "./Repulse";
 import { Slow } from "./Slow";
-import type { RecursivePartial } from "../../../../Types/RecursivePartial";
+import type { RecursivePartial } from "../../../../Types";
 import { Trail } from "./Trail";
 import type { IOptionLoader } from "../../../Interfaces/IOptionLoader";
 import { Attract } from "./Attract";
+import { Light } from "./Light";
 
 export class Modes implements IModes, IOptionLoader<IModes> {
     public attract: Attract;
     public bubble: Bubble;
     public connect: Connect;
     public grab: Grab;
+    public light: Light;
     public push: Push;
     public remove: Remove;
     public repulse: Repulse;
@@ -27,6 +29,7 @@ export class Modes implements IModes, IOptionLoader<IModes> {
         this.bubble = new Bubble();
         this.connect = new Connect();
         this.grab = new Grab();
+        this.light = new Light();
         this.push = new Push();
         this.remove = new Remove();
         this.repulse = new Repulse();
@@ -43,6 +46,7 @@ export class Modes implements IModes, IOptionLoader<IModes> {
         this.bubble.load(data.bubble);
         this.connect.load(data.connect);
         this.grab.load(data.grab);
+        this.light.load(data.light);
         this.push.load(data.push);
         this.remove.load(data.remove);
         this.repulse.load(data.repulse);

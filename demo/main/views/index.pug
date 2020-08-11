@@ -46,15 +46,20 @@ html(lang="en")
                                     option(value="dataImages") Data URI Images
                                     option(value="default") Default
                                     option(value="destroy") Destroy
+                                    option(value="disappearing") Disappearing
                                     option(value="divEvents") Div Events
                                     option(value="emitter") Emitter
+                                    option(value="emitterAngled") Emitter Angled
                                     option(value="emitterAbsorber") Emitter and Absorber
                                     option(value="forward") Forward
+                                    option(value="grabRandomColor") Grab Random Color
                                     option(value="growing") Growing
                                     option(value="fontawesome") Font Awesome
                                     option(value="hollowknight") Hollow Knight
                                     option(value="images") Multiple Images
                                     option(value="infection") Infection
+                                    option(value="life") Life
+                                    option(value="lightHover") Light Hover
                                     option(value="linkTriangles") Link Triangles
                                     option(value="localPolygonMask") Local Polygon Mask
                                     option(value="mouseAttract") Mouse Attract
@@ -63,6 +68,7 @@ html(lang="en")
                                     option(value="multiplePolygonMasks") Multiple Polygon Masks
                                     option(value="nasa") NASA
                                     option(value="noconfig") No Config
+                                    option(value="noisePlanes") Noise Planes
                                     option(value="nyancat") Nyan Cat
                                     option(value="nyancat2") Nyan Cat 2
                                     option(value="parallax") Parallax
@@ -115,10 +121,10 @@ html(lang="en")
                         .col
                             #editor
                 #tsparticles-container.col.p-0.h-100
-                    #repulse-circle-div(style="width: 200px; height: 200px; background-color: rgba(255, 255, 255, .5); border-radius: 100px; position: absolute; top: 10%; left: 10%; margin-left: -100px; margin-top: -100px; z-index: 200")
-                    #bubble-circle-div(style="width: 200px; height: 200px; background-color: rgba(255, 255, 255, .5); border-radius: 100px; position: absolute; top: 10%; right: 10%; margin-left: -100px; margin-top: -100px; z-index: 200")
-                    #repulse-rectangle-div(style="width: 200px; height: 200px; background-color: rgba(255, 255, 255, .5); position: absolute; bottom: 10%; left: 10%; margin-left: -100px; margin-top: -100px; z-index: 200")
-                    #bubble-rectangle-div(style="width: 200px; height: 200px; background-color: rgba(255, 255, 255, .5); position: absolute; bottom: 10%; right: 10%; margin-left: -100px; margin-top: -100px; z-index: 200")
+                    .circle.repulse(style="width: 200px; height: 200px; background-color: rgba(255, 255, 255, .5); border-radius: 100px; position: absolute; top: 10%; left: 10%; margin-left: -100px; margin-top: -100px; z-index: 200")
+                    .circle.bubble(style="width: 200px; height: 200px; background-color: rgba(255, 255, 255, .5); border-radius: 100px; position: absolute; top: 10%; right: 10%; margin-left: -100px; margin-top: -100px; z-index: 200")
+                    .rectangle.repulse(style="width: 200px; height: 200px; background-color: rgba(255, 255, 255, .5); position: absolute; bottom: 10%; left: 10%; margin-left: -100px; margin-top: -100px; z-index: 200")
+                    .rectangle.bubble(style="width: 200px; height: 200px; background-color: rgba(255, 255, 255, .5); position: absolute; bottom: 10%; right: 10%; margin-left: -100px; margin-top: -100px; z-index: 200")
                     #tsparticles
                     .github
                         a.btn.btn-link(href="https://github.com/matteobruni/tsparticles" title="Find more info on GitHub")
@@ -151,18 +157,6 @@ html(lang="en")
             input(type="hidden" name="data" value="" id="code-pen-data")
             input(type="submit" value="Create Pen")
 
-        // Global site tag (gtag.js) - Google Analytics
-        script(async, src="https://www.googletagmanager.com/gtag/js?id=UA-159372955-1")
-        script.
-            window.dataLayer = window.dataLayer || [];
-            function gtag() {
-                dataLayer.push(arguments);
-            }
-
-            gtag('js', new Date());
-
-            gtag('config', 'UA-159372955-1');
-
         script(src="/jquery/jquery.slim.min.js")
         script(src="/popper.js/umd/popper.min.js")
         script(src="/bootstrap/js/bootstrap.min.js")
@@ -174,4 +168,5 @@ html(lang="en")
         script(src="/preset-basic/tsparticles.preset.basic.min.js")
         script(src="/javascripts/presetFire.js")
         script(src="/javascripts/shapeSpiral.js")
+        script(src="/javascripts/noise.js")
         script(src="/javascripts/demo.js")

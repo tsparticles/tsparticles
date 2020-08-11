@@ -1,5 +1,5 @@
 import type { IDensity } from "../../Interfaces/Particles/IDensity";
-import type { RecursivePartial } from "../../../Types/RecursivePartial";
+import type { RecursivePartial } from "../../../Types";
 import type { IOptionLoader } from "../../Interfaces/IOptionLoader";
 
 export class Density implements IDensity, IOptionLoader<IDensity> {

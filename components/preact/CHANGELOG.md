@@ -3,6 +3,54 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.18.0-alpha.6](https://github.com/matteobruni/tsparticles/compare/preact-particles@1.18.0-alpha.5...preact-particles@1.18.0-alpha.6) (2020-08-11)
+
+**Note:** Version bump only for package preact-particles
+
+
+
+
+
+# [1.18.0-alpha.5](https://github.com/matteobruni/tsparticles/compare/preact-particles@1.18.0-alpha.4...preact-particles@1.18.0-alpha.5) (2020-08-11)
+
+**Note:** Version bump only for package preact-particles
+
+
+
+
+
+# [1.18.0-alpha.4](https://github.com/matteobruni/tsparticles/compare/preact-particles@1.18.0-alpha.3...preact-particles@1.18.0-alpha.4) (2020-08-11)
+
+**Note:** Version bump only for package preact-particles
+
+
+
+
+
+# [1.18.0-alpha.3](https://github.com/matteobruni/tsparticles/compare/preact-particles@1.18.0-alpha.2...preact-particles@1.18.0-alpha.3) (2020-08-10)
+
+**Note:** Version bump only for package preact-particles
+
+
+
+
+
+# [1.18.0-alpha.2](https://github.com/matteobruni/tsparticles/compare/preact-particles@1.18.0-alpha.1...preact-particles@1.18.0-alpha.2) (2020-08-09)
+
+**Note:** Version bump only for package preact-particles
+
+
+
+
+
+# [1.18.0-alpha.1](https://github.com/matteobruni/tsparticles/compare/preact-particles@1.17.7...preact-particles@1.18.0-alpha.1) (2020-08-08)
+
+**Note:** Version bump only for package preact-particles
+
+
+
+
+
 # [1.17.0-alpha.14](https://github.com/matteobruni/tsparticles/compare/preact-particles@1.17.0-alpha.13...preact-particles@1.17.0-alpha.14) (2020-07-05)
 
 **Note:** Version bump only for package preact-particles

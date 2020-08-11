@@ -6,7 +6,7 @@ import { Particles } from "./Particles";
 import { Retina } from "./Retina";
 import type { IOptions } from "../Options/Interfaces/IOptions";
 import { FrameManager } from "./FrameManager";
-import type { RecursivePartial } from "../Types/RecursivePartial";
+import type { RecursivePartial } from "../Types";
 import { Options } from "../Options/Classes/Options";
 import type { IContainerPlugin } from "./Interfaces/IContainerPlugin";
 import type { IShapeDrawer } from "./Interfaces/IShapeDrawer";
@@ -15,7 +15,7 @@ import { Particle } from "./Particle";
 import type { INoiseValue } from "./Interfaces/INoiseValue";
 import type { INoise } from "./Interfaces/INoise";
 import type { IRgb } from "./Interfaces/IRgb";
-import { IAttract } from "./Interfaces/IAttract";
+import type { IAttract } from "./Interfaces/IAttract";
 
 /**
  * The object loaded into an HTML element, it'll contain options loaded and all data to let everything working
@@ -33,7 +33,7 @@ export class Container {
     public attract: IAttract;
     public lastFrameTime: number;
     public pageHidden: boolean;
-    public drawer?: FrameManager;
+    public drawer: FrameManager;
     public started: boolean;
     public destroyed: boolean;
     public density: number;
@@ -41,6 +41,7 @@ export class Container {
     public readonly noise: INoise;
 
     private paused: boolean;
+    private firstStart: boolean;
     private drawAnimationFrame?: number;
     private eventListeners: EventListeners;
 
@@ -56,6 +57,7 @@ export class Container {
         public readonly sourceOptions?: RecursivePartial<IOptions>,
         ...presets: string[]
     ) {
+        this.firstStart = true;
         this.started = false;
         this.destroyed = false;
         this.paused = true;
@@ -91,7 +93,6 @@ export class Container {
         this.plugins = new Map<string, IContainerPlugin>();
         this.drawers = new Map<string, IShapeDrawer>();
         this.density = 1;
-
         /* tsParticles variables with default values */
         this.options = new Options();
 
@@ -114,6 +115,8 @@ export class Container {
             this.options.load(this.sourceOptions);
         }
 
+        this.options.setTheme(undefined);
+
         /* ---------- tsParticles - start ------------ */
         this.eventListeners = new EventListeners(this);
     }
@@ -124,6 +127,11 @@ export class Container {
      */
     public play(force?: boolean): void {
         const needsUpdate = this.paused || force;
+
+        if (this.firstStart && !this.options.autoPlay) {
+            this.firstStart = false;
+            return;
+        }
 
         if (this.paused) {
             this.paused = false;
@@ -171,7 +179,7 @@ export class Container {
      * Draws a frame
      */
     public draw(): void {
-        this.drawAnimationFrame = Utils.animate((t) => this.drawer?.nextFrame(t));
+        this.drawAnimationFrame = Utils.animate((timestamp) => this.drawer.nextFrame(timestamp));
     }
 
     /**
@@ -251,17 +259,6 @@ export class Container {
 
         this.canvas.destroy();
 
-        delete this.interactivity;
-        delete this.options;
-        delete this.retina;
-        delete this.canvas;
-        delete this.particles;
-        delete this.bubble;
-        delete this.repulse;
-        delete this.attract;
-        delete this.drawer;
-        delete this.eventListeners;
-
         for (const [, drawer] of this.drawers) {
             if (drawer.destroy) {
                 drawer.destroy(this);
@@ -327,7 +324,14 @@ export class Container {
         this.plugins = new Map<string, IContainerPlugin>();
         this.particles.linksColors = new Map<string, IRgb | string | undefined>();
 
+        delete this.particles.grabLineColor;
         delete this.particles.linksColor;
+    }
+
+    public async loadTheme(name?: string): Promise<void> {
+        this.options.setTheme(name);
+
+        await this.refresh();
     }
 
     /**

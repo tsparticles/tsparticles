@@ -1,5 +1,5 @@
 import type { IMove } from "../Interfaces/IMove";
-import type { RecursivePartial } from "../../../../Types/RecursivePartial";
+import type { RecursivePartial } from "../../../../Types";
 import { MoveType } from "../../Enums";
 import type { IOptionLoader } from "../../../../Options/Interfaces/IOptionLoader";
 

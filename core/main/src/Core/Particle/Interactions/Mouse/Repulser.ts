@@ -56,39 +56,44 @@ export class Repulser implements IExternalInteractor {
         } else if (clickEnabled && Utils.isInArray(ClickMode.repulse, clickMode)) {
             this.clickRepulse();
         } else {
-            Utils.divModeExecute(DivMode.repulse, divs, (id, div): void => this.singleDivRepulse(id, div));
+            Utils.divModeExecute(DivMode.repulse, divs, (selector, div): void =>
+                this.singleSelectorRepulse(selector, div)
+            );
         }
     }
 
-    private singleDivRepulse(id: string, div: DivEvent): void {
+    private singleSelectorRepulse(selector: string, div: DivEvent): void {
         const container = this.container;
-        const elem = document.getElementById(id);
+        const query = document.querySelectorAll(selector);
 
-        if (!elem) {
+        if (!query.length) {
             return;
         }
 
-        const pxRatio = container.retina.pixelRatio;
-        const pos = {
-            x: (elem.offsetLeft + elem.offsetWidth / 2) * pxRatio,
-            y: (elem.offsetTop + elem.offsetHeight / 2) * pxRatio,
-        };
-        const repulseRadius = (elem.offsetWidth / 2) * pxRatio;
+        query.forEach((item) => {
+            const elem = item as HTMLElement;
+            const pxRatio = container.retina.pixelRatio;
+            const pos = {
+                x: (elem.offsetLeft + elem.offsetWidth / 2) * pxRatio,
+                y: (elem.offsetTop + elem.offsetHeight / 2) * pxRatio,
+            };
+            const repulseRadius = (elem.offsetWidth / 2) * pxRatio;
 
-        const area =
-            div.type === DivType.circle
-                ? new Circle(pos.x, pos.y, repulseRadius)
-                : new Rectangle(
-                      elem.offsetLeft * pxRatio,
-                      elem.offsetTop * pxRatio,
-                      elem.offsetWidth * pxRatio,
-                      elem.offsetHeight * pxRatio
-                  );
+            const area =
+                div.type === DivType.circle
+                    ? new Circle(pos.x, pos.y, repulseRadius)
+                    : new Rectangle(
+                          elem.offsetLeft * pxRatio,
+                          elem.offsetTop * pxRatio,
+                          elem.offsetWidth * pxRatio,
+                          elem.offsetHeight * pxRatio
+                      );
 
-        const divs = container.options.interactivity.modes.repulse.divs;
-        const divRepulse = Utils.divMode(divs, id);
+            const divs = container.options.interactivity.modes.repulse.divs;
+            const divRepulse = Utils.divMode(divs, elem);
 
-        this.processRepulse(pos, repulseRadius, area, divRepulse);
+            this.processRepulse(pos, repulseRadius, area, divRepulse);
+        });
     }
 
     private hoverRepulse(): void {
@@ -225,40 +230,43 @@ export class Repulser implements IExternalInteractor {
         } else if (clickEnabled && Utils.isInArray(ClickMode.repulse, clickMode)) {
             this.clickRepulse();
         } else {
-            Utils.divModeExecute(DivMode.repulse, divs, (id, div): void => this.singleDivRepulse(id, div));
+            Utils.divModeExecute(DivMode.repulse, divs, (selector, div): void => this.singleDivRepulse(selector, div));
         }
     }
 
-    private singleDivRepulse(id: string, div: DivEvent): void {
+    private singleDivRepulse(selector: string, div: DivEvent): void {
         const container = this.container;
-        const elem = document.getElementById(id);
+        const query = document.querySelectorAll(selector);
 
-        if (!elem) {
+        if (!query.length) {
             return;
         }
 
-        const pxRatio = container.retina.pixelRatio;
-        const pos = {
-            x: (elem.offsetLeft + elem.offsetWidth / 2) * pxRatio,
-            y: (elem.offsetTop + elem.offsetHeight / 2) * pxRatio,
-        };
-        const repulseRadius = (elem.offsetWidth / 2) * pxRatio;
+        query.forEach(item => {
+                const elem = item as HTMLElement;
+            const pxRatio = container.retina.pixelRatio;
+            const pos = {
+                x: (elem.offsetLeft + elem.offsetWidth / 2) * pxRatio,
+                y: (elem.offsetTop + elem.offsetHeight / 2) * pxRatio,
+            };
+            const repulseRadius = (elem.offsetWidth / 2) * pxRatio;
 
-        const area =
-            div.type === DivType.circle
-                ? new Circle(pos.x, pos.y, repulseRadius)
-                : new Rectangle(
-                elem.offsetLeft * pxRatio,
-                elem.offsetTop * pxRatio,
-                elem.offsetWidth * pxRatio,
-                elem.offsetHeight * pxRatio
-                );
+            const area =
+                div.type === DivType.circle
+                    ? new Circle(pos.x, pos.y, repulseRadius)
+                    : new Rectangle(
+                    elem.offsetLeft * pxRatio,
+                    elem.offsetTop * pxRatio,
+                    elem.offsetWidth * pxRatio,
+                    elem.offsetHeight * pxRatio
+                    );
 
-        const divs = container.options.interactivity.modes.repulse.divs;
-        const divRepulse = Utils.divMode(divs, id);
-        const velocity = (divRepulse?.speed ?? container.options.interactivity.modes.repulse.speed) * 100;
+            const divs = container.options.interactivity.modes.repulse.divs;
+            const divRepulse = Utils.divMode(divs, selector);
+            const velocity = (divRepulse?.speed ?? container.options.interactivity.modes.repulse.speed) * 100;
 
-        this.processRepulse(pos, repulseRadius, velocity, area, divRepulse);
+            this.processRepulse(pos, repulseRadius, velocity, area, divRepulse);
+        });
     }
 
     private hoverRepulse(): void {

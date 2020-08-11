@@ -2,13 +2,17 @@ import type { IOptions } from "../Interfaces/IOptions";
 import { Interactivity } from "./Interactivity/Interactivity";
 import { Particles } from "./Particles/Particles";
 import { BackgroundMask } from "./BackgroundMask/BackgroundMask";
-import type { RecursivePartial } from "../../Types/RecursivePartial";
+import type { RecursivePartial } from "../../Types";
 import { Background } from "./Background/Background";
 import { Infection } from "./Infection/Infection";
 import { Plugins } from "../../Utils";
 import type { IOptionLoader } from "../Interfaces/IOptionLoader";
+import { Theme } from "./Theme/Theme";
+import { ThemeMode } from "../../Enums/Modes";
 
 export class Options implements IOptions, IOptionLoader<IOptions> {
+    public autoPlay: boolean;
+
     /**
      * @deprecated this property is obsolete, please use the new fpsLimit
      */
@@ -49,8 +53,10 @@ export class Options implements IOptions, IOptionLoader<IOptions> {
     public particles: Particles;
     public pauseOnBlur: boolean;
     public preset?: string | string[];
+    public themes: Theme[];
 
     constructor() {
+        this.autoPlay = true;
         this.background = new Background();
         this.backgroundMask = new BackgroundMask();
         this.detectRetina = true;
@@ -59,6 +65,7 @@ export class Options implements IOptions, IOptionLoader<IOptions> {
         this.interactivity = new Interactivity();
         this.particles = new Particles();
         this.pauseOnBlur = true;
+        this.themes = [];
     }
 
     /**
@@ -80,6 +87,10 @@ export class Options implements IOptions, IOptionLoader<IOptions> {
             }
         }
 
+        if (data.autoPlay !== undefined) {
+            this.autoPlay = data.autoPlay;
+        }
+
         const detectRetina = data.detectRetina ?? data.retina_detect;
 
         if (detectRetina !== undefined) {
@@ -95,14 +106,49 @@ export class Options implements IOptions, IOptionLoader<IOptions> {
         if (data.pauseOnBlur !== undefined) {
             this.pauseOnBlur = data.pauseOnBlur;
         }
-
         this.background.load(data.background);
         this.particles.load(data.particles);
         this.infection.load(data.infection);
         this.interactivity.load(data.interactivity);
         this.backgroundMask.load(data.backgroundMask);
 
+        if (data.themes !== undefined) {
+            for (const theme of data.themes) {
+                const optTheme = new Theme();
+                optTheme.load(theme);
+                this.themes.push(optTheme);
+            }
+        }
+
         Plugins.loadOptions(this, data);
+    }
+
+    public setTheme(name?: string): void {
+        if (name) {
+            const chosenTheme = this.themes.find((theme) => theme.name === name);
+
+            if (chosenTheme) {
+                this.load(chosenTheme.options);
+            }
+        } else {
+            const clientDarkMode =
+                typeof matchMedia !== "undefined" && matchMedia("(prefers-color-scheme: dark)").matches;
+            const defaultThemes = this.themes.filter((theme) => theme.default.value);
+
+            let defaultTheme = defaultThemes.find(
+                (theme) =>
+                    (theme.default.mode === ThemeMode.dark && clientDarkMode) ||
+                    (theme.default.mode === ThemeMode.light && !clientDarkMode)
+            );
+
+            if (!defaultTheme) {
+                defaultTheme = defaultThemes.find((theme) => theme.default.mode === ThemeMode.any);
+            }
+
+            if (defaultTheme) {
+                this.load(defaultTheme.options);
+            }
+        }
     }
 
     private importPreset(preset: string): void {

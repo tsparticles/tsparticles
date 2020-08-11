@@ -1,6 +1,6 @@
 {
   "name": "tsparticles-preset-stars",
-  "version": "1.2.0",
+  "version": "1.3.0-alpha.6",
   "description": "tsParticles stars preset",
   "homepage": "https://particles.matteobruni.it/",
   "scripts": {
@@ -52,18 +52,18 @@
   },
   "main": "dist/tsparticles.preset.stars.min.js",
   "devDependencies": {
-    "@typescript-eslint/eslint-plugin": "^3.6.1",
+    "@typescript-eslint/eslint-plugin": "^3.7.0",
     "@typescript-eslint/parser": "^3.6.1",
     "cpx": "^1.5.0",
-    "eslint": "^7.4.0",
+    "eslint": "^7.5.0",
     "eslint-config-prettier": "^6.11.0",
     "prettier": "^2.0.5",
-    "terser-webpack-plugin": "^3.0.6",
-    "typescript": "^3.9.6",
-    "webpack": "^4.43.0",
+    "terser-webpack-plugin": "^4.1.0",
+    "typescript": "^3.9.7",
+    "webpack": "^4.44.1",
     "webpack-cli": "^3.3.12"
   },
   "dependencies": {
-    "tsparticles": "^1.17.0"
+    "tsparticles": "^1.18.0-alpha.6"
   }
 }

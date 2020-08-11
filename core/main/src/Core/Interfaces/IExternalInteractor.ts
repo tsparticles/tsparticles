@@ -1,5 +1,5 @@
 import type { IInteractor } from "./IInteractor";
-import { IDelta } from "./IDelta";
+import type { IDelta } from "./IDelta";
 
 export interface IExternalInteractor extends IInteractor {
     isEnabled(): boolean;

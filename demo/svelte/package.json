@@ -1,6 +1,6 @@
 {
   "name": "svelte-demo",
-  "version": "1.0.0",
+  "version": "1.1.0-alpha.6",
   "private": true,
   "scripts": {
     "build": "rollup -c",
@@ -11,14 +11,14 @@
   "devDependencies": {
     "@rollup/plugin-commonjs": "^14.0.0",
     "@rollup/plugin-node-resolve": "^8.4.0",
-    "rollup": "^2.20.0",
+    "rollup": "^2.23.1",
     "rollup-plugin-livereload": "^1.3.0",
     "rollup-plugin-svelte": "^5.2.3",
-    "rollup-plugin-terser": "^6.1.0",
-    "svelte": "^3.23.2"
+    "rollup-plugin-terser": "^7.0.0",
+    "svelte": "^3.24.1"
   },
   "dependencies": {
-    "sirv-cli": "^1.0.3",
-    "svelte-particles": "^1.0.0"
+    "sirv-cli": "^1.0.4",
+    "svelte-particles": "^1.1.0-alpha.6"
   }
 }

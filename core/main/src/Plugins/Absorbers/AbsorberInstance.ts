@@ -85,7 +85,7 @@ export class AbsorberInstance {
 
         const pos = particle.getPosition();
         const { dx, dy, distance } = Utils.getDistances(this.position, pos);
-        const angle = Math.atan2(dx, dy);
+        const angle = Math.atan2(dy, dx);
         const acceleration = this.mass / Math.pow(distance, 2);
 
         if (distance < this.size + particle.size.value) {

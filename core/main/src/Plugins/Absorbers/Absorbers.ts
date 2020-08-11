@@ -5,11 +5,10 @@ import type { Particle } from "../../Core/Particle";
 import type { IAbsorber } from "./Options/Interfaces/IAbsorber";
 import { Utils } from "../../Utils";
 import { Absorber } from "./Options/Classes/Absorber";
-import type { SingleOrMultiple } from "../../Types/SingleOrMultiple";
+import type { SingleOrMultiple, RecursivePartial } from "../../Types";
 import type { IOptions } from "../../Options/Interfaces/IOptions";
-import type { RecursivePartial } from "../../Types/RecursivePartial";
 import { AbsorberClickMode } from "./Enums";
-import { IAbsorberOptions } from "./Options/Interfaces/IAbsorberOptions";
+import type { IAbsorberOptions } from "./Options/Interfaces/IAbsorberOptions";
 
 export class Absorbers implements IContainerPlugin {
     public array: AbsorberInstance[];

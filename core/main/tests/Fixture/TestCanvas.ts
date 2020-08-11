@@ -4,8 +4,8 @@ import { Container } from "../../src/Core/Container";
 import { Canvas } from "../../src/Core/Canvas";
 
 export class TestCanvas {
-    private container: Container;
     public canvas: Canvas;
+    private container: Container;
 
     constructor(container: Container, width: number, height: number) {
         const newCanvas = createCanvas(width, height) as any;

@@ -1,4 +1,4 @@
-import type { SingleOrMultiple } from "../../../../Types/SingleOrMultiple";
+import type { SingleOrMultiple } from "../../../../Types";
 import type { IRepulseDiv } from "./IRepulseDiv";
 import type { IRepulseBase } from "./IRepulseBase";
 

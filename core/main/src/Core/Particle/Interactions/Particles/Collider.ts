@@ -1,4 +1,4 @@
-import { Circle, Utils } from "../../../../Utils";
+import { Utils } from "../../../../Utils";
 import { Particle } from "../../../Particle";
 import type { Container } from "../../../Container";
 import type { IParticle } from "../../../Interfaces/IParticle";
@@ -94,13 +94,15 @@ export class Collider implements IParticlesInteractor {
         const pos1 = p1.getPosition();
 
         //const query = container.particles.spatialGrid.queryRadius(pos1, p1.size.value * 2);
-        const query = container.particles.quadTree.query(new Circle(pos1.x, pos1.y, p1.size.value * 2));
+        const query = container.particles.quadTree.queryCircle(pos1, p1.size.value * 2);
 
         for (const p2 of query) {
             if (
                 p1 === p2 ||
                 !p2.particlesOptions.collisions.enable ||
-                p1.particlesOptions.collisions.mode !== p2.particlesOptions.collisions.mode
+                p1.particlesOptions.collisions.mode !== p2.particlesOptions.collisions.mode ||
+                p2.destroyed ||
+                p2.spawning
             ) {
                 continue;
             }

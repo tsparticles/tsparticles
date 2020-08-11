@@ -7,6 +7,12 @@
       "options": {
         "tabWidth": 4
       }
+    },
+    {
+      "files": "*.tsx",
+      "options": {
+        "tabWidth": 4
+      }
     }
   ]
 }

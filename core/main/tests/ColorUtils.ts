@@ -21,7 +21,7 @@ describe("ColorUtils", () => {
             expect(ColorUtils.colorToRgb(color)).include(red).and.not.be.undefined.and.not.be.null;
         });
 
-        it("string value", function () {
+        it("string value", () => {
             const color: IColor = {
                 value: ["#ff0000", "#00ff00", "#0000ff"],
             };

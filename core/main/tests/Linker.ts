@@ -41,7 +41,7 @@ describe("Linker in Canvas (200, 200) tests", () => {
 
             testContainer.container.particles.quadTree.insert(new Point(pos1, p1));
 
-            it("should link Particle (10, 10)", function () {
+            it("should link Particle (10, 10)", () => {
                 const p2 = testContainer.container.particles.addParticle({ x: 10, y: 10 });
 
                 expect(p2).to.not.be.undefined;
@@ -65,7 +65,7 @@ describe("Linker in Canvas (200, 200) tests", () => {
                 expect(links.map((t) => t.destination.getPosition())).to.deep.include(pos2);
             });
 
-            it("should link Particle (199, 199)", function () {
+            it("should link Particle (199, 199)", () => {
                 const p2 = testContainer.container.particles.addParticle({ x: 199, y: 199 });
 
                 expect(p2).to.not.be.undefined;

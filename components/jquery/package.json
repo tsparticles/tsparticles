@@ -1,6 +1,6 @@
 {
   "name": "jquery-particles",
-  "version": "1.17.0",
+  "version": "1.18.0-alpha.6",
   "description": "tsParticles official jQuery plugin",
   "main": "dist/jquery.particles.min.js",
   "scripts": {
@@ -72,21 +72,21 @@
   },
   "dependencies": {
     "jquery": "^3.5.1",
-    "tslib": "^2.0.0",
-    "tsparticles": "^1.17.0"
+    "tslib": "^2.0.1",
+    "tsparticles": "^1.18.0-alpha.6"
   },
   "devDependencies": {
     "@types/jquery": "^3.5.0",
-    "@typescript-eslint/eslint-plugin": "^3.6.1",
+    "@typescript-eslint/eslint-plugin": "^3.7.0",
     "@typescript-eslint/parser": "^3.6.1",
     "babel-preset-env": "^1.7.0",
-    "eslint": "^7.4.0",
+    "eslint": "^7.5.0",
     "eslint-config-prettier": "^6.11.0",
     "prettier": "^2.0.5",
-    "rollup": "^2.21.0",
+    "rollup": "^2.23.1",
     "rollup-plugin-babel": "^4.4.0",
     "rollup-plugin-sourcemaps": "^0.6.2",
-    "typescript": "^3.9.6",
-    "uglify-js": "^3.10.0"
+    "typescript": "^3.9.7",
+    "uglify-js": "^3.10.1"
   }
 }

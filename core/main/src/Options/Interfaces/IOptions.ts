@@ -3,11 +3,15 @@ import type { IParticles } from "./Particles/IParticles";
 import type { IBackgroundMask } from "./BackgroundMask/IBackgroundMask";
 import type { IBackground } from "./Background/IBackground";
 import type { IInfection } from "./Infection/IInfection";
+import type { SingleOrMultiple } from "../../Types";
+import type { ITheme } from "./Theme/ITheme";
 
 /**
  * The Options interface, defines all the options that can be used by `tsParticles`
  */
 export interface IOptions {
+    autoPlay: boolean;
+
     /**
      * Background options, these background options will be used to the canvas element, they are all CSS properties
      */
@@ -57,11 +61,13 @@ export interface IOptions {
     /**
      * This property will be used to add specified presets to the options
      */
-    preset?: string | string[];
+    preset?: SingleOrMultiple<string>;
 
     /**
      * Enables the retina detection, if disabled the ratio used by canvas will be always 1 and not the device setting.
      * @deprecated use the new detectRetina instead
      */
     retina_detect: boolean;
+
+    themes: ITheme[];
 }

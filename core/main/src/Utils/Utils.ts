@@ -5,9 +5,9 @@ import type { IBounds } from "../Core/Interfaces/IBounds";
 import type { IDimension } from "../Core/Interfaces/IDimension";
 import type { IImage } from "../Core/Interfaces/IImage";
 import type { IParticle } from "../Core/Interfaces/IParticle";
-import type { SingleOrMultiple } from "../Types/SingleOrMultiple";
+import type { SingleOrMultiple } from "../Types";
 import { DivEvent } from "../Options/Classes/Interactivity/Events/DivEvent";
-import { IModeDiv } from "../Options/Interfaces/Interactivity/Modes/IModeDiv";
+import type { IModeDiv } from "../Options/Interfaces/Interactivity/Modes/IModeDiv";
 
 type CSSOMString = string;
 type FontFaceLoadStatus = "unloaded" | "loading" | "loaded" | "error";
@@ -66,7 +66,7 @@ export class Utils {
     }
 
     public static get animate(): (callback: FrameRequestCallback) => number {
-        return this.isSsr()
+        return Utils.isSsr()
             ? (callback: FrameRequestCallback): number => setTimeout(callback)
             : (callback: FrameRequestCallback): number =>
                   (
@@ -80,7 +80,7 @@ export class Utils {
     }
 
     public static get cancelAnimation(): (handle: number) => void {
-        return this.isSsr()
+        return Utils.isSsr()
             ? (handle: number): void => clearTimeout(handle)
             : (handle: number): void =>
                   (
@@ -183,7 +183,7 @@ export class Utils {
      * @param pointB the second coordinate
      */
     public static getDistance(pointA: ICoordinates, pointB: ICoordinates): number {
-        return this.getDistances(pointA, pointB).distance;
+        return Utils.getDistances(pointA, pointB).distance;
     }
 
     public static async loadFont(character: ICharacterShape): Promise<void> {
@@ -199,7 +199,7 @@ export class Utils {
     }
 
     public static itemFromArray<T>(array: T[], index?: number): T {
-        return array[index ?? this.arrayRandomIndex(array)];
+        return array[index ?? Utils.arrayRandomIndex(array)];
     }
 
     public static randomInRange(r1: number, r2: number): number {
@@ -210,7 +210,7 @@ export class Utils {
     }
 
     public static isPointInside(point: ICoordinates, size: IDimension, radius?: number): boolean {
-        return this.areBoundsInside(this.calculateBounds(point, radius ?? 0), size);
+        return Utils.areBoundsInside(Utils.calculateBounds(point, radius ?? 0), size);
     }
 
     public static areBoundsInside(bounds: IBounds, size: IDimension): boolean {
@@ -270,7 +270,7 @@ export class Utils {
         };
 
         if (image.type !== "svg") {
-            return this.loadImage(source);
+            return Utils.loadImage(source);
         }
 
         const response = await fetch(image.source);
@@ -313,8 +313,8 @@ export class Utils {
 
                 destination[key] =
                     isObject && Array.isArray(value)
-                        ? value.map((v) => this.deepExtend(destination[key], v))
-                        : this.deepExtend(destination[key], value);
+                        ? value.map((v) => Utils.deepExtend(destination[key], v))
+                        : Utils.deepExtend(destination[key], value);
             }
         }
         return destination;
@@ -337,7 +337,7 @@ export class Utils {
                 const divEnabled = div.enable;
 
                 if (divEnabled && Utils.isInArray(mode, divMode)) {
-                    this.singleDivModeExecute(div, callback);
+                    Utils.singleDivModeExecute(div, callback);
                 }
             }
         } else {
@@ -345,32 +345,46 @@ export class Utils {
             const divEnabled = divs.enable;
 
             if (divEnabled && Utils.isInArray(mode, divMode)) {
-                this.singleDivModeExecute(divs, callback);
+                Utils.singleDivModeExecute(divs, callback);
             }
         }
     }
 
-    public static singleDivModeExecute(div: DivEvent, callback: (id: string, div: DivEvent) => void): void {
-        const ids = div.ids;
+    public static singleDivModeExecute(div: DivEvent, callback: (selector: string, div: DivEvent) => void): void {
+        const selectors = div.selectors;
 
-        if (ids instanceof Array) {
-            for (const id of ids) {
-                callback(id, div);
+        if (selectors instanceof Array) {
+            for (const selector of selectors) {
+                callback(selector, div);
             }
         } else {
-            callback(ids, div);
+            callback(selectors, div);
         }
     }
 
-    public static divMode<T extends IModeDiv>(divs?: SingleOrMultiple<T>, divId?: string): T | undefined {
-        if (!divId || !divs) {
+    public static divMode<T extends IModeDiv>(divs?: SingleOrMultiple<T>, element?: HTMLElement): T | undefined {
+        if (!element || !divs) {
             return;
         }
 
         if (divs instanceof Array) {
-            return divs.find((d) => Utils.isInArray(divId, d.ids));
-        } else if (Utils.isInArray(divId, divs.ids)) {
+            return divs.find((d) => Utils.checkSelector(element, d.selectors));
+        } else if (Utils.checkSelector(element, divs.selectors)) {
             return divs;
+        }
+    }
+
+    private static checkSelector(element: HTMLElement, selectors: SingleOrMultiple<string>): boolean {
+        if (selectors instanceof Array) {
+            for (const selector of selectors) {
+                if (element.matches(selector)) {
+                    return true;
+                }
+            }
+
+            return false;
+        } else {
+            return element.matches(selectors);
         }
     }
 }
