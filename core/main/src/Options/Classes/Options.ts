@@ -122,6 +122,22 @@ export class Options implements IOptions, IOptionLoader<IOptions> {
         Plugins.loadOptions(this, data);
     }
 
+    public setTheme(name?: string): void {
+        if (name) {
+            const chosenTheme = this.themes.find(theme => theme.name === name);
+
+            if (chosenTheme) {
+                this.load(chosenTheme.options);
+            }
+        } else {
+            const defaultTheme = this.themes.find(theme => theme.default);
+
+            if (defaultTheme) {
+                this.load(defaultTheme.options);
+            }
+        }
+    }
+
     private importPreset(preset: string): void {
         this.load(Plugins.getPreset(preset));
     }

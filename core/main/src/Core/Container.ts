@@ -115,6 +115,8 @@ export class Container {
             this.options.load(this.sourceOptions);
         }
 
+        this.options.setTheme(undefined);
+
         /* ---------- tsParticles - start ------------ */
         this.eventListeners = new EventListeners(this);
     }
@@ -136,7 +138,7 @@ export class Container {
         }
 
         if (needsUpdate) {
-            for (const [, plugin] of this.plugins) {
+            for (const [ , plugin ] of this.plugins) {
                 if (plugin.play) {
                     plugin.play();
                 }
@@ -162,7 +164,7 @@ export class Container {
             return;
         }
 
-        for (const [, plugin] of this.plugins) {
+        for (const [ , plugin ] of this.plugins) {
             if (plugin.pause) {
                 plugin.pause();
             }
@@ -257,7 +259,7 @@ export class Container {
 
         this.canvas.destroy();
 
-        for (const [, drawer] of this.drawers) {
+        for (const [ , drawer ] of this.drawers) {
             if (drawer.destroy) {
                 drawer.destroy(this);
             }
@@ -313,7 +315,7 @@ export class Container {
         this.particles.clear();
         this.canvas.clear();
 
-        for (const [, plugin] of this.plugins) {
+        for (const [ , plugin ] of this.plugins) {
             if (plugin.stop) {
                 plugin.stop();
             }
@@ -326,28 +328,10 @@ export class Container {
         delete this.particles.linksColor;
     }
 
-    public async loadTheme(name?: string, refresh = true): Promise<void> {
-        if (name) {
-            const chosenTheme = this.options.themes.find((theme) => theme.name === name);
+    public async loadTheme(name?: string): Promise<void> {
+        this.options.setTheme(name);
 
-            if (chosenTheme) {
-                this.options.load(chosenTheme.options);
-
-                if (refresh) {
-                    await this.refresh();
-                }
-            }
-        } else {
-            const defaultTheme = this.options.themes.find((theme) => theme.default);
-
-            if (defaultTheme) {
-                this.options.load(defaultTheme.options);
-
-                if (refresh) {
-                    await this.refresh();
-                }
-            }
-        }
+        await this.refresh();
     }
 
     /**
@@ -364,9 +348,7 @@ export class Container {
 
         this.eventListeners.addListeners();
 
-        await this.loadTheme(undefined, false);
-
-        for (const [, plugin] of this.plugins) {
+        for (const [ , plugin ] of this.plugins) {
             if (plugin.startAsync !== undefined) {
                 await plugin.startAsync();
             } else if (plugin.start !== undefined) {
@@ -384,17 +366,17 @@ export class Container {
 
         const availablePlugins = Plugins.getAvailablePlugins(this);
 
-        for (const [id, plugin] of availablePlugins) {
+        for (const [ id, plugin ] of availablePlugins) {
             this.plugins.set(id, plugin);
         }
 
-        for (const [, drawer] of this.drawers) {
+        for (const [ , drawer ] of this.drawers) {
             if (drawer.init) {
                 await drawer.init(this);
             }
         }
 
-        for (const [, plugin] of this.plugins) {
+        for (const [ , plugin ] of this.plugins) {
             if (plugin.init) {
                 plugin.init(this.options);
             } else if (plugin.initAsync !== undefined) {
