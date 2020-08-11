@@ -1,13 +1,15 @@
 import { Options } from "../src/Classes/Options/Options";
-import { ClickMode, HoverMode, OutMode } from "../src/Enums/Modes";
-import { RotateDirection, MoveDirection, ShapeType } from "../src/Enums";
+import { RotateDirection, MoveDirection, ShapeType, ClickMode, HoverMode, OutMode, ThemeMode } from "../src/Enums";
 import { expect } from "chai";
 
 const sourceOptions = {
     themes: [
         {
             name: "light",
-            default: true,
+            default: {
+                mode: ThemeMode.light,
+                value: true,
+            },
             options: {
                 background: {
                     color: "#ffffff",
@@ -21,6 +23,10 @@ const sourceOptions = {
         },
         {
             name: "dark",
+            default: {
+                mode: ThemeMode.dark,
+                value: true,
+            },
             options: {
                 background: {
                     color: "#000000",

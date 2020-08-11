@@ -8,6 +8,7 @@ import { Infection } from "./Infection/Infection";
 import { Plugins } from "../../Utils";
 import type { IOptionLoader } from "../Interfaces/IOptionLoader";
 import { Theme } from "./Theme/Theme";
+import { ThemeMode } from "../../Enums/Modes";
 
 export class Options implements IOptions, IOptionLoader<IOptions> {
     public autoPlay: boolean;
@@ -130,7 +131,19 @@ export class Options implements IOptions, IOptionLoader<IOptions> {
                 this.load(chosenTheme.options);
             }
         } else {
-            const defaultTheme = this.themes.find((theme) => theme.default);
+            const clientDarkMode =
+                typeof matchMedia !== "undefined" && matchMedia("(prefers-color-scheme: dark)").matches;
+            const defaultThemes = this.themes.filter((theme) => theme.default.value);
+
+            let defaultTheme = defaultThemes.find(
+                (theme) =>
+                    (theme.default.mode === ThemeMode.dark && clientDarkMode) ||
+                    (theme.default.mode === ThemeMode.light && !clientDarkMode)
+            );
+
+            if (!defaultTheme) {
+                defaultTheme = defaultThemes.find((theme) => theme.default.mode === ThemeMode.any);
+            }
 
             if (defaultTheme) {
                 this.load(defaultTheme.options);

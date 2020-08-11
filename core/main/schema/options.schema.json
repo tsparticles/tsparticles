@@ -2234,13 +2234,24 @@
     "ITheme": {
       "properties": {
         "default": {
-          "type": "boolean"
+          "$ref": "#/definitions/IThemeDefault"
         },
         "name": {
           "type": "string"
         },
         "options": {
           "$ref": "#/definitions/RecursivePartial<IOptions>"
+        }
+      },
+      "type": "object"
+    },
+    "IThemeDefault": {
+      "properties": {
+        "mode": {
+          "$ref": "#/definitions/ThemeMode"
+        },
+        "value": {
+          "type": "boolean"
         }
       },
       "type": "object"
@@ -4415,13 +4426,25 @@
     "RecursivePartial<ITheme>": {
       "properties": {
         "default": {
-          "type": "boolean"
+          "$ref": "#/definitions/RecursivePartial<IThemeDefault>"
         },
         "name": {
           "type": "string"
         },
         "options": {
           "$ref": "#/definitions/RecursivePartial<IOptions>"
+        }
+      },
+      "type": "object"
+    },
+    "RecursivePartial<IThemeDefault>": {
+      "properties": {
+        "mode": {
+          "enum": ["any", "dark", "light"],
+          "type": "string"
+        },
+        "value": {
+          "type": "boolean"
         }
       },
       "type": "object"
@@ -4498,6 +4521,10 @@
     },
     "RecursivePartial<ShapeData>": {
       "type": "object"
+    },
+    "ThemeMode": {
+      "enum": ["any", "dark", "light"],
+      "type": "string"
     },
     "Type": {
       "enum": ["inline", "inside", "none", "outside"],
