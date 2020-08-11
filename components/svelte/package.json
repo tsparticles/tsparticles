@@ -60,7 +60,7 @@
     "rollup": "^2.23.1",
     "rollup-plugin-svelte": "^5.2.3",
     "rollup-plugin-terser": "^7.0.0",
-    "svelte": "^3.24.0"
+    "svelte": "^3.24.1"
   },
   "dependencies": {
     "tsparticles": "^1.18.0-alpha.4"
