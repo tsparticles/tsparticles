@@ -340,6 +340,8 @@ export class Container {
 
         this.eventListeners.addListeners();
 
+        await this.loadTheme(undefined, false);
+
         for (const [, plugin] of this.plugins) {
             if (plugin.startAsync !== undefined) {
                 await plugin.startAsync();
@@ -393,18 +395,26 @@ export class Container {
         this.density = (canvas.width * canvas.height) / (densityOptions.factor * pxRatio * densityOptions.area);
     }
 
-    public loadTheme(name?: string): void {
+    public async loadTheme(name?: string, refresh = true): Promise<void> {
         if (name) {
             const chosenTheme = this.options.themes.find((theme) => theme.name === name);
 
             if (chosenTheme) {
                 this.options.load(chosenTheme.options);
+
+                if (refresh) {
+                    await this.refresh();
+                }
             }
         } else {
             const defaultTheme = this.options.themes.find((theme) => theme.default);
 
             if (defaultTheme) {
                 this.options.load(defaultTheme.options);
+
+                if (refresh) {
+                    await this.refresh();
+                }
             }
         }
     }
