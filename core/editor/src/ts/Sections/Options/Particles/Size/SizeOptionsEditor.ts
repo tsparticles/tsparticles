@@ -24,7 +24,6 @@ export class SizeOptionsEditor extends EditorBase {
 
     private addAnimation(): void {
         const particles = this.particles;
-        const options = this.options.animation;
         const group = this.group.addGroup("animation", "Animation");
 
         const destroySelectInput = group.addProperty("destroy", "Destroy", EditorType.select).change(async () => {
@@ -78,7 +77,6 @@ export class SizeOptionsEditor extends EditorBase {
 
     private addProperties(): void {
         const particles = this.particles;
-        const options = this.options;
 
         this.group.addProperty("value", "Value", EditorType.number).change(async () => {
             await particles.refresh();

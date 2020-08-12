@@ -20,7 +20,6 @@ export class CollisionsOptionsEditor extends EditorBase {
     }
 
     private addProperties(): void {
-        const options = this.options;
         const particles = this.particles;
 
         this.group.addProperty("enable", "Enable", EditorType.boolean).change(async () => {

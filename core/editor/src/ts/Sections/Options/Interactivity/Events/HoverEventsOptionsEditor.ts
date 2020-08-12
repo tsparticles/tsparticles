@@ -22,7 +22,6 @@ export class HoverEventsOptionsEditor extends EditorBase {
 
     private addParallax(): void {
         const particles = this.particles;
-        const options = this.options.parallax;
         const parallax = this.group.addGroup("parallax", "Parallax");
 
         parallax.addProperty("enable", "Enable", EditorType.boolean).change(async () => {
@@ -40,7 +39,6 @@ export class HoverEventsOptionsEditor extends EditorBase {
 
     private addProperties(): void {
         const particles = this.particles;
-        const options = this.options;
 
         this.group.addProperty("enable", "Enable", EditorType.boolean).change(async () => {
             await particles.refresh();

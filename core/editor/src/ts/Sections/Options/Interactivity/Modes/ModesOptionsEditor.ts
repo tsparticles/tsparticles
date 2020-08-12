@@ -205,7 +205,6 @@ export class ModesOptionsEditor extends EditorBase {
 
     private addRepulse(): void {
         const particles = this.particles;
-        const options = this.options.repulse;
         const group = this.group.addGroup("repulse", "Repulse");
 
         group.addProperty("distance", "Distance", EditorType.number).change(async () => {
@@ -223,7 +222,6 @@ export class ModesOptionsEditor extends EditorBase {
 
     private addSlow(): void {
         const particles = this.particles;
-        const options = this.options.slow;
         const group = this.group.addGroup("slow", "Slow");
 
         group.addProperty("factor", "Factor", EditorType.number).change(async () => {
@@ -237,7 +235,6 @@ export class ModesOptionsEditor extends EditorBase {
 
     private addTrail(): void {
         const particles = this.particles;
-        const options = this.options.trail;
         const group = this.group.addGroup("trail", "Trail");
 
         group.addProperty("delay", "Delay", EditorType.number).change(async () => {
