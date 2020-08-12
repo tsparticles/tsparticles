@@ -1,6 +1,5 @@
 import type { Container } from "tsparticles/dist/Core/Container";
 import type { ISize } from "tsparticles/dist/Options/Interfaces/Particles/Size/ISize";
-import type { ISizeRandom } from "tsparticles/dist/Options/Interfaces/Particles/Size/ISizeRandom";
 import { DestroyType, StartValueType } from "tsparticles";
 import { EditorGroup, EditorSelectInput, EditorType } from "object-gui";
 import { EditorBase } from "../../../../EditorBase";
@@ -64,7 +63,6 @@ export class SizeOptionsEditor extends EditorBase {
     private addRandom(): void {
         const group = this.group.addGroup("random", "Random");
         const particles = this.particles;
-        const options = this.options.random as ISizeRandom;
 
         group.addProperty("enable", "Enable", EditorType.boolean).change(async () => {
             await particles.refresh();
