@@ -1,4 +1,4 @@
-import { EditorGroup } from "object-gui/dist/js";
+import { EditorGroup } from "object-gui";
 import { Container } from "tsparticles/dist/Core/Container";
 
 export abstract class EditorBase {

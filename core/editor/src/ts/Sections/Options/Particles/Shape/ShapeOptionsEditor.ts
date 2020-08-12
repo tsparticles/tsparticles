@@ -1,6 +1,6 @@
 import type { Container } from "tsparticles/dist/Core/Container";
 import type { IShape } from "tsparticles/dist/Options/Interfaces/Particles/Shape/IShape";
-import { EditorSelectInput, EditorGroup } from "object-gui";
+import { EditorSelectInput, EditorGroup, EditorType } from "object-gui";
 import { EditorBase } from "../../../../EditorBase";
 
 export class ShapeOptionsEditor extends EditorBase {
@@ -20,9 +20,8 @@ export class ShapeOptionsEditor extends EditorBase {
 
     private addProperties(): void {
         const particles = this.particles;
-        const options = this.options;
 
-        const selectType = this.group.addProperty("type", "Type", options.type, "select", async () => {
+        const selectType = this.group.addProperty("type", "Type", EditorType.select).change(async () => {
             await particles.refresh();
         }) as EditorSelectInput;
 

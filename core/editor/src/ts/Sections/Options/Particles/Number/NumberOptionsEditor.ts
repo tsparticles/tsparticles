@@ -1,4 +1,4 @@
-import type { EditorGroup } from "object-gui";
+import { EditorGroup, EditorType } from "object-gui";
 import type { Container } from "tsparticles/dist/Core/Container";
 import type { IParticlesNumber } from "tsparticles/dist/Options/Interfaces/Particles/IParticlesNumber";
 import { EditorBase } from "../../../../EditorBase";
@@ -21,31 +21,29 @@ export class NumberOptionsEditor extends EditorBase {
 
     private addDensity(): void {
         const particles = this.particles;
-        const options = this.options.density;
         const group = this.group.addGroup("density", "Density");
 
-        group.addProperty("area", "Area", options.area, typeof options.area, async () => {
+        group.addProperty("area", "Area", EditorType.number).change(async () => {
             await particles.refresh();
         });
 
-        group.addProperty("enable", "Enable", options.enable, typeof options.enable, async () => {
+        group.addProperty("enable", "Enable", EditorType.boolean).change(async () => {
             await particles.refresh();
         });
 
-        group.addProperty("factor", "Factor", options.factor, typeof options.factor, async () => {
+        group.addProperty("factor", "Factor", EditorType.number).change(async () => {
             await particles.refresh();
         });
     }
 
     private addProperties(): void {
         const particles = this.particles;
-        const options = this.options;
 
-        this.group.addProperty("limit", "Limit", options.limit, typeof options.limit, async () => {
+        this.group.addProperty("limit", "Limit", EditorType.number).change(async () => {
             await particles.refresh();
         });
 
-        this.group.addProperty("value", "Value", options.value, typeof options.value, async () => {
+        this.group.addProperty("value", "Value", EditorType.number).change(async () => {
             await particles.refresh();
         });
     }

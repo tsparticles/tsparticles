@@ -4,7 +4,7 @@ import type { IBackground } from "tsparticles/dist/Options/Interfaces/Background
 import type { IColor } from "tsparticles/dist/Core/Interfaces/IColor";
 import type { Container } from "tsparticles/dist/Core/Container";
 import { ColorUtils } from "tsparticles";
-import { EditorNumberInput, EditorGroup } from "object-gui";
+import { EditorNumberInput, EditorGroup, EditorType } from "object-gui";
 import { EditorBase } from "../../../EditorBase";
 
 export class BackgroundOptionsEditor extends EditorBase {
@@ -42,50 +42,38 @@ export class BackgroundOptionsEditor extends EditorBase {
             colorStringValue = `${rgb.r.toString(16)}${rgb.g.toString(16)}${rgb.b.toString(16)}`;
         }
 
-        this.group.addProperty(
-            "color",
-            "Color",
-            colorStringValue,
-            "color",
-            async (value: string | number | boolean) => {
+        this.group
+            .addProperty("color", "Color", EditorType.color, colorStringValue, false)
+            .change(async (value: unknown) => {
                 if (typeof value === "string") {
                     options.value = value;
                 }
+
                 await particles.refresh();
-            },
-            false
-        );
+            });
     }
 
     private addProperties(): void {
         const particles = this.particles;
-        const options = this.options;
-
-        this.group.addProperty("image", "Image", options.image, typeof options.image, async () => {
+        this.group.addProperty("image", "Image", EditorType.string).change(async () => {
             await particles.refresh();
         });
 
-        const opacityItem = this.group.addProperty(
-            "opacity",
-            "Opacity",
-            options.opacity,
-            typeof options.opacity,
-            async () => {
-                await particles.refresh();
-            }
-        ) as EditorNumberInput;
+        const opacityItem = this.group.addProperty("opacity", "Opacity", EditorType.number).change(async () => {
+            await particles.refresh();
+        }) as EditorNumberInput;
 
         opacityItem.step(0.01).min(0).max(1);
 
-        this.group.addProperty("position", "Position", options.position, typeof options.position, async () => {
+        this.group.addProperty("position", "Position", EditorType.string).change(async () => {
             await particles.refresh();
         });
 
-        this.group.addProperty("repeat", "Repeat", options.repeat, typeof options.repeat, async () => {
+        this.group.addProperty("repeat", "Repeat", EditorType.string).change(async () => {
             await particles.refresh();
         });
 
-        this.group.addProperty("size", "Size", options.size, typeof options.size, async () => {
+        this.group.addProperty("size", "Size", EditorType.string).change(async () => {
             await particles.refresh();
         });
     }

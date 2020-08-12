@@ -1,7 +1,6 @@
-import { EditorGroup, ColorUtils, IRgb, IHsl, EditorSelectInput } from "object-gui";
+import { ColorUtils, EditorGroup, EditorSelectInput, IHsl, IRgb, EditorType } from "object-gui";
 import type { Container } from "tsparticles/dist/Core/Container";
 import type { IMove } from "tsparticles/dist/Options/Interfaces/Particles/Move/IMove";
-import type { IMoveAngle } from "tsparticles/dist/Options/Interfaces/Particles/Move/IMoveAngle";
 import { MoveDirection, OutMode } from "tsparticles";
 import { EditorBase } from "../../../../EditorBase";
 
@@ -27,13 +26,12 @@ export class MoveOptionsEditor extends EditorBase {
     private addAngle(): void {
         const particles = this.particles;
         const group = this.group.addGroup("angle", "Angle");
-        const options = this.options.angle as IMoveAngle;
 
-        group.addProperty("angle", "Angle", options.value, typeof options.value, async () => {
+        group.addProperty("angle", "Angle", EditorType.number).change(async () => {
             await particles.refresh();
         });
 
-        group.addProperty("offset", "Offset", options.offset, typeof options.offset, async () => {
+        group.addProperty("offset", "Offset", EditorType.number).change(async () => {
             await particles.refresh();
         });
     }
@@ -41,20 +39,18 @@ export class MoveOptionsEditor extends EditorBase {
     private addAttract(): void {
         const particles = this.particles;
         const group = this.group.addGroup("attract", "Attract");
-        const options = this.options.attract;
 
-        const rotateOptions = options.rotate;
-        const rotateGroup = group.addGroup("rotate", "Rotate", undefined, false);
+        const rotateGroup = group.addGroup("rotate", "Rotate", false);
 
-        rotateGroup.addProperty("x", "X", rotateOptions.x, typeof rotateOptions.x, async () => {
+        rotateGroup.addProperty("x", "X", EditorType.number).change(async () => {
             await particles.refresh();
         });
 
-        rotateGroup.addProperty("y", "Y", rotateOptions.y, typeof rotateOptions.y, async () => {
+        rotateGroup.addProperty("y", "Y", EditorType.number).change(async () => {
             await particles.refresh();
         });
 
-        group.addProperty("enable", "Enable", options.enable, typeof options.enable, async () => {
+        group.addProperty("enable", "Enable", EditorType.boolean).change(async () => {
             await particles.refresh();
         });
     }
@@ -62,32 +58,23 @@ export class MoveOptionsEditor extends EditorBase {
     private addNoise(): void {
         const particles = this.particles;
         const group = this.group.addGroup("noise", "Noise");
-        const options = this.options.noise;
         const delayGroup = group.addGroup("delay", "Delay");
-        const delayOptions = options.delay;
 
-        delayGroup.addProperty("value", "value", delayOptions.value, typeof delayOptions.value, async () => {
+        delayGroup.addProperty("value", "value", EditorType.number).change(async () => {
             await particles.refresh();
         });
 
         const randomGroup = delayGroup.addGroup("random", "Random");
-        const randomOptions = delayOptions.random;
 
-        randomGroup.addProperty("enable", "Enable", randomOptions.enable, typeof randomOptions.enable, async () => {
+        randomGroup.addProperty("enable", "Enable", EditorType.boolean).change(async () => {
             await particles.refresh();
         });
 
-        randomGroup.addProperty(
-            "minimumValue",
-            "Minimum Value",
-            randomOptions.minimumValue,
-            typeof randomOptions.minimumValue,
-            async () => {
-                await particles.refresh();
-            }
-        );
+        randomGroup.addProperty("minimumValue", "Minimum Value", EditorType.number).change(async () => {
+            await particles.refresh();
+        });
 
-        group.addProperty("enable", "Enable", options.enable, typeof options.enable, async () => {
+        group.addProperty("enable", "Enable", EditorType.boolean).change(async () => {
             await particles.refresh();
         });
     }
@@ -97,7 +84,7 @@ export class MoveOptionsEditor extends EditorBase {
         const group = this.group.addGroup("trail", "Trail");
         const options = this.options.trail;
 
-        group.addProperty("enable", "Enable", options.enable, typeof options.enable, async () => {
+        group.addProperty("enable", "Enable", EditorType.boolean).change(async () => {
             await particles.refresh();
         });
 
@@ -118,12 +105,9 @@ export class MoveOptionsEditor extends EditorBase {
             fillColorStringValue = `${rgb.r.toString(16)}${rgb.g.toString(16)}${rgb.b.toString(16)}`;
         }
 
-        group.addProperty(
-            "fillColor",
-            "Fill Color",
-            fillColorStringValue,
-            "color",
-            async (value: string | number | boolean) => {
+        group
+            .addProperty("fillColor", "Fill Color", EditorType.color, fillColorStringValue, false)
+            .change(async (value: unknown) => {
                 if (typeof value === "string") {
                     if (typeof options.fillColor === "string") {
                         options.fillColor = value;
@@ -136,32 +120,23 @@ export class MoveOptionsEditor extends EditorBase {
                             options.fillColor.value = value;
                         }
                     }
-
-                    await particles.refresh();
                 }
-            },
-            false
-        );
 
-        group.addProperty("length", "Length", options.length, typeof options.length, async () => {
+                await particles.refresh();
+            });
+
+        group.addProperty("length", "Length", EditorType.number).change(async () => {
             await particles.refresh();
         });
     }
 
     private addProperties(): void {
         const particles = this.particles;
-        const options = this.options;
         const group = this.group;
 
-        const directionSelectInput = group.addProperty(
-            "direction",
-            "Direction",
-            options.direction,
-            "select",
-            async () => {
-                await particles.refresh();
-            }
-        ) as EditorSelectInput;
+        const directionSelectInput = group.addProperty("direction", "Direction", EditorType.select).change(async () => {
+            await particles.refresh();
+        }) as EditorSelectInput;
 
         directionSelectInput.addItem(MoveDirection.bottom);
         directionSelectInput.addItem(MoveDirection.bottomLeft);
@@ -173,11 +148,11 @@ export class MoveOptionsEditor extends EditorBase {
         directionSelectInput.addItem(MoveDirection.topLeft);
         directionSelectInput.addItem(MoveDirection.topRight);
 
-        group.addProperty("enable", "Enable", options.enable, typeof options.enable, async () => {
+        group.addProperty("enable", "Enable", EditorType.boolean).change(async () => {
             await particles.refresh();
         });
 
-        const outModeSelectInput = group.addProperty("outMode", "Out Mode", options.outMode, "select", async () => {
+        const outModeSelectInput = group.addProperty("outMode", "Out Mode", EditorType.select).change(async () => {
             await particles.refresh();
         }) as EditorSelectInput;
 
@@ -187,23 +162,23 @@ export class MoveOptionsEditor extends EditorBase {
         outModeSelectInput.addItem(OutMode.destroy);
         outModeSelectInput.addItem(OutMode.out);
 
-        group.addProperty("random", "Random", options.random, typeof options.random, async () => {
+        group.addProperty("random", "Random", EditorType.boolean).change(async () => {
             await particles.refresh();
         });
 
-        group.addProperty("speed", "Speed", options.speed, typeof options.speed, async () => {
+        group.addProperty("speed", "Speed", EditorType.number).change(async () => {
             await particles.refresh();
         });
 
-        group.addProperty("straight", "Straight", options.straight, typeof options.straight, async () => {
+        group.addProperty("straight", "Straight", EditorType.boolean).change(async () => {
             await particles.refresh();
         });
 
-        group.addProperty("vibrate", "Vibrate", options.vibrate, typeof options.vibrate, async () => {
+        group.addProperty("vibrate", "Vibrate", EditorType.boolean).change(async () => {
             await particles.refresh();
         });
 
-        group.addProperty("warp", "Warp", options.warp, typeof options.warp, async () => {
+        group.addProperty("warp", "Warp", EditorType.boolean).change(async () => {
             await particles.refresh();
         });
     }

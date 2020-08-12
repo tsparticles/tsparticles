@@ -20,8 +20,8 @@ export class DivsEventsOptionsEditor extends EditorBase {
     }
 
     private addDivs(): void {
-        const particles = this.particles;
-        const options = this.options;
-        const divsGroups = this.group;
+        // const particles = this.particles;
+        // const options = this.options;
+        // const divsGroups = this.group;
     }
 }

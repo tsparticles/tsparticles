@@ -1,7 +1,7 @@
 import { Container } from "tsparticles/dist/Core/Container";
 import { IInteractivity } from "tsparticles/dist/Options/Interfaces/Interactivity/IInteractivity";
 import { InteractivityDetect } from "tsparticles";
-import { EditorSelectInput, EditorGroup } from "object-gui";
+import { EditorSelectInput, EditorGroup, EditorType } from "object-gui";
 import { ModesOptionsEditor } from "./Modes/ModesOptionsEditor";
 import { EventsOptionsEditor } from "./Events/EventsOptionsEditor";
 import { EditorBase } from "../../../EditorBase";
@@ -39,15 +39,9 @@ export class InteractivityOptionsEditor extends EditorBase {
     private addProperties(): void {
         const particles = this.particles;
 
-        const selectDetect = this.group.addProperty(
-            "detectsOn",
-            "Detects On",
-            this.options.detectsOn,
-            "select",
-            async () => {
-                await particles.refresh();
-            }
-        ) as EditorSelectInput;
+        const selectDetect = this.group.addProperty("detectsOn", "Detects On", EditorType.select).change(async () => {
+            await particles.refresh();
+        }) as EditorSelectInput;
 
         selectDetect.addItem(InteractivityDetect.canvas);
         selectDetect.addItem(InteractivityDetect.parent);

@@ -1,4 +1,4 @@
-import type { EditorGroup, IRgb, IHsl } from "object-gui";
+import { EditorGroup, IHsl, IRgb, EditorType } from "object-gui";
 import type { Container } from "tsparticles/dist/Core/Container";
 import { ColorUtils } from "tsparticles";
 import type { IAnimatableColor } from "tsparticles/dist/Options/Interfaces/Particles/IAnimatableColor";
@@ -13,7 +13,7 @@ export class ColorOptionsEditor extends EditorBase {
     }
 
     public addToGroup(parent: EditorGroup, options?: unknown): void {
-        this.group = parent.addGroup("color", "Color", options);
+        this.group = parent.addGroup("color", "Color", true, options);
         this.options = this.group.data as IAnimatableColor;
 
         this.addAnimation();
@@ -22,18 +22,17 @@ export class ColorOptionsEditor extends EditorBase {
 
     private addAnimation(): void {
         const particles = this.particles;
-        const options = this.options.animation;
         const group = this.group.addGroup("animation", "Animation");
 
-        group.addProperty("enable", "Enable", options.enable, typeof options.enable, async () => {
+        group.addProperty("enable", "Enable", EditorType.boolean).change(async () => {
             await particles.refresh();
         });
 
-        group.addProperty("speed", "Speed", options.speed, typeof options.speed, async () => {
+        group.addProperty("speed", "Speed", EditorType.number).change(async () => {
             await particles.refresh();
         });
 
-        group.addProperty("sync", "Sync", options.sync, typeof options.sync, async () => {
+        group.addProperty("sync", "Sync", EditorType.boolean).change(async () => {
             await particles.refresh();
         });
     }
@@ -59,7 +58,7 @@ export class ColorOptionsEditor extends EditorBase {
             }
         }
 
-        this.group.addProperty("value", "Value", colorStringValue, "color", async () => {
+        this.group.addProperty("value", "Value", EditorType.color, colorStringValue).change(async () => {
             await particles.refresh();
         });
     }

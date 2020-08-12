@@ -2,7 +2,7 @@ import type { Container } from "tsparticles/dist/Core/Container";
 import type { ITwinkle } from "tsparticles/dist/Options/Interfaces/Particles/Twinkle/ITwinkle";
 import type { ITwinkleValues } from "tsparticles/dist/Options/Interfaces/Particles/Twinkle/ITwinkleValues";
 import { ColorUtils } from "tsparticles";
-import { EditorNumberInput, EditorGroup, IRgb, IHsl } from "object-gui";
+import { EditorNumberInput, EditorGroup, IRgb, IHsl, EditorType } from "object-gui";
 import { EditorBase } from "../../../../EditorBase";
 
 export class TwinkleOptionsEditor extends EditorBase {
@@ -15,18 +15,19 @@ export class TwinkleOptionsEditor extends EditorBase {
 
     public addToGroup(parent: EditorGroup, options?: unknown): void {
         this.group = parent.addGroup("twinkle", "Twinkle");
-        this.options = this.group.data as ITwinkle;
+        this.options = (options ?? this.group.data) as ITwinkle;
 
         this.addTwinkle();
     }
 
     private addTwinkle(): void {
-        this.addTwinkleValues(this.group.addGroup("lines", "Lines"), this.options.lines);
-        this.addTwinkleValues(this.group.addGroup("particles", "Particles"), this.options.particles);
+        this.addTwinkleValues(this.group.addGroup("lines", "Lines"));
+        this.addTwinkleValues(this.group.addGroup("particles", "Particles"));
     }
 
-    private addTwinkleValues(group: EditorGroup, options: ITwinkleValues): void {
+    private addTwinkleValues(group: EditorGroup): void {
         const particles = this.particles;
+        const options = group.data as ITwinkleValues;
 
         let colorStringValue: string | undefined;
 
@@ -47,12 +48,9 @@ export class TwinkleOptionsEditor extends EditorBase {
             }
         }
 
-        group.addProperty(
-            "color",
-            "Color",
-            colorStringValue,
-            "color",
-            async (value: string | number | boolean) => {
+        group
+            .addProperty("color", "Color", EditorType.color, colorStringValue, false)
+            .change(async (value: unknown) => {
                 if (typeof value === "string") {
                     if (typeof options.color === "string") {
                         options.color = value;
@@ -61,30 +59,22 @@ export class TwinkleOptionsEditor extends EditorBase {
                             value,
                         };
                     }
-
-                    await particles.refresh();
                 }
-            },
-            false
-        );
 
-        group.addProperty("enable", "Enable", options.enable, typeof options.enable, async () => {
-            await particles.refresh();
-        });
-
-        group.addProperty("frequency", "Frequency", options.frequency, typeof options.frequency, async () => {
-            await particles.refresh();
-        });
-
-        const opacityInput = group.addProperty(
-            "opacity",
-            "Opacity",
-            options.opacity,
-            typeof options.opacity,
-            async () => {
                 await particles.refresh();
-            }
-        ) as EditorNumberInput;
+            });
+
+        group.addProperty("enable", "Enable", EditorType.boolean).change(async () => {
+            await particles.refresh();
+        });
+
+        group.addProperty("frequency", "Frequency", EditorType.number).change(async () => {
+            await particles.refresh();
+        });
+
+        const opacityInput = group.addProperty("opacity", "Opacity", EditorType.number).change(async () => {
+            await particles.refresh();
+        }) as EditorNumberInput;
 
         opacityInput.step(0.01).min(0).max(1);
     }

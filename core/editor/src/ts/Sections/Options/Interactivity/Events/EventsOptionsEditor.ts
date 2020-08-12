@@ -1,4 +1,4 @@
-import type { EditorGroup } from "object-gui";
+import { EditorGroup, EditorType } from "object-gui";
 import type { Container } from "tsparticles/dist/Core/Container";
 import type { IEvents } from "tsparticles/dist/Options/Interfaces/Interactivity/Events/IEvents";
 import { ClickEventsOptionsEditor } from "./ClickEventsOptionsEditor";
@@ -44,9 +44,8 @@ export class EventsOptionsEditor extends EditorBase {
 
     private addProperties(): void {
         const particles = this.particles;
-        const options = this.options;
 
-        this.group.addProperty("resize", "Resize", options.resize, typeof options.resize, async () => {
+        this.group.addProperty("resize", "Resize", EditorType.boolean).change(async () => {
             await particles.refresh();
         });
     }

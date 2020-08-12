@@ -1,6 +1,6 @@
 import type { Container } from "tsparticles/dist/Core/Container";
 import type { IClickEvent } from "tsparticles/dist/Options/Interfaces/Interactivity/Events/IClickEvent";
-import { EditorSelectInput, EditorGroup } from "object-gui";
+import { EditorSelectInput, EditorGroup, EditorType } from "object-gui";
 import { AbsorberClickMode, ClickMode, EmitterClickMode } from "tsparticles";
 import { EditorBase } from "../../../../EditorBase";
 
@@ -21,13 +21,12 @@ export class ClickEventsOptionsEditor extends EditorBase {
 
     private addProperties(): void {
         const particles = this.particles;
-        const options = this.options;
 
-        this.group.addProperty("enable", "Enable", options.enable, typeof options.enable, async () => {
+        this.group.addProperty("enable", "Enable", EditorType.boolean).change(async () => {
             await particles.refresh();
         });
 
-        const modeSelectInput = this.group.addProperty("mode", "Mode", options.mode, "select", async () => {
+        const modeSelectInput = this.group.addProperty("mode", "Mode", EditorType.select).change(async () => {
             await particles.refresh();
         }) as EditorSelectInput;
 

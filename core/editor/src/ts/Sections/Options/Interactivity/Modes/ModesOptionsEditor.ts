@@ -1,6 +1,6 @@
 import type { Container } from "tsparticles/dist/Core/Container";
 import type { IModes } from "tsparticles/dist/Options/Interfaces/Interactivity/Modes/IModes";
-import { ColorUtils, IHsl, IRgb, EditorNumberInput, EditorGroup } from "object-gui";
+import { ColorUtils, EditorGroup, EditorNumberInput, IHsl, IRgb, EditorType } from "object-gui";
 import { EditorBase } from "../../../../EditorBase";
 
 export class ModesOptionsEditor extends EditorBase {
@@ -28,18 +28,17 @@ export class ModesOptionsEditor extends EditorBase {
 
     private addAttract(): void {
         const particles = this.particles;
-        const options = this.options.attract;
         const group = this.group.addGroup("attract", "Attract");
 
-        group.addProperty("distance", "Distance", options.distance, typeof options.distance, async () => {
+        group.addProperty("distance", "Distance", EditorType.number).change(async () => {
             await particles.refresh();
         });
 
-        group.addProperty("duration", "Duration", options.duration, typeof options.duration, async () => {
+        group.addProperty("duration", "Duration", EditorType.number).change(async () => {
             await particles.refresh();
         });
 
-        group.addProperty("speed", "Speed", options.speed, typeof options.speed, async () => {
+        group.addProperty("speed", "Speed", EditorType.number).change(async () => {
             await particles.refresh();
         });
     }
@@ -70,12 +69,9 @@ export class ModesOptionsEditor extends EditorBase {
             }
         }
 
-        group.addProperty(
-            "color",
-            "Color",
-            colorStringValue,
-            "color",
-            async (value: string | number | boolean) => {
+        group
+            .addProperty("color", "Color", EditorType.color, colorStringValue, false)
+            .change(async (value: unknown) => {
                 if (typeof value === "string") {
                     if (typeof options.color === "string") {
                         options.color = value;
@@ -84,56 +80,47 @@ export class ModesOptionsEditor extends EditorBase {
                             value,
                         };
                     }
-
-                    await particles.refresh();
                 }
-            },
-            false
-        );
 
-        group.addProperty("distance", "Distance", options.distance, typeof options.distance, async () => {
+                await particles.refresh();
+            });
+
+        group.addProperty("distance", "Distance", EditorType.number).change(async () => {
             await particles.refresh();
         });
 
-        group.addProperty("duration", "Duration", options.duration, typeof options.duration, async () => {
+        group.addProperty("duration", "Duration", EditorType.number).change(async () => {
             await particles.refresh();
         });
 
-        const opacityInput = group.addProperty("opacity", "Opacity", options.opacity, "number", async () => {
+        const opacityInput = group.addProperty("opacity", "Opacity", EditorType.number).change(async () => {
             await particles.refresh();
         }) as EditorNumberInput;
 
         opacityInput.step(0.01).min(0).max(1);
 
-        group.addProperty("size", "Size", options.size, "number", async () => {
+        group.addProperty("size", "Size", EditorType.number).change(async () => {
             await particles.refresh();
         });
     }
 
     private addConnect(): void {
         const particles = this.particles;
-        const options = this.options.connect;
         const group = this.group.addGroup("connect", "Connect");
 
-        group.addProperty("distance", "Distance", options.distance, "number", async () => {
+        group.addProperty("distance", "Distance", EditorType.number).change(async () => {
             await particles.refresh();
         });
 
         const connectLinksGroup = group.addGroup("links", "Links");
 
-        const opacityInput = connectLinksGroup.addProperty(
-            "opacity",
-            "Opacity",
-            options.links.opacity,
-            "number",
-            async () => {
-                await particles.refresh();
-            }
-        ) as EditorNumberInput;
+        const opacityInput = connectLinksGroup.addProperty("opacity", "Opacity", EditorType.number).change(async () => {
+            await particles.refresh();
+        }) as EditorNumberInput;
 
         opacityInput.step(0.01).min(0).max(1);
 
-        group.addProperty("radius", "Radius", options.radius, "number", async () => {
+        group.addProperty("radius", "Radius", EditorType.number).change(async () => {
             await particles.refresh();
         });
     }
@@ -163,16 +150,13 @@ export class ModesOptionsEditor extends EditorBase {
             }
         }
 
-        grabLinksGroup.addProperty("blink", "Blink", options.links.blink, typeof options.links.blink, async () => {
+        grabLinksGroup.addProperty("blink", "Blink", EditorType.boolean).change(async () => {
             await particles.refresh();
         });
 
-        grabLinksGroup.addProperty(
-            "color",
-            "Color",
-            colorStringValue,
-            "color",
-            async (value: string | number | boolean) => {
+        grabLinksGroup
+            .addProperty("color", "Color", EditorType.color, colorStringValue, false)
+            .change(async (value: unknown) => {
                 if (typeof value === "string") {
                     if (typeof options.links.color === "string") {
                         options.links.color = value;
@@ -184,53 +168,37 @@ export class ModesOptionsEditor extends EditorBase {
 
                     await particles.refresh();
                 }
-            },
-            false
-        );
+            });
 
-        grabLinksGroup.addProperty(
-            "consent",
-            "Consent",
-            options.links.consent,
-            typeof options.links.consent,
-            async () => {
-                await particles.refresh();
-            }
-        );
+        grabLinksGroup.addProperty("consent", "Consent", EditorType.boolean).change(async () => {
+            await particles.refresh();
+        });
 
-        const opacityInput = grabLinksGroup.addProperty(
-            "opacity",
-            "Opacity",
-            options.links.opacity,
-            "number",
-            async () => {
-                await particles.refresh();
-            }
-        ) as EditorNumberInput;
+        const opacityInput = grabLinksGroup.addProperty("opacity", "Opacity", EditorType.number).change(async () => {
+            await particles.refresh();
+        }) as EditorNumberInput;
 
         opacityInput.step(0.01).min(0).max(1);
 
-        group.addProperty("distance", "Distance", options.distance, "number", async () => {
+        group.addProperty("distance", "Distance", EditorType.number).change(async () => {
             await particles.refresh();
         });
     }
 
     private addPush(): void {
         const particles = this.particles;
-        const options = this.options.push;
         const group = this.group.addGroup("push", "Push");
 
-        group.addProperty("quantity", "Quantity", options.quantity, typeof options.quantity, async () => {
+        group.addProperty("quantity", "Quantity", EditorType.number).change(async () => {
             await particles.refresh();
         });
     }
 
     private addRemove(): void {
         const particles = this.particles;
-        const options = this.options.remove;
         const group = this.group.addGroup("remove", "Remove");
 
-        group.addProperty("remove", "Remove", options.quantity, typeof options.quantity, async () => {
+        group.addProperty("remove", "Remove", EditorType.number).change(async () => {
             await particles.refresh();
         });
     }
@@ -240,15 +208,15 @@ export class ModesOptionsEditor extends EditorBase {
         const options = this.options.repulse;
         const group = this.group.addGroup("repulse", "Repulse");
 
-        group.addProperty("distance", "Distance", options.distance, typeof options.distance, async () => {
+        group.addProperty("distance", "Distance", EditorType.number).change(async () => {
             await particles.refresh();
         });
 
-        group.addProperty("duration", "Duration", options.duration, typeof options.duration, async () => {
+        group.addProperty("duration", "Duration", EditorType.number).change(async () => {
             await particles.refresh();
         });
 
-        group.addProperty("speed", "Speed", options.speed, typeof options.speed, async () => {
+        group.addProperty("speed", "Speed", EditorType.number).change(async () => {
             await particles.refresh();
         });
     }
@@ -258,11 +226,11 @@ export class ModesOptionsEditor extends EditorBase {
         const options = this.options.slow;
         const group = this.group.addGroup("slow", "Slow");
 
-        group.addProperty("factor", "Factor", options.factor, "number", async () => {
+        group.addProperty("factor", "Factor", EditorType.number).change(async () => {
             await particles.refresh();
         });
 
-        group.addProperty("radius", "Radius", options.radius, "number", async () => {
+        group.addProperty("radius", "Radius", EditorType.number).change(async () => {
             await particles.refresh();
         });
     }
@@ -272,11 +240,11 @@ export class ModesOptionsEditor extends EditorBase {
         const options = this.options.trail;
         const group = this.group.addGroup("trail", "Trail");
 
-        group.addProperty("delay", "Delay", options.delay, "number", async () => {
+        group.addProperty("delay", "Delay", EditorType.number).change(async () => {
             await particles.refresh();
         });
 
-        group.addProperty("quantity", "Quantity", options.quantity, "number", async () => {
+        group.addProperty("quantity", "Quantity", EditorType.number).change(async () => {
             await particles.refresh();
         });
 
