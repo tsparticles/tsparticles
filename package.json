@@ -3,6 +3,7 @@
   "name": "tsparticles",
   "version": "0.0.0",
   "scripts": {
+    "build": "lerna run build",
     "version:alpha": "lerna version prerelease --preid alpha --conventional-commits",
     "version:beta": "lerna version prerelease --preid beta --conventional-commits",
     "publish:alpha": "lerna publish from-package --pre-dist-tag alpha --preid alpha",
