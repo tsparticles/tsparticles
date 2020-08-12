@@ -1,4 +1,4 @@
-import { EditorGroup, EditorSelectInput } from "object-gui";
+import { EditorGroup, EditorSelectInput, EditorType } from "object-gui";
 import type { Container } from "tsparticles/dist/Core/Container";
 import type { ICollisions } from "tsparticles/dist/Options/Interfaces/Particles/ICollisions";
 import { CollisionMode } from "tsparticles";
@@ -20,14 +20,13 @@ export class CollisionsOptionsEditor extends EditorBase {
     }
 
     private addProperties(): void {
-        const options = this.options;
         const particles = this.particles;
 
-        this.group.addProperty("enable", "Enable", options.enable, typeof options.enable, async () => {
+        this.group.addProperty("enable", "Enable", EditorType.boolean).change(async () => {
             await particles.refresh();
         });
 
-        const selectType = this.group.addProperty("mode", "Mode", options.mode, "select", async () => {
+        const selectType = this.group.addProperty("mode", "Mode", EditorType.select).change(async () => {
             await particles.refresh();
         }) as EditorSelectInput;
 

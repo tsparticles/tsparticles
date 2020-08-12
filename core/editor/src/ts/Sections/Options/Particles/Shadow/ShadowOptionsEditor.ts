@@ -1,6 +1,6 @@
 import { Container } from "tsparticles/dist/Core/Container";
 import { IShadow } from "tsparticles/dist/Options/Interfaces/Particles/IShadow";
-import { ColorUtils, EditorGroup, IRgb, IHsl } from "object-gui";
+import { ColorUtils, EditorGroup, IHsl, IRgb, EditorType } from "object-gui";
 import { EditorBase } from "../../../../EditorBase";
 
 export class ShadowOptionsEditor extends EditorBase {
@@ -22,13 +22,12 @@ export class ShadowOptionsEditor extends EditorBase {
     private addOffset(): void {
         const particles = this.particles;
         const group = this.group.addGroup("offset", "Offset");
-        const options = this.options.offset;
 
-        group.addProperty("x", "X", options.x, typeof options.x, async () => {
+        group.addProperty("x", "X", EditorType.number).change(async () => {
             await particles.refresh();
         });
 
-        group.addProperty("y", "Y", options.y, typeof options.y, async () => {
+        group.addProperty("y", "Y", EditorType.number).change(async () => {
             await particles.refresh();
         });
     }
@@ -54,30 +53,25 @@ export class ShadowOptionsEditor extends EditorBase {
             colorStringValue = `${rgb.r.toString(16)}${rgb.g.toString(16)}${rgb.b.toString(16)}`;
         }
 
-        this.group.addProperty("blur", "Blur", options.blur, typeof options.blur, async () => {
+        this.group.addProperty("blur", "Blur", EditorType.number).change(async () => {
             await particles.refresh();
         });
 
-        this.group.addProperty(
-            "color",
-            "Color",
-            colorStringValue,
-            "color",
-            async (value: string | number | boolean) => {
+        this.group
+            .addProperty("color", "Color", EditorType.color, colorStringValue, false)
+            .change(async (value: unknown) => {
                 if (typeof value === "string") {
                     if (typeof options.color === "string") {
                         options.color = value;
                     } else {
                         options.color.value = value;
                     }
-
-                    await particles.refresh();
                 }
-            },
-            false
-        );
 
-        this.group.addProperty("enable", "Enable", options.enable, typeof options.enable, async () => {
+                await particles.refresh();
+            });
+
+        this.group.addProperty("enable", "Enable", EditorType.boolean).change(async () => {
             await particles.refresh();
         });
     }

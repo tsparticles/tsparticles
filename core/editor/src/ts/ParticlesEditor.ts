@@ -7,7 +7,7 @@ export class ParticlesEditor extends Editor {
         super(particles.id, "tsParticles", particles);
     }
 
-    protected customize() {
+    protected customize(): void {
         super.customize();
 
         this.addOptions();
@@ -26,26 +26,21 @@ export class ParticlesEditor extends Editor {
         this.root.addButton("refresh", "Refresh");
         this.root.addButton("start", "Start");
         this.root.addButton("stop", "Stop");
-        this.root.addButton(
-            "exportConfig",
-            "Export",
-            () => {
-                const json = this.particles.exportConfiguration();
-                const contentType = "application/json";
-                const blob = new Blob([json], { type: contentType });
-                const url = URL.createObjectURL(blob);
-                const a = document.createElement("a");
+        this.root.addButton("exportConfig", "Export", false).click(() => {
+            const json = this.particles.exportConfiguration();
+            const contentType = "application/json";
+            const blob = new Blob([json], { type: contentType });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement("a");
 
-                a.download = "particles.json";
-                a.href = url;
-                a.dataset.downloadUrl = [contentType, a.download, a.href].join(":");
+            a.download = "particles.json";
+            a.href = url;
+            a.dataset.downloadUrl = [contentType, a.download, a.href].join(":");
 
-                const e = document.createEvent("MouseEvents");
+            const e = document.createEvent("MouseEvents");
 
-                e.initMouseEvent("click", true, false, window, 0, 0, 0, 0, 0, false, false, false, false, 0, null);
-                a.dispatchEvent(e);
-            },
-            false
-        );
+            e.initMouseEvent("click", true, false, window, 0, 0, 0, 0, 0, false, false, false, false, 0, null);
+            a.dispatchEvent(e);
+        });
     }
 }

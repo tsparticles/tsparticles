@@ -2,7 +2,7 @@ import type { IColor } from "tsparticles/dist/Core/Interfaces/IColor";
 import type { Container } from "tsparticles/dist/Core/Container";
 import type { IBackgroundMask } from "tsparticles/dist/Options/Interfaces/BackgroundMask/IBackgroundMask";
 import type { IBackgroundMaskCover } from "tsparticles/dist/Options/Interfaces/BackgroundMask/IBackgroundMaskCover";
-import { EditorNumberInput, EditorGroup, IRgb, IHsl, ColorUtils } from "object-gui";
+import { ColorUtils, EditorGroup, EditorNumberInput, IHsl, IRgb, EditorType } from "object-gui";
 import { EditorBase } from "../../../EditorBase";
 
 export class BackgroundMaskOptionsEditor extends EditorBase {
@@ -42,39 +42,29 @@ export class BackgroundMaskOptionsEditor extends EditorBase {
             colorStringValue = `${rgb.r.toString(16)}${rgb.g.toString(16)}${rgb.b.toString(16)}`;
         }
 
-        coverGroup.addProperty(
-            "color",
-            "Color",
-            colorStringValue,
-            "color",
-            async (value: string | number | boolean) => {
+        coverGroup
+            .addProperty("color", "Color", EditorType.color, colorStringValue, false)
+            .change(async (value: unknown) => {
                 if (typeof value === "string") {
                     coverColor.value = value;
-
-                    await particles.refresh();
                 }
-            },
-            false
-        );
 
-        const opacityInput = coverGroup.addProperty(
-            "opacity",
-            "Opacity",
-            options.opacity,
-            typeof options.opacity,
-            async () => {
                 await particles.refresh();
-            }
-        ) as EditorNumberInput;
+            });
+
+        const opacityInput = coverGroup
+            .addProperty("opacity", "Opacity", EditorType.number, typeof options.opacity)
+            .change(async () => {
+                await particles.refresh();
+            }) as EditorNumberInput;
 
         opacityInput.step(0.01).min(0).max(1);
     }
 
     private addProperties(): void {
         const particles = this.particles;
-        const options = this.options;
 
-        this.group.addProperty("enable", "Enable", options.enable, typeof options.enable, async () => {
+        this.group.addProperty("enable", "Enable", EditorType.boolean).change(async () => {
             await particles.refresh();
         });
     }

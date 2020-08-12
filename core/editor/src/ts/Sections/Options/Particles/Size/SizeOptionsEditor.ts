@@ -1,8 +1,7 @@
 import type { Container } from "tsparticles/dist/Core/Container";
 import type { ISize } from "tsparticles/dist/Options/Interfaces/Particles/Size/ISize";
-import type { ISizeRandom } from "tsparticles/dist/Options/Interfaces/Particles/Size/ISizeRandom";
 import { DestroyType, StartValueType } from "tsparticles";
-import { EditorSelectInput, EditorGroup } from "object-gui";
+import { EditorGroup, EditorSelectInput, EditorType } from "object-gui";
 import { EditorBase } from "../../../../EditorBase";
 
 export class SizeOptionsEditor extends EditorBase {
@@ -24,10 +23,9 @@ export class SizeOptionsEditor extends EditorBase {
 
     private addAnimation(): void {
         const particles = this.particles;
-        const options = this.options.animation;
         const group = this.group.addGroup("animation", "Animation");
 
-        const destroySelectInput = group.addProperty("destroy", "Destroy", options.destroy, "select", async () => {
+        const destroySelectInput = group.addProperty("destroy", "Destroy", EditorType.select).change(async () => {
             await particles.refresh();
         }) as EditorSelectInput;
 
@@ -35,39 +33,29 @@ export class SizeOptionsEditor extends EditorBase {
         destroySelectInput.addItem(DestroyType.min);
         destroySelectInput.addItem(DestroyType.none);
 
-        group.addProperty("enable", "Enable", options.enable, typeof options.enable, async () => {
+        group.addProperty("enable", "Enable", EditorType.boolean).change(async () => {
             await particles.refresh();
         });
 
-        group.addProperty(
-            "minimumValue",
-            "Minimum Value",
-            options.minimumValue,
-            typeof options.minimumValue,
-            async () => {
-                await particles.refresh();
-            }
-        );
-
-        group.addProperty("speed", "Speed", options.speed, typeof options.speed, async () => {
+        group.addProperty("minimumValue", "Minimum Value", EditorType.number).change(async () => {
             await particles.refresh();
         });
 
-        const startValueSelectInput = group.addProperty(
-            "startValue",
-            "Start Value",
-            options.startValue,
-            "select",
-            async () => {
+        group.addProperty("speed", "Speed", EditorType.number).change(async () => {
+            await particles.refresh();
+        });
+
+        const startValueSelectInput = group
+            .addProperty("startValue", "Start Value", EditorType.select)
+            .change(async () => {
                 await particles.refresh();
-            }
-        ) as EditorSelectInput;
+            }) as EditorSelectInput;
 
         startValueSelectInput.addItem(StartValueType.max);
         startValueSelectInput.addItem(StartValueType.min);
         startValueSelectInput.addItem(StartValueType.random);
 
-        group.addProperty("sync", "Sync", options.sync, typeof options.sync, async () => {
+        group.addProperty("sync", "Sync", EditorType.boolean).change(async () => {
             await particles.refresh();
         });
     }
@@ -75,28 +63,20 @@ export class SizeOptionsEditor extends EditorBase {
     private addRandom(): void {
         const group = this.group.addGroup("random", "Random");
         const particles = this.particles;
-        const options = this.options.random as ISizeRandom;
 
-        group.addProperty("enable", "Enable", options.enable, typeof options.enable, async () => {
+        group.addProperty("enable", "Enable", EditorType.boolean).change(async () => {
             await particles.refresh();
         });
 
-        group.addProperty(
-            "minimumValue",
-            "Minimum Value",
-            options.minimumValue,
-            typeof options.minimumValue,
-            async () => {
-                await particles.refresh();
-            }
-        );
+        group.addProperty("minimumValue", "Minimum Value", EditorType.number).change(async () => {
+            await particles.refresh();
+        });
     }
 
     private addProperties(): void {
         const particles = this.particles;
-        const options = this.options;
 
-        this.group.addProperty("value", "Value", options.value, typeof options.value, async () => {
+        this.group.addProperty("value", "Value", EditorType.number).change(async () => {
             await particles.refresh();
         });
     }

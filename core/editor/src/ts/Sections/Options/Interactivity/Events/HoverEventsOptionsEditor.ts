@@ -1,4 +1,4 @@
-import { EditorGroup, EditorSelectInput } from "object-gui";
+import { EditorGroup, EditorSelectInput, EditorType } from "object-gui";
 import type { Container } from "tsparticles/dist/Core/Container";
 import { HoverMode } from "tsparticles";
 import type { IHoverEvent } from "tsparticles/dist/Options/Interfaces/Interactivity/Events/IHoverEvent";
@@ -22,31 +22,29 @@ export class HoverEventsOptionsEditor extends EditorBase {
 
     private addParallax(): void {
         const particles = this.particles;
-        const options = this.options.parallax;
         const parallax = this.group.addGroup("parallax", "Parallax");
 
-        parallax.addProperty("enable", "Enable", options.enable, typeof options.enable, async () => {
+        parallax.addProperty("enable", "Enable", EditorType.boolean).change(async () => {
             await particles.refresh();
         });
 
-        parallax.addProperty("force", "Force", options.force, typeof options.force, async () => {
+        parallax.addProperty("force", "Force", EditorType.number).change(async () => {
             await particles.refresh();
         });
 
-        parallax.addProperty("smooth", "Smooth", options.smooth, typeof options.smooth, async () => {
+        parallax.addProperty("smooth", "Smooth", EditorType.number).change(async () => {
             await particles.refresh();
         });
     }
 
     private addProperties(): void {
         const particles = this.particles;
-        const options = this.options;
 
-        this.group.addProperty("enable", "Enable", options.enable, typeof options.enable, async () => {
+        this.group.addProperty("enable", "Enable", EditorType.boolean).change(async () => {
             await particles.refresh();
         });
 
-        const modeSelectInput = this.group.addProperty("mode", "Mode", options.mode, "select", async () => {
+        const modeSelectInput = this.group.addProperty("mode", "Mode", EditorType.select).change(async () => {
             await particles.refresh();
         }) as EditorSelectInput;
 

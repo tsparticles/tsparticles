@@ -1,7 +1,7 @@
 import { Container } from "tsparticles/dist/Core/Container";
 import { IInfection } from "tsparticles/dist/Options/Interfaces/Infection/IInfection";
 import { IInfectionStage } from "tsparticles/dist/Options/Interfaces/Infection/IInfectionStage";
-import { EditorGroup, ColorUtils, IRgb, IHsl } from "object-gui";
+import { ColorUtils, EditorGroup, IHsl, IRgb, EditorType } from "object-gui";
 import { EditorBase } from "../../../EditorBase";
 
 export class InfectionOptionsEditor extends EditorBase {
@@ -22,21 +22,20 @@ export class InfectionOptionsEditor extends EditorBase {
 
     private addProperties() {
         const particles = this.particles;
-        const options = this.options;
 
-        this.group.addProperty("cure", "Cure", options.cure, typeof options.cure, async () => {
+        this.group.addProperty("cure", "Cure", EditorType.boolean).change(async () => {
             await particles.refresh();
         });
 
-        this.group.addProperty("delay", "Delay", options.delay, typeof options.delay, async () => {
+        this.group.addProperty("delay", "Delay", EditorType.number).change(async () => {
             await particles.refresh();
         });
 
-        this.group.addProperty("enable", "Enable", options.enable, typeof options.enable, async () => {
+        this.group.addProperty("enable", "Enable", EditorType.boolean).change(async () => {
             await particles.refresh();
         });
 
-        this.group.addProperty("infections", "Infections", options.infections, typeof options.infections, async () => {
+        this.group.addProperty("infections", "Infections", EditorType.number).change(async () => {
             await particles.refresh();
         });
     }
@@ -52,31 +51,26 @@ export class InfectionOptionsEditor extends EditorBase {
             this.addStage(stagesGroup, stage, i + 1);
         }
 
-        stagesGroup.addButton(
-            "addStage",
-            "Add Stage",
-            () => {
-                const defaultValues = {
-                    color: {
-                        value: "#ff0000",
-                    },
-                    radius: 0,
-                    rate: 1,
-                };
+        stagesGroup.addButton("addStage", "Add Stage", false).click(async () => {
+            const defaultValues = {
+                color: {
+                    value: "#ff0000",
+                },
+                radius: 0,
+                rate: 1,
+            };
 
-                options.stages.push(defaultValues);
+            options.stages.push(defaultValues);
 
-                this.addStage(stagesGroup, defaultValues, options.stages.length);
+            this.addStage(stagesGroup, defaultValues, options.stages.length);
 
-                particles.refresh();
-            },
-            false
-        );
+            await particles.refresh();
+        });
     }
 
     private addStage(parent: EditorGroup, stage: IInfectionStage, index: number) {
         const particles = this.particles;
-        const stageGroup = parent.addGroup(`stage_${index}`, `Stage ${index}`, stage);
+        const stageGroup = parent.addGroup(`stage_${index}`, `Stage ${index}`, true, stage);
 
         let colorStringValue: string | undefined;
 
@@ -97,12 +91,9 @@ export class InfectionOptionsEditor extends EditorBase {
             }
         }
 
-        stageGroup.addProperty(
-            "color",
-            "Color",
-            colorStringValue,
-            "color",
-            async (value: string | number | boolean) => {
+        stageGroup
+            .addProperty("color", "Color", EditorType.color, colorStringValue, false)
+            .change(async (value: unknown) => {
                 if (typeof value === "string") {
                     if (typeof stage.color === "string") {
                         stage.color = value;
@@ -111,26 +102,24 @@ export class InfectionOptionsEditor extends EditorBase {
                             value,
                         };
                     }
-
-                    await particles.refresh();
                 }
-            },
-            false
-        );
 
-        stageGroup.addProperty("duration", "Duration", stage.duration, typeof stage.duration, async () => {
+                await particles.refresh();
+            });
+
+        stageGroup.addProperty("duration", "Duration", EditorType.number).change(async () => {
             await particles.refresh();
         });
 
-        stageGroup.addProperty("infectedStage", "Infected Stage", stage.infectedStage, "number", async () => {
+        stageGroup.addProperty("infectedStage", "Infected Stage", EditorType.number).change(async () => {
             await particles.refresh();
         });
 
-        stageGroup.addProperty("radius", "Radius", stage.radius, typeof stage.radius, async () => {
+        stageGroup.addProperty("radius", "Radius", EditorType.number).change(async () => {
             await particles.refresh();
         });
 
-        stageGroup.addProperty("rate", "Rate", stage.rate, typeof stage.rate, async () => {
+        stageGroup.addProperty("rate", "Rate", EditorType.number).change(async () => {
             await particles.refresh();
         });
     }

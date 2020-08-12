@@ -1,6 +1,6 @@
 import type { Container } from "tsparticles/dist/Core/Container";
 import type { IRotate } from "tsparticles/dist/Options/Interfaces/Particles/Rotate/IRotate";
-import { EditorSelectInput, EditorGroup } from "object-gui";
+import { EditorGroup, EditorSelectInput, EditorType } from "object-gui";
 import { EditorBase } from "../../../../EditorBase";
 
 export class RotateOptionsEditor extends EditorBase {
@@ -22,47 +22,41 @@ export class RotateOptionsEditor extends EditorBase {
     private addAnimation(): void {
         const group = this.group.addGroup("animation", "Animation");
         const particles = this.particles;
-        const options = this.options.animation;
 
-        group.addProperty("enable", "Enable", options.enable, typeof options.enable, async () => {
+        group.addProperty("enable", "Enable", EditorType.boolean).change(async () => {
             await particles.refresh();
         });
 
-        group.addProperty("speed", "Speed", options.speed, typeof options.speed, async () => {
+        group.addProperty("speed", "Speed", EditorType.number).change(async () => {
             await particles.refresh();
         });
 
-        group.addProperty("sync", "Sync", options.sync, typeof options.sync, async () => {
+        group.addProperty("sync", "Sync", EditorType.boolean).change(async () => {
             await particles.refresh();
         });
     }
 
     private addProperties(): void {
         const particles = this.particles;
-        const options = this.options;
 
-        const directionSelectInput = this.group.addProperty(
-            "direction",
-            "Direction",
-            options.direction,
-            "select",
-            async () => {
+        const directionSelectInput = this.group
+            .addProperty("direction", "Direction", EditorType.select)
+            .change(async () => {
                 await particles.refresh();
-            }
-        ) as EditorSelectInput;
+            }) as EditorSelectInput;
 
         directionSelectInput.addItem("clockwise");
         directionSelectInput.addItem("counter-clockwise");
 
-        this.group.addProperty("path", "Path", options.path, typeof options.path, async () => {
+        this.group.addProperty("path", "Path", EditorType.boolean).change(async () => {
             await particles.refresh();
         });
 
-        this.group.addProperty("random", "Random", options.random, typeof options.random, async () => {
+        this.group.addProperty("random", "Random", EditorType.boolean).change(async () => {
             await particles.refresh();
         });
 
-        this.group.addProperty("value", "Value", options.value, typeof options.value, async () => {
+        this.group.addProperty("value", "Value", EditorType.number).change(async () => {
             await particles.refresh();
         });
     }

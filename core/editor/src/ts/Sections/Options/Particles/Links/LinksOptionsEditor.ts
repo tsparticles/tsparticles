@@ -1,5 +1,5 @@
 import type { Container } from "tsparticles/dist/Core/Container";
-import { ColorUtils, EditorGroup, IRgb, IHsl, EditorNumberInput } from "object-gui";
+import { ColorUtils, EditorGroup, EditorNumberInput, IHsl, IRgb, EditorType } from "object-gui";
 import type { ILinks } from "tsparticles/dist/Options/Interfaces/Particles/Links/ILinks";
 import { EditorBase } from "../../../../EditorBase";
 
@@ -44,16 +44,13 @@ export class LinksOptionsEditor extends EditorBase {
             }
         }
 
-        group.addProperty("blur", "Blur", options.blur, typeof options.blur, async () => {
+        group.addProperty("blur", "Blur", EditorType.boolean).change(async () => {
             await particles.refresh();
         });
 
-        group.addProperty(
-            "color",
-            "Color",
-            shadowColorStringValue,
-            "color",
-            async (value: string | number | boolean) => {
+        group
+            .addProperty("color", "Color", EditorType.color, shadowColorStringValue, false)
+            .change(async (value: unknown) => {
                 if (typeof value === "string") {
                     if (typeof options.color === "string") {
                         options.color = value;
@@ -66,15 +63,13 @@ export class LinksOptionsEditor extends EditorBase {
                             options.color.value = value;
                         }
                     }
-
-                    await particles.refresh();
                 }
-            },
-            false
-        );
 
-        group.addProperty("enable", "Enable", options.enable, typeof options.enable, () => {
-            particles.refresh();
+                await particles.refresh();
+            });
+
+        group.addProperty("enable", "Enable", EditorType.boolean).change(async () => {
+            await particles.refresh();
         });
     }
 
@@ -102,12 +97,9 @@ export class LinksOptionsEditor extends EditorBase {
             }
         }
 
-        group.addProperty(
-            "color",
-            "Color",
-            trianglesColorStringValue,
-            "color",
-            async (value: string | number | boolean) => {
+        group
+            .addProperty("color", "Color", EditorType.color, trianglesColorStringValue, false)
+            .change(async (value: unknown) => {
                 if (typeof value === "string") {
                     if (typeof options.color === "string") {
                         options.color = value;
@@ -120,19 +112,17 @@ export class LinksOptionsEditor extends EditorBase {
                             options.color.value = value;
                         }
                     }
-
-                    await particles.refresh();
                 }
-            },
-            false
-        );
 
-        group.addProperty("enable", "Enable", options.enable, typeof options.enable, () => {
-            particles.refresh();
+                await particles.refresh();
+            });
+
+        group.addProperty("enable", "Enable", EditorType.boolean).change(async () => {
+            await particles.refresh();
         });
 
-        const trianglesOpacityInput = group.addProperty("opacity", "Opacity", options.opacity, "number", () => {
-            particles.refresh();
+        const trianglesOpacityInput = group.addProperty("opacity", "Opacity", EditorType.number).change(async () => {
+            await particles.refresh();
         }) as EditorNumberInput;
 
         trianglesOpacityInput.step(0.01).min(0).max(1);
@@ -158,16 +148,13 @@ export class LinksOptionsEditor extends EditorBase {
             colorStringValue = `${rgb.r.toString(16)}${rgb.g.toString(16)}${rgb.b.toString(16)}`;
         }
 
-        this.group.addProperty("blink", "Blink", options.blink, typeof options.blink, async () => {
+        this.group.addProperty("blink", "Blink", EditorType.boolean).change(async () => {
             await particles.refresh();
         });
 
-        this.group.addProperty(
-            "color",
-            "Color",
-            colorStringValue,
-            "color",
-            async (value: string | number | boolean) => {
+        this.group
+            .addProperty("color", "Color", EditorType.color, colorStringValue, false)
+            .change(async (value: unknown) => {
                 if (typeof value === "string") {
                     if (typeof options.color === "string") {
                         options.color = value;
@@ -177,43 +164,35 @@ export class LinksOptionsEditor extends EditorBase {
 
                     await particles.refresh();
                 }
-            },
-            false
-        );
+            });
 
-        this.group.addProperty("consent", "Consent", options.consent, typeof options.consent, async () => {
+        this.group.addProperty("consent", "Consent", EditorType.boolean).change(async () => {
             await particles.refresh();
         });
 
-        this.group.addProperty("distance", "Distance", options.distance, typeof options.distance, async () => {
+        this.group.addProperty("distance", "Distance", EditorType.number).change(async () => {
             await particles.refresh();
         });
 
-        this.group.addProperty("enable", "Enable", options.enable, typeof options.enable, async () => {
+        this.group.addProperty("enable", "Enable", EditorType.boolean).change(async () => {
             await particles.refresh();
         });
 
-        this.group.addProperty("id", "Id", options.id, "string", async () => {
+        this.group.addProperty("id", "Id", EditorType.string).change(async () => {
             await particles.refresh();
         });
 
-        const opacityInput = this.group.addProperty(
-            "opacity",
-            "Opacity",
-            options.opacity,
-            typeof options.opacity,
-            async () => {
-                await particles.refresh();
-            }
-        ) as EditorNumberInput;
+        const opacityInput = this.group.addProperty("opacity", "Opacity", EditorType.number).change(async () => {
+            await particles.refresh();
+        }) as EditorNumberInput;
 
         opacityInput.step(0.01).min(0).max(1);
 
-        this.group.addProperty("warp", "Warp", options.warp, typeof options.warp, async () => {
+        this.group.addProperty("warp", "Warp", EditorType.boolean).change(async () => {
             await particles.refresh();
         });
 
-        this.group.addProperty("width", "Width", options.width, typeof options.width, async () => {
+        this.group.addProperty("width", "Width", EditorType.number).change(async () => {
             await particles.refresh();
         });
     }

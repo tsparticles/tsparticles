@@ -5,7 +5,7 @@ import type { IOptions } from "tsparticles/dist/Options/Interfaces/IOptions";
 import { InteractivityOptionsEditor } from "./Interactivity/InteractivityOptionsEditor";
 import { BackgroundMaskOptionsEditor } from "./BackgroundMask/BackgroundMaskOptionsEditor";
 import { InfectionOptionsEditor } from "./Infection/InfectionOptionsEditor";
-import { EditorGroup } from "object-gui";
+import { EditorGroup, EditorType } from "object-gui";
 import { EditorBase } from "../../EditorBase";
 
 export class OptionsEditor extends EditorBase {
@@ -17,7 +17,7 @@ export class OptionsEditor extends EditorBase {
     }
 
     public addToGroup(parent: EditorGroup): void {
-        this.group = parent.addGroup("options", "Options", undefined, false);
+        this.group = parent.addGroup("options", "Options", false);
         this.options = this.group.data as IOptions;
 
         this.addBackground();
@@ -31,35 +31,22 @@ export class OptionsEditor extends EditorBase {
 
     private addProperties(): void {
         const particles = this.particles;
-        const options = particles.options;
 
-        this.group.addProperty("autoPlay", "Auto Play", options.autoPlay, typeof options.autoPlay, async () => {
+        this.group.addProperty("autoPlay", "Auto Play", EditorType.boolean).change(async () => {
             await particles.refresh();
         });
 
-        this.group.addProperty(
-            "detectRetina",
-            "Detect Retina",
-            options.detectRetina,
-            typeof options.detectRetina,
-            async () => {
-                await particles.refresh();
-            }
-        );
-
-        this.group.addProperty("fpsLimit", "FPS Limit", options.fpsLimit, typeof options.fpsLimit, async () => {
+        this.group.addProperty("detectRetina", "Detect Retina", EditorType.boolean).change(async () => {
             await particles.refresh();
         });
 
-        this.group.addProperty(
-            "pauseOnBlur",
-            "Pause on Blur",
-            options.pauseOnBlur,
-            typeof options.pauseOnBlur,
-            async () => {
-                await particles.refresh();
-            }
-        );
+        this.group.addProperty("fpsLimit", "FPS Limit", EditorType.number).change(async () => {
+            await particles.refresh();
+        });
+
+        this.group.addProperty("pauseOnBlur", "Pause on Blur", EditorType.boolean).change(async () => {
+            await particles.refresh();
+        });
     }
 
     private addBackground(): void {
