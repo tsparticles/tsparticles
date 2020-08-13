@@ -1,4 +1,4 @@
-import { ColorUtils, EditorGroup, EditorSelectInput, IHsl, IRgb, EditorType } from "object-gui";
+import { ColorUtils, EditorGroup, IHsl, IRgb, EditorType } from "object-gui";
 import type { Container } from "tsparticles/dist/Core/Container";
 import type { IMove } from "tsparticles/dist/Options/Interfaces/Particles/Move/IMove";
 import { MoveDirection, OutMode } from "tsparticles";

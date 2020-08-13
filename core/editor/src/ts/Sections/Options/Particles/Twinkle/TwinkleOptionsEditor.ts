@@ -2,7 +2,7 @@ import type { Container } from "tsparticles/dist/Core/Container";
 import type { ITwinkle } from "tsparticles/dist/Options/Interfaces/Particles/Twinkle/ITwinkle";
 import type { ITwinkleValues } from "tsparticles/dist/Options/Interfaces/Particles/Twinkle/ITwinkleValues";
 import { ColorUtils } from "tsparticles";
-import { EditorNumberInput, EditorGroup, IRgb, IHsl, EditorType } from "object-gui";
+import { EditorGroup, IRgb, IHsl, EditorType } from "object-gui";
 import { EditorBase } from "../../../../EditorBase";
 
 export class TwinkleOptionsEditor extends EditorBase {
@@ -14,8 +14,8 @@ export class TwinkleOptionsEditor extends EditorBase {
     }
 
     public addToGroup(parent: EditorGroup, options?: unknown): void {
-        this.group = parent.addGroup("twinkle", "Twinkle");
-        this.options = (options ?? this.group.data) as ITwinkle;
+        this.group = parent.addGroup("twinkle", "Twinkle", true, options);
+        this.options = this.group.data as ITwinkle;
 
         this.addTwinkle();
     }

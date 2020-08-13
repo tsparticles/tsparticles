@@ -1,6 +1,6 @@
 import type { Container } from "tsparticles/dist/Core/Container";
 import type { IModes } from "tsparticles/dist/Options/Interfaces/Interactivity/Modes/IModes";
-import { ColorUtils, EditorGroup, EditorNumberInput, IHsl, IRgb, EditorType } from "object-gui";
+import { ColorUtils, EditorGroup, IHsl, IRgb, EditorType } from "object-gui";
 import { EditorBase } from "../../../../EditorBase";
 
 export class ModesOptionsEditor extends EditorBase {

@@ -14,6 +14,7 @@ import { StrokeOptionsEditor } from "./Stroke/StrokeOptionsEditor";
 import { ShadowOptionsEditor } from "./Shadow/ShadowOptionsEditor";
 import { TwinkleOptionsEditor } from "./Twinkle/TwinkleOptionsEditor";
 import { EditorBase } from "../../../EditorBase";
+import { LifeOptionsEditor } from "./Life/LifeOptionsEditor";
 
 export class ParticlesOptionsEditor extends EditorBase {
     public group!: EditorGroup;
@@ -29,6 +30,7 @@ export class ParticlesOptionsEditor extends EditorBase {
 
         this.addCollisions();
         this.addColor();
+        this.addLife();
         this.addLinks();
         this.addMove();
         this.addNumber();
@@ -49,6 +51,12 @@ export class ParticlesOptionsEditor extends EditorBase {
 
     private addColor(): void {
         const options = new ColorOptionsEditor(this.particles);
+
+        options.addToGroup(this.group);
+    }
+
+    private addLife(): void {
+        const options = new LifeOptionsEditor(this.particles);
 
         options.addToGroup(this.group);
     }

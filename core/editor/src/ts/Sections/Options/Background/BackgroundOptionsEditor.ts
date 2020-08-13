@@ -4,7 +4,7 @@ import type { IBackground } from "tsparticles/dist/Options/Interfaces/Background
 import type { IColor } from "tsparticles/dist/Core/Interfaces/IColor";
 import type { Container } from "tsparticles/dist/Core/Container";
 import { ColorUtils } from "tsparticles";
-import { EditorNumberInput, EditorGroup, EditorType } from "object-gui";
+import { EditorGroup, EditorType } from "object-gui";
 import { EditorBase } from "../../../EditorBase";
 
 export class BackgroundOptionsEditor extends EditorBase {

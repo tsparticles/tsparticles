@@ -1,4 +1,4 @@
-import { EditorGroup, EditorSelectInput, EditorType } from "object-gui";
+import { EditorGroup, EditorType } from "object-gui";
 import type { Container } from "tsparticles/dist/Core/Container";
 import { HoverMode } from "tsparticles";
 import type { IHoverEvent } from "tsparticles/dist/Options/Interfaces/Interactivity/Events/IHoverEvent";

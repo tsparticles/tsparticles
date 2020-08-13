@@ -1,5 +1,5 @@
 import type { Container } from "tsparticles/dist/Core/Container";
-import { ColorUtils, EditorGroup, EditorNumberInput, IHsl, IRgb, EditorType } from "object-gui";
+import { ColorUtils, EditorGroup, IHsl, IRgb, EditorType } from "object-gui";
 import type { ILinks } from "tsparticles/dist/Options/Interfaces/Particles/Links/ILinks";
 import { EditorBase } from "../../../../EditorBase";
 

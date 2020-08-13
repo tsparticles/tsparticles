@@ -1,6 +1,6 @@
 import type { Container } from "tsparticles/dist/Core/Container";
 import type { IShape } from "tsparticles/dist/Options/Interfaces/Particles/Shape/IShape";
-import { EditorSelectInput, EditorGroup, EditorType } from "object-gui";
+import { EditorGroup, EditorType } from "object-gui";
 import { EditorBase } from "../../../../EditorBase";
 
 export class ShapeOptionsEditor extends EditorBase {

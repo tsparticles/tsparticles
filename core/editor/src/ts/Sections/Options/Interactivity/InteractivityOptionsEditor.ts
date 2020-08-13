@@ -1,7 +1,7 @@
 import { Container } from "tsparticles/dist/Core/Container";
 import { IInteractivity } from "tsparticles/dist/Options/Interfaces/Interactivity/IInteractivity";
 import { InteractivityDetect } from "tsparticles";
-import { EditorSelectInput, EditorGroup, EditorType } from "object-gui";
+import { EditorGroup, EditorType } from "object-gui";
 import { ModesOptionsEditor } from "./Modes/ModesOptionsEditor";
 import { EventsOptionsEditor } from "./Events/EventsOptionsEditor";
 import { EditorBase } from "../../../EditorBase";

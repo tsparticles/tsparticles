@@ -1,7 +1,7 @@
 import type { Container } from "tsparticles/dist/Core/Container";
 import type { ISize } from "tsparticles/dist/Options/Interfaces/Particles/Size/ISize";
 import { DestroyType, StartValueType } from "tsparticles";
-import { EditorGroup, EditorSelectInput, EditorType } from "object-gui";
+import { EditorGroup, EditorType } from "object-gui";
 import { EditorBase } from "../../../../EditorBase";
 
 export class SizeOptionsEditor extends EditorBase {
