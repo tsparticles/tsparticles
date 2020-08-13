@@ -121,11 +121,14 @@ export class LinksOptionsEditor extends EditorBase {
             await particles.refresh();
         });
 
-        const trianglesOpacityInput = group.addProperty("opacity", "Opacity", EditorType.number).change(async () => {
-            await particles.refresh();
-        }) as EditorNumberInput;
-
-        trianglesOpacityInput.step(0.01).min(0).max(1);
+        group
+            .addProperty("opacity", "Opacity", EditorType.number)
+            .change(async () => {
+                await particles.refresh();
+            })
+            .step(0.01)
+            .min(0)
+            .max(1);
     }
 
     private addProperties(): void {
@@ -182,11 +185,14 @@ export class LinksOptionsEditor extends EditorBase {
             await particles.refresh();
         });
 
-        const opacityInput = this.group.addProperty("opacity", "Opacity", EditorType.number).change(async () => {
-            await particles.refresh();
-        }) as EditorNumberInput;
-
-        opacityInput.step(0.01).min(0).max(1);
+        this.group
+            .addProperty("opacity", "Opacity", EditorType.number)
+            .change(async () => {
+                await particles.refresh();
+            })
+            .step(0.01)
+            .min(0)
+            .max(1);
 
         this.group.addProperty("warp", "Warp", EditorType.boolean).change(async () => {
             await particles.refresh();

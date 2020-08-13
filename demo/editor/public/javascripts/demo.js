@@ -119,6 +119,6 @@ tsParticles.load("particles", {
         "size": "cover"
     }
 }).then(container => {
-    showEditor(container).top().left().theme("dark");
+    showEditor(container).top().left().theme("neu-dark");
 })
 

@@ -72,10 +72,13 @@ export class TwinkleOptionsEditor extends EditorBase {
             await particles.refresh();
         });
 
-        const opacityInput = group.addProperty("opacity", "Opacity", EditorType.number).change(async () => {
-            await particles.refresh();
-        }) as EditorNumberInput;
-
-        opacityInput.step(0.01).min(0).max(1);
+        group
+            .addProperty("opacity", "Opacity", EditorType.number)
+            .change(async () => {
+                await particles.refresh();
+            })
+            .step(0.01)
+            .min(0)
+            .max(1);
     }
 }

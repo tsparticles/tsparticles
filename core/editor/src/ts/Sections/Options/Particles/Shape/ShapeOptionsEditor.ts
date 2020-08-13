@@ -23,7 +23,7 @@ export class ShapeOptionsEditor extends EditorBase {
 
         const selectType = this.group.addProperty("type", "Type", EditorType.select).change(async () => {
             await particles.refresh();
-        }) as EditorSelectInput;
+        });
 
         for (const key of particles.drawers.keys()) {
             selectType.addItem(key);

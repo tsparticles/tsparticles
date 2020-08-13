@@ -39,12 +39,21 @@ export class InteractivityOptionsEditor extends EditorBase {
     private addProperties(): void {
         const particles = this.particles;
 
-        const selectDetect = this.group.addProperty("detectsOn", "Detects On", EditorType.select).change(async () => {
-            await particles.refresh();
-        }) as EditorSelectInput;
-
-        selectDetect.addItem(InteractivityDetect.canvas);
-        selectDetect.addItem(InteractivityDetect.parent);
-        selectDetect.addItem(InteractivityDetect.window);
+        this.group
+            .addProperty("detectsOn", "Detects On", EditorType.select)
+            .change(async () => {
+                await particles.refresh();
+            })
+            .addItems([
+                {
+                    value: InteractivityDetect.canvas,
+                },
+                {
+                    value: InteractivityDetect.parent,
+                },
+                {
+                    value: InteractivityDetect.window,
+                },
+            ]);
     }
 }

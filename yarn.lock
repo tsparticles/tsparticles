@@ -12484,10 +12484,10 @@ object-copy@^0.1.0:
     define-property "^0.2.5"
     kind-of "^3.0.3"
 
-object-gui@^1.0.0-beta.0:
-  version "1.0.0-beta.0"
-  resolved "https://registry.yarnpkg.com/object-gui/-/object-gui-1.0.0-beta.0.tgz#ee41028f304746765cb3159095412f3686198bc3"
-  integrity sha512-NKygkM3x7XHKg4KHCma36wJ12DqPui8Gs1Q5ljQ7xammGQ4kWLkHkUZ2iX3NvjJ9sFtPtJe4nA4UsnsLZ6lilg==
+object-gui@^1.0.0-beta.3:
+  version "1.0.0-beta.3"
+  resolved "https://registry.yarnpkg.com/object-gui/-/object-gui-1.0.0-beta.3.tgz#75c94c6976a176cc3ccecaea95ca6f1dbc160acd"
+  integrity sha512-xub9wEAa79BMYL0YOO6rvrwg6kgHT6h8axSSc1j5q9ra5fl0HAFN4Q2o1hUJPTN6ajylY7fTxvUoPZQZzNVQRA==
   dependencies:
     tslib "^2.0.0"
 

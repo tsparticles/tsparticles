@@ -134,33 +134,67 @@ export class MoveOptionsEditor extends EditorBase {
         const particles = this.particles;
         const group = this.group;
 
-        const directionSelectInput = group.addProperty("direction", "Direction", EditorType.select).change(async () => {
-            await particles.refresh();
-        }) as EditorSelectInput;
-
-        directionSelectInput.addItem(MoveDirection.bottom);
-        directionSelectInput.addItem(MoveDirection.bottomLeft);
-        directionSelectInput.addItem(MoveDirection.bottomRight);
-        directionSelectInput.addItem(MoveDirection.left);
-        directionSelectInput.addItem(MoveDirection.none);
-        directionSelectInput.addItem(MoveDirection.right);
-        directionSelectInput.addItem(MoveDirection.top);
-        directionSelectInput.addItem(MoveDirection.topLeft);
-        directionSelectInput.addItem(MoveDirection.topRight);
+        group
+            .addProperty("direction", "Direction", EditorType.select)
+            .change(async () => {
+                await particles.refresh();
+            })
+            .addItems([
+                {
+                    value: MoveDirection.bottom,
+                },
+                {
+                    value: MoveDirection.bottomLeft,
+                },
+                {
+                    value: MoveDirection.bottomRight,
+                },
+                {
+                    value: MoveDirection.left,
+                },
+                {
+                    value: MoveDirection.none,
+                },
+                {
+                    value: MoveDirection.right,
+                },
+                {
+                    value: MoveDirection.top,
+                },
+                {
+                    value: MoveDirection.topLeft,
+                },
+                {
+                    value: MoveDirection.topRight,
+                },
+            ]);
 
         group.addProperty("enable", "Enable", EditorType.boolean).change(async () => {
             await particles.refresh();
         });
 
-        const outModeSelectInput = group.addProperty("outMode", "Out Mode", EditorType.select).change(async () => {
-            await particles.refresh();
-        }) as EditorSelectInput;
-
-        outModeSelectInput.addItem(OutMode.bounce);
-        outModeSelectInput.addItem(OutMode.bounceHorizontal);
-        outModeSelectInput.addItem(OutMode.bounceVertical);
-        outModeSelectInput.addItem(OutMode.destroy);
-        outModeSelectInput.addItem(OutMode.out);
+        group
+            .addProperty("outMode", "Out Mode", EditorType.select)
+            .change(async () => {
+                await particles.refresh();
+            })
+            .addItems([
+                {
+                    value: OutMode.bounce,
+                },
+                {
+                    value: OutMode.bounceHorizontal,
+                },
+                {
+                    value: OutMode.bounceVertical,
+                },
+                {
+                    value: OutMode.destroy,
+                },
+                {
+                    value: OutMode.out,
+                },
+            ]);
 
         group.addProperty("random", "Random", EditorType.boolean).change(async () => {
             await particles.refresh();

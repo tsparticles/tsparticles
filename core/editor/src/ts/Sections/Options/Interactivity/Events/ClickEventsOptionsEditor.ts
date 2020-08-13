@@ -26,17 +26,34 @@ export class ClickEventsOptionsEditor extends EditorBase {
             await particles.refresh();
         });
 
-        const modeSelectInput = this.group.addProperty("mode", "Mode", EditorType.select).change(async () => {
-            await particles.refresh();
-        }) as EditorSelectInput;
-
-        modeSelectInput.addItem(ClickMode.attract);
-        // modeSelectInput.addItem(ClickMode.bubble); // TODO: This mode seems buggy
-        modeSelectInput.addItem(ClickMode.pause);
-        modeSelectInput.addItem(ClickMode.push);
-        modeSelectInput.addItem(ClickMode.remove);
-        modeSelectInput.addItem(ClickMode.repulse);
-        modeSelectInput.addItem(ClickMode.trail);
+        const modeSelectInput = this.group
+            .addProperty("mode", "Mode", EditorType.select)
+            .change(async () => {
+                await particles.refresh();
+            })
+            .addItems([
+                {
+                    value: ClickMode.attract,
+                },
+                {
+                    value: ClickMode.bubble,
+                },
+                {
+                    value: ClickMode.pause,
+                },
+                {
+                    value: ClickMode.push,
+                },
+                {
+                    value: ClickMode.remove,
+                },
+                {
+                    value: ClickMode.repulse,
+                },
+                {
+                    value: ClickMode.trail,
+                },
+            ]);
 
         if (typeof AbsorberClickMode !== "undefined") {
             const absorbersGroup = "Absorbers";

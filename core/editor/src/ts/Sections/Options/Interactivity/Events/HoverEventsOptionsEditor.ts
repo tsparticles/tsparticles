@@ -44,17 +44,36 @@ export class HoverEventsOptionsEditor extends EditorBase {
             await particles.refresh();
         });
 
-        const modeSelectInput = this.group.addProperty("mode", "Mode", EditorType.select).change(async () => {
-            await particles.refresh();
-        }) as EditorSelectInput;
-
-        modeSelectInput.addItem(HoverMode.attract);
-        modeSelectInput.addItem(HoverMode.bubble);
-        modeSelectInput.addItem(HoverMode.connect);
-        modeSelectInput.addItem(HoverMode.grab);
-        modeSelectInput.addItem(HoverMode.light);
-        modeSelectInput.addItem(HoverMode.repulse);
-        modeSelectInput.addItem(HoverMode.slow);
-        modeSelectInput.addItem(HoverMode.trail);
+        this.group
+            .addProperty("mode", "Mode", EditorType.select)
+            .change(async () => {
+                await particles.refresh();
+            })
+            .addItems([
+                {
+                    value: HoverMode.attract,
+                },
+                {
+                    value: HoverMode.bubble,
+                },
+                {
+                    value: HoverMode.connect,
+                },
+                {
+                    value: HoverMode.grab,
+                },
+                {
+                    value: HoverMode.light,
+                },
+                {
+                    value: HoverMode.repulse,
+                },
+                {
+                    value: HoverMode.slow,
+                },
+                {
+                    value: HoverMode.trail,
+                },
+            ]);
     }
 }

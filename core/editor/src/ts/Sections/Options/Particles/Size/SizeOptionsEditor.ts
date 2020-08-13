@@ -25,13 +25,22 @@ export class SizeOptionsEditor extends EditorBase {
         const particles = this.particles;
         const group = this.group.addGroup("animation", "Animation");
 
-        const destroySelectInput = group.addProperty("destroy", "Destroy", EditorType.select).change(async () => {
-            await particles.refresh();
-        }) as EditorSelectInput;
-
-        destroySelectInput.addItem(DestroyType.max);
-        destroySelectInput.addItem(DestroyType.min);
-        destroySelectInput.addItem(DestroyType.none);
+        group
+            .addProperty("destroy", "Destroy", EditorType.select)
+            .change(async () => {
+                await particles.refresh();
+            })
+            .addItems([
+                {
+                    value: DestroyType.max,
+                },
+                {
+                    value: DestroyType.min,
+                },
+                {
+                    value: DestroyType.none,
+                },
+            ]);
 
         group.addProperty("enable", "Enable", EditorType.boolean).change(async () => {
             await particles.refresh();
@@ -49,11 +58,18 @@ export class SizeOptionsEditor extends EditorBase {
             .addProperty("startValue", "Start Value", EditorType.select)
             .change(async () => {
                 await particles.refresh();
-            }) as EditorSelectInput;
-
-        startValueSelectInput.addItem(StartValueType.max);
-        startValueSelectInput.addItem(StartValueType.min);
-        startValueSelectInput.addItem(StartValueType.random);
+            })
+            .addItems([
+                {
+                    value: StartValueType.max,
+                },
+                {
+                    value: StartValueType.min,
+                },
+                {
+                    value: StartValueType.random,
+                },
+            ]);
 
         group.addProperty("sync", "Sync", EditorType.boolean).change(async () => {
             await particles.refresh();

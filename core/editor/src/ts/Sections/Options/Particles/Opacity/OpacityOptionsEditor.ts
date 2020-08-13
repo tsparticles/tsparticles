@@ -28,17 +28,21 @@ export class OpacityOptionsEditor extends EditorBase {
             await particles.refresh();
         });
 
-        const minInput = group.addProperty("minimumValue", "Minimum Value", EditorType.number).change(async () => {
-            await particles.refresh();
-        }) as EditorNumberInput;
+        group
+            .addProperty("minimumValue", "Minimum Value", EditorType.number)
+            .change(async () => {
+                await particles.refresh();
+            })
+            .min(0)
+            .max(0)
+            .step(0.01);
 
-        minInput.min(0).max(0).step(0.01);
-
-        const speedInput = group.addProperty("speed", "Speed", EditorType.number).change(async () => {
-            await particles.refresh();
-        }) as EditorNumberInput;
-
-        speedInput.step(0.01);
+        group
+            .addProperty("speed", "Speed", EditorType.number)
+            .change(async () => {
+                await particles.refresh();
+            })
+            .step(0.01);
 
         group.addProperty("sync", "Sync", EditorType.boolean).change(async () => {
             await particles.refresh();
@@ -61,10 +65,13 @@ export class OpacityOptionsEditor extends EditorBase {
     private addProperties(): void {
         const particles = this.particles;
 
-        const opacityInput = this.group.addProperty("value", "Value", EditorType.number).change(async () => {
-            await particles.refresh();
-        }) as EditorNumberInput;
-
-        opacityInput.min(0).max(1).step(0.01);
+        this.group
+            .addProperty("value", "Value", EditorType.number)
+            .change(async () => {
+                await particles.refresh();
+            })
+            .min(0)
+            .max(1)
+            .step(0.01);
     }
 }

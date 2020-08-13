@@ -93,11 +93,14 @@ export class ModesOptionsEditor extends EditorBase {
             await particles.refresh();
         });
 
-        const opacityInput = group.addProperty("opacity", "Opacity", EditorType.number).change(async () => {
-            await particles.refresh();
-        }) as EditorNumberInput;
-
-        opacityInput.step(0.01).min(0).max(1);
+        group
+            .addProperty("opacity", "Opacity", EditorType.number)
+            .change(async () => {
+                await particles.refresh();
+            })
+            .step(0.01)
+            .min(0)
+            .max(1);
 
         group.addProperty("size", "Size", EditorType.number).change(async () => {
             await particles.refresh();
@@ -114,11 +117,14 @@ export class ModesOptionsEditor extends EditorBase {
 
         const connectLinksGroup = group.addGroup("links", "Links");
 
-        const opacityInput = connectLinksGroup.addProperty("opacity", "Opacity", EditorType.number).change(async () => {
-            await particles.refresh();
-        }) as EditorNumberInput;
-
-        opacityInput.step(0.01).min(0).max(1);
+        connectLinksGroup
+            .addProperty("opacity", "Opacity", EditorType.number)
+            .change(async () => {
+                await particles.refresh();
+            })
+            .step(0.01)
+            .min(0)
+            .max(1);
 
         group.addProperty("radius", "Radius", EditorType.number).change(async () => {
             await particles.refresh();
@@ -174,11 +180,14 @@ export class ModesOptionsEditor extends EditorBase {
             await particles.refresh();
         });
 
-        const opacityInput = grabLinksGroup.addProperty("opacity", "Opacity", EditorType.number).change(async () => {
-            await particles.refresh();
-        }) as EditorNumberInput;
-
-        opacityInput.step(0.01).min(0).max(1);
+        grabLinksGroup
+            .addProperty("opacity", "Opacity", EditorType.number)
+            .change(async () => {
+                await particles.refresh();
+            })
+            .step(0.01)
+            .min(0)
+            .max(1);
 
         group.addProperty("distance", "Distance", EditorType.number).change(async () => {
             await particles.refresh();

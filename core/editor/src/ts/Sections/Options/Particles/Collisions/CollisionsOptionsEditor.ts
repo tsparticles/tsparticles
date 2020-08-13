@@ -26,12 +26,21 @@ export class CollisionsOptionsEditor extends EditorBase {
             await particles.refresh();
         });
 
-        const selectType = this.group.addProperty("mode", "Mode", EditorType.select).change(async () => {
-            await particles.refresh();
-        }) as EditorSelectInput;
-
-        selectType.addItem(CollisionMode.absorb);
-        selectType.addItem(CollisionMode.bounce);
-        selectType.addItem(CollisionMode.destroy);
+        this.group
+            .addProperty("mode", "Mode", EditorType.select)
+            .change(async () => {
+                await particles.refresh();
+            })
+            .addItems([
+                {
+                    value: CollisionMode.absorb,
+                },
+                {
+                    value: CollisionMode.bounce,
+                },
+                {
+                    value: CollisionMode.destroy,
+                },
+            ]);
     }
 }

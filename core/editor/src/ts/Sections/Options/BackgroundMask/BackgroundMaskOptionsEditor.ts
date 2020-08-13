@@ -52,13 +52,14 @@ export class BackgroundMaskOptionsEditor extends EditorBase {
                 await particles.refresh();
             });
 
-        const opacityInput = coverGroup
+        coverGroup
             .addProperty("opacity", "Opacity", EditorType.number, typeof options.opacity)
             .change(async () => {
                 await particles.refresh();
-            }) as EditorNumberInput;
-
-        opacityInput.step(0.01).min(0).max(1);
+            })
+            .step(0.01)
+            .min(0)
+            .max(1);
     }
 
     private addProperties(): void {

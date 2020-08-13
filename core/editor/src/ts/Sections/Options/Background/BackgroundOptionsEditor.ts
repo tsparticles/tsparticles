@@ -59,11 +59,14 @@ export class BackgroundOptionsEditor extends EditorBase {
             await particles.refresh();
         });
 
-        const opacityItem = this.group.addProperty("opacity", "Opacity", EditorType.number).change(async () => {
-            await particles.refresh();
-        }) as EditorNumberInput;
-
-        opacityItem.step(0.01).min(0).max(1);
+        this.group
+            .addProperty("opacity", "Opacity", EditorType.number)
+            .change(async () => {
+                await particles.refresh();
+            })
+            .step(0.01)
+            .min(0)
+            .max(1);
 
         this.group.addProperty("position", "Position", EditorType.string).change(async () => {
             await particles.refresh();

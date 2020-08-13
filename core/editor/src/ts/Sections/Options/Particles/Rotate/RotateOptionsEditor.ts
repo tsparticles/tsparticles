@@ -2,6 +2,7 @@ import type { Container } from "tsparticles/dist/Core/Container";
 import type { IRotate } from "tsparticles/dist/Options/Interfaces/Particles/Rotate/IRotate";
 import { EditorGroup, EditorSelectInput, EditorType } from "object-gui";
 import { EditorBase } from "../../../../EditorBase";
+import { RotateDirection } from "tsparticles";
 
 export class RotateOptionsEditor extends EditorBase {
     public group!: EditorGroup;
@@ -39,14 +40,22 @@ export class RotateOptionsEditor extends EditorBase {
     private addProperties(): void {
         const particles = this.particles;
 
-        const directionSelectInput = this.group
+        this.group
             .addProperty("direction", "Direction", EditorType.select)
             .change(async () => {
                 await particles.refresh();
-            }) as EditorSelectInput;
-
-        directionSelectInput.addItem("clockwise");
-        directionSelectInput.addItem("counter-clockwise");
+            })
+            .addItems([
+                {
+                    value: RotateDirection.clockwise,
+                },
+                {
+                    value: RotateDirection.counterClockwise,
+                },
+                {
+                    value: RotateDirection.random,
+                },
+            ]);
 
         this.group.addProperty("path", "Path", EditorType.boolean).change(async () => {
             await particles.refresh();
