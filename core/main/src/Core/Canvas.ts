@@ -75,7 +75,7 @@ export class Canvas {
                 this.element.style.height = this.originalStyle?.height ?? "";
             }
 
-            this.resize();
+            this.windowResize();
         }
 
         const cover = options.backgroundMask.cover;
@@ -172,6 +172,36 @@ export class Canvas {
             this.paintBase(ColorUtils.getStyleFromRgb(this.trailFillColor, 1 / trail.length));
         } else if (this.context) {
             CanvasUtils.clear(this.context, this.size);
+        }
+    }
+
+    public windowResize() {
+        if (!this.element) {
+            return;
+        }
+
+        const container = this.container;
+        const options = container.options;
+        const pxRatio = container.retina.pixelRatio;
+
+        container.canvas.size.width = this.element.offsetWidth * pxRatio;
+        container.canvas.size.height = this.element.offsetHeight * pxRatio;
+
+        this.element.width = container.canvas.size.width;
+        this.element.height = container.canvas.size.height;
+
+        /* repaint canvas on anim disabled */
+        if (!options.particles.move.enable) {
+            container.particles.redraw();
+        }
+
+        /* density particles enabled */
+        container.densityAutoParticles();
+
+        for (const [, plugin] of container.plugins) {
+            if (plugin.resize !== undefined) {
+                plugin.resize();
+            }
         }
     }
 
