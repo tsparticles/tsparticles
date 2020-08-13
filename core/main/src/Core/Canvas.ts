@@ -5,7 +5,7 @@ import type { ICoordinates } from "./Interfaces/ICoordinates";
 import type { IParticle } from "./Interfaces/IParticle";
 import type { IContainerPlugin } from "./Interfaces/IContainerPlugin";
 import type { ILink } from "./Interfaces/ILink";
-import { CanvasUtils, ColorUtils, Constants } from "../Utils";
+import { CanvasUtils, ColorUtils, Constants, Utils } from "../Utils";
 import type { Particle } from "./Particle";
 import type { IDelta } from "./Interfaces/IDelta";
 import type { IRgba } from "./Interfaces/IRgba";
@@ -58,7 +58,7 @@ export class Canvas {
 
         if (this.element) {
             if (options.backgroundMode.enable) {
-                this.originalStyle = this.element.style;
+                this.originalStyle = Utils.deepExtend({}, this.element.style);
 
                 this.element.style.position = "fixed";
                 this.element.style.zIndex = options.backgroundMode.zIndex.toString(10);
@@ -87,11 +87,11 @@ export class Canvas {
         this.coverColor =
             coverRgb !== undefined
                 ? {
-                      r: coverRgb.r,
-                      g: coverRgb.g,
-                      b: coverRgb.b,
-                      a: cover.opacity,
-                  }
+                    r: coverRgb.r,
+                    g: coverRgb.g,
+                    b: coverRgb.b,
+                    a: cover.opacity,
+                }
                 : undefined;
         this.trailFillColor = ColorUtils.colorToRgb(trail.fillColor);
 
@@ -110,7 +110,7 @@ export class Canvas {
 
         this.generatedCanvas = generatedCanvas ?? this.generatedCanvas;
         this.element = canvas;
-        this.originalStyle = this.element.style;
+        this.originalStyle = Utils.deepExtend({}, this.element.style);
         this.size.height = canvas.offsetHeight;
         this.size.width = canvas.offsetWidth;
 
