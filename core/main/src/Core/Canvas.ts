@@ -87,11 +87,11 @@ export class Canvas {
         this.coverColor =
             coverRgb !== undefined
                 ? {
-                    r: coverRgb.r,
-                    g: coverRgb.g,
-                    b: coverRgb.b,
-                    a: cover.opacity,
-                }
+                      r: coverRgb.r,
+                      g: coverRgb.g,
+                      b: coverRgb.b,
+                      a: cover.opacity,
+                  }
                 : undefined;
         this.trailFillColor = ColorUtils.colorToRgb(trail.fillColor);
 
