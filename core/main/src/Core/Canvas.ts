@@ -76,6 +76,8 @@ export class Canvas {
     }
 
     public loadCanvas(canvas: HTMLCanvasElement, generatedCanvas?: boolean): void {
+        const options = this.container.options;
+
         if (!canvas.className) {
             canvas.className = Constants.canvasClass;
         }
@@ -86,8 +88,19 @@ export class Canvas {
 
         this.generatedCanvas = generatedCanvas ?? false;
         this.element = canvas;
+
+        if (options.backgroundMode.enable) {
+            this.element.style.position = "fixed";
+            this.element.style.zIndex = options.backgroundMode.zIndex.toString(10);
+            this.element.style.top = "0";
+            this.element.style.left = "0";
+            this.element.style.width = "100%";
+            this.element.style.height = "100%";
+        }
+
         this.size.height = canvas.offsetHeight;
         this.size.width = canvas.offsetWidth;
+
         this.context = this.element.getContext("2d");
         this.container.retina.init();
         this.initBackground();

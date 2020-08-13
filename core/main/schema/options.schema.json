@@ -306,6 +306,19 @@
       },
       "type": "object"
     },
+    "IBackgroundMode": {
+      "properties": {
+        "enable": {
+          "description": "Sets the animated background mode for particles canvas bringing it to the back",
+          "type": "boolean"
+        },
+        "zIndex": {
+          "description": "Sets canvas z-index property, if -1, the default value, the interactivity options needs `window` value to work",
+          "type": "number"
+        }
+      },
+      "type": "object"
+    },
     "IBubble": {
       "properties": {
         "color": {
@@ -1605,6 +1618,7 @@
       "description": "The Options interface, defines all the options that can be used by `tsParticles`",
       "properties": {
         "autoPlay": {
+          "description": "Sets if the animations should start automatically or manually",
           "type": "boolean"
         },
         "background": {
@@ -1614,6 +1628,10 @@
         "backgroundMask": {
           "$ref": "#/definitions/IBackgroundMask",
           "description": "Background Mask options, what's behind the canvas will become hidden and particles will uncover it"
+        },
+        "backgroundMode": {
+          "$ref": "#/definitions/IBackgroundMode",
+          "description": "Sets the animated background mode for particles canvas bringing it to the back"
         },
         "detectRetina": {
           "description": "Enables the retina detection, if disabled the ratio used by canvas will be always 1 and not the device setting.",
@@ -1662,6 +1680,7 @@
           "type": "boolean"
         },
         "themes": {
+          "description": "User-defined themes that can be retrieved by the particles [[Container]]",
           "items": {
             "$ref": "#/definitions/ITheme"
           },
@@ -2570,6 +2589,19 @@
         "enable": {
           "description": "This settings enables the cover and the particles behavior as unveiling elements",
           "type": "boolean"
+        }
+      },
+      "type": "object"
+    },
+    "RecursivePartial<IBackgroundMode>": {
+      "properties": {
+        "enable": {
+          "description": "Sets the animated background mode for particles canvas bringing it to the back",
+          "type": "boolean"
+        },
+        "zIndex": {
+          "description": "Sets canvas z-index property, if -1, the default value, the interactivity options needs `window` value to work",
+          "type": "number"
         }
       },
       "type": "object"
@@ -3852,6 +3884,7 @@
           ]
         },
         "autoPlay": {
+          "description": "Sets if the animations should start automatically or manually",
           "type": "boolean"
         },
         "background": {
@@ -3861,6 +3894,10 @@
         "backgroundMask": {
           "$ref": "#/definitions/RecursivePartial<IBackgroundMask>",
           "description": "Background Mask options, what's behind the canvas will become hidden and particles will uncover it"
+        },
+        "backgroundMode": {
+          "$ref": "#/definitions/RecursivePartial<IBackgroundMode>",
+          "description": "Sets the animated background mode for particles canvas bringing it to the back"
         },
         "detectRetina": {
           "description": "Enables the retina detection, if disabled the ratio used by canvas will be always 1 and not the device setting.",
@@ -3925,6 +3962,7 @@
           "type": "boolean"
         },
         "themes": {
+          "description": "User-defined themes that can be retrieved by the particles [[Container]]",
           "items": {
             "$ref": "#/definitions/RecursivePartial<ITheme>"
           },

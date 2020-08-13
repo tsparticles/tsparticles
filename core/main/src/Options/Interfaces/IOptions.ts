@@ -5,11 +5,15 @@ import type { IBackground } from "./Background/IBackground";
 import type { IInfection } from "./Infection/IInfection";
 import type { SingleOrMultiple } from "../../Types";
 import type { ITheme } from "./Theme/ITheme";
+import { IBackgroundMode } from "./BackgroundMode/IBackgroundMode";
 
 /**
  * The Options interface, defines all the options that can be used by `tsParticles`
  */
 export interface IOptions {
+    /**
+     * Sets if the animations should start automatically or manually
+     */
     autoPlay: boolean;
 
     /**
@@ -21,6 +25,11 @@ export interface IOptions {
      * Background Mask options, what's behind the canvas will become hidden and particles will uncover it
      */
     backgroundMask: IBackgroundMask;
+
+    /**
+     * Sets the animated background mode for particles canvas bringing it to the back
+     */
+    backgroundMode: IBackgroundMode;
 
     /**
      * Enables the retina detection, if disabled the ratio used by canvas will be always 1 and not the device setting.
@@ -69,5 +78,8 @@ export interface IOptions {
      */
     retina_detect: boolean;
 
+    /**
+     * User-defined themes that can be retrieved by the particles [[Container]]
+     */
     themes: ITheme[];
 }
