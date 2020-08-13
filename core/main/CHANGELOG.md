@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.18.0-alpha.10](https://github.com/matteobruni/tsparticles/compare/tsparticles@1.18.0-alpha.9...tsparticles@1.18.0-alpha.10) (2020-08-13)
+
+
+### Bug Fixes
+
+* fixed background mode canvas reset ([f78252a](https://github.com/matteobruni/tsparticles/commit/f78252afee4363311c039da79216c848647da51e))
+
+
+
+
+
 # [1.18.0-alpha.9](https://github.com/matteobruni/tsparticles/compare/tsparticles@1.18.0-alpha.8...tsparticles@1.18.0-alpha.9) (2020-08-13)
 
 **Note:** Version bump only for package tsparticles
