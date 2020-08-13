@@ -31,6 +31,7 @@ export class Canvas {
     private generatedCanvas: boolean;
     private coverColor?: IRgba;
     private trailFillColor?: IRgb;
+    private originalStyle?: CSSStyleDeclaration;
 
     /**
      * Constructor of canvas manager
@@ -54,6 +55,29 @@ export class Canvas {
         this.resize();
 
         const options = this.container.options;
+
+        if (this.element) {
+            if (options.backgroundMode.enable) {
+                this.originalStyle = this.element.style;
+
+                this.element.style.position = "fixed";
+                this.element.style.zIndex = options.backgroundMode.zIndex.toString(10);
+                this.element.style.top = "0";
+                this.element.style.left = "0";
+                this.element.style.width = "100%";
+                this.element.style.height = "100%";
+            } else {
+                this.element.style.position = this.originalStyle?.position ?? "";
+                this.element.style.zIndex = this.originalStyle?.zIndex ?? "";
+                this.element.style.top = this.originalStyle?.top ?? "";
+                this.element.style.left = this.originalStyle?.left ?? "";
+                this.element.style.width = this.originalStyle?.width ?? "";
+                this.element.style.height = this.originalStyle?.height ?? "";
+            }
+
+            this.resize();
+        }
+
         const cover = options.backgroundMask.cover;
         const color = cover.color;
         const trail = options.particles.move.trail;
@@ -76,8 +100,6 @@ export class Canvas {
     }
 
     public loadCanvas(canvas: HTMLCanvasElement, generatedCanvas?: boolean): void {
-        const options = this.container.options;
-
         if (!canvas.className) {
             canvas.className = Constants.canvasClass;
         }
@@ -86,18 +108,9 @@ export class Canvas {
             this.element?.remove();
         }
 
-        this.generatedCanvas = generatedCanvas ?? false;
+        this.generatedCanvas = generatedCanvas ?? this.generatedCanvas;
         this.element = canvas;
-
-        if (options.backgroundMode.enable) {
-            this.element.style.position = "fixed";
-            this.element.style.zIndex = options.backgroundMode.zIndex.toString(10);
-            this.element.style.top = "0";
-            this.element.style.left = "0";
-            this.element.style.width = "100%";
-            this.element.style.height = "100%";
-        }
-
+        this.originalStyle = this.element.style;
         this.size.height = canvas.offsetHeight;
         this.size.width = canvas.offsetWidth;
 
