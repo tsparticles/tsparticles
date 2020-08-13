@@ -1,7 +1,7 @@
 {
   "name": "editor-demo",
   "private": true,
-  "version": "1.0.0-alpha.50",
+  "version": "1.0.0-alpha.51",
   "description": "> TODO: description",
   "author": "Matteo Bruni <ar3s@icloud.com>",
   "homepage": "https://github.com/matteobruni/tsparticles#readme",
@@ -32,6 +32,6 @@
     "stylus": "^0.54.8"
   },
   "dependencies": {
-    "tsparticles-editor": "^1.0.0-alpha.49"
+    "tsparticles-editor": "^1.0.0-alpha.50"
   }
 }
