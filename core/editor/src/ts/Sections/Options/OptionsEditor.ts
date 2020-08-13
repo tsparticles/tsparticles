@@ -7,6 +7,7 @@ import { BackgroundMaskOptionsEditor } from "./BackgroundMask/BackgroundMaskOpti
 import { InfectionOptionsEditor } from "./Infection/InfectionOptionsEditor";
 import { EditorGroup, EditorType } from "object-gui";
 import { EditorBase } from "../../EditorBase";
+import { BackgroundModeOptionsEditor } from "./BackgroundMode/BackgroundModeOptionsEditor";
 
 export class OptionsEditor extends EditorBase {
     public group!: EditorGroup;
@@ -22,6 +23,7 @@ export class OptionsEditor extends EditorBase {
 
         this.addBackground();
         this.addBackgroundMask();
+        this.addBackgroundMode();
         this.addInfection();
         this.addInteractivity();
         this.addParticles();
@@ -57,6 +59,12 @@ export class OptionsEditor extends EditorBase {
 
     private addBackgroundMask(): void {
         const options = new BackgroundMaskOptionsEditor(this.particles);
+
+        options.addToGroup(this.group);
+    }
+
+    private addBackgroundMode(): void {
+        const options = new BackgroundModeOptionsEditor(this.particles);
 
         options.addToGroup(this.group);
     }
