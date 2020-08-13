@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.18.0-alpha.8](https://github.com/matteobruni/tsparticles/compare/tsparticles@1.18.0-alpha.7...tsparticles@1.18.0-alpha.8) (2020-08-13)
+
+
+### Features
+
+* added background mode to make the canvas acts like an animated background ([d911467](https://github.com/matteobruni/tsparticles/commit/d91146765581cc2d6ff42c6c68fd2726079638e0))
+
+
+
+
+
 # [1.18.0-alpha.7](https://github.com/matteobruni/tsparticles/compare/tsparticles@1.18.0-alpha.6...tsparticles@1.18.0-alpha.7) (2020-08-12)
 
 **Note:** Version bump only for package tsparticles
