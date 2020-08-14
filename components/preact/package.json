@@ -88,7 +88,7 @@
     "url": "https://github.com/sponsors/matteobruni"
   },
   "dependencies": {
-    "lodash": "^4.17.19",
+    "lodash": "^4.17.20",
     "tsparticles": "^1.18.0-alpha.11"
   },
   "peerDependencies": {
