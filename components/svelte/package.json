@@ -55,7 +55,7 @@
   "module": "dist/es/svelte-particles.js",
   "devDependencies": {
     "@rollup/plugin-commonjs": "^14.0.0",
-    "@rollup/plugin-node-resolve": "^8.4.0",
+    "@rollup/plugin-node-resolve": "^9.0.0",
     "prettier": "^2.0.5",
     "rollup": "^2.23.1",
     "rollup-plugin-svelte": "^5.2.3",
