@@ -447,26 +447,21 @@ export class Canvas {
         if (particle.links.length > 0) {
             this.context.save();
 
-            if (particle.particlesOptions.links.triangles.enable) {
-                const triangleLinks = particle.links.filter(
-                    (l) => l.destination.particlesOptions.links.triangles.enable
+            const lineLinks = particle.links;
+
+            for (const link of lineLinks) {
+                const links = lineLinks.map((l) => l.destination);
+                const vertices = link.destination.links.filter(
+                    (l) => links.indexOf(l.destination) >= 0 && l.destination.particlesOptions.links.triangles.enable
                 );
 
-                for (const link of triangleLinks) {
-                    const links = triangleLinks.map((l) => l.destination);
-                    const vertices = link.destination.links.filter(
-                        (l) =>
-                            links.indexOf(l.destination) >= 0 && l.destination.particlesOptions.links.triangles.enable
-                    );
-
-                    if (vertices.length) {
-                        for (const vertice of vertices) {
-                            this.drawLinkTriangle(particle, link, vertice);
-                        }
+                if (vertices.length && link.destination.particlesOptions.links.triangles.enable) {
+                    for (const vertice of vertices) {
+                        this.drawLinkTriangle(particle, link, vertice);
                     }
-
-                    this.drawLinkLine(particle, link);
                 }
+
+                this.drawLinkLine(particle, link);
             }
 
             this.context.restore();
