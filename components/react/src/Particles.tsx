@@ -5,26 +5,8 @@ import { Container } from "tsparticles/dist/Core/Container";
 import type { RecursivePartial } from "tsparticles/dist/Types/RecursivePartial";
 import { tsParticles } from "tsparticles";
 import { isEqual } from "lodash";
-import { IPolygonMaskOptions } from "tsparticles/dist/Plugins/PolygonMask/PolygonMaskPlugin";
-import { IAbsorberOptions } from "tsparticles/dist/Plugins/Absorbers/AbsorbersPlugin";
-import { IEmitterOptions } from "tsparticles/dist/Plugins/Emitters/EmittersPlugin";
-
-export interface ParticlesProps {
-  id: string;
-  width: string;
-  height: string;
-  options: RecursivePartial<IOptions & IPolygonMaskOptions & IAbsorberOptions & IEmitterOptions>;
-  params?: RecursivePartial<IOptions & IPolygonMaskOptions & IAbsorberOptions & IEmitterOptions>;
-  style: any;
-  className?: string;
-  canvasClassName?: string;
-  container?: React.RefObject<Container>;
-}
-
-export interface ParticlesState {
-  canvas?: HTMLCanvasElement;
-  library?: Container;
-}
+import type { ParticlesProps } from "./ParticlesProps";
+import type { ParticlesState } from "./ParticlesState";
 
 export default class Particles extends Component<ParticlesProps, ParticlesState> {
   public static defaultProps: ParticlesProps = {

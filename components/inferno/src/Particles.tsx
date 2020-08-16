@@ -5,29 +5,11 @@ import type { IOptions } from "tsparticles/dist/Options/Interfaces/IOptions";
 import { Container } from "tsparticles/dist/Core/Container";
 import type { RecursivePartial } from "tsparticles/dist/Types/RecursivePartial";
 import { tsParticles } from "tsparticles";
-import { IPolygonMaskOptions } from "tsparticles/dist/Plugins/PolygonMask/PolygonMaskPlugin";
-import { IAbsorberOptions } from "tsparticles/dist/Plugins/Absorbers/AbsorbersPlugin";
-import { IEmitterOptions } from "tsparticles/dist/Plugins/Emitters/EmittersPlugin";
+import type { ParticlesProps } from "./ParticlesProps";
+import type { ParticlesState } from "./ParticlesState";
 
 interface MutableRefObject<T> {
 	current: T | null;
-}
-
-export interface ParticlesProps {
-	id: string;
-	width: string;
-	height: string;
-	options: RecursivePartial<IOptions & IPolygonMaskOptions & IAbsorberOptions & IEmitterOptions>;
-	params?: RecursivePartial<IOptions & IPolygonMaskOptions & IAbsorberOptions & IEmitterOptions>;
-	style: any;
-	className?: string;
-	canvasClassName?: string;
-	container?: Inferno.RefObject<Container>;
-}
-
-export interface ParticlesState {
-	canvas?: HTMLCanvasElement;
-	library?: Container;
 }
 
 export default class Particles extends Component<ParticlesProps, ParticlesState> {
