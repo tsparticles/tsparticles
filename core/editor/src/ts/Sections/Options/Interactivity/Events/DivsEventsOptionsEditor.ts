@@ -18,6 +18,22 @@ export class DivsEventsOptionsEditor extends EditorBase {
         this.options = this.group.data as SingleOrMultiple<IDivEvent>;
 
         this.addDivs();
+
+        if (this.options instanceof Array) {
+            this.group.addButton("addDiv", "Add Div", false).click(async () => {
+                const arr = this.options as IDivEvent[];
+                const divGroup = this.group.addGroup(
+                    arr.length.toString(10),
+                    `Div ${arr.length + 1}`,
+                    true,
+                    this.options
+                );
+
+                this.addDiv(divGroup);
+
+                await this.particles.refresh();
+            });
+        }
     }
 
     private addDivs(): void {
@@ -48,7 +64,19 @@ export class DivsEventsOptionsEditor extends EditorBase {
             .max(1);
 
         if (options.selectors instanceof Array) {
-            // TODO: add array support to selectors property
+            const selectorsGroup = group.addGroup("selectors", "Selectors");
+
+            selectorsGroup.addButton("addSelector", "Add Selector", false).click(async () => {
+                const arr = options.selectors as string[];
+
+                selectorsGroup
+                    .addProperty(arr.length.toString(10), `Selector ${arr.length + 1}`, EditorType.string)
+                    .change(async () => {
+                        await particles.refresh();
+                    });
+
+                await this.particles.refresh();
+            });
         } else {
             group.addProperty("selectors", "Selectors", EditorType.string).change(async () => {
                 await particles.refresh();
