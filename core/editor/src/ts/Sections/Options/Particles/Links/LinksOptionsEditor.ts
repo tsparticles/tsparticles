@@ -2,6 +2,7 @@ import type { Container } from "tsparticles/dist/Core/Container";
 import { ColorUtils, EditorGroup, IHsl, IRgb, EditorType } from "object-gui";
 import type { ILinks } from "tsparticles/dist/Options/Interfaces/Particles/Links/ILinks";
 import { EditorBase } from "../../../../EditorBase";
+import { ILinksShadow } from "tsparticles/dist/Options/Interfaces/Particles/Links/ILinksShadow";
 
 export class LinksOptionsEditor extends EditorBase {
     public group!: EditorGroup;
@@ -23,11 +24,11 @@ export class LinksOptionsEditor extends EditorBase {
     private addShadow(): void {
         const particles = this.particles;
         const group = this.group.addGroup("shadow", "Shadow");
-        const options = this.options.shadow;
+        const options = group.data as ILinksShadow;
 
         let shadowColorStringValue = "";
 
-        if (options.color !== undefined) {
+        if (options?.color) {
             if (typeof options.color === "string") {
                 shadowColorStringValue = options.color;
             } else if (typeof options.color.value === "string") {
@@ -80,7 +81,7 @@ export class LinksOptionsEditor extends EditorBase {
 
         let trianglesColorStringValue = "";
 
-        if (options.color !== undefined) {
+        if (options?.color) {
             if (typeof options.color === "string") {
                 trianglesColorStringValue = options.color;
             } else if (typeof options.color.value === "string") {
@@ -136,19 +137,21 @@ export class LinksOptionsEditor extends EditorBase {
         const options = this.options;
         let colorStringValue: string | undefined;
 
-        if (typeof options.color === "string") {
-            colorStringValue = options.color;
-        } else if (typeof options.color.value === "string") {
-            colorStringValue = options.color.value;
-        } else {
-            let rgb = options.color.value as IRgb;
-            const hsl = options.color.value as IHsl;
+        if (options?.color) {
+            if (typeof options.color === "string") {
+                colorStringValue = options.color;
+            } else if (typeof options.color.value === "string") {
+                colorStringValue = options.color.value;
+            } else {
+                let rgb = options.color.value as IRgb;
+                const hsl = options.color.value as IHsl;
 
-            if (hsl.h !== undefined) {
-                rgb = ColorUtils.hslToRgb(hsl);
+                if (hsl.h !== undefined) {
+                    rgb = ColorUtils.hslToRgb(hsl);
+                }
+
+                colorStringValue = `${rgb.r.toString(16)}${rgb.g.toString(16)}${rgb.b.toString(16)}`;
             }
-
-            colorStringValue = `${rgb.r.toString(16)}${rgb.g.toString(16)}${rgb.b.toString(16)}`;
         }
 
         this.group.addProperty("blink", "Blink", EditorType.boolean).change(async () => {

@@ -2,6 +2,8 @@ import type { Container } from "tsparticles/dist/Core/Container";
 import type { IModes } from "tsparticles/dist/Options/Interfaces/Interactivity/Modes/IModes";
 import { ColorUtils, EditorGroup, IHsl, IRgb, EditorType } from "object-gui";
 import { EditorBase } from "../../../../EditorBase";
+import { ParticlesOptionsEditor } from "../../Particles/ParticlesOptionsEditor";
+import { IParticles } from "tsparticles/dist/Options/Interfaces/Particles/IParticles";
 
 export class ModesOptionsEditor extends EditorBase {
     public group!: EditorGroup;
@@ -245,6 +247,7 @@ export class ModesOptionsEditor extends EditorBase {
     private addTrail(): void {
         const particles = this.particles;
         const group = this.group.addGroup("trail", "Trail");
+        const options = this.options.trail;
 
         group.addProperty("delay", "Delay", EditorType.number).change(async () => {
             await particles.refresh();
@@ -254,6 +257,9 @@ export class ModesOptionsEditor extends EditorBase {
             await particles.refresh();
         });
 
+        const particlesEditor = new ParticlesOptionsEditor(particles);
         // TODO: Particles customization is not ready yet
+
+        particlesEditor.addToGroup(group, options.particles as IParticles);
     }
 }

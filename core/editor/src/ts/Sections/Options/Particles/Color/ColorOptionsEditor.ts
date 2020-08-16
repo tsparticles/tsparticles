@@ -43,7 +43,7 @@ export class ColorOptionsEditor extends EditorBase {
 
         let colorStringValue: string | undefined;
 
-        if (typeof options.value !== "undefined") {
+        if (options?.value) {
             if (typeof options.value === "string") {
                 colorStringValue = options.value;
             } else {

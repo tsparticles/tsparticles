@@ -13,7 +13,7 @@ export class StrokeOptionsEditor extends EditorBase {
         super(particles);
     }
 
-    public addToGroup(parent: EditorGroup) {
+    public addToGroup(parent: EditorGroup): void {
         this.group = parent.addGroup("stroke", "Stroke");
         this.options = this.group.data as SingleOrMultiple<IStroke>;
 

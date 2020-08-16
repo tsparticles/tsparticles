@@ -3,6 +3,7 @@ import type { Container } from "tsparticles/dist/Core/Container";
 import type { IMove } from "tsparticles/dist/Options/Interfaces/Particles/Move/IMove";
 import { MoveDirection, OutMode } from "tsparticles";
 import { EditorBase } from "../../../../EditorBase";
+import { ITrail } from "tsparticles/dist/Options/Interfaces/Particles/ITrail";
 
 export class MoveOptionsEditor extends EditorBase {
     public group!: EditorGroup;
@@ -82,27 +83,29 @@ export class MoveOptionsEditor extends EditorBase {
     private addTrail(): void {
         const particles = this.particles;
         const group = this.group.addGroup("trail", "Trail");
-        const options = this.options.trail;
+        const options = group.data as ITrail;
 
         group.addProperty("enable", "Enable", EditorType.boolean).change(async () => {
             await particles.refresh();
         });
 
-        let fillColorStringValue: string;
+        let fillColorStringValue: string | undefined;
 
-        if (typeof options.fillColor === "string") {
-            fillColorStringValue = options.fillColor;
-        } else if (typeof options.fillColor.value === "string") {
-            fillColorStringValue = options.fillColor.value;
-        } else {
-            let rgb = options.fillColor.value as IRgb;
-            const hsl = options.fillColor.value as IHsl;
+        if (options?.fillColor) {
+            if (typeof options.fillColor === "string") {
+                fillColorStringValue = options.fillColor;
+            } else if (typeof options.fillColor.value === "string") {
+                fillColorStringValue = options.fillColor.value;
+            } else {
+                let rgb = options.fillColor.value as IRgb;
+                const hsl = options.fillColor.value as IHsl;
 
-            if (hsl.h !== undefined) {
-                rgb = ColorUtils.hslToRgb(hsl);
+                if (hsl.h !== undefined) {
+                    rgb = ColorUtils.hslToRgb(hsl);
+                }
+
+                fillColorStringValue = `${rgb.r.toString(16)}${rgb.g.toString(16)}${rgb.b.toString(16)}`;
             }
-
-            fillColorStringValue = `${rgb.r.toString(16)}${rgb.g.toString(16)}${rgb.b.toString(16)}`;
         }
 
         group

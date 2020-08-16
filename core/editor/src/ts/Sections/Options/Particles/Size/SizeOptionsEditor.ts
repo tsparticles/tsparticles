@@ -54,7 +54,7 @@ export class SizeOptionsEditor extends EditorBase {
             await particles.refresh();
         });
 
-        const startValueSelectInput = group
+        group
             .addProperty("startValue", "Start Value", EditorType.select)
             .change(async () => {
                 await particles.refresh();

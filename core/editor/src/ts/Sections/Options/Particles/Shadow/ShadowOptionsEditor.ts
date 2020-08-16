@@ -38,19 +38,21 @@ export class ShadowOptionsEditor extends EditorBase {
 
         let colorStringValue: string | undefined;
 
-        if (typeof options.color === "string") {
-            colorStringValue = options.color;
-        } else if (typeof options.color.value === "string") {
-            colorStringValue = options.color.value;
-        } else {
-            let rgb = options.color.value as IRgb;
-            const hsl = options.color.value as IHsl;
+        if (options?.color) {
+            if (typeof options.color === "string") {
+                colorStringValue = options.color;
+            } else if (typeof options.color.value === "string") {
+                colorStringValue = options.color.value;
+            } else {
+                let rgb = options.color.value as IRgb;
+                const hsl = options.color.value as IHsl;
 
-            if (hsl.h !== undefined) {
-                rgb = ColorUtils.hslToRgb(hsl);
+                if (hsl.h !== undefined) {
+                    rgb = ColorUtils.hslToRgb(hsl);
+                }
+
+                colorStringValue = `${rgb.r.toString(16)}${rgb.g.toString(16)}${rgb.b.toString(16)}`;
             }
-
-            colorStringValue = `${rgb.r.toString(16)}${rgb.g.toString(16)}${rgb.b.toString(16)}`;
         }
 
         this.group.addProperty("blur", "Blur", EditorType.number).change(async () => {

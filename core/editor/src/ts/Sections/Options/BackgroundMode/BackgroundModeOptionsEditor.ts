@@ -1,9 +1,4 @@
-import type { IRgb } from "tsparticles/dist/Core/Interfaces/IRgb";
-import type { IHsl } from "tsparticles/dist/Core/Interfaces/IHsl";
-import type { IBackground } from "tsparticles/dist/Options/Interfaces/Background/IBackground";
-import type { IColor } from "tsparticles/dist/Core/Interfaces/IColor";
 import type { Container } from "tsparticles/dist/Core/Container";
-import { ColorUtils } from "tsparticles";
 import { EditorGroup, EditorType } from "object-gui";
 import { EditorBase } from "../../../EditorBase";
 import { IBackgroundMode } from "tsparticles/dist/Options/Interfaces/BackgroundMode/IBackgroundMode";
