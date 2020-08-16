@@ -1,3 +1,4 @@
+import React, { Component } from "preact/compat";
 import isEqual from "lodash/isEqual";
 import type { IOptions } from "tsparticles/dist/Options/Interfaces/IOptions";
 import { Container } from "tsparticles/dist/Core/Container";
@@ -5,6 +6,7 @@ import type { RecursivePartial } from "tsparticles/dist/Types/RecursivePartial";
 import { tsParticles } from "tsparticles";
 import type { ParticlesProps } from "./ParticlesProps";
 import type { ParticlesState } from "./ParticlesState";
+import { MutableRefObject } from "react";
 
 export default class Particles extends Component<ParticlesProps, ParticlesState> {
     public static defaultProps: ParticlesProps = {
