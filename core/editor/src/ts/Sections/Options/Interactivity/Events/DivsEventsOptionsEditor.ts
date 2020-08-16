@@ -25,7 +25,7 @@ export class DivsEventsOptionsEditor extends EditorBase {
 
         if (options instanceof Array) {
             for (let i = 0; i < options.length; i++) {
-                const group = this.group.addGroup(`div_${i + 1}`, `Div_${i + 1}`, true, options[i]);
+                const group = this.group.addGroup(i.toString(10), `Div_${i + 1}`, true, options);
 
                 this.addDiv(group);
             }

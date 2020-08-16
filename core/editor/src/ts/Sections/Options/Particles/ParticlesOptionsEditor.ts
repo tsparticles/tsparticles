@@ -24,9 +24,11 @@ export class ParticlesOptionsEditor extends EditorBase {
         super(particles);
     }
 
-    public addToGroup(parent: EditorGroup, data?: IParticles): void {
-        this.group = parent.addGroup("particles", "Particles");
-        this.options = (data ?? this.group.data) as IParticles;
+    public addToGroup(parent: EditorGroup, customName?: string, parentData?: unknown): void {
+        console.log(parentData);
+
+        this.group = parent.addGroup(customName ?? "particles", "Particles", true, parentData);
+        this.options = this.group.data as IParticles;
 
         this.addCollisions();
         this.addColor();

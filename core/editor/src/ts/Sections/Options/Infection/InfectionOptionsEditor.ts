@@ -46,31 +46,20 @@ export class InfectionOptionsEditor extends EditorBase {
         const stagesGroup = this.group.addGroup("stages", "Stages");
 
         for (let i = 0; i < options.stages.length; i++) {
-            const stage = options.stages[i];
-
-            this.addStage(stagesGroup, stage, i + 1);
+            this.addStage(stagesGroup, options.stages, i + 1);
         }
 
         stagesGroup.addButton("addStage", "Add Stage", false).click(async () => {
-            const defaultValues = {
-                color: {
-                    value: "#ff0000",
-                },
-                radius: 0,
-                rate: 1,
-            };
-
-            options.stages.push(defaultValues);
-
-            this.addStage(stagesGroup, defaultValues, options.stages.length);
+            this.addStage(stagesGroup, options.stages, options.stages.length);
 
             await particles.refresh();
         });
     }
 
-    private addStage(parent: EditorGroup, stage: IInfectionStage, index: number) {
+    private addStage(parent: EditorGroup, stages: IInfectionStage[], index: number) {
         const particles = this.particles;
-        const stageGroup = parent.addGroup(`stage_${index}`, `Stage ${index}`, true, stage);
+        const stageGroup = parent.addGroup(index.toString(10), `Stage ${index}`, true, stages);
+        const stage = stageGroup.data as IInfectionStage;
 
         let colorStringValue: string | undefined;
 

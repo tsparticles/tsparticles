@@ -258,8 +258,9 @@ export class ModesOptionsEditor extends EditorBase {
         });
 
         const particlesEditor = new ParticlesOptionsEditor(particles);
-        // TODO: Particles customization is not ready yet
 
-        particlesEditor.addToGroup(group, options.particles as IParticles);
+        console.log(options);
+
+        particlesEditor.addToGroup(group, "particles", options);
     }
 }

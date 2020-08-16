@@ -19,7 +19,7 @@ export class StrokeOptionsEditor extends EditorBase {
 
         if (this.options instanceof Array) {
             for (let i = 0; i < this.options.length; i++) {
-                const group = this.group.addGroup(`stroke_${i + 1}`, `Stroke_${i + 1}`, true, this.options[i]);
+                const group = this.group.addGroup(i.toString(10), `Stroke_${i + 1}`, true, this.options);
 
                 this.addStroke(group);
             }
@@ -45,7 +45,7 @@ export class StrokeOptionsEditor extends EditorBase {
 
         const colorOptions = new ColorOptionsEditor(this.particles);
 
-        colorOptions.addToGroup(group, options.color as IAnimatableColor);
+        colorOptions.addToGroup(group, options);
 
         group
             .addProperty("opacity", "Opacity", EditorType.number)
