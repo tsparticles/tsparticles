@@ -3,6 +3,23 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.0.0-alpha.53](https://github.com/matteobruni/tsparticles/compare/tsparticles-editor@1.0.0-1.0.0-alpha.37.1...tsparticles-editor@1.0.0-alpha.53) (2020-08-16)
+
+
+### Bug Fixes
+
+* fixed links broken with a previous commit, updated object-gui ([24b2872](https://github.com/matteobruni/tsparticles/commit/24b2872ef736efd5e03b529a94e3f695c4504e86))
+
+
+### Features
+
+* added particles options to trail interactivity options ([c814550](https://github.com/matteobruni/tsparticles/commit/c81455011e93971ea920f6f08ffe984ca8d4a207))
+* try adding particles options to trail interactivity options ([d9b442b](https://github.com/matteobruni/tsparticles/commit/d9b442b099ba9548828785269cb6997a1ba70b7a))
+
+
+
+
+
 # [1.0.0-alpha.52](https://github.com/matteobruni/tsparticles/compare/tsparticles-editor@1.0.0-alpha.51...tsparticles-editor@1.0.0-alpha.52) (2020-08-13)
 
 **Note:** Version bump only for package tsparticles-editor

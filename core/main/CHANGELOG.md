@@ -3,6 +3,25 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.18.0-alpha.12](https://github.com/matteobruni/tsparticles/compare/tsparticles@1.17.8...tsparticles@1.18.0-alpha.12) (2020-08-16)
+
+
+### Bug Fixes
+
+* check if all triangles vertices have link triangles enabled ([9956660](https://github.com/matteobruni/tsparticles/commit/9956660883e7334f9c9522fb43471dd458a760bb))
+* fixed background mode canvas reset ([f78252a](https://github.com/matteobruni/tsparticles/commit/f78252afee4363311c039da79216c848647da51e))
+* fixed links broken with a previous commit, updated object-gui ([24b2872](https://github.com/matteobruni/tsparticles/commit/24b2872ef736efd5e03b529a94e3f695c4504e86))
+
+
+### Features
+
+* added background mode to make the canvas acts like an animated background ([d911467](https://github.com/matteobruni/tsparticles/commit/d91146765581cc2d6ff42c6c68fd2726079638e0))
+* mouse acts like a light source, closes [#606](https://github.com/matteobruni/tsparticles/issues/606) ([84aad25](https://github.com/matteobruni/tsparticles/commit/84aad25f3dfd5da9e99818e87c9b3f6a30c6f590))
+
+
+
+
+
 # [1.18.0-alpha.11](https://github.com/matteobruni/tsparticles/compare/tsparticles@1.18.0-alpha.10...tsparticles@1.18.0-alpha.11) (2020-08-13)
 
 **Note:** Version bump only for package tsparticles

@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.18.0-alpha.12](https://github.com/matteobruni/tsparticles/compare/preact-particles@1.17.8...preact-particles@1.18.0-alpha.12) (2020-08-16)
+
+
+### Bug Fixes
+
+* fixed preact build ([c636136](https://github.com/matteobruni/tsparticles/commit/c6361361d09a2a9552597003c5191189c8546b7e))
+
+
+
+
+
 # [1.18.0-alpha.11](https://github.com/matteobruni/tsparticles/compare/preact-particles@1.18.0-alpha.10...preact-particles@1.18.0-alpha.11) (2020-08-13)
 
 **Note:** Version bump only for package preact-particles
