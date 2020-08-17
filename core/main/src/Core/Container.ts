@@ -309,7 +309,7 @@ export class Container {
             return;
         }
 
-        this.firstStart = false;
+        this.firstStart = true;
         this.started = false;
         this.eventListeners.removeListeners();
         this.pause();

@@ -3,7 +3,6 @@ import type { IModes } from "tsparticles/dist/Options/Interfaces/Interactivity/M
 import { ColorUtils, EditorGroup, IHsl, IRgb, EditorType } from "object-gui";
 import { EditorBase } from "../../../../EditorBase";
 import { ParticlesOptionsEditor } from "../../Particles/ParticlesOptionsEditor";
-import { IParticles } from "tsparticles/dist/Options/Interfaces/Particles/IParticles";
 
 export class ModesOptionsEditor extends EditorBase {
     public group!: EditorGroup;
