@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.0.0-alpha.54](https://github.com/matteobruni/tsparticles/compare/tsparticles-editor@1.0.0-alpha.53...tsparticles-editor@1.0.0-alpha.54) (2020-08-17)
+
+
+### Bug Fixes
+
+* autostart feature fixed ([bed7824](https://github.com/matteobruni/tsparticles/commit/bed78248c941d57ad4cc20a455147e186e97c7a1))
+
+
+### Features
+
+* added divs selector on interactivity events ([831249f](https://github.com/matteobruni/tsparticles/commit/831249fde50fcfe888d4fd6c69691b4cbad48f5a))
+
+
+
+
+
 # [1.0.0-alpha.53](https://github.com/matteobruni/tsparticles/compare/tsparticles-editor@1.0.0-1.0.0-alpha.37.1...tsparticles-editor@1.0.0-alpha.53) (2020-08-16)
 
 

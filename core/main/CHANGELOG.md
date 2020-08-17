@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.18.0-alpha.13](https://github.com/matteobruni/tsparticles/compare/tsparticles@1.18.0-alpha.12...tsparticles@1.18.0-alpha.13) (2020-08-17)
+
+
+### Bug Fixes
+
+* autostart feature fixed ([bed7824](https://github.com/matteobruni/tsparticles/commit/bed78248c941d57ad4cc20a455147e186e97c7a1))
+
+
+
+
+
 # [1.18.0-alpha.12](https://github.com/matteobruni/tsparticles/compare/tsparticles@1.17.8...tsparticles@1.18.0-alpha.12) (2020-08-16)
 
 

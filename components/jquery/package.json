@@ -1,6 +1,6 @@
 {
   "name": "jquery-particles",
-  "version": "1.18.0-alpha.12",
+  "version": "1.18.0-alpha.13",
   "description": "tsParticles official jQuery plugin",
   "main": "dist/jquery.particles.min.js",
   "scripts": {
@@ -73,7 +73,7 @@
   "dependencies": {
     "jquery": "^3.5.1",
     "tslib": "^2.0.1",
-    "tsparticles": "^1.18.0-alpha.12"
+    "tsparticles": "^1.18.0-alpha.13"
   },
   "devDependencies": {
     "@types/jquery": "^3.5.0",
