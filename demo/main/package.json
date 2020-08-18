@@ -33,7 +33,7 @@
     "express": "^4.17.1",
     "helmet": "^4.0.0",
     "jquery": "^3.5.1",
-    "jsoneditor": "^9.0.3",
+    "jsoneditor": "^9.0.4",
     "popper.js": "^1.16.1",
     "prettier": "^2.0.5",
     "pug": "^3.0.0",
