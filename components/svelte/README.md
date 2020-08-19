@@ -38,9 +38,20 @@ yarn add svelte-particles
       },
     },
   };
+
+  let onParticlesLoaded = (event) => {
+    const particlesContainer = event.detail.particles;
+
+    // you can use particlesContainer to call all the Container class
+    // (from the core library) methods like play, pause, refresh, start, stop
+  };
 </script>
 
-<Particles id="tsparticles" options="{particlesConfig}" />
+<Particles
+  id="tsparticles"
+  options="{particlesConfig}"
+  on:particlesLoaded="{onParticlesLoaded}"
+/>
 ```
 
 ### SSR
@@ -75,12 +86,20 @@ You can see a sample below:
       },
     },
   };
+
+  let onParticlesLoaded = (event) => {
+    const particlesContainer = event.detail.particles;
+
+    // you can use particlesContainer to call all the Container class
+    // (from the core library) methods like play, pause, refresh, start, stop
+  };
 </script>
 
 <svelte:component
   this="{ParticlesComponent}"
   id="tsparticles"
   options="{particlesConfig}"
+  on:particlesLoaded="{onParticlesLoaded}"
 />
 ```
 

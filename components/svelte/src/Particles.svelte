@@ -1,9 +1,10 @@
 <script>
-    import { afterUpdate } from "svelte";
+    import { afterUpdate, createEventDispatcher } from "svelte";
     import { tsParticles } from "tsparticles";
 
     export let options = {};
     export let id = "tsparticles";
+    const dispatch = createEventDispatcher();
 
     let oldId = id;
 
@@ -17,8 +18,16 @@
         }
 
         if (id) {
-            tsParticles.load(id, options).then(() => {
+            tsParticles.load(id, options).then((container) => {
+                dispatch("particlesLoaded", {
+                    particles: container
+                });
+
                 oldId = id;
+            });
+        } else {
+            dispatch("particlesLoaded", {
+                particles: undefined
             });
         }
     });
