@@ -25,7 +25,7 @@
     "eslint": "^7.7.0",
     "eslint-config-prettier": "^6.11.0",
     "express": "^4.17.1",
-    "helmet": "^4.0.0",
+    "helmet": "^4.1.0",
     "prettier": "^2.0.5",
     "pug": "^3.0.0",
     "pug-cli": "^1.0.0-alpha6",
