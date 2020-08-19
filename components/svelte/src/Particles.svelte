@@ -7,9 +7,7 @@
     const dispatch = createEventDispatcher();
     let oldId = id;
 
-    afterUpdate((...args) => {
-        console.log(args);
-
+    afterUpdate(() => {
         if (oldId) {
             const oldContainer = tsParticles.dom().find(c => c.id === oldId);
 
