@@ -1,6 +1,6 @@
 {
   "name": "svelte-particles",
-  "version": "1.0.9",
+  "version": "1.0.10",
   "scripts": {
     "build": "prettier --write ./README.md && rollup -c"
   },
