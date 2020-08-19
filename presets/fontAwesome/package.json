@@ -1,6 +1,6 @@
 {
   "name": "tsparticles-preset-font-awesome",
-  "version": "1.2.8",
+  "version": "1.2.9",
   "description": "tsParticles fontAwesome preset",
   "homepage": "https://particles.matteobruni.it/",
   "scripts": {
@@ -64,6 +64,6 @@
     "webpack-cli": "^3.3.12"
   },
   "dependencies": {
-    "tsparticles": "^1.17.8"
+    "tsparticles": "^1.17.9"
   }
 }
