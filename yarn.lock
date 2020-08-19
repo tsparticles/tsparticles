@@ -3199,13 +3199,13 @@
   dependencies:
     "@vue/cli-shared-utils" "^4.5.3"
 
-"@vue/cli-plugin-typescript@~4.5.3":
-  version "4.5.3"
-  resolved "https://registry.yarnpkg.com/@vue/cli-plugin-typescript/-/cli-plugin-typescript-4.5.3.tgz#e42f68e6c4270e929d7a6cb55ba9490108832756"
-  integrity sha512-fYfHfXf7vM86IEHyIVgSmqsZpphBeQXJwXLzm2O/R2Af+QkqKEHp0S6VP4TIynM4MPq+55Y++D0aKfzFS1B4pA==
+"@vue/cli-plugin-typescript@~4.5.4":
+  version "4.5.4"
+  resolved "https://registry.yarnpkg.com/@vue/cli-plugin-typescript/-/cli-plugin-typescript-4.5.4.tgz#50e78207daa7595670c5626ee9b2251d0f6ab345"
+  integrity sha512-+EKeZZTc65S+6IjsQECCxDqp8mnvnHZAavXkO+osm/tOHnwezTD5jXGzCfmpEuoncGkO2e6xQGFht5ZHPZAKnA==
   dependencies:
     "@types/webpack-env" "^1.15.2"
-    "@vue/cli-shared-utils" "^4.5.3"
+    "@vue/cli-shared-utils" "^4.5.4"
     cache-loader "^4.1.0"
     fork-ts-checker-webpack-plugin "^3.1.1"
     globby "^9.2.0"
@@ -3285,10 +3285,10 @@
   optionalDependencies:
     vue-loader-v16 "npm:vue-loader@^16.0.0-beta.3"
 
-"@vue/cli-shared-utils@^4.4.6", "@vue/cli-shared-utils@^4.5.3":
-  version "4.5.3"
-  resolved "https://registry.yarnpkg.com/@vue/cli-shared-utils/-/cli-shared-utils-4.5.3.tgz#23bcca7ffc3a09b2c50d8b8d9d031a9ff775b512"
-  integrity sha512-AjXSll67gpYWyjGOyHrwofLuxa7vL8KM6aUQCII+cHlFQey6oLS5bAWq9qcIM0P2ZyD+6i0fooNCihIuNrX4yg==
+"@vue/cli-shared-utils@^4.4.6", "@vue/cli-shared-utils@^4.5.3", "@vue/cli-shared-utils@^4.5.4":
+  version "4.5.4"
+  resolved "https://registry.yarnpkg.com/@vue/cli-shared-utils/-/cli-shared-utils-4.5.4.tgz#ed36b2971dc02653f7f2ad4e66bbe9510e1bd414"
+  integrity sha512-7ZwAvGxl5szGuaJCc4jdPy/2Lb7oJvG847MDF+7pZ7FVl6bURwbUJjiUwL6DTxvpC4vch6B4tXfVvZFjzVP/bw==
   dependencies:
     "@hapi/joi" "^15.0.1"
     chalk "^2.4.2"
