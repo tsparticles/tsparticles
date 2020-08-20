@@ -1,2 +1,2 @@
 <p>container works!</p>
-<Particles class="particles" [id]="id" [options]="options"></Particles>
+<Particles id="tsparticles" [options]="options" (particlesLoaded)="particlesLoaded($event)"></Particles>

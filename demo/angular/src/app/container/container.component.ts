@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
+import { Container } from "tsparticles/dist/Core/Container";
 
 @Component({
     selector: 'app-container',
     templateUrl: './container.component.html',
-    styleUrls: [ './container.component.css' ]
+    styleUrls: ['./container.component.css']
 })
 export class ContainerComponent implements OnInit {
     id = 'tsparticles';
@@ -93,4 +94,7 @@ export class ContainerComponent implements OnInit {
     ngOnInit(): void {
     }
 
+    public particlesLoaded(container: Container): void {
+        console.log(container);
+    }
 }
