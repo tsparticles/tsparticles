@@ -21,10 +21,10 @@
       ],
       "ng-particles": [
         "../../components/angular/projects/ng-particles/src/public-api"
-      ],
+      ]/*,
       "tsparticles": [
         "../../core/main/dist"
-      ]
+      ]*/
     }
   },
   "angularCompilerOptions": {
