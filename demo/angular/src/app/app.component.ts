@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Container } from "tsparticles/dist/Core/Container";
 
 @Component({
     selector: 'app-root',
