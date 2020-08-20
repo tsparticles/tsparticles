@@ -316,7 +316,7 @@
         </svg>
     </a>
 </div>
-<Particles id="tsparticles" [options]="options"></Particles>
+<Particles id="tsparticles" [options]="options" (particlesLoaded)="particlesLoaded($event)"></Particles>
 <div class="content" role="main">
 
     <!-- Highlight Card -->
