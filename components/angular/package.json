@@ -53,7 +53,7 @@
     "directory": "dist/ng-particles"
   },
   "dependencies": {
-    "@angular/animations": "^10.0.8",
+    "@angular/animations": "^10.0.11",
     "@angular/common": "^10.0.10",
     "@angular/compiler": "^10.0.8",
     "@angular/core": "^10.0.10",
