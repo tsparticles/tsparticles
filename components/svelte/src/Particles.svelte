@@ -1,9 +1,10 @@
-<script>
+<script lang="ts">
     import { afterUpdate, createEventDispatcher } from "svelte";
     import { tsParticles } from "tsparticles";
 
     export let options = {};
     export let id = "tsparticles";
+
     const dispatch = createEventDispatcher();
 
     let oldId = id;

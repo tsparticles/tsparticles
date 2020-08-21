@@ -2,7 +2,8 @@
   "name": "svelte-particles",
   "version": "1.1.0-alpha.13",
   "scripts": {
-    "build": "prettier --write ./README.md && rollup -c"
+    "build": "prettier --write ./README.md && rollup -c",
+    "validate": "svelte-check"
   },
   "repository": {
     "type": "git",
@@ -60,7 +61,13 @@
     "rollup": "^2.26.4",
     "rollup-plugin-svelte": "^5.2.3",
     "rollup-plugin-terser": "^7.0.0",
-    "svelte": "^3.24.1"
+    "svelte": "^3.24.1",
+    "svelte-check": "^1.0.0",
+    "svelte-preprocess": "^4.0.0",
+    "@rollup/plugin-typescript": "^4.0.0",
+    "typescript": "^3.9.3",
+    "tslib": "^2.0.0",
+    "@tsconfig/svelte": "^1.0.0"
   },
   "dependencies": {
     "tsparticles": "^1.18.0-alpha.13"
