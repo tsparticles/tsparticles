@@ -4,10 +4,10 @@ import type { RecursivePartial } from "../../../../Types";
 import type { IOptionLoader } from "../../../../Options/Interfaces/IOptionLoader";
 
 export class AbsorberSize implements IAbsorberSize, IOptionLoader<IAbsorberSize> {
-    public density: number;
+    public density;
     public limit?: number;
-    public random: AbsorberRandomSize;
-    public value: number;
+    public random;
+    public value;
 
     constructor() {
         this.density = 5;

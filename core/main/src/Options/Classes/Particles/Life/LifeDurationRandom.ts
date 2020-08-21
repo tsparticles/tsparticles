@@ -3,8 +3,8 @@ import type { IOptionLoader } from "../../../Interfaces/IOptionLoader";
 import type { RecursivePartial } from "../../../../Types";
 
 export class LifeDurationRandom implements ILifeDurationRandom, IOptionLoader<ILifeDurationRandom> {
-    public enable: boolean;
-    public minimumValue: number;
+    public enable;
+    public minimumValue;
 
     constructor() {
         this.enable = false;

@@ -27,7 +27,7 @@ import { Particle } from "./Core/Particle";
  * It's a proxy to the static [[Loader]] class
  */
 export class MainSlim {
-    private initialized: boolean;
+    private initialized;
 
     constructor() {
         this.initialized = false;

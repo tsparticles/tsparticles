@@ -4,10 +4,10 @@ import { OptionsColor } from "../../OptionsColor";
 import type { IOptionLoader } from "../../../Interfaces/IOptionLoader";
 
 export class GrabLinks implements IGrabLinks, IOptionLoader<IGrabLinks> {
-    public blink: boolean;
+    public blink;
     public color?: OptionsColor;
-    public consent: boolean;
-    public opacity: number;
+    public consent;
+    public opacity;
 
     constructor() {
         this.blink = false;

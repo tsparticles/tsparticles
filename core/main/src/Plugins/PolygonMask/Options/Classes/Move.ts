@@ -4,7 +4,7 @@ import { MoveType } from "../../Enums";
 import type { IOptionLoader } from "../../../../Options/Interfaces/IOptionLoader";
 
 export class Move implements IMove, IOptionLoader<IMove> {
-    public radius: number;
+    public radius;
     public type: MoveType | keyof typeof MoveType;
 
     constructor() {

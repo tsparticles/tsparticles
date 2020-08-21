@@ -43,16 +43,16 @@ export class Options implements IOptions, IOptionLoader<IOptions> {
         this.detectRetina = value;
     }
 
-    public autoPlay: boolean;
-    public background: Background;
-    public backgroundMask: BackgroundMask;
-    public backgroundMode: BackgroundMode;
-    public detectRetina: boolean;
-    public fpsLimit: number;
-    public infection: Infection;
-    public interactivity: Interactivity;
-    public particles: Particles;
-    public pauseOnBlur: boolean;
+    public autoPlay;
+    public background;
+    public backgroundMask;
+    public backgroundMode;
+    public detectRetina;
+    public fpsLimit;
+    public infection;
+    public interactivity;
+    public particles;
+    public pauseOnBlur;
     public preset?: string | string[];
     public themes: Theme[];
 

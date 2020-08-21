@@ -5,9 +5,9 @@ import type { RecursivePartial, SingleOrMultiple } from "../../../../Types";
 import type { IOptionLoader } from "../../../Interfaces/IOptionLoader";
 
 export class HoverEvent implements IHoverEvent, IOptionLoader<IHoverEvent> {
-    public enable: boolean;
+    public enable;
     public mode: SingleOrMultiple<HoverMode | keyof typeof HoverMode | string>;
-    public parallax: Parallax;
+    public parallax;
 
     constructor() {
         this.enable = false;

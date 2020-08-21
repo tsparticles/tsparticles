@@ -2,6 +2,9 @@ import { InteractivityDetect, MoveDirection, OutMode, ShapeType, tsParticles } f
 
 const options = {
     fpsLimit: 60,
+    backgroundMode: {
+        enable: true,
+    },
     particles: {
         number: {
             value: 50,

@@ -4,7 +4,7 @@ import type { RecursivePartial } from "../../../Types";
 import type { IOptionLoader } from "../../Interfaces/IOptionLoader";
 
 export class Collisions implements ICollisions, IOptionLoader<ICollisions> {
-    public enable: boolean;
+    public enable;
     public mode: CollisionMode | keyof typeof CollisionMode;
 
     constructor() {

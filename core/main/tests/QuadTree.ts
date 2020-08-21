@@ -3,14 +3,14 @@ import { Circle, CircleWarp, Point, QuadTree, Rectangle } from "../src/Utils";
 import { TestContainer } from "./Fixture/TestContainer";
 import { TestParticle } from "./Fixture/TestParticle";
 
-const testContainer = new TestContainer({});
-
-const canvasSize = {
-    width: 200,
-    height: 200,
-};
-
 describe("QuadTree tests", () => {
+    const testContainer = new TestContainer({});
+
+    const canvasSize = {
+        width: 200,
+        height: 200,
+    };
+
     describe("Rectangle (0, 0, 50, 50) tests", () => {
         const rect1 = new Rectangle(0, 0, 50, 50);
 

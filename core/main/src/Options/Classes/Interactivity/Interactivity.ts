@@ -24,8 +24,8 @@ export class Interactivity implements IInteractivity, IOptionLoader<IInteractivi
     }
 
     public detectsOn: InteractivityDetect | keyof typeof InteractivityDetect;
-    public events: Events;
-    public modes: Modes;
+    public events;
+    public modes;
 
     constructor() {
         this.detectsOn = InteractivityDetect.canvas;

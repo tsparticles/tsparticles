@@ -9,7 +9,7 @@ import { PolygonMask } from "./Options/Classes/PolygonMask";
 import { Type } from "./Enums";
 
 class PolygonMaskPlugin implements IPlugin {
-    public readonly id: string;
+    public readonly id;
 
     constructor() {
         this.id = "polygonMask";

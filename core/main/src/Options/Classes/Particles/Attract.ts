@@ -38,7 +38,7 @@ export class Attract implements IAttract, IOptionLoader<IAttract> {
         this.rotate.y = value;
     }
 
-    public enable: boolean;
+    public enable;
     public rotate: ICoordinates;
 
     constructor() {

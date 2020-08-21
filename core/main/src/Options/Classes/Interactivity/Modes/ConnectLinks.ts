@@ -3,7 +3,7 @@ import type { RecursivePartial } from "../../../../Types";
 import type { IOptionLoader } from "../../../Interfaces/IOptionLoader";
 
 export class ConnectLinks implements IConnectLinks, IOptionLoader<IConnectLinks> {
-    public opacity: number;
+    public opacity;
 
     constructor() {
         this.opacity = 0.5;

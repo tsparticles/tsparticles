@@ -21,29 +21,31 @@ import type { IAttract } from "./Interfaces/IAttract";
  * The object loaded into an HTML element, it'll contain options loaded and all data to let everything working
  */
 export class Container {
+    public started;
+    public destroyed;
+    public density;
+    public pageHidden;
+    public lastFrameTime;
     public interactivity: IContainerInteractivity;
-    public options: Options;
-    public retina: Retina;
-    public canvas: Canvas;
-    public drawers: Map<string, IShapeDrawer>;
-    public particles: Particles;
-    public plugins: Map<string, IContainerPlugin>;
     public bubble: IBubble;
     public repulse: IRepulse;
     public attract: IAttract;
-    public lastFrameTime: number;
-    public pageHidden: boolean;
-    public drawer: FrameManager;
-    public started: boolean;
-    public destroyed: boolean;
-    public density: number;
+
+    public readonly options;
+    public readonly retina;
+    public readonly canvas;
+    public readonly particles;
+    public readonly drawer;
+    public readonly drawers;
+    public readonly plugins;
 
     public readonly noise: INoise;
 
-    private paused: boolean;
-    private firstStart: boolean;
+    private paused;
+    private firstStart;
     private drawAnimationFrame?: number;
-    private eventListeners: EventListeners;
+
+    private readonly eventListeners;
 
     /**
      * This is the core class, create an instance to have a new working particles manager
@@ -265,7 +267,10 @@ export class Container {
             }
         }
 
-        this.drawers = new Map<string, IShapeDrawer>();
+        for (const key of this.drawers.keys()) {
+            this.drawers.delete(key);
+        }
+
         this.destroyed = true;
     }
 
@@ -322,7 +327,10 @@ export class Container {
             }
         }
 
-        this.plugins = new Map<string, IContainerPlugin>();
+        for (const key of this.plugins.keys()) {
+            this.plugins.delete(key);
+        }
+
         this.particles.linksColors = new Map<string, IRgb | string | undefined>();
 
         delete this.particles.grabLineColor;

@@ -55,18 +55,18 @@ export class Move implements IMove, IOptionLoader<IMove> {
         this.outMode = value;
     }
 
-    public angle: MoveAngle;
-    public attract: Attract;
+    public angle;
+    public attract;
     public direction: MoveDirection | keyof typeof MoveDirection | MoveDirectionAlt;
-    public enable: boolean;
-    public noise: Noise;
+    public enable;
+    public noise;
     public outMode: OutMode | keyof typeof OutMode | OutModeAlt;
-    public random: boolean;
-    public speed: number;
-    public straight: boolean;
-    public trail: Trail;
-    public vibrate: boolean;
-    public warp: boolean;
+    public random;
+    public speed;
+    public straight;
+    public trail;
+    public vibrate;
+    public warp;
 
     constructor() {
         this.angle = new MoveAngle();

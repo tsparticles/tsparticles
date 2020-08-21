@@ -13,16 +13,18 @@ type OrbitingParticle = Particle & {
 };
 
 export class AbsorberInstance {
+    public mass;
+    public opacity;
+    public size;
+
     public color: IRgb;
     public limit?: number;
-    public mass: number;
-    public opacity: number;
     public position: ICoordinates;
-    public size: number;
+
+    private dragging;
 
     private readonly initialPosition?: ICoordinates;
     private readonly options: IAbsorber;
-    private dragging: boolean;
 
     constructor(
         private readonly absorbers: Absorbers,

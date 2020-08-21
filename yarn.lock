@@ -12536,10 +12536,10 @@ object-copy@^0.1.0:
     define-property "^0.2.5"
     kind-of "^3.0.3"
 
-object-gui@^1.0.5:
-  version "1.0.5"
-  resolved "https://registry.yarnpkg.com/object-gui/-/object-gui-1.0.5.tgz#8050bede2c6e644e944c8599314af0c9f0737477"
-  integrity sha512-Ynf84SeR2mK8NpxR0CMYj0FfhZoAJOwp8P8FS6jIMpjvepZ+GnrNLXtx077RP/yn+8qWE4vwUGZFpIKFB/K2Bg==
+object-gui@^1.0.6:
+  version "1.0.6"
+  resolved "https://registry.yarnpkg.com/object-gui/-/object-gui-1.0.6.tgz#1a92e8958aaa51aefa0e27db6adacccb4c50649e"
+  integrity sha512-EpAxbyq+tSi+joQ/aJ1oGLDIqxWlgw7Sd6nWx+5Na01kMzcRbE1MoSxJ3aNcJFOddDyl/QNA8T3zbuQuXXifJw==
   dependencies:
     tslib "^2.0.0"
 
@@ -17307,14 +17307,6 @@ tslint@~6.1.2:
     tslib "^1.13.0"
     tsutils "^2.29.0"
 
-tsparticles@^1.17.9:
-  version "1.17.9"
-  resolved "https://registry.yarnpkg.com/tsparticles/-/tsparticles-1.17.9.tgz#91893cb3e53b7a29518f347ab2c0421071ce6d83"
-  integrity sha512-jRu7OWAGqXPhFVb8ZW8NmEpEmEdSnN9dZ/xalg1izv8VwynqgMPTVYEQH2Nh1BYmVjbTyBvKnk0kiLHgDzn3Hw==
-  dependencies:
-    pathseg "^1.2.0"
-    tslib "^2.0.0"
-
 tsutils@^2.29.0:
   version "2.29.0"
   resolved "https://registry.yarnpkg.com/tsutils/-/tsutils-2.29.0.tgz#32b488501467acbedd4b85498673a0812aca0b99"
@@ -17454,10 +17446,15 @@ typescript-json-schema@^0.42.0:
     typescript "^3.5.3"
     yargs "^14.0.0"
 
-typescript@^3.4.5, typescript@^3.5.3, typescript@^3.9.6, typescript@^3.9.7, typescript@~3.9.7:
+typescript@^3.4.5, typescript@^3.5.3, typescript@^3.9.7, typescript@~3.9.7:
   version "3.9.7"
   resolved "https://registry.yarnpkg.com/typescript/-/typescript-3.9.7.tgz#98d600a5ebdc38f40cb277522f12dc800e9e25fa"
   integrity sha512-BLbiRkiBzAwsjut4x/dsibSTB6yWpwT5qWmC2OfuCg3GgVQCSgMs4vEctYPhsaGtd0AeuuHMkjZ2h2WG8MSzRw==
+
+typescript@^4.0.2:
+  version "4.0.2"
+  resolved "https://registry.yarnpkg.com/typescript/-/typescript-4.0.2.tgz#7ea7c88777c723c681e33bf7988be5d008d05ac2"
+  integrity sha512-e4ERvRV2wb+rRZ/IQeb3jm2VxBsirQLpQhdxplZ2MEzGvDkkMmPglecnNDfSUBivMjP93vRbngYYDQqQ/78bcQ==
 
 uglify-js@3.4.x:
   version "3.4.10"

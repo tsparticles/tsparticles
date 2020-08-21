@@ -6,13 +6,13 @@ import { OptionsColor } from "../../../../Options/Classes/OptionsColor";
 import type { IOptionLoader } from "../../../../Options/Interfaces/IOptionLoader";
 
 export class Absorber implements IAbsorber, IOptionLoader<IAbsorber> {
-    public color: OptionsColor;
-    public draggable: boolean;
-    public opacity: number;
+    public color;
+    public draggable;
+    public opacity;
     public position?: ICoordinates;
-    public size: AbsorberSize;
-    public destroy: boolean;
-    public orbits: boolean;
+    public size;
+    public destroy;
+    public orbits;
 
     constructor() {
         this.color = new OptionsColor();

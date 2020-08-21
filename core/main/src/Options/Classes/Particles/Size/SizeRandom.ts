@@ -3,8 +3,8 @@ import type { ISizeRandom } from "../../../Interfaces/Particles/Size/ISizeRandom
 import type { IOptionLoader } from "../../../Interfaces/IOptionLoader";
 
 export class SizeRandom implements ISizeRandom, IOptionLoader<ISizeRandom> {
-    public enable: boolean;
-    public minimumValue: number;
+    public enable;
+    public minimumValue;
 
     constructor() {
         this.enable = false;

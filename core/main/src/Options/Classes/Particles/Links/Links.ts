@@ -7,16 +7,16 @@ import type { IOptionLoader } from "../../../Interfaces/IOptionLoader";
 
 export class Links implements ILinks, IOptionLoader<ILinks> {
     public id?: string;
-    public blink: boolean;
-    public color: OptionsColor;
-    public consent: boolean;
-    public distance: number;
-    public enable: boolean;
-    public opacity: number;
-    public shadow: LinksShadow;
-    public triangles: LinksTriangle;
-    public width: number;
-    public warp: boolean;
+    public blink;
+    public color;
+    public consent;
+    public distance;
+    public enable;
+    public opacity;
+    public shadow;
+    public triangles;
+    public width;
+    public warp;
 
     constructor() {
         this.blink = false;

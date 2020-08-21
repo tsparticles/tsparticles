@@ -33,8 +33,8 @@ export class Draw implements IDraw, IOptionLoader<IDraw> {
         this.stroke.color = OptionsColor.create(this.stroke.color, value);
     }
 
-    public enable: boolean;
-    public stroke: DrawStroke;
+    public enable;
+    public stroke;
 
     constructor() {
         this.enable = false;

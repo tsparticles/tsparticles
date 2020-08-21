@@ -5,9 +5,9 @@ import { OptionsColor } from "../OptionsColor";
 import type { IOptionLoader } from "../../Interfaces/IOptionLoader";
 
 export class Shadow implements IShadow, IOptionLoader<IShadow> {
-    public blur: number;
-    public color: OptionsColor;
-    public enable: boolean;
+    public blur;
+    public color;
+    public enable;
     public offset: ICoordinates;
 
     constructor() {

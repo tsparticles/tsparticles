@@ -3,9 +3,9 @@ import type { RecursivePartial } from "../../../../Types";
 import type { IOptionLoader } from "../../../Interfaces/IOptionLoader";
 
 export class Attract implements IAttract, IOptionLoader<IAttract> {
-    public distance: number;
-    public duration: number;
-    public speed: number;
+    public distance;
+    public duration;
+    public speed;
 
     constructor() {
         this.distance = 200;

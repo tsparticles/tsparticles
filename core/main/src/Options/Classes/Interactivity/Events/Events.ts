@@ -57,10 +57,10 @@ export class Events implements IEvents, IOptionLoader<IEvents> {
         this.onHover = value;
     }
 
-    public onClick: ClickEvent;
+    public onClick;
     public onDiv: SingleOrMultiple<DivEvent>;
-    public onHover: HoverEvent;
-    public resize: boolean;
+    public onHover;
+    public resize;
 
     constructor() {
         this.onClick = new ClickEvent();

@@ -3,8 +3,8 @@ import { IOptionLoader } from "../../Interfaces/IOptionLoader";
 import { RecursivePartial } from "../../../Types";
 
 export class BackgroundMode implements IBackgroundMode, IOptionLoader<IBackgroundMode> {
-    public enable: boolean;
-    public zIndex: number;
+    public enable;
+    public zIndex;
 
     constructor() {
         this.enable = false;

@@ -14,11 +14,14 @@ export class EmitterInstance {
     public size: IEmitterSize;
     public emitterOptions: IEmitter;
 
-    private readonly immortal: boolean;
+    private lifeCount;
+
+    private startInterval?: number;
+
+    private readonly immortal;
+
     private readonly initialPosition?: ICoordinates;
     private readonly particlesOptions: RecursivePartial<IParticles>;
-    private startInterval?: number;
-    private lifeCount: number;
 
     constructor(
         private readonly emitters: Emitters,

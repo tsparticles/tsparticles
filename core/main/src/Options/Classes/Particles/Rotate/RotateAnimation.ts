@@ -3,9 +3,9 @@ import type { RecursivePartial } from "../../../../Types";
 import type { IOptionLoader } from "../../../Interfaces/IOptionLoader";
 
 export class RotateAnimation implements IRotateAnimation, IOptionLoader<IRotateAnimation> {
-    public enable: boolean;
-    public speed: number;
-    public sync: boolean;
+    public enable;
+    public speed;
+    public sync;
 
     constructor() {
         this.enable = false;

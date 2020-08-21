@@ -20,7 +20,7 @@ export class Push implements IPush, IOptionLoader<IPush> {
         this.quantity = value;
     }
 
-    public quantity: number;
+    public quantity;
 
     constructor() {
         this.quantity = 4;

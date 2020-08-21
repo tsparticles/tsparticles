@@ -4,11 +4,11 @@ import type { RecursivePartial } from "../../../Types";
 import type { IOptionLoader } from "../../Interfaces/IOptionLoader";
 
 export class InfectionStage implements IInfectionStage, IOptionLoader<IInfectionStage> {
-    public color: OptionsColor;
+    public color;
     public duration?: number;
     public infectedStage?: number;
-    public radius: number;
-    public rate: number;
+    public radius;
+    public rate;
 
     constructor() {
         this.color = new OptionsColor();

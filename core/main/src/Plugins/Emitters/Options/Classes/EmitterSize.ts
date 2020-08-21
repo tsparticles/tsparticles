@@ -5,8 +5,8 @@ import type { IOptionLoader } from "../../../../Options/Interfaces/IOptionLoader
 
 export class EmitterSize implements IEmitterSize, IOptionLoader<IEmitterSize> {
     public mode: SizeMode | keyof typeof SizeMode;
-    public height: number;
-    public width: number;
+    public height;
+    public width;
 
     public constructor() {
         this.mode = SizeMode.percent;

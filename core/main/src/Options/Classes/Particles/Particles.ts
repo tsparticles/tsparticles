@@ -51,19 +51,19 @@ export class Particles implements IParticles, IOptionLoader<IParticles> {
         this.links = value;
     }
 
-    public collisions: Collisions;
-    public color: AnimatableColor;
-    public life: Life;
-    public links: Links;
-    public move: Move;
-    public number: ParticlesNumber;
-    public opacity: Opacity;
-    public rotate: Rotate;
-    public shape: Shape;
-    public size: Size;
-    public shadow: Shadow;
+    public collisions;
+    public color;
+    public life;
+    public links;
+    public move;
+    public number;
+    public opacity;
+    public rotate;
+    public shape;
+    public size;
+    public shadow;
     public stroke: SingleOrMultiple<Stroke>;
-    public twinkle: Twinkle;
+    public twinkle;
 
     constructor() {
         this.collisions = new Collisions();

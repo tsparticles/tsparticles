@@ -5,11 +5,11 @@ import type { RecursivePartial } from "../../../../Types";
 import type { IOptionLoader } from "../../../Interfaces/IOptionLoader";
 
 export class Rotate implements IRotate, IOptionLoader<IRotate> {
-    public animation: RotateAnimation;
+    public animation;
     public direction: RotateDirection | keyof typeof RotateDirection | RotateDirectionAlt;
-    public path: boolean;
-    public random: boolean;
-    public value: number;
+    public path;
+    public random;
+    public value;
 
     constructor() {
         this.animation = new RotateAnimation();

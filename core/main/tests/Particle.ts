@@ -1,19 +1,18 @@
-const Window = require("window");
-
-globalThis.window = new Window();
-
 import { expect } from "chai";
 import { TestCanvas } from "./Fixture/TestCanvas";
 import { TestContainer } from "./Fixture/TestContainer";
 import { TestParticle } from "./Fixture/TestParticle";
 import { ShapeType } from "../src/Enums";
 import { ICoordinates } from "../src/Core/Interfaces/ICoordinates";
-
-const testContainer = new TestContainer({});
-const testParticle = new TestParticle(testContainer.container);
-const testCanvas = new TestCanvas(testContainer.container, 1920, 1080);
+const Window = require("window");
 
 describe("Particle", () => {
+    globalThis.window = new Window();
+
+    const testContainer = new TestContainer({});
+    const testParticle = new TestParticle(testContainer.container);
+    const testCanvas = new TestCanvas(testContainer.container, 1920, 1080);
+
     describe("constructor/initialization", () => {
         const squareShapeOptions = {
             particles: {

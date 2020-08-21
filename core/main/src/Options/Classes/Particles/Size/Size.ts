@@ -22,9 +22,9 @@ export class Size implements ISize, IOptionLoader<ISize> {
         this.animation = value;
     }
 
-    public animation: SizeAnimation;
-    public random: SizeRandom;
-    public value: number;
+    public animation;
+    public random;
+    public value;
 
     constructor() {
         this.animation = new SizeAnimation();

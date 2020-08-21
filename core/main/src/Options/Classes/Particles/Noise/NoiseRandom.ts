@@ -3,8 +3,8 @@ import type { RecursivePartial } from "../../../../Types";
 import type { IOptionLoader } from "../../../Interfaces/IOptionLoader";
 
 export class NoiseRandom implements INoiseRandom, IOptionLoader<INoiseRandom> {
-    public enable: boolean;
-    public minimumValue: number;
+    public enable;
+    public minimumValue;
 
     constructor() {
         this.enable = false;

@@ -38,8 +38,8 @@ export class Grab implements IGrab, IOptionLoader<IGrab> {
         this.links = value;
     }
 
-    public distance: number;
-    public links: GrabLinks;
+    public distance;
+    public links;
 
     constructor() {
         this.distance = 100;

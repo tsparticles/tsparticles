@@ -5,7 +5,7 @@ import { ColorAnimation } from "./ColorAnimation";
 import type { IOptionLoader } from "../../Interfaces/IOptionLoader";
 
 export class AnimatableColor extends OptionsColor implements IAnimatableColor, IOptionLoader<IAnimatableColor> {
-    public animation: ColorAnimation;
+    public animation;
 
     constructor() {
         super();

@@ -17,8 +17,8 @@ export class Slow implements ISlow, IOptionLoader<ISlow> {
         // deprecated
     }
 
-    public factor: number;
-    public radius: number;
+    public factor;
+    public radius;
 
     constructor() {
         this.factor = 3;

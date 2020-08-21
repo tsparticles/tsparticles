@@ -14,9 +14,9 @@ of the system.
 */
 
 export class SpatialGrid {
-    private readonly cellSize: number;
-    private widthSegment: number;
-    private heightSegment: number;
+    private readonly cellSize;
+    private widthSegment;
+    private heightSegment;
     private grid: Particle[][][] = [];
 
     // Cut the grid up into a 2d array with a 3rd dimension holding the data.

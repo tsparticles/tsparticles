@@ -20,7 +20,7 @@ export class Remove implements IRemove, IOptionLoader<IRemove> {
         this.quantity = value;
     }
 
-    public quantity: number;
+    public quantity;
 
     constructor() {
         this.quantity = 2;

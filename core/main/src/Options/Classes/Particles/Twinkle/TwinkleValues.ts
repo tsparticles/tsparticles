@@ -5,9 +5,9 @@ import type { IOptionLoader } from "../../../Interfaces/IOptionLoader";
 
 export class TwinkleValues implements ITwinkleValues, IOptionLoader<ITwinkleValues> {
     public color?: OptionsColor;
-    public enable: boolean;
-    public frequency: number;
-    public opacity: number;
+    public enable;
+    public frequency;
+    public opacity;
 
     constructor() {
         this.enable = false;

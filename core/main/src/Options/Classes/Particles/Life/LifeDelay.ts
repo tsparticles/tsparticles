@@ -4,9 +4,9 @@ import { LifeDelayRandom } from "./LifeDelayRandom";
 import type { RecursivePartial } from "../../../../Types";
 
 export class LifeDelay implements ILifeDelay, IOptionLoader<ILifeDelay> {
-    public random: LifeDelayRandom;
-    public sync: boolean;
-    public value: number;
+    public random;
+    public sync;
+    public value;
 
     constructor() {
         this.random = new LifeDelayRandom();

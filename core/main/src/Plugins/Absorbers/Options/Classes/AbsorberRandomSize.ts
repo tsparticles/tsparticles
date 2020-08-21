@@ -3,8 +3,8 @@ import type { RecursivePartial } from "../../../../Types";
 import type { IOptionLoader } from "../../../../Options/Interfaces/IOptionLoader";
 
 export class AbsorberRandomSize implements IAbsorberRandomSize, IOptionLoader<IAbsorberRandomSize> {
-    public enable: boolean;
-    public minimumValue: number;
+    public enable;
+    public minimumValue;
 
     constructor() {
         this.enable = false;

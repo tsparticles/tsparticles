@@ -16,7 +16,7 @@ export class QuadTree {
     private southEast?: QuadTree;
     private southWest?: QuadTree;
 
-    private divided: boolean;
+    private divided;
 
     constructor(public readonly rectangle: Rectangle, public readonly capacity: number) {
         this.points = [];

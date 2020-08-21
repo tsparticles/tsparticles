@@ -4,8 +4,8 @@ import type { IBackgroundMaskCover } from "../../Interfaces/BackgroundMask/IBack
 import type { IOptionLoader } from "../../Interfaces/IOptionLoader";
 
 export class BackgroundMaskCover implements IBackgroundMaskCover, IOptionLoader<IBackgroundMaskCover> {
-    public color: OptionsColor;
-    public opacity: number;
+    public color;
+    public opacity;
 
     constructor() {
         this.color = new OptionsColor();

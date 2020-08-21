@@ -3,9 +3,9 @@ import type { RecursivePartial } from "../../../../Types";
 import type { IOptionLoader } from "../../../Interfaces/IOptionLoader";
 
 export class Parallax implements IParallax, IOptionLoader<IParallax> {
-    public enable: boolean;
-    public force: number;
-    public smooth: number;
+    public enable;
+    public force;
+    public smooth;
 
     constructor() {
         this.enable = false;

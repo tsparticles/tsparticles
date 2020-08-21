@@ -28,7 +28,7 @@ export class Canvas {
      * The particles canvas context
      */
     private context: CanvasRenderingContext2D | null;
-    private generatedCanvas: boolean;
+    private generatedCanvas;
     private coverColor?: IRgba;
     private trailFillColor?: IRgb;
     private originalStyle?: CSSStyleDeclaration;

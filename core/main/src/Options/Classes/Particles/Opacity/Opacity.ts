@@ -22,9 +22,9 @@ export class Opacity implements IOpacity, IOptionLoader<IOpacity> {
         this.animation = value;
     }
 
-    public animation: OpacityAnimation;
-    public random: OpacityRandom;
-    public value: number;
+    public animation;
+    public random;
+    public value;
 
     constructor() {
         this.animation = new OpacityAnimation();

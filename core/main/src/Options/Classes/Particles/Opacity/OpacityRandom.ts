@@ -3,8 +3,8 @@ import type { IOpacityRandom } from "../../../Interfaces/Particles/Opacity/IOpac
 import type { IOptionLoader } from "../../../Interfaces/IOptionLoader";
 
 export class OpacityRandom implements IOpacityRandom, IOptionLoader<IOpacityRandom> {
-    public enable: boolean;
-    public minimumValue: number;
+    public enable;
+    public minimumValue;
 
     constructor() {
         this.enable = false;

@@ -12,10 +12,10 @@ import type { IOptionLoader } from "../../../../Options/Interfaces/IOptionLoader
 export class Emitter implements IEmitter, IOptionLoader<IEmitter> {
     public size?: EmitterSize;
     public direction: MoveDirection | keyof typeof MoveDirection | MoveDirectionAlt;
-    public life: EmitterLife;
+    public life;
     public particles?: RecursivePartial<IParticles>;
     public position?: ICoordinates;
-    public rate: EmitterRate;
+    public rate;
 
     constructor() {
         this.direction = MoveDirection.none;

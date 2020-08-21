@@ -20,10 +20,10 @@ export class OpacityAnimation implements IOpacityAnimation, IOptionLoader<IOpaci
         this.minimumValue = value;
     }
 
-    public enable: boolean;
-    public minimumValue: number;
-    public speed: number;
-    public sync: boolean;
+    public enable;
+    public minimumValue;
+    public speed;
+    public sync;
 
     constructor() {
         this.enable = false;

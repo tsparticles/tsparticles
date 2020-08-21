@@ -10,7 +10,7 @@ import { Options } from "../../Options/Classes/Options";
 import { Absorber } from "./Options/Classes/Absorber";
 
 class AbsorbersPlugin implements IPlugin {
-    public readonly id: string;
+    public readonly id;
 
     constructor() {
         this.id = "absorbers";

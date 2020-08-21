@@ -18,9 +18,9 @@ export class ParticlesNumber implements IParticlesNumber, IOptionLoader<IParticl
         this.limit = value;
     }
 
-    public density: Density;
-    public limit: number;
-    public value: number;
+    public density;
+    public limit;
+    public value;
 
     constructor() {
         this.density = new Density();

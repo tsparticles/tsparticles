@@ -10,7 +10,7 @@ import { Options } from "../../Options/Classes/Options";
 import { Emitter } from "./Options/Classes/Emitter";
 
 class EmittersPlugin implements IPlugin {
-    public readonly id: string;
+    public readonly id;
 
     constructor() {
         this.id = "emitters";

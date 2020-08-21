@@ -1,6 +1,6 @@
 import type { ThemeMode } from "../../../Enums";
 
 export interface IThemeDefault {
-    mode: ThemeMode;
+    mode: ThemeMode | keyof ThemeMode;
     value: boolean;
 }

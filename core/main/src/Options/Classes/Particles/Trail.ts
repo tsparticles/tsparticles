@@ -4,9 +4,9 @@ import { OptionsColor } from "../OptionsColor";
 import type { IOptionLoader } from "../../Interfaces/IOptionLoader";
 
 export class Trail implements ITrail, IOptionLoader<ITrail> {
-    public enable: boolean;
-    public length: number;
-    public fillColor: OptionsColor;
+    public enable;
+    public length;
+    public fillColor;
 
     constructor() {
         this.enable = false;

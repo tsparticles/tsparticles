@@ -5,9 +5,9 @@ import { Utils } from "../../../../Utils";
 import type { IOptionLoader } from "../../../Interfaces/IOptionLoader";
 
 export class Trail implements ITrail, IOptionLoader<ITrail> {
-    public delay: number;
+    public delay;
     public particles?: RecursivePartial<IParticles>;
-    public quantity: number;
+    public quantity;
 
     constructor() {
         this.delay = 1;

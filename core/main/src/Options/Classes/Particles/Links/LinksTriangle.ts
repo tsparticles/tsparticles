@@ -5,7 +5,7 @@ import type { IOptionLoader } from "../../../Interfaces/IOptionLoader";
 
 export class LinksTriangle implements ILinksTriangle, IOptionLoader<ILinksTriangle> {
     public color?: OptionsColor;
-    public enable: boolean;
+    public enable;
     public opacity?: number;
 
     constructor() {

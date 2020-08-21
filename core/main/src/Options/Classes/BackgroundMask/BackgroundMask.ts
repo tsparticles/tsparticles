@@ -9,12 +9,12 @@ export class BackgroundMask implements IBackgroundMask, IOptionLoader<IBackgroun
     /**
      * Background covering color
      */
-    public cover: BackgroundMaskCover;
+    public cover;
 
     /**
      * Background mask enabling options
      */
-    public enable: boolean;
+    public enable;
 
     constructor() {
         this.cover = new BackgroundMaskCover();

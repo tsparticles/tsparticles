@@ -5,8 +5,8 @@ import { LightArea } from "./LightArea";
 import { LightShadow } from "./LightShadow";
 
 export class Light implements ILight, IOptionLoader<ILight> {
-    public light: LightArea;
-    public shadow: LightShadow;
+    public light;
+    public shadow;
 
     constructor() {
         this.light = new LightArea();

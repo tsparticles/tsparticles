@@ -4,9 +4,9 @@ import { OptionsColor } from "../../OptionsColor";
 import type { IOptionLoader } from "../../../Interfaces/IOptionLoader";
 
 export class LinksShadow implements ILinksShadow, IOptionLoader<ILinksShadow> {
-    public blur: number;
-    public color: OptionsColor;
-    public enable: boolean;
+    public blur;
+    public color;
+    public enable;
 
     constructor() {
         this.blur = 5;

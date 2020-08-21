@@ -17,24 +17,26 @@ export class Particles {
         return this.array.length;
     }
 
+    public quadTree;
+    //public spatialGrid;
+    public linksColors;
+
     public array: Particle[];
-    public quadTree: QuadTree;
-    //public spatialGrid: SpatialGrid;
     public pushing?: boolean;
     public linksColor?: IRgb | string;
-    public linksColors: Map<string, IRgb | string | undefined>;
     public grabLineColor?: IRgb | string;
 
-    private interactionManager: InteractionManager;
+    private interactionManager;
 
     constructor(private readonly container: Container) {
         this.array = [];
         this.interactionManager = new InteractionManager(container);
-        //this.spatialGrid = new SpatialGrid(this.container.canvas.size);
-        const canvasSize = this.container.canvas.size;
-        this.linksColors = new Map<string, IRgb | string | undefined>();
 
+        const canvasSize = this.container.canvas.size;
+
+        this.linksColors = new Map<string, IRgb | string | undefined>();
         this.quadTree = new QuadTree(new Rectangle(0, 0, canvasSize.width, canvasSize.height), 4);
+        //this.spatialGrid = new SpatialGrid(this.container.canvas.size);
     }
 
     /* --------- tsParticles functions - particles ----------- */

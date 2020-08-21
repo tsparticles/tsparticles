@@ -7,7 +7,7 @@ export class ClickEvent implements IClickEvent, IOptionLoader<IClickEvent> {
     /**
      * The click event handler enabling setting
      */
-    public enable: boolean;
+    public enable;
 
     /**
      * Click mode values described in [[ClickMode]], an array of these values is also valid

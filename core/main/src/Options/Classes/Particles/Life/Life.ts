@@ -5,9 +5,9 @@ import { LifeDelay } from "./LifeDelay";
 import { LifeDuration } from "./LifeDuration";
 
 export class Life implements ILife, IOptionLoader<ILife> {
-    public count: number;
-    public delay: LifeDelay;
-    public duration: LifeDuration;
+    public count;
+    public delay;
+    public duration;
 
     constructor() {
         this.count = 0;

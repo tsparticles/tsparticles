@@ -40,12 +40,34 @@ import { Mover } from "./Particle/Mover";
  * The single particle object
  */
 export class Particle implements IParticle {
-    public angle: number;
-    public pathAngle: number;
-    public destroyed: boolean;
+    public angle;
+    public pathAngle;
+    public destroyed;
+    public lifeDelay;
+    public lifeDelayTime;
+    public lifeDuration;
+    public lifeTime;
+    public livesRemaining;
+    public spawning;
+    public lastNoiseTime;
+
+    public readonly noiseDelay;
+    public readonly updater;
+    public readonly infecter;
+    private readonly mover;
+    public readonly strokeWidth;
+    public readonly particlesOptions;
+
     public rotateDirection: RotateDirection | keyof typeof RotateDirection | RotateDirectionAlt;
     public randomIndexData?: number;
     public links: ILink[];
+    public linksDistance?: number;
+    public linksWidth?: number;
+    public moveSpeed?: number;
+    public sizeValue?: number;
+    public randomMinimumSize?: number;
+    public sizeAnimationSpeed?: number;
+
     public readonly close: boolean;
     public readonly direction: MoveDirection | keyof typeof MoveDirection | MoveDirectionAlt;
     public readonly fill: boolean;
@@ -54,7 +76,6 @@ export class Particle implements IParticle {
     public readonly position: ICoordinates;
     public readonly offset: ICoordinates;
     public readonly color: IHsl | undefined;
-    public readonly strokeWidth: number;
     public readonly strokeColor: IHsl | undefined;
     public readonly shadowColor: IRgb | undefined;
     public readonly opacity: IParticleOpacityAnimation;
@@ -64,28 +85,7 @@ export class Particle implements IParticle {
     public readonly initialVelocity: IVelocity;
     public readonly shapeData?: IShapeValues;
     public readonly bubble: IBubbleParticleData;
-    public readonly noiseDelay: number;
     public readonly colorVelocity: number;
-    public lastNoiseTime: number;
-    public linksDistance?: number;
-    public linksWidth?: number;
-    public moveSpeed?: number;
-    public sizeValue?: number;
-    public randomMinimumSize?: number;
-    public sizeAnimationSpeed?: number;
-    public lifeDelay: number;
-    public lifeDelayTime: number;
-    public lifeDuration: number;
-    public lifeTime: number;
-    public livesRemaining: number;
-    public spawning: boolean;
-
-    public readonly updater: Updater;
-    public readonly infecter: Infecter;
-    private readonly mover: Mover;
-
-    /* --------- tsParticles functions - particles ----------- */
-    public readonly particlesOptions: IParticles;
 
     private readonly strokeColorVelocity?: number;
 

@@ -3,8 +3,8 @@ import type { IOptionLoader } from "../../../Interfaces/IOptionLoader";
 import type { RecursivePartial } from "../../../../Types";
 
 export class MoveAngle implements IMoveAngle, IOptionLoader<IMoveAngle> {
-    offset: number;
-    value: number;
+    offset;
+    value;
 
     constructor() {
         this.offset = 45;

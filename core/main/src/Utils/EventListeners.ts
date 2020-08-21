@@ -150,9 +150,7 @@ export class EventListeners {
     }
 
     private handleWindowResize(): void {
-        const canvas = this.container.canvas;
-
-        canvas?.windowResize();
+        this.container.canvas?.windowResize();
     }
 
     private handleVisibilityChange(): void {

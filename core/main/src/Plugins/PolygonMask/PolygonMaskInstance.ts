@@ -47,10 +47,10 @@ export class PolygonMaskInstance implements IContainerPlugin {
     public paths?: ISvgPath[];
     public dimension: IDimension;
     public offset?: ICoordinates;
-    public readonly path2DSupported: boolean;
-    public readonly options: PolygonMask;
+    public readonly path2DSupported;
+    public readonly options;
 
-    private polygonMaskMoveRadius: number;
+    private polygonMaskMoveRadius;
 
     constructor(private readonly container: Container) {
         this.dimension = {

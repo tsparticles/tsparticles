@@ -3,8 +3,8 @@ import type { RecursivePartial } from "../../../../Types";
 import type { IOptionLoader } from "../../../../Options/Interfaces/IOptionLoader";
 
 export class EmitterRate implements IEmitterRate, IOptionLoader<IEmitterRate> {
-    public quantity: number;
-    public delay: number;
+    public quantity;
+    public delay;
 
     constructor() {
         this.quantity = 1;

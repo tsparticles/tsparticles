@@ -4,8 +4,8 @@ import { TwinkleValues } from "./TwinkleValues";
 import type { IOptionLoader } from "../../../Interfaces/IOptionLoader";
 
 export class Twinkle implements ITwinkle, IOptionLoader<ITwinkle> {
-    public lines: TwinkleValues;
-    public particles: TwinkleValues;
+    public lines;
+    public particles;
 
     constructor() {
         this.lines = new TwinkleValues();

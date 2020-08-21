@@ -71,14 +71,14 @@ export class DivEvent implements IDivEvent, IOptionLoader<IDivEvent> {
     /**
      * The div event handler enabling mode
      */
-    public enable: boolean;
+    public enable;
 
     /**
      * Div mode values described in [[DivMode]], an array of these values is also valid.
      */
     public mode: SingleOrMultiple<DivMode | keyof typeof DivMode | string>;
 
-    public type: DivType;
+    public type;
 
     constructor() {
         this.selectors = [];

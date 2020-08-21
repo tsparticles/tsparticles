@@ -4,10 +4,10 @@ import { InfectionStage } from "./InfectionStage";
 import type { IOptionLoader } from "../../Interfaces/IOptionLoader";
 
 export class Infection implements IInfection, IOptionLoader<IInfection> {
-    public cure: boolean;
-    public delay: number;
-    public enable: boolean;
-    public infections: number;
+    public cure;
+    public delay;
+    public enable;
+    public infections;
     public stages: InfectionStage[];
 
     constructor() {

@@ -5,11 +5,10 @@ import { TestParticles } from "./Fixture/TestParticles";
 import { Point, QuadTree, Rectangle } from "../src/Utils";
 import { TestCanvas } from "./Fixture/TestCanvas";
 
-const testContainer = new TestContainer({});
-const testCanvas = new TestCanvas(testContainer.container, 200, 200);
-const testParticles = new TestParticles(testContainer.container);
-
 describe("Linker in Canvas (200, 200) tests", () => {
+    const testContainer = new TestContainer({});
+    const testParticles = new TestParticles(testContainer.container);
+
     describe("Distance 10 tests", () => {
         describe("Particle (5, 5)", () => {
             testContainer.reset({
@@ -25,9 +24,17 @@ describe("Linker in Canvas (200, 200) tests", () => {
                 },
             });
             testParticles.reset(testContainer.container);
-            testContainer.container.particles = testParticles.particles;
+            const testCanvas = new TestCanvas(testContainer.container, 200, 200);
             testContainer.container.particles.init();
-            testContainer.container.particles.quadTree = new QuadTree(new Rectangle(0, 0, 200, 200), 4);
+            testContainer.container.particles.quadTree = new QuadTree(
+                new Rectangle(
+                    0,
+                    0,
+                    testContainer.container.canvas.size.width,
+                    testContainer.container.canvas.size.height
+                ),
+                4
+            );
 
             const p1 = testContainer.container.particles.addParticle({ x: 5, y: 5 });
 
@@ -53,7 +60,6 @@ describe("Linker in Canvas (200, 200) tests", () => {
                 const pos2 = p2.getPosition();
 
                 testContainer.container.particles.quadTree.insert(new Point(pos2, p2));
-                testContainer.container.canvas = testCanvas.canvas;
 
                 const linker = new Linker(testContainer.container);
 
@@ -77,7 +83,6 @@ describe("Linker in Canvas (200, 200) tests", () => {
                 const pos2 = p2.getPosition();
 
                 testContainer.container.particles.quadTree.insert(new Point(pos2, p2));
-                testContainer.container.canvas = testCanvas.canvas;
 
                 const linker = new Linker(testContainer.container);
 

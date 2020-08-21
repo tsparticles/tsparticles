@@ -4,8 +4,8 @@ import type { RecursivePartial } from "../../../../Types";
 import type { IOptionLoader } from "../../../Interfaces/IOptionLoader";
 
 export class NoiseDelay implements INoiseDelay, IOptionLoader<INoiseDelay> {
-    public random: NoiseRandom;
-    public value: number;
+    public random;
+    public value;
 
     constructor() {
         this.random = new NoiseRandom();
