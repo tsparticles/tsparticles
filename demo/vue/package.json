@@ -22,7 +22,7 @@
   "dependencies": {
     "particles.vue": "^2.1.0-alpha.13",
     "tsparticles": "^1.18.0-alpha.13",
-    "vue": "^2.6.11",
+    "vue": "^2.6.12",
     "vue-class-component": "^7.2.5",
     "vue-property-decorator": "^9.0.0"
   },
@@ -46,6 +46,6 @@
     "rollup-plugin-typescript2": "^0.27.2",
     "rollup-plugin-vue": "^5.1.9",
     "typescript": "^3.9.7",
-    "vue-template-compiler": "^2.6.11"
+    "vue-template-compiler": "^2.6.12"
   }
 }
