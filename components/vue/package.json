@@ -68,12 +68,12 @@
   },
   "dependencies": {
     "tsparticles": "^1.18.0-alpha.13",
-    "vue": "^2.6.11",
+    "vue": "^2.6.12",
     "vue-class-component": "^7.2.5",
     "vue-property-decorator": "^9.0.0"
   },
   "devDependencies": {
-    "@babel/core": "^7.11.1",
+    "@babel/core": "^7.11.4",
     "@babel/plugin-proposal-class-properties": "^7.10.4",
     "@babel/plugin-proposal-decorators": "^7.10.5",
     "@rollup/plugin-node-resolve": "^9.0.0",
@@ -87,6 +87,6 @@
     "rollup-plugin-typescript2": "^0.27.2",
     "rollup-plugin-vue": "^5.1.9",
     "typescript": "^3.9.7",
-    "vue-template-compiler": "^2.6.11"
+    "vue-template-compiler": "^2.6.12"
   }
 }

@@ -45,7 +45,7 @@
     "tsparticles": "^1.18.0-alpha.13"
   },
   "devDependencies": {
-    "@babel/core": "^7.11.1",
+    "@babel/core": "^7.11.4",
     "@typescript-eslint/eslint-plugin": "^3.7.0",
     "@typescript-eslint/parser": "^3.6.1",
     "babel-loader": "^8.1.0",
