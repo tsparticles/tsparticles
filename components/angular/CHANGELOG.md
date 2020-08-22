@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.1.0-alpha.14](https://github.com/matteobruni/tsparticles/compare/ng-particles@2.0.9...ng-particles@2.1.0-alpha.14) (2020-08-22)
+
+
+### Features
+
+* added particles loaded event to angular component ([81400e8](https://github.com/matteobruni/tsparticles/commit/81400e88c8451643828684e521c9900637165ca1))
+
+
+
+
+
 # [2.1.0-alpha.13](https://github.com/matteobruni/tsparticles/compare/ng-particles@2.1.0-alpha.12...ng-particles@2.1.0-alpha.13) (2020-08-17)
 
 **Note:** Version bump only for package ng-particles

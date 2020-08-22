@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.3.0-alpha.14](https://github.com/matteobruni/tsparticles/compare/ng-particles-demo@1.2.9...ng-particles-demo@1.3.0-alpha.14) (2020-08-22)
+
+
+### Bug Fixes
+
+* angular demo improved ([1c1ec4b](https://github.com/matteobruni/tsparticles/commit/1c1ec4b8b849989cd3a730526cb5e0149d096cae))
+* fixed angular demo ([16a219b](https://github.com/matteobruni/tsparticles/commit/16a219bffecd38b7e30d6a008dba0c0d0f0cf6eb))
+
+
+
+
+
 # [1.3.0-alpha.13](https://github.com/matteobruni/tsparticles/compare/ng-particles-demo@1.3.0-alpha.12...ng-particles-demo@1.3.0-alpha.13) (2020-08-17)
 
 **Note:** Version bump only for package ng-particles-demo
