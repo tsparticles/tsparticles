@@ -87,11 +87,11 @@ export class Canvas {
         this.coverColor =
             coverRgb !== undefined
                 ? {
-                      r: coverRgb.r,
-                      g: coverRgb.g,
-                      b: coverRgb.b,
-                      a: cover.opacity,
-                  }
+                    r: coverRgb.r,
+                    g: coverRgb.g,
+                    b: coverRgb.b,
+                    a: cover.opacity,
+                }
                 : undefined;
         this.trailFillColor = ColorUtils.colorToRgb(trail.fillColor);
 
@@ -175,7 +175,7 @@ export class Canvas {
         }
     }
 
-    public windowResize() {
+    public windowResize(): void {
         if (!this.element) {
             return;
         }
@@ -198,7 +198,7 @@ export class Canvas {
         /* density particles enabled */
         container.densityAutoParticles();
 
-        for (const [, plugin] of container.plugins) {
+        for (const [ , plugin ] of container.plugins) {
             if (plugin.resize !== undefined) {
                 plugin.resize();
             }
@@ -451,13 +451,22 @@ export class Canvas {
 
             for (const link of lineLinks) {
                 const links = lineLinks.map((l) => l.destination);
-                const vertices = link.destination.links.filter(
-                    (l) => links.indexOf(l.destination) >= 0 && l.destination.particlesOptions.links.triangles.enable
-                );
+                const pTriangles = particle.particlesOptions.links.triangles;
 
-                if (vertices.length && link.destination.particlesOptions.links.triangles.enable) {
-                    for (const vertice of vertices) {
-                        this.drawLinkTriangle(particle, link, vertice);
+                // TODO: Fix this frequency, it makes triangles twinkle
+                if (pTriangles.enable && Math.random() > 1 - pTriangles.frequency) {
+                    const vertices = link.destination.links.filter(
+                        (l) =>
+                            links.indexOf(l.destination) >= 0 && l.destination.particlesOptions.links.triangles.enable
+                    );
+
+                    const dTriangles = link.destination.particlesOptions.links.triangles;
+
+                    // TODO: Fix this frequency, it makes triangles twinkle
+                    if (vertices.length && dTriangles.enable && Math.random() > 1 - pTriangles.frequency) {
+                        for (const vertex of vertices) {
+                            this.drawLinkTriangle(particle, link, vertex);
+                        }
                     }
                 }
 
