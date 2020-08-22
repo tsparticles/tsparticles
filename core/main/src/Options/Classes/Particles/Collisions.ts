@@ -2,6 +2,7 @@ import type { ICollisions } from "../../Interfaces/Particles/ICollisions";
 import { CollisionMode } from "../../../Enums";
 import type { RecursivePartial } from "../../../Types";
 import type { IOptionLoader } from "../../Interfaces/IOptionLoader";
+import { Bounce } from "./Bounce/Bounce";
 
 export class Collisions implements ICollisions, IOptionLoader<ICollisions> {
     public enable;

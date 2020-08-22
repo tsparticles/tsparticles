@@ -48,8 +48,25 @@ export class Mover {
 
         this.applyNoise(delta);
 
-        particle.position.x += particle.velocity.horizontal * moveSpeed;
-        particle.position.y += particle.velocity.vertical * moveSpeed;
+        const gravityOptions = particlesOptions.move.gravity;
+
+        if (gravityOptions.enable) {
+            particle.velocity.vertical += (gravityOptions.acceleration * delta.factor) / 60 / moveSpeed;
+        }
+
+        const velocity = {
+            horizontal: particle.velocity.horizontal * moveSpeed,
+            vertical: particle.velocity.vertical * moveSpeed,
+        };
+
+        if (velocity.vertical >= gravityOptions.maxSpeed && gravityOptions.maxSpeed > 0) {
+            velocity.vertical = gravityOptions.maxSpeed;
+
+            particle.velocity.vertical = velocity.vertical / moveSpeed;
+        }
+
+        particle.position.x += velocity.horizontal;
+        particle.position.y += velocity.vertical;
 
         if (particlesOptions.move.vibrate) {
             particle.position.x += Math.sin(particle.position.x * Math.cos(particle.position.y));

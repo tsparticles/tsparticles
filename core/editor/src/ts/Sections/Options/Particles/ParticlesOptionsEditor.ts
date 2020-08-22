@@ -15,6 +15,7 @@ import { ShadowOptionsEditor } from "./Shadow/ShadowOptionsEditor";
 import { TwinkleOptionsEditor } from "./Twinkle/TwinkleOptionsEditor";
 import { EditorBase } from "../../../EditorBase";
 import { LifeOptionsEditor } from "./Life/LifeOptionsEditor";
+import { BounceOptionsEditor } from "./Bounce/BounceOptionsEditor";
 
 export class ParticlesOptionsEditor extends EditorBase {
     public group!: EditorGroup;
@@ -30,6 +31,7 @@ export class ParticlesOptionsEditor extends EditorBase {
         this.group = parent.addGroup(customName ?? "particles", "Particles", true, parentData);
         this.options = this.group.data as IParticles;
 
+        this.addBounce();
         this.addCollisions();
         this.addColor();
         this.addLife();
@@ -43,6 +45,12 @@ export class ParticlesOptionsEditor extends EditorBase {
         this.addSize();
         this.addStroke();
         this.addTwinkle();
+    }
+
+    private addBounce(): void {
+        const options = new BounceOptionsEditor(this.particles);
+
+        options.addToGroup(this.group);
     }
 
     private addCollisions(): void {

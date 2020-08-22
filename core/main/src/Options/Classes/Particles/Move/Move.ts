@@ -6,6 +6,7 @@ import type { RecursivePartial } from "../../../../Types";
 import { Noise } from "../Noise/Noise";
 import type { IOptionLoader } from "../../../Interfaces/IOptionLoader";
 import { MoveAngle } from "./MoveAngle";
+import { MoveGravity } from "./MoveGravity";
 
 export class Move implements IMove, IOptionLoader<IMove> {
     /**
@@ -59,6 +60,7 @@ export class Move implements IMove, IOptionLoader<IMove> {
     public attract;
     public direction: MoveDirection | keyof typeof MoveDirection | MoveDirectionAlt;
     public enable;
+    public gravity;
     public noise;
     public outMode: OutMode | keyof typeof OutMode | OutModeAlt;
     public random;
@@ -73,6 +75,7 @@ export class Move implements IMove, IOptionLoader<IMove> {
         this.attract = new Attract();
         this.direction = MoveDirection.none;
         this.enable = false;
+        this.gravity = new MoveGravity();
         this.noise = new Noise();
         this.outMode = OutMode.out;
         this.random = false;
@@ -106,6 +109,7 @@ export class Move implements IMove, IOptionLoader<IMove> {
             this.enable = data.enable;
         }
 
+        this.gravity.load(data.gravity);
         this.noise.load(data.noise);
 
         const outMode = data.outMode ?? data.out_mode;

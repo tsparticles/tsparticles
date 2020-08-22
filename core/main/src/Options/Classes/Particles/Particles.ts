@@ -15,6 +15,7 @@ import { Twinkle } from "./Twinkle/Twinkle";
 import { AnimatableColor } from "./AnimatableColor";
 import type { IOptionLoader } from "../../Interfaces/IOptionLoader";
 import { Life } from "./Life/Life";
+import { Bounce } from "./Bounce/Bounce";
 
 export class Particles implements IParticles, IOptionLoader<IParticles> {
     /**
@@ -51,6 +52,7 @@ export class Particles implements IParticles, IOptionLoader<IParticles> {
         this.links = value;
     }
 
+    public bounce;
     public collisions;
     public color;
     public life;
@@ -66,6 +68,7 @@ export class Particles implements IParticles, IOptionLoader<IParticles> {
     public twinkle;
 
     constructor() {
+        this.bounce = new Bounce();
         this.collisions = new Collisions();
         this.color = new AnimatableColor();
         this.life = new Life();
@@ -86,6 +89,7 @@ export class Particles implements IParticles, IOptionLoader<IParticles> {
             return;
         }
 
+        this.bounce.load(data.bounce);
         this.color = AnimatableColor.create(this.color, data.color);
 
         this.life.load(data.life);

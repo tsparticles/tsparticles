@@ -341,7 +341,12 @@ export class Updater {
             const velocity = particle.velocity.horizontal;
 
             if ((bounds.right >= canvasSize.width && velocity > 0) || (bounds.left <= 0 && velocity < 0)) {
-                particle.velocity.horizontal *= -1;
+                const factor = particle.particlesOptions.bounce.horizontal;
+                const newVelocity = factor.random.enable
+                    ? Utils.randomInRange(factor.value, factor.random.minimumValue)
+                    : factor.value;
+
+                particle.velocity.horizontal *= -newVelocity;
             }
 
             const minPos = offset.x + size;
@@ -357,7 +362,12 @@ export class Updater {
             const velocity = particle.velocity.vertical;
 
             if ((bounds.bottom >= container.canvas.size.height && velocity > 0) || (bounds.top <= 0 && velocity < 0)) {
-                particle.velocity.vertical *= -1;
+                const factor = particle.particlesOptions.bounce.vertical;
+                const newVelocity = factor.random.enable
+                    ? Utils.randomInRange(factor.value, factor.random.minimumValue)
+                    : factor.value;
+
+                particle.velocity.vertical *= -newVelocity;
             }
 
             const minPos = offset.y + size;

@@ -19,6 +19,7 @@ export class MoveOptionsEditor extends EditorBase {
 
         this.addAngle();
         this.addAttract();
+        this.addGravity();
         this.addNoise();
         this.addTrail();
         this.addProperties();
@@ -52,6 +53,23 @@ export class MoveOptionsEditor extends EditorBase {
         });
 
         group.addProperty("enable", "Enable", EditorType.boolean).change(async () => {
+            await particles.refresh();
+        });
+    }
+
+    private addGravity(): void {
+        const particles = this.particles;
+        const group = this.group.addGroup("gravity", "Gravity");
+
+        group.addProperty("acceleration", "Acceleration", EditorType.number).change(async () => {
+            await particles.refresh();
+        });
+
+        group.addProperty("enable", "Enable", EditorType.boolean).change(async () => {
+            await particles.refresh();
+        });
+
+        group.addProperty("maxSpeed", "Max Speed", EditorType.number).change(async () => {
             await particles.refresh();
         });
     }
