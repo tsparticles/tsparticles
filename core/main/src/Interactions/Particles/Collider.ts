@@ -1,10 +1,10 @@
-import { Utils } from "../../../../Utils";
-import { Particle } from "../../../Particle";
-import type { Container } from "../../../Container";
-import type { IParticle } from "../../../Interfaces/IParticle";
-import type { IVelocity } from "../../../Interfaces/IVelocity";
-import { CollisionMode } from "../../../../Enums";
-import type { IParticlesInteractor } from "../../../Interfaces/IParticlesInteractor";
+import { Utils } from "../../Utils";
+import { Particle } from "../../Core/Particle";
+import type { Container } from "../../Core/Container";
+import type { IParticle } from "../../Core/Interfaces/IParticle";
+import type { IVelocity } from "../../Core/Interfaces/IVelocity";
+import { CollisionMode } from "../../Enums";
+import type { IParticlesInteractor } from "../../Core/Interfaces/IParticlesInteractor";
 
 export class Collider implements IParticlesInteractor {
     constructor(private readonly container: Container) {}

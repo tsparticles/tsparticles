@@ -1,7 +1,7 @@
-import type { Container } from "../../../Container";
-import type { Particle } from "../../../Particle";
-import { Circle, CircleWarp, ColorUtils, Constants, Utils } from "../../../../Utils";
-import type { IParticlesInteractor } from "../../../Interfaces/IParticlesInteractor";
+import type { Container } from "../../Core/Container";
+import type { Particle } from "../../Core/Particle";
+import { Circle, CircleWarp, ColorUtils, Constants, Utils } from "../../Utils";
+import type { IParticlesInteractor } from "../../Core/Interfaces/IParticlesInteractor";
 
 export class Linker implements IParticlesInteractor {
     constructor(private readonly container: Container) {}

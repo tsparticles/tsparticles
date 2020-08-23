@@ -1,8 +1,8 @@
-import type { IExternalInteractor } from "../../../Interfaces/IExternalInteractor";
-import type { Container } from "../../../Container";
-import { Utils } from "../../../../Utils";
-import { ClickMode, HoverMode } from "../../../../Enums/Modes";
-import type { IDelta } from "../../../Interfaces/IDelta";
+import type { IExternalInteractor } from "../../Core/Interfaces/IExternalInteractor";
+import type { Container } from "../../Core/Container";
+import { Utils } from "../../Utils";
+import { ClickMode, HoverMode } from "../../Enums/Modes";
+import type { IDelta } from "../../Core/Interfaces/IDelta";
 
 export class TrailMaker implements IExternalInteractor {
     private delay: number;

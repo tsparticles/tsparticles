@@ -1,7 +1,7 @@
-import type { Particle } from "../../../Particle";
-import type { Container } from "../../../Container";
-import type { IParticlesInteractor } from "../../../Interfaces/IParticlesInteractor";
-import type { IDelta } from "../../../Interfaces/IDelta";
+import type { Particle } from "../../Core/Particle";
+import type { Container } from "../../Core/Container";
+import type { IParticlesInteractor } from "../../Core/Interfaces/IParticlesInteractor";
+import type { IDelta } from "../../Core/Interfaces/IDelta";
 
 export class Infecter implements IParticlesInteractor {
     constructor(private readonly container: Container) {}

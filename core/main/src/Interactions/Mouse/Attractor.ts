@@ -1,8 +1,8 @@
-import type { Container } from "../../../Container";
-import { ClickMode, HoverMode } from "../../../../Enums";
-import { Circle, Constants, Range, Utils } from "../../../../Utils";
-import type { ICoordinates } from "../../../Interfaces/ICoordinates";
-import type { IExternalInteractor } from "../../../Interfaces/IExternalInteractor";
+import type { Container } from "../../Core/Container";
+import { ClickMode, HoverMode } from "../../Enums";
+import { Circle, Constants, Range, Utils } from "../../Utils";
+import type { ICoordinates } from "../../Core/Interfaces/ICoordinates";
+import type { IExternalInteractor } from "../../Core/Interfaces/IExternalInteractor";
 
 /**
  * Particle attract manager

@@ -1,7 +1,7 @@
-import { Utils } from "../../../../Utils";
-import { HoverMode } from "../../../../Enums/Modes";
-import type { Container } from "../../../Container";
-import type { IExternalInteractor } from "../../../Interfaces/IExternalInteractor";
+import { Utils } from "../../Utils";
+import { HoverMode } from "../../Enums/Modes";
+import type { Container } from "../../Core/Container";
+import type { IExternalInteractor } from "../../Core/Interfaces/IExternalInteractor";
 
 export class Lighter implements IExternalInteractor {
     constructor(private readonly container: Container) {}

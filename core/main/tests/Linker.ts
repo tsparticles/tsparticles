@@ -1,5 +1,5 @@
 import { expect } from "chai";
-import { Linker } from "../src/Core/Particle/Interactions/Particles/Linker";
+import { Linker } from "../src/Interactions/Particles/Linker";
 import { TestContainer } from "./Fixture/TestContainer";
 import { TestParticles } from "./Fixture/TestParticles";
 import { Point, QuadTree, Rectangle } from "../src/Utils";

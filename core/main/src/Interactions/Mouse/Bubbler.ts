@@ -1,11 +1,11 @@
-import type { Container } from "../../../Container";
-import type { IBubblerProcessParam } from "../../../Interfaces/IBubblerProcessParam";
-import { Circle, ColorUtils, Constants, Rectangle, Utils } from "../../../../Utils";
-import { ClickMode, DivMode, DivType, HoverMode, ProcessBubbleType } from "../../../../Enums";
-import { Particle } from "../../../Particle";
-import { DivEvent } from "../../../../Options/Classes/Interactivity/Events/DivEvent";
-import type { IExternalInteractor } from "../../../Interfaces/IExternalInteractor";
-import { BubbleDiv } from "../../../../Options/Classes/Interactivity/Modes/BubbleDiv";
+import type { Container } from "../../Core/Container";
+import type { IBubblerProcessParam } from "../../Core/Interfaces/IBubblerProcessParam";
+import { Circle, ColorUtils, Constants, Rectangle, Utils } from "../../Utils";
+import { ClickMode, DivMode, DivType, HoverMode, ProcessBubbleType } from "../../Enums";
+import { Particle } from "../../Core/Particle";
+import { DivEvent } from "../../Options/Classes/Interactivity/Events/DivEvent";
+import type { IExternalInteractor } from "../../Core/Interfaces/IExternalInteractor";
+import { BubbleDiv } from "../../Options/Classes/Interactivity/Modes/BubbleDiv";
 
 /**
  * Particle bubble manager

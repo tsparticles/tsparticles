@@ -1,8 +1,8 @@
-import type { Container } from "../../../Container";
-import { Constants, Utils, ColorUtils } from "../../../../Utils";
-import { IRgb } from "../../../Interfaces/IRgb";
-import { HoverMode } from "../../../../Enums/Modes";
-import type { IExternalInteractor } from "../../../Interfaces/IExternalInteractor";
+import type { Container } from "../../Core/Container";
+import { Constants, Utils, ColorUtils } from "../../Utils";
+import { IRgb } from "../../Core/Interfaces/IRgb";
+import { HoverMode } from "../../Enums/Modes";
+import type { IExternalInteractor } from "../../Core/Interfaces/IExternalInteractor";
 
 /**
  * Particle grab manager

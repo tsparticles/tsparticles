@@ -1,8 +1,8 @@
-import { Utils } from "../../../../Utils";
-import { HoverMode } from "../../../../Enums/Modes";
-import type { Container } from "../../../Container";
-import type { IParticlesInteractor } from "../../../Interfaces/IParticlesInteractor";
-import { Particle } from "../../../Particle";
+import { Utils } from "../../Utils";
+import { HoverMode } from "../../Enums/Modes";
+import type { Container } from "../../Core/Container";
+import type { IParticlesInteractor } from "../../Core/Interfaces/IParticlesInteractor";
+import { Particle } from "../../Core/Particle";
 
 export class Lighter implements IParticlesInteractor {
     constructor(private readonly container: Container) {}
