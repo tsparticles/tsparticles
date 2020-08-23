@@ -11,7 +11,6 @@ export class Mover {
         const particle = this.particle;
 
         particle.bubble.inRange = false;
-        particle.links = [];
 
         for (const [, plugin] of this.container.plugins) {
             if (particle.destroyed) {

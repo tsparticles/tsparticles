@@ -23,10 +23,10 @@ export class Linker implements IParticlesInteractor {
         const warp = linkOpt1.warp;
         const pos1 = p1.getPosition();
 
-        //const query = container.particles.spatialGrid.queryRadiusWithDistance(pos1, optDistance);
+        //const query = container.particles.spatialGrid.queryRadiusWithDistance(pos1, optDistance + 10);
         const range = warp
-            ? new CircleWarp(pos1.x, pos1.y, optDistance, canvasSize)
-            : new Circle(pos1.x, pos1.y, optDistance);
+            ? new CircleWarp(pos1.x, pos1.y, optDistance + 10, canvasSize)
+            : new Circle(pos1.x, pos1.y, optDistance + 10);
 
         const query = container.particles.quadTree.query(range);
 
@@ -71,14 +71,33 @@ export class Linker implements IParticlesInteractor {
                 }
             }
 
-            if (distance > optDistance) {
-                return;
-            }
-
             /* draw a line between p1 and p2 */
             const opacityLine = optOpacity - (distance * optOpacity) / optDistance;
 
-            if (opacityLine > 0) {
+            const index1 = p1.links.map((t) => t.destination).indexOf(p2);
+            const index2 = p2.links.map((t) => t.destination).indexOf(p1);
+
+            if (opacityLine <= 0) {
+                if (index1 >= 0) {
+                    p1.links.splice(index1, 1);
+                }
+
+                if (index2 >= 0) {
+                    p2.links.splice(index2, 1);
+                }
+            } else {
+                if (index1 >= 0 || index2 >= 0) {
+                    if (index1 >= 0) {
+                        p1.links[index1].opacity = opacityLine;
+                    }
+
+                    if (index2 >= 0) {
+                        p2.links[index2].opacity = opacityLine;
+                    }
+
+                    continue;
+                }
+
                 /* style */
                 const linksOptions = p1.particlesOptions.links;
 
@@ -118,15 +137,10 @@ export class Linker implements IParticlesInteractor {
                     }
                 }
 
-                if (
-                    p2.links.map((t) => t.destination).indexOf(p1) === -1 &&
-                    p1.links.map((t) => t.destination).indexOf(p2) === -1
-                ) {
-                    p1.links.push({
-                        destination: p2,
-                        opacity: opacityLine,
-                    });
-                }
+                p1.links.push({
+                    destination: p2,
+                    opacity: opacityLine,
+                });
             }
         }
     }

@@ -431,6 +431,8 @@ export class Particle implements IParticle {
 
     public destroy(): void {
         this.destroyed = true;
+        this.bubble.inRange = false;
+        this.links = [];
     }
 
     private checkOverlap(position?: ICoordinates, iterations = 0): boolean {
