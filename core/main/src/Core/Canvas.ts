@@ -207,6 +207,7 @@ export class Canvas {
 
     public drawLinkTriangle(p1: IParticle, link1: ILink, link2: ILink): void {
         const container = this.container;
+        const particles = container.particles;
         const options = container.options;
         const p2 = link1.destination;
         const p3 = link2.destination;
@@ -215,6 +216,28 @@ export class Canvas {
         const pos1 = p1.getPosition();
         const pos2 = p2.getPosition();
         const pos3 = p3.getPosition();
+
+        const distance1 = Utils.getDistance(pos1, pos2);
+        const distance2 = Utils.getDistance(pos1, pos3);
+        const distance3 = Utils.getDistance(pos2, pos3);
+        const optDistance =
+            p1.linksDistance ?? p2.linksDistance ?? p3.linksDistance ?? this.container.retina.linksDistance;
+
+        if (distance1 > optDistance || distance2 > optDistance || distance3 > optDistance) {
+            if (distance1 > optDistance) {
+                particles.removeLink(p1, p2);
+            }
+
+            if (distance2 > optDistance) {
+                particles.removeLink(p1, p3);
+            }
+
+            if (distance3 > optDistance) {
+                particles.removeLink(p2, p3);
+            }
+
+            return;
+        }
 
         const ctx = this.context;
 
@@ -400,6 +423,58 @@ export class Canvas {
         CanvasUtils.drawParticleShadow(this.container, this.context, particle, radius, mousePos);
     }
 
+    public drawLinks(): void {
+        if (!this.context) {
+            return;
+        }
+
+        const particles = this.container.particles;
+
+        if (particles.links.length <= 0) {
+            return;
+        }
+
+        this.context.save();
+        const lineLinks = particles.links;
+        for (const link of lineLinks) {
+            const source = link.source;
+            const destination = link.destination;
+            const distance = Utils.getDistance(source.getPosition(), destination.getPosition());
+            const optDistance =
+                source.linksDistance ?? destination.linksDistance ?? this.container.retina.linksDistance;
+
+            if (distance > optDistance) {
+                particles.removeExactLink(link);
+                continue;
+            }
+
+            const links = lineLinks.filter((l) => l.source === source).map((l) => l.destination);
+            const pTriangles = source.particlesOptions.links.triangles;
+
+            // TODO: Fix this frequency, it makes triangles twinkle
+            if (pTriangles.enable && Math.random() > 1 - pTriangles.frequency) {
+                const vertices = particles.links.filter(
+                    (l) =>
+                        l.source === link.destination &&
+                        links.indexOf(l.destination) >= 0 &&
+                        l.destination.particlesOptions.links.triangles.enable
+                );
+
+                const dTriangles = link.destination.particlesOptions.links.triangles;
+
+                // TODO: Fix this frequency, it makes triangles twinkle
+                if (vertices.length && dTriangles.enable && Math.random() > 1 - pTriangles.frequency) {
+                    for (const vertex of vertices) {
+                        this.drawLinkTriangle(source, link, vertex);
+                    }
+                }
+            }
+
+            this.drawLinkLine(source, link);
+        }
+        this.context.restore();
+    }
+
     public drawParticle(particle: Particle, delta: IDelta): void {
         if (particle.image?.loaded === false || particle.spawning || particle.destroyed) {
             return;
@@ -443,38 +518,6 @@ export class Canvas {
             sColor !== undefined
                 ? ColorUtils.getStyleFromRgb(sColor, particle.stroke.opacity ?? opacity)
                 : fillColorValue;
-
-        if (particle.links.length > 0) {
-            this.context.save();
-
-            const lineLinks = particle.links;
-
-            for (const link of lineLinks) {
-                const links = lineLinks.map((l) => l.destination);
-                const pTriangles = particle.particlesOptions.links.triangles;
-
-                // TODO: Fix this frequency, it makes triangles twinkle
-                if (pTriangles.enable && Math.random() > 1 - pTriangles.frequency) {
-                    const vertices = link.destination.links.filter(
-                        (l) =>
-                            links.indexOf(l.destination) >= 0 && l.destination.particlesOptions.links.triangles.enable
-                    );
-
-                    const dTriangles = link.destination.particlesOptions.links.triangles;
-
-                    // TODO: Fix this frequency, it makes triangles twinkle
-                    if (vertices.length && dTriangles.enable && Math.random() > 1 - pTriangles.frequency) {
-                        for (const vertex of vertices) {
-                            this.drawLinkTriangle(particle, link, vertex);
-                        }
-                    }
-                }
-
-                this.drawLinkLine(particle, link);
-            }
-
-            this.context.restore();
-        }
 
         if (radius > 0) {
             CanvasUtils.drawParticle(

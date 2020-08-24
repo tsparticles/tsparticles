@@ -8,6 +8,8 @@ import { RecursivePartial } from "../Types";
 import type { IParticles } from "../Options/Interfaces/Particles/IParticles";
 import { InteractionManager } from "./Particle/InteractionManager";
 import type { IDelta } from "./Interfaces/IDelta";
+import { ILink, ILinkTriangle } from "./Interfaces/ILink";
+import { IParticle } from "./Interfaces/IParticle";
 
 /**
  * Particles manager
@@ -22,6 +24,8 @@ export class Particles {
     public linksColors;
 
     public array: Particle[];
+    public links: ILink[];
+    public triangles: ILinkTriangle[];
     public pushing?: boolean;
     public linksColor?: IRgb | string;
     public grabLineColor?: IRgb | string;
@@ -30,6 +34,8 @@ export class Particles {
 
     constructor(private readonly container: Container) {
         this.array = [];
+        this.links = [];
+        this.triangles = [];
         this.interactionManager = new InteractionManager(container);
 
         const canvasSize = this.container.canvas.size;
@@ -41,6 +47,7 @@ export class Particles {
 
     /* --------- tsParticles functions - particles ----------- */
     public init(): void {
+        this.links = [];
         const container = this.container;
         const options = container.options;
         let handled = false;
@@ -161,6 +168,8 @@ export class Particles {
         this.quadTree.draw(container.canvas.context);
     }*/
 
+        container.canvas.drawLinks();
+
         /* draw each particle */
         for (const p of this.array) {
             p.draw(delta);
@@ -222,6 +231,58 @@ export class Particles {
 
         if (!options.particles.move.enable) {
             this.container.play();
+        }
+    }
+
+    public findLink(source: IParticle, destination: IParticle): ILink | undefined {
+        return this.links.find(
+            (l) =>
+                (l.source === source && l.destination === destination) ||
+                (l.source === destination && l.destination === source)
+        );
+    }
+
+    public findLinkIndex(source: IParticle, destination: IParticle): number {
+        return this.links.findIndex(
+            (l) =>
+                (l.source === source && l.destination === destination) ||
+                (l.source === destination && l.destination === source)
+        );
+    }
+
+    public addLink(source: IParticle, destination: IParticle): ILink {
+        return (
+            this.findLink(source, destination) ?? {
+                source,
+                destination,
+                opacity: 1,
+            }
+        );
+    }
+
+    public removeLink(source: IParticle, destination: IParticle): void {
+        const index = this.findLinkIndex(source, destination);
+
+        this.removeLinkAtIndex(index);
+    }
+
+    public removeExactLink(link: ILink): void {
+        const index = this.links.indexOf(link);
+
+        this.removeLinkAtIndex(index);
+    }
+
+    public removeLinkAtIndex(index: number): void {
+        if (index >= 0) {
+            this.links.splice(index, 1);
+        }
+    }
+
+    public removeLinks(particle: IParticle): void {
+        for (const link of this.links.filter((l) => l.destination === particle || l.source === particle)) {
+            const index = this.links.indexOf(link);
+
+            this.removeLinkAtIndex(index);
         }
     }
 }

@@ -28,7 +28,6 @@ import {
 import { ImageDrawer } from "../ShapeDrawers/ImageDrawer";
 import type { IImageShape } from "../Options/Interfaces/Particles/Shape/IImageShape";
 import type { RecursivePartial } from "../Types";
-import type { ILink } from "./Interfaces/ILink";
 import type { IHsl } from "./Interfaces/IHsl";
 import { ColorUtils, Plugins, Utils } from "../Utils";
 import type { IShapeDrawer } from "./Interfaces/IShapeDrawer";
@@ -60,7 +59,6 @@ export class Particle implements IParticle {
 
     public rotateDirection: RotateDirection | keyof typeof RotateDirection | RotateDirectionAlt;
     public randomIndexData?: number;
-    public links: ILink[];
     public linksDistance?: number;
     public linksWidth?: number;
     public moveSpeed?: number;
@@ -96,7 +94,6 @@ export class Particle implements IParticle {
     ) {
         this.fill = true;
         this.close = true;
-        this.links = [];
         this.lastNoiseTime = 0;
         this.destroyed = false;
 
@@ -432,7 +429,7 @@ export class Particle implements IParticle {
     public destroy(): void {
         this.destroyed = true;
         this.bubble.inRange = false;
-        this.links = [];
+        this.container.particles.removeLinks(this);
     }
 
     private checkOverlap(position?: ICoordinates, iterations = 0): boolean {

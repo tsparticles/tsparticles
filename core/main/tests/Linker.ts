@@ -65,7 +65,9 @@ describe("Linker in Canvas (200, 200) tests", () => {
 
                 linker.interact(p1);
 
-                const links = p1.links;
+                const links = testContainer.container.particles.links.filter(
+                    (l) => l.destination === p1 || l.source === p1
+                );
 
                 expect(links.filter((t) => t.opacity > 0)).to.be.not.empty;
                 expect(links.map((t) => t.destination.getPosition())).to.deep.include(pos2);
@@ -88,7 +90,9 @@ describe("Linker in Canvas (200, 200) tests", () => {
 
                 linker.interact(p1);
 
-                const links = p1.links;
+                const links = testContainer.container.particles.links.filter(
+                    (l) => l.source === p1 || l.destination === p1
+                );
 
                 expect(links.filter((t) => t.opacity > 0)).to.be.not.empty;
                 expect(links.map((t) => t.destination.getPosition())).to.deep.include(pos2);

@@ -9,7 +9,6 @@ import type { IParticleOpacityAnimation } from "./IParticleOpacityAnimation";
 import type { IShapeValues } from "../../Options/Interfaces/Particles/Shape/IShapeValues";
 import type { IBubbleParticleData } from "./IBubbleParticleData";
 import type { IParticles } from "../../Options/Interfaces/Particles/IParticles";
-import type { ILink } from "./ILink";
 import type { IHsl } from "./IHsl";
 
 export interface IParticle {
@@ -25,7 +24,6 @@ export interface IParticle {
     readonly fill: boolean;
     readonly image?: IParticleImage;
     readonly initialVelocity: IVelocity;
-    readonly links: ILink[];
     readonly offset: ICoordinates;
     readonly opacity: IParticleOpacityAnimation;
     readonly particlesOptions: IParticles;
