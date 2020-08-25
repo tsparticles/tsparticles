@@ -30,7 +30,6 @@ export class Linker implements IParticlesInteractor {
             : new Circle(pos1.x, pos1.y, optDistance);
 
         const query = container.particles.quadTree.query(range);
-
         const p1Links = container.particles.getLinks(p1);
 
         for (const link of p1Links.filter((l) => !l.edges.some((t) => (query as IParticle[]).includes(t)))) {
@@ -101,9 +100,7 @@ export class Linker implements IParticlesInteractor {
                 }
             } else {
                 if (index >= 0) {
-                    if (index >= 0) {
-                        container.particles.links[index].opacity = opacityLine;
-                    }
+                    container.particles.links[index].opacity = opacityLine;
                 } else {
                     /* style */
                     const linksOptions = p1.particlesOptions.links;
@@ -160,37 +157,27 @@ export class Linker implements IParticlesInteractor {
 
     private updateTriangles(p1: Particle): void {
         const container = this.container;
-
         const p1Links = container.particles.getLinks(p1);
 
         for (let i = 0; i < p1Links.length - 1; i++) {
             const firstLink = p1Links[i];
             const secondLink = p1Links[i + 1];
-
             const p1FirstIndex = firstLink.edges.indexOf(p1);
             const p2 = firstLink.edges[(p1FirstIndex + 1) % 2];
-
             const p1SecondIndex = secondLink.edges.indexOf(p1);
             const p3 = secondLink.edges[(p1SecondIndex + 1) % 2];
-
             const thirdLink = container.particles.findLink(p2, p3);
+            const triangleIndex = container.particles.triangles.findIndex(
+                (t) => t.vertices.includes(p1) && t.vertices.includes(p2) && t.vertices.includes(p3)
+            );
 
-            if (
-                thirdLink &&
-                !container.particles.triangles.find(
-                    (t) => t.vertices.includes(p1) && t.vertices.includes(p2) && t.vertices.includes(p3)
-                )
-            ) {
+            if (thirdLink && triangleIndex < 0) {
                 container.particles.triangles.push({
                     vertices: [p1, p2, p3],
                     opacity: p1.particlesOptions.links.triangles.opacity ?? p1.particlesOptions.links.opacity,
                     visible: Math.random() > 1 - p1.particlesOptions.links.triangles.frequency,
                 });
             } else if (!thirdLink) {
-                const triangleIndex = container.particles.triangles.findIndex(
-                    (t) => t.vertices.includes(p1) && t.vertices.includes(p2) && t.vertices.includes(p3)
-                );
-
                 if (triangleIndex >= 0) {
                     container.particles.triangles.splice(triangleIndex, 1);
                 }

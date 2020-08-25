@@ -4,7 +4,7 @@ import type { IRgb } from "./Interfaces/IRgb";
 import type { ICoordinates } from "./Interfaces/ICoordinates";
 import type { IParticle } from "./Interfaces/IParticle";
 import type { IContainerPlugin } from "./Interfaces/IContainerPlugin";
-import type { ILink } from "./Interfaces/ILink";
+import type { ILink, ILinkTriangle } from "./Interfaces/ILink";
 import { CanvasUtils, ColorUtils, Constants, Utils } from "../Utils";
 import type { Particle } from "./Particle";
 import type { IDelta } from "./Interfaces/IDelta";
@@ -205,106 +205,6 @@ export class Canvas {
         }
     }
 
-    public drawLinkTriangle(p1: IParticle, p2: IParticle, p3: IParticle, opacity: number): void {
-        const container = this.container;
-        const particles = container.particles;
-        const options = container.options;
-
-        if (!p2 || !p3) {
-            return;
-        }
-
-        const triangleOptions = p1.particlesOptions.links.triangles;
-
-        if (!triangleOptions.enable) {
-            return;
-        }
-
-        const pos1 = p1.getPosition();
-        const pos2 = p2.getPosition();
-        const pos3 = p3.getPosition();
-
-        const distance1 = Utils.getDistance(pos1, pos2);
-        const distance2 = Utils.getDistance(pos1, pos3);
-        const distance3 = Utils.getDistance(pos2, pos3);
-        const optDistance =
-            p1.linksDistance ?? p2.linksDistance ?? p3.linksDistance ?? this.container.retina.linksDistance;
-
-        if (distance1 > optDistance || distance2 > optDistance || distance3 > optDistance) {
-            if (distance1 > optDistance) {
-                particles.removeLink(p1, p2);
-            }
-
-            if (distance2 > optDistance) {
-                particles.removeLink(p1, p3);
-            }
-
-            if (distance3 > optDistance) {
-                particles.removeLink(p2, p3);
-            }
-
-            const triangleIndex = particles.triangles.findIndex(
-                (t) => t.vertices.includes(p1) && t.vertices.includes(p2) && t.vertices.includes(p3)
-            );
-
-            if (triangleIndex >= 0) {
-                particles.triangles.splice(triangleIndex, 1);
-            }
-
-            return;
-        }
-
-        const ctx = this.context;
-
-        if (!ctx) {
-            return;
-        }
-
-        let colorTriangle = ColorUtils.colorToRgb(triangleOptions.color);
-
-        if (!colorTriangle) {
-            const linksOptions = p1.particlesOptions.links;
-            const linkColor =
-                linksOptions.id !== undefined
-                    ? container.particles.linksColors.get(linksOptions.id)
-                    : container.particles.linksColor;
-
-            if (linkColor === Constants.randomColorValue) {
-                colorTriangle = ColorUtils.getRandomRgbColor();
-            } else if (linkColor === "mid") {
-                const sourceColor = p1.getFillColor();
-                const destColor = p2.getFillColor();
-
-                if (sourceColor && destColor) {
-                    colorTriangle = ColorUtils.mix(sourceColor, destColor, p1.size.value, p2.size.value);
-                } else {
-                    const hslColor = sourceColor ?? destColor;
-
-                    if (!hslColor) {
-                        return;
-                    }
-
-                    colorTriangle = ColorUtils.hslToRgb(hslColor);
-                }
-            } else {
-                colorTriangle = linkColor as IRgb;
-            }
-        }
-
-        const width = p1.linksWidth ?? container.retina.linksWidth;
-
-        CanvasUtils.drawLinkTriangle(
-            ctx,
-            width,
-            pos1,
-            pos2,
-            pos3,
-            options.backgroundMask.enable,
-            colorTriangle,
-            opacity
-        );
-    }
-
     public drawLinkLine(p1: IParticle, link: ILink): void {
         const container = this.container;
         const options = container.options;
@@ -480,10 +380,97 @@ export class Canvas {
     public drawLinkTriangles() {
         const particles = this.container.particles;
 
-        for (const triangle of particles.triangles.filter((t) => t.visible)) {
-            const [source, link, vertex] = triangle.vertices;
-            this.drawLinkTriangle(source, link, vertex, triangle.opacity);
+        for (const triangle of particles.triangles) {
+            this.drawLinkTriangle(triangle);
         }
+    }
+
+    public drawLinkTriangle(triangle: ILinkTriangle): void {
+        const container = this.container;
+        const particles = container.particles;
+        const options = container.options;
+
+        const [p1, p2, p3] = triangle.vertices;
+
+        const pos1 = p1.getPosition();
+        const pos2 = p2.getPosition();
+        const pos3 = p3.getPosition();
+
+        const link1 = particles.findLink(p1, p2);
+        const link2 = particles.findLink(p1, p3);
+        const link3 = particles.findLink(p2, p3);
+
+        if (!link1 || !link2 || !link3) {
+            const triangleIndex = particles.triangles.findIndex(
+                (t) => t.vertices.includes(p1) && t.vertices.includes(p2) && t.vertices.includes(p3)
+            );
+
+            if (triangleIndex >= 0) {
+                particles.triangles.splice(triangleIndex, 1);
+            }
+
+            return;
+        }
+
+        if (!triangle.visible) {
+            return;
+        }
+
+        const triangleOptions = p1.particlesOptions.links.triangles;
+
+        if (!triangleOptions.enable) {
+            return;
+        }
+
+        const ctx = this.context;
+
+        if (!ctx) {
+            return;
+        }
+
+        let colorTriangle = ColorUtils.colorToRgb(triangleOptions.color);
+
+        if (!colorTriangle) {
+            const linksOptions = p1.particlesOptions.links;
+            const linkColor =
+                linksOptions.id !== undefined
+                    ? container.particles.linksColors.get(linksOptions.id)
+                    : container.particles.linksColor;
+
+            if (linkColor === Constants.randomColorValue) {
+                colorTriangle = ColorUtils.getRandomRgbColor();
+            } else if (linkColor === "mid") {
+                const sourceColor = p1.getFillColor();
+                const destColor = p2.getFillColor();
+
+                if (sourceColor && destColor) {
+                    colorTriangle = ColorUtils.mix(sourceColor, destColor, p1.size.value, p2.size.value);
+                } else {
+                    const hslColor = sourceColor ?? destColor;
+
+                    if (!hslColor) {
+                        return;
+                    }
+
+                    colorTriangle = ColorUtils.hslToRgb(hslColor);
+                }
+            } else {
+                colorTriangle = linkColor as IRgb;
+            }
+        }
+
+        const width = p1.linksWidth ?? container.retina.linksWidth;
+
+        CanvasUtils.drawLinkTriangle(
+            ctx,
+            width,
+            pos1,
+            pos2,
+            pos3,
+            options.backgroundMask.enable,
+            colorTriangle,
+            triangle.opacity
+        );
     }
 
     public drawParticle(particle: Particle, delta: IDelta): void {
