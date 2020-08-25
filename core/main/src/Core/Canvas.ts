@@ -205,14 +205,21 @@ export class Canvas {
         }
     }
 
-    public drawLinkTriangle(p1: IParticle, link1: ILink, link2: ILink): void {
+    public drawLinkTriangle(p1: IParticle, p2: IParticle, p3: IParticle, opacity: number): void {
         const container = this.container;
         const particles = container.particles;
         const options = container.options;
-        const p2 = link1.destination;
-        const p3 = link2.destination;
+
+        if (!p2 || !p3) {
+            return;
+        }
+
         const triangleOptions = p1.particlesOptions.links.triangles;
-        const opacityTriangle = triangleOptions.opacity ?? (link1.opacity + link2.opacity) / 2;
+
+        if (!triangleOptions.enable) {
+            return;
+        }
+
         const pos1 = p1.getPosition();
         const pos2 = p2.getPosition();
         const pos3 = p3.getPosition();
@@ -294,15 +301,21 @@ export class Canvas {
             pos3,
             options.backgroundMask.enable,
             colorTriangle,
-            opacityTriangle
+            opacity
         );
     }
 
     public drawLinkLine(p1: IParticle, link: ILink): void {
         const container = this.container;
         const options = container.options;
-        const p2 = link.destination;
+        const p2 = link.edges.find((e) => e !== p1);
+
+        if (!p2) {
+            return;
+        }
+
         let opacity = link.opacity;
+
         const pos1 = p1.getPosition();
         const pos2 = p2.getPosition();
 
@@ -443,10 +456,12 @@ export class Canvas {
         }
 
         this.context.save();
+
         const lineLinks = particles.links;
+
         for (const link of lineLinks) {
-            const source = link.source;
-            const destination = link.destination;
+            const source = link.edges[0];
+            const destination = link.edges[1];
             const distance = Utils.getDistance(source.getPosition(), destination.getPosition());
             const optDistance =
                 source.linksDistance ?? destination.linksDistance ?? this.container.retina.linksDistance;
@@ -456,31 +471,19 @@ export class Canvas {
                 continue;
             }
 
-            const links = lineLinks.filter((l) => l.source === source).map((l) => l.destination);
-            const pTriangles = source.particlesOptions.links.triangles;
-
-            // TODO: Fix this frequency, it makes triangles twinkle
-            if (pTriangles.enable && Math.random() > 1 - pTriangles.frequency) {
-                const vertices = particles.links.filter(
-                    (l) =>
-                        l.source === link.destination &&
-                        links.indexOf(l.destination) >= 0 &&
-                        l.destination.particlesOptions.links.triangles.enable
-                );
-
-                const dTriangles = link.destination.particlesOptions.links.triangles;
-
-                // TODO: Fix this frequency, it makes triangles twinkle
-                if (vertices.length && dTriangles.enable && Math.random() > 1 - pTriangles.frequency) {
-                    for (const vertex of vertices) {
-                        this.drawLinkTriangle(source, link, vertex);
-                    }
-                }
-            }
-
             this.drawLinkLine(source, link);
         }
+
         this.context.restore();
+    }
+
+    public drawLinkTriangles() {
+        const particles = this.container.particles;
+
+        for (const triangle of particles.triangles) {
+            const [source, link, vertex] = triangle.vertices;
+            this.drawLinkTriangle(source, link, vertex, triangle.opacity);
+        }
     }
 
     public drawParticle(particle: Particle, delta: IDelta): void {

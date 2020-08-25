@@ -2,6 +2,7 @@ import type { Container } from "../../Core/Container";
 import type { Particle } from "../../Core/Particle";
 import { Circle, CircleWarp, ColorUtils, Constants, Utils } from "../../Utils";
 import type { IParticlesInteractor } from "../../Core/Interfaces/IParticlesInteractor";
+import { IParticle } from "../../Core/Interfaces/IParticle";
 
 export class Linker implements IParticlesInteractor {
     constructor(private readonly container: Container) {}
@@ -29,6 +30,12 @@ export class Linker implements IParticlesInteractor {
             : new Circle(pos1.x, pos1.y, optDistance);
 
         const query = container.particles.quadTree.query(range);
+
+        const p1Links = container.particles.getLinks(p1);
+
+        for (const link of p1Links.filter((l) => !l.edges.some((t) => (query as IParticle[]).includes(t)))) {
+            container.particles.removeExactLink(link);
+        }
 
         //for (const { distance, p2 } of query) {
         for (const p2 of query) {
@@ -147,29 +154,62 @@ export class Linker implements IParticlesInteractor {
         const pTriangles = p1.particlesOptions.links.triangles;
 
         if (pTriangles.enable) {
-            const sourceLinks = container.particles.getLinks(p1);
-            for (const sourceLink of sourceLinks) {
-                const p2 = sourceLink.destination === p1 ? sourceLink.source : sourceLink.destination;
-                const destinationLinks = container.particles.getLinks(p2);
+            this.updateTriangles(p1);
+        }
+    }
 
-                for (const destinationLink of destinationLinks.filter((l) => l.source !== p1 && l.destination !== p1)) {
-                    const p3 =
-                        destinationLink.destination === p2 ? destinationLink.source : destinationLink.destination;
+    private updateTriangles(p1: Particle): void {
+        const container = this.container;
 
-                    const vertexLinks = container.particles.getLinks(p3);
+        const p1Links = container.particles.getLinks(p1);
+        const p1OldTriangles = container.particles.triangles.filter((t) => t.vertices.includes(p1));
 
-                    if (vertexLinks.find((l) => l.destination === p1 || l.source === p1)) {
-                        if (
-                            !container.particles.triangles.find(
-                                (t) => t.vertices.includes(p1) && t.vertices.includes(p2) && t.vertices.includes(p3)
-                            )
-                        ) {
-                            container.particles.triangles.push({
-                                vertices: [p1, p2, p3],
-                                opacity:
-                                    p1.particlesOptions.links.triangles.opacity ?? p1.particlesOptions.links.opacity,
-                            });
-                        }
+        for (const triangle of p1OldTriangles.filter((t) =>
+            t.vertices.some((v) => !p1Links.some((l) => l.edges.includes(v)))
+        )) {
+            const index = container.particles.triangles.indexOf(triangle);
+
+            container.particles.triangles.splice(index, 1);
+        }
+
+        for (const sourceLink of p1Links) {
+            const p1Index = sourceLink.edges.indexOf(p1);
+            const p2 = sourceLink.edges[(p1Index + 1) % 2];
+            const p2Links = container.particles.getLinks(p2);
+            const p2OldTriangles = container.particles.triangles.filter((t) => t.vertices.includes(p2));
+
+            for (const triangle of p2OldTriangles.filter((t) =>
+                t.vertices.some((v) => !p2Links.some((l) => l.edges.includes(v)))
+            )) {
+                const index = container.particles.triangles.indexOf(triangle);
+
+                container.particles.triangles.splice(index, 1);
+            }
+
+            for (const destinationLink of p2Links.filter((l) => !l.edges.includes(p1))) {
+                const p2Index = sourceLink.edges.indexOf(p2);
+                const p3 = destinationLink.edges[(p2Index + 1) % 2];
+                const p3Links = container.particles.getLinks(p3);
+                const p3OldTriangles = container.particles.triangles.filter((t) => t.vertices.includes(p3));
+
+                for (const triangle of p3OldTriangles.filter((t) =>
+                    t.vertices.some((v) => !p3Links.some((l) => l.edges.includes(v)))
+                )) {
+                    const index = container.particles.triangles.indexOf(triangle);
+
+                    container.particles.triangles.splice(index, 1);
+                }
+
+                if (p3Links.find((l) => l.edges.includes(p1))) {
+                    if (
+                        !container.particles.triangles.find(
+                            (t) => t.vertices.includes(p1) && t.vertices.includes(p2) && t.vertices.includes(p3)
+                        )
+                    ) {
+                        container.particles.triangles.push({
+                            vertices: [p1, p2, p3],
+                            opacity: p1.particlesOptions.links.triangles.opacity ?? p1.particlesOptions.links.opacity,
+                        });
                     }
                 }
             }

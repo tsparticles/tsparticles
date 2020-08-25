@@ -71,12 +71,16 @@ describe("Linker in Canvas (200, 200) tests", () => {
 
                 linker.interact(p1);
 
-                const links = testContainer.container.particles.links.filter(
-                    (l) => l.destination === p1 || l.source === p1
-                );
+                const link = testContainer.container.particles.findLink(p1, p2);
 
-                expect(links.filter((t) => t.opacity > 0)).to.be.not.empty;
-                expect(links.map((t) => t.destination.getPosition())).to.deep.include(pos2);
+                expect(link).to.be.not.undefined;
+
+                if (!link) {
+                    return;
+                }
+
+                expect(link.opacity > 0).to.be.true;
+                expect(link.edges).to.include(p2);
             });
 
             it("should link Particle (199, 199)", () => {
@@ -96,12 +100,16 @@ describe("Linker in Canvas (200, 200) tests", () => {
 
                 linker.interact(p1);
 
-                const links = testContainer.container.particles.links.filter(
-                    (l) => l.source === p1 || l.destination === p1
-                );
+                const link = testContainer.container.particles.findLink(p1, p2);
 
-                expect(links.filter((t) => t.opacity > 0)).to.be.not.empty;
-                expect(links.map((t) => t.destination.getPosition())).to.deep.include(pos2);
+                expect(link).to.be.not.undefined;
+
+                if (!link) {
+                    return;
+                }
+
+                expect(link.opacity > 0).to.be.true;
+                expect(link.edges).to.include(p2);
             });
 
             it("should have a triangle with Particle (0, 0) and Particle (5, 0)", () => {

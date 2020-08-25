@@ -48,6 +48,7 @@ export class Particles {
     /* --------- tsParticles functions - particles ----------- */
     public init(): void {
         this.links = [];
+        this.triangles = [];
         const container = this.container;
         const options = container.options;
         let handled = false;
@@ -169,6 +170,7 @@ export class Particles {
     }*/
 
         container.canvas.drawLinks();
+        container.canvas.drawLinkTriangles();
 
         /* draw each particle */
         for (const p of this.array) {
@@ -235,19 +237,11 @@ export class Particles {
     }
 
     public findLink(source: IParticle, destination: IParticle): ILink | undefined {
-        return this.links.find(
-            (l) =>
-                (l.source === source && l.destination === destination) ||
-                (l.source === destination && l.destination === source)
-        );
+        return this.links.find((l) => l.edges.includes(source) && l.edges.includes(destination));
     }
 
     public findLinkIndex(source: IParticle, destination: IParticle): number {
-        return this.links.findIndex(
-            (l) =>
-                (l.source === source && l.destination === destination) ||
-                (l.source === destination && l.destination === source)
-        );
+        return this.links.findIndex((l) => l.edges.includes(source) && l.edges.includes(destination));
     }
 
     public addLink(source: IParticle, destination: IParticle): ILink {
@@ -255,8 +249,7 @@ export class Particles {
 
         if (!link) {
             link = {
-                source,
-                destination,
+                edges: [source, destination],
                 opacity: 1,
             };
 
@@ -266,8 +259,8 @@ export class Particles {
         return link;
     }
 
-    public getLinks(source: IParticle): ILink[] {
-        return this.links.filter((t) => t.source === source || t.destination === source);
+    public getLinks(particle: IParticle): ILink[] {
+        return this.links.filter((l) => l.edges.includes(particle));
     }
 
     public removeLink(source: IParticle, destination: IParticle): void {
@@ -289,7 +282,7 @@ export class Particles {
     }
 
     public removeLinks(particle: IParticle): void {
-        for (const link of this.links.filter((l) => l.destination === particle || l.source === particle)) {
+        for (const link of this.links.filter((l) => l.edges.includes(particle))) {
             const index = this.links.indexOf(link);
 
             this.removeLinkAtIndex(index);

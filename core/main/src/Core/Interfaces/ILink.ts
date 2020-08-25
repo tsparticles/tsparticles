@@ -1,8 +1,7 @@
 import type { IParticle } from "./IParticle";
 
 export interface ILink {
-    source: IParticle;
-    destination: IParticle;
+    edges: IParticle[];
     opacity: number;
 }
 
