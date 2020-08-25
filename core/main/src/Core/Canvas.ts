@@ -480,7 +480,7 @@ export class Canvas {
     public drawLinkTriangles() {
         const particles = this.container.particles;
 
-        for (const triangle of particles.triangles) {
+        for (const triangle of particles.triangles.filter((t) => t.visible)) {
             const [source, link, vertex] = triangle.vertices;
             this.drawLinkTriangle(source, link, vertex, triangle.opacity);
         }

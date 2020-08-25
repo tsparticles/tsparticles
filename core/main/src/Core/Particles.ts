@@ -251,6 +251,7 @@ export class Particles {
             link = {
                 edges: [source, destination],
                 opacity: 1,
+                visible: true,
             };
 
             this.links.push(link);

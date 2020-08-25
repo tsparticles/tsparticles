@@ -209,6 +209,7 @@ export class Linker implements IParticlesInteractor {
                         container.particles.triangles.push({
                             vertices: [p1, p2, p3],
                             opacity: p1.particlesOptions.links.triangles.opacity ?? p1.particlesOptions.links.opacity,
+                            visible: Math.random() > 1 - p1.particlesOptions.links.triangles.frequency,
                         });
                     }
                 }
