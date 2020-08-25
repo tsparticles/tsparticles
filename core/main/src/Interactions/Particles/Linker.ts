@@ -137,33 +137,42 @@ export class Linker implements IParticlesInteractor {
                         }
                     }
 
-                    container.particles.links.push({
-                        source: p1,
-                        destination: p2,
-                        opacity: opacityLine,
-                    });
+                    const link = container.particles.addLink(p1, p2);
+
+                    link.opacity = opacityLine;
                 }
             }
+        }
 
-            /*
-            // TODO: This is the triangles code, it's the starting point to save them
-            const pTriangles = particle.particlesOptions.links.triangles;
+        const pTriangles = p1.particlesOptions.links.triangles;
 
-            if (pTriangles.enable) {
-                const vertices = link.destination.links.filter(
-                    (l) =>
-                        links.indexOf(l.destination) >= 0 && l.destination.particlesOptions.links.triangles.enable
-                );
+        if (pTriangles.enable) {
+            const sourceLinks = container.particles.getLinks(p1);
+            for (const sourceLink of sourceLinks) {
+                const p2 = sourceLink.destination === p1 ? sourceLink.source : sourceLink.destination;
+                const destinationLinks = container.particles.getLinks(p2);
 
-                const dTriangles = link.destination.particlesOptions.links.triangles;
+                for (const destinationLink of destinationLinks.filter((l) => l.source !== p1 && l.destination !== p1)) {
+                    const p3 =
+                        destinationLink.destination === p2 ? destinationLink.source : destinationLink.destination;
 
-                if (vertices.length && dTriangles.enable) {
-                    for (const vertex of vertices) {
-                        //TODO: Save triangle (particle, link, vertex) with visibility based on Math.random() > 1 - pTriangles.frequency
+                    const vertexLinks = container.particles.getLinks(p3);
+
+                    if (vertexLinks.find((l) => l.destination === p1 || l.source === p1)) {
+                        if (
+                            !container.particles.triangles.find(
+                                (t) => t.vertices.includes(p1) && t.vertices.includes(p2) && t.vertices.includes(p3)
+                            )
+                        ) {
+                            container.particles.triangles.push({
+                                vertices: [p1, p2, p3],
+                                opacity:
+                                    p1.particlesOptions.links.triangles.opacity ?? p1.particlesOptions.links.opacity,
+                            });
+                        }
                     }
                 }
             }
-             */
         }
     }
 }

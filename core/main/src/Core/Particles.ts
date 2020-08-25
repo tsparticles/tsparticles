@@ -251,13 +251,23 @@ export class Particles {
     }
 
     public addLink(source: IParticle, destination: IParticle): ILink {
-        return (
-            this.findLink(source, destination) ?? {
+        let link = this.findLink(source, destination);
+
+        if (!link) {
+            link = {
                 source,
                 destination,
                 opacity: 1,
-            }
-        );
+            };
+
+            this.links.push(link);
+        }
+
+        return link;
+    }
+
+    public getLinks(source: IParticle): ILink[] {
+        return this.links.filter((t) => t.source === source || t.destination === source);
     }
 
     public removeLink(source: IParticle, destination: IParticle): void {
