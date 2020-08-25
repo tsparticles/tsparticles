@@ -162,56 +162,37 @@ export class Linker implements IParticlesInteractor {
         const container = this.container;
 
         const p1Links = container.particles.getLinks(p1);
-        const p1OldTriangles = container.particles.triangles.filter((t) => t.vertices.includes(p1));
 
-        for (const triangle of p1OldTriangles.filter((t) =>
-            t.vertices.some((v) => !p1Links.some((l) => l.edges.includes(v)))
-        )) {
-            const index = container.particles.triangles.indexOf(triangle);
+        for (let i = 0; i < p1Links.length - 1; i++) {
+            const firstLink = p1Links[i];
+            const secondLink = p1Links[i + 1];
 
-            container.particles.triangles.splice(index, 1);
-        }
+            const p1FirstIndex = firstLink.edges.indexOf(p1);
+            const p2 = firstLink.edges[(p1FirstIndex + 1) % 2];
 
-        for (const sourceLink of p1Links) {
-            const p1Index = sourceLink.edges.indexOf(p1);
-            const p2 = sourceLink.edges[(p1Index + 1) % 2];
-            const p2Links = container.particles.getLinks(p2);
-            const p2OldTriangles = container.particles.triangles.filter((t) => t.vertices.includes(p2));
+            const p1SecondIndex = secondLink.edges.indexOf(p1);
+            const p3 = secondLink.edges[(p1SecondIndex + 1) % 2];
 
-            for (const triangle of p2OldTriangles.filter((t) =>
-                t.vertices.some((v) => !p2Links.some((l) => l.edges.includes(v)))
-            )) {
-                const index = container.particles.triangles.indexOf(triangle);
+            const thirdLink = container.particles.findLink(p2, p3);
 
-                container.particles.triangles.splice(index, 1);
-            }
+            if (
+                thirdLink &&
+                !container.particles.triangles.find(
+                    (t) => t.vertices.includes(p1) && t.vertices.includes(p2) && t.vertices.includes(p3)
+                )
+            ) {
+                container.particles.triangles.push({
+                    vertices: [p1, p2, p3],
+                    opacity: p1.particlesOptions.links.triangles.opacity ?? p1.particlesOptions.links.opacity,
+                    visible: Math.random() > 1 - p1.particlesOptions.links.triangles.frequency,
+                });
+            } else if (!thirdLink) {
+                const triangleIndex = container.particles.triangles.findIndex(
+                    (t) => t.vertices.includes(p1) && t.vertices.includes(p2) && t.vertices.includes(p3)
+                );
 
-            for (const destinationLink of p2Links.filter((l) => !l.edges.includes(p1))) {
-                const p2Index = sourceLink.edges.indexOf(p2);
-                const p3 = destinationLink.edges[(p2Index + 1) % 2];
-                const p3Links = container.particles.getLinks(p3);
-                const p3OldTriangles = container.particles.triangles.filter((t) => t.vertices.includes(p3));
-
-                for (const triangle of p3OldTriangles.filter((t) =>
-                    t.vertices.some((v) => !p3Links.some((l) => l.edges.includes(v)))
-                )) {
-                    const index = container.particles.triangles.indexOf(triangle);
-
-                    container.particles.triangles.splice(index, 1);
-                }
-
-                if (p3Links.find((l) => l.edges.includes(p1))) {
-                    if (
-                        !container.particles.triangles.find(
-                            (t) => t.vertices.includes(p1) && t.vertices.includes(p2) && t.vertices.includes(p3)
-                        )
-                    ) {
-                        container.particles.triangles.push({
-                            vertices: [p1, p2, p3],
-                            opacity: p1.particlesOptions.links.triangles.opacity ?? p1.particlesOptions.links.opacity,
-                            visible: Math.random() > 1 - p1.particlesOptions.links.triangles.frequency,
-                        });
-                    }
+                if (triangleIndex >= 0) {
+                    container.particles.triangles.splice(triangleIndex, 1);
                 }
             }
         }
