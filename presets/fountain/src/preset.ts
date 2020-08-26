@@ -10,7 +10,7 @@ const options = {
             value: 0,
         },
         collisions: {
-            enable: true
+            enable: true,
         },
         color: {
             value: "#ffffff",
@@ -116,7 +116,7 @@ const options = {
                 },
             },
             color: {
-                value: [ "#5bc0eb", "#fde74c", "#9bc53d", "#e55934", "#fa7921" ],
+                value: ["#5bc0eb", "#fde74c", "#9bc53d", "#e55934", "#fa7921"],
             },
             links: {
                 enable: false,

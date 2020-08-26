@@ -7,9 +7,10 @@ body {
   height: 100%;
   overflow: hidden;
 }
-/*#tsparticles
-  width 100%
-  height 100%*/
+#tsparticles {
+  width: 100%;
+  height: 100%;
+}
 #editor {
   background-color: #fff;
   z-index: 1;

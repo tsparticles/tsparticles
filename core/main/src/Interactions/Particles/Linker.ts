@@ -160,7 +160,7 @@ export class Linker implements IParticlesInteractor {
         }
     }
 
-    private updateTriangles(p1: Particle): void {
+    private updateTriangles(p1: IParticle): void {
         const container = this.container;
         const p1Links = container.particles.getLinks(p1);
 

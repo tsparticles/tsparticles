@@ -4,12 +4,12 @@ import type { IMouseData } from "./Interfaces/IMouseData";
 import type { IRgb } from "./Interfaces/IRgb";
 import { Particle } from "./Particle";
 import { Point, QuadTree, Rectangle, Utils } from "../Utils";
-import { RecursivePartial } from "../Types";
+import type { RecursivePartial } from "../Types";
 import type { IParticles } from "../Options/Interfaces/Particles/IParticles";
 import { InteractionManager } from "./Particle/InteractionManager";
 import type { IDelta } from "./Interfaces/IDelta";
-import { ILink, ILinkTriangle } from "./Interfaces/ILink";
-import { IParticle } from "./Interfaces/IParticle";
+import type { ILink, ILinkTriangle } from "./Interfaces/ILink";
+import type { IParticle } from "./Interfaces/IParticle";
 
 /**
  * Particles manager

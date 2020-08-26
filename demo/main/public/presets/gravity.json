@@ -1,7 +1,4 @@
 {
-  "backgroundMode": {
-    "enable": true
-  },
   "fpsLimit": 60,
   "particles": {
     "number": {
