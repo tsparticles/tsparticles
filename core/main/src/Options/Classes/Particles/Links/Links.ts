@@ -6,12 +6,13 @@ import { OptionsColor } from "../../OptionsColor";
 import type { IOptionLoader } from "../../../Interfaces/IOptionLoader";
 
 export class Links implements ILinks, IOptionLoader<ILinks> {
-    public id?: string;
     public blink;
     public color;
     public consent;
     public distance;
     public enable;
+    public frequency;
+    public id?: string;
     public opacity;
     public shadow;
     public triangles;
@@ -24,6 +25,7 @@ export class Links implements ILinks, IOptionLoader<ILinks> {
         this.consent = false;
         this.distance = 100;
         this.enable = false;
+        this.frequency = 1;
         this.opacity = 1;
         this.shadow = new LinksShadow();
         this.triangles = new LinksTriangle();
@@ -56,6 +58,10 @@ export class Links implements ILinks, IOptionLoader<ILinks> {
 
         if (data.enable !== undefined) {
             this.enable = data.enable;
+        }
+
+        if (data.frequency !== undefined) {
+            this.frequency = data.frequency;
         }
 
         if (data.opacity !== undefined) {

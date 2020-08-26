@@ -39,17 +39,18 @@ export class Infecter implements IParticlesInteractor {
         const infectedStage1 = infectionStage1.infectedStage ?? infecter1.infectionStage;
 
         //const query = container.particles.spatialGrid.queryRadius(pos, radius)
-        const query = container.particles.quadTree
-            .queryCircle(pos, radius)
-            .filter(
-                (p) => p.infecter.infectionStage === undefined || p.infecter.infectionStage !== infecter1.infectionStage
-            );
+        const query = container.particles.quadTree.queryCircle(pos, radius);
 
         const infections = infectionStage1.rate;
         const neighbors = query.length;
 
         for (const p2 of query) {
-            if (p2 === p1 || p2.destroyed || p2.spawning) {
+            if (
+                p2 === p1 ||
+                p2.destroyed ||
+                p2.spawning ||
+                !(p2.infecter.infectionStage === undefined || p2.infecter.infectionStage !== infecter1.infectionStage)
+            ) {
                 continue;
             }
 

@@ -285,7 +285,11 @@ export class Utils {
     }
 
     public static deepExtend(destination: any, ...sources: any[]): any {
-        for (const source of sources.filter((s) => s !== undefined && s !== null)) {
+        for (const source of sources) {
+            if (source === undefined || source === null) {
+                continue;
+            }
+
             if (typeof source !== "object") {
                 destination = source;
 

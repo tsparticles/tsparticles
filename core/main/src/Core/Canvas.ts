@@ -205,10 +205,15 @@ export class Canvas {
         }
     }
 
-    public drawLinkLine(p1: IParticle, link: ILink): void {
+    public drawLinkLine(link: ILink): void {
+        if (!link.visible) {
+            return;
+        }
+
         const container = this.container;
         const options = container.options;
-        const p2 = link.edges.find((e) => e !== p1);
+        const p1 = link.edges[0];
+        const p2 = link.edges[1];
 
         if (!p2) {
             return;
@@ -371,7 +376,7 @@ export class Canvas {
                 continue;
             }
 
-            this.drawLinkLine(source, link);
+            this.drawLinkLine(link);
         }
 
         this.context.restore();

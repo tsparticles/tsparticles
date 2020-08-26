@@ -71,10 +71,10 @@ export class Particles {
 
         if (options.infection.enable) {
             for (let i = 0; i < options.infection.infections; i++) {
-                const notInfected = this.array.map((p) => p.infecter).filter((p) => p.infectionStage === undefined);
+                const notInfected = this.array.filter((p) => p.infecter.infectionStage === undefined);
                 const infected = Utils.itemFromArray(notInfected);
 
-                infected.startInfection(0);
+                infected.infecter.startInfection(0);
             }
         }
 
@@ -283,7 +283,11 @@ export class Particles {
     }
 
     public removeLinks(particle: IParticle): void {
-        for (const link of this.links.filter((l) => l.edges.includes(particle))) {
+        for (const link of this.links) {
+            if (!link.edges.includes(particle)) {
+                continue;
+            }
+
             const index = this.links.indexOf(link);
 
             this.removeLinkAtIndex(index);

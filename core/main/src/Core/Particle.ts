@@ -398,7 +398,11 @@ export class Particle implements IParticle {
 
         const pos1 = this.getPosition();
 
-        for (const p2 of container.particles.array.filter((t) => t != this)) {
+        for (const p2 of container.particles.array) {
+            if (p2 === this) {
+                continue;
+            }
+
             const pos2 = p2.getPosition();
             const dist = Utils.getDistance(pos1, pos2);
 

@@ -8,6 +8,7 @@ export interface ILinks {
     consent: boolean;
     distance: number;
     enable: boolean;
+    frequency: number;
     id?: string;
     opacity: number;
     shadow: ILinksShadow;

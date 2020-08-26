@@ -32,7 +32,11 @@ export class Linker implements IParticlesInteractor {
         const query = container.particles.quadTree.query(range);
         const p1Links = container.particles.getLinks(p1);
 
-        for (const link of p1Links.filter((l) => !l.edges.some((t) => (query as IParticle[]).includes(t)))) {
+        for (const link of p1Links) {
+            if (link.edges.some((t) => (query as IParticle[]).includes(t))) {
+                continue;
+            }
+
             container.particles.removeExactLink(link);
         }
 
@@ -144,6 +148,7 @@ export class Linker implements IParticlesInteractor {
                     const link = container.particles.addLink(p1, p2);
 
                     link.opacity = opacityLine;
+                    link.visible = Math.random() > 1 - linksOptions.frequency;
                 }
             }
         }
@@ -170,17 +175,20 @@ export class Linker implements IParticlesInteractor {
             const triangleIndex = container.particles.triangles.findIndex(
                 (t) => t.vertices.includes(p1) && t.vertices.includes(p2) && t.vertices.includes(p3)
             );
+            const linksOptions = p1.particlesOptions.links;
+            const trianglesOptions = linksOptions.triangles;
 
-            if (thirdLink && triangleIndex < 0) {
+            if (thirdLink && firstLink.visible && secondLink.visible && thirdLink.visible && triangleIndex < 0) {
                 container.particles.triangles.push({
                     vertices: [p1, p2, p3],
-                    opacity: p1.particlesOptions.links.triangles.opacity ?? p1.particlesOptions.links.opacity,
-                    visible: Math.random() > 1 - p1.particlesOptions.links.triangles.frequency,
+                    opacity: trianglesOptions.opacity ?? linksOptions.opacity,
+                    visible: Math.random() > 1 - trianglesOptions.frequency,
                 });
-            } else if (!thirdLink) {
-                if (triangleIndex >= 0) {
-                    container.particles.triangles.splice(triangleIndex, 1);
-                }
+            } else if (
+                (!thirdLink || !firstLink.visible || !secondLink.visible || !thirdLink.visible) &&
+                triangleIndex >= 0
+            ) {
+                container.particles.triangles.splice(triangleIndex, 1);
             }
         }
     }

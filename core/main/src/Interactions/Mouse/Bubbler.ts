@@ -115,7 +115,11 @@ export class Bubbler implements IExternalInteractor {
 
             const query = container.particles.quadTree.query(area);
 
-            for (const particle of query.filter((t) => area.contains(t.getPosition()))) {
+            for (const particle of query) {
+                if (!area.contains(particle.getPosition())) {
+                    continue;
+                }
+
                 particle.bubble.inRange = true;
 
                 const divs = container.options.interactivity.modes.bubble.divs;

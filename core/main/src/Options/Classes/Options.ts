@@ -136,16 +136,16 @@ export class Options implements IOptions, IOptionLoader<IOptions> {
         } else {
             const clientDarkMode =
                 typeof matchMedia !== "undefined" && matchMedia("(prefers-color-scheme: dark)").matches;
-            const defaultThemes = this.themes.filter((theme) => theme.default.value);
 
-            let defaultTheme = defaultThemes.find(
+            let defaultTheme = this.themes.find(
                 (theme) =>
-                    (theme.default.mode === ThemeMode.dark && clientDarkMode) ||
-                    (theme.default.mode === ThemeMode.light && !clientDarkMode)
+                    theme.default.value &&
+                    ((theme.default.mode === ThemeMode.dark && clientDarkMode) ||
+                        (theme.default.mode === ThemeMode.light && !clientDarkMode))
             );
 
             if (!defaultTheme) {
-                defaultTheme = defaultThemes.find((theme) => theme.default.mode === ThemeMode.any);
+                defaultTheme = this.themes.find((theme) => theme.default.value && theme.default.mode === ThemeMode.any);
             }
 
             if (defaultTheme) {
