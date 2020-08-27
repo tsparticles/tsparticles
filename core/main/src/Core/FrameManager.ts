@@ -28,7 +28,7 @@ export class FrameManager {
 
             container.particles.draw(delta);
 
-            if (options.particles.move.enable && container.getAnimationStatus()) {
+            if (container.getAnimationStatus()) {
                 container.draw();
             }
         } catch (e) {
