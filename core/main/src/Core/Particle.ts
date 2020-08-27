@@ -503,18 +503,18 @@ export class Particle implements IParticle {
             return;
         }
 
-        const shape = this.particlesOptions.shape;
         const imageDrawer = drawer as ImageDrawer;
-        const imagesOptions = shape.options[this.shape];
         const images = imageDrawer.getImages(container).images;
-        const image = Utils.itemFromArray(images);
-        const optionsImage = (imagesOptions instanceof Array
-            ? imagesOptions.find((t) => (t as IImageShape).src === image.source)
-            : imagesOptions) as IImageShape;
+        const imageData = this.shapeData as IImageShape;
+        const image = images.find((t) => t.source === imageData.src) ?? images[0];
         const color = this.getFillColor();
         let imageRes: IParticleImage;
 
-        if (image?.svgData !== undefined && optionsImage.replaceColor && color) {
+        if (!image) {
+            return;
+        }
+
+        if (image.svgData !== undefined && imageData.replaceColor && color) {
             const svgColoredData = ColorUtils.replaceColorSvg(image, color, this.opacity.value);
 
             /* prepare to create img with colored svg */
@@ -528,9 +528,9 @@ export class Particle implements IParticle {
             imageRes = {
                 data: image,
                 loaded: false,
-                ratio: optionsImage.width / optionsImage.height,
-                replaceColor: optionsImage.replaceColor ?? optionsImage.replace_color,
-                source: optionsImage.src,
+                ratio: imageData.width / imageData.height,
+                replaceColor: imageData.replaceColor ?? imageData.replace_color,
+                source: imageData.src,
             };
 
             img.addEventListener("load", () => {
@@ -546,7 +546,7 @@ export class Particle implements IParticle {
                 domUrl.revokeObjectURL(url);
 
                 // deepcode ignore PromiseNotCaughtGeneral: catch can be ignored
-                Utils.loadImage(optionsImage.src).then((img2) => {
+                Utils.loadImage(imageData.src).then((img2) => {
                     if (this.image) {
                         image.element = img2.element;
                         this.image.loaded = true;
@@ -559,16 +559,16 @@ export class Particle implements IParticle {
             imageRes = {
                 data: image,
                 loaded: true,
-                ratio: optionsImage.width / optionsImage.height,
-                replaceColor: optionsImage.replaceColor ?? optionsImage.replace_color,
-                source: optionsImage.src,
+                ratio: imageData.width / imageData.height,
+                replaceColor: imageData.replaceColor ?? imageData.replace_color,
+                source: imageData.src,
             };
         }
         if (!imageRes.ratio) {
             imageRes.ratio = 1;
         }
-        const fill = optionsImage.fill ?? this.fill;
-        const close = optionsImage.close ?? this.close;
+        const fill = imageData.fill ?? this.fill;
+        const close = imageData.close ?? this.close;
 
         return {
             image: imageRes,

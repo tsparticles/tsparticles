@@ -101,7 +101,7 @@
         "sync": false
       },
       "random": false,
-      "value": 0.5
+      "value": 1
     },
     "rotate": {
       "animation": {
