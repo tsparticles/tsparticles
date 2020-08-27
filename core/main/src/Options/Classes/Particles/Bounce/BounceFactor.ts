@@ -1,26 +1,9 @@
-import type { IBounceFactor } from "../../../Interfaces/Particles/Bounce/IBounceFactor";
-import type { IOptionLoader } from "../../../Interfaces/IOptionLoader";
-import { BounceFactorRandom } from "./BounceFactorRandom";
-import type { RecursivePartial } from "../../../../Types";
+import { ValueWithRandom } from "../../ValueWithRandom";
 
-export class BounceFactor implements IBounceFactor, IOptionLoader<IBounceFactor> {
-    public random;
-    public value;
-
+export class BounceFactor extends ValueWithRandom {
     constructor() {
-        this.random = new BounceFactorRandom();
+        super();
+        this.random.minimumValue = 0.1;
         this.value = 1;
-    }
-
-    public load(data?: RecursivePartial<IBounceFactor>): void {
-        if (!data) {
-            return;
-        }
-
-        this.random.load(data.random);
-
-        if (data.value !== undefined) {
-            this.value = data.value;
-        }
     }
 }

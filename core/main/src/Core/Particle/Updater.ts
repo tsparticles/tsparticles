@@ -97,16 +97,8 @@ export class Updater {
 
                 const lifeOptions = particle.particlesOptions.life;
 
-                if (lifeOptions.delay.random.enable) {
-                    particle.lifeDelay =
-                        Utils.randomInRange(lifeOptions.delay.random.minimumValue, lifeOptions.delay.value) * 1000;
-                }
-
-                if (lifeOptions.duration.random.enable) {
-                    particle.lifeDuration =
-                        Utils.randomInRange(lifeOptions.duration.random.minimumValue, lifeOptions.duration.value) *
-                        1000;
-                }
+                particle.lifeDelay = Utils.getValue(lifeOptions.delay) * 1000;
+                particle.lifeDuration = Utils.getValue(lifeOptions.duration) * 1000;
             }
         }
     }
@@ -384,10 +376,7 @@ export class Updater {
                 (direction === OutModeDirection.right && bounds.right >= canvasSize.width && velocity > 0) ||
                 (direction === OutModeDirection.left && bounds.left <= 0 && velocity < 0)
             ) {
-                const factor = particle.particlesOptions.bounce.horizontal;
-                const newVelocity = factor.random.enable
-                    ? Utils.randomInRange(factor.value, factor.random.minimumValue)
-                    : factor.value;
+                const newVelocity = Utils.getValue(particle.particlesOptions.bounce.horizontal);
 
                 particle.velocity.horizontal *= -newVelocity;
 
@@ -415,10 +404,7 @@ export class Updater {
                     velocity > 0) ||
                 (direction === OutModeDirection.top && bounds.top <= 0 && velocity < 0)
             ) {
-                const factor = particle.particlesOptions.bounce.vertical;
-                const newVelocity = factor.random.enable
-                    ? Utils.randomInRange(factor.value, factor.random.minimumValue)
-                    : factor.value;
+                const newVelocity = Utils.getValue(particle.particlesOptions.bounce.vertical);
 
                 particle.velocity.vertical *= -newVelocity;
 

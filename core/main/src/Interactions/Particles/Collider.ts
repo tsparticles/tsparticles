@@ -55,11 +55,14 @@ export class Collider implements IParticlesInteractor {
             const vFinal2 = Collider.rotate(v2, -angle);
 
             // Swap particle velocities for realistic bounce effect
-            p1.velocity.horizontal = vFinal1.horizontal;
-            p1.velocity.vertical = vFinal1.vertical;
+            const bounce1 = p1.particlesOptions.collisions.bounce;
+            const bounce2 = p2.particlesOptions.collisions.bounce;
 
-            p2.velocity.horizontal = vFinal2.horizontal;
-            p2.velocity.vertical = vFinal2.vertical;
+            p1.velocity.horizontal = vFinal1.horizontal * Utils.getValue(bounce1.horizontal);
+            p1.velocity.vertical = vFinal1.vertical * Utils.getValue(bounce1.vertical);
+
+            p2.velocity.horizontal = vFinal2.horizontal * Utils.getValue(bounce2.horizontal);
+            p2.velocity.vertical = vFinal2.vertical * Utils.getValue(bounce2.vertical);
         }
     }
 

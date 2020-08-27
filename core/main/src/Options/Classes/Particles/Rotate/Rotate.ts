@@ -3,26 +3,26 @@ import { RotateAnimation } from "./RotateAnimation";
 import { RotateDirection, RotateDirectionAlt } from "../../../../Enums";
 import type { RecursivePartial } from "../../../../Types";
 import type { IOptionLoader } from "../../../Interfaces/IOptionLoader";
+import { ValueWithRandom } from "../../ValueWithRandom";
 
-export class Rotate implements IRotate, IOptionLoader<IRotate> {
+export class Rotate extends ValueWithRandom implements IRotate, IOptionLoader<IRotate> {
     public animation;
     public direction: RotateDirection | keyof typeof RotateDirection | RotateDirectionAlt;
     public path;
-    public random;
-    public value;
 
     constructor() {
+        super();
         this.animation = new RotateAnimation();
         this.direction = RotateDirection.clockwise;
         this.path = false;
-        this.random = false;
-        this.value = 0;
     }
 
     public load(data?: RecursivePartial<IRotate>): void {
-        if (data === undefined) {
+        if (!data) {
             return;
         }
+
+        super.load(data);
 
         if (data.direction !== undefined) {
             this.direction = data.direction;
@@ -32,14 +32,6 @@ export class Rotate implements IRotate, IOptionLoader<IRotate> {
 
         if (data.path !== undefined) {
             this.path = data.path;
-        }
-
-        if (data.random !== undefined) {
-            this.random = data.random;
-        }
-
-        if (data.value !== undefined) {
-            this.value = data.value;
         }
     }
 }

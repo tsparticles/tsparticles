@@ -1,10 +1,10 @@
 import type { ISize } from "../../../Interfaces/Particles/Size/ISize";
 import { SizeAnimation } from "./SizeAnimation";
 import type { RecursivePartial } from "../../../../Types";
-import { SizeRandom } from "./SizeRandom";
 import type { IOptionLoader } from "../../../Interfaces/IOptionLoader";
+import { ValueWithRandom } from "../../ValueWithRandom";
 
-export class Size implements ISize, IOptionLoader<ISize> {
+export class Size extends ValueWithRandom implements ISize, IOptionLoader<ISize> {
     /**
      *
      * @deprecated this property is obsolete, please use the new animation
@@ -23,36 +23,25 @@ export class Size implements ISize, IOptionLoader<ISize> {
     }
 
     public animation;
-    public random;
-    public value;
 
     constructor() {
+        super();
         this.animation = new SizeAnimation();
-        this.random = new SizeRandom();
+        this.random.minimumValue = 1;
         this.value = 3;
     }
 
     public load(data?: RecursivePartial<ISize>): void {
-        if (data === undefined) {
+        if (!data) {
             return;
         }
+
+        super.load(data);
 
         const animation = data.animation ?? data.anim;
 
         if (animation !== undefined) {
             this.animation.load(animation);
-        }
-
-        if (data.random !== undefined) {
-            if (typeof data.random === "boolean") {
-                this.random.enable = data.random;
-            } else {
-                this.random.load(data.random);
-            }
-        }
-
-        if (data.value !== undefined) {
-            this.value = data.value;
         }
     }
 }

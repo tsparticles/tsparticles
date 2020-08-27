@@ -5,10 +5,12 @@ import type { IOptionLoader } from "../../Interfaces/IOptionLoader";
 import { Bounce } from "./Bounce/Bounce";
 
 export class Collisions implements ICollisions, IOptionLoader<ICollisions> {
+    public bounce: Bounce;
     public enable;
     public mode: CollisionMode | keyof typeof CollisionMode;
 
     constructor() {
+        this.bounce = new Bounce();
         this.enable = false;
         this.mode = CollisionMode.bounce;
     }
@@ -17,6 +19,8 @@ export class Collisions implements ICollisions, IOptionLoader<ICollisions> {
         if (data === undefined) {
             return;
         }
+
+        this.bounce.load(data.bounce);
 
         if (data.enable !== undefined) {
             this.enable = data.enable;

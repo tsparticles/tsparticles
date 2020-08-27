@@ -9,6 +9,8 @@ import type { SingleOrMultiple } from "../Types";
 import { DivEvent } from "../Options/Classes/Interactivity/Events/DivEvent";
 import type { IModeDiv } from "../Options/Interfaces/Interactivity/Modes/IModeDiv";
 import { OutModeDirection } from "../Enums/Directions/OutModeDirection";
+import { ValueWithRandom } from "../Options/Classes/ValueWithRandom";
+import { IValueWithRandom } from "../Options/Interfaces/IValueWithRandom";
 
 type CSSOMString = string;
 type FontFaceLoadStatus = "unloaded" | "loading" | "loaded" | "error";
@@ -400,6 +402,13 @@ export class Utils {
         } else if (Utils.checkSelector(element, divs.selectors)) {
             return divs;
         }
+    }
+
+    public static getValue(options: IValueWithRandom) {
+        const random = options.random;
+        const { enable, minimumValue } = typeof random === "boolean" ? { enable: random, minimumValue: 0 } : random;
+
+        return enable ? Utils.randomInRange(minimumValue, options.value) : options.value;
     }
 
     private static checkSelector(element: HTMLElement, selectors: SingleOrMultiple<string>): boolean {

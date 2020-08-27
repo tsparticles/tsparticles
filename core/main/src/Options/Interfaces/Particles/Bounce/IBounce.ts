@@ -1,6 +1,6 @@
-import type { IBounceFactor } from "./IBounceFactor";
+import type { IValueWithRandom } from "../../IValueWithRandom";
 
 export interface IBounce {
-    horizontal: IBounceFactor;
-    vertical: IBounceFactor;
+    horizontal: IValueWithRandom;
+    vertical: IValueWithRandom;
 }

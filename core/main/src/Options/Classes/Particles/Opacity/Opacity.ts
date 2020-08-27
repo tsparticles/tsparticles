@@ -1,10 +1,10 @@
 import type { IOpacity } from "../../../Interfaces/Particles/Opacity/IOpacity";
 import { OpacityAnimation } from "./OpacityAnimation";
 import type { RecursivePartial } from "../../../../Types";
-import { OpacityRandom } from "./OpacityRandom";
 import type { IOptionLoader } from "../../../Interfaces/IOptionLoader";
+import { ValueWithRandom } from "../../ValueWithRandom";
 
-export class Opacity implements IOpacity, IOptionLoader<IOpacity> {
+export class Opacity extends ValueWithRandom implements IOpacity, IOptionLoader<IOpacity> {
     /**
      *
      * @deprecated this property is obsolete, please use the new animation
@@ -23,32 +23,21 @@ export class Opacity implements IOpacity, IOptionLoader<IOpacity> {
     }
 
     public animation;
-    public random;
-    public value;
 
     constructor() {
+        super();
         this.animation = new OpacityAnimation();
-        this.random = new OpacityRandom();
+        this.random.minimumValue = 0.1;
         this.value = 1;
     }
 
     public load(data?: RecursivePartial<IOpacity>): void {
-        if (data === undefined) {
+        if (!data) {
             return;
         }
 
+        super.load(data);
+
         this.animation.load(data.animation ?? data.anim);
-
-        if (data.random !== undefined) {
-            if (typeof data.random === "boolean") {
-                this.random.enable = data.random;
-            } else {
-                this.random.load(data.random);
-            }
-        }
-
-        if (data.value !== undefined) {
-            this.value = data.value;
-        }
     }
 }

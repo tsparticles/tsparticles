@@ -70,11 +70,6 @@ export class Retina {
         particle.linksWidth = particlesOptions.links.width * ratio;
         particle.moveSpeed = particlesOptions.move.speed * ratio;
         particle.sizeValue = particlesOptions.size.value * ratio;
-
-        if (typeof particlesOptions.size.random !== "boolean") {
-            particle.randomMinimumSize = particlesOptions.size.random.minimumValue * ratio;
-        }
-
         particle.sizeAnimationSpeed = particlesOptions.size.animation.speed * ratio;
     }
 }

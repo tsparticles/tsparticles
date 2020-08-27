@@ -1,10 +1,7 @@
 import type { IOpacityAnimation } from "./IOpacityAnimation";
-import type { IOpacityRandom } from "./IOpacityRandom";
+import type { IValueWithRandom } from "../../IValueWithRandom";
 
-export interface IOpacity {
-    value: number;
-    random: boolean | IOpacityRandom;
-
+export interface IOpacity extends IValueWithRandom {
     /**
      * @deprecated use the new animation instead
      */

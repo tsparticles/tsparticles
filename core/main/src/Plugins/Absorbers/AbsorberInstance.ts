@@ -36,16 +36,8 @@ export class AbsorberInstance {
         this.options = options;
         this.dragging = false;
 
-        let size = options.size.value * container.retina.pixelRatio;
-        const random = typeof options.size.random === "boolean" ? options.size.random : options.size.random.enable;
-        const minSize = typeof options.size.random === "boolean" ? 1 : options.size.random.minimumValue;
-
-        if (random) {
-            size = Utils.randomInRange(minSize, size);
-        }
-
         this.opacity = this.options.opacity;
-        this.size = size * container.retina.pixelRatio;
+        this.size = Utils.getValue(options.size) * container.retina.pixelRatio;
         this.mass = this.size * options.size.density;
 
         const limit = options.size.limit;

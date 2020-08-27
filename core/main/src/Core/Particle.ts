@@ -7,7 +7,6 @@ import type { IParticleImage } from "./Interfaces/IParticleImage";
 import { Updater } from "./Particle/Updater";
 import type { IRgb } from "./Interfaces/IRgb";
 import type { IStroke } from "../Options/Interfaces/Particles/IStroke";
-import type { IOpacityRandom } from "../Options/Interfaces/Particles/Opacity/IOpacityRandom";
 import type { IShapeValues } from "../Options/Interfaces/Particles/Shape/IShapeValues";
 import type { IBubbleParticleData } from "./Interfaces/IBubbleParticleData";
 import type { IParticle } from "./Interfaces/IParticle";
@@ -63,7 +62,6 @@ export class Particle implements IParticle {
     public linksWidth?: number;
     public moveSpeed?: number;
     public sizeValue?: number;
-    public randomMinimumSize?: number;
     public sizeAnimationSpeed?: number;
 
     public readonly close: boolean;
@@ -150,33 +148,21 @@ export class Particle implements IParticle {
 
         this.fill = this.shapeData?.fill ?? this.fill;
         this.close = this.shapeData?.close ?? this.close;
-
         this.particlesOptions = particlesOptions;
-
-        const noiseDelay = this.particlesOptions.move.noise.delay;
-
-        this.noiseDelay =
-            (noiseDelay.random.enable
-                ? Utils.randomInRange(noiseDelay.random.minimumValue, noiseDelay.value)
-                : noiseDelay.value) * 1000;
+        this.noiseDelay = Utils.getValue(this.particlesOptions.move.noise.delay) * 1000;
 
         container.retina.initParticle(this);
 
         const color = this.particlesOptions.color;
 
         /* size */
-        const sizeValue = this.sizeValue ?? container.retina.sizeValue;
+        const sizeOptions = this.particlesOptions.size;
+        const sizeValue = Utils.getValue(sizeOptions) * container.retina.pixelRatio;
 
-        const randomSize =
-            typeof this.particlesOptions.size.random === "boolean"
-                ? this.particlesOptions.size.random
-                : this.particlesOptions.size.random.enable;
+        const randomSize = typeof sizeOptions.random === "boolean" ? sizeOptions.random : sizeOptions.random.enable;
 
         this.size = {
-            value:
-                randomSize && this.randomMinimumSize !== undefined
-                    ? Utils.randomInRange(this.randomMinimumSize, sizeValue)
-                    : sizeValue,
+            value: sizeValue,
         };
 
         this.direction = this.particlesOptions.move.direction;
@@ -272,7 +258,7 @@ export class Particle implements IParticle {
 
         /* opacity */
         const opacityOptions = this.particlesOptions.opacity;
-        const randomOpacity = opacityOptions.random as IOpacityRandom;
+        const randomOpacity = opacityOptions.random;
         const opacityValue = opacityOptions.value;
 
         this.opacity = {
@@ -341,25 +327,9 @@ export class Particle implements IParticle {
 
         const lifeOptions = particlesOptions.life;
 
-        let lifeDelay = lifeOptions.delay.value;
-
-        if (lifeOptions.delay.random.enable) {
-            lifeDelay = Utils.randomInRange(lifeOptions.delay.random.minimumValue, lifeDelay);
-        } else if (!lifeOptions.delay.sync) {
-            lifeDelay *= Math.random();
-        }
-
-        let lifeDuration = lifeOptions.duration.value;
-
-        if (lifeOptions.duration.random.enable) {
-            lifeDuration = Utils.randomInRange(lifeOptions.duration.random.minimumValue, lifeDuration);
-        } else if (!lifeOptions.duration.sync) {
-            lifeDuration *= Math.random() + 0.0001;
-        }
-
-        this.lifeDelay = lifeDelay * 1000;
+        this.lifeDelay = Utils.getValue(lifeOptions.delay) * 1000;
         this.lifeDelayTime = 0;
-        this.lifeDuration = lifeDuration * 1000;
+        this.lifeDuration = Utils.getValue(lifeOptions.duration) * 1000;
         this.lifeTime = 0;
         this.livesRemaining = particlesOptions.life.count;
         this.spawning = this.lifeDelay > 0;

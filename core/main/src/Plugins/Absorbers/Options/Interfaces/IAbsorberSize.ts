@@ -1,8 +1,6 @@
-import type { IAbsorberRandomSize } from "./IAbsorberRandomSize";
+import { IValueWithRandom } from "../../../../Options/Interfaces/IValueWithRandom";
 
-export interface IAbsorberSize {
+export interface IAbsorberSize extends IValueWithRandom {
     limit?: number;
-    random: boolean | IAbsorberRandomSize;
-    value: number;
     density: number;
 }
