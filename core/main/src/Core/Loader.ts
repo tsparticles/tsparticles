@@ -76,7 +76,7 @@ export class Loader {
             return;
         }
 
-        return Loader.set(tagId, domContainer, options);
+        return await Loader.set(tagId, domContainer, options);
     }
 
     /**
@@ -166,9 +166,9 @@ export class Loader {
             const options = await response.json();
 
             if (options instanceof Array) {
-                return Loader.loadFromArray(tagId, options);
+                return await Loader.loadFromArray(tagId, options);
             } else {
-                return Loader.load(tagId, options);
+                return await Loader.load(tagId, options);
             }
         } else {
             Loader.fetchError(response.status);

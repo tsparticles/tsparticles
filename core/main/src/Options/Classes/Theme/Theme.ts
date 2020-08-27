@@ -27,7 +27,7 @@ export class Theme implements ITheme, IOptionLoader<ITheme> {
         this.default.load(data.default);
 
         if (data.options !== undefined) {
-            this.options = Utils.deepExtend({}, data.options);
+            this.options = Utils.deepExtend({}, data.options) as RecursivePartial<IOptions>;
         }
     }
 }

@@ -30,10 +30,10 @@ export class EmitterInstance {
         position?: ICoordinates
     ) {
         this.initialPosition = position;
-        this.emitterOptions = Utils.deepExtend({}, emitterOptions);
+        this.emitterOptions = Utils.deepExtend({}, emitterOptions) as IEmitter;
         this.position = this.initialPosition ?? this.calcPosition();
 
-        let particlesOptions = Utils.deepExtend({}, this.emitterOptions.particles);
+        let particlesOptions = Utils.deepExtend({}, this.emitterOptions.particles) as RecursivePartial<IParticles>;
 
         if (particlesOptions === undefined) {
             particlesOptions = {};

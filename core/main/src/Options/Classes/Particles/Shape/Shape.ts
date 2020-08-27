@@ -119,7 +119,7 @@ export class Shape implements IShape, IOptionLoader<IShape> {
                 const item = options[shape];
 
                 if (item !== undefined) {
-                    this.options[shape] = Utils.deepExtend(this.options[shape] ?? {}, item);
+                    this.options[shape] = Utils.deepExtend(this.options[shape] ?? {}, item) as IShapeValues[];
                 }
             }
         }
@@ -152,10 +152,10 @@ export class Shape implements IShape, IOptionLoader<IShape> {
                 }
             }
 
-            this.options[mainKey] = Utils.deepExtend(this.options[mainKey] ?? [], item);
+            this.options[mainKey] = Utils.deepExtend(this.options[mainKey] ?? [], item) as IShapeValues[];
 
             if (!this.options[altKey] || altOverride) {
-                this.options[altKey] = Utils.deepExtend(this.options[altKey] ?? [], item);
+                this.options[altKey] = Utils.deepExtend(this.options[altKey] ?? [], item) as IShapeValues[];
             }
         } else {
             if (this.options[mainKey] instanceof Array) {
@@ -166,10 +166,10 @@ export class Shape implements IShape, IOptionLoader<IShape> {
                 }
             }
 
-            this.options[mainKey] = Utils.deepExtend(this.options[mainKey] ?? {}, item);
+            this.options[mainKey] = Utils.deepExtend(this.options[mainKey] ?? {}, item) as IShapeValues[];
 
             if (!this.options[altKey] || altOverride) {
-                this.options[altKey] = Utils.deepExtend(this.options[altKey] ?? {}, item);
+                this.options[altKey] = Utils.deepExtend(this.options[altKey] ?? {}, item) as IShapeValues[];
             }
         }
     }

@@ -214,7 +214,7 @@ export class Utils {
         return image;
     }
 
-    public static deepExtend(destination: unknown, ...sources: any[]): any {
+    public static deepExtend(destination: unknown, ...sources: unknown[]): unknown {
         for (const source of sources) {
             if (source === undefined || source === null) {
                 continue;
@@ -242,7 +242,8 @@ export class Utils {
                     continue;
                 }
 
-                const value = source[key];
+                const sourceDict = source as Record<string, unknown>;
+                const value = sourceDict[key];
                 const isObject = typeof value === "object";
                 const destDict = destination as Record<string, unknown>;
 

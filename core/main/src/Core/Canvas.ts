@@ -58,7 +58,7 @@ export class Canvas {
 
         if (this.element) {
             if (options.backgroundMode.enable) {
-                this.originalStyle = Utils.deepExtend({}, this.element.style);
+                this.originalStyle = Utils.deepExtend({}, this.element.style) as CSSStyleDeclaration;
 
                 this.element.style.position = "fixed";
                 this.element.style.zIndex = options.backgroundMode.zIndex.toString(10);
@@ -74,8 +74,6 @@ export class Canvas {
                 this.element.style.width = this.originalStyle?.width ?? "";
                 this.element.style.height = this.originalStyle?.height ?? "";
             }
-
-            this.windowResize();
         }
 
         const cover = options.backgroundMask.cover;
@@ -110,7 +108,7 @@ export class Canvas {
 
         this.generatedCanvas = generatedCanvas ?? this.generatedCanvas;
         this.element = canvas;
-        this.originalStyle = Utils.deepExtend({}, this.element.style);
+        this.originalStyle = Utils.deepExtend({}, this.element.style) as CSSStyleDeclaration;
         this.size.height = canvas.offsetHeight;
         this.size.width = canvas.offsetWidth;
 
@@ -382,7 +380,7 @@ export class Canvas {
         this.context.restore();
     }
 
-    public drawLinkTriangles() {
+    public drawLinkTriangles(): void {
         const particles = this.container.particles;
 
         for (const triangle of particles.triangles) {

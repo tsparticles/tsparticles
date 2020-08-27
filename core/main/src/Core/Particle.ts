@@ -124,7 +124,7 @@ export class Particle implements IParticle {
                     this.shapeData = Utils.deepExtend(
                         {},
                         shapeData instanceof Array ? Utils.itemFromArray(shapeData) : shapeData
-                    );
+                    ) as IShapeValues;
                 }
             }
         } else {
@@ -134,7 +134,7 @@ export class Particle implements IParticle {
                 this.shapeData = Utils.deepExtend(
                     {},
                     shapeData instanceof Array ? Utils.itemFromArray(shapeData) : shapeData
-                );
+                ) as IShapeValues;
             }
         }
 
@@ -441,7 +441,7 @@ export class Particle implements IParticle {
                 plugin.particlePosition !== undefined ? plugin.particlePosition(position, this) : undefined;
 
             if (pluginPos !== undefined) {
-                return Utils.deepExtend({}, pluginPos);
+                return Utils.deepExtend({}, pluginPos) as ICoordinates;
             }
         }
 
@@ -536,6 +536,8 @@ export class Particle implements IParticle {
         const image = images.find((t) => t.source === imageData.src) ?? images[0];
         const color = this.getFillColor();
         let imageRes: IParticleImage;
+
+        console.log(image);
 
         if (!image) {
             return;

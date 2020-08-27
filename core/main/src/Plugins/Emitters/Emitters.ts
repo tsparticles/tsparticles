@@ -113,7 +113,12 @@ export class Emitters implements IContainerPlugin {
                 emitterModeOptions ??
                 (emitterOptions instanceof Array ? Utils.itemFromArray(emitterOptions) : emitterOptions);
             const ePosition = container.interactivity.mouse.clickPosition;
-            const emitter = new EmitterInstance(this, this.container, Utils.deepExtend({}, emittersOptions), ePosition);
+            const emitter = new EmitterInstance(
+                this,
+                this.container,
+                Utils.deepExtend({}, emittersOptions) as IEmitter,
+                ePosition
+            );
 
             this.addEmitter(emitter);
         }

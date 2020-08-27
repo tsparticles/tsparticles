@@ -28,7 +28,7 @@ export class Trail implements ITrail, IOptionLoader<ITrail> {
         }
 
         if (data.particles !== undefined) {
-            this.particles = Utils.deepExtend({}, data.particles);
+            this.particles = Utils.deepExtend({}, data.particles) as RecursivePartial<IParticles>;
         }
     }
 }

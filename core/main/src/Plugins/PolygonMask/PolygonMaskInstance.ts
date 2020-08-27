@@ -250,7 +250,7 @@ export class PolygonMaskInstance implements IContainerPlugin {
             return;
         }
 
-        const pos = Utils.deepExtend({}, position ? position : this.randomPoint());
+        const pos = Utils.deepExtend({}, position ? position : this.randomPoint()) as ICoordinates;
 
         if (options.type === Type.inline && particle) {
             particle.initialPosition = pos;

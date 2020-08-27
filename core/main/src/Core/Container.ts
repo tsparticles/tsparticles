@@ -238,6 +238,10 @@ export class Container {
      * Aligns particles number to the specified density in the current canvas size
      */
     public densityAutoParticles(): void {
+        if (!this.options.particles.number.density.enable) {
+            return;
+        }
+
         this.initDensityFactor();
 
         const numberOptions = this.options.particles.number;
@@ -393,8 +397,8 @@ export class Container {
             }
         }
 
+        this.canvas.windowResize();
         this.particles.init();
-        this.densityAutoParticles();
     }
 
     private initDensityFactor(): void {
