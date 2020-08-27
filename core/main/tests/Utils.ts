@@ -1,5 +1,5 @@
 import { expect } from "chai";
-import { Utils } from "../src/Utils";
+import { NumberUtils, Utils } from "../src/Utils";
 
 describe("Utils", () => {
     describe("clamp", () => {
@@ -8,33 +8,33 @@ describe("Utils", () => {
 
         it("should return minimum when number is less than minimum", () => {
             const num = -5;
-            const clampedNumber = Utils.clamp(num, min, max);
+            const clampedNumber = NumberUtils.clamp(num, min, max);
 
             expect(clampedNumber).to.equal(min);
         });
 
         it("should return minimum when number equals minimum", () => {
-            const clampedNumber = Utils.clamp(min, min, max);
+            const clampedNumber = NumberUtils.clamp(min, min, max);
 
             expect(clampedNumber).to.equal(min);
         });
 
         it("should return number when number is between minimum and maximum", () => {
             const num = 5;
-            const clampedNumber = Utils.clamp(num, min, max);
+            const clampedNumber = NumberUtils.clamp(num, min, max);
 
             expect(clampedNumber).to.equal(num);
         });
 
         it("should return maximum when number equals maximum", () => {
-            const clampedNumber = Utils.clamp(max, min, max);
+            const clampedNumber = NumberUtils.clamp(max, min, max);
 
             expect(clampedNumber).to.equal(max);
         });
 
         it("should return maximum when number is greater than maximum", () => {
             const num = 15;
-            const clampedNumber = Utils.clamp(num, min, max);
+            const clampedNumber = NumberUtils.clamp(num, min, max);
 
             expect(clampedNumber).to.equal(max);
         });
@@ -95,21 +95,23 @@ describe("Utils", () => {
             const weight2 = weight1;
             const mean = Math.floor((comp1 + comp2) / 2);
 
-            expect(Utils.mix(comp1, comp2, weight1, weight2)).to.be.equal(mean);
+            expect(NumberUtils.mix(comp1, comp2, weight1, weight2)).to.be.equal(mean);
         });
 
         it("should return comp1 when weight2 is 0 (and weight1 > 0)", () => {
             const weight1 = Math.floor(Math.random() * (size - 1) + 1);
             const weight2 = 0;
 
-            expect(Utils.mix(comp1, comp2, weight1, weight2), `weight 1: ${weight1}`).to.be.equal(Math.floor(comp1));
+            expect(NumberUtils.mix(comp1, comp2, weight1, weight2), `weight 1: ${weight1}`).to.be.equal(
+                Math.floor(comp1)
+            );
         });
 
         it("should return comp2 when weight1 is 0 (and weight2 > 0)", () => {
             const weight1 = 0;
             const weight2 = Math.floor(Math.random() * (size - 1) + 1);
 
-            expect(Utils.mix(comp1, comp2, weight1, weight2)).to.be.equal(Math.floor(comp2));
+            expect(NumberUtils.mix(comp1, comp2, weight1, weight2)).to.be.equal(Math.floor(comp2));
         });
 
         it("should return the expected weighted-average when weights differ", () => {
@@ -118,7 +120,7 @@ describe("Utils", () => {
             const weight1 = 2;
             const weight2 = 1;
 
-            expect(Utils.mix(comp1, comp2, weight1, weight2)).to.be.equal(7);
+            expect(NumberUtils.mix(comp1, comp2, weight1, weight2)).to.be.equal(7);
         });
 
         it("should handle negative components", () => {
@@ -127,7 +129,7 @@ describe("Utils", () => {
             const weight1 = 2;
             const weight2 = 1;
 
-            expect(Utils.mix(comp1, comp2, weight1, weight2)).to.be.equal(-7);
+            expect(NumberUtils.mix(comp1, comp2, weight1, weight2)).to.be.equal(-7);
         });
     });
 
@@ -192,7 +194,7 @@ describe("Utils", () => {
         it("should generate a random number in the specified range, range in positive reals", () => {
             const min = 1;
             const max = 10;
-            const randomNumber = Utils.randomInRange(min, max);
+            const randomNumber = NumberUtils.randomInRange(min, max);
 
             expect(randomNumber).to.be.within(min, max);
         });
@@ -200,7 +202,7 @@ describe("Utils", () => {
         it("should generate a random number in the specified range, range in negative reals", () => {
             const min = -10;
             const max = -1;
-            const randomNumber = Utils.randomInRange(min, max);
+            const randomNumber = NumberUtils.randomInRange(min, max);
 
             expect(randomNumber).to.be.within(min, max);
         });
@@ -208,7 +210,7 @@ describe("Utils", () => {
         it("should generate a random number in the specified range, range crossing negative and positive reals", () => {
             const min = -10;
             const max = 10;
-            const randomNumber = Utils.randomInRange(min, max);
+            const randomNumber = NumberUtils.randomInRange(min, max);
 
             expect(randomNumber).to.be.within(min, max);
         });
@@ -219,35 +221,35 @@ describe("Utils", () => {
         const precision = 1e-10;
 
         it("should return 0 whenever points are identical", () => {
-            expect(Utils.getDistance(point, point)).to.be.closeTo(0, precision);
+            expect(NumberUtils.getDistance(point, point)).to.be.closeTo(0, precision);
         });
 
         it("should calculate correct distance when both points are in first quadrant", () => {
             const pointA = point;
             const pointB = { x: 2, y: 2 };
 
-            expect(Utils.getDistance(pointA, pointB)).to.be.closeTo(Math.SQRT2, precision);
+            expect(NumberUtils.getDistance(pointA, pointB)).to.be.closeTo(Math.SQRT2, precision);
         });
 
         it("should calculate correct distance when one point is in first quadrant and one is in second quadrant", () => {
             const pointA = point;
             const pointB = { x: -1, y: 1 };
 
-            expect(Utils.getDistance(pointA, pointB)).to.be.closeTo(2, precision);
+            expect(NumberUtils.getDistance(pointA, pointB)).to.be.closeTo(2, precision);
         });
 
         it("should calculate correct distance when one point is in first quadrant and one is in third quadrant", () => {
             const pointA = point;
             const pointB = { x: -1, y: -1 };
 
-            expect(Utils.getDistance(pointA, pointB)).to.be.closeTo(2 * Math.SQRT2, precision);
+            expect(NumberUtils.getDistance(pointA, pointB)).to.be.closeTo(2 * Math.SQRT2, precision);
         });
 
         it("should return the same distance regardless of the order of the points", () => {
             const pointA = point;
             const pointB = { x: -1, y: -1 };
 
-            expect(Utils.getDistance(pointA, pointB)).to.equal(Utils.getDistance(pointB, pointA));
+            expect(NumberUtils.getDistance(pointA, pointB)).to.equal(NumberUtils.getDistance(pointB, pointA));
         });
     });
 

@@ -3,7 +3,8 @@ import { Particle } from "../src/Core/Particle";
 import { TestContainer } from "./Fixture/TestContainer";
 import { TestParticle } from "./Fixture/TestParticle";
 import { TestSpatialGrid } from "./Fixture/TestSpatialGrid";
-import { Utils } from "../src/Utils";
+import { NumberUtils } from "../src/Utils";
+
 const Window = require("window");
 
 describe("SpatialGrid", () => {
@@ -28,8 +29,8 @@ describe("SpatialGrid", () => {
         it("should return particles 1, 2, and 3 when position is random in top left corner grid", () => {
             const extent = topLeftCellExtent;
             const position = {
-                x: Utils.randomInRange(extent.xmin, extent.xmax),
-                y: Utils.randomInRange(extent.ymin, extent.ymax),
+                x: NumberUtils.randomInRange(extent.xmin, extent.xmax),
+                y: NumberUtils.randomInRange(extent.ymin, extent.ymax),
             };
             const particles = spatialGrid.queryInCell(position);
             const positions = TestParticle.sortedPositions(particles);
@@ -75,8 +76,8 @@ describe("SpatialGrid", () => {
         it("should return particle 4 when position is random in same grid as particle 4", () => {
             const extent = particle4CellExtent;
             const position = {
-                x: Utils.randomInRange(extent.xmin, extent.xmax),
-                y: Utils.randomInRange(extent.ymin, extent.ymax),
+                x: NumberUtils.randomInRange(extent.xmin, extent.xmax),
+                y: NumberUtils.randomInRange(extent.ymin, extent.ymax),
             };
             const particles = spatialGrid.queryInCell(position);
             const positions = TestParticle.sortedPositions(particles);
