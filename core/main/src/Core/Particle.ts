@@ -514,7 +514,7 @@ export class Particle implements IParticle {
             return;
         }
 
-        if (image?.svgData !== undefined && imageData.replaceColor && color) {
+        if (image.svgData !== undefined && imageData.replaceColor && color) {
             const svgColoredData = ColorUtils.replaceColorSvg(image, color, this.opacity.value);
 
             /* prepare to create img with colored svg */
