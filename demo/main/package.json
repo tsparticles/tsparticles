@@ -24,9 +24,9 @@
     "build:style": "npx stylus ./public/stylesheets/main.styl"
   },
   "devDependencies": {
-    "@fortawesome/fontawesome-free": "^5.13.1",
-    "@typescript-eslint/eslint-plugin": "^3.7.0",
-    "@typescript-eslint/parser": "^3.6.1",
+    "@fortawesome/fontawesome-free": "^5.14.0",
+    "@typescript-eslint/eslint-plugin": "^3.10.1",
+    "@typescript-eslint/parser": "^3.10.1",
     "bootstrap": "^4.5.2",
     "eslint": "^7.7.0",
     "eslint-config-prettier": "^6.11.0",
@@ -35,14 +35,12 @@
     "jquery": "^3.5.1",
     "jsoneditor": "^9.0.4",
     "popper.js": "^1.16.1",
-    "prettier": "^2.0.5",
+    "prettier": "^2.1.1",
     "pug": "^3.0.0",
     "pug-cli": "^1.0.0-alpha6",
     "stylus": "^0.54.8",
-    "three": "^0.119.0",
-    "tsparticles": "^1.18.0-alpha.14"
-  },
-  "dependencies": {
+    "three": "^0.120.0",
+    "tsparticles": "^1.18.0-alpha.14",
     "tsparticles-preset-basic": "^1.3.0-alpha.14"
   }
 }

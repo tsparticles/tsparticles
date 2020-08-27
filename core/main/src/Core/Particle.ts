@@ -53,7 +53,7 @@ export class Particle implements IParticle {
     public readonly noiseDelay;
     public readonly updater;
     public readonly infecter;
-    private readonly mover;
+    public readonly mover;
     public readonly strokeWidth;
     public readonly particlesOptions;
 

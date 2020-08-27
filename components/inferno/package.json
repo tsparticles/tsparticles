@@ -60,7 +60,7 @@
 		"tsparticles": "^1.18.0-alpha.14"
 	},
 	"peerDependencies": {
-		"inferno": "^7.0.0"
+		"inferno": "^7"
 	},
 	"devDependencies": {
 		"@babel/core": "^7.11.4",

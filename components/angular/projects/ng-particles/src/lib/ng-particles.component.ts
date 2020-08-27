@@ -10,14 +10,11 @@ import { Container } from 'tsparticles/dist/Core/Container';
     styles: []
 })
 export class NgParticlesComponent implements AfterViewInit {
-    constructor() {
-    }
-
     @Input() options: IParticlesParams;
     @Input() id: string;
     @Output() particlesLoaded: EventEmitter<Container> = new EventEmitter<Container>();
 
-    ngAfterViewInit(): void {
+    public ngAfterViewInit(): void {
         tsParticles.load(this.id, this.options).then(container => {
             this.particlesLoaded.emit(container);
         });

@@ -4,12 +4,12 @@ import type { IOptions } from "tsparticles/dist/Options/Interfaces/IOptions";
 import { Container } from "tsparticles/dist/Core/Container";
 import type { RecursivePartial } from "tsparticles/dist/Types/RecursivePartial";
 import { tsParticles } from "tsparticles";
-import type { ParticlesProps } from "./ParticlesProps";
-import type { ParticlesState } from "./ParticlesState";
+import type { IParticlesProps } from "./IParticlesProps";
+import type { IParticlesState } from "./IParticlesState";
 import { MutableRefObject } from "react";
 
-export default class Particles extends Component<ParticlesProps, ParticlesState> {
-    public static defaultProps: ParticlesProps = {
+export default class Particles extends Component<IParticlesProps, IParticlesState> {
+    public static defaultProps: IParticlesProps = {
         width: "100%",
         height: "100%",
         options: {},
@@ -17,7 +17,7 @@ export default class Particles extends Component<ParticlesProps, ParticlesState>
         id: "tsparticles",
     };
 
-    constructor(props: ParticlesProps) {
+    constructor(props: IParticlesProps) {
         super(props);
         this.state = {
             canvas: undefined,
@@ -60,7 +60,7 @@ export default class Particles extends Component<ParticlesProps, ParticlesState>
         );
     }
 
-    public shouldComponentUpdate(nextProps: Readonly<ParticlesProps>): boolean {
+    public shouldComponentUpdate(nextProps: Readonly<IParticlesProps>): boolean {
         return !this.state.library || !isEqual(nextProps, this.props);
     }
 
@@ -119,7 +119,7 @@ export default class Particles extends Component<ParticlesProps, ParticlesState>
         return container;
     }
 
-    private refresh(props: Readonly<ParticlesProps>): void {
+    private refresh(props: Readonly<IParticlesProps>): void {
         const { canvas } = this.state;
 
         if (!canvas) {
