@@ -229,12 +229,10 @@ export class CanvasUtils {
         context.translate(pos.x, pos.y);
         context.beginPath();
 
-        if (particle.angle !== 0) {
-            if (particle.particlesOptions.rotate.path) {
-                context.rotate(particle.angle + particle.pathAngle);
-            } else {
-                context.rotate(particle.angle);
-            }
+        const angle = particle.angle + (particle.particlesOptions.rotate.path ? particle.pathAngle : 0);
+
+        if (angle !== 0) {
+            context.rotate(angle);
         }
 
         if (backgroundMask) {
