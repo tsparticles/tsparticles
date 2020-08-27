@@ -4,6 +4,7 @@ import type { ITrail } from "../ITrail";
 import type { INoise } from "../Noise/INoise";
 import type { IMoveAngle } from "./IMoveAngle";
 import type { IMoveGravity } from "./IMoveGravity";
+import type { IOutModes } from "./IOutModes";
 
 export interface IMove {
     /**
@@ -17,9 +18,14 @@ export interface IMove {
     collisions: boolean;
 
     /**
-     * @deprecated use the new outMode instead
+     * @deprecated use the new outModes instead
      */
     out_mode: OutMode | keyof typeof OutMode | OutModeAlt;
+
+    /**
+     * @deprecated use the new outModes instead
+     */
+    outMode: OutMode | keyof typeof OutMode | OutModeAlt;
 
     angle: number | IMoveAngle;
     attract: IAttract;
@@ -27,7 +33,7 @@ export interface IMove {
     enable: boolean;
     gravity: IMoveGravity;
     noise: INoise;
-    outMode: OutMode | keyof typeof OutMode | OutModeAlt;
+    outModes: IOutModes | OutMode | keyof typeof OutMode | OutModeAlt;
     random: boolean;
     speed: number;
     straight: boolean;

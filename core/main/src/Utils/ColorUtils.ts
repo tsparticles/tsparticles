@@ -24,7 +24,7 @@ export class ColorUtils {
 
         if (typeof color.value === "string") {
             if (color.value === Constants.randomColorValue) {
-                res = this.getRandomRgbColor();
+                res = ColorUtils.getRandomRgbColor();
             } else {
                 res = ColorUtils.stringToRgb(color.value);
             }
@@ -57,9 +57,9 @@ export class ColorUtils {
      * @param color the input color to convert in [[IHsl]] object
      */
     public static colorToHsl(color: string | IColor | undefined): IHsl | undefined {
-        const rgb = this.colorToRgb(color);
+        const rgb = ColorUtils.colorToRgb(color);
 
-        return rgb !== undefined ? this.rgbToHsl(rgb) : rgb;
+        return rgb !== undefined ? ColorUtils.rgbToHsl(rgb) : rgb;
     }
 
     public static rgbToHsl(color: IRgb): IHsl {
@@ -193,11 +193,11 @@ export class ColorUtils {
         let rgb2 = color2 as IRgb;
 
         if (rgb1.r === undefined) {
-            rgb1 = this.hslToRgb(color1 as IHsl);
+            rgb1 = ColorUtils.hslToRgb(color1 as IHsl);
         }
 
         if (rgb2.r === undefined) {
-            rgb2 = this.hslToRgb(color2 as IHsl);
+            rgb2 = ColorUtils.hslToRgb(color2 as IHsl);
         }
 
         return {

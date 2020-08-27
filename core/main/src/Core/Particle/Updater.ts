@@ -1,8 +1,16 @@
 import type { Container } from "../Container";
 import type { Particle } from "../Particle";
 import { Utils } from "../../Utils";
-import { DestroyType, OpacityAnimationStatus, OutMode, RotateDirection, SizeAnimationStatus } from "../../Enums";
+import {
+    DestroyType,
+    OpacityAnimationStatus,
+    OutMode,
+    OutModeAlt,
+    RotateDirection,
+    SizeAnimationStatus,
+} from "../../Enums";
 import type { IDelta } from "../Interfaces/IDelta";
+import { OutModeDirection } from "../../Enums/Directions/OutModeDirection";
 
 /**
  * Particle updater, it manages movement
@@ -37,7 +45,7 @@ export class Updater {
         this.updateStrokeColor(delta);
 
         /* out of canvas modes */
-        this.updateOutMode(delta);
+        this.updateOutModes(delta);
     }
 
     private updateLife(delta: IDelta): void {
@@ -242,7 +250,63 @@ export class Updater {
         }
     }
 
-    private fixOutOfCanvasPosition(): void {
+    private updateOutModes(delta: IDelta): void {
+        const outModes = this.particle.particlesOptions.move.outModes;
+
+        this.updateOutMode(delta, outModes.bottom ?? outModes.default, OutModeDirection.bottom);
+        this.updateOutMode(delta, outModes.left ?? outModes.default, OutModeDirection.left);
+        this.updateOutMode(delta, outModes.right ?? outModes.default, OutModeDirection.right);
+        this.updateOutMode(delta, outModes.top ?? outModes.default, OutModeDirection.top);
+    }
+
+    private updateOutMode(
+        delta: IDelta,
+        outMode: OutMode | keyof typeof OutMode | OutModeAlt,
+        direction: OutModeDirection
+    ) {
+        const container = this.container;
+        const particle = this.particle;
+        const gravityOptions = particle.particlesOptions.move.gravity;
+
+        switch (outMode) {
+            case OutMode.bounce:
+            case OutMode.bounceVertical:
+            case OutMode.bounceHorizontal:
+            case "bounceVertical":
+            case "bounceHorizontal":
+                this.updateBounce(delta, direction);
+
+                break;
+            case OutMode.destroy:
+                if (!Utils.isPointInside(particle.position, container.canvas.size, particle.size.value, direction)) {
+                    container.particles.remove(particle);
+                }
+                break;
+            case OutMode.out:
+                if (!Utils.isPointInside(particle.position, container.canvas.size, particle.size.value, direction)) {
+                    this.fixOutOfCanvasPosition(direction);
+                }
+                break;
+            case OutMode.none:
+                if (!gravityOptions.enable) {
+                    container.particles.remove(particle);
+                } else {
+                    const position = particle.position;
+
+                    if (
+                        (gravityOptions.acceleration >= 0 &&
+                            position.y > container.canvas.size.height &&
+                            direction === "bottom") ||
+                        (gravityOptions.acceleration < 0 && position.y < 0 && direction === "top")
+                    ) {
+                        container.particles.remove(particle);
+                    }
+                }
+                break;
+        }
+    }
+
+    private fixOutOfCanvasPosition(direction: OutModeDirection): void {
         const container = this.container;
         const particle = this.particle;
         const wrap = particle.particlesOptions.move.warp;
@@ -257,13 +321,13 @@ export class Updater {
         const sizeValue = particle.size.value;
         const nextBounds = Utils.calculateBounds(particle.position, sizeValue);
 
-        if (nextBounds.left > canvasSize.width - particle.offset.x) {
+        if (direction === OutModeDirection.right && nextBounds.left > canvasSize.width - particle.offset.x) {
             particle.position.x = newPos.left;
 
             if (!wrap) {
                 particle.position.y = Math.random() * canvasSize.height;
             }
-        } else if (nextBounds.right < -particle.offset.x) {
+        } else if (direction === OutModeDirection.left && nextBounds.right < -particle.offset.x) {
             particle.position.x = newPos.right;
 
             if (!wrap) {
@@ -271,13 +335,13 @@ export class Updater {
             }
         }
 
-        if (nextBounds.top > canvasSize.height - particle.offset.y) {
+        if (direction === OutModeDirection.bottom && nextBounds.top > canvasSize.height - particle.offset.y) {
             if (!wrap) {
                 particle.position.x = Math.random() * canvasSize.width;
             }
 
             particle.position.y = newPos.top;
-        } else if (nextBounds.bottom < -particle.offset.y) {
+        } else if (direction === OutModeDirection.top && nextBounds.bottom < -particle.offset.y) {
             if (!wrap) {
                 particle.position.x = Math.random() * canvasSize.width;
             }
@@ -286,39 +350,14 @@ export class Updater {
         }
     }
 
-    private updateOutMode(delta: IDelta): void {
-        const container = this.container;
-        const particle = this.particle;
-
-        switch (particle.particlesOptions.move.outMode) {
-            case OutMode.bounce:
-            case OutMode.bounceVertical:
-            case OutMode.bounceHorizontal:
-                this.updateBounce(delta);
-
-                break;
-            case OutMode.destroy:
-                if (!Utils.isPointInside(particle.position, container.canvas.size, particle.size.value)) {
-                    particle.destroy();
-                    container.particles.remove(particle);
-                    return;
-                }
-                break;
-            case OutMode.out:
-                if (!Utils.isPointInside(particle.position, container.canvas.size, particle.size.value)) {
-                    this.fixOutOfCanvasPosition();
-                }
-        }
-    }
-
-    private updateBounce(delta: IDelta): void {
+    private updateBounce(delta: IDelta, direction: OutModeDirection): void {
         const container = this.container;
         const particle = this.particle;
         let handled = false;
 
         for (const [, plugin] of container.plugins) {
             if (plugin.particleBounce !== undefined) {
-                handled = plugin.particleBounce(particle, delta);
+                handled = plugin.particleBounce(particle, delta, direction);
             }
 
             if (handled) {
@@ -337,45 +376,63 @@ export class Updater {
             bounds = Utils.calculateBounds(pos, size),
             canvasSize = container.canvas.size;
 
-        if (outMode === OutMode.bounce || outMode === OutMode.bounceHorizontal) {
+        if (outMode === OutMode.bounce || outMode === OutMode.bounceHorizontal || outMode === "bounceHorizontal") {
             const velocity = particle.velocity.horizontal;
+            let bounced = false;
 
-            if ((bounds.right >= canvasSize.width && velocity > 0) || (bounds.left <= 0 && velocity < 0)) {
+            if (
+                (direction === OutModeDirection.right && bounds.right >= canvasSize.width && velocity > 0) ||
+                (direction === OutModeDirection.left && bounds.left <= 0 && velocity < 0)
+            ) {
                 const factor = particle.particlesOptions.bounce.horizontal;
                 const newVelocity = factor.random.enable
                     ? Utils.randomInRange(factor.value, factor.random.minimumValue)
                     : factor.value;
 
                 particle.velocity.horizontal *= -newVelocity;
+
+                bounced = true;
             }
 
-            const minPos = offset.x + size;
+            if (bounced) {
+                const minPos = offset.x + size;
 
-            if (bounds.right >= canvasSize.width) {
-                particle.position.x = canvasSize.width - minPos;
-            } else if (bounds.left <= 0) {
-                particle.position.x = minPos;
+                if (bounds.right >= canvasSize.width) {
+                    particle.position.x = canvasSize.width - minPos;
+                } else if (bounds.left <= 0) {
+                    particle.position.x = minPos;
+                }
             }
         }
 
-        if (outMode === OutMode.bounce || outMode === OutMode.bounceVertical) {
+        if (outMode === OutMode.bounce || outMode === OutMode.bounceVertical || outMode === "bounceVertical") {
             const velocity = particle.velocity.vertical;
+            let bounced = false;
 
-            if ((bounds.bottom >= container.canvas.size.height && velocity > 0) || (bounds.top <= 0 && velocity < 0)) {
+            if (
+                (direction === OutModeDirection.bottom &&
+                    bounds.bottom >= container.canvas.size.height &&
+                    velocity > 0) ||
+                (direction === OutModeDirection.top && bounds.top <= 0 && velocity < 0)
+            ) {
                 const factor = particle.particlesOptions.bounce.vertical;
                 const newVelocity = factor.random.enable
                     ? Utils.randomInRange(factor.value, factor.random.minimumValue)
                     : factor.value;
 
                 particle.velocity.vertical *= -newVelocity;
+
+                bounced = true;
             }
 
-            const minPos = offset.y + size;
+            if (bounced) {
+                const minPos = offset.y + size;
 
-            if (bounds.bottom >= canvasSize.height) {
-                particle.position.y = canvasSize.height - minPos;
-            } else if (bounds.top <= 0) {
-                particle.position.y = minPos;
+                if (bounds.bottom >= canvasSize.height) {
+                    particle.position.y = canvasSize.height - minPos;
+                } else if (bounds.top <= 0) {
+                    particle.position.y = minPos;
+                }
             }
         }
     }

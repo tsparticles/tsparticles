@@ -7,6 +7,7 @@ import { Noise } from "../Noise/Noise";
 import type { IOptionLoader } from "../../../Interfaces/IOptionLoader";
 import { MoveAngle } from "./MoveAngle";
 import { MoveGravity } from "./MoveGravity";
+import { OutModes } from "./OutModes";
 
 export class Move implements IMove, IOptionLoader<IMove> {
     /**
@@ -56,13 +57,30 @@ export class Move implements IMove, IOptionLoader<IMove> {
         this.outMode = value;
     }
 
+    /**
+     *
+     * @deprecated this property is obsolete, please use the new outMode
+     */
+    public get outMode(): OutMode | keyof typeof OutMode | OutModeAlt {
+        return this.outModes.default;
+    }
+
+    /**
+     *
+     * @deprecated this property is obsolete, please use the new outMode
+     * @param value
+     */
+    public set outMode(value: OutMode | keyof typeof OutMode | OutModeAlt) {
+        this.outModes.default = value;
+    }
+
     public angle;
     public attract;
     public direction: MoveDirection | keyof typeof MoveDirection | MoveDirectionAlt;
     public enable;
     public gravity;
     public noise;
-    public outMode: OutMode | keyof typeof OutMode | OutModeAlt;
+    public outModes: OutModes;
     public random;
     public speed;
     public straight;
@@ -77,7 +95,7 @@ export class Move implements IMove, IOptionLoader<IMove> {
         this.enable = false;
         this.gravity = new MoveGravity();
         this.noise = new Noise();
-        this.outMode = OutMode.out;
+        this.outModes = new OutModes();
         this.random = false;
         this.speed = 2;
         this.straight = false;
@@ -114,8 +132,14 @@ export class Move implements IMove, IOptionLoader<IMove> {
 
         const outMode = data.outMode ?? data.out_mode;
 
-        if (outMode !== undefined) {
-            this.outMode = outMode;
+        if (data.outModes !== undefined || outMode !== undefined) {
+            if (typeof data.outModes === "string" || (data.outModes === undefined && outMode !== undefined)) {
+                this.outModes.load({
+                    default: data.outModes ?? outMode,
+                });
+            } else {
+                this.outModes.load(data.outModes);
+            }
         }
 
         if (data.random !== undefined) {

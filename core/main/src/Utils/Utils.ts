@@ -8,6 +8,7 @@ import type { IParticle } from "../Core/Interfaces/IParticle";
 import type { SingleOrMultiple } from "../Types";
 import { DivEvent } from "../Options/Classes/Interactivity/Events/DivEvent";
 import type { IModeDiv } from "../Options/Interfaces/Interactivity/Modes/IModeDiv";
+import { OutModeDirection } from "../Enums/Directions/OutModeDirection";
 
 type CSSOMString = string;
 type FontFaceLoadStatus = "unloaded" | "loading" | "loaded" | "error";
@@ -209,12 +210,35 @@ export class Utils {
         return Math.random() * (max - min) + min;
     }
 
-    public static isPointInside(point: ICoordinates, size: IDimension, radius?: number): boolean {
-        return Utils.areBoundsInside(Utils.calculateBounds(point, radius ?? 0), size);
+    public static isPointInside(
+        point: ICoordinates,
+        size: IDimension,
+        radius?: number,
+        direction?: OutModeDirection
+    ): boolean {
+        return Utils.areBoundsInside(Utils.calculateBounds(point, radius ?? 0), size, direction);
     }
 
-    public static areBoundsInside(bounds: IBounds, size: IDimension): boolean {
-        return bounds.left < size.width && bounds.right > 0 && bounds.top < size.height && bounds.bottom > 0;
+    public static areBoundsInside(bounds: IBounds, size: IDimension, direction?: OutModeDirection): boolean {
+        let inside = true;
+
+        if (!direction || direction === OutModeDirection.bottom) {
+            inside = bounds.top < size.height;
+        }
+
+        if (inside && (!direction || direction === OutModeDirection.left)) {
+            inside = bounds.right > 0;
+        }
+
+        if (inside && (!direction || direction === OutModeDirection.right)) {
+            inside = bounds.left < size.width;
+        }
+
+        if (inside && (!direction || direction === OutModeDirection.top)) {
+            inside = bounds.bottom > 0;
+        }
+
+        return inside;
     }
 
     public static calculateBounds(point: ICoordinates, radius: number): IBounds {
