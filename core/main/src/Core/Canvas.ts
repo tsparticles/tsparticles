@@ -5,7 +5,7 @@ import type { ICoordinates } from "./Interfaces/ICoordinates";
 import type { IParticle } from "./Interfaces/IParticle";
 import type { IContainerPlugin } from "./Interfaces/IContainerPlugin";
 import type { ILink, ILinkTriangle } from "./Interfaces/ILink";
-import { CanvasUtils, ColorUtils, Constants, Utils } from "../Utils";
+import { CanvasUtils, ColorUtils, Constants, NumberUtils, Utils } from "../Utils";
 import type { Particle } from "./Particle";
 import type { IDelta } from "./Interfaces/IDelta";
 import type { IRgba } from "./Interfaces/IRgba";
@@ -367,7 +367,7 @@ export class Canvas {
         for (const link of lineLinks) {
             const source = link.edges[0];
             const destination = link.edges[1];
-            const distance = Utils.getDistance(source.getPosition(), destination.getPosition());
+            const distance = NumberUtils.getDistance(source.getPosition(), destination.getPosition());
             const optDistance =
                 source.linksDistance ?? destination.linksDistance ?? this.container.retina.linksDistance;
 

@@ -7,9 +7,9 @@ import type { IParticle } from "../Core/Interfaces/IParticle";
 import type { IShadow } from "../Options/Interfaces/Particles/IShadow";
 import type { Container } from "../Core/Container";
 import type { IContainerPlugin } from "../Core/Interfaces/IContainerPlugin";
-import { Utils } from "./Utils";
 import type { IDelta } from "../Core/Interfaces/IDelta";
 import { Particle } from "../Core/Particle";
+import { NumberUtils } from "./NumberUtils";
 
 export class CanvasUtils {
     public static paintBase(context: CanvasRenderingContext2D, dimension: IDimension, baseColor?: string): void {
@@ -41,7 +41,7 @@ export class CanvasUtils {
 
         let drawn = false;
 
-        if (Utils.getDistance(begin, end) <= maxDistance) {
+        if (NumberUtils.getDistance(begin, end) <= maxDistance) {
             CanvasUtils.drawLine(context, begin, end);
 
             drawn = true;
@@ -54,7 +54,7 @@ export class CanvasUtils {
                 y: end.y,
             };
 
-            const { dx, dy, distance } = Utils.getDistances(begin, endNE);
+            const { dx, dy, distance } = NumberUtils.getDistances(begin, endNE);
 
             if (distance <= maxDistance) {
                 const yi = begin.y - (dy / dx) * begin.x;
@@ -67,7 +67,7 @@ export class CanvasUtils {
                     y: end.y - canvasSize.height,
                 };
 
-                const { dx, dy, distance } = Utils.getDistances(begin, endSW);
+                const { dx, dy, distance } = NumberUtils.getDistances(begin, endSW);
 
                 if (distance <= maxDistance) {
                     const yi = begin.y - (dy / dx) * begin.x;
@@ -81,7 +81,7 @@ export class CanvasUtils {
                         y: end.y - canvasSize.height,
                     };
 
-                    const { dx, dy, distance } = Utils.getDistances(begin, endSE);
+                    const { dx, dy, distance } = NumberUtils.getDistances(begin, endSE);
 
                     if (distance <= maxDistance) {
                         const yi = begin.y - (dy / dx) * begin.x;

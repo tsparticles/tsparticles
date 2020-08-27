@@ -1,6 +1,6 @@
 import type { Container } from "../../Core/Container";
 import { ClickMode, DivMode, DivType, HoverMode } from "../../Enums";
-import { Circle, Constants, Range, Rectangle, Utils } from "../../Utils";
+import { Circle, Constants, NumberUtils, Range, Rectangle, Utils } from "../../Utils";
 import type { ICoordinates } from "../../Core/Interfaces/ICoordinates";
 import type { DivEvent } from "../../Options/Classes/Interactivity/Events/DivEvent";
 import type { IExternalInteractor } from "../../Core/Interfaces/IExternalInteractor";
@@ -115,14 +115,14 @@ export class Repulser implements IExternalInteractor {
         const query = container.particles.quadTree.query(area);
 
         for (const particle of query) {
-            const { dx, dy, distance } = Utils.getDistances(particle.position, position);
+            const { dx, dy, distance } = NumberUtils.getDistances(particle.position, position);
             const normVec = {
                 x: dx / distance,
                 y: dy / distance,
             };
 
             const velocity = (divRepulse?.speed ?? container.options.interactivity.modes.repulse.speed) * 100;
-            const repulseFactor = Utils.clamp((1 - Math.pow(distance / repulseRadius, 2)) * velocity, 0, 50);
+            const repulseFactor = NumberUtils.clamp((1 - Math.pow(distance / repulseRadius, 2)) * velocity, 0, 50);
 
             particle.position.x = particle.position.x + normVec.x * repulseFactor;
             particle.position.y = particle.position.y + normVec.y * repulseFactor;
@@ -158,7 +158,7 @@ export class Repulser implements IExternalInteractor {
             const query = container.particles.quadTree.query(range);
 
             for (const particle of query) {
-                const { dx, dy, distance } = Utils.getDistances(mouseClickPos, particle.position);
+                const { dx, dy, distance } = NumberUtils.getDistances(mouseClickPos, particle.position);
                 const d = distance * distance;
                 const velocity = container.options.interactivity.modes.repulse.speed;
                 const force = (-repulseRadius * velocity) / d;

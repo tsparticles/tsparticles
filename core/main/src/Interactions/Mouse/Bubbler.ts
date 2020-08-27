@@ -1,6 +1,6 @@
 import type { Container } from "../../Core/Container";
 import type { IBubblerProcessParam } from "../../Core/Interfaces/IBubblerProcessParam";
-import { Circle, ColorUtils, Constants, Rectangle, Utils } from "../../Utils";
+import { Circle, ColorUtils, Constants, NumberUtils, Rectangle, Utils } from "../../Utils";
 import { ClickMode, DivMode, DivType, HoverMode, ProcessBubbleType } from "../../Enums";
 import { Particle } from "../../Core/Particle";
 import { DivEvent } from "../../Options/Classes/Interactivity/Events/DivEvent";
@@ -22,11 +22,11 @@ export class Bubbler implements IExternalInteractor {
         if (modeValue > optionsValue) {
             const size = particleValue + (modeValue - optionsValue) * ratio;
 
-            return Utils.clamp(size, particleValue, modeValue);
+            return NumberUtils.clamp(size, particleValue, modeValue);
         } else if (modeValue < optionsValue) {
             const size = particleValue - (optionsValue - modeValue) * ratio;
 
-            return Utils.clamp(size, modeValue, particleValue);
+            return NumberUtils.clamp(size, modeValue, particleValue);
         }
     }
 
@@ -215,7 +215,7 @@ export class Bubbler implements IExternalInteractor {
             particle.bubble.inRange = true;
 
             const pos = particle.getPosition();
-            const distMouse = Utils.getDistance(pos, mouseClickPos);
+            const distMouse = NumberUtils.getDistance(pos, mouseClickPos);
             const timeSpent = (new Date().getTime() - (container.interactivity.mouse.clickTime || 0)) / 1000;
 
             if (container.bubble.clicking) {
@@ -288,7 +288,7 @@ export class Bubbler implements IExternalInteractor {
             particle.bubble.inRange = true;
 
             const pos = particle.getPosition();
-            const distance = Utils.getDistance(pos, mousePos);
+            const distance = NumberUtils.getDistance(pos, mousePos);
             const ratio = 1 - distance / container.retina.bubbleModeDistance;
 
             /* mousemove - check ratio */

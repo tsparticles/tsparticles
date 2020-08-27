@@ -2,7 +2,7 @@ import { Container } from "../../Core/Container";
 import type { ICoordinates } from "../../Core/Interfaces/ICoordinates";
 import { InlineArrangement, Type } from "./Enums";
 import { Particle } from "../../Core/Particle";
-import { ColorUtils, Constants, Utils } from "../../Utils";
+import { ColorUtils, Constants, NumberUtils, Utils } from "../../Utils";
 import type { IDimension } from "../../Core/Interfaces/IDimension";
 import type { ISvgPath } from "./Interfaces/ISvgPath";
 import type { IContainerPlugin } from "../../Core/Interfaces/IContainerPlugin";
@@ -270,7 +270,7 @@ export class PolygonMaskInstance implements IContainerPlugin {
                 return true;
             }
         } else if (options.enable && options.type === Type.inline && particle.initialPosition) {
-            const dist = Utils.getDistance(particle.initialPosition, particle.getPosition());
+            const dist = NumberUtils.getDistance(particle.initialPosition, particle.getPosition());
 
             if (dist > this.polygonMaskMoveRadius) {
                 PolygonMaskInstance.polygonBounce(particle);

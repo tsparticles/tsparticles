@@ -1,4 +1,4 @@
-import { Utils } from "../../Utils";
+import { NumberUtils, Utils } from "../../Utils";
 import type { Container } from "../Container";
 import type { Particle } from "../Particle";
 import { HoverMode } from "../../Enums";
@@ -94,9 +94,9 @@ export class Mover {
         const noise = container.noise.generate(particle);
 
         particle.velocity.horizontal += Math.cos(noise.angle) * noise.length;
-        particle.velocity.horizontal = Utils.clamp(particle.velocity.horizontal, -1, 1);
+        particle.velocity.horizontal = NumberUtils.clamp(particle.velocity.horizontal, -1, 1);
         particle.velocity.vertical += Math.sin(noise.angle) * noise.length;
-        particle.velocity.vertical = Utils.clamp(particle.velocity.vertical, -1, 1);
+        particle.velocity.vertical = NumberUtils.clamp(particle.velocity.vertical, -1, 1);
 
         particle.lastNoiseTime -= particle.noiseDelay;
     }
@@ -149,7 +149,7 @@ export class Mover {
         }
 
         const particlePos = this.particle.getPosition();
-        const dist = Utils.getDistance(mousePos, particlePos);
+        const dist = NumberUtils.getDistance(mousePos, particlePos);
         const radius = container.retina.slowModeRadius;
 
         if (dist > radius) {

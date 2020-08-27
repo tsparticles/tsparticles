@@ -1,6 +1,6 @@
 import type { Container } from "../../Core/Container";
 import { ClickMode, HoverMode } from "../../Enums";
-import { Circle, Constants, Range, Utils } from "../../Utils";
+import { Circle, Constants, Range, Utils, NumberUtils } from "../../Utils";
 import type { ICoordinates } from "../../Core/Interfaces/ICoordinates";
 import type { IExternalInteractor } from "../../Core/Interfaces/IExternalInteractor";
 
@@ -67,14 +67,14 @@ export class Attractor implements IExternalInteractor {
         const query = container.particles.quadTree.query(area);
 
         for (const particle of query) {
-            const { dx, dy, distance } = Utils.getDistances(particle.position, position);
+            const { dx, dy, distance } = NumberUtils.getDistances(particle.position, position);
             const normVec = {
                 x: dx / distance,
                 y: dy / distance,
             };
 
             const velocity = container.options.interactivity.modes.attract.speed;
-            const attractFactor = Utils.clamp((1 - Math.pow(distance / attractRadius, 2)) * velocity, 0, 50);
+            const attractFactor = NumberUtils.clamp((1 - Math.pow(distance / attractRadius, 2)) * velocity, 0, 50);
 
             particle.position.x = particle.position.x - normVec.x * attractFactor;
             particle.position.y = particle.position.y - normVec.y * attractFactor;

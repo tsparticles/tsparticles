@@ -1,10 +1,10 @@
-import { Utils } from "../../Utils";
 import { Particle } from "../../Core/Particle";
 import type { Container } from "../../Core/Container";
 import type { IParticle } from "../../Core/Interfaces/IParticle";
 import type { IVelocity } from "../../Core/Interfaces/IVelocity";
 import { CollisionMode } from "../../Enums";
 import type { IParticlesInteractor } from "../../Core/Interfaces/IParticlesInteractor";
+import { NumberUtils } from "../../Utils";
 
 export class Collider implements IParticlesInteractor {
     constructor(private readonly container: Container) {}
@@ -58,11 +58,11 @@ export class Collider implements IParticlesInteractor {
             const bounce1 = p1.particlesOptions.collisions.bounce;
             const bounce2 = p2.particlesOptions.collisions.bounce;
 
-            p1.velocity.horizontal = vFinal1.horizontal * Utils.getValue(bounce1.horizontal);
-            p1.velocity.vertical = vFinal1.vertical * Utils.getValue(bounce1.vertical);
+            p1.velocity.horizontal = vFinal1.horizontal * NumberUtils.getValue(bounce1.horizontal);
+            p1.velocity.vertical = vFinal1.vertical * NumberUtils.getValue(bounce1.vertical);
 
-            p2.velocity.horizontal = vFinal2.horizontal * Utils.getValue(bounce2.horizontal);
-            p2.velocity.vertical = vFinal2.vertical * Utils.getValue(bounce2.vertical);
+            p2.velocity.horizontal = vFinal2.horizontal * NumberUtils.getValue(bounce2.horizontal);
+            p2.velocity.vertical = vFinal2.vertical * NumberUtils.getValue(bounce2.vertical);
         }
     }
 
@@ -111,7 +111,7 @@ export class Collider implements IParticlesInteractor {
             }
 
             const pos2 = p2.getPosition();
-            const dist = Utils.getDistance(pos1, pos2);
+            const dist = NumberUtils.getDistance(pos1, pos2);
             const defaultSize = container.retina.sizeValue;
             const radius1 = Collider.getRadius(p1, defaultSize);
             const radius2 = Collider.getRadius(p2, defaultSize);
@@ -150,7 +150,7 @@ export class Collider implements IParticlesInteractor {
             p2.destroy();
         } else if (p1.size.value !== undefined && p2.size.value !== undefined) {
             if (p1.size.value >= p2.size.value) {
-                const factor = Utils.clamp(p1.size.value / p2.size.value, 0, p2.size.value) * fps;
+                const factor = NumberUtils.clamp(p1.size.value / p2.size.value, 0, p2.size.value) * fps;
 
                 p1.size.value += factor;
                 p2.size.value -= factor;
@@ -160,7 +160,7 @@ export class Collider implements IParticlesInteractor {
                     p2.destroy();
                 }
             } else {
-                const factor = Utils.clamp(p2.size.value / p1.size.value, 0, p1.size.value) * fps;
+                const factor = NumberUtils.clamp(p2.size.value / p1.size.value, 0, p1.size.value) * fps;
 
                 p1.size.value -= factor;
                 p2.size.value += factor;

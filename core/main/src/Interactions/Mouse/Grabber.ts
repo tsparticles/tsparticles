@@ -1,5 +1,5 @@
 import type { Container } from "../../Core/Container";
-import { Constants, Utils, ColorUtils } from "../../Utils";
+import { Constants, Utils, ColorUtils, NumberUtils } from "../../Utils";
 import { IRgb } from "../../Core/Interfaces/IRgb";
 import { HoverMode } from "../../Enums/Modes";
 import type { IExternalInteractor } from "../../Core/Interfaces/IExternalInteractor";
@@ -51,7 +51,7 @@ export class Grabber implements IExternalInteractor {
                    if the distance between them is under the config distance
                 */
                 const pos = particle.getPosition();
-                const distance = Utils.getDistance(pos, mousePos);
+                const distance = NumberUtils.getDistance(pos, mousePos);
 
                 if (distance <= container.retina.grabModeDistance) {
                     const grabLineOptions = interactivity.modes.grab.links;

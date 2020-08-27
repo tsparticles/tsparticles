@@ -1,6 +1,6 @@
 import type { Container } from "../Container";
 import type { Particle } from "../Particle";
-import { Utils } from "../../Utils";
+import { NumberUtils, Utils } from "../../Utils";
 import {
     DestroyType,
     OpacityAnimationStatus,
@@ -88,8 +88,8 @@ export class Updater {
 
                 const canvasSize = this.container.canvas.size;
 
-                particle.position.x = Utils.randomInRange(0, canvasSize.width);
-                particle.position.y = Utils.randomInRange(0, canvasSize.height);
+                particle.position.x = NumberUtils.randomInRange(0, canvasSize.width);
+                particle.position.y = NumberUtils.randomInRange(0, canvasSize.height);
 
                 particle.spawning = true;
                 particle.lifeDelayTime = 0;
@@ -97,8 +97,8 @@ export class Updater {
 
                 const lifeOptions = particle.particlesOptions.life;
 
-                particle.lifeDelay = Utils.getValue(lifeOptions.delay) * 1000;
-                particle.lifeDuration = Utils.getValue(lifeOptions.duration) * 1000;
+                particle.lifeDelay = NumberUtils.getValue(lifeOptions.delay) * 1000;
+                particle.lifeDuration = NumberUtils.getValue(lifeOptions.duration) * 1000;
             }
         }
     }
@@ -376,7 +376,7 @@ export class Updater {
                 (direction === OutModeDirection.right && bounds.right >= canvasSize.width && velocity > 0) ||
                 (direction === OutModeDirection.left && bounds.left <= 0 && velocity < 0)
             ) {
-                const newVelocity = Utils.getValue(particle.particlesOptions.bounce.horizontal);
+                const newVelocity = NumberUtils.getValue(particle.particlesOptions.bounce.horizontal);
 
                 particle.velocity.horizontal *= -newVelocity;
 
@@ -404,7 +404,7 @@ export class Updater {
                     velocity > 0) ||
                 (direction === OutModeDirection.top && bounds.top <= 0 && velocity < 0)
             ) {
-                const newVelocity = Utils.getValue(particle.particlesOptions.bounce.vertical);
+                const newVelocity = NumberUtils.getValue(particle.particlesOptions.bounce.vertical);
 
                 particle.velocity.vertical *= -newVelocity;
 

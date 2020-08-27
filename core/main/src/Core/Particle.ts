@@ -28,7 +28,7 @@ import { ImageDrawer } from "../ShapeDrawers/ImageDrawer";
 import type { IImageShape } from "../Options/Interfaces/Particles/Shape/IImageShape";
 import type { RecursivePartial } from "../Types";
 import type { IHsl } from "./Interfaces/IHsl";
-import { ColorUtils, Plugins, Utils } from "../Utils";
+import { ColorUtils, NumberUtils, Plugins, Utils } from "../Utils";
 import type { IShapeDrawer } from "./Interfaces/IShapeDrawer";
 import { Infecter } from "./Particle/Infecter";
 import type { IDelta } from "./Interfaces/IDelta";
@@ -149,7 +149,7 @@ export class Particle implements IParticle {
         this.fill = this.shapeData?.fill ?? this.fill;
         this.close = this.shapeData?.close ?? this.close;
         this.particlesOptions = particlesOptions;
-        this.noiseDelay = Utils.getValue(this.particlesOptions.move.noise.delay) * 1000;
+        this.noiseDelay = NumberUtils.getValue(this.particlesOptions.move.noise.delay) * 1000;
 
         container.retina.initParticle(this);
 
@@ -157,7 +157,7 @@ export class Particle implements IParticle {
 
         /* size */
         const sizeOptions = this.particlesOptions.size;
-        const sizeValue = Utils.getValue(sizeOptions) * container.retina.pixelRatio;
+        const sizeValue = NumberUtils.getValue(sizeOptions) * container.retina.pixelRatio;
 
         const randomSize = typeof sizeOptions.random === "boolean" ? sizeOptions.random : sizeOptions.random.enable;
 
@@ -204,7 +204,10 @@ export class Particle implements IParticle {
                         break;
 
                     case StartValueType.random:
-                        this.size.value = Utils.randomInRange(sizeAnimation.minimumValue * pxRatio, this.size.value);
+                        this.size.value = NumberUtils.randomInRange(
+                            sizeAnimation.minimumValue * pxRatio,
+                            this.size.value
+                        );
                         this.size.status = SizeAnimationStatus.increasing;
 
                         break;
@@ -262,7 +265,9 @@ export class Particle implements IParticle {
         const opacityValue = opacityOptions.value;
 
         this.opacity = {
-            value: randomOpacity.enable ? Utils.randomInRange(randomOpacity.minimumValue, opacityValue) : opacityValue,
+            value: randomOpacity.enable
+                ? NumberUtils.randomInRange(randomOpacity.minimumValue, opacityValue)
+                : opacityValue,
         };
 
         const opacityAnimation = opacityOptions.animation;
@@ -327,9 +332,9 @@ export class Particle implements IParticle {
 
         const lifeOptions = particlesOptions.life;
 
-        this.lifeDelay = Utils.getValue(lifeOptions.delay) * 1000;
+        this.lifeDelay = NumberUtils.getValue(lifeOptions.delay) * 1000;
         this.lifeDelayTime = 0;
-        this.lifeDuration = Utils.getValue(lifeOptions.duration) * 1000;
+        this.lifeDuration = NumberUtils.getValue(lifeOptions.duration) * 1000;
         this.lifeTime = 0;
         this.livesRemaining = particlesOptions.life.count;
         this.spawning = this.lifeDelay > 0;
@@ -374,7 +379,7 @@ export class Particle implements IParticle {
             }
 
             const pos2 = p2.getPosition();
-            const dist = Utils.getDistance(pos1, pos2);
+            const dist = NumberUtils.getDistance(pos1, pos2);
 
             if (dist <= this.size.value + p2.size.value) {
                 collisionFound = true;
@@ -468,7 +473,7 @@ export class Particle implements IParticle {
     }
 
     private calculateVelocity(): IVelocity {
-        const baseVelocity = Utils.getParticleBaseVelocity(this);
+        const baseVelocity = NumberUtils.getParticleBaseVelocity(this);
         const res = {
             horizontal: 0,
             vertical: 0,
@@ -495,12 +500,12 @@ export class Particle implements IParticle {
             res.vertical = baseVelocity.y;
 
             if (moveOptions.random) {
-                res.horizontal += Utils.randomInRange(range.left, range.right) / 2;
-                res.vertical += Utils.randomInRange(range.left, range.right) / 2;
+                res.horizontal += NumberUtils.randomInRange(range.left, range.right) / 2;
+                res.vertical += NumberUtils.randomInRange(range.left, range.right) / 2;
             }
         } else {
-            res.horizontal = baseVelocity.x + Utils.randomInRange(range.left, range.right) / 2;
-            res.vertical = baseVelocity.y + Utils.randomInRange(range.left, range.right) / 2;
+            res.horizontal = baseVelocity.x + NumberUtils.randomInRange(range.left, range.right) / 2;
+            res.vertical = baseVelocity.y + NumberUtils.randomInRange(range.left, range.right) / 2;
         }
 
         // const theta = 2.0 * Math.PI * Math.random();

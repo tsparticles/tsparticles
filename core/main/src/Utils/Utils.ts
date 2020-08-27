@@ -1,16 +1,13 @@
 import type { ICoordinates } from "../Core/Interfaces/ICoordinates";
-import { DivMode, MoveDirection } from "../Enums";
+import { DivMode } from "../Enums";
 import type { ICharacterShape } from "../Options/Interfaces/Particles/Shape/ICharacterShape";
 import type { IBounds } from "../Core/Interfaces/IBounds";
 import type { IDimension } from "../Core/Interfaces/IDimension";
 import type { IImage } from "../Core/Interfaces/IImage";
-import type { IParticle } from "../Core/Interfaces/IParticle";
 import type { SingleOrMultiple } from "../Types";
 import { DivEvent } from "../Options/Classes/Interactivity/Events/DivEvent";
 import type { IModeDiv } from "../Options/Interfaces/Interactivity/Modes/IModeDiv";
 import { OutModeDirection } from "../Enums/Directions/OutModeDirection";
-import { ValueWithRandom } from "../Options/Classes/ValueWithRandom";
-import { IValueWithRandom } from "../Options/Interfaces/IValueWithRandom";
 
 type CSSOMString = string;
 type FontFaceLoadStatus = "unloaded" | "loading" | "loaded" | "error";
@@ -45,9 +42,7 @@ declare global {
     interface Document {
         fonts: FontFaceSet;
     }
-}
 
-declare global {
     interface Window {
         customRequestAnimationFrame: (callback: FrameRequestCallback) => number;
         mozRequestAnimationFrame: (callback: FrameRequestCallback) => number;
@@ -97,96 +92,12 @@ export class Utils {
     }
 
     /**
-     * Clamps a number between a minimum and maximum value
-     * @param num the source number
-     * @param min the minimum value
-     * @param max the maximum value
-     */
-    public static clamp(num: number, min: number, max: number): number {
-        return Math.min(Math.max(num, min), max);
-    }
-
-    /**
      * Check if a value is equal to the destination, if same type, or is in the provided array
      * @param value the value to check
      * @param array the data array or single value
      */
     public static isInArray<T>(value: T, array: SingleOrMultiple<T>): boolean {
         return value === array || (array instanceof Array && array.indexOf(value) > -1);
-    }
-
-    /**
-     *
-     * @param comp1
-     * @param comp2
-     * @param weight1
-     * @param weight2
-     */
-    public static mix(comp1: number, comp2: number, weight1: number, weight2: number): number {
-        return Math.floor((comp1 * weight1 + comp2 * weight2) / (weight1 + weight2));
-    }
-
-    /**
-     * Get Particle base velocity
-     * @param particle the particle to use for calculating the velocity
-     */
-    public static getParticleBaseVelocity(particle: IParticle): ICoordinates {
-        let velocityBase: ICoordinates;
-
-        switch (particle.direction) {
-            case MoveDirection.top:
-                velocityBase = { x: 0, y: -1 };
-                break;
-            case MoveDirection.topRight:
-                velocityBase = { x: 0.5, y: -0.5 };
-                break;
-            case MoveDirection.right:
-                velocityBase = { x: 1, y: -0 };
-                break;
-            case MoveDirection.bottomRight:
-                velocityBase = { x: 0.5, y: 0.5 };
-                break;
-            case MoveDirection.bottom:
-                velocityBase = { x: 0, y: 1 };
-                break;
-            case MoveDirection.bottomLeft:
-                velocityBase = { x: -0.5, y: 1 };
-                break;
-            case MoveDirection.left:
-                velocityBase = { x: -1, y: 0 };
-                break;
-            case MoveDirection.topLeft:
-                velocityBase = { x: -0.5, y: -0.5 };
-                break;
-            default:
-                velocityBase = { x: 0, y: 0 };
-                break;
-        }
-
-        return velocityBase;
-    }
-
-    /**
-     * Gets the distance between two coordinates
-     * @param pointA the first coordinate
-     * @param pointB the second coordinate
-     */
-    public static getDistances(
-        pointA: ICoordinates,
-        pointB: ICoordinates
-    ): { dx: number; dy: number; distance: number } {
-        const dx = pointA.x - pointB.x;
-        const dy = pointA.y - pointB.y;
-        return { dx: dx, dy: dy, distance: Math.sqrt(dx * dx + dy * dy) };
-    }
-
-    /**
-     * Gets the distance between two coordinates
-     * @param pointA the first coordinate
-     * @param pointB the second coordinate
-     */
-    public static getDistance(pointA: ICoordinates, pointB: ICoordinates): number {
-        return Utils.getDistances(pointA, pointB).distance;
     }
 
     public static async loadFont(character: ICharacterShape): Promise<void> {
@@ -203,13 +114,6 @@ export class Utils {
 
     public static itemFromArray<T>(array: T[], index?: number): T {
         return array[index ?? Utils.arrayRandomIndex(array)];
-    }
-
-    public static randomInRange(r1: number, r2: number): number {
-        const max = Math.max(r1, r2),
-            min = Math.min(r1, r2);
-
-        return Math.random() * (max - min) + min;
     }
 
     public static isPointInside(
@@ -310,7 +214,7 @@ export class Utils {
         return image;
     }
 
-    public static deepExtend(destination: any, ...sources: any[]): any {
+    public static deepExtend(destination: unknown, ...sources: any[]): any {
         for (const source of sources) {
             if (source === undefined || source === null) {
                 continue;
@@ -340,11 +244,12 @@ export class Utils {
 
                 const value = source[key];
                 const isObject = typeof value === "object";
+                const destDict = destination as Record<string, unknown>;
 
-                destination[key] =
+                destDict[key] =
                     isObject && Array.isArray(value)
-                        ? value.map((v) => Utils.deepExtend(destination[key], v))
-                        : Utils.deepExtend(destination[key], value);
+                        ? value.map((v) => Utils.deepExtend(destDict[key], v))
+                        : Utils.deepExtend(destDict[key], value);
             }
         }
         return destination;
@@ -402,13 +307,6 @@ export class Utils {
         } else if (Utils.checkSelector(element, divs.selectors)) {
             return divs;
         }
-    }
-
-    public static getValue(options: IValueWithRandom) {
-        const random = options.random;
-        const { enable, minimumValue } = typeof random === "boolean" ? { enable: random, minimumValue: 0 } : random;
-
-        return enable ? Utils.randomInRange(minimumValue, options.value) : options.value;
     }
 
     private static checkSelector(element: HTMLElement, selectors: SingleOrMultiple<string>): boolean {

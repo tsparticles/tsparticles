@@ -1,6 +1,6 @@
 import type { Container } from "../../Core/Container";
 import type { Particle } from "../../Core/Particle";
-import { Circle, CircleWarp, ColorUtils, Constants, Utils } from "../../Utils";
+import { Circle, CircleWarp, ColorUtils, Constants, NumberUtils } from "../../Utils";
 import type { IParticlesInteractor } from "../../Core/Interfaces/IParticlesInteractor";
 import { IParticle } from "../../Core/Interfaces/IParticle";
 
@@ -64,7 +64,7 @@ export class Linker implements IParticlesInteractor {
 
             const pos2 = p2.getPosition();
 
-            let distance = Utils.getDistance(pos1, pos2);
+            let distance = NumberUtils.getDistance(pos1, pos2);
 
             if (warp) {
                 if (distance > optDistance) {
@@ -73,7 +73,7 @@ export class Linker implements IParticlesInteractor {
                         y: pos2.y,
                     };
 
-                    distance = Utils.getDistance(pos1, pos2NE);
+                    distance = NumberUtils.getDistance(pos1, pos2NE);
 
                     if (distance > optDistance) {
                         const pos2SE = {
@@ -81,7 +81,7 @@ export class Linker implements IParticlesInteractor {
                             y: pos2.y - canvasSize.height,
                         };
 
-                        distance = Utils.getDistance(pos1, pos2SE);
+                        distance = NumberUtils.getDistance(pos1, pos2SE);
 
                         if (distance > optDistance) {
                             const pos2SW = {
@@ -89,7 +89,7 @@ export class Linker implements IParticlesInteractor {
                                 y: pos2.y - canvasSize.height,
                             };
 
-                            distance = Utils.getDistance(pos1, pos2SW);
+                            distance = NumberUtils.getDistance(pos1, pos2SW);
                         }
                     }
                 }

@@ -7,6 +7,7 @@ import { Utils } from "./Utils";
 import { Constants } from "./Constants";
 import type { IValueColor } from "../Core/Interfaces/IValueColor";
 import type { IImage } from "../Core/Interfaces/IImage";
+import { NumberUtils } from "./NumberUtils";
 
 export class ColorUtils {
     /**
@@ -164,9 +165,9 @@ export class ColorUtils {
         const fixedMin = min ?? 0;
 
         return {
-            b: Math.floor(Utils.randomInRange(fixedMin, 256)),
-            g: Math.floor(Utils.randomInRange(fixedMin, 256)),
-            r: Math.floor(Utils.randomInRange(fixedMin, 256)),
+            b: Math.floor(NumberUtils.randomInRange(fixedMin, 256)),
+            g: Math.floor(NumberUtils.randomInRange(fixedMin, 256)),
+            r: Math.floor(NumberUtils.randomInRange(fixedMin, 256)),
         };
     }
 
@@ -201,9 +202,9 @@ export class ColorUtils {
         }
 
         return {
-            b: Utils.mix(rgb1.b, rgb2.b, size1, size2),
-            g: Utils.mix(rgb1.g, rgb2.g, size1, size2),
-            r: Utils.mix(rgb1.r, rgb2.r, size1, size2),
+            b: NumberUtils.mix(rgb1.b, rgb2.b, size1, size2),
+            g: NumberUtils.mix(rgb1.g, rgb2.g, size1, size2),
+            r: NumberUtils.mix(rgb1.r, rgb2.r, size1, size2),
         };
     }
 

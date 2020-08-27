@@ -1,8 +1,8 @@
 import type { IParticle } from "../../Core/Interfaces/IParticle";
 import type { Container } from "../../Core/Container";
-import { Utils } from "../../Utils";
 import { Particle } from "../../Core/Particle";
 import type { IParticlesInteractor } from "../../Core/Interfaces/IParticlesInteractor";
+import { NumberUtils } from "../../Utils";
 
 export class Attractor implements IParticlesInteractor {
     constructor(private readonly container: Container) {}
@@ -25,7 +25,7 @@ export class Attractor implements IParticlesInteractor {
             const pos2 = p2.getPosition();
 
             /* condensed particles */
-            const { dx, dy } = Utils.getDistances(pos1, pos2);
+            const { dx, dy } = NumberUtils.getDistances(pos1, pos2);
             const rotate = options.particles.move.attract.rotate;
             const ax = dx / (rotate.x * 1000);
             const ay = dy / (rotate.y * 1000);
