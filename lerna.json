@@ -6,7 +6,7 @@
     "presets/*",
     "shapes/*",
     "templates/*",
-    "website/*"
+    "website"
   ],
   "version": "independent",
   "npmClient": "yarn",

@@ -1,6 +1,6 @@
 {
   "private": true,
-  "name": "tsparticles",
+  "name": "tsparticles-workspace",
   "version": "0.0.0",
   "scripts": {
     "build": "lerna run build",
@@ -16,7 +16,7 @@
     "presets/*",
     "shapes/*",
     "templates/*",
-    "website/*"
+    "website"
   ],
   "devDependencies": {
     "@commitlint/cli": "^9.1.2",
