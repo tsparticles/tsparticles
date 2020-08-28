@@ -4,6 +4,7 @@ import { TestContainer } from "./Fixture/TestContainer";
 import { TestParticles } from "./Fixture/TestParticles";
 import { Point, QuadTree, Rectangle } from "../src/Utils";
 import { TestCanvas } from "./Fixture/TestCanvas";
+import { Triangler } from "../src/Interactions/Particles/Triangler";
 
 describe("Linker in Canvas (200, 200) tests", () => {
     const testContainer = new TestContainer({});
@@ -134,6 +135,12 @@ describe("Linker in Canvas (200, 200) tests", () => {
                 linker.interact(p1);
                 linker.interact(p2);
                 linker.interact(p3);
+
+                const triangler = new Triangler(testContainer.container);
+
+                triangler.interact(p1);
+                triangler.interact(p2);
+                triangler.interact(p3);
 
                 const triangle = testContainer.container.particles.triangles.find(
                     (t) => t.vertices.includes(p1) && t.vertices.includes(p2) && t.vertices.includes(p3)

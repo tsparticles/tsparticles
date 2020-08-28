@@ -292,6 +292,7 @@ export class Canvas {
             container.canvas.size,
             p1.particlesOptions.links.warp,
             options.backgroundMask.enable,
+            options.backgroundMask.composite,
             colorLine,
             opacity,
             p1.particlesOptions.links.shadow
@@ -465,6 +466,7 @@ export class Canvas {
             pos2,
             pos3,
             options.backgroundMask.enable,
+            options.backgroundMask.composite,
             colorTriangle,
             triangle.opacity
         );
@@ -523,6 +525,7 @@ export class Canvas {
                 fillColorValue,
                 strokeColorValue,
                 options.backgroundMask.enable,
+                options.backgroundMask.composite,
                 radius,
                 opacity,
                 particle.particlesOptions.shadow

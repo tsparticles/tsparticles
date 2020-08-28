@@ -32,6 +32,7 @@ export class CanvasUtils {
         canvasSize: IDimension,
         warp: boolean,
         backgroundMask: boolean,
+        composite: string,
         colorLine: IRgb,
         opacity: number,
         shadow: ILinksShadow
@@ -108,7 +109,7 @@ export class CanvasUtils {
         context.lineWidth = width;
 
         if (backgroundMask) {
-            context.globalCompositeOperation = "destination-out";
+            context.globalCompositeOperation = composite;
         }
 
         context.strokeStyle = ColorUtils.getStyleFromRgb(colorLine, opacity);
@@ -132,6 +133,7 @@ export class CanvasUtils {
         pos2: ICoordinates,
         pos3: ICoordinates,
         backgroundMask: boolean,
+        composite: string,
         colorTriangle: IRgb,
         opacityTriangle: number
     ): void {
@@ -143,7 +145,7 @@ export class CanvasUtils {
         context.lineWidth = width;
 
         if (backgroundMask) {
-            context.globalCompositeOperation = "destination-out";
+            context.globalCompositeOperation = composite;
         }
 
         context.fillStyle = ColorUtils.getStyleFromRgb(colorTriangle, opacityTriangle);
@@ -320,6 +322,7 @@ export class CanvasUtils {
         fillColorValue: string | undefined,
         strokeColorValue: string | undefined,
         backgroundMask: boolean,
+        composite: string,
         radius: number,
         opacity: number,
         shadow: IShadow
@@ -337,7 +340,7 @@ export class CanvasUtils {
         }
 
         if (backgroundMask) {
-            context.globalCompositeOperation = "destination-out";
+            context.globalCompositeOperation = composite;
         }
 
         const shadowColor = particle.shadowColor;
@@ -385,7 +388,7 @@ export class CanvasUtils {
         }
 
         if (backgroundMask) {
-            context.globalCompositeOperation = "destination-out";
+            context.globalCompositeOperation = composite;
         }
 
         CanvasUtils.drawShapeAfterEffect(container, context, particle, radius, opacity, delta);
