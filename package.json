@@ -14,7 +14,8 @@
     "demo/*",
     "presets/*",
     "shapes/*",
-    "templates/*"
+    "templates/*",
+    "website"
   ],
   "devDependencies": {
     "@commitlint/cli": "^9.1.1",
