@@ -265,15 +265,11 @@ export class Particles {
     }
 
     public removeLink(source: IParticle, destination: IParticle): void {
-        const index = this.findLinkIndex(source, destination);
-
-        this.removeLinkAtIndex(index);
+        this.removeLinkAtIndex(this.findLinkIndex(source, destination));
     }
 
     public removeExactLink(link: ILink): void {
-        const index = this.links.indexOf(link);
-
-        this.removeLinkAtIndex(index);
+        this.removeLinkAtIndex(this.links.indexOf(link));
     }
 
     public removeLinkAtIndex(index: number): void {
@@ -288,9 +284,63 @@ export class Particles {
                 continue;
             }
 
-            const index = this.links.indexOf(link);
+            this.removeExactLink(link);
+        }
+    }
 
-            this.removeLinkAtIndex(index);
+    public findTriangle(v1: IParticle, v2: IParticle, v3: IParticle): ILinkTriangle | undefined {
+        return this.triangles.find(
+            (l) => l.vertices.includes(v1) && l.vertices.includes(v2) && l.vertices.includes(v3)
+        );
+    }
+
+    public findTriangleIndex(v1: IParticle, v2: IParticle, v3: IParticle): number {
+        return this.triangles.findIndex(
+            (l) => l.vertices.includes(v1) && l.vertices.includes(v2) && l.vertices.includes(v3)
+        );
+    }
+
+    public addTriangle(v1: IParticle, v2: IParticle, v3: IParticle): ILinkTriangle {
+        let triangle = this.findTriangle(v1, v2, v3);
+
+        if (!triangle) {
+            triangle = {
+                vertices: [v1, v2, v3],
+                opacity: 1,
+                visible: true,
+            };
+
+            this.triangles.push(triangle);
+        }
+
+        return triangle;
+    }
+
+    public getTriangles(v1: IParticle, v2?: IParticle): ILinkTriangle[] {
+        return this.triangles.filter((l) => l.vertices.includes(v1) && (!v2 || l.vertices.includes(v2)));
+    }
+
+    public removeTriangle(v1: IParticle, v2: IParticle, v3: IParticle): void {
+        this.removeTriangleAtIndex(this.findTriangleIndex(v1, v2, v3));
+    }
+
+    public removeExactTriangle(triangle: ILinkTriangle): void {
+        this.removeLinkAtIndex(this.triangles.indexOf(triangle));
+    }
+
+    public removeTriangleAtIndex(index: number): void {
+        if (index >= 0) {
+            this.triangles.splice(index, 1);
+        }
+    }
+
+    public removeTriangles(v1: IParticle, v2?: IParticle): void {
+        for (const triangle of this.triangles) {
+            if (!triangle.vertices.includes(v1) || (v2 && !triangle.vertices.includes(v2))) {
+                continue;
+            }
+
+            this.removeExactTriangle(triangle);
         }
     }
 }

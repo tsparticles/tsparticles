@@ -404,13 +404,7 @@ export class Canvas {
         const link3 = particles.findLink(p2, p3);
 
         if (!link1 || !link2 || !link3) {
-            const triangleIndex = particles.triangles.findIndex(
-                (t) => t.vertices.includes(p1) && t.vertices.includes(p2) && t.vertices.includes(p3)
-            );
-
-            if (triangleIndex >= 0) {
-                particles.triangles.splice(triangleIndex, 1);
-            }
+            particles.removeTriangle(p1, p2, p3);
 
             return;
         }
