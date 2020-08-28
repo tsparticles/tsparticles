@@ -1,0 +1,26 @@
+{
+  "name": "website",
+  "version": "1.0.0",
+  "description": "tsParticles Website",
+  "keywords": [
+    "tsparticles",
+    "website"
+  ],
+  "author": "Matteo Bruni <ar3s@icloud.com>",
+  "homepage": "https://particles.js.org",
+  "license": "MIT",
+  "main": "index.js",
+  "directories": {
+  },
+  "files": [
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/matteobruni/tsparticles.git"
+  },
+  "scripts": {
+  },
+  "bugs": {
+    "url": "https://github.com/matteobruni/tsparticles/issues"
+  }
+}
