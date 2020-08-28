@@ -7,7 +7,8 @@
     "version:alpha": "lerna version prerelease --preid alpha --conventional-commits",
     "version:beta": "lerna version prerelease --preid beta --conventional-commits",
     "publish:alpha": "lerna publish from-package --pre-dist-tag alpha --preid alpha",
-    "publish:beta": "lerna publish from-package --pre-dist-tag beta --preid beta"
+    "publish:beta": "lerna publish from-package --pre-dist-tag beta --preid beta",
+    "deploy:site": "lerna run deploy --scope website"
   },
   "workspaces": [
     "components/*",
