@@ -1,6 +1,6 @@
 {
   "private": true,
-  "name": "tsparticles",
+  "name": "tsparticles-workspace",
   "version": "0.0.0",
   "scripts": {
     "version:alpha": "lerna version prerelease --preid alpha --conventional-commits",
