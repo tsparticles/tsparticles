@@ -10,7 +10,6 @@
   "author": "Matteo Bruni <ar3s@icloud.com>",
   "homepage": "https://particles.js.org",
   "license": "MIT",
-  "main": "index.js",
   "directories": {},
   "files": [],
   "repository": {
@@ -18,14 +17,43 @@
     "url": "git+https://github.com/matteobruni/tsparticles.git"
   },
   "scripts": {
-    "build": "echo build",
+    "start": "parcel serve public/index.html --no-cache --open",
+    "build": "parcel build -t browser -d dist public/index.html --no-source-maps",
     "predeploy": "yarn build",
     "deploy": "gh-pages -d build"
   },
   "bugs": {
     "url": "https://github.com/matteobruni/tsparticles/issues"
   },
+  "dependencies": {
+    "@types/node": "^14.6.2",
+    "@types/react": "^16.9.48",
+    "@types/react-dom": "^16.9.8",
+    "parcel": "^1.12.4",
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1",
+    "react-router": "^5.2.0",
+    "react-router-dom": "^5.2.0",
+    "react-tsparticles": "^1.17.10",
+    "typescript": "^3.9.7",
+    "web-vitals": "^0.2.4"
+  },
   "devDependencies": {
+    "babel-core": "^6.26.3",
+    "babel-preset-env": "^1.7.0",
+    "babel-preset-react": "^6.24.1",
     "gh-pages": "^3.1.0"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
   }
 }
