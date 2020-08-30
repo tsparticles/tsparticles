@@ -86,6 +86,7 @@ export class Particle implements IParticle {
     private readonly strokeColorVelocity?: number;
 
     constructor(
+        public readonly id: number,
         private readonly container: Container,
         position?: ICoordinates,
         overrideOptions?: RecursivePartial<IParticles>

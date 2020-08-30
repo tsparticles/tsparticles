@@ -10,10 +10,19 @@ const Window = require("window");
 describe("SpatialGrid", () => {
     globalThis.window = new Window();
     const testContainer = new TestContainer();
-    const particle1 = new Particle(testContainer.container, { x: 1, y: 1 });
-    const particle2 = new Particle(testContainer.container, { x: 2, y: 2 });
-    const particle3 = new Particle(testContainer.container, { x: 3, y: 3 });
-    const particle4 = new Particle(testContainer.container, { x: 768, y: 240 });
+    const particle1 = testContainer.container.particles.addParticle({ x: 1, y: 1 });
+    const particle2 = testContainer.container.particles.addParticle({ x: 2, y: 2 });
+    const particle3 = testContainer.container.particles.addParticle({ x: 3, y: 3 });
+    const particle4 = testContainer.container.particles.addParticle({ x: 768, y: 240 });
+
+    expect(particle1).to.not.be.undefined;
+    expect(particle2).to.not.be.undefined;
+    expect(particle3).to.not.be.undefined;
+    expect(particle4).to.not.be.undefined;
+
+    if (!particle1 || !particle2 || !particle3 || !particle4) {
+        return;
+    }
 
     const mainResolution = { width: 1920, height: 1200 };
     const testSpatialGrid = new TestSpatialGrid(mainResolution);

@@ -31,8 +31,10 @@ export class Particles {
     public grabLineColor?: IRgb | string;
 
     private interactionManager;
+    private nextId;
 
     constructor(private readonly container: Container) {
+        this.nextId = 0;
         this.array = [];
         this.links = [];
         this.triangles = [];
@@ -214,9 +216,11 @@ export class Particles {
 
     public addParticle(position?: ICoordinates, overrideOptions?: RecursivePartial<IParticles>): Particle | undefined {
         try {
-            const particle = new Particle(this.container, position, overrideOptions);
+            const particle = new Particle(this.nextId, this.container, position, overrideOptions);
 
             this.array.push(particle);
+
+            this.nextId++;
 
             return particle;
         } catch {

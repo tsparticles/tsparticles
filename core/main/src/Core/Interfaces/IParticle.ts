@@ -22,6 +22,7 @@ export interface IParticle {
     readonly destroyed: boolean;
     readonly direction: MoveDirection | keyof typeof MoveDirection | MoveDirectionAlt;
     readonly fill: boolean;
+    readonly id: number;
     readonly image?: IParticleImage;
     readonly initialVelocity: IVelocity;
     readonly offset: ICoordinates;
