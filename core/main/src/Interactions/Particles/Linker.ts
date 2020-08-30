@@ -55,9 +55,7 @@ export class Linker implements IParticlesInteractor {
                     container.particles.removeLinks(p2);
                 }
 
-                if (index >= 0) {
-                    container.particles.links.splice(index, 0);
-                }
+                container.particles.removeLinkAtIndex(index);
 
                 continue;
             }

@@ -401,8 +401,8 @@ export class Canvas {
         const pos3 = p3.getPosition();
 
         const link1 = particles.findLink(p1, p2);
-        const link2 = particles.findLink(p1, p3);
-        const link3 = particles.findLink(p2, p3);
+        const link2 = !link1 ? undefined : particles.findLink(p1, p3);
+        const link3 = !link1 || !link2 ? undefined : particles.findLink(p2, p3);
 
         if (!link1 || !link2 || !link3) {
             particles.removeTriangle(p1, p2, p3);

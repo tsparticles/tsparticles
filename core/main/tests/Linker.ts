@@ -142,9 +142,7 @@ describe("Linker in Canvas (200, 200) tests", () => {
                 triangler.interact(p2);
                 triangler.interact(p3);
 
-                const triangle = testContainer.container.particles.triangles.find(
-                    (t) => t.vertices.includes(p1) && t.vertices.includes(p2) && t.vertices.includes(p3)
-                );
+                const triangle = testContainer.container.particles.findTriangle(p1, p2, p3);
 
                 expect(triangle).to.be.not.undefined;
 
