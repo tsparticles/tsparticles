@@ -35,7 +35,7 @@
     "react-router": "^5.2.0",
     "react-router-dom": "^5.2.0",
     "react-tsparticles": "^1.18.0-alpha.14",
-    "typescript": "^3.9.7",
+    "typescript": "^4.0.2",
     "web-vitals": "^0.2.4"
   },
   "devDependencies": {
