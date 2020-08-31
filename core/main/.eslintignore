@@ -9,3 +9,4 @@ node_modules
 schema
 scripts
 typedoc
+deploy.docs.js

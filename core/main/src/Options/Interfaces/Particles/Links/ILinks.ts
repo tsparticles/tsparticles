@@ -42,7 +42,7 @@ export interface ILinks {
      * Sets the link id, if two particles have a different link id they won't link together
      */
     id?: string;
-    
+
     /**
      * Sets the maximum link opacity
      */
