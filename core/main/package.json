@@ -6,7 +6,7 @@
   ],
   "version": "1.17.10",
   "description": "Particles.js rewritten in TypeScript (100% compatible), dependency free, improved with many new features and various bugs fixed. Browser ready and with official React/Vue/Angular/jQuery/Preact components.",
-  "homepage": "https://particles.js.org/",
+  "homepage": "https://particles.matteobruni.it/",
   "scripts": {
     "prettify:src": "prettier --write ./src/",
     "prettify:tests": "prettier --write ./tests/",
