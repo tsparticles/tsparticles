@@ -81,7 +81,7 @@
       "type": "object"
     },
     "IBackground": {
-      "description": "The background options used by the canvas element, it's not drawn, it's applied in the style",
+      "description": "The background options used by the canvas element, it's not drawn, it's applied in the style\n[[include:Options/Background.md]]",
       "properties": {
         "color": {
           "anyOf": [
@@ -118,7 +118,7 @@
       "type": "object"
     },
     "IBackgroundMask": {
-      "description": "The options to apply a base color to canvas to cover what's behind\nThe particles will unveil what is covered by the canvas",
+      "description": "The options to apply a base color to canvas to cover what's behind\nThe particles will unveil what is covered by the canvas\n[[include:Options/BackgroundMask.md]]",
       "properties": {
         "cover": {
           "anyOf": [
@@ -2568,7 +2568,7 @@
       "type": "object"
     }
   },
-  "description": "The Options interface, defines all the options that can be used by `tsParticles`",
+  "description": "The Options interface, defines all the options that can be used by `tsParticles`\n[[include:Options.md]]",
   "properties": {
     "background": {
       "$ref": "#/definitions/IBackground",

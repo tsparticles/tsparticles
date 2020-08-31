@@ -6,7 +6,7 @@
   ],
   "version": "1.17.10",
   "description": "Particles.js rewritten in TypeScript (100% compatible), dependency free, improved with many new features and various bugs fixed. Browser ready and with official React/Vue/Angular/jQuery/Preact components.",
-  "homepage": "https://particles.matteobruni.it/",
+  "homepage": "https://particles.js.org/",
   "scripts": {
     "prettify:src": "prettier --write ./src/",
     "prettify:tests": "prettier --write ./tests/",
@@ -19,7 +19,7 @@
     "build": "yarn slimbuild && yarn build:schema && yarn prettify:schema && yarn prettify:tests && yarn test && yarn prettify:readme && yarn build:docs",
     "build:ts:es": "tsc -b tsconfig.browser.json",
     "build:ts": "tsc",
-    "build:docs": "copyfiles -f ./dist/tsparticles.min.js ./typedoc/themes/particles/assets/js && yarn clear:docs && typedoc",
+    "build:docs": "copyfiles -f ./dist/tsparticles.min.js ./typedoc/themes/particles/assets/js && yarn clear:docs && typedoc && copyfiles -f ./typedoc/themes/particles/CNAME ./docs",
     "build:schema": "typescript-json-schema tsconfig.schema.json IOptions --out ./schema/options.schema.json",
     "test": "nyc mocha",
     "preversion": "yarn test",
@@ -27,7 +27,8 @@
     "postversion": "git push && git push --tags",
     "prepare": "yarn build",
     "release:alpha": "yarn version --prerelease --preid alpha",
-    "release:beta": "yarn version --prerelease --preid beta"
+    "release:beta": "yarn version --prerelease --preid beta",
+    "deploy:docs": "yarn build && node deploy.docs.js"
   },
   "repository": {
     "type": "git",
@@ -108,6 +109,7 @@
     "copyfiles": "^2.3.0",
     "eslint": "^7.4.0",
     "eslint-config-prettier": "^6.11.0",
+    "gh-pages": "^3.1.0",
     "install": "^0.13.0",
     "mocha": "^8.0.1",
     "nyc": "^15.1.0",
