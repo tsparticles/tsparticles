@@ -1,5 +1,8 @@
 import type { DestroyType, StartValueType } from "../../../../Enums";
 
+/**
+ * @category Options
+ */
 export interface ISizeAnimation {
     enable: boolean;
 

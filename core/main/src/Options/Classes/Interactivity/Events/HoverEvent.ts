@@ -4,6 +4,9 @@ import { Parallax } from "./Parallax";
 import type { RecursivePartial, SingleOrMultiple } from "../../../../Types";
 import type { IOptionLoader } from "../../../Interfaces/IOptionLoader";
 
+/**
+ * @category Options
+ */
 export class HoverEvent implements IHoverEvent, IOptionLoader<IHoverEvent> {
     public enable;
     public mode: SingleOrMultiple<HoverMode | keyof typeof HoverMode | string>;

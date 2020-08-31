@@ -9,6 +9,9 @@ import type { IOptions } from "../../Options/Interfaces/IOptions";
 import { EmitterClickMode } from "./Enums";
 import type { IEmitterOptions } from "./Options/Interfaces/IEmitterOptions";
 
+/**
+ * @category Emitters Plugin
+ */
 export class Emitters implements IContainerPlugin {
     public array: EmitterInstance[];
     public emitters: SingleOrMultiple<Emitter>;

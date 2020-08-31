@@ -3,27 +3,31 @@ import type { IDimension } from "../Core/Interfaces/IDimension";
 import type { Particle } from "../Core/Particle";
 import { NumberUtils } from "./NumberUtils";
 
-/* This class essentially works by interpreting all particles on the screen as a grid.
-Grid cells are determined by dividing the width and height by the cell size. so 1920 / 10 = 19 cells of width
-Particles are pushed into their respective cells with the same method.
-
-Before refactoring understand this code is written with an emphasis on speed and efficiency.
-This is because this system is responsible for neighbour detection. Meaning
-any changes to the efficiency to this code will exponentially change the efficiency
-of the system.
-*/
-
+/**
+ * This class essentially works by interpreting all particles on the screen as a grid.
+ * Grid cells are determined by dividing the width and height by the cell size. so 1920 / 10 = 19 cells of width
+ * Particles are pushed into their respective cells with the same method.
+ *
+ * Before refactoring understand this code is written with an emphasis on speed and efficiency.
+ * This is because this system is responsible for neighbour detection. Meaning
+ * any changes to the efficiency to this code will exponentially change the efficiency
+ * of the system.
+ * @category Utils
+ */
 export class SpatialGrid {
     private readonly cellSize;
     private widthSegment;
     private heightSegment;
     private grid: Particle[][][] = [];
 
-    // Cut the grid up into a 2d array with a 3rd dimension holding the data.
-    constructor(canvas: IDimension) {
+    /**
+     * Cut the grid up into a 2d array with a 3rd dimension holding the data.
+     * @param size the grid size
+     */
+    constructor(size: IDimension) {
         this.cellSize = 20;
-        this.widthSegment = Math.round(canvas.width / this.cellSize);
-        this.heightSegment = Math.round(canvas.height / this.cellSize);
+        this.widthSegment = Math.round(size.width / this.cellSize);
+        this.heightSegment = Math.round(size.height / this.cellSize);
     }
 
     public init(dimension?: IDimension): void {

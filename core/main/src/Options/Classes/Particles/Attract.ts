@@ -3,6 +3,9 @@ import type { ICoordinates } from "../../../Core/Interfaces/ICoordinates";
 import type { RecursivePartial } from "../../../Types";
 import type { IOptionLoader } from "../../Interfaces/IOptionLoader";
 
+/**
+ * @category Options
+ */
 export class Attract implements IAttract, IOptionLoader<IAttract> {
     /**
      *

@@ -3,6 +3,9 @@ import type { IDimension } from "../Core/Interfaces/IDimension";
 import type { ICoordinates } from "../Core/Interfaces/ICoordinates";
 import { Circle } from "./Circle";
 
+/**
+ * @category Utils
+ */
 export class Rectangle extends Range {
     public readonly size: IDimension;
 

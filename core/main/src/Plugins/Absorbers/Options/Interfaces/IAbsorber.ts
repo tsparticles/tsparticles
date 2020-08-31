@@ -4,6 +4,7 @@ import type { IAbsorberSize } from "./IAbsorberSize";
 
 /**
  * Absorber options
+ * @category Absorbers Plugin
  */
 export interface IAbsorber {
     /**

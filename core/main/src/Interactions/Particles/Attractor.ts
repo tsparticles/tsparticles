@@ -4,6 +4,9 @@ import { Particle } from "../../Core/Particle";
 import type { IParticlesInteractor } from "../../Core/Interfaces/IParticlesInteractor";
 import { NumberUtils } from "../../Utils";
 
+/**
+ * @category Interactions
+ */
 export class Attractor implements IParticlesInteractor {
     constructor(private readonly container: Container) {}
 

@@ -3,6 +3,9 @@ import { ConnectLinks } from "./ConnectLinks";
 import type { RecursivePartial } from "../../../../Types";
 import type { IOptionLoader } from "../../../Interfaces/IOptionLoader";
 
+/**
+ * @category Options
+ */
 export class Connect implements IConnect, IOptionLoader<IConnect> {
     /**
      *

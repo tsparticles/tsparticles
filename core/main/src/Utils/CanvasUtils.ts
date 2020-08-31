@@ -11,6 +11,9 @@ import type { IDelta } from "../Core/Interfaces/IDelta";
 import { Particle } from "../Core/Particle";
 import { NumberUtils } from "./NumberUtils";
 
+/**
+ * @category Utils
+ */
 export class CanvasUtils {
     public static paintBase(context: CanvasRenderingContext2D, dimension: IDimension, baseColor?: string): void {
         context.save();

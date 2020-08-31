@@ -2,6 +2,9 @@ import type { IRotateAnimation } from "../../../Interfaces/Particles/Rotate/IRot
 import type { RecursivePartial } from "../../../../Types";
 import type { IOptionLoader } from "../../../Interfaces/IOptionLoader";
 
+/**
+ * @category Options
+ */
 export class RotateAnimation implements IRotateAnimation, IOptionLoader<IRotateAnimation> {
     public enable;
     public speed;

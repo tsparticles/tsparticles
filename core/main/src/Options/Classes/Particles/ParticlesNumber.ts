@@ -3,6 +3,9 @@ import { Density } from "./Density";
 import type { RecursivePartial } from "../../../Types";
 import type { IOptionLoader } from "../../Interfaces/IOptionLoader";
 
+/**
+ * @category Options
+ */
 export class ParticlesNumber implements IParticlesNumber, IOptionLoader<IParticlesNumber> {
     /**
      * @deprecated the max property is deprecated, please use the new limit

@@ -2,6 +2,9 @@ import type { IParticle } from "../Core/Interfaces/IParticle";
 import type { IShapeDrawer } from "../Core/Interfaces/IShapeDrawer";
 import type { IStarShape } from "../Options/Interfaces/Particles/Shape/IStarShape";
 
+/**
+ * @category Shape Drawers
+ */
 export class StarDrawer implements IShapeDrawer {
     public draw(context: CanvasRenderingContext2D, particle: IParticle, radius: number): void {
         const star = particle.shapeData as IStarShape;

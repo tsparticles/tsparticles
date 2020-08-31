@@ -5,6 +5,7 @@ import { Constants } from "./Constants";
 
 /**
  * Particles container event listeners manager
+ * @category Utils
  */
 export class EventListeners {
     private readonly mouseMoveHandler: EventListenerOrEventListenerObject;

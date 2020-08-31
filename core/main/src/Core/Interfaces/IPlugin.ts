@@ -4,6 +4,9 @@ import type { IOptions } from "../../Options/Interfaces/IOptions";
 import type { RecursivePartial } from "../../Types";
 import type { Options } from "../../Options/Classes/Options";
 
+/**
+ * @category Interfaces
+ */
 export interface IPlugin {
     readonly id: string;
 

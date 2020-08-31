@@ -17,6 +17,9 @@ import type { IOptionLoader } from "../../Interfaces/IOptionLoader";
 import { Life } from "./Life/Life";
 import { Bounce } from "./Bounce/Bounce";
 
+/**
+ * @category Options
+ */
 export class Particles implements IParticles, IOptionLoader<IParticles> {
     /**
      *

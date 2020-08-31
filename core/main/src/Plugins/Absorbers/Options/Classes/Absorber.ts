@@ -5,6 +5,9 @@ import { AbsorberSize } from "./AbsorberSize";
 import { OptionsColor } from "../../../../Options/Classes/OptionsColor";
 import type { IOptionLoader } from "../../../../Options/Interfaces/IOptionLoader";
 
+/**
+ * @category Absorbers Plugin
+ */
 export class Absorber implements IAbsorber, IOptionLoader<IAbsorber> {
     public color;
     public draggable;
@@ -25,37 +28,39 @@ export class Absorber implements IAbsorber, IOptionLoader<IAbsorber> {
     }
 
     public load(data?: RecursivePartial<IAbsorber>): void {
-        if (data !== undefined) {
-            if (data.color !== undefined) {
-                this.color = OptionsColor.create(this.color, data.color);
-            }
+        if (data === undefined) {
+            return;
+        }
 
-            if (data.draggable !== undefined) {
-                this.draggable = data.draggable;
-            }
+        if (data.color !== undefined) {
+            this.color = OptionsColor.create(this.color, data.color);
+        }
 
-            if (data.opacity !== undefined) {
-                this.opacity = data.opacity;
-            }
+        if (data.draggable !== undefined) {
+            this.draggable = data.draggable;
+        }
 
-            if (data.position !== undefined) {
-                this.position = {
-                    x: data.position.x,
-                    y: data.position.y,
-                };
-            }
+        if (data.opacity !== undefined) {
+            this.opacity = data.opacity;
+        }
 
-            if (data.size !== undefined) {
-                this.size.load(data.size);
-            }
+        if (data.position !== undefined) {
+            this.position = {
+                x: data.position.x,
+                y: data.position.y,
+            };
+        }
 
-            if (data.destroy !== undefined) {
-                this.destroy = data.destroy;
-            }
+        if (data.size !== undefined) {
+            this.size.load(data.size);
+        }
 
-            if (data.orbits !== undefined) {
-                this.orbits = data.orbits;
-            }
+        if (data.destroy !== undefined) {
+            this.destroy = data.destroy;
+        }
+
+        if (data.orbits !== undefined) {
+            this.orbits = data.orbits;
         }
     }
 }

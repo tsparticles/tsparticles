@@ -2,6 +2,9 @@ import type { IMoveAngle } from "../../../Interfaces/Particles/Move/IMoveAngle";
 import type { IOptionLoader } from "../../../Interfaces/IOptionLoader";
 import type { RecursivePartial } from "../../../../Types";
 
+/**
+ * @category Options
+ */
 export class MoveAngle implements IMoveAngle, IOptionLoader<IMoveAngle> {
     offset;
     value;

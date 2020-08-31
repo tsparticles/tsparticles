@@ -6,6 +6,9 @@ import type { IMoveAngle } from "./IMoveAngle";
 import type { IMoveGravity } from "./IMoveGravity";
 import type { IOutModes } from "./IOutModes";
 
+/**
+ * @category Options
+ */
 export interface IMove {
     /**
      * @deprecated use the new collisions property on particles instead

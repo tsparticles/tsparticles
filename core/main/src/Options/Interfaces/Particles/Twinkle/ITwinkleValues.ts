@@ -1,5 +1,8 @@
 import type { IColor } from "../../../../Core/Interfaces/IColor";
 
+/**
+ * @category Options
+ */
 export interface ITwinkleValues {
     color?: string | IColor;
     enable: boolean;

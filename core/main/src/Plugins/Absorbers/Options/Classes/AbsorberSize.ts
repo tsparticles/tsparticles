@@ -27,5 +27,9 @@ export class AbsorberSize extends ValueWithRandom implements IAbsorberSize, IOpt
         if (data.limit !== undefined) {
             this.limit = data.limit;
         }
+
+        if (data.limit !== undefined) {
+            this.limit = data.limit;
+        }
     }
 }

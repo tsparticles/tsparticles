@@ -6,6 +6,7 @@ import type { IExternalInteractor } from "../../Core/Interfaces/IExternalInterac
 
 /**
  * Particle grab manager
+ * @category Interactions
  */
 export class Grabber implements IExternalInteractor {
     constructor(private readonly container: Container) {}

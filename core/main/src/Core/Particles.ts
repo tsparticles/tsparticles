@@ -13,6 +13,7 @@ import type { IParticle } from "./Interfaces/IParticle";
 
 /**
  * Particles manager
+ * @category Core
  */
 export class Particles {
     public get count(): number {

@@ -3,6 +3,9 @@ import type { RecursivePartial } from "../../../../Types";
 import { DestroyType, StartValueType } from "../../../../Enums";
 import type { IOptionLoader } from "../../../Interfaces/IOptionLoader";
 
+/**
+ * @category Options
+ */
 export class SizeAnimation implements ISizeAnimation, IOptionLoader<ISizeAnimation> {
     /**
      *

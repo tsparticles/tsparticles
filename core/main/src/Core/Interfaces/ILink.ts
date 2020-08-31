@@ -1,5 +1,8 @@
 import type { IParticle } from "./IParticle";
 
+/**
+ * @category Interfaces
+ */
 export interface ILink {
     edges: IParticle[];
     opacity: number;

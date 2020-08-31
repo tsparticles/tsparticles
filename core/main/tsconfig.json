@@ -83,10 +83,13 @@
   "typedocOptions": {
     "gaID": "UA-159372955-1",
     "ignoreCompilerErrors": true,
+    "includes": "./markdown",
     "inputFiles": [
       "./src/index.ts"
     ],
     "mode": "library",
+    "name": "tsParticles",
+    "includeVersion": true,
     "out": "./docs",
     "theme": "./typedoc/themes/particles"
   }

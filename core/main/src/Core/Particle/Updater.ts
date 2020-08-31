@@ -14,6 +14,7 @@ import { OutModeDirection } from "../../Enums/Directions/OutModeDirection";
 
 /**
  * Particle updater, it manages movement
+ * @category Core
  */
 export class Updater {
     constructor(private readonly container: Container, private readonly particle: Particle) {}

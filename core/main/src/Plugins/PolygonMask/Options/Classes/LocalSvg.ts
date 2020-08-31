@@ -4,6 +4,9 @@ import type { IDimension } from "../../../../Core/Interfaces/IDimension";
 import type { RecursivePartial } from "../../../../Types";
 import type { IOptionLoader } from "../../../../Options/Interfaces/IOptionLoader";
 
+/**
+ * @category Polygon Mask Plugin
+ */
 export class LocalSvg implements ILocalSvg, IOptionLoader<ILocalSvg> {
     public path: SingleOrMultiple<string>;
     public size: IDimension;

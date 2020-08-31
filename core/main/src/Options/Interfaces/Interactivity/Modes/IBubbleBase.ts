@@ -1,6 +1,9 @@
 import type { SingleOrMultiple } from "../../../../Types";
 import type { IColor } from "../../../../Core/Interfaces/IColor";
 
+/**
+ * @category Options
+ */
 export interface IBubbleBase {
     color?: SingleOrMultiple<IColor | string>;
     distance: number;

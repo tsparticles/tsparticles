@@ -3,6 +3,9 @@ import type { RecursivePartial } from "../../../../Types";
 import { OptionsColor } from "../../OptionsColor";
 import type { IOptionLoader } from "../../../Interfaces/IOptionLoader";
 
+/**
+ * @category Options
+ */
 export class LinksShadow implements ILinksShadow, IOptionLoader<ILinksShadow> {
     public blur;
     public color;

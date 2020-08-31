@@ -5,6 +5,9 @@ import { HoverEvent } from "./HoverEvent";
 import type { RecursivePartial, SingleOrMultiple } from "../../../../Types";
 import type { IOptionLoader } from "../../../Interfaces/IOptionLoader";
 
+/**
+ * @category Options
+ */
 export class Events implements IEvents, IOptionLoader<IEvents> {
     /**
      *

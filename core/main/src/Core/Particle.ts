@@ -36,6 +36,7 @@ import { Mover } from "./Particle/Mover";
 
 /**
  * The single particle object
+ * @category Core
  */
 export class Particle implements IParticle {
     public angle;

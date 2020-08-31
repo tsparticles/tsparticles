@@ -40,6 +40,7 @@ type PolygonMaskParticle = Particle & {
 
 /**
  * Polygon Mask manager
+ * @category Polygon Mask Plugin
  */
 export class PolygonMaskInstance implements IContainerPlugin {
     public redrawTimeout?: number;

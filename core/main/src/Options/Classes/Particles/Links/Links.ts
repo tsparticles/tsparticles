@@ -5,6 +5,9 @@ import { LinksTriangle } from "./LinksTriangle";
 import { OptionsColor } from "../../OptionsColor";
 import type { IOptionLoader } from "../../../Interfaces/IOptionLoader";
 
+/**
+ * @category Options
+ */
 export class Links implements ILinks, IOptionLoader<ILinks> {
     public blink;
     public color;

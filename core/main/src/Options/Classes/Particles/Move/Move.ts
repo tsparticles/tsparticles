@@ -9,6 +9,9 @@ import { MoveAngle } from "./MoveAngle";
 import { MoveGravity } from "./MoveGravity";
 import { OutModes } from "./OutModes";
 
+/**
+ * @category Options
+ */
 export class Move implements IMove, IOptionLoader<IMove> {
     /**
      * @deprecated this property is obsolete, please use the new collisions object on particles options

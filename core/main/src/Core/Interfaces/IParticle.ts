@@ -11,6 +11,9 @@ import type { IBubbleParticleData } from "./IBubbleParticleData";
 import type { IParticles } from "../../Options/Interfaces/Particles/IParticles";
 import type { IHsl } from "./IHsl";
 
+/**
+ * @category Interfaces
+ */
 export interface IParticle {
     randomIndexData?: number;
 

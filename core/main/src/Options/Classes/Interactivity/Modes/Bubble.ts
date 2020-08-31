@@ -4,6 +4,9 @@ import { BubbleDiv } from "./BubbleDiv";
 import { BubbleBase } from "./BubbleBase";
 import type { IOptionLoader } from "../../../Interfaces/IOptionLoader";
 
+/**
+ * @category Options
+ */
 export class Bubble extends BubbleBase implements IBubble, IOptionLoader<IBubble> {
     public divs?: SingleOrMultiple<BubbleDiv>;
 

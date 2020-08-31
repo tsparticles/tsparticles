@@ -12,6 +12,9 @@ import type { IOptionLoader } from "../../../Interfaces/IOptionLoader";
 import { Attract } from "./Attract";
 import { Light } from "./Light";
 
+/**
+ * @category Options
+ */
 export class Modes implements IModes, IOptionLoader<IModes> {
     public attract;
     public bubble;

@@ -1,3 +1,6 @@
+/**
+ * @category Options
+ */
 export interface IOpacityAnimation {
     enable: boolean;
     speed: number;

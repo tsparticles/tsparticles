@@ -1,3 +1,6 @@
+/**
+ * @category Interfaces
+ */
 export interface IImage {
     source: string;
     type: string;

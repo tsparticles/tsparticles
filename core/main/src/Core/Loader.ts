@@ -9,6 +9,7 @@ const tsParticlesDom: Container[] = [];
 
 /**
  * Main class for creating the [[Container]] objects
+ * @category Core
  */
 export class Loader {
     /**

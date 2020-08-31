@@ -8,6 +8,9 @@ import { CircleWarp } from "./CircleWarp";
 import type { Container } from "../Core/Container";
 import type { IDimension } from "../Core/Interfaces/IDimension";
 
+/**
+ * @category Utils
+ */
 export class QuadTree {
     public readonly points: Point[];
 

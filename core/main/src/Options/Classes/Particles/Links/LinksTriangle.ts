@@ -3,6 +3,9 @@ import { OptionsColor } from "../../OptionsColor";
 import type { RecursivePartial } from "../../../../Types";
 import type { IOptionLoader } from "../../../Interfaces/IOptionLoader";
 
+/**
+ * @category Options
+ */
 export class LinksTriangle implements ILinksTriangle, IOptionLoader<ILinksTriangle> {
     public color?: OptionsColor;
     public enable;

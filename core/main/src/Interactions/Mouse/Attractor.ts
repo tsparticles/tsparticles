@@ -6,6 +6,7 @@ import type { IExternalInteractor } from "../../Core/Interfaces/IExternalInterac
 
 /**
  * Particle attract manager
+ * @category Interactions
  */
 export class Attractor implements IExternalInteractor {
     constructor(private readonly container: Container) {}

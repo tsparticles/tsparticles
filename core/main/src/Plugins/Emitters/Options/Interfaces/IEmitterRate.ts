@@ -1,5 +1,6 @@
 /**
  * The particles emitter rate options
+ * @category Emitters Plugin
  */
 export interface IEmitterRate {
     /**

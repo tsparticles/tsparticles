@@ -3,6 +3,9 @@ import { ClickMode } from "../../../../Enums";
 import type { RecursivePartial, SingleOrMultiple } from "../../../../Types";
 import type { IOptionLoader } from "../../../Interfaces/IOptionLoader";
 
+/**
+ * @category Options
+ */
 export class ClickEvent implements IClickEvent, IOptionLoader<IClickEvent> {
     /**
      * The click event handler enabling setting

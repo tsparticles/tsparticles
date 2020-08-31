@@ -11,6 +11,10 @@ import { Theme } from "./Theme/Theme";
 import { ThemeMode } from "../../Enums/Modes";
 import { BackgroundMode } from "./BackgroundMode/BackgroundMode";
 
+/**
+ * [[include:Options.md]]
+ * @category Options
+ */
 export class Options implements IOptions, IOptionLoader<IOptions> {
     /**
      * @deprecated this property is obsolete, please use the new fpsLimit

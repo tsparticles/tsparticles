@@ -5,6 +5,9 @@ import type { IRgb } from "../../Core/Interfaces/IRgb";
 import type { IHsl } from "../../Core/Interfaces/IHsl";
 import type { IOptionLoader } from "../Interfaces/IOptionLoader";
 
+/**
+ * @category Options
+ */
 export class OptionsColor implements IOptionsColor, IOptionLoader<IOptionsColor> {
     public value: SingleOrMultiple<string | IValueColor | IRgb | IHsl>;
 

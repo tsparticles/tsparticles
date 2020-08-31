@@ -3,6 +3,9 @@ import type { Container } from "../../Core/Container";
 import type { IParticlesInteractor } from "../../Core/Interfaces/IParticlesInteractor";
 import type { IDelta } from "../../Core/Interfaces/IDelta";
 
+/**
+ * @category Interactions
+ */
 export class Infecter implements IParticlesInteractor {
     constructor(private readonly container: Container) {}
 

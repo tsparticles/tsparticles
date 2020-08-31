@@ -10,6 +10,9 @@ import type { IOptions } from "../../Options/Interfaces/IOptions";
 import { AbsorberClickMode } from "./Enums";
 import type { IAbsorberOptions } from "./Options/Interfaces/IAbsorberOptions";
 
+/**
+ * @category Absorbers Plugin
+ */
 export class Absorbers implements IContainerPlugin {
     public array: AbsorberInstance[];
     public absorbers: SingleOrMultiple<Absorber>;

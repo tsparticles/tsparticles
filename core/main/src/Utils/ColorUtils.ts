@@ -9,6 +9,9 @@ import type { IValueColor } from "../Core/Interfaces/IValueColor";
 import type { IImage } from "../Core/Interfaces/IImage";
 import { NumberUtils } from "./NumberUtils";
 
+/**
+ * @category Utils
+ */
 export class ColorUtils {
     /**
      * Gets the particles color

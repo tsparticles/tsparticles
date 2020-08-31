@@ -58,6 +58,9 @@ declare global {
 }
 
 /* ---------- global functions - vendors ------------ */
+/**
+ * @category Utils
+ */
 export class Utils {
     public static isSsr(): boolean {
         return typeof window === "undefined" || !window;

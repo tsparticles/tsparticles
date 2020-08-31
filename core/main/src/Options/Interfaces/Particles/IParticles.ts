@@ -14,6 +14,9 @@ import type { IAnimatableColor } from "./IAnimatableColor";
 import type { ILife } from "./Life/ILife";
 import type { IBounce } from "./Bounce/IBounce";
 
+/**
+ * @category Options
+ */
 export interface IParticles {
     /**
      * @deprecated use the new links instead

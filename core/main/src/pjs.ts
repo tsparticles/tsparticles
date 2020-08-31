@@ -4,6 +4,9 @@ import type { Container } from "./Core/Container";
 import type { MainSlim } from "./main.slim";
 import type { Particle } from "./Core/Particle";
 
+/**
+ * @category Particles.js
+ */
 export interface IParticlesJS {
     (tagId: string, options: RecursivePartial<IOptions>): Promise<Container | undefined>;
 

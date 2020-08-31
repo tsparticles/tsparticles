@@ -11,6 +11,9 @@ interface ContainerImage {
     images: IImage[];
 }
 
+/**
+ * @category Shape Drawers
+ */
 export class ImageDrawer implements IShapeDrawer {
     public images: ContainerImage[];
 

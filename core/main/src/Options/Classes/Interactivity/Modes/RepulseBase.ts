@@ -1,6 +1,9 @@
 import type { IRepulseBase } from "../../../Interfaces/Interactivity/Modes/IRepulseBase";
 import type { RecursivePartial } from "../../../../Types";
 
+/**
+ * @category Options
+ */
 export abstract class RepulseBase implements IRepulseBase {
     public distance;
     public duration;

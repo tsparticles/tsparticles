@@ -3,6 +3,9 @@ import type { RecursivePartial } from "../../../../Types";
 import { OptionsColor } from "../../OptionsColor";
 import type { IOptionLoader } from "../../../Interfaces/IOptionLoader";
 
+/**
+ * @category Options
+ */
 export class TwinkleValues implements ITwinkleValues, IOptionLoader<ITwinkleValues> {
     public color?: OptionsColor;
     public enable;

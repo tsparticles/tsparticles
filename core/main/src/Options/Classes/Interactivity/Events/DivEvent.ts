@@ -3,6 +3,9 @@ import { DivMode, DivType } from "../../../../Enums";
 import type { RecursivePartial, SingleOrMultiple } from "../../../../Types";
 import type { IOptionLoader } from "../../../Interfaces/IOptionLoader";
 
+/**
+ * @category Options
+ */
 export class DivEvent implements IDivEvent, IOptionLoader<IDivEvent> {
     /**
      * The element id to detect the event

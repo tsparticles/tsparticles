@@ -17,6 +17,9 @@ import { Lighter as ParticlesLighter } from "../../Interactions/Particles/Lighte
 import { Lighter as MouseLighter } from "../../Interactions/Mouse/Lighter";
 import { Triangler } from "../../Interactions/Particles/Triangler";
 
+/**
+ * @category Core
+ */
 export class InteractionManager {
     private readonly externalInteractors: IExternalInteractor[];
     private readonly particleInteractors: IParticlesInteractor[];

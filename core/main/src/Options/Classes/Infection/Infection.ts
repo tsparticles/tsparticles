@@ -3,6 +3,9 @@ import type { RecursivePartial } from "../../../Types";
 import { InfectionStage } from "./InfectionStage";
 import type { IOptionLoader } from "../../Interfaces/IOptionLoader";
 
+/**
+ * @category Options
+ */
 export class Infection implements IInfection, IOptionLoader<IInfection> {
     public cure;
     public delay;

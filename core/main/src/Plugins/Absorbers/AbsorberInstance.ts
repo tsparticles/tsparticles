@@ -12,6 +12,9 @@ type OrbitingParticle = Particle & {
     needsNewPosition?: boolean;
 };
 
+/**
+ * @category Absorbers Plugin
+ */
 export class AbsorberInstance {
     public mass;
     public opacity;

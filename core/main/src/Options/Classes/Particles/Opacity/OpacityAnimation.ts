@@ -2,6 +2,9 @@ import type { IOpacityAnimation } from "../../../Interfaces/Particles/Opacity/IO
 import type { RecursivePartial } from "../../../../Types";
 import type { IOptionLoader } from "../../../Interfaces/IOptionLoader";
 
+/**
+ * @category Options
+ */
 export class OpacityAnimation implements IOpacityAnimation, IOptionLoader<IOpacityAnimation> {
     /**
      *

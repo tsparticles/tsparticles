@@ -4,6 +4,9 @@ import type { Particle } from "../Particle";
 import { HoverMode } from "../../Enums";
 import type { IDelta } from "../Interfaces/IDelta";
 
+/**
+ * @category Core
+ */
 export class Mover {
     constructor(private readonly container: Container, private readonly particle: Particle) {}
 

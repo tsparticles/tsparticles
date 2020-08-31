@@ -2,6 +2,9 @@ import type { IAttract } from "../../../Interfaces/Interactivity/Modes/IAttract"
 import type { RecursivePartial } from "../../../../Types";
 import type { IOptionLoader } from "../../../Interfaces/IOptionLoader";
 
+/**
+ * @category Options
+ */
 export class Attract implements IAttract, IOptionLoader<IAttract> {
     public distance;
     public duration;

@@ -4,6 +4,9 @@ import type { RecursivePartial } from "../../../Types";
 import type { IOptionLoader } from "../../Interfaces/IOptionLoader";
 import { Bounce } from "./Bounce/Bounce";
 
+/**
+ * @category Options
+ */
 export class Collisions implements ICollisions, IOptionLoader<ICollisions> {
     public bounce: Bounce;
     public enable;
