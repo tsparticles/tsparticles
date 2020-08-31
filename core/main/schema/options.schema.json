@@ -43,7 +43,8 @@
             {
               "type": "string"
             }
-          ]
+          ],
+          "description": "Color value, can be a single or an array of [[IValueColor]], [[IRgb]], [[IHsl]] or string"
         }
       },
       "type": "object"
@@ -340,6 +341,7 @@
       "type": "object"
     },
     "IColor": {
+      "description": "Color",
       "properties": {
         "value": {
           "anyOf": [
@@ -374,7 +376,8 @@
             {
               "type": "string"
             }
-          ]
+          ],
+          "description": "Color value, can be a single or an array of [[IValueColor]], [[IRgb]], [[IHsl]] or string"
         }
       },
       "type": "object"
@@ -667,20 +670,26 @@
       "type": "object"
     },
     "IInfection": {
+      "description": "The particles infection animations options",
       "properties": {
         "cure": {
+          "description": "This property specifies if particles can turn back to the original state after being infected",
           "type": "boolean"
         },
         "delay": {
+          "description": "The infection delay of the new infected particles, initial infected particles won't be affected.",
           "type": "number"
         },
         "enable": {
+          "description": "Enables the infection animations",
           "type": "boolean"
         },
         "infections": {
+          "description": "The initial number of infected particles",
           "type": "number"
         },
         "stages": {
+          "description": "This property contains all the infection stages configurations, array of [[IInfectionStage]]",
           "items": {
             "$ref": "#/definitions/IInfectionStage"
           },
@@ -690,6 +699,7 @@
       "type": "object"
     },
     "IInfectionStage": {
+      "description": "Infection stage options",
       "properties": {
         "color": {
           "anyOf": [
@@ -699,45 +709,56 @@
             {
               "type": "string"
             }
-          ]
+          ],
+          "description": "Infection stage particle color"
         },
         "duration": {
+          "description": "Infection stage duration, after this time has passed it will go to the next stage,\nresets to first or turn back to normal if cure is enabled.",
           "type": "number"
         },
         "infectedStage": {
+          "description": "The infected stage set to the infected particles by the current stage",
           "type": "number"
         },
         "radius": {
+          "description": "Infection stage contagious area radius, if 0 only particles touching would be affected",
           "type": "number"
         },
         "rate": {
+          "description": "Infection rate, the higher it is, the more particles will be infected.",
           "type": "number"
         }
       },
       "type": "object"
     },
     "IInteractivity": {
+      "description": "Particles interactivity options",
       "properties": {
         "detect_on": {
           "enum": ["canvas", "parent", "window"],
           "type": "string"
         },
         "detectsOn": {
+          "description": "Where the mouse events will be detected\nIf set to `canvas` only the particles canvas will be target\nIf set to `parent` only the particles canvas parent will be the target\nIf set to `window` every area will be the target",
           "enum": ["canvas", "parent", "window"],
           "type": "string"
         },
         "events": {
-          "$ref": "#/definitions/IEvents"
+          "$ref": "#/definitions/IEvents",
+          "description": "Interaction events options, this configures which events are enabled and which modes should be used"
         },
         "modes": {
-          "$ref": "#/definitions/IModes"
+          "$ref": "#/definitions/IModes",
+          "description": "Interaction modes options, this configures every mode behavior"
         }
       },
       "type": "object"
     },
     "ILinks": {
+      "description": "Particles Links options, this configures how the particles link together",
       "properties": {
         "blink": {
+          "description": "Enables random blinking, if set to true and [[color]] is set to \"random\"\nthe link will have a random color each frame resulting in a blinking animation",
           "type": "boolean"
         },
         "color": {
@@ -748,33 +769,43 @@
             {
               "type": "string"
             }
-          ]
+          ],
+          "description": "Link line color, can be a string or an [[IColor]] object.\nIf the value is \"random\", if [[blink]] is `true` sets a random color each frame,\nif [[consent]] is `true` a random color is used for all links,\nif [[blink]] and [[consent]] are false the color will be a gradient with the two linked particles color"
         },
         "consent": {
+          "description": "If enabled the links will have a single random color, if [[color]] value is \"random\"",
           "type": "boolean"
         },
         "distance": {
+          "description": "Sets the maximum particles link line length",
           "type": "number"
         },
         "enable": {
+          "description": "Enables the particles links",
           "type": "boolean"
         },
         "id": {
+          "description": "Sets the link id, if two particles have a different link id they won't link together",
           "type": "string"
         },
         "opacity": {
+          "description": "Sets the maximum link opacity",
           "type": "number"
         },
         "shadow": {
-          "$ref": "#/definitions/ILinksShadow"
+          "$ref": "#/definitions/ILinksShadow",
+          "description": "Enables the link line shadow\n**Shadows in canvas are really heavy and this can affect negatively on performances, use with caution**"
         },
         "triangles": {
-          "$ref": "#/definitions/ILinksTriangle"
+          "$ref": "#/definitions/ILinksTriangle",
+          "description": "Fills the triangles made by link lines"
         },
         "warp": {
+          "description": "Enable link lines warp, linking particles between edges like there's a warp portal at the edges",
           "type": "boolean"
         },
         "width": {
+          "description": "Sets the link line width",
           "type": "number"
         }
       },
@@ -1646,7 +1677,8 @@
             {
               "type": "string"
             }
-          ]
+          ],
+          "description": "Color value, can be a single or an array of [[IValueColor]], [[IRgb]], [[IHsl]] or string"
         }
       },
       "type": "object"
@@ -1855,6 +1887,7 @@
     "RecursivePartial<ILinks>": {
       "properties": {
         "blink": {
+          "description": "Enables random blinking, if set to true and [[color]] is set to \"random\"\nthe link will have a random color each frame resulting in a blinking animation",
           "type": "boolean"
         },
         "color": {
@@ -1865,33 +1898,43 @@
             {
               "type": "string"
             }
-          ]
+          ],
+          "description": "Link line color, can be a string or an [[IColor]] object.\nIf the value is \"random\", if [[blink]] is `true` sets a random color each frame,\nif [[consent]] is `true` a random color is used for all links,\nif [[blink]] and [[consent]] are false the color will be a gradient with the two linked particles color"
         },
         "consent": {
+          "description": "If enabled the links will have a single random color, if [[color]] value is \"random\"",
           "type": "boolean"
         },
         "distance": {
+          "description": "Sets the maximum particles link line length",
           "type": "number"
         },
         "enable": {
+          "description": "Enables the particles links",
           "type": "boolean"
         },
         "id": {
+          "description": "Sets the link id, if two particles have a different link id they won't link together",
           "type": "string"
         },
         "opacity": {
+          "description": "Sets the maximum link opacity",
           "type": "number"
         },
         "shadow": {
-          "$ref": "#/definitions/RecursivePartial<ILinksShadow>"
+          "$ref": "#/definitions/RecursivePartial<ILinksShadow>",
+          "description": "Enables the link line shadow\n**Shadows in canvas are really heavy and this can affect negatively on performances, use with caution**"
         },
         "triangles": {
-          "$ref": "#/definitions/RecursivePartial<ILinksTriangle>"
+          "$ref": "#/definitions/RecursivePartial<ILinksTriangle>",
+          "description": "Fills the triangles made by link lines"
         },
         "warp": {
+          "description": "Enable link lines warp, linking particles between edges like there's a warp portal at the edges",
           "type": "boolean"
         },
         "width": {
+          "description": "Sets the link line width",
           "type": "number"
         }
       },
@@ -2115,13 +2158,16 @@
           "$ref": "#/definitions/RecursivePartial<IAnimatableColor>"
         },
         "lineLinked": {
-          "$ref": "#/definitions/RecursivePartial<ILinks>"
+          "$ref": "#/definitions/RecursivePartial<ILinks>",
+          "description": "Particles Links options, this configures how the particles link together"
         },
         "line_linked": {
-          "$ref": "#/definitions/RecursivePartial<ILinks>"
+          "$ref": "#/definitions/RecursivePartial<ILinks>",
+          "description": "Particles Links options, this configures how the particles link together"
         },
         "links": {
-          "$ref": "#/definitions/RecursivePartial<ILinks>"
+          "$ref": "#/definitions/RecursivePartial<ILinks>",
+          "description": "Particles Links options, this configures how the particles link together"
         },
         "move": {
           "$ref": "#/definitions/RecursivePartial<IMove>"

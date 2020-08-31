@@ -20,7 +20,7 @@
     // "declarationMap": true,                /* Generates a sourcemap for each corresponding '.d.ts' file. */
     // "sourceMap": true, /* Generates corresponding '.map' file. */
     // "outFile": "./",                       /* Concatenate and emit output to single file. */
-    "outDir": "./dist",
+    "outDir": "./dist"
     /* Redirect output structure to the directory. */
     // "rootDir": "./src",
     /* Specify the root directory of input files. Use to control the output directory structure with --outDir. */
@@ -56,8 +56,8 @@
     /* Module Resolution Options */
     // "moduleResolution": "node",
     /* Specify module resolution strategy: 'node' (Node.js) or 'classic' (TypeScript pre-1.6). */
-     // "baseUrl": "./src",                       /* Base directory to resolve non-absolute module names. */
-     // "paths": {},                           /* A series of entries which re-map imports to lookup locations relative to the 'baseUrl'. */
+    // "baseUrl": "./src",                       /* Base directory to resolve non-absolute module names. */
+    // "paths": {},                           /* A series of entries which re-map imports to lookup locations relative to the 'baseUrl'. */
     // "rootDirs": [],                        /* List of root folders whose combined content represents the structure of the project at runtime. */
     // "typeRoots": [],                       /* List of folders to include type definitions from. */
     // "types": [],                           /* Type declaration files to be included in compilation. */
@@ -87,6 +87,8 @@
       "./src/index.ts"
     ],
     "mode": "library",
+    "name": "tsParticles",
+    "includeVersion": true,
     "out": "./docs",
     "theme": "./typedoc/themes/particles"
   }

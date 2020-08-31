@@ -4,3 +4,12 @@
     height: 100vh;
     z-index: -1;
 }
+
+.col-menu, .tsd-panel, .tsd-page-toolbar, .tsd-page-title, .tsd-generator, .with-border-bottom {
+    background-color: #ffffffef;
+}
+
+.tsd-generator {
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
