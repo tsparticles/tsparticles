@@ -52,7 +52,7 @@ describe("Particle", () => {
                 expect(testParticle.particle?.shape).to.equal(ShapeType.square);
             });
 
-            xit("should choose a single shape from the specified array when container Particles options specifies an array os shape types", () => {
+            it("should choose a single shape from the specified array when container Particles options specifies an array os shape types", () => {
                 testContainer.reset(multipleShapeTypeOptions);
                 testParticle.reset(testContainer.container);
 
