@@ -15,27 +15,27 @@
     "url": "git+https://github.com/matteobruni/tsparticles.git"
   },
   "dependencies": {
-    "@angular/animations": "~10.0.14",
-    "@angular/common": "~10.0.14",
-    "@angular/compiler": "~10.0.14",
-    "@angular/core": "~10.0.14",
-    "@angular/forms": "~10.0.14",
-    "@angular/platform-browser": "~10.0.14",
-    "@angular/platform-browser-dynamic": "~10.0.14",
-    "@angular/router": "~10.0.14",
+    "@angular/animations": "~10.1.0-rc.0",
+    "@angular/common": "~10.1.0-rc.0",
+    "@angular/compiler": "~10.1.0-rc.0",
+    "@angular/core": "~10.1.0-rc.0",
+    "@angular/forms": "~10.1.0-rc.0",
+    "@angular/platform-browser": "~10.1.0-rc.0",
+    "@angular/platform-browser-dynamic": "~10.1.0-rc.0",
+    "@angular/router": "~10.1.0-rc.0",
     "ng-particles": "^2.1.0-alpha.14",
     "rxjs": "~6.6.2",
     "tslib": "^2.0.1",
     "tsparticles": "^1.18.0-alpha.14",
-    "zone.js": "~0.10.3"
+    "zone.js": "~0.11.1"
   },
   "bugs": {
     "url": "https://github.com/matteobruni/tsparticles/issues"
   },
   "devDependencies": {
-    "@angular-devkit/build-angular": "~0.1000.8",
-    "@angular/cli": "~10.0.8",
-    "@angular/compiler-cli": "~10.0.14",
+    "@angular-devkit/build-angular": "~0.1001.0-rc.0",
+    "@angular/cli": "~10.1.0-rc.0",
+    "@angular/compiler-cli": "~10.1.0-rc.0",
     "@types/node": "^14.6.2",
     "@typescript-eslint/eslint-plugin": "^3.10.1",
     "@typescript-eslint/parser": "^3.10.1",
@@ -46,6 +46,6 @@
     "protractor": "~7.0.0",
     "ts-node": "~9.0.0",
     "tslint": "~6.1.3",
-    "typescript": "~3.9.7"
+    "typescript": "~4.0.2"
   }
 }
