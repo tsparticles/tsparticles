@@ -15766,10 +15766,10 @@ rollup-plugin-babel@^4.3.3, rollup-plugin-babel@^4.4.0:
     "@babel/helper-module-imports" "^7.0.0"
     rollup-pluginutils "^2.8.1"
 
-rollup-plugin-livereload@^1.3.0:
-  version "1.3.0"
-  resolved "https://registry.yarnpkg.com/rollup-plugin-livereload/-/rollup-plugin-livereload-1.3.0.tgz#8da90df13df6502b9d982997d6ac871092f15fdd"
-  integrity sha512-abyqXaB21+nFHo+vJULBqfzNx6zXABC19UyvqgDfdoxR/8pFAd041GO+GIUe8ZYC2DbuMUmioh1Lvbk14YLZgw==
+rollup-plugin-livereload@^2.0.0:
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/rollup-plugin-livereload/-/rollup-plugin-livereload-2.0.0.tgz#d3928d74e8cf2ae4286c5dd46b770fd3f3b82313"
+  integrity sha512-oC/8NqumGYuphkqrfszOHUUIwzKsaHBICw6QRwT5uD07gvePTS+HW+GFwu6f9K8W02CUuTvtIM9AWJrbj4wE1A==
   dependencies:
     livereload "^0.9.1"
 
