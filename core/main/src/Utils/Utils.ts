@@ -112,8 +112,10 @@ export class Utils {
         return Math.floor(Math.random() * array.length);
     }
 
-    public static itemFromArray<T>(array: T[], index?: number): T {
-        return array[index ?? Utils.arrayRandomIndex(array)];
+    public static itemFromArray<T>(array: T[], index?: number, useIndex = true): T {
+        const fixedIndex = index !== undefined && useIndex ? index % array.length : Utils.arrayRandomIndex(array);
+
+        return array[fixedIndex];
     }
 
     public static isPointInside(

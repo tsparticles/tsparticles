@@ -60,6 +60,7 @@ export class Particles implements IParticles, IOptionLoader<IParticles> {
     public move;
     public number;
     public opacity;
+    public reduceDuplicates;
     public rotate;
     public shape;
     public size;
@@ -76,6 +77,7 @@ export class Particles implements IParticles, IOptionLoader<IParticles> {
         this.move = new Move();
         this.number = new ParticlesNumber();
         this.opacity = new Opacity();
+        this.reduceDuplicates = false;
         this.rotate = new Rotate();
         this.shadow = new Shadow();
         this.shape = new Shape();
@@ -103,6 +105,11 @@ export class Particles implements IParticles, IOptionLoader<IParticles> {
         this.move.load(data.move);
         this.number.load(data.number);
         this.opacity.load(data.opacity);
+
+        if (data.reduceDuplicates !== undefined) {
+            this.reduceDuplicates = data.reduceDuplicates;
+        }
+
         this.rotate.load(data.rotate);
         this.shape.load(data.shape);
         this.size.load(data.size);

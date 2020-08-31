@@ -33,6 +33,7 @@ export interface IParticles {
     move: IMove;
     number: IParticlesNumber;
     opacity: IOpacity;
+    reduceDuplicates: boolean;
     rotate: IRotate;
     shadow: IShadow;
     shape: IShape;

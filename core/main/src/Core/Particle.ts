@@ -103,15 +103,18 @@ export class Particle implements IParticle {
         particlesOptions.load(options.particles);
 
         const shapeType = particlesOptions.shape.type;
+        const reduceDuplicates = particlesOptions.reduceDuplicates;
 
-        this.shape = shapeType instanceof Array ? Utils.itemFromArray(shapeType) : shapeType;
+        this.shape = shapeType instanceof Array ? Utils.itemFromArray(shapeType, this.id, reduceDuplicates) : shapeType;
 
         if (overrideOptions?.shape) {
             if (overrideOptions.shape.type) {
                 const overrideShapeType = overrideOptions.shape.type;
 
                 this.shape =
-                    overrideShapeType instanceof Array ? Utils.itemFromArray(overrideShapeType) : overrideShapeType;
+                    overrideShapeType instanceof Array
+                        ? Utils.itemFromArray(overrideShapeType, this.id, reduceDuplicates)
+                        : overrideShapeType;
             }
 
             const shapeOptions = new Shape();
@@ -124,7 +127,9 @@ export class Particle implements IParticle {
                 if (shapeData) {
                     this.shapeData = Utils.deepExtend(
                         {},
-                        shapeData instanceof Array ? Utils.itemFromArray(shapeData) : shapeData
+                        shapeData instanceof Array
+                            ? Utils.itemFromArray(shapeData, this.id, reduceDuplicates)
+                            : shapeData
                     ) as IShapeValues;
                 }
             }
@@ -134,7 +139,7 @@ export class Particle implements IParticle {
             if (shapeData) {
                 this.shapeData = Utils.deepExtend(
                     {},
-                    shapeData instanceof Array ? Utils.itemFromArray(shapeData) : shapeData
+                    shapeData instanceof Array ? Utils.itemFromArray(shapeData, this.id, reduceDuplicates) : shapeData
                 ) as IShapeValues;
             }
         }
@@ -228,7 +233,7 @@ export class Particle implements IParticle {
         }
 
         /* color */
-        this.color = ColorUtils.colorToHsl(color);
+        this.color = ColorUtils.colorToHsl(color, this.id, reduceDuplicates);
 
         const colorAnimation = this.particlesOptions.color.animation;
 
@@ -303,7 +308,7 @@ export class Particle implements IParticle {
 
         this.stroke =
             this.particlesOptions.stroke instanceof Array
-                ? Utils.itemFromArray(this.particlesOptions.stroke)
+                ? Utils.itemFromArray(this.particlesOptions.stroke, this.id, reduceDuplicates)
                 : this.particlesOptions.stroke;
 
         this.strokeWidth = this.stroke.width * container.retina.pixelRatio;
@@ -537,8 +542,6 @@ export class Particle implements IParticle {
         const image = images.find((t) => t.source === imageData.src) ?? images[0];
         const color = this.getFillColor();
         let imageRes: IParticleImage;
-
-        console.log(image);
 
         if (!image) {
             return;
