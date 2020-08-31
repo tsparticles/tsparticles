@@ -2,12 +2,12 @@ import type { Container } from "../../Core/Container";
 import type { Particle } from "../../Core/Particle";
 import { Circle, CircleWarp, ColorUtils, Constants, NumberUtils } from "../../Utils";
 import type { IParticlesInteractor } from "../../Core/Interfaces/IParticlesInteractor";
-import { IParticle } from "../../Core/Interfaces/IParticle";
+import type { IParticle } from "../../Core/Interfaces/IParticle";
 
 export class Linker implements IParticlesInteractor {
     constructor(private readonly container: Container) {}
 
-    public isEnabled(particle: Particle): boolean {
+    public isEnabled(particle: IParticle): boolean {
         return particle.particlesOptions.links.enable;
     }
 
@@ -42,22 +42,19 @@ export class Linker implements IParticlesInteractor {
 
         //for (const { distance, p2 } of query) {
         for (const p2 of query) {
-            const linkOpt2 = p2.particlesOptions.links;
-
-            if (p1 === p2) {
+            if (p2.id <= p1.id) {
                 continue;
             }
 
             const index = container.particles.findLinkIndex(p1, p2);
+            const linkOpt2 = p2.particlesOptions.links;
 
             if (!linkOpt2.enable || linkOpt1.id !== linkOpt2.id || p2.destroyed || p2.spawning) {
                 if (!linkOpt2.enable || p2.destroyed || p2.spawning) {
                     container.particles.removeLinks(p2);
                 }
 
-                if (index >= 0) {
-                    container.particles.links.splice(index, 0);
-                }
+                container.particles.removeLinkAtIndex(index);
 
                 continue;
             }
@@ -150,45 +147,6 @@ export class Linker implements IParticlesInteractor {
                     link.opacity = opacityLine;
                     link.visible = Math.random() > 1 - linksOptions.frequency;
                 }
-            }
-        }
-
-        const pTriangles = p1.particlesOptions.links.triangles;
-
-        if (pTriangles.enable) {
-            this.updateTriangles(p1);
-        }
-    }
-
-    private updateTriangles(p1: IParticle): void {
-        const container = this.container;
-        const p1Links = container.particles.getLinks(p1);
-
-        for (let i = 0; i < p1Links.length - 1; i++) {
-            const firstLink = p1Links[i];
-            const secondLink = p1Links[i + 1];
-            const p1FirstIndex = firstLink.edges.indexOf(p1);
-            const p2 = firstLink.edges[(p1FirstIndex + 1) % 2];
-            const p1SecondIndex = secondLink.edges.indexOf(p1);
-            const p3 = secondLink.edges[(p1SecondIndex + 1) % 2];
-            const thirdLink = container.particles.findLink(p2, p3);
-            const triangleIndex = container.particles.triangles.findIndex(
-                (t) => t.vertices.includes(p1) && t.vertices.includes(p2) && t.vertices.includes(p3)
-            );
-            const linksOptions = p1.particlesOptions.links;
-            const trianglesOptions = linksOptions.triangles;
-
-            if (thirdLink && firstLink.visible && secondLink.visible && thirdLink.visible && triangleIndex < 0) {
-                container.particles.triangles.push({
-                    vertices: [p1, p2, p3],
-                    opacity: trianglesOptions.opacity ?? linksOptions.opacity,
-                    visible: Math.random() > 1 - trianglesOptions.frequency,
-                });
-            } else if (
-                (!thirdLink || !firstLink.visible || !secondLink.visible || !thirdLink.visible) &&
-                triangleIndex >= 0
-            ) {
-                container.particles.triangles.splice(triangleIndex, 1);
             }
         }
     }

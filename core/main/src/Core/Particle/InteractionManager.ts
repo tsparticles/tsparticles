@@ -15,6 +15,7 @@ import { Attractor as MouseAttractor } from "../../Interactions/Mouse/Attractor"
 import { Particle } from "../Particle";
 import { Lighter as ParticlesLighter } from "../../Interactions/Particles/Lighter";
 import { Lighter as MouseLighter } from "../../Interactions/Mouse/Lighter";
+import { Triangler } from "../../Interactions/Particles/Triangler";
 
 export class InteractionManager {
     private readonly externalInteractors: IExternalInteractor[];
@@ -37,6 +38,7 @@ export class InteractionManager {
             new Collider(container),
             new Infecter(container),
             new Linker(container),
+            new Triangler(container),
         ];
     }
 

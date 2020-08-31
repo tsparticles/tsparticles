@@ -52,12 +52,26 @@ describe("QuadTree tests", () => {
 
         describe("Particle (5, 5) tests", () => {
             const p1 = new TestParticle(testContainer.container, { x: 5, y: 5 });
+
+            expect(p1.particle).to.not.be.undefined;
+
+            if (!p1.particle) {
+                return;
+            }
+
             const pos1 = p1.particle.getPosition();
 
             quadTree.insert(new Point(pos1, p1.particle));
 
             it("query (radius 10) with p1 (5, 5) center should have at least p2 (10, 10)", () => {
                 const p2 = new TestParticle(testContainer.container, { x: 10, y: 10 });
+
+                expect(p2.particle).to.not.be.undefined;
+
+                if (!p2.particle) {
+                    return;
+                }
+
                 const pos2 = p2.particle.getPosition();
 
                 quadTree.insert(new Point(pos2, p2.particle));
@@ -67,6 +81,13 @@ describe("QuadTree tests", () => {
 
             it("query (radius 10) with p1 (5, 5) center should have at least p2 (0, 0)", () => {
                 const p2 = new TestParticle(testContainer.container, { x: 0, y: 0 });
+
+                expect(p2.particle).to.not.be.undefined;
+
+                if (!p2.particle) {
+                    return;
+                }
+
                 const pos2 = p2.particle.getPosition();
 
                 quadTree.insert(new Point(pos2, p2.particle));
@@ -76,6 +97,13 @@ describe("QuadTree tests", () => {
 
             it("query (radius 10) with p1 (5, 5) center should have at least p2 (199, 199)", () => {
                 const p2 = new TestParticle(testContainer.container, { x: 199, y: 199 });
+
+                expect(p2.particle).to.not.be.undefined;
+
+                if (!p2.particle) {
+                    return;
+                }
+
                 const pos2 = p2.particle.getPosition();
 
                 quadTree.insert(new Point(pos2, p2.particle));
@@ -85,6 +113,13 @@ describe("QuadTree tests", () => {
 
             it("query (radius 10) with p1 (5, 5) center should have at least p2 (5, 199)", () => {
                 const p2 = new TestParticle(testContainer.container, { x: 5, y: 199 });
+
+                expect(p2.particle).to.not.be.undefined;
+
+                if (!p2.particle) {
+                    return;
+                }
+
                 const pos2 = p2.particle.getPosition();
 
                 quadTree.insert(new Point(pos2, p2.particle));
@@ -94,7 +129,16 @@ describe("QuadTree tests", () => {
 
             it("query (radius 10) with p1 (5, 5) center should have at least p2 (199, 5)", () => {
                 const p2 = new TestParticle(testContainer.container, { x: 5, y: 199 });
+
+                expect(p2.particle).to.not.be.undefined;
+
+                if (!p2.particle) {
+                    return;
+                }
+
                 const pos2 = p2.particle.getPosition();
+
+                expect(p2.particle).to.not.be.undefined;
 
                 quadTree.insert(new Point(pos2, p2.particle));
 
@@ -104,12 +148,26 @@ describe("QuadTree tests", () => {
 
         describe("Particle (100, 5) tests", () => {
             const p1 = new TestParticle(testContainer.container, { x: 100, y: 5 });
+
+            expect(p1.particle).to.not.be.undefined;
+
+            if (!p1.particle) {
+                return;
+            }
+
             const pos1 = p1.particle.getPosition();
 
             quadTree.insert(new Point(pos1, p1.particle));
 
             it("query (radius 10) with p1 (100, 5) center should have at least p2 (100, 199)", () => {
                 const p2 = new TestParticle(testContainer.container, { x: 100, y: 199 });
+
+                expect(p2.particle).to.not.be.undefined;
+
+                if (!p2.particle) {
+                    return;
+                }
+
                 const pos2 = p2.particle.getPosition();
 
                 quadTree.insert(new Point(pos2, p2.particle));
@@ -120,12 +178,28 @@ describe("QuadTree tests", () => {
 
         describe("Particle (5, 100) tests", () => {
             const p1 = new TestParticle(testContainer.container, { x: 5, y: 100 });
+
+            expect(p1.particle).to.not.be.undefined;
+
+            if (!p1.particle) {
+                return;
+            }
+
             const pos1 = p1.particle.getPosition();
+
+            expect(p1.particle).to.not.be.undefined;
 
             quadTree.insert(new Point(pos1, p1.particle));
 
             it("query (radius 10) with p1 (5, 100) center should have at least p2 (199, 100)", () => {
                 const p2 = new TestParticle(testContainer.container, { x: 199, y: 100 });
+
+                expect(p2.particle).to.not.be.undefined;
+
+                if (!p2.particle) {
+                    return;
+                }
+
                 const pos2 = p2.particle.getPosition();
 
                 quadTree.insert(new Point(pos2, p2.particle));

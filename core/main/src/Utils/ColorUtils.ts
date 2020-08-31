@@ -13,8 +13,10 @@ export class ColorUtils {
     /**
      * Gets the particles color
      * @param input the input color to convert in [[IRgb]] object
+     * @param index the array index, if needed
+     * @param useIndex set to false to ignore the index parameter
      */
-    public static colorToRgb(input?: string | IColor): IRgb | undefined {
+    public static colorToRgb(input?: string | IColor, index?: number, useIndex = true): IRgb | undefined {
         if (input === undefined) {
             return;
         }
@@ -31,7 +33,7 @@ export class ColorUtils {
             }
         } else {
             if (color.value instanceof Array) {
-                const colorSelected = Utils.itemFromArray(color.value);
+                const colorSelected = Utils.itemFromArray(color.value, index, useIndex);
 
                 res = ColorUtils.colorToRgb({ value: colorSelected });
             } else {
@@ -56,9 +58,11 @@ export class ColorUtils {
     /**
      * Gets the particles color
      * @param color the input color to convert in [[IHsl]] object
+     * @param index the array index, if needed
+     * @param useIndex set to false to ignore the index parameter
      */
-    public static colorToHsl(color: string | IColor | undefined): IHsl | undefined {
-        const rgb = ColorUtils.colorToRgb(color);
+    public static colorToHsl(color: string | IColor | undefined, index?: number, useIndex = true): IHsl | undefined {
+        const rgb = ColorUtils.colorToRgb(color, index, useIndex);
 
         return rgb !== undefined ? ColorUtils.rgbToHsl(rgb) : rgb;
     }

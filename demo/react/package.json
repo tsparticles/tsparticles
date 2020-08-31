@@ -18,9 +18,9 @@
     "url": "https://github.com/matteobruni/tsparticles/issues"
   },
   "devDependencies": {
-    "@types/react": "^16.9.46",
+    "@types/react": "^16.9.48",
     "@types/react-dom": "^16.9.8",
-    "@types/react-syntax-highlighter": "^11.0.4",
+    "@types/react-syntax-highlighter": "^11.0.5",
     "@typescript-eslint/eslint-plugin": "^3.7.0",
     "@typescript-eslint/parser": "^3.6.1",
     "eslint": "^7.7.0",
@@ -28,7 +28,7 @@
     "node-sass": "^4.14.1",
     "parcel": "^1.12.4",
     "prettier": "^2.0.5",
-    "react-syntax-highlighter": "^13.0.0",
+    "react-syntax-highlighter": "^13.5.1",
     "rxjs": "^6.6.2",
     "typescript": "^4.0.2"
   },

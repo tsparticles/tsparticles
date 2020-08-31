@@ -292,6 +292,7 @@ export class Canvas {
             container.canvas.size,
             p1.particlesOptions.links.warp,
             options.backgroundMask.enable,
+            options.backgroundMask.composite,
             colorLine,
             opacity,
             p1.particlesOptions.links.shadow
@@ -400,17 +401,11 @@ export class Canvas {
         const pos3 = p3.getPosition();
 
         const link1 = particles.findLink(p1, p2);
-        const link2 = particles.findLink(p1, p3);
-        const link3 = particles.findLink(p2, p3);
+        const link2 = !link1 ? undefined : particles.findLink(p1, p3);
+        const link3 = !link1 || !link2 ? undefined : particles.findLink(p2, p3);
 
         if (!link1 || !link2 || !link3) {
-            const triangleIndex = particles.triangles.findIndex(
-                (t) => t.vertices.includes(p1) && t.vertices.includes(p2) && t.vertices.includes(p3)
-            );
-
-            if (triangleIndex >= 0) {
-                particles.triangles.splice(triangleIndex, 1);
-            }
+            particles.removeTriangle(p1, p2, p3);
 
             return;
         }
@@ -471,6 +466,7 @@ export class Canvas {
             pos2,
             pos3,
             options.backgroundMask.enable,
+            options.backgroundMask.composite,
             colorTriangle,
             triangle.opacity
         );
@@ -529,6 +525,7 @@ export class Canvas {
                 fillColorValue,
                 strokeColorValue,
                 options.backgroundMask.enable,
+                options.backgroundMask.composite,
                 radius,
                 opacity,
                 particle.particlesOptions.shadow
