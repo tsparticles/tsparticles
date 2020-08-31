@@ -74,7 +74,7 @@
     "@types/node": "^14.6.2",
     "codelyzer": "^6.0.0",
     "fs": "^0.0.1-security",
-    "ng-packagr": "^10.0.4",
+    "ng-packagr": "^10.1.0",
     "protractor": "~7.0.0",
     "ts-node": "~8.10.2",
     "tslint": "~6.1.3",
