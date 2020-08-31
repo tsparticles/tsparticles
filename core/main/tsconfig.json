@@ -83,6 +83,7 @@
   "typedocOptions": {
     "gaID": "UA-159372955-1",
     "ignoreCompilerErrors": true,
+    "includes": "./markdown",
     "inputFiles": [
       "./src/index.ts"
     ],

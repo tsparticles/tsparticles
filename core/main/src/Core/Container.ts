@@ -15,10 +15,11 @@ import { Particle } from "./Particle";
 import type { INoiseValue } from "./Interfaces/INoiseValue";
 import type { INoise } from "./Interfaces/INoise";
 import type { IRgb } from "./Interfaces/IRgb";
-import { IAttract } from "./Interfaces/IAttract";
+import type { IAttract } from "./Interfaces/IAttract";
 
 /**
  * The object loaded into an HTML element, it'll contain options loaded and all data to let everything working
+ * [[include:Container.md]]
  * @category Core
  */
 export class Container {
@@ -131,7 +132,7 @@ export class Container {
         }
 
         if (needsUpdate) {
-            for (const [, plugin] of this.plugins) {
+            for (const [ , plugin ] of this.plugins) {
                 if (plugin.play) {
                     plugin.play();
                 }
@@ -157,7 +158,7 @@ export class Container {
             return;
         }
 
-        for (const [, plugin] of this.plugins) {
+        for (const [ , plugin ] of this.plugins) {
             if (plugin.pause) {
                 plugin.pause();
             }
@@ -252,7 +253,7 @@ export class Container {
 
         this.canvas.destroy();
 
-        for (const [, drawer] of this.drawers) {
+        for (const [ , drawer ] of this.drawers) {
             if (drawer.destroy) {
                 drawer.destroy(this);
             }
@@ -308,7 +309,7 @@ export class Container {
         this.particles.clear();
         this.canvas.clear();
 
-        for (const [, plugin] of this.plugins) {
+        for (const [ , plugin ] of this.plugins) {
             if (plugin.stop) {
                 plugin.stop();
             }
@@ -335,7 +336,7 @@ export class Container {
 
         this.eventListeners.addListeners();
 
-        for (const [, plugin] of this.plugins) {
+        for (const [ , plugin ] of this.plugins) {
             if (plugin.startAsync !== undefined) {
                 await plugin.startAsync();
             } else if (plugin.start !== undefined) {
@@ -353,17 +354,17 @@ export class Container {
 
         const availablePlugins = Plugins.getAvailablePlugins(this);
 
-        for (const [id, plugin] of availablePlugins) {
+        for (const [ id, plugin ] of availablePlugins) {
             this.plugins.set(id, plugin);
         }
 
-        for (const [, drawer] of this.drawers) {
+        for (const [ , drawer ] of this.drawers) {
             if (drawer.init) {
                 await drawer.init(this);
             }
         }
 
-        for (const [, plugin] of this.plugins) {
+        for (const [ , plugin ] of this.plugins) {
             if (plugin.init) {
                 plugin.init(this.options);
             } else if (plugin.initAsync !== undefined) {

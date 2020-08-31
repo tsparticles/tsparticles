@@ -9,6 +9,7 @@ import { Plugins } from "../../Utils";
 import type { IOptionLoader } from "../Interfaces/IOptionLoader";
 
 /**
+ * [[include:Options.md]]
  * @category Options
  */
 export class Options implements IOptions, IOptionLoader<IOptions> {

@@ -6,6 +6,7 @@ import type { IColor } from "../../../Core/Interfaces/IColor";
 import type { IOptionLoader } from "../../Interfaces/IOptionLoader";
 
 /**
+ * [[include:Options/BackgroundMask.md]]
  * @category Options
  */
 export class BackgroundMask implements IBackgroundMask, IOptionLoader<IBackgroundMask> {
