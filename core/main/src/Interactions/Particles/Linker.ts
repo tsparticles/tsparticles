@@ -33,11 +33,9 @@ export class Linker implements IParticlesInteractor {
         const p1Links = container.particles.getLinks(p1);
 
         for (const link of p1Links) {
-            if (link.edges.some((t) => (query as IParticle[]).includes(t))) {
-                continue;
+            if (!link.edges.some((e) => e.id >= p1.id && (query as IParticle[]).includes(e))) {
+                container.particles.removeExactLink(link);
             }
-
-            container.particles.removeExactLink(link);
         }
 
         //for (const { distance, p2 } of query) {
