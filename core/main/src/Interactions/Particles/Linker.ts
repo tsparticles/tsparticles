@@ -33,9 +33,11 @@ export class Linker implements IParticlesInteractor {
         const p1Links = container.particles.getLinks(p1);
 
         for (const link of p1Links) {
-            const index = link.edges.findIndex((t) => t != p1 && (query as IParticle[]).includes(t));
+            if (link.edges.some((t) => (query as IParticle[]).includes(t))) {
+                continue;
+            }
 
-            container.particles.removeLinkAtIndex(index);
+            container.particles.removeExactLink(link);
         }
 
         //for (const { distance, p2 } of query) {
@@ -44,8 +46,8 @@ export class Linker implements IParticlesInteractor {
                 continue;
             }
 
-            const linkOpt2 = p2.particlesOptions.links;
             const index = container.particles.findLinkIndex(p1, p2);
+            const linkOpt2 = p2.particlesOptions.links;
 
             if (!linkOpt2.enable || linkOpt1.id !== linkOpt2.id || p2.destroyed || p2.spawning) {
                 if (!linkOpt2.enable || p2.destroyed || p2.spawning) {
