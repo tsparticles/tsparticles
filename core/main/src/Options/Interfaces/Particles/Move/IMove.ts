@@ -4,6 +4,9 @@ import type { ITrail } from "../ITrail";
 import type { INoise } from "../Noise/INoise";
 import type { IMoveAngle } from "./IMoveAngle";
 
+/**
+ * @category Options
+ */
 export interface IMove {
     angle: number | IMoveAngle;
     attract: IAttract;

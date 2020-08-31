@@ -3,6 +3,9 @@ import type { IHoverEvent } from "./IHoverEvent";
 import type { IDivEvent } from "./IDivEvent";
 import type { SingleOrMultiple } from "../../../../Types/SingleOrMultiple";
 
+/**
+ * @category Options
+ */
 export interface IEvents {
     /**
      * @deprecated use the new onClick instead

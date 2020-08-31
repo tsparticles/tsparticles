@@ -6,6 +6,7 @@ import type { IColor } from "../../../Core/Interfaces/IColor";
 export interface IInfectionStage {
     /**
      * Infection stage particle color
+     * @category Options
      */
     color: string | IColor;
 

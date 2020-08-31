@@ -4,6 +4,9 @@ import { RotateDirection, RotateDirectionAlt } from "../../../../Enums";
 import type { RecursivePartial } from "../../../../Types/RecursivePartial";
 import type { IOptionLoader } from "../../../Interfaces/IOptionLoader";
 
+/**
+ * @category Options
+ */
 export class Rotate implements IRotate, IOptionLoader<IRotate> {
     public animation: RotateAnimation;
     public direction: RotateDirection | keyof typeof RotateDirection | RotateDirectionAlt;

@@ -4,6 +4,9 @@ import type { RecursivePartial } from "../../../../Types/RecursivePartial";
 import type { SingleOrMultiple } from "../../../../Types/SingleOrMultiple";
 import type { IOptionLoader } from "../../../Interfaces/IOptionLoader";
 
+/**
+ * @category Options
+ */
 export class ClickEvent implements IClickEvent, IOptionLoader<IClickEvent> {
     /**
      * The click event handler enabling setting

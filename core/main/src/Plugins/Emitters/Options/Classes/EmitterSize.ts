@@ -3,6 +3,9 @@ import type { RecursivePartial } from "../../../../Types/RecursivePartial";
 import { SizeMode } from "../../../../Enums";
 import type { IOptionLoader } from "../../../../Options/Interfaces/IOptionLoader";
 
+/**
+ * @category Emitters Plugin
+ */
 export class EmitterSize implements IEmitterSize, IOptionLoader<IEmitterSize> {
     public mode: SizeMode | keyof typeof SizeMode;
     public height: number;
@@ -15,18 +18,20 @@ export class EmitterSize implements IEmitterSize, IOptionLoader<IEmitterSize> {
     }
 
     public load(data?: RecursivePartial<IEmitterSize>): void {
-        if (data !== undefined) {
-            if (data.mode !== undefined) {
-                this.mode = data.mode;
-            }
+        if (data === undefined) {
+            return;
+        }
 
-            if (data.height !== undefined) {
-                this.height = data.height;
-            }
+        if (data.mode !== undefined) {
+            this.mode = data.mode;
+        }
 
-            if (data.width !== undefined) {
-                this.width = data.width;
-            }
+        if (data.height !== undefined) {
+            this.height = data.height;
+        }
+
+        if (data.width !== undefined) {
+            this.width = data.width;
         }
     }
 }

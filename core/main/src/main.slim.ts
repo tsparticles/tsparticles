@@ -24,7 +24,8 @@ import { Particle } from "./Core/Particle";
 
 /**
  * Main class for creating the singleton on window.
- * It's a proxy to the static [[Loader]] class
+ * It's a singleton proxy to the static [[Loader]] class for initializing [[Container]] instances
+ * @category Main
  */
 export class MainSlim {
     private initialized: boolean;

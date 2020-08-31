@@ -5,6 +5,7 @@ import type { SingleOrMultiple } from "../../Types/SingleOrMultiple";
 
 /**
  * Color
+ * @category Interfaces
  */
 export interface IColor {
     /**

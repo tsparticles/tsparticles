@@ -3,6 +3,9 @@ import type { ISide } from "../Core/Interfaces/ISide";
 import type { ICoordinates } from "../Core/Interfaces/ICoordinates";
 import type { IParticle } from "../Core/Interfaces/IParticle";
 
+/**
+ * @category Shape Drawers
+ */
 export class TriangleDrawer extends PolygonDrawerBase {
     public getSidesData(particle: IParticle, radius: number): ISide {
         return {

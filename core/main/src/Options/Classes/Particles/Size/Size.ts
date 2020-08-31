@@ -4,6 +4,9 @@ import type { RecursivePartial } from "../../../../Types/RecursivePartial";
 import { SizeRandom } from "./SizeRandom";
 import type { IOptionLoader } from "../../../Interfaces/IOptionLoader";
 
+/**
+ * @category Options
+ */
 export class Size implements ISize, IOptionLoader<ISize> {
     /**
      *

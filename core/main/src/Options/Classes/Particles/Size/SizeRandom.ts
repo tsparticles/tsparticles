@@ -2,6 +2,9 @@ import type { RecursivePartial } from "../../../../Types/RecursivePartial";
 import type { ISizeRandom } from "../../../Interfaces/Particles/Size/ISizeRandom";
 import type { IOptionLoader } from "../../../Interfaces/IOptionLoader";
 
+/**
+ * @category Options
+ */
 export class SizeRandom implements ISizeRandom, IOptionLoader<ISizeRandom> {
     public enable: boolean;
     public minimumValue: number;

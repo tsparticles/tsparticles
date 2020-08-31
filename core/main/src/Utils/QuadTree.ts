@@ -3,6 +3,9 @@ import type { Range } from "./Range";
 import type { Point } from "./Point";
 import { Rectangle } from "./Rectangle";
 
+/**
+ * @category Utils
+ */
 export class QuadTree {
     public readonly points: Point[];
 

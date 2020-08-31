@@ -3,6 +3,9 @@ import type { ISide } from "../Core/Interfaces/ISide";
 import type { ICoordinates } from "../Core/Interfaces/ICoordinates";
 import type { IParticle } from "../Core/Interfaces/IParticle";
 
+/**
+ * @category Shape Drawers
+ */
 export abstract class PolygonDrawerBase implements IShapeDrawer {
     public draw(context: CanvasRenderingContext2D, particle: IParticle, radius: number): void {
         const start = this.getCenter(particle, radius);

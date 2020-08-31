@@ -6,6 +6,9 @@ import type { IOptions } from "../Options/Interfaces/IOptions";
 import type { IShapeDrawer } from "../Core/Interfaces/IShapeDrawer";
 import type { Options } from "../Options/Classes/Options";
 
+/**
+ * @category Utils
+ */
 export class Plugins {
     private static readonly plugins: IPlugin[] = [];
     private static readonly presets: Map<string, RecursivePartial<IOptions>> = new Map<

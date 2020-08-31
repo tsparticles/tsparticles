@@ -1,5 +1,8 @@
 import type { Container } from "./Container";
 
+/**
+ * @category Core
+ */
 export class FrameManager {
     constructor(private readonly container: Container) {}
 

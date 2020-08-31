@@ -2,6 +2,9 @@ import type { Container } from "./Container";
 import type { Particle } from "./Particle";
 import { Utils } from "../Utils";
 
+/**
+ * @category Core
+ */
 export class Retina {
     public bubbleModeDistance!: number;
     public bubbleModeSize?: number;

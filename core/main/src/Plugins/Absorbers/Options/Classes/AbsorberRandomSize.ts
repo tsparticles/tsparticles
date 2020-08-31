@@ -2,6 +2,9 @@ import type { IAbsorberRandomSize } from "../Interfaces/IAbsorberRandomSize";
 import type { RecursivePartial } from "../../../../Types/RecursivePartial";
 import type { IOptionLoader } from "../../../../Options/Interfaces/IOptionLoader";
 
+/**
+ * @category Absorbers Plugin
+ */
 export class AbsorberRandomSize implements IAbsorberRandomSize, IOptionLoader<IAbsorberRandomSize> {
     public enable: boolean;
     public minimumValue: number;
@@ -12,14 +15,16 @@ export class AbsorberRandomSize implements IAbsorberRandomSize, IOptionLoader<IA
     }
 
     public load(data?: RecursivePartial<IAbsorberRandomSize>): void {
-        if (data !== undefined) {
-            if (data.enable !== undefined) {
-                this.enable = data.enable;
-            }
+        if (data === undefined) {
+            return;
+        }
 
-            if (data.minimumValue !== undefined) {
-                this.minimumValue = data.minimumValue;
-            }
+        if (data.enable !== undefined) {
+            this.enable = data.enable;
+        }
+
+        if (data.minimumValue !== undefined) {
+            this.minimumValue = data.minimumValue;
         }
     }
 }

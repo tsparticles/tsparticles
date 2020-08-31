@@ -560,7 +560,7 @@ var disappearing = {
         },
         rate: {
             delay: 0.1,
-            quantity: 2
+            quantity: 3
         }
     },
     particles: {
@@ -584,8 +584,8 @@ var disappearing = {
             value: 200,
             anim: {
                 enable: true,
-                speed: 50,
-                size_min: 2,
+                speed: 100,
+                size_min: 1,
                 sync: true,
                 startValue: "max",
                 destroy: "min"
@@ -593,7 +593,7 @@ var disappearing = {
         },
         move: {
             enable: true,
-            speed: 5,
+            speed: 0,
             direction: "none",
             random: false,
             straight: false,

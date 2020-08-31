@@ -1,3 +1,1 @@
-import { ShapeType } from "./Types";
-
-export { ShapeType };
+export * from "./Types";

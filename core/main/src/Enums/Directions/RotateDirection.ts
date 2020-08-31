@@ -1,3 +1,6 @@
+/**
+ * @category Enums
+ */
 export enum RotateDirection {
     clockwise = "clockwise",
     counterClockwise = "counter-clockwise",

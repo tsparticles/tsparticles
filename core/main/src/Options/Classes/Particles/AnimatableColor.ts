@@ -4,6 +4,9 @@ import type { RecursivePartial } from "../../../Types/RecursivePartial";
 import { ColorAnimation } from "./ColorAnimation";
 import type { IOptionLoader } from "../../Interfaces/IOptionLoader";
 
+/**
+ * @category Options
+ */
 export class AnimatableColor extends OptionsColor implements IAnimatableColor, IOptionLoader<IAnimatableColor> {
     public animation: ColorAnimation;
 

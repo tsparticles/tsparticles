@@ -1,3 +1,6 @@
+/**
+ * @category Enums
+ */
 export enum InteractivityDetect {
     canvas = "canvas",
     parent = "parent",

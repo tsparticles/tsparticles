@@ -3,6 +3,9 @@ import { NoiseRandom } from "./NoiseRandom";
 import type { RecursivePartial } from "../../../../Types/RecursivePartial";
 import type { IOptionLoader } from "../../../Interfaces/IOptionLoader";
 
+/**
+ * @category Options
+ */
 export class NoiseDelay implements INoiseDelay, IOptionLoader<INoiseDelay> {
     public random: NoiseRandom;
     public value: number;

@@ -6,6 +6,9 @@ import type { IStroke } from "../IStroke";
 import type { SingleOrMultiple } from "../../../../Types/SingleOrMultiple";
 import type { ShapeData } from "../../../../Types/ShapeData";
 
+/**
+ * @category Options
+ */
 export interface IShape {
     type: SingleOrMultiple<ShapeType | keyof typeof ShapeType | string>;
 

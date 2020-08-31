@@ -4,6 +4,9 @@ import { Circle } from "../../../../Utils";
 import type { IParticlesInteractor } from "../../../Interfaces/IParticlesInteractor";
 import type { IDelta } from "../../../Interfaces/IDelta";
 
+/**
+ * @category Interactions
+ */
 export class Infecter implements IParticlesInteractor {
     constructor(private readonly container: Container) {}
 

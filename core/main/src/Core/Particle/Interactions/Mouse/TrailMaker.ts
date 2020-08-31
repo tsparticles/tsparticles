@@ -4,6 +4,9 @@ import { Utils } from "../../../../Utils";
 import { ClickMode, HoverMode } from "../../../../Enums/Modes";
 import type { IDelta } from "../../../Interfaces/IDelta";
 
+/**
+ * @category Interactions
+ */
 export class TrailMaker implements IExternalInteractor {
     private delay: number;
 

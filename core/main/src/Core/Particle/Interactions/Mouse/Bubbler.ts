@@ -9,6 +9,7 @@ import { BubbleDiv } from "../../../../Options/Classes/Interactivity/Modes/Bubbl
 
 /**
  * Particle bubble manager
+ * @category Interactions
  */
 export class Bubbler implements IExternalInteractor {
     constructor(private readonly container: Container) {}

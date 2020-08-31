@@ -8,6 +8,9 @@ import type { ISlow } from "./ISlow";
 import type { ITrail } from "./ITrail";
 import type { IAttract } from "./IAttract";
 
+/**
+ * @category Options
+ */
 export interface IModes {
     attract: IAttract;
     bubble: IBubble;

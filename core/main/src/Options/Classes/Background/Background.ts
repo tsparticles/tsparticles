@@ -3,6 +3,9 @@ import type { RecursivePartial } from "../../../Types/RecursivePartial";
 import { OptionsColor } from "../OptionsColor";
 import type { IOptionLoader } from "../../Interfaces/IOptionLoader";
 
+/**
+ * @category Options
+ */
 export class Background implements IBackground, IOptionLoader<IBackground> {
     public color: OptionsColor;
     public image: string;

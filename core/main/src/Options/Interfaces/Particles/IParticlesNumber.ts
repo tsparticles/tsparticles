@@ -1,5 +1,8 @@
 import type { IDensity } from "./IDensity";
 
+/**
+ * @category Options
+ */
 export interface IParticlesNumber {
     density: IDensity;
     limit: number;

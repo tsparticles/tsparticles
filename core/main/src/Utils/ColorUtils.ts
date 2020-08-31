@@ -6,8 +6,11 @@ import type { IHsla } from "../Core/Interfaces/IHsla";
 import { Utils } from "./Utils";
 import { Constants } from "./Constants";
 import type { IValueColor } from "../Core/Interfaces/IValueColor";
-import { IImage } from "../Core/Interfaces/IImage";
+import type { IImage } from "../Core/Interfaces/IImage";
 
+/**
+ * @category Utils
+ */
 export class ColorUtils {
     /**
      * Gets the particles color

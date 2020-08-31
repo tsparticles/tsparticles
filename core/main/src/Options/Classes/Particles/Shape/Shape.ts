@@ -11,6 +11,9 @@ import type { IImageShape } from "../../../Interfaces/Particles/Shape/IImageShap
 import type { ICharacterShape } from "../../../Interfaces/Particles/Shape/ICharacterShape";
 import type { IOptionLoader } from "../../../Interfaces/IOptionLoader";
 
+/**
+ * @category Options
+ */
 export class Shape implements IShape, IOptionLoader<IShape> {
     /**
      * @deprecated this property was integrated in custom shape management

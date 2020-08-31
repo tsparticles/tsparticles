@@ -1,5 +1,6 @@
 /**
  * Project's constants
+ * @category Utils
  */
 export class Constants {
     /**

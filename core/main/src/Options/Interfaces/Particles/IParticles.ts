@@ -12,6 +12,9 @@ import type { ICollisions } from "./ICollisions";
 import type { ITwinkle } from "./Twinkle/ITwinkle";
 import type { IAnimatableColor } from "./IAnimatableColor";
 
+/**
+ * @category Options
+ */
 export interface IParticles {
     collisions: ICollisions;
     color: IAnimatableColor;

@@ -2,6 +2,9 @@ import { Range } from "./Range";
 import type { ICoordinates } from "../Core/Interfaces/ICoordinates";
 import { Rectangle } from "./Rectangle";
 
+/**
+ * @category Utils
+ */
 export class Circle extends Range {
     constructor(x: number, y: number, public readonly radius: number) {
         super(x, y);

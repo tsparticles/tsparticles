@@ -7,6 +7,9 @@ import { Noise } from "../Noise/Noise";
 import type { IOptionLoader } from "../../../Interfaces/IOptionLoader";
 import { MoveAngle } from "./MoveAngle";
 
+/**
+ * @category Options
+ */
 export class Move implements IMove, IOptionLoader<IMove> {
     /**
      * @deprecated this property is obsolete, please use the new collisions object on particles options

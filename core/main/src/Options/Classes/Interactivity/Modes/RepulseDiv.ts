@@ -4,6 +4,9 @@ import type { IRepulseDiv } from "../../../Interfaces/Interactivity/Modes/IRepul
 import { RepulseBase } from "./RepulseBase";
 import type { IOptionLoader } from "../../../Interfaces/IOptionLoader";
 
+/**
+ * @category Options
+ */
 export class RepulseDiv extends RepulseBase implements IRepulseDiv, IOptionLoader<IRepulseDiv> {
     public ids: SingleOrMultiple<string>;
 

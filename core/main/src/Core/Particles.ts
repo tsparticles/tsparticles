@@ -11,6 +11,7 @@ import type { IDelta } from "./Interfaces/IDelta";
 
 /**
  * Particles manager
+ * @category Core
  */
 export class Particles {
     public get count(): number {

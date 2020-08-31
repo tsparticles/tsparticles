@@ -2,6 +2,9 @@ import type { INoiseRandom } from "../../../Interfaces/Particles/Noise/INoiseRan
 import type { RecursivePartial } from "../../../../Types/RecursivePartial";
 import type { IOptionLoader } from "../../../Interfaces/IOptionLoader";
 
+/**
+ * @category Options
+ */
 export class NoiseRandom implements INoiseRandom, IOptionLoader<INoiseRandom> {
     public enable: boolean;
     public minimumValue: number;

@@ -8,6 +8,7 @@ import type { RepulseDiv } from "../../../../Options/Classes/Interactivity/Modes
 
 /**
  * Particle repulse manager
+ * @category Interactions
  */
 export class Repulser implements IExternalInteractor {
     constructor(private readonly container: Container) {}

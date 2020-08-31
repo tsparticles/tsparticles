@@ -1,3 +1,1 @@
-import { MoveDirection } from "./Directions";
-
-export { MoveDirection };
+export * from "./Directions";

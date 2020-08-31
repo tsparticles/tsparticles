@@ -9,6 +9,9 @@ import { Utils } from "../../../../Utils";
 import { EmitterSize } from "./EmitterSize";
 import type { IOptionLoader } from "../../../../Options/Interfaces/IOptionLoader";
 
+/**
+ * @category Emitters Plugin
+ */
 export class Emitter implements IEmitter, IOptionLoader<IEmitter> {
     public size?: EmitterSize;
     public direction: MoveDirection | keyof typeof MoveDirection | MoveDirectionAlt;
@@ -24,33 +27,35 @@ export class Emitter implements IEmitter, IOptionLoader<IEmitter> {
     }
 
     public load(data?: RecursivePartial<IEmitter>): void {
-        if (data !== undefined) {
-            if (data.size !== undefined) {
-                if (this.size === undefined) {
-                    this.size = new EmitterSize();
-                }
+        if (data === undefined) {
+            return;
+        }
 
-                this.size.load(data.size);
+        if (data.size !== undefined) {
+            if (this.size === undefined) {
+                this.size = new EmitterSize();
             }
 
-            if (data.direction !== undefined) {
-                this.direction = data.direction;
-            }
+            this.size.load(data.size);
+        }
 
-            this.life.load(data.life);
+        if (data.direction !== undefined) {
+            this.direction = data.direction;
+        }
 
-            if (data.particles !== undefined) {
-                this.particles = Utils.deepExtend({}, data.particles);
-            }
+        this.life.load(data.life);
 
-            this.rate.load(data.rate);
+        if (data.particles !== undefined) {
+            this.particles = Utils.deepExtend({}, data.particles);
+        }
 
-            if (data.position !== undefined) {
-                this.position = {
-                    x: data.position.x,
-                    y: data.position.y,
-                };
-            }
+        this.rate.load(data.rate);
+
+        if (data.position !== undefined) {
+            this.position = {
+                x: data.position.x,
+                y: data.position.y,
+            };
         }
     }
 }

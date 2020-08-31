@@ -10,6 +10,9 @@ interface TextParticle extends IParticle {
     text?: string;
 }
 
+/**
+ * @category Shape Drawers
+ */
 export class TextDrawer implements IShapeDrawer {
     public async init(container: Container): Promise<void> {
         const options = container.options;

@@ -15,6 +15,9 @@ import { Twinkle } from "./Twinkle/Twinkle";
 import { AnimatableColor } from "./AnimatableColor";
 import type { IOptionLoader } from "../../Interfaces/IOptionLoader";
 
+/**
+ * @category Options
+ */
 export class Particles implements IParticles, IOptionLoader<IParticles> {
     /**
      *

@@ -1,5 +1,6 @@
 /**
  * The particles emitter life options
+ * @category Emitters Plugin
  */
 export interface IEmitterLife {
     /**

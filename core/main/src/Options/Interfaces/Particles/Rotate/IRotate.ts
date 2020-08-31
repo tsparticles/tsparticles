@@ -1,6 +1,9 @@
 import type { IRotateAnimation } from "./IRotateAnimation";
 import type { RotateDirection, RotateDirectionAlt } from "../../../../Enums";
 
+/**
+ * @category Options
+ */
 export interface IRotate {
     animation: IRotateAnimation;
     direction: RotateDirection | keyof typeof RotateDirection | RotateDirectionAlt;

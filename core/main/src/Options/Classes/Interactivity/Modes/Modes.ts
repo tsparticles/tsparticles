@@ -11,6 +11,9 @@ import { Trail } from "./Trail";
 import type { IOptionLoader } from "../../../Interfaces/IOptionLoader";
 import { Attract } from "./Attract";
 
+/**
+ * @category Options
+ */
 export class Modes implements IModes, IOptionLoader<IModes> {
     public attract: Attract;
     public bubble: Bubble;

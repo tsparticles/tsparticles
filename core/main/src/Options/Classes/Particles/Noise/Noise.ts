@@ -3,6 +3,9 @@ import type { RecursivePartial } from "../../../../Types/RecursivePartial";
 import { NoiseDelay } from "./NoiseDelay";
 import type { IOptionLoader } from "../../../Interfaces/IOptionLoader";
 
+/**
+ * @category Options
+ */
 export class Noise implements INoise, IOptionLoader<INoise> {
     public delay: NoiseDelay;
     public enable: boolean;

@@ -5,8 +5,16 @@
     z-index: -1;
 }
 
-.col-menu, .tsd-panel, .tsd-page-toolbar, .tsd-page-title, .tsd-generator, .with-border-bottom {
-    background-color: #ffffffef;
+.col-menu, .tsd-page-title, .tsd-generator, .with-border-bottom, .col-content {
+    background-color: #ffffffcc;
+}
+
+.tsd-panel, .tsd-page-toolbar {
+    background-color: #ffffff33;
+}
+
+.col-menu, .col-content {
+    padding-top: 20px;
 }
 
 .tsd-generator {

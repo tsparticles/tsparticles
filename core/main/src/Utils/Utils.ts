@@ -7,7 +7,7 @@ import type { IImage } from "../Core/Interfaces/IImage";
 import type { IParticle } from "../Core/Interfaces/IParticle";
 import type { SingleOrMultiple } from "../Types/SingleOrMultiple";
 import { DivEvent } from "../Options/Classes/Interactivity/Events/DivEvent";
-import { IModeDiv } from "../Options/Interfaces/Interactivity/Modes/IModeDiv";
+import type { IModeDiv } from "../Options/Interfaces/Interactivity/Modes/IModeDiv";
 
 type CSSOMString = string;
 type FontFaceLoadStatus = "unloaded" | "loading" | "loaded" | "error";
@@ -42,9 +42,7 @@ declare global {
     interface Document {
         fonts: FontFaceSet;
     }
-}
 
-declare global {
     interface Window {
         customRequestAnimationFrame: (callback: FrameRequestCallback) => number;
         mozRequestAnimationFrame: (callback: FrameRequestCallback) => number;
@@ -60,6 +58,9 @@ declare global {
 }
 
 /* ---------- global functions - vendors ------------ */
+/**
+ * @category Utils
+ */
 export class Utils {
     public static isSsr(): boolean {
         return typeof window === "undefined" || !window;

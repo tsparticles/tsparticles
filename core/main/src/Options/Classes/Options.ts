@@ -8,6 +8,9 @@ import { Infection } from "./Infection/Infection";
 import { Plugins } from "../../Utils";
 import type { IOptionLoader } from "../Interfaces/IOptionLoader";
 
+/**
+ * @category Options
+ */
 export class Options implements IOptions, IOptionLoader<IOptions> {
     /**
      * @deprecated this property is obsolete, please use the new fpsLimit

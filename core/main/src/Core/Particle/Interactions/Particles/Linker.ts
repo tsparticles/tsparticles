@@ -3,6 +3,9 @@ import type { Particle } from "../../../Particle";
 import { Circle, CircleWarp, ColorUtils, Constants, Utils } from "../../../../Utils";
 import type { IParticlesInteractor } from "../../../Interfaces/IParticlesInteractor";
 
+/**
+ * @category Interactions
+ */
 export class Linker implements IParticlesInteractor {
     constructor(private readonly container: Container) {}
 

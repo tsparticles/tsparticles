@@ -19,6 +19,7 @@ import { IAttract } from "./Interfaces/IAttract";
 
 /**
  * The object loaded into an HTML element, it'll contain options loaded and all data to let everything working
+ * @category Core
  */
 export class Container {
     public interactivity: IContainerInteractivity;
