@@ -305,7 +305,7 @@
       "type": "object"
     },
     "IClickEvent": {
-      "description": "The canvas click event",
+      "description": "The canvas click event\n[[include:Options/Interactivity/Click.md]]",
       "properties": {
         "enable": {
           "description": "This property enables or disables the click event",
@@ -453,6 +453,7 @@
       "type": "object"
     },
     "IDivEvent": {
+      "description": "[[include:Options/Interactivity/Div.md]]",
       "properties": {
         "el": {
           "anyOf": [
@@ -516,6 +517,7 @@
       "type": "object"
     },
     "IEvents": {
+      "description": "[[include:Options/Interactivity/Events.md]]",
       "properties": {
         "onClick": {
           "$ref": "#/definitions/IClickEvent"
@@ -603,6 +605,7 @@
       "type": "object"
     },
     "IHoverEvent": {
+      "description": "[[include:Options/Interactivity/Hover.md]]",
       "properties": {
         "enable": {
           "type": "boolean"
@@ -670,7 +673,7 @@
       "type": "object"
     },
     "IInfection": {
-      "description": "The particles infection animations options",
+      "description": "The particles infection animations options\n[[include:Options/Infection.md]]",
       "properties": {
         "cure": {
           "description": "This property specifies if particles can turn back to the original state after being infected",
@@ -732,7 +735,7 @@
       "type": "object"
     },
     "IInteractivity": {
-      "description": "Particles interactivity options",
+      "description": "Particles interactivity options\n[[include:Options/Interactivity.md]]",
       "properties": {
         "detect_on": {
           "enum": ["canvas", "parent", "window"],
