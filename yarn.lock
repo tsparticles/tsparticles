@@ -17318,6 +17318,11 @@ typedoc-default-themes@^0.10.2:
   dependencies:
     lunr "^2.3.8"
 
+typedoc-particles-theme@^1.0.1:
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/typedoc-particles-theme/-/typedoc-particles-theme-1.0.1.tgz#c09d52d9bf99d70eed54ede132f446a68142d5aa"
+  integrity sha512-WuSZjsSMwgunBLkdlQXk4+k+GutAtuYgtuI0iHTVdrl6emiX+lC49k0EJG64b0RkCwduc/P8h+syTE8N5wXjaw==
+
 typedoc-plugin-nojekyll@^1.0.1:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/typedoc-plugin-nojekyll/-/typedoc-plugin-nojekyll-1.0.1.tgz#d6879d4118bbf10efe3feb3b766b69a09c80b3ef"
