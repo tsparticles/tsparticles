@@ -1,3 +1,7 @@
+/**
+ * [[include:pjsMigration.md]]
+ * @packageDocumentation
+ */
 import type { RecursivePartial } from "./Types/RecursivePartial";
 import type { IOptions } from "./Options/Interfaces/IOptions";
 import type { Container } from "./Core/Container";
@@ -5,6 +9,7 @@ import type { MainSlim } from "./main.slim";
 import { Particle } from "./Core/Particle";
 
 /**
+ * [[include:pjsMigration.md]]
  * @category Particles.js
  */
 export interface IParticlesJS {

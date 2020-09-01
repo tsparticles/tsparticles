@@ -97,6 +97,14 @@
       {
         "label": "Official Website",
         "url": "https://particles.matteobruni.it"
+      },
+      {
+        "label": "Github",
+        "url": "https://github.com/matteobruni/tsparticles"
+      },
+      {
+        "label": "CodePen Samples",
+        "url": "https://codepen.io/collection/DPOage"
       }
     ]
   }
