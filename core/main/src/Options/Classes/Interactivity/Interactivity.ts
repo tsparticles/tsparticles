@@ -6,6 +6,7 @@ import type { RecursivePartial } from "../../../Types/RecursivePartial";
 import type { IOptionLoader } from "../../Interfaces/IOptionLoader";
 
 /**
+ * [[include:Options/Interactivity.md]]
  * @category Options
  */
 export class Interactivity implements IInteractivity, IOptionLoader<IInteractivity> {
@@ -56,7 +57,7 @@ export class Interactivity implements IInteractivity, IOptionLoader<IInteractivi
                     this.events.onHover.mode.push(HoverMode.slow);
                 }
             } else if (this.events.onHover.mode !== HoverMode.slow) {
-                this.events.onHover.mode = [this.events.onHover.mode, HoverMode.slow];
+                this.events.onHover.mode = [ this.events.onHover.mode, HoverMode.slow ];
             }
         }
     }

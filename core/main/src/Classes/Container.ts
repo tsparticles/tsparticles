@@ -1,3 +1,1 @@
-import { Container } from "../Core/Container";
-
-export { Container };
+export * from "../Core/Container";

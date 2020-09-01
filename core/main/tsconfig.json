@@ -91,6 +91,6 @@
     "name": "tsParticles",
     "includeVersion": true,
     "out": "./docs",
-    "theme": "../../node_modules/typedoc-particles-theme"
+    "theme": "./node_modules/typedoc-particles-theme/bin/particles"
   }
 }

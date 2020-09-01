@@ -4,6 +4,7 @@ import { InfectionStage } from "./InfectionStage";
 import type { IOptionLoader } from "../../Interfaces/IOptionLoader";
 
 /**
+ * [[include:Options/Infection.md]]
  * @category Options
  */
 export class Infection implements IInfection, IOptionLoader<IInfection> {

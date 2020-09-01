@@ -5,6 +5,7 @@ import type { SingleOrMultiple } from "../../../../Types/SingleOrMultiple";
 import type { IOptionLoader } from "../../../Interfaces/IOptionLoader";
 
 /**
+ * [[include:Options/Interactivity/Div.md]]
  * @category Options
  */
 export class DivEvent implements IDivEvent, IOptionLoader<IDivEvent> {

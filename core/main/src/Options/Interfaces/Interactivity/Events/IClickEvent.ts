@@ -3,6 +3,7 @@ import type { SingleOrMultiple } from "../../../../Types/SingleOrMultiple";
 
 /**
  * The canvas click event
+ * [[include:Options/Interactivity/Click.md]]
  * @category Options
  */
 export interface IClickEvent {
