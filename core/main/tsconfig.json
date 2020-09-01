@@ -90,7 +90,14 @@
     "mode": "library",
     "name": "tsParticles",
     "includeVersion": true,
+    "hideGenerator": true,
     "out": "./docs",
-    "theme": "./node_modules/typedoc-particles-theme/bin/particles"
+    "theme": "./node_modules/typedoc-particles-theme/bin/particles",
+    "pages": [
+      {
+        "label": "Official Website",
+        "url": "https://particles.matteobruni.it"
+      }
+    ]
   }
 }
