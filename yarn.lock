@@ -16743,10 +16743,10 @@ supports-color@^6.1.0:
   dependencies:
     has-flag "^3.0.0"
 
-svelte-check@^1.0.0:
-  version "1.0.20"
-  resolved "https://registry.yarnpkg.com/svelte-check/-/svelte-check-1.0.20.tgz#23a6912e6dbd896e3d32b1f12167ad930e525aa4"
-  integrity sha512-MRpsl3g2Qu3po8YUzKKVlZL/wfmiHTqlv6DrDyMzindKl0DKCMobYysHJW1XKdCetbpvQhQnLBUsZw/CsXAxOQ==
+svelte-check@^1.0.32:
+  version "1.0.32"
+  resolved "https://registry.yarnpkg.com/svelte-check/-/svelte-check-1.0.32.tgz#023a61547187d7f6782c6eadd0e83526b77cf15d"
+  integrity sha512-Qk90Oy4MmODJHNpcQJ3SL9mi2IjAi2A9vKrjTx6Z6ZUbGouwi6ktEVwm8DwxG2v/3bF28igF0Ia+4TbN5tlVXA==
   dependencies:
     chalk "^4.0.0"
     chokidar "^3.4.1"
@@ -16756,22 +16756,7 @@ svelte-check@^1.0.0:
     vscode-languageserver "6.1.1"
     vscode-languageserver-protocol "3.15.3"
     vscode-languageserver-types "3.15.1"
-    vscode-uri "2.1.1"
-
-svelte-check@^1.0.27:
-  version "1.0.27"
-  resolved "https://registry.yarnpkg.com/svelte-check/-/svelte-check-1.0.27.tgz#25ac60d10df8d6717d673334d32f81b2acd7717d"
-  integrity sha512-l76oQXrPSAWAiwhKbX1ZnEF2+ShyOU7/ZRwpyL6T/HZ8XTWs90H6bIqVwSIZcZX3466NpVyFmzdXXjm3SO1Mug==
-  dependencies:
-    chalk "^4.0.0"
-    chokidar "^3.4.1"
-    glob "^7.1.6"
-    minimist "^1.2.5"
-    svelte-language-server "*"
-    vscode-languageserver "6.1.1"
-    vscode-languageserver-protocol "3.15.3"
-    vscode-languageserver-types "3.15.1"
-    vscode-uri "2.1.1"
+    vscode-uri "2.1.2"
 
 svelte-language-server@*:
   version "0.10.99"
@@ -18020,7 +18005,7 @@ vscode-uri@2.1.1:
   resolved "https://registry.yarnpkg.com/vscode-uri/-/vscode-uri-2.1.1.tgz#5aa1803391b6ebdd17d047f51365cf62c38f6e90"
   integrity sha512-eY9jmGoEnVf8VE8xr5znSah7Qt1P/xsCdErz+g8HYZtJ7bZqKH5E3d+6oVNm1AC/c6IHUDokbmVXKOi4qPAC9A==
 
-vscode-uri@^2.1.1:
+vscode-uri@2.1.2, vscode-uri@^2.1.1:
   version "2.1.2"
   resolved "https://registry.yarnpkg.com/vscode-uri/-/vscode-uri-2.1.2.tgz#c8d40de93eb57af31f3c715dd650e2ca2c096f1c"
   integrity sha512-8TEXQxlldWAuIODdukIb+TR5s+9Ds40eSJrw+1iDDA9IFORPjMELarNQE3myz5XIkWWpdprmJjm1/SxMlWOC8A==
