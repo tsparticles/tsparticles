@@ -341,7 +341,7 @@
       "type": "object"
     },
     "IColor": {
-      "description": "Color",
+      "description": "Color\n[[include:Color.md]]",
       "properties": {
         "value": {
           "anyOf": [
@@ -857,6 +857,7 @@
       "type": "object"
     },
     "IModes": {
+      "description": "[[include:Options/Interactivity/Modes.md]]",
       "properties": {
         "attract": {
           "$ref": "#/definitions/IAttract"
