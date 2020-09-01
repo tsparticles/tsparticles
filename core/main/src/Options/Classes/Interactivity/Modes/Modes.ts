@@ -12,6 +12,7 @@ import type { IOptionLoader } from "../../../Interfaces/IOptionLoader";
 import { Attract } from "./Attract";
 
 /**
+ * [[include:Options/Interactivity/Modes.md]]
  * @category Options
  */
 export class Modes implements IModes, IOptionLoader<IModes> {
