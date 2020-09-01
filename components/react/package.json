@@ -71,7 +71,7 @@
   "license": "MIT",
   "devDependencies": {
     "@babel/core": "^7.11.4",
-    "@babel/preset-env": "^7.11.0",
+    "@babel/preset-env": "^7.11.5",
     "@types/lodash": "^4.14.159",
     "@types/node": "^14.6.2",
     "@types/react": "^16.9.48",
