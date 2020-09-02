@@ -6,6 +6,7 @@ import type { IHsl } from "../../Core/Interfaces/IHsl";
 import type { IOptionLoader } from "../Interfaces/IOptionLoader";
 
 /**
+ * [[include:Color.md]]
  * @category Options
  */
 export class OptionsColor implements IOptionsColor, IOptionLoader<IOptionsColor> {

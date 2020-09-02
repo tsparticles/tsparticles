@@ -10,6 +10,7 @@ import type { ICharacterShape } from "../../../Interfaces/Particles/Shape/IChara
 import type { IOptionLoader } from "../../../Interfaces/IOptionLoader";
 
 /**
+ * [[include:Options/Particles/Shape.md]]
  * @category Options
  */
 export class Shape implements IShape, IOptionLoader<IShape> {

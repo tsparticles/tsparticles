@@ -1,4 +1,4 @@
-import { ValueWithRandom } from "../../ValueWithRandom";
+import { ValueWithRandom } from "../../../ValueWithRandom";
 
 export class NoiseDelay extends ValueWithRandom {
     constructor() {

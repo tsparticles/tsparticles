@@ -2,6 +2,7 @@ import type { DivMode, DivType } from "../../../../Enums";
 import type { SingleOrMultiple } from "../../../../Types";
 
 /**
+ * [[include:Options/Interactivity/Div.md]]
  * @category Options
  */
 export interface IDivEvent {

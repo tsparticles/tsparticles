@@ -5,4 +5,5 @@ ghpages.publish('docs', {
     message: "build: gh pages updated",
     history: false
 }, function (err) {
+    console.log(err);
 });

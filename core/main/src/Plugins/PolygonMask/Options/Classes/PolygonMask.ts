@@ -9,6 +9,7 @@ import { LocalSvg } from "./LocalSvg";
 import type { IOptionLoader } from "../../../../Options/Interfaces/IOptionLoader";
 
 /**
+ * [[include:Options/Plugins/PolygonMask.md]]
  * @category Polygon Mask Plugin
  */
 export class PolygonMask implements IPolygonMask, IOptionLoader<IPolygonMask> {

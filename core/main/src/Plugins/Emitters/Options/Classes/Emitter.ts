@@ -10,6 +10,7 @@ import { EmitterSize } from "./EmitterSize";
 import type { IOptionLoader } from "../../../../Options/Interfaces/IOptionLoader";
 
 /**
+ * [[include:Options/Plugins/Emitters.md]]
  * @category Emitters Plugin
  */
 export class Emitter implements IEmitter, IOptionLoader<IEmitter> {

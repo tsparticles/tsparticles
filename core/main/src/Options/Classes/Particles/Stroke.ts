@@ -4,6 +4,7 @@ import { AnimatableColor } from "./AnimatableColor";
 import type { IOptionLoader } from "../../Interfaces/IOptionLoader";
 
 /**
+ * [[include:Options/Particles/Stroke.md]]
  * @category Options
  */
 export class Stroke implements IStroke, IOptionLoader<IStroke> {

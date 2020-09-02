@@ -4,6 +4,10 @@ import type { RecursivePartial } from "../../../../Types";
 import type { IOptionLoader } from "../../../Interfaces/IOptionLoader";
 import { ValueWithRandom } from "../../ValueWithRandom";
 
+/**
+ * [[include:Options/Particles/Size.md]]
+ * @category Options
+ */
 export class Size extends ValueWithRandom implements ISize, IOptionLoader<ISize> {
     /**
      *

@@ -6,6 +6,7 @@ import type { RecursivePartial } from "../../../Types";
 import type { IOptionLoader } from "../../Interfaces/IOptionLoader";
 
 /**
+ * [[include:Options/Interactivity.md]]
  * @category Options
  */
 export class Interactivity implements IInteractivity, IOptionLoader<IInteractivity> {

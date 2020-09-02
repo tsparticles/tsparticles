@@ -4,6 +4,7 @@ import type { IColor } from "../../../../Core/Interfaces/IColor";
 
 /**
  * Particles Links options, this configures how the particles link together
+ * [[include:Options/Particles/Links.md]]
  * @category Options
  */
 export interface ILinks {

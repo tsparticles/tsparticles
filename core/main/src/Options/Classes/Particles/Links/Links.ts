@@ -6,6 +6,7 @@ import { OptionsColor } from "../../OptionsColor";
 import type { IOptionLoader } from "../../../Interfaces/IOptionLoader";
 
 /**
+ * [[include:Options/Particles/Links.md]]
  * @category Options
  */
 export class Links implements ILinks, IOptionLoader<ILinks> {

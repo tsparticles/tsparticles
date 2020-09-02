@@ -5,6 +5,10 @@ import type { RecursivePartial } from "../../../../Types";
 import type { IOptionLoader } from "../../../Interfaces/IOptionLoader";
 import { ValueWithRandom } from "../../ValueWithRandom";
 
+/**
+ * [[include:Options/Particles/Rotate.md]]
+ * @category Options
+ */
 export class Rotate extends ValueWithRandom implements IRotate, IOptionLoader<IRotate> {
     public animation;
     public direction: RotateDirection | keyof typeof RotateDirection | RotateDirectionAlt;

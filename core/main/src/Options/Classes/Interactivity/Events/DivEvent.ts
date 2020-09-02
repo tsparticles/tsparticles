@@ -4,6 +4,7 @@ import type { RecursivePartial, SingleOrMultiple } from "../../../../Types";
 import type { IOptionLoader } from "../../../Interfaces/IOptionLoader";
 
 /**
+ * [[include:Options/Interactivity/Div.md]]
  * @category Options
  */
 export class DivEvent implements IDivEvent, IOptionLoader<IDivEvent> {

@@ -1,7 +1,7 @@
-import type { IAttract } from "../../Interfaces/Particles/IAttract";
-import type { ICoordinates } from "../../../Core/Interfaces/ICoordinates";
-import type { RecursivePartial } from "../../../Types";
-import type { IOptionLoader } from "../../Interfaces/IOptionLoader";
+import type { IAttract } from "../../../Interfaces/Particles/Move/IAttract";
+import type { ICoordinates } from "../../../../Core/Interfaces/ICoordinates";
+import type { RecursivePartial } from "../../../../Types/RecursivePartial";
+import type { IOptionLoader } from "../../../Interfaces/IOptionLoader";
 
 /**
  * @category Options

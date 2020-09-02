@@ -1,3 +1,7 @@
+/**
+ * [[include:Container.md]]
+ * @packageDocumentation
+ */
 import { Canvas } from "./Canvas";
 import type { IRepulse } from "./Interfaces/IRepulse";
 import type { IBubble } from "./Interfaces/IBubble";

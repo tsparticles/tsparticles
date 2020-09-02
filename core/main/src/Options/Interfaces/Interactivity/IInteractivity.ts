@@ -4,6 +4,7 @@ import type { IModes } from "./Modes/IModes";
 
 /**
  * Particles interactivity options
+ * [[include:Options/Interactivity.md]]
  * @category Options
  */
 export interface IInteractivity {

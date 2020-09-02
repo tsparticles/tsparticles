@@ -6,6 +6,7 @@ import type { IStroke } from "../IStroke";
 import type { ShapeData, SingleOrMultiple } from "../../../../Types";
 
 /**
+ * [[include:Options/Particles/Shape.md]]
  * @category Options
  */
 export interface IShape {

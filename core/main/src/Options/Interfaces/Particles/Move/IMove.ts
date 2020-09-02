@@ -1,12 +1,13 @@
-import type { IAttract } from "../IAttract";
+import type { IAttract } from "./IAttract";
 import type { MoveDirection, MoveDirectionAlt, OutMode, OutModeAlt } from "../../../../Enums";
-import type { ITrail } from "../ITrail";
-import type { INoise } from "../Noise/INoise";
+import type { ITrail } from "./ITrail";
+import type { INoise } from "./Noise/INoise";
 import type { IMoveAngle } from "./IMoveAngle";
 import type { IMoveGravity } from "./IMoveGravity";
 import type { IOutModes } from "./IOutModes";
 
 /**
+ * [[include:Options/Particles/Move.md]]
  * @category Options
  */
 export interface IMove {
