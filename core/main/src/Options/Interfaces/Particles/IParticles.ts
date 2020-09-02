@@ -1,7 +1,7 @@
 import type { IShape } from "./Shape/IShape";
 import type { ILinks } from "./Links/ILinks";
 import type { IMove } from "./Move/IMove";
-import type { IParticlesNumber } from "./IParticlesNumber";
+import type { IParticlesNumber } from "./Number/IParticlesNumber";
 import type { IOpacity } from "./Opacity/IOpacity";
 import type { ISize } from "./Size/ISize";
 import type { IRotate } from "./Rotate/IRotate";
