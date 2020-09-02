@@ -6,10 +6,11 @@
       "type": "string"
     },
     "IAnimatableColor": {
-      "description": "[[include:Options/Particles/Color.md]]",
+      "description": "The animatable color interface, it provides all the necessary properties to create a color animation\n[[include:Options/Particles/Color.md]]",
       "properties": {
         "animation": {
-          "$ref": "#/definitions/IColorAnimation"
+          "$ref": "#/definitions/IColorAnimation",
+          "description": "The color animation property"
         },
         "value": {
           "anyOf": [
@@ -384,14 +385,18 @@
       "type": "object"
     },
     "IColorAnimation": {
+      "description": "Color animation interface, these properties are used to animate colors",
       "properties": {
         "enable": {
+          "description": "Enables/disables the animation",
           "type": "boolean"
         },
         "speed": {
+          "description": "Hue speed rotation (from 0 to 360 degrees)",
           "type": "number"
         },
         "sync": {
+          "description": "Enables the sync animations for the particles created at the same time\npushed or emitter particles will be out of sync\nNot using this value will create random colors particles at the same lightness and saturation of the base color",
           "type": "boolean"
         }
       },
@@ -1550,7 +1555,7 @@
       "type": "object"
     },
     "IStroke": {
-      "description": "[[include:Options/Particles/Stroke.md]]",
+      "description": "Particle stroke, outlines the particle with a customizable line\n[[include:Options/Particles/Stroke.md]]",
       "properties": {
         "color": {
           "anyOf": [
@@ -1560,12 +1565,15 @@
             {
               "type": "string"
             }
-          ]
+          ],
+          "description": "The stroke color, can be animated too"
         },
         "opacity": {
+          "description": "The stroke opacity",
           "type": "number"
         },
         "width": {
+          "description": "The stroke line width",
           "type": "number"
         }
       },
@@ -1656,7 +1664,8 @@
     "RecursivePartial<IAnimatableColor>": {
       "properties": {
         "animation": {
-          "$ref": "#/definitions/RecursivePartial<IColorAnimation>"
+          "$ref": "#/definitions/RecursivePartial<IColorAnimation>",
+          "description": "The color animation property"
         },
         "value": {
           "anyOf": [
@@ -1801,12 +1810,15 @@
     "RecursivePartial<IColorAnimation>": {
       "properties": {
         "enable": {
+          "description": "Enables/disables the animation",
           "type": "boolean"
         },
         "speed": {
+          "description": "Hue speed rotation (from 0 to 360 degrees)",
           "type": "number"
         },
         "sync": {
+          "description": "Enables the sync animations for the particles created at the same time\npushed or emitter particles will be out of sync\nNot using this value will create random colors particles at the same lightness and saturation of the base color",
           "type": "boolean"
         }
       },
@@ -2170,7 +2182,7 @@
         },
         "color": {
           "$ref": "#/definitions/RecursivePartial<IAnimatableColor>",
-          "description": "[[include:Options/Particles/Color.md]]"
+          "description": "The animatable color interface, it provides all the necessary properties to create a color animation\n[[include:Options/Particles/Color.md]]"
         },
         "lineLinked": {
           "$ref": "#/definitions/RecursivePartial<ILinks>",
@@ -2498,12 +2510,15 @@
             {
               "type": "string"
             }
-          ]
+          ],
+          "description": "The stroke color, can be animated too"
         },
         "opacity": {
+          "description": "The stroke opacity",
           "type": "number"
         },
         "width": {
+          "description": "The stroke line width",
           "type": "number"
         }
       },
@@ -2519,12 +2534,15 @@
             {
               "type": "string"
             }
-          ]
+          ],
+          "description": "The stroke color, can be animated too"
         },
         "opacity": {
+          "description": "The stroke opacity",
           "type": "number"
         },
         "width": {
+          "description": "The stroke line width",
           "type": "number"
         }
       },
