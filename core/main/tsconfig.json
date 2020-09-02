@@ -81,7 +81,7 @@
     /* Disallow inconsistently-cased references to the same file. */
   },
   "typedocOptions": {
-    "gaID": "UA-159372955-1",
+    "gaID": "UA-161253125-1",
     "ignoreCompilerErrors": true,
     "includes": "./markdown",
     "inputFiles": [
