@@ -10,6 +10,7 @@ import type { IShapeValues } from "../../Options/Interfaces/Particles/Shape/ISha
 import type { IBubbleParticleData } from "./IBubbleParticleData";
 import type { IParticles } from "../../Options/Interfaces/Particles/IParticles";
 import type { IHsl } from "./IHsl";
+import type { ILink } from "./ILink";
 
 /**
  * @category Interfaces
@@ -28,6 +29,7 @@ export interface IParticle {
     readonly id: number;
     readonly image?: IParticleImage;
     readonly initialVelocity: IVelocity;
+    readonly links: ILink[];
     readonly offset: ICoordinates;
     readonly opacity: IParticleOpacityAnimation;
     readonly particlesOptions: IParticles;

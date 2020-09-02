@@ -33,6 +33,7 @@ import type { IShapeDrawer } from "./Interfaces/IShapeDrawer";
 import { Infecter } from "./Particle/Infecter";
 import type { IDelta } from "./Interfaces/IDelta";
 import { Mover } from "./Particle/Mover";
+import { ILink } from "./Interfaces/ILink";
 
 /**
  * The single particle object
@@ -57,6 +58,7 @@ export class Particle implements IParticle {
     public readonly strokeWidth;
     public readonly particlesOptions;
 
+    public links: ILink[];
     public rotateDirection: RotateDirection | keyof typeof RotateDirection | RotateDirectionAlt;
     public randomIndexData?: number;
     public linksDistance?: number;
@@ -92,6 +94,7 @@ export class Particle implements IParticle {
         position?: ICoordinates,
         overrideOptions?: RecursivePartial<IParticles>
     ) {
+        this.links = [];
         this.fill = true;
         this.close = true;
         this.lastNoiseTime = 0;
@@ -415,7 +418,7 @@ export class Particle implements IParticle {
     public destroy(): void {
         this.destroyed = true;
         this.bubble.inRange = false;
-        this.container.particles.removeLinks(this);
+        this.links = [];
     }
 
     private checkOverlap(position?: ICoordinates, iterations = 0): boolean {

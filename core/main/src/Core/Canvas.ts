@@ -4,8 +4,8 @@ import type { IRgb } from "./Interfaces/IRgb";
 import type { ICoordinates } from "./Interfaces/ICoordinates";
 import type { IParticle } from "./Interfaces/IParticle";
 import type { IContainerPlugin } from "./Interfaces/IContainerPlugin";
-import type { ILink, ILinkTriangle } from "./Interfaces/ILink";
-import { CanvasUtils, ColorUtils, Constants, NumberUtils, Utils } from "../Utils";
+import type { ILink } from "./Interfaces/ILink";
+import { CanvasUtils, ColorUtils, Constants, Utils } from "../Utils";
 import type { Particle } from "./Particle";
 import type { IDelta } from "./Interfaces/IDelta";
 import type { IRgba } from "./Interfaces/IRgba";
@@ -204,22 +204,122 @@ export class Canvas {
         }
     }
 
-    public drawLinkLine(link: ILink): void {
-        if (!link.visible) {
+    public drawConnectLine(p1: IParticle, p2: IParticle): void {
+        const lineStyle = this.lineStyle(p1, p2);
+
+        if (!lineStyle) {
             return;
         }
 
+        const ctx = this.context;
+
+        if (!ctx) {
+            return;
+        }
+
+        const pos1 = p1.getPosition();
+        const pos2 = p2.getPosition();
+
+        CanvasUtils.drawConnectLine(ctx, p1.linksWidth ?? this.container.retina.linksWidth, lineStyle, pos1, pos2);
+    }
+
+    public drawGrabLine(particle: IParticle, lineColor: IRgb, opacity: number, mousePos: ICoordinates): void {
+        const container = this.container;
+        const ctx = container.canvas.context;
+
+        if (!ctx) {
+            return;
+        }
+
+        const beginPos = particle.getPosition();
+
+        CanvasUtils.drawGrabLine(
+            ctx,
+            particle.linksWidth ?? container.retina.linksWidth,
+            beginPos,
+            mousePos,
+            lineColor,
+            opacity
+        );
+    }
+
+    public drawParticleShadow(particle: Particle, mousePos: ICoordinates): void {
+        if (!this.context) {
+            return;
+        }
+
+        const radius = particle.bubble.radius ?? particle.size.value;
+
+        CanvasUtils.drawParticleShadow(this.container, this.context, particle, radius, mousePos);
+    }
+
+    public drawLinkTriangle(p1: IParticle, link1: ILink, link2: ILink): void {
         const container = this.container;
         const options = container.options;
-        const p1 = link.edges[0];
-        const p2 = link.edges[1];
+        const p2 = link1.destination;
+        const p3 = link2.destination;
+        const triangleOptions = p1.particlesOptions.links.triangles;
+        const opacityTriangle = triangleOptions.opacity ?? (link1.opacity + link2.opacity) / 2;
+        const pos1 = p1.getPosition();
+        const pos2 = p2.getPosition();
+        const pos3 = p3.getPosition();
 
-        if (!p2) {
+        const ctx = this.context;
+
+        if (!ctx) {
             return;
         }
 
-        let opacity = link.opacity;
+        let colorTriangle = ColorUtils.colorToRgb(triangleOptions.color);
 
+        if (!colorTriangle) {
+            const linksOptions = p1.particlesOptions.links;
+            const linkColor =
+                linksOptions.id !== undefined
+                    ? container.particles.linksColors.get(linksOptions.id)
+                    : container.particles.linksColor;
+
+            if (linkColor === Constants.randomColorValue) {
+                colorTriangle = ColorUtils.getRandomRgbColor();
+            } else if (linkColor === "mid") {
+                const sourceColor = p1.getFillColor();
+                const destColor = p2.getFillColor();
+
+                if (sourceColor && destColor) {
+                    colorTriangle = ColorUtils.mix(sourceColor, destColor, p1.size.value, p2.size.value);
+                } else {
+                    const hslColor = sourceColor ?? destColor;
+
+                    if (!hslColor) {
+                        return;
+                    }
+
+                    colorTriangle = ColorUtils.hslToRgb(hslColor);
+                }
+            } else {
+                colorTriangle = linkColor as IRgb;
+            }
+        }
+
+        const width = p1.linksWidth ?? container.retina.linksWidth;
+
+        CanvasUtils.drawLinkTriangle(
+            ctx,
+            width,
+            pos1,
+            pos2,
+            pos3,
+            options.backgroundMask.enable,
+            colorTriangle,
+            opacityTriangle
+        );
+    }
+
+    public drawLinkLine(p1: IParticle, link: ILink): void {
+        const container = this.container;
+        const options = container.options;
+        const p2 = link.destination;
+        let opacity = link.opacity;
         const pos1 = p1.getPosition();
         const pos2 = p2.getPosition();
 
@@ -293,183 +393,9 @@ export class Canvas {
             container.canvas.size,
             p1.particlesOptions.links.warp,
             options.backgroundMask.enable,
-            options.backgroundMask.composite,
             colorLine,
             opacity,
             p1.particlesOptions.links.shadow
-        );
-    }
-
-    public drawConnectLine(p1: IParticle, p2: IParticle): void {
-        const lineStyle = this.lineStyle(p1, p2);
-
-        if (!lineStyle) {
-            return;
-        }
-
-        const ctx = this.context;
-
-        if (!ctx) {
-            return;
-        }
-
-        const pos1 = p1.getPosition();
-        const pos2 = p2.getPosition();
-
-        CanvasUtils.drawConnectLine(ctx, p1.linksWidth ?? this.container.retina.linksWidth, lineStyle, pos1, pos2);
-    }
-
-    public drawGrabLine(particle: IParticle, lineColor: IRgb, opacity: number, mousePos: ICoordinates): void {
-        const container = this.container;
-        const ctx = container.canvas.context;
-
-        if (!ctx) {
-            return;
-        }
-
-        const beginPos = particle.getPosition();
-
-        CanvasUtils.drawGrabLine(
-            ctx,
-            particle.linksWidth ?? container.retina.linksWidth,
-            beginPos,
-            mousePos,
-            lineColor,
-            opacity
-        );
-    }
-
-    public drawParticleShadow(particle: Particle, mousePos: ICoordinates): void {
-        if (!this.context) {
-            return;
-        }
-
-        const radius = particle.bubble.radius ?? particle.size.value;
-
-        CanvasUtils.drawParticleShadow(this.container, this.context, particle, radius, mousePos);
-    }
-
-    public drawLinks(): void {
-        if (!this.context) {
-            return;
-        }
-
-        const particles = this.container.particles;
-
-        if (particles.links.length <= 0) {
-            return;
-        }
-
-        this.context.save();
-
-        const lineLinks = particles.links;
-
-        for (const link of lineLinks) {
-            const source = link.edges[0];
-            const destination = link.edges[1];
-            const distance = NumberUtils.getDistance(source.getPosition(), destination.getPosition());
-            const optDistance =
-                source.linksDistance ?? destination.linksDistance ?? this.container.retina.linksDistance;
-
-            if (distance > optDistance) {
-                particles.removeExactLink(link);
-                continue;
-            }
-
-            this.drawLinkLine(link);
-        }
-
-        this.context.restore();
-    }
-
-    public drawLinkTriangles(): void {
-        const particles = this.container.particles;
-
-        for (const triangle of particles.triangles) {
-            this.drawLinkTriangle(triangle);
-        }
-    }
-
-    public drawLinkTriangle(triangle: ILinkTriangle): void {
-        const container = this.container;
-        const particles = container.particles;
-        const options = container.options;
-
-        const [p1, p2, p3] = triangle.vertices;
-
-        const pos1 = p1.getPosition();
-        const pos2 = p2.getPosition();
-        const pos3 = p3.getPosition();
-
-        const link1 = particles.findLink(p1, p2);
-        const link2 = !link1 ? undefined : particles.findLink(p1, p3);
-        const link3 = !link1 || !link2 ? undefined : particles.findLink(p2, p3);
-
-        if (!link1 || !link2 || !link3) {
-            particles.removeTriangle(p1, p2, p3);
-
-            return;
-        }
-
-        if (!triangle.visible) {
-            return;
-        }
-
-        const triangleOptions = p1.particlesOptions.links.triangles;
-
-        if (!triangleOptions.enable) {
-            return;
-        }
-
-        const ctx = this.context;
-
-        if (!ctx) {
-            return;
-        }
-
-        let colorTriangle = ColorUtils.colorToRgb(triangleOptions.color);
-
-        if (!colorTriangle) {
-            const linksOptions = p1.particlesOptions.links;
-            const linkColor =
-                linksOptions.id !== undefined
-                    ? container.particles.linksColors.get(linksOptions.id)
-                    : container.particles.linksColor;
-
-            if (linkColor === Constants.randomColorValue) {
-                colorTriangle = ColorUtils.getRandomRgbColor();
-            } else if (linkColor === "mid") {
-                const sourceColor = p1.getFillColor();
-                const destColor = p2.getFillColor();
-
-                if (sourceColor && destColor) {
-                    colorTriangle = ColorUtils.mix(sourceColor, destColor, p1.size.value, p2.size.value);
-                } else {
-                    const hslColor = sourceColor ?? destColor;
-
-                    if (!hslColor) {
-                        return;
-                    }
-
-                    colorTriangle = ColorUtils.hslToRgb(hslColor);
-                }
-            } else {
-                colorTriangle = linkColor as IRgb;
-            }
-        }
-
-        const width = p1.linksWidth ?? container.retina.linksWidth;
-
-        CanvasUtils.drawLinkTriangle(
-            ctx,
-            width,
-            pos1,
-            pos2,
-            pos3,
-            options.backgroundMask.enable,
-            options.backgroundMask.composite,
-            colorTriangle,
-            triangle.opacity
         );
     }
 
@@ -516,6 +442,27 @@ export class Canvas {
             sColor !== undefined
                 ? ColorUtils.getStyleFromRgb(sColor, particle.stroke.opacity ?? opacity)
                 : fillColorValue;
+
+        if (particle.links.length > 0) {
+            this.context.save();
+
+            for (const link of particle.links) {
+                if (particle.particlesOptions.links.triangles.enable) {
+                    const links = particle.links.map((l) => l.destination);
+                    const vertices = link.destination.links.filter((t) => links.indexOf(t.destination) >= 0);
+
+                    if (vertices.length) {
+                        for (const vertice of vertices) {
+                            this.drawLinkTriangle(particle, link, vertice);
+                        }
+                    }
+                }
+
+                this.drawLinkLine(particle, link);
+            }
+
+            this.context.restore();
+        }
 
         if (radius > 0) {
             CanvasUtils.drawParticle(

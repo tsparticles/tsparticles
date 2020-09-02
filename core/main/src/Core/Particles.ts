@@ -169,11 +169,8 @@ export class Particles {
         }
 
         /*if (container.canvas.context) {
-        this.quadTree.draw(container.canvas.context);
-    }*/
-
-        container.canvas.drawLinks();
-        container.canvas.drawLinkTriangles();
+            this.quadTree.draw(container.canvas.context);
+        }*/
 
         /* draw each particle */
         for (const p of this.array) {
@@ -238,114 +235,6 @@ export class Particles {
 
         if (!options.particles.move.enable) {
             this.container.play();
-        }
-    }
-
-    public findLink(source: IParticle, destination: IParticle): ILink | undefined {
-        return this.links.find((l) => l.edges.includes(source) && l.edges.includes(destination));
-    }
-
-    public findLinkIndex(source: IParticle, destination: IParticle): number {
-        return this.links.findIndex((l) => l.edges.includes(source) && l.edges.includes(destination));
-    }
-
-    public addLink(source: IParticle, destination: IParticle): ILink {
-        let link = this.findLink(source, destination);
-
-        if (!link) {
-            link = {
-                edges: [source, destination],
-                opacity: 1,
-                visible: true,
-            };
-
-            this.links.push(link);
-        }
-
-        return link;
-    }
-
-    public getLinks(particle: IParticle): ILink[] {
-        return this.links.filter((l) => l.edges.includes(particle));
-    }
-
-    public removeLink(source: IParticle, destination: IParticle): void {
-        this.removeLinkAtIndex(this.findLinkIndex(source, destination));
-    }
-
-    public removeExactLink(link: ILink): void {
-        this.removeLinkAtIndex(this.links.indexOf(link));
-    }
-
-    public removeLinkAtIndex(index: number): void {
-        if (index >= 0) {
-            this.links.splice(index, 1);
-        }
-    }
-
-    public removeLinks(particle: IParticle): void {
-        for (const link of this.links) {
-            if (!link.edges.includes(particle)) {
-                continue;
-            }
-
-            this.removeExactLink(link);
-        }
-    }
-
-    public findTriangle(v1: IParticle, v2: IParticle, v3: IParticle): ILinkTriangle | undefined {
-        return this.triangles.find(
-            (l) => l.vertices.includes(v1) && l.vertices.includes(v2) && l.vertices.includes(v3)
-        );
-    }
-
-    public findTriangleIndex(v1: IParticle, v2: IParticle, v3: IParticle): number {
-        return this.triangles.findIndex(
-            (l) => l.vertices.includes(v1) && l.vertices.includes(v2) && l.vertices.includes(v3)
-        );
-    }
-
-    public addTriangle(v1: IParticle, v2: IParticle, v3: IParticle): ILinkTriangle {
-        let triangle = this.findTriangle(v1, v2, v3);
-
-        if (!triangle) {
-            triangle = {
-                vertices: [v1, v2, v3],
-                opacity: 1,
-                visible: true,
-            };
-
-            this.triangles.push(triangle);
-        }
-
-        return triangle;
-    }
-
-    public getTriangles(v1: IParticle, v2?: IParticle): ILinkTriangle[] {
-        return this.triangles.filter((l) => l.vertices.includes(v1) && (!v2 || l.vertices.includes(v2)));
-    }
-
-    public removeTriangle(v1: IParticle, v2: IParticle, v3: IParticle): void {
-        this.removeTriangleAtIndex(this.findTriangleIndex(v1, v2, v3));
-    }
-
-    public removeExactTriangle(triangle: ILinkTriangle): void {
-        this.removeLinkAtIndex(this.triangles.indexOf(triangle));
-    }
-
-    public removeTriangleAtIndex(index: number): void {
-        if (index >= 0) {
-            this.triangles.splice(index, 1);
-        }
-    }
-
-    public removeTriangles(v1: IParticle, v2?: IParticle): void {
-        for (const triangle of this.triangles) {
-            if (!triangle.vertices.includes(v1) || (v2 && !triangle.vertices.includes(v2))) {
-                continue;
-            }
-
-            this.removeExactTriangle(triangle);
         }
     }
 }

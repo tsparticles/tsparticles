@@ -4,13 +4,13 @@ import type { IParticle } from "./IParticle";
  * @category Interfaces
  */
 export interface ILink {
-    edges: IParticle[];
+    destination: IParticle;
     opacity: number;
-    visible: boolean;
+    //visible: boolean;
 }
 
 export interface ILinkTriangle {
     vertices: IParticle[];
     opacity: number;
-    visible: boolean;
+    //visible: boolean;
 }
