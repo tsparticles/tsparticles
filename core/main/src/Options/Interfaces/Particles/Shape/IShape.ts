@@ -7,6 +7,7 @@ import type { SingleOrMultiple } from "../../../../Types/SingleOrMultiple";
 import type { ShapeData } from "../../../../Types/ShapeData";
 
 /**
+ * [[include:Options/Particles/Shape.md]]
  * @category Options
  */
 export interface IShape {

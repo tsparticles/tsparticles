@@ -16,6 +16,7 @@ import { AnimatableColor } from "./AnimatableColor";
 import type { IOptionLoader } from "../../Interfaces/IOptionLoader";
 
 /**
+ * [[include:Options/Particles.md]]
  * @category Options
  */
 export class Particles implements IParticles, IOptionLoader<IParticles> {

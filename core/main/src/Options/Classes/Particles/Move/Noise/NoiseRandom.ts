@@ -1,6 +1,6 @@
-import type { INoiseRandom } from "../../../Interfaces/Particles/Noise/INoiseRandom";
-import type { RecursivePartial } from "../../../../Types/RecursivePartial";
-import type { IOptionLoader } from "../../../Interfaces/IOptionLoader";
+import type { INoiseRandom } from "../../../../Interfaces/Particles/Move/Noise/INoiseRandom";
+import type { RecursivePartial } from "../../../../../Types/RecursivePartial";
+import type { IOptionLoader } from "../../../../Interfaces/IOptionLoader";
 
 /**
  * @category Options

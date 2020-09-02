@@ -1,7 +1,7 @@
-import type { ITrail } from "../../Interfaces/Particles/ITrail";
-import type { RecursivePartial } from "../../../Types/RecursivePartial";
-import { OptionsColor } from "../OptionsColor";
-import type { IOptionLoader } from "../../Interfaces/IOptionLoader";
+import type { ITrail } from "../../../Interfaces/Particles/Move/ITrail";
+import type { RecursivePartial } from "../../../../Types/RecursivePartial";
+import { OptionsColor } from "../../OptionsColor";
+import type { IOptionLoader } from "../../../Interfaces/IOptionLoader";
 
 /**
  * @category Options

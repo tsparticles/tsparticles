@@ -1,6 +1,7 @@
 import type { IAnimatableColor } from "./IAnimatableColor";
 
 /**
+ * [[include:Options/Particles/Stroke.md]]
  * @category Options
  */
 export interface IStroke {

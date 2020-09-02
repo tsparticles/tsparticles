@@ -13,6 +13,7 @@ import type { ITwinkle } from "./Twinkle/ITwinkle";
 import type { IAnimatableColor } from "./IAnimatableColor";
 
 /**
+ * [[include:Options/Particles.md]]
  * @category Options
  */
 export interface IParticles {

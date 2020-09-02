@@ -1,13 +1,14 @@
 import type { IMove } from "../../../Interfaces/Particles/Move/IMove";
 import { Attract } from "../Attract";
 import { MoveDirection, MoveDirectionAlt, OutMode, OutModeAlt } from "../../../../Enums";
-import { Trail } from "../Trail";
+import { Trail } from "./Trail";
 import type { RecursivePartial } from "../../../../Types/RecursivePartial";
-import { Noise } from "../Noise/Noise";
+import { Noise } from "./Noise/Noise";
 import type { IOptionLoader } from "../../../Interfaces/IOptionLoader";
 import { MoveAngle } from "./MoveAngle";
 
 /**
+ * [[include:Options/Particles/Move.md]]
  * @category Options
  */
 export class Move implements IMove, IOptionLoader<IMove> {

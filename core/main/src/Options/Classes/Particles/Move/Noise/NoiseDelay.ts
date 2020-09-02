@@ -1,7 +1,7 @@
-import type { INoiseDelay } from "../../../Interfaces/Particles/Noise/INoiseDelay";
+import type { INoiseDelay } from "../../../../Interfaces/Particles/Move/Noise/INoiseDelay";
 import { NoiseRandom } from "./NoiseRandom";
-import type { RecursivePartial } from "../../../../Types/RecursivePartial";
-import type { IOptionLoader } from "../../../Interfaces/IOptionLoader";
+import type { RecursivePartial } from "../../../../../Types/RecursivePartial";
+import type { IOptionLoader } from "../../../../Interfaces/IOptionLoader";
 
 /**
  * @category Options

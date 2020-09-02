@@ -5,6 +5,7 @@ import type { RecursivePartial } from "../../../../Types/RecursivePartial";
 import type { IOptionLoader } from "../../../Interfaces/IOptionLoader";
 
 /**
+ * [[include:Options/Particles/Rotate.md]]
  * @category Options
  */
 export class Rotate implements IRotate, IOptionLoader<IRotate> {

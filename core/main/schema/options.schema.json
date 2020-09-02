@@ -6,6 +6,7 @@
       "type": "string"
     },
     "IAnimatableColor": {
+      "description": "[[include:Options/Particles/Color.md]]",
       "properties": {
         "animation": {
           "$ref": "#/definitions/IColorAnimation"
@@ -758,7 +759,7 @@
       "type": "object"
     },
     "ILinks": {
-      "description": "Particles Links options, this configures how the particles link together",
+      "description": "Particles Links options, this configures how the particles link together\n[[include:Options/Particles/Links.md]]",
       "properties": {
         "blink": {
           "description": "Enables random blinking, if set to true and [[color]] is set to \"random\"\nthe link will have a random color each frame resulting in a blinking animation",
@@ -890,6 +891,7 @@
       "type": "object"
     },
     "IMove": {
+      "description": "[[include:Options/Particles/Move.md]]",
       "properties": {
         "angle": {
           "anyOf": [
@@ -1024,6 +1026,7 @@
       "type": "object"
     },
     "IOpacity": {
+      "description": "[[include:Options/Particles/Opacity.md]]",
       "properties": {
         "anim": {
           "$ref": "#/definitions/IOpacityAnimation"
@@ -1093,6 +1096,7 @@
       "type": "object"
     },
     "IParticles": {
+      "description": "[[include:Options/Particles.md]]",
       "properties": {
         "collisions": {
           "$ref": "#/definitions/ICollisions"
@@ -1150,6 +1154,7 @@
       "type": "object"
     },
     "IParticlesNumber": {
+      "description": "[[include:Options/Particles/Number.md]]",
       "properties": {
         "density": {
           "$ref": "#/definitions/IDensity"
@@ -1277,6 +1282,7 @@
       "type": "object"
     },
     "IRotate": {
+      "description": "[[include:Options/Particles/Rotate.md]]",
       "properties": {
         "animation": {
           "$ref": "#/definitions/IRotateAnimation"
@@ -1336,6 +1342,7 @@
       "type": "object"
     },
     "IShape": {
+      "description": "[[include:Options/Particles/Shape.md]]",
       "properties": {
         "character": {
           "anyOf": [
@@ -1465,6 +1472,7 @@
       "type": "object"
     },
     "ISize": {
+      "description": "[[include:Options/Particles/Size.md]]",
       "properties": {
         "anim": {
           "$ref": "#/definitions/ISizeAnimation"
@@ -1542,6 +1550,7 @@
       "type": "object"
     },
     "IStroke": {
+      "description": "[[include:Options/Particles/Stroke.md]]",
       "properties": {
         "color": {
           "anyOf": [
@@ -1598,6 +1607,7 @@
       "type": "object"
     },
     "ITwinkle": {
+      "description": "[[include:Options/Particles/Twinkle.md]]",
       "properties": {
         "lines": {
           "$ref": "#/definitions/ITwinkleValues"
@@ -2159,40 +2169,47 @@
           "$ref": "#/definitions/RecursivePartial<ICollisions>"
         },
         "color": {
-          "$ref": "#/definitions/RecursivePartial<IAnimatableColor>"
+          "$ref": "#/definitions/RecursivePartial<IAnimatableColor>",
+          "description": "[[include:Options/Particles/Color.md]]"
         },
         "lineLinked": {
           "$ref": "#/definitions/RecursivePartial<ILinks>",
-          "description": "Particles Links options, this configures how the particles link together"
+          "description": "Particles Links options, this configures how the particles link together\n[[include:Options/Particles/Links.md]]"
         },
         "line_linked": {
           "$ref": "#/definitions/RecursivePartial<ILinks>",
-          "description": "Particles Links options, this configures how the particles link together"
+          "description": "Particles Links options, this configures how the particles link together\n[[include:Options/Particles/Links.md]]"
         },
         "links": {
           "$ref": "#/definitions/RecursivePartial<ILinks>",
-          "description": "Particles Links options, this configures how the particles link together"
+          "description": "Particles Links options, this configures how the particles link together\n[[include:Options/Particles/Links.md]]"
         },
         "move": {
-          "$ref": "#/definitions/RecursivePartial<IMove>"
+          "$ref": "#/definitions/RecursivePartial<IMove>",
+          "description": "[[include:Options/Particles/Move.md]]"
         },
         "number": {
-          "$ref": "#/definitions/RecursivePartial<IParticlesNumber>"
+          "$ref": "#/definitions/RecursivePartial<IParticlesNumber>",
+          "description": "[[include:Options/Particles/Number.md]]"
         },
         "opacity": {
-          "$ref": "#/definitions/RecursivePartial<IOpacity>"
+          "$ref": "#/definitions/RecursivePartial<IOpacity>",
+          "description": "[[include:Options/Particles/Opacity.md]]"
         },
         "rotate": {
-          "$ref": "#/definitions/RecursivePartial<IRotate>"
+          "$ref": "#/definitions/RecursivePartial<IRotate>",
+          "description": "[[include:Options/Particles/Rotate.md]]"
         },
         "shadow": {
           "$ref": "#/definitions/RecursivePartial<IShadow>"
         },
         "shape": {
-          "$ref": "#/definitions/RecursivePartial<IShape>"
+          "$ref": "#/definitions/RecursivePartial<IShape>",
+          "description": "[[include:Options/Particles/Shape.md]]"
         },
         "size": {
-          "$ref": "#/definitions/RecursivePartial<ISize>"
+          "$ref": "#/definitions/RecursivePartial<ISize>",
+          "description": "[[include:Options/Particles/Size.md]]"
         },
         "stroke": {
           "anyOf": [
@@ -2208,7 +2225,8 @@
           ]
         },
         "twinkle": {
-          "$ref": "#/definitions/RecursivePartial<ITwinkle>"
+          "$ref": "#/definitions/RecursivePartial<ITwinkle>",
+          "description": "[[include:Options/Particles/Twinkle.md]]"
         }
       },
       "type": "object"

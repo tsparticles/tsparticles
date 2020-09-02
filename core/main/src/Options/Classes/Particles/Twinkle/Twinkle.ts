@@ -4,6 +4,7 @@ import { TwinkleValues } from "./TwinkleValues";
 import type { IOptionLoader } from "../../../Interfaces/IOptionLoader";
 
 /**
+ * [[include:Options/Particles/Twinkle.md]]
  * @category Options
  */
 export class Twinkle implements ITwinkle, IOptionLoader<ITwinkle> {

@@ -5,6 +5,7 @@ import { SizeRandom } from "./SizeRandom";
 import type { IOptionLoader } from "../../../Interfaces/IOptionLoader";
 
 /**
+ * [[include:Options/Particles/Size.md]]
  * @category Options
  */
 export class Size implements ISize, IOptionLoader<ISize> {
