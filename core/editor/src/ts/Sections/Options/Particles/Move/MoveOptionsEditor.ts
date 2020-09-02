@@ -3,7 +3,7 @@ import type { Container } from "tsparticles/dist/Core/Container";
 import type { IMove } from "tsparticles/dist/Options/Interfaces/Particles/Move/IMove";
 import { MoveDirection, OutMode } from "tsparticles";
 import { EditorBase } from "../../../../EditorBase";
-import { ITrail } from "tsparticles/dist/Options/Interfaces/Particles/ITrail";
+import { ITrail } from "tsparticles/dist/Options/Interfaces/Particles/Move/ITrail";
 
 export class MoveOptionsEditor extends EditorBase {
     public group!: EditorGroup;

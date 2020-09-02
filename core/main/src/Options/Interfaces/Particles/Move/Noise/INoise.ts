@@ -1,4 +1,4 @@
-import type { IValueWithRandom } from "../../IValueWithRandom";
+import type { IValueWithRandom } from "../../../IValueWithRandom";
 
 /**
  * @category Options
