@@ -10,6 +10,7 @@ import { EmitterSize } from "./EmitterSize";
 import type { IOptionLoader } from "../../../../Options/Interfaces/IOptionLoader";
 
 /**
+ * [[include:Options/Plugins/Emitters.md]]
  * @category Emitters Plugin
  */
 export class Emitter implements IEmitter, IOptionLoader<IEmitter> {
@@ -46,7 +47,7 @@ export class Emitter implements IEmitter, IOptionLoader<IEmitter> {
         this.life.load(data.life);
 
         if (data.particles !== undefined) {
-            this.particles = Utils.deepExtend({}, data.particles);
+            this.particles = Utils.deepExtend({}, data.particles) as IParticles;
         }
 
         this.rate.load(data.rate);

@@ -6,6 +6,7 @@ import { OptionsColor } from "../../../../Options/Classes/OptionsColor";
 import type { IOptionLoader } from "../../../../Options/Interfaces/IOptionLoader";
 
 /**
+ * [[include:Options/Plugins/Absorbers.md]]
  * @category Absorbers Plugin
  */
 export class Absorber implements IAbsorber, IOptionLoader<IAbsorber> {
