@@ -10,23 +10,15 @@
     "@angular-devkit/core" "10.1.0"
     rxjs "6.6.2"
 
-"@angular-devkit/architect@0.1001.0-rc.0":
-  version "0.1001.0-rc.0"
-  resolved "https://registry.yarnpkg.com/@angular-devkit/architect/-/architect-0.1001.0-rc.0.tgz#2645c6f8fcd70e565c8cf0dd4f9d04e06e8c3a1f"
-  integrity sha512-mpt4qdykPkZSzdMiDIA8IZMsvJofmjKOq+bwOlZSkbBVvPYW4sW6N26VwIExaDPuPaye+RJNRQuo7TM27c/0FQ==
+"@angular-devkit/build-angular@~0.1001.0":
+  version "0.1001.0"
+  resolved "https://registry.yarnpkg.com/@angular-devkit/build-angular/-/build-angular-0.1001.0.tgz#8257c1ce9ed4f2e31ea59cbd6939efa127e9d35c"
+  integrity sha512-aWAWhZd3xompC2qPiIzXOkbq8vGIb8PixMLuGUU37myRhgArCTQl+v2lu/FoETyfY15ThfeFK7EzadLmKgokAg==
   dependencies:
-    "@angular-devkit/core" "10.1.0-rc.0"
-    rxjs "6.6.2"
-
-"@angular-devkit/build-angular@~0.1001.0-rc.0":
-  version "0.1001.0-rc.0"
-  resolved "https://registry.yarnpkg.com/@angular-devkit/build-angular/-/build-angular-0.1001.0-rc.0.tgz#78b3179fde749b25efa27728a9af978ee21f946a"
-  integrity sha512-98IesmeN+0HjLs9WlmITCXlHEqHZLQ5CvRHZVXaI6AtLa3Ylyw7TBjz/AiOThOkzByNEE7Fv/kOEdk6NNmTE6Q==
-  dependencies:
-    "@angular-devkit/architect" "0.1001.0-rc.0"
-    "@angular-devkit/build-optimizer" "0.1001.0-rc.0"
-    "@angular-devkit/build-webpack" "0.1001.0-rc.0"
-    "@angular-devkit/core" "10.1.0-rc.0"
+    "@angular-devkit/architect" "0.1001.0"
+    "@angular-devkit/build-optimizer" "0.1001.0"
+    "@angular-devkit/build-webpack" "0.1001.0"
+    "@angular-devkit/core" "10.1.0"
     "@babel/core" "7.11.1"
     "@babel/generator" "7.11.0"
     "@babel/plugin-transform-runtime" "7.11.0"
@@ -34,7 +26,7 @@
     "@babel/runtime" "7.11.2"
     "@babel/template" "7.10.4"
     "@jsdevtools/coverage-istanbul-loader" "3.0.5"
-    "@ngtools/webpack" "10.1.0-rc.0"
+    "@ngtools/webpack" "10.1.0"
     autoprefixer "9.8.6"
     babel-loader "8.1.0"
     browserslist "^4.9.1"
@@ -97,10 +89,10 @@
     "@angular-devkit/architect" "0.1001.0"
     rxjs "6.6.2"
 
-"@angular-devkit/build-optimizer@0.1001.0-rc.0":
-  version "0.1001.0-rc.0"
-  resolved "https://registry.yarnpkg.com/@angular-devkit/build-optimizer/-/build-optimizer-0.1001.0-rc.0.tgz#736016d8c7d2cbd23238dbdf7123a5c9532df2e8"
-  integrity sha512-w0iFVcEmFvRLjTkrtVsywLVy5kw9YyZ+/S+Z/po+FedqS2oTIhHaG5giHzLmzvTMoJ1PzNtmDc+ewW2BGbggpw==
+"@angular-devkit/build-optimizer@0.1001.0":
+  version "0.1001.0"
+  resolved "https://registry.yarnpkg.com/@angular-devkit/build-optimizer/-/build-optimizer-0.1001.0.tgz#0e018138ec33e47b9cfbceb67ae0a5fbd5a26f08"
+  integrity sha512-yFHjaUAh9lphLtDLI1UojKS/Szzj9zCq8RHsDv+GWB+2WRWrXB9MID5L/CuZsUdvsu0O6ALfXkNjoWtgOL18Fw==
   dependencies:
     loader-utils "2.0.0"
     source-map "0.7.3"
@@ -108,30 +100,19 @@
     typescript "4.0.2"
     webpack-sources "1.4.3"
 
-"@angular-devkit/build-webpack@0.1001.0-rc.0":
-  version "0.1001.0-rc.0"
-  resolved "https://registry.yarnpkg.com/@angular-devkit/build-webpack/-/build-webpack-0.1001.0-rc.0.tgz#23352cd85f299acdf48eb1f2d264c46621210a02"
-  integrity sha512-I91Khv/QppBfTd6UsWwQ2x7wMyDWxJUAgzOot664e/cg0b/HALEw/OGQaFn6u9bvI2DsRa0sCNoPbi3efZir6A==
+"@angular-devkit/build-webpack@0.1001.0":
+  version "0.1001.0"
+  resolved "https://registry.yarnpkg.com/@angular-devkit/build-webpack/-/build-webpack-0.1001.0.tgz#8ef6604ea384ffc53193e8b74b60b13c845dadd3"
+  integrity sha512-s/8QTlPNBH80Xg7Q2fW+GbPXyJIwW4TQx1ni8Linoxe08L4mKTp8cKo5fWaODglR/Er0X0javDFQ3gces9AIdQ==
   dependencies:
-    "@angular-devkit/architect" "0.1001.0-rc.0"
-    "@angular-devkit/core" "10.1.0-rc.0"
+    "@angular-devkit/architect" "0.1001.0"
+    "@angular-devkit/core" "10.1.0"
     rxjs "6.6.2"
 
 "@angular-devkit/core@10.1.0":
   version "10.1.0"
   resolved "https://registry.yarnpkg.com/@angular-devkit/core/-/core-10.1.0.tgz#3e4d6abc0b949f4e2fba94077d17c132eb0a673f"
   integrity sha512-oNRwAX+5uEwgheS3UUc1W+AerbimqGojCOTdWWcq5XtSviZnBCp1FeMZV+eB6XgUWfbmbWBu39S3sCYmXVHLwg==
-  dependencies:
-    ajv "6.12.4"
-    fast-json-stable-stringify "2.1.0"
-    magic-string "0.25.7"
-    rxjs "6.6.2"
-    source-map "0.7.3"
-
-"@angular-devkit/core@10.1.0-rc.0":
-  version "10.1.0-rc.0"
-  resolved "https://registry.yarnpkg.com/@angular-devkit/core/-/core-10.1.0-rc.0.tgz#842a92d4e1fa4e82561533c7c601fb2c06cda0cf"
-  integrity sha512-OoozjCwQw7ssb1iHaKtYJXKR2FWNUB/F7i1f3aZacJYKc3LmMNB6MSOQbBjd6MK8Olkkb/c3fQle0RUnB5ZeYA==
   dependencies:
     ajv "6.12.4"
     fast-json-stable-stringify "2.1.0"
@@ -2303,12 +2284,12 @@
     call-me-maybe "^1.0.1"
     glob-to-regexp "^0.3.0"
 
-"@ngtools/webpack@10.1.0-rc.0":
-  version "10.1.0-rc.0"
-  resolved "https://registry.yarnpkg.com/@ngtools/webpack/-/webpack-10.1.0-rc.0.tgz#3cc073c8ff1783fb5ba9314e7f4539d917510150"
-  integrity sha512-umF//dQT0ILSBunt6rELHlrmygrjFh80j+nxpBfWA/m2ETqeTt8NRQjDZExEQ1/crWBQPdGXen4GWzFk7pGfkg==
+"@ngtools/webpack@10.1.0":
+  version "10.1.0"
+  resolved "https://registry.yarnpkg.com/@ngtools/webpack/-/webpack-10.1.0.tgz#70059658d4ec1966026b48ba8bc91634c0ef1381"
+  integrity sha512-WnWkNBrY7XgP2xc7oJEAMSIzlHyikPky9y1G6tIkSVuDZ3hM3e662C99xJxt2ZOUY9LOuxuGJ03t/phlnDafJQ==
   dependencies:
-    "@angular-devkit/core" "10.1.0-rc.0"
+    "@angular-devkit/core" "10.1.0"
     enhanced-resolve "4.3.0"
     webpack-sources "1.4.3"
 
@@ -17091,7 +17072,7 @@ terser-webpack-plugin@^3.0.3:
     terser "^4.8.0"
     webpack-sources "^1.4.3"
 
-terser@5.2.1:
+terser@5.2.1, terser@^5.0.0:
   version "5.2.1"
   resolved "https://registry.yarnpkg.com/terser/-/terser-5.2.1.tgz#40b971b8d28b4fe98c9e8c0d073ab48e7bb96cd8"
   integrity sha512-/AOtjRtAMNGO0fIF6m8HfcvXTw/2AKpsOzDn36tA5RfhRdeXyb4RvHxJ5Pah7iL6dFkLk+gOnCaNHGwJPl6TrQ==
@@ -17113,15 +17094,6 @@ terser@^4.1.2, terser@^4.6.12, terser@^4.6.2, terser@^4.6.3, terser@^4.8.0:
   version "4.8.0"
   resolved "https://registry.yarnpkg.com/terser/-/terser-4.8.0.tgz#63056343d7c70bb29f3af665865a46fe03a0df17"
   integrity sha512-EAPipTNeWsb/3wLPeup1tVPaXfIaU68xMnVdPafIL1TV05OhASArYyIfFvnvJCNrR2NIOvDVNNTFRa+Re2MWyw==
-  dependencies:
-    commander "^2.20.0"
-    source-map "~0.6.1"
-    source-map-support "~0.5.12"
-
-terser@^5.0.0:
-  version "5.0.0"
-  resolved "https://registry.yarnpkg.com/terser/-/terser-5.0.0.tgz#269640e4e92f15d628de1e5f01c4c61e1ba3d765"
-  integrity sha512-olH2DwGINoSuEpSGd+BsPuAQaA3OrHnHnFL/rDB2TVNc3srUbz/rq/j2BlF4zDXI+JqAvGr86bIm1R2cJgZ3FA==
   dependencies:
     commander "^2.20.0"
     source-map "~0.6.1"
