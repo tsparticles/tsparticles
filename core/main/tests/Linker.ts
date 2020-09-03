@@ -4,7 +4,6 @@ import { TestContainer } from "./Fixture/TestContainer";
 import { TestParticles } from "./Fixture/TestParticles";
 import { Point, QuadTree, Rectangle } from "../src/Utils";
 import { TestCanvas } from "./Fixture/TestCanvas";
-import { Triangler } from "../src/Interactions/Particles/Triangler";
 
 describe("Linker in Canvas (200, 200) tests", () => {
     const testContainer = new TestContainer({});
@@ -72,7 +71,7 @@ describe("Linker in Canvas (200, 200) tests", () => {
 
                 linker.interact(p1);
 
-                const link = testContainer.container.particles.findLink(p1, p2);
+                const link = p1.links.find((t) => t.destination === p2);
 
                 expect(link).to.be.not.undefined;
 
@@ -81,7 +80,7 @@ describe("Linker in Canvas (200, 200) tests", () => {
                 }
 
                 expect(link.opacity > 0).to.be.true;
-                expect(link.edges).to.include(p2);
+                expect(link.destination).to.include(p2);
             });
 
             it("should link Particle (199, 199)", () => {
@@ -101,7 +100,7 @@ describe("Linker in Canvas (200, 200) tests", () => {
 
                 linker.interact(p1);
 
-                const link = testContainer.container.particles.findLink(p1, p2);
+                const link = p1.links.find((t) => t.destination === p2);
 
                 expect(link).to.be.not.undefined;
 
@@ -110,49 +109,7 @@ describe("Linker in Canvas (200, 200) tests", () => {
                 }
 
                 expect(link.opacity > 0).to.be.true;
-                expect(link.edges).to.include(p2);
-            });
-
-            it("should have a triangle with Particle (0, 0) and Particle (5, 0)", () => {
-                const p2 = testContainer.container.particles.addParticle({ x: 0, y: 0 });
-                const p3 = testContainer.container.particles.addParticle({ x: 5, y: 0 });
-
-                expect(p2).to.not.be.undefined;
-                expect(p3).to.not.be.undefined;
-
-                if (p2 === undefined || p3 === undefined) {
-                    return;
-                }
-
-                const pos2 = p2.getPosition();
-                const pos3 = p3.getPosition();
-
-                testContainer.container.particles.quadTree.insert(new Point(pos2, p2));
-                testContainer.container.particles.quadTree.insert(new Point(pos3, p3));
-
-                const linker = new Linker(testContainer.container);
-
-                linker.interact(p1);
-                linker.interact(p2);
-                linker.interact(p3);
-
-                const triangler = new Triangler(testContainer.container);
-
-                triangler.interact(p1);
-                triangler.interact(p2);
-                triangler.interact(p3);
-
-                const triangle = testContainer.container.particles.findTriangle(p1, p2, p3);
-
-                expect(triangle).to.be.not.undefined;
-
-                if (triangle === undefined) {
-                    return;
-                }
-
-                expect(triangle.opacity > 0).to.be.true;
-                expect(triangle.vertices).to.include(p2);
-                expect(triangle.vertices).to.include(p3);
+                expect(link.destination).to.include(p2);
             });
         });
     });
