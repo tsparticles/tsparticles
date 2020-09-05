@@ -16822,10 +16822,10 @@ supports-color@^6.1.0:
   dependencies:
     has-flag "^3.0.0"
 
-svelte-check@^1.0.32:
-  version "1.0.32"
-  resolved "https://registry.yarnpkg.com/svelte-check/-/svelte-check-1.0.32.tgz#023a61547187d7f6782c6eadd0e83526b77cf15d"
-  integrity sha512-Qk90Oy4MmODJHNpcQJ3SL9mi2IjAi2A9vKrjTx6Z6ZUbGouwi6ktEVwm8DwxG2v/3bF28igF0Ia+4TbN5tlVXA==
+svelte-check@^1.0.36:
+  version "1.0.36"
+  resolved "https://registry.yarnpkg.com/svelte-check/-/svelte-check-1.0.36.tgz#4469f0d63f0ea3758e2e599ec4673bfda502b895"
+  integrity sha512-TPGpwxir3Z6iIGOsIbZNEm4T+IN9lPVwxkm5VdupReqYJgEV6QCHnK8rNcTHOsHoL4XbiP00IqsTLtMOlDVVoA==
   dependencies:
     chalk "^4.0.0"
     chokidar "^3.4.1"
