@@ -61,7 +61,7 @@
     "@angular/platform-browser": "~10.1.0",
     "@angular/platform-browser-dynamic": "~10.1.0",
     "@angular/router": "~10.1.0-rc.0",
-    "rxjs": "~6.6.2",
+    "rxjs": "~6.6.3",
     "tslib": "^2.0.1",
     "tsparticles": "^1.18.0-alpha.14",
     "zone.js": "~0.11.1"
