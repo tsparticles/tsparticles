@@ -22,7 +22,7 @@
     "@angular/forms": "~10.1.0",
     "@angular/platform-browser": "~10.1.0",
     "@angular/platform-browser-dynamic": "~10.1.0",
-    "@angular/router": "~10.1.0-rc.0",
+    "@angular/router": "~10.1.0",
     "ng-particles": "^2.1.0-alpha.14",
     "rxjs": "~6.6.3",
     "tslib": "^2.0.1",
