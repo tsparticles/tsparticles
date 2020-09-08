@@ -63,7 +63,7 @@
   "license": "MIT",
   "homepage": "https://particles.matteobruni.it/",
   "devDependencies": {
-    "@babel/core": "^7.11.5",
+    "@babel/core": "^7.11.6",
     "@babel/preset-env": "^7.11.5",
     "@types/lodash": "^4.14.161",
     "@types/node": "^14.6.4",
