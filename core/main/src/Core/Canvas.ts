@@ -86,11 +86,11 @@ export class Canvas {
         this.coverColor =
             coverRgb !== undefined
                 ? {
-                    r: coverRgb.r,
-                    g: coverRgb.g,
-                    b: coverRgb.b,
-                    a: cover.opacity,
-                }
+                      r: coverRgb.r,
+                      g: coverRgb.g,
+                      b: coverRgb.b,
+                      a: cover.opacity,
+                  }
                 : undefined;
         this.trailFillColor = ColorUtils.colorToRgb(trail.fillColor);
 
@@ -197,7 +197,7 @@ export class Canvas {
         /* density particles enabled */
         container.densityAutoParticles();
 
-        for (const [ , plugin ] of container.plugins) {
+        for (const [, plugin] of container.plugins) {
             if (plugin.resize !== undefined) {
                 plugin.resize();
             }
