@@ -9,13 +9,13 @@ Let's checkout your possible HTML code.
 You should have something like the following code
 
 ```html
-<script src="particles.js"></script>
+<script src="particles.min.js"></script>
 ```
 
 Well to migrate from particles.js to tsParticles all you have to do is replace that to this
 
 ```html
-<script src="tsparticles.js"></script>
+<script src="tsparticles.min.js"></script>
 ```
 
 If you have customized the css like this:

@@ -6,6 +6,7 @@ import type { IOptionLoader } from "../../Interfaces/IOptionLoader";
 
 /**
  * @category Options
+ * [[include:Shadow.md]]
  */
 export class Shadow implements IShadow, IOptionLoader<IShadow> {
     public blur: number;

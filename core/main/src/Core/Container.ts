@@ -43,6 +43,7 @@ export class Container {
     public started: boolean;
     public destroyed: boolean;
     public density: number;
+    public fpsLimit: number;
 
     public readonly noise: INoise;
 
@@ -119,6 +120,8 @@ export class Container {
         if (this.sourceOptions) {
             this.options.load(this.sourceOptions);
         }
+
+        this.fpsLimit = this.options.fpsLimit > 0 ? this.options.fpsLimit : 60;
 
         /* ---------- tsParticles - start ------------ */
         this.eventListeners = new EventListeners(this);
@@ -355,6 +358,8 @@ export class Container {
         /* init canvas + particles */
         this.retina.init();
         this.canvas.init();
+
+        this.fpsLimit = this.options.fpsLimit > 0 ? this.options.fpsLimit : 60;
 
         const availablePlugins = Plugins.getAvailablePlugins(this);
 

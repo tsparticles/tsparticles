@@ -4,6 +4,7 @@ import type { RecursivePartial } from "../Types/RecursivePartial";
 import { Circle, Constants, Utils } from "../Utils";
 import { Particle } from "./Particle";
 import { ICoordinates } from "./Interfaces/ICoordinates";
+import { SingleOrMultiple } from "../Types/SingleOrMultiple";
 
 const tsParticlesDom: Container[] = [];
 
@@ -39,13 +40,14 @@ export class Loader {
      * @param tagId the particles container element id
      * @param options the options array to get the item from
      * @param index if provided gets the corresponding item from the array
+     * @deprecated [[load]] can handle an array too, this method is now unnecessary and is just an alias to [[load]]
      */
     public static async loadFromArray(
         tagId: string,
         options: RecursivePartial<IOptions>[],
         index?: number
     ): Promise<Container | undefined> {
-        return Loader.load(tagId, Utils.itemFromArray(options, index));
+        return Loader.load(tagId, options, index);
     }
 
     /**
@@ -54,6 +56,7 @@ export class Loader {
      * @param domContainer the dom container for keeping
      * @param options the options array to get the item from
      * @param index if provided gets the corresponding item from the array
+     * @deprecated [[set]] can handle an array too, this method is now unnecessary and is just an alias to [[set]]
      */
     public static async setFromArray(
         id: string,
@@ -61,15 +64,20 @@ export class Loader {
         options: RecursivePartial<IOptions>[],
         index?: number
     ): Promise<Container | undefined> {
-        return Loader.set(id, domContainer, Utils.itemFromArray(options, index));
+        return Loader.set(id, domContainer, options, index);
     }
 
     /**
      * Loads the provided options to create a [[Container]] object.
      * @param tagId the particles container element id
      * @param options the options object to initialize the [[Container]]
+     * @param index if an options array is provided, this will retrieve the exact index of that array
      */
-    public static async load(tagId: string, options?: RecursivePartial<IOptions>): Promise<Container | undefined> {
+    public static async load(
+        tagId: string,
+        options?: SingleOrMultiple<RecursivePartial<IOptions>>,
+        index?: number
+    ): Promise<Container | undefined> {
         /* elements */
         const domContainer = document.getElementById(tagId);
 
@@ -77,7 +85,7 @@ export class Loader {
             return;
         }
 
-        return Loader.set(tagId, domContainer, options);
+        return Loader.set(tagId, domContainer, options, index);
     }
 
     /**
@@ -85,12 +93,15 @@ export class Loader {
      * @param id the particles container element id
      * @param domContainer the dom container
      * @param options the options object to initialize the [[Container]]
+     * @param index if an options array is provided, this will retrieve the exact index of that array
      */
     public static async set(
         id: string,
         domContainer: HTMLElement,
-        options?: RecursivePartial<IOptions>
+        options?: SingleOrMultiple<RecursivePartial<IOptions>>,
+        index?: number
     ): Promise<Container | undefined> {
+        const currentOptions = options instanceof Array ? Utils.itemFromArray(options, index) : options;
         const dom = Loader.dom();
         const oldIndex = dom.findIndex((v) => v.id === id);
 
@@ -138,7 +149,7 @@ export class Loader {
         }
 
         /* launch tsParticles */
-        const newItem = new Container(id, options);
+        const newItem = new Container(id, currentOptions);
 
         if (oldIndex >= 0) {
             dom.splice(oldIndex, 0, newItem);
@@ -147,6 +158,7 @@ export class Loader {
         }
 
         newItem.canvas.loadCanvas(canvasEl, generatedCanvas);
+
         await newItem.start();
 
         return newItem;
@@ -163,13 +175,7 @@ export class Loader {
         const response = await fetch(jsonUrl);
 
         if (response.ok) {
-            const options = await response.json();
-
-            if (options instanceof Array) {
-                return Loader.loadFromArray(tagId, options);
-            } else {
-                return Loader.load(tagId, options);
-            }
+            return Loader.load(tagId, await response.json());
         } else {
             Loader.fetchError(response.status);
         }
@@ -193,11 +199,7 @@ export class Loader {
         if (response.ok) {
             const options = await response.json();
 
-            if (options instanceof Array) {
-                return Loader.setFromArray(id, domContainer, options);
-            } else {
-                return Loader.set(id, domContainer, options);
-            }
+            return Loader.set(id, domContainer, options);
         } else {
             Loader.fetchError(response.status);
         }

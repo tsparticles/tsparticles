@@ -5,6 +5,7 @@ import type { IOptionLoader } from "../../Interfaces/IOptionLoader";
 
 /**
  * @category Options
+ * [[include:Collisions.md]]
  */
 export class Collisions implements ICollisions, IOptionLoader<ICollisions> {
     public enable: boolean;
