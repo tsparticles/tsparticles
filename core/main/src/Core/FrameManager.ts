@@ -4,8 +4,7 @@ import type { Container } from "./Container";
  * @category Core
  */
 export class FrameManager {
-    constructor(private readonly container: Container) {
-    }
+    constructor(private readonly container: Container) {}
 
     /**
      * Handles the rAF method preparing the next animation frame to be drawn
@@ -17,7 +16,10 @@ export class FrameManager {
             const container = this.container;
 
             // FPS limit logic - if we are too fast, just draw without updating
-            if (container.lastFrameTime !== undefined && timestamp < container.lastFrameTime + 1000 / container.fpsLimit) {
+            if (
+                container.lastFrameTime !== undefined &&
+                timestamp < container.lastFrameTime + 1000 / container.fpsLimit
+            ) {
                 container.draw();
 
                 return;
