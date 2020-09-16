@@ -21,6 +21,7 @@ import {
 } from "./Types";
 import type { IPlugin } from "./Core/Interfaces/IPlugin";
 import { Particle } from "./Core/Particle";
+import { SingleOrMultiple } from "./Types/SingleOrMultiple";
 
 /**
  * Main class for creating the singleton on window.
@@ -80,7 +81,10 @@ export class MainSlim {
      * @param options The options object to initialize the [[Container]]
      * @returns A Promise with the [[Container]] object created
      */
-    public async load(tagId: string, options: RecursivePartial<IOptions>): Promise<Container | undefined> {
+    public async load(
+        tagId: string,
+        options: SingleOrMultiple<RecursivePartial<IOptions>>
+    ): Promise<Container | undefined> {
         return Loader.load(tagId, options);
     }
 

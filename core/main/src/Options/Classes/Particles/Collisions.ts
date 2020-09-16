@@ -6,6 +6,7 @@ import { Bounce } from "./Bounce/Bounce";
 
 /**
  * @category Options
+ * [[include:Collisions.md]]
  */
 export class Collisions implements ICollisions, IOptionLoader<ICollisions> {
     public bounce: Bounce;

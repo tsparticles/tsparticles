@@ -32,6 +32,7 @@ export class Container {
     public density;
     public pageHidden;
     public lastFrameTime;
+    public fpsLimit;
     public interactivity: IContainerInteractivity;
     public bubble: IBubble;
     public repulse: IRepulse;
@@ -122,6 +123,8 @@ export class Container {
         if (this.sourceOptions) {
             this.options.load(this.sourceOptions);
         }
+
+        this.fpsLimit = this.options.fpsLimit > 0 ? this.options.fpsLimit : 60;
 
         this.options.setTheme(undefined);
 
@@ -382,6 +385,8 @@ export class Container {
         /* init canvas + particles */
         this.retina.init();
         this.canvas.init();
+
+        this.fpsLimit = this.options.fpsLimit > 0 ? this.options.fpsLimit : 60;
 
         const availablePlugins = Plugins.getAvailablePlugins(this);
 
