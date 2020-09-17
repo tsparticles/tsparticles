@@ -3704,10 +3704,20 @@ ajv-keywords@^3.1.0, ajv-keywords@^3.4.1, ajv-keywords@^3.5.2:
   resolved "https://registry.yarnpkg.com/ajv-keywords/-/ajv-keywords-3.5.2.tgz#31f29da5ab6e00d1c2d329acf7b5929614d5014d"
   integrity sha512-5p6WTN0DdTGVQk6VjcEju19IgaHudalcfabD7yhDGeA6bcQnmL+CpveLJq/3hvfwd1aof6L386Ougkx6RfyMIQ==
 
-ajv@6.12.4, ajv@^6.1.0, ajv@^6.10.0, ajv@^6.10.2, ajv@^6.12.2, ajv@^6.12.3, ajv@^6.12.4:
+ajv@6.12.4:
   version "6.12.4"
   resolved "https://registry.yarnpkg.com/ajv/-/ajv-6.12.4.tgz#0614facc4522127fa713445c6bfd3ebd376e2234"
   integrity sha512-eienB2c9qVQs2KWexhkrdMLVDoIQCz5KSeLxwg9Lzk4DOfBtIK9PQwwufcsn1jjGuf9WZmqPMbGxOzfcuphJCQ==
+  dependencies:
+    fast-deep-equal "^3.1.1"
+    fast-json-stable-stringify "^2.0.0"
+    json-schema-traverse "^0.4.1"
+    uri-js "^4.2.2"
+
+ajv@^6.1.0, ajv@^6.10.0, ajv@^6.10.2, ajv@^6.12.2, ajv@^6.12.3, ajv@^6.12.4, ajv@^6.12.5:
+  version "6.12.5"
+  resolved "https://registry.yarnpkg.com/ajv/-/ajv-6.12.5.tgz#19b0e8bae8f476e5ba666300387775fb1a00a4da"
+  integrity sha512-lRF8RORchjpKG50/WFf8xmg7sgCLFiYNNnqdKflk63whMQcWR5ngGjiSXkL9bjxy6B2npOK2HSMN49jEBMSkag==
   dependencies:
     fast-deep-equal "^3.1.1"
     fast-json-stable-stringify "^2.0.0"
@@ -10858,13 +10868,13 @@ jsonc-parser@^1.0.0:
   resolved "https://registry.yarnpkg.com/jsonc-parser/-/jsonc-parser-1.0.3.tgz#1d53d7160e401a783dbceabaad82473f80e6ad7e"
   integrity sha512-hk/69oAeaIzchq/v3lS50PXuzn5O2ynldopMC+SWBql7J2WtdptfB9dy8Y7+Og5rPkTCpn83zTiO8FMcqlXJ/g==
 
-jsoneditor@^9.0.5:
-  version "9.0.5"
-  resolved "https://registry.yarnpkg.com/jsoneditor/-/jsoneditor-9.0.5.tgz#a3bc8b0c70161c42f827f175be9b353ca94f6780"
-  integrity sha512-sj+Q0CpaJtxfbi6e1v3/u9hcSZ8EdQ97dARc2AOCR1oEIfOVBeoNgRK6TzIgktWx2Mx6dMsCmDA6odp20AcnLA==
+jsoneditor@^9.1.0:
+  version "9.1.0"
+  resolved "https://registry.yarnpkg.com/jsoneditor/-/jsoneditor-9.1.0.tgz#e8d9004ba7fc1c9f6dd01ba12f4f0dc76f17bfb2"
+  integrity sha512-oqq5M75CPKqqLTFzbmGs4V3mJZvd5s3wE8l6yT+Jonr5Rf2gUyvgH3QSCLl4Eb2oYC+BRAa20YZXkJtRsRL59A==
   dependencies:
     ace-builds "^1.4.12"
-    ajv "^6.12.4"
+    ajv "^6.12.5"
     javascript-natural-sort "^0.7.1"
     jmespath "^0.15.0"
     json-source-map "^0.6.1"
