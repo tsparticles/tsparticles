@@ -119,7 +119,7 @@ describe("Options tests", () => {
         expect(options.particles.opacity.animation.speed).to.equal(2);
         expect(options.particles.opacity.animation.sync).to.be.false;
         expect(options.particles.opacity.random).to.be.an("object").to.have.property("enable").to.be.false;
-        expect(options.particles.opacity.random).to.be.an("object").to.have.property("minimumValue").to.equal(1);
+        expect(options.particles.opacity.random).to.be.an("object").to.have.property("minimumValue").to.equal(0.1);
         expect(options.particles.opacity.value).to.equal(1);
 
         /* particles rotate */
