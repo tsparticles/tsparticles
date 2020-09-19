@@ -1,5 +1,5 @@
 import * as Inferno from "inferno";
-import { Component } from "inferno";
+import { Component, InfernoNode } from "inferno";
 import { isEqual } from "lodash";
 import type { IOptions } from "tsparticles/dist/Options/Interfaces/IOptions";
 import { Container } from "tsparticles/dist/Core/Container";
@@ -69,7 +69,7 @@ export default class Particles extends Component<ParticlesProps, ParticlesState>
 		);
 	}
 
-	destroy() {
+	public destroy(): void {
 		if (!this.state.library) {
 			return;
 		}
@@ -81,7 +81,7 @@ export default class Particles extends Component<ParticlesProps, ParticlesState>
 		});
 	}
 
-	loadCanvas(canvas: HTMLCanvasElement) {
+	public loadCanvas(canvas: HTMLCanvasElement): void {
 		if (!canvas) {
 			return;
 		}
@@ -99,37 +99,40 @@ export default class Particles extends Component<ParticlesProps, ParticlesState>
 
 				library.canvas.loadCanvas(canvas);
 
-				library.start();
+				library.start().catch(err => {
+					console.log(err);
+				});
 			}
 		);
 	}
 
-	shouldComponentUpdate(nextProps: Readonly<ParticlesProps>) {
+	public shouldComponentUpdate(nextProps: Readonly<ParticlesProps>): boolean {
 		return !isEqual(nextProps, this.props);
 	}
 
-	componentDidUpdate() {
+	public componentDidUpdate(): void {
 		this.refresh(this.props);
 	}
 
-	forceUpdate() {
+	public forceUpdate(): void {
 		this.refresh(this.props);
 
 		super.forceUpdate();
 	}
 
-	componentDidMount() {
+	public componentDidMount(): void {
 		this.setState({
 			library: this.buildParticlesLibrary(this.props.id, this.props.params ?? this.props.options),
 		});
 	}
 
-	componentWillUnmount() {
+	public componentWillUnmount(): void {
 		this.destroy();
 	}
 
-	render() {
+	public render(): InfernoNode {
 		const { width, height, className, canvasClassName, id } = this.props;
+
 		return (
 			<div className={className} id={id}>
 				<canvas

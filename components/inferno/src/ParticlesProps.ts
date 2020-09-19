@@ -7,13 +7,13 @@ import type { IAbsorberOptions } from "tsparticles/dist/Plugins/Absorbers/Absorb
 import type { IEmitterOptions } from "tsparticles/dist/Plugins/Emitters/EmittersPlugin";
 
 export interface ParticlesProps {
-    id: string;
-    width: string;
-    height: string;
-    options: RecursivePartial<IOptions & IPolygonMaskOptions & IAbsorberOptions & IEmitterOptions>;
-    params?: RecursivePartial<IOptions & IPolygonMaskOptions & IAbsorberOptions & IEmitterOptions>;
-    style: any;
-    className?: string;
-    canvasClassName?: string;
-    container?: RefObject<Container>;
+	id: string;
+	width: string;
+	height: string;
+	options: RecursivePartial<IOptions & IPolygonMaskOptions & IAbsorberOptions & IEmitterOptions>;
+	params?: RecursivePartial<IOptions & IPolygonMaskOptions & IAbsorberOptions & IEmitterOptions>;
+	style: CSSProperties;
+	className?: string;
+	canvasClassName?: string;
+	container?: RefObject<Container>;
 }
