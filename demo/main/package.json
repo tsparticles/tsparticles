@@ -35,7 +35,7 @@
     "jquery": "^3.5.1",
     "jsoneditor": "^9.1.0",
     "popper.js": "^1.16.1",
-    "prettier": "^2.1.1",
+    "prettier": "^2.1.2",
     "pug": "^3.0.0",
     "pug-cli": "^1.0.0-alpha6",
     "stylus": "^0.54.8",
