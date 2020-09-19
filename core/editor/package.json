@@ -52,7 +52,7 @@
     "eslint": "^7.9.0",
     "eslint-config-prettier": "^6.11.0",
     "fibers": "^5.0.0",
-    "prettier": "^2.1.1",
+    "prettier": "^2.1.2",
     "rimraf": "^3.0.2",
     "sass": "^1.26.10",
     "sass-loader": "^10.0.2",
