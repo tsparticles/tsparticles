@@ -1,6 +1,6 @@
 {
   "name": "svelte-particles",
-  "version": "1.0.11",
+  "version": "1.0.12",
   "scripts": {
     "build": "prettier --write ./README.md && rollup -c"
   },
@@ -63,7 +63,7 @@
     "svelte": "^3.24.0"
   },
   "dependencies": {
-    "tsparticles": "^1.17.10"
+    "tsparticles": "^1.17.11"
   },
   "bugs": {
     "url": "https://github.com/matteobruni/tsparticles/issues"

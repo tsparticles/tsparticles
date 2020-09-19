@@ -11,7 +11,7 @@ export class OpacityRandom implements IOpacityRandom, IOptionLoader<IOpacityRand
 
     constructor() {
         this.enable = false;
-        this.minimumValue = 1;
+        this.minimumValue = 0.1;
     }
 
     public load(data?: RecursivePartial<IOpacityRandom> | undefined): void {
