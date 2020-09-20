@@ -7,7 +7,8 @@ import type { IParticlesInteractor } from "../../../Interfaces/IParticlesInterac
  * @category Interactions
  */
 export class Linker implements IParticlesInteractor {
-    constructor(private readonly container: Container) {}
+    constructor(private readonly container: Container) {
+    }
 
     public isEnabled(particle: Particle): boolean {
         return particle.particlesOptions.links.enable;
@@ -79,7 +80,7 @@ export class Linker implements IParticlesInteractor {
             }
 
             /* draw a line between p1 and p2 */
-            const opacityLine = optOpacity - (distance * optOpacity) / optDistance;
+            const opacityLine = (1 - distance / optDistance) * optOpacity;
 
             if (opacityLine > 0) {
                 /* style */
