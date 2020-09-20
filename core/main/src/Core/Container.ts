@@ -395,6 +395,7 @@ export class Container {
         const canvas = this.canvas.element;
         const pxRatio = this.retina.pixelRatio;
 
-        this.density = (canvas.width * canvas.height) / (densityOptions.factor * pxRatio * densityOptions.area);
+        this.density =
+            (canvas.width * canvas.height) / (densityOptions.factor * pxRatio * pxRatio * densityOptions.area);
     }
 }
