@@ -279,13 +279,14 @@ export class Canvas {
         }
 
         const width = p1.linksWidth ?? container.retina.linksWidth;
+        const maxDistance = p1.linksDistance ?? container.retina.linksDistance;
 
         CanvasUtils.drawLinkLine(
             ctx,
             width,
             pos1,
             pos2,
-            p1.particlesOptions.links.distance,
+            maxDistance,
             container.canvas.size,
             p1.particlesOptions.links.warp,
             options.backgroundMask.enable,
