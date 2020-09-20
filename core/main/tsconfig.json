@@ -92,20 +92,30 @@
     "includeVersion": true,
     "hideGenerator": true,
     "out": "./docs",
-    "theme": "../../node_modules/typedoc-particles-theme/bin/particles",
-    "pages": [
-      {
-        "label": "Official Website",
-        "url": "https://particles.matteobruni.it"
-      },
-      {
-        "label": "Github",
-        "url": "https://github.com/matteobruni/tsparticles"
-      },
-      {
-        "label": "CodePen Samples",
-        "url": "https://codepen.io/collection/DPOage"
-      }
-    ]
+    "theme": "../../node_modules/typedoc-particles-theme/bin/",
+    "particles": {
+      "groups": [
+        {
+          "title": "Documentation",
+          "pages": [
+            {
+              "title": "My Page",
+              "source": "./markdown/pages/index.md"
+            }
+          ]
+        }
+      ],
+      "enableSearch": false,
+      "links": [
+        {
+          "label": "Official Website",
+          "url": "https://particles.matteobruni.it"
+        },
+        {
+          "label": "Repository",
+          "url": "https://github.com/matteobruni/tsparticles"
+        }
+      ]
+    }
   }
 }

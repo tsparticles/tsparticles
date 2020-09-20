@@ -7,8 +7,7 @@ import type { IParticlesInteractor } from "../../../Interfaces/IParticlesInterac
  * @category Interactions
  */
 export class Linker implements IParticlesInteractor {
-    constructor(private readonly container: Container) {
-    }
+    constructor(private readonly container: Container) {}
 
     public isEnabled(particle: Particle): boolean {
         return particle.particlesOptions.links.enable;
