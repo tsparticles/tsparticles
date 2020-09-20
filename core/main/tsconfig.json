@@ -96,11 +96,35 @@
     "particles": {
       "groups": [
         {
-          "title": "Documentation",
+          "title": "Components",
           "pages": [
             {
-              "title": "My Page",
-              "source": "./markdown/pages/index.md"
+              "title": "Angular",
+              "source": "../../components/angular/README.md"
+            },
+            {
+              "title": "React",
+              "source": "../../components/react/README.md"
+            },
+            {
+              "title": "Vue",
+              "source": "../../components/vue/README.md"
+            },
+            {
+              "title": "Svelte",
+              "source": "../../components/svelte/README.md"
+            },
+            {
+              "title": "jQuery",
+              "source": "../../components/jquery/README.md"
+            },
+            {
+              "title": "Preact",
+              "source": "../../components/preact/README.md"
+            },
+            {
+              "title": "Inferno",
+              "source": "../../components/inferno/README.md"
             }
           ]
         }
