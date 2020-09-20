@@ -1,4 +1,4 @@
-import React, { Component } from "preact/compat";
+import React, { Component, ReactNode } from "preact/compat";
 import isEqual from "lodash/isEqual";
 import type { IOptions } from "tsparticles/dist/Options/Interfaces/IOptions";
 import { Container } from "tsparticles/dist/Core/Container";
@@ -55,7 +55,10 @@ export default class Particles extends Component<IParticlesProps, IParticlesStat
                 }
 
                 library.canvas.loadCanvas(canvas);
-                library.start();
+
+                library.start().catch((err) => {
+                    console.log(err);
+                });
             }
         );
     }
@@ -84,8 +87,9 @@ export default class Particles extends Component<IParticlesProps, IParticlesStat
         this.destroy();
     }
 
-    public render(): JSX.Element {
+    public render(): ReactNode {
         const { width, height, className, canvasClassName, id } = this.props;
+
         return (
             <div className={className} id={id}>
                 <canvas

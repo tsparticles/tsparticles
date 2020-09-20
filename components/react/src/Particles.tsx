@@ -1,4 +1,4 @@
-import React, { Component, MutableRefObject } from "react";
+import React, { Component, MutableRefObject, ReactNode } from "react";
 import type { IOptions } from "tsparticles/dist/Options/Interfaces/IOptions";
 import { Container } from "tsparticles/dist/Core/Container";
 import type { RecursivePartial } from "tsparticles/dist/Types/RecursivePartial";
@@ -84,7 +84,7 @@ export default class Particles extends Component<IParticlesProps, IParticlesStat
         this.destroy();
     }
 
-    public render(): JSX.Element {
+    public render(): ReactNode {
         const { width, height, className, canvasClassName, id } = this.props;
         return (
             <div className={className} id={id}>

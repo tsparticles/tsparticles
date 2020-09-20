@@ -1,5 +1,5 @@
 import Inferno from "inferno";
-import { Component } from "inferno";
+import { Component, InfernoNode } from "inferno";
 import { isEqual } from "lodash";
 import type { IOptions } from "tsparticles/dist/Options/Interfaces/IOptions";
 import { Container } from "tsparticles/dist/Core/Container";
@@ -62,7 +62,9 @@ export default class Particles extends Component<IParticlesProps, IParticlesStat
 
 				library.canvas.loadCanvas(canvas);
 
-				library.start();
+				library.start().catch(err => {
+					console.log(err);
+				});
 			}
 		);
 	}
@@ -91,8 +93,9 @@ export default class Particles extends Component<IParticlesProps, IParticlesStat
 		this.destroy();
 	}
 
-	public render(): JSX.Element {
+	public render(): InfernoNode {
 		const { width, height, className, canvasClassName, id } = this.props;
+
 		return (
 			<div className={className} id={id}>
 				<canvas
