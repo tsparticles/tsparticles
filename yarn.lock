@@ -17323,10 +17323,10 @@ typedoc-default-themes@^0.10.2:
   dependencies:
     lunr "^2.3.8"
 
-typedoc-particles-theme@^1.0.7:
-  version "1.0.7"
-  resolved "https://registry.yarnpkg.com/typedoc-particles-theme/-/typedoc-particles-theme-1.0.7.tgz#5a6c9ae7885fbbe477fbfb73fe35b97507ac6f34"
-  integrity sha512-Q8Cpppz+RbkfylGuU8uekNsdTSfjfZC4/+2/Ak165o5zBL8c92IcxLqrPjZCjHZZlvQBB1y14AiSK5rYUMblng==
+typedoc-particles-theme@^1.0.8:
+  version "1.0.8"
+  resolved "https://registry.yarnpkg.com/typedoc-particles-theme/-/typedoc-particles-theme-1.0.8.tgz#7beed38bbb3a3bed3fe846a4e32f4f5fb1077916"
+  integrity sha512-Z7htVf1/7aViriyTxLvu4KoiAEZClzgwotbXSZ6/8qNR4QPNll9CFGqlLY17hJ56v7WGsRuc/8rmJHMGgrkTHA==
   dependencies:
     lunr "^2.3.9"
     tsparticles "^1.17.10"
