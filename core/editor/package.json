@@ -54,7 +54,7 @@
     "fibers": "^5.0.0",
     "prettier": "^2.1.2",
     "rimraf": "^3.0.2",
-    "sass": "^1.26.10",
+    "sass": "^1.26.11",
     "sass-loader": "^10.0.2",
     "terser-webpack-plugin": "^4.1.0",
     "typescript": "^4.0.2",
