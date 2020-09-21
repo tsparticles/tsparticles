@@ -1,4 +1,5 @@
-import React, { Component, ReactNode } from "preact/compat";
+import React, { Component } from "preact/compat";
+import type { ComponentChild } from "preact";
 import isEqual from "lodash/isEqual";
 import type { IOptions } from "tsparticles/dist/Options/Interfaces/IOptions";
 import { Container } from "tsparticles/dist/Core/Container";
@@ -87,7 +88,7 @@ export default class Particles extends Component<IParticlesProps, IParticlesStat
         this.destroy();
     }
 
-    public render(): ReactNode {
+    public render(): ComponentChild {
         const { width, height, className, canvasClassName, id } = this.props;
 
         return (
