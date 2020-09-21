@@ -11,9 +11,16 @@ import { IOptions } from "tsparticles/dist/Options/Interfaces/IOptions";
 
 @Options({
   props: {
-    id: String,
-    options: Object,
-    particlesContainer: Object
+    id: {
+      type: String,
+      required: true
+    },
+    options: {
+      type: Object as () => RecursivePartial<IOptions>
+    },
+    particlesContainer: {
+      type: Object as () => RecursivePartial<Container>
+    }
   }
 })
 export default class Particles extends Vue {
