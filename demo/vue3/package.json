@@ -9,7 +9,7 @@
   "dependencies": {
     "core-js": "^3.6.5",
     "tsparticles": "^1.17.12",
-    "particles.vue3": "^1.0.2",
+    "particles.vue3": "^1.0.3",
     "vue": "^3.0.0",
     "vue-class-component": "^8.0.0-0"
   },
