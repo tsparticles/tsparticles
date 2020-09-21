@@ -3,6 +3,7 @@
 </template>
 
 <script lang="ts">
+import { nextTick } from "vue";
 import { Options, Vue } from "vue-class-component";
 import { tsParticles } from "tsparticles";
 import { Container } from "tsparticles/dist/Core/Container";
@@ -29,7 +30,7 @@ export default class Particles extends Vue {
   private particlesContainer?: Container;
 
   public mounted(): void {
-    this.$nextTick(() => {
+    nextTick(() => {
       if (!this.id) {
         throw new Error("Prop 'id' is required!");
       }
