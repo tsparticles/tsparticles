@@ -77,7 +77,7 @@ export class Linker implements IParticlesInteractor {
             }
 
             /* draw a line between p1 and p2 */
-            const opacityLine = optOpacity - (distance * optOpacity) / optDistance;
+            const opacityLine = (1 - distance / optDistance) * optOpacity;
 
             if (opacityLine > 0) {
                 /* style */
