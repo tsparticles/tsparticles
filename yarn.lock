@@ -13689,16 +13689,6 @@ parseurl@~1.3.2, parseurl@~1.3.3:
   resolved "https://registry.yarnpkg.com/parseurl/-/parseurl-1.3.3.tgz#9da19e7bee8d12dff0513ed5b76957793bc2e8d4"
   integrity sha512-CiyeOxFT/JZyN5m0z9PfXw4SCBJ6Sygz1Dpl0wqjlhDEGGBP1GnsUVEL0p63hoG1fcj3fHynXi9NYO4nWOL+qQ==
 
-particles.vue3@^1.0.1:
-  version "1.0.1"
-  resolved "https://registry.yarnpkg.com/particles.vue3/-/particles.vue3-1.0.1.tgz#147b1d4c6be972a8e1a99c6f6c0d0e287c7f9de3"
-  integrity sha512-/hGRLAKNc7zetRaztwXz/GmFK1cuJtjSD7TPBQeZDCzpT6TPTF1VWGL/seCd52JKqssX0SGT7AKHhtcEnGS8zw==
-  dependencies:
-    core-js "^3.6.5"
-    tsparticles "^1.17.12"
-    vue "^3.0.0"
-    vue-class-component "^8.0.0-0"
-
 pascal-case@^3.1.1:
   version "3.1.1"
   resolved "https://registry.yarnpkg.com/pascal-case/-/pascal-case-3.1.1.tgz#5ac1975133ed619281e88920973d2cd1f279de5f"
