@@ -8,6 +8,10 @@ import type { ICoordinates } from "../../../../Core/Interfaces/ICoordinates";
 import { LocalSvg } from "./LocalSvg";
 import { IOptionLoader } from "../../../../Options/Interfaces/IOptionLoader";
 
+/**
+ * [[include:Options/Plugins/PolygonMask.md]]
+ * @category Polygon Mask Plugin
+ */
 export class PolygonMask implements IPolygonMask, IOptionLoader<IPolygonMask> {
     /**
      * @deprecated the property inlineArrangement is deprecated, please use the new inline.arrangement

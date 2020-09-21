@@ -2,6 +2,9 @@ import type { IEmitterRate } from "../Interfaces/IEmitterRate";
 import type { RecursivePartial } from "../../../../Types/RecursivePartial";
 import type { IOptionLoader } from "../../../../Options/Interfaces/IOptionLoader";
 
+/**
+ * @category Emitters Plugin
+ */
 export class EmitterRate implements IEmitterRate, IOptionLoader<IEmitterRate> {
     public quantity: number;
     public delay: number;
@@ -12,14 +15,16 @@ export class EmitterRate implements IEmitterRate, IOptionLoader<IEmitterRate> {
     }
 
     public load(data?: RecursivePartial<IEmitterRate>): void {
-        if (data !== undefined) {
-            if (data.quantity !== undefined) {
-                this.quantity = data.quantity;
-            }
+        if (data === undefined) {
+            return;
+        }
 
-            if (data.delay !== undefined) {
-                this.delay = data.delay;
-            }
+        if (data.quantity !== undefined) {
+            this.quantity = data.quantity;
+        }
+
+        if (data.delay !== undefined) {
+            this.delay = data.delay;
         }
     }
 }

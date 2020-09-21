@@ -1,4 +1,4 @@
-import { RefObject } from "react";
+import { CSSProperties, RefObject } from "react";
 import type { Container } from "tsparticles/dist/Core/Container";
 import type { IOptions } from "tsparticles/dist/Options/Interfaces/IOptions";
 import type { RecursivePartial } from "tsparticles/dist/Types/RecursivePartial";
@@ -12,7 +12,7 @@ export interface ParticlesProps {
     height: string;
     options: RecursivePartial<IOptions & IPolygonMaskOptions & IAbsorberOptions & IEmitterOptions>;
     params?: RecursivePartial<IOptions & IPolygonMaskOptions & IAbsorberOptions & IEmitterOptions>;
-    style: any;
+    style: CSSProperties;
     className?: string;
     canvasClassName?: string;
     container?: RefObject<Container>;

@@ -6,6 +6,9 @@ import type { IVelocity } from "../../../Interfaces/IVelocity";
 import { CollisionMode } from "../../../../Enums";
 import type { IParticlesInteractor } from "../../../Interfaces/IParticlesInteractor";
 
+/**
+ * @category Interactions
+ */
 export class Collider implements IParticlesInteractor {
     constructor(private readonly container: Container) {}
 

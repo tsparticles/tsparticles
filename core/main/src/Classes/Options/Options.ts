@@ -1,3 +1,1 @@
-import { Options } from "../../Options/Classes/Options";
-
-export { Options };
+export * from "../../Options/Classes/Options";

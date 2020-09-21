@@ -9,6 +9,9 @@ import type { RecursivePartial } from "../../Types/RecursivePartial";
 import type { IParticles } from "../../Options/Interfaces/Particles/IParticles";
 import { IEmitterSize } from "./Options/Interfaces/IEmitterSize";
 
+/**
+ * @category Emitters Plugin
+ */
 export class EmitterInstance {
     public position: ICoordinates;
     public size: IEmitterSize;

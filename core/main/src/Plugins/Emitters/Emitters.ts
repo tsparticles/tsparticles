@@ -8,8 +8,11 @@ import { Emitter } from "./Options/Classes/Emitter";
 import type { IOptions } from "../../Options/Interfaces/IOptions";
 import type { SingleOrMultiple } from "../../Types/SingleOrMultiple";
 import { EmitterClickMode } from "./Enums";
-import { IEmitterOptions } from "./Options/Interfaces/IEmitterOptions";
+import type { IEmitterOptions } from "./Options/Interfaces/IEmitterOptions";
 
+/**
+ * @category Emitters Plugin
+ */
 export class Emitters implements IContainerPlugin {
     public array: EmitterInstance[];
     public emitters: SingleOrMultiple<Emitter>;

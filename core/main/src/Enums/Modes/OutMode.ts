@@ -1,3 +1,6 @@
+/**
+ * @category Enums
+ */
 export enum OutMode {
     bounce = "bounce",
     bounceHorizontal = "bounce-horizontal",

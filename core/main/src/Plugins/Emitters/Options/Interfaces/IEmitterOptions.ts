@@ -3,6 +3,9 @@ import { IEmitter } from "./IEmitter";
 import { IInteractivity } from "../../../../Options/Interfaces/Interactivity/IInteractivity";
 import { IModes } from "../../../../Options/Interfaces/Interactivity/Modes/IModes";
 
+/**
+ * @category Emitters Plugin
+ */
 export interface IEmitterOptions {
     emitters: SingleOrMultiple<IEmitter>;
     interactivity: IInteractivity & {

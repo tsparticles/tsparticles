@@ -1,3 +1,6 @@
+/**
+ * @category Options
+ */
 export interface IPush {
     /**
      * @deprecated use the new quantity instead

@@ -1,6 +1,9 @@
 import { Particle } from "../Particle";
 import { Container } from "../Container";
 
+/**
+ * @category Core
+ */
 export class Infecter {
     public infectionStage?: number;
     public infectionTime?: number;

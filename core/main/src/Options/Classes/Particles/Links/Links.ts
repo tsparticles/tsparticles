@@ -5,6 +5,10 @@ import { LinksTriangle } from "./LinksTriangle";
 import { OptionsColor } from "../../OptionsColor";
 import type { IOptionLoader } from "../../../Interfaces/IOptionLoader";
 
+/**
+ * [[include:Options/Particles/Links.md]]
+ * @category Options
+ */
 export class Links implements ILinks, IOptionLoader<ILinks> {
     public id?: string;
     public blink: boolean;

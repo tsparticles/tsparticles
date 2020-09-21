@@ -4,6 +4,9 @@ import type { ICoordinates } from "../Core/Interfaces/ICoordinates";
 import type { IParticle } from "../Core/Interfaces/IParticle";
 import type { IPolygonShape } from "../Options/Interfaces/Particles/Shape/IPolygonShape";
 
+/**
+ * @category Shape Drawers
+ */
 export class PolygonDrawer extends PolygonDrawerBase {
     public getSidesData(particle: IParticle, radius: number): ISide {
         const polygon = particle.shapeData as IPolygonShape;

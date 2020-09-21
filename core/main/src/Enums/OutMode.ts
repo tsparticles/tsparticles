@@ -1,3 +1,1 @@
-import { OutMode } from "./Modes";
-
-export { OutMode };
+export * from "./Modes";

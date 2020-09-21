@@ -5,6 +5,9 @@ import type { RecursivePartial } from "../../Types/RecursivePartial";
 import type { IOptions } from "../../Options/Interfaces/IOptions";
 import { IDelta } from "./IDelta";
 
+/**
+ * @category Interfaces
+ */
 export interface IContainerPlugin {
     draw?: (context: CanvasRenderingContext2D, delta: IDelta) => void;
     init?: (options?: RecursivePartial<IOptions>) => void;

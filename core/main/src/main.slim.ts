@@ -21,10 +21,12 @@ import {
 } from "./Types/ShapeDrawerFunctions";
 import { IPlugin } from "./Core/Interfaces/IPlugin";
 import { Particle } from "./Core/Particle";
+import { SingleOrMultiple } from "./Types/SingleOrMultiple";
 
 /**
  * Main class for creating the singleton on window.
- * It's a proxy to the static [[Loader]] class
+ * It's a singleton proxy to the static [[Loader]] class for initializing [[Container]] instances
+ * @category Main
  */
 export class MainSlim {
     private initialized: boolean;
@@ -79,7 +81,10 @@ export class MainSlim {
      * @param options The options object to initialize the [[Container]]
      * @returns A Promise with the [[Container]] object created
      */
-    public async load(tagId: string, options: RecursivePartial<IOptions>): Promise<Container | undefined> {
+    public async load(
+        tagId: string,
+        options: SingleOrMultiple<RecursivePartial<IOptions>>
+    ): Promise<Container | undefined> {
         return Loader.load(tagId, options);
     }
 

@@ -3,6 +3,9 @@ import type { Particle } from "../../../Particle";
 import { Circle, CircleWarp, ColorUtils, Constants, Utils } from "../../../../Utils";
 import type { IParticlesInteractor } from "../../../Interfaces/IParticlesInteractor";
 
+/**
+ * @category Interactions
+ */
 export class Linker implements IParticlesInteractor {
     constructor(private readonly container: Container) {}
 
@@ -76,7 +79,7 @@ export class Linker implements IParticlesInteractor {
             }
 
             /* draw a line between p1 and p2 */
-            const opacityLine = optOpacity - (distance * optOpacity) / optDistance;
+            const opacityLine = (1 - distance / optDistance) * optOpacity;
 
             if (opacityLine > 0) {
                 /* style */

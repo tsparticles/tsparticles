@@ -3,6 +3,10 @@ import type { RecursivePartial } from "../../../Types/RecursivePartial";
 import { AnimatableColor } from "./AnimatableColor";
 import type { IOptionLoader } from "../../Interfaces/IOptionLoader";
 
+/**
+ * [[include:Options/Particles/Stroke.md]]
+ * @category Options
+ */
 export class Stroke implements IStroke, IOptionLoader<IStroke> {
     public color?: AnimatableColor;
     public width: number;

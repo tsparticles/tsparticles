@@ -4,6 +4,10 @@ import type { RecursivePartial } from "../../../../Types/RecursivePartial";
 import { OpacityRandom } from "./OpacityRandom";
 import type { IOptionLoader } from "../../../Interfaces/IOptionLoader";
 
+/**
+ * [[include:Options/Particles/Opacity.md]]
+ * @category Options
+ */
 export class Opacity implements IOpacity, IOptionLoader<IOpacity> {
     /**
      *

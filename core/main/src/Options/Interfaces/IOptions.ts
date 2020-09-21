@@ -6,6 +6,8 @@ import type { IInfection } from "./Infection/IInfection";
 
 /**
  * The Options interface, defines all the options that can be used by `tsParticles`
+ * [[include:Options.md]]
+ * @category Options
  */
 export interface IOptions {
     /**

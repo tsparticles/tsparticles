@@ -2,6 +2,9 @@ import type { IPush } from "../../../Interfaces/Interactivity/Modes/IPush";
 import type { RecursivePartial } from "../../../../Types/RecursivePartial";
 import type { IOptionLoader } from "../../../Interfaces/IOptionLoader";
 
+/**
+ * @category Options
+ */
 export class Push implements IPush, IOptionLoader<IPush> {
     /**
      *

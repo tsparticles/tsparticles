@@ -6,9 +6,11 @@
       "type": "string"
     },
     "IAnimatableColor": {
+      "description": "The animatable color interface, it provides all the necessary properties to create a color animation\n[[include:Options/Particles/Color.md]]",
       "properties": {
         "animation": {
-          "$ref": "#/definitions/IColorAnimation"
+          "$ref": "#/definitions/IColorAnimation",
+          "description": "The color animation property"
         },
         "value": {
           "anyOf": [
@@ -43,7 +45,8 @@
             {
               "type": "string"
             }
-          ]
+          ],
+          "description": "Color value, can be a single or an array of [[IValueColor]], [[IRgb]], [[IHsl]] or string"
         }
       },
       "type": "object"
@@ -80,7 +83,7 @@
       "type": "object"
     },
     "IBackground": {
-      "description": "The background options used by the canvas element, it's not drawn, it's applied in the style",
+      "description": "The background options used by the canvas element, it's not drawn, it's applied in the style\n[[include:Options/Background.md]]",
       "properties": {
         "color": {
           "anyOf": [
@@ -117,7 +120,7 @@
       "type": "object"
     },
     "IBackgroundMask": {
-      "description": "The options to apply a base color to canvas to cover what's behind\nThe particles will unveil what is covered by the canvas",
+      "description": "The options to apply a base color to canvas to cover what's behind\nThe particles will unveil what is covered by the canvas\n[[include:Options/BackgroundMask.md]]",
       "properties": {
         "cover": {
           "anyOf": [
@@ -304,7 +307,7 @@
       "type": "object"
     },
     "IClickEvent": {
-      "description": "The canvas click event",
+      "description": "The canvas click event\n[[include:Options/Interactivity/Click.md]]",
       "properties": {
         "enable": {
           "description": "This property enables or disables the click event",
@@ -340,6 +343,7 @@
       "type": "object"
     },
     "IColor": {
+      "description": "Color\n[[include:Color.md]]",
       "properties": {
         "value": {
           "anyOf": [
@@ -374,20 +378,25 @@
             {
               "type": "string"
             }
-          ]
+          ],
+          "description": "Color value, can be a single or an array of [[IValueColor]], [[IRgb]], [[IHsl]] or string"
         }
       },
       "type": "object"
     },
     "IColorAnimation": {
+      "description": "Color animation interface, these properties are used to animate colors",
       "properties": {
         "enable": {
+          "description": "Enables/disables the animation",
           "type": "boolean"
         },
         "speed": {
+          "description": "Hue speed rotation (from 0 to 360 degrees)",
           "type": "number"
         },
         "sync": {
+          "description": "Enables the sync animations for the particles created at the same time\npushed or emitter particles will be out of sync\nNot using this value will create random colors particles at the same lightness and saturation of the base color",
           "type": "boolean"
         }
       },
@@ -450,6 +459,7 @@
       "type": "object"
     },
     "IDivEvent": {
+      "description": "[[include:Options/Interactivity/Div.md]]",
       "properties": {
         "el": {
           "anyOf": [
@@ -513,6 +523,7 @@
       "type": "object"
     },
     "IEvents": {
+      "description": "[[include:Options/Interactivity/Events.md]]",
       "properties": {
         "onClick": {
           "$ref": "#/definitions/IClickEvent"
@@ -600,6 +611,7 @@
       "type": "object"
     },
     "IHoverEvent": {
+      "description": "[[include:Options/Interactivity/Hover.md]]",
       "properties": {
         "enable": {
           "type": "boolean"
@@ -667,20 +679,26 @@
       "type": "object"
     },
     "IInfection": {
+      "description": "The particles infection animations options\n[[include:Options/Infection.md]]",
       "properties": {
         "cure": {
+          "description": "This property specifies if particles can turn back to the original state after being infected",
           "type": "boolean"
         },
         "delay": {
+          "description": "The infection delay of the new infected particles, initial infected particles won't be affected.",
           "type": "number"
         },
         "enable": {
+          "description": "Enables the infection animations",
           "type": "boolean"
         },
         "infections": {
+          "description": "The initial number of infected particles",
           "type": "number"
         },
         "stages": {
+          "description": "This property contains all the infection stages configurations, array of [[IInfectionStage]]",
           "items": {
             "$ref": "#/definitions/IInfectionStage"
           },
@@ -690,6 +708,7 @@
       "type": "object"
     },
     "IInfectionStage": {
+      "description": "Infection stage options",
       "properties": {
         "color": {
           "anyOf": [
@@ -699,45 +718,56 @@
             {
               "type": "string"
             }
-          ]
+          ],
+          "description": "Infection stage particle color"
         },
         "duration": {
+          "description": "Infection stage duration, after this time has passed it will go to the next stage,\nresets to first or turn back to normal if cure is enabled.",
           "type": "number"
         },
         "infectedStage": {
+          "description": "The infected stage set to the infected particles by the current stage",
           "type": "number"
         },
         "radius": {
+          "description": "Infection stage contagious area radius, if 0 only particles touching would be affected",
           "type": "number"
         },
         "rate": {
+          "description": "Infection rate, the higher it is, the more particles will be infected.",
           "type": "number"
         }
       },
       "type": "object"
     },
     "IInteractivity": {
+      "description": "Particles interactivity options\n[[include:Options/Interactivity.md]]",
       "properties": {
         "detect_on": {
           "enum": ["canvas", "parent", "window"],
           "type": "string"
         },
         "detectsOn": {
+          "description": "Where the mouse events will be detected\nIf set to `canvas` only the particles canvas will be target\nIf set to `parent` only the particles canvas parent will be the target\nIf set to `window` every area will be the target",
           "enum": ["canvas", "parent", "window"],
           "type": "string"
         },
         "events": {
-          "$ref": "#/definitions/IEvents"
+          "$ref": "#/definitions/IEvents",
+          "description": "Interaction events options, this configures which events are enabled and which modes should be used"
         },
         "modes": {
-          "$ref": "#/definitions/IModes"
+          "$ref": "#/definitions/IModes",
+          "description": "Interaction modes options, this configures every mode behavior"
         }
       },
       "type": "object"
     },
     "ILinks": {
+      "description": "Particles Links options, this configures how the particles link together\n[[include:Options/Particles/Links.md]]",
       "properties": {
         "blink": {
+          "description": "Enables random blinking, if set to true and [[color]] is set to \"random\"\nthe link will have a random color each frame resulting in a blinking animation",
           "type": "boolean"
         },
         "color": {
@@ -748,33 +778,43 @@
             {
               "type": "string"
             }
-          ]
+          ],
+          "description": "Link line color, can be a string or an [[IColor]] object.\nIf the value is \"random\", if [[blink]] is `true` sets a random color each frame,\nif [[consent]] is `true` a random color is used for all links,\nif [[blink]] and [[consent]] are false the color will be a gradient with the two linked particles color"
         },
         "consent": {
+          "description": "If enabled the links will have a single random color, if [[color]] value is \"random\"",
           "type": "boolean"
         },
         "distance": {
+          "description": "Sets the maximum particles link line length",
           "type": "number"
         },
         "enable": {
+          "description": "Enables the particles links",
           "type": "boolean"
         },
         "id": {
+          "description": "Sets the link id, if two particles have a different link id they won't link together",
           "type": "string"
         },
         "opacity": {
+          "description": "Sets the maximum link opacity",
           "type": "number"
         },
         "shadow": {
-          "$ref": "#/definitions/ILinksShadow"
+          "$ref": "#/definitions/ILinksShadow",
+          "description": "Enables the link line shadow\n**Shadows in canvas are really heavy and this can affect negatively on performances, use with caution**"
         },
         "triangles": {
-          "$ref": "#/definitions/ILinksTriangle"
+          "$ref": "#/definitions/ILinksTriangle",
+          "description": "Fills the triangles made by link lines"
         },
         "warp": {
+          "description": "Enable link lines warp, linking particles between edges like there's a warp portal at the edges",
           "type": "boolean"
         },
         "width": {
+          "description": "Sets the link line width",
           "type": "number"
         }
       },
@@ -823,6 +863,7 @@
       "type": "object"
     },
     "IModes": {
+      "description": "[[include:Options/Interactivity/Modes.md]]",
       "properties": {
         "attract": {
           "$ref": "#/definitions/IAttract"
@@ -855,6 +896,7 @@
       "type": "object"
     },
     "IMove": {
+      "description": "[[include:Options/Particles/Move.md]]",
       "properties": {
         "angle": {
           "anyOf": [
@@ -989,6 +1031,7 @@
       "type": "object"
     },
     "IOpacity": {
+      "description": "[[include:Options/Particles/Opacity.md]]",
       "properties": {
         "anim": {
           "$ref": "#/definitions/IOpacityAnimation"
@@ -1058,6 +1101,7 @@
       "type": "object"
     },
     "IParticles": {
+      "description": "[[include:Options/Particles.md]]",
       "properties": {
         "collisions": {
           "$ref": "#/definitions/ICollisions"
@@ -1115,6 +1159,7 @@
       "type": "object"
     },
     "IParticlesNumber": {
+      "description": "[[include:Options/Particles/Number.md]]",
       "properties": {
         "density": {
           "$ref": "#/definitions/IDensity"
@@ -1242,6 +1287,7 @@
       "type": "object"
     },
     "IRotate": {
+      "description": "[[include:Options/Particles/Rotate.md]]",
       "properties": {
         "animation": {
           "$ref": "#/definitions/IRotateAnimation"
@@ -1301,6 +1347,7 @@
       "type": "object"
     },
     "IShape": {
+      "description": "[[include:Options/Particles/Shape.md]]",
       "properties": {
         "character": {
           "anyOf": [
@@ -1430,6 +1477,7 @@
       "type": "object"
     },
     "ISize": {
+      "description": "[[include:Options/Particles/Size.md]]",
       "properties": {
         "anim": {
           "$ref": "#/definitions/ISizeAnimation"
@@ -1507,6 +1555,7 @@
       "type": "object"
     },
     "IStroke": {
+      "description": "Particle stroke, outlines the particle with a customizable line\n[[include:Options/Particles/Stroke.md]]",
       "properties": {
         "color": {
           "anyOf": [
@@ -1516,12 +1565,15 @@
             {
               "type": "string"
             }
-          ]
+          ],
+          "description": "The stroke color, can be animated too"
         },
         "opacity": {
+          "description": "The stroke opacity",
           "type": "number"
         },
         "width": {
+          "description": "The stroke line width",
           "type": "number"
         }
       },
@@ -1563,6 +1615,7 @@
       "type": "object"
     },
     "ITwinkle": {
+      "description": "[[include:Options/Particles/Twinkle.md]]",
       "properties": {
         "lines": {
           "$ref": "#/definitions/ITwinkleValues"
@@ -1611,7 +1664,8 @@
     "RecursivePartial<IAnimatableColor>": {
       "properties": {
         "animation": {
-          "$ref": "#/definitions/RecursivePartial<IColorAnimation>"
+          "$ref": "#/definitions/RecursivePartial<IColorAnimation>",
+          "description": "The color animation property"
         },
         "value": {
           "anyOf": [
@@ -1646,7 +1700,8 @@
             {
               "type": "string"
             }
-          ]
+          ],
+          "description": "Color value, can be a single or an array of [[IValueColor]], [[IRgb]], [[IHsl]] or string"
         }
       },
       "type": "object"
@@ -1755,12 +1810,15 @@
     "RecursivePartial<IColorAnimation>": {
       "properties": {
         "enable": {
+          "description": "Enables/disables the animation",
           "type": "boolean"
         },
         "speed": {
+          "description": "Hue speed rotation (from 0 to 360 degrees)",
           "type": "number"
         },
         "sync": {
+          "description": "Enables the sync animations for the particles created at the same time\npushed or emitter particles will be out of sync\nNot using this value will create random colors particles at the same lightness and saturation of the base color",
           "type": "boolean"
         }
       },
@@ -1855,6 +1913,7 @@
     "RecursivePartial<ILinks>": {
       "properties": {
         "blink": {
+          "description": "Enables random blinking, if set to true and [[color]] is set to \"random\"\nthe link will have a random color each frame resulting in a blinking animation",
           "type": "boolean"
         },
         "color": {
@@ -1865,33 +1924,43 @@
             {
               "type": "string"
             }
-          ]
+          ],
+          "description": "Link line color, can be a string or an [[IColor]] object.\nIf the value is \"random\", if [[blink]] is `true` sets a random color each frame,\nif [[consent]] is `true` a random color is used for all links,\nif [[blink]] and [[consent]] are false the color will be a gradient with the two linked particles color"
         },
         "consent": {
+          "description": "If enabled the links will have a single random color, if [[color]] value is \"random\"",
           "type": "boolean"
         },
         "distance": {
+          "description": "Sets the maximum particles link line length",
           "type": "number"
         },
         "enable": {
+          "description": "Enables the particles links",
           "type": "boolean"
         },
         "id": {
+          "description": "Sets the link id, if two particles have a different link id they won't link together",
           "type": "string"
         },
         "opacity": {
+          "description": "Sets the maximum link opacity",
           "type": "number"
         },
         "shadow": {
-          "$ref": "#/definitions/RecursivePartial<ILinksShadow>"
+          "$ref": "#/definitions/RecursivePartial<ILinksShadow>",
+          "description": "Enables the link line shadow\n**Shadows in canvas are really heavy and this can affect negatively on performances, use with caution**"
         },
         "triangles": {
-          "$ref": "#/definitions/RecursivePartial<ILinksTriangle>"
+          "$ref": "#/definitions/RecursivePartial<ILinksTriangle>",
+          "description": "Fills the triangles made by link lines"
         },
         "warp": {
+          "description": "Enable link lines warp, linking particles between edges like there's a warp portal at the edges",
           "type": "boolean"
         },
         "width": {
+          "description": "Sets the link line width",
           "type": "number"
         }
       },
@@ -2112,37 +2181,47 @@
           "$ref": "#/definitions/RecursivePartial<ICollisions>"
         },
         "color": {
-          "$ref": "#/definitions/RecursivePartial<IAnimatableColor>"
+          "$ref": "#/definitions/RecursivePartial<IAnimatableColor>",
+          "description": "The animatable color interface, it provides all the necessary properties to create a color animation\n[[include:Options/Particles/Color.md]]"
         },
         "lineLinked": {
-          "$ref": "#/definitions/RecursivePartial<ILinks>"
+          "$ref": "#/definitions/RecursivePartial<ILinks>",
+          "description": "Particles Links options, this configures how the particles link together\n[[include:Options/Particles/Links.md]]"
         },
         "line_linked": {
-          "$ref": "#/definitions/RecursivePartial<ILinks>"
+          "$ref": "#/definitions/RecursivePartial<ILinks>",
+          "description": "Particles Links options, this configures how the particles link together\n[[include:Options/Particles/Links.md]]"
         },
         "links": {
-          "$ref": "#/definitions/RecursivePartial<ILinks>"
+          "$ref": "#/definitions/RecursivePartial<ILinks>",
+          "description": "Particles Links options, this configures how the particles link together\n[[include:Options/Particles/Links.md]]"
         },
         "move": {
-          "$ref": "#/definitions/RecursivePartial<IMove>"
+          "$ref": "#/definitions/RecursivePartial<IMove>",
+          "description": "[[include:Options/Particles/Move.md]]"
         },
         "number": {
-          "$ref": "#/definitions/RecursivePartial<IParticlesNumber>"
+          "$ref": "#/definitions/RecursivePartial<IParticlesNumber>",
+          "description": "[[include:Options/Particles/Number.md]]"
         },
         "opacity": {
-          "$ref": "#/definitions/RecursivePartial<IOpacity>"
+          "$ref": "#/definitions/RecursivePartial<IOpacity>",
+          "description": "[[include:Options/Particles/Opacity.md]]"
         },
         "rotate": {
-          "$ref": "#/definitions/RecursivePartial<IRotate>"
+          "$ref": "#/definitions/RecursivePartial<IRotate>",
+          "description": "[[include:Options/Particles/Rotate.md]]"
         },
         "shadow": {
           "$ref": "#/definitions/RecursivePartial<IShadow>"
         },
         "shape": {
-          "$ref": "#/definitions/RecursivePartial<IShape>"
+          "$ref": "#/definitions/RecursivePartial<IShape>",
+          "description": "[[include:Options/Particles/Shape.md]]"
         },
         "size": {
-          "$ref": "#/definitions/RecursivePartial<ISize>"
+          "$ref": "#/definitions/RecursivePartial<ISize>",
+          "description": "[[include:Options/Particles/Size.md]]"
         },
         "stroke": {
           "anyOf": [
@@ -2158,7 +2237,8 @@
           ]
         },
         "twinkle": {
-          "$ref": "#/definitions/RecursivePartial<ITwinkle>"
+          "$ref": "#/definitions/RecursivePartial<ITwinkle>",
+          "description": "[[include:Options/Particles/Twinkle.md]]"
         }
       },
       "type": "object"
@@ -2430,12 +2510,15 @@
             {
               "type": "string"
             }
-          ]
+          ],
+          "description": "The stroke color, can be animated too"
         },
         "opacity": {
+          "description": "The stroke opacity",
           "type": "number"
         },
         "width": {
+          "description": "The stroke line width",
           "type": "number"
         }
       },
@@ -2451,12 +2534,15 @@
             {
               "type": "string"
             }
-          ]
+          ],
+          "description": "The stroke color, can be animated too"
         },
         "opacity": {
+          "description": "The stroke opacity",
           "type": "number"
         },
         "width": {
+          "description": "The stroke line width",
           "type": "number"
         }
       },
@@ -2522,7 +2608,7 @@
       "type": "object"
     }
   },
-  "description": "The Options interface, defines all the options that can be used by `tsParticles`",
+  "description": "The Options interface, defines all the options that can be used by `tsParticles`\n[[include:Options.md]]",
   "properties": {
     "background": {
       "$ref": "#/definitions/IBackground",

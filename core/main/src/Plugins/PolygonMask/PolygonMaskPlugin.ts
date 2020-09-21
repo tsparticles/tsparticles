@@ -8,6 +8,9 @@ import { Options } from "../../Options/Classes/Options";
 import { PolygonMask } from "./Options/Classes/PolygonMask";
 import { Type } from "./Enums";
 
+/**
+ * @category Polygon Mask Plugin
+ */
 class PolygonMaskPlugin implements IPlugin {
     public readonly id: string;
 

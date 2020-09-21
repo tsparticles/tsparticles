@@ -9,6 +9,9 @@ import { EmitterClickMode } from "./Enums";
 import { Options } from "../../Options/Classes/Options";
 import { Emitter } from "./Options/Classes/Emitter";
 
+/**
+ * @category Emitters Plugin
+ */
 class EmittersPlugin implements IPlugin {
     public readonly id: string;
 

@@ -14,6 +14,9 @@ import type { IDelta } from "../Interfaces/IDelta";
 import { Attractor as MouseAttractor } from "./Interactions/Mouse/Attractor";
 import { Particle } from "../Particle";
 
+/**
+ * @category Core
+ */
 export class InteractionManager {
     private readonly externalInteractors: IExternalInteractor[];
     private readonly particleInteractors: IParticlesInteractor[];

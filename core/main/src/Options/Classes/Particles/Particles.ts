@@ -1,7 +1,7 @@
 import type { IParticles } from "../../Interfaces/Particles/IParticles";
 import { Links } from "./Links/Links";
 import { Move } from "./Move/Move";
-import { ParticlesNumber } from "./ParticlesNumber";
+import { ParticlesNumber } from "./Number/ParticlesNumber";
 import { Opacity } from "./Opacity/Opacity";
 import { Shape } from "./Shape/Shape";
 import { Size } from "./Size/Size";
@@ -15,6 +15,10 @@ import { Twinkle } from "./Twinkle/Twinkle";
 import { AnimatableColor } from "./AnimatableColor";
 import type { IOptionLoader } from "../../Interfaces/IOptionLoader";
 
+/**
+ * [[include:Options/Particles.md]]
+ * @category Options
+ */
 export class Particles implements IParticles, IOptionLoader<IParticles> {
     /**
      *

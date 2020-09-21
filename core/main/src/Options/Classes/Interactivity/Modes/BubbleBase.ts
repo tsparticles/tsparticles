@@ -3,6 +3,9 @@ import type { SingleOrMultiple } from "../../../../Types/SingleOrMultiple";
 import { OptionsColor } from "../../OptionsColor";
 import type { RecursivePartial } from "../../../../Types/RecursivePartial";
 
+/**
+ * @category Options
+ */
 export abstract class BubbleBase implements IBubbleBase {
     public distance: number;
     public duration: number;

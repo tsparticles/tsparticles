@@ -10,6 +10,9 @@ import type { IContainerPlugin } from "../Core/Interfaces/IContainerPlugin";
 import { Utils } from "./Utils";
 import { IDelta } from "../Core/Interfaces/IDelta";
 
+/**
+ * @category Utils
+ */
 export class CanvasUtils {
     public static paintBase(context: CanvasRenderingContext2D, dimension: IDimension, baseColor?: string): void {
         context.save();

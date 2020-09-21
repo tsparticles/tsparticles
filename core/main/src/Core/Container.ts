@@ -1,3 +1,7 @@
+/**
+ * [[include:Container.md]]
+ * @packageDocumentation
+ */
 import { Canvas } from "./Canvas";
 import type { IRepulse } from "./Interfaces/IRepulse";
 import type { IBubble } from "./Interfaces/IBubble";
@@ -15,10 +19,12 @@ import { Particle } from "./Particle";
 import type { INoiseValue } from "./Interfaces/INoiseValue";
 import type { INoise } from "./Interfaces/INoise";
 import type { IRgb } from "./Interfaces/IRgb";
-import { IAttract } from "./Interfaces/IAttract";
+import type { IAttract } from "./Interfaces/IAttract";
 
 /**
  * The object loaded into an HTML element, it'll contain options loaded and all data to let everything working
+ * [[include:Container.md]]
+ * @category Core
  */
 export class Container {
     public interactivity: IContainerInteractivity;
@@ -37,6 +43,7 @@ export class Container {
     public started: boolean;
     public destroyed: boolean;
     public density: number;
+    public fpsLimit: number;
 
     public readonly noise: INoise;
 
@@ -113,6 +120,8 @@ export class Container {
         if (this.sourceOptions) {
             this.options.load(this.sourceOptions);
         }
+
+        this.fpsLimit = this.options.fpsLimit > 0 ? this.options.fpsLimit : 60;
 
         /* ---------- tsParticles - start ------------ */
         this.eventListeners = new EventListeners(this);
@@ -349,6 +358,8 @@ export class Container {
         /* init canvas + particles */
         this.retina.init();
         this.canvas.init();
+
+        this.fpsLimit = this.options.fpsLimit > 0 ? this.options.fpsLimit : 60;
 
         const availablePlugins = Plugins.getAvailablePlugins(this);
 

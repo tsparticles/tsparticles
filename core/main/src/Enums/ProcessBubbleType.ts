@@ -1,3 +1,1 @@
-import { ProcessBubbleType } from "./Types";
-
-export { ProcessBubbleType };
+export * from "./Types";

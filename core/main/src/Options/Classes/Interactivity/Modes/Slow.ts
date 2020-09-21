@@ -2,6 +2,9 @@ import type { ISlow } from "../../../Interfaces/Interactivity/Modes/ISlow";
 import type { RecursivePartial } from "../../../../Types/RecursivePartial";
 import type { IOptionLoader } from "../../../Interfaces/IOptionLoader";
 
+/**
+ * @category Options
+ */
 export class Slow implements ISlow, IOptionLoader<ISlow> {
     /**
      * @deprecated this property will be removed soon, please use the HoverMode.slow in the HoverEvent

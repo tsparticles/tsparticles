@@ -3,6 +3,10 @@ import type { RecursivePartial } from "../../../../Types/RecursivePartial";
 import { TwinkleValues } from "./TwinkleValues";
 import type { IOptionLoader } from "../../../Interfaces/IOptionLoader";
 
+/**
+ * [[include:Options/Particles/Twinkle.md]]
+ * @category Options
+ */
 export class Twinkle implements ITwinkle, IOptionLoader<ITwinkle> {
     public lines: TwinkleValues;
     public particles: TwinkleValues;

@@ -6,6 +6,10 @@ import type { RecursivePartial } from "../../../../Types/RecursivePartial";
 import type { SingleOrMultiple } from "../../../../Types/SingleOrMultiple";
 import type { IOptionLoader } from "../../../Interfaces/IOptionLoader";
 
+/**
+ * [[include:Options/Interactivity/Events.md]]
+ * @category Options
+ */
 export class Events implements IEvents, IOptionLoader<IEvents> {
     /**
      *

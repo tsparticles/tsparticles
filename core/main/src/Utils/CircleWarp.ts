@@ -4,6 +4,9 @@ import { Rectangle } from "./Rectangle";
 import { Circle } from "./Circle";
 import type { IDimension } from "../Core/Interfaces/IDimension";
 
+/**
+ * @category Utils
+ */
 export class CircleWarp extends Circle {
     constructor(x: number, y: number, radius: number, private readonly canvasSize: IDimension) {
         super(x, y, radius);

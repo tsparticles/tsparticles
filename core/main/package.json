@@ -19,7 +19,7 @@
     "build": "yarn slimbuild && yarn build:schema && yarn prettify:schema && yarn prettify:tests && yarn test && yarn prettify:readme && yarn build:docs",
     "build:ts:es": "tsc -b tsconfig.browser.json",
     "build:ts": "tsc",
-    "build:docs": "copyfiles -f ./dist/tsparticles.min.js ./typedoc/themes/particles/assets/js && yarn clear:docs && typedoc",
+    "build:docs": "yarn clear:docs && typedoc && copyfiles -f ../../CNAME ./docs",
     "build:schema": "typescript-json-schema tsconfig.schema.json IOptions --out ./schema/options.schema.json",
     "test": "nyc mocha",
     "preversion": "yarn test",
@@ -27,7 +27,8 @@
     "postversion": "git push && git push --tags",
     "prepare": "yarn build",
     "release:alpha": "yarn version --prerelease --preid alpha",
-    "release:beta": "yarn version --prerelease --preid beta"
+    "release:beta": "yarn version --prerelease --preid beta",
+    "deploy:docs": "yarn build && node deploy.docs.js"
   },
   "repository": {
     "type": "git",
@@ -108,6 +109,7 @@
     "copyfiles": "^2.3.0",
     "eslint": "^7.4.0",
     "eslint-config-prettier": "^6.11.0",
+    "gh-pages": "^3.1.0",
     "install": "^0.13.0",
     "mocha": "^8.0.1",
     "nyc": "^15.1.0",
@@ -117,7 +119,9 @@
     "source-map-support": "^0.5.19",
     "terser-webpack-plugin": "^3.0.6",
     "ts-node": "^8.10.2",
-    "typedoc": "^0.17.8",
+    "typedoc": "^0.18.0",
+    "typedoc-particles-theme": "^1.0.8",
+    "typedoc-plugin-nojekyll": "^1.0.1",
     "typescript": "^3.9.6",
     "typescript-json-schema": "^0.42.0",
     "webpack": "^4.43.0",

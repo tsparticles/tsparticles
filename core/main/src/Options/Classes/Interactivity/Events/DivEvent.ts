@@ -4,6 +4,10 @@ import type { RecursivePartial } from "../../../../Types/RecursivePartial";
 import type { SingleOrMultiple } from "../../../../Types/SingleOrMultiple";
 import type { IOptionLoader } from "../../../Interfaces/IOptionLoader";
 
+/**
+ * [[include:Options/Interactivity/Div.md]]
+ * @category Options
+ */
 export class DivEvent implements IDivEvent, IOptionLoader<IDivEvent> {
     /**
      * The element id to detect the event

@@ -11,6 +11,9 @@ import type { RecursivePartial } from "../../Types/RecursivePartial";
 import { AbsorberClickMode } from "./Enums";
 import { IAbsorberOptions } from "./Options/Interfaces/IAbsorberOptions";
 
+/**
+ * @category Absorbers Plugin
+ */
 export class Absorbers implements IContainerPlugin {
     public array: AbsorberInstance[];
     public absorbers: SingleOrMultiple<Absorber>;

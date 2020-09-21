@@ -12,6 +12,7 @@ import type { IRgba } from "./Interfaces/IRgba";
 
 /**
  * Canvas manager
+ * @category Core
  */
 export class Canvas {
     /**

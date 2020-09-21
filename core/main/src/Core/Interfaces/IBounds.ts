@@ -1,3 +1,6 @@
+/**
+ * @category Interfaces
+ */
 export interface IBounds {
     bottom: number;
     left: number;

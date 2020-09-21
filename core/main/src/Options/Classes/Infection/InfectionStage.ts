@@ -3,6 +3,9 @@ import { OptionsColor } from "../OptionsColor";
 import type { RecursivePartial } from "../../../Types/RecursivePartial";
 import type { IOptionLoader } from "../../Interfaces/IOptionLoader";
 
+/**
+ * @category Options
+ */
 export class InfectionStage implements IInfectionStage, IOptionLoader<IInfectionStage> {
     public color: OptionsColor;
     public duration?: number;

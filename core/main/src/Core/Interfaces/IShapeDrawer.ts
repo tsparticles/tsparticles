@@ -5,6 +5,9 @@ import type {
     ShapeDrawerInitFunction,
 } from "../../Types/ShapeDrawerFunctions";
 
+/**
+ * @category Interfaces
+ */
 export interface IShapeDrawer {
     init?: ShapeDrawerInitFunction;
     draw: ShapeDrawerDrawFunction;

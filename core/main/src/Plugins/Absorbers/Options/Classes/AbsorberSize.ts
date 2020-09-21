@@ -3,6 +3,9 @@ import { AbsorberRandomSize } from "./AbsorberRandomSize";
 import type { RecursivePartial } from "../../../../Types/RecursivePartial";
 import type { IOptionLoader } from "../../../../Options/Interfaces/IOptionLoader";
 
+/**
+ * @category Absorbers Plugin
+ */
 export class AbsorberSize implements IAbsorberSize, IOptionLoader<IAbsorberSize> {
     public density: number;
     public limit?: number;
@@ -16,26 +19,28 @@ export class AbsorberSize implements IAbsorberSize, IOptionLoader<IAbsorberSize>
     }
 
     public load(data?: RecursivePartial<IAbsorberSize>): void {
-        if (data !== undefined) {
-            if (data.density !== undefined) {
-                this.density = data.density;
-            }
+        if (data === undefined) {
+            return;
+        }
 
-            if (data.value !== undefined) {
-                this.value = data.value;
-            }
+        if (data.density !== undefined) {
+            this.density = data.density;
+        }
 
-            if (data.random !== undefined) {
-                if (typeof data.random === "boolean") {
-                    this.random.load({ enable: data.random });
-                } else {
-                    this.random.load(data.random);
-                }
-            }
+        if (data.value !== undefined) {
+            this.value = data.value;
+        }
 
-            if (data.limit !== undefined) {
-                this.limit = data.limit;
+        if (data.random !== undefined) {
+            if (typeof data.random === "boolean") {
+                this.random.load({ enable: data.random });
+            } else {
+                this.random.load(data.random);
             }
+        }
+
+        if (data.limit !== undefined) {
+            this.limit = data.limit;
         }
     }
 }

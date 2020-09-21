@@ -2,6 +2,7 @@ import type { IColor } from "../../../Core/Interfaces/IColor";
 
 /**
  * The background cover customization
+ * @category Options
  */
 export interface IBackgroundMaskCover {
     /**

@@ -4,6 +4,9 @@ import type { RecursivePartial } from "../../../../Types/RecursivePartial";
 import { Utils } from "../../../../Utils";
 import type { IOptionLoader } from "../../../Interfaces/IOptionLoader";
 
+/**
+ * @category Options
+ */
 export class Trail implements ITrail, IOptionLoader<ITrail> {
     public delay: number;
     public particles?: RecursivePartial<IParticles>;

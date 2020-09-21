@@ -6,6 +6,7 @@ import type { IDelta } from "../Interfaces/IDelta";
 
 /**
  * Particle updater, it manages movement
+ * @category Core
  */
 export class Updater {
     constructor(private readonly container: Container, private readonly particle: Particle) {}

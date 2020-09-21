@@ -6,6 +6,10 @@ import type { ICoordinates } from "../../../../Core/Interfaces/ICoordinates";
 import type { ILocalSvg } from "./ILocalSvg";
 import { Type } from "../../Enums";
 
+/**
+ * [[include:Options/Plugins/PolygonMask.md]]
+ * @category Polygon Mask Plugin
+ */
 export interface IPolygonMask {
     draw: IDraw;
     enable: boolean;

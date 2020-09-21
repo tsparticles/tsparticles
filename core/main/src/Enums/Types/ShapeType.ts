@@ -1,3 +1,6 @@
+/**
+ * @category Enums
+ */
 export enum ShapeType {
     char = "char",
     character = "character",
