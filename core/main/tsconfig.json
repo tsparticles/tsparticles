@@ -107,8 +107,12 @@
               "source": "../../components/react/README.md"
             },
             {
-              "title": "Vue",
+              "title": "Vue 2.x",
               "source": "../../components/vue/README.md"
+            },
+            {
+              "title": "Vue 3.x",
+              "source": "../../components/vue3/README.md"
             },
             {
               "title": "Svelte",
