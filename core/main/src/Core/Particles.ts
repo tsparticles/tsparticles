@@ -8,7 +8,6 @@ import type { RecursivePartial } from "../Types";
 import type { IParticles } from "../Options/Interfaces/Particles/IParticles";
 import { InteractionManager } from "./Particle/InteractionManager";
 import type { IDelta } from "./Interfaces/IDelta";
-import type { ILink, ILinkTriangle } from "./Interfaces/ILink";
 import type { IParticle } from "./Interfaces/IParticle";
 
 /**
@@ -25,20 +24,20 @@ export class Particles {
     public linksColors;
 
     public array: Particle[];
-    public links: ILink[];
-    public triangles: ILinkTriangle[];
     public pushing?: boolean;
     public linksColor?: IRgb | string;
     public grabLineColor?: IRgb | string;
 
     private interactionManager;
     private nextId;
+    private linksFreq;
+    private trianglesFreq;
 
     constructor(private readonly container: Container) {
         this.nextId = 0;
         this.array = [];
-        this.links = [];
-        this.triangles = [];
+        this.linksFreq = new Map<string, number>();
+        this.trianglesFreq = new Map<string, number>();
         this.interactionManager = new InteractionManager(container);
 
         const canvasSize = this.container.canvas.size;
@@ -50,10 +49,12 @@ export class Particles {
 
     /* --------- tsParticles functions - particles ----------- */
     public init(): void {
-        this.links = [];
-        this.triangles = [];
         const container = this.container;
         const options = container.options;
+
+        this.linksFreq = new Map<string, number>();
+        this.trianglesFreq = new Map<string, number>();
+
         let handled = false;
 
         for (const [, plugin] of container.plugins) {
@@ -236,5 +237,47 @@ export class Particles {
         if (!options.particles.move.enable) {
             this.container.play();
         }
+    }
+
+    public getLinkFrequency(p1: IParticle, p2: IParticle): number {
+        const key = `${Math.min(p1.id, p2.id)}_${Math.max(p1.id, p2.id)}`;
+
+        let res = this.linksFreq.get(key);
+
+        if (res === undefined) {
+            res = Math.random();
+
+            this.linksFreq.set(key, res);
+        }
+
+        return res;
+    }
+
+    public getTriangleFrequency(p1: IParticle, p2: IParticle, p3: IParticle): number {
+        let [id1, id2, id3] = [p1.id, p2.id, p3.id];
+
+        if (id1 > id2) {
+            [id2, id1] = [id1, id2];
+        }
+
+        if (id2 > id3) {
+            [id3, id2] = [id2, id3];
+        }
+
+        if (id1 > id3) {
+            [id3, id1] = [id1, id3];
+        }
+
+        const key = `${id1}_${id2}_${id3}`;
+
+        let res = this.trianglesFreq.get(key);
+
+        if (res === undefined) {
+            res = Math.random();
+
+            this.trianglesFreq.set(key, res);
+        }
+
+        return res;
     }
 }

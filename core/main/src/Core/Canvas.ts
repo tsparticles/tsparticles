@@ -414,8 +414,11 @@ export class Canvas {
             return;
         }
 
-        const options = this.container.options;
-        const twinkle = particle.particlesOptions.twinkle.particles;
+        const container = this.container;
+        const options = container.options;
+        const particles = container.particles;
+        const pOptions = particle.particlesOptions;
+        const twinkle = pOptions.twinkle.particles;
         const twinkleFreq = twinkle.frequency;
         const twinkleRgb = ColorUtils.colorToRgb(twinkle.color);
         const twinkling = twinkle.enable && Math.random() < twinkleFreq;
@@ -448,19 +451,36 @@ export class Canvas {
 
         if (particle.links.length > 0) {
             this.context.save();
+            const p1Links = particle.links.filter((l) => {
+                const linkFreq = container.particles.getLinkFrequency(particle, l.destination);
 
-            for (const link of particle.links) {
-                if (particle.particlesOptions.links.triangles.enable) {
-                    const links = particle.links.map((l) => l.destination);
-                    const vertices = link.destination.links.filter((t) => links.indexOf(t.destination) >= 0);
+                return linkFreq <= pOptions.links.frequency;
+            });
+
+            for (const link of p1Links) {
+                const p2 = link.destination;
+
+                if (pOptions.links.triangles.enable) {
+                    const links = p1Links.map((l) => l.destination);
+                    const vertices = p2.links.filter((t) => {
+                        const linkFreq = container.particles.getLinkFrequency(p2, t.destination);
+
+                        return linkFreq <= p2.particlesOptions.links.frequency && links.indexOf(t.destination) >= 0;
+                    });
 
                     if (vertices.length) {
-                        for (const vertice of vertices) {
-                            this.drawLinkTriangle(particle, link, vertice);
+                        for (const vertex of vertices) {
+                            const p3 = vertex.destination;
+                            const triangleFreq = particles.getTriangleFrequency(particle, p2, p3);
+
+                            if (triangleFreq > pOptions.links.triangles.frequency) {
+                                continue;
+                            }
+
+                            this.drawLinkTriangle(particle, link, vertex);
                         }
                     }
                 }
-
                 this.drawLinkLine(particle, link);
             }
 
