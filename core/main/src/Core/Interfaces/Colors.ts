@@ -28,8 +28,7 @@ export interface IHsl {
 /**
  * @category Interfaces
  */
-export interface IHsla extends IHsl, IAlphaColor {
-}
+export interface IHsla extends IHsl, IAlphaColor {}
 
 export interface IHsv {
     h: number;
@@ -37,8 +36,7 @@ export interface IHsv {
     v: number;
 }
 
-export interface IHsva extends IHsv, IAlphaColor {
-}
+export interface IHsva extends IHsv, IAlphaColor {}
 
 /**
  * @category Interfaces
@@ -52,8 +50,7 @@ export interface IRgb {
 /**
  * @category Interfaces
  */
-export interface IRgba extends IRgb, IAlphaColor {
-}
+export interface IRgba extends IRgb, IAlphaColor {}
 
 /**
  * @category Interfaces
@@ -63,4 +60,3 @@ export interface IValueColor {
     hsl?: IHsl;
     hsv?: IHsv;
 }
-

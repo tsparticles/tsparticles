@@ -57,7 +57,7 @@ export class Particles {
 
         let handled = false;
 
-        for (const [ , plugin ] of container.plugins) {
+        for (const [, plugin] of container.plugins) {
             if (plugin.particlesInitialization !== undefined) {
                 handled = plugin.particlesInitialization();
             }
@@ -165,7 +165,7 @@ export class Particles {
         //this.spatialGrid.setGrid(this.array, this.container.canvas.size);
 
         /* draw polygon shape in debug mode */
-        for (const [ , plugin ] of container.plugins) {
+        for (const [, plugin] of container.plugins) {
             container.canvas.drawPlugin(plugin, delta);
         }
 
@@ -254,18 +254,18 @@ export class Particles {
     }
 
     public getTriangleFrequency(p1: IParticle, p2: IParticle, p3: IParticle): number {
-        let [ id1, id2, id3 ] = [ p1.id, p2.id, p3.id ];
+        let [id1, id2, id3] = [p1.id, p2.id, p3.id];
 
         if (id1 > id2) {
-            [ id2, id1 ] = [ id1, id2 ];
+            [id2, id1] = [id1, id2];
         }
 
         if (id2 > id3) {
-            [ id3, id2 ] = [ id2, id3 ];
+            [id3, id2] = [id2, id3];
         }
 
         if (id1 > id3) {
-            [ id3, id1 ] = [ id1, id3 ];
+            [id3, id1] = [id1, id3];
         }
 
         const key = `${id1}_${id2}_${id3}`;

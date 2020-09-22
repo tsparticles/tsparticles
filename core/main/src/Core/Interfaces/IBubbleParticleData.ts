@@ -1,4 +1,4 @@
-import type { IHsl } from "./IHsl";
+import type { IHsl } from "./Colors";
 
 /**
  * @category Interfaces

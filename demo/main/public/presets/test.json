@@ -9,7 +9,11 @@
       }
     },
     "color": {
-      "value": "#ff0000",
+      "value": {
+        "h": 0,
+        "s": 100,
+        "v": 100
+      },
       "animation": {
         "enable": false,
         "speed": 20,

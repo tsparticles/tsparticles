@@ -166,14 +166,16 @@ export class ColorUtils {
     }
 
     public static hslToHsv(hsl: IHsl): IHsv {
-        const l = hsl.l / 100, sl = hsl.s / 100;
-        const v = l + sl * Math.min(l, 1 - l), sv = !v ? 0 : 2 * (1 - l / v);
+        const l = hsl.l / 100,
+            sl = hsl.s / 100;
+        const v = l + sl * Math.min(l, 1 - l),
+            sv = !v ? 0 : 2 * (1 - l / v);
 
         return {
             h: hsl.h,
             s: sv * 100,
-            v: v * 100
-        }
+            v: v * 100,
+        };
     }
 
     public static hslaToHsva(hsla: IHsla): IHsva {
@@ -188,14 +190,16 @@ export class ColorUtils {
     }
 
     public static hsvToHsl(hsv: IHsv): IHsl {
-        const v = hsv.v / 100, sv = hsv.s / 100;
-        const l = v * (1 - sv / 2), sl = l === 0 || l === 1 ? 0 : (v - l) / Math.min(l, 1 - l);
+        const v = hsv.v / 100,
+            sv = hsv.s / 100;
+        const l = v * (1 - sv / 2),
+            sl = l === 0 || l === 1 ? 0 : (v - l) / Math.min(l, 1 - l);
 
         return {
             h: hsv.h,
             l: l * 100,
-            s: sl * 100
-        }
+            s: sl * 100,
+        };
     }
 
     public static hsvaToHsla(hsva: IHsva): IHsla {
@@ -205,7 +209,7 @@ export class ColorUtils {
             a: hsva.a,
             h: hslResult.h,
             l: hslResult.l,
-            s: hslResult.s
+            s: hslResult.s,
         };
     }
 
@@ -214,10 +218,11 @@ export class ColorUtils {
         const hsvPercent = {
             h: hsv.h / 60,
             s: hsv.s / 100,
-            v: hsv.v / 100
+            v: hsv.v / 100,
         };
 
-        const c = hsvPercent.v * hsvPercent.s, x = c * (1 - Math.abs(hsvPercent.h % 2 - 1));
+        const c = hsvPercent.v * hsvPercent.s,
+            x = c * (1 - Math.abs((hsvPercent.h % 2) - 1));
 
         let tempRgb: IRgb | undefined;
 
@@ -225,37 +230,37 @@ export class ColorUtils {
             tempRgb = {
                 r: c,
                 g: x,
-                b: 0
+                b: 0,
             };
         } else if (hsvPercent.h > 1 && hsvPercent.h <= 2) {
             tempRgb = {
                 r: x,
                 g: c,
-                b: 0
+                b: 0,
             };
         } else if (hsvPercent.h > 2 && hsvPercent.h <= 3) {
             tempRgb = {
                 r: 0,
                 g: c,
-                b: x
+                b: x,
             };
         } else if (hsvPercent.h > 3 && hsvPercent.h <= 4) {
             tempRgb = {
                 r: 0,
                 g: x,
-                b: c
+                b: c,
             };
         } else if (hsvPercent.h > 4 && hsvPercent.h <= 5) {
             tempRgb = {
                 r: x,
                 g: 0,
-                b: c
+                b: c,
             };
         } else if (hsvPercent.h > 5 && hsvPercent.h <= 6) {
             tempRgb = {
                 r: c,
                 g: 0,
-                b: x
+                b: x,
             };
         }
 
@@ -285,9 +290,12 @@ export class ColorUtils {
         const rgbPercent = {
                 r: rgb.r / 255,
                 g: rgb.g / 255,
-                b: rgb.b / 255
-            }, xMax = Math.max(rgbPercent.r, rgbPercent.g, rgbPercent.b),
-            xMin = Math.min(rgbPercent.r, rgbPercent.g, rgbPercent.b), v = xMax, c = xMax - xMin;
+                b: rgb.b / 255,
+            },
+            xMax = Math.max(rgbPercent.r, rgbPercent.g, rgbPercent.b),
+            xMin = Math.min(rgbPercent.r, rgbPercent.g, rgbPercent.b),
+            v = xMax,
+            c = xMax - xMin;
 
         let h = 0;
 
@@ -304,7 +312,7 @@ export class ColorUtils {
         return {
             h,
             s: s * 100,
-            v: v * 100
+            v: v * 100,
         };
     }
 
@@ -349,6 +357,15 @@ export class ColorUtils {
      */
     public static getStyleFromHsl(color: IHsl, opacity?: number): string {
         return `hsla(${color.h}, ${color.s}%, ${color.l}%, ${opacity ?? 1})`;
+    }
+
+    /**
+     * Prepares a hsva() css function from a [[IHsv]] object
+     * @param color the [[IHsv]] color to convert
+     * @param opacity the opacity to apply to color
+     */
+    public static getStyleFromHsv(color: IHsv, opacity?: number): string {
+        return `hsva(${color.h}, ${color.s}%, ${color.v}%, ${opacity ?? 1})`;
     }
 
     public static mix(color1: IRgb | IHsl, color2: IRgb | IHsl, size1: number, size2: number): IRgb {
@@ -421,11 +438,11 @@ export class ColorUtils {
 
             return result
                 ? {
-                    a: result.length > 4 ? parseFloat(result[5]) : 1,
-                    b: parseInt(result[3], 10),
-                    g: parseInt(result[2], 10),
-                    r: parseInt(result[1], 10),
-                }
+                      a: result.length > 4 ? parseFloat(result[5]) : 1,
+                      b: parseInt(result[3], 10),
+                      g: parseInt(result[2], 10),
+                      r: parseInt(result[1], 10),
+                  }
                 : undefined;
         } else if (input.startsWith("hsl")) {
             const regex = /hsla?\(\s*(\d+)\s*,\s*(\d+)%\s*,\s*(\d+)%\s*(,\s*([\d.]+)\s*)?\)/i;
@@ -433,11 +450,11 @@ export class ColorUtils {
 
             return result
                 ? ColorUtils.hslaToRgba({
-                    a: result.length > 4 ? parseFloat(result[5]) : 1,
-                    h: parseInt(result[1], 10),
-                    l: parseInt(result[3], 10),
-                    s: parseInt(result[2], 10),
-                })
+                      a: result.length > 4 ? parseFloat(result[5]) : 1,
+                      h: parseInt(result[1], 10),
+                      l: parseInt(result[3], 10),
+                      s: parseInt(result[2], 10),
+                  })
                 : undefined;
         } else {
             // By Tim Down - http://stackoverflow.com/a/5624139/3493650
@@ -451,11 +468,11 @@ export class ColorUtils {
 
             return result
                 ? {
-                    a: result[4] !== undefined ? parseInt(result[4], 16) / 0xff : 1,
-                    b: parseInt(result[3], 16),
-                    g: parseInt(result[2], 16),
-                    r: parseInt(result[1], 16),
-                }
+                      a: result[4] !== undefined ? parseInt(result[4], 16) / 0xff : 1,
+                      b: parseInt(result[3], 16),
+                      g: parseInt(result[2], 16),
+                      r: parseInt(result[1], 16),
+                  }
                 : undefined;
         }
     }
