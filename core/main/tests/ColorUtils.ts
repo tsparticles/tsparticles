@@ -20,7 +20,7 @@ describe("ColorUtils", () => {
 
         it("string value", () => {
             const color: IColor = {
-                value: [ "#ff0000", "#00ff00", "#0000ff" ],
+                value: ["#ff0000", "#00ff00", "#0000ff"],
             };
 
             expect(ColorUtils.colorToRgb(color)).to.satisfy((rgb: IRgb) => {
@@ -154,15 +154,15 @@ describe("ColorUtils", () => {
             const color: IHsl = {
                 h: 0,
                 l: 50,
-                s: 100
+                s: 100,
             };
 
             expect(ColorUtils.hslToHsv(color)).to.include({
                 h: 0,
                 s: 100,
-                v: 100
-            }).and.not.be.undefined.and.not.be.null
-        })
+                v: 100,
+            }).and.not.be.undefined.and.not.be.null;
+        });
     });
 
     describe("hsvToHsl", () => {
@@ -170,15 +170,15 @@ describe("ColorUtils", () => {
             const color: IHsv = {
                 h: 0,
                 s: 100,
-                v: 100
+                v: 100,
             };
 
             expect(ColorUtils.hsvToHsl(color)).to.include({
                 h: 0,
                 l: 50,
-                s: 100
-            }).and.not.be.undefined.and.not.be.null
-        })
+                s: 100,
+            }).and.not.be.undefined.and.not.be.null;
+        });
     });
 
     describe("hsvToRgb", () => {
@@ -186,11 +186,11 @@ describe("ColorUtils", () => {
             const color: IHsv = {
                 h: 0,
                 s: 100,
-                v: 100
+                v: 100,
             };
 
-            expect(ColorUtils.hsvToRgb(color)).to.include(red).and.not.be.undefined.and.not.be.null
-        })
+            expect(ColorUtils.hsvToRgb(color)).to.include(red).and.not.be.undefined.and.not.be.null;
+        });
     });
 
     describe("rgbToHsv", () => {
@@ -198,11 +198,11 @@ describe("ColorUtils", () => {
             const color: IHsv = {
                 h: 0,
                 s: 100,
-                v: 100
+                v: 100,
             };
 
-            expect(ColorUtils.rgbToHsv(red)).to.include(color).and.not.be.undefined.and.not.be.null
-        })
+            expect(ColorUtils.rgbToHsv(red)).to.include(color).and.not.be.undefined.and.not.be.null;
+        });
     });
 
     describe("getRandomRgbColor", () => {

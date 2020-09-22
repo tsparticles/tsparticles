@@ -52,15 +52,15 @@
   },
   "main": "dist/tsparticles.shape.spiral.min.js",
   "devDependencies": {
-    "@typescript-eslint/eslint-plugin": "^3.10.1",
-    "@typescript-eslint/parser": "^3.10.1",
+    "@typescript-eslint/eslint-plugin": "^4.2.0",
+    "@typescript-eslint/parser": "^4.2.0",
     "cpx": "^1.5.0",
     "eslint": "^7.9.0",
     "eslint-config-prettier": "^6.11.0",
     "prettier": "^2.1.2",
-    "terser-webpack-plugin": "^4.1.0",
-    "typescript": "^4.0.2",
-    "webpack": "^4.44.1",
+    "terser-webpack-plugin": "^4.2.2",
+    "typescript": "^4.0.3",
+    "webpack": "^4.44.2",
     "webpack-cli": "^3.3.12"
   },
   "dependencies": {

@@ -17,7 +17,7 @@
     ]
   },
   "scripts": {
-    "build": "npx copyfiles -a ../../node_modules/preact/* ./node_modules/preact/ && npx copyfiles -a ../../node_modules/preact/**/* ./node_modules/preact/ && npx copyfiles -a ../../node_modules/preact-render-to-string/* ./node_modules/preact-render-to-string/ && npx copyfiles -a ../../node_modules/preact-render-to-string/**/* ./node_modules/preact-render-to-string/ && preact build",
+    "build": "npx copyfiles -a ../../node_modules/preact/* ./node_modules/preact/ && npx copyfiles -a ../../node_modules/preact/**/* ./node_modules/preact/ && npx copyfiles -a ../../node_modules/preact-render-to-string/* ./node_modules/preact-render-to-string/ && npx copyfiles -a ../../node_modules/preact-render-to-string/**/* ./node_modules/preact-render-to-string/ && npx preact build",
     "start": "sirv build --cors --single",
     "dev": "preact watch",
     "lint": "eslint src"
@@ -26,8 +26,8 @@
     "url": "https://github.com/matteobruni/tsparticles/issues"
   },
   "devDependencies": {
-    "@typescript-eslint/eslint-plugin": "^3.10.1",
-    "@typescript-eslint/parser": "^3.10.1",
+    "@typescript-eslint/eslint-plugin": "^4.2.0",
+    "@typescript-eslint/parser": "^4.2.0",
     "copyfiles": "^2.3.0",
     "enzyme": "^3.11.0",
     "enzyme-adapter-preact-pure": "^2.2.3",
@@ -36,7 +36,7 @@
     "eslint-config-prettier": "^6.11.0",
     "eslint-plugin-react-hooks": "^4.1.2",
     "identity-obj-proxy": "^3.0.0",
-    "preact-cli": "^3.0.1",
+    "preact-cli": "^3.0.2",
     "preact-render-spy": "^1.3.0",
     "prettier": "^2.1.2",
     "sirv-cli": "^1.0.6"
