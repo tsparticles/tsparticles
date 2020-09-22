@@ -258,8 +258,6 @@ export class ModesOptionsEditor extends EditorBase {
 
         const particlesEditor = new ParticlesOptionsEditor(particles);
 
-        console.log(options);
-
         particlesEditor.addToGroup(group, "particles", options);
     }
 }
