@@ -270,7 +270,7 @@ export class Updater {
             case OutMode.bounceHorizontal:
             case "bounceVertical":
             case "bounceHorizontal":
-                this.updateBounce(delta, direction);
+                this.updateBounce(delta, direction, outMode);
 
                 break;
             case OutMode.destroy:
@@ -346,7 +346,11 @@ export class Updater {
         }
     }
 
-    private updateBounce(delta: IDelta, direction: OutModeDirection): void {
+    private updateBounce(
+        delta: IDelta,
+        direction: OutModeDirection,
+        outMode: OutMode | OutModeAlt | keyof typeof OutMode
+    ): void {
         const container = this.container;
         const particle = this.particle;
         let handled = false;
@@ -365,8 +369,7 @@ export class Updater {
             return;
         }
 
-        const outMode = particle.particlesOptions.move.outMode,
-            pos = particle.getPosition(),
+        const pos = particle.getPosition(),
             offset = particle.offset,
             size = particle.size.value,
             bounds = Utils.calculateBounds(pos, size),
