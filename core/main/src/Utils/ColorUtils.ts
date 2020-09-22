@@ -365,7 +365,7 @@ export class ColorUtils {
      * @param opacity the opacity to apply to color
      */
     public static getStyleFromHsv(color: IHsv, opacity?: number): string {
-        return `hsva(${color.h}, ${color.s}%, ${color.v}%, ${opacity ?? 1})`;
+        return ColorUtils.getStyleFromHsl(this.hsvToHsl(color), opacity);
     }
 
     public static mix(color1: IRgb | IHsl, color2: IRgb | IHsl, size1: number, size2: number): IRgb {
@@ -438,11 +438,11 @@ export class ColorUtils {
 
             return result
                 ? {
-                      a: result.length > 4 ? parseFloat(result[5]) : 1,
-                      b: parseInt(result[3], 10),
-                      g: parseInt(result[2], 10),
-                      r: parseInt(result[1], 10),
-                  }
+                    a: result.length > 4 ? parseFloat(result[5]) : 1,
+                    b: parseInt(result[3], 10),
+                    g: parseInt(result[2], 10),
+                    r: parseInt(result[1], 10),
+                }
                 : undefined;
         } else if (input.startsWith("hsl")) {
             const regex = /hsla?\(\s*(\d+)\s*,\s*(\d+)%\s*,\s*(\d+)%\s*(,\s*([\d.]+)\s*)?\)/i;
@@ -450,11 +450,11 @@ export class ColorUtils {
 
             return result
                 ? ColorUtils.hslaToRgba({
-                      a: result.length > 4 ? parseFloat(result[5]) : 1,
-                      h: parseInt(result[1], 10),
-                      l: parseInt(result[3], 10),
-                      s: parseInt(result[2], 10),
-                  })
+                    a: result.length > 4 ? parseFloat(result[5]) : 1,
+                    h: parseInt(result[1], 10),
+                    l: parseInt(result[3], 10),
+                    s: parseInt(result[2], 10),
+                })
                 : undefined;
         } else {
             // By Tim Down - http://stackoverflow.com/a/5624139/3493650
@@ -468,11 +468,11 @@ export class ColorUtils {
 
             return result
                 ? {
-                      a: result[4] !== undefined ? parseInt(result[4], 16) / 0xff : 1,
-                      b: parseInt(result[3], 16),
-                      g: parseInt(result[2], 16),
-                      r: parseInt(result[1], 16),
-                  }
+                    a: result[4] !== undefined ? parseInt(result[4], 16) / 0xff : 1,
+                    b: parseInt(result[3], 16),
+                    g: parseInt(result[2], 16),
+                    r: parseInt(result[1], 16),
+                }
                 : undefined;
         }
     }
