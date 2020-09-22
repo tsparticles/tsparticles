@@ -136,32 +136,35 @@ export class Updater {
         const particle = this.particle;
         const sizeOpt = particle.particlesOptions.size;
         const sizeAnim = sizeOpt.animation;
+        const sizeVelocity = (particle.size.velocity ?? 0) * delta.factor;
+        const maxValue = particle.sizeValue ?? container.retina.sizeValue;
+        const minValue = sizeAnim.minimumValue * container.retina.pixelRatio;
 
         if (sizeAnim.enable) {
             switch (particle.size.status) {
                 case SizeAnimationStatus.increasing:
-                    if (particle.size.value >= (particle.sizeValue ?? container.retina.sizeValue)) {
+                    if (particle.size.value >= maxValue) {
                         particle.size.status = SizeAnimationStatus.decreasing;
                     } else {
-                        particle.size.value += (particle.size.velocity || 0) * delta.factor;
+                        particle.size.value += sizeVelocity;
                     }
                     break;
                 case SizeAnimationStatus.decreasing:
-                    if (particle.size.value <= sizeAnim.minimumValue) {
+                    if (particle.size.value <= minValue) {
                         particle.size.status = SizeAnimationStatus.increasing;
                     } else {
-                        particle.size.value -= (particle.size.velocity || 0) * delta.factor;
+                        particle.size.value -= sizeVelocity;
                     }
             }
 
             switch (sizeAnim.destroy) {
                 case DestroyType.max:
-                    if (particle.size.value >= sizeOpt.value * container.retina.pixelRatio) {
+                    if (particle.size.value >= maxValue) {
                         particle.destroy();
                     }
                     break;
                 case DestroyType.min:
-                    if (particle.size.value <= sizeAnim.minimumValue * container.retina.pixelRatio) {
+                    if (particle.size.value <= minValue) {
                         particle.destroy();
                     }
                     break;

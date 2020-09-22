@@ -1,7 +1,7 @@
 import { Particle } from "../../Core/Particle";
 import { Container } from "../../Core/Container";
 import { IParticlesInteractor } from "../../Core/Interfaces/IParticlesInteractor";
-import { Circle, CircleWarp, ColorUtils, Constants, NumberUtils, Utils } from "../../Utils";
+import { Circle, CircleWarp, ColorUtils, Constants, NumberUtils } from "../../Utils";
 import { IParticle } from "../../Core/Interfaces/IParticle";
 
 export class Linker implements IParticlesInteractor {

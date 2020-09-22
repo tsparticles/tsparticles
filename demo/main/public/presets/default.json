@@ -50,7 +50,7 @@
         "sync": false
       }
     },
-    "line_linked": {
+    "links": {
       "enable": true,
       "distance": 100,
       "color": "#ffffff",

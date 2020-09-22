@@ -205,11 +205,12 @@ export class Particle implements IParticle {
         const sizeAnimation = this.particlesOptions.size.animation;
 
         if (sizeAnimation.enable) {
+            this.size.status = SizeAnimationStatus.increasing;
+
             if (!randomSize) {
                 switch (sizeAnimation.startValue) {
                     case StartValueType.min:
                         this.size.value = sizeAnimation.minimumValue * pxRatio;
-                        this.size.status = SizeAnimationStatus.increasing;
 
                         break;
 
@@ -218,7 +219,6 @@ export class Particle implements IParticle {
                             sizeAnimation.minimumValue * pxRatio,
                             this.size.value
                         );
-                        this.size.status = SizeAnimationStatus.increasing;
 
                         break;
 
@@ -229,6 +229,7 @@ export class Particle implements IParticle {
                         break;
                 }
             }
+
             this.size.velocity = (this.sizeAnimationSpeed ?? container.retina.sizeAnimationSpeed) / 100;
 
             if (!sizeAnimation.sync) {
@@ -325,7 +326,7 @@ export class Particle implements IParticle {
 
             if (strokeColorAnimation && this.strokeColor) {
                 if (strokeColorAnimation.enable) {
-                    this.strokeColorVelocity = colorAnimation.speed / 100;
+                    this.strokeColorVelocity = strokeColorAnimation.speed / 100;
 
                     if (!strokeColorAnimation.sync) {
                         this.strokeColorVelocity = this.strokeColorVelocity * Math.random();

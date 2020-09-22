@@ -39,6 +39,7 @@ export interface IMove {
     noise: INoise;
     outModes: IOutModes | OutMode | keyof typeof OutMode | OutModeAlt;
     random: boolean;
+    size: boolean;
     speed: number;
     straight: boolean;
     trail: ITrail;

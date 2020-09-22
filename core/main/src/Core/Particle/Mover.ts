@@ -47,7 +47,9 @@ export class Mover {
         const container = this.container;
         const slowFactor = this.getProximitySpeedFactor();
         const baseSpeed = particle.moveSpeed ?? container.retina.moveSpeed;
-        const moveSpeed = (baseSpeed / 2) * slowFactor * delta.factor;
+        const maxSize = particle.sizeValue ?? container.retina.sizeValue;
+        const sizeFactor = particlesOptions.move.size ? (particle.bubble.radius ?? particle.size.value) / maxSize : 1;
+        const moveSpeed = (baseSpeed / 2) * sizeFactor * slowFactor * delta.factor;
 
         this.applyNoise(delta);
 

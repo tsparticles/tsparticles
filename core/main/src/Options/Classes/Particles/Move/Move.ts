@@ -86,6 +86,7 @@ export class Move implements IMove, IOptionLoader<IMove> {
     public noise;
     public outModes: OutModes;
     public random;
+    public size;
     public speed;
     public straight;
     public trail;
@@ -101,6 +102,7 @@ export class Move implements IMove, IOptionLoader<IMove> {
         this.noise = new Noise();
         this.outModes = new OutModes();
         this.random = false;
+        this.size = false;
         this.speed = 2;
         this.straight = false;
         this.trail = new Trail();
@@ -148,6 +150,10 @@ export class Move implements IMove, IOptionLoader<IMove> {
 
         if (data.random !== undefined) {
             this.random = data.random;
+        }
+
+        if (data.size !== undefined) {
+            this.size = data.size;
         }
 
         if (data.speed !== undefined) {
