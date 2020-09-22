@@ -213,61 +213,55 @@ export class Bubbler implements IExternalInteractor {
         const query = container.particles.quadTree.queryCircle(mouseClickPos, distance);
 
         for (const particle of query) {
-            particle.bubble.inRange = true;
+            if (!container.bubble.clicking) {
+                continue;
+            }
+
+            particle.bubble.inRange = container.bubble.clicking && !container.bubble.durationEnd;
 
             const pos = particle.getPosition();
             const distMouse = NumberUtils.getDistance(pos, mouseClickPos);
             const timeSpent = (new Date().getTime() - (container.interactivity.mouse.clickTime || 0)) / 1000;
 
-            if (container.bubble.clicking) {
-                if (timeSpent > options.interactivity.modes.bubble.duration) {
-                    container.bubble.durationEnd = true;
-                }
-
-                if (timeSpent > options.interactivity.modes.bubble.duration * 2) {
-                    container.bubble.clicking = false;
-                    container.bubble.durationEnd = false;
-                }
-
-                /* size */
-                const sizeData: IBubblerProcessParam = {
-                    bubbleObj: {
-                        optValue: container.retina.bubbleModeSize,
-                        value: particle.bubble.radius,
-                    },
-                    particlesObj: {
-                        optValue: particle.sizeValue ?? container.retina.sizeValue,
-                        value: particle.size.value,
-                    },
-                    type: ProcessBubbleType.size,
-                };
-
-                this.process(particle, distMouse, timeSpent, sizeData);
-
-                /* opacity */
-                const opacityData: IBubblerProcessParam = {
-                    bubbleObj: {
-                        optValue: options.interactivity.modes.bubble.opacity,
-                        value: particle.bubble.opacity,
-                    },
-                    particlesObj: {
-                        optValue: particle.particlesOptions.opacity.value,
-                        value: particle.opacity.value,
-                    },
-                    type: ProcessBubbleType.opacity,
-                };
-
-                this.process(particle, distMouse, timeSpent, opacityData);
-
-                if (!container.bubble.durationEnd) {
-                    if (distMouse <= container.retina.bubbleModeDistance) {
-                        this.hoverBubbleColor(particle);
-                    } else {
-                        delete particle.bubble.color;
-                    }
+            if (timeSpent > options.interactivity.modes.bubble.duration) {
+                container.bubble.durationEnd = true;
+            }
+            if (timeSpent > options.interactivity.modes.bubble.duration * 2) {
+                container.bubble.clicking = false;
+                container.bubble.durationEnd = false;
+            }
+            const sizeData: IBubblerProcessParam = {
+                bubbleObj: {
+                    optValue: container.retina.bubbleModeSize,
+                    value: particle.bubble.radius,
+                },
+                particlesObj: {
+                    optValue: particle.sizeValue ?? container.retina.sizeValue,
+                    value: particle.size.value,
+                },
+                type: ProcessBubbleType.size,
+            };
+            this.process(particle, distMouse, timeSpent, sizeData);
+            const opacityData: IBubblerProcessParam = {
+                bubbleObj: {
+                    optValue: options.interactivity.modes.bubble.opacity,
+                    value: particle.bubble.opacity,
+                },
+                particlesObj: {
+                    optValue: particle.particlesOptions.opacity.value,
+                    value: particle.opacity.value,
+                },
+                type: ProcessBubbleType.opacity,
+            };
+            this.process(particle, distMouse, timeSpent, opacityData);
+            if (!container.bubble.durationEnd) {
+                if (distMouse <= container.retina.bubbleModeDistance) {
+                    this.hoverBubbleColor(particle);
                 } else {
                     delete particle.bubble.color;
                 }
+            } else {
+                delete particle.bubble.color;
             }
         }
     }
