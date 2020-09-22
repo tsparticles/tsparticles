@@ -1,6 +1,6 @@
 import type { Container } from "./Container";
 import type { IDimension } from "./Interfaces/IDimension";
-import type { IRgb } from "./Interfaces/IRgb";
+import type { IRgb, IRgba } from "./Interfaces/Colors";
 import type { ICoordinates } from "./Interfaces/ICoordinates";
 import type { IParticle } from "./Interfaces/IParticle";
 import type { IContainerPlugin } from "./Interfaces/IContainerPlugin";
@@ -8,7 +8,6 @@ import type { ILink } from "./Interfaces/ILink";
 import { CanvasUtils, ColorUtils, Constants, Utils } from "../Utils";
 import type { Particle } from "./Particle";
 import type { IDelta } from "./Interfaces/IDelta";
-import type { IRgba } from "./Interfaces/IRgba";
 
 /**
  * Canvas manager

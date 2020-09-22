@@ -1,7 +1,7 @@
 import type { ICoordinates } from "../../Core/Interfaces/ICoordinates";
 import type { Container } from "../../Core/Container";
 import type { Particle } from "../../Core/Particle";
-import type { IRgb } from "../../Core/Interfaces/IRgb";
+import type { IRgb } from "../../Core/Interfaces/Colors";
 import type { IAbsorber } from "./Options/Interfaces/IAbsorber";
 import { ColorUtils, NumberUtils, Utils } from "../../Utils";
 import type { Absorbers } from "./Absorbers";

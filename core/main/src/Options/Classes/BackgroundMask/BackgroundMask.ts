@@ -2,7 +2,7 @@ import type { IBackgroundMask } from "../../Interfaces/BackgroundMask/IBackgroun
 import type { RecursivePartial } from "../../../Types";
 import type { IBackgroundMaskCover } from "../../Interfaces/BackgroundMask/IBackgroundMaskCover";
 import { BackgroundMaskCover } from "./BackgroundMaskCover";
-import type { IColor } from "../../../Core/Interfaces/IColor";
+import type { IColor } from "../../../Core/Interfaces/Colors";
 import type { IOptionLoader } from "../../Interfaces/IOptionLoader";
 
 /**

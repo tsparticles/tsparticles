@@ -1,6 +1,6 @@
 import type { IDimension } from "../Core/Interfaces/IDimension";
 import type { ICoordinates } from "../Core/Interfaces/ICoordinates";
-import type { IRgb } from "../Core/Interfaces/IRgb";
+import type { IRgb } from "../Core/Interfaces/Colors";
 import type { ILinksShadow } from "../Options/Interfaces/Particles/Links/ILinksShadow";
 import { ColorUtils } from "./ColorUtils";
 import type { IParticle } from "../Core/Interfaces/IParticle";
