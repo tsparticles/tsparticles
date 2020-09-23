@@ -5,9 +5,29 @@ import { DivMode } from "../../Enums/Modes";
 import { DivEvent } from "../../Options/Classes/Interactivity/Events/DivEvent";
 import { DivType } from "../../Enums/Types";
 import { ICoordinates } from "../../Core/Interfaces/ICoordinates";
+import { IParticle } from "../../Core/Interfaces/IParticle";
+import { IVelocity } from "../../Core/Interfaces/IVelocity";
 
 export class Bouncer implements IExternalInteractor {
     constructor(private readonly container: Container) {}
+
+    private static getRadius(particle: IParticle, fallback: number): number {
+        return particle.bubble.radius || particle.size.value || fallback;
+    }
+
+    private static rotate(velocity: IVelocity, angle: number): IVelocity {
+        return {
+            horizontal: velocity.horizontal * Math.cos(angle) - velocity.vertical * Math.sin(angle),
+            vertical: velocity.horizontal * Math.sin(angle) + velocity.vertical * Math.cos(angle),
+        };
+    }
+
+    private static collisionVelocity(v1: IVelocity, v2: IVelocity, m1: number, m2: number): IVelocity {
+        return {
+            horizontal: (v1.horizontal * (m1 - m2)) / (m1 + m2) + (v2.horizontal * 2 * m2) / (m1 + m2),
+            vertical: v1.vertical,
+        };
+    }
 
     public interact(): void {
         const options = this.container.options;
@@ -62,75 +82,111 @@ export class Bouncer implements IExternalInteractor {
     }
 
     private processBounce(position: ICoordinates, radius: number, area: Range): void {
-        const container = this.container;
-
         //const query = container.particles.spatialGrid.queryRadius(position, repulseRadius);
-        const query = container.particles.quadTree.query(area);
+        const query = this.container.particles.quadTree.query(area);
         const divBounds = Utils.calculateBounds(position, radius);
 
         for (const particle of query) {
             const pPos = particle.getPosition();
             const offset = particle.offset;
             const size = particle.size.value;
-            const bounds = Utils.calculateBounds(pPos, size);
 
-            {
-                const velocity = particle.velocity.horizontal;
-                let bounced = false;
+            if (area instanceof Circle) {
+                const pos1 = particle.getPosition();
+                const pos2 = position;
 
-                if (
-                    bounds.top >= divBounds.top &&
-                    bounds.bottom <= divBounds.bottom &&
-                    ((bounds.right >= divBounds.left && bounds.right <= divBounds.right && velocity > 0) ||
-                        (bounds.left <= divBounds.right && bounds.left >= divBounds.left && velocity < 0))
-                ) {
-                    const newVelocity = NumberUtils.getValue(particle.particlesOptions.bounce.horizontal);
+                const xVelocityDiff = particle.velocity.horizontal;
+                const yVelocityDiff = particle.velocity.vertical;
 
-                    particle.velocity.horizontal *= -newVelocity;
+                const xDist = pos2.x - pos1.x;
+                const yDist = pos2.y - pos1.y;
 
-                    bounced = true;
+                // Prevent accidental overlap of particles
+                if (xVelocityDiff * xDist + yVelocityDiff * yDist >= 0) {
+                    // Grab angle between the two colliding particles
+                    const angle = -Math.atan2(pos2.y - pos1.y, pos2.x - pos1.x);
+
+                    // Store mass in var for better readability in collision equation
+                    const m1 = size;
+                    const m2 = radius;
+
+                    // Velocity before equation
+                    const u1 = Bouncer.rotate(particle.velocity, angle);
+                    const u2 = Bouncer.rotate({ horizontal: 0, vertical: 0 }, angle);
+
+                    // Velocity after 1d collision equation
+                    const v1 = Bouncer.collisionVelocity(u1, u2, m1, m2);
+
+                    // Final velocity after rotating axis back to original location
+                    const vFinal1 = Bouncer.rotate(v1, -angle);
+
+                    // Swap particle velocities for realistic bounce effect
+                    const bounce1 = particle.particlesOptions.collisions.bounce;
+
+                    particle.velocity.horizontal = vFinal1.horizontal * NumberUtils.getValue(bounce1.horizontal);
+                    particle.velocity.vertical = vFinal1.vertical * NumberUtils.getValue(bounce1.vertical);
                 }
+            } else if (area instanceof Rectangle) {
+                const bounds = Utils.calculateBounds(pPos, size);
 
-                if (bounced) {
-                    const minPos = offset.x + size;
+                {
+                    const velocity = particle.velocity.horizontal;
+                    let bounced = false;
 
-                    if (bounds.top >= divBounds.top && bounds.bottom <= divBounds.bottom) {
-                        if (bounds.right >= divBounds.left && bounds.right <= divBounds.right) {
-                            particle.position.x = divBounds.left - minPos;
-                        } else if (bounds.left <= divBounds.right && bounds.left >= divBounds.left) {
-                            particle.position.x = divBounds.right + minPos;
+                    if (
+                        bounds.top >= divBounds.top &&
+                        bounds.bottom <= divBounds.bottom &&
+                        ((bounds.right >= divBounds.left && bounds.right <= divBounds.right && velocity > 0) ||
+                            (bounds.left <= divBounds.right && bounds.left >= divBounds.left && velocity < 0))
+                    ) {
+                        const newVelocity = NumberUtils.getValue(particle.particlesOptions.bounce.horizontal);
+
+                        particle.velocity.horizontal *= -newVelocity;
+
+                        bounced = true;
+                    }
+
+                    if (bounced) {
+                        const minPos = offset.x + size;
+
+                        if (bounds.top >= divBounds.top && bounds.bottom <= divBounds.bottom) {
+                            if (bounds.right >= divBounds.left && bounds.right <= divBounds.right) {
+                                particle.position.x = divBounds.left - minPos;
+                            } else if (bounds.left <= divBounds.right && bounds.left >= divBounds.left) {
+                                particle.position.x = divBounds.right + minPos;
+                            }
                         }
                     }
                 }
-            }
 
-            {
-                const velocity = particle.velocity.vertical;
-                let bounced = false;
+                {
+                    const velocity = particle.velocity.vertical;
+                    let bounced = false;
 
-                if (
-                    (bounds.left >= divBounds.left &&
-                        bounds.right <= divBounds.right &&
-                        bounds.bottom >= divBounds.top &&
-                        bounds.bottom <= divBounds.bottom &&
-                        velocity > 0) ||
-                    (bounds.top <= divBounds.bottom && bounds.top >= divBounds.top && velocity < 0)
-                ) {
-                    const newVelocity = NumberUtils.getValue(particle.particlesOptions.bounce.vertical);
+                    if (
+                        (bounds.left >= divBounds.left &&
+                            bounds.right <= divBounds.right &&
+                            bounds.bottom >= divBounds.top &&
+                            bounds.bottom <= divBounds.bottom &&
+                            velocity > 0) ||
+                        (bounds.top <= divBounds.bottom && bounds.top >= divBounds.top && velocity < 0)
+                    ) {
+                        const newVelocity = NumberUtils.getValue(particle.particlesOptions.bounce.vertical);
 
-                    particle.velocity.vertical *= -newVelocity;
+                        particle.velocity.vertical *= -newVelocity;
 
-                    bounced = true;
-                }
+                        bounced = true;
+                    }
 
-                if (bounced) {
-                    const minPos = offset.y + size;
+                    if (bounced) {
+                        const minPos = offset.y + size;
 
-                    if (bounds.left >= divBounds.left && bounds.right <= divBounds.right) {
-                        if (bounds.bottom >= divBounds.top && bounds.bottom <= divBounds.bottom) {
-                            particle.position.y = divBounds.top - minPos;
-                        } else if (bounds.top <= divBounds.bottom && bounds.top >= divBounds.top) {
-                            particle.position.y = divBounds.bottom + minPos;
+                        if (bounds.left >= divBounds.left && bounds.right <= divBounds.right) {
+                            if (bounds.bottom >= divBounds.top && bounds.bottom <= divBounds.bottom) {
+                                particle.position.y = divBounds.top - minPos;
+                            } else if (bounds.top <= divBounds.bottom && bounds.top >= divBounds.top) {
+                                particle.position.y = divBounds.bottom + minPos;
+                            }
                         }
                     }
                 }
