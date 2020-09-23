@@ -1,3 +1,9 @@
+/**
+ * The options to set the particles in the background using CSS `fixed` position
+ * The [[zIndex]] property sets the background CSS `z-index` property
+ * [[include:Options/BackgroundMode.md]]
+ * @category Options
+ */
 export interface IBackgroundMode {
     /**
      * Sets the animated background mode for particles canvas bringing it to the back
