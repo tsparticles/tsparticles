@@ -35,43 +35,23 @@ export class ShadowOptionsEditor extends EditorBase {
     private addProperties(): void {
         const particles = this.particles;
         const options = this.options;
-
-        let colorStringValue: string | undefined;
-
-        if (options?.color) {
-            if (typeof options.color === "string") {
-                colorStringValue = options.color;
-            } else if (typeof options.color.value === "string") {
-                colorStringValue = options.color.value;
-            } else {
-                let rgb = options.color.value as IRgb;
-                const hsl = options.color.value as IHsl;
-
-                if (hsl.h !== undefined) {
-                    rgb = ColorUtils.hslToRgb(hsl);
-                }
-
-                colorStringValue = `${rgb.r.toString(16)}${rgb.g.toString(16)}${rgb.b.toString(16)}`;
-            }
-        }
+        const color = typeof options.color === "string" ? options.color : options.color?.value;
 
         this.group.addProperty("blur", "Blur", EditorType.number).change(async () => {
             await particles.refresh();
         });
 
-        this.group
-            .addProperty("color", "Color", EditorType.color, colorStringValue, false)
-            .change(async (value: unknown) => {
-                if (typeof value === "string") {
-                    if (typeof options.color === "string") {
-                        options.color = value;
-                    } else {
-                        options.color.value = value;
-                    }
+        this.group.addProperty("color", "Color", EditorType.color, color, false).change(async (value: unknown) => {
+            if (typeof value === "string") {
+                if (typeof options.color === "string") {
+                    options.color = value;
+                } else {
+                    options.color.value = value;
                 }
+            }
 
-                await particles.refresh();
-            });
+            await particles.refresh();
+        });
 
         this.group.addProperty("enable", "Enable", EditorType.boolean).change(async () => {
             await particles.refresh();

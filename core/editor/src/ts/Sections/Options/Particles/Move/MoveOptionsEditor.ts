@@ -102,49 +102,29 @@ export class MoveOptionsEditor extends EditorBase {
         const particles = this.particles;
         const group = this.group.addGroup("trail", "Trail");
         const options = group.data as ITrail;
+        const color = typeof options.fillColor === "string" ? options.fillColor : options.fillColor?.value;
 
         group.addProperty("enable", "Enable", EditorType.boolean).change(async () => {
             await particles.refresh();
         });
 
-        let fillColorStringValue: string | undefined;
-
-        if (options?.fillColor) {
-            if (typeof options.fillColor === "string") {
-                fillColorStringValue = options.fillColor;
-            } else if (typeof options.fillColor.value === "string") {
-                fillColorStringValue = options.fillColor.value;
-            } else {
-                let rgb = options.fillColor.value as IRgb;
-                const hsl = options.fillColor.value as IHsl;
-
-                if (hsl.h !== undefined) {
-                    rgb = ColorUtils.hslToRgb(hsl);
-                }
-
-                fillColorStringValue = `${rgb.r.toString(16)}${rgb.g.toString(16)}${rgb.b.toString(16)}`;
-            }
-        }
-
-        group
-            .addProperty("fillColor", "Fill Color", EditorType.color, fillColorStringValue, false)
-            .change(async (value: unknown) => {
-                if (typeof value === "string") {
-                    if (typeof options.fillColor === "string") {
-                        options.fillColor = value;
+        group.addProperty("fillColor", "Fill Color", EditorType.color, color, false).change(async (value: unknown) => {
+            if (typeof value === "string") {
+                if (typeof options.fillColor === "string") {
+                    options.fillColor = value;
+                } else {
+                    if (options.fillColor === undefined) {
+                        options.fillColor = {
+                            value: value,
+                        };
                     } else {
-                        if (options.fillColor === undefined) {
-                            options.fillColor = {
-                                value: value,
-                            };
-                        } else {
-                            options.fillColor.value = value;
-                        }
+                        options.fillColor.value = value;
                     }
                 }
+            }
 
-                await particles.refresh();
-            });
+            await particles.refresh();
+        });
 
         group.addProperty("length", "Length", EditorType.number).change(async () => {
             await particles.refresh();
@@ -218,6 +198,10 @@ export class MoveOptionsEditor extends EditorBase {
             ]);
 
         group.addProperty("random", "Random", EditorType.boolean).change(async () => {
+            await particles.refresh();
+        });
+
+        group.addProperty("size", "Size", EditorType.boolean).change(async () => {
             await particles.refresh();
         });
 

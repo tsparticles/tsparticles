@@ -39,26 +39,8 @@ export class ColorOptionsEditor extends EditorBase {
 
     private addProperties(): void {
         const particles = this.particles;
-        const options = this.options;
 
-        let colorStringValue: string | undefined;
-
-        if (options?.value) {
-            if (typeof options.value === "string") {
-                colorStringValue = options.value;
-            } else {
-                let rgb = options.value as IRgb;
-                const hsl = options.value as IHsl;
-
-                if (hsl.h !== undefined) {
-                    rgb = ColorUtils.hslToRgb(hsl);
-                }
-
-                colorStringValue = `${rgb.r.toString(16)}${rgb.g.toString(16)}${rgb.b.toString(16)}`;
-            }
-        }
-
-        this.group.addProperty("value", "Value", EditorType.color, colorStringValue).change(async () => {
+        this.group.addProperty("value", "Value", EditorType.color).change(async () => {
             await particles.refresh();
         });
     }

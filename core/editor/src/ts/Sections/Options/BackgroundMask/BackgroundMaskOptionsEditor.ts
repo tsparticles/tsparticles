@@ -2,7 +2,7 @@ import type { IColor } from "tsparticles/dist/Core/Interfaces/Colors";
 import type { Container } from "tsparticles/dist/Core/Container";
 import type { IBackgroundMask } from "tsparticles/dist/Options/Interfaces/BackgroundMask/IBackgroundMask";
 import type { IBackgroundMaskCover } from "tsparticles/dist/Options/Interfaces/BackgroundMask/IBackgroundMaskCover";
-import { ColorUtils, EditorGroup, IHsl, IRgb, EditorType } from "object-gui";
+import { EditorGroup, EditorType } from "object-gui";
 import { EditorBase } from "../../../EditorBase";
 
 export class BackgroundMaskOptionsEditor extends EditorBase {
@@ -27,23 +27,8 @@ export class BackgroundMaskOptionsEditor extends EditorBase {
         const coverColor = options.color as IColor;
         const coverGroup = this.group.addGroup("cover", "Cover");
 
-        let colorStringValue: string | undefined;
-
-        if (typeof coverColor.value === "string") {
-            colorStringValue = coverColor.value;
-        } else {
-            let rgb = coverColor.value as IRgb;
-            const hsl = coverColor.value as IHsl;
-
-            if (hsl.h !== undefined) {
-                rgb = ColorUtils.hslToRgb(hsl);
-            }
-
-            colorStringValue = `${rgb.r.toString(16)}${rgb.g.toString(16)}${rgb.b.toString(16)}`;
-        }
-
         coverGroup
-            .addProperty("color", "Color", EditorType.color, colorStringValue, false)
+            .addProperty("color", "Color", EditorType.color, coverColor.value, false)
             .change(async (value: unknown) => {
                 if (typeof value === "string") {
                     coverColor.value = value;

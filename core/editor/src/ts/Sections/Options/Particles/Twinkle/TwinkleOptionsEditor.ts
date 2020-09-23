@@ -28,41 +28,21 @@ export class TwinkleOptionsEditor extends EditorBase {
     private addTwinkleValues(group: EditorGroup): void {
         const particles = this.particles;
         const options = group.data as ITwinkleValues;
+        const color = typeof options.color === "string" ? options.color : options.color?.value;
 
-        let colorStringValue: string | undefined;
-
-        if (options.color !== undefined) {
-            if (typeof options.color === "string") {
-                colorStringValue = options.color;
-            } else if (typeof options.color.value === "string") {
-                colorStringValue = options.color.value;
-            } else {
-                let rgb = options.color.value as IRgb;
-                const hsl = options.color.value as IHsl;
-
-                if (hsl.h !== undefined) {
-                    rgb = ColorUtils.hslToRgb(hsl);
+        group.addProperty("color", "Color", EditorType.color, color, false).change(async (value: unknown) => {
+            if (typeof value === "string") {
+                if (typeof options.color === "string") {
+                    options.color = value;
+                } else {
+                    options.color = {
+                        value,
+                    };
                 }
-
-                colorStringValue = `${rgb.r.toString(16)}${rgb.g.toString(16)}${rgb.b.toString(16)}`;
             }
-        }
 
-        group
-            .addProperty("color", "Color", EditorType.color, colorStringValue, false)
-            .change(async (value: unknown) => {
-                if (typeof value === "string") {
-                    if (typeof options.color === "string") {
-                        options.color = value;
-                    } else {
-                        options.color = {
-                            value,
-                        };
-                    }
-                }
-
-                await particles.refresh();
-            });
+            await particles.refresh();
+        });
 
         group.addProperty("enable", "Enable", EditorType.boolean).change(async () => {
             await particles.refresh();

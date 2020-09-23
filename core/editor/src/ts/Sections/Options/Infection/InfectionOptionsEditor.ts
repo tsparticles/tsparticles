@@ -61,27 +61,8 @@ export class InfectionOptionsEditor extends EditorBase {
         const stageGroup = parent.addGroup(index.toString(10), `Stage ${index}`, true, stages);
         const stage = stageGroup.data as IInfectionStage;
 
-        let colorStringValue: string | undefined;
-
-        if (stage.color !== undefined) {
-            if (typeof stage.color === "string") {
-                colorStringValue = stage.color;
-            } else if (typeof stage.color.value === "string") {
-                colorStringValue = stage.color.value;
-            } else {
-                let rgb = stage.color.value as IRgb;
-                const hsl = stage.color.value as IHsl;
-
-                if (hsl.h !== undefined) {
-                    rgb = ColorUtils.hslToRgb(hsl);
-                }
-
-                colorStringValue = `${rgb.r.toString(16)}${rgb.g.toString(16)}${rgb.b.toString(16)}`;
-            }
-        }
-
         stageGroup
-            .addProperty("color", "Color", EditorType.color, colorStringValue, false)
+            .addProperty("color", "Color", EditorType.color, stage.color, false)
             .change(async (value: unknown) => {
                 if (typeof value === "string") {
                     if (typeof stage.color === "string") {

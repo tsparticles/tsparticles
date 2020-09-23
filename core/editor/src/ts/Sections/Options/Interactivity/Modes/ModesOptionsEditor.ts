@@ -48,43 +48,26 @@ export class ModesOptionsEditor extends EditorBase {
         const particles = this.particles;
         const options = this.options.bubble;
         const group = this.group.addGroup("bubble", "Bubble");
+        const color =
+            typeof options.color === "string"
+                ? options.color
+                : options.color instanceof Array
+                ? undefined
+                : options.color?.value;
 
-        let colorStringValue: string | undefined;
-
-        if (options.color !== undefined) {
-            if (typeof options.color === "string") {
-                colorStringValue = options.color;
-            } else if (options.color instanceof Array) {
-                colorStringValue = undefined;
-            } else if (typeof options.color.value === "string") {
-                colorStringValue = options.color.value;
-            } else {
-                let rgb = options.color.value as IRgb;
-                const hsl = options.color.value as IHsl;
-
-                if (hsl.h !== undefined) {
-                    rgb = ColorUtils.hslToRgb(hsl);
+        group.addProperty("color", "Color", EditorType.color, color, false).change(async (value: unknown) => {
+            if (typeof value === "string") {
+                if (typeof options.color === "string") {
+                    options.color = value;
+                } else {
+                    options.color = {
+                        value,
+                    };
                 }
-
-                colorStringValue = `${rgb.r.toString(16)}${rgb.g.toString(16)}${rgb.b.toString(16)}`;
             }
-        }
 
-        group
-            .addProperty("color", "Color", EditorType.color, colorStringValue, false)
-            .change(async (value: unknown) => {
-                if (typeof value === "string") {
-                    if (typeof options.color === "string") {
-                        options.color = value;
-                    } else {
-                        options.color = {
-                            value,
-                        };
-                    }
-                }
-
-                await particles.refresh();
-            });
+            await particles.refresh();
+        });
 
         group.addProperty("distance", "Distance", EditorType.number).change(async () => {
             await particles.refresh();
@@ -137,45 +120,26 @@ export class ModesOptionsEditor extends EditorBase {
         const options = this.options.grab;
         const group = this.group.addGroup("grab", "Grab");
         const grabLinksGroup = group.addGroup("links", "Links");
-
-        let colorStringValue: string | undefined;
-
-        if (options.links.color !== undefined) {
-            if (typeof options.links.color === "string") {
-                colorStringValue = options.links.color;
-            } else if (typeof options.links.color.value === "string") {
-                colorStringValue = options.links.color.value;
-            } else {
-                let rgb = options.links.color.value as IRgb;
-                const hsl = options.links.color.value as IHsl;
-
-                if (hsl.h !== undefined) {
-                    rgb = ColorUtils.hslToRgb(hsl);
-                }
-
-                colorStringValue = `${rgb.r.toString(16)}${rgb.g.toString(16)}${rgb.b.toString(16)}`;
-            }
-        }
+        const links = options.links;
+        const color = typeof links.color === "string" ? links.color : links.color?.value;
 
         grabLinksGroup.addProperty("blink", "Blink", EditorType.boolean).change(async () => {
             await particles.refresh();
         });
 
-        grabLinksGroup
-            .addProperty("color", "Color", EditorType.color, colorStringValue, false)
-            .change(async (value: unknown) => {
-                if (typeof value === "string") {
-                    if (typeof options.links.color === "string") {
-                        options.links.color = value;
-                    } else {
-                        options.links.color = {
-                            value,
-                        };
-                    }
-
-                    await particles.refresh();
+        grabLinksGroup.addProperty("color", "Color", EditorType.color, color, false).change(async (value: unknown) => {
+            if (typeof value === "string") {
+                if (typeof options.links.color === "string") {
+                    options.links.color = value;
+                } else {
+                    options.links.color = {
+                        value,
+                    };
                 }
-            });
+
+                await particles.refresh();
+            }
+        });
 
         grabLinksGroup.addProperty("consent", "Consent", EditorType.boolean).change(async () => {
             await particles.refresh();
