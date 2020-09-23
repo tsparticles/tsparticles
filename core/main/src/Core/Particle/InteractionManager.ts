@@ -15,6 +15,7 @@ import { Attractor as MouseAttractor } from "../../Interactions/External/Attract
 import { Particle } from "../Particle";
 import { Lighter as ParticlesLighter } from "../../Interactions/Particles/Lighter";
 import { Lighter as MouseLighter } from "../../Interactions/External/Lighter";
+import { Bouncer } from "../../Interactions/External/Bouncer";
 
 /**
  * @category Core
@@ -25,6 +26,7 @@ export class InteractionManager {
 
     constructor(private readonly container: Container) {
         this.externalInteractors = [
+            new Bouncer(container),
             new Bubbler(container),
             new Connector(container),
             new Grabber(container),
