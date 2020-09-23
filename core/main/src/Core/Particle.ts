@@ -54,6 +54,7 @@ export class Particle implements IParticle {
     public readonly updater;
     public readonly infecter;
     public readonly mover;
+    public readonly sides;
     public readonly strokeWidth;
     public readonly particlesOptions;
 
@@ -291,6 +292,8 @@ export class Particle implements IParticle {
             }
         }
 
+        this.sides = 24;
+
         let drawer = container.drawers.get(this.shape);
 
         if (!drawer) {
@@ -299,6 +302,12 @@ export class Particle implements IParticle {
             if (drawer) {
                 container.drawers.set(this.shape, drawer);
             }
+        }
+
+        const sideCountFunc = drawer?.getSidesCount;
+
+        if (sideCountFunc) {
+            this.sides = sideCountFunc(this);
         }
 
         /* if shape is image */

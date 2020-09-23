@@ -14,6 +14,10 @@ interface TextParticle extends IParticle {
  * @category Shape Drawers
  */
 export class TextDrawer implements IShapeDrawer {
+    public getSidesCount(): number {
+        return 12;
+    }
+
     public async init(container: Container): Promise<void> {
         const options = container.options;
 

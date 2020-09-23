@@ -285,7 +285,11 @@ export class Updater {
                 break;
             case OutMode.none:
                 if (!gravityOptions.enable) {
-                    container.particles.remove(particle);
+                    if (
+                        !Utils.isPointInside(particle.position, container.canvas.size, particle.size.value, direction)
+                    ) {
+                        container.particles.remove(particle);
+                    }
                 } else {
                     const position = particle.position;
 

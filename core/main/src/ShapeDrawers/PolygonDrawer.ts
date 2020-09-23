@@ -22,8 +22,7 @@ export class PolygonDrawer extends PolygonDrawerBase {
     }
 
     public getCenter(particle: IParticle, radius: number): ICoordinates {
-        const polygon = particle.shapeData as IPolygonShape;
-        const sides = polygon?.sides ?? polygon?.nb_sides ?? 5;
+        const sides = this.getSidesCount(particle);
 
         return {
             x: -radius / (sides / 3.5),

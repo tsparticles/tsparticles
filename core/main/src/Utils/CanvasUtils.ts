@@ -260,7 +260,7 @@ export class CanvasUtils {
 
         context.save();
 
-        const sides = 24;
+        const sides = particle.sides;
         const full = (Math.PI * 2) / sides;
         const angle = -particle.angle + Math.PI / 4;
         const factor = 1; //Math.sqrt(2);

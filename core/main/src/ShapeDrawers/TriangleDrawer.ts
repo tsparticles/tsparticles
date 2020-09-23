@@ -7,6 +7,10 @@ import type { IParticle } from "../Core/Interfaces/IParticle";
  * @category Shape Drawers
  */
 export class TriangleDrawer extends PolygonDrawerBase {
+    public getSidesCount(): number {
+        return 3;
+    }
+
     public getSidesData(particle: IParticle, radius: number): ISide {
         return {
             count: {

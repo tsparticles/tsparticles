@@ -37,6 +37,7 @@ export interface IParticle {
     readonly shadowColor: IRgb | undefined;
     readonly shape?: ShapeType | string;
     readonly shapeData?: IShapeValues;
+    readonly sides: number;
     readonly size: IParticleSizeAnimation;
     readonly stroke: IStroke;
     readonly strokeWidth: number;
