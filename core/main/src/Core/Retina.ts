@@ -23,6 +23,9 @@ export class Retina {
 
     constructor(private readonly container: Container) {}
 
+    /**
+     * Initializes all the values needing a pixel ratio factor (sizes, widths, distances)
+     */
     public init(): void {
         const container = this.container;
         const options = container.options;

@@ -27,8 +27,16 @@ import type { IAttract } from "./Interfaces/IAttract";
  * @category Core
  */
 export class Container {
+    /**
+     * Check if the particles container is started
+     */
     public started;
+
+    /**
+     * Check if the particles container is destroyed, if so it's not recommended using it
+     */
     public destroyed;
+
     public density;
     public pageHidden;
     public lastFrameTime;
@@ -38,12 +46,29 @@ export class Container {
     public repulse: IRepulse;
     public attract: IAttract;
 
+    /**
+     * The options used by the container, it's a full [[Options]] object
+     */
     public readonly options;
+
     public readonly retina;
     public readonly canvas;
+
+    /**
+     * The particles manager
+     */
     public readonly particles;
+
     public readonly drawer;
+
+    /**
+     * All the shape drawers used by the container
+     */
     public readonly drawers;
+
+    /**
+     * All the plugins used by the container
+     */
     public readonly plugins;
 
     public readonly noise: INoise;
@@ -149,7 +174,7 @@ export class Container {
         }
 
         if (needsUpdate) {
-            for (const [, plugin] of this.plugins) {
+            for (const [ , plugin ] of this.plugins) {
                 if (plugin.play) {
                     plugin.play();
                 }
@@ -175,7 +200,7 @@ export class Container {
             return;
         }
 
-        for (const [, plugin] of this.plugins) {
+        for (const [ , plugin ] of this.plugins) {
             if (plugin.pause) {
                 plugin.pause();
             }
@@ -274,7 +299,7 @@ export class Container {
 
         this.canvas.destroy();
 
-        for (const [, drawer] of this.drawers) {
+        for (const [ , drawer ] of this.drawers) {
             if (drawer.destroy) {
                 drawer.destroy(this);
             }
@@ -313,6 +338,9 @@ export class Container {
         return JSON.stringify(this.options, undefined, 2);
     }
 
+    /**
+     * Restarts the container, just a [[stop]]/[[start]] alias
+     */
     public async refresh(): Promise<void> {
         /* restart */
         this.stop();
@@ -334,7 +362,7 @@ export class Container {
         this.particles.clear();
         this.canvas.clear();
 
-        for (const [, plugin] of this.plugins) {
+        for (const [ , plugin ] of this.plugins) {
             if (plugin.stop) {
                 plugin.stop();
             }
@@ -350,6 +378,10 @@ export class Container {
         delete this.particles.linksColor;
     }
 
+    /**
+     * Loads the given theme, overriding the options
+     * @param name the theme name, if `undefined` resets the default options or the default theme
+     */
     public async loadTheme(name?: string): Promise<void> {
         this.options.setTheme(name);
 
@@ -370,7 +402,7 @@ export class Container {
 
         this.eventListeners.addListeners();
 
-        for (const [, plugin] of this.plugins) {
+        for (const [ , plugin ] of this.plugins) {
             if (plugin.startAsync !== undefined) {
                 await plugin.startAsync();
             } else if (plugin.start !== undefined) {
@@ -390,17 +422,17 @@ export class Container {
 
         const availablePlugins = Plugins.getAvailablePlugins(this);
 
-        for (const [id, plugin] of availablePlugins) {
+        for (const [ id, plugin ] of availablePlugins) {
             this.plugins.set(id, plugin);
         }
 
-        for (const [, drawer] of this.drawers) {
+        for (const [ , drawer ] of this.drawers) {
             if (drawer.init) {
                 await drawer.init(this);
             }
         }
 
-        for (const [, plugin] of this.plugins) {
+        for (const [ , plugin ] of this.plugins) {
             if (plugin.init) {
                 plugin.init(this.options);
             } else if (plugin.initAsync !== undefined) {

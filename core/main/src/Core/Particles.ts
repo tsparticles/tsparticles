@@ -11,7 +11,7 @@ import type { IDelta } from "./Interfaces/IDelta";
 import type { IParticle } from "./Interfaces/IParticle";
 
 /**
- * Particles manager
+ * Particles manager object
  * @category Core
  */
 export class Particles {
@@ -19,11 +19,20 @@ export class Particles {
         return this.array.length;
     }
 
+    /**
+     * The quad tree used to search particles withing ranges
+     */
     public quadTree;
+
     //public spatialGrid;
+
     public linksColors;
 
+    /**
+     * All the particles used in canvas
+     */
     public array: Particle[];
+
     public pushing?: boolean;
     public linksColor?: IRgb | string;
     public grabLineColor?: IRgb | string;
