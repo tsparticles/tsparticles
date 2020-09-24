@@ -5,7 +5,7 @@ import type { IOptions } from "tsparticles/dist/Options/Interfaces/IOptions";
 import { InteractivityOptionsEditor } from "./Interactivity/InteractivityOptionsEditor";
 import { BackgroundMaskOptionsEditor } from "./BackgroundMask/BackgroundMaskOptionsEditor";
 import { InfectionOptionsEditor } from "./Infection/InfectionOptionsEditor";
-import { EditorGroup, EditorType } from "object-gui";
+import { Editor, EditorGroup, EditorType } from "object-gui";
 import { EditorBase } from "../../EditorBase";
 import { BackgroundModeOptionsEditor } from "./BackgroundMode/BackgroundModeOptionsEditor";
 
@@ -17,7 +17,7 @@ export class OptionsEditor extends EditorBase {
         super(particles);
     }
 
-    public addToGroup(parent: EditorGroup): void {
+    public addToGroup(parent: EditorGroup | Editor): void {
         this.group = parent.addGroup("options", "Options", true);
         this.options = this.group.data as IOptions;
 

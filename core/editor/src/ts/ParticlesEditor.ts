@@ -15,18 +15,18 @@ export class ParticlesEditor extends Editor {
     }
 
     private addOptions() {
-        const options = new OptionsEditor(this.root.data as Container);
+        const options = new OptionsEditor(this.data as Container);
 
-        options.addToGroup(this.root);
+        options.addToGroup(this);
     }
 
     private addButtons() {
-        this.root.addButton("play", "Play");
-        this.root.addButton("pause", "Pause");
-        this.root.addButton("refresh", "Refresh");
-        this.root.addButton("start", "Start");
-        this.root.addButton("stop", "Stop");
-        this.root.addButton("exportConfig", "Export", false).click(() => {
+        this.addButton("play", "Play");
+        this.addButton("pause", "Pause");
+        this.addButton("refresh", "Refresh");
+        this.addButton("start", "Start");
+        this.addButton("stop", "Stop");
+        this.addButton("exportConfig", "Export", false).click(() => {
             const json = this.particles.exportConfiguration();
             const contentType = "application/json";
             const blob = new Blob([json], { type: contentType });
