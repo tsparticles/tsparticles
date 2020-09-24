@@ -16,6 +16,7 @@ import { TwinkleOptionsEditor } from "./Twinkle/TwinkleOptionsEditor";
 import { EditorBase } from "../../../EditorBase";
 import { LifeOptionsEditor } from "./Life/LifeOptionsEditor";
 import { BounceOptionsEditor } from "./Bounce/BounceOptionsEditor";
+import { EditorType } from "object-gui";
 
 export class ParticlesOptionsEditor extends EditorBase {
     public group!: EditorGroup;
@@ -43,6 +44,7 @@ export class ParticlesOptionsEditor extends EditorBase {
         this.addSize();
         this.addStroke();
         this.addTwinkle();
+        this.addProperties();
     }
 
     private addBounce(): void {
@@ -127,5 +129,13 @@ export class ParticlesOptionsEditor extends EditorBase {
         const options = new TwinkleOptionsEditor(this.particles);
 
         options.addToGroup(this.group);
+    }
+
+    private addProperties(): void {
+        const particles = this.particles;
+
+        this.group.addProperty("reduceDuplicates", "Reduce Duplicates", EditorType.boolean).change(async () => {
+            await particles.refresh();
+        });
     }
 }

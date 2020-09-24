@@ -43,6 +43,10 @@ export class NumberOptionsEditor extends EditorBase {
             await particles.refresh();
         });
 
+        this.group.addProperty("max", "Max", EditorType.number).change(async () => {
+            await particles.refresh();
+        });
+
         this.group.addProperty("value", "Value", EditorType.number).change(async () => {
             await particles.refresh();
         });
