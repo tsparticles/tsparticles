@@ -1,6 +1,5 @@
 import { EditorGroup, EditorType } from "object-gui";
 import type { Container } from "tsparticles/dist/Core/Container";
-import { CollisionMode } from "tsparticles";
 import { EditorBase } from "../../../../EditorBase";
 import type { IBounce } from "tsparticles/dist/Options/Interfaces/Particles/Bounce/IBounce";
 
@@ -19,12 +18,12 @@ export class BounceOptionsEditor extends EditorBase {
         this.addFactors();
     }
 
-    private addFactors() {
+    private addFactors(): void {
         this.addFactor("horizontal", "Horizontal");
         this.addFactor("vertical", "Vertical");
     }
 
-    private addFactor(name: string, title: string) {
+    private addFactor(name: string, title: string): void {
         const particles = this.particles;
         const group = this.group.addGroup(name, title);
 
@@ -41,30 +40,5 @@ export class BounceOptionsEditor extends EditorBase {
         group.addProperty("value", "Value", EditorType.number).change(async () => {
             await particles.refresh();
         });
-    }
-
-    private addProperties(): void {
-        const particles = this.particles;
-
-        this.group.addProperty("enable", "Enable", EditorType.boolean).change(async () => {
-            await particles.refresh();
-        });
-
-        this.group
-            .addProperty("mode", "Mode", EditorType.select)
-            .change(async () => {
-                await particles.refresh();
-            })
-            .addItems([
-                {
-                    value: CollisionMode.absorb,
-                },
-                {
-                    value: CollisionMode.bounce,
-                },
-                {
-                    value: CollisionMode.destroy,
-                },
-            ]);
     }
 }

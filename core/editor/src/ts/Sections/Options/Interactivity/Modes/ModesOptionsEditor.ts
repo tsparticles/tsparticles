@@ -1,6 +1,6 @@
 import type { Container } from "tsparticles/dist/Core/Container";
 import type { IModes } from "tsparticles/dist/Options/Interfaces/Interactivity/Modes/IModes";
-import { ColorUtils, EditorGroup, IHsl, IRgb, EditorType } from "object-gui";
+import { EditorGroup, EditorType } from "object-gui";
 import { EditorBase } from "../../../../EditorBase";
 import { ParticlesOptionsEditor } from "../../Particles/ParticlesOptionsEditor";
 
@@ -20,6 +20,7 @@ export class ModesOptionsEditor extends EditorBase {
         this.addBubble();
         this.addConnect();
         this.addGrab();
+        this.addLight();
         this.addPush();
         this.addRemove();
         this.addRepulse();
@@ -95,10 +96,6 @@ export class ModesOptionsEditor extends EditorBase {
         const particles = this.particles;
         const group = this.group.addGroup("connect", "Connect");
 
-        group.addProperty("distance", "Distance", EditorType.number).change(async () => {
-            await particles.refresh();
-        });
-
         const connectLinksGroup = group.addGroup("links", "Links");
 
         connectLinksGroup
@@ -109,6 +106,10 @@ export class ModesOptionsEditor extends EditorBase {
             .step(0.01)
             .min(0)
             .max(1);
+
+        group.addProperty("distance", "Distance", EditorType.number).change(async () => {
+            await particles.refresh();
+        });
 
         group.addProperty("radius", "Radius", EditorType.number).change(async () => {
             await particles.refresh();
@@ -159,6 +160,83 @@ export class ModesOptionsEditor extends EditorBase {
         });
     }
 
+    private addLight(): void {
+        const particles = this.particles;
+        const options = this.options.light;
+        const group = this.group.addGroup("light", "Light");
+
+        const lightGroup = group.addGroup("light", "Light");
+        const gradientGroup = lightGroup.addGroup("gradient", "Gradient");
+        const startColor =
+            typeof options.light.gradient.start === "string"
+                ? options.light.gradient.start
+                : options.light.gradient.start?.value;
+
+        gradientGroup
+            .addProperty("start", "Start", EditorType.color, startColor, false)
+            .change(async (value: unknown) => {
+                if (typeof value === "string") {
+                    if (typeof options.light.gradient.start === "string") {
+                        options.light.gradient.start = value;
+                    } else {
+                        options.light.gradient.start = {
+                            value,
+                        };
+                    }
+                }
+
+                await particles.refresh();
+            });
+
+        const stopColor =
+            typeof options.light.gradient.stop === "string"
+                ? options.light.gradient.stop
+                : options.light.gradient.stop?.value;
+
+        gradientGroup.addProperty("stop", "Stop", EditorType.color, stopColor, false).change(async (value: unknown) => {
+            if (typeof value === "string") {
+                if (typeof options.light.gradient.stop === "string") {
+                    options.light.gradient.stop = value;
+                } else {
+                    options.light.gradient.stop = {
+                        value,
+                    };
+                }
+            }
+
+            await particles.refresh();
+        });
+
+        lightGroup.addProperty("radius", "Radius", EditorType.number).change(async () => {
+            await particles.refresh();
+        });
+
+        const shadowGroup = group.addGroup("shadow", "Shadow");
+
+        const shadowColor =
+            typeof options.shadow.color === "string" ? options.shadow.color : options.shadow.color?.value;
+
+        shadowGroup
+            .addProperty("color", "Color", EditorType.color, shadowColor, false)
+            .change(async (value: unknown) => {
+                if (typeof value === "string") {
+                    if (typeof options.shadow.color === "string") {
+                        options.shadow.color = value;
+                    } else {
+                        options.shadow.color = {
+                            value,
+                        };
+                    }
+                }
+
+                await particles.refresh();
+            });
+
+        shadowGroup.addProperty("length", "Length", EditorType.number).change(async () => {
+            await particles.refresh();
+        });
+    }
+
     private addPush(): void {
         const particles = this.particles;
         const group = this.group.addGroup("push", "Push");
@@ -172,7 +250,7 @@ export class ModesOptionsEditor extends EditorBase {
         const particles = this.particles;
         const group = this.group.addGroup("remove", "Remove");
 
-        group.addProperty("remove", "Remove", EditorType.number).change(async () => {
+        group.addProperty("quantity", "Quantity", EditorType.number).change(async () => {
             await particles.refresh();
         });
     }
@@ -212,6 +290,10 @@ export class ModesOptionsEditor extends EditorBase {
         const group = this.group.addGroup("trail", "Trail");
         const options = this.options.trail;
 
+        const particlesEditor = new ParticlesOptionsEditor(particles);
+
+        particlesEditor.addToGroup(group, "particles", options);
+
         group.addProperty("delay", "Delay", EditorType.number).change(async () => {
             await particles.refresh();
         });
@@ -219,9 +301,5 @@ export class ModesOptionsEditor extends EditorBase {
         group.addProperty("quantity", "Quantity", EditorType.number).change(async () => {
             await particles.refresh();
         });
-
-        const particlesEditor = new ParticlesOptionsEditor(particles);
-
-        particlesEditor.addToGroup(group, "particles", options);
     }
 }

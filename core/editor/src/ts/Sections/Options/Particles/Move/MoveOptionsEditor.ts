@@ -1,9 +1,10 @@
-import { ColorUtils, EditorGroup, IHsl, IRgb, EditorType } from "object-gui";
+import { EditorGroup, EditorType } from "object-gui";
 import type { Container } from "tsparticles/dist/Core/Container";
 import type { IMove } from "tsparticles/dist/Options/Interfaces/Particles/Move/IMove";
 import { MoveDirection, OutMode } from "tsparticles";
 import { EditorBase } from "../../../../EditorBase";
 import { ITrail } from "tsparticles/dist/Options/Interfaces/Particles/Move/ITrail";
+import { IOutModes } from "tsparticles/dist/Options/Interfaces/Particles/Move/IOutModes";
 
 export class MoveOptionsEditor extends EditorBase {
     public group!: EditorGroup;
@@ -21,6 +22,7 @@ export class MoveOptionsEditor extends EditorBase {
         this.addAttract();
         this.addGravity();
         this.addNoise();
+        this.addOutModes();
         this.addTrail();
         this.addProperties();
     }
@@ -29,11 +31,11 @@ export class MoveOptionsEditor extends EditorBase {
         const particles = this.particles;
         const group = this.group.addGroup("angle", "Angle");
 
-        group.addProperty("angle", "Angle", EditorType.number).change(async () => {
+        group.addProperty("offset", "Offset", EditorType.number).change(async () => {
             await particles.refresh();
         });
 
-        group.addProperty("offset", "Offset", EditorType.number).change(async () => {
+        group.addProperty("value", "Value", EditorType.number).change(async () => {
             await particles.refresh();
         });
     }
@@ -96,6 +98,63 @@ export class MoveOptionsEditor extends EditorBase {
         group.addProperty("enable", "Enable", EditorType.boolean).change(async () => {
             await particles.refresh();
         });
+    }
+
+    private addOutModes(): void {
+        const particles = this.particles;
+        const group = this.group.addGroup("outModes", "Out Modes");
+        const options = group.data as IOutModes;
+        options.bottom;
+
+        const outModesValues = [
+            {
+                value: OutMode.bounce,
+            },
+            {
+                value: OutMode.destroy,
+            },
+            {
+                value: OutMode.none,
+            },
+            {
+                value: OutMode.out,
+            },
+        ];
+
+        group
+            .addProperty("bottom", "Bottom", EditorType.select)
+            .change(async () => {
+                await particles.refresh();
+            })
+            .addItems(outModesValues);
+
+        group
+            .addProperty("default", "Default", EditorType.select)
+            .change(async () => {
+                await particles.refresh();
+            })
+            .addItems(outModesValues);
+
+        group
+            .addProperty("left", "Left", EditorType.select)
+            .change(async () => {
+                await particles.refresh();
+            })
+            .addItems(outModesValues);
+
+        group
+            .addProperty("right", "Right", EditorType.select)
+            .change(async () => {
+                await particles.refresh();
+            })
+            .addItems(outModesValues);
+
+        group
+            .addProperty("top", "Top", EditorType.select)
+            .change(async () => {
+                await particles.refresh();
+            })
+            .addItems(outModesValues);
     }
 
     private addTrail(): void {
@@ -173,29 +232,6 @@ export class MoveOptionsEditor extends EditorBase {
         group.addProperty("enable", "Enable", EditorType.boolean).change(async () => {
             await particles.refresh();
         });
-
-        group
-            .addProperty("outMode", "Out Mode", EditorType.select)
-            .change(async () => {
-                await particles.refresh();
-            })
-            .addItems([
-                {
-                    value: OutMode.bounce,
-                },
-                {
-                    value: OutMode.bounceHorizontal,
-                },
-                {
-                    value: OutMode.bounceVertical,
-                },
-                {
-                    value: OutMode.destroy,
-                },
-                {
-                    value: OutMode.out,
-                },
-            ]);
 
         group.addProperty("random", "Random", EditorType.boolean).change(async () => {
             await particles.refresh();

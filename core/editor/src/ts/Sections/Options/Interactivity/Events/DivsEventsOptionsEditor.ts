@@ -3,7 +3,7 @@ import { Container } from "tsparticles/dist/Core/Container";
 import type { SingleOrMultiple } from "tsparticles";
 import type { IDivEvent } from "tsparticles/dist/Options/Interfaces/Interactivity/Events/IDivEvent";
 import { EditorBase } from "../../../../EditorBase";
-import { DivType } from "tsparticles";
+import { ClickMode, DivMode, DivType } from "tsparticles";
 
 export class DivsEventsOptionsEditor extends EditorBase {
     public group!: EditorGroup;
@@ -54,15 +54,6 @@ export class DivsEventsOptionsEditor extends EditorBase {
         const particles = this.particles;
         const options = group.data as IDivEvent;
 
-        group
-            .addProperty("enable", "Enable", EditorType.boolean)
-            .change(async () => {
-                await particles.refresh();
-            })
-            .step(0.01)
-            .min(0)
-            .max(1);
-
         if (options.selectors instanceof Array) {
             const selectorsGroup = group.addGroup("selectors", "Selectors");
 
@@ -82,6 +73,32 @@ export class DivsEventsOptionsEditor extends EditorBase {
                 await particles.refresh();
             });
         }
+
+        group
+            .addProperty("enable", "Enable", EditorType.boolean)
+            .change(async () => {
+                await particles.refresh();
+            })
+            .step(0.01)
+            .min(0)
+            .max(1);
+
+        this.group
+            .addProperty("mode", "Mode", EditorType.select)
+            .change(async () => {
+                await particles.refresh();
+            })
+            .addItems([
+                {
+                    value: DivMode.bounce,
+                },
+                {
+                    value: DivMode.bubble,
+                },
+                {
+                    value: DivMode.repulse,
+                },
+            ]);
 
         group
             .addProperty("type", "Type", EditorType.select)

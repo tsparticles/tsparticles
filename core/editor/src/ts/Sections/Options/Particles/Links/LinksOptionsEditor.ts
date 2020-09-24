@@ -84,6 +84,15 @@ export class LinksOptionsEditor extends EditorBase {
         });
 
         group
+            .addProperty("frequency", "Frequency", EditorType.number)
+            .min(0)
+            .max(1)
+            .step(0.01)
+            .change(async () => {
+                await particles.refresh();
+            });
+
+        group
             .addProperty("opacity", "Opacity", EditorType.number)
             .change(async () => {
                 await particles.refresh();
@@ -125,6 +134,15 @@ export class LinksOptionsEditor extends EditorBase {
         this.group.addProperty("enable", "Enable", EditorType.boolean).change(async () => {
             await particles.refresh();
         });
+
+        this.group
+            .addProperty("frequency", "Frequency", EditorType.number)
+            .min(0)
+            .max(1)
+            .step(0.01)
+            .change(async () => {
+                await particles.refresh();
+            });
 
         this.group.addProperty("id", "Id", EditorType.string).change(async () => {
             await particles.refresh();

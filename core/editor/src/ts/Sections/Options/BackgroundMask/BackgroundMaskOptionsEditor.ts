@@ -4,6 +4,7 @@ import type { IBackgroundMask } from "tsparticles/dist/Options/Interfaces/Backgr
 import type { IBackgroundMaskCover } from "tsparticles/dist/Options/Interfaces/BackgroundMask/IBackgroundMaskCover";
 import { EditorGroup, EditorType } from "object-gui";
 import { EditorBase } from "../../../EditorBase";
+import { ClickMode } from "tsparticles";
 
 export class BackgroundMaskOptionsEditor extends EditorBase {
     public group!: EditorGroup;
@@ -49,6 +50,92 @@ export class BackgroundMaskOptionsEditor extends EditorBase {
 
     private addProperties(): void {
         const particles = this.particles;
+
+        this.group
+            .addProperty("composite", "Composite", EditorType.select)
+            .change(async () => {
+                await particles.refresh();
+            })
+            .addItems([
+                {
+                    value: "source-over",
+                },
+                {
+                    value: "source-in",
+                },
+                {
+                    value: "source-out",
+                },
+                {
+                    value: "source-atop",
+                },
+                {
+                    value: "destination-over",
+                },
+                {
+                    value: "destination-in",
+                },
+                {
+                    value: "destination-out",
+                },
+                {
+                    value: "destination-atop",
+                },
+                {
+                    value: "lighter",
+                },
+                {
+                    value: "copy",
+                },
+                {
+                    value: "xor",
+                },
+                {
+                    value: "multiply",
+                },
+                {
+                    value: "screen",
+                },
+                {
+                    value: "overlay",
+                },
+                {
+                    value: "darken",
+                },
+                {
+                    value: "lighten",
+                },
+                {
+                    value: "color-dodge",
+                },
+                {
+                    value: "color-burn",
+                },
+                {
+                    value: "hard-light",
+                },
+                {
+                    value: "soft-light",
+                },
+                {
+                    value: "difference",
+                },
+                {
+                    value: "exclusion",
+                },
+                {
+                    value: "hue",
+                },
+                {
+                    value: "saturation",
+                },
+                {
+                    value: "color",
+                },
+                {
+                    value: "luminosity",
+                },
+            ]);
 
         this.group.addProperty("enable", "Enable", EditorType.boolean).change(async () => {
             await particles.refresh();
