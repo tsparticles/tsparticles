@@ -4,7 +4,6 @@ import type { IBackgroundMask } from "tsparticles/dist/Options/Interfaces/Backgr
 import type { IBackgroundMaskCover } from "tsparticles/dist/Options/Interfaces/BackgroundMask/IBackgroundMaskCover";
 import { EditorGroup, EditorType } from "object-gui";
 import { EditorBase } from "../../../EditorBase";
-import { ClickMode } from "tsparticles";
 
 export class BackgroundMaskOptionsEditor extends EditorBase {
     public group!: EditorGroup;

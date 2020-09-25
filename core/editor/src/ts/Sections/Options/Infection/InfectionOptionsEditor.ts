@@ -1,7 +1,7 @@
-import { Container } from "tsparticles/dist/Core/Container";
-import { IInfection } from "tsparticles/dist/Options/Interfaces/Infection/IInfection";
-import { IInfectionStage } from "tsparticles/dist/Options/Interfaces/Infection/IInfectionStage";
-import { ColorUtils, EditorGroup, IHsl, IRgb, EditorType } from "object-gui";
+import type { Container } from "tsparticles/dist/Core/Container";
+import type { IInfection } from "tsparticles/dist/Options/Interfaces/Infection/IInfection";
+import type { IInfectionStage } from "tsparticles/dist/Options/Interfaces/Infection/IInfectionStage";
+import { EditorGroup, EditorType } from "object-gui";
 import { EditorBase } from "../../../EditorBase";
 
 export class InfectionOptionsEditor extends EditorBase {

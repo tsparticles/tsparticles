@@ -1,6 +1,6 @@
 import { Container } from "tsparticles/dist/Core/Container";
 import { IShadow } from "tsparticles/dist/Options/Interfaces/Particles/IShadow";
-import { ColorUtils, EditorGroup, IHsl, IRgb, EditorType } from "object-gui";
+import { EditorGroup, EditorType } from "object-gui";
 import { EditorBase } from "../../../../EditorBase";
 
 export class ShadowOptionsEditor extends EditorBase {

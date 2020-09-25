@@ -1,8 +1,7 @@
 import type { Container } from "tsparticles/dist/Core/Container";
 import type { ITwinkle } from "tsparticles/dist/Options/Interfaces/Particles/Twinkle/ITwinkle";
 import type { ITwinkleValues } from "tsparticles/dist/Options/Interfaces/Particles/Twinkle/ITwinkleValues";
-import { ColorUtils } from "tsparticles";
-import { EditorGroup, IRgb, IHsl, EditorType } from "object-gui";
+import { EditorGroup, EditorType } from "object-gui";
 import { EditorBase } from "../../../../EditorBase";
 
 export class TwinkleOptionsEditor extends EditorBase {

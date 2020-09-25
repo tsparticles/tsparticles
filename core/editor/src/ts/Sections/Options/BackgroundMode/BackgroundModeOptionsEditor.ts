@@ -1,7 +1,7 @@
 import type { Container } from "tsparticles/dist/Core/Container";
 import { EditorGroup, EditorType } from "object-gui";
 import { EditorBase } from "../../../EditorBase";
-import { IBackgroundMode } from "tsparticles/dist/Options/Interfaces/BackgroundMode/IBackgroundMode";
+import type { IBackgroundMode } from "tsparticles/dist/Options/Interfaces/BackgroundMode/IBackgroundMode";
 
 export class BackgroundModeOptionsEditor extends EditorBase {
     private group!: EditorGroup;
