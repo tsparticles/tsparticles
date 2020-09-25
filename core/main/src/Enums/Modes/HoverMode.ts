@@ -6,6 +6,7 @@ export enum HoverMode {
     bubble = "bubble",
     connect = "connect",
     grab = "grab",
+    light = "light",
     repulse = "repulse",
     slow = "slow",
     trail = "trail",

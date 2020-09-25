@@ -1,13 +1,13 @@
 import type { ICoordinates } from "../Core/Interfaces/ICoordinates";
-import { DivMode, MoveDirection } from "../Enums";
+import { DivMode } from "../Enums";
 import type { ICharacterShape } from "../Options/Interfaces/Particles/Shape/ICharacterShape";
 import type { IBounds } from "../Core/Interfaces/IBounds";
 import type { IDimension } from "../Core/Interfaces/IDimension";
 import type { IImage } from "../Core/Interfaces/IImage";
-import type { IParticle } from "../Core/Interfaces/IParticle";
-import type { SingleOrMultiple } from "../Types/SingleOrMultiple";
+import type { SingleOrMultiple } from "../Types";
 import { DivEvent } from "../Options/Classes/Interactivity/Events/DivEvent";
 import type { IModeDiv } from "../Options/Interfaces/Interactivity/Modes/IModeDiv";
+import { OutModeDirection } from "../Enums/Directions/OutModeDirection";
 
 type CSSOMString = string;
 type FontFaceLoadStatus = "unloaded" | "loading" | "loaded" | "error";
@@ -67,7 +67,7 @@ export class Utils {
     }
 
     public static get animate(): (callback: FrameRequestCallback) => number {
-        return this.isSsr()
+        return Utils.isSsr()
             ? (callback: FrameRequestCallback): number => setTimeout(callback)
             : (callback: FrameRequestCallback): number =>
                   (
@@ -81,7 +81,7 @@ export class Utils {
     }
 
     public static get cancelAnimation(): (handle: number) => void {
-        return this.isSsr()
+        return Utils.isSsr()
             ? (handle: number): void => clearTimeout(handle)
             : (handle: number): void =>
                   (
@@ -95,96 +95,12 @@ export class Utils {
     }
 
     /**
-     * Clamps a number between a minimum and maximum value
-     * @param num the source number
-     * @param min the minimum value
-     * @param max the maximum value
-     */
-    public static clamp(num: number, min: number, max: number): number {
-        return Math.min(Math.max(num, min), max);
-    }
-
-    /**
      * Check if a value is equal to the destination, if same type, or is in the provided array
      * @param value the value to check
      * @param array the data array or single value
      */
     public static isInArray<T>(value: T, array: SingleOrMultiple<T>): boolean {
         return value === array || (array instanceof Array && array.indexOf(value) > -1);
-    }
-
-    /**
-     *
-     * @param comp1
-     * @param comp2
-     * @param weight1
-     * @param weight2
-     */
-    public static mix(comp1: number, comp2: number, weight1: number, weight2: number): number {
-        return Math.floor((comp1 * weight1 + comp2 * weight2) / (weight1 + weight2));
-    }
-
-    /**
-     * Get Particle base velocity
-     * @param particle the particle to use for calculating the velocity
-     */
-    public static getParticleBaseVelocity(particle: IParticle): ICoordinates {
-        let velocityBase: ICoordinates;
-
-        switch (particle.direction) {
-            case MoveDirection.top:
-                velocityBase = { x: 0, y: -1 };
-                break;
-            case MoveDirection.topRight:
-                velocityBase = { x: 0.5, y: -0.5 };
-                break;
-            case MoveDirection.right:
-                velocityBase = { x: 1, y: -0 };
-                break;
-            case MoveDirection.bottomRight:
-                velocityBase = { x: 0.5, y: 0.5 };
-                break;
-            case MoveDirection.bottom:
-                velocityBase = { x: 0, y: 1 };
-                break;
-            case MoveDirection.bottomLeft:
-                velocityBase = { x: -0.5, y: 1 };
-                break;
-            case MoveDirection.left:
-                velocityBase = { x: -1, y: 0 };
-                break;
-            case MoveDirection.topLeft:
-                velocityBase = { x: -0.5, y: -0.5 };
-                break;
-            default:
-                velocityBase = { x: 0, y: 0 };
-                break;
-        }
-
-        return velocityBase;
-    }
-
-    /**
-     * Gets the distance between two coordinates
-     * @param pointA the first coordinate
-     * @param pointB the second coordinate
-     */
-    public static getDistances(
-        pointA: ICoordinates,
-        pointB: ICoordinates
-    ): { dx: number; dy: number; distance: number } {
-        const dx = pointA.x - pointB.x;
-        const dy = pointA.y - pointB.y;
-        return { dx: dx, dy: dy, distance: Math.sqrt(dx * dx + dy * dy) };
-    }
-
-    /**
-     * Gets the distance between two coordinates
-     * @param pointA the first coordinate
-     * @param pointB the second coordinate
-     */
-    public static getDistance(pointA: ICoordinates, pointB: ICoordinates): number {
-        return this.getDistances(pointA, pointB).distance;
     }
 
     public static async loadFont(character: ICharacterShape): Promise<void> {
@@ -199,23 +115,41 @@ export class Utils {
         return Math.floor(Math.random() * array.length);
     }
 
-    public static itemFromArray<T>(array: T[], index?: number): T {
-        return array[index ?? this.arrayRandomIndex(array)];
+    public static itemFromArray<T>(array: T[], index?: number, useIndex = true): T {
+        const fixedIndex = index !== undefined && useIndex ? index % array.length : Utils.arrayRandomIndex(array);
+
+        return array[fixedIndex];
     }
 
-    public static randomInRange(r1: number, r2: number): number {
-        const max = Math.max(r1, r2),
-            min = Math.min(r1, r2);
-
-        return Math.random() * (max - min) + min;
+    public static isPointInside(
+        point: ICoordinates,
+        size: IDimension,
+        radius?: number,
+        direction?: OutModeDirection
+    ): boolean {
+        return Utils.areBoundsInside(Utils.calculateBounds(point, radius ?? 0), size, direction);
     }
 
-    public static isPointInside(point: ICoordinates, size: IDimension, radius?: number): boolean {
-        return this.areBoundsInside(this.calculateBounds(point, radius ?? 0), size);
-    }
+    public static areBoundsInside(bounds: IBounds, size: IDimension, direction?: OutModeDirection): boolean {
+        let inside = true;
 
-    public static areBoundsInside(bounds: IBounds, size: IDimension): boolean {
-        return bounds.left < size.width && bounds.right > 0 && bounds.top < size.height && bounds.bottom > 0;
+        if (!direction || direction === OutModeDirection.bottom) {
+            inside = bounds.top < size.height;
+        }
+
+        if (inside && (!direction || direction === OutModeDirection.left)) {
+            inside = bounds.right > 0;
+        }
+
+        if (inside && (!direction || direction === OutModeDirection.right)) {
+            inside = bounds.left < size.width;
+        }
+
+        if (inside && (!direction || direction === OutModeDirection.top)) {
+            inside = bounds.bottom > 0;
+        }
+
+        return inside;
     }
 
     public static calculateBounds(point: ICoordinates, radius: number): IBounds {
@@ -271,7 +205,7 @@ export class Utils {
         };
 
         if (image.type !== "svg") {
-            return this.loadImage(source);
+            return Utils.loadImage(source);
         }
 
         const response = await fetch(image.source);
@@ -285,8 +219,12 @@ export class Utils {
         return image;
     }
 
-    public static deepExtend(destination: any, ...sources: any[]): any {
-        for (const source of sources.filter((s) => s !== undefined && s !== null)) {
+    public static deepExtend(destination: unknown, ...sources: unknown[]): unknown {
+        for (const source of sources) {
+            if (source === undefined || source === null) {
+                continue;
+            }
+
             if (typeof source !== "object") {
                 destination = source;
 
@@ -309,13 +247,15 @@ export class Utils {
                     continue;
                 }
 
-                const value = source[key];
+                const sourceDict = source as Record<string, unknown>;
+                const value = sourceDict[key];
                 const isObject = typeof value === "object";
+                const destDict = destination as Record<string, unknown>;
 
-                destination[key] =
+                destDict[key] =
                     isObject && Array.isArray(value)
-                        ? value.map((v) => this.deepExtend(destination[key], v))
-                        : this.deepExtend(destination[key], value);
+                        ? value.map((v) => Utils.deepExtend(destDict[key], v))
+                        : Utils.deepExtend(destDict[key], value);
             }
         }
         return destination;
@@ -338,7 +278,7 @@ export class Utils {
                 const divEnabled = div.enable;
 
                 if (divEnabled && Utils.isInArray(mode, divMode)) {
-                    this.singleDivModeExecute(div, callback);
+                    Utils.singleDivModeExecute(div, callback);
                 }
             }
         } else {
@@ -346,32 +286,46 @@ export class Utils {
             const divEnabled = divs.enable;
 
             if (divEnabled && Utils.isInArray(mode, divMode)) {
-                this.singleDivModeExecute(divs, callback);
+                Utils.singleDivModeExecute(divs, callback);
             }
         }
     }
 
-    public static singleDivModeExecute(div: DivEvent, callback: (id: string, div: DivEvent) => void): void {
-        const ids = div.ids;
+    public static singleDivModeExecute(div: DivEvent, callback: (selector: string, div: DivEvent) => void): void {
+        const selectors = div.selectors;
 
-        if (ids instanceof Array) {
-            for (const id of ids) {
-                callback(id, div);
+        if (selectors instanceof Array) {
+            for (const selector of selectors) {
+                callback(selector, div);
             }
         } else {
-            callback(ids, div);
+            callback(selectors, div);
         }
     }
 
-    public static divMode<T extends IModeDiv>(divs?: SingleOrMultiple<T>, divId?: string): T | undefined {
-        if (!divId || !divs) {
+    public static divMode<T extends IModeDiv>(divs?: SingleOrMultiple<T>, element?: HTMLElement): T | undefined {
+        if (!element || !divs) {
             return;
         }
 
         if (divs instanceof Array) {
-            return divs.find((d) => Utils.isInArray(divId, d.ids));
-        } else if (Utils.isInArray(divId, divs.ids)) {
+            return divs.find((d) => Utils.checkSelector(element, d.selectors));
+        } else if (Utils.checkSelector(element, divs.selectors)) {
             return divs;
+        }
+    }
+
+    private static checkSelector(element: HTMLElement, selectors: SingleOrMultiple<string>): boolean {
+        if (selectors instanceof Array) {
+            for (const selector of selectors) {
+                if (element.matches(selector)) {
+                    return true;
+                }
+            }
+
+            return false;
+        } else {
+            return element.matches(selectors);
         }
     }
 }

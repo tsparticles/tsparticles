@@ -1,6 +1,5 @@
 import type { IStroke } from "../../Options/Interfaces/Particles/IStroke";
 import type { ICoordinates } from "./ICoordinates";
-import type { IRgb } from "./IRgb";
 import type { IVelocity } from "./IVelocity";
 import type { MoveDirection, MoveDirectionAlt, RotateDirection, RotateDirectionAlt, ShapeType } from "../../Enums";
 import type { IParticleImage } from "./IParticleImage";
@@ -9,8 +8,8 @@ import type { IParticleOpacityAnimation } from "./IParticleOpacityAnimation";
 import type { IShapeValues } from "../../Options/Interfaces/Particles/Shape/IShapeValues";
 import type { IBubbleParticleData } from "./IBubbleParticleData";
 import type { IParticles } from "../../Options/Interfaces/Particles/IParticles";
+import type { IHsl, IRgb } from "./Colors";
 import type { ILink } from "./ILink";
-import type { IHsl } from "./IHsl";
 
 /**
  * @category Interfaces
@@ -26,6 +25,7 @@ export interface IParticle {
     readonly destroyed: boolean;
     readonly direction: MoveDirection | keyof typeof MoveDirection | MoveDirectionAlt;
     readonly fill: boolean;
+    readonly id: number;
     readonly image?: IParticleImage;
     readonly initialVelocity: IVelocity;
     readonly links: ILink[];
@@ -37,6 +37,7 @@ export interface IParticle {
     readonly shadowColor: IRgb | undefined;
     readonly shape?: ShapeType | string;
     readonly shapeData?: IShapeValues;
+    readonly sides: number;
     readonly size: IParticleSizeAnimation;
     readonly stroke: IStroke;
     readonly strokeWidth: number;
@@ -46,7 +47,6 @@ export interface IParticle {
     readonly linksWidth?: number;
     readonly moveSpeed?: number;
     readonly sizeValue?: number;
-    readonly randomMinimumSize?: number;
     readonly sizeAnimationSpeed?: number;
 
     getPosition(): ICoordinates;

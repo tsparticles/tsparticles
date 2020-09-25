@@ -1,7 +1,7 @@
 import type { IClickEvent } from "./IClickEvent";
 import type { IHoverEvent } from "./IHoverEvent";
 import type { IDivEvent } from "./IDivEvent";
-import type { SingleOrMultiple } from "../../../../Types/SingleOrMultiple";
+import type { SingleOrMultiple } from "../../../../Types";
 
 /**
  * [[include:Options/Interactivity/Events.md]]

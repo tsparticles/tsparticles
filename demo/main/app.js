@@ -4,7 +4,7 @@ const stylus = require('stylus');
 
 const app = express();
 
-app.use(helmet());
+// app.use(helmet()); // Safari requires https, probably a bug
 
 const port = 3000;
 

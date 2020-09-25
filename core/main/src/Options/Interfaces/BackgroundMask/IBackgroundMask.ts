@@ -1,4 +1,4 @@
-import type { IColor } from "../../../Core/Interfaces/IColor";
+import type { IColor } from "../../../Core/Interfaces/Colors";
 import type { IBackgroundMaskCover } from "./IBackgroundMaskCover";
 
 /**
@@ -8,6 +8,12 @@ import type { IBackgroundMaskCover } from "./IBackgroundMaskCover";
  * @category Options
  */
 export interface IBackgroundMask {
+    /**
+     * Canvas composite operation
+     * values here: https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/globalCompositeOperation
+     */
+    composite: string;
+
     /**
      * The color to use as a canvas background to cover
      */

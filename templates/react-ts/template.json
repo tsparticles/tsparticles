@@ -1,16 +1,16 @@
 {
   "package": {
     "dependencies": {
-      "@testing-library/jest-dom": "^5.9.0",
-      "@testing-library/react": "^10.2.1",
-      "@testing-library/user-event": "^12.0.2",
-      "@types/node": "^12.0.0",
-      "@types/react": "^16.9.0",
-      "@types/react-dom": "^16.9.0",
-      "@types/jest": "^25.0.0",
-      "react-tsparticles": "^1.17.12",
-      "typescript": "^3.9.6",
-      "web-vitals": "^0.2.2"
+      "@testing-library/jest-dom": "^5.11.4",
+      "@testing-library/react": "^11.0.4",
+      "@testing-library/user-event": "^12.1.6",
+      "@types/node": "^14.11.2",
+      "@types/react": "^16.9.49",
+      "@types/react-dom": "^16.9.8",
+      "@types/jest": "^26.0.14",
+      "react-tsparticles": "^1.18.0-alpha.14",
+      "typescript": "^4.0.3",
+      "web-vitals": "^0.2.4"
     }
   }
 }

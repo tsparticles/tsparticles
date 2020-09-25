@@ -4,7 +4,7 @@ import { Utils } from "../Utils";
 import type { ICharacterShape } from "../Options/Interfaces/Particles/Shape/ICharacterShape";
 import { ShapeType } from "../Enums";
 import type { Container } from "../Core/Container";
-import { SingleOrMultiple } from "../Types/SingleOrMultiple";
+import type { SingleOrMultiple } from "../Types";
 
 interface TextParticle extends IParticle {
     text?: string;
@@ -14,6 +14,10 @@ interface TextParticle extends IParticle {
  * @category Shape Drawers
  */
 export class TextDrawer implements IShapeDrawer {
+    public getSidesCount(): number {
+        return 12;
+    }
+
     public async init(container: Container): Promise<void> {
         const options = container.options;
 

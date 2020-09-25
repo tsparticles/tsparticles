@@ -2,10 +2,8 @@
 // Project: https://github.com/matteobruni/react-tsparticles
 // Definitions by: Matteo Bruni <https://github.com/matteobruni>
 // Definitions: https://github.com/DefinitelyTyped/DefinitelyTyped
-
-/// <reference types="preact/compat" />
 import { PureComponent } from "preact/compat";
-import type { ParticlesProps } from "./src/";
+import type { IParticlesProps, ParticlesProps } from "./src/";
 import type { IOptions } from "tsparticles/dist/Options/Interfaces/IOptions";
 import type { RecursivePartial } from "tsparticles/dist/Types/RecursivePartial";
 import type { IPolygonMaskOptions } from "tsparticles/dist/Plugins/PolygonMask/PolygonMaskPlugin";
@@ -16,9 +14,9 @@ export type IParticlesParams = RecursivePartial<IOptions & IPolygonMaskOptions &
 
 export * from "tsparticles/dist/Enums";
 
-export { ParticlesProps };
+export { IParticlesProps, ParticlesProps };
 
-type Particles = PureComponent<ParticlesProps>;
+type Particles = PureComponent<IParticlesProps>;
 
 declare const Particles: Particles;
 

@@ -22,8 +22,13 @@ const getConfig = (entry) => {
         output: {
             path: path.resolve(__dirname, "dist"),
             filename: "[name].js",
-            libraryTarget: "window",
-            library: ""
+            libraryTarget: "umd",
+            /*library: {
+                root: "tsparticles",
+                commonjs: "tsparticles",
+                amd: "tsparticles",
+            },*/
+            globalObject: "this"
         },
         resolve: {
             extensions: [ ".js", ".json" ]

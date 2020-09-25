@@ -23,6 +23,8 @@ Otherwise you can retrieve any loaded instance using {@link MainSlim.dom | tsPar
 {@link exportImage | exportImage(callback, type?, quality?)}: Exports an image of the canvas (without the background property if set), type and quality are optional and are the image output type and quality.<br />
 {@link exportConfiguration | exportConfiguration()}: Exports the current configuration in JSON, returns a string
 
-{@link start | start()}: Starts the container, it's different than {@link play | play()}, this will reload everything.<br />
-{@link stop | stop()}: Stops the container, it's different than {@link pause | pause()}, this will clean up what need to be reloaded.<br />
+{@link start | start()}: Starts the container, it's different from {@link play | play()}, this will reload everything.<br />
+{@link stop | stop()}: Stops the container, it's different from {@link pause | pause()}, this will clean up what need to be reloaded.<br />
 {@link refresh | refresh()}: Restarts the container, just a {@link stop | stop()}/{@link start | start()} shortcut.
+
+{@link setTheme | setTheme(name)}: Sets the specified theme reloading options, if name is `undefined` the default theme will be used (if set)

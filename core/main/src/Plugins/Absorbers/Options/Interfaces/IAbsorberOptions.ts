@@ -1,4 +1,4 @@
-import type { SingleOrMultiple } from "../../../../Types/SingleOrMultiple";
+import type { SingleOrMultiple } from "../../../../Types";
 import type { IAbsorber } from "./IAbsorber";
 import type { IInteractivity } from "../../../../Options/Interfaces/Interactivity/IInteractivity";
 import type { IModes } from "../../../../Options/Interfaces/Interactivity/Modes/IModes";

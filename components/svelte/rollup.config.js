@@ -3,6 +3,8 @@ import resolve from '@rollup/plugin-node-resolve';
 import commonjs from '@rollup/plugin-commonjs';
 import pkg from './package.json';
 import { terser } from 'rollup-plugin-terser';
+import sveltePreprocess from 'svelte-preprocess';
+import typescript from '@rollup/plugin-typescript';
 
 const name = pkg.name
     .replace(/^(@\S+\/)?(svelte-)?(\S+)/, '$3')
@@ -10,7 +12,7 @@ const name = pkg.name
     .replace(/-\w/g, m => m[1].toUpperCase());
 
 export default {
-    input: 'src/index.js',
+    input: 'src/index.ts',
     output: [
         { file: pkg.module, 'format': 'es' },
         { file: pkg.main, 'format': 'umd', name }
@@ -19,6 +21,7 @@ export default {
         svelte(),
         resolve(),
         commonjs(),
+        typescript({ sourceMap: false }),
         terser()
     ]
 };

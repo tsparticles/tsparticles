@@ -1,4 +1,4 @@
-import type { IColor } from "../../../Core/Interfaces/IColor";
+import type { IColor } from "../../../Core/Interfaces/Colors";
 
 /**
  * Infection stage options

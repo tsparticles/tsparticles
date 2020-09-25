@@ -1,14 +1,13 @@
 import type { Container } from "./Container";
 import type { IDimension } from "./Interfaces/IDimension";
-import type { IRgb } from "./Interfaces/IRgb";
+import type { IRgb, IRgba } from "./Interfaces/Colors";
 import type { ICoordinates } from "./Interfaces/ICoordinates";
 import type { IParticle } from "./Interfaces/IParticle";
 import type { IContainerPlugin } from "./Interfaces/IContainerPlugin";
 import type { ILink } from "./Interfaces/ILink";
-import { CanvasUtils, ColorUtils, Constants } from "../Utils";
+import { CanvasUtils, ColorUtils, Constants, Utils } from "../Utils";
 import type { Particle } from "./Particle";
 import type { IDelta } from "./Interfaces/IDelta";
-import type { IRgba } from "./Interfaces/IRgba";
 
 /**
  * Canvas manager
@@ -29,9 +28,10 @@ export class Canvas {
      * The particles canvas context
      */
     private context: CanvasRenderingContext2D | null;
-    private generatedCanvas: boolean;
+    private generatedCanvas;
     private coverColor?: IRgba;
     private trailFillColor?: IRgb;
+    private originalStyle?: CSSStyleDeclaration;
 
     /**
      * Constructor of canvas manager
@@ -55,6 +55,27 @@ export class Canvas {
         this.resize();
 
         const options = this.container.options;
+
+        if (this.element) {
+            if (options.backgroundMode.enable) {
+                this.originalStyle = Utils.deepExtend({}, this.element.style) as CSSStyleDeclaration;
+
+                this.element.style.position = "fixed";
+                this.element.style.zIndex = options.backgroundMode.zIndex.toString(10);
+                this.element.style.top = "0";
+                this.element.style.left = "0";
+                this.element.style.width = "100%";
+                this.element.style.height = "100%";
+            } else {
+                this.element.style.position = this.originalStyle?.position ?? "";
+                this.element.style.zIndex = this.originalStyle?.zIndex ?? "";
+                this.element.style.top = this.originalStyle?.top ?? "";
+                this.element.style.left = this.originalStyle?.left ?? "";
+                this.element.style.width = this.originalStyle?.width ?? "";
+                this.element.style.height = this.originalStyle?.height ?? "";
+            }
+        }
+
         const cover = options.backgroundMask.cover;
         const color = cover.color;
         const trail = options.particles.move.trail;
@@ -85,10 +106,12 @@ export class Canvas {
             this.element?.remove();
         }
 
-        this.generatedCanvas = generatedCanvas ?? false;
+        this.generatedCanvas = generatedCanvas ?? this.generatedCanvas;
         this.element = canvas;
+        this.originalStyle = Utils.deepExtend({}, this.element.style) as CSSStyleDeclaration;
         this.size.height = canvas.offsetHeight;
         this.size.width = canvas.offsetWidth;
+
         this.context = this.element.getContext("2d");
         this.container.retina.init();
         this.initBackground();
@@ -150,6 +173,85 @@ export class Canvas {
         }
     }
 
+    public windowResize(): void {
+        if (!this.element) {
+            return;
+        }
+
+        const container = this.container;
+        const options = container.options;
+        const pxRatio = container.retina.pixelRatio;
+
+        container.canvas.size.width = this.element.offsetWidth * pxRatio;
+        container.canvas.size.height = this.element.offsetHeight * pxRatio;
+
+        this.element.width = container.canvas.size.width;
+        this.element.height = container.canvas.size.height;
+
+        /* repaint canvas on anim disabled */
+        if (!options.particles.move.enable) {
+            container.particles.redraw();
+        }
+
+        /* density particles enabled */
+        container.densityAutoParticles();
+
+        for (const [, plugin] of container.plugins) {
+            if (plugin.resize !== undefined) {
+                plugin.resize();
+            }
+        }
+    }
+
+    public drawConnectLine(p1: IParticle, p2: IParticle): void {
+        const lineStyle = this.lineStyle(p1, p2);
+
+        if (!lineStyle) {
+            return;
+        }
+
+        const ctx = this.context;
+
+        if (!ctx) {
+            return;
+        }
+
+        const pos1 = p1.getPosition();
+        const pos2 = p2.getPosition();
+
+        CanvasUtils.drawConnectLine(ctx, p1.linksWidth ?? this.container.retina.linksWidth, lineStyle, pos1, pos2);
+    }
+
+    public drawGrabLine(particle: IParticle, lineColor: IRgb, opacity: number, mousePos: ICoordinates): void {
+        const container = this.container;
+        const ctx = container.canvas.context;
+
+        if (!ctx) {
+            return;
+        }
+
+        const beginPos = particle.getPosition();
+
+        CanvasUtils.drawGrabLine(
+            ctx,
+            particle.linksWidth ?? container.retina.linksWidth,
+            beginPos,
+            mousePos,
+            lineColor,
+            opacity
+        );
+    }
+
+    public drawParticleShadow(particle: Particle, mousePos: ICoordinates): void {
+        if (!this.context) {
+            return;
+        }
+
+        const radius = particle.bubble.radius ?? particle.size.value;
+
+        CanvasUtils.drawParticleShadow(this.container, this.context, particle, radius, mousePos);
+    }
+
     public drawLinkTriangle(p1: IParticle, link1: ILink, link2: ILink): void {
         const container = this.container;
         const options = container.options;
@@ -207,6 +309,7 @@ export class Canvas {
             pos2,
             pos3,
             options.backgroundMask.enable,
+            options.backgroundMask.composite,
             colorTriangle,
             opacityTriangle
         );
@@ -291,64 +394,30 @@ export class Canvas {
             container.canvas.size,
             p1.particlesOptions.links.warp,
             options.backgroundMask.enable,
+            options.backgroundMask.composite,
             colorLine,
             opacity,
             p1.particlesOptions.links.shadow
         );
     }
 
-    public drawConnectLine(p1: IParticle, p2: IParticle): void {
-        const lineStyle = this.lineStyle(p1, p2);
-
-        if (!lineStyle) {
-            return;
-        }
-
-        const ctx = this.context;
-
-        if (!ctx) {
-            return;
-        }
-
-        const pos1 = p1.getPosition();
-        const pos2 = p2.getPosition();
-
-        CanvasUtils.drawConnectLine(ctx, p1.linksWidth ?? this.container.retina.linksWidth, lineStyle, pos1, pos2);
-    }
-
-    public drawGrabLine(particle: IParticle, lineColor: IRgb, opacity: number, mousePos: ICoordinates): void {
-        const container = this.container;
-        const ctx = container.canvas.context;
-
-        if (!ctx) {
-            return;
-        }
-
-        const beginPos = particle.getPosition();
-
-        CanvasUtils.drawGrabLine(
-            ctx,
-            particle.linksWidth ?? container.retina.linksWidth,
-            beginPos,
-            mousePos,
-            lineColor,
-            opacity
-        );
-    }
-
     public drawParticle(particle: Particle, delta: IDelta): void {
-        if (particle.image?.loaded === false) {
+        if (particle.image?.loaded === false || particle.spawning || particle.destroyed) {
             return;
         }
 
         const pfColor = particle.getFillColor();
-        if (pfColor === undefined) {
+        const psColor = particle.getStrokeColor() ?? pfColor;
+
+        if (!pfColor && !psColor) {
             return;
         }
 
-        const psColor = particle.getStrokeColor() ?? pfColor;
-        const options = this.container.options;
-        const twinkle = particle.particlesOptions.twinkle.particles;
+        const container = this.container;
+        const options = container.options;
+        const particles = container.particles;
+        const pOptions = particle.particlesOptions;
+        const twinkle = pOptions.twinkle.particles;
         const twinkleFreq = twinkle.frequency;
         const twinkleRgb = ColorUtils.colorToRgb(twinkle.color);
         const twinkling = twinkle.enable && Math.random() < twinkleFreq;
@@ -360,13 +429,17 @@ export class Canvas {
         const infectionColor = infectionStage !== undefined ? infectionStages[infectionStage].color : undefined;
         const infectionRgb = ColorUtils.colorToRgb(infectionColor);
         const fColor =
-            twinkling && twinkleRgb !== undefined ? twinkleRgb : infectionRgb ?? ColorUtils.hslToRgb(pfColor);
+            twinkling && twinkleRgb !== undefined
+                ? twinkleRgb
+                : infectionRgb ?? (pfColor ? ColorUtils.hslToRgb(pfColor) : undefined);
         const sColor =
-            twinkling && twinkleRgb !== undefined ? twinkleRgb : infectionRgb ?? ColorUtils.hslToRgb(psColor);
+            twinkling && twinkleRgb !== undefined
+                ? twinkleRgb
+                : infectionRgb ?? (psColor ? ColorUtils.hslToRgb(psColor) : undefined);
 
         const fillColorValue = fColor !== undefined ? ColorUtils.getStyleFromRgb(fColor, opacity) : undefined;
 
-        if (!this.context || !fillColorValue) {
+        if (!this.context || (!fillColorValue && !sColor)) {
             return;
         }
 
@@ -377,19 +450,36 @@ export class Canvas {
 
         if (particle.links.length > 0) {
             this.context.save();
+            const p1Links = particle.links.filter((l) => {
+                const linkFreq = container.particles.getLinkFrequency(particle, l.destination);
 
-            for (const link of particle.links) {
-                if (particle.particlesOptions.links.triangles.enable) {
-                    const links = particle.links.map((l) => l.destination);
-                    const vertices = link.destination.links.filter((t) => links.indexOf(t.destination) >= 0);
+                return linkFreq <= pOptions.links.frequency;
+            });
+
+            for (const link of p1Links) {
+                const p2 = link.destination;
+
+                if (pOptions.links.triangles.enable) {
+                    const links = p1Links.map((l) => l.destination);
+                    const vertices = p2.links.filter((t) => {
+                        const linkFreq = container.particles.getLinkFrequency(p2, t.destination);
+
+                        return linkFreq <= p2.particlesOptions.links.frequency && links.indexOf(t.destination) >= 0;
+                    });
 
                     if (vertices.length) {
-                        for (const vertice of vertices) {
-                            this.drawLinkTriangle(particle, link, vertice);
+                        for (const vertex of vertices) {
+                            const p3 = vertex.destination;
+                            const triangleFreq = particles.getTriangleFrequency(particle, p2, p3);
+
+                            if (triangleFreq > pOptions.links.triangles.frequency) {
+                                continue;
+                            }
+
+                            this.drawLinkTriangle(particle, link, vertex);
                         }
                     }
                 }
-
                 this.drawLinkLine(particle, link);
             }
 
@@ -405,6 +495,7 @@ export class Canvas {
                 fillColorValue,
                 strokeColorValue,
                 options.backgroundMask.enable,
+                options.backgroundMask.composite,
                 radius,
                 opacity,
                 particle.particlesOptions.shadow
@@ -471,5 +562,13 @@ export class Canvas {
         if (background.size) {
             elementStyle.backgroundSize = background.size;
         }
+    }
+
+    public drawLight(mousePos: ICoordinates): void {
+        if (!this.context) {
+            return;
+        }
+
+        CanvasUtils.drawLight(this.container, this.context, mousePos);
     }
 }

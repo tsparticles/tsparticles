@@ -2,13 +2,13 @@ import { Container } from "../../Core/Container";
 import type { ICoordinates } from "../../Core/Interfaces/ICoordinates";
 import { InlineArrangement, Type } from "./Enums";
 import { Particle } from "../../Core/Particle";
-import { ColorUtils, Constants, Utils } from "../../Utils";
+import { ColorUtils, Constants, NumberUtils, Utils } from "../../Utils";
 import type { IDimension } from "../../Core/Interfaces/IDimension";
 import type { ISvgPath } from "./Interfaces/ISvgPath";
 import type { IContainerPlugin } from "../../Core/Interfaces/IContainerPlugin";
 import type { IDrawStroke } from "./Options/Interfaces/IDrawStroke";
 import type { IOptions } from "../../Options/Interfaces/IOptions";
-import type { RecursivePartial } from "../../Types/RecursivePartial";
+import type { RecursivePartial } from "../../Types";
 import type { IPolygonMask } from "./Options/Interfaces/IPolygonMask";
 import { PolygonMask } from "./Options/Classes/PolygonMask";
 
@@ -48,10 +48,10 @@ export class PolygonMaskInstance implements IContainerPlugin {
     public paths?: ISvgPath[];
     public dimension: IDimension;
     public offset?: ICoordinates;
-    public readonly path2DSupported: boolean;
-    public readonly options: PolygonMask;
+    public readonly path2DSupported;
+    public readonly options;
 
-    private polygonMaskMoveRadius: number;
+    private polygonMaskMoveRadius;
 
     constructor(private readonly container: Container) {
         this.dimension = {
@@ -251,7 +251,7 @@ export class PolygonMaskInstance implements IContainerPlugin {
             return;
         }
 
-        const pos = Utils.deepExtend({}, position ? position : this.randomPoint());
+        const pos = Utils.deepExtend({}, position ? position : this.randomPoint()) as ICoordinates;
 
         if (options.type === Type.inline && particle) {
             particle.initialPosition = pos;
@@ -271,7 +271,7 @@ export class PolygonMaskInstance implements IContainerPlugin {
                 return true;
             }
         } else if (options.enable && options.type === Type.inline && particle.initialPosition) {
-            const dist = Utils.getDistance(particle.initialPosition, particle.getPosition());
+            const dist = NumberUtils.getDistance(particle.initialPosition, particle.getPosition());
 
             if (dist > this.polygonMaskMoveRadius) {
                 PolygonMaskInstance.polygonBounce(particle);

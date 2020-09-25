@@ -4,6 +4,7 @@ export * from "./CircleWarp";
 export * from "./ColorUtils";
 export * from "./Constants";
 export * from "./EventListeners";
+export * from "./NumberUtils";
 export * from "./Plugins";
 export * from "./Point";
 export * from "./QuadTree";

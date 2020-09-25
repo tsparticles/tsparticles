@@ -4,17 +4,16 @@ import { Container } from "../../src/Core/Container";
 import { Canvas } from "../../src/Core/Canvas";
 
 export class TestCanvas {
-    private container: Container;
     public canvas: Canvas;
+    private container: Container;
 
     constructor(container: Container, width: number, height: number) {
         const newCanvas = createCanvas(width, height) as any;
         newCanvas.offsetHeight = newCanvas.height;
         newCanvas.offsetWidth = newCanvas.width;
         this.container = container;
-        this.canvas = new Canvas(this.container);
+        this.canvas = container.canvas;
         this.canvas.loadCanvas(newCanvas as HTMLCanvasElement);
-        this.container.canvas = this.canvas;
     }
 
     /**
@@ -32,8 +31,7 @@ export class TestCanvas {
         const newCanvas = createCanvas(width, height) as any;
         newCanvas.offsetHeight = newCanvas.height;
         newCanvas.offsetWidth = newCanvas.width;
-        this.canvas = new Canvas(this.container);
+        this.canvas = this.container.canvas;
         this.canvas.loadCanvas(newCanvas as HTMLCanvasElement);
-        this.container.canvas = this.canvas;
     }
 }

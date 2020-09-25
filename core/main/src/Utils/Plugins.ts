@@ -1,7 +1,7 @@
 import type { IContainerPlugin } from "../Core/Interfaces/IContainerPlugin";
 import type { IPlugin } from "../Core/Interfaces/IPlugin";
 import type { Container } from "../Core/Container";
-import type { RecursivePartial } from "../Types/RecursivePartial";
+import type { RecursivePartial } from "../Types";
 import type { IOptions } from "../Options/Interfaces/IOptions";
 import type { IShapeDrawer } from "../Core/Interfaces/IShapeDrawer";
 import type { Options } from "../Options/Classes/Options";
@@ -18,7 +18,7 @@ export class Plugins {
     private static readonly drawers: Map<string, IShapeDrawer> = new Map<string, IShapeDrawer>();
 
     public static getPlugin(plugin: string): IPlugin | undefined {
-        return Plugins.plugins.filter((t) => t.id === plugin)[0];
+        return Plugins.plugins.find((t) => t.id === plugin);
     }
 
     public static addPlugin(plugin: IPlugin): void {
@@ -29,9 +29,11 @@ export class Plugins {
 
     public static getAvailablePlugins(container: Container): Map<string, IContainerPlugin> {
         const res = new Map<string, IContainerPlugin>();
-        const availablePlugins = Plugins.plugins.filter((t) => t.needsPlugin(container.options));
 
-        for (const plugin of availablePlugins) {
+        for (const plugin of Plugins.plugins) {
+            if (!plugin.needsPlugin(container.options)) {
+                continue;
+            }
             res.set(plugin.id, plugin.getPlugin(container));
         }
 

@@ -2,10 +2,12 @@ import type { IMove } from "../../../Interfaces/Particles/Move/IMove";
 import { Attract } from "./Attract";
 import { MoveDirection, MoveDirectionAlt, OutMode, OutModeAlt } from "../../../../Enums";
 import { Trail } from "./Trail";
-import type { RecursivePartial } from "../../../../Types/RecursivePartial";
+import type { RecursivePartial } from "../../../../Types";
 import { Noise } from "./Noise/Noise";
 import type { IOptionLoader } from "../../../Interfaces/IOptionLoader";
 import { MoveAngle } from "./MoveAngle";
+import { MoveGravity } from "./MoveGravity";
+import { OutModes } from "./OutModes";
 
 /**
  * [[include:Options/Particles/Move.md]]
@@ -59,27 +61,48 @@ export class Move implements IMove, IOptionLoader<IMove> {
         this.outMode = value;
     }
 
-    public angle: MoveAngle;
-    public attract: Attract;
+    /**
+     *
+     * @deprecated this property is obsolete, please use the new outMode
+     */
+    public get outMode(): OutMode | keyof typeof OutMode | OutModeAlt {
+        return this.outModes.default;
+    }
+
+    /**
+     *
+     * @deprecated this property is obsolete, please use the new outMode
+     * @param value
+     */
+    public set outMode(value: OutMode | keyof typeof OutMode | OutModeAlt) {
+        this.outModes.default = value;
+    }
+
+    public angle;
+    public attract;
     public direction: MoveDirection | keyof typeof MoveDirection | MoveDirectionAlt;
-    public enable: boolean;
-    public noise: Noise;
-    public outMode: OutMode | keyof typeof OutMode | OutModeAlt;
-    public random: boolean;
-    public speed: number;
-    public straight: boolean;
-    public trail: Trail;
-    public vibrate: boolean;
-    public warp: boolean;
+    public enable;
+    public gravity;
+    public noise;
+    public outModes: OutModes;
+    public random;
+    public size;
+    public speed;
+    public straight;
+    public trail;
+    public vibrate;
+    public warp;
 
     constructor() {
         this.angle = new MoveAngle();
         this.attract = new Attract();
         this.direction = MoveDirection.none;
         this.enable = false;
+        this.gravity = new MoveGravity();
         this.noise = new Noise();
-        this.outMode = OutMode.out;
+        this.outModes = new OutModes();
         this.random = false;
+        this.size = false;
         this.speed = 2;
         this.straight = false;
         this.trail = new Trail();
@@ -110,16 +133,27 @@ export class Move implements IMove, IOptionLoader<IMove> {
             this.enable = data.enable;
         }
 
+        this.gravity.load(data.gravity);
         this.noise.load(data.noise);
 
         const outMode = data.outMode ?? data.out_mode;
 
-        if (outMode !== undefined) {
-            this.outMode = outMode;
+        if (data.outModes !== undefined || outMode !== undefined) {
+            if (typeof data.outModes === "string" || (data.outModes === undefined && outMode !== undefined)) {
+                this.outModes.load({
+                    default: data.outModes ?? outMode,
+                });
+            } else {
+                this.outModes.load(data.outModes);
+            }
         }
 
         if (data.random !== undefined) {
             this.random = data.random;
+        }
+
+        if (data.size !== undefined) {
+            this.size = data.size;
         }
 
         if (data.speed !== undefined) {

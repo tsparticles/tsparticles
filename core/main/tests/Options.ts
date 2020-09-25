@@ -11,7 +11,7 @@ import {
     ShapeType,
 } from "../src/Enums";
 import { Particles } from "../src/Options/Classes/Particles/Particles";
-import { RecursivePartial } from "../src/Types/RecursivePartial";
+import { RecursivePartial } from "../src/Types";
 import { IParticles } from "../src/Options/Interfaces/Particles/IParticles";
 
 describe("Options tests", () => {
@@ -127,7 +127,7 @@ describe("Options tests", () => {
         expect(options.particles.rotate.animation.speed).to.equal(0);
         expect(options.particles.rotate.animation.sync).to.be.false;
         expect(options.particles.rotate.direction).to.equal(RotateDirection.clockwise);
-        expect(options.particles.rotate.random).to.be.false;
+        expect(options.particles.rotate.random).to.be.an("object").to.have.property("enable").to.be.false;
         expect(options.particles.rotate.value).to.equal(0);
 
         /* particles shadow */

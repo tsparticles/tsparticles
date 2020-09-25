@@ -1,6 +1,6 @@
 import type { IConnect } from "../../../Interfaces/Interactivity/Modes/IConnect";
 import { ConnectLinks } from "./ConnectLinks";
-import type { RecursivePartial } from "../../../../Types/RecursivePartial";
+import type { RecursivePartial } from "../../../../Types";
 import type { IOptionLoader } from "../../../Interfaces/IOptionLoader";
 
 /**
@@ -41,9 +41,9 @@ export class Connect implements IConnect, IOptionLoader<IConnect> {
         this.links = value;
     }
 
-    public distance: number;
-    public links: ConnectLinks;
-    public radius: number;
+    public distance;
+    public links;
+    public radius;
 
     constructor() {
         this.distance = 80;

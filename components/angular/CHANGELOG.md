@@ -3,6 +3,121 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.1.0-alpha.14](https://github.com/matteobruni/tsparticles/compare/ng-particles@2.0.9...ng-particles@2.1.0-alpha.14) (2020-08-22)
+
+
+### Features
+
+* added particles loaded event to angular component ([81400e8](https://github.com/matteobruni/tsparticles/commit/81400e88c8451643828684e521c9900637165ca1))
+
+
+
+
+
+# [2.1.0-alpha.13](https://github.com/matteobruni/tsparticles/compare/ng-particles@2.1.0-alpha.12...ng-particles@2.1.0-alpha.13) (2020-08-17)
+
+**Note:** Version bump only for package ng-particles
+
+
+
+
+
+# [2.1.0-alpha.12](https://github.com/matteobruni/tsparticles/compare/ng-particles@2.0.8...ng-particles@2.1.0-alpha.12) (2020-08-16)
+
+**Note:** Version bump only for package ng-particles
+
+
+
+
+
+# [2.1.0-alpha.11](https://github.com/matteobruni/tsparticles/compare/ng-particles@2.1.0-alpha.10...ng-particles@2.1.0-alpha.11) (2020-08-13)
+
+**Note:** Version bump only for package ng-particles
+
+
+
+
+
+# [2.1.0-alpha.10](https://github.com/matteobruni/tsparticles/compare/ng-particles@2.1.0-alpha.9...ng-particles@2.1.0-alpha.10) (2020-08-13)
+
+**Note:** Version bump only for package ng-particles
+
+
+
+
+
+# [2.1.0-alpha.9](https://github.com/matteobruni/tsparticles/compare/ng-particles@2.1.0-alpha.8...ng-particles@2.1.0-alpha.9) (2020-08-13)
+
+**Note:** Version bump only for package ng-particles
+
+
+
+
+
+# [2.1.0-alpha.8](https://github.com/matteobruni/tsparticles/compare/ng-particles@2.1.0-alpha.7...ng-particles@2.1.0-alpha.8) (2020-08-13)
+
+**Note:** Version bump only for package ng-particles
+
+
+
+
+
+# [2.1.0-alpha.7](https://github.com/matteobruni/tsparticles/compare/ng-particles@2.1.0-alpha.6...ng-particles@2.1.0-alpha.7) (2020-08-12)
+
+**Note:** Version bump only for package ng-particles
+
+
+
+
+
+# [2.1.0-alpha.6](https://github.com/matteobruni/tsparticles/compare/ng-particles@2.1.0-alpha.5...ng-particles@2.1.0-alpha.6) (2020-08-11)
+
+**Note:** Version bump only for package ng-particles
+
+
+
+
+
+# [2.1.0-alpha.5](https://github.com/matteobruni/tsparticles/compare/ng-particles@2.1.0-alpha.4...ng-particles@2.1.0-alpha.5) (2020-08-11)
+
+**Note:** Version bump only for package ng-particles
+
+
+
+
+
+# [2.1.0-alpha.4](https://github.com/matteobruni/tsparticles/compare/ng-particles@2.1.0-alpha.3...ng-particles@2.1.0-alpha.4) (2020-08-11)
+
+**Note:** Version bump only for package ng-particles
+
+
+
+
+
+# [2.1.0-alpha.3](https://github.com/matteobruni/tsparticles/compare/ng-particles@2.1.0-alpha.2...ng-particles@2.1.0-alpha.3) (2020-08-10)
+
+**Note:** Version bump only for package ng-particles
+
+
+
+
+
+# [2.1.0-alpha.2](https://github.com/matteobruni/tsparticles/compare/ng-particles@2.1.0-alpha.1...ng-particles@2.1.0-alpha.2) (2020-08-09)
+
+**Note:** Version bump only for package ng-particles
+
+
+
+
+
+# [2.1.0-alpha.1](https://github.com/matteobruni/tsparticles/compare/ng-particles@2.0.7...ng-particles@2.1.0-alpha.1) (2020-08-08)
+
+**Note:** Version bump only for package ng-particles
+
+
+
+
+
 # [2.0.0-alpha.4](https://github.com/matteobruni/tsparticles/compare/ng-particles@2.0.0-alpha.3...ng-particles@2.0.0-alpha.4) (2020-07-05)
 
 **Note:** Version bump only for package ng-particles

@@ -3,6 +3,154 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.18.0-alpha.14](https://github.com/matteobruni/tsparticles/compare/tsparticles@1.17.9...tsparticles@1.18.0-alpha.14) (2020-08-22)
+
+
+### Bug Fixes
+
+* autostart feature fixed ([bed7824](https://github.com/matteobruni/tsparticles/commit/bed78248c941d57ad4cc20a455147e186e97c7a1))
+* check if all triangles vertices have link triangles enabled ([9956660](https://github.com/matteobruni/tsparticles/commit/9956660883e7334f9c9522fb43471dd458a760bb))
+* fixed background mode canvas reset ([f78252a](https://github.com/matteobruni/tsparticles/commit/f78252afee4363311c039da79216c848647da51e))
+* fixed links broken with a previous commit, updated object-gui ([24b2872](https://github.com/matteobruni/tsparticles/commit/24b2872ef736efd5e03b529a94e3f695c4504e86))
+
+
+### Features
+
+* added background mode to make the canvas acts like an animated background ([d911467](https://github.com/matteobruni/tsparticles/commit/d91146765581cc2d6ff42c6c68fd2726079638e0))
+* added gravity and edge bounce customization ([cfdfe53](https://github.com/matteobruni/tsparticles/commit/cfdfe53de72a33686fb73ea345c08a7a27542ba0))
+* mouse acts like a light source, closes [#606](https://github.com/matteobruni/tsparticles/issues/606) ([84aad25](https://github.com/matteobruni/tsparticles/commit/84aad25f3dfd5da9e99818e87c9b3f6a30c6f590))
+
+
+
+
+
+# [1.18.0-alpha.13](https://github.com/matteobruni/tsparticles/compare/tsparticles@1.18.0-alpha.12...tsparticles@1.18.0-alpha.13) (2020-08-17)
+
+
+### Bug Fixes
+
+* autostart feature fixed ([bed7824](https://github.com/matteobruni/tsparticles/commit/bed78248c941d57ad4cc20a455147e186e97c7a1))
+
+
+
+
+
+# [1.18.0-alpha.12](https://github.com/matteobruni/tsparticles/compare/tsparticles@1.17.8...tsparticles@1.18.0-alpha.12) (2020-08-16)
+
+
+### Bug Fixes
+
+* check if all triangles vertices have link triangles enabled ([9956660](https://github.com/matteobruni/tsparticles/commit/9956660883e7334f9c9522fb43471dd458a760bb))
+* fixed background mode canvas reset ([f78252a](https://github.com/matteobruni/tsparticles/commit/f78252afee4363311c039da79216c848647da51e))
+* fixed links broken with a previous commit, updated object-gui ([24b2872](https://github.com/matteobruni/tsparticles/commit/24b2872ef736efd5e03b529a94e3f695c4504e86))
+
+
+### Features
+
+* added background mode to make the canvas acts like an animated background ([d911467](https://github.com/matteobruni/tsparticles/commit/d91146765581cc2d6ff42c6c68fd2726079638e0))
+* mouse acts like a light source, closes [#606](https://github.com/matteobruni/tsparticles/issues/606) ([84aad25](https://github.com/matteobruni/tsparticles/commit/84aad25f3dfd5da9e99818e87c9b3f6a30c6f590))
+
+
+
+
+
+# [1.18.0-alpha.11](https://github.com/matteobruni/tsparticles/compare/tsparticles@1.18.0-alpha.10...tsparticles@1.18.0-alpha.11) (2020-08-13)
+
+**Note:** Version bump only for package tsparticles
+
+
+
+
+
+# [1.18.0-alpha.10](https://github.com/matteobruni/tsparticles/compare/tsparticles@1.18.0-alpha.9...tsparticles@1.18.0-alpha.10) (2020-08-13)
+
+
+### Bug Fixes
+
+* fixed background mode canvas reset ([f78252a](https://github.com/matteobruni/tsparticles/commit/f78252afee4363311c039da79216c848647da51e))
+
+
+
+
+
+# [1.18.0-alpha.9](https://github.com/matteobruni/tsparticles/compare/tsparticles@1.18.0-alpha.8...tsparticles@1.18.0-alpha.9) (2020-08-13)
+
+**Note:** Version bump only for package tsparticles
+
+
+
+
+
+# [1.18.0-alpha.8](https://github.com/matteobruni/tsparticles/compare/tsparticles@1.18.0-alpha.7...tsparticles@1.18.0-alpha.8) (2020-08-13)
+
+
+### Features
+
+* added background mode to make the canvas acts like an animated background ([d911467](https://github.com/matteobruni/tsparticles/commit/d91146765581cc2d6ff42c6c68fd2726079638e0))
+
+
+
+
+
+# [1.18.0-alpha.7](https://github.com/matteobruni/tsparticles/compare/tsparticles@1.18.0-alpha.6...tsparticles@1.18.0-alpha.7) (2020-08-12)
+
+**Note:** Version bump only for package tsparticles
+
+
+
+
+
+# [1.18.0-alpha.6](https://github.com/matteobruni/tsparticles/compare/tsparticles@1.18.0-alpha.5...tsparticles@1.18.0-alpha.6) (2020-08-11)
+
+**Note:** Version bump only for package tsparticles
+
+
+
+
+
+# [1.18.0-alpha.5](https://github.com/matteobruni/tsparticles/compare/tsparticles@1.18.0-alpha.4...tsparticles@1.18.0-alpha.5) (2020-08-11)
+
+**Note:** Version bump only for package tsparticles
+
+
+
+
+
+# [1.18.0-alpha.4](https://github.com/matteobruni/tsparticles/compare/tsparticles@1.18.0-alpha.3...tsparticles@1.18.0-alpha.4) (2020-08-11)
+
+**Note:** Version bump only for package tsparticles
+
+
+
+
+
+# [1.18.0-alpha.3](https://github.com/matteobruni/tsparticles/compare/tsparticles@1.18.0-alpha.2...tsparticles@1.18.0-alpha.3) (2020-08-10)
+
+**Note:** Version bump only for package tsparticles
+
+
+
+
+
+# [1.18.0-alpha.2](https://github.com/matteobruni/tsparticles/compare/tsparticles@1.18.0-alpha.1...tsparticles@1.18.0-alpha.2) (2020-08-09)
+
+
+### Features
+
+* mouse acts like a light source, closes [#606](https://github.com/matteobruni/tsparticles/issues/606) ([84aad25](https://github.com/matteobruni/tsparticles/commit/84aad25f3dfd5da9e99818e87c9b3f6a30c6f590))
+
+
+
+
+
+# [1.18.0-alpha.1](https://github.com/matteobruni/tsparticles/compare/tsparticles@1.17.7...tsparticles@1.18.0-alpha.1) (2020-08-08)
+
+**Note:** Version bump only for package tsparticles
+
+
+
+
+
 # [1.17.0-alpha.14](https://github.com/matteobruni/tsparticles/compare/tsparticles@1.17.0-alpha.13...tsparticles@1.17.0-alpha.14) (2020-07-05)
 
 **Note:** Version bump only for package tsparticles

@@ -3,12 +3,14 @@ import type {
     ShapeDrawerDestroyFunction,
     ShapeDrawerDrawFunction,
     ShapeDrawerInitFunction,
-} from "../../Types/ShapeDrawerFunctions";
+    ShapeDrawerSidesCountFunction,
+} from "../../Types";
 
 /**
  * @category Interfaces
  */
 export interface IShapeDrawer {
+    getSidesCount?: ShapeDrawerSidesCountFunction;
     init?: ShapeDrawerInitFunction;
     draw: ShapeDrawerDrawFunction;
     afterEffect?: ShapeDrawerAfterEffectFunction;

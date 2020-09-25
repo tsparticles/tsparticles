@@ -1,5 +1,5 @@
 import type { IStroke } from "../../Interfaces/Particles/IStroke";
-import type { RecursivePartial } from "../../../Types/RecursivePartial";
+import type { RecursivePartial } from "../../../Types";
 import { AnimatableColor } from "./AnimatableColor";
 import type { IOptionLoader } from "../../Interfaces/IOptionLoader";
 
@@ -9,7 +9,7 @@ import type { IOptionLoader } from "../../Interfaces/IOptionLoader";
  */
 export class Stroke implements IStroke, IOptionLoader<IStroke> {
     public color?: AnimatableColor;
-    public width: number;
+    public width;
     public opacity?: number;
 
     constructor() {

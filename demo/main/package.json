@@ -1,7 +1,7 @@
 {
   "name": "tsparticles-demo",
   "private": true,
-  "version": "1.2.12",
+  "version": "1.3.0-alpha.14",
   "description": "> TODO: description",
   "author": "Matteo Bruni <ar3s@icloud.com>",
   "homepage": "https://github.com/matteobruni/tsparticles#readme",
@@ -24,25 +24,23 @@
     "build:style": "npx stylus ./public/stylesheets/main.styl"
   },
   "devDependencies": {
-    "@fortawesome/fontawesome-free": "^5.13.1",
-    "@typescript-eslint/eslint-plugin": "^3.6.1",
-    "@typescript-eslint/parser": "^3.6.1",
-    "bootstrap": "^4.5.0",
-    "eslint": "^7.4.0",
+    "@fortawesome/fontawesome-free": "^5.14.0",
+    "@typescript-eslint/eslint-plugin": "^4.2.0",
+    "@typescript-eslint/parser": "^4.2.0",
+    "bootstrap": "^4.5.2",
+    "eslint": "^7.9.0",
     "eslint-config-prettier": "^6.11.0",
     "express": "^4.17.1",
-    "helmet": "^3.23.3",
+    "helmet": "^4.1.1",
     "jquery": "^3.5.1",
-    "jsoneditor": "^9.0.3",
+    "jsoneditor": "^9.1.0",
     "popper.js": "^1.16.1",
-    "prettier": "^2.0.5",
+    "prettier": "^2.1.2",
     "pug": "^3.0.0",
     "pug-cli": "^1.0.0-alpha6",
-    "stylus": "^0.54.7",
-    "three": "^0.118.3",
-    "tsparticles": "^1.17.12"
-  },
-  "dependencies": {
-    "tsparticles-preset-basic": "^1.2.12"
+    "stylus": "^0.54.8",
+    "three": "^0.120.1",
+    "tsparticles": "^1.18.0-alpha.14",
+    "tsparticles-preset-basic": "^1.3.0-alpha.14"
   }
 }

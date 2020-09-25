@@ -5,9 +5,9 @@ import { Utils } from "../../Utils";
 import { SizeMode } from "../../Enums";
 import { EmitterSize } from "./Options/Classes/EmitterSize";
 import type { Emitters } from "./Emitters";
-import type { RecursivePartial } from "../../Types/RecursivePartial";
+import type { RecursivePartial } from "../../Types";
 import type { IParticles } from "../../Options/Interfaces/Particles/IParticles";
-import { IEmitterSize } from "./Options/Interfaces/IEmitterSize";
+import type { IEmitterSize } from "./Options/Interfaces/IEmitterSize";
 
 /**
  * @category Emitters Plugin
@@ -17,11 +17,14 @@ export class EmitterInstance {
     public size: IEmitterSize;
     public emitterOptions: IEmitter;
 
-    private readonly immortal: boolean;
+    private lifeCount;
+
+    private startInterval?: number;
+
+    private readonly immortal;
+
     private readonly initialPosition?: ICoordinates;
     private readonly particlesOptions: RecursivePartial<IParticles>;
-    private startInterval?: number;
-    private lifeCount: number;
 
     constructor(
         private readonly emitters: Emitters,
@@ -30,10 +33,10 @@ export class EmitterInstance {
         position?: ICoordinates
     ) {
         this.initialPosition = position;
-        this.emitterOptions = Utils.deepExtend({}, emitterOptions);
+        this.emitterOptions = Utils.deepExtend({}, emitterOptions) as IEmitter;
         this.position = this.initialPosition ?? this.calcPosition();
 
-        let particlesOptions = Utils.deepExtend({}, this.emitterOptions.particles);
+        let particlesOptions = Utils.deepExtend({}, this.emitterOptions.particles) as RecursivePartial<IParticles>;
 
         if (particlesOptions === undefined) {
             particlesOptions = {};

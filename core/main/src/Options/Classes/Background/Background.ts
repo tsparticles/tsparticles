@@ -1,5 +1,5 @@
 import type { IBackground } from "../../Interfaces/Background/IBackground";
-import type { RecursivePartial } from "../../../Types/RecursivePartial";
+import type { RecursivePartial } from "../../../Types";
 import { OptionsColor } from "../OptionsColor";
 import type { IOptionLoader } from "../../Interfaces/IOptionLoader";
 
@@ -8,12 +8,12 @@ import type { IOptionLoader } from "../../Interfaces/IOptionLoader";
  * @category Options
  */
 export class Background implements IBackground, IOptionLoader<IBackground> {
-    public color: OptionsColor;
-    public image: string;
-    public position: string;
-    public repeat: string;
-    public size: string;
-    public opacity: number;
+    public color;
+    public image;
+    public position;
+    public repeat;
+    public size;
+    public opacity;
 
     constructor() {
         this.color = new OptionsColor();
