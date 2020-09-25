@@ -2,9 +2,9 @@ import { Container } from "./Container";
 import type { IOptions } from "../Options/Interfaces/IOptions";
 import type { RecursivePartial } from "../Types";
 import { Constants, Utils } from "../Utils";
-import { Particle } from "./Particle";
-import { ICoordinates } from "./Interfaces/ICoordinates";
-import { SingleOrMultiple } from "../Types/SingleOrMultiple";
+import type { Particle } from "./Particle";
+import type { ICoordinates } from "./Interfaces/ICoordinates";
+import type { SingleOrMultiple } from "../Types";
 
 const tsParticlesDom: Container[] = [];
 
@@ -168,11 +168,15 @@ export class Loader {
      * Loads the provided json with a GET request. The content will be used to create a [[Container]] object.
      * This method is async, so if you need a callback refer to JavaScript function `fetch`
      * @param tagId the particles container element id
-     * @param jsonUrl the json path to use in the GET request
+     * @param jsonUrl the json path (or paths array) to use in the GET request
+     * @param index the index of the paths array, if a single path is passed this value is ignored
+     * @returns A Promise with the [[Container]] object created
      */
-    public static async loadJSON(tagId: string, jsonUrl: string): Promise<Container | undefined> {
+    public static async loadJSON(tagId: string, jsonUrl: SingleOrMultiple<string>, index?: number): Promise<Container | undefined> {
+        const url = jsonUrl instanceof Array ? Utils.itemFromArray(jsonUrl, index) : jsonUrl;
+
         /* load json config */
-        const response = await fetch(jsonUrl);
+        const response = await fetch(url);
 
         if (response.ok) {
             return Loader.load(tagId, await response.json());
