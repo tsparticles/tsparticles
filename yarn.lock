@@ -17190,10 +17190,10 @@ svelte@3.24.0:
   resolved "https://registry.yarnpkg.com/svelte/-/svelte-3.24.0.tgz#6565a42c9705796fa66c6abb4fedc09f4323a4a8"
   integrity sha512-VFXom6EP2DK83kxy4ZlBbaZklSbZIrpNH3oNXlPYHJUuW4q1OuAr3ZoYbfIVTVYPDgrI7Yq0gQcOhDlAtO4qfw==
 
-svelte@^3.26.0:
-  version "3.26.0"
-  resolved "https://registry.yarnpkg.com/svelte/-/svelte-3.26.0.tgz#20ae354e55689ad37d872d2ce3276aeaa9bf305d"
-  integrity sha512-9tclNfffORwbSewfofEHddqXhfhFvFcgJlkF3QhZfMuoh6whPOPY87eHiJRHph4na3VxQoGDyEWAZcNAl1K/2A==
+svelte@^3.27.0:
+  version "3.27.0"
+  resolved "https://registry.yarnpkg.com/svelte/-/svelte-3.27.0.tgz#69660e08470f8026ee055f88f98b9a77f243ad13"
+  integrity sha512-yF8+ikXVaLwP32GhGZ6lT69lXBJ1r9KsYq6W5wDCzpPexiWQydLtqV+Bbc6BYTYeUNEW4Zx+BSXIDp/QleGqRw==
 
 svg-tags@^1.0.0:
   version "1.0.0"
