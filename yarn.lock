@@ -17114,10 +17114,10 @@ supports-color@^6.1.0:
   dependencies:
     has-flag "^3.0.0"
 
-svelte-check@^1.0.49:
-  version "1.0.49"
-  resolved "https://registry.yarnpkg.com/svelte-check/-/svelte-check-1.0.49.tgz#54c639fff8b503aa8c0b02ff9e25a4087a01c2a7"
-  integrity sha512-oPreGVlGYPz06bSXHk3v3a2X8DwFnQJZ9Fdwr6sYQONr7qUn0pBUm35VwfuIWWfjgfc2NKV8AHr6kBbHGklX6A==
+svelte-check@^1.0.50:
+  version "1.0.50"
+  resolved "https://registry.yarnpkg.com/svelte-check/-/svelte-check-1.0.50.tgz#b2e120732a731bcbdf740e2555db718d6f98095e"
+  integrity sha512-VLMFqGbMbSkVrTENJNqZtY90BT0jSCpvgPMXl4vCYxAkmR1BQql5QUufvkdSbGynWbCSz95zzMt7zcO6mh/mnw==
   dependencies:
     chalk "^4.0.0"
     chokidar "^3.4.1"
