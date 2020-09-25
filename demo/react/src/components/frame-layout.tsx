@@ -1,7 +1,5 @@
 import * as React from 'react';
 import * as pkgInfo from '../../package.json';
-import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
-import { base16AteliersulphurpoolLight as theme } from 'react-syntax-highlighter/dist/esm/styles/prism';
 import { FrameThumbsContainer } from './frame-thumbs-container';
 import { ParticlesContainer } from './particles-container';
 import { Subscription } from 'rxjs';

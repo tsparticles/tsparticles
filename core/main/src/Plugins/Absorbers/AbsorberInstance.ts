@@ -1,9 +1,9 @@
 import type { ICoordinates } from "../../Core/Interfaces/ICoordinates";
 import type { Container } from "../../Core/Container";
 import type { Particle } from "../../Core/Particle";
-import type { IRgb } from "../../Core/Interfaces/IRgb";
+import type { IRgb } from "../../Core/Interfaces/Colors";
 import type { IAbsorber } from "./Options/Interfaces/IAbsorber";
-import { ColorUtils, Utils } from "../../Utils";
+import { ColorUtils, NumberUtils, Utils } from "../../Utils";
 import type { Absorbers } from "./Absorbers";
 
 type OrbitingParticle = Particle & {
@@ -16,16 +16,18 @@ type OrbitingParticle = Particle & {
  * @category Absorbers Plugin
  */
 export class AbsorberInstance {
+    public mass;
+    public opacity;
+    public size;
+
     public color: IRgb;
     public limit?: number;
-    public mass: number;
-    public opacity: number;
     public position: ICoordinates;
-    public size: number;
+
+    private dragging;
 
     private readonly initialPosition?: ICoordinates;
     private readonly options: IAbsorber;
-    private dragging: boolean;
 
     constructor(
         private readonly absorbers: Absorbers,
@@ -37,16 +39,8 @@ export class AbsorberInstance {
         this.options = options;
         this.dragging = false;
 
-        let size = options.size.value * container.retina.pixelRatio;
-        const random = typeof options.size.random === "boolean" ? options.size.random : options.size.random.enable;
-        const minSize = typeof options.size.random === "boolean" ? 1 : options.size.random.minimumValue;
-
-        if (random) {
-            size = Utils.randomInRange(minSize, size);
-        }
-
         this.opacity = this.options.opacity;
-        this.size = size * container.retina.pixelRatio;
+        this.size = NumberUtils.getValue(options.size) * container.retina.pixelRatio;
         this.mass = this.size * options.size.density;
 
         const limit = options.size.limit;
@@ -71,7 +65,7 @@ export class AbsorberInstance {
             const mouse = this.container.interactivity.mouse;
 
             if (mouse.clicking && mouse.downPosition) {
-                const mouseDist = Utils.getDistance(this.position, mouse.downPosition);
+                const mouseDist = NumberUtils.getDistance(this.position, mouse.downPosition);
 
                 if (mouseDist <= this.size) {
                     this.dragging = true;
@@ -87,8 +81,8 @@ export class AbsorberInstance {
         }
 
         const pos = particle.getPosition();
-        const { dx, dy, distance } = Utils.getDistances(this.position, pos);
-        const angle = Math.atan2(dx, dy);
+        const { dx, dy, distance } = NumberUtils.getDistances(this.position, pos);
+        const angle = Math.atan2(dy, dx);
         const acceleration = this.mass / Math.pow(distance, 2);
 
         if (distance < this.size + particle.size.value) {
@@ -168,7 +162,7 @@ export class AbsorberInstance {
 
         if (this.options.orbits) {
             if (particle.orbitRadius === undefined) {
-                particle.orbitRadius = Utils.getDistance(particle.getPosition(), this.position);
+                particle.orbitRadius = NumberUtils.getDistance(particle.getPosition(), this.position);
             }
 
             if (particle.orbitRadius <= this.size && !this.options.destroy) {

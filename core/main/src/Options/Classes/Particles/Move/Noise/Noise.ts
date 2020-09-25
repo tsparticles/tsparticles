@@ -1,5 +1,5 @@
 import type { INoise } from "../../../../Interfaces/Particles/Move/Noise/INoise";
-import type { RecursivePartial } from "../../../../../Types/RecursivePartial";
+import type { RecursivePartial } from "../../../../../Types";
 import { NoiseDelay } from "./NoiseDelay";
 import type { IOptionLoader } from "../../../../Interfaces/IOptionLoader";
 
@@ -7,8 +7,8 @@ import type { IOptionLoader } from "../../../../Interfaces/IOptionLoader";
  * @category Options
  */
 export class Noise implements INoise, IOptionLoader<INoise> {
-    public delay: NoiseDelay;
-    public enable: boolean;
+    public delay;
+    public enable;
 
     constructor() {
         this.delay = new NoiseDelay();

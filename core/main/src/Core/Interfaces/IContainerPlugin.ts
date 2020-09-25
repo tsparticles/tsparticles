@@ -1,9 +1,10 @@
 import type { ICoordinates } from "./ICoordinates";
 import type { Particle } from "../Particle";
 import type { ClickMode } from "../../Enums";
-import type { RecursivePartial } from "../../Types/RecursivePartial";
+import type { RecursivePartial } from "../../Types";
 import type { IOptions } from "../../Options/Interfaces/IOptions";
-import { IDelta } from "./IDelta";
+import type { IDelta } from "./IDelta";
+import { OutModeDirection } from "../../Enums/Directions/OutModeDirection";
 
 /**
  * @category Interfaces
@@ -23,6 +24,6 @@ export interface IContainerPlugin {
     particlesInitialization?: () => boolean;
     clickPositionValid?: (position: ICoordinates) => boolean;
     handleClickMode?: (mode: ClickMode | string) => void;
-    particleBounce?: (particle: Particle, delta: IDelta) => boolean;
+    particleBounce?: (particle: Particle, delta: IDelta, direction: OutModeDirection) => boolean;
     particleUpdate?: (particle: Particle, delta: IDelta) => void;
 }

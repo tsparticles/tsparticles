@@ -4,3 +4,4 @@ export * from "./HoverMode";
 export * from "./CollisionMode";
 export * from "./OutMode";
 export * from "./SizeMode";
+export * from "./ThemeMode";

@@ -1,13 +1,13 @@
 import type { IEmitterRate } from "../Interfaces/IEmitterRate";
-import type { RecursivePartial } from "../../../../Types/RecursivePartial";
+import type { RecursivePartial } from "../../../../Types";
 import type { IOptionLoader } from "../../../../Options/Interfaces/IOptionLoader";
 
 /**
  * @category Emitters Plugin
  */
 export class EmitterRate implements IEmitterRate, IOptionLoader<IEmitterRate> {
-    public quantity: number;
-    public delay: number;
+    public quantity;
+    public delay;
 
     constructor() {
         this.quantity = 1;

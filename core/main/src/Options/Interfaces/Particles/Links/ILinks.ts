@@ -1,6 +1,6 @@
 import type { ILinksShadow } from "./ILinksShadow";
 import type { ILinksTriangle } from "./ILinksTriangle";
-import type { IColor } from "../../../../Core/Interfaces/IColor";
+import type { IColor } from "../../../../Core/Interfaces/Colors";
 
 /**
  * Particles Links options, this configures how the particles link together
@@ -8,11 +8,6 @@ import type { IColor } from "../../../../Core/Interfaces/IColor";
  * @category Options
  */
 export interface ILinks {
-    /**
-     * Sets the link id, if two particles have a different link id they won't link together
-     */
-    id?: string;
-
     /**
      * Enables random blinking, if set to true and [[color]] is set to "random"
      * the link will have a random color each frame resulting in a blinking animation
@@ -41,6 +36,13 @@ export interface ILinks {
      * Enables the particles links
      */
     enable: boolean;
+
+    frequency: number;
+
+    /**
+     * Sets the link id, if two particles have a different link id they won't link together
+     */
+    id?: string;
 
     /**
      * Sets the maximum link opacity

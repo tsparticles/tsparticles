@@ -8,18 +8,18 @@ import { CircleDrawer } from "./ShapeDrawers/CircleDrawer";
 import { TriangleDrawer } from "./ShapeDrawers/TriangleDrawer";
 import { StarDrawer } from "./ShapeDrawers/StarDrawer";
 import { PolygonDrawer } from "./ShapeDrawers/PolygonDrawer";
-import { RecursivePartial } from "./Types/RecursivePartial";
-import { IOptions } from "./Options/Interfaces/IOptions";
-import { Container } from "./Core/Container";
+import type { IOptions } from "./Options/Interfaces/IOptions";
+import type { Container } from "./Core/Container";
 import { Loader } from "./Core/Loader";
-import { IShapeDrawer } from "./Core/Interfaces/IShapeDrawer";
+import type { IShapeDrawer } from "./Core/Interfaces/IShapeDrawer";
 import {
     ShapeDrawerAfterEffectFunction,
     ShapeDrawerDestroyFunction,
     ShapeDrawerDrawFunction,
     ShapeDrawerInitFunction,
-} from "./Types/ShapeDrawerFunctions";
-import { IPlugin } from "./Core/Interfaces/IPlugin";
+    RecursivePartial,
+} from "./Types";
+import type { IPlugin } from "./Core/Interfaces/IPlugin";
 import { Particle } from "./Core/Particle";
 import { SingleOrMultiple } from "./Types/SingleOrMultiple";
 
@@ -29,7 +29,7 @@ import { SingleOrMultiple } from "./Types/SingleOrMultiple";
  * @category Main
  */
 export class MainSlim {
-    private initialized: boolean;
+    private initialized;
 
     constructor() {
         this.initialized = false;

@@ -1,5 +1,5 @@
 import type { IDrawStroke } from "../Interfaces/IDrawStroke";
-import type { RecursivePartial } from "../../../../Types/RecursivePartial";
+import type { RecursivePartial } from "../../../../Types";
 import { OptionsColor } from "../../../../Options/Classes/OptionsColor";
 import { ColorUtils } from "../../../../Utils";
 import type { IOptionLoader } from "../../../../Options/Interfaces/IOptionLoader";
@@ -8,9 +8,9 @@ import type { IOptionLoader } from "../../../../Options/Interfaces/IOptionLoader
  * @category Polygon Mask Plugin
  */
 export class DrawStroke implements IDrawStroke, IOptionLoader<IDrawStroke> {
-    public color: OptionsColor;
-    public width: number;
-    public opacity: number;
+    public color;
+    public width;
+    public opacity;
 
     constructor() {
         this.color = new OptionsColor();

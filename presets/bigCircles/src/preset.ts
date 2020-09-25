@@ -2,6 +2,12 @@ import { InteractivityDetect, MoveDirection, OutMode, ShapeType, tsParticles } f
 
 const options = {
     fpsLimit: 60,
+    background: {
+        color: "#fff",
+    },
+    backgroundMode: {
+        enable: true,
+    },
     particles: {
         number: {
             value: 50,
@@ -36,9 +42,6 @@ const options = {
         },
     },
     detectRetina: true,
-    background: {
-        color: "#fff",
-    },
     emitters: {
         direction: MoveDirection.top,
         position: {

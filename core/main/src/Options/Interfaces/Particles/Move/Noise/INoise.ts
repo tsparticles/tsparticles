@@ -1,9 +1,9 @@
-import type { INoiseDelay } from "./INoiseDelay";
+import type { IValueWithRandom } from "../../../IValueWithRandom";
 
 /**
  * @category Options
  */
 export interface INoise {
-    delay: INoiseDelay;
+    delay: IValueWithRandom;
     enable: boolean;
 }

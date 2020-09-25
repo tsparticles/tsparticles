@@ -23,6 +23,9 @@ export class Retina {
 
     constructor(private readonly container: Container) {}
 
+    /**
+     * Initializes all the values needing a pixel ratio factor (sizes, widths, distances)
+     */
     public init(): void {
         const container = this.container;
         const options = container.options;
@@ -73,11 +76,6 @@ export class Retina {
         particle.linksWidth = particlesOptions.links.width * ratio;
         particle.moveSpeed = particlesOptions.move.speed * ratio;
         particle.sizeValue = particlesOptions.size.value * ratio;
-
-        if (typeof particlesOptions.size.random !== "boolean") {
-            particle.randomMinimumSize = particlesOptions.size.random.minimumValue * ratio;
-        }
-
         particle.sizeAnimationSpeed = particlesOptions.size.animation.speed * ratio;
     }
 }

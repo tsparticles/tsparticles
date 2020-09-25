@@ -1,5 +1,4 @@
-import { Particle } from "../Particle";
-import { Container } from "../Container";
+import type { Container } from "../Container";
 
 /**
  * @category Core
@@ -10,11 +9,10 @@ export class Infecter {
     public infectionDelay?: number;
     public infectionDelayStage?: number;
 
-    constructor(private readonly container: Container, private readonly particle: Particle) {}
+    constructor(private readonly container: Container) {}
 
     public startInfection(stage: number): void {
-        const container = this.container;
-        const options = container.options;
+        const options = this.container.options;
         const stages = options.infection.stages;
         const stagesCount = stages.length;
 
@@ -27,8 +25,7 @@ export class Infecter {
     }
 
     public updateInfectionStage(stage: number): void {
-        const container = this.container;
-        const options = container.options;
+        const options = this.container.options;
         const stagesCount = options.infection.stages.length;
 
         if (stage > stagesCount || stage < 0 || (this.infectionStage !== undefined && this.infectionStage > stage)) {

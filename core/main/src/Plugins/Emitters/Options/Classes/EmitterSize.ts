@@ -1,5 +1,5 @@
 import type { IEmitterSize } from "../Interfaces/IEmitterSize";
-import type { RecursivePartial } from "../../../../Types/RecursivePartial";
+import type { RecursivePartial } from "../../../../Types";
 import { SizeMode } from "../../../../Enums";
 import type { IOptionLoader } from "../../../../Options/Interfaces/IOptionLoader";
 
@@ -8,8 +8,8 @@ import type { IOptionLoader } from "../../../../Options/Interfaces/IOptionLoader
  */
 export class EmitterSize implements IEmitterSize, IOptionLoader<IEmitterSize> {
     public mode: SizeMode | keyof typeof SizeMode;
-    public height: number;
-    public width: number;
+    public height;
+    public width;
 
     public constructor() {
         this.mode = SizeMode.percent;

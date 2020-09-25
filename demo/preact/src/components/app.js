@@ -1,10 +1,7 @@
-import { h, Component } from 'preact';
-import { Particles, IParticlesParams } from 'preact-particles';
+import { Component } from 'preact';
 import { Router } from 'preact-router';
-
+import Particles from 'preact-particles';
 import Header from './header';
-
-// Code-splitting is automated for routes
 import Home from '../routes/home';
 import Profile from '../routes/profile';
 
@@ -48,10 +45,6 @@ export default class App extends Component {
         key: this.key
     };
 
-    /** Gets fired when the route changes.
-     *    @param {Object} event        "change" event from [preact-router](http://git.io/preact-router)
-     *    @param {string} event.url    The newly routed URL
-     */
     handleRoute = e => {
         this.currentUrl = e.url;
     };
@@ -61,14 +54,14 @@ export default class App extends Component {
 
         this.setState({
             ...this.state,
-            key: key
+            key
         }, () => document.location.hash = `#${frames[key]}`);
     }
 
     render() {
         return (
             <div id="app">
-                <Header/>
+                <Header />
                 <div style="position: absolute; top: 50%; right: 10px; z-index: 3000;">
                     <div>
                         <button onClick={() => {
@@ -83,11 +76,11 @@ export default class App extends Component {
                         </button>
                     </div>
                 </div>
-                <Particles id="tsparticles" options={this.options[this.state.key]}/>
+                <Particles id="tsparticles" options={this.options[this.state.key]} />
                 <Router onChange={this.handleRoute}>
-                    <Home path="/"/>
-                    <Profile path="/profile/" user="me"/>
-                    <Profile path="/profile/:user"/>
+                    <Home path="/" />
+                    <Profile path="/profile/" user="me" />
+                    <Profile path="/profile/:user" />
                 </Router>
             </div>
         );

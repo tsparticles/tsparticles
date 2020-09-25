@@ -2,6 +2,11 @@ import type { Particle } from "../Core/Particle";
 import type { Range } from "./Range";
 import type { Point } from "./Point";
 import { Rectangle } from "./Rectangle";
+import { Circle } from "./Circle";
+import type { ICoordinates } from "../Core/Interfaces/ICoordinates";
+import { CircleWarp } from "./CircleWarp";
+import type { Container } from "../Core/Container";
+import type { IDimension } from "../Core/Interfaces/IDimension";
 
 /**
  * @category Utils
@@ -14,7 +19,7 @@ export class QuadTree {
     private southEast?: QuadTree;
     private southWest?: QuadTree;
 
-    private divided: boolean;
+    private divided;
 
     constructor(public readonly rectangle: Rectangle, public readonly capacity: number) {
         this.points = [];
@@ -59,13 +64,43 @@ export class QuadTree {
         );
     }
 
+    public queryCircle(position: ICoordinates, radius: number): Particle[] {
+        return this.query(new Circle(position.x, position.y, radius));
+    }
+
+    public queryCircleWarp(
+        position: ICoordinates,
+        radius: number,
+        containerOrSize: Container | IDimension
+    ): Particle[] {
+        const container = containerOrSize as Container;
+        const size = containerOrSize as IDimension;
+
+        return this.query(
+            new CircleWarp(
+                position.x,
+                position.y,
+                radius,
+                container.canvas !== undefined ? container.canvas.size : size
+            )
+        );
+    }
+
+    public queryRectangle(position: ICoordinates, size: IDimension): Particle[] {
+        return this.query(new Rectangle(position.x, position.y, size.width, size.height));
+    }
+
     public query(range: Range, found?: Particle[]): Particle[] {
         const res = found ?? [];
 
         if (!range.intersects(this.rectangle)) {
             return [];
         } else {
-            for (const p of this.points.filter((p) => range.contains(p.position))) {
+            for (const p of this.points) {
+                if (!range.contains(p.position)) {
+                    continue;
+                }
+
                 res.push(p.particle);
             }
 

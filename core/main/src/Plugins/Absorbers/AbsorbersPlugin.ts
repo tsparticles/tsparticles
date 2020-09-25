@@ -2,7 +2,7 @@ import type { IPlugin } from "../../Core/Interfaces/IPlugin";
 import type { Container } from "../../Core/Container";
 import { Absorbers } from "./Absorbers";
 import { Utils } from "../../Utils";
-import { RecursivePartial } from "../../Types/RecursivePartial";
+import type { RecursivePartial } from "../../Types";
 import { AbsorberClickMode } from "./Enums";
 import type { IAbsorberOptions } from "./Options/Interfaces/IAbsorberOptions";
 import type { IOptions } from "../../Options/Interfaces/IOptions";
@@ -13,7 +13,7 @@ import { Absorber } from "./Options/Classes/Absorber";
  * @category Absorbers Plugin
  */
 class AbsorbersPlugin implements IPlugin {
-    public readonly id: string;
+    public readonly id;
 
     constructor() {
         this.id = "absorbers";

@@ -5,7 +5,7 @@
 
 /// <reference types="react" />
 import { ComponentClass } from "react";
-import { ParticlesProps } from "./src/";
+import type { IParticlesProps, ParticlesProps } from "./src/";
 import type { IOptions } from "tsparticles/dist/Options/Interfaces/IOptions";
 import type { RecursivePartial } from "tsparticles/dist/Types/RecursivePartial";
 import type { IPolygonMaskOptions } from "tsparticles/dist/Plugins/PolygonMask/PolygonMaskPlugin";
@@ -16,9 +16,9 @@ export type IParticlesParams = RecursivePartial<IOptions & IPolygonMaskOptions &
 
 export * from "tsparticles/dist/Enums";
 
-export { ParticlesProps };
+export { IParticlesProps, ParticlesProps };
 
-type Particles = ComponentClass<ParticlesProps>;
+type Particles = ComponentClass<IParticlesProps>;
 
 declare const Particles: Particles;
 

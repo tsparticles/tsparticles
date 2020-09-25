@@ -1,5 +1,5 @@
 import type { ISlow } from "../../../Interfaces/Interactivity/Modes/ISlow";
-import type { RecursivePartial } from "../../../../Types/RecursivePartial";
+import type { RecursivePartial } from "../../../../Types";
 import type { IOptionLoader } from "../../../Interfaces/IOptionLoader";
 
 /**
@@ -20,8 +20,8 @@ export class Slow implements ISlow, IOptionLoader<ISlow> {
         // deprecated
     }
 
-    public factor: number;
-    public radius: number;
+    public factor;
+    public radius;
 
     constructor() {
         this.factor = 3;

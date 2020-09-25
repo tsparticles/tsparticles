@@ -80,15 +80,31 @@
         let presetId = localStorage.presetId || 'default';
 
         if (presetId === "divEvents") {
-            document.getElementById('repulse-circle-div').className = 'd-block';
-            document.getElementById('bubble-circle-div').className = 'd-block';
-            document.getElementById('repulse-rectangle-div').className = 'd-block';
-            document.getElementById('bubble-rectangle-div').className = 'd-block';
+            document.querySelectorAll('.bubble').forEach(elem => {
+                elem.classList.add('d-block');
+                elem.classList.remove('d-none');
+            });
+            document.querySelectorAll('.repulse').forEach(elem => {
+                elem.classList.add('d-block');
+                elem.classList.remove('d-none');
+            });
+            document.querySelectorAll('.bounce').forEach(elem => {
+                elem.classList.add('d-block');
+                elem.classList.remove('d-none');
+            });
         } else {
-            document.getElementById('repulse-circle-div').className = 'd-none';
-            document.getElementById('bubble-circle-div').className = 'd-none';
-            document.getElementById('repulse-rectangle-div').className = 'd-none';
-            document.getElementById('bubble-rectangle-div').className = 'd-none';
+            document.querySelectorAll('.bubble').forEach(elem => {
+                elem.classList.add('d-none');
+                elem.classList.remove('d-block');
+            });
+            document.querySelectorAll('.repulse').forEach(elem => {
+                elem.classList.add('d-none');
+                elem.classList.remove('d-block');
+            });
+            document.querySelectorAll('.bounce').forEach(elem => {
+                elem.classList.add('d-none');
+                elem.classList.remove('d-block');
+            });
         }
 
         tsParticles.loadJSON('tsparticles', `/presets/${presetId}.json`).then((particles) => {

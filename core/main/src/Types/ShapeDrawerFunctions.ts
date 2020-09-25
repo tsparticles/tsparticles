@@ -34,3 +34,8 @@ export type ShapeDrawerAfterEffectFunction = (
  * @category Types
  */
 export type ShapeDrawerDestroyFunction = (container: Container) => void;
+
+/**
+ * @category Types
+ */
+export type ShapeDrawerSidesCountFunction = (particle: IParticle) => number;

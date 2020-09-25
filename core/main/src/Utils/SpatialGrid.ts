@@ -1,7 +1,7 @@
 import type { ICoordinates } from "../Core/Interfaces/ICoordinates";
 import type { IDimension } from "../Core/Interfaces/IDimension";
-import { Utils } from "./Utils";
 import type { Particle } from "../Core/Particle";
+import { NumberUtils } from "./NumberUtils";
 
 /**
  * This class essentially works by interpreting all particles on the screen as a grid.
@@ -15,9 +15,9 @@ import type { Particle } from "../Core/Particle";
  * @category Utils
  */
 export class SpatialGrid {
-    private readonly cellSize: number;
-    private widthSegment: number;
-    private heightSegment: number;
+    private readonly cellSize;
+    private widthSegment;
+    private heightSegment;
     private grid: Particle[][][] = [];
 
     /**
@@ -86,7 +86,7 @@ export class SpatialGrid {
         for (const item of items) {
             const itemPos = item.getPosition();
 
-            if (Utils.getDistance(itemPos, position) <= radius) {
+            if (NumberUtils.getDistance(itemPos, position) <= radius) {
                 out.push(item);
             }
         }
@@ -114,7 +114,7 @@ export class SpatialGrid {
         for (const item of items) {
             const itemPos = item.getPosition();
 
-            const distance = Utils.getDistance(itemPos, position);
+            const distance = NumberUtils.getDistance(itemPos, position);
 
             if (distance <= radius) {
                 out.push({
@@ -207,6 +207,6 @@ export class SpatialGrid {
      * @param num The number to clamp
      */
     private clamp(num: number): number {
-        return Utils.clamp(num, 0, this.cellSize);
+        return NumberUtils.clamp(num, 0, this.cellSize);
     }
 }

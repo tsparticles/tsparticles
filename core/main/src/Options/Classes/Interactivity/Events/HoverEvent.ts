@@ -1,8 +1,7 @@
 import type { IHoverEvent } from "../../../Interfaces/Interactivity/Events/IHoverEvent";
 import { HoverMode } from "../../../../Enums";
 import { Parallax } from "./Parallax";
-import type { RecursivePartial } from "../../../../Types/RecursivePartial";
-import type { SingleOrMultiple } from "../../../../Types/SingleOrMultiple";
+import type { RecursivePartial, SingleOrMultiple } from "../../../../Types";
 import type { IOptionLoader } from "../../../Interfaces/IOptionLoader";
 
 /**
@@ -10,9 +9,9 @@ import type { IOptionLoader } from "../../../Interfaces/IOptionLoader";
  * @category Options
  */
 export class HoverEvent implements IHoverEvent, IOptionLoader<IHoverEvent> {
-    public enable: boolean;
+    public enable;
     public mode: SingleOrMultiple<HoverMode | keyof typeof HoverMode | string>;
-    public parallax: Parallax;
+    public parallax;
 
     constructor() {
         this.enable = false;

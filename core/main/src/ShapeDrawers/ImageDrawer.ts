@@ -21,6 +21,10 @@ export class ImageDrawer implements IShapeDrawer {
         this.images = [];
     }
 
+    public getSidesCount(): number {
+        return 12;
+    }
+
     public getImages(container: Container): ContainerImage {
         const containerImages = this.images.filter((t) => t.id === container.id);
 
