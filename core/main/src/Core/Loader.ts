@@ -172,7 +172,11 @@ export class Loader {
      * @param index the index of the paths array, if a single path is passed this value is ignored
      * @returns A Promise with the [[Container]] object created
      */
-    public static async loadJSON(tagId: string, jsonUrl: SingleOrMultiple<string>, index?: number): Promise<Container | undefined> {
+    public static async loadJSON(
+        tagId: string,
+        jsonUrl: SingleOrMultiple<string>,
+        index?: number
+    ): Promise<Container | undefined> {
         const url = jsonUrl instanceof Array ? Utils.itemFromArray(jsonUrl, index) : jsonUrl;
 
         /* load json config */

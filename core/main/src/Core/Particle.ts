@@ -265,11 +265,6 @@ export class Particle implements IParticle {
             y: 0,
         };
 
-        /* check position - avoid overlap */
-        if (this.particlesOptions.collisions.enable && !this.checkOverlap(position)) {
-            throw new Error();
-        }
-
         /* opacity */
         const opacityOptions = this.particlesOptions.opacity;
         const randomOpacity = opacityOptions.random;
@@ -428,30 +423,6 @@ export class Particle implements IParticle {
         this.destroyed = true;
         this.bubble.inRange = false;
         this.links = [];
-    }
-
-    private checkOverlap(position?: ICoordinates, iterations = 0): boolean {
-        const container = this.container;
-
-        if (!container.particles.count) {
-            return true;
-        }
-
-        if (iterations >= container.particles.count) {
-            // too many particles
-            return false;
-        }
-
-        const overlapping = this.isOverlapping();
-
-        if (overlapping) {
-            this.position.x = position ? position.x : Math.random() * container.canvas.size.width;
-            this.position.y = position ? position.y : Math.random() * container.canvas.size.height;
-
-            return this.checkOverlap(undefined, iterations + 1);
-        }
-
-        return true;
     }
 
     private calcPosition(container: Container, position?: ICoordinates): ICoordinates {

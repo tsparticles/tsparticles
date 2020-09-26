@@ -110,7 +110,11 @@ export class MainSlim {
      * @param index the index of the paths array, if a single path is passed this value is ignored
      * @returns A Promise with the [[Container]] object created
      */
-    public loadJSON(tagId: string, pathConfigJson: SingleOrMultiple<string>, index?: number): Promise<Container | undefined> {
+    public loadJSON(
+        tagId: string,
+        pathConfigJson: SingleOrMultiple<string>,
+        index?: number
+    ): Promise<Container | undefined> {
         return Loader.loadJSON(tagId, pathConfigJson, index);
     }
 
