@@ -1,5 +1,5 @@
 import type { IParticle } from "../Core/Interfaces/IParticle";
-import { Container } from "../Core/Container";
+import type { Container } from "../Core/Container";
 
 /**
  * @category Types
