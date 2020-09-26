@@ -82,7 +82,6 @@ export class Bouncer implements IExternalInteractor {
     }
 
     private processBounce(position: ICoordinates, radius: number, area: Range): void {
-        //const query = container.particles.spatialGrid.queryRadius(position, repulseRadius);
         const query = this.container.particles.quadTree.query(area);
         const divBounds = Utils.calculateBounds(position, radius);
 

@@ -72,7 +72,7 @@ export class MainSlim {
         options: RecursivePartial<IOptions>[],
         index?: number
     ): Promise<Container | undefined> {
-        return Loader.loadFromArray(tagId, options, index);
+        return Loader.load(tagId, options, index);
     }
 
     /**

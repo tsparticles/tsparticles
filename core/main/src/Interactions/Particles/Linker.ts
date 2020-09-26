@@ -24,14 +24,12 @@ export class Linker implements IParticlesInteractor {
         const warp = linkOpt1.warp;
         const pos1 = p1.getPosition();
 
-        //const query = container.particles.spatialGrid.queryRadiusWithDistance(pos1, optDistance);
         const range = warp
             ? new CircleWarp(pos1.x, pos1.y, optDistance, canvasSize)
             : new Circle(pos1.x, pos1.y, optDistance);
 
         const query = container.particles.quadTree.query(range);
 
-        //for (const { distance, p2 } of query) {
         for (const p2 of query) {
             const linkOpt2 = p2.particlesOptions.links;
 

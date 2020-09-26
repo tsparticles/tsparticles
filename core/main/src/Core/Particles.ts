@@ -23,9 +23,6 @@ export class Particles {
      * The quad tree used to search particles withing ranges
      */
     public quadTree;
-
-    //public spatialGrid;
-
     public linksColors;
 
     /**
@@ -53,7 +50,6 @@ export class Particles {
 
         this.linksColors = new Map<string, IRgb | string | undefined>();
         this.quadTree = new QuadTree(new Rectangle(0, 0, canvasSize.width, canvasSize.height), 4);
-        //this.spatialGrid = new SpatialGrid(this.container.canvas.size);
     }
 
     /* --------- tsParticles functions - particles ----------- */
@@ -137,8 +133,6 @@ export class Particles {
                 continue;
             }
 
-            //container.particles.spatialGrid.insert(particle);
-
             this.quadTree.insert(new Point(particle.getPosition(), particle));
         }
 
@@ -169,9 +163,7 @@ export class Particles {
         this.quadTree = new QuadTree(new Rectangle(0, 0, canvasSize.width, canvasSize.height), 4);
 
         /* update each particles param */
-        //this.spatialGrid.init(this.container.canvas.size);
         this.update(delta);
-        //this.spatialGrid.setGrid(this.array, this.container.canvas.size);
 
         /* draw polygon shape in debug mode */
         for (const [, plugin] of container.plugins) {

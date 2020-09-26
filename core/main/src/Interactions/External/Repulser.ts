@@ -112,7 +112,6 @@ export class Repulser implements IExternalInteractor {
 
     private processRepulse(position: ICoordinates, repulseRadius: number, area: Range, divRepulse?: RepulseDiv): void {
         const container = this.container;
-        //const query = container.particles.spatialGrid.queryRadius(position, repulseRadius);
         const query = container.particles.quadTree.query(area);
 
         for (const particle of query) {
@@ -154,7 +153,6 @@ export class Repulser implements IExternalInteractor {
                 return;
             }
 
-            //const query = container.particles.spatialGrid.queryRadius(mouseClickPos, repulseRadius);
             const range = new Circle(mouseClickPos.x, mouseClickPos.y, repulseRadius);
             const query = container.particles.quadTree.query(range);
 
@@ -323,7 +321,6 @@ export class Repulser implements IExternalInteractor {
         divRepulse?: RepulseDiv
     ): void {
         const container = this.container;
-        //const query = container.particles.spatialGrid.queryRadius(position, repulseRadius);
         const query = container.particles.quadTree.query(area);
 
         for (const particle of query) {

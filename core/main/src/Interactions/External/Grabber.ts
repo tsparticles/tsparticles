@@ -42,10 +42,8 @@ export class Grabber implements IExternalInteractor {
             }
 
             const distance = container.retina.grabModeDistance;
-            //const query = container.particles.spatialGrid.queryRadiusWithDistance(mousePos, distance);
             const query = container.particles.quadTree.queryCircle(mousePos, distance);
 
-            //for (const { distance, particle } of query) {
             for (const particle of query) {
                 /*
                    draw a line between the cursor and the particle

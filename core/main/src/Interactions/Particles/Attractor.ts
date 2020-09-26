@@ -14,10 +14,8 @@ export class Attractor implements IParticlesInteractor {
         const container = this.container;
         const options = container.options;
         const distance = p1.linksDistance ?? container.retina.linksDistance;
-
         const pos1 = p1.getPosition();
 
-        //const query = container.particles.spatialGrid.queryRadius(pos1, distance);
         const query = container.particles.quadTree.queryCircle(pos1, distance);
 
         for (const p2 of query) {

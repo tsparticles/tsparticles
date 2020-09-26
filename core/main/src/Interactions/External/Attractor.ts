@@ -64,7 +64,6 @@ export class Attractor implements IExternalInteractor {
 
     private processAttract(position: ICoordinates, attractRadius: number, area: Range): void {
         const container = this.container;
-        //const query = container.particles.spatialGrid.queryRadius(position, attractRadius);
         const query = container.particles.quadTree.query(area);
 
         for (const particle of query) {

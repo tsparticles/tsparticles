@@ -55,24 +55,25 @@ export class Canvas {
         this.resize();
 
         const options = this.container.options;
+        const element = this.element;
 
-        if (this.element) {
+        if (element) {
             if (options.backgroundMode.enable) {
-                this.originalStyle = Utils.deepExtend({}, this.element.style) as CSSStyleDeclaration;
+                this.originalStyle = Utils.deepExtend({}, element.style) as CSSStyleDeclaration;
 
-                this.element.style.position = "fixed";
-                this.element.style.zIndex = options.backgroundMode.zIndex.toString(10);
-                this.element.style.top = "0";
-                this.element.style.left = "0";
-                this.element.style.width = "100%";
-                this.element.style.height = "100%";
+                element.style.position = "fixed";
+                element.style.zIndex = options.backgroundMode.zIndex.toString(10);
+                element.style.top = "0";
+                element.style.left = "0";
+                element.style.width = "100%";
+                element.style.height = "100%";
             } else {
-                this.element.style.position = this.originalStyle?.position ?? "";
-                this.element.style.zIndex = this.originalStyle?.zIndex ?? "";
-                this.element.style.top = this.originalStyle?.top ?? "";
-                this.element.style.left = this.originalStyle?.left ?? "";
-                this.element.style.width = this.originalStyle?.width ?? "";
-                this.element.style.height = this.originalStyle?.height ?? "";
+                element.style.position = this.originalStyle?.position ?? "";
+                element.style.zIndex = this.originalStyle?.zIndex ?? "";
+                element.style.top = this.originalStyle?.top ?? "";
+                element.style.left = this.originalStyle?.left ?? "";
+                element.style.width = this.originalStyle?.width ?? "";
+                element.style.height = this.originalStyle?.height ?? "";
             }
         }
 

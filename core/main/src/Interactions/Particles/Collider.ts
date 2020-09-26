@@ -1,4 +1,4 @@
-import { Particle } from "../../Core/Particle";
+import type { Particle } from "../../Core/Particle";
 import type { Container } from "../../Core/Container";
 import type { IParticle } from "../../Core/Interfaces/IParticle";
 import type { IVelocity } from "../../Core/Interfaces/IVelocity";
@@ -99,7 +99,6 @@ export class Collider implements IParticlesInteractor {
         const container = this.container;
         const pos1 = p1.getPosition();
 
-        //const query = container.particles.spatialGrid.queryRadius(pos1, p1.size.value * 2);
         const query = container.particles.quadTree.queryCircle(pos1, p1.size.value * 2);
 
         for (const p2 of query) {

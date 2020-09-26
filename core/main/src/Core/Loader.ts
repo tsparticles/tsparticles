@@ -36,38 +36,6 @@ export class Loader {
     }
 
     /**
-     * Loads an options object from the provided array to create a [[Container]] object.
-     * @param tagId the particles container element id
-     * @param options the options array to get the item from
-     * @param index if provided gets the corresponding item from the array
-     * @deprecated [[load]] can handle an array too, this method is now unnecessary and is just an alias to [[load]]
-     */
-    public static async loadFromArray(
-        tagId: string,
-        options: RecursivePartial<IOptions>[],
-        index?: number
-    ): Promise<Container | undefined> {
-        return Loader.load(tagId, options, index);
-    }
-
-    /**
-     * Loads an options object from the provided array to create a [[Container]] object.
-     * @param id the container id
-     * @param domContainer the dom container for keeping
-     * @param options the options array to get the item from
-     * @param index if provided gets the corresponding item from the array
-     * @deprecated [[set]] can handle an array too, this method is now unnecessary and is just an alias to [[set]]
-     */
-    public static async setFromArray(
-        id: string,
-        domContainer: HTMLElement,
-        options: RecursivePartial<IOptions>[],
-        index?: number
-    ): Promise<Container | undefined> {
-        return Loader.set(id, domContainer, options, index);
-    }
-
-    /**
      * Loads the provided options to create a [[Container]] object.
      * @param tagId the particles container element id
      * @param options the options object to initialize the [[Container]]
