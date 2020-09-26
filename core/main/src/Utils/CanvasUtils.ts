@@ -179,7 +179,7 @@ export class CanvasUtils {
         p2: IParticle,
         opacity: number
     ): CanvasGradient | undefined {
-        const gradStop = Math.floor(p2.size.value / p1.size.value);
+        const gradStop = Math.floor(p2.getRadius() / p1.getRadius());
         const color1 = p1.getFillColor();
         const color2 = p2.getFillColor();
 
@@ -189,7 +189,7 @@ export class CanvasUtils {
 
         const sourcePos = p1.getPosition();
         const destPos = p2.getPosition();
-        const midRgb = ColorUtils.mix(color1, color2, p1.size.value, p2.size.value);
+        const midRgb = ColorUtils.mix(color1, color2, p1.getRadius(), p2.getRadius());
         const grad = context.createLinearGradient(sourcePos.x, sourcePos.y, destPos.x, destPos.y);
 
         grad.addColorStop(0, ColorUtils.getStyleFromHsl(color1, opacity));
@@ -218,7 +218,7 @@ export class CanvasUtils {
     }
 
     public static drawLight(container: Container, context: CanvasRenderingContext2D, mousePos: ICoordinates): void {
-        const lightOptions = container.options.interactivity.modes.light.light;
+        const lightOptions = container.options.interactivity.modes.light.area;
 
         context.beginPath();
         context.arc(mousePos.x, mousePos.y, lightOptions.radius, 0, 2 * Math.PI);
@@ -252,7 +252,6 @@ export class CanvasUtils {
         container: Container,
         context: CanvasRenderingContext2D,
         particle: Particle,
-        radius: number,
         mousePos: ICoordinates
     ): void {
         const pos = particle.getPosition();
@@ -260,6 +259,7 @@ export class CanvasUtils {
 
         context.save();
 
+        const radius = particle.getRadius();
         const sides = particle.sides;
         const full = (Math.PI * 2) / sides;
         const angle = -particle.angle + Math.PI / 4;

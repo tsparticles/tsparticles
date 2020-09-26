@@ -5,29 +5,9 @@ import { DivMode } from "../../Enums/Modes";
 import { DivEvent } from "../../Options/Classes/Interactivity/Events/DivEvent";
 import { DivType } from "../../Enums/Types";
 import { ICoordinates } from "../../Core/Interfaces/ICoordinates";
-import { IParticle } from "../../Core/Interfaces/IParticle";
-import { IVelocity } from "../../Core/Interfaces/IVelocity";
 
 export class Bouncer implements IExternalInteractor {
     constructor(private readonly container: Container) {}
-
-    private static getRadius(particle: IParticle, fallback: number): number {
-        return particle.bubble.radius || particle.size.value || fallback;
-    }
-
-    private static rotate(velocity: IVelocity, angle: number): IVelocity {
-        return {
-            horizontal: velocity.horizontal * Math.cos(angle) - velocity.vertical * Math.sin(angle),
-            vertical: velocity.horizontal * Math.sin(angle) + velocity.vertical * Math.cos(angle),
-        };
-    }
-
-    private static collisionVelocity(v1: IVelocity, v2: IVelocity, m1: number, m2: number): IVelocity {
-        return {
-            horizontal: (v1.horizontal * (m1 - m2)) / (m1 + m2) + (v2.horizontal * 2 * m2) / (m1 + m2),
-            vertical: v1.vertical,
-        };
-    }
 
     public interact(): void {
         const options = this.container.options;
@@ -88,7 +68,7 @@ export class Bouncer implements IExternalInteractor {
         for (const particle of query) {
             const pPos = particle.getPosition();
             const offset = particle.offset;
-            const size = particle.size.value;
+            const size = particle.getRadius();
 
             if (area instanceof Circle) {
                 const pos1 = particle.getPosition();
@@ -110,14 +90,14 @@ export class Bouncer implements IExternalInteractor {
                     const m2 = radius;
 
                     // Velocity before equation
-                    const u1 = Bouncer.rotate(particle.velocity, angle);
-                    const u2 = Bouncer.rotate({ horizontal: 0, vertical: 0 }, angle);
+                    const u1 = NumberUtils.rotateVelocity(particle.velocity, angle);
+                    const u2 = NumberUtils.rotateVelocity({ horizontal: 0, vertical: 0 }, angle);
 
                     // Velocity after 1d collision equation
-                    const v1 = Bouncer.collisionVelocity(u1, u2, m1, m2);
+                    const v1 = NumberUtils.collisionVelocity(u1, u2, m1, m2);
 
                     // Final velocity after rotating axis back to original location
-                    const vFinal1 = Bouncer.rotate(v1, -angle);
+                    const vFinal1 = NumberUtils.rotateVelocity(v1, -angle);
 
                     // Swap particle velocities for realistic bounce effect
                     const bounce1 = particle.particlesOptions.collisions.bounce;

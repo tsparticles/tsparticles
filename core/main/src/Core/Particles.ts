@@ -49,7 +49,15 @@ export class Particles {
         const canvasSize = this.container.canvas.size;
 
         this.linksColors = new Map<string, IRgb | string | undefined>();
-        this.quadTree = new QuadTree(new Rectangle(0, 0, canvasSize.width, canvasSize.height), 4);
+        this.quadTree = new QuadTree(
+            new Rectangle(
+                -canvasSize.width / 4,
+                -canvasSize.height / 4,
+                (canvasSize.width * 3) / 2,
+                (canvasSize.height * 3) / 2
+            ),
+            4
+        );
     }
 
     /* --------- tsParticles functions - particles ----------- */
@@ -160,7 +168,15 @@ export class Particles {
 
         const canvasSize = this.container.canvas.size;
 
-        this.quadTree = new QuadTree(new Rectangle(0, 0, canvasSize.width, canvasSize.height), 4);
+        this.quadTree = new QuadTree(
+            new Rectangle(
+                -canvasSize.width / 4,
+                -canvasSize.height / 4,
+                (canvasSize.width * 3) / 2,
+                (canvasSize.height * 3) / 2
+            ),
+            4
+        );
 
         /* update each particles param */
         this.update(delta);

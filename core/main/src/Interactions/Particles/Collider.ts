@@ -1,7 +1,6 @@
 import type { Particle } from "../../Core/Particle";
 import type { Container } from "../../Core/Container";
 import type { IParticle } from "../../Core/Interfaces/IParticle";
-import type { IVelocity } from "../../Core/Interfaces/IVelocity";
 import { CollisionMode } from "../../Enums";
 import type { IParticlesInteractor } from "../../Core/Interfaces/IParticlesInteractor";
 import { NumberUtils } from "../../Utils";
@@ -11,20 +10,6 @@ import { NumberUtils } from "../../Utils";
  */
 export class Collider implements IParticlesInteractor {
     constructor(private readonly container: Container) {}
-
-    private static rotate(velocity: IVelocity, angle: number): IVelocity {
-        return {
-            horizontal: velocity.horizontal * Math.cos(angle) - velocity.vertical * Math.sin(angle),
-            vertical: velocity.horizontal * Math.sin(angle) + velocity.vertical * Math.cos(angle),
-        };
-    }
-
-    private static collisionVelocity(v1: IVelocity, v2: IVelocity, m1: number, m2: number): IVelocity {
-        return {
-            horizontal: (v1.horizontal * (m1 - m2)) / (m1 + m2) + (v2.horizontal * 2 * m2) / (m1 + m2),
-            vertical: v1.vertical,
-        };
-    }
 
     private static bounce(p1: Particle, p2: Particle): void {
         const pos1 = p1.getPosition();
@@ -42,20 +27,20 @@ export class Collider implements IParticlesInteractor {
             const angle = -Math.atan2(pos2.y - pos1.y, pos2.x - pos1.x);
 
             // Store mass in var for better readability in collision equation
-            const m1 = p1.size.value;
-            const m2 = p2.size.value;
+            const m1 = p1.getRadius();
+            const m2 = p2.getRadius();
 
             // Velocity before equation
-            const u1 = Collider.rotate(p1.velocity, angle);
-            const u2 = Collider.rotate(p2.velocity, angle);
+            const u1 = NumberUtils.rotateVelocity(p1.velocity, angle);
+            const u2 = NumberUtils.rotateVelocity(p2.velocity, angle);
 
             // Velocity after 1d collision equation
-            const v1 = Collider.collisionVelocity(u1, u2, m1, m2);
-            const v2 = Collider.collisionVelocity(u2, u1, m1, m2);
+            const v1 = NumberUtils.collisionVelocity(u1, u2, m1, m2);
+            const v2 = NumberUtils.collisionVelocity(u2, u1, m1, m2);
 
             // Final velocity after rotating axis back to original location
-            const vFinal1 = Collider.rotate(v1, -angle);
-            const vFinal2 = Collider.rotate(v2, -angle);
+            const vFinal1 = NumberUtils.rotateVelocity(v1, -angle);
+            const vFinal2 = NumberUtils.rotateVelocity(v2, -angle);
 
             // Swap particle velocities for realistic bounce effect
             const bounce1 = p1.particlesOptions.collisions.bounce;
@@ -70,21 +55,17 @@ export class Collider implements IParticlesInteractor {
     }
 
     private static destroy(p1: Particle, p2: Particle): void {
-        if (p1.size.value === undefined && p2.size.value !== undefined) {
+        if (p1.getRadius() === undefined && p2.getRadius() !== undefined) {
             p1.destroy();
-        } else if (p1.size.value !== undefined && p2.size.value === undefined) {
+        } else if (p1.getRadius() !== undefined && p2.getRadius() === undefined) {
             p2.destroy();
-        } else if (p1.size.value !== undefined && p2.size.value !== undefined) {
-            if (p1.size.value >= p2.size.value) {
+        } else if (p1.getRadius() !== undefined && p2.getRadius() !== undefined) {
+            if (p1.getRadius() >= p2.getRadius()) {
                 p2.destroy();
             } else {
                 p1.destroy();
             }
         }
-    }
-
-    private static getRadius(particle: IParticle, fallback: number): number {
-        return particle.bubble.radius || particle.size.value || fallback;
     }
 
     public isEnabled(particle: Particle): boolean {
@@ -99,7 +80,7 @@ export class Collider implements IParticlesInteractor {
         const container = this.container;
         const pos1 = p1.getPosition();
 
-        const query = container.particles.quadTree.queryCircle(pos1, p1.size.value * 2);
+        const query = container.particles.quadTree.queryCircle(pos1, p1.getRadius() * 2);
 
         for (const p2 of query) {
             if (
@@ -114,9 +95,8 @@ export class Collider implements IParticlesInteractor {
 
             const pos2 = p2.getPosition();
             const dist = NumberUtils.getDistance(pos1, pos2);
-            const defaultSize = container.retina.sizeValue;
-            const radius1 = Collider.getRadius(p1, defaultSize);
-            const radius2 = Collider.getRadius(p2, defaultSize);
+            const radius1 = p1.getRadius();
+            const radius2 = p2.getRadius();
             const distP = radius1 + radius2;
 
             if (dist <= distP) {
@@ -146,28 +126,28 @@ export class Collider implements IParticlesInteractor {
         const container = this.container;
         const fps = container.options.fpsLimit / 1000;
 
-        if (p1.size.value === undefined && p2.size.value !== undefined) {
+        if (p1.getRadius() === undefined && p2.getRadius() !== undefined) {
             p1.destroy();
-        } else if (p1.size.value !== undefined && p2.size.value === undefined) {
+        } else if (p1.getRadius() !== undefined && p2.getRadius() === undefined) {
             p2.destroy();
-        } else if (p1.size.value !== undefined && p2.size.value !== undefined) {
-            if (p1.size.value >= p2.size.value) {
-                const factor = NumberUtils.clamp(p1.size.value / p2.size.value, 0, p2.size.value) * fps;
+        } else if (p1.getRadius() !== undefined && p2.getRadius() !== undefined) {
+            if (p1.getRadius() >= p2.getRadius()) {
+                const factor = NumberUtils.clamp(p1.getRadius() / p2.getRadius(), 0, p2.getRadius()) * fps;
 
                 p1.size.value += factor;
                 p2.size.value -= factor;
 
-                if (p2.size.value <= container.retina.pixelRatio) {
+                if (p2.getRadius() <= container.retina.pixelRatio) {
                     p2.size.value = 0;
                     p2.destroy();
                 }
             } else {
-                const factor = NumberUtils.clamp(p2.size.value / p1.size.value, 0, p1.size.value) * fps;
+                const factor = NumberUtils.clamp(p2.getRadius() / p1.getRadius(), 0, p1.getRadius()) * fps;
 
                 p1.size.value -= factor;
                 p2.size.value += factor;
 
-                if (p1.size.value <= container.retina.pixelRatio) {
+                if (p1.getRadius() <= container.retina.pixelRatio) {
                     p1.size.value = 0;
                     p1.destroy();
                 }

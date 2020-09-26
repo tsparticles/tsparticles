@@ -248,9 +248,7 @@ export class Canvas {
             return;
         }
 
-        const radius = particle.bubble.radius ?? particle.size.value;
-
-        CanvasUtils.drawParticleShadow(this.container, this.context, particle, radius, mousePos);
+        CanvasUtils.drawParticleShadow(this.container, this.context, particle, mousePos);
     }
 
     public drawLinkTriangle(p1: IParticle, link1: ILink, link2: ILink): void {
@@ -286,7 +284,7 @@ export class Canvas {
                 const destColor = p2.getFillColor();
 
                 if (sourceColor && destColor) {
-                    colorTriangle = ColorUtils.mix(sourceColor, destColor, p1.size.value, p2.size.value);
+                    colorTriangle = ColorUtils.mix(sourceColor, destColor, p1.getRadius(), p2.getRadius());
                 } else {
                     const hslColor = sourceColor ?? destColor;
 
@@ -368,7 +366,7 @@ export class Canvas {
                 const destColor = p2.getFillColor() ?? p2.getStrokeColor();
 
                 if (sourceColor && destColor) {
-                    colorLine = ColorUtils.mix(sourceColor, destColor, p1.size.value, p2.size.value);
+                    colorLine = ColorUtils.mix(sourceColor, destColor, p1.getRadius(), p2.getRadius());
                 } else {
                     const hslColor = sourceColor ?? destColor;
 
@@ -422,7 +420,7 @@ export class Canvas {
         const twinkleFreq = twinkle.frequency;
         const twinkleRgb = ColorUtils.colorToRgb(twinkle.color);
         const twinkling = twinkle.enable && Math.random() < twinkleFreq;
-        const radius = particle.bubble.radius ?? particle.size.value;
+        const radius = particle.getRadius();
         const opacity = twinkling ? twinkle.opacity : particle.bubble.opacity ?? particle.opacity.value;
         const infectionStage = particle.infecter.infectionStage;
         const infection = options.infection;
@@ -512,6 +510,14 @@ export class Canvas {
         CanvasUtils.drawPlugin(this.context, plugin, delta);
     }
 
+    public drawLight(mousePos: ICoordinates): void {
+        if (!this.context) {
+            return;
+        }
+
+        CanvasUtils.drawLight(this.container, this.context, mousePos);
+    }
+
     private paintBase(baseColor?: string): void {
         if (!this.context) {
             return;
@@ -563,13 +569,5 @@ export class Canvas {
         if (background.size) {
             elementStyle.backgroundSize = background.size;
         }
-    }
-
-    public drawLight(mousePos: ICoordinates): void {
-        if (!this.context) {
-            return;
-        }
-
-        CanvasUtils.drawLight(this.container, this.context, mousePos);
     }
 }

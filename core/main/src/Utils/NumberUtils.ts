@@ -2,6 +2,7 @@ import type { IValueWithRandom } from "../Options/Interfaces/IValueWithRandom";
 import type { ICoordinates } from "../Core/Interfaces/ICoordinates";
 import type { IParticle } from "../Core/Interfaces/IParticle";
 import { MoveDirection } from "../Enums/Directions";
+import type { IVelocity } from "../Core/Interfaces/IVelocity";
 
 export class NumberUtils {
     /**
@@ -100,5 +101,19 @@ export class NumberUtils {
         }
 
         return velocityBase;
+    }
+
+    public static rotateVelocity(velocity: IVelocity, angle: number): IVelocity {
+        return {
+            horizontal: velocity.horizontal * Math.cos(angle) - velocity.vertical * Math.sin(angle),
+            vertical: velocity.horizontal * Math.sin(angle) + velocity.vertical * Math.cos(angle),
+        };
+    }
+
+    public static collisionVelocity(v1: IVelocity, v2: IVelocity, m1: number, m2: number): IVelocity {
+        return {
+            horizontal: (v1.horizontal * (m1 - m2)) / (m1 + m2) + (v2.horizontal * 2 * m2) / (m1 + m2),
+            vertical: v1.vertical,
+        };
     }
 }

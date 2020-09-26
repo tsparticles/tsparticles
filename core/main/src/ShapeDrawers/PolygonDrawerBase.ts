@@ -1,8 +1,17 @@
 import type { IShapeDrawer } from "../Core/Interfaces/IShapeDrawer";
-import type { ISide } from "../Core/Interfaces/ISide";
 import type { ICoordinates } from "../Core/Interfaces/ICoordinates";
 import type { IParticle } from "../Core/Interfaces/IParticle";
-import { IPolygonShape } from "../Options/Interfaces/Particles/Shape/IPolygonShape";
+import type { IPolygonShape } from "../Options/Interfaces/Particles/Shape/IPolygonShape";
+
+export interface ISideCount {
+    numerator: number;
+    denominator: number;
+}
+
+export interface ISide {
+    count: ISideCount;
+    length: number;
+}
 
 /**
  * @category Shape Drawers

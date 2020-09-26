@@ -36,7 +36,7 @@ export class Infecter implements IParticlesInteractor {
 
         const infectionStage1 = infectionOptions.stages[infecter1.infectionStage];
         const pxRatio = container.retina.pixelRatio;
-        const radius = p1.size.value * 2 + infectionStage1.radius * pxRatio;
+        const radius = p1.getRadius() * 2 + infectionStage1.radius * pxRatio;
         const pos = p1.getPosition();
         const infectedStage1 = infectionStage1.infectedStage ?? infecter1.infectionStage;
         const query = container.particles.quadTree.queryCircle(pos, radius);

@@ -48,7 +48,7 @@ export class Mover {
         const slowFactor = this.getProximitySpeedFactor();
         const baseSpeed = particle.moveSpeed ?? container.retina.moveSpeed;
         const maxSize = particle.sizeValue ?? container.retina.sizeValue;
-        const sizeFactor = particlesOptions.move.size ? (particle.bubble.radius ?? particle.size.value) / maxSize : 1;
+        const sizeFactor = particlesOptions.move.size ? particle.getRadius() / maxSize : 1;
         const moveSpeed = (baseSpeed / 2) * sizeFactor * slowFactor * delta.factor;
 
         this.applyNoise(delta);
@@ -128,11 +128,12 @@ export class Mover {
             width: window.innerWidth / 2,
         };
         const parallaxSmooth = options.interactivity.events.onHover.parallax.smooth;
+        const factor = particle.getRadius() / parallaxForce;
 
         /* smaller is the particle, longer is the offset distance */
         const tmp = {
-            x: (mousePos.x - windowDimension.width) * (particle.size.value / parallaxForce),
-            y: (mousePos.y - windowDimension.height) * (particle.size.value / parallaxForce),
+            x: (mousePos.x - windowDimension.width) * factor,
+            y: (mousePos.y - windowDimension.height) * factor,
         };
 
         particle.offset.x += (tmp.x - particle.offset.x) / parallaxSmooth; // Easing equation

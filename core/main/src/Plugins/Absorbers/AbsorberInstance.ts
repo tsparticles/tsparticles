@@ -85,10 +85,10 @@ export class AbsorberInstance {
         const angle = Math.atan2(dy, dx);
         const acceleration = this.mass / Math.pow(distance, 2);
 
-        if (distance < this.size + particle.size.value) {
-            const sizeFactor = particle.size.value * 0.033 * this.container.retina.pixelRatio;
+        if (distance < this.size + particle.getRadius()) {
+            const sizeFactor = particle.getRadius() * 0.033 * this.container.retina.pixelRatio;
 
-            if (this.size > particle.size.value && distance < this.size - particle.size.value) {
+            if (this.size > particle.getRadius() && distance < this.size - particle.getRadius()) {
                 if (options.destroy) {
                     particle.destroy();
                 } else {
@@ -154,7 +154,7 @@ export class AbsorberInstance {
         const canvasSize = this.container.canvas.size;
 
         if (particle.needsNewPosition) {
-            const pSize = particle.size.value;
+            const pSize = particle.getRadius();
             particle.position.x = Math.random() * (canvasSize.width - pSize * 2) + pSize;
             particle.position.y = Math.random() * (canvasSize.height - pSize * 2) + pSize;
             particle.needsNewPosition = false;

@@ -1,14 +1,7 @@
 import type { Container } from "../Container";
 import type { Particle } from "../Particle";
 import { NumberUtils, Utils } from "../../Utils";
-import {
-    DestroyType,
-    OpacityAnimationStatus,
-    OutMode,
-    OutModeAlt,
-    RotateDirection,
-    SizeAnimationStatus,
-} from "../../Enums";
+import { DestroyType, AnimationStatus, OutMode, OutModeAlt, RotateDirection } from "../../Enums";
 import type { IDelta } from "../Interfaces/IDelta";
 import { OutModeDirection } from "../../Enums/Directions/OutModeDirection";
 
@@ -109,16 +102,16 @@ export class Updater {
 
         if (particle.particlesOptions.opacity.animation.enable) {
             switch (particle.opacity.status) {
-                case OpacityAnimationStatus.increasing:
+                case AnimationStatus.increasing:
                     if (particle.opacity.value >= particle.particlesOptions.opacity.value) {
-                        particle.opacity.status = OpacityAnimationStatus.decreasing;
+                        particle.opacity.status = AnimationStatus.decreasing;
                     } else {
                         particle.opacity.value += (particle.opacity.velocity || 0) * delta.factor;
                     }
                     break;
-                case OpacityAnimationStatus.decreasing:
+                case AnimationStatus.decreasing:
                     if (particle.opacity.value <= particle.particlesOptions.opacity.animation.minimumValue) {
-                        particle.opacity.status = OpacityAnimationStatus.increasing;
+                        particle.opacity.status = AnimationStatus.increasing;
                     } else {
                         particle.opacity.value -= (particle.opacity.velocity || 0) * delta.factor;
                     }
@@ -142,16 +135,16 @@ export class Updater {
 
         if (sizeAnim.enable) {
             switch (particle.size.status) {
-                case SizeAnimationStatus.increasing:
+                case AnimationStatus.increasing:
                     if (particle.size.value >= maxValue) {
-                        particle.size.status = SizeAnimationStatus.decreasing;
+                        particle.size.status = AnimationStatus.decreasing;
                     } else {
                         particle.size.value += sizeVelocity;
                     }
                     break;
-                case SizeAnimationStatus.decreasing:
+                case AnimationStatus.decreasing:
                     if (particle.size.value <= minValue) {
-                        particle.size.status = SizeAnimationStatus.increasing;
+                        particle.size.status = AnimationStatus.increasing;
                     } else {
                         particle.size.value -= sizeVelocity;
                     }
@@ -274,19 +267,19 @@ export class Updater {
 
                 break;
             case OutMode.destroy:
-                if (!Utils.isPointInside(particle.position, container.canvas.size, particle.size.value, direction)) {
+                if (!Utils.isPointInside(particle.position, container.canvas.size, particle.getRadius(), direction)) {
                     container.particles.remove(particle);
                 }
                 break;
             case OutMode.out:
-                if (!Utils.isPointInside(particle.position, container.canvas.size, particle.size.value, direction)) {
+                if (!Utils.isPointInside(particle.position, container.canvas.size, particle.getRadius(), direction)) {
                     this.fixOutOfCanvasPosition(direction);
                 }
                 break;
             case OutMode.none:
                 if (!gravityOptions.enable) {
                     if (
-                        !Utils.isPointInside(particle.position, container.canvas.size, particle.size.value, direction)
+                        !Utils.isPointInside(particle.position, container.canvas.size, particle.getRadius(), direction)
                     ) {
                         container.particles.remove(particle);
                     }
@@ -312,13 +305,13 @@ export class Updater {
         const wrap = particle.particlesOptions.move.warp;
         const canvasSize = container.canvas.size;
         const newPos = {
-            bottom: canvasSize.height + particle.size.value - particle.offset.y,
-            left: -particle.size.value - particle.offset.x,
-            right: canvasSize.width + particle.size.value + particle.offset.x,
-            top: -particle.size.value - particle.offset.y,
+            bottom: canvasSize.height + particle.getRadius() - particle.offset.y,
+            left: -particle.getRadius() - particle.offset.x,
+            right: canvasSize.width + particle.getRadius() + particle.offset.x,
+            top: -particle.getRadius() - particle.offset.y,
         };
 
-        const sizeValue = particle.size.value;
+        const sizeValue = particle.getRadius();
         const nextBounds = Utils.calculateBounds(particle.position, sizeValue);
 
         if (direction === OutModeDirection.right && nextBounds.left > canvasSize.width - particle.offset.x) {
@@ -375,7 +368,7 @@ export class Updater {
 
         const pos = particle.getPosition(),
             offset = particle.offset,
-            size = particle.size.value,
+            size = particle.getRadius(),
             bounds = Utils.calculateBounds(pos, size),
             canvasSize = container.canvas.size;
 

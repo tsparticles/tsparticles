@@ -165,21 +165,21 @@ export class ModesOptionsEditor extends EditorBase {
         const options = this.options.light;
         const group = this.group.addGroup("light", "Light");
 
-        const lightGroup = group.addGroup("light", "Light");
-        const gradientGroup = lightGroup.addGroup("gradient", "Gradient");
+        const areaGroup = group.addGroup("area", "Light");
+        const gradientGroup = areaGroup.addGroup("gradient", "Gradient");
         const startColor =
-            typeof options.light.gradient.start === "string"
-                ? options.light.gradient.start
-                : options.light.gradient.start?.value;
+            typeof options.area.gradient.start === "string"
+                ? options.area.gradient.start
+                : options.area.gradient.start?.value;
 
         gradientGroup
             .addProperty("start", "Start", EditorType.color, startColor, false)
             .change(async (value: unknown) => {
                 if (typeof value === "string") {
-                    if (typeof options.light.gradient.start === "string") {
-                        options.light.gradient.start = value;
+                    if (typeof options.area.gradient.start === "string") {
+                        options.area.gradient.start = value;
                     } else {
-                        options.light.gradient.start = {
+                        options.area.gradient.start = {
                             value,
                         };
                     }
@@ -189,16 +189,16 @@ export class ModesOptionsEditor extends EditorBase {
             });
 
         const stopColor =
-            typeof options.light.gradient.stop === "string"
-                ? options.light.gradient.stop
-                : options.light.gradient.stop?.value;
+            typeof options.area.gradient.stop === "string"
+                ? options.area.gradient.stop
+                : options.area.gradient.stop?.value;
 
         gradientGroup.addProperty("stop", "Stop", EditorType.color, stopColor, false).change(async (value: unknown) => {
             if (typeof value === "string") {
-                if (typeof options.light.gradient.stop === "string") {
-                    options.light.gradient.stop = value;
+                if (typeof options.area.gradient.stop === "string") {
+                    options.area.gradient.stop = value;
                 } else {
-                    options.light.gradient.stop = {
+                    options.area.gradient.stop = {
                         value,
                     };
                 }
@@ -207,7 +207,7 @@ export class ModesOptionsEditor extends EditorBase {
             await particles.refresh();
         });
 
-        lightGroup.addProperty("radius", "Radius", EditorType.number).change(async () => {
+        areaGroup.addProperty("radius", "Radius", EditorType.number).change(async () => {
             await particles.refresh();
         });
 

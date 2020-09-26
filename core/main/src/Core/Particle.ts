@@ -1,7 +1,6 @@
 import type { Container } from "./Container";
 import type { IVelocity } from "./Interfaces/IVelocity";
-import type { IParticleSizeAnimation } from "./Interfaces/IParticleSizeAnimation";
-import type { IParticleOpacityAnimation } from "./Interfaces/IParticleOpacityAnimation";
+import type { IParticleValueAnimation } from "./Interfaces/IParticleValueAnimation";
 import type { ICoordinates } from "./Interfaces/ICoordinates";
 import type { IParticleImage } from "./Interfaces/IParticleImage";
 import { Updater } from "./Particle/Updater";
@@ -16,12 +15,11 @@ import { Shape } from "../Options/Classes/Particles/Shape/Shape";
 import {
     MoveDirection,
     MoveDirectionAlt,
-    OpacityAnimationStatus,
+    AnimationStatus,
     OutMode,
     RotateDirection,
     RotateDirectionAlt,
     ShapeType,
-    SizeAnimationStatus,
     StartValueType,
 } from "../Enums";
 import { ImageDrawer } from "../ShapeDrawers/ImageDrawer";
@@ -71,13 +69,13 @@ export class Particle implements IParticle {
     public readonly direction: MoveDirection | keyof typeof MoveDirection | MoveDirectionAlt;
     public readonly fill: boolean;
     public readonly stroke: IStroke;
-    public readonly size: IParticleSizeAnimation;
+    public readonly size: IParticleValueAnimation;
     public readonly position: ICoordinates;
     public readonly offset: ICoordinates;
     public readonly color: IHsl | undefined;
     public readonly strokeColor: IHsl | undefined;
     public readonly shadowColor: IRgb | undefined;
-    public readonly opacity: IParticleOpacityAnimation;
+    public readonly opacity: IParticleValueAnimation;
     public readonly velocity: IVelocity;
     public readonly shape: ShapeType | string;
     public readonly image?: IParticleImage;
@@ -205,7 +203,7 @@ export class Particle implements IParticle {
         const sizeAnimation = this.particlesOptions.size.animation;
 
         if (sizeAnimation.enable) {
-            this.size.status = SizeAnimationStatus.increasing;
+            this.size.status = AnimationStatus.increasing;
 
             if (!randomSize) {
                 switch (sizeAnimation.startValue) {
@@ -224,7 +222,7 @@ export class Particle implements IParticle {
 
                     case StartValueType.max:
                     default:
-                        this.size.status = SizeAnimationStatus.decreasing;
+                        this.size.status = AnimationStatus.decreasing;
 
                         break;
                 }
@@ -279,7 +277,7 @@ export class Particle implements IParticle {
         const opacityAnimation = opacityOptions.animation;
 
         if (opacityAnimation.enable) {
-            this.opacity.status = OpacityAnimationStatus.increasing;
+            this.opacity.status = AnimationStatus.increasing;
             this.opacity.velocity = opacityAnimation.speed / 100;
 
             if (!opacityAnimation.sync) {
@@ -409,6 +407,10 @@ export class Particle implements IParticle {
             x: this.position.x + this.offset.x,
             y: this.position.y + this.offset.y,
         };
+    }
+
+    public getRadius(): number {
+        return this.bubble.radius || this.size.value;
     }
 
     public getFillColor(): IHsl | undefined {
