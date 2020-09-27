@@ -31,6 +31,7 @@ export interface IParticle {
     readonly opacity: IParticleValueAnimation<number>;
     readonly rotate: IParticleValueAnimation<number>;
     readonly size: IParticleValueAnimation<number>;
+    readonly strokeColor: IParticleValueAnimation<IHsl | undefined>;
     readonly particlesOptions: IParticles;
     readonly position: ICoordinates;
     readonly shadowColor: IRgb | undefined;
@@ -39,7 +40,6 @@ export interface IParticle {
     readonly sides: number;
     readonly stroke: IStroke;
     readonly strokeWidth: number;
-    readonly strokeColor: IHsl | undefined;
     readonly velocity: IVelocity;
     readonly linksDistance?: number;
     readonly linksWidth?: number;

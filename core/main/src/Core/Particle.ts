@@ -69,20 +69,18 @@ export class Particle implements IParticle {
     public readonly stroke: IStroke;
     public readonly position: ICoordinates;
     public readonly offset: ICoordinates;
-    public readonly strokeColor: IHsl | undefined;
     public readonly shadowColor: IRgb | undefined;
     public readonly color: IParticleValueAnimation<IHsl | undefined>;
     public readonly opacity: IParticleValueAnimation<number>;
     public readonly rotate: IParticleValueAnimation<number>;
     public readonly size: IParticleValueAnimation<number>;
+    public readonly strokeColor: IParticleValueAnimation<IHsl | undefined>;
     public readonly velocity: IVelocity;
     public readonly shape: ShapeType | string;
     public readonly image?: IParticleImage;
     public readonly initialVelocity: IVelocity;
     public readonly shapeData?: IShapeValues;
     public readonly bubble: IBubbleParticleData;
-
-    private readonly strokeColorVelocity?: number;
 
     constructor(
         public readonly id: number,
@@ -334,24 +332,26 @@ export class Particle implements IParticle {
         this.strokeWidth = this.stroke.width * container.retina.pixelRatio;
 
         /* strokeColor */
-        this.strokeColor = ColorUtils.colorToHsl(this.stroke.color);
+        this.strokeColor = {
+            value: ColorUtils.colorToHsl(this.stroke.color) ?? this.color.value,
+        };
 
         if (typeof this.stroke.color !== "string") {
             const strokeColorAnimation = this.stroke.color?.animation;
 
             if (strokeColorAnimation && this.strokeColor) {
                 if (strokeColorAnimation.enable) {
-                    this.strokeColorVelocity = strokeColorAnimation.speed / 100;
+                    this.strokeColor.velocity = strokeColorAnimation.speed / 100;
 
                     if (!strokeColorAnimation.sync) {
-                        this.strokeColorVelocity = this.strokeColorVelocity * Math.random();
+                        this.strokeColor.velocity = this.strokeColor.velocity * Math.random();
                     }
                 } else {
-                    this.strokeColorVelocity = 0;
+                    this.strokeColor.velocity = 0;
                 }
 
-                if (strokeColorAnimation.enable && !strokeColorAnimation.sync && this.color) {
-                    this.strokeColor.h = Math.random() * 360;
+                if (strokeColorAnimation.enable && !strokeColorAnimation.sync && this.strokeColor.value) {
+                    this.strokeColor.value.h = Math.random() * 360;
                 }
             }
         }
@@ -432,7 +432,7 @@ export class Particle implements IParticle {
     }
 
     public getStrokeColor(): IHsl | undefined {
-        return this.bubble.color ?? this.strokeColor ?? this.color.value;
+        return this.bubble.color ?? this.strokeColor.value ?? this.color.value;
     }
 
     public destroy(): void {

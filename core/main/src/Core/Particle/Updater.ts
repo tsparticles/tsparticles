@@ -226,15 +226,16 @@ export class Updater {
             return;
         }
 
-        if (particle.strokeColor === undefined) {
+        if (particle.strokeColor.value === undefined) {
             return;
         }
 
         if (color.animation.enable) {
-            particle.strokeColor.h += (particle.color.velocity ?? 0) * delta.factor;
+            particle.strokeColor.value.h +=
+                (particle.strokeColor.velocity ?? particle.color.velocity ?? 0) * delta.factor;
 
-            if (particle.strokeColor.h > 360) {
-                particle.strokeColor.h -= 360;
+            if (particle.strokeColor.value.h > 360) {
+                particle.strokeColor.value.h -= 360;
             }
         }
     }
