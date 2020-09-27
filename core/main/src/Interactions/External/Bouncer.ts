@@ -5,6 +5,19 @@ import { DivMode } from "../../Enums/Modes";
 import { DivEvent } from "../../Options/Classes/Interactivity/Events/DivEvent";
 import { DivType } from "../../Enums/Types";
 import { ICoordinates } from "../../Core/Interfaces/ICoordinates";
+import { IBounds } from "../../Core/Interfaces/IBounds";
+import { IParticle } from "../../Core/Interfaces/IParticle";
+
+interface IRectSideResult {
+    velocity?: number;
+    position?: number;
+    bounced: boolean;
+}
+
+interface ISideData {
+    min: number;
+    max: number;
+}
 
 export class Bouncer implements IExternalInteractor {
     constructor(private readonly container: Container) {}
@@ -66,11 +79,8 @@ export class Bouncer implements IExternalInteractor {
         const divBounds = Utils.calculateBounds(position, radius);
 
         for (const particle of query) {
-            const pPos = particle.getPosition();
-            const offset = particle.offset;
-            const size = particle.getRadius();
-
             if (area instanceof Circle) {
+                const size = particle.getRadius();
                 const pos1 = particle.getPosition();
                 const pos2 = position;
 
@@ -100,76 +110,123 @@ export class Bouncer implements IExternalInteractor {
                     const vFinal1 = NumberUtils.rotateVelocity(v1, -angle);
 
                     // Swap particle velocities for realistic bounce effect
-                    const bounce1 = particle.particlesOptions.collisions.bounce;
+                    const bounce1 = particle.particlesOptions.bounce;
 
                     particle.velocity.horizontal = vFinal1.horizontal * NumberUtils.getValue(bounce1.horizontal);
                     particle.velocity.vertical = vFinal1.vertical * NumberUtils.getValue(bounce1.vertical);
                 }
             } else if (area instanceof Rectangle) {
-                const bounds = Utils.calculateBounds(pPos, size);
+                Bouncer.rectBounce(particle, divBounds);
+            }
+        }
+    }
 
-                {
-                    const velocity = particle.velocity.horizontal;
-                    let bounced = false;
+    private static rectBounce(particle: IParticle, divBounds: IBounds): void {
+        const pPos = particle.getPosition();
+        const offset = particle.offset;
+        const size = particle.getRadius();
+        const bounds = Utils.calculateBounds(pPos, size);
 
-                    if (
-                        bounds.top >= divBounds.top &&
-                        bounds.bottom <= divBounds.bottom &&
-                        ((bounds.right >= divBounds.left && bounds.right <= divBounds.right && velocity > 0) ||
-                            (bounds.left <= divBounds.right && bounds.left >= divBounds.left && velocity < 0))
-                    ) {
-                        const newVelocity = NumberUtils.getValue(particle.particlesOptions.bounce.horizontal);
+        const resH = Bouncer.rectSideBounce(
+            {
+                min: bounds.left,
+                max: bounds.right,
+            },
+            {
+                min: bounds.top,
+                max: bounds.bottom,
+            },
+            {
+                min: divBounds.left,
+                max: divBounds.right,
+            },
+            {
+                min: divBounds.top,
+                max: divBounds.bottom,
+            },
+            particle.velocity.horizontal,
+            NumberUtils.getValue(particle.particlesOptions.bounce.horizontal),
+            offset.x + size
+        );
 
-                        particle.velocity.horizontal *= -newVelocity;
+        if (resH.bounced) {
+            if (resH.velocity !== undefined) {
+                particle.velocity.horizontal = resH.velocity;
+            }
 
-                        bounced = true;
-                    }
+            if (resH.position !== undefined) {
+                particle.position.x = resH.position;
+            }
+        }
 
-                    if (bounced) {
-                        const minPos = offset.x + size;
+        const resV = Bouncer.rectSideBounce(
+            {
+                min: bounds.top,
+                max: bounds.bottom,
+            },
+            {
+                min: bounds.left,
+                max: bounds.right,
+            },
+            {
+                min: divBounds.top,
+                max: divBounds.bottom,
+            },
+            {
+                min: divBounds.left,
+                max: divBounds.right,
+            },
+            particle.velocity.vertical,
+            NumberUtils.getValue(particle.particlesOptions.bounce.vertical),
+            offset.y + size
+        );
 
-                        if (bounds.top >= divBounds.top && bounds.bottom <= divBounds.bottom) {
-                            if (bounds.right >= divBounds.left && bounds.right <= divBounds.right) {
-                                particle.position.x = divBounds.left - minPos;
-                            } else if (bounds.left <= divBounds.right && bounds.left >= divBounds.left) {
-                                particle.position.x = divBounds.right + minPos;
-                            }
-                        }
-                    }
-                }
+        if (resV.bounced) {
+            if (resV.velocity !== undefined) {
+                particle.velocity.vertical = resV.velocity;
+            }
 
-                {
-                    const velocity = particle.velocity.vertical;
-                    let bounced = false;
+            if (resV.position !== undefined) {
+                particle.position.y = resV.position;
+            }
+        }
+    }
 
-                    if (
-                        (bounds.left >= divBounds.left &&
-                            bounds.right <= divBounds.right &&
-                            bounds.bottom >= divBounds.top &&
-                            bounds.bottom <= divBounds.bottom &&
-                            velocity > 0) ||
-                        (bounds.top <= divBounds.bottom && bounds.top >= divBounds.top && velocity < 0)
-                    ) {
-                        const newVelocity = NumberUtils.getValue(particle.particlesOptions.bounce.vertical);
+    private static rectSideBounce(
+        pSide: ISideData,
+        pOtherSide: ISideData,
+        rectSide: ISideData,
+        rectOtherSide: ISideData,
+        velocity: number,
+        factor: number,
+        minPos: number
+    ): IRectSideResult {
+        const res: IRectSideResult = { bounced: false };
 
-                        particle.velocity.vertical *= -newVelocity;
+        if (
+            pOtherSide.min >= rectOtherSide.min &&
+            pOtherSide.min <= rectOtherSide.max &&
+            pOtherSide.max >= rectOtherSide.min &&
+            pOtherSide.max <= rectOtherSide.max
+        ) {
+            if (
+                (pSide.max >= rectSide.min && pSide.max <= rectSide.max && velocity > 0) ||
+                (pSide.min <= rectSide.max && pSide.min >= rectSide.min && velocity < 0)
+            ) {
+                res.velocity = velocity * -factor;
 
-                        bounced = true;
-                    }
+                res.bounced = true;
+            }
 
-                    if (bounced) {
-                        const minPos = offset.y + size;
-
-                        if (bounds.left >= divBounds.left && bounds.right <= divBounds.right) {
-                            if (bounds.bottom >= divBounds.top && bounds.bottom <= divBounds.bottom) {
-                                particle.position.y = divBounds.top - minPos;
-                            } else if (bounds.top <= divBounds.bottom && bounds.top >= divBounds.top) {
-                                particle.position.y = divBounds.bottom + minPos;
-                            }
-                        }
-                    }
+            if (res.bounced) {
+                if (pSide.max >= rectSide.min && pSide.max <= rectSide.max) {
+                    res.position = rectSide.min - minPos;
+                } else if (pSide.min <= rectSide.max && pSide.min >= rectSide.min) {
+                    res.position = rectSide.max + minPos;
                 }
             }
         }
+
+        return res;
     }
 }
