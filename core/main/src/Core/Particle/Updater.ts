@@ -10,7 +10,8 @@ import { OutModeDirection } from "../../Enums/Directions/OutModeDirection";
  * @category Core
  */
 export class Updater {
-    constructor(private readonly container: Container, private readonly particle: Particle) {}
+    constructor(private readonly container: Container, private readonly particle: Particle) {
+    }
 
     public update(delta: IDelta): void {
         if (this.particle.destroyed) {
@@ -106,14 +107,14 @@ export class Updater {
                     if (particle.opacity.value >= particle.particlesOptions.opacity.value) {
                         particle.opacity.status = AnimationStatus.decreasing;
                     } else {
-                        particle.opacity.value += (particle.opacity.velocity || 0) * delta.factor;
+                        particle.opacity.value += (particle.opacity.velocity ?? 0) * delta.factor;
                     }
                     break;
                 case AnimationStatus.decreasing:
                     if (particle.opacity.value <= particle.particlesOptions.opacity.animation.minimumValue) {
                         particle.opacity.status = AnimationStatus.increasing;
                     } else {
-                        particle.opacity.value -= (particle.opacity.velocity || 0) * delta.factor;
+                        particle.opacity.value -= (particle.opacity.velocity ?? 0) * delta.factor;
                     }
                     break;
             }
@@ -353,7 +354,7 @@ export class Updater {
         const particle = this.particle;
         let handled = false;
 
-        for (const [, plugin] of container.plugins) {
+        for (const [ , plugin ] of container.plugins) {
             if (plugin.particleBounce !== undefined) {
                 handled = plugin.particleBounce(particle, delta, direction);
             }
