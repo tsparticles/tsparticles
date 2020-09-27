@@ -10,8 +10,7 @@ import { OutModeDirection } from "../../Enums/Directions/OutModeDirection";
  * @category Core
  */
 export class Updater {
-    constructor(private readonly container: Container, private readonly particle: Particle) {
-    }
+    constructor(private readonly container: Container, private readonly particle: Particle) {}
 
     public update(delta: IDelta): void {
         if (this.particle.destroyed) {
@@ -177,28 +176,30 @@ export class Updater {
         const speed = (particle.rotate.velocity ?? 0) * delta.factor;
         const max = 2 * Math.PI;
 
-        if (rotate.path) {
-            particle.pathAngle = Math.atan2(particle.velocity.vertical, particle.velocity.horizontal);
-        } else {
-            if (rotateAnimation.enable) {
-                switch (particle.rotate.status) {
-                    case AnimationStatus.increasing:
-                        particle.rotate.value += speed;
-
-                        if (particle.rotate.value > max) {
-                            particle.rotate.value -= max;
-                        }
-                        break;
-                    case AnimationStatus.decreasing:
-                    default:
-                        particle.rotate.value -= speed;
-
-                        if (particle.rotate.value < 0) {
-                            particle.rotate.value += max;
-                        }
-                        break;
-                }
+        if (!rotate.path) {
+            if (!rotateAnimation.enable) {
+                return;
             }
+
+            switch (particle.rotate.status) {
+                case AnimationStatus.increasing:
+                    particle.rotate.value += speed;
+
+                    if (particle.rotate.value > max) {
+                        particle.rotate.value -= max;
+                    }
+                    break;
+                case AnimationStatus.decreasing:
+                default:
+                    particle.rotate.value -= speed;
+
+                    if (particle.rotate.value < 0) {
+                        particle.rotate.value += max;
+                    }
+                    break;
+            }
+        } else {
+            particle.pathAngle = Math.atan2(particle.velocity.vertical, particle.velocity.horizontal);
         }
     }
 
@@ -354,7 +355,7 @@ export class Updater {
         const particle = this.particle;
         let handled = false;
 
-        for (const [ , plugin ] of container.plugins) {
+        for (const [, plugin] of container.plugins) {
             if (plugin.particleBounce !== undefined) {
                 handled = plugin.particleBounce(particle, delta, direction);
             }

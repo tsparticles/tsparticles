@@ -149,11 +149,4 @@ describe("Particle", () => {
             testParticle.reset(testContainer.container);
         });
     });
-
-    describe("isOverlapping", () => {
-        it("should always return false whenever the container has no other particles", () => {
-            const isOverlapping = testParticle.particle?.isOverlapping();
-            expect(isOverlapping).to.be.false;
-        });
-    });
 });

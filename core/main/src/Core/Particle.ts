@@ -18,7 +18,6 @@ import {
     MoveDirectionAlt,
     OutMode,
     RotateDirection,
-    RotateDirectionAlt,
     ShapeType,
     StartValueType,
 } from "../Enums";
@@ -30,7 +29,7 @@ import type { IShapeDrawer } from "./Interfaces/IShapeDrawer";
 import { Infecter } from "./Particle/Infecter";
 import type { IDelta } from "./Interfaces/IDelta";
 import { Mover } from "./Particle/Mover";
-import { ILink } from "./Interfaces/ILink";
+import type { ILink } from "./Interfaces/ILink";
 
 /**
  * The single particle object
@@ -390,30 +389,6 @@ export class Particle implements IParticle {
 
     public draw(delta: IDelta): void {
         this.container.canvas.drawParticle(this, delta);
-    }
-
-    public isOverlapping(): boolean {
-        const container = this.container;
-
-        let collisionFound = false;
-
-        const pos1 = this.getPosition();
-
-        for (const p2 of container.particles.array) {
-            if (p2 === this) {
-                continue;
-            }
-
-            const pos2 = p2.getPosition();
-            const dist = NumberUtils.getDistance(pos1, pos2);
-
-            if (dist <= this.size.value + p2.size.value) {
-                collisionFound = true;
-                break;
-            }
-        }
-
-        return collisionFound;
     }
 
     public getPosition(): ICoordinates {
