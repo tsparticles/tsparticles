@@ -1,6 +1,5 @@
 import type { Container } from "../../Core/Container";
 import { Constants, Utils, ColorUtils, NumberUtils } from "../../Utils";
-import { IRgb } from "../../Core/Interfaces/Colors";
 import { HoverMode } from "../../Enums/Modes";
 import type { IExternalInteractor } from "../../Core/Interfaces/IExternalInteractor";
 
