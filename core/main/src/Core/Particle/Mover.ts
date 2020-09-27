@@ -64,7 +64,7 @@ export class Mover {
             vertical: particle.velocity.vertical * moveSpeed,
         };
 
-        if (velocity.vertical >= gravityOptions.maxSpeed && gravityOptions.maxSpeed > 0) {
+        if (gravityOptions.enable && velocity.vertical >= gravityOptions.maxSpeed && gravityOptions.maxSpeed > 0) {
             velocity.vertical = gravityOptions.maxSpeed;
 
             particle.velocity.vertical = velocity.vertical / moveSpeed;

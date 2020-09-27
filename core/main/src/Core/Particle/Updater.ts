@@ -176,11 +176,9 @@ export class Updater {
         const speed = (particle.rotate.velocity ?? 0) * delta.factor;
         const max = 2 * Math.PI;
 
-        if (!rotate.path) {
-            if (!rotateAnimation.enable) {
-                return;
-            }
-
+        if (rotate.path) {
+            particle.pathAngle = Math.atan2(particle.velocity.vertical, particle.velocity.horizontal);
+        } else if (rotateAnimation.enable) {
             switch (particle.rotate.status) {
                 case AnimationStatus.increasing:
                     particle.rotate.value += speed;
@@ -198,8 +196,6 @@ export class Updater {
                     }
                     break;
             }
-        } else {
-            particle.pathAngle = Math.atan2(particle.velocity.vertical, particle.velocity.horizontal);
         }
     }
 

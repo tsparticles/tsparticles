@@ -5,8 +5,7 @@ import { Circle, CircleWarp, ColorUtils, NumberUtils } from "../../Utils";
 import { IParticle } from "../../Core/Interfaces/IParticle";
 
 export class Linker implements IParticlesInteractor {
-    constructor(private readonly container: Container) {
-    }
+    constructor(private readonly container: Container) {}
 
     public isEnabled(particle: Particle): boolean {
         return particle.particlesOptions.links.enable;

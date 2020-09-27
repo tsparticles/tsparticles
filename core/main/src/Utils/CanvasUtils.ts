@@ -386,8 +386,8 @@ export class CanvasUtils {
         context.save();
         context.translate(pos.x, pos.y);
 
-        if (particle.rotate.value !== 0) {
-            context.rotate(particle.rotate.value);
+        if (angle !== 0) {
+            context.rotate(angle);
         }
 
         if (backgroundMask) {

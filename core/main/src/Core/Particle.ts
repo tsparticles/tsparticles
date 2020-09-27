@@ -185,7 +185,7 @@ export class Particle implements IParticle {
         const rotateOptions = this.particlesOptions.rotate;
 
         this.rotate = {
-            value: (rotateOptions.random ? Math.random() * 360 : rotateOptions.value * Math.PI) / 180,
+            value: ((rotateOptions.random.enable ? Math.random() * 360 : rotateOptions.value) * Math.PI) / 180,
         };
 
         let rotateDirection = rotateOptions.direction;
