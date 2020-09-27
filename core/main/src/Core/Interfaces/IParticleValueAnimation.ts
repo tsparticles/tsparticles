@@ -3,8 +3,8 @@ import type { AnimationStatus } from "../../Enums";
 /**
  * @category Interfaces
  */
-export interface IParticleValueAnimation {
+export interface IParticleValueAnimation<T> {
     status?: AnimationStatus;
     velocity?: number;
-    value: number;
+    value: T;
 }

@@ -4,7 +4,7 @@ import type { IParticleValueAnimation } from "./Interfaces/IParticleValueAnimati
 import type { ICoordinates } from "./Interfaces/ICoordinates";
 import type { IParticleImage } from "./Interfaces/IParticleImage";
 import { Updater } from "./Particle/Updater";
-import type { IRgb, IHsl } from "./Interfaces/Colors";
+import type { IHsl, IRgb } from "./Interfaces/Colors";
 import type { IStroke } from "../Options/Interfaces/Particles/IStroke";
 import type { IShapeValues } from "../Options/Interfaces/Particles/Shape/IShapeValues";
 import type { IBubbleParticleData } from "./Interfaces/IBubbleParticleData";
@@ -13,9 +13,9 @@ import type { IParticles } from "../Options/Interfaces/Particles/IParticles";
 import { Particles } from "../Options/Classes/Particles/Particles";
 import { Shape } from "../Options/Classes/Particles/Shape/Shape";
 import {
+    AnimationStatus,
     MoveDirection,
     MoveDirectionAlt,
-    AnimationStatus,
     OutMode,
     RotateDirection,
     RotateDirectionAlt,
@@ -37,7 +37,6 @@ import { ILink } from "./Interfaces/ILink";
  * @category Core
  */
 export class Particle implements IParticle {
-    public angle;
     public pathAngle;
     public destroyed;
     public lifeDelay;
@@ -57,7 +56,6 @@ export class Particle implements IParticle {
     public readonly particlesOptions;
 
     public links: ILink[];
-    public rotateDirection: RotateDirection | keyof typeof RotateDirection | RotateDirectionAlt;
     public randomIndexData?: number;
     public linksDistance?: number;
     public linksWidth?: number;
@@ -69,20 +67,20 @@ export class Particle implements IParticle {
     public readonly direction: MoveDirection | keyof typeof MoveDirection | MoveDirectionAlt;
     public readonly fill: boolean;
     public readonly stroke: IStroke;
-    public readonly size: IParticleValueAnimation;
     public readonly position: ICoordinates;
     public readonly offset: ICoordinates;
-    public readonly color: IHsl | undefined;
     public readonly strokeColor: IHsl | undefined;
     public readonly shadowColor: IRgb | undefined;
-    public readonly opacity: IParticleValueAnimation;
+    public readonly color: IParticleValueAnimation<IHsl | undefined>;
+    public readonly opacity: IParticleValueAnimation<number>;
+    public readonly rotate: IParticleValueAnimation<number>;
+    public readonly size: IParticleValueAnimation<number>;
     public readonly velocity: IVelocity;
     public readonly shape: ShapeType | string;
     public readonly image?: IParticleImage;
     public readonly initialVelocity: IVelocity;
     public readonly shapeData?: IShapeValues;
     public readonly bubble: IBubbleParticleData;
-    public readonly colorVelocity: number;
 
     private readonly strokeColorVelocity?: number;
 
@@ -185,19 +183,39 @@ export class Particle implements IParticle {
             vertical: this.initialVelocity.vertical,
         };
 
-        const rotateOptions = this.particlesOptions.rotate;
-
-        const degAngle = rotateOptions.random ? Math.random() * 360 : rotateOptions.value;
-
-        this.angle = (degAngle * Math.PI) / 180;
         this.pathAngle = Math.atan2(this.initialVelocity.vertical, this.initialVelocity.horizontal);
 
-        this.rotateDirection = rotateOptions.direction;
+        const rotateOptions = this.particlesOptions.rotate;
 
-        if (this.rotateDirection === RotateDirection.random) {
+        this.rotate = {
+            value: (rotateOptions.random ? Math.random() * 360 : rotateOptions.value * Math.PI) / 180,
+        };
+
+        let rotateDirection = rotateOptions.direction;
+
+        if (rotateDirection === RotateDirection.random) {
             const index = Math.floor(Math.random() * 2);
 
-            this.rotateDirection = index > 0 ? RotateDirection.counterClockwise : RotateDirection.clockwise;
+            rotateDirection = index > 0 ? RotateDirection.counterClockwise : RotateDirection.clockwise;
+
+            switch (rotateDirection) {
+                case RotateDirection.counterClockwise:
+                    this.rotate.status = AnimationStatus.decreasing;
+                    break;
+                case RotateDirection.clockwise:
+                    this.rotate.status = AnimationStatus.increasing;
+                    break;
+            }
+        }
+
+        const rotateAnimation = this.particlesOptions.rotate.animation;
+
+        if (rotateAnimation.enable) {
+            this.rotate.velocity = rotateAnimation.speed / 360;
+
+            if (!rotateAnimation.sync) {
+                this.rotate.velocity *= Math.random();
+            }
         }
 
         const sizeAnimation = this.particlesOptions.size.animation;
@@ -236,22 +254,18 @@ export class Particle implements IParticle {
         }
 
         /* color */
-        this.color = ColorUtils.colorToHsl(color, this.id, reduceDuplicates);
+        this.color = {
+            value: ColorUtils.colorToHsl(color, this.id, reduceDuplicates),
+        };
 
         const colorAnimation = this.particlesOptions.color.animation;
 
         if (colorAnimation.enable) {
-            this.colorVelocity = colorAnimation.speed / 100;
+            this.color.velocity = colorAnimation.speed / 100;
 
             if (!colorAnimation.sync) {
-                this.colorVelocity = this.colorVelocity * Math.random();
+                this.color.velocity *= Math.random();
             }
-        } else {
-            this.colorVelocity = 0;
-        }
-
-        if (colorAnimation.enable && !colorAnimation.sync && this.color) {
-            this.color.h = Math.random() * 360;
         }
 
         /* position */
@@ -414,11 +428,11 @@ export class Particle implements IParticle {
     }
 
     public getFillColor(): IHsl | undefined {
-        return this.bubble.color ?? this.color;
+        return this.bubble.color ?? this.color.value;
     }
 
     public getStrokeColor(): IHsl | undefined {
-        return this.bubble.color ?? this.strokeColor ?? this.color;
+        return this.bubble.color ?? this.strokeColor ?? this.color.value;
     }
 
     public destroy(): void {

@@ -262,7 +262,7 @@ export class CanvasUtils {
         const radius = particle.getRadius();
         const sides = particle.sides;
         const full = (Math.PI * 2) / sides;
-        const angle = -particle.angle + Math.PI / 4;
+        const angle = -particle.rotate.value + Math.PI / 4;
         const factor = 1; //Math.sqrt(2);
         const dots = [];
 
@@ -336,7 +336,7 @@ export class CanvasUtils {
         context.translate(pos.x, pos.y);
         context.beginPath();
 
-        const angle = particle.angle + (particle.particlesOptions.rotate.path ? particle.pathAngle : 0);
+        const angle = particle.rotate.value + (particle.particlesOptions.rotate.path ? particle.pathAngle : 0);
 
         if (angle !== 0) {
             context.rotate(angle);
@@ -386,8 +386,8 @@ export class CanvasUtils {
         context.save();
         context.translate(pos.x, pos.y);
 
-        if (particle.angle !== 0) {
-            context.rotate(particle.angle);
+        if (particle.rotate.value !== 0) {
+            context.rotate(particle.rotate.value);
         }
 
         if (backgroundMask) {

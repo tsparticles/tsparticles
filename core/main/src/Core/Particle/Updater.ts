@@ -1,7 +1,7 @@
 import type { Container } from "../Container";
 import type { Particle } from "../Particle";
 import { NumberUtils, Utils } from "../../Utils";
-import { DestroyType, AnimationStatus, OutMode, OutModeAlt, RotateDirection } from "../../Enums";
+import { AnimationStatus, DestroyType, OutMode, OutModeAlt } from "../../Enums";
 import type { IDelta } from "../Interfaces/IDelta";
 import { OutModeDirection } from "../../Enums/Directions/OutModeDirection";
 
@@ -173,27 +173,27 @@ export class Updater {
         const particle = this.particle;
         const rotate = particle.particlesOptions.rotate;
         const rotateAnimation = rotate.animation;
-        const speed = (rotateAnimation.speed / 360) * delta.factor;
+        const speed = (particle.rotate.velocity ?? 0) * delta.factor;
         const max = 2 * Math.PI;
 
         if (rotate.path) {
             particle.pathAngle = Math.atan2(particle.velocity.vertical, particle.velocity.horizontal);
         } else {
             if (rotateAnimation.enable) {
-                switch (particle.rotateDirection) {
-                    case RotateDirection.clockwise:
-                        particle.angle += speed;
+                switch (particle.rotate.status) {
+                    case AnimationStatus.increasing:
+                        particle.rotate.value += speed;
 
-                        if (particle.angle > max) {
-                            particle.angle -= max;
+                        if (particle.rotate.value > max) {
+                            particle.rotate.value -= max;
                         }
                         break;
-                    case RotateDirection.counterClockwise:
+                    case AnimationStatus.decreasing:
                     default:
-                        particle.angle -= speed;
+                        particle.rotate.value -= speed;
 
-                        if (particle.angle < 0) {
-                            particle.angle += max;
+                        if (particle.rotate.value < 0) {
+                            particle.rotate.value += max;
                         }
                         break;
                 }
@@ -204,15 +204,15 @@ export class Updater {
     private updateColor(delta: IDelta): void {
         const particle = this.particle;
 
-        if (particle.color === undefined) {
+        if (particle.color.value === undefined) {
             return;
         }
 
         if (particle.particlesOptions.color.animation.enable) {
-            particle.color.h += (particle.colorVelocity || 0) * delta.factor;
+            particle.color.value.h += (particle.color.velocity ?? 0) * delta.factor;
 
-            if (particle.color.h > 360) {
-                particle.color.h -= 360;
+            if (particle.color.value.h > 360) {
+                particle.color.value.h -= 360;
             }
         }
     }
@@ -231,7 +231,7 @@ export class Updater {
         }
 
         if (color.animation.enable) {
-            particle.strokeColor.h += (particle.colorVelocity || 0) * delta.factor;
+            particle.strokeColor.h += (particle.color.velocity ?? 0) * delta.factor;
 
             if (particle.strokeColor.h > 360) {
                 particle.strokeColor.h -= 360;

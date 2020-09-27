@@ -1,7 +1,7 @@
 import type { IStroke } from "../../Options/Interfaces/Particles/IStroke";
 import type { ICoordinates } from "./ICoordinates";
 import type { IVelocity } from "./IVelocity";
-import type { MoveDirection, MoveDirectionAlt, RotateDirection, RotateDirectionAlt, ShapeType } from "../../Enums";
+import type { MoveDirection, MoveDirectionAlt, ShapeType } from "../../Enums";
 import type { IParticleImage } from "./IParticleImage";
 import type { IParticleValueAnimation } from "./IParticleValueAnimation";
 import type { IShapeValues } from "../../Options/Interfaces/Particles/Shape/IShapeValues";
@@ -16,10 +16,8 @@ import type { ILink } from "./ILink";
 export interface IParticle {
     randomIndexData?: number;
 
-    readonly angle: number;
     readonly pathAngle: number;
     readonly bubble: IBubbleParticleData;
-    readonly color: IHsl | undefined;
     readonly close: boolean;
     readonly destroyed: boolean;
     readonly direction: MoveDirection | keyof typeof MoveDirection | MoveDirectionAlt;
@@ -29,15 +27,16 @@ export interface IParticle {
     readonly initialVelocity: IVelocity;
     readonly links: ILink[];
     readonly offset: ICoordinates;
-    readonly opacity: IParticleValueAnimation;
+    readonly color: IParticleValueAnimation<IHsl | undefined>;
+    readonly opacity: IParticleValueAnimation<number>;
+    readonly rotate: IParticleValueAnimation<number>;
+    readonly size: IParticleValueAnimation<number>;
     readonly particlesOptions: IParticles;
     readonly position: ICoordinates;
-    readonly rotateDirection: RotateDirection | keyof typeof RotateDirection | RotateDirectionAlt;
     readonly shadowColor: IRgb | undefined;
     readonly shape?: ShapeType | string;
     readonly shapeData?: IShapeValues;
     readonly sides: number;
-    readonly size: IParticleValueAnimation;
     readonly stroke: IStroke;
     readonly strokeWidth: number;
     readonly strokeColor: IHsl | undefined;
