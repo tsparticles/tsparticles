@@ -3,6 +3,7 @@ import { Utils } from "./Utils";
 import { Constants } from "./Constants";
 import type { IImage } from "../Core/Interfaces/IImage";
 import { NumberUtils } from "./NumberUtils";
+import { IParticle } from "../Core/Interfaces/IParticle";
 
 /**
  * @category Utils
@@ -397,6 +398,51 @@ export class ColorUtils {
         const rgbHex = /#([0-9A-F]{3,6})/gi;
 
         return svgXml.replace(rgbHex, () => ColorUtils.getStyleFromHsl(color, opacity));
+    }
+
+    public static getLinkColor(p1: IParticle, p2?: IParticle, linkColor?: string | IRgb): IRgb | undefined {
+        if (linkColor === Constants.randomColorValue) {
+            return ColorUtils.getRandomRgbColor();
+        } else if (linkColor === "mid") {
+            const sourceColor = p1.getFillColor() ?? p1.getStrokeColor();
+            const destColor = p2?.getFillColor() ?? p2?.getStrokeColor();
+
+            if (sourceColor && destColor && p2) {
+                return ColorUtils.mix(sourceColor, destColor, p1.getRadius(), p2.getRadius());
+            } else {
+                const hslColor = sourceColor ?? destColor;
+
+                if (hslColor) {
+                    return ColorUtils.hslToRgb(hslColor);
+                }
+            }
+        } else {
+            return linkColor as IRgb;
+        }
+    }
+
+    public static getLinkRandomColor(
+        optColor: string | IColor,
+        blink: boolean,
+        consent: boolean
+    ): IRgb | string | undefined {
+        const color = typeof optColor === "string" ? optColor : optColor.value;
+
+        if (color === Constants.randomColorValue) {
+            if (consent) {
+                return ColorUtils.colorToRgb({
+                    value: color,
+                });
+            } else if (blink) {
+                return Constants.randomColorValue;
+            } else {
+                return Constants.midColorValue;
+            }
+        } else {
+            return ColorUtils.colorToRgb({
+                value: color,
+            });
+        }
     }
 
     /**

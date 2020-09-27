@@ -277,26 +277,11 @@ export class Canvas {
                     ? container.particles.linksColors.get(linksOptions.id)
                     : container.particles.linksColor;
 
-            if (linkColor === Constants.randomColorValue) {
-                colorTriangle = ColorUtils.getRandomRgbColor();
-            } else if (linkColor === "mid") {
-                const sourceColor = p1.getFillColor();
-                const destColor = p2.getFillColor();
+            colorTriangle = ColorUtils.getLinkColor(p1, p2, linkColor);
+        }
 
-                if (sourceColor && destColor) {
-                    colorTriangle = ColorUtils.mix(sourceColor, destColor, p1.getRadius(), p2.getRadius());
-                } else {
-                    const hslColor = sourceColor ?? destColor;
-
-                    if (!hslColor) {
-                        return;
-                    }
-
-                    colorTriangle = ColorUtils.hslToRgb(hslColor);
-                }
-            } else {
-                colorTriangle = linkColor as IRgb;
-            }
+        if (!colorTriangle) {
+            return;
         }
 
         const width = p1.linksWidth ?? container.retina.linksWidth;
@@ -359,26 +344,11 @@ export class Canvas {
                     ? container.particles.linksColors.get(linksOptions.id)
                     : container.particles.linksColor;
 
-            if (linkColor === Constants.randomColorValue) {
-                colorLine = ColorUtils.getRandomRgbColor();
-            } else if (linkColor === "mid") {
-                const sourceColor = p1.getFillColor() ?? p1.getStrokeColor();
-                const destColor = p2.getFillColor() ?? p2.getStrokeColor();
+            colorLine = ColorUtils.getLinkColor(p1, p2, linkColor);
+        }
 
-                if (sourceColor && destColor) {
-                    colorLine = ColorUtils.mix(sourceColor, destColor, p1.getRadius(), p2.getRadius());
-                } else {
-                    const hslColor = sourceColor ?? destColor;
-
-                    if (!hslColor) {
-                        return;
-                    }
-
-                    colorLine = ColorUtils.hslToRgb(hslColor);
-                }
-            } else {
-                colorLine = linkColor as IRgb;
-            }
+        if (!colorLine) {
+            return;
         }
 
         const width = p1.linksWidth ?? container.retina.linksWidth;

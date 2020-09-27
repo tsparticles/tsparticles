@@ -64,40 +64,19 @@ export class Grabber implements IExternalInteractor {
 
                         if (!container.particles.grabLineColor) {
                             const linksOptions = container.options.interactivity.modes.grab.links;
-                            const color = typeof optColor === "string" ? optColor : optColor.value;
 
-                            /* particles.line_linked - convert hex colors to rgb */
-                            //  check for the color profile requested and
-                            //  then return appropriate value
-
-                            if (color === Constants.randomColorValue) {
-                                if (linksOptions.consent) {
-                                    container.particles.grabLineColor = ColorUtils.colorToRgb({
-                                        value: color,
-                                    });
-                                } else if (linksOptions.blink) {
-                                    container.particles.grabLineColor = Constants.randomColorValue;
-                                } else {
-                                    container.particles.grabLineColor = Constants.midColorValue;
-                                }
-                            } else if (color !== undefined) {
-                                container.particles.grabLineColor = ColorUtils.colorToRgb({
-                                    value: color,
-                                });
-                            }
+                            container.particles.grabLineColor = ColorUtils.getLinkRandomColor(
+                                optColor,
+                                linksOptions.blink,
+                                linksOptions.consent
+                            );
                         }
 
-                        let colorLine: IRgb | undefined;
-
-                        if (container.particles.grabLineColor === Constants.randomColorValue) {
-                            colorLine = ColorUtils.getRandomRgbColor();
-                        } else if (container.particles.grabLineColor === "mid") {
-                            const sourceColor = particle.getFillColor() ?? particle.getStrokeColor();
-
-                            colorLine = sourceColor ? ColorUtils.hslToRgb(sourceColor) : undefined;
-                        } else {
-                            colorLine = container.particles.grabLineColor as IRgb;
-                        }
+                        const colorLine = ColorUtils.getLinkColor(
+                            particle,
+                            undefined,
+                            container.particles.grabLineColor
+                        );
 
                         if (colorLine === undefined) {
                             return;

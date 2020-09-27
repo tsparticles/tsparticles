@@ -7,8 +7,7 @@ import { DivType } from "../../Enums/Types";
 import { ICoordinates } from "../../Core/Interfaces/ICoordinates";
 
 export class Bouncer implements IExternalInteractor {
-    constructor(private readonly container: Container) {
-    }
+    constructor(private readonly container: Container) {}
 
     public interact(): void {
         const options = this.container.options;
@@ -52,11 +51,11 @@ export class Bouncer implements IExternalInteractor {
                 div.type === DivType.circle
                     ? new Circle(pos.x, pos.y, radius + tolerance)
                     : new Rectangle(
-                    elem.offsetLeft * pxRatio - tolerance,
-                    elem.offsetTop * pxRatio - tolerance,
-                    elem.offsetWidth * pxRatio + tolerance * 2,
-                    elem.offsetHeight * pxRatio + tolerance * 2
-                    );
+                          elem.offsetLeft * pxRatio - tolerance,
+                          elem.offsetTop * pxRatio - tolerance,
+                          elem.offsetWidth * pxRatio + tolerance * 2,
+                          elem.offsetHeight * pxRatio + tolerance * 2
+                      );
 
             this.processBounce(pos, radius, area);
         });

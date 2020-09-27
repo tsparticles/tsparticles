@@ -1,11 +1,12 @@
 import { Particle } from "../../Core/Particle";
 import { Container } from "../../Core/Container";
 import { IParticlesInteractor } from "../../Core/Interfaces/IParticlesInteractor";
-import { Circle, CircleWarp, ColorUtils, Constants, NumberUtils } from "../../Utils";
+import { Circle, CircleWarp, ColorUtils, NumberUtils } from "../../Utils";
 import { IParticle } from "../../Core/Interfaces/IParticle";
 
 export class Linker implements IParticlesInteractor {
-    constructor(private readonly container: Container) {}
+    constructor(private readonly container: Container) {
+    }
 
     public isEnabled(particle: Particle): boolean {
         return particle.particlesOptions.links.enable;
@@ -88,27 +89,8 @@ export class Linker implements IParticlesInteractor {
 
                 if (!linkColor) {
                     const optColor = linksOptions.color;
-                    const color = typeof optColor === "string" ? optColor : optColor.value;
 
-                    /* particles.line_linked - convert hex colors to rgb */
-                    //  check for the color profile requested and
-                    //  then return appropriate value
-
-                    if (color === Constants.randomColorValue) {
-                        if (linksOptions.consent) {
-                            linkColor = ColorUtils.colorToRgb({
-                                value: color,
-                            });
-                        } else if (linksOptions.blink) {
-                            linkColor = Constants.randomColorValue;
-                        } else {
-                            linkColor = Constants.midColorValue;
-                        }
-                    } else {
-                        linkColor = ColorUtils.colorToRgb({
-                            value: color,
-                        });
-                    }
+                    linkColor = ColorUtils.getLinkRandomColor(optColor, linksOptions.blink, linksOptions.consent);
 
                     if (linksOptions.id !== undefined) {
                         container.particles.linksColors.set(linksOptions.id, linkColor);
