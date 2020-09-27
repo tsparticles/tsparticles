@@ -104,7 +104,6 @@ export class MoveOptionsEditor extends EditorBase {
         const particles = this.particles;
         const group = this.group.addGroup("outModes", "Out Modes");
         const options = group.data as IOutModes;
-        options.bottom;
 
         const outModesValues = [
             {

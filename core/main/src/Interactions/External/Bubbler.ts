@@ -216,7 +216,7 @@ export class Bubbler implements IExternalInteractor {
                 continue;
             }
 
-            particle.bubble.inRange = container.bubble.clicking && !container.bubble.durationEnd;
+            particle.bubble.inRange = !container.bubble.durationEnd;
 
             const pos = particle.getPosition();
             const distMouse = NumberUtils.getDistance(pos, mouseClickPos);

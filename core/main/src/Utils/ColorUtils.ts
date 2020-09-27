@@ -365,7 +365,7 @@ export class ColorUtils {
      * @param opacity the opacity to apply to color
      */
     public static getStyleFromHsv(color: IHsv, opacity?: number): string {
-        return ColorUtils.getStyleFromHsl(this.hsvToHsl(color), opacity);
+        return ColorUtils.getStyleFromHsl(ColorUtils.hsvToHsl(color), opacity);
     }
 
     public static mix(color1: IRgb | IHsl, color2: IRgb | IHsl, size1: number, size2: number): IRgb {

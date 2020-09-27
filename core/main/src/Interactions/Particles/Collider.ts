@@ -1,6 +1,5 @@
 import type { Particle } from "../../Core/Particle";
 import type { Container } from "../../Core/Container";
-import type { IParticle } from "../../Core/Interfaces/IParticle";
 import { CollisionMode } from "../../Enums";
 import type { IParticlesInteractor } from "../../Core/Interfaces/IParticlesInteractor";
 import { NumberUtils } from "../../Utils";

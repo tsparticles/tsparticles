@@ -1,4 +1,3 @@
-import Inferno from "inferno";
 import { Component, InfernoNode } from "inferno";
 import { isEqual } from "lodash";
 import type { IOptions } from "tsparticles/dist/Options/Interfaces/IOptions";

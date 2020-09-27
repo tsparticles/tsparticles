@@ -89,7 +89,7 @@ export class TestParticle {
      * @param particles
      */
     public static sortedPositions(particles: Particle[]): ICoordinates[] {
-        return particles.sort(this.sort).map((particle) => particle.getPosition());
+        return particles.sort(TestParticle.sort).map((particle) => particle.getPosition());
     }
 
     /**
