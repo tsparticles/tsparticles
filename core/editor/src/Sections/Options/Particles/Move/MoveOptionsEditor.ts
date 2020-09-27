@@ -4,7 +4,6 @@ import type { IMove } from "tsparticles/dist/Options/Interfaces/Particles/Move/I
 import { MoveDirection, OutMode } from "tsparticles";
 import { EditorBase } from "../../../../EditorBase";
 import type { ITrail } from "tsparticles/dist/Options/Interfaces/Particles/Move/ITrail";
-import type { IOutModes } from "tsparticles/dist/Options/Interfaces/Particles/Move/IOutModes";
 
 export class MoveOptionsEditor extends EditorBase {
     public group!: EditorGroup;
