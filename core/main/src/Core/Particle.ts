@@ -58,6 +58,7 @@ export class Particle implements IParticle {
     public randomIndexData?: number;
     public linksDistance?: number;
     public linksWidth?: number;
+    public maxDistance?: number;
     public moveSpeed?: number;
     public sizeValue?: number;
     public sizeAnimationSpeed?: number;
@@ -77,6 +78,7 @@ export class Particle implements IParticle {
     public readonly velocity: IVelocity;
     public readonly shape: ShapeType | string;
     public readonly image?: IParticleImage;
+    public readonly initialPosition: ICoordinates;
     public readonly initialVelocity: IVelocity;
     public readonly shapeData?: IShapeValues;
     public readonly bubble: IBubbleParticleData;
@@ -267,6 +269,10 @@ export class Particle implements IParticle {
 
         /* position */
         this.position = this.calcPosition(this.container, position);
+        this.initialPosition = {
+            x: this.position.x,
+            y: this.position.y,
+        };
 
         /* parallax */
         this.offset = {

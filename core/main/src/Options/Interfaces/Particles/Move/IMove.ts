@@ -34,6 +34,7 @@ export interface IMove {
     angle: number | IMoveAngle;
     attract: IAttract;
     direction: MoveDirection | keyof typeof MoveDirection | MoveDirectionAlt;
+    distance: number;
     enable: boolean;
     gravity: IMoveGravity;
     noise: INoise;

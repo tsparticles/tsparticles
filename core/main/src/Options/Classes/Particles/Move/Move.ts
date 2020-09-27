@@ -81,6 +81,7 @@ export class Move implements IMove, IOptionLoader<IMove> {
     public angle;
     public attract;
     public direction: MoveDirection | keyof typeof MoveDirection | MoveDirectionAlt;
+    public distance;
     public enable;
     public gravity;
     public noise;
@@ -97,6 +98,7 @@ export class Move implements IMove, IOptionLoader<IMove> {
         this.angle = new MoveAngle();
         this.attract = new Attract();
         this.direction = MoveDirection.none;
+        this.distance = 0;
         this.enable = false;
         this.gravity = new MoveGravity();
         this.noise = new Noise();
@@ -127,6 +129,10 @@ export class Move implements IMove, IOptionLoader<IMove> {
 
         if (data.direction !== undefined) {
             this.direction = data.direction;
+        }
+
+        if (data.distance !== undefined) {
+            this.distance = data.distance;
         }
 
         if (data.enable !== undefined) {

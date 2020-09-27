@@ -77,6 +77,13 @@ export class Mover {
             particle.position.x += Math.sin(particle.position.x * Math.cos(particle.position.y));
             particle.position.y += Math.cos(particle.position.y * Math.sin(particle.position.x));
         }
+
+        const initialDistance = NumberUtils.getDistance(particle.initialPosition, particle.position);
+
+        if (particle.maxDistance && initialDistance >= particle.maxDistance) {
+            particle.velocity.horizontal = particle.velocity.vertical / 2 - particle.velocity.horizontal;
+            particle.velocity.vertical = particle.velocity.horizontal / 2 - particle.velocity.vertical;
+        }
     }
 
     private applyNoise(delta: IDelta): void {

@@ -191,6 +191,10 @@ export class MoveOptionsEditor extends EditorBase {
         const particles = this.particles;
         const group = this.group;
 
+        group.addProperty("distance", "Distance", EditorType.number).change(async () => {
+            await particles.refresh();
+        });
+
         group
             .addProperty("direction", "Direction", EditorType.select)
             .change(async () => {

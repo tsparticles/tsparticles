@@ -77,5 +77,6 @@ export class Retina {
         particle.moveSpeed = particlesOptions.move.speed * ratio;
         particle.sizeValue = particlesOptions.size.value * ratio;
         particle.sizeAnimationSpeed = particlesOptions.size.animation.speed * ratio;
+        particle.maxDistance = particlesOptions.move.distance * ratio;
     }
 }

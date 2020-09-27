@@ -34,10 +34,6 @@ type IPolygonMaskOptions = IOptions & {
     polygon: IPolygonMask;
 };
 
-type PolygonMaskParticle = Particle & {
-    initialPosition?: ICoordinates;
-};
-
 /**
  * Polygon Mask manager
  * @category Polygon Mask Plugin
@@ -244,23 +240,17 @@ export class PolygonMaskInstance implements IContainerPlugin {
         return false;
     }
 
-    public particlePosition(position?: ICoordinates, particle?: PolygonMaskParticle): ICoordinates | undefined {
+    public particlePosition(position?: ICoordinates): ICoordinates | undefined {
         const options = this.options;
 
         if (!(options.enable && (this.raw?.length ?? 0) > 0)) {
             return;
         }
 
-        const pos = Utils.deepExtend({}, position ? position : this.randomPoint()) as ICoordinates;
-
-        if (options.type === Type.inline && particle) {
-            particle.initialPosition = pos;
-        }
-
-        return pos;
+        return Utils.deepExtend({}, position ? position : this.randomPoint()) as ICoordinates;
     }
 
-    public particleBounce(particle: PolygonMaskParticle): boolean {
+    public particleBounce(particle: Particle): boolean {
         const options = this.options;
 
         /* check bounce against polygon boundaries */
