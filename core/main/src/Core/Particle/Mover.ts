@@ -80,9 +80,28 @@ export class Mover {
 
         const initialDistance = NumberUtils.getDistance(particle.initialPosition, particle.position);
 
-        if (particle.maxDistance && initialDistance >= particle.maxDistance) {
-            particle.velocity.horizontal = particle.velocity.vertical / 2 - particle.velocity.horizontal;
-            particle.velocity.vertical = particle.velocity.horizontal / 2 - particle.velocity.vertical;
+        if (particle.maxDistance) {
+            if (initialDistance >= particle.maxDistance && !particle.misplaced) {
+                particle.misplaced = initialDistance > particle.maxDistance;
+                particle.velocity.horizontal = particle.velocity.vertical / 2 - particle.velocity.horizontal;
+                particle.velocity.vertical = particle.velocity.horizontal / 2 - particle.velocity.vertical;
+            } else if (initialDistance < particle.maxDistance && particle.misplaced) {
+                particle.misplaced = false;
+            } else if (particle.misplaced) {
+                if (
+                    (particle.position.x < particle.initialPosition.x && particle.velocity.horizontal < 0) ||
+                    (particle.position.x > particle.initialPosition.x && particle.velocity.horizontal > 0)
+                ) {
+                    particle.velocity.horizontal *= -Math.random();
+                }
+
+                if (
+                    (particle.position.y < particle.initialPosition.y && particle.velocity.vertical < 0) ||
+                    (particle.position.y > particle.initialPosition.y && particle.velocity.vertical > 0)
+                ) {
+                    particle.velocity.vertical *= -Math.random();
+                }
+            }
         }
     }
 

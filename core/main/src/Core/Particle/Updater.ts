@@ -276,6 +276,10 @@ export class Updater {
                 }
                 break;
             case OutMode.none:
+                if (particle.particlesOptions.move.distance) {
+                    return;
+                }
+
                 if (!gravityOptions.enable) {
                     if (
                         !Utils.isPointInside(particle.position, container.canvas.size, particle.getRadius(), direction)
@@ -288,8 +292,8 @@ export class Updater {
                     if (
                         (gravityOptions.acceleration >= 0 &&
                             position.y > container.canvas.size.height &&
-                            direction === "bottom") ||
-                        (gravityOptions.acceleration < 0 && position.y < 0 && direction === "top")
+                            direction === OutModeDirection.bottom) ||
+                        (gravityOptions.acceleration < 0 && position.y < 0 && direction === OutModeDirection.top)
                     ) {
                         container.particles.remove(particle);
                     }

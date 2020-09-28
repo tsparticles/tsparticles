@@ -14,6 +14,7 @@ import type { ILink } from "./ILink";
  * @category Interfaces
  */
 export interface IParticle {
+    misplaced: boolean;
     randomIndexData?: number;
 
     readonly pathAngle: number;

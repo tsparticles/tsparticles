@@ -43,6 +43,7 @@ export class Particle implements IParticle {
     public lifeDuration;
     public lifeTime;
     public livesRemaining;
+    public misplaced;
     public spawning;
     public lastNoiseTime;
 
@@ -94,6 +95,7 @@ export class Particle implements IParticle {
         this.close = true;
         this.lastNoiseTime = 0;
         this.destroyed = false;
+        this.misplaced = false;
 
         const pxRatio = container.retina.pixelRatio;
         const options = container.options;
