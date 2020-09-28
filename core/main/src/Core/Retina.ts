@@ -96,7 +96,7 @@ export class Retina {
     private handleMotionChange(mediaQuery: MediaQueryList): void {
         const options = this.container.options;
 
-        if (!mediaQuery || mediaQuery.matches) {
+        if (mediaQuery.matches) {
             const motion = options.motion;
 
             this.reduceFactor = motion.disable ? 0 : motion.reduce.value ? 1 / motion.reduce.factor : 1;
