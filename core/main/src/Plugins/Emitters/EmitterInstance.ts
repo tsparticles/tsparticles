@@ -73,11 +73,18 @@ export class EmitterInstance {
     }
 
     public play(): void {
-        if (this.lifeCount > 0 || this.immortal || !this.emitterOptions.life.count) {
+        if (
+            this.container.retina.reduceFactor &&
+            (this.lifeCount > 0 || this.immortal || !this.emitterOptions.life.count)
+        ) {
             if (this.startInterval === undefined) {
+                const delay = (1000 * this.emitterOptions.rate.delay) / this.container.retina.reduceFactor;
+
+                console.log(delay);
+
                 this.startInterval = window.setInterval(() => {
                     this.emit();
-                }, 1000 * this.emitterOptions.rate.delay);
+                }, delay);
             }
 
             if (this.lifeCount > 0 || this.immortal) {
@@ -108,7 +115,12 @@ export class EmitterInstance {
     private prepareToDie(): void {
         const duration = this.emitterOptions.life?.duration;
 
-        if ((this.lifeCount > 0 || this.immortal) && duration !== undefined && duration > 0) {
+        if (
+            this.container.retina.reduceFactor &&
+            (this.lifeCount > 0 || this.immortal) &&
+            duration !== undefined &&
+            duration > 0
+        ) {
             window.setTimeout(() => {
                 this.pause();
 
@@ -121,7 +133,7 @@ export class EmitterInstance {
 
                     window.setTimeout(() => {
                         this.play();
-                    }, (this.emitterOptions.life.delay ?? 0) * 1000);
+                    }, ((this.emitterOptions.life.delay ?? 0) * 1000) / this.container.retina.reduceFactor);
                 } else {
                     this.destroy();
                 }

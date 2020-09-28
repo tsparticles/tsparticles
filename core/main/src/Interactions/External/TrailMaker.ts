@@ -15,11 +15,15 @@ export class TrailMaker implements IExternalInteractor {
     }
 
     public interact(delta: IDelta): void {
+        if (!this.container.retina.reduceFactor) {
+            return;
+        }
+
         const container = this.container;
         const options = container.options;
 
         const trailOptions = options.interactivity.modes.trail;
-        const optDelay = trailOptions.delay * 1000;
+        const optDelay = (trailOptions.delay * 1000) / this.container.retina.reduceFactor;
 
         if (this.delay < optDelay) {
             this.delay += delta.value;
