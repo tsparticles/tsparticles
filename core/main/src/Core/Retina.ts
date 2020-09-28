@@ -37,17 +37,21 @@ export class Retina {
             this.pixelRatio = 1;
         }
 
-        const mediaQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
+        if (Utils.isSsr() || typeof matchMedia === "undefined" || !matchMedia) {
+            this.reduceFactor = 1;
+        } else {
+            const mediaQuery = matchMedia("(prefers-reduced-motion: reduce)");
 
-        // Check if the media query matches or is not available.
-        this.handleMotionChange(mediaQuery);
-
-        // Ads an event listener to check for changes in the media query's value.
-        mediaQuery.addEventListener("change", async () => {
+            // Check if the media query matches or is not available.
             this.handleMotionChange(mediaQuery);
 
-            await container.refresh();
-        });
+            // Ads an event listener to check for changes in the media query's value.
+            mediaQuery.addEventListener("change", async () => {
+                this.handleMotionChange(mediaQuery);
+
+                await container.refresh();
+            });
+        }
 
         const ratio = this.pixelRatio;
 
