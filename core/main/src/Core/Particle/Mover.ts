@@ -78,7 +78,8 @@ export class Mover {
             particle.position.y += Math.cos(particle.position.y * Math.sin(particle.position.x));
         }
 
-        const initialDistance = NumberUtils.getDistance(particle.initialPosition, particle.position);
+        const initialPosition = particle.initialPosition;
+        const initialDistance = NumberUtils.getDistance(initialPosition, particle.position);
 
         if (particle.maxDistance) {
             if (initialDistance >= particle.maxDistance && !particle.misplaced) {
@@ -89,15 +90,15 @@ export class Mover {
                 particle.misplaced = false;
             } else if (particle.misplaced) {
                 if (
-                    (particle.position.x < particle.initialPosition.x && particle.velocity.horizontal < 0) ||
-                    (particle.position.x > particle.initialPosition.x && particle.velocity.horizontal > 0)
+                    (particle.position.x < initialPosition.x && particle.velocity.horizontal < 0) ||
+                    (particle.position.x > initialPosition.x && particle.velocity.horizontal > 0)
                 ) {
                     particle.velocity.horizontal *= -Math.random();
                 }
 
                 if (
-                    (particle.position.y < particle.initialPosition.y && particle.velocity.vertical < 0) ||
-                    (particle.position.y > particle.initialPosition.y && particle.velocity.vertical > 0)
+                    (particle.position.y < initialPosition.y && particle.velocity.vertical < 0) ||
+                    (particle.position.y > initialPosition.y && particle.velocity.vertical > 0)
                 ) {
                     particle.velocity.vertical *= -Math.random();
                 }
