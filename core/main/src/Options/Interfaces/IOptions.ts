@@ -5,7 +5,8 @@ import type { IBackground } from "./Background/IBackground";
 import type { IInfection } from "./Infection/IInfection";
 import type { SingleOrMultiple } from "../../Types";
 import type { ITheme } from "./Theme/ITheme";
-import { IBackgroundMode } from "./BackgroundMode/IBackgroundMode";
+import type { IBackgroundMode } from "./BackgroundMode/IBackgroundMode";
+import type { IMotion } from "./Motion/IMotion";
 
 /**
  * The Options interface, defines all the options that can be used by `tsParticles`
@@ -58,6 +59,11 @@ export interface IOptions {
      * The particles interaction options
      */
     interactivity: IInteractivity;
+
+    /**
+     * Handles user's preferences about motion
+     */
+    motion: IMotion;
 
     /**
      * The particles options

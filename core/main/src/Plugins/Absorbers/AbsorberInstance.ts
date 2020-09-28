@@ -41,11 +41,11 @@ export class AbsorberInstance {
 
         this.opacity = this.options.opacity;
         this.size = NumberUtils.getValue(options.size) * container.retina.pixelRatio;
-        this.mass = this.size * options.size.density;
+        this.mass = this.size * options.size.density * container.retina.reduceFactor;
 
         const limit = options.size.limit;
 
-        this.limit = limit !== undefined ? limit * container.retina.pixelRatio : limit;
+        this.limit = limit !== undefined ? limit * container.retina.pixelRatio * container.retina.reduceFactor : limit;
 
         const color = typeof options.color === "string" ? { value: options.color } : options.color;
 
@@ -83,7 +83,7 @@ export class AbsorberInstance {
         const pos = particle.getPosition();
         const { dx, dy, distance } = NumberUtils.getDistances(this.position, pos);
         const angle = Math.atan2(dx, dy);
-        const acceleration = this.mass / Math.pow(distance, 2);
+        const acceleration = (this.mass / Math.pow(distance, 2)) * this.container.retina.reduceFactor;
 
         if (distance < this.size + particle.getRadius()) {
             const sizeFactor = particle.getRadius() * 0.033 * this.container.retina.pixelRatio;
@@ -108,7 +108,7 @@ export class AbsorberInstance {
                 this.size += sizeFactor;
             }
 
-            this.mass += sizeFactor * this.options.size.density;
+            this.mass += sizeFactor * this.options.size.density * this.container.retina.reduceFactor;
         } else {
             this.updateParticlePosition(particle, angle, acceleration);
         }
@@ -183,7 +183,8 @@ export class AbsorberInstance {
             particle.position.y = this.position.y + orbitRadius * Math.sin(orbitAngle);
 
             particle.orbitRadius -= acceleration;
-            particle.orbitAngle += (particle.moveSpeed ?? this.container.retina.moveSpeed) / 100;
+            particle.orbitAngle +=
+                ((particle.moveSpeed ?? this.container.retina.moveSpeed) / 100) * this.container.retina.reduceFactor;
         } else {
             particle.velocity.horizontal += Math.sin(angle) * acceleration;
             particle.velocity.vertical += Math.cos(angle) * acceleration;

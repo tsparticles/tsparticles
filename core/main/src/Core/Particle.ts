@@ -212,7 +212,7 @@ export class Particle implements IParticle {
         const rotateAnimation = this.particlesOptions.rotate.animation;
 
         if (rotateAnimation.enable) {
-            this.rotate.velocity = rotateAnimation.speed / 360;
+            this.rotate.velocity = (rotateAnimation.speed / 360) * container.retina.reduceFactor;
 
             if (!rotateAnimation.sync) {
                 this.rotate.velocity *= Math.random();
@@ -247,7 +247,9 @@ export class Particle implements IParticle {
                 }
             }
 
-            this.size.velocity = (this.sizeAnimationSpeed ?? container.retina.sizeAnimationSpeed) / 100;
+            this.size.velocity =
+                ((this.sizeAnimationSpeed ?? container.retina.sizeAnimationSpeed) / 100) *
+                container.retina.reduceFactor;
 
             if (!sizeAnimation.sync) {
                 this.size.velocity *= Math.random();
@@ -262,7 +264,7 @@ export class Particle implements IParticle {
         const colorAnimation = this.particlesOptions.color.animation;
 
         if (colorAnimation.enable) {
-            this.color.velocity = colorAnimation.speed / 100;
+            this.color.velocity = (colorAnimation.speed / 100) * container.retina.reduceFactor;
 
             if (!colorAnimation.sync) {
                 this.color.velocity *= Math.random();
@@ -297,7 +299,7 @@ export class Particle implements IParticle {
 
         if (opacityAnimation.enable) {
             this.opacity.status = AnimationStatus.increasing;
-            this.opacity.velocity = opacityAnimation.speed / 100;
+            this.opacity.velocity = (opacityAnimation.speed / 100) * container.retina.reduceFactor;
 
             if (!opacityAnimation.sync) {
                 this.opacity.velocity *= Math.random();
@@ -348,7 +350,7 @@ export class Particle implements IParticle {
 
             if (strokeColorAnimation && this.strokeColor) {
                 if (strokeColorAnimation.enable) {
-                    this.strokeColor.velocity = strokeColorAnimation.speed / 100;
+                    this.strokeColor.velocity = (strokeColorAnimation.speed / 100) * container.retina.reduceFactor;
 
                     if (!strokeColorAnimation.sync) {
                         this.strokeColor.velocity = this.strokeColor.velocity * Math.random();

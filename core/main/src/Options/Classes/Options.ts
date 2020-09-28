@@ -10,6 +10,7 @@ import type { IOptionLoader } from "../Interfaces/IOptionLoader";
 import { Theme } from "./Theme/Theme";
 import { ThemeMode } from "../../Enums/Modes";
 import { BackgroundMode } from "./BackgroundMode/BackgroundMode";
+import { Motion } from "./Motion/Motion";
 
 /**
  * [[include:Options.md]]
@@ -55,6 +56,7 @@ export class Options implements IOptions, IOptionLoader<IOptions> {
     public fpsLimit;
     public infection;
     public interactivity;
+    public motion;
     public particles;
     public pauseOnBlur;
     public preset?: string | string[];
@@ -69,6 +71,7 @@ export class Options implements IOptions, IOptionLoader<IOptions> {
         this.fpsLimit = 30;
         this.infection = new Infection();
         this.interactivity = new Interactivity();
+        this.motion = new Motion();
         this.particles = new Particles();
         this.pauseOnBlur = true;
         this.themes = [];
@@ -117,6 +120,7 @@ export class Options implements IOptions, IOptionLoader<IOptions> {
         this.backgroundMask.load(data.backgroundMask);
         this.infection.load(data.infection);
         this.interactivity.load(data.interactivity);
+        this.motion.load(data.motion);
         this.particles.load(data.particles);
 
         Plugins.loadOptions(this, data);

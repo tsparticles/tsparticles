@@ -6,6 +6,7 @@ import { Utils } from "../Utils";
  * @category Core
  */
 export class Retina {
+    public reduceFactor!: number;
     public bubbleModeDistance!: number;
     public bubbleModeSize?: number;
     public connectModeDistance!: number;
@@ -35,6 +36,18 @@ export class Retina {
         } else {
             this.pixelRatio = 1;
         }
+
+        const mediaQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
+
+        // Check if the media query matches or is not available.
+        this.handleMotionChange(mediaQuery);
+
+        // Ads an event listener to check for changes in the media query's value.
+        mediaQuery.addEventListener("change", async () => {
+            this.handleMotionChange(mediaQuery);
+
+            await container.refresh();
+        });
 
         const ratio = this.pixelRatio;
 
@@ -78,5 +91,17 @@ export class Retina {
         particle.sizeValue = particlesOptions.size.value * ratio;
         particle.sizeAnimationSpeed = particlesOptions.size.animation.speed * ratio;
         particle.maxDistance = particlesOptions.move.distance * ratio;
+    }
+
+    private handleMotionChange(mediaQuery: MediaQueryList): void {
+        const options = this.container.options;
+
+        if (!mediaQuery || mediaQuery.matches) {
+            const motion = options.motion;
+
+            this.reduceFactor = motion.disable ? 0 : motion.reduce.value ? 1 / motion.reduce.factor : 1;
+        } else {
+            this.reduceFactor = 1;
+        }
     }
 }
