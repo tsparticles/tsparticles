@@ -38,7 +38,7 @@ export class BackgroundMaskOptionsEditor extends EditorBase {
             });
 
         coverGroup
-            .addProperty("opacity", "Opacity", EditorType.number, typeof options.opacity)
+            .addProperty("opacity", "Opacity", EditorType.number)
             .change(async () => {
                 await particles.refresh();
             })

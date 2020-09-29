@@ -8,6 +8,7 @@ import { InfectionOptionsEditor } from "./Infection/InfectionOptionsEditor";
 import { Editor, EditorGroup, EditorType } from "object-gui";
 import { EditorBase } from "../../EditorBase";
 import { BackgroundModeOptionsEditor } from "./BackgroundMode/BackgroundModeOptionsEditor";
+import { MotionOptionsEditor } from "./Motion/MotionOptionsEditor";
 
 export class OptionsEditor extends EditorBase {
     public group!: EditorGroup;
@@ -26,6 +27,7 @@ export class OptionsEditor extends EditorBase {
         this.addBackgroundMode();
         this.addInfection();
         this.addInteractivity();
+        this.addMotion();
         this.addParticles();
 
         this.addProperties();
@@ -77,6 +79,12 @@ export class OptionsEditor extends EditorBase {
 
     private addInteractivity(): void {
         const options = new InteractivityOptionsEditor(this.particles);
+
+        options.addToGroup(this.group);
+    }
+
+    private addMotion(): void {
+        const options = new MotionOptionsEditor(this.particles);
 
         options.addToGroup(this.group);
     }
