@@ -376,3 +376,4 @@ components/react/cjs/
 components/react/umd/
 
 size-plugin.json
+/demo/preact/size-plugin-ssr.json
