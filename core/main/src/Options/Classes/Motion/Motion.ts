@@ -1,34 +1,22 @@
 import type { IMotion } from "../../Interfaces/Motion/IMotion";
 import type { IOptionLoader } from "../../Interfaces/IOptionLoader";
 import type { RecursivePartial } from "../../../Types";
-import { IMotionReduce } from "../../Interfaces/Motion/IMotionReduce";
+import { MotionReduce } from "./MotionReduce";
 
-export class MotionReduce implements IMotionReduce, IOptionLoader<IMotionReduce> {
-    public factor;
-    public value;
-
-    public constructor() {
-        this.factor = 4;
-        this.value = false;
-    }
-
-    public load(data?: RecursivePartial<IMotionReduce>): void {
-        if (!data) {
-            return;
-        }
-
-        if (data.factor !== undefined) {
-            this.factor = data.factor;
-        }
-
-        if (data.value !== undefined) {
-            this.value = data.value;
-        }
-    }
-}
-
+/**
+ * [[include:Options/Motion.md]]
+ * @category Options
+ */
 export class Motion implements IMotion, IOptionLoader<IMotion> {
+    /**
+     * Disables motions for users with `prefer-reduced-motion` enabled
+     */
     public disable;
+
+    /**
+     * Reduce motion settings for users with `prefer-reduced-motion` enabled
+     * If [[disable]] is `true` these values will be ignored
+     */
     public reduce;
 
     constructor() {
