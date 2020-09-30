@@ -57,8 +57,7 @@ class App extends Component {
                 distance: 400,
                 duration: 2,
                 opacity: 0.8,
-                size: 40,
-                speed: 3,
+                size: 40
               },
               push: {
                 quantity: 4,
