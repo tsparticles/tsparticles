@@ -368,11 +368,15 @@ export class Particle implements IParticle {
         const lifeOptions = particlesOptions.life;
 
         this.lifeDelay = container.retina.reduceFactor
-            ? (NumberUtils.getValue(lifeOptions.delay) / container.retina.reduceFactor) * 1000
+            ? ((NumberUtils.getValue(lifeOptions.delay) * (lifeOptions.delay.sync ? 1 : Math.random())) /
+                  container.retina.reduceFactor) *
+              1000
             : 0;
         this.lifeDelayTime = 0;
         this.lifeDuration = container.retina.reduceFactor
-            ? (NumberUtils.getValue(lifeOptions.duration) / container.retina.reduceFactor) * 1000
+            ? ((NumberUtils.getValue(lifeOptions.duration) * (lifeOptions.duration.sync ? 1 : Math.random())) /
+                  container.retina.reduceFactor) *
+              1000
             : 0;
         this.lifeTime = 0;
         this.livesRemaining = particlesOptions.life.count;
