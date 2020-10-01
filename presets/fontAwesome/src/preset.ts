@@ -1,5 +1,5 @@
-import { ISourceOptions, tsParticles } from "tsparticles";
-import type { RecursivePartial, IOptions } from "tsparticles";
+import { tsParticles } from "tsparticles";
+import type { ISourceOptions } from "tsparticles";
 import type { IShapeValues } from "tsparticles/dist/Options/Interfaces/Particles/Shape/IShapeValues";
 
 interface ICharacterShape extends IShapeValues {
