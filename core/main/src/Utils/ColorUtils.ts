@@ -502,6 +502,18 @@ export class ColorUtils {
                       s: parseInt(result[2], 10),
                   })
                 : undefined;
+        } else if (input.startsWith("hsv")) {
+            const regex = /hsva?\(\s*(\d+)°\s*,\s*(\d+)%\s*,\s*(\d+)%\s*(,\s*([\d.]+)\s*)?\)/i;
+            const result = regex.exec(input);
+
+            return result
+                ? ColorUtils.hsvaToRgba({
+                      a: result.length > 4 ? parseFloat(result[5]) : 1,
+                      h: parseInt(result[1], 10),
+                      s: parseInt(result[2], 10),
+                      v: parseInt(result[3], 10),
+                  })
+                : undefined;
         } else {
             // By Tim Down - http://stackoverflow.com/a/5624139/3493650
             // Expand shorthand form (e.g. "03F") to full form (e.g. "0033FF")
