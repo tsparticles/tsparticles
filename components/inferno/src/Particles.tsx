@@ -1,6 +1,6 @@
 import { Component, InfernoNode } from "inferno";
 import { isEqual } from "lodash";
-import type { IOptions, RecursivePartial } from "tsparticles";
+import type { ISourceOptions } from "tsparticles";
 import { tsParticles, Container } from "tsparticles";
 import type { IParticlesProps } from "./IParticlesProps";
 import type { IParticlesState } from "./IParticlesState";
@@ -108,18 +108,18 @@ export default class Particles extends Component<IParticlesProps, IParticlesStat
 		);
 	}
 
-	private buildParticlesLibrary(tagId: string, options?: RecursivePartial<IOptions>): Container | null {
+	private buildParticlesLibrary(tagId?: string, options?: ISourceOptions): Container | undefined {
 		try {
 			if (window === undefined) {
-				return null;
+				return;
 			}
 		} catch {
-			return null;
+			return;
 		} // SSR
 
 		tsParticles.init();
 
-		const container = new Container(tagId, options);
+		const container = new Container(tagId ?? Particles.defaultProps.id, options);
 
 		if (this.props.container) {
 			(this.props.container as MutableRefObject<Container>).current = container;

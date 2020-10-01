@@ -6,13 +6,13 @@
 /// <reference types="react" />
 import { ComponentClass } from "react";
 import type { IParticlesProps, ParticlesProps } from "./src/";
-import type { IOptions, RecursivePartial } from "tsparticles";
+import type { ISourceOptions } from "tsparticles";
 
 export type IParticlesParams = IParticlesProps;
 
 export * from "tsparticles/dist/Enums";
 
-export { RecursivePartial, IOptions, IParticlesProps, ParticlesProps };
+export { ISourceOptions, IParticlesProps, ParticlesProps };
 
 type Particles = ComponentClass<IParticlesProps>;
 

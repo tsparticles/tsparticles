@@ -6,9 +6,9 @@
 import { nextTick } from "vue";
 import { Options, Vue } from "vue-class-component";
 import { tsParticles } from "tsparticles";
-import type { Container, RecursivePartial, IOptions } from "tsparticles";
+import type { Container, ISourceOptions } from "tsparticles";
 
-export type IParticlesProps = RecursivePartial<IOptions>;
+export type IParticlesProps = ISourceOptions;
 export type IParticlesParams = IParticlesProps;
 
 @Options({

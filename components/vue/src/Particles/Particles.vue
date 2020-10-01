@@ -5,10 +5,10 @@
 <script lang="ts">
 import { Component, Prop } from "vue-property-decorator";
 import { tsParticles } from "tsparticles";
-import type { Container, RecursivePartial, IOptions } from "tsparticles";
+import type { Container, ISourceOptions } from "tsparticles";
 import Vue from "vue";
 
-export type IParticlesProps = RecursivePartial<IOptions>;
+export type IParticlesProps = ISourceOptions;
 export type IParticlesParams = IParticlesProps;
 
 @Component

@@ -1,13 +1,13 @@
 import type { RefObject } from "inferno";
-import type { Container, RecursivePartial, IOptions } from "tsparticles";
+import type { Container, ISourceOptions } from "tsparticles";
 
 export interface IParticlesProps {
-	id: string;
-	width: string;
-	height: string;
-	options: RecursivePartial<IOptions>;
-	params?: RecursivePartial<IOptions>;
-	style: CSSProperties;
+	id?: string;
+	width?: string;
+	height?: string;
+	options?: ISourceOptions;
+	params?: ISourceOptions;
+	style?: CSSProperties;
 	className?: string;
 	canvasClassName?: string;
 	container?: RefObject<Container>;

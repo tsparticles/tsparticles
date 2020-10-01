@@ -5,13 +5,13 @@
 
 /// <reference types="inferno" />
 import type { IParticlesProps, ParticlesProps } from "./src/";
-import type { IOptions, RecursivePartial } from "tsparticles";
+import type { ISourceOptions } from "tsparticles";
 import type { Component } from "inferno";
 
 export type IParticlesParams = IParticlesProps;
 
 export * from "tsparticles/dist/Enums";
-export type { IOptions, RecursivePartial, IParticlesProps, ParticlesProps };
+export type { ISourceOptions, IParticlesProps, ParticlesProps };
 
 type Particles = Component<IParticlesProps>;
 

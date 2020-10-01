@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { NgParticlesComponent } from './ng-particles.component';
-import type { RecursivePartial, IOptions } from 'tsparticles';
+import type { ISourceOptions } from "tsparticles";
 
 @NgModule({
     declarations: [ NgParticlesComponent ],
@@ -12,5 +12,5 @@ export class NgParticlesModule {
 
 export * from 'tsparticles';
 
-export type IParticlesProps = RecursivePartial<IOptions>;
+export type IParticlesProps = ISourceOptions;
 export type IParticlesParams = IParticlesProps;

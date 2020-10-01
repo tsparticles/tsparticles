@@ -4,13 +4,13 @@
 // Definitions: https://github.com/DefinitelyTyped/DefinitelyTyped
 import { PureComponent } from "preact/compat";
 import type { IParticlesProps, ParticlesProps } from "./src/";
-import type { IOptions, RecursivePartial } from "tsparticles";
+import type { ISourceOptions } from "tsparticles";
 
 export type IParticlesParams = IParticlesProps;
 export * from "tsparticles/dist/Enums";
 
 
-export type { IOptions, RecursivePartial, IParticlesProps, ParticlesProps };
+export type { ISourceOptions, IParticlesProps, ParticlesProps };
 
 type Particles = PureComponent<IParticlesProps>;
 

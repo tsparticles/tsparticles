@@ -1,6 +1,8 @@
 import { MainSlim } from "./main.slim";
 import { initPjs } from "./pjs";
 import { CanvasUtils, Circle, CircleWarp, ColorUtils, Constants, Point, Rectangle, Utils } from "./Utils";
+import type { IOptions } from "./Options/Interfaces/IOptions";
+import type { RecursivePartial } from "./Types";
 
 /* ---------- tsParticles functions - start ------------ */
 const tsParticles = new MainSlim();
@@ -14,4 +16,5 @@ export * from "./Enums";
 export { CanvasUtils, Circle, CircleWarp, ColorUtils, Constants, Point, Rectangle, Utils };
 export * from "./Types";
 export { tsParticles, particlesJS, pJSDom };
-export * from "./Options/Interfaces/IOptions";
+export { IOptions };
+export type ISourceOptions = RecursivePartial<IOptions>;

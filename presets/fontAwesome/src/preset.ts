@@ -1,4 +1,4 @@
-import { tsParticles } from "tsparticles";
+import { ISourceOptions, tsParticles } from "tsparticles";
 import type { RecursivePartial, IOptions } from "tsparticles";
 import type { IShapeValues } from "tsparticles/dist/Options/Interfaces/Particles/Shape/IShapeValues";
 
@@ -15,7 +15,7 @@ const characterOptions: ICharacterShape = {
     weight: "400",
 };
 
-const data: RecursivePartial<IOptions> = {
+const data: ISourceOptions = {
     particles: {
         shape: {
             type: "character",
