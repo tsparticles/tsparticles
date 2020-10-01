@@ -1,4 +1,4 @@
-import type { Container } from "tsparticles/dist/Core/Container";
+import type { Container } from "tsparticles";
 import type { IModes } from "tsparticles/dist/Options/Interfaces/Interactivity/Modes/IModes";
 import { EditorGroup, EditorType } from "object-gui";
 import { EditorBase } from "../../../../EditorBase";

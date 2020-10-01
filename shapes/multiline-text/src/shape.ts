@@ -1,8 +1,7 @@
 import { tsParticles, Utils } from "tsparticles";
 import type { IParticle } from "tsparticles/dist/Core/Interfaces/IParticle";
 import type { IShapeDrawer } from "tsparticles/dist/Core/Interfaces/IShapeDrawer";
-import type { Container } from "tsparticles/dist/Core/Container";
-import type { SingleOrMultiple } from "tsparticles/dist/Types/SingleOrMultiple";
+import type { Container, SingleOrMultiple } from "tsparticles";
 import type { IShapeValues } from "tsparticles/dist/Options/Interfaces/Particles/Shape/IShapeValues";
 
 type CSSOMString = string;

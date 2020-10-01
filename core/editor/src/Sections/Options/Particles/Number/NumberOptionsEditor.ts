@@ -1,5 +1,5 @@
 import { EditorGroup, EditorType } from "object-gui";
-import type { Container } from "tsparticles/dist/Core/Container";
+import type { Container } from "tsparticles";
 import type { IParticlesNumber } from "tsparticles/dist/Options/Interfaces/Particles/Number/IParticlesNumber";
 import { EditorBase } from "../../../../EditorBase";
 

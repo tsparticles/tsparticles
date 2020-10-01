@@ -1,10 +1,8 @@
 import React, { Component } from "preact/compat";
 import type { ComponentChild } from "preact";
 import isEqual from "lodash/isEqual";
-import type { IOptions } from "tsparticles/dist/Options/Interfaces/IOptions";
-import { Container } from "tsparticles/dist/Core/Container";
-import type { RecursivePartial } from "tsparticles/dist/Types/RecursivePartial";
-import { tsParticles } from "tsparticles";
+import type { IOptions, RecursivePartial } from "tsparticles";
+import { tsParticles, Container } from "tsparticles";
 import type { IParticlesProps } from "./IParticlesProps";
 import type { IParticlesState } from "./IParticlesState";
 import { MutableRefObject } from "react";

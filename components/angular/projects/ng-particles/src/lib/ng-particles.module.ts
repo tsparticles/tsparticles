@@ -1,10 +1,6 @@
 import { NgModule } from '@angular/core';
 import { NgParticlesComponent } from './ng-particles.component';
-import { RecursivePartial } from 'tsparticles/dist/Types/RecursivePartial';
-import { IOptions } from 'tsparticles/dist/Options/Interfaces/IOptions';
-import { IPolygonMaskOptions } from 'tsparticles/dist/Plugins/PolygonMask/PolygonMaskPlugin';
-import { IAbsorberOptions } from 'tsparticles/dist/Plugins/Absorbers/AbsorbersPlugin';
-import { IEmitterOptions } from 'tsparticles/dist/Plugins/Emitters/EmittersPlugin';
+import type { RecursivePartial, IOptions } from 'tsparticles';
 
 @NgModule({
     declarations: [ NgParticlesComponent ],
@@ -16,4 +12,5 @@ export class NgParticlesModule {
 
 export * from 'tsparticles';
 
-export type IParticlesParams = RecursivePartial<IOptions & IAbsorberOptions & IEmitterOptions & IPolygonMaskOptions>;
+export type IParticlesProps = RecursivePartial<IOptions>;
+export type IParticlesParams = IParticlesProps;

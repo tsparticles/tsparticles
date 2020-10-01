@@ -6,9 +6,10 @@
 import { nextTick } from "vue";
 import { Options, Vue } from "vue-class-component";
 import { tsParticles } from "tsparticles";
-import { Container } from "tsparticles/dist/Core/Container";
-import { RecursivePartial } from "tsparticles/dist/Types/RecursivePartial";
-import { IOptions } from "tsparticles/dist/Options/Interfaces/IOptions";
+import type { Container, RecursivePartial, IOptions } from "tsparticles";
+
+export type IParticlesProps = RecursivePartial<IOptions>;
+export type IParticlesParams = IParticlesProps;
 
 @Options({
   props: {
@@ -17,16 +18,16 @@ import { IOptions } from "tsparticles/dist/Options/Interfaces/IOptions";
       required: true
     },
     options: {
-      type: Object as () => RecursivePartial<IOptions>
+      type: Object as () => IParticlesProps
     },
     particlesContainer: {
-      type: Object as () => RecursivePartial<Container>
+      type: Object as () => Container
     }
   }
 })
 export default class Particles extends Vue {
   private id!: string;
-  private options?: RecursivePartial<IOptions>;
+  private options?: IParticlesProps;
   private particlesContainer?: Container;
 
   public mounted(): void {

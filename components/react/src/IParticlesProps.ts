@@ -1,18 +1,13 @@
 import type { RefObject } from "react";
-import type { Container } from "tsparticles/dist/Core/Container";
-import type { IOptions } from "tsparticles/dist/Options/Interfaces/IOptions";
-import type { RecursivePartial } from "tsparticles/dist/Types/RecursivePartial";
-import type { IPolygonMaskOptions } from "tsparticles/dist/Plugins/PolygonMask/PolygonMaskPlugin";
-import type { IAbsorberOptions } from "tsparticles/dist/Plugins/Absorbers/AbsorbersPlugin";
-import type { IEmitterOptions } from "tsparticles/dist/Plugins/Emitters/EmittersPlugin";
+import type { Container, IOptions, RecursivePartial } from "tsparticles";
 import type { CSSProperties } from "react";
 
 export interface IParticlesProps {
     id: string;
     width: string;
     height: string;
-    options: RecursivePartial<IOptions & IPolygonMaskOptions & IAbsorberOptions & IEmitterOptions>;
-    params?: RecursivePartial<IOptions & IPolygonMaskOptions & IAbsorberOptions & IEmitterOptions>;
+    options: RecursivePartial<IOptions>;
+    params?: RecursivePartial<IOptions>;
     style: CSSProperties;
     className?: string;
     canvasClassName?: string;

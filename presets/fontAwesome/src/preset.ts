@@ -1,7 +1,6 @@
 import { tsParticles } from "tsparticles";
-import { RecursivePartial } from "tsparticles/dist/Types/RecursivePartial";
-import { IOptions } from "tsparticles/dist/Options/Interfaces/IOptions";
-import { IShapeValues } from "tsparticles/dist/Options/Interfaces/Particles/Shape/IShapeValues";
+import type { RecursivePartial, IOptions } from "tsparticles";
+import type { IShapeValues } from "tsparticles/dist/Options/Interfaces/Particles/Shape/IShapeValues";
 
 interface ICharacterShape extends IShapeValues {
     font: string;

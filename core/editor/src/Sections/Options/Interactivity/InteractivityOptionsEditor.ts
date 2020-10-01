@@ -1,4 +1,4 @@
-import { Container } from "tsparticles/dist/Core/Container";
+import type { Container } from "tsparticles";
 import type { IInteractivity } from "tsparticles/dist/Options/Interfaces/Interactivity/IInteractivity";
 import { InteractivityDetect } from "tsparticles";
 import { EditorGroup, EditorType } from "object-gui";

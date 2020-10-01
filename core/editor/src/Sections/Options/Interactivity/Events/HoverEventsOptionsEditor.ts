@@ -1,5 +1,5 @@
 import { EditorGroup, EditorType } from "object-gui";
-import type { Container } from "tsparticles/dist/Core/Container";
+import type { Container } from "tsparticles";
 import { HoverMode } from "tsparticles";
 import type { IHoverEvent } from "tsparticles/dist/Options/Interfaces/Interactivity/Events/IHoverEvent";
 import { EditorBase } from "../../../../EditorBase";
