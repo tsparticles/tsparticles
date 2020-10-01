@@ -7,12 +7,12 @@ import {
     Type as PolygonMaskType,
     InlineArrangement as PolygonMaskInlineArrangement
 } from "tsparticles/dist/Plugins/PolygonMask/Enums";
-import { IOptions, RecursivePartial } from "tsparticles";
+import type { ISourceOptions } from "tsparticles";
 
 export type TFrame = {
     backgroundColor: string;
     name: string;
-    options: RecursivePartial<IOptions>;
+    options: ISourceOptions;
     slug: string;
 };
 
