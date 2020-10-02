@@ -107,16 +107,16 @@ tsParticles
     console.error(error);
   });
 
-// या
+/ या
 
 /* tsParticles.load(@dom-id, @options); */
 
 tsParticles.load("tsparticles", {
-  /* विकल्प यहाँ  */
+  /*   /* विकल्प यहाँ  */
+ */
 });
 
 // या
-
 /* tsParticles.loadFromArray(@dom-id, @options, @index (optional)); */
 
 tsParticles.loadFromArray("tsparticles", [
