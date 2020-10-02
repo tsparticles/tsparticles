@@ -3,6 +3,31 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.18.0-beta.0](https://github.com/matteobruni/tsparticles/compare/tsparticles-editor@1.0.0-alpha.38.0...tsparticles-editor@1.18.0-beta.0) (2020-10-02)
+
+
+### Bug Fixes
+
+* autostart feature fixed ([bed7824](https://github.com/matteobruni/tsparticles/commit/bed78248c941d57ad4cc20a455147e186e97c7a1))
+* editor fixed with new color refactoring ([b09a5c8](https://github.com/matteobruni/tsparticles/commit/b09a5c849317cef93469203c67381ab8d5877cae))
+* fixed editor properties, missing themes for now ([8598460](https://github.com/matteobruni/tsparticles/commit/85984607f96f0207ebb9ed4ecce55f63929dfd53))
+* fixed links broken with a previous commit, updated object-gui ([24b2872](https://github.com/matteobruni/tsparticles/commit/24b2872ef736efd5e03b529a94e3f695c4504e86))
+
+
+### Features
+
+* added divs selector on interactivity events ([831249f](https://github.com/matteobruni/tsparticles/commit/831249fde50fcfe888d4fd6c69691b4cbad48f5a))
+* added feature from issue [#797](https://github.com/matteobruni/tsparticles/issues/797) ([79197c9](https://github.com/matteobruni/tsparticles/commit/79197c96a4ed55a9d9ba62232ae7c1ffe78c5890))
+* added gravity and edge bounce customization ([cfdfe53](https://github.com/matteobruni/tsparticles/commit/cfdfe53de72a33686fb73ea345c08a7a27542ba0))
+* added motion options to editor ([80a30a7](https://github.com/matteobruni/tsparticles/commit/80a30a783de4741032cc791bc5c36469e9ab2e6f))
+* added particles options to trail interactivity options ([c814550](https://github.com/matteobruni/tsparticles/commit/c81455011e93971ea920f6f08ffe984ca8d4a207))
+* fixed some editor outdated fields and added some new ([30b4ac9](https://github.com/matteobruni/tsparticles/commit/30b4ac9f59c2b09768fcb3432114bcbb027c8577))
+* try adding particles options to trail interactivity options ([d9b442b](https://github.com/matteobruni/tsparticles/commit/d9b442b099ba9548828785269cb6997a1ba70b7a))
+
+
+
+
+
 # [1.0.0-alpha.55](https://github.com/matteobruni/tsparticles/compare/tsparticles-editor@1.0.0-1.0.0-alpha.37.2...tsparticles-editor@1.0.0-alpha.55) (2020-08-22)
 
 

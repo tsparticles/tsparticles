@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.3.0-beta.0](https://github.com/matteobruni/tsparticles/compare/particles.vue-demo@1.2.12...particles.vue-demo@1.3.0-beta.0) (2020-10-02)
+
+
+### Features
+
+* created vue3 component, closes [#832](https://github.com/matteobruni/tsparticles/issues/832) ([e6430e9](https://github.com/matteobruni/tsparticles/commit/e6430e9162b6cb1ac72c38c02c70521d2e77d949))
+
+
+
+
+
 # [1.3.0-alpha.14](https://github.com/matteobruni/tsparticles/compare/particles.vue-demo@1.2.9...particles.vue-demo@1.3.0-alpha.14) (2020-08-22)
 
 **Note:** Version bump only for package particles.vue-demo
