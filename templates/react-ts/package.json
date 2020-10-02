@@ -68,6 +68,5 @@
     "build": "node scripts/prebuild.js",
     "version": "yarn build && git add ./template.json",
     "prepare": "yarn build"
-  },
-  "gitHead": "b3d894b1368bd38bbec7ecfcebcb12bdff9cd606"
+  }
 }
