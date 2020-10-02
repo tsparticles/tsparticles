@@ -215,7 +215,7 @@ You can find the instructions [here](https://github.com/matteobruni/tsparticles/
 
 [! [npm] (https://img.shields.io/npm/v/svelte-particles)] (https://www.npmjs.com/package/svelte-particles) [! [npm डाउनलोड] (https) : //img.shields.io/npm/dm/svelte-particles)] (https://www.npmjs.com/package/svelte-particles)
 
-आप [यहाँ] (https://github.com/matteobruni/tsparticles/blob/master/compenders/svelte/README.md) निर्देश पा सकते हैं
+आप [here] (https://github.com/matteobruni/tsparticles/blob/master/compenders/svelte/README.md) निर्देश पा सकते हैं
 
 ### VueJS
 
@@ -223,7 +223,7 @@ You can find the instructions [here](https://github.com/matteobruni/tsparticles/
 
 [! [npm] (https://img.shields.io/npm/v/particles.vue)] (https://www.npmjs.com/package/particles.vue) [! [npm] (https:) //img.shields.io/npm/dm/particles.vue)](https://www.npmjs.com/package/particles.vue)
 
-आप निर्देश [यहां] (https://github.com/matteobruni/tsparticles/blob/master/compenders/vue/README.md) पा सकते हैं
+आप निर्देश [here] (https://github.com/matteobruni/tsparticles/blob/master/compenders/vue/README.md) पा सकते हैं
 
 ---
 
@@ -243,55 +243,62 @@ You can find the instructions [here](https://github.com/matteobruni/tsparticles/
 
 <Https://particles.matteobruni.it/Samples>
 
-[! [कण डेमो] (https://particles.matteobruni.it/images/demo.png?v=1.8.1)] (https://particles.matteobruni.it/Samples)
+[![Particles demo](https://particles.matteobruni.it/images/demo.png?v=1.8.1)](https://particles.matteobruni.it/Samples)
+
 
 ---
 
 ### कण के रूप में वर्ण
 
-[[[पार्टिकल्स चार्ट्स डेमो] (https://media.giphy.com/media/JsssOXz72bM6jGEZ0s/giphy.gif)] (https://particles.matteobruni.it/Samples#chars)
+[![Particles chars demo](https://media.giphy.com/media/JsssOXz72bM6jGEZ0s/giphy.gif)](https://particles.matteobruni.it/Samples#chars)
+
 
 ---
 
 ### माउस होवर कनेक्शन
 
-[[[कण माउस कनेक्शन डेमो] (https://media.giphy.com/media/XzvZThpVbxHxMYz5xt/giphy.gif)] (https://particles.matteobriuni.it/Samples#connect)
+[![Particles mouse connections demo](https://media.giphy.com/media/XzvZThpVbxHxMYz5xt/giphy.gif)](https://particles.matteobruni.it/Samples#connect)
 
 ---
 
 ### बहुभुज मुखौटा
 
-[!
+
+[![tsParticles Polygon Mask demo](https://media.giphy.com/media/lNRfiSgaMFbL4FMhW6/giphy.gif)](https://particles.matteobruni.it/Samples#polygonMask)
+
 
 ---
 
 ### एनिमेटेड सितारे
 
-[! [कण नासा डेमो] (https://media.giphy.com/media/cLqGsnh7FKRVMgPIWE/giphy.gif)] (https://particles.matteobruni.it/Samples#nasa)
+
+[![Particles NASA demo](https://media.giphy.com/media/cLqGsnh7FKRVMgPIWE/giphy.gif)](https://particles.matteobruni.it/Samples#nasa)
+
 
 ---
 
 ### स्क्रॉलिंग सितारों पर नयन बिल्ली उड़ती हुई
+[![Particles Nyan Cat demo](https://media.giphy.com/media/LpX2oNc9ZMgIhIXQL9/giphy.gif)](https://particles.matteobruni.it/Samples#nyancat2)
 
-[[[कण नयन कैट डेमो] (https://media.giphy.com/media/LpX2oNc9ZMgIhIXQL9/giphy.gif)] (https://particles.matteobriuni.it/Samples#nyancat2)
 
 ---
 
 ### बर्फ के कण
 
-[! [tsParticles स्नो डेमो] (https://media.giphy.com/media/gihwUFbmiubbkdzEMX/giphy.gif)] (https://particles.matteobruni.it/Samples#snow)
+[![tsParticles Snow demo](https://media.giphy.com/media/gihwUFbmiubbkdzEMX/giphy.gif)](https://particles.matteobruni.it/Samples#snow)
 
 ---
 
 ### पृष्ठभूमि मास्क कण
 
-[!
+[![tsParticles Background Mask demo](https://media.giphy.com/media/dWraWgqInWFGWiOyRu/giphy.gif)](https://particles.matteobruni.it/Samples#background)
 
 ---
 
 #### COVID-19 SARS-CoV-2 कण
 
-[! [tsParticles COVID-19 डेमो] (https://media.giphy.com/media/fsVN1ZHksgBIXNIbr1/giphy.gif)] (https://particles.matterruni.it/Samples#virus)
+[![tsParticles COVID-19 demo](https://media.giphy.com/media/fsVN1ZHksgBIXNIbr1/giphy.gif)](https://particles.matteobruni.it/Samples#virus)
+
 
 _ क्लिक न करें! क्लिक न करें! ओह नहीं आईटी का कारोबार !!!!!!
 
@@ -300,22 +307,21 @@ _ क्लिक न करें! क्लिक न करें! ओह न
 ---
 
 ** particles.json **
-
-आप एक नमूना विन्यास [यहाँ] (https://github.com/matteobruni/tsparticles/wiki/tsParticles-Sample-Config) config पा सकते हैं
+आप एक नमूना विन्यास [here](https://github.com/matteobruni/tsparticles/wiki/tsParticles-Sample-Config) config पा सकते हैं
 
 ---
 
-## ** _ विकल्प _ **
+## **_विकल्प_**
 
 आप यहां उपलब्ध सभी विकल्प पा सकते हैं (https://particles.js.org/interfaces/_options_interfaces_ioptions_.ioptions.html) available
 
 ##इसे कार्रवाई में देखना चाहते हैं और इसे आज़माना चाहते हैं?
 
-मैंने [CodePen] (https://codepen.io/collection/DPOage) en पर एक tsParticles संग्रह बनाया है या आप मेरे [प्रोफ़ाइल] (https://codepen.io/matteobruni) की जांच कर सकते हैं
+मैंने [CodePen](https://codepen.io/collection/DPOage) en पर एक tsParticles संग्रह बनाया है या आप मेरे [Profile](https://codepen.io/matteobruni) की जांच कर सकते हैं
 
 अन्यथा नीचे डेमो पेज लिंक है। बस नीचे कोरोनोवायरस पर क्लिक / टैप करें, डरें नहीं। ** यह सुरक्षित है ** 😷।
 
-[! [tsParticles डेमो] (https://media.giphy.com/media/fsVN1ZHksgBIXNIbr1/giphy.gif)] (https://particles.matteobruni.it/#virus)
+[! [tsParticles demo](https://media.giphy.com/media/fsVN1ZHksgBIXNIbr1/giphy.gif)] (https://particles.matteobruni.it/#virus)
 
 कभी और डेमो देखना चाहते हैं? अपने कंप्यूटर पर रिपॉजिटरी को क्लोन करें और इन निर्देशों का पालन करें
 ```shell
