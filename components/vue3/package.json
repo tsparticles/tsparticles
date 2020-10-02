@@ -1,7 +1,7 @@
 {
   "name": "particles.vue3",
   "description": "tsParticles official Vue 3 plugin.",
-  "version": "1.0.3",
+  "version": "1.1.0-alpha.0",
   "scripts": {
     "clean": "rm -rf dist/*",
     "build": "npm run clean && yarn rollup --config rollup.config.js",
