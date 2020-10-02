@@ -2,9 +2,9 @@
 
 # tsParticles - TypeScript Particles
 
-**A lightweight TypeScript library for creating particles. Dependency free (\*) and browser ready!**
+**A lightweight TypeScript library for creating particles. Dependency free ([\*](#dependencies)) and browser ready!**
 
-_[Particles.js](https://github.com/VincentGarreau/particles.js) converted in TypeScript, dependency free (\*), improved with new cool 😎 features and various bugs fixed and **it's actively maintained**!_
+_[Particles.js](https://github.com/VincentGarreau/particles.js) converted in TypeScript, dependency free ([\*](#dependencies)), improved with new cool 😎 features and various bugs fixed and **it's actively maintained**!_
 
 [![jsDelivr](https://data.jsdelivr.com/v1/package/npm/tsparticles/badge?style=rounded)](https://www.jsdelivr.com/package/npm/tsparticles) [![Cdnjs](https://img.shields.io/cdnjs/v/tsparticles)](https://cdnjs.com/libraries/tsparticles) [![npmjs](https://badge.fury.io/js/tsparticles.svg)](https://www.npmjs.com/package/tsparticles) [![npm](https://img.shields.io/npm/dm/tsparticles)](https://www.npmjs.com/package/tsparticles) [![lerna](https://img.shields.io/badge/maintained%20with-lerna-cc00ff.svg)](https://lerna.js.org/) [![CodeFactor](https://www.codefactor.io/repository/github/matteobruni/tsparticles/badge)](https://www.codefactor.io/repository/github/matteobruni/tsparticles) [![Codacy Badge](https://api.codacy.com/project/badge/Grade/b983aaf3461a4c48b1e2eecce1ff1d74)](https://www.codacy.com/manual/ar3s/tsparticles?utm_source=github.com&utm_medium=referral&utm_content=matteobruni/tsparticles&utm_campaign=Badge_Grade) [![Gitpod Ready-to-Code](https://img.shields.io/badge/Gitpod-ready--to--code-blue?logo=gitpod)](https://gitpod.io/#https://github.com/matteobruni/tsparticles)
 
@@ -329,7 +329,7 @@ _If you are brave enough_ you can switch to the `dev` branch for trying the feat
 
 ## Dependencies
 
-You may have notices the \* near dependency free. Well almost all features works without any dependency, but... Well there's a little but. The **Polygon Mask** feature requires `[pathseg](https://github.com/progers/pathseg)` for some browsers to work fine, and obviously the Icon Fonts (like `FontAwesome` ) must be included in your page.
+You may have notices the \* near dependency free. Well almost all features works without any dependency, but... Well there's a little but. The **Polygon Mask** feature requires [`pathseg`](https://github.com/progers/pathseg) for some browsers to work fine, and obviously the Icon Fonts (like `FontAwesome` ) must be included in your page.
 
 ---
 
