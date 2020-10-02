@@ -1,6 +1,6 @@
 {
   "name": "particles.vue3-demo",
-  "version": "1.0.3-beta.0",
+  "version": "1.0.3-beta.1",
   "private": true,
   "scripts": {
     "serve": "echo vue-cli-service serve",

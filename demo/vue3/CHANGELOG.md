@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.0.3-beta.1](https://github.com/matteobruni/tsparticles/compare/particles.vue3-demo@1.0.3-beta.0...particles.vue3-demo@1.0.3-beta.1) (2020-10-02)
+
+**Note:** Version bump only for package particles.vue3-demo
+
+
+
+
+
 ## 1.0.3-beta.0 (2020-10-02)
 
 
