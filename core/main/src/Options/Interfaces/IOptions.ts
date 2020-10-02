@@ -7,6 +7,7 @@ import type { SingleOrMultiple } from "../../Types";
 import type { ITheme } from "./Theme/ITheme";
 import type { IBackgroundMode } from "./BackgroundMode/IBackgroundMode";
 import type { IMotion } from "./Motion/IMotion";
+import type { IManualParticle } from "./IManualParticle";
 
 /**
  * The Options interface, defines all the options that can be used by `tsParticles`
@@ -59,6 +60,11 @@ export interface IOptions {
      * The particles interaction options
      */
     interactivity: IInteractivity;
+
+    /**
+     * Particles inserted at load time with a specific position
+     */
+    manualParticles: IManualParticle[];
 
     /**
      * Handles user's preferences about motion
