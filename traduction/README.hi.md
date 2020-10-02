@@ -80,7 +80,7 @@ import { tsParticles } from "tsparticles";
 
 ### **_Usage_**
 
-Load tsParticles and configure the particles:
+TsParticles लोड करें और कणों को कॉन्फ़िगर करें:
 
 [![tsParticles demo](https://media.giphy.com/media/ftHwBpp3b0qNyCXRuu/giphy.gif)](https://particles.matteobruni.it)
 
@@ -95,7 +95,7 @@ Load tsParticles and configure the particles:
 **app.js**
 
 ```javascript
-// @path-json can be an object or an array, the first will be loaded directly, the object from the array will be random selected
+// @path-json एक वस्तु या एक सरणी हो सकता है, पहले सीधे लोड किया जाएगा, सरणी से ऑब्जेक्ट को यादृच्छिक रूप से चुना जाएगा
 /* tsParticles.loadJSON(@dom-id, @path-json, @callback (optional)); */
 
 tsParticles
@@ -107,12 +107,13 @@ tsParticles
     console.error(error);
   });
 
-//or
+/ या
 
 /* tsParticles.load(@dom-id, @options); */
 
 tsParticles.load("tsparticles", {
-  /* options here */
+  /*   /* विकल्प यहाँ  */
+ */
 });
 
 //or
@@ -121,47 +122,47 @@ tsParticles.load("tsparticles", {
 
 tsParticles.loadFromArray("tsparticles", [
   {
-    /* options here */
+    /* विकल्प यहाँ */
   },
   {
-    /* other options here */
+    /* अन्य विकल्प यहाँ */
   },
 ]);
-//random object
+//यादृच्छिक वस्तु
 
 tsParticles.loadFromArray(
   "tsparticles",
   [
     {
-      /* options here */
+      /* विकल्प यहाँ */
     },
     {
-      /* other options here */
+      /* अन्य विकल्प यहाँ*/
     },
   ],
   1
-); //the second one
-// Important! If the index is not in range 0...<array.length, the index will be ignored.
+);//दूसरा एक
+// जरूरी! यदि इंडेक्स 0 रेंज में नहीं है ... <array.length, इंडेक्स को नजरअंदाज कर दिया जाएगा।
 
-// after initialization this can be used.
+// आरंभीकरण के बाद इसका उपयोग किया जा सकता है।
 
 /* tsParticles.setOnClickHandler(@callback); */
 
-/* this will be fired from all particles loaded */
+/* यह लोड किए गए सभी कणों से निकाल दिया जाएगा */
 
 tsParticles.setOnClickHandler((event, particles) => {
-  /* custom on click handler */
+  /* क्लिक हैंडलर पर कस्टम */
 });
 
-// now you can control the animations too, it's possible to pause and resume the animations
-// these methods don't change the config so you're safe with all your configurations
-// domItem(0) returns the first tsParticles instance loaded in the dom
+// अब आप एनिमेशन को भी नियंत्रित कर सकते हैं, एनिमेशन को रोकना और फिर से शुरू करना संभव है
+// ये विधियाँ विन्यास को परिवर्तित नहीं करती हैं इसलिए आप अपने सभी विन्यासों के साथ सुरक्षित हैं
+// domItem(0) में लौटा पहला tsParticles उदाहरण देता है dom
 const particles = tsParticles.domItem(0);
 
-// play will start the animations, if the move is not enabled it won't enable it, it just updates the frame
-particles.play();
+//खेल एनिमेशन शुरू कर देगा, अगर चाल सक्षम नहीं है तो यह इसे सक्षम नहीं करेगा, यह सिर्फ फ्रेम को अपडेट करता है
+कणों.play();
 
-// pause will stop the animations
+// ठहराव एनिमेशन रोक देगा
 particles.pause();
 ```
 
@@ -175,7 +176,7 @@ particles.pause();
 
 [![npm](https://img.shields.io/npm/v/ng-particles)](https://www.npmjs.com/package/ng-particles) [![npm](https://img.shields.io/npm/dm/ng-particles)](https://www.npmjs.com/package/ng-particles)
 
-You can find the instructions [here](https://github.com/matteobruni/tsparticles/blob/master/components/angular/README.md)
+आप निर्देश पा सकते हैं [here](https://github.com/matteobruni/tsparticles/blob/master/components/angular/README.md)
 
 ### Inferno
 
@@ -183,7 +184,7 @@ You can find the instructions [here](https://github.com/matteobruni/tsparticles/
 
 [![npm](https://img.shields.io/npm/v/inferno-particles)](https://www.npmjs.com/package/inferno-particles) [![npm](https://img.shields.io/npm/dm/inferno-particles)](https://www.npmjs.com/package/inferno-particles)
 
-You can find the instructions [here](https://github.com/matteobruni/tsparticles/blob/master/components/inferno/README.md)
+आप निर्देश पा सकते हैं [here](https://github.com/matteobruni/tsparticles/blob/master/components/inferno/README.md)
 
 ### jQuery
 
@@ -191,7 +192,7 @@ You can find the instructions [here](https://github.com/matteobruni/tsparticles/
 
 [![npm](https://img.shields.io/npm/v/jquery-particles)](https://www.npmjs.com/package/jquery-particles) [![npm](https://img.shields.io/npm/dm/jquery-particles)](https://www.npmjs.com/package/jquery-particles)
 
-You can find the instructions [here](https://github.com/matteobruni/tsparticles/blob/master/components/jquery/README.md)
+आप निर्देश पा सकते हैं[here](https://github.com/matteobruni/tsparticles/blob/master/components/jquery/README.md)
 
 ### Preact
 
@@ -199,7 +200,7 @@ You can find the instructions [here](https://github.com/matteobruni/tsparticles/
 
 [![npm](https://img.shields.io/npm/v/preact-particles)](https://www.npmjs.com/package/preact-particles) [![npm](https://img.shields.io/npm/dm/preact-particles)](https://www.npmjs.com/package/preact-particles)
 
-You can find the instructions [here](https://github.com/matteobruni/tsparticles/blob/master/components/preact/README.md)
+आप निर्देश पा सकते हैं [here](https://github.com/matteobruni/tsparticles/blob/master/components/preact/README.md)
 
 ### ReactJS
 
