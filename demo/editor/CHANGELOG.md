@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.0.0-beta.10](https://github.com/matteobruni/tsparticles/compare/editor-demo@1.0.0-alpha.38.0...editor-demo@1.0.0-beta.10) (2020-10-02)
+
+
+### Bug Fixes
+
+* fixed life duration/delay sync options ([2db867c](https://github.com/matteobruni/tsparticles/commit/2db867cf52c9f26c431a6d88fabace0ca3f9b200))
+* fixed links broken with a previous commit, updated object-gui ([24b2872](https://github.com/matteobruni/tsparticles/commit/24b2872ef736efd5e03b529a94e3f695c4504e86))
+
+
+
+
+
 # [1.0.0-beta.8](https://github.com/matteobruni/tsparticles/compare/editor-demo@1.0.0-alpha.38.0...editor-demo@1.0.0-beta.8) (2020-10-02)
 
 
