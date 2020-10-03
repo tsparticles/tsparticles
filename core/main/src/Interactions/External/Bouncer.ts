@@ -1,14 +1,13 @@
-import { IExternalInteractor } from "../../Core/Interfaces/IExternalInteractor";
+import type { IExternalInteractor } from "../../Core/Interfaces/IExternalInteractor";
 import { Constants, Container, HoverMode } from "../..";
 import { Circle, Range, Rectangle, Utils } from "../../Utils";
 import { DivMode } from "../../Enums/Modes";
 import { DivEvent } from "../../Options/Classes/Interactivity/Events/DivEvent";
 import { DivType } from "../../Enums/Types";
-import { ICoordinates } from "../../Core/Interfaces/ICoordinates";
+import type { ICoordinates } from "../../Core/Interfaces/ICoordinates";
 
 export class Bouncer implements IExternalInteractor {
-    constructor(private readonly container: Container) {
-    }
+    constructor(private readonly container: Container) {}
 
     public isEnabled(): boolean {
         const container = this.container;
@@ -78,11 +77,11 @@ export class Bouncer implements IExternalInteractor {
                 div.type === DivType.circle
                     ? new Circle(pos.x, pos.y, radius + tolerance)
                     : new Rectangle(
-                    elem.offsetLeft * pxRatio - tolerance,
-                    elem.offsetTop * pxRatio - tolerance,
-                    elem.offsetWidth * pxRatio + tolerance * 2,
-                    elem.offsetHeight * pxRatio + tolerance * 2
-                    );
+                          elem.offsetLeft * pxRatio - tolerance,
+                          elem.offsetTop * pxRatio - tolerance,
+                          elem.offsetWidth * pxRatio + tolerance * 2,
+                          elem.offsetHeight * pxRatio + tolerance * 2
+                      );
 
             this.processBounce(pos, radius, area);
         });
