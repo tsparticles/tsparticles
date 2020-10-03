@@ -80,8 +80,6 @@ export class EmitterInstance {
             if (this.startInterval === undefined) {
                 const delay = (1000 * this.emitterOptions.rate.delay) / this.container.retina.reduceFactor;
 
-                console.log(delay);
-
                 this.startInterval = window.setInterval(() => {
                     this.emit();
                 }, delay);
