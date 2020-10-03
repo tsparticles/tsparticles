@@ -1,4 +1,4 @@
-import type { Container } from "../../Core/Container";
+import type { Container } from "../..";
 import { Utils } from "../../Utils";
 import { HoverMode } from "../../Enums/Modes";
 import type { IExternalInteractor } from "../../Core/Interfaces/IExternalInteractor";

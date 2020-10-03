@@ -3,6 +3,7 @@
  */
 export enum HoverMode {
     attract = "attract",
+    bounce = "bounce",
     bubble = "bubble",
     connect = "connect",
     grab = "grab",

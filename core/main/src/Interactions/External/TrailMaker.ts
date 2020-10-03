@@ -1,5 +1,5 @@
 import type { IExternalInteractor } from "../../Core/Interfaces/IExternalInteractor";
-import type { Container } from "../../Core/Container";
+import type { Container } from "../..";
 import { Utils } from "../../Utils";
 import { ClickMode, HoverMode } from "../../Enums/Modes";
 import type { IDelta } from "../../Core/Interfaces/IDelta";
