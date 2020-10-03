@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.3.0-beta.2](https://github.com/matteobruni/tsparticles/compare/react-tsparticles-demo@1.3.0-beta.1...react-tsparticles-demo@1.3.0-beta.2) (2020-10-03)
+
+**Note:** Version bump only for package react-tsparticles-demo
+
+
+
+
+
 # [1.3.0-beta.1](https://github.com/matteobruni/tsparticles/compare/react-tsparticles-demo@1.3.0-beta.0...react-tsparticles-demo@1.3.0-beta.1) (2020-10-03)
 
 **Note:** Version bump only for package react-tsparticles-demo
