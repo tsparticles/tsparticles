@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.1.0-beta.3](https://github.com/matteobruni/tsparticles/compare/inferno-particles@1.1.0-beta.2...inferno-particles@1.1.0-beta.3) (2020-10-03)
+
+**Note:** Version bump only for package inferno-particles
+
+
+
+
+
+# [1.1.0-beta.2](https://github.com/matteobruni/tsparticles/compare/inferno-particles@1.1.0-beta.1...inferno-particles@1.1.0-beta.2) (2020-10-03)
+
+**Note:** Version bump only for package inferno-particles
+
+
+
+
+
 # [1.1.0-beta.1](https://github.com/matteobruni/tsparticles/compare/inferno-particles@1.1.0-beta.0...inferno-particles@1.1.0-beta.1) (2020-10-02)
 
 **Note:** Version bump only for package inferno-particles

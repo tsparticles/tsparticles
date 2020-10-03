@@ -3,6 +3,28 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.18.0-beta.2](https://github.com/matteobruni/tsparticles/compare/tsparticles@1.18.0-beta.1...tsparticles@1.18.0-beta.2) (2020-10-03)
+
+
+### Bug Fixes
+
+* fixed issue with new bounce active conditions ([9be2b73](https://github.com/matteobruni/tsparticles/commit/9be2b730ebbfe4c6ddbea91423aeb791e1d7de02))
+
+
+
+
+
+# [1.18.0-beta.1](https://github.com/matteobruni/tsparticles/compare/tsparticles@1.18.0-beta.0...tsparticles@1.18.0-beta.1) (2020-10-03)
+
+
+### Features
+
+* added bounce to mouse hover event ([8bf39a2](https://github.com/matteobruni/tsparticles/commit/8bf39a2ef2a4a6649b99c394fe9e639c2c5997b1))
+
+
+
+
+
 # [1.18.0-beta.0](https://github.com/matteobruni/tsparticles/compare/tsparticles@1.17.12...tsparticles@1.18.0-beta.0) (2020-10-02)
 
 

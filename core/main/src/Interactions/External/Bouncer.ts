@@ -1,32 +1,58 @@
-import { IExternalInteractor } from "../../Core/Interfaces/IExternalInteractor";
-import { Container } from "../../Core/Container";
+import type { IExternalInteractor } from "../../Core/Interfaces/IExternalInteractor";
+import { Constants, Container, HoverMode } from "../..";
 import { Circle, Range, Rectangle, Utils } from "../../Utils";
 import { DivMode } from "../../Enums/Modes";
 import { DivEvent } from "../../Options/Classes/Interactivity/Events/DivEvent";
 import { DivType } from "../../Enums/Types";
-import { ICoordinates } from "../../Core/Interfaces/ICoordinates";
+import type { ICoordinates } from "../../Core/Interfaces/ICoordinates";
 
 export class Bouncer implements IExternalInteractor {
     constructor(private readonly container: Container) {}
 
-    public interact(): void {
-        const options = this.container.options;
+    public isEnabled(): boolean {
+        const container = this.container;
+        const options = container.options;
+        const mouse = container.interactivity.mouse;
         const events = options.interactivity.events;
         const divs = events.onDiv;
-
-        Utils.divModeExecute(DivMode.bounce, divs, (selector, div): void => this.singleSelectorBounce(selector, div));
+        return (
+            (mouse.position && events.onHover.enable && Utils.isInArray(HoverMode.bounce, events.onHover.mode)) ||
+            Utils.isDivModeEnabled(DivMode.bounce, divs)
+        );
     }
 
-    public isEnabled(): boolean {
-        const options = this.container.options;
+    public interact(): void {
+        const container = this.container;
+        const options = container.options;
         const events = options.interactivity.events;
+        const mouseMoveStatus = container.interactivity.status === Constants.mouseMoveEvent;
+        const hoverEnabled = events.onHover.enable;
+        const hoverMode = events.onHover.mode;
         const divs = events.onDiv;
 
-        return Utils.isDivModeEnabled(DivMode.repulse, divs);
+        if (mouseMoveStatus && hoverEnabled && Utils.isInArray(HoverMode.bounce, hoverMode)) {
+            this.processMouseBounce();
+        } else {
+            Utils.divModeExecute(DivMode.bounce, divs, (selector, div): void =>
+                this.singleSelectorBounce(selector, div)
+            );
+        }
     }
 
     public reset(): void {
         // do nothing
+    }
+
+    private processMouseBounce(): void {
+        const container = this.container;
+        const pxRatio = container.retina.pixelRatio;
+        const tolerance = 10 * pxRatio;
+        const mousePos = container.interactivity.mouse.position;
+        const radius = container.retina.bounceModeDistance;
+
+        if (mousePos) {
+            this.processBounce(mousePos, radius, new Circle(mousePos.x, mousePos.y, radius + tolerance));
+        }
     }
 
     private singleSelectorBounce(selector: string, div: DivEvent): void {

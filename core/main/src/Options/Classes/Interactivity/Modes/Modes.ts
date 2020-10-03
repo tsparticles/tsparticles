@@ -11,6 +11,7 @@ import { Trail } from "./Trail";
 import type { IOptionLoader } from "../../../Interfaces/IOptionLoader";
 import { Attract } from "./Attract";
 import { Light } from "./Light";
+import { Bounce } from "./Bounce";
 
 /**
  * [[include:Options/Interactivity/Modes.md]]
@@ -18,6 +19,7 @@ import { Light } from "./Light";
  */
 export class Modes implements IModes, IOptionLoader<IModes> {
     public attract;
+    public bounce;
     public bubble;
     public connect;
     public grab;
@@ -30,6 +32,7 @@ export class Modes implements IModes, IOptionLoader<IModes> {
 
     constructor() {
         this.attract = new Attract();
+        this.bounce = new Bounce();
         this.bubble = new Bubble();
         this.connect = new Connect();
         this.grab = new Grab();

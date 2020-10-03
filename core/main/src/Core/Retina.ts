@@ -21,6 +21,7 @@ export class Retina {
     public sizeValue!: number;
     public sizeAnimationSpeed!: number;
     public pixelRatio!: number;
+    public bounceModeDistance!: number;
 
     constructor(private readonly container: Container) {}
 
@@ -76,6 +77,7 @@ export class Retina {
         this.connectModeRadius = modes.connect.radius * ratio;
         this.grabModeDistance = modes.grab.distance * ratio;
         this.repulseModeDistance = modes.repulse.distance * ratio;
+        this.bounceModeDistance = modes.bounce.distance * ratio;
         this.attractModeDistance = modes.attract.distance * ratio;
         this.slowModeRadius = modes.slow.radius * ratio;
         this.bubbleModeDistance = modes.bubble.distance * ratio;

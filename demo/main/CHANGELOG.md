@@ -3,6 +3,25 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.3.0-beta.2](https://github.com/matteobruni/tsparticles/compare/tsparticles-demo@1.3.0-beta.1...tsparticles-demo@1.3.0-beta.2) (2020-10-03)
+
+**Note:** Version bump only for package tsparticles-demo
+
+
+
+
+
+# [1.3.0-beta.1](https://github.com/matteobruni/tsparticles/compare/tsparticles-demo@1.3.0-beta.0...tsparticles-demo@1.3.0-beta.1) (2020-10-03)
+
+
+### Features
+
+* added bounce to mouse hover event ([8bf39a2](https://github.com/matteobruni/tsparticles/commit/8bf39a2ef2a4a6649b99c394fe9e639c2c5997b1))
+
+
+
+
+
 # [1.3.0-beta.0](https://github.com/matteobruni/tsparticles/compare/tsparticles-demo@1.2.12...tsparticles-demo@1.3.0-beta.0) (2020-10-02)
 
 
