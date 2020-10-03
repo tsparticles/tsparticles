@@ -5,7 +5,8 @@
     "demo/*",
     "presets/*",
     "shapes/*",
-    "templates/*"
+    "templates/*",
+    "website"
   ],
   "version": "independent",
   "npmClient": "yarn",

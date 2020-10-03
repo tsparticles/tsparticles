@@ -9,8 +9,11 @@ import type { IOptions } from "../../Options/Interfaces/IOptions";
 import { Options } from "../../Options/Classes/Options";
 import { Absorber } from "./Options/Classes/Absorber";
 
+/**
+ * @category Absorbers Plugin
+ */
 class AbsorbersPlugin implements IPlugin {
-    public readonly id: string;
+    public readonly id;
 
     constructor() {
         this.id = "absorbers";

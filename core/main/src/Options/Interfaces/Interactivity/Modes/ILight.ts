@@ -3,5 +3,5 @@ import type { ILightShadow } from "./ILightShadow";
 
 export interface ILight {
     shadow: ILightShadow;
-    light: ILightArea;
+    area: ILightArea;
 }

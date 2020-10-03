@@ -1,41 +1,35 @@
 import type { IAbsorberSize } from "../Interfaces/IAbsorberSize";
-import { AbsorberRandomSize } from "./AbsorberRandomSize";
 import type { RecursivePartial } from "../../../../Types";
 import type { IOptionLoader } from "../../../../Options/Interfaces/IOptionLoader";
+import { ValueWithRandom } from "../../../../Options/Classes/ValueWithRandom";
 
-export class AbsorberSize implements IAbsorberSize, IOptionLoader<IAbsorberSize> {
-    public density: number;
+export class AbsorberSize extends ValueWithRandom implements IAbsorberSize, IOptionLoader<IAbsorberSize> {
+    public density;
     public limit?: number;
-    public random: AbsorberRandomSize;
-    public value: number;
 
     constructor() {
+        super();
         this.density = 5;
-        this.random = new AbsorberRandomSize();
+        this.random.minimumValue = 1;
         this.value = 50;
     }
 
     public load(data?: RecursivePartial<IAbsorberSize>): void {
-        if (data !== undefined) {
-            if (data.density !== undefined) {
-                this.density = data.density;
-            }
+        if (!data) {
+            return;
+        }
 
-            if (data.value !== undefined) {
-                this.value = data.value;
-            }
+        super.load(data);
 
-            if (data.random !== undefined) {
-                if (typeof data.random === "boolean") {
-                    this.random.load({ enable: data.random });
-                } else {
-                    this.random.load(data.random);
-                }
-            }
+        if (data.density !== undefined) {
+            this.density = data.density;
+        }
+        if (data.limit !== undefined) {
+            this.limit = data.limit;
+        }
 
-            if (data.limit !== undefined) {
-                this.limit = data.limit;
-            }
+        if (data.limit !== undefined) {
+            this.limit = data.limit;
         }
     }
 }

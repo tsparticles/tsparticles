@@ -1,7 +1,5 @@
-import type { ILifeDurationRandom } from "./ILifeDurationRandom";
+import type { IValueWithRandom } from "../../IValueWithRandom";
 
-export interface ILifeDuration {
-    value: number;
-    random: ILifeDurationRandom;
+export interface ILifeDuration extends IValueWithRandom {
     sync: boolean;
 }

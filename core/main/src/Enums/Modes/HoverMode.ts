@@ -1,3 +1,6 @@
+/**
+ * @category Enums
+ */
 export enum HoverMode {
     attract = "attract",
     bubble = "bubble",

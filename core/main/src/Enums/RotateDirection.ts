@@ -1,3 +1,1 @@
-import { RotateDirection } from "./Directions";
-
-export { RotateDirection };
+export * from "./Directions";

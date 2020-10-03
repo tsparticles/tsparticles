@@ -3,6 +3,10 @@ import { DivMode, DivType } from "../../../../Enums";
 import type { RecursivePartial, SingleOrMultiple } from "../../../../Types";
 import type { IOptionLoader } from "../../../Interfaces/IOptionLoader";
 
+/**
+ * [[include:Options/Interactivity/Div.md]]
+ * @category Options
+ */
 export class DivEvent implements IDivEvent, IOptionLoader<IDivEvent> {
     /**
      * The element id to detect the event
@@ -71,14 +75,14 @@ export class DivEvent implements IDivEvent, IOptionLoader<IDivEvent> {
     /**
      * The div event handler enabling mode
      */
-    public enable: boolean;
+    public enable;
 
     /**
      * Div mode values described in [[DivMode]], an array of these values is also valid.
      */
     public mode: SingleOrMultiple<DivMode | keyof typeof DivMode | string>;
 
-    public type: DivType;
+    public type;
 
     constructor() {
         this.selectors = [];

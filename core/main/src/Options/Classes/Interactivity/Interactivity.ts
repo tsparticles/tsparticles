@@ -5,6 +5,10 @@ import { Modes } from "./Modes/Modes";
 import type { RecursivePartial } from "../../../Types";
 import type { IOptionLoader } from "../../Interfaces/IOptionLoader";
 
+/**
+ * [[include:Options/Interactivity.md]]
+ * @category Options
+ */
 export class Interactivity implements IInteractivity, IOptionLoader<IInteractivity> {
     /**
      *
@@ -24,8 +28,8 @@ export class Interactivity implements IInteractivity, IOptionLoader<IInteractivi
     }
 
     public detectsOn: InteractivityDetect | keyof typeof InteractivityDetect;
-    public events: Events;
-    public modes: Modes;
+    public events;
+    public modes;
 
     constructor() {
         this.detectsOn = InteractivityDetect.canvas;

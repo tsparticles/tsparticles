@@ -1,9 +1,11 @@
 import type { ICoordinates } from "../../../../Core/Interfaces/ICoordinates";
-import type { IColor } from "../../../../Core/Interfaces/IColor";
+import type { IColor } from "../../../../Core/Interfaces/Colors";
 import type { IAbsorberSize } from "./IAbsorberSize";
 
 /**
  * Absorber options
+ * [[include:Options/Plugins/Absorbers.md]]
+ * @category Absorbers Plugin
  */
 export interface IAbsorber {
     /**

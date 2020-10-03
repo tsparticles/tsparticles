@@ -3,11 +3,14 @@ import type { RecursivePartial } from "../../../../Types";
 import { OptionsColor } from "../../OptionsColor";
 import type { IOptionLoader } from "../../../Interfaces/IOptionLoader";
 
+/**
+ * @category Options
+ */
 export class TwinkleValues implements ITwinkleValues, IOptionLoader<ITwinkleValues> {
     public color?: OptionsColor;
-    public enable: boolean;
-    public frequency: number;
-    public opacity: number;
+    public enable;
+    public frequency;
+    public opacity;
 
     constructor() {
         this.enable = false;

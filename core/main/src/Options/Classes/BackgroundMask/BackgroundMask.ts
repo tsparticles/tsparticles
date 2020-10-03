@@ -2,21 +2,32 @@ import type { IBackgroundMask } from "../../Interfaces/BackgroundMask/IBackgroun
 import type { RecursivePartial } from "../../../Types";
 import type { IBackgroundMaskCover } from "../../Interfaces/BackgroundMask/IBackgroundMaskCover";
 import { BackgroundMaskCover } from "./BackgroundMaskCover";
-import type { IColor } from "../../../Core/Interfaces/IColor";
+import type { IColor } from "../../../Core/Interfaces/Colors";
 import type { IOptionLoader } from "../../Interfaces/IOptionLoader";
 
+/**
+ * [[include:Options/BackgroundMask.md]]
+ * @category Options
+ */
 export class BackgroundMask implements IBackgroundMask, IOptionLoader<IBackgroundMask> {
+    /**
+     * Canvas composite operation
+     * values here: https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/globalCompositeOperation
+     */
+    public composite;
+
     /**
      * Background covering color
      */
-    public cover: BackgroundMaskCover;
+    public cover;
 
     /**
      * Background mask enabling options
      */
-    public enable: boolean;
+    public enable;
 
     constructor() {
+        this.composite = "destination-out";
         this.cover = new BackgroundMaskCover();
         this.enable = false;
     }
@@ -24,6 +35,10 @@ export class BackgroundMask implements IBackgroundMask, IOptionLoader<IBackgroun
     public load(data?: RecursivePartial<IBackgroundMask>): void {
         if (data === undefined) {
             return;
+        }
+
+        if (data.composite !== undefined) {
+            this.composite = data.composite;
         }
 
         if (data.cover !== undefined) {

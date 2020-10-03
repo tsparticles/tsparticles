@@ -1,18 +1,16 @@
-const Window = require("window");
-
-globalThis.window = new Window();
-
 import { expect } from "chai";
 import { ICoordinates } from "../src/Core/Interfaces/ICoordinates";
 import { TestCanvas } from "./Fixture/TestCanvas";
 import { TestContainer } from "./Fixture/TestContainer";
 import { TestParticles } from "./Fixture/TestParticles";
-
-const testContainer = new TestContainer({});
-const testParticles = new TestParticles(testContainer.container);
-const testCanvas = new TestCanvas(testContainer.container, 1920, 1080);
+const Window = require("window");
 
 describe("Particles", () => {
+    globalThis.window = new Window();
+    const testContainer = new TestContainer({});
+    const testParticles = new TestParticles(testContainer.container);
+    const testCanvas = new TestCanvas(testContainer.container, 1920, 1080);
+
     // Common options used when initializing Particles with a set number of particles
     const numParticles = 5;
     const numParticlesOptions = {

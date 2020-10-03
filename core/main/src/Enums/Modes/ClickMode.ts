@@ -1,3 +1,6 @@
+/**
+ * @category Enums
+ */
 export enum ClickMode {
     attract = "attract",
     bubble = "bubble",

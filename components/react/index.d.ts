@@ -2,30 +2,19 @@
 // Project: https://github.com/matteobruni/react-tsparticles
 // Definitions by: Matteo Bruni <https://github.com/matteobruni>
 // Definitions: https://github.com/DefinitelyTyped/DefinitelyTyped
-import { ComponentClass, RefObject } from "react";
-import { Container } from "tsparticles/dist/Core/Container";
-import type { IOptions } from "tsparticles/dist/Options/Interfaces/IOptions";
-import type { RecursivePartial } from "tsparticles/dist/Types/RecursivePartial";
-import { IPolygonMaskOptions } from "tsparticles/dist/Plugins/PolygonMask/PolygonMaskPlugin";
-import { IAbsorberOptions } from "tsparticles/dist/Plugins/Absorbers/AbsorbersPlugin";
-import { IEmitterOptions } from "tsparticles/dist/Plugins/Emitters/EmittersPlugin";
 
-export type IParticlesParams = RecursivePartial<IOptions & IPolygonMaskOptions & IAbsorberOptions & IEmitterOptions>;
+/// <reference types="react" />
+import { ComponentClass } from "react";
+import type { IParticlesProps, ParticlesProps } from "./src/";
+import type { ISourceOptions } from "tsparticles";
+
+export type IParticlesParams = IParticlesProps;
 
 export * from "tsparticles/dist/Enums";
 
-export interface ParticlesProps {
-    width?: string;
-    height?: string;
-    params?: IParticlesParams;
-    options?: IParticlesParams;
-    style?: unknown;
-    className?: string;
-    canvasClassName?: string;
-    container?: RefObject<Container>;
-}
+export { ISourceOptions, IParticlesProps, ParticlesProps };
 
-type Particles = ComponentClass<ParticlesProps>;
+type Particles = ComponentClass<IParticlesProps>;
 
 declare const Particles: Particles;
 

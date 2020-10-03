@@ -1,10 +1,13 @@
 import type { IRepulseBase } from "../../../Interfaces/Interactivity/Modes/IRepulseBase";
 import type { RecursivePartial } from "../../../../Types";
 
+/**
+ * @category Options
+ */
 export abstract class RepulseBase implements IRepulseBase {
-    public distance: number;
-    public duration: number;
-    public speed: number;
+    public distance;
+    public duration;
+    public speed;
 
     constructor() {
         this.distance = 200;

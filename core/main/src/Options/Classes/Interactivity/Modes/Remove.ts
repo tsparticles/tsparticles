@@ -2,6 +2,9 @@ import type { IRemove } from "../../../Interfaces/Interactivity/Modes/IRemove";
 import type { RecursivePartial } from "../../../../Types";
 import type { IOptionLoader } from "../../../Interfaces/IOptionLoader";
 
+/**
+ * @category Options
+ */
 export class Remove implements IRemove, IOptionLoader<IRemove> {
     /**
      *
@@ -20,7 +23,7 @@ export class Remove implements IRemove, IOptionLoader<IRemove> {
         this.quantity = value;
     }
 
-    public quantity: number;
+    public quantity;
 
     constructor() {
         this.quantity = 2;

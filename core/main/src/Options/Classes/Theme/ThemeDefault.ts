@@ -4,8 +4,8 @@ import { ThemeMode } from "../../../Enums/Modes";
 import type { RecursivePartial } from "../../../Types";
 
 export class ThemeDefault implements IThemeDefault, IOptionLoader<IThemeDefault> {
-    public mode: ThemeMode;
-    public value: boolean;
+    public mode: ThemeMode | keyof ThemeMode;
+    public value;
 
     constructor() {
         this.mode = ThemeMode.any;

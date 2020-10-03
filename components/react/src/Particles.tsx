@@ -1,32 +1,12 @@
-import React, { Component, CSSProperties, RefObject, MutableRefObject } from "react";
-import type { IOptions } from "tsparticles/dist/Options/Interfaces/IOptions";
-import { Container } from "tsparticles/dist/Core/Container";
-import type { RecursivePartial } from "tsparticles/dist/Types/RecursivePartial";
-import { tsParticles } from "tsparticles";
+import React, { Component, MutableRefObject, ReactNode } from "react";
+import type { ISourceOptions } from "tsparticles";
+import { tsParticles, Container } from "tsparticles";
 import { isEqual } from "lodash";
-import { IPolygonMaskOptions } from "tsparticles/dist/Plugins/PolygonMask/PolygonMaskPlugin";
-import { IAbsorberOptions } from "tsparticles/dist/Plugins/Absorbers/AbsorbersPlugin";
-import { IEmitterOptions } from "tsparticles/dist/Plugins/Emitters/EmittersPlugin";
+import type { IParticlesProps } from "./IParticlesProps";
+import type { IParticlesState } from "./IParticlesState";
 
-export interface ParticlesProps {
-    id: string;
-    width: string;
-    height: string;
-    options: RecursivePartial<IOptions & IPolygonMaskOptions & IAbsorberOptions & IEmitterOptions>;
-    params?: RecursivePartial<IOptions & IPolygonMaskOptions & IAbsorberOptions & IEmitterOptions>;
-    style: CSSProperties;
-    className?: string;
-    canvasClassName?: string;
-    container?: RefObject<Container>;
-}
-
-export interface ParticlesState {
-    canvas?: HTMLCanvasElement;
-    library?: Container;
-}
-
-export default class Particles extends Component<ParticlesProps, ParticlesState> {
-    public static defaultProps: ParticlesProps = {
+export default class Particles extends Component<IParticlesProps, IParticlesState> {
+    public static defaultProps: IParticlesProps = {
         width: "100%",
         height: "100%",
         options: {},
@@ -34,7 +14,7 @@ export default class Particles extends Component<ParticlesProps, ParticlesState>
         id: "tsparticles",
     };
 
-    constructor(props: ParticlesProps) {
+    constructor(props: IParticlesProps) {
         super(props);
 
         this.state = {
@@ -79,7 +59,7 @@ export default class Particles extends Component<ParticlesProps, ParticlesState>
         );
     }
 
-    public shouldComponentUpdate(nextProps: Readonly<ParticlesProps>): boolean {
+    public shouldComponentUpdate(nextProps: Readonly<IParticlesProps>): boolean {
         return !isEqual(nextProps, this.props);
     }
 
@@ -102,7 +82,7 @@ export default class Particles extends Component<ParticlesProps, ParticlesState>
         this.destroy();
     }
 
-    public render(): JSX.Element {
+    public render(): ReactNode {
         const { width, height, className, canvasClassName, id } = this.props;
         return (
             <div className={className} id={id}>
@@ -119,16 +99,18 @@ export default class Particles extends Component<ParticlesProps, ParticlesState>
         );
     }
 
-    private buildParticlesLibrary(tagId: string, options?: RecursivePartial<IOptions>): Container | null {
+    private buildParticlesLibrary(tagId?: string, options?: ISourceOptions): Container | undefined {
         try {
-            if (window === undefined) return null;
+            if (window === undefined) {
+                return;
+            }
         } catch {
-            return null;
+            return;
         } // SSR
 
         tsParticles.init();
 
-        const container = new Container(tagId, options);
+        const container = new Container(tagId ?? Particles.defaultProps.id, options);
 
         if (this.props.container) {
             (this.props.container as MutableRefObject<Container>).current = container;
@@ -137,7 +119,7 @@ export default class Particles extends Component<ParticlesProps, ParticlesState>
         return container;
     }
 
-    private refresh(props: Readonly<ParticlesProps>): void {
+    private refresh(props: Readonly<IParticlesProps>): void {
         const { canvas } = this.state;
 
         if (!canvas) {

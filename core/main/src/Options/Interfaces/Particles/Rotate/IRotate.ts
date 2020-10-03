@@ -1,10 +1,13 @@
 import type { IRotateAnimation } from "./IRotateAnimation";
 import type { RotateDirection, RotateDirectionAlt } from "../../../../Enums";
+import type { IValueWithRandom } from "../../IValueWithRandom";
 
-export interface IRotate {
+/**
+ * [[include:Options/Particles/Rotate.md]]
+ * @category Options
+ */
+export interface IRotate extends IValueWithRandom {
     animation: IRotateAnimation;
     direction: RotateDirection | keyof typeof RotateDirection | RotateDirectionAlt;
     path: boolean;
-    random: boolean;
-    value: number;
 }

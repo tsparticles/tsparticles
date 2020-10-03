@@ -11,11 +11,18 @@ interface ContainerImage {
     images: IImage[];
 }
 
+/**
+ * @category Shape Drawers
+ */
 export class ImageDrawer implements IShapeDrawer {
     public images: ContainerImage[];
 
     constructor() {
         this.images = [];
+    }
+
+    public getSidesCount(): number {
+        return 12;
     }
 
     public getImages(container: Container): ContainerImage {

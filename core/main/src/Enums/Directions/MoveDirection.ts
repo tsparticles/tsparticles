@@ -1,3 +1,6 @@
+/**
+ * @category Enums
+ */
 export enum MoveDirection {
     bottom = "bottom",
     bottomLeft = "bottom-left",

@@ -1,8 +1,6 @@
-import { HoverMode, tsParticles } from "tsparticles";
-import type { IOptions } from "tsparticles/dist/Options/Interfaces/IOptions";
-import type { RecursivePartial } from "tsparticles/dist/Types/RecursivePartial";
+import { HoverMode, ISourceOptions, tsParticles } from "tsparticles";
 
-const data: RecursivePartial<IOptions> = {
+const data: ISourceOptions = {
     backgroundMask: {
         cover: {
             value: "#ffffff",

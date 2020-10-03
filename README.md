@@ -2,11 +2,11 @@
 
 # tsParticles - TypeScript Particles
 
-**A lightweight TypeScript library for creating particles. Dependency free (\*) and browser ready!**
+**A lightweight TypeScript library for creating particles. Dependency free ([\*](#dependencies)) and browser ready!**
 
-_[Particles.js](https://github.com/VincentGarreau/particles.js) converted in TypeScript, dependency free (\*), improved with new cool 😎 features and various bugs fixed and **it's actively maintained**!_
+_[Particles.js](https://github.com/VincentGarreau/particles.js) converted in TypeScript, dependency free ([\*](#dependencies)), improved with new cool 😎 features and various bugs fixed and **it's actively maintained**!_
 
-[![jsDelivr](https://data.jsdelivr.com/v1/package/npm/tsparticles/badge?style=rounded)](https://www.jsdelivr.com/package/npm/tsparticles) [![Cdnjs](https://img.shields.io/cdnjs/v/tsparticles)](https://cdnjs.com/libraries/tsparticles) [![npmjs](https://badge.fury.io/js/tsparticles.svg)](https://www.npmjs.com/package/tsparticles) [![npm](https://img.shields.io/npm/dm/tsparticles)](https://www.npmjs.com/package/tsparticles) [![lerna](https://img.shields.io/badge/maintained%20with-lerna-cc00ff.svg)](https://lerna.js.org/) [![CodeFactor](https://www.codefactor.io/repository/github/matteobruni/tsparticles/badge)](https://www.codefactor.io/repository/github/matteobruni/tsparticles) [![Codacy Badge](https://api.codacy.com/project/badge/Grade/b983aaf3461a4c48b1e2eecce1ff1d74)](https://www.codacy.com/manual/ar3s/tsparticles?utm_source=github.com&utm_medium=referral&utm_content=matteobruni/tsparticles&utm_campaign=Badge_Grade)
+[![jsDelivr](https://data.jsdelivr.com/v1/package/npm/tsparticles/badge?style=rounded)](https://www.jsdelivr.com/package/npm/tsparticles) [![Cdnjs](https://img.shields.io/cdnjs/v/tsparticles)](https://cdnjs.com/libraries/tsparticles) [![npmjs](https://badge.fury.io/js/tsparticles.svg)](https://www.npmjs.com/package/tsparticles) [![npm](https://img.shields.io/npm/dm/tsparticles)](https://www.npmjs.com/package/tsparticles) [![lerna](https://img.shields.io/badge/maintained%20with-lerna-cc00ff.svg)](https://lerna.js.org/) [![CodeFactor](https://www.codefactor.io/repository/github/matteobruni/tsparticles/badge)](https://www.codefactor.io/repository/github/matteobruni/tsparticles) [![Codacy Badge](https://api.codacy.com/project/badge/Grade/b983aaf3461a4c48b1e2eecce1ff1d74)](https://www.codacy.com/manual/ar3s/tsparticles?utm_source=github.com&utm_medium=referral&utm_content=matteobruni/tsparticles&utm_campaign=Badge_Grade) [![Gitpod Ready-to-Code](https://img.shields.io/badge/Gitpod-ready--to--code-blue?logo=gitpod)](https://gitpod.io/#https://github.com/matteobruni/tsparticles)
 
 ## Do you want to use it on your website?
 
@@ -241,57 +241,57 @@ If you created some good design with *tsParticles* feel free to submit a pull re
 
 ## **_Demo / Generator_**
 
-<https://particles.matteobruni.it/>
+<https://particles.matteobruni.it/Samples>
 
-[![Particles demo](https://particles.matteobruni.it/images/demo.png?v=1.8.1)](https://particles.matteobruni.it/)
+[![Particles demo](https://particles.matteobruni.it/images/demo.png?v=1.8.1)](https://particles.matteobruni.it/Samples)
 
 ---
 
 ### Characters as particles
 
-[![Particles chars demo](https://media.giphy.com/media/JsssOXz72bM6jGEZ0s/giphy.gif)](https://particles.matteobruni.it/#chars)
+[![Particles chars demo](https://media.giphy.com/media/JsssOXz72bM6jGEZ0s/giphy.gif)](https://particles.matteobruni.it/Samples#chars)
 
 ---
 
 ### Mouse hover connections
 
-[![Particles mouse connections demo](https://media.giphy.com/media/XzvZThpVbxHxMYz5xt/giphy.gif)](https://particles.matteobruni.it/#connect)
+[![Particles mouse connections demo](https://media.giphy.com/media/XzvZThpVbxHxMYz5xt/giphy.gif)](https://particles.matteobruni.it/Samples#connect)
 
 ---
 
 ### Polygon mask
 
-[![tsParticles Polygon Mask demo](https://media.giphy.com/media/lNRfiSgaMFbL4FMhW6/giphy.gif)](https://particles.matteobruni.it/#polygonMask)
+[![tsParticles Polygon Mask demo](https://media.giphy.com/media/lNRfiSgaMFbL4FMhW6/giphy.gif)](https://particles.matteobruni.it/Samples#polygonMask)
 
 ---
 
 ### Animated stars
 
-[![Particles NASA demo](https://media.giphy.com/media/cLqGsnh7FKRVMgPIWE/giphy.gif)](https://particles.matteobruni.it/#nasa)
+[![Particles NASA demo](https://media.giphy.com/media/cLqGsnh7FKRVMgPIWE/giphy.gif)](https://particles.matteobruni.it/Samples#nasa)
 
 ---
 
 ### Nyan cat flying on scrolling stars
 
-[![Particles Nyan Cat demo](https://media.giphy.com/media/LpX2oNc9ZMgIhIXQL9/giphy.gif)](https://particles.matteobruni.it/#nyancat2)
+[![Particles Nyan Cat demo](https://media.giphy.com/media/LpX2oNc9ZMgIhIXQL9/giphy.gif)](https://particles.matteobruni.it/Samples#nyancat2)
 
 ---
 
 ### Snow particles
 
-[![tsParticles Snow demo](https://media.giphy.com/media/gihwUFbmiubbkdzEMX/giphy.gif)](https://particles.matteobruni.it/#snow)
+[![tsParticles Snow demo](https://media.giphy.com/media/gihwUFbmiubbkdzEMX/giphy.gif)](https://particles.matteobruni.it/Samples#snow)
 
 ---
 
 ### Background Mask particles
 
-[![tsParticles Background Mask demo](https://media.giphy.com/media/dWraWgqInWFGWiOyRu/giphy.gif)](https://particles.matteobruni.it/#background)
+[![tsParticles Background Mask demo](https://media.giphy.com/media/dWraWgqInWFGWiOyRu/giphy.gif)](https://particles.matteobruni.it/Samples#background)
 
 ---
 
 #### COVID-19 SARS-CoV-2 particles
 
-[![tsParticles COVID-19 demo](https://media.giphy.com/media/fsVN1ZHksgBIXNIbr1/giphy.gif)](https://particles.matteobruni.it/#virus)
+[![tsParticles COVID-19 demo](https://media.giphy.com/media/fsVN1ZHksgBIXNIbr1/giphy.gif)](https://particles.matteobruni.it/Samples#virus)
 
 _Don't click! DON'T CLICK! OH NO IT'S SPREADING!!!!_
 
@@ -307,7 +307,7 @@ You can find a sample config [here](https://github.com/matteobruni/tsparticles/w
 
 ## **_Options_**
 
-You can find all options available [here](https://github.com/matteobruni/tsparticles/wiki/tsParticles-Options) 📖
+You can find all options available [here](https://particles.js.org/interfaces/_options_interfaces_ioptions_.ioptions.html) 📖
 
 ## Want to see it in action and try it?
 
@@ -329,7 +329,7 @@ _If you are brave enough_ you can switch to the `dev` branch for trying the feat
 
 ## Dependencies
 
-You may have notices the \* near dependency free. Well almost all features works without any dependency, but... Well there's a little but. The **Polygon Mask** feature requires `[pathseg](https://github.com/progers/pathseg)` for some browsers to work fine, and obviously the Icon Fonts (like `FontAwesome` ) must be included in your page.
+You may have notices the \* near dependency free. Well almost all features works without any dependency, but... Well there's a little but. The **Polygon Mask** feature requires [`pathseg`](https://github.com/progers/pathseg) for some browsers to work fine, and obviously the Icon Fonts (like `FontAwesome` ) must be included in your page.
 
 ---
 
@@ -353,7 +353,7 @@ tsParticles now supports some customizations 🥳.
 
 **You can create your own plugins**
 
-_Read more [here](https://github.com/matteobruni/tsparticles/wiki/Create-a-tsParticles-Plugin)..._
+_Read more [here](https://particles.js.org/modules/_core_interfaces_iplugin_.html)..._
 
 ---
 
@@ -382,4 +382,4 @@ Documentation and Development references [here](https://particles.matteobruni.it
 
 ### Huge thanks to [SauceLabs](https://saucelabs.com) for the Open Source License!
 
-<img alt="Testing Powered By SauceLabs" src="https://raw.githubusercontent.com/saucelabs/opensource/master/assets/powered-by-saucelabs-badge-red.svg" width="250" />
+<img alt="Testing Powered By SauceLabs" src="https://raw.githubusercontent.com/saucelabs/saucelabs.github.io/publish/images/opensauce/powered-by-saucelabs-badge-red.svg" width="250" />

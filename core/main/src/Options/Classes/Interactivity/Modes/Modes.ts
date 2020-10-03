@@ -12,17 +12,21 @@ import type { IOptionLoader } from "../../../Interfaces/IOptionLoader";
 import { Attract } from "./Attract";
 import { Light } from "./Light";
 
+/**
+ * [[include:Options/Interactivity/Modes.md]]
+ * @category Options
+ */
 export class Modes implements IModes, IOptionLoader<IModes> {
-    public attract: Attract;
-    public bubble: Bubble;
-    public connect: Connect;
-    public grab: Grab;
-    public light: Light;
-    public push: Push;
-    public remove: Remove;
-    public repulse: Repulse;
-    public slow: Slow;
-    public trail: Trail;
+    public attract;
+    public bubble;
+    public connect;
+    public grab;
+    public light;
+    public push;
+    public remove;
+    public repulse;
+    public slow;
+    public trail;
 
     constructor() {
         this.attract = new Attract();

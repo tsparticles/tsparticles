@@ -58,7 +58,7 @@
     },
     "modes": {
       "light": {
-        "light": {
+        "area": {
           "gradient": {
             "start": "3b5e98",
             "stop": "#17163e"

@@ -4,10 +4,14 @@ import type { RecursivePartial } from "../../../Types";
 import { OptionsColor } from "../OptionsColor";
 import type { IOptionLoader } from "../../Interfaces/IOptionLoader";
 
+/**
+ * @category Options
+ * [[include:Shadow.md]]
+ */
 export class Shadow implements IShadow, IOptionLoader<IShadow> {
-    public blur: number;
-    public color: OptionsColor;
-    public enable: boolean;
+    public blur;
+    public color;
+    public enable;
     public offset: ICoordinates;
 
     constructor() {

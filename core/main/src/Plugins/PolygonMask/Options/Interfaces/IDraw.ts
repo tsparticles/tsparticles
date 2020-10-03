@@ -1,6 +1,9 @@
 import type { IDrawStroke } from "./IDrawStroke";
-import type { IColor } from "../../../../Core/Interfaces/IColor";
+import type { IColor } from "../../../../Core/Interfaces/Colors";
 
+/**
+ * @category Polygon Mask Plugin
+ */
 export interface IDraw {
     enable: boolean;
 

@@ -30,6 +30,18 @@
           "selectors": ".repulse.rectangle",
           "mode": "repulse",
           "type": "rectangle"
+        },
+        {
+          "enable": true,
+          "selectors": ".bounce.circle",
+          "mode": "bounce",
+          "type": "circle"
+        },
+        {
+          "enable": true,
+          "selectors": ".bounce.rectangle",
+          "mode": "bounce",
+          "type": "rectangle"
         }
       ],
       "resize": true

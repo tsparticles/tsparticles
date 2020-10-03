@@ -4,8 +4,12 @@ import type { RecursivePartial } from "../../../Types";
 import { ColorAnimation } from "./ColorAnimation";
 import type { IOptionLoader } from "../../Interfaces/IOptionLoader";
 
+/**
+ * [[include:Options/Particles/Color.md]]
+ * @category Options
+ */
 export class AnimatableColor extends OptionsColor implements IAnimatableColor, IOptionLoader<IAnimatableColor> {
-    public animation: ColorAnimation;
+    public animation;
 
     constructor() {
         super();

@@ -88,12 +88,20 @@
                 elem.classList.add('d-block');
                 elem.classList.remove('d-none');
             });
+            document.querySelectorAll('.bounce').forEach(elem => {
+                elem.classList.add('d-block');
+                elem.classList.remove('d-none');
+            });
         } else {
             document.querySelectorAll('.bubble').forEach(elem => {
                 elem.classList.add('d-none');
                 elem.classList.remove('d-block');
             });
             document.querySelectorAll('.repulse').forEach(elem => {
+                elem.classList.add('d-none');
+                elem.classList.remove('d-block');
+            });
+            document.querySelectorAll('.bounce').forEach(elem => {
                 elem.classList.add('d-none');
                 elem.classList.remove('d-block');
             });

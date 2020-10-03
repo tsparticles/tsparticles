@@ -5,11 +5,11 @@ import { LightArea } from "./LightArea";
 import { LightShadow } from "./LightShadow";
 
 export class Light implements ILight, IOptionLoader<ILight> {
-    public light: LightArea;
-    public shadow: LightShadow;
+    public area;
+    public shadow;
 
     constructor() {
-        this.light = new LightArea();
+        this.area = new LightArea();
         this.shadow = new LightShadow();
     }
 
@@ -18,7 +18,7 @@ export class Light implements ILight, IOptionLoader<ILight> {
             return;
         }
 
-        this.light.load(data.light);
+        this.area.load(data.area);
         this.shadow.load(data.shadow);
     }
 }

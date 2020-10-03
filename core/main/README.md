@@ -2,9 +2,7 @@
 
 # tsParticles - TypeScript Particles
 
-**A lightweight TypeScript library for creating particles. Dependency free (\*) and browser ready!**
-
-_[Particles.js](https://github.com/VincentGarreau/particles.js) converted in TypeScript, dependency free (\*), improved with new cool 😎 features and various bugs fixed and **it's actively maintained**!_
+**A lightweight TypeScript library for creating particles. Dependency free (\*), browser ready and compatible with React, Vue, Angular, Svelte, jQuery, Preact, Inferno**
 
 [![jsDelivr](https://data.jsdelivr.com/v1/package/npm/tsparticles/badge?style=rounded)](https://www.jsdelivr.com/package/npm/tsparticles) [![Cdnjs](https://img.shields.io/cdnjs/v/tsparticles)](https://cdnjs.com/libraries/tsparticles) [![npmjs](https://badge.fury.io/js/tsparticles.svg)](https://www.npmjs.com/package/tsparticles) [![npm](https://img.shields.io/npm/dm/tsparticles)](https://www.npmjs.com/package/tsparticles) [![lerna](https://img.shields.io/badge/maintained%20with-lerna-cc00ff.svg)](https://lerna.js.org/) [![CodeFactor](https://www.codefactor.io/repository/github/matteobruni/tsparticles/badge)](https://www.codefactor.io/repository/github/matteobruni/tsparticles) [![Codacy Badge](https://api.codacy.com/project/badge/Grade/b983aaf3461a4c48b1e2eecce1ff1d74)](https://www.codacy.com/manual/ar3s/tsparticles?utm_source=github.com&utm_medium=referral&utm_content=matteobruni/tsparticles&utm_campaign=Badge_Grade)
 
@@ -217,13 +215,21 @@ You can find the instructions [here](https://github.com/matteobruni/tsparticles/
 
 You can find the instructions [here](https://github.com/matteobruni/tsparticles/blob/master/components/svelte/README.md)
 
-### VueJS
+### VueJS 2.x
 
 #### `particles.vue`
 
 [![npm](https://img.shields.io/npm/v/particles.vue)](https://www.npmjs.com/package/particles.vue) [![npm](https://img.shields.io/npm/dm/particles.vue)](https://www.npmjs.com/package/particles.vue)
 
 You can find the instructions [here](https://github.com/matteobruni/tsparticles/blob/master/components/vue/README.md)
+
+### VueJS 3.x
+
+#### `particles.vue3`
+
+[![npm](https://img.shields.io/npm/v/particles.vue3)](https://www.npmjs.com/package/particles.vue3) [![npm](https://img.shields.io/npm/dm/particles.vue3)](https://www.npmjs.com/package/particles.vue3)
+
+You can find the instructions [here](https://github.com/matteobruni/tsparticles/blob/master/components/vue3/README.md)
 
 ---
 

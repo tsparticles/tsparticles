@@ -1,0 +1,119 @@
+{
+  "detectRetina": true,
+  "fpsLimit": 60,
+  "interactivity": {
+    "detectsOn": "canvas",
+    "events": {
+      "onClick": {
+        "enable": true,
+        "mode": "push"
+      },
+      "onHover": {
+        "enable": true,
+        "mode": "bubble",
+        "parallax": {
+          "enable": false,
+          "force": 60,
+          "smooth": 10
+        }
+      },
+      "resize": true
+    },
+    "modes": {
+      "bubble": {
+        "distance": 400,
+        "duration": 2,
+        "opacity": 0.8,
+        "size": 40
+      },
+      "push": {
+        "quantity": 4
+      }
+    }
+  },
+  "particles": {
+    "move": {
+      "direction": "none",
+      "enable": true,
+      "outMode": "out",
+      "speed": 2
+    },
+    "number": {
+      "density": {
+        "enable": true,
+        "area": 800
+      },
+      "value": 80
+    },
+    "opacity": {
+      "value": 1
+    },
+    "rotate": {
+      "animation": {
+        "enable": true,
+        "speed": 5,
+        "sync": false
+      },
+      "direction": "random",
+      "random": true,
+      "value": 0
+    },
+    "shape": {
+      "type": "image",
+      "options": {
+        "image": [
+          {
+            "src": "https://cdn.matteobruni.it/images/particles/fruits/apple.png",
+            "width": 32,
+            "height": 32,
+            "particles": {
+              "move": {
+                "direction": "top"
+              }
+            }
+          },
+          {
+            "src": "https://cdn.matteobruni.it/images/particles/fruits/avocado.png",
+            "width": 32,
+            "height": 32,
+            "particles": {
+              "move": {
+                "direction": "bottom"
+              }
+            }
+          }
+        ]
+      }
+    },
+    "size": {
+      "animation": {
+        "enable": false,
+        "minimumValue": 0.1,
+        "speed": 40,
+        "sync": false
+      },
+      "random": false,
+      "value": 16
+    }
+  },
+  "polygon": {
+    "draw": {
+      "enable": false,
+      "lineColor": "#ffffff",
+      "lineWidth": 0.5
+    },
+    "move": {
+      "radius": 10
+    },
+    "scale": 1,
+    "type": "none",
+    "url": ""
+  },
+  "background": {
+    "color": "#fff",
+    "image": "",
+    "position": "50% 50%",
+    "repeat": "no-repeat",
+    "size": "cover"
+  }
+}

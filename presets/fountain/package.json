@@ -1,0 +1,69 @@
+{
+  "name": "tsparticles-preset-fountain",
+  "version": "1.3.0-beta.0",
+  "description": "tsParticles fountain preset",
+  "homepage": "https://particles.matteobruni.it/",
+  "scripts": {
+    "prettify:src": "prettier --write ./src/",
+    "prettify:readme": "prettier --write ./README.md",
+    "lint": "eslint src --ext .js,.jsx,.ts,.tsx --fix",
+    "compile": "tsc",
+    "bundle": "webpack -p",
+    "build": "yarn prettify:src && yarn compile && yarn lint && yarn bundle && yarn prettify:readme",
+    "prepare": "yarn build"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/matteobruni/tsparticles.git",
+    "directory": "presets/fountain"
+  },
+  "keywords": [
+    "tsparticles",
+    "particles",
+    "particle",
+    "canvas",
+    "jsparticles",
+    "xparticles",
+    "particles-js",
+    "particles.js",
+    "particles-ts",
+    "particles.ts",
+    "typescript",
+    "javascript",
+    "animation",
+    "web",
+    "html5",
+    "web-design",
+    "webdesign",
+    "css",
+    "html",
+    "css3",
+    "animated",
+    "background",
+    "tsparticles-preset"
+  ],
+  "author": "Matteo Bruni",
+  "license": "MIT",
+  "files": [
+    "dist/**/*"
+  ],
+  "bugs": {
+    "url": "https://github.com/matteobruni/tsparticles/issues"
+  },
+  "main": "dist/tsparticles.preset.fountain.min.js",
+  "devDependencies": {
+    "@typescript-eslint/eslint-plugin": "^4.2.0",
+    "@typescript-eslint/parser": "^4.2.0",
+    "cpx": "^1.5.0",
+    "eslint": "^7.9.0",
+    "eslint-config-prettier": "^6.11.0",
+    "prettier": "^2.1.2",
+    "terser-webpack-plugin": "^4.2.2",
+    "typescript": "^4.0.3",
+    "webpack": "^4.44.2",
+    "webpack-cli": "^3.3.12"
+  },
+  "dependencies": {
+    "tsparticles": "^1.18.0-beta.0"
+  }
+}

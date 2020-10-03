@@ -1,17 +1,15 @@
 import type { ILifeDuration } from "../../../Interfaces/Particles/Life/ILifeDuration";
 import type { IOptionLoader } from "../../../Interfaces/IOptionLoader";
-import { LifeDurationRandom } from "./LifeDurationRandom";
 import type { RecursivePartial } from "../../../../Types";
+import { ValueWithRandom } from "../../ValueWithRandom";
 
-export class LifeDuration implements ILifeDuration, IOptionLoader<ILifeDuration> {
-    public random: LifeDurationRandom;
-    public sync: boolean;
-    public value: number;
+export class LifeDuration extends ValueWithRandom implements ILifeDuration, IOptionLoader<ILifeDuration> {
+    public sync;
 
     constructor() {
-        this.random = new LifeDurationRandom();
+        super();
+        this.random.minimumValue = 0.0001;
         this.sync = false;
-        this.value = 0;
     }
 
     public load(data?: RecursivePartial<ILifeDuration>): void {
@@ -19,14 +17,10 @@ export class LifeDuration implements ILifeDuration, IOptionLoader<ILifeDuration>
             return;
         }
 
-        this.random.load(data.random);
+        super.load(data);
 
         if (data.sync !== undefined) {
             this.sync = data.sync;
-        }
-
-        if (data.value !== undefined) {
-            this.value = data.value;
         }
     }
 }

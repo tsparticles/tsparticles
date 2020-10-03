@@ -3,8 +3,11 @@ import type { RecursivePartial } from "../../../../Types";
 import { MoveType } from "../../Enums";
 import type { IOptionLoader } from "../../../../Options/Interfaces/IOptionLoader";
 
+/**
+ * @category Polygon Mask Plugin
+ */
 export class Move implements IMove, IOptionLoader<IMove> {
-    public radius: number;
+    public radius;
     public type: MoveType | keyof typeof MoveType;
 
     constructor() {

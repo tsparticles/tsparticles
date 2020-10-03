@@ -8,6 +8,9 @@ import { CircleWarp } from "./CircleWarp";
 import type { Container } from "../Core/Container";
 import type { IDimension } from "../Core/Interfaces/IDimension";
 
+/**
+ * @category Utils
+ */
 export class QuadTree {
     public readonly points: Point[];
 
@@ -16,7 +19,7 @@ export class QuadTree {
     private southEast?: QuadTree;
     private southWest?: QuadTree;
 
-    private divided: boolean;
+    private divided;
 
     constructor(public readonly rectangle: Rectangle, public readonly capacity: number) {
         this.points = [];
@@ -93,7 +96,11 @@ export class QuadTree {
         if (!range.intersects(this.rectangle)) {
             return [];
         } else {
-            for (const p of this.points.filter((p) => range.contains(p.position))) {
+            for (const p of this.points) {
+                if (!range.contains(p.position)) {
+                    continue;
+                }
+
                 res.push(p.particle);
             }
 

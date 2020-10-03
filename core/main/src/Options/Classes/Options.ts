@@ -9,10 +9,15 @@ import { Plugins } from "../../Utils";
 import type { IOptionLoader } from "../Interfaces/IOptionLoader";
 import { Theme } from "./Theme/Theme";
 import { ThemeMode } from "../../Enums/Modes";
+import { BackgroundMode } from "./BackgroundMode/BackgroundMode";
+import { Motion } from "./Motion/Motion";
+import { ManualParticle } from "./ManualParticle";
 
+/**
+ * [[include:Options.md]]
+ * @category Options
+ */
 export class Options implements IOptions, IOptionLoader<IOptions> {
-    public autoPlay: boolean;
-
     /**
      * @deprecated this property is obsolete, please use the new fpsLimit
      */
@@ -44,14 +49,18 @@ export class Options implements IOptions, IOptionLoader<IOptions> {
         this.detectRetina = value;
     }
 
-    public background: Background;
-    public backgroundMask: BackgroundMask;
-    public detectRetina: boolean;
-    public fpsLimit: number;
-    public infection: Infection;
-    public interactivity: Interactivity;
-    public particles: Particles;
-    public pauseOnBlur: boolean;
+    public autoPlay;
+    public background;
+    public backgroundMask;
+    public backgroundMode;
+    public detectRetina;
+    public fpsLimit;
+    public infection;
+    public interactivity;
+    public manualParticles: ManualParticle[];
+    public motion;
+    public particles;
+    public pauseOnBlur;
     public preset?: string | string[];
     public themes: Theme[];
 
@@ -59,10 +68,13 @@ export class Options implements IOptions, IOptionLoader<IOptions> {
         this.autoPlay = true;
         this.background = new Background();
         this.backgroundMask = new BackgroundMask();
+        this.backgroundMode = new BackgroundMode();
         this.detectRetina = true;
         this.fpsLimit = 30;
         this.infection = new Infection();
         this.interactivity = new Interactivity();
+        this.manualParticles = [];
+        this.motion = new Motion();
         this.particles = new Particles();
         this.pauseOnBlur = true;
         this.themes = [];
@@ -106,11 +118,27 @@ export class Options implements IOptions, IOptionLoader<IOptions> {
         if (data.pauseOnBlur !== undefined) {
             this.pauseOnBlur = data.pauseOnBlur;
         }
+
         this.background.load(data.background);
-        this.particles.load(data.particles);
+        this.backgroundMode.load(data.backgroundMode);
+        this.backgroundMask.load(data.backgroundMask);
         this.infection.load(data.infection);
         this.interactivity.load(data.interactivity);
-        this.backgroundMask.load(data.backgroundMask);
+
+        if (data.manualParticles !== undefined) {
+            this.manualParticles = data.manualParticles.map((t) => {
+                const tmp = new ManualParticle();
+
+                tmp.load(t);
+
+                return tmp;
+            });
+        }
+
+        this.motion.load(data.motion);
+        this.particles.load(data.particles);
+
+        Plugins.loadOptions(this, data);
 
         if (data.themes !== undefined) {
             for (const theme of data.themes) {
@@ -119,8 +147,6 @@ export class Options implements IOptions, IOptionLoader<IOptions> {
                 this.themes.push(optTheme);
             }
         }
-
-        Plugins.loadOptions(this, data);
     }
 
     public setTheme(name?: string): void {
@@ -133,16 +159,16 @@ export class Options implements IOptions, IOptionLoader<IOptions> {
         } else {
             const clientDarkMode =
                 typeof matchMedia !== "undefined" && matchMedia("(prefers-color-scheme: dark)").matches;
-            const defaultThemes = this.themes.filter((theme) => theme.default.value);
 
-            let defaultTheme = defaultThemes.find(
+            let defaultTheme = this.themes.find(
                 (theme) =>
-                    (theme.default.mode === ThemeMode.dark && clientDarkMode) ||
-                    (theme.default.mode === ThemeMode.light && !clientDarkMode)
+                    theme.default.value &&
+                    ((theme.default.mode === ThemeMode.dark && clientDarkMode) ||
+                        (theme.default.mode === ThemeMode.light && !clientDarkMode))
             );
 
             if (!defaultTheme) {
-                defaultTheme = defaultThemes.find((theme) => theme.default.mode === ThemeMode.any);
+                defaultTheme = this.themes.find((theme) => theme.default.value && theme.default.mode === ThemeMode.any);
             }
 
             if (defaultTheme) {

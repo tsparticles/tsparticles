@@ -2,9 +2,12 @@ import type { IBubbleBase } from "../../../Interfaces/Interactivity/Modes/IBubbl
 import type { RecursivePartial, SingleOrMultiple } from "../../../../Types";
 import { OptionsColor } from "../../OptionsColor";
 
+/**
+ * @category Options
+ */
 export abstract class BubbleBase implements IBubbleBase {
-    public distance: number;
-    public duration: number;
+    public distance;
+    public duration;
     public opacity?: number;
     public size?: number;
     public color?: SingleOrMultiple<OptionsColor>;

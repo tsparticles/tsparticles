@@ -2,13 +2,15 @@ import { Container } from "./Container";
 import type { IOptions } from "../Options/Interfaces/IOptions";
 import type { RecursivePartial } from "../Types";
 import { Constants, Utils } from "../Utils";
-import { Particle } from "./Particle";
-import { ICoordinates } from "./Interfaces/ICoordinates";
+import type { Particle } from "./Particle";
+import type { ICoordinates } from "./Interfaces/ICoordinates";
+import type { SingleOrMultiple } from "../Types";
 
 const tsParticlesDom: Container[] = [];
 
 /**
  * Main class for creating the [[Container]] objects
+ * @category Core
  */
 export class Loader {
     /**
@@ -34,41 +36,16 @@ export class Loader {
     }
 
     /**
-     * Loads an options object from the provided array to create a [[Container]] object.
-     * @param tagId the particles container element id
-     * @param options the options array to get the item from
-     * @param index if provided gets the corresponding item from the array
-     */
-    public static async loadFromArray(
-        tagId: string,
-        options: RecursivePartial<IOptions>[],
-        index?: number
-    ): Promise<Container | undefined> {
-        return Loader.load(tagId, Utils.itemFromArray(options, index));
-    }
-
-    /**
-     * Loads an options object from the provided array to create a [[Container]] object.
-     * @param id the container id
-     * @param domContainer the dom container for keeping
-     * @param options the options array to get the item from
-     * @param index if provided gets the corresponding item from the array
-     */
-    public static async setFromArray(
-        id: string,
-        domContainer: HTMLElement,
-        options: RecursivePartial<IOptions>[],
-        index?: number
-    ): Promise<Container | undefined> {
-        return Loader.set(id, domContainer, Utils.itemFromArray(options, index));
-    }
-
-    /**
      * Loads the provided options to create a [[Container]] object.
      * @param tagId the particles container element id
      * @param options the options object to initialize the [[Container]]
+     * @param index if an options array is provided, this will retrieve the exact index of that array
      */
-    public static async load(tagId: string, options?: RecursivePartial<IOptions>): Promise<Container | undefined> {
+    public static async load(
+        tagId: string,
+        options?: SingleOrMultiple<RecursivePartial<IOptions>>,
+        index?: number
+    ): Promise<Container | undefined> {
         /* elements */
         const domContainer = document.getElementById(tagId);
 
@@ -76,7 +53,7 @@ export class Loader {
             return;
         }
 
-        return Loader.set(tagId, domContainer, options);
+        return Loader.set(tagId, domContainer, options, index);
     }
 
     /**
@@ -84,12 +61,15 @@ export class Loader {
      * @param id the particles container element id
      * @param domContainer the dom container
      * @param options the options object to initialize the [[Container]]
+     * @param index if an options array is provided, this will retrieve the exact index of that array
      */
     public static async set(
         id: string,
         domContainer: HTMLElement,
-        options?: RecursivePartial<IOptions>
+        options?: SingleOrMultiple<RecursivePartial<IOptions>>,
+        index?: number
     ): Promise<Container | undefined> {
+        const currentOptions = options instanceof Array ? Utils.itemFromArray(options, index) : options;
         const dom = Loader.dom();
         const oldIndex = dom.findIndex((v) => v.id === id);
 
@@ -137,7 +117,7 @@ export class Loader {
         }
 
         /* launch tsParticles */
-        const newItem = new Container(id, options);
+        const newItem = new Container(id, currentOptions);
 
         if (oldIndex >= 0) {
             dom.splice(oldIndex, 0, newItem);
@@ -156,20 +136,22 @@ export class Loader {
      * Loads the provided json with a GET request. The content will be used to create a [[Container]] object.
      * This method is async, so if you need a callback refer to JavaScript function `fetch`
      * @param tagId the particles container element id
-     * @param jsonUrl the json path to use in the GET request
+     * @param jsonUrl the json path (or paths array) to use in the GET request
+     * @param index the index of the paths array, if a single path is passed this value is ignored
+     * @returns A Promise with the [[Container]] object created
      */
-    public static async loadJSON(tagId: string, jsonUrl: string): Promise<Container | undefined> {
+    public static async loadJSON(
+        tagId: string,
+        jsonUrl: SingleOrMultiple<string>,
+        index?: number
+    ): Promise<Container | undefined> {
+        const url = jsonUrl instanceof Array ? Utils.itemFromArray(jsonUrl, index) : jsonUrl;
+
         /* load json config */
-        const response = await fetch(jsonUrl);
+        const response = await fetch(url);
 
         if (response.ok) {
-            const options = await response.json();
-
-            if (options instanceof Array) {
-                return Loader.loadFromArray(tagId, options);
-            } else {
-                return Loader.load(tagId, options);
-            }
+            return Loader.load(tagId, await response.json());
         } else {
             Loader.fetchError(response.status);
         }
@@ -193,11 +175,7 @@ export class Loader {
         if (response.ok) {
             const options = await response.json();
 
-            if (options instanceof Array) {
-                return Loader.setFromArray(id, domContainer, options);
-            } else {
-                return Loader.set(id, domContainer, options);
-            }
+            return Loader.set(id, domContainer, options);
         } else {
             Loader.fetchError(response.status);
         }

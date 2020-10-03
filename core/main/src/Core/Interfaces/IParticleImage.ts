@@ -1,5 +1,8 @@
 import type { IImage } from "./IImage";
 
+/**
+ * @category Interfaces
+ */
 export interface IParticleImage {
     source: string;
     data: IImage;

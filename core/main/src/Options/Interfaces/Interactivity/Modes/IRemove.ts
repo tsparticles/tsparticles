@@ -1,3 +1,6 @@
+/**
+ * @category Options
+ */
 export interface IRemove {
     /**
      * @deprecated use the new quantity instead

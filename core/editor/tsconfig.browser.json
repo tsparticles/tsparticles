@@ -7,8 +7,8 @@
       "DOM"
     ],
     "declaration": true,
-    "outDir": "./dist/js",
-    "rootDir": "./src/ts",
+    "outDir": "./dist/",
+    "rootDir": "./src/",
     "removeComments": true,
     "importHelpers": true,
     "strict": true,

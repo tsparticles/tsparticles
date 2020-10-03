@@ -1,16 +1,19 @@
 import type { IDimension } from "../Core/Interfaces/IDimension";
 import type { ICoordinates } from "../Core/Interfaces/ICoordinates";
-import type { IRgb } from "../Core/Interfaces/IRgb";
+import type { IRgb } from "../Core/Interfaces/Colors";
 import type { ILinksShadow } from "../Options/Interfaces/Particles/Links/ILinksShadow";
 import { ColorUtils } from "./ColorUtils";
 import type { IParticle } from "../Core/Interfaces/IParticle";
 import type { IShadow } from "../Options/Interfaces/Particles/IShadow";
 import type { Container } from "../Core/Container";
 import type { IContainerPlugin } from "../Core/Interfaces/IContainerPlugin";
-import { Utils } from "./Utils";
 import type { IDelta } from "../Core/Interfaces/IDelta";
 import { Particle } from "../Core/Particle";
+import { NumberUtils } from "./NumberUtils";
 
+/**
+ * @category Utils
+ */
 export class CanvasUtils {
     public static paintBase(context: CanvasRenderingContext2D, dimension: IDimension, baseColor?: string): void {
         context.save();
@@ -32,6 +35,7 @@ export class CanvasUtils {
         canvasSize: IDimension,
         warp: boolean,
         backgroundMask: boolean,
+        composite: string,
         colorLine: IRgb,
         opacity: number,
         shadow: ILinksShadow
@@ -41,7 +45,7 @@ export class CanvasUtils {
 
         let drawn = false;
 
-        if (Utils.getDistance(begin, end) <= maxDistance) {
+        if (NumberUtils.getDistance(begin, end) <= maxDistance) {
             CanvasUtils.drawLine(context, begin, end);
 
             drawn = true;
@@ -54,7 +58,7 @@ export class CanvasUtils {
                 y: end.y,
             };
 
-            const { dx, dy, distance } = Utils.getDistances(begin, endNE);
+            const { dx, dy, distance } = NumberUtils.getDistances(begin, endNE);
 
             if (distance <= maxDistance) {
                 const yi = begin.y - (dy / dx) * begin.x;
@@ -67,7 +71,7 @@ export class CanvasUtils {
                     y: end.y - canvasSize.height,
                 };
 
-                const { dx, dy, distance } = Utils.getDistances(begin, endSW);
+                const { dx, dy, distance } = NumberUtils.getDistances(begin, endSW);
 
                 if (distance <= maxDistance) {
                     const yi = begin.y - (dy / dx) * begin.x;
@@ -81,7 +85,7 @@ export class CanvasUtils {
                         y: end.y - canvasSize.height,
                     };
 
-                    const { dx, dy, distance } = Utils.getDistances(begin, endSE);
+                    const { dx, dy, distance } = NumberUtils.getDistances(begin, endSE);
 
                     if (distance <= maxDistance) {
                         const yi = begin.y - (dy / dx) * begin.x;
@@ -108,7 +112,7 @@ export class CanvasUtils {
         context.lineWidth = width;
 
         if (backgroundMask) {
-            context.globalCompositeOperation = "destination-out";
+            context.globalCompositeOperation = composite;
         }
 
         context.strokeStyle = ColorUtils.getStyleFromRgb(colorLine, opacity);
@@ -132,6 +136,7 @@ export class CanvasUtils {
         pos2: ICoordinates,
         pos3: ICoordinates,
         backgroundMask: boolean,
+        composite: string,
         colorTriangle: IRgb,
         opacityTriangle: number
     ): void {
@@ -143,7 +148,7 @@ export class CanvasUtils {
         context.lineWidth = width;
 
         if (backgroundMask) {
-            context.globalCompositeOperation = "destination-out";
+            context.globalCompositeOperation = composite;
         }
 
         context.fillStyle = ColorUtils.getStyleFromRgb(colorTriangle, opacityTriangle);
@@ -174,7 +179,7 @@ export class CanvasUtils {
         p2: IParticle,
         opacity: number
     ): CanvasGradient | undefined {
-        const gradStop = Math.floor(p2.size.value / p1.size.value);
+        const gradStop = Math.floor(p2.getRadius() / p1.getRadius());
         const color1 = p1.getFillColor();
         const color2 = p2.getFillColor();
 
@@ -184,7 +189,7 @@ export class CanvasUtils {
 
         const sourcePos = p1.getPosition();
         const destPos = p2.getPosition();
-        const midRgb = ColorUtils.mix(color1, color2, p1.size.value, p2.size.value);
+        const midRgb = ColorUtils.mix(color1, color2, p1.getRadius(), p2.getRadius());
         const grad = context.createLinearGradient(sourcePos.x, sourcePos.y, destPos.x, destPos.y);
 
         grad.addColorStop(0, ColorUtils.getStyleFromHsl(color1, opacity));
@@ -213,7 +218,7 @@ export class CanvasUtils {
     }
 
     public static drawLight(container: Container, context: CanvasRenderingContext2D, mousePos: ICoordinates): void {
-        const lightOptions = container.options.interactivity.modes.light.light;
+        const lightOptions = container.options.interactivity.modes.light.area;
 
         context.beginPath();
         context.arc(mousePos.x, mousePos.y, lightOptions.radius, 0, 2 * Math.PI);
@@ -247,7 +252,6 @@ export class CanvasUtils {
         container: Container,
         context: CanvasRenderingContext2D,
         particle: Particle,
-        radius: number,
         mousePos: ICoordinates
     ): void {
         const pos = particle.getPosition();
@@ -255,9 +259,10 @@ export class CanvasUtils {
 
         context.save();
 
-        const sides = 24;
+        const radius = particle.getRadius();
+        const sides = particle.sides;
         const full = (Math.PI * 2) / sides;
-        const angle = -particle.angle + Math.PI / 4;
+        const angle = -particle.rotate.value + Math.PI / 4;
         const factor = 1; //Math.sqrt(2);
         const dots = [];
 
@@ -320,6 +325,7 @@ export class CanvasUtils {
         fillColorValue: string | undefined,
         strokeColorValue: string | undefined,
         backgroundMask: boolean,
+        composite: string,
         radius: number,
         opacity: number,
         shadow: IShadow
@@ -330,16 +336,14 @@ export class CanvasUtils {
         context.translate(pos.x, pos.y);
         context.beginPath();
 
-        if (particle.angle !== 0) {
-            if (particle.particlesOptions.rotate.path) {
-                context.rotate(particle.angle + particle.pathAngle);
-            } else {
-                context.rotate(particle.angle);
-            }
+        const angle = particle.rotate.value + (particle.particlesOptions.rotate.path ? particle.pathAngle : 0);
+
+        if (angle !== 0) {
+            context.rotate(angle);
         }
 
         if (backgroundMask) {
-            context.globalCompositeOperation = "destination-out";
+            context.globalCompositeOperation = composite;
         }
 
         const shadowColor = particle.shadowColor;
@@ -382,12 +386,12 @@ export class CanvasUtils {
         context.save();
         context.translate(pos.x, pos.y);
 
-        if (particle.angle !== 0) {
-            context.rotate(particle.angle);
+        if (angle !== 0) {
+            context.rotate(angle);
         }
 
         if (backgroundMask) {
-            context.globalCompositeOperation = "destination-out";
+            context.globalCompositeOperation = composite;
         }
 
         CanvasUtils.drawShapeAfterEffect(container, context, particle, radius, opacity, delta);

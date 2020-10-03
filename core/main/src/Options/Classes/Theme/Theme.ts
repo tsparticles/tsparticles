@@ -6,8 +6,8 @@ import { Utils } from "../../../Utils";
 import { ThemeDefault } from "./ThemeDefault";
 
 export class Theme implements ITheme, IOptionLoader<ITheme> {
-    public name: string;
-    public default: ThemeDefault;
+    public name;
+    public default;
     public options?: RecursivePartial<IOptions>;
 
     constructor() {
@@ -27,7 +27,7 @@ export class Theme implements ITheme, IOptionLoader<ITheme> {
         this.default.load(data.default);
 
         if (data.options !== undefined) {
-            this.options = Utils.deepExtend({}, data.options);
+            this.options = Utils.deepExtend({}, data.options) as RecursivePartial<IOptions>;
         }
     }
 }

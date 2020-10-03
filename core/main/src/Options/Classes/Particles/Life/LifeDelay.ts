@@ -1,32 +1,25 @@
 import type { ILifeDelay } from "../../../Interfaces/Particles/Life/ILifeDelay";
 import type { IOptionLoader } from "../../../Interfaces/IOptionLoader";
-import { LifeDelayRandom } from "./LifeDelayRandom";
 import type { RecursivePartial } from "../../../../Types";
+import { ValueWithRandom } from "../../ValueWithRandom";
 
-export class LifeDelay implements ILifeDelay, IOptionLoader<ILifeDelay> {
-    public random: LifeDelayRandom;
-    public sync: boolean;
-    public value: number;
+export class LifeDelay extends ValueWithRandom implements ILifeDelay, IOptionLoader<ILifeDelay> {
+    public sync;
 
     constructor() {
-        this.random = new LifeDelayRandom();
+        super();
         this.sync = false;
-        this.value = 0;
     }
 
     public load(data?: RecursivePartial<ILifeDelay>): void {
-        if (data === undefined) {
+        if (!data) {
             return;
         }
 
-        this.random.load(data.random);
+        super.load(data);
 
         if (data.sync !== undefined) {
             this.sync = data.sync;
-        }
-
-        if (data.value !== undefined) {
-            this.value = data.value;
         }
     }
 }

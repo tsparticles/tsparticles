@@ -4,6 +4,9 @@ import type { RecursivePartial } from "../../../../Types";
 import { OptionsColor } from "../../../../Options/Classes/OptionsColor";
 import type { IOptionLoader } from "../../../../Options/Interfaces/IOptionLoader";
 
+/**
+ * @category Polygon Mask Plugin
+ */
 export class Draw implements IDraw, IOptionLoader<IDraw> {
     /**
      * @deprecated the property lineWidth is deprecated, please use the new stroke.width
@@ -33,8 +36,8 @@ export class Draw implements IDraw, IOptionLoader<IDraw> {
         this.stroke.color = OptionsColor.create(this.stroke.color, value);
     }
 
-    public enable: boolean;
-    public stroke: DrawStroke;
+    public enable;
+    public stroke;
 
     constructor() {
         this.enable = false;

@@ -9,6 +9,10 @@ import type { ITrail } from "./ITrail";
 import type { IAttract } from "./IAttract";
 import type { ILight } from "./ILight";
 
+/**
+ * [[include:Options/Interactivity/Modes.md]]
+ * @category Options
+ */
 export interface IModes {
     attract: IAttract;
     bubble: IBubble;

@@ -89,7 +89,7 @@ const getJsConfig = (entry) => {
 
 module.exports = [
     getJsConfig({
-        "js/tsparticles.editor": "./dist/js/index.js",
-        "js/tsparticles.editor.min": "./dist/js/index.js"
+        "tsparticles.editor": "./dist/index.js",
+        "tsparticles.editor.min": "./dist/index.js"
     })
 ];

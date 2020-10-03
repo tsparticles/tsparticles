@@ -1,9 +1,6 @@
 import { ColorUtils } from "../src/Utils";
-import { IColor } from "../src/Core/Interfaces/IColor";
 import { expect } from "chai";
-import { IRgb } from "../src/Core/Interfaces/IRgb";
-import { IHsl } from "../src/Core/Interfaces/IHsl";
-import { IHsla } from "../src/Core/Interfaces/IHsla";
+import { IColor, IRgb, IHsl, IHsla, IHsv } from "../src/Core/Interfaces/Colors";
 
 describe("ColorUtils", () => {
     const red: IRgb = {
@@ -149,6 +146,62 @@ describe("ColorUtils", () => {
 
             expect(ColorUtils.hslaToRgba(color)).to.include(red).and.include({ a: 1 }).and.not.be.undefined.and.not.be
                 .null;
+        });
+    });
+
+    describe("hslToHsv", () => {
+        it("hsl value", () => {
+            const color: IHsl = {
+                h: 0,
+                l: 50,
+                s: 100,
+            };
+
+            expect(ColorUtils.hslToHsv(color)).to.include({
+                h: 0,
+                s: 100,
+                v: 100,
+            }).and.not.be.undefined.and.not.be.null;
+        });
+    });
+
+    describe("hsvToHsl", () => {
+        it("hsv value", () => {
+            const color: IHsv = {
+                h: 0,
+                s: 100,
+                v: 100,
+            };
+
+            expect(ColorUtils.hsvToHsl(color)).to.include({
+                h: 0,
+                l: 50,
+                s: 100,
+            }).and.not.be.undefined.and.not.be.null;
+        });
+    });
+
+    describe("hsvToRgb", () => {
+        it("hsv value", () => {
+            const color: IHsv = {
+                h: 0,
+                s: 100,
+                v: 100,
+            };
+
+            expect(ColorUtils.hsvToRgb(color)).to.include(red).and.not.be.undefined.and.not.be.null;
+        });
+    });
+
+    describe("rgbToHsv", () => {
+        it("rgb value", () => {
+            const color: IHsv = {
+                h: 0,
+                s: 100,
+                v: 100,
+            };
+
+            expect(ColorUtils.rgbToHsv(red)).to.include(color).and.not.be.undefined.and.not.be.null;
         });
     });
 

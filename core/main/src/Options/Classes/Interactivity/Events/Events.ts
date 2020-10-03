@@ -5,6 +5,10 @@ import { HoverEvent } from "./HoverEvent";
 import type { RecursivePartial, SingleOrMultiple } from "../../../../Types";
 import type { IOptionLoader } from "../../../Interfaces/IOptionLoader";
 
+/**
+ * [[include:Options/Interactivity/Events.md]]
+ * @category Options
+ */
 export class Events implements IEvents, IOptionLoader<IEvents> {
     /**
      *
@@ -57,10 +61,10 @@ export class Events implements IEvents, IOptionLoader<IEvents> {
         this.onHover = value;
     }
 
-    public onClick: ClickEvent;
+    public onClick;
     public onDiv: SingleOrMultiple<DivEvent>;
-    public onHover: HoverEvent;
-    public resize: boolean;
+    public onHover;
+    public resize;
 
     constructor() {
         this.onClick = new ClickEvent();

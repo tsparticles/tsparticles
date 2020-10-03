@@ -3,11 +3,14 @@ import type { RecursivePartial } from "../../../../Types";
 import { OptionsColor } from "../../OptionsColor";
 import type { IOptionLoader } from "../../../Interfaces/IOptionLoader";
 
+/**
+ * @category Options
+ */
 export class GrabLinks implements IGrabLinks, IOptionLoader<IGrabLinks> {
-    public blink: boolean;
+    public blink;
     public color?: OptionsColor;
-    public consent: boolean;
-    public opacity: number;
+    public consent;
+    public opacity;
 
     constructor() {
         this.blink = false;

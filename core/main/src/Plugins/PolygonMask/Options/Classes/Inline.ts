@@ -3,6 +3,9 @@ import { InlineArrangement, InlineArrangementAlt } from "../../Enums";
 import type { RecursivePartial } from "../../../../Types";
 import type { IOptionLoader } from "../../../../Options/Interfaces/IOptionLoader";
 
+/**
+ * @category Polygon Mask Plugin
+ */
 export class Inline implements IInline, IOptionLoader<IInline> {
     public arrangement: InlineArrangement | keyof typeof InlineArrangement | InlineArrangementAlt;
 

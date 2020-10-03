@@ -25,7 +25,7 @@ html(lang="en")
     body
         .container-fluid.m-0.vh-100
             .row.h-100
-                #sidebar.col-3.p-0.h-100(style="overflow: auto;")
+                #sidebar.col-3.p-0.h-100(style="overflow: auto; z-index: 10000;")
                     .row.p-1
                         .col
                             .input-group
@@ -53,18 +53,24 @@ html(lang="en")
                                     option(value="emitterAbsorber") Emitter and Absorber
                                     option(value="forward") Forward
                                     option(value="grabRandomColor") Grab Random Color
+                                    option(value="gravity") Gravity
                                     option(value="growing") Growing
                                     option(value="fontawesome") Font Awesome
                                     option(value="hollowknight") Hollow Knight
-                                    option(value="images") Multiple Images
+                                    option(value="images") Images
+                                    option(value="imagesDirections") Images with Custom Directions
                                     option(value="infection") Infection
                                     option(value="life") Life
                                     option(value="lightHover") Light Hover
                                     option(value="linkTriangles") Link Triangles
                                     option(value="localPolygonMask") Local Polygon Mask
+                                    option(value="manual") Manual
+                                    option(value="motionDisable") Motion Disable
+                                    option(value="motionReduce") Motion Reduce
                                     option(value="mouseAttract") Mouse Attract
                                     option(value="mouseFollow") Mouse Follow
                                     option(value="mouseTrail") Mouse Trail
+                                    option(value="moveDistance") Move Distance
                                     option(value="multiplePolygonMasks") Multiple Polygon Masks
                                     option(value="nasa") NASA
                                     option(value="noconfig") No Config
@@ -73,6 +79,7 @@ html(lang="en")
                                     option(value="nyancat2") Nyan Cat 2
                                     option(value="parallax") Parallax
                                     option(value="pathPolygonMask") Path Polygon Mask
+                                    option(value="planes") Planes
                                     option(value="plasma") Plasma
                                     option(value="polygonMask") Polygon Mask
                                     option(value="polygons") Polygon Shape
@@ -121,10 +128,12 @@ html(lang="en")
                         .col
                             #editor
                 #tsparticles-container.col.p-0.h-100
-                    .circle.repulse(style="width: 200px; height: 200px; background-color: rgba(255, 255, 255, .5); border-radius: 100px; position: absolute; top: 10%; left: 10%; margin-left: -100px; margin-top: -100px; z-index: 200")
-                    .circle.bubble(style="width: 200px; height: 200px; background-color: rgba(255, 255, 255, .5); border-radius: 100px; position: absolute; top: 10%; right: 10%; margin-left: -100px; margin-top: -100px; z-index: 200")
+                    .circle.repulse(style="width: 200px; height: 200px; background-color: rgba(255, 255, 255, .5); border-radius: 100px; position: absolute; top: 10%; left: 10%; margin-left: -100px; margin-bottom: -100px; z-index: 200")
+                    .circle.bubble(style="width: 200px; height: 200px; background-color: rgba(255, 255, 255, .5); border-radius: 100px; position: absolute; top: 10%; right: 10%; margin-right: -100px; margin-bottom: -100px; z-index: 200")
                     .rectangle.repulse(style="width: 200px; height: 200px; background-color: rgba(255, 255, 255, .5); position: absolute; bottom: 10%; left: 10%; margin-left: -100px; margin-top: -100px; z-index: 200")
-                    .rectangle.bubble(style="width: 200px; height: 200px; background-color: rgba(255, 255, 255, .5); position: absolute; bottom: 10%; right: 10%; margin-left: -100px; margin-top: -100px; z-index: 200")
+                    .rectangle.bubble(style="width: 200px; height: 200px; background-color: rgba(255, 255, 255, .5); position: absolute; bottom: 10%; right: 10%; margin-right: -100px; margin-top: -100px; z-index: 200")
+                    .circle.bounce(style="width: 200px; height: 200px; background-color: rgba(255, 255, 255, .5); border-radius: 100px; position: absolute; top: 10%; right: 50%; margin-right: -100px; margin-bottom: -100px; z-index: 200")
+                    .rectangle.bounce(style="width: 200px; height: 200px; background-color: rgba(255, 255, 255, .5); position: absolute; bottom: 10%; left: 50%; margin-left: -100px; margin-top: -100px; z-index: 200")
                     #tsparticles
                     .github
                         a.btn.btn-link(href="https://github.com/matteobruni/tsparticles" title="Find more info on GitHub")

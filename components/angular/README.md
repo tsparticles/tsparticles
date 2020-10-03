@@ -25,13 +25,15 @@ yarn add ng-particles
 _template.html_
 
 ```html
-<Particles id="tsparticles" [options]="particlesOptions"></Particles>
+<Particles [id]="id" [options]="particlesOptions" (particlesLoaded)="particlesLoaded($event)"></Particles>
 ```
 
 _app.ts_
 
 ```typescript
 export class AppComponent {
+    id="tsparticles";
+
   particlesOptions = {
     background: {
       color: {
@@ -57,8 +59,7 @@ export class AppComponent {
           distance: 400,
           duration: 2,
           opacity: 0.8,
-          size: 40,
-          speed: 3
+          size: 40
         },
         push: {
           quantity: 4
@@ -111,6 +112,10 @@ export class AppComponent {
     },
     detectRetina: true
   };
+
+ particlesLoaded(container: Container): void {
+        console.log(container);
+    }
 }
 ```
 

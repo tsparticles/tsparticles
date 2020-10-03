@@ -1,19 +1,21 @@
-import type { IColor } from "../Core/Interfaces/IColor";
-import type { IRgb } from "../Core/Interfaces/IRgb";
-import type { IRgba } from "../Core/Interfaces/IRgba";
-import type { IHsl } from "../Core/Interfaces/IHsl";
-import type { IHsla } from "../Core/Interfaces/IHsla";
+import type { IColor, IRgb, IRgba, IHsl, IHsla, IValueColor, IHsv, IHsva } from "../Core/Interfaces/Colors";
 import { Utils } from "./Utils";
 import { Constants } from "./Constants";
-import type { IValueColor } from "../Core/Interfaces/IValueColor";
 import type { IImage } from "../Core/Interfaces/IImage";
+import { NumberUtils } from "./NumberUtils";
+import { IParticle } from "../Core/Interfaces/IParticle";
 
+/**
+ * @category Utils
+ */
 export class ColorUtils {
     /**
      * Gets the particles color
      * @param input the input color to convert in [[IRgb]] object
+     * @param index the array index, if needed
+     * @param useIndex set to false to ignore the index parameter
      */
-    public static colorToRgb(input?: string | IColor): IRgb | undefined {
+    public static colorToRgb(input?: string | IColor, index?: number, useIndex = true): IRgb | undefined {
         if (input === undefined) {
             return;
         }
@@ -24,13 +26,13 @@ export class ColorUtils {
 
         if (typeof color.value === "string") {
             if (color.value === Constants.randomColorValue) {
-                res = this.getRandomRgbColor();
+                res = ColorUtils.getRandomRgbColor();
             } else {
                 res = ColorUtils.stringToRgb(color.value);
             }
         } else {
             if (color.value instanceof Array) {
-                const colorSelected = Utils.itemFromArray(color.value);
+                const colorSelected = Utils.itemFromArray(color.value, index, useIndex);
 
                 res = ColorUtils.colorToRgb({ value: colorSelected });
             } else {
@@ -42,8 +44,14 @@ export class ColorUtils {
                 } else {
                     const hslColor = colorValue.hsl ?? (color.value as IHsl);
 
-                    if (hslColor.h !== undefined) {
+                    if (hslColor.h !== undefined && hslColor.l !== undefined) {
                         res = ColorUtils.hslToRgb(hslColor);
+                    } else {
+                        const hsvColor = colorValue.hsv ?? (color.value as IHsv);
+
+                        if (hsvColor.h !== undefined && hsvColor.v !== undefined) {
+                            res = ColorUtils.hsvToRgb(hsvColor);
+                        }
                     }
                 }
             }
@@ -55,11 +63,13 @@ export class ColorUtils {
     /**
      * Gets the particles color
      * @param color the input color to convert in [[IHsl]] object
+     * @param index the array index, if needed
+     * @param useIndex set to false to ignore the index parameter
      */
-    public static colorToHsl(color: string | IColor | undefined): IHsl | undefined {
-        const rgb = this.colorToRgb(color);
+    public static colorToHsl(color: string | IColor | undefined, index?: number, useIndex = true): IHsl | undefined {
+        const rgb = ColorUtils.colorToRgb(color, index, useIndex);
 
-        return rgb !== undefined ? this.rgbToHsl(rgb) : rgb;
+        return rgb !== undefined ? ColorUtils.rgbToHsl(rgb) : rgb;
     }
 
     public static rgbToHsl(color: IRgb): IHsl {
@@ -156,6 +166,168 @@ export class ColorUtils {
         };
     }
 
+    public static hslToHsv(hsl: IHsl): IHsv {
+        const l = hsl.l / 100,
+            sl = hsl.s / 100;
+        const v = l + sl * Math.min(l, 1 - l),
+            sv = !v ? 0 : 2 * (1 - l / v);
+
+        return {
+            h: hsl.h,
+            s: sv * 100,
+            v: v * 100,
+        };
+    }
+
+    public static hslaToHsva(hsla: IHsla): IHsva {
+        const hsvResult = ColorUtils.hslToHsv(hsla);
+
+        return {
+            a: hsla.a,
+            h: hsvResult.h,
+            s: hsvResult.s,
+            v: hsvResult.v,
+        };
+    }
+
+    public static hsvToHsl(hsv: IHsv): IHsl {
+        const v = hsv.v / 100,
+            sv = hsv.s / 100;
+        const l = v * (1 - sv / 2),
+            sl = l === 0 || l === 1 ? 0 : (v - l) / Math.min(l, 1 - l);
+
+        return {
+            h: hsv.h,
+            l: l * 100,
+            s: sl * 100,
+        };
+    }
+
+    public static hsvaToHsla(hsva: IHsva): IHsla {
+        const hslResult = ColorUtils.hsvToHsl(hsva);
+
+        return {
+            a: hsva.a,
+            h: hslResult.h,
+            l: hslResult.l,
+            s: hslResult.s,
+        };
+    }
+
+    public static hsvToRgb(hsv: IHsv): IRgb {
+        const result: IRgb = { b: 0, g: 0, r: 0 };
+        const hsvPercent = {
+            h: hsv.h / 60,
+            s: hsv.s / 100,
+            v: hsv.v / 100,
+        };
+
+        const c = hsvPercent.v * hsvPercent.s,
+            x = c * (1 - Math.abs((hsvPercent.h % 2) - 1));
+
+        let tempRgb: IRgb | undefined;
+
+        if (hsvPercent.h >= 0 && hsvPercent.h <= 1) {
+            tempRgb = {
+                r: c,
+                g: x,
+                b: 0,
+            };
+        } else if (hsvPercent.h > 1 && hsvPercent.h <= 2) {
+            tempRgb = {
+                r: x,
+                g: c,
+                b: 0,
+            };
+        } else if (hsvPercent.h > 2 && hsvPercent.h <= 3) {
+            tempRgb = {
+                r: 0,
+                g: c,
+                b: x,
+            };
+        } else if (hsvPercent.h > 3 && hsvPercent.h <= 4) {
+            tempRgb = {
+                r: 0,
+                g: x,
+                b: c,
+            };
+        } else if (hsvPercent.h > 4 && hsvPercent.h <= 5) {
+            tempRgb = {
+                r: x,
+                g: 0,
+                b: c,
+            };
+        } else if (hsvPercent.h > 5 && hsvPercent.h <= 6) {
+            tempRgb = {
+                r: c,
+                g: 0,
+                b: x,
+            };
+        }
+
+        if (tempRgb) {
+            const m = hsvPercent.v - c;
+
+            result.r = Math.floor((tempRgb.r + m) * 255);
+            result.g = Math.floor((tempRgb.g + m) * 255);
+            result.b = Math.floor((tempRgb.b + m) * 255);
+        }
+
+        return result;
+    }
+
+    public static hsvaToRgba(hsva: IHsva): IRgba {
+        const rgbResult = ColorUtils.hsvToRgb(hsva);
+
+        return {
+            a: hsva.a,
+            b: rgbResult.b,
+            g: rgbResult.g,
+            r: rgbResult.r,
+        };
+    }
+
+    public static rgbToHsv(rgb: IRgb): IHsv {
+        const rgbPercent = {
+                r: rgb.r / 255,
+                g: rgb.g / 255,
+                b: rgb.b / 255,
+            },
+            xMax = Math.max(rgbPercent.r, rgbPercent.g, rgbPercent.b),
+            xMin = Math.min(rgbPercent.r, rgbPercent.g, rgbPercent.b),
+            v = xMax,
+            c = xMax - xMin;
+
+        let h = 0;
+
+        if (v === rgbPercent.r) {
+            h = 60 * ((rgbPercent.g - rgbPercent.b) / c);
+        } else if (v === rgbPercent.g) {
+            h = 60 * (2 + (rgbPercent.b - rgbPercent.r) / c);
+        } else if (v === rgbPercent.b) {
+            h = 60 * (4 + (rgbPercent.r - rgbPercent.g) / c);
+        }
+
+        const s = !v ? 0 : c / v;
+
+        return {
+            h,
+            s: s * 100,
+            v: v * 100,
+        };
+    }
+
+    public static rgbaToHsva(rgba: IRgba): IHsva {
+        const hsvResult = ColorUtils.rgbToHsv(rgba);
+
+        return {
+            a: rgba.a,
+            h: hsvResult.h,
+            s: hsvResult.s,
+            v: hsvResult.v,
+        };
+    }
+
     /**
      * Generate a random Rgb color
      * @param min a minimum seed value for all 3 values
@@ -164,9 +336,9 @@ export class ColorUtils {
         const fixedMin = min ?? 0;
 
         return {
-            b: Math.floor(Utils.randomInRange(fixedMin, 256)),
-            g: Math.floor(Utils.randomInRange(fixedMin, 256)),
-            r: Math.floor(Utils.randomInRange(fixedMin, 256)),
+            b: Math.floor(NumberUtils.randomInRange(fixedMin, 256)),
+            g: Math.floor(NumberUtils.randomInRange(fixedMin, 256)),
+            r: Math.floor(NumberUtils.randomInRange(fixedMin, 256)),
         };
     }
 
@@ -188,22 +360,31 @@ export class ColorUtils {
         return `hsla(${color.h}, ${color.s}%, ${color.l}%, ${opacity ?? 1})`;
     }
 
+    /**
+     * Prepares a hsva() css function from a [[IHsv]] object
+     * @param color the [[IHsv]] color to convert
+     * @param opacity the opacity to apply to color
+     */
+    public static getStyleFromHsv(color: IHsv, opacity?: number): string {
+        return ColorUtils.getStyleFromHsl(ColorUtils.hsvToHsl(color), opacity);
+    }
+
     public static mix(color1: IRgb | IHsl, color2: IRgb | IHsl, size1: number, size2: number): IRgb {
         let rgb1 = color1 as IRgb;
         let rgb2 = color2 as IRgb;
 
         if (rgb1.r === undefined) {
-            rgb1 = this.hslToRgb(color1 as IHsl);
+            rgb1 = ColorUtils.hslToRgb(color1 as IHsl);
         }
 
         if (rgb2.r === undefined) {
-            rgb2 = this.hslToRgb(color2 as IHsl);
+            rgb2 = ColorUtils.hslToRgb(color2 as IHsl);
         }
 
         return {
-            b: Utils.mix(rgb1.b, rgb2.b, size1, size2),
-            g: Utils.mix(rgb1.g, rgb2.g, size1, size2),
-            r: Utils.mix(rgb1.r, rgb2.r, size1, size2),
+            b: NumberUtils.mix(rgb1.b, rgb2.b, size1, size2),
+            g: NumberUtils.mix(rgb1.g, rgb2.g, size1, size2),
+            r: NumberUtils.mix(rgb1.r, rgb2.r, size1, size2),
         };
     }
 
@@ -217,6 +398,51 @@ export class ColorUtils {
         const rgbHex = /#([0-9A-F]{3,6})/gi;
 
         return svgXml.replace(rgbHex, () => ColorUtils.getStyleFromHsl(color, opacity));
+    }
+
+    public static getLinkColor(p1: IParticle, p2?: IParticle, linkColor?: string | IRgb): IRgb | undefined {
+        if (linkColor === Constants.randomColorValue) {
+            return ColorUtils.getRandomRgbColor();
+        } else if (linkColor === "mid") {
+            const sourceColor = p1.getFillColor() ?? p1.getStrokeColor();
+            const destColor = p2?.getFillColor() ?? p2?.getStrokeColor();
+
+            if (sourceColor && destColor && p2) {
+                return ColorUtils.mix(sourceColor, destColor, p1.getRadius(), p2.getRadius());
+            } else {
+                const hslColor = sourceColor ?? destColor;
+
+                if (hslColor) {
+                    return ColorUtils.hslToRgb(hslColor);
+                }
+            }
+        } else {
+            return linkColor as IRgb;
+        }
+    }
+
+    public static getLinkRandomColor(
+        optColor: string | IColor,
+        blink: boolean,
+        consent: boolean
+    ): IRgb | string | undefined {
+        const color = typeof optColor === "string" ? optColor : optColor.value;
+
+        if (color === Constants.randomColorValue) {
+            if (consent) {
+                return ColorUtils.colorToRgb({
+                    value: color,
+                });
+            } else if (blink) {
+                return Constants.randomColorValue;
+            } else {
+                return Constants.midColorValue;
+            }
+        } else {
+            return ColorUtils.colorToRgb({
+                value: color,
+            });
+        }
     }
 
     /**
@@ -274,6 +500,18 @@ export class ColorUtils {
                       h: parseInt(result[1], 10),
                       l: parseInt(result[3], 10),
                       s: parseInt(result[2], 10),
+                  })
+                : undefined;
+        } else if (input.startsWith("hsv")) {
+            const regex = /hsva?\(\s*(\d+)°\s*,\s*(\d+)%\s*,\s*(\d+)%\s*(,\s*([\d.]+)\s*)?\)/i;
+            const result = regex.exec(input);
+
+            return result
+                ? ColorUtils.hsvaToRgba({
+                      a: result.length > 4 ? parseFloat(result[5]) : 1,
+                      h: parseInt(result[1], 10),
+                      s: parseInt(result[2], 10),
+                      v: parseInt(result[3], 10),
                   })
                 : undefined;
         } else {
