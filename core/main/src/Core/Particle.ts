@@ -198,15 +198,16 @@ export class Particle implements IParticle {
             const index = Math.floor(Math.random() * 2);
 
             rotateDirection = index > 0 ? RotateDirection.counterClockwise : RotateDirection.clockwise;
+        }
 
-            switch (rotateDirection) {
-                case RotateDirection.counterClockwise:
-                    this.rotate.status = AnimationStatus.decreasing;
-                    break;
-                case RotateDirection.clockwise:
-                    this.rotate.status = AnimationStatus.increasing;
-                    break;
-            }
+        switch (rotateDirection) {
+            case RotateDirection.counterClockwise:
+            case "counterClockwise":
+                this.rotate.status = AnimationStatus.decreasing;
+                break;
+            case RotateDirection.clockwise:
+                this.rotate.status = AnimationStatus.increasing;
+                break;
         }
 
         const rotateAnimation = this.particlesOptions.rotate.animation;
