@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.18.0-beta.3](https://github.com/matteobruni/tsparticles/compare/tsparticles@1.18.0-beta.2...tsparticles@1.18.0-beta.3) (2020-10-03)
+
+
+### Bug Fixes
+
+* fixed rotation animation issues ([3641ff4](https://github.com/matteobruni/tsparticles/commit/3641ff467bb2c7737c1c5c73bc094b408bcec8c7))
+
+
+
+
+
 # [1.18.0-beta.2](https://github.com/matteobruni/tsparticles/compare/tsparticles@1.18.0-beta.1...tsparticles@1.18.0-beta.2) (2020-10-03)
 
 
