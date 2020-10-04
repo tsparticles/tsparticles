@@ -4,7 +4,7 @@
     "./dist/index.js",
     "./dist/tsparticles.js"
   ],
-  "version": "1.18.0-beta.4",
+  "version": "1.18.0-beta.5",
   "description": "Easily add particle animations to your website. Browser ready and with official React/Vue/Angular/jQuery/Preact components.",
   "homepage": "https://particles.matteobruni.it/",
   "scripts": {

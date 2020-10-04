@@ -1,6 +1,6 @@
 {
   "name": "ng-particles",
-  "version": "2.1.0-beta.4",
+  "version": "2.1.0-beta.5",
   "keywords": [
     "tsparticles",
     "particles.js",
@@ -63,7 +63,7 @@
     "@angular/router": "~10.1.4",
     "rxjs": "~6.6.3",
     "tslib": "^2.0.1",
-    "tsparticles": "^1.18.0-beta.4",
+    "tsparticles": "^1.18.0-beta.5",
     "zone.js": "~0.11.1"
   },
   "devDependencies": {
