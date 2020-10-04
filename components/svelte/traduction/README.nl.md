@@ -1,0 +1,116 @@
+[![banner](https://cdn.matteobruni.it/images/particles/banner2.png)](https://particles.matteobruni.it)
+
+# svelte-particles
+
+[![npm](https://img.shields.io/npm/v/svelte-particles)](https://www.npmjs.com/package/svelte-particles) [![npm downloads](https://img.shields.io/npm/dm/svelte-particles)](https://www.npmjs.com/package/svelte-particles)
+
+Officiële [tsParticles](https://github.com/matteobruni/tsparticles) SvelteJS component
+
+## Installatie
+
+```shell
+npm install svelte-particles
+```
+
+or
+
+```shell
+yarn add svelte-particles
+```
+
+## Gebruik
+
+```html
+<script>
+  import Particles from "svelte-particles";
+
+  let particlesConfig = {
+    particles: {
+      color: {
+        value: "#000",
+      },
+      links: {
+        enable: true,
+        color: "#000",
+      },
+      move: {
+        enable: true,
+      },
+    },
+  };
+
+  let onParticlesLoaded = (event) => {
+    const particlesContainer = event.detail.particles;
+
+    // you can use particlesContainer to call all the Container class
+    // (from the core library) methods like play, pause, refresh, start, stop
+  };
+</script>
+
+<Particles
+  id="tsparticles"
+  options="{particlesConfig}"
+  on:particlesLoaded="{onParticlesLoaded}"
+/>
+```
+
+### SSR
+
+Het deeltjes component is niet gebouwd voor SSR, dus je moet afdwingen dat het component aan de client-side wordt aangeroepen met `async import`.
+
+Je kan hier onder een voorbeeld zien
+You can see a sample below:
+
+
+```html
+<script>
+  import { onMount } from "svelte";
+
+  let ParticlesComponent;
+
+  onMount(async () => {
+    const module = await import("svelte-particles");
+
+    ParticlesComponent = module.default;
+  });
+
+  let particlesConfig = {
+    particles: {
+      color: {
+        value: "#000",
+      },
+      links: {
+        enable: true,
+        color: "#000",
+      },
+      move: {
+        enable: true,
+      },
+    },
+  };
+
+  let onParticlesLoaded = (event) => {
+    const particlesContainer = event.detail.particles;
+
+    // Je kan particlesContainer gebruiken om alle Container class
+    // (van de core biblitheek) methodes aan te roepen zoals play, pause, refresh, start en stop
+  };
+</script>
+
+<svelte:component
+  this="{ParticlesComponent}"
+  id="tsparticles"
+  options="{particlesConfig}"
+  on:particlesLoaded="{onParticlesLoaded}"
+/>
+```
+
+## Demos
+
+De demo website is [hier](https://particles.matteobruni.it)
+
+<https://particles.matteobruni.it>
+
+Er is ook een CodePen collectie die actief onderhouden en geüpdated wordt [hier](https://codepen.io/collection/DPOage)
+
+<https://codepen.io/collection/DPOage>
