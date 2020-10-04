@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.18.0-beta.4](https://github.com/matteobruni/tsparticles/compare/tsparticles@1.18.0-beta.3...tsparticles@1.18.0-beta.4) (2020-10-04)
+
+
+### Bug Fixes
+
+* fixed bounce on rectangular divs ([593c021](https://github.com/matteobruni/tsparticles/commit/593c0212feef94a81578d46c032c458dafa6819a))
+
+
+
+
+
 # [1.18.0-beta.3](https://github.com/matteobruni/tsparticles/compare/tsparticles@1.18.0-beta.2...tsparticles@1.18.0-beta.3) (2020-10-03)
 
 

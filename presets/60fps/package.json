@@ -1,6 +1,6 @@
 {
   "name": "tsparticles-preset-60fps",
-  "version": "1.3.0-beta.3",
+  "version": "1.3.0-beta.4",
   "description": "tsParticles 60fps preset",
   "homepage": "https://particles.matteobruni.it/",
   "scripts": {
@@ -64,6 +64,6 @@
     "webpack-cli": "^3.3.12"
   },
   "dependencies": {
-    "tsparticles": "^1.18.0-beta.3"
+    "tsparticles": "^1.18.0-beta.4"
   }
 }
