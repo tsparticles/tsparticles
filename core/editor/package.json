@@ -1,6 +1,6 @@
 {
   "name": "tsparticles-editor",
-  "version": "1.18.0-beta.5",
+  "version": "1.18.0-beta.6",
   "description": "tsParticles Configuration Editor",
   "keywords": [
     "tsparticles",
@@ -40,17 +40,17 @@
     "url": "https://github.com/matteobruni/tsparticles/issues"
   },
   "dependencies": {
-    "object-gui": "^1.0.9",
+    "object-gui": "^1.0.10",
     "tslib": "^2.0.1",
-    "tsparticles": "^1.18.0-beta.4"
+    "tsparticles": "^1.18.0-beta.5"
   },
   "devDependencies": {
     "@babel/core": "^7.11.6",
-    "@typescript-eslint/eslint-plugin": "^4.2.0",
-    "@typescript-eslint/parser": "^4.2.0",
+    "@typescript-eslint/eslint-plugin": "^4.3.0",
+    "@typescript-eslint/parser": "^4.3.0",
     "babel-loader": "^8.1.0",
-    "eslint": "^7.9.0",
-    "eslint-config-prettier": "^6.11.0",
+    "eslint": "^7.10.0",
+    "eslint-config-prettier": "^6.12.0",
     "fibers": "^5.0.0",
     "prettier": "^2.1.2",
     "rimraf": "^3.0.2",
