@@ -27,17 +27,17 @@
   },
   "devDependencies": {
     "@fortawesome/fontawesome-free": "^5.15.0",
-    "@typescript-eslint/eslint-plugin": "^4.2.0",
-    "@typescript-eslint/parser": "^4.2.0",
+    "@typescript-eslint/eslint-plugin": "^4.3.0",
+    "@typescript-eslint/parser": "^4.3.0",
     "babel-preset-env": "^1.7.0",
-    "eslint": "^7.9.0",
-    "eslint-config-prettier": "^6.11.0",
+    "eslint": "^7.10.0",
+    "eslint-config-prettier": "^6.12.0",
     "express": "^4.17.1",
     "helmet": "^4.1.1",
     "jsoneditor": "^9.1.1",
     "prettier": "^2.1.2",
     "pug": "^3.0.0",
     "stylus": "^0.54.8",
-    "three": "^0.120.1"
+    "three": "^0.121.1"
   }
 }
