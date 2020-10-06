@@ -5,7 +5,7 @@ import type { ILinksShadow } from "../Options/Interfaces/Particles/Links/ILinksS
 import { ColorUtils } from "./ColorUtils";
 import type { IParticle } from "../Core/Interfaces/IParticle";
 import type { IShadow } from "../Options/Interfaces/Particles/IShadow";
-import type { Container } from "../Core/Container";
+import type { Container } from "..";
 import type { IContainerPlugin } from "../Core/Interfaces/IContainerPlugin";
 import type { IDelta } from "../Core/Interfaces/IDelta";
 import { Particle } from "../Core/Particle";
@@ -58,10 +58,10 @@ export class CanvasUtils {
                 y: end.y,
             };
 
-            const { dx, dy, distance } = NumberUtils.getDistances(begin, endNE);
+            const d1 = NumberUtils.getDistances(begin, endNE);
 
-            if (distance <= maxDistance) {
-                const yi = begin.y - (dy / dx) * begin.x;
+            if (d1.distance <= maxDistance) {
+                const yi = begin.y - (d1.dy / d1.dx) * begin.x;
 
                 pi1 = { x: 0, y: yi };
                 pi2 = { x: canvasSize.width, y: yi };
@@ -71,11 +71,11 @@ export class CanvasUtils {
                     y: end.y - canvasSize.height,
                 };
 
-                const { dx, dy, distance } = NumberUtils.getDistances(begin, endSW);
+                const d2 = NumberUtils.getDistances(begin, endSW);
 
-                if (distance <= maxDistance) {
-                    const yi = begin.y - (dy / dx) * begin.x;
-                    const xi = -yi / (dy / dx);
+                if (d2.distance <= maxDistance) {
+                    const yi = begin.y - (d2.dy / d2.dx) * begin.x;
+                    const xi = -yi / (d2.dy / d2.dx);
 
                     pi1 = { x: xi, y: 0 };
                     pi2 = { x: xi, y: canvasSize.height };
@@ -85,11 +85,11 @@ export class CanvasUtils {
                         y: end.y - canvasSize.height,
                     };
 
-                    const { dx, dy, distance } = NumberUtils.getDistances(begin, endSE);
+                    const d3 = NumberUtils.getDistances(begin, endSE);
 
-                    if (distance <= maxDistance) {
-                        const yi = begin.y - (dy / dx) * begin.x;
-                        const xi = -yi / (dy / dx);
+                    if (d3.distance <= maxDistance) {
+                        const yi = begin.y - (d3.dy / d3.dx) * begin.x;
+                        const xi = -yi / (d3.dy / d3.dx);
 
                         pi1 = { x: xi, y: yi };
                         pi2 = { x: pi1.x + canvasSize.width, y: pi1.y + canvasSize.height };
@@ -131,7 +131,6 @@ export class CanvasUtils {
 
     public static drawLinkTriangle(
         context: CanvasRenderingContext2D,
-        width: number,
         pos1: ICoordinates,
         pos2: ICoordinates,
         pos3: ICoordinates,
@@ -144,8 +143,6 @@ export class CanvasUtils {
         /* path */
 
         CanvasUtils.drawTriangle(context, pos1, pos2, pos3);
-
-        context.lineWidth = width;
 
         if (backgroundMask) {
             context.globalCompositeOperation = composite;
@@ -278,9 +275,9 @@ export class CanvasUtils {
         const shadowLength = shadowOptions.length;
 
         for (const dot of dots) {
-            const angle = Math.atan2(mousePos.y - dot.y, mousePos.x - dot.x);
-            const endX = dot.x + shadowLength * Math.sin(-angle - Math.PI / 2);
-            const endY = dot.y + shadowLength * Math.cos(-angle - Math.PI / 2);
+            const dotAngle = Math.atan2(mousePos.y - dot.y, mousePos.x - dot.x);
+            const endX = dot.x + shadowLength * Math.sin(-dotAngle - Math.PI / 2);
+            const endY = dot.y + shadowLength * Math.cos(-dotAngle - Math.PI / 2);
 
             points.push({
                 endX: endX,

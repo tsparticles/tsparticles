@@ -1,6 +1,6 @@
 import { Utils } from "../../Utils";
 import { HoverMode } from "../../Enums/Modes";
-import type { Container } from "../..";
+import type { Container } from "../../Core/Container";
 import type { IExternalInteractor } from "../../Core/Interfaces/IExternalInteractor";
 
 export class Lighter implements IExternalInteractor {

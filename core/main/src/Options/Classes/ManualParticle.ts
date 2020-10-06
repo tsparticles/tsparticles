@@ -7,11 +7,7 @@ import { Utils } from "../../Utils";
 
 export class ManualParticle implements IManualParticle, IOptionLoader<IManualParticle> {
     public options?: RecursivePartial<IParticles>;
-    public position: ICoordinates;
-
-    constructor() {
-        this.position = { x: 50, y: 50 };
-    }
+    public position?: ICoordinates;
 
     public load(data?: RecursivePartial<IManualParticle>): void {
         if (!data) {
@@ -19,8 +15,10 @@ export class ManualParticle implements IManualParticle, IOptionLoader<IManualPar
         }
 
         if (data.position !== undefined) {
-            this.position.x = data.position.x ?? this.position.x;
-            this.position.y = data.position.y ?? this.position.y;
+            this.position = {
+                x: data.position.x ?? 50,
+                y: data.position.y ?? 50,
+            };
         }
 
         if (data.options !== undefined) {

@@ -3,7 +3,7 @@
 // Definitions by: Matteo Bruni <https://github.com/matteobruni>
 // Definitions: https://github.com/DefinitelyTyped/DefinitelyTyped
 import { PureComponent } from "preact/compat";
-import type { IParticlesProps, ParticlesProps } from "./src/";
+import type { IParticlesProps, IParticlesState, ParticlesProps } from "./src/";
 import type { ISourceOptions } from "tsparticles";
 
 export type IParticlesParams = IParticlesProps;
@@ -12,7 +12,7 @@ export * from "tsparticles/dist/Enums";
 
 export type { ISourceOptions, IParticlesProps, ParticlesProps };
 
-type Particles = PureComponent<IParticlesProps>;
+type Particles = PureComponent<IParticlesProps, IParticlesState>;
 
 declare const Particles: Particles;
 

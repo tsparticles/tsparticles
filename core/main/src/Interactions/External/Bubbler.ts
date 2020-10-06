@@ -1,4 +1,4 @@
-import type { Container } from "../..";
+import type { Container } from "../../Core/Container";
 import type { IBubblerProcessParam } from "../../Core/Interfaces/IBubblerProcessParam";
 import { Circle, ColorUtils, Constants, NumberUtils, Rectangle, Utils } from "../../Utils";
 import { ClickMode, DivMode, DivType, HoverMode, ProcessBubbleType } from "../../Enums";
