@@ -5,7 +5,7 @@ import type { ICoordinates } from "./Interfaces/ICoordinates";
 import type { IParticle } from "./Interfaces/IParticle";
 import type { IContainerPlugin } from "./Interfaces/IContainerPlugin";
 import type { ILink } from "./Interfaces/ILink";
-import { CanvasUtils, ColorUtils, Constants, Utils } from "../Utils";
+import { CanvasUtils, ColorUtils, Constants, NumberUtils, Utils } from "../Utils";
 import type { Particle } from "./Particle";
 import type { IDelta } from "./Interfaces/IDelta";
 
@@ -258,6 +258,11 @@ export class Canvas {
         const p3 = link2.destination;
         const triangleOptions = p1.particlesOptions.links.triangles;
         const opacityTriangle = triangleOptions.opacity ?? (link1.opacity + link2.opacity) / 2;
+
+        if (opacityTriangle <= 0) {
+            return;
+        }
+
         const pos1 = p1.getPosition();
         const pos2 = p2.getPosition();
         const pos3 = p3.getPosition();
@@ -265,6 +270,14 @@ export class Canvas {
         const ctx = this.context;
 
         if (!ctx) {
+            return;
+        }
+
+        if (
+            NumberUtils.getDistance(pos1, pos2) > container.retina.linksDistance ||
+            NumberUtils.getDistance(pos3, pos2) > container.retina.linksDistance ||
+            NumberUtils.getDistance(pos3, pos1) > container.retina.linksDistance
+        ) {
             return;
         }
 
@@ -284,11 +297,8 @@ export class Canvas {
             return;
         }
 
-        const width = p1.linksWidth ?? container.retina.linksWidth;
-
         CanvasUtils.drawLinkTriangle(
             ctx,
-            width,
             pos1,
             pos2,
             pos3,
@@ -449,7 +459,10 @@ export class Canvas {
                         }
                     }
                 }
-                this.drawLinkLine(particle, link);
+
+                if (link.opacity > 0 && container.retina.linksWidth > 0) {
+                    this.drawLinkLine(particle, link);
+                }
             }
 
             this.context.restore();
