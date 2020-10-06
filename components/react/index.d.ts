@@ -5,7 +5,7 @@
 
 /// <reference types="react" />
 import { ComponentClass } from "react";
-import type { IParticlesProps, ParticlesProps } from "./src/";
+import type { IParticlesProps, IParticlesState, ParticlesProps } from "./src/";
 import type { ISourceOptions } from "tsparticles";
 
 export type IParticlesParams = IParticlesProps;
@@ -14,7 +14,7 @@ export * from "tsparticles/dist/Enums";
 
 export { ISourceOptions, IParticlesProps, ParticlesProps };
 
-type Particles = ComponentClass<IParticlesProps>;
+type Particles = ComponentClass<IParticlesProps, IParticlesState>;
 
 declare const Particles: Particles;
 
