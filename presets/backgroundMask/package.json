@@ -1,6 +1,6 @@
 {
   "name": "tsparticles-preset-background-mask",
-  "version": "1.3.0-alpha.14",
+  "version": "1.3.1",
   "description": "tsParticles backgroundMask preset",
   "homepage": "https://particles.matteobruni.it/",
   "scripts": {
@@ -52,11 +52,11 @@
   },
   "main": "dist/tsparticles.preset.backgroundMask.min.js",
   "devDependencies": {
-    "@typescript-eslint/eslint-plugin": "^4.2.0",
-    "@typescript-eslint/parser": "^4.2.0",
+    "@typescript-eslint/eslint-plugin": "^4.3.0",
+    "@typescript-eslint/parser": "^4.3.0",
     "cpx": "^1.5.0",
-    "eslint": "^7.9.0",
-    "eslint-config-prettier": "^6.11.0",
+    "eslint": "^7.10.0",
+    "eslint-config-prettier": "^6.12.0",
     "prettier": "^2.1.2",
     "terser-webpack-plugin": "^4.2.2",
     "typescript": "^4.0.3",
@@ -64,6 +64,6 @@
     "webpack-cli": "^3.3.12"
   },
   "dependencies": {
-    "tsparticles": "^1.18.0-alpha.14"
+    "tsparticles": "^1.18.1"
   }
 }

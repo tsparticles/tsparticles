@@ -3,6 +3,81 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.1.1](https://github.com/matteobruni/tsparticles/compare/inferno-particles@1.1.0...inferno-particles@1.1.1) (2020-10-06)
+
+
+### Bug Fixes
+
+* fixed React/Preact/Inferno component properties/state definition, closes [#922](https://github.com/matteobruni/tsparticles/issues/922) ([6da46b2](https://github.com/matteobruni/tsparticles/commit/6da46b239ec8a87cac96b50a39cb1e999f022998))
+
+
+
+
+
+# [1.1.0](https://github.com/matteobruni/tsparticles/compare/inferno-particles@1.1.0-beta.6...inferno-particles@1.1.0) (2020-10-05)
+
+**Note:** Version bump only for package inferno-particles
+
+
+
+
+
+# [1.1.0-beta.6](https://github.com/matteobruni/tsparticles/compare/inferno-particles@1.1.0-beta.5...inferno-particles@1.1.0-beta.6) (2020-10-04)
+
+**Note:** Version bump only for package inferno-particles
+
+
+
+
+
+# [1.1.0-beta.5](https://github.com/matteobruni/tsparticles/compare/inferno-particles@1.1.0-beta.4...inferno-particles@1.1.0-beta.5) (2020-10-04)
+
+**Note:** Version bump only for package inferno-particles
+
+
+
+
+
+# [1.1.0-beta.4](https://github.com/matteobruni/tsparticles/compare/inferno-particles@1.1.0-beta.3...inferno-particles@1.1.0-beta.4) (2020-10-03)
+
+**Note:** Version bump only for package inferno-particles
+
+
+
+
+
+# [1.1.0-beta.3](https://github.com/matteobruni/tsparticles/compare/inferno-particles@1.1.0-beta.2...inferno-particles@1.1.0-beta.3) (2020-10-03)
+
+**Note:** Version bump only for package inferno-particles
+
+
+
+
+
+# [1.1.0-beta.2](https://github.com/matteobruni/tsparticles/compare/inferno-particles@1.1.0-beta.1...inferno-particles@1.1.0-beta.2) (2020-10-03)
+
+**Note:** Version bump only for package inferno-particles
+
+
+
+
+
+# [1.1.0-beta.1](https://github.com/matteobruni/tsparticles/compare/inferno-particles@1.1.0-beta.0...inferno-particles@1.1.0-beta.1) (2020-10-02)
+
+**Note:** Version bump only for package inferno-particles
+
+
+
+
+
+# [1.1.0-beta.0](https://github.com/matteobruni/tsparticles/compare/inferno-particles@1.0.11...inferno-particles@1.1.0-beta.0) (2020-10-02)
+
+**Note:** Version bump only for package inferno-particles
+
+
+
+
+
 # [1.1.0-alpha.14](https://github.com/matteobruni/tsparticles/compare/inferno-particles@1.0.8...inferno-particles@1.1.0-alpha.14) (2020-08-22)
 
 **Note:** Version bump only for package inferno-particles

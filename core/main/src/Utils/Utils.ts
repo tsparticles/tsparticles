@@ -374,7 +374,6 @@ export class Utils {
 
     public static rectBounce(particle: IParticle, divBounds: IBounds): void {
         const pPos = particle.getPosition();
-        const offset = particle.offset;
         const size = particle.getRadius();
         const bounds = Utils.calculateBounds(pPos, size);
 
@@ -396,8 +395,7 @@ export class Utils {
                 max: divBounds.bottom,
             },
             particle.velocity.horizontal,
-            NumberUtils.getValue(particle.particlesOptions.bounce.horizontal),
-            offset.x + size
+            NumberUtils.getValue(particle.particlesOptions.bounce.horizontal)
         );
 
         if (resH.bounced) {
@@ -428,8 +426,7 @@ export class Utils {
                 max: divBounds.right,
             },
             particle.velocity.vertical,
-            NumberUtils.getValue(particle.particlesOptions.bounce.vertical),
-            offset.y + size
+            NumberUtils.getValue(particle.particlesOptions.bounce.vertical)
         );
 
         if (resV.bounced) {
@@ -449,8 +446,7 @@ export class Utils {
         rectSide: ISideData,
         rectOtherSide: ISideData,
         velocity: number,
-        factor: number,
-        minPos: number
+        factor: number
     ): IRectSideResult {
         const res: IRectSideResult = { bounced: false };
 
@@ -461,20 +457,12 @@ export class Utils {
             pOtherSide.max <= rectOtherSide.max
         ) {
             if (
-                (pSide.max >= rectSide.min && pSide.max <= rectSide.max && velocity > 0) ||
-                (pSide.min <= rectSide.max && pSide.min >= rectSide.min && velocity < 0)
+                (pSide.max >= rectSide.min && pSide.max <= (rectSide.max + rectSide.min) / 2 && velocity > 0) ||
+                (pSide.min <= rectSide.max && pSide.min > (rectSide.max + rectSide.min) / 2 && velocity < 0)
             ) {
                 res.velocity = velocity * -factor;
 
                 res.bounced = true;
-            }
-
-            if (res.bounced) {
-                if (pSide.max >= rectSide.min && pSide.max <= rectSide.max) {
-                    res.position = rectSide.min - minPos;
-                } else if (pSide.min <= rectSide.max && pSide.min >= rectSide.min) {
-                    res.position = rectSide.max + minPos;
-                }
             }
         }
 

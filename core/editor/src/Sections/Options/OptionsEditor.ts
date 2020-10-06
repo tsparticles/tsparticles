@@ -1,7 +1,6 @@
 import { BackgroundOptionsEditor } from "./Background/BackgroundOptionsEditor";
 import { ParticlesOptionsEditor } from "./Particles/ParticlesOptionsEditor";
-import type { Container } from "tsparticles/dist/Core/Container";
-import type { IOptions } from "tsparticles/dist/Options/Interfaces/IOptions";
+import type { Container, IOptions } from "tsparticles";
 import { InteractivityOptionsEditor } from "./Interactivity/InteractivityOptionsEditor";
 import { BackgroundMaskOptionsEditor } from "./BackgroundMask/BackgroundMaskOptionsEditor";
 import { InfectionOptionsEditor } from "./Infection/InfectionOptionsEditor";

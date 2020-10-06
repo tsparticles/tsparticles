@@ -89,13 +89,13 @@ export class Bubbler implements IExternalInteractor {
 
     private singleSelectorHover(selector: string, div: DivEvent): void {
         const container = this.container;
-        const query = document.querySelectorAll(selector);
+        const selectors = document.querySelectorAll(selector);
 
-        if (!query.length) {
+        if (!selectors.length) {
             return;
         }
 
-        query.forEach((item) => {
+        selectors.forEach((item) => {
             const elem = item as HTMLElement;
             const pxRatio = container.retina.pixelRatio;
             const pos = {
@@ -281,11 +281,11 @@ export class Bubbler implements IExternalInteractor {
             particle.bubble.inRange = true;
 
             const pos = particle.getPosition();
-            const distance = NumberUtils.getDistance(pos, mousePos);
-            const ratio = 1 - distance / container.retina.bubbleModeDistance;
+            const pointDistance = NumberUtils.getDistance(pos, mousePos);
+            const ratio = 1 - pointDistance / distance;
 
             /* mousemove - check ratio */
-            if (distance <= container.retina.bubbleModeDistance) {
+            if (pointDistance <= distance) {
                 if (ratio >= 0 && container.interactivity.status === Constants.mouseMoveEvent) {
                     /* size */
                     this.hoverBubbleSize(particle, ratio);

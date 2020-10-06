@@ -1,7 +1,6 @@
 import { tsParticles } from "tsparticles";
-import { RecursivePartial } from "tsparticles/dist/Types/RecursivePartial";
-import { IOptions } from "tsparticles/dist/Options/Interfaces/IOptions";
-import { IShapeValues } from "tsparticles/dist/Options/Interfaces/Particles/Shape/IShapeValues";
+import type { ISourceOptions } from "tsparticles";
+import type { IShapeValues } from "tsparticles/dist/Options/Interfaces/Particles/Shape/IShapeValues";
 
 interface ICharacterShape extends IShapeValues {
     font: string;
@@ -16,7 +15,7 @@ const characterOptions: ICharacterShape = {
     weight: "400",
 };
 
-const data: RecursivePartial<IOptions> = {
+const data: ISourceOptions = {
     particles: {
         shape: {
             type: "character",

@@ -49,13 +49,12 @@ export class Grabber implements IExternalInteractor {
                    if the distance between them is under the config distance
                 */
                 const pos = particle.getPosition();
-                const distance = NumberUtils.getDistance(pos, mousePos);
+                const pointDistance = NumberUtils.getDistance(pos, mousePos);
 
-                if (distance <= container.retina.grabModeDistance) {
+                if (pointDistance <= distance) {
                     const grabLineOptions = interactivity.modes.grab.links;
                     const lineOpacity = grabLineOptions.opacity;
-                    const grabDistance = container.retina.grabModeDistance;
-                    const opacityLine = lineOpacity - (distance * lineOpacity) / grabDistance;
+                    const opacityLine = lineOpacity - (pointDistance * lineOpacity) / distance;
 
                     if (opacityLine > 0) {
                         /* style */

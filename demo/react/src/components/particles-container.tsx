@@ -1,8 +1,9 @@
 import * as React from 'react';
-import Particles, { IParticlesParams } from 'react-tsparticles';
+import Particles from 'react-tsparticles';
+import { IOptions, RecursivePartial } from "tsparticles";
 
 interface IProps {
-    options: IParticlesParams;
+    options: RecursivePartial<IOptions>;
 }
 
 export class ParticlesContainer extends React.PureComponent<IProps> {

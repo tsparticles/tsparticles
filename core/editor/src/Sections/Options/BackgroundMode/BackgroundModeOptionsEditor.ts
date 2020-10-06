@@ -1,4 +1,4 @@
-import type { Container } from "tsparticles/dist/Core/Container";
+import type { Container } from "tsparticles";
 import { EditorGroup, EditorType } from "object-gui";
 import { EditorBase } from "../../../EditorBase";
 import type { IBackgroundMode } from "tsparticles/dist/Options/Interfaces/BackgroundMode/IBackgroundMode";

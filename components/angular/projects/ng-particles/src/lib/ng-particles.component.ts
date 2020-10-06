@@ -1,7 +1,7 @@
 import { AfterViewInit, Component, EventEmitter, Input, Output } from '@angular/core';
 import { tsParticles } from 'tsparticles';
-import { IParticlesParams } from './ng-particles.module';
-import { Container } from 'tsparticles/dist/Core/Container';
+import type { Container } from 'tsparticles';
+import { IParticlesProps } from './ng-particles.module';
 
 @Component({
     selector: 'Particles',
@@ -10,7 +10,7 @@ import { Container } from 'tsparticles/dist/Core/Container';
     styles: []
 })
 export class NgParticlesComponent implements AfterViewInit {
-    @Input() options: IParticlesParams;
+    @Input() options: IParticlesProps;
     @Input() id: string;
     @Output() particlesLoaded: EventEmitter<Container> = new EventEmitter<Container>();
 

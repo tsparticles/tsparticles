@@ -3,6 +3,92 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.3.1](https://github.com/matteobruni/tsparticles/compare/tsparticles-demo@1.3.0...tsparticles-demo@1.3.1) (2020-10-06)
+
+**Note:** Version bump only for package tsparticles-demo
+
+
+
+
+
+# [1.3.0](https://github.com/matteobruni/tsparticles/compare/tsparticles-demo@1.3.0-beta.5...tsparticles-demo@1.3.0) (2020-10-05)
+
+**Note:** Version bump only for package tsparticles-demo
+
+
+
+
+
+# [1.3.0-beta.5](https://github.com/matteobruni/tsparticles/compare/tsparticles-demo@1.3.0-beta.4...tsparticles-demo@1.3.0-beta.5) (2020-10-04)
+
+**Note:** Version bump only for package tsparticles-demo
+
+
+
+
+
+# [1.3.0-beta.4](https://github.com/matteobruni/tsparticles/compare/tsparticles-demo@1.3.0-beta.3...tsparticles-demo@1.3.0-beta.4) (2020-10-04)
+
+**Note:** Version bump only for package tsparticles-demo
+
+
+
+
+
+# [1.3.0-beta.3](https://github.com/matteobruni/tsparticles/compare/tsparticles-demo@1.3.0-beta.2...tsparticles-demo@1.3.0-beta.3) (2020-10-03)
+
+**Note:** Version bump only for package tsparticles-demo
+
+
+
+
+
+# [1.3.0-beta.2](https://github.com/matteobruni/tsparticles/compare/tsparticles-demo@1.3.0-beta.1...tsparticles-demo@1.3.0-beta.2) (2020-10-03)
+
+**Note:** Version bump only for package tsparticles-demo
+
+
+
+
+
+# [1.3.0-beta.1](https://github.com/matteobruni/tsparticles/compare/tsparticles-demo@1.3.0-beta.0...tsparticles-demo@1.3.0-beta.1) (2020-10-03)
+
+
+### Features
+
+* added bounce to mouse hover event ([8bf39a2](https://github.com/matteobruni/tsparticles/commit/8bf39a2ef2a4a6649b99c394fe9e639c2c5997b1))
+
+
+
+
+
+# [1.3.0-beta.0](https://github.com/matteobruni/tsparticles/compare/tsparticles-demo@1.2.12...tsparticles-demo@1.3.0-beta.0) (2020-10-02)
+
+
+### Bug Fixes
+
+* fixed bounce for [#739](https://github.com/matteobruni/tsparticles/issues/739) ([738a16f](https://github.com/matteobruni/tsparticles/commit/738a16f1d50780c961d7c258e97b40d94762057e))
+* fixed rotate following path ([cd7ed78](https://github.com/matteobruni/tsparticles/commit/cd7ed789545bd38f68369407af08e4c96d6a1230))
+
+
+### Features
+
+* added gravity and edge bounce customization ([cfdfe53](https://github.com/matteobruni/tsparticles/commit/cfdfe53de72a33686fb73ea345c08a7a27542ba0))
+* added motion options to handle prefers-reduced-motion media query, fixes [#888](https://github.com/matteobruni/tsparticles/issues/888) ([89a4ffb](https://github.com/matteobruni/tsparticles/commit/89a4ffb7f13b1c6585097c1e9e2a4a0c78074512))
+* added movement speed affected by particles size ([3a3d893](https://github.com/matteobruni/tsparticles/commit/3a3d893c8091fe8d550c31e49d448f4969b00685))
+* added triangles frequency, but needs some work to be completed, started working on [#691](https://github.com/matteobruni/tsparticles/issues/691) ([37e1c92](https://github.com/matteobruni/tsparticles/commit/37e1c926e647e5d450e998ff7f7bb3c45aa3d850))
+* bounce mode for divs, working only on squared divs but it's something ([24aeb1e](https://github.com/matteobruni/tsparticles/commit/24aeb1e69c3a8847e52efd6c81b11fabbc1050bc))
+* bounce mode is now working fine for circular divs too ([b92ef32](https://github.com/matteobruni/tsparticles/commit/b92ef321010904d84c4b365bd111bd0c6c5ef47b))
+* changed loadJSON with multiple configs and an optional index to select one of them ([bdba2ef](https://github.com/matteobruni/tsparticles/commit/bdba2ef691d272bc6b3d29f45dac25b4c8469c3e))
+* completed HSV support ([0cf39d0](https://github.com/matteobruni/tsparticles/commit/0cf39d03cb5494965087d8dc4ee40ae3468aeafd))
+* manual particles, fixes [#839](https://github.com/matteobruni/tsparticles/issues/839) ([4531b4a](https://github.com/matteobruni/tsparticles/commit/4531b4a567db2b31715a3be59e9b50161a23ea9d))
+* mouse acts like a light source, closes [#606](https://github.com/matteobruni/tsparticles/issues/606) ([84aad25](https://github.com/matteobruni/tsparticles/commit/84aad25f3dfd5da9e99818e87c9b3f6a30c6f590))
+* particle with move max distance are now good, closes [#740](https://github.com/matteobruni/tsparticles/issues/740) ([e1453c7](https://github.com/matteobruni/tsparticles/commit/e1453c735c2af23453f4f8e5efefb70c415496d3))
+
+
+
+
+
 # [1.3.0-alpha.14](https://github.com/matteobruni/tsparticles/compare/tsparticles-demo@1.2.9...tsparticles-demo@1.3.0-alpha.14) (2020-08-22)
 
 
