@@ -71,10 +71,12 @@ export class Particles {
         let handled = false;
 
         for (const particle of options.manualParticles) {
-            const pos = {
-                x: (particle.position.x * container.canvas.size.width) / 100,
-                y: (particle.position.y * container.canvas.size.height) / 100,
-            };
+            const pos = particle.position
+                ? {
+                      x: (particle.position.x * container.canvas.size.width) / 100,
+                      y: (particle.position.y * container.canvas.size.height) / 100,
+                  }
+                : undefined;
 
             this.addParticle(pos, particle.options);
         }
