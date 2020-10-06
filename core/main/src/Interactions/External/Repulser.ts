@@ -1,4 +1,4 @@
-import type { Container } from "../..";
+import type { Container } from "../../Core/Container";
 import { ClickMode, DivMode, DivType, HoverMode } from "../../Enums";
 import { Circle, Constants, NumberUtils, Range, Rectangle, Utils } from "../../Utils";
 import type { ICoordinates } from "../../Core/Interfaces/ICoordinates";
