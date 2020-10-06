@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.18.1](https://github.com/matteobruni/tsparticles/compare/tsparticles@1.18.0...tsparticles@1.18.1) (2020-10-06)
+
+
+### Bug Fixes
+
+* fixes triangles issues described in [#930](https://github.com/matteobruni/tsparticles/issues/930), still not implemented the color animation ([18f82d5](https://github.com/matteobruni/tsparticles/commit/18f82d5c7317ac002edd14335de41ce750fc3820))
+* manual particles optional position, now they can be random positioned with custom options ([0f67407](https://github.com/matteobruni/tsparticles/commit/0f674072786c80dc45946bf904a3fc544f428901))
+
+
+
+
+
 # [1.18.0](https://github.com/matteobruni/tsparticles/compare/tsparticles@1.18.0-beta.5...tsparticles@1.18.0) (2020-10-05)
 
 **Note:** Version bump only for package tsparticles

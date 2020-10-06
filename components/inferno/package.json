@@ -1,6 +1,6 @@
 {
 	"name": "inferno-particles",
-	"version": "1.1.0",
+	"version": "1.1.1",
 	"description": "tsParticles official Inferno component",
 	"main": "index.js",
 	"scripts": {
@@ -57,7 +57,7 @@
 	"homepage": "https://particles.matteobruni.it/",
 	"dependencies": {
 		"lodash": "^4.17.20",
-		"tsparticles": "^1.18.0"
+		"tsparticles": "^1.18.1"
 	},
 	"peerDependencies": {
 		"inferno": "^7"
