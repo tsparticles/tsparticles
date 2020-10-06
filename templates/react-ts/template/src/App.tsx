@@ -3,13 +3,12 @@ import Particles from "react-tsparticles";
 import logo from './logo.svg';
 import './App.css';
 import particlesOptions from "./particles.json";
-import { RecursivePartial } from "tsparticles/dist/Types/RecursivePartial";
-import { IOptions } from "tsparticles/dist/Options/Interfaces/IOptions";
+import { ISourceOptions } from "tsparticles";
 
 function App() {
     return (
         <div className="App">
-            <Particles options={particlesOptions as RecursivePartial<IOptions>}/>
+            <Particles options={particlesOptions as ISourceOptions}/>
             <header className="App-header">
                 <img src={logo} className="App-logo" alt="logo"/>
                 <p>

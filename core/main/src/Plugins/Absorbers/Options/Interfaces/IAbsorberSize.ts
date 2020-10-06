@@ -1,11 +1,6 @@
-import type { IAbsorberRandomSize } from "./IAbsorberRandomSize";
+import { IValueWithRandom } from "../../../../Options/Interfaces/IValueWithRandom";
 
-/**
- * @category Absorbers Plugin
- */
-export interface IAbsorberSize {
+export interface IAbsorberSize extends IValueWithRandom {
     limit?: number;
-    random: boolean | IAbsorberRandomSize;
-    value: number;
     density: number;
 }

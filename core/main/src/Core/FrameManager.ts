@@ -12,27 +12,34 @@ export class FrameManager {
      * @param timestamp
      */
     public nextFrame(timestamp: DOMHighResTimeStamp): void {
-        const container = this.container;
+        try {
+            const container = this.container;
 
-        // FPS limit logic - if we are too fast, just draw without updating
-        if (container.lastFrameTime !== undefined && timestamp < container.lastFrameTime + 1000 / container.fpsLimit) {
-            container.draw();
+            // FPS limit logic - if we are too fast, just draw without updating
+            if (
+                container.lastFrameTime !== undefined &&
+                timestamp < container.lastFrameTime + 1000 / container.fpsLimit
+            ) {
+                container.draw();
 
-            return;
-        }
+                return;
+            }
 
-        const deltaValue = timestamp - container.lastFrameTime;
-        const delta = {
-            value: deltaValue,
-            factor: (60 * deltaValue) / 1000,
-        };
+            const deltaValue = timestamp - container.lastFrameTime;
+            const delta = {
+                value: deltaValue,
+                factor: (60 * deltaValue) / 1000,
+            };
 
-        container.lastFrameTime = timestamp;
+            container.lastFrameTime = timestamp;
 
-        container.particles.draw(delta);
+            container.particles.draw(delta);
 
-        if (container.getAnimationStatus()) {
-            container.draw();
+            if (container.getAnimationStatus()) {
+                container.draw();
+            }
+        } catch (e) {
+            console.error("tsParticles error in animation loop", e);
         }
     }
 }

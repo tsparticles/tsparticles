@@ -5,12 +5,12 @@ import { Particle } from "../../src/Core/Particle";
 export class TestParticle {
     private container: Container;
     private position?: ICoordinates;
-    public particle: Particle;
+    public particle?: Particle;
 
     constructor(container: Container, position?: ICoordinates) {
         this.container = container;
         this.position = position;
-        this.particle = new Particle(this.container, this.position);
+        this.particle = container.particles.addParticle(this.position);
     }
 
     /**
@@ -51,7 +51,7 @@ export class TestParticle {
             this.container = container;
         }
         this.position = position;
-        this.particle = new Particle(this.container, this.position);
+        this.particle = this.container.particles.addParticle(this.position);
     }
 
     /**
@@ -89,7 +89,7 @@ export class TestParticle {
      * @param particles
      */
     public static sortedPositions(particles: Particle[]): ICoordinates[] {
-        return particles.sort(this.sort).map((particle) => particle.getPosition());
+        return particles.sort(TestParticle.sort).map((particle) => particle.getPosition());
     }
 
     /**

@@ -1,5 +1,5 @@
 import type { ITwinkle } from "../../../Interfaces/Particles/Twinkle/ITwinkle";
-import type { RecursivePartial } from "../../../../Types/RecursivePartial";
+import type { RecursivePartial } from "../../../../Types";
 import { TwinkleValues } from "./TwinkleValues";
 import type { IOptionLoader } from "../../../Interfaces/IOptionLoader";
 
@@ -8,8 +8,8 @@ import type { IOptionLoader } from "../../../Interfaces/IOptionLoader";
  * @category Options
  */
 export class Twinkle implements ITwinkle, IOptionLoader<ITwinkle> {
-    public lines: TwinkleValues;
-    public particles: TwinkleValues;
+    public lines;
+    public particles;
 
     constructor() {
         this.lines = new TwinkleValues();

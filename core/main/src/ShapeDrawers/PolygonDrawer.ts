@@ -1,5 +1,4 @@
-import { PolygonDrawerBase } from "./PolygonDrawerBase";
-import type { ISide } from "../Core/Interfaces/ISide";
+import { ISide, PolygonDrawerBase } from "./PolygonDrawerBase";
 import type { ICoordinates } from "../Core/Interfaces/ICoordinates";
 import type { IParticle } from "../Core/Interfaces/IParticle";
 import type { IPolygonShape } from "../Options/Interfaces/Particles/Shape/IPolygonShape";
@@ -22,8 +21,7 @@ export class PolygonDrawer extends PolygonDrawerBase {
     }
 
     public getCenter(particle: IParticle, radius: number): ICoordinates {
-        const polygon = particle.shapeData as IPolygonShape;
-        const sides = polygon?.sides ?? polygon?.nb_sides ?? 5;
+        const sides = this.getSidesCount(particle);
 
         return {
             x: -radius / (sides / 3.5),

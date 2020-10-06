@@ -1,5 +1,5 @@
 import type { IParticle } from "../Core/Interfaces/IParticle";
-import { Container } from "../Core/Container";
+import type { Container } from "../Core/Container";
 
 /**
  * @category Types
@@ -34,3 +34,8 @@ export type ShapeDrawerAfterEffectFunction = (
  * @category Types
  */
 export type ShapeDrawerDestroyFunction = (container: Container) => void;
+
+/**
+ * @category Types
+ */
+export type ShapeDrawerSidesCountFunction = (particle: IParticle) => number;

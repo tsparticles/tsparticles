@@ -5,9 +5,9 @@ import { Utils } from "../../Utils";
 import { SizeMode } from "../../Enums";
 import { EmitterSize } from "./Options/Classes/EmitterSize";
 import type { Emitters } from "./Emitters";
-import type { RecursivePartial } from "../../Types/RecursivePartial";
+import type { RecursivePartial } from "../../Types";
 import type { IParticles } from "../../Options/Interfaces/Particles/IParticles";
-import { IEmitterSize } from "./Options/Interfaces/IEmitterSize";
+import type { IEmitterSize } from "./Options/Interfaces/IEmitterSize";
 
 /**
  * @category Emitters Plugin
@@ -17,11 +17,14 @@ export class EmitterInstance {
     public size: IEmitterSize;
     public emitterOptions: IEmitter;
 
-    private readonly immortal: boolean;
+    private lifeCount;
+
+    private startInterval?: number;
+
+    private readonly immortal;
+
     private readonly initialPosition?: ICoordinates;
     private readonly particlesOptions: RecursivePartial<IParticles>;
-    private startInterval?: number;
-    private lifeCount: number;
 
     constructor(
         private readonly emitters: Emitters,
@@ -30,10 +33,10 @@ export class EmitterInstance {
         position?: ICoordinates
     ) {
         this.initialPosition = position;
-        this.emitterOptions = Utils.deepExtend({}, emitterOptions);
+        this.emitterOptions = Utils.deepExtend({}, emitterOptions) as IEmitter;
         this.position = this.initialPosition ?? this.calcPosition();
 
-        let particlesOptions = Utils.deepExtend({}, this.emitterOptions.particles);
+        let particlesOptions = Utils.deepExtend({}, this.emitterOptions.particles) as RecursivePartial<IParticles>;
 
         if (particlesOptions === undefined) {
             particlesOptions = {};
@@ -70,11 +73,16 @@ export class EmitterInstance {
     }
 
     public play(): void {
-        if (this.lifeCount > 0 || this.immortal || !this.emitterOptions.life.count) {
+        if (
+            this.container.retina.reduceFactor &&
+            (this.lifeCount > 0 || this.immortal || !this.emitterOptions.life.count)
+        ) {
             if (this.startInterval === undefined) {
+                const delay = (1000 * this.emitterOptions.rate.delay) / this.container.retina.reduceFactor;
+
                 this.startInterval = window.setInterval(() => {
                     this.emit();
-                }, 1000 * this.emitterOptions.rate.delay);
+                }, delay);
             }
 
             if (this.lifeCount > 0 || this.immortal) {
@@ -105,7 +113,12 @@ export class EmitterInstance {
     private prepareToDie(): void {
         const duration = this.emitterOptions.life?.duration;
 
-        if ((this.lifeCount > 0 || this.immortal) && duration !== undefined && duration > 0) {
+        if (
+            this.container.retina.reduceFactor &&
+            (this.lifeCount > 0 || this.immortal) &&
+            duration !== undefined &&
+            duration > 0
+        ) {
             window.setTimeout(() => {
                 this.pause();
 
@@ -118,7 +131,7 @@ export class EmitterInstance {
 
                     window.setTimeout(() => {
                         this.play();
-                    }, (this.emitterOptions.life.delay ?? 0) * 1000);
+                    }, ((this.emitterOptions.life.delay ?? 0) * 1000) / this.container.retina.reduceFactor);
                 } else {
                     this.destroy();
                 }

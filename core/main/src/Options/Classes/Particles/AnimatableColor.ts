@@ -1,6 +1,6 @@
 import type { IAnimatableColor } from "../../Interfaces/Particles/IAnimatableColor";
 import { OptionsColor } from "../OptionsColor";
-import type { RecursivePartial } from "../../../Types/RecursivePartial";
+import type { RecursivePartial } from "../../../Types";
 import { ColorAnimation } from "./ColorAnimation";
 import type { IOptionLoader } from "../../Interfaces/IOptionLoader";
 
@@ -9,7 +9,7 @@ import type { IOptionLoader } from "../../Interfaces/IOptionLoader";
  * @category Options
  */
 export class AnimatableColor extends OptionsColor implements IAnimatableColor, IOptionLoader<IAnimatableColor> {
-    public animation: ColorAnimation;
+    public animation;
 
     constructor() {
         super();

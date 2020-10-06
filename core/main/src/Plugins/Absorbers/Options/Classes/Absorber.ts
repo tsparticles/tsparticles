@@ -1,6 +1,6 @@
 import type { IAbsorber } from "../Interfaces/IAbsorber";
 import type { ICoordinates } from "../../../../Core/Interfaces/ICoordinates";
-import type { RecursivePartial } from "../../../../Types/RecursivePartial";
+import type { RecursivePartial } from "../../../../Types";
 import { AbsorberSize } from "./AbsorberSize";
 import { OptionsColor } from "../../../../Options/Classes/OptionsColor";
 import type { IOptionLoader } from "../../../../Options/Interfaces/IOptionLoader";
@@ -10,13 +10,13 @@ import type { IOptionLoader } from "../../../../Options/Interfaces/IOptionLoader
  * @category Absorbers Plugin
  */
 export class Absorber implements IAbsorber, IOptionLoader<IAbsorber> {
-    public color: OptionsColor;
-    public draggable: boolean;
-    public opacity: number;
+    public color;
+    public draggable;
+    public opacity;
     public position?: ICoordinates;
-    public size: AbsorberSize;
-    public destroy: boolean;
-    public orbits: boolean;
+    public size;
+    public destroy;
+    public orbits;
 
     constructor() {
         this.color = new OptionsColor();

@@ -1,10 +1,10 @@
 import { Container } from "./Container";
 import type { IOptions } from "../Options/Interfaces/IOptions";
-import type { RecursivePartial } from "../Types/RecursivePartial";
-import { Circle, Constants, Utils } from "../Utils";
-import { Particle } from "./Particle";
-import { ICoordinates } from "./Interfaces/ICoordinates";
-import { SingleOrMultiple } from "../Types/SingleOrMultiple";
+import type { RecursivePartial } from "../Types";
+import { Constants, Utils } from "../Utils";
+import type { Particle } from "./Particle";
+import type { ICoordinates } from "./Interfaces/ICoordinates";
+import type { SingleOrMultiple } from "../Types";
 
 const tsParticlesDom: Container[] = [];
 
@@ -33,38 +33,6 @@ export class Loader {
         }
 
         dom.splice(index, 1);
-    }
-
-    /**
-     * Loads an options object from the provided array to create a [[Container]] object.
-     * @param tagId the particles container element id
-     * @param options the options array to get the item from
-     * @param index if provided gets the corresponding item from the array
-     * @deprecated [[load]] can handle an array too, this method is now unnecessary and is just an alias to [[load]]
-     */
-    public static async loadFromArray(
-        tagId: string,
-        options: RecursivePartial<IOptions>[],
-        index?: number
-    ): Promise<Container | undefined> {
-        return Loader.load(tagId, options, index);
-    }
-
-    /**
-     * Loads an options object from the provided array to create a [[Container]] object.
-     * @param id the container id
-     * @param domContainer the dom container for keeping
-     * @param options the options array to get the item from
-     * @param index if provided gets the corresponding item from the array
-     * @deprecated [[set]] can handle an array too, this method is now unnecessary and is just an alias to [[set]]
-     */
-    public static async setFromArray(
-        id: string,
-        domContainer: HTMLElement,
-        options: RecursivePartial<IOptions>[],
-        index?: number
-    ): Promise<Container | undefined> {
-        return Loader.set(id, domContainer, options, index);
     }
 
     /**
@@ -168,11 +136,19 @@ export class Loader {
      * Loads the provided json with a GET request. The content will be used to create a [[Container]] object.
      * This method is async, so if you need a callback refer to JavaScript function `fetch`
      * @param tagId the particles container element id
-     * @param jsonUrl the json path to use in the GET request
+     * @param jsonUrl the json path (or paths array) to use in the GET request
+     * @param index the index of the paths array, if a single path is passed this value is ignored
+     * @returns A Promise with the [[Container]] object created
      */
-    public static async loadJSON(tagId: string, jsonUrl: string): Promise<Container | undefined> {
+    public static async loadJSON(
+        tagId: string,
+        jsonUrl: SingleOrMultiple<string>,
+        index?: number
+    ): Promise<Container | undefined> {
+        const url = jsonUrl instanceof Array ? Utils.itemFromArray(jsonUrl, index) : jsonUrl;
+
         /* load json config */
-        const response = await fetch(jsonUrl);
+        const response = await fetch(url);
 
         if (response.ok) {
             return Loader.load(tagId, await response.json());
@@ -229,9 +205,12 @@ export class Loader {
                 }
 
                 const pxRatio = domItem.retina.pixelRatio;
-                const particles = domItem.particles.quadTree.query(
-                    new Circle(pos.x * pxRatio, pos.y * pxRatio, domItem.retina.sizeValue)
-                );
+                const posRetina = {
+                    x: pos.x * pxRatio,
+                    y: pos.y * pxRatio,
+                };
+
+                const particles = domItem.particles.quadTree.queryCircle(posRetina, domItem.retina.sizeValue);
 
                 callback(e, particles);
             };

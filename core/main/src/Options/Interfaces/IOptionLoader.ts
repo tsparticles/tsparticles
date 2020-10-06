@@ -1,4 +1,4 @@
-import type { RecursivePartial } from "../../Types/RecursivePartial";
+import type { RecursivePartial } from "../../Types";
 
 /**
  * This interface is used by the [[Options]] class to have a [[load]] method to set all needed properties from source

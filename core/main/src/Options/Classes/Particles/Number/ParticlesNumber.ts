@@ -1,6 +1,6 @@
 import type { IParticlesNumber } from "../../../Interfaces/Particles/Number/IParticlesNumber";
 import { Density } from "./Density";
-import type { RecursivePartial } from "../../../../Types/RecursivePartial";
+import type { RecursivePartial } from "../../../../Types";
 import type { IOptionLoader } from "../../../Interfaces/IOptionLoader";
 
 /**
@@ -22,9 +22,9 @@ export class ParticlesNumber implements IParticlesNumber, IOptionLoader<IParticl
         this.limit = value;
     }
 
-    public density: Density;
-    public limit: number;
-    public value: number;
+    public density;
+    public limit;
+    public value;
 
     constructor() {
         this.density = new Density();

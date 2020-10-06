@@ -1,8 +1,7 @@
-import { tsParticles } from "tsparticles";
+import { tsParticles, Utils } from "tsparticles";
 import type { IParticle } from "tsparticles/dist/Core/Interfaces/IParticle";
 import type { IShapeDrawer } from "tsparticles/dist/Core/Interfaces/IShapeDrawer";
-import type { Container } from "tsparticles/dist/Core/Container";
-import type { SingleOrMultiple } from "tsparticles/dist/Types/SingleOrMultiple";
+import type { Container, SingleOrMultiple } from "tsparticles";
 import type { IShapeValues } from "tsparticles/dist/Options/Interfaces/Particles/Shape/IShapeValues";
 
 type CSSOMString = string;
@@ -51,42 +50,20 @@ interface MultilineTextParticle extends IParticle {
     text?: string;
 }
 
-function arrayRandomIndex<T>(array: T[]): number {
-    return Math.floor(Math.random() * array.length);
-}
-
-function isInArray<T>(value: T, array: SingleOrMultiple<T>): boolean {
-    return value === array || (array instanceof Array && array.indexOf(value) > -1);
-}
-
-function itemFromArray<T>(array: T[], index?: number): T {
-    return array[index !== undefined ? index : arrayRandomIndex(array)];
-}
-
-async function loadFont(character: IMultilineTextShape): Promise<void> {
-    try {
-        console.log("load font", character);
-
-        await document.fonts.load(`${character.weight} 36px '${character.font}'`);
-    } catch {
-        // ignores any error
-    }
-}
-
 export class MultilineTextDrawer implements IShapeDrawer {
     public async init(container: Container): Promise<void> {
         const options = container.options;
         const shapeType = "multiline-text";
 
-        if (isInArray(shapeType, options.particles.shape.type)) {
+        if (Utils.isInArray(shapeType, options.particles.shape.type)) {
             const shapeOptions = options.particles.shape.options[shapeType] as SingleOrMultiple<IMultilineTextShape>;
             if (shapeOptions instanceof Array) {
                 for (const character of shapeOptions) {
-                    await loadFont(character);
+                    await Utils.loadFont(character);
                 }
             } else {
                 if (shapeOptions !== undefined) {
-                    await loadFont(shapeOptions);
+                    await Utils.loadFont(shapeOptions);
                 }
             }
         }
@@ -109,7 +86,7 @@ export class MultilineTextDrawer implements IShapeDrawer {
 
         if (textParticle.text === undefined) {
             textParticle.text =
-                textData instanceof Array ? itemFromArray(textData, particle.randomIndexData) : textData;
+                textData instanceof Array ? Utils.itemFromArray(textData, particle.randomIndexData) : textData;
         }
 
         const text = textParticle.text;

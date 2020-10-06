@@ -1,15 +1,13 @@
 import * as React from 'react';
 import * as pkgInfo from '../../package.json';
-import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
-import { base16AteliersulphurpoolLight as theme } from 'react-syntax-highlighter/dist/esm/styles/prism';
 import { FrameThumbsContainer } from './frame-thumbs-container';
 import { ParticlesContainer } from './particles-container';
 import { Subscription } from 'rxjs';
 import { onKeyPressed } from '../streams/key-pressed';
-import { IParticlesParams } from 'react-tsparticles';
+import type { ISourceOptions } from "tsparticles";
 
 
-const getFrameCode = (options: IParticlesParams) => {
+const getFrameCode = (options: ISourceOptions) => {
     const paramsCode = JSON.stringify(options, null, 4)
         .split('\n')
         .map((x, i) => i > 0 ? `\t${x}` : x)
@@ -21,7 +19,7 @@ const getFrameCode = (options: IParticlesParams) => {
 interface IProps extends Partial<IDefaultProps> {
     name: string;
     backgroundColor: string;
-    options: IParticlesParams;
+    options: ISourceOptions;
 }
 
 interface IDefaultProps {

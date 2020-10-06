@@ -14,7 +14,18 @@
     "lib": [
       "es2018",
       "dom"
-    ]
+    ],
+    "paths": {
+      "@angular/*": [
+        "../../node_modules/@angular/*"
+      ],
+      "ng-particles": [
+        "../../components/angular/projects/ng-particles/src/public-api"
+      ]/*,
+      "tsparticles": [
+        "../../core/main/dist"
+      ]*/
+    }
   },
   "angularCompilerOptions": {
     "fullTemplateTypeCheck": true,

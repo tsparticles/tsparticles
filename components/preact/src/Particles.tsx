@@ -1,15 +1,14 @@
-import * as React from "react";
-import { Component, ReactNode } from "react";
+import React, { Component } from "preact/compat";
+import type { ComponentChild } from "preact";
 import isEqual from "lodash/isEqual";
-import type { IOptions } from "tsparticles/dist/Options/Interfaces/IOptions";
-import { Container } from "tsparticles/dist/Core/Container";
-import type { RecursivePartial } from "tsparticles/dist/Types/RecursivePartial";
-import { tsParticles } from "tsparticles";
-import type { ParticlesProps } from "./ParticlesProps";
-import type { ParticlesState } from "./ParticlesState";
+import type { ISourceOptions } from "tsparticles";
+import { tsParticles, Container } from "tsparticles";
+import type { IParticlesProps } from "./IParticlesProps";
+import type { IParticlesState } from "./IParticlesState";
+import { MutableRefObject } from "react";
 
-export default class Particles extends Component<ParticlesProps, ParticlesState> {
-    public static defaultProps: ParticlesProps = {
+export default class Particles extends Component<IParticlesProps, IParticlesState> {
+    public static defaultProps: IParticlesProps = {
         width: "100%",
         height: "100%",
         options: {},
@@ -17,50 +16,13 @@ export default class Particles extends Component<ParticlesProps, ParticlesState>
         id: "tsparticles",
     };
 
-    constructor(props: ParticlesProps) {
+    constructor(props: IParticlesProps) {
         super(props);
         this.state = {
             canvas: undefined,
             library: undefined,
         };
         this.loadCanvas = this.loadCanvas.bind(this);
-    }
-
-    private buildParticlesLibrary(tagId: string, options?: RecursivePartial<IOptions>) {
-        try {
-            if (window === undefined) return null;
-        } catch {
-            return null;
-        } // SSR
-
-        tsParticles.init();
-
-        const container = new Container(tagId, options);
-
-        if (this.props.container) {
-            (this.props.container as React.MutableRefObject<Container>).current = container;
-        }
-
-        return container;
-    }
-
-    private refresh(props: Readonly<ParticlesProps>): void {
-        const { canvas } = this.state;
-
-        if (!canvas) {
-            return;
-        }
-
-        this.destroy();
-
-        this.setState(
-            {
-                library: this.buildParticlesLibrary(props.id, props.params ?? props.options),
-            },
-            () => {
-                this.loadCanvas(canvas);
-            }
-        );
     }
 
     public destroy(): void {
@@ -100,7 +62,7 @@ export default class Particles extends Component<ParticlesProps, ParticlesState>
         );
     }
 
-    public shouldComponentUpdate(nextProps: Readonly<ParticlesProps>): boolean {
+    public shouldComponentUpdate(nextProps: Readonly<IParticlesProps>): boolean {
         return !this.state.library || !isEqual(nextProps, this.props);
     }
 
@@ -124,7 +86,7 @@ export default class Particles extends Component<ParticlesProps, ParticlesState>
         this.destroy();
     }
 
-    public render(): ReactNode {
+    public render(): ComponentChild {
         const { width, height, className, canvasClassName, id } = this.props;
 
         return (
@@ -139,6 +101,45 @@ export default class Particles extends Component<ParticlesProps, ParticlesState>
                     }}
                 />
             </div>
+        );
+    }
+
+    private buildParticlesLibrary(tagId?: string, options?: ISourceOptions): Container | undefined {
+        try {
+            if (window === undefined) {
+                return undefined;
+            }
+        } catch {
+            return undefined;
+        } // SSR
+
+        tsParticles.init();
+
+        const container = new Container(tagId ?? Particles.defaultProps.id, options);
+
+        if (this.props.container) {
+            (this.props.container as MutableRefObject<Container>).current = container;
+        }
+
+        return container;
+    }
+
+    private refresh(props: Readonly<IParticlesProps>): void {
+        const { canvas } = this.state;
+
+        if (!canvas) {
+            return;
+        }
+
+        this.destroy();
+
+        this.setState(
+            {
+                library: this.buildParticlesLibrary(props.id, props.params ?? props.options),
+            },
+            () => {
+                this.loadCanvas(canvas);
+            }
         );
     }
 }

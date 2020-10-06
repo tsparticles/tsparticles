@@ -1,5 +1,5 @@
 import type { ClickMode } from "../../../../Enums";
-import type { SingleOrMultiple } from "../../../../Types/SingleOrMultiple";
+import type { SingleOrMultiple } from "../../../../Types";
 
 /**
  * The canvas click event

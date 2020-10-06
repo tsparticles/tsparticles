@@ -1,5 +1,5 @@
 import type { ICoordinates } from "../../../../Core/Interfaces/ICoordinates";
-import type { IColor } from "../../../../Core/Interfaces/IColor";
+import type { IColor } from "../../../../Core/Interfaces/Colors";
 import type { IAbsorberSize } from "./IAbsorberSize";
 
 /**

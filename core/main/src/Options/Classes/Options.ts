@@ -2,11 +2,16 @@ import type { IOptions } from "../Interfaces/IOptions";
 import { Interactivity } from "./Interactivity/Interactivity";
 import { Particles } from "./Particles/Particles";
 import { BackgroundMask } from "./BackgroundMask/BackgroundMask";
-import type { RecursivePartial } from "../../Types/RecursivePartial";
+import type { RecursivePartial } from "../../Types";
 import { Background } from "./Background/Background";
 import { Infection } from "./Infection/Infection";
 import { Plugins } from "../../Utils";
 import type { IOptionLoader } from "../Interfaces/IOptionLoader";
+import { Theme } from "./Theme/Theme";
+import { ThemeMode } from "../../Enums/Modes";
+import { BackgroundMode } from "./BackgroundMode/BackgroundMode";
+import { Motion } from "./Motion/Motion";
+import { ManualParticle } from "./ManualParticle";
 
 /**
  * [[include:Options.md]]
@@ -44,25 +49,35 @@ export class Options implements IOptions, IOptionLoader<IOptions> {
         this.detectRetina = value;
     }
 
-    public background: Background;
-    public backgroundMask: BackgroundMask;
-    public detectRetina: boolean;
-    public fpsLimit: number;
-    public infection: Infection;
-    public interactivity: Interactivity;
-    public particles: Particles;
-    public pauseOnBlur: boolean;
+    public autoPlay;
+    public background;
+    public backgroundMask;
+    public backgroundMode;
+    public detectRetina;
+    public fpsLimit;
+    public infection;
+    public interactivity;
+    public manualParticles: ManualParticle[];
+    public motion;
+    public particles;
+    public pauseOnBlur;
     public preset?: string | string[];
+    public themes: Theme[];
 
     constructor() {
+        this.autoPlay = true;
         this.background = new Background();
         this.backgroundMask = new BackgroundMask();
+        this.backgroundMode = new BackgroundMode();
         this.detectRetina = true;
         this.fpsLimit = 30;
         this.infection = new Infection();
         this.interactivity = new Interactivity();
+        this.manualParticles = [];
+        this.motion = new Motion();
         this.particles = new Particles();
         this.pauseOnBlur = true;
+        this.themes = [];
     }
 
     /**
@@ -84,6 +99,10 @@ export class Options implements IOptions, IOptionLoader<IOptions> {
             }
         }
 
+        if (data.autoPlay !== undefined) {
+            this.autoPlay = data.autoPlay;
+        }
+
         const detectRetina = data.detectRetina ?? data.retina_detect;
 
         if (detectRetina !== undefined) {
@@ -101,12 +120,61 @@ export class Options implements IOptions, IOptionLoader<IOptions> {
         }
 
         this.background.load(data.background);
-        this.particles.load(data.particles);
+        this.backgroundMode.load(data.backgroundMode);
+        this.backgroundMask.load(data.backgroundMask);
         this.infection.load(data.infection);
         this.interactivity.load(data.interactivity);
-        this.backgroundMask.load(data.backgroundMask);
+
+        if (data.manualParticles !== undefined) {
+            this.manualParticles = data.manualParticles.map((t) => {
+                const tmp = new ManualParticle();
+
+                tmp.load(t);
+
+                return tmp;
+            });
+        }
+
+        this.motion.load(data.motion);
+        this.particles.load(data.particles);
 
         Plugins.loadOptions(this, data);
+
+        if (data.themes !== undefined) {
+            for (const theme of data.themes) {
+                const optTheme = new Theme();
+                optTheme.load(theme);
+                this.themes.push(optTheme);
+            }
+        }
+    }
+
+    public setTheme(name?: string): void {
+        if (name) {
+            const chosenTheme = this.themes.find((theme) => theme.name === name);
+
+            if (chosenTheme) {
+                this.load(chosenTheme.options);
+            }
+        } else {
+            const clientDarkMode =
+                typeof matchMedia !== "undefined" && matchMedia("(prefers-color-scheme: dark)").matches;
+
+            let defaultTheme = this.themes.find(
+                (theme) =>
+                    theme.default.value &&
+                    ((theme.default.mode === ThemeMode.dark && clientDarkMode) ||
+                        (theme.default.mode === ThemeMode.light && !clientDarkMode))
+            );
+
+            if (!defaultTheme) {
+                defaultTheme = this.themes.find((theme) => theme.default.value && theme.default.mode === ThemeMode.any);
+            }
+
+            if (defaultTheme) {
+                this.load(defaultTheme.options);
+            }
+        }
     }
 
     private importPreset(preset: string): void {

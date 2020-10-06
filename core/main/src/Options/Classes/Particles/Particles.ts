@@ -6,14 +6,16 @@ import { Opacity } from "./Opacity/Opacity";
 import { Shape } from "./Shape/Shape";
 import { Size } from "./Size/Size";
 import { Rotate } from "./Rotate/Rotate";
-import type { RecursivePartial } from "../../../Types/RecursivePartial";
+import type { RecursivePartial } from "../../../Types";
 import { Shadow } from "./Shadow";
-import type { SingleOrMultiple } from "../../../Types/SingleOrMultiple";
+import type { SingleOrMultiple } from "../../../Types";
 import { Stroke } from "./Stroke";
 import { Collisions } from "./Collisions";
 import { Twinkle } from "./Twinkle/Twinkle";
 import { AnimatableColor } from "./AnimatableColor";
 import type { IOptionLoader } from "../../Interfaces/IOptionLoader";
+import { Life } from "./Life/Life";
+import { Bounce } from "./Bounce/Bounce";
 
 /**
  * [[include:Options/Particles.md]]
@@ -54,26 +56,32 @@ export class Particles implements IParticles, IOptionLoader<IParticles> {
         this.links = value;
     }
 
-    public collisions: Collisions;
-    public color: AnimatableColor;
-    public links: Links;
-    public move: Move;
-    public number: ParticlesNumber;
-    public opacity: Opacity;
-    public rotate: Rotate;
-    public shape: Shape;
-    public size: Size;
-    public shadow: Shadow;
+    public bounce;
+    public collisions;
+    public color;
+    public life;
+    public links;
+    public move;
+    public number;
+    public opacity;
+    public reduceDuplicates;
+    public rotate;
+    public shape;
+    public size;
+    public shadow;
     public stroke: SingleOrMultiple<Stroke>;
-    public twinkle: Twinkle;
+    public twinkle;
 
     constructor() {
+        this.bounce = new Bounce();
         this.collisions = new Collisions();
         this.color = new AnimatableColor();
+        this.life = new Life();
         this.links = new Links();
         this.move = new Move();
         this.number = new ParticlesNumber();
         this.opacity = new Opacity();
+        this.reduceDuplicates = false;
         this.rotate = new Rotate();
         this.shadow = new Shadow();
         this.shape = new Shape();
@@ -87,9 +95,10 @@ export class Particles implements IParticles, IOptionLoader<IParticles> {
             return;
         }
 
-        if (data.color !== undefined) {
-            this.color = AnimatableColor.create(this.color, data.color);
-        }
+        this.bounce.load(data.bounce);
+        this.color = AnimatableColor.create(this.color, data.color);
+
+        this.life.load(data.life);
 
         const links = data.links ?? data.lineLinked ?? data.line_linked;
 
@@ -100,6 +109,11 @@ export class Particles implements IParticles, IOptionLoader<IParticles> {
         this.move.load(data.move);
         this.number.load(data.number);
         this.opacity.load(data.opacity);
+
+        if (data.reduceDuplicates !== undefined) {
+            this.reduceDuplicates = data.reduceDuplicates;
+        }
+
         this.rotate.load(data.rotate);
         this.shape.load(data.shape);
         this.size.load(data.size);

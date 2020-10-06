@@ -1,7 +1,7 @@
 <template>
-    <div id="app">
-        <img alt="Vue logo" src="./assets/logo.png"/>
-        <Particles id="tsparticles" :options="{
+  <div id="app">
+    <img alt="Vue logo" src="./assets/logo.png"/>
+    <Particles id="tsparticles" :options="{
                                            background: {
                                              color: {
                                                value: '#0d47a1'
@@ -80,37 +80,38 @@
                                            },
                                            detectRetina: true
                                          }"/>
-    </div>
+  </div>
 </template>
 
 <script lang="ts">
-    import { Component, Vue } from "vue-property-decorator";
-    declare module 'particles.vue';
-    import Particles from "particles.vue";
+import { Vue } from "vue-property-decorator";
 
-    Vue.use(Particles);
+declare module 'particles.vue';
+import Particles from "particles.vue";
 
-    export default class App extends Vue {
-    }
+Vue.use(Particles);
+
+export default class App extends Vue {
+}
 </script>
 
 <style>
-    #app {
-        font-family: Avenir, Helvetica, Arial, sans-serif;
-        -webkit-font-smoothing: antialiased;
-        -moz-osx-font-smoothing: grayscale;
-        text-align: center;
-        color: #2c3e50;
-        margin-top: 60px;
-    }
+#app {
+  font-family: Avenir, Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-align: center;
+  color: #2c3e50;
+  margin-top: 60px;
+}
 
-    #tsparticles {
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background: #000000;
-        z-index: -10;
-    }
+#tsparticles {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: #000000;
+  z-index: -10;
+}
 </style>

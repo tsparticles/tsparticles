@@ -1,6 +1,6 @@
 import type { IShadow } from "../../Interfaces/Particles/IShadow";
 import type { ICoordinates } from "../../../Core/Interfaces/ICoordinates";
-import type { RecursivePartial } from "../../../Types/RecursivePartial";
+import type { RecursivePartial } from "../../../Types";
 import { OptionsColor } from "../OptionsColor";
 import type { IOptionLoader } from "../../Interfaces/IOptionLoader";
 
@@ -9,9 +9,9 @@ import type { IOptionLoader } from "../../Interfaces/IOptionLoader";
  * [[include:Shadow.md]]
  */
 export class Shadow implements IShadow, IOptionLoader<IShadow> {
-    public blur: number;
-    public color: OptionsColor;
-    public enable: boolean;
+    public blur;
+    public color;
+    public enable;
     public offset: ICoordinates;
 
     constructor() {

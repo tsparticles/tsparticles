@@ -7,7 +7,7 @@ export class TestParticles {
 
     constructor(container: Container) {
         this.container = container;
-        this.particles = new Particles(this.container);
+        this.particles = this.container.particles;
     }
 
     /**
@@ -24,6 +24,6 @@ export class TestParticles {
             this.container = container;
         }
 
-        this.particles = new Particles(this.container);
+        this.particles = this.container.particles;
     }
 }

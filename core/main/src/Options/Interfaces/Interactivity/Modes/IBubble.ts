@@ -1,4 +1,4 @@
-import type { SingleOrMultiple } from "../../../../Types/SingleOrMultiple";
+import type { SingleOrMultiple } from "../../../../Types";
 import type { IBubbleDiv } from "./IBubbleDiv";
 import type { IBubbleBase } from "./IBubbleBase";
 

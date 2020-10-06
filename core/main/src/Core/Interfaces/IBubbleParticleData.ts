@@ -1,4 +1,4 @@
-import type { IHsl } from "./IHsl";
+import type { IHsl } from "./Colors";
 
 /**
  * @category Interfaces
@@ -8,5 +8,5 @@ export interface IBubbleParticleData {
     opacity?: number;
     radius?: number;
     color?: IHsl;
-    divId?: string;
+    div?: HTMLElement;
 }

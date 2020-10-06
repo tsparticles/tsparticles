@@ -35,7 +35,7 @@ class MyComponent extends Component<any, any> {
 							}
 						}
 					}
-				}}></Particles>
+				}}/>
 				<h1>{`Welcome to Inferno ${version} TSX ${this.tsxVersion}`}</h1>
 				<Incrementer name={'Crazy button'}/>
 			</div>

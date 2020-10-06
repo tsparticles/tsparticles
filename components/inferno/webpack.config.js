@@ -1,5 +1,4 @@
 const CleanWebpackPlugin = require('clean-webpack-plugin').CleanWebpackPlugin;
-const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
 	mode: "none",

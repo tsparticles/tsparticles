@@ -1,33 +1,34 @@
 <template>
-    <div :id="id"></div>
+  <div :id="id"></div>
 </template>
 
 <script lang="ts">
-    import { Component, Prop } from "vue-property-decorator";
-    import { tsParticles } from "tsparticles";
-    import { Container } from "tsparticles/dist/Core/Container";
-    import { RecursivePartial } from "tsparticles/dist/Types/RecursivePartial";
-    import { IOptions } from "tsparticles/dist/Options/Interfaces/IOptions";
-    import Vue from "vue";
+import { Component, Prop } from "vue-property-decorator";
+import { tsParticles } from "tsparticles";
+import type { Container, ISourceOptions } from "tsparticles";
+import Vue from "vue";
 
-    @Component
-    export default class Particles extends Vue {
-        @Prop({ required: true }) private id!: string;
-        @Prop() private options?: RecursivePartial<IOptions>;
-        private particlesContainer?: Container;
+export type IParticlesProps = ISourceOptions;
+export type IParticlesParams = IParticlesProps;
 
-        private mounted(): void {
-            this.$nextTick(() => {
-                if (!this.id) {
-                    throw new Error("Prop 'id' is required!")
-                }
+@Component
+export default class Particles extends Vue {
+  @Prop({ required: true }) private id!: string;
+  @Prop() private options?: IParticlesProps;
+  private particlesContainer?: Container;
 
-                tsParticles.load(this.id, this.options ?? {}).then(container => this.particlesContainer = container);
-            });
-        }
+  private mounted(): void {
+    this.$nextTick(() => {
+      if (!this.id) {
+        throw new Error("Prop 'id' is required!")
+      }
 
-        private beforeDestroy(): void {
-            this.particlesContainer?.destroy();
-        }
-    }
+      tsParticles.load(this.id, this.options ?? {}).then(container => this.particlesContainer = container);
+    });
+  }
+
+  private beforeDestroy(): void {
+    this.particlesContainer?.destroy();
+  }
+}
 </script>

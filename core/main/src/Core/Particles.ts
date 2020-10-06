@@ -1,16 +1,17 @@
-import { Container } from "./Container";
+import type { Container } from "./Container";
 import type { ICoordinates } from "./Interfaces/ICoordinates";
 import type { IMouseData } from "./Interfaces/IMouseData";
-import type { IRgb } from "./Interfaces/IRgb";
+import type { IRgb } from "./Interfaces/Colors";
 import { Particle } from "./Particle";
 import { Point, QuadTree, Rectangle, Utils } from "../Utils";
-import { RecursivePartial } from "../Types/RecursivePartial";
+import type { RecursivePartial } from "../Types";
 import type { IParticles } from "../Options/Interfaces/Particles/IParticles";
 import { InteractionManager } from "./Particle/InteractionManager";
 import type { IDelta } from "./Interfaces/IDelta";
+import type { IParticle } from "./Interfaces/IParticle";
 
 /**
- * Particles manager
+ * Particles manager object
  * @category Core
  */
 export class Particles {
@@ -18,31 +19,65 @@ export class Particles {
         return this.array.length;
     }
 
+    /**
+     * The quad tree used to search particles withing ranges
+     */
+    public quadTree;
+    public linksColors;
+
+    /**
+     * All the particles used in canvas
+     */
     public array: Particle[];
-    public quadTree: QuadTree;
-    //public spatialGrid: SpatialGrid;
+
     public pushing?: boolean;
     public linksColor?: IRgb | string;
-    public linksColors: Map<string, IRgb | string | undefined>;
     public grabLineColor?: IRgb | string;
 
-    private interactionManager: InteractionManager;
+    private interactionManager;
+    private nextId;
+    private linksFreq;
+    private trianglesFreq;
 
     constructor(private readonly container: Container) {
+        this.nextId = 0;
         this.array = [];
+        this.linksFreq = new Map<string, number>();
+        this.trianglesFreq = new Map<string, number>();
         this.interactionManager = new InteractionManager(container);
-        //this.spatialGrid = new SpatialGrid(this.container.canvas.size);
-        const canvasSize = this.container.canvas.size;
-        this.linksColors = new Map<string, IRgb | string | undefined>();
 
-        this.quadTree = new QuadTree(new Rectangle(0, 0, canvasSize.width, canvasSize.height), 4);
+        const canvasSize = this.container.canvas.size;
+
+        this.linksColors = new Map<string, IRgb | string | undefined>();
+        this.quadTree = new QuadTree(
+            new Rectangle(
+                -canvasSize.width / 4,
+                -canvasSize.height / 4,
+                (canvasSize.width * 3) / 2,
+                (canvasSize.height * 3) / 2
+            ),
+            4
+        );
     }
 
     /* --------- tsParticles functions - particles ----------- */
     public init(): void {
         const container = this.container;
         const options = container.options;
+
+        this.linksFreq = new Map<string, number>();
+        this.trianglesFreq = new Map<string, number>();
+
         let handled = false;
+
+        for (const particle of options.manualParticles) {
+            const pos = {
+                x: (particle.position.x * container.canvas.size.width) / 100,
+                y: (particle.position.y * container.canvas.size.height) / 100,
+            };
+
+            this.addParticle(pos, particle.options);
+        }
 
         for (const [, plugin] of container.plugins) {
             if (plugin.particlesInitialization !== undefined) {
@@ -62,10 +97,10 @@ export class Particles {
 
         if (options.infection.enable) {
             for (let i = 0; i < options.infection.infections; i++) {
-                const notInfected = this.array.map((p) => p.infecter).filter((p) => p.infectionStage === undefined);
+                const notInfected = this.array.filter((p) => p.infecter.infectionStage === undefined);
                 const infected = Utils.itemFromArray(notInfected);
 
-                infected.startInfection(0);
+                infected.infecter.startInfection(0);
             }
         }
 
@@ -115,8 +150,6 @@ export class Particles {
                 continue;
             }
 
-            //container.particles.spatialGrid.insert(particle);
-
             this.quadTree.insert(new Point(particle.getPosition(), particle));
         }
 
@@ -130,7 +163,9 @@ export class Particles {
         for (const particle of this.container.particles.array) {
             particle.update(delta);
 
-            this.interactionManager.particlesInteract(particle, delta);
+            if (!particle.destroyed && !particle.spawning) {
+                this.interactionManager.particlesInteract(particle, delta);
+            }
         }
     }
 
@@ -142,12 +177,18 @@ export class Particles {
 
         const canvasSize = this.container.canvas.size;
 
-        this.quadTree = new QuadTree(new Rectangle(0, 0, canvasSize.width, canvasSize.height), 4);
+        this.quadTree = new QuadTree(
+            new Rectangle(
+                -canvasSize.width / 4,
+                -canvasSize.height / 4,
+                (canvasSize.width * 3) / 2,
+                (canvasSize.height * 3) / 2
+            ),
+            4
+        );
 
         /* update each particles param */
-        //this.spatialGrid.init(this.container.canvas.size);
         this.update(delta);
-        //this.spatialGrid.setGrid(this.array, this.container.canvas.size);
 
         /* draw polygon shape in debug mode */
         for (const [, plugin] of container.plugins) {
@@ -155,8 +196,8 @@ export class Particles {
         }
 
         /*if (container.canvas.context) {
-        this.quadTree.draw(container.canvas.context);
-    }*/
+            this.quadTree.draw(container.canvas.context);
+        }*/
 
         /* draw each particle */
         for (const p of this.array) {
@@ -200,13 +241,15 @@ export class Particles {
 
     public addParticle(position?: ICoordinates, overrideOptions?: RecursivePartial<IParticles>): Particle | undefined {
         try {
-            const particle = new Particle(this.container, position, overrideOptions);
+            const particle = new Particle(this.nextId, this.container, position, overrideOptions);
 
             this.array.push(particle);
 
+            this.nextId++;
+
             return particle;
         } catch {
-            console.log("error adding particle");
+            console.warn("error adding particle");
 
             return;
         }
@@ -220,5 +263,47 @@ export class Particles {
         if (!options.particles.move.enable) {
             this.container.play();
         }
+    }
+
+    public getLinkFrequency(p1: IParticle, p2: IParticle): number {
+        const key = `${Math.min(p1.id, p2.id)}_${Math.max(p1.id, p2.id)}`;
+
+        let res = this.linksFreq.get(key);
+
+        if (res === undefined) {
+            res = Math.random();
+
+            this.linksFreq.set(key, res);
+        }
+
+        return res;
+    }
+
+    public getTriangleFrequency(p1: IParticle, p2: IParticle, p3: IParticle): number {
+        let [id1, id2, id3] = [p1.id, p2.id, p3.id];
+
+        if (id1 > id2) {
+            [id2, id1] = [id1, id2];
+        }
+
+        if (id2 > id3) {
+            [id3, id2] = [id2, id3];
+        }
+
+        if (id1 > id3) {
+            [id3, id1] = [id1, id3];
+        }
+
+        const key = `${id1}_${id2}_${id3}`;
+
+        let res = this.trianglesFreq.get(key);
+
+        if (res === undefined) {
+            res = Math.random();
+
+            this.trianglesFreq.set(key, res);
+        }
+
+        return res;
     }
 }

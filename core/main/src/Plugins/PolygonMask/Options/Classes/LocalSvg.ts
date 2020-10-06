@@ -1,7 +1,7 @@
 import type { ILocalSvg } from "../Interfaces/ILocalSvg";
-import type { SingleOrMultiple } from "../../../../Types/SingleOrMultiple";
+import type { SingleOrMultiple } from "../../../../Types";
 import type { IDimension } from "../../../../Core/Interfaces/IDimension";
-import type { RecursivePartial } from "../../../../Types/RecursivePartial";
+import type { RecursivePartial } from "../../../../Types";
 import type { IOptionLoader } from "../../../../Options/Interfaces/IOptionLoader";
 
 /**

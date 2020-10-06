@@ -1,7 +1,7 @@
-<script>
+<script lang="ts">
     import Particles from "svelte-particles";
 
-    export let name;
+    export let name: string;
 
     let particlesConfig = {
         particles: {

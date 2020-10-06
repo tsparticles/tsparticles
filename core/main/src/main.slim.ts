@@ -8,20 +8,20 @@ import { CircleDrawer } from "./ShapeDrawers/CircleDrawer";
 import { TriangleDrawer } from "./ShapeDrawers/TriangleDrawer";
 import { StarDrawer } from "./ShapeDrawers/StarDrawer";
 import { PolygonDrawer } from "./ShapeDrawers/PolygonDrawer";
-import { RecursivePartial } from "./Types/RecursivePartial";
-import { IOptions } from "./Options/Interfaces/IOptions";
-import { Container } from "./Core/Container";
+import type { IOptions } from "./Options/Interfaces/IOptions";
+import type { Container } from "./Core/Container";
 import { Loader } from "./Core/Loader";
-import { IShapeDrawer } from "./Core/Interfaces/IShapeDrawer";
-import {
+import type { IShapeDrawer } from "./Core/Interfaces/IShapeDrawer";
+import type {
     ShapeDrawerAfterEffectFunction,
     ShapeDrawerDestroyFunction,
     ShapeDrawerDrawFunction,
     ShapeDrawerInitFunction,
-} from "./Types/ShapeDrawerFunctions";
-import { IPlugin } from "./Core/Interfaces/IPlugin";
-import { Particle } from "./Core/Particle";
-import { SingleOrMultiple } from "./Types/SingleOrMultiple";
+    RecursivePartial,
+    SingleOrMultiple,
+} from "./Types";
+import type { IPlugin } from "./Core/Interfaces/IPlugin";
+import type { Particle } from "./Core/Particle";
 
 /**
  * Main class for creating the singleton on window.
@@ -29,7 +29,7 @@ import { SingleOrMultiple } from "./Types/SingleOrMultiple";
  * @category Main
  */
 export class MainSlim {
-    private initialized: boolean;
+    private initialized;
 
     constructor() {
         this.initialized = false;
@@ -72,7 +72,7 @@ export class MainSlim {
         options: RecursivePartial<IOptions>[],
         index?: number
     ): Promise<Container | undefined> {
-        return Loader.loadFromArray(tagId, options, index);
+        return Loader.load(tagId, options, index);
     }
 
     /**
@@ -106,11 +106,16 @@ export class MainSlim {
      * Loads the provided json with a GET request. The content will be used to create a [[Container]] object.
      * This method is async, so if you need a callback refer to JavaScript function `fetch`
      * @param tagId the particles container element id
-     * @param pathConfigJson the json path to use in the GET request
+     * @param pathConfigJson the json path (or paths array) to use in the GET request
+     * @param index the index of the paths array, if a single path is passed this value is ignored
      * @returns A Promise with the [[Container]] object created
      */
-    public loadJSON(tagId: string, pathConfigJson: string): Promise<Container | undefined> {
-        return Loader.loadJSON(tagId, pathConfigJson);
+    public loadJSON(
+        tagId: string,
+        pathConfigJson: SingleOrMultiple<string>,
+        index?: number
+    ): Promise<Container | undefined> {
+        return Loader.loadJSON(tagId, pathConfigJson, index);
     }
 
     /**

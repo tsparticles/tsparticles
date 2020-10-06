@@ -1,5 +1,5 @@
 import type { IParticles } from "../../Particles/IParticles";
-import type { RecursivePartial } from "../../../../Types/RecursivePartial";
+import type { RecursivePartial } from "../../../../Types";
 
 /**
  * @category Options

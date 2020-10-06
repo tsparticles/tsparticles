@@ -1,6 +1,6 @@
 import type { ILinks } from "../../../Interfaces/Particles/Links/ILinks";
 import { LinksShadow } from "./LinksShadow";
-import type { RecursivePartial } from "../../../../Types/RecursivePartial";
+import type { RecursivePartial } from "../../../../Types";
 import { LinksTriangle } from "./LinksTriangle";
 import { OptionsColor } from "../../OptionsColor";
 import type { IOptionLoader } from "../../../Interfaces/IOptionLoader";
@@ -10,17 +10,18 @@ import type { IOptionLoader } from "../../../Interfaces/IOptionLoader";
  * @category Options
  */
 export class Links implements ILinks, IOptionLoader<ILinks> {
+    public blink;
+    public color;
+    public consent;
+    public distance;
+    public enable;
+    public frequency;
     public id?: string;
-    public blink: boolean;
-    public color: OptionsColor;
-    public consent: boolean;
-    public distance: number;
-    public enable: boolean;
-    public opacity: number;
-    public shadow: LinksShadow;
-    public triangles: LinksTriangle;
-    public width: number;
-    public warp: boolean;
+    public opacity;
+    public shadow;
+    public triangles;
+    public width;
+    public warp;
 
     constructor() {
         this.blink = false;
@@ -28,6 +29,7 @@ export class Links implements ILinks, IOptionLoader<ILinks> {
         this.consent = false;
         this.distance = 100;
         this.enable = false;
+        this.frequency = 1;
         this.opacity = 1;
         this.shadow = new LinksShadow();
         this.triangles = new LinksTriangle();
@@ -60,6 +62,10 @@ export class Links implements ILinks, IOptionLoader<ILinks> {
 
         if (data.enable !== undefined) {
             this.enable = data.enable;
+        }
+
+        if (data.frequency !== undefined) {
+            this.frequency = data.frequency;
         }
 
         if (data.opacity !== undefined) {

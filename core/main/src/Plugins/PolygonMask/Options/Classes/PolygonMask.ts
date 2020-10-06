@@ -3,10 +3,10 @@ import { InlineArrangement, InlineArrangementAlt, Type } from "../../Enums";
 import { Draw } from "./Draw";
 import { Move } from "./Move";
 import { Inline } from "./Inline";
-import type { RecursivePartial } from "../../../../Types/RecursivePartial";
+import type { RecursivePartial } from "../../../../Types";
 import type { ICoordinates } from "../../../../Core/Interfaces/ICoordinates";
 import { LocalSvg } from "./LocalSvg";
-import { IOptionLoader } from "../../../../Options/Interfaces/IOptionLoader";
+import type { IOptionLoader } from "../../../../Options/Interfaces/IOptionLoader";
 
 /**
  * [[include:Options/Plugins/PolygonMask.md]]
@@ -27,13 +27,13 @@ export class PolygonMask implements IPolygonMask, IOptionLoader<IPolygonMask> {
         this.inline.arrangement = value;
     }
 
-    public draw: Draw;
-    public enable: boolean;
-    public inline: Inline;
-    public move: Move;
+    public draw;
+    public enable;
+    public inline;
+    public move;
     public position?: ICoordinates;
-    public scale: number;
-    public type: Type;
+    public scale;
+    public type;
     public url?: string;
     public data?: string | LocalSvg;
 

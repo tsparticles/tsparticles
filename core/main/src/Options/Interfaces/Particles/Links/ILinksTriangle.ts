@@ -1,4 +1,4 @@
-import type { IColor } from "../../../../Core/Interfaces/IColor";
+import type { IColor } from "../../../../Core/Interfaces/Colors";
 
 /**
  * @category Options
@@ -6,5 +6,6 @@ import type { IColor } from "../../../../Core/Interfaces/IColor";
 export interface ILinksTriangle {
     color?: string | IColor;
     enable: boolean;
+    frequency: number;
     opacity?: number;
 }

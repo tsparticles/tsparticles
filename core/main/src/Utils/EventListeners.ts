@@ -151,35 +151,7 @@ export class EventListeners {
     }
 
     private handleWindowResize(): void {
-        const container = this.container;
-        const options = container.options;
-        const canvas = container.canvas.element;
-
-        if (!canvas) {
-            return;
-        }
-
-        const pxRatio = container.retina.pixelRatio;
-
-        container.canvas.size.width = canvas.offsetWidth * pxRatio;
-        container.canvas.size.height = canvas.offsetHeight * pxRatio;
-
-        canvas.width = container.canvas.size.width;
-        canvas.height = container.canvas.size.height;
-
-        /* repaint canvas on anim disabled */
-        if (!options.particles.move.enable) {
-            container.particles.redraw();
-        }
-
-        /* density particles enabled */
-        container.densityAutoParticles();
-
-        for (const [, plugin] of container.plugins) {
-            if (plugin.resize !== undefined) {
-                plugin.resize();
-            }
-        }
+        this.container.canvas?.windowResize();
     }
 
     private handleVisibilityChange(): void {
@@ -304,8 +276,7 @@ export class EventListeners {
      * Mouse/Touch event finish
      */
     private mouseTouchFinish(): void {
-        const container = this.container;
-        const interactivity = container.interactivity;
+        const interactivity = this.container.interactivity;
 
         if (interactivity === undefined) {
             return;

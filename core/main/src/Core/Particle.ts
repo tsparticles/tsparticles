@@ -1,13 +1,11 @@
 import type { Container } from "./Container";
 import type { IVelocity } from "./Interfaces/IVelocity";
-import type { IParticleSizeAnimation } from "./Interfaces/IParticleSizeAnimation";
-import type { IParticleOpacityAnimation } from "./Interfaces/IParticleOpacityAnimation";
+import type { IParticleValueAnimation } from "./Interfaces/IParticleValueAnimation";
 import type { ICoordinates } from "./Interfaces/ICoordinates";
 import type { IParticleImage } from "./Interfaces/IParticleImage";
 import { Updater } from "./Particle/Updater";
-import type { IRgb } from "./Interfaces/IRgb";
+import type { IHsl, IRgb } from "./Interfaces/Colors";
 import type { IStroke } from "../Options/Interfaces/Particles/IStroke";
-import type { IOpacityRandom } from "../Options/Interfaces/Particles/Opacity/IOpacityRandom";
 import type { IShapeValues } from "../Options/Interfaces/Particles/Shape/IShapeValues";
 import type { IBubbleParticleData } from "./Interfaces/IBubbleParticleData";
 import type { IParticle } from "./Interfaces/IParticle";
@@ -15,101 +13,109 @@ import type { IParticles } from "../Options/Interfaces/Particles/IParticles";
 import { Particles } from "../Options/Classes/Particles/Particles";
 import { Shape } from "../Options/Classes/Particles/Shape/Shape";
 import {
+    AnimationStatus,
     MoveDirection,
-    OpacityAnimationStatus,
+    MoveDirectionAlt,
     OutMode,
     RotateDirection,
     ShapeType,
-    SizeAnimationStatus,
     StartValueType,
-    MoveDirectionAlt,
-    RotateDirectionAlt,
 } from "../Enums";
 import { ImageDrawer } from "../ShapeDrawers/ImageDrawer";
 import type { IImageShape } from "../Options/Interfaces/Particles/Shape/IImageShape";
-import { RecursivePartial } from "../Types/RecursivePartial";
-import type { ILink } from "./Interfaces/ILink";
-import type { IHsl } from "./Interfaces/IHsl";
-import { ColorUtils, Plugins, Utils } from "../Utils";
+import type { RecursivePartial } from "../Types";
+import { ColorUtils, NumberUtils, Plugins, Utils } from "../Utils";
 import type { IShapeDrawer } from "./Interfaces/IShapeDrawer";
 import { Infecter } from "./Particle/Infecter";
 import type { IDelta } from "./Interfaces/IDelta";
 import { Mover } from "./Particle/Mover";
+import type { ILink } from "./Interfaces/ILink";
 
 /**
  * The single particle object
  * @category Core
  */
 export class Particle implements IParticle {
-    public angle: number;
-    public pathAngle: number;
-    public destroyed: boolean;
-    public rotateDirection: RotateDirection | keyof typeof RotateDirection | RotateDirectionAlt;
-    public randomIndexData?: number;
+    public pathAngle;
+    public destroyed;
+    public lifeDelay;
+    public lifeDelayTime;
+    public lifeDuration;
+    public lifeTime;
+    public livesRemaining;
+    public misplaced;
+    public spawning;
+    public lastNoiseTime;
+
+    public readonly noiseDelay;
+    public readonly updater;
+    public readonly infecter;
+    public readonly mover;
+    public readonly sides;
+    public readonly strokeWidth;
+    public readonly particlesOptions;
+
     public links: ILink[];
+    public randomIndexData?: number;
+    public linksDistance?: number;
+    public linksWidth?: number;
+    public maxDistance?: number;
+    public moveSpeed?: number;
+    public sizeValue?: number;
+    public sizeAnimationSpeed?: number;
+
     public readonly close: boolean;
     public readonly direction: MoveDirection | keyof typeof MoveDirection | MoveDirectionAlt;
     public readonly fill: boolean;
     public readonly stroke: IStroke;
-    public readonly size: IParticleSizeAnimation;
     public readonly position: ICoordinates;
     public readonly offset: ICoordinates;
-    public readonly color: IHsl | undefined;
-    public readonly strokeWidth: number;
-    public readonly strokeColor: IHsl | undefined;
     public readonly shadowColor: IRgb | undefined;
-    public readonly opacity: IParticleOpacityAnimation;
+    public readonly color: IParticleValueAnimation<IHsl | undefined>;
+    public readonly opacity: IParticleValueAnimation<number>;
+    public readonly rotate: IParticleValueAnimation<number>;
+    public readonly size: IParticleValueAnimation<number>;
+    public readonly strokeColor: IParticleValueAnimation<IHsl | undefined>;
     public readonly velocity: IVelocity;
     public readonly shape: ShapeType | string;
     public readonly image?: IParticleImage;
+    public readonly initialPosition: ICoordinates;
     public readonly initialVelocity: IVelocity;
     public readonly shapeData?: IShapeValues;
     public readonly bubble: IBubbleParticleData;
-    public readonly noiseDelay: number;
-    public readonly colorVelocity: number;
-    public lastNoiseTime: number;
-    public linksDistance?: number;
-    public linksWidth?: number;
-    public moveSpeed?: number;
-    public sizeValue?: number;
-    public randomMinimumSize?: number;
-    public sizeAnimationSpeed?: number;
-
-    public readonly updater: Updater;
-    public readonly infecter: Infecter;
-    private readonly mover: Mover;
-
-    /* --------- tsParticles functions - particles ----------- */
-    public readonly particlesOptions: IParticles;
-
-    private readonly strokeColorVelocity?: number;
 
     constructor(
+        public readonly id: number,
         private readonly container: Container,
         position?: ICoordinates,
         overrideOptions?: RecursivePartial<IParticles>
     ) {
+        this.links = [];
         this.fill = true;
         this.close = true;
-        this.links = [];
         this.lastNoiseTime = 0;
         this.destroyed = false;
+        this.misplaced = false;
 
+        const pxRatio = container.retina.pixelRatio;
         const options = container.options;
         const particlesOptions = new Particles();
 
         particlesOptions.load(options.particles);
 
         const shapeType = particlesOptions.shape.type;
+        const reduceDuplicates = particlesOptions.reduceDuplicates;
 
-        this.shape = shapeType instanceof Array ? Utils.itemFromArray(shapeType) : shapeType;
+        this.shape = shapeType instanceof Array ? Utils.itemFromArray(shapeType, this.id, reduceDuplicates) : shapeType;
 
         if (overrideOptions?.shape) {
             if (overrideOptions.shape.type) {
                 const overrideShapeType = overrideOptions.shape.type;
 
                 this.shape =
-                    overrideShapeType instanceof Array ? Utils.itemFromArray(overrideShapeType) : overrideShapeType;
+                    overrideShapeType instanceof Array
+                        ? Utils.itemFromArray(overrideShapeType, this.id, reduceDuplicates)
+                        : overrideShapeType;
             }
 
             const shapeOptions = new Shape();
@@ -122,8 +128,10 @@ export class Particle implements IParticle {
                 if (shapeData) {
                     this.shapeData = Utils.deepExtend(
                         {},
-                        shapeData instanceof Array ? Utils.itemFromArray(shapeData) : shapeData
-                    );
+                        shapeData instanceof Array
+                            ? Utils.itemFromArray(shapeData, this.id, reduceDuplicates)
+                            : shapeData
+                    ) as IShapeValues;
                 }
             }
         } else {
@@ -132,8 +140,8 @@ export class Particle implements IParticle {
             if (shapeData) {
                 this.shapeData = Utils.deepExtend(
                     {},
-                    shapeData instanceof Array ? Utils.itemFromArray(shapeData) : shapeData
-                );
+                    shapeData instanceof Array ? Utils.itemFromArray(shapeData, this.id, reduceDuplicates) : shapeData
+                ) as IShapeValues;
             }
         }
 
@@ -147,33 +155,21 @@ export class Particle implements IParticle {
 
         this.fill = this.shapeData?.fill ?? this.fill;
         this.close = this.shapeData?.close ?? this.close;
-
         this.particlesOptions = particlesOptions;
-
-        const noiseDelay = this.particlesOptions.move.noise.delay;
-
-        this.noiseDelay =
-            (noiseDelay.random.enable
-                ? Utils.randomInRange(noiseDelay.random.minimumValue, noiseDelay.value)
-                : noiseDelay.value) * 1000;
+        this.noiseDelay = NumberUtils.getValue(this.particlesOptions.move.noise.delay) * 1000;
 
         container.retina.initParticle(this);
 
         const color = this.particlesOptions.color;
 
         /* size */
-        const sizeValue = this.sizeValue ?? container.retina.sizeValue;
+        const sizeOptions = this.particlesOptions.size;
+        const sizeValue = NumberUtils.getValue(sizeOptions) * container.retina.pixelRatio;
 
-        const randomSize =
-            typeof this.particlesOptions.size.random === "boolean"
-                ? this.particlesOptions.size.random
-                : this.particlesOptions.size.random.enable;
+        const randomSize = typeof sizeOptions.random === "boolean" ? sizeOptions.random : sizeOptions.random.enable;
 
         this.size = {
-            value:
-                randomSize && this.randomMinimumSize !== undefined
-                    ? Utils.randomInRange(this.randomMinimumSize, sizeValue)
-                    : sizeValue,
+            value: sizeValue,
         };
 
         this.direction = this.particlesOptions.move.direction;
@@ -188,37 +184,73 @@ export class Particle implements IParticle {
             vertical: this.initialVelocity.vertical,
         };
 
-        const rotateOptions = this.particlesOptions.rotate;
-
-        const degAngle = rotateOptions.random ? Math.random() * 360 : rotateOptions.value;
-
-        this.angle = (degAngle * Math.PI) / 180;
         this.pathAngle = Math.atan2(this.initialVelocity.vertical, this.initialVelocity.horizontal);
 
-        this.rotateDirection = rotateOptions.direction;
+        const rotateOptions = this.particlesOptions.rotate;
 
-        if (this.rotateDirection === RotateDirection.random) {
+        this.rotate = {
+            value: ((rotateOptions.random.enable ? Math.random() * 360 : rotateOptions.value) * Math.PI) / 180,
+        };
+
+        let rotateDirection = rotateOptions.direction;
+
+        if (rotateDirection === RotateDirection.random) {
             const index = Math.floor(Math.random() * 2);
 
-            this.rotateDirection = index > 0 ? RotateDirection.counterClockwise : RotateDirection.clockwise;
+            rotateDirection = index > 0 ? RotateDirection.counterClockwise : RotateDirection.clockwise;
+        }
+
+        switch (rotateDirection) {
+            case RotateDirection.counterClockwise:
+            case "counterClockwise":
+                this.rotate.status = AnimationStatus.decreasing;
+                break;
+            case RotateDirection.clockwise:
+                this.rotate.status = AnimationStatus.increasing;
+                break;
+        }
+
+        const rotateAnimation = this.particlesOptions.rotate.animation;
+
+        if (rotateAnimation.enable) {
+            this.rotate.velocity = (rotateAnimation.speed / 360) * container.retina.reduceFactor;
+
+            if (!rotateAnimation.sync) {
+                this.rotate.velocity *= Math.random();
+            }
         }
 
         const sizeAnimation = this.particlesOptions.size.animation;
 
         if (sizeAnimation.enable) {
-            switch (sizeAnimation.startValue) {
-                case StartValueType.min:
-                    if (!randomSize) {
-                        const pxRatio = container.retina.pixelRatio;
+            this.size.status = AnimationStatus.increasing;
 
+            if (!randomSize) {
+                switch (sizeAnimation.startValue) {
+                    case StartValueType.min:
                         this.size.value = sizeAnimation.minimumValue * pxRatio;
-                    }
 
-                    break;
+                        break;
+
+                    case StartValueType.random:
+                        this.size.value = NumberUtils.randomInRange(
+                            sizeAnimation.minimumValue * pxRatio,
+                            this.size.value
+                        );
+
+                        break;
+
+                    case StartValueType.max:
+                    default:
+                        this.size.status = AnimationStatus.decreasing;
+
+                        break;
+                }
             }
 
-            this.size.status = SizeAnimationStatus.increasing;
-            this.size.velocity = (this.sizeAnimationSpeed ?? container.retina.sizeAnimationSpeed) / 100;
+            this.size.velocity =
+                ((this.sizeAnimationSpeed ?? container.retina.sizeAnimationSpeed) / 100) *
+                container.retina.reduceFactor;
 
             if (!sizeAnimation.sync) {
                 this.size.velocity *= Math.random();
@@ -226,26 +258,26 @@ export class Particle implements IParticle {
         }
 
         /* color */
-        this.color = ColorUtils.colorToHsl(color);
+        this.color = {
+            value: ColorUtils.colorToHsl(color, this.id, reduceDuplicates),
+        };
 
         const colorAnimation = this.particlesOptions.color.animation;
 
         if (colorAnimation.enable) {
-            this.colorVelocity = colorAnimation.speed / 100;
+            this.color.velocity = (colorAnimation.speed / 100) * container.retina.reduceFactor;
 
             if (!colorAnimation.sync) {
-                this.colorVelocity = this.colorVelocity * Math.random();
+                this.color.velocity *= Math.random();
             }
-        } else {
-            this.colorVelocity = 0;
-        }
-
-        if (colorAnimation.enable && !colorAnimation.sync && this.color) {
-            this.color.h = Math.random() * 360;
         }
 
         /* position */
         this.position = this.calcPosition(this.container, position);
+        this.initialPosition = {
+            x: this.position.x,
+            y: this.position.y,
+        };
 
         /* parallax */
         this.offset = {
@@ -253,30 +285,29 @@ export class Particle implements IParticle {
             y: 0,
         };
 
-        /* check position - avoid overlap */
-        if (this.particlesOptions.collisions.enable && !this.checkOverlap(position)) {
-            throw new Error();
-        }
-
         /* opacity */
         const opacityOptions = this.particlesOptions.opacity;
-        const randomOpacity = opacityOptions.random as IOpacityRandom;
+        const randomOpacity = opacityOptions.random;
         const opacityValue = opacityOptions.value;
 
         this.opacity = {
-            value: randomOpacity.enable ? Utils.randomInRange(randomOpacity.minimumValue, opacityValue) : opacityValue,
+            value: randomOpacity.enable
+                ? NumberUtils.randomInRange(randomOpacity.minimumValue, opacityValue)
+                : opacityValue,
         };
 
         const opacityAnimation = opacityOptions.animation;
 
         if (opacityAnimation.enable) {
-            this.opacity.status = OpacityAnimationStatus.increasing;
-            this.opacity.velocity = opacityAnimation.speed / 100;
+            this.opacity.status = AnimationStatus.increasing;
+            this.opacity.velocity = (opacityAnimation.speed / 100) * container.retina.reduceFactor;
 
             if (!opacityAnimation.sync) {
                 this.opacity.velocity *= Math.random();
             }
         }
+
+        this.sides = 24;
 
         let drawer = container.drawers.get(this.shape);
 
@@ -286,6 +317,12 @@ export class Particle implements IParticle {
             if (drawer) {
                 container.drawers.set(this.shape, drawer);
             }
+        }
+
+        const sideCountFunc = drawer?.getSidesCount;
+
+        if (sideCountFunc) {
+            this.sides = sideCountFunc(this);
         }
 
         /* if shape is image */
@@ -299,37 +336,64 @@ export class Particle implements IParticle {
 
         this.stroke =
             this.particlesOptions.stroke instanceof Array
-                ? Utils.itemFromArray(this.particlesOptions.stroke)
+                ? Utils.itemFromArray(this.particlesOptions.stroke, this.id, reduceDuplicates)
                 : this.particlesOptions.stroke;
 
         this.strokeWidth = this.stroke.width * container.retina.pixelRatio;
 
         /* strokeColor */
-        this.strokeColor = ColorUtils.colorToHsl(this.stroke.color);
+        this.strokeColor = {
+            value: ColorUtils.colorToHsl(this.stroke.color) ?? this.color.value,
+        };
 
         if (typeof this.stroke.color !== "string") {
             const strokeColorAnimation = this.stroke.color?.animation;
 
             if (strokeColorAnimation && this.strokeColor) {
                 if (strokeColorAnimation.enable) {
-                    this.strokeColorVelocity = colorAnimation.speed / 100;
+                    this.strokeColor.velocity = (strokeColorAnimation.speed / 100) * container.retina.reduceFactor;
 
                     if (!strokeColorAnimation.sync) {
-                        this.strokeColorVelocity = this.strokeColorVelocity * Math.random();
+                        this.strokeColor.velocity = this.strokeColor.velocity * Math.random();
                     }
                 } else {
-                    this.strokeColorVelocity = 0;
+                    this.strokeColor.velocity = 0;
                 }
 
-                if (strokeColorAnimation.enable && !strokeColorAnimation.sync && this.color) {
-                    this.strokeColor.h = Math.random() * 360;
+                if (strokeColorAnimation.enable && !strokeColorAnimation.sync && this.strokeColor.value) {
+                    this.strokeColor.value.h = Math.random() * 360;
                 }
             }
         }
 
+        const lifeOptions = particlesOptions.life;
+
+        this.lifeDelay = container.retina.reduceFactor
+            ? ((NumberUtils.getValue(lifeOptions.delay) * (lifeOptions.delay.sync ? 1 : Math.random())) /
+                  container.retina.reduceFactor) *
+              1000
+            : 0;
+        this.lifeDelayTime = 0;
+        this.lifeDuration = container.retina.reduceFactor
+            ? ((NumberUtils.getValue(lifeOptions.duration) * (lifeOptions.duration.sync ? 1 : Math.random())) /
+                  container.retina.reduceFactor) *
+              1000
+            : 0;
+        this.lifeTime = 0;
+        this.livesRemaining = particlesOptions.life.count;
+        this.spawning = this.lifeDelay > 0;
+
+        if (this.lifeDuration <= 0) {
+            this.lifeDuration = -1;
+        }
+
+        if (this.livesRemaining <= 0) {
+            this.livesRemaining = -1;
+        }
+
         this.shadowColor = ColorUtils.colorToRgb(this.particlesOptions.shadow.color);
         this.updater = new Updater(container, this);
-        this.infecter = new Infecter(container, this);
+        this.infecter = new Infecter(container);
         this.mover = new Mover(container, this);
     }
 
@@ -346,26 +410,6 @@ export class Particle implements IParticle {
         this.container.canvas.drawParticle(this, delta);
     }
 
-    public isOverlapping(): boolean {
-        const container = this.container;
-
-        let collisionFound = false;
-
-        const pos1 = this.getPosition();
-
-        for (const p2 of container.particles.array.filter((t) => t != this)) {
-            const pos2 = p2.getPosition();
-            const dist = Utils.getDistance(pos1, pos2);
-
-            if (dist <= this.size.value + p2.size.value) {
-                collisionFound = true;
-                break;
-            }
-        }
-
-        return collisionFound;
-    }
-
     public getPosition(): ICoordinates {
         return {
             x: this.position.x + this.offset.x,
@@ -373,40 +417,22 @@ export class Particle implements IParticle {
         };
     }
 
+    public getRadius(): number {
+        return this.bubble.radius || this.size.value;
+    }
+
     public getFillColor(): IHsl | undefined {
-        return this.bubble.color ?? this.color;
+        return this.bubble.color ?? this.color.value;
     }
 
     public getStrokeColor(): IHsl | undefined {
-        return this.bubble.color ?? this.strokeColor ?? this.color;
+        return this.bubble.color ?? this.strokeColor.value ?? this.color.value;
     }
 
     public destroy(): void {
         this.destroyed = true;
-    }
-
-    private checkOverlap(position?: ICoordinates, iterations = 0): boolean {
-        const container = this.container;
-
-        if (!container.particles.count) {
-            return true;
-        }
-
-        if (iterations >= container.particles.count) {
-            // too many particles
-            return false;
-        }
-
-        const overlapping = this.isOverlapping();
-
-        if (overlapping) {
-            this.position.x = position ? position.x : Math.random() * container.canvas.size.width;
-            this.position.y = position ? position.y : Math.random() * container.canvas.size.height;
-
-            return this.checkOverlap(undefined, iterations + 1);
-        }
-
-        return true;
+        this.bubble.inRange = false;
+        this.links = [];
     }
 
     private calcPosition(container: Container, position?: ICoordinates): ICoordinates {
@@ -415,7 +441,7 @@ export class Particle implements IParticle {
                 plugin.particlePosition !== undefined ? plugin.particlePosition(position, this) : undefined;
 
             if (pluginPos !== undefined) {
-                return Utils.deepExtend({}, pluginPos);
+                return Utils.deepExtend({}, pluginPos) as ICoordinates;
             }
         }
 
@@ -447,7 +473,7 @@ export class Particle implements IParticle {
     }
 
     private calculateVelocity(): IVelocity {
-        const baseVelocity = Utils.getParticleBaseVelocity(this);
+        const baseVelocity = NumberUtils.getParticleBaseVelocity(this);
         const res = {
             horizontal: 0,
             vertical: 0,
@@ -474,12 +500,12 @@ export class Particle implements IParticle {
             res.vertical = baseVelocity.y;
 
             if (moveOptions.random) {
-                res.horizontal += Utils.randomInRange(range.left, range.right) / 2;
-                res.vertical += Utils.randomInRange(range.left, range.right) / 2;
+                res.horizontal += NumberUtils.randomInRange(range.left, range.right) / 2;
+                res.vertical += NumberUtils.randomInRange(range.left, range.right) / 2;
             }
         } else {
-            res.horizontal = baseVelocity.x + Utils.randomInRange(range.left, range.right) / 2;
-            res.vertical = baseVelocity.y + Utils.randomInRange(range.left, range.right) / 2;
+            res.horizontal = baseVelocity.x + NumberUtils.randomInRange(range.left, range.right) / 2;
+            res.vertical = baseVelocity.y + NumberUtils.randomInRange(range.left, range.right) / 2;
         }
 
         // const theta = 2.0 * Math.PI * Math.random();
@@ -520,7 +546,7 @@ export class Particle implements IParticle {
 
             /* prepare to create img with colored svg */
             const svg = new Blob([svgColoredData], { type: "image/svg+xml" });
-            const domUrl = window.URL || window.webkitURL || window;
+            const domUrl = URL || window.URL || window.webkitURL || window;
             const url = domUrl.createObjectURL(svg);
 
             /* create particle img obj */

@@ -36,6 +36,14 @@ color: 'rgb(255, 255, 255)'
 color: 'hsl(0, 100%, 100%)'
 ```
 
+### hsv syntax
+
+*alpha will be ignored, there are `opacity` values for that*
+
+```javascript
+color: 'hsv(0°, 100%, 100%)'
+```
+
 ### random
 
 ```javascript
@@ -76,6 +84,18 @@ color: {
     h: 0,
     s: 100,
     l: 100
+  }
+}
+```
+
+### hsv object
+
+```javascript
+color: {
+  value: {
+    h: 0,
+    s: 100,
+    v: 100
   }
 }
 ```

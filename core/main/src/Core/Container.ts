@@ -10,7 +10,7 @@ import { Particles } from "./Particles";
 import { Retina } from "./Retina";
 import type { IOptions } from "../Options/Interfaces/IOptions";
 import { FrameManager } from "./FrameManager";
-import type { RecursivePartial } from "../Types/RecursivePartial";
+import type { RecursivePartial } from "../Types";
 import { Options } from "../Options/Classes/Options";
 import type { IContainerPlugin } from "./Interfaces/IContainerPlugin";
 import type { IShapeDrawer } from "./Interfaces/IShapeDrawer";
@@ -18,7 +18,7 @@ import { EventListeners, Plugins, Utils } from "../Utils";
 import { Particle } from "./Particle";
 import type { INoiseValue } from "./Interfaces/INoiseValue";
 import type { INoise } from "./Interfaces/INoise";
-import type { IRgb } from "./Interfaces/IRgb";
+import type { IRgb } from "./Interfaces/Colors";
 import type { IAttract } from "./Interfaces/IAttract";
 
 /**
@@ -27,29 +27,57 @@ import type { IAttract } from "./Interfaces/IAttract";
  * @category Core
  */
 export class Container {
+    /**
+     * Check if the particles container is started
+     */
+    public started;
+
+    /**
+     * Check if the particles container is destroyed, if so it's not recommended using it
+     */
+    public destroyed;
+
+    public density;
+    public pageHidden;
+    public lastFrameTime;
+    public fpsLimit;
     public interactivity: IContainerInteractivity;
-    public options: Options;
-    public retina: Retina;
-    public canvas: Canvas;
-    public drawers: Map<string, IShapeDrawer>;
-    public particles: Particles;
-    public plugins: Map<string, IContainerPlugin>;
     public bubble: IBubble;
     public repulse: IRepulse;
     public attract: IAttract;
-    public lastFrameTime: number;
-    public pageHidden: boolean;
-    public drawer: FrameManager;
-    public started: boolean;
-    public destroyed: boolean;
-    public density: number;
-    public fpsLimit: number;
+
+    /**
+     * The options used by the container, it's a full [[Options]] object
+     */
+    public readonly options;
+
+    public readonly retina;
+    public readonly canvas;
+
+    /**
+     * The particles manager
+     */
+    public readonly particles;
+
+    public readonly drawer;
+
+    /**
+     * All the shape drawers used by the container
+     */
+    public readonly drawers;
+
+    /**
+     * All the plugins used by the container
+     */
+    public readonly plugins;
 
     public readonly noise: INoise;
 
-    private paused: boolean;
+    private paused;
+    private firstStart;
     private drawAnimationFrame?: number;
-    private eventListeners: EventListeners;
+
+    private readonly eventListeners;
 
     /**
      * This is the core class, create an instance to have a new working particles manager
@@ -63,6 +91,7 @@ export class Container {
         public readonly sourceOptions?: RecursivePartial<IOptions>,
         ...presets: string[]
     ) {
+        this.firstStart = true;
         this.started = false;
         this.destroyed = false;
         this.paused = true;
@@ -98,7 +127,6 @@ export class Container {
         this.plugins = new Map<string, IContainerPlugin>();
         this.drawers = new Map<string, IShapeDrawer>();
         this.density = 1;
-
         /* tsParticles variables with default values */
         this.options = new Options();
 
@@ -123,6 +151,8 @@ export class Container {
 
         this.fpsLimit = this.options.fpsLimit > 0 ? this.options.fpsLimit : 60;
 
+        this.options.setTheme(undefined);
+
         /* ---------- tsParticles - start ------------ */
         this.eventListeners = new EventListeners(this);
     }
@@ -133,6 +163,11 @@ export class Container {
      */
     public play(force?: boolean): void {
         const needsUpdate = this.paused || force;
+
+        if (this.firstStart && !this.options.autoPlay) {
+            this.firstStart = false;
+            return;
+        }
 
         if (this.paused) {
             this.paused = false;
@@ -180,7 +215,7 @@ export class Container {
      * Draws a frame
      */
     public draw(): void {
-        this.drawAnimationFrame = Utils.animate((t) => this.drawer.nextFrame(t));
+        this.drawAnimationFrame = Utils.animate((timestamp) => this.drawer.nextFrame(timestamp));
     }
 
     /**
@@ -237,6 +272,10 @@ export class Container {
      * Aligns particles number to the specified density in the current canvas size
      */
     public densityAutoParticles(): void {
+        if (!this.options.particles.number.density.enable) {
+            return;
+        }
+
         this.initDensityFactor();
 
         const numberOptions = this.options.particles.number;
@@ -266,7 +305,10 @@ export class Container {
             }
         }
 
-        this.drawers = new Map<string, IShapeDrawer>();
+        for (const key of this.drawers.keys()) {
+            this.drawers.delete(key);
+        }
+
         this.destroyed = true;
     }
 
@@ -296,6 +338,9 @@ export class Container {
         return JSON.stringify(this.options, undefined, 2);
     }
 
+    /**
+     * Restarts the container, just a [[stop]]/[[start]] alias
+     */
     public async refresh(): Promise<void> {
         /* restart */
         this.stop();
@@ -310,6 +355,7 @@ export class Container {
             return;
         }
 
+        this.firstStart = true;
         this.started = false;
         this.eventListeners.removeListeners();
         this.pause();
@@ -322,11 +368,24 @@ export class Container {
             }
         }
 
-        this.plugins = new Map<string, IContainerPlugin>();
+        for (const key of this.plugins.keys()) {
+            this.plugins.delete(key);
+        }
+
         this.particles.linksColors = new Map<string, IRgb | string | undefined>();
 
         delete this.particles.grabLineColor;
         delete this.particles.linksColor;
+    }
+
+    /**
+     * Loads the given theme, overriding the options
+     * @param name the theme name, if `undefined` resets the default options or the default theme
+     */
+    public async loadTheme(name?: string): Promise<void> {
+        this.options.setTheme(name);
+
+        await this.refresh();
     }
 
     /**
@@ -381,8 +440,8 @@ export class Container {
             }
         }
 
+        this.canvas.windowResize();
         this.particles.init();
-        this.densityAutoParticles();
     }
 
     private initDensityFactor(): void {

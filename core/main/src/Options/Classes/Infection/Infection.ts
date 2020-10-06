@@ -1,5 +1,5 @@
 import type { IInfection } from "../../Interfaces/Infection/IInfection";
-import type { RecursivePartial } from "../../../Types/RecursivePartial";
+import type { RecursivePartial } from "../../../Types";
 import { InfectionStage } from "./InfectionStage";
 import type { IOptionLoader } from "../../Interfaces/IOptionLoader";
 
@@ -8,10 +8,10 @@ import type { IOptionLoader } from "../../Interfaces/IOptionLoader";
  * @category Options
  */
 export class Infection implements IInfection, IOptionLoader<IInfection> {
-    public cure: boolean;
-    public delay: number;
-    public enable: boolean;
-    public infections: number;
+    public cure;
+    public delay;
+    public enable;
+    public infections;
     public stages: InfectionStage[];
 
     constructor() {

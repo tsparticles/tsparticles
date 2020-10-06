@@ -1,7 +1,3 @@
-const Window = require("window");
-
-globalThis.window = new Window();
-
 import { expect } from "chai";
 import { TestCanvas } from "./Fixture/TestCanvas";
 import { TestContainer } from "./Fixture/TestContainer";
@@ -9,11 +5,15 @@ import { TestParticle } from "./Fixture/TestParticle";
 import { ShapeType } from "../src/Enums";
 import { ICoordinates } from "../src/Core/Interfaces/ICoordinates";
 
-const testContainer = new TestContainer({});
-const testParticle = new TestParticle(testContainer.container);
-const testCanvas = new TestCanvas(testContainer.container, 1920, 1080);
+const Window = require("window");
 
 describe("Particle", () => {
+    globalThis.window = new Window();
+
+    const testContainer = new TestContainer({});
+    const testParticle = new TestParticle(testContainer.container);
+    const testCanvas = new TestCanvas(testContainer.container, 1920, 1080);
+
     describe("constructor/initialization", () => {
         const squareShapeOptions = {
             particles: {
@@ -43,22 +43,22 @@ describe("Particle", () => {
 
         describe("shape - no emitter", () => {
             it("should set the shape property to circle when default Particles options are used", () => {
-                expect(testParticle.particle.shape).to.equal(ShapeType.circle);
+                expect(testParticle.particle?.shape).to.equal(ShapeType.circle);
             });
 
             it("should set the shape property to square when container Particles options specifies a shape type of square", () => {
                 testContainer.reset(squareShapeOptions);
                 testParticle.reset(testContainer.container);
 
-                expect(testParticle.particle.shape).to.equal(ShapeType.square);
+                expect(testParticle.particle?.shape).to.equal(ShapeType.square);
             });
 
-            xit("should choose a single shape from the specified array when container Particles options specifies an array os shape types", () => {
+            it("should choose a single shape from the specified array when container Particles options specifies an array os shape types", () => {
                 testContainer.reset(multipleShapeTypeOptions);
                 testParticle.reset(testContainer.container);
 
-                expect(testParticle.particle.shape).to.be.a("string");
-                expect(shapeTypes).to.include(testParticle.particle.shape);
+                expect(testParticle.particle?.shape).to.be.a("string");
+                expect(shapeTypes).to.include(testParticle.particle?.shape);
             });
 
             after(() => {
@@ -69,24 +69,24 @@ describe("Particle", () => {
 
         describe("shapeData - no emitter", () => {
             it("should have undefined shapeData whenever shape data is not specified for container Particles", () => {
-                expect(testParticle.particle.shapeData).to.be.undefined;
+                expect(testParticle.particle?.shapeData).to.be.undefined;
             });
 
             it("should set shapeData to the square shape data configured on the container Particles", () => {
                 testContainer.reset(squareShapeOptions);
                 testParticle.reset(testContainer.container);
 
-                expect(testParticle.particle.shapeData).to.eql(squareShapeOptions.particles.shape.options.square);
-                expect(testParticle.particle.close).to.eql(squareShapeOptions.particles.shape.options.square.close);
-                expect(testParticle.particle.fill).to.eql(squareShapeOptions.particles.shape.options.square.fill);
+                expect(testParticle.particle?.shapeData).to.eql(squareShapeOptions.particles.shape.options.square);
+                expect(testParticle.particle?.close).to.eql(squareShapeOptions.particles.shape.options.square.close);
+                expect(testParticle.particle?.fill).to.eql(squareShapeOptions.particles.shape.options.square.fill);
             });
 
             it("should set shapeData to the configured shape data matching the chosen shape whenever multiple shapes are specified for container Particles", () => {
                 testContainer.reset(multipleShapeTypeOptions);
                 testParticle.reset(testContainer.container);
-                expect(testParticle.particle.shape).to.be.a("string");
+                expect(testParticle.particle?.shape).to.be.a("string");
                 let expectedShapeData;
-                switch (testParticle.particle.shape) {
+                switch (testParticle.particle?.shape) {
                     case ShapeType.char:
                         expectedShapeData = multipleShapeTypeOptions.particles.shape.options[ShapeType.char];
                         break;
@@ -100,11 +100,11 @@ describe("Particle", () => {
                         expectedShapeData = multipleShapeTypeOptions.particles.shape.options[ShapeType.polygon];
                         break;
                     default:
-                        throw new Error(`Unexpected shape type "${testParticle.particle.shape}"`);
+                        throw new Error(`Unexpected shape type "${testParticle.particle?.shape}"`);
                 }
 
-                expect(testParticle.particle.close).to.eql(expectedShapeData.close);
-                expect(testParticle.particle.fill).to.eql(expectedShapeData.fill);
+                expect(testParticle.particle?.close).to.eql(expectedShapeData.close);
+                expect(testParticle.particle?.fill).to.eql(expectedShapeData.fill);
             });
 
             after(() => {
@@ -115,8 +115,8 @@ describe("Particle", () => {
 
         it("should always set an angle in range [0,360]", () => {
             // Note, the real range should be [0,360) but the function includes 360 and it won't hurt anything
-            expect(testParticle.particle.angle).to.be.at.least(-2 * Math.PI);
-            expect(testParticle.particle.angle).to.be.at.most(2 * Math.PI);
+            expect(testParticle.particle?.rotate.value).to.be.at.least(-2 * Math.PI);
+            expect(testParticle.particle?.rotate.value).to.be.at.most(2 * Math.PI);
         });
     });
 
@@ -133,28 +133,21 @@ describe("Particle", () => {
             const position: ICoordinates = testParticle.randomPositionInCanvas(testContainer.container);
             testParticle.reset(testContainer.container, position);
 
-            expect(testParticle.particle.position).to.eql(position);
+            expect(testParticle.particle?.position).to.eql(position);
         });
 
         it("should always return a position that is on the canvas when no position specified", () => {
             testParticle.reset(testContainer.container);
 
-            expect(testParticle.particle.position.x).to.be.at.least(0);
-            expect(testParticle.particle.position.x).to.be.at.most(width);
-            expect(testParticle.particle.position.y).to.be.at.least(0);
-            expect(testParticle.particle.position.y).to.be.at.most(height);
+            expect(testParticle.particle?.position.x).to.be.at.least(0);
+            expect(testParticle.particle?.position.x).to.be.at.most(width);
+            expect(testParticle.particle?.position.y).to.be.at.least(0);
+            expect(testParticle.particle?.position.y).to.be.at.most(height);
         });
 
         after(() => {
             testContainer.reset({});
             testParticle.reset(testContainer.container);
-        });
-    });
-
-    describe("isOverlapping", () => {
-        it("should always return false whenever the container has no other particles", () => {
-            const isOverlapping = testParticle.particle.isOverlapping();
-            expect(isOverlapping).to.be.false;
         });
     });
 });

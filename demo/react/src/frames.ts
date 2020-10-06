@@ -2,16 +2,17 @@ import react from "../public/assets/react.svg";
 import k8s from "../public/assets/k8s.svg";
 import code from "../public/assets/code.png";
 import smallDeer from "../public/assets/small-deer.svg";
-import { IParticlesParams, MoveDirection, OutMode, HoverMode, ClickMode, ShapeType } from "react-tsparticles";
+import { MoveDirection, OutMode, HoverMode, ClickMode, ShapeType } from "react-tsparticles";
 import {
     Type as PolygonMaskType,
     InlineArrangement as PolygonMaskInlineArrangement
 } from "tsparticles/dist/Plugins/PolygonMask/Enums";
+import type { ISourceOptions } from "tsparticles";
 
 export type TFrame = {
     backgroundColor: string;
     name: string;
-    options: IParticlesParams;
+    options: ISourceOptions;
     slug: string;
 };
 
