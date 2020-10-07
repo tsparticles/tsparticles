@@ -5,6 +5,9 @@ import { isEqual } from "lodash";
 import type { IParticlesProps } from "./IParticlesProps";
 import type { IParticlesState } from "./IParticlesState";
 
+/**
+ * @param {{id?: string,width?: string,height?: string,options?: ISourceOptions,params?: ISourceOptions,style?: CSSProperties,className?: string,canvasClassName?: string,container?: RefObject<Container>}}
+ */
 export default class Particles extends Component<IParticlesProps, IParticlesState> {
     public static defaultProps: IParticlesProps = {
         width: "100%",
