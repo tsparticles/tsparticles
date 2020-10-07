@@ -60,6 +60,7 @@
       "random": false,
       "straight": false,
       "out_mode": "out",
+      "size": true,
       "attract": {
         "enable": false,
         "rotateX": 600,
