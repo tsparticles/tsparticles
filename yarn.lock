@@ -17165,9 +17165,9 @@ svelte-language-server@*:
     vscode-uri "2.1.1"
 
 svelte-preprocess@^4.3.2:
-  version "4.3.2"
-  resolved "https://registry.yarnpkg.com/svelte-preprocess/-/svelte-preprocess-4.3.2.tgz#a05a98e59c64044e835b1401346be41665f19971"
-  integrity sha512-CmIsCr62y34qGS10/SC1l1VkmX0kZR6wncbGgRJ1qJftLDMEaazC3bWqoqAlrqyQFvpO0+xb44GQm4RKi/9sLQ==
+  version "4.4.3"
+  resolved "https://registry.yarnpkg.com/svelte-preprocess/-/svelte-preprocess-4.4.3.tgz#3ed7a43832f3dd2ce8b979575e2b159e21ef6f20"
+  integrity sha512-KFBzUT3+HFbu9NNX0pgMoJ4/dlPU0EpxLFS+Aao9xkWJ/YflxzutcCe7XTaQdX72YXlVR3RWictil8AEe3J9Xw==
   dependencies:
     "@types/pug" "^2.0.4"
     "@types/sass" "^1.16.0"
