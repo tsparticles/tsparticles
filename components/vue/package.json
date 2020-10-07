@@ -67,7 +67,7 @@
     "url": "https://github.com/sponsors/matteobruni"
   },
   "dependencies": {
-    "tslib": "^2.0.1",
+    "tslib": "^2.0.2",
     "tsparticles": "^1.18.1",
     "vue": "^2.6.12",
     "vue-class-component": "^7.2.6",

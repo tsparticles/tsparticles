@@ -12841,10 +12841,10 @@ object-copy@^0.1.0:
     define-property "^0.2.5"
     kind-of "^3.0.3"
 
-object-gui@^1.0.10:
-  version "1.0.10"
-  resolved "https://registry.yarnpkg.com/object-gui/-/object-gui-1.0.10.tgz#20969088301cdff8fb056cc1211f2990b6ad8f60"
-  integrity sha512-V1jpk7d6MCiS0gKkAupj4aTp3Qmg4E9TeTkMfFBNv2CGhW1aRTaj+3jSrlRVG6pnJMpoU+XSWhkBEv4+RbOL6w==
+object-gui@^1.0.11:
+  version "1.0.11"
+  resolved "https://registry.yarnpkg.com/object-gui/-/object-gui-1.0.11.tgz#fb7ca55f5759c0e79a704261f7c6ad121072c452"
+  integrity sha512-XrVu1gXm4Y5PfwaW3WTxbVCk2gP3GtK0nAaeUIXlOUJHI74dExyqwiGx7GRngGbR85nMrMlmBCtket47ZGFe7w==
   dependencies:
     tslib "^2.0.1"
 
@@ -17731,6 +17731,11 @@ tslib@^1.10.0, tslib@^1.13.0, tslib@^1.8.0, tslib@^1.8.1, tslib@^1.9.0, tslib@^1
   version "1.13.0"
   resolved "https://registry.yarnpkg.com/tslib/-/tslib-1.13.0.tgz#c881e13cc7015894ed914862d276436fa9a47043"
   integrity sha512-i/6DQjL8Xf3be4K/E6Wgpekn5Qasl1usyw++dAA35Ue5orEn65VIxOA+YvNNl9HV3qv70T7CNwjODHZrLwvd1Q==
+
+tslib@^2.0.2:
+  version "2.0.2"
+  resolved "https://registry.yarnpkg.com/tslib/-/tslib-2.0.2.tgz#462295631185db44b21b1ea3615b63cd1c038242"
+  integrity sha512-wAH28hcEKwna96/UacuWaVspVLkg4x1aDM9JlzqaQTOFczCktkVAb5fmXChgandR1EraDPs2w8P+ozM+oafwxg==
 
 tslint@^5.20.1:
   version "5.20.1"

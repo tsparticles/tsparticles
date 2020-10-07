@@ -72,7 +72,7 @@
   },
   "dependencies": {
     "jquery": "^3.5.1",
-    "tslib": "^2.0.1",
+    "tslib": "^2.0.2",
     "tsparticles": "^1.18.1"
   },
   "devDependencies": {
