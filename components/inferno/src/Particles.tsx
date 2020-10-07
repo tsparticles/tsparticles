@@ -114,10 +114,10 @@ export default class Particles extends Component<IParticlesProps, IParticlesStat
 	private buildParticlesLibrary(tagId?: string, options?: ISourceOptions): Container | undefined {
 		try {
 			if (window === undefined) {
-				return;
+				return undefined;
 			}
 		} catch {
-			return;
+			return undefined;
 		} // SSR
 
 		tsParticles.init();
