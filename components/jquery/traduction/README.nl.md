@@ -18,10 +18,10 @@ of van jsDelivr
 
 ```html
 <!-- Voeg eerst tsParticles toe -->
-<script src="https://cdn.jsdelivr.net/npm/tsparticles@1.16.1/dist/tsparticles.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/tsparticles"></script>
 
 <!-- En dan de jquery wrapper -->
-<script src="https://cdn.jsdelivr.net/npm/jquery-particles@1.16.1/dist/jquery.particles.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/jquery-particles"></script>
 ```
 
 ## Hoe je het gebruikt
