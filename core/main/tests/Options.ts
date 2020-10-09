@@ -156,7 +156,7 @@ describe("Options tests", () => {
         expect(options.pauseOnBlur).to.be.true;
 
         /** pause on Element Outside Viewport*/
-        expect(options.pauseOnOutsideViewport).to.be.true;
+        expect(options.pauseOnOutsideViewport).to.be.false;
     });
 
     it("check default preset options", () => {

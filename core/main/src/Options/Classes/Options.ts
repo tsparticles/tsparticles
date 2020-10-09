@@ -78,7 +78,7 @@ export class Options implements IOptions, IOptionLoader<IOptions> {
         this.motion = new Motion();
         this.particles = new Particles();
         this.pauseOnBlur = true;
-        this.pauseOnOutsideViewport = true;
+        this.pauseOnOutsideViewport = false;
         this.themes = [];
     }
 

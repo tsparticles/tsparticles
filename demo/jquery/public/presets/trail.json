@@ -111,7 +111,7 @@
   },
   "retina_detect": true,
   "pauseOnBlur": false,
-  "pauseOnOutsideViewport": true,
+  "pauseOnOutsideViewport": false,
   "config_demo": {
     "hide_card": true,
     "background_color": "#0d47a1",

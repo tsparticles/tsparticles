@@ -224,7 +224,7 @@
     "enable": false
   },
   "pauseOnBlur": true,
-  "pauseOnOutsideViewport": true,
+  "pauseOnOutsideViewport": false,
   "background": {
     "color": "#0d47a1",
     "image": "",

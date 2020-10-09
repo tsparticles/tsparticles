@@ -195,7 +195,7 @@
     "enable": false
   },
   "pauseOnBlur": true,
-  "pauseOnOutsideViewport": true,
+  "pauseOnOutsideViewport": false,
   "config_demo": {
     "hide_card": false,
     "background_color": "#0d47a1",
