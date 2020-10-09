@@ -176,10 +176,7 @@
         "fill": true,
         "sides": 5
       },
-      "type": [
-        "image",
-        "circle"
-      ],
+      "type": ["image", "circle"],
       "custom": {}
     },
     "size": {
@@ -245,6 +242,7 @@
     "enable": false
   },
   "pauseOnBlur": true,
+  "pauseOnOutsideViewport": true,
   "background": {
     "color": "#0d47a1",
     "image": "",

@@ -50,6 +50,12 @@ export class OptionsEditor extends EditorBase {
         this.group.addProperty("pauseOnBlur", "Pause on Blur", EditorType.boolean).change(async () => {
             await particles.refresh();
         });
+
+        this.group
+            .addProperty("pauseOnOutsideViewport", "Pause on Outside Viewport", EditorType.boolean)
+            .change(async () => {
+                await particles.refresh();
+            });
     }
 
     private addBackground(): void {

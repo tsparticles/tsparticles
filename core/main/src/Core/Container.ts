@@ -79,6 +79,8 @@ export class Container {
 
     private readonly eventListeners;
 
+    private readonly intersectionObserver;
+
     /**
      * This is the core class, create an instance to have a new working particles manager
      * @constructor
@@ -155,6 +157,10 @@ export class Container {
 
         /* ---------- tsParticles - start ------------ */
         this.eventListeners = new EventListeners(this);
+
+        if (typeof IntersectionObserver !== "undefined" && IntersectionObserver) {
+            this.intersectionObserver = new window.IntersectionObserver((entries) => this.intersectionManager(entries));
+        }
     }
 
     /**
@@ -362,6 +368,9 @@ export class Container {
         this.particles.clear();
         this.canvas.clear();
 
+        if (this.interactivity.element instanceof HTMLElement && this.intersectionObserver)
+            this.intersectionObserver.observe(this.interactivity.element);
+
         for (const [, plugin] of this.plugins) {
             if (plugin.stop) {
                 plugin.stop();
@@ -401,6 +410,9 @@ export class Container {
         this.started = true;
 
         this.eventListeners.addListeners();
+
+        if (this.interactivity.element instanceof HTMLElement && this.intersectionObserver)
+            this.intersectionObserver.observe(this.interactivity.element);
 
         for (const [, plugin] of this.plugins) {
             if (plugin.startAsync !== undefined) {
@@ -456,5 +468,18 @@ export class Container {
 
         this.density =
             (canvas.width * canvas.height) / (densityOptions.factor * pxRatio * pxRatio * densityOptions.area);
+    }
+
+    private intersectionManager(entries: IntersectionObserverEntry[]) {
+        if (this.options.pauseOnOutsideViewport)
+            for (const entry of entries) {
+                if (entry.target === this.interactivity.element) {
+                    if (entry.isIntersecting) {
+                        this.play();
+                    } else {
+                        this.pause();
+                    }
+                }
+            }
     }
 }

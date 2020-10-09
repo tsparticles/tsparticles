@@ -61,6 +61,7 @@ export class Options implements IOptions, IOptionLoader<IOptions> {
     public motion;
     public particles;
     public pauseOnBlur;
+    public pauseOnOutsideViewport;
     public preset?: string | string[];
     public themes: Theme[];
 
@@ -77,6 +78,7 @@ export class Options implements IOptions, IOptionLoader<IOptions> {
         this.motion = new Motion();
         this.particles = new Particles();
         this.pauseOnBlur = true;
+        this.pauseOnOutsideViewport = true;
         this.themes = [];
     }
 
@@ -117,6 +119,10 @@ export class Options implements IOptions, IOptionLoader<IOptions> {
 
         if (data.pauseOnBlur !== undefined) {
             this.pauseOnBlur = data.pauseOnBlur;
+        }
+
+        if (data.pauseOnOutsideViewport !== undefined) {
+            this.pauseOnOutsideViewport = data.pauseOnOutsideViewport;
         }
 
         this.background.load(data.background);

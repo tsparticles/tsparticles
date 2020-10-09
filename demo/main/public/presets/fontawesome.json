@@ -133,18 +133,14 @@
           "fill": true,
           "font": "Font Awesome 5 Brands",
           "style": "",
-          "value": [
-            "\uf179"
-          ],
+          "value": ["\uf179"],
           "weight": "400"
         },
         {
           "fill": true,
           "font": "Font Awesome 5 Free",
           "style": "",
-          "value": [
-            "\uf5d1"
-          ],
+          "value": ["\uf5d1"],
           "weight": "900"
         }
       ],
@@ -198,6 +194,7 @@
     "enable": false
   },
   "pauseOnBlur": true,
+  "pauseOnOutsideViewport": true,
   "background": {
     "color": "#0d47a1",
     "image": "",
