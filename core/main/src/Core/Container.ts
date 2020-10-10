@@ -78,8 +78,7 @@ export class Container {
     private drawAnimationFrame?: number;
 
     private readonly eventListeners;
-
-    private readonly intersectionObserver;
+    private readonly intersectionObserver?;
 
     /**
      * This is the core class, create an instance to have a new working particles manager
@@ -159,7 +158,7 @@ export class Container {
         this.eventListeners = new EventListeners(this);
 
         if (typeof IntersectionObserver !== "undefined" && IntersectionObserver) {
-            this.intersectionObserver = new window.IntersectionObserver((entries) => this.intersectionManager(entries));
+            this.intersectionObserver = new IntersectionObserver((entries) => this.intersectionManager(entries));
         }
     }
 
@@ -471,15 +470,20 @@ export class Container {
     }
 
     private intersectionManager(entries: IntersectionObserverEntry[]) {
-        if (this.options.pauseOnOutsideViewport)
-            for (const entry of entries) {
-                if (entry.target === this.interactivity.element) {
-                    if (entry.isIntersecting) {
-                        this.play();
-                    } else {
-                        this.pause();
-                    }
-                }
+        if (!this.options.pauseOnOutsideViewport) {
+            return;
+        }
+
+        for (const entry of entries) {
+            if (entry.target !== this.interactivity.element) {
+                continue;
             }
+
+            if (entry.isIntersecting) {
+                this.play();
+            } else {
+                this.pause();
+            }
+        }
     }
 }
