@@ -367,8 +367,9 @@ export class Container {
         this.particles.clear();
         this.canvas.clear();
 
-        if (this.interactivity.element instanceof HTMLElement && this.intersectionObserver)
+        if (this.interactivity.element instanceof HTMLElement && this.intersectionObserver) {
             this.intersectionObserver.observe(this.interactivity.element);
+        }
 
         for (const [, plugin] of this.plugins) {
             if (plugin.stop) {
@@ -410,8 +411,9 @@ export class Container {
 
         this.eventListeners.addListeners();
 
-        if (this.interactivity.element instanceof HTMLElement && this.intersectionObserver)
+        if (this.interactivity.element instanceof HTMLElement && this.intersectionObserver) {
             this.intersectionObserver.observe(this.interactivity.element);
+        }
 
         for (const [, plugin] of this.plugins) {
             if (plugin.startAsync !== undefined) {

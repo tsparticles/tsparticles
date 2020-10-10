@@ -40,7 +40,7 @@ export class Retina {
 
         const motionOptions = this.container.options.motion;
 
-        if (motionOptions.disable || motionOptions.reduce.value) {
+        if (motionOptions && (motionOptions.disable || motionOptions.reduce.value)) {
             if (Utils.isSsr() || typeof matchMedia === "undefined" || !matchMedia) {
                 this.reduceFactor = 1;
             } else {
@@ -60,6 +60,8 @@ export class Retina {
                     });
                 }
             }
+        } else {
+            this.reduceFactor = 1;
         }
 
         const ratio = this.pixelRatio;
