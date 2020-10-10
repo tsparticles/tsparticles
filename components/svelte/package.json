@@ -65,11 +65,11 @@
     "rollup-plugin-terser": "^7.0.2",
     "svelte-check": "^1.0.55",
     "svelte-preprocess": "^4.3.2",
-    "tslib": "^2.0.2",
     "typescript": "^4.0.3"
   },
   "dependencies": {
-    "tsparticles": "^1.18.3"
+    "tsparticles": "^1.18.3",
+    "tslib": "^2.0.3"
   },
   "peerDependencies": {
     "svelte": "^3"

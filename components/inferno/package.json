@@ -57,7 +57,8 @@
 	"homepage": "https://particles.matteobruni.it/",
 	"dependencies": {
 		"lodash": "^4.17.20",
-		"tsparticles": "^1.18.3"
+		"tsparticles": "^1.18.3",
+		"tslib": "^2.0.3"
 	},
 	"peerDependencies": {
 		"inferno": "^7"

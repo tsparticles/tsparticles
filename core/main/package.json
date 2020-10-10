@@ -134,7 +134,7 @@
   },
   "dependencies": {
     "pathseg": "^1.2.0",
-    "tslib": "^2.0.2"
+    "tslib": "^2.0.3"
   },
   "nyc": {
     "extension": [

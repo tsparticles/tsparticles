@@ -41,7 +41,7 @@
   },
   "dependencies": {
     "object-gui": "^1.0.11",
-    "tslib": "^2.0.2",
+    "tslib": "^2.0.3",
     "tsparticles": "^1.18.3"
   },
   "devDependencies": {

@@ -64,6 +64,7 @@
     "webpack-cli": "^3.3.12"
   },
   "dependencies": {
-    "tsparticles": "^1.18.3"
+    "tsparticles": "^1.18.3",
+    "tslib": "^2.0.3"
   }
 }
