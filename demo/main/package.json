@@ -5,7 +5,7 @@
   "description": "> TODO: description",
   "author": "Matteo Bruni <ar3s@icloud.com>",
   "homepage": "https://github.com/matteobruni/tsparticles#readme",
-  "license": "ISC",
+  "license": "MIT",
   "main": "lib/main.js",
   "files": [
     "app.js"
