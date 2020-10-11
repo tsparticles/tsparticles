@@ -21,7 +21,8 @@
 		"skipLibCheck": true,
 		"noUnusedParameters": true,
 		"noImplicitReturns": true,
-		"noFallthroughCasesInSwitch": true
+		"noFallthroughCasesInSwitch": true,
+		"importHelpers": true
 	},
 	"include": [
 		"src/**/*",

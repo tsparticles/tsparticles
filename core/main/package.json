@@ -4,7 +4,7 @@
     "./dist/index.js",
     "./dist/tsparticles.js"
   ],
-  "version": "1.18.3",
+  "version": "1.18.4",
   "description": "Easily add particle animations to your website. Browser ready and with official React/Vue/Angular/jQuery/Preact components.",
   "homepage": "https://particles.matteobruni.it/",
   "scripts": {
@@ -23,6 +23,7 @@
     "build:schema": "echo typescript-json-schema tsconfig.schema.json IOptions --out ./schema/options.schema.json",
     "test": "nyc mocha",
     "preversion": "yarn test",
+    "install": "node ./scripts/install.js",
     "version": "node ./scripts/postversion.js && git add tsParticles.nuspec",
     "postversion": "git push && git push --tags",
     "prepare": "yarn build",
@@ -82,7 +83,8 @@
   ],
   "license": "MIT",
   "files": [
-    "dist/**/*"
+    "dist/**/*",
+    "scripts/install.js"
   ],
   "types": "dist/index.d.ts",
   "bugs": {
@@ -132,7 +134,7 @@
   },
   "dependencies": {
     "pathseg": "^1.2.0",
-    "tslib": "^2.0.2"
+    "tslib": "^2.0.3"
   },
   "nyc": {
     "extension": [

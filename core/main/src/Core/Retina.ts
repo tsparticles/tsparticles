@@ -38,22 +38,30 @@ export class Retina {
             this.pixelRatio = 1;
         }
 
-        if (Utils.isSsr() || typeof matchMedia === "undefined" || !matchMedia) {
-            this.reduceFactor = 1;
-        } else {
-            const mediaQuery = matchMedia("(prefers-reduced-motion: reduce)");
+        const motionOptions = this.container.options.motion;
 
-            if (mediaQuery) {
-                // Check if the media query matches or is not available.
-                this.handleMotionChange(mediaQuery);
+        if (motionOptions && (motionOptions.disable || motionOptions.reduce.value)) {
+            if (Utils.isSsr() || typeof matchMedia === "undefined" || !matchMedia) {
+                this.reduceFactor = 1;
+            } else {
+                const mediaQuery = matchMedia("(prefers-reduced-motion: reduce)");
 
-                // Ads an event listener to check for changes in the media query's value.
-                mediaQuery.addEventListener("change", async () => {
+                if (mediaQuery) {
+                    // Check if the media query matches or is not available.
                     this.handleMotionChange(mediaQuery);
 
-                    await container.refresh();
-                });
+                    // Ads an event listener to check for changes in the media query's value.
+                    mediaQuery.addEventListener("change", () => {
+                        this.handleMotionChange(mediaQuery);
+
+                        container.refresh().catch(() => {
+                            // ignore
+                        });
+                    });
+                }
             }
+        } else {
+            this.reduceFactor = 1;
         }
 
         const ratio = this.pixelRatio;

@@ -2646,6 +2646,10 @@
       "description": "Enables or disabled the animation on window blur",
       "type": "boolean"
     },
+    "pauseOnOutsideViewport": {
+      "description": "Enables or disabled the animation on when the element is outside of the viewport",
+      "type": "boolean"
+    },
     "preset": {
       "anyOf": [
         {
