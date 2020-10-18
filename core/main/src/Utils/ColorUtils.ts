@@ -69,7 +69,7 @@ export class ColorUtils {
     public static colorToHsl(color: string | IColor | undefined, index?: number, useIndex = true): IHsl | undefined {
         const rgb = ColorUtils.colorToRgb(color, index, useIndex);
 
-        return rgb !== undefined ? ColorUtils.rgbToHsl(rgb) : rgb;
+        return rgb !== undefined ? ColorUtils.rgbToHsl(rgb) : undefined;
     }
 
     public static rgbToHsl(color: IRgb): IHsl {
@@ -484,11 +484,11 @@ export class ColorUtils {
 
             return result
                 ? {
-                      a: result.length > 4 ? parseFloat(result[5]) : 1,
-                      b: parseInt(result[3], 10),
-                      g: parseInt(result[2], 10),
-                      r: parseInt(result[1], 10),
-                  }
+                    a: result.length > 4 ? parseFloat(result[5]) : 1,
+                    b: parseInt(result[3], 10),
+                    g: parseInt(result[2], 10),
+                    r: parseInt(result[1], 10),
+                }
                 : undefined;
         } else if (input.startsWith("hsl")) {
             const regex = /hsla?\(\s*(\d+)\s*,\s*(\d+)%\s*,\s*(\d+)%\s*(,\s*([\d.]+)\s*)?\)/i;
@@ -496,11 +496,11 @@ export class ColorUtils {
 
             return result
                 ? ColorUtils.hslaToRgba({
-                      a: result.length > 4 ? parseFloat(result[5]) : 1,
-                      h: parseInt(result[1], 10),
-                      l: parseInt(result[3], 10),
-                      s: parseInt(result[2], 10),
-                  })
+                    a: result.length > 4 ? parseFloat(result[5]) : 1,
+                    h: parseInt(result[1], 10),
+                    l: parseInt(result[3], 10),
+                    s: parseInt(result[2], 10),
+                })
                 : undefined;
         } else if (input.startsWith("hsv")) {
             const regex = /hsva?\(\s*(\d+)°\s*,\s*(\d+)%\s*,\s*(\d+)%\s*(,\s*([\d.]+)\s*)?\)/i;
@@ -508,11 +508,11 @@ export class ColorUtils {
 
             return result
                 ? ColorUtils.hsvaToRgba({
-                      a: result.length > 4 ? parseFloat(result[5]) : 1,
-                      h: parseInt(result[1], 10),
-                      s: parseInt(result[2], 10),
-                      v: parseInt(result[3], 10),
-                  })
+                    a: result.length > 4 ? parseFloat(result[5]) : 1,
+                    h: parseInt(result[1], 10),
+                    s: parseInt(result[2], 10),
+                    v: parseInt(result[3], 10),
+                })
                 : undefined;
         } else {
             // By Tim Down - http://stackoverflow.com/a/5624139/3493650
@@ -526,11 +526,11 @@ export class ColorUtils {
 
             return result
                 ? {
-                      a: result[4] !== undefined ? parseInt(result[4], 16) / 0xff : 1,
-                      b: parseInt(result[3], 16),
-                      g: parseInt(result[2], 16),
-                      r: parseInt(result[1], 16),
-                  }
+                    a: result[4] !== undefined ? parseInt(result[4], 16) / 0xff : 1,
+                    b: parseInt(result[3], 16),
+                    g: parseInt(result[2], 16),
+                    r: parseInt(result[1], 16),
+                }
                 : undefined;
         }
     }
