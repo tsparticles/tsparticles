@@ -50,7 +50,7 @@ describe("Themes", () => {
                 },
             },
             shape: {
-                type: [ ShapeType.circle, ShapeType.square ],
+                type: [ShapeType.circle, ShapeType.square],
             },
             opacity: {
                 value: 1,
