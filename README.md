@@ -217,13 +217,21 @@ You can find the instructions [here](https://github.com/matteobruni/tsparticles/
 
 You can find the instructions [here](https://github.com/matteobruni/tsparticles/blob/master/components/svelte/README.md)
 
-### VueJS
+### VueJS 2.x
 
 #### `particles.vue`
 
 [![npm](https://img.shields.io/npm/v/particles.vue)](https://www.npmjs.com/package/particles.vue) [![npm](https://img.shields.io/npm/dm/particles.vue)](https://www.npmjs.com/package/particles.vue)
 
 You can find the instructions [here](https://github.com/matteobruni/tsparticles/blob/master/components/vue/README.md)
+
+### VueJS 3.x
+
+#### `particles.vue3`
+
+[![npm](https://img.shields.io/npm/v/particles.vue3)](https://www.npmjs.com/package/particles.vue3) [![npm](https://img.shields.io/npm/dm/particles.vue3)](https://www.npmjs.com/package/particles.vue3)
+
+You can find the instructions [here](https://github.com/matteobruni/tsparticles/blob/master/components/vue3/README.md)
 
 ---
 
