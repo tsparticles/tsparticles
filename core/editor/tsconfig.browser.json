@@ -10,7 +10,7 @@
     "outDir": "./dist/",
     "rootDir": "./src/",
     "removeComments": true,
-    "importHelpers": true,
+    "importHelpers": false,
     "strict": true,
     "noImplicitAny": true,
     "strictNullChecks": true,
