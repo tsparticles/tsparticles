@@ -127,3 +127,13 @@ The demo website is [here](https://particles.matteobruni.it)
 There's also a CodePen collection actively maintained and updated [here](https://codepen.io/collection/DPOage)
 
 <https://codepen.io/collection/DPOage>
+
+## Migrating from Vue 2.x to Vue 3.x
+
+If you are migrating your project from Vue 2.x to 3.x you need to these steps:
+
+- Change the dependency from `particles.vue` to `particles.vue3`
+- Update the `node_modules` folder executing `npm install` or `yarn`
+- Change the `use` function from `Vue.use(Particles)` to `createApp(App).use(Particles)`.
+
+The `<Particles />` tag syntax remains the same, so you don't need to do any additional action.

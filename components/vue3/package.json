@@ -1,7 +1,7 @@
 {
   "name": "particles.vue3",
   "description": "tsParticles official Vue 3 plugin.",
-  "version": "1.1.4",
+  "version": "1.1.5",
   "scripts": {
     "clean": "rm -rf dist/*",
     "build": "npm run clean && yarn rollup --config rollup.config.js",
@@ -69,7 +69,7 @@
   "dependencies": {
     "core-js": "^3.6.5",
     "tslib": "^2.0.3",
-    "tsparticles": "^1.18.4",
+    "tsparticles": "^1.18.5",
     "vue": "^3.0.0",
     "vue-class-component": "^8.0.0-beta.4"
   },
@@ -87,7 +87,7 @@
     "@vue/cli-service": "~4.5.6",
     "@vue/compiler-sfc": "^3.0.0",
     "@vue/eslint-config-prettier": "^6.0.0",
-    "@vue/eslint-config-typescript": "^5.1.0",
+    "@vue/eslint-config-typescript": "^7.0.0",
     "eslint": "^7.10.0",
     "eslint-plugin-prettier": "^3.1.4",
     "eslint-plugin-vue": "^7.0.1",

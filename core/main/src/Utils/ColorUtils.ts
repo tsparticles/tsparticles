@@ -69,7 +69,7 @@ export class ColorUtils {
     public static colorToHsl(color: string | IColor | undefined, index?: number, useIndex = true): IHsl | undefined {
         const rgb = ColorUtils.colorToRgb(color, index, useIndex);
 
-        return rgb !== undefined ? ColorUtils.rgbToHsl(rgb) : rgb;
+        return rgb !== undefined ? ColorUtils.rgbToHsl(rgb) : undefined;
     }
 
     public static rgbToHsl(color: IRgb): IHsl {
