@@ -22,7 +22,7 @@
 		"noUnusedParameters": true,
 		"noImplicitReturns": true,
 		"noFallthroughCasesInSwitch": true,
-		"importHelpers": true
+		"importHelpers": false
 	},
 	"include": [
 		"src/**/*",

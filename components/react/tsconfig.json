@@ -7,7 +7,7 @@
     "jsx": "react",
     "removeComments": true,
     "esModuleInterop": true,
-    "importHelpers": true
+    "importHelpers": false
   },
   "files": [
     "./src/index.ts"

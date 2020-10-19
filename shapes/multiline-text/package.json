@@ -8,7 +8,7 @@
     "prettify:readme": "prettier --write ./README.md",
     "lint": "eslint src --ext .js,.jsx,.ts,.tsx --fix",
     "compile": "tsc",
-    "bundle": "webpack -p",
+    "bundle": "webpack --mode production",
     "build": "yarn prettify:src && yarn compile && yarn lint && yarn bundle && yarn prettify:readme",
     "prepare": "yarn build"
   },
@@ -50,21 +50,24 @@
   "bugs": {
     "url": "https://github.com/matteobruni/tsparticles/issues"
   },
-  "main": "dist/tsparticles.shape.multiline-text.min.js",
+  "main": "dist/index.js",
+  "jsdelivr": "dist/tsparticles.shape.multiline-text.min.js",
+  "unpkg": "dist/tsparticles.shape.multiline-text.min.js",
+  "browser": "dist/index.js",
   "devDependencies": {
-    "@typescript-eslint/eslint-plugin": "^4.3.0",
-    "@typescript-eslint/parser": "^4.3.0",
-    "cpx": "^1.5.0",
-    "eslint": "^7.10.0",
-    "eslint-config-prettier": "^6.12.0",
+    "@types/webpack-env": "^1.15.3",
+    "@typescript-eslint/eslint-plugin": "^4.5.0",
+    "@typescript-eslint/parser": "^4.5.0",
+    "babel-loader": "^8.1.0",
+    "eslint": "^7.11.0",
+    "eslint-config-prettier": "^6.13.0",
     "prettier": "^2.1.2",
-    "terser-webpack-plugin": "^4.2.2",
+    "terser-webpack-plugin": "^5.0.0",
     "typescript": "^4.0.3",
-    "webpack": "^4.44.2",
-    "webpack-cli": "^3.3.12"
+    "webpack": "^5.1.3",
+    "webpack-cli": "^4.1.0"
   },
   "dependencies": {
-    "tslib": "^2.0.3",
     "tsparticles": "^1.18.5"
   }
 }

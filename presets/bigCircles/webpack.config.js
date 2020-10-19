@@ -22,8 +22,8 @@ const getConfig = (entry) => {
         output: {
             path: path.resolve(__dirname, "dist"),
             filename: "[name].js",
-            libraryTarget: "window",
-            library: ""
+            libraryTarget: "umd",
+            globalObject: "this"
         },
         resolve: {
             extensions: [ ".js", ".json" ]
@@ -64,7 +64,6 @@ const getConfig = (entry) => {
             minimizer: [
                 new TerserPlugin({
                     include: /\.min\.js$/,
-                    sourceMap: false,
                     terserOptions: {
                         output: {
                             comments: minBanner
