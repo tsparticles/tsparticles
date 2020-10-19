@@ -7,7 +7,7 @@
     "rootDir": "./src",
     "declaration": true,
     "removeComments": true,
-    "importHelpers": true,
+    "importHelpers": false,
     "strict": true,
     "noImplicitAny": true,
     "strictNullChecks": true,
