@@ -7,7 +7,7 @@
 	"scripts": {
 		"build": "webpack --mode production",
 		"check": "tsc",
-		"start": "webpack-dev-server --inline"
+		"start": "webpack serve --config webpack.config.js --mode development --watch"
 	},
 	"keywords": [
 		"inferno",
