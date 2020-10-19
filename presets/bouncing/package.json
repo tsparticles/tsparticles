@@ -55,8 +55,10 @@
   "unpkg": "dist/tsparticles.preset.bouncing.min.js",
   "browser": "dist/index.js",
   "devDependencies": {
-    "@typescript-eslint/eslint-plugin": "^4.4.1",
-    "@typescript-eslint/parser": "^4.4.1",
+    "@types/webpack-env": "^1.15.3",
+    "@typescript-eslint/eslint-plugin": "^4.5.0",
+    "@typescript-eslint/parser": "^4.5.0",
+    "babel-loader": "^8.1.0",
     "eslint": "^7.11.0",
     "eslint-config-prettier": "^6.13.0",
     "prettier": "^2.1.2",
