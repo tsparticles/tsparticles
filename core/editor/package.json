@@ -20,7 +20,10 @@
   "files": [
     "dist/**/*"
   ],
-  "main": "dist/tsparticles.editor.min.js",
+  "main": "dist/index.js",
+  "jsdelivr": "dist/tsparticles.editor.min.js",
+  "unpkg": "dist/tsparticles.editor.min.js",
+  "browser": "dist/index.js",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/matteobruni/tsparticles.git",
