@@ -1,7 +1,7 @@
 {
   "name": "particles.vue",
   "description": "tsParticles official Vue plugin.",
-  "version": "2.1.4",
+  "version": "2.1.5",
   "scripts": {
     "clean": "rm -rf dist/*",
     "build": "npm run clean && yarn rollup --config rollup.config.js",
@@ -68,7 +68,7 @@
   },
   "dependencies": {
     "tslib": "^2.0.3",
-    "tsparticles": "^1.18.4",
+    "tsparticles": "^1.18.5",
     "vue": "<3",
     "vue-class-component": "<8",
     "vue-property-decorator": "^9.0.2"
