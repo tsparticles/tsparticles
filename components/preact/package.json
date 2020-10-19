@@ -89,7 +89,6 @@
   },
   "dependencies": {
     "lodash": "^4.17.20",
-    "tslib": "^2.0.3",
     "tsparticles": "^1.18.5"
   },
   "peerDependencies": {
