@@ -79,6 +79,6 @@ try {
             console.log("You can read more about the plugin here: https://github.com/matteobruni/tsparticles/blob/master/components/jquery/README.md");
         }
     }
-} catch {
+} catch (error) {
     // ignore errors
 }
