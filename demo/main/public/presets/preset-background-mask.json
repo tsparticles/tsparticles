@@ -1,0 +1,11 @@
+{
+  "fpsLimit": 60,
+  "preset": "background-mask",
+  "background": {
+    "color": "#ffffff",
+    "image": "url('https://cdn.matteobruni.it/images/particles/background3.jpg')",
+    "position": "50% 50%",
+    "repeat": "no-repeat",
+    "size": "cover"
+  }
+}
