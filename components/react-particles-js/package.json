@@ -1,6 +1,6 @@
 {
   "name": "react-particles-js",
-  "version": "3.3.0",
+  "version": "3.4.0",
   "description": "Reactified particles.js",
   "main": "index.js",
   "unpkg": "umd/particles.js",
@@ -35,7 +35,7 @@
   },
   "dependencies": {
     "lodash": "^4.17.11",
-    "tsparticles": "^1.17.1"
+    "tsparticles": "^1.18.5"
   },
   "peerDependencies": {
     "react": "^16.0.0"
