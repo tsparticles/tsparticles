@@ -1,6 +1,6 @@
 {
   "name": "cra-template-particles",
-  "version": "1.1.5",
+  "version": "1.1.6",
   "description": "Official React tsParticles template",
   "keywords": [
     "tsparticles",
@@ -62,7 +62,7 @@
     "url": "https://github.com/matteobruni/tsparticles/issues"
   },
   "dependencies": {
-    "react-tsparticles": "^1.18.5",
+    "react-tsparticles": "^1.18.6",
     "tslib": "^2.0.3"
   },
   "scripts": {
