@@ -11,7 +11,7 @@ GitHub : https://www.github.com/matteobruni/tsparticles
 How to use? : Check the GitHub README
 v${version}`;
 
-const minBanner = `tsParticles Background Mask Preset v${version} by Matteo Bruni`;
+const minBanner = `tsParticles Basic Preset v${version} by Matteo Bruni`;
 
 const getConfig = (entry) => {
     const isSlim = Object.keys(entry).find((t) => t.indexOf("slim") >= 0);
@@ -22,8 +22,8 @@ const getConfig = (entry) => {
         output: {
             path: path.resolve(__dirname, "dist"),
             filename: "[name].js",
-            libraryTarget: "window",
-            library: ""
+            libraryTarget: "umd",
+            globalObject: "this"
         },
         resolve: {
             extensions: [ ".js", ".json" ]
@@ -64,7 +64,6 @@ const getConfig = (entry) => {
             minimizer: [
                 new TerserPlugin({
                     include: /\.min\.js$/,
-                    sourceMap: false,
                     terserOptions: {
                         output: {
                             comments: minBanner
@@ -79,7 +78,7 @@ const getConfig = (entry) => {
 
 module.exports = [
     getConfig({
-        "tsparticles.preset.backgroundMask": "./dist/preset.js",
-        "tsparticles.preset.backgroundMask.min": "./dist/preset.js"
+        "tsparticles.preset.basic": "./dist/preset.js",
+        "tsparticles.preset.basic.min": "./dist/preset.js"
     })
 ];

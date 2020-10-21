@@ -74,7 +74,6 @@ const getJsConfig = (entry) => {
             minimizer: [
                 new TerserPlugin({
                     include: /\.min\.js$/,
-                    sourceMap: false,
                     terserOptions: {
                         output: {
                             comments: minBanner
