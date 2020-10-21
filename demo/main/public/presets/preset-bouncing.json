@@ -1,6 +1,6 @@
 {
-  "preset": "background-mask",
   "fpsLimit": 60,
+  "preset": "bouncing",
   "particles": {
     "number": {
       "value": 80,
@@ -12,7 +12,7 @@
     "color": {
       "value": "#ff0000",
       "animation": {
-        "enable": false,
+        "enable": true,
         "speed": 20,
         "sync": true
       }
@@ -42,11 +42,8 @@
       }
     },
     "size": {
-      "value": 30,
-      "random": {
-        "enable": true,
-        "minimumValue": 15
-      },
+      "value": 3,
+      "random": true,
       "anim": {
         "enable": false,
         "speed": 20,
@@ -114,8 +111,8 @@
   },
   "retina_detect": true,
   "background": {
-    "color": "#ffffff",
-    "image": "url('https://cdn.matteobruni.it/images/particles/background3.jpg')",
+    "color": "#0d47a1",
+    "image": "",
     "position": "50% 50%",
     "repeat": "no-repeat",
     "size": "cover"
