@@ -15,7 +15,7 @@
     "url": "git+https://github.com/matteobruni/tsparticles.git"
   },
   "dependencies": {
-    "@angular/animations": "~10.1.6",
+    "@angular/animations": "~10.2.0",
     "@angular/common": "~10.1.6",
     "@angular/compiler": "~10.1.6",
     "@angular/core": "~10.1.6",

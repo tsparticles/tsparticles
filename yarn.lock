@@ -129,10 +129,10 @@
     ora "5.0.0"
     rxjs "6.6.2"
 
-"@angular/animations@~10.1.6":
-  version "10.1.6"
-  resolved "https://registry.yarnpkg.com/@angular/animations/-/animations-10.1.6.tgz#21fdac5a9d2b98409636466ebd798a36ed6d38d4"
-  integrity sha512-XMTribgDJOb7hxK3e39yjm/Ez7qdP7SHQuei6dT2cDQKHMNflstDM2MWF8sXonzrniVgNKwiRaCx7UTx21azGQ==
+"@angular/animations@~10.2.0":
+  version "10.2.0"
+  resolved "https://registry.yarnpkg.com/@angular/animations/-/animations-10.2.0.tgz#7d60e8261cccc9a348699f23bc40b8d5c569baaa"
+  integrity sha512-lKjC2Jm2Al4GCW2zKutdskMWqe5S23gknPvp65ybmR5D1Pz/YgzDOHXmTHqDn5qXJgzpFt/fJgNi805XrAOm4g==
   dependencies:
     tslib "^2.0.0"
 
@@ -18404,7 +18404,7 @@ ts-pnp@^1.1.6:
   resolved "https://registry.yarnpkg.com/ts-pnp/-/ts-pnp-1.2.0.tgz#a500ad084b0798f1c3071af391e65912c86bca92"
   integrity sha512-csd+vJOb/gkzvcCHgTGSChYpy5f1/XKNsmvBGO4JXS+z1v2HobugDz4s1IeFXM3wZB44uczs+eazB5Q/ccdhQw==
 
-tslib@2.0.1, tslib@^2.0.0, tslib@^2.0.1:
+tslib@2.0.1:
   version "2.0.1"
   resolved "https://registry.yarnpkg.com/tslib/-/tslib-2.0.1.tgz#410eb0d113e5b6356490eec749603725b021b43e"
   integrity sha512-SgIkNheinmEBgx1IUNirK0TUD4X9yjjBRTqqjggWCU3pUEqIk3/Uwl3yRixYKT6WjQuGiwDv4NomL3wqRCj+CQ==
@@ -18414,12 +18414,7 @@ tslib@^1.10.0, tslib@^1.13.0, tslib@^1.8.0, tslib@^1.8.1, tslib@^1.9.0, tslib@^1
   resolved "https://registry.yarnpkg.com/tslib/-/tslib-1.13.0.tgz#c881e13cc7015894ed914862d276436fa9a47043"
   integrity sha512-i/6DQjL8Xf3be4K/E6Wgpekn5Qasl1usyw++dAA35Ue5orEn65VIxOA+YvNNl9HV3qv70T7CNwjODHZrLwvd1Q==
 
-tslib@^2.0.2:
-  version "2.0.2"
-  resolved "https://registry.yarnpkg.com/tslib/-/tslib-2.0.2.tgz#462295631185db44b21b1ea3615b63cd1c038242"
-  integrity sha512-wAH28hcEKwna96/UacuWaVspVLkg4x1aDM9JlzqaQTOFczCktkVAb5fmXChgandR1EraDPs2w8P+ozM+oafwxg==
-
-tslib@^2.0.3:
+tslib@^2.0.0, tslib@^2.0.1, tslib@^2.0.2, tslib@^2.0.3:
   version "2.0.3"
   resolved "https://registry.yarnpkg.com/tslib/-/tslib-2.0.3.tgz#8e0741ac45fc0c226e58a17bfc3e64b9bc6ca61c"
   integrity sha512-uZtkfKblCEQtZKBF6EBXVZeQNl82yqtDQdv+eck8u7tdPxjLu2/lp5/uPW+um2tpuxINHWy3GhiccY7QgEaVHQ==
