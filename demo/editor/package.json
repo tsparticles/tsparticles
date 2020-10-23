@@ -11,7 +11,8 @@
     "url": "git+https://github.com/matteobruni/tsparticles.git"
   },
   "scripts": {
-    "start": "pnpm run build && node ./app.js"
+    "start": "pnpm run build && node ./app.js",
+    "build": "echo nothing"
   },
   "bugs": {
     "url": "https://github.com/matteobruni/tsparticles/issues"
