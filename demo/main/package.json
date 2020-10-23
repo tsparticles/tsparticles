@@ -18,10 +18,7 @@
     "url": "https://github.com/matteobruni/tsparticles/issues"
   },
   "scripts": {
-    "start": "pnpm run build && node ./app.js",
-    "build": "pnpm run build:style && pnpm run build:index",
-    "build:index": "pug ./views/index.pug",
-    "build:style": "stylus ./public/stylesheets/main.styl"
+    "start": "pnpm run build && node ./app.js"
   },
   "devDependencies": {
     "@fortawesome/fontawesome-free": "^5.15.1",
