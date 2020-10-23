@@ -24,7 +24,10 @@ jobs:
         uses: actions/setup-node@v1
         with:
           node-version: ${{ matrix.node-version }}
-      - run: npm install -g rush
+      - name: Install rush
+        run: node ./common/scripts/install-run-rush.js install
+      - run: rush install --no-link
+      - run: rush link
       - run: rush update
       - run: rush build
       #- run: lerna test
