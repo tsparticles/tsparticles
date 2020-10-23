@@ -11,8 +11,8 @@
     "prettify:readme": "prettier --write ./README.md",
     "lint": "eslint src --ext .js,.jsx,.ts,.tsx --fix",
     "build:debug": "webpack",
-    "build": "yarn prettify:src && yarn lint && cross-env NODE_ENV=production webpack && yarn prettify:readme",
-    "prepare": "yarn build"
+    "build": "pnpm run prettify:src && pnpm run lint && cross-env NODE_ENV=production webpack && pnpm run prettify:readme",
+    "prepack": "pnpm run build"
   },
   "repository": {
     "url": "https://github.com/matteobruni/tsparticles",
@@ -90,9 +90,7 @@
   },
   "dependencies": {
     "lodash": "^4.17.20",
-    "tsparticles": "^1.18.6"
-  },
-  "peerDependencies": {
-    "preact": "^10"
+    "tsparticles": "^1.18.6",
+    "preact": "10.5.2"
   }
 }

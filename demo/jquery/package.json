@@ -11,10 +11,10 @@
     "url": "git+https://github.com/matteobruni/tsparticles.git"
   },
   "scripts": {
-    "build": "yarn build:style && yarn build:index",
+    "build": "pnpm run build:style && pnpm run build:index",
     "build:index": "npx pug ./views/index.pug",
     "build:style": "npx stylus ./public/stylesheets/main.styl",
-    "start": "yarn build && node ./app.js"
+    "start": "pnpm run build && node ./app.js"
   },
   "bugs": {
     "url": "https://github.com/matteobruni/tsparticles/issues"

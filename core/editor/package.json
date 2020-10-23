@@ -36,8 +36,8 @@
     "clear:dist": "rimraf -f ./dist",
     "build:ts:es": "tsc -b tsconfig.browser.json",
     "build:ts": "tsc",
-    "build": "yarn clear:dist && yarn prettify:src && yarn build:ts:es && yarn lint && webpack --mode production && yarn build:ts && yarn prettify:readme",
-    "prepare": "yarn build"
+    "build": "pnpm run clear:dist && pnpm run prettify:src && pnpm run build:ts:es && pnpm run lint && webpack --mode production && pnpm run build:ts && pnpm run prettify:readme",
+    "prepack": "pnpm run build"
   },
   "bugs": {
     "url": "https://github.com/matteobruni/tsparticles/issues"

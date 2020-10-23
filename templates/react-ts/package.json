@@ -67,7 +67,7 @@
   },
   "scripts": {
     "build": "node scripts/prebuild.js",
-    "version": "yarn build && git add ./template.json",
-    "prepare": "yarn build"
+    "version": "pnpm run build && git add ./template.json",
+    "prepack": "pnpm run build"
   }
 }

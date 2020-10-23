@@ -3,11 +3,11 @@ import k8s from "../public/assets/k8s.svg";
 import code from "../public/assets/code.png";
 import smallDeer from "../public/assets/small-deer.svg";
 import { MoveDirection, OutMode, HoverMode, ClickMode, ShapeType } from "react-tsparticles";
-import {
+import type {
+    ISourceOptions,
     Type as PolygonMaskType,
     InlineArrangement as PolygonMaskInlineArrangement
-} from "tsparticles/dist/Plugins/PolygonMask/Enums";
-import type { ISourceOptions } from "tsparticles";
+} from "tsparticles";
 
 export type TFrame = {
     backgroundColor: string;
@@ -218,7 +218,7 @@ export const frames: TFrame[] = [
                     out_mode: OutMode.out
                 },
                 shape: {
-                    type: [ ShapeType.image, ShapeType.circle ],
+                    type: [ShapeType.image, ShapeType.circle],
                     image: [
                         {
                             src: react,

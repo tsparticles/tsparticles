@@ -43,11 +43,11 @@
     "start": "ng serve",
     "build:all": "ng build",
     "build": "node scripts/prebuild.js && ng build ng-particles --prod",
-    "version": "yarn build && git add ./projects/ng-particles/package.json",
+    "version": "pnpm run build && git add ./projects/ng-particles/package.json",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
-    "prepare": "yarn build"
+    "prepack": "pnpm run build"
   },
   "publishConfig": {
     "directory": "dist/ng-particles"

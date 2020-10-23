@@ -11,8 +11,8 @@
     "url": "git+https://github.com/matteobruni/tsparticles.git"
   },
   "scripts": {
-    "start": "yarn build && node ./app.js",
-    "build": "yarn build:style && yarn build:index",
+    "start": "pnpm run build && node ./app.js",
+    "build": "pnpm run build:style && pnpm run build:index",
     "build:index": "npx pug ./views/index.pug",
     "build:style": "npx stylus ./public/stylesheets/main.styl"
   },

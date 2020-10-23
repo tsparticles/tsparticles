@@ -4,8 +4,8 @@
   "version": "1.1.6",
   "scripts": {
     "clean": "rm -rf dist/*",
-    "build": "npm run clean && yarn rollup --config rollup.config.js",
-    "prepare": "yarn build"
+    "build": "pnpm run clean && rollup --config rollup.config.js",
+    "prepack": "pnpm run build"
   },
   "keywords": [
     "tsparticles",

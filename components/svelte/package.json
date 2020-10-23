@@ -63,6 +63,7 @@
     "rollup": "^2.32.0",
     "rollup-plugin-svelte": "^6.0.1",
     "rollup-plugin-terser": "^7.0.2",
+    "svelte": "3.28.0",
     "svelte-check": "^1.0.60",
     "svelte-preprocess": "^4.5.1",
     "typescript": "^4.0.3"
@@ -70,9 +71,6 @@
   "dependencies": {
     "tslib": "^2.0.3",
     "tsparticles": "^1.18.6"
-  },
-  "peerDependencies": {
-    "svelte": "^3"
   },
   "bugs": {
     "url": "https://github.com/matteobruni/tsparticles/issues"
