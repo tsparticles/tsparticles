@@ -2,12 +2,12 @@
 
 ## Install Rush and Pnpm
 
-Before anything you need two tools: `pnpm` and `rush`
+Before anything you need two tools: `pnpm` and `@microsoft/rush`
 You can install them with the `npm install -g` like this:
 
 ``` shell
 npm install -g pnpm
-npm install -g rush
+npm install -g @microsoft/rush
 ```
 
 ## Start writing code
