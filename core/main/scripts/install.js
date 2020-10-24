@@ -19,7 +19,7 @@ try {
         return;
     }
 
-    if (dependencies["react"]) {
+    if (dependencies["react"] || dependencies["next"]) {
         if (!dependencies["react-tsparticles"] && !dependencies["react-particles-js"]) {
             console.warn("\x1b[43m\x1b[30m%s\x1b[0m", "Found React installed. Please download react-tsparticles to use tsParticles with a component ready to use and easier to configure.");
             console.log("You can read more about the component here: https://github.com/matteobruni/tsparticles/blob/master/components/react/README.md");
@@ -33,10 +33,11 @@ try {
         }
     }
 
-    if (dependencies["vue"]) {
+    if (dependencies["vue"] || dependencies["nuxt"]) {
         const vueVersion = dependencies["vue"];
+        const nuxtVersion = dependencies["nuxt"];
 
-        const vueMajor = vueVersion.split(".")[0];
+        const vueMajor = (vueVersion || nuxtVersion).split(".")[0];
 
         if (vueMajor > 2) {
             if (!dependencies["particles.vue3"]) {
