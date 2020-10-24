@@ -9,6 +9,11 @@ import type { SingleOrMultiple, RecursivePartial } from "../../Types";
 import type { IOptions } from "../../Options/Interfaces/IOptions";
 import { AbsorberClickMode } from "./Enums";
 import type { IAbsorberOptions } from "./Options/Interfaces/IAbsorberOptions";
+import type { ICoordinates } from "../../Core/Interfaces/ICoordinates";
+
+interface AbsorberContainer {
+    addAbsorber: (options: IAbsorber, position: ICoordinates) => AbsorberInstance;
+}
 
 /**
  * @category Absorbers Plugin
@@ -22,6 +27,11 @@ export class Absorbers implements IContainerPlugin {
         this.array = [];
         this.absorbers = [];
         this.interactivityAbsorbers = [];
+
+        const overridableContainer = (container as unknown) as AbsorberContainer;
+
+        overridableContainer.addAbsorber = (options: IAbsorber, position?: ICoordinates) =>
+            this.addAbsorber(options, position);
     }
 
     public init(options?: RecursivePartial<IOptions & IAbsorberOptions>): void {
@@ -69,15 +79,10 @@ export class Absorbers implements IContainerPlugin {
 
         if (this.absorbers instanceof Array) {
             for (const absorberOptions of this.absorbers) {
-                const absorber = new AbsorberInstance(this, this.container, absorberOptions);
-
-                this.addAbsorber(absorber);
+                this.addAbsorber(absorberOptions);
             }
         } else {
-            const absorberOptions = this.absorbers;
-            const absorber = new AbsorberInstance(this, this.container, absorberOptions);
-
-            this.addAbsorber(absorber);
+            this.addAbsorber(this.absorbers);
         }
     }
 
@@ -130,14 +135,17 @@ export class Absorbers implements IContainerPlugin {
                 (absorberOptions instanceof Array ? Utils.itemFromArray(absorberOptions) : absorberOptions);
 
             const aPosition = container.interactivity.mouse.clickPosition;
-            const absorber = new AbsorberInstance(this, this.container, absorbersOptions, aPosition);
 
-            this.addAbsorber(absorber);
+            this.addAbsorber(absorbersOptions, aPosition);
         }
     }
 
-    public addAbsorber(absorber: AbsorberInstance): void {
+    public addAbsorber(options: IAbsorber, position?: ICoordinates): AbsorberInstance {
+        const absorber = new AbsorberInstance(this, this.container, options, position);
+
         this.array.push(absorber);
+
+        return absorber;
     }
 
     public removeAbsorber(absorber: AbsorberInstance): void {
