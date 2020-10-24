@@ -13,7 +13,7 @@ export class Absorber implements IAbsorber, IOptionLoader<IAbsorber> {
     public color;
     public draggable;
     public opacity;
-    public position?: ICoordinates;
+    public position?: RecursivePartial<ICoordinates>;
     public size;
     public destroy;
     public orbits;

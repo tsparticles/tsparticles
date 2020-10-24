@@ -5,14 +5,9 @@ import { Particle } from "../src/Core/Particle";
 import { NumberUtils, Utils } from "../src/Utils";
 
 function buildParticleWithDirection(direction: MoveDirection): IParticle {
-    const container = new Container('someid');
+    const container = new Container("someid");
     const options = { move: { direction } };
-    return new Particle(
-        1,
-        container,
-        undefined,
-        options
-    );
+    return new Particle(1, container, undefined, options);
 }
 
 describe("Utils", () => {
@@ -454,38 +449,38 @@ describe("Utils", () => {
         });
     });
 
-    describe('getParticleBaseVelocity', () => {
+    describe("getParticleBaseVelocity", () => {
         it("should return the proper base velocity, when it's moving top", () => {
             const particle = buildParticleWithDirection(MoveDirection.top);
-            expect(NumberUtils.getParticleBaseVelocity(particle)).to.eql({x: 0, y: -1});
+            expect(NumberUtils.getParticleBaseVelocity(particle)).to.eql({ x: 0, y: -1 });
         });
         it("should return the proper base velocity, when it's moving top-right", () => {
             const particle = buildParticleWithDirection(MoveDirection.topRight);
-            expect(NumberUtils.getParticleBaseVelocity(particle)).to.eql({x: 0.5, y: -0.5});
+            expect(NumberUtils.getParticleBaseVelocity(particle)).to.eql({ x: 0.5, y: -0.5 });
         });
         it("should return the proper base velocity, when it's moving right", () => {
             const particle = buildParticleWithDirection(MoveDirection.right);
-            expect(NumberUtils.getParticleBaseVelocity(particle)).to.eql({x: 1, y: -0});
+            expect(NumberUtils.getParticleBaseVelocity(particle)).to.eql({ x: 1, y: -0 });
         });
         it("should return the proper base velocity, when it's moving bottom-right", () => {
             const particle = buildParticleWithDirection(MoveDirection.bottomRight);
-            expect(NumberUtils.getParticleBaseVelocity(particle)).to.eql({x: 0.5, y: 0.5});
+            expect(NumberUtils.getParticleBaseVelocity(particle)).to.eql({ x: 0.5, y: 0.5 });
         });
         it("should return the proper base velocity, when it's moving bottom", () => {
             const particle = buildParticleWithDirection(MoveDirection.bottom);
-            expect(NumberUtils.getParticleBaseVelocity(particle)).to.eql({x: 0, y: 1});
+            expect(NumberUtils.getParticleBaseVelocity(particle)).to.eql({ x: 0, y: 1 });
         });
         it("should return the proper base velocity, when it's moving bottom-left", () => {
             const particle = buildParticleWithDirection(MoveDirection.bottomLeft);
-            expect(NumberUtils.getParticleBaseVelocity(particle)).to.eql({x: -0.5, y: 1});
+            expect(NumberUtils.getParticleBaseVelocity(particle)).to.eql({ x: -0.5, y: 1 });
         });
         it("should return the proper base velocity, when it's moving left", () => {
             const particle = buildParticleWithDirection(MoveDirection.left);
-            expect(NumberUtils.getParticleBaseVelocity(particle)).to.eql({x: -1, y: 0});
+            expect(NumberUtils.getParticleBaseVelocity(particle)).to.eql({ x: -1, y: 0 });
         });
         it("should return the proper base velocity, when it's moving top-left", () => {
             const particle = buildParticleWithDirection(MoveDirection.topLeft);
-            expect(NumberUtils.getParticleBaseVelocity(particle)).to.eql({x: -0.5, y: -0.5});
+            expect(NumberUtils.getParticleBaseVelocity(particle)).to.eql({ x: -0.5, y: -0.5 });
         });
     });
 });

@@ -146,14 +146,11 @@ export class EmitterInstance {
     private calcPosition(): ICoordinates {
         const container = this.container;
 
-        const percentPosition = this.emitterOptions.position ?? {
-            x: Math.random() * 100,
-            y: Math.random() * 100,
-        };
+        const percentPosition = this.emitterOptions.position;
 
         return {
-            x: (percentPosition.x / 100) * container.canvas.size.width,
-            y: (percentPosition.y / 100) * container.canvas.size.height,
+            x: ((percentPosition?.x ?? Math.random() * 100) / 100) * container.canvas.size.width,
+            y: ((percentPosition?.y ?? Math.random() * 100) / 100) * container.canvas.size.height,
         };
     }
 
