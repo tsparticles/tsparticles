@@ -1,6 +1,6 @@
 import type { IContainerPlugin } from "../../Core/Interfaces/IContainerPlugin";
 import { AbsorberInstance } from "./AbsorberInstance";
-import { Container } from "../../Core/Container";
+import type { Container } from "../../Core/Container";
 import type { Particle } from "../../Core/Particle";
 import type { IAbsorber } from "./Options/Interfaces/IAbsorber";
 import { Utils } from "../../Utils";
