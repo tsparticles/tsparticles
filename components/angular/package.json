@@ -47,7 +47,7 @@
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
-    "prepare": "yarn build"
+    "prepack": "yarn build"
   },
   "publishConfig": {
     "directory": "dist/ng-particles"

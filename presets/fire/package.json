@@ -10,7 +10,7 @@
     "compile": "tsc",
     "bundle": "webpack --mode production",
     "build": "yarn prettify:src && yarn compile && yarn lint && yarn bundle && yarn prettify:readme",
-    "prepare": "yarn build"
+    "prepack": "yarn build"
   },
   "repository": {
     "type": "git",

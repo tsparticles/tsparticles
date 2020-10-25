@@ -26,7 +26,7 @@
     "install": "node ./scripts/install.js",
     "version": "node ./scripts/postversion.js && git add tsParticles.nuspec",
     "postversion": "git push && git push --tags",
-    "prepare": "yarn build",
+    "prepack": "yarn build",
     "release:alpha": "yarn version --prerelease --preid alpha",
     "release:beta": "yarn version --prerelease --preid beta",
     "deploy:docs": "yarn build && node deploy.docs.js"

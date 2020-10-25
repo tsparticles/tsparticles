@@ -5,7 +5,7 @@
   "scripts": {
     "clean": "rm -rf dist/*",
     "build": "npm run clean && yarn rollup --config rollup.config.js",
-    "prepare": "yarn build"
+    "prepack": "yarn build"
   },
   "keywords": [
     "tsparticles",

@@ -68,6 +68,6 @@
   "scripts": {
     "build": "node scripts/prebuild.js",
     "version": "yarn build && git add ./template.json",
-    "prepare": "yarn build"
+    "prepack": "yarn build"
   }
 }
