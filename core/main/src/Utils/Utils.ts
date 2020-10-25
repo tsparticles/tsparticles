@@ -62,6 +62,49 @@ declare global {
     }
 }
 
+function rectSideBounce(
+    pSide: ISideData,
+    pOtherSide: ISideData,
+    rectSide: ISideData,
+    rectOtherSide: ISideData,
+    velocity: number,
+    factor: number
+): IRectSideResult {
+    const res: IRectSideResult = { bounced: false };
+
+    if (
+        pOtherSide.min >= rectOtherSide.min &&
+        pOtherSide.min <= rectOtherSide.max &&
+        pOtherSide.max >= rectOtherSide.min &&
+        pOtherSide.max <= rectOtherSide.max
+    ) {
+        if (
+            (pSide.max >= rectSide.min && pSide.max <= (rectSide.max + rectSide.min) / 2 && velocity > 0) ||
+            (pSide.min <= rectSide.max && pSide.min > (rectSide.max + rectSide.min) / 2 && velocity < 0)
+        ) {
+            res.velocity = velocity * -factor;
+
+            res.bounced = true;
+        }
+    }
+
+    return res;
+}
+
+function checkSelector(element: HTMLElement, selectors: SingleOrMultiple<string>): boolean {
+    if (selectors instanceof Array) {
+        for (const selector of selectors) {
+            if (element.matches(selector)) {
+                return true;
+            }
+        }
+
+        return false;
+    } else {
+        return element.matches(selectors);
+    }
+}
+
 /* ---------- global functions - vendors ------------ */
 /**
  * @category Utils
@@ -314,8 +357,8 @@ export class Utils {
         }
 
         if (divs instanceof Array) {
-            return divs.find((d) => Utils.checkSelector(element, d.selectors));
-        } else if (Utils.checkSelector(element, divs.selectors)) {
+            return divs.find((d) => checkSelector(element, d.selectors));
+        } else if (checkSelector(element, divs.selectors)) {
             return divs;
         }
     }
@@ -377,7 +420,7 @@ export class Utils {
         const size = particle.getRadius();
         const bounds = Utils.calculateBounds(pPos, size);
 
-        const resH = Utils.rectSideBounce(
+        const resH = rectSideBounce(
             {
                 min: bounds.left,
                 max: bounds.right,
@@ -408,7 +451,7 @@ export class Utils {
             }
         }
 
-        const resV = Utils.rectSideBounce(
+        const resV = rectSideBounce(
             {
                 min: bounds.top,
                 max: bounds.bottom,
@@ -437,49 +480,6 @@ export class Utils {
             if (resV.position !== undefined) {
                 particle.position.y = resV.position;
             }
-        }
-    }
-
-    private static rectSideBounce(
-        pSide: ISideData,
-        pOtherSide: ISideData,
-        rectSide: ISideData,
-        rectOtherSide: ISideData,
-        velocity: number,
-        factor: number
-    ): IRectSideResult {
-        const res: IRectSideResult = { bounced: false };
-
-        if (
-            pOtherSide.min >= rectOtherSide.min &&
-            pOtherSide.min <= rectOtherSide.max &&
-            pOtherSide.max >= rectOtherSide.min &&
-            pOtherSide.max <= rectOtherSide.max
-        ) {
-            if (
-                (pSide.max >= rectSide.min && pSide.max <= (rectSide.max + rectSide.min) / 2 && velocity > 0) ||
-                (pSide.min <= rectSide.max && pSide.min > (rectSide.max + rectSide.min) / 2 && velocity < 0)
-            ) {
-                res.velocity = velocity * -factor;
-
-                res.bounced = true;
-            }
-        }
-
-        return res;
-    }
-
-    private static checkSelector(element: HTMLElement, selectors: SingleOrMultiple<string>): boolean {
-        if (selectors instanceof Array) {
-            for (const selector of selectors) {
-                if (element.matches(selector)) {
-                    return true;
-                }
-            }
-
-            return false;
-        } else {
-            return element.matches(selectors);
         }
     }
 }

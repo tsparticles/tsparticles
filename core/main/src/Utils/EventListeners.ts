@@ -3,6 +3,30 @@ import { ClickMode, InteractivityDetect } from "../Enums";
 import type { ICoordinates } from "../Core/Interfaces/ICoordinates";
 import { Constants } from "./Constants";
 
+function manageListener(
+    element: HTMLElement | Node | Window,
+    event: string,
+    handler: EventListenerOrEventListenerObject,
+    add: boolean,
+    options?: boolean | AddEventListenerOptions | EventListenerObject
+): void {
+    if (add) {
+        let addOptions: AddEventListenerOptions = { passive: true };
+
+        if (typeof options === "boolean") {
+            addOptions.capture = options;
+        } else if (options !== undefined) {
+            addOptions = options as AddEventListenerOptions;
+        }
+
+        element.addEventListener(event, handler, addOptions);
+    } else {
+        const removeOptions = options as boolean | EventListenerOptions | undefined;
+
+        element.removeEventListener(event, handler, removeOptions);
+    }
+}
+
 /**
  * Particles container event listeners manager
  * @category Utils
@@ -40,30 +64,6 @@ export class EventListeners {
         this.mouseDownHandler = (): void => this.mouseDown();
         this.visibilityChangeHandler = (): void => this.handleVisibilityChange();
         this.resizeHandler = (): void => this.handleWindowResize();
-    }
-
-    private static manageListener(
-        element: HTMLElement | Node | Window,
-        event: string,
-        handler: EventListenerOrEventListenerObject,
-        add: boolean,
-        options?: boolean | AddEventListenerOptions | EventListenerObject
-    ): void {
-        if (add) {
-            let addOptions: AddEventListenerOptions = { passive: true };
-
-            if (typeof options === "boolean") {
-                addOptions.capture = options;
-            } else if (options !== undefined) {
-                addOptions = options as AddEventListenerOptions;
-            }
-
-            element.addEventListener(event, handler, addOptions);
-        } else {
-            const removeOptions = options as boolean | EventListenerOptions | undefined;
-
-            element.removeEventListener(event, handler, removeOptions);
-        }
     }
 
     /**
@@ -108,45 +108,39 @@ export class EventListeners {
             (options.interactivity.events.onHover.enable || options.interactivity.events.onClick.enable)
         ) {
             /* el on mousemove */
-            EventListeners.manageListener(interactivityEl, Constants.mouseMoveEvent, this.mouseMoveHandler, add);
+            manageListener(interactivityEl, Constants.mouseMoveEvent, this.mouseMoveHandler, add);
 
             /* el on touchstart */
-            EventListeners.manageListener(interactivityEl, Constants.touchStartEvent, this.touchStartHandler, add);
+            manageListener(interactivityEl, Constants.touchStartEvent, this.touchStartHandler, add);
 
             /* el on touchmove */
-            EventListeners.manageListener(interactivityEl, Constants.touchMoveEvent, this.touchMoveHandler, add);
+            manageListener(interactivityEl, Constants.touchMoveEvent, this.touchMoveHandler, add);
 
             if (!options.interactivity.events.onClick.enable) {
                 /* el on touchend */
-                EventListeners.manageListener(interactivityEl, Constants.touchEndEvent, this.touchEndHandler, add);
+                manageListener(interactivityEl, Constants.touchEndEvent, this.touchEndHandler, add);
             }
 
             /* el on onmouseleave */
-            EventListeners.manageListener(interactivityEl, mouseLeaveEvent, this.mouseLeaveHandler, add);
+            manageListener(interactivityEl, mouseLeaveEvent, this.mouseLeaveHandler, add);
 
             /* el on touchcancel */
-            EventListeners.manageListener(interactivityEl, Constants.touchCancelEvent, this.touchCancelHandler, add);
+            manageListener(interactivityEl, Constants.touchCancelEvent, this.touchCancelHandler, add);
         }
 
         /* on click event */
         if (options.interactivity.events.onClick.enable && interactivityEl) {
-            EventListeners.manageListener(interactivityEl, Constants.touchEndEvent, this.touchEndClickHandler, add);
-            EventListeners.manageListener(interactivityEl, Constants.mouseUpEvent, this.mouseUpHandler, add);
-            EventListeners.manageListener(interactivityEl, Constants.mouseDownEvent, this.mouseDownHandler, add);
+            manageListener(interactivityEl, Constants.touchEndEvent, this.touchEndClickHandler, add);
+            manageListener(interactivityEl, Constants.mouseUpEvent, this.mouseUpHandler, add);
+            manageListener(interactivityEl, Constants.mouseDownEvent, this.mouseDownHandler, add);
         }
 
         if (options.interactivity.events.resize) {
-            EventListeners.manageListener(window, Constants.resizeEvent, this.resizeHandler, add);
+            manageListener(window, Constants.resizeEvent, this.resizeHandler, add);
         }
 
         if (document) {
-            EventListeners.manageListener(
-                document,
-                Constants.visibilityChangeEvent,
-                this.visibilityChangeHandler,
-                add,
-                false
-            );
+            manageListener(document, Constants.visibilityChangeEvent, this.visibilityChangeHandler, add, false);
         }
     }
 
