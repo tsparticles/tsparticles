@@ -2,7 +2,7 @@ import { Grabber } from "../../Interactions/External/Grabber";
 import { Repulser } from "../../Interactions/External/Repulser";
 import { Bubbler } from "../../Interactions/External/Bubbler";
 import { Connector } from "../../Interactions/External/Connector";
-import { Container } from "../Container";
+import type { Container } from "../Container";
 import { Linker } from "../../Interactions/Particles/Linker";
 import { Attractor as ParticlesAttractor } from "../../Interactions/Particles/Attractor";
 import { Collider } from "../../Interactions/Particles/Collider";

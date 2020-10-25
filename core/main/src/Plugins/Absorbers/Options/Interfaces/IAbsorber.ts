@@ -1,6 +1,7 @@
 import type { ICoordinates } from "../../../../Core/Interfaces/ICoordinates";
 import type { IColor } from "../../../../Core/Interfaces/Colors";
 import type { IAbsorberSize } from "./IAbsorberSize";
+import { RecursivePartial } from "../../../../Types";
 
 /**
  * Absorber options
@@ -21,7 +22,7 @@ export interface IAbsorber {
     /**
      * Absorber position, percent values calculated on canvas size
      */
-    position?: ICoordinates;
+    position?: RecursivePartial<ICoordinates>;
 
     /**
      * Absorber size, these values will be used as pixels

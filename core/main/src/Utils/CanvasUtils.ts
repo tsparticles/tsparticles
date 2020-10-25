@@ -11,6 +11,21 @@ import type { IDelta } from "../Core/Interfaces/IDelta";
 import { Particle } from "../Core/Particle";
 import { NumberUtils } from "./NumberUtils";
 
+function drawLine(context: CanvasRenderingContext2D, begin: ICoordinates, end: ICoordinates): void {
+    context.beginPath();
+    context.moveTo(begin.x, begin.y);
+    context.lineTo(end.x, end.y);
+    context.closePath();
+}
+
+function drawTriangle(context: CanvasRenderingContext2D, p1: ICoordinates, p2: ICoordinates, p3: ICoordinates): void {
+    context.beginPath();
+    context.moveTo(p1.x, p1.y);
+    context.lineTo(p2.x, p2.y);
+    context.lineTo(p3.x, p3.y);
+    context.closePath();
+}
+
 /**
  * @category Utils
  */
@@ -46,7 +61,7 @@ export class CanvasUtils {
         let drawn = false;
 
         if (NumberUtils.getDistance(begin, end) <= maxDistance) {
-            CanvasUtils.drawLine(context, begin, end);
+            drawLine(context, begin, end);
 
             drawn = true;
         } else if (warp) {
@@ -98,8 +113,8 @@ export class CanvasUtils {
             }
 
             if (pi1 && pi2) {
-                CanvasUtils.drawLine(context, begin, pi1);
-                CanvasUtils.drawLine(context, end, pi2);
+                drawLine(context, begin, pi1);
+                drawLine(context, end, pi2);
 
                 drawn = true;
             }
@@ -142,7 +157,7 @@ export class CanvasUtils {
         // this.ctx.lineCap = "round"; /* performance issue */
         /* path */
 
-        CanvasUtils.drawTriangle(context, pos1, pos2, pos3);
+        drawTriangle(context, pos1, pos2, pos3);
 
         if (backgroundMask) {
             context.globalCompositeOperation = composite;
@@ -162,7 +177,7 @@ export class CanvasUtils {
     ): void {
         context.save();
 
-        CanvasUtils.drawLine(context, begin, end);
+        drawLine(context, begin, end);
 
         context.lineWidth = width;
         context.strokeStyle = lineStyle;
@@ -206,7 +221,7 @@ export class CanvasUtils {
     ): void {
         context.save();
 
-        CanvasUtils.drawLine(context, begin, end);
+        drawLine(context, begin, end);
 
         context.strokeStyle = ColorUtils.getStyleFromRgb(colorLine, opacity);
         context.lineWidth = width;
@@ -444,25 +459,5 @@ export class CanvasUtils {
             plugin.draw(context, delta);
             context.restore();
         }
-    }
-
-    private static drawLine(context: CanvasRenderingContext2D, begin: ICoordinates, end: ICoordinates): void {
-        context.beginPath();
-        context.moveTo(begin.x, begin.y);
-        context.lineTo(end.x, end.y);
-        context.closePath();
-    }
-
-    private static drawTriangle(
-        context: CanvasRenderingContext2D,
-        p1: ICoordinates,
-        p2: ICoordinates,
-        p3: ICoordinates
-    ): void {
-        context.beginPath();
-        context.moveTo(p1.x, p1.y);
-        context.lineTo(p2.x, p2.y);
-        context.lineTo(p3.x, p3.y);
-        context.closePath();
     }
 }

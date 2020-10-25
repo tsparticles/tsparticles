@@ -1,5 +1,5 @@
 import { Particle } from "../../Core/Particle";
-import { Container } from "../../Core/Container";
+import type { Container } from "../../Core/Container";
 import { IParticlesInteractor } from "../../Core/Interfaces/IParticlesInteractor";
 import { Circle, CircleWarp, ColorUtils, NumberUtils } from "../../Utils";
 import { IParticle } from "../../Core/Interfaces/IParticle";

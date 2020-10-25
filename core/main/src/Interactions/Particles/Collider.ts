@@ -4,29 +4,29 @@ import { CollisionMode } from "../../Enums";
 import type { IParticlesInteractor } from "../../Core/Interfaces/IParticlesInteractor";
 import { NumberUtils, Utils } from "../../Utils";
 
+function bounce(p1: Particle, p2: Particle): void {
+    Utils.circleBounce(Utils.circleBounceDataFromParticle(p1), Utils.circleBounceDataFromParticle(p2));
+}
+
+function destroy(p1: Particle, p2: Particle): void {
+    if (p1.getRadius() === undefined && p2.getRadius() !== undefined) {
+        p1.destroy();
+    } else if (p1.getRadius() !== undefined && p2.getRadius() === undefined) {
+        p2.destroy();
+    } else if (p1.getRadius() !== undefined && p2.getRadius() !== undefined) {
+        if (p1.getRadius() >= p2.getRadius()) {
+            p2.destroy();
+        } else {
+            p1.destroy();
+        }
+    }
+}
+
 /**
  * @category Interactions
  */
 export class Collider implements IParticlesInteractor {
     constructor(private readonly container: Container) {}
-
-    private static bounce(p1: Particle, p2: Particle): void {
-        Utils.circleBounce(Utils.circleBounceDataFromParticle(p1), Utils.circleBounceDataFromParticle(p2));
-    }
-
-    private static destroy(p1: Particle, p2: Particle): void {
-        if (p1.getRadius() === undefined && p2.getRadius() !== undefined) {
-            p1.destroy();
-        } else if (p1.getRadius() !== undefined && p2.getRadius() === undefined) {
-            p2.destroy();
-        } else if (p1.getRadius() !== undefined && p2.getRadius() !== undefined) {
-            if (p1.getRadius() >= p2.getRadius()) {
-                p2.destroy();
-            } else {
-                p1.destroy();
-            }
-        }
-    }
 
     public isEnabled(particle: Particle): boolean {
         return particle.particlesOptions.collisions.enable;
@@ -72,11 +72,11 @@ export class Collider implements IParticlesInteractor {
                 break;
             }
             case CollisionMode.bounce: {
-                Collider.bounce(p1, p2);
+                bounce(p1, p2);
                 break;
             }
             case CollisionMode.destroy: {
-                Collider.destroy(p1, p2);
+                destroy(p1, p2);
                 break;
             }
         }

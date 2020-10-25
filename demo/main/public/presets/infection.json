@@ -98,7 +98,7 @@
     "move": {
       "collisions": true,
       "enable": true,
-      "speed": 10,
+      "speed": 20,
       "direction": "none",
       "random": false,
       "straight": false,

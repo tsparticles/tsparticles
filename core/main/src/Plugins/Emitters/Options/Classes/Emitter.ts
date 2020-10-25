@@ -18,7 +18,7 @@ export class Emitter implements IEmitter, IOptionLoader<IEmitter> {
     public direction: MoveDirection | keyof typeof MoveDirection | MoveDirectionAlt;
     public life;
     public particles?: RecursivePartial<IParticles>;
-    public position?: ICoordinates;
+    public position?: RecursivePartial<ICoordinates>;
     public rate;
 
     constructor() {

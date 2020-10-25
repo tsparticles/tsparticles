@@ -135,14 +135,11 @@ export class AbsorberInstance {
     private calcPosition(): ICoordinates {
         const container = this.container;
 
-        const percentPosition = this.options.position ?? {
-            x: Math.random() * 100,
-            y: Math.random() * 100,
-        };
+        const percentPosition = this.options.position;
 
         return {
-            x: (percentPosition.x / 100) * container.canvas.size.width,
-            y: (percentPosition.y / 100) * container.canvas.size.height,
+            x: ((percentPosition?.x ?? Math.random() * 100) / 100) * container.canvas.size.width,
+            y: ((percentPosition?.y ?? Math.random() * 100) / 100) * container.canvas.size.height,
         };
     }
 
