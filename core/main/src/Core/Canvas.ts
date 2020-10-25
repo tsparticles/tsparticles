@@ -180,7 +180,6 @@ export class Canvas {
         }
 
         const container = this.container;
-        const options = container.options;
         const pxRatio = container.retina.pixelRatio;
 
         container.canvas.size.width = this.element.offsetWidth * pxRatio;
@@ -189,13 +188,8 @@ export class Canvas {
         this.element.width = container.canvas.size.width;
         this.element.height = container.canvas.size.height;
 
-        /* repaint canvas on anim disabled */
-        if (!options.particles.move.enable) {
-            container.particles.redraw();
-        }
-
         /* density particles enabled */
-        container.densityAutoParticles();
+        container.particles.setDensity();
 
         for (const [, plugin] of container.plugins) {
             if (plugin.resize !== undefined) {

@@ -369,15 +369,7 @@ export class EventListeners {
         switch (mode) {
             case ClickMode.push: {
                 if (pushNb > 0) {
-                    if (options.particles.move.enable) {
-                        container.particles.push(pushNb, container.interactivity.mouse);
-                    } else {
-                        if (pushNb === 1) {
-                            container.particles.push(pushNb, container.interactivity.mouse);
-                        } else if (pushNb > 1) {
-                            container.particles.push(pushNb);
-                        }
-                    }
+                    container.particles.push(pushNb, container.interactivity.mouse);
                 }
 
                 break;

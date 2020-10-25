@@ -64,20 +64,24 @@ export class Attractor implements IExternalInteractor {
 
     private processAttract(position: ICoordinates, attractRadius: number, area: Range): void {
         const container = this.container;
+        const attractOptions = container.options.interactivity.modes.attract;
         const query = container.particles.quadTree.query(area);
 
         for (const particle of query) {
             const { dx, dy, distance } = NumberUtils.getDistances(particle.position, position);
+            const velocity = attractOptions.speed * attractOptions.factor;
+            const attractFactor = NumberUtils.clamp(
+                (1 - Math.pow(distance / attractRadius, 2)) * velocity,
+                0,
+                velocity
+            );
             const normVec = {
-                x: dx / distance,
-                y: dy / distance,
+                x: distance === 0 ? velocity : (dx / distance) * attractFactor,
+                y: distance === 0 ? velocity : (dy / distance) * attractFactor,
             };
 
-            const velocity = container.options.interactivity.modes.attract.speed;
-            const attractFactor = NumberUtils.clamp((1 - Math.pow(distance / attractRadius, 2)) * velocity, 0, 50);
-
-            particle.position.x = particle.position.x - normVec.x * attractFactor;
-            particle.position.y = particle.position.y - normVec.y * attractFactor;
+            particle.position.x = particle.position.x - normVec.x;
+            particle.position.y = particle.position.y - normVec.y;
         }
     }
 

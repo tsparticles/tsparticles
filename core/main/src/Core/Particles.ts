@@ -9,6 +9,7 @@ import type { IParticles } from "../Options/Interfaces/Particles/IParticles";
 import { InteractionManager } from "./Particle/InteractionManager";
 import type { IDelta } from "./Interfaces/IDelta";
 import type { IParticle } from "./Interfaces/IParticle";
+import { Density } from "../Options/Classes/Particles/Number/Density";
 
 /**
  * Particles manager object
@@ -24,6 +25,7 @@ export class Particles {
      */
     public quadTree;
     public linksColors;
+    public limit;
 
     /**
      * All the particles used in canvas
@@ -42,6 +44,7 @@ export class Particles {
     constructor(private readonly container: Container) {
         this.nextId = 0;
         this.array = [];
+        this.limit = 0;
         this.linksFreq = new Map<string, number>();
         this.trianglesFreq = new Map<string, number>();
         this.interactionManager = new InteractionManager(container);
@@ -216,14 +219,10 @@ export class Particles {
 
     /* ---------- tsParticles functions - modes events ------------ */
     public push(nb: number, mouse?: IMouseData, overrideOptions?: RecursivePartial<IParticles>): void {
-        const container = this.container;
-        const options = container.options;
-        const limit = options.particles.number.limit * container.density;
-
         this.pushing = true;
 
-        if (limit > 0) {
-            const countToRemove = this.count + nb - limit;
+        if (this.limit > 0) {
+            const countToRemove = this.count + nb - this.limit;
 
             if (countToRemove > 0) {
                 this.removeQuantity(countToRemove);
@@ -232,10 +231,6 @@ export class Particles {
 
         for (let i = 0; i < nb; i++) {
             this.addParticle(mouse?.position, overrideOptions);
-        }
-
-        if (!options.particles.move.enable) {
-            this.container.play();
         }
 
         this.pushing = false;
@@ -258,13 +253,7 @@ export class Particles {
     }
 
     public removeQuantity(quantity: number): void {
-        const options = this.container.options;
-
         this.removeAt(0, quantity);
-
-        if (!options.particles.move.enable) {
-            this.container.play();
-        }
     }
 
     public getLinkFrequency(p1: IParticle, p2: IParticle): number {
@@ -307,5 +296,44 @@ export class Particles {
         }
 
         return res;
+    }
+
+    /**
+     * Aligns particles number to the specified density in the current canvas size
+     */
+    public setDensity(): void {
+        const options = this.container.options;
+
+        if (!options.particles.number.density.enable) {
+            return;
+        }
+
+        const numberOptions = options.particles.number;
+        const densityFactor = this.initDensityFactor(numberOptions.density);
+        const optParticlesNumber = numberOptions.value;
+        const optParticlesLimit = numberOptions.limit > 0 ? numberOptions.limit : optParticlesNumber;
+        const particlesNumber = Math.min(optParticlesNumber, optParticlesLimit) * densityFactor;
+        const particlesCount = this.count;
+
+        this.limit = numberOptions.limit * densityFactor;
+
+        if (particlesCount < particlesNumber) {
+            this.push(Math.abs(particlesNumber - particlesCount));
+        } else if (particlesCount > particlesNumber) {
+            this.removeQuantity(particlesCount - particlesNumber);
+        }
+    }
+
+    private initDensityFactor(densityOptions: Density): number {
+        const container = this.container;
+
+        if (!container.canvas.element || !densityOptions.enable) {
+            return 1;
+        }
+
+        const canvas = container.canvas.element;
+        const pxRatio = container.retina.pixelRatio;
+
+        return (canvas.width * canvas.height) / (densityOptions.factor * pxRatio * pxRatio * densityOptions.area);
     }
 }

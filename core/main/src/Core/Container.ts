@@ -37,7 +37,6 @@ export class Container {
      */
     public destroyed;
 
-    public density;
     public pageHidden;
     public lastFrameTime;
     public fpsLimit;
@@ -127,7 +126,7 @@ export class Container {
         this.attract = { particles: [] };
         this.plugins = new Map<string, IContainerPlugin>();
         this.drawers = new Map<string, IShapeDrawer>();
-        this.density = 1;
+
         /* tsParticles variables with default values */
         this.options = new Options();
 
@@ -272,29 +271,6 @@ export class Container {
     }
 
     /* ---------- tsParticles functions - vendors ------------ */
-
-    /**
-     * Aligns particles number to the specified density in the current canvas size
-     */
-    public densityAutoParticles(): void {
-        if (!this.options.particles.number.density.enable) {
-            return;
-        }
-
-        this.initDensityFactor();
-
-        const numberOptions = this.options.particles.number;
-        const optParticlesNumber = numberOptions.value;
-        const optParticlesLimit = numberOptions.limit > 0 ? numberOptions.limit : optParticlesNumber;
-        const particlesNumber = Math.min(optParticlesNumber, optParticlesLimit) * this.density;
-        const particlesCount = this.particles.count;
-
-        if (particlesCount < particlesNumber) {
-            this.particles.push(Math.abs(particlesNumber - particlesCount));
-        } else if (particlesCount > particlesNumber) {
-            this.particles.removeQuantity(particlesCount - particlesNumber);
-        }
-    }
 
     /**
      * Destroys the current container, invalidating it
@@ -455,20 +431,6 @@ export class Container {
 
         this.canvas.windowResize();
         this.particles.init();
-    }
-
-    private initDensityFactor(): void {
-        const densityOptions = this.options.particles.number.density;
-
-        if (!this.canvas.element || !densityOptions.enable) {
-            return;
-        }
-
-        const canvas = this.canvas.element;
-        const pxRatio = this.retina.pixelRatio;
-
-        this.density =
-            (canvas.width * canvas.height) / (densityOptions.factor * pxRatio * pxRatio * densityOptions.area);
     }
 
     private intersectionManager(entries: IntersectionObserverEntry[]) {

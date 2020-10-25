@@ -7,11 +7,13 @@ import type { RecursivePartial } from "../../../../Types";
 export abstract class RepulseBase implements IRepulseBase {
     public distance;
     public duration;
+    public factor;
     public speed;
 
     constructor() {
         this.distance = 200;
         this.duration = 0.4;
+        this.factor = 100;
         this.speed = 1;
     }
 
@@ -26,6 +28,10 @@ export abstract class RepulseBase implements IRepulseBase {
 
         if (data.duration !== undefined) {
             this.duration = data.duration;
+        }
+
+        if (data.factor !== undefined) {
+            this.factor = data.factor;
         }
 
         if (data.speed !== undefined) {
