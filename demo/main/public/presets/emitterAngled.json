@@ -121,7 +121,6 @@
     {
       "direction": "top",
       "position": {
-        "x": 0,
         "y": 100
       },
       "life": {

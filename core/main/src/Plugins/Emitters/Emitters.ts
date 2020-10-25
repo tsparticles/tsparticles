@@ -8,6 +8,11 @@ import { Emitter } from "./Options/Classes/Emitter";
 import type { IOptions } from "../../Options/Interfaces/IOptions";
 import { EmitterClickMode } from "./Enums";
 import type { IEmitterOptions } from "./Options/Interfaces/IEmitterOptions";
+import type { ICoordinates } from "../../Core/Interfaces/ICoordinates";
+
+interface EmitterContainer {
+    addEmitter: (options: IEmitter, position: ICoordinates) => EmitterInstance;
+}
 
 /**
  * @category Emitters Plugin
@@ -21,6 +26,11 @@ export class Emitters implements IContainerPlugin {
         this.array = [];
         this.emitters = [];
         this.interactivityEmitters = [];
+
+        const overridableContainer = (container as unknown) as EmitterContainer;
+
+        overridableContainer.addEmitter = (options: IEmitter, position?: ICoordinates) =>
+            this.addEmitter(options, position);
     }
 
     public init(options?: RecursivePartial<IOptions & IEmitterOptions>): void {
@@ -68,15 +78,10 @@ export class Emitters implements IContainerPlugin {
 
         if (this.emitters instanceof Array) {
             for (const emitterOptions of this.emitters) {
-                const emitter = new EmitterInstance(this, this.container, emitterOptions);
-
-                this.addEmitter(emitter);
+                this.addEmitter(emitterOptions);
             }
         } else {
-            const emitterOptions = this.emitters;
-            const emitter = new EmitterInstance(this, this.container, emitterOptions);
-
-            this.addEmitter(emitter);
+            this.addEmitter(this.emitters);
         }
     }
 
@@ -116,14 +121,8 @@ export class Emitters implements IContainerPlugin {
                 emitterModeOptions ??
                 (emitterOptions instanceof Array ? Utils.itemFromArray(emitterOptions) : emitterOptions);
             const ePosition = container.interactivity.mouse.clickPosition;
-            const emitter = new EmitterInstance(
-                this,
-                this.container,
-                Utils.deepExtend({}, emittersOptions) as IEmitter,
-                ePosition
-            );
 
-            this.addEmitter(emitter);
+            this.addEmitter(Utils.deepExtend({}, emittersOptions) as IEmitter, ePosition);
         }
     }
 
@@ -133,8 +132,12 @@ export class Emitters implements IContainerPlugin {
         }
     }
 
-    public addEmitter(emitter: EmitterInstance): void {
+    public addEmitter(options: IEmitter, position?: ICoordinates): EmitterInstance {
+        const emitter = new EmitterInstance(this, this.container, options, position);
+
         this.array.push(emitter);
+
+        return emitter;
     }
 
     public removeEmitter(emitter: EmitterInstance): void {
