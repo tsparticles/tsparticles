@@ -39,8 +39,8 @@
     "lodash": "4.17.20",
     "react": "^16.14.0",
     "react-dom": "^16.14.0",
-    "react-tsparticles": "^1.18.7",
-    "tsparticles": "1.18.7",
+    "react-tsparticles": "workspace:^1.18.7",
+    "tsparticles": "workspace:*",
     "tslib": "2.0.3"
   }
 }

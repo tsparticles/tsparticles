@@ -69,7 +69,7 @@
   "dependencies": {
     "core-js": "^3.6.5",
     "tslib": "^2.0.3",
-    "tsparticles": "^1.18.7",
+    "tsparticles": "workspace:^1.18.7",
     "vue": "^3.0.2",
     "vue-class-component": "^8.0.0-beta.4"
   },

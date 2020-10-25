@@ -68,6 +68,6 @@
     "webpack-cli": "^4.1.0"
   },
   "dependencies": {
-    "tsparticles": "^1.18.7"
+    "tsparticles": "workspace:^1.18.7"
   }
 }
