@@ -9,6 +9,17 @@ import type { RecursivePartial } from "../../Types";
 import type { IParticles } from "../../Options/Interfaces/Particles/IParticles";
 import type { IEmitterSize } from "./Options/Interfaces/IEmitterSize";
 
+function randomCoordinate(position: number, offset: number): number {
+    return position + offset * (Math.random() - 0.5);
+}
+
+function randomPosition(position: ICoordinates, offset: ICoordinates): ICoordinates {
+    return {
+        x: randomCoordinate(position.x, offset.x),
+        y: randomCoordinate(position.y, offset.y),
+    };
+}
+
 /**
  * @category Emitters Plugin
  */
@@ -119,7 +130,7 @@ export class EmitterInstance {
             duration !== undefined &&
             duration > 0
         ) {
-            window.setTimeout(() => {
+            setTimeout(() => {
                 this.pause();
 
                 if (!this.immortal) {
@@ -129,7 +140,7 @@ export class EmitterInstance {
                 if (this.lifeCount > 0 || this.immortal) {
                     this.position = this.calcPosition();
 
-                    window.setTimeout(() => {
+                    setTimeout(() => {
                         this.play();
                     }, ((this.emitterOptions.life.delay ?? 0) * 1000) / this.container.retina.reduceFactor);
                 } else {
@@ -169,13 +180,7 @@ export class EmitterInstance {
         };
 
         for (let i = 0; i < this.emitterOptions.rate.quantity; i++) {
-            container.particles.addParticle(
-                {
-                    x: position.x + offset.x * (Math.random() - 0.5),
-                    y: position.y + offset.y * (Math.random() - 0.5),
-                },
-                this.particlesOptions
-            );
+            container.particles.addParticle(randomPosition(position, offset), this.particlesOptions);
         }
     }
 }
