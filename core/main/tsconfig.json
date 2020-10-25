@@ -92,7 +92,7 @@
     "includeVersion": true,
     "hideGenerator": true,
     "out": "./docs",
-    "theme": "../../node_modules/typedoc-particles-theme/bin/",
+    "theme": "./node_modules/typedoc-particles-theme/bin/",
     "particles": {
       "groups": [
         {

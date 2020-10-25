@@ -24,9 +24,11 @@ jobs:
         uses: actions/setup-node@v1
         with:
           node-version: ${{ matrix.node-version }}
-      - run: yarn install
-      - run: npx lerna bootstrap
-      - run: npx lerna run build
+      - uses: pnpm/action-setup@v1.2.1
+        with:
+          version: 5.8.0
+      - run: node ./common/scripts/install-run-rush.js update
+      - run: node ./common/scripts/install-run-rush.js build
       #- run: lerna test
       #- name: Codacy Coverage Reporter
       #  uses: codacy/codacy-coverage-reporter-action@0.2.0

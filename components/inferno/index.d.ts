@@ -3,7 +3,6 @@
 // Definitions by: Matteo Bruni <https://github.com/matteobruni>
 // Definitions: https://github.com/DefinitelyTyped/DefinitelyTyped
 
-/// <reference types="inferno" />
 import type { IParticlesProps, IParticlesState, ParticlesProps } from "./src/";
 import type { ISourceOptions } from "tsparticles";
 import type { Component } from "inferno";

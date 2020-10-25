@@ -1,0 +1,22 @@
+[
+  /*{
+    "definitionName": "individualVersion",
+    "policyName": "tsparticles-major",
+    "nextBump": "major"
+  },
+  {
+    "definitionName": "individualVersion",
+    "policyName": "tsparticles-minor",
+    "nextBump": "minor"
+  },
+  {
+    "definitionName": "individualVersion",
+    "policyName": "tsparticles-patch",
+    "nextBump": "patch"
+  },
+  {
+    "definitionName": "individualVersion",
+    "policyName": "tsparticles-pre",
+    "nextBump": "prerelease"
+  }*/
+]

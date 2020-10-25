@@ -3,7 +3,6 @@
 // Definitions by: Matteo Bruni <https://github.com/matteobruni>
 // Definitions: https://github.com/DefinitelyTyped/DefinitelyTyped
 
-/// <reference types="react" />
 import { ComponentClass } from "react";
 import type { IParticlesProps, IParticlesState, ParticlesProps } from "./src/";
 import type { ISourceOptions } from "tsparticles";

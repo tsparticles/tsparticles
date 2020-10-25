@@ -43,11 +43,11 @@
     "start": "ng serve",
     "build:all": "ng build",
     "build": "node scripts/prebuild.js && ng build ng-particles --prod",
-    "version": "yarn build && git add ./projects/ng-particles/package.json",
+    "version": "pnpm run build && git add ./projects/ng-particles/package.json",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
-    "prepack": "yarn build"
+    "prepack": "pnpm run build"
   },
   "publishConfig": {
     "directory": "dist/ng-particles"
@@ -63,13 +63,13 @@
     "@angular/router": "~10.2.0",
     "rxjs": "~6.6.3",
     "tslib": "^2.0.3",
-    "tsparticles": "^1.18.7",
+    "tsparticles": "workspace:^1.18.7",
     "zone.js": "~0.11.2"
   },
   "devDependencies": {
-    "@angular-devkit/build-angular": "~0.1001.7",
-    "@angular-devkit/build-ng-packagr": "~0.1001.7",
-    "@angular/cli": "~10.1.7",
+    "@angular-devkit/build-angular": "~0.1002.0",
+    "@angular-devkit/build-ng-packagr": "~0.1002.0",
+    "@angular/cli": "~10.2.0",
     "@angular/compiler-cli": "~10.2.0",
     "@types/node": "^14.14.2",
     "codelyzer": "^6.0.1",

@@ -4,8 +4,8 @@
   "version": "2.1.7",
   "scripts": {
     "clean": "rm -rf dist/*",
-    "build": "npm run clean && yarn rollup --config rollup.config.js",
-    "prepack": "yarn build"
+    "build": "pnpm run clean && rollup --config rollup.config.js",
+    "prepack": "pnpm run build"
   },
   "keywords": [
     "tsparticles",
@@ -68,7 +68,7 @@
   },
   "dependencies": {
     "tslib": "^2.0.3",
-    "tsparticles": "^1.18.7",
+    "tsparticles": "workspace:^1.18.7",
     "vue": "<3",
     "vue-class-component": "<8",
     "vue-property-decorator": "^9.0.2"

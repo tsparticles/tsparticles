@@ -9,8 +9,8 @@
     "lint": "eslint src --ext .js,.jsx,.ts,.tsx --fix",
     "compile": "tsc",
     "bundle": "webpack --mode production",
-    "build": "yarn prettify:src && yarn compile && yarn lint && yarn bundle && yarn prettify:readme",
-    "prepack": "yarn build"
+    "build": "pnpm run prettify:src && pnpm run compile && pnpm run lint && pnpm run bundle && pnpm run prettify:readme",
+    "prepack": "pnpm run build"
   },
   "repository": {
     "type": "git",
@@ -68,6 +68,6 @@
     "webpack-cli": "^4.1.0"
   },
   "dependencies": {
-    "tsparticles": "^1.18.7"
+    "tsparticles": "workspace:^1.18.7"
   }
 }

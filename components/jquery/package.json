@@ -10,8 +10,8 @@
     "compile": "tsc",
     "bundle": "rollup -c",
     "minify": "uglifyjs dist/jquery.particles.js --output dist/jquery.particles.min.js --source-map \"filename='dist/jquery.particles.min.js.map',url='jquery.particles.min.js.map',content='dist/jquery.particles.js.map'\"",
-    "build": "yarn prettify:src && yarn lint && yarn compile && yarn bundle && yarn minify && yarn prettify:readme",
-    "prepack": "yarn build"
+    "build": "pnpm run prettify:src && pnpm run lint && pnpm run compile && pnpm run bundle && pnpm run minify && pnpm run prettify:readme",
+    "prepack": "pnpm run build"
   },
   "files": [
     "dist/**/*"
@@ -72,10 +72,11 @@
   },
   "dependencies": {
     "jquery": "^3.5.1",
-    "tsparticles": "^1.18.7"
+    "tsparticles": "workspace:^1.18.7"
   },
   "devDependencies": {
     "@babel/core": "^7.12.3",
+    "@babel/preset-env": "7.11.5",
     "@types/jquery": "^3.5.3",
     "@types/node": "^14.11.10",
     "@types/webpack-env": "^1.15.3",
