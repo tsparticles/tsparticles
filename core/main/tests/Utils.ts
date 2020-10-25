@@ -483,4 +483,51 @@ describe("Utils", () => {
             expect(NumberUtils.getParticleBaseVelocity(particle)).to.eql({ x: -0.5, y: -0.5 });
         });
     });
+    
+    describe('loadImage', () => {
+        afterEach(() => {
+            global.Image = window.Image;
+        });
+
+        it("should reject when no source was specified", async () => {
+            const source = '';
+            try {
+                await Utils.loadImage(source);
+                throw new Error('Should not have reached this line');
+            } catch (error) {
+                expect(error).to.match(/Error.*No Image.*/i);
+            }
+        });
+
+        it("should resolve with the image data when loaded successfully", async () => {
+            global.Image = class MockImage {
+                addEventListener(name: string, callback: () => void) {
+                    if (name === 'load') callback();
+                }
+            } as unknown as typeof Image;
+
+            const source = 'https://someimageurl.com/image.png';
+            const data = await Utils.loadImage(source);
+
+            expect(data.source).to.equal(source);
+            expect(data.type).to.equal('png');
+        });
+
+        it("should reject when image cannot be loaded", async () => {
+            global.Image = class MockImage {
+                addEventListener(name: string, callback: () => void)  {
+                    if (name === 'error') callback();
+                }
+            } as unknown as typeof Image;
+
+            const source = 'https://someimageurl.com/image.png';
+
+            try {
+                await Utils.loadImage(source);
+                throw new Error('Should not have reached this line');
+            } catch (error) {
+                expect(error).to.match(/Error.*Loading.*/i);
+            }
+        });
+    });
 });
