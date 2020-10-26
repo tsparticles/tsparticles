@@ -4,9 +4,7 @@ import code from "../public/assets/code.png";
 import smallDeer from "../public/assets/small-deer.svg";
 import { MoveDirection, OutMode, HoverMode, ClickMode, ShapeType } from "react-tsparticles";
 import type {
-    ISourceOptions,
-    Type as PolygonMaskType,
-    InlineArrangement as PolygonMaskInlineArrangement
+    ISourceOptions
 } from "tsparticles";
 
 export type TFrame = {
@@ -32,7 +30,7 @@ export const frames: TFrame[] = [
                 move: {
                     enable: true
                 },
-                lineLinked: {
+                links: {
                     enable: true
                 }
             },
@@ -159,7 +157,7 @@ export const frames: TFrame[] = [
                         value_area: 1500
                     }
                 },
-                lineLinked: {
+                links: {
                     enable: true,
                     opacity: .02
                 },
@@ -209,7 +207,7 @@ export const frames: TFrame[] = [
                         value_area: 800
                     }
                 },
-                lineLinked: {
+                links: {
                     enable: false
                 },
                 move: {
@@ -218,7 +216,7 @@ export const frames: TFrame[] = [
                     out_mode: OutMode.out
                 },
                 shape: {
-                    type: [ShapeType.image, ShapeType.circle],
+                    type: [ ShapeType.image, ShapeType.circle ],
                     image: [
                         {
                             src: react,
@@ -267,7 +265,7 @@ export const frames: TFrame[] = [
                         enable: false
                     }
                 },
-                lineLinked: {
+                links: {
                     enable: true,
                     distance: 30,
                     opacity: .4
@@ -294,13 +292,13 @@ export const frames: TFrame[] = [
             polygon: {
                 enable: true,
                 scale: .5,
-                type: PolygonMaskType.inline,
+                type: "inline",
                 move: {
                     radius: 10,
                 },
                 url: smallDeer,
                 inline: {
-                    arrangement: PolygonMaskInlineArrangement.equidistant
+                    arrangement: "equidistant"
                 },
                 draw: {
                     enable: true,

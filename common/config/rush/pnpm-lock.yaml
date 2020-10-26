@@ -74,8 +74,7 @@ importers:
       style-loader: 2.0.0_webpack@5.2.0
       typescript: 4.0.3
       webpack: 5.2.0_webpack-cli@4.1.0
-      webpack-cli: 4.1.0_fc348e2d1efc96fa12ecd9426c768697
-      webpack-dev-server: 3.11.0_webpack-cli@4.1.0+webpack@5.2.0
+      webpack-cli: 4.1.0_webpack@5.2.0
     specifiers:
       '@babel/core': ^7.12.3
       '@babel/plugin-proposal-class-properties': ^7.12.1
@@ -96,7 +95,6 @@ importers:
       typescript: ^4.0.3
       webpack: ^5.2.0
       webpack-cli: ^4.1.0
-      webpack-dev-server: ^3.11.0
   ../../components/jquery:
     dependencies:
       jquery: 3.5.1
@@ -190,7 +188,7 @@ importers:
   ../../components/react:
     dependencies:
       lodash: 4.17.20
-      react: 16.13.1
+      react: 16.14.0
       tslib: 2.0.3
       tsparticles: 'link:../../core/main'
     devDependencies:
@@ -207,7 +205,7 @@ importers:
       eslint: 7.12.0
       eslint-config-prettier: 6.14.0_eslint@7.12.0
       prettier: 2.1.2
-      react-dom: 16.14.0_react@16.13.1
+      react-dom: 16.14.0_react@16.14.0
       ts-loader: 8.0.7_typescript@4.0.3
       ts-node: 9.0.0_typescript@4.0.3
       typescript: 4.0.3
@@ -220,8 +218,8 @@ importers:
       '@babel/preset-env': ^7.12.1
       '@types/lodash': ^4.14.162
       '@types/node': ^14.11.10
-      '@types/react': ^16.9.53
-      '@types/react-dom': ^16.9.8
+      '@types/react': '>=16'
+      '@types/react-dom': '>=16'
       '@typescript-eslint/eslint-plugin': ^4.5.0
       '@typescript-eslint/parser': ^4.5.0
       babel-loader: ^8.1.0
@@ -230,8 +228,8 @@ importers:
       eslint-config-prettier: ^6.13.0
       lodash: ^4.17.20
       prettier: ^2.1.2
-      react: 16.13.1
-      react-dom: ^16.14.0
+      react: '>=16'
+      react-dom: '>=16'
       ts-loader: ^8.0.5
       ts-node: ^9.0.0
       tslib: ^2.0.3
@@ -768,8 +766,8 @@ importers:
   ../../demo/react:
     dependencies:
       lodash: 4.17.20
-      react: 16.14.0
-      react-dom: 16.14.0_react@16.14.0
+      react: 17.0.1
+      react-dom: 17.0.1_react@17.0.1
       react-tsparticles: 'link:../../components/react'
       tslib: 2.0.3
       tsparticles: 'link:../../core/main'
@@ -786,7 +784,8 @@ importers:
       object-assign: 4.1.1
       parcel: 1.12.4
       prettier: 2.1.2
-      react-syntax-highlighter: 15.2.1_react@16.14.0
+      prop-types: 15.7.2
+      react-syntax-highlighter: 15.2.1_react@17.0.1
       rxjs: 6.6.3
       scheduler: 0.19.1
       typescript: 4.0.3
@@ -804,8 +803,9 @@ importers:
       object-assign: 4.1.1
       parcel: ^1.12.4
       prettier: ^2.1.2
-      react: ^16.14.0
-      react-dom: ^16.14.0
+      prop-types: ^15.7.2
+      react: ^17.0.1
+      react-dom: ^17.0.1
       react-syntax-highlighter: ^15.2.1
       react-tsparticles: 'workspace:^1.18.7'
       rxjs: ^6.6.3
@@ -5449,7 +5449,7 @@ packages:
   /@webpack-cli/info/1.0.2_webpack-cli@4.1.0:
     dependencies:
       envinfo: 7.7.3
-      webpack-cli: 4.1.0_fc348e2d1efc96fa12ecd9426c768697
+      webpack-cli: 4.1.0_webpack@5.2.0
     dev: true
     peerDependencies:
       webpack-cli: 4.x.x
@@ -5470,7 +5470,7 @@ packages:
       integrity: sha512-WGMaTMTK6NOe29Hw1WBEok9vGLfKg5C6jWzNOS/6HH1YadR+RL+TRWRcSyc81Dzulljhk/Ree9mrDM4Np9GGOQ==
   /@webpack-cli/serve/1.0.1_webpack-cli@4.1.0:
     dependencies:
-      webpack-cli: 4.1.0_2427516bda83434b1d20e3a5e04d076a
+      webpack-cli: 4.1.0_webpack@5.2.0
     dev: true
     peerDependencies:
       webpack-cli: 4.x.x
@@ -16655,18 +16655,6 @@ packages:
     hasBin: true
     resolution:
       integrity: sha512-y3bGgqKj3QBdxLbLkomlohkvsA8gdAiUQlSBJnBhfn+BPxg4bc62d8TcBW15wavDfgexCgccckhcZvywyQYPOw==
-  /react-dom/16.14.0_react@16.13.1:
-    dependencies:
-      loose-envify: 1.4.0
-      object-assign: 4.1.1
-      prop-types: 15.7.2
-      react: 16.13.1
-      scheduler: 0.19.1
-    dev: true
-    peerDependencies:
-      react: ^16.14.0
-    resolution:
-      integrity: sha512-1gCeQXDLoIqMgqD3IO2Ah9bnf0w9kzhwN5q4FGnHZ67hBm9yePzB5JJAIQCc8x3pFnNlwFq4RidZggNAAkzWWw==
   /react-dom/16.14.0_react@16.14.0:
     dependencies:
       loose-envify: 1.4.0
@@ -16674,11 +16662,22 @@ packages:
       prop-types: 15.7.2
       react: 16.14.0
       scheduler: 0.19.1
-    dev: false
+    dev: true
     peerDependencies:
       react: ^16.14.0
     resolution:
       integrity: sha512-1gCeQXDLoIqMgqD3IO2Ah9bnf0w9kzhwN5q4FGnHZ67hBm9yePzB5JJAIQCc8x3pFnNlwFq4RidZggNAAkzWWw==
+  /react-dom/17.0.1_react@17.0.1:
+    dependencies:
+      loose-envify: 1.4.0
+      object-assign: 4.1.1
+      react: 17.0.1
+      scheduler: 0.20.1
+    dev: false
+    peerDependencies:
+      react: 17.0.1
+    resolution:
+      integrity: sha512-6eV150oJZ9U2t9svnsspTMrWNyHc6chX0KzDeAOXftRa8bNeOKTTfCJ7KorIwenkHd2xqVTBTCZd79yk/lx/Ug==
   /react-is/16.13.1:
     resolution:
       integrity: sha512-24e6ynE2H+OKt4kqsOvNd8kBpV65zoxbA4BVsEOB3ARVWQki/DHzaUoC5KuON/BiccDaCCTZBuOcfZs70kR8bQ==
@@ -16688,29 +16687,19 @@ packages:
       node: '>=0.10.0'
     resolution:
       integrity: sha512-X8jZHc7nCMjaCqoU+V2I0cOhNW+QMBwSUkeXnTi8IPe6zaRWfn60ZzvFDZqWPfmSJfjub7dDW1SP0jaHWLu/hg==
-  /react-syntax-highlighter/15.2.1_react@16.14.0:
+  /react-syntax-highlighter/15.2.1_react@17.0.1:
     dependencies:
       '@babel/runtime': 7.12.1
       highlight.js: 10.3.1
       lowlight: 1.16.0
       prismjs: 1.22.0
-      react: 16.14.0
+      react: 17.0.1
       refractor: 3.2.0
     dev: true
     peerDependencies:
       react: '>= 0.14.0'
     resolution:
       integrity: sha512-xrSfqX5Rztf9x4Fa6W+DbbKaJmi5zvh+tAvG2MnktZPDLeX/iMkumwxJdGYn5M1jM3d4+EJTloVAB8UvD7O0nA==
-  /react/16.13.1:
-    dependencies:
-      loose-envify: 1.4.0
-      object-assign: 4.1.1
-      prop-types: 15.7.2
-    dev: false
-    engines:
-      node: '>=0.10.0'
-    resolution:
-      integrity: sha512-YMZQQq32xHLX0bz5Mnibv1/LHb3Sqzngu7xstSM+vrkE5Kzr9xE0yMByK5kMoTK30YVJE61WfbxIFFvfeDKT1w==
   /react/16.14.0:
     dependencies:
       loose-envify: 1.4.0
@@ -16721,6 +16710,15 @@ packages:
       node: '>=0.10.0'
     resolution:
       integrity: sha512-0X2CImDkJGApiAlcf0ODKIneSwBPhqJawOa5wCtKbu7ZECrmS26NvtSILynQ66cgkT/RJ4LidJOc3bUESwmU8g==
+  /react/17.0.1:
+    dependencies:
+      loose-envify: 1.4.0
+      object-assign: 4.1.1
+    dev: false
+    engines:
+      node: '>=0.10.0'
+    resolution:
+      integrity: sha512-lG9c9UuMHdcAexXtigOZLX8exLWkW0Ku29qPRU8uhF2R9BN96dLCt0psvzPLlHc5OWkgymP3qwTRgbnw5BKx3w==
   /read-cache/1.0.0:
     dependencies:
       pify: 2.3.0
@@ -17716,8 +17714,16 @@ packages:
     dependencies:
       loose-envify: 1.4.0
       object-assign: 4.1.1
+    dev: true
     resolution:
       integrity: sha512-n/zwRWRYSUj0/3g/otKDRPMh6qv2SYMWNq85IEa8iZyAv8od9zDYpGSnpBEjNgcMNq6Scbu5KfIPxNF72R/2EA==
+  /scheduler/0.20.1:
+    dependencies:
+      loose-envify: 1.4.0
+      object-assign: 4.1.1
+    dev: false
+    resolution:
+      integrity: sha512-LKTe+2xNJBNxu/QhHvDR14wUXHRQbVY5ZOYpOGWRzhydZUqrLb2JBvLPY7cAqFmqrWuDED0Mjk7013SZiOz6Bw==
   /schema-utils/1.0.0:
     dependencies:
       ajv: 6.12.6
@@ -20989,7 +20995,7 @@ packages:
       tapable: 2.0.0
       terser-webpack-plugin: 5.0.1_webpack@5.2.0
       watchpack: 2.0.0
-      webpack-cli: 4.1.0_fc348e2d1efc96fa12ecd9426c768697
+      webpack-cli: 4.1.0_webpack@5.2.0
       webpack-sources: 2.0.1
     dev: true
     engines:
@@ -21549,3 +21555,4 @@ packages:
     dev: false
     resolution:
       integrity: sha512-JUpNKmWIovqRZlqkX6pFdBVlOU42n5Mt1n2yEaJdy+msBant/l2L1hTG6BFxCzM+KV3SX4XQOcwbhnwsPAeUTA==
+registry: ''

@@ -21,9 +21,9 @@ function buildPluginWithId(id: string, needsPlugin: boolean): IPlugin {
         needsPlugin() {
             return needsPlugin;
         },
-        loadOptions() { 
+        loadOptions() {
             return null;
-        }
+        },
     };
 }
 
@@ -500,69 +500,69 @@ describe("Utils", () => {
             expect(NumberUtils.getParticleBaseVelocity(particle)).to.eql({ x: -0.5, y: -0.5 });
         });
     });
-    
-    describe('loadImage', () => {
+
+    describe("loadImage", () => {
         afterEach(() => {
             global.Image = window.Image;
         });
 
         it("should reject when no source was specified", async () => {
-            const source = '';
+            const source = "";
             try {
                 await Utils.loadImage(source);
-                throw new Error('Should not have reached this line');
+                throw new Error("Should not have reached this line");
             } catch (error) {
                 expect(error).to.match(/Error.*No Image.*/i);
             }
         });
 
         it("should resolve with the image data when loaded successfully", async () => {
-            global.Image = class MockImage {
+            global.Image = (class MockImage {
                 addEventListener(name: string, callback: () => void) {
-                    if (name === 'load') callback();
+                    if (name === "load") callback();
                 }
-            } as unknown as typeof Image;
+            } as unknown) as typeof Image;
 
-            const source = 'https://someimageurl.com/image.png';
+            const source = "https://someimageurl.com/image.png";
             const data = await Utils.loadImage(source);
 
             expect(data.source).to.equal(source);
-            expect(data.type).to.equal('png');
+            expect(data.type).to.equal("png");
         });
 
         it("should reject when image cannot be loaded", async () => {
-            global.Image = class MockImage {
-                addEventListener(name: string, callback: () => void)  {
-                    if (name === 'error') callback();
+            global.Image = (class MockImage {
+                addEventListener(name: string, callback: () => void) {
+                    if (name === "error") callback();
                 }
-            } as unknown as typeof Image;
+            } as unknown) as typeof Image;
 
-            const source = 'https://someimageurl.com/image.png';
+            const source = "https://someimageurl.com/image.png";
 
             try {
                 await Utils.loadImage(source);
-                throw new Error('Should not have reached this line');
+                throw new Error("Should not have reached this line");
             } catch (error) {
                 expect(error).to.match(/Error.*Loading.*/i);
             }
         });
     });
 
-    describe('Plugins', () => {
-        const plugin1 = buildPluginWithId('some plugin', true);
-        const plugin2 = buildPluginWithId('some other plugin', false);
+    describe("Plugins", () => {
+        const plugin1 = buildPluginWithId("some plugin", true);
+        const plugin2 = buildPluginWithId("some other plugin", false);
 
-        describe('getAvailablePlugins', () => {
+        describe("getAvailablePlugins", () => {
             Plugins.addPlugin(plugin1);
             Plugins.addPlugin(plugin2);
-            const plugins = Plugins.getAvailablePlugins(new Container('some container id'));
-            
-            it('should return a Map of available plugins', () => {
-                expect(plugins.get('some plugin')).to.not.be.undefined;
+            const plugins = Plugins.getAvailablePlugins(new Container("some container id"));
+
+            it("should return a Map of available plugins", () => {
+                expect(plugins.get("some plugin")).to.not.be.undefined;
             });
-            
-            it('should ignore unneeded plugins', () => {
-                expect(plugins.get('some other plugin')).to.be.undefined;
+
+            it("should ignore unneeded plugins", () => {
+                expect(plugins.get("some other plugin")).to.be.undefined;
             });
         });
     });

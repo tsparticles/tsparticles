@@ -23,7 +23,7 @@ export interface IPolygonMask {
     move: IMove;
     position?: ICoordinates;
     scale: number;
-    type: Type;
+    type: Type | keyof typeof Type;
     url?: string;
     data?: string | ILocalSvg;
 }

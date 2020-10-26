@@ -30,6 +30,7 @@
     "object-assign": "4.1.1",
     "parcel": "^1.12.4",
     "prettier": "^2.1.2",
+    "prop-types": "^15.7.2",
     "react-syntax-highlighter": "^15.2.1",
     "rxjs": "^6.6.3",
     "scheduler": "0.19.1",
@@ -37,8 +38,8 @@
   },
   "dependencies": {
     "lodash": "4.17.20",
-    "react": "^16.14.0",
-    "react-dom": "^16.14.0",
+    "react": "^17.0.1",
+    "react-dom": "^17.0.1",
     "react-tsparticles": "workspace:^1.18.7",
     "tsparticles": "workspace:*",
     "tslib": "2.0.3"
