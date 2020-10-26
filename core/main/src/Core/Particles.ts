@@ -9,7 +9,7 @@ import type { IParticles } from "../Options/Interfaces/Particles/IParticles";
 import { InteractionManager } from "./Particle/InteractionManager";
 import type { IDelta } from "./Interfaces/IDelta";
 import type { IParticle } from "./Interfaces/IParticle";
-import { Density } from "../Options/Classes/Particles/Number/Density";
+import type { IDensity } from "../Options/Interfaces/Particles/Number/IDensity";
 
 /**
  * Particles manager object
@@ -95,6 +95,18 @@ export class Particles {
         }
 
         if (!handled) {
+            for (const group in options.particles.groups) {
+                const groupOptions = options.particles.groups[group];
+
+                for (
+                    let i = this.count, j = 0;
+                    j < groupOptions.number?.value && i < options.particles.number.value;
+                    i++, j++
+                ) {
+                    this.addParticle(undefined, groupOptions, group);
+                }
+            }
+
             for (let i = this.count; i < options.particles.number.value; i++) {
                 this.addParticle();
             }
@@ -120,16 +132,30 @@ export class Particles {
         this.draw({ value: 0, factor: 0 });
     }
 
-    public removeAt(index: number, quantity?: number): void {
-        if (index >= 0 && index <= this.count) {
-            for (const particle of this.array.splice(index, quantity ?? 1)) {
-                particle.destroy();
+    public removeAt(index: number, quantity = 1, group?: string): void {
+        if (!(index >= 0 && index <= this.count)) {
+            return;
+        }
+
+        let deleted = 0;
+
+        for (let i = index; deleted < quantity && index < this.count; i++) {
+            const particle = this.array[i];
+
+            if (particle.group !== group) {
+                continue;
             }
+
+            particle.destroy();
+
+            this.array.splice(i--, 1);
+
+            deleted++;
         }
     }
 
-    public remove(particle: Particle): void {
-        this.removeAt(this.array.indexOf(particle));
+    public remove(particle: Particle, group?: string): void {
+        this.removeAt(this.array.indexOf(particle), undefined, group);
     }
 
     public update(delta: IDelta): void {
@@ -218,27 +244,31 @@ export class Particles {
     }
 
     /* ---------- tsParticles functions - modes events ------------ */
-    public push(nb: number, mouse?: IMouseData, overrideOptions?: RecursivePartial<IParticles>): void {
+    public push(nb: number, mouse?: IMouseData, overrideOptions?: RecursivePartial<IParticles>, group?: string): void {
         this.pushing = true;
 
         if (this.limit > 0) {
             const countToRemove = this.count + nb - this.limit;
 
             if (countToRemove > 0) {
-                this.removeQuantity(countToRemove);
+                this.removeQuantity(countToRemove, group);
             }
         }
 
         for (let i = 0; i < nb; i++) {
-            this.addParticle(mouse?.position, overrideOptions);
+            this.addParticle(mouse?.position, overrideOptions, group);
         }
 
         this.pushing = false;
     }
 
-    public addParticle(position?: ICoordinates, overrideOptions?: RecursivePartial<IParticles>): Particle | undefined {
+    public addParticle(
+        position?: ICoordinates,
+        overrideOptions?: RecursivePartial<IParticles>,
+        group?: string
+    ): Particle | undefined {
         try {
-            const particle = new Particle(this.nextId, this.container, position, overrideOptions);
+            const particle = new Particle(this.nextId, this.container, position, overrideOptions, group);
 
             this.array.push(particle);
 
@@ -252,8 +282,8 @@ export class Particles {
         }
     }
 
-    public removeQuantity(quantity: number): void {
-        this.removeAt(0, quantity);
+    public removeQuantity(quantity: number, group?: string): void {
+        this.removeAt(0, quantity, group);
     }
 
     public getLinkFrequency(p1: IParticle, p2: IParticle): number {
@@ -304,11 +334,19 @@ export class Particles {
     public setDensity(): void {
         const options = this.container.options;
 
-        if (!options.particles.number.density.enable) {
+        this.applyDensity(options.particles);
+
+        for (const group in options.particles.groups) {
+            this.applyDensity(options.particles.groups[group], group);
+        }
+    }
+
+    private applyDensity(options: IParticles, group?: string) {
+        if (!options.number.density?.enable) {
             return;
         }
 
-        const numberOptions = options.particles.number;
+        const numberOptions = options.number;
         const densityFactor = this.initDensityFactor(numberOptions.density);
         const optParticlesNumber = numberOptions.value;
         const optParticlesLimit = numberOptions.limit > 0 ? numberOptions.limit : optParticlesNumber;
@@ -318,13 +356,13 @@ export class Particles {
         this.limit = numberOptions.limit * densityFactor;
 
         if (particlesCount < particlesNumber) {
-            this.push(Math.abs(particlesNumber - particlesCount));
+            this.push(Math.abs(particlesNumber - particlesCount), undefined, options, group);
         } else if (particlesCount > particlesNumber) {
-            this.removeQuantity(particlesCount - particlesNumber);
+            this.removeQuantity(particlesCount - particlesNumber, group);
         }
     }
 
-    private initDensityFactor(densityOptions: Density): number {
+    private initDensityFactor(densityOptions: IDensity): number {
         const container = this.container;
 
         if (!container.canvas.element || !densityOptions.enable) {

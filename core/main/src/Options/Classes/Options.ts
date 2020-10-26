@@ -80,6 +80,8 @@ export class Options implements IOptions, IOptionLoader<IOptions> {
         this.pauseOnBlur = true;
         this.pauseOnOutsideViewport = false;
         this.themes = [];
+
+        this.particles.number.value = 100;
     }
 
     /**

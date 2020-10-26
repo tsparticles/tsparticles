@@ -429,8 +429,9 @@ export class Container {
             }
         }
 
-        this.canvas.windowResize();
+        this.canvas.initSize();
         this.particles.init();
+        this.particles.setDensity();
     }
 
     private intersectionManager(entries: IntersectionObserverEntry[]) {

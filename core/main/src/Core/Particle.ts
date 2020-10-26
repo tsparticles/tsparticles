@@ -88,7 +88,8 @@ export class Particle implements IParticle {
         public readonly id: number,
         private readonly container: Container,
         position?: ICoordinates,
-        overrideOptions?: RecursivePartial<IParticles>
+        overrideOptions?: RecursivePartial<IParticles>,
+        public readonly group?: string
     ) {
         this.links = [];
         this.fill = true;

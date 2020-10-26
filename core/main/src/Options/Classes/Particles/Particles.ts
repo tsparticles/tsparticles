@@ -6,7 +6,7 @@ import { Opacity } from "./Opacity/Opacity";
 import { Shape } from "./Shape/Shape";
 import { Size } from "./Size/Size";
 import { Rotate } from "./Rotate/Rotate";
-import type { RecursivePartial } from "../../../Types";
+import type { ParticlesGroups, RecursivePartial } from "../../../Types";
 import { Shadow } from "./Shadow";
 import type { SingleOrMultiple } from "../../../Types";
 import { Stroke } from "./Stroke";
@@ -16,6 +16,7 @@ import { AnimatableColor } from "./AnimatableColor";
 import type { IOptionLoader } from "../../Interfaces/IOptionLoader";
 import { Life } from "./Life/Life";
 import { Bounce } from "./Bounce/Bounce";
+import { Utils } from "../../../Utils";
 
 /**
  * [[include:Options/Particles.md]]
@@ -59,6 +60,7 @@ export class Particles implements IParticles, IOptionLoader<IParticles> {
     public bounce;
     public collisions;
     public color;
+    public groups: ParticlesGroups;
     public life;
     public links;
     public move;
@@ -76,6 +78,7 @@ export class Particles implements IParticles, IOptionLoader<IParticles> {
         this.bounce = new Bounce();
         this.collisions = new Collisions();
         this.color = new AnimatableColor();
+        this.groups = {};
         this.life = new Life();
         this.links = new Links();
         this.move = new Move();
@@ -91,12 +94,22 @@ export class Particles implements IParticles, IOptionLoader<IParticles> {
     }
 
     public load(data?: RecursivePartial<IParticles>): void {
-        if (data === undefined) {
+        if (!data) {
             return;
         }
 
         this.bounce.load(data.bounce);
         this.color = AnimatableColor.create(this.color, data.color);
+
+        if (data.groups !== undefined) {
+            for (const group in data.groups) {
+                const item = data.groups[group];
+
+                if (item !== undefined) {
+                    this.groups[group] = Utils.deepExtend(this.groups[group] ?? {}, item) as IParticles;
+                }
+            }
+        }
 
         this.life.load(data.life);
 

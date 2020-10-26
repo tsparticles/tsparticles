@@ -112,7 +112,7 @@ export class Shape implements IShape, IOptionLoader<IShape> {
     }
 
     public load(data?: RecursivePartial<IShape>): void {
-        if (data === undefined) {
+        if (!data) {
             return;
         }
 

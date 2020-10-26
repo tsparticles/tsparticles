@@ -180,13 +180,8 @@ export class Canvas {
         }
 
         const container = this.container;
-        const pxRatio = container.retina.pixelRatio;
 
-        container.canvas.size.width = this.element.offsetWidth * pxRatio;
-        container.canvas.size.height = this.element.offsetHeight * pxRatio;
-
-        this.element.width = container.canvas.size.width;
-        this.element.height = container.canvas.size.height;
+        container.canvas.initSize();
 
         /* density particles enabled */
         container.particles.setDensity();
@@ -196,6 +191,21 @@ export class Canvas {
                 plugin.resize();
             }
         }
+    }
+
+    public initSize() {
+        if (!this.element) {
+            return;
+        }
+
+        const container = this.container;
+        const pxRatio = container.retina.pixelRatio;
+
+        container.canvas.size.width = this.element.offsetWidth * pxRatio;
+        container.canvas.size.height = this.element.offsetHeight * pxRatio;
+
+        this.element.width = container.canvas.size.width;
+        this.element.height = container.canvas.size.height;
     }
 
     public drawConnectLine(p1: IParticle, p2: IParticle): void {
