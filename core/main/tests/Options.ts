@@ -155,7 +155,7 @@ describe("Options tests", () => {
         /* pause on blur */
         expect(options.pauseOnBlur).to.be.true;
 
-        /** pause on Element Outside Viewport*/
+        /* pause on Element Outside Viewport */
         expect(options.pauseOnOutsideViewport).to.be.false;
     });
 
