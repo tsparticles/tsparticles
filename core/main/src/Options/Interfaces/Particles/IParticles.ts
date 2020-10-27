@@ -13,6 +13,7 @@ import type { ITwinkle } from "./Twinkle/ITwinkle";
 import type { IAnimatableColor } from "./IAnimatableColor";
 import type { ILife } from "./Life/ILife";
 import type { IBounce } from "./Bounce/IBounce";
+import type { IOrbit } from "./IOrbit";
 
 /**
  * [[include:Options/Particles.md]]
@@ -45,4 +46,5 @@ export interface IParticles {
     size: ISize;
     stroke: SingleOrMultiple<IStroke>;
     twinkle: ITwinkle;
+    orbit: IOrbit;
 }

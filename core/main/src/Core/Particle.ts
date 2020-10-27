@@ -30,6 +30,7 @@ import { Infecter } from "./Particle/Infecter";
 import type { IDelta } from "./Interfaces/IDelta";
 import { Mover } from "./Particle/Mover";
 import type { ILink } from "./Interfaces/ILink";
+import type { IOrbit } from "./Interfaces/IOrbit";
 
 /**
  * The single particle object
@@ -54,6 +55,7 @@ export class Particle implements IParticle {
     public readonly sides;
     public readonly strokeWidth;
     public readonly particlesOptions;
+    public readonly orbitOptions: IOrbit;
 
     public links: ILink[];
     public randomIndexData?: number;
@@ -106,6 +108,7 @@ export class Particle implements IParticle {
 
         const shapeType = particlesOptions.shape.type;
         const reduceDuplicates = particlesOptions.reduceDuplicates;
+        this.orbitOptions = particlesOptions.orbit;
 
         this.shape = shapeType instanceof Array ? Utils.itemFromArray(shapeType, this.id, reduceDuplicates) : shapeType;
 
@@ -408,6 +411,10 @@ export class Particle implements IParticle {
     }
 
     public draw(delta: IDelta): void {
+        if (this.orbitOptions.enable) {
+            this.container.canvas.drawOrbit(this, this.orbitOptions);
+        }
+
         this.container.canvas.drawParticle(this, delta);
     }
 

@@ -17,6 +17,7 @@ import type { IOptionLoader } from "../../Interfaces/IOptionLoader";
 import { Life } from "./Life/Life";
 import { Bounce } from "./Bounce/Bounce";
 import { Utils } from "../../../Utils";
+import { Orbit } from "./Orbit/Orbit";
 
 /**
  * [[include:Options/Particles.md]]
@@ -73,6 +74,7 @@ export class Particles implements IParticles, IOptionLoader<IParticles> {
     public shadow;
     public stroke: SingleOrMultiple<Stroke>;
     public twinkle;
+    public orbit;
 
     constructor() {
         this.bounce = new Bounce();
@@ -91,6 +93,7 @@ export class Particles implements IParticles, IOptionLoader<IParticles> {
         this.size = new Size();
         this.stroke = new Stroke();
         this.twinkle = new Twinkle();
+        this.orbit = new Orbit();
     }
 
     public load(data?: RecursivePartial<IParticles>): void {
@@ -132,6 +135,7 @@ export class Particles implements IParticles, IOptionLoader<IParticles> {
         this.size.load(data.size);
         this.shadow.load(data.shadow);
         this.twinkle.load(data.twinkle);
+        this.orbit.load(data.orbit);
 
         const collisions = data.move?.collisions ?? data.move?.bounce;
 

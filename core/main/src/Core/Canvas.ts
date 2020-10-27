@@ -8,6 +8,7 @@ import type { ILink } from "./Interfaces/ILink";
 import { CanvasUtils, ColorUtils, Constants, NumberUtils, Utils } from "../Utils";
 import type { Particle } from "./Particle";
 import type { IDelta } from "./Interfaces/IDelta";
+import { IOrbit } from "./Interfaces/IOrbit";
 
 /**
  * Canvas manager
@@ -487,6 +488,22 @@ export class Canvas {
                 particle.particlesOptions.shadow
             );
         }
+    }
+
+    public drawOrbit(particle: IParticle, orbitOptions: IOrbit): void {
+        if (!this.context) {
+            return;
+        }
+
+        CanvasUtils.drawEllipse(
+            this.context,
+            particle,
+            orbitOptions.color || particle.getFillColor(),
+            orbitOptions.radius || particle.getRadius(),
+            orbitOptions.opacity,
+            orbitOptions.width,
+            orbitOptions.rotation
+        );
     }
 
     public drawPlugin(plugin: IContainerPlugin, delta: IDelta): void {
