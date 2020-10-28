@@ -63,6 +63,7 @@ export class Particle implements IParticle {
     public moveSpeed?: number;
     public sizeValue?: number;
     public sizeAnimationSpeed?: number;
+    public orbitRadiusValue?: number;
 
     public readonly close: boolean;
     public readonly direction: MoveDirection | keyof typeof MoveDirection | MoveDirectionAlt;
@@ -160,7 +161,6 @@ export class Particle implements IParticle {
         this.noiseDelay = NumberUtils.getValue(this.particlesOptions.move.noise.delay) * 1000;
 
         container.retina.initParticle(this);
-        container.retina.initParticleOrbit(this);
 
         const color = this.particlesOptions.color;
 

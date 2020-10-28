@@ -504,7 +504,7 @@ export class Canvas {
             this.context,
             particle,
             orbitOptions.color || particle.getFillColor(),
-            orbitOptions.radius || particle.getRadius(),
+            particle.orbitRadiusValue || particle.getRadius(),
             orbitOptions.opacity,
             orbitOptions.width,
             orbitOptions.rotation

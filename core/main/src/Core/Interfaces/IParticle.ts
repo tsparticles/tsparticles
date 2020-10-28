@@ -47,6 +47,7 @@ export interface IParticle {
     readonly moveSpeed?: number;
     readonly sizeValue?: number;
     readonly sizeAnimationSpeed?: number;
+    readonly orbitRadiusValue?: number;
 
     getPosition(): ICoordinates;
 
