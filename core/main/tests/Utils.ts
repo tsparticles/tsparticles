@@ -555,16 +555,16 @@ describe("Utils", () => {
         beforeEach(() => {
             called = 0;
             actualLoadImage = Utils.loadImage;
-            Utils.loadImage = (async () => {
+            Utils.loadImage = ((async () => {
                 ++called;
                 return null;
-            }) as unknown as typeof Utils.loadImage;
+            }) as unknown) as typeof Utils.loadImage;
         });
 
         afterEach(() => {
             Utils.loadImage = actualLoadImage;
             global.fetch = window.fetch;
-        })
+        });
 
         it("should reject when no source was specified", async () => {
             const source = "";
@@ -583,31 +583,30 @@ describe("Utils", () => {
             expect(called).to.equal(1);
         });
 
-        it('should resolve with the image data when loaded successfully', async () => {
-            const mockSvgData = 'some svg';
+        it("should resolve with the image data when loaded successfully", async () => {
+            const mockSvgData = "some svg";
 
             global.fetch = (async function mockFetch() {
                 return {
                     ok: true,
-                    text: async () => mockSvgData
-                }
-            }) as unknown as typeof fetch;
-
+                    text: async () => mockSvgData,
+                };
+            } as unknown) as typeof fetch;
 
             const source = "https://someimageurl.com/image.svg";
             const data = await Utils.downloadSvgImage(source);
 
-            expect(data.source).to.equal(source)
-            expect(data.type).to.equal('svg')
-            expect(data.svgData).to.equal(mockSvgData)
-        })
+            expect(data.source).to.equal(source);
+            expect(data.type).to.equal("svg");
+            expect(data.svgData).to.equal(mockSvgData);
+        });
 
         it("should reject when image cannot be loaded", async () => {
             global.fetch = (async function mockFetch() {
                 return {
                     ok: false,
-                }
-            }) as unknown as typeof fetch;
+                };
+            } as unknown) as typeof fetch;
 
             const source = "https://someimageurl.com/image.svg";
 
