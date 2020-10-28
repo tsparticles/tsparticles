@@ -488,6 +488,11 @@ export class Canvas {
                 particle.particlesOptions.shadow
             );
         }
+
+        const orbitOptions = particle.particlesOptions.orbit;
+        if (orbitOptions.enable == true) {
+            this.drawOrbit(particle, orbitOptions);
+        }
     }
 
     public drawOrbit(particle: IParticle, orbitOptions: IOrbit): void {

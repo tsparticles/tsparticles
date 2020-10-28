@@ -109,6 +109,12 @@ export class Retina {
         particle.maxDistance = particlesOptions.move.distance * ratio;
     }
 
+    public initParticleOrbit(particle: Particle): void {
+        const ratio = this.pixelRatio;
+
+        particle.particlesOptions.orbit.radius = particle.particlesOptions.orbit.radius * ratio;
+    }
+
     private handleMotionChange(mediaQuery: MediaQueryList): void {
         const options = this.container.options;
 
