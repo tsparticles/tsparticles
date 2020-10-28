@@ -20,10 +20,10 @@ importers:
       '@angular-devkit/build-ng-packagr': 0.1002.0_ng-packagr@10.1.2
       '@angular/cli': 10.2.0
       '@angular/compiler-cli': 10.2.0_9660f34304423f9d980ab0a9f5239187
-      '@types/node': 14.14.5
+      '@types/node': 14.14.6
       codelyzer: 6.0.1_tslint@6.1.3
       fs: 0.0.1-security
-      ng-packagr: 10.1.2_95312c79449c43550311faa56a2be81d
+      ng-packagr: 10.1.2_010402fa414d509b9ddab982eb2a4296
       protractor: 7.0.0
       ts-node: 9.0.0_typescript@4.0.5
       tslint: 6.1.3_typescript@4.0.5
@@ -41,7 +41,7 @@ importers:
       '@angular/platform-browser': '>=6'
       '@angular/platform-browser-dynamic': '>=6'
       '@angular/router': '>=6'
-      '@types/node': ^14.14.5
+      '@types/node': ^14.14.6
       codelyzer: ^6.0.1
       fs: ^0.0.1-security
       ng-packagr: '>=6'
@@ -63,18 +63,18 @@ importers:
       '@babel/plugin-proposal-class-properties': 7.12.1_@babel+core@7.12.3
       '@babel/preset-env': 7.12.1_@babel+core@7.12.3
       '@babel/preset-typescript': 7.12.1_@babel+core@7.12.3
-      babel-loader: 8.1.0_@babel+core@7.12.3+webpack@5.2.0
+      babel-loader: 8.1.0_@babel+core@7.12.3+webpack@5.3.0
       babel-plugin-inferno: 6.1.1_@babel+core@7.12.3+inferno@7.4.6
-      clean-webpack-plugin: 3.0.0_webpack@5.2.0
-      css-loader: 5.0.0_webpack@5.2.0
-      html-webpack-plugin: 4.5.0_webpack@5.2.0
+      clean-webpack-plugin: 3.0.0_webpack@5.3.0
+      css-loader: 5.0.0_webpack@5.3.0
+      html-webpack-plugin: 4.5.0_webpack@5.3.0
       node-sass: 4.14.1
-      sass-loader: 10.0.4_node-sass@4.14.1+webpack@5.2.0
-      source-map-loader: 1.1.1_webpack@5.2.0
-      style-loader: 2.0.0_webpack@5.2.0
+      sass-loader: 10.0.4_node-sass@4.14.1+webpack@5.3.0
+      source-map-loader: 1.1.2_webpack@5.3.0
+      style-loader: 2.0.0_webpack@5.3.0
       typescript: 4.0.5
-      webpack: 5.2.0_webpack-cli@4.1.0
-      webpack-cli: 4.1.0_webpack@5.2.0
+      webpack: 5.3.0_webpack-cli@4.1.0
+      webpack-cli: 4.1.0_webpack@5.3.0
     specifiers:
       '@babel/core': ^7.12.3
       '@babel/plugin-proposal-class-properties': ^7.12.1
@@ -89,11 +89,11 @@ importers:
       lodash: ^4.17.20
       node-sass: ^4.14.1
       sass-loader: ^10.0.4
-      source-map-loader: ^1.1.1
+      source-map-loader: ^1.1.2
       style-loader: ^2.0.0
       tsparticles: 'workspace:^1.18.7'
       typescript: ^4.0.5
-      webpack: ^5.2.0
+      webpack: ^5.3.0
       webpack-cli: ^4.1.0
   ../../components/jquery:
     dependencies:
@@ -102,31 +102,31 @@ importers:
     devDependencies:
       '@babel/core': 7.12.3
       '@babel/preset-env': 7.12.1_@babel+core@7.12.3
-      '@types/jquery': 3.5.3
-      '@types/node': 14.14.5
+      '@types/jquery': 3.5.4
+      '@types/node': 14.14.6
       '@types/webpack-env': 1.15.3
       '@typescript-eslint/eslint-plugin': 4.6.0_5b45abdb13fea4fae68d9888b9d8cc1b
       '@typescript-eslint/parser': 4.6.0_eslint@7.12.1+typescript@4.0.5
       babel-preset-env: 1.7.0
       eslint: 7.12.1
-      eslint-config-prettier: 6.14.0_eslint@7.12.1
+      eslint-config-prettier: 6.15.0_eslint@7.12.1
       prettier: 2.1.2
       rollup: 2.32.1
       rollup-plugin-babel: 4.4.0_@babel+core@7.12.3+rollup@2.32.1
-      rollup-plugin-sourcemaps: 0.6.3_270c7e7a4867b9ce539d6969b026447f
+      rollup-plugin-sourcemaps: 0.6.3_248f2b04d9a55f16ff1e595439820968
       typescript: 4.0.5
       uglify-js: 3.11.4
     specifiers:
       '@babel/core': ^7.12.3
       '@babel/preset-env': 7.12.1
-      '@types/jquery': ^3.5.3
-      '@types/node': ^14.14.5
+      '@types/jquery': ^3.5.4
+      '@types/node': ^14.14.6
       '@types/webpack-env': ^1.15.3
       '@typescript-eslint/eslint-plugin': ^4.6.0
       '@typescript-eslint/parser': ^4.6.0
       babel-preset-env: ^1.7.0
       eslint: ^7.12.1
-      eslint-config-prettier: ^6.14.0
+      eslint-config-prettier: ^6.15.0
       jquery: ^3.5.1
       prettier: ^2.1.2
       rollup: ^2.32.1
@@ -143,37 +143,37 @@ importers:
     devDependencies:
       '@babel/core': 7.12.3
       '@babel/preset-env': 7.12.1_@babel+core@7.12.3
-      '@types/lodash': 4.14.162
-      '@types/node': 14.14.5
-      '@types/react': 16.9.53
-      '@types/react-dom': 16.9.8
+      '@types/lodash': 4.14.163
+      '@types/node': 14.14.6
+      '@types/react': 16.9.55
+      '@types/react-dom': 16.9.9
       '@typescript-eslint/eslint-plugin': 4.6.0_5b45abdb13fea4fae68d9888b9d8cc1b
       '@typescript-eslint/parser': 4.6.0_eslint@7.12.1+typescript@4.0.5
-      babel-loader: 8.1.0_@babel+core@7.12.3+webpack@5.2.0
+      babel-loader: 8.1.0_@babel+core@7.12.3+webpack@5.3.0
       cross-env: 7.0.2
       eslint: 7.12.1
-      eslint-config-prettier: 6.14.0_eslint@7.12.1
+      eslint-config-prettier: 6.15.0_eslint@7.12.1
       prettier: 2.1.2
       ts-loader: 8.0.7_typescript@4.0.5
       ts-node: 9.0.0_typescript@4.0.5
       typescript: 4.0.5
-      webpack: 5.2.0_webpack-cli@4.1.0
+      webpack: 5.3.0_webpack-cli@4.1.0
       webpack-bundle-analyzer: 3.9.0
-      webpack-cli: 4.1.0_2427516bda83434b1d20e3a5e04d076a
+      webpack-cli: 4.1.0_8498352487fc9b53781f37a9ae0ebad8
       webpack-node-externals: 2.5.2
     specifiers:
       '@babel/core': ^7.12.3
       '@babel/preset-env': ^7.12.1
-      '@types/lodash': ^4.14.162
-      '@types/node': ^14.14.5
-      '@types/react': ^16.9.53
-      '@types/react-dom': ^16.9.8
+      '@types/lodash': ^4.14.163
+      '@types/node': ^14.14.6
+      '@types/react': ^16.9.55
+      '@types/react-dom': ^16.9.9
       '@typescript-eslint/eslint-plugin': ^4.6.0
       '@typescript-eslint/parser': ^4.6.0
       babel-loader: ^8.1.0
       cross-env: ^7.0.2
       eslint: ^7.12.1
-      eslint-config-prettier: ^6.14.0
+      eslint-config-prettier: ^6.15.0
       lodash: ^4.17.20
       preact: '>=10'
       prettier: ^2.1.2
@@ -181,7 +181,7 @@ importers:
       ts-node: ^9.0.0
       tsparticles: 'workspace:^1.18.7'
       typescript: ^4.0.5
-      webpack: ^5.2.0
+      webpack: ^5.3.0
       webpack-bundle-analyzer: ^3.9.0
       webpack-cli: ^4.1.0
       webpack-node-externals: ^2.5.2
@@ -194,30 +194,30 @@ importers:
     devDependencies:
       '@babel/core': 7.12.3
       '@babel/preset-env': 7.12.1_@babel+core@7.12.3
-      '@types/lodash': 4.14.162
-      '@types/node': 14.14.5
+      '@types/lodash': 4.14.163
+      '@types/node': 14.14.6
       '@types/react': 16.9.53
       '@types/react-dom': 16.9.8
       '@typescript-eslint/eslint-plugin': 4.6.0_5b45abdb13fea4fae68d9888b9d8cc1b
       '@typescript-eslint/parser': 4.6.0_eslint@7.12.1+typescript@4.0.5
-      babel-loader: 8.1.0_@babel+core@7.12.3+webpack@5.2.0
+      babel-loader: 8.1.0_@babel+core@7.12.3+webpack@5.3.0
       cross-env: 7.0.2
       eslint: 7.12.1
-      eslint-config-prettier: 6.14.0_eslint@7.12.1
+      eslint-config-prettier: 6.15.0_eslint@7.12.1
       prettier: 2.1.2
       react-dom: 16.14.0_react@16.14.0
       ts-loader: 8.0.7_typescript@4.0.5
       ts-node: 9.0.0_typescript@4.0.5
       typescript: 4.0.5
-      webpack: 5.2.0_webpack-cli@4.1.0
+      webpack: 5.3.0_webpack-cli@4.1.0
       webpack-bundle-analyzer: 3.9.0
-      webpack-cli: 4.1.0_2427516bda83434b1d20e3a5e04d076a
+      webpack-cli: 4.1.0_8498352487fc9b53781f37a9ae0ebad8
       webpack-node-externals: 2.5.2
     specifiers:
       '@babel/core': ^7.12.3
       '@babel/preset-env': ^7.12.1
-      '@types/lodash': ^4.14.162
-      '@types/node': ^14.14.5
+      '@types/lodash': ^4.14.163
+      '@types/node': ^14.14.6
       '@types/react': '>=16'
       '@types/react-dom': '>=16'
       '@typescript-eslint/eslint-plugin': ^4.6.0
@@ -225,7 +225,7 @@ importers:
       babel-loader: ^8.1.0
       cross-env: ^7.0.2
       eslint: ^7.12.1
-      eslint-config-prettier: ^6.14.0
+      eslint-config-prettier: ^6.15.0
       lodash: ^4.17.20
       prettier: ^2.1.2
       react: '>=16'
@@ -235,7 +235,7 @@ importers:
       tslib: ^2.0.3
       tsparticles: 'workspace:^1.18.7'
       typescript: ^4.0.5
-      webpack: ^5.2.0
+      webpack: ^5.3.0
       webpack-bundle-analyzer: ^3.9.0
       webpack-cli: ^4.1.0
       webpack-node-externals: ^2.5.2
@@ -253,7 +253,7 @@ importers:
       rollup: 2.32.1
       rollup-plugin-svelte: 6.1.0_rollup@2.32.1+svelte@3.29.4
       rollup-plugin-terser: 7.0.2_rollup@2.32.1
-      svelte-check: 1.1.2_svelte@3.29.4
+      svelte-check: 1.1.4_svelte@3.29.4
       svelte-preprocess: 4.5.2_svelte@3.29.4+typescript@4.0.5
       typescript: 4.0.5
     specifiers:
@@ -266,7 +266,7 @@ importers:
       rollup-plugin-svelte: ^6.1.0
       rollup-plugin-terser: ^7.0.2
       svelte: '>=3'
-      svelte-check: ^1.1.2
+      svelte-check: ^1.1.4
       svelte-preprocess: ^4.5.2
       tslib: ^2.0.3
       tsparticles: 'workspace:^1.18.7'
@@ -389,36 +389,36 @@ importers:
       '@babel/core': 7.12.3
       '@typescript-eslint/eslint-plugin': 4.6.0_5b45abdb13fea4fae68d9888b9d8cc1b
       '@typescript-eslint/parser': 4.6.0_eslint@7.12.1+typescript@4.0.5
-      babel-loader: 8.1.0_@babel+core@7.12.3+webpack@5.2.0
+      babel-loader: 8.1.0_@babel+core@7.12.3+webpack@5.3.0
       eslint: 7.12.1
-      eslint-config-prettier: 6.14.0_eslint@7.12.1
+      eslint-config-prettier: 6.15.0_eslint@7.12.1
       fibers: 5.0.0
       prettier: 2.1.2
       rimraf: 3.0.2
       sass: 1.27.0
-      sass-loader: 10.0.4_5d7ba95c90d3effc62392435580177a4
-      terser-webpack-plugin: 5.0.1_webpack@5.2.0
+      sass-loader: 10.0.4_9d82eb4bb2dba526f65a4c4d2ad59e3b
+      terser-webpack-plugin: 5.0.3_webpack@5.3.0
       typescript: 4.0.5
-      webpack: 5.2.0_webpack-cli@4.1.0
+      webpack: 5.3.0_webpack-cli@4.1.0
       webpack-bundle-analyzer: 3.9.0
-      webpack-cli: 4.1.0_2427516bda83434b1d20e3a5e04d076a
+      webpack-cli: 4.1.0_8498352487fc9b53781f37a9ae0ebad8
     specifiers:
       '@babel/core': ^7.12.3
       '@typescript-eslint/eslint-plugin': ^4.6.0
       '@typescript-eslint/parser': ^4.6.0
       babel-loader: ^8.1.0
       eslint: ^7.12.1
-      eslint-config-prettier: ^6.14.0
+      eslint-config-prettier: ^6.15.0
       fibers: ^5.0.0
       object-gui: ^1.0.11
       prettier: ^2.1.2
       rimraf: ^3.0.2
       sass: ^1.27.0
       sass-loader: ^10.0.4
-      terser-webpack-plugin: ^5.0.1
+      terser-webpack-plugin: ^5.0.3
       tsparticles: 'workspace:^1.18.7'
       typescript: ^4.0.5
-      webpack: ^5.2.0
+      webpack: ^5.3.0
       webpack-bundle-analyzer: ^3.9.0
       webpack-cli: ^4.1.0
   ../../core/main:
@@ -426,17 +426,17 @@ importers:
       '@babel/core': 7.12.3
       '@types/chai': 4.2.14
       '@types/mocha': 8.0.3
-      '@types/node': 14.14.5
+      '@types/node': 14.14.6
       '@types/webpack-env': 1.15.3
       '@typescript-eslint/eslint-plugin': 4.6.0_5b45abdb13fea4fae68d9888b9d8cc1b
       '@typescript-eslint/parser': 4.6.0_eslint@7.12.1+typescript@4.0.5
-      babel-loader: 8.1.0_@babel+core@7.12.3+webpack@5.2.0
+      babel-loader: 8.1.0_@babel+core@7.12.3+webpack@5.3.0
       canvas: 2.6.1
       chai: 4.2.0
       compare-versions: 3.6.0
       copyfiles: 2.4.0
       eslint: 7.12.1
-      eslint-config-prettier: 6.14.0_eslint@7.12.1
+      eslint-config-prettier: 6.15.0_eslint@7.12.1
       gh-pages: 3.1.0
       install: 0.13.0
       mocha: 8.2.0
@@ -445,16 +445,16 @@ importers:
       reflect-metadata: 0.1.13
       rimraf: 3.0.2
       source-map-support: 0.5.19
-      terser-webpack-plugin: 5.0.1_webpack@5.2.0
+      terser-webpack-plugin: 5.0.3_webpack@5.3.0
       ts-node: 9.0.0_typescript@4.0.5
       typedoc: 0.19.2_typescript@4.0.5
       typedoc-particles-theme: 1.0.9_typescript@4.0.5
       typedoc-plugin-nojekyll: 1.0.1_typedoc@0.19.2
       typescript: 4.0.5
       typescript-json-schema: 0.43.0
-      webpack: 5.2.0_webpack-cli@4.1.0
+      webpack: 5.3.0_webpack-cli@4.1.0
       webpack-bundle-analyzer: 3.9.0
-      webpack-cli: 4.1.0_2427516bda83434b1d20e3a5e04d076a
+      webpack-cli: 4.1.0_8498352487fc9b53781f37a9ae0ebad8
       window: 4.2.7
     optionalDependencies:
       pathseg: 1.2.0
@@ -462,17 +462,17 @@ importers:
       '@babel/core': ^7.12.3
       '@types/chai': ^4.2.14
       '@types/mocha': ^8.0.3
-      '@types/node': ^14.14.5
+      '@types/node': ^14.14.6
       '@types/webpack-env': ^1.15.3
       '@typescript-eslint/eslint-plugin': ^4.6.0
       '@typescript-eslint/parser': ^4.6.0
       babel-loader: ^8.1.0
       canvas: ^2.6.1
       chai: ^4.2.0
-      compare-versions: 3.6.0
+      compare-versions: ^3.6.0
       copyfiles: ^2.4.0
       eslint: ^7.12.1
-      eslint-config-prettier: ^6.14.0
+      eslint-config-prettier: ^6.15.0
       gh-pages: ^3.1.0
       install: ^0.13.0
       mocha: ^8.2.0
@@ -482,14 +482,14 @@ importers:
       reflect-metadata: ^0.1.13
       rimraf: ^3.0.2
       source-map-support: ^0.5.19
-      terser-webpack-plugin: ^5.0.1
+      terser-webpack-plugin: ^5.0.3
       ts-node: ^9.0.0
       typedoc: ^0.19.2
       typedoc-particles-theme: ^1.0.9
       typedoc-plugin-nojekyll: ^1.0.1
       typescript: ^4.0.5
       typescript-json-schema: ^0.43.0
-      webpack: ^5.2.0
+      webpack: ^5.3.0
       webpack-bundle-analyzer: ^3.9.0
       webpack-cli: ^4.1.0
       window: ^4.2.7
@@ -512,12 +512,12 @@ importers:
       '@angular-devkit/build-angular': 0.1002.0_a8163b5ce19f88bbc852757a9db23553
       '@angular/cli': 10.2.0
       '@angular/compiler-cli': 10.2.0_9660f34304423f9d980ab0a9f5239187
-      '@types/node': 14.14.5
+      '@types/node': 14.14.6
       '@typescript-eslint/eslint-plugin': 4.6.0_5b45abdb13fea4fae68d9888b9d8cc1b
       '@typescript-eslint/parser': 4.6.0_eslint@7.12.1+typescript@4.0.5
       codelyzer: 6.0.1_tslint@6.1.3
       eslint: 7.12.1
-      eslint-config-prettier: 6.14.0_eslint@7.12.1
+      eslint-config-prettier: 6.15.0_eslint@7.12.1
       prettier: 2.1.2
       protractor: 7.0.0
       ts-node: 9.0.0_typescript@4.0.5
@@ -535,12 +535,12 @@ importers:
       '@angular/platform-browser': ~10.2.0
       '@angular/platform-browser-dynamic': ~10.2.0
       '@angular/router': ~10.2.0
-      '@types/node': ^14.14.5
+      '@types/node': ^14.14.6
       '@typescript-eslint/eslint-plugin': ^4.6.0
       '@typescript-eslint/parser': ^4.6.0
       codelyzer: ^6.0.1
       eslint: ^7.12.1
-      eslint-config-prettier: ^6.14.0
+      eslint-config-prettier: ^6.15.0
       ng-particles: 'workspace:^2.1.7'
       prettier: ^2.1.2
       protractor: ~7.0.0
@@ -556,7 +556,7 @@ importers:
       '@typescript-eslint/eslint-plugin': 4.6.0_99443c1ffb8e4b41e52e0582f578c22b
       '@typescript-eslint/parser': 4.6.0_eslint@7.12.1
       eslint: 7.12.1
-      eslint-config-prettier: 6.14.0_eslint@7.12.1
+      eslint-config-prettier: 6.15.0_eslint@7.12.1
       express: 4.17.1
       helmet: 4.1.1
       prettier: 2.1.2
@@ -568,7 +568,7 @@ importers:
       '@typescript-eslint/eslint-plugin': ^4.6.0
       '@typescript-eslint/parser': ^4.6.0
       eslint: ^7.12.1
-      eslint-config-prettier: ^6.14.0
+      eslint-config-prettier: ^6.15.0
       express: ^4.17.1
       helmet: ^4.1.1
       prettier: ^2.1.2
@@ -586,18 +586,18 @@ importers:
       '@babel/plugin-proposal-class-properties': 7.12.1_@babel+core@7.12.3
       '@babel/preset-env': 7.12.1_@babel+core@7.12.3
       '@babel/preset-typescript': 7.12.1_@babel+core@7.12.3
-      babel-loader: 8.1.0_@babel+core@7.12.3+webpack@5.2.0
+      babel-loader: 8.1.0_@babel+core@7.12.3+webpack@5.3.0
       babel-plugin-inferno: 6.1.1_@babel+core@7.12.3+inferno@7.4.6
-      clean-webpack-plugin: 3.0.0_webpack@5.2.0
-      css-loader: 5.0.0_webpack@5.2.0
-      html-webpack-plugin: 4.5.0_webpack@5.2.0
+      clean-webpack-plugin: 3.0.0_webpack@5.3.0
+      css-loader: 5.0.0_webpack@5.3.0
+      html-webpack-plugin: 4.5.0_webpack@5.3.0
       node-sass: 4.14.1
-      sass-loader: 10.0.4_node-sass@4.14.1+webpack@5.2.0
-      source-map-loader: 1.1.1_webpack@5.2.0
-      style-loader: 2.0.0_webpack@5.2.0
+      sass-loader: 10.0.4_node-sass@4.14.1+webpack@5.3.0
+      source-map-loader: 1.1.2_webpack@5.3.0
+      style-loader: 2.0.0_webpack@5.3.0
       typescript: 4.0.5
-      webpack: 5.2.0_webpack-cli@4.1.0
-      webpack-cli: 4.1.0_webpack@5.2.0
+      webpack: 5.3.0_webpack-cli@4.1.0
+      webpack-cli: 4.1.0_webpack@5.3.0
     specifiers:
       '@babel/core': ^7.12.3
       '@babel/plugin-proposal-class-properties': ^7.12.1
@@ -612,11 +612,11 @@ importers:
       inferno-particles: 'workspace:^1.1.7'
       node-sass: ^4.14.1
       sass-loader: ^10.0.4
-      source-map-loader: ^1.1.1
+      source-map-loader: ^1.1.2
       style-loader: ^2.0.0
       tsparticles: 'workspace:^1.18.7'
       typescript: ^4.0.5
-      webpack: ^5.2.0
+      webpack: ^5.3.0
       webpack-cli: ^4.1.0
   ../../demo/jquery:
     dependencies:
@@ -630,21 +630,21 @@ importers:
       '@typescript-eslint/parser': 4.6.0_eslint@7.12.1
       babel-preset-env: 1.7.0
       eslint: 7.12.1
-      eslint-config-prettier: 6.14.0_eslint@7.12.1
+      eslint-config-prettier: 6.15.0_eslint@7.12.1
       express: 4.17.1
       helmet: 4.1.1
       jsoneditor: 9.1.1
       prettier: 2.1.2
       pug: 3.0.0
       stylus: 0.54.8
-      three: 0.121.1
+      three: 0.122.0
     specifiers:
       '@fortawesome/fontawesome-free': ^5.15.1
       '@typescript-eslint/eslint-plugin': ^4.6.0
       '@typescript-eslint/parser': ^4.6.0
       babel-preset-env: ^1.7.0
       eslint: ^7.12.1
-      eslint-config-prettier: ^6.14.0
+      eslint-config-prettier: ^6.15.0
       express: ^4.17.1
       helmet: ^4.1.1
       jquery: ^3.5.1
@@ -653,7 +653,7 @@ importers:
       prettier: ^2.1.2
       pug: ^3.0.0
       stylus: ^0.54.8
-      three: ^0.121.1
+      three: ^0.122.0
       tsparticles: 'workspace:^1.18.7'
       tsparticles-preset-basic: 'workspace:^1.3.7'
   ../../demo/main:
@@ -663,7 +663,7 @@ importers:
       '@typescript-eslint/parser': 4.6.0_eslint@7.12.1
       bootstrap: 4.5.3_jquery@3.5.1+popper.js@1.16.1
       eslint: 7.12.1
-      eslint-config-prettier: 6.14.0_eslint@7.12.1
+      eslint-config-prettier: 6.15.0_eslint@7.12.1
       express: 4.17.1
       helmet: 4.1.1
       jquery: 3.5.1
@@ -673,7 +673,7 @@ importers:
       pug: 3.0.0
       pug-cli: 1.0.0-alpha6
       stylus: 0.54.8
-      three: 0.121.1
+      three: 0.122.0
       tsparticles: 'link:../../core/main'
       tsparticles-preset-60fps: 'link:../../presets/60fps'
       tsparticles-preset-background-mask: 'link:../../presets/backgroundMask'
@@ -695,7 +695,7 @@ importers:
       '@typescript-eslint/parser': ^4.6.0
       bootstrap: ^4.5.3
       eslint: ^7.12.1
-      eslint-config-prettier: ^6.14.0
+      eslint-config-prettier: ^6.15.0
       express: ^4.17.1
       helmet: ^4.1.1
       jquery: ^3.5.1
@@ -705,7 +705,7 @@ importers:
       pug: ^3.0.0
       pug-cli: ^1.0.0-alpha6
       stylus: ^0.54.8
-      three: ^0.121.1
+      three: ^0.122.0
       tsparticles: 'workspace:^1.18.7'
       tsparticles-preset-60fps: 'workspace:^1.3.7'
       tsparticles-preset-background-mask: 'workspace:^1.3.7'
@@ -735,7 +735,7 @@ importers:
       enzyme-adapter-preact-pure: 2.2.3_enzyme@3.11.0+preact@10.5.5
       eslint: 7.12.1
       eslint-config-preact: 1.1.2_eslint@7.12.1
-      eslint-config-prettier: 6.14.0_eslint@7.12.1
+      eslint-config-prettier: 6.15.0_eslint@7.12.1
       eslint-plugin-react-hooks: 4.2.0_eslint@7.12.1
       identity-obj-proxy: 3.0.0
       preact-cli: 3.0.3_9db46563a0f2f1fe3a3b27d49b06061f
@@ -750,7 +750,7 @@ importers:
       enzyme-adapter-preact-pure: ^2.2.3
       eslint: ^7.12.1
       eslint-config-preact: ^1.1.2
-      eslint-config-prettier: ^6.14.0
+      eslint-config-prettier: ^6.15.0
       eslint-plugin-react-hooks: ^4.2.0
       identity-obj-proxy: ^3.0.0
       preact: ^10.5.5
@@ -770,14 +770,14 @@ importers:
       tslib: 2.0.3
       tsparticles: 'link:../../core/main'
     devDependencies:
-      '@types/react': 16.9.53
-      '@types/react-dom': 16.9.8
+      '@types/react': 16.9.55
+      '@types/react-dom': 16.9.9
       '@types/react-syntax-highlighter': 13.5.0
       '@typescript-eslint/eslint-plugin': 4.6.0_5b45abdb13fea4fae68d9888b9d8cc1b
       '@typescript-eslint/parser': 4.6.0_eslint@7.12.1+typescript@4.0.5
       cssnano: 4.1.10
       eslint: 7.12.1
-      eslint-config-prettier: 6.14.0_eslint@7.12.1
+      eslint-config-prettier: 6.15.0_eslint@7.12.1
       node-sass: 4.14.1
       object-assign: 4.1.1
       parcel: 1.12.4
@@ -788,14 +788,14 @@ importers:
       scheduler: 0.20.1
       typescript: 4.0.5
     specifiers:
-      '@types/react': ^16.9.53
-      '@types/react-dom': ^16.9.8
+      '@types/react': ^16.9.55
+      '@types/react-dom': ^16.9.9
       '@types/react-syntax-highlighter': ^13.5.0
       '@typescript-eslint/eslint-plugin': ^4.6.0
       '@typescript-eslint/parser': ^4.6.0
       cssnano: ^4.1.10
       eslint: ^7.12.1
-      eslint-config-prettier: ^6.14.0
+      eslint-config-prettier: ^6.15.0
       lodash: ^4.17.20
       node-sass: ^4.14.1
       object-assign: 4.1.1
@@ -825,7 +825,7 @@ importers:
       rollup-plugin-svelte: 6.1.0_rollup@2.32.1+svelte@3.29.4
       rollup-plugin-terser: 7.0.2_rollup@2.32.1
       svelte: 3.29.4
-      svelte-check: 1.1.2_svelte@3.29.4
+      svelte-check: 1.1.4_svelte@3.29.4
       svelte-preprocess: 4.5.2_svelte@3.29.4+typescript@4.0.5
       tslib: 2.0.3
       typescript: 4.0.5
@@ -840,7 +840,7 @@ importers:
       rollup-plugin-terser: ^7.0.2
       sirv-cli: ^1.0.8
       svelte: ^3.29.4
-      svelte-check: ^1.1.2
+      svelte-check: ^1.1.4
       svelte-particles: 'workspace:^1.1.7'
       svelte-preprocess: ^4.5.2
       tslib: ^2.0.3
@@ -865,7 +865,7 @@ importers:
       '@vue/cli-service': 4.5.8_650b314657d32bbb817049068daff5b8
       babel-loader: 8.1.0_@babel+core@7.12.3
       eslint: 7.12.1
-      eslint-config-prettier: 6.14.0_eslint@7.12.1
+      eslint-config-prettier: 6.15.0_eslint@7.12.1
       prettier: 2.1.2
       rollup: 2.32.1
       rollup-plugin-terser: 7.0.2_rollup@2.32.1
@@ -887,7 +887,7 @@ importers:
       '@vue/cli-service': ~4.5.8
       babel-loader: ^8.1.0
       eslint: ^7.12.1
-      eslint-config-prettier: ^6.14.0
+      eslint-config-prettier: ^6.15.0
       particles.vue: 'workspace:^2.1.7'
       prettier: ^2.1.2
       rollup: ^2.32.1
@@ -932,26 +932,26 @@ importers:
       '@types/webpack-env': 1.15.3
       '@typescript-eslint/eslint-plugin': 4.6.0_5b45abdb13fea4fae68d9888b9d8cc1b
       '@typescript-eslint/parser': 4.6.0_eslint@7.12.1+typescript@4.0.5
-      babel-loader: 8.1.0_webpack@5.2.0
+      babel-loader: 8.1.0_webpack@5.3.0
       eslint: 7.12.1
-      eslint-config-prettier: 6.14.0_eslint@7.12.1
+      eslint-config-prettier: 6.15.0_eslint@7.12.1
       prettier: 2.1.2
-      terser-webpack-plugin: 5.0.1_webpack@5.2.0
+      terser-webpack-plugin: 5.0.3_webpack@5.3.0
       typescript: 4.0.5
-      webpack: 5.2.0_webpack-cli@4.1.0
-      webpack-cli: 4.1.0_webpack@5.2.0
+      webpack: 5.3.0_webpack-cli@4.1.0
+      webpack-cli: 4.1.0_webpack@5.3.0
     specifiers:
       '@types/webpack-env': ^1.15.3
       '@typescript-eslint/eslint-plugin': ^4.6.0
       '@typescript-eslint/parser': ^4.6.0
       babel-loader: ^8.1.0
       eslint: ^7.12.1
-      eslint-config-prettier: ^6.14.0
+      eslint-config-prettier: ^6.15.0
       prettier: ^2.1.2
-      terser-webpack-plugin: ^5.0.1
+      terser-webpack-plugin: ^5.0.3
       tsparticles: 'workspace:^1.18.7'
       typescript: ^4.0.5
-      webpack: ^5.2.0
+      webpack: ^5.3.0
       webpack-cli: ^4.1.0
   ../../presets/backgroundMask:
     dependencies:
@@ -960,26 +960,26 @@ importers:
       '@types/webpack-env': 1.15.3
       '@typescript-eslint/eslint-plugin': 4.6.0_5b45abdb13fea4fae68d9888b9d8cc1b
       '@typescript-eslint/parser': 4.6.0_eslint@7.12.1+typescript@4.0.5
-      babel-loader: 8.1.0_webpack@5.2.0
+      babel-loader: 8.1.0_webpack@5.3.0
       eslint: 7.12.1
-      eslint-config-prettier: 6.14.0_eslint@7.12.1
+      eslint-config-prettier: 6.15.0_eslint@7.12.1
       prettier: 2.1.2
-      terser-webpack-plugin: 5.0.1_webpack@5.2.0
+      terser-webpack-plugin: 5.0.3_webpack@5.3.0
       typescript: 4.0.5
-      webpack: 5.2.0_webpack-cli@4.1.0
-      webpack-cli: 4.1.0_webpack@5.2.0
+      webpack: 5.3.0_webpack-cli@4.1.0
+      webpack-cli: 4.1.0_webpack@5.3.0
     specifiers:
       '@types/webpack-env': ^1.15.3
       '@typescript-eslint/eslint-plugin': ^4.6.0
       '@typescript-eslint/parser': ^4.6.0
       babel-loader: ^8.1.0
       eslint: ^7.12.1
-      eslint-config-prettier: ^6.14.0
+      eslint-config-prettier: ^6.15.0
       prettier: ^2.1.2
-      terser-webpack-plugin: ^5.0.1
+      terser-webpack-plugin: ^5.0.3
       tsparticles: 'workspace:^1.18.7'
       typescript: ^4.0.5
-      webpack: ^5.2.0
+      webpack: ^5.3.0
       webpack-cli: ^4.1.0
   ../../presets/basic:
     dependencies:
@@ -988,26 +988,26 @@ importers:
       '@types/webpack-env': 1.15.3
       '@typescript-eslint/eslint-plugin': 4.6.0_5b45abdb13fea4fae68d9888b9d8cc1b
       '@typescript-eslint/parser': 4.6.0_eslint@7.12.1+typescript@4.0.5
-      babel-loader: 8.1.0_webpack@5.2.0
+      babel-loader: 8.1.0_webpack@5.3.0
       eslint: 7.12.1
-      eslint-config-prettier: 6.14.0_eslint@7.12.1
+      eslint-config-prettier: 6.15.0_eslint@7.12.1
       prettier: 2.1.2
-      terser-webpack-plugin: 5.0.1_webpack@5.2.0
+      terser-webpack-plugin: 5.0.3_webpack@5.3.0
       typescript: 4.0.5
-      webpack: 5.2.0_webpack-cli@4.1.0
-      webpack-cli: 4.1.0_webpack@5.2.0
+      webpack: 5.3.0_webpack-cli@4.1.0
+      webpack-cli: 4.1.0_webpack@5.3.0
     specifiers:
       '@types/webpack-env': ^1.15.3
       '@typescript-eslint/eslint-plugin': ^4.6.0
       '@typescript-eslint/parser': ^4.6.0
       babel-loader: ^8.1.0
       eslint: ^7.12.1
-      eslint-config-prettier: ^6.14.0
+      eslint-config-prettier: ^6.15.0
       prettier: ^2.1.2
-      terser-webpack-plugin: ^5.0.1
+      terser-webpack-plugin: ^5.0.3
       tsparticles: 'workspace:^1.18.7'
       typescript: ^4.0.5
-      webpack: ^5.2.0
+      webpack: ^5.3.0
       webpack-cli: ^4.1.0
   ../../presets/bigCircles:
     dependencies:
@@ -1016,26 +1016,26 @@ importers:
       '@types/webpack-env': 1.15.3
       '@typescript-eslint/eslint-plugin': 4.6.0_5b45abdb13fea4fae68d9888b9d8cc1b
       '@typescript-eslint/parser': 4.6.0_eslint@7.12.1+typescript@4.0.5
-      babel-loader: 8.1.0_webpack@5.2.0
+      babel-loader: 8.1.0_webpack@5.3.0
       eslint: 7.12.1
-      eslint-config-prettier: 6.14.0_eslint@7.12.1
+      eslint-config-prettier: 6.15.0_eslint@7.12.1
       prettier: 2.1.2
-      terser-webpack-plugin: 5.0.1_webpack@5.2.0
+      terser-webpack-plugin: 5.0.3_webpack@5.3.0
       typescript: 4.0.5
-      webpack: 5.2.0_webpack-cli@4.1.0
-      webpack-cli: 4.1.0_webpack@5.2.0
+      webpack: 5.3.0_webpack-cli@4.1.0
+      webpack-cli: 4.1.0_webpack@5.3.0
     specifiers:
       '@types/webpack-env': ^1.15.3
       '@typescript-eslint/eslint-plugin': ^4.6.0
       '@typescript-eslint/parser': ^4.6.0
       babel-loader: ^8.1.0
       eslint: ^7.12.1
-      eslint-config-prettier: ^6.14.0
+      eslint-config-prettier: ^6.15.0
       prettier: ^2.1.2
-      terser-webpack-plugin: ^5.0.1
+      terser-webpack-plugin: ^5.0.3
       tsparticles: 'workspace:^1.18.7'
       typescript: ^4.0.5
-      webpack: ^5.2.0
+      webpack: ^5.3.0
       webpack-cli: ^4.1.0
   ../../presets/bouncing:
     dependencies:
@@ -1044,26 +1044,26 @@ importers:
       '@types/webpack-env': 1.15.3
       '@typescript-eslint/eslint-plugin': 4.6.0_5b45abdb13fea4fae68d9888b9d8cc1b
       '@typescript-eslint/parser': 4.6.0_eslint@7.12.1+typescript@4.0.5
-      babel-loader: 8.1.0_webpack@5.2.0
+      babel-loader: 8.1.0_webpack@5.3.0
       eslint: 7.12.1
-      eslint-config-prettier: 6.14.0_eslint@7.12.1
+      eslint-config-prettier: 6.15.0_eslint@7.12.1
       prettier: 2.1.2
-      terser-webpack-plugin: 5.0.1_webpack@5.2.0
+      terser-webpack-plugin: 5.0.3_webpack@5.3.0
       typescript: 4.0.5
-      webpack: 5.2.0_webpack-cli@4.1.0
-      webpack-cli: 4.1.0_webpack@5.2.0
+      webpack: 5.3.0_webpack-cli@4.1.0
+      webpack-cli: 4.1.0_webpack@5.3.0
     specifiers:
       '@types/webpack-env': ^1.15.3
       '@typescript-eslint/eslint-plugin': ^4.6.0
       '@typescript-eslint/parser': ^4.6.0
       babel-loader: ^8.1.0
       eslint: ^7.12.1
-      eslint-config-prettier: ^6.14.0
+      eslint-config-prettier: ^6.15.0
       prettier: ^2.1.2
-      terser-webpack-plugin: ^5.0.1
+      terser-webpack-plugin: ^5.0.3
       tsparticles: 'workspace:^1.18.7'
       typescript: ^4.0.5
-      webpack: ^5.2.0
+      webpack: ^5.3.0
       webpack-cli: ^4.1.0
   ../../presets/fire:
     dependencies:
@@ -1072,26 +1072,26 @@ importers:
       '@types/webpack-env': 1.15.3
       '@typescript-eslint/eslint-plugin': 4.6.0_5b45abdb13fea4fae68d9888b9d8cc1b
       '@typescript-eslint/parser': 4.6.0_eslint@7.12.1+typescript@4.0.5
-      babel-loader: 8.1.0_webpack@5.2.0
+      babel-loader: 8.1.0_webpack@5.3.0
       eslint: 7.12.1
-      eslint-config-prettier: 6.14.0_eslint@7.12.1
+      eslint-config-prettier: 6.15.0_eslint@7.12.1
       prettier: 2.1.2
-      terser-webpack-plugin: 5.0.1_webpack@5.2.0
+      terser-webpack-plugin: 5.0.3_webpack@5.3.0
       typescript: 4.0.5
-      webpack: 5.2.0_webpack-cli@4.1.0
-      webpack-cli: 4.1.0_webpack@5.2.0
+      webpack: 5.3.0_webpack-cli@4.1.0
+      webpack-cli: 4.1.0_webpack@5.3.0
     specifiers:
       '@types/webpack-env': ^1.15.3
       '@typescript-eslint/eslint-plugin': ^4.6.0
       '@typescript-eslint/parser': ^4.6.0
       babel-loader: ^8.1.0
       eslint: ^7.12.1
-      eslint-config-prettier: ^6.14.0
+      eslint-config-prettier: ^6.15.0
       prettier: ^2.1.2
-      terser-webpack-plugin: ^5.0.1
+      terser-webpack-plugin: ^5.0.3
       tsparticles: 'workspace:^1.18.7'
       typescript: ^4.0.5
-      webpack: ^5.2.0
+      webpack: ^5.3.0
       webpack-cli: ^4.1.0
   ../../presets/fontAwesome:
     dependencies:
@@ -1100,26 +1100,26 @@ importers:
       '@types/webpack-env': 1.15.3
       '@typescript-eslint/eslint-plugin': 4.6.0_5b45abdb13fea4fae68d9888b9d8cc1b
       '@typescript-eslint/parser': 4.6.0_eslint@7.12.1+typescript@4.0.5
-      babel-loader: 8.1.0_webpack@5.2.0
+      babel-loader: 8.1.0_webpack@5.3.0
       eslint: 7.12.1
-      eslint-config-prettier: 6.14.0_eslint@7.12.1
+      eslint-config-prettier: 6.15.0_eslint@7.12.1
       prettier: 2.1.2
-      terser-webpack-plugin: 5.0.1_webpack@5.2.0
+      terser-webpack-plugin: 5.0.3_webpack@5.3.0
       typescript: 4.0.5
-      webpack: 5.2.0_webpack-cli@4.1.0
-      webpack-cli: 4.1.0_webpack@5.2.0
+      webpack: 5.3.0_webpack-cli@4.1.0
+      webpack-cli: 4.1.0_webpack@5.3.0
     specifiers:
       '@types/webpack-env': ^1.15.3
       '@typescript-eslint/eslint-plugin': ^4.6.0
       '@typescript-eslint/parser': ^4.6.0
       babel-loader: ^8.1.0
       eslint: ^7.12.1
-      eslint-config-prettier: ^6.14.0
+      eslint-config-prettier: ^6.15.0
       prettier: ^2.1.2
-      terser-webpack-plugin: ^5.0.1
+      terser-webpack-plugin: ^5.0.3
       tsparticles: 'workspace:^1.18.7'
       typescript: ^4.0.5
-      webpack: ^5.2.0
+      webpack: ^5.3.0
       webpack-cli: ^4.1.0
   ../../presets/fountain:
     dependencies:
@@ -1128,26 +1128,26 @@ importers:
       '@types/webpack-env': 1.15.3
       '@typescript-eslint/eslint-plugin': 4.6.0_5b45abdb13fea4fae68d9888b9d8cc1b
       '@typescript-eslint/parser': 4.6.0_eslint@7.12.1+typescript@4.0.5
-      babel-loader: 8.1.0_webpack@5.2.0
+      babel-loader: 8.1.0_webpack@5.3.0
       eslint: 7.12.1
-      eslint-config-prettier: 6.14.0_eslint@7.12.1
+      eslint-config-prettier: 6.15.0_eslint@7.12.1
       prettier: 2.1.2
-      terser-webpack-plugin: 5.0.1_webpack@5.2.0
+      terser-webpack-plugin: 5.0.3_webpack@5.3.0
       typescript: 4.0.5
-      webpack: 5.2.0_webpack-cli@4.1.0
-      webpack-cli: 4.1.0_webpack@5.2.0
+      webpack: 5.3.0_webpack-cli@4.1.0
+      webpack-cli: 4.1.0_webpack@5.3.0
     specifiers:
       '@types/webpack-env': ^1.15.3
       '@typescript-eslint/eslint-plugin': ^4.6.0
       '@typescript-eslint/parser': ^4.6.0
       babel-loader: ^8.1.0
       eslint: ^7.12.1
-      eslint-config-prettier: ^6.14.0
+      eslint-config-prettier: ^6.15.0
       prettier: ^2.1.2
-      terser-webpack-plugin: ^5.0.1
+      terser-webpack-plugin: ^5.0.3
       tsparticles: 'workspace:^1.18.7'
       typescript: ^4.0.5
-      webpack: ^5.2.0
+      webpack: ^5.3.0
       webpack-cli: ^4.1.0
   ../../presets/snow:
     dependencies:
@@ -1156,26 +1156,26 @@ importers:
       '@types/webpack-env': 1.15.3
       '@typescript-eslint/eslint-plugin': 4.6.0_5b45abdb13fea4fae68d9888b9d8cc1b
       '@typescript-eslint/parser': 4.6.0_eslint@7.12.1+typescript@4.0.5
-      babel-loader: 8.1.0_webpack@5.2.0
+      babel-loader: 8.1.0_webpack@5.3.0
       eslint: 7.12.1
-      eslint-config-prettier: 6.14.0_eslint@7.12.1
+      eslint-config-prettier: 6.15.0_eslint@7.12.1
       prettier: 2.1.2
-      terser-webpack-plugin: 5.0.1_webpack@5.2.0
+      terser-webpack-plugin: 5.0.3_webpack@5.3.0
       typescript: 4.0.5
-      webpack: 5.2.0_webpack-cli@4.1.0
-      webpack-cli: 4.1.0_webpack@5.2.0
+      webpack: 5.3.0_webpack-cli@4.1.0
+      webpack-cli: 4.1.0_webpack@5.3.0
     specifiers:
       '@types/webpack-env': ^1.15.3
       '@typescript-eslint/eslint-plugin': ^4.6.0
       '@typescript-eslint/parser': ^4.6.0
       babel-loader: ^8.1.0
       eslint: ^7.12.1
-      eslint-config-prettier: ^6.14.0
+      eslint-config-prettier: ^6.15.0
       prettier: ^2.1.2
-      terser-webpack-plugin: ^5.0.1
+      terser-webpack-plugin: ^5.0.3
       tsparticles: 'workspace:^1.18.7'
       typescript: ^4.0.5
-      webpack: ^5.2.0
+      webpack: ^5.3.0
       webpack-cli: ^4.1.0
   ../../presets/stars:
     dependencies:
@@ -1184,26 +1184,26 @@ importers:
       '@types/webpack-env': 1.15.3
       '@typescript-eslint/eslint-plugin': 4.6.0_5b45abdb13fea4fae68d9888b9d8cc1b
       '@typescript-eslint/parser': 4.6.0_eslint@7.12.1+typescript@4.0.5
-      babel-loader: 8.1.0_webpack@5.2.0
+      babel-loader: 8.1.0_webpack@5.3.0
       eslint: 7.12.1
-      eslint-config-prettier: 6.14.0_eslint@7.12.1
+      eslint-config-prettier: 6.15.0_eslint@7.12.1
       prettier: 2.1.2
-      terser-webpack-plugin: 5.0.1_webpack@5.2.0
+      terser-webpack-plugin: 5.0.3_webpack@5.3.0
       typescript: 4.0.5
-      webpack: 5.2.0_webpack-cli@4.1.0
-      webpack-cli: 4.1.0_webpack@5.2.0
+      webpack: 5.3.0_webpack-cli@4.1.0
+      webpack-cli: 4.1.0_webpack@5.3.0
     specifiers:
       '@types/webpack-env': ^1.15.3
       '@typescript-eslint/eslint-plugin': ^4.6.0
       '@typescript-eslint/parser': ^4.6.0
       babel-loader: ^8.1.0
       eslint: ^7.12.1
-      eslint-config-prettier: ^6.14.0
+      eslint-config-prettier: ^6.15.0
       prettier: ^2.1.2
-      terser-webpack-plugin: ^5.0.1
+      terser-webpack-plugin: ^5.0.3
       tsparticles: 'workspace:^1.18.7'
       typescript: ^4.0.5
-      webpack: ^5.2.0
+      webpack: ^5.3.0
       webpack-cli: ^4.1.0
   ../../shapes/bubble:
     dependencies:
@@ -1212,26 +1212,26 @@ importers:
       '@types/webpack-env': 1.15.3
       '@typescript-eslint/eslint-plugin': 4.6.0_5b45abdb13fea4fae68d9888b9d8cc1b
       '@typescript-eslint/parser': 4.6.0_eslint@7.12.1+typescript@4.0.5
-      babel-loader: 8.1.0_webpack@5.2.0
+      babel-loader: 8.1.0_webpack@5.3.0
       eslint: 7.12.1
-      eslint-config-prettier: 6.14.0_eslint@7.12.1
+      eslint-config-prettier: 6.15.0_eslint@7.12.1
       prettier: 2.1.2
-      terser-webpack-plugin: 5.0.1_webpack@5.2.0
+      terser-webpack-plugin: 5.0.3_webpack@5.3.0
       typescript: 4.0.5
-      webpack: 5.2.0_webpack-cli@4.1.0
-      webpack-cli: 4.1.0_webpack@5.2.0
+      webpack: 5.3.0_webpack-cli@4.1.0
+      webpack-cli: 4.1.0_webpack@5.3.0
     specifiers:
       '@types/webpack-env': ^1.15.3
       '@typescript-eslint/eslint-plugin': ^4.6.0
       '@typescript-eslint/parser': ^4.6.0
       babel-loader: ^8.1.0
       eslint: ^7.12.1
-      eslint-config-prettier: ^6.14.0
+      eslint-config-prettier: ^6.15.0
       prettier: ^2.1.2
-      terser-webpack-plugin: ^5.0.1
+      terser-webpack-plugin: ^5.0.3
       tsparticles: 'workspace:^1.18.7'
       typescript: ^4.0.5
-      webpack: ^5.2.0
+      webpack: ^5.3.0
       webpack-cli: ^4.1.0
   ../../shapes/heart:
     dependencies:
@@ -1240,26 +1240,26 @@ importers:
       '@types/webpack-env': 1.15.3
       '@typescript-eslint/eslint-plugin': 4.6.0_5b45abdb13fea4fae68d9888b9d8cc1b
       '@typescript-eslint/parser': 4.6.0_eslint@7.12.1+typescript@4.0.5
-      babel-loader: 8.1.0_webpack@5.2.0
+      babel-loader: 8.1.0_webpack@5.3.0
       eslint: 7.12.1
-      eslint-config-prettier: 6.14.0_eslint@7.12.1
+      eslint-config-prettier: 6.15.0_eslint@7.12.1
       prettier: 2.1.2
-      terser-webpack-plugin: 5.0.1_webpack@5.2.0
+      terser-webpack-plugin: 5.0.3_webpack@5.3.0
       typescript: 4.0.5
-      webpack: 5.2.0_webpack-cli@4.1.0
-      webpack-cli: 4.1.0_webpack@5.2.0
+      webpack: 5.3.0_webpack-cli@4.1.0
+      webpack-cli: 4.1.0_webpack@5.3.0
     specifiers:
       '@types/webpack-env': ^1.15.3
       '@typescript-eslint/eslint-plugin': ^4.6.0
       '@typescript-eslint/parser': ^4.6.0
       babel-loader: ^8.1.0
       eslint: ^7.12.1
-      eslint-config-prettier: ^6.14.0
+      eslint-config-prettier: ^6.15.0
       prettier: ^2.1.2
-      terser-webpack-plugin: ^5.0.1
+      terser-webpack-plugin: ^5.0.3
       tsparticles: 'workspace:^1.18.7'
       typescript: ^4.0.5
-      webpack: ^5.2.0
+      webpack: ^5.3.0
       webpack-cli: ^4.1.0
   ../../shapes/multiline-text:
     dependencies:
@@ -1268,26 +1268,26 @@ importers:
       '@types/webpack-env': 1.15.3
       '@typescript-eslint/eslint-plugin': 4.6.0_5b45abdb13fea4fae68d9888b9d8cc1b
       '@typescript-eslint/parser': 4.6.0_eslint@7.12.1+typescript@4.0.5
-      babel-loader: 8.1.0_webpack@5.2.0
+      babel-loader: 8.1.0_webpack@5.3.0
       eslint: 7.12.1
-      eslint-config-prettier: 6.14.0_eslint@7.12.1
+      eslint-config-prettier: 6.15.0_eslint@7.12.1
       prettier: 2.1.2
-      terser-webpack-plugin: 5.0.1_webpack@5.2.0
+      terser-webpack-plugin: 5.0.3_webpack@5.3.0
       typescript: 4.0.5
-      webpack: 5.2.0_webpack-cli@4.1.0
-      webpack-cli: 4.1.0_webpack@5.2.0
+      webpack: 5.3.0_webpack-cli@4.1.0
+      webpack-cli: 4.1.0_webpack@5.3.0
     specifiers:
       '@types/webpack-env': ^1.15.3
       '@typescript-eslint/eslint-plugin': ^4.6.0
       '@typescript-eslint/parser': ^4.6.0
       babel-loader: ^8.1.0
       eslint: ^7.12.1
-      eslint-config-prettier: ^6.14.0
+      eslint-config-prettier: ^6.15.0
       prettier: ^2.1.2
-      terser-webpack-plugin: ^5.0.1
+      terser-webpack-plugin: ^5.0.3
       tsparticles: 'workspace:^1.18.7'
       typescript: ^4.0.5
-      webpack: ^5.2.0
+      webpack: ^5.3.0
       webpack-cli: ^4.1.0
   ../../shapes/spiral:
     dependencies:
@@ -1296,26 +1296,26 @@ importers:
       '@types/webpack-env': 1.15.3
       '@typescript-eslint/eslint-plugin': 4.6.0_5b45abdb13fea4fae68d9888b9d8cc1b
       '@typescript-eslint/parser': 4.6.0_eslint@7.12.1+typescript@4.0.5
-      babel-loader: 8.1.0_webpack@5.2.0
+      babel-loader: 8.1.0_webpack@5.3.0
       eslint: 7.12.1
-      eslint-config-prettier: 6.14.0_eslint@7.12.1
+      eslint-config-prettier: 6.15.0_eslint@7.12.1
       prettier: 2.1.2
-      terser-webpack-plugin: 5.0.1_webpack@5.2.0
+      terser-webpack-plugin: 5.0.3_webpack@5.3.0
       typescript: 4.0.5
-      webpack: 5.2.0_webpack-cli@4.1.0
-      webpack-cli: 4.1.0_webpack@5.2.0
+      webpack: 5.3.0_webpack-cli@4.1.0
+      webpack-cli: 4.1.0_webpack@5.3.0
     specifiers:
       '@types/webpack-env': ^1.15.3
       '@typescript-eslint/eslint-plugin': ^4.6.0
       '@typescript-eslint/parser': ^4.6.0
       babel-loader: ^8.1.0
       eslint: ^7.12.1
-      eslint-config-prettier: ^6.14.0
+      eslint-config-prettier: ^6.15.0
       prettier: ^2.1.2
-      terser-webpack-plugin: ^5.0.1
+      terser-webpack-plugin: ^5.0.3
       tsparticles: 'workspace:^1.18.7'
       typescript: ^4.0.5
-      webpack: ^5.2.0
+      webpack: ^5.3.0
       webpack-cli: ^4.1.0
   ../../templates/react:
     dependencies:
@@ -1379,7 +1379,7 @@ packages:
       loader-utils: 2.0.0
       mini-css-extract-plugin: 0.10.0_webpack@4.44.1
       minimatch: 3.0.4
-      ng-packagr: 10.1.2_95312c79449c43550311faa56a2be81d
+      ng-packagr: 10.1.2_010402fa414d509b9ddab982eb2a4296
       open: 7.2.0
       parse5: 6.0.1
       parse5-htmlparser2-tree-adapter: 6.0.1
@@ -1520,7 +1520,7 @@ packages:
   /@angular-devkit/build-ng-packagr/0.1002.0_ng-packagr@10.1.2:
     dependencies:
       '@angular-devkit/architect': 0.1002.0
-      ng-packagr: 10.1.2_95312c79449c43550311faa56a2be81d
+      ng-packagr: 10.1.2_010402fa414d509b9ddab982eb2a4296
       rxjs: 6.6.2
     dev: true
     engines:
@@ -4124,20 +4124,20 @@ packages:
     dev: true
     resolution:
       integrity: sha512-IrSHl2u6AWXduUaDLqYpt45tLVCtYv7o4Z0s1KghBCDgIIS9oW5K1H8mZG/A2CfeLdEa7rTd1ACOiHBc1EMT2Q==
-  /@types/jquery/3.5.3:
+  /@types/jquery/3.5.4:
     dependencies:
       '@types/sizzle': 2.3.2
     dev: true
     resolution:
-      integrity: sha512-IENpHTjGksr2wQS6ZO8eMIE0tIB22Ywg+n3/yAWCa56VSZ26phcwAbFdh9+VNUWk7e83qB27QLax3Rf4G92Y9A==
+      integrity: sha512-//9CHhaUt/rurMJTxGI+I6DmsNHgYU6d8aSLFfO5dB7+10lwLnaWT0z5GY/yY82Q/M+B+0Qh3TixlJ8vmBeqIw==
   /@types/json-schema/7.0.6:
     dev: true
     resolution:
       integrity: sha512-3c+yGKvVP5Y9TYBEibGNR+kLtijnj7mYrXRg+WpFb2X9xm04g/DXYkfg4hmzJQosc9snFNUPkbYIhu+KAm6jJw==
-  /@types/lodash/4.14.162:
+  /@types/lodash/4.14.163:
     dev: true
     resolution:
-      integrity: sha512-alvcho1kRUnnD1Gcl4J+hK0eencvzq9rmzvFPRmP5rPHx9VVsJj6bKLTATPVf9ktgv4ujzh7T+XWKp+jhuODig==
+      integrity: sha512-BeZM/FZaV53emqyHxn9L39Oz6XbHMBRLA1b1quROku48J/1kYYxPmVOJ/qSQheb81on4BI7H6QDo6bkUuRaDNQ==
   /@types/mime/2.0.3:
     dev: true
     resolution:
@@ -4162,6 +4162,10 @@ packages:
     dev: true
     resolution:
       integrity: sha512-H5Wn24s/ZOukBmDn03nnGTp18A60ny9AmCwnEcgJiTgSGsCO7k+NWP7zjCCbhlcnVCoI+co52dUAt9GMhOSULw==
+  /@types/node/14.14.6:
+    dev: true
+    resolution:
+      integrity: sha512-6QlRuqsQ/Ox/aJEQWBEJG7A9+u7oSYl3mem/K8IzxXG/kAGbV1YPD9Bg9Zw3vyxC/YP+zONKwy8hGkSt1jxFMw==
   /@types/normalize-package-data/2.4.0:
     dev: true
     resolution:
@@ -4200,6 +4204,12 @@ packages:
     dev: true
     resolution:
       integrity: sha512-ykkPQ+5nFknnlU6lDd947WbQ6TE3NNzbQAkInC2EKY1qeYdTKp7onFusmYZb+ityzx2YviqT6BXSu+LyWWJwcA==
+  /@types/react-dom/16.9.9:
+    dependencies:
+      '@types/react': 16.9.55
+    dev: true
+    resolution:
+      integrity: sha512-jE16FNWO3Logq/Lf+yvEAjKzhpST/Eac8EMd1i4dgZdMczfgqC8EjpxwNgEe3SExHYLliabXDh9DEhhqnlXJhg==
   /@types/react-syntax-highlighter/13.5.0:
     dependencies:
       '@types/react': 16.9.53
@@ -4213,6 +4223,13 @@ packages:
     dev: true
     resolution:
       integrity: sha512-4nW60Sd4L7+WMXH1D6jCdVftuW7j4Za6zdp6tJ33Rqv0nk1ZAmQKML9ZLD4H0dehA3FZxXR/GM8gXplf82oNGw==
+  /@types/react/16.9.55:
+    dependencies:
+      '@types/prop-types': 15.7.3
+      csstype: 3.0.4
+    dev: true
+    resolution:
+      integrity: sha512-6KLe6lkILeRwyyy7yG9rULKJ0sXplUsl98MGoCfpteXf9sPWFWWMknDcsvubcpaTdBuxtsLF6HDUwdApZL/xIg==
   /@types/resolve/0.0.8:
     dependencies:
       '@types/node': 14.14.2
@@ -5209,7 +5226,7 @@ packages:
   /@vue/eslint-config-prettier/6.0.0_84db9ae7157d1d2627aa8742351a2bf4:
     dependencies:
       eslint: 7.12.1
-      eslint-config-prettier: 6.14.0_eslint@7.12.1
+      eslint-config-prettier: 6.15.0_eslint@7.12.1
       eslint-plugin-prettier: 3.1.4_eslint@7.12.1+prettier@2.1.2
       prettier: 2.1.2
     dev: true
@@ -5406,7 +5423,7 @@ packages:
   /@webpack-cli/info/1.0.2_webpack-cli@4.1.0:
     dependencies:
       envinfo: 7.7.3
-      webpack-cli: 4.1.0_webpack@5.2.0
+      webpack-cli: 4.1.0_webpack@5.3.0
     dev: true
     peerDependencies:
       webpack-cli: 4.x.x
@@ -5414,7 +5431,7 @@ packages:
       integrity: sha512-FEfLQwmN4pXZSYSrtp+KC84rFanoCIxXFpS2wUvviDCE2fnajwxw2GXzbj83IlH4Dl8Wq8kJjavVwvxv3YJmnw==
   /@webpack-cli/serve/1.0.1_webpack-cli@4.1.0:
     dependencies:
-      webpack-cli: 4.1.0_webpack@5.2.0
+      webpack-cli: 4.1.0_webpack@5.3.0
     dev: true
     peerDependencies:
       webpack-cli: 4.x.x
@@ -6233,7 +6250,7 @@ packages:
       webpack: '>=2'
     resolution:
       integrity: sha512-7q7nC1tYOrqvUrN3LQK4GwSk/TQorZSOlO9C+RZDZpODgyN4ZlCqE5q9cDsyWOliN+aU9B4JX01xK9eJXowJLw==
-  /babel-loader/8.1.0_@babel+core@7.12.3+webpack@5.2.0:
+  /babel-loader/8.1.0_@babel+core@7.12.3+webpack@5.3.0:
     dependencies:
       '@babel/core': 7.12.3
       find-cache-dir: 2.1.0
@@ -6241,7 +6258,7 @@ packages:
       mkdirp: 0.5.5
       pify: 4.0.1
       schema-utils: 2.7.1
-      webpack: 5.2.0_webpack-cli@4.1.0
+      webpack: 5.3.0_webpack-cli@4.1.0
     dev: true
     engines:
       node: '>= 6.9'
@@ -6250,14 +6267,14 @@ packages:
       webpack: '>=2'
     resolution:
       integrity: sha512-7q7nC1tYOrqvUrN3LQK4GwSk/TQorZSOlO9C+RZDZpODgyN4ZlCqE5q9cDsyWOliN+aU9B4JX01xK9eJXowJLw==
-  /babel-loader/8.1.0_webpack@5.2.0:
+  /babel-loader/8.1.0_webpack@5.3.0:
     dependencies:
       find-cache-dir: 2.1.0
       loader-utils: 1.4.0
       mkdirp: 0.5.5
       pify: 4.0.1
       schema-utils: 2.7.1
-      webpack: 5.2.0_webpack-cli@4.1.0
+      webpack: 5.3.0_webpack-cli@4.1.0
     dev: true
     engines:
       node: '>= 6.9'
@@ -7447,11 +7464,11 @@ packages:
       node: '>=6'
     resolution:
       integrity: sha512-4diC9HaTE+KRAMWhDhrGOECgWZxoevMc5TlkObMqNSsVU62PYzXZ/SMTjzyGAFF1YusgxGcSWTEXBhp0CPwQ1A==
-  /clean-webpack-plugin/3.0.0_webpack@5.2.0:
+  /clean-webpack-plugin/3.0.0_webpack@5.3.0:
     dependencies:
       '@types/webpack': 4.41.23
       del: 4.1.1
-      webpack: 5.2.0_webpack-cli@4.1.0
+      webpack: 5.3.0_webpack-cli@4.1.0
     dev: true
     engines:
       node: '>=8.9.0'
@@ -8203,7 +8220,7 @@ packages:
       webpack: ^4.27.0 || ^5.0.0
     resolution:
       integrity: sha512-omVGsTkZPVwVRpckeUnLshPp12KsmMSLqYxs12+RzM9jRR5Y+Idn/tBffjXRvOE+qW7if24cuceFJqYR5FmGBg==
-  /css-loader/5.0.0_webpack@5.2.0:
+  /css-loader/5.0.0_webpack@5.3.0:
     dependencies:
       camelcase: 6.1.0
       cssesc: 3.0.0
@@ -8217,7 +8234,7 @@ packages:
       postcss-value-parser: 4.1.0
       schema-utils: 3.0.0
       semver: 7.3.2
-      webpack: 5.2.0_webpack-cli@4.1.0
+      webpack: 5.3.0_webpack-cli@4.1.0
     dev: true
     engines:
       node: '>= 10.13.0'
@@ -9335,7 +9352,7 @@ packages:
       eslint: 6.x || 7.x
     resolution:
       integrity: sha512-dG0RIOV90M1PxTn1mQChLkkXNXXyd/PO2CZeNM2WyjADowB2UdnbEnFidWzRElPHeyzogiJWFkCWumLh/aLduA==
-  /eslint-config-prettier/6.14.0_eslint@7.12.1:
+  /eslint-config-prettier/6.15.0_eslint@7.12.1:
     dependencies:
       eslint: 7.12.1
       get-stdin: 6.0.0
@@ -9344,7 +9361,7 @@ packages:
     peerDependencies:
       eslint: '>=3.14.1'
     resolution:
-      integrity: sha512-DbVwh0qZhAC7CNDWcq8cBdK6FcVHiMTKmCypOPWeZkp9hJ8xYwTaWSa6bb6cjfi8KOeJy0e9a8Izxyx+O4+gCQ==
+      integrity: sha512-a1+kOYLR8wMGustcgAjdydMsQ2A/2ipRPwRKUmfYaSxc9ZPcrku080Ctl6zrZzZNs/U82MjSv+qKREkoq3bJaw==
   /eslint-loader/2.2.1_eslint@7.12.1+webpack@4.44.2:
     dependencies:
       eslint: 7.12.1
@@ -11098,7 +11115,7 @@ packages:
       webpack: ^1.0.0 || ^2.0.0 || ^3.0.0 || ^4.0.0
     resolution:
       integrity: sha1-sBq71yOsqqeze2r0SS69oD2d03s=
-  /html-webpack-plugin/4.5.0_webpack@5.2.0:
+  /html-webpack-plugin/4.5.0_webpack@5.3.0:
     dependencies:
       '@types/html-minifier-terser': 5.1.1
       '@types/tapable': 1.0.6
@@ -11109,7 +11126,7 @@ packages:
       pretty-error: 2.1.2
       tapable: 1.1.3
       util.promisify: 1.0.0
-      webpack: 5.2.0_webpack-cli@4.1.0
+      webpack: 5.3.0_webpack-cli@4.1.0
     dev: true
     engines:
       node: '>=6.9'
@@ -12237,7 +12254,7 @@ packages:
       integrity: sha512-Vmpn2F6IASefL+DVBhPzI2J9/GJUsqzomdeN+P+dK8/jKxbh8R3BtFnx3FIta7wYlPU62cpJMJQo4kuOowcMnw==
   /jest-worker/26.6.1:
     dependencies:
-      '@types/node': 14.14.5
+      '@types/node': 14.14.6
       merge-stream: 2.0.0
       supports-color: 7.2.0
     dev: true
@@ -13624,7 +13641,7 @@ packages:
     dev: true
     resolution:
       integrity: sha1-yobR/ogoFpsBICCOPchCS524NCw=
-  /ng-packagr/10.1.2_95312c79449c43550311faa56a2be81d:
+  /ng-packagr/10.1.2_010402fa414d509b9ddab982eb2a4296:
     dependencies:
       '@angular/compiler': 10.2.0
       '@angular/compiler-cli': 10.2.0_9660f34304423f9d980ab0a9f5239187
@@ -13648,7 +13665,7 @@ packages:
       read-pkg-up: 5.0.0
       rimraf: 3.0.2
       rollup: 2.32.1
-      rollup-plugin-sourcemaps: 0.6.3_270c7e7a4867b9ce539d6969b026447f
+      rollup-plugin-sourcemaps: 0.6.3_248f2b04d9a55f16ff1e595439820968
       rxjs: 6.6.3
       sass: 1.27.0
       stylus: 0.54.8
@@ -16981,10 +16998,10 @@ packages:
       node: '>=8.3'
     resolution:
       integrity: sha512-oC/8NqumGYuphkqrfszOHUUIwzKsaHBICw6QRwT5uD07gvePTS+HW+GFwu6f9K8W02CUuTvtIM9AWJrbj4wE1A==
-  /rollup-plugin-sourcemaps/0.6.3_270c7e7a4867b9ce539d6969b026447f:
+  /rollup-plugin-sourcemaps/0.6.3_248f2b04d9a55f16ff1e595439820968:
     dependencies:
       '@rollup/pluginutils': 3.1.0_rollup@2.32.1
-      '@types/node': 14.14.5
+      '@types/node': 14.14.6
       rollup: 2.32.1
       source-map-resolve: 0.6.0
     dev: true
@@ -17254,7 +17271,7 @@ packages:
         optional: true
     resolution:
       integrity: sha512-b2PSldKVTS3JcFPHSrEXh3BeAfR7XknGiGCAO5aHruR3Pf3kqLP3Gb2ypXLglRrAzgZkloNxLZ7GXEGDX0hBUQ==
-  /sass-loader/10.0.4_5d7ba95c90d3effc62392435580177a4:
+  /sass-loader/10.0.4_9d82eb4bb2dba526f65a4c4d2ad59e3b:
     dependencies:
       fibers: 5.0.0
       klona: 2.0.4
@@ -17263,7 +17280,7 @@ packages:
       sass: 1.27.0
       schema-utils: 3.0.0
       semver: 7.3.2
-      webpack: 5.2.0_webpack-cli@4.1.0
+      webpack: 5.3.0_webpack-cli@4.1.0
     dev: true
     engines:
       node: '>= 10.13.0'
@@ -17281,7 +17298,7 @@ packages:
         optional: true
     resolution:
       integrity: sha512-zhdZ8qvZM4iL5XjLVEjJLvKWvC+MB+hHgzL2x/Nf7UHpUNmPYsJvypW79bW39g4LZ603dH/dRSsRYzJJIljtdA==
-  /sass-loader/10.0.4_node-sass@4.14.1+webpack@5.2.0:
+  /sass-loader/10.0.4_node-sass@4.14.1+webpack@5.3.0:
     dependencies:
       klona: 2.0.4
       loader-utils: 2.0.0
@@ -17289,7 +17306,7 @@ packages:
       node-sass: 4.14.1
       schema-utils: 3.0.0
       semver: 7.3.2
-      webpack: 5.2.0_webpack-cli@4.1.0
+      webpack: 5.3.0_webpack-cli@4.1.0
     dev: true
     engines:
       node: '>= 10.13.0'
@@ -17840,14 +17857,14 @@ packages:
       webpack: ^4.0.0 || ^5.0.0
     resolution:
       integrity: sha512-oX8d6ndRjN+tVyjj6PlXSyFPhDdVAPsZA30nD3/II8g4uOv8fCz0DMn5sy8KtVbDfKQxOpGwGJnK3xIW3tauDw==
-  /source-map-loader/1.1.1_webpack@5.2.0:
+  /source-map-loader/1.1.2_webpack@5.3.0:
     dependencies:
       abab: 2.0.5
       iconv-lite: 0.6.2
       loader-utils: 2.0.0
       schema-utils: 3.0.0
       source-map: 0.6.1
-      webpack: 5.2.0_webpack-cli@4.1.0
+      webpack: 5.3.0_webpack-cli@4.1.0
       whatwg-mimetype: 2.3.0
     dev: true
     engines:
@@ -17855,7 +17872,7 @@ packages:
     peerDependencies:
       webpack: ^4.0.0 || ^5.0.0
     resolution:
-      integrity: sha512-m2HjSWP2R1yR9P31e4+ciGHFOPvW6GmqHgZkneOkrME2VvWysXTGi4o0yS28iKWWP3vAUmAoa+3x5ZRI2BIX6A==
+      integrity: sha512-bjf6eSENOYBX4JZDfl9vVLNsGAQ6Uz90fLmOazcmMcyDYOBFsGxPNn83jXezWLY9bJsVAo1ObztxPcV8HAbjVA==
   /source-map-resolve/0.5.3:
     dependencies:
       atob: 2.1.2
@@ -18393,11 +18410,11 @@ packages:
       webpack: ^4.0.0 || ^5.0.0
     resolution:
       integrity: sha512-V7TCORko8rs9rIqkSrlMfkqA63DfoGBBJmK1kKGCcSi+BWb4cqz0SRsnp4l6rU5iwOEd0/2ePv68SV22VXon4Q==
-  /style-loader/2.0.0_webpack@5.2.0:
+  /style-loader/2.0.0_webpack@5.3.0:
     dependencies:
       loader-utils: 2.0.0
       schema-utils: 3.0.0
-      webpack: 5.2.0_webpack-cli@4.1.0
+      webpack: 5.3.0_webpack-cli@4.1.0
     dev: true
     engines:
       node: '>= 10.13.0'
@@ -18478,7 +18495,7 @@ packages:
       node: '>=8'
     resolution:
       integrity: sha512-qpCAvRl9stuOHveKsn7HncJRvv501qIacKzQlO/+Lwxc9+0q2wLyv4Dfvt80/DPn2pqOBsJdDiogXGR9+OvwRw==
-  /svelte-check/1.1.2_svelte@3.29.4:
+  /svelte-check/1.1.4_svelte@3.29.4:
     dependencies:
       chalk: 4.1.0
       chokidar: 3.4.3
@@ -18487,66 +18504,14 @@ packages:
       minimist: 1.2.5
       source-map: 0.7.3
       svelte: 3.29.4
-      svelte-preprocess: 4.5.2_svelte@3.29.4+typescript@4.0.3
-      typescript: 4.0.3
+      svelte-preprocess: 4.5.2_svelte@3.29.4+typescript@4.0.5
+      typescript: 4.0.5
     dev: true
     hasBin: true
     peerDependencies:
       svelte: ^3.24.0
     resolution:
-      integrity: sha512-5DcbE0/c0WC+E9Vixy+vteA4i0zWMFNgFowEvs5SP63/bNCe2OMwMani8G2/L5ZHL1JT2xJAyU3yx1eOXiVOLA==
-  /svelte-preprocess/4.5.2_svelte@3.29.4+typescript@4.0.3:
-    dependencies:
-      '@types/pug': 2.0.4
-      '@types/sass': 1.16.0
-      detect-indent: 6.0.0
-      strip-indent: 3.0.0
-      svelte: 3.29.4
-      typescript: 4.0.3
-    dev: true
-    engines:
-      node: '>= 9.11.2'
-    peerDependencies:
-      '@babel/core': ^7.10.2
-      coffeescript: ^2.5.1
-      less: ^3.11.3
-      node-sass: '*'
-      postcss: ^7 || ^8
-      postcss-load-config: ^2.1.0
-      pug: ^3.0.0
-      sass: ^1.26.8
-      stylus: ^0.54.7
-      sugarss: ^2.0.0
-      svelte: ^3.23.0
-      typescript: ^3.9.5 || ^4.0.0
-    peerDependenciesMeta:
-      '@babel/core':
-        optional: true
-      coffeescript:
-        optional: true
-      less:
-        optional: true
-      node-sass:
-        optional: true
-      postcss:
-        optional: true
-      postcss-load-config:
-        optional: true
-      pug:
-        optional: true
-      sass:
-        optional: true
-      stylus:
-        optional: true
-      sugarss:
-        optional: true
-      svelte:
-        optional: true
-      typescript:
-        optional: true
-    requiresBuild: true
-    resolution:
-      integrity: sha512-ClUX5NecnGBwI+nJnnBvKKy0XutCq5uHTIKe6cPhpvuOj9AAnyvef9wOZAE93yr85OKPutGCNIJa/X1TrJ7O0Q==
+      integrity: sha512-X4E00L4KJaP5MWZWbO8TTEwyN0GHRgEV2F1F16NBRZRy5IMa1Xod23qIba7DAAOETotn4uxmkDNL2g9euyjTcA==
   /svelte-preprocess/4.5.2_svelte@3.29.4+typescript@4.0.5:
     dependencies:
       '@types/pug': 2.0.4
@@ -18825,7 +18790,7 @@ packages:
       webpack: ^4.0.0 || ^5.0.0
     resolution:
       integrity: sha512-0ZWDPIP8BtEDZdChbufcXUigOYk6dOX/P/X0hWxqDDcVAQLb8Yy/0FAaemSfax3PAA67+DJR778oz8qVbmy4hA==
-  /terser-webpack-plugin/5.0.1_webpack@5.2.0:
+  /terser-webpack-plugin/5.0.3_webpack@5.3.0:
     dependencies:
       jest-worker: 26.6.1
       p-limit: 3.0.2
@@ -18833,14 +18798,14 @@ packages:
       serialize-javascript: 5.0.1
       source-map: 0.6.1
       terser: 5.3.8
-      webpack: 5.2.0_webpack-cli@4.1.0
+      webpack: 5.3.0_webpack-cli@4.1.0
     dev: true
     engines:
       node: '>= 10.13.0'
     peerDependencies:
       webpack: ^5.1.0
     resolution:
-      integrity: sha512-EwUe+XDTFf/2cAlmAlZZ7vRpNKMZUAypX2kIRm0Fmjlz4l7SqbI/VabmgiesNZW2nq/LR0N7ku/wlTQ6ygen0w==
+      integrity: sha512-zFdGk8Lh9ZJGPxxPE6jwysOlATWB8GMW8HcfGULWA/nPal+3VdATflQvSBSLQJRCmYZnfFJl6vkRTiwJGNgPiQ==
   /terser/3.17.0:
     dependencies:
       commander: 2.20.3
@@ -18926,10 +18891,10 @@ packages:
       webpack: ^2.0.0 || ^3.0.0 || ^4.0.0
     resolution:
       integrity: sha512-wNrVKH2Lcf8ZrWxDF/khdlLlsTMczdcwPA9VEK4c2exlEPynYWxi9op3nPTo5lAnDIkE0rQEB3VBP+4Zncc9Hg==
-  /three/0.121.1:
+  /three/0.122.0:
     dev: true
     resolution:
-      integrity: sha512-+rYhNpW5W1aBdLkPQDld/GA4Sj/uOKJJKVpCAZUbpk/HZEiYRUlPt8+s+9nmxRglWmRHdBa3ERvUwqg4nmoA5w==
+      integrity: sha512-bgYMo0WdaQhf7DhLE8OSNN/rVFO5J4K1A2VeeKqoV4MjjuHjfCP6xLpg8Xedhns7NlEnN3sZ6VJROq19Qyl6Sg==
   /through/2.3.8:
     dev: true
     resolution:
@@ -20120,7 +20085,7 @@ packages:
       node: '>=8'
     resolution:
       integrity: sha512-7doO/SRtLu8q5WM0s7vPKPWX580qhi0/yBHkOxNkv50f6qB76Zy9o2wRTrrPULqYTvQlVHuvbA8v+G5ayuUDsA==
-  /webpack-cli/4.1.0_2427516bda83434b1d20e3a5e04d076a:
+  /webpack-cli/4.1.0_8498352487fc9b53781f37a9ae0ebad8:
     dependencies:
       '@webpack-cli/info': 1.0.2_webpack-cli@4.1.0
       '@webpack-cli/serve': 1.0.1_webpack-cli@4.1.0
@@ -20134,7 +20099,7 @@ packages:
       interpret: 2.2.0
       rechoir: 0.7.0
       v8-compile-cache: 2.1.1
-      webpack: 5.2.0_webpack-cli@4.1.0
+      webpack: 5.3.0_webpack-cli@4.1.0
       webpack-bundle-analyzer: 3.9.0
       webpack-merge: 4.2.2
     dev: true
@@ -20164,7 +20129,7 @@ packages:
         optional: true
     resolution:
       integrity: sha512-NdhxXMZmoik62Y05t0h1y65LjBM7BwFPq311ihXuMM3RY6dlc4KkCTyHLzTuBEc+bqq6d3xh+CWmU0xRexNJBA==
-  /webpack-cli/4.1.0_webpack@5.2.0:
+  /webpack-cli/4.1.0_webpack@5.3.0:
     dependencies:
       '@webpack-cli/info': 1.0.2_webpack-cli@4.1.0
       '@webpack-cli/serve': 1.0.1_webpack-cli@4.1.0
@@ -20178,7 +20143,7 @@ packages:
       interpret: 2.2.0
       rechoir: 0.7.0
       v8-compile-cache: 2.1.1
-      webpack: 5.2.0_webpack-cli@4.1.0
+      webpack: 5.3.0_webpack-cli@4.1.0
       webpack-merge: 4.2.2
     dev: true
     engines:
@@ -20369,7 +20334,7 @@ packages:
     dev: true
     resolution:
       integrity: sha512-lgTS3Xhv1lCOKo7SA5TjKXMjpSM4sBjNV5+q2bqesbSPs5FjGmU6jjtBSkX9b4qW87vDIsCIlUPOEhbZrMdjeQ==
-  /webpack-sources/2.0.1:
+  /webpack-sources/2.1.1:
     dependencies:
       source-list-map: 2.0.1
       source-map: 0.6.1
@@ -20377,7 +20342,7 @@ packages:
     engines:
       node: '>=10.13.0'
     resolution:
-      integrity: sha512-A9oYz7ANQBK5EN19rUXbvNgfdfZf5U2gP0769OXsj9CvYkCR6OHOsd6OKyEy4H38GGxpsQPKIL83NC64QY6Xmw==
+      integrity: sha512-hraq9n99K564zuZUsE61iATO3jvzxOmGo20UlOe3zgdHOBp8inTJgv7EY4RgvCv7Ywx0/vpQTyYSjnFpv4gNtQ==
   /webpack-subresource-integrity/1.4.1_webpack@4.44.1:
     dependencies:
       webpack: 4.44.1
@@ -20471,7 +20436,7 @@ packages:
         optional: true
     resolution:
       integrity: sha512-6KJVGlCxYdISyurpQ0IPTklv+DULv05rs2hseIXer6D7KrUicRDLFb4IUM1S6LUAKypPM/nSiVSuv8jHu1m3/Q==
-  /webpack/5.2.0_webpack-cli@4.1.0:
+  /webpack/5.3.0_webpack-cli@4.1.0:
     dependencies:
       '@types/eslint-scope': 3.7.0
       '@types/estree': 0.0.45
@@ -20494,10 +20459,10 @@ packages:
       pkg-dir: 4.2.0
       schema-utils: 3.0.0
       tapable: 2.0.0
-      terser-webpack-plugin: 5.0.1_webpack@5.2.0
+      terser-webpack-plugin: 5.0.3_webpack@5.3.0
       watchpack: 2.0.0
-      webpack-cli: 4.1.0_webpack@5.2.0
-      webpack-sources: 2.0.1
+      webpack-cli: 4.1.0_webpack@5.3.0
+      webpack-sources: 2.1.1
     dev: true
     engines:
       node: '>=10.13.0'
@@ -20508,7 +20473,7 @@ packages:
       webpack-cli:
         optional: true
     resolution:
-      integrity: sha512-evtOjOJQq3zaHJIWsJjM4TGtNHtSrNVAIyQ+tdPW/fRd+4PLGbUG6S3xt+N4+QwDBOaCVd0xCWiHd4R6lWO5DQ==
+      integrity: sha512-0LumZ36pDaWsh+PO3i6FpNQYVqNu5Rs/Jn5AoYQyHpUxIlzn5H7omwApiEzaIUeWDccExOpkNZGO6agCVSqXPg==
   /websocket-driver/0.6.5:
     dependencies:
       websocket-extensions: 0.1.4

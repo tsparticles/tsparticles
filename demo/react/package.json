@@ -18,14 +18,14 @@
     "url": "https://github.com/matteobruni/tsparticles/issues"
   },
   "devDependencies": {
-    "@types/react": "^16.9.53",
-    "@types/react-dom": "^16.9.8",
+    "@types/react": "^16.9.55",
+    "@types/react-dom": "^16.9.9",
     "@types/react-syntax-highlighter": "^13.5.0",
     "@typescript-eslint/eslint-plugin": "^4.6.0",
     "@typescript-eslint/parser": "^4.6.0",
     "cssnano": "^4.1.10",
     "eslint": "^7.12.1",
-    "eslint-config-prettier": "^6.14.0",
+    "eslint-config-prettier": "^6.15.0",
     "node-sass": "^4.14.1",
     "object-assign": "4.1.1",
     "parcel": "^1.12.4",

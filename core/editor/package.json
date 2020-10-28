@@ -52,15 +52,15 @@
     "@typescript-eslint/parser": "^4.6.0",
     "babel-loader": "^8.1.0",
     "eslint": "^7.12.1",
-    "eslint-config-prettier": "^6.14.0",
+    "eslint-config-prettier": "^6.15.0",
     "fibers": "^5.0.0",
     "prettier": "^2.1.2",
     "rimraf": "^3.0.2",
     "sass": "^1.27.0",
     "sass-loader": "^10.0.4",
-    "terser-webpack-plugin": "^5.0.1",
+    "terser-webpack-plugin": "^5.0.3",
     "typescript": "^4.0.5",
-    "webpack": "^5.2.0",
+    "webpack": "^5.3.0",
     "webpack-bundle-analyzer": "^3.9.0",
     "webpack-cli": "^4.1.0"
   }
