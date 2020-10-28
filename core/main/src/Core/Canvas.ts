@@ -490,7 +490,7 @@ export class Canvas {
         }
 
         const orbitOptions = particle.particlesOptions.orbit;
-        if (orbitOptions.enable == true) {
+        if (orbitOptions.enable === true) {
             this.drawOrbit(particle, orbitOptions);
         }
     }
