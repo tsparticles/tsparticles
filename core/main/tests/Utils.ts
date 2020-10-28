@@ -548,6 +548,78 @@ describe("Utils", () => {
         });
     });
 
+    describe("downloadSvgImage", () => {
+        let actualLoadImage: typeof Utils.loadImage;
+        let called: number;
+
+        beforeEach(() => {
+            called = 0;
+            actualLoadImage = Utils.loadImage;
+            Utils.loadImage = (async () => {
+                ++called;
+                return null;
+            }) as unknown as typeof Utils.loadImage;
+        });
+
+        afterEach(() => {
+            Utils.loadImage = actualLoadImage;
+            global.fetch = window.fetch;
+        })
+
+        it("should reject when no source was specified", async () => {
+            const source = "";
+            try {
+                await Utils.downloadSvgImage(source);
+                throw new Error("Should not have reached this line");
+            } catch (error) {
+                expect(error).to.match(/Error.*No Image.*/i);
+            }
+        });
+
+        it("should fallback to Utils.loadImage when the type is not SVG", async () => {
+            const source = "https://someimageurl.com/image.png";
+            await Utils.downloadSvgImage(source);
+
+            expect(called).to.equal(1);
+        });
+
+        it('should resolve with the image data when loaded successfully', async () => {
+            const mockSvgData = 'some svg';
+
+            global.fetch = (async function mockFetch() {
+                return {
+                    ok: true,
+                    text: async () => mockSvgData
+                }
+            }) as unknown as typeof fetch;
+
+
+            const source = "https://someimageurl.com/image.svg";
+            const data = await Utils.downloadSvgImage(source);
+
+            expect(data.source).to.equal(source)
+            expect(data.type).to.equal('svg')
+            expect(data.svgData).to.equal(mockSvgData)
+        })
+
+        it("should reject when image cannot be loaded", async () => {
+            global.fetch = (async function mockFetch() {
+                return {
+                    ok: false,
+                }
+            }) as unknown as typeof fetch;
+
+            const source = "https://someimageurl.com/image.svg";
+
+            try {
+                await Utils.downloadSvgImage(source);
+                throw new Error("Should not have reached this line");
+            } catch (error) {
+                expect(error).to.match(/Error.*not found.*/i);
+            }
+        });
+    });
+
     describe("Plugins", () => {
         const plugin1 = buildPluginWithId("some plugin", true);
         const plugin2 = buildPluginWithId("some other plugin", false);
