@@ -95,7 +95,9 @@ export class EventListeners {
 
             mouseLeaveEvent = Constants.mouseOutEvent;
         } else if (detectType === InteractivityDetect.parent && container.canvas.element) {
-            container.interactivity.element = container.canvas.element.parentNode;
+            const canvasEl = container.canvas.element;
+
+            container.interactivity.element = canvasEl.parentElement ?? canvasEl.parentNode;
         } else {
             container.interactivity.element = container.canvas.element;
         }
@@ -103,10 +105,11 @@ export class EventListeners {
         const interactivityEl = container.interactivity.element;
 
         /* detect mouse pos - on hover / click event */
-        if (
-            interactivityEl &&
-            (options.interactivity.events.onHover.enable || options.interactivity.events.onClick.enable)
-        ) {
+        if (!interactivityEl) {
+            return;
+        }
+
+        if (options.interactivity.events.onHover.enable || options.interactivity.events.onClick.enable) {
             /* el on mousemove */
             manageListener(interactivityEl, Constants.mouseMoveEvent, this.mouseMoveHandler, add);
 
@@ -119,6 +122,10 @@ export class EventListeners {
             if (!options.interactivity.events.onClick.enable) {
                 /* el on touchend */
                 manageListener(interactivityEl, Constants.touchEndEvent, this.touchEndHandler, add);
+            } else {
+                manageListener(interactivityEl, Constants.touchEndEvent, this.touchEndClickHandler, add);
+                manageListener(interactivityEl, Constants.mouseUpEvent, this.mouseUpHandler, add);
+                manageListener(interactivityEl, Constants.mouseDownEvent, this.mouseDownHandler, add);
             }
 
             /* el on onmouseleave */
@@ -126,13 +133,12 @@ export class EventListeners {
 
             /* el on touchcancel */
             manageListener(interactivityEl, Constants.touchCancelEvent, this.touchCancelHandler, add);
-        }
+        } else {
+            const html = interactivityEl as HTMLElement;
 
-        /* on click event */
-        if (options.interactivity.events.onClick.enable && interactivityEl) {
-            manageListener(interactivityEl, Constants.touchEndEvent, this.touchEndClickHandler, add);
-            manageListener(interactivityEl, Constants.mouseUpEvent, this.mouseUpHandler, add);
-            manageListener(interactivityEl, Constants.mouseDownEvent, this.mouseDownHandler, add);
+            if (html.style) {
+                html.style.pointerEvents = "none";
+            }
         }
 
         if (options.interactivity.events.resize) {
