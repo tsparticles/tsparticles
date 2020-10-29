@@ -479,9 +479,9 @@ export class CanvasUtils {
 
         if (width === 0) {
             return;
-        } else {
-            context.lineWidth = width;
         }
+
+        context.lineWidth = width;
 
         const rotationRadian = (rotation + 90) * (Math.PI / 180);
 
