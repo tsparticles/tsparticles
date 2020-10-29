@@ -483,7 +483,7 @@ export class CanvasUtils {
 
         context.lineWidth = width;
 
-        const rotationRadian = (rotation + 90) * (Math.PI / 180);
+        const rotationRadian = rotation * (Math.PI / 180);
 
         context.ellipse(pos.x, pos.y, radius / 2, radius * 2, rotationRadian, 0, 2 * Math.PI);
 
