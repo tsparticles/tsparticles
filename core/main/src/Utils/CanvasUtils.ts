@@ -477,7 +477,7 @@ export class CanvasUtils {
             context.strokeStyle = ColorUtils.getStyleFromHsl(fillColorValue, opacity);
         }
 
-        if (width == 0) {
+        if (width === 0) {
             return;
         } else {
             context.lineWidth = width;
