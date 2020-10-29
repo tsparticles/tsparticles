@@ -11,15 +11,14 @@ export class Orbit implements IOrbit, IOptionLoader<IOrbit> {
     public opacity: number;
     public width: number;
     public color: IHsl | undefined;
-    public radius: number;
+    public radius: number | undefined;
     public rotation: number;
 
     constructor() {
         this.enable = false;
         this.opacity = 1;
-        this.width = 0;
-        this.radius = 0;
-        this.rotation = 0;
+        this.rotation = 45;
+        this.width = 1;
     }
 
     public load(data?: RecursivePartial<IOrbit>): void {

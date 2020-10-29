@@ -477,13 +477,15 @@ export class CanvasUtils {
             context.strokeStyle = ColorUtils.getStyleFromHsl(fillColorValue, opacity);
         }
 
-        if (width) {
+        if (width == 0) {
+            return;
+        } else {
             context.lineWidth = width;
         }
 
-        const rotationValue = rotation ? Math.PI / rotation : Math.PI / 4;
+        const rotationRadian = (rotation + 90) * (Math.PI / 180);
 
-        context.ellipse(pos.x, pos.y, radius / 2, radius * 2, rotationValue, 0, 2 * Math.PI);
+        context.ellipse(pos.x, pos.y, radius / 2, radius * 2, rotationRadian, 0, 2 * Math.PI);
 
         context.stroke();
     }

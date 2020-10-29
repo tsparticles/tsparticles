@@ -8,6 +8,6 @@ export interface IOrbit {
     opacity: number;
     width: number;
     color: IHsl | undefined;
-    radius: number;
+    radius: number | undefined;
     rotation: number;
 }

@@ -63,7 +63,7 @@ export class Particle implements IParticle {
     public moveSpeed?: number;
     public sizeValue?: number;
     public sizeAnimationSpeed?: number;
-    public orbitRadiusValue?: number;
+    public orbitRadiusValue?: number | undefined;
 
     public readonly close: boolean;
     public readonly direction: MoveDirection | keyof typeof MoveDirection | MoveDirectionAlt;
