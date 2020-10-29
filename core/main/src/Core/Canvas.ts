@@ -504,7 +504,7 @@ export class Canvas {
             this.context,
             particle,
             orbitOptions.color || particle.getFillColor(),
-            typeof particle.orbitRadiusValue === "undefined" ? particle.getRadius() : particle.orbitRadiusValue,
+            particle.orbitRadiusValue ?? particle.getRadius(),
             orbitOptions.opacity,
             orbitOptions.width,
             orbitOptions.rotation
