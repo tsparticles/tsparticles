@@ -10,7 +10,7 @@ export interface IOrbit {
     enable: boolean;
     opacity: number;
     width: number;
-    color: IHsl | undefined;
-    radius: number | undefined;
+    color?: IHsl;
+    radius?: number;
     rotation: number;
 }
