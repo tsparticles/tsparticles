@@ -271,6 +271,7 @@ export class Particles {
             const particle = new Particle(this.nextId, this.container, position, overrideOptions, group);
 
             this.array.push(particle);
+            this.array.sort((a, b) => a.zIndexFactor - b.zIndexFactor);
 
             this.nextId++;
 

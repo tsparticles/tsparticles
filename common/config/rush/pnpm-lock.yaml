@@ -668,6 +668,7 @@ importers:
       helmet: 4.1.1
       jquery: 3.5.1
       jsoneditor: 9.1.1
+      pathseg: 1.2.0
       popper.js: 1.16.1
       prettier: 2.1.2
       pug: 3.0.0
@@ -700,6 +701,7 @@ importers:
       helmet: ^4.1.1
       jquery: ^3.5.1
       jsoneditor: ^9.1.1
+      pathseg: ^1.2.0
       popper.js: ^1.16.1
       prettier: ^2.1.2
       pug: ^3.0.0
@@ -14861,7 +14863,6 @@ packages:
     resolution:
       integrity: sha512-gDKb8aZMDeD/tZWs9P6+q0J9Mwkdl6xMV8TjnGP3qJVJ06bdMgkbBlLU8IdfOsIsFz2BW1rNVT3XuNEl8zPAvw==
   /pathseg/1.2.0:
-    optional: true
     resolution:
       integrity: sha512-+pQS7lTaoVIXhaCW7R3Wd/165APzZHWzYVqe7dxzdupxQwebgpBaCmf0/XZwmoA/rkDq3qvzO0qv4d5oFVrBRw==
   /pathval/1.1.0:

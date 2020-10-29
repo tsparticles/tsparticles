@@ -46,6 +46,7 @@ export class Particle implements IParticle {
     public misplaced;
     public spawning;
     public lastNoiseTime;
+    public zIndexFactor;
 
     public readonly noiseDelay;
     public readonly updater;
@@ -157,6 +158,7 @@ export class Particle implements IParticle {
         this.fill = this.shapeData?.fill ?? this.fill;
         this.close = this.shapeData?.close ?? this.close;
         this.particlesOptions = particlesOptions;
+        this.zIndexFactor = (this.particlesOptions.zIndex + 100) / 100;
         this.noiseDelay = NumberUtils.getValue(this.particlesOptions.move.noise.delay) * 1000;
 
         container.retina.initParticle(this);
@@ -165,7 +167,7 @@ export class Particle implements IParticle {
 
         /* size */
         const sizeOptions = this.particlesOptions.size;
-        const sizeValue = NumberUtils.getValue(sizeOptions) * container.retina.pixelRatio;
+        const sizeValue = NumberUtils.getValue(sizeOptions) * this.zIndexFactor * container.retina.pixelRatio;
 
         const randomSize = typeof sizeOptions.random === "boolean" ? sizeOptions.random : sizeOptions.random.enable;
 
@@ -181,8 +183,8 @@ export class Particle implements IParticle {
         /* animation - velocity for speed */
         this.initialVelocity = this.calculateVelocity();
         this.velocity = {
-            horizontal: this.initialVelocity.horizontal,
-            vertical: this.initialVelocity.vertical,
+            horizontal: this.initialVelocity.horizontal * this.zIndexFactor,
+            vertical: this.initialVelocity.vertical * this.zIndexFactor,
         };
 
         this.pathAngle = Math.atan2(this.initialVelocity.vertical, this.initialVelocity.horizontal);
@@ -296,6 +298,8 @@ export class Particle implements IParticle {
                 ? NumberUtils.randomInRange(randomOpacity.minimumValue, opacityValue)
                 : opacityValue,
         };
+
+        this.opacity.value *= this.zIndexFactor;
 
         const opacityAnimation = opacityOptions.animation;
 

@@ -45,4 +45,5 @@ export interface IParticles {
     size: ISize;
     stroke: SingleOrMultiple<IStroke>;
     twinkle: ITwinkle;
+    zIndex: number;
 }
