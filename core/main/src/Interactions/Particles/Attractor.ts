@@ -12,7 +12,6 @@ export class Attractor implements IParticlesInteractor {
 
     public interact(p1: IParticle): void {
         const container = this.container;
-        const options = container.options;
         const distance = p1.linksDistance ?? container.retina.linksDistance;
         const pos1 = p1.getPosition();
 
@@ -27,7 +26,7 @@ export class Attractor implements IParticlesInteractor {
 
             /* condensed particles */
             const { dx, dy } = NumberUtils.getDistances(pos1, pos2);
-            const rotate = options.particles.move.attract.rotate;
+            const rotate = p1.particlesOptions.move.attract.rotate;
             const ax = dx / (rotate.x * 1000);
             const ay = dy / (rotate.y * 1000);
 
