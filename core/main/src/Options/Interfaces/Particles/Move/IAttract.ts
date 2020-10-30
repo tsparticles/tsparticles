@@ -4,6 +4,8 @@ import type { ICoordinates } from "../../../../Core/Interfaces/ICoordinates";
  * @category Options
  */
 export interface IAttract {
+    distance: number;
+
     enable: boolean;
 
     /**

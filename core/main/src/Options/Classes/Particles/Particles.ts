@@ -126,6 +126,12 @@ export class Particles implements IParticles, IOptionLoader<IParticles> {
         }
 
         this.move.load(data.move);
+
+        // previous used value in attract usage, will be removed in 2.x
+        if (data.move?.attract?.distance === undefined) {
+            this.move.attract.distance = this.links.distance;
+        }
+
         this.number.load(data.number);
         this.opacity.load(data.opacity);
 

@@ -42,6 +42,7 @@ export interface IParticle {
     readonly stroke: IStroke;
     readonly strokeWidth: number;
     readonly velocity: IVelocity;
+    readonly attractDistance?: number;
     readonly linksDistance?: number;
     readonly linksWidth?: number;
     readonly moveSpeed?: number;

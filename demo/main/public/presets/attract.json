@@ -41,8 +41,11 @@
       }
     },
     "size": {
-      "value": 5,
-      "random": false,
+      "value": 10,
+      "random": {
+        "enable": true,
+        "minimumValue": 1
+      },
       "anim": {
         "enable": false,
         "speed": 20,

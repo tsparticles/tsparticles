@@ -12,7 +12,7 @@ export class Attractor implements IParticlesInteractor {
 
     public interact(p1: IParticle): void {
         const container = this.container;
-        const distance = p1.linksDistance ?? container.retina.linksDistance;
+        const distance = p1.attractDistance ?? container.retina.attractDistance;
         const pos1 = p1.getPosition();
 
         const query = container.particles.quadTree.queryCircle(pos1, distance);
@@ -29,11 +29,13 @@ export class Attractor implements IParticlesInteractor {
             const rotate = p1.particlesOptions.move.attract.rotate;
             const ax = dx / (rotate.x * 1000);
             const ay = dy / (rotate.y * 1000);
+            const p1Factor = p2.size.value / p1.size.value;
+            const p2Factor = p1.size.value / p2.size.value;
 
-            p1.velocity.horizontal -= ax;
-            p1.velocity.vertical -= ay;
-            p2.velocity.horizontal += ax;
-            p2.velocity.vertical += ay;
+            p1.velocity.horizontal -= ax * p1Factor;
+            p1.velocity.vertical -= ay * p1Factor;
+            p2.velocity.horizontal += ax * p2Factor;
+            p2.velocity.vertical += ay * p2Factor;
         }
     }
 

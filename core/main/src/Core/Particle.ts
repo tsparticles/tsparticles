@@ -59,6 +59,7 @@ export class Particle implements IParticle {
     public links: ILink[];
     public randomIndexData?: number;
     public linksDistance?: number;
+    public attractDistance?: number;
     public linksWidth?: number;
     public maxDistance?: number;
     public moveSpeed?: number;
