@@ -1,6 +1,6 @@
 {
   "name": "tsparticles-shape-heart",
-  "version": "1.3.7",
+  "version": "1.3.8",
   "description": "tsParticles heart shape",
   "homepage": "https://particles.matteobruni.it/",
   "scripts": {
@@ -68,6 +68,6 @@
     "webpack-cli": "^4.1.0"
   },
   "dependencies": {
-    "tsparticles": "workspace:^1.18.7"
+    "tsparticles": "workspace:^1.18.8"
   }
 }

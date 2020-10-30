@@ -1,6 +1,6 @@
 {
   "name": "ng-particles",
-  "version": "2.1.7",
+  "version": "2.1.8",
   "description": "tsParticles official Angular component",
   "homepage": "https://particles.matteobruni.it/",
   "repository": {
@@ -58,6 +58,6 @@
   "peerDependencies": {
     "@angular/common": ">=2.0.0",
     "@angular/core": ">=2.0.0",
-    "tsparticles": "workspace:^1.18.7"
+    "tsparticles": "workspace:^1.18.8"
   }
 }
