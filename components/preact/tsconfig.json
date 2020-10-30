@@ -2,9 +2,10 @@
   "compilerOptions": {
     "sourceMap": true,
     "noImplicitAny": true,
-    "module": "commonjs",
+    "module": "umd",
     "target": "es6",
     "jsx": "react",
+    "moduleResolution": "node",
     "removeComments": true,
     "esModuleInterop": true,
     "importHelpers": false

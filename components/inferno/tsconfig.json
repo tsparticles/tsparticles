@@ -2,7 +2,7 @@
 	"compilerOptions": {
 		"pretty": true,
 		"target": "es6",
-		"module": "commonjs",
+		"module": "umd",
 		"allowSyntheticDefaultImports": true,
 		"preserveConstEnums": true,
 		"sourceMap": true,
