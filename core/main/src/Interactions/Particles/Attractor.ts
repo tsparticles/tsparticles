@@ -19,7 +19,7 @@ export class Attractor implements IParticlesInteractor {
         const query = container.particles.quadTree.queryCircle(pos1, distance);
 
         for (const p2 of query) {
-            if (p1 === p2 || p2.particlesOptions.move.attract.enable || p2.destroyed || p2.spawning) {
+            if (p1 === p2 || !p2.particlesOptions.move.attract.enable || p2.destroyed || p2.spawning) {
                 continue;
             }
 
