@@ -4769,7 +4769,7 @@ packages:
       integrity: sha512-1lg3K2D/harXbN4FvRoA1b0X9947H+G4Ql/43rxJY39OqswfK/d1ck438Fo9M4l1+zhBSUNDmcjn7Q2EH6qWmA==
   /@vue/cli-plugin-router/4.5.8_@vue+cli-service@4.5.8:
     dependencies:
-      '@vue/cli-service': 4.5.8_137fddef54fc599255dc653f51cee8bb
+      '@vue/cli-service': 4.5.8_650b314657d32bbb817049068daff5b8
       '@vue/cli-shared-utils': 4.5.8
     dev: true
     peerDependencies:
@@ -4831,7 +4831,7 @@ packages:
       integrity: sha512-JSBLG1EBqg2e3o7+wtFu1xzP/jNs6jibVC82Q4wB6n/+VYNsFxUNCrz4GpebHg6AB+UCAyGq2EK/NhcwoNypqA==
   /@vue/cli-plugin-vuex/4.5.8_@vue+cli-service@4.5.8:
     dependencies:
-      '@vue/cli-service': 4.5.8_137fddef54fc599255dc653f51cee8bb
+      '@vue/cli-service': 4.5.8_650b314657d32bbb817049068daff5b8
     dev: true
     peerDependencies:
       '@vue/cli-service': ^3.0.0 || ^4.0.0-0
