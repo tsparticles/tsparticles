@@ -20,7 +20,7 @@
     "build:ts:es": "tsc -b tsconfig.browser.json",
     "build:ts": "tsc",
     "build:docs": "pnpm run clear:docs && typedoc && copyfiles -f ../../CNAME ./docs",
-    "build:schema": "echo typescript-json-schema tsconfig.schema.json IOptions --out ./schema/options.schema.json",
+    "build:schema": "typescript-json-schema tsconfig.schema.json IOptions --out ./schema/options.schema.json",
     "test": "mocha",
     "preversion": "pnpm run test",
     "install": "node ./scripts/install.js",
