@@ -9,7 +9,10 @@
         "color": {
           "value": "#00ff00"
         },
-        "zIndex": 5000
+        "zIndex": {
+          "value": 5000,
+          "velocity_rate": 20
+        }
       },
       "yellow": {
         "number": {
@@ -18,7 +21,9 @@
         "color": {
           "value": "#ffff00"
         },
-        "zIndex": -75
+        "zIndex": {
+          "value": -75
+        }
       },
       "blue": {
         "number": {
@@ -27,7 +32,12 @@
         "color": {
           "value": "#0000ff"
         },
-        "zIndex": -50000
+        "zIndex": {
+          "value": -5000,
+          "velocity_rate": 0,
+          "opacity_rate": 0,
+          "size_rate": 10
+        }
       },
       "cyan": {
         "number": {
@@ -36,7 +46,9 @@
         "color": {
           "value": "#00ffff"
         },
-        "zIndex": 0
+        "zIndex": {
+          "value": 0
+        }
       }
     },
     "number": {

@@ -159,8 +159,9 @@ export class Particle implements IParticle {
         this.fill = this.shapeData?.fill ?? this.fill;
         this.close = this.shapeData?.close ?? this.close;
         this.particlesOptions = particlesOptions;
-        // Scale z-index factor to be between 0 and approximately 2
-        this.zIndexFactor = (this.particlesOptions.zIndex + 10000) / 10000;
+        this.zIndexFactor = this.particlesOptions.zIndex.value;
+        // Scale z-index factor to be between 0 and 2
+        const ClampedZIndexFactor = (this.zIndexFactor + 10000) / 10000;
         this.noiseDelay = NumberUtils.getValue(this.particlesOptions.move.noise.delay) * 1000;
 
         container.retina.initParticle(this);
@@ -169,10 +170,10 @@ export class Particle implements IParticle {
 
         /* size */
         const sizeOptions = this.particlesOptions.size;
-        // Calculate zIndexSizeFactor, which is used to scale the size and opacity of a particle
-        // The zIndexSizeFactor is a value between 0.5 and 1.5
-        const zIndexSizeFactor = 1.5 - 0.5 * this.zIndexFactor;
-        const sizeValue = NumberUtils.getValue(sizeOptions) * zIndexSizeFactor * container.retina.pixelRatio;
+        const sizeValue =
+            NumberUtils.getValue(sizeOptions) *
+            (1 + this.particlesOptions.zIndex.size_rate * 0.5 * ClampedZIndexFactor) *
+            container.retina.pixelRatio;
 
         const randomSize = typeof sizeOptions.random === "boolean" ? sizeOptions.random : sizeOptions.random.enable;
 
@@ -188,8 +189,12 @@ export class Particle implements IParticle {
         /* animation - velocity for speed */
         this.initialVelocity = this.calculateVelocity();
         this.velocity = {
-            horizontal: this.initialVelocity.horizontal * this.zIndexFactor,
-            vertical: this.initialVelocity.vertical * this.zIndexFactor,
+            horizontal:
+                this.initialVelocity.horizontal *
+                (1 + this.particlesOptions.zIndex.velocity_rate * (ClampedZIndexFactor - 1)),
+            vertical:
+                this.initialVelocity.vertical *
+                (1 + this.particlesOptions.zIndex.velocity_rate * (ClampedZIndexFactor - 1)),
         };
 
         this.pathAngle = Math.atan2(this.initialVelocity.vertical, this.initialVelocity.horizontal);
@@ -304,7 +309,13 @@ export class Particle implements IParticle {
                 : opacityValue,
         };
 
-        this.opacity.value = Math.max(0, Math.min(1, this.opacity.value * zIndexSizeFactor));
+        this.opacity.value = Math.max(
+            0,
+            Math.min(
+                1,
+                this.opacity.value * (1 + this.particlesOptions.zIndex.opacity_rate * (ClampedZIndexFactor - 1))
+            )
+        );
 
         const opacityAnimation = opacityOptions.animation;
 

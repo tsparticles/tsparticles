@@ -17,6 +17,7 @@ import type { IOptionLoader } from "../../Interfaces/IOptionLoader";
 import { Life } from "./Life/Life";
 import { Bounce } from "./Bounce/Bounce";
 import { Utils } from "../../../Utils";
+import { ZIndex } from "./ZIndex/ZIndex";
 
 /**
  * [[include:Options/Particles.md]]
@@ -92,7 +93,7 @@ export class Particles implements IParticles, IOptionLoader<IParticles> {
         this.size = new Size();
         this.stroke = new Stroke();
         this.twinkle = new Twinkle();
-        this.zIndex = 0;
+        this.zIndex = new ZIndex();
     }
 
     public load(data?: RecursivePartial<IParticles>): void {
@@ -100,9 +101,7 @@ export class Particles implements IParticles, IOptionLoader<IParticles> {
             return;
         }
 
-        // Default z-index to 0, and cap it between -9999 and 9999.
-        this.zIndex = data.zIndex || 0;
-        this.zIndex = Math.max(-9999, Math.min(9999, this.zIndex));
+        this.zIndex.load(data.zIndex);
 
         this.bounce.load(data.bounce);
         this.color = AnimatableColor.create(this.color, data.color);
