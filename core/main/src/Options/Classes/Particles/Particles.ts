@@ -74,6 +74,7 @@ export class Particles implements IParticles, IOptionLoader<IParticles> {
     public stroke: SingleOrMultiple<Stroke>;
     public twinkle;
     public zIndex;
+    public repulseRadius;
 
     constructor() {
         this.bounce = new Bounce();
@@ -93,6 +94,7 @@ export class Particles implements IParticles, IOptionLoader<IParticles> {
         this.stroke = new Stroke();
         this.twinkle = new Twinkle();
         this.zIndex = 0;
+        this.repulseRadius = 0;
     }
 
     public load(data?: RecursivePartial<IParticles>): void {
@@ -102,6 +104,10 @@ export class Particles implements IParticles, IOptionLoader<IParticles> {
 
         if (data.zIndex !== undefined) {
             this.zIndex = data.zIndex;
+        }
+
+        if (data.repulseRadius !== undefined) {
+            this.repulseRadius = data.repulseRadius;
         }
 
         this.bounce.load(data.bounce);

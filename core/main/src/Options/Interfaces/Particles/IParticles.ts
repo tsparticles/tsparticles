@@ -46,4 +46,5 @@ export interface IParticles {
     stroke: SingleOrMultiple<IStroke>;
     twinkle: ITwinkle;
     zIndex: number;
+    repulseRadius: number;
 }
