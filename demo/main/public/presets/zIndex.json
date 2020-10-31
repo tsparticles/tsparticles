@@ -9,7 +9,7 @@
         "color": {
           "value": "#00ff00"
         },
-        "zIndex": 50
+        "zIndex": 5000
       },
       "yellow": {
         "number": {
@@ -27,7 +27,7 @@
         "color": {
           "value": "#0000ff"
         },
-        "zIndex": -50
+        "zIndex": -50000
       },
       "cyan": {
         "number": {
@@ -36,7 +36,7 @@
         "color": {
           "value": "#00ffff"
         },
-        "zIndex": 25
+        "zIndex": 0
       }
     },
     "number": {

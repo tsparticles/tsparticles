@@ -100,9 +100,9 @@ export class Particles implements IParticles, IOptionLoader<IParticles> {
             return;
         }
 
-        if (data.zIndex !== undefined) {
-            this.zIndex = data.zIndex;
-        }
+        // Default z-index to 0, and cap it between -9999 and 9999.
+        this.zIndex = data.zIndex || 0;
+        this.zIndex = Math.max(-9999, Math.min(9999, this.zIndex));
 
         this.bounce.load(data.bounce);
         this.color = AnimatableColor.create(this.color, data.color);
