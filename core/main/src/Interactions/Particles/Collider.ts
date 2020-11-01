@@ -40,9 +40,9 @@ export class Collider implements IParticlesInteractor {
         const container = this.container;
         const pos1 = p1.getPosition();
 
-        const r = Math.max(p1.getRadius(), p1.getRepulseRadius());
+        const radius1 = Math.max(p1.getRadius(), p1.repulseRadius);
 
-        const query = container.particles.quadTree.queryCircle(pos1, r * 2);
+        const query = container.particles.quadTree.queryCircle(pos1, radius1 * 2);
 
         for (const p2 of query) {
             if (
@@ -57,7 +57,6 @@ export class Collider implements IParticlesInteractor {
 
             const pos2 = p2.getPosition();
             const dist = NumberUtils.getDistance(pos1, pos2);
-            const radius1 = r;
             const radius2 = p2.getRadius();
             const distP = radius1 + radius2;
 

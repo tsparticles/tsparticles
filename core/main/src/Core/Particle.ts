@@ -160,7 +160,7 @@ export class Particle implements IParticle {
         this.fill = this.shapeData?.fill ?? this.fill;
         this.close = this.shapeData?.close ?? this.close;
         this.particlesOptions = particlesOptions;
-        this.repulseRadius = this.particlesOptions.repulseRadius;
+        this.repulseRadius = this.particlesOptions.repulseRadius * container.retina.pixelRatio;
         this.zIndexFactor = (this.particlesOptions.zIndex + 100) / 100;
         this.noiseDelay = NumberUtils.getValue(this.particlesOptions.move.noise.delay) * 1000;
 
@@ -427,10 +427,6 @@ export class Particle implements IParticle {
 
     public getRadius(): number {
         return this.bubble.radius || this.size.value;
-    }
-
-    public getRepulseRadius(): number {
-        return this.repulseRadius;
     }
 
     public getFillColor(): IHsl | undefined {
