@@ -1,7 +1,7 @@
 import type { Container } from "./Container";
 import type { IVelocity } from "./Interfaces/IVelocity";
 import type { IParticleValueAnimation } from "./Interfaces/IParticleValueAnimation";
-import type { ICoordinates } from "./Interfaces/ICoordinates";
+import type { ICoordinates, ICoordinates3d } from "./Interfaces/ICoordinates";
 import type { IParticleImage } from "./Interfaces/IParticleImage";
 import { Updater } from "./Particle/Updater";
 import type { IHsl, IRgb } from "./Interfaces/Colors";
@@ -70,7 +70,7 @@ export class Particle implements IParticle {
     public readonly direction: MoveDirection | keyof typeof MoveDirection | MoveDirectionAlt;
     public readonly fill: boolean;
     public readonly stroke: IStroke;
-    public readonly position: ICoordinates;
+    public readonly position: ICoordinates3d;
     public readonly offset: ICoordinates;
     public readonly shadowColor: IRgb | undefined;
     public readonly color: IParticleValueAnimation<IHsl | undefined>;
@@ -277,7 +277,7 @@ export class Particle implements IParticle {
         }
 
         /* position */
-        this.position = this.calcPosition(this.container, position);
+        this.position = this.calcPosition(this.container, position, this.particlesOptions.zIndex);
         this.initialPosition = {
             x: this.position.x,
             y: this.position.y,
@@ -441,19 +441,24 @@ export class Particle implements IParticle {
         this.links = [];
     }
 
-    private calcPosition(container: Container, position?: ICoordinates): ICoordinates {
+    private calcPosition(container: Container, position: ICoordinates | undefined, zIndex: number): ICoordinates3d {
         for (const [, plugin] of container.plugins) {
             const pluginPos =
                 plugin.particlePosition !== undefined ? plugin.particlePosition(position, this) : undefined;
 
             if (pluginPos !== undefined) {
-                return Utils.deepExtend({}, pluginPos) as ICoordinates;
+                return {
+                    x: pluginPos.x,
+                    y: pluginPos.y,
+                    z: zIndex,
+                };
             }
         }
 
         const pos = {
             x: position?.x ?? Math.random() * container.canvas.size.width,
             y: position?.y ?? Math.random() * container.canvas.size.height,
+            z: zIndex,
         };
 
         /* check position  - into the canvas */

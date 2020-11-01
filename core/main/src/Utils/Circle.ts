@@ -1,6 +1,6 @@
 import { Range } from "./Range";
 import type { ICoordinates } from "../Core/Interfaces/ICoordinates";
-import { Rectangle } from "./Rectangle";
+import type { Rectangle } from "./Rectangle";
 
 /**
  * @category Utils
@@ -28,7 +28,7 @@ export class Circle extends Range {
 
         if (circle.radius !== undefined) {
             const rSum = r + circle.radius;
-            const dist = Math.sqrt(xDist * xDist + yDist + yDist);
+            const dist = Math.sqrt(xDist * xDist + yDist * yDist);
 
             return rSum > dist;
         } else if (rect.size !== undefined) {

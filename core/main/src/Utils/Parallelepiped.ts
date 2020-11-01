@@ -1,6 +1,6 @@
 import type { IDimension3d } from "../Core/Interfaces/IDimension";
 import type { ICoordinates3d } from "../Core/Interfaces/ICoordinates";
-//import { Sphere } from "./Sphere";
+import type { Sphere } from "./Sphere";
 import { Range3d } from "./Range3d";
 
 /**
@@ -29,17 +29,16 @@ export class Parallelepiped extends Range3d {
 
     public intersects(range: Range3d): boolean {
         const parallelepiped = range as Parallelepiped;
-        //const sphere = range as Sphere;
+        const sphere = range as Sphere;
         const w = this.size.width;
         const h = this.size.height;
         const d = this.size.depth;
         const pos1 = this.position;
         const pos2 = range.position;
 
-        /*if (sphere.radius !== undefined) {
+        if (sphere.radius !== undefined) {
             return sphere.intersects(this);
-        } else */
-        if (parallelepiped.size !== undefined) {
+        } else if (parallelepiped.size !== undefined) {
             const size2 = parallelepiped.size;
             const w2 = size2.width;
             const h2 = size2.height;
