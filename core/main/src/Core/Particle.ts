@@ -159,9 +159,8 @@ export class Particle implements IParticle {
         this.fill = this.shapeData?.fill ?? this.fill;
         this.close = this.shapeData?.close ?? this.close;
         this.particlesOptions = particlesOptions;
-        this.zIndexFactor = this.particlesOptions.zIndex.value;
         // Scale z-index factor to be between 0 and 2
-        const ClampedZIndexFactor = (this.zIndexFactor + 10000) / 10000;
+        this.zIndexFactor = (this.particlesOptions.zIndex.value + 10000) / 10000;
         this.noiseDelay = NumberUtils.getValue(this.particlesOptions.move.noise.delay) * 1000;
 
         container.retina.initParticle(this);
@@ -172,7 +171,7 @@ export class Particle implements IParticle {
         const sizeOptions = this.particlesOptions.size;
         const sizeValue =
             NumberUtils.getValue(sizeOptions) *
-            (1 + this.particlesOptions.zIndex.size_rate * 0.5 * ClampedZIndexFactor) *
+            (1 + this.particlesOptions.zIndex.sizeRate * 0.5 * this.zIndexFactor) *
             container.retina.pixelRatio;
 
         const randomSize = typeof sizeOptions.random === "boolean" ? sizeOptions.random : sizeOptions.random.enable;
@@ -191,10 +190,10 @@ export class Particle implements IParticle {
         this.velocity = {
             horizontal:
                 this.initialVelocity.horizontal *
-                (1 + this.particlesOptions.zIndex.velocity_rate * (ClampedZIndexFactor - 1)),
+                (1 + this.particlesOptions.zIndex.velocityRate * (this.zIndexFactor - 1)),
             vertical:
                 this.initialVelocity.vertical *
-                (1 + this.particlesOptions.zIndex.velocity_rate * (ClampedZIndexFactor - 1)),
+                (1 + this.particlesOptions.zIndex.velocityRate * (this.zIndexFactor - 1)),
         };
 
         this.pathAngle = Math.atan2(this.initialVelocity.vertical, this.initialVelocity.horizontal);
@@ -309,12 +308,10 @@ export class Particle implements IParticle {
                 : opacityValue,
         };
 
+        // Don't let opacity go below 0 or above 1
         this.opacity.value = Math.max(
             0,
-            Math.min(
-                1,
-                this.opacity.value * (1 + this.particlesOptions.zIndex.opacity_rate * (ClampedZIndexFactor - 1))
-            )
+            Math.min(1, this.opacity.value * (1 + this.particlesOptions.zIndex.opacityRate * (this.zIndexFactor - 1)))
         );
 
         const opacityAnimation = opacityOptions.animation;

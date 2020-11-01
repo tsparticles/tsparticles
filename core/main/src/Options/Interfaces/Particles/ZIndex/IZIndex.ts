@@ -4,7 +4,7 @@
  */
 export interface IZIndex {
     value: number;
-    opacity_rate: number;
-    velocity_rate: number;
-    size_rate: number;
+    opacityRate: number;
+    velocityRate: number;
+    sizeRate: number;
 }

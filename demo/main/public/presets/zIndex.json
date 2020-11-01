@@ -11,7 +11,7 @@
         },
         "zIndex": {
           "value": 5000,
-          "velocity_rate": 20
+          "velocityRate": 20
         }
       },
       "yellow": {
@@ -34,9 +34,9 @@
         },
         "zIndex": {
           "value": -5000,
-          "velocity_rate": 0,
-          "opacity_rate": 0,
-          "size_rate": 10
+          "velocityRate": 0,
+          "opacityRate": 0,
+          "sizeRate": 10
         }
       },
       "cyan": {
