@@ -159,8 +159,28 @@ export class Particle implements IParticle {
         this.fill = this.shapeData?.fill ?? this.fill;
         this.close = this.shapeData?.close ?? this.close;
         this.particlesOptions = particlesOptions;
+
+        const zIndexValue = NumberUtils.getValue(this.particlesOptions.zIndex);
+
+        /* position */
+        this.position = this.calcPosition(
+            this.container,
+            position,
+            NumberUtils.clamp(zIndexValue, 0, container.zLayers)
+        );
+        this.initialPosition = {
+            x: this.position.x,
+            y: this.position.y,
+        };
+
+        /* parallax */
+        this.offset = {
+            x: 0,
+            y: 0,
+        };
+
         // Scale z-index factor to be between 0 and 2
-        this.zIndexFactor = (this.particlesOptions.zIndex.value + 10000) / 10000;
+        this.zIndexFactor = this.position.z / container.zLayers;
         this.noiseDelay = NumberUtils.getValue(this.particlesOptions.move.noise.delay) * 1000;
 
         container.retina.initParticle(this);
@@ -169,10 +189,7 @@ export class Particle implements IParticle {
 
         /* size */
         const sizeOptions = this.particlesOptions.size;
-        const sizeValue =
-            NumberUtils.getValue(sizeOptions) *
-            (1 + this.particlesOptions.zIndex.sizeRate * 0.5 * this.zIndexFactor) *
-            container.retina.pixelRatio;
+        const sizeValue = NumberUtils.getValue(sizeOptions) * container.retina.pixelRatio;
 
         const randomSize = typeof sizeOptions.random === "boolean" ? sizeOptions.random : sizeOptions.random.enable;
 
@@ -188,12 +205,8 @@ export class Particle implements IParticle {
         /* animation - velocity for speed */
         this.initialVelocity = this.calculateVelocity();
         this.velocity = {
-            horizontal:
-                this.initialVelocity.horizontal *
-                (1 + this.particlesOptions.zIndex.velocityRate * (this.zIndexFactor - 1)),
-            vertical:
-                this.initialVelocity.vertical *
-                (1 + this.particlesOptions.zIndex.velocityRate * (this.zIndexFactor - 1)),
+            horizontal: this.initialVelocity.horizontal,
+            vertical: this.initialVelocity.vertical,
         };
 
         this.pathAngle = Math.atan2(this.initialVelocity.vertical, this.initialVelocity.horizontal);
@@ -284,35 +297,15 @@ export class Particle implements IParticle {
             }
         }
 
-        /* position */
-        this.position = this.calcPosition(this.container, position, this.particlesOptions.zIndex);
-        this.initialPosition = {
-            x: this.position.x,
-            y: this.position.y,
-        };
-
-        /* parallax */
-        this.offset = {
-            x: 0,
-            y: 0,
-        };
-
         /* opacity */
         const opacityOptions = this.particlesOptions.opacity;
-        const randomOpacity = opacityOptions.random;
-        const opacityValue = opacityOptions.value;
 
         this.opacity = {
-            value: randomOpacity.enable
-                ? NumberUtils.randomInRange(randomOpacity.minimumValue, opacityValue)
-                : opacityValue,
+            value: NumberUtils.getValue(opacityOptions),
         };
 
         // Don't let opacity go below 0 or above 1
-        this.opacity.value = Math.max(
-            0,
-            Math.min(1, this.opacity.value * (1 + this.particlesOptions.zIndex.opacityRate * (this.zIndexFactor - 1)))
-        );
+        this.opacity.value = NumberUtils.clamp(this.opacity.value, 0, 1);
 
         const opacityAnimation = opacityOptions.animation;
 
@@ -388,14 +381,14 @@ export class Particle implements IParticle {
 
         this.lifeDelay = container.retina.reduceFactor
             ? ((NumberUtils.getValue(lifeOptions.delay) * (lifeOptions.delay.sync ? 1 : Math.random())) /
-                  container.retina.reduceFactor) *
-              1000
+            container.retina.reduceFactor) *
+            1000
             : 0;
         this.lifeDelayTime = 0;
         this.lifeDuration = container.retina.reduceFactor
             ? ((NumberUtils.getValue(lifeOptions.duration) * (lifeOptions.duration.sync ? 1 : Math.random())) /
-                  container.retina.reduceFactor) *
-              1000
+            container.retina.reduceFactor) *
+            1000
             : 0;
         this.lifeTime = 0;
         this.livesRemaining = particlesOptions.life.count;
@@ -428,10 +421,11 @@ export class Particle implements IParticle {
         this.container.canvas.drawParticle(this, delta);
     }
 
-    public getPosition(): ICoordinates {
+    public getPosition(): ICoordinates3d {
         return {
             x: this.position.x + this.offset.x,
             y: this.position.y + this.offset.y,
+            z: this.position.z,
         };
     }
 
@@ -454,7 +448,7 @@ export class Particle implements IParticle {
     }
 
     private calcPosition(container: Container, position: ICoordinates | undefined, zIndex: number): ICoordinates3d {
-        for (const [, plugin] of container.plugins) {
+        for (const [ , plugin ] of container.plugins) {
             const pluginPos =
                 plugin.particlePosition !== undefined ? plugin.particlePosition(position, this) : undefined;
 
@@ -467,9 +461,11 @@ export class Particle implements IParticle {
             }
         }
 
+        const cSize = container.canvas.size;
+
         const pos = {
-            x: position?.x ?? Math.random() * container.canvas.size.width,
-            y: position?.y ?? Math.random() * container.canvas.size.height,
+            x: position?.x ?? cSize.width * Math.random(),
+            y: position?.y ?? cSize.height * Math.random(),
             z: zIndex,
         };
 
@@ -544,10 +540,10 @@ export class Particle implements IParticle {
         drawer?: IShapeDrawer
     ):
         | {
-              image: IParticleImage | undefined;
-              fill: boolean;
-              close: boolean;
-          }
+        image: IParticleImage | undefined;
+        fill: boolean;
+        close: boolean;
+    }
         | undefined {
         if (!(this.shape === ShapeType.image || this.shape === ShapeType.images)) {
             return;
@@ -568,7 +564,7 @@ export class Particle implements IParticle {
             const svgColoredData = ColorUtils.replaceColorSvg(image, color, this.opacity.value);
 
             /* prepare to create img with colored svg */
-            const svg = new Blob([svgColoredData], { type: "image/svg+xml" });
+            const svg = new Blob([ svgColoredData ], { type: "image/svg+xml" });
             const domUrl = URL || window.URL || window.webkitURL || window;
             const url = domUrl.createObjectURL(svg);
 

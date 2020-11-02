@@ -2,8 +2,9 @@
  * @category Options
  * [[include:ZIndex.md]]
  */
-export interface IZIndex {
-    value: number;
+import type { IValueWithRandom } from "../../IValueWithRandom";
+
+export interface IZIndex extends IValueWithRandom {
     opacityRate: number;
     velocityRate: number;
     sizeRate: number;
