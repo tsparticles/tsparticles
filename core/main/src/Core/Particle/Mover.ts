@@ -3,6 +3,7 @@ import type { Container } from "../Container";
 import type { Particle } from "../Particle";
 import { HoverMode } from "../../Enums";
 import type { IDelta } from "../Interfaces/IDelta";
+import { ICoordinates } from "../Interfaces/ICoordinates";
 
 /**
  * @category Core
@@ -34,6 +35,12 @@ export class Mover {
 
         /* parallax */
         this.moveParallax();
+    }
+
+    public moveXY(x: number, y: number): void {
+        const particle = this.particle;
+        particle.position.x += x;
+        particle.position.y += y;
     }
 
     private moveParticle(delta: IDelta): void {

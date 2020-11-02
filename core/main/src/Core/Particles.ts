@@ -3,7 +3,7 @@ import type { ICoordinates } from "./Interfaces/ICoordinates";
 import type { IMouseData } from "./Interfaces/IMouseData";
 import type { IRgb } from "./Interfaces/Colors";
 import { Particle } from "./Particle";
-import { Point, QuadTree, Rectangle, Utils } from "../Utils";
+import { NumberUtils, Point, QuadTree, Rectangle, Utils } from "../Utils";
 import type { RecursivePartial } from "../Types";
 import type { IParticles } from "../Options/Interfaces/Particles/IParticles";
 import { InteractionManager } from "./Particle/InteractionManager";
@@ -186,6 +186,31 @@ export class Particles {
 
         for (const particle of particlesToDelete) {
             this.remove(particle);
+        }
+
+        // Repulse
+        for (const p1 of this.array) {
+            if (!p1.repulse.enabled) {
+                continue;
+            }
+            const pos1 = p1.getPosition();
+
+            const query = container.particles.quadTree.queryCircle(pos1, p1.repulse.distance * 2);
+
+            for (const p2 of query) {
+                if (p1 === p2 || p2.destroyed) {
+                    continue;
+                }
+
+                const pos2 = p2.getPosition();
+                const D = NumberUtils.getDistance(pos1, pos2);
+                const d = D - p2.getRadius();
+                const repulseDistanceFactor = ((p1.repulse.distance - d) / D) * p1.repulse.factor;
+
+                if (D - p2.getRadius() < p1.repulse.distance) {
+                    p2.moveXY((pos2.x - pos1.x) * repulseDistanceFactor, (pos2.y - pos1.y) * repulseDistanceFactor);
+                }
+            }
         }
 
         this.interactionManager.externalInteract(delta);

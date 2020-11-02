@@ -9,7 +9,10 @@
         "color": {
           "value": "#00ff00"
         },
-        "repulseRadius": 50
+        "repulse": {
+          "enabled": true,
+          "distance": 50
+        }
       },
       "yellow": {
         "number": {
@@ -18,7 +21,10 @@
         "color": {
           "value": "#ffff00"
         },
-        "repulseRadius": 75
+        "repulse": {
+          "enabled": false,
+          "distance": 0
+        }
       },
       "blue": {
         "number": {
@@ -27,7 +33,11 @@
         "color": {
           "value": "#0000ff"
         },
-        "repulseRadius": 50
+        "repulse": {
+          "enabled": true,
+          "distance": 50,
+          "factor": 0.1
+        }
       },
       "cyan": {
         "number": {
@@ -36,7 +46,10 @@
         "color": {
           "value": "#00ffff"
         },
-        "repulseRadius": 0
+        "repulse": {
+          "enabled": false,
+          "distance": 0
+        }
       }
     },
     "number": {
@@ -88,7 +101,6 @@
       "width": 1
     },
     "move": {
-      "bounce": true,
       "enable": true,
       "speed": 6,
       "direction": "none",
@@ -107,10 +119,6 @@
   "interactivity": {
     "detectsOn": "canvas",
     "events": {
-      "onHover": {
-        "enable": true,
-        "mode": "repulse"
-      },
       "onClick": {
         "enable": true,
         "mode": "push"
@@ -124,14 +132,8 @@
           "opacity": 1
         }
       },
-      "bubble": {
-        "distance": 400,
-        "size": 40,
-        "duration": 2,
-        "opacity": 0.8
-      },
       "repulse": {
-        "distance": 200
+        "distance": 100
       },
       "push": {
         "quantity": 4
