@@ -54,6 +54,11 @@ export class Collider implements IParticlesInteractor {
             }
 
             const pos2 = p2.getPosition();
+
+            if (Math.round(pos1.z) !== Math.round(pos2.z)) {
+                continue;
+            }
+
             const dist = NumberUtils.getDistance(pos1, pos2);
             const radius1 = p1.getRadius();
             const radius2 = p2.getRadius();

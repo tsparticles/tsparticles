@@ -114,7 +114,7 @@
         "mode": "repulse"
       },
       "onClick": {
-        "enable": false,
+        "enable": true,
         "mode": "push"
       },
       "resize": true
@@ -136,7 +136,13 @@
         "distance": 200
       },
       "push": {
-        "quantity": 4
+        "quantity": 4,
+        "groups": [
+          "z5000",
+          "z7500",
+          "z2500",
+          "z1000"
+        ]
       },
       "remove": {
         "quantity": 2

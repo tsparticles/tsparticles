@@ -2,6 +2,7 @@ import type { Container } from "../Core/Container";
 import { ClickMode, InteractivityDetect } from "../Enums";
 import type { ICoordinates } from "../Core/Interfaces/ICoordinates";
 import { Constants } from "./Constants";
+import { Utils } from "./Utils";
 
 function manageListener(
     element: HTMLElement | Node | Window,
@@ -109,6 +110,8 @@ export class EventListeners {
             return;
         }
 
+        const html = interactivityEl as HTMLElement;
+
         if (options.interactivity.events.onHover.enable || options.interactivity.events.onClick.enable) {
             /* el on mousemove */
             manageListener(interactivityEl, Constants.mouseMoveEvent, this.mouseMoveHandler, add);
@@ -133,9 +136,11 @@ export class EventListeners {
 
             /* el on touchcancel */
             manageListener(interactivityEl, Constants.touchCancelEvent, this.touchCancelHandler, add);
-        } else {
-            const html = interactivityEl as HTMLElement;
 
+            if (html.style) {
+                html.style.pointerEvents = "initial";
+            }
+        } else {
             if (html.style) {
                 html.style.pointerEvents = "none";
             }
@@ -369,20 +374,33 @@ export class EventListeners {
     private handleClickMode(mode: ClickMode | string): void {
         const container = this.container;
         const options = container.options;
-        const pushNb = options.interactivity.modes.push.quantity;
-        const removeNb = options.interactivity.modes.remove.quantity;
+        const pushOptions = options.interactivity.modes.push;
+        const removeOptions = options.interactivity.modes.remove;
 
         switch (mode) {
             case ClickMode.push: {
+                const pushNb = pushOptions.quantity;
+
                 if (pushNb > 0) {
-                    container.particles.push(pushNb, container.interactivity.mouse);
+                    const group = Utils.itemFromArray([undefined, ...pushOptions.groups]);
+                    const groupOptions = group !== undefined ? container.options.particles.groups[group] : undefined;
+
+                    container.particles.push(pushNb, container.interactivity.mouse, groupOptions, group);
                 }
 
                 break;
             }
-            case ClickMode.remove:
-                container.particles.removeQuantity(removeNb);
+            case ClickMode.remove: {
+                const removeNb = removeOptions.quantity;
+
+                if (removeNb > 0) {
+                    const group = Utils.itemFromArray([undefined, ...pushOptions.groups]);
+
+                    container.particles.removeQuantity(removeNb, group);
+                }
+
                 break;
+            }
             case ClickMode.bubble:
                 container.bubble.clicking = true;
                 break;
