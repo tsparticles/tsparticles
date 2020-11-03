@@ -30,6 +30,7 @@ import { Infecter } from "./Particle/Infecter";
 import type { IDelta } from "./Interfaces/IDelta";
 import { Mover } from "./Particle/Mover";
 import type { ILink } from "./Interfaces/ILink";
+import { IRepulse } from "../Options/Interfaces/Particles/Repulse/IRepulse";
 
 /**
  * The single particle object
@@ -47,7 +48,6 @@ export class Particle implements IParticle {
     public spawning;
     public lastNoiseTime;
     public zIndexFactor;
-    public repulse;
 
     public readonly noiseDelay;
     public readonly updater;
@@ -86,6 +86,7 @@ export class Particle implements IParticle {
     public readonly initialVelocity: IVelocity;
     public readonly shapeData?: IShapeValues;
     public readonly bubble: IBubbleParticleData;
+    public readonly repulse?: IRepulse;
 
     constructor(
         public readonly id: number,
@@ -160,7 +161,6 @@ export class Particle implements IParticle {
         this.fill = this.shapeData?.fill ?? this.fill;
         this.close = this.shapeData?.close ?? this.close;
         this.particlesOptions = particlesOptions;
-        this.repulse = this.particlesOptions.repulse;
         this.zIndexFactor = (this.particlesOptions.zIndex + 100) / 100;
         this.noiseDelay = NumberUtils.getValue(this.particlesOptions.move.noise.delay) * 1000;
 
@@ -408,11 +408,6 @@ export class Particle implements IParticle {
     public move(delta: IDelta): void {
         /* move the particle */
         this.mover.move(delta);
-    }
-
-    public moveXY(x: number, y: number): void {
-        /* move the particle */
-        this.mover.moveXY(x, y);
     }
 
     public update(delta: IDelta): void {

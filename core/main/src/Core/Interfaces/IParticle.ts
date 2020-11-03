@@ -9,6 +9,7 @@ import type { IBubbleParticleData } from "./IBubbleParticleData";
 import type { IParticles } from "../../Options/Interfaces/Particles/IParticles";
 import type { IHsl, IRgb } from "./Colors";
 import type { ILink } from "./ILink";
+import { IRepulse } from "../../Options/Interfaces/Particles/Repulse/IRepulse";
 
 /**
  * @category Interfaces
@@ -48,6 +49,7 @@ export interface IParticle {
     readonly moveSpeed?: number;
     readonly sizeValue?: number;
     readonly sizeAnimationSpeed?: number;
+    readonly repulse?: IRepulse;
 
     getPosition(): ICoordinates;
 

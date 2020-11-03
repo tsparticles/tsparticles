@@ -1,5 +1,5 @@
 import { Grabber } from "../../Interactions/External/Grabber";
-import { Repulser } from "../../Interactions/External/Repulser";
+import { Repulser as MouseRepulser } from "../../Interactions/External/Repulser";
 import { Bubbler } from "../../Interactions/External/Bubbler";
 import { Connector } from "../../Interactions/External/Connector";
 import type { Container } from "../Container";
@@ -16,6 +16,7 @@ import { Particle } from "../Particle";
 import { Lighter as ParticlesLighter } from "../../Interactions/Particles/Lighter";
 import { Lighter as MouseLighter } from "../../Interactions/External/Lighter";
 import { Bouncer } from "../../Interactions/External/Bouncer";
+import { Repulser } from "../../Interactions/Particles/Repulser";
 
 /**
  * @category Core
@@ -32,7 +33,7 @@ export class InteractionManager {
             new Grabber(container),
             new MouseLighter(container),
             new MouseAttractor(container),
-            new Repulser(container),
+            new MouseRepulser(container),
             new TrailMaker(container),
         ];
 
@@ -42,6 +43,7 @@ export class InteractionManager {
             new Collider(container),
             new Infecter(container),
             new Linker(container),
+            new Repulser(container),
         ];
     }
 
