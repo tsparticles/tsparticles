@@ -88,11 +88,11 @@
   "bugs": {
     "url": "https://github.com/matteobruni/tsparticles/issues"
   },
-  "main": "dist/cjs/index.js",
+  "main": "dist/index.js",
   "module": "dist/esm/index.js",
   "jsdelivr": "dist/tsparticles.min.js",
   "unpkg": "dist/tsparticles.min.js",
-  "browser": "dist/cjs/index.js",
+  "browser": "dist/index.js",
   "types": "dist/index.d.ts",
   "funding": {
     "type": "github",

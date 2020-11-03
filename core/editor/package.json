@@ -1,6 +1,6 @@
 {
   "name": "tsparticles-editor",
-  "version": "1.18.9",
+  "version": "1.18.10",
   "description": "tsParticles Configuration Editor",
   "keywords": [
     "tsparticles",
@@ -23,7 +23,7 @@
   "main": "dist/cjs/index.js",
   "jsdelivr": "dist/tsparticles.editor.min.js",
   "unpkg": "dist/tsparticles.editor.min.js",
-  "browser": "dist/cjs/index.js",
+  "browser": "dist/index.js",
   "module": "dist/esm/index.js",
   "types": "dist/index.d.ts",
   "repository": {
@@ -49,7 +49,7 @@
   },
   "dependencies": {
     "object-gui": "^1.0.11",
-    "tsparticles": "workspace:^1.18.9"
+    "tsparticles": "workspace:^1.18.10"
   },
   "devDependencies": {
     "@babel/core": "^7.12.3",
