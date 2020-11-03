@@ -36,6 +36,12 @@ export class Mover {
         this.moveParallax();
     }
 
+    public moveXY(x: number, y: number): void {
+        const particle = this.particle;
+        particle.position.x += x;
+        particle.position.y += y;
+    }
+
     private moveParticle(delta: IDelta): void {
         const particle = this.particle;
         const particlesOptions = particle.particlesOptions;

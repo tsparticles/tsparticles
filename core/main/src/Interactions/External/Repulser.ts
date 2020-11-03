@@ -128,8 +128,7 @@ export class Repulser implements IExternalInteractor {
                 y: distance === 0 ? velocity : (dy / distance) * repulseFactor,
             };
 
-            particle.position.x = particle.position.x + normVec.x;
-            particle.position.y = particle.position.y + normVec.y;
+            particle.mover.moveXY(normVec.x, normVec.y);
         }
     }
 

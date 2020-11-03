@@ -18,6 +18,7 @@ import { Life } from "./Life/Life";
 import { Bounce } from "./Bounce/Bounce";
 import { Utils } from "../../../Utils";
 import { ZIndex } from "./ZIndex/ZIndex";
+import { Repulse } from "./Repulse/Repulse";
 
 /**
  * [[include:Options/Particles.md]]
@@ -75,6 +76,7 @@ export class Particles implements IParticles, IOptionLoader<IParticles> {
     public stroke: SingleOrMultiple<Stroke>;
     public twinkle;
     public zIndex;
+    public repulse;
 
     constructor() {
         this.bounce = new Bounce();
@@ -94,6 +96,7 @@ export class Particles implements IParticles, IOptionLoader<IParticles> {
         this.stroke = new Stroke();
         this.twinkle = new Twinkle();
         this.zIndex = new ZIndex();
+        this.repulse = new Repulse();
     }
 
     public load(data?: RecursivePartial<IParticles>): void {
@@ -102,6 +105,8 @@ export class Particles implements IParticles, IOptionLoader<IParticles> {
         }
 
         this.zIndex.load(data.zIndex);
+
+        this.repulse.load(data.repulse);
 
         this.bounce.load(data.bounce);
         this.color = AnimatableColor.create(this.color, data.color);
