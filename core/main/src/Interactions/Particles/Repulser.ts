@@ -21,7 +21,7 @@ export class Repulser implements IParticlesInteractor {
         const repulseOpt1 = p1.particlesOptions.repulse;
         const pos1 = p1.getPosition();
 
-        const query = container.particles.quadTree.queryCircle(pos1, repulseOpt1.distance * 2);
+        const query = container.particles.quadTree.queryCircle(pos1, repulseOpt1.distance);
 
         for (const p2 of query) {
             if (p1 === p2 || p2.destroyed) {
@@ -32,16 +32,17 @@ export class Repulser implements IParticlesInteractor {
             const { dx, dy, distance } = NumberUtils.getDistances(pos2, pos1);
             const velocity = repulseOpt1.speed * repulseOpt1.factor;
             if (distance > 0) {
-                // repulseDistanceFactor = how much to modify dx and dy to move p2 to the edge of the repulse radius.
-                if (distance - p2.getRadius() < repulseOpt1.distance) {
-                    const repulseDistanceFactor = (p2.getRadius() + repulseOpt1.distance - distance) / distance;
-                    const repulseVector = {
-                        x: dx * repulseDistanceFactor,
-                        y: dy * repulseDistanceFactor,
-                    };
+                const repulseFactor = NumberUtils.clamp(
+                    (1 - Math.pow(distance / repulseOpt1.distance, 2)) * velocity,
+                    0,
+                    velocity
+                );
+                const normVec = {
+                    x: (dx / distance) * repulseFactor,
+                    y: (dy / distance) * repulseFactor,
+                };
 
-                    p2.mover.moveXY(repulseVector.x * repulseOpt1.factor, repulseVector.y * repulseOpt1.factor);
-                }
+                p2.mover.moveXY(normVec.x, normVec.y);
             } else {
                 p2.mover.moveXY(velocity, velocity);
             }

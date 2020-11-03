@@ -11,7 +11,8 @@
         },
         "repulse": {
           "enabled": true,
-          "distance": 50
+          "distance": 50,
+          "factor": 20
         }
       },
       "yellow": {
@@ -35,8 +36,7 @@
         },
         "repulse": {
           "enabled": true,
-          "distance": 50,
-          "factor": 0.1
+          "distance": 50
         }
       },
       "cyan": {
