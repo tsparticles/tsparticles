@@ -76,7 +76,11 @@ export class Mover {
             particle.velocity.vertical = velocity.vertical / moveSpeed;
         }
 
-        particle.mover.moveXY(velocity.horizontal, velocity.vertical);
+        const zIndexOptions = particle.particlesOptions.zIndex;
+        const zVelocityFactor = 1 - zIndexOptions.velocityRate * particle.zIndexFactor;
+
+        particle.position.x += velocity.horizontal * zVelocityFactor;
+        particle.position.y += velocity.vertical * zVelocityFactor;
 
         if (particlesOptions.move.vibrate) {
             particle.position.x += Math.sin(particle.position.x * Math.cos(particle.position.y));
@@ -155,17 +159,17 @@ export class Mover {
             return;
         }
 
-        const windowDimension = {
-            height: window.innerHeight / 2,
-            width: window.innerWidth / 2,
+        const canvasCenter = {
+            x: container.canvas.size.width / 2,
+            y: container.canvas.size.height / 2,
         };
         const parallaxSmooth = options.interactivity.events.onHover.parallax.smooth;
         const factor = particle.getRadius() / parallaxForce;
 
         /* smaller is the particle, longer is the offset distance */
         const tmp = {
-            x: (mousePos.x - windowDimension.width) * factor,
-            y: (mousePos.y - windowDimension.height) * factor,
+            x: (mousePos.x - canvasCenter.x) * factor,
+            y: (mousePos.y - canvasCenter.y) * factor,
         };
 
         particle.offset.x += (tmp.x - particle.offset.x) / parallaxSmooth; // Easing equation

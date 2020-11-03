@@ -1,10 +1,6 @@
 {
   "name": "tsparticles",
-  "sideEffects": [
-    "./dist/index.js",
-    "./dist/tsparticles.js"
-  ],
-  "version": "1.18.8",
+  "version": "1.18.10",
   "description": "Easily add particle animations to your website. Browser ready and with official React/Vue/Angular/jQuery/Preact components.",
   "homepage": "https://particles.matteobruni.it/",
   "scripts": {
@@ -15,10 +11,13 @@
     "lint": "eslint src --ext .js,.jsx,.ts,.tsx --fix && eslint tests --ext .js,.jsx,.ts,.tsx --fix",
     "clear:dist": "rimraf -f ./dist",
     "clear:docs": "rimraf -f ./docs",
-    "slimbuild": "pnpm run clear:dist && pnpm run prettify:src && pnpm run build:ts:es && pnpm run lint && webpack --mode production && pnpm run build:ts",
+    "slimbuild": "pnpm run clear:dist && pnpm run prettify:src && pnpm run build:ts:check && pnpm run lint && pnpm run build:ts && webpack --mode production",
     "build": "pnpm run slimbuild && pnpm run build:schema && pnpm run prettify:schema && pnpm run prettify:tests && pnpm run test && pnpm run prettify:readme && pnpm run build:docs",
-    "build:ts:es": "tsc -b tsconfig.browser.json",
-    "build:ts": "tsc",
+    "build:ts:check": "tsc --noEmit",
+    "build:ts": "pnpm run build:ts:browser && pnpm run build:ts:cjs && pnpm run build:ts:esm",
+    "build:ts:browser": "tsc -b tsconfig.browser.json",
+    "build:ts:cjs": "tsc",
+    "build:ts:esm": "tsc -b tsconfig.module.json",
     "build:docs": "pnpm run clear:docs && typedoc && copyfiles -f ../../CNAME ./docs",
     "build:schema": "npx mkdirp ./schema && typescript-json-schema tsconfig.schema.json IOptions --out ./schema/options.schema.json",
     "test": "mocha",
@@ -86,14 +85,15 @@
     "dist/**/*",
     "scripts/install.js"
   ],
-  "types": "dist/index.d.ts",
   "bugs": {
     "url": "https://github.com/matteobruni/tsparticles/issues"
   },
   "main": "dist/index.js",
+  "module": "dist/esm/index.js",
   "jsdelivr": "dist/tsparticles.min.js",
   "unpkg": "dist/tsparticles.min.js",
   "browser": "dist/index.js",
+  "types": "dist/index.d.ts",
   "funding": {
     "type": "github",
     "url": "https://github.com/sponsors/matteobruni"

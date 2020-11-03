@@ -50,7 +50,7 @@ importers:
       ts-node: ~9.0.0
       tslib: ^2.0.3
       tslint: ~6.1.3
-      tsparticles: 'workspace:^1.18.8'
+      tsparticles: 'workspace:^1.18.10'
       typescript: ~4.0.5
       zone.js: ~0.11.2
   ../../components/inferno:
@@ -91,7 +91,7 @@ importers:
       sass-loader: ^10.0.4
       source-map-loader: ^1.1.2
       style-loader: ^2.0.0
-      tsparticles: 'workspace:^1.18.8'
+      tsparticles: 'workspace:^1.18.10'
       typescript: ^4.0.5
       webpack: ^5.3.0
       webpack-cli: ^4.1.0
@@ -132,7 +132,7 @@ importers:
       rollup: ^2.32.1
       rollup-plugin-babel: ^4.4.0
       rollup-plugin-sourcemaps: ^0.6.3
-      tsparticles: 'workspace:^1.18.8'
+      tsparticles: 'workspace:^1.18.10'
       typescript: ^4.0.5
       uglify-js: ^3.11.4
   ../../components/preact:
@@ -179,7 +179,7 @@ importers:
       prettier: ^2.1.2
       ts-loader: ^8.0.7
       ts-node: ^9.0.0
-      tsparticles: 'workspace:^1.18.8'
+      tsparticles: 'workspace:^1.18.10'
       typescript: ^4.0.5
       webpack: ^5.3.0
       webpack-bundle-analyzer: ^3.9.0
@@ -233,7 +233,7 @@ importers:
       ts-loader: ^8.0.7
       ts-node: ^9.0.0
       tslib: ^2.0.3
-      tsparticles: 'workspace:^1.18.8'
+      tsparticles: 'workspace:^1.18.10'
       typescript: ^4.0.5
       webpack: ^5.3.0
       webpack-bundle-analyzer: ^3.9.0
@@ -269,7 +269,7 @@ importers:
       svelte-check: ^1.1.4
       svelte-preprocess: ^4.5.2
       tslib: ^2.0.3
-      tsparticles: 'workspace:^1.18.8'
+      tsparticles: 'workspace:^1.18.10'
       typescript: ^4.0.5
   ../../components/vue:
     dependencies:
@@ -311,7 +311,7 @@ importers:
       rollup-plugin-typescript2: ^0.28.0
       rollup-plugin-vue: <6
       tslib: ^2.0.3
-      tsparticles: 'workspace:^1.18.8'
+      tsparticles: 'workspace:^1.18.10'
       typescript: ^4.0.5
       vue: '>=2 && <3'
       vue-class-component: <8
@@ -376,7 +376,7 @@ importers:
       rollup-plugin-typescript2: ^0.28.0
       rollup-plugin-vue: ^6.0.0-beta.10
       tslib: ^2.0.3
-      tsparticles: 'workspace:^1.18.8'
+      tsparticles: 'workspace:^1.18.10'
       typescript: ~4.0.5
       vue: '>=3'
       vue-class-component: ^8.0.0-beta.4
@@ -416,7 +416,7 @@ importers:
       sass: ^1.27.0
       sass-loader: ^10.0.4
       terser-webpack-plugin: ^5.0.3
-      tsparticles: 'workspace:^1.18.8'
+      tsparticles: 'workspace:^1.18.10'
       typescript: ^4.0.5
       webpack: ^5.3.0
       webpack-bundle-analyzer: ^3.9.0
@@ -543,14 +543,14 @@ importers:
       codelyzer: ^6.0.1
       eslint: ^7.12.1
       eslint-config-prettier: ^6.15.0
-      ng-particles: 'workspace:^2.1.8'
+      ng-particles: 'workspace:^2.1.10'
       prettier: ^2.1.2
       protractor: ~7.0.0
       rxjs: ~6.6.3
       ts-node: ~9.0.0
       tslib: ^2.0.3
       tslint: ~6.1.3
-      tsparticles: 'workspace:^1.18.8'
+      tsparticles: 'workspace:^1.18.10'
       typescript: ~4.0.5
       zone.js: ^0.11.2
   ../../demo/editor:
@@ -577,7 +577,7 @@ importers:
       pug: ^3.0.0
       pug-cli: ^1.0.0-alpha6
       stylus: ^0.54.8
-      tsparticles-editor: 'workspace:^1.18.8'
+      tsparticles-editor: 'workspace:^1.18.10'
   ../../demo/inferno:
     dependencies:
       inferno: 7.4.6
@@ -611,12 +611,12 @@ importers:
       css-loader: ^5.0.0
       html-webpack-plugin: ^4.5.0
       inferno: ^7.4.6
-      inferno-particles: 'workspace:^1.1.8'
+      inferno-particles: 'workspace:^1.1.10'
       node-sass: ^4.14.1
       sass-loader: ^10.0.4
       source-map-loader: ^1.1.2
       style-loader: ^2.0.0
-      tsparticles: 'workspace:^1.18.8'
+      tsparticles: 'workspace:^1.18.10'
       typescript: ^4.0.5
       webpack: ^5.3.0
       webpack-cli: ^4.1.0
@@ -650,14 +650,14 @@ importers:
       express: ^4.17.1
       helmet: ^4.1.1
       jquery: ^3.5.1
-      jquery-particles: 'workspace:^1.18.8'
+      jquery-particles: 'workspace:^1.18.10'
       jsoneditor: ^9.1.1
       prettier: ^2.1.2
       pug: ^3.0.0
       stylus: ^0.54.8
       three: ^0.122.0
-      tsparticles: 'workspace:^1.18.8'
-      tsparticles-preset-basic: 'workspace:^1.3.8'
+      tsparticles: 'workspace:^1.18.10'
+      tsparticles-preset-basic: 'workspace:^1.3.10'
   ../../demo/main:
     devDependencies:
       '@fortawesome/fontawesome-free': 5.15.1
@@ -710,21 +710,21 @@ importers:
       pug-cli: ^1.0.0-alpha6
       stylus: ^0.54.8
       three: ^0.122.0
-      tsparticles: 'workspace:^1.18.8'
-      tsparticles-preset-60fps: 'workspace:^1.3.8'
-      tsparticles-preset-background-mask: 'workspace:^1.3.8'
-      tsparticles-preset-basic: 'workspace:^1.3.8'
-      tsparticles-preset-big-circles: 'workspace:^1.3.8'
-      tsparticles-preset-bouncing: 'workspace:^1.3.8'
-      tsparticles-preset-fire: 'workspace:^1.3.8'
-      tsparticles-preset-font-awesome: 'workspace:^1.3.8'
-      tsparticles-preset-fountain: 'workspace:^1.3.8'
-      tsparticles-preset-snow: 'workspace:^1.3.8'
-      tsparticles-preset-stars: 'workspace:^1.3.8'
-      tsparticles-shape-bubble: 'workspace:^1.3.8'
-      tsparticles-shape-heart: 'workspace:^1.3.8'
-      tsparticles-shape-multiline-text: 'workspace:^1.3.8'
-      tsparticles-shape-spiral: 'workspace:^1.3.8'
+      tsparticles: 'workspace:^1.18.10'
+      tsparticles-preset-60fps: 'workspace:^1.3.10'
+      tsparticles-preset-background-mask: 'workspace:^1.3.10'
+      tsparticles-preset-basic: 'workspace:^1.3.10'
+      tsparticles-preset-big-circles: 'workspace:^1.3.10'
+      tsparticles-preset-bouncing: 'workspace:^1.3.10'
+      tsparticles-preset-fire: 'workspace:^1.3.10'
+      tsparticles-preset-font-awesome: 'workspace:^1.3.10'
+      tsparticles-preset-fountain: 'workspace:^1.3.10'
+      tsparticles-preset-snow: 'workspace:^1.3.10'
+      tsparticles-preset-stars: 'workspace:^1.3.10'
+      tsparticles-shape-bubble: 'workspace:^1.3.10'
+      tsparticles-shape-heart: 'workspace:^1.3.10'
+      tsparticles-shape-multiline-text: 'workspace:^1.3.10'
+      tsparticles-shape-spiral: 'workspace:^1.3.10'
   ../../demo/preact:
     dependencies:
       preact: 10.5.5
@@ -759,7 +759,7 @@ importers:
       identity-obj-proxy: ^3.0.0
       preact: ^10.5.5
       preact-cli: ^3.0.3
-      preact-particles: 'workspace:^1.18.8'
+      preact-particles: 'workspace:^1.18.10'
       preact-render-spy: ^1.3.0
       preact-render-to-string: ^5.1.11
       preact-router: ^3.2.1
@@ -809,11 +809,11 @@ importers:
       react: ^17.0.1
       react-dom: ^17.0.1
       react-syntax-highlighter: ^15.2.1
-      react-tsparticles: 'workspace:^1.18.8'
+      react-tsparticles: 'workspace:^1.18.10'
       rxjs: ^6.6.3
       scheduler: ^0.20.1
       tslib: ^2.0.3
-      tsparticles: 'workspace:*'
+      tsparticles: 'workspace:^1.18.10'
       typescript: ^4.0.5
   ../../demo/svelte:
     dependencies:
@@ -845,7 +845,7 @@ importers:
       sirv-cli: ^1.0.8
       svelte: ^3.29.4
       svelte-check: ^1.1.4
-      svelte-particles: 'workspace:^1.1.8'
+      svelte-particles: 'workspace:^1.1.10'
       svelte-preprocess: ^4.5.2
       tslib: ^2.0.3
       typescript: ^4.0.5
@@ -892,14 +892,14 @@ importers:
       babel-loader: ^8.1.0
       eslint: ^7.12.1
       eslint-config-prettier: ^6.15.0
-      particles.vue: 'workspace:^2.1.8'
+      particles.vue: 'workspace:^2.1.10'
       prettier: ^2.1.2
       rollup: ^2.32.1
       rollup-plugin-terser: ^7.0.2
       rollup-plugin-typescript: ^1.0.1
       rollup-plugin-typescript2: ^0.28.0
       rollup-plugin-vue: <6
-      tsparticles: 'workspace:^1.18.8'
+      tsparticles: 'workspace:^1.18.10'
       typescript: ^4.0.5
       vue: <3
       vue-class-component: <8
@@ -924,8 +924,8 @@ importers:
       '@vue/cli-service': ~4.5.8
       '@vue/compiler-sfc': ^3.0.2
       core-js: ^3.6.5
-      particles.vue3: 'workspace:^1.1.8'
-      tsparticles: 'workspace:^1.18.8'
+      particles.vue3: 'workspace:^1.1.10'
+      tsparticles: 'workspace:^1.18.10'
       typescript: ~4.0.5
       vue: ^3.0.2
       vue-class-component: ^8.0.0-beta.4
@@ -953,7 +953,7 @@ importers:
       eslint-config-prettier: ^6.15.0
       prettier: ^2.1.2
       terser-webpack-plugin: ^5.0.3
-      tsparticles: 'workspace:^1.18.8'
+      tsparticles: 'workspace:^1.18.10'
       typescript: ^4.0.5
       webpack: ^5.3.0
       webpack-cli: ^4.1.0
@@ -981,7 +981,7 @@ importers:
       eslint-config-prettier: ^6.15.0
       prettier: ^2.1.2
       terser-webpack-plugin: ^5.0.3
-      tsparticles: 'workspace:^1.18.8'
+      tsparticles: 'workspace:^1.18.10'
       typescript: ^4.0.5
       webpack: ^5.3.0
       webpack-cli: ^4.1.0
@@ -1009,7 +1009,7 @@ importers:
       eslint-config-prettier: ^6.15.0
       prettier: ^2.1.2
       terser-webpack-plugin: ^5.0.3
-      tsparticles: 'workspace:^1.18.8'
+      tsparticles: 'workspace:^1.18.10'
       typescript: ^4.0.5
       webpack: ^5.3.0
       webpack-cli: ^4.1.0
@@ -1037,7 +1037,7 @@ importers:
       eslint-config-prettier: ^6.15.0
       prettier: ^2.1.2
       terser-webpack-plugin: ^5.0.3
-      tsparticles: 'workspace:^1.18.8'
+      tsparticles: 'workspace:^1.18.10'
       typescript: ^4.0.5
       webpack: ^5.3.0
       webpack-cli: ^4.1.0
@@ -1065,7 +1065,7 @@ importers:
       eslint-config-prettier: ^6.15.0
       prettier: ^2.1.2
       terser-webpack-plugin: ^5.0.3
-      tsparticles: 'workspace:^1.18.8'
+      tsparticles: 'workspace:^1.18.10'
       typescript: ^4.0.5
       webpack: ^5.3.0
       webpack-cli: ^4.1.0
@@ -1093,7 +1093,7 @@ importers:
       eslint-config-prettier: ^6.15.0
       prettier: ^2.1.2
       terser-webpack-plugin: ^5.0.3
-      tsparticles: 'workspace:^1.18.8'
+      tsparticles: 'workspace:^1.18.10'
       typescript: ^4.0.5
       webpack: ^5.3.0
       webpack-cli: ^4.1.0
@@ -1121,7 +1121,7 @@ importers:
       eslint-config-prettier: ^6.15.0
       prettier: ^2.1.2
       terser-webpack-plugin: ^5.0.3
-      tsparticles: 'workspace:^1.18.8'
+      tsparticles: 'workspace:^1.18.10'
       typescript: ^4.0.5
       webpack: ^5.3.0
       webpack-cli: ^4.1.0
@@ -1149,7 +1149,7 @@ importers:
       eslint-config-prettier: ^6.15.0
       prettier: ^2.1.2
       terser-webpack-plugin: ^5.0.3
-      tsparticles: 'workspace:^1.18.8'
+      tsparticles: 'workspace:^1.18.10'
       typescript: ^4.0.5
       webpack: ^5.3.0
       webpack-cli: ^4.1.0
@@ -1177,7 +1177,7 @@ importers:
       eslint-config-prettier: ^6.15.0
       prettier: ^2.1.2
       terser-webpack-plugin: ^5.0.3
-      tsparticles: 'workspace:^1.18.8'
+      tsparticles: 'workspace:^1.18.10'
       typescript: ^4.0.5
       webpack: ^5.3.0
       webpack-cli: ^4.1.0
@@ -1205,7 +1205,7 @@ importers:
       eslint-config-prettier: ^6.15.0
       prettier: ^2.1.2
       terser-webpack-plugin: ^5.0.3
-      tsparticles: 'workspace:^1.18.8'
+      tsparticles: 'workspace:^1.18.10'
       typescript: ^4.0.5
       webpack: ^5.3.0
       webpack-cli: ^4.1.0
@@ -1233,7 +1233,7 @@ importers:
       eslint-config-prettier: ^6.15.0
       prettier: ^2.1.2
       terser-webpack-plugin: ^5.0.3
-      tsparticles: 'workspace:^1.18.8'
+      tsparticles: 'workspace:^1.18.10'
       typescript: ^4.0.5
       webpack: ^5.3.0
       webpack-cli: ^4.1.0
@@ -1261,7 +1261,7 @@ importers:
       eslint-config-prettier: ^6.15.0
       prettier: ^2.1.2
       terser-webpack-plugin: ^5.0.3
-      tsparticles: 'workspace:^1.18.8'
+      tsparticles: 'workspace:^1.18.10'
       typescript: ^4.0.5
       webpack: ^5.3.0
       webpack-cli: ^4.1.0
@@ -1289,7 +1289,7 @@ importers:
       eslint-config-prettier: ^6.15.0
       prettier: ^2.1.2
       terser-webpack-plugin: ^5.0.3
-      tsparticles: 'workspace:^1.18.8'
+      tsparticles: 'workspace:^1.18.10'
       typescript: ^4.0.5
       webpack: ^5.3.0
       webpack-cli: ^4.1.0
@@ -1317,7 +1317,7 @@ importers:
       eslint-config-prettier: ^6.15.0
       prettier: ^2.1.2
       terser-webpack-plugin: ^5.0.3
-      tsparticles: 'workspace:^1.18.8'
+      tsparticles: 'workspace:^1.18.10'
       typescript: ^4.0.5
       webpack: ^5.3.0
       webpack-cli: ^4.1.0
@@ -1326,14 +1326,14 @@ importers:
       react-tsparticles: 'link:../../components/react'
       tslib: 2.0.3
     specifiers:
-      react-tsparticles: 'workspace:^1.18.8'
+      react-tsparticles: 'workspace:^1.18.10'
       tslib: ^2.0.3
   ../../templates/react-ts:
     dependencies:
       react-tsparticles: 'link:../../components/react'
       tslib: 2.0.3
     specifiers:
-      react-tsparticles: 'workspace:^1.18.8'
+      react-tsparticles: 'workspace:^1.18.10'
       tslib: ^2.0.3
 lockfileVersion: 5.2
 packages:

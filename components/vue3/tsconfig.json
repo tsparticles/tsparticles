@@ -1,7 +1,7 @@
 {
   "compilerOptions": {
     "target": "es2015",
-    "module": "umd",
+    "module": "esnext",
     "strict": true,
     "jsx": "preserve",
     "importHelpers": true,

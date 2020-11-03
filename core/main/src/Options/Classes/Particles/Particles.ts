@@ -17,6 +17,7 @@ import type { IOptionLoader } from "../../Interfaces/IOptionLoader";
 import { Life } from "./Life/Life";
 import { Bounce } from "./Bounce/Bounce";
 import { Utils } from "../../../Utils";
+import { ZIndex } from "./ZIndex/ZIndex";
 import { Repulse } from "./Repulse/Repulse";
 
 /**
@@ -94,7 +95,7 @@ export class Particles implements IParticles, IOptionLoader<IParticles> {
         this.size = new Size();
         this.stroke = new Stroke();
         this.twinkle = new Twinkle();
-        this.zIndex = 0;
+        this.zIndex = new ZIndex();
         this.repulse = new Repulse();
     }
 
@@ -103,9 +104,7 @@ export class Particles implements IParticles, IOptionLoader<IParticles> {
             return;
         }
 
-        if (data.zIndex !== undefined) {
-            this.zIndex = data.zIndex;
-        }
+        this.zIndex.load(data.zIndex);
 
         this.repulse.load(data.repulse);
 

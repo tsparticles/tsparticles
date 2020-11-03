@@ -2,52 +2,48 @@
   "fpsLimit": 60,
   "particles": {
     "groups": {
-      "green": {
+      "z5000": {
         "number": {
-          "value": 30
+          "value": 70
         },
-        "color": {
-          "value": "#00ff00"
-        },
-        "zIndex": 50
+        "zIndex": {
+          "value": 5000
+        }
       },
-      "yellow": {
+      "z7500": {
         "number": {
           "value": 30
         },
-        "color": {
-          "value": "#ffff00"
-        },
-        "zIndex": -75
+        "zIndex": {
+          "value": 7500
+        }
       },
-      "blue": {
+      "z2500": {
         "number": {
-          "value": 30
+          "value": 50
         },
-        "color": {
-          "value": "#0000ff"
-        },
-        "zIndex": -50
+        "zIndex": {
+          "value": 2500
+        }
       },
-      "cyan": {
+      "z1000": {
         "number": {
-          "value": 30
+          "value": 40
         },
-        "color": {
-          "value": "#00ffff"
-        },
-        "zIndex": 25
+        "zIndex": {
+          "value": 1000
+        }
       }
     },
     "number": {
-      "value": 80,
+      "value": 200,
       "density": {
-        "enable": true,
+        "enable": false,
         "value_area": 800
       }
     },
     "color": {
-      "value": "#ff0000",
+      "value": "#fff",
       "animation": {
         "enable": false,
         "speed": 20,
@@ -81,16 +77,20 @@
       }
     },
     "links": {
-      "enable": true,
+      "enable": false,
       "distance": 100,
       "color": "#ffffff",
       "opacity": 0.4,
       "width": 1
     },
     "move": {
+      "angle": {
+        "value": 5,
+        "offset": 10
+      },
       "enable": true,
-      "speed": 6,
-      "direction": "none",
+      "speed": 15,
+      "direction": "right",
       "random": false,
       "straight": false,
       "outModes": {
@@ -101,13 +101,16 @@
         "rotateX": 600,
         "rotateY": 1200
       }
+    },
+    "zIndex": {
+      "value": 500
     }
   },
   "interactivity": {
     "detectsOn": "canvas",
     "events": {
       "onHover": {
-        "enable": true,
+        "enable": false,
         "mode": "repulse"
       },
       "onClick": {
@@ -133,7 +136,13 @@
         "distance": 200
       },
       "push": {
-        "quantity": 4
+        "quantity": 4,
+        "groups": [
+          "z5000",
+          "z7500",
+          "z2500",
+          "z1000"
+        ]
       },
       "remove": {
         "quantity": 2

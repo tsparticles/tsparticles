@@ -1,6 +1,6 @@
 {
   "name": "tsparticles-editor",
-  "version": "1.18.8",
+  "version": "1.18.10",
   "description": "tsParticles Configuration Editor",
   "keywords": [
     "tsparticles",
@@ -20,10 +20,12 @@
   "files": [
     "dist/**/*"
   ],
-  "main": "dist/index.js",
+  "main": "dist/cjs/index.js",
   "jsdelivr": "dist/tsparticles.editor.min.js",
   "unpkg": "dist/tsparticles.editor.min.js",
   "browser": "dist/index.js",
+  "module": "dist/esm/index.js",
+  "types": "dist/index.d.ts",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/matteobruni/tsparticles.git",
@@ -34,9 +36,12 @@
     "prettify:readme": "prettier --write ./README.md",
     "lint": "eslint src --ext .js,.jsx,.ts,.tsx --fix",
     "clear:dist": "rimraf -f ./dist",
-    "build:ts:es": "tsc -b tsconfig.browser.json",
-    "build:ts": "tsc",
-    "build": "pnpm run clear:dist && pnpm run prettify:src && pnpm run build:ts:es && pnpm run lint && webpack --mode production && pnpm run build:ts && pnpm run prettify:readme",
+    "build:ts:esm": "tsc -b tsconfig.esm.json",
+    "build:ts:cjs": "tsc",
+    "build:ts": "pnpm run build:ts:browser && pnpm run build:ts:esm && pnpm run build:ts:cjs",
+    "build:ts:check": "tsc --noEmit",
+    "build:ts:browser": "tsc -b tsconfig.browser.json",
+    "build": "pnpm run clear:dist && pnpm run prettify:src && pnpm run build:ts:check && pnpm run lint && pnpm run build:ts && webpack --mode production && pnpm run prettify:readme",
     "prepack": "pnpm run build"
   },
   "bugs": {
@@ -44,7 +49,7 @@
   },
   "dependencies": {
     "object-gui": "^1.0.11",
-    "tsparticles": "workspace:^1.18.8"
+    "tsparticles": "workspace:^1.18.10"
   },
   "devDependencies": {
     "@babel/core": "^7.12.3",

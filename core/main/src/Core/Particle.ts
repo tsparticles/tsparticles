@@ -1,7 +1,7 @@
 import type { Container } from "./Container";
 import type { IVelocity } from "./Interfaces/IVelocity";
 import type { IParticleValueAnimation } from "./Interfaces/IParticleValueAnimation";
-import type { ICoordinates } from "./Interfaces/ICoordinates";
+import type { ICoordinates, ICoordinates3d } from "./Interfaces/ICoordinates";
 import type { IParticleImage } from "./Interfaces/IParticleImage";
 import { Updater } from "./Particle/Updater";
 import type { IHsl, IRgb } from "./Interfaces/Colors";
@@ -70,7 +70,7 @@ export class Particle implements IParticle {
     public readonly direction: MoveDirection | keyof typeof MoveDirection | MoveDirectionAlt;
     public readonly fill: boolean;
     public readonly stroke: IStroke;
-    public readonly position: ICoordinates;
+    public readonly position: ICoordinates3d;
     public readonly offset: ICoordinates;
     public readonly shadowColor: IRgb | undefined;
     public readonly color: IParticleValueAnimation<IHsl | undefined>;
@@ -159,7 +159,28 @@ export class Particle implements IParticle {
         this.fill = this.shapeData?.fill ?? this.fill;
         this.close = this.shapeData?.close ?? this.close;
         this.particlesOptions = particlesOptions;
-        this.zIndexFactor = (this.particlesOptions.zIndex + 100) / 100;
+
+        const zIndexValue = NumberUtils.getValue(this.particlesOptions.zIndex);
+
+        /* position */
+        this.position = this.calcPosition(
+            this.container,
+            position,
+            NumberUtils.clamp(zIndexValue, 0, container.zLayers)
+        );
+        this.initialPosition = {
+            x: this.position.x,
+            y: this.position.y,
+        };
+
+        /* parallax */
+        this.offset = {
+            x: 0,
+            y: 0,
+        };
+
+        // Scale z-index factor to be between 0 and 2
+        this.zIndexFactor = this.position.z / container.zLayers;
         this.noiseDelay = NumberUtils.getValue(this.particlesOptions.move.noise.delay) * 1000;
 
         container.retina.initParticle(this);
@@ -168,7 +189,7 @@ export class Particle implements IParticle {
 
         /* size */
         const sizeOptions = this.particlesOptions.size;
-        const sizeValue = NumberUtils.getValue(sizeOptions) * this.zIndexFactor * container.retina.pixelRatio;
+        const sizeValue = NumberUtils.getValue(sizeOptions) * container.retina.pixelRatio;
 
         const randomSize = typeof sizeOptions.random === "boolean" ? sizeOptions.random : sizeOptions.random.enable;
 
@@ -184,8 +205,8 @@ export class Particle implements IParticle {
         /* animation - velocity for speed */
         this.initialVelocity = this.calculateVelocity();
         this.velocity = {
-            horizontal: this.initialVelocity.horizontal * this.zIndexFactor,
-            vertical: this.initialVelocity.vertical * this.zIndexFactor,
+            horizontal: this.initialVelocity.horizontal,
+            vertical: this.initialVelocity.vertical,
         };
 
         this.pathAngle = Math.atan2(this.initialVelocity.vertical, this.initialVelocity.horizontal);
@@ -276,31 +297,15 @@ export class Particle implements IParticle {
             }
         }
 
-        /* position */
-        this.position = this.calcPosition(this.container, position);
-        this.initialPosition = {
-            x: this.position.x,
-            y: this.position.y,
-        };
-
-        /* parallax */
-        this.offset = {
-            x: 0,
-            y: 0,
-        };
-
         /* opacity */
         const opacityOptions = this.particlesOptions.opacity;
-        const randomOpacity = opacityOptions.random;
-        const opacityValue = opacityOptions.value;
 
         this.opacity = {
-            value: randomOpacity.enable
-                ? NumberUtils.randomInRange(randomOpacity.minimumValue, opacityValue)
-                : opacityValue,
+            value: NumberUtils.getValue(opacityOptions),
         };
 
-        this.opacity.value *= this.zIndexFactor;
+        // Don't let opacity go below 0 or above 1
+        this.opacity.value = NumberUtils.clamp(this.opacity.value, 0, 1);
 
         const opacityAnimation = opacityOptions.animation;
 
@@ -416,10 +421,11 @@ export class Particle implements IParticle {
         this.container.canvas.drawParticle(this, delta);
     }
 
-    public getPosition(): ICoordinates {
+    public getPosition(): ICoordinates3d {
         return {
             x: this.position.x + this.offset.x,
             y: this.position.y + this.offset.y,
+            z: this.position.z,
         };
     }
 
@@ -441,19 +447,26 @@ export class Particle implements IParticle {
         this.links = [];
     }
 
-    private calcPosition(container: Container, position?: ICoordinates): ICoordinates {
+    private calcPosition(container: Container, position: ICoordinates | undefined, zIndex: number): ICoordinates3d {
         for (const [, plugin] of container.plugins) {
             const pluginPos =
                 plugin.particlePosition !== undefined ? plugin.particlePosition(position, this) : undefined;
 
             if (pluginPos !== undefined) {
-                return Utils.deepExtend({}, pluginPos) as ICoordinates;
+                return {
+                    x: pluginPos.x,
+                    y: pluginPos.y,
+                    z: zIndex,
+                };
             }
         }
 
+        const cSize = container.canvas.size;
+
         const pos = {
-            x: position?.x ?? Math.random() * container.canvas.size.width,
-            y: position?.y ?? Math.random() * container.canvas.size.height,
+            x: position?.x ?? cSize.width * Math.random(),
+            y: position?.y ?? cSize.height * Math.random(),
+            z: zIndex,
         };
 
         /* check position  - into the canvas */

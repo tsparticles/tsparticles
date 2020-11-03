@@ -39,4 +39,8 @@ app.get('/', function (req, res) {
     res.render('index');
 });
 
+app.get('/slim', function (req, res) {
+    res.render('slim');
+});
+
 app.listen(port, () => console.log(`Demo app listening on port ${port}!`));

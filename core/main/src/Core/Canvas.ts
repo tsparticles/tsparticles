@@ -406,6 +406,7 @@ export class Canvas {
         const twinkling = twinkle.enable && Math.random() < twinkleFreq;
         const radius = particle.getRadius();
         const opacity = twinkling ? twinkle.opacity : particle.bubble.opacity ?? particle.opacity.value;
+        const strokeOpacity = particle.stroke.opacity ?? opacity;
         const infectionStage = particle.infecter.infectionStage;
         const infection = options.infection;
         const infectionStages = infection.stages;
@@ -419,17 +420,19 @@ export class Canvas {
             twinkling && twinkleRgb !== undefined
                 ? twinkleRgb
                 : infectionRgb ?? (psColor ? ColorUtils.hslToRgb(psColor) : undefined);
+        const zIndexOptions = particle.particlesOptions.zIndex;
+        const zOpacityFactor = 1 - zIndexOptions.opacityRate * particle.zIndexFactor;
+        const zOpacity = opacity * zOpacityFactor;
 
-        const fillColorValue = fColor !== undefined ? ColorUtils.getStyleFromRgb(fColor, opacity) : undefined;
+        const fillColorValue = fColor !== undefined ? ColorUtils.getStyleFromRgb(fColor, zOpacity) : undefined;
 
         if (!this.context || (!fillColorValue && !sColor)) {
             return;
         }
 
+        const zStrokeOpacity = strokeOpacity * zOpacityFactor;
         const strokeColorValue =
-            sColor !== undefined
-                ? ColorUtils.getStyleFromRgb(sColor, particle.stroke.opacity ?? opacity)
-                : fillColorValue;
+            sColor !== undefined ? ColorUtils.getStyleFromRgb(sColor, zStrokeOpacity) : fillColorValue;
 
         if (particle.links.length > 0) {
             this.context.save();
@@ -473,6 +476,8 @@ export class Canvas {
         }
 
         if (radius > 0) {
+            const zSizeFactor = 1 - zIndexOptions.sizeRate * particle.zIndexFactor;
+
             CanvasUtils.drawParticle(
                 this.container,
                 this.context,
@@ -482,8 +487,8 @@ export class Canvas {
                 strokeColorValue,
                 options.backgroundMask.enable,
                 options.backgroundMask.composite,
-                radius,
-                opacity,
+                radius * zSizeFactor,
+                zOpacity,
                 particle.particlesOptions.shadow
             );
         }

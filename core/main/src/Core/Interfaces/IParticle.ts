@@ -1,5 +1,5 @@
 import type { IStroke } from "../../Options/Interfaces/Particles/IStroke";
-import type { ICoordinates } from "./ICoordinates";
+import type { ICoordinates, ICoordinates3d } from "./ICoordinates";
 import type { IVelocity } from "./IVelocity";
 import type { MoveDirection, MoveDirectionAlt, ShapeType } from "../../Enums";
 import type { IParticleImage } from "./IParticleImage";
@@ -34,7 +34,7 @@ export interface IParticle {
     readonly size: IParticleValueAnimation<number>;
     readonly strokeColor: IParticleValueAnimation<IHsl | undefined>;
     readonly particlesOptions: IParticles;
-    readonly position: ICoordinates;
+    readonly position: ICoordinates3d;
     readonly shadowColor: IRgb | undefined;
     readonly shape?: ShapeType | string;
     readonly shapeData?: IShapeValues;

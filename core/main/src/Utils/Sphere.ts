@@ -17,30 +17,32 @@ export class Sphere extends Range3d {
     }
 
     public intersects(range: Range3d): boolean {
-        const rect = range as Parallelepiped;
-        const circle = range as Sphere;
+        const parallelepiped = range as Parallelepiped;
+        const sphere = range as Sphere;
         const pos1 = this.position;
         const pos2 = range.position;
 
         const xDist = Math.abs(pos2.x - pos1.x);
         const yDist = Math.abs(pos2.y - pos1.y);
+        const zDist = Math.abs(pos2.z - pos2.y);
         const r = this.radius;
 
-        if (circle.radius !== undefined) {
-            const rSum = r + circle.radius;
-            const dist = Math.sqrt(xDist * xDist + yDist + yDist);
+        if (sphere.radius !== undefined) {
+            const rSum = r + sphere.radius;
+            const dist = Math.sqrt(xDist * xDist + yDist * yDist + zDist * zDist);
 
             return rSum > dist;
-        } else if (rect.size !== undefined) {
-            const w = rect.size.width;
-            const h = rect.size.height;
-            const edges = Math.pow(xDist - w, 2) + Math.pow(yDist - h, 2);
+        } else if (parallelepiped.size !== undefined) {
+            const w = parallelepiped.size.width;
+            const h = parallelepiped.size.height;
+            const d = parallelepiped.size.depth;
+            const edges = Math.pow(xDist - w, 2) + Math.pow(yDist - h, 2) + Math.pow(zDist - d, 2);
 
-            if (xDist > r + w || yDist > r + h) {
+            if (xDist > r + w || yDist > r + h || zDist > r + d) {
                 return false;
             }
 
-            if (xDist <= w || yDist <= h) {
+            if (xDist <= w || yDist <= h || zDist <= d) {
                 return true;
             }
 

@@ -5,8 +5,8 @@
       "ES2015",
       "DOM"
     ],
-    "rootDir": "./src",
     "declaration": true,
+    "rootDir": "./src/",
     "removeComments": true,
     "importHelpers": false,
     "strict": true,
@@ -22,8 +22,8 @@
   },
   "exclude": [
     "./tests/",
-    "./node_modules/**/*",
-    "../../node_modules/**/*",
+    "./node_modules/",
+    "../../node_modules/",
     "./dist/",
     "./typedoc/",
     "./docs/"
