@@ -30,7 +30,6 @@ import { Infecter } from "./Particle/Infecter";
 import type { IDelta } from "./Interfaces/IDelta";
 import { Mover } from "./Particle/Mover";
 import type { ILink } from "./Interfaces/ILink";
-import { IRepulse } from "../Options/Interfaces/Particles/Repulse/IRepulse";
 
 /**
  * The single particle object
@@ -86,7 +85,6 @@ export class Particle implements IParticle {
     public readonly initialVelocity: IVelocity;
     public readonly shapeData?: IShapeValues;
     public readonly bubble: IBubbleParticleData;
-    public readonly repulse?: IRepulse;
 
     constructor(
         public readonly id: number,

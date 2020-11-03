@@ -3,7 +3,6 @@ import type { Container } from "../../Core/Container";
 import { IParticlesInteractor } from "../../Core/Interfaces/IParticlesInteractor";
 import { NumberUtils } from "../../Utils";
 import { IParticle } from "../../Core/Interfaces/IParticle";
-import { ICoordinates } from "../../Core/Interfaces/ICoordinates";
 
 export class Repulser implements IParticlesInteractor {
     constructor(private readonly container: Container) {}

@@ -42,8 +42,8 @@ export class InteractionManager {
             new ParticlesLighter(container),
             new Collider(container),
             new Infecter(container),
-            new Linker(container),
             new Repulser(container),
+            new Linker(container),
         ];
     }
 

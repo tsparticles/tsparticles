@@ -3,7 +3,6 @@ import type { Container } from "../Container";
 import type { Particle } from "../Particle";
 import { HoverMode } from "../../Enums";
 import type { IDelta } from "../Interfaces/IDelta";
-import { ICoordinates } from "../Interfaces/ICoordinates";
 
 /**
  * @category Core
