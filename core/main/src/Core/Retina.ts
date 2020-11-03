@@ -51,13 +51,19 @@ export class Retina {
                     this.handleMotionChange(mediaQuery);
 
                     // Ads an event listener to check for changes in the media query's value.
-                    mediaQuery.addEventListener("change", () => {
+                    const handleChange = () => {
                         this.handleMotionChange(mediaQuery);
 
                         container.refresh().catch(() => {
                             // ignore
                         });
-                    });
+                    };
+
+                    if (mediaQuery.addEventListener !== undefined) {
+                        mediaQuery.addEventListener("change", handleChange);
+                    } else if (mediaQuery.addListener !== undefined) {
+                        mediaQuery.addListener(handleChange);
+                    }
                 }
             }
         } else {
