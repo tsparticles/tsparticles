@@ -29,7 +29,9 @@ const getConfig = (entry) => {
             extensions: [ ".js", ".json" ]
         },
         externals: [
-            /ts[pP]articles/
+            {
+                "tsparticles": "window"
+            }
         ],
         module: {
             rules: [
