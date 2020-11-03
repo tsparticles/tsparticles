@@ -33,7 +33,7 @@ export class Linker implements IParticlesInteractor {
         for (const p2 of query) {
             const linkOpt2 = p2.particlesOptions.links;
 
-            if (p1 === p2 || !linkOpt2.enable || linkOpt1.id !== linkOpt2.id) {
+            if (p1 === p2 || !linkOpt2.enable || linkOpt1.id !== linkOpt2.id || p2.spawning || p2.destroyed) {
                 continue;
             }
 

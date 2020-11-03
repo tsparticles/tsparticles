@@ -61,7 +61,7 @@ export class Retina {
 
                     if (mediaQuery.addEventListener !== undefined) {
                         mediaQuery.addEventListener("change", handleChange);
-                    } else {
+                    } else if (mediaQuery.addListener !== undefined) {
                         mediaQuery.addListener(handleChange);
                     }
                 }
