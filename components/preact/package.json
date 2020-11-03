@@ -1,6 +1,6 @@
 {
   "name": "preact-particles",
-  "version": "1.18.8",
+  "version": "1.18.9",
   "description": "tsParticles official Preact component",
   "main": "index.js",
   "unpkg": "umd/particles.js",
@@ -68,7 +68,7 @@
   },
   "dependencies": {
     "lodash": "^4.17.20",
-    "tsparticles": "workspace:^1.18.8",
+    "tsparticles": "workspace:^1.18.9",
     "preact": ">=10"
   },
   "devDependencies": {
