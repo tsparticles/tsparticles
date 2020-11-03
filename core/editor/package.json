@@ -1,6 +1,6 @@
 {
   "name": "tsparticles-editor",
-  "version": "1.18.9",
+  "version": "1.18.10",
   "description": "tsParticles Configuration Editor",
   "keywords": [
     "tsparticles",
@@ -24,6 +24,8 @@
   "jsdelivr": "dist/tsparticles.editor.min.js",
   "unpkg": "dist/tsparticles.editor.min.js",
   "browser": "dist/index.js",
+  "module": "dist/esm/index.js",
+  "types": "dist/index.d.ts",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/matteobruni/tsparticles.git",
@@ -34,9 +36,12 @@
     "prettify:readme": "prettier --write ./README.md",
     "lint": "eslint src --ext .js,.jsx,.ts,.tsx --fix",
     "clear:dist": "rimraf -f ./dist",
-    "build:ts:es": "tsc -b tsconfig.browser.json",
-    "build:ts": "tsc",
-    "build": "yarn clear:dist && yarn prettify:src && yarn build:ts:es && yarn lint && webpack --mode production && yarn build:ts && yarn prettify:readme",
+    "build:ts:esm": "tsc -b tsconfig.module.json",
+    "build:ts:cjs": "tsc",
+    "build:ts": "yarn build:ts:browser && yarn build:ts:esm && yarn build:ts:cjs",
+    "build:ts:check": "tsc --noEmit",
+    "build:ts:browser": "tsc -b tsconfig.browser.json",
+    "build": "yarn clear:dist && yarn prettify:src && yarn build:ts:check && yarn lint && yarn build:ts && webpack --mode production && yarn prettify:readme",
     "prepack": "yarn build"
   },
   "bugs": {
@@ -44,7 +49,7 @@
   },
   "dependencies": {
     "object-gui": "^1.0.11",
-    "tsparticles": "^1.18.9"
+    "tsparticles": "^1.18.10"
   },
   "devDependencies": {
     "@babel/core": "^7.12.3",

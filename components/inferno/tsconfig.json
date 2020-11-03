@@ -2,7 +2,7 @@
 	"compilerOptions": {
 		"pretty": true,
 		"target": "es6",
-		"module": "umd",
+		"module": "esnext",
 		"allowSyntheticDefaultImports": true,
 		"preserveConstEnums": true,
 		"sourceMap": true,

@@ -2,8 +2,8 @@
   "compilerOptions": {
     "sourceMap": true,
     "noImplicitAny": true,
-    "module": "umd",
-    "target": "es6",
+    "module": "esnext",
+    "target": "es2015",
     "jsx": "react",
     "moduleResolution": "node",
     "removeComments": true,
