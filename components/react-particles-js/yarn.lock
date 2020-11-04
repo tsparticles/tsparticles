@@ -3965,10 +3965,10 @@ tslib@^1.9.0:
   resolved "https://registry.yarnpkg.com/tslib/-/tslib-1.13.0.tgz#c881e13cc7015894ed914862d276436fa9a47043"
   integrity sha512-i/6DQjL8Xf3be4K/E6Wgpekn5Qasl1usyw++dAA35Ue5orEn65VIxOA+YvNNl9HV3qv70T7CNwjODHZrLwvd1Q==
 
-tsparticles@^1.18.5:
-  version "1.18.5"
-  resolved "https://registry.yarnpkg.com/tsparticles/-/tsparticles-1.18.5.tgz#9281b16b5eca0fc53f522b05f9a7b599a819d1ef"
-  integrity sha512-J+Dj0vMtKG8IKQ1EpqpMr5F05pZtxRoEmbp7U5RVCZdd+qtn4L6FvnLWMv4aQaVyX5hrSltPz8EYvUXI2GK0NA==
+tsparticles@^1.18.10:
+  version "1.18.10"
+  resolved "https://registry.yarnpkg.com/tsparticles/-/tsparticles-1.18.10.tgz#d2e80af398ba90e2fdeb29dff9afdf65a7fb6be4"
+  integrity sha512-0OIGYwbXVJjd48GUdcTkv7Cn/BIoTOxUleeMhKqbFL5tV1CJevyhfXkMtGrY4FwRYxcNorxeaOE4dH1MO9AONQ==
   optionalDependencies:
     pathseg "^1.2.0"
 
