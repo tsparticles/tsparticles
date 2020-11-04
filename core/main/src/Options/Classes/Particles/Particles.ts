@@ -69,6 +69,7 @@ export class Particles implements IParticles, IOptionLoader<IParticles> {
     public number;
     public opacity;
     public reduceDuplicates;
+    public repulse;
     public rotate;
     public shape;
     public size;
@@ -76,7 +77,6 @@ export class Particles implements IParticles, IOptionLoader<IParticles> {
     public stroke: SingleOrMultiple<Stroke>;
     public twinkle;
     public zIndex;
-    public repulse;
 
     constructor() {
         this.bounce = new Bounce();
@@ -89,6 +89,7 @@ export class Particles implements IParticles, IOptionLoader<IParticles> {
         this.number = new ParticlesNumber();
         this.opacity = new Opacity();
         this.reduceDuplicates = false;
+        this.repulse = new Repulse();
         this.rotate = new Rotate();
         this.shadow = new Shadow();
         this.shape = new Shape();
@@ -96,7 +97,6 @@ export class Particles implements IParticles, IOptionLoader<IParticles> {
         this.stroke = new Stroke();
         this.twinkle = new Twinkle();
         this.zIndex = new ZIndex();
-        this.repulse = new Repulse();
     }
 
     public load(data?: RecursivePartial<IParticles>): void {
@@ -105,10 +105,9 @@ export class Particles implements IParticles, IOptionLoader<IParticles> {
         }
 
         this.zIndex.load(data.zIndex);
-
         this.repulse.load(data.repulse);
-
         this.bounce.load(data.bounce);
+
         this.color = AnimatableColor.create(this.color, data.color);
 
         if (data.groups !== undefined) {
