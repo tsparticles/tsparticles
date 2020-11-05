@@ -105,6 +105,11 @@ function checkSelector(element: HTMLElement, selectors: SingleOrMultiple<string>
     }
 }
 
+function isObject(value: unknown) {
+    const type = typeof value;
+    return value != null && (type === 'object' || type === 'function');
+}
+
 /* ---------- global functions - vendors ------------ */
 /**
  * @category Utils
@@ -118,28 +123,28 @@ export class Utils {
         return Utils.isSsr()
             ? (callback: FrameRequestCallback): number => setTimeout(callback)
             : (callback: FrameRequestCallback): number =>
-                  (
-                      window.requestAnimationFrame ||
-                      window.webkitRequestAnimationFrame ||
-                      window.mozRequestAnimationFrame ||
-                      window.oRequestAnimationFrame ||
-                      window.msRequestAnimationFrame ||
-                      window.setTimeout
-                  )(callback);
+                (
+                    window.requestAnimationFrame ||
+                    window.webkitRequestAnimationFrame ||
+                    window.mozRequestAnimationFrame ||
+                    window.oRequestAnimationFrame ||
+                    window.msRequestAnimationFrame ||
+                    window.setTimeout
+                )(callback);
     }
 
     public static get cancelAnimation(): (handle: number) => void {
         return Utils.isSsr()
             ? (handle: number): void => clearTimeout(handle)
             : (handle: number): void =>
-                  (
-                      window.cancelAnimationFrame ||
-                      window.webkitCancelRequestAnimationFrame ||
-                      window.mozCancelRequestAnimationFrame ||
-                      window.oCancelRequestAnimationFrame ||
-                      window.msCancelRequestAnimationFrame ||
-                      window.clearTimeout
-                  )(handle);
+                (
+                    window.cancelAnimationFrame ||
+                    window.webkitCancelRequestAnimationFrame ||
+                    window.mozCancelRequestAnimationFrame ||
+                    window.oCancelRequestAnimationFrame ||
+                    window.msCancelRequestAnimationFrame ||
+                    window.clearTimeout
+                )(handle);
     }
 
     /**
