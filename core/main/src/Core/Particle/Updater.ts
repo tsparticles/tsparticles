@@ -5,12 +5,28 @@ import { AnimationStatus, DestroyType, OutMode, OutModeAlt } from "../../Enums";
 import type { IDelta } from "../Interfaces/IDelta";
 import { OutModeDirection } from "../../Enums/Directions/OutModeDirection";
 
+function checkDestroy(particle: Particle, destroy: DestroyType | keyof typeof DestroyType, value: number, minValue: number, maxValue: number): void {
+    switch (destroy) {
+        case DestroyType.max:
+            if (value >= maxValue) {
+                particle.destroy();
+            }
+            break;
+        case DestroyType.min:
+            if (value <= minValue) {
+                particle.destroy();
+            }
+            break;
+    }
+}
+
 /**
  * Particle updater, it manages movement
  * @category Core
  */
 export class Updater {
-    constructor(private readonly container: Container, private readonly particle: Particle) {}
+    constructor(private readonly container: Container, private readonly particle: Particle) {
+    }
 
     public update(delta: IDelta): void {
         if (this.particle.destroyed) {
@@ -121,18 +137,7 @@ export class Updater {
                     break;
             }
 
-            switch (opacityAnim.destroy) {
-                case DestroyType.max:
-                    if (particle.opacity.value >= maxValue) {
-                        particle.destroy();
-                    }
-                    break;
-                case DestroyType.min:
-                    if (particle.opacity.value <= minValue) {
-                        particle.destroy();
-                    }
-                    break;
-            }
+            checkDestroy(particle, opacityAnim.destroy, particle.opacity.value, minValue, maxValue);
 
             if (!particle.destroyed) {
                 particle.opacity.value = NumberUtils.clamp(particle.opacity.value, minValue, maxValue);
@@ -166,18 +171,7 @@ export class Updater {
                     }
             }
 
-            switch (sizeAnim.destroy) {
-                case DestroyType.max:
-                    if (particle.size.value >= maxValue) {
-                        particle.destroy();
-                    }
-                    break;
-                case DestroyType.min:
-                    if (particle.size.value <= minValue) {
-                        particle.destroy();
-                    }
-                    break;
-            }
+            checkDestroy(particle, sizeAnim.destroy, particle.size.value, minValue, maxValue);
 
             if (!particle.destroyed) {
                 particle.size.value = NumberUtils.clamp(particle.size.value, minValue, maxValue);
@@ -371,7 +365,7 @@ export class Updater {
         const particle = this.particle;
         let handled = false;
 
-        for (const [, plugin] of container.plugins) {
+        for (const [ , plugin ] of container.plugins) {
             if (plugin.particleBounce !== undefined) {
                 handled = plugin.particleBounce(particle, delta, direction);
             }
