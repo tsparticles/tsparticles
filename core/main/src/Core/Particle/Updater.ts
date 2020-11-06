@@ -99,18 +99,20 @@ export class Updater {
 
     private updateOpacity(delta: IDelta): void {
         const particle = this.particle;
+        const minValue = particle.particlesOptions.opacity.animation.minimumValue;
+        const maxValue = particle.particlesOptions.opacity.value;
 
         if (particle.particlesOptions.opacity.animation.enable) {
             switch (particle.opacity.status) {
                 case AnimationStatus.increasing:
-                    if (particle.opacity.value >= particle.particlesOptions.opacity.value) {
+                    if (particle.opacity.value >= maxValue) {
                         particle.opacity.status = AnimationStatus.decreasing;
                     } else {
                         particle.opacity.value += (particle.opacity.velocity ?? 0) * delta.factor;
                     }
                     break;
                 case AnimationStatus.decreasing:
-                    if (particle.opacity.value <= particle.particlesOptions.opacity.animation.minimumValue) {
+                    if (particle.opacity.value <= minValue) {
                         particle.opacity.status = AnimationStatus.increasing;
                     } else {
                         particle.opacity.value -= (particle.opacity.velocity ?? 0) * delta.factor;
@@ -118,9 +120,7 @@ export class Updater {
                     break;
             }
 
-            if (particle.opacity.value < 0) {
-                particle.opacity.value = 0;
-            }
+            particle.opacity.value = NumberUtils.clamp(particle.opacity.value, minValue, maxValue);
         }
     }
 
@@ -163,8 +163,8 @@ export class Updater {
                     break;
             }
 
-            if (particle.size.value < 0 && !particle.destroyed) {
-                particle.size.value = 0;
+            if (!particle.destroyed) {
+                particle.size.value = NumberUtils.clamp(particle.size.value, minValue, maxValue);
             }
         }
     }
