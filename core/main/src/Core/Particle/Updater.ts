@@ -99,10 +99,11 @@ export class Updater {
 
     private updateOpacity(delta: IDelta): void {
         const particle = this.particle;
-        const minValue = particle.particlesOptions.opacity.animation.minimumValue;
+        const opacityAnim = particle.particlesOptions.opacity.anim;
+        const minValue = opacityAnim.minimumValue;
         const maxValue = particle.particlesOptions.opacity.value;
 
-        if (particle.particlesOptions.opacity.animation.enable) {
+        if (opacityAnim.enable) {
             switch (particle.opacity.status) {
                 case AnimationStatus.increasing:
                     if (particle.opacity.value >= maxValue) {
@@ -120,7 +121,22 @@ export class Updater {
                     break;
             }
 
-            particle.opacity.value = NumberUtils.clamp(particle.opacity.value, minValue, maxValue);
+            switch (opacityAnim.destroy) {
+                case DestroyType.max:
+                    if (particle.opacity.value >= maxValue) {
+                        particle.destroy();
+                    }
+                    break;
+                case DestroyType.min:
+                    if (particle.opacity.value <= minValue) {
+                        particle.destroy();
+                    }
+                    break;
+            }
+
+            if (!particle.destroyed) {
+                particle.opacity.value = NumberUtils.clamp(particle.opacity.value, minValue, maxValue);
+            }
         }
     }
 
