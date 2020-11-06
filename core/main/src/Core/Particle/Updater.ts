@@ -118,9 +118,7 @@ export class Updater {
                     break;
             }
 
-            if (particle.opacity.value < 0) {
-                particle.opacity.value = 0;
-            }
+            particle.opacity.value = NumberUtils.clamp(particle.opacity.value, 0, 1);
         }
     }
 
@@ -163,8 +161,8 @@ export class Updater {
                     break;
             }
 
-            if (particle.size.value < 0 && !particle.destroyed) {
-                particle.size.value = 0;
+            if (!particle.destroyed) {
+                particle.size.value = NumberUtils.clamp(particle.size.value, minValue, maxValue);
             }
         }
     }
