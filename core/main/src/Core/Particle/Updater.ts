@@ -4,8 +4,93 @@ import { NumberUtils, Utils } from "../../Utils";
 import { AnimationStatus, DestroyType, OutMode, OutModeAlt } from "../../Enums";
 import type { IDelta } from "../Interfaces/IDelta";
 import { OutModeDirection } from "../../Enums/Directions/OutModeDirection";
+import { IBounds } from "../Interfaces/IBounds";
+import { IDimension } from "../Interfaces/IDimension";
+import { ICoordinates } from "../Interfaces/ICoordinates";
 
-function checkDestroy(particle: Particle, destroy: DestroyType | keyof typeof DestroyType, value: number, minValue: number, maxValue: number): void {
+interface IBounceData {
+    particle: Particle;
+    outMode: OutMode | OutModeAlt | keyof typeof OutMode;
+    direction: OutModeDirection;
+    bounds: IBounds;
+    canvasSize: IDimension;
+    offset: ICoordinates;
+    size: number;
+}
+
+function bounceHorizontal(data: IBounceData): void {
+    if (
+        data.outMode === OutMode.bounce ||
+        data.outMode === OutMode.bounceHorizontal ||
+        data.outMode === "bounceHorizontal"
+    ) {
+        const velocity = data.particle.velocity.horizontal;
+        let bounced = false;
+
+        if (
+            (data.direction === OutModeDirection.right && data.bounds.right >= data.canvasSize.width && velocity > 0) ||
+            (data.direction === OutModeDirection.left && data.bounds.left <= 0 && velocity < 0)
+        ) {
+            const newVelocity = NumberUtils.getValue(data.particle.particlesOptions.bounce.horizontal);
+
+            data.particle.velocity.horizontal *= -newVelocity;
+
+            bounced = true;
+        }
+
+        if (bounced) {
+            const minPos = data.offset.x + data.size;
+
+            if (data.bounds.right >= data.canvasSize.width) {
+                data.particle.position.x = data.canvasSize.width - minPos;
+            } else if (data.bounds.left <= 0) {
+                data.particle.position.x = minPos;
+            }
+        }
+    }
+}
+
+function bounceVertical(data: IBounceData): void {
+    if (
+        data.outMode === OutMode.bounce ||
+        data.outMode === OutMode.bounceVertical ||
+        data.outMode === "bounceVertical"
+    ) {
+        const velocity = data.particle.velocity.vertical;
+        let bounced = false;
+
+        if (
+            (data.direction === OutModeDirection.bottom &&
+                data.bounds.bottom >= data.canvasSize.height &&
+                velocity > 0) ||
+            (data.direction === OutModeDirection.top && data.bounds.top <= 0 && velocity < 0)
+        ) {
+            const newVelocity = NumberUtils.getValue(data.particle.particlesOptions.bounce.vertical);
+
+            data.particle.velocity.vertical *= -newVelocity;
+
+            bounced = true;
+        }
+
+        if (bounced) {
+            const minPos = data.offset.y + data.size;
+
+            if (data.bounds.bottom >= data.canvasSize.height) {
+                data.particle.position.y = data.canvasSize.height - minPos;
+            } else if (data.bounds.top <= 0) {
+                data.particle.position.y = minPos;
+            }
+        }
+    }
+}
+
+function checkDestroy(
+    particle: Particle,
+    destroy: DestroyType | keyof typeof DestroyType,
+    value: number,
+    minValue: number,
+    maxValue: number
+): void {
     switch (destroy) {
         case DestroyType.max:
             if (value >= maxValue) {
@@ -25,8 +110,7 @@ function checkDestroy(particle: Particle, destroy: DestroyType | keyof typeof De
  * @category Core
  */
 export class Updater {
-    constructor(private readonly container: Container, private readonly particle: Particle) {
-    }
+    constructor(private readonly container: Container, private readonly particle: Particle) {}
 
     public update(delta: IDelta): void {
         if (this.particle.destroyed) {
@@ -264,7 +348,6 @@ export class Updater {
     ) {
         const container = this.container;
         const particle = this.particle;
-        const gravityOptions = particle.particlesOptions.move.gravity;
 
         switch (outMode) {
             case OutMode.bounce:
@@ -286,28 +369,7 @@ export class Updater {
                 }
                 break;
             case OutMode.none:
-                if (particle.particlesOptions.move.distance) {
-                    return;
-                }
-
-                if (!gravityOptions.enable) {
-                    if (
-                        !Utils.isPointInside(particle.position, container.canvas.size, particle.getRadius(), direction)
-                    ) {
-                        container.particles.remove(particle);
-                    }
-                } else {
-                    const position = particle.position;
-
-                    if (
-                        (gravityOptions.acceleration >= 0 &&
-                            position.y > container.canvas.size.height &&
-                            direction === OutModeDirection.bottom) ||
-                        (gravityOptions.acceleration < 0 && position.y < 0 && direction === OutModeDirection.top)
-                    ) {
-                        container.particles.remove(particle);
-                    }
-                }
+                this.bounceNone(direction);
                 break;
         }
     }
@@ -365,7 +427,7 @@ export class Updater {
         const particle = this.particle;
         let handled = false;
 
-        for (const [ , plugin ] of container.plugins) {
+        for (const [, plugin] of container.plugins) {
             if (plugin.particleBounce !== undefined) {
                 handled = plugin.particleBounce(particle, delta, direction);
             }
@@ -385,57 +447,34 @@ export class Updater {
             bounds = Utils.calculateBounds(pos, size),
             canvasSize = container.canvas.size;
 
-        if (outMode === OutMode.bounce || outMode === OutMode.bounceHorizontal || outMode === "bounceHorizontal") {
-            const velocity = particle.velocity.horizontal;
-            let bounced = false;
+        bounceHorizontal({ particle, outMode, direction, bounds, canvasSize, offset, size });
+        bounceVertical({ particle, outMode, direction, bounds, canvasSize, offset, size });
+    }
 
-            if (
-                (direction === OutModeDirection.right && bounds.right >= canvasSize.width && velocity > 0) ||
-                (direction === OutModeDirection.left && bounds.left <= 0 && velocity < 0)
-            ) {
-                const newVelocity = NumberUtils.getValue(particle.particlesOptions.bounce.horizontal);
+    private bounceNone(direction: OutModeDirection): void {
+        const particle = this.particle;
 
-                particle.velocity.horizontal *= -newVelocity;
-
-                bounced = true;
-            }
-
-            if (bounced) {
-                const minPos = offset.x + size;
-
-                if (bounds.right >= canvasSize.width) {
-                    particle.position.x = canvasSize.width - minPos;
-                } else if (bounds.left <= 0) {
-                    particle.position.x = minPos;
-                }
-            }
+        if (particle.particlesOptions.move.distance) {
+            return;
         }
 
-        if (outMode === OutMode.bounce || outMode === OutMode.bounceVertical || outMode === "bounceVertical") {
-            const velocity = particle.velocity.vertical;
-            let bounced = false;
+        const gravityOptions = particle.particlesOptions.move.gravity;
+        const container = this.container;
+
+        if (!gravityOptions.enable) {
+            if (!Utils.isPointInside(particle.position, container.canvas.size, particle.getRadius(), direction)) {
+                container.particles.remove(particle);
+            }
+        } else {
+            const position = particle.position;
 
             if (
-                (direction === OutModeDirection.bottom &&
-                    bounds.bottom >= container.canvas.size.height &&
-                    velocity > 0) ||
-                (direction === OutModeDirection.top && bounds.top <= 0 && velocity < 0)
+                (gravityOptions.acceleration >= 0 &&
+                    position.y > container.canvas.size.height &&
+                    direction === OutModeDirection.bottom) ||
+                (gravityOptions.acceleration < 0 && position.y < 0 && direction === OutModeDirection.top)
             ) {
-                const newVelocity = NumberUtils.getValue(particle.particlesOptions.bounce.vertical);
-
-                particle.velocity.vertical *= -newVelocity;
-
-                bounced = true;
-            }
-
-            if (bounced) {
-                const minPos = offset.y + size;
-
-                if (bounds.bottom >= canvasSize.height) {
-                    particle.position.y = canvasSize.height - minPos;
-                } else if (bounds.top <= 0) {
-                    particle.position.y = minPos;
-                }
+                container.particles.remove(particle);
             }
         }
     }
