@@ -86,11 +86,11 @@ export class Canvas {
         this.coverColor =
             coverRgb !== undefined
                 ? {
-                      r: coverRgb.r,
-                      g: coverRgb.g,
-                      b: coverRgb.b,
-                      a: cover.opacity,
-                  }
+                    r: coverRgb.r,
+                    g: coverRgb.g,
+                    b: coverRgb.b,
+                    a: cover.opacity,
+                }
                 : undefined;
         this.trailFillColor = ColorUtils.colorToRgb(trail.fillColor);
 
@@ -180,7 +180,25 @@ export class Canvas {
         }
 
         const container = this.container;
-        const options = container.options;
+
+        container.canvas.initSize();
+
+        /* density particles enabled */
+        container.particles.setDensity();
+
+        for (const [ , plugin ] of container.plugins) {
+            if (plugin.resize !== undefined) {
+                plugin.resize();
+            }
+        }
+    }
+
+    public initSize(): void {
+        if (!this.element) {
+            return;
+        }
+
+        const container = this.container;
         const pxRatio = container.retina.pixelRatio;
 
         container.canvas.size.width = this.element.offsetWidth * pxRatio;
@@ -188,20 +206,6 @@ export class Canvas {
 
         this.element.width = container.canvas.size.width;
         this.element.height = container.canvas.size.height;
-
-        /* repaint canvas on anim disabled */
-        if (!options.particles.move.enable) {
-            container.particles.redraw();
-        }
-
-        /* density particles enabled */
-        container.densityAutoParticles();
-
-        for (const [, plugin] of container.plugins) {
-            if (plugin.resize !== undefined) {
-                plugin.resize();
-            }
-        }
     }
 
     public drawConnectLine(p1: IParticle, p2: IParticle): void {
