@@ -75,7 +75,7 @@ function getConfig(entry, banner, minBanner) {
             ]
         }
     };
-};
+}
 
 module.exports = {
     getEntry,
