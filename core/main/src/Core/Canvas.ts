@@ -396,9 +396,7 @@ export class Canvas {
             return;
         }
 
-        const container = this.container;
-        const options = container.options;
-        const particles = container.particles;
+        const options = this.container.options;
         const pOptions = particle.particlesOptions;
         const twinkle = pOptions.twinkle.particles;
         const twinkleFreq = twinkle.frequency;
@@ -430,6 +428,34 @@ export class Canvas {
             sColor !== undefined
                 ? ColorUtils.getStyleFromRgb(sColor, particle.stroke.opacity ?? opacity)
                 : fillColorValue;
+
+        this.drawParticleLinks(particle);
+
+        if (radius > 0) {
+            CanvasUtils.drawParticle(
+                this.container,
+                this.context,
+                particle,
+                delta,
+                fillColorValue,
+                strokeColorValue,
+                options.backgroundMask.enable,
+                options.backgroundMask.composite,
+                radius,
+                opacity,
+                particle.particlesOptions.shadow
+            );
+        }
+    }
+
+    public drawParticleLinks(particle: Particle): void {
+        if (!this.context) {
+            return;
+        }
+
+        const container = this.container;
+        const particles = container.particles;
+        const pOptions = particle.particlesOptions;
 
         if (particle.links.length > 0) {
             this.context.save();
@@ -470,22 +496,6 @@ export class Canvas {
             }
 
             this.context.restore();
-        }
-
-        if (radius > 0) {
-            CanvasUtils.drawParticle(
-                this.container,
-                this.context,
-                particle,
-                delta,
-                fillColorValue,
-                strokeColorValue,
-                options.backgroundMask.enable,
-                options.backgroundMask.composite,
-                radius,
-                opacity,
-                particle.particlesOptions.shadow
-            );
         }
     }
 
