@@ -271,8 +271,6 @@ export class Container {
         }
     }
 
-    /* ---------- tsParticles functions - vendors ------------ */
-
     /**
      * Destroys the current container, invalidating it
      */

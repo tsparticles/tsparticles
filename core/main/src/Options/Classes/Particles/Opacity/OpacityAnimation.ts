@@ -1,6 +1,7 @@
 import type { IOpacityAnimation } from "../../../Interfaces/Particles/Opacity/IOpacityAnimation";
 import type { RecursivePartial } from "../../../../Types";
 import type { IOptionLoader } from "../../../Interfaces/IOptionLoader";
+import { DestroyType, StartValueType } from "../../../../Enums/Types";
 
 /**
  * @category Options
@@ -23,21 +24,29 @@ export class OpacityAnimation implements IOpacityAnimation, IOptionLoader<IOpaci
         this.minimumValue = value;
     }
 
+    public destroy: DestroyType | keyof typeof DestroyType;
     public enable;
     public minimumValue;
     public speed;
+    public startValue: StartValueType | keyof typeof StartValueType;
     public sync;
 
     constructor() {
+        this.destroy = DestroyType.none;
         this.enable = false;
         this.minimumValue = 0;
         this.speed = 2;
+        this.startValue = StartValueType.random;
         this.sync = false;
     }
 
     public load(data?: RecursivePartial<IOpacityAnimation>): void {
         if (data === undefined) {
             return;
+        }
+
+        if (data.destroy !== undefined) {
+            this.destroy = data.destroy;
         }
 
         if (data.enable !== undefined) {
@@ -52,6 +61,10 @@ export class OpacityAnimation implements IOpacityAnimation, IOptionLoader<IOpaci
 
         if (data.speed !== undefined) {
             this.speed = data.speed;
+        }
+
+        if (data.startValue !== undefined) {
+            this.startValue = data.startValue;
         }
 
         if (data.sync !== undefined) {

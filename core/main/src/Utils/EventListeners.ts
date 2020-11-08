@@ -136,14 +136,10 @@ export class EventListeners {
 
             /* el on touchcancel */
             manageListener(interactivityEl, Constants.touchCancelEvent, this.touchCancelHandler, add);
+        }
 
-            if (html.style) {
-                html.style.pointerEvents = "initial";
-            }
-        } else {
-            if (html.style) {
-                html.style.pointerEvents = "none";
-            }
+        if (container.canvas.element) {
+            container.canvas.element.style.pointerEvents = html === container.canvas.element ? "initial" : "none";
         }
 
         if (options.interactivity.events.resize) {
@@ -230,26 +226,28 @@ export class EventListeners {
             } else if (options.interactivity.detectsOn === InteractivityDetect.parent) {
                 const source = mouseEvent.target as HTMLElement;
                 const target = mouseEvent.currentTarget as HTMLElement;
+                const canvasEl = container.canvas.element;
 
-                if (source && target) {
+                if (source && target && canvasEl) {
                     const sourceRect = source.getBoundingClientRect();
                     const targetRect = target.getBoundingClientRect();
+                    const canvasRect = canvasEl.getBoundingClientRect();
 
                     pos = {
-                        x: mouseEvent.offsetX + sourceRect.left - targetRect.left,
-                        y: mouseEvent.offsetY + sourceRect.top - targetRect.top,
+                        x: mouseEvent.offsetX + 2 * sourceRect.left - (targetRect.left + canvasRect.left),
+                        y: mouseEvent.offsetY + 2 * sourceRect.top - (targetRect.top + canvasRect.top),
                     };
                 } else {
                     pos = {
-                        x: mouseEvent.offsetX || mouseEvent.clientX,
-                        y: mouseEvent.offsetY || mouseEvent.clientY,
+                        x: mouseEvent.offsetX ?? mouseEvent.clientX,
+                        y: mouseEvent.offsetY ?? mouseEvent.clientY,
                     };
                 }
             } else {
                 if (mouseEvent.target === container.canvas.element) {
                     pos = {
-                        x: mouseEvent.offsetX || mouseEvent.clientX,
-                        y: mouseEvent.offsetY || mouseEvent.clientY,
+                        x: mouseEvent.offsetX ?? mouseEvent.clientX,
+                        y: mouseEvent.offsetY ?? mouseEvent.clientY,
                     };
                 }
             }

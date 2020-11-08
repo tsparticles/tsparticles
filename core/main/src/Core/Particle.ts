@@ -299,6 +299,8 @@ export class Particle implements IParticle {
 
         /* opacity */
         const opacityOptions = this.particlesOptions.opacity;
+        const randomOpacity =
+            typeof opacityOptions.random === "boolean" ? opacityOptions.random : opacityOptions.random.enable;
 
         this.opacity = {
             value: NumberUtils.getValue(opacityOptions),
@@ -311,6 +313,30 @@ export class Particle implements IParticle {
 
         if (opacityAnimation.enable) {
             this.opacity.status = AnimationStatus.increasing;
+
+            if (!randomOpacity) {
+                switch (opacityAnimation.startValue) {
+                    case StartValueType.min:
+                        this.opacity.value = opacityAnimation.minimumValue;
+
+                        break;
+
+                    case StartValueType.random:
+                        this.opacity.value = NumberUtils.randomInRange(
+                            opacityAnimation.minimumValue,
+                            this.opacity.value
+                        );
+
+                        break;
+
+                    case StartValueType.max:
+                    default:
+                        this.opacity.status = AnimationStatus.decreasing;
+
+                        break;
+                }
+            }
+
             this.opacity.velocity = (opacityAnimation.speed / 100) * container.retina.reduceFactor;
 
             if (!opacityAnimation.sync) {
