@@ -2,8 +2,13 @@
   "compilerOptions": {
     "sourceMap": true,
     "noImplicitAny": true,
-    "module": "commonjs",
-    "target": "es6",
+    "module": "esnext",
+    "moduleResolution": "node",
+    "target": "es2015",
+    "lib": [
+      "es2015",
+      "dom"
+    ],
     "jsx": "react",
     "removeComments": true,
     "esModuleInterop": true,

@@ -1,5 +1,5 @@
 import { Container } from "../../src/Core/Container";
-import type { ICoordinates } from "../../src/Core/Interfaces/ICoordinates";
+import type { ICoordinates, ICoordinates3d } from "../../src/Core/Interfaces/ICoordinates";
 import { Particle } from "../../src/Core/Particle";
 
 export class TestParticle {
@@ -22,7 +22,7 @@ export class TestParticle {
      *
      * @param container
      */
-    public randomPositionInCanvas(container?: Container): ICoordinates {
+    public randomPositionInCanvas(container?: Container): ICoordinates3d {
         if (container === undefined) {
             container = this.container;
         }
@@ -33,7 +33,8 @@ export class TestParticle {
         x = Math.min(Math.max(x, sizeValue * 2), width - sizeValue * 2);
         let y = height * Math.random();
         y = Math.min(Math.max(y, sizeValue * 2), height - sizeValue * 2);
-        return { x, y };
+        const z = 0;
+        return { x, y, z };
     }
 
     /**

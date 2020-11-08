@@ -12,14 +12,13 @@ export class Attractor implements IParticlesInteractor {
 
     public interact(p1: IParticle): void {
         const container = this.container;
-        const options = container.options;
-        const distance = p1.linksDistance ?? container.retina.linksDistance;
+        const distance = p1.attractDistance ?? container.retina.attractDistance;
         const pos1 = p1.getPosition();
 
         const query = container.particles.quadTree.queryCircle(pos1, distance);
 
         for (const p2 of query) {
-            if (p1 === p2 || p2.particlesOptions.move.attract.enable || p2.destroyed || p2.spawning) {
+            if (p1 === p2 || !p2.particlesOptions.move.attract.enable || p2.destroyed || p2.spawning) {
                 continue;
             }
 
@@ -27,14 +26,16 @@ export class Attractor implements IParticlesInteractor {
 
             /* condensed particles */
             const { dx, dy } = NumberUtils.getDistances(pos1, pos2);
-            const rotate = options.particles.move.attract.rotate;
+            const rotate = p1.particlesOptions.move.attract.rotate;
             const ax = dx / (rotate.x * 1000);
             const ay = dy / (rotate.y * 1000);
+            const p1Factor = p2.size.value / p1.size.value;
+            const p2Factor = 1 / p1Factor;
 
-            p1.velocity.horizontal -= ax;
-            p1.velocity.vertical -= ay;
-            p2.velocity.horizontal += ax;
-            p2.velocity.vertical += ay;
+            p1.velocity.horizontal -= ax * p1Factor;
+            p1.velocity.vertical -= ay * p1Factor;
+            p2.velocity.horizontal += ax * p2Factor;
+            p2.velocity.vertical += ay * p2Factor;
         }
     }
 

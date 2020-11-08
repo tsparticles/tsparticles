@@ -139,10 +139,10 @@ export class Particles {
 
         let deleted = 0;
 
-        for (let i = index; deleted < quantity && index < this.count; i++) {
+        for (let i = index; deleted < quantity && i < this.count; i++) {
             const particle = this.array[i];
 
-            if (particle.group !== group) {
+            if (!particle || particle.group !== group) {
                 continue;
             }
 
@@ -229,6 +229,8 @@ export class Particles {
         /*if (container.canvas.context) {
             this.quadTree.draw(container.canvas.context);
         }*/
+
+        this.array.sort((a, b) => b.position.z - a.position.z || a.id - b.id);
 
         /* draw each particle */
         for (const p of this.array) {
