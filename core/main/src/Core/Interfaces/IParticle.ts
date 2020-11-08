@@ -9,6 +9,7 @@ import type { IBubbleParticleData } from "./IBubbleParticleData";
 import type { IParticles } from "../../Options/Interfaces/Particles/IParticles";
 import type { IHsl, IRgb } from "./Colors";
 import type { ILink } from "./ILink";
+import { IParticleLoops } from "./IParticleLoops";
 
 /**
  * @category Interfaces

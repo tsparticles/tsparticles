@@ -30,6 +30,7 @@ import { Infecter } from "./Particle/Infecter";
 import type { IDelta } from "./Interfaces/IDelta";
 import { Mover } from "./Particle/Mover";
 import type { ILink } from "./Interfaces/ILink";
+import type { IParticleLoops } from "./Interfaces/IParticleLoops";
 
 /**
  * The single particle object
