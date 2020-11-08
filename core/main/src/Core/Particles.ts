@@ -76,15 +76,15 @@ export class Particles {
         for (const particle of options.manualParticles) {
             const pos = particle.position
                 ? {
-                    x: (particle.position.x * container.canvas.size.width) / 100,
-                    y: (particle.position.y * container.canvas.size.height) / 100,
-                }
+                      x: (particle.position.x * container.canvas.size.width) / 100,
+                      y: (particle.position.y * container.canvas.size.height) / 100,
+                  }
                 : undefined;
 
             this.addParticle(pos, particle.options);
         }
 
-        for (const [ , plugin ] of container.plugins) {
+        for (const [, plugin] of container.plugins) {
             if (plugin.particlesInitialization !== undefined) {
                 handled = plugin.particlesInitialization();
             }
@@ -222,7 +222,7 @@ export class Particles {
         this.update(delta);
 
         /* draw polygon shape in debug mode */
-        for (const [ , plugin ] of container.plugins) {
+        for (const [, plugin] of container.plugins) {
             container.canvas.drawPlugin(plugin, delta);
         }
 
@@ -303,18 +303,18 @@ export class Particles {
     }
 
     public getTriangleFrequency(p1: IParticle, p2: IParticle, p3: IParticle): number {
-        let [ id1, id2, id3 ] = [ p1.id, p2.id, p3.id ];
+        let [id1, id2, id3] = [p1.id, p2.id, p3.id];
 
         if (id1 > id2) {
-            [ id2, id1 ] = [ id1, id2 ];
+            [id2, id1] = [id1, id2];
         }
 
         if (id2 > id3) {
-            [ id3, id2 ] = [ id2, id3 ];
+            [id3, id2] = [id2, id3];
         }
 
         if (id1 > id3) {
-            [ id3, id1 ] = [ id1, id3 ];
+            [id3, id1] = [id1, id3];
         }
 
         const key = `${id1}_${id2}_${id3}`;

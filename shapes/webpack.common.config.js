@@ -57,7 +57,7 @@ function getConfig(entry, banner, minBanner, dir) {
                 openAnalyzer: false,
                 analyzerMode: "static",
                 exclude: /\.min\.js$/,
-                reportFilename: `${reportFileName}.html`
+                reportFilename: `report.html`
             })
         ],
         optimization: {
