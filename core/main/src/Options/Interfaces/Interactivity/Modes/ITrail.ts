@@ -8,4 +8,5 @@ export interface ITrail {
     delay: number;
     quantity: number;
     particles?: RecursivePartial<IParticles>;
+    pauseOnStop: boolean;
 }

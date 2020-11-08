@@ -3,12 +3,14 @@ import type { Container } from "../../Core/Container";
 import { Utils } from "../../Utils";
 import { ClickMode, HoverMode } from "../../Enums/Modes";
 import type { IDelta } from "../../Core/Interfaces/IDelta";
+import { ICoordinates } from "../../Core/Interfaces/ICoordinates";
 
 /**
  * @category Interactions
  */
 export class TrailMaker implements IExternalInteractor {
     private delay: number;
+    private lastPosition?: ICoordinates;
 
     constructor(private readonly container: Container) {
         this.delay = 0;
@@ -30,7 +32,30 @@ export class TrailMaker implements IExternalInteractor {
         }
 
         if (this.delay >= optDelay) {
-            container.particles.push(trailOptions.quantity, container.interactivity.mouse, trailOptions.particles);
+            let canEmit = true;
+
+            if (trailOptions.pauseOnStop) {
+                if (
+                    container.interactivity.mouse.position === this.lastPosition ||
+                    (container.interactivity.mouse.position?.x === this.lastPosition?.x &&
+                        container.interactivity.mouse.position?.y === this.lastPosition?.y)
+                ) {
+                    canEmit = false;
+                }
+            }
+
+            if (container.interactivity.mouse.position) {
+                this.lastPosition = {
+                    x: container.interactivity.mouse.position.x,
+                    y: container.interactivity.mouse.position.y,
+                };
+            } else {
+                delete this.lastPosition;
+            }
+
+            if (canEmit) {
+                container.particles.push(trailOptions.quantity, container.interactivity.mouse, trailOptions.particles);
+            }
 
             this.delay -= optDelay;
         }
