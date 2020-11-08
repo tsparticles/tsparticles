@@ -25,6 +25,7 @@
         "default": "destroy"
       },
       "noise": {
+        "clamp": false,
         "enable": true,
         "delay": {
           "value": 0
@@ -53,7 +54,7 @@
       "type": "circle"
     },
     "size": {
-      "value": 15,
+      "value": 10,
       "animation": {
         "count": 1,
         "startValue": "min",

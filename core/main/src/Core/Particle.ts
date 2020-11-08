@@ -87,6 +87,7 @@ export class Particle implements IParticle {
     public readonly initialVelocity: IVelocity;
     public readonly shapeData?: IShapeValues;
     public readonly bubble: IBubbleParticleData;
+    public readonly spinCenter?: ICoordinates;
 
     constructor(
         public readonly id: number,
@@ -178,6 +179,15 @@ export class Particle implements IParticle {
             x: this.position.x,
             y: this.position.y,
         };
+
+        if (this.particlesOptions.spin.enable) {
+            const spinCenter = this.particlesOptions.spin.position ?? { x: 50, y: 50 };
+
+            this.spinCenter = {
+                x: (spinCenter.x / 100) * this.container.canvas.size.width,
+                y: (spinCenter.y / 100) * this.container.canvas.size.height,
+            };
+        }
 
         /* parallax */
         this.offset = {

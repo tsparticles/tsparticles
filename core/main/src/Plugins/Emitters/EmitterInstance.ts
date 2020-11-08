@@ -209,6 +209,18 @@ export class EmitterInstance {
             }
         }
 
+        if (this.emitterOptions.spin.enable) {
+            if (!particlesOptions.spin) {
+                particlesOptions.spin = {
+                    enable: true,
+                    position: {
+                        x: (position.x * 100) / container.canvas.size.width,
+                        y: (position.y * 100) / container.canvas.size.height,
+                    },
+                };
+            }
+        }
+
         for (let i = 0; i < this.emitterOptions.rate.quantity; i++) {
             container.particles.addParticle(randomPosition(position, offset), particlesOptions);
         }

@@ -6,9 +6,8 @@ import { Opacity } from "./Opacity/Opacity";
 import { Shape } from "./Shape/Shape";
 import { Size } from "./Size/Size";
 import { Rotate } from "./Rotate/Rotate";
-import type { ParticlesGroups, RecursivePartial } from "../../../Types";
+import type { ParticlesGroups, RecursivePartial, SingleOrMultiple } from "../../../Types";
 import { Shadow } from "./Shadow";
-import type { SingleOrMultiple } from "../../../Types";
 import { Stroke } from "./Stroke";
 import { Collisions } from "./Collisions";
 import { Twinkle } from "./Twinkle/Twinkle";
@@ -19,6 +18,7 @@ import { Bounce } from "./Bounce/Bounce";
 import { Utils } from "../../../Utils";
 import { ZIndex } from "./ZIndex/ZIndex";
 import { Repulse } from "./Repulse/Repulse";
+import { Spin } from "./Spin";
 
 /**
  * [[include:Options/Particles.md]]
@@ -71,9 +71,10 @@ export class Particles implements IParticles, IOptionLoader<IParticles> {
     public reduceDuplicates;
     public repulse;
     public rotate;
+    public shadow;
     public shape;
     public size;
-    public shadow;
+    public spin;
     public stroke: SingleOrMultiple<Stroke>;
     public twinkle;
     public zIndex;
@@ -94,6 +95,7 @@ export class Particles implements IParticles, IOptionLoader<IParticles> {
         this.shadow = new Shadow();
         this.shape = new Shape();
         this.size = new Size();
+        this.spin = new Spin();
         this.stroke = new Stroke();
         this.twinkle = new Twinkle();
         this.zIndex = new ZIndex();

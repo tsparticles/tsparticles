@@ -38,6 +38,7 @@ export class Mover {
 
     public moveXY(x: number, y: number): void {
         const particle = this.particle;
+
         particle.position.x += x;
         particle.position.y += y;
     }
@@ -79,12 +80,13 @@ export class Mover {
         const zIndexOptions = particle.particlesOptions.zIndex;
         const zVelocityFactor = 1 - zIndexOptions.velocityRate * particle.zIndexFactor;
 
-        particle.position.x += velocity.horizontal * zVelocityFactor;
-        particle.position.y += velocity.vertical * zVelocityFactor;
+        this.moveXY(velocity.horizontal * zVelocityFactor, velocity.vertical * zVelocityFactor);
 
         if (particlesOptions.move.vibrate) {
-            particle.position.x += Math.sin(particle.position.x * Math.cos(particle.position.y));
-            particle.position.y += Math.cos(particle.position.y * Math.sin(particle.position.x));
+            this.moveXY(
+                Math.sin(particle.position.x * Math.cos(particle.position.y)),
+                Math.cos(particle.position.y * Math.sin(particle.position.x))
+            );
         }
 
         const initialPosition = particle.initialPosition;
@@ -136,9 +138,12 @@ export class Mover {
         const noise = container.noise.generate(particle);
 
         particle.velocity.horizontal += Math.cos(noise.angle) * noise.length;
-        particle.velocity.horizontal = NumberUtils.clamp(particle.velocity.horizontal, -1, 1);
         particle.velocity.vertical += Math.sin(noise.angle) * noise.length;
-        particle.velocity.vertical = NumberUtils.clamp(particle.velocity.vertical, -1, 1);
+
+        if (noiseOptions.clamp) {
+            particle.velocity.horizontal = NumberUtils.clamp(particle.velocity.horizontal, -1, 1);
+            particle.velocity.vertical = NumberUtils.clamp(particle.velocity.vertical, -1, 1);
+        }
 
         particle.lastNoiseTime -= particle.noiseDelay;
     }

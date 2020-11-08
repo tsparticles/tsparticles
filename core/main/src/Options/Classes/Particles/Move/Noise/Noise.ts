@@ -7,10 +7,12 @@ import type { IOptionLoader } from "../../../../Interfaces/IOptionLoader";
  * @category Options
  */
 export class Noise implements INoise, IOptionLoader<INoise> {
+    public clamp;
     public delay;
     public enable;
 
     constructor() {
+        this.clamp = true;
         this.delay = new NoiseDelay();
         this.enable = false;
     }
@@ -18,6 +20,10 @@ export class Noise implements INoise, IOptionLoader<INoise> {
     public load(data?: RecursivePartial<INoise>): void {
         if (data === undefined) {
             return;
+        }
+
+        if (data.clamp !== undefined) {
+            this.clamp = data.clamp;
         }
 
         this.delay.load(data.delay);
