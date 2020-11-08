@@ -1,6 +1,6 @@
 {
 	"name": "inferno-particles-demo",
-	"version": "1.1.10",
+	"version": "1.1.11",
 	"private": true,
 	"description": "> TODO: description",
 	"main": "index.js",
@@ -17,8 +17,8 @@
 	"license": "MIT",
 	"dependencies": {
 		"inferno": "^7.4.5",
-		"inferno-particles": "^1.1.10",
-		"tsparticles": "^1.18.10"
+		"inferno-particles": "^1.1.11",
+		"tsparticles": "^1.18.11"
 	},
 	"devDependencies": {
 		"@babel/core": "^7.12.3",
