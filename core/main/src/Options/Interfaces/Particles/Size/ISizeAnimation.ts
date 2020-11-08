@@ -9,6 +9,7 @@ export interface ISizeAnimation {
      */
     size_min: number;
 
+    count: number;
     destroy: DestroyType | keyof typeof DestroyType;
     enable: boolean;
     minimumValue: number;

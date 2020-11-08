@@ -27,6 +27,7 @@ export interface IParticle {
     readonly image?: IParticleImage;
     readonly initialVelocity: IVelocity;
     readonly links: ILink[];
+    readonly loops: IParticleLoops;
     readonly offset: ICoordinates;
     readonly color: IParticleValueAnimation<IHsl | undefined>;
     readonly opacity: IParticleValueAnimation<number>;

@@ -188,6 +188,7 @@ export class Updater {
                 particle.spawning = true;
                 particle.lifeDelayTime = 0;
                 particle.lifeTime = 0;
+                particle.reset();
 
                 const lifeOptions = particle.particlesOptions.life;
 
@@ -203,11 +204,12 @@ export class Updater {
         const minValue = opacityAnim.minimumValue;
         const maxValue = particle.particlesOptions.opacity.value;
 
-        if (opacityAnim.enable) {
+        if (opacityAnim.enable && particle.loops.opacity < opacityAnim.count) {
             switch (particle.opacity.status) {
                 case AnimationStatus.increasing:
                     if (particle.opacity.value >= maxValue) {
                         particle.opacity.status = AnimationStatus.decreasing;
+                        particle.loops.opacity++;
                     } else {
                         particle.opacity.value += (particle.opacity.velocity ?? 0) * delta.factor;
                     }
@@ -215,6 +217,7 @@ export class Updater {
                 case AnimationStatus.decreasing:
                     if (particle.opacity.value <= minValue) {
                         particle.opacity.status = AnimationStatus.increasing;
+                        particle.loops.opacity++;
                     } else {
                         particle.opacity.value -= (particle.opacity.velocity ?? 0) * delta.factor;
                     }
@@ -238,11 +241,12 @@ export class Updater {
         const maxValue = particle.sizeValue ?? container.retina.sizeValue;
         const minValue = sizeAnim.minimumValue * container.retina.pixelRatio;
 
-        if (sizeAnim.enable) {
+        if (sizeAnim.enable && particle.loops.size < sizeAnim.count) {
             switch (particle.size.status) {
                 case AnimationStatus.increasing:
                     if (particle.size.value >= maxValue) {
                         particle.size.status = AnimationStatus.decreasing;
+                        particle.loops.size++;
                     } else {
                         particle.size.value += sizeVelocity;
                     }
@@ -250,6 +254,7 @@ export class Updater {
                 case AnimationStatus.decreasing:
                     if (particle.size.value <= minValue) {
                         particle.size.status = AnimationStatus.increasing;
+                        particle.loops.size++;
                     } else {
                         particle.size.value -= sizeVelocity;
                     }

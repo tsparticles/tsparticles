@@ -230,7 +230,7 @@ export class Particles {
             this.quadTree.draw(container.canvas.context);
         }*/
 
-        this.array.sort((a, b) => b.position.z - a.position.z);
+        this.array.sort((a, b) => b.position.z - a.position.z || a.id - b.id);
 
         /* draw each particle */
         for (const p of this.array) {

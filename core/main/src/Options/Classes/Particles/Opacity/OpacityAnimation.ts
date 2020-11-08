@@ -24,6 +24,7 @@ export class OpacityAnimation implements IOpacityAnimation, IOptionLoader<IOpaci
         this.minimumValue = value;
     }
 
+    public count;
     public destroy: DestroyType | keyof typeof DestroyType;
     public enable;
     public minimumValue;
@@ -32,6 +33,7 @@ export class OpacityAnimation implements IOpacityAnimation, IOptionLoader<IOpaci
     public sync;
 
     constructor() {
+        this.count = 0;
         this.destroy = DestroyType.none;
         this.enable = false;
         this.minimumValue = 0;
@@ -43,6 +45,10 @@ export class OpacityAnimation implements IOpacityAnimation, IOptionLoader<IOpaci
     public load(data?: RecursivePartial<IOpacityAnimation>): void {
         if (data === undefined) {
             return;
+        }
+
+        if (data.count !== undefined) {
+            this.count = data.count;
         }
 
         if (data.destroy !== undefined) {

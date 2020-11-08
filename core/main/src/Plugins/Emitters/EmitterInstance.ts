@@ -1,13 +1,14 @@
 import type { Container } from "../../Core/Container";
 import type { ICoordinates } from "../../Core/Interfaces/ICoordinates";
 import type { IEmitter } from "./Options/Interfaces/IEmitter";
-import { Utils } from "../../Utils";
+import { ColorUtils, Utils } from "../../Utils";
 import { SizeMode } from "../../Enums";
 import { EmitterSize } from "./Options/Classes/EmitterSize";
 import type { Emitters } from "./Emitters";
 import type { RecursivePartial } from "../../Types";
 import type { IParticles } from "../../Options/Interfaces/Particles/IParticles";
 import type { IEmitterSize } from "./Options/Interfaces/IEmitterSize";
+import { IHsl } from "../../Core/Interfaces/Colors";
 
 function randomCoordinate(position: number, offset: number): number {
     return position + offset * (Math.random() - 0.5);
@@ -27,6 +28,7 @@ export class EmitterInstance {
     public position: ICoordinates;
     public size: IEmitterSize;
     public emitterOptions: IEmitter;
+    public spawnColor?: IHsl;
 
     private lifeCount;
 
@@ -59,6 +61,10 @@ export class EmitterInstance {
 
         if (particlesOptions.move.direction === undefined) {
             particlesOptions.move.direction = this.emitterOptions.direction;
+        }
+
+        if (this.emitterOptions.spawnColor !== undefined) {
+            this.spawnColor = ColorUtils.colorToHsl(this.emitterOptions.spawnColor);
         }
 
         this.particlesOptions = particlesOptions;
@@ -179,8 +185,32 @@ export class EmitterInstance {
                     : this.size.height,
         };
 
+        const particlesOptions = Utils.deepExtend({}, this.particlesOptions) as RecursivePartial<IParticles>;
+
+        if (this.spawnColor !== undefined) {
+            const spawnColorAnimation = this.emitterOptions.spawnColor?.animation;
+
+            if (spawnColorAnimation?.enable) {
+                const emitFactor = (1000 * this.emitterOptions.rate.delay) / container.retina.reduceFactor;
+
+                this.spawnColor.h += ((spawnColorAnimation.speed ?? 0) * container.fpsLimit) / emitFactor;
+
+                if (this.spawnColor.h > 360) {
+                    this.spawnColor.h -= 360;
+                }
+            }
+
+            if (!particlesOptions.color) {
+                particlesOptions.color = {
+                    value: this.spawnColor,
+                };
+            } else {
+                particlesOptions.color.value = this.spawnColor;
+            }
+        }
+
         for (let i = 0; i < this.emitterOptions.rate.quantity; i++) {
-            container.particles.addParticle(randomPosition(position, offset), this.particlesOptions);
+            container.particles.addParticle(randomPosition(position, offset), particlesOptions);
         }
     }
 }

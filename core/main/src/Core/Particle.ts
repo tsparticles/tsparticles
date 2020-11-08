@@ -69,6 +69,7 @@ export class Particle implements IParticle {
     public readonly close: boolean;
     public readonly direction: MoveDirection | keyof typeof MoveDirection | MoveDirectionAlt;
     public readonly fill: boolean;
+    public readonly loops: IParticleLoops;
     public readonly stroke: IStroke;
     public readonly position: ICoordinates3d;
     public readonly offset: ICoordinates;
@@ -99,6 +100,10 @@ export class Particle implements IParticle {
         this.lastNoiseTime = 0;
         this.destroyed = false;
         this.misplaced = false;
+        this.loops = {
+            opacity: 0,
+            size: 0,
+        };
 
         const pxRatio = container.retina.pixelRatio;
         const options = container.options;
@@ -467,10 +472,21 @@ export class Particle implements IParticle {
         return this.bubble.color ?? this.strokeColor.value ?? this.color.value;
     }
 
+    /**
+     * This destroys the particle just before it's been removed from the canvas and the container
+     */
     public destroy(): void {
         this.destroyed = true;
         this.bubble.inRange = false;
         this.links = [];
+    }
+
+    /**
+     * This method is used when the particle has lost a life and needs some value resets
+     */
+    public reset(): void {
+        this.loops.opacity = 0;
+        this.loops.size = 0;
     }
 
     private calcPosition(container: Container, position: ICoordinates | undefined, zIndex: number): ICoordinates3d {
