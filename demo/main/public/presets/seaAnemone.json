@@ -24,8 +24,14 @@
       "outModes": {
         "default": "destroy"
       },
+      "noise": {
+        "enable": true,
+        "delay": {
+          "value": 0
+        }
+      },
       "random": false,
-      "speed": 3,
+      "speed": 1,
       "straight": false,
       "trail": {
         "fillColor": "#000",
@@ -53,7 +59,7 @@
         "startValue": "min",
         "enable": true,
         "minimumValue": 1,
-        "speed": 3,
+        "speed": 10,
         "sync": true
       }
     }
