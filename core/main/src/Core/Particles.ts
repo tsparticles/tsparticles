@@ -9,6 +9,7 @@ import type { IParticles } from "../Options/Interfaces/Particles/IParticles";
 import { InteractionManager } from "./Particle/InteractionManager";
 import type { IDelta } from "./Interfaces/IDelta";
 import type { IParticle } from "./Interfaces/IParticle";
+import { IDensity } from "../Options/Interfaces/Particles/Number/IDensity";
 
 /**
  * Particles manager object
@@ -24,6 +25,7 @@ export class Particles {
      */
     public quadTree;
     public linksColors;
+    public limit;
 
     /**
      * All the particles used in canvas
@@ -42,6 +44,7 @@ export class Particles {
     constructor(private readonly container: Container) {
         this.nextId = 0;
         this.array = [];
+        this.limit = 0;
         this.linksFreq = new Map<string, number>();
         this.trianglesFreq = new Map<string, number>();
         this.interactionManager = new InteractionManager(container);
@@ -234,10 +237,6 @@ export class Particles {
             this.addParticle(mouse?.position, overrideOptions);
         }
 
-        if (!options.particles.move.enable) {
-            this.container.play();
-        }
-
         this.pushing = false;
     }
 
@@ -258,13 +257,7 @@ export class Particles {
     }
 
     public removeQuantity(quantity: number): void {
-        const options = this.container.options;
-
         this.removeAt(0, quantity);
-
-        if (!options.particles.move.enable) {
-            this.container.play();
-        }
     }
 
     public getLinkFrequency(p1: IParticle, p2: IParticle): number {
@@ -307,5 +300,45 @@ export class Particles {
         }
 
         return res;
+    }
+
+    public setDensity(): void {
+        const options = this.container.options;
+
+        this.applyDensity(options.particles);
+    }
+
+    private applyDensity(options: IParticles) {
+        if (!options.number.density?.enable) {
+            return;
+        }
+
+        const numberOptions = options.number;
+        const densityFactor = this.initDensityFactor(numberOptions.density);
+        const optParticlesNumber = numberOptions.value;
+        const optParticlesLimit = numberOptions.limit > 0 ? numberOptions.limit : optParticlesNumber;
+        const particlesNumber = Math.min(optParticlesNumber, optParticlesLimit) * densityFactor;
+        const particlesCount = this.count;
+
+        this.limit = numberOptions.limit * densityFactor;
+
+        if (particlesCount < particlesNumber) {
+            this.push(Math.abs(particlesNumber - particlesCount), undefined, options);
+        } else if (particlesCount > particlesNumber) {
+            this.removeQuantity(particlesCount - particlesNumber);
+        }
+    }
+
+    private initDensityFactor(densityOptions: IDensity): number {
+        const container = this.container;
+
+        if (!container.canvas.element || !densityOptions.enable) {
+            return 1;
+        }
+
+        const canvas = container.canvas.element;
+        const pxRatio = container.retina.pixelRatio;
+
+        return (canvas.width * canvas.height) / (densityOptions.factor * pxRatio * pxRatio * densityOptions.area);
     }
 }

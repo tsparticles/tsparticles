@@ -180,7 +180,25 @@ export class Canvas {
         }
 
         const container = this.container;
-        const options = container.options;
+
+        container.canvas.initSize();
+
+        /* density particles enabled */
+        container.particles.setDensity();
+
+        for (const [, plugin] of container.plugins) {
+            if (plugin.resize !== undefined) {
+                plugin.resize();
+            }
+        }
+    }
+
+    public initSize(): void {
+        if (!this.element) {
+            return;
+        }
+
+        const container = this.container;
         const pxRatio = container.retina.pixelRatio;
 
         container.canvas.size.width = this.element.offsetWidth * pxRatio;
@@ -188,20 +206,6 @@ export class Canvas {
 
         this.element.width = container.canvas.size.width;
         this.element.height = container.canvas.size.height;
-
-        /* repaint canvas on anim disabled */
-        if (!options.particles.move.enable) {
-            container.particles.redraw();
-        }
-
-        /* density particles enabled */
-        container.densityAutoParticles();
-
-        for (const [, plugin] of container.plugins) {
-            if (plugin.resize !== undefined) {
-                plugin.resize();
-            }
-        }
     }
 
     public drawConnectLine(p1: IParticle, p2: IParticle): void {
@@ -392,9 +396,7 @@ export class Canvas {
             return;
         }
 
-        const container = this.container;
-        const options = container.options;
-        const particles = container.particles;
+        const options = this.container.options;
         const pOptions = particle.particlesOptions;
         const twinkle = pOptions.twinkle.particles;
         const twinkleFreq = twinkle.frequency;
@@ -426,6 +428,34 @@ export class Canvas {
             sColor !== undefined
                 ? ColorUtils.getStyleFromRgb(sColor, particle.stroke.opacity ?? opacity)
                 : fillColorValue;
+
+        this.drawParticleLinks(particle);
+
+        if (radius > 0) {
+            CanvasUtils.drawParticle(
+                this.container,
+                this.context,
+                particle,
+                delta,
+                fillColorValue,
+                strokeColorValue,
+                options.backgroundMask.enable,
+                options.backgroundMask.composite,
+                radius,
+                opacity,
+                particle.particlesOptions.shadow
+            );
+        }
+    }
+
+    public drawParticleLinks(particle: Particle): void {
+        if (!this.context) {
+            return;
+        }
+
+        const container = this.container;
+        const particles = container.particles;
+        const pOptions = particle.particlesOptions;
 
         if (particle.links.length > 0) {
             this.context.save();
@@ -466,22 +496,6 @@ export class Canvas {
             }
 
             this.context.restore();
-        }
-
-        if (radius > 0) {
-            CanvasUtils.drawParticle(
-                this.container,
-                this.context,
-                particle,
-                delta,
-                fillColorValue,
-                strokeColorValue,
-                options.backgroundMask.enable,
-                options.backgroundMask.composite,
-                radius,
-                opacity,
-                particle.particlesOptions.shadow
-            );
         }
     }
 

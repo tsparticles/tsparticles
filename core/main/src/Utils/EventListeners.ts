@@ -95,7 +95,9 @@ export class EventListeners {
 
             mouseLeaveEvent = Constants.mouseOutEvent;
         } else if (detectType === InteractivityDetect.parent && container.canvas.element) {
-            container.interactivity.element = container.canvas.element.parentNode;
+            const canvasEl = container.canvas.element;
+
+            container.interactivity.element = canvasEl.parentElement ?? canvasEl.parentNode;
         } else {
             container.interactivity.element = container.canvas.element;
         }
@@ -103,10 +105,13 @@ export class EventListeners {
         const interactivityEl = container.interactivity.element;
 
         /* detect mouse pos - on hover / click event */
-        if (
-            interactivityEl &&
-            (options.interactivity.events.onHover.enable || options.interactivity.events.onClick.enable)
-        ) {
+        if (!interactivityEl) {
+            return;
+        }
+
+        const html = interactivityEl as HTMLElement;
+
+        if (options.interactivity.events.onHover.enable || options.interactivity.events.onClick.enable) {
             /* el on mousemove */
             manageListener(interactivityEl, Constants.mouseMoveEvent, this.mouseMoveHandler, add);
 
@@ -119,6 +124,10 @@ export class EventListeners {
             if (!options.interactivity.events.onClick.enable) {
                 /* el on touchend */
                 manageListener(interactivityEl, Constants.touchEndEvent, this.touchEndHandler, add);
+            } else {
+                manageListener(interactivityEl, Constants.touchEndEvent, this.touchEndClickHandler, add);
+                manageListener(interactivityEl, Constants.mouseUpEvent, this.mouseUpHandler, add);
+                manageListener(interactivityEl, Constants.mouseDownEvent, this.mouseDownHandler, add);
             }
 
             /* el on onmouseleave */
@@ -128,11 +137,8 @@ export class EventListeners {
             manageListener(interactivityEl, Constants.touchCancelEvent, this.touchCancelHandler, add);
         }
 
-        /* on click event */
-        if (options.interactivity.events.onClick.enable && interactivityEl) {
-            manageListener(interactivityEl, Constants.touchEndEvent, this.touchEndClickHandler, add);
-            manageListener(interactivityEl, Constants.mouseUpEvent, this.mouseUpHandler, add);
-            manageListener(interactivityEl, Constants.mouseDownEvent, this.mouseDownHandler, add);
+        if (container.canvas.element) {
+            container.canvas.element.style.pointerEvents = html === container.canvas.element ? "initial" : "none";
         }
 
         if (options.interactivity.events.resize) {
@@ -219,26 +225,28 @@ export class EventListeners {
             } else if (options.interactivity.detectsOn === InteractivityDetect.parent) {
                 const source = mouseEvent.target as HTMLElement;
                 const target = mouseEvent.currentTarget as HTMLElement;
+                const canvasEl = container.canvas.element;
 
-                if (source && target) {
+                if (source && target && canvasEl) {
                     const sourceRect = source.getBoundingClientRect();
                     const targetRect = target.getBoundingClientRect();
+                    const canvasRect = canvasEl.getBoundingClientRect();
 
                     pos = {
-                        x: mouseEvent.offsetX + sourceRect.left - targetRect.left,
-                        y: mouseEvent.offsetY + sourceRect.top - targetRect.top,
+                        x: mouseEvent.offsetX + 2 * sourceRect.left - (targetRect.left + canvasRect.left),
+                        y: mouseEvent.offsetY + 2 * sourceRect.top - (targetRect.top + canvasRect.top),
                     };
                 } else {
                     pos = {
-                        x: mouseEvent.offsetX || mouseEvent.clientX,
-                        y: mouseEvent.offsetY || mouseEvent.clientY,
+                        x: mouseEvent.offsetX ?? mouseEvent.clientX,
+                        y: mouseEvent.offsetY ?? mouseEvent.clientY,
                     };
                 }
             } else {
                 if (mouseEvent.target === container.canvas.element) {
                     pos = {
-                        x: mouseEvent.offsetX || mouseEvent.clientX,
-                        y: mouseEvent.offsetY || mouseEvent.clientY,
+                        x: mouseEvent.offsetX ?? mouseEvent.clientX,
+                        y: mouseEvent.offsetY ?? mouseEvent.clientY,
                     };
                 }
             }
@@ -369,15 +377,7 @@ export class EventListeners {
         switch (mode) {
             case ClickMode.push: {
                 if (pushNb > 0) {
-                    if (options.particles.move.enable) {
-                        container.particles.push(pushNb, container.interactivity.mouse);
-                    } else {
-                        if (pushNb === 1) {
-                            container.particles.push(pushNb, container.interactivity.mouse);
-                        } else if (pushNb > 1) {
-                            container.particles.push(pushNb);
-                        }
-                    }
+                    container.particles.push(pushNb, container.interactivity.mouse);
                 }
 
                 break;

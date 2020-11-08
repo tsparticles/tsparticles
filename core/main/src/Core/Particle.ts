@@ -287,19 +287,41 @@ export class Particle implements IParticle {
 
         /* opacity */
         const opacityOptions = this.particlesOptions.opacity;
-        const randomOpacity = opacityOptions.random;
-        const opacityValue = opacityOptions.value;
+        const randomOpacity =
+            typeof opacityOptions.random === "boolean" ? opacityOptions.random : opacityOptions.random.enable;
 
         this.opacity = {
-            value: randomOpacity.enable
-                ? NumberUtils.randomInRange(randomOpacity.minimumValue, opacityValue)
-                : opacityValue,
+            value: NumberUtils.getValue(opacityOptions),
         };
 
         const opacityAnimation = opacityOptions.animation;
 
         if (opacityAnimation.enable) {
             this.opacity.status = AnimationStatus.increasing;
+
+            if (!randomOpacity) {
+                switch (opacityAnimation.startValue) {
+                    case StartValueType.min:
+                        this.opacity.value = opacityAnimation.minimumValue;
+
+                        break;
+
+                    case StartValueType.random:
+                        this.opacity.value = NumberUtils.randomInRange(
+                            opacityAnimation.minimumValue,
+                            this.opacity.value
+                        );
+
+                        break;
+
+                    case StartValueType.max:
+                    default:
+                        this.opacity.status = AnimationStatus.decreasing;
+
+                        break;
+                }
+            }
+
             this.opacity.velocity = (opacityAnimation.speed / 100) * container.retina.reduceFactor;
 
             if (!opacityAnimation.sync) {

@@ -36,7 +36,7 @@ export class SizeAnimation implements ISizeAnimation, IOptionLoader<ISizeAnimati
         this.enable = false;
         this.minimumValue = 0;
         this.speed = 5;
-        this.startValue = StartValueType.max;
+        this.startValue = StartValueType.random;
         this.sync = false;
     }
 
