@@ -105,11 +105,6 @@ function checkSelector(element: HTMLElement, selectors: SingleOrMultiple<string>
     }
 }
 
-function isObject(value: unknown) {
-    const type = typeof value;
-    return value != null && (type === "object" || type === "function");
-}
-
 /* ---------- global functions - vendors ------------ */
 /**
  * @category Utils
