@@ -12,11 +12,11 @@ function getEntry(name) {
     return obj;
 }
 
-function getConfig(entry, banner, minBanner) {
+function getConfig(entry, banner, minBanner, dir) {
     return {
         entry: entry,
         output: {
-            path: path.resolve(__dirname, "dist"),
+            path: path.resolve(dir, "dist"),
             filename: "[name].js",
             libraryTarget: "umd",
             globalObject: "this"

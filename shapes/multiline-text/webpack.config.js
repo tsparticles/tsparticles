@@ -11,5 +11,5 @@ v${version}`;
 const minBanner = `tsParticles Multiline Text Shape v${version} by Matteo Bruni`;
 
 module.exports = [
-    commonConfig.getConfig(commonConfig.getEntry("multiline-text", banner, minBanner))
+    commonConfig.getConfig(commonConfig.getEntry("multiline-text"), banner, minBanner, __dirname)
 ];

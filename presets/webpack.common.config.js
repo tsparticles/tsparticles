@@ -12,11 +12,11 @@ const getEntry = (name) => {
     return obj;
 }
 
-const getConfig = (entry, banner, minBanner) => {
+const getConfig = (entry, banner, minBanner, dir) => {
     return {
         entry: entry,
         output: {
-            path: path.resolve(__dirname, "dist"),
+            path: path.resolve(dir, "dist"),
             filename: "[name].js",
             libraryTarget: "umd",
             globalObject: "this"
@@ -46,7 +46,7 @@ const getConfig = (entry, banner, minBanner) => {
         },
         plugins: [
             new webpack.BannerPlugin({
-                banner,
+                banner: banner,
                 exclude: /\.min\.js$/
             }),
             new webpack.BannerPlugin({
@@ -57,7 +57,7 @@ const getConfig = (entry, banner, minBanner) => {
                 openAnalyzer: false,
                 analyzerMode: "static",
                 exclude: /\.min\.js$/,
-                reportFilename: `${reportFileName}.html`
+                reportFilename: `report.html`
             })
         ],
         optimization: {

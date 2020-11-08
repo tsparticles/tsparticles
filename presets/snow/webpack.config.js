@@ -11,5 +11,5 @@ v${version}`;
 const minBanner = `tsParticles Snow Preset v${version} by Matteo Bruni`;
 
 module.exports = [
-    commonConfig.getConfig(commonConfig.getEntry("snow", banner, minBanner))
+    commonConfig.getConfig(commonConfig.getEntry("snow"), banner, minBanner, __dirname)
 ];

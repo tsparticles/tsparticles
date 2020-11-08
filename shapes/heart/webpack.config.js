@@ -11,5 +11,5 @@ v${version}`;
 const minBanner = `tsParticles Heart Shape v${version} by Matteo Bruni`;
 
 module.exports = [
-    commonConfig.getConfig(commonConfig.getEntry("heart", banner, minBanner))
+    commonConfig.getConfig(commonConfig.getEntry("heart"), banner, minBanner, __dirname)
 ];

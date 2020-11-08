@@ -11,5 +11,5 @@ v${version}`;
 const minBanner = `tsParticles Font Awesome Preset v${version} by Matteo Bruni`;
 
 module.exports = [
-    commonConfig.getConfig(commonConfig.getEntry("bigCircles", banner, minBanner))
+    commonConfig.getConfig(commonConfig.getEntry("bigCircles"), banner, minBanner, __dirname)
 ];

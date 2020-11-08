@@ -11,6 +11,6 @@ v${version}`;
 const minBanner = `tsParticles Bubble Shape v${version} by Matteo Bruni`;
 
 module.exports = [
-    commonConfig.getConfig(commonConfig.getEntry("bubble", banner, minBanner))
+    commonConfig.getConfig(commonConfig.getEntry("bubble"), banner, minBanner, __dirname)
 ];
 

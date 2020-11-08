@@ -11,5 +11,5 @@ v${version}`;
 const minBanner = `tsParticles Big Circles Preset v${version} by Matteo Bruni`;
 
 module.exports = [
-    commonConfig.getConfig(commonConfig.getEntry("bigCircles", banner, minBanner))
+    commonConfig.getConfig(commonConfig.getEntry("bigCircles"), banner, minBanner, __dirname)
 ];

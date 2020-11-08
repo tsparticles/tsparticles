@@ -11,5 +11,5 @@ v${version}`;
 const minBanner = `tsParticles Spiral Shape v${version} by Matteo Bruni`;
 
 module.exports = [
-    commonConfig.getConfig(commonConfig.getEntry("spiral", banner, minBanner))
+    commonConfig.getConfig(commonConfig.getEntry("spiral"), banner, minBanner, __dirname)
 ];

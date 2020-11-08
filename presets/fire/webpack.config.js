@@ -11,5 +11,5 @@ v${version}`;
 const minBanner = `tsParticles Fire Preset v${version} by Matteo Bruni`;
 
 module.exports = [
-    commonConfig.getConfig(commonConfig.getEntry("fire", banner, minBanner))
+    commonConfig.getConfig(commonConfig.getEntry("fire"), banner, minBanner, __dirname)
 ];

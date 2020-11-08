@@ -11,5 +11,5 @@ v${version}`;
 const minBanner = `tsParticles 60fps Preset v${version} by Matteo Bruni`;
 
 module.exports = [
-    commonConfig.getConfig(commonConfig.getEntry("60fps", banner, minBanner))
+    commonConfig.getConfig(commonConfig.getEntry("60fps"), banner, minBanner, __dirname)
 ];

@@ -11,5 +11,5 @@ v${version}`;
 const minBanner = `tsParticles Background Mask Preset v${version} by Matteo Bruni`;
 
 module.exports = [
-    commonConfig.getConfig(commonConfig.getEntry("backgroundMask", banner, minBanner))
+    commonConfig.getConfig(commonConfig.getEntry("backgroundMask"), banner, minBanner, __dirname)
 ];

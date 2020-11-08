@@ -11,5 +11,5 @@ v${version}`;
 const minBanner = `tsParticles Bouncing Preset v${version} by Matteo Bruni`;
 
 module.exports = [
-    commonConfig.getConfig(commonConfig.getEntry("bouncing", banner, minBanner))
+    commonConfig.getConfig(commonConfig.getEntry("bouncing"), banner, minBanner, __dirname)
 ];
