@@ -3,6 +3,38 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.4.0-alpha.0](https://github.com/matteobruni/tsparticles/compare/tsparticles-demo@1.3.11...tsparticles-demo@1.4.0-alpha.0) (2020-11-09)
+
+
+### Bug Fixes
+
+* attract has its own distance and particle size affects it ([31a9c71](https://github.com/matteobruni/tsparticles/commit/31a9c715fbb2f4e5be5671df928d9ad3b7f3dd6b))
+* camelcase variables, fix requested changes ([b34e499](https://github.com/matteobruni/tsparticles/commit/b34e49962bf4b95e5bd2e858ffdff4ec9ba4efb7))
+* fixed attract mode ([8129228](https://github.com/matteobruni/tsparticles/commit/8129228f1177f93628531de3c764ab2197395495))
+* improved mouse events handling ([a7b4a4f](https://github.com/matteobruni/tsparticles/commit/a7b4a4f9e6502d1137b9dd639d3ec0ffa7871c5e))
+* makes particle repulsion work like mouse repulsion ([1444b55](https://github.com/matteobruni/tsparticles/commit/1444b55183549a12efeeb71318b6b2bdc7a541da))
+* orbit width radius rotation ([c72916f](https://github.com/matteobruni/tsparticles/commit/c72916fa0fa06cad571910301fd9b4bf048568e5))
+
+
+### Features
+
+* add orbit to demo ([3fe2340](https://github.com/matteobruni/tsparticles/commit/3fe23402dab7081836b12495cad50d74b9945733))
+* add particle social distancing capabilities ([ba8efca](https://github.com/matteobruni/tsparticles/commit/ba8efcaea582a4556b1e960b47762b2e6da84abd))
+* added groups support to push/remove click modes ([fc573fb](https://github.com/matteobruni/tsparticles/commit/fc573fbb57c9b242fbfdd52d0fc8dc4c032ce196))
+* added particles groups to override options, missing docs ([0d59ced](https://github.com/matteobruni/tsparticles/commit/0d59cedd526d65c331a4df42b98eb4a483e4d250))
+* adds options to z-index property ([d7162e8](https://github.com/matteobruni/tsparticles/commit/d7162e84532ec2f48fbb3dd497acbb1dc5b98a5b))
+* animation, random for orbit angle and redrawn orbit ([95108b3](https://github.com/matteobruni/tsparticles/commit/95108b3368b15f7dc794d73611a429ee6db32163))
+* caps z-index values at -9999 and 9999. Better scaling of other values depending on z-index ([f427f00](https://github.com/matteobruni/tsparticles/commit/f427f002aa67f61fc33c31ac3a399ee4d749029f))
+* emitters now can have a spawn color that is also animatable ([f4f74db](https://github.com/matteobruni/tsparticles/commit/f4f74db68f08a30fc34c2072588f3c183a035d57))
+* first working implementation of zIndex for particles ([0bb4d57](https://github.com/matteobruni/tsparticles/commit/0bb4d57afc202efd474d6cb0a28dbf57f3c9027d))
+* improved zIndex ([16ab5e1](https://github.com/matteobruni/tsparticles/commit/16ab5e1a37cd10a0c0d2e8a82f10d26985ad74b8))
+* prepared spin move options ([2c8d040](https://github.com/matteobruni/tsparticles/commit/2c8d040a15b2c3f5db1881bad6eb25cca9cf9c81))
+* repulse without collision enabled ([c6c0bb1](https://github.com/matteobruni/tsparticles/commit/c6c0bb14b28b460c83cbf8e0086c68931465b8dc))
+
+
+
+
+
 ## [1.3.1](https://github.com/matteobruni/tsparticles/compare/tsparticles-demo@1.3.0...tsparticles-demo@1.3.1) (2020-10-06)
 
 **Note:** Version bump only for package tsparticles-demo

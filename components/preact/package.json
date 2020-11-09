@@ -1,6 +1,6 @@
 {
   "name": "preact-particles",
-  "version": "1.18.11",
+  "version": "1.19.0-alpha.0",
   "description": "tsParticles official Preact component",
   "main": "index.js",
   "unpkg": "umd/particles.js",
@@ -68,8 +68,8 @@
   },
   "dependencies": {
     "lodash": "^4.17.20",
-    "tsparticles": "^1.18.11",
-    "preact": ">=10"
+    "preact": ">=10",
+    "tsparticles": "^1.19.0-alpha.0"
   },
   "devDependencies": {
     "@babel/core": "^7.12.3",
