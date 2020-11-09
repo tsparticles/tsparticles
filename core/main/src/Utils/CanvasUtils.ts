@@ -468,7 +468,9 @@ export class CanvasUtils {
         radius: number,
         opacity: number,
         width: number,
-        rotation: number
+        rotation: number,
+        start: number,
+        end: number
     ): void {
         const pos = particle.getPosition();
         context.beginPath();
@@ -485,7 +487,7 @@ export class CanvasUtils {
 
         const rotationRadian = rotation * (Math.PI / 180);
 
-        context.ellipse(pos.x, pos.y, radius / 2, radius * 2, rotationRadian, 0, 2 * Math.PI);
+        context.ellipse(pos.x, pos.y, radius / 2, radius * 2, rotationRadian, start, end);
 
         context.stroke();
     }

@@ -473,7 +473,9 @@ export class Canvas {
             this.context.restore();
         }
 
-        if (radius > 0) {
+        const orbitOptions = particle.particlesOptions.orbit;
+
+        if (radius > 0 && orbitOptions.enable === false) {
             CanvasUtils.drawParticle(
                 this.container,
                 this.context,
@@ -487,17 +489,43 @@ export class Canvas {
                 opacity,
                 particle.particlesOptions.shadow
             );
-        }
+        } else if (radius > 0 && orbitOptions.enable === true) {
+            this.drawOrbit(particle, orbitOptions, "back");
 
-        const orbitOptions = particle.particlesOptions.orbit;
-        if (orbitOptions.enable === true) {
-            this.drawOrbit(particle, orbitOptions);
+            CanvasUtils.drawParticle(
+                this.container,
+                this.context,
+                particle,
+                delta,
+                fillColorValue,
+                strokeColorValue,
+                options.backgroundMask.enable,
+                options.backgroundMask.composite,
+                radius,
+                opacity,
+                particle.particlesOptions.shadow
+            );
+
+            this.drawOrbit(particle, orbitOptions, "front");
         }
     }
-
-    public drawOrbit(particle: IParticle, orbitOptions: IOrbit): void {
+    public drawOrbit(particle: IParticle, orbitOptions: IOrbit, type: string): void {
         if (!this.context) {
             return;
+        }
+
+        let start: number;
+        let end: number;
+
+        if (type == "back") {
+            start = Math.PI / 2;
+            end = (Math.PI * 3) / 2;
+        } else if (type == "front") {
+            start = (Math.PI * 3) / 2;
+            end = Math.PI / 2;
+        } else {
+            start = 0;
+            end = 2 * Math.PI;
         }
 
         CanvasUtils.drawEllipse(
@@ -507,7 +535,9 @@ export class Canvas {
             particle.orbitRadiusValue ?? particle.getRadius(),
             orbitOptions.opacity,
             orbitOptions.width,
-            orbitOptions.rotation
+            particle.orbitRotationValue || orbitOptions.rotation.value,
+            start,
+            end
         );
     }
 

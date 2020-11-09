@@ -40,6 +40,8 @@ export class Updater {
 
         /* out of canvas modes */
         this.updateOutModes(delta);
+
+        this.updateOrbitRotation(delta);
     }
 
     private updateLife(delta: IDelta): void {
@@ -212,6 +214,15 @@ export class Updater {
             if (particle.color.value.h > 360) {
                 particle.color.value.h -= 360;
             }
+        }
+    }
+
+    private updateOrbitRotation(delta: IDelta): void {
+        const particle = this.particle;
+        const particleAnimations = particle.particlesOptions.orbit.animation;
+
+        if (particleAnimations.enable) {
+            particle.orbitRotationValue = particle.orbitRotationValue + particleAnimations.speed;
         }
     }
 

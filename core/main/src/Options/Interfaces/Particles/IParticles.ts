@@ -13,7 +13,7 @@ import type { ITwinkle } from "./Twinkle/ITwinkle";
 import type { IAnimatableColor } from "./IAnimatableColor";
 import type { ILife } from "./Life/ILife";
 import type { IBounce } from "./Bounce/IBounce";
-import type { IOrbit } from "./IOrbit";
+import type { IOrbit } from "./Orbit/IOrbit";
 
 /**
  * [[include:Options/Particles.md]]
