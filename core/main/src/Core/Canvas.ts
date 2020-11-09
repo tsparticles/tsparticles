@@ -482,10 +482,10 @@ export class Canvas {
         let start: number;
         let end: number;
 
-        if (type == "back") {
+        if (type === "back") {
             start = Math.PI / 2;
             end = (Math.PI * 3) / 2;
-        } else if (type == "front") {
+        } else if (type === "front") {
             start = (Math.PI * 3) / 2;
             end = Math.PI / 2;
         } else {
