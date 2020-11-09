@@ -16,6 +16,7 @@ import type { IOptionLoader } from "../../Interfaces/IOptionLoader";
 import { Life } from "./Life/Life";
 import { Bounce } from "./Bounce/Bounce";
 import { Utils } from "../../../Utils";
+import { Orbit } from "./Orbit/Orbit";
 import { ZIndex } from "./ZIndex/ZIndex";
 import { Repulse } from "./Repulse/Repulse";
 import { Spin } from "./Spin";
@@ -68,6 +69,7 @@ export class Particles implements IParticles, IOptionLoader<IParticles> {
     public move;
     public number;
     public opacity;
+    public orbit;
     public reduceDuplicates;
     public repulse;
     public rotate;
@@ -88,6 +90,7 @@ export class Particles implements IParticles, IOptionLoader<IParticles> {
         this.links = new Links();
         this.move = new Move();
         this.number = new ParticlesNumber();
+        this.orbit = new Orbit();
         this.opacity = new Opacity();
         this.reduceDuplicates = false;
         this.repulse = new Repulse();
@@ -149,6 +152,7 @@ export class Particles implements IParticles, IOptionLoader<IParticles> {
         this.size.load(data.size);
         this.shadow.load(data.shadow);
         this.twinkle.load(data.twinkle);
+        this.orbit.load(data.orbit);
 
         const collisions = data.move?.collisions ?? data.move?.bounce;
 

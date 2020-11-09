@@ -66,6 +66,8 @@ export class Particle implements IParticle {
     public moveSpeed?: number;
     public sizeValue?: number;
     public sizeAnimationSpeed?: number;
+    public orbitRadiusValue?: number;
+    public orbitRotationValue: number;
 
     public readonly close: boolean;
     public readonly direction: MoveDirection | keyof typeof MoveDirection | MoveDirectionAlt;
@@ -296,6 +298,16 @@ export class Particle implements IParticle {
             if (!sizeAnimation.sync) {
                 this.size.velocity *= Math.random();
             }
+        }
+
+        /* orbit */
+        const orbitRotationOptions = particlesOptions.orbit.rotation.random;
+        if (orbitRotationOptions.enable) {
+            this.orbitRotationValue = orbitRotationOptions.minimumValue
+                ? Math.floor(Math.random() * 360) + orbitRotationOptions.minimumValue
+                : Math.floor(Math.random() * 360);
+        } else {
+            this.orbitRotationValue = this.particlesOptions.orbit.rotation.value;
         }
 
         /* color */

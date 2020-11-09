@@ -13,6 +13,7 @@ import type { ITwinkle } from "./Twinkle/ITwinkle";
 import type { IAnimatableColor } from "./IAnimatableColor";
 import type { ILife } from "./Life/ILife";
 import type { IBounce } from "./Bounce/IBounce";
+import type { IOrbit } from "./Orbit/IOrbit";
 import type { IZIndex } from "./ZIndex/IZIndex";
 import type { IRepulse } from "./Repulse/IRepulse";
 import type { ISpin } from "./ISpin";
@@ -41,6 +42,7 @@ export interface IParticles {
     move: IMove;
     number: IParticlesNumber;
     opacity: IOpacity;
+    orbit: IOrbit;
     reduceDuplicates: boolean;
     rotate: IRotate;
     shadow: IShadow;

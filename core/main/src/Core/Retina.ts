@@ -116,6 +116,10 @@ export class Retina {
         particle.sizeValue = particlesOptions.size.value * ratio;
         particle.sizeAnimationSpeed = particlesOptions.size.animation.speed * ratio;
         particle.maxDistance = particlesOptions.move.distance * ratio;
+
+        if (typeof particle.particlesOptions.orbit.radius !== "undefined") {
+            particle.orbitRadiusValue = particle.particlesOptions.orbit.radius * ratio;
+        }
     }
 
     private handleMotionChange(mediaQuery: MediaQueryList): void {

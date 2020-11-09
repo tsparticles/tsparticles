@@ -8,7 +8,8 @@ import type { ILink } from "./Interfaces/ILink";
 import { CanvasUtils, ColorUtils, Constants, NumberUtils, Utils } from "../Utils";
 import type { Particle } from "./Particle";
 import type { IDelta } from "./Interfaces/IDelta";
-
+import { IOrbit } from "./Interfaces/IOrbit";
+import { OrbitType } from "../Enums/OrbitType";
 /**
  * Canvas manager
  * @category Core
@@ -435,7 +436,12 @@ export class Canvas {
         this.drawParticleLinks(particle);
 
         if (radius > 0) {
+            const orbitOptions = particle.particlesOptions.orbit;
             const zSizeFactor = 1 - zIndexOptions.sizeRate * particle.zIndexFactor;
+
+            if (orbitOptions.enable) {
+                this.drawOrbit(particle, orbitOptions, OrbitType.back);
+            }
 
             CanvasUtils.drawParticle(
                 this.container,
@@ -450,7 +456,43 @@ export class Canvas {
                 zOpacity,
                 particle.particlesOptions.shadow
             );
+
+            if (orbitOptions.enable) {
+                this.drawOrbit(particle, orbitOptions, OrbitType.front);
+            }
         }
+    }
+
+    public drawOrbit(particle: IParticle, orbitOptions: IOrbit, type: string): void {
+        if (!this.context) {
+            return;
+        }
+
+        let start: number;
+        let end: number;
+
+        if (type === OrbitType.back) {
+            start = Math.PI / 2;
+            end = (Math.PI * 3) / 2;
+        } else if (type === OrbitType.front) {
+            start = (Math.PI * 3) / 2;
+            end = Math.PI / 2;
+        } else {
+            start = 0;
+            end = 2 * Math.PI;
+        }
+
+        CanvasUtils.drawEllipse(
+            this.context,
+            particle,
+            orbitOptions.color || particle.getFillColor(),
+            particle.orbitRadiusValue ?? particle.getRadius(),
+            orbitOptions.opacity,
+            orbitOptions.width,
+            particle.orbitRotationValue || orbitOptions.rotation.value,
+            start,
+            end
+        );
     }
 
     public drawParticleLinks(particle: Particle): void {

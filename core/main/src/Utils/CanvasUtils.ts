@@ -1,6 +1,6 @@
 import type { IDimension } from "../Core/Interfaces/IDimension";
 import type { ICoordinates } from "../Core/Interfaces/ICoordinates";
-import type { IRgb } from "../Core/Interfaces/Colors";
+import type { IHsl, IRgb } from "../Core/Interfaces/Colors";
 import type { ILinksShadow } from "../Options/Interfaces/Particles/Links/ILinksShadow";
 import { ColorUtils } from "./ColorUtils";
 import type { IParticle } from "../Core/Interfaces/IParticle";
@@ -459,5 +459,36 @@ export class CanvasUtils {
             plugin.draw(context, delta);
             context.restore();
         }
+    }
+
+    public static drawEllipse(
+        context: CanvasRenderingContext2D,
+        particle: IParticle,
+        fillColorValue: IHsl | undefined,
+        radius: number,
+        opacity: number,
+        width: number,
+        rotation: number,
+        start: number,
+        end: number
+    ): void {
+        const pos = particle.getPosition();
+        context.beginPath();
+
+        if (fillColorValue) {
+            context.strokeStyle = ColorUtils.getStyleFromHsl(fillColorValue, opacity);
+        }
+
+        if (width === 0) {
+            return;
+        }
+
+        context.lineWidth = width;
+
+        const rotationRadian = rotation * (Math.PI / 180);
+
+        context.ellipse(pos.x, pos.y, radius / 2, radius * 2, rotationRadian, start, end);
+
+        context.stroke();
     }
 }
