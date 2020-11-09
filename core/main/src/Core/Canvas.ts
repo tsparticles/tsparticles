@@ -9,7 +9,7 @@ import { CanvasUtils, ColorUtils, Constants, NumberUtils, Utils } from "../Utils
 import type { Particle } from "./Particle";
 import type { IDelta } from "./Interfaces/IDelta";
 import { IOrbit } from "./Interfaces/IOrbit";
-
+import { OrbitType } from "../Enums/OrbitType";
 /**
  * Canvas manager
  * @category Core
@@ -87,11 +87,11 @@ export class Canvas {
         this.coverColor =
             coverRgb !== undefined
                 ? {
-                    r: coverRgb.r,
-                    g: coverRgb.g,
-                    b: coverRgb.b,
-                    a: cover.opacity,
-                }
+                      r: coverRgb.r,
+                      g: coverRgb.g,
+                      b: coverRgb.b,
+                      a: cover.opacity,
+                  }
                 : undefined;
         this.trailFillColor = ColorUtils.colorToRgb(trail.fillColor);
 
@@ -435,26 +435,13 @@ export class Canvas {
 
         this.drawParticleLinks(particle);
 
-        const orbitOptions = particle.particlesOptions.orbit;
-        const zSizeFactor = 1 - zIndexOptions.sizeRate * particle.zIndexFactor;
+        if (radius > 0) {
+            const orbitOptions = particle.particlesOptions.orbit;
+            const zSizeFactor = 1 - zIndexOptions.sizeRate * particle.zIndexFactor;
 
-        if (radius > 0 && orbitOptions.enable === false) {
-
-            CanvasUtils.drawParticle(
-                this.container,
-                this.context,
-                particle,
-                delta,
-                fillColorValue,
-                strokeColorValue,
-                options.backgroundMask.enable,
-                options.backgroundMask.composite,
-                radius * zSizeFactor,
-                zOpacity,
-                particle.particlesOptions.shadow
-            );
-        } else if (radius > 0 && orbitOptions.enable === true) {
-            this.drawOrbit(particle, orbitOptions, "back");
+            if (orbitOptions.enable) {
+                this.drawOrbit(particle, orbitOptions, OrbitType.back);
+            }
 
             CanvasUtils.drawParticle(
                 this.container,
@@ -470,7 +457,9 @@ export class Canvas {
                 particle.particlesOptions.shadow
             );
 
-            this.drawOrbit(particle, orbitOptions, "front");
+            if (orbitOptions.enable) {
+                this.drawOrbit(particle, orbitOptions, OrbitType.front);
+            }
         }
     }
 
@@ -482,10 +471,10 @@ export class Canvas {
         let start: number;
         let end: number;
 
-        if (type === "back") {
+        if (type === OrbitType.back) {
             start = Math.PI / 2;
             end = (Math.PI * 3) / 2;
-        } else if (type === "front") {
+        } else if (type === OrbitType.front) {
             start = (Math.PI * 3) / 2;
             end = Math.PI / 2;
         } else {
