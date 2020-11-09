@@ -20,8 +20,8 @@
     "url": "https://github.com/matteobruni/tsparticles/issues"
   },
   "dependencies": {
-    "particles.vue": "workspace:^2.1.11",
-    "tsparticles": "workspace:^1.18.11",
+    "particles.vue": "^2.1.11",
+    "tsparticles": "^1.18.11",
     "vue": "<3",
     "vue-class-component": "<8",
     "vue-property-decorator": "^9.0.2"

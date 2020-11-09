@@ -69,7 +69,7 @@
   },
   "dependencies": {
     "tslib": "^2.0.3",
-    "tsparticles": "workspace:^1.18.11",
+    "tsparticles": "^1.18.11",
     "svelte": ">=3"
   },
   "bugs": {

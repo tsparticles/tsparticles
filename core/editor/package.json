@@ -38,18 +38,18 @@
     "clear:dist": "rimraf -f ./dist",
     "build:ts:esm": "tsc -b tsconfig.esm.json",
     "build:ts:cjs": "tsc",
-    "build:ts": "pnpm run build:ts:browser && pnpm run build:ts:esm && pnpm run build:ts:cjs",
+    "build:ts": "yarn build:ts:browser && yarn build:ts:esm && yarn build:ts:cjs",
     "build:ts:check": "tsc --noEmit",
     "build:ts:browser": "tsc -b tsconfig.browser.json",
-    "build": "pnpm run clear:dist && pnpm run prettify:src && pnpm run build:ts:check && pnpm run lint && pnpm run build:ts && webpack --mode production && pnpm run prettify:readme",
-    "prepack": "pnpm run build"
+    "build": "yarn clear:dist && yarn prettify:src && yarn build:ts:check && yarn lint && yarn build:ts && webpack --mode production && yarn prettify:readme",
+    "prepack": "yarn build"
   },
   "bugs": {
     "url": "https://github.com/matteobruni/tsparticles/issues"
   },
   "dependencies": {
     "object-gui": "^1.0.11",
-    "tsparticles": "workspace:^1.18.11"
+    "tsparticles": "^1.18.11"
   },
   "devDependencies": {
     "@babel/core": "^7.12.3",
@@ -66,7 +66,7 @@
     "terser-webpack-plugin": "^5.0.3",
     "typescript": "^4.0.5",
     "webpack": "^5.4.0",
-    "webpack-bundle-analyzer": "^3.9.0",
+    "webpack-bundle-analyzer": "^4.1.0",
     "webpack-cli": "^4.2.0"
   }
 }

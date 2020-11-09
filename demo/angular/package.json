@@ -23,10 +23,10 @@
     "@angular/platform-browser": "~10.2.2",
     "@angular/platform-browser-dynamic": "~10.2.2",
     "@angular/router": "~10.2.2",
-    "ng-particles": "workspace:^2.1.11",
+    "ng-particles": "^2.1.11",
     "rxjs": "~6.6.3",
     "tslib": "^2.0.3",
-    "tsparticles": "workspace:^1.18.11",
+    "tsparticles": "^1.18.11",
     "zone.js": "^0.11.3"
   },
   "bugs": {

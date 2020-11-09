@@ -1,20 +1,22 @@
 # Contributing
 
-## Install Rush and Pnpm
+## Install Lerna and Yarn
 
-Before anything you need two tools: `pnpm` and `@microsoft/rush`
+Before anything you need two tools: `yarn` and `lerna`
 You can install them with the `npm install -g` like this:
 
 ``` shell
-npm install -g pnpm
-npm install -g @microsoft/rush
+$ npm install -g yarn
+$ npm install -g lerna
 ```
 
 ## Start writing code
 
 Before you can start making changes it's mandatory to run this command:
 
-` `  ` pnpm install && rush update `  ` `
+```shell
+$ yarn && lerna bootstrap && lerna run build
+```
 for installing all the dependencies.
 
 After that you can start coding, the source folders are `core` , `components` , `presets` and `shapes` .
@@ -25,7 +27,7 @@ The `components` folder contains all javascript frameworks wrappers built around
 
 The `presets` and `shapes` folder contains all external presets and shapes.
 
-Once done editing you can check if everything builds running `rush build` .
+Once done editing you can check if everything builds running `lerna run build` .
 
 The difference is the first does not create the docs folder and it can be unnecessary while coding.
 
@@ -41,7 +43,7 @@ A demo folder will be probably created in near future with all the demo apps nee
 
 # Pull Requests
 
-**Before opening any pull request check that `rush build` completes**
+**Before opening any pull request check that `lerna run build` completes**
 
 *The build task will be performed automatically by the CI\CD but a first local check should be done*
 
