@@ -24,6 +24,7 @@ export class SizeAnimation implements ISizeAnimation, IOptionLoader<ISizeAnimati
         this.minimumValue = value;
     }
 
+    public count;
     public destroy: DestroyType | keyof typeof DestroyType;
     public enable;
     public minimumValue;
@@ -32,17 +33,22 @@ export class SizeAnimation implements ISizeAnimation, IOptionLoader<ISizeAnimati
     public sync;
 
     constructor() {
+        this.count = 0;
         this.destroy = DestroyType.none;
         this.enable = false;
         this.minimumValue = 0;
         this.speed = 5;
-        this.startValue = StartValueType.max;
+        this.startValue = StartValueType.random;
         this.sync = false;
     }
 
     public load(data?: RecursivePartial<ISizeAnimation>): void {
         if (data === undefined) {
             return;
+        }
+
+        if (data.count !== undefined) {
+            this.count = data.count;
         }
 
         if (data.destroy !== undefined) {

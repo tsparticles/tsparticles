@@ -1,5 +1,6 @@
 {
   "compilerOptions": {
+    "target": "es2015",
     "lib": [
       "ES2015",
       "DOM"
@@ -7,7 +8,7 @@
     "rootDir": "./src",
     "declaration": true,
     "removeComments": true,
-    "importHelpers": true,
+    "importHelpers": false,
     "strict": true,
     "noImplicitAny": true,
     "strictNullChecks": true,
@@ -21,8 +22,8 @@
   },
   "exclude": [
     "./tests/",
-    "./node_modules/",
-    "../../node_modules/",
+    "./node_modules/**/*",
+    "../../node_modules/**/*",
     "./dist/",
     "./typedoc/",
     "./docs/"

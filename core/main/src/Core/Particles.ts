@@ -9,6 +9,7 @@ import type { IParticles } from "../Options/Interfaces/Particles/IParticles";
 import { InteractionManager } from "./Particle/InteractionManager";
 import type { IDelta } from "./Interfaces/IDelta";
 import type { IParticle } from "./Interfaces/IParticle";
+import type { IDensity } from "../Options/Interfaces/Particles/Number/IDensity";
 
 /**
  * Particles manager object
@@ -24,6 +25,7 @@ export class Particles {
      */
     public quadTree;
     public linksColors;
+    public limit;
 
     /**
      * All the particles used in canvas
@@ -42,6 +44,7 @@ export class Particles {
     constructor(private readonly container: Container) {
         this.nextId = 0;
         this.array = [];
+        this.limit = 0;
         this.linksFreq = new Map<string, number>();
         this.trianglesFreq = new Map<string, number>();
         this.interactionManager = new InteractionManager(container);
@@ -71,10 +74,12 @@ export class Particles {
         let handled = false;
 
         for (const particle of options.manualParticles) {
-            const pos = {
-                x: (particle.position.x * container.canvas.size.width) / 100,
-                y: (particle.position.y * container.canvas.size.height) / 100,
-            };
+            const pos = particle.position
+                ? {
+                      x: (particle.position.x * container.canvas.size.width) / 100,
+                      y: (particle.position.y * container.canvas.size.height) / 100,
+                  }
+                : undefined;
 
             this.addParticle(pos, particle.options);
         }
@@ -90,6 +95,18 @@ export class Particles {
         }
 
         if (!handled) {
+            for (const group in options.particles.groups) {
+                const groupOptions = options.particles.groups[group];
+
+                for (
+                    let i = this.count, j = 0;
+                    j < groupOptions.number?.value && i < options.particles.number.value;
+                    i++, j++
+                ) {
+                    this.addParticle(undefined, groupOptions, group);
+                }
+            }
+
             for (let i = this.count; i < options.particles.number.value; i++) {
                 this.addParticle();
             }
@@ -115,16 +132,30 @@ export class Particles {
         this.draw({ value: 0, factor: 0 });
     }
 
-    public removeAt(index: number, quantity?: number): void {
-        if (index >= 0 && index <= this.count) {
-            for (const particle of this.array.splice(index, quantity ?? 1)) {
-                particle.destroy();
+    public removeAt(index: number, quantity = 1, group?: string): void {
+        if (!(index >= 0 && index <= this.count)) {
+            return;
+        }
+
+        let deleted = 0;
+
+        for (let i = index; deleted < quantity && i < this.count; i++) {
+            const particle = this.array[i];
+
+            if (!particle || particle.group !== group) {
+                continue;
             }
+
+            particle.destroy();
+
+            this.array.splice(i--, 1);
+
+            deleted++;
         }
     }
 
-    public remove(particle: Particle): void {
-        this.removeAt(this.array.indexOf(particle));
+    public remove(particle: Particle, group?: string): void {
+        this.removeAt(this.array.indexOf(particle), undefined, group);
     }
 
     public update(delta: IDelta): void {
@@ -199,6 +230,8 @@ export class Particles {
             this.quadTree.draw(container.canvas.context);
         }*/
 
+        this.array.sort((a, b) => b.position.z - a.position.z || a.id - b.id);
+
         /* draw each particle */
         for (const p of this.array) {
             p.draw(delta);
@@ -213,35 +246,31 @@ export class Particles {
     }
 
     /* ---------- tsParticles functions - modes events ------------ */
-    public push(nb: number, mouse?: IMouseData, overrideOptions?: RecursivePartial<IParticles>): void {
-        const container = this.container;
-        const options = container.options;
-        const limit = options.particles.number.limit * container.density;
-
+    public push(nb: number, mouse?: IMouseData, overrideOptions?: RecursivePartial<IParticles>, group?: string): void {
         this.pushing = true;
 
-        if (limit > 0) {
-            const countToRemove = this.count + nb - limit;
+        if (this.limit > 0) {
+            const countToRemove = this.count + nb - this.limit;
 
             if (countToRemove > 0) {
-                this.removeQuantity(countToRemove);
+                this.removeQuantity(countToRemove, group);
             }
         }
 
         for (let i = 0; i < nb; i++) {
-            this.addParticle(mouse?.position, overrideOptions);
-        }
-
-        if (!options.particles.move.enable) {
-            this.container.play();
+            this.addParticle(mouse?.position, overrideOptions, group);
         }
 
         this.pushing = false;
     }
 
-    public addParticle(position?: ICoordinates, overrideOptions?: RecursivePartial<IParticles>): Particle | undefined {
+    public addParticle(
+        position?: ICoordinates,
+        overrideOptions?: RecursivePartial<IParticles>,
+        group?: string
+    ): Particle | undefined {
         try {
-            const particle = new Particle(this.nextId, this.container, position, overrideOptions);
+            const particle = new Particle(this.nextId, this.container, position, overrideOptions, group);
 
             this.array.push(particle);
 
@@ -255,14 +284,8 @@ export class Particles {
         }
     }
 
-    public removeQuantity(quantity: number): void {
-        const options = this.container.options;
-
-        this.removeAt(0, quantity);
-
-        if (!options.particles.move.enable) {
-            this.container.play();
-        }
+    public removeQuantity(quantity: number, group?: string): void {
+        this.removeAt(0, quantity, group);
     }
 
     public getLinkFrequency(p1: IParticle, p2: IParticle): number {
@@ -305,5 +328,52 @@ export class Particles {
         }
 
         return res;
+    }
+
+    /**
+     * Aligns particles number to the specified density in the current canvas size
+     */
+    public setDensity(): void {
+        const options = this.container.options;
+
+        this.applyDensity(options.particles);
+
+        for (const group in options.particles.groups) {
+            this.applyDensity(options.particles.groups[group], group);
+        }
+    }
+
+    private applyDensity(options: IParticles, group?: string) {
+        if (!options.number.density?.enable) {
+            return;
+        }
+
+        const numberOptions = options.number;
+        const densityFactor = this.initDensityFactor(numberOptions.density);
+        const optParticlesNumber = numberOptions.value;
+        const optParticlesLimit = numberOptions.limit > 0 ? numberOptions.limit : optParticlesNumber;
+        const particlesNumber = Math.min(optParticlesNumber, optParticlesLimit) * densityFactor;
+        const particlesCount = this.count;
+
+        this.limit = numberOptions.limit * densityFactor;
+
+        if (particlesCount < particlesNumber) {
+            this.push(Math.abs(particlesNumber - particlesCount), undefined, options, group);
+        } else if (particlesCount > particlesNumber) {
+            this.removeQuantity(particlesCount - particlesNumber, group);
+        }
+    }
+
+    private initDensityFactor(densityOptions: IDensity): number {
+        const container = this.container;
+
+        if (!container.canvas.element || !densityOptions.enable) {
+            return 1;
+        }
+
+        const canvas = container.canvas.element;
+        const pxRatio = container.retina.pixelRatio;
+
+        return (canvas.width * canvas.height) / (densityOptions.factor * pxRatio * pxRatio * densityOptions.area);
     }
 }

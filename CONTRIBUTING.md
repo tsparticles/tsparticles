@@ -1,18 +1,33 @@
-*This file is still Work in Progress*
+# Contributing
 
-# Start development
+## Install Lerna and Yarn
 
-Before you can start making changes it's mandatory to run a `lerna bootstrap` for installing all the dependencies.
+Before anything you need two tools: `yarn` and `lerna`
+You can install them with the `npm install -g` like this:
 
-After that you can start coding, the source folders are `core`, `wrappers` and `plugins`.
+``` shell
+$ npm install -g yarn
+$ npm install -g lerna
+```
+
+## Start writing code
+
+Before you can start making changes it's mandatory to run this command:
+
+```shell
+$ yarn && lerna bootstrap && lerna run build
+```
+for installing all the dependencies.
+
+After that you can start coding, the source folders are `core` , `components` , `presets` and `shapes` .
 
 The `core` folder contains tsParticles library, the main library.
 
-The `wrappers` folder contains all javascript frameworks wrappers built around tsParticles: Angular, jQuery, Preact, React, Vue.
+The `components` folder contains all javascript frameworks wrappers built around tsParticles: Angular, jQuery, Preact, React, Vue.
 
-The `plugins` folder contains all external presets and shapes.
+The `presets` and `shapes` folder contains all external presets and shapes.
 
-Once done editing you can check if everything builds running `lerna run build`.
+Once done editing you can check if everything builds running `lerna run build` .
 
 The difference is the first does not create the docs folder and it can be unnecessary while coding.
 
@@ -20,7 +35,7 @@ The difference is the first does not create the docs folder and it can be unnece
 
 There's a small demo app inside the repository in the `core` folder, just run `yarn start` and go to http://localhost:3000
 
-The `wrappers` and `plugins` doesn't have a demo app inside the repository for now.
+The `presets` and `shapes` doesn't have a demo app inside the repository for now.
 
 A demo folder will be probably created in near future with all the demo apps needed.
 
@@ -39,17 +54,22 @@ Use *master* branch **ONLY** for critical bug fixes.
 Once done create the **Pull Request** to *dev* branch, if it's a critical bug fix use *staging*.
 
 ## Branches
+
 ### *dev*
+
 This branch is the main development branch and it's the lowest priority branch under CI.
 
 This branch should always build, sometimes can be necessary break this rule, this is why it's should and not must.
  
+
 ### *staging*
+
 This branch is for testing the product before a new release.
 
 This branch is the one used to make PR to *master* so this branch **MUST** build.
 
 ### *master*
+
 This branch is the production one.
 
 **This must be used for PR only for critical bug fixes** and always **MUST** build.
@@ -57,6 +77,7 @@ This branch is the production one.
 Changes to README.md or other markdown files are not priorities so for these changes use *dev* or *staging* and they'll be implemented in the next release.
 
 ### *every other branch* except *gh-pages*
+
 You can create any branch you want to push any kind of commits.
 
 There are no rules in the CI for all other branches.

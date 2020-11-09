@@ -29,7 +29,7 @@ export class ParticlesNumber implements IParticlesNumber, IOptionLoader<IParticl
     constructor() {
         this.density = new Density();
         this.limit = 0;
-        this.value = 100;
+        this.value = 0;
     }
 
     public load(data?: RecursivePartial<IParticlesNumber>): void {

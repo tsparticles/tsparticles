@@ -1,5 +1,5 @@
 import { Particle } from "../../Core/Particle";
-import { Container } from "../../Core/Container";
+import type { Container } from "../../Core/Container";
 import { IParticlesInteractor } from "../../Core/Interfaces/IParticlesInteractor";
 import { Circle, CircleWarp, ColorUtils, NumberUtils } from "../../Utils";
 import { IParticle } from "../../Core/Interfaces/IParticle";
@@ -33,7 +33,7 @@ export class Linker implements IParticlesInteractor {
         for (const p2 of query) {
             const linkOpt2 = p2.particlesOptions.links;
 
-            if (p1 === p2 || !linkOpt2.enable || linkOpt1.id !== linkOpt2.id) {
+            if (p1 === p2 || !linkOpt2.enable || linkOpt1.id !== linkOpt2.id || p2.spawning || p2.destroyed) {
                 continue;
             }
 
@@ -76,37 +76,33 @@ export class Linker implements IParticlesInteractor {
 
             /* draw a line between p1 and p2 */
             const opacityLine = (1 - distance / optDistance) * optOpacity;
+            const linksOptions = p1.particlesOptions.links;
 
-            if (opacityLine > 0) {
-                /* style */
-                const linksOptions = p1.particlesOptions.links;
+            let linkColor =
+                linksOptions.id !== undefined
+                    ? container.particles.linksColors.get(linksOptions.id)
+                    : container.particles.linksColor;
 
-                let linkColor =
-                    linksOptions.id !== undefined
-                        ? container.particles.linksColors.get(linksOptions.id)
-                        : container.particles.linksColor;
+            if (!linkColor) {
+                const optColor = linksOptions.color;
 
-                if (!linkColor) {
-                    const optColor = linksOptions.color;
+                linkColor = ColorUtils.getLinkRandomColor(optColor, linksOptions.blink, linksOptions.consent);
 
-                    linkColor = ColorUtils.getLinkRandomColor(optColor, linksOptions.blink, linksOptions.consent);
-
-                    if (linksOptions.id !== undefined) {
-                        container.particles.linksColors.set(linksOptions.id, linkColor);
-                    } else {
-                        container.particles.linksColor = linkColor;
-                    }
+                if (linksOptions.id !== undefined) {
+                    container.particles.linksColors.set(linksOptions.id, linkColor);
+                } else {
+                    container.particles.linksColor = linkColor;
                 }
+            }
 
-                if (
-                    p2.links.map((t) => t.destination).indexOf(p1) === -1 &&
-                    p1.links.map((t) => t.destination).indexOf(p2) === -1
-                ) {
-                    p1.links.push({
-                        destination: p2,
-                        opacity: opacityLine,
-                    });
-                }
+            if (
+                p2.links.map((t) => t.destination).indexOf(p1) === -1 &&
+                p1.links.map((t) => t.destination).indexOf(p2) === -1
+            ) {
+                p1.links.push({
+                    destination: p2,
+                    opacity: opacityLine,
+                });
             }
         }
     }

@@ -7,6 +7,23 @@ assignees: ''
 
 ---
 
+**Is the latest version affected?**
+
+- [ ] Yes
+- [ ] No
+
+**Which library are you using?**
+
+- [ ] Vanilla JS (`tsparticles`)
+- [ ] React (`react-tsparticles`)
+- [ ] Vue.js 2.x (`particles.vue`)
+- [ ] Vue.js 3.x (`particles.vue3`)
+- [ ] Angular (`ng-particles`)
+- [ ] Svelte (`svelte-particles`)
+- [ ] Preact (`preact-particles`)
+- [ ] Inferno (`inferno-particles`)
+- [ ] jQuery (`jquery-particles`)
+
 **Describe the bug**
 A clear and concise description of what the bug is.
 

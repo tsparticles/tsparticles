@@ -1,5 +1,31 @@
 import { expect } from "chai";
-import { NumberUtils, Utils } from "../src/Utils";
+import { Container, MoveDirection } from "../src";
+import { IContainerPlugin } from "../src/Core/Interfaces/IContainerPlugin";
+import { IParticle } from "../src/Core/Interfaces/IParticle";
+import { IPlugin } from "../src/Core/Interfaces/IPlugin";
+import { Particle } from "../src/Core/Particle";
+import { NumberUtils, Plugins, Utils } from "../src/Utils";
+
+function buildParticleWithDirection(direction: MoveDirection): IParticle {
+    const container = new Container("someid");
+    const options = { move: { direction } };
+    return new Particle(1, container, undefined, options);
+}
+
+function buildPluginWithId(id: string, needsPlugin: boolean): IPlugin {
+    return {
+        id,
+        getPlugin() {
+            return {} as IContainerPlugin;
+        },
+        needsPlugin() {
+            return needsPlugin;
+        },
+        loadOptions() {
+            return null;
+        },
+    };
+}
 
 describe("Utils", () => {
     describe("clamp", () => {
@@ -437,6 +463,178 @@ describe("Utils", () => {
 
         it("should return true when point lies on right boundry of screen with non-zero radius", () => {
             expect(Utils.isPointInside(rightPoint, dimension, Math.random())).to.be.true;
+        });
+    });
+
+    describe("getParticleBaseVelocity", () => {
+        it("should return the proper base velocity, when it's moving top", () => {
+            const particle = buildParticleWithDirection(MoveDirection.top);
+            expect(NumberUtils.getParticleBaseVelocity(particle)).to.eql({ x: 0, y: -1 });
+        });
+        it("should return the proper base velocity, when it's moving top-right", () => {
+            const particle = buildParticleWithDirection(MoveDirection.topRight);
+            expect(NumberUtils.getParticleBaseVelocity(particle)).to.eql({ x: 0.5, y: -0.5 });
+        });
+        it("should return the proper base velocity, when it's moving right", () => {
+            const particle = buildParticleWithDirection(MoveDirection.right);
+            expect(NumberUtils.getParticleBaseVelocity(particle)).to.eql({ x: 1, y: -0 });
+        });
+        it("should return the proper base velocity, when it's moving bottom-right", () => {
+            const particle = buildParticleWithDirection(MoveDirection.bottomRight);
+            expect(NumberUtils.getParticleBaseVelocity(particle)).to.eql({ x: 0.5, y: 0.5 });
+        });
+        it("should return the proper base velocity, when it's moving bottom", () => {
+            const particle = buildParticleWithDirection(MoveDirection.bottom);
+            expect(NumberUtils.getParticleBaseVelocity(particle)).to.eql({ x: 0, y: 1 });
+        });
+        it("should return the proper base velocity, when it's moving bottom-left", () => {
+            const particle = buildParticleWithDirection(MoveDirection.bottomLeft);
+            expect(NumberUtils.getParticleBaseVelocity(particle)).to.eql({ x: -0.5, y: 1 });
+        });
+        it("should return the proper base velocity, when it's moving left", () => {
+            const particle = buildParticleWithDirection(MoveDirection.left);
+            expect(NumberUtils.getParticleBaseVelocity(particle)).to.eql({ x: -1, y: 0 });
+        });
+        it("should return the proper base velocity, when it's moving top-left", () => {
+            const particle = buildParticleWithDirection(MoveDirection.topLeft);
+            expect(NumberUtils.getParticleBaseVelocity(particle)).to.eql({ x: -0.5, y: -0.5 });
+        });
+    });
+
+    describe("loadImage", () => {
+        afterEach(() => {
+            global.Image = window.Image;
+        });
+
+        it("should reject when no source was specified", async () => {
+            const source = "";
+            try {
+                await Utils.loadImage(source);
+                throw new Error("Should not have reached this line");
+            } catch (error) {
+                expect(error).to.match(/Error.*No Image.*/i);
+            }
+        });
+
+        it("should resolve with the image data when loaded successfully", async () => {
+            global.Image = (class MockImage {
+                addEventListener(name: string, callback: () => void) {
+                    if (name === "load") callback();
+                }
+            } as unknown) as typeof Image;
+
+            const source = "https://someimageurl.com/image.png";
+            const data = await Utils.loadImage(source);
+
+            expect(data.source).to.equal(source);
+            expect(data.type).to.equal("png");
+        });
+
+        it("should reject when image cannot be loaded", async () => {
+            global.Image = (class MockImage {
+                addEventListener(name: string, callback: () => void) {
+                    if (name === "error") callback();
+                }
+            } as unknown) as typeof Image;
+
+            const source = "https://someimageurl.com/image.png";
+
+            try {
+                await Utils.loadImage(source);
+                throw new Error("Should not have reached this line");
+            } catch (error) {
+                expect(error).to.match(/Error.*Loading.*/i);
+            }
+        });
+    });
+
+    describe("downloadSvgImage", () => {
+        let actualLoadImage: typeof Utils.loadImage;
+        let called: number;
+
+        beforeEach(() => {
+            called = 0;
+            actualLoadImage = Utils.loadImage;
+            Utils.loadImage = ((async () => {
+                ++called;
+                return null;
+            }) as unknown) as typeof Utils.loadImage;
+        });
+
+        afterEach(() => {
+            Utils.loadImage = actualLoadImage;
+            global.fetch = window.fetch;
+        });
+
+        it("should reject when no source was specified", async () => {
+            const source = "";
+            try {
+                await Utils.downloadSvgImage(source);
+                throw new Error("Should not have reached this line");
+            } catch (error) {
+                expect(error).to.match(/Error.*No Image.*/i);
+            }
+        });
+
+        it("should fallback to Utils.loadImage when the type is not SVG", async () => {
+            const source = "https://someimageurl.com/image.png";
+            await Utils.downloadSvgImage(source);
+
+            expect(called).to.equal(1);
+        });
+
+        it("should resolve with the image data when loaded successfully", async () => {
+            const mockSvgData = "some svg";
+
+            global.fetch = (async function mockFetch() {
+                return {
+                    ok: true,
+                    text: async () => mockSvgData,
+                };
+            } as unknown) as typeof fetch;
+
+            const source = "https://someimageurl.com/image.svg";
+            const data = await Utils.downloadSvgImage(source);
+
+            expect(data.source).to.equal(source);
+            expect(data.type).to.equal("svg");
+            expect(data.svgData).to.equal(mockSvgData);
+        });
+
+        it("should reject when image cannot be loaded", async () => {
+            global.fetch = (async function mockFetch() {
+                return {
+                    ok: false,
+                };
+            } as unknown) as typeof fetch;
+
+            const source = "https://someimageurl.com/image.svg";
+
+            try {
+                await Utils.downloadSvgImage(source);
+                throw new Error("Should not have reached this line");
+            } catch (error) {
+                expect(error).to.match(/Error.*not found.*/i);
+            }
+        });
+    });
+
+    describe("Plugins", () => {
+        const plugin1 = buildPluginWithId("some plugin", true);
+        const plugin2 = buildPluginWithId("some other plugin", false);
+
+        describe("getAvailablePlugins", () => {
+            Plugins.addPlugin(plugin1);
+            Plugins.addPlugin(plugin2);
+            const plugins = Plugins.getAvailablePlugins(new Container("some container id"));
+
+            it("should return a Map of available plugins", () => {
+                expect(plugins.get("some plugin")).to.not.be.undefined;
+            });
+
+            it("should ignore unneeded plugins", () => {
+                expect(plugins.get("some other plugin")).to.be.undefined;
+            });
         });
     });
 });

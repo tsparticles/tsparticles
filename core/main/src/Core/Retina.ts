@@ -15,6 +15,7 @@ export class Retina {
     public repulseModeDistance!: number;
     public attractModeDistance!: number;
     public slowModeRadius!: number;
+    public attractDistance!: number;
     public linksDistance!: number;
     public linksWidth!: number;
     public moveSpeed!: number;
@@ -38,20 +39,36 @@ export class Retina {
             this.pixelRatio = 1;
         }
 
-        if (Utils.isSsr() || typeof matchMedia === "undefined" || !matchMedia) {
-            this.reduceFactor = 1;
+        const motionOptions = this.container.options.motion;
+
+        if (motionOptions && (motionOptions.disable || motionOptions.reduce.value)) {
+            if (Utils.isSsr() || typeof matchMedia === "undefined" || !matchMedia) {
+                this.reduceFactor = 1;
+            } else {
+                const mediaQuery = matchMedia("(prefers-reduced-motion: reduce)");
+
+                if (mediaQuery) {
+                    // Check if the media query matches or is not available.
+                    this.handleMotionChange(mediaQuery);
+
+                    // Ads an event listener to check for changes in the media query's value.
+                    const handleChange = () => {
+                        this.handleMotionChange(mediaQuery);
+
+                        container.refresh().catch(() => {
+                            // ignore
+                        });
+                    };
+
+                    if (mediaQuery.addEventListener !== undefined) {
+                        mediaQuery.addEventListener("change", handleChange);
+                    } else if (mediaQuery.addListener !== undefined) {
+                        mediaQuery.addListener(handleChange);
+                    }
+                }
+            }
         } else {
-            const mediaQuery = matchMedia("(prefers-reduced-motion: reduce)");
-
-            // Check if the media query matches or is not available.
-            this.handleMotionChange(mediaQuery);
-
-            // Ads an event listener to check for changes in the media query's value.
-            mediaQuery.addEventListener("change", async () => {
-                this.handleMotionChange(mediaQuery);
-
-                await container.refresh();
-            });
+            this.reduceFactor = 1;
         }
 
         const ratio = this.pixelRatio;
@@ -65,6 +82,7 @@ export class Retina {
 
         const particles = options.particles;
 
+        this.attractDistance = particles.move.attract.distance * ratio;
         this.linksDistance = particles.links.distance * ratio;
         this.linksWidth = particles.links.width * ratio;
         this.moveSpeed = particles.move.speed * ratio;
@@ -91,12 +109,17 @@ export class Retina {
         const particlesOptions = particle.particlesOptions;
         const ratio = this.pixelRatio;
 
+        particle.attractDistance = particlesOptions.move.attract.distance * ratio;
         particle.linksDistance = particlesOptions.links.distance * ratio;
         particle.linksWidth = particlesOptions.links.width * ratio;
         particle.moveSpeed = particlesOptions.move.speed * ratio;
         particle.sizeValue = particlesOptions.size.value * ratio;
         particle.sizeAnimationSpeed = particlesOptions.size.animation.speed * ratio;
         particle.maxDistance = particlesOptions.move.distance * ratio;
+
+        if (typeof particle.particlesOptions.orbit.radius !== "undefined") {
+            particle.orbitRadiusValue = particle.particlesOptions.orbit.radius * ratio;
+        }
     }
 
     private handleMotionChange(mediaQuery: MediaQueryList): void {

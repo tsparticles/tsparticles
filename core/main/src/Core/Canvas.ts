@@ -5,10 +5,11 @@ import type { ICoordinates } from "./Interfaces/ICoordinates";
 import type { IParticle } from "./Interfaces/IParticle";
 import type { IContainerPlugin } from "./Interfaces/IContainerPlugin";
 import type { ILink } from "./Interfaces/ILink";
-import { CanvasUtils, ColorUtils, Constants, Utils } from "../Utils";
+import { CanvasUtils, ColorUtils, Constants, NumberUtils, Utils } from "../Utils";
 import type { Particle } from "./Particle";
 import type { IDelta } from "./Interfaces/IDelta";
-
+import { IOrbit } from "./Interfaces/IOrbit";
+import { OrbitType } from "../Enums/OrbitType";
 /**
  * Canvas manager
  * @category Core
@@ -180,7 +181,25 @@ export class Canvas {
         }
 
         const container = this.container;
-        const options = container.options;
+
+        container.canvas.initSize();
+
+        /* density particles enabled */
+        container.particles.setDensity();
+
+        for (const [, plugin] of container.plugins) {
+            if (plugin.resize !== undefined) {
+                plugin.resize();
+            }
+        }
+    }
+
+    public initSize(): void {
+        if (!this.element) {
+            return;
+        }
+
+        const container = this.container;
         const pxRatio = container.retina.pixelRatio;
 
         container.canvas.size.width = this.element.offsetWidth * pxRatio;
@@ -188,20 +207,6 @@ export class Canvas {
 
         this.element.width = container.canvas.size.width;
         this.element.height = container.canvas.size.height;
-
-        /* repaint canvas on anim disabled */
-        if (!options.particles.move.enable) {
-            container.particles.redraw();
-        }
-
-        /* density particles enabled */
-        container.densityAutoParticles();
-
-        for (const [, plugin] of container.plugins) {
-            if (plugin.resize !== undefined) {
-                plugin.resize();
-            }
-        }
     }
 
     public drawConnectLine(p1: IParticle, p2: IParticle): void {
@@ -258,6 +263,11 @@ export class Canvas {
         const p3 = link2.destination;
         const triangleOptions = p1.particlesOptions.links.triangles;
         const opacityTriangle = triangleOptions.opacity ?? (link1.opacity + link2.opacity) / 2;
+
+        if (opacityTriangle <= 0) {
+            return;
+        }
+
         const pos1 = p1.getPosition();
         const pos2 = p2.getPosition();
         const pos3 = p3.getPosition();
@@ -265,6 +275,14 @@ export class Canvas {
         const ctx = this.context;
 
         if (!ctx) {
+            return;
+        }
+
+        if (
+            NumberUtils.getDistance(pos1, pos2) > container.retina.linksDistance ||
+            NumberUtils.getDistance(pos3, pos2) > container.retina.linksDistance ||
+            NumberUtils.getDistance(pos3, pos1) > container.retina.linksDistance
+        ) {
             return;
         }
 
@@ -284,11 +302,8 @@ export class Canvas {
             return;
         }
 
-        const width = p1.linksWidth ?? container.retina.linksWidth;
-
         CanvasUtils.drawLinkTriangle(
             ctx,
-            width,
             pos1,
             pos2,
             pos3,
@@ -382,9 +397,7 @@ export class Canvas {
             return;
         }
 
-        const container = this.container;
-        const options = container.options;
-        const particles = container.particles;
+        const options = this.container.options;
         const pOptions = particle.particlesOptions;
         const twinkle = pOptions.twinkle.particles;
         const twinkleFreq = twinkle.frequency;
@@ -392,6 +405,7 @@ export class Canvas {
         const twinkling = twinkle.enable && Math.random() < twinkleFreq;
         const radius = particle.getRadius();
         const opacity = twinkling ? twinkle.opacity : particle.bubble.opacity ?? particle.opacity.value;
+        const strokeOpacity = particle.stroke.opacity ?? opacity;
         const infectionStage = particle.infecter.infectionStage;
         const infection = options.infection;
         const infectionStages = infection.stages;
@@ -405,17 +419,90 @@ export class Canvas {
             twinkling && twinkleRgb !== undefined
                 ? twinkleRgb
                 : infectionRgb ?? (psColor ? ColorUtils.hslToRgb(psColor) : undefined);
+        const zIndexOptions = particle.particlesOptions.zIndex;
+        const zOpacityFactor = 1 - zIndexOptions.opacityRate * particle.zIndexFactor;
+        const zOpacity = opacity * zOpacityFactor;
 
-        const fillColorValue = fColor !== undefined ? ColorUtils.getStyleFromRgb(fColor, opacity) : undefined;
+        const fillColorValue = fColor !== undefined ? ColorUtils.getStyleFromRgb(fColor, zOpacity) : undefined;
 
         if (!this.context || (!fillColorValue && !sColor)) {
             return;
         }
 
+        const zStrokeOpacity = strokeOpacity * zOpacityFactor;
         const strokeColorValue =
-            sColor !== undefined
-                ? ColorUtils.getStyleFromRgb(sColor, particle.stroke.opacity ?? opacity)
-                : fillColorValue;
+            sColor !== undefined ? ColorUtils.getStyleFromRgb(sColor, zStrokeOpacity) : fillColorValue;
+
+        this.drawParticleLinks(particle);
+
+        if (radius > 0) {
+            const orbitOptions = particle.particlesOptions.orbit;
+            const zSizeFactor = 1 - zIndexOptions.sizeRate * particle.zIndexFactor;
+
+            if (orbitOptions.enable) {
+                this.drawOrbit(particle, orbitOptions, OrbitType.back);
+            }
+
+            CanvasUtils.drawParticle(
+                this.container,
+                this.context,
+                particle,
+                delta,
+                fillColorValue,
+                strokeColorValue,
+                options.backgroundMask.enable,
+                options.backgroundMask.composite,
+                radius * zSizeFactor,
+                zOpacity,
+                particle.particlesOptions.shadow
+            );
+
+            if (orbitOptions.enable) {
+                this.drawOrbit(particle, orbitOptions, OrbitType.front);
+            }
+        }
+    }
+
+    public drawOrbit(particle: IParticle, orbitOptions: IOrbit, type: string): void {
+        if (!this.context) {
+            return;
+        }
+
+        let start: number;
+        let end: number;
+
+        if (type === OrbitType.back) {
+            start = Math.PI / 2;
+            end = (Math.PI * 3) / 2;
+        } else if (type === OrbitType.front) {
+            start = (Math.PI * 3) / 2;
+            end = Math.PI / 2;
+        } else {
+            start = 0;
+            end = 2 * Math.PI;
+        }
+
+        CanvasUtils.drawEllipse(
+            this.context,
+            particle,
+            orbitOptions.color || particle.getFillColor(),
+            particle.orbitRadiusValue ?? particle.getRadius(),
+            orbitOptions.opacity,
+            orbitOptions.width,
+            particle.orbitRotationValue || orbitOptions.rotation.value,
+            start,
+            end
+        );
+    }
+
+    public drawParticleLinks(particle: Particle): void {
+        if (!this.context) {
+            return;
+        }
+
+        const container = this.container;
+        const particles = container.particles;
+        const pOptions = particle.particlesOptions;
 
         if (particle.links.length > 0) {
             this.context.save();
@@ -449,26 +536,13 @@ export class Canvas {
                         }
                     }
                 }
-                this.drawLinkLine(particle, link);
+
+                if (link.opacity > 0 && container.retina.linksWidth > 0) {
+                    this.drawLinkLine(particle, link);
+                }
             }
 
             this.context.restore();
-        }
-
-        if (radius > 0) {
-            CanvasUtils.drawParticle(
-                this.container,
-                this.context,
-                particle,
-                delta,
-                fillColorValue,
-                strokeColorValue,
-                options.backgroundMask.enable,
-                options.backgroundMask.composite,
-                radius,
-                opacity,
-                particle.particlesOptions.shadow
-            );
         }
     }
 

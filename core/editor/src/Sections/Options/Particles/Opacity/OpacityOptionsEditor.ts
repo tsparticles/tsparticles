@@ -2,6 +2,7 @@ import { EditorGroup, EditorType } from "object-gui";
 import type { Container } from "tsparticles";
 import type { IOpacity } from "tsparticles/dist/Options/Interfaces/Particles/Opacity/IOpacity";
 import { EditorBase } from "../../../../EditorBase";
+import { DestroyType, StartValueType } from "tsparticles";
 
 export class OpacityOptionsEditor extends EditorBase {
     public group!: EditorGroup;
@@ -24,6 +25,23 @@ export class OpacityOptionsEditor extends EditorBase {
         const particles = this.particles;
         const group = this.group.addGroup("animation", "Animation");
 
+        group
+            .addProperty("destroy", "Destroy", EditorType.select)
+            .change(async () => {
+                await particles.refresh();
+            })
+            .addItems([
+                {
+                    value: DestroyType.max,
+                },
+                {
+                    value: DestroyType.min,
+                },
+                {
+                    value: DestroyType.none,
+                },
+            ]);
+
         group.addProperty("enable", "Enable", EditorType.boolean).change(async () => {
             await particles.refresh();
         });
@@ -43,6 +61,23 @@ export class OpacityOptionsEditor extends EditorBase {
                 await particles.refresh();
             })
             .step(0.01);
+
+        group
+            .addProperty("startValue", "Start Value", EditorType.select)
+            .change(async () => {
+                await particles.refresh();
+            })
+            .addItems([
+                {
+                    value: StartValueType.max,
+                },
+                {
+                    value: StartValueType.min,
+                },
+                {
+                    value: StartValueType.random,
+                },
+            ]);
 
         group.addProperty("sync", "Sync", EditorType.boolean).change(async () => {
             await particles.refresh();

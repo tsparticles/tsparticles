@@ -74,7 +74,6 @@ const getJsConfig = (entry) => {
             minimizer: [
                 new TerserPlugin({
                     include: /\.min\.js$/,
-                    sourceMap: false,
                     terserOptions: {
                         output: {
                             comments: minBanner
@@ -89,7 +88,7 @@ const getJsConfig = (entry) => {
 
 module.exports = [
     getJsConfig({
-        "tsparticles.editor": "./dist/index.js",
-        "tsparticles.editor.min": "./dist/index.js"
+        "tsparticles.editor": "./dist/browser/index.js",
+        "tsparticles.editor.min": "./dist/browser/index.js"
     })
 ];

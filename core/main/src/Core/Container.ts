@@ -37,7 +37,6 @@ export class Container {
      */
     public destroyed;
 
-    public density;
     public pageHidden;
     public lastFrameTime;
     public fpsLimit;
@@ -45,6 +44,7 @@ export class Container {
     public bubble: IBubble;
     public repulse: IRepulse;
     public attract: IAttract;
+    public readonly zLayers = 10000;
 
     /**
      * The options used by the container, it's a full [[Options]] object
@@ -78,6 +78,7 @@ export class Container {
     private drawAnimationFrame?: number;
 
     private readonly eventListeners;
+    private readonly intersectionObserver?;
 
     /**
      * This is the core class, create an instance to have a new working particles manager
@@ -126,7 +127,7 @@ export class Container {
         this.attract = { particles: [] };
         this.plugins = new Map<string, IContainerPlugin>();
         this.drawers = new Map<string, IShapeDrawer>();
-        this.density = 1;
+
         /* tsParticles variables with default values */
         this.options = new Options();
 
@@ -155,6 +156,10 @@ export class Container {
 
         /* ---------- tsParticles - start ------------ */
         this.eventListeners = new EventListeners(this);
+
+        if (typeof IntersectionObserver !== "undefined" && IntersectionObserver) {
+            this.intersectionObserver = new IntersectionObserver((entries) => this.intersectionManager(entries));
+        }
     }
 
     /**
@@ -266,31 +271,6 @@ export class Container {
         }
     }
 
-    /* ---------- tsParticles functions - vendors ------------ */
-
-    /**
-     * Aligns particles number to the specified density in the current canvas size
-     */
-    public densityAutoParticles(): void {
-        if (!this.options.particles.number.density.enable) {
-            return;
-        }
-
-        this.initDensityFactor();
-
-        const numberOptions = this.options.particles.number;
-        const optParticlesNumber = numberOptions.value;
-        const optParticlesLimit = numberOptions.limit > 0 ? numberOptions.limit : optParticlesNumber;
-        const particlesNumber = Math.min(optParticlesNumber, optParticlesLimit) * this.density;
-        const particlesCount = this.particles.count;
-
-        if (particlesCount < particlesNumber) {
-            this.particles.push(Math.abs(particlesNumber - particlesCount));
-        } else if (particlesCount > particlesNumber) {
-            this.particles.removeQuantity(particlesCount - particlesNumber);
-        }
-    }
-
     /**
      * Destroys the current container, invalidating it
      */
@@ -362,6 +342,10 @@ export class Container {
         this.particles.clear();
         this.canvas.clear();
 
+        if (this.interactivity.element instanceof HTMLElement && this.intersectionObserver) {
+            this.intersectionObserver.observe(this.interactivity.element);
+        }
+
         for (const [, plugin] of this.plugins) {
             if (plugin.stop) {
                 plugin.stop();
@@ -402,6 +386,10 @@ export class Container {
 
         this.eventListeners.addListeners();
 
+        if (this.interactivity.element instanceof HTMLElement && this.intersectionObserver) {
+            this.intersectionObserver.observe(this.interactivity.element);
+        }
+
         for (const [, plugin] of this.plugins) {
             if (plugin.startAsync !== undefined) {
                 await plugin.startAsync();
@@ -440,21 +428,26 @@ export class Container {
             }
         }
 
-        this.canvas.windowResize();
+        this.canvas.initSize();
         this.particles.init();
+        this.particles.setDensity();
     }
 
-    private initDensityFactor(): void {
-        const densityOptions = this.options.particles.number.density;
-
-        if (!this.canvas.element || !densityOptions.enable) {
+    private intersectionManager(entries: IntersectionObserverEntry[]) {
+        if (!this.options.pauseOnOutsideViewport) {
             return;
         }
 
-        const canvas = this.canvas.element;
-        const pxRatio = this.retina.pixelRatio;
+        for (const entry of entries) {
+            if (entry.target !== this.interactivity.element) {
+                continue;
+            }
 
-        this.density =
-            (canvas.width * canvas.height) / (densityOptions.factor * pxRatio * pxRatio * densityOptions.area);
+            if (entry.isIntersecting) {
+                this.play();
+            } else {
+                this.pause();
+            }
+        }
     }
 }

@@ -30,7 +30,7 @@ module.exports = {
 		rules: [
 			{
 				test: /\.(js|jsx|tsx|ts)$/,   // All ts and tsx files will be process by
-				loaders: 'babel-loader',			// first babel-loader, then ts-loader
+				loader: 'babel-loader',			// first babel-loader, then ts-loader
 				exclude: /node_modules/				// ignore node_modules
 			}
 		]

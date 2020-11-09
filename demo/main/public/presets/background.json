@@ -119,6 +119,7 @@
     }
   },
   "retina_detect": true,
+  "fpsLimit": 60,
   "background": {
     "color": "#ffffff",
     "image": "url('https://cdn.matteobruni.it/images/particles/background3.jpg')",

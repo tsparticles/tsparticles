@@ -7,5 +7,7 @@ export interface IRemove {
      */
     particles_nb: number;
 
+    default: boolean;
+    groups: string[];
     quantity: number;
 }

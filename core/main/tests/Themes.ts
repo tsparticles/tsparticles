@@ -1,4 +1,4 @@
-import { Options } from "../src/Classes/Options/Options";
+import { Options } from "../src/Options/Classes/Options";
 import { RotateDirection, MoveDirection, ShapeType, ClickMode, HoverMode, OutMode, ThemeMode } from "../src/Enums";
 import { expect } from "chai";
 

@@ -1,15 +1,30 @@
 import type { IDimension } from "../Core/Interfaces/IDimension";
 import type { ICoordinates } from "../Core/Interfaces/ICoordinates";
-import type { IRgb } from "../Core/Interfaces/Colors";
+import type { IHsl, IRgb } from "../Core/Interfaces/Colors";
 import type { ILinksShadow } from "../Options/Interfaces/Particles/Links/ILinksShadow";
 import { ColorUtils } from "./ColorUtils";
 import type { IParticle } from "../Core/Interfaces/IParticle";
 import type { IShadow } from "../Options/Interfaces/Particles/IShadow";
-import type { Container } from "../Core/Container";
+import type { Container } from "..";
 import type { IContainerPlugin } from "../Core/Interfaces/IContainerPlugin";
 import type { IDelta } from "../Core/Interfaces/IDelta";
 import { Particle } from "../Core/Particle";
 import { NumberUtils } from "./NumberUtils";
+
+function drawLine(context: CanvasRenderingContext2D, begin: ICoordinates, end: ICoordinates): void {
+    context.beginPath();
+    context.moveTo(begin.x, begin.y);
+    context.lineTo(end.x, end.y);
+    context.closePath();
+}
+
+function drawTriangle(context: CanvasRenderingContext2D, p1: ICoordinates, p2: ICoordinates, p3: ICoordinates): void {
+    context.beginPath();
+    context.moveTo(p1.x, p1.y);
+    context.lineTo(p2.x, p2.y);
+    context.lineTo(p3.x, p3.y);
+    context.closePath();
+}
 
 /**
  * @category Utils
@@ -46,7 +61,7 @@ export class CanvasUtils {
         let drawn = false;
 
         if (NumberUtils.getDistance(begin, end) <= maxDistance) {
-            CanvasUtils.drawLine(context, begin, end);
+            drawLine(context, begin, end);
 
             drawn = true;
         } else if (warp) {
@@ -58,10 +73,10 @@ export class CanvasUtils {
                 y: end.y,
             };
 
-            const { dx, dy, distance } = NumberUtils.getDistances(begin, endNE);
+            const d1 = NumberUtils.getDistances(begin, endNE);
 
-            if (distance <= maxDistance) {
-                const yi = begin.y - (dy / dx) * begin.x;
+            if (d1.distance <= maxDistance) {
+                const yi = begin.y - (d1.dy / d1.dx) * begin.x;
 
                 pi1 = { x: 0, y: yi };
                 pi2 = { x: canvasSize.width, y: yi };
@@ -71,11 +86,11 @@ export class CanvasUtils {
                     y: end.y - canvasSize.height,
                 };
 
-                const { dx, dy, distance } = NumberUtils.getDistances(begin, endSW);
+                const d2 = NumberUtils.getDistances(begin, endSW);
 
-                if (distance <= maxDistance) {
-                    const yi = begin.y - (dy / dx) * begin.x;
-                    const xi = -yi / (dy / dx);
+                if (d2.distance <= maxDistance) {
+                    const yi = begin.y - (d2.dy / d2.dx) * begin.x;
+                    const xi = -yi / (d2.dy / d2.dx);
 
                     pi1 = { x: xi, y: 0 };
                     pi2 = { x: xi, y: canvasSize.height };
@@ -85,11 +100,11 @@ export class CanvasUtils {
                         y: end.y - canvasSize.height,
                     };
 
-                    const { dx, dy, distance } = NumberUtils.getDistances(begin, endSE);
+                    const d3 = NumberUtils.getDistances(begin, endSE);
 
-                    if (distance <= maxDistance) {
-                        const yi = begin.y - (dy / dx) * begin.x;
-                        const xi = -yi / (dy / dx);
+                    if (d3.distance <= maxDistance) {
+                        const yi = begin.y - (d3.dy / d3.dx) * begin.x;
+                        const xi = -yi / (d3.dy / d3.dx);
 
                         pi1 = { x: xi, y: yi };
                         pi2 = { x: pi1.x + canvasSize.width, y: pi1.y + canvasSize.height };
@@ -98,8 +113,8 @@ export class CanvasUtils {
             }
 
             if (pi1 && pi2) {
-                CanvasUtils.drawLine(context, begin, pi1);
-                CanvasUtils.drawLine(context, end, pi2);
+                drawLine(context, begin, pi1);
+                drawLine(context, end, pi2);
 
                 drawn = true;
             }
@@ -131,7 +146,6 @@ export class CanvasUtils {
 
     public static drawLinkTriangle(
         context: CanvasRenderingContext2D,
-        width: number,
         pos1: ICoordinates,
         pos2: ICoordinates,
         pos3: ICoordinates,
@@ -143,9 +157,7 @@ export class CanvasUtils {
         // this.ctx.lineCap = "round"; /* performance issue */
         /* path */
 
-        CanvasUtils.drawTriangle(context, pos1, pos2, pos3);
-
-        context.lineWidth = width;
+        drawTriangle(context, pos1, pos2, pos3);
 
         if (backgroundMask) {
             context.globalCompositeOperation = composite;
@@ -165,7 +177,7 @@ export class CanvasUtils {
     ): void {
         context.save();
 
-        CanvasUtils.drawLine(context, begin, end);
+        drawLine(context, begin, end);
 
         context.lineWidth = width;
         context.strokeStyle = lineStyle;
@@ -209,7 +221,7 @@ export class CanvasUtils {
     ): void {
         context.save();
 
-        CanvasUtils.drawLine(context, begin, end);
+        drawLine(context, begin, end);
 
         context.strokeStyle = ColorUtils.getStyleFromRgb(colorLine, opacity);
         context.lineWidth = width;
@@ -278,9 +290,9 @@ export class CanvasUtils {
         const shadowLength = shadowOptions.length;
 
         for (const dot of dots) {
-            const angle = Math.atan2(mousePos.y - dot.y, mousePos.x - dot.x);
-            const endX = dot.x + shadowLength * Math.sin(-angle - Math.PI / 2);
-            const endY = dot.y + shadowLength * Math.cos(-angle - Math.PI / 2);
+            const dotAngle = Math.atan2(mousePos.y - dot.y, mousePos.x - dot.x);
+            const endX = dot.x + shadowLength * Math.sin(-dotAngle - Math.PI / 2);
+            const endY = dot.y + shadowLength * Math.cos(-dotAngle - Math.PI / 2);
 
             points.push({
                 endX: endX,
@@ -449,23 +461,34 @@ export class CanvasUtils {
         }
     }
 
-    private static drawLine(context: CanvasRenderingContext2D, begin: ICoordinates, end: ICoordinates): void {
-        context.beginPath();
-        context.moveTo(begin.x, begin.y);
-        context.lineTo(end.x, end.y);
-        context.closePath();
-    }
-
-    private static drawTriangle(
+    public static drawEllipse(
         context: CanvasRenderingContext2D,
-        p1: ICoordinates,
-        p2: ICoordinates,
-        p3: ICoordinates
+        particle: IParticle,
+        fillColorValue: IHsl | undefined,
+        radius: number,
+        opacity: number,
+        width: number,
+        rotation: number,
+        start: number,
+        end: number
     ): void {
+        const pos = particle.getPosition();
         context.beginPath();
-        context.moveTo(p1.x, p1.y);
-        context.lineTo(p2.x, p2.y);
-        context.lineTo(p3.x, p3.y);
-        context.closePath();
+
+        if (fillColorValue) {
+            context.strokeStyle = ColorUtils.getStyleFromHsl(fillColorValue, opacity);
+        }
+
+        if (width === 0) {
+            return;
+        }
+
+        context.lineWidth = width;
+
+        const rotationRadian = rotation * (Math.PI / 180);
+
+        context.ellipse(pos.x, pos.y, radius / 2, radius * 2, rotationRadian, start, end);
+
+        context.stroke();
     }
 }

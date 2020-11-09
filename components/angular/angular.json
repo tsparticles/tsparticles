@@ -44,7 +44,8 @@
     }
   },
   "cli": {
-    "analytics": "dce0238c-a76d-4da7-9f17-451104405e64"
+    "analytics": "dce0238c-a76d-4da7-9f17-451104405e64",
+    "packageManager": "pnpm"
   },
   "defaultProject": "ng-particles"
 }

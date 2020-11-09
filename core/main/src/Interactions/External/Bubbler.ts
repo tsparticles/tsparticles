@@ -1,4 +1,4 @@
-import type { Container } from "../..";
+import type { Container } from "../../Core/Container";
 import type { IBubblerProcessParam } from "../../Core/Interfaces/IBubblerProcessParam";
 import { Circle, ColorUtils, Constants, NumberUtils, Rectangle, Utils } from "../../Utils";
 import { ClickMode, DivMode, DivType, HoverMode, ProcessBubbleType } from "../../Enums";
@@ -7,29 +7,29 @@ import { DivEvent } from "../../Options/Classes/Interactivity/Events/DivEvent";
 import type { IExternalInteractor } from "../../Core/Interfaces/IExternalInteractor";
 import { BubbleDiv } from "../../Options/Classes/Interactivity/Modes/BubbleDiv";
 
+function calculateBubbleValue(
+    particleValue: number,
+    modeValue: number,
+    optionsValue: number,
+    ratio: number
+): number | undefined {
+    if (modeValue > optionsValue) {
+        const size = particleValue + (modeValue - optionsValue) * ratio;
+
+        return NumberUtils.clamp(size, particleValue, modeValue);
+    } else if (modeValue < optionsValue) {
+        const size = particleValue - (optionsValue - modeValue) * ratio;
+
+        return NumberUtils.clamp(size, modeValue, particleValue);
+    }
+}
+
 /**
  * Particle bubble manager
  * @category Interactions
  */
 export class Bubbler implements IExternalInteractor {
     constructor(private readonly container: Container) {}
-
-    private static calculateBubbleValue(
-        particleValue: number,
-        modeValue: number,
-        optionsValue: number,
-        ratio: number
-    ): number | undefined {
-        if (modeValue > optionsValue) {
-            const size = particleValue + (modeValue - optionsValue) * ratio;
-
-            return NumberUtils.clamp(size, particleValue, modeValue);
-        } else if (modeValue < optionsValue) {
-            const size = particleValue - (optionsValue - modeValue) * ratio;
-
-            return NumberUtils.clamp(size, modeValue, particleValue);
-        }
-    }
 
     public isEnabled(): boolean {
         const container = this.container;
@@ -319,7 +319,7 @@ export class Bubbler implements IExternalInteractor {
 
         const optSize = particle.sizeValue ?? container.retina.sizeValue;
         const pSize = particle.size.value;
-        const size = Bubbler.calculateBubbleValue(pSize, modeSize, optSize, ratio);
+        const size = calculateBubbleValue(pSize, modeSize, optSize, ratio);
 
         if (size !== undefined) {
             particle.bubble.radius = size;
@@ -336,7 +336,7 @@ export class Bubbler implements IExternalInteractor {
 
         const optOpacity = particle.particlesOptions.opacity.value;
         const pOpacity = particle.opacity.value;
-        const opacity = Bubbler.calculateBubbleValue(pOpacity, modeOpacity, optOpacity, ratio);
+        const opacity = calculateBubbleValue(pOpacity, modeOpacity, optOpacity, ratio);
 
         if (opacity !== undefined) {
             particle.bubble.opacity = opacity;

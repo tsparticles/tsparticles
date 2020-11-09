@@ -82,6 +82,11 @@ export interface IOptions {
     pauseOnBlur: boolean;
 
     /**
+     * Enable or disabled the animation if the element is outside the viewport
+     */
+    pauseOnOutsideViewport: boolean;
+
+    /**
      * This property will be used to add specified presets to the options
      */
     preset?: SingleOrMultiple<string>;

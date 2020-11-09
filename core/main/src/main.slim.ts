@@ -22,6 +22,7 @@ import type {
 } from "./Types";
 import type { IPlugin } from "./Core/Interfaces/IPlugin";
 import type { Particle } from "./Core/Particle";
+import { INoise } from "./Core/Interfaces/INoise";
 
 /**
  * Main class for creating the singleton on window.
@@ -179,7 +180,7 @@ export class MainSlim {
      * @param preset the preset name
      * @param options the options to add to the preset
      */
-    public addPreset(preset: string, options: RecursivePartial<IOptions>): void {
+    public addPreset<T extends IOptions>(preset: string, options: RecursivePartial<T>): void {
         Plugins.addPreset(preset, options);
     }
 
@@ -189,5 +190,14 @@ export class MainSlim {
      */
     public addPlugin(plugin: IPlugin): void {
         Plugins.addPlugin(plugin);
+    }
+
+    /**
+     * addNoiseGenerator adds a named noise generator to tsParticles, this can be called by options
+     * @param name the noise generator name
+     * @param generator the noise generator object
+     */
+    public addNoiseGenerator(name: string, generator: INoise): void {
+        Plugins.addNoiseGenerator(name, generator);
     }
 }

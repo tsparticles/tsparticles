@@ -33,7 +33,7 @@ export class PolygonMask implements IPolygonMask, IOptionLoader<IPolygonMask> {
     public move;
     public position?: ICoordinates;
     public scale;
-    public type;
+    public type: Type | keyof typeof Type;
     public url?: string;
     public data?: string | LocalSvg;
 

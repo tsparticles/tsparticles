@@ -1,36 +1,38 @@
 const path = require("path");
 const TerserPlugin = require("terser-webpack-plugin");
 const webpack = require("webpack");
-const version = require("./package.json").version;
 const { BundleAnalyzerPlugin } = require("webpack-bundle-analyzer");
+const version = require("./package.json").version;
 
-const banner = `Author : Matteo Bruni - https://www.matteobruni.it
-MIT license: https://opensource.org/licenses/MIT
-Demo / Generator : https://particles.matteobruni.it/
-GitHub : https://www.github.com/matteobruni/tsparticles
-How to use? : Check the GitHub README
-v${version}`;
+const getEntry = (name) => {
+    const obj = {};
 
-const minBanner = `tsParticles Fire Preset v${version} by Matteo Bruni`;
+    obj[`tsparticles.preset.${name}`] = "./dist/preset.js";
+    obj[`tsparticles.preset.${name}.min`] = "./dist/preset.js";
 
-const getConfig = (entry) => {
-    const isSlim = Object.keys(entry).find((t) => t.indexOf("slim") >= 0);
-    const reportFileName = isSlim ? "report.slim" : "report";
+    return obj;
+}
 
+const getConfig = (entry, banner, minBanner, dir) => {
     return {
         entry: entry,
         output: {
-            path: path.resolve(__dirname, "dist"),
+            path: path.resolve(dir, "dist"),
             filename: "[name].js",
-            libraryTarget: "window",
-            library: ""
+            libraryTarget: "umd",
+            globalObject: "this"
         },
         resolve: {
             extensions: [ ".js", ".json" ]
         },
         externals: [
             {
-                "tsparticles": "window"
+                tsparticles: {
+                    commonjs: "tsparticles",
+                    commonjs2: "tsparticles",
+                    amd: "tsparticles",
+                    root: "window"
+                },
             }
         ],
         module: {
@@ -45,7 +47,7 @@ const getConfig = (entry) => {
         },
         plugins: [
             new webpack.BannerPlugin({
-                banner,
+                banner: banner,
                 exclude: /\.min\.js$/
             }),
             new webpack.BannerPlugin({
@@ -56,7 +58,7 @@ const getConfig = (entry) => {
                 openAnalyzer: false,
                 analyzerMode: "static",
                 exclude: /\.min\.js$/,
-                reportFilename: `${reportFileName}.html`
+                reportFilename: `report.html`
             })
         ],
         optimization: {
@@ -64,7 +66,6 @@ const getConfig = (entry) => {
             minimizer: [
                 new TerserPlugin({
                     include: /\.min\.js$/,
-                    sourceMap: false,
                     terserOptions: {
                         output: {
                             comments: minBanner
@@ -77,9 +78,15 @@ const getConfig = (entry) => {
     };
 };
 
+const banner = `Author : Matteo Bruni - https://www.matteobruni.it
+MIT license: https://opensource.org/licenses/MIT
+Demo / Generator : https://particles.matteobruni.it/
+GitHub : https://www.github.com/matteobruni/tsparticles
+How to use? : Check the GitHub README
+v${version}`;
+
+const minBanner = `tsParticles Fire Preset v${version} by Matteo Bruni`;
+
 module.exports = [
-    getConfig({
-        "tsparticles.preset.fire": "./dist/preset.js",
-        "tsparticles.preset.fire.min": "./dist/preset.js"
-    })
+    getConfig(getEntry("fire"), banner, minBanner, __dirname)
 ];

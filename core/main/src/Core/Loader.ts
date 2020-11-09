@@ -8,6 +8,11 @@ import type { SingleOrMultiple } from "../Types";
 
 const tsParticlesDom: Container[] = [];
 
+function fetchError(statusCode: number): void {
+    console.error(`Error tsParticles - fetch status: ${statusCode}`);
+    console.error("Error tsParticles - File config not found");
+}
+
 /**
  * Main class for creating the [[Container]] objects
  * @category Core
@@ -153,7 +158,7 @@ export class Loader {
         if (response.ok) {
             return Loader.load(tagId, await response.json());
         } else {
-            Loader.fetchError(response.status);
+            fetchError(response.status);
         }
     }
 
@@ -177,7 +182,7 @@ export class Loader {
 
             return Loader.set(id, domContainer, options);
         } else {
-            Loader.fetchError(response.status);
+            fetchError(response.status);
         }
     }
 
@@ -285,10 +290,5 @@ export class Loader {
             el.addEventListener("touchend", touchEndHandler);
             el.addEventListener("touchcancel", touchCancelHandler);
         }
-    }
-
-    private static fetchError(statusCode: number): void {
-        console.error(`Error tsParticles - fetch status: ${statusCode}`);
-        console.error("Error tsParticles - File config not found");
     }
 }

@@ -1,0 +1,11 @@
+{
+  "fpsLimit": 60,
+  "preset": "big-circles",
+  "background": {
+    "color": "#0d47a1",
+    "image": "",
+    "position": "50% 50%",
+    "repeat": "no-repeat",
+    "size": "cover"
+  }
+}

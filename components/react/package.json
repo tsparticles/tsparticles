@@ -1,6 +1,6 @@
 {
   "name": "react-tsparticles",
-  "version": "1.18.0",
+  "version": "1.19.0-alpha.0",
   "description": "tsParticles official React component",
   "main": "index.js",
   "unpkg": "umd/particles.js",
@@ -12,7 +12,7 @@
     "lint": "eslint src --ext .js,.jsx,.ts,.tsx --fix",
     "build:debug": "webpack",
     "build": "yarn prettify:src && yarn lint && cross-env NODE_ENV=production webpack && yarn prettify:readme",
-    "prepare": "yarn build"
+    "prepack": "yarn build"
   },
   "repository": {
     "url": "https://github.com/matteobruni/tsparticles",
@@ -70,32 +70,32 @@
   "author": "Matteo Bruni <matteo.bruni@me.com> (https://www.matteobruni.it)",
   "license": "MIT",
   "devDependencies": {
-    "@babel/core": "^7.11.6",
-    "@babel/preset-env": "^7.11.5",
-    "@types/lodash": "^4.14.161",
-    "@types/node": "^14.11.2",
-    "@types/react": "^16.9.50",
-    "@typescript-eslint/eslint-plugin": "^4.3.0",
-    "@typescript-eslint/parser": "^4.3.0",
+    "@babel/core": "^7.12.3",
+    "@babel/preset-env": "^7.12.1",
+    "@types/lodash": "^4.14.164",
+    "@types/node": "^14.14.6",
+    "@types/react": ">=16",
+    "@types/react-dom": ">=16",
+    "@typescript-eslint/eslint-plugin": "^4.6.1",
+    "@typescript-eslint/parser": "^4.6.1",
     "babel-loader": "^8.1.0",
     "cross-env": "^7.0.2",
-    "eslint": "^7.10.0",
-    "eslint-config-prettier": "^6.12.0",
+    "eslint": "^7.12.1",
+    "eslint-config-prettier": "^6.15.0",
     "prettier": "^2.1.2",
-    "react-dom": "^16.13.1",
-    "ts-loader": "^8.0.4",
+    "react-dom": ">=16",
+    "ts-loader": "^8.0.9",
     "ts-node": "^9.0.0",
-    "typescript": "^4.0.3",
-    "webpack": "^4.44.2",
-    "webpack-bundle-analyzer": "^3.9.0",
-    "webpack-cli": "^3.3.12",
+    "typescript": "^4.0.5",
+    "webpack": "^5.4.0",
+    "webpack-bundle-analyzer": "^4.1.0",
+    "webpack-cli": "^4.2.0",
     "webpack-node-externals": "^2.5.2"
   },
   "dependencies": {
     "lodash": "^4.17.20",
-    "tsparticles": "^1.18.0"
-  },
-  "peerDependencies": {
-    "react": "^16"
+    "react": ">=16",
+    "tslib": "^2.0.3",
+    "tsparticles": "^1.19.0-alpha.0"
   }
 }

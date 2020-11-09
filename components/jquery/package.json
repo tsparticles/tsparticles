@@ -1,6 +1,6 @@
 {
   "name": "jquery-particles",
-  "version": "1.18.0",
+  "version": "1.19.0-alpha.0",
   "description": "tsParticles official jQuery plugin",
   "main": "dist/jquery.particles.min.js",
   "scripts": {
@@ -11,7 +11,7 @@
     "bundle": "rollup -c",
     "minify": "uglifyjs dist/jquery.particles.js --output dist/jquery.particles.min.js --source-map \"filename='dist/jquery.particles.min.js.map',url='jquery.particles.min.js.map',content='dist/jquery.particles.js.map'\"",
     "build": "yarn prettify:src && yarn lint && yarn compile && yarn bundle && yarn minify && yarn prettify:readme",
-    "prepare": "yarn build"
+    "prepack": "yarn build"
   },
   "files": [
     "dist/**/*"
@@ -72,23 +72,24 @@
   },
   "dependencies": {
     "jquery": "^3.5.1",
-    "tslib": "^2.0.1",
-    "tsparticles": "^1.18.0"
+    "tsparticles": "^1.19.0-alpha.0"
   },
   "devDependencies": {
-    "@babel/core": "^7.11.6",
-    "@types/jquery": "^3.5.1",
-    "@types/node": "^14.11.2",
-    "@typescript-eslint/eslint-plugin": "^4.3.0",
-    "@typescript-eslint/parser": "^4.3.0",
+    "@babel/core": "^7.12.3",
+    "@babel/preset-env": "7.12.1",
+    "@types/jquery": "^3.5.4",
+    "@types/node": "^14.14.6",
+    "@types/webpack-env": "^1.15.3",
+    "@typescript-eslint/eslint-plugin": "^4.6.1",
+    "@typescript-eslint/parser": "^4.6.1",
     "babel-preset-env": "^1.7.0",
-    "eslint": "^7.10.0",
-    "eslint-config-prettier": "^6.12.0",
+    "eslint": "^7.12.1",
+    "eslint-config-prettier": "^6.15.0",
     "prettier": "^2.1.2",
-    "rollup": "^2.28.2",
+    "rollup": "^2.33.1",
     "rollup-plugin-babel": "^4.4.0",
-    "rollup-plugin-sourcemaps": "^0.6.2",
-    "typescript": "^4.0.3",
-    "uglify-js": "^3.11.1"
+    "rollup-plugin-sourcemaps": "^0.6.3",
+    "typescript": "^4.0.5",
+    "uglify-js": "^3.11.5"
   }
 }
