@@ -5,6 +5,7 @@ import type { INoise } from "./Noise/INoise";
 import type { IMoveAngle } from "./IMoveAngle";
 import type { IMoveGravity } from "./IMoveGravity";
 import type { IOutModes } from "./IOutModes";
+import { Spin } from "../../../Classes/Particles/Move/Spin";
 
 /**
  * [[include:Options/Particles/Move.md]]
@@ -42,6 +43,7 @@ export interface IMove {
     random: boolean;
     size: boolean;
     speed: number;
+    spin: Spin;
     straight: boolean;
     trail: ITrail;
     vibrate: boolean;

@@ -66,6 +66,8 @@ export class Particle implements IParticle {
     public moveSpeed?: number;
     public sizeValue?: number;
     public sizeAnimationSpeed?: number;
+    public spinRadius?: number;
+    public spinAngle?: number;
     public orbitRadiusValue?: number;
     public orbitRotationValue: number;
 
@@ -181,15 +183,6 @@ export class Particle implements IParticle {
             x: this.position.x,
             y: this.position.y,
         };
-
-        if (this.particlesOptions.spin.enable) {
-            const spinCenter = this.particlesOptions.spin.position ?? { x: 50, y: 50 };
-
-            this.spinCenter = {
-                x: (spinCenter.x / 100) * this.container.canvas.size.width,
-                y: (spinCenter.y / 100) * this.container.canvas.size.height,
-            };
-        }
 
         /* parallax */
         this.offset = {
@@ -454,6 +447,21 @@ export class Particle implements IParticle {
 
         if (this.livesRemaining <= 0) {
             this.livesRemaining = -1;
+        }
+
+        if (this.particlesOptions.move.spin.enable) {
+            const spinCenter = this.particlesOptions.move.spin.position ?? { x: 50, y: 50 };
+
+            this.spinCenter = {
+                x: (spinCenter.x / 100) * this.container.canvas.size.width,
+                y: (spinCenter.y / 100) * this.container.canvas.size.height,
+            };
+
+            const pos = this.getPosition();
+            const distance = NumberUtils.getDistance(pos, this.spinCenter);
+
+            this.spinAngle = Math.atan2(this.velocity.vertical, this.velocity.horizontal);
+            this.spinRadius = distance;
         }
 
         this.shadowColor = ColorUtils.colorToRgb(this.particlesOptions.shadow.color);

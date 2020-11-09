@@ -80,13 +80,26 @@ export class Mover {
         const zIndexOptions = particle.particlesOptions.zIndex;
         const zVelocityFactor = 1 - zIndexOptions.velocityRate * particle.zIndexFactor;
 
-        this.moveXY(velocity.horizontal * zVelocityFactor, velocity.vertical * zVelocityFactor);
+        if (
+            particlesOptions.move.spin.enable &&
+            particle.spinRadius !== undefined &&
+            particle.spinAngle !== undefined &&
+            particle.spinCenter !== undefined
+        ) {
+            particle.position.x = particle.spinCenter.x + particle.spinRadius * Math.cos(particle.spinAngle);
+            particle.position.y = particle.spinCenter.y + particle.spinRadius * Math.sin(particle.spinAngle);
 
-        if (particlesOptions.move.vibrate) {
-            this.moveXY(
-                Math.sin(particle.position.x * Math.cos(particle.position.y)),
-                Math.cos(particle.position.y * Math.sin(particle.position.x))
-            );
+            particle.spinRadius += this.particle.particlesOptions.move.spin.acceleration * container.retina.pixelRatio;
+            particle.spinAngle += moveSpeed / 100;
+        } else {
+            this.moveXY(velocity.horizontal * zVelocityFactor, velocity.vertical * zVelocityFactor);
+
+            if (particlesOptions.move.vibrate) {
+                this.moveXY(
+                    Math.sin(particle.position.x * Math.cos(particle.position.y)),
+                    Math.cos(particle.position.y * Math.sin(particle.position.x))
+                );
+            }
         }
 
         const initialPosition = particle.initialPosition;

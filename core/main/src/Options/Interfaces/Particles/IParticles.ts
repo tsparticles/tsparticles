@@ -48,7 +48,6 @@ export interface IParticles {
     shadow: IShadow;
     shape: IShape;
     size: ISize;
-    spin: ISpin;
     stroke: SingleOrMultiple<IStroke>;
     twinkle: ITwinkle;
     zIndex: IZIndex;

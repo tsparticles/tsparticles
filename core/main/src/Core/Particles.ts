@@ -277,8 +277,8 @@ export class Particles {
             this.nextId++;
 
             return particle;
-        } catch {
-            console.warn("error adding particle");
+        } catch (e) {
+            console.warn(`error adding particle: ${e}`);
 
             return;
         }

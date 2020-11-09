@@ -176,8 +176,8 @@ export class AbsorberInstance {
             particle.velocity.horizontal = 0;
             particle.velocity.vertical = 0;
 
-            particle.position.x = this.position.x + orbitRadius * Math.cos(orbitAngle);
-            particle.position.y = this.position.y + orbitRadius * Math.sin(orbitAngle);
+            particle.position.x += orbitRadius * Math.cos(orbitAngle);
+            particle.position.y += orbitRadius * Math.sin(orbitAngle);
 
             particle.orbitRadius -= acceleration;
             particle.orbitAngle +=

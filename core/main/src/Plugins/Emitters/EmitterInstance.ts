@@ -210,8 +210,12 @@ export class EmitterInstance {
         }
 
         if (this.emitterOptions.spin.enable) {
-            if (!particlesOptions.spin) {
-                particlesOptions.spin = {
+            if (!particlesOptions.move) {
+                particlesOptions.move = {};
+            }
+
+            if (!particlesOptions.move.spin) {
+                particlesOptions.move.spin = {
                     enable: true,
                     position: {
                         x: (position.x * 100) / container.canvas.size.width,
