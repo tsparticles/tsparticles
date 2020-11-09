@@ -21,7 +21,7 @@
     "jquery": "^3.5.1",
     "jquery-particles": "^1.19.0-alpha.0",
     "tsparticles": "^1.19.0-alpha.0",
-    "tsparticles-preset-basic": "^1.4.0-alpha.0"
+    "tsparticles-preset-links": "^1.4.0-alpha.0"
   },
   "devDependencies": {
     "@fortawesome/fontawesome-free": "^5.15.1",

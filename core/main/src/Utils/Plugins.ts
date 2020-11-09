@@ -5,10 +5,12 @@ import type { RecursivePartial } from "../Types";
 import type { IOptions } from "../Options/Interfaces/IOptions";
 import type { IShapeDrawer } from "../Core/Interfaces/IShapeDrawer";
 import type { Options } from "../Options/Classes/Options";
+import { INoise } from "../Core/Interfaces/INoise";
 
 const plugins: IPlugin[] = [];
 const presets: Map<string, RecursivePartial<IOptions>> = new Map<string, RecursivePartial<IOptions>>();
 const drawers: Map<string, IShapeDrawer> = new Map<string, IShapeDrawer>();
+const noiseGenerators: Map<string, INoise> = new Map<string, INoise>();
 
 /**
  * @category Utils
@@ -65,5 +67,15 @@ export class Plugins {
 
     public static getSupportedShapes(): IterableIterator<string> {
         return drawers.keys();
+    }
+
+    public static getNoiseGenerator(type: string): INoise | undefined {
+        return noiseGenerators.get(type);
+    }
+
+    public static addNoiseGenerator(type: string, noiseGenerator: INoise): void {
+        if (!Plugins.getNoiseGenerator(type)) {
+            noiseGenerators.set(type, noiseGenerator);
+        }
     }
 }

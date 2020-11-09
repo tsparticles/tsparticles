@@ -5,8 +5,8 @@ import type { IEmitterRate } from "./IEmitterRate";
 import type { IEmitterLife } from "./IEmitterLife";
 import type { RecursivePartial } from "../../../../Types";
 import type { IEmitterSize } from "./IEmitterSize";
-import { AnimatableColor } from "../../../../Options/Classes/Particles/AnimatableColor";
-import { IEmitterSpin } from "./IEmitterSpin";
+import type { IEmitterSpin } from "./IEmitterSpin";
+import type { IAnimatableColor } from "../../../../Options/Interfaces/Particles/IAnimatableColor";
 
 /**
  * Particles emitter object options
@@ -55,5 +55,5 @@ export interface IEmitter {
     /**
      * The particle spawn color
      */
-    spawnColor?: AnimatableColor;
+    spawnColor?: IAnimatableColor;
 }

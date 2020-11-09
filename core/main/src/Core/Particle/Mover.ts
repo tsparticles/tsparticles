@@ -1,4 +1,4 @@
-import { NumberUtils, Utils } from "../../Utils";
+import { NumberUtils, Plugins, Utils } from "../../Utils";
 import type { Container } from "../Container";
 import type { Particle } from "../Particle";
 import { HoverMode } from "../../Enums";
@@ -135,7 +135,17 @@ export class Mover {
             return;
         }
 
-        const noise = container.noise.generate(particle);
+        let generator = container.noise;
+
+        if (noiseOptions.generator) {
+            const customGenerator = Plugins.getNoiseGenerator(noiseOptions.generator);
+
+            if (customGenerator) {
+                generator = customGenerator;
+            }
+        }
+
+        const noise = generator.generate(particle);
 
         particle.velocity.horizontal += Math.cos(noise.angle) * noise.length;
         particle.velocity.vertical += Math.sin(noise.angle) * noise.length;

@@ -10,6 +10,7 @@ export class Noise implements INoise, IOptionLoader<INoise> {
     public clamp;
     public delay;
     public enable;
+    public generator?: string;
 
     constructor() {
         this.clamp = true;
@@ -31,5 +32,7 @@ export class Noise implements INoise, IOptionLoader<INoise> {
         if (data.enable !== undefined) {
             this.enable = data.enable;
         }
+
+        this.generator = data.generator;
     }
 }

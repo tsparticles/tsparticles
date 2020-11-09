@@ -113,47 +113,43 @@
             editor.expandAll();
 
             if (particles.options.particles.move.noise.enable) {
-                if (presetId === "seaAnemone") {
-particles.setNoise(window.seaNoiseGenerator);
-                } else {
-                    particles.setNoise({
-                        init: function () {
-                            setup(particles);
-                        },
-                        update: function () {
-                            calculateField();
+                particles.setNoise({
+                    init: function () {
+                        setup(particles);
+                    },
+                    update: function () {
+                        calculateField();
 
-                            const mousePos = particles.interactivity.mouse.position;
+                        const mousePos = particles.interactivity.mouse.position;
 
-                            let sumZ;
+                        let sumZ;
 
-                            if (mousePos) {
-                                sumZ =
-                                    (mousePos.x * mousePos.y) /
-                                    (25 * particles.canvas.size.width * particles.canvas.size.height);
-                            } else {
-                                sumZ = 0.004;
-                            }
-
-                            noiseZ += sumZ;
-                        },
-                        generate: function (p) {
-                            const pos = p.getPosition();
-
-                            const px = Math.max(Math.floor(pos.x / size), 0);
-                            const py = Math.max(Math.floor(pos.y / size), 0);
-
-                            if (!field || !field[px] || !field[px][py]) {
-                                return { angle: 0, length: 0 };
-                            }
-
-                            return {
-                                angle: field[px][py][0],
-                                length: field[px][py][1]
-                            };
+                        if (mousePos) {
+                            sumZ =
+                                (mousePos.x * mousePos.y) /
+                                (25 * particles.canvas.size.width * particles.canvas.size.height);
+                        } else {
+                            sumZ = 0.004;
                         }
-                    });
-                }
+
+                        noiseZ += sumZ;
+                    },
+                    generate: function (p) {
+                        const pos = p.getPosition();
+
+                        const px = Math.max(Math.floor(pos.x / size), 0);
+                        const py = Math.max(Math.floor(pos.y / size), 0);
+
+                        if (!field || !field[px] || !field[px][py]) {
+                            return { angle: 0, length: 0 };
+                        }
+
+                        return {
+                            angle: field[px][py][0],
+                            length: field[px][py][1]
+                        };
+                    }
+                });
 
                 particles.refresh();
             }

@@ -85,8 +85,8 @@ GitHub : https://www.github.com/matteobruni/tsparticles
 How to use? : Check the GitHub README
 v${version}`;
 
-const minBanner = `tsParticles Links Preset v${version} by Matteo Bruni`;
+const minBanner = `tsParticles Sea Anemone Preset v${version} by Matteo Bruni`;
 
 module.exports = [
-    getConfig(getEntry("links"), banner, minBanner, __dirname)
+    getConfig(getEntry("seaAnemone"), banner, minBanner, __dirname)
 ];
