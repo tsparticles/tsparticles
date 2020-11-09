@@ -1,7 +1,7 @@
 import type { Container } from "./Container";
 import type { IVelocity } from "./Interfaces/IVelocity";
 import type { IParticleValueAnimation } from "./Interfaces/IParticleValueAnimation";
-import type { ICoordinates } from "./Interfaces/ICoordinates";
+import type { ICoordinates, ICoordinates3d } from "./Interfaces/ICoordinates";
 import type { IParticleImage } from "./Interfaces/IParticleImage";
 import { Updater } from "./Particle/Updater";
 import type { IHsl, IRgb } from "./Interfaces/Colors";
@@ -30,6 +30,7 @@ import { Infecter } from "./Particle/Infecter";
 import type { IDelta } from "./Interfaces/IDelta";
 import { Mover } from "./Particle/Mover";
 import type { ILink } from "./Interfaces/ILink";
+import type { IParticleLoops } from "./Interfaces/IParticleLoops";
 
 /**
  * The single particle object
@@ -46,6 +47,7 @@ export class Particle implements IParticle {
     public misplaced;
     public spawning;
     public lastNoiseTime;
+    public zIndexFactor;
 
     public readonly noiseDelay;
     public readonly updater;
@@ -58,6 +60,7 @@ export class Particle implements IParticle {
     public links: ILink[];
     public randomIndexData?: number;
     public linksDistance?: number;
+    public attractDistance?: number;
     public linksWidth?: number;
     public maxDistance?: number;
     public moveSpeed?: number;
@@ -69,8 +72,9 @@ export class Particle implements IParticle {
     public readonly close: boolean;
     public readonly direction: MoveDirection | keyof typeof MoveDirection | MoveDirectionAlt;
     public readonly fill: boolean;
+    public readonly loops: IParticleLoops;
     public readonly stroke: IStroke;
-    public readonly position: ICoordinates;
+    public readonly position: ICoordinates3d;
     public readonly offset: ICoordinates;
     public readonly shadowColor: IRgb | undefined;
     public readonly color: IParticleValueAnimation<IHsl | undefined>;
@@ -85,6 +89,7 @@ export class Particle implements IParticle {
     public readonly initialVelocity: IVelocity;
     public readonly shapeData?: IShapeValues;
     public readonly bubble: IBubbleParticleData;
+    public readonly spinCenter?: ICoordinates;
 
     constructor(
         public readonly id: number,
@@ -99,6 +104,10 @@ export class Particle implements IParticle {
         this.lastNoiseTime = 0;
         this.destroyed = false;
         this.misplaced = false;
+        this.loops = {
+            opacity: 0,
+            size: 0,
+        };
 
         const pxRatio = container.retina.pixelRatio;
         const options = container.options;
@@ -159,6 +168,37 @@ export class Particle implements IParticle {
         this.fill = this.shapeData?.fill ?? this.fill;
         this.close = this.shapeData?.close ?? this.close;
         this.particlesOptions = particlesOptions;
+
+        const zIndexValue = NumberUtils.getValue(this.particlesOptions.zIndex);
+
+        /* position */
+        this.position = this.calcPosition(
+            this.container,
+            position,
+            NumberUtils.clamp(zIndexValue, 0, container.zLayers)
+        );
+        this.initialPosition = {
+            x: this.position.x,
+            y: this.position.y,
+        };
+
+        if (this.particlesOptions.spin.enable) {
+            const spinCenter = this.particlesOptions.spin.position ?? { x: 50, y: 50 };
+
+            this.spinCenter = {
+                x: (spinCenter.x / 100) * this.container.canvas.size.width,
+                y: (spinCenter.y / 100) * this.container.canvas.size.height,
+            };
+        }
+
+        /* parallax */
+        this.offset = {
+            x: 0,
+            y: 0,
+        };
+
+        // Scale z-index factor to be between 0 and 2
+        this.zIndexFactor = this.position.z / container.zLayers;
         this.noiseDelay = NumberUtils.getValue(this.particlesOptions.move.noise.delay) * 1000;
 
         container.retina.initParticle(this);
@@ -285,34 +325,46 @@ export class Particle implements IParticle {
             }
         }
 
-        /* position */
-        this.position = this.calcPosition(this.container, position);
-        this.initialPosition = {
-            x: this.position.x,
-            y: this.position.y,
-        };
-
-        /* parallax */
-        this.offset = {
-            x: 0,
-            y: 0,
-        };
-
         /* opacity */
         const opacityOptions = this.particlesOptions.opacity;
-        const randomOpacity = opacityOptions.random;
-        const opacityValue = opacityOptions.value;
+        const randomOpacity =
+            typeof opacityOptions.random === "boolean" ? opacityOptions.random : opacityOptions.random.enable;
 
         this.opacity = {
-            value: randomOpacity.enable
-                ? NumberUtils.randomInRange(randomOpacity.minimumValue, opacityValue)
-                : opacityValue,
+            value: NumberUtils.getValue(opacityOptions),
         };
+
+        // Don't let opacity go below 0 or above 1
+        this.opacity.value = NumberUtils.clamp(this.opacity.value, 0, 1);
 
         const opacityAnimation = opacityOptions.animation;
 
         if (opacityAnimation.enable) {
             this.opacity.status = AnimationStatus.increasing;
+
+            if (!randomOpacity) {
+                switch (opacityAnimation.startValue) {
+                    case StartValueType.min:
+                        this.opacity.value = opacityAnimation.minimumValue;
+
+                        break;
+
+                    case StartValueType.random:
+                        this.opacity.value = NumberUtils.randomInRange(
+                            opacityAnimation.minimumValue,
+                            this.opacity.value
+                        );
+
+                        break;
+
+                    case StartValueType.max:
+                    default:
+                        this.opacity.status = AnimationStatus.decreasing;
+
+                        break;
+                }
+            }
+
             this.opacity.velocity = (opacityAnimation.speed / 100) * container.retina.reduceFactor;
 
             if (!opacityAnimation.sync) {
@@ -423,10 +475,11 @@ export class Particle implements IParticle {
         this.container.canvas.drawParticle(this, delta);
     }
 
-    public getPosition(): ICoordinates {
+    public getPosition(): ICoordinates3d {
         return {
             x: this.position.x + this.offset.x,
             y: this.position.y + this.offset.y,
+            z: this.position.z,
         };
     }
 
@@ -442,25 +495,43 @@ export class Particle implements IParticle {
         return this.bubble.color ?? this.strokeColor.value ?? this.color.value;
     }
 
+    /**
+     * This destroys the particle just before it's been removed from the canvas and the container
+     */
     public destroy(): void {
         this.destroyed = true;
         this.bubble.inRange = false;
         this.links = [];
     }
 
-    private calcPosition(container: Container, position?: ICoordinates): ICoordinates {
+    /**
+     * This method is used when the particle has lost a life and needs some value resets
+     */
+    public reset(): void {
+        this.loops.opacity = 0;
+        this.loops.size = 0;
+    }
+
+    private calcPosition(container: Container, position: ICoordinates | undefined, zIndex: number): ICoordinates3d {
         for (const [, plugin] of container.plugins) {
             const pluginPos =
                 plugin.particlePosition !== undefined ? plugin.particlePosition(position, this) : undefined;
 
             if (pluginPos !== undefined) {
-                return Utils.deepExtend({}, pluginPos) as ICoordinates;
+                return {
+                    x: pluginPos.x,
+                    y: pluginPos.y,
+                    z: zIndex,
+                };
             }
         }
 
+        const cSize = container.canvas.size;
+
         const pos = {
-            x: position?.x ?? Math.random() * container.canvas.size.width,
-            y: position?.y ?? Math.random() * container.canvas.size.height,
+            x: position?.x ?? cSize.width * Math.random(),
+            y: position?.y ?? cSize.height * Math.random(),
+            z: zIndex,
         };
 
         /* check position  - into the canvas */

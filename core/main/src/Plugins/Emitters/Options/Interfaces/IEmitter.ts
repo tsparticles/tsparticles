@@ -5,6 +5,8 @@ import type { IEmitterRate } from "./IEmitterRate";
 import type { IEmitterLife } from "./IEmitterLife";
 import type { RecursivePartial } from "../../../../Types";
 import type { IEmitterSize } from "./IEmitterSize";
+import { AnimatableColor } from "../../../../Options/Classes/Particles/AnimatableColor";
+import { IEmitterSpin } from "./IEmitterSpin";
 
 /**
  * Particles emitter object options
@@ -12,11 +14,6 @@ import type { IEmitterSize } from "./IEmitterSize";
  * @category Emitters Plugin
  */
 export interface IEmitter {
-    /**
-     * The size of the particles emitter area
-     */
-    size?: IEmitterSize;
-
     /**
      * The direction of the emitted particles, [[MoveDirection]] is the enum used for values
      */
@@ -44,4 +41,19 @@ export interface IEmitter {
      * The particles emitting rate options
      */
     rate: IEmitterRate;
+
+    /**
+     * The size of the particles emitter area
+     */
+    size?: IEmitterSize;
+
+    /**
+     * If `true`, particles will spin around the emitter
+     */
+    spin: IEmitterSpin;
+
+    /**
+     * The particle spawn color
+     */
+    spawnColor?: AnimatableColor;
 }

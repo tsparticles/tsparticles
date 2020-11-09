@@ -1,7 +1,7 @@
 {
   "$schema": "https://developer.microsoft.com/json-schemas/rush/v5/rush.schema.json",
   "rushVersion": "5.34.4",
-  "pnpmVersion": "5.10.1",
+  "pnpmVersion": "5.10.4",
   "pnpmOptions": {
     "useWorkspaces": true
   },

@@ -41,10 +41,12 @@ export class Attract implements IAttract, IOptionLoader<IAttract> {
         this.rotate.y = value;
     }
 
+    public distance: number;
     public enable;
     public rotate: ICoordinates;
 
     constructor() {
+        this.distance = 200;
         this.enable = false;
         this.rotate = {
             x: 3000,

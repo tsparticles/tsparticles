@@ -14,6 +14,9 @@ import type { IAnimatableColor } from "./IAnimatableColor";
 import type { ILife } from "./Life/ILife";
 import type { IBounce } from "./Bounce/IBounce";
 import type { IOrbit } from "./Orbit/IOrbit";
+import type { IZIndex } from "./ZIndex/IZIndex";
+import type { IRepulse } from "./Repulse/IRepulse";
+import type { ISpin } from "./ISpin";
 
 /**
  * [[include:Options/Particles.md]]
@@ -45,6 +48,9 @@ export interface IParticles {
     shadow: IShadow;
     shape: IShape;
     size: ISize;
+    spin: ISpin;
     stroke: SingleOrMultiple<IStroke>;
     twinkle: ITwinkle;
+    zIndex: IZIndex;
+    repulse: IRepulse;
 }

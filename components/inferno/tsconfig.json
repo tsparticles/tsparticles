@@ -1,8 +1,8 @@
 {
 	"compilerOptions": {
 		"pretty": true,
-		"target": "es6",
-		"module": "commonjs",
+		"target": "es2015",
+		"module": "esnext",
 		"allowSyntheticDefaultImports": true,
 		"preserveConstEnums": true,
 		"sourceMap": true,

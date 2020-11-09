@@ -36,6 +36,13 @@ export class Mover {
         this.moveParallax();
     }
 
+    public moveXY(x: number, y: number): void {
+        const particle = this.particle;
+
+        particle.position.x += x;
+        particle.position.y += y;
+    }
+
     private moveParticle(delta: IDelta): void {
         const particle = this.particle;
         const particlesOptions = particle.particlesOptions;
@@ -70,12 +77,16 @@ export class Mover {
             particle.velocity.vertical = velocity.vertical / moveSpeed;
         }
 
-        particle.position.x += velocity.horizontal;
-        particle.position.y += velocity.vertical;
+        const zIndexOptions = particle.particlesOptions.zIndex;
+        const zVelocityFactor = 1 - zIndexOptions.velocityRate * particle.zIndexFactor;
+
+        this.moveXY(velocity.horizontal * zVelocityFactor, velocity.vertical * zVelocityFactor);
 
         if (particlesOptions.move.vibrate) {
-            particle.position.x += Math.sin(particle.position.x * Math.cos(particle.position.y));
-            particle.position.y += Math.cos(particle.position.y * Math.sin(particle.position.x));
+            this.moveXY(
+                Math.sin(particle.position.x * Math.cos(particle.position.y)),
+                Math.cos(particle.position.y * Math.sin(particle.position.x))
+            );
         }
 
         const initialPosition = particle.initialPosition;
@@ -127,9 +138,12 @@ export class Mover {
         const noise = container.noise.generate(particle);
 
         particle.velocity.horizontal += Math.cos(noise.angle) * noise.length;
-        particle.velocity.horizontal = NumberUtils.clamp(particle.velocity.horizontal, -1, 1);
         particle.velocity.vertical += Math.sin(noise.angle) * noise.length;
-        particle.velocity.vertical = NumberUtils.clamp(particle.velocity.vertical, -1, 1);
+
+        if (noiseOptions.clamp) {
+            particle.velocity.horizontal = NumberUtils.clamp(particle.velocity.horizontal, -1, 1);
+            particle.velocity.vertical = NumberUtils.clamp(particle.velocity.vertical, -1, 1);
+        }
 
         particle.lastNoiseTime -= particle.noiseDelay;
     }
@@ -150,17 +164,17 @@ export class Mover {
             return;
         }
 
-        const windowDimension = {
-            height: window.innerHeight / 2,
-            width: window.innerWidth / 2,
+        const canvasCenter = {
+            x: container.canvas.size.width / 2,
+            y: container.canvas.size.height / 2,
         };
         const parallaxSmooth = options.interactivity.events.onHover.parallax.smooth;
         const factor = particle.getRadius() / parallaxForce;
 
         /* smaller is the particle, longer is the offset distance */
         const tmp = {
-            x: (mousePos.x - windowDimension.width) * factor,
-            y: (mousePos.y - windowDimension.height) * factor,
+            x: (mousePos.x - canvasCenter.x) * factor,
+            y: (mousePos.y - canvasCenter.y) * factor,
         };
 
         particle.offset.x += (tmp.x - particle.offset.x) / parallaxSmooth; // Easing equation

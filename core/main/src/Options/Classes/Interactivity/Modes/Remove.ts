@@ -23,15 +23,31 @@ export class Remove implements IRemove, IOptionLoader<IRemove> {
         this.quantity = value;
     }
 
+    public default;
+    public groups: string[];
     public quantity;
 
     constructor() {
+        this.default = true;
+        this.groups = [];
         this.quantity = 2;
     }
 
     public load(data?: RecursivePartial<IRemove>): void {
         if (data === undefined) {
             return;
+        }
+
+        if (data.default !== undefined) {
+            this.default = data.default;
+        }
+
+        if (data.groups !== undefined) {
+            this.groups = data.groups.map((t) => t);
+        }
+
+        if (!this.groups.length) {
+            this.default = true;
         }
 
         const quantity = data.quantity ?? data.particles_nb;

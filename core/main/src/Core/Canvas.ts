@@ -87,11 +87,11 @@ export class Canvas {
         this.coverColor =
             coverRgb !== undefined
                 ? {
-                      r: coverRgb.r,
-                      g: coverRgb.g,
-                      b: coverRgb.b,
-                      a: cover.opacity,
-                  }
+                    r: coverRgb.r,
+                    g: coverRgb.g,
+                    b: coverRgb.b,
+                    a: cover.opacity,
+                }
                 : undefined;
         this.trailFillColor = ColorUtils.colorToRgb(trail.fillColor);
 
@@ -194,7 +194,7 @@ export class Canvas {
         }
     }
 
-    public initSize() {
+    public initSize(): void {
         if (!this.element) {
             return;
         }
@@ -397,9 +397,7 @@ export class Canvas {
             return;
         }
 
-        const container = this.container;
-        const options = container.options;
-        const particles = container.particles;
+        const options = this.container.options;
         const pOptions = particle.particlesOptions;
         const twinkle = pOptions.twinkle.particles;
         const twinkleFreq = twinkle.frequency;
@@ -407,6 +405,7 @@ export class Canvas {
         const twinkling = twinkle.enable && Math.random() < twinkleFreq;
         const radius = particle.getRadius();
         const opacity = twinkling ? twinkle.opacity : particle.bubble.opacity ?? particle.opacity.value;
+        const strokeOpacity = particle.stroke.opacity ?? opacity;
         const infectionStage = particle.infecter.infectionStage;
         const infection = options.infection;
         const infectionStages = infection.stages;
@@ -420,17 +419,101 @@ export class Canvas {
             twinkling && twinkleRgb !== undefined
                 ? twinkleRgb
                 : infectionRgb ?? (psColor ? ColorUtils.hslToRgb(psColor) : undefined);
+        const zIndexOptions = particle.particlesOptions.zIndex;
+        const zOpacityFactor = 1 - zIndexOptions.opacityRate * particle.zIndexFactor;
+        const zOpacity = opacity * zOpacityFactor;
 
-        const fillColorValue = fColor !== undefined ? ColorUtils.getStyleFromRgb(fColor, opacity) : undefined;
+        const fillColorValue = fColor !== undefined ? ColorUtils.getStyleFromRgb(fColor, zOpacity) : undefined;
 
         if (!this.context || (!fillColorValue && !sColor)) {
             return;
         }
 
+        const zStrokeOpacity = strokeOpacity * zOpacityFactor;
         const strokeColorValue =
-            sColor !== undefined
-                ? ColorUtils.getStyleFromRgb(sColor, particle.stroke.opacity ?? opacity)
-                : fillColorValue;
+            sColor !== undefined ? ColorUtils.getStyleFromRgb(sColor, zStrokeOpacity) : fillColorValue;
+
+        this.drawParticleLinks(particle);
+
+        const orbitOptions = particle.particlesOptions.orbit;
+        const zSizeFactor = 1 - zIndexOptions.sizeRate * particle.zIndexFactor;
+
+        if (radius > 0 && orbitOptions.enable === false) {
+
+            CanvasUtils.drawParticle(
+                this.container,
+                this.context,
+                particle,
+                delta,
+                fillColorValue,
+                strokeColorValue,
+                options.backgroundMask.enable,
+                options.backgroundMask.composite,
+                radius * zSizeFactor,
+                zOpacity,
+                particle.particlesOptions.shadow
+            );
+        } else if (radius > 0 && orbitOptions.enable === true) {
+            this.drawOrbit(particle, orbitOptions, "back");
+
+            CanvasUtils.drawParticle(
+                this.container,
+                this.context,
+                particle,
+                delta,
+                fillColorValue,
+                strokeColorValue,
+                options.backgroundMask.enable,
+                options.backgroundMask.composite,
+                radius * zSizeFactor,
+                zOpacity,
+                particle.particlesOptions.shadow
+            );
+
+            this.drawOrbit(particle, orbitOptions, "front");
+        }
+    }
+
+    public drawOrbit(particle: IParticle, orbitOptions: IOrbit, type: string): void {
+        if (!this.context) {
+            return;
+        }
+
+        let start: number;
+        let end: number;
+
+        if (type == "back") {
+            start = Math.PI / 2;
+            end = (Math.PI * 3) / 2;
+        } else if (type == "front") {
+            start = (Math.PI * 3) / 2;
+            end = Math.PI / 2;
+        } else {
+            start = 0;
+            end = 2 * Math.PI;
+        }
+
+        CanvasUtils.drawEllipse(
+            this.context,
+            particle,
+            orbitOptions.color || particle.getFillColor(),
+            particle.orbitRadiusValue ?? particle.getRadius(),
+            orbitOptions.opacity,
+            orbitOptions.width,
+            particle.orbitRotationValue || orbitOptions.rotation.value,
+            start,
+            end
+        );
+    }
+
+    public drawParticleLinks(particle: Particle): void {
+        if (!this.context) {
+            return;
+        }
+
+        const container = this.container;
+        const particles = container.particles;
+        const pOptions = particle.particlesOptions;
 
         if (particle.links.length > 0) {
             this.context.save();
@@ -472,73 +555,6 @@ export class Canvas {
 
             this.context.restore();
         }
-
-        const orbitOptions = particle.particlesOptions.orbit;
-
-        if (radius > 0 && orbitOptions.enable === false) {
-            CanvasUtils.drawParticle(
-                this.container,
-                this.context,
-                particle,
-                delta,
-                fillColorValue,
-                strokeColorValue,
-                options.backgroundMask.enable,
-                options.backgroundMask.composite,
-                radius,
-                opacity,
-                particle.particlesOptions.shadow
-            );
-        } else if (radius > 0 && orbitOptions.enable === true) {
-            this.drawOrbit(particle, orbitOptions, "back");
-
-            CanvasUtils.drawParticle(
-                this.container,
-                this.context,
-                particle,
-                delta,
-                fillColorValue,
-                strokeColorValue,
-                options.backgroundMask.enable,
-                options.backgroundMask.composite,
-                radius,
-                opacity,
-                particle.particlesOptions.shadow
-            );
-
-            this.drawOrbit(particle, orbitOptions, "front");
-        }
-    }
-    public drawOrbit(particle: IParticle, orbitOptions: IOrbit, type: string): void {
-        if (!this.context) {
-            return;
-        }
-
-        let start: number;
-        let end: number;
-
-        if (type == "back") {
-            start = Math.PI / 2;
-            end = (Math.PI * 3) / 2;
-        } else if (type == "front") {
-            start = (Math.PI * 3) / 2;
-            end = Math.PI / 2;
-        } else {
-            start = 0;
-            end = 2 * Math.PI;
-        }
-
-        CanvasUtils.drawEllipse(
-            this.context,
-            particle,
-            orbitOptions.color || particle.getFillColor(),
-            particle.orbitRadiusValue ?? particle.getRadius(),
-            orbitOptions.opacity,
-            orbitOptions.width,
-            particle.orbitRotationValue || orbitOptions.rotation.value,
-            start,
-            end
-        );
     }
 
     public drawPlugin(plugin: IContainerPlugin, delta: IDelta): void {

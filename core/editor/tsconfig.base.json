@@ -1,0 +1,31 @@
+{
+  "compilerOptions": {
+    "target": "es2015",
+    "lib": [
+      "ES2015",
+      "DOM"
+    ],
+    "declaration": true,
+    "rootDir": "./src/",
+    "removeComments": true,
+    "importHelpers": false,
+    "strict": true,
+    "noImplicitAny": true,
+    "strictNullChecks": true,
+    "alwaysStrict": true,
+    "noFallthroughCasesInSwitch": true,
+    "moduleResolution": "node",
+    "allowSyntheticDefaultImports": true,
+    "esModuleInterop": true,
+    "experimentalDecorators": true,
+    "forceConsistentCasingInFileNames": true
+  },
+  "exclude": [
+    "./tests/",
+    "./node_modules/",
+    "../../node_modules/",
+    "./dist/",
+    "./typedoc/",
+    "./docs/"
+  ]
+}
