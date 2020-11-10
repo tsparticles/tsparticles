@@ -307,8 +307,12 @@ export class Updater {
             return;
         }
 
-        if (particle.particlesOptions.color.animation.enable) {
-            particle.color.value.h += (particle.color.velocity ?? 0) * delta.factor;
+        const animationOptions = particle.particlesOptions.color.animation;
+
+        if (animationOptions.enable) {
+            const offset = NumberUtils.randomInRange(animationOptions.offset.min, animationOptions.offset.max);
+
+            particle.color.value.h += (particle.color.velocity ?? 0) * delta.factor + offset * 3.6;
 
             if (particle.color.value.h > 360) {
                 particle.color.value.h -= 360;
@@ -318,10 +322,10 @@ export class Updater {
 
     private updateOrbitRotation(delta: IDelta): void {
         const particle = this.particle;
-        const particleAnimations = particle.particlesOptions.orbit.animation;
+        const orbitAnimations = particle.particlesOptions.orbit.animation;
 
-        if (particleAnimations.enable) {
-            particle.orbitRotationValue = particle.orbitRotationValue + particleAnimations.speed;
+        if (orbitAnimations.enable) {
+            particle.orbitRotationValue += orbitAnimations.speed * delta.factor;
         }
     }
 

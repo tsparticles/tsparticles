@@ -1,8 +1,8 @@
-import type { IAnimatableColor } from "../../Interfaces/Particles/IAnimatableColor";
-import { OptionsColor } from "../OptionsColor";
-import type { RecursivePartial } from "../../../Types";
+import type { IAnimatableColor } from "../Interfaces/IAnimatableColor";
+import { OptionsColor } from "./OptionsColor";
+import type { RecursivePartial } from "../../Types";
 import { ColorAnimation } from "./ColorAnimation";
-import type { IOptionLoader } from "../../Interfaces/IOptionLoader";
+import type { IOptionLoader } from "../Interfaces/IOptionLoader";
 
 /**
  * [[include:Options/Particles/Color.md]]

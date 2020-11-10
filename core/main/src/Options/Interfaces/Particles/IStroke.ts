@@ -1,4 +1,4 @@
-import type { IAnimatableColor } from "./IAnimatableColor";
+import type { IAnimatableColor } from "../IAnimatableColor";
 
 /**
  * Particle stroke, outlines the particle with a customizable line

@@ -8,7 +8,7 @@ import { EmitterLife } from "./EmitterLife";
 import { Utils } from "../../../../Utils";
 import { EmitterSize } from "./EmitterSize";
 import type { IOptionLoader } from "../../../../Options/Interfaces/IOptionLoader";
-import { AnimatableColor } from "../../../../Options/Classes/Particles/AnimatableColor";
+import { AnimatableColor } from "../../../../Options/Classes/AnimatableColor";
 import { EmitterSpin } from "./EmitterSpin";
 
 /**

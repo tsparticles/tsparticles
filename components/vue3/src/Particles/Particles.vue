@@ -5,7 +5,7 @@
 <script lang="ts">
 import { nextTick } from "vue";
 import { Options, Vue } from "vue-class-component";
-import { tsParticles } from "tsparticles";
+import { Main, tsParticles } from "tsparticles";
 import type { Container, ISourceOptions } from "tsparticles";
 
 export type IParticlesProps = ISourceOptions;
@@ -22,6 +22,9 @@ export type IParticlesParams = IParticlesProps;
     },
     particlesContainer: {
       type: Object as () => Container
+    },
+    particlesInit: {
+      type: Object as (tsParticles: Main) => void
     }
   }
 })
@@ -29,11 +32,18 @@ export default class Particles extends Vue {
   private id!: string;
   private options?: IParticlesProps;
   private particlesContainer?: Container;
+  private particlesInit?: (tsParticles: Main) => void;
 
   public mounted(): void {
     nextTick(() => {
       if (!this.id) {
         throw new Error("Prop 'id' is required!");
+      }
+
+      tsParticles.init();
+
+      if (this.particlesInit) {
+        this.particlesInit(tsParticles);
       }
 
       tsParticles

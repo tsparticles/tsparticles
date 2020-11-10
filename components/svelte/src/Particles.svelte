@@ -6,10 +6,16 @@
     export let id = "tsparticles";
 
     const dispatch = createEventDispatcher();
+    const particlesInitEvent = "particlesInit";
+    const particlesLoadedEvent = "particlesLoaded";
 
     let oldId = id;
 
     afterUpdate(() => {
+        tsParticles.init();
+
+        dispatch(particlesInitEvent, tsParticles);
+
         if (oldId) {
             const oldContainer = tsParticles.dom().find(c => c.id === oldId);
 
@@ -20,14 +26,14 @@
 
         if (id) {
             tsParticles.load(id, options).then((container) => {
-                dispatch("particlesLoaded", {
+                dispatch(particlesLoadedEvent, {
                     particles: container
                 });
 
                 oldId = id;
             });
         } else {
-            dispatch("particlesLoaded", {
+            dispatch(particlesLoadedEvent, {
                 particles: undefined
             });
         }

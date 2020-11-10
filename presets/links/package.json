@@ -50,10 +50,12 @@
   "bugs": {
     "url": "https://github.com/matteobruni/tsparticles/issues"
   },
-  "main": "dist/index.js",
+  "main": "dist/preset.js",
   "jsdelivr": "dist/tsparticles.preset.links.min.js",
   "unpkg": "dist/tsparticles.preset.links.min.js",
-  "browser": "dist/index.js",
+  "browser": "dist/preset.js",
+  "module": "dist/preset.js",
+  "types": "dist/preset.d.ts",
   "devDependencies": {
     "@types/webpack-env": "^1.15.3",
     "@typescript-eslint/eslint-plugin": "^4.6.1",
