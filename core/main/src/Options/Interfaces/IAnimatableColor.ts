@@ -1,6 +1,5 @@
 import type { IOptionsColor } from "./IOptionsColor";
 import type { IColorAnimation } from "./IColorAnimation";
-import { IOffsetValue } from "./IOffsetValue";
 
 /**
  * The animatable color interface, it provides all the necessary properties to create a color animation

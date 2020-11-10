@@ -16,7 +16,6 @@ import type { IBounce } from "./Bounce/IBounce";
 import type { IOrbit } from "./Orbit/IOrbit";
 import type { IZIndex } from "./ZIndex/IZIndex";
 import type { IRepulse } from "./Repulse/IRepulse";
-import type { ISpin } from "./ISpin";
 
 /**
  * [[include:Options/Particles.md]]
