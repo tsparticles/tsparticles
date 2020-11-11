@@ -7,7 +7,7 @@
     "build": "echo vue-cli-service build"
   },
   "dependencies": {
-    "core-js": "^3.6.5",
+    "core-js": "^3.7.0",
     "particles.vue3": "^1.2.0-alpha.0",
     "tsparticles": "^1.19.0-alpha.0",
     "vue": "^3.0.2",

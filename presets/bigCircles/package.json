@@ -9,7 +9,8 @@
     "lint": "eslint src --ext .js,.jsx,.ts,.tsx --fix",
     "compile": "tsc",
     "bundle": "webpack --mode production",
-    "build": "yarn prettify:src && yarn compile && yarn lint && yarn bundle && yarn prettify:readme",
+    "build": "yarn clear:dist && yarn prettify:src && yarn compile && yarn lint && yarn bundle && yarn prettify:readme",
+    "clear:dist": "rimraf -f ./dist",
     "prepack": "yarn build"
   },
   "repository": {
@@ -58,12 +59,13 @@
   "types": "dist/preset.d.ts",
   "devDependencies": {
     "@types/webpack-env": "^1.15.3",
-    "@typescript-eslint/eslint-plugin": "^4.6.1",
-    "@typescript-eslint/parser": "^4.6.1",
-    "babel-loader": "^8.1.0",
-    "eslint": "^7.12.1",
+    "@typescript-eslint/eslint-plugin": "^4.7.0",
+    "@typescript-eslint/parser": "^4.7.0",
+    "babel-loader": "^8.2.1",
+    "eslint": "^7.13.0",
     "eslint-config-prettier": "^6.15.0",
     "prettier": "^2.1.2",
+    "rimraf": "^3.0.2",
     "terser-webpack-plugin": "^5.0.3",
     "typescript": "^4.0.5",
     "webpack": "^5.4.0",
