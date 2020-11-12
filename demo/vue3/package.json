@@ -3,8 +3,8 @@
   "version": "1.2.0-alpha.0",
   "private": true,
   "scripts": {
-    "serve": "echo vue-cli-service serve",
-    "build": "echo vue-cli-service build"
+    "serve": "vue-cli-service serve",
+    "build": "vue-cli-service build"
   },
   "dependencies": {
     "core-js": "^3.7.0",

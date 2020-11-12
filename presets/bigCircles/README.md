@@ -10,7 +10,7 @@
 
 ## How to use it
 
-### CDN / Vanilla JS
+### CDN / Vanilla JS / jQuery
 
 First of all install [tsParticles](https://github.com/matteobruni/tsparticles) following the instructions for vanilla javascript in the main project [here](https://github.com/matteobruni/tsparticles)
 
@@ -46,7 +46,7 @@ tsParticles.load("tsparticles", {
 
 Like in the sample above, the circles will be replaced by squares.
 
-### React.js - Preact - Inferno
+### React.js / Preact / Inferno
 
 *The syntax for `React.js`, `Preact` and `Inferno` is the same*.
 
@@ -73,3 +73,14 @@ export class ParticlesContainer extends React.PureComponent<IProps> {
     }
 }
 ```
+
+### Vue (2.x and 3.x)
+
+
+
+### Angular
+
+
+
+### Svelte
+
