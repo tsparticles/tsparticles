@@ -16733,6 +16733,11 @@ static-module@^2.2.0:
     static-eval "^2.0.0"
     through2 "~2.0.3"
 
+stats.ts@^1.0.0:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/stats.ts/-/stats.ts-1.0.0.tgz#48f39346c04309b8b3481f3ed26b94a9a4ccdd8a"
+  integrity sha512-PysXKYnD3yfdlPiU5sj9mxpvmBLtIVyodNRXMQ1cao15s+7D1X5re94Hdqx5jx9R5dxVzNsRWavlYw1dTDntUw==
+
 "statuses@>= 1.4.0 < 2", "statuses@>= 1.5.0 < 2", statuses@~1.5.0:
   version "1.5.0"
   resolved "https://registry.yarnpkg.com/statuses/-/statuses-1.5.0.tgz#161c7dac177659fd9811f43771fa99381478628c"

@@ -38,7 +38,7 @@
     "pug": "^3.0.0",
     "pug-cli": "^1.0.0-alpha6",
     "stylus": "^0.54.8",
-    "three": "^0.122.0",
+    "stats.ts": "^1.0.0",
     "tsparticles": "^1.19.0-alpha.0",
     "tsparticles-preset-big-circles": "^1.4.0-alpha.0",
     "tsparticles-preset-fire": "^1.4.0-alpha.0",

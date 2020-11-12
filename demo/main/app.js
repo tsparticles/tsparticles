@@ -29,7 +29,7 @@ app.use("/shape-bubble", express.static("../../node_modules/tsparticles-shape-bu
 app.use("/shape-heart", express.static("../../node_modules/tsparticles-shape-heart/dist"));
 app.use("/shape-multiline-text", express.static("../../node_modules/tsparticles-shape-multiline-text/dist"));
 app.use("/shape-spiral", express.static("../../node_modules/tsparticles-shape-spiral/dist"));
-app.use("/three", express.static("../../node_modules/three/"));
+app.use("/stats", express.static("../../node_modules/stats.ts/"));
 app.use("/pathseg", express.static("../../node_modules/pathseg/"));
 
 app.get('/', function (req, res) {
