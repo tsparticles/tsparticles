@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <img alt="Vue logo" src="./assets/logo.png"/>
-    <Particles id="tsparticles" :options="options" :particlesContainer="container" :particlesInit="particlesInit"/>
+    <Particles id="tsparticles" :options="options" particlesInit="particlesInit" />
   </div>
 </template>
 
@@ -10,13 +10,12 @@ import { Vue } from "vue-property-decorator";
 
 declare module 'particles.vue';
 import Particles from "particles.vue";
-import { Container, ISourceOptions, Main } from "tsparticles";
+import { ISourceOptions, Main } from "tsparticles";
 import { loadPreset } from "tsparticles-preset-sea-anemone";
 
 Vue.use(Particles);
 
 export default class App extends Vue {
-  private container?: Container;
   private options: ISourceOptions = {
     background: {
       color: {

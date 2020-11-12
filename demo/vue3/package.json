@@ -10,6 +10,7 @@
     "core-js": "^3.7.0",
     "particles.vue3": "^1.2.0-alpha.0",
     "tsparticles": "^1.19.0-alpha.0",
+    "tsparticles-preset-big-circles": "^1.4.0-alpha.0",
     "vue": "^3.0.2",
     "vue-class-component": "^8.0.0-beta.4"
   },
