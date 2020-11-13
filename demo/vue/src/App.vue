@@ -9,17 +9,9 @@
 import { Vue } from "vue-property-decorator";
 import { Container, ISourceOptions, Main } from "tsparticles";
 import { loadPreset } from "tsparticles-preset-sea-anemone";
-
-declare module 'particles.vue';
-import Particles from "particles.vue";
-
-Vue.use(Particles);
-
-/* workaround, the plugin doesn't seem to work anymore */
 import { ParticlesComponent } from "particles.vue";
 
 Vue.component("Particles", ParticlesComponent);
-/* end workaround */
 
 export default class App extends Vue {
   private options: ISourceOptions = {

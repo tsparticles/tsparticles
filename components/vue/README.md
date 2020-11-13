@@ -14,10 +14,24 @@ yarn add particles.vue
 
 ## Usage
 
+### Plugin
+
+*main.js*
+
 ```javascript
 import Particles from "particles.vue";
 
 Vue.use(Particles);
+```
+
+### Component
+
+*App.vue (script section)*
+
+```javascript
+import { ParticlesComponent } from "particles.vue";
+
+Vue.component("Particles", ParticlesComponent);
 ```
 
 ### Demo config
