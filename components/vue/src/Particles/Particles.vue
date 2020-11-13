@@ -15,8 +15,9 @@ export type IParticlesParams = IParticlesProps;
 export default class Particles extends Vue {
   @Prop({ required: true }) private id!: string;
   @Prop() private options?: IParticlesProps;
-  @Prop() private particlesContainer?: Container;
+  @Prop() private particlesLoaded?: (container: Container) => void;
   @Prop() private particlesInit?: (tsParticles: Main) => void;
+  private container?: Container;
 
   private mounted(): void {
     this.$nextTick(() => {
@@ -30,12 +31,18 @@ export default class Particles extends Vue {
         this.particlesInit(tsParticles);
       }
 
-      tsParticles.load(this.id, this.options ?? {}).then(container => this.particlesContainer = container);
+      tsParticles.load(this.id, this.options ?? {}).then(container => {
+        this.container = container;
+
+        if (this.container && this.particlesLoaded) {
+          this.particlesLoaded(this.container);
+        }
+      });
     });
   }
 
   private beforeDestroy(): void {
-    this.particlesContainer?.destroy();
+    this.container?.destroy();
   }
 }
 </script>
