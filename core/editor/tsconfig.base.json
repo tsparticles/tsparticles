@@ -23,7 +23,6 @@
   "exclude": [
     "./tests/",
     "./node_modules/",
-    "../../node_modules/",
     "./dist/",
     "./typedoc/",
     "./docs/"

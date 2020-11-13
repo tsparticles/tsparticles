@@ -12,8 +12,8 @@
     "url": "git+https://github.com/matteobruni/tsparticles.git"
   },
   "scripts": {
-    "serve": "echo vue-cli-service serve",
-    "build": "echo vue-cli-service build",
+    "serve": "vue-cli-service serve",
+    "build": "vue-cli-service build",
     "clean": "rm -rf dist/*"
   },
   "bugs": {
@@ -22,6 +22,8 @@
   "dependencies": {
     "particles.vue": "^2.2.0-alpha.0",
     "tsparticles": "^1.19.0-alpha.0",
+    "tsparticles-preset-big-circles": "^1.4.0-alpha.0",
+    "tsparticles-preset-sea-anemone": "^1.4.0-alpha.0",
     "vue": ">=2 && <3",
     "vue-class-component": "<8",
     "vue-property-decorator": "^9.0.2"

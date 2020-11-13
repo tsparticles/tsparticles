@@ -17,7 +17,7 @@
     ]
   },
   "scripts": {
-    "build": "npx copyfiles -a ../../node_modules/preact/* ./node_modules/preact/ && npx copyfiles -a ../../node_modules/preact/**/* ./node_modules/preact/ && npx copyfiles -a ../../node_modules/preact-render-to-string/* ./node_modules/preact-render-to-string/ && npx copyfiles -a ../../node_modules/preact-render-to-string/**/* ./node_modules/preact-render-to-string/ && npx preact build --no-prerender",
+    "build": "npx preact build --no-prerender",
     "start": "sirv build --cors --single",
     "dev": "preact watch",
     "lint": "eslint src"

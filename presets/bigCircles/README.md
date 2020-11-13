@@ -26,7 +26,7 @@ Once the scripts are loaded you can set up `tsParticles` like this:
 
 ```javascript
 tsParticles.load("tsparticles", {
-  preset: "bigCircles" // also "big-circles" is accepted
+  preset: "bigCircles", // also "big-circles" is accepted
 });
 ```
 
@@ -37,10 +37,10 @@ You can override all the options defining the properties like in any standard `t
 tsParticles.load("tsparticles", {
   particles: {
     shape: {
-      type: "square"
-    }
+      type: "square",
+    },
   },
-  preset: "bigCircles" // also "big-circles" is accepted
+  preset: "bigCircles", // also "big-circles" is accepted
 });
 ```
 
@@ -48,39 +48,34 @@ Like in the sample above, the circles will be replaced by squares.
 
 ### React.js / Preact / Inferno
 
-*The syntax for `React.js`, `Preact` and `Inferno` is the same*.
+_The syntax for `React.js`, `Preact` and `Inferno` is the same_.
 
 I'll show a simplified sample you can find in this repository; it uses class component, but you can choose any syntax you prefer.
 
 ```javascript
-import Particles from 'react-tsparticles';
+import Particles from "react-tsparticles";
 import { Main } from "tsparticles";
 import { loadPreset } from "tsparticles-preset-big-circles";
 
 export class ParticlesContainer extends React.PureComponent<IProps> {
-    // this customizes the component tsParticles installation
-    customInit(tsParticles: Main) {
-        // this adds the preset to tsParticles, you can safely use the 
-        loadPreset(tsParticles);
-    }
+  // this customizes the component tsParticles installation
+  customInit(tsParticles: Main) {
+    // this adds the preset to tsParticles, you can safely use the
+    loadPreset(tsParticles);
+  }
 
-    render() {
-        const options = {
-            preset: "bigCircles" // also "big-circles" is accepted
-        };
+  render() {
+    const options = {
+      preset: "bigCircles", // also "big-circles" is accepted
+    };
 
-        return (<Particles options={options} init={this.customInit}/>);
-    }
+    return <Particles options={options} init={this.customInit} />;
+  }
 }
 ```
 
 ### Vue (2.x and 3.x)
 
-
-
 ### Angular
 
-
-
 ### Svelte
-
