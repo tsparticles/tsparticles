@@ -344,10 +344,6 @@ export class Particles {
     }
 
     private applyDensity(options: IParticles, group?: string) {
-        if (!options.number.density?.enable) {
-            return;
-        }
-
         const numberOptions = options.number;
         const densityFactor = this.initDensityFactor(numberOptions.density);
         const optParticlesNumber = numberOptions.value;

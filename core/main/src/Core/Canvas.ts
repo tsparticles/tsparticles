@@ -10,6 +10,7 @@ import type { Particle } from "./Particle";
 import type { IDelta } from "./Interfaces/IDelta";
 import { IOrbit } from "./Interfaces/IOrbit";
 import { OrbitType } from "../Enums/OrbitType";
+
 /**
  * Canvas manager
  * @category Core
@@ -130,18 +131,6 @@ export class Canvas {
     }
 
     /**
-     * Calculates the size of the canvas
-     */
-    public resize(): void {
-        if (!this.element) {
-            return;
-        }
-
-        this.element.width = this.size.width;
-        this.element.height = this.size.height;
-    }
-
-    /**
      * Paints the canvas background
      */
     public paint(): void {
@@ -182,7 +171,9 @@ export class Canvas {
 
         const container = this.container;
 
-        container.canvas.initSize();
+        container.canvas.resize();
+
+        container.options.setResponsive(this.size.width, container.retina.pixelRatio, container.fullOptions);
 
         /* density particles enabled */
         container.particles.setDensity();
@@ -194,7 +185,7 @@ export class Canvas {
         }
     }
 
-    public initSize(): void {
+    public resize(): void {
         if (!this.element) {
             return;
         }
