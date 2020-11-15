@@ -115,7 +115,13 @@ export class Retina {
         particle.moveSpeed = particlesOptions.move.speed * ratio;
         particle.sizeValue = particlesOptions.size.value * ratio;
         particle.sizeAnimationSpeed = particlesOptions.size.animation.speed * ratio;
-        particle.maxDistance = particlesOptions.move.distance * ratio;
+
+        const moveDistance = particlesOptions.move.distance;
+
+        particle.maxDistance = {
+            horizontal: moveDistance.horizontal !== undefined ? moveDistance.horizontal * ratio : undefined,
+            vertical: moveDistance.vertical !== undefined ? moveDistance.vertical * ratio : undefined,
+        };
 
         if (typeof particle.particlesOptions.orbit.radius !== "undefined") {
             particle.orbitRadiusValue = particle.particlesOptions.orbit.radius * ratio;

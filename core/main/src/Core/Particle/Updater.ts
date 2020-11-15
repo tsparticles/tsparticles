@@ -411,30 +411,38 @@ export class Updater {
 
         if (direction === OutModeDirection.right && nextBounds.left > canvasSize.width - particle.offset.x) {
             particle.position.x = newPos.left;
+            particle.initialPosition.x = particle.position.x;
 
             if (!wrap) {
                 particle.position.y = Math.random() * canvasSize.height;
+                particle.initialPosition.y = particle.position.y;
             }
         } else if (direction === OutModeDirection.left && nextBounds.right < -particle.offset.x) {
             particle.position.x = newPos.right;
+            particle.initialPosition.x = particle.position.x;
 
             if (!wrap) {
                 particle.position.y = Math.random() * canvasSize.height;
+                particle.initialPosition.y = particle.position.y;
             }
         }
 
         if (direction === OutModeDirection.bottom && nextBounds.top > canvasSize.height - particle.offset.y) {
             if (!wrap) {
                 particle.position.x = Math.random() * canvasSize.width;
+                particle.initialPosition.x = particle.position.x;
             }
 
             particle.position.y = newPos.top;
+            particle.initialPosition.y = particle.position.y;
         } else if (direction === OutModeDirection.top && nextBounds.bottom < -particle.offset.y) {
             if (!wrap) {
                 particle.position.x = Math.random() * canvasSize.width;
+                particle.initialPosition.x = particle.position.x;
             }
 
             particle.position.y = newPos.bottom;
+            particle.initialPosition.y = particle.position.y;
         }
     }
 

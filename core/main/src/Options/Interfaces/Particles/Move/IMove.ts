@@ -6,6 +6,8 @@ import type { IMoveAngle } from "./IMoveAngle";
 import type { IMoveGravity } from "./IMoveGravity";
 import type { IOutModes } from "./IOutModes";
 import { Spin } from "../../../Classes/Particles/Move/Spin";
+import { IVelocity } from "../../../../Core/Interfaces/IVelocity";
+import { RecursivePartial } from "../../../../Types";
 
 /**
  * [[include:Options/Particles/Move.md]]
@@ -35,7 +37,7 @@ export interface IMove {
     angle: number | IMoveAngle;
     attract: IAttract;
     direction: MoveDirection | keyof typeof MoveDirection | MoveDirectionAlt;
-    distance: number;
+    distance: number | RecursivePartial<IVelocity>;
     enable: boolean;
     gravity: IMoveGravity;
     noise: INoise;

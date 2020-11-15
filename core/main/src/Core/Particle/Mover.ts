@@ -103,26 +103,45 @@ export class Mover {
         }
 
         const initialPosition = particle.initialPosition;
-        const initialDistance = NumberUtils.getDistance(initialPosition, particle.position);
+        const { dx, dy } = NumberUtils.getDistances(initialPosition, particle.position);
 
         if (particle.maxDistance) {
-            if (initialDistance >= particle.maxDistance && !particle.misplaced) {
-                particle.misplaced = initialDistance > particle.maxDistance;
-                particle.velocity.horizontal = particle.velocity.vertical / 2 - particle.velocity.horizontal;
-                particle.velocity.vertical = particle.velocity.horizontal / 2 - particle.velocity.vertical;
-            } else if (initialDistance < particle.maxDistance && particle.misplaced) {
+            const hDistance = particle.maxDistance.horizontal;
+            const vDistance = particle.maxDistance.vertical;
+
+            if (
+                ((hDistance !== undefined && dx >= hDistance) || (vDistance !== undefined && dy >= vDistance)) &&
+                !particle.misplaced
+            ) {
+                particle.misplaced =
+                    (hDistance !== undefined && dx > hDistance) || (vDistance !== undefined && dy > vDistance);
+
+                if (hDistance !== undefined) {
+                    particle.velocity.horizontal = particle.velocity.vertical / 2 - particle.velocity.horizontal;
+                }
+
+                if (vDistance !== undefined) {
+                    particle.velocity.vertical = particle.velocity.horizontal / 2 - particle.velocity.vertical;
+                }
+            } else if (
+                (hDistance === undefined || dx < hDistance) &&
+                (vDistance === undefined || dy < vDistance) &&
+                particle.misplaced
+            ) {
                 particle.misplaced = false;
             } else if (particle.misplaced) {
                 if (
-                    (particle.position.x < initialPosition.x && particle.velocity.horizontal < 0) ||
-                    (particle.position.x > initialPosition.x && particle.velocity.horizontal > 0)
+                    hDistance !== undefined &&
+                    ((particle.position.x < initialPosition.x && particle.velocity.horizontal < 0) ||
+                        (particle.position.x > initialPosition.x && particle.velocity.horizontal > 0))
                 ) {
                     particle.velocity.horizontal *= -Math.random();
                 }
 
                 if (
-                    (particle.position.y < initialPosition.y && particle.velocity.vertical < 0) ||
-                    (particle.position.y > initialPosition.y && particle.velocity.vertical > 0)
+                    vDistance !== undefined &&
+                    ((particle.position.y < initialPosition.y && particle.velocity.vertical < 0) ||
+                        (particle.position.y > initialPosition.y && particle.velocity.vertical > 0))
                 ) {
                     particle.velocity.vertical *= -Math.random();
                 }

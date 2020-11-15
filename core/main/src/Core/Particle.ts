@@ -62,7 +62,7 @@ export class Particle implements IParticle {
     public linksDistance?: number;
     public attractDistance?: number;
     public linksWidth?: number;
-    public maxDistance?: number;
+    public maxDistance?: RecursivePartial<IVelocity>;
     public moveSpeed?: number;
     public sizeValue?: number;
     public sizeAnimationSpeed?: number;

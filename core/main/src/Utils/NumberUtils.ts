@@ -49,8 +49,8 @@ export class NumberUtils {
         pointA: ICoordinates,
         pointB: ICoordinates
     ): { dx: number; dy: number; distance: number } {
-        const dx = pointA.x - pointB.x;
-        const dy = pointA.y - pointB.y;
+        const dx = Math.abs(pointA.x - pointB.x);
+        const dy = Math.abs(pointA.y - pointB.y);
         return { dx: dx, dy: dy, distance: Math.sqrt(dx * dx + dy * dy) };
     }
 
