@@ -70,7 +70,12 @@
         "rotateX": 600,
         "rotateY": 1200
       },
-      "warp": true
+      "warp": true,
+      "trail": {
+        "enable": true,
+        "fillColor": "#000",
+        "length": 10
+      }
     }
   },
   "interactivity": {
@@ -124,12 +129,12 @@
   "retina_detect": true,
   "absorbers": {
     "orbits": true,
-    "destroy": false,
+    "destroy": true,
     "size": {
       "value": 5,
       "limit": 50,
       "random": false,
-      "density": 1500
+      "density": 50
     },
     "position": {
       "x": 50,

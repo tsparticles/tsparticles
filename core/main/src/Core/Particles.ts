@@ -336,11 +336,11 @@ export class Particles {
     public setDensity(): void {
         const options = this.container.options;
 
-        this.applyDensity(options.particles);
-
         for (const group in options.particles.groups) {
             this.applyDensity(options.particles.groups[group], group);
         }
+
+        this.applyDensity(options.particles);
     }
 
     private applyDensity(options: IParticles, group?: string) {
@@ -349,7 +349,7 @@ export class Particles {
         const optParticlesNumber = numberOptions.value;
         const optParticlesLimit = numberOptions.limit > 0 ? numberOptions.limit : optParticlesNumber;
         const particlesNumber = Math.min(optParticlesNumber, optParticlesLimit) * densityFactor;
-        const particlesCount = this.count;
+        const particlesCount = Math.min(this.count, this.array.filter((t) => t.group === group).length);
 
         this.limit = numberOptions.limit * densityFactor;
 
@@ -363,7 +363,7 @@ export class Particles {
     private initDensityFactor(densityOptions: IDensity): number {
         const container = this.container;
 
-        if (!container.canvas.element || !densityOptions.enable) {
+        if (!container.canvas.element || !densityOptions?.enable) {
             return 1;
         }
 

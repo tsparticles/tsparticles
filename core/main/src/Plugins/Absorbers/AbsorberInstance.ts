@@ -88,7 +88,10 @@ export class AbsorberInstance {
         if (distance < this.size + particle.getRadius()) {
             const sizeFactor = particle.getRadius() * 0.033 * this.container.retina.pixelRatio;
 
-            if (this.size > particle.getRadius() && distance < this.size - particle.getRadius()) {
+            if (
+                (this.size > particle.getRadius() && distance < this.size - particle.getRadius()) ||
+                (particle.orbitRadius !== undefined && particle.orbitRadius < 0)
+            ) {
                 if (options.destroy) {
                     particle.destroy();
                 } else {
@@ -176,8 +179,8 @@ export class AbsorberInstance {
             particle.velocity.horizontal = 0;
             particle.velocity.vertical = 0;
 
-            particle.position.x += orbitRadius * Math.cos(orbitAngle);
-            particle.position.y += orbitRadius * Math.sin(orbitAngle);
+            particle.position.x = this.position.x + orbitRadius * Math.cos(orbitAngle);
+            particle.position.y = this.position.y + orbitRadius * Math.sin(orbitAngle);
 
             particle.orbitRadius -= acceleration;
             particle.orbitAngle +=

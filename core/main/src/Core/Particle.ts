@@ -173,6 +173,16 @@ export class Particle implements IParticle {
 
         const zIndexValue = NumberUtils.getValue(this.particlesOptions.zIndex);
 
+        /* size */
+        const sizeOptions = this.particlesOptions.size;
+        const sizeValue = NumberUtils.getValue(sizeOptions) * container.retina.pixelRatio;
+
+        const randomSize = typeof sizeOptions.random === "boolean" ? sizeOptions.random : sizeOptions.random.enable;
+
+        this.size = {
+            value: sizeValue,
+        };
+
         /* position */
         this.position = this.calcPosition(
             this.container,
@@ -197,16 +207,6 @@ export class Particle implements IParticle {
         container.retina.initParticle(this);
 
         const color = this.particlesOptions.color;
-
-        /* size */
-        const sizeOptions = this.particlesOptions.size;
-        const sizeValue = NumberUtils.getValue(sizeOptions) * container.retina.pixelRatio;
-
-        const randomSize = typeof sizeOptions.random === "boolean" ? sizeOptions.random : sizeOptions.random.enable;
-
-        this.size = {
-            value: sizeValue,
-        };
 
         this.direction = this.particlesOptions.move.direction;
         this.bubble = {

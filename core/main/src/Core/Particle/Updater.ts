@@ -206,7 +206,7 @@ export class Updater {
         const minValue = opacityAnim.minimumValue;
         const maxValue = particle.particlesOptions.opacity.value;
 
-        if (opacityAnim.enable && particle.loops.opacity < opacityAnim.count) {
+        if (opacityAnim.enable && (opacityAnim.count <= 0 || particle.loops.opacity < opacityAnim.count)) {
             switch (particle.opacity.status) {
                 case AnimationStatus.increasing:
                     if (particle.opacity.value >= maxValue) {
@@ -243,7 +243,7 @@ export class Updater {
         const maxValue = particle.sizeValue ?? container.retina.sizeValue;
         const minValue = sizeAnim.minimumValue * container.retina.pixelRatio;
 
-        if (sizeAnim.enable && particle.loops.size < sizeAnim.count) {
+        if (sizeAnim.enable && (sizeAnim.count <= 0 || particle.loops.size < sizeAnim.count)) {
             switch (particle.size.status) {
                 case AnimationStatus.increasing:
                     if (particle.size.value >= maxValue) {

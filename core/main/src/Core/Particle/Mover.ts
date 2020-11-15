@@ -102,49 +102,63 @@ export class Mover {
             }
         }
 
+        this.applyDistance();
+    }
+
+    private applyDistance(): void {
+        const particle = this.particle;
+
         const initialPosition = particle.initialPosition;
         const { dx, dy } = NumberUtils.getDistances(initialPosition, particle.position);
+        const dxFixed = Math.abs(dx),
+            dyFixed = Math.abs(dy);
 
-        if (particle.maxDistance) {
-            const hDistance = particle.maxDistance.horizontal;
-            const vDistance = particle.maxDistance.vertical;
+        if (!particle.maxDistance) {
+            return;
+        }
+
+        const hDistance = particle.maxDistance.horizontal;
+        const vDistance = particle.maxDistance.vertical;
+
+        if (!(hDistance !== undefined || vDistance !== undefined)) {
+            return;
+        }
+
+        if (
+            ((hDistance !== undefined && dxFixed >= hDistance) || (vDistance !== undefined && dyFixed >= vDistance)) &&
+            !particle.misplaced
+        ) {
+            particle.misplaced =
+                (hDistance !== undefined && dxFixed > hDistance) || (vDistance !== undefined && dyFixed > vDistance);
+
+            if (hDistance !== undefined) {
+                particle.velocity.horizontal = particle.velocity.vertical / 2 - particle.velocity.horizontal;
+            }
+
+            if (vDistance !== undefined) {
+                particle.velocity.vertical = particle.velocity.horizontal / 2 - particle.velocity.vertical;
+            }
+        } else if (
+            (hDistance === undefined || dxFixed < hDistance) &&
+            (vDistance === undefined || dyFixed < vDistance) &&
+            particle.misplaced
+        ) {
+            particle.misplaced = false;
+        } else if (particle.misplaced) {
+            if (
+                hDistance !== undefined &&
+                ((particle.position.x < initialPosition.x && particle.velocity.horizontal < 0) ||
+                    (particle.position.x > initialPosition.x && particle.velocity.horizontal > 0))
+            ) {
+                particle.velocity.horizontal *= -Math.random();
+            }
 
             if (
-                ((hDistance !== undefined && dx >= hDistance) || (vDistance !== undefined && dy >= vDistance)) &&
-                !particle.misplaced
+                vDistance !== undefined &&
+                ((particle.position.y < initialPosition.y && particle.velocity.vertical < 0) ||
+                    (particle.position.y > initialPosition.y && particle.velocity.vertical > 0))
             ) {
-                particle.misplaced =
-                    (hDistance !== undefined && dx > hDistance) || (vDistance !== undefined && dy > vDistance);
-
-                if (hDistance !== undefined) {
-                    particle.velocity.horizontal = particle.velocity.vertical / 2 - particle.velocity.horizontal;
-                }
-
-                if (vDistance !== undefined) {
-                    particle.velocity.vertical = particle.velocity.horizontal / 2 - particle.velocity.vertical;
-                }
-            } else if (
-                (hDistance === undefined || dx < hDistance) &&
-                (vDistance === undefined || dy < vDistance) &&
-                particle.misplaced
-            ) {
-                particle.misplaced = false;
-            } else if (particle.misplaced) {
-                if (
-                    hDistance !== undefined &&
-                    ((particle.position.x < initialPosition.x && particle.velocity.horizontal < 0) ||
-                        (particle.position.x > initialPosition.x && particle.velocity.horizontal > 0))
-                ) {
-                    particle.velocity.horizontal *= -Math.random();
-                }
-
-                if (
-                    vDistance !== undefined &&
-                    ((particle.position.y < initialPosition.y && particle.velocity.vertical < 0) ||
-                        (particle.position.y > initialPosition.y && particle.velocity.vertical > 0))
-                ) {
-                    particle.velocity.vertical *= -Math.random();
-                }
+                particle.velocity.vertical *= -Math.random();
             }
         }
     }

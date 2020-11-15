@@ -26,7 +26,7 @@ describe("Particle", () => {
                 },
             },
         };
-        const shapeTypes = [ ShapeType.char, ShapeType.edge, ShapeType.image, ShapeType.polygon ];
+        const shapeTypes = [ShapeType.char, ShapeType.edge, ShapeType.image, ShapeType.polygon];
         const multipleShapeTypeOptions = {
             particles: {
                 shape: {
@@ -62,7 +62,7 @@ describe("Particle", () => {
                 testContainer.container.start().then(() => {
                     expect(testParticle.particle?.shape).to.be.a("string");
                     expect(shapeTypes).to.include(testParticle.particle?.shape);
-                })
+                });
             });
 
             after(() => {
@@ -82,7 +82,9 @@ describe("Particle", () => {
 
                 testContainer.container.start().then(() => {
                     expect(testParticle.particle?.shapeData).to.eql(squareShapeOptions.particles.shape.options.square);
-                    expect(testParticle.particle?.close).to.eql(squareShapeOptions.particles.shape.options.square.close);
+                    expect(testParticle.particle?.close).to.eql(
+                        squareShapeOptions.particles.shape.options.square.close
+                    );
                     expect(testParticle.particle?.fill).to.eql(squareShapeOptions.particles.shape.options.square.fill);
                 });
             });
@@ -112,7 +114,7 @@ describe("Particle", () => {
 
                     expect(testParticle.particle?.close).to.eql(expectedShapeData.close);
                     expect(testParticle.particle?.fill).to.eql(expectedShapeData.fill);
-                })
+                });
             });
 
             after(() => {

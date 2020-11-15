@@ -109,10 +109,10 @@
 
         tsParticles.loadJSON('tsparticles', `/presets/${presetId}.json`).then((particles) => {
             localStorage.presetId = presetId;
-            editor.set(particles.options);
+            editor.set(particles.fullOptions);
             editor.expandAll();
 
-            if (particles.options.particles.move.noise.enable) {
+            if (particles.fullOptions.particles.move.noise.enable) {
                 particles.setNoise({
                     init: function () {
                         setup(particles);
@@ -232,7 +232,7 @@
         const btnUpdate = document.getElementById('btnUpdate');
         btnUpdate.onclick = function () {
             const particles = tsParticles.domItem(0);
-            particles.options.load(editor.get());
+            particles.fullOptions.load(editor.get());
             particles.refresh().then(() => {
             });
         };
@@ -326,7 +326,7 @@ canvas {
     background-size: ${particlesContainer.style.backgroundSize};
     background-position: ${particlesContainer.style.backgroundPosition};
 }`,
-                    js: `tsParticles.load("tsparticles", ${JSON.stringify(container.options)});`,
+                    js: `tsParticles.load("tsparticles", ${JSON.stringify(container.fullOptions)});`,
                     js_external: 'https://cdn.jsdelivr.net/npm/tsparticles@1.10.4/dist/tsparticles.min.js',
                     title: 'tsParticles example',
                     description: 'This pen was created with tsParticles from https://particles.matteobruni.it',
