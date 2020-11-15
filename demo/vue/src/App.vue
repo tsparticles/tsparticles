@@ -9,18 +9,18 @@
 import { Vue } from "vue-property-decorator";
 import { Container, ISourceOptions, Main } from "tsparticles";
 import { loadPreset } from "tsparticles-preset-sea-anemone";
-/*
-import Particles from "particles.vue";
 
-Vue.use(Particles);
-*/
+/*import Particles from "particles.vue";
+
+Vue.use(Particles);*/
+
 import { ParticlesComponent } from "particles.vue";
 
 Vue.component("Particles", ParticlesComponent);
 
 export default class App extends Vue {
   private options: ISourceOptions = {
-    preset: "seaAnemone"
+    //preset: "seaAnemone"
   };
 
   private particlesInit: (tsParticles: Main) => void = (tsParticles => {
