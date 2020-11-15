@@ -129,12 +129,12 @@
   "retina_detect": true,
   "absorbers": {
     "orbits": true,
-    "destroy": true,
+    "destroy": false,
     "size": {
       "value": 5,
       "limit": 50,
       "random": false,
-      "density": 50
+      "density": 1500
     },
     "position": {
       "x": 50,

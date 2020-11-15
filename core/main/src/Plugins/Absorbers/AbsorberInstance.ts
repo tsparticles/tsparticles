@@ -6,9 +6,15 @@ import type { IAbsorber } from "./Options/Interfaces/IAbsorber";
 import { ColorUtils, NumberUtils, Utils } from "../../Utils";
 import type { Absorbers } from "./Absorbers";
 
+enum OrbitDirection {
+    Left,
+    Right,
+}
+
 type OrbitingParticle = Particle & {
     orbitRadius?: number;
     orbitAngle?: number;
+    orbitDirection?: OrbitDirection;
     needsNewPosition?: boolean;
 };
 
@@ -82,7 +88,7 @@ export class AbsorberInstance {
 
         const pos = particle.getPosition();
         const { dx, dy, distance } = NumberUtils.getDistances(this.position, pos);
-        const angle = Math.atan2(dx, dy);
+        const angle = Math.atan2(dy, dx);
         const acceleration = (this.mass / Math.pow(distance, 2)) * this.container.retina.reduceFactor;
 
         if (distance < this.size + particle.getRadius()) {
@@ -155,8 +161,8 @@ export class AbsorberInstance {
 
         if (particle.needsNewPosition) {
             const pSize = particle.getRadius();
-            particle.position.x = Math.random() * (canvasSize.width - pSize * 2) + pSize;
-            particle.position.y = Math.random() * (canvasSize.height - pSize * 2) + pSize;
+            particle.position.x = (canvasSize.width - pSize * 2) * (1 + (Math.random() * 0.2 - 0.1)) + pSize;
+            particle.position.y = (canvasSize.height - pSize * 2) * (1 + (Math.random() * 0.2 - 0.1)) + pSize;
             particle.needsNewPosition = false;
         }
 
@@ -166,21 +172,33 @@ export class AbsorberInstance {
             }
 
             if (particle.orbitRadius <= this.size && !this.options.destroy) {
-                particle.orbitRadius = Math.random() * Math.max(canvasSize.width, canvasSize.height);
+                const minSize = Math.min(canvasSize.width, canvasSize.height);
+
+                particle.orbitRadius = minSize * (1 + (Math.random() * 0.2 - 0.1));
             }
 
             if (particle.orbitAngle === undefined) {
                 particle.orbitAngle = Math.random() * Math.PI * 2;
             }
 
+            if (particle.orbitDirection === undefined) {
+                particle.orbitDirection =
+                    particle.velocity.horizontal >= 0 ? OrbitDirection.Left : OrbitDirection.Right;
+            }
+
             const orbitRadius = particle.orbitRadius;
             const orbitAngle = particle.orbitAngle;
+            const orbitDirection = particle.orbitDirection;
 
             particle.velocity.horizontal = 0;
             particle.velocity.vertical = 0;
 
-            particle.position.x = this.position.x + orbitRadius * Math.cos(orbitAngle);
-            particle.position.y = this.position.y + orbitRadius * Math.sin(orbitAngle);
+            particle.position.x =
+                this.position.x +
+                orbitRadius * (orbitDirection === OrbitDirection.Left ? Math.cos(orbitAngle) : Math.sin(orbitAngle));
+            particle.position.y =
+                this.position.y +
+                orbitRadius * (orbitDirection === OrbitDirection.Left ? Math.sin(orbitAngle) : Math.cos(orbitAngle));
 
             particle.orbitRadius -= acceleration;
             particle.orbitAngle +=
