@@ -8,6 +8,12 @@ interface IProps {
 }
 
 export class ParticlesContainer extends React.PureComponent<IProps> {
+    constructor() {
+        super({ options: {} });
+
+        this.customInit = this.customInit.bind(this);
+    }
+
     customInit(tsParticles: Main) {
         loadPreset(tsParticles);
     }
