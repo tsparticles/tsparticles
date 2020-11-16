@@ -1,7 +1,7 @@
 import { NumberUtils, Plugins, Utils } from "../../Utils";
 import type { Container } from "../Container";
 import type { Particle } from "../Particle";
-import { HoverMode } from "../../Enums";
+import { HoverMode, RotateDirection } from "../../Enums";
 import type { IDelta } from "../Interfaces/IDelta";
 
 /**
@@ -84,13 +84,30 @@ export class Mover {
             particlesOptions.move.spin.enable &&
             particle.spinRadius !== undefined &&
             particle.spinAngle !== undefined &&
-            particle.spinCenter !== undefined
+            particle.spinCenter !== undefined &&
+            particle.spinDirection !== undefined &&
+            particle.spinAcceleration !== undefined
         ) {
-            particle.position.x = particle.spinCenter.x + particle.spinRadius * Math.cos(particle.spinAngle);
-            particle.position.y = particle.spinCenter.y + particle.spinRadius * Math.sin(particle.spinAngle);
+            const updateFunc = {
+                x: particle.spinDirection === RotateDirection.clockwise ? Math.cos : Math.sin,
+                y: particle.spinDirection === RotateDirection.clockwise ? Math.sin : Math.cos,
+            };
 
-            particle.spinRadius += this.particle.particlesOptions.move.spin.acceleration * container.retina.pixelRatio;
-            particle.spinAngle += moveSpeed / 100;
+            particle.position.x = particle.spinCenter.x + particle.spinRadius * updateFunc.x(particle.spinAngle);
+            particle.position.y = particle.spinCenter.y + particle.spinRadius * updateFunc.y(particle.spinAngle);
+            particle.spinRadius += particle.spinAcceleration;
+
+            const maxCanvasSize = Math.max(container.canvas.size.width, container.canvas.size.height);
+
+            if (particle.spinRadius > maxCanvasSize / 2) {
+                particle.spinRadius = maxCanvasSize / 2;
+                particle.spinAcceleration *= -1;
+            } else if (particle.spinRadius < 0) {
+                particle.spinRadius = 0;
+                particle.spinAcceleration *= -1;
+            }
+
+            particle.spinAngle += (moveSpeed / 100) * (1 - particle.spinRadius / maxCanvasSize);
         } else {
             this.moveXY(velocity.horizontal * zVelocityFactor, velocity.vertical * zVelocityFactor);
 

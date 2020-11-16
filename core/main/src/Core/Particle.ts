@@ -68,8 +68,10 @@ export class Particle implements IParticle {
     public sizeAnimationSpeed?: number;
     public spinRadius?: number;
     public spinAngle?: number;
-    public orbitRadiusValue?: number;
-    public orbitRotationValue: number;
+    public spinDirection?: RotateDirection;
+    public spinAcceleration?: number;
+    public orbitRadius?: number;
+    public orbitRotation: number;
 
     public readonly close: boolean;
     public readonly direction: MoveDirection | keyof typeof MoveDirection | MoveDirectionAlt;
@@ -296,11 +298,11 @@ export class Particle implements IParticle {
         /* orbit */
         const orbitRotationOptions = particlesOptions.orbit.rotation.random;
         if (orbitRotationOptions.enable) {
-            this.orbitRotationValue = orbitRotationOptions.minimumValue
+            this.orbitRotation = orbitRotationOptions.minimumValue
                 ? Math.floor(Math.random() * 360) + orbitRotationOptions.minimumValue
                 : Math.floor(Math.random() * 360);
         } else {
-            this.orbitRotationValue = this.particlesOptions.orbit.rotation.value;
+            this.orbitRotation = this.particlesOptions.orbit.rotation.value;
         }
 
         /* color */
@@ -428,14 +430,14 @@ export class Particle implements IParticle {
 
         this.lifeDelay = container.retina.reduceFactor
             ? ((NumberUtils.getValue(lifeOptions.delay) * (lifeOptions.delay.sync ? 1 : Math.random())) /
-                  container.retina.reduceFactor) *
-              1000
+            container.retina.reduceFactor) *
+            1000
             : 0;
         this.lifeDelayTime = 0;
         this.lifeDuration = container.retina.reduceFactor
             ? ((NumberUtils.getValue(lifeOptions.duration) * (lifeOptions.duration.sync ? 1 : Math.random())) /
-                  container.retina.reduceFactor) *
-              1000
+            container.retina.reduceFactor) *
+            1000
             : 0;
         this.lifeTime = 0;
         this.livesRemaining = particlesOptions.life.count;
@@ -460,6 +462,8 @@ export class Particle implements IParticle {
             const pos = this.getPosition();
             const distance = NumberUtils.getDistance(pos, this.spinCenter);
 
+            this.spinDirection =
+                this.velocity.horizontal >= 0 ? RotateDirection.clockwise : RotateDirection.counterClockwise;
             this.spinAngle = Math.atan2(this.velocity.vertical, this.velocity.horizontal);
             this.spinRadius = distance;
         }
@@ -521,7 +525,7 @@ export class Particle implements IParticle {
     }
 
     private calcPosition(container: Container, position: ICoordinates | undefined, zIndex: number): ICoordinates3d {
-        for (const [, plugin] of container.plugins) {
+        for (const [ , plugin ] of container.plugins) {
             const pluginPos =
                 plugin.particlePosition !== undefined ? plugin.particlePosition(position, this) : undefined;
 
@@ -613,10 +617,10 @@ export class Particle implements IParticle {
         drawer?: IShapeDrawer
     ):
         | {
-              image: IParticleImage | undefined;
-              fill: boolean;
-              close: boolean;
-          }
+        image: IParticleImage | undefined;
+        fill: boolean;
+        close: boolean;
+    }
         | undefined {
         if (!(this.shape === ShapeType.image || this.shape === ShapeType.images)) {
             return;
@@ -637,7 +641,7 @@ export class Particle implements IParticle {
             const svgColoredData = ColorUtils.replaceColorSvg(image, color, this.opacity.value);
 
             /* prepare to create img with colored svg */
-            const svg = new Blob([svgColoredData], { type: "image/svg+xml" });
+            const svg = new Blob([ svgColoredData ], { type: "image/svg+xml" });
             const domUrl = URL || window.URL || window.webkitURL || window;
             const url = domUrl.createObjectURL(svg);
 

@@ -477,10 +477,10 @@ export class Canvas {
             this.context,
             particle,
             orbitOptions.color || particle.getFillColor(),
-            particle.orbitRadiusValue ?? particle.getRadius(),
+            particle.orbitRadius ?? particle.getRadius(),
             orbitOptions.opacity,
             orbitOptions.width,
-            particle.orbitRotationValue || orbitOptions.rotation.value,
+            particle.orbitRotation || orbitOptions.rotation.value,
             start,
             end
         );

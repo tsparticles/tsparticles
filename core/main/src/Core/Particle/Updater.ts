@@ -325,7 +325,7 @@ export class Updater {
         const orbitAnimations = particle.particlesOptions.orbit.animation;
 
         if (orbitAnimations.enable) {
-            particle.orbitRotationValue += orbitAnimations.speed * delta.factor;
+            particle.orbitRotation += orbitAnimations.speed * delta.factor;
         }
     }
 

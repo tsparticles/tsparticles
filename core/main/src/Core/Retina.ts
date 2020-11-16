@@ -108,6 +108,8 @@ export class Retina {
     public initParticle(particle: Particle): void {
         const particlesOptions = particle.particlesOptions;
         const ratio = this.pixelRatio;
+        const orbit = particlesOptions.orbit;
+        const moveDistance = particlesOptions.move.distance;
 
         particle.attractDistance = particlesOptions.move.attract.distance * ratio;
         particle.linksDistance = particlesOptions.links.distance * ratio;
@@ -115,17 +117,12 @@ export class Retina {
         particle.moveSpeed = particlesOptions.move.speed * ratio;
         particle.sizeValue = particlesOptions.size.value * ratio;
         particle.sizeAnimationSpeed = particlesOptions.size.animation.speed * ratio;
-
-        const moveDistance = particlesOptions.move.distance;
-
+        particle.orbitRadius = orbit?.radius !== undefined ? orbit.radius * ratio : undefined;
+        particle.spinAcceleration = particlesOptions.move.spin.acceleration * ratio;
         particle.maxDistance = {
-            horizontal: moveDistance.horizontal !== undefined ? moveDistance.horizontal * ratio : undefined,
-            vertical: moveDistance.vertical !== undefined ? moveDistance.vertical * ratio : undefined,
+            horizontal: moveDistance.horizontal ? moveDistance.horizontal * ratio : undefined,
+            vertical: moveDistance.vertical ? moveDistance.vertical * ratio : undefined,
         };
-
-        if (typeof particle.particlesOptions.orbit.radius !== "undefined") {
-            particle.orbitRadiusValue = particle.particlesOptions.orbit.radius * ratio;
-        }
     }
 
     private handleMotionChange(mediaQuery: MediaQueryList): void {
