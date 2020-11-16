@@ -35,7 +35,7 @@
     "jsoneditor": "^9.1.2",
     "prettier": "^2.1.2",
     "pug": "^3.0.0",
-    "stats.ts": "^1.0.0",
+    "stats.ts": "^1.1.0",
     "stylus": "^0.54.8"
   }
 }

@@ -1875,10 +1875,10 @@ sprintf-js@~1.0.2:
   resolved "https://registry.yarnpkg.com/sprintf-js/-/sprintf-js-1.0.3.tgz#04e6926f662895354f3dd015203633b857297e2c"
   integrity sha1-BOaSb2YolTVPPdAVIDYzuFcpfiw=
 
-stats.ts@^1.0.0:
-  version "1.0.0"
-  resolved "https://registry.yarnpkg.com/stats.ts/-/stats.ts-1.0.0.tgz#48f39346c04309b8b3481f3ed26b94a9a4ccdd8a"
-  integrity sha512-PysXKYnD3yfdlPiU5sj9mxpvmBLtIVyodNRXMQ1cao15s+7D1X5re94Hdqx5jx9R5dxVzNsRWavlYw1dTDntUw==
+stats.ts@^1.1.0:
+  version "1.1.0"
+  resolved "https://registry.yarnpkg.com/stats.ts/-/stats.ts-1.1.0.tgz#5518698831f305377d28483b6edc161246857b8c"
+  integrity sha512-mokWb6xGU0elmDlUT6Y5E4zsUs/Enlq5fpyE7pfffpJg9Lg83GlL7B9zHEPA0eDvDC3Ko0ZZ50cjIN8yYJRPoQ==
 
 "statuses@>= 1.5.0 < 2", statuses@~1.5.0:
   version "1.5.0"

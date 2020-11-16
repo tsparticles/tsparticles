@@ -45,7 +45,18 @@
 
     let schema = {};
     const stats = new Stats();
-    const countPanel = stats.addPanel('count', '#ff8', '#221');
+    const countPanel = stats.addPanel('count', '#ff8', 0, () => {
+        const container = tsParticles.domItem(0);
+        if (container) {
+            maxParticles = Math.max(container.particles.count, maxParticles);
+
+            return {
+                value: container.particles.count,
+                maxValue: maxParticles
+            };
+        }
+    });
+
     let maxParticles = 0;
     stats.showPanel(2);
     stats.dom.style.position = "absolute";
@@ -56,13 +67,6 @@
     let initStats = function () {
         const update = function () {
             stats.begin();
-
-            const container = tsParticles.domItem(0);
-            if (container) {
-                maxParticles = Math.max(container.particles.count, maxParticles);
-
-                countPanel.update(container.particles.count, maxParticles);
-            }
 
             stats.end();
 
