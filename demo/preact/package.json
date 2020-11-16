@@ -42,9 +42,9 @@
     "sirv-cli": "^1.0.8"
   },
   "dependencies": {
-    "preact": "^10.5.5",
+    "preact": "^10.5.7",
     "preact-particles": "^1.19.0-alpha.0",
-    "preact-render-to-string": "^5.1.11",
+    "preact-render-to-string": "^5.1.12",
     "preact-router": "^3.2.1"
   }
 }
