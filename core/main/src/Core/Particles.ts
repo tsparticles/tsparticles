@@ -73,18 +73,7 @@ export class Particles {
 
         let handled = false;
 
-        for (const particle of options.manualParticles) {
-            const pos = particle.position
-                ? {
-                      x: (particle.position.x * container.canvas.size.width) / 100,
-                      y: (particle.position.y * container.canvas.size.height) / 100,
-                  }
-                : undefined;
-
-            this.addParticle(pos, particle.options);
-        }
-
-        for (const [, plugin] of container.plugins) {
+        for (const [ , plugin ] of container.plugins) {
             if (plugin.particlesInitialization !== undefined) {
                 handled = plugin.particlesInitialization();
             }
@@ -93,6 +82,8 @@ export class Particles {
                 break;
             }
         }
+
+        this.addManualParticles();
 
         if (!handled) {
             for (const group in options.particles.groups) {
@@ -222,7 +213,7 @@ export class Particles {
         this.update(delta);
 
         /* draw polygon shape in debug mode */
-        for (const [, plugin] of container.plugins) {
+        for (const [ , plugin ] of container.plugins) {
             container.canvas.drawPlugin(plugin, delta);
         }
 
@@ -303,18 +294,18 @@ export class Particles {
     }
 
     public getTriangleFrequency(p1: IParticle, p2: IParticle, p3: IParticle): number {
-        let [id1, id2, id3] = [p1.id, p2.id, p3.id];
+        let [ id1, id2, id3 ] = [ p1.id, p2.id, p3.id ];
 
         if (id1 > id2) {
-            [id2, id1] = [id1, id2];
+            [ id2, id1 ] = [ id1, id2 ];
         }
 
         if (id2 > id3) {
-            [id3, id2] = [id2, id3];
+            [ id3, id2 ] = [ id2, id3 ];
         }
 
         if (id1 > id3) {
-            [id3, id1] = [id1, id3];
+            [ id3, id1 ] = [ id1, id3 ];
         }
 
         const key = `${id1}_${id2}_${id3}`;
@@ -330,6 +321,22 @@ export class Particles {
         return res;
     }
 
+    public addManualParticles(): void {
+        const container = this.container;
+        const options = container.options;
+
+        for (const particle of options.manualParticles) {
+            const pos = particle.position
+                ? {
+                    x: (particle.position.x * container.canvas.size.width) / 100,
+                    y: (particle.position.y * container.canvas.size.height) / 100,
+                }
+                : undefined;
+
+            this.addParticle(pos, particle.options);
+        }
+    }
+
     /**
      * Aligns particles number to the specified density in the current canvas size
      */
@@ -337,18 +344,18 @@ export class Particles {
         const options = this.container.options;
 
         for (const group in options.particles.groups) {
-            this.applyDensity(options.particles.groups[group], group);
+            this.applyDensity(options.particles.groups[group], 0, group);
         }
 
-        this.applyDensity(options.particles);
+        this.applyDensity(options.particles, options.manualParticles.length);
     }
 
-    private applyDensity(options: IParticles, group?: string) {
+    private applyDensity(options: IParticles, manualCount: number, group?: string) {
         const numberOptions = options.number;
         const densityFactor = this.initDensityFactor(numberOptions.density);
         const optParticlesNumber = numberOptions.value;
         const optParticlesLimit = numberOptions.limit > 0 ? numberOptions.limit : optParticlesNumber;
-        const particlesNumber = Math.min(optParticlesNumber, optParticlesLimit) * densityFactor;
+        const particlesNumber = Math.min(optParticlesNumber, optParticlesLimit) * densityFactor + manualCount;
         const particlesCount = Math.min(this.count, this.array.filter((t) => t.group === group).length);
 
         this.limit = numberOptions.limit * densityFactor;

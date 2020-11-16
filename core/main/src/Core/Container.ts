@@ -183,7 +183,7 @@ export class Container {
         }
 
         if (needsUpdate) {
-            for (const [, plugin] of this.plugins) {
+            for (const [ , plugin ] of this.plugins) {
                 if (plugin.play) {
                     plugin.play();
                 }
@@ -209,7 +209,7 @@ export class Container {
             return;
         }
 
-        for (const [, plugin] of this.plugins) {
+        for (const [ , plugin ] of this.plugins) {
             if (plugin.pause) {
                 plugin.pause();
             }
@@ -283,7 +283,7 @@ export class Container {
 
         this.canvas.destroy();
 
-        for (const [, drawer] of this.drawers) {
+        for (const [ , drawer ] of this.drawers) {
             if (drawer.destroy) {
                 drawer.destroy(this);
             }
@@ -328,7 +328,8 @@ export class Container {
     public async refresh(): Promise<void> {
         /* restart */
         this.stop();
-        await this.start();
+
+        return this.start();
     }
 
     /**
@@ -350,7 +351,7 @@ export class Container {
             this.intersectionObserver.observe(this.interactivity.element);
         }
 
-        for (const [, plugin] of this.plugins) {
+        for (const [ , plugin ] of this.plugins) {
             if (plugin.stop) {
                 plugin.stop();
             }
@@ -373,7 +374,7 @@ export class Container {
     public async loadTheme(name?: string): Promise<void> {
         this.options.setTheme(name);
 
-        await this.refresh();
+        return this.refresh();
     }
 
     /**
@@ -394,7 +395,7 @@ export class Container {
             this.intersectionObserver.observe(this.interactivity.element);
         }
 
-        for (const [, plugin] of this.plugins) {
+        for (const [ , plugin ] of this.plugins) {
             if (plugin.startAsync !== undefined) {
                 await plugin.startAsync();
             } else if (plugin.start !== undefined) {
@@ -424,17 +425,21 @@ export class Container {
 
         const availablePlugins = Plugins.getAvailablePlugins(this);
 
-        for (const [id, plugin] of availablePlugins) {
+        for (const [ id, plugin ] of availablePlugins) {
             this.plugins.set(id, plugin);
         }
 
-        for (const [, drawer] of this.drawers) {
+        const drawerPromises: Promise<void>[] = [];
+
+        for (const [ , drawer ] of this.drawers) {
             if (drawer.init) {
-                await drawer.init(this);
+                drawerPromises.push(drawer.init(this));
             }
         }
 
-        for (const [, plugin] of this.plugins) {
+        await Promise.allSettled(drawerPromises);
+
+        for (const [ , plugin ] of this.plugins) {
             if (plugin.init) {
                 plugin.init(this.options);
             } else if (plugin.initAsync !== undefined) {

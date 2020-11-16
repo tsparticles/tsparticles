@@ -60,9 +60,13 @@ export class ImageDrawer implements IShapeDrawer {
         const imageOptions = shapeOptions.options[ShapeType.images] ?? shapeOptions.options[ShapeType.image];
 
         if (imageOptions instanceof Array) {
+            const promises: Promise<void>[] = [];
+
             for (const optionsImage of imageOptions) {
-                await this.loadImageShape(container, optionsImage as IImageShape);
+                promises.push(this.loadImageShape(container, optionsImage as IImageShape));
             }
+
+            await Promise.allSettled(promises);
         } else {
             await this.loadImageShape(container, imageOptions as IImageShape);
         }
@@ -74,11 +78,11 @@ export class ImageDrawer implements IShapeDrawer {
 
     private async loadImageShape(container: Container, imageShape: IImageShape): Promise<void> {
         try {
-            const image = imageShape.replaceColor
-                ? await Utils.downloadSvgImage(imageShape.src)
-                : await Utils.loadImage(imageShape.src);
+            const imagePromise = imageShape.replaceColor
+                ? Utils.downloadSvgImage(imageShape.src)
+                : Utils.loadImage(imageShape.src);
 
-            this.addImage(container, image);
+            this.addImage(container, await imagePromise);
         } catch {
             console.warn(`tsParticles error - ${imageShape.src} not found`);
         }

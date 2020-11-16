@@ -199,7 +199,8 @@ export class Options implements IOptions, IOptionLoader<IOptions> {
     }
 
     public setResponsive(width: number, pxRatio: number, defaultOptions: IOptions) {
-        this.load(this.responsive.find((t) => t.maxWidth * pxRatio > width)?.options ?? defaultOptions);
+        this.load(defaultOptions);
+        this.load(this.responsive.find((t) => t.maxWidth * pxRatio > width)?.options);
     }
 
     private importPreset(preset: string): void {
