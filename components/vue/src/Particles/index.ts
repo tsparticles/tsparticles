@@ -3,7 +3,7 @@ import particles from "./Particles.vue";
 
 const VueParticles = {
     install: (vue: typeof Vue, options: unknown) => {
-        Vue.component('Particles', particles);
+        vue.component('Particles', particles);
     }
 };
 

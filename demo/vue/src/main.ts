@@ -3,9 +3,9 @@ import App from './App.vue';
 
 declare module 'particles.vue';
 
-/*import Particles from "particles.vue";
+import Particles from "particles.vue";
 
-Vue.use(Particles);*/
+Vue.use(Particles);
 
 Vue.config.productionTip = false
 
