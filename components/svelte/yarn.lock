@@ -461,6 +461,11 @@ path-parse@^1.0.6:
   resolved "https://registry.yarnpkg.com/path-parse/-/path-parse-1.0.6.tgz#d62dbb5679405d72c4737ec58600e9ddcf06d24c"
   integrity sha512-GSmOT2EbHrINBf9SR7CDELwlJ8AENk3Qn7OikK4nFYAu3Ote2+JYNVvkpAEQm3/TLNEJFD/xZJjzyxg3KBWOzw==
 
+pathseg@^1.2.0:
+  version "1.2.0"
+  resolved "https://registry.yarnpkg.com/pathseg/-/pathseg-1.2.0.tgz#22af051e28037671e7799e296fe96c5dcbe53acd"
+  integrity sha512-+pQS7lTaoVIXhaCW7R3Wd/165APzZHWzYVqe7dxzdupxQwebgpBaCmf0/XZwmoA/rkDq3qvzO0qv4d5oFVrBRw==
+
 picomatch@^2.0.4, picomatch@^2.2.1, picomatch@^2.2.2:
   version "2.2.2"
   resolved "https://registry.yarnpkg.com/picomatch/-/picomatch-2.2.2.tgz#21f333e9b6b8eaff02468f5146ea406d345f4dad"
@@ -593,9 +598,9 @@ supports-color@^7.0.0, supports-color@^7.1.0:
     has-flag "^4.0.0"
 
 svelte-check@^1.1.11:
-  version "1.1.11"
-  resolved "https://registry.yarnpkg.com/svelte-check/-/svelte-check-1.1.11.tgz#c577be55ce9dbfd7f27de672a7d8736fb4aecdbd"
-  integrity sha512-kUd8caplQGERPfAGLwwbJ0EZ5dzsEVqEEfH93Ur4RJsPi7hW+gV6czEn3KVbJP7XrPmnoi3y2B/G1RUzyPr6yQ==
+  version "1.1.12"
+  resolved "https://registry.yarnpkg.com/svelte-check/-/svelte-check-1.1.12.tgz#4ded6f8472aabcd706d65a1f6951ec72a9ea509f"
+  integrity sha512-Sr7mNkFWDI1kzJwjmsBUhXsakbfIEYJwnPHLhi7usbU8YAmSkI7e8BGnaqIn6xkAqON1q5QZQcqPTLjxIKiEZA==
   dependencies:
     chalk "^4.0.0"
     chokidar "^3.4.1"
@@ -641,6 +646,13 @@ tslib@^2.0.3:
   version "2.0.3"
   resolved "https://registry.yarnpkg.com/tslib/-/tslib-2.0.3.tgz#8e0741ac45fc0c226e58a17bfc3e64b9bc6ca61c"
   integrity sha512-uZtkfKblCEQtZKBF6EBXVZeQNl82yqtDQdv+eck8u7tdPxjLu2/lp5/uPW+um2tpuxINHWy3GhiccY7QgEaVHQ==
+
+tsparticles@^1.19.0-alpha.0:
+  version "1.19.0-alpha.0"
+  resolved "https://registry.yarnpkg.com/tsparticles/-/tsparticles-1.19.0-alpha.0.tgz#bfd90215dbe828ee74619163a3dabd216108a7cc"
+  integrity sha512-TPe/B7mxJp5x2shk1qxSttv23wCXGI7rB8L7Z6ADeipBMMhIDUfVWu0yWhwJ7JXhi4UIbkngK/NNmCuS5jgZAg==
+  optionalDependencies:
+    pathseg "^1.2.0"
 
 typescript@*, typescript@^4.0.5:
   version "4.0.5"
