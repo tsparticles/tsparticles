@@ -20,7 +20,7 @@
     "build:ts:esm": "tsc -b tsconfig.module.json",
     "build:docs": "yarn clear:docs && typedoc && copyfiles -f ../../CNAME ./docs",
     "build:schema": "npx mkdirp ./schema && typescript-json-schema tsconfig.schema.json IOptions --out ./schema/options.schema.json",
-    "test": "mocha",
+    "test": "nyc mocha",
     "preversion": "yarn test",
     "install": "node ./scripts/install.js",
     "version": "node ./scripts/postversion.js && git add tsParticles.nuspec",
