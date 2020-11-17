@@ -7,7 +7,12 @@ assignees: ''
 
 ---
 
-**Are you using `tsParticles` latest version?**
+/* DO NOT DELETE THE TEMPLATE BELOW, you can safely delete this line */
+
+**Which version are you using?**
+Ex. 1.18.11
+
+**Is the latest version affected?**
 
 - [ ] Yes
 - [ ] No
@@ -23,3 +28,5 @@ assignees: ''
 - [ ] Preact (`preact-particles`)
 - [ ] Inferno (`inferno-particles`)
 - [ ] jQuery (`jquery-particles`)
+
+/* DO NOT DELETE THE TEMPLATE ABOVE, you can safely delete this line */
