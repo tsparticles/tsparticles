@@ -45,7 +45,8 @@
 
     let schema = {};
     const stats = new Stats();
-    const countPanel = stats.addPanel('count', '#ff8', 0, () => {
+
+    stats.addPanel('count', '#ff8', 0, () => {
         const container = tsParticles.domItem(0);
         if (container) {
             maxParticles = Math.max(container.particles.count, maxParticles);
