@@ -1,4 +1,3 @@
-import type { IExternalInteractor } from "../../Core/Interfaces/IExternalInteractor";
 import { Constants } from "../../Utils";
 import { HoverMode } from "../../Enums/Modes";
 import type { Container } from "../../Core/Container";
@@ -7,9 +6,12 @@ import { DivMode } from "../../Enums/Modes";
 import { DivEvent } from "../../Options/Classes/Interactivity/Events/DivEvent";
 import { DivType } from "../../Enums/Types";
 import type { ICoordinates } from "../../Core/Interfaces/ICoordinates";
+import { ExternalBase } from "./ExternalBase";
 
-export class Bouncer implements IExternalInteractor {
-    constructor(private readonly container: Container) {}
+export class Bouncer extends ExternalBase {
+    constructor(container: Container) {
+        super(container, "bouncer");
+    }
 
     public isEnabled(): boolean {
         const container = this.container;

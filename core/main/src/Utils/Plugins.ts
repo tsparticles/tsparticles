@@ -6,8 +6,21 @@ import type { IOptions } from "../Options/Interfaces/IOptions";
 import type { IShapeDrawer } from "../Core/Interfaces/IShapeDrawer";
 import type { Options } from "../Options/Classes/Options";
 import { INoise } from "../Core/Interfaces/INoise";
+import { IParticleUpdater } from "../Core/Interfaces/IParticleUpdater";
+import { IInteractor } from "../Core/Interfaces/IInteractor";
+import { Particle } from "../Core/Particle";
+
+type InteractorInitializer = (container: Container) => IInteractor;
+type UpdaterInitializer = (container: Container) => (particle: Particle) => IParticleUpdater;
 
 const plugins: IPlugin[] = [];
+const interactorsInitializers: InteractorInitializer[] = [];
+const updatersInitializers: UpdaterInitializer[] = [];
+const interactors: Map<Container, IInteractor[]> = new Map<Container, IInteractor[]>();
+const updaters: Map<Container, ((particle: Particle) => IParticleUpdater)[]> = new Map<
+    Container,
+    ((particle: Particle) => IParticleUpdater)[]
+>();
 const presets: Map<string, RecursivePartial<IOptions>> = new Map<string, RecursivePartial<IOptions>>();
 const drawers: Map<string, IShapeDrawer> = new Map<string, IShapeDrawer>();
 const noiseGenerators: Map<string, INoise> = new Map<string, INoise>();
@@ -77,5 +90,39 @@ export class Plugins {
         if (!Plugins.getNoiseGenerator(type)) {
             noiseGenerators.set(type, noiseGenerator);
         }
+    }
+
+    public static getInteractors(container: Container): IInteractor[] {
+        let res = interactors.get(container);
+
+        if (!res) {
+            res = interactorsInitializers.map((t) => t(container));
+
+            interactors.set(container, res);
+        }
+
+        return res;
+    }
+
+    public static addInteractor(initInteractor: (container: Container) => IInteractor): void {
+        interactorsInitializers.push(initInteractor);
+    }
+
+    public static getUpdaters(container: Container): ((particle: Particle) => IParticleUpdater)[] {
+        let res = updaters.get(container);
+
+        if (!res) {
+            res = updatersInitializers.map((t) => t(container));
+
+            updaters.set(container, res);
+        }
+
+        return res;
+    }
+
+    public static addParticleUpdater(
+        initUpdater: (container: Container) => (particle: Particle) => IParticleUpdater
+    ): void {
+        updatersInitializers.push(initUpdater);
     }
 }

@@ -1,18 +1,20 @@
-import type { IExternalInteractor } from "../../Core/Interfaces/IExternalInteractor";
 import type { Container } from "../../Core/Container";
 import { Utils } from "../../Utils";
 import { ClickMode, HoverMode } from "../../Enums/Modes";
 import type { IDelta } from "../../Core/Interfaces/IDelta";
 import { ICoordinates } from "../../Core/Interfaces/ICoordinates";
+import { ExternalBase } from "./ExternalBase";
 
 /**
  * @category Interactions
  */
-export class TrailMaker implements IExternalInteractor {
+export class TrailMaker extends ExternalBase {
     private delay: number;
     private lastPosition?: ICoordinates;
 
-    constructor(private readonly container: Container) {
+    constructor(container: Container) {
+        super(container, "trail");
+
         this.delay = 0;
     }
 

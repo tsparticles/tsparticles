@@ -1,10 +1,12 @@
 import { Utils } from "../../Utils";
 import { HoverMode } from "../../Enums/Modes";
 import type { Container } from "../../Core/Container";
-import type { IExternalInteractor } from "../../Core/Interfaces/IExternalInteractor";
+import { ExternalBase } from "./ExternalBase";
 
-export class Lighter implements IExternalInteractor {
-    constructor(private readonly container: Container) {}
+export class Lighter extends ExternalBase {
+    constructor(container: Container) {
+        super(container, "lighter");
+    }
 
     public interact(): void {
         const container = this.container;

@@ -2,14 +2,16 @@ import type { Container } from "../../Core/Container";
 import { ClickMode, HoverMode } from "../../Enums";
 import { Circle, Constants, Range, Utils, NumberUtils } from "../../Utils";
 import type { ICoordinates } from "../../Core/Interfaces/ICoordinates";
-import type { IExternalInteractor } from "../../Core/Interfaces/IExternalInteractor";
+import { ExternalBase } from "./ExternalBase";
 
 /**
  * Particle attract manager
  * @category Interactions
  */
-export class Attractor implements IExternalInteractor {
-    constructor(private readonly container: Container) {}
+export class Attractor extends ExternalBase {
+    constructor(container: Container) {
+        super(container, "attractor");
+    }
 
     public isEnabled(): boolean {
         const container = this.container;

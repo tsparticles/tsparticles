@@ -1,5 +1,5 @@
 import type { ICoordinates } from "../Core/Interfaces/ICoordinates";
-import { DivMode } from "../Enums";
+import { DestroyType, DivMode } from "../Enums";
 import type { ICharacterShape } from "../Options/Interfaces/Particles/Shape/ICharacterShape";
 import type { IBounds } from "../Core/Interfaces/IBounds";
 import type { IDimension } from "../Core/Interfaces/IDimension";
@@ -13,6 +13,7 @@ import { IParticle } from "../Core/Interfaces/IParticle";
 import { ISideData } from "../Core/Interfaces/ISideData";
 import { IRectSideResult } from "../Core/Interfaces/IRectSideResult";
 import { ICircleBouncer } from "../Core/Interfaces/ICircleBouncer";
+import { Particle } from "../Core/Particle";
 
 type CSSOMString = string;
 type FontFaceLoadStatus = "unloaded" | "loading" | "loaded" | "error";
@@ -480,6 +481,27 @@ export class Utils {
             if (resV.position !== undefined) {
                 particle.position.y = resV.position;
             }
+        }
+    }
+
+    public static checkDestroy(
+        particle: Particle,
+        destroy: DestroyType | keyof typeof DestroyType,
+        value: number,
+        minValue: number,
+        maxValue: number
+    ): void {
+        switch (destroy) {
+            case DestroyType.max:
+                if (value >= maxValue) {
+                    particle.destroy();
+                }
+                break;
+            case DestroyType.min:
+                if (value <= minValue) {
+                    particle.destroy();
+                }
+                break;
         }
     }
 }

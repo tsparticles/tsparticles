@@ -1,14 +1,16 @@
 import type { IParticle } from "../../Core/Interfaces/IParticle";
 import type { Container } from "../../Core/Container";
 import { Particle } from "../../Core/Particle";
-import type { IParticlesInteractor } from "../../Core/Interfaces/IParticlesInteractor";
 import { NumberUtils } from "../../Utils";
+import { ParticlesBase } from "./ParticlesBase";
 
 /**
  * @category Interactions
  */
-export class Attractor implements IParticlesInteractor {
-    constructor(private readonly container: Container) {}
+export class Attractor extends ParticlesBase {
+    constructor(container: Container) {
+        super(container, "attractor");
+    }
 
     public interact(p1: IParticle): void {
         const container = this.container;

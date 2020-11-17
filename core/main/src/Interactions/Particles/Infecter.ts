@@ -1,13 +1,15 @@
 import type { Particle } from "../../Core/Particle";
 import type { Container } from "../../Core/Container";
-import type { IParticlesInteractor } from "../../Core/Interfaces/IParticlesInteractor";
 import type { IDelta } from "../../Core/Interfaces/IDelta";
+import { ParticlesBase } from "./ParticlesBase";
 
 /**
  * @category Interactions
  */
-export class Infecter implements IParticlesInteractor {
-    constructor(private readonly container: Container) {}
+export class Infecter extends ParticlesBase {
+    constructor(container: Container) {
+        super(container, "infecter");
+    }
 
     public isEnabled(): boolean {
         return this.container.options.infection.enable;

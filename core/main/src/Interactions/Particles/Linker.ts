@@ -1,11 +1,13 @@
 import { Particle } from "../../Core/Particle";
 import type { Container } from "../../Core/Container";
-import { IParticlesInteractor } from "../../Core/Interfaces/IParticlesInteractor";
 import { Circle, CircleWarp, ColorUtils, NumberUtils } from "../../Utils";
 import { IParticle } from "../../Core/Interfaces/IParticle";
+import { ParticlesBase } from "./ParticlesBase";
 
-export class Linker implements IParticlesInteractor {
-    constructor(private readonly container: Container) {}
+export class Linker extends ParticlesBase {
+    constructor(container: Container) {
+        super(container, "linker");
+    }
 
     public isEnabled(particle: Particle): boolean {
         return particle.particlesOptions.links.enable;

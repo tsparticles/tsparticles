@@ -1,11 +1,13 @@
 import { Particle } from "../../Core/Particle";
 import type { Container } from "../../Core/Container";
-import { IParticlesInteractor } from "../../Core/Interfaces/IParticlesInteractor";
 import { NumberUtils } from "../../Utils";
 import { IParticle } from "../../Core/Interfaces/IParticle";
+import { ParticlesBase } from "./ParticlesBase";
 
-export class Repulser implements IParticlesInteractor {
-    constructor(private readonly container: Container) {}
+export class Repulser extends ParticlesBase {
+    constructor(container: Container) {
+        super(container, "repulser");
+    }
 
     public isEnabled(particle: Particle): boolean {
         return particle.particlesOptions.repulse.enabled;

@@ -112,8 +112,6 @@ export class Particles {
             }
         }
 
-        this.interactionManager.init();
-
         container.noise.init();
     }
 

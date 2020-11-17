@@ -22,7 +22,27 @@ import type {
 } from "./Types";
 import type { IPlugin } from "./Core/Interfaces/IPlugin";
 import type { Particle } from "./Core/Particle";
-import { INoise } from "./Core/Interfaces/INoise";
+import type { INoise } from "./Core/Interfaces/INoise";
+import { Bouncer } from "./Interactions/External/Bouncer";
+import { Bubbler } from "./Interactions/External/Bubbler";
+import { Connector } from "./Interactions/External/Connector";
+import { Grabber } from "./Interactions/External/Grabber";
+import { Attractor as MouseAttractor } from "./Interactions/External/Attractor";
+import { Repulser as MouseRepulser } from "./Interactions/External/Repulser";
+import { Attractor as ParticlesAttractor } from "./Interactions/Particles/Attractor";
+import { Collider } from "./Interactions/Particles/Collider";
+import { Infecter } from "./Interactions/Particles/Infecter";
+import { Repulser } from "./Interactions/Particles/Repulser";
+import { Linker } from "./Interactions/Particles/Linker";
+import { LifeUpdater } from "./Updaters/LifeUpdater";
+import { OpacityUpdater } from "./Updaters/OpacityUpdater";
+import { SizeUpdater } from "./Updaters/SizeUpdater";
+import { AngleUpdater } from "./Updaters/AngleUpdater";
+import { ColorUpdater } from "./Updaters/ColorUpdater";
+import { StrokeColorUpdater } from "./Updaters/StrokeColorUpdater";
+import { OutOfCanvasUpdater } from "./Updaters/OutOfCanvasUpdater";
+import type { IInteractor } from "./Core/Interfaces/IInteractor";
+import { IParticleUpdater } from "./Core/Interfaces/IParticleUpdater";
 
 /**
  * Main class for creating the singleton on window.
@@ -38,6 +58,26 @@ export class MainSlim {
         const squareDrawer = new SquareDrawer();
         const textDrawer = new TextDrawer();
         const imageDrawer = new ImageDrawer();
+
+        Plugins.addParticleUpdater((container) => (particle) => new LifeUpdater(container, particle));
+        Plugins.addParticleUpdater((container) => (particle) => new OpacityUpdater(container, particle));
+        Plugins.addParticleUpdater((container) => (particle) => new SizeUpdater(container, particle));
+        Plugins.addParticleUpdater((container) => (particle) => new AngleUpdater(container, particle));
+        Plugins.addParticleUpdater((container) => (particle) => new ColorUpdater(container, particle));
+        Plugins.addParticleUpdater((container) => (particle) => new StrokeColorUpdater(container, particle));
+        Plugins.addParticleUpdater((container) => (particle) => new OutOfCanvasUpdater(container, particle));
+
+        Plugins.addInteractor((container) => new Bouncer(container));
+        Plugins.addInteractor((container) => new Bubbler(container));
+        Plugins.addInteractor((container) => new Connector(container));
+        Plugins.addInteractor((container) => new Grabber(container));
+        Plugins.addInteractor((container) => new MouseAttractor(container));
+        Plugins.addInteractor((container) => new MouseRepulser(container));
+        Plugins.addInteractor((container) => new ParticlesAttractor(container));
+        Plugins.addInteractor((container) => new Collider(container));
+        Plugins.addInteractor((container) => new Infecter(container));
+        Plugins.addInteractor((container) => new Repulser(container));
+        Plugins.addInteractor((container) => new Linker(container));
 
         Plugins.addShapeDrawer(ShapeType.line, new LineDrawer());
         Plugins.addShapeDrawer(ShapeType.circle, new CircleDrawer());
@@ -199,5 +239,23 @@ export class MainSlim {
      */
     public addNoiseGenerator(name: string, generator: INoise): void {
         Plugins.addNoiseGenerator(name, generator);
+    }
+
+    /**
+     *
+     * @param interactorInitializer
+     */
+    public addInteractor(interactorInitializer: (container: Container) => IInteractor): void {
+        Plugins.addInteractor(interactorInitializer);
+    }
+
+    /**
+     *
+     * @param updaterInitializer
+     */
+    public addParticleUpdater(
+        updaterInitializer: (container: Container) => (particle: Particle) => IParticleUpdater
+    ): void {
+        Plugins.addParticleUpdater(updaterInitializer);
     }
 }
