@@ -30,9 +30,7 @@ export class Background implements IBackground, IOptionLoader<IBackground> {
             return;
         }
 
-        if (data.color !== undefined) {
-            this.color = OptionsColor.create(this.color, data.color);
-        }
+        this.color = OptionsColor.create(this.color, data.color);
 
         if (data.image !== undefined) {
             this.image = data.image;

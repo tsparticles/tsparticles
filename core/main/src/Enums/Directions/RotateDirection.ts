@@ -1,7 +1,7 @@
 /**
  * @category Enums
  */
-export enum RotateDirection {
+export const enum RotateDirection {
     clockwise = "clockwise",
     counterClockwise = "counter-clockwise",
     random = "random",

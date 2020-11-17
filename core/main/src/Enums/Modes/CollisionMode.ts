@@ -1,7 +1,7 @@
 /**
  * @category Enums
  */
-export enum CollisionMode {
+export const enum CollisionMode {
     absorb = "absorb",
     bounce = "bounce",
     destroy = "destroy",

@@ -1,7 +1,7 @@
 /**
  * @category Enums
  */
-export enum SizeMode {
+export const enum SizeMode {
     precise = "precise",
     percent = "percent",
 }

@@ -1,6 +1,6 @@
 /**
  * @category Emitters Plugin
  */
-export enum EmitterClickMode {
+export const enum EmitterClickMode {
     emitter = "emitter",
 }

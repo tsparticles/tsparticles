@@ -9,7 +9,7 @@ import { CanvasUtils, ColorUtils, Constants, NumberUtils, Utils } from "../Utils
 import type { Particle } from "./Particle";
 import type { IDelta } from "./Interfaces/IDelta";
 import { IOrbit } from "./Interfaces/IOrbit";
-import { OrbitType } from "../Enums/OrbitType";
+import { OrbitType } from "../Enums/Types/OrbitType";
 
 /**
  * Canvas manager
