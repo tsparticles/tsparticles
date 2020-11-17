@@ -1,15 +1,16 @@
-import { Particle } from "../../Core/Particle";
 import type { Container } from "../../Core/Container";
-import { Circle, CircleWarp, ColorUtils, NumberUtils } from "../../Utils";
-import { IParticle } from "../../Core/Interfaces/IParticle";
+import type { IParticle } from "../../Core/Interfaces/IParticle";
+import type { ICoordinates } from "../../Core/Interfaces/ICoordinates";
+import type { IDimension } from "../../Core/Interfaces/IDimension";
 import { ParticlesBase } from "./ParticlesBase";
+import { Circle, CircleWarp, ColorUtils, NumberUtils } from "../../Utils";
 
 export class Linker extends ParticlesBase {
     constructor(container: Container) {
         super(container, "linker");
     }
 
-    public isEnabled(particle: Particle): boolean {
+    public isEnabled(particle: IParticle): boolean {
         return particle.particlesOptions.links.enable;
     }
 
@@ -40,37 +41,7 @@ export class Linker extends ParticlesBase {
             }
 
             const pos2 = p2.getPosition();
-
-            let distance = NumberUtils.getDistance(pos1, pos2);
-
-            if (warp) {
-                if (distance > optDistance) {
-                    const pos2NE = {
-                        x: pos2.x - canvasSize.width,
-                        y: pos2.y,
-                    };
-
-                    distance = NumberUtils.getDistance(pos1, pos2NE);
-
-                    if (distance > optDistance) {
-                        const pos2SE = {
-                            x: pos2.x - canvasSize.width,
-                            y: pos2.y - canvasSize.height,
-                        };
-
-                        distance = NumberUtils.getDistance(pos1, pos2SE);
-
-                        if (distance > optDistance) {
-                            const pos2SW = {
-                                x: pos2.x,
-                                y: pos2.y - canvasSize.height,
-                            };
-
-                            distance = NumberUtils.getDistance(pos1, pos2SW);
-                        }
-                    }
-                }
-            }
+            const distance = this.getDistance(pos1, pos2, optDistance, canvasSize, warp && linkOpt2.warp);
 
             if (distance > optDistance) {
                 return;
@@ -78,24 +49,8 @@ export class Linker extends ParticlesBase {
 
             /* draw a line between p1 and p2 */
             const opacityLine = (1 - distance / optDistance) * optOpacity;
-            const linksOptions = p1.particlesOptions.links;
 
-            let linkColor =
-                linksOptions.id !== undefined
-                    ? container.particles.linksColors.get(linksOptions.id)
-                    : container.particles.linksColor;
-
-            if (!linkColor) {
-                const optColor = linksOptions.color;
-
-                linkColor = ColorUtils.getLinkRandomColor(optColor, linksOptions.blink, linksOptions.consent);
-
-                if (linksOptions.id !== undefined) {
-                    container.particles.linksColors.set(linksOptions.id, linkColor);
-                } else {
-                    container.particles.linksColor = linkColor;
-                }
-            }
+            this.setColor(p1);
 
             if (
                 p2.links.map((t) => t.destination).indexOf(p1) === -1 &&
@@ -107,5 +62,72 @@ export class Linker extends ParticlesBase {
                 });
             }
         }
+    }
+
+    private setColor(p1: IParticle): void {
+        const container = this.container;
+        const linksOptions = p1.particlesOptions.links;
+
+        let linkColor =
+            linksOptions.id === undefined
+                ? container.particles.linksColor
+                : container.particles.linksColors.get(linksOptions.id);
+
+        if (!linkColor) {
+            const optColor = linksOptions.color;
+
+            linkColor = ColorUtils.getLinkRandomColor(optColor, linksOptions.blink, linksOptions.consent);
+
+            if (linksOptions.id === undefined) {
+                container.particles.linksColor = linkColor;
+            } else {
+                container.particles.linksColors.set(linksOptions.id, linkColor);
+            }
+        }
+    }
+
+    private getDistance(
+        pos1: ICoordinates,
+        pos2: ICoordinates,
+        optDistance: number,
+        canvasSize: IDimension,
+        warp: boolean
+    ): number {
+        let distance = NumberUtils.getDistance(pos1, pos2);
+
+        if (distance <= optDistance || !warp) {
+            return distance;
+        }
+
+        const pos2NE = {
+            x: pos2.x - canvasSize.width,
+            y: pos2.y,
+        };
+
+        distance = NumberUtils.getDistance(pos1, pos2NE);
+
+        if (distance <= optDistance) {
+            return distance;
+        }
+
+        const pos2SE = {
+            x: pos2.x - canvasSize.width,
+            y: pos2.y - canvasSize.height,
+        };
+
+        distance = NumberUtils.getDistance(pos1, pos2SE);
+
+        if (distance <= optDistance) {
+            return distance;
+        }
+
+        const pos2SW = {
+            x: pos2.x,
+            y: pos2.y - canvasSize.height,
+        };
+
+        distance = NumberUtils.getDistance(pos1, pos2SW);
+
+        return distance;
     }
 }
