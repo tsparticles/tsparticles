@@ -11,6 +11,19 @@
     "color": {
       "value": "#ffffff"
     },
+    "destroy": {
+      "mode": "split",
+      "split": {
+        "count": -1,
+        "factor": {
+          "value": 9,
+          "random": {
+            "enable": true,
+            "minimumValue": 4
+          }
+        }
+      }
+    },
     "shape": {
       "type": "circle",
       "stroke": {
@@ -109,7 +122,7 @@
         "distance": 200
       },
       "push": {
-        "particles_nb": 4
+        "particles_nb": 1
       },
       "remove": {
         "particles_nb": 2

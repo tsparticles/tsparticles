@@ -3,7 +3,7 @@ import type { ICoordinates } from "./Interfaces/ICoordinates";
 import type { IMouseData } from "./Interfaces/IMouseData";
 import type { IRgb } from "./Interfaces/Colors";
 import { Particle } from "./Particle";
-import { Point, QuadTree, Rectangle, Utils } from "../Utils";
+import { NumberUtils, Point, QuadTree, Rectangle, Utils } from "../Utils";
 import type { RecursivePartial } from "../Types";
 import type { IParticles } from "../Options/Interfaces/Particles/IParticles";
 import { InteractionManager } from "./Particle/InteractionManager";
@@ -268,12 +268,28 @@ export class Particles {
         group?: string
     ): Particle | undefined {
         return this.pushParticle(position, overrideOptions, group, (particle) => {
+            const factor = NumberUtils.getValue(particle.particlesOptions.destroy.split.factor);
+
+            particle.size.value /= factor;
+            particle.particlesOptions.size.value /= factor;
+            particle.particlesOptions.size.random.minimumValue /= factor;
+
+            if (particle.size.value < 1) {
+                return false;
+            }
+
+            const offset = particle.size.value * factor;
+
+            particle.position.x += NumberUtils.randomInRange(-offset, offset);
+            particle.position.y += NumberUtils.randomInRange(-offset, offset);
             particle.splitCount = splitCount;
             particle.unbreaking = true;
 
             setTimeout(() => {
                 particle.unbreaking = false;
-            }, 100);
+            }, 500);
+
+            return true;
         });
     }
 
@@ -386,16 +402,19 @@ export class Particles {
         position?: ICoordinates,
         overrideOptions?: RecursivePartial<IParticles>,
         group?: string,
-        initializer?: (particle: Particle) => void
+        initializer?: (particle: Particle) => boolean
     ): Particle | undefined {
         try {
             const particle = new Particle(this.nextId, this.container, position, overrideOptions, group);
+            let canAdd = true;
 
             if (initializer) {
-                initializer(particle);
+                canAdd = initializer(particle);
             }
 
-            console.log(particle.unbreaking);
+            if (!canAdd) {
+                return;
+            }
 
             this.array.push(particle);
 

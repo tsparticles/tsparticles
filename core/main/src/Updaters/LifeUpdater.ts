@@ -8,7 +8,7 @@ export class LifeUpdater implements IParticleUpdater {
     constructor(private readonly container: Container, private readonly particle: Particle) {}
 
     public isEnabled(): boolean {
-        return this.particle.destroyed;
+        return !this.particle.destroyed;
     }
 
     public update(delta: IDelta): void {

@@ -633,21 +633,12 @@ export class Particle implements IParticle {
         const rate = NumberUtils.getValue(splitOptions.rate);
 
         for (let i = 0; i < rate; i++) {
-            const options = Utils.deepExtend({}, this.particlesOptions) as IParticles;
-            const factor = NumberUtils.getValue(splitOptions.factor);
-
-            options.size.value /= factor;
-
-            if (options.size.value < 1) {
-                return;
-            }
-
-            const position = {
-                x: this.position.x + NumberUtils.randomInRange(0, this.size.value * 4) - this.size.value * 2,
-                y: this.position.y + NumberUtils.randomInRange(0, this.size.value * 4) - this.size.value * 2,
-            };
-
-            this.container.particles.addSplitParticle(this.splitCount + 1, position, options, this.group);
+            this.container.particles.addSplitParticle(
+                this.splitCount + 1,
+                this.position,
+                this.particlesOptions,
+                this.group
+            );
         }
     }
 
