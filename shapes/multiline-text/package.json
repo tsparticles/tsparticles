@@ -1,6 +1,6 @@
 {
   "name": "tsparticles-shape-multiline-text",
-  "version": "1.4.0-alpha.0",
+  "version": "1.4.0-alpha.1",
   "description": "tsParticles multiline text shape",
   "homepage": "https://particles.matteobruni.it/",
   "scripts": {
@@ -74,6 +74,6 @@
     "webpack-cli": "^4.2.0"
   },
   "dependencies": {
-    "tsparticles": "^1.19.0-alpha.0"
+    "tsparticles": "^1.19.0-alpha.1"
   }
 }

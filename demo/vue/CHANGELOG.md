@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.4.0-alpha.1](https://github.com/matteobruni/tsparticles/compare/particles.vue-demo@1.4.0-alpha.0...particles.vue-demo@1.4.0-alpha.1) (2020-11-18)
+
+
+### Bug Fixes
+
+* fixed vue plugin, thanks to [@tony19](https://github.com/tony19) ([e4b27bf](https://github.com/matteobruni/tsparticles/commit/e4b27bf6c7c8ef8d72844db80f24bc8be9da3380))
+
+
+
+
+
 # [1.4.0-alpha.0](https://github.com/matteobruni/tsparticles/compare/particles.vue-demo@1.3.11...particles.vue-demo@1.4.0-alpha.0) (2020-11-09)
 
 **Note:** Version bump only for package particles.vue-demo
