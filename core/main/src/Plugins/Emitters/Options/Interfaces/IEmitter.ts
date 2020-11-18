@@ -6,7 +6,7 @@ import type { IEmitterLife } from "./IEmitterLife";
 import type { RecursivePartial } from "../../../../Types";
 import type { IEmitterSize } from "./IEmitterSize";
 import type { IEmitterSpin } from "./IEmitterSpin";
-import type { IAnimatableColor } from "../../../../Options/Interfaces/Particles/IAnimatableColor";
+import type { IAnimatableColor } from "../../../../Options/Interfaces/IAnimatableColor";
 
 /**
  * Particles emitter object options

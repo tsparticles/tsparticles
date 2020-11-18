@@ -14,10 +14,30 @@ yarn add particles.vue3
 
 ## Usage
 
+### Plugin
+
+*main.ts*
+
 ```javascript
 import Particles from "particles.vue3";
 
 createApp(App).use(Particles)
+```
+
+### Component
+
+*App.vue (script section)*
+
+```javascript
+import { ParticlesComponent } from "particles.vue3";
+
+@Options({
+  components: {
+    ParticlesComponent
+  }
+})
+export default class App extends Vue {
+/* ...the rest of the file... */
 ```
 
 ### Demo config

@@ -102,7 +102,8 @@ html(lang="en")
                                     option(value="reactPolygonMask") React Polygon Mask
                                     option(value="reactSimple") React Simple
                                     option(value="reactSnow") React Snow
-                                    option(value="repulse") repulse
+                                    option(value="repulse") Repulse
+                                    option(value="responsive") Responsive
                                     option(value="seaAnemone") Sea Anemone
                                     option(value="shadow") Shadow
                                     option(value="shape-bubble") Shape Bubble
@@ -111,6 +112,7 @@ html(lang="en")
                                     option(value="shape-spiral") Shape Spiral
                                     option(value="slow") Slow on Hover
                                     option(value="snow") Snow
+                                    option(value="spin") Spin
                                     option(value="star") Star
                                     option(value="strokeAnimation") Stroke Animation
                                     option(value="svgReplace") Svg Replace
@@ -161,11 +163,7 @@ html(lang="en")
                             i.fas.fa-caret-right
                         span.caret-left
                             i.fas.fa-caret-left
-                    #stats(hidden)
-                        .count-particles
-                            |
-                            span.js-count-particles --
-                            | particles
+                    #stats
 
         #exportModal.modal.fade(tabindex="-1" role="dialog" aria-labelledby="exportModalLabel" aria-hidden="true")
             .modal-dialog.modal-lg(role="document")
@@ -188,7 +186,7 @@ html(lang="en")
         script(src="/bootstrap/js/bootstrap.min.js")
         script(src="/fontawesome/js/all.js")
         script(src="/jsoneditor/jsoneditor.js")
-        script(src="/three/examples/js/libs/stats.min.js")
+        script(src="/stats/dist/stats.min.js")
         script(src="/pathseg/pathseg.js")
         script(src="/tsparticles/tsparticles.min.js")
         script(src="/preset-big-circles/tsparticles.preset.bigCircles.min.js")

@@ -5,10 +5,12 @@ import type { IRgb } from "../../Core/Interfaces/Colors";
 import type { IAbsorber } from "./Options/Interfaces/IAbsorber";
 import { ColorUtils, NumberUtils, Utils } from "../../Utils";
 import type { Absorbers } from "./Absorbers";
+import { RotateDirection } from "../../Enums/Directions";
 
 type OrbitingParticle = Particle & {
-    orbitRadius?: number;
-    orbitAngle?: number;
+    absorberOrbitRadius?: number;
+    absorberOrbitAngle?: number;
+    absorberOrbitDirection?: RotateDirection;
     needsNewPosition?: boolean;
 };
 
@@ -88,7 +90,10 @@ export class AbsorberInstance {
         if (distance < this.size + particle.getRadius()) {
             const sizeFactor = particle.getRadius() * 0.033 * this.container.retina.pixelRatio;
 
-            if (this.size > particle.getRadius() && distance < this.size - particle.getRadius()) {
+            if (
+                (this.size > particle.getRadius() && distance < this.size - particle.getRadius()) ||
+                (particle.absorberOrbitRadius !== undefined && particle.absorberOrbitRadius < 0)
+            ) {
                 if (options.destroy) {
                     particle.destroy();
                 } else {
@@ -152,35 +157,48 @@ export class AbsorberInstance {
 
         if (particle.needsNewPosition) {
             const pSize = particle.getRadius();
-            particle.position.x = Math.random() * (canvasSize.width - pSize * 2) + pSize;
-            particle.position.y = Math.random() * (canvasSize.height - pSize * 2) + pSize;
+            particle.position.x = (canvasSize.width - pSize * 2) * (1 + (Math.random() * 0.2 - 0.1)) + pSize;
+            particle.position.y = (canvasSize.height - pSize * 2) * (1 + (Math.random() * 0.2 - 0.1)) + pSize;
             particle.needsNewPosition = false;
         }
 
         if (this.options.orbits) {
-            if (particle.orbitRadius === undefined) {
-                particle.orbitRadius = NumberUtils.getDistance(particle.getPosition(), this.position);
+            if (particle.absorberOrbitRadius === undefined) {
+                particle.absorberOrbitRadius = NumberUtils.getDistance(particle.getPosition(), this.position);
             }
 
-            if (particle.orbitRadius <= this.size && !this.options.destroy) {
-                particle.orbitRadius = Math.random() * Math.max(canvasSize.width, canvasSize.height);
+            if (particle.absorberOrbitRadius <= this.size && !this.options.destroy) {
+                const minSize = Math.min(canvasSize.width, canvasSize.height);
+
+                particle.absorberOrbitRadius = minSize * (1 + (Math.random() * 0.2 - 0.1));
             }
 
-            if (particle.orbitAngle === undefined) {
-                particle.orbitAngle = Math.random() * Math.PI * 2;
+            if (particle.absorberOrbitAngle === undefined) {
+                particle.absorberOrbitAngle = Math.random() * Math.PI * 2;
             }
 
-            const orbitRadius = particle.orbitRadius;
-            const orbitAngle = particle.orbitAngle;
+            if (particle.absorberOrbitDirection === undefined) {
+                particle.absorberOrbitDirection =
+                    particle.velocity.horizontal >= 0 ? RotateDirection.clockwise : RotateDirection.counterClockwise;
+            }
+
+            const orbitRadius = particle.absorberOrbitRadius;
+            const orbitAngle = particle.absorberOrbitAngle;
+            const orbitDirection = particle.absorberOrbitDirection;
 
             particle.velocity.horizontal = 0;
             particle.velocity.vertical = 0;
 
-            particle.position.x = this.position.x + orbitRadius * Math.cos(orbitAngle);
-            particle.position.y = this.position.y + orbitRadius * Math.sin(orbitAngle);
+            const updateFunc = {
+                x: orbitDirection === RotateDirection.clockwise ? Math.cos : Math.sin,
+                y: orbitDirection === RotateDirection.clockwise ? Math.sin : Math.cos,
+            };
 
-            particle.orbitRadius -= acceleration;
-            particle.orbitAngle +=
+            particle.position.x = this.position.x + orbitRadius * updateFunc.x(orbitAngle);
+            particle.position.y = this.position.y + orbitRadius * updateFunc.y(orbitAngle);
+
+            particle.absorberOrbitRadius -= acceleration;
+            particle.absorberOrbitAngle +=
                 ((particle.moveSpeed ?? this.container.retina.moveSpeed) / 100) * this.container.retina.reduceFactor;
         } else {
             particle.velocity.horizontal += Math.sin(angle) * acceleration;

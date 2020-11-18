@@ -1,4 +1,4 @@
-import { tsParticles, Utils } from "tsparticles";
+import { Main, Utils } from "tsparticles";
 import type { IParticle } from "tsparticles/dist/Core/Interfaces/IParticle";
 import type { IShapeDrawer } from "tsparticles/dist/Core/Interfaces/IShapeDrawer";
 import type { Container, SingleOrMultiple } from "tsparticles";
@@ -124,4 +124,6 @@ export class MultilineTextDrawer implements IShapeDrawer {
     }
 }
 
-tsParticles.addShape("multiline-text", new MultilineTextDrawer());
+export function loadShape(tsParticles: Main) {
+    tsParticles.addShape("multiline-text", new MultilineTextDrawer());
+}

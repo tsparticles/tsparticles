@@ -3,6 +3,25 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.4.0-alpha.1](https://github.com/matteobruni/tsparticles/compare/tsparticles-demo@1.4.0-alpha.0...tsparticles-demo@1.4.0-alpha.1) (2020-11-18)
+
+
+### Bug Fixes
+
+* fixed absorber plugin ([9defe82](https://github.com/matteobruni/tsparticles/commit/9defe82dfc5eef824f9e9c96cec4ada98b105749))
+
+
+### Features
+
+* added noise generator management like shape drawers and plugins ([0ae5ac6](https://github.com/matteobruni/tsparticles/commit/0ae5ac620c43199557f56c76517efbc7c178bd29))
+* added responsive options, closes [#1004](https://github.com/matteobruni/tsparticles/issues/1004) ([2248ade](https://github.com/matteobruni/tsparticles/commit/2248ade8b8423da9f86ee6e3f2ec9b1fb00b3194))
+* distance property in particles.move is now an object with horizontal and vertical properties ([a07c2fe](https://github.com/matteobruni/tsparticles/commit/a07c2fe275d408bd8216afedd479514418183803))
+* spin movement is now working, still needs improvements ([0958e58](https://github.com/matteobruni/tsparticles/commit/0958e580bb7eee9b47fe6f26879b76eef24d4cac))
+
+
+
+
+
 # [1.4.0-alpha.0](https://github.com/matteobruni/tsparticles/compare/tsparticles-demo@1.3.11...tsparticles-demo@1.4.0-alpha.0) (2020-11-09)
 
 

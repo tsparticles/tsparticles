@@ -3,6 +3,30 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.19.0-alpha.1](https://github.com/matteobruni/tsparticles/compare/tsparticles@1.19.0-alpha.0...tsparticles@1.19.0-alpha.1) (2020-11-18)
+
+
+### Bug Fixes
+
+* fixed absorber plugin ([9defe82](https://github.com/matteobruni/tsparticles/commit/9defe82dfc5eef824f9e9c96cec4ada98b105749))
+* fixed manual particles with groups ([6bbb131](https://github.com/matteobruni/tsparticles/commit/6bbb131156b0e81867d9b1be2310397f4d4a6dac))
+* **tests:** fixed tests ([66860d7](https://github.com/matteobruni/tsparticles/commit/66860d7125f7ed10280a79a12be5b940fa7de2d2))
+
+
+### Features
+
+* added noise generator management like shape drawers and plugins ([0ae5ac6](https://github.com/matteobruni/tsparticles/commit/0ae5ac620c43199557f56c76517efbc7c178bd29))
+* added responsive options, closes [#1004](https://github.com/matteobruni/tsparticles/issues/1004) ([2248ade](https://github.com/matteobruni/tsparticles/commit/2248ade8b8423da9f86ee6e3f2ec9b1fb00b3194))
+* destroy section in particles options, this can configure particle split on destroy fixes [#607](https://github.com/matteobruni/tsparticles/issues/607) ([6bae63a](https://github.com/matteobruni/tsparticles/commit/6bae63a328f2646469898d12a4996bddefab55b6))
+* distance property in particles.move is now an object with horizontal and vertical properties ([a07c2fe](https://github.com/matteobruni/tsparticles/commit/a07c2fe275d408bd8216afedd479514418183803))
+* improved particle spin behavior ([98cb031](https://github.com/matteobruni/tsparticles/commit/98cb031cdc95a406c9f4b990715c1d0d7d587b32))
+* particles updater and interactors are now part of the plugin system ([186c9fe](https://github.com/matteobruni/tsparticles/commit/186c9fe878931d89e3b79f86c61c4e40402e0e2b))
+* spin movement is now working, still needs improvements ([0958e58](https://github.com/matteobruni/tsparticles/commit/0958e580bb7eee9b47fe6f26879b76eef24d4cac))
+
+
+
+
+
 # [1.19.0-alpha.0](https://github.com/matteobruni/tsparticles/compare/tsparticles@1.18.11...tsparticles@1.19.0-alpha.0) (2020-11-09)
 
 

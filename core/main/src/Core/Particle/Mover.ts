@@ -1,7 +1,7 @@
 import { NumberUtils, Plugins, Utils } from "../../Utils";
 import type { Container } from "../Container";
 import type { Particle } from "../Particle";
-import { HoverMode } from "../../Enums";
+import { HoverMode, RotateDirection } from "../../Enums";
 import type { IDelta } from "../Interfaces/IDelta";
 
 /**
@@ -45,7 +45,7 @@ export class Mover {
 
     private moveParticle(delta: IDelta): void {
         const particle = this.particle;
-        const particlesOptions = particle.particlesOptions;
+        const particlesOptions = particle.options;
 
         if (!particlesOptions.move.enable) {
             return;
@@ -77,49 +77,112 @@ export class Mover {
             particle.velocity.vertical = velocity.vertical / moveSpeed;
         }
 
-        const zIndexOptions = particle.particlesOptions.zIndex;
+        const zIndexOptions = particle.options.zIndex;
         const zVelocityFactor = 1 - zIndexOptions.velocityRate * particle.zIndexFactor;
 
-        this.moveXY(velocity.horizontal * zVelocityFactor, velocity.vertical * zVelocityFactor);
+        if (
+            particlesOptions.move.spin.enable &&
+            particle.spinRadius !== undefined &&
+            particle.spinAngle !== undefined &&
+            particle.spinCenter !== undefined &&
+            particle.spinDirection !== undefined &&
+            particle.spinAcceleration !== undefined
+        ) {
+            const updateFunc = {
+                x: particle.spinDirection === RotateDirection.clockwise ? Math.cos : Math.sin,
+                y: particle.spinDirection === RotateDirection.clockwise ? Math.sin : Math.cos,
+            };
 
-        if (particlesOptions.move.vibrate) {
-            this.moveXY(
-                Math.sin(particle.position.x * Math.cos(particle.position.y)),
-                Math.cos(particle.position.y * Math.sin(particle.position.x))
-            );
+            particle.position.x = particle.spinCenter.x + particle.spinRadius * updateFunc.x(particle.spinAngle);
+            particle.position.y = particle.spinCenter.y + particle.spinRadius * updateFunc.y(particle.spinAngle);
+            particle.spinRadius += particle.spinAcceleration;
+
+            const maxCanvasSize = Math.max(container.canvas.size.width, container.canvas.size.height);
+
+            if (particle.spinRadius > maxCanvasSize / 2) {
+                particle.spinRadius = maxCanvasSize / 2;
+                particle.spinAcceleration *= -1;
+            } else if (particle.spinRadius < 0) {
+                particle.spinRadius = 0;
+                particle.spinAcceleration *= -1;
+            }
+
+            particle.spinAngle += (moveSpeed / 100) * (1 - particle.spinRadius / maxCanvasSize);
+        } else {
+            this.moveXY(velocity.horizontal * zVelocityFactor, velocity.vertical * zVelocityFactor);
+
+            if (particlesOptions.move.vibrate) {
+                this.moveXY(
+                    Math.sin(particle.position.x * Math.cos(particle.position.y)),
+                    Math.cos(particle.position.y * Math.sin(particle.position.x))
+                );
+            }
         }
 
+        this.applyDistance();
+    }
+
+    private applyDistance(): void {
+        const particle = this.particle;
+
         const initialPosition = particle.initialPosition;
-        const initialDistance = NumberUtils.getDistance(initialPosition, particle.position);
+        const { dx, dy } = NumberUtils.getDistances(initialPosition, particle.position);
+        const dxFixed = Math.abs(dx),
+            dyFixed = Math.abs(dy);
 
-        if (particle.maxDistance) {
-            if (initialDistance >= particle.maxDistance && !particle.misplaced) {
-                particle.misplaced = initialDistance > particle.maxDistance;
+        if (!particle.maxDistance) {
+            return;
+        }
+
+        const hDistance = particle.maxDistance.horizontal;
+        const vDistance = particle.maxDistance.vertical;
+
+        if (!(hDistance !== undefined || vDistance !== undefined)) {
+            return;
+        }
+
+        if (
+            ((hDistance !== undefined && dxFixed >= hDistance) || (vDistance !== undefined && dyFixed >= vDistance)) &&
+            !particle.misplaced
+        ) {
+            particle.misplaced =
+                (hDistance !== undefined && dxFixed > hDistance) || (vDistance !== undefined && dyFixed > vDistance);
+
+            if (hDistance !== undefined) {
                 particle.velocity.horizontal = particle.velocity.vertical / 2 - particle.velocity.horizontal;
-                particle.velocity.vertical = particle.velocity.horizontal / 2 - particle.velocity.vertical;
-            } else if (initialDistance < particle.maxDistance && particle.misplaced) {
-                particle.misplaced = false;
-            } else if (particle.misplaced) {
-                if (
-                    (particle.position.x < initialPosition.x && particle.velocity.horizontal < 0) ||
-                    (particle.position.x > initialPosition.x && particle.velocity.horizontal > 0)
-                ) {
-                    particle.velocity.horizontal *= -Math.random();
-                }
+            }
 
-                if (
-                    (particle.position.y < initialPosition.y && particle.velocity.vertical < 0) ||
-                    (particle.position.y > initialPosition.y && particle.velocity.vertical > 0)
-                ) {
-                    particle.velocity.vertical *= -Math.random();
-                }
+            if (vDistance !== undefined) {
+                particle.velocity.vertical = particle.velocity.horizontal / 2 - particle.velocity.vertical;
+            }
+        } else if (
+            (hDistance === undefined || dxFixed < hDistance) &&
+            (vDistance === undefined || dyFixed < vDistance) &&
+            particle.misplaced
+        ) {
+            particle.misplaced = false;
+        } else if (particle.misplaced) {
+            if (
+                hDistance !== undefined &&
+                ((particle.position.x < initialPosition.x && particle.velocity.horizontal < 0) ||
+                    (particle.position.x > initialPosition.x && particle.velocity.horizontal > 0))
+            ) {
+                particle.velocity.horizontal *= -Math.random();
+            }
+
+            if (
+                vDistance !== undefined &&
+                ((particle.position.y < initialPosition.y && particle.velocity.vertical < 0) ||
+                    (particle.position.y > initialPosition.y && particle.velocity.vertical > 0))
+            ) {
+                particle.velocity.vertical *= -Math.random();
             }
         }
     }
 
     private applyNoise(delta: IDelta): void {
         const particle = this.particle;
-        const particlesOptions = particle.particlesOptions;
+        const particlesOptions = particle.options;
         const noiseOptions = particlesOptions.move.noise;
         const noiseEnabled = noiseOptions.enable;
 

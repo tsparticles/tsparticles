@@ -27,10 +27,15 @@ export class TextDrawer implements IShapeDrawer {
         ) {
             const shapeOptions = (options.particles.shape.options[ShapeType.character] ??
                 options.particles.shape.options[ShapeType.char]) as SingleOrMultiple<ICharacterShape>;
+
             if (shapeOptions instanceof Array) {
+                const promises: Promise<void>[] = [];
+
                 for (const character of shapeOptions) {
-                    await Utils.loadFont(character);
+                    promises.push(Utils.loadFont(character));
                 }
+
+                await Promise.allSettled(promises);
             } else {
                 if (shapeOptions !== undefined) {
                     await Utils.loadFont(shapeOptions);

@@ -11,7 +11,7 @@ import { Shadow } from "./Shadow";
 import { Stroke } from "./Stroke";
 import { Collisions } from "./Collisions";
 import { Twinkle } from "./Twinkle/Twinkle";
-import { AnimatableColor } from "./AnimatableColor";
+import { AnimatableColor } from "../AnimatableColor";
 import type { IOptionLoader } from "../../Interfaces/IOptionLoader";
 import { Life } from "./Life/Life";
 import { Bounce } from "./Bounce/Bounce";
@@ -19,7 +19,7 @@ import { Utils } from "../../../Utils";
 import { Orbit } from "./Orbit/Orbit";
 import { ZIndex } from "./ZIndex/ZIndex";
 import { Repulse } from "./Repulse/Repulse";
-import { Spin } from "./Spin";
+import { Destroy } from "./Destroy/Destroy";
 
 /**
  * [[include:Options/Particles.md]]
@@ -63,6 +63,7 @@ export class Particles implements IParticles, IOptionLoader<IParticles> {
     public bounce;
     public collisions;
     public color;
+    public destroy;
     public groups: ParticlesGroups;
     public life;
     public links;
@@ -76,7 +77,6 @@ export class Particles implements IParticles, IOptionLoader<IParticles> {
     public shadow;
     public shape;
     public size;
-    public spin;
     public stroke: SingleOrMultiple<Stroke>;
     public twinkle;
     public zIndex;
@@ -85,6 +85,7 @@ export class Particles implements IParticles, IOptionLoader<IParticles> {
         this.bounce = new Bounce();
         this.collisions = new Collisions();
         this.color = new AnimatableColor();
+        this.destroy = new Destroy();
         this.groups = {};
         this.life = new Life();
         this.links = new Links();
@@ -98,7 +99,6 @@ export class Particles implements IParticles, IOptionLoader<IParticles> {
         this.shadow = new Shadow();
         this.shape = new Shape();
         this.size = new Size();
-        this.spin = new Spin();
         this.stroke = new Stroke();
         this.twinkle = new Twinkle();
         this.zIndex = new ZIndex();
@@ -114,6 +114,7 @@ export class Particles implements IParticles, IOptionLoader<IParticles> {
         this.bounce.load(data.bounce);
 
         this.color = AnimatableColor.create(this.color, data.color);
+        this.destroy.load(data.destroy);
 
         if (data.groups !== undefined) {
             for (const group in data.groups) {

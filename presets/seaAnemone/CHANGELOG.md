@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# 1.4.0-alpha.1 (2020-11-18)
+
+
+### Features
+
+* added noise generator management like shape drawers and plugins ([0ae5ac6](https://github.com/matteobruni/tsparticles/commit/0ae5ac620c43199557f56c76517efbc7c178bd29))
+
+
+
+
+
 # [1.4.0-alpha.0](https://github.com/matteobruni/tsparticles/compare/tsparticles-preset-fire@1.3.11...tsparticles-preset-fire@1.4.0-alpha.0) (2020-11-09)
 
 **Note:** Version bump only for package tsparticles-preset-fire

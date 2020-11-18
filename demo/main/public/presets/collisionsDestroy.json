@@ -9,7 +9,44 @@
       }
     },
     "color": {
-      "value": "#ffffff"
+      "value": [
+        "#3998D0",
+        "#2EB6AF",
+        "#A9BD33",
+        "#FEC73B",
+        "#F89930",
+        "#F45623",
+        "#D62E32",
+        "#EB586E",
+        "#9952CF"
+      ]
+    },
+    "destroy": {
+      "mode": "split",
+      "split": {
+        "count": 1,
+        "factor": {
+          "value": 9,
+          "random": {
+            "enable": true,
+            "minimumValue": 4
+          }
+        },
+        "particles": {
+          "collisions": {
+            "enable": false
+          },
+          "destroy": {
+            "mode": "none"
+          },
+          "life": {
+            "count": 1,
+            "duration": {
+              "value": 1
+            }
+          }
+        }
+      }
     },
     "shape": {
       "type": "circle",
@@ -27,7 +64,7 @@
       }
     },
     "opacity": {
-      "value": 0.5,
+      "value": 1,
       "random": false,
       "animation": {
         "enable": false,
@@ -109,7 +146,7 @@
         "distance": 200
       },
       "push": {
-        "particles_nb": 4
+        "particles_nb": 1
       },
       "remove": {
         "particles_nb": 2
@@ -118,10 +155,6 @@
   },
   "detectRetina": true,
   "background": {
-    "color": "#0d47a1",
-    "image": "",
-    "position": "50% 50%",
-    "repeat": "no-repeat",
-    "size": "cover"
+    "color": "#000000"
   }
 }

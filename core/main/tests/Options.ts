@@ -554,7 +554,7 @@ describe("Options tests", () => {
         expect(options.particles.stroke).to.be.an("object").to.have.property("width").to.equal(0);
     });
 
-    it("check particlesOptions override", () => {
+    it("check particle options override", () => {
         const particlesOptions = new Particles();
 
         const generalOptions: RecursivePartial<IParticles> = {

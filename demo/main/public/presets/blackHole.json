@@ -70,7 +70,12 @@
         "rotateX": 600,
         "rotateY": 1200
       },
-      "warp": true
+      "warp": true,
+      "trail": {
+        "enable": true,
+        "fillColor": "#000",
+        "length": 10
+      }
     }
   },
   "interactivity": {

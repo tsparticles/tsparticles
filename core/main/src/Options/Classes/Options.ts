@@ -12,6 +12,7 @@ import { ThemeMode } from "../../Enums/Modes";
 import { BackgroundMode } from "./BackgroundMode/BackgroundMode";
 import { Motion } from "./Motion/Motion";
 import { ManualParticle } from "./ManualParticle";
+import { Responsive } from "./Responsive";
 
 /**
  * [[include:Options.md]]
@@ -63,6 +64,7 @@ export class Options implements IOptions, IOptionLoader<IOptions> {
     public pauseOnBlur;
     public pauseOnOutsideViewport;
     public preset?: string | string[];
+    public responsive: Responsive[];
     public themes: Theme[];
 
     constructor() {
@@ -79,6 +81,7 @@ export class Options implements IOptions, IOptionLoader<IOptions> {
         this.particles = new Particles();
         this.pauseOnBlur = true;
         this.pauseOnOutsideViewport = false;
+        this.responsive = [];
         this.themes = [];
 
         this.particles.number.value = 100;
@@ -148,6 +151,16 @@ export class Options implements IOptions, IOptionLoader<IOptions> {
 
         Plugins.loadOptions(this, data);
 
+        if (data.responsive !== undefined) {
+            for (const responsive of data.responsive) {
+                const optResponsive = new Responsive();
+                optResponsive.load(responsive);
+                this.responsive.push(optResponsive);
+            }
+        }
+
+        this.responsive.sort((a, b) => a.maxWidth - b.maxWidth);
+
         if (data.themes !== undefined) {
             for (const theme of data.themes) {
                 const optTheme = new Theme();
@@ -183,6 +196,11 @@ export class Options implements IOptions, IOptionLoader<IOptions> {
                 this.load(defaultTheme.options);
             }
         }
+    }
+
+    public setResponsive(width: number, pxRatio: number, defaultOptions: IOptions) {
+        this.load(defaultOptions);
+        this.load(this.responsive.find((t) => t.maxWidth * pxRatio > width)?.options);
     }
 
     private importPreset(preset: string): void {

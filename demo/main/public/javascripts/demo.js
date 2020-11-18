@@ -46,25 +46,30 @@
     let schema = {};
     const stats = new Stats();
 
-    stats.setMode(0);
-    stats.domElement.style.position = "absolute";
-    stats.domElement.style.left = "3px";
-    stats.domElement.style.top = "3px";
-    stats.domElement.id = "stats-graph";
+    stats.addPanel('count', '#ff8', 0, () => {
+        const container = tsParticles.domItem(0);
+        if (container) {
+            maxParticles = Math.max(container.particles.count, maxParticles);
+
+            return {
+                value: container.particles.count,
+                maxValue: maxParticles
+            };
+        }
+    });
+
+    let maxParticles = 0;
+    stats.showPanel(2);
+    stats.dom.style.position = "absolute";
+    stats.dom.style.left = "3px";
+    stats.dom.style.top = "3px";
+    stats.dom.id = "stats-graph";
 
     let initStats = function () {
-        const count_particles = document.querySelector(".js-count-particles");
         const update = function () {
             stats.begin();
+
             stats.end();
-
-            const container = tsParticles.domItem(0);
-
-            if (container) {
-                count_particles.innerText = container.particles.count;
-            } else {
-                count_particles.innerText = 0;
-            }
 
             requestAnimationFrame(update);
         };
@@ -109,10 +114,10 @@
 
         tsParticles.loadJSON('tsparticles', `/presets/${presetId}.json`).then((particles) => {
             localStorage.presetId = presetId;
-            editor.set(particles.options);
+            editor.set(particles.fullOptions);
             editor.expandAll();
 
-            if (particles.options.particles.move.noise.enable) {
+            if (particles.fullOptions.particles.move.noise.enable) {
                 particles.setNoise({
                     init: function () {
                         setup(particles);
@@ -232,12 +237,12 @@
         const btnUpdate = document.getElementById('btnUpdate');
         btnUpdate.onclick = function () {
             const particles = tsParticles.domItem(0);
-            particles.options.load(editor.get());
+            particles.fullOptions.load(editor.get());
             particles.refresh().then(() => {
             });
         };
 
-        document.body.querySelector('#stats').appendChild(stats.domElement);
+        document.body.querySelector('#stats').appendChild(stats.dom);
 
         const statsToggler = document.body.querySelector('#toggle-stats');
 
@@ -326,7 +331,7 @@ canvas {
     background-size: ${particlesContainer.style.backgroundSize};
     background-position: ${particlesContainer.style.backgroundPosition};
 }`,
-                    js: `tsParticles.load("tsparticles", ${JSON.stringify(container.options)});`,
+                    js: `tsParticles.load("tsparticles", ${JSON.stringify(container.fullOptions)});`,
                     js_external: 'https://cdn.jsdelivr.net/npm/tsparticles@1.10.4/dist/tsparticles.min.js',
                     title: 'tsParticles example',
                     description: 'This pen was created with tsParticles from https://particles.matteobruni.it',

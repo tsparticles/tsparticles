@@ -8,6 +8,7 @@ import type { ITheme } from "./Theme/ITheme";
 import type { IBackgroundMode } from "./BackgroundMode/IBackgroundMode";
 import type { IMotion } from "./Motion/IMotion";
 import type { IManualParticle } from "./IManualParticle";
+import { IResponsive } from "./IResponsive";
 
 /**
  * The Options interface, defines all the options that can be used by `tsParticles`
@@ -15,6 +16,18 @@ import type { IManualParticle } from "./IManualParticle";
  * @category Options
  */
 export interface IOptions {
+    /**
+     * Enables the retina detection, if disabled the ratio used by canvas will be always 1 and not the device setting.
+     * @deprecated use the new detectRetina instead
+     */
+    retina_detect: boolean;
+
+    /**
+     * The Frame Per Second limit applied to all particles animations.
+     * @deprecated use the new fpsLimit instead
+     */
+    fps_limit: number;
+
     /**
      * Sets if the animations should start automatically or manually
      */
@@ -39,12 +52,6 @@ export interface IOptions {
      * Enables the retina detection, if disabled the ratio used by canvas will be always 1 and not the device setting.
      */
     detectRetina: boolean;
-
-    /**
-     * The Frame Per Second limit applied to all particles animations.
-     * @deprecated use the new fpsLimit instead
-     */
-    fps_limit: number;
 
     /**
      * The FPS (Frame Per Second) limit applied to all particles animations.
@@ -92,10 +99,9 @@ export interface IOptions {
     preset?: SingleOrMultiple<string>;
 
     /**
-     * Enables the retina detection, if disabled the ratio used by canvas will be always 1 and not the device setting.
-     * @deprecated use the new detectRetina instead
+     * This sets custom options based on canvas size
      */
-    retina_detect: boolean;
+    responsive: IResponsive[];
 
     /**
      * User-defined themes that can be retrieved by the particles [[Container]]

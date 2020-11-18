@@ -3,9 +3,9 @@
 </template>
 
 <script lang="ts">
-import { nextTick } from "vue";
+import { nextTick, PropType } from "vue";
 import { Options, Vue } from "vue-class-component";
-import { tsParticles } from "tsparticles";
+import { Main, tsParticles } from "tsparticles";
 import type { Container, ISourceOptions } from "tsparticles";
 
 export type IParticlesProps = ISourceOptions;
@@ -18,17 +18,22 @@ export type IParticlesParams = IParticlesProps;
       required: true
     },
     options: {
-      type: Object as () => IParticlesProps
+      type: Object as PropType<IParticlesProps>
     },
-    particlesContainer: {
-      type: Object as () => Container
+    particlesLoaded: {
+      type: Object as PropType<(container: Container) => void>
+    },
+    particlesInit: {
+      type: Function as PropType<(tsParticles: Main) => void>
     }
   }
 })
 export default class Particles extends Vue {
   private id!: string;
   private options?: IParticlesProps;
-  private particlesContainer?: Container;
+  private particlesLoaded?: (container: Container) => void;
+  private particlesInit?: (tsParticles: Main) => void;
+  private container?: Container;
 
   public mounted(): void {
     nextTick(() => {
@@ -36,15 +41,27 @@ export default class Particles extends Vue {
         throw new Error("Prop 'id' is required!");
       }
 
+      tsParticles.init();
+
+      if (this.particlesInit) {
+        this.particlesInit(tsParticles);
+      }
+
       tsParticles
           .load(this.id, this.options ?? {})
-          .then(container => this.particlesContainer = container);
+          .then(container => {
+            this.container = container;
+
+            if (this.particlesLoaded) {
+              this.particlesLoaded(container);
+            }
+          });
     });
   }
 
   public beforeDestroy(): void {
-    if (this.particlesContainer) {
-      this.particlesContainer.destroy();
+    if (this.container) {
+      this.container.destroy();
     }
   }
 }

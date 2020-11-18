@@ -2,11 +2,18 @@
  * Color animation interface, these properties are used to animate colors
  * @category Options
  */
+import { IOffsetValue } from "./IOffsetValue";
+
 export interface IColorAnimation {
     /**
      * Enables/disables the animation
      */
     enable: boolean;
+
+    /**
+     * The value offset percent applied to color hue
+     */
+    offset: IOffsetValue;
 
     /**
      * Hue speed rotation (from 0 to 360 degrees)

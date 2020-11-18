@@ -4,7 +4,7 @@
 
 <script lang="ts">
 import { Component, Prop } from "vue-property-decorator";
-import { tsParticles } from "tsparticles";
+import { Main, tsParticles } from "tsparticles";
 import type { Container, ISourceOptions } from "tsparticles";
 import Vue from "vue";
 
@@ -15,7 +15,9 @@ export type IParticlesParams = IParticlesProps;
 export default class Particles extends Vue {
   @Prop({ required: true }) private id!: string;
   @Prop() private options?: IParticlesProps;
-  private particlesContainer?: Container;
+  @Prop() private particlesLoaded?: (container: Container) => void;
+  @Prop() private particlesInit?: (tsParticles: Main) => void;
+  private container?: Container;
 
   private mounted(): void {
     this.$nextTick(() => {
@@ -23,12 +25,24 @@ export default class Particles extends Vue {
         throw new Error("Prop 'id' is required!")
       }
 
-      tsParticles.load(this.id, this.options ?? {}).then(container => this.particlesContainer = container);
+      tsParticles.init();
+
+      if (this.particlesInit) {
+        this.particlesInit(tsParticles);
+      }
+
+      tsParticles.load(this.id, this.options ?? {}).then(container => {
+        this.container = container;
+
+        if (this.container && this.particlesLoaded) {
+          this.particlesLoaded(this.container);
+        }
+      });
     });
   }
 
   private beforeDestroy(): void {
-    this.particlesContainer?.destroy();
+    this.container?.destroy();
   }
 }
 </script>

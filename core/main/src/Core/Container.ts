@@ -47,9 +47,14 @@ export class Container {
     public readonly zLayers = 10000;
 
     /**
-     * The options used by the container, it's a full [[Options]] object
+     * All the options loaded into the container, it's a full [[Options]] object
      */
-    public readonly options;
+    public readonly fullOptions;
+
+    /**
+     * The options currently used by the container, it's a full [[Options]] object
+     */
+    public options;
 
     public readonly retina;
     public readonly canvas;
@@ -129,10 +134,11 @@ export class Container {
         this.drawers = new Map<string, IShapeDrawer>();
 
         /* tsParticles variables with default values */
+        this.fullOptions = new Options();
         this.options = new Options();
 
         for (const preset of presets) {
-            this.options.load(Plugins.getPreset(preset));
+            this.fullOptions.load(Plugins.getPreset(preset));
         }
 
         const shapes = Plugins.getSupportedShapes();
@@ -147,12 +153,10 @@ export class Container {
 
         /* options settings */
         if (this.sourceOptions) {
-            this.options.load(this.sourceOptions);
+            this.fullOptions.load(this.sourceOptions);
         }
 
-        this.fpsLimit = this.options.fpsLimit > 0 ? this.options.fpsLimit : 60;
-
-        this.options.setTheme(undefined);
+        this.fpsLimit = this.fullOptions.fpsLimit > 0 ? this.fullOptions.fpsLimit : 60;
 
         /* ---------- tsParticles - start ------------ */
         this.eventListeners = new EventListeners(this);
@@ -324,7 +328,8 @@ export class Container {
     public async refresh(): Promise<void> {
         /* restart */
         this.stop();
-        await this.start();
+
+        return this.start();
     }
 
     /**
@@ -369,7 +374,7 @@ export class Container {
     public async loadTheme(name?: string): Promise<void> {
         this.options.setTheme(name);
 
-        await this.refresh();
+        return this.refresh();
     }
 
     /**
@@ -402,7 +407,17 @@ export class Container {
     }
 
     private async init(): Promise<void> {
+        this.options = new Options();
+        this.options.load(this.fullOptions);
+
         /* init canvas + particles */
+        this.retina.init();
+        this.canvas.init();
+
+        this.options.setResponsive(this.canvas.size.width, this.retina.pixelRatio, this.fullOptions);
+        this.options.setTheme(undefined);
+
+        /* this re-init is necessary since options could have different values */
         this.retina.init();
         this.canvas.init();
 
@@ -414,11 +429,15 @@ export class Container {
             this.plugins.set(id, plugin);
         }
 
+        const drawerPromises: Promise<void>[] = [];
+
         for (const [, drawer] of this.drawers) {
             if (drawer.init) {
-                await drawer.init(this);
+                drawerPromises.push(drawer.init(this));
             }
         }
+
+        await Promise.allSettled(drawerPromises);
 
         for (const [, plugin] of this.plugins) {
             if (plugin.init) {
@@ -428,7 +447,6 @@ export class Container {
             }
         }
 
-        this.canvas.initSize();
         this.particles.init();
         this.particles.setDensity();
     }

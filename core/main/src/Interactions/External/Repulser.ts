@@ -3,15 +3,17 @@ import { ClickMode, DivMode, DivType, HoverMode } from "../../Enums";
 import { Circle, Constants, NumberUtils, Range, Rectangle, Utils } from "../../Utils";
 import type { ICoordinates } from "../../Core/Interfaces/ICoordinates";
 import type { DivEvent } from "../../Options/Classes/Interactivity/Events/DivEvent";
-import type { IExternalInteractor } from "../../Core/Interfaces/IExternalInteractor";
 import type { RepulseDiv } from "../../Options/Classes/Interactivity/Modes/RepulseDiv";
+import { ExternalBase } from "./ExternalBase";
 
 /**
  * Particle repulse manager
  * @category Interactions
  */
-export class Repulser implements IExternalInteractor {
-    constructor(private readonly container: Container) {}
+export class Repulser extends ExternalBase {
+    constructor(container: Container) {
+        super(container, "repulser");
+    }
 
     public isEnabled(): boolean {
         const container = this.container;

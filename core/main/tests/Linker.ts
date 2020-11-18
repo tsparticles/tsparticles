@@ -55,61 +55,65 @@ describe("Linker in Canvas (200, 200) tests", () => {
             testContainer.container.particles.quadTree.insert(new Point(pos1, p1));
 
             it("should link Particle (10, 10)", () => {
-                const p2 = testContainer.container.particles.addParticle({ x: 10, y: 10 });
+                testContainer.container.start().then(() => {
+                    const p2 = testContainer.container.particles.addParticle({ x: 10, y: 10 });
 
-                expect(p2).to.not.be.undefined;
+                    expect(p2).to.not.be.undefined;
 
-                if (p2 === undefined) {
-                    return;
-                }
+                    if (p2 === undefined) {
+                        return;
+                    }
 
-                const pos2 = p2.getPosition();
+                    const pos2 = p2.getPosition();
 
-                testContainer.container.particles.quadTree.insert(new Point(pos2, p2));
+                    testContainer.container.particles.quadTree.insert(new Point(pos2, p2));
 
-                const linker = new Linker(testContainer.container);
+                    const linker = new Linker(testContainer.container);
 
-                linker.interact(p1);
+                    linker.interact(p1);
 
-                const link = p1.links.find((t) => t.destination === p2);
+                    const link = p1.links.find((t) => t.destination === p2);
 
-                expect(link).to.be.not.undefined;
+                    expect(link).to.be.not.undefined;
 
-                if (!link) {
-                    return;
-                }
+                    if (!link) {
+                        return;
+                    }
 
-                expect(link.opacity > 0).to.be.true;
-                expect(link.destination).to.include(p2);
+                    expect(link.opacity > 0).to.be.true;
+                    expect(link.destination).to.include(p2);
+                });
             });
 
             it("should link Particle (199, 199)", () => {
-                const p2 = testContainer.container.particles.addParticle({ x: 199, y: 199 });
+                testContainer.container.start().then(() => {
+                    const p2 = testContainer.container.particles.addParticle({ x: 199, y: 199 });
 
-                expect(p2).to.not.be.undefined;
+                    expect(p2).to.not.be.undefined;
 
-                if (p2 === undefined) {
-                    return;
-                }
+                    if (p2 === undefined) {
+                        return;
+                    }
 
-                const pos2 = p2.getPosition();
+                    const pos2 = p2.getPosition();
 
-                testContainer.container.particles.quadTree.insert(new Point(pos2, p2));
+                    testContainer.container.particles.quadTree.insert(new Point(pos2, p2));
 
-                const linker = new Linker(testContainer.container);
+                    const linker = new Linker(testContainer.container);
 
-                linker.interact(p1);
+                    linker.interact(p1);
 
-                const link = p1.links.find((t) => t.destination === p2);
+                    const link = p1.links.find((t) => t.destination === p2);
 
-                expect(link).to.be.not.undefined;
+                    expect(link).to.be.not.undefined;
 
-                if (!link) {
-                    return;
-                }
+                    if (!link) {
+                        return;
+                    }
 
-                expect(link.opacity > 0).to.be.true;
-                expect(link.destination).to.include(p2);
+                    expect(link.opacity > 0).to.be.true;
+                    expect(link.destination).to.include(p2);
+                });
             });
         });
     });

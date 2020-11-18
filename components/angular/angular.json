@@ -1,5 +1,5 @@
 {
-  "$schema": "../../node_modules/@angular/cli/lib/config/schema.json",
+  "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
@@ -45,7 +45,7 @@
   },
   "cli": {
     "analytics": "dce0238c-a76d-4da7-9f17-451104405e64",
-    "packageManager": "pnpm"
+    "packageManager": "yarn"
   },
   "defaultProject": "ng-particles"
 }

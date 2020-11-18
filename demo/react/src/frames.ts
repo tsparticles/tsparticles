@@ -324,5 +324,12 @@ export const frames: TFrame[] = [
             }
         },
         slug: 'mask',
+    }, {
+        backgroundColor: "#000000",
+        name: "Sea Anemone",
+        options: {
+            preset: "seaAnemone"
+        },
+        slug: "seaAnemone"
     }
 ];

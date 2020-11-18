@@ -35,7 +35,7 @@ export interface IParticle {
     readonly rotate: IParticleValueAnimation<number>;
     readonly size: IParticleValueAnimation<number>;
     readonly strokeColor: IParticleValueAnimation<IHsl | undefined>;
-    readonly particlesOptions: IParticles;
+    readonly options: IParticles;
     readonly position: ICoordinates3d;
     readonly shadowColor: IRgb | undefined;
     readonly shape?: ShapeType | string;
@@ -50,8 +50,8 @@ export interface IParticle {
     readonly moveSpeed?: number;
     readonly sizeValue?: number;
     readonly sizeAnimationSpeed?: number;
-    readonly orbitRadiusValue?: number;
-    readonly orbitRotationValue?: number;
+    readonly orbitRadius?: number;
+    readonly orbitRotation?: number;
 
     getPosition(): ICoordinates;
 

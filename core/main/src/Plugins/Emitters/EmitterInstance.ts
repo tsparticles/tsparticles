@@ -1,7 +1,7 @@
 import type { Container } from "../../Core/Container";
 import type { ICoordinates } from "../../Core/Interfaces/ICoordinates";
 import type { IEmitter } from "./Options/Interfaces/IEmitter";
-import { ColorUtils, Utils } from "../../Utils";
+import { ColorUtils, NumberUtils, Utils } from "../../Utils";
 import { SizeMode } from "../../Enums";
 import { EmitterSize } from "./Options/Classes/EmitterSize";
 import type { Emitters } from "./Emitters";
@@ -185,43 +185,48 @@ export class EmitterInstance {
                     : this.size.height,
         };
 
-        const particlesOptions = Utils.deepExtend({}, this.particlesOptions) as RecursivePartial<IParticles>;
+        for (let i = 0; i < this.emitterOptions.rate.quantity; i++) {
+            const particlesOptions = Utils.deepExtend({}, this.particlesOptions) as RecursivePartial<IParticles>;
 
-        if (this.spawnColor !== undefined) {
-            const spawnColorAnimation = this.emitterOptions.spawnColor?.animation;
+            if (this.spawnColor !== undefined) {
+                const colorAnimation = this.emitterOptions.spawnColor?.animation;
 
-            if (spawnColorAnimation?.enable) {
-                const emitFactor = (1000 * this.emitterOptions.rate.delay) / container.retina.reduceFactor;
+                if (colorAnimation?.enable) {
+                    const offset = NumberUtils.randomInRange(colorAnimation.offset.min, colorAnimation.offset.max);
+                    const emitFactor = (1000 * this.emitterOptions.rate.delay) / container.retina.reduceFactor;
 
-                this.spawnColor.h += ((spawnColorAnimation.speed ?? 0) * container.fpsLimit) / emitFactor;
+                    this.spawnColor.h += ((colorAnimation.speed ?? 0) * container.fpsLimit) / emitFactor + offset * 3.6;
 
-                if (this.spawnColor.h > 360) {
-                    this.spawnColor.h -= 360;
+                    if (this.spawnColor.h > 360) {
+                        this.spawnColor.h -= 360;
+                    }
+                }
+
+                if (!particlesOptions.color) {
+                    particlesOptions.color = {
+                        value: this.spawnColor,
+                    };
+                } else {
+                    particlesOptions.color.value = this.spawnColor;
                 }
             }
 
-            if (!particlesOptions.color) {
-                particlesOptions.color = {
-                    value: this.spawnColor,
-                };
-            } else {
-                particlesOptions.color.value = this.spawnColor;
-            }
-        }
+            if (this.emitterOptions.spin.enable) {
+                if (!particlesOptions.move) {
+                    particlesOptions.move = {};
+                }
 
-        if (this.emitterOptions.spin.enable) {
-            if (!particlesOptions.spin) {
-                particlesOptions.spin = {
-                    enable: true,
-                    position: {
-                        x: (position.x * 100) / container.canvas.size.width,
-                        y: (position.y * 100) / container.canvas.size.height,
-                    },
-                };
+                if (!particlesOptions.move.spin) {
+                    particlesOptions.move.spin = {
+                        enable: true,
+                        position: {
+                            x: (position.x * 100) / container.canvas.size.width,
+                            y: (position.y * 100) / container.canvas.size.height,
+                        },
+                    };
+                }
             }
-        }
 
-        for (let i = 0; i < this.emitterOptions.rate.quantity; i++) {
             container.particles.addParticle(randomPosition(position, offset), particlesOptions);
         }
     }

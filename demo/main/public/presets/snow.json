@@ -57,6 +57,9 @@
       "enable": true,
       "speed": 2,
       "direction": "bottom",
+      "distance": {
+        "horizontal": 20
+      },
       "random": false,
       "straight": false,
       "out_mode": "out",

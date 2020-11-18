@@ -50,15 +50,19 @@ describe("Particle", () => {
                 testContainer.reset(squareShapeOptions);
                 testParticle.reset(testContainer.container);
 
-                expect(testParticle.particle?.shape).to.equal(ShapeType.square);
+                testContainer.container.start().then(() => {
+                    expect(testParticle.particle?.shape).to.equal(ShapeType.square);
+                });
             });
 
             it("should choose a single shape from the specified array when container Particles options specifies an array os shape types", () => {
                 testContainer.reset(multipleShapeTypeOptions);
                 testParticle.reset(testContainer.container);
 
-                expect(testParticle.particle?.shape).to.be.a("string");
-                expect(shapeTypes).to.include(testParticle.particle?.shape);
+                testContainer.container.start().then(() => {
+                    expect(testParticle.particle?.shape).to.be.a("string");
+                    expect(shapeTypes).to.include(testParticle.particle?.shape);
+                });
             });
 
             after(() => {
@@ -76,35 +80,41 @@ describe("Particle", () => {
                 testContainer.reset(squareShapeOptions);
                 testParticle.reset(testContainer.container);
 
-                expect(testParticle.particle?.shapeData).to.eql(squareShapeOptions.particles.shape.options.square);
-                expect(testParticle.particle?.close).to.eql(squareShapeOptions.particles.shape.options.square.close);
-                expect(testParticle.particle?.fill).to.eql(squareShapeOptions.particles.shape.options.square.fill);
+                testContainer.container.start().then(() => {
+                    expect(testParticle.particle?.shapeData).to.eql(squareShapeOptions.particles.shape.options.square);
+                    expect(testParticle.particle?.close).to.eql(
+                        squareShapeOptions.particles.shape.options.square.close
+                    );
+                    expect(testParticle.particle?.fill).to.eql(squareShapeOptions.particles.shape.options.square.fill);
+                });
             });
 
             it("should set shapeData to the configured shape data matching the chosen shape whenever multiple shapes are specified for container Particles", () => {
                 testContainer.reset(multipleShapeTypeOptions);
                 testParticle.reset(testContainer.container);
-                expect(testParticle.particle?.shape).to.be.a("string");
-                let expectedShapeData;
-                switch (testParticle.particle?.shape) {
-                    case ShapeType.char:
-                        expectedShapeData = multipleShapeTypeOptions.particles.shape.options[ShapeType.char];
-                        break;
-                    case ShapeType.edge:
-                        expectedShapeData = multipleShapeTypeOptions.particles.shape.options[ShapeType.edge];
-                        break;
-                    case ShapeType.image:
-                        expectedShapeData = multipleShapeTypeOptions.particles.shape.options[ShapeType.image];
-                        break;
-                    case ShapeType.polygon:
-                        expectedShapeData = multipleShapeTypeOptions.particles.shape.options[ShapeType.polygon];
-                        break;
-                    default:
-                        throw new Error(`Unexpected shape type "${testParticle.particle?.shape}"`);
-                }
+                testContainer.container.start().then(() => {
+                    expect(testParticle.particle?.shape).to.be.a("string");
+                    let expectedShapeData;
+                    switch (testParticle.particle?.shape) {
+                        case ShapeType.char:
+                            expectedShapeData = multipleShapeTypeOptions.particles.shape.options[ShapeType.char];
+                            break;
+                        case ShapeType.edge:
+                            expectedShapeData = multipleShapeTypeOptions.particles.shape.options[ShapeType.edge];
+                            break;
+                        case ShapeType.image:
+                            expectedShapeData = multipleShapeTypeOptions.particles.shape.options[ShapeType.image];
+                            break;
+                        case ShapeType.polygon:
+                            expectedShapeData = multipleShapeTypeOptions.particles.shape.options[ShapeType.polygon];
+                            break;
+                        default:
+                            throw new Error(`Unexpected shape type "${testParticle.particle?.shape}"`);
+                    }
 
-                expect(testParticle.particle?.close).to.eql(expectedShapeData.close);
-                expect(testParticle.particle?.fill).to.eql(expectedShapeData.fill);
+                    expect(testParticle.particle?.close).to.eql(expectedShapeData.close);
+                    expect(testParticle.particle?.fill).to.eql(expectedShapeData.fill);
+                });
             });
 
             after(() => {

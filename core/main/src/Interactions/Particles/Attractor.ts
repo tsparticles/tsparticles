@@ -1,14 +1,16 @@
 import type { IParticle } from "../../Core/Interfaces/IParticle";
 import type { Container } from "../../Core/Container";
 import { Particle } from "../../Core/Particle";
-import type { IParticlesInteractor } from "../../Core/Interfaces/IParticlesInteractor";
 import { NumberUtils } from "../../Utils";
+import { ParticlesBase } from "./ParticlesBase";
 
 /**
  * @category Interactions
  */
-export class Attractor implements IParticlesInteractor {
-    constructor(private readonly container: Container) {}
+export class Attractor extends ParticlesBase {
+    constructor(container: Container) {
+        super(container, "attractor");
+    }
 
     public interact(p1: IParticle): void {
         const container = this.container;
@@ -18,7 +20,7 @@ export class Attractor implements IParticlesInteractor {
         const query = container.particles.quadTree.queryCircle(pos1, distance);
 
         for (const p2 of query) {
-            if (p1 === p2 || !p2.particlesOptions.move.attract.enable || p2.destroyed || p2.spawning) {
+            if (p1 === p2 || !p2.options.move.attract.enable || p2.destroyed || p2.spawning) {
                 continue;
             }
 
@@ -26,7 +28,7 @@ export class Attractor implements IParticlesInteractor {
 
             /* condensed particles */
             const { dx, dy } = NumberUtils.getDistances(pos1, pos2);
-            const rotate = p1.particlesOptions.move.attract.rotate;
+            const rotate = p1.options.move.attract.rotate;
             const ax = dx / (rotate.x * 1000);
             const ay = dy / (rotate.y * 1000);
             const p1Factor = p2.size.value / p1.size.value;
@@ -40,7 +42,7 @@ export class Attractor implements IParticlesInteractor {
     }
 
     public isEnabled(particle: Particle): boolean {
-        return particle.particlesOptions.move.attract.enable;
+        return particle.options.move.attract.enable;
     }
 
     public reset(): void {

@@ -17,7 +17,7 @@ app.use("/jsoneditor", express.static("./node_modules/jsoneditor/dist"));
 app.use("/tsparticles", express.static("./node_modules/tsparticles/dist"));
 app.use("/jquery-particles", express.static("./node_modules/jquery-particles/dist"));
 app.use("/preset-basic", express.static("./node_modules/tsparticles-preset-basic/dist"));
-app.use("/three", express.static("./node_modules/three/"));
+app.use("/stats", express.static("./node_modules/stats.ts/"));
 app.use("/jquery", express.static("./node_modules/jquery/dist/"));
 
 app.get('/', function (req, res) {

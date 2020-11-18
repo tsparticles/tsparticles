@@ -5,12 +5,11 @@
     "demo/*",
     "presets/*",
     "shapes/*",
-    "templates/*",
-    "website"
+    "templates/*"
   ],
   "version": "independent",
   "npmClient": "yarn",
-  "useWorkspaces": true,
+  "useWorkspaces": false,
   "command": {
     "version": {
       "message": "chore(release): published new version"

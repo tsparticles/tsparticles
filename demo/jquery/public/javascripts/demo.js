@@ -1,18 +1,24 @@
 const stats = new Stats();
-
-stats.setMode(0);
-stats.domElement.style.position = "absolute";
-stats.domElement.style.left = "0px";
-stats.domElement.style.top = "0px";
+const countPanel = stats.addPanel('count', '#ff8', '#221');
+let maxParticles = 0;
+stats.showPanel(2);
+stats.dom.style.position = "absolute";
+stats.dom.style.left = "3px";
+stats.dom.style.top = "3px";
+stats.dom.id = "stats-graph";
 
 let updateStats = function () {
-    const count_particles = document.querySelector(".js-count-particles");
     const update = function () {
         stats.begin();
-        stats.end();
-        if (tsParticles.domItem(0).particles.array) {
-            count_particles.innerText = tsParticles.domItem(0).particles.array.length;
+
+        const container = tsParticles.domItem(0);
+        if (container) {
+            maxParticles = Math.max(container.particles.count, maxParticles);
+
+            countPanel.update(container.particles.count, maxParticles);
         }
+
+        stats.end();
         requestAnimationFrame(update);
     };
 
@@ -97,5 +103,5 @@ $(document).ready(function () {
         updateBackground();
     });
 
-    document.body.querySelector('#tsparticles-container').appendChild(stats.domElement);
+    document.body.querySelector('#tsparticles-container').appendChild(stats.dom);
 });

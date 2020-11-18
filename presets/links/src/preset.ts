@@ -1,12 +1,14 @@
-import { tsParticles } from "tsparticles";
+import { Main } from "tsparticles";
 
-tsParticles.addPreset("basic", {
-    particles: {
-        lineLinked: {
-            enable: true,
+export function loadPreset(tsParticles: Main) {
+    tsParticles.addPreset("basic", {
+        particles: {
+            lineLinked: {
+                enable: true,
+            },
+            move: {
+                enable: true,
+            },
         },
-        move: {
-            enable: true,
-        },
-    },
-});
+    });
+}

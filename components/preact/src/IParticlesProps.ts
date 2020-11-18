@@ -1,5 +1,6 @@
-import type { CSSProperties, RefObject } from "react";
+import type { RefObject } from "react";
 import type { ISourceOptions, Container } from "tsparticles";
+import type { Main } from "tsparticles";
 
 export interface IParticlesProps {
     id?: string;
@@ -7,8 +8,9 @@ export interface IParticlesProps {
     height?: string;
     options?: ISourceOptions;
     params?: ISourceOptions;
-    style?: CSSProperties;
+    style?: React.JSX.CSSProperties;
     className?: string;
     canvasClassName?: string;
     container?: RefObject<Container>;
+    init?: (tsParticles: Main) => void;
 }

@@ -4,8 +4,8 @@ import { Circle, ColorUtils, Constants, NumberUtils, Rectangle, Utils } from "..
 import { ClickMode, DivMode, DivType, HoverMode, ProcessBubbleType } from "../../Enums";
 import { Particle } from "../../Core/Particle";
 import { DivEvent } from "../../Options/Classes/Interactivity/Events/DivEvent";
-import type { IExternalInteractor } from "../../Core/Interfaces/IExternalInteractor";
 import { BubbleDiv } from "../../Options/Classes/Interactivity/Modes/BubbleDiv";
+import { ExternalBase } from "./ExternalBase";
 
 function calculateBubbleValue(
     particleValue: number,
@@ -28,8 +28,10 @@ function calculateBubbleValue(
  * Particle bubble manager
  * @category Interactions
  */
-export class Bubbler implements IExternalInteractor {
-    constructor(private readonly container: Container) {}
+export class Bubbler extends ExternalBase {
+    constructor(container: Container) {
+        super(container, "bubbler");
+    }
 
     public isEnabled(): boolean {
         const container = this.container;
@@ -247,7 +249,7 @@ export class Bubbler implements IExternalInteractor {
                     value: particle.bubble.opacity,
                 },
                 particlesObj: {
-                    optValue: particle.particlesOptions.opacity.value,
+                    optValue: particle.options.opacity.value,
                     value: particle.opacity.value,
                 },
                 type: ProcessBubbleType.opacity,
@@ -334,7 +336,7 @@ export class Bubbler implements IExternalInteractor {
             return;
         }
 
-        const optOpacity = particle.particlesOptions.opacity.value;
+        const optOpacity = particle.options.opacity.value;
         const pOpacity = particle.opacity.value;
         const opacity = calculateBubbleValue(pOpacity, modeOpacity, optOpacity, ratio);
 

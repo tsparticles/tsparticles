@@ -7,7 +7,12 @@ assignees: ''
 
 ---
 
-**Does the latest version lacks this feature?**
+/* DO NOT DELETE THE TEMPLATE BELOW, you can safely delete this line */
+
+**Which version are you using?**
+Ex. 1.18.11
+
+**Is the latest version affected?**
 
 - [ ] Yes
 - [ ] No
@@ -23,6 +28,8 @@ assignees: ''
 - [ ] Preact (`preact-particles`)
 - [ ] Inferno (`inferno-particles`)
 - [ ] jQuery (`jquery-particles`)
+
+/* DO NOT DELETE THE TEMPLATE ABOVE, you can safely delete this line */
 
 **Is your feature request related to a problem? Please describe.**
 A clear and concise description of what the problem is. Ex. I'm always frustrated when [...]

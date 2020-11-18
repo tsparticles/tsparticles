@@ -118,6 +118,10 @@ export default class Particles extends Component<IParticlesProps, IParticlesStat
 
         tsParticles.init();
 
+        if (this.props.init) {
+            this.props.init(tsParticles);
+        }
+
         const container = new Container(tagId ?? Particles.defaultProps.id, options);
 
         if (this.props.container) {

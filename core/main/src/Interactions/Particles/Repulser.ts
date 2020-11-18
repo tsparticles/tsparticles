@@ -1,14 +1,16 @@
 import { Particle } from "../../Core/Particle";
 import type { Container } from "../../Core/Container";
-import { IParticlesInteractor } from "../../Core/Interfaces/IParticlesInteractor";
 import { NumberUtils } from "../../Utils";
 import { IParticle } from "../../Core/Interfaces/IParticle";
+import { ParticlesBase } from "./ParticlesBase";
 
-export class Repulser implements IParticlesInteractor {
-    constructor(private readonly container: Container) {}
+export class Repulser extends ParticlesBase {
+    constructor(container: Container) {
+        super(container, "repulser");
+    }
 
     public isEnabled(particle: Particle): boolean {
-        return particle.particlesOptions.repulse.enabled;
+        return particle.options.repulse.enabled;
     }
 
     public reset(): void {
@@ -17,7 +19,7 @@ export class Repulser implements IParticlesInteractor {
 
     public interact(p1: IParticle): void {
         const container = this.container;
-        const repulseOpt1 = p1.particlesOptions.repulse;
+        const repulseOpt1 = p1.options.repulse;
         const pos1 = p1.getPosition();
 
         const query = container.particles.quadTree.queryCircle(pos1, repulseOpt1.distance);

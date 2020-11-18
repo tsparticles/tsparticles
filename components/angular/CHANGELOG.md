@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.2.0-alpha.1](https://github.com/matteobruni/tsparticles/compare/ng-particles@2.2.0-alpha.0...ng-particles@2.2.0-alpha.1) (2020-11-18)
+
+
+### Bug Fixes
+
+* **angular:** disabled Ivy as suggested ([66c71c7](https://github.com/matteobruni/tsparticles/commit/66c71c749bacc8fe5bd49312e0b3ec0eaf5b818a))
+
+
+
+
+
 # [2.2.0-alpha.0](https://github.com/matteobruni/tsparticles/compare/ng-particles@2.1.11...ng-particles@2.2.0-alpha.0) (2020-11-09)
 
 **Note:** Version bump only for package ng-particles
