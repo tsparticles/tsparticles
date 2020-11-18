@@ -21,23 +21,8 @@
     "start": "yarn build && node ./app.js",
     "build": "echo nothing"
   },
-  "devDependencies": {
-    "@fortawesome/fontawesome-free": "^5.15.1",
-    "@typescript-eslint/eslint-plugin": "^4.7.0",
-    "@typescript-eslint/parser": "^4.7.0",
-    "bootstrap": "^4.5.3",
-    "eslint": "^7.13.0",
-    "eslint-config-prettier": "^6.15.0",
-    "express": "^4.17.1",
-    "helmet": "^4.2.0",
-    "jquery": "^3.5.1",
-    "jsoneditor": "^9.1.2",
+  "dependencies": {
     "pathseg": "^1.2.0",
-    "popper.js": "^1.16.1",
-    "prettier": "^2.1.2",
-    "pug": "^3.0.0",
-    "pug-cli": "^1.0.0-alpha6",
-    "stylus": "^0.54.8",
     "stats.ts": "^1.1.0",
     "tsparticles": "^1.19.0-alpha.0",
     "tsparticles-preset-big-circles": "^1.4.0-alpha.0",
@@ -51,5 +36,22 @@
     "tsparticles-shape-heart": "^1.4.0-alpha.0",
     "tsparticles-shape-multiline-text": "^1.4.0-alpha.0",
     "tsparticles-shape-spiral": "^1.4.0-alpha.0"
+  },
+  "devDependencies": {
+    "@fortawesome/fontawesome-free": "^5.15.1",
+    "@typescript-eslint/eslint-plugin": "^4.8.1",
+    "@typescript-eslint/parser": "^4.8.1",
+    "bootstrap": "^4.5.3",
+    "eslint": "^7.13.0",
+    "eslint-config-prettier": "^6.15.0",
+    "express": "^4.17.1",
+    "helmet": "^4.2.0",
+    "jquery": "^3.5.1",
+    "jsoneditor": "^9.1.2",
+    "popper.js": "^1.16.1",
+    "prettier": "^2.1.2",
+    "pug": "^3.0.0",
+    "pug-cli": "^1.0.0-alpha6",
+    "stylus": "^0.54.8"
   }
 }

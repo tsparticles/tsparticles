@@ -20,13 +20,14 @@
   "dependencies": {
     "jquery": "^3.5.1",
     "jquery-particles": "^1.19.0-alpha.0",
+    "stats.ts": "^1.1.0",
     "tsparticles": "^1.19.0-alpha.0",
     "tsparticles-preset-links": "^1.4.0-alpha.0"
   },
   "devDependencies": {
     "@fortawesome/fontawesome-free": "^5.15.1",
-    "@typescript-eslint/eslint-plugin": "^4.7.0",
-    "@typescript-eslint/parser": "^4.7.0",
+    "@typescript-eslint/eslint-plugin": "^4.8.1",
+    "@typescript-eslint/parser": "^4.8.1",
     "babel-preset-env": "^1.7.0",
     "eslint": "^7.13.0",
     "eslint-config-prettier": "^6.15.0",
@@ -35,7 +36,6 @@
     "jsoneditor": "^9.1.2",
     "prettier": "^2.1.2",
     "pug": "^3.0.0",
-    "stats.ts": "^1.1.0",
     "stylus": "^0.54.8"
   }
 }
