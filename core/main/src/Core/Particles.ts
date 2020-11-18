@@ -10,6 +10,7 @@ import { InteractionManager } from "./Particle/InteractionManager";
 import type { IDelta } from "./Interfaces/IDelta";
 import type { IParticle } from "./Interfaces/IParticle";
 import type { IDensity } from "../Options/Interfaces/Particles/Number/IDensity";
+import { Particles as ParticlesOptions } from "../Options/Classes/Particles/Particles";
 
 /**
  * Particles manager object
@@ -261,28 +262,39 @@ export class Particles {
         return this.pushParticle(position, overrideOptions, group);
     }
 
-    public addSplitParticle(
-        splitCount: number,
-        position?: ICoordinates,
-        overrideOptions?: RecursivePartial<IParticles>,
-        group?: string
-    ): Particle | undefined {
-        return this.pushParticle(position, overrideOptions, group, (particle) => {
-            const factor = NumberUtils.getValue(particle.particlesOptions.destroy.split.factor);
+    public addSplitParticle(parent: Particle): Particle | undefined {
+        const splitOptions = parent.options.destroy.split;
+        const options = new ParticlesOptions();
 
-            particle.size.value /= factor;
-            particle.particlesOptions.size.value /= factor;
-            particle.particlesOptions.size.random.minimumValue /= factor;
+        options.load(parent.options);
 
-            if (particle.size.value < 1) {
+        const factor = NumberUtils.getValue(splitOptions.factor);
+
+        options.color.load({
+            value: {
+                hsl: parent.color.value,
+            },
+        });
+
+        options.size.value /= factor;
+        options.size.random.minimumValue /= factor;
+        options.size.animation.minimumValue /= factor;
+
+        options.load(splitOptions.particles);
+
+        const offset = parent.size.value;
+
+        const position = {
+            x: parent.position.x + NumberUtils.randomInRange(-offset, offset),
+            y: parent.position.y + NumberUtils.randomInRange(-offset, offset),
+        };
+
+        return this.pushParticle(position, options, parent.group, (particle) => {
+            if (particle.size.value < 0.5) {
                 return false;
             }
 
-            const offset = particle.size.value * factor;
-
-            particle.position.x += NumberUtils.randomInRange(-offset, offset);
-            particle.position.y += NumberUtils.randomInRange(-offset, offset);
-            particle.splitCount = splitCount;
+            particle.splitCount = parent.splitCount + 1;
             particle.unbreaking = true;
 
             setTimeout(() => {

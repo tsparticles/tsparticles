@@ -9,14 +9,18 @@ function bounce(p1: Particle, p2: Particle): void {
 }
 
 function destroy(p1: Particle, p2: Particle): void {
-    if (!p1.unbreaking && p1.getRadius() === undefined && p2.getRadius() !== undefined) {
+    if (!p1.unbreaking && !p2.unbreaking) {
+        bounce(p1, p2);
+    }
+
+    if (p1.getRadius() === undefined && p2.getRadius() !== undefined) {
         p1.destroy();
-    } else if (!p2.unbreaking && p1.getRadius() !== undefined && p2.getRadius() === undefined) {
+    } else if (p1.getRadius() !== undefined && p2.getRadius() === undefined) {
         p2.destroy();
     } else if (p1.getRadius() !== undefined && p2.getRadius() !== undefined) {
-        if (!p2.unbreaking && p1.getRadius() >= p2.getRadius()) {
+        if (p1.getRadius() >= p2.getRadius()) {
             p2.destroy();
-        } else if (!p1.unbreaking) {
+        } else {
             p1.destroy();
         }
     }
@@ -31,7 +35,7 @@ export class Collider extends ParticlesBase {
     }
 
     public isEnabled(particle: Particle): boolean {
-        return particle.particlesOptions.collisions.enable;
+        return particle.options.collisions.enable;
     }
 
     public reset(): void {
@@ -49,8 +53,8 @@ export class Collider extends ParticlesBase {
         for (const p2 of query) {
             if (
                 p1 === p2 ||
-                !p2.particlesOptions.collisions.enable ||
-                p1.particlesOptions.collisions.mode !== p2.particlesOptions.collisions.mode ||
+                !p2.options.collisions.enable ||
+                p1.options.collisions.mode !== p2.options.collisions.mode ||
                 p2.destroyed ||
                 p2.spawning
             ) {
@@ -74,7 +78,7 @@ export class Collider extends ParticlesBase {
     }
 
     private resolveCollision(p1: Particle, p2: Particle): void {
-        switch (p1.particlesOptions.collisions.mode) {
+        switch (p1.options.collisions.mode) {
             case CollisionMode.absorb: {
                 this.absorb(p1, p2);
                 break;

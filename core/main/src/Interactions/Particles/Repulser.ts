@@ -10,7 +10,7 @@ export class Repulser extends ParticlesBase {
     }
 
     public isEnabled(particle: Particle): boolean {
-        return particle.particlesOptions.repulse.enabled;
+        return particle.options.repulse.enabled;
     }
 
     public reset(): void {
@@ -19,7 +19,7 @@ export class Repulser extends ParticlesBase {
 
     public interact(p1: IParticle): void {
         const container = this.container;
-        const repulseOpt1 = p1.particlesOptions.repulse;
+        const repulseOpt1 = p1.options.repulse;
         const pos1 = p1.getPosition();
 
         const query = container.particles.quadTree.queryCircle(pos1, repulseOpt1.distance);

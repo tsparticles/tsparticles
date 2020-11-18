@@ -35,7 +35,7 @@ export interface IParticle {
     readonly rotate: IParticleValueAnimation<number>;
     readonly size: IParticleValueAnimation<number>;
     readonly strokeColor: IParticleValueAnimation<IHsl | undefined>;
-    readonly particlesOptions: IParticles;
+    readonly options: IParticles;
     readonly position: ICoordinates3d;
     readonly shadowColor: IRgb | undefined;
     readonly shape?: ShapeType | string;

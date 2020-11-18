@@ -8,14 +8,14 @@ export class OrbitUpdater implements IParticleUpdater {
 
     public isEnabled(): boolean {
         const particle = this.particle,
-            orbitAnimations = particle.particlesOptions.orbit.animation;
+            orbitAnimations = particle.options.orbit.animation;
 
         return !particle.destroyed && !particle.spawning && orbitAnimations.enable;
     }
 
     public update(delta: IDelta): void {
         const particle = this.particle,
-            orbitAnimations = particle.particlesOptions.orbit.animation;
+            orbitAnimations = particle.options.orbit.animation;
 
         if (!this.isEnabled()) {
             return;

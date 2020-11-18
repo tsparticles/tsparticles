@@ -45,7 +45,7 @@ export class Mover {
 
     private moveParticle(delta: IDelta): void {
         const particle = this.particle;
-        const particlesOptions = particle.particlesOptions;
+        const particlesOptions = particle.options;
 
         if (!particlesOptions.move.enable) {
             return;
@@ -77,7 +77,7 @@ export class Mover {
             particle.velocity.vertical = velocity.vertical / moveSpeed;
         }
 
-        const zIndexOptions = particle.particlesOptions.zIndex;
+        const zIndexOptions = particle.options.zIndex;
         const zVelocityFactor = 1 - zIndexOptions.velocityRate * particle.zIndexFactor;
 
         if (
@@ -182,7 +182,7 @@ export class Mover {
 
     private applyNoise(delta: IDelta): void {
         const particle = this.particle;
-        const particlesOptions = particle.particlesOptions;
+        const particlesOptions = particle.options;
         const noiseOptions = particlesOptions.move.noise;
         const noiseEnabled = noiseOptions.enable;
 

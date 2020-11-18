@@ -11,7 +11,7 @@ export class Linker extends ParticlesBase {
     }
 
     public isEnabled(particle: IParticle): boolean {
-        return particle.particlesOptions.links.enable;
+        return particle.options.links.enable;
     }
 
     public reset(): void {
@@ -20,7 +20,7 @@ export class Linker extends ParticlesBase {
 
     public interact(p1: IParticle): void {
         const container = this.container;
-        const linkOpt1 = p1.particlesOptions.links;
+        const linkOpt1 = p1.options.links;
         const optOpacity = linkOpt1.opacity;
         const optDistance = p1.linksDistance ?? container.retina.linksDistance;
         const canvasSize = container.canvas.size;
@@ -34,7 +34,7 @@ export class Linker extends ParticlesBase {
         const query = container.particles.quadTree.query(range);
 
         for (const p2 of query) {
-            const linkOpt2 = p2.particlesOptions.links;
+            const linkOpt2 = p2.options.links;
 
             if (p1 === p2 || !linkOpt2.enable || linkOpt1.id !== linkOpt2.id || p2.spawning || p2.destroyed) {
                 continue;
@@ -66,7 +66,7 @@ export class Linker extends ParticlesBase {
 
     private setColor(p1: IParticle): void {
         const container = this.container;
-        const linksOptions = p1.particlesOptions.links;
+        const linksOptions = p1.options.links;
 
         let linkColor =
             linksOptions.id === undefined

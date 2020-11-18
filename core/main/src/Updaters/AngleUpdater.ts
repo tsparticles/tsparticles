@@ -9,7 +9,7 @@ export class AngleUpdater implements IParticleUpdater {
 
     public isEnabled(): boolean {
         const particle = this.particle;
-        const rotate = particle.particlesOptions.rotate;
+        const rotate = particle.options.rotate;
         const rotateAnimation = rotate.animation;
 
         return !particle.destroyed && !particle.spawning && (rotate.path || rotateAnimation.enable);
@@ -21,7 +21,7 @@ export class AngleUpdater implements IParticleUpdater {
         }
 
         const particle = this.particle;
-        const rotate = particle.particlesOptions.rotate;
+        const rotate = particle.options.rotate;
         const rotateAnimation = rotate.animation;
         const speed = (particle.rotate.velocity ?? 0) * delta.factor;
         const max = 2 * Math.PI;

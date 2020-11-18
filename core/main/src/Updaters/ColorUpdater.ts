@@ -9,7 +9,7 @@ export class ColorUpdater implements IParticleUpdater {
 
     public isEnabled(): boolean {
         const particle = this.particle;
-        const animationOptions = particle.particlesOptions.color.animation;
+        const animationOptions = particle.options.color.animation;
 
         return (
             !particle.destroyed && !particle.spawning && particle.color.value !== undefined && animationOptions.enable
@@ -18,7 +18,7 @@ export class ColorUpdater implements IParticleUpdater {
 
     public update(delta: IDelta): void {
         const particle = this.particle;
-        const animationOptions = particle.particlesOptions.color.animation;
+        const animationOptions = particle.options.color.animation;
 
         if (!this.isEnabled()) {
             return;

@@ -3,11 +3,14 @@ import type { IOptionLoader } from "../../../Interfaces/IOptionLoader";
 import { SplitFactor } from "./SplitFactor";
 import { RecursivePartial } from "../../../../Types";
 import { SplitRate } from "./SplitRate";
+import { IParticles } from "../../../Interfaces/Particles/IParticles";
+import { Utils } from "../../../../Utils";
 
 export class Split implements ISplit, IOptionLoader<ISplit> {
     public count: number;
     public factor: SplitFactor;
     public rate: SplitRate;
+    public particles?: RecursivePartial<IParticles>;
 
     constructor() {
         this.count = 1;
@@ -26,5 +29,9 @@ export class Split implements ISplit, IOptionLoader<ISplit> {
 
         this.factor.load(data.factor);
         this.rate.load(data.rate);
+
+        if (data.particles !== undefined) {
+            this.particles = Utils.deepExtend({}, data.particles) as RecursivePartial<IParticles>;
+        }
     }
 }

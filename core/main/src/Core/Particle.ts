@@ -58,7 +58,7 @@ export class Particle implements IParticle {
     public readonly mover;
     public readonly sides;
     public readonly strokeWidth;
-    public readonly particlesOptions;
+    public readonly options;
 
     public links: ILink[];
     public randomIndexData?: number;
@@ -176,12 +176,12 @@ export class Particle implements IParticle {
 
         this.fill = this.shapeData?.fill ?? this.fill;
         this.close = this.shapeData?.close ?? this.close;
-        this.particlesOptions = particlesOptions;
+        this.options = particlesOptions;
 
-        const zIndexValue = NumberUtils.getValue(this.particlesOptions.zIndex);
+        const zIndexValue = NumberUtils.getValue(this.options.zIndex);
 
         /* size */
-        const sizeOptions = this.particlesOptions.size;
+        const sizeOptions = this.options.size;
         const sizeValue = NumberUtils.getValue(sizeOptions) * container.retina.pixelRatio;
 
         const randomSize = typeof sizeOptions.random === "boolean" ? sizeOptions.random : sizeOptions.random.enable;
@@ -209,13 +209,13 @@ export class Particle implements IParticle {
 
         // Scale z-index factor to be between 0 and 2
         this.zIndexFactor = this.position.z / container.zLayers;
-        this.noiseDelay = NumberUtils.getValue(this.particlesOptions.move.noise.delay) * 1000;
+        this.noiseDelay = NumberUtils.getValue(this.options.move.noise.delay) * 1000;
 
         container.retina.initParticle(this);
 
-        const color = this.particlesOptions.color;
+        const color = this.options.color;
 
-        this.direction = this.particlesOptions.move.direction;
+        this.direction = this.options.move.direction;
         this.bubble = {
             inRange: false,
         };
@@ -229,7 +229,7 @@ export class Particle implements IParticle {
 
         this.pathAngle = Math.atan2(this.initialVelocity.vertical, this.initialVelocity.horizontal);
 
-        const rotateOptions = this.particlesOptions.rotate;
+        const rotateOptions = this.options.rotate;
 
         this.rotate = {
             value: ((rotateOptions.random.enable ? Math.random() * 360 : rotateOptions.value) * Math.PI) / 180,
@@ -253,7 +253,7 @@ export class Particle implements IParticle {
                 break;
         }
 
-        const rotateAnimation = this.particlesOptions.rotate.animation;
+        const rotateAnimation = this.options.rotate.animation;
 
         if (rotateAnimation.enable) {
             this.rotate.velocity = (rotateAnimation.speed / 360) * container.retina.reduceFactor;
@@ -263,7 +263,7 @@ export class Particle implements IParticle {
             }
         }
 
-        const sizeAnimation = this.particlesOptions.size.animation;
+        const sizeAnimation = this.options.size.animation;
 
         if (sizeAnimation.enable) {
             this.size.status = AnimationStatus.increasing;
@@ -307,7 +307,7 @@ export class Particle implements IParticle {
                 ? Math.floor(Math.random() * 360) + orbitRotationOptions.minimumValue
                 : Math.floor(Math.random() * 360);
         } else {
-            this.orbitRotation = this.particlesOptions.orbit.rotation.value;
+            this.orbitRotation = this.options.orbit.rotation.value;
         }
 
         /* color */
@@ -315,7 +315,7 @@ export class Particle implements IParticle {
             value: ColorUtils.colorToHsl(color, this.id, reduceDuplicates),
         };
 
-        const colorAnimation = this.particlesOptions.color.animation;
+        const colorAnimation = this.options.color.animation;
 
         if (colorAnimation.enable) {
             this.color.velocity = (colorAnimation.speed / 100) * container.retina.reduceFactor;
@@ -326,7 +326,7 @@ export class Particle implements IParticle {
         }
 
         /* opacity */
-        const opacityOptions = this.particlesOptions.opacity;
+        const opacityOptions = this.options.opacity;
         const randomOpacity =
             typeof opacityOptions.random === "boolean" ? opacityOptions.random : opacityOptions.random.enable;
 
@@ -400,9 +400,9 @@ export class Particle implements IParticle {
         }
 
         this.stroke =
-            this.particlesOptions.stroke instanceof Array
-                ? Utils.itemFromArray(this.particlesOptions.stroke, this.id, reduceDuplicates)
-                : this.particlesOptions.stroke;
+            this.options.stroke instanceof Array
+                ? Utils.itemFromArray(this.options.stroke, this.id, reduceDuplicates)
+                : this.options.stroke;
 
         this.strokeWidth = this.stroke.width * container.retina.pixelRatio;
 
@@ -456,8 +456,8 @@ export class Particle implements IParticle {
             this.livesRemaining = -1;
         }
 
-        if (this.particlesOptions.move.spin.enable) {
-            const spinCenter = this.particlesOptions.move.spin.position ?? { x: 50, y: 50 };
+        if (this.options.move.spin.enable) {
+            const spinCenter = this.options.move.spin.position ?? { x: 50, y: 50 };
 
             this.spinCenter = {
                 x: (spinCenter.x / 100) * this.container.canvas.size.width,
@@ -473,7 +473,7 @@ export class Particle implements IParticle {
             this.spinRadius = distance;
         }
 
-        this.shadowColor = ColorUtils.colorToRgb(this.particlesOptions.shadow.color);
+        this.shadowColor = ColorUtils.colorToRgb(this.options.shadow.color);
         this.updater = new Updater(container, this);
         this.infecter = new Infecter(container);
         this.mover = new Mover(container, this);
@@ -516,11 +516,15 @@ export class Particle implements IParticle {
      * This destroys the particle just before it's been removed from the canvas and the container
      */
     public destroy(): void {
+        if (this.unbreaking) {
+            return;
+        }
+
         this.destroyed = true;
         this.bubble.inRange = false;
         this.links = [];
 
-        const destroyOptions = this.particlesOptions.destroy;
+        const destroyOptions = this.options.destroy;
 
         if (destroyOptions.mode === DestroyMode.Split) {
             this.split();
@@ -558,7 +562,7 @@ export class Particle implements IParticle {
         };
 
         /* check position  - into the canvas */
-        const outMode = this.particlesOptions.move.outMode;
+        const outMode = this.options.move.outMode;
 
         if (Utils.isInArray(outMode, OutMode.bounce) || Utils.isInArray(outMode, OutMode.bounceHorizontal)) {
             if (pos.x > container.canvas.size.width - this.size.value * 2) {
@@ -585,7 +589,7 @@ export class Particle implements IParticle {
             horizontal: 0,
             vertical: 0,
         };
-        const moveOptions = this.particlesOptions.move;
+        const moveOptions = this.options.move;
 
         let rad: number;
         let radOffset = Math.PI / 4;
@@ -624,7 +628,7 @@ export class Particle implements IParticle {
     }
 
     private split(): void {
-        const splitOptions = this.particlesOptions.destroy.split;
+        const splitOptions = this.options.destroy.split;
 
         if (splitOptions.count >= 0 && this.splitCount++ >= splitOptions.count) {
             return;
@@ -633,12 +637,7 @@ export class Particle implements IParticle {
         const rate = NumberUtils.getValue(splitOptions.rate);
 
         for (let i = 0; i < rate; i++) {
-            this.container.particles.addSplitParticle(
-                this.splitCount + 1,
-                this.position,
-                this.particlesOptions,
-                this.group
-            );
+            this.container.particles.addSplitParticle(this);
         }
     }
 

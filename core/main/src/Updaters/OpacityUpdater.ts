@@ -10,7 +10,7 @@ export class OpacityUpdater implements IParticleUpdater {
 
     public isEnabled(): boolean {
         const particle = this.particle;
-        const sizeOpt = particle.particlesOptions.size;
+        const sizeOpt = particle.options.size;
         const sizeAnim = sizeOpt.animation;
 
         return (
@@ -24,7 +24,7 @@ export class OpacityUpdater implements IParticleUpdater {
     public update(delta: IDelta): void {
         const container = this.container;
         const particle = this.particle;
-        const sizeOpt = particle.particlesOptions.size;
+        const sizeOpt = particle.options.size;
         const sizeAnim = sizeOpt.animation;
         const sizeVelocity = (particle.size.velocity ?? 0) * delta.factor;
         const maxValue = particle.sizeValue ?? container.retina.sizeValue;

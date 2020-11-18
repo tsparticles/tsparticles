@@ -10,7 +10,7 @@ export class SizeUpdater implements IParticleUpdater {
 
     public isEnabled(): boolean {
         const particle = this.particle;
-        const opacityAnim = particle.particlesOptions.opacity.anim;
+        const opacityAnim = particle.options.opacity.anim;
 
         return (
             !particle.destroyed &&
@@ -22,9 +22,9 @@ export class SizeUpdater implements IParticleUpdater {
 
     public update(delta: IDelta): void {
         const particle = this.particle;
-        const opacityAnim = particle.particlesOptions.opacity.anim;
+        const opacityAnim = particle.options.opacity.anim;
         const minValue = opacityAnim.minimumValue;
-        const maxValue = particle.particlesOptions.opacity.value;
+        const maxValue = particle.options.opacity.value;
 
         if (!this.isEnabled()) {
             return;

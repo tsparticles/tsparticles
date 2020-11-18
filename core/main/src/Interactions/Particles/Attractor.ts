@@ -20,7 +20,7 @@ export class Attractor extends ParticlesBase {
         const query = container.particles.quadTree.queryCircle(pos1, distance);
 
         for (const p2 of query) {
-            if (p1 === p2 || !p2.particlesOptions.move.attract.enable || p2.destroyed || p2.spawning) {
+            if (p1 === p2 || !p2.options.move.attract.enable || p2.destroyed || p2.spawning) {
                 continue;
             }
 
@@ -28,7 +28,7 @@ export class Attractor extends ParticlesBase {
 
             /* condensed particles */
             const { dx, dy } = NumberUtils.getDistances(pos1, pos2);
-            const rotate = p1.particlesOptions.move.attract.rotate;
+            const rotate = p1.options.move.attract.rotate;
             const ax = dx / (rotate.x * 1000);
             const ay = dy / (rotate.y * 1000);
             const p1Factor = p2.size.value / p1.size.value;
@@ -42,7 +42,7 @@ export class Attractor extends ParticlesBase {
     }
 
     public isEnabled(particle: Particle): boolean {
-        return particle.particlesOptions.move.attract.enable;
+        return particle.options.move.attract.enable;
     }
 
     public reset(): void {

@@ -66,7 +66,7 @@ export class LifeUpdater implements IParticleUpdater {
         particle.lifeTime = 0;
         particle.reset();
 
-        const lifeOptions = particle.particlesOptions.life;
+        const lifeOptions = particle.options.life;
 
         particle.lifeDelay = NumberUtils.getValue(lifeOptions.delay) * 1000;
         particle.lifeDuration = NumberUtils.getValue(lifeOptions.duration) * 1000;

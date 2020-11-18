@@ -37,7 +37,7 @@ function bounceHorizontal(data: IBounceData): void {
         (data.direction === OutModeDirection.right && data.bounds.right >= data.canvasSize.width && velocity > 0) ||
         (data.direction === OutModeDirection.left && data.bounds.left <= 0 && velocity < 0)
     ) {
-        const newVelocity = NumberUtils.getValue(data.particle.particlesOptions.bounce.horizontal);
+        const newVelocity = NumberUtils.getValue(data.particle.options.bounce.horizontal);
 
         data.particle.velocity.horizontal *= -newVelocity;
 
@@ -72,7 +72,7 @@ function bounceVertical(data: IBounceData): void {
                 velocity > 0) ||
             (data.direction === OutModeDirection.top && data.bounds.top <= 0 && velocity < 0)
         ) {
-            const newVelocity = NumberUtils.getValue(data.particle.particlesOptions.bounce.vertical);
+            const newVelocity = NumberUtils.getValue(data.particle.options.bounce.vertical);
 
             data.particle.velocity.vertical *= -newVelocity;
 
@@ -101,7 +101,7 @@ export class OutOfCanvasUpdater implements IParticleUpdater {
     }
 
     update(delta: IDelta): void {
-        const outModes = this.particle.particlesOptions.move.outModes;
+        const outModes = this.particle.options.move.outModes;
 
         this.updateOutMode(delta, outModes.bottom ?? outModes.default, OutModeDirection.bottom);
         this.updateOutMode(delta, outModes.left ?? outModes.default, OutModeDirection.left);
@@ -157,7 +157,7 @@ export class OutOfCanvasUpdater implements IParticleUpdater {
             return;
         }
 
-        const wrap = particle.particlesOptions.move.warp,
+        const wrap = particle.options.move.warp,
             canvasSize = container.canvas.size,
             newPos = {
                 bottom: canvasSize.height + particle.getRadius() - particle.offset.y,
@@ -241,11 +241,11 @@ export class OutOfCanvasUpdater implements IParticleUpdater {
     private none(direction: OutModeDirection): void {
         const particle = this.particle;
 
-        if (particle.particlesOptions.move.distance) {
+        if (particle.options.move.distance) {
             return;
         }
 
-        const gravityOptions = particle.particlesOptions.move.gravity,
+        const gravityOptions = particle.options.move.gravity,
             container = this.container;
 
         if (!gravityOptions.enable) {
