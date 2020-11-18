@@ -258,19 +258,23 @@ export class Particles {
         overrideOptions?: RecursivePartial<IParticles>,
         group?: string
     ): Particle | undefined {
-        try {
-            const particle = new Particle(this.nextId, this.container, position, overrideOptions, group);
+        return this.pushParticle(position, overrideOptions, group);
+    }
 
-            this.array.push(particle);
+    public addSplitParticle(
+        splitCount: number,
+        position?: ICoordinates,
+        overrideOptions?: RecursivePartial<IParticles>,
+        group?: string
+    ): Particle | undefined {
+        return this.pushParticle(position, overrideOptions, group, (particle) => {
+            particle.splitCount = splitCount;
+            particle.unbreaking = true;
 
-            this.nextId++;
-
-            return particle;
-        } catch (e) {
-            console.warn(`error adding particle: ${e}`);
-
-            return;
-        }
+            setTimeout(() => {
+                particle.unbreaking = false;
+            }, 100);
+        });
     }
 
     public removeQuantity(quantity: number, group?: string): void {
@@ -376,5 +380,32 @@ export class Particles {
         const pxRatio = container.retina.pixelRatio;
 
         return (canvas.width * canvas.height) / (densityOptions.factor * pxRatio * pxRatio * densityOptions.area);
+    }
+
+    private pushParticle(
+        position?: ICoordinates,
+        overrideOptions?: RecursivePartial<IParticles>,
+        group?: string,
+        initializer?: (particle: Particle) => void
+    ): Particle | undefined {
+        try {
+            const particle = new Particle(this.nextId, this.container, position, overrideOptions, group);
+
+            if (initializer) {
+                initializer(particle);
+            }
+
+            console.log(particle.unbreaking);
+
+            this.array.push(particle);
+
+            this.nextId++;
+
+            return particle;
+        } catch (e) {
+            console.warn(`error adding particle: ${e}`);
+
+            return;
+        }
     }
 }

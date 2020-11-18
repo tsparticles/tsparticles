@@ -16,6 +16,7 @@ import type { IBounce } from "./Bounce/IBounce";
 import type { IOrbit } from "./Orbit/IOrbit";
 import type { IZIndex } from "./ZIndex/IZIndex";
 import type { IRepulse } from "./Repulse/IRepulse";
+import { IDestroy } from "./Destroy/IDestroy";
 
 /**
  * [[include:Options/Particles.md]]
@@ -35,6 +36,7 @@ export interface IParticles {
     bounce: IBounce;
     collisions: ICollisions;
     color: IAnimatableColor;
+    destroy: IDestroy;
     groups: ParticlesGroups;
     life: ILife;
     links: ILinks;

@@ -9,14 +9,14 @@ function bounce(p1: Particle, p2: Particle): void {
 }
 
 function destroy(p1: Particle, p2: Particle): void {
-    if (p1.getRadius() === undefined && p2.getRadius() !== undefined) {
+    if (!p1.unbreaking && p1.getRadius() === undefined && p2.getRadius() !== undefined) {
         p1.destroy();
-    } else if (p1.getRadius() !== undefined && p2.getRadius() === undefined) {
+    } else if (!p2.unbreaking && p1.getRadius() !== undefined && p2.getRadius() === undefined) {
         p2.destroy();
     } else if (p1.getRadius() !== undefined && p2.getRadius() !== undefined) {
-        if (p1.getRadius() >= p2.getRadius()) {
+        if (!p2.unbreaking && p1.getRadius() >= p2.getRadius()) {
             p2.destroy();
-        } else {
+        } else if (!p1.unbreaking) {
             p1.destroy();
         }
     }

@@ -19,6 +19,7 @@ import { Utils } from "../../../Utils";
 import { Orbit } from "./Orbit/Orbit";
 import { ZIndex } from "./ZIndex/ZIndex";
 import { Repulse } from "./Repulse/Repulse";
+import { Destroy } from "./Destroy/Destroy";
 
 /**
  * [[include:Options/Particles.md]]
@@ -62,6 +63,7 @@ export class Particles implements IParticles, IOptionLoader<IParticles> {
     public bounce;
     public collisions;
     public color;
+    public destroy;
     public groups: ParticlesGroups;
     public life;
     public links;
@@ -83,6 +85,7 @@ export class Particles implements IParticles, IOptionLoader<IParticles> {
         this.bounce = new Bounce();
         this.collisions = new Collisions();
         this.color = new AnimatableColor();
+        this.destroy = new Destroy();
         this.groups = {};
         this.life = new Life();
         this.links = new Links();
@@ -111,6 +114,7 @@ export class Particles implements IParticles, IOptionLoader<IParticles> {
         this.bounce.load(data.bounce);
 
         this.color = AnimatableColor.create(this.color, data.color);
+        this.destroy.load(data.destroy);
 
         if (data.groups !== undefined) {
             for (const group in data.groups) {

@@ -31,6 +31,7 @@ import type { IDelta } from "./Interfaces/IDelta";
 import { Mover } from "./Particle/Mover";
 import type { ILink } from "./Interfaces/ILink";
 import type { IParticleLoops } from "./Interfaces/IParticleLoops";
+import { DestroyMode } from "../Enums/Modes/DestroyMode";
 
 /**
  * The single particle object
@@ -48,6 +49,8 @@ export class Particle implements IParticle {
     public spawning;
     public lastNoiseTime;
     public zIndexFactor;
+    public splitCount;
+    public unbreaking;
 
     public readonly noiseDelay;
     public readonly updater;
@@ -106,6 +109,8 @@ export class Particle implements IParticle {
         this.fill = true;
         this.close = true;
         this.lastNoiseTime = 0;
+        this.splitCount = 0;
+        this.unbreaking = false;
         this.destroyed = false;
         this.misplaced = false;
         this.loops = {
@@ -430,14 +435,14 @@ export class Particle implements IParticle {
 
         this.lifeDelay = container.retina.reduceFactor
             ? ((NumberUtils.getValue(lifeOptions.delay) * (lifeOptions.delay.sync ? 1 : Math.random())) /
-                  container.retina.reduceFactor) *
-              1000
+            container.retina.reduceFactor) *
+            1000
             : 0;
         this.lifeDelayTime = 0;
         this.lifeDuration = container.retina.reduceFactor
             ? ((NumberUtils.getValue(lifeOptions.duration) * (lifeOptions.duration.sync ? 1 : Math.random())) /
-                  container.retina.reduceFactor) *
-              1000
+            container.retina.reduceFactor) *
+            1000
             : 0;
         this.lifeTime = 0;
         this.livesRemaining = particlesOptions.life.count;
@@ -514,6 +519,12 @@ export class Particle implements IParticle {
         this.destroyed = true;
         this.bubble.inRange = false;
         this.links = [];
+
+        const destroyOptions = this.particlesOptions.destroy;
+
+        if (destroyOptions.mode === DestroyMode.Split) {
+            this.split();
+        }
     }
 
     /**
@@ -525,7 +536,7 @@ export class Particle implements IParticle {
     }
 
     private calcPosition(container: Container, position: ICoordinates | undefined, zIndex: number): ICoordinates3d {
-        for (const [, plugin] of container.plugins) {
+        for (const [ , plugin ] of container.plugins) {
             const pluginPos =
                 plugin.particlePosition !== undefined ? plugin.particlePosition(position, this) : undefined;
 
@@ -612,15 +623,43 @@ export class Particle implements IParticle {
         return res;
     }
 
+    private split(): void {
+        const splitOptions = this.particlesOptions.destroy.split;
+
+        if (splitOptions.count >= 0 && this.splitCount++ >= splitOptions.count) {
+            return;
+        }
+
+        const rate = NumberUtils.getValue(splitOptions.rate);
+
+        for (let i = 0; i < rate; i++) {
+            const options = Utils.deepExtend({}, this.particlesOptions) as IParticles;
+            const factor = NumberUtils.getValue(splitOptions.factor);
+
+            options.size.value /= factor;
+
+            if (options.size.value < 1) {
+                return;
+            }
+
+            const position = {
+                x: this.position.x + NumberUtils.randomInRange(0, this.size.value * 4) - this.size.value * 2,
+                y: this.position.y + NumberUtils.randomInRange(0, this.size.value * 4) - this.size.value * 2,
+            };
+
+            this.container.particles.addSplitParticle(this.splitCount + 1, position, options, this.group);
+        }
+    }
+
     private loadImageShape(
         container: Container,
         drawer?: IShapeDrawer
     ):
         | {
-              image: IParticleImage | undefined;
-              fill: boolean;
-              close: boolean;
-          }
+        image: IParticleImage | undefined;
+        fill: boolean;
+        close: boolean;
+    }
         | undefined {
         if (!(this.shape === ShapeType.image || this.shape === ShapeType.images)) {
             return;
@@ -641,7 +680,7 @@ export class Particle implements IParticle {
             const svgColoredData = ColorUtils.replaceColorSvg(image, color, this.opacity.value);
 
             /* prepare to create img with colored svg */
-            const svg = new Blob([svgColoredData], { type: "image/svg+xml" });
+            const svg = new Blob([ svgColoredData ], { type: "image/svg+xml" });
             const domUrl = URL || window.URL || window.webkitURL || window;
             const url = domUrl.createObjectURL(svg);
 
