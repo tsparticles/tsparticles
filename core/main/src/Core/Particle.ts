@@ -530,7 +530,7 @@ export class Particle implements IParticle {
 
         const destroyOptions = this.options.destroy;
 
-        if (destroyOptions.mode === DestroyMode.Split) {
+        if (destroyOptions.mode === DestroyMode.split) {
             this.split();
         }
     }

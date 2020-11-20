@@ -9,7 +9,7 @@ export class Destroy implements IDestroy, IOptionLoader<IDestroy> {
     public split: Split;
 
     constructor() {
-        this.mode = DestroyMode.None;
+        this.mode = DestroyMode.none;
         this.split = new Split();
     }
 

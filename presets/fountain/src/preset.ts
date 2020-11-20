@@ -1,5 +1,4 @@
-import { InteractivityDetect, MoveDirection, OutMode, ShapeType, Main } from "tsparticles";
-import { DestroyMode } from "tsparticles/dist/Enums/Modes/DestroyMode";
+import { DestroyMode, InteractivityDetect, MoveDirection, OutMode, ShapeType, Main } from "tsparticles";
 
 export function loadPreset(tsParticles: Main) {
     const options = {
@@ -15,7 +14,7 @@ export function loadPreset(tsParticles: Main) {
                 value: "#ffffff",
             },
             destroy: {
-                mode: DestroyMode.Split,
+                mode: DestroyMode.split,
             },
             shape: {
                 type: ShapeType.circle,
@@ -122,7 +121,7 @@ export function loadPreset(tsParticles: Main) {
                     },
                 },
                 color: {
-                    value: ["#5bc0eb", "#fde74c", "#9bc53d", "#e55934", "#fa7921"],
+                    value: [ "#5bc0eb", "#fde74c", "#9bc53d", "#e55934", "#fa7921" ],
                 },
                 links: {
                     enable: false,
