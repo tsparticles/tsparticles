@@ -634,7 +634,7 @@ export class Particle implements IParticle {
     private split(): void {
         const splitOptions = this.options.destroy.split;
 
-        if (splitOptions.count >= 0 && this.splitCount++ >= splitOptions.count) {
+        if (splitOptions.count >= 0 && this.splitCount++ > splitOptions.count) {
             return;
         }
 
