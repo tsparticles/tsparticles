@@ -1,4 +1,5 @@
 import { InteractivityDetect, MoveDirection, OutMode, ShapeType, Main } from "tsparticles";
+import { DestroyMode } from "tsparticles/dist/Enums/Modes/DestroyMode";
 
 export function loadPreset(tsParticles: Main) {
     const options = {
@@ -10,11 +11,11 @@ export function loadPreset(tsParticles: Main) {
             number: {
                 value: 0,
             },
-            collisions: {
-                enable: true,
-            },
             color: {
                 value: "#ffffff",
+            },
+            destroy: {
+                mode: DestroyMode.Split,
             },
             shape: {
                 type: ShapeType.circle,
@@ -73,7 +74,11 @@ export function loadPreset(tsParticles: Main) {
                 direction: MoveDirection.none,
                 random: false,
                 straight: false,
-                outMode: OutMode.bounce,
+                outModes: {
+                    bottom: OutMode.split,
+                    default: OutMode.destroy,
+                    top: OutMode.none,
+                },
                 trail: {
                     enable: true,
                     fillColor: "#000000",

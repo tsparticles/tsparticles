@@ -122,7 +122,7 @@ export class Particles {
         this.draw({ value: 0, factor: 0 });
     }
 
-    public removeAt(index: number, quantity = 1, group?: string): void {
+    public removeAt(index: number, quantity = 1, group?: string, override?: boolean): void {
         if (!(index >= 0 && index <= this.count)) {
             return;
         }
@@ -136,7 +136,7 @@ export class Particles {
                 continue;
             }
 
-            particle.destroy();
+            particle.destroy(override);
 
             this.array.splice(i--, 1);
 
@@ -144,8 +144,8 @@ export class Particles {
         }
     }
 
-    public remove(particle: Particle, group?: string): void {
-        this.removeAt(this.array.indexOf(particle), undefined, group);
+    public remove(particle: Particle, group?: string, override?: boolean): void {
+        this.removeAt(this.array.indexOf(particle), undefined, group ?? particle.group, override);
     }
 
     public update(delta: IDelta): void {

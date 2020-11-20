@@ -24,7 +24,8 @@ function bounceHorizontal(data: IBounceData): void {
         !(
             data.outMode === OutMode.bounce ||
             data.outMode === OutMode.bounceHorizontal ||
-            data.outMode === "bounceHorizontal"
+            data.outMode === "bounceHorizontal" ||
+            data.outMode === OutMode.split
         )
     ) {
         return;
@@ -55,13 +56,18 @@ function bounceHorizontal(data: IBounceData): void {
     } else if (data.bounds.left <= 0) {
         data.particle.position.x = minPos;
     }
+
+    if (data.outMode === OutMode.split) {
+        data.particle.destroy();
+    }
 }
 
 function bounceVertical(data: IBounceData): void {
     if (
         data.outMode === OutMode.bounce ||
         data.outMode === OutMode.bounceVertical ||
-        data.outMode === "bounceVertical"
+        data.outMode === "bounceVertical" ||
+        data.outMode === OutMode.split
     ) {
         const velocity = data.particle.velocity.vertical;
         let bounced = false;
@@ -79,14 +85,20 @@ function bounceVertical(data: IBounceData): void {
             bounced = true;
         }
 
-        if (bounced) {
-            const minPos = data.offset.y + data.size;
+        if (!bounced) {
+            return;
+        }
 
-            if (data.bounds.bottom >= data.canvasSize.height) {
-                data.particle.position.y = data.canvasSize.height - minPos;
-            } else if (data.bounds.top <= 0) {
-                data.particle.position.y = minPos;
-            }
+        const minPos = data.offset.y + data.size;
+
+        if (data.bounds.bottom >= data.canvasSize.height) {
+            data.particle.position.y = data.canvasSize.height - minPos;
+        } else if (data.bounds.top <= 0) {
+            data.particle.position.y = minPos;
+        }
+
+        if (data.outMode === OutMode.split) {
+            data.particle.destroy();
         }
     }
 }
@@ -120,6 +132,7 @@ export class OutOfCanvasUpdater implements IParticleUpdater {
             case OutMode.bounceHorizontal:
             case "bounceVertical":
             case "bounceHorizontal":
+            case OutMode.split:
                 this.bounce(delta, direction, outMode);
 
                 break;
@@ -146,7 +159,7 @@ export class OutOfCanvasUpdater implements IParticleUpdater {
             return;
         }
 
-        container.particles.remove(particle);
+        container.particles.remove(particle, undefined, true);
     }
 
     private out(direction: OutModeDirection): void {

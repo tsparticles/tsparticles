@@ -515,7 +515,7 @@ export class Particle implements IParticle {
     /**
      * This destroys the particle just before it's been removed from the canvas and the container
      */
-    public destroy(): void {
+    public destroy(override?: boolean): void {
         if (this.unbreaking) {
             return;
         }
@@ -523,6 +523,10 @@ export class Particle implements IParticle {
         this.destroyed = true;
         this.bubble.inRange = false;
         this.links = [];
+
+        if (override) {
+            return;
+        }
 
         const destroyOptions = this.options.destroy;
 
