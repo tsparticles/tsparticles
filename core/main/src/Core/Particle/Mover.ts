@@ -13,6 +13,13 @@ export class Mover {
     public move(delta: IDelta): void {
         const particle = this.particle;
 
+        const resizeFactor = this.container.canvas.resizeFactor;
+
+        if (resizeFactor) {
+            particle.position.x *= resizeFactor.width;
+            particle.position.y *= resizeFactor.height;
+        }
+
         particle.bubble.inRange = false;
         particle.links = [];
 

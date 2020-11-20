@@ -193,10 +193,10 @@ export class EmitterInstance {
 
                 if (colorAnimation?.enable) {
                     const colorOffset = NumberUtils.randomInRange(colorAnimation.offset.min, colorAnimation.offset.max);
-                    const emitFactor = 1000 * this.emitterOptions.rate.delay / container.retina.reduceFactor;
+                    const emitFactor = (1000 * this.emitterOptions.rate.delay) / container.retina.reduceFactor;
                     const colorSpeed = colorAnimation.speed ?? 0;
 
-                    this.spawnColor.h += colorSpeed * container.fpsLimit / emitFactor + colorOffset * 3.6;
+                    this.spawnColor.h += (colorSpeed * container.fpsLimit) / emitFactor + colorOffset * 3.6;
 
                     if (this.spawnColor.h > 360) {
                         this.spawnColor.h -= 360;

@@ -700,7 +700,8 @@ export class Particle implements IParticle {
                 // deepcode ignore PromiseNotCaughtGeneral: catch can be ignored
                 Utils.loadImage(imageData.src).then((img2) => {
                     if (this.image) {
-                        image.element = img2.element;
+                        image.element = img2?.element;
+
                         this.image.loaded = true;
                     }
                 });

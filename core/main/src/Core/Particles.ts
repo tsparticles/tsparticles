@@ -188,6 +188,8 @@ export class Particles {
                 this.interactionManager.particlesInteract(particle, delta);
             }
         }
+
+        delete container.canvas.resizeFactor;
     }
 
     public draw(delta: IDelta): void {

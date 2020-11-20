@@ -26,6 +26,8 @@ export class Canvas {
      */
     public readonly size: IDimension;
 
+    public resizeFactor?: IDimension;
+
     /**
      * The particles canvas context
      */
@@ -192,12 +194,23 @@ export class Canvas {
 
         const container = this.container;
         const pxRatio = container.retina.pixelRatio;
+        const size = container.canvas.size;
 
-        container.canvas.size.width = this.element.offsetWidth * pxRatio;
-        container.canvas.size.height = this.element.offsetHeight * pxRatio;
+        const oldSize = {
+            width: size.width,
+            height: size.height,
+        };
 
-        this.element.width = container.canvas.size.width;
-        this.element.height = container.canvas.size.height;
+        size.width = this.element.offsetWidth * pxRatio;
+        size.height = this.element.offsetHeight * pxRatio;
+
+        this.element.width = size.width;
+        this.element.height = size.height;
+
+        this.resizeFactor = {
+            width: size.width / oldSize.width,
+            height: size.height / oldSize.height,
+        };
     }
 
     public drawConnectLine(p1: IParticle, p2: IParticle): void {
