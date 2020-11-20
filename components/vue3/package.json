@@ -71,7 +71,7 @@
     "tslib": "^2.0.3",
     "tsparticles": "^1.19.0-alpha.1",
     "vue": ">=3",
-    "vue-class-component": "^8.0.0-beta.4"
+    "vue-class-component": "^8.0.0-rc.1"
   },
   "devDependencies": {
     "@babel/core": "^7.12.3",
@@ -91,13 +91,13 @@
     "eslint": "^7.13.0",
     "eslint-plugin-prettier": "^3.1.4",
     "eslint-plugin-vue": "^7.1.0",
-    "prettier": "^2.1.2",
+    "prettier": "^2.2.0",
     "rollup": "^2.33.3",
     "rollup-plugin-terser": "^7.0.2",
     "rollup-plugin-typescript": "^1.0.1",
     "rollup-plugin-typescript2": "^0.29.0",
     "rollup-plugin-vue": "^6.0.0-beta.11",
-    "typescript": "~4.0.5",
+    "typescript": "~4.1.2",
     "vue-template-compiler": "^2.6.12"
   }
 }
