@@ -6,7 +6,7 @@ import { Particle } from "./Particle";
 import { NumberUtils, Plugins, Point, QuadTree, Rectangle, Utils } from "../Utils";
 import type { RecursivePartial } from "../Types";
 import type { IParticles } from "../Options/Interfaces/Particles/IParticles";
-import { InteractionManager } from "./Particle/InteractionManager";
+import { InteractionManager } from "./InteractionManager";
 import type { IDelta } from "./Interfaces/IDelta";
 import type { IParticle } from "./Interfaces/IParticle";
 import type { IDensity } from "../Options/Interfaces/Particles/Number/IDensity";

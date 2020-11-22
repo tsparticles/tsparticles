@@ -87,46 +87,56 @@ export class Mover {
         const zIndexOptions = particle.options.zIndex;
         const zVelocityFactor = 1 - zIndexOptions.velocityRate * particle.zIndexFactor;
 
-        if (
-            particlesOptions.move.spin.enable &&
-            particle.spinRadius !== undefined &&
-            particle.spinAngle !== undefined &&
-            particle.spinCenter !== undefined &&
-            particle.spinDirection !== undefined &&
-            particle.spinAcceleration !== undefined
-        ) {
-            const updateFunc = {
-                x: particle.spinDirection === RotateDirection.clockwise ? Math.cos : Math.sin,
-                y: particle.spinDirection === RotateDirection.clockwise ? Math.sin : Math.cos,
-            };
-
-            particle.position.x = particle.spinCenter.x + particle.spinRadius * updateFunc.x(particle.spinAngle);
-            particle.position.y = particle.spinCenter.y + particle.spinRadius * updateFunc.y(particle.spinAngle);
-            particle.spinRadius += particle.spinAcceleration;
-
-            const maxCanvasSize = Math.max(container.canvas.size.width, container.canvas.size.height);
-
-            if (particle.spinRadius > maxCanvasSize / 2) {
-                particle.spinRadius = maxCanvasSize / 2;
-                particle.spinAcceleration *= -1;
-            } else if (particle.spinRadius < 0) {
-                particle.spinRadius = 0;
-                particle.spinAcceleration *= -1;
-            }
-
-            particle.spinAngle += (moveSpeed / 100) * (1 - particle.spinRadius / maxCanvasSize);
+        if (particlesOptions.move.spin.enable) {
+            this.spin(moveSpeed);
         } else {
             this.moveXY(velocity.horizontal * zVelocityFactor, velocity.vertical * zVelocityFactor);
 
             if (particlesOptions.move.vibrate) {
                 this.moveXY(
-                    Math.sin(particle.position.x * Math.cos(particle.position.y)),
-                    Math.cos(particle.position.y * Math.sin(particle.position.x))
+                    Math.sin(particle.position.x * Math.cos(particle.position.y) * zVelocityFactor),
+                    Math.cos(particle.position.y * Math.sin(particle.position.x) * zVelocityFactor)
                 );
             }
         }
 
         this.applyDistance();
+    }
+
+    private spin(moveSpeed: number): void {
+        const particle = this.particle,
+            container = this.container;
+
+        if (
+            particle.spinRadius === undefined ||
+            particle.spinAngle === undefined ||
+            particle.spinCenter === undefined ||
+            particle.spinDirection === undefined ||
+            particle.spinAcceleration === undefined
+        ) {
+            return;
+        }
+
+        const updateFunc = {
+            x: particle.spinDirection === RotateDirection.clockwise ? Math.cos : Math.sin,
+            y: particle.spinDirection === RotateDirection.clockwise ? Math.sin : Math.cos,
+        };
+
+        particle.position.x = particle.spinCenter.x + particle.spinRadius * updateFunc.x(particle.spinAngle);
+        particle.position.y = particle.spinCenter.y + particle.spinRadius * updateFunc.y(particle.spinAngle);
+        particle.spinRadius += particle.spinAcceleration;
+
+        const maxCanvasSize = Math.max(container.canvas.size.width, container.canvas.size.height);
+
+        if (particle.spinRadius > maxCanvasSize / 2) {
+            particle.spinRadius = maxCanvasSize / 2;
+            particle.spinAcceleration *= -1;
+        } else if (particle.spinRadius < 0) {
+            particle.spinRadius = 0;
+            particle.spinAcceleration *= -1;
+        }
+
+        particle.spinAngle += (moveSpeed / 100) * (1 - particle.spinRadius / maxCanvasSize);
     }
 
     private applyDistance(): void {

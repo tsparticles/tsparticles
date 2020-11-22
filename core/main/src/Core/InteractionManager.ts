@@ -1,10 +1,10 @@
-import type { Container } from "../Container";
-import type { IExternalInteractor } from "../Interfaces/IExternalInteractor";
-import type { IParticlesInteractor } from "../Interfaces/IParticlesInteractor";
-import type { IDelta } from "../Interfaces/IDelta";
-import { Particle } from "../Particle";
-import { InteractorType } from "../../Enums/Types/InteractorType";
-import { Plugins } from "../../Utils";
+import type { Container } from "./Container";
+import type { IExternalInteractor } from "./Interfaces/IExternalInteractor";
+import type { IParticlesInteractor } from "./Interfaces/IParticlesInteractor";
+import type { IDelta } from "./Interfaces/IDelta";
+import { Particle } from "./Particle";
+import { InteractorType } from "../Enums/Types/InteractorType";
+import { Plugins } from "../Utils";
 
 /**
  * @category Core
