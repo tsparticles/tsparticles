@@ -5,7 +5,7 @@ import type { IBackground } from "./Background/IBackground";
 import type { IInfection } from "./Infection/IInfection";
 import type { SingleOrMultiple } from "../../Types";
 import type { ITheme } from "./Theme/ITheme";
-import type { IBackgroundMode } from "./BackgroundMode/IBackgroundMode";
+import type { IFullScreen } from "./FullScreen/IFullScreen";
 import type { IMotion } from "./Motion/IMotion";
 import type { IManualParticle } from "./IManualParticle";
 import { IResponsive } from "./IResponsive";
@@ -17,16 +17,22 @@ import { IResponsive } from "./IResponsive";
  */
 export interface IOptions {
     /**
-     * Enables the retina detection, if disabled the ratio used by canvas will be always 1 and not the device setting.
-     * @deprecated use the new detectRetina instead
+     * Sets the full screen mode for particles canvas
+     * @deprecated use the new fullScreen instead
      */
-    retina_detect: boolean;
+    backgroundMode: IFullScreen;
 
     /**
      * The Frame Per Second limit applied to all particles animations.
      * @deprecated use the new fpsLimit instead
      */
     fps_limit: number;
+
+    /**
+     * Enables the retina detection, if disabled the ratio used by canvas will be always 1 and not the device setting.
+     * @deprecated use the new detectRetina instead
+     */
+    retina_detect: boolean;
 
     /**
      * Sets if the animations should start automatically or manually
@@ -44,9 +50,9 @@ export interface IOptions {
     backgroundMask: IBackgroundMask;
 
     /**
-     * Sets the animated background mode for particles canvas bringing it to the back
+     * Sets the full screen mode for particles canvas
      */
-    backgroundMode: IBackgroundMode;
+    fullScreen: IFullScreen;
 
     /**
      * Enables the retina detection, if disabled the ratio used by canvas will be always 1 and not the device setting.

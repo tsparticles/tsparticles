@@ -1,5 +1,5 @@
 tsParticles.load("particles", {
-    backgroundMode: {
+    fullScreen: {
         enable: true,
         zIndex: 0
     },

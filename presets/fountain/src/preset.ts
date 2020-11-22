@@ -11,7 +11,7 @@ import {
 
 export function loadPreset(tsParticles: Main): void {
     const options: ISourceOptions = {
-        backgroundMode: {
+        fullScreen: {
             enable: true,
         },
         fpsLimit: 60,

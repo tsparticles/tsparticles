@@ -6,7 +6,7 @@ export function loadPreset(tsParticles: Main): void {
         background: {
             color: "#fff",
         },
-        backgroundMode: {
+        fullScreen: {
             enable: true,
         },
         particles: {

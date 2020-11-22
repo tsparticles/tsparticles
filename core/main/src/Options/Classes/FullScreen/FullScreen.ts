@@ -1,8 +1,8 @@
-import type { IBackgroundMode } from "../../Interfaces/BackgroundMode/IBackgroundMode";
-import { IOptionLoader } from "../../Interfaces/IOptionLoader";
-import { RecursivePartial } from "../../../Types";
+import type { IFullScreen } from "../../Interfaces/FullScreen/IFullScreen";
+import type { IOptionLoader } from "../../Interfaces/IOptionLoader";
+import type { RecursivePartial } from "../../../Types";
 
-export class BackgroundMode implements IBackgroundMode, IOptionLoader<IBackgroundMode> {
+export class FullScreen implements IFullScreen, IOptionLoader<IFullScreen> {
     public enable;
     public zIndex;
 
@@ -11,7 +11,7 @@ export class BackgroundMode implements IBackgroundMode, IOptionLoader<IBackgroun
         this.zIndex = -1;
     }
 
-    public load(data?: RecursivePartial<IBackgroundMode>): void {
+    public load(data?: RecursivePartial<IFullScreen>): void {
         if (!data) {
             return;
         }
