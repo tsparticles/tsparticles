@@ -59,13 +59,13 @@ export class MainSlim {
         const textDrawer = new TextDrawer();
         const imageDrawer = new ImageDrawer();
 
-        Plugins.addParticleUpdater((container) => (particle) => new LifeUpdater(container, particle));
-        Plugins.addParticleUpdater((container) => (particle) => new OpacityUpdater(container, particle));
-        Plugins.addParticleUpdater((container) => (particle) => new SizeUpdater(container, particle));
-        Plugins.addParticleUpdater((container) => (particle) => new AngleUpdater(container, particle));
-        Plugins.addParticleUpdater((container) => (particle) => new ColorUpdater(container, particle));
-        Plugins.addParticleUpdater((container) => (particle) => new StrokeColorUpdater(container, particle));
-        Plugins.addParticleUpdater((container) => (particle) => new OutOfCanvasUpdater(container, particle));
+        Plugins.addParticleUpdater((container) => new LifeUpdater(container));
+        Plugins.addParticleUpdater((container) => new OpacityUpdater(container));
+        Plugins.addParticleUpdater((container) => new SizeUpdater(container));
+        Plugins.addParticleUpdater((container) => new AngleUpdater(container));
+        Plugins.addParticleUpdater((container) => new ColorUpdater(container));
+        Plugins.addParticleUpdater((container) => new StrokeColorUpdater(container));
+        Plugins.addParticleUpdater((container) => new OutOfCanvasUpdater(container));
 
         Plugins.addInteractor((container) => new Bouncer(container));
         Plugins.addInteractor((container) => new Bubbler(container));
@@ -253,9 +253,7 @@ export class MainSlim {
      *
      * @param updaterInitializer
      */
-    public addParticleUpdater(
-        updaterInitializer: (container: Container) => (particle: Particle) => IParticleUpdater
-    ): void {
+    public addParticleUpdater(updaterInitializer: (container: Container) => IParticleUpdater): void {
         Plugins.addParticleUpdater(updaterInitializer);
     }
 }

@@ -5,22 +5,18 @@ import type { RecursivePartial } from "../Types";
 import type { IOptions } from "../Options/Interfaces/IOptions";
 import type { IShapeDrawer } from "../Core/Interfaces/IShapeDrawer";
 import type { Options } from "../Options/Classes/Options";
-import { INoise } from "../Core/Interfaces/INoise";
-import { IParticleUpdater } from "../Core/Interfaces/IParticleUpdater";
-import { IInteractor } from "../Core/Interfaces/IInteractor";
-import { Particle } from "../Core/Particle";
+import type { INoise } from "../Core/Interfaces/INoise";
+import type { IParticleUpdater } from "../Core/Interfaces/IParticleUpdater";
+import type { IInteractor } from "../Core/Interfaces/IInteractor";
 
 type InteractorInitializer = (container: Container) => IInteractor;
-type UpdaterInitializer = (container: Container) => (particle: Particle) => IParticleUpdater;
+type UpdaterInitializer = (container: Container) => IParticleUpdater;
 
 const plugins: IPlugin[] = [];
 const interactorsInitializers: InteractorInitializer[] = [];
 const updatersInitializers: UpdaterInitializer[] = [];
 const interactors: Map<Container, IInteractor[]> = new Map<Container, IInteractor[]>();
-const updaters: Map<Container, ((particle: Particle) => IParticleUpdater)[]> = new Map<
-    Container,
-    ((particle: Particle) => IParticleUpdater)[]
->();
+const updaters: Map<Container, IParticleUpdater[]> = new Map<Container, IParticleUpdater[]>();
 const presets: Map<string, RecursivePartial<IOptions>> = new Map<string, RecursivePartial<IOptions>>();
 const drawers: Map<string, IShapeDrawer> = new Map<string, IShapeDrawer>();
 const noiseGenerators: Map<string, INoise> = new Map<string, INoise>();
@@ -108,7 +104,7 @@ export class Plugins {
         interactorsInitializers.push(initInteractor);
     }
 
-    public static getUpdaters(container: Container): ((particle: Particle) => IParticleUpdater)[] {
+    public static getUpdaters(container: Container): IParticleUpdater[] {
         let res = updaters.get(container);
 
         if (!res) {
@@ -120,9 +116,7 @@ export class Plugins {
         return res;
     }
 
-    public static addParticleUpdater(
-        initUpdater: (container: Container) => (particle: Particle) => IParticleUpdater
-    ): void {
+    public static addParticleUpdater(initUpdater: (container: Container) => IParticleUpdater): void {
         updatersInitializers.push(initUpdater);
     }
 }

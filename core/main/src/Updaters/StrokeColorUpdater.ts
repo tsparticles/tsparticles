@@ -6,10 +6,9 @@ import type { IAnimatableColor } from "../Options/Interfaces/IAnimatableColor";
 import { NumberUtils } from "../Utils";
 
 export class StrokeColorUpdater implements IParticleUpdater {
-    constructor(private readonly container: Container, private readonly particle: Particle) {}
+    constructor(private readonly container: Container) {}
 
-    public isEnabled(): boolean {
-        const particle = this.particle;
+    public isEnabled(particle: Particle): boolean {
         const color = particle.stroke.color;
 
         return (
@@ -22,10 +21,8 @@ export class StrokeColorUpdater implements IParticleUpdater {
         );
     }
 
-    public update(delta: IDelta): void {
-        const particle = this.particle;
-
-        if (!this.isEnabled()) {
+    public update(particle: Particle, delta: IDelta): void {
+        if (!this.isEnabled(particle)) {
             return;
         }
 

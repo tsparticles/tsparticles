@@ -3,7 +3,6 @@ import type { IVelocity } from "./Interfaces/IVelocity";
 import type { IParticleValueAnimation } from "./Interfaces/IParticleValueAnimation";
 import type { ICoordinates, ICoordinates3d } from "./Interfaces/ICoordinates";
 import type { IParticleImage } from "./Interfaces/IParticleImage";
-import { Updater } from "./Particle/Updater";
 import type { IHsl, IRgb } from "./Interfaces/Colors";
 import type { IStroke } from "../Options/Interfaces/Particles/IStroke";
 import type { IShapeValues } from "../Options/Interfaces/Particles/Shape/IShapeValues";
@@ -53,7 +52,6 @@ export class Particle implements IParticle {
     public unbreaking;
 
     public readonly noiseDelay;
-    public readonly updater;
     public readonly infecter;
     public readonly mover;
     public readonly sides;
@@ -474,7 +472,6 @@ export class Particle implements IParticle {
         }
 
         this.shadowColor = ColorUtils.colorToRgb(this.options.shadow.color);
-        this.updater = new Updater(container, this);
         this.infecter = new Infecter(container);
         this.mover = new Mover(container, this);
     }
@@ -482,10 +479,6 @@ export class Particle implements IParticle {
     public move(delta: IDelta): void {
         /* move the particle */
         this.mover.move(delta);
-    }
-
-    public update(delta: IDelta): void {
-        this.updater.update(delta);
     }
 
     public draw(delta: IDelta): void {

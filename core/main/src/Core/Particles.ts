@@ -3,7 +3,7 @@ import type { ICoordinates } from "./Interfaces/ICoordinates";
 import type { IMouseData } from "./Interfaces/IMouseData";
 import type { IRgb } from "./Interfaces/Colors";
 import { Particle } from "./Particle";
-import { NumberUtils, Point, QuadTree, Rectangle, Utils } from "../Utils";
+import { NumberUtils, Plugins, Point, QuadTree, Rectangle, Utils } from "../Utils";
 import type { RecursivePartial } from "../Types";
 import type { IParticles } from "../Options/Interfaces/Particles/IParticles";
 import { InteractionManager } from "./Particle/InteractionManager";
@@ -41,6 +41,7 @@ export class Particles {
     private nextId;
     private linksFreq;
     private trianglesFreq;
+    private updaters;
 
     constructor(private readonly container: Container) {
         this.nextId = 0;
@@ -62,6 +63,8 @@ export class Particles {
             ),
             4
         );
+
+        this.updaters = Plugins.getUpdaters(container);
     }
 
     /* --------- tsParticles functions - particles ----------- */
@@ -184,7 +187,9 @@ export class Particles {
 
         // this loop must be done after external (mouse, div, etc.) interactions
         for (const particle of this.container.particles.array) {
-            particle.update(delta);
+            for (const updater of this.updaters) {
+                updater.update(particle, delta);
+            }
 
             if (!particle.destroyed && !particle.spawning) {
                 this.interactionManager.particlesInteract(particle, delta);

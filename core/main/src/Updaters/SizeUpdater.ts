@@ -6,10 +6,9 @@ import { AnimationStatus } from "../Enums";
 import { NumberUtils, Utils } from "../Utils";
 
 export class SizeUpdater implements IParticleUpdater {
-    constructor(private readonly container: Container, private readonly particle: Particle) {}
+    constructor(private readonly container: Container) {}
 
-    public isEnabled(): boolean {
-        const particle = this.particle;
+    public isEnabled(particle: Particle): boolean {
         const opacityAnim = particle.options.opacity.anim;
 
         return (
@@ -20,13 +19,12 @@ export class SizeUpdater implements IParticleUpdater {
         );
     }
 
-    public update(delta: IDelta): void {
-        const particle = this.particle;
+    public update(particle: Particle, delta: IDelta): void {
         const opacityAnim = particle.options.opacity.anim;
         const minValue = opacityAnim.minimumValue;
         const maxValue = particle.options.opacity.value;
 
-        if (!this.isEnabled()) {
+        if (!this.isEnabled(particle)) {
             return;
         }
 
