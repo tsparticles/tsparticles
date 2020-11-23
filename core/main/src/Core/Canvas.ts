@@ -489,11 +489,11 @@ export class Canvas {
         CanvasUtils.drawEllipse(
             this.context,
             particle,
-            orbitOptions.color || particle.getFillColor(),
+            orbitOptions.color ?? particle.getFillColor(),
             particle.orbitRadius ?? particle.getRadius(),
             orbitOptions.opacity,
             orbitOptions.width,
-            particle.orbitRotation || orbitOptions.rotation.value,
+            particle.orbitRotation ?? orbitOptions.rotation.value,
             start,
             end
         );

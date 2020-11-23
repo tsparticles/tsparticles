@@ -214,7 +214,7 @@ export class Options implements IOptions, IOptionLoader<IOptions> {
         }
     }
 
-    public setResponsive(width: number, pxRatio: number, defaultOptions: IOptions) {
+    public setResponsive(width: number, pxRatio: number, defaultOptions: IOptions): void {
         this.load(defaultOptions);
         this.load(this.responsive.find((t) => t.maxWidth * pxRatio > width)?.options);
     }
