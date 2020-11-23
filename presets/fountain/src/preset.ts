@@ -5,8 +5,7 @@ import {
     OutMode,
     ShapeType,
     Main,
-    ISourceOptions,
-    SizeMode,
+    ISourceOptions
 } from "tsparticles";
 
 export function loadPreset(tsParticles: Main): void {
@@ -119,7 +118,6 @@ export function loadPreset(tsParticles: Main): void {
             size: {
                 width: 0,
                 height: 0,
-                mode: SizeMode.precise,
             },
             particles: {
                 bounce: {
