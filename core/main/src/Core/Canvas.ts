@@ -410,7 +410,7 @@ export class Canvas {
         const radius = particle.getRadius();
         const opacity = twinkling ? twinkle.opacity : particle.bubble.opacity ?? particle.opacity.value;
         const strokeOpacity = particle.stroke.opacity ?? opacity;
-        const infectionStage = particle.infecter.infectionStage;
+        const infectionStage = particle.infection.stage;
         const infection = options.infection;
         const infectionStages = infection.stages;
         const infectionColor = infectionStage !== undefined ? infectionStages[infectionStage].color : undefined;

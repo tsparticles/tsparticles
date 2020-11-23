@@ -11,6 +11,7 @@ import type { IDelta } from "./Interfaces/IDelta";
 import type { IParticle } from "./Interfaces/IParticle";
 import type { IDensity } from "../Options/Interfaces/Particles/Number/IDensity";
 import { Particles as ParticlesOptions } from "../Options/Classes/Particles/Particles";
+import { Infecter } from "./Particle/Infecter";
 
 /**
  * Particles manager object
@@ -36,6 +37,7 @@ export class Particles {
     public pushing?: boolean;
     public linksColor?: IRgb | string;
     public grabLineColor?: IRgb | string;
+    public readonly infecter;
 
     private interactionManager;
     private nextId;
@@ -49,7 +51,8 @@ export class Particles {
         this.limit = 0;
         this.linksFreq = new Map<string, number>();
         this.trianglesFreq = new Map<string, number>();
-        this.interactionManager = new InteractionManager(container);
+        this.interactionManager = new InteractionManager(this.container);
+        this.infecter = new Infecter(this.container);
 
         const canvasSize = this.container.canvas.size;
 
@@ -109,10 +112,10 @@ export class Particles {
 
         if (options.infection.enable) {
             for (let i = 0; i < options.infection.infections; i++) {
-                const notInfected = this.array.filter((p) => p.infecter.infectionStage === undefined);
+                const notInfected = this.array.filter((p) => p.infection.stage === undefined);
                 const infected = Utils.itemFromArray(notInfected);
 
-                infected.infecter.startInfection(0);
+                this.infecter.startInfection(infected, 0);
             }
         }
 

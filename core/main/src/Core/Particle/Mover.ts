@@ -179,29 +179,30 @@ export class Mover {
         ) {
             particle.misplaced = false;
         } else if (particle.misplaced) {
+            const pos = particle.position,
+                vel = particle.velocity;
+
             if (
                 hDistance !== undefined &&
-                ((particle.position.x < initialPosition.x && particle.velocity.horizontal < 0) ||
-                    (particle.position.x > initialPosition.x && particle.velocity.horizontal > 0))
+                ((pos.x < initialPosition.x && vel.horizontal < 0) || (pos.x > initialPosition.x && vel.horizontal > 0))
             ) {
-                particle.velocity.horizontal *= -Math.random();
+                vel.horizontal *= -Math.random();
             }
 
             if (
                 vDistance !== undefined &&
-                ((particle.position.y < initialPosition.y && particle.velocity.vertical < 0) ||
-                    (particle.position.y > initialPosition.y && particle.velocity.vertical > 0))
+                ((pos.y < initialPosition.y && vel.vertical < 0) || (pos.y > initialPosition.y && vel.vertical > 0))
             ) {
-                particle.velocity.vertical *= -Math.random();
+                vel.vertical *= -Math.random();
             }
         }
     }
 
     private applyNoise(delta: IDelta): void {
-        const particle = this.particle;
-        const particlesOptions = particle.options;
-        const noiseOptions = particlesOptions.move.noise;
-        const noiseEnabled = noiseOptions.enable;
+        const particle = this.particle,
+            particlesOptions = particle.options,
+            noiseOptions = particlesOptions.move.noise,
+            noiseEnabled = noiseOptions.enable;
 
         if (!noiseEnabled) {
             return;
@@ -225,56 +226,55 @@ export class Mover {
             }
         }
 
-        const noise = generator.generate(particle);
+        const noise = generator.generate(particle),
+            vel = particle.velocity;
 
-        particle.velocity.horizontal += Math.cos(noise.angle) * noise.length;
-        particle.velocity.vertical += Math.sin(noise.angle) * noise.length;
+        vel.horizontal += Math.cos(noise.angle) * noise.length;
+        vel.vertical += Math.sin(noise.angle) * noise.length;
 
         if (noiseOptions.clamp) {
-            particle.velocity.horizontal = NumberUtils.clamp(particle.velocity.horizontal, -1, 1);
-            particle.velocity.vertical = NumberUtils.clamp(particle.velocity.vertical, -1, 1);
+            vel.horizontal = NumberUtils.clamp(vel.horizontal, -1, 1);
+            vel.vertical = NumberUtils.clamp(vel.vertical, -1, 1);
         }
 
         particle.lastNoiseTime -= particle.noiseDelay;
     }
 
     private moveParallax(): void {
-        const container = this.container;
-        const options = container.options;
+        const container = this.container,
+            options = container.options;
 
         if (Utils.isSsr() || !options.interactivity.events.onHover.parallax.enable) {
             return;
         }
 
-        const particle = this.particle;
-        const parallaxForce = options.interactivity.events.onHover.parallax.force;
-        const mousePos = container.interactivity.mouse.position;
+        const particle = this.particle,
+            parallaxForce = options.interactivity.events.onHover.parallax.force,
+            mousePos = container.interactivity.mouse.position;
 
         if (!mousePos) {
             return;
         }
 
         const canvasCenter = {
-            x: container.canvas.size.width / 2,
-            y: container.canvas.size.height / 2,
-        };
-        const parallaxSmooth = options.interactivity.events.onHover.parallax.smooth;
-        const factor = particle.getRadius() / parallaxForce;
-
-        /* smaller is the particle, longer is the offset distance */
-        const tmp = {
-            x: (mousePos.x - canvasCenter.x) * factor,
-            y: (mousePos.y - canvasCenter.y) * factor,
-        };
+                x: container.canvas.size.width / 2,
+                y: container.canvas.size.height / 2,
+            },
+            parallaxSmooth = options.interactivity.events.onHover.parallax.smooth,
+            factor = particle.getRadius() / parallaxForce,
+            tmp = {
+                x: (mousePos.x - canvasCenter.x) * factor,
+                y: (mousePos.y - canvasCenter.y) * factor,
+            };
 
         particle.offset.x += (tmp.x - particle.offset.x) / parallaxSmooth; // Easing equation
         particle.offset.y += (tmp.y - particle.offset.y) / parallaxSmooth; // Easing equation
     }
 
     private getProximitySpeedFactor(): number {
-        const container = this.container;
-        const options = container.options;
-        const active = Utils.isInArray(HoverMode.slow, options.interactivity.events.onHover.mode);
+        const container = this.container,
+            options = container.options,
+            active = Utils.isInArray(HoverMode.slow, options.interactivity.events.onHover.mode);
 
         if (!active) {
             return 1;
@@ -286,16 +286,16 @@ export class Mover {
             return 1;
         }
 
-        const particlePos = this.particle.getPosition();
-        const dist = NumberUtils.getDistance(mousePos, particlePos);
-        const radius = container.retina.slowModeRadius;
+        const particlePos = this.particle.getPosition(),
+            dist = NumberUtils.getDistance(mousePos, particlePos),
+            radius = container.retina.slowModeRadius;
 
         if (dist > radius) {
             return 1;
         }
 
-        const proximityFactor = dist / radius || 0;
-        const slowFactor = options.interactivity.modes.slow.factor;
+        const proximityFactor = dist / radius || 0,
+            slowFactor = options.interactivity.modes.slow.factor;
 
         return proximityFactor / slowFactor;
     }

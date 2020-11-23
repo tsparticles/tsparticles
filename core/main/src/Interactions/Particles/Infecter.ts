@@ -20,11 +20,11 @@ export class Infecter extends ParticlesBase {
     }
 
     public interact(p1: Particle, delta: IDelta): void {
-        const infecter1 = p1.infecter;
+        const infecter = this.container.particles.infecter;
 
-        infecter1.updateInfection(delta.value);
+        infecter.updateInfection(p1, delta.value);
 
-        if (infecter1.infectionStage === undefined) {
+        if (p1.infection.stage === undefined) {
             return;
         }
 
@@ -36,11 +36,11 @@ export class Infecter extends ParticlesBase {
             return;
         }
 
-        const infectionStage1 = infectionOptions.stages[infecter1.infectionStage];
+        const infectionStage1 = infectionOptions.stages[p1.infection.stage];
         const pxRatio = container.retina.pixelRatio;
         const radius = p1.getRadius() * 2 + infectionStage1.radius * pxRatio;
         const pos = p1.getPosition();
-        const infectedStage1 = infectionStage1.infectedStage ?? infecter1.infectionStage;
+        const infectedStage1 = infectionStage1.infectedStage ?? p1.infection.stage;
         const query = container.particles.quadTree.queryCircle(pos, radius);
         const infections = infectionStage1.rate;
         const neighbors = query.length;
@@ -50,23 +50,21 @@ export class Infecter extends ParticlesBase {
                 p2 === p1 ||
                 p2.destroyed ||
                 p2.spawning ||
-                !(p2.infecter.infectionStage === undefined || p2.infecter.infectionStage !== infecter1.infectionStage)
+                !(p2.infection.stage === undefined || p2.infection.stage !== p1.infection.stage)
             ) {
                 continue;
             }
 
-            const infecter2 = p2.infecter;
-
             if (Math.random() < infections / neighbors) {
-                if (infecter2.infectionStage === undefined) {
-                    infecter2.startInfection(infectedStage1);
-                } else if (infecter2.infectionStage < infecter1.infectionStage) {
-                    infecter2.updateInfectionStage(infectedStage1);
-                } else if (infecter2.infectionStage > infecter1.infectionStage) {
-                    const infectionStage2 = infectionOptions.stages[infecter2.infectionStage];
-                    const infectedStage2 = infectionStage2?.infectedStage ?? infecter2.infectionStage;
+                if (p2.infection.stage === undefined) {
+                    infecter.startInfection(p2, infectedStage1);
+                } else if (p2.infection.stage < p1.infection.stage) {
+                    infecter.updateInfectionStage(p2, infectedStage1);
+                } else if (p2.infection.stage > p1.infection.stage) {
+                    const infectionStage2 = infectionOptions.stages[p2.infection.stage];
+                    const infectedStage2 = infectionStage2?.infectedStage ?? p2.infection.stage;
 
-                    infecter1.updateInfectionStage(infectedStage2);
+                    infecter.updateInfectionStage(p1, infectedStage2);
                 }
             }
         }

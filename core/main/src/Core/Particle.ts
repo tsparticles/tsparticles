@@ -19,18 +19,18 @@ import {
     RotateDirection,
     ShapeType,
     StartValueType,
+    DestroyMode,
 } from "../Enums";
 import { ImageDrawer } from "../ShapeDrawers/ImageDrawer";
 import type { IImageShape } from "../Options/Interfaces/Particles/Shape/IImageShape";
 import type { RecursivePartial } from "../Types";
 import { ColorUtils, NumberUtils, Plugins, Utils } from "../Utils";
 import type { IShapeDrawer } from "./Interfaces/IShapeDrawer";
-import { Infecter } from "./Particle/Infecter";
 import type { IDelta } from "./Interfaces/IDelta";
 import { Mover } from "./Particle/Mover";
 import type { ILink } from "./Interfaces/ILink";
 import type { IParticleLoops } from "./Interfaces/IParticleLoops";
-import { DestroyMode } from "../Enums/Modes/DestroyMode";
+import type { IParticleInfection } from "./Interfaces/IParticleInfection";
 
 /**
  * The single particle object
@@ -52,7 +52,6 @@ export class Particle implements IParticle {
     public unbreaking;
 
     public readonly noiseDelay;
-    public readonly infecter;
     public readonly mover;
     public readonly sides;
     public readonly strokeWidth;
@@ -77,6 +76,7 @@ export class Particle implements IParticle {
     public readonly close: boolean;
     public readonly direction: MoveDirection | keyof typeof MoveDirection | MoveDirectionAlt;
     public readonly fill: boolean;
+    public readonly infection: IParticleInfection;
     public readonly loops: IParticleLoops;
     public readonly stroke: IStroke;
     public readonly position: ICoordinates3d;
@@ -115,6 +115,7 @@ export class Particle implements IParticle {
             opacity: 0,
             size: 0,
         };
+        this.infection = {};
 
         const pxRatio = container.retina.pixelRatio;
         const options = container.options;
@@ -472,7 +473,6 @@ export class Particle implements IParticle {
         }
 
         this.shadowColor = ColorUtils.colorToRgb(this.options.shadow.color);
-        this.infecter = new Infecter(container);
         this.mover = new Mover(container, this);
     }
 
