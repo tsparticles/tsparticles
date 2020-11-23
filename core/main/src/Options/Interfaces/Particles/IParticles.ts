@@ -45,6 +45,7 @@ export interface IParticles {
     opacity: IOpacity;
     orbit: IOrbit;
     reduceDuplicates: boolean;
+    repulse: IRepulse;
     rotate: IRotate;
     shadow: IShadow;
     shape: IShape;
@@ -52,5 +53,4 @@ export interface IParticles {
     stroke: SingleOrMultiple<IStroke>;
     twinkle: ITwinkle;
     zIndex: IZIndex;
-    repulse: IRepulse;
 }

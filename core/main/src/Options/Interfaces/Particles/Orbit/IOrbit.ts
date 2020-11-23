@@ -4,6 +4,7 @@ import type { IOrbitRotation } from "./IOrbitRotation";
 
 /**
  * @category Options
+ * [[include:Options/Particles/Orbit.md]]
  */
 export interface IOrbit {
     /**
