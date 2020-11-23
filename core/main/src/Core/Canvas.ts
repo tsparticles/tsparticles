@@ -8,8 +8,8 @@ import type { ILink } from "./Interfaces/ILink";
 import { CanvasUtils, ColorUtils, Constants, NumberUtils, Utils } from "../Utils";
 import type { Particle } from "./Particle";
 import type { IDelta } from "./Interfaces/IDelta";
-import { IOrbit } from "./Interfaces/IOrbit";
 import { OrbitType } from "../Enums/Types/OrbitType";
+import { IOrbit } from "../Options/Interfaces/Particles/Orbit/IOrbit";
 
 /**
  * Canvas manager
