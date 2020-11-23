@@ -1,5 +1,5 @@
-import type { DestroyMode } from "../../../../Enums/Modes/DestroyMode";
-import { ISplit } from "./ISplit";
+import type { DestroyMode } from "../../../../Enums";
+import type { ISplit } from "./ISplit";
 
 /**
  * @category Options
