@@ -3,6 +3,24 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.19.0-alpha.2](https://github.com/matteobruni/tsparticles/compare/tsparticles@1.19.0-alpha.1...tsparticles@1.19.0-alpha.2) (2020-11-23)
+
+
+### Bug Fixes
+
+* fixed background mask without a fill color ([b3429e2](https://github.com/matteobruni/tsparticles/commit/b3429e20e03c8d78e0c85c746b8dda1cd61fa384))
+* fixed RecursivePartial type ([5c64fa2](https://github.com/matteobruni/tsparticles/commit/5c64fa2c55a15eb87ee9cb0b6a04166627ad5d0e))
+
+
+### Features
+
+* fixed window resize, particles are now moved to the right position. closes [#890](https://github.com/matteobruni/tsparticles/issues/890) ([8f29def](https://github.com/matteobruni/tsparticles/commit/8f29defa216343f22d39d022ff71f79a2f95b968))
+* new out mode split added, it calls the destroy after bounce. fixes [#994](https://github.com/matteobruni/tsparticles/issues/994) ([b3e4ccc](https://github.com/matteobruni/tsparticles/commit/b3e4ccc61f30d10e2d9207aade18b37d87342f60))
+
+
+
+
+
 # [1.19.0-alpha.1](https://github.com/matteobruni/tsparticles/compare/tsparticles@1.19.0-alpha.0...tsparticles@1.19.0-alpha.1) (2020-11-18)
 
 

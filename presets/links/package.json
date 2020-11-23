@@ -1,6 +1,6 @@
 {
   "name": "tsparticles-preset-links",
-  "version": "1.4.0-alpha.1",
+  "version": "1.4.0-alpha.2",
   "description": "tsParticles links preset",
   "homepage": "https://particles.matteobruni.it/",
   "scripts": {
@@ -74,6 +74,6 @@
     "webpack-cli": "^4.2.0"
   },
   "dependencies": {
-    "tsparticles": "^1.19.0-alpha.1"
+    "tsparticles": "^1.19.0-alpha.2"
   }
 }
