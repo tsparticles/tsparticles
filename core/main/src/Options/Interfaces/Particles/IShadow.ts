@@ -3,7 +3,7 @@ import type { IColor } from "../../../Core/Interfaces/Colors";
 
 /**
  * @category Options
- * [[include:Shadow.md]]
+ * [[include:Options/Particles/Shadow.md]]
  */
 export interface IShadow {
     blur: number;

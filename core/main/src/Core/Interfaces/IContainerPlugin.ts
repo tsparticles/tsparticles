@@ -10,20 +10,21 @@ import { OutModeDirection } from "../../Enums/Directions/OutModeDirection";
  * @category Interfaces
  */
 export interface IContainerPlugin {
+    clickPositionValid?: (position: ICoordinates) => boolean;
     draw?: (context: CanvasRenderingContext2D, delta: IDelta) => void;
+    handleClickMode?: (mode: ClickMode | string) => void;
     init?: (options?: RecursivePartial<IOptions>) => void;
     initAsync?: (options?: RecursivePartial<IOptions>) => Promise<void>;
+    play?: () => void;
+    pause?: () => void;
+    particleBounce?: (particle: Particle, delta: IDelta, direction: OutModeDirection) => boolean;
+    particlePosition?: (position?: ICoordinates, particle?: Particle) => ICoordinates | undefined;
+    particleUpdate?: (particle: Particle, delta: IDelta) => void;
+    particlesInitialization?: () => boolean;
     reset?: () => void;
     resize?: () => void;
     start?: () => void;
     startAsync?: () => Promise<void>;
     stop?: () => void;
-    play?: () => void;
-    pause?: () => void;
-    particlePosition?: (position?: ICoordinates, particle?: Particle) => ICoordinates | undefined;
-    particlesInitialization?: () => boolean;
-    clickPositionValid?: (position: ICoordinates) => boolean;
-    handleClickMode?: (mode: ClickMode | string) => void;
-    particleBounce?: (particle: Particle, delta: IDelta, direction: OutModeDirection) => boolean;
-    particleUpdate?: (particle: Particle, delta: IDelta) => void;
+    update?: (delta: IDelta) => void;
 }

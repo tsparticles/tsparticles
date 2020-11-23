@@ -5,5 +5,5 @@ import type { IShapeValues } from "../Options/Interfaces/Particles/Shape/IShapeV
  * @category Types
  */
 export type ShapeData = {
-    [type: string]: SingleOrMultiple<IShapeValues>;
+    [type: string]: SingleOrMultiple<IShapeValues | unknown>;
 };

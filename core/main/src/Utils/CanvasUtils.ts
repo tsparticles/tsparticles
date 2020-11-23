@@ -31,10 +31,14 @@ function drawTriangle(context: CanvasRenderingContext2D, p1: ICoordinates, p2: I
  */
 export class CanvasUtils {
     public static paintBase(context: CanvasRenderingContext2D, dimension: IDimension, baseColor?: string): void {
-        context.save();
-        context.fillStyle = baseColor ?? "rgba(0,0,0,0)";
-        context.fillRect(0, 0, dimension.width, dimension.height);
-        context.restore();
+        if (baseColor) {
+            context.save();
+            context.fillStyle = baseColor;
+            context.fillRect(0, 0, dimension.width, dimension.height);
+            context.restore();
+        } else {
+            this.clear(context, dimension);
+        }
     }
 
     public static clear(context: CanvasRenderingContext2D, dimension: IDimension): void {

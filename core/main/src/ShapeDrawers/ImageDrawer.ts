@@ -82,7 +82,11 @@ export class ImageDrawer implements IShapeDrawer {
                 ? Utils.downloadSvgImage(imageShape.src)
                 : Utils.loadImage(imageShape.src);
 
-            this.addImage(container, await imagePromise);
+            const image = await imagePromise;
+
+            if (image) {
+                this.addImage(container, image);
+            }
         } catch {
             console.warn(`tsParticles error - ${imageShape.src} not found`);
         }

@@ -19,7 +19,7 @@ export class Main extends MainSlim {
         this.addInteractor((container) => new ParticlesLighter(container));
         this.addInteractor((container) => new MouseLighter(container));
         this.addInteractor((container) => new TrailMaker(container));
-        this.addParticleUpdater((container) => (particle) => new OrbitUpdater(container, particle));
+        this.addParticleUpdater((container) => new OrbitUpdater(container));
         this.addPlugin(AbsorbersPlugin);
         this.addPlugin(EmittersPlugin);
         this.addPlugin(PolygonMaskPlugin);

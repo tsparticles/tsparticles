@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.4.0-alpha.2](https://github.com/matteobruni/tsparticles/compare/tsparticles-preset-fountain@1.4.0-alpha.1...tsparticles-preset-fountain@1.4.0-alpha.2) (2020-11-23)
+
+
+### Bug Fixes
+
+* fixed RecursivePartial type ([5c64fa2](https://github.com/matteobruni/tsparticles/commit/5c64fa2c55a15eb87ee9cb0b6a04166627ad5d0e))
+
+
+### Features
+
+* new out mode split added, it calls the destroy after bounce. fixes [#994](https://github.com/matteobruni/tsparticles/issues/994) ([b3e4ccc](https://github.com/matteobruni/tsparticles/commit/b3e4ccc61f30d10e2d9207aade18b37d87342f60))
+
+
+
+
+
 # [1.4.0-alpha.1](https://github.com/matteobruni/tsparticles/compare/tsparticles-preset-fountain@1.4.0-alpha.0...tsparticles-preset-fountain@1.4.0-alpha.1) (2020-11-18)
 
 **Note:** Version bump only for package tsparticles-preset-fountain

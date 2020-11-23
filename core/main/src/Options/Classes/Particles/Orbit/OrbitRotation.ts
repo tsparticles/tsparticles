@@ -1,12 +1,11 @@
-import type { IOrbitRotation } from "../../../Interfaces/Particles/Orbit/IOrbitRotation";
 import type { RecursivePartial } from "../../../../Types";
-import type { IOptionLoader } from "../../../Interfaces/IOptionLoader";
+import type { IValueWithRandom } from "../../../Interfaces/IValueWithRandom";
 import { ValueWithRandom } from "../../ValueWithRandom";
 
 /**
  * @category Options
  */
-export class OrbitRotation extends ValueWithRandom implements IOrbitRotation, IOptionLoader<IOrbitRotation> {
+export class OrbitRotation extends ValueWithRandom {
     public value: number;
 
     constructor() {
@@ -17,7 +16,7 @@ export class OrbitRotation extends ValueWithRandom implements IOrbitRotation, IO
         this.random.minimumValue = 0;
     }
 
-    public load(data?: RecursivePartial<IOrbitRotation>): void {
+    public load(data?: RecursivePartial<IValueWithRandom>): void {
         if (data === undefined) {
             return;
         }

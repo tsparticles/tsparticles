@@ -3,7 +3,6 @@ import type { IVelocity } from "./Interfaces/IVelocity";
 import type { IParticleValueAnimation } from "./Interfaces/IParticleValueAnimation";
 import type { ICoordinates, ICoordinates3d } from "./Interfaces/ICoordinates";
 import type { IParticleImage } from "./Interfaces/IParticleImage";
-import { Updater } from "./Particle/Updater";
 import type { IHsl, IRgb } from "./Interfaces/Colors";
 import type { IStroke } from "../Options/Interfaces/Particles/IStroke";
 import type { IShapeValues } from "../Options/Interfaces/Particles/Shape/IShapeValues";
@@ -20,18 +19,18 @@ import {
     RotateDirection,
     ShapeType,
     StartValueType,
+    DestroyMode,
 } from "../Enums";
 import { ImageDrawer } from "../ShapeDrawers/ImageDrawer";
 import type { IImageShape } from "../Options/Interfaces/Particles/Shape/IImageShape";
 import type { RecursivePartial } from "../Types";
 import { ColorUtils, NumberUtils, Plugins, Utils } from "../Utils";
 import type { IShapeDrawer } from "./Interfaces/IShapeDrawer";
-import { Infecter } from "./Particle/Infecter";
 import type { IDelta } from "./Interfaces/IDelta";
 import { Mover } from "./Particle/Mover";
 import type { ILink } from "./Interfaces/ILink";
 import type { IParticleLoops } from "./Interfaces/IParticleLoops";
-import { DestroyMode } from "../Enums/Modes/DestroyMode";
+import type { IParticleInfection } from "./Interfaces/IParticleInfection";
 
 /**
  * The single particle object
@@ -53,8 +52,6 @@ export class Particle implements IParticle {
     public unbreaking;
 
     public readonly noiseDelay;
-    public readonly updater;
-    public readonly infecter;
     public readonly mover;
     public readonly sides;
     public readonly strokeWidth;
@@ -79,6 +76,7 @@ export class Particle implements IParticle {
     public readonly close: boolean;
     public readonly direction: MoveDirection | keyof typeof MoveDirection | MoveDirectionAlt;
     public readonly fill: boolean;
+    public readonly infection: IParticleInfection;
     public readonly loops: IParticleLoops;
     public readonly stroke: IStroke;
     public readonly position: ICoordinates3d;
@@ -117,6 +115,7 @@ export class Particle implements IParticle {
             opacity: 0,
             size: 0,
         };
+        this.infection = {};
 
         const pxRatio = container.retina.pixelRatio;
         const options = container.options;
@@ -474,18 +473,12 @@ export class Particle implements IParticle {
         }
 
         this.shadowColor = ColorUtils.colorToRgb(this.options.shadow.color);
-        this.updater = new Updater(container, this);
-        this.infecter = new Infecter(container);
         this.mover = new Mover(container, this);
     }
 
     public move(delta: IDelta): void {
         /* move the particle */
         this.mover.move(delta);
-    }
-
-    public update(delta: IDelta): void {
-        this.updater.update(delta);
     }
 
     public draw(delta: IDelta): void {
@@ -515,7 +508,7 @@ export class Particle implements IParticle {
     /**
      * This destroys the particle just before it's been removed from the canvas and the container
      */
-    public destroy(): void {
+    public destroy(override?: boolean): void {
         if (this.unbreaking) {
             return;
         }
@@ -524,9 +517,13 @@ export class Particle implements IParticle {
         this.bubble.inRange = false;
         this.links = [];
 
+        if (override) {
+            return;
+        }
+
         const destroyOptions = this.options.destroy;
 
-        if (destroyOptions.mode === DestroyMode.Split) {
+        if (destroyOptions.mode === DestroyMode.split) {
             this.split();
         }
     }
@@ -630,7 +627,7 @@ export class Particle implements IParticle {
     private split(): void {
         const splitOptions = this.options.destroy.split;
 
-        if (splitOptions.count >= 0 && this.splitCount++ >= splitOptions.count) {
+        if (splitOptions.count >= 0 && this.splitCount++ > splitOptions.count) {
             return;
         }
 
@@ -700,7 +697,8 @@ export class Particle implements IParticle {
                 // deepcode ignore PromiseNotCaughtGeneral: catch can be ignored
                 Utils.loadImage(imageData.src).then((img2) => {
                     if (this.image) {
-                        image.element = img2.element;
+                        image.element = img2?.element;
+
                         this.image.loaded = true;
                     }
                 });

@@ -2,12 +2,24 @@
  * @category Enums
  */
 export const enum OutMode {
-    bounce = "bounce",
+    /**
+     * @deprecated This property is now obsolete, since every side can have a different out mode
+     */
     bounceHorizontal = "bounce-horizontal",
+
+    /**
+     * @deprecated This property is now obsolete, since every side can have a different out mode
+     */
     bounceVertical = "bounce-vertical",
+
+    bounce = "bounce",
+    destroy = "destroy",
     none = "none",
     out = "out",
-    destroy = "destroy",
+    split = "split",
 }
 
+/**
+ * @deprecated This type is now obsolete, since every side can have a different out mode
+ */
 export type OutModeAlt = "bounce-horizontal" | "bounce-vertical";

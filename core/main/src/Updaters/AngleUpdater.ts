@@ -5,22 +5,20 @@ import type { Particle } from "../Core/Particle";
 import { AnimationStatus } from "../Enums";
 
 export class AngleUpdater implements IParticleUpdater {
-    constructor(private readonly container: Container, private readonly particle: Particle) {}
+    constructor(private readonly container: Container) {}
 
-    public isEnabled(): boolean {
-        const particle = this.particle;
+    public isEnabled(particle: Particle): boolean {
         const rotate = particle.options.rotate;
         const rotateAnimation = rotate.animation;
 
         return !particle.destroyed && !particle.spawning && (rotate.path || rotateAnimation.enable);
     }
 
-    public update(delta: IDelta): void {
-        if (!this.isEnabled()) {
+    public update(particle: Particle, delta: IDelta): void {
+        if (!this.isEnabled(particle)) {
             return;
         }
 
-        const particle = this.particle;
         const rotate = particle.options.rotate;
         const rotateAnimation = rotate.animation;
         const speed = (particle.rotate.velocity ?? 0) * delta.factor;

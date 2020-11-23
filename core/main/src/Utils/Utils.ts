@@ -210,7 +210,7 @@ export class Utils {
         };
     }
 
-    public static loadImage(source: string): Promise<IImage> {
+    public static loadImage(source: string): Promise<IImage | undefined> {
         return new Promise(
             (
                 resolve: (value?: IImage | PromiseLike<IImage> | undefined) => void,
@@ -243,7 +243,7 @@ export class Utils {
         );
     }
 
-    public static async downloadSvgImage(source: string): Promise<IImage> {
+    public static async downloadSvgImage(source: string): Promise<IImage | undefined> {
         if (!source) {
             throw new Error("Error tsParticles - No image.src");
         }

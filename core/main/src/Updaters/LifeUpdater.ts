@@ -5,18 +5,17 @@ import type { Container } from "../Core/Container";
 import { NumberUtils } from "../Utils";
 
 export class LifeUpdater implements IParticleUpdater {
-    constructor(private readonly container: Container, private readonly particle: Particle) {}
+    constructor(private readonly container: Container) {}
 
-    public isEnabled(): boolean {
-        return !this.particle.destroyed;
+    public isEnabled(particle: Particle): boolean {
+        return !particle.destroyed;
     }
 
-    public update(delta: IDelta): void {
-        if (!this.isEnabled()) {
+    public update(particle: Particle, delta: IDelta): void {
+        if (!this.isEnabled(particle)) {
             return;
         }
 
-        const particle = this.particle;
         let justSpawned = false;
 
         if (particle.spawning) {

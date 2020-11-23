@@ -9,6 +9,7 @@ import type { IOptions } from "../../Options/Interfaces/IOptions";
 import { EmitterClickMode } from "./Enums";
 import type { IEmitterOptions } from "./Options/Interfaces/IEmitterOptions";
 import type { ICoordinates } from "../../Core/Interfaces/ICoordinates";
+import type { IDelta } from "../../Core/Interfaces/IDelta";
 
 interface EmitterContainer {
     addEmitter: (options: IEmitter, position: ICoordinates) => EmitterInstance;
@@ -99,6 +100,12 @@ export class Emitters implements IContainerPlugin {
 
     public stop(): void {
         this.array = [];
+    }
+
+    public update(delta: IDelta): void {
+        for (const emitter of this.array) {
+            emitter.update(delta);
+        }
     }
 
     public handleClickMode(mode: string): void {

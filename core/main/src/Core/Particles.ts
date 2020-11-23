@@ -3,14 +3,15 @@ import type { ICoordinates } from "./Interfaces/ICoordinates";
 import type { IMouseData } from "./Interfaces/IMouseData";
 import type { IRgb } from "./Interfaces/Colors";
 import { Particle } from "./Particle";
-import { NumberUtils, Point, QuadTree, Rectangle, Utils } from "../Utils";
+import { NumberUtils, Plugins, Point, QuadTree, Rectangle, Utils } from "../Utils";
 import type { RecursivePartial } from "../Types";
 import type { IParticles } from "../Options/Interfaces/Particles/IParticles";
-import { InteractionManager } from "./Particle/InteractionManager";
+import { InteractionManager } from "./InteractionManager";
 import type { IDelta } from "./Interfaces/IDelta";
 import type { IParticle } from "./Interfaces/IParticle";
 import type { IDensity } from "../Options/Interfaces/Particles/Number/IDensity";
 import { Particles as ParticlesOptions } from "../Options/Classes/Particles/Particles";
+import { Infecter } from "./Particle/Infecter";
 
 /**
  * Particles manager object
@@ -36,11 +37,13 @@ export class Particles {
     public pushing?: boolean;
     public linksColor?: IRgb | string;
     public grabLineColor?: IRgb | string;
+    public readonly infecter;
 
     private interactionManager;
     private nextId;
     private linksFreq;
     private trianglesFreq;
+    private updaters;
 
     constructor(private readonly container: Container) {
         this.nextId = 0;
@@ -48,7 +51,8 @@ export class Particles {
         this.limit = 0;
         this.linksFreq = new Map<string, number>();
         this.trianglesFreq = new Map<string, number>();
-        this.interactionManager = new InteractionManager(container);
+        this.interactionManager = new InteractionManager(this.container);
+        this.infecter = new Infecter(this.container);
 
         const canvasSize = this.container.canvas.size;
 
@@ -62,6 +66,8 @@ export class Particles {
             ),
             4
         );
+
+        this.updaters = Plugins.getUpdaters(container);
     }
 
     /* --------- tsParticles functions - particles ----------- */
@@ -106,10 +112,10 @@ export class Particles {
 
         if (options.infection.enable) {
             for (let i = 0; i < options.infection.infections; i++) {
-                const notInfected = this.array.filter((p) => p.infecter.infectionStage === undefined);
+                const notInfected = this.array.filter((p) => p.infection.stage === undefined);
                 const infected = Utils.itemFromArray(notInfected);
 
-                infected.infecter.startInfection(0);
+                this.infecter.startInfection(infected, 0);
             }
         }
 
@@ -122,7 +128,7 @@ export class Particles {
         this.draw({ value: 0, factor: 0 });
     }
 
-    public removeAt(index: number, quantity = 1, group?: string): void {
+    public removeAt(index: number, quantity = 1, group?: string, override?: boolean): void {
         if (!(index >= 0 && index <= this.count)) {
             return;
         }
@@ -136,7 +142,7 @@ export class Particles {
                 continue;
             }
 
-            particle.destroy();
+            particle.destroy(override);
 
             this.array.splice(i--, 1);
 
@@ -144,8 +150,8 @@ export class Particles {
         }
     }
 
-    public remove(particle: Particle, group?: string): void {
-        this.removeAt(this.array.indexOf(particle), undefined, group);
+    public remove(particle: Particle, group?: string, override?: boolean): void {
+        this.removeAt(this.array.indexOf(particle), undefined, group ?? particle.group, override);
     }
 
     public update(delta: IDelta): void {
@@ -154,15 +160,17 @@ export class Particles {
 
         container.noise.update();
 
+        for (const [, plugin] of container.plugins) {
+            if (plugin.update !== undefined) {
+                plugin.update(delta);
+            }
+        }
+
         for (const particle of this.array) {
-            // let d = ( dx = container.interactivity.mouse.click_pos_x - p.x ) * dx +
-            //         ( dy = container.interactivity.mouse.click_pos_y - p.y ) * dy;
-            // let f = -BANG_SIZE / d;
-            // if ( d < BANG_SIZE ) {
-            //     let t = Math.atan2( dy, dx );
-            //     p.vx = f * Math.cos(t);
-            //     p.vy = f * Math.sin(t);
-            // }
+            if (particle.destroyed) {
+                particlesToDelete.push(particle);
+                continue;
+            }
 
             particle.move(delta);
 
@@ -180,14 +188,18 @@ export class Particles {
 
         this.interactionManager.externalInteract(delta);
 
-        // this loop is required to be done after mouse interactions
+        // this loop must be done after external (mouse, div, etc.) interactions
         for (const particle of this.container.particles.array) {
-            particle.update(delta);
+            for (const updater of this.updaters) {
+                updater.update(particle, delta);
+            }
 
             if (!particle.destroyed && !particle.spawning) {
                 this.interactionManager.particlesInteract(particle, delta);
             }
         }
+
+        delete container.canvas.resizeFactor;
     }
 
     public draw(delta: IDelta): void {

@@ -8,8 +8,8 @@ import type { ILink } from "./Interfaces/ILink";
 import { CanvasUtils, ColorUtils, Constants, NumberUtils, Utils } from "../Utils";
 import type { Particle } from "./Particle";
 import type { IDelta } from "./Interfaces/IDelta";
-import { IOrbit } from "./Interfaces/IOrbit";
 import { OrbitType } from "../Enums/Types/OrbitType";
+import { IOrbit } from "../Options/Interfaces/Particles/Orbit/IOrbit";
 
 /**
  * Canvas manager
@@ -25,6 +25,8 @@ export class Canvas {
      * The particles canvas dimension
      */
     public readonly size: IDimension;
+
+    public resizeFactor?: IDimension;
 
     /**
      * The particles canvas context
@@ -60,11 +62,11 @@ export class Canvas {
         const element = this.element;
 
         if (element) {
-            if (options.backgroundMode.enable) {
+            if (options.fullScreen.enable) {
                 this.originalStyle = Utils.deepExtend({}, element.style) as CSSStyleDeclaration;
 
                 element.style.position = "fixed";
-                element.style.zIndex = options.backgroundMode.zIndex.toString(10);
+                element.style.zIndex = options.fullScreen.zIndex.toString(10);
                 element.style.top = "0";
                 element.style.left = "0";
                 element.style.width = "100%";
@@ -192,12 +194,23 @@ export class Canvas {
 
         const container = this.container;
         const pxRatio = container.retina.pixelRatio;
+        const size = container.canvas.size;
 
-        container.canvas.size.width = this.element.offsetWidth * pxRatio;
-        container.canvas.size.height = this.element.offsetHeight * pxRatio;
+        const oldSize = {
+            width: size.width,
+            height: size.height,
+        };
 
-        this.element.width = container.canvas.size.width;
-        this.element.height = container.canvas.size.height;
+        size.width = this.element.offsetWidth * pxRatio;
+        size.height = this.element.offsetHeight * pxRatio;
+
+        this.element.width = size.width;
+        this.element.height = size.height;
+
+        this.resizeFactor = {
+            width: size.width / oldSize.width,
+            height: size.height / oldSize.height,
+        };
     }
 
     public drawConnectLine(p1: IParticle, p2: IParticle): void {
@@ -397,7 +410,7 @@ export class Canvas {
         const radius = particle.getRadius();
         const opacity = twinkling ? twinkle.opacity : particle.bubble.opacity ?? particle.opacity.value;
         const strokeOpacity = particle.stroke.opacity ?? opacity;
-        const infectionStage = particle.infecter.infectionStage;
+        const infectionStage = particle.infection.stage;
         const infection = options.infection;
         const infectionStages = infection.stages;
         const infectionColor = infectionStage !== undefined ? infectionStages[infectionStage].color : undefined;
@@ -476,11 +489,11 @@ export class Canvas {
         CanvasUtils.drawEllipse(
             this.context,
             particle,
-            orbitOptions.color || particle.getFillColor(),
+            orbitOptions.color ?? particle.getFillColor(),
             particle.orbitRadius ?? particle.getRadius(),
             orbitOptions.opacity,
             orbitOptions.width,
-            particle.orbitRotation || orbitOptions.rotation.value,
+            particle.orbitRotation ?? orbitOptions.rotation.value,
             start,
             end
         );

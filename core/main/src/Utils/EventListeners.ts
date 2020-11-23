@@ -3,6 +3,9 @@ import { ClickMode, InteractivityDetect } from "../Enums";
 import type { ICoordinates } from "../Core/Interfaces/ICoordinates";
 import { Constants } from "./Constants";
 import { Utils } from "./Utils";
+import Timeout = NodeJS.Timeout;
+
+let windowResizeTimer: Timeout;
 
 function manageListener(
     element: HTMLElement | Node | Window,
@@ -152,7 +155,13 @@ export class EventListeners {
     }
 
     private handleWindowResize(): void {
-        this.container.canvas?.windowResize();
+        windowResizeTimer = setTimeout(() => {
+            if (windowResizeTimer) {
+                clearTimeout(windowResizeTimer);
+            }
+
+            this.container.canvas?.windowResize();
+        }, 500);
     }
 
     private handleVisibilityChange(): void {

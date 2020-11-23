@@ -4,6 +4,7 @@ import type { IOptionLoader } from "../../../Interfaces/IOptionLoader";
 import type { IHsl } from "../../../../Core/Interfaces/Colors";
 import { OrbitAnimation } from "./OrbitAnimation";
 import { OrbitRotation } from "./OrbitRotation";
+import { Utils } from "../../../../Utils";
 
 /**
  * [[include:Options/Particles/Orbit.md]]
@@ -48,7 +49,7 @@ export class Orbit implements IOrbit, IOptionLoader<IOrbit> {
             this.radius = data.radius;
         }
         if (data.color !== undefined) {
-            this.color = data.color;
+            this.color = Utils.deepExtend({}, data.color) as IHsl;
         }
     }
 }

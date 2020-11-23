@@ -3,7 +3,7 @@ import type { IBounce } from "./Bounce/IBounce";
 
 /**
  * @category Options
- * [[include:Collisions.md]]
+ * [[include:Options/Particles/Collisions.md]]
  */
 export interface ICollisions {
     bounce: IBounce;

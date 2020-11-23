@@ -1,104 +1,104 @@
 import type { Container } from "../Container";
+import { Particle } from "../Particle";
 
 /**
  * @category Core
  */
 export class Infecter {
-    public infectionStage?: number;
-    public infectionTime?: number;
-    public infectionDelay?: number;
-    public infectionDelayStage?: number;
-
     constructor(private readonly container: Container) {}
 
-    public startInfection(stage: number): void {
-        const options = this.container.options;
-        const stages = options.infection.stages;
-        const stagesCount = stages.length;
+    public startInfection(particle: Particle, stage: number): void {
+        const options = this.container.options,
+            stages = options.infection.stages,
+            stagesCount = stages.length;
 
         if (stage > stagesCount || stage < 0) {
             return;
         }
 
-        this.infectionDelay = 0;
-        this.infectionDelayStage = stage;
+        particle.infection.delay = 0;
+        particle.infection.delayStage = stage;
     }
 
-    public updateInfectionStage(stage: number): void {
-        const options = this.container.options;
-        const stagesCount = options.infection.stages.length;
+    public updateInfectionStage(particle: Particle, stage: number): void {
+        const options = this.container.options,
+            stagesCount = options.infection.stages.length;
 
-        if (stage > stagesCount || stage < 0 || (this.infectionStage !== undefined && this.infectionStage > stage)) {
+        if (
+            stage > stagesCount ||
+            stage < 0 ||
+            (particle.infection.stage !== undefined && particle.infection.stage > stage)
+        ) {
             return;
         }
 
-        this.infectionStage = stage;
-        this.infectionTime = 0;
+        particle.infection.stage = stage;
+        particle.infection.time = 0;
     }
 
-    public updateInfection(delta: number): void {
-        const options = this.container.options;
-        const infection = options.infection;
-        const stages = options.infection.stages;
-        const stagesCount = stages.length;
+    public updateInfection(particle: Particle, delta: number): void {
+        const options = this.container.options,
+            infection = options.infection,
+            stages = options.infection.stages,
+            stagesCount = stages.length;
 
-        if (this.infectionDelay !== undefined && this.infectionDelayStage !== undefined) {
-            const stage = this.infectionDelayStage;
+        if (particle.infection.delay !== undefined && particle.infection.delayStage !== undefined) {
+            const stage = particle.infection.delayStage;
 
             if (stage > stagesCount || stage < 0) {
                 return;
             }
 
-            if (this.infectionDelay > infection.delay * 1000) {
-                this.infectionStage = stage;
-                this.infectionTime = 0;
+            if (particle.infection.delay > infection.delay * 1000) {
+                particle.infection.stage = stage;
+                particle.infection.time = 0;
 
-                delete this.infectionDelay;
-                delete this.infectionDelayStage;
+                delete particle.infection.delay;
+                delete particle.infection.delayStage;
             } else {
-                this.infectionDelay += delta;
+                particle.infection.delay += delta;
             }
         } else {
-            delete this.infectionDelay;
-            delete this.infectionDelayStage;
+            delete particle.infection.delay;
+            delete particle.infection.delayStage;
         }
 
-        if (this.infectionStage !== undefined && this.infectionTime !== undefined) {
-            const infectionStage = stages[this.infectionStage];
+        if (particle.infection.stage !== undefined && particle.infection.time !== undefined) {
+            const infectionStage = stages[particle.infection.stage];
 
             if (infectionStage.duration !== undefined && infectionStage.duration >= 0) {
-                if (this.infectionTime > infectionStage.duration * 1000) {
-                    this.nextInfectionStage();
+                if (particle.infection.time > infectionStage.duration * 1000) {
+                    this.nextInfectionStage(particle);
                 } else {
-                    this.infectionTime += delta;
+                    particle.infection.time += delta;
                 }
             } else {
-                this.infectionTime += delta;
+                particle.infection.time += delta;
             }
         } else {
-            delete this.infectionStage;
-            delete this.infectionTime;
+            delete particle.infection.stage;
+            delete particle.infection.time;
         }
     }
 
-    private nextInfectionStage(): void {
-        const options = this.container.options;
-        const stagesCount = options.infection.stages.length;
+    private nextInfectionStage(particle: Particle): void {
+        const options = this.container.options,
+            stagesCount = options.infection.stages.length;
 
-        if (stagesCount <= 0 || this.infectionStage === undefined) {
+        if (stagesCount <= 0 || particle.infection.stage === undefined) {
             return;
         }
 
-        this.infectionTime = 0;
+        particle.infection.time = 0;
 
-        if (stagesCount <= ++this.infectionStage) {
+        if (stagesCount <= ++particle.infection.stage) {
             if (options.infection.cure) {
-                delete this.infectionStage;
-                delete this.infectionTime;
+                delete particle.infection.stage;
+                delete particle.infection.time;
                 return;
             } else {
-                this.infectionStage = 0;
-                this.infectionTime = 0;
+                particle.infection.stage = 0;
+                particle.infection.time = 0;
             }
         }
     }

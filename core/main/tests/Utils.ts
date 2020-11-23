@@ -526,8 +526,8 @@ describe("Utils", () => {
             const source = "https://someimageurl.com/image.png";
             const data = await Utils.loadImage(source);
 
-            expect(data.source).to.equal(source);
-            expect(data.type).to.equal("png");
+            expect(data?.source).to.equal(source);
+            expect(data?.type).to.equal("png");
         });
 
         it("should reject when image cannot be loaded", async () => {
@@ -596,9 +596,9 @@ describe("Utils", () => {
             const source = "https://someimageurl.com/image.svg";
             const data = await Utils.downloadSvgImage(source);
 
-            expect(data.source).to.equal(source);
-            expect(data.type).to.equal("svg");
-            expect(data.svgData).to.equal(mockSvgData);
+            expect(data?.source).to.equal(source);
+            expect(data?.type).to.equal("svg");
+            expect(data?.svgData).to.equal(mockSvgData);
         });
 
         it("should reject when image cannot be loaded", async () => {

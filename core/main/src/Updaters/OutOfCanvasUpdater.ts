@@ -24,7 +24,8 @@ function bounceHorizontal(data: IBounceData): void {
         !(
             data.outMode === OutMode.bounce ||
             data.outMode === OutMode.bounceHorizontal ||
-            data.outMode === "bounceHorizontal"
+            data.outMode === "bounceHorizontal" ||
+            data.outMode === OutMode.split
         )
     ) {
         return;
@@ -55,13 +56,18 @@ function bounceHorizontal(data: IBounceData): void {
     } else if (data.bounds.left <= 0) {
         data.particle.position.x = minPos;
     }
+
+    if (data.outMode === OutMode.split) {
+        data.particle.destroy();
+    }
 }
 
 function bounceVertical(data: IBounceData): void {
     if (
         data.outMode === OutMode.bounce ||
         data.outMode === OutMode.bounceVertical ||
-        data.outMode === "bounceVertical"
+        data.outMode === "bounceVertical" ||
+        data.outMode === OutMode.split
     ) {
         const velocity = data.particle.velocity.vertical;
         let bounced = false;
@@ -79,37 +85,42 @@ function bounceVertical(data: IBounceData): void {
             bounced = true;
         }
 
-        if (bounced) {
-            const minPos = data.offset.y + data.size;
+        if (!bounced) {
+            return;
+        }
 
-            if (data.bounds.bottom >= data.canvasSize.height) {
-                data.particle.position.y = data.canvasSize.height - minPos;
-            } else if (data.bounds.top <= 0) {
-                data.particle.position.y = minPos;
-            }
+        const minPos = data.offset.y + data.size;
+
+        if (data.bounds.bottom >= data.canvasSize.height) {
+            data.particle.position.y = data.canvasSize.height - minPos;
+        } else if (data.bounds.top <= 0) {
+            data.particle.position.y = minPos;
+        }
+
+        if (data.outMode === OutMode.split) {
+            data.particle.destroy();
         }
     }
 }
 
 export class OutOfCanvasUpdater implements IParticleUpdater {
-    constructor(private readonly container: Container, private readonly particle: Particle) {}
+    constructor(private readonly container: Container) {}
 
-    isEnabled(): boolean {
-        const particle = this.particle;
-
+    public isEnabled(particle: Particle): boolean {
         return !particle.destroyed && !particle.spawning;
     }
 
-    update(delta: IDelta): void {
-        const outModes = this.particle.options.move.outModes;
+    public update(particle: Particle, delta: IDelta): void {
+        const outModes = particle.options.move.outModes;
 
-        this.updateOutMode(delta, outModes.bottom ?? outModes.default, OutModeDirection.bottom);
-        this.updateOutMode(delta, outModes.left ?? outModes.default, OutModeDirection.left);
-        this.updateOutMode(delta, outModes.right ?? outModes.default, OutModeDirection.right);
-        this.updateOutMode(delta, outModes.top ?? outModes.default, OutModeDirection.top);
+        this.updateOutMode(particle, delta, outModes.bottom ?? outModes.default, OutModeDirection.bottom);
+        this.updateOutMode(particle, delta, outModes.left ?? outModes.default, OutModeDirection.left);
+        this.updateOutMode(particle, delta, outModes.right ?? outModes.default, OutModeDirection.right);
+        this.updateOutMode(particle, delta, outModes.top ?? outModes.default, OutModeDirection.top);
     }
 
     private updateOutMode(
+        particle: Particle,
         delta: IDelta,
         outMode: OutMode | keyof typeof OutMode | OutModeAlt,
         direction: OutModeDirection
@@ -120,38 +131,37 @@ export class OutOfCanvasUpdater implements IParticleUpdater {
             case OutMode.bounceHorizontal:
             case "bounceVertical":
             case "bounceHorizontal":
-                this.bounce(delta, direction, outMode);
+            case OutMode.split:
+                this.bounce(particle, delta, direction, outMode);
 
                 break;
             case OutMode.destroy:
-                this.destroy(direction);
+                this.destroy(particle, direction);
 
                 break;
             case OutMode.out:
-                this.out(direction);
+                this.out(particle, direction);
 
                 break;
             case OutMode.none:
-                this.none(direction);
+                this.none(particle, direction);
 
                 break;
         }
     }
 
-    private destroy(direction: OutModeDirection): void {
-        const container = this.container,
-            particle = this.particle;
+    private destroy(particle: Particle, direction: OutModeDirection): void {
+        const container = this.container;
 
         if (Utils.isPointInside(particle.position, container.canvas.size, particle.getRadius(), direction)) {
             return;
         }
 
-        container.particles.remove(particle);
+        container.particles.remove(particle, undefined, true);
     }
 
-    private out(direction: OutModeDirection): void {
-        const container = this.container,
-            particle = this.particle;
+    private out(particle: Particle, direction: OutModeDirection): void {
+        const container = this.container;
 
         if (Utils.isPointInside(particle.position, container.canvas.size, particle.getRadius(), direction)) {
             return;
@@ -206,12 +216,12 @@ export class OutOfCanvasUpdater implements IParticleUpdater {
     }
 
     private bounce(
+        particle: Particle,
         delta: IDelta,
         direction: OutModeDirection,
         outMode: OutMode | OutModeAlt | keyof typeof OutMode
     ): void {
-        const container = this.container,
-            particle = this.particle;
+        const container = this.container;
         let handled = false;
 
         for (const [, plugin] of container.plugins) {
@@ -238,9 +248,7 @@ export class OutOfCanvasUpdater implements IParticleUpdater {
         bounceVertical({ particle, outMode, direction, bounds, canvasSize, offset, size });
     }
 
-    private none(direction: OutModeDirection): void {
-        const particle = this.particle;
-
+    private none(particle: Particle, direction: OutModeDirection): void {
         if (particle.options.move.distance) {
             return;
         }

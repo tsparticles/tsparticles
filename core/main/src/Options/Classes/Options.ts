@@ -9,7 +9,7 @@ import { Plugins } from "../../Utils";
 import type { IOptionLoader } from "../Interfaces/IOptionLoader";
 import { Theme } from "./Theme/Theme";
 import { ThemeMode } from "../../Enums/Modes";
-import { BackgroundMode } from "./BackgroundMode/BackgroundMode";
+import { FullScreen } from "./FullScreen/FullScreen";
 import { Motion } from "./Motion/Motion";
 import { ManualParticle } from "./ManualParticle";
 import { Responsive } from "./Responsive";
@@ -19,6 +19,22 @@ import { Responsive } from "./Responsive";
  * @category Options
  */
 export class Options implements IOptions, IOptionLoader<IOptions> {
+    /**
+     * @deprecated this property is obsolete, please use the new fullScreen
+     */
+    public get backgroundMode(): FullScreen {
+        return this.fullScreen;
+    }
+
+    /**
+     *
+     * @deprecated this property is obsolete, please use the new fullScreen
+     * @param value
+     */
+    public set backgroundMode(value: FullScreen) {
+        this.fullScreen = value;
+    }
+
     /**
      * @deprecated this property is obsolete, please use the new fpsLimit
      */
@@ -53,7 +69,7 @@ export class Options implements IOptions, IOptionLoader<IOptions> {
     public autoPlay;
     public background;
     public backgroundMask;
-    public backgroundMode;
+    public fullScreen;
     public detectRetina;
     public fpsLimit;
     public infection;
@@ -71,7 +87,7 @@ export class Options implements IOptions, IOptionLoader<IOptions> {
         this.autoPlay = true;
         this.background = new Background();
         this.backgroundMask = new BackgroundMask();
-        this.backgroundMode = new BackgroundMode();
+        this.fullScreen = new FullScreen();
         this.detectRetina = true;
         this.fpsLimit = 30;
         this.infection = new Infection();
@@ -131,7 +147,7 @@ export class Options implements IOptions, IOptionLoader<IOptions> {
         }
 
         this.background.load(data.background);
-        this.backgroundMode.load(data.backgroundMode);
+        this.fullScreen.load(data.fullScreen ?? data.backgroundMode);
         this.backgroundMask.load(data.backgroundMask);
         this.infection.load(data.infection);
         this.interactivity.load(data.interactivity);
@@ -198,7 +214,7 @@ export class Options implements IOptions, IOptionLoader<IOptions> {
         }
     }
 
-    public setResponsive(width: number, pxRatio: number, defaultOptions: IOptions) {
+    public setResponsive(width: number, pxRatio: number, defaultOptions: IOptions): void {
         this.load(defaultOptions);
         this.load(this.responsive.find((t) => t.maxWidth * pxRatio > width)?.options);
     }

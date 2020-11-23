@@ -1,19 +1,19 @@
 import type { Container } from "tsparticles";
 import { EditorGroup, EditorType } from "object-gui";
 import { EditorBase } from "../../../EditorBase";
-import type { IBackgroundMode } from "tsparticles/dist/Options/Interfaces/BackgroundMode/IBackgroundMode";
+import type { IFullScreen } from "tsparticles/dist/Options/Interfaces/FullScreen/IFullScreen";
 
-export class BackgroundModeOptionsEditor extends EditorBase {
+export class FullScreenOptionsEditor extends EditorBase {
     private group!: EditorGroup;
-    private options!: IBackgroundMode;
+    private options!: IFullScreen;
 
     constructor(particles: Container) {
         super(particles);
     }
 
     public addToGroup(parent: EditorGroup): void {
-        this.group = parent.addGroup("backgroundMode", "Background Mode");
-        this.options = this.group.data as IBackgroundMode;
+        this.group = parent.addGroup("fullScreen", "Full Screen");
+        this.options = this.group.data as IFullScreen;
 
         this.addProperties();
     }

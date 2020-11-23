@@ -1,6 +1,6 @@
 {
   "name": "react-tsparticles",
-  "version": "1.19.0-alpha.1",
+  "version": "1.19.0-alpha.2",
   "description": "Official tsParticles React Component - Easily create highly customizable particle animations and use them as animated backgrounds for your website. Ready to use components available also for Vue.js (2.x and 3.x), Angular, Svelte, jQuery, Preact, Inferno.",
   "main": "index.js",
   "unpkg": "umd/particles.js",
@@ -73,7 +73,7 @@
     "@babel/core": "^7.12.3",
     "@babel/preset-env": "^7.12.1",
     "@types/lodash": "^4.14.165",
-    "@types/node": "^14.14.8",
+    "@types/node": "^14.14.9",
     "@types/react": ">=16",
     "@types/react-dom": ">=16",
     "@typescript-eslint/eslint-plugin": "^4.8.1",
@@ -82,12 +82,12 @@
     "cross-env": "^7.0.2",
     "eslint": "^7.13.0",
     "eslint-config-prettier": "^6.15.0",
-    "prettier": "^2.1.2",
+    "prettier": "^2.2.0",
     "react-dom": ">=16",
     "ts-loader": "^8.0.11",
     "ts-node": "^9.0.0",
-    "typescript": "^4.0.5",
-    "webpack": "^5.5.0",
+    "typescript": "^4.1.2",
+    "webpack": "^5.6.0",
     "webpack-bundle-analyzer": "^4.1.0",
     "webpack-cli": "^4.2.0",
     "webpack-node-externals": "^2.5.2"
@@ -96,6 +96,6 @@
     "lodash": "^4.17.20",
     "react": ">=16",
     "tslib": "^2.0.3",
-    "tsparticles": "^1.19.0-alpha.1"
+    "tsparticles": "^1.19.0-alpha.2"
   }
 }

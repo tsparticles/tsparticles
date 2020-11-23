@@ -1040,9 +1040,9 @@ eslint-visitor-keys@^2.0.0:
   integrity sha512-QudtT6av5WXels9WjIM7qz1XD1cWGvX4gGXvp/zBn9nXG02D0utdU3Em2m/QjTnrsk6bBjmCygl3rmj118msQQ==
 
 eslint@^7.13.0:
-  version "7.13.0"
-  resolved "https://registry.yarnpkg.com/eslint/-/eslint-7.13.0.tgz#7f180126c0dcdef327bfb54b211d7802decc08da"
-  integrity sha512-uCORMuOO8tUzJmsdRtrvcGq5qposf7Rw0LwkTJkoDbOycVQtQjmnhZSuLQnozLE4TmAzlMVV45eCHmQ1OpDKUQ==
+  version "7.14.0"
+  resolved "https://registry.yarnpkg.com/eslint/-/eslint-7.14.0.tgz#2d2cac1d28174c510a97b377f122a5507958e344"
+  integrity sha512-5YubdnPXrlrYAFCKybPuHIAH++PINe1pmKNc5wQRB9HSbqIK1ywAnntE3Wwua4giKu0bjligf1gLF6qxMGOYRA==
   dependencies:
     "@babel/code-frame" "^7.0.0"
     "@eslint/eslintrc" "^0.2.1"
@@ -1494,6 +1494,14 @@ jmespath@^0.15.0:
   resolved "https://registry.yarnpkg.com/jmespath/-/jmespath-0.15.0.tgz#a3f222a9aae9f966f5d27c796510e28091764217"
   integrity sha1-o/Iiqarp+Wb10nx5ZRDigJF2Qhc=
 
+jquery-particles@^1.19.0-alpha.1:
+  version "1.19.0-alpha.1"
+  resolved "https://registry.yarnpkg.com/jquery-particles/-/jquery-particles-1.19.0-alpha.1.tgz#1ddd11bc59e5bff462cd72df72335f60dd78c83f"
+  integrity sha512-z6XVFR6BKZH9TA3DorRY13iLzzdPQa6HsbP9bSgcPe/MrIt/NSu0Csbo4cN4zwCwXB9HGG0YUrsea7TUVmkh8w==
+  dependencies:
+    jquery "^3.5.1"
+    tsparticles "^1.19.0-alpha.1"
+
 jquery@^3.5.1:
   version "3.5.1"
   resolved "https://registry.yarnpkg.com/jquery/-/jquery-3.5.1.tgz#d7b4d08e1bfdb86ad2f1a3d039ea17304717abb5"
@@ -1543,9 +1551,9 @@ json-stable-stringify-without-jsonify@^1.0.1:
   integrity sha1-nbe1lJatPzz+8wp1FC0tkwrXJlE=
 
 jsoneditor@^9.1.2:
-  version "9.1.2"
-  resolved "https://registry.yarnpkg.com/jsoneditor/-/jsoneditor-9.1.2.tgz#b822c1b33071c0b87dc524082becebba3d238fcd"
-  integrity sha512-yhYrb+054+B8Hgnxf1pSqg4n7WPQQYAsqDE3Jb34ygG0CKgnCfpqtgXlqI+/tAdZcJuG68gWgVqbPDE5iLwJcQ==
+  version "9.1.3"
+  resolved "https://registry.yarnpkg.com/jsoneditor/-/jsoneditor-9.1.3.tgz#cb19171b2d4e92bf189f2d4f75070da91b4779fd"
+  integrity sha512-8HN0jeJb5lidVaHb4l28nT/q0Rq9MTAxo7teHmMamfalLeEhnb0abbJXeADL50qBuE1TONZI7K+F7+sYCiyENg==
   dependencies:
     ace-builds "^1.4.12"
     ajv "^6.12.6"
@@ -1555,7 +1563,7 @@ jsoneditor@^9.1.2:
     mobius1-selectr "^2.4.13"
     picomodal "^3.0.0"
     simple-json-repair "^1.1.0"
-    vanilla-picker "^2.10.1"
+    vanilla-picker "^2.11.0"
 
 jstransformer@1.0.0:
   version "1.0.0"
@@ -1751,6 +1759,11 @@ path-type@^4.0.0:
   version "4.0.0"
   resolved "https://registry.yarnpkg.com/path-type/-/path-type-4.0.0.tgz#84ed01c0a7ba380afe09d90a8c180dcd9d03043b"
   integrity sha512-gDKb8aZMDeD/tZWs9P6+q0J9Mwkdl6xMV8TjnGP3qJVJ06bdMgkbBlLU8IdfOsIsFz2BW1rNVT3XuNEl8zPAvw==
+
+pathseg@^1.2.0:
+  version "1.2.0"
+  resolved "https://registry.yarnpkg.com/pathseg/-/pathseg-1.2.0.tgz#22af051e28037671e7799e296fe96c5dcbe53acd"
+  integrity sha512-+pQS7lTaoVIXhaCW7R3Wd/165APzZHWzYVqe7dxzdupxQwebgpBaCmf0/XZwmoA/rkDq3qvzO0qv4d5oFVrBRw==
 
 picomatch@^2.0.5, picomatch@^2.2.1:
   version "2.2.2"
@@ -2256,6 +2269,20 @@ tslib@^1.8.1:
   resolved "https://registry.yarnpkg.com/tslib/-/tslib-1.14.1.tgz#cf2d38bdc34a134bcaf1091c41f6619e2f672d00"
   integrity sha512-Xni35NKzjgMrwevysHTCArtLDpPvye8zV/0E4EyYn43P7/7qvQwPh9BGkHewbMulVntbigmcT7rdX3BNo9wRJg==
 
+tsparticles-preset-links@^1.4.0-alpha.1:
+  version "1.4.0-alpha.1"
+  resolved "https://registry.yarnpkg.com/tsparticles-preset-links/-/tsparticles-preset-links-1.4.0-alpha.1.tgz#e42ef1183f80aa71d68cb12b9436eab9215789a0"
+  integrity sha512-Im0r3E54Vv4nMTKY9khI7BdEikBYKk0Av5lk2NzRamdqa1GMgfSJi7zEb85JJiJL5vZY9RMKkVgqg9NkcXSkRA==
+  dependencies:
+    tsparticles "^1.19.0-alpha.1"
+
+tsparticles@^1.19.0-alpha.1:
+  version "1.19.0-alpha.1"
+  resolved "https://registry.yarnpkg.com/tsparticles/-/tsparticles-1.19.0-alpha.1.tgz#302af2bfe844b0e1d87dcff2e147b03fa1ceb72f"
+  integrity sha512-reDbIIH9kdNE7I2Pav3FBiVpfsNYNWyWz5xvDsWFIp+szXE3VsqX2IjqeTlVJlQAfwUMCmJgBNppo1dRMU3cew==
+  optionalDependencies:
+    pathseg "^1.2.0"
+
 tsutils@^3.17.1:
   version "3.17.1"
   resolved "https://registry.yarnpkg.com/tsutils/-/tsutils-3.17.1.tgz#ed719917f11ca0dee586272b2ac49e015a2dd759"
@@ -2310,7 +2337,7 @@ v8-compile-cache@^2.0.3:
   resolved "https://registry.yarnpkg.com/v8-compile-cache/-/v8-compile-cache-2.2.0.tgz#9471efa3ef9128d2f7c6a7ca39c4dd6b5055b132"
   integrity sha512-gTpR5XQNKFwOd4clxfnhaqvfqMpqEwr4tOtCyz4MtYZX2JYhfr1JvBFKdS+7K/9rfpZR3VLX+YWBbKoxCgS43Q==
 
-vanilla-picker@^2.10.1:
+vanilla-picker@^2.11.0:
   version "2.11.0"
   resolved "https://registry.yarnpkg.com/vanilla-picker/-/vanilla-picker-2.11.0.tgz#a30d7174402d846b97c74f81e00be7837a140d64"
   integrity sha512-MsTAyROQRN3yoUdToiQtfnW752wC9DpnXbOhAMGJgBi+TMDZ0IUfbmIVB5u3P1ltBDlqy8TjY59a4lOioSlgZw==

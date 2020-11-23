@@ -5,10 +5,9 @@ import type { IDelta } from "../Core/Interfaces/IDelta";
 import { NumberUtils } from "../Utils";
 
 export class ColorUpdater implements IParticleUpdater {
-    constructor(private readonly container: Container, private readonly particle: Particle) {}
+    constructor(private readonly container: Container) {}
 
-    public isEnabled(): boolean {
-        const particle = this.particle;
+    public isEnabled(particle: Particle): boolean {
         const animationOptions = particle.options.color.animation;
 
         return (
@@ -16,11 +15,10 @@ export class ColorUpdater implements IParticleUpdater {
         );
     }
 
-    public update(delta: IDelta): void {
-        const particle = this.particle;
+    public update(particle: Particle, delta: IDelta): void {
         const animationOptions = particle.options.color.animation;
 
-        if (!this.isEnabled()) {
+        if (!this.isEnabled(particle)) {
             return;
         }
 

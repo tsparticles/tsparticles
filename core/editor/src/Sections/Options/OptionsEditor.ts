@@ -6,7 +6,7 @@ import { BackgroundMaskOptionsEditor } from "./BackgroundMask/BackgroundMaskOpti
 import { InfectionOptionsEditor } from "./Infection/InfectionOptionsEditor";
 import { Editor, EditorGroup, EditorType } from "object-gui";
 import { EditorBase } from "../../EditorBase";
-import { BackgroundModeOptionsEditor } from "./BackgroundMode/BackgroundModeOptionsEditor";
+import { FullScreenOptionsEditor } from "./FullScreen/FullScreenOptionsEditor";
 import { MotionOptionsEditor } from "./Motion/MotionOptionsEditor";
 
 export class OptionsEditor extends EditorBase {
@@ -23,7 +23,7 @@ export class OptionsEditor extends EditorBase {
 
         this.addBackground();
         this.addBackgroundMask();
-        this.addBackgroundMode();
+        this.addFullScreen();
         this.addInfection();
         this.addInteractivity();
         this.addMotion();
@@ -70,8 +70,8 @@ export class OptionsEditor extends EditorBase {
         options.addToGroup(this.group);
     }
 
-    private addBackgroundMode(): void {
-        const options = new BackgroundModeOptionsEditor(this.particles);
+    private addFullScreen(): void {
+        const options = new FullScreenOptionsEditor(this.particles);
 
         options.addToGroup(this.group);
     }
