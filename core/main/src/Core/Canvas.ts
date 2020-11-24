@@ -472,6 +472,8 @@ export class Canvas {
             return;
         }
 
+        const container = this.container;
+
         let start: number;
         let end: number;
 
@@ -489,11 +491,11 @@ export class Canvas {
         CanvasUtils.drawEllipse(
             this.context,
             particle,
-            orbitOptions.color ?? particle.getFillColor(),
-            particle.orbitRadius ?? particle.getRadius(),
+            particle.orbitColor ?? particle.getFillColor(),
+            particle.orbitRadius ?? container.retina.orbitRadius ?? particle.getRadius(),
             orbitOptions.opacity,
             orbitOptions.width,
-            particle.orbitRotation ?? orbitOptions.rotation.value,
+            particle.orbitRotation ?? container.retina.orbitRotation,
             start,
             end
         );

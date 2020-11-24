@@ -23,6 +23,8 @@ export class Retina {
     public sizeAnimationSpeed!: number;
     public pixelRatio!: number;
     public bounceModeDistance!: number;
+    public orbitRadius?: number;
+    public orbitRotation!: number;
 
     constructor(private readonly container: Container) {}
 
@@ -88,6 +90,11 @@ export class Retina {
         this.moveSpeed = particles.move.speed * ratio;
         this.sizeValue = particles.size.value * ratio;
         this.sizeAnimationSpeed = particles.size.animation.speed * ratio;
+        this.orbitRotation = particles.orbit.rotation.value * this.container.retina.pixelRatio;
+
+        if (particles.orbit.radius !== undefined) {
+            this.orbitRadius = particles.orbit.radius * this.container.retina.pixelRatio;
+        }
 
         const modes = options.interactivity.modes;
 

@@ -1,12 +1,4 @@
-import {
-    DestroyMode,
-    InteractivityDetect,
-    MoveDirection,
-    OutMode,
-    ShapeType,
-    Main,
-    ISourceOptions
-} from "tsparticles";
+import { DestroyMode, InteractivityDetect, MoveDirection, OutMode, ShapeType, Main, ISourceOptions } from "tsparticles";
 
 export function loadPreset(tsParticles: Main): void {
     const options: ISourceOptions = {

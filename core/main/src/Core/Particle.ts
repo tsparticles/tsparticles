@@ -71,7 +71,7 @@ export class Particle implements IParticle {
     public spinDirection?: RotateDirection;
     public spinAcceleration?: number;
     public orbitRadius?: number;
-    public orbitRotation: number;
+    public orbitRotation?: number;
 
     public readonly close: boolean;
     public readonly direction: MoveDirection | keyof typeof MoveDirection | MoveDirectionAlt;
@@ -87,6 +87,7 @@ export class Particle implements IParticle {
     public readonly rotate: IParticleValueAnimation<number>;
     public readonly size: IParticleValueAnimation<number>;
     public readonly strokeColor: IParticleValueAnimation<IHsl | undefined>;
+    public readonly orbitColor?: IHsl;
     public readonly velocity: IVelocity;
     public readonly shape: ShapeType | string;
     public readonly image?: IParticleImage;
@@ -300,13 +301,21 @@ export class Particle implements IParticle {
         }
 
         /* orbit */
-        const orbitRotationOptions = particlesOptions.orbit.rotation.random;
-        if (orbitRotationOptions.enable) {
-            this.orbitRotation = orbitRotationOptions.minimumValue
-                ? Math.floor(Math.random() * 360) + orbitRotationOptions.minimumValue
-                : Math.floor(Math.random() * 360);
-        } else {
-            this.orbitRotation = this.options.orbit.rotation.value;
+        const orbitOptions = particlesOptions.orbit;
+
+        if (orbitOptions.enable) {
+            const orbitRotationOptions = orbitOptions.rotation.random;
+            if (orbitRotationOptions.enable) {
+                this.orbitRotation = Math.floor(
+                    orbitRotationOptions.minimumValue
+                        ? NumberUtils.randomInRange(orbitRotationOptions.minimumValue, 360)
+                        : Math.random() * 360
+                );
+            } else {
+                this.orbitRotation = orbitOptions.rotation.value;
+            }
+
+            this.orbitColor = ColorUtils.colorToHsl(orbitOptions.color);
         }
 
         /* color */

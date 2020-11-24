@@ -4,8 +4,6 @@ import type { IGrabLinks } from "./IGrabLinks";
  * @category Options
  */
 export interface IGrab {
-    distance: number;
-
     /**
      * @deprecated use the new links instead
      */
@@ -16,5 +14,6 @@ export interface IGrab {
      */
     lineLinked: IGrabLinks;
 
+    distance: number;
     links: IGrabLinks;
 }

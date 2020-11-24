@@ -1,4 +1,4 @@
-import type { IHsl } from "../../../../Core/Interfaces/Colors";
+import type { IColor } from "../../../../Core/Interfaces/Colors";
 import type { IOrbitAnimation } from "./IOrbitAnimation";
 import type { IValueWithRandom } from "../../IValueWithRandom";
 
@@ -8,7 +8,7 @@ import type { IValueWithRandom } from "../../IValueWithRandom";
  */
 export interface IOrbit {
     animation: IOrbitAnimation;
-    color?: IHsl;
+    color?: string | IColor;
 
     /**
      * Enables/disables the animation

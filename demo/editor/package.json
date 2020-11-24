@@ -28,6 +28,8 @@
     "pug": "^3.0.0",
     "pug-cli": "^1.0.0-alpha6",
     "stylus": "^0.54.8",
+    "object-gui": "^1.0.11",
+    "tsparticles": "^1.19.0-alpha.2",
     "tsparticles-editor": "^1.19.0-alpha.2"
   }
 }

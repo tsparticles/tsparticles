@@ -19,6 +19,10 @@ export class OrbitUpdater implements IParticleUpdater {
             return;
         }
 
+        if (particle.orbitRotation === undefined) {
+            particle.orbitRotation = 0;
+        }
+
         particle.orbitRotation += orbitAnimations.speed * delta.factor;
     }
 }
