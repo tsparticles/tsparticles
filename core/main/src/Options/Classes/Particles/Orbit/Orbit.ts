@@ -15,7 +15,7 @@ export class Orbit implements IOrbit, IOptionLoader<IOrbit> {
     public opacity: number;
     public width: number;
     public color?: OptionsColor;
-    public radius: number | undefined;
+    public radius?: number;
     public rotation;
 
     constructor() {
