@@ -807,11 +807,12 @@
     esutils "^2.0.2"
 
 "@babel/preset-typescript@^7.12.1":
-  version "7.12.1"
-  resolved "https://registry.yarnpkg.com/@babel/preset-typescript/-/preset-typescript-7.12.1.tgz#86480b483bb97f75036e8864fe404cc782cc311b"
-  integrity sha512-hNK/DhmoJPsksdHuI/RVrcEws7GN5eamhi28JkO52MqIxU8Z0QpmiSOQxZHWOHV7I3P4UjHV97ay4TcamMA6Kw==
+  version "7.12.7"
+  resolved "https://registry.yarnpkg.com/@babel/preset-typescript/-/preset-typescript-7.12.7.tgz#fc7df8199d6aae747896f1e6c61fc872056632a3"
+  integrity sha512-nOoIqIqBmHBSEgBXWR4Dv/XBehtIFcw9PqZw6rFYuKrzsZmOQm3PR5siLBnKZFEsDb03IegG8nSjU/iXXXYRmw==
   dependencies:
     "@babel/helper-plugin-utils" "^7.10.4"
+    "@babel/helper-validator-option" "^7.12.1"
     "@babel/plugin-transform-typescript" "^7.12.1"
 
 "@babel/runtime@^7.8.4":
@@ -3635,10 +3636,10 @@ tslib@^1.10.0, tslib@^1.9.0:
   resolved "https://registry.yarnpkg.com/tslib/-/tslib-1.14.1.tgz#cf2d38bdc34a134bcaf1091c41f6619e2f672d00"
   integrity sha512-Xni35NKzjgMrwevysHTCArtLDpPvye8zV/0E4EyYn43P7/7qvQwPh9BGkHewbMulVntbigmcT7rdX3BNo9wRJg==
 
-tsparticles@^1.19.0-alpha.1:
-  version "1.19.0-alpha.1"
-  resolved "https://registry.yarnpkg.com/tsparticles/-/tsparticles-1.19.0-alpha.1.tgz#302af2bfe844b0e1d87dcff2e147b03fa1ceb72f"
-  integrity sha512-reDbIIH9kdNE7I2Pav3FBiVpfsNYNWyWz5xvDsWFIp+szXE3VsqX2IjqeTlVJlQAfwUMCmJgBNppo1dRMU3cew==
+tsparticles@^1.19.0-alpha.2:
+  version "1.19.0-alpha.2"
+  resolved "https://registry.yarnpkg.com/tsparticles/-/tsparticles-1.19.0-alpha.2.tgz#67e2a2ac8188a96ff1a3fb804ae88ed3246eaf40"
+  integrity sha512-LO65MR+PKmRuMHVa9uSWlFENsEmIPc7SoNSVEI0R2dymjVdFufhinIxmUwaTE9NF9sJpZxsJ/G5Pv0Y1G/T9hg==
   optionalDependencies:
     pathseg "^1.2.0"
 
