@@ -10,6 +10,8 @@ import type { IParticles } from "../../Options/Interfaces/Particles/IParticles";
 import type { IEmitterSize } from "./Options/Interfaces/IEmitterSize";
 import type { IHsl } from "../../Core/Interfaces/Colors";
 import type { IDelta } from "../../Core/Interfaces/IDelta";
+import type { IColorAnimation } from "../../Options/Interfaces/IColorAnimation";
+import type { IHslAnimation } from "../../Options/Interfaces/IHslAnimation";
 
 function randomCoordinate(position: number, offset: number): number {
     return position + offset * (Math.random() - 0.5);
@@ -223,15 +225,66 @@ export class EmitterInstance {
             if (this.spawnColor !== undefined) {
                 const colorAnimation = this.emitterOptions.spawnColor?.animation;
 
-                if (colorAnimation?.enable) {
-                    const colorOffset = NumberUtils.randomInRange(colorAnimation.offset.min, colorAnimation.offset.max);
-                    const emitFactor = (1000 * this.emitterOptions.rate.delay) / container.retina.reduceFactor;
-                    const colorSpeed = colorAnimation.speed ?? 0;
+                if (colorAnimation) {
+                    const hueAnimation = colorAnimation as IColorAnimation;
 
-                    this.spawnColor.h += (colorSpeed * container.fpsLimit) / emitFactor + colorOffset * 3.6;
+                    if (hueAnimation.enable) {
+                        const colorOffset = NumberUtils.randomInRange(hueAnimation.offset.min, hueAnimation.offset.max);
+                        const emitFactor = (1000 * this.emitterOptions.rate.delay) / container.retina.reduceFactor;
+                        const colorSpeed = hueAnimation.speed ?? 0;
 
-                    if (this.spawnColor.h > 360) {
-                        this.spawnColor.h -= 360;
+                        this.spawnColor.h += (colorSpeed * container.fpsLimit) / emitFactor + colorOffset * 3.6;
+
+                        if (this.spawnColor.h > 360) {
+                            this.spawnColor.h -= 360;
+                        }
+                    } else {
+                        const hslAnimation = colorAnimation as IHslAnimation;
+
+                        if (hslAnimation.h.enable) {
+                            const colorOffset = NumberUtils.randomInRange(
+                                hslAnimation.h.offset.min,
+                                hslAnimation.h.offset.max
+                            );
+                            const emitFactor = (1000 * this.emitterOptions.rate.delay) / container.retina.reduceFactor;
+                            const colorSpeed = hslAnimation.h.speed ?? 0;
+
+                            this.spawnColor.h += (colorSpeed * container.fpsLimit) / emitFactor + colorOffset * 3.6;
+
+                            if (this.spawnColor.h > 360) {
+                                this.spawnColor.h -= 360;
+                            }
+                        }
+
+                        if (hslAnimation.s.enable) {
+                            const colorOffset = NumberUtils.randomInRange(
+                                hslAnimation.s.offset.min,
+                                hslAnimation.s.offset.max
+                            );
+                            const emitFactor = (1000 * this.emitterOptions.rate.delay) / container.retina.reduceFactor;
+                            const colorSpeed = hslAnimation.s.speed ?? 0;
+
+                            this.spawnColor.s += (colorSpeed * container.fpsLimit) / emitFactor + colorOffset;
+
+                            if (this.spawnColor.s > 100) {
+                                this.spawnColor.s -= 100;
+                            }
+                        }
+
+                        if (hslAnimation.l.enable) {
+                            const colorOffset = NumberUtils.randomInRange(
+                                hslAnimation.l.offset.min,
+                                hslAnimation.l.offset.max
+                            );
+                            const emitFactor = (1000 * this.emitterOptions.rate.delay) / container.retina.reduceFactor;
+                            const colorSpeed = hslAnimation.l.speed ?? 0;
+
+                            this.spawnColor.l += (colorSpeed * container.fpsLimit) / emitFactor + colorOffset;
+
+                            if (this.spawnColor.l > 100) {
+                                this.spawnColor.l -= 100;
+                            }
+                        }
                     }
                 }
 

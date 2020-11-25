@@ -9,7 +9,8 @@ import type { IBubbleParticleData } from "./IBubbleParticleData";
 import type { IParticles } from "../../Options/Interfaces/Particles/IParticles";
 import type { IHsl, IRgb } from "./Colors";
 import type { ILink } from "./ILink";
-import { IParticleLoops } from "./IParticleLoops";
+import type { IParticleLoops } from "./IParticleLoops";
+import type { IParticleHslAnimation } from "./IParticleHslAnimation";
 
 /**
  * @category Interfaces
@@ -30,11 +31,11 @@ export interface IParticle {
     readonly links: ILink[];
     readonly loops: IParticleLoops;
     readonly offset: ICoordinates;
-    readonly color: IParticleValueAnimation<IHsl | undefined>;
+    readonly color?: IParticleHslAnimation;
     readonly opacity: IParticleValueAnimation<number>;
     readonly rotate: IParticleValueAnimation<number>;
     readonly size: IParticleValueAnimation<number>;
-    readonly strokeColor: IParticleValueAnimation<IHsl | undefined>;
+    readonly strokeColor?: IParticleHslAnimation;
     readonly options: IParticles;
     readonly position: ICoordinates3d;
     readonly shadowColor: IRgb | undefined;

@@ -4,7 +4,6 @@ import type { IParticleValueAnimation } from "./Interfaces/IParticleValueAnimati
 import type { ICoordinates, ICoordinates3d } from "./Interfaces/ICoordinates";
 import type { IParticleImage } from "./Interfaces/IParticleImage";
 import type { IHsl, IRgb } from "./Interfaces/Colors";
-import type { IStroke } from "../Options/Interfaces/Particles/IStroke";
 import type { IShapeValues } from "../Options/Interfaces/Particles/Shape/IShapeValues";
 import type { IBubbleParticleData } from "./Interfaces/IBubbleParticleData";
 import type { IParticle } from "./Interfaces/IParticle";
@@ -31,6 +30,8 @@ import { Mover } from "./Particle/Mover";
 import type { ILink } from "./Interfaces/ILink";
 import type { IParticleLoops } from "./Interfaces/IParticleLoops";
 import type { IParticleInfection } from "./Interfaces/IParticleInfection";
+import type { IParticleHslAnimation } from "./Interfaces/IParticleHslAnimation";
+import type { Stroke } from "../Options/Classes/Particles/Stroke";
 
 /**
  * The single particle object
@@ -78,15 +79,15 @@ export class Particle implements IParticle {
     public readonly fill: boolean;
     public readonly infection: IParticleInfection;
     public readonly loops: IParticleLoops;
-    public readonly stroke: IStroke;
+    public readonly stroke: Stroke;
     public readonly position: ICoordinates3d;
     public readonly offset: ICoordinates;
     public readonly shadowColor: IRgb | undefined;
-    public readonly color: IParticleValueAnimation<IHsl | undefined>;
+    public readonly color?: IParticleHslAnimation;
     public readonly opacity: IParticleValueAnimation<number>;
     public readonly rotate: IParticleValueAnimation<number>;
     public readonly size: IParticleValueAnimation<number>;
-    public readonly strokeColor: IParticleValueAnimation<IHsl | undefined>;
+    public readonly strokeColor?: IParticleHslAnimation;
     public readonly orbitColor?: IHsl;
     public readonly velocity: IVelocity;
     public readonly shape: ShapeType | string;
@@ -318,18 +319,46 @@ export class Particle implements IParticle {
             this.orbitColor = ColorUtils.colorToHsl(orbitOptions.color);
         }
 
-        /* color */
-        this.color = {
-            value: ColorUtils.colorToHsl(color, this.id, reduceDuplicates),
-        };
+        const hslColor = ColorUtils.colorToHsl(color, this.id, reduceDuplicates);
 
-        const colorAnimation = this.options.color.animation;
+        if (hslColor) {
+            /* color */
+            this.color = {
+                h: {
+                    value: hslColor.h,
+                },
+                s: {
+                    value: hslColor.s,
+                },
+                l: {
+                    value: hslColor.l,
+                },
+            };
 
-        if (colorAnimation.enable) {
-            this.color.velocity = (colorAnimation.speed / 100) * container.retina.reduceFactor;
+            const colorAnimation = this.options.color.animation;
 
-            if (!colorAnimation.sync) {
-                this.color.velocity *= Math.random();
+            if (colorAnimation.h.enable) {
+                this.color.h.velocity = (colorAnimation.h.speed / 100) * container.retina.reduceFactor;
+
+                if (!colorAnimation.h.sync) {
+                    this.color.h.velocity *= Math.random();
+                }
+            }
+
+            if (colorAnimation.s.enable) {
+                this.color.s.velocity = (colorAnimation.s.speed / 100) * container.retina.reduceFactor;
+
+                if (!colorAnimation.s.sync) {
+                    this.color.s.velocity *= Math.random();
+                }
+            }
+
+            if (colorAnimation.l.enable) {
+                this.color.l.velocity = (colorAnimation.h.speed / 100) * container.retina.reduceFactor;
+
+                if (!colorAnimation.l.sync) {
+                    this.color.l.velocity *= Math.random();
+                }
             }
         }
 
@@ -414,27 +443,65 @@ export class Particle implements IParticle {
 
         this.strokeWidth = this.stroke.width * container.retina.pixelRatio;
 
-        /* strokeColor */
-        this.strokeColor = {
-            value: ColorUtils.colorToHsl(this.stroke.color) ?? this.color.value,
-        };
+        const strokeHslColor = ColorUtils.colorToHsl(this.stroke.color) ?? this.getFillColor();
 
-        if (typeof this.stroke.color !== "string") {
+        if (strokeHslColor) {
+            /* strokeColor */
+            this.strokeColor = {
+                h: {
+                    value: strokeHslColor.h,
+                },
+                s: {
+                    value: strokeHslColor.s,
+                },
+                l: {
+                    value: strokeHslColor.l,
+                },
+            };
+
             const strokeColorAnimation = this.stroke.color?.animation;
 
             if (strokeColorAnimation && this.strokeColor) {
-                if (strokeColorAnimation.enable) {
-                    this.strokeColor.velocity = (strokeColorAnimation.speed / 100) * container.retina.reduceFactor;
+                if (strokeColorAnimation.h.enable) {
+                    this.strokeColor.h.velocity = (strokeColorAnimation.h.speed / 100) * container.retina.reduceFactor;
 
-                    if (!strokeColorAnimation.sync) {
-                        this.strokeColor.velocity = this.strokeColor.velocity * Math.random();
+                    if (!strokeColorAnimation.h.sync) {
+                        this.strokeColor.h.velocity = this.strokeColor.h.velocity * Math.random();
+
+                        if (this.strokeColor.h.value) {
+                            this.strokeColor.h.value *= Math.random();
+                        }
                     }
                 } else {
-                    this.strokeColor.velocity = 0;
+                    this.strokeColor.h.velocity = 0;
                 }
 
-                if (strokeColorAnimation.enable && !strokeColorAnimation.sync && this.strokeColor.value) {
-                    this.strokeColor.value.h = Math.random() * 360;
+                if (strokeColorAnimation.s.enable) {
+                    this.strokeColor.s.velocity = (strokeColorAnimation.s.speed / 100) * container.retina.reduceFactor;
+
+                    if (!strokeColorAnimation.s.sync) {
+                        this.strokeColor.s.velocity = this.strokeColor.s.velocity * Math.random();
+
+                        if (this.strokeColor.s.value) {
+                            this.strokeColor.s.value *= Math.random();
+                        }
+                    }
+                } else {
+                    this.strokeColor.s.velocity = 0;
+                }
+
+                if (strokeColorAnimation.l.enable) {
+                    this.strokeColor.l.velocity = (strokeColorAnimation.l.speed / 100) * container.retina.reduceFactor;
+
+                    if (!strokeColorAnimation.l.sync) {
+                        this.strokeColor.l.velocity = this.strokeColor.h.velocity * Math.random();
+
+                        if (this.strokeColor.l.value) {
+                            this.strokeColor.l.value *= Math.random();
+                        }
+                    }
+                } else {
+                    this.strokeColor.l.velocity = 0;
                 }
             }
         }
@@ -507,11 +574,30 @@ export class Particle implements IParticle {
     }
 
     public getFillColor(): IHsl | undefined {
-        return this.bubble.color ?? this.color.value;
+        return (
+            this.bubble.color ??
+            (this.color
+                ? {
+                      h: this.color.h.value,
+                      s: this.color.s.value,
+                      l: this.color.l.value,
+                  }
+                : undefined)
+        );
     }
 
     public getStrokeColor(): IHsl | undefined {
-        return this.bubble.color ?? this.strokeColor.value ?? this.color.value;
+        return (
+            this.bubble.color ??
+            (this.strokeColor
+                ? {
+                      h: this.strokeColor.h.value,
+                      s: this.strokeColor.s.value,
+                      l: this.strokeColor.l.value,
+                  }
+                : undefined) ??
+            this.getFillColor()
+        );
     }
 
     /**

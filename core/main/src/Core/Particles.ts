@@ -284,7 +284,7 @@ export class Particles {
 
         options.color.load({
             value: {
-                hsl: parent.color.value,
+                hsl: parent.getFillColor(),
             },
         });
 
