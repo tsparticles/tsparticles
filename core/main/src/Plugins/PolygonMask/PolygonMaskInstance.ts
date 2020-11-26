@@ -2,7 +2,7 @@ import type { Container } from "../../Core/Container";
 import type { ICoordinates } from "../../Core/Interfaces/ICoordinates";
 import { InlineArrangement, Type } from "./Enums";
 import { Particle } from "../../Core/Particle";
-import { ColorUtils, Constants, NumberUtils, Utils } from "../../Utils";
+import { colorToRgb, Constants, getStyleFromRgb, NumberUtils, Utils } from "../../Utils";
 import type { IDimension } from "../../Core/Interfaces/IDimension";
 import type { ISvgPath } from "./Interfaces/ISvgPath";
 import type { IContainerPlugin } from "../../Core/Interfaces/IContainerPlugin";
@@ -40,7 +40,7 @@ function polygonBounce(particle: Particle): void {
 }
 
 function drawPolygonMask(context: CanvasRenderingContext2D, rawData: ICoordinates[], stroke: IDrawStroke): void {
-    const color = ColorUtils.colorToRgb(stroke.color);
+    const color = colorToRgb(stroke.color);
 
     if (!color) {
         return;
@@ -54,7 +54,7 @@ function drawPolygonMask(context: CanvasRenderingContext2D, rawData: ICoordinate
     }
 
     context.closePath();
-    context.strokeStyle = ColorUtils.getStyleFromRgb(color);
+    context.strokeStyle = getStyleFromRgb(color);
     context.lineWidth = stroke.width;
     context.stroke();
 }
@@ -67,13 +67,13 @@ function drawPolygonMaskPath(
 ): void {
     context.translate(position.x, position.y);
 
-    const color = ColorUtils.colorToRgb(stroke.color);
+    const color = colorToRgb(stroke.color);
 
     if (!color) {
         return;
     }
 
-    context.strokeStyle = ColorUtils.getStyleFromRgb(color, stroke.opacity);
+    context.strokeStyle = getStyleFromRgb(color, stroke.opacity);
     context.lineWidth = stroke.width;
     context.stroke(path);
 }

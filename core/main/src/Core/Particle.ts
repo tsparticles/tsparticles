@@ -23,7 +23,7 @@ import {
 import { ImageDrawer } from "../ShapeDrawers/ImageDrawer";
 import type { IImageShape } from "../Options/Interfaces/Particles/Shape/IImageShape";
 import type { RecursivePartial } from "../Types";
-import { ColorUtils, NumberUtils, Plugins, Utils } from "../Utils";
+import { colorToHsl, colorToRgb, getHslFromAnimation, NumberUtils, Plugins, replaceColorSvg, Utils } from "../Utils";
 import type { IShapeDrawer } from "./Interfaces/IShapeDrawer";
 import type { IDelta } from "./Interfaces/IDelta";
 import { Mover } from "./Particle/Mover";
@@ -317,10 +317,10 @@ export class Particle implements IParticle {
                 this.orbitRotation = orbitOptions.rotation.value;
             }
 
-            this.orbitColor = ColorUtils.colorToHsl(orbitOptions.color);
+            this.orbitColor = colorToHsl(orbitOptions.color);
         }
 
-        const hslColor = ColorUtils.colorToHsl(color, this.id, reduceDuplicates);
+        const hslColor = colorToHsl(color, this.id, reduceDuplicates);
 
         if (hslColor) {
             /* color */
@@ -424,7 +424,7 @@ export class Particle implements IParticle {
 
         this.strokeWidth = this.stroke.width * container.retina.pixelRatio;
 
-        const strokeHslColor = ColorUtils.colorToHsl(this.stroke.color) ?? this.getFillColor();
+        const strokeHslColor = colorToHsl(this.stroke.color) ?? this.getFillColor();
 
         if (strokeHslColor) {
             /* strokeColor */
@@ -491,7 +491,7 @@ export class Particle implements IParticle {
             this.spinRadius = distance;
         }
 
-        this.shadowColor = ColorUtils.colorToRgb(this.options.shadow.color);
+        this.shadowColor = colorToRgb(this.options.shadow.color);
         this.mover = new Mover(container, this);
     }
 
@@ -517,30 +517,11 @@ export class Particle implements IParticle {
     }
 
     public getFillColor(): IHsl | undefined {
-        return (
-            this.bubble.color ??
-            (this.color
-                ? {
-                      h: this.color.h.value,
-                      s: this.color.s.value,
-                      l: this.color.l.value,
-                  }
-                : undefined)
-        );
+        return this.bubble.color ?? getHslFromAnimation(this.color);
     }
 
     public getStrokeColor(): IHsl | undefined {
-        return (
-            this.bubble.color ??
-            (this.strokeColor
-                ? {
-                      h: this.strokeColor.h.value,
-                      s: this.strokeColor.s.value,
-                      l: this.strokeColor.l.value,
-                  }
-                : undefined) ??
-            this.getFillColor()
-        );
+        return this.bubble.color ?? getHslFromAnimation(this.strokeColor) ?? this.getFillColor();
     }
 
     /**
@@ -720,7 +701,7 @@ export class Particle implements IParticle {
         }
 
         if (image.svgData !== undefined && imageData.replaceColor && color) {
-            const svgColoredData = ColorUtils.replaceColorSvg(image, color, this.opacity.value);
+            const svgColoredData = replaceColorSvg(image, color, this.opacity.value);
 
             /* prepare to create img with colored svg */
             const svg = new Blob([svgColoredData], { type: "image/svg+xml" });

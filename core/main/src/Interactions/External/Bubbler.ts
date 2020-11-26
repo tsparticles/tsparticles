@@ -1,6 +1,6 @@
 import type { Container } from "../../Core/Container";
 import type { IBubblerProcessParam } from "../../Core/Interfaces/IBubblerProcessParam";
-import { Circle, ColorUtils, Constants, NumberUtils, Rectangle, Utils } from "../../Utils";
+import { Circle, colorToHsl, Constants, NumberUtils, Rectangle, Utils } from "../../Utils";
 import { ClickMode, DivMode, DivType, HoverMode, ProcessBubbleType } from "../../Enums";
 import { Particle } from "../../Core/Particle";
 import { DivEvent } from "../../Options/Classes/Interactivity/Events/DivEvent";
@@ -357,7 +357,7 @@ export class Bubbler extends ExternalBase {
 
             const bubbleColor = modeColor instanceof Array ? Utils.itemFromArray(modeColor) : modeColor;
 
-            particle.bubble.color = ColorUtils.colorToHsl(bubbleColor);
+            particle.bubble.color = colorToHsl(bubbleColor);
         }
     }
 }

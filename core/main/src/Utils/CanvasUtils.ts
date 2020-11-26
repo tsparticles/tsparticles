@@ -2,7 +2,6 @@ import type { IDimension } from "../Core/Interfaces/IDimension";
 import type { ICoordinates } from "../Core/Interfaces/ICoordinates";
 import type { IHsl, IRgb } from "../Core/Interfaces/Colors";
 import type { ILinksShadow } from "../Options/Interfaces/Particles/Links/ILinksShadow";
-import { ColorUtils } from "./ColorUtils";
 import type { IParticle } from "../Core/Interfaces/IParticle";
 import type { IShadow } from "../Options/Interfaces/Particles/IShadow";
 import type { Container } from "..";
@@ -10,6 +9,7 @@ import type { IContainerPlugin } from "../Core/Interfaces/IContainerPlugin";
 import type { IDelta } from "../Core/Interfaces/IDelta";
 import { Particle } from "../Core/Particle";
 import { NumberUtils } from "./NumberUtils";
+import { colorToRgb, getStyleFromHsl, getStyleFromRgb, mix } from "./ColorUtils";
 
 function drawLine(context: CanvasRenderingContext2D, begin: ICoordinates, end: ICoordinates): void {
     context.beginPath();
@@ -134,14 +134,14 @@ export class CanvasUtils {
             context.globalCompositeOperation = composite;
         }
 
-        context.strokeStyle = ColorUtils.getStyleFromRgb(colorLine, opacity);
+        context.strokeStyle = getStyleFromRgb(colorLine, opacity);
 
         if (shadow.enable) {
-            const shadowColor = ColorUtils.colorToRgb(shadow.color);
+            const shadowColor = colorToRgb(shadow.color);
 
             if (shadowColor) {
                 context.shadowBlur = shadow.blur;
-                context.shadowColor = ColorUtils.getStyleFromRgb(shadowColor);
+                context.shadowColor = getStyleFromRgb(shadowColor);
             }
         }
 
@@ -167,7 +167,7 @@ export class CanvasUtils {
             context.globalCompositeOperation = composite;
         }
 
-        context.fillStyle = ColorUtils.getStyleFromRgb(colorTriangle, opacityTriangle);
+        context.fillStyle = getStyleFromRgb(colorTriangle, opacityTriangle);
 
         context.fill();
     }
@@ -205,12 +205,12 @@ export class CanvasUtils {
 
         const sourcePos = p1.getPosition();
         const destPos = p2.getPosition();
-        const midRgb = ColorUtils.mix(color1, color2, p1.getRadius(), p2.getRadius());
+        const midRgb = mix(color1, color2, p1.getRadius(), p2.getRadius());
         const grad = context.createLinearGradient(sourcePos.x, sourcePos.y, destPos.x, destPos.y);
 
-        grad.addColorStop(0, ColorUtils.getStyleFromHsl(color1, opacity));
-        grad.addColorStop(gradStop > 1 ? 1 : gradStop, ColorUtils.getStyleFromRgb(midRgb, opacity));
-        grad.addColorStop(1, ColorUtils.getStyleFromHsl(color2, opacity));
+        grad.addColorStop(0, getStyleFromHsl(color1, opacity));
+        grad.addColorStop(gradStop > 1 ? 1 : gradStop, getStyleFromRgb(midRgb, opacity));
+        grad.addColorStop(1, getStyleFromHsl(color2, opacity));
 
         return grad;
     }
@@ -227,7 +227,7 @@ export class CanvasUtils {
 
         drawLine(context, begin, end);
 
-        context.strokeStyle = ColorUtils.getStyleFromRgb(colorLine, opacity);
+        context.strokeStyle = getStyleFromRgb(colorLine, opacity);
         context.lineWidth = width;
         context.stroke();
         context.restore();
@@ -250,16 +250,16 @@ export class CanvasUtils {
 
         const gradient = lightOptions.gradient;
         const gradientRgb = {
-            start: ColorUtils.colorToRgb(gradient.start),
-            stop: ColorUtils.colorToRgb(gradient.stop),
+            start: colorToRgb(gradient.start),
+            stop: colorToRgb(gradient.stop),
         };
 
         if (!gradientRgb.start || !gradientRgb.stop) {
             return;
         }
 
-        gradientAmbientLight.addColorStop(0, ColorUtils.getStyleFromRgb(gradientRgb.start));
-        gradientAmbientLight.addColorStop(1, ColorUtils.getStyleFromRgb(gradientRgb.stop));
+        gradientAmbientLight.addColorStop(0, getStyleFromRgb(gradientRgb.start));
+        gradientAmbientLight.addColorStop(1, getStyleFromRgb(gradientRgb.stop));
         context.fillStyle = gradientAmbientLight;
         context.fill();
     }
@@ -306,13 +306,13 @@ export class CanvasUtils {
             });
         }
 
-        const shadowRgb = ColorUtils.colorToRgb(shadowOptions.color);
+        const shadowRgb = colorToRgb(shadowOptions.color);
 
         if (!shadowRgb) {
             return;
         }
 
-        const shadowColor = ColorUtils.getStyleFromRgb(shadowRgb);
+        const shadowColor = getStyleFromRgb(shadowRgb);
 
         for (let i = points.length - 1; i >= 0; i--) {
             const n = i == points.length - 1 ? 0 : i + 1;
@@ -366,7 +366,7 @@ export class CanvasUtils {
 
         if (shadow.enable && shadowColor) {
             context.shadowBlur = shadow.blur;
-            context.shadowColor = ColorUtils.getStyleFromRgb(shadowColor);
+            context.shadowColor = getStyleFromRgb(shadowColor);
             context.shadowOffsetX = shadow.offset.x;
             context.shadowOffsetY = shadow.offset.y;
         }
@@ -480,7 +480,7 @@ export class CanvasUtils {
         context.beginPath();
 
         if (fillColorValue) {
-            context.strokeStyle = ColorUtils.getStyleFromHsl(fillColorValue, opacity);
+            context.strokeStyle = getStyleFromHsl(fillColorValue, opacity);
         }
 
         if (width === 0) {

@@ -1,7 +1,7 @@
 import type { Container } from "../../Core/Container";
 import type { ICoordinates } from "../../Core/Interfaces/ICoordinates";
 import type { IEmitter } from "./Options/Interfaces/IEmitter";
-import { ColorUtils, NumberUtils, Utils } from "../../Utils";
+import { colorToHsl, NumberUtils, Utils } from "../../Utils";
 import { SizeMode } from "../../Enums";
 import { EmitterSize } from "./Options/Classes/EmitterSize";
 import type { Emitters } from "./Emitters";
@@ -75,7 +75,7 @@ export class EmitterInstance {
         }
 
         if (this.emitterOptions.spawnColor !== undefined) {
-            this.spawnColor = ColorUtils.colorToHsl(this.emitterOptions.spawnColor);
+            this.spawnColor = colorToHsl(this.emitterOptions.spawnColor);
         }
 
         this.particlesOptions = particlesOptions;

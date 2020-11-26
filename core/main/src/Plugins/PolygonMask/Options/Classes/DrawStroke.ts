@@ -1,7 +1,7 @@
 import type { IDrawStroke } from "../Interfaces/IDrawStroke";
 import type { RecursivePartial } from "../../../../Types";
 import { OptionsColor } from "../../../../Options/Classes/OptionsColor";
-import { ColorUtils } from "../../../../Utils";
+import { stringToAlpha } from "../../../../Utils";
 import type { IOptionLoader } from "../../../../Options/Interfaces/IOptionLoader";
 
 /**
@@ -23,7 +23,7 @@ export class DrawStroke implements IDrawStroke, IOptionLoader<IDrawStroke> {
             this.color = OptionsColor.create(this.color, data.color);
 
             if (typeof this.color.value === "string") {
-                this.opacity = ColorUtils.stringToAlpha(this.color.value) ?? this.opacity;
+                this.opacity = stringToAlpha(this.color.value) ?? this.opacity;
             }
 
             if (data.opacity !== undefined) {
