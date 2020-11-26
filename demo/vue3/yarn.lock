@@ -2762,9 +2762,9 @@ core-js-compat@^3.6.2, core-js-compat@^3.6.5:
     semver "7.0.0"
 
 core-js@^3.6.5, core-js@^3.7.0:
-  version "3.7.0"
-  resolved "https://registry.yarnpkg.com/core-js/-/core-js-3.7.0.tgz#b0a761a02488577afbf97179e4681bf49568520f"
-  integrity sha512-NwS7fI5M5B85EwpWuIwJN4i/fbisQUwLwiSNUWeXlkAZ0sbBjLEvLvFLf1uzAUV66PcEPt4xCGCmOZSxVf3xzA==
+  version "3.8.0"
+  resolved "https://registry.yarnpkg.com/core-js/-/core-js-3.8.0.tgz#0fc2d4941cadf80538b030648bb64d230b4da0ce"
+  integrity sha512-W2VYNB0nwQQE7tKS7HzXd7r2y/y2SVJl4ga6oH/dnaLFzM0o2lB2P3zCkWj5Wc/zyMYjtgd5Hmhk0ObkQFZOIA==
 
 core-util-is@1.0.2, core-util-is@~1.0.0:
   version "1.0.2"
@@ -5956,16 +5956,16 @@ parseurl@~1.3.2, parseurl@~1.3.3:
   resolved "https://registry.yarnpkg.com/parseurl/-/parseurl-1.3.3.tgz#9da19e7bee8d12dff0513ed5b76957793bc2e8d4"
   integrity sha512-CiyeOxFT/JZyN5m0z9PfXw4SCBJ6Sygz1Dpl0wqjlhDEGGBP1GnsUVEL0p63hoG1fcj3fHynXi9NYO4nWOL+qQ==
 
-particles.vue3@^1.2.0-alpha.1:
-  version "1.2.0-alpha.1"
-  resolved "https://registry.yarnpkg.com/particles.vue3/-/particles.vue3-1.2.0-alpha.1.tgz#5345c449a317d4d71a0696653e0349ef4d3f8e2a"
-  integrity sha512-46rPcoig7uegDdMNw20DNuG3hRitpeTQi2sQFD9mGdF1rLD4r/jPvu1hnhRrCQN3oTM6zB7bvSxRoW+U0DeOfg==
+particles.vue3@^1.2.0-alpha.2:
+  version "1.2.0-alpha.2"
+  resolved "https://registry.yarnpkg.com/particles.vue3/-/particles.vue3-1.2.0-alpha.2.tgz#681cea0807d509f55230ea2df5f144856900717d"
+  integrity sha512-LJiUAQ1A0gGd6l6Ilgr+sPcIHdgQeExftQkIT0StL0exJP3SGP7yA1rgtRPnWpvq0RTOoxUdii5xGxowhwvs5w==
   dependencies:
     core-js "^3.7.0"
     tslib "^2.0.3"
-    tsparticles "^1.19.0-alpha.1"
+    tsparticles "^1.19.0-alpha.2"
     vue ">=3"
-    vue-class-component "^8.0.0-beta.4"
+    vue-class-component "^8.0.0-rc.1"
 
 pascalcase@^0.1.1:
   version "0.1.1"
@@ -7760,24 +7760,24 @@ tslint@^5.20.1:
     tslib "^1.8.0"
     tsutils "^2.29.0"
 
-tsparticles-preset-big-circles@^1.4.0-alpha.1:
-  version "1.4.0-alpha.1"
-  resolved "https://registry.yarnpkg.com/tsparticles-preset-big-circles/-/tsparticles-preset-big-circles-1.4.0-alpha.1.tgz#e372db85036c9d667802e8d517f5e2f9280ddd4d"
-  integrity sha512-/oJ2rTO82Vvc2weIoBj/3UtlBv0CnkCn6d/4RrKCTLxZ+GFnKZyE8Q+GsJV5pKei6hmYVwHzsn9eaHlmkqaJrg==
+tsparticles-preset-big-circles@^1.4.0-alpha.2:
+  version "1.4.0-alpha.2"
+  resolved "https://registry.yarnpkg.com/tsparticles-preset-big-circles/-/tsparticles-preset-big-circles-1.4.0-alpha.2.tgz#c5650a656e800106f49a1fcee28049e7a37341c1"
+  integrity sha512-3mIWC+xzYokklDrK1xAR9Icgbkv36FTIcWGgY9Y02uStdlZekfbn8L0M8LIxrjLIdHxLXdIU1IAFvwRFUyMMPg==
   dependencies:
-    tsparticles "^1.19.0-alpha.1"
+    tsparticles "^1.19.0-alpha.2"
 
-tsparticles-preset-sea-anemone@^1.4.0-alpha.1:
-  version "1.4.0-alpha.1"
-  resolved "https://registry.yarnpkg.com/tsparticles-preset-sea-anemone/-/tsparticles-preset-sea-anemone-1.4.0-alpha.1.tgz#11202605e135a616c4b1ca3179bcf32effc836f5"
-  integrity sha512-30mn692OGhvAOqM4IyCDlr9IlPqVhkrw/ozy/SdAKi89Huy4xExOJSF8U7suRhvrZtbBnmIzOYZIYfKrQ9iiQg==
+tsparticles-preset-sea-anemone@^1.4.0-alpha.2:
+  version "1.4.0-alpha.2"
+  resolved "https://registry.yarnpkg.com/tsparticles-preset-sea-anemone/-/tsparticles-preset-sea-anemone-1.4.0-alpha.2.tgz#9971054eda5bf2302c2a2107924ed844980b94d8"
+  integrity sha512-4jbSQjLJQSk1HRoTJMrKnCdsgyx2TrZzlWTOhXX6lI2Gs4nKGx6/GX/5Wk37n1yxIWcLI/rXpdPWvXBb0BMb5Q==
   dependencies:
-    tsparticles "^1.19.0-alpha.1"
+    tsparticles "^1.19.0-alpha.2"
 
-tsparticles@^1.19.0-alpha.1:
-  version "1.19.0-alpha.1"
-  resolved "https://registry.yarnpkg.com/tsparticles/-/tsparticles-1.19.0-alpha.1.tgz#302af2bfe844b0e1d87dcff2e147b03fa1ceb72f"
-  integrity sha512-reDbIIH9kdNE7I2Pav3FBiVpfsNYNWyWz5xvDsWFIp+szXE3VsqX2IjqeTlVJlQAfwUMCmJgBNppo1dRMU3cew==
+tsparticles@^1.19.0-alpha.2:
+  version "1.19.0-alpha.2"
+  resolved "https://registry.yarnpkg.com/tsparticles/-/tsparticles-1.19.0-alpha.2.tgz#67e2a2ac8188a96ff1a3fb804ae88ed3246eaf40"
+  integrity sha512-LO65MR+PKmRuMHVa9uSWlFENsEmIPc7SoNSVEI0R2dymjVdFufhinIxmUwaTE9NF9sJpZxsJ/G5Pv0Y1G/T9hg==
   optionalDependencies:
     pathseg "^1.2.0"
 
@@ -8062,7 +8062,7 @@ vm-browserify@^1.0.1:
   resolved "https://registry.yarnpkg.com/vm-browserify/-/vm-browserify-1.1.2.tgz#78641c488b8e6ca91a75f511e7a3b32a86e5dda0"
   integrity sha512-2ham8XPWTONajOR0ohOKOHXkm3+gaBmGut3SRuu75xLd/RRaY6vqgh8NBYYk7+RW3u5AtzPQZG8F10LHkl0lAQ==
 
-vue-class-component@^8.0.0-beta.4:
+vue-class-component@^8.0.0-beta.4, vue-class-component@^8.0.0-rc.1:
   version "8.0.0-rc.1"
   resolved "https://registry.yarnpkg.com/vue-class-component/-/vue-class-component-8.0.0-rc.1.tgz#db692cd97656eb9a08206c03d0b7398cdb1d9420"
   integrity sha512-w1nMzsT/UdbDAXKqhwTmSoyuJzUXKrxLE77PCFVuC6syr8acdFDAq116xgvZh9UCuV0h+rlCtxXolr3Hi3HyPQ==
