@@ -93,13 +93,24 @@ export function loadPreset(tsParticles: Main): void {
             spawnColor: {
                 value: "#ff0000",
                 animation: {
-                    enable: true,
-                    offset: {
-                        min: -1.4,
-                        max: 1.4,
+                    h: {
+                        enable: true,
+                        offset: {
+                            min: -1.4,
+                            max: 1.4,
+                        },
+                        speed: 5,
+                        sync: false,
                     },
-                    speed: 5,
-                    sync: false,
+                    l: {
+                        enable: true,
+                        offset: {
+                            min: 20,
+                            max: 80,
+                        },
+                        speed: 0,
+                        sync: false,
+                    },
                 },
             },
             position: {

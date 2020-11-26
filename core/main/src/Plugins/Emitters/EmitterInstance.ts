@@ -229,62 +229,13 @@ export class EmitterInstance {
                     const hueAnimation = colorAnimation as IColorAnimation;
 
                     if (hueAnimation.enable) {
-                        const colorOffset = NumberUtils.randomInRange(hueAnimation.offset.min, hueAnimation.offset.max);
-                        const emitFactor = (1000 * this.emitterOptions.rate.delay) / container.retina.reduceFactor;
-                        const colorSpeed = hueAnimation.speed ?? 0;
-
-                        this.spawnColor.h += (colorSpeed * container.fpsLimit) / emitFactor + colorOffset * 3.6;
-
-                        if (this.spawnColor.h > 360) {
-                            this.spawnColor.h -= 360;
-                        }
+                        this.spawnColor.h = this.setColorAnimation(hueAnimation, this.spawnColor.h, 360);
                     } else {
                         const hslAnimation = colorAnimation as IHslAnimation;
 
-                        if (hslAnimation.h.enable) {
-                            const colorOffset = NumberUtils.randomInRange(
-                                hslAnimation.h.offset.min,
-                                hslAnimation.h.offset.max
-                            );
-                            const emitFactor = (1000 * this.emitterOptions.rate.delay) / container.retina.reduceFactor;
-                            const colorSpeed = hslAnimation.h.speed ?? 0;
-
-                            this.spawnColor.h += (colorSpeed * container.fpsLimit) / emitFactor + colorOffset * 3.6;
-
-                            if (this.spawnColor.h > 360) {
-                                this.spawnColor.h -= 360;
-                            }
-                        }
-
-                        if (hslAnimation.s.enable) {
-                            const colorOffset = NumberUtils.randomInRange(
-                                hslAnimation.s.offset.min,
-                                hslAnimation.s.offset.max
-                            );
-                            const emitFactor = (1000 * this.emitterOptions.rate.delay) / container.retina.reduceFactor;
-                            const colorSpeed = hslAnimation.s.speed ?? 0;
-
-                            this.spawnColor.s += (colorSpeed * container.fpsLimit) / emitFactor + colorOffset;
-
-                            if (this.spawnColor.s > 100) {
-                                this.spawnColor.s -= 100;
-                            }
-                        }
-
-                        if (hslAnimation.l.enable) {
-                            const colorOffset = NumberUtils.randomInRange(
-                                hslAnimation.l.offset.min,
-                                hslAnimation.l.offset.max
-                            );
-                            const emitFactor = (1000 * this.emitterOptions.rate.delay) / container.retina.reduceFactor;
-                            const colorSpeed = hslAnimation.l.speed ?? 0;
-
-                            this.spawnColor.l += (colorSpeed * container.fpsLimit) / emitFactor + colorOffset;
-
-                            if (this.spawnColor.l > 100) {
-                                this.spawnColor.l -= 100;
-                            }
-                        }
+                        this.spawnColor.h = this.setColorAnimation(hslAnimation.h, this.spawnColor.h, 360);
+                        this.spawnColor.s = this.setColorAnimation(hslAnimation.s, this.spawnColor.s, 100);
+                        this.spawnColor.l = this.setColorAnimation(hslAnimation.l, this.spawnColor.l, 100);
                     }
                 }
 
@@ -315,5 +266,20 @@ export class EmitterInstance {
 
             container.particles.addParticle(randomPosition(position, offset), particlesOptions);
         }
+    }
+
+    private setColorAnimation(animation: IColorAnimation, initValue: number, maxValue: number): number {
+        const container = this.container;
+
+        if (!animation.enable) {
+            return initValue;
+        }
+
+        const colorOffset = NumberUtils.randomInRange(animation.offset.min, animation.offset.max);
+
+        const emitFactor = (1000 * this.emitterOptions.rate.delay) / container.retina.reduceFactor;
+        const colorSpeed = animation.speed ?? 0;
+
+        return (initValue + (colorSpeed * container.fpsLimit) / emitFactor + colorOffset * 3.6) % maxValue;
     }
 }

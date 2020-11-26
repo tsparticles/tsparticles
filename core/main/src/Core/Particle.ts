@@ -12,13 +12,13 @@ import { Particles } from "../Options/Classes/Particles/Particles";
 import { Shape } from "../Options/Classes/Particles/Shape/Shape";
 import {
     AnimationStatus,
+    DestroyMode,
     MoveDirection,
     MoveDirectionAlt,
     OutMode,
     RotateDirection,
     ShapeType,
     StartValueType,
-    DestroyMode,
 } from "../Enums";
 import { ImageDrawer } from "../ShapeDrawers/ImageDrawer";
 import type { IImageShape } from "../Options/Interfaces/Particles/Shape/IImageShape";
@@ -32,6 +32,7 @@ import type { IParticleLoops } from "./Interfaces/IParticleLoops";
 import type { IParticleInfection } from "./Interfaces/IParticleInfection";
 import type { IParticleHslAnimation } from "./Interfaces/IParticleHslAnimation";
 import type { Stroke } from "../Options/Classes/Particles/Stroke";
+import { IColorAnimation } from "../Options/Interfaces/IColorAnimation";
 
 /**
  * The single particle object
@@ -337,29 +338,9 @@ export class Particle implements IParticle {
 
             const colorAnimation = this.options.color.animation;
 
-            if (colorAnimation.h.enable) {
-                this.color.h.velocity = (colorAnimation.h.speed / 100) * container.retina.reduceFactor;
-
-                if (!colorAnimation.h.sync) {
-                    this.color.h.velocity *= Math.random();
-                }
-            }
-
-            if (colorAnimation.s.enable) {
-                this.color.s.velocity = (colorAnimation.s.speed / 100) * container.retina.reduceFactor;
-
-                if (!colorAnimation.s.sync) {
-                    this.color.s.velocity *= Math.random();
-                }
-            }
-
-            if (colorAnimation.l.enable) {
-                this.color.l.velocity = (colorAnimation.h.speed / 100) * container.retina.reduceFactor;
-
-                if (!colorAnimation.l.sync) {
-                    this.color.l.velocity *= Math.random();
-                }
-            }
+            this.setColorAnimation(colorAnimation.h, this.color.h);
+            this.setColorAnimation(colorAnimation.s, this.color.s);
+            this.setColorAnimation(colorAnimation.l, this.color.l);
         }
 
         /* opacity */
@@ -462,47 +443,9 @@ export class Particle implements IParticle {
             const strokeColorAnimation = this.stroke.color?.animation;
 
             if (strokeColorAnimation && this.strokeColor) {
-                if (strokeColorAnimation.h.enable) {
-                    this.strokeColor.h.velocity = (strokeColorAnimation.h.speed / 100) * container.retina.reduceFactor;
-
-                    if (!strokeColorAnimation.h.sync) {
-                        this.strokeColor.h.velocity = this.strokeColor.h.velocity * Math.random();
-
-                        if (this.strokeColor.h.value) {
-                            this.strokeColor.h.value *= Math.random();
-                        }
-                    }
-                } else {
-                    this.strokeColor.h.velocity = 0;
-                }
-
-                if (strokeColorAnimation.s.enable) {
-                    this.strokeColor.s.velocity = (strokeColorAnimation.s.speed / 100) * container.retina.reduceFactor;
-
-                    if (!strokeColorAnimation.s.sync) {
-                        this.strokeColor.s.velocity = this.strokeColor.s.velocity * Math.random();
-
-                        if (this.strokeColor.s.value) {
-                            this.strokeColor.s.value *= Math.random();
-                        }
-                    }
-                } else {
-                    this.strokeColor.s.velocity = 0;
-                }
-
-                if (strokeColorAnimation.l.enable) {
-                    this.strokeColor.l.velocity = (strokeColorAnimation.l.speed / 100) * container.retina.reduceFactor;
-
-                    if (!strokeColorAnimation.l.sync) {
-                        this.strokeColor.l.velocity = this.strokeColor.h.velocity * Math.random();
-
-                        if (this.strokeColor.l.value) {
-                            this.strokeColor.l.value *= Math.random();
-                        }
-                    }
-                } else {
-                    this.strokeColor.l.velocity = 0;
-                }
+                this.setColorAnimation(strokeColorAnimation.h, this.strokeColor.h);
+                this.setColorAnimation(strokeColorAnimation.s, this.strokeColor.s);
+                this.setColorAnimation(strokeColorAnimation.l, this.strokeColor.l);
             }
         }
 
@@ -629,6 +572,24 @@ export class Particle implements IParticle {
     public reset(): void {
         this.loops.opacity = 0;
         this.loops.size = 0;
+    }
+
+    private setColorAnimation(colorAnimation: IColorAnimation, colorValue: IParticleValueAnimation<number>): void {
+        if (colorAnimation.enable) {
+            colorValue.velocity = (colorAnimation.speed / 100) * this.container.retina.reduceFactor;
+
+            if (colorAnimation.sync) {
+                return;
+            }
+
+            colorValue.velocity *= Math.random();
+
+            if (colorValue.value) {
+                colorValue.value *= Math.random();
+            }
+        } else {
+            colorValue.velocity = 0;
+        }
     }
 
     private calcPosition(container: Container, position: ICoordinates | undefined, zIndex: number): ICoordinates3d {

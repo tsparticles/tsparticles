@@ -18,7 +18,6 @@ export class StrokeColorUpdater implements IParticleUpdater {
             !particle.destroyed &&
             !particle.spawning &&
             color !== undefined &&
-            typeof color !== "string" &&
             ((particle.strokeColor?.h.value !== undefined && color.animation.h.enable) ||
                 (particle.strokeColor?.s.value !== undefined && color.animation.s.enable) ||
                 (particle.strokeColor?.l.value !== undefined && color.animation.l.enable))
@@ -69,17 +68,18 @@ export class StrokeColorUpdater implements IParticleUpdater {
         valueAnimation: IColorAnimation,
         max: number
     ): void {
-        const offset = NumberUtils.randomInRange(valueAnimation.offset.min, valueAnimation.offset.max);
         const colorValue = value;
 
         if (!colorValue) {
             return;
         }
 
+        const offset = NumberUtils.randomInRange(valueAnimation.offset.min, valueAnimation.offset.max);
+
         colorValue.value += (value.velocity ?? 0) * delta.factor + offset * 3.6;
 
         if (colorValue.value > max) {
-            colorValue.value -= max;
+            colorValue.value %= max;
         }
     }
 }

@@ -48,17 +48,18 @@ export class ColorUpdater implements IParticleUpdater {
         valueAnimation: ColorAnimation,
         max: number
     ) {
-        const offset = NumberUtils.randomInRange(valueAnimation.offset.min, valueAnimation.offset.max);
         const colorValue = value;
 
         if (!colorValue || !valueAnimation.enable) {
             return;
         }
 
+        const offset = NumberUtils.randomInRange(valueAnimation.offset.min, valueAnimation.offset.max);
+
         colorValue.value += (value.velocity ?? 0) * delta.factor + offset * 3.6;
 
         if (colorValue.value > max) {
-            colorValue.value -= max;
+            colorValue.value %= max;
         }
     }
 }
