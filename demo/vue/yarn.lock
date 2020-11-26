@@ -6537,6 +6537,17 @@ parseurl@~1.3.2, parseurl@~1.3.3:
   resolved "https://registry.yarnpkg.com/parseurl/-/parseurl-1.3.3.tgz#9da19e7bee8d12dff0513ed5b76957793bc2e8d4"
   integrity sha512-CiyeOxFT/JZyN5m0z9PfXw4SCBJ6Sygz1Dpl0wqjlhDEGGBP1GnsUVEL0p63hoG1fcj3fHynXi9NYO4nWOL+qQ==
 
+particles.vue@^2.2.0-alpha.2:
+  version "2.2.0-alpha.2"
+  resolved "https://registry.yarnpkg.com/particles.vue/-/particles.vue-2.2.0-alpha.2.tgz#eb2dda0fe91d7f388c9bb3070e20f9b47ada7071"
+  integrity sha512-JFGMX2Q9v/2yAiATCcx6QvCCP2MzCJKrtCCB4GsduoODmC/BS/6AqzkzUtRaUn5UGOOtgpq84uEb2bxu4cXb2Q==
+  dependencies:
+    tslib "^2.0.3"
+    tsparticles "^1.19.0-alpha.2"
+    vue ">=2 && <3"
+    vue-class-component "<8"
+    vue-property-decorator "^9.1.1"
+
 pascalcase@^0.1.1:
   version "0.1.1"
   resolved "https://registry.yarnpkg.com/pascalcase/-/pascalcase-0.1.1.tgz#b363e55e8006ca6fe21784d2db22bd15d7917f14"
@@ -6603,6 +6614,11 @@ path-type@^4.0.0:
   version "4.0.0"
   resolved "https://registry.yarnpkg.com/path-type/-/path-type-4.0.0.tgz#84ed01c0a7ba380afe09d90a8c180dcd9d03043b"
   integrity sha512-gDKb8aZMDeD/tZWs9P6+q0J9Mwkdl6xMV8TjnGP3qJVJ06bdMgkbBlLU8IdfOsIsFz2BW1rNVT3XuNEl8zPAvw==
+
+pathseg@^1.2.0:
+  version "1.2.0"
+  resolved "https://registry.yarnpkg.com/pathseg/-/pathseg-1.2.0.tgz#22af051e28037671e7799e296fe96c5dcbe53acd"
+  integrity sha512-+pQS7lTaoVIXhaCW7R3Wd/165APzZHWzYVqe7dxzdupxQwebgpBaCmf0/XZwmoA/rkDq3qvzO0qv4d5oFVrBRw==
 
 pbkdf2@^3.0.3:
   version "3.1.1"
@@ -8645,6 +8661,11 @@ tslib@^1.10.0, tslib@^1.8.0, tslib@^1.8.1, tslib@^1.9.0:
   resolved "https://registry.yarnpkg.com/tslib/-/tslib-1.14.1.tgz#cf2d38bdc34a134bcaf1091c41f6619e2f672d00"
   integrity sha512-Xni35NKzjgMrwevysHTCArtLDpPvye8zV/0E4EyYn43P7/7qvQwPh9BGkHewbMulVntbigmcT7rdX3BNo9wRJg==
 
+tslib@^2.0.3:
+  version "2.0.3"
+  resolved "https://registry.yarnpkg.com/tslib/-/tslib-2.0.3.tgz#8e0741ac45fc0c226e58a17bfc3e64b9bc6ca61c"
+  integrity sha512-uZtkfKblCEQtZKBF6EBXVZeQNl82yqtDQdv+eck8u7tdPxjLu2/lp5/uPW+um2tpuxINHWy3GhiccY7QgEaVHQ==
+
 tslint@^5.20.1:
   version "5.20.1"
   resolved "https://registry.yarnpkg.com/tslint/-/tslint-5.20.1.tgz#e401e8aeda0152bc44dd07e614034f3f80c67b7d"
@@ -8663,6 +8684,27 @@ tslint@^5.20.1:
     semver "^5.3.0"
     tslib "^1.8.0"
     tsutils "^2.29.0"
+
+tsparticles-preset-big-circles@^1.4.0-alpha.2:
+  version "1.4.0-alpha.2"
+  resolved "https://registry.yarnpkg.com/tsparticles-preset-big-circles/-/tsparticles-preset-big-circles-1.4.0-alpha.2.tgz#c5650a656e800106f49a1fcee28049e7a37341c1"
+  integrity sha512-3mIWC+xzYokklDrK1xAR9Icgbkv36FTIcWGgY9Y02uStdlZekfbn8L0M8LIxrjLIdHxLXdIU1IAFvwRFUyMMPg==
+  dependencies:
+    tsparticles "^1.19.0-alpha.2"
+
+tsparticles-preset-sea-anemone@^1.4.0-alpha.2:
+  version "1.4.0-alpha.2"
+  resolved "https://registry.yarnpkg.com/tsparticles-preset-sea-anemone/-/tsparticles-preset-sea-anemone-1.4.0-alpha.2.tgz#9971054eda5bf2302c2a2107924ed844980b94d8"
+  integrity sha512-4jbSQjLJQSk1HRoTJMrKnCdsgyx2TrZzlWTOhXX6lI2Gs4nKGx6/GX/5Wk37n1yxIWcLI/rXpdPWvXBb0BMb5Q==
+  dependencies:
+    tsparticles "^1.19.0-alpha.2"
+
+tsparticles@^1.19.0-alpha.2:
+  version "1.19.0-alpha.2"
+  resolved "https://registry.yarnpkg.com/tsparticles/-/tsparticles-1.19.0-alpha.2.tgz#67e2a2ac8188a96ff1a3fb804ae88ed3246eaf40"
+  integrity sha512-LO65MR+PKmRuMHVa9uSWlFENsEmIPc7SoNSVEI0R2dymjVdFufhinIxmUwaTE9NF9sJpZxsJ/G5Pv0Y1G/T9hg==
+  optionalDependencies:
+    pathseg "^1.2.0"
 
 tsutils@^2.29.0:
   version "2.29.0"
@@ -9023,6 +9065,11 @@ vue-property-decorator@^9.0.2:
   version "9.0.2"
   resolved "https://registry.yarnpkg.com/vue-property-decorator/-/vue-property-decorator-9.0.2.tgz#118459d77b4d5613ab2bbccba2edd5d7af685d30"
   integrity sha512-mxuJHfUGs/3rUyFj2vykDIvYXCUKBrzhemm7mT8dE9QYTbNA/4qVQ5gwhNCIkKyQc8RQIXQ+0jriqinUDuuU9w==
+
+vue-property-decorator@^9.1.1:
+  version "9.1.2"
+  resolved "https://registry.yarnpkg.com/vue-property-decorator/-/vue-property-decorator-9.1.2.tgz#266a2eac61ba6527e2e68a6933cfb98fddab5457"
+  integrity sha512-xYA8MkZynPBGd/w5QFJ2d/NM0z/YeegMqYTphy7NJQXbZcuU6FC6AOdUAcy4SXP+YnkerC6AfH+ldg7PDk9ESQ==
 
 vue-runtime-helpers@^1.1.2:
   version "1.1.2"
