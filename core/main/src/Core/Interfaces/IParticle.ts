@@ -2,7 +2,6 @@ import type { IStroke } from "../../Options/Interfaces/Particles/IStroke";
 import type { ICoordinates, ICoordinates3d } from "./ICoordinates";
 import type { IVelocity } from "./IVelocity";
 import type { MoveDirection, MoveDirectionAlt, ShapeType } from "../../Enums";
-import type { IParticleImage } from "./IParticleImage";
 import type { IParticleValueAnimation } from "./IParticleValueAnimation";
 import type { IShapeValues } from "../../Options/Interfaces/Particles/Shape/IShapeValues";
 import type { IBubbleParticleData } from "./IBubbleParticleData";
@@ -26,7 +25,6 @@ export interface IParticle {
     readonly direction: MoveDirection | keyof typeof MoveDirection | MoveDirectionAlt;
     readonly fill: boolean;
     readonly id: number;
-    readonly image?: IParticleImage;
     readonly initialVelocity: IVelocity;
     readonly links: ILink[];
     readonly loops: IParticleLoops;

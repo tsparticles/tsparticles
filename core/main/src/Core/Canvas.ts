@@ -399,7 +399,7 @@ export class Canvas {
     }
 
     public drawParticle(particle: Particle, delta: IDelta): void {
-        if (particle.image?.loaded === false || particle.spawning || particle.destroyed) {
+        if (particle.spawning || particle.destroyed) {
             return;
         }
 
