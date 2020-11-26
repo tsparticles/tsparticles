@@ -9,7 +9,7 @@ function bounce(p1: Particle, p2: Particle): void {
 }
 
 function destroy(p1: Particle, p2: Particle): void {
-    if (!p1.unbreaking && !p2.unbreaking) {
+    if (!p1.unbreakable && !p2.unbreakable) {
         bounce(p1, p2);
     }
 

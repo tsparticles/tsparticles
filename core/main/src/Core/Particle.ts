@@ -47,7 +47,7 @@ export class Particle implements IParticle {
     public lastNoiseTime;
     public zIndexFactor;
     public splitCount;
-    public unbreaking;
+    public unbreakable;
 
     public readonly noiseDelay;
     public readonly mover;
@@ -106,7 +106,7 @@ export class Particle implements IParticle {
         this.close = true;
         this.lastNoiseTime = 0;
         this.splitCount = 0;
-        this.unbreaking = false;
+        this.unbreakable = false;
         this.destroyed = false;
         this.misplaced = false;
         this.loops = {
@@ -443,14 +443,14 @@ export class Particle implements IParticle {
 
         this.lifeDelay = container.retina.reduceFactor
             ? ((NumberUtils.getValue(lifeOptions.delay) * (lifeOptions.delay.sync ? 1 : Math.random())) /
-            container.retina.reduceFactor) *
-            1000
+                  container.retina.reduceFactor) *
+              1000
             : 0;
         this.lifeDelayTime = 0;
         this.lifeDuration = container.retina.reduceFactor
             ? ((NumberUtils.getValue(lifeOptions.duration) * (lifeOptions.duration.sync ? 1 : Math.random())) /
-            container.retina.reduceFactor) *
-            1000
+                  container.retina.reduceFactor) *
+              1000
             : 0;
         this.lifeTime = 0;
         this.livesRemaining = particlesOptions.life.count;
@@ -518,7 +518,7 @@ export class Particle implements IParticle {
      * This destroys the particle just before it's been removed from the canvas and the container
      */
     public destroy(override?: boolean): void {
-        if (this.unbreaking) {
+        if (this.unbreakable) {
             return;
         }
 
@@ -564,7 +564,7 @@ export class Particle implements IParticle {
     }
 
     private calcPosition(container: Container, position: ICoordinates | undefined, zIndex: number): ICoordinates3d {
-        for (const [ , plugin ] of container.plugins) {
+        for (const [, plugin] of container.plugins) {
             const pluginPos =
                 plugin.particlePosition !== undefined ? plugin.particlePosition(position, this) : undefined;
 
