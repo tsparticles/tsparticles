@@ -28,7 +28,7 @@ import type { IParticleLoops } from "./Interfaces/IParticleLoops";
 import type { IParticleInfection } from "./Interfaces/IParticleInfection";
 import type { IParticleHslAnimation } from "./Interfaces/IParticleHslAnimation";
 import type { Stroke } from "../Options/Classes/Particles/Stroke";
-import { IColorAnimation } from "../Options/Interfaces/IColorAnimation";
+import type { IColorAnimation } from "../Options/Interfaces/IColorAnimation";
 
 /**
  * The single particle object
