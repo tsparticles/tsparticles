@@ -4080,9 +4080,9 @@ typedoc@^0.19.2, typedoc@~0.19.1:
     typedoc-default-themes "^0.11.4"
 
 typescript-json-schema@^0.44.0:
-  version "0.44.0"
-  resolved "https://registry.yarnpkg.com/typescript-json-schema/-/typescript-json-schema-0.44.0.tgz#8ec96b26caa5b8744d6cac47ce9aadc3187f4700"
-  integrity sha512-MC6hEUYmA35F6SQjwrogzjOhrkH0x4f/yCrzb1EQU5EOoEDdu51vsrlkI9oKgLyyC7uWKBOlJsWAFk2RfGFvgQ==
+  version "0.44.1"
+  resolved "https://registry.yarnpkg.com/typescript-json-schema/-/typescript-json-schema-0.44.1.tgz#eeac4ffc6ec271a699e7958038ff49810402698b"
+  integrity sha512-DKB7rKzubOTXxT2CnQTQoCbS6SgJpqukJr2TWE9FbRK0iJY++wc24Pib3OAzIA+c9WylgfT3CxxCCetDsE55Nw==
   dependencies:
     "@types/json-schema" "^7.0.6"
     glob "^7.1.6"
