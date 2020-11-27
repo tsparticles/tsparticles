@@ -1,8 +1,8 @@
 import { EditorGroup, EditorType } from "object-gui";
 import type { Container } from "tsparticles";
-import type { ICollisions } from "tsparticles/dist/Options/Interfaces/Particles/ICollisions";
 import { CollisionMode } from "tsparticles";
 import { EditorBase } from "../../../../EditorBase";
+import type { ICollisions } from "tsparticles/dist/Options/Interfaces/Particles/Collisions/ICollisions";
 
 export class CollisionsOptionsEditor extends EditorBase {
     public group!: EditorGroup;
@@ -17,6 +17,7 @@ export class CollisionsOptionsEditor extends EditorBase {
         this.options = this.group.data as ICollisions;
 
         this.addBounce();
+        this.addOverlap();
         this.addProperties();
     }
 
@@ -42,6 +43,19 @@ export class CollisionsOptionsEditor extends EditorBase {
         });
 
         group.addProperty("value", "Value", EditorType.number).change(async () => {
+            await particles.refresh();
+        });
+    }
+
+    private addOverlap(): void {
+        const particles = this.particles;
+        const group = this.group.addGroup("overlap", "Overlap");
+
+        group.addProperty("enable", "Enable", EditorType.boolean).change(async () => {
+            await particles.refresh();
+        });
+
+        group.addProperty("retries", "Retries", EditorType.number).change(async () => {
             await particles.refresh();
         });
     }
