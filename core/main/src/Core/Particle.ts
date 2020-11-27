@@ -628,15 +628,7 @@ export class Particle implements IParticle {
             }
 
             if (overlaps) {
-                return this.calcPosition(
-                    container,
-                    {
-                        x: cSize.width * Math.random(),
-                        y: cSize.height * Math.random(),
-                    },
-                    zIndex,
-                    tryCount + 1
-                );
+                return this.calcPosition(container, undefined, zIndex, tryCount + 1);
             }
         }
 
