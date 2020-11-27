@@ -1,5 +1,5 @@
 import type { Container } from "../../Core/Container";
-import { Constants, Utils, ColorUtils, NumberUtils } from "../../Utils";
+import { Constants, Utils, NumberUtils, getLinkColor, getLinkRandomColor } from "../../Utils";
 import { HoverMode } from "../../Enums/Modes";
 import { ExternalBase } from "./ExternalBase";
 
@@ -65,18 +65,14 @@ export class Grabber extends ExternalBase {
                         if (!container.particles.grabLineColor) {
                             const linksOptions = container.options.interactivity.modes.grab.links;
 
-                            container.particles.grabLineColor = ColorUtils.getLinkRandomColor(
+                            container.particles.grabLineColor = getLinkRandomColor(
                                 optColor,
                                 linksOptions.blink,
                                 linksOptions.consent
                             );
                         }
 
-                        const colorLine = ColorUtils.getLinkColor(
-                            particle,
-                            undefined,
-                            container.particles.grabLineColor
-                        );
+                        const colorLine = getLinkColor(particle, undefined, container.particles.grabLineColor);
 
                         if (colorLine === undefined) {
                             return;

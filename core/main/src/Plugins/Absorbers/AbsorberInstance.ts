@@ -3,7 +3,7 @@ import type { Container } from "../../Core/Container";
 import type { Particle } from "../../Core/Particle";
 import type { IRgb } from "../../Core/Interfaces/Colors";
 import type { IAbsorber } from "./Options/Interfaces/IAbsorber";
-import { ColorUtils, NumberUtils, Utils } from "../../Utils";
+import { colorToRgb, getStyleFromRgb, NumberUtils, Utils } from "../../Utils";
 import type { Absorbers } from "./Absorbers";
 import { RotateDirection } from "../../Enums/Directions";
 
@@ -51,7 +51,7 @@ export class AbsorberInstance {
 
         const color = typeof options.color === "string" ? { value: options.color } : options.color;
 
-        this.color = ColorUtils.colorToRgb(color) ?? {
+        this.color = colorToRgb(color) ?? {
             b: 0,
             g: 0,
             r: 0,
@@ -133,7 +133,7 @@ export class AbsorberInstance {
         context.beginPath();
         context.arc(0, 0, this.size, 0, Math.PI * 2, false);
         context.closePath();
-        context.fillStyle = ColorUtils.getStyleFromRgb(this.color, this.opacity);
+        context.fillStyle = getStyleFromRgb(this.color, this.opacity);
         context.fill();
     }
 

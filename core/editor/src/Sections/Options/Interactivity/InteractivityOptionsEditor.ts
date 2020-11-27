@@ -23,15 +23,14 @@ export class InteractivityOptionsEditor extends EditorBase {
 
         this.addProperties();
     }
-
-    private addModes(): void {
-        const options = new ModesOptionsEditor(this.particles);
+    private addEvents(): void {
+        const options = new EventsOptionsEditor(this.particles);
 
         options.addToGroup(this.group);
     }
 
-    private addEvents(): void {
-        const options = new EventsOptionsEditor(this.particles);
+    private addModes(): void {
+        const options = new ModesOptionsEditor(this.particles);
 
         options.addToGroup(this.group);
     }

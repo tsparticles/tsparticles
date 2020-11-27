@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.4.0-alpha.3](https://github.com/matteobruni/tsparticles/compare/tsparticles-preset-sea-anemone@1.4.0-alpha.2...tsparticles-preset-sea-anemone@1.4.0-alpha.3) (2020-11-27)
+
+
+### Bug Fixes
+
+* fixed all hsl animations with the right offset value ([1d274eb](https://github.com/matteobruni/tsparticles/commit/1d274ebb4586f0ae5ea372da736dafcb19ed12d8))
+
+
+
+
+
 # [1.4.0-alpha.2](https://github.com/matteobruni/tsparticles/compare/tsparticles-preset-sea-anemone@1.4.0-alpha.1...tsparticles-preset-sea-anemone@1.4.0-alpha.2) (2020-11-23)
 
 **Note:** Version bump only for package tsparticles-preset-sea-anemone

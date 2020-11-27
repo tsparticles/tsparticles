@@ -1,7 +1,7 @@
 import type { Container } from "../../Core/Container";
 import type { ICoordinates } from "../../Core/Interfaces/ICoordinates";
 import type { IEmitter } from "./Options/Interfaces/IEmitter";
-import { ColorUtils, NumberUtils, Utils } from "../../Utils";
+import { colorToHsl, NumberUtils, Utils } from "../../Utils";
 import { SizeMode } from "../../Enums";
 import { EmitterSize } from "./Options/Classes/EmitterSize";
 import type { Emitters } from "./Emitters";
@@ -10,6 +10,8 @@ import type { IParticles } from "../../Options/Interfaces/Particles/IParticles";
 import type { IEmitterSize } from "./Options/Interfaces/IEmitterSize";
 import type { IHsl } from "../../Core/Interfaces/Colors";
 import type { IDelta } from "../../Core/Interfaces/IDelta";
+import type { IColorAnimation } from "../../Options/Interfaces/IColorAnimation";
+import type { IHslAnimation } from "../../Options/Interfaces/IHslAnimation";
 
 function randomCoordinate(position: number, offset: number): number {
     return position + offset * (Math.random() - 0.5);
@@ -73,7 +75,7 @@ export class EmitterInstance {
         }
 
         if (this.emitterOptions.spawnColor !== undefined) {
-            this.spawnColor = ColorUtils.colorToHsl(this.emitterOptions.spawnColor);
+            this.spawnColor = colorToHsl(this.emitterOptions.spawnColor);
         }
 
         this.particlesOptions = particlesOptions;
@@ -223,15 +225,17 @@ export class EmitterInstance {
             if (this.spawnColor !== undefined) {
                 const colorAnimation = this.emitterOptions.spawnColor?.animation;
 
-                if (colorAnimation?.enable) {
-                    const colorOffset = NumberUtils.randomInRange(colorAnimation.offset.min, colorAnimation.offset.max);
-                    const emitFactor = (1000 * this.emitterOptions.rate.delay) / container.retina.reduceFactor;
-                    const colorSpeed = colorAnimation.speed ?? 0;
+                if (colorAnimation) {
+                    const hueAnimation = colorAnimation as IColorAnimation;
 
-                    this.spawnColor.h += (colorSpeed * container.fpsLimit) / emitFactor + colorOffset * 3.6;
+                    if (hueAnimation.enable) {
+                        this.spawnColor.h = this.setColorAnimation(hueAnimation, this.spawnColor.h, 360);
+                    } else {
+                        const hslAnimation = colorAnimation as IHslAnimation;
 
-                    if (this.spawnColor.h > 360) {
-                        this.spawnColor.h -= 360;
+                        this.spawnColor.h = this.setColorAnimation(hslAnimation.h, this.spawnColor.h, 360);
+                        this.spawnColor.s = this.setColorAnimation(hslAnimation.s, this.spawnColor.s, 100);
+                        this.spawnColor.l = this.setColorAnimation(hslAnimation.l, this.spawnColor.l, 100);
                     }
                 }
 
@@ -262,5 +266,20 @@ export class EmitterInstance {
 
             container.particles.addParticle(randomPosition(position, offset), particlesOptions);
         }
+    }
+
+    private setColorAnimation(animation: IColorAnimation, initValue: number, maxValue: number): number {
+        const container = this.container;
+
+        if (!animation.enable) {
+            return initValue;
+        }
+
+        const colorOffset = NumberUtils.randomInRange(animation.offset.min, animation.offset.max);
+
+        const emitFactor = (1000 * this.emitterOptions.rate.delay) / container.retina.reduceFactor;
+        const colorSpeed = animation.speed ?? 0;
+
+        return (initValue + (colorSpeed * container.fpsLimit) / emitFactor + colorOffset * 3.6) % maxValue;
     }
 }

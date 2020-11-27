@@ -3,7 +3,7 @@ import type { IParticle } from "../../Core/Interfaces/IParticle";
 import type { ICoordinates } from "../../Core/Interfaces/ICoordinates";
 import type { IDimension } from "../../Core/Interfaces/IDimension";
 import { ParticlesBase } from "./ParticlesBase";
-import { Circle, CircleWarp, ColorUtils, NumberUtils } from "../../Utils";
+import { Circle, CircleWarp, getLinkRandomColor, NumberUtils } from "../../Utils";
 
 export class Linker extends ParticlesBase {
     constructor(container: Container) {
@@ -76,7 +76,7 @@ export class Linker extends ParticlesBase {
         if (!linkColor) {
             const optColor = linksOptions.color;
 
-            linkColor = ColorUtils.getLinkRandomColor(optColor, linksOptions.blink, linksOptions.consent);
+            linkColor = getLinkRandomColor(optColor, linksOptions.blink, linksOptions.consent);
 
             if (linksOptions.id === undefined) {
                 container.particles.linksColor = linkColor;

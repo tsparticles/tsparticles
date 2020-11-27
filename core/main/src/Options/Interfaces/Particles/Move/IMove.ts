@@ -5,9 +5,9 @@ import type { INoise } from "./Noise/INoise";
 import type { IMoveAngle } from "./IMoveAngle";
 import type { IMoveGravity } from "./IMoveGravity";
 import type { IOutModes } from "./IOutModes";
-import { Spin } from "../../../Classes/Particles/Move/Spin";
-import { IVelocity } from "../../../../Core/Interfaces/IVelocity";
-import { RecursivePartial } from "../../../../Types";
+import type { IVelocity } from "../../../../Core/Interfaces/IVelocity";
+import type { RecursivePartial } from "../../../../Types";
+import type { ISpin } from "../ISpin";
 
 /**
  * [[include:Options/Particles/Move.md]]
@@ -45,7 +45,7 @@ export interface IMove {
     random: boolean;
     size: boolean;
     speed: number;
-    spin: Spin;
+    spin: ISpin;
     straight: boolean;
     trail: ITrail;
     vibrate: boolean;

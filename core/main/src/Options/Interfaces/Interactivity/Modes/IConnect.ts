@@ -4,8 +4,6 @@ import type { IConnectLinks } from "./IConnectLinks";
  * @category Options
  */
 export interface IConnect {
-    distance: number;
-
     /**
      * @deprecated use the new links instead
      */
@@ -16,6 +14,7 @@ export interface IConnect {
      */
     lineLinked: IConnectLinks;
 
+    distance: number;
     links: IConnectLinks;
     radius: number;
 }

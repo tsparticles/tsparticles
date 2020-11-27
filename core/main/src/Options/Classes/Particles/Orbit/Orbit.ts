@@ -1,10 +1,9 @@
 import type { IOrbit } from "../../../Interfaces/Particles/Orbit/IOrbit";
 import type { RecursivePartial } from "../../../../Types";
 import type { IOptionLoader } from "../../../Interfaces/IOptionLoader";
-import type { IHsl } from "../../../../Core/Interfaces/Colors";
 import { OrbitAnimation } from "./OrbitAnimation";
 import { OrbitRotation } from "./OrbitRotation";
-import { Utils } from "../../../../Utils";
+import { OptionsColor } from "../../OptionsColor";
 
 /**
  * [[include:Options/Particles/Orbit.md]]
@@ -15,8 +14,8 @@ export class Orbit implements IOrbit, IOptionLoader<IOrbit> {
     public enable: boolean;
     public opacity: number;
     public width: number;
-    public color: IHsl | undefined;
-    public radius: number | undefined;
+    public color?: OptionsColor;
+    public radius?: number;
     public rotation;
 
     constructor() {
@@ -49,7 +48,7 @@ export class Orbit implements IOrbit, IOptionLoader<IOrbit> {
             this.radius = data.radius;
         }
         if (data.color !== undefined) {
-            this.color = Utils.deepExtend({}, data.color) as IHsl;
+            this.color = OptionsColor.create(this.color, data.color);
         }
     }
 }

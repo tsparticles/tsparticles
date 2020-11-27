@@ -14,17 +14,17 @@ export interface IEvents {
     onclick: IClickEvent;
 
     /**
-     * @deprecated use the new onHover instead
-     */
-    onhover: IHoverEvent;
-
-    /**
      * @deprecated use the new onDiv instead
      */
     ondiv: SingleOrMultiple<IDivEvent>;
 
+    /**
+     * @deprecated use the new onHover instead
+     */
+    onhover: IHoverEvent;
+
     onClick: IClickEvent;
-    onHover: IHoverEvent;
     onDiv: SingleOrMultiple<IDivEvent>;
+    onHover: IHoverEvent;
     resize: boolean;
 }

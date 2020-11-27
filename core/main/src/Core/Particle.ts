@@ -2,9 +2,7 @@ import type { Container } from "./Container";
 import type { IVelocity } from "./Interfaces/IVelocity";
 import type { IParticleValueAnimation } from "./Interfaces/IParticleValueAnimation";
 import type { ICoordinates, ICoordinates3d } from "./Interfaces/ICoordinates";
-import type { IParticleImage } from "./Interfaces/IParticleImage";
 import type { IHsl, IRgb } from "./Interfaces/Colors";
-import type { IStroke } from "../Options/Interfaces/Particles/IStroke";
 import type { IShapeValues } from "../Options/Interfaces/Particles/Shape/IShapeValues";
 import type { IBubbleParticleData } from "./Interfaces/IBubbleParticleData";
 import type { IParticle } from "./Interfaces/IParticle";
@@ -13,24 +11,24 @@ import { Particles } from "../Options/Classes/Particles/Particles";
 import { Shape } from "../Options/Classes/Particles/Shape/Shape";
 import {
     AnimationStatus,
+    DestroyMode,
     MoveDirection,
     MoveDirectionAlt,
     OutMode,
     RotateDirection,
     ShapeType,
     StartValueType,
-    DestroyMode,
 } from "../Enums";
-import { ImageDrawer } from "../ShapeDrawers/ImageDrawer";
-import type { IImageShape } from "../Options/Interfaces/Particles/Shape/IImageShape";
 import type { RecursivePartial } from "../Types";
-import { ColorUtils, NumberUtils, Plugins, Utils } from "../Utils";
-import type { IShapeDrawer } from "./Interfaces/IShapeDrawer";
+import { colorToHsl, colorToRgb, getHslFromAnimation, NumberUtils, Plugins, Utils } from "../Utils";
 import type { IDelta } from "./Interfaces/IDelta";
 import { Mover } from "./Particle/Mover";
 import type { ILink } from "./Interfaces/ILink";
 import type { IParticleLoops } from "./Interfaces/IParticleLoops";
 import type { IParticleInfection } from "./Interfaces/IParticleInfection";
+import type { IParticleHslAnimation } from "./Interfaces/IParticleHslAnimation";
+import type { Stroke } from "../Options/Classes/Particles/Stroke";
+import type { IColorAnimation } from "../Options/Interfaces/IColorAnimation";
 
 /**
  * The single particle object
@@ -49,7 +47,7 @@ export class Particle implements IParticle {
     public lastNoiseTime;
     public zIndexFactor;
     public splitCount;
-    public unbreaking;
+    public unbreakable;
 
     public readonly noiseDelay;
     public readonly mover;
@@ -71,25 +69,25 @@ export class Particle implements IParticle {
     public spinDirection?: RotateDirection;
     public spinAcceleration?: number;
     public orbitRadius?: number;
-    public orbitRotation: number;
+    public orbitRotation?: number;
+    public close: boolean;
+    public fill: boolean;
 
-    public readonly close: boolean;
     public readonly direction: MoveDirection | keyof typeof MoveDirection | MoveDirectionAlt;
-    public readonly fill: boolean;
     public readonly infection: IParticleInfection;
     public readonly loops: IParticleLoops;
-    public readonly stroke: IStroke;
+    public readonly stroke: Stroke;
     public readonly position: ICoordinates3d;
     public readonly offset: ICoordinates;
     public readonly shadowColor: IRgb | undefined;
-    public readonly color: IParticleValueAnimation<IHsl | undefined>;
+    public readonly color?: IParticleHslAnimation;
     public readonly opacity: IParticleValueAnimation<number>;
     public readonly rotate: IParticleValueAnimation<number>;
     public readonly size: IParticleValueAnimation<number>;
-    public readonly strokeColor: IParticleValueAnimation<IHsl | undefined>;
+    public readonly strokeColor?: IParticleHslAnimation;
+    public readonly orbitColor?: IHsl;
     public readonly velocity: IVelocity;
     public readonly shape: ShapeType | string;
-    public readonly image?: IParticleImage;
     public readonly initialPosition: ICoordinates;
     public readonly initialVelocity: IVelocity;
     public readonly shapeData?: IShapeValues;
@@ -98,7 +96,7 @@ export class Particle implements IParticle {
 
     constructor(
         public readonly id: number,
-        private readonly container: Container,
+        public readonly container: Container,
         position?: ICoordinates,
         overrideOptions?: RecursivePartial<IParticles>,
         public readonly group?: string
@@ -108,7 +106,7 @@ export class Particle implements IParticle {
         this.close = true;
         this.lastNoiseTime = 0;
         this.splitCount = 0;
-        this.unbreaking = false;
+        this.unbreakable = false;
         this.destroyed = false;
         this.misplaced = false;
         this.loops = {
@@ -300,28 +298,44 @@ export class Particle implements IParticle {
         }
 
         /* orbit */
-        const orbitRotationOptions = particlesOptions.orbit.rotation.random;
-        if (orbitRotationOptions.enable) {
-            this.orbitRotation = orbitRotationOptions.minimumValue
-                ? Math.floor(Math.random() * 360) + orbitRotationOptions.minimumValue
-                : Math.floor(Math.random() * 360);
-        } else {
-            this.orbitRotation = this.options.orbit.rotation.value;
+        const orbitOptions = particlesOptions.orbit;
+
+        if (orbitOptions.enable) {
+            const orbitRotationOptions = orbitOptions.rotation.random;
+            if (orbitRotationOptions.enable) {
+                this.orbitRotation = Math.floor(
+                    orbitRotationOptions.minimumValue
+                        ? NumberUtils.randomInRange(orbitRotationOptions.minimumValue, 360)
+                        : Math.random() * 360
+                );
+            } else {
+                this.orbitRotation = orbitOptions.rotation.value;
+            }
+
+            this.orbitColor = colorToHsl(orbitOptions.color);
         }
 
-        /* color */
-        this.color = {
-            value: ColorUtils.colorToHsl(color, this.id, reduceDuplicates),
-        };
+        const hslColor = colorToHsl(color, this.id, reduceDuplicates);
 
-        const colorAnimation = this.options.color.animation;
+        if (hslColor) {
+            /* color */
+            this.color = {
+                h: {
+                    value: hslColor.h,
+                },
+                s: {
+                    value: hslColor.s,
+                },
+                l: {
+                    value: hslColor.l,
+                },
+            };
 
-        if (colorAnimation.enable) {
-            this.color.velocity = (colorAnimation.speed / 100) * container.retina.reduceFactor;
+            const colorAnimation = this.options.color.animation;
 
-            if (!colorAnimation.sync) {
-                this.color.velocity *= Math.random();
-            }
+            this.setColorAnimation(colorAnimation.h, this.color.h);
+            this.setColorAnimation(colorAnimation.s, this.color.s);
+            this.setColorAnimation(colorAnimation.l, this.color.l);
         }
 
         /* opacity */
@@ -383,19 +397,14 @@ export class Particle implements IParticle {
             }
         }
 
+        if (drawer?.loadShape) {
+            drawer?.loadShape(this);
+        }
+
         const sideCountFunc = drawer?.getSidesCount;
 
         if (sideCountFunc) {
             this.sides = sideCountFunc(this);
-        }
-
-        /* if shape is image */
-        const imageShape = this.loadImageShape(container, drawer);
-
-        if (imageShape) {
-            this.image = imageShape.image;
-            this.fill = imageShape.fill;
-            this.close = imageShape.close;
         }
 
         this.stroke =
@@ -405,28 +414,28 @@ export class Particle implements IParticle {
 
         this.strokeWidth = this.stroke.width * container.retina.pixelRatio;
 
-        /* strokeColor */
-        this.strokeColor = {
-            value: ColorUtils.colorToHsl(this.stroke.color) ?? this.color.value,
-        };
+        const strokeHslColor = colorToHsl(this.stroke.color) ?? this.getFillColor();
 
-        if (typeof this.stroke.color !== "string") {
+        if (strokeHslColor) {
+            /* strokeColor */
+            this.strokeColor = {
+                h: {
+                    value: strokeHslColor.h,
+                },
+                s: {
+                    value: strokeHslColor.s,
+                },
+                l: {
+                    value: strokeHslColor.l,
+                },
+            };
+
             const strokeColorAnimation = this.stroke.color?.animation;
 
             if (strokeColorAnimation && this.strokeColor) {
-                if (strokeColorAnimation.enable) {
-                    this.strokeColor.velocity = (strokeColorAnimation.speed / 100) * container.retina.reduceFactor;
-
-                    if (!strokeColorAnimation.sync) {
-                        this.strokeColor.velocity = this.strokeColor.velocity * Math.random();
-                    }
-                } else {
-                    this.strokeColor.velocity = 0;
-                }
-
-                if (strokeColorAnimation.enable && !strokeColorAnimation.sync && this.strokeColor.value) {
-                    this.strokeColor.value.h = Math.random() * 360;
-                }
+                this.setColorAnimation(strokeColorAnimation.h, this.strokeColor.h);
+                this.setColorAnimation(strokeColorAnimation.s, this.strokeColor.s);
+                this.setColorAnimation(strokeColorAnimation.l, this.strokeColor.l);
             }
         }
 
@@ -472,7 +481,7 @@ export class Particle implements IParticle {
             this.spinRadius = distance;
         }
 
-        this.shadowColor = ColorUtils.colorToRgb(this.options.shadow.color);
+        this.shadowColor = colorToRgb(this.options.shadow.color);
         this.mover = new Mover(container, this);
     }
 
@@ -498,18 +507,18 @@ export class Particle implements IParticle {
     }
 
     public getFillColor(): IHsl | undefined {
-        return this.bubble.color ?? this.color.value;
+        return this.bubble.color ?? getHslFromAnimation(this.color);
     }
 
     public getStrokeColor(): IHsl | undefined {
-        return this.bubble.color ?? this.strokeColor.value ?? this.color.value;
+        return this.bubble.color ?? getHslFromAnimation(this.strokeColor) ?? this.getFillColor();
     }
 
     /**
      * This destroys the particle just before it's been removed from the canvas and the container
      */
     public destroy(override?: boolean): void {
-        if (this.unbreaking) {
+        if (this.unbreakable) {
             return;
         }
 
@@ -536,7 +545,30 @@ export class Particle implements IParticle {
         this.loops.size = 0;
     }
 
-    private calcPosition(container: Container, position: ICoordinates | undefined, zIndex: number): ICoordinates3d {
+    private setColorAnimation(colorAnimation: IColorAnimation, colorValue: IParticleValueAnimation<number>): void {
+        if (colorAnimation.enable) {
+            colorValue.velocity = (colorAnimation.speed / 100) * this.container.retina.reduceFactor;
+
+            if (colorAnimation.sync) {
+                return;
+            }
+
+            colorValue.velocity *= Math.random();
+
+            if (colorValue.value) {
+                colorValue.value *= Math.random();
+            }
+        } else {
+            colorValue.velocity = 0;
+        }
+    }
+
+    private calcPosition(
+        container: Container,
+        position: ICoordinates | undefined,
+        zIndex: number,
+        tryCount = 0
+    ): ICoordinates3d {
         for (const [, plugin] of container.plugins) {
             const pluginPos =
                 plugin.particlePosition !== undefined ? plugin.particlePosition(position, this) : undefined;
@@ -574,6 +606,29 @@ export class Particle implements IParticle {
                 pos.y -= this.size.value;
             } else if (pos.y < this.size.value * 2) {
                 pos.y += this.size.value;
+            }
+        }
+
+        const overlapOptions = this.options.collisions.overlap;
+
+        if (!overlapOptions.enable) {
+            const retries = overlapOptions.retries;
+
+            if (retries >= 0 && tryCount > retries) {
+                throw new Error("Particle is overlapping and can't be placed");
+            }
+
+            let overlaps = false;
+
+            for (const particle of this.container.particles.array) {
+                if (NumberUtils.getDistance(pos, particle.position) < this.size.value + particle.size.value) {
+                    overlaps = true;
+                    break;
+                }
+            }
+
+            if (overlaps) {
+                return this.calcPosition(container, undefined, zIndex, tryCount + 1);
             }
         }
 
@@ -636,94 +691,5 @@ export class Particle implements IParticle {
         for (let i = 0; i < rate; i++) {
             this.container.particles.addSplitParticle(this);
         }
-    }
-
-    private loadImageShape(
-        container: Container,
-        drawer?: IShapeDrawer
-    ):
-        | {
-              image: IParticleImage | undefined;
-              fill: boolean;
-              close: boolean;
-          }
-        | undefined {
-        if (!(this.shape === ShapeType.image || this.shape === ShapeType.images)) {
-            return;
-        }
-
-        const imageDrawer = drawer as ImageDrawer;
-        const images = imageDrawer.getImages(container).images;
-        const imageData = this.shapeData as IImageShape;
-        const image = images.find((t) => t.source === imageData.src) ?? images[0];
-        const color = this.getFillColor();
-        let imageRes: IParticleImage;
-
-        if (!image) {
-            return;
-        }
-
-        if (image.svgData !== undefined && imageData.replaceColor && color) {
-            const svgColoredData = ColorUtils.replaceColorSvg(image, color, this.opacity.value);
-
-            /* prepare to create img with colored svg */
-            const svg = new Blob([svgColoredData], { type: "image/svg+xml" });
-            const domUrl = URL || window.URL || window.webkitURL || window;
-            const url = domUrl.createObjectURL(svg);
-
-            /* create particle img obj */
-            const img = new Image();
-
-            imageRes = {
-                data: image,
-                loaded: false,
-                ratio: imageData.width / imageData.height,
-                replaceColor: imageData.replaceColor ?? imageData.replace_color,
-                source: imageData.src,
-            };
-
-            img.addEventListener("load", () => {
-                if (this.image) {
-                    this.image.loaded = true;
-                    image.element = img;
-                }
-
-                domUrl.revokeObjectURL(url);
-            });
-
-            img.addEventListener("error", () => {
-                domUrl.revokeObjectURL(url);
-
-                // deepcode ignore PromiseNotCaughtGeneral: catch can be ignored
-                Utils.loadImage(imageData.src).then((img2) => {
-                    if (this.image) {
-                        image.element = img2?.element;
-
-                        this.image.loaded = true;
-                    }
-                });
-            });
-
-            img.src = url;
-        } else {
-            imageRes = {
-                data: image,
-                loaded: true,
-                ratio: imageData.width / imageData.height,
-                replaceColor: imageData.replaceColor ?? imageData.replace_color,
-                source: imageData.src,
-            };
-        }
-        if (!imageRes.ratio) {
-            imageRes.ratio = 1;
-        }
-        const fill = imageData.fill ?? this.fill;
-        const close = imageData.close ?? this.close;
-
-        return {
-            image: imageRes,
-            fill,
-            close,
-        };
     }
 }

@@ -284,7 +284,7 @@ export class Particles {
 
         options.color.load({
             value: {
-                hsl: parent.color.value,
+                hsl: parent.getFillColor(),
             },
         });
 
@@ -307,10 +307,10 @@ export class Particles {
             }
 
             particle.splitCount = parent.splitCount + 1;
-            particle.unbreaking = true;
+            particle.unbreakable = true;
 
             setTimeout(() => {
-                particle.unbreaking = false;
+                particle.unbreakable = false;
             }, 500);
 
             return true;

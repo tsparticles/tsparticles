@@ -9,7 +9,7 @@ import { Rotate } from "./Rotate/Rotate";
 import type { ParticlesGroups, RecursivePartial, SingleOrMultiple } from "../../../Types";
 import { Shadow } from "./Shadow";
 import { Stroke } from "./Stroke";
-import { Collisions } from "./Collisions";
+import { Collisions } from "./Collisions/Collisions";
 import { Twinkle } from "./Twinkle/Twinkle";
 import { AnimatableColor } from "../AnimatableColor";
 import type { IOptionLoader } from "../../Interfaces/IOptionLoader";

@@ -14,8 +14,9 @@ v${version}`;
 const minBanner = `tsParticles v${version} by Matteo Bruni`;
 
 const getConfig = (entry) => {
-    const isSlim = Object.keys(entry).find((t) => t.indexOf("slim") >= 0);
-    const reportFileName = isSlim ? "report.slim" : "report";
+    const isSlim = Object.keys(entry).find(t => t.indexOf("slim") >= 0);
+    const isCore = Object.keys(entry).find(t => t.indexOf("core") >= 0);
+    const reportFileName = isCore ? "report.core" : isSlim ? "report.slim" : "report";
 
     return {
         entry: entry,
@@ -77,6 +78,10 @@ const getConfig = (entry) => {
 };
 
 module.exports = [
+    getConfig({
+        "tsparticles.core": "./dist/browser/index.core.js",
+        "tsparticles.core.min": "./dist/browser/index.core.js"
+    }),
     getConfig({
         "tsparticles.slim": "./dist/browser/index.slim.js",
         "tsparticles.slim.min": "./dist/browser/index.slim.js"

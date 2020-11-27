@@ -3,6 +3,26 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.19.0-alpha.3](https://github.com/matteobruni/tsparticles/compare/tsparticles@1.19.0-alpha.2...tsparticles@1.19.0-alpha.3) (2020-11-27)
+
+
+### Bug Fixes
+
+* fixed all hsl animations with the right offset value ([1d274eb](https://github.com/matteobruni/tsparticles/commit/1d274ebb4586f0ae5ea372da736dafcb19ed12d8))
+* fixed initial position with new implementations made for [#1069](https://github.com/matteobruni/tsparticles/issues/1069) ([e62a3c5](https://github.com/matteobruni/tsparticles/commit/e62a3c531277bc695ba0865c2024835e2648514d))
+* orbit color is now a string/color and not a hsl object ([fd5df21](https://github.com/matteobruni/tsparticles/commit/fd5df21d4a2ba785a4f256f54b9c351c8b6af02e))
+
+
+### Features
+
+* added core build, just the skeleton, no plugins added ([ee5e0a7](https://github.com/matteobruni/tsparticles/commit/ee5e0a7055fac6a810a86bee599a2d22e32f0c6a))
+* all h/s/l values can now be animated ([7af9f26](https://github.com/matteobruni/tsparticles/commit/7af9f263bde519c7041f89e5d8db6509579ff444))
+* particle initial overlap can be now configured (closes [#1069](https://github.com/matteobruni/tsparticles/issues/1069)) ([d7e81c1](https://github.com/matteobruni/tsparticles/commit/d7e81c1a763fe36f82870d1094e53aa88aace0ae))
+
+
+
+
+
 # [1.19.0-alpha.2](https://github.com/matteobruni/tsparticles/compare/tsparticles@1.19.0-alpha.1...tsparticles@1.19.0-alpha.2) (2020-11-23)
 
 

@@ -17,6 +17,10 @@ import { EditorBase } from "../../../EditorBase";
 import { LifeOptionsEditor } from "./Life/LifeOptionsEditor";
 import { BounceOptionsEditor } from "./Bounce/BounceOptionsEditor";
 import { EditorType } from "object-gui";
+import { DestroyOptionsEditor } from "./Destroy/DestroyOptionsEditor";
+import { OrbitOptionsEditor } from "./Orbit/OrbitOptionsEditor";
+import { RepulseOptionsEditor } from "./Repulse/RepulseOptionsEditor";
+import { ZIndexOptionsEditor } from "./ZIndex/ZIndexOptionsEditor";
 
 export class ParticlesOptionsEditor extends EditorBase {
     public group!: EditorGroup;
@@ -33,17 +37,22 @@ export class ParticlesOptionsEditor extends EditorBase {
         this.addBounce();
         this.addCollisions();
         this.addColor();
+        this.addDestroy();
+        this.addGroups();
         this.addLife();
         this.addLinks();
         this.addMove();
         this.addNumber();
         this.addOpacity();
+        this.addOrbit();
+        this.addRepulse();
         this.addRotate();
         this.addShadow();
         this.addShape();
         this.addSize();
         this.addStroke();
         this.addTwinkle();
+        this.addZIndex();
         this.addProperties();
     }
 
@@ -63,6 +72,16 @@ export class ParticlesOptionsEditor extends EditorBase {
         const options = new ColorOptionsEditor(this.particles);
 
         options.addToGroup(this.group);
+    }
+
+    private addDestroy(): void {
+        const options = new DestroyOptionsEditor(this.particles);
+
+        options.addToGroup(this.group);
+    }
+
+    private addGroups(): void {
+        // TODO: manage groups
     }
 
     private addLife(): void {
@@ -91,6 +110,18 @@ export class ParticlesOptionsEditor extends EditorBase {
 
     private addOpacity(): void {
         const options = new OpacityOptionsEditor(this.particles);
+
+        options.addToGroup(this.group);
+    }
+
+    private addOrbit(): void {
+        const options = new OrbitOptionsEditor(this.particles);
+
+        options.addToGroup(this.group);
+    }
+
+    private addRepulse(): void {
+        const options = new RepulseOptionsEditor(this.particles);
 
         options.addToGroup(this.group);
     }
@@ -127,6 +158,12 @@ export class ParticlesOptionsEditor extends EditorBase {
 
     private addTwinkle(): void {
         const options = new TwinkleOptionsEditor(this.particles);
+
+        options.addToGroup(this.group);
+    }
+
+    private addZIndex(): void {
+        const options = new ZIndexOptionsEditor(this.particles);
 
         options.addToGroup(this.group);
     }

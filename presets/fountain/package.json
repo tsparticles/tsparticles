@@ -1,6 +1,6 @@
 {
   "name": "tsparticles-preset-fountain",
-  "version": "1.4.0-alpha.2",
+  "version": "1.4.0-alpha.3",
   "description": "tsParticles fountain preset",
   "homepage": "https://particles.matteobruni.it/",
   "scripts": {
@@ -74,6 +74,6 @@
     "webpack-cli": "^4.2.0"
   },
   "dependencies": {
-    "tsparticles": "^1.19.0-alpha.2"
+    "tsparticles": "^1.19.0-alpha.3"
   }
 }

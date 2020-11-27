@@ -3,6 +3,7 @@ import type {
     ShapeDrawerDestroyFunction,
     ShapeDrawerDrawFunction,
     ShapeDrawerInitFunction,
+    ShapeDrawerLoadFunction,
     ShapeDrawerSidesCountFunction,
 } from "../../Types";
 
@@ -15,4 +16,5 @@ export interface IShapeDrawer {
     draw: ShapeDrawerDrawFunction;
     afterEffect?: ShapeDrawerAfterEffectFunction;
     destroy?: ShapeDrawerDestroyFunction;
+    loadShape?: ShapeDrawerLoadFunction;
 }

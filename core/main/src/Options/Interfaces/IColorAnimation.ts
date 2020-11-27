@@ -2,7 +2,7 @@
  * Color animation interface, these properties are used to animate colors
  * @category Options
  */
-import { IOffsetValue } from "./IOffsetValue";
+import type { IOffsetValue } from "./IOffsetValue";
 
 export interface IColorAnimation {
     /**

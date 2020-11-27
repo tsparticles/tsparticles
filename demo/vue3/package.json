@@ -1,19 +1,19 @@
 {
   "name": "particles.vue3-demo",
-  "version": "1.2.0-alpha.2",
+  "version": "1.2.0-alpha.3",
   "private": true,
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build"
   },
   "dependencies": {
-    "core-js": "^3.7.0",
-    "particles.vue3": "^1.2.0-alpha.2",
-    "tsparticles": "^1.19.0-alpha.2",
-    "tsparticles-preset-big-circles": "^1.4.0-alpha.2",
-    "tsparticles-preset-sea-anemone": "^1.4.0-alpha.2",
-    "vue": "^3.0.2",
-    "vue-class-component": "^8.0.0-beta.4"
+    "core-js": "^3.8.0",
+    "particles.vue3": "^1.2.0-alpha.3",
+    "tsparticles": "^1.19.0-alpha.3",
+    "tsparticles-preset-big-circles": "^1.4.0-alpha.3",
+    "tsparticles-preset-sea-anemone": "^1.4.0-alpha.3",
+    "vue": "^3.0.3",
+    "vue-class-component": "^8.0.0-rc.1"
   },
   "devDependencies": {
     "@vue/cli-plugin-babel": "~4.5.9",

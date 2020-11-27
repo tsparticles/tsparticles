@@ -1,6 +1,6 @@
-import { ISourceOptions, Main } from "tsparticles";
-import { INoise } from "tsparticles/dist/Core/Interfaces/INoise";
-import { IParticle } from "tsparticles/dist/Core/Interfaces/IParticle";
+import type { ISourceOptions, Main } from "tsparticles";
+import type { INoise } from "tsparticles/dist/Core/Interfaces/INoise";
+import type { IParticle } from "tsparticles/dist/Core/Interfaces/IParticle";
 
 export function loadPreset(tsParticles: Main): void {
     const presetName = "seaAnemone";
@@ -93,13 +93,24 @@ export function loadPreset(tsParticles: Main): void {
             spawnColor: {
                 value: "#ff0000",
                 animation: {
-                    enable: true,
-                    offset: {
-                        min: -1.4,
-                        max: 1.4,
+                    h: {
+                        enable: true,
+                        offset: {
+                            min: -1.4,
+                            max: 1.4,
+                        },
+                        speed: 5,
+                        sync: false,
                     },
-                    speed: 5,
-                    sync: false,
+                    l: {
+                        enable: true,
+                        offset: {
+                            min: 20,
+                            max: 80,
+                        },
+                        speed: 0,
+                        sync: false,
+                    },
                 },
             },
             position: {
@@ -117,10 +128,10 @@ export function loadPreset(tsParticles: Main): void {
         lowValue = 0,
         highValue = 1
     ): () => number {
-        const arP0: number[] = []; // 'preceeding value' for each harmonic
-        const arP1: number[] = []; // 'succeding value'
+        const arP0: number[] = []; // 'preceding value' for each harmonic
+        const arP1: number[] = []; // 'succeeding value'
         const amplitudes: number[] = []; // amplitudes oh harmonics
-        const increments: number[] = []; // n / period, wich will be added to phases for every point
+        const increments: number[] = []; // n / period, which will be added to phases for every point
         const phases: number[] = [];
         let globAmplitude = 0;
         const randomFunc = rndFunc ?? Math.random;

@@ -3,6 +3,8 @@ import type { IModes } from "tsparticles/dist/Options/Interfaces/Interactivity/M
 import { EditorGroup, EditorType } from "object-gui";
 import { EditorBase } from "../../../../EditorBase";
 import { ParticlesOptionsEditor } from "../../Particles/ParticlesOptionsEditor";
+import { IPush } from "tsparticles/dist/Options/Interfaces/Interactivity/Modes/IPush";
+import { IRemove } from "tsparticles/dist/Options/Interfaces/Interactivity/Modes/IRemove";
 
 export class ModesOptionsEditor extends EditorBase {
     public group!: EditorGroup;
@@ -37,6 +39,10 @@ export class ModesOptionsEditor extends EditorBase {
         });
 
         group.addProperty("duration", "Duration", EditorType.number).change(async () => {
+            await particles.refresh();
+        });
+
+        group.addProperty("factor", "Factor", EditorType.number).change(async () => {
             await particles.refresh();
         });
 
@@ -240,6 +246,25 @@ export class ModesOptionsEditor extends EditorBase {
     private addPush(): void {
         const particles = this.particles;
         const group = this.group.addGroup("push", "Push");
+        const options = group.data as IPush;
+
+        group.addProperty("default", "Default", EditorType.boolean).change(async () => {
+            await particles.refresh();
+        });
+
+        const groupsGroup = group.addGroup("groups", "group");
+
+        groupsGroup.addButton("addGroup", "Add Group", false).click(async () => {
+            const arr = options.groups;
+
+            groupsGroup
+                .addProperty(arr.length.toString(10), `Group ${arr.length + 1}`, EditorType.string)
+                .change(async () => {
+                    await particles.refresh();
+                });
+
+            await this.particles.refresh();
+        });
 
         group.addProperty("quantity", "Quantity", EditorType.number).change(async () => {
             await particles.refresh();
@@ -249,6 +274,25 @@ export class ModesOptionsEditor extends EditorBase {
     private addRemove(): void {
         const particles = this.particles;
         const group = this.group.addGroup("remove", "Remove");
+        const options = group.data as IRemove;
+
+        group.addProperty("default", "Default", EditorType.boolean).change(async () => {
+            await particles.refresh();
+        });
+
+        const groupsGroup = group.addGroup("groups", "group");
+
+        groupsGroup.addButton("addGroup", "Add Group", false).click(async () => {
+            const arr = options.groups;
+
+            groupsGroup
+                .addProperty(arr.length.toString(10), `Group ${arr.length + 1}`, EditorType.string)
+                .change(async () => {
+                    await particles.refresh();
+                });
+
+            await this.particles.refresh();
+        });
 
         group.addProperty("quantity", "Quantity", EditorType.number).change(async () => {
             await particles.refresh();
@@ -264,6 +308,10 @@ export class ModesOptionsEditor extends EditorBase {
         });
 
         group.addProperty("duration", "Duration", EditorType.number).change(async () => {
+            await particles.refresh();
+        });
+
+        group.addProperty("factor", "Factor", EditorType.number).change(async () => {
             await particles.refresh();
         });
 
@@ -289,7 +337,6 @@ export class ModesOptionsEditor extends EditorBase {
         const particles = this.particles;
         const group = this.group.addGroup("trail", "Trail");
         const options = this.options.trail;
-
         const particlesEditor = new ParticlesOptionsEditor(particles);
 
         particlesEditor.addToGroup(group, "particles", options);
@@ -299,6 +346,10 @@ export class ModesOptionsEditor extends EditorBase {
         });
 
         group.addProperty("quantity", "Quantity", EditorType.number).change(async () => {
+            await particles.refresh();
+        });
+
+        group.addProperty("pauseOnStop", "Pause On Stop", EditorType.boolean).change(async () => {
             await particles.refresh();
         });
     }

@@ -15,8 +15,6 @@ export class LifeOptionsEditor extends EditorBase {
         this.group = parent.addGroup("life", "Life", true, options);
         this.options = this.group.data as ILife;
 
-        this.options.count;
-
         this.addDelay();
         this.addDuration();
         this.addProperties();
