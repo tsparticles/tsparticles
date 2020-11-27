@@ -563,7 +563,12 @@ export class Particle implements IParticle {
         }
     }
 
-    private calcPosition(container: Container, position: ICoordinates | undefined, zIndex: number): ICoordinates3d {
+    private calcPosition(
+        container: Container,
+        position: ICoordinates | undefined,
+        zIndex: number,
+        tryCount = 0
+    ): ICoordinates3d {
         for (const [, plugin] of container.plugins) {
             const pluginPos =
                 plugin.particlePosition !== undefined ? plugin.particlePosition(position, this) : undefined;
@@ -585,35 +590,6 @@ export class Particle implements IParticle {
             z: zIndex,
         };
 
-        const overlapOptions = this.options.collisions.overlap;
-
-        if (!overlapOptions.enable) {
-            let hasPosition = true;
-            const retries = overlapOptions.retries;
-
-            for (let i = 0; i < retries + 1; i++) {
-                let overlaps = false;
-
-                for (const particle of this.container.particles.array) {
-                    if (NumberUtils.getDistance(pos, particle.position) < this.size.value + particle.size.value) {
-                        overlaps = true;
-                    }
-                }
-
-                if (overlaps) {
-                    pos.x = cSize.width * Math.random();
-                    pos.y = cSize.height * Math.random();
-                    hasPosition = false;
-                } else {
-                    hasPosition = true;
-                }
-            }
-
-            if (!hasPosition) {
-                throw new Error("Particle is overlapping and can't be placed");
-            }
-        }
-
         /* check position  - into the canvas */
         const outMode = this.options.move.outMode;
 
@@ -630,6 +606,37 @@ export class Particle implements IParticle {
                 pos.y -= this.size.value;
             } else if (pos.y < this.size.value * 2) {
                 pos.y += this.size.value;
+            }
+        }
+
+        const overlapOptions = this.options.collisions.overlap;
+
+        if (!overlapOptions.enable) {
+            const retries = overlapOptions.retries;
+
+            if (retries >= 0 && tryCount > retries) {
+                throw new Error("Particle is overlapping and can't be placed");
+            }
+
+            let overlaps = false;
+
+            for (const particle of this.container.particles.array) {
+                if (NumberUtils.getDistance(pos, particle.position) < this.size.value + particle.size.value) {
+                    overlaps = true;
+                    break;
+                }
+            }
+
+            if (overlaps) {
+                return this.calcPosition(
+                    container,
+                    {
+                        x: cSize.width * Math.random(),
+                        y: cSize.height * Math.random(),
+                    },
+                    zIndex,
+                    tryCount + 1
+                );
             }
         }
 
