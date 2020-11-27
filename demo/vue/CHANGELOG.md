@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.4.0-alpha.3](https://github.com/matteobruni/tsparticles/compare/particles.vue-demo@1.4.0-alpha.2...particles.vue-demo@1.4.0-alpha.3) (2020-11-27)
+
+
+### Bug Fixes
+
+* orbit color is now a string/color and not a hsl object ([fd5df21](https://github.com/matteobruni/tsparticles/commit/fd5df21d4a2ba785a4f256f54b9c351c8b6af02e))
+
+
+
+
+
 # [1.4.0-alpha.2](https://github.com/matteobruni/tsparticles/compare/particles.vue-demo@1.4.0-alpha.1...particles.vue-demo@1.4.0-alpha.2) (2020-11-23)
 
 **Note:** Version bump only for package particles.vue-demo
