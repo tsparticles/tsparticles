@@ -585,6 +585,35 @@ export class Particle implements IParticle {
             z: zIndex,
         };
 
+        const overlapOptions = this.options.collisions.overlap;
+
+        if (!overlapOptions.enable) {
+            let hasPosition = true;
+            const retries = overlapOptions.retries;
+
+            for (let i = 0; i < retries + 1; i++) {
+                let overlaps = false;
+
+                for (const particle of this.container.particles.array) {
+                    if (NumberUtils.getDistance(pos, particle.position) < this.size.value + particle.size.value) {
+                        overlaps = true;
+                    }
+                }
+
+                if (overlaps) {
+                    pos.x = cSize.width * Math.random();
+                    pos.y = cSize.height * Math.random();
+                    hasPosition = false;
+                } else {
+                    hasPosition = true;
+                }
+            }
+
+            if (!hasPosition) {
+                throw new Error("Particle is overlapping and can't be placed");
+            }
+        }
+
         /* check position  - into the canvas */
         const outMode = this.options.move.outMode;
 
