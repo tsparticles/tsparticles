@@ -553,6 +553,7 @@ export class Particle implements IParticle {
                 return;
             }
 
+            colorValue.status = AnimationStatus.increasing;
             colorValue.velocity *= Math.random();
 
             if (colorValue.value) {
