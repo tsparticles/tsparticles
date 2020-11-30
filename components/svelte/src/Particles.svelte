@@ -3,7 +3,7 @@
     import { Container, tsParticles } from "tsparticles";
 
     export let options = {};
-    export let url: string | undefined;
+    export let url = "";
     export let id = "tsparticles";
 
     const dispatch = createEventDispatcher();
@@ -26,7 +26,7 @@
         }
 
         if (id) {
-            const cb = (container?: Container) => {
+            const cb = (container) => {
                 dispatch(particlesLoadedEvent, {
                     particles: container
                 });

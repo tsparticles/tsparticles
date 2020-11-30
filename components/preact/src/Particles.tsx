@@ -101,7 +101,7 @@ export default class Particles extends Component<IParticlesProps, IParticlesStat
             }
 
             this.setState({
-                library: container
+                library: container,
             });
         };
 
