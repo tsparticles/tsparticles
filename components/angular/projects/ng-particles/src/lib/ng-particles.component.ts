@@ -3,7 +3,13 @@ import { Main, tsParticles } from 'tsparticles';
 import type { Container } from 'tsparticles';
 import { IParticlesProps } from './ng-particles.module';
 
-class NgParticlesComponentBase implements AfterViewInit {
+@Component({
+    selector: 'ng-particles',
+    template: `
+        <div [id]="id"></div> `,
+    styles: [],
+})
+export class NgParticlesComponent implements AfterViewInit {
     @Input() options?: IParticlesProps;
     @Input() url?: string;
     @Input() id: string;
@@ -30,19 +36,15 @@ class NgParticlesComponentBase implements AfterViewInit {
 }
 
 @Component({
-    selector: 'ng-particles',
-    template: `
-        <div [id]="id"></div> `,
-    styles: []
-})
-export class NgParticlesComponent extends NgParticlesComponentBase {
-}
-
-@Component({
     selector: 'Particles',
     template: `
         <div [id]="id"></div> `,
     styles: []
 })
-export class ParticlesComponent extends NgParticlesComponentBase {
+export class ParticlesComponent extends NgParticlesComponent {
+    @Input() options?: IParticlesProps;
+    @Input() url?: string;
+    @Input() id: string;
+    @Output() particlesLoaded: EventEmitter<Container> = new EventEmitter<Container>();
+    @Output() particlesInit: EventEmitter<Main> = new EventEmitter<Main>();
 }
