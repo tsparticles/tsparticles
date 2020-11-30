@@ -8609,9 +8609,9 @@ vue-loader@^15.9.2:
     vue-style-loader "^4.1.0"
 
 vue-property-decorator@^9.1.1:
-  version "9.1.1"
-  resolved "https://registry.yarnpkg.com/vue-property-decorator/-/vue-property-decorator-9.1.1.tgz#5e85cf265492d49fd3145781344b566eecbc5e57"
-  integrity sha512-9NWGJaniUU2/jGcTeuwxLFgAScCqC7kLwe1+8BCa+iTVYcQkI/r3YlOVC8mQDjkZxn+0m3phLt9twv5Lo1qxhg==
+  version "9.1.2"
+  resolved "https://registry.yarnpkg.com/vue-property-decorator/-/vue-property-decorator-9.1.2.tgz#266a2eac61ba6527e2e68a6933cfb98fddab5457"
+  integrity sha512-xYA8MkZynPBGd/w5QFJ2d/NM0z/YeegMqYTphy7NJQXbZcuU6FC6AOdUAcy4SXP+YnkerC6AfH+ldg7PDk9ESQ==
 
 vue-runtime-helpers@^1.1.2:
   version "1.1.2"
