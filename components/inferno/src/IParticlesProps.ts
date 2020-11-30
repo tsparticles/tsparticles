@@ -7,6 +7,7 @@ export interface IParticlesProps {
 	width?: string;
 	height?: string;
 	options?: ISourceOptions;
+	url?: string;
 	params?: ISourceOptions;
 	style?: CSSProperties;
 	className?: string;
