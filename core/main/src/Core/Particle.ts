@@ -29,6 +29,7 @@ import type { IParticleInfection } from "./Interfaces/IParticleInfection";
 import type { IParticleHslAnimation } from "./Interfaces/IParticleHslAnimation";
 import type { Stroke } from "../Options/Classes/Particles/Stroke";
 import type { IColorAnimation } from "../Options/Interfaces/IColorAnimation";
+import type { IParticleLife } from "./Interfaces/IParticleLife";
 
 /**
  * The single particle object
@@ -37,11 +38,6 @@ import type { IColorAnimation } from "../Options/Interfaces/IColorAnimation";
 export class Particle implements IParticle {
     public pathAngle;
     public destroyed;
-    public lifeDelay;
-    public lifeDelayTime;
-    public lifeDuration;
-    public lifeTime;
-    public livesRemaining;
     public misplaced;
     public spawning;
     public lastNoiseTime;
@@ -60,7 +56,6 @@ export class Particle implements IParticle {
     public linksDistance?: number;
     public attractDistance?: number;
     public linksWidth?: number;
-    public maxDistance?: RecursivePartial<IVelocity>;
     public moveSpeed?: number;
     public sizeValue?: number;
     public sizeAnimationSpeed?: number;
@@ -75,12 +70,14 @@ export class Particle implements IParticle {
 
     public readonly direction: MoveDirection | keyof typeof MoveDirection | MoveDirectionAlt;
     public readonly infection: IParticleInfection;
+    public readonly life: IParticleLife;
     public readonly loops: IParticleLoops;
     public readonly stroke: Stroke;
     public readonly position: ICoordinates3d;
     public readonly offset: ICoordinates;
     public readonly shadowColor: IRgb | undefined;
     public readonly color?: IParticleHslAnimation;
+    public readonly maxDistance?: RecursivePartial<IVelocity>;
     public readonly opacity: IParticleValueAnimation<number>;
     public readonly rotate: IParticleValueAnimation<number>;
     public readonly size: IParticleValueAnimation<number>;
@@ -441,27 +438,29 @@ export class Particle implements IParticle {
 
         const lifeOptions = particlesOptions.life;
 
-        this.lifeDelay = container.retina.reduceFactor
-            ? ((NumberUtils.getValue(lifeOptions.delay) * (lifeOptions.delay.sync ? 1 : Math.random())) /
-                  container.retina.reduceFactor) *
-              1000
-            : 0;
-        this.lifeDelayTime = 0;
-        this.lifeDuration = container.retina.reduceFactor
-            ? ((NumberUtils.getValue(lifeOptions.duration) * (lifeOptions.duration.sync ? 1 : Math.random())) /
-                  container.retina.reduceFactor) *
-              1000
-            : 0;
-        this.lifeTime = 0;
-        this.livesRemaining = particlesOptions.life.count;
-        this.spawning = this.lifeDelay > 0;
+        this.life = {
+            delay: container.retina.reduceFactor
+                ? ((NumberUtils.getValue(lifeOptions.delay) * (lifeOptions.delay.sync ? 1 : Math.random())) /
+                container.retina.reduceFactor) *
+                1000
+                : 0,
+            delayTime: 0,
+            duration: container.retina.reduceFactor
+                ? ((NumberUtils.getValue(lifeOptions.duration) * (lifeOptions.duration.sync ? 1 : Math.random())) /
+                container.retina.reduceFactor) *
+                1000
+                : 0,
+            time: 0,
+            count: particlesOptions.life.count,
+        };
+        this.spawning = this.life.delay > 0;
 
-        if (this.lifeDuration <= 0) {
-            this.lifeDuration = -1;
+        if (this.life.duration <= 0) {
+            this.life.duration = -1;
         }
 
-        if (this.livesRemaining <= 0) {
-            this.livesRemaining = -1;
+        if (this.life.count <= 0) {
+            this.life.count = -1;
         }
 
         if (this.options.move.spin.enable) {
@@ -570,7 +569,7 @@ export class Particle implements IParticle {
         zIndex: number,
         tryCount = 0
     ): ICoordinates3d {
-        for (const [, plugin] of container.plugins) {
+        for (const [ , plugin ] of container.plugins) {
             const pluginPos =
                 plugin.particlePosition !== undefined ? plugin.particlePosition(position, this) : undefined;
 

@@ -16,43 +16,46 @@ export class LifeUpdater implements IParticleUpdater {
             return;
         }
 
+        const life = particle.life;
+
         let justSpawned = false;
 
         if (particle.spawning) {
-            particle.lifeDelayTime += delta.value;
+            life.delayTime += delta.value;
 
-            if (particle.lifeDelayTime >= particle.lifeDelay) {
+            if (life.delayTime >= particle.life.delay) {
                 justSpawned = true;
                 particle.spawning = false;
-                particle.lifeDelayTime = 0;
-                particle.lifeTime = 0;
+                life.delayTime = 0;
+                life.time = 0;
             } else {
                 return;
             }
         }
 
-        if (particle.lifeDuration === -1) {
+        if (life.duration === -1) {
             return;
         }
 
         if (justSpawned) {
-            particle.lifeTime = 0;
+            life.time = 0;
         } else {
-            particle.lifeTime += delta.value;
+            life.time += delta.value;
         }
 
-        if (particle.lifeTime < particle.lifeDuration) {
+        if (life.time < life.duration) {
             return;
         }
 
-        particle.lifeTime = 0;
+        life.time = 0;
 
-        if (particle.livesRemaining > 0) {
-            particle.livesRemaining--;
+        if (particle.life.count > 0) {
+            particle.life.count--;
         }
 
-        if (particle.livesRemaining === 0) {
+        if (particle.life.count === 0) {
             particle.destroy();
+
             return;
         }
 
@@ -61,13 +64,13 @@ export class LifeUpdater implements IParticleUpdater {
         particle.position.x = NumberUtils.randomInRange(0, canvasSize.width);
         particle.position.y = NumberUtils.randomInRange(0, canvasSize.height);
         particle.spawning = true;
-        particle.lifeDelayTime = 0;
-        particle.lifeTime = 0;
+        life.delayTime = 0;
+        life.time = 0;
         particle.reset();
 
         const lifeOptions = particle.options.life;
 
-        particle.lifeDelay = NumberUtils.getValue(lifeOptions.delay) * 1000;
-        particle.lifeDuration = NumberUtils.getValue(lifeOptions.duration) * 1000;
+        life.delay = NumberUtils.getValue(lifeOptions.delay) * 1000;
+        life.duration = NumberUtils.getValue(lifeOptions.duration) * 1000;
     }
 }
