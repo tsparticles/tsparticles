@@ -125,7 +125,10 @@ export class Retina {
         particle.sizeValue = options.size.value * ratio;
         particle.sizeAnimationSpeed = options.size.animation.speed * ratio;
         particle.orbitRadius = orbit?.radius !== undefined ? orbit.radius * ratio : undefined;
-        particle.spinAcceleration = options.move.spin.acceleration * ratio;
+
+        if (particle.spin) {
+            particle.spin.acceleration = options.move.spin.acceleration * ratio;
+        }
 
         const maxDistance = particle.maxDistance;
 

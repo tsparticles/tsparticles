@@ -107,36 +107,30 @@ export class Mover {
         const particle = this.particle,
             container = this.container;
 
-        if (
-            particle.spinRadius === undefined ||
-            particle.spinAngle === undefined ||
-            particle.spinCenter === undefined ||
-            particle.spinDirection === undefined ||
-            particle.spinAcceleration === undefined
-        ) {
+        if (!particle.spin) {
             return;
         }
 
         const updateFunc = {
-            x: particle.spinDirection === RotateDirection.clockwise ? Math.cos : Math.sin,
-            y: particle.spinDirection === RotateDirection.clockwise ? Math.sin : Math.cos,
+            x: particle.spin.direction === RotateDirection.clockwise ? Math.cos : Math.sin,
+            y: particle.spin.direction === RotateDirection.clockwise ? Math.sin : Math.cos,
         };
 
-        particle.position.x = particle.spinCenter.x + particle.spinRadius * updateFunc.x(particle.spinAngle);
-        particle.position.y = particle.spinCenter.y + particle.spinRadius * updateFunc.y(particle.spinAngle);
-        particle.spinRadius += particle.spinAcceleration;
+        particle.position.x = particle.spin.center.x + particle.spin.radius * updateFunc.x(particle.spin.angle);
+        particle.position.y = particle.spin.center.y + particle.spin.radius * updateFunc.y(particle.spin.angle);
+        particle.spin.radius += particle.spin.acceleration;
 
         const maxCanvasSize = Math.max(container.canvas.size.width, container.canvas.size.height);
 
-        if (particle.spinRadius > maxCanvasSize / 2) {
-            particle.spinRadius = maxCanvasSize / 2;
-            particle.spinAcceleration *= -1;
-        } else if (particle.spinRadius < 0) {
-            particle.spinRadius = 0;
-            particle.spinAcceleration *= -1;
+        if (particle.spin.radius > maxCanvasSize / 2) {
+            particle.spin.radius = maxCanvasSize / 2;
+            particle.spin.acceleration *= -1;
+        } else if (particle.spin.radius < 0) {
+            particle.spin.radius = 0;
+            particle.spin.acceleration *= -1;
         }
 
-        particle.spinAngle += (moveSpeed / 100) * (1 - particle.spinRadius / maxCanvasSize);
+        particle.spin.angle += (moveSpeed / 100) * (1 - particle.spin.radius / maxCanvasSize);
     }
 
     private applyDistance(): void {

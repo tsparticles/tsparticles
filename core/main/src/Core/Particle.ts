@@ -31,6 +31,7 @@ import type { IParticleHslAnimation } from "./Interfaces/IParticleHslAnimation";
 import type { Stroke } from "../Options/Classes/Particles/Stroke";
 import type { IColorAnimation } from "../Options/Interfaces/IColorAnimation";
 import type { IParticleLife } from "./Interfaces/IParticleLife";
+import type { IParticleSpin } from "./Interfaces/IParticleSpin";
 
 /**
  * The single particle object
@@ -60,10 +61,6 @@ export class Particle implements IParticle {
     public moveSpeed?: number;
     public sizeValue?: number;
     public sizeAnimationSpeed?: number;
-    public spinRadius?: number;
-    public spinAngle?: number;
-    public spinDirection?: RotateDirection;
-    public spinAcceleration?: number;
     public orbitRadius?: number;
     public orbitRotation?: number;
     public close: boolean;
@@ -73,6 +70,7 @@ export class Particle implements IParticle {
     public readonly infection: IParticleInfection;
     public readonly life: IParticleLife;
     public readonly loops: IParticleLoops;
+    public readonly spin?: IParticleSpin;
     public readonly stroke: Stroke;
     public readonly position: ICoordinates3d;
     public readonly offset: ICoordinates;
@@ -90,7 +88,6 @@ export class Particle implements IParticle {
     public readonly initialVelocity: IVelocity;
     public readonly shapeData?: IShapeValues;
     public readonly bubble: IBubbleParticleData;
-    public readonly spinCenter?: ICoordinates;
 
     constructor(
         public readonly id: number,
@@ -466,20 +463,23 @@ export class Particle implements IParticle {
         }
 
         if (this.options.move.spin.enable) {
-            const spinCenter = this.options.move.spin.position ?? { x: 50, y: 50 };
+            const spinPos = this.options.move.spin.position ?? { x: 50, y: 50 };
 
-            this.spinCenter = {
-                x: (spinCenter.x / 100) * this.container.canvas.size.width,
-                y: (spinCenter.y / 100) * this.container.canvas.size.height,
+            const spinCenter = {
+                x: (spinPos.x / 100) * this.container.canvas.size.width,
+                y: (spinPos.y / 100) * this.container.canvas.size.height,
             };
 
             const pos = this.getPosition();
-            const distance = NumberUtils.getDistance(pos, this.spinCenter);
+            const distance = NumberUtils.getDistance(pos, spinCenter);
 
-            this.spinDirection =
-                this.velocity.horizontal >= 0 ? RotateDirection.clockwise : RotateDirection.counterClockwise;
-            this.spinAngle = Math.atan2(this.velocity.vertical, this.velocity.horizontal);
-            this.spinRadius = distance;
+            this.spin = {
+                center: spinCenter,
+                direction: this.velocity.horizontal >= 0 ? RotateDirection.clockwise : RotateDirection.counterClockwise,
+                angle: Math.atan2(this.velocity.vertical, this.velocity.horizontal),
+                radius: distance,
+                acceleration: this.options.move.spin.acceleration,
+            };
         }
 
         this.shadowColor = colorToRgb(this.options.shadow.color);
