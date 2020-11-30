@@ -5179,9 +5179,9 @@ prelude-ls@~1.1.2:
   integrity sha1-IZMqVJ9eUv/ZqCf1cOBL5iqX2lQ=
 
 prettier@^2.1.2:
-  version "2.1.2"
-  resolved "https://registry.yarnpkg.com/prettier/-/prettier-2.1.2.tgz#3050700dae2e4c8b67c4c3f666cdb8af405e1ce5"
-  integrity sha512-16c7K+x4qVlJg9rEbXl7HEGmQyZlG4R9AgP+oHKRMsMsuk8s+ATStlf1NpDqyBI1HpVyfjLOeMhH2LvuNvV5Vg==
+  version "2.2.1"
+  resolved "https://registry.yarnpkg.com/prettier/-/prettier-2.2.1.tgz#795a1a78dd52f073da0cd42b21f9c91381923ff5"
+  integrity sha512-PqyhM2yCjg/oKkFPtTGUojv7gnZAoG80ttl45O6x2Ug/rMJw4wcc9k6aaf2hibP7BGVCCM33gZoGjyvt9mm16Q==
 
 prismjs@^1.22.0, prismjs@~1.22.0:
   version "1.22.0"
@@ -5337,15 +5337,15 @@ react-syntax-highlighter@^15.3.0:
     prismjs "^1.22.0"
     refractor "^3.2.0"
 
-react-tsparticles@^1.19.0-alpha.2:
-  version "1.19.0-alpha.2"
-  resolved "https://registry.yarnpkg.com/react-tsparticles/-/react-tsparticles-1.19.0-alpha.2.tgz#81e7d578f3e084314aa928df7914d92dfb5404d5"
-  integrity sha512-tCPt/49j/NeWzFRgKjr3KE4IYf1h/8LiiLduaIJfiy5VAiz5LIEYCQbPD06DQUYSBuD9rEHzSlMMACYg4aEWBw==
+react-tsparticles@^1.19.0-alpha.3:
+  version "1.19.0-alpha.3"
+  resolved "https://registry.yarnpkg.com/react-tsparticles/-/react-tsparticles-1.19.0-alpha.3.tgz#b79beb2945f3440d557e4fb77d6ff93631e14939"
+  integrity sha512-5oCSTgu5aXcjKIkhMJbbVD18KkNUJk3lQYN5mBkaoQWrog0SMYDfvIdzt0M/UsR4pTlS3K44p1jFlnM9QkS4lA==
   dependencies:
     lodash "^4.17.20"
     react ">=16"
     tslib "^2.0.3"
-    tsparticles "^1.19.0-alpha.2"
+    tsparticles "^1.19.0-alpha.3"
 
 react@>=16, react@^17.0.1:
   version "17.0.1"
@@ -6397,17 +6397,17 @@ tslib@^2.0.3:
   resolved "https://registry.yarnpkg.com/tslib/-/tslib-2.0.3.tgz#8e0741ac45fc0c226e58a17bfc3e64b9bc6ca61c"
   integrity sha512-uZtkfKblCEQtZKBF6EBXVZeQNl82yqtDQdv+eck8u7tdPxjLu2/lp5/uPW+um2tpuxINHWy3GhiccY7QgEaVHQ==
 
-tsparticles-preset-sea-anemone@^1.4.0-alpha.2:
-  version "1.4.0-alpha.2"
-  resolved "https://registry.yarnpkg.com/tsparticles-preset-sea-anemone/-/tsparticles-preset-sea-anemone-1.4.0-alpha.2.tgz#9971054eda5bf2302c2a2107924ed844980b94d8"
-  integrity sha512-4jbSQjLJQSk1HRoTJMrKnCdsgyx2TrZzlWTOhXX6lI2Gs4nKGx6/GX/5Wk37n1yxIWcLI/rXpdPWvXBb0BMb5Q==
+tsparticles-preset-sea-anemone@^1.4.0-alpha.3:
+  version "1.4.0-alpha.3"
+  resolved "https://registry.yarnpkg.com/tsparticles-preset-sea-anemone/-/tsparticles-preset-sea-anemone-1.4.0-alpha.3.tgz#65f27624c3eaa2a55d4d05be257165b6a197f892"
+  integrity sha512-yakZsU4HC1a3RWFtQTGuf8f/gNyiJEFS9ZcA4Lu5Z1MHUN/aSUksBPKJvHnTPwQtvMoYYmjzvPacfrM7Tx51kQ==
   dependencies:
-    tsparticles "^1.19.0-alpha.2"
+    tsparticles "^1.19.0-alpha.3"
 
-tsparticles@^1.19.0-alpha.2:
-  version "1.19.0-alpha.2"
-  resolved "https://registry.yarnpkg.com/tsparticles/-/tsparticles-1.19.0-alpha.2.tgz#67e2a2ac8188a96ff1a3fb804ae88ed3246eaf40"
-  integrity sha512-LO65MR+PKmRuMHVa9uSWlFENsEmIPc7SoNSVEI0R2dymjVdFufhinIxmUwaTE9NF9sJpZxsJ/G5Pv0Y1G/T9hg==
+tsparticles@^1.19.0-alpha.3:
+  version "1.19.0-alpha.3"
+  resolved "https://registry.yarnpkg.com/tsparticles/-/tsparticles-1.19.0-alpha.3.tgz#23c6c4b4f838b61eafc34d67b1cd53ebeff9ae5a"
+  integrity sha512-tcXixcPFQ/J9/2Z9+cyiYs6jXepmU0ybHB+CRxvNB59N58VLCHOro4laZ62M5gnzwUkaNu9Aey8X06MnzNvCyA==
   optionalDependencies:
     pathseg "^1.2.0"
 
