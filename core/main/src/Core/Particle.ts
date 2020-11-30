@@ -15,6 +15,7 @@ import {
     MoveDirection,
     MoveDirectionAlt,
     OutMode,
+    OutModeAlt,
     RotateDirection,
     ShapeType,
     StartValueType,
@@ -77,7 +78,7 @@ export class Particle implements IParticle {
     public readonly offset: ICoordinates;
     public readonly shadowColor: IRgb | undefined;
     public readonly color?: IParticleHslAnimation;
-    public readonly maxDistance?: RecursivePartial<IVelocity>;
+    public readonly maxDistance: RecursivePartial<IVelocity>;
     public readonly opacity: IParticleValueAnimation<number>;
     public readonly rotate: IParticleValueAnimation<number>;
     public readonly size: IParticleValueAnimation<number>;
@@ -111,6 +112,7 @@ export class Particle implements IParticle {
             size: 0,
         };
         this.infection = {};
+        this.maxDistance = {};
 
         const pxRatio = container.retina.pixelRatio;
         const options = container.options;
@@ -441,14 +443,14 @@ export class Particle implements IParticle {
         this.life = {
             delay: container.retina.reduceFactor
                 ? ((NumberUtils.getValue(lifeOptions.delay) * (lifeOptions.delay.sync ? 1 : Math.random())) /
-                container.retina.reduceFactor) *
-                1000
+                      container.retina.reduceFactor) *
+                  1000
                 : 0,
             delayTime: 0,
             duration: container.retina.reduceFactor
                 ? ((NumberUtils.getValue(lifeOptions.duration) * (lifeOptions.duration.sync ? 1 : Math.random())) /
-                container.retina.reduceFactor) *
-                1000
+                      container.retina.reduceFactor) *
+                  1000
                 : 0,
             time: 0,
             count: particlesOptions.life.count,
@@ -569,7 +571,7 @@ export class Particle implements IParticle {
         zIndex: number,
         tryCount = 0
     ): ICoordinates3d {
-        for (const [ , plugin ] of container.plugins) {
+        for (const [, plugin] of container.plugins) {
             const pluginPos =
                 plugin.particlePosition !== undefined ? plugin.particlePosition(position, this) : undefined;
 
@@ -590,25 +592,58 @@ export class Particle implements IParticle {
             z: zIndex,
         };
 
+        this.fixPositionInCanvas(pos);
+
+        if (this.checkOverlap(pos, tryCount)) {
+            return this.calcPosition(container, undefined, pos.z, tryCount + 1);
+        }
+
+        return pos;
+    }
+
+    public fixPositionInCanvas(pos: ICoordinates3d): void {
         /* check position  - into the canvas */
-        const outMode = this.options.move.outMode;
+        const container = this.container;
+        const outMode = this.options.move.outModes;
+        const hOut = [outMode.right, outMode.left];
+        const vOut = [outMode.bottom, outMode.top];
 
-        if (Utils.isInArray(outMode, OutMode.bounce) || Utils.isInArray(outMode, OutMode.bounceHorizontal)) {
-            if (pos.x > container.canvas.size.width - this.size.value * 2) {
-                pos.x -= this.size.value;
-            } else if (pos.x < this.size.value * 2) {
-                pos.x += this.size.value;
+        pos.x += this.getOutCanvasFix(
+            [OutMode.bounce, OutMode.bounceHorizontal],
+            hOut,
+            container.canvas.size.width,
+            pos.x
+        );
+        pos.y += this.getOutCanvasFix(
+            [OutMode.bounce, OutMode.bounceVertical],
+            vOut,
+            container.canvas.size.height,
+            pos.y
+        );
+    }
+
+    private getOutCanvasFix(
+        outModes: (OutMode | keyof typeof OutMode | OutModeAlt)[],
+        modes: (OutMode | keyof typeof OutMode | OutModeAlt | undefined)[],
+        size: number,
+        coordinate: number
+    ): number {
+        for (const outMode of outModes) {
+            if (!Utils.isInArray(outMode, modes)) {
+                continue;
+            }
+
+            if (coordinate > size - this.size.value * 2) {
+                return this.size.value;
+            } else if (coordinate < this.size.value * 2) {
+                return -this.size.value;
             }
         }
 
-        if (Utils.isInArray(outMode, OutMode.bounce) || Utils.isInArray(outMode, OutMode.bounceVertical)) {
-            if (pos.y > container.canvas.size.height - this.size.value * 2) {
-                pos.y -= this.size.value;
-            } else if (pos.y < this.size.value * 2) {
-                pos.y += this.size.value;
-            }
-        }
+        return 0;
+    }
 
+    private checkOverlap(pos: ICoordinates3d, tryCount = 0): boolean {
         const overlapOptions = this.options.collisions.overlap;
 
         if (!overlapOptions.enable) {
@@ -627,12 +662,10 @@ export class Particle implements IParticle {
                 }
             }
 
-            if (overlaps) {
-                return this.calcPosition(container, undefined, zIndex, tryCount + 1);
-            }
+            return overlaps;
         }
 
-        return pos;
+        return false;
     }
 
     private calculateVelocity(): IVelocity {

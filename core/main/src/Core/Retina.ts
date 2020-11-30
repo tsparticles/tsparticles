@@ -113,23 +113,24 @@ export class Retina {
     }
 
     public initParticle(particle: Particle): void {
-        const particlesOptions = particle.options;
+        const options = particle.options;
         const ratio = this.pixelRatio;
-        const orbit = particlesOptions.orbit;
-        const moveDistance = particlesOptions.move.distance;
+        const orbit = options.orbit;
+        const moveDistance = options.move.distance;
 
-        particle.attractDistance = particlesOptions.move.attract.distance * ratio;
-        particle.linksDistance = particlesOptions.links.distance * ratio;
-        particle.linksWidth = particlesOptions.links.width * ratio;
-        particle.moveSpeed = particlesOptions.move.speed * ratio;
-        particle.sizeValue = particlesOptions.size.value * ratio;
-        particle.sizeAnimationSpeed = particlesOptions.size.animation.speed * ratio;
+        particle.attractDistance = options.move.attract.distance * ratio;
+        particle.linksDistance = options.links.distance * ratio;
+        particle.linksWidth = options.links.width * ratio;
+        particle.moveSpeed = options.move.speed * ratio;
+        particle.sizeValue = options.size.value * ratio;
+        particle.sizeAnimationSpeed = options.size.animation.speed * ratio;
         particle.orbitRadius = orbit?.radius !== undefined ? orbit.radius * ratio : undefined;
-        particle.spinAcceleration = particlesOptions.move.spin.acceleration * ratio;
-        particle.maxDistance = {
-            horizontal: moveDistance.horizontal ? moveDistance.horizontal * ratio : undefined,
-            vertical: moveDistance.vertical ? moveDistance.vertical * ratio : undefined,
-        };
+        particle.spinAcceleration = options.move.spin.acceleration * ratio;
+
+        const maxDistance = particle.maxDistance;
+
+        maxDistance.horizontal = moveDistance.horizontal !== undefined ? moveDistance.horizontal * ratio : undefined;
+        maxDistance.vertical = moveDistance.vertical !== undefined ? moveDistance.vertical * ratio : undefined;
     }
 
     private handleMotionChange(mediaQuery: MediaQueryList): void {

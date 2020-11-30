@@ -147,10 +147,6 @@ export class Mover {
         const dxFixed = Math.abs(dx),
             dyFixed = Math.abs(dy);
 
-        if (!particle.maxDistance) {
-            return;
-        }
-
         const hDistance = particle.maxDistance.horizontal;
         const vDistance = particle.maxDistance.vertical;
 
