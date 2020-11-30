@@ -2945,6 +2945,15 @@ indexes-of@^1.0.1:
   resolved "https://registry.yarnpkg.com/indexes-of/-/indexes-of-1.0.1.tgz#f30f716c8e2bd346c7b67d3df3915566a7c05607"
   integrity sha1-8w9xbI4r00bHtn0985FVZqfAVgc=
 
+inferno-particles@^1.2.0-alpha.3:
+  version "1.2.0-alpha.3"
+  resolved "https://registry.yarnpkg.com/inferno-particles/-/inferno-particles-1.2.0-alpha.3.tgz#f7b00b44bee6b7e9bdf06efd04c55ba3a4e65887"
+  integrity sha512-+xq5QDm8OfWgoczrunScTbJqLTZg7rCWDnRrBe3CJMs8y1xf6W76GRAl6bWGnMYAUBRxCaQmfy2YQxMukHfe3w==
+  dependencies:
+    inferno ">=7"
+    lodash "^4.17.20"
+    tsparticles "^1.19.0-alpha.3"
+
 inferno-shared@7.4.6:
   version "7.4.6"
   resolved "https://registry.yarnpkg.com/inferno-shared/-/inferno-shared-7.4.6.tgz#49433c46614733104ccda8d978234148d0eea758"
@@ -2955,7 +2964,7 @@ inferno-vnode-flags@7.4.6:
   resolved "https://registry.yarnpkg.com/inferno-vnode-flags/-/inferno-vnode-flags-7.4.6.tgz#c183843b7a3a9e9c48e9c6cc2b92960d522bf088"
   integrity sha512-VZlAjY57hOYel1cGI7HYfir+K9X8NAlIrkOfX/WyEVUs8oFwS8W197r1wZSMzKeGATEqQ+zu4zGnZhjrM5g3Ng==
 
-inferno@^7.4.6:
+inferno@>=7, inferno@^7.4.6:
   version "7.4.6"
   resolved "https://registry.yarnpkg.com/inferno/-/inferno-7.4.6.tgz#2198743be748c4c8663d9d0e8e590378238ec983"
   integrity sha512-g5v3YOO6uuduN29XsZNQqlktiSNmKX8YM15pFfL6WYjjPXMA58ticw1rTtT8zCb0V/D8fF5y4yg3sAgVrlJBDw==
@@ -4086,6 +4095,11 @@ path-type@^1.0.0:
     graceful-fs "^4.1.2"
     pify "^2.0.0"
     pinkie-promise "^2.0.0"
+
+pathseg@^1.2.0:
+  version "1.2.0"
+  resolved "https://registry.yarnpkg.com/pathseg/-/pathseg-1.2.0.tgz#22af051e28037671e7799e296fe96c5dcbe53acd"
+  integrity sha512-+pQS7lTaoVIXhaCW7R3Wd/165APzZHWzYVqe7dxzdupxQwebgpBaCmf0/XZwmoA/rkDq3qvzO0qv4d5oFVrBRw==
 
 performance-now@^2.1.0:
   version "2.1.0"
@@ -5238,6 +5252,13 @@ tslib@^1.10.0, tslib@^1.9.0:
   resolved "https://registry.yarnpkg.com/tslib/-/tslib-1.14.1.tgz#cf2d38bdc34a134bcaf1091c41f6619e2f672d00"
   integrity sha512-Xni35NKzjgMrwevysHTCArtLDpPvye8zV/0E4EyYn43P7/7qvQwPh9BGkHewbMulVntbigmcT7rdX3BNo9wRJg==
 
+tsparticles@^1.19.0-alpha.3:
+  version "1.19.0-alpha.3"
+  resolved "https://registry.yarnpkg.com/tsparticles/-/tsparticles-1.19.0-alpha.3.tgz#23c6c4b4f838b61eafc34d67b1cd53ebeff9ae5a"
+  integrity sha512-tcXixcPFQ/J9/2Z9+cyiYs6jXepmU0ybHB+CRxvNB59N58VLCHOro4laZ62M5gnzwUkaNu9Aey8X06MnzNvCyA==
+  optionalDependencies:
+    pathseg "^1.2.0"
+
 tunnel-agent@^0.6.0:
   version "0.6.0"
   resolved "https://registry.yarnpkg.com/tunnel-agent/-/tunnel-agent-0.6.0.tgz#27a5dea06b36b04a0a9966774b290868f0fc40fd"
@@ -5520,9 +5541,9 @@ webpack-sources@^2.1.1:
     source-map "^0.6.1"
 
 webpack@^5.5.0:
-  version "5.8.0"
-  resolved "https://registry.yarnpkg.com/webpack/-/webpack-5.8.0.tgz#65f00a181708279ff982c2d7338e1dd5505364c4"
-  integrity sha512-X2yosPiHip3L0TE+ylruzrOqSgEgsdGyBOGFWKYChcwlKChaw9VodZIUovG1oo7s0ss6e3ZxBMn9tXR+nkPThA==
+  version "5.9.0"
+  resolved "https://registry.yarnpkg.com/webpack/-/webpack-5.9.0.tgz#af2e9cf9d6c7867cdcf214ea3bb5eb77aece6895"
+  integrity sha512-YnnqIV/uAS5ZrNpctSv378qV7HmbJ74DL+XfvMxzbX1bV9e7eeT6eEWU4wuUw33CNr/HspBh7R/xQlVjTEyAeA==
   dependencies:
     "@types/eslint-scope" "^3.7.0"
     "@types/estree" "^0.0.45"

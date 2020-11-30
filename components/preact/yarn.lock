@@ -3159,10 +3159,10 @@ tslib@^1.8.1, tslib@^1.9.0:
   resolved "https://registry.yarnpkg.com/tslib/-/tslib-1.14.1.tgz#cf2d38bdc34a134bcaf1091c41f6619e2f672d00"
   integrity sha512-Xni35NKzjgMrwevysHTCArtLDpPvye8zV/0E4EyYn43P7/7qvQwPh9BGkHewbMulVntbigmcT7rdX3BNo9wRJg==
 
-tsparticles@^1.19.0-alpha.2:
-  version "1.19.0-alpha.2"
-  resolved "https://registry.yarnpkg.com/tsparticles/-/tsparticles-1.19.0-alpha.2.tgz#67e2a2ac8188a96ff1a3fb804ae88ed3246eaf40"
-  integrity sha512-LO65MR+PKmRuMHVa9uSWlFENsEmIPc7SoNSVEI0R2dymjVdFufhinIxmUwaTE9NF9sJpZxsJ/G5Pv0Y1G/T9hg==
+tsparticles@^1.19.0-alpha.3:
+  version "1.19.0-alpha.3"
+  resolved "https://registry.yarnpkg.com/tsparticles/-/tsparticles-1.19.0-alpha.3.tgz#23c6c4b4f838b61eafc34d67b1cd53ebeff9ae5a"
+  integrity sha512-tcXixcPFQ/J9/2Z9+cyiYs6jXepmU0ybHB+CRxvNB59N58VLCHOro4laZ62M5gnzwUkaNu9Aey8X06MnzNvCyA==
   optionalDependencies:
     pathseg "^1.2.0"
 
@@ -3324,9 +3324,9 @@ webpack-sources@^2.1.1:
     source-map "^0.6.1"
 
 webpack@^5.6.0:
-  version "5.8.0"
-  resolved "https://registry.yarnpkg.com/webpack/-/webpack-5.8.0.tgz#65f00a181708279ff982c2d7338e1dd5505364c4"
-  integrity sha512-X2yosPiHip3L0TE+ylruzrOqSgEgsdGyBOGFWKYChcwlKChaw9VodZIUovG1oo7s0ss6e3ZxBMn9tXR+nkPThA==
+  version "5.9.0"
+  resolved "https://registry.yarnpkg.com/webpack/-/webpack-5.9.0.tgz#af2e9cf9d6c7867cdcf214ea3bb5eb77aece6895"
+  integrity sha512-YnnqIV/uAS5ZrNpctSv378qV7HmbJ74DL+XfvMxzbX1bV9e7eeT6eEWU4wuUw33CNr/HspBh7R/xQlVjTEyAeA==
   dependencies:
     "@types/eslint-scope" "^3.7.0"
     "@types/estree" "^0.0.45"
