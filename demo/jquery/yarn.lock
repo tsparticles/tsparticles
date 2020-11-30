@@ -1494,13 +1494,13 @@ jmespath@^0.15.0:
   resolved "https://registry.yarnpkg.com/jmespath/-/jmespath-0.15.0.tgz#a3f222a9aae9f966f5d27c796510e28091764217"
   integrity sha1-o/Iiqarp+Wb10nx5ZRDigJF2Qhc=
 
-jquery-particles@^1.19.0-alpha.2:
-  version "1.19.0-alpha.2"
-  resolved "https://registry.yarnpkg.com/jquery-particles/-/jquery-particles-1.19.0-alpha.2.tgz#babc9219ce7d6d980b8da9cb5fb9b3714e9d5335"
-  integrity sha512-UjDfv7g7e0ULyrisxDacVVk9QPZFp5YcnGsJprmW9q1vh6RBLNlj5oF0VxOHM7aszzkDcfxjaR91Uk6RU0xY3A==
+jquery-particles@^1.19.0-alpha.3:
+  version "1.19.0-alpha.3"
+  resolved "https://registry.yarnpkg.com/jquery-particles/-/jquery-particles-1.19.0-alpha.3.tgz#c112040817627948f2017ccf6d18767ace40dca8"
+  integrity sha512-J8tXHcQuTVXAUbYU0OhbttRTfeYiZjKA3abqaWtYk8+hHkPLKsv5KfBcnzvK8VSmAazqEGq3RWTGhR6R42GZfg==
   dependencies:
     jquery "^3.5.1"
-    tsparticles "^1.19.0-alpha.2"
+    tsparticles "^1.19.0-alpha.3"
 
 jquery@^3.5.1:
   version "3.5.1"
@@ -1781,9 +1781,9 @@ prelude-ls@^1.2.1:
   integrity sha512-vkcDPrRZo1QZLbn5RLGPpg/WmIQ65qoWWhcGKf/b5eplkkarX0m9z8ppCat4mlOqUsWpyNuYgO3VRyrYHSzX5g==
 
 prettier@^2.1.2:
-  version "2.1.2"
-  resolved "https://registry.yarnpkg.com/prettier/-/prettier-2.1.2.tgz#3050700dae2e4c8b67c4c3f666cdb8af405e1ce5"
-  integrity sha512-16c7K+x4qVlJg9rEbXl7HEGmQyZlG4R9AgP+oHKRMsMsuk8s+ATStlf1NpDqyBI1HpVyfjLOeMhH2LvuNvV5Vg==
+  version "2.2.1"
+  resolved "https://registry.yarnpkg.com/prettier/-/prettier-2.2.1.tgz#795a1a78dd52f073da0cd42b21f9c91381923ff5"
+  integrity sha512-PqyhM2yCjg/oKkFPtTGUojv7gnZAoG80ttl45O6x2Ug/rMJw4wcc9k6aaf2hibP7BGVCCM33gZoGjyvt9mm16Q==
 
 private@^0.1.6:
   version "0.1.8"
@@ -2269,17 +2269,17 @@ tslib@^1.8.1:
   resolved "https://registry.yarnpkg.com/tslib/-/tslib-1.14.1.tgz#cf2d38bdc34a134bcaf1091c41f6619e2f672d00"
   integrity sha512-Xni35NKzjgMrwevysHTCArtLDpPvye8zV/0E4EyYn43P7/7qvQwPh9BGkHewbMulVntbigmcT7rdX3BNo9wRJg==
 
-tsparticles-preset-links@^1.4.0-alpha.2:
-  version "1.4.0-alpha.2"
-  resolved "https://registry.yarnpkg.com/tsparticles-preset-links/-/tsparticles-preset-links-1.4.0-alpha.2.tgz#23b3afc14f6699f81082a05a8850900b59eb605d"
-  integrity sha512-Hf27bXALbBIPPL+mKLD2Vp3H3HEQ9knMPFL57EHcV2pIDzJlo7wfO56bylFj1zxRX84Ahfx3WL+mRZzONgN9sA==
+tsparticles-preset-links@^1.4.0-alpha.3:
+  version "1.4.0-alpha.3"
+  resolved "https://registry.yarnpkg.com/tsparticles-preset-links/-/tsparticles-preset-links-1.4.0-alpha.3.tgz#4ba31316ede470e22331110c80cf537772c6e154"
+  integrity sha512-+FrNC+lwGq7hWVdA1pnn46YfxaUCm2mDwhDNazUAUzb/hZ/WT5B8+//zNCVcuhedp662RSScoe2d5UBWHCOu/A==
   dependencies:
-    tsparticles "^1.19.0-alpha.2"
+    tsparticles "^1.19.0-alpha.3"
 
-tsparticles@^1.19.0-alpha.2:
-  version "1.19.0-alpha.2"
-  resolved "https://registry.yarnpkg.com/tsparticles/-/tsparticles-1.19.0-alpha.2.tgz#67e2a2ac8188a96ff1a3fb804ae88ed3246eaf40"
-  integrity sha512-LO65MR+PKmRuMHVa9uSWlFENsEmIPc7SoNSVEI0R2dymjVdFufhinIxmUwaTE9NF9sJpZxsJ/G5Pv0Y1G/T9hg==
+tsparticles@^1.19.0-alpha.3:
+  version "1.19.0-alpha.3"
+  resolved "https://registry.yarnpkg.com/tsparticles/-/tsparticles-1.19.0-alpha.3.tgz#23c6c4b4f838b61eafc34d67b1cd53ebeff9ae5a"
+  integrity sha512-tcXixcPFQ/J9/2Z9+cyiYs6jXepmU0ybHB+CRxvNB59N58VLCHOro4laZ62M5gnzwUkaNu9Aey8X06MnzNvCyA==
   optionalDependencies:
     pathseg "^1.2.0"
 
