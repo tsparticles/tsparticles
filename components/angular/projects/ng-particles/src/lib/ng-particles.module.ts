@@ -1,11 +1,11 @@
 import { NgModule } from '@angular/core';
-import { NgParticlesComponent } from './ng-particles.component';
+import { NgParticlesComponent, ParticlesComponent } from './ng-particles.component';
 import type { ISourceOptions } from 'tsparticles';
 
 @NgModule({
-    declarations: [ NgParticlesComponent ],
+    declarations: [ NgParticlesComponent, ParticlesComponent ],
     imports: [],
-    exports: [ NgParticlesComponent ]
+    exports: [ NgParticlesComponent, ParticlesComponent ]
 })
 export class NgParticlesModule {
 }
