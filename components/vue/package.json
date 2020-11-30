@@ -71,7 +71,7 @@
     "tsparticles": "^1.19.0-alpha.3",
     "vue": ">=2 && <3",
     "vue-class-component": "<8",
-    "vue-property-decorator": "^9.1.1"
+    "vue-property-decorator": "^9.1.2"
   },
   "devDependencies": {
     "@babel/core": "^7.12.3",
