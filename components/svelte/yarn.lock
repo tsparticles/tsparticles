@@ -631,9 +631,9 @@ svelte-preprocess@^4.6.1:
     strip-indent "^3.0.0"
 
 svelte@>=3:
-  version "3.30.0"
-  resolved "https://registry.yarnpkg.com/svelte/-/svelte-3.30.0.tgz#cbde341e96bf34f4ac73c8f14f8a014e03bfb7d6"
-  integrity sha512-z+hdIACb9TROGvJBQWcItMtlr4s0DBUgJss6qWrtFkOoIInkG+iAMo/FJZQFyDBQZc+dul2+TzYSi/tpTT5/Ag==
+  version "3.30.1"
+  resolved "https://registry.yarnpkg.com/svelte/-/svelte-3.30.1.tgz#9352bf7bc82277353cfaa3a6afc46d3aa3563e0d"
+  integrity sha512-Qs3/5CiDhrtM+t8AaPJz0T99sv/I5pgQP0KnpBPAtMGY+MR4NWUPyOqWqPYhoV0QMNLfmSi/DACUUwwyEraEPA==
 
 terser@^5.0.0:
   version "5.3.8"
