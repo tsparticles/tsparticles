@@ -2,7 +2,7 @@
 
 # particles.vue3
 
-[![npm](https://img.shields.io/npm/v/particles.vue3)](https://www.npmjs.com/package/particles.vue3) [![npm](https://img.shields.io/npm/dm/particles.vue3)](https://www.npmjs.com/package/particles.vue3)
+[![npm](https://img.shields.io/npm/v/particles.vue3)](https://www.npmjs.com/package/particles.vue3) [![npm](https://img.shields.io/npm/dm/particles.vue3)](https://www.npmjs.com/package/particles.vue3) [![Mentioned in Awesome Vue.js](https://awesome.re/mentioned-badge-flat.svg)](https://github.com/vuejs/awesome-vue#readme)
 
 Official [tsParticles](https://github.com/matteobruni/tsparticles) VueJS 3.x component
 

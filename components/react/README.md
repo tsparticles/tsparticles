@@ -2,7 +2,7 @@
 
 # react-tsparticles
 
-[![npm](https://img.shields.io/npm/v/react-tsparticles)](https://www.npmjs.com/package/react-tsparticles) [![npm](https://img.shields.io/npm/dm/react-tsparticles)](https://www.npmjs.com/package/react-tsparticles)
+[![npm](https://img.shields.io/npm/v/react-tsparticles)](https://www.npmjs.com/package/react-tsparticles) [![npm](https://img.shields.io/npm/dm/react-tsparticles)](https://www.npmjs.com/package/react-tsparticles) [![Mentioned in Awesome React](https://awesome.re/mentioned-badge-flat.svg)](https://github.com/enaqx/awesome-react#readme)
 
 Official [tsParticles](https://github.com/matteobruni/tsparticles) ReactJS component
 

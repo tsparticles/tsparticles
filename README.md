@@ -6,7 +6,7 @@
 
 _[Particles.js](https://github.com/VincentGarreau/particles.js) converted in TypeScript, dependency free ([\*](#dependencies)), improved with new cool 😎 features and various bugs fixed and **it's actively maintained**!_
 
-[![jsDelivr](https://data.jsdelivr.com/v1/package/npm/tsparticles/badge?style=rounded)](https://www.jsdelivr.com/package/npm/tsparticles) [![Cdnjs](https://img.shields.io/cdnjs/v/tsparticles)](https://cdnjs.com/libraries/tsparticles) [![npmjs](https://badge.fury.io/js/tsparticles.svg)](https://www.npmjs.com/package/tsparticles) [![npm](https://img.shields.io/npm/dm/tsparticles)](https://www.npmjs.com/package/tsparticles) [![lerna](https://img.shields.io/badge/maintained%20with-lerna-cc00ff.svg)](https://lerna.js.org/) [![CodeFactor](https://www.codefactor.io/repository/github/matteobruni/tsparticles/badge)](https://www.codefactor.io/repository/github/matteobruni/tsparticles) [![Codacy Badge](https://api.codacy.com/project/badge/Grade/b983aaf3461a4c48b1e2eecce1ff1d74)](https://www.codacy.com/manual/ar3s/tsparticles?utm_source=github.com&utm_medium=referral&utm_content=matteobruni/tsparticles&utm_campaign=Badge_Grade) [![Gitpod Ready-to-Code](https://img.shields.io/badge/Gitpod-ready--to--code-blue?logo=gitpod)](https://gitpod.io/#https://github.com/matteobruni/tsparticles) [![Run on Repl.it](https://repl.it/badge/github/matteobruni/tsparticles)](https://repl.it/github/matteobruni/tsparticles)
+[![jsDelivr](https://data.jsdelivr.com/v1/package/npm/tsparticles/badge?style=rounded)](https://www.jsdelivr.com/package/npm/tsparticles) [![Cdnjs](https://img.shields.io/cdnjs/v/tsparticles)](https://cdnjs.com/libraries/tsparticles) [![npmjs](https://badge.fury.io/js/tsparticles.svg)](https://www.npmjs.com/package/tsparticles) [![npm](https://img.shields.io/npm/dm/tsparticles)](https://www.npmjs.com/package/tsparticles) [![lerna](https://img.shields.io/badge/maintained%20with-lerna-cc00ff.svg)](https://lerna.js.org/) [![CodeFactor](https://www.codefactor.io/repository/github/matteobruni/tsparticles/badge)](https://www.codefactor.io/repository/github/matteobruni/tsparticles) [![Codacy Badge](https://api.codacy.com/project/badge/Grade/b983aaf3461a4c48b1e2eecce1ff1d74)](https://www.codacy.com/manual/ar3s/tsparticles?utm_source=github.com&utm_medium=referral&utm_content=matteobruni/tsparticles&utm_campaign=Badge_Grade) [![Gitpod Ready-to-Code](https://img.shields.io/badge/Gitpod-ready--to--code-blue?logo=gitpod)](https://gitpod.io/#https://github.com/matteobruni/tsparticles) [![Run on Repl.it](https://repl.it/badge/github/matteobruni/tsparticles)](https://repl.it/github/matteobruni/tsparticles) [![Mentioned in Awesome Javascript](https://awesome.re/mentioned-badge-flat.svg)](https://github.com/sorrycc/awesome-javascript#readme) [![Mentioned in Awesome Web Animation](https://awesome.re/mentioned-badge-flat.svg)](https://github.com/sergey-pimenov/awesome-web-animation#readme)
 
 ## Do you want to use it on your website?
 
@@ -197,7 +197,7 @@ You can find the instructions [here](https://github.com/matteobruni/tsparticles/
 
 #### `preact-particles`
 
-[![npm](https://img.shields.io/npm/v/preact-particles)](https://www.npmjs.com/package/preact-particles) [![npm](https://img.shields.io/npm/dm/preact-particles)](https://www.npmjs.com/package/preact-particles)
+[![npm](https://img.shields.io/npm/v/preact-particles)](https://www.npmjs.com/package/preact-particles) [![npm](https://img.shields.io/npm/dm/preact-particles)](https://www.npmjs.com/package/preact-particles) [![Mentioned in Awesome Preact](https://awesome.re/mentioned-badge-flat.svg)](https://github.com/preactjs/awesome-preact#readme)
 
 You can find the instructions [here](https://github.com/matteobruni/tsparticles/blob/master/components/preact/README.md)
 
@@ -205,7 +205,7 @@ You can find the instructions [here](https://github.com/matteobruni/tsparticles/
 
 #### `react-tsparticles`
 
-[![npm](https://img.shields.io/npm/v/react-tsparticles)](https://www.npmjs.com/package/react-tsparticles) [![npm](https://img.shields.io/npm/dm/react-tsparticles)](https://www.npmjs.com/package/react-tsparticles)
+[![npm](https://img.shields.io/npm/v/react-tsparticles)](https://www.npmjs.com/package/react-tsparticles) [![npm](https://img.shields.io/npm/dm/react-tsparticles)](https://www.npmjs.com/package/react-tsparticles) [![Mentioned in Awesome React](https://awesome.re/mentioned-badge-flat.svg)](https://github.com/enaqx/awesome-react#readme)
 
 You can find the instructions [here](https://github.com/matteobruni/tsparticles/blob/master/components/react/README.md)
 
@@ -221,7 +221,7 @@ You can find the instructions [here](https://github.com/matteobruni/tsparticles/
 
 #### `particles.vue`
 
-[![npm](https://img.shields.io/npm/v/particles.vue)](https://www.npmjs.com/package/particles.vue) [![npm](https://img.shields.io/npm/dm/particles.vue)](https://www.npmjs.com/package/particles.vue)
+[![npm](https://img.shields.io/npm/v/particles.vue)](https://www.npmjs.com/package/particles.vue) [![npm](https://img.shields.io/npm/dm/particles.vue)](https://www.npmjs.com/package/particles.vue) [![Mentioned in Awesome Vue.js](https://awesome.re/mentioned-badge-flat.svg)](https://github.com/vuejs/awesome-vue#readme)
 
 You can find the instructions [here](https://github.com/matteobruni/tsparticles/blob/master/components/vue/README.md)
 
@@ -229,7 +229,7 @@ You can find the instructions [here](https://github.com/matteobruni/tsparticles/
 
 #### `particles.vue3`
 
-[![npm](https://img.shields.io/npm/v/particles.vue3)](https://www.npmjs.com/package/particles.vue3) [![npm](https://img.shields.io/npm/dm/particles.vue3)](https://www.npmjs.com/package/particles.vue3)
+[![npm](https://img.shields.io/npm/v/particles.vue3)](https://www.npmjs.com/package/particles.vue3) [![npm](https://img.shields.io/npm/dm/particles.vue3)](https://www.npmjs.com/package/particles.vue3) [![Mentioned in Awesome Vue.js](https://awesome.re/mentioned-badge-flat.svg)](https://github.com/vuejs/awesome-vue#readme)
 
 You can find the instructions [here](https://github.com/matteobruni/tsparticles/blob/master/components/vue3/README.md)
 
