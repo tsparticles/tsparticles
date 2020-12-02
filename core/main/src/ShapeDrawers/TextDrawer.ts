@@ -65,10 +65,10 @@ export class TextDrawer implements IShapeDrawer {
         }
 
         const text = textParticle.text;
-        const style = character.style;
-        const weight = character.weight;
+        const style = character.style ?? "";
+        const weight = character.weight ?? "";
         const size = Math.round(radius) * 2;
-        const font = character.font;
+        const font = character.font ?? "";
         const fill = particle.fill;
         const offsetX = (text.length * radius) / 2;
 
