@@ -237,11 +237,11 @@ You can find the instructions [here](https://github.com/matteobruni/tsparticles/
 
 ## Templates and Resources
 
-You can find some tsParticles related templates [here](https://github.com/tsparticles/templates). The templates are created for *Vanilla Javascript*, *ReactJS*, *VueJS*, *Angular*, *SvelteJS* and other frameworks.
+You can find some tsParticles related templates [here](https://github.com/tsparticles/templates). The templates are created for _Vanilla Javascript_, _ReactJS_, _VueJS_, _Angular_, _SvelteJS_ and other frameworks.
 
 The templates will may vary, new ones can be created or older ones updated with latest features or changed to a better style. Check them out once in a while.
 
-If you created some good design with *tsParticles* feel free to submit a pull request with your cool template, you'll be credited as the template author!
+If you created some good design with _tsParticles_ feel free to submit a pull request with your cool template, you'll be credited as the template author!
 
 <https://github.com/tsparticles/templates>
 
@@ -361,7 +361,7 @@ tsParticles now supports some customizations 🥳.
 
 **You can create your own plugins**
 
-_Read more [here](https://particles.js.org/modules/_core_interfaces_iplugin_.html)..._
+_Read more [here](https://particles.js.org/modules/_core_interfaces_iplugin_.html)...\_
 
 ---
 
