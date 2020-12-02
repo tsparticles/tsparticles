@@ -189,7 +189,7 @@ You can find the instructions [here](https://github.com/matteobruni/tsparticles/
 
 #### `jquery-particles`
 
-[![npm](https://img.shields.io/npm/v/jquery-particles)](https://www.npmjs.com/package/jquery-particles) [![npm](https://img.shields.io/npm/dm/jquery-particles)](https://www.npmjs.com/package/jquery-particles)
+[![npm](https://img.shields.io/npm/v/jquery-particles)](https://www.npmjs.com/package/jquery-particles) [![npm](https://img.shields.io/npm/dm/jquery-particles)](https://www.npmjs.com/package/jquery-particles) [![Mentioned in Awesome jQuery](https://awesome.re/mentioned-badge-flat.svg)](https://github.com/petk/awesome-jquery#readme)
 
 You can find the instructions [here](https://github.com/matteobruni/tsparticles/blob/master/components/jquery/README.md)
 
