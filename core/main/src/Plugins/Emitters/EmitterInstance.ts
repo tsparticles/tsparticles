@@ -1,7 +1,7 @@
 import type { Container } from "../../Core/Container";
 import type { ICoordinates } from "../../Core/Interfaces/ICoordinates";
 import type { IEmitter } from "./Options/Interfaces/IEmitter";
-import { colorToHsl, NumberUtils, Utils } from "../../Utils";
+import { colorToHsl, randomInRange, Utils } from "../../Utils";
 import { SizeMode } from "../../Enums";
 import { EmitterSize } from "./Options/Classes/EmitterSize";
 import type { Emitters } from "./Emitters";
@@ -275,7 +275,7 @@ export class EmitterInstance {
             return initValue;
         }
 
-        const colorOffset = NumberUtils.randomInRange(animation.offset.min, animation.offset.max);
+        const colorOffset = randomInRange(animation.offset.min, animation.offset.max);
 
         const emitFactor = (1000 * this.emitterOptions.rate.delay) / container.retina.reduceFactor;
         const colorSpeed = animation.speed ?? 0;

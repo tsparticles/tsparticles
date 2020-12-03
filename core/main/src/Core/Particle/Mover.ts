@@ -1,4 +1,4 @@
-import { NumberUtils, Plugins, Utils } from "../../Utils";
+import { clamp, getDistance, getDistances, Plugins, Utils } from "../../Utils";
 import type { Container } from "../Container";
 import type { Particle } from "../Particle";
 import { HoverMode, RotateDirection } from "../../Enums";
@@ -53,12 +53,12 @@ export class Mover {
             return;
         }
 
-        const container = this.container;
-        const slowFactor = this.getProximitySpeedFactor(particle);
-        const baseSpeed = (particle.moveSpeed ?? container.retina.moveSpeed) * container.retina.reduceFactor;
-        const maxSize = particle.sizeValue ?? container.retina.sizeValue;
-        const sizeFactor = particlesOptions.move.size ? particle.getRadius() / maxSize : 1;
-        const moveSpeed = (baseSpeed / 2) * sizeFactor * slowFactor * delta.factor;
+        const container = this.container,
+            slowFactor = this.getProximitySpeedFactor(particle),
+            baseSpeed = (particle.moveSpeed ?? container.retina.moveSpeed) * container.retina.reduceFactor,
+            maxSize = particle.sizeValue ?? container.retina.sizeValue,
+            sizeFactor = particlesOptions.move.size ? particle.getRadius() / maxSize : 1,
+            moveSpeed = (baseSpeed / 2) * sizeFactor * slowFactor * delta.factor;
 
         this.applyNoise(particle, delta);
 
@@ -79,8 +79,8 @@ export class Mover {
             particle.velocity.vertical = velocity.vertical / moveSpeed;
         }
 
-        const zIndexOptions = particle.options.zIndex;
-        const zVelocityFactor = 1 - zIndexOptions.velocityRate * particle.zIndexFactor;
+        const zIndexOptions = particle.options.zIndex,
+            zVelocityFactor = 1 - zIndexOptions.velocityRate * particle.zIndexFactor;
 
         if (particlesOptions.move.spin.enable) {
             this.spin(particle, moveSpeed);
@@ -130,7 +130,7 @@ export class Mover {
 
     private applyDistance(particle: Particle): void {
         const initialPosition = particle.initialPosition;
-        const { dx, dy } = NumberUtils.getDistances(initialPosition, particle.position);
+        const { dx, dy } = getDistances(initialPosition, particle.position);
         const dxFixed = Math.abs(dx),
             dyFixed = Math.abs(dy);
 
@@ -215,8 +215,8 @@ export class Mover {
         vel.vertical += Math.sin(noise.angle) * noise.length;
 
         if (noiseOptions.clamp) {
-            vel.horizontal = NumberUtils.clamp(vel.horizontal, -1, 1);
-            vel.vertical = NumberUtils.clamp(vel.vertical, -1, 1);
+            vel.horizontal = clamp(vel.horizontal, -1, 1);
+            vel.vertical = clamp(vel.vertical, -1, 1);
         }
 
         particle.lastNoiseTime -= particle.noiseDelay;
@@ -268,7 +268,7 @@ export class Mover {
         }
 
         const particlePos = particle.getPosition(),
-            dist = NumberUtils.getDistance(mousePos, particlePos),
+            dist = getDistance(mousePos, particlePos),
             radius = container.retina.slowModeRadius;
 
         if (dist > radius) {

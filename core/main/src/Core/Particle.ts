@@ -21,7 +21,18 @@ import {
     StartValueType,
 } from "../Enums";
 import type { RecursivePartial } from "../Types";
-import { colorToHsl, colorToRgb, getHslFromAnimation, NumberUtils, Plugins, Utils } from "../Utils";
+import {
+    clamp,
+    colorToHsl,
+    colorToRgb,
+    getDistance,
+    getHslFromAnimation,
+    getParticleBaseVelocity,
+    getValue,
+    Plugins,
+    randomInRange,
+    Utils,
+} from "../Utils";
 import type { IDelta } from "./Interfaces/IDelta";
 import type { ILink } from "./Interfaces/ILink";
 import type { IParticleLoops } from "./Interfaces/IParticleLoops";
@@ -154,11 +165,11 @@ export class Particle implements IParticle {
         this.close = this.shapeData?.close ?? this.close;
         this.options = particlesOptions;
 
-        const zIndexValue = NumberUtils.getValue(this.options.zIndex);
+        const zIndexValue = getValue(this.options.zIndex);
 
         /* size */
         const sizeOptions = this.options.size;
-        const sizeValue = NumberUtils.getValue(sizeOptions) * container.retina.pixelRatio;
+        const sizeValue = getValue(sizeOptions) * container.retina.pixelRatio;
 
         const randomSize = typeof sizeOptions.random === "boolean" ? sizeOptions.random : sizeOptions.random.enable;
 
@@ -167,11 +178,7 @@ export class Particle implements IParticle {
         };
 
         /* position */
-        this.position = this.calcPosition(
-            this.container,
-            position,
-            NumberUtils.clamp(zIndexValue, 0, container.zLayers)
-        );
+        this.position = this.calcPosition(this.container, position, clamp(zIndexValue, 0, container.zLayers));
         this.initialPosition = {
             x: this.position.x,
             y: this.position.y,
@@ -191,7 +198,7 @@ export class Particle implements IParticle {
 
         // Scale z-index factor to be between 0 and 2
         this.zIndexFactor = this.position.z / container.zLayers;
-        this.noiseDelay = NumberUtils.getValue(this.options.move.noise.delay) * 1000;
+        this.noiseDelay = getValue(this.options.move.noise.delay) * 1000;
 
         container.retina.initParticle(this);
 
@@ -258,10 +265,7 @@ export class Particle implements IParticle {
                         break;
 
                     case StartValueType.random:
-                        this.size.value = NumberUtils.randomInRange(
-                            sizeAnimation.minimumValue * pxRatio,
-                            this.size.value
-                        );
+                        this.size.value = randomInRange(sizeAnimation.minimumValue * pxRatio, this.size.value);
 
                         break;
 
@@ -290,7 +294,7 @@ export class Particle implements IParticle {
             if (orbitRotationOptions.enable) {
                 this.orbitRotation = Math.floor(
                     orbitRotationOptions.minimumValue
-                        ? NumberUtils.randomInRange(orbitRotationOptions.minimumValue, 360)
+                        ? randomInRange(orbitRotationOptions.minimumValue, 360)
                         : Math.random() * 360
                 );
             } else {
@@ -329,11 +333,11 @@ export class Particle implements IParticle {
             typeof opacityOptions.random === "boolean" ? opacityOptions.random : opacityOptions.random.enable;
 
         this.opacity = {
-            value: NumberUtils.getValue(opacityOptions),
+            value: getValue(opacityOptions),
         };
 
         // Don't let opacity go below 0 or above 1
-        this.opacity.value = NumberUtils.clamp(this.opacity.value, 0, 1);
+        this.opacity.value = clamp(this.opacity.value, 0, 1);
 
         const opacityAnimation = opacityOptions.animation;
 
@@ -348,10 +352,7 @@ export class Particle implements IParticle {
                         break;
 
                     case StartValueType.random:
-                        this.opacity.value = NumberUtils.randomInRange(
-                            opacityAnimation.minimumValue,
-                            this.opacity.value
-                        );
+                        this.opacity.value = randomInRange(opacityAnimation.minimumValue, this.opacity.value);
 
                         break;
 
@@ -428,13 +429,13 @@ export class Particle implements IParticle {
 
         this.life = {
             delay: container.retina.reduceFactor
-                ? ((NumberUtils.getValue(lifeOptions.delay) * (lifeOptions.delay.sync ? 1 : Math.random())) /
+                ? ((getValue(lifeOptions.delay) * (lifeOptions.delay.sync ? 1 : Math.random())) /
                       container.retina.reduceFactor) *
                   1000
                 : 0,
             delayTime: 0,
             duration: container.retina.reduceFactor
-                ? ((NumberUtils.getValue(lifeOptions.duration) * (lifeOptions.duration.sync ? 1 : Math.random())) /
+                ? ((getValue(lifeOptions.duration) * (lifeOptions.duration.sync ? 1 : Math.random())) /
                       container.retina.reduceFactor) *
                   1000
                 : 0,
@@ -460,7 +461,7 @@ export class Particle implements IParticle {
             };
 
             const pos = this.getPosition();
-            const distance = NumberUtils.getDistance(pos, spinCenter);
+            const distance = getDistance(pos, spinCenter);
 
             this.spin = {
                 center: spinCenter,
@@ -639,7 +640,7 @@ export class Particle implements IParticle {
             let overlaps = false;
 
             for (const particle of this.container.particles.array) {
-                if (NumberUtils.getDistance(pos, particle.position) < this.size.value + particle.size.value) {
+                if (getDistance(pos, particle.position) < this.size.value + particle.size.value) {
                     overlaps = true;
                     break;
                 }
@@ -652,15 +653,15 @@ export class Particle implements IParticle {
     }
 
     private calculateVelocity(): IVelocity {
-        const baseVelocity = NumberUtils.getParticleBaseVelocity(this);
-        const res = {
-            horizontal: 0,
-            vertical: 0,
-        };
-        const moveOptions = this.options.move;
+        const baseVelocity = getParticleBaseVelocity(this),
+            res = {
+                horizontal: baseVelocity.x,
+                vertical: baseVelocity.y,
+            },
+            moveOptions = this.options.move;
 
-        let rad: number;
-        let radOffset = Math.PI / 4;
+        let rad: number,
+            radOffset = Math.PI / 4;
 
         if (typeof moveOptions.angle === "number") {
             rad = (Math.PI / 180) * moveOptions.angle;
@@ -674,23 +675,10 @@ export class Particle implements IParticle {
             right: Math.cos(radOffset + rad / 2) - Math.cos(radOffset - rad / 2),
         };
 
-        if (moveOptions.straight) {
-            res.horizontal = baseVelocity.x;
-            res.vertical = baseVelocity.y;
-
-            if (moveOptions.random) {
-                res.horizontal += NumberUtils.randomInRange(range.left, range.right) / 2;
-                res.vertical += NumberUtils.randomInRange(range.left, range.right) / 2;
-            }
-        } else {
-            res.horizontal = baseVelocity.x + NumberUtils.randomInRange(range.left, range.right) / 2;
-            res.vertical = baseVelocity.y + NumberUtils.randomInRange(range.left, range.right) / 2;
+        if ((moveOptions.straight && moveOptions.random) || !moveOptions.straight) {
+            res.horizontal += randomInRange(range.left, range.right) / 2;
+            res.vertical += randomInRange(range.left, range.right) / 2;
         }
-
-        // const theta = 2.0 * Math.PI * Math.random();
-
-        // res.x = Math.cos(theta);
-        // res.y = Math.sin(theta);
 
         return res;
     }
@@ -702,7 +690,7 @@ export class Particle implements IParticle {
             return;
         }
 
-        const rate = NumberUtils.getValue(splitOptions.rate);
+        const rate = getValue(splitOptions.rate);
 
         for (let i = 0; i < rate; i++) {
             this.container.particles.addSplitParticle(this);

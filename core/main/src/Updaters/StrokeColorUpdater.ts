@@ -3,10 +3,10 @@ import type { Container } from "../Core/Container";
 import type { Particle } from "../Core/Particle";
 import type { IDelta } from "../Core/Interfaces/IDelta";
 import type { IAnimatableColor } from "../Options/Interfaces/IAnimatableColor";
-import { NumberUtils } from "../Utils";
-import { IColorAnimation } from "../Options/Interfaces/IColorAnimation";
-import { IParticleValueAnimation } from "../Core/Interfaces/IParticleValueAnimation";
-import { IHslAnimation } from "../Options/Interfaces/IHslAnimation";
+import { randomInRange } from "../Utils";
+import type { IColorAnimation } from "../Options/Interfaces/IColorAnimation";
+import type { IParticleValueAnimation } from "../Core/Interfaces/IParticleValueAnimation";
+import type { IHslAnimation } from "../Options/Interfaces/IHslAnimation";
 
 export class StrokeColorUpdater implements IParticleUpdater {
     constructor(private readonly container: Container) {}
@@ -74,7 +74,7 @@ export class StrokeColorUpdater implements IParticleUpdater {
             return;
         }
 
-        const offset = NumberUtils.randomInRange(valueAnimation.offset.min, valueAnimation.offset.max);
+        const offset = randomInRange(valueAnimation.offset.min, valueAnimation.offset.max);
 
         colorValue.value += (value.velocity ?? 0) * delta.factor + offset * 3.6;
 

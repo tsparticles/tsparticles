@@ -3,7 +3,7 @@ import type { ICoordinates } from "./Interfaces/ICoordinates";
 import type { IMouseData } from "./Interfaces/IMouseData";
 import type { IRgb } from "./Interfaces/Colors";
 import { Particle } from "./Particle";
-import { NumberUtils, Plugins, Point, QuadTree, Rectangle, Utils } from "../Utils";
+import { getValue, Plugins, Point, QuadTree, randomInRange, Rectangle, Utils } from "../Utils";
 import type { RecursivePartial } from "../Types";
 import type { IParticles } from "../Options/Interfaces/Particles/IParticles";
 import { InteractionManager } from "./InteractionManager";
@@ -294,7 +294,7 @@ export class Particles {
 
         options.load(parent.options);
 
-        const factor = NumberUtils.getValue(splitOptions.factor);
+        const factor = getValue(splitOptions.factor);
 
         options.color.load({
             value: {
@@ -311,8 +311,8 @@ export class Particles {
         const offset = parent.size.value;
 
         const position = {
-            x: parent.position.x + NumberUtils.randomInRange(-offset, offset),
-            y: parent.position.y + NumberUtils.randomInRange(-offset, offset),
+            x: parent.position.x + randomInRange(-offset, offset),
+            y: parent.position.y + randomInRange(-offset, offset),
         };
 
         return this.pushParticle(position, options, parent.group, (particle) => {

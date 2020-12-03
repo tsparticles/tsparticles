@@ -8,8 +8,8 @@ import type { Container } from "..";
 import type { IContainerPlugin } from "../Core/Interfaces/IContainerPlugin";
 import type { IDelta } from "../Core/Interfaces/IDelta";
 import { Particle } from "../Core/Particle";
-import { NumberUtils } from "./NumberUtils";
-import { colorToRgb, getStyleFromHsl, getStyleFromRgb, mix } from "./ColorUtils";
+import { getDistance, getDistances } from "./NumberUtils";
+import { colorToRgb, getStyleFromHsl, getStyleFromRgb, colorMix } from "./ColorUtils";
 
 function drawLine(context: CanvasRenderingContext2D, begin: ICoordinates, end: ICoordinates): void {
     context.beginPath();
@@ -64,7 +64,7 @@ export class CanvasUtils {
 
         let drawn = false;
 
-        if (NumberUtils.getDistance(begin, end) <= maxDistance) {
+        if (getDistance(begin, end) <= maxDistance) {
             drawLine(context, begin, end);
 
             drawn = true;
@@ -77,7 +77,7 @@ export class CanvasUtils {
                 y: end.y,
             };
 
-            const d1 = NumberUtils.getDistances(begin, endNE);
+            const d1 = getDistances(begin, endNE);
 
             if (d1.distance <= maxDistance) {
                 const yi = begin.y - (d1.dy / d1.dx) * begin.x;
@@ -90,7 +90,7 @@ export class CanvasUtils {
                     y: end.y - canvasSize.height,
                 };
 
-                const d2 = NumberUtils.getDistances(begin, endSW);
+                const d2 = getDistances(begin, endSW);
 
                 if (d2.distance <= maxDistance) {
                     const yi = begin.y - (d2.dy / d2.dx) * begin.x;
@@ -104,7 +104,7 @@ export class CanvasUtils {
                         y: end.y - canvasSize.height,
                     };
 
-                    const d3 = NumberUtils.getDistances(begin, endSE);
+                    const d3 = getDistances(begin, endSE);
 
                     if (d3.distance <= maxDistance) {
                         const yi = begin.y - (d3.dy / d3.dx) * begin.x;
@@ -205,7 +205,7 @@ export class CanvasUtils {
 
         const sourcePos = p1.getPosition();
         const destPos = p2.getPosition();
-        const midRgb = mix(color1, color2, p1.getRadius(), p2.getRadius());
+        const midRgb = colorMix(color1, color2, p1.getRadius(), p2.getRadius());
         const grad = context.createLinearGradient(sourcePos.x, sourcePos.y, destPos.x, destPos.y);
 
         grad.addColorStop(0, getStyleFromHsl(color1, opacity));

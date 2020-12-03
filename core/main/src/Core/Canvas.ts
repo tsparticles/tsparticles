@@ -9,10 +9,10 @@ import {
     CanvasUtils,
     colorToRgb,
     Constants,
+    getDistance,
     getLinkColor,
     getStyleFromRgb,
     hslToRgb,
-    NumberUtils,
     Utils,
 } from "../Utils";
 import type { Particle } from "./Particle";
@@ -292,9 +292,9 @@ export class Canvas {
         }
 
         if (
-            NumberUtils.getDistance(pos1, pos2) > container.retina.linksDistance ||
-            NumberUtils.getDistance(pos3, pos2) > container.retina.linksDistance ||
-            NumberUtils.getDistance(pos3, pos1) > container.retina.linksDistance
+            getDistance(pos1, pos2) > container.retina.linksDistance ||
+            getDistance(pos3, pos2) > container.retina.linksDistance ||
+            getDistance(pos3, pos1) > container.retina.linksDistance
         ) {
             return;
         }

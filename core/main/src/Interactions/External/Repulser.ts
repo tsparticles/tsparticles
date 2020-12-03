@@ -1,6 +1,6 @@
 import type { Container } from "../../Core/Container";
 import { ClickMode, DivMode, DivType, HoverMode } from "../../Enums";
-import { Circle, Constants, NumberUtils, Range, Rectangle, Utils } from "../../Utils";
+import { Circle, clamp, Constants, getDistances, Range, Rectangle, Utils } from "../../Utils";
 import type { ICoordinates } from "../../Core/Interfaces/ICoordinates";
 import type { DivEvent } from "../../Options/Classes/Interactivity/Events/DivEvent";
 import type { RepulseDiv } from "../../Options/Classes/Interactivity/Modes/RepulseDiv";
@@ -118,13 +118,9 @@ export class Repulser extends ExternalBase {
         const repulseOptions = container.options.interactivity.modes.repulse;
 
         for (const particle of query) {
-            const { dx, dy, distance } = NumberUtils.getDistances(particle.position, position);
+            const { dx, dy, distance } = getDistances(particle.position, position);
             const velocity = (divRepulse?.speed ?? repulseOptions.speed) * repulseOptions.factor;
-            const repulseFactor = NumberUtils.clamp(
-                (1 - Math.pow(distance / repulseRadius, 2)) * velocity,
-                0,
-                velocity
-            );
+            const repulseFactor = clamp((1 - Math.pow(distance / repulseRadius, 2)) * velocity, 0, velocity);
             const normVec = {
                 x: distance === 0 ? velocity : (dx / distance) * repulseFactor,
                 y: distance === 0 ? velocity : (dy / distance) * repulseFactor,
@@ -162,7 +158,7 @@ export class Repulser extends ExternalBase {
             const query = container.particles.quadTree.query(range);
 
             for (const particle of query) {
-                const { dx, dy, distance } = NumberUtils.getDistances(mouseClickPos, particle.position);
+                const { dx, dy, distance } = getDistances(mouseClickPos, particle.position);
                 const d = distance * distance;
                 const velocity = container.options.interactivity.modes.repulse.speed;
                 const force = (-repulseRadius * velocity) / d;

@@ -8,11 +8,11 @@ import type { SingleOrMultiple } from "../Types";
 import { DivEvent } from "../Options/Classes/Interactivity/Events/DivEvent";
 import type { IModeDiv } from "../Options/Interfaces/Interactivity/Modes/IModeDiv";
 import { OutModeDirection } from "../Enums/Directions/OutModeDirection";
-import { NumberUtils } from "./NumberUtils";
-import { IParticle } from "../Core/Interfaces/IParticle";
-import { ISideData } from "../Core/Interfaces/ISideData";
-import { IRectSideResult } from "../Core/Interfaces/IRectSideResult";
-import { ICircleBouncer } from "../Core/Interfaces/ICircleBouncer";
+import { collisionVelocity, getValue, rotateVelocity } from "./NumberUtils";
+import type { IParticle } from "../Core/Interfaces/IParticle";
+import type { ISideData } from "../Core/Interfaces/ISideData";
+import type { IRectSideResult } from "../Core/Interfaces/IRectSideResult";
+import type { ICircleBouncer } from "../Core/Interfaces/ICircleBouncer";
 import { Particle } from "../Core/Particle";
 
 type CSSOMString = string;
@@ -370,8 +370,8 @@ export class Utils {
             radius: p.getRadius(),
             velocity: p.velocity,
             factor: {
-                horizontal: NumberUtils.getValue(p.options.bounce.horizontal),
-                vertical: NumberUtils.getValue(p.options.bounce.vertical),
+                horizontal: getValue(p.options.bounce.horizontal),
+                vertical: getValue(p.options.bounce.vertical),
             },
         };
     }
@@ -396,16 +396,16 @@ export class Utils {
             const m2 = p2.radius;
 
             // Velocity before equation
-            const u1 = NumberUtils.rotateVelocity(p1.velocity, angle);
-            const u2 = NumberUtils.rotateVelocity(p2.velocity, angle);
+            const u1 = rotateVelocity(p1.velocity, angle);
+            const u2 = rotateVelocity(p2.velocity, angle);
 
             // Velocity after 1d collision equation
-            const v1 = NumberUtils.collisionVelocity(u1, u2, m1, m2);
-            const v2 = NumberUtils.collisionVelocity(u2, u1, m1, m2);
+            const v1 = collisionVelocity(u1, u2, m1, m2);
+            const v2 = collisionVelocity(u2, u1, m1, m2);
 
             // Final velocity after rotating axis back to original location
-            const vFinal1 = NumberUtils.rotateVelocity(v1, -angle);
-            const vFinal2 = NumberUtils.rotateVelocity(v2, -angle);
+            const vFinal1 = rotateVelocity(v1, -angle);
+            const vFinal2 = rotateVelocity(v2, -angle);
 
             // Swap particle velocities for realistic bounce effect
             p1.velocity.horizontal = vFinal1.horizontal * p1.factor.horizontal;
@@ -439,7 +439,7 @@ export class Utils {
                 max: divBounds.bottom,
             },
             particle.velocity.horizontal,
-            NumberUtils.getValue(particle.options.bounce.horizontal)
+            getValue(particle.options.bounce.horizontal)
         );
 
         if (resH.bounced) {
@@ -470,7 +470,7 @@ export class Utils {
                 max: divBounds.right,
             },
             particle.velocity.vertical,
-            NumberUtils.getValue(particle.options.bounce.vertical)
+            getValue(particle.options.bounce.vertical)
         );
 
         if (resV.bounced) {

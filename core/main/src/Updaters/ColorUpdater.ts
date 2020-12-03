@@ -2,7 +2,7 @@ import type { IParticleUpdater } from "../Core/Interfaces/IParticleUpdater";
 import type { Container } from "../Core/Container";
 import type { Particle } from "../Core/Particle";
 import type { IDelta } from "../Core/Interfaces/IDelta";
-import { NumberUtils } from "../Utils";
+import { randomInRange } from "../Utils";
 import type { ColorAnimation } from "../Options/Classes/ColorAnimation";
 import type { IParticleValueAnimation } from "../Core/Interfaces/IParticleValueAnimation";
 import { AnimationStatus } from "../Enums";
@@ -56,7 +56,7 @@ export class ColorUpdater implements IParticleUpdater {
             return;
         }
 
-        const offset = NumberUtils.randomInRange(valueAnimation.offset.min, valueAnimation.offset.max);
+        const offset = randomInRange(valueAnimation.offset.min, valueAnimation.offset.max);
         const velocity = (value.velocity ?? 0) * delta.factor + offset * 3.6;
 
         if (!decrease || colorValue.status === AnimationStatus.increasing) {

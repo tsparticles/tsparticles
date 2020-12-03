@@ -4,7 +4,17 @@ import { IContainerPlugin } from "../src/Core/Interfaces/IContainerPlugin";
 import { IParticle } from "../src/Core/Interfaces/IParticle";
 import { IPlugin } from "../src/Core/Interfaces/IPlugin";
 import { Particle } from "../src/Core/Particle";
-import { NumberUtils, Plugins, Utils } from "../src/Utils";
+import {
+    clamp,
+    colorMix,
+    getDistance,
+    getParticleBaseVelocity,
+    mix,
+    NumberUtils,
+    Plugins,
+    randomInRange,
+    Utils
+} from "../src/Utils";
 
 function buildParticleWithDirection(direction: MoveDirection): IParticle {
     const container = new Container("someid");
@@ -34,41 +44,41 @@ describe("Utils", () => {
 
         it("should return minimum when number is less than minimum", () => {
             const num = -5;
-            const clampedNumber = NumberUtils.clamp(num, min, max);
+            const clampedNumber = clamp(num, min, max);
 
             expect(clampedNumber).to.equal(min);
         });
 
         it("should return minimum when number equals minimum", () => {
-            const clampedNumber = NumberUtils.clamp(min, min, max);
+            const clampedNumber = clamp(min, min, max);
 
             expect(clampedNumber).to.equal(min);
         });
 
         it("should return number when number is between minimum and maximum", () => {
             const num = 5;
-            const clampedNumber = NumberUtils.clamp(num, min, max);
+            const clampedNumber = clamp(num, min, max);
 
             expect(clampedNumber).to.equal(num);
         });
 
         it("should return maximum when number equals maximum", () => {
-            const clampedNumber = NumberUtils.clamp(max, min, max);
+            const clampedNumber = clamp(max, min, max);
 
             expect(clampedNumber).to.equal(max);
         });
 
         it("should return maximum when number is greater than maximum", () => {
             const num = 15;
-            const clampedNumber = NumberUtils.clamp(num, min, max);
+            const clampedNumber = clamp(num, min, max);
 
             expect(clampedNumber).to.equal(max);
         });
     });
 
     describe("isInArray", () => {
-        const numericArray: number[] = [1, 2, 3, Math.PI, Math.E];
-        const stringArray: string[] = ["lorem", "ipsum", "dolor"];
+        const numericArray: number[] = [ 1, 2, 3, Math.PI, Math.E ];
+        const stringArray: string[] = [ "lorem", "ipsum", "dolor" ];
 
         // Numeric
 
@@ -121,14 +131,14 @@ describe("Utils", () => {
             const weight2 = weight1;
             const mean = Math.floor((comp1 + comp2) / 2);
 
-            expect(NumberUtils.mix(comp1, comp2, weight1, weight2)).to.be.equal(mean);
+            expect(mix(comp1, comp2, weight1, weight2)).to.be.equal(mean);
         });
 
         it("should return comp1 when weight2 is 0 (and weight1 > 0)", () => {
             const weight1 = Math.floor(Math.random() * (size - 1) + 1);
             const weight2 = 0;
 
-            expect(NumberUtils.mix(comp1, comp2, weight1, weight2), `weight 1: ${weight1}`).to.be.equal(
+            expect(mix(comp1, comp2, weight1, weight2), `weight 1: ${weight1}`).to.be.equal(
                 Math.floor(comp1)
             );
         });
@@ -137,7 +147,7 @@ describe("Utils", () => {
             const weight1 = 0;
             const weight2 = Math.floor(Math.random() * (size - 1) + 1);
 
-            expect(NumberUtils.mix(comp1, comp2, weight1, weight2)).to.be.equal(Math.floor(comp2));
+            expect(mix(comp1, comp2, weight1, weight2)).to.be.equal(Math.floor(comp2));
         });
 
         it("should return the expected weighted-average when weights differ", () => {
@@ -146,7 +156,7 @@ describe("Utils", () => {
             const weight1 = 2;
             const weight2 = 1;
 
-            expect(NumberUtils.mix(comp1, comp2, weight1, weight2)).to.be.equal(7);
+            expect(mix(comp1, comp2, weight1, weight2)).to.be.equal(7);
         });
 
         it("should handle negative components", () => {
@@ -155,13 +165,13 @@ describe("Utils", () => {
             const weight1 = 2;
             const weight2 = 1;
 
-            expect(NumberUtils.mix(comp1, comp2, weight1, weight2)).to.be.equal(-7);
+            expect(mix(comp1, comp2, weight1, weight2)).to.be.equal(-7);
         });
     });
 
     describe("arrayRandomIndex", () => {
         it("should always return an index that is not out of the bounds of the array", () => {
-            const array = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
+            const array = [ 0, 1, 2, 3, 4, 5, 6, 7, 8, 9 ];
             const randomIndex = Utils.arrayRandomIndex(array);
 
             expect(randomIndex % 1).to.equal(0); // Make sure it is an integer
@@ -172,9 +182,9 @@ describe("Utils", () => {
     });
 
     describe("itemFromArray", () => {
-        const numericArray = [1, 2, 3, Math.PI, Math.E];
-        const stringArray = ["lorem", "ipsum", "dolor"];
-        const objectArray = [{ x: 1 }, { y: 2 }, { z: 3 }];
+        const numericArray = [ 1, 2, 3, Math.PI, Math.E ];
+        const stringArray = [ "lorem", "ipsum", "dolor" ];
+        const objectArray = [ { x: 1 }, { y: 2 }, { z: 3 } ];
 
         it("should always return a random item from a numeric array", () => {
             const randomItem = Utils.itemFromArray(numericArray);
@@ -220,7 +230,7 @@ describe("Utils", () => {
         it("should generate a random number in the specified range, range in positive reals", () => {
             const min = 1;
             const max = 10;
-            const randomNumber = NumberUtils.randomInRange(min, max);
+            const randomNumber = randomInRange(min, max);
 
             expect(randomNumber).to.be.within(min, max);
         });
@@ -228,7 +238,7 @@ describe("Utils", () => {
         it("should generate a random number in the specified range, range in negative reals", () => {
             const min = -10;
             const max = -1;
-            const randomNumber = NumberUtils.randomInRange(min, max);
+            const randomNumber = randomInRange(min, max);
 
             expect(randomNumber).to.be.within(min, max);
         });
@@ -236,7 +246,7 @@ describe("Utils", () => {
         it("should generate a random number in the specified range, range crossing negative and positive reals", () => {
             const min = -10;
             const max = 10;
-            const randomNumber = NumberUtils.randomInRange(min, max);
+            const randomNumber = randomInRange(min, max);
 
             expect(randomNumber).to.be.within(min, max);
         });
@@ -247,35 +257,35 @@ describe("Utils", () => {
         const precision = 1e-10;
 
         it("should return 0 whenever points are identical", () => {
-            expect(NumberUtils.getDistance(point, point)).to.be.closeTo(0, precision);
+            expect(getDistance(point, point)).to.be.closeTo(0, precision);
         });
 
         it("should calculate correct distance when both points are in first quadrant", () => {
             const pointA = point;
             const pointB = { x: 2, y: 2 };
 
-            expect(NumberUtils.getDistance(pointA, pointB)).to.be.closeTo(Math.SQRT2, precision);
+            expect(getDistance(pointA, pointB)).to.be.closeTo(Math.SQRT2, precision);
         });
 
         it("should calculate correct distance when one point is in first quadrant and one is in second quadrant", () => {
             const pointA = point;
             const pointB = { x: -1, y: 1 };
 
-            expect(NumberUtils.getDistance(pointA, pointB)).to.be.closeTo(2, precision);
+            expect(getDistance(pointA, pointB)).to.be.closeTo(2, precision);
         });
 
         it("should calculate correct distance when one point is in first quadrant and one is in third quadrant", () => {
             const pointA = point;
             const pointB = { x: -1, y: -1 };
 
-            expect(NumberUtils.getDistance(pointA, pointB)).to.be.closeTo(2 * Math.SQRT2, precision);
+            expect(getDistance(pointA, pointB)).to.be.closeTo(2 * Math.SQRT2, precision);
         });
 
         it("should return the same distance regardless of the order of the points", () => {
             const pointA = point;
             const pointB = { x: -1, y: -1 };
 
-            expect(NumberUtils.getDistance(pointA, pointB)).to.equal(NumberUtils.getDistance(pointB, pointA));
+            expect(getDistance(pointA, pointB)).to.equal(getDistance(pointB, pointA));
         });
     });
 
@@ -469,35 +479,35 @@ describe("Utils", () => {
     describe("getParticleBaseVelocity", () => {
         it("should return the proper base velocity, when it's moving top", () => {
             const particle = buildParticleWithDirection(MoveDirection.top);
-            expect(NumberUtils.getParticleBaseVelocity(particle)).to.eql({ x: 0, y: -1 });
+            expect(getParticleBaseVelocity(particle)).to.eql({ x: 0, y: -1 });
         });
         it("should return the proper base velocity, when it's moving top-right", () => {
             const particle = buildParticleWithDirection(MoveDirection.topRight);
-            expect(NumberUtils.getParticleBaseVelocity(particle)).to.eql({ x: 0.5, y: -0.5 });
+            expect(getParticleBaseVelocity(particle)).to.eql({ x: 0.5, y: -0.5 });
         });
         it("should return the proper base velocity, when it's moving right", () => {
             const particle = buildParticleWithDirection(MoveDirection.right);
-            expect(NumberUtils.getParticleBaseVelocity(particle)).to.eql({ x: 1, y: -0 });
+            expect(getParticleBaseVelocity(particle)).to.eql({ x: 1, y: -0 });
         });
         it("should return the proper base velocity, when it's moving bottom-right", () => {
             const particle = buildParticleWithDirection(MoveDirection.bottomRight);
-            expect(NumberUtils.getParticleBaseVelocity(particle)).to.eql({ x: 0.5, y: 0.5 });
+            expect(getParticleBaseVelocity(particle)).to.eql({ x: 0.5, y: 0.5 });
         });
         it("should return the proper base velocity, when it's moving bottom", () => {
             const particle = buildParticleWithDirection(MoveDirection.bottom);
-            expect(NumberUtils.getParticleBaseVelocity(particle)).to.eql({ x: 0, y: 1 });
+            expect(getParticleBaseVelocity(particle)).to.eql({ x: 0, y: 1 });
         });
         it("should return the proper base velocity, when it's moving bottom-left", () => {
             const particle = buildParticleWithDirection(MoveDirection.bottomLeft);
-            expect(NumberUtils.getParticleBaseVelocity(particle)).to.eql({ x: -0.5, y: 1 });
+            expect(getParticleBaseVelocity(particle)).to.eql({ x: -0.5, y: 1 });
         });
         it("should return the proper base velocity, when it's moving left", () => {
             const particle = buildParticleWithDirection(MoveDirection.left);
-            expect(NumberUtils.getParticleBaseVelocity(particle)).to.eql({ x: -1, y: 0 });
+            expect(getParticleBaseVelocity(particle)).to.eql({ x: -1, y: 0 });
         });
         it("should return the proper base velocity, when it's moving top-left", () => {
             const particle = buildParticleWithDirection(MoveDirection.topLeft);
-            expect(NumberUtils.getParticleBaseVelocity(particle)).to.eql({ x: -0.5, y: -0.5 });
+            expect(getParticleBaseVelocity(particle)).to.eql({ x: -0.5, y: -0.5 });
         });
     });
 

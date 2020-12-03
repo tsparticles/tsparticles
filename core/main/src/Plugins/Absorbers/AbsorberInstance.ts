@@ -3,7 +3,7 @@ import type { Container } from "../../Core/Container";
 import type { Particle } from "../../Core/Particle";
 import type { IRgb } from "../../Core/Interfaces/Colors";
 import type { IAbsorber } from "./Options/Interfaces/IAbsorber";
-import { colorToRgb, getStyleFromRgb, NumberUtils, Utils } from "../../Utils";
+import { colorToRgb, getDistance, getDistances, getStyleFromRgb, getValue, Utils } from "../../Utils";
 import type { Absorbers } from "./Absorbers";
 import { RotateDirection } from "../../Enums/Directions";
 
@@ -42,7 +42,7 @@ export class AbsorberInstance {
         this.dragging = false;
 
         this.opacity = this.options.opacity;
-        this.size = NumberUtils.getValue(options.size) * container.retina.pixelRatio;
+        this.size = getValue(options.size) * container.retina.pixelRatio;
         this.mass = this.size * options.size.density * container.retina.reduceFactor;
 
         const limit = options.size.limit;
@@ -67,7 +67,7 @@ export class AbsorberInstance {
             const mouse = this.container.interactivity.mouse;
 
             if (mouse.clicking && mouse.downPosition) {
-                const mouseDist = NumberUtils.getDistance(this.position, mouse.downPosition);
+                const mouseDist = getDistance(this.position, mouse.downPosition);
 
                 if (mouseDist <= this.size) {
                     this.dragging = true;
@@ -83,7 +83,7 @@ export class AbsorberInstance {
         }
 
         const pos = particle.getPosition();
-        const { dx, dy, distance } = NumberUtils.getDistances(this.position, pos);
+        const { dx, dy, distance } = getDistances(this.position, pos);
         const angle = Math.atan2(dx, dy);
         const acceleration = (this.mass / Math.pow(distance, 2)) * this.container.retina.reduceFactor;
 
@@ -164,7 +164,7 @@ export class AbsorberInstance {
 
         if (this.options.orbits) {
             if (particle.absorberOrbitRadius === undefined) {
-                particle.absorberOrbitRadius = NumberUtils.getDistance(particle.getPosition(), this.position);
+                particle.absorberOrbitRadius = getDistance(particle.getPosition(), this.position);
             }
 
             if (particle.absorberOrbitRadius <= this.size && !this.options.destroy) {

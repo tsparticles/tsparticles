@@ -1,6 +1,6 @@
 import type { Container } from "../../Core/Container";
 import { ClickMode, HoverMode } from "../../Enums";
-import { Circle, Constants, Range, Utils, NumberUtils } from "../../Utils";
+import { Circle, clamp, Constants, getDistances, Range, Utils } from "../../Utils";
 import type { ICoordinates } from "../../Core/Interfaces/ICoordinates";
 import { ExternalBase } from "./ExternalBase";
 
@@ -70,13 +70,9 @@ export class Attractor extends ExternalBase {
         const query = container.particles.quadTree.query(area);
 
         for (const particle of query) {
-            const { dx, dy, distance } = NumberUtils.getDistances(particle.position, position);
+            const { dx, dy, distance } = getDistances(particle.position, position);
             const velocity = attractOptions.speed * attractOptions.factor;
-            const attractFactor = NumberUtils.clamp(
-                (1 - Math.pow(distance / attractRadius, 2)) * velocity,
-                0,
-                velocity
-            );
+            const attractFactor = clamp((1 - Math.pow(distance / attractRadius, 2)) * velocity, 0, velocity);
             const normVec = {
                 x: distance === 0 ? velocity : (dx / distance) * attractFactor,
                 y: distance === 0 ? velocity : (dy / distance) * attractFactor,

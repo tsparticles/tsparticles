@@ -1,6 +1,6 @@
 import type { Container } from "../../Core/Container";
 import type { IBubblerProcessParam } from "../../Core/Interfaces/IBubblerProcessParam";
-import { Circle, colorToHsl, Constants, NumberUtils, Rectangle, Utils } from "../../Utils";
+import { Circle, clamp, colorToHsl, Constants, getDistance, Rectangle, Utils } from "../../Utils";
 import { ClickMode, DivMode, DivType, HoverMode, ProcessBubbleType } from "../../Enums";
 import { Particle } from "../../Core/Particle";
 import { DivEvent } from "../../Options/Classes/Interactivity/Events/DivEvent";
@@ -16,11 +16,11 @@ function calculateBubbleValue(
     if (modeValue > optionsValue) {
         const size = particleValue + (modeValue - optionsValue) * ratio;
 
-        return NumberUtils.clamp(size, particleValue, modeValue);
+        return clamp(size, particleValue, modeValue);
     } else if (modeValue < optionsValue) {
         const size = particleValue - (optionsValue - modeValue) * ratio;
 
-        return NumberUtils.clamp(size, modeValue, particleValue);
+        return clamp(size, modeValue, particleValue);
     }
 }
 
@@ -221,7 +221,7 @@ export class Bubbler extends ExternalBase {
             particle.bubble.inRange = !container.bubble.durationEnd;
 
             const pos = particle.getPosition();
-            const distMouse = NumberUtils.getDistance(pos, mouseClickPos);
+            const distMouse = getDistance(pos, mouseClickPos);
             const timeSpent = (new Date().getTime() - (container.interactivity.mouse.clickTime || 0)) / 1000;
 
             if (timeSpent > options.interactivity.modes.bubble.duration) {
@@ -283,7 +283,7 @@ export class Bubbler extends ExternalBase {
             particle.bubble.inRange = true;
 
             const pos = particle.getPosition();
-            const pointDistance = NumberUtils.getDistance(pos, mousePos);
+            const pointDistance = getDistance(pos, mousePos);
             const ratio = 1 - pointDistance / distance;
 
             /* mousemove - check ratio */
