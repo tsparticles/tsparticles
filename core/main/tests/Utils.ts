@@ -1,19 +1,20 @@
 import { expect } from "chai";
-import { Container, MoveDirection } from "../src";
+import { Container, MoveDirection, Utils } from "../src";
 import { IContainerPlugin } from "../src/Core/Interfaces/IContainerPlugin";
 import { IParticle } from "../src/Core/Interfaces/IParticle";
 import { IPlugin } from "../src/Core/Interfaces/IPlugin";
 import { Particle } from "../src/Core/Particle";
 import {
+    areBoundsInside, arrayRandomIndex,
+    calculateBounds,
     clamp,
-    colorMix,
+    downloadSvgImage,
     getDistance,
-    getParticleBaseVelocity,
+    getParticleBaseVelocity, isInArray, isPointInside, itemFromArray,
+    loadImage,
     mix,
-    NumberUtils,
     Plugins,
     randomInRange,
-    Utils
 } from "../src/Utils";
 
 function buildParticleWithDirection(direction: MoveDirection): IParticle {
@@ -84,40 +85,40 @@ describe("Utils", () => {
 
         it("should return true when value is number contained in numeric array", () => {
             const value = numericArray[4];
-            expect(Utils.isInArray(value, numericArray)).to.be.true;
+            expect(isInArray(value, numericArray)).to.be.true;
         });
 
         it("should return false when value is number not contained in numeric array", () => {
             const value = Math.SQRT2;
-            expect(Utils.isInArray(value, numericArray)).to.be.false;
+            expect(isInArray(value, numericArray)).to.be.false;
         });
 
         it("should return true when array is non-array number matching value", () => {
-            expect(Utils.isInArray(Math.LN2, Math.LN2)).to.be.true;
+            expect(isInArray(Math.LN2, Math.LN2)).to.be.true;
         });
 
         it("should return false when array is non-array number not matching value", () => {
-            expect(Utils.isInArray(Math.LN2, Math.LN10)).to.be.false;
+            expect(isInArray(Math.LN2, Math.LN10)).to.be.false;
         });
 
         // String
 
         it("should return true when value is string contained in numeric array", () => {
             const value = stringArray[0];
-            expect(Utils.isInArray(value, stringArray)).to.be.true;
+            expect(isInArray(value, stringArray)).to.be.true;
         });
 
         it("should return false when value is string not contained in numeric array", () => {
             const value = "sit";
-            expect(Utils.isInArray(value, stringArray)).to.be.false;
+            expect(isInArray(value, stringArray)).to.be.false;
         });
 
         it("should return true when array is non-array string matching value", () => {
-            expect(Utils.isInArray(stringArray[0], stringArray[0])).to.be.true;
+            expect(isInArray(stringArray[0], stringArray[0])).to.be.true;
         });
 
         it("should return false when array is non-array string not matching value", () => {
-            expect(Utils.isInArray(stringArray[0], stringArray[1])).to.be.false;
+            expect(isInArray(stringArray[0], stringArray[1])).to.be.false;
         });
     });
 
@@ -138,9 +139,7 @@ describe("Utils", () => {
             const weight1 = Math.floor(Math.random() * (size - 1) + 1);
             const weight2 = 0;
 
-            expect(mix(comp1, comp2, weight1, weight2), `weight 1: ${weight1}`).to.be.equal(
-                Math.floor(comp1)
-            );
+            expect(mix(comp1, comp2, weight1, weight2), `weight 1: ${weight1}`).to.be.equal(Math.floor(comp1));
         });
 
         it("should return comp2 when weight1 is 0 (and weight2 > 0)", () => {
@@ -172,7 +171,7 @@ describe("Utils", () => {
     describe("arrayRandomIndex", () => {
         it("should always return an index that is not out of the bounds of the array", () => {
             const array = [ 0, 1, 2, 3, 4, 5, 6, 7, 8, 9 ];
-            const randomIndex = Utils.arrayRandomIndex(array);
+            const randomIndex = arrayRandomIndex(array);
 
             expect(randomIndex % 1).to.equal(0); // Make sure it is an integer
             expect(randomIndex).to.be.at.least(0);
@@ -187,42 +186,42 @@ describe("Utils", () => {
         const objectArray = [ { x: 1 }, { y: 2 }, { z: 3 } ];
 
         it("should always return a random item from a numeric array", () => {
-            const randomItem = Utils.itemFromArray(numericArray);
+            const randomItem = itemFromArray(numericArray);
 
-            expect(numericArray, "Utils.itemFromArray returned us an item not in the original array").to.include(
+            expect(numericArray, "itemFromArray returned us an item not in the original array").to.include(
                 randomItem
             );
         });
 
         it("should return the requested numeric item when specifying index", () => {
             const index = 3;
-            expect(Utils.itemFromArray(numericArray, index)).to.equal(numericArray[index]);
+            expect(itemFromArray(numericArray, index)).to.equal(numericArray[index]);
         });
 
         it("should always return a random item from a string array", () => {
-            const randomItem = Utils.itemFromArray(stringArray);
+            const randomItem = itemFromArray(stringArray);
 
-            expect(stringArray, "Utils.itemFromArray returned us an item not in the original array").to.include(
+            expect(stringArray, "itemFromArray returned us an item not in the original array").to.include(
                 randomItem
             );
         });
 
         it("should return the requested string item when specifying index", () => {
             const index = 1;
-            expect(Utils.itemFromArray(stringArray, index)).to.equal(stringArray[index]);
+            expect(itemFromArray(stringArray, index)).to.equal(stringArray[index]);
         });
 
         it("should always return a random object from an array of objects", () => {
-            const randomObject = Utils.itemFromArray(objectArray);
+            const randomObject = itemFromArray(objectArray);
 
-            expect(objectArray, "Utils.itemFromArray returned us an item not in the original array").to.include(
+            expect(objectArray, "itemFromArray returned us an item not in the original array").to.include(
                 randomObject
             );
         });
 
         it("should return the requested object when specifying index", () => {
             const index = 1;
-            expect(Utils.itemFromArray(objectArray, index)).to.eql(objectArray[index]);
+            expect(itemFromArray(objectArray, index)).to.eql(objectArray[index]);
         });
     });
 
@@ -293,7 +292,7 @@ describe("Utils", () => {
         it("should return the correct bounds", () => {
             const point = { x: 0, y: 0 };
             const radius = 1;
-            const calculatedBounds = Utils.calculateBounds(point, radius);
+            const calculatedBounds = calculateBounds(point, radius);
             const expectedBounds = {
                 bottom: radius, // On a display, going down the screen is actually increasing in y
                 left: -radius,
@@ -316,7 +315,7 @@ describe("Utils", () => {
                 right: dimension.width,
             };
 
-            expect(Utils.areBoundsInside(bounds, dimension)).to.be.true;
+            expect(areBoundsInside(bounds, dimension)).to.be.true;
         });
 
         it("should return true when the bounds are completely inside the screen", () => {
@@ -327,7 +326,7 @@ describe("Utils", () => {
                 right: 200,
             };
 
-            expect(Utils.areBoundsInside(bounds, dimension)).to.be.true;
+            expect(areBoundsInside(bounds, dimension)).to.be.true;
         });
 
         it("should return true when the bounds overlap top of the screen", () => {
@@ -338,7 +337,7 @@ describe("Utils", () => {
                 right: 101,
             };
 
-            expect(Utils.areBoundsInside(bounds, dimension)).to.be.true;
+            expect(areBoundsInside(bounds, dimension)).to.be.true;
         });
 
         it("should return true when the bounds overlap bottom of the screen", () => {
@@ -349,7 +348,7 @@ describe("Utils", () => {
                 right: 101,
             };
 
-            expect(Utils.areBoundsInside(bounds, dimension)).to.be.true;
+            expect(areBoundsInside(bounds, dimension)).to.be.true;
         });
 
         it("should return true when the bounds overlap the left of the screen", () => {
@@ -360,7 +359,7 @@ describe("Utils", () => {
                 right: 1,
             };
 
-            expect(Utils.areBoundsInside(bounds, dimension)).to.be.true;
+            expect(areBoundsInside(bounds, dimension)).to.be.true;
         });
 
         it("should return true when the bounds overlap the right of the screen", () => {
@@ -371,7 +370,7 @@ describe("Utils", () => {
                 right: dimension.width + 1,
             };
 
-            expect(Utils.areBoundsInside(bounds, dimension)).to.be.true;
+            expect(areBoundsInside(bounds, dimension)).to.be.true;
         });
 
         it("should return false when the bounds do not intersect the screen and are above", () => {
@@ -382,7 +381,7 @@ describe("Utils", () => {
                 right: 101,
             };
 
-            expect(Utils.areBoundsInside(bounds, dimension)).to.be.false;
+            expect(areBoundsInside(bounds, dimension)).to.be.false;
         });
 
         it("should return false when the bounds do not intersect the screen and are below", () => {
@@ -393,7 +392,7 @@ describe("Utils", () => {
                 right: 101,
             };
 
-            expect(Utils.areBoundsInside(bounds, dimension)).to.be.false;
+            expect(areBoundsInside(bounds, dimension)).to.be.false;
         });
 
         it("should return false when the bounds do not intersect the screen and are to the left", () => {
@@ -404,7 +403,7 @@ describe("Utils", () => {
                 right: -1,
             };
 
-            expect(Utils.areBoundsInside(bounds, dimension)).to.be.false;
+            expect(areBoundsInside(bounds, dimension)).to.be.false;
         });
 
         it("should return false when the bounds do not intersect the screen and are to the right", () => {
@@ -415,7 +414,7 @@ describe("Utils", () => {
                 right: dimension.width + 2,
             };
 
-            expect(Utils.areBoundsInside(bounds, dimension)).to.be.false;
+            expect(areBoundsInside(bounds, dimension)).to.be.false;
         });
     });
 
@@ -428,51 +427,51 @@ describe("Utils", () => {
         const rightPoint = { x: dimension.width, y: dimension.height / 2 };
 
         it("should return true when the point lies inside the screen, no radius", () => {
-            expect(Utils.isPointInside(centerPoint, dimension)).to.be.true;
+            expect(isPointInside(centerPoint, dimension)).to.be.true;
         });
 
         it("should return true when the point lies inside the screen, radius inside dimensions", () => {
-            expect(Utils.isPointInside(centerPoint, dimension, 100)).to.be.true;
+            expect(isPointInside(centerPoint, dimension, 100)).to.be.true;
         });
 
         it("should return true when the point overlaps top and bottom but not left and right", () => {
-            expect(Utils.isPointInside(centerPoint, dimension, 1000)).to.be.true;
+            expect(isPointInside(centerPoint, dimension, 1000)).to.be.true;
         });
 
         it("should return true when the point overlaps all sides of the screen", () => {
-            expect(Utils.isPointInside(centerPoint, dimension, 10000)).to.be.true;
+            expect(isPointInside(centerPoint, dimension, 10000)).to.be.true;
         });
 
         it("should return false when point lies on top boundry of screen with no radius", () => {
-            expect(Utils.isPointInside(topPoint, dimension)).to.be.false;
+            expect(isPointInside(topPoint, dimension)).to.be.false;
         });
 
         it("should return true when point lies on top boundry of screen with non-zero radius", () => {
-            expect(Utils.isPointInside(topPoint, dimension, Math.random())).to.be.true;
+            expect(isPointInside(topPoint, dimension, Math.random())).to.be.true;
         });
 
         it("should return false when point lies on bottom boundry of screen with no radius", () => {
-            expect(Utils.isPointInside(bottomPoint, dimension)).to.be.false;
+            expect(isPointInside(bottomPoint, dimension)).to.be.false;
         });
 
         it("should return true when point lies on bottom boundry of screen with non-zero radius", () => {
-            expect(Utils.isPointInside(bottomPoint, dimension, Math.random())).to.be.true;
+            expect(isPointInside(bottomPoint, dimension, Math.random())).to.be.true;
         });
 
         it("should return false when point lies on left boundry of screen with no radius", () => {
-            expect(Utils.isPointInside(leftPoint, dimension)).to.be.false;
+            expect(isPointInside(leftPoint, dimension)).to.be.false;
         });
 
         it("should return true when point lies on left boundry of screen with non-zero radius", () => {
-            expect(Utils.isPointInside(leftPoint, dimension, Math.random())).to.be.true;
+            expect(isPointInside(leftPoint, dimension, Math.random())).to.be.true;
         });
 
         it("should return false when point lies on right boundry of screen with no radius", () => {
-            expect(Utils.isPointInside(rightPoint, dimension)).to.be.false;
+            expect(isPointInside(rightPoint, dimension)).to.be.false;
         });
 
         it("should return true when point lies on right boundry of screen with non-zero radius", () => {
-            expect(Utils.isPointInside(rightPoint, dimension, Math.random())).to.be.true;
+            expect(isPointInside(rightPoint, dimension, Math.random())).to.be.true;
         });
     });
 
@@ -519,7 +518,7 @@ describe("Utils", () => {
         it("should reject when no source was specified", async () => {
             const source = "";
             try {
-                await Utils.loadImage(source);
+                await loadImage(source);
                 throw new Error("Should not have reached this line");
             } catch (error) {
                 expect(error).to.match(/Error.*No Image.*/i);
@@ -534,7 +533,7 @@ describe("Utils", () => {
             } as unknown) as typeof Image;
 
             const source = "https://someimageurl.com/image.png";
-            const data = await Utils.loadImage(source);
+            const data = await loadImage(source);
 
             expect(data?.source).to.equal(source);
             expect(data?.type).to.equal("png");
@@ -550,7 +549,7 @@ describe("Utils", () => {
             const source = "https://someimageurl.com/image.png";
 
             try {
-                await Utils.loadImage(source);
+                await loadImage(source);
                 throw new Error("Should not have reached this line");
             } catch (error) {
                 expect(error).to.match(/Error.*Loading.*/i);
@@ -559,38 +558,23 @@ describe("Utils", () => {
     });
 
     describe("downloadSvgImage", () => {
-        let actualLoadImage: typeof Utils.loadImage;
-        let called: number;
-
-        beforeEach(() => {
-            called = 0;
-            actualLoadImage = Utils.loadImage;
-            Utils.loadImage = ((async () => {
-                ++called;
-                return null;
-            }) as unknown) as typeof Utils.loadImage;
-        });
-
-        afterEach(() => {
-            Utils.loadImage = actualLoadImage;
-            global.fetch = window.fetch;
-        });
-
         it("should reject when no source was specified", async () => {
             const source = "";
             try {
-                await Utils.downloadSvgImage(source);
+                await downloadSvgImage(source);
                 throw new Error("Should not have reached this line");
             } catch (error) {
                 expect(error).to.match(/Error.*No Image.*/i);
             }
         });
 
-        it("should fallback to Utils.loadImage when the type is not SVG", async () => {
-            const source = "https://someimageurl.com/image.png";
-            await Utils.downloadSvgImage(source);
-
-            expect(called).to.equal(1);
+        it("should fallback to loadImage when the type is not SVG", async () => {
+            try {
+                const source = "https://someimageurl.com/image.png";
+                await downloadSvgImage(source);
+            } catch (error) {
+                expect(error).to.match(/Error tsParticles - loading image:*/i);
+            }
         });
 
         it("should resolve with the image data when loaded successfully", async () => {
@@ -604,7 +588,7 @@ describe("Utils", () => {
             } as unknown) as typeof fetch;
 
             const source = "https://someimageurl.com/image.svg";
-            const data = await Utils.downloadSvgImage(source);
+            const data = await downloadSvgImage(source);
 
             expect(data?.source).to.equal(source);
             expect(data?.type).to.equal("svg");
@@ -621,7 +605,7 @@ describe("Utils", () => {
             const source = "https://someimageurl.com/image.svg";
 
             try {
-                await Utils.downloadSvgImage(source);
+                await downloadSvgImage(source);
                 throw new Error("Should not have reached this line");
             } catch (error) {
                 expect(error).to.match(/Error.*not found.*/i);
