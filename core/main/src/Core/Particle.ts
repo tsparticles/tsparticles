@@ -189,7 +189,7 @@ export class Particle implements IParticle {
 
         const particles = this.container.particles;
 
-        particles.needsSort = particles.needsSort || particles.lastZIndex > this.position.z;
+        particles.needsSort = particles.needsSort || particles.lastZIndex < this.position.z;
         particles.lastZIndex = this.position.z;
 
         /* parallax */
