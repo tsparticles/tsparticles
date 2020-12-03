@@ -1,6 +1,6 @@
 import type { IShapeDrawer } from "../Core/Interfaces/IShapeDrawer";
 import type { IParticle } from "../Core/Interfaces/IParticle";
-import { replaceColorSvg, Utils } from "../Utils";
+import { downloadSvgImage, isInArray, loadImage, replaceColorSvg } from "../Utils";
 import { ShapeType } from "../Enums";
 import type { IImageShape } from "../Options/Interfaces/Particles/Shape/IImageShape";
 import type { IImage } from "../Core/Interfaces/IImage";
@@ -64,10 +64,7 @@ export class ImageDrawer implements IShapeDrawer {
         const options = container.options;
         const shapeOptions = options.particles.shape;
 
-        if (
-            !Utils.isInArray(ShapeType.image, shapeOptions.type) &&
-            !Utils.isInArray(ShapeType.images, shapeOptions.type)
-        ) {
+        if (!isInArray(ShapeType.image, shapeOptions.type) && !isInArray(ShapeType.images, shapeOptions.type)) {
             return;
         }
 
@@ -92,9 +89,7 @@ export class ImageDrawer implements IShapeDrawer {
 
     private async loadImageShape(container: Container, imageShape: IImageShape): Promise<void> {
         try {
-            const imagePromise = imageShape.replaceColor
-                ? Utils.downloadSvgImage(imageShape.src)
-                : Utils.loadImage(imageShape.src);
+            const imagePromise = imageShape.replaceColor ? downloadSvgImage(imageShape.src) : loadImage(imageShape.src);
 
             const image = await imagePromise;
 
@@ -184,7 +179,7 @@ export class ImageDrawer implements IShapeDrawer {
                 domUrl.revokeObjectURL(url);
 
                 // deepcode ignore PromiseNotCaughtGeneral: catch can be ignored
-                Utils.loadImage(imageData.src).then((img2) => {
+                loadImage(imageData.src).then((img2) => {
                     const pImage = ((particle as unknown) as IImageParticle).image;
 
                     if (pImage) {

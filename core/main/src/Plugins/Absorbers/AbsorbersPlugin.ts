@@ -1,7 +1,7 @@
 import type { IPlugin } from "../../Core/Interfaces/IPlugin";
 import type { Container } from "../../Core/Container";
 import { Absorbers } from "./Absorbers";
-import { Utils } from "../../Utils";
+import { isInArray } from "../../Utils";
 import type { RecursivePartial } from "../../Types";
 import { AbsorberClickMode } from "./Enums";
 import type { IAbsorberOptions } from "./Options/Interfaces/IAbsorberOptions";
@@ -39,7 +39,7 @@ class AbsorbersPlugin implements IPlugin {
             loadAbsorbers = true;
         } else if (
             options.interactivity?.events?.onClick?.mode &&
-            Utils.isInArray(AbsorberClickMode.absorber, options.interactivity.events.onClick.mode)
+            isInArray(AbsorberClickMode.absorber, options.interactivity.events.onClick.mode)
         ) {
             loadAbsorbers = true;
         }

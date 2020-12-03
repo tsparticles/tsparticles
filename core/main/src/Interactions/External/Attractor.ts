@@ -1,6 +1,6 @@
 import type { Container } from "../../Core/Container";
 import { ClickMode, HoverMode } from "../../Enums";
-import { Circle, clamp, Constants, getDistances, Range, Utils } from "../../Utils";
+import { Circle, clamp, Constants, getDistances, isInArray, Range } from "../../Utils";
 import type { ICoordinates } from "../../Core/Interfaces/ICoordinates";
 import { ExternalBase } from "./ExternalBase";
 
@@ -27,7 +27,7 @@ export class Attractor extends ExternalBase {
         const hoverMode = events.onHover.mode;
         const clickMode = events.onClick.mode;
 
-        return Utils.isInArray(HoverMode.attract, hoverMode) || Utils.isInArray(ClickMode.attract, clickMode);
+        return isInArray(HoverMode.attract, hoverMode) || isInArray(ClickMode.attract, clickMode);
     }
 
     public reset(): void {
@@ -44,9 +44,9 @@ export class Attractor extends ExternalBase {
         const clickEnabled = events.onClick.enable;
         const clickMode = events.onClick.mode;
 
-        if (mouseMoveStatus && hoverEnabled && Utils.isInArray(HoverMode.attract, hoverMode)) {
+        if (mouseMoveStatus && hoverEnabled && isInArray(HoverMode.attract, hoverMode)) {
             this.hoverAttract();
-        } else if (clickEnabled && Utils.isInArray(ClickMode.attract, clickMode)) {
+        } else if (clickEnabled && isInArray(ClickMode.attract, clickMode)) {
             this.clickAttract();
         }
     }

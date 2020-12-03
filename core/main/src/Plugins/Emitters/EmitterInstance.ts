@@ -1,7 +1,7 @@
 import type { Container } from "../../Core/Container";
 import type { ICoordinates } from "../../Core/Interfaces/ICoordinates";
 import type { IEmitter } from "./Options/Interfaces/IEmitter";
-import { colorToHsl, randomInRange, Utils } from "../../Utils";
+import { colorToHsl, deepExtend, isPointInside, randomInRange } from "../../Utils";
 import { SizeMode } from "../../Enums";
 import { EmitterSize } from "./Options/Classes/EmitterSize";
 import type { Emitters } from "./Emitters";
@@ -57,10 +57,10 @@ export class EmitterInstance {
         this.currentEmitDelay = 0;
         this.currentSpawnDelay = 0;
         this.initialPosition = position;
-        this.emitterOptions = Utils.deepExtend({}, emitterOptions) as IEmitter;
+        this.emitterOptions = deepExtend({}, emitterOptions) as IEmitter;
         this.position = this.initialPosition ?? this.calcPosition();
 
-        let particlesOptions = Utils.deepExtend({}, this.emitterOptions.particles) as RecursivePartial<IParticles>;
+        let particlesOptions = deepExtend({}, this.emitterOptions.particles) as RecursivePartial<IParticles>;
 
         if (particlesOptions === undefined) {
             particlesOptions = {};
@@ -123,7 +123,7 @@ export class EmitterInstance {
         const initialPosition = this.initialPosition;
 
         this.position =
-            initialPosition && Utils.isPointInside(initialPosition, this.container.canvas.size)
+            initialPosition && isPointInside(initialPosition, this.container.canvas.size)
                 ? initialPosition
                 : this.calcPosition();
     }
@@ -220,7 +220,7 @@ export class EmitterInstance {
         };
 
         for (let i = 0; i < this.emitterOptions.rate.quantity; i++) {
-            const particlesOptions = Utils.deepExtend({}, this.particlesOptions) as RecursivePartial<IParticles>;
+            const particlesOptions = deepExtend({}, this.particlesOptions) as RecursivePartial<IParticles>;
 
             if (this.spawnColor !== undefined) {
                 const colorAnimation = this.emitterOptions.spawnColor?.animation;

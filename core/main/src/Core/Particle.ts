@@ -25,13 +25,15 @@ import {
     clamp,
     colorToHsl,
     colorToRgb,
+    deepExtend,
     getDistance,
     getHslFromAnimation,
     getParticleBaseVelocity,
     getValue,
+    isInArray,
+    itemFromArray,
     Plugins,
     randomInRange,
-    Utils,
 } from "../Utils";
 import type { IDelta } from "./Interfaces/IDelta";
 import type { ILink } from "./Interfaces/ILink";
@@ -130,7 +132,7 @@ export class Particle implements IParticle {
         const shapeType = particlesOptions.shape.type;
         const reduceDuplicates = particlesOptions.reduceDuplicates;
 
-        this.shape = shapeType instanceof Array ? Utils.itemFromArray(shapeType, this.id, reduceDuplicates) : shapeType;
+        this.shape = shapeType instanceof Array ? itemFromArray(shapeType, this.id, reduceDuplicates) : shapeType;
 
         if (overrideOptions?.shape) {
             if (overrideOptions.shape.type) {
@@ -138,7 +140,7 @@ export class Particle implements IParticle {
 
                 this.shape =
                     overrideShapeType instanceof Array
-                        ? Utils.itemFromArray(overrideShapeType, this.id, reduceDuplicates)
+                        ? itemFromArray(overrideShapeType, this.id, reduceDuplicates)
                         : overrideShapeType;
             }
 
@@ -395,7 +397,7 @@ export class Particle implements IParticle {
 
         this.stroke =
             this.options.stroke instanceof Array
-                ? Utils.itemFromArray(this.options.stroke, this.id, reduceDuplicates)
+                ? itemFromArray(this.options.stroke, this.id, reduceDuplicates)
                 : this.options.stroke;
 
         this.strokeWidth = this.stroke.width * container.retina.pixelRatio;
@@ -613,7 +615,7 @@ export class Particle implements IParticle {
         coordinate: number
     ): number {
         for (const outMode of outModes) {
-            if (!Utils.isInArray(outMode, modes)) {
+            if (!isInArray(outMode, modes)) {
                 continue;
             }
 
@@ -701,9 +703,9 @@ export class Particle implements IParticle {
         const shapeData = shapeOptions.options[this.shape];
 
         if (shapeData) {
-            return Utils.deepExtend(
+            return deepExtend(
                 {},
-                shapeData instanceof Array ? Utils.itemFromArray(shapeData, this.id, reduceDuplicates) : shapeData
+                shapeData instanceof Array ? itemFromArray(shapeData, this.id, reduceDuplicates) : shapeData
             ) as IShapeValues;
         }
     }

@@ -1,4 +1,4 @@
-import { clamp, getDistance, getDistances, Plugins, Utils } from "../../Utils";
+import { clamp, getDistance, getDistances, isInArray, isSsr, Plugins } from "../../Utils";
 import type { Container } from "../Container";
 import type { Particle } from "../Particle";
 import { HoverMode, RotateDirection } from "../../Enums";
@@ -226,7 +226,7 @@ export class Mover {
         const container = this.container,
             options = container.options;
 
-        if (Utils.isSsr() || !options.interactivity.events.onHover.parallax.enable) {
+        if (isSsr() || !options.interactivity.events.onHover.parallax.enable) {
             return;
         }
 
@@ -255,7 +255,7 @@ export class Mover {
     private getProximitySpeedFactor(particle: Particle): number {
         const container = this.container,
             options = container.options,
-            active = Utils.isInArray(HoverMode.slow, options.interactivity.events.onHover.mode);
+            active = isInArray(HoverMode.slow, options.interactivity.events.onHover.mode);
 
         if (!active) {
             return 1;

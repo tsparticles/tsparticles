@@ -10,7 +10,7 @@ import { MoveGravity } from "./MoveGravity";
 import { OutModes } from "./OutModes";
 import { Spin } from "./Spin";
 import { IVelocity } from "../../../../Core/Interfaces/IVelocity";
-import { Utils } from "../../../../Utils";
+import { deepExtend } from "../../../../Utils";
 
 /**
  * [[include:Options/Particles/Move.md]]
@@ -143,7 +143,7 @@ export class Move implements IMove, IOptionLoader<IMove> {
                           horizontal: data.distance,
                           vertical: data.distance,
                       }
-                    : (Utils.deepExtend({}, data.distance) as IVelocity);
+                    : (deepExtend({}, data.distance) as IVelocity);
         }
 
         if (data.enable !== undefined) {

@@ -1,6 +1,6 @@
 import type { Container } from "../../Core/Container";
-import { Utils } from "../../Utils";
-import { HoverMode } from "../../Enums/Modes";
+import { isInArray } from "../../Utils";
+import { HoverMode } from "../../Enums";
 import { ExternalBase } from "./ExternalBase";
 
 /**
@@ -23,7 +23,7 @@ export class Connector extends ExternalBase {
 
         const hoverMode = events.onHover.mode;
 
-        return Utils.isInArray(HoverMode.connect, hoverMode);
+        return isInArray(HoverMode.connect, hoverMode);
     }
 
     public reset(): void {

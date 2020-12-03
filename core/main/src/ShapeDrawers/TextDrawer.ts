@@ -1,6 +1,6 @@
 import type { IShapeDrawer } from "../Core/Interfaces/IShapeDrawer";
 import type { IParticle } from "../Core/Interfaces/IParticle";
-import { Utils } from "../Utils";
+import { isInArray, itemFromArray, loadFont } from "../Utils";
 import type { ICharacterShape } from "../Options/Interfaces/Particles/Shape/ICharacterShape";
 import { ShapeType } from "../Enums";
 import type { Container } from "../Core/Container";
@@ -22,8 +22,8 @@ export class TextDrawer implements IShapeDrawer {
         const options = container.options;
 
         if (
-            Utils.isInArray(ShapeType.char, options.particles.shape.type) ||
-            Utils.isInArray(ShapeType.character, options.particles.shape.type)
+            isInArray(ShapeType.char, options.particles.shape.type) ||
+            isInArray(ShapeType.character, options.particles.shape.type)
         ) {
             const shapeOptions = (options.particles.shape.options[ShapeType.character] ??
                 options.particles.shape.options[ShapeType.char]) as SingleOrMultiple<ICharacterShape>;
@@ -32,13 +32,13 @@ export class TextDrawer implements IShapeDrawer {
                 const promises: Promise<void>[] = [];
 
                 for (const character of shapeOptions) {
-                    promises.push(Utils.loadFont(character));
+                    promises.push(loadFont(character));
                 }
 
                 await Promise.allSettled(promises);
             } else {
                 if (shapeOptions !== undefined) {
-                    await Utils.loadFont(shapeOptions);
+                    await loadFont(shapeOptions);
                 }
             }
         }
@@ -61,7 +61,7 @@ export class TextDrawer implements IShapeDrawer {
 
         if (textParticle.text === undefined) {
             textParticle.text =
-                textData instanceof Array ? Utils.itemFromArray(textData, particle.randomIndexData) : textData;
+                textData instanceof Array ? itemFromArray(textData, particle.randomIndexData) : textData;
         }
 
         const text = textParticle.text;

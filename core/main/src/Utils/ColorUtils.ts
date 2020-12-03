@@ -1,10 +1,10 @@
 import type { IColor, IRgb, IRgba, IHsl, IHsla, IValueColor, IHsv, IHsva } from "../Core/Interfaces/Colors";
-import { Utils } from "./Utils";
+import { itemFromArray } from "./Utils";
 import { Constants } from "./Constants";
 import type { IImage } from "../Core/Interfaces/IImage";
 import { mix, randomInRange } from "./NumberUtils";
-import { IParticle } from "../Core/Interfaces/IParticle";
-import { IParticleHslAnimation } from "../Core/Interfaces/IParticleHslAnimation";
+import type { IParticle } from "../Core/Interfaces/IParticle";
+import type { IParticleHslAnimation } from "../Core/Interfaces/IParticleHslAnimation";
 
 /**
  *
@@ -113,7 +113,7 @@ export function colorToRgb(input?: string | IColor, index?: number, useIndex = t
         }
     } else {
         if (color.value instanceof Array) {
-            const colorSelected = Utils.itemFromArray(color.value, index, useIndex);
+            const colorSelected = itemFromArray(color.value, index, useIndex);
 
             res = colorToRgb({ value: colorSelected });
         } else {

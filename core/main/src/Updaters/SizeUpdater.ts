@@ -3,7 +3,7 @@ import type { IDelta } from "../Core/Interfaces/IDelta";
 import type { Container } from "../Core/Container";
 import type { Particle } from "../Core/Particle";
 import { AnimationStatus } from "../Enums";
-import { clamp, Utils } from "../Utils";
+import { checkDestroy, clamp } from "../Utils";
 
 export class SizeUpdater implements IParticleUpdater {
     constructor(private readonly container: Container) {}
@@ -47,7 +47,7 @@ export class SizeUpdater implements IParticleUpdater {
                 break;
         }
 
-        Utils.checkDestroy(particle, opacityAnim.destroy, particle.opacity.value, minValue, maxValue);
+        checkDestroy(particle, opacityAnim.destroy, particle.opacity.value, minValue, maxValue);
 
         if (!particle.destroyed) {
             particle.opacity.value = clamp(particle.opacity.value, minValue, maxValue);

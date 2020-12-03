@@ -1,11 +1,11 @@
 import type { Particle } from "../../Core/Particle";
 import type { Container } from "../../Core/Container";
 import { CollisionMode } from "../../Enums";
-import { clamp, getDistance, Utils } from "../../Utils";
+import { circleBounce, circleBounceDataFromParticle, clamp, getDistance } from "../../Utils";
 import { ParticlesBase } from "./ParticlesBase";
 
 function bounce(p1: Particle, p2: Particle): void {
-    Utils.circleBounce(Utils.circleBounceDataFromParticle(p1), Utils.circleBounceDataFromParticle(p2));
+    circleBounce(circleBounceDataFromParticle(p1), circleBounceDataFromParticle(p2));
 }
 
 function destroy(p1: Particle, p2: Particle): void {

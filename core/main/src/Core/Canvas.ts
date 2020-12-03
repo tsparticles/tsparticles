@@ -9,16 +9,16 @@ import {
     CanvasUtils,
     colorToRgb,
     Constants,
+    deepExtend,
     getDistance,
     getLinkColor,
     getStyleFromRgb,
     hslToRgb,
-    Utils,
 } from "../Utils";
 import type { Particle } from "./Particle";
 import type { IDelta } from "./Interfaces/IDelta";
 import { OrbitType } from "../Enums/Types/OrbitType";
-import { IOrbit } from "../Options/Interfaces/Particles/Orbit/IOrbit";
+import type { IOrbit } from "../Options/Interfaces/Particles/Orbit/IOrbit";
 
 /**
  * Canvas manager
@@ -72,7 +72,7 @@ export class Canvas {
 
         if (element) {
             if (options.fullScreen.enable) {
-                this.originalStyle = Utils.deepExtend({}, element.style) as CSSStyleDeclaration;
+                this.originalStyle = deepExtend({}, element.style) as CSSStyleDeclaration;
 
                 element.style.position = "fixed";
                 element.style.zIndex = options.fullScreen.zIndex.toString(10);
@@ -122,7 +122,7 @@ export class Canvas {
 
         this.generatedCanvas = generatedCanvas ?? this.generatedCanvas;
         this.element = canvas;
-        this.originalStyle = Utils.deepExtend({}, this.element.style) as CSSStyleDeclaration;
+        this.originalStyle = deepExtend({}, this.element.style) as CSSStyleDeclaration;
         this.size.height = canvas.offsetHeight;
         this.size.width = canvas.offsetWidth;
 

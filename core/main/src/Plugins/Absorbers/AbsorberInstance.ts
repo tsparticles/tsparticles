@@ -3,9 +3,9 @@ import type { Container } from "../../Core/Container";
 import type { Particle } from "../../Core/Particle";
 import type { IRgb } from "../../Core/Interfaces/Colors";
 import type { IAbsorber } from "./Options/Interfaces/IAbsorber";
-import { colorToRgb, getDistance, getDistances, getStyleFromRgb, getValue, Utils } from "../../Utils";
+import { colorToRgb, getDistance, getDistances, getStyleFromRgb, getValue, isPointInside } from "../../Utils";
 import type { Absorbers } from "./Absorbers";
-import { RotateDirection } from "../../Enums/Directions";
+import { RotateDirection } from "../../Enums";
 
 type OrbitingParticle = Particle & {
     absorberOrbitRadius?: number;
@@ -123,7 +123,7 @@ export class AbsorberInstance {
         const initialPosition = this.initialPosition;
 
         this.position =
-            initialPosition && Utils.isPointInside(initialPosition, this.container.canvas.size)
+            initialPosition && isPointInside(initialPosition, this.container.canvas.size)
                 ? initialPosition
                 : this.calcPosition();
     }
