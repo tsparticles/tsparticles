@@ -1,5 +1,5 @@
 import { expect } from "chai";
-import { Container, MoveDirection, Utils } from "../src";
+import { Container, MoveDirection } from "../src";
 import { IContainerPlugin } from "../src/Core/Interfaces/IContainerPlugin";
 import { IParticle } from "../src/Core/Interfaces/IParticle";
 import { IPlugin } from "../src/Core/Interfaces/IPlugin";
