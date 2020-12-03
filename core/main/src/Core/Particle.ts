@@ -23,7 +23,6 @@ import {
 import type { RecursivePartial } from "../Types";
 import { colorToHsl, colorToRgb, getHslFromAnimation, NumberUtils, Plugins, Utils } from "../Utils";
 import type { IDelta } from "./Interfaces/IDelta";
-import { Mover } from "./Particle/Mover";
 import type { ILink } from "./Interfaces/ILink";
 import type { IParticleLoops } from "./Interfaces/IParticleLoops";
 import type { IParticleInfection } from "./Interfaces/IParticleInfection";
@@ -32,6 +31,7 @@ import type { Stroke } from "../Options/Classes/Particles/Stroke";
 import type { IColorAnimation } from "../Options/Interfaces/IColorAnimation";
 import type { IParticleLife } from "./Interfaces/IParticleLife";
 import type { IParticleSpin } from "./Interfaces/IParticleSpin";
+import type { IShape } from "../Options/Interfaces/Particles/Shape/IShape";
 
 /**
  * The single particle object
@@ -48,7 +48,6 @@ export class Particle implements IParticle {
     public unbreakable;
 
     public readonly noiseDelay;
-    public readonly mover;
     public readonly sides;
     public readonly strokeWidth;
     public readonly options;
@@ -137,26 +136,10 @@ export class Particle implements IParticle {
             shapeOptions.load(overrideOptions.shape);
 
             if (this.shape) {
-                const shapeData = shapeOptions.options[this.shape];
-
-                if (shapeData) {
-                    this.shapeData = Utils.deepExtend(
-                        {},
-                        shapeData instanceof Array
-                            ? Utils.itemFromArray(shapeData, this.id, reduceDuplicates)
-                            : shapeData
-                    ) as IShapeValues;
-                }
+                this.shapeData = this.loadShapeData(shapeOptions, reduceDuplicates);
             }
         } else {
-            const shapeData = particlesOptions.shape.options[this.shape];
-
-            if (shapeData) {
-                this.shapeData = Utils.deepExtend(
-                    {},
-                    shapeData instanceof Array ? Utils.itemFromArray(shapeData, this.id, reduceDuplicates) : shapeData
-                ) as IShapeValues;
-            }
+            this.shapeData = this.loadShapeData(particlesOptions.shape, reduceDuplicates);
         }
 
         if (overrideOptions !== undefined) {
@@ -195,9 +178,10 @@ export class Particle implements IParticle {
             z: this.position.z,
         };
 
-        this.container.particles.needsSort =
-            this.container.particles.needsSort || this.container.particles.lastZIndex > this.position.z;
-        this.container.particles.lastZIndex = this.position.z;
+        const particles = this.container.particles;
+
+        particles.needsSort = particles.needsSort || particles.lastZIndex > this.position.z;
+        particles.lastZIndex = this.position.z;
 
         /* parallax */
         this.offset = {
@@ -488,12 +472,6 @@ export class Particle implements IParticle {
         }
 
         this.shadowColor = colorToRgb(this.options.shadow.color);
-        this.mover = new Mover(container, this);
-    }
-
-    public move(delta: IDelta): void {
-        /* move the particle */
-        this.mover.move(delta);
     }
 
     public draw(delta: IDelta): void {
@@ -728,6 +706,17 @@ export class Particle implements IParticle {
 
         for (let i = 0; i < rate; i++) {
             this.container.particles.addSplitParticle(this);
+        }
+    }
+
+    private loadShapeData(shapeOptions: IShape, reduceDuplicates: boolean): IShapeValues | undefined {
+        const shapeData = shapeOptions.options[this.shape];
+
+        if (shapeData) {
+            return Utils.deepExtend(
+                {},
+                shapeData instanceof Array ? Utils.itemFromArray(shapeData, this.id, reduceDuplicates) : shapeData
+            ) as IShapeValues;
         }
     }
 }

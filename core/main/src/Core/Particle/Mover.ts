@@ -8,11 +8,9 @@ import type { IDelta } from "../Interfaces/IDelta";
  * @category Core
  */
 export class Mover {
-    constructor(private readonly container: Container, private readonly particle: Particle) {}
+    constructor(private readonly container: Container) {}
 
-    public move(delta: IDelta): void {
-        const particle = this.particle;
-
+    public move(particle: Particle, delta: IDelta): void {
         const resizeFactor = this.container.canvas.resizeFactor;
 
         if (resizeFactor) {
@@ -37,21 +35,18 @@ export class Mover {
             return;
         }
 
-        this.moveParticle(delta);
+        this.moveParticle(particle, delta);
 
         /* parallax */
-        this.moveParallax();
+        this.moveParallax(particle);
     }
 
-    public moveXY(x: number, y: number): void {
-        const particle = this.particle;
-
+    public moveXY(particle: Particle, x: number, y: number): void {
         particle.position.x += x;
         particle.position.y += y;
     }
 
-    private moveParticle(delta: IDelta): void {
-        const particle = this.particle;
+    private moveParticle(particle: Particle, delta: IDelta): void {
         const particlesOptions = particle.options;
 
         if (!particlesOptions.move.enable) {
@@ -59,13 +54,13 @@ export class Mover {
         }
 
         const container = this.container;
-        const slowFactor = this.getProximitySpeedFactor();
+        const slowFactor = this.getProximitySpeedFactor(particle);
         const baseSpeed = (particle.moveSpeed ?? container.retina.moveSpeed) * container.retina.reduceFactor;
         const maxSize = particle.sizeValue ?? container.retina.sizeValue;
         const sizeFactor = particlesOptions.move.size ? particle.getRadius() / maxSize : 1;
         const moveSpeed = (baseSpeed / 2) * sizeFactor * slowFactor * delta.factor;
 
-        this.applyNoise(delta);
+        this.applyNoise(particle, delta);
 
         const gravityOptions = particlesOptions.move.gravity;
 
@@ -88,24 +83,24 @@ export class Mover {
         const zVelocityFactor = 1 - zIndexOptions.velocityRate * particle.zIndexFactor;
 
         if (particlesOptions.move.spin.enable) {
-            this.spin(moveSpeed);
+            this.spin(particle, moveSpeed);
         } else {
-            this.moveXY(velocity.horizontal * zVelocityFactor, velocity.vertical * zVelocityFactor);
+            this.moveXY(particle, velocity.horizontal * zVelocityFactor, velocity.vertical * zVelocityFactor);
 
             if (particlesOptions.move.vibrate) {
                 this.moveXY(
+                    particle,
                     Math.sin(particle.position.x * Math.cos(particle.position.y) * zVelocityFactor),
                     Math.cos(particle.position.y * Math.sin(particle.position.x) * zVelocityFactor)
                 );
             }
         }
 
-        this.applyDistance();
+        this.applyDistance(particle);
     }
 
-    private spin(moveSpeed: number): void {
-        const particle = this.particle,
-            container = this.container;
+    private spin(particle: Particle, moveSpeed: number): void {
+        const container = this.container;
 
         if (!particle.spin) {
             return;
@@ -133,9 +128,7 @@ export class Mover {
         particle.spin.angle += (moveSpeed / 100) * (1 - particle.spin.radius / maxCanvasSize);
     }
 
-    private applyDistance(): void {
-        const particle = this.particle;
-
+    private applyDistance(particle: Particle): void {
         const initialPosition = particle.initialPosition;
         const { dx, dy } = NumberUtils.getDistances(initialPosition, particle.position);
         const dxFixed = Math.abs(dx),
@@ -188,9 +181,8 @@ export class Mover {
         }
     }
 
-    private applyNoise(delta: IDelta): void {
-        const particle = this.particle,
-            particlesOptions = particle.options,
+    private applyNoise(particle: Particle, delta: IDelta): void {
+        const particlesOptions = particle.options,
             noiseOptions = particlesOptions.move.noise,
             noiseEnabled = noiseOptions.enable;
 
@@ -230,7 +222,7 @@ export class Mover {
         particle.lastNoiseTime -= particle.noiseDelay;
     }
 
-    private moveParallax(): void {
+    private moveParallax(particle: Particle): void {
         const container = this.container,
             options = container.options;
 
@@ -238,8 +230,7 @@ export class Mover {
             return;
         }
 
-        const particle = this.particle,
-            parallaxForce = options.interactivity.events.onHover.parallax.force,
+        const parallaxForce = options.interactivity.events.onHover.parallax.force,
             mousePos = container.interactivity.mouse.position;
 
         if (!mousePos) {
@@ -261,7 +252,7 @@ export class Mover {
         particle.offset.y += (tmp.y - particle.offset.y) / parallaxSmooth; // Easing equation
     }
 
-    private getProximitySpeedFactor(): number {
+    private getProximitySpeedFactor(particle: Particle): number {
         const container = this.container,
             options = container.options,
             active = Utils.isInArray(HoverMode.slow, options.interactivity.events.onHover.mode);
@@ -276,7 +267,7 @@ export class Mover {
             return 1;
         }
 
-        const particlePos = this.particle.getPosition(),
+        const particlePos = particle.getPosition(),
             dist = NumberUtils.getDistance(mousePos, particlePos),
             radius = container.retina.slowModeRadius;
 

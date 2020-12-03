@@ -43,9 +43,9 @@ export class Repulser extends ParticlesBase {
                     y: (dy / distance) * repulseFactor,
                 };
 
-                p2.mover.moveXY(normVec.x, normVec.y);
+                container.particles.mover.moveXY(p2, normVec.x, normVec.y);
             } else {
-                p2.mover.moveXY(velocity, velocity);
+                container.particles.mover.moveXY(p2, velocity, velocity);
             }
         }
     }

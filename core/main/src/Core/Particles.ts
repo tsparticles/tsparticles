@@ -12,6 +12,7 @@ import type { IParticle } from "./Interfaces/IParticle";
 import type { IDensity } from "../Options/Interfaces/Particles/Number/IDensity";
 import { Particles as ParticlesOptions } from "../Options/Classes/Particles/Particles";
 import { Infecter } from "./Particle/Infecter";
+import { Mover } from "./Particle/Mover";
 
 /**
  * Particles manager object
@@ -41,6 +42,7 @@ export class Particles {
     public grabLineColor?: IRgb | string;
 
     public readonly infecter;
+    public readonly mover;
 
     private interactionManager;
     private nextId;
@@ -58,6 +60,7 @@ export class Particles {
         this.trianglesFreq = new Map<string, number>();
         this.interactionManager = new InteractionManager(this.container);
         this.infecter = new Infecter(this.container);
+        this.mover = new Mover(this.container);
 
         const canvasSize = this.container.canvas.size;
 
@@ -179,7 +182,7 @@ export class Particles {
                 continue;
             }
 
-            particle.move(delta);
+            this.mover.move(particle, delta);
 
             if (particle.destroyed) {
                 particlesToDelete.push(particle);
