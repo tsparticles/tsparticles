@@ -6,14 +6,25 @@ import type { IParticle } from "./Interfaces/IParticle";
 import type { IContainerPlugin } from "./Interfaces/IContainerPlugin";
 import type { ILink } from "./Interfaces/ILink";
 import {
-    CanvasUtils,
+    clear,
     colorToRgb,
     Constants,
     deepExtend,
+    drawConnectLine,
+    drawEllipse,
+    drawGrabLine,
+    drawLight,
+    drawLinkLine,
+    drawLinkTriangle,
+    drawParticle,
+    drawParticleShadow,
+    drawPlugin,
     getDistance,
     getLinkColor,
     getStyleFromRgb,
+    gradient,
     hslToRgb,
+    paintBase,
 } from "../Utils";
 import type { Particle } from "./Particle";
 import type { IDelta } from "./Interfaces/IDelta";
@@ -137,7 +148,7 @@ export class Canvas {
         }
 
         if (this.context) {
-            CanvasUtils.clear(this.context, this.size);
+            clear(this.context, this.size);
         }
     }
 
@@ -152,7 +163,7 @@ export class Canvas {
         }
 
         if (options.backgroundMask.enable && options.backgroundMask.cover && this.coverColor) {
-            CanvasUtils.clear(this.context, this.size);
+            clear(this.context, this.size);
             this.paintBase(getStyleFromRgb(this.coverColor, this.coverColor.a));
         } else {
             this.paintBase();
@@ -171,7 +182,7 @@ export class Canvas {
         } else if (trail.enable && trail.length > 0 && this.trailFillColor) {
             this.paintBase(getStyleFromRgb(this.trailFillColor, 1 / trail.length));
         } else if (this.context) {
-            CanvasUtils.clear(this.context, this.size);
+            clear(this.context, this.size);
         }
     }
 
@@ -238,7 +249,7 @@ export class Canvas {
         const pos1 = p1.getPosition();
         const pos2 = p2.getPosition();
 
-        CanvasUtils.drawConnectLine(ctx, p1.linksWidth ?? this.container.retina.linksWidth, lineStyle, pos1, pos2);
+        drawConnectLine(ctx, p1.linksWidth ?? this.container.retina.linksWidth, lineStyle, pos1, pos2);
     }
 
     public drawGrabLine(particle: IParticle, lineColor: IRgb, opacity: number, mousePos: ICoordinates): void {
@@ -251,14 +262,7 @@ export class Canvas {
 
         const beginPos = particle.getPosition();
 
-        CanvasUtils.drawGrabLine(
-            ctx,
-            particle.linksWidth ?? container.retina.linksWidth,
-            beginPos,
-            mousePos,
-            lineColor,
-            opacity
-        );
+        drawGrabLine(ctx, particle.linksWidth ?? container.retina.linksWidth, beginPos, mousePos, lineColor, opacity);
     }
 
     public drawParticleShadow(particle: Particle, mousePos: ICoordinates): void {
@@ -266,7 +270,7 @@ export class Canvas {
             return;
         }
 
-        CanvasUtils.drawParticleShadow(this.container, this.context, particle, mousePos);
+        drawParticleShadow(this.container, this.context, particle, mousePos);
     }
 
     public drawLinkTriangle(p1: IParticle, link1: ILink, link2: ILink): void {
@@ -315,7 +319,7 @@ export class Canvas {
             return;
         }
 
-        CanvasUtils.drawLinkTriangle(
+        drawLinkTriangle(
             ctx,
             pos1,
             pos2,
@@ -382,7 +386,7 @@ export class Canvas {
         const width = p1.linksWidth ?? container.retina.linksWidth;
         const maxDistance = p1.linksDistance ?? container.retina.linksDistance;
 
-        CanvasUtils.drawLinkLine(
+        drawLinkLine(
             ctx,
             width,
             pos1,
@@ -455,7 +459,7 @@ export class Canvas {
                 this.drawOrbit(particle, orbitOptions, OrbitType.back);
             }
 
-            CanvasUtils.drawParticle(
+            drawParticle(
                 this.container,
                 this.context,
                 particle,
@@ -496,7 +500,7 @@ export class Canvas {
             end = 2 * Math.PI;
         }
 
-        CanvasUtils.drawEllipse(
+        drawEllipse(
             this.context,
             particle,
             particle.orbitColor ?? particle.getFillColor(),
@@ -565,7 +569,7 @@ export class Canvas {
             return;
         }
 
-        CanvasUtils.drawPlugin(this.context, plugin, delta);
+        drawPlugin(this.context, plugin, delta);
     }
 
     public drawLight(mousePos: ICoordinates): void {
@@ -573,7 +577,7 @@ export class Canvas {
             return;
         }
 
-        CanvasUtils.drawLight(this.container, this.context, mousePos);
+        drawLight(this.container, this.context, mousePos);
     }
 
     private paintBase(baseColor?: string): void {
@@ -581,7 +585,7 @@ export class Canvas {
             return;
         }
 
-        CanvasUtils.paintBase(this.context, this.size, baseColor);
+        paintBase(this.context, this.size, baseColor);
     }
 
     private lineStyle(p1: IParticle, p2: IParticle): CanvasGradient | undefined {
@@ -589,7 +593,7 @@ export class Canvas {
         const connectOptions = options.interactivity.modes.connect;
 
         if (this.context) {
-            return CanvasUtils.gradient(this.context, p1, p2, connectOptions.links.opacity);
+            return gradient(this.context, p1, p2, connectOptions.links.opacity);
         }
     }
 
