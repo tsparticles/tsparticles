@@ -34,9 +34,12 @@ export class Particles {
      */
     public array: Particle[];
 
+    public lastZIndex: number;
+    public needsSort: boolean;
     public pushing?: boolean;
     public linksColor?: IRgb | string;
     public grabLineColor?: IRgb | string;
+
     public readonly infecter;
 
     private interactionManager;
@@ -49,6 +52,8 @@ export class Particles {
         this.nextId = 0;
         this.array = [];
         this.limit = 0;
+        this.needsSort = false;
+        this.lastZIndex = 0;
         this.linksFreq = new Map<string, number>();
         this.trianglesFreq = new Map<string, number>();
         this.interactionManager = new InteractionManager(this.container);
@@ -75,6 +80,8 @@ export class Particles {
         const container = this.container;
         const options = container.options;
 
+        this.lastZIndex = 0;
+        this.needsSort = false;
         this.linksFreq = new Map<string, number>();
         this.trianglesFreq = new Map<string, number>();
 
@@ -232,7 +239,11 @@ export class Particles {
             this.quadTree.draw(container.canvas.context);
         }*/
 
-        this.array.sort((a, b) => b.position.z - a.position.z || a.id - b.id);
+        if (this.needsSort) {
+            this.array.sort((a, b) => b.position.z - a.position.z || a.id - b.id);
+            this.lastZIndex = this.array[this.array.length - 1].position.z;
+            this.needsSort = false;
+        }
 
         /* draw each particle */
         for (const p of this.array) {

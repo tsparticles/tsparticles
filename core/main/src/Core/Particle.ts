@@ -84,7 +84,7 @@ export class Particle implements IParticle {
     public readonly orbitColor?: IHsl;
     public readonly velocity: IVelocity;
     public readonly shape: ShapeType | string;
-    public readonly initialPosition: ICoordinates;
+    public readonly initialPosition: ICoordinates3d;
     public readonly initialVelocity: IVelocity;
     public readonly shapeData?: IShapeValues;
     public readonly bubble: IBubbleParticleData;
@@ -192,7 +192,12 @@ export class Particle implements IParticle {
         this.initialPosition = {
             x: this.position.x,
             y: this.position.y,
+            z: this.position.z,
         };
+
+        this.container.particles.needsSort =
+            this.container.particles.needsSort || this.container.particles.lastZIndex > this.position.z;
+        this.container.particles.lastZIndex = this.position.z;
 
         /* parallax */
         this.offset = {
