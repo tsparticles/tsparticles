@@ -53,7 +53,6 @@ import { Velocity } from "./Particle/Velocity";
  * @category Core
  */
 export class Particle implements IParticle {
-    public pathAngle;
     public destroyed;
     public misplaced;
     public spawning;
@@ -216,8 +215,6 @@ export class Particle implements IParticle {
         /* animation - velocity for speed */
         this.initialVelocity = this.calculateVelocity();
         this.velocity = this.initialVelocity.copy();
-
-        this.pathAngle = this.velocity.angle;
 
         const rotateOptions = this.options.rotate;
 
@@ -431,14 +428,14 @@ export class Particle implements IParticle {
         this.life = {
             delay: container.retina.reduceFactor
                 ? ((getValue(lifeOptions.delay) * (lifeOptions.delay.sync ? 1 : Math.random())) /
-                container.retina.reduceFactor) *
-                1000
+                      container.retina.reduceFactor) *
+                  1000
                 : 0,
             delayTime: 0,
             duration: container.retina.reduceFactor
                 ? ((getValue(lifeOptions.duration) * (lifeOptions.duration.sync ? 1 : Math.random())) /
-                container.retina.reduceFactor) *
-                1000
+                      container.retina.reduceFactor) *
+                  1000
                 : 0,
             time: 0,
             count: particlesOptions.life.count,
@@ -556,7 +553,7 @@ export class Particle implements IParticle {
         zIndex: number,
         tryCount = 0
     ): ICoordinates3d {
-        for (const [ , plugin ] of container.plugins) {
+        for (const [, plugin] of container.plugins) {
             const pluginPos =
                 plugin.particlePosition !== undefined ? plugin.particlePosition(position, this) : undefined;
 
@@ -590,17 +587,17 @@ export class Particle implements IParticle {
         /* check position  - into the canvas */
         const container = this.container;
         const outMode = this.options.move.outModes;
-        const hOut = [ outMode.right, outMode.left ];
-        const vOut = [ outMode.bottom, outMode.top ];
+        const hOut = [outMode.right, outMode.left];
+        const vOut = [outMode.bottom, outMode.top];
 
         pos.x += this.getOutCanvasFix(
-            [ OutMode.bounce, OutMode.bounceHorizontal ],
+            [OutMode.bounce, OutMode.bounceHorizontal],
             hOut,
             container.canvas.size.width,
             pos.x
         );
         pos.y += this.getOutCanvasFix(
-            [ OutMode.bounce, OutMode.bounceVertical ],
+            [OutMode.bounce, OutMode.bounceVertical],
             vOut,
             container.canvas.size.height,
             pos.y

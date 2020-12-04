@@ -63,7 +63,9 @@ export function getDistance(pointA: ICoordinates, pointB: ICoordinates): number 
  * Get Particle base velocity
  * @param direction the direction to use for calculating the velocity
  */
-export function getParticleBaseVelocity(direction: MoveDirection | keyof typeof MoveDirection | MoveDirectionAlt): Velocity {
+export function getParticleBaseVelocity(
+    direction: MoveDirection | keyof typeof MoveDirection | MoveDirectionAlt
+): Velocity {
     const baseVelocity = new Velocity(0, 0);
 
     baseVelocity.length = 1;
@@ -95,7 +97,7 @@ export function getParticleBaseVelocity(direction: MoveDirection | keyof typeof 
             break;
         case MoveDirection.none:
         default:
-            baseVelocity.length = 0;
+            baseVelocity.angle = Math.random() * Math.PI * 2;
             break;
     }
 
@@ -103,17 +105,15 @@ export function getParticleBaseVelocity(direction: MoveDirection | keyof typeof 
 }
 
 export function rotateVelocity(velocity: IVelocity, angle: number): IVelocity {
-    return {
-        horizontal: velocity.horizontal * Math.cos(angle) - velocity.vertical * Math.sin(angle),
-        vertical: velocity.horizontal * Math.sin(angle) + velocity.vertical * Math.cos(angle),
-    };
+    const res = new Velocity(velocity.horizontal, velocity.vertical);
+
+    res.rotate(angle);
+
+    return res;
 }
 
 export function collisionVelocity(v1: IVelocity, v2: IVelocity, m1: number, m2: number): IVelocity {
-    return {
-        horizontal: (v1.horizontal * (m1 - m2)) / (m1 + m2) + (v2.horizontal * 2 * m2) / (m1 + m2),
-        vertical: v1.vertical,
-    };
+    return new Velocity((v1.horizontal * (m1 - m2)) / (m1 + m2) + (v2.horizontal * 2 * m2) / (m1 + m2), v1.vertical);
 }
 
 export function deg2rad(deg: number): number {
@@ -179,7 +179,9 @@ export class NumberUtils {
      * Get Particle base velocity
      * @param direction the direction to use for calculating the velocity
      */
-    public static getParticleBaseVelocity(direction: MoveDirection | keyof typeof MoveDirection | MoveDirectionAlt): Velocity {
+    public static getParticleBaseVelocity(
+        direction: MoveDirection | keyof typeof MoveDirection | MoveDirectionAlt
+    ): Velocity {
         return getParticleBaseVelocity(direction);
     }
 

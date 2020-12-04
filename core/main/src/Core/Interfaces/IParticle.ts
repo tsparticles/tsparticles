@@ -18,7 +18,6 @@ export interface IParticle {
     misplaced: boolean;
     randomIndexData?: number;
 
-    readonly pathAngle: number;
     readonly bubble: IBubbleParticleData;
     readonly close: boolean;
     readonly destroyed: boolean;
