@@ -26,9 +26,10 @@ import {
     colorToHsl,
     colorToRgb,
     deepExtend,
+    deg2rad,
     getDistance,
     getHslFromAnimation,
-    getParticleBaseAngle,
+    getParticleBaseVelocity,
     getValue,
     isInArray,
     itemFromArray,
@@ -214,16 +215,14 @@ export class Particle implements IParticle {
 
         /* animation - velocity for speed */
         this.initialVelocity = this.calculateVelocity();
-        this.velocity = new Velocity();
-
-        this.velocity.angle = this.initialVelocity.angle;
+        this.velocity = this.initialVelocity.copy();
 
         this.pathAngle = this.velocity.angle;
 
         const rotateOptions = this.options.rotate;
 
         this.rotate = {
-            value: ((rotateOptions.random.enable ? Math.random() * 360 : rotateOptions.value) * Math.PI) / 180,
+            value: deg2rad(rotateOptions.random.enable ? Math.random() * 360 : rotateOptions.value),
         };
 
         let rotateDirection = rotateOptions.direction;
@@ -432,14 +431,14 @@ export class Particle implements IParticle {
         this.life = {
             delay: container.retina.reduceFactor
                 ? ((getValue(lifeOptions.delay) * (lifeOptions.delay.sync ? 1 : Math.random())) /
-                      container.retina.reduceFactor) *
-                  1000
+                container.retina.reduceFactor) *
+                1000
                 : 0,
             delayTime: 0,
             duration: container.retina.reduceFactor
                 ? ((getValue(lifeOptions.duration) * (lifeOptions.duration.sync ? 1 : Math.random())) /
-                      container.retina.reduceFactor) *
-                  1000
+                container.retina.reduceFactor) *
+                1000
                 : 0,
             time: 0,
             count: particlesOptions.life.count,
@@ -557,7 +556,7 @@ export class Particle implements IParticle {
         zIndex: number,
         tryCount = 0
     ): ICoordinates3d {
-        for (const [, plugin] of container.plugins) {
+        for (const [ , plugin ] of container.plugins) {
             const pluginPos =
                 plugin.particlePosition !== undefined ? plugin.particlePosition(position, this) : undefined;
 
@@ -591,17 +590,17 @@ export class Particle implements IParticle {
         /* check position  - into the canvas */
         const container = this.container;
         const outMode = this.options.move.outModes;
-        const hOut = [outMode.right, outMode.left];
-        const vOut = [outMode.bottom, outMode.top];
+        const hOut = [ outMode.right, outMode.left ];
+        const vOut = [ outMode.bottom, outMode.top ];
 
         pos.x += this.getOutCanvasFix(
-            [OutMode.bounce, OutMode.bounceHorizontal],
+            [ OutMode.bounce, OutMode.bounceHorizontal ],
             hOut,
             container.canvas.size.width,
             pos.x
         );
         pos.y += this.getOutCanvasFix(
-            [OutMode.bounce, OutMode.bounceVertical],
+            [ OutMode.bounce, OutMode.bounceVertical ],
             vOut,
             container.canvas.size.height,
             pos.y
@@ -655,28 +654,27 @@ export class Particle implements IParticle {
     }
 
     private calculateVelocity(): Velocity {
-        const res = new Velocity(),
+        const res = getParticleBaseVelocity(this.direction),
             moveOptions = this.options.move;
 
-        res.angle = getParticleBaseAngle(this);
-
         let rad: number,
-            radOffset = Math.PI / 4;
+            radOffset = 0;
 
         if (typeof moveOptions.angle === "number") {
-            rad = (Math.PI / 180) * moveOptions.angle;
+            rad = deg2rad(moveOptions.angle);
         } else {
-            rad = (Math.PI / 180) * moveOptions.angle.value;
-            radOffset = (Math.PI / 180) * moveOptions.angle.offset;
+            rad = deg2rad(moveOptions.angle.value);
+            radOffset = deg2rad(moveOptions.angle.offset);
         }
 
-        const range = {
-            left: Math.sin(radOffset + rad / 2) - Math.sin(radOffset - rad / 2),
-            right: Math.cos(radOffset + rad / 2) - Math.cos(radOffset - rad / 2),
-        };
-
         if ((moveOptions.straight && moveOptions.random) || !moveOptions.straight) {
-            res.angle += randomInRange(range.left, range.right) / 2;
+            const range = {
+                left: radOffset - rad / 2,
+                right: radOffset + rad / 2,
+            };
+
+            res.length += Math.sqrt(range.left ** 2 + range.right ** 2);
+            res.angle += randomInRange(range.left, range.right);
         }
 
         return res;

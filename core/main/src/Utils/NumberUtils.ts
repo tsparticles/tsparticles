@@ -1,8 +1,8 @@
 import type { IValueWithRandom } from "../Options/Interfaces/IValueWithRandom";
 import type { ICoordinates } from "../Core/Interfaces/ICoordinates";
-import type { IParticle } from "../Core/Interfaces/IParticle";
-import { MoveDirection } from "../Enums/Directions";
+import { MoveDirection, MoveDirectionAlt } from "../Enums/Directions";
 import type { IVelocity } from "../Core/Interfaces/IVelocity";
+import { Velocity } from "../Core/Particle/Velocity";
 
 /**
  * Clamps a number between a minimum and maximum value
@@ -61,42 +61,45 @@ export function getDistance(pointA: ICoordinates, pointB: ICoordinates): number 
 
 /**
  * Get Particle base velocity
- * @param particle the particle to use for calculating the velocity
+ * @param direction the direction to use for calculating the velocity
  */
-export function getParticleBaseAngle(particle: IParticle): number {
-    let baseAngle: number;
+export function getParticleBaseVelocity(direction: MoveDirection | keyof typeof MoveDirection | MoveDirectionAlt): Velocity {
+    const baseVelocity = new Velocity(0, 0);
 
-    switch (particle.direction) {
+    baseVelocity.length = 1;
+
+    switch (direction) {
         case MoveDirection.top:
-            baseAngle = -Math.PI / 2;
+            baseVelocity.angle = -Math.PI / 2;
             break;
         case MoveDirection.topRight:
-            baseAngle = -Math.PI / 4;
+            baseVelocity.angle = -Math.PI / 4;
             break;
         case MoveDirection.right:
-            baseAngle = 0;
+            baseVelocity.angle = 0;
             break;
         case MoveDirection.bottomRight:
-            baseAngle = Math.PI / 4;
+            baseVelocity.angle = Math.PI / 4;
             break;
         case MoveDirection.bottom:
-            baseAngle = Math.PI / 2;
+            baseVelocity.angle = Math.PI / 2;
             break;
         case MoveDirection.bottomLeft:
-            baseAngle = (3 * Math.PI) / 4;
+            baseVelocity.angle = (3 * Math.PI) / 4;
             break;
         case MoveDirection.left:
-            baseAngle = Math.PI;
+            baseVelocity.angle = Math.PI;
             break;
         case MoveDirection.topLeft:
-            baseAngle = (-3 * Math.PI) / 4;
+            baseVelocity.angle = (-3 * Math.PI) / 4;
             break;
+        case MoveDirection.none:
         default:
-            baseAngle = Math.random() * Math.PI * 2;
+            baseVelocity.length = 0;
             break;
     }
 
-    return baseAngle;
+    return baseVelocity;
 }
 
 export function rotateVelocity(velocity: IVelocity, angle: number): IVelocity {
@@ -111,6 +114,14 @@ export function collisionVelocity(v1: IVelocity, v2: IVelocity, m1: number, m2: 
         horizontal: (v1.horizontal * (m1 - m2)) / (m1 + m2) + (v2.horizontal * 2 * m2) / (m1 + m2),
         vertical: v1.vertical,
     };
+}
+
+export function deg2rad(deg: number): number {
+    return (deg * Math.PI) / 180;
+}
+
+export function rad2deg(rad: number): number {
+    return (rad * 180) / Math.PI;
 }
 
 export class NumberUtils {
@@ -166,10 +177,10 @@ export class NumberUtils {
 
     /**
      * Get Particle base velocity
-     * @param particle the particle to use for calculating the velocity
+     * @param direction the direction to use for calculating the velocity
      */
-    public static getParticleBaseAngle(particle: IParticle): number {
-        return getParticleBaseAngle(particle);
+    public static getParticleBaseVelocity(direction: MoveDirection | keyof typeof MoveDirection | MoveDirectionAlt): Velocity {
+        return getParticleBaseVelocity(direction);
     }
 
     public static rotateVelocity(velocity: IVelocity, angle: number): IVelocity {

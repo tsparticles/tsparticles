@@ -2,6 +2,7 @@ import type { IShapeDrawer } from "../Core/Interfaces/IShapeDrawer";
 import type { ICoordinates } from "../Core/Interfaces/ICoordinates";
 import type { IParticle } from "../Core/Interfaces/IParticle";
 import type { IPolygonShape } from "../Options/Interfaces/Particles/Shape/IPolygonShape";
+import { deg2rad } from "../Utils";
 
 export interface ISideCount {
     numerator: number;
@@ -31,7 +32,7 @@ export abstract class PolygonDrawerBase implements IShapeDrawer {
         const sideCount = side.count.numerator * side.count.denominator;
         const decimalSides = side.count.numerator / side.count.denominator;
         const interiorAngleDegrees = (180 * (decimalSides - 2)) / decimalSides;
-        const interiorAngle = Math.PI - (Math.PI * interiorAngleDegrees) / 180; // convert to radians
+        const interiorAngle = Math.PI - deg2rad(interiorAngleDegrees);
 
         if (!context) {
             return;

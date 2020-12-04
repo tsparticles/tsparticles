@@ -10,7 +10,7 @@ import {
     clamp,
     downloadSvgImage,
     getDistance,
-    getParticleBaseAngle, isInArray, isPointInside, itemFromArray,
+    getParticleBaseVelocity, isInArray, isPointInside, itemFromArray,
     loadImage,
     mix,
     Plugins,
@@ -477,36 +477,28 @@ describe("Utils", () => {
 
     describe("getParticleBaseVelocity", () => {
         it("should return the proper base velocity, when it's moving top", () => {
-            const particle = buildParticleWithDirection(MoveDirection.top);
-            expect(getParticleBaseAngle(particle)).to.eql({ x: 0, y: -1 });
+            expect(getParticleBaseVelocity(MoveDirection.top).angle).to.equal(-Math.PI / 2);
         });
         it("should return the proper base velocity, when it's moving top-right", () => {
-            const particle = buildParticleWithDirection(MoveDirection.topRight);
-            expect(getParticleBaseAngle(particle)).to.eql({ x: 0.5, y: -0.5 });
+            expect(getParticleBaseVelocity(MoveDirection.topRight).angle).to.equal(-Math.PI / 4);
         });
         it("should return the proper base velocity, when it's moving right", () => {
-            const particle = buildParticleWithDirection(MoveDirection.right);
-            expect(getParticleBaseAngle(particle)).to.eql({ x: 1, y: -0 });
+            expect(getParticleBaseVelocity(MoveDirection.right).angle).to.equal(0);
         });
         it("should return the proper base velocity, when it's moving bottom-right", () => {
-            const particle = buildParticleWithDirection(MoveDirection.bottomRight);
-            expect(getParticleBaseAngle(particle)).to.eql({ x: 0.5, y: 0.5 });
+            expect(getParticleBaseVelocity(MoveDirection.bottomRight).angle).to.equal(Math.PI / 4);
         });
         it("should return the proper base velocity, when it's moving bottom", () => {
-            const particle = buildParticleWithDirection(MoveDirection.bottom);
-            expect(getParticleBaseAngle(particle)).to.eql({ x: 0, y: 1 });
+            expect(getParticleBaseVelocity(MoveDirection.bottom).angle).to.equal(Math.PI / 2);
         });
         it("should return the proper base velocity, when it's moving bottom-left", () => {
-            const particle = buildParticleWithDirection(MoveDirection.bottomLeft);
-            expect(getParticleBaseAngle(particle)).to.eql({ x: -0.5, y: 1 });
+            expect(getParticleBaseVelocity(MoveDirection.bottomLeft).angle).to.equal(3 * Math.PI / 4);
         });
         it("should return the proper base velocity, when it's moving left", () => {
-            const particle = buildParticleWithDirection(MoveDirection.left);
-            expect(getParticleBaseAngle(particle)).to.eql({ x: -1, y: 0 });
+            expect(getParticleBaseVelocity(MoveDirection.left).angle).to.equal(Math.PI);
         });
         it("should return the proper base velocity, when it's moving top-left", () => {
-            const particle = buildParticleWithDirection(MoveDirection.topLeft);
-            expect(getParticleBaseAngle(particle)).to.eql({ x: -0.5, y: -0.5 });
+            expect(getParticleBaseVelocity(MoveDirection.topLeft).angle).to.equal(-3 * Math.PI / 4);
         });
     });
 

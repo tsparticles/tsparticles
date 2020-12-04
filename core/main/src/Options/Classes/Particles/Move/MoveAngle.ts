@@ -10,8 +10,8 @@ export class MoveAngle implements IMoveAngle, IOptionLoader<IMoveAngle> {
     value;
 
     constructor() {
-        this.offset = 45;
-        this.value = 90;
+        this.offset = 0;
+        this.value = 360;
     }
 
     public load(data?: RecursivePartial<IMoveAngle>): void {
