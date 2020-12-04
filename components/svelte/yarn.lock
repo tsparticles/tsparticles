@@ -461,6 +461,11 @@ path-parse@^1.0.6:
   resolved "https://registry.yarnpkg.com/path-parse/-/path-parse-1.0.6.tgz#d62dbb5679405d72c4737ec58600e9ddcf06d24c"
   integrity sha512-GSmOT2EbHrINBf9SR7CDELwlJ8AENk3Qn7OikK4nFYAu3Ote2+JYNVvkpAEQm3/TLNEJFD/xZJjzyxg3KBWOzw==
 
+pathseg@^1.2.0:
+  version "1.2.0"
+  resolved "https://registry.yarnpkg.com/pathseg/-/pathseg-1.2.0.tgz#22af051e28037671e7799e296fe96c5dcbe53acd"
+  integrity sha512-+pQS7lTaoVIXhaCW7R3Wd/165APzZHWzYVqe7dxzdupxQwebgpBaCmf0/XZwmoA/rkDq3qvzO0qv4d5oFVrBRw==
+
 picomatch@^2.0.4, picomatch@^2.2.1, picomatch@^2.2.2:
   version "2.2.2"
   resolved "https://registry.yarnpkg.com/picomatch/-/picomatch-2.2.2.tgz#21f333e9b6b8eaff02468f5146ea406d345f4dad"
@@ -592,9 +597,9 @@ supports-color@^7.0.0, supports-color@^7.1.0:
     has-flag "^4.0.0"
 
 svelte-check@^1.1.17:
-  version "1.1.17"
-  resolved "https://registry.yarnpkg.com/svelte-check/-/svelte-check-1.1.17.tgz#8faec43882bf9b1bf98105df33a13347bd49b70d"
-  integrity sha512-5JDQyKQWtxfA0lzPKrv2F3n7zBoij0mpVaW6nrU+Zc4GsjjPepMRTDyJVGiD+hyUqebnx7RShIBnwJB6neLuOQ==
+  version "1.1.18"
+  resolved "https://registry.yarnpkg.com/svelte-check/-/svelte-check-1.1.18.tgz#bd7dad3570d21597598b9679007c2dcd55fd8264"
+  integrity sha512-iTznvazrojBPjzhShlmPD607nGaYS0WbhWHdVKlHTUnmwN787St/0MqrZ2prFYLKNFv6iJxO4JPu/igZsju0Uw==
   dependencies:
     chalk "^4.0.0"
     chokidar "^3.4.1"
@@ -605,17 +610,7 @@ svelte-check@^1.1.17:
     svelte-preprocess "^4.0.0"
     typescript "*"
 
-svelte-preprocess@^4.0.0:
-  version "4.6.0"
-  resolved "https://registry.yarnpkg.com/svelte-preprocess/-/svelte-preprocess-4.6.0.tgz#9ec11e7c00a44f7d0c5932a35b34125d6dbcd458"
-  integrity sha512-kJwcU71+yw3KKMgGu9eHZMJVBSkW4VfGJ5LSMgFQP/XcwvY2QUV6JcyBoQTjJm+h1KRlo/WGDo6A7+7e+B8B4A==
-  dependencies:
-    "@types/pug" "^2.0.4"
-    "@types/sass" "^1.16.0"
-    detect-indent "^6.0.0"
-    strip-indent "^3.0.0"
-
-svelte-preprocess@^4.6.1:
+svelte-preprocess@^4.0.0, svelte-preprocess@^4.6.1:
   version "4.6.1"
   resolved "https://registry.yarnpkg.com/svelte-preprocess/-/svelte-preprocess-4.6.1.tgz#a7de4d91b32d5608b6637da960ee81e6089ae276"
   integrity sha512-s7KdhR2pOsffyOzZIMEb315f6pfgeDnOWN47m6YKFeSEx3NMf/79Znc3vuG/Ai79SL/vsi86WDrjFPLGRfDesg==
@@ -651,12 +646,14 @@ tslib@^2.0.3:
   resolved "https://registry.yarnpkg.com/tslib/-/tslib-2.0.3.tgz#8e0741ac45fc0c226e58a17bfc3e64b9bc6ca61c"
   integrity sha512-uZtkfKblCEQtZKBF6EBXVZeQNl82yqtDQdv+eck8u7tdPxjLu2/lp5/uPW+um2tpuxINHWy3GhiccY7QgEaVHQ==
 
-typescript@*:
-  version "4.0.5"
-  resolved "https://registry.yarnpkg.com/typescript/-/typescript-4.0.5.tgz#ae9dddfd1069f1cb5beb3ef3b2170dd7c1332389"
-  integrity sha512-ywmr/VrTVCmNTJ6iV2LwIrfG1P+lv6luD8sUJs+2eI9NLGigaN+nUQc13iHqisq7bra9lnmUSYqbJvegraBOPQ==
+tsparticles@^1.19.0-alpha.3:
+  version "1.19.0-alpha.3"
+  resolved "https://registry.yarnpkg.com/tsparticles/-/tsparticles-1.19.0-alpha.3.tgz#23c6c4b4f838b61eafc34d67b1cd53ebeff9ae5a"
+  integrity sha512-tcXixcPFQ/J9/2Z9+cyiYs6jXepmU0ybHB+CRxvNB59N58VLCHOro4laZ62M5gnzwUkaNu9Aey8X06MnzNvCyA==
+  optionalDependencies:
+    pathseg "^1.2.0"
 
-typescript@^4.1.2:
+typescript@*, typescript@^4.1.2:
   version "4.1.2"
   resolved "https://registry.yarnpkg.com/typescript/-/typescript-4.1.2.tgz#6369ef22516fe5e10304aae5a5c4862db55380e9"
   integrity sha512-thGloWsGH3SOxv1SoY7QojKi0tc+8FnOmiarEGMbd/lar7QOEd3hvlx3Fp5y6FlDUGl9L+pd4n2e+oToGMmhRQ==
