@@ -68,10 +68,7 @@ export class Mover {
             particle.velocity.vertical += (gravityOptions.acceleration * delta.factor) / (60 * moveSpeed);
         }
 
-        const velocity = {
-            horizontal: particle.velocity.horizontal * moveSpeed,
-            vertical: particle.velocity.vertical * moveSpeed,
-        };
+        const velocity = particle.velocity.mult(moveSpeed);
 
         if (gravityOptions.enable && velocity.vertical >= gravityOptions.maxSpeed && gravityOptions.maxSpeed > 0) {
             velocity.vertical = gravityOptions.maxSpeed;
@@ -85,7 +82,9 @@ export class Mover {
         if (particlesOptions.move.spin.enable) {
             this.spin(particle, moveSpeed);
         } else {
-            this.moveXY(particle, velocity.horizontal * zVelocityFactor, velocity.vertical * zVelocityFactor);
+            velocity.multTo(zVelocityFactor);
+
+            this.moveXY(particle, velocity.horizontal, velocity.vertical);
 
             if (particlesOptions.move.vibrate) {
                 this.moveXY(

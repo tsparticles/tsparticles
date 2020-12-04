@@ -670,7 +670,7 @@ export class Particle implements IParticle {
                 right: radOffset + rad / 2,
             };
 
-            res.length += Math.sqrt(range.left ** 2 + range.right ** 2);
+            // res.length += Math.sqrt(range.left ** 2 + range.right ** 2);
             res.angle += randomInRange(range.left, range.right);
         }
 
