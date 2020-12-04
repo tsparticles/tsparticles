@@ -28,7 +28,7 @@ import {
     deepExtend,
     getDistance,
     getHslFromAnimation,
-    getParticleBaseVelocity,
+    getParticleBaseAngle,
     getValue,
     isInArray,
     itemFromArray,
@@ -45,6 +45,7 @@ import type { IColorAnimation } from "../Options/Interfaces/IColorAnimation";
 import type { IParticleLife } from "./Interfaces/IParticleLife";
 import type { IParticleSpin } from "./Interfaces/IParticleSpin";
 import type { IShape } from "../Options/Interfaces/Particles/Shape/IShape";
+import { Velocity } from "./Particle/Velocity";
 
 /**
  * The single particle object
@@ -94,10 +95,10 @@ export class Particle implements IParticle {
     public readonly size: IParticleValueAnimation<number>;
     public readonly strokeColor?: IParticleHslAnimation;
     public readonly orbitColor?: IHsl;
-    public readonly velocity: IVelocity;
+    public readonly velocity: Velocity;
     public readonly shape: ShapeType | string;
     public readonly initialPosition: ICoordinates3d;
-    public readonly initialVelocity: IVelocity;
+    public readonly initialVelocity: Velocity;
     public readonly shapeData?: IShapeValues;
     public readonly bubble: IBubbleParticleData;
 
@@ -213,12 +214,11 @@ export class Particle implements IParticle {
 
         /* animation - velocity for speed */
         this.initialVelocity = this.calculateVelocity();
-        this.velocity = {
-            horizontal: this.initialVelocity.horizontal,
-            vertical: this.initialVelocity.vertical,
-        };
+        this.velocity = new Velocity();
 
-        this.pathAngle = Math.atan2(this.initialVelocity.vertical, this.initialVelocity.horizontal);
+        this.velocity.angle = this.initialVelocity.angle;
+
+        this.pathAngle = this.velocity.angle;
 
         const rotateOptions = this.options.rotate;
 
@@ -654,13 +654,11 @@ export class Particle implements IParticle {
         return false;
     }
 
-    private calculateVelocity(): IVelocity {
-        const baseVelocity = getParticleBaseVelocity(this),
-            res = {
-                horizontal: baseVelocity.x,
-                vertical: baseVelocity.y,
-            },
+    private calculateVelocity(): Velocity {
+        const res = new Velocity(),
             moveOptions = this.options.move;
+
+        res.angle = getParticleBaseAngle(this);
 
         let rad: number,
             radOffset = Math.PI / 4;
@@ -678,8 +676,7 @@ export class Particle implements IParticle {
         };
 
         if ((moveOptions.straight && moveOptions.random) || !moveOptions.straight) {
-            res.horizontal += randomInRange(range.left, range.right) / 2;
-            res.vertical += randomInRange(range.left, range.right) / 2;
+            res.angle += randomInRange(range.left, range.right) / 2;
         }
 
         return res;

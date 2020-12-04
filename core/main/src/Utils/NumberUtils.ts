@@ -63,40 +63,40 @@ export function getDistance(pointA: ICoordinates, pointB: ICoordinates): number 
  * Get Particle base velocity
  * @param particle the particle to use for calculating the velocity
  */
-export function getParticleBaseVelocity(particle: IParticle): ICoordinates {
-    let velocityBase: ICoordinates;
+export function getParticleBaseAngle(particle: IParticle): number {
+    let baseAngle: number;
 
     switch (particle.direction) {
         case MoveDirection.top:
-            velocityBase = { x: 0, y: -1 };
+            baseAngle = -Math.PI / 2;
             break;
         case MoveDirection.topRight:
-            velocityBase = { x: 0.5, y: -0.5 };
+            baseAngle = -Math.PI / 4;
             break;
         case MoveDirection.right:
-            velocityBase = { x: 1, y: -0 };
+            baseAngle = 0;
             break;
         case MoveDirection.bottomRight:
-            velocityBase = { x: 0.5, y: 0.5 };
+            baseAngle = Math.PI / 4;
             break;
         case MoveDirection.bottom:
-            velocityBase = { x: 0, y: 1 };
+            baseAngle = Math.PI / 2;
             break;
         case MoveDirection.bottomLeft:
-            velocityBase = { x: -0.5, y: 1 };
+            baseAngle = (3 * Math.PI) / 4;
             break;
         case MoveDirection.left:
-            velocityBase = { x: -1, y: 0 };
+            baseAngle = Math.PI;
             break;
         case MoveDirection.topLeft:
-            velocityBase = { x: -0.5, y: -0.5 };
+            baseAngle = (-3 * Math.PI) / 4;
             break;
         default:
-            velocityBase = { x: 0, y: 0 };
+            baseAngle = Math.random() * Math.PI * 2;
             break;
     }
 
-    return velocityBase;
+    return baseAngle;
 }
 
 export function rotateVelocity(velocity: IVelocity, angle: number): IVelocity {
@@ -168,8 +168,8 @@ export class NumberUtils {
      * Get Particle base velocity
      * @param particle the particle to use for calculating the velocity
      */
-    public static getParticleBaseVelocity(particle: IParticle): ICoordinates {
-        return getParticleBaseVelocity(particle);
+    public static getParticleBaseAngle(particle: IParticle): number {
+        return getParticleBaseAngle(particle);
     }
 
     public static rotateVelocity(velocity: IVelocity, angle: number): IVelocity {
