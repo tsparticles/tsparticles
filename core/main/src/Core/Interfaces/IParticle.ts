@@ -1,6 +1,5 @@
 import type { IStroke } from "../../Options/Interfaces/Particles/IStroke";
 import type { ICoordinates, ICoordinates3d } from "./ICoordinates";
-import type { IVelocity } from "./IVelocity";
 import type { MoveDirection, MoveDirectionAlt, ShapeType } from "../../Enums";
 import type { IParticleValueAnimation } from "./IParticleValueAnimation";
 import type { IShapeValues } from "../../Options/Interfaces/Particles/Shape/IShapeValues";
@@ -10,6 +9,7 @@ import type { IHsl, IRgb } from "./Colors";
 import type { ILink } from "./ILink";
 import type { IParticleLoops } from "./IParticleLoops";
 import type { IParticleHslAnimation } from "./IParticleHslAnimation";
+import type { Velocity } from "../Particle/Velocity";
 
 /**
  * @category Interfaces
@@ -24,7 +24,7 @@ export interface IParticle {
     readonly direction: MoveDirection | keyof typeof MoveDirection | MoveDirectionAlt;
     readonly fill: boolean;
     readonly id: number;
-    readonly initialVelocity: IVelocity;
+    readonly initialVelocity: Velocity;
     readonly links: ILink[];
     readonly loops: IParticleLoops;
     readonly offset: ICoordinates;
@@ -41,7 +41,7 @@ export interface IParticle {
     readonly sides: number;
     readonly stroke: IStroke;
     readonly strokeWidth: number;
-    readonly velocity: IVelocity;
+    readonly velocity: Velocity;
     readonly attractDistance?: number;
     readonly linksDistance?: number;
     readonly linksWidth?: number;

@@ -1,6 +1,4 @@
-import type { IVelocity } from "../Interfaces/IVelocity";
-
-export class Velocity implements IVelocity {
+export class Velocity {
     constructor(public horizontal: number, public vertical: number) {}
 
     public add(v: Velocity) {

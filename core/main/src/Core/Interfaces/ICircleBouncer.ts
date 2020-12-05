@@ -1,9 +1,9 @@
-import { ICoordinates } from "./ICoordinates";
-import { IVelocity } from "./IVelocity";
+import type { ICoordinates } from "./ICoordinates";
+import type { Velocity } from "../Particle/Velocity";
 
 export interface ICircleBouncer {
     position: ICoordinates;
-    velocity: IVelocity;
+    velocity: Velocity;
     radius: number;
-    factor: IVelocity;
+    factor: Velocity;
 }

@@ -1,5 +1,5 @@
 import type { Container } from "./Container";
-import type { IVelocity } from "./Interfaces/IVelocity";
+import type { IDistance } from "./Interfaces/IDistance";
 import type { IParticleValueAnimation } from "./Interfaces/IParticleValueAnimation";
 import type { ICoordinates, ICoordinates3d } from "./Interfaces/ICoordinates";
 import type { IHsl, IRgb } from "./Interfaces/Colors";
@@ -89,7 +89,7 @@ export class Particle implements IParticle {
     public readonly offset: ICoordinates;
     public readonly shadowColor: IRgb | undefined;
     public readonly color?: IParticleHslAnimation;
-    public readonly maxDistance: RecursivePartial<IVelocity>;
+    public readonly maxDistance: Partial<IDistance>;
     public readonly opacity: IParticleValueAnimation<number>;
     public readonly rotate: IParticleValueAnimation<number>;
     public readonly size: IParticleValueAnimation<number>;
