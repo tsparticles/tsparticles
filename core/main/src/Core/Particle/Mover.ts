@@ -3,6 +3,7 @@ import type { Container } from "../Container";
 import type { Particle } from "../Particle";
 import { HoverMode, RotateDirection } from "../../Enums";
 import type { IDelta } from "../Interfaces/IDelta";
+import { Velocity } from "./Velocity";
 
 /**
  * @category Core
@@ -208,10 +209,13 @@ export class Mover {
         }
 
         const noise = generator.generate(particle),
-            vel = particle.velocity;
+            vel = particle.velocity,
+            noiseVel = new Velocity(0, 0);
 
-        vel.horizontal += Math.cos(noise.angle) * noise.length;
-        vel.vertical += Math.sin(noise.angle) * noise.length;
+        noiseVel.length = noise.length;
+        noiseVel.angle = noise.angle;
+
+        vel.addTo(noiseVel);
 
         if (noiseOptions.clamp) {
             vel.horizontal = clamp(vel.horizontal, -1, 1);

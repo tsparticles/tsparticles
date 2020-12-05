@@ -5,12 +5,16 @@ import { IParticle } from "../src/Core/Interfaces/IParticle";
 import { IPlugin } from "../src/Core/Interfaces/IPlugin";
 import { Particle } from "../src/Core/Particle";
 import {
-    areBoundsInside, arrayRandomIndex,
+    areBoundsInside,
+    arrayRandomIndex,
     calculateBounds,
     clamp,
     downloadSvgImage,
     getDistance,
-    getParticleBaseVelocity, isInArray, isPointInside, itemFromArray,
+    getParticleBaseVelocity,
+    isInArray,
+    isPointInside,
+    itemFromArray,
     loadImage,
     mix,
     Plugins,
@@ -78,8 +82,8 @@ describe("Utils", () => {
     });
 
     describe("isInArray", () => {
-        const numericArray: number[] = [ 1, 2, 3, Math.PI, Math.E ];
-        const stringArray: string[] = [ "lorem", "ipsum", "dolor" ];
+        const numericArray: number[] = [1, 2, 3, Math.PI, Math.E];
+        const stringArray: string[] = ["lorem", "ipsum", "dolor"];
 
         // Numeric
 
@@ -170,7 +174,7 @@ describe("Utils", () => {
 
     describe("arrayRandomIndex", () => {
         it("should always return an index that is not out of the bounds of the array", () => {
-            const array = [ 0, 1, 2, 3, 4, 5, 6, 7, 8, 9 ];
+            const array = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
             const randomIndex = arrayRandomIndex(array);
 
             expect(randomIndex % 1).to.equal(0); // Make sure it is an integer
@@ -181,16 +185,14 @@ describe("Utils", () => {
     });
 
     describe("itemFromArray", () => {
-        const numericArray = [ 1, 2, 3, Math.PI, Math.E ];
-        const stringArray = [ "lorem", "ipsum", "dolor" ];
-        const objectArray = [ { x: 1 }, { y: 2 }, { z: 3 } ];
+        const numericArray = [1, 2, 3, Math.PI, Math.E];
+        const stringArray = ["lorem", "ipsum", "dolor"];
+        const objectArray = [{ x: 1 }, { y: 2 }, { z: 3 }];
 
         it("should always return a random item from a numeric array", () => {
             const randomItem = itemFromArray(numericArray);
 
-            expect(numericArray, "itemFromArray returned us an item not in the original array").to.include(
-                randomItem
-            );
+            expect(numericArray, "itemFromArray returned us an item not in the original array").to.include(randomItem);
         });
 
         it("should return the requested numeric item when specifying index", () => {
@@ -201,9 +203,7 @@ describe("Utils", () => {
         it("should always return a random item from a string array", () => {
             const randomItem = itemFromArray(stringArray);
 
-            expect(stringArray, "itemFromArray returned us an item not in the original array").to.include(
-                randomItem
-            );
+            expect(stringArray, "itemFromArray returned us an item not in the original array").to.include(randomItem);
         });
 
         it("should return the requested string item when specifying index", () => {
@@ -214,9 +214,7 @@ describe("Utils", () => {
         it("should always return a random object from an array of objects", () => {
             const randomObject = itemFromArray(objectArray);
 
-            expect(objectArray, "itemFromArray returned us an item not in the original array").to.include(
-                randomObject
-            );
+            expect(objectArray, "itemFromArray returned us an item not in the original array").to.include(randomObject);
         });
 
         it("should return the requested object when specifying index", () => {
@@ -492,13 +490,13 @@ describe("Utils", () => {
             expect(getParticleBaseVelocity(MoveDirection.bottom).angle).to.equal(Math.PI / 2);
         });
         it("should return the proper base velocity, when it's moving bottom-left", () => {
-            expect(getParticleBaseVelocity(MoveDirection.bottomLeft).angle).to.equal(3 * Math.PI / 4);
+            expect(getParticleBaseVelocity(MoveDirection.bottomLeft).angle).to.equal((3 * Math.PI) / 4);
         });
         it("should return the proper base velocity, when it's moving left", () => {
             expect(getParticleBaseVelocity(MoveDirection.left).angle).to.equal(Math.PI);
         });
         it("should return the proper base velocity, when it's moving top-left", () => {
-            expect(getParticleBaseVelocity(MoveDirection.topLeft).angle).to.equal(-3 * Math.PI / 4);
+            expect(getParticleBaseVelocity(MoveDirection.topLeft).angle).to.equal((-3 * Math.PI) / 4);
         });
     });
 
