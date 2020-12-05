@@ -59,7 +59,7 @@ export class Mover {
             baseSpeed = (particle.moveSpeed ?? container.retina.moveSpeed) * container.retina.reduceFactor,
             maxSize = particle.sizeValue ?? container.retina.sizeValue,
             sizeFactor = particlesOptions.move.size ? particle.getRadius() / maxSize : 1,
-            moveSpeed = (baseSpeed / 2) * sizeFactor * slowFactor * delta.factor;
+            moveSpeed = (baseSpeed / 4) * sizeFactor * slowFactor * delta.factor;
 
         this.applyNoise(particle, delta);
 
