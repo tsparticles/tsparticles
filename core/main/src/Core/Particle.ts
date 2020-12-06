@@ -464,7 +464,7 @@ export class Particle implements IParticle {
             this.spin = {
                 center: spinCenter,
                 direction: this.velocity.horizontal >= 0 ? RotateDirection.clockwise : RotateDirection.counterClockwise,
-                angle: Math.atan2(this.velocity.vertical, this.velocity.horizontal),
+                angle: this.velocity.angle,
                 radius: distance,
                 acceleration: this.options.move.spin.acceleration,
             };
