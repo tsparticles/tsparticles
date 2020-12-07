@@ -37,13 +37,13 @@ export function getValue(value: RangeValue): number {
 
 /**
  * Gets the distance between two coordinates
- * @param pointA the first coordinate
- * @param pointB the second coordinate
+ * @param p1 the first coordinate
+ * @param p2 the second coordinate
  */
-export function getDistances(pointA: ICoordinates, pointB: ICoordinates): { dx: number; dy: number; distance: number } {
-    const dx = pointA.x - pointB.x;
-    const dy = pointA.y - pointB.y;
-    return { dx: dx, dy: dy, distance: Math.sqrt(dx * dx + dy * dy) };
+export function getDistances(p1: ICoordinates, p2: ICoordinates): { dx: number; dy: number; distance: number } {
+    const dx = p1.x - p2.x;
+    const dy = p1.y - p2.y;
+    return { dx: dx, dy: dy, distance: Math.sqrt(dx ** 2 + dy ** 2) };
 }
 
 /**

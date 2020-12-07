@@ -13,7 +13,7 @@ export class Circle extends Range {
     public contains(point: ICoordinates): boolean {
         const d = Math.pow(point.x - this.position.x, 2) + Math.pow(point.y - this.position.y, 2);
 
-        return d <= this.radius * this.radius;
+        return d <= this.radius ** 2;
     }
 
     public intersects(range: Range): boolean {
@@ -28,7 +28,7 @@ export class Circle extends Range {
 
         if (circle.radius !== undefined) {
             const rSum = r + circle.radius;
-            const dist = Math.sqrt(xDist * xDist + yDist * yDist);
+            const dist = Math.sqrt(xDist ** 2 + yDist ** 2);
 
             return rSum > dist;
         } else if (rect.size !== undefined) {
@@ -44,7 +44,7 @@ export class Circle extends Range {
                 return true;
             }
 
-            return edges <= r * r;
+            return edges <= r ** 2;
         }
 
         return false;

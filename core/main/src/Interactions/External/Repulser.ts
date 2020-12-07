@@ -93,11 +93,11 @@ export class Repulser extends ExternalBase {
                 div.type === DivType.circle
                     ? new Circle(pos.x, pos.y, repulseRadius)
                     : new Rectangle(
-                          elem.offsetLeft * pxRatio,
-                          elem.offsetTop * pxRatio,
-                          elem.offsetWidth * pxRatio,
-                          elem.offsetHeight * pxRatio
-                      );
+                    elem.offsetLeft * pxRatio,
+                    elem.offsetTop * pxRatio,
+                    elem.offsetWidth * pxRatio,
+                    elem.offsetHeight * pxRatio
+                    );
 
             const divs = container.options.interactivity.modes.repulse.divs;
             const divRepulse = divMode(divs, elem);
@@ -166,7 +166,7 @@ export class Repulser extends ExternalBase {
 
             for (const particle of query) {
                 const { dx, dy, distance } = getDistances(mouseClickPos, particle.position);
-                const d = distance * distance;
+                const d = distance ** 2;
                 const velocity = container.options.interactivity.modes.repulse.speed;
                 const force = (-repulseRadius * velocity) / d;
 

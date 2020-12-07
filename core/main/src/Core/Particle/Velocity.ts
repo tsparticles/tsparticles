@@ -11,7 +11,7 @@ export class Velocity {
     }
 
     public get length(): number {
-        return Math.sqrt(this.horizontal * this.horizontal + this.vertical * this.vertical);
+        return Math.sqrt(this.horizontal ** 2 + this.vertical ** 2);
     }
 
     public set length(length: number) {
@@ -21,7 +21,8 @@ export class Velocity {
         this.vertical = Math.sin(angle) * length;
     }
 
-    constructor(public horizontal: number, public vertical: number) {}
+    constructor(public horizontal: number, public vertical: number) {
+    }
 
     public add(v: Velocity): Velocity {
         return new Velocity(this.horizontal + v.horizontal, this.vertical + v.vertical);
@@ -64,7 +65,7 @@ export class Velocity {
     }
 
     public getLengthSq(): number {
-        return this.horizontal * this.horizontal + this.vertical * this.vertical;
+        return this.horizontal ** 2 + this.vertical ** 2;
     }
 
     public distanceToSq(v: Velocity): number {
