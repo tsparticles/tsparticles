@@ -46,7 +46,6 @@ export interface IParticle {
     readonly linksDistance?: number;
     readonly linksWidth?: number;
     readonly moveSpeed?: number;
-    readonly sizeValue?: number;
     readonly sizeAnimationSpeed?: number;
     readonly orbitRadius?: number;
     readonly orbitRotation?: number;

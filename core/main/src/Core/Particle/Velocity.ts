@@ -21,8 +21,7 @@ export class Velocity {
         this.vertical = Math.sin(angle) * length;
     }
 
-    constructor(public horizontal: number, public vertical: number) {
-    }
+    constructor(public horizontal: number, public vertical: number) {}
 
     public add(v: Velocity): Velocity {
         return new Velocity(this.horizontal + v.horizontal, this.vertical + v.vertical);
