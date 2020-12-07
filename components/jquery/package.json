@@ -84,7 +84,7 @@
     "@typescript-eslint/parser": "^4.8.1",
     "babel-preset-env": "^1.7.0",
     "eslint": "^7.13.0",
-    "eslint-config-prettier": "^6.15.0",
+    "eslint-config-prettier": "^7.0.0",
     "prettier": "^2.2.0",
     "rollup": "^2.33.3",
     "rollup-plugin-babel": "^4.4.0",

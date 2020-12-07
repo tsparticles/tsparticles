@@ -57,7 +57,7 @@
     "@typescript-eslint/parser": "^4.8.1",
     "babel-loader": "^8.2.1",
     "eslint": "^7.13.0",
-    "eslint-config-prettier": "^6.15.0",
+    "eslint-config-prettier": "^7.0.0",
     "fibers": "^5.0.0",
     "prettier": "^2.2.0",
     "rimraf": "^3.0.2",
