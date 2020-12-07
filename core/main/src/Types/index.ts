@@ -1,4 +1,5 @@
 export * from "./ParticlesGroups";
+export * from "./Range";
 export * from "./RecursivePartial";
 export * from "./ShapeData";
 export * from "./ShapeDrawerFunctions";

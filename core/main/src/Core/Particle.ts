@@ -72,7 +72,6 @@ export class Particle implements IParticle {
     public attractDistance?: number;
     public linksWidth?: number;
     public moveSpeed?: number;
-    public sizeValue?: number;
     public sizeAnimationSpeed?: number;
     public orbitRadius?: number;
     public orbitRotation?: number;
@@ -168,11 +167,11 @@ export class Particle implements IParticle {
         this.close = this.shapeData?.close ?? this.close;
         this.options = particlesOptions;
 
-        const zIndexValue = getValue(this.options.zIndex);
+        const zIndexValue = getValue(this.options.zIndex.value);
 
         /* size */
         const sizeOptions = this.options.size;
-        const sizeValue = getValue(sizeOptions) * container.retina.pixelRatio;
+        const sizeValue = getValue(sizeOptions.value) * container.retina.pixelRatio;
 
         const randomSize = typeof sizeOptions.random === "boolean" ? sizeOptions.random : sizeOptions.random.enable;
 
@@ -201,7 +200,7 @@ export class Particle implements IParticle {
 
         // Scale z-index factor to be between 0 and 2
         this.zIndexFactor = this.position.z / container.zLayers;
-        this.noiseDelay = getValue(this.options.move.noise.delay) * 1000;
+        this.noiseDelay = getValue(this.options.move.noise.delay.value) * 1000;
 
         container.retina.initParticle(this);
 
@@ -219,7 +218,7 @@ export class Particle implements IParticle {
         const rotateOptions = this.options.rotate;
 
         this.rotate = {
-            value: deg2rad(rotateOptions.random.enable ? Math.random() * 360 : rotateOptions.value),
+            value: deg2rad(rotateOptions.random.enable ? Math.random() * 360 : getValue(rotateOptions.value)),
         };
 
         let rotateDirection = rotateOptions.direction;
@@ -331,7 +330,7 @@ export class Particle implements IParticle {
             typeof opacityOptions.random === "boolean" ? opacityOptions.random : opacityOptions.random.enable;
 
         this.opacity = {
-            value: getValue(opacityOptions),
+            value: getValue(opacityOptions.value),
         };
 
         // Don't let opacity go below 0 or above 1
@@ -427,13 +426,13 @@ export class Particle implements IParticle {
 
         this.life = {
             delay: container.retina.reduceFactor
-                ? ((getValue(lifeOptions.delay) * (lifeOptions.delay.sync ? 1 : Math.random())) /
+                ? ((getValue(lifeOptions.delay.value) * (lifeOptions.delay.sync ? 1 : Math.random())) /
                       container.retina.reduceFactor) *
                   1000
                 : 0,
             delayTime: 0,
             duration: container.retina.reduceFactor
-                ? ((getValue(lifeOptions.duration) * (lifeOptions.duration.sync ? 1 : Math.random())) /
+                ? ((getValue(lifeOptions.duration.value) * (lifeOptions.duration.sync ? 1 : Math.random())) /
                       container.retina.reduceFactor) *
                   1000
                 : 0,
@@ -684,7 +683,7 @@ export class Particle implements IParticle {
             return;
         }
 
-        const rate = getValue(splitOptions.rate);
+        const rate = getValue(splitOptions.rate.value);
 
         for (let i = 0; i < rate; i++) {
             this.container.particles.addSplitParticle(this);

@@ -357,7 +357,7 @@ export function circleBounceDataFromParticle(p: IParticle): ICircleBouncer {
         position: p.getPosition(),
         radius: p.getRadius(),
         velocity: p.velocity,
-        factor: new Velocity(getValue(p.options.bounce.horizontal), getValue(p.options.bounce.vertical)),
+        factor: new Velocity(getValue(p.options.bounce.horizontal.value), getValue(p.options.bounce.vertical.value)),
     };
 }
 
@@ -424,7 +424,7 @@ export function rectBounce(particle: IParticle, divBounds: IBounds): void {
             max: divBounds.bottom,
         },
         particle.velocity.horizontal,
-        getValue(particle.options.bounce.horizontal)
+        getValue(particle.options.bounce.horizontal.value)
     );
 
     if (resH.bounced) {
@@ -455,7 +455,7 @@ export function rectBounce(particle: IParticle, divBounds: IBounds): void {
             max: divBounds.right,
         },
         particle.velocity.vertical,
-        getValue(particle.options.bounce.vertical)
+        getValue(particle.options.bounce.vertical.value)
     );
 
     if (resV.bounced) {

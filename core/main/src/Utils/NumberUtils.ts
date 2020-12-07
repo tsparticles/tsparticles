@@ -1,7 +1,7 @@
-import type { IValueWithRandom } from "../Options/Interfaces/IValueWithRandom";
 import type { ICoordinates } from "../Core/Interfaces/ICoordinates";
 import { MoveDirection, MoveDirectionAlt } from "../Enums/Directions";
 import { Velocity } from "../Core/Particle/Velocity";
+import { RangeValue } from "../Types";
 
 /**
  * Clamps a number between a minimum and maximum value
@@ -31,11 +31,8 @@ export function randomInRange(r1: number, r2: number): number {
     return Math.random() * (max - min) + min;
 }
 
-export function getValue(options: IValueWithRandom): number {
-    const random = options.random;
-    const { enable, minimumValue } = typeof random === "boolean" ? { enable: random, minimumValue: 0 } : random;
-
-    return enable ? randomInRange(minimumValue, options.value) : options.value;
+export function getValue(value: RangeValue): number {
+    return typeof value === "number" ? value : randomInRange(value.min, value.max);
 }
 
 /**
@@ -149,8 +146,8 @@ export class NumberUtils {
         return randomInRange(r1, r2);
     }
 
-    public static getValue(options: IValueWithRandom): number {
-        return getValue(options);
+    public static getValue(value: RangeValue): number {
+        return getValue(value);
     }
 
     /**

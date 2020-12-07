@@ -294,7 +294,7 @@ export class Particles {
 
         options.load(parent.options);
 
-        const factor = getValue(splitOptions.factor);
+        const factor = getValue(splitOptions.factor.value);
 
         options.color.load({
             value: {
@@ -302,9 +302,12 @@ export class Particles {
             },
         });
 
-        options.size.value /= factor;
-        options.size.random.minimumValue /= factor;
-        options.size.animation.minimumValue /= factor;
+        if (typeof options.size.value === "number") {
+            options.size.value /= factor;
+        } else {
+            options.size.value.min /= factor;
+            options.size.value.max /= factor;
+        }
 
         options.load(splitOptions.particles);
 

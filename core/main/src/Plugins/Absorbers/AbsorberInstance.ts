@@ -43,7 +43,7 @@ export class AbsorberInstance {
         this.dragging = false;
 
         this.opacity = this.options.opacity;
-        this.size = getValue(options.size) * container.retina.pixelRatio;
+        this.size = getValue(options.size.value) * container.retina.pixelRatio;
         this.mass = this.size * options.size.density * container.retina.reduceFactor;
 
         const limit = options.size.limit;

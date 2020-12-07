@@ -19,7 +19,6 @@ export class Retina {
     public linksDistance!: number;
     public linksWidth!: number;
     public moveSpeed!: number;
-    public sizeValue!: number;
     public sizeAnimationSpeed!: number;
     public pixelRatio!: number;
     public bounceModeDistance!: number;
@@ -88,7 +87,6 @@ export class Retina {
         this.linksDistance = particles.links.distance * ratio;
         this.linksWidth = particles.links.width * ratio;
         this.moveSpeed = particles.move.speed * ratio;
-        this.sizeValue = particles.size.value * ratio;
         this.sizeAnimationSpeed = particles.size.animation.speed * ratio;
         this.orbitRotation = particles.orbit.rotation.value * this.container.retina.pixelRatio;
 
@@ -122,7 +120,6 @@ export class Retina {
         particle.linksDistance = options.links.distance * ratio;
         particle.linksWidth = options.links.width * ratio;
         particle.moveSpeed = options.move.speed * ratio;
-        particle.sizeValue = options.size.value * ratio;
         particle.sizeAnimationSpeed = options.size.animation.speed * ratio;
         particle.orbitRadius = orbit?.radius !== undefined ? orbit.radius * ratio : undefined;
 

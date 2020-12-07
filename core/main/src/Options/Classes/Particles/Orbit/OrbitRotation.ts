@@ -22,9 +22,5 @@ export class OrbitRotation extends ValueWithRandom {
         }
 
         super.load(data);
-
-        if (data.value !== undefined) {
-            this.value = data.value;
-        }
     }
 }
