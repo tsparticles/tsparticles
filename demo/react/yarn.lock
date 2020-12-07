@@ -2635,12 +2635,10 @@ escodegen@~1.9.0:
   optionalDependencies:
     source-map "~0.6.1"
 
-eslint-config-prettier@^6.15.0:
-  version "6.15.0"
-  resolved "https://registry.yarnpkg.com/eslint-config-prettier/-/eslint-config-prettier-6.15.0.tgz#7f93f6cb7d45a92f1537a70ecc06366e1ac6fed9"
-  integrity sha512-a1+kOYLR8wMGustcgAjdydMsQ2A/2ipRPwRKUmfYaSxc9ZPcrku080Ctl6zrZzZNs/U82MjSv+qKREkoq3bJaw==
-  dependencies:
-    get-stdin "^6.0.0"
+eslint-config-prettier@^7.0.0:
+  version "7.0.0"
+  resolved "https://registry.yarnpkg.com/eslint-config-prettier/-/eslint-config-prettier-7.0.0.tgz#c1ae4106f74e6c0357f44adb076771d032ac0e97"
+  integrity sha512-8Y8lGLVPPZdaNA7JXqnvETVC7IiVRgAP6afQu9gOQRn90YY3otMNh+x7Vr2vMePQntF+5erdSUBqSzCmU/AxaQ==
 
 eslint-scope@^5.0.0, eslint-scope@^5.1.1:
   version "5.1.1"
@@ -3084,11 +3082,6 @@ get-stdin@^4.0.1:
   version "4.0.1"
   resolved "https://registry.yarnpkg.com/get-stdin/-/get-stdin-4.0.1.tgz#b968c6b0a04384324902e8bf1a5df32579a450fe"
   integrity sha1-uWjGsKBDhDJJAui/Gl3zJXmkUP4=
-
-get-stdin@^6.0.0:
-  version "6.0.0"
-  resolved "https://registry.yarnpkg.com/get-stdin/-/get-stdin-6.0.0.tgz#9e09bf712b360ab9225e812048f71fde9c89657b"
-  integrity sha512-jp4tHawyV7+fkkSKyvjuLZswblUtz+SQKzSWnBbii16BuZksJlU1wuBYXY75r+duh/llF1ur6oNwi+2ZzjKZ7g==
 
 get-value@^2.0.3, get-value@^2.0.6:
   version "2.0.6"
@@ -4758,6 +4751,11 @@ path-type@^4.0.0:
   resolved "https://registry.yarnpkg.com/path-type/-/path-type-4.0.0.tgz#84ed01c0a7ba380afe09d90a8c180dcd9d03043b"
   integrity sha512-gDKb8aZMDeD/tZWs9P6+q0J9Mwkdl6xMV8TjnGP3qJVJ06bdMgkbBlLU8IdfOsIsFz2BW1rNVT3XuNEl8zPAvw==
 
+pathseg@^1.2.0:
+  version "1.2.0"
+  resolved "https://registry.yarnpkg.com/pathseg/-/pathseg-1.2.0.tgz#22af051e28037671e7799e296fe96c5dcbe53acd"
+  integrity sha512-+pQS7lTaoVIXhaCW7R3Wd/165APzZHWzYVqe7dxzdupxQwebgpBaCmf0/XZwmoA/rkDq3qvzO0qv4d5oFVrBRw==
+
 pbkdf2@^3.0.3:
   version "3.1.1"
   resolved "https://registry.yarnpkg.com/pbkdf2/-/pbkdf2-3.1.1.tgz#cb8724b0fada984596856d1a6ebafd3584654b94"
@@ -5367,7 +5365,17 @@ react-syntax-highlighter@^15.3.0:
     prismjs "^1.22.0"
     refractor "^3.2.0"
 
-react@^17.0.1:
+react-tsparticles@^1.19.0-alpha.3:
+  version "1.19.0-alpha.3"
+  resolved "https://registry.yarnpkg.com/react-tsparticles/-/react-tsparticles-1.19.0-alpha.3.tgz#b79beb2945f3440d557e4fb77d6ff93631e14939"
+  integrity sha512-5oCSTgu5aXcjKIkhMJbbVD18KkNUJk3lQYN5mBkaoQWrog0SMYDfvIdzt0M/UsR4pTlS3K44p1jFlnM9QkS4lA==
+  dependencies:
+    lodash "^4.17.20"
+    react ">=16"
+    tslib "^2.0.3"
+    tsparticles "^1.19.0-alpha.3"
+
+react@>=16, react@^17.0.1:
   version "17.0.1"
   resolved "https://registry.yarnpkg.com/react/-/react-17.0.1.tgz#6e0600416bd57574e3f86d92edba3d9008726127"
   integrity sha512-lG9c9UuMHdcAexXtigOZLX8exLWkW0Ku29qPRU8uhF2R9BN96dLCt0psvzPLlHc5OWkgymP3qwTRgbnw5BKx3w==
@@ -6416,6 +6424,20 @@ tslib@^2.0.3:
   version "2.0.3"
   resolved "https://registry.yarnpkg.com/tslib/-/tslib-2.0.3.tgz#8e0741ac45fc0c226e58a17bfc3e64b9bc6ca61c"
   integrity sha512-uZtkfKblCEQtZKBF6EBXVZeQNl82yqtDQdv+eck8u7tdPxjLu2/lp5/uPW+um2tpuxINHWy3GhiccY7QgEaVHQ==
+
+tsparticles-preset-sea-anemone@^1.4.0-alpha.3:
+  version "1.4.0-alpha.3"
+  resolved "https://registry.yarnpkg.com/tsparticles-preset-sea-anemone/-/tsparticles-preset-sea-anemone-1.4.0-alpha.3.tgz#65f27624c3eaa2a55d4d05be257165b6a197f892"
+  integrity sha512-yakZsU4HC1a3RWFtQTGuf8f/gNyiJEFS9ZcA4Lu5Z1MHUN/aSUksBPKJvHnTPwQtvMoYYmjzvPacfrM7Tx51kQ==
+  dependencies:
+    tsparticles "^1.19.0-alpha.3"
+
+tsparticles@^1.19.0-alpha.3:
+  version "1.19.0-alpha.3"
+  resolved "https://registry.yarnpkg.com/tsparticles/-/tsparticles-1.19.0-alpha.3.tgz#23c6c4b4f838b61eafc34d67b1cd53ebeff9ae5a"
+  integrity sha512-tcXixcPFQ/J9/2Z9+cyiYs6jXepmU0ybHB+CRxvNB59N58VLCHOro4laZ62M5gnzwUkaNu9Aey8X06MnzNvCyA==
+  optionalDependencies:
+    pathseg "^1.2.0"
 
 tsutils@^3.17.1:
   version "3.17.1"
