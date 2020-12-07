@@ -43,5 +43,21 @@ export class Opacity extends ValueWithRandom implements IOpacity, IOptionLoader<
         super.load(data);
 
         this.animation.load(data.animation ?? data.anim);
+
+        if (this.animation.enable) {
+            if (this.animation.minimumValue !== undefined) {
+                if (typeof this.value === "number") {
+                    this.value = {
+                        min: Math.min(this.animation.minimumValue, this.value),
+                        max: Math.max(this.animation.minimumValue, this.value),
+                    };
+                } else {
+                    this.value = {
+                        min: Math.min(this.animation.minimumValue, this.value.min),
+                        max: Math.max(this.animation.minimumValue, this.value.max),
+                    };
+                }
+            }
+        }
     }
 }

@@ -29,6 +29,8 @@ import {
     deg2rad,
     getDistance,
     getHslFromAnimation,
+    getMax,
+    getMin,
     getParticleBaseVelocity,
     getValue,
     isInArray,
@@ -257,17 +259,21 @@ export class Particle implements IParticle {
             if (!randomSize) {
                 switch (sizeAnimation.startValue) {
                     case StartValueType.min:
-                        this.size.value = sizeAnimation.minimumValue * pxRatio;
+                        this.size.value = getMin(this.options.size.value) * pxRatio;
+                        this.size.status = AnimationStatus.increasing;
 
                         break;
 
                     case StartValueType.random:
-                        this.size.value = randomInRange(sizeAnimation.minimumValue * pxRatio, this.size.value);
+                        this.size.value = getValue(this.options.size.value) * pxRatio;
+                        this.size.status =
+                            Math.random() >= 0.5 ? AnimationStatus.increasing : AnimationStatus.decreasing;
 
                         break;
 
                     case StartValueType.max:
                     default:
+                        this.size.value = getMax(this.options.size.value) * pxRatio;
                         this.size.status = AnimationStatus.decreasing;
 
                         break;
@@ -344,17 +350,21 @@ export class Particle implements IParticle {
             if (!randomOpacity) {
                 switch (opacityAnimation.startValue) {
                     case StartValueType.min:
-                        this.opacity.value = opacityAnimation.minimumValue;
+                        this.opacity.value = getMin(this.options.opacity.value);
+                        this.opacity.status = AnimationStatus.increasing;
 
                         break;
 
                     case StartValueType.random:
-                        this.opacity.value = randomInRange(opacityAnimation.minimumValue, this.opacity.value);
+                        this.opacity.value = getValue(this.options.opacity.value);
+                        this.opacity.status =
+                            Math.random() >= 0.5 ? AnimationStatus.increasing : AnimationStatus.decreasing;
 
                         break;
 
                     case StartValueType.max:
                     default:
+                        this.opacity.value = getMax(this.options.opacity.value);
                         this.opacity.status = AnimationStatus.decreasing;
 
                         break;

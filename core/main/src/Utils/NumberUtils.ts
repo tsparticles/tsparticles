@@ -35,6 +35,14 @@ export function getValue(value: RangeValue): number {
     return typeof value === "number" ? value : randomInRange(value.min, value.max);
 }
 
+export function getMin(value: RangeValue): number {
+    return typeof value === "number" ? value : value.min;
+}
+
+export function getMax(value: RangeValue): number {
+    return typeof value === "number" ? value : value.max;
+}
+
 /**
  * Gets the distance between two coordinates
  * @param p1 the first coordinate
