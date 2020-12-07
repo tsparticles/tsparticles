@@ -8,7 +8,7 @@
     let field;
 
     function setup(container) {
-        size = 20;
+        size = 12;
         noiseZ = 0;
         reset(container);
     }
@@ -26,8 +26,8 @@
     function calculateField() {
         for (let x = 0; x < columns; x++) {
             for (let y = 0; y < rows; y++) {
-                let angle = noise.perlin3(x / 50, y / 50, noiseZ) * Math.PI * 2;
-                let length = noise.perlin3(x / 100 + 40000, y / 100 + 40000, noiseZ);
+                let angle = noise.perlin3(x / 20, y / 20, noiseZ) * Math.PI * 2;
+                let length = noise.perlin3(x / 40 + 40000, y / 40 + 40000, noiseZ) * 0.5;
                 field[x][y][0] = angle;
                 field[x][y][1] = length;
             }
@@ -125,19 +125,7 @@
                     update: function () {
                         calculateField();
 
-                        const mousePos = particles.interactivity.mouse.position;
-
-                        let sumZ;
-
-                        if (mousePos) {
-                            sumZ =
-                                (mousePos.x * mousePos.y) /
-                                (25 * particles.canvas.size.width * particles.canvas.size.height);
-                        } else {
-                            sumZ = 0.004;
-                        }
-
-                        noiseZ += sumZ;
+                        noiseZ += 0.002;
                     },
                     generate: function (p) {
                         const pos = p.getPosition();

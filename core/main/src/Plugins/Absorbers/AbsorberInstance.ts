@@ -6,6 +6,7 @@ import type { IAbsorber } from "./Options/Interfaces/IAbsorber";
 import { colorToRgb, getDistance, getDistances, getStyleFromRgb, getValue, isPointInside } from "../../Utils";
 import type { Absorbers } from "./Absorbers";
 import { RotateDirection } from "../../Enums";
+import { Velocity } from "../../Core/Particle/Velocity";
 
 type OrbitingParticle = Particle & {
     absorberOrbitRadius?: number;
@@ -201,8 +202,12 @@ export class AbsorberInstance {
             particle.absorberOrbitAngle +=
                 ((particle.moveSpeed ?? this.container.retina.moveSpeed) / 100) * this.container.retina.reduceFactor;
         } else {
-            particle.velocity.horizontal += Math.sin(angle) * acceleration;
-            particle.velocity.vertical += Math.cos(angle) * acceleration;
+            const addV = new Velocity(0, 0);
+
+            addV.angle = angle;
+            addV.length = acceleration;
+
+            particle.velocity.addTo(addV);
         }
     }
 }

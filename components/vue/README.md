@@ -132,6 +132,18 @@ If TypeScript returns error while importing/using Particles plugin try adding th
 declare module "particles.vue";
 ```
 
+### Internet Explorer errors
+
+The core library is not supported by Internet Explorer, but with Vue.js you can transpile it using the `vue.config.js`.
+
+To transpile the core library just add this to the `vue.config.js`
+
+```javascript
+  transpileDependencies: [
+    'tsparticles',
+  ]
+```
+
 ## Demos
 
 The demo website is [here](https://particles.matteobruni.it)

@@ -16,6 +16,7 @@ import type { Container } from "../../Core/Container";
 import { DivEvent } from "../../Options/Classes/Interactivity/Events/DivEvent";
 import type { ICoordinates } from "../../Core/Interfaces/ICoordinates";
 import { ExternalBase } from "./ExternalBase";
+import { Velocity } from "../../Core/Particle/Velocity";
 
 export class Bouncer extends ExternalBase {
     constructor(container: Container) {
@@ -106,14 +107,8 @@ export class Bouncer extends ExternalBase {
                 circleBounce(circleBounceDataFromParticle(particle), {
                     position,
                     radius,
-                    velocity: {
-                        horizontal: 0,
-                        vertical: 0,
-                    },
-                    factor: {
-                        horizontal: 0,
-                        vertical: 0,
-                    },
+                    velocity: new Velocity(0, 0),
+                    factor: new Velocity(0, 0),
                 });
             } else if (area instanceof Rectangle) {
                 rectBounce(particle, calculateBounds(position, radius));

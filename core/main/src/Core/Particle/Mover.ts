@@ -3,6 +3,7 @@ import type { Container } from "../Container";
 import type { Particle } from "../Particle";
 import { HoverMode, RotateDirection } from "../../Enums";
 import type { IDelta } from "../Interfaces/IDelta";
+import { Velocity } from "./Velocity";
 
 /**
  * @category Core
@@ -58,7 +59,7 @@ export class Mover {
             baseSpeed = (particle.moveSpeed ?? container.retina.moveSpeed) * container.retina.reduceFactor,
             maxSize = particle.sizeValue ?? container.retina.sizeValue,
             sizeFactor = particlesOptions.move.size ? particle.getRadius() / maxSize : 1,
-            moveSpeed = (baseSpeed / 2) * sizeFactor * slowFactor * delta.factor;
+            moveSpeed = (baseSpeed / 4) * sizeFactor * slowFactor * delta.factor;
 
         this.applyNoise(particle, delta);
 
@@ -68,10 +69,7 @@ export class Mover {
             particle.velocity.vertical += (gravityOptions.acceleration * delta.factor) / (60 * moveSpeed);
         }
 
-        const velocity = {
-            horizontal: particle.velocity.horizontal * moveSpeed,
-            vertical: particle.velocity.vertical * moveSpeed,
-        };
+        const velocity = particle.velocity.mult(moveSpeed);
 
         if (gravityOptions.enable && velocity.vertical >= gravityOptions.maxSpeed && gravityOptions.maxSpeed > 0) {
             velocity.vertical = gravityOptions.maxSpeed;
@@ -85,7 +83,9 @@ export class Mover {
         if (particlesOptions.move.spin.enable) {
             this.spin(particle, moveSpeed);
         } else {
-            this.moveXY(particle, velocity.horizontal * zVelocityFactor, velocity.vertical * zVelocityFactor);
+            velocity.multTo(zVelocityFactor);
+
+            this.moveXY(particle, velocity.horizontal, velocity.vertical);
 
             if (particlesOptions.move.vibrate) {
                 this.moveXY(
@@ -209,10 +209,13 @@ export class Mover {
         }
 
         const noise = generator.generate(particle),
-            vel = particle.velocity;
+            vel = particle.velocity,
+            noiseVel = new Velocity(0, 0);
 
-        vel.horizontal += Math.cos(noise.angle) * noise.length;
-        vel.vertical += Math.sin(noise.angle) * noise.length;
+        noiseVel.length = noise.length;
+        noiseVel.angle = noise.angle;
+
+        vel.addTo(noiseVel);
 
         if (noiseOptions.clamp) {
             vel.horizontal = clamp(vel.horizontal, -1, 1);

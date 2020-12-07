@@ -1,5 +1,5 @@
 import type { Container } from "./Container";
-import type { IVelocity } from "./Interfaces/IVelocity";
+import type { IDistance } from "./Interfaces/IDistance";
 import type { IParticleValueAnimation } from "./Interfaces/IParticleValueAnimation";
 import type { ICoordinates, ICoordinates3d } from "./Interfaces/ICoordinates";
 import type { IHsl, IRgb } from "./Interfaces/Colors";
@@ -26,6 +26,7 @@ import {
     colorToHsl,
     colorToRgb,
     deepExtend,
+    deg2rad,
     getDistance,
     getHslFromAnimation,
     getParticleBaseVelocity,
@@ -45,13 +46,13 @@ import type { IColorAnimation } from "../Options/Interfaces/IColorAnimation";
 import type { IParticleLife } from "./Interfaces/IParticleLife";
 import type { IParticleSpin } from "./Interfaces/IParticleSpin";
 import type { IShape } from "../Options/Interfaces/Particles/Shape/IShape";
+import { Velocity } from "./Particle/Velocity";
 
 /**
  * The single particle object
  * @category Core
  */
 export class Particle implements IParticle {
-    public pathAngle;
     public destroyed;
     public misplaced;
     public spawning;
@@ -88,16 +89,16 @@ export class Particle implements IParticle {
     public readonly offset: ICoordinates;
     public readonly shadowColor: IRgb | undefined;
     public readonly color?: IParticleHslAnimation;
-    public readonly maxDistance: RecursivePartial<IVelocity>;
+    public readonly maxDistance: Partial<IDistance>;
     public readonly opacity: IParticleValueAnimation<number>;
     public readonly rotate: IParticleValueAnimation<number>;
     public readonly size: IParticleValueAnimation<number>;
     public readonly strokeColor?: IParticleHslAnimation;
     public readonly orbitColor?: IHsl;
-    public readonly velocity: IVelocity;
+    public readonly velocity: Velocity;
     public readonly shape: ShapeType | string;
     public readonly initialPosition: ICoordinates3d;
-    public readonly initialVelocity: IVelocity;
+    public readonly initialVelocity: Velocity;
     public readonly shapeData?: IShapeValues;
     public readonly bubble: IBubbleParticleData;
 
@@ -213,17 +214,12 @@ export class Particle implements IParticle {
 
         /* animation - velocity for speed */
         this.initialVelocity = this.calculateVelocity();
-        this.velocity = {
-            horizontal: this.initialVelocity.horizontal,
-            vertical: this.initialVelocity.vertical,
-        };
-
-        this.pathAngle = Math.atan2(this.initialVelocity.vertical, this.initialVelocity.horizontal);
+        this.velocity = this.initialVelocity.copy();
 
         const rotateOptions = this.options.rotate;
 
         this.rotate = {
-            value: ((rotateOptions.random.enable ? Math.random() * 360 : rotateOptions.value) * Math.PI) / 180,
+            value: deg2rad(rotateOptions.random.enable ? Math.random() * 360 : rotateOptions.value),
         };
 
         let rotateDirection = rotateOptions.direction;
@@ -468,7 +464,7 @@ export class Particle implements IParticle {
             this.spin = {
                 center: spinCenter,
                 direction: this.velocity.horizontal >= 0 ? RotateDirection.clockwise : RotateDirection.counterClockwise,
-                angle: Math.atan2(this.velocity.vertical, this.velocity.horizontal),
+                angle: this.velocity.angle,
                 radius: distance,
                 acceleration: this.options.move.spin.acceleration,
             };
@@ -654,32 +650,28 @@ export class Particle implements IParticle {
         return false;
     }
 
-    private calculateVelocity(): IVelocity {
-        const baseVelocity = getParticleBaseVelocity(this),
-            res = {
-                horizontal: baseVelocity.x,
-                vertical: baseVelocity.y,
-            },
+    private calculateVelocity(): Velocity {
+        const res = getParticleBaseVelocity(this.direction),
             moveOptions = this.options.move;
 
         let rad: number,
-            radOffset = Math.PI / 4;
+            radOffset = 0;
 
         if (typeof moveOptions.angle === "number") {
-            rad = (Math.PI / 180) * moveOptions.angle;
+            rad = deg2rad(moveOptions.angle);
         } else {
-            rad = (Math.PI / 180) * moveOptions.angle.value;
-            radOffset = (Math.PI / 180) * moveOptions.angle.offset;
+            rad = deg2rad(moveOptions.angle.value);
+            radOffset = deg2rad(moveOptions.angle.offset);
         }
 
-        const range = {
-            left: Math.sin(radOffset + rad / 2) - Math.sin(radOffset - rad / 2),
-            right: Math.cos(radOffset + rad / 2) - Math.cos(radOffset - rad / 2),
-        };
-
         if ((moveOptions.straight && moveOptions.random) || !moveOptions.straight) {
-            res.horizontal += randomInRange(range.left, range.right) / 2;
-            res.vertical += randomInRange(range.left, range.right) / 2;
+            const range = {
+                left: radOffset - rad / 2,
+                right: radOffset + rad / 2,
+            };
+
+            // res.length += Math.sqrt(range.left ** 2 + range.right ** 2);
+            res.angle += randomInRange(range.left, range.right);
         }
 
         return res;

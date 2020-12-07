@@ -181,8 +181,7 @@ export class Repulser extends ExternalBase {
             }
         } else if (container.repulse.clicking === false) {
             for (const particle of container.repulse.particles) {
-                particle.velocity.horizontal = particle.initialVelocity.horizontal;
-                particle.velocity.vertical = particle.initialVelocity.vertical;
+                particle.velocity.setTo(particle.initialVelocity);
             }
             container.repulse.particles = [];
         }

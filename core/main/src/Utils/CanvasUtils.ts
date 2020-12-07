@@ -8,7 +8,7 @@ import type { Container } from "..";
 import type { IContainerPlugin } from "../Core/Interfaces/IContainerPlugin";
 import type { IDelta } from "../Core/Interfaces/IDelta";
 import { Particle } from "../Core/Particle";
-import { getDistance, getDistances } from "./NumberUtils";
+import { deg2rad, getDistance, getDistances } from "./NumberUtils";
 import { colorToRgb, getStyleFromHsl, getStyleFromRgb, colorMix } from "./ColorUtils";
 
 function drawLine(context: CanvasRenderingContext2D, begin: ICoordinates, end: ICoordinates): void {
@@ -345,7 +345,7 @@ export function drawParticle(
     context.translate(pos.x, pos.y);
     context.beginPath();
 
-    const angle = particle.rotate.value + (particle.options.rotate.path ? particle.pathAngle : 0);
+    const angle = particle.rotate.value + (particle.options.rotate.path ? particle.velocity.angle : 0);
 
     if (angle !== 0) {
         context.rotate(angle);
@@ -482,7 +482,7 @@ export function drawEllipse(
 
     context.lineWidth = width;
 
-    const rotationRadian = rotation * (Math.PI / 180);
+    const rotationRadian = deg2rad(rotation);
 
     context.ellipse(pos.x, pos.y, radius / 2, radius * 2, rotationRadian, start, end);
 

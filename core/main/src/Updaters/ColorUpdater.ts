@@ -62,7 +62,7 @@ export class ColorUpdater implements IParticleUpdater {
         if (!decrease || colorValue.status === AnimationStatus.increasing) {
             colorValue.value += velocity;
 
-            if (colorValue.value > max) {
+            if (decrease && colorValue.value > max) {
                 colorValue.status = AnimationStatus.decreasing;
                 colorValue.value -= colorValue.value % max;
             }

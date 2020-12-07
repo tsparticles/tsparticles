@@ -9,8 +9,8 @@ import { MoveAngle } from "./MoveAngle";
 import { MoveGravity } from "./MoveGravity";
 import { OutModes } from "./OutModes";
 import { Spin } from "./Spin";
-import { IVelocity } from "../../../../Core/Interfaces/IVelocity";
 import { deepExtend } from "../../../../Utils";
+import type { IDistance } from "../../../../Core/Interfaces/IDistance";
 
 /**
  * [[include:Options/Particles/Move.md]]
@@ -84,7 +84,7 @@ export class Move implements IMove, IOptionLoader<IMove> {
     public angle;
     public attract;
     public direction: MoveDirection | keyof typeof MoveDirection | MoveDirectionAlt;
-    public distance: RecursivePartial<IVelocity>;
+    public distance: Partial<IDistance>;
     public enable;
     public gravity;
     public noise;
@@ -143,7 +143,7 @@ export class Move implements IMove, IOptionLoader<IMove> {
                           horizontal: data.distance,
                           vertical: data.distance,
                       }
-                    : (deepExtend({}, data.distance) as IVelocity);
+                    : (deepExtend({}, data.distance) as IDistance);
         }
 
         if (data.enable !== undefined) {

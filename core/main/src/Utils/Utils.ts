@@ -14,6 +14,7 @@ import type { ISideData } from "../Core/Interfaces/ISideData";
 import type { IRectSideResult } from "../Core/Interfaces/IRectSideResult";
 import type { ICircleBouncer } from "../Core/Interfaces/ICircleBouncer";
 import { Particle } from "../Core/Particle";
+import { Velocity } from "../Core/Particle/Velocity";
 
 type CSSOMString = string;
 type FontFaceLoadStatus = "unloaded" | "loading" | "loaded" | "error";
@@ -356,10 +357,7 @@ export function circleBounceDataFromParticle(p: IParticle): ICircleBouncer {
         position: p.getPosition(),
         radius: p.getRadius(),
         velocity: p.velocity,
-        factor: {
-            horizontal: getValue(p.options.bounce.horizontal),
-            vertical: getValue(p.options.bounce.vertical),
-        },
+        factor: new Velocity(getValue(p.options.bounce.horizontal), getValue(p.options.bounce.vertical)),
     };
 }
 
