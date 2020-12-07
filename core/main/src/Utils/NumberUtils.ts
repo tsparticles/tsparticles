@@ -1,5 +1,5 @@
 import type { ICoordinates } from "../Core/Interfaces/ICoordinates";
-import { MoveDirection, MoveDirectionAlt } from "../Enums/Directions";
+import { MoveDirection, MoveDirectionAlt } from "../Enums";
 import { Velocity } from "../Core/Particle/Velocity";
 import { RangeValue } from "../Types";
 
