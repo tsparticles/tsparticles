@@ -1,7 +1,7 @@
 {
   "name": "particles.vue-demo",
   "private": true,
-  "version": "1.4.0-alpha.3",
+  "version": "1.4.0-alpha.4",
   "description": "VueJS Demo",
   "author": "Matteo Bruni <ar3s@icloud.com>",
   "homepage": "https://github.com/matteobruni/tsparticles#readme",
@@ -20,10 +20,10 @@
     "url": "https://github.com/matteobruni/tsparticles/issues"
   },
   "dependencies": {
-    "particles.vue": "^2.2.0-alpha.3",
-    "tsparticles": "^1.19.0-alpha.3",
-    "tsparticles-preset-big-circles": "^1.4.0-alpha.3",
-    "tsparticles-preset-sea-anemone": "^1.4.0-alpha.3",
+    "particles.vue": "^2.2.0-alpha.4",
+    "tsparticles": "^1.19.0-alpha.4",
+    "tsparticles-preset-big-circles": "^1.4.0-alpha.4",
+    "tsparticles-preset-sea-anemone": "^1.4.0-alpha.4",
     "vue": ">=2 && <3",
     "vue-class-component": "<8",
     "vue-property-decorator": "^9.1.2"

@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.4.0-alpha.4](https://github.com/matteobruni/tsparticles/compare/tsparticles-demo@1.4.0-alpha.3...tsparticles-demo@1.4.0-alpha.4) (2020-12-08)
+
+
+### Bug Fixes
+
+* fixed color animations ([b0d325f](https://github.com/matteobruni/tsparticles/commit/b0d325fac6001b70c5277c91e346490aa036b9d9))
+* fixes undefined on TextDrawer, closes [#1087](https://github.com/matteobruni/tsparticles/issues/1087) ([e47a916](https://github.com/matteobruni/tsparticles/commit/e47a9165009c9525afb3dbd1657d0e3fd54a850c))
+
+
+
+
+
 # [1.4.0-alpha.3](https://github.com/matteobruni/tsparticles/compare/tsparticles-demo@1.4.0-alpha.2...tsparticles-demo@1.4.0-alpha.3) (2020-11-27)
 
 **Note:** Version bump only for package tsparticles-demo
