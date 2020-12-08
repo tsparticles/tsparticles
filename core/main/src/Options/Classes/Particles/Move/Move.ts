@@ -2,14 +2,14 @@ import type { IMove } from "../../../Interfaces/Particles/Move/IMove";
 import { Attract } from "./Attract";
 import { MoveDirection, MoveDirectionAlt, OutMode, OutModeAlt } from "../../../../Enums";
 import { Trail } from "./Trail";
-import type { RecursivePartial } from "../../../../Types";
+import type { RangeValue, RecursivePartial } from "../../../../Types";
 import { Noise } from "./Noise/Noise";
 import type { IOptionLoader } from "../../../Interfaces/IOptionLoader";
 import { MoveAngle } from "./MoveAngle";
 import { MoveGravity } from "./MoveGravity";
 import { OutModes } from "./OutModes";
 import { Spin } from "./Spin";
-import { deepExtend } from "../../../../Utils";
+import { deepExtend, setRangeValue } from "../../../../Utils";
 import type { IDistance } from "../../../../Core/Interfaces/IDistance";
 
 /**
@@ -91,7 +91,7 @@ export class Move implements IMove, IOptionLoader<IMove> {
     public outModes: OutModes;
     public random;
     public size;
-    public speed;
+    public speed: RangeValue;
     public spin;
     public straight;
     public trail;
@@ -174,7 +174,7 @@ export class Move implements IMove, IOptionLoader<IMove> {
         }
 
         if (data.speed !== undefined) {
-            this.speed = data.speed;
+            this.speed = setRangeValue(data.speed);
         }
 
         this.spin.load(data.spin);

@@ -6,8 +6,6 @@ import { ValueWithRandom } from "../../ValueWithRandom";
  * @category Options
  */
 export class OrbitRotation extends ValueWithRandom {
-    public value: number;
-
     constructor() {
         super();
 
@@ -22,9 +20,5 @@ export class OrbitRotation extends ValueWithRandom {
         }
 
         super.load(data);
-
-        if (data.value !== undefined) {
-            this.value = data.value;
-        }
     }
 }

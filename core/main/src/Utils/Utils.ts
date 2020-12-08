@@ -8,7 +8,7 @@ import type { SingleOrMultiple } from "../Types";
 import { DivEvent } from "../Options/Classes/Interactivity/Events/DivEvent";
 import type { IModeDiv } from "../Options/Interfaces/Interactivity/Modes/IModeDiv";
 import { OutModeDirection } from "../Enums/Directions/OutModeDirection";
-import { collisionVelocity, getValue, rotateVelocity } from "./NumberUtils";
+import { collisionVelocity, getRangeValue, rotateVelocity } from "./NumberUtils";
 import type { IParticle } from "../Core/Interfaces/IParticle";
 import type { ISideData } from "../Core/Interfaces/ISideData";
 import type { IRectSideResult } from "../Core/Interfaces/IRectSideResult";
@@ -357,7 +357,10 @@ export function circleBounceDataFromParticle(p: IParticle): ICircleBouncer {
         position: p.getPosition(),
         radius: p.getRadius(),
         velocity: p.velocity,
-        factor: new Velocity(getValue(p.options.bounce.horizontal), getValue(p.options.bounce.vertical)),
+        factor: new Velocity(
+            getRangeValue(p.options.bounce.horizontal.value),
+            getRangeValue(p.options.bounce.vertical.value)
+        ),
     };
 }
 
@@ -424,7 +427,7 @@ export function rectBounce(particle: IParticle, divBounds: IBounds): void {
             max: divBounds.bottom,
         },
         particle.velocity.horizontal,
-        getValue(particle.options.bounce.horizontal)
+        getRangeValue(particle.options.bounce.horizontal.value)
     );
 
     if (resH.bounced) {
@@ -455,7 +458,7 @@ export function rectBounce(particle: IParticle, divBounds: IBounds): void {
             max: divBounds.right,
         },
         particle.velocity.vertical,
-        getValue(particle.options.bounce.vertical)
+        getRangeValue(particle.options.bounce.vertical.value)
     );
 
     if (resV.bounced) {

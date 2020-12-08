@@ -166,7 +166,7 @@ export class Repulser extends ExternalBase {
 
             for (const particle of query) {
                 const { dx, dy, distance } = getDistances(mouseClickPos, particle.position);
-                const d = distance * distance;
+                const d = distance ** 2;
                 const velocity = container.options.interactivity.modes.repulse.speed;
                 const force = (-repulseRadius * velocity) / d;
 

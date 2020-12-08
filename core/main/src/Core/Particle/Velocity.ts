@@ -11,7 +11,7 @@ export class Velocity {
     }
 
     public get length(): number {
-        return Math.sqrt(this.horizontal * this.horizontal + this.vertical * this.vertical);
+        return Math.sqrt(this.horizontal ** 2 + this.vertical ** 2);
     }
 
     public set length(length: number) {
@@ -64,7 +64,7 @@ export class Velocity {
     }
 
     public getLengthSq(): number {
-        return this.horizontal * this.horizontal + this.vertical * this.vertical;
+        return this.horizontal ** 2 + this.vertical ** 2;
     }
 
     public distanceToSq(v: Velocity): number {

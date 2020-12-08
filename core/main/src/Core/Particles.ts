@@ -3,7 +3,16 @@ import type { ICoordinates } from "./Interfaces/ICoordinates";
 import type { IMouseData } from "./Interfaces/IMouseData";
 import type { IRgb } from "./Interfaces/Colors";
 import { Particle } from "./Particle";
-import { getValue, itemFromArray, Plugins, Point, QuadTree, randomInRange, Rectangle } from "../Utils";
+import {
+    getRangeValue,
+    itemFromArray,
+    Plugins,
+    Point,
+    QuadTree,
+    randomInRange,
+    Rectangle,
+    setRangeValue,
+} from "../Utils";
 import type { RecursivePartial } from "../Types";
 import type { IParticles } from "../Options/Interfaces/Particles/IParticles";
 import { InteractionManager } from "./InteractionManager";
@@ -294,7 +303,7 @@ export class Particles {
 
         options.load(parent.options);
 
-        const factor = getValue(splitOptions.factor);
+        const factor = getRangeValue(splitOptions.factor.value);
 
         options.color.load({
             value: {
@@ -302,17 +311,20 @@ export class Particles {
             },
         });
 
-        options.size.value /= factor;
-        options.size.random.minimumValue /= factor;
-        options.size.animation.minimumValue /= factor;
+        if (typeof options.size.value === "number") {
+            options.size.value /= factor;
+        } else {
+            options.size.value.min /= factor;
+            options.size.value.max /= factor;
+        }
 
         options.load(splitOptions.particles);
 
-        const offset = parent.size.value;
+        const offset = setRangeValue(-parent.size.value, parent.size.value);
 
         const position = {
-            x: parent.position.x + randomInRange(-offset, offset),
-            y: parent.position.y + randomInRange(-offset, offset),
+            x: parent.position.x + randomInRange(offset),
+            y: parent.position.y + randomInRange(offset),
         };
 
         return this.pushParticle(position, options, parent.group, (particle) => {
@@ -433,7 +445,7 @@ export class Particles {
         const canvas = container.canvas.element;
         const pxRatio = container.retina.pixelRatio;
 
-        return (canvas.width * canvas.height) / (densityOptions.factor * pxRatio * pxRatio * densityOptions.area);
+        return (canvas.width * canvas.height) / (densityOptions.factor * pxRatio ** 2 * densityOptions.area);
     }
 
     private pushParticle(

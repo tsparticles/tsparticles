@@ -4,7 +4,7 @@ import type { IParticleUpdater } from "../Core/Interfaces/IParticleUpdater";
 import type { IDelta } from "../Core/Interfaces/IDelta";
 import { OutModeDirection } from "../Enums/Directions/OutModeDirection";
 import { OutMode, OutModeAlt } from "../Enums";
-import { calculateBounds, getValue, isPointInside } from "../Utils";
+import { calculateBounds, getRangeValue, isPointInside } from "../Utils";
 import { IBounds } from "../Core/Interfaces/IBounds";
 import { IDimension } from "../Core/Interfaces/IDimension";
 import { ICoordinates } from "../Core/Interfaces/ICoordinates";
@@ -38,7 +38,7 @@ function bounceHorizontal(data: IBounceData): void {
         (data.direction === OutModeDirection.right && data.bounds.right >= data.canvasSize.width && velocity > 0) ||
         (data.direction === OutModeDirection.left && data.bounds.left <= 0 && velocity < 0)
     ) {
-        const newVelocity = getValue(data.particle.options.bounce.horizontal);
+        const newVelocity = getRangeValue(data.particle.options.bounce.horizontal.value);
 
         data.particle.velocity.horizontal *= -newVelocity;
 
@@ -78,7 +78,7 @@ function bounceVertical(data: IBounceData): void {
                 velocity > 0) ||
             (data.direction === OutModeDirection.top && data.bounds.top <= 0 && velocity < 0)
         ) {
-            const newVelocity = getValue(data.particle.options.bounce.vertical);
+            const newVelocity = getRangeValue(data.particle.options.bounce.vertical.value);
 
             data.particle.velocity.vertical *= -newVelocity;
 

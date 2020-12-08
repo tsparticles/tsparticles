@@ -2,7 +2,7 @@ import type { IParticleUpdater } from "../Core/Interfaces/IParticleUpdater";
 import type { IDelta } from "../Core/Interfaces/IDelta";
 import type { Particle } from "../Core/Particle";
 import type { Container } from "../Core/Container";
-import { getValue, randomInRange } from "../Utils";
+import { getRangeValue, randomInRange, setRangeValue } from "../Utils";
 
 export class LifeUpdater implements IParticleUpdater {
     constructor(private readonly container: Container) {}
@@ -59,10 +59,12 @@ export class LifeUpdater implements IParticleUpdater {
             return;
         }
 
-        const canvasSize = this.container.canvas.size;
+        const canvasSize = this.container.canvas.size,
+            widthRange = setRangeValue(0, canvasSize.width),
+            heightRange = setRangeValue(0, canvasSize.width);
 
-        particle.position.x = randomInRange(0, canvasSize.width);
-        particle.position.y = randomInRange(0, canvasSize.height);
+        particle.position.x = randomInRange(widthRange);
+        particle.position.y = randomInRange(heightRange);
         particle.spawning = true;
         life.delayTime = 0;
         life.time = 0;
@@ -70,7 +72,7 @@ export class LifeUpdater implements IParticleUpdater {
 
         const lifeOptions = particle.options.life;
 
-        life.delay = getValue(lifeOptions.delay) * 1000;
-        life.duration = getValue(lifeOptions.duration) * 1000;
+        life.delay = getRangeValue(lifeOptions.delay.value) * 1000;
+        life.duration = getRangeValue(lifeOptions.duration.value) * 1000;
     }
 }

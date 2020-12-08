@@ -1,6 +1,6 @@
 {
   "detectRetina": false,
-  "fpsLimit": 30,
+  "fpsLimit": 60,
   "interactivity": {
     "detectsOn": "canvas",
     "events": {
@@ -65,7 +65,7 @@
     "color": {
       "value": "#ffffff"
     },
-    "lineLinked": {
+    "links": {
       "blink": false,
       "color": "#ffffff",
       "consent": false,
@@ -87,7 +87,10 @@
       "enable": true,
       "outMode": "bounce",
       "random": false,
-      "speed": 1,
+      "speed": {
+        "max": 1.5,
+        "min": 0.5
+      },
       "straight": false
     },
     "number": {

@@ -26,13 +26,14 @@ export class TestParticle {
         if (container === undefined) {
             container = this.container;
         }
-        const sizeValue = container.retina.sizeValue;
+        const sizeValue = container.options.particles.size.value;
+        const maxValue = typeof sizeValue === "number" ? sizeValue : sizeValue.max;
         const width = container.canvas.size.width;
         const height = container.canvas.size.height;
         let x = width * Math.random();
-        x = Math.min(Math.max(x, sizeValue * 2), width - sizeValue * 2);
+        x = Math.min(Math.max(x, maxValue * 2), width - maxValue * 2);
         let y = height * Math.random();
-        y = Math.min(Math.max(y, sizeValue * 2), height - sizeValue * 2);
+        y = Math.min(Math.max(y, maxValue * 2), height - maxValue * 2);
         const z = 0;
         return { x, y, z };
     }

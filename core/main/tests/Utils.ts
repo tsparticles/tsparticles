@@ -17,7 +17,9 @@ import {
     mix,
     Plugins,
     randomInRange,
+    setRangeValue,
 } from "../src/Utils";
+import { IRangeValue } from "../src/Core/Interfaces/IRange";
 
 function buildPluginWithId(id: string, needsPlugin: boolean): IPlugin {
     return {
@@ -217,27 +219,24 @@ describe("Utils", () => {
 
     describe("randomInRange", () => {
         it("should generate a random number in the specified range, range in positive reals", () => {
-            const min = 1;
-            const max = 10;
-            const randomNumber = randomInRange(min, max);
+            const range = setRangeValue(1, 10);
+            const randomNumber = randomInRange(range);
 
-            expect(randomNumber).to.be.within(min, max);
+            expect(randomNumber).to.be.within((range as IRangeValue).min, (range as IRangeValue).max);
         });
 
         it("should generate a random number in the specified range, range in negative reals", () => {
-            const min = -10;
-            const max = -1;
-            const randomNumber = randomInRange(min, max);
+            const range = setRangeValue(-1, -10);
+            const randomNumber = randomInRange(range);
 
-            expect(randomNumber).to.be.within(min, max);
+            expect(randomNumber).to.be.within((range as IRangeValue).min, (range as IRangeValue).max);
         });
 
         it("should generate a random number in the specified range, range crossing negative and positive reals", () => {
-            const min = -10;
-            const max = 10;
-            const randomNumber = randomInRange(min, max);
+            const range = setRangeValue(-10, 10);
+            const randomNumber = randomInRange(range);
 
-            expect(randomNumber).to.be.within(min, max);
+            expect(randomNumber).to.be.within((range as IRangeValue).min, (range as IRangeValue).max);
         });
     });
 

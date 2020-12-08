@@ -1,20 +1,20 @@
 import type { IColorAnimation } from "../Interfaces/IColorAnimation";
-import type { RecursivePartial } from "../../Types";
+import type { RangeValue, RecursivePartial } from "../../Types";
 import type { IOptionLoader } from "../Interfaces/IOptionLoader";
-import { OffsetValue } from "./OffsetValue";
+import { setRangeValue } from "../../Utils";
 
 /**
  * @category Options
  */
 export class ColorAnimation implements IColorAnimation, IOptionLoader<IColorAnimation> {
     public enable;
-    public offset;
+    public offset: RangeValue;
     public speed;
     public sync;
 
     constructor() {
         this.enable = false;
-        this.offset = new OffsetValue();
+        this.offset = 0;
         this.speed = 1;
         this.sync = true;
     }
@@ -28,7 +28,9 @@ export class ColorAnimation implements IColorAnimation, IOptionLoader<IColorAnim
             this.enable = data.enable;
         }
 
-        this.offset.load(data.offset);
+        if (data.offset !== undefined) {
+            this.offset = setRangeValue(data.offset);
+        }
 
         if (data.speed !== undefined) {
             this.speed = data.speed;

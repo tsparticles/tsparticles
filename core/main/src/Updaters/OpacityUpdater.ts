@@ -9,51 +9,50 @@ export class OpacityUpdater implements IParticleUpdater {
     constructor(private readonly container: Container) {}
 
     public isEnabled(particle: Particle): boolean {
-        const sizeOpt = particle.options.size;
-        const sizeAnim = sizeOpt.animation;
+        const opacityAnim = particle.options.opacity.anim;
 
         return (
             !particle.destroyed &&
             !particle.spawning &&
-            sizeAnim.enable &&
-            (sizeAnim.count <= 0 || particle.loops.size < sizeAnim.count)
+            opacityAnim.enable &&
+            (opacityAnim.count <= 0 || particle.loops.opacity < opacityAnim.count)
         );
     }
 
     public update(particle: Particle, delta: IDelta): void {
-        const container = this.container;
-        const sizeOpt = particle.options.size;
-        const sizeAnim = sizeOpt.animation;
-        const sizeVelocity = (particle.size.velocity ?? 0) * delta.factor;
-        const maxValue = particle.sizeValue ?? container.retina.sizeValue;
-        const minValue = sizeAnim.minimumValue * container.retina.pixelRatio;
+        const opacityOpt = particle.options.opacity;
+        const opacityAnim = opacityOpt.anim;
+        const value = opacityOpt.value;
+        const minValue = typeof value === "number" ? value : value.min;
+        const maxValue = typeof value === "number" ? value : value.max;
 
         if (!this.isEnabled(particle)) {
             return;
         }
 
-        switch (particle.size.status) {
+        switch (particle.opacity.status) {
             case AnimationStatus.increasing:
-                if (particle.size.value >= maxValue) {
-                    particle.size.status = AnimationStatus.decreasing;
-                    particle.loops.size++;
+                if (particle.opacity.value >= maxValue) {
+                    particle.opacity.status = AnimationStatus.decreasing;
+                    particle.loops.opacity++;
                 } else {
-                    particle.size.value += sizeVelocity;
+                    particle.opacity.value += (particle.opacity.velocity ?? 0) * delta.factor;
                 }
                 break;
             case AnimationStatus.decreasing:
-                if (particle.size.value <= minValue) {
-                    particle.size.status = AnimationStatus.increasing;
-                    particle.loops.size++;
+                if (particle.opacity.value <= minValue) {
+                    particle.opacity.status = AnimationStatus.increasing;
+                    particle.loops.opacity++;
                 } else {
-                    particle.size.value -= sizeVelocity;
+                    particle.opacity.value -= (particle.opacity.velocity ?? 0) * delta.factor;
                 }
+                break;
         }
 
-        checkDestroy(particle, sizeAnim.destroy, particle.size.value, minValue, maxValue);
+        checkDestroy(particle, opacityAnim.destroy, particle.opacity.value, minValue, maxValue);
 
         if (!particle.destroyed) {
-            particle.size.value = clamp(particle.size.value, minValue, maxValue);
+            particle.opacity.value = clamp(particle.opacity.value, minValue, maxValue);
         }
     }
 }

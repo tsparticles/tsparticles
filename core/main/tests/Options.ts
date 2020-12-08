@@ -115,7 +115,6 @@ describe("Options tests", () => {
 
         /* particles opacity */
         expect(options.particles.opacity.animation.enable).to.be.false;
-        expect(options.particles.opacity.animation.minimumValue).to.equal(0);
         expect(options.particles.opacity.animation.speed).to.equal(2);
         expect(options.particles.opacity.animation.sync).to.be.false;
         expect(options.particles.opacity.random).to.be.an("object").to.have.property("enable").to.be.false;
@@ -142,7 +141,6 @@ describe("Options tests", () => {
 
         /* particles size */
         expect(options.particles.size.animation.enable).to.be.false;
-        expect(options.particles.size.animation.minimumValue).to.equal(0);
         expect(options.particles.size.animation.speed).to.equal(5);
         expect(options.particles.size.animation.sync).to.be.false;
         expect(options.particles.size.random).to.be.an("object").to.have.property("enable").to.be.false;
@@ -334,7 +332,7 @@ describe("Options tests", () => {
         expect(options.particles.opacity.animation.speed).to.equal(3);
         expect(options.particles.opacity.animation.sync).to.be.false;
         expect(options.particles.opacity.random).to.be.an("object").to.have.property("enable").to.be.true;
-        expect(options.particles.opacity.value).to.equal(0.5);
+        expect(options.particles.opacity.value).to.be.an("object").to.have.property("max").to.equal(0.5);
 
         /* particles shape */
         expect(options.particles.shape.type).to.equal(ShapeType.circle);
@@ -345,7 +343,7 @@ describe("Options tests", () => {
         expect(options.particles.size.animation.speed).to.equal(20);
         expect(options.particles.size.animation.sync).to.be.false;
         expect(options.particles.size.random).to.be.an("object").to.have.property("enable").to.be.true;
-        expect(options.particles.size.value).to.equal(5);
+        expect(options.particles.size.value).to.be.an("object").to.have.property("max").to.equal(5);
     });
 
     it("check test preset options", () => {
@@ -542,7 +540,7 @@ describe("Options tests", () => {
         expect(options.particles.size.animation.speed).to.equal(40);
         expect(options.particles.size.animation.sync).to.be.false;
         expect(options.particles.size.random).to.be.an("object").to.have.property("enable").to.be.true;
-        expect(options.particles.size.value).to.equal(4);
+        expect(options.particles.size.value).to.be.an("object").to.have.property("max").to.equal(4);
 
         /* particles stroke */
         expect(options.particles.stroke)

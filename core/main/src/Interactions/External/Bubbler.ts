@@ -239,30 +239,43 @@ export class Bubbler extends ExternalBase {
                 container.bubble.clicking = false;
                 container.bubble.durationEnd = false;
             }
+
+            const sizeValue = particle.options.size.value;
+            const sizeMaxValue =
+                (typeof sizeValue === "number" ? sizeValue : sizeValue.max) * container.retina.pixelRatio;
+
             const sizeData: IBubblerProcessParam = {
                 bubbleObj: {
                     optValue: container.retina.bubbleModeSize,
                     value: particle.bubble.radius,
                 },
                 particlesObj: {
-                    optValue: particle.sizeValue ?? container.retina.sizeValue,
+                    optValue: sizeMaxValue,
                     value: particle.size.value,
                 },
                 type: ProcessBubbleType.size,
             };
+
             this.process(particle, distMouse, timeSpent, sizeData);
+
+            const opacityValue = particle.options.opacity.value;
+            const opacityMaxValue =
+                (typeof opacityValue === "number" ? opacityValue : opacityValue.max) * container.retina.pixelRatio;
+
             const opacityData: IBubblerProcessParam = {
                 bubbleObj: {
                     optValue: options.interactivity.modes.bubble.opacity,
                     value: particle.bubble.opacity,
                 },
                 particlesObj: {
-                    optValue: particle.options.opacity.value,
+                    optValue: opacityMaxValue,
                     value: particle.opacity.value,
                 },
                 type: ProcessBubbleType.opacity,
             };
+
             this.process(particle, distMouse, timeSpent, opacityData);
+
             if (!container.bubble.durationEnd) {
                 if (distMouse <= container.retina.bubbleModeDistance) {
                     this.hoverBubbleColor(particle);
@@ -327,9 +340,10 @@ export class Bubbler extends ExternalBase {
             return;
         }
 
-        const optSize = particle.sizeValue ?? container.retina.sizeValue;
+        const sizeValue = particle.options.size.value;
+        const sizeMaxValue = (typeof sizeValue === "number" ? sizeValue : sizeValue.max) * container.retina.pixelRatio;
         const pSize = particle.size.value;
-        const size = calculateBubbleValue(pSize, modeSize, optSize, ratio);
+        const size = calculateBubbleValue(pSize, modeSize, sizeMaxValue, ratio);
 
         if (size !== undefined) {
             particle.bubble.radius = size;
@@ -337,16 +351,19 @@ export class Bubbler extends ExternalBase {
     }
 
     private hoverBubbleOpacity(particle: Particle, ratio: number, divBubble?: BubbleDiv): void {
-        const options = this.container.options;
+        const container = this.container;
+        const options = container.options;
         const modeOpacity = divBubble?.opacity ?? options.interactivity.modes.bubble.opacity;
 
         if (modeOpacity === undefined) {
             return;
         }
 
-        const optOpacity = particle.options.opacity.value;
+        const opacityValue = particle.options.opacity.value;
+        const opacityMaxValue =
+            (typeof opacityValue === "number" ? opacityValue : opacityValue.max) * container.retina.pixelRatio;
         const pOpacity = particle.opacity.value;
-        const opacity = calculateBubbleValue(pOpacity, modeOpacity, optOpacity, ratio);
+        const opacity = calculateBubbleValue(pOpacity, modeOpacity, opacityMaxValue, ratio);
 
         if (opacity !== undefined) {
             particle.bubble.opacity = opacity;

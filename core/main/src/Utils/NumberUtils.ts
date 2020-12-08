@@ -1,7 +1,7 @@
-import type { IValueWithRandom } from "../Options/Interfaces/IValueWithRandom";
 import type { ICoordinates } from "../Core/Interfaces/ICoordinates";
-import { MoveDirection, MoveDirectionAlt } from "../Enums/Directions";
+import { MoveDirection, MoveDirectionAlt } from "../Enums";
 import { Velocity } from "../Core/Particle/Velocity";
+import { RangeValue } from "../Types";
 
 /**
  * Clamps a number between a minimum and maximum value
@@ -24,29 +24,54 @@ export function mix(comp1: number, comp2: number, weight1: number, weight2: numb
     return Math.floor((comp1 * weight1 + comp2 * weight2) / (weight1 + weight2));
 }
 
-export function randomInRange(r1: number, r2: number): number {
-    const max = Math.max(r1, r2),
-        min = Math.min(r1, r2);
+export function randomInRange(r: RangeValue): number {
+    const max = getRangeMax(r);
+    let min = getRangeMin(r);
+
+    if (max === min) {
+        min = 0;
+    }
 
     return Math.random() * (max - min) + min;
 }
 
-export function getValue(options: IValueWithRandom): number {
-    const random = options.random;
-    const { enable, minimumValue } = typeof random === "boolean" ? { enable: random, minimumValue: 0 } : random;
+export function getRangeValue(value: RangeValue): number {
+    return typeof value === "number" ? value : randomInRange(value);
+}
 
-    return enable ? randomInRange(minimumValue, options.value) : options.value;
+export function getRangeMin(value: RangeValue): number {
+    return typeof value === "number" ? value : value.min;
+}
+
+export function getRangeMax(value: RangeValue): number {
+    return typeof value === "number" ? value : value.max;
+}
+
+export function setRangeValue(source: RangeValue, value?: number): RangeValue {
+    if (source === value || (value === undefined && typeof source === "number")) {
+        return source;
+    }
+
+    const min = getRangeMin(source),
+        max = getRangeMax(source);
+
+    return value !== undefined
+        ? {
+              min: Math.min(min, value),
+              max: Math.max(max, value),
+          }
+        : setRangeValue(min, max);
 }
 
 /**
  * Gets the distance between two coordinates
- * @param pointA the first coordinate
- * @param pointB the second coordinate
+ * @param p1 the first coordinate
+ * @param p2 the second coordinate
  */
-export function getDistances(pointA: ICoordinates, pointB: ICoordinates): { dx: number; dy: number; distance: number } {
-    const dx = pointA.x - pointB.x;
-    const dy = pointA.y - pointB.y;
-    return { dx: dx, dy: dy, distance: Math.sqrt(dx * dx + dy * dy) };
+export function getDistances(p1: ICoordinates, p2: ICoordinates): { dx: number; dy: number; distance: number } {
+    const dx = p1.x - p2.x;
+    const dy = p1.y - p2.y;
+    return { dx: dx, dy: dy, distance: Math.sqrt(dx ** 2 + dy ** 2) };
 }
 
 /**
@@ -145,12 +170,12 @@ export class NumberUtils {
         return mix(comp1, comp2, weight1, weight2);
     }
 
-    public static randomInRange(r1: number, r2: number): number {
-        return randomInRange(r1, r2);
+    public static randomInRange(r: RangeValue): number {
+        return randomInRange(r);
     }
 
-    public static getValue(options: IValueWithRandom): number {
-        return getValue(options);
+    public static getRangeValue(value: RangeValue): number {
+        return getRangeValue(value);
     }
 
     /**

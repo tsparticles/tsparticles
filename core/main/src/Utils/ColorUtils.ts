@@ -2,7 +2,7 @@ import type { IColor, IRgb, IRgba, IHsl, IHsla, IValueColor, IHsv, IHsva } from 
 import { itemFromArray } from "./Utils";
 import { Constants } from "./Constants";
 import type { IImage } from "../Core/Interfaces/IImage";
-import { mix, randomInRange } from "./NumberUtils";
+import { mix, randomInRange, setRangeValue } from "./NumberUtils";
 import type { IParticle } from "../Core/Interfaces/IParticle";
 import type { IParticleHslAnimation } from "../Core/Interfaces/IParticleHslAnimation";
 
@@ -404,11 +404,12 @@ export function rgbaToHsva(rgba: IRgba): IHsva {
  */
 export function getRandomRgbColor(min?: number): IRgb {
     const fixedMin = min ?? 0;
+    const range = setRangeValue(fixedMin, 256);
 
     return {
-        b: Math.floor(randomInRange(fixedMin, 256)),
-        g: Math.floor(randomInRange(fixedMin, 256)),
-        r: Math.floor(randomInRange(fixedMin, 256)),
+        b: Math.floor(randomInRange(range)),
+        g: Math.floor(randomInRange(range)),
+        r: Math.floor(randomInRange(range)),
     };
 }
 

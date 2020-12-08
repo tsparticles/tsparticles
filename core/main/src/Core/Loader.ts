@@ -215,7 +215,11 @@ export class Loader {
                     y: pos.y * pxRatio,
                 };
 
-                const particles = domItem.particles.quadTree.queryCircle(posRetina, domItem.retina.sizeValue);
+                const sizeValue = domItem.options.particles.size.value;
+                const particles = domItem.particles.quadTree.queryCircle(
+                    posRetina,
+                    domItem.retina.pixelRatio * (typeof sizeValue === "number" ? sizeValue : sizeValue.max)
+                );
 
                 callback(e, particles);
             };

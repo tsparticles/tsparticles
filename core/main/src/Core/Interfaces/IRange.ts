@@ -1,4 +1,4 @@
-export interface IOffsetValue {
+export interface IRangeValue {
     min: number;
     max: number;
 }
