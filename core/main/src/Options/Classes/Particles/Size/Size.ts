@@ -3,6 +3,7 @@ import { SizeAnimation } from "./SizeAnimation";
 import type { RecursivePartial } from "../../../../Types";
 import type { IOptionLoader } from "../../../Interfaces/IOptionLoader";
 import { ValueWithRandom } from "../../ValueWithRandom";
+import { setRangeValue } from "../../../../Utils";
 
 /**
  * [[include:Options/Particles/Size.md]]
@@ -49,19 +50,7 @@ export class Size extends ValueWithRandom implements ISize, IOptionLoader<ISize>
         }
 
         if (this.animation.enable) {
-            if (this.animation.minimumValue !== undefined) {
-                if (typeof this.value === "number") {
-                    this.value = {
-                        min: Math.min(this.animation.minimumValue, this.value),
-                        max: Math.max(this.animation.minimumValue, this.value),
-                    };
-                } else {
-                    this.value = {
-                        min: Math.min(this.animation.minimumValue, this.value.min),
-                        max: Math.max(this.animation.minimumValue, this.value.max),
-                    };
-                }
-            }
+            this.value = setRangeValue(this.value, this.animation.minimumValue);
         }
     }
 }

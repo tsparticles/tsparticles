@@ -18,12 +18,10 @@ export class Retina {
     public attractDistance!: number;
     public linksDistance!: number;
     public linksWidth!: number;
-    public moveSpeed!: number;
     public sizeAnimationSpeed!: number;
     public pixelRatio!: number;
     public bounceModeDistance!: number;
     public orbitRadius?: number;
-    public orbitRotation!: number;
 
     constructor(private readonly container: Container) {}
 
@@ -86,9 +84,7 @@ export class Retina {
         this.attractDistance = particles.move.attract.distance * ratio;
         this.linksDistance = particles.links.distance * ratio;
         this.linksWidth = particles.links.width * ratio;
-        this.moveSpeed = particles.move.speed * ratio;
         this.sizeAnimationSpeed = particles.size.animation.speed * ratio;
-        this.orbitRotation = particles.orbit.rotation.value * this.container.retina.pixelRatio;
 
         if (particles.orbit.radius !== undefined) {
             this.orbitRadius = particles.orbit.radius * this.container.retina.pixelRatio;
@@ -119,7 +115,6 @@ export class Retina {
         particle.attractDistance = options.move.attract.distance * ratio;
         particle.linksDistance = options.links.distance * ratio;
         particle.linksWidth = options.links.width * ratio;
-        particle.moveSpeed = options.move.speed * ratio;
         particle.sizeAnimationSpeed = options.size.animation.speed * ratio;
         particle.orbitRadius = orbit?.radius !== undefined ? orbit.radius * ratio : undefined;
 

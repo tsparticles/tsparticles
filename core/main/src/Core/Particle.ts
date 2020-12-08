@@ -74,7 +74,7 @@ export class Particle implements IParticle {
     public linksDistance?: number;
     public attractDistance?: number;
     public linksWidth?: number;
-    public moveSpeed?: number;
+    public moveSpeed: number;
     public sizeAnimationSpeed?: number;
     public orbitRadius?: number;
     public orbitRotation?: number;
@@ -210,6 +210,7 @@ export class Particle implements IParticle {
         const color = this.options.color;
 
         this.direction = this.options.move.direction;
+        this.moveSpeed = getRangeValue(this.options.move.speed);
         this.bubble = {
             inRange: false,
         };
@@ -294,16 +295,7 @@ export class Particle implements IParticle {
         const orbitOptions = particlesOptions.orbit;
 
         if (orbitOptions.enable) {
-            const orbitRotationOptions = orbitOptions.rotation.random;
-            if (orbitRotationOptions.enable) {
-                const orbitRange = setRangeValue(orbitRotationOptions.minimumValue, 360);
-
-                this.orbitRotation = Math.floor(
-                    orbitRotationOptions.minimumValue ? randomInRange(orbitRange) : Math.random() * 360
-                );
-            } else {
-                this.orbitRotation = orbitOptions.rotation.value;
-            }
+            this.orbitRotation = getRangeValue(orbitOptions.rotation.value);
 
             this.orbitColor = colorToHsl(orbitOptions.color);
         }

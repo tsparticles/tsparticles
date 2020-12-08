@@ -507,7 +507,7 @@ export class Canvas {
             particle.orbitRadius ?? container.retina.orbitRadius ?? particle.getRadius(),
             orbitOptions.opacity,
             orbitOptions.width,
-            particle.orbitRotation ?? container.retina.orbitRotation,
+            (particle.orbitRotation ?? 0) * container.retina.pixelRatio,
             start,
             end
         );

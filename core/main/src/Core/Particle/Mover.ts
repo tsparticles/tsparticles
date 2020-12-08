@@ -56,7 +56,7 @@ export class Mover {
 
         const container = this.container,
             slowFactor = this.getProximitySpeedFactor(particle),
-            baseSpeed = (particle.moveSpeed ?? container.retina.moveSpeed) * container.retina.reduceFactor,
+            baseSpeed = particle.moveSpeed * container.retina.pixelRatio * container.retina.reduceFactor,
             sizeValue = particle.options.size.value,
             maxSize = (typeof sizeValue === "number" ? sizeValue : sizeValue.max) * container.retina.pixelRatio,
             sizeFactor = particlesOptions.move.size ? particle.getRadius() / maxSize : 1,

@@ -62,10 +62,11 @@ export class AbsorberInstance {
     }
 
     public attract(particle: OrbitingParticle): void {
+        const container = this.container;
         const options = this.options;
 
         if (options.draggable) {
-            const mouse = this.container.interactivity.mouse;
+            const mouse = container.interactivity.mouse;
 
             if (mouse.clicking && mouse.downPosition) {
                 const mouseDist = getDistance(this.position, mouse.downPosition);
@@ -86,10 +87,10 @@ export class AbsorberInstance {
         const pos = particle.getPosition();
         const { dx, dy, distance } = getDistances(this.position, pos);
         const angle = Math.atan2(dx, dy);
-        const acceleration = (this.mass / Math.pow(distance, 2)) * this.container.retina.reduceFactor;
+        const acceleration = (this.mass / Math.pow(distance, 2)) * container.retina.reduceFactor;
 
         if (distance < this.size + particle.getRadius()) {
-            const sizeFactor = particle.getRadius() * 0.033 * this.container.retina.pixelRatio;
+            const sizeFactor = particle.getRadius() * 0.033 * container.retina.pixelRatio;
 
             if (
                 (this.size > particle.getRadius() && distance < this.size - particle.getRadius()) ||
@@ -114,7 +115,7 @@ export class AbsorberInstance {
                 this.size += sizeFactor;
             }
 
-            this.mass += sizeFactor * this.options.size.density * this.container.retina.reduceFactor;
+            this.mass += sizeFactor * this.options.size.density * container.retina.reduceFactor;
         } else {
             this.updateParticlePosition(particle, angle, acceleration);
         }
@@ -154,7 +155,8 @@ export class AbsorberInstance {
             return;
         }
 
-        const canvasSize = this.container.canvas.size;
+        const container = this.container;
+        const canvasSize = container.canvas.size;
 
         if (particle.needsNewPosition) {
             const pSize = particle.getRadius();
@@ -200,7 +202,7 @@ export class AbsorberInstance {
 
             particle.absorberOrbitRadius -= acceleration;
             particle.absorberOrbitAngle +=
-                ((particle.moveSpeed ?? this.container.retina.moveSpeed) / 100) * this.container.retina.reduceFactor;
+                ((particle.moveSpeed * container.retina.pixelRatio) / 100) * container.retina.reduceFactor;
         } else {
             const addV = new Velocity(0, 0);
 
