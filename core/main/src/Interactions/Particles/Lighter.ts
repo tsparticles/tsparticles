@@ -1,5 +1,5 @@
-import { Utils } from "../../Utils";
-import { HoverMode } from "../../Enums/Modes";
+import { isInArray } from "../../Utils";
+import { HoverMode } from "../../Enums";
 import type { Container } from "../../Core/Container";
 import { Particle } from "../../Core/Particle";
 import { ParticlesBase } from "./ParticlesBase";
@@ -33,7 +33,7 @@ export class Lighter extends ParticlesBase {
 
         const hoverMode = events.onHover.mode;
 
-        return Utils.isInArray(HoverMode.light, hoverMode);
+        return isInArray(HoverMode.light, hoverMode);
     }
 
     public reset(): void {

@@ -3,7 +3,7 @@ import type { IParticle } from "../../Core/Interfaces/IParticle";
 import type { ICoordinates } from "../../Core/Interfaces/ICoordinates";
 import type { IDimension } from "../../Core/Interfaces/IDimension";
 import { ParticlesBase } from "./ParticlesBase";
-import { Circle, CircleWarp, getLinkRandomColor, NumberUtils } from "../../Utils";
+import { Circle, CircleWarp, getDistance, getLinkRandomColor } from "../../Utils";
 
 export class Linker extends ParticlesBase {
     constructor(container: Container) {
@@ -93,7 +93,7 @@ export class Linker extends ParticlesBase {
         canvasSize: IDimension,
         warp: boolean
     ): number {
-        let distance = NumberUtils.getDistance(pos1, pos2);
+        let distance = getDistance(pos1, pos2);
 
         if (distance <= optDistance || !warp) {
             return distance;
@@ -104,7 +104,7 @@ export class Linker extends ParticlesBase {
             y: pos2.y,
         };
 
-        distance = NumberUtils.getDistance(pos1, pos2NE);
+        distance = getDistance(pos1, pos2NE);
 
         if (distance <= optDistance) {
             return distance;
@@ -115,7 +115,7 @@ export class Linker extends ParticlesBase {
             y: pos2.y - canvasSize.height,
         };
 
-        distance = NumberUtils.getDistance(pos1, pos2SE);
+        distance = getDistance(pos1, pos2SE);
 
         if (distance <= optDistance) {
             return distance;
@@ -126,7 +126,7 @@ export class Linker extends ParticlesBase {
             y: pos2.y - canvasSize.height,
         };
 
-        distance = NumberUtils.getDistance(pos1, pos2SW);
+        distance = getDistance(pos1, pos2SW);
 
         return distance;
     }

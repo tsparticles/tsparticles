@@ -161,7 +161,7 @@ export function loadPreset(tsParticles: Main): void {
                     arP0[kh] = arP1[kh];
                     arP1[kh] = randomFunc();
                 } // if full period reached
-                pfl = pf * pf * (3 - 2 * pf); // always 0..1, but smoother
+                pfl = pf ** 2 * (3 - 2 * pf); // always 0..1, but smoother
                 signal += (arP0[kh] * (1 - pfl) + arP1[kh] * pfl) * amplitudes[kh];
             } // for kh
             return signal + lowValue;

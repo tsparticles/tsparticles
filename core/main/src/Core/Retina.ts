@@ -1,6 +1,6 @@
 import type { Container } from "./Container";
 import type { Particle } from "./Particle";
-import { Utils } from "../Utils";
+import { isSsr } from "../Utils";
 
 /**
  * @category Core
@@ -18,13 +18,10 @@ export class Retina {
     public attractDistance!: number;
     public linksDistance!: number;
     public linksWidth!: number;
-    public moveSpeed!: number;
-    public sizeValue!: number;
     public sizeAnimationSpeed!: number;
     public pixelRatio!: number;
     public bounceModeDistance!: number;
     public orbitRadius?: number;
-    public orbitRotation!: number;
 
     constructor(private readonly container: Container) {}
 
@@ -44,7 +41,7 @@ export class Retina {
         const motionOptions = this.container.options.motion;
 
         if (motionOptions && (motionOptions.disable || motionOptions.reduce.value)) {
-            if (Utils.isSsr() || typeof matchMedia === "undefined" || !matchMedia) {
+            if (isSsr() || typeof matchMedia === "undefined" || !matchMedia) {
                 this.reduceFactor = 1;
             } else {
                 const mediaQuery = matchMedia("(prefers-reduced-motion: reduce)");
@@ -87,10 +84,7 @@ export class Retina {
         this.attractDistance = particles.move.attract.distance * ratio;
         this.linksDistance = particles.links.distance * ratio;
         this.linksWidth = particles.links.width * ratio;
-        this.moveSpeed = particles.move.speed * ratio;
-        this.sizeValue = particles.size.value * ratio;
         this.sizeAnimationSpeed = particles.size.animation.speed * ratio;
-        this.orbitRotation = particles.orbit.rotation.value * this.container.retina.pixelRatio;
 
         if (particles.orbit.radius !== undefined) {
             this.orbitRadius = particles.orbit.radius * this.container.retina.pixelRatio;
@@ -113,23 +107,25 @@ export class Retina {
     }
 
     public initParticle(particle: Particle): void {
-        const particlesOptions = particle.options;
+        const options = particle.options;
         const ratio = this.pixelRatio;
-        const orbit = particlesOptions.orbit;
-        const moveDistance = particlesOptions.move.distance;
+        const orbit = options.orbit;
+        const moveDistance = options.move.distance;
 
-        particle.attractDistance = particlesOptions.move.attract.distance * ratio;
-        particle.linksDistance = particlesOptions.links.distance * ratio;
-        particle.linksWidth = particlesOptions.links.width * ratio;
-        particle.moveSpeed = particlesOptions.move.speed * ratio;
-        particle.sizeValue = particlesOptions.size.value * ratio;
-        particle.sizeAnimationSpeed = particlesOptions.size.animation.speed * ratio;
+        particle.attractDistance = options.move.attract.distance * ratio;
+        particle.linksDistance = options.links.distance * ratio;
+        particle.linksWidth = options.links.width * ratio;
+        particle.sizeAnimationSpeed = options.size.animation.speed * ratio;
         particle.orbitRadius = orbit?.radius !== undefined ? orbit.radius * ratio : undefined;
-        particle.spinAcceleration = particlesOptions.move.spin.acceleration * ratio;
-        particle.maxDistance = {
-            horizontal: moveDistance.horizontal ? moveDistance.horizontal * ratio : undefined,
-            vertical: moveDistance.vertical ? moveDistance.vertical * ratio : undefined,
-        };
+
+        if (particle.spin) {
+            particle.spin.acceleration = options.move.spin.acceleration * ratio;
+        }
+
+        const maxDistance = particle.maxDistance;
+
+        maxDistance.horizontal = moveDistance.horizontal !== undefined ? moveDistance.horizontal * ratio : undefined;
+        maxDistance.vertical = moveDistance.vertical !== undefined ? moveDistance.vertical * ratio : undefined;
     }
 
     private handleMotionChange(mediaQuery: MediaQueryList): void {

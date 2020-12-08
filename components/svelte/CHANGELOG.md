@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.2.0-alpha.4](https://github.com/matteobruni/tsparticles/compare/svelte-particles@1.2.0-alpha.3...svelte-particles@1.2.0-alpha.4) (2020-12-08)
+
+**Note:** Version bump only for package svelte-particles
+
+
+
+
+
 # [1.2.0-alpha.3](https://github.com/matteobruni/tsparticles/compare/svelte-particles@1.2.0-alpha.2...svelte-particles@1.2.0-alpha.3) (2020-11-27)
 
 **Note:** Version bump only for package svelte-particles

@@ -9,6 +9,7 @@ export interface IParticlesProps {
     height?: string;
     options?: ISourceOptions;
     params?: ISourceOptions;
+    url?: string;
     style?: CSSProperties;
     className?: string;
     canvasClassName?: string;

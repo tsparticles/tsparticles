@@ -11,6 +11,9 @@ export class TestCanvas {
         const newCanvas = createCanvas(width, height) as any;
         newCanvas.offsetHeight = newCanvas.height;
         newCanvas.offsetWidth = newCanvas.width;
+        newCanvas.style = {
+            backgroundColor: "",
+        };
         this.container = container;
         this.canvas = container.canvas;
         this.canvas.loadCanvas(newCanvas as HTMLCanvasElement);
@@ -31,6 +34,9 @@ export class TestCanvas {
         const newCanvas = createCanvas(width, height) as any;
         newCanvas.offsetHeight = newCanvas.height;
         newCanvas.offsetWidth = newCanvas.width;
+        newCanvas.style = {
+            backgroundColor: "",
+        };
         this.canvas = this.container.canvas;
         this.canvas.loadCanvas(newCanvas as HTMLCanvasElement);
     }

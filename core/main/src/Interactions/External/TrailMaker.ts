@@ -1,6 +1,6 @@
 import type { Container } from "../../Core/Container";
-import { Utils } from "../../Utils";
-import { ClickMode, HoverMode } from "../../Enums/Modes";
+import { isInArray } from "../../Utils";
+import { ClickMode, HoverMode } from "../../Enums";
 import type { IDelta } from "../../Core/Interfaces/IDelta";
 import { ICoordinates } from "../../Core/Interfaces/ICoordinates";
 import { ExternalBase } from "./ExternalBase";
@@ -71,11 +71,8 @@ export class TrailMaker extends ExternalBase {
         const events = options.interactivity.events;
 
         return (
-            (mouse.clicking &&
-                mouse.inside &&
-                !!mouse.position &&
-                Utils.isInArray(ClickMode.trail, events.onClick.mode)) ||
-            (mouse.inside && !!mouse.position && Utils.isInArray(HoverMode.trail, events.onHover.mode))
+            (mouse.clicking && mouse.inside && !!mouse.position && isInArray(ClickMode.trail, events.onClick.mode)) ||
+            (mouse.inside && !!mouse.position && isInArray(HoverMode.trail, events.onHover.mode))
         );
     }
 

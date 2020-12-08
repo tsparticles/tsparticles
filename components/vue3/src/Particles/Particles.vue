@@ -20,6 +20,9 @@ export type IParticlesParams = IParticlesProps;
     options: {
       type: Object as PropType<IParticlesProps>
     },
+    url: {
+      type: String,
+    },
     particlesLoaded: {
       type: Object as PropType<(container: Container) => void>
     },
@@ -31,6 +34,7 @@ export type IParticlesParams = IParticlesProps;
 export default class Particles extends Vue {
   private id!: string;
   private options?: IParticlesProps;
+  private url?: string;
   private particlesLoaded?: (container: Container) => void;
   private particlesInit?: (tsParticles: Main) => void;
   private container?: Container;
@@ -47,15 +51,23 @@ export default class Particles extends Vue {
         this.particlesInit(tsParticles);
       }
 
-      tsParticles
-          .load(this.id, this.options ?? {})
-          .then(container => {
-            this.container = container;
+      const cb = (container?: Container) => {
+        this.container = container;
 
-            if (this.particlesLoaded) {
-              this.particlesLoaded(container);
-            }
-          });
+        if (this.particlesLoaded && container) {
+          this.particlesLoaded(container);
+        }
+      };
+
+      if (this.url) {
+        tsParticles
+            .loadJSON(this.id, this.url)
+            .then(cb);
+      } else {
+        tsParticles
+            .load(this.id, this.options ?? {})
+            .then(cb);
+      }
     });
   }
 

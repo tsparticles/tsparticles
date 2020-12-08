@@ -1,6 +1,18 @@
 import type { Container } from "../../Core/Container";
 import type { IBubblerProcessParam } from "../../Core/Interfaces/IBubblerProcessParam";
-import { Circle, colorToHsl, Constants, NumberUtils, Rectangle, Utils } from "../../Utils";
+import {
+    Circle,
+    clamp,
+    colorToHsl,
+    Constants,
+    divMode,
+    divModeExecute,
+    getDistance,
+    isDivModeEnabled,
+    isInArray,
+    itemFromArray,
+    Rectangle,
+} from "../../Utils";
 import { ClickMode, DivMode, DivType, HoverMode, ProcessBubbleType } from "../../Enums";
 import { Particle } from "../../Core/Particle";
 import { DivEvent } from "../../Options/Classes/Interactivity/Events/DivEvent";
@@ -16,11 +28,11 @@ function calculateBubbleValue(
     if (modeValue > optionsValue) {
         const size = particleValue + (modeValue - optionsValue) * ratio;
 
-        return NumberUtils.clamp(size, particleValue, modeValue);
+        return clamp(size, particleValue, modeValue);
     } else if (modeValue < optionsValue) {
         const size = particleValue - (optionsValue - modeValue) * ratio;
 
-        return NumberUtils.clamp(size, modeValue, particleValue);
+        return clamp(size, modeValue, particleValue);
     }
 }
 
@@ -41,7 +53,7 @@ export class Bubbler extends ExternalBase {
         const events = options.interactivity.events;
         const divs = events.onDiv;
 
-        const divBubble = Utils.isDivModeEnabled(DivMode.bubble, divs);
+        const divBubble = isDivModeEnabled(DivMode.bubble, divs);
 
         if (
             !(divBubble || (events.onHover.enable && mouse.position) || (events.onClick.enable && mouse.clickPosition))
@@ -52,9 +64,7 @@ export class Bubbler extends ExternalBase {
         const hoverMode = events.onHover.mode;
         const clickMode = events.onClick.mode;
 
-        return (
-            Utils.isInArray(HoverMode.bubble, hoverMode) || Utils.isInArray(ClickMode.bubble, clickMode) || divBubble
-        );
+        return isInArray(HoverMode.bubble, hoverMode) || isInArray(ClickMode.bubble, clickMode) || divBubble;
     }
 
     public reset(particle: Particle, force?: boolean): void {
@@ -78,14 +88,12 @@ export class Bubbler extends ExternalBase {
         const divs = events.onDiv;
 
         /* on hover event */
-        if (hoverEnabled && Utils.isInArray(HoverMode.bubble, hoverMode)) {
+        if (hoverEnabled && isInArray(HoverMode.bubble, hoverMode)) {
             this.hoverBubble();
-        } else if (clickEnabled && Utils.isInArray(ClickMode.bubble, clickMode)) {
+        } else if (clickEnabled && isInArray(ClickMode.bubble, clickMode)) {
             this.clickBubble();
         } else {
-            Utils.divModeExecute(DivMode.bubble, divs, (selector, div): void =>
-                this.singleSelectorHover(selector, div)
-            );
+            divModeExecute(DivMode.bubble, divs, (selector, div): void => this.singleSelectorHover(selector, div));
         }
     }
 
@@ -126,7 +134,7 @@ export class Bubbler extends ExternalBase {
                 particle.bubble.inRange = true;
 
                 const divs = container.options.interactivity.modes.bubble.divs;
-                const divBubble = Utils.divMode(divs, elem);
+                const divBubble = divMode(divs, elem);
 
                 if (!particle.bubble.div || particle.bubble.div !== elem) {
                     this.reset(particle, true);
@@ -221,7 +229,7 @@ export class Bubbler extends ExternalBase {
             particle.bubble.inRange = !container.bubble.durationEnd;
 
             const pos = particle.getPosition();
-            const distMouse = NumberUtils.getDistance(pos, mouseClickPos);
+            const distMouse = getDistance(pos, mouseClickPos);
             const timeSpent = (new Date().getTime() - (container.interactivity.mouse.clickTime || 0)) / 1000;
 
             if (timeSpent > options.interactivity.modes.bubble.duration) {
@@ -231,30 +239,43 @@ export class Bubbler extends ExternalBase {
                 container.bubble.clicking = false;
                 container.bubble.durationEnd = false;
             }
+
+            const sizeValue = particle.options.size.value;
+            const sizeMaxValue =
+                (typeof sizeValue === "number" ? sizeValue : sizeValue.max) * container.retina.pixelRatio;
+
             const sizeData: IBubblerProcessParam = {
                 bubbleObj: {
                     optValue: container.retina.bubbleModeSize,
                     value: particle.bubble.radius,
                 },
                 particlesObj: {
-                    optValue: particle.sizeValue ?? container.retina.sizeValue,
+                    optValue: sizeMaxValue,
                     value: particle.size.value,
                 },
                 type: ProcessBubbleType.size,
             };
+
             this.process(particle, distMouse, timeSpent, sizeData);
+
+            const opacityValue = particle.options.opacity.value;
+            const opacityMaxValue =
+                (typeof opacityValue === "number" ? opacityValue : opacityValue.max) * container.retina.pixelRatio;
+
             const opacityData: IBubblerProcessParam = {
                 bubbleObj: {
                     optValue: options.interactivity.modes.bubble.opacity,
                     value: particle.bubble.opacity,
                 },
                 particlesObj: {
-                    optValue: particle.options.opacity.value,
+                    optValue: opacityMaxValue,
                     value: particle.opacity.value,
                 },
                 type: ProcessBubbleType.opacity,
             };
+
             this.process(particle, distMouse, timeSpent, opacityData);
+
             if (!container.bubble.durationEnd) {
                 if (distMouse <= container.retina.bubbleModeDistance) {
                     this.hoverBubbleColor(particle);
@@ -283,7 +304,7 @@ export class Bubbler extends ExternalBase {
             particle.bubble.inRange = true;
 
             const pos = particle.getPosition();
-            const pointDistance = NumberUtils.getDistance(pos, mousePos);
+            const pointDistance = getDistance(pos, mousePos);
             const ratio = 1 - pointDistance / distance;
 
             /* mousemove - check ratio */
@@ -319,9 +340,10 @@ export class Bubbler extends ExternalBase {
             return;
         }
 
-        const optSize = particle.sizeValue ?? container.retina.sizeValue;
+        const sizeValue = particle.options.size.value;
+        const sizeMaxValue = (typeof sizeValue === "number" ? sizeValue : sizeValue.max) * container.retina.pixelRatio;
         const pSize = particle.size.value;
-        const size = calculateBubbleValue(pSize, modeSize, optSize, ratio);
+        const size = calculateBubbleValue(pSize, modeSize, sizeMaxValue, ratio);
 
         if (size !== undefined) {
             particle.bubble.radius = size;
@@ -329,16 +351,19 @@ export class Bubbler extends ExternalBase {
     }
 
     private hoverBubbleOpacity(particle: Particle, ratio: number, divBubble?: BubbleDiv): void {
-        const options = this.container.options;
+        const container = this.container;
+        const options = container.options;
         const modeOpacity = divBubble?.opacity ?? options.interactivity.modes.bubble.opacity;
 
         if (modeOpacity === undefined) {
             return;
         }
 
-        const optOpacity = particle.options.opacity.value;
+        const opacityValue = particle.options.opacity.value;
+        const opacityMaxValue =
+            (typeof opacityValue === "number" ? opacityValue : opacityValue.max) * container.retina.pixelRatio;
         const pOpacity = particle.opacity.value;
-        const opacity = calculateBubbleValue(pOpacity, modeOpacity, optOpacity, ratio);
+        const opacity = calculateBubbleValue(pOpacity, modeOpacity, opacityMaxValue, ratio);
 
         if (opacity !== undefined) {
             particle.bubble.opacity = opacity;
@@ -355,7 +380,7 @@ export class Bubbler extends ExternalBase {
                 return;
             }
 
-            const bubbleColor = modeColor instanceof Array ? Utils.itemFromArray(modeColor) : modeColor;
+            const bubbleColor = modeColor instanceof Array ? itemFromArray(modeColor) : modeColor;
 
             particle.bubble.color = colorToHsl(bubbleColor);
         }

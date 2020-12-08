@@ -11,7 +11,7 @@ export class AngleUpdater implements IParticleUpdater {
         const rotate = particle.options.rotate;
         const rotateAnimation = rotate.animation;
 
-        return !particle.destroyed && !particle.spawning && (rotate.path || rotateAnimation.enable);
+        return !particle.destroyed && !particle.spawning && !rotate.path && rotateAnimation.enable;
     }
 
     public update(particle: Particle, delta: IDelta): void {
@@ -19,31 +19,25 @@ export class AngleUpdater implements IParticleUpdater {
             return;
         }
 
-        const rotate = particle.options.rotate;
-        const rotateAnimation = rotate.animation;
         const speed = (particle.rotate.velocity ?? 0) * delta.factor;
         const max = 2 * Math.PI;
 
-        if (rotate.path) {
-            particle.pathAngle = Math.atan2(particle.velocity.vertical, particle.velocity.horizontal);
-        } else if (rotateAnimation.enable) {
-            switch (particle.rotate.status) {
-                case AnimationStatus.increasing:
-                    particle.rotate.value += speed;
+        switch (particle.rotate.status) {
+            case AnimationStatus.increasing:
+                particle.rotate.value += speed;
 
-                    if (particle.rotate.value > max) {
-                        particle.rotate.value -= max;
-                    }
-                    break;
-                case AnimationStatus.decreasing:
-                default:
-                    particle.rotate.value -= speed;
+                if (particle.rotate.value > max) {
+                    particle.rotate.value -= max;
+                }
+                break;
+            case AnimationStatus.decreasing:
+            default:
+                particle.rotate.value -= speed;
 
-                    if (particle.rotate.value < 0) {
-                        particle.rotate.value += max;
-                    }
-                    break;
-            }
+                if (particle.rotate.value < 0) {
+                    particle.rotate.value += max;
+                }
+                break;
         }
     }
 }

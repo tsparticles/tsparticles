@@ -5,14 +5,18 @@ import { DestroyType, StartValueType } from "../../../../Enums/Types";
  */
 export interface IOpacityAnimation {
     /**
-     * @deprecated use the new minimumValue instead
+     * @deprecated use the new Range syntax
      */
-    opacity_min: number;
+    opacity_min?: number;
+
+    /**
+     * @deprecated use the new Range syntax
+     */
+    minimumValue?: number;
 
     count: number;
     destroy: DestroyType | keyof typeof DestroyType;
     enable: boolean;
-    minimumValue: number;
     speed: number;
     sync: boolean;
     startValue: StartValueType | keyof typeof StartValueType;

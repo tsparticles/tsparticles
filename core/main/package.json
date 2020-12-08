@@ -1,6 +1,6 @@
 {
   "name": "tsparticles",
-  "version": "1.19.0-alpha.3",
+  "version": "1.19.0-alpha.4",
   "description": "Easily create highly customizable particle animations and use them as animated backgrounds for your website. Ready to use components available for React, Vue.js (2.x and 3.x), Angular, Svelte, jQuery, Preact, Inferno.",
   "homepage": "https://particles.matteobruni.it/",
   "scripts": {
@@ -112,7 +112,7 @@
     "compare-versions": "^3.6.0",
     "copyfiles": "^2.4.0",
     "eslint": "^7.13.0",
-    "eslint-config-prettier": "^6.15.0",
+    "eslint-config-prettier": "^7.0.0",
     "gh-pages": "^3.1.0",
     "install": "^0.13.0",
     "mkdirp": "^1.0.4",
@@ -128,7 +128,7 @@
     "typedoc-particles-theme": "^1.0.9",
     "typedoc-plugin-nojekyll": "^1.0.1",
     "typescript": "^4.1.2",
-    "typescript-json-schema": "^0.44.0",
+    "typescript-json-schema": "^0.45.0",
     "webpack": "^5.6.0",
     "webpack-bundle-analyzer": "^4.1.0",
     "webpack-cli": "^4.2.0",

@@ -1,11 +1,12 @@
 import type { IValueWithRandom } from "../Interfaces/IValueWithRandom";
 import type { IOptionLoader } from "../Interfaces/IOptionLoader";
 import { Random } from "./Random";
-import type { RecursivePartial } from "../../Types";
+import type { RangeValue, RecursivePartial } from "../../Types";
+import { setRangeValue } from "../../Utils";
 
 export abstract class ValueWithRandom implements IValueWithRandom, IOptionLoader<IValueWithRandom> {
     public random: Random;
-    public value: number;
+    public value: RangeValue;
 
     protected constructor() {
         this.random = new Random();
@@ -24,7 +25,7 @@ export abstract class ValueWithRandom implements IValueWithRandom, IOptionLoader
         }
 
         if (data.value !== undefined) {
-            this.value = data.value;
+            this.value = setRangeValue(data.value, this.random.enable ? this.random.minimumValue : undefined);
         }
     }
 }

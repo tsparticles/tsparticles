@@ -2,7 +2,7 @@
 
 # preact-particles
 
-[![npm](https://img.shields.io/npm/v/preact-particles)](https://www.npmjs.com/package/preact-particles) [![npm](https://img.shields.io/npm/dm/preact-particles)](https://www.npmjs.com/package/preact-particles)
+[![npm](https://img.shields.io/npm/v/preact-particles)](https://www.npmjs.com/package/preact-particles) [![npm](https://img.shields.io/npm/dm/preact-particles)](https://www.npmjs.com/package/preact-particles) [![Mentioned in Awesome Preact](https://awesome.re/mentioned-badge-flat.svg)](https://github.com/preactjs/awesome-preact#readme)
 
 Official [tsParticles](https://github.com/matteobruni/tsparticles) Preact component
 

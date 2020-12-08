@@ -1,7 +1,7 @@
 import { Particle } from "../../Core/Particle";
 import type { Container } from "../../Core/Container";
-import { NumberUtils } from "../../Utils";
-import { IParticle } from "../../Core/Interfaces/IParticle";
+import { clamp, getDistances } from "../../Utils";
+import type { IParticle } from "../../Core/Interfaces/IParticle";
 import { ParticlesBase } from "./ParticlesBase";
 
 export class Repulser extends ParticlesBase {
@@ -30,22 +30,18 @@ export class Repulser extends ParticlesBase {
             }
 
             const pos2 = p2.getPosition();
-            const { dx, dy, distance } = NumberUtils.getDistances(pos2, pos1);
+            const { dx, dy, distance } = getDistances(pos2, pos1);
             const velocity = repulseOpt1.speed * repulseOpt1.factor;
             if (distance > 0) {
-                const repulseFactor = NumberUtils.clamp(
-                    (1 - Math.pow(distance / repulseOpt1.distance, 2)) * velocity,
-                    0,
-                    velocity
-                );
+                const repulseFactor = clamp((1 - Math.pow(distance / repulseOpt1.distance, 2)) * velocity, 0, velocity);
                 const normVec = {
                     x: (dx / distance) * repulseFactor,
                     y: (dy / distance) * repulseFactor,
                 };
 
-                p2.mover.moveXY(normVec.x, normVec.y);
+                container.particles.mover.moveXY(p2, normVec.x, normVec.y);
             } else {
-                p2.mover.moveXY(velocity, velocity);
+                container.particles.mover.moveXY(p2, velocity, velocity);
             }
         }
     }

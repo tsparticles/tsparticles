@@ -1,6 +1,6 @@
 import type { Container } from "../../Core/Container";
 import { ClickMode, HoverMode } from "../../Enums";
-import { Circle, Constants, Range, Utils, NumberUtils } from "../../Utils";
+import { Circle, clamp, Constants, getDistances, isInArray, Range } from "../../Utils";
 import type { ICoordinates } from "../../Core/Interfaces/ICoordinates";
 import { ExternalBase } from "./ExternalBase";
 
@@ -27,7 +27,7 @@ export class Attractor extends ExternalBase {
         const hoverMode = events.onHover.mode;
         const clickMode = events.onClick.mode;
 
-        return Utils.isInArray(HoverMode.attract, hoverMode) || Utils.isInArray(ClickMode.attract, clickMode);
+        return isInArray(HoverMode.attract, hoverMode) || isInArray(ClickMode.attract, clickMode);
     }
 
     public reset(): void {
@@ -44,9 +44,9 @@ export class Attractor extends ExternalBase {
         const clickEnabled = events.onClick.enable;
         const clickMode = events.onClick.mode;
 
-        if (mouseMoveStatus && hoverEnabled && Utils.isInArray(HoverMode.attract, hoverMode)) {
+        if (mouseMoveStatus && hoverEnabled && isInArray(HoverMode.attract, hoverMode)) {
             this.hoverAttract();
-        } else if (clickEnabled && Utils.isInArray(ClickMode.attract, clickMode)) {
+        } else if (clickEnabled && isInArray(ClickMode.attract, clickMode)) {
             this.clickAttract();
         }
     }
@@ -70,13 +70,9 @@ export class Attractor extends ExternalBase {
         const query = container.particles.quadTree.query(area);
 
         for (const particle of query) {
-            const { dx, dy, distance } = NumberUtils.getDistances(particle.position, position);
+            const { dx, dy, distance } = getDistances(particle.position, position);
             const velocity = attractOptions.speed * attractOptions.factor;
-            const attractFactor = NumberUtils.clamp(
-                (1 - Math.pow(distance / attractRadius, 2)) * velocity,
-                0,
-                velocity
-            );
+            const attractFactor = clamp((1 - Math.pow(distance / attractRadius, 2)) * velocity, 0, velocity);
             const normVec = {
                 x: distance === 0 ? velocity : (dx / distance) * attractFactor,
                 y: distance === 0 ? velocity : (dy / distance) * attractFactor,

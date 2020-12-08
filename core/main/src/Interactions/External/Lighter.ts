@@ -1,5 +1,5 @@
-import { Utils } from "../../Utils";
-import { HoverMode } from "../../Enums/Modes";
+import { isInArray } from "../../Utils";
+import { HoverMode } from "../../Enums";
 import type { Container } from "../../Core/Container";
 import { ExternalBase } from "./ExternalBase";
 
@@ -34,7 +34,7 @@ export class Lighter extends ExternalBase {
 
         const hoverMode = events.onHover.mode;
 
-        return Utils.isInArray(HoverMode.light, hoverMode);
+        return isInArray(HoverMode.light, hoverMode);
     }
 
     public reset(): void {

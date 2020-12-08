@@ -8,26 +8,27 @@ import { DestroyType, StartValueType } from "../../../../Enums/Types";
  */
 export class OpacityAnimation implements IOpacityAnimation, IOptionLoader<IOpacityAnimation> {
     /**
-     *
-     * @deprecated this property is obsolete, please use the new minimumValue
+     * @deprecated use the new Range syntax
      */
-    public get opacity_min(): number {
+    public get opacity_min(): number | undefined {
         return this.minimumValue;
     }
 
     /**
-     *
-     * @deprecated this property is obsolete, please use the new minimumValue
-     * @param value
+     * @deprecated use the new Range syntax
      */
-    public set opacity_min(value: number) {
+    public set opacity_min(value: number | undefined) {
         this.minimumValue = value;
     }
+
+    /**
+     * @deprecated use the new Range syntax
+     */
+    public minimumValue?: number;
 
     public count;
     public destroy: DestroyType | keyof typeof DestroyType;
     public enable;
-    public minimumValue;
     public speed;
     public startValue: StartValueType | keyof typeof StartValueType;
     public sync;
@@ -36,7 +37,6 @@ export class OpacityAnimation implements IOpacityAnimation, IOptionLoader<IOpaci
         this.count = 0;
         this.destroy = DestroyType.none;
         this.enable = false;
-        this.minimumValue = 0;
         this.speed = 2;
         this.startValue = StartValueType.random;
         this.sync = false;
@@ -61,9 +61,7 @@ export class OpacityAnimation implements IOpacityAnimation, IOptionLoader<IOpaci
 
         const minimumValue = data.minimumValue ?? data.opacity_min;
 
-        if (minimumValue !== undefined) {
-            this.minimumValue = minimumValue;
-        }
+        this.minimumValue = minimumValue;
 
         if (data.speed !== undefined) {
             this.speed = data.speed;

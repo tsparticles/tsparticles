@@ -1,10 +1,10 @@
 import type { IColor, IRgb, IRgba, IHsl, IHsla, IValueColor, IHsv, IHsva } from "../Core/Interfaces/Colors";
-import { Utils } from "./Utils";
+import { itemFromArray } from "./Utils";
 import { Constants } from "./Constants";
 import type { IImage } from "../Core/Interfaces/IImage";
-import { NumberUtils } from "./NumberUtils";
-import { IParticle } from "../Core/Interfaces/IParticle";
-import { IParticleHslAnimation } from "../Core/Interfaces/IParticleHslAnimation";
+import { mix, randomInRange, setRangeValue } from "./NumberUtils";
+import type { IParticle } from "../Core/Interfaces/IParticle";
+import type { IParticleHslAnimation } from "../Core/Interfaces/IParticleHslAnimation";
 
 /**
  *
@@ -113,7 +113,7 @@ export function colorToRgb(input?: string | IColor, index?: number, useIndex = t
         }
     } else {
         if (color.value instanceof Array) {
-            const colorSelected = Utils.itemFromArray(color.value, index, useIndex);
+            const colorSelected = itemFromArray(color.value, index, useIndex);
 
             res = colorToRgb({ value: colorSelected });
         } else {
@@ -404,11 +404,12 @@ export function rgbaToHsva(rgba: IRgba): IHsva {
  */
 export function getRandomRgbColor(min?: number): IRgb {
     const fixedMin = min ?? 0;
+    const range = setRangeValue(fixedMin, 256);
 
     return {
-        b: Math.floor(NumberUtils.randomInRange(fixedMin, 256)),
-        g: Math.floor(NumberUtils.randomInRange(fixedMin, 256)),
-        r: Math.floor(NumberUtils.randomInRange(fixedMin, 256)),
+        b: Math.floor(randomInRange(range)),
+        g: Math.floor(randomInRange(range)),
+        r: Math.floor(randomInRange(range)),
     };
 }
 
@@ -439,7 +440,7 @@ export function getStyleFromHsv(color: IHsv, opacity?: number): string {
     return getStyleFromHsl(hsvToHsl(color), opacity);
 }
 
-export function mix(color1: IRgb | IHsl, color2: IRgb | IHsl, size1: number, size2: number): IRgb {
+export function colorMix(color1: IRgb | IHsl, color2: IRgb | IHsl, size1: number, size2: number): IRgb {
     let rgb1 = color1 as IRgb;
     let rgb2 = color2 as IRgb;
 
@@ -452,9 +453,9 @@ export function mix(color1: IRgb | IHsl, color2: IRgb | IHsl, size1: number, siz
     }
 
     return {
-        b: NumberUtils.mix(rgb1.b, rgb2.b, size1, size2),
-        g: NumberUtils.mix(rgb1.g, rgb2.g, size1, size2),
-        r: NumberUtils.mix(rgb1.r, rgb2.r, size1, size2),
+        b: mix(rgb1.b, rgb2.b, size1, size2),
+        g: mix(rgb1.g, rgb2.g, size1, size2),
+        r: mix(rgb1.r, rgb2.r, size1, size2),
     };
 }
 
@@ -478,7 +479,7 @@ export function getLinkColor(p1: IParticle, p2?: IParticle, linkColor?: string |
         const destColor = p2?.getFillColor() ?? p2?.getStrokeColor();
 
         if (sourceColor && destColor && p2) {
-            return mix(sourceColor, destColor, p1.getRadius(), p2.getRadius());
+            return colorMix(sourceColor, destColor, p1.getRadius(), p2.getRadius());
         } else {
             const hslColor = sourceColor ?? destColor;
 
@@ -645,7 +646,7 @@ export class ColorUtils {
     }
 
     public static mix(color1: IRgb | IHsl, color2: IRgb | IHsl, size1: number, size2: number): IRgb {
-        return mix(color1, color2, size1, size2);
+        return colorMix(color1, color2, size1, size2);
     }
 
     public static replaceColorSvg(image: IImage, color: IHsl, opacity: number): string {

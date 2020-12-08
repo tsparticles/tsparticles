@@ -2,7 +2,7 @@ import type { Container } from "../Core/Container";
 import { ClickMode, InteractivityDetect } from "../Enums";
 import type { ICoordinates } from "../Core/Interfaces/ICoordinates";
 import { Constants } from "./Constants";
-import { Utils } from "./Utils";
+import { itemFromArray } from "./Utils";
 import Timeout = NodeJS.Timeout;
 
 let windowResizeTimer: Timeout;
@@ -389,7 +389,7 @@ export class EventListeners {
                 const pushNb = pushOptions.quantity;
 
                 if (pushNb > 0) {
-                    const group = Utils.itemFromArray([undefined, ...pushOptions.groups]);
+                    const group = itemFromArray([undefined, ...pushOptions.groups]);
                     const groupOptions = group !== undefined ? container.options.particles.groups[group] : undefined;
 
                     container.particles.push(pushNb, container.interactivity.mouse, groupOptions, group);
@@ -401,7 +401,7 @@ export class EventListeners {
                 const removeNb = removeOptions.quantity;
 
                 if (removeNb > 0) {
-                    const group = Utils.itemFromArray([undefined, ...pushOptions.groups]);
+                    const group = itemFromArray([undefined, ...pushOptions.groups]);
 
                     container.particles.removeQuantity(removeNb, group);
                 }
@@ -416,8 +416,7 @@ export class EventListeners {
                 container.repulse.count = 0;
 
                 for (const particle of container.repulse.particles) {
-                    particle.velocity.horizontal = particle.initialVelocity.horizontal;
-                    particle.velocity.vertical = particle.initialVelocity.vertical;
+                    particle.velocity.setTo(particle.initialVelocity);
                 }
 
                 container.repulse.particles = [];
@@ -435,8 +434,7 @@ export class EventListeners {
                 container.attract.count = 0;
 
                 for (const particle of container.attract.particles) {
-                    particle.velocity.horizontal = particle.initialVelocity.horizontal;
-                    particle.velocity.vertical = particle.initialVelocity.vertical;
+                    particle.velocity.setTo(particle.initialVelocity);
                 }
 
                 container.attract.particles = [];

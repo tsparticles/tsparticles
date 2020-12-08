@@ -1,6 +1,6 @@
 import type { Container } from "../../Core/Container";
-import { Constants, Utils, NumberUtils, getLinkColor, getLinkRandomColor } from "../../Utils";
-import { HoverMode } from "../../Enums/Modes";
+import { Constants, getLinkColor, getLinkRandomColor, getDistance, isInArray } from "../../Utils";
+import { HoverMode } from "../../Enums";
 import { ExternalBase } from "./ExternalBase";
 
 /**
@@ -23,7 +23,7 @@ export class Grabber extends ExternalBase {
 
         const hoverMode = events.onHover.mode;
 
-        return Utils.isInArray(HoverMode.grab, hoverMode);
+        return isInArray(HoverMode.grab, hoverMode);
     }
 
     public reset(): void {
@@ -51,7 +51,7 @@ export class Grabber extends ExternalBase {
                    if the distance between them is under the config distance
                 */
                 const pos = particle.getPosition();
-                const pointDistance = NumberUtils.getDistance(pos, mousePos);
+                const pointDistance = getDistance(pos, mousePos);
 
                 if (pointDistance <= distance) {
                     const grabLineOptions = interactivity.modes.grab.links;

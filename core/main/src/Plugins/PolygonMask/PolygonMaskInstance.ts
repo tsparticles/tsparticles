@@ -2,7 +2,7 @@ import type { Container } from "../../Core/Container";
 import type { ICoordinates } from "../../Core/Interfaces/ICoordinates";
 import { InlineArrangement, Type } from "./Enums";
 import { Particle } from "../../Core/Particle";
-import { colorToRgb, Constants, getStyleFromRgb, NumberUtils, Utils } from "../../Utils";
+import { colorToRgb, Constants, deepExtend, getDistance, getStyleFromRgb, itemFromArray } from "../../Utils";
 import type { IDimension } from "../../Core/Interfaces/IDimension";
 import type { ISvgPath } from "./Interfaces/ISvgPath";
 import type { IContainerPlugin } from "../../Core/Interfaces/IContainerPlugin";
@@ -243,7 +243,7 @@ export class PolygonMaskInstance implements IContainerPlugin {
             return;
         }
 
-        return Utils.deepExtend({}, position ? position : this.randomPoint()) as ICoordinates;
+        return deepExtend({}, position ? position : this.randomPoint()) as ICoordinates;
     }
 
     public particleBounce(particle: Particle): boolean {
@@ -257,7 +257,7 @@ export class PolygonMaskInstance implements IContainerPlugin {
                 return true;
             }
         } else if (options.enable && options.type === Type.inline && particle.initialPosition) {
-            const dist = NumberUtils.getDistance(particle.initialPosition, particle.getPosition());
+            const dist = getDistance(particle.initialPosition, particle.getPosition());
 
             if (dist > this.polygonMaskMoveRadius) {
                 polygonBounce(particle);
@@ -482,7 +482,7 @@ export class PolygonMaskInstance implements IContainerPlugin {
             throw new Error(Constants.noPolygonDataLoaded);
         }
 
-        const coords = Utils.itemFromArray(this.raw);
+        const coords = itemFromArray(this.raw);
 
         return {
             x: coords.x,
@@ -497,7 +497,7 @@ export class PolygonMaskInstance implements IContainerPlugin {
             throw new Error(Constants.noPolygonDataLoaded);
         }
 
-        const path = Utils.itemFromArray(this.paths);
+        const path = itemFromArray(this.paths);
         const distance = Math.floor(Math.random() * path.length) + 1;
         const point = path.element.getPointAtLength(distance);
 

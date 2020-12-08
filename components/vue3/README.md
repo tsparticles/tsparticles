@@ -2,7 +2,7 @@
 
 # particles.vue3
 
-[![npm](https://img.shields.io/npm/v/particles.vue3)](https://www.npmjs.com/package/particles.vue3) [![npm](https://img.shields.io/npm/dm/particles.vue3)](https://www.npmjs.com/package/particles.vue3)
+[![npm](https://img.shields.io/npm/v/particles.vue3)](https://www.npmjs.com/package/particles.vue3) [![npm](https://img.shields.io/npm/dm/particles.vue3)](https://www.npmjs.com/package/particles.vue3) [![Mentioned in Awesome Vue.js](https://awesome.re/mentioned-badge-flat.svg)](https://github.com/vuejs/awesome-vue#readme)
 
 Official [tsParticles](https://github.com/matteobruni/tsparticles) VueJS 3.x component
 
@@ -32,9 +32,9 @@ createApp(App).use(Particles)
 import { ParticlesComponent } from "particles.vue3";
 
 @Options({
-  components: {
-    ParticlesComponent
-  }
+    components: {
+        ParticlesComponent
+    }
 })
 export default class App extends Vue {
 /* ...the rest of the file... */
@@ -43,11 +43,12 @@ export default class App extends Vue {
 ### Demo config
 
 ```html
+
 <template>
-  <div id="app">
-    <Particles
-      id="tsparticles"
-      :options="{
+    <div id="app">
+        <Particles
+                id="tsparticles"
+                :options="{
             background: {
                 color: {
                     value: '#0d47a1'
@@ -125,17 +126,30 @@ export default class App extends Vue {
             },
             detectRetina: true
         }"
-    />
-  </div>
+        />
+    </div>
 </template>
 ```
 
 ### TypeScript errors
 
-If TypeScript returns error while importing/using Particles plugin try adding the following import before the previous code:
+If TypeScript returns error while importing/using Particles plugin try adding the following import before the previous
+code:
 
 ```typescript
 declare module "particles.vue3";
+```
+
+### Internet Explorer errors
+
+The core library is not supported by Internet Explorer, but with Vue.js you can transpile it using the `vue.config.js`.
+
+To transpile the core library just add this to the `vue.config.js`
+
+```javascript
+  transpileDependencies: [
+    'tsparticles',
+]
 ```
 
 ## Demos

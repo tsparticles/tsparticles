@@ -2,9 +2,10 @@ import type { IParticleUpdater } from "../Core/Interfaces/IParticleUpdater";
 import type { Container } from "../Core/Container";
 import type { Particle } from "../Core/Particle";
 import type { IDelta } from "../Core/Interfaces/IDelta";
-import { NumberUtils } from "../Utils";
+import { randomInRange } from "../Utils";
 import type { ColorAnimation } from "../Options/Classes/ColorAnimation";
 import type { IParticleValueAnimation } from "../Core/Interfaces/IParticleValueAnimation";
+import { AnimationStatus } from "../Enums";
 
 export class ColorUpdater implements IParticleUpdater {
     constructor(private readonly container: Container) {}
@@ -29,15 +30,15 @@ export class ColorUpdater implements IParticleUpdater {
         }
 
         if (particle.color?.h !== undefined) {
-            this.updateValue(particle, delta, particle.color.h, animationOptions.h, 360);
+            this.updateValue(particle, delta, particle.color.h, animationOptions.h, 360, false);
         }
 
         if (particle.color?.s !== undefined) {
-            this.updateValue(particle, delta, particle.color.s, animationOptions.s, 100);
+            this.updateValue(particle, delta, particle.color.s, animationOptions.s, 100, true);
         }
 
         if (particle.color?.l !== undefined) {
-            this.updateValue(particle, delta, particle.color.l, animationOptions.l, 100);
+            this.updateValue(particle, delta, particle.color.l, animationOptions.l, 100, true);
         }
     }
 
@@ -46,7 +47,8 @@ export class ColorUpdater implements IParticleUpdater {
         delta: IDelta,
         value: IParticleValueAnimation<number>,
         valueAnimation: ColorAnimation,
-        max: number
+        max: number,
+        decrease: boolean
     ) {
         const colorValue = value;
 
@@ -54,9 +56,24 @@ export class ColorUpdater implements IParticleUpdater {
             return;
         }
 
-        const offset = NumberUtils.randomInRange(valueAnimation.offset.min, valueAnimation.offset.max);
+        const offset = randomInRange(valueAnimation.offset);
+        const velocity = (value.velocity ?? 0) * delta.factor + offset * 3.6;
 
-        colorValue.value += (value.velocity ?? 0) * delta.factor + offset * 3.6;
+        if (!decrease || colorValue.status === AnimationStatus.increasing) {
+            colorValue.value += velocity;
+
+            if (decrease && colorValue.value > max) {
+                colorValue.status = AnimationStatus.decreasing;
+                colorValue.value -= colorValue.value % max;
+            }
+        } else {
+            colorValue.value -= velocity;
+
+            if (colorValue.value < 0) {
+                colorValue.status = AnimationStatus.increasing;
+                colorValue.value += colorValue.value;
+            }
+        }
 
         if (colorValue.value > max) {
             colorValue.value %= max;

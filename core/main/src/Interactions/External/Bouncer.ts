@@ -1,12 +1,22 @@
-import { Constants } from "../../Utils";
-import { HoverMode } from "../../Enums/Modes";
+import {
+    calculateBounds,
+    circleBounce,
+    circleBounceDataFromParticle,
+    Constants,
+    divModeExecute,
+    isDivModeEnabled,
+    isInArray,
+    rectBounce,
+    Circle,
+    Range,
+    Rectangle,
+} from "../../Utils";
+import { HoverMode, DivMode, DivType } from "../../Enums";
 import type { Container } from "../../Core/Container";
-import { Circle, Range, Rectangle, Utils } from "../../Utils";
-import { DivMode } from "../../Enums/Modes";
 import { DivEvent } from "../../Options/Classes/Interactivity/Events/DivEvent";
-import { DivType } from "../../Enums/Types";
 import type { ICoordinates } from "../../Core/Interfaces/ICoordinates";
 import { ExternalBase } from "./ExternalBase";
+import { Velocity } from "../../Core/Particle/Velocity";
 
 export class Bouncer extends ExternalBase {
     constructor(container: Container) {
@@ -20,8 +30,8 @@ export class Bouncer extends ExternalBase {
         const events = options.interactivity.events;
         const divs = events.onDiv;
         return (
-            (mouse.position && events.onHover.enable && Utils.isInArray(HoverMode.bounce, events.onHover.mode)) ||
-            Utils.isDivModeEnabled(DivMode.bounce, divs)
+            (mouse.position && events.onHover.enable && isInArray(HoverMode.bounce, events.onHover.mode)) ||
+            isDivModeEnabled(DivMode.bounce, divs)
         );
     }
 
@@ -34,12 +44,10 @@ export class Bouncer extends ExternalBase {
         const hoverMode = events.onHover.mode;
         const divs = events.onDiv;
 
-        if (mouseMoveStatus && hoverEnabled && Utils.isInArray(HoverMode.bounce, hoverMode)) {
+        if (mouseMoveStatus && hoverEnabled && isInArray(HoverMode.bounce, hoverMode)) {
             this.processMouseBounce();
         } else {
-            Utils.divModeExecute(DivMode.bounce, divs, (selector, div): void =>
-                this.singleSelectorBounce(selector, div)
-            );
+            divModeExecute(DivMode.bounce, divs, (selector, div): void => this.singleSelectorBounce(selector, div));
         }
     }
 
@@ -96,20 +104,14 @@ export class Bouncer extends ExternalBase {
 
         for (const particle of query) {
             if (area instanceof Circle) {
-                Utils.circleBounce(Utils.circleBounceDataFromParticle(particle), {
+                circleBounce(circleBounceDataFromParticle(particle), {
                     position,
                     radius,
-                    velocity: {
-                        horizontal: 0,
-                        vertical: 0,
-                    },
-                    factor: {
-                        horizontal: 0,
-                        vertical: 0,
-                    },
+                    velocity: new Velocity(0, 0),
+                    factor: new Velocity(0, 0),
                 });
             } else if (area instanceof Rectangle) {
-                Utils.rectBounce(particle, Utils.calculateBounds(position, radius));
+                rectBounce(particle, calculateBounds(position, radius));
             }
         }
     }

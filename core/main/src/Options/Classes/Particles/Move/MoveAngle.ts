@@ -6,12 +6,12 @@ import type { RecursivePartial } from "../../../../Types";
  * @category Options
  */
 export class MoveAngle implements IMoveAngle, IOptionLoader<IMoveAngle> {
-    offset;
-    value;
+    public offset;
+    public value;
 
     constructor() {
-        this.offset = 45;
-        this.value = 90;
+        this.offset = 0;
+        this.value = 45;
     }
 
     public load(data?: RecursivePartial<IMoveAngle>): void {

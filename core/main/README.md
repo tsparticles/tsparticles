@@ -2,9 +2,11 @@
 
 # tsParticles - TypeScript Particles
 
-**A lightweight TypeScript library for creating particles. Dependency free (\*), browser ready and compatible with React, Vue, Angular, Svelte, jQuery, Preact, Inferno**
+**A lightweight TypeScript library for creating particles. Dependency free ([\*](#dependencies)) and browser ready!**
 
-[![jsDelivr](https://data.jsdelivr.com/v1/package/npm/tsparticles/badge?style=rounded)](https://www.jsdelivr.com/package/npm/tsparticles) [![Cdnjs](https://img.shields.io/cdnjs/v/tsparticles)](https://cdnjs.com/libraries/tsparticles) [![npmjs](https://badge.fury.io/js/tsparticles.svg)](https://www.npmjs.com/package/tsparticles) [![npm](https://img.shields.io/npm/dm/tsparticles)](https://www.npmjs.com/package/tsparticles) [![lerna](https://img.shields.io/badge/maintained%20with-lerna-cc00ff.svg)](https://lerna.js.org/) [![CodeFactor](https://www.codefactor.io/repository/github/matteobruni/tsparticles/badge)](https://www.codefactor.io/repository/github/matteobruni/tsparticles) [![Codacy Badge](https://api.codacy.com/project/badge/Grade/b983aaf3461a4c48b1e2eecce1ff1d74)](https://www.codacy.com/manual/ar3s/tsparticles?utm_source=github.com&utm_medium=referral&utm_content=matteobruni/tsparticles&utm_campaign=Badge_Grade)
+_[Particles.js](https://github.com/VincentGarreau/particles.js) converted in TypeScript, dependency free ([\*](#dependencies)), improved with new cool 😎 features and various bugs fixed and **it's actively maintained**!_
+
+[![jsDelivr](https://data.jsdelivr.com/v1/package/npm/tsparticles/badge?style=rounded)](https://www.jsdelivr.com/package/npm/tsparticles) [![Cdnjs](https://img.shields.io/cdnjs/v/tsparticles)](https://cdnjs.com/libraries/tsparticles) [![npmjs](https://badge.fury.io/js/tsparticles.svg)](https://www.npmjs.com/package/tsparticles) [![npm](https://img.shields.io/npm/dm/tsparticles)](https://www.npmjs.com/package/tsparticles) [![lerna](https://img.shields.io/badge/maintained%20with-lerna-cc00ff.svg)](https://lerna.js.org/) [![CodeFactor](https://www.codefactor.io/repository/github/matteobruni/tsparticles/badge)](https://www.codefactor.io/repository/github/matteobruni/tsparticles) [![Codacy Badge](https://api.codacy.com/project/badge/Grade/b983aaf3461a4c48b1e2eecce1ff1d74)](https://www.codacy.com/manual/ar3s/tsparticles?utm_source=github.com&utm_medium=referral&utm_content=matteobruni/tsparticles&utm_campaign=Badge_Grade) [![Gitpod Ready-to-Code](https://img.shields.io/badge/Gitpod-ready--to--code-blue?logo=gitpod)](https://gitpod.io/#https://github.com/matteobruni/tsparticles) [![Run on Repl.it](https://repl.it/badge/github/matteobruni/tsparticles)](https://repl.it/github/matteobruni/tsparticles) [![Mentioned in Awesome Javascript](https://awesome.re/mentioned-badge-flat.svg)](https://github.com/sorrycc/awesome-javascript#readme) [![Mentioned in Awesome Web Animation](https://awesome.re/mentioned-badge-flat.svg)](https://github.com/sergey-pimenov/awesome-web-animation#readme)
 
 ## Do you want to use it on your website?
 
@@ -187,7 +189,7 @@ You can find the instructions [here](https://github.com/matteobruni/tsparticles/
 
 #### `jquery-particles`
 
-[![npm](https://img.shields.io/npm/v/jquery-particles)](https://www.npmjs.com/package/jquery-particles) [![npm](https://img.shields.io/npm/dm/jquery-particles)](https://www.npmjs.com/package/jquery-particles)
+[![npm](https://img.shields.io/npm/v/jquery-particles)](https://www.npmjs.com/package/jquery-particles) [![npm](https://img.shields.io/npm/dm/jquery-particles)](https://www.npmjs.com/package/jquery-particles) [![Mentioned in Awesome jQuery](https://awesome.re/mentioned-badge-flat.svg)](https://github.com/petk/awesome-jquery#readme)
 
 You can find the instructions [here](https://github.com/matteobruni/tsparticles/blob/master/components/jquery/README.md)
 
@@ -195,7 +197,7 @@ You can find the instructions [here](https://github.com/matteobruni/tsparticles/
 
 #### `preact-particles`
 
-[![npm](https://img.shields.io/npm/v/preact-particles)](https://www.npmjs.com/package/preact-particles) [![npm](https://img.shields.io/npm/dm/preact-particles)](https://www.npmjs.com/package/preact-particles)
+[![npm](https://img.shields.io/npm/v/preact-particles)](https://www.npmjs.com/package/preact-particles) [![npm](https://img.shields.io/npm/dm/preact-particles)](https://www.npmjs.com/package/preact-particles) [![Mentioned in Awesome Preact](https://awesome.re/mentioned-badge-flat.svg)](https://github.com/preactjs/awesome-preact#readme)
 
 You can find the instructions [here](https://github.com/matteobruni/tsparticles/blob/master/components/preact/README.md)
 
@@ -203,7 +205,7 @@ You can find the instructions [here](https://github.com/matteobruni/tsparticles/
 
 #### `react-tsparticles`
 
-[![npm](https://img.shields.io/npm/v/react-tsparticles)](https://www.npmjs.com/package/react-tsparticles) [![npm](https://img.shields.io/npm/dm/react-tsparticles)](https://www.npmjs.com/package/react-tsparticles)
+[![npm](https://img.shields.io/npm/v/react-tsparticles)](https://www.npmjs.com/package/react-tsparticles) [![npm](https://img.shields.io/npm/dm/react-tsparticles)](https://www.npmjs.com/package/react-tsparticles) [![Mentioned in Awesome React](https://awesome.re/mentioned-badge-flat.svg)](https://github.com/enaqx/awesome-react#readme)
 
 You can find the instructions [here](https://github.com/matteobruni/tsparticles/blob/master/components/react/README.md)
 
@@ -219,7 +221,7 @@ You can find the instructions [here](https://github.com/matteobruni/tsparticles/
 
 #### `particles.vue`
 
-[![npm](https://img.shields.io/npm/v/particles.vue)](https://www.npmjs.com/package/particles.vue) [![npm](https://img.shields.io/npm/dm/particles.vue)](https://www.npmjs.com/package/particles.vue)
+[![npm](https://img.shields.io/npm/v/particles.vue)](https://www.npmjs.com/package/particles.vue) [![npm](https://img.shields.io/npm/dm/particles.vue)](https://www.npmjs.com/package/particles.vue) [![Mentioned in Awesome Vue.js](https://awesome.re/mentioned-badge-flat.svg)](https://github.com/vuejs/awesome-vue#readme)
 
 You can find the instructions [here](https://github.com/matteobruni/tsparticles/blob/master/components/vue/README.md)
 
@@ -227,65 +229,77 @@ You can find the instructions [here](https://github.com/matteobruni/tsparticles/
 
 #### `particles.vue3`
 
-[![npm](https://img.shields.io/npm/v/particles.vue3)](https://www.npmjs.com/package/particles.vue3) [![npm](https://img.shields.io/npm/dm/particles.vue3)](https://www.npmjs.com/package/particles.vue3)
+[![npm](https://img.shields.io/npm/v/particles.vue3)](https://www.npmjs.com/package/particles.vue3) [![npm](https://img.shields.io/npm/dm/particles.vue3)](https://www.npmjs.com/package/particles.vue3) [![Mentioned in Awesome Vue.js](https://awesome.re/mentioned-badge-flat.svg)](https://github.com/vuejs/awesome-vue#readme)
 
 You can find the instructions [here](https://github.com/matteobruni/tsparticles/blob/master/components/vue3/README.md)
 
 ---
 
+## Templates and Resources
+
+You can find some tsParticles related templates [here](https://github.com/tsparticles/templates). The templates are created for _Vanilla Javascript_, _ReactJS_, _VueJS_, _Angular_, _SvelteJS_ and other frameworks.
+
+The templates will may vary, new ones can be created or older ones updated with latest features or changed to a better style. Check them out once in a while.
+
+If you created some good design with _tsParticles_ feel free to submit a pull request with your cool template, you'll be credited as the template author!
+
+<https://github.com/tsparticles/templates>
+
+---
+
 ## **_Demo / Generator_**
 
-<https://particles.matteobruni.it/>
+<https://particles.matteobruni.it/Samples>
 
-[![Particles demo](https://particles.matteobruni.it/images/demo.png?v=1.8.1)](https://particles.matteobruni.it/)
+[![Particles demo](https://particles.matteobruni.it/images/demo.png?v=1.8.1)](https://particles.matteobruni.it/Samples)
 
 ---
 
 ### Characters as particles
 
-[![Particles chars demo](https://media.giphy.com/media/JsssOXz72bM6jGEZ0s/giphy.gif)](https://particles.matteobruni.it/#chars)
+[![Particles chars demo](https://media.giphy.com/media/JsssOXz72bM6jGEZ0s/giphy.gif)](https://particles.matteobruni.it/Samples#chars)
 
 ---
 
 ### Mouse hover connections
 
-[![Particles mouse connections demo](https://media.giphy.com/media/XzvZThpVbxHxMYz5xt/giphy.gif)](https://particles.matteobruni.it/#connect)
+[![Particles mouse connections demo](https://media.giphy.com/media/XzvZThpVbxHxMYz5xt/giphy.gif)](https://particles.matteobruni.it/Samples#connect)
 
 ---
 
 ### Polygon mask
 
-[![tsParticles Polygon Mask demo](https://media.giphy.com/media/lNRfiSgaMFbL4FMhW6/giphy.gif)](https://particles.matteobruni.it/#polygonMask)
+[![tsParticles Polygon Mask demo](https://media.giphy.com/media/lNRfiSgaMFbL4FMhW6/giphy.gif)](https://particles.matteobruni.it/Samples#polygonMask)
 
 ---
 
 ### Animated stars
 
-[![Particles NASA demo](https://media.giphy.com/media/cLqGsnh7FKRVMgPIWE/giphy.gif)](https://particles.matteobruni.it/#nasa)
+[![Particles NASA demo](https://media.giphy.com/media/cLqGsnh7FKRVMgPIWE/giphy.gif)](https://particles.matteobruni.it/Samples#nasa)
 
 ---
 
 ### Nyan cat flying on scrolling stars
 
-[![Particles Nyan Cat demo](https://media.giphy.com/media/LpX2oNc9ZMgIhIXQL9/giphy.gif)](https://particles.matteobruni.it/#nyancat2)
+[![Particles Nyan Cat demo](https://media.giphy.com/media/LpX2oNc9ZMgIhIXQL9/giphy.gif)](https://particles.matteobruni.it/Samples#nyancat2)
 
 ---
 
 ### Snow particles
 
-[![tsParticles Snow demo](https://media.giphy.com/media/gihwUFbmiubbkdzEMX/giphy.gif)](https://particles.matteobruni.it/#snow)
+[![tsParticles Snow demo](https://media.giphy.com/media/gihwUFbmiubbkdzEMX/giphy.gif)](https://particles.matteobruni.it/Samples#snow)
 
 ---
 
 ### Background Mask particles
 
-[![tsParticles Background Mask demo](https://media.giphy.com/media/dWraWgqInWFGWiOyRu/giphy.gif)](https://particles.matteobruni.it/#background)
+[![tsParticles Background Mask demo](https://media.giphy.com/media/dWraWgqInWFGWiOyRu/giphy.gif)](https://particles.matteobruni.it/Samples#background)
 
 ---
 
 #### COVID-19 SARS-CoV-2 particles
 
-[![tsParticles COVID-19 demo](https://media.giphy.com/media/fsVN1ZHksgBIXNIbr1/giphy.gif)](https://particles.matteobruni.it/#virus)
+[![tsParticles COVID-19 demo](https://media.giphy.com/media/fsVN1ZHksgBIXNIbr1/giphy.gif)](https://particles.matteobruni.it/Samples#virus)
 
 _Don't click! DON'T CLICK! OH NO IT'S SPREADING!!!!_
 
@@ -301,7 +315,7 @@ You can find a sample config [here](https://github.com/matteobruni/tsparticles/w
 
 ## **_Options_**
 
-You can find all options available [here](https://github.com/matteobruni/tsparticles/wiki/tsParticles-Options) 📖
+You can find all options available [here](https://particles.js.org/interfaces/_options_interfaces_ioptions_.ioptions.html) 📖
 
 ## Want to see it in action and try it?
 
@@ -323,7 +337,7 @@ _If you are brave enough_ you can switch to the `dev` branch for trying the feat
 
 ## Dependencies
 
-You may have notices the \* near dependency free. Well almost all features works without any dependency, but... Well there's a little but. The **Polygon Mask** feature requires `[pathseg](https://github.com/progers/pathseg)` for some browsers to work fine, and obviously the Icon Fonts (like `FontAwesome` ) must be included in your page.
+You may have notices the \* near dependency free. Well almost all features works without any dependency, but... Well there's a little but. The **Polygon Mask** feature requires [`pathseg`](https://github.com/progers/pathseg) for some browsers to work fine, and obviously the Icon Fonts (like `FontAwesome` ) must be included in your page.
 
 ---
 
@@ -347,7 +361,7 @@ tsParticles now supports some customizations 🥳.
 
 **You can create your own plugins**
 
-_Read more [here](https://github.com/matteobruni/tsparticles/wiki/Create-a-tsParticles-Plugin)..._
+_Read more [here](https://particles.js.org/modules/_core_interfaces_iplugin_.html)...\_
 
 ---
 

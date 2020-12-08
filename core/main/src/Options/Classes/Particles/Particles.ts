@@ -15,7 +15,7 @@ import { AnimatableColor } from "../AnimatableColor";
 import type { IOptionLoader } from "../../Interfaces/IOptionLoader";
 import { Life } from "./Life/Life";
 import { Bounce } from "./Bounce/Bounce";
-import { Utils } from "../../../Utils";
+import { deepExtend } from "../../../Utils";
 import { Orbit } from "./Orbit/Orbit";
 import { ZIndex } from "./ZIndex/ZIndex";
 import { Repulse } from "./Repulse/Repulse";
@@ -121,7 +121,7 @@ export class Particles implements IParticles, IOptionLoader<IParticles> {
                 const item = data.groups[group];
 
                 if (item !== undefined) {
-                    this.groups[group] = Utils.deepExtend(this.groups[group] ?? {}, item) as IParticles;
+                    this.groups[group] = deepExtend(this.groups[group] ?? {}, item) as IParticles;
                 }
             }
         }

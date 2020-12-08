@@ -1,7 +1,7 @@
 import { Container } from "./Container";
 import type { IOptions } from "../Options/Interfaces/IOptions";
 import type { RecursivePartial } from "../Types";
-import { Constants, Utils } from "../Utils";
+import { Constants, itemFromArray } from "../Utils";
 import type { Particle } from "./Particle";
 import type { ICoordinates } from "./Interfaces/ICoordinates";
 import type { SingleOrMultiple } from "../Types";
@@ -74,7 +74,7 @@ export class Loader {
         options?: SingleOrMultiple<RecursivePartial<IOptions>>,
         index?: number
     ): Promise<Container | undefined> {
-        const currentOptions = options instanceof Array ? Utils.itemFromArray(options, index) : options;
+        const currentOptions = options instanceof Array ? itemFromArray(options, index) : options;
         const dom = Loader.dom();
         const oldIndex = dom.findIndex((v) => v.id === id);
 
@@ -150,7 +150,7 @@ export class Loader {
         jsonUrl: SingleOrMultiple<string>,
         index?: number
     ): Promise<Container | undefined> {
-        const url = jsonUrl instanceof Array ? Utils.itemFromArray(jsonUrl, index) : jsonUrl;
+        const url = jsonUrl instanceof Array ? itemFromArray(jsonUrl, index) : jsonUrl;
 
         /* load json config */
         const response = await fetch(url);
@@ -215,7 +215,11 @@ export class Loader {
                     y: pos.y * pxRatio,
                 };
 
-                const particles = domItem.particles.quadTree.queryCircle(posRetina, domItem.retina.sizeValue);
+                const sizeValue = domItem.options.particles.size.value;
+                const particles = domItem.particles.quadTree.queryCircle(
+                    posRetina,
+                    domItem.retina.pixelRatio * (typeof sizeValue === "number" ? sizeValue : sizeValue.max)
+                );
 
                 callback(e, particles);
             };

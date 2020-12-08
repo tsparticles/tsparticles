@@ -2,7 +2,7 @@ import type { ISpin } from "../../../Interfaces/Particles/ISpin";
 import type { IOptionLoader } from "../../../Interfaces/IOptionLoader";
 import type { ICoordinates } from "../../../../Core/Interfaces/ICoordinates";
 import type { RecursivePartial } from "../../../../Types";
-import { Utils } from "../../../../Utils";
+import { deepExtend } from "../../../../Utils";
 
 export class Spin implements ISpin, IOptionLoader<ISpin> {
     public acceleration;
@@ -27,6 +27,6 @@ export class Spin implements ISpin, IOptionLoader<ISpin> {
             this.enable = data.enable;
         }
 
-        this.position = data.position ? (Utils.deepExtend({}, data.position) as ICoordinates | undefined) : undefined;
+        this.position = data.position ? (deepExtend({}, data.position) as ICoordinates | undefined) : undefined;
     }
 }

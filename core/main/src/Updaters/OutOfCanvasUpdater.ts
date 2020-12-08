@@ -3,8 +3,8 @@ import type { Particle } from "../Core/Particle";
 import type { IParticleUpdater } from "../Core/Interfaces/IParticleUpdater";
 import type { IDelta } from "../Core/Interfaces/IDelta";
 import { OutModeDirection } from "../Enums/Directions/OutModeDirection";
-import { OutMode, OutModeAlt } from "../Enums/Modes";
-import { NumberUtils, Utils } from "../Utils";
+import { OutMode, OutModeAlt } from "../Enums";
+import { calculateBounds, getRangeValue, isPointInside } from "../Utils";
 import { IBounds } from "../Core/Interfaces/IBounds";
 import { IDimension } from "../Core/Interfaces/IDimension";
 import { ICoordinates } from "../Core/Interfaces/ICoordinates";
@@ -38,7 +38,7 @@ function bounceHorizontal(data: IBounceData): void {
         (data.direction === OutModeDirection.right && data.bounds.right >= data.canvasSize.width && velocity > 0) ||
         (data.direction === OutModeDirection.left && data.bounds.left <= 0 && velocity < 0)
     ) {
-        const newVelocity = NumberUtils.getValue(data.particle.options.bounce.horizontal);
+        const newVelocity = getRangeValue(data.particle.options.bounce.horizontal.value);
 
         data.particle.velocity.horizontal *= -newVelocity;
 
@@ -78,7 +78,7 @@ function bounceVertical(data: IBounceData): void {
                 velocity > 0) ||
             (data.direction === OutModeDirection.top && data.bounds.top <= 0 && velocity < 0)
         ) {
-            const newVelocity = NumberUtils.getValue(data.particle.options.bounce.vertical);
+            const newVelocity = getRangeValue(data.particle.options.bounce.vertical.value);
 
             data.particle.velocity.vertical *= -newVelocity;
 
@@ -153,7 +153,7 @@ export class OutOfCanvasUpdater implements IParticleUpdater {
     private destroy(particle: Particle, direction: OutModeDirection): void {
         const container = this.container;
 
-        if (Utils.isPointInside(particle.position, container.canvas.size, particle.getRadius(), direction)) {
+        if (isPointInside(particle.position, container.canvas.size, particle.getRadius(), direction)) {
             return;
         }
 
@@ -163,7 +163,7 @@ export class OutOfCanvasUpdater implements IParticleUpdater {
     private out(particle: Particle, direction: OutModeDirection): void {
         const container = this.container;
 
-        if (Utils.isPointInside(particle.position, container.canvas.size, particle.getRadius(), direction)) {
+        if (isPointInside(particle.position, container.canvas.size, particle.getRadius(), direction)) {
             return;
         }
 
@@ -176,7 +176,7 @@ export class OutOfCanvasUpdater implements IParticleUpdater {
                 top: -particle.getRadius() - particle.offset.y,
             },
             sizeValue = particle.getRadius(),
-            nextBounds = Utils.calculateBounds(particle.position, sizeValue);
+            nextBounds = calculateBounds(particle.position, sizeValue);
 
         if (direction === OutModeDirection.right && nextBounds.left > canvasSize.width - particle.offset.x) {
             particle.position.x = newPos.left;
@@ -241,7 +241,7 @@ export class OutOfCanvasUpdater implements IParticleUpdater {
         const pos = particle.getPosition(),
             offset = particle.offset,
             size = particle.getRadius(),
-            bounds = Utils.calculateBounds(pos, size),
+            bounds = calculateBounds(pos, size),
             canvasSize = container.canvas.size;
 
         bounceHorizontal({ particle, outMode, direction, bounds, canvasSize, offset, size });
@@ -257,7 +257,7 @@ export class OutOfCanvasUpdater implements IParticleUpdater {
             container = this.container;
 
         if (!gravityOptions.enable) {
-            if (!Utils.isPointInside(particle.position, container.canvas.size, particle.getRadius(), direction)) {
+            if (!isPointInside(particle.position, container.canvas.size, particle.getRadius(), direction)) {
                 container.particles.remove(particle);
             }
         } else {

@@ -3,9 +3,10 @@ import type { Container } from "../../Core/Container";
 import type { Particle } from "../../Core/Particle";
 import type { IRgb } from "../../Core/Interfaces/Colors";
 import type { IAbsorber } from "./Options/Interfaces/IAbsorber";
-import { colorToRgb, getStyleFromRgb, NumberUtils, Utils } from "../../Utils";
+import { colorToRgb, getDistance, getDistances, getStyleFromRgb, getRangeValue, isPointInside } from "../../Utils";
 import type { Absorbers } from "./Absorbers";
-import { RotateDirection } from "../../Enums/Directions";
+import { RotateDirection } from "../../Enums";
+import { Velocity } from "../../Core/Particle/Velocity";
 
 type OrbitingParticle = Particle & {
     absorberOrbitRadius?: number;
@@ -42,7 +43,7 @@ export class AbsorberInstance {
         this.dragging = false;
 
         this.opacity = this.options.opacity;
-        this.size = NumberUtils.getValue(options.size) * container.retina.pixelRatio;
+        this.size = getRangeValue(options.size.value) * container.retina.pixelRatio;
         this.mass = this.size * options.size.density * container.retina.reduceFactor;
 
         const limit = options.size.limit;
@@ -61,13 +62,14 @@ export class AbsorberInstance {
     }
 
     public attract(particle: OrbitingParticle): void {
+        const container = this.container;
         const options = this.options;
 
         if (options.draggable) {
-            const mouse = this.container.interactivity.mouse;
+            const mouse = container.interactivity.mouse;
 
             if (mouse.clicking && mouse.downPosition) {
-                const mouseDist = NumberUtils.getDistance(this.position, mouse.downPosition);
+                const mouseDist = getDistance(this.position, mouse.downPosition);
 
                 if (mouseDist <= this.size) {
                     this.dragging = true;
@@ -83,12 +85,12 @@ export class AbsorberInstance {
         }
 
         const pos = particle.getPosition();
-        const { dx, dy, distance } = NumberUtils.getDistances(this.position, pos);
+        const { dx, dy, distance } = getDistances(this.position, pos);
         const angle = Math.atan2(dx, dy);
-        const acceleration = (this.mass / Math.pow(distance, 2)) * this.container.retina.reduceFactor;
+        const acceleration = (this.mass / Math.pow(distance, 2)) * container.retina.reduceFactor;
 
         if (distance < this.size + particle.getRadius()) {
-            const sizeFactor = particle.getRadius() * 0.033 * this.container.retina.pixelRatio;
+            const sizeFactor = particle.getRadius() * 0.033 * container.retina.pixelRatio;
 
             if (
                 (this.size > particle.getRadius() && distance < this.size - particle.getRadius()) ||
@@ -113,7 +115,7 @@ export class AbsorberInstance {
                 this.size += sizeFactor;
             }
 
-            this.mass += sizeFactor * this.options.size.density * this.container.retina.reduceFactor;
+            this.mass += sizeFactor * this.options.size.density * container.retina.reduceFactor;
         } else {
             this.updateParticlePosition(particle, angle, acceleration);
         }
@@ -123,7 +125,7 @@ export class AbsorberInstance {
         const initialPosition = this.initialPosition;
 
         this.position =
-            initialPosition && Utils.isPointInside(initialPosition, this.container.canvas.size)
+            initialPosition && isPointInside(initialPosition, this.container.canvas.size)
                 ? initialPosition
                 : this.calcPosition();
     }
@@ -153,7 +155,8 @@ export class AbsorberInstance {
             return;
         }
 
-        const canvasSize = this.container.canvas.size;
+        const container = this.container;
+        const canvasSize = container.canvas.size;
 
         if (particle.needsNewPosition) {
             const pSize = particle.getRadius();
@@ -164,7 +167,7 @@ export class AbsorberInstance {
 
         if (this.options.orbits) {
             if (particle.absorberOrbitRadius === undefined) {
-                particle.absorberOrbitRadius = NumberUtils.getDistance(particle.getPosition(), this.position);
+                particle.absorberOrbitRadius = getDistance(particle.getPosition(), this.position);
             }
 
             if (particle.absorberOrbitRadius <= this.size && !this.options.destroy) {
@@ -199,10 +202,14 @@ export class AbsorberInstance {
 
             particle.absorberOrbitRadius -= acceleration;
             particle.absorberOrbitAngle +=
-                ((particle.moveSpeed ?? this.container.retina.moveSpeed) / 100) * this.container.retina.reduceFactor;
+                ((particle.moveSpeed * container.retina.pixelRatio) / 100) * container.retina.reduceFactor;
         } else {
-            particle.velocity.horizontal += Math.sin(angle) * acceleration;
-            particle.velocity.vertical += Math.cos(angle) * acceleration;
+            const addV = new Velocity(0, 0);
+
+            addV.angle = angle;
+            addV.length = acceleration;
+
+            particle.velocity.addTo(addV);
         }
     }
 }

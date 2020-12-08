@@ -31,22 +31,26 @@
       }
     },
     "opacity": {
-      "value": 0.5,
+      "value": {
+        "max": 0.5,
+        "min": 0.1
+      },
       "random": false,
-      "anim": {
-        "enable": false,
-        "speed": 3,
-        "opacity_min": 0.1,
+      "animation": {
+        "enable": true,
+        "speed": 0.5,
         "sync": false
       }
     },
     "size": {
-      "value": 3,
+      "value": {
+        "max": 3,
+        "min": 0.1
+      },
       "random": true,
-      "anim": {
-        "enable": false,
-        "speed": 20,
-        "size_min": 0.1,
+      "animation": {
+        "enable": true,
+        "speed": 5,
         "sync": false
       }
     },
@@ -59,11 +63,16 @@
     },
     "move": {
       "enable": true,
-      "speed": 6,
+      "speed": {
+        "max": 6,
+        "min": 3
+      },
       "direction": "none",
       "random": false,
       "straight": false,
-      "out_mode": "out",
+      "outModes": {
+        "default": "out"
+      },
       "attract": {
         "enable": false,
         "rotateX": 600,

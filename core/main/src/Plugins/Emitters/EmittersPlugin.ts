@@ -1,6 +1,6 @@
 import type { IPlugin } from "../../Core/Interfaces/IPlugin";
 import type { Container } from "../../Core/Container";
-import { Utils } from "../../Utils";
+import { isInArray } from "../../Utils";
 import { Emitters } from "./Emitters";
 import type { RecursivePartial } from "../../Types";
 import type { IOptions } from "../../Options/Interfaces/IOptions";
@@ -39,7 +39,7 @@ class EmittersPlugin implements IPlugin {
             loadEmitters = true;
         } else if (
             options.interactivity?.events?.onClick?.mode &&
-            Utils.isInArray(EmitterClickMode.emitter, options.interactivity.events.onClick.mode)
+            isInArray(EmitterClickMode.emitter, options.interactivity.events.onClick.mode)
         ) {
             loadEmitters = true;
         }

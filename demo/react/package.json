@@ -1,7 +1,7 @@
 {
   "name": "react-tsparticles-demo",
   "private": true,
-  "version": "1.4.0-alpha.3",
+  "version": "1.4.0-alpha.4",
   "description": "> TODO: description",
   "author": "Matteo Bruni <ar3s@icloud.com>",
   "homepage": "https://github.com/matteobruni/tsparticles#readme",
@@ -25,7 +25,7 @@
     "@typescript-eslint/parser": "^4.8.1",
     "cssnano": "^4.1.10",
     "eslint": "^7.13.0",
-    "eslint-config-prettier": "^6.15.0",
+    "eslint-config-prettier": "^7.0.0",
     "node-sass": "^5.0.0",
     "object-assign": "^4.1.1",
     "parcel": "^1.12.4",
@@ -34,15 +34,15 @@
     "react-syntax-highlighter": "^15.3.0",
     "rxjs": "^6.6.3",
     "scheduler": "^0.20.1",
-    "typescript": "^4.0.5"
+    "typescript": "^4.1.2"
   },
   "dependencies": {
     "lodash": "^4.17.20",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
-    "react-tsparticles": "^1.19.0-alpha.3",
+    "react-tsparticles": "^1.19.0-alpha.4",
     "tslib": "^2.0.3",
-    "tsparticles": "^1.19.0-alpha.3",
-    "tsparticles-preset-sea-anemone": "^1.4.0-alpha.3"
+    "tsparticles": "^1.19.0-alpha.4",
+    "tsparticles-preset-sea-anemone": "^1.4.0-alpha.4"
   }
 }

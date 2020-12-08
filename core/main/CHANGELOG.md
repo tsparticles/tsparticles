@@ -3,6 +3,27 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.19.0-alpha.4](https://github.com/matteobruni/tsparticles/compare/tsparticles@1.19.0-alpha.3...tsparticles@1.19.0-alpha.4) (2020-12-08)
+
+
+### Bug Fixes
+
+* changed the move particle method reducing the speed to quarter instead of half ([e097a64](https://github.com/matteobruni/tsparticles/commit/e097a64a11dbc81a071448f95b0870fb9d243a14))
+* fixed color animation loop ([bacaae4](https://github.com/matteobruni/tsparticles/commit/bacaae4d2998a12a37e4e8ae1b11a3de89625a57))
+* fixed color animations ([b0d325f](https://github.com/matteobruni/tsparticles/commit/b0d325fac6001b70c5277c91e346490aa036b9d9))
+* fixed particle initial position ([c8e467d](https://github.com/matteobruni/tsparticles/commit/c8e467dbc3aec4ad4c7bf129502f69e58b706bae))
+* fixed previous sorting improvements ([1a5454a](https://github.com/matteobruni/tsparticles/commit/1a5454a154e77601930c63b1b05c30d70b2ea8e3))
+* fixes undefined on TextDrawer, closes [#1087](https://github.com/matteobruni/tsparticles/issues/1087) ([e47a916](https://github.com/matteobruni/tsparticles/commit/e47a9165009c9525afb3dbd1657d0e3fd54a850c))
+
+
+### Features
+
+* starting to work with speed/angle instead of horizontal/vertical ([dff77bc](https://github.com/matteobruni/tsparticles/commit/dff77bc1428d83081584de7fcf3b256faab38e4a))
+
+
+
+
+
 # [1.19.0-alpha.3](https://github.com/matteobruni/tsparticles/compare/tsparticles@1.19.0-alpha.2...tsparticles@1.19.0-alpha.3) (2020-11-27)
 
 

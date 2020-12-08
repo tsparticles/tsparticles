@@ -1,61 +1,67 @@
 {
+  "background": {
+    "color": "#000"
+  },
   "fpsLimit": 60,
+  "interactivity": {
+    "detectsOn": "canvas",
+    "events": {
+      "resize": true
+    }
+  },
   "particles": {
-    "bounce": {
-      "horizontal": {
-        "value": 0.8
-      },
-      "vertical": {
-        "value": 0.8
+    "color": {
+      "value": "#ff0000",
+      "animation": {
+        "enable": true,
+        "speed": 5,
+        "sync": true
       }
+    },
+    "move": {
+      "noise": {
+        "enable": true
+      },
+      "direction": "none",
+      "enable": true,
+      "outModes": {
+        "default": "out"
+      },
+      "random": false,
+      "speed": 2,
+      "straight": false,
+      "trail": {
+        "enable": true,
+        "length": 1000
+      },
+      "warp": true
     },
     "number": {
       "value": 0
     },
-    "color": {
-      "value": "#ffffff"
-    },
-    "collisions": {
-      "enable": true
+    "opacity": {
+      "value": 0.3
     },
     "shape": {
       "type": "circle"
     },
-    "opacity": {
-      "value": 0.4
-    },
     "size": {
-      "value": 15
-    },
-    "move": {
-      "enable": true,
-      "gravity": {
-        "enable": true
-      },
-      "speed": 1,
-      "direction": "none",
-      "random": false,
-      "straight": false,
-      "outMode": "bounce"
-    }
-  },
-  "interactivity": {
-    "detectsOn": "canvas",
-    "events": {
-      "onClick": {
-        "enable": true,
-        "mode": "push"
-      },
-      "resize": true
-    },
-    "modes": {
-      "push": {
-        "quantity": 1
-      }
+      "value": 0.5
     }
   },
   "detectRetina": true,
-  "background": {
-    "color": "#000000"
+  "emitters": {
+    "size": {
+      "width": 0,
+      "height": 0
+    },
+    "life": {
+      "count": 20,
+      "duration": 1
+    },
+    "rate": {
+      "delay": 0.1,
+      "quantity": 5
+    }
   }
 }

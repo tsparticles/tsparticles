@@ -3,7 +3,16 @@ import type { ICoordinates } from "./Interfaces/ICoordinates";
 import type { IMouseData } from "./Interfaces/IMouseData";
 import type { IRgb } from "./Interfaces/Colors";
 import { Particle } from "./Particle";
-import { NumberUtils, Plugins, Point, QuadTree, Rectangle, Utils } from "../Utils";
+import {
+    getRangeValue,
+    itemFromArray,
+    Plugins,
+    Point,
+    QuadTree,
+    randomInRange,
+    Rectangle,
+    setRangeValue,
+} from "../Utils";
 import type { RecursivePartial } from "../Types";
 import type { IParticles } from "../Options/Interfaces/Particles/IParticles";
 import { InteractionManager } from "./InteractionManager";
@@ -12,6 +21,7 @@ import type { IParticle } from "./Interfaces/IParticle";
 import type { IDensity } from "../Options/Interfaces/Particles/Number/IDensity";
 import { Particles as ParticlesOptions } from "../Options/Classes/Particles/Particles";
 import { Infecter } from "./Particle/Infecter";
+import { Mover } from "./Particle/Mover";
 
 /**
  * Particles manager object
@@ -34,10 +44,14 @@ export class Particles {
      */
     public array: Particle[];
 
+    public lastZIndex: number;
+    public needsSort: boolean;
     public pushing?: boolean;
     public linksColor?: IRgb | string;
     public grabLineColor?: IRgb | string;
+
     public readonly infecter;
+    public readonly mover;
 
     private interactionManager;
     private nextId;
@@ -49,10 +63,13 @@ export class Particles {
         this.nextId = 0;
         this.array = [];
         this.limit = 0;
+        this.needsSort = false;
+        this.lastZIndex = 0;
         this.linksFreq = new Map<string, number>();
         this.trianglesFreq = new Map<string, number>();
         this.interactionManager = new InteractionManager(this.container);
         this.infecter = new Infecter(this.container);
+        this.mover = new Mover(this.container);
 
         const canvasSize = this.container.canvas.size;
 
@@ -75,6 +92,8 @@ export class Particles {
         const container = this.container;
         const options = container.options;
 
+        this.lastZIndex = 0;
+        this.needsSort = false;
         this.linksFreq = new Map<string, number>();
         this.trianglesFreq = new Map<string, number>();
 
@@ -113,7 +132,7 @@ export class Particles {
         if (options.infection.enable) {
             for (let i = 0; i < options.infection.infections; i++) {
                 const notInfected = this.array.filter((p) => p.infection.stage === undefined);
-                const infected = Utils.itemFromArray(notInfected);
+                const infected = itemFromArray(notInfected);
 
                 this.infecter.startInfection(infected, 0);
             }
@@ -172,7 +191,7 @@ export class Particles {
                 continue;
             }
 
-            particle.move(delta);
+            this.mover.move(particle, delta);
 
             if (particle.destroyed) {
                 particlesToDelete.push(particle);
@@ -232,7 +251,11 @@ export class Particles {
             this.quadTree.draw(container.canvas.context);
         }*/
 
-        this.array.sort((a, b) => b.position.z - a.position.z || a.id - b.id);
+        if (this.needsSort) {
+            this.array.sort((a, b) => b.position.z - a.position.z || a.id - b.id);
+            this.lastZIndex = this.array[this.array.length - 1].position.z;
+            this.needsSort = false;
+        }
 
         /* draw each particle */
         for (const p of this.array) {
@@ -280,7 +303,7 @@ export class Particles {
 
         options.load(parent.options);
 
-        const factor = NumberUtils.getValue(splitOptions.factor);
+        const factor = getRangeValue(splitOptions.factor.value);
 
         options.color.load({
             value: {
@@ -288,17 +311,20 @@ export class Particles {
             },
         });
 
-        options.size.value /= factor;
-        options.size.random.minimumValue /= factor;
-        options.size.animation.minimumValue /= factor;
+        if (typeof options.size.value === "number") {
+            options.size.value /= factor;
+        } else {
+            options.size.value.min /= factor;
+            options.size.value.max /= factor;
+        }
 
         options.load(splitOptions.particles);
 
-        const offset = parent.size.value;
+        const offset = setRangeValue(-parent.size.value, parent.size.value);
 
         const position = {
-            x: parent.position.x + NumberUtils.randomInRange(-offset, offset),
-            y: parent.position.y + NumberUtils.randomInRange(-offset, offset),
+            x: parent.position.x + randomInRange(offset),
+            y: parent.position.y + randomInRange(offset),
         };
 
         return this.pushParticle(position, options, parent.group, (particle) => {
@@ -419,7 +445,7 @@ export class Particles {
         const canvas = container.canvas.element;
         const pxRatio = container.retina.pixelRatio;
 
-        return (canvas.width * canvas.height) / (densityOptions.factor * pxRatio * pxRatio * densityOptions.area);
+        return (canvas.width * canvas.height) / (densityOptions.factor * pxRatio ** 2 * densityOptions.area);
     }
 
     private pushParticle(

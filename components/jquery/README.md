@@ -2,7 +2,7 @@
 
 # jquery-particles
 
-[![npm](https://img.shields.io/npm/v/jquery-particles)](https://www.npmjs.com/package/jquery-particles) [![npm](https://img.shields.io/npm/dm/jquery-particles)](https://www.npmjs.com/package/jquery-particles)
+[![npm](https://img.shields.io/npm/v/jquery-particles)](https://www.npmjs.com/package/jquery-particles) [![npm](https://img.shields.io/npm/dm/jquery-particles)](https://www.npmjs.com/package/jquery-particles) [![Mentioned in Awesome jQuery](https://awesome.re/mentioned-badge-flat.svg)](https://github.com/petk/awesome-jquery#readme)
 
 Official [tsParticles](https://github.com/matteobruni/tsparticles) jQuery plugin
 

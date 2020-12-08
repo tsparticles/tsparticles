@@ -13,7 +13,7 @@ export class Sphere extends Range3d {
     public contains(point: ICoordinates3d): boolean {
         const d = Math.pow(point.x - this.position.x, 2) + Math.pow(point.y - this.position.y, 2);
 
-        return d <= this.radius * this.radius;
+        return d <= this.radius ** 2;
     }
 
     public intersects(range: Range3d): boolean {
@@ -29,7 +29,7 @@ export class Sphere extends Range3d {
 
         if (sphere.radius !== undefined) {
             const rSum = r + sphere.radius;
-            const dist = Math.sqrt(xDist * xDist + yDist * yDist + zDist * zDist);
+            const dist = Math.sqrt(xDist ** 2 + yDist ** 2 + zDist ** 2);
 
             return rSum > dist;
         } else if (parallelepiped.size !== undefined) {
@@ -46,7 +46,7 @@ export class Sphere extends Range3d {
                 return true;
             }
 
-            return edges <= r * r;
+            return edges <= r ** 2;
         }
 
         return false;

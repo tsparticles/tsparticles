@@ -1,6 +1,6 @@
 {
   "name": "svelte-demo",
-  "version": "1.2.0-alpha.3",
+  "version": "1.2.0-alpha.4",
   "private": true,
   "scripts": {
     "build": "rollup -c",
@@ -10,9 +10,9 @@
   },
   "license": "MIT",
   "devDependencies": {
-    "@rollup/plugin-commonjs": "^16.0.0",
-    "@rollup/plugin-node-resolve": "^10.0.0",
-    "@rollup/plugin-typescript": "^6.1.0",
+    "@rollup/plugin-commonjs": "^17.0.0",
+    "@rollup/plugin-node-resolve": "^11.0.0",
+    "@rollup/plugin-typescript": "^8.0.0",
     "@tsconfig/svelte": "^1.0.10",
     "rollup": "^2.33.3",
     "rollup-plugin-livereload": "^2.0.0",
@@ -22,10 +22,10 @@
     "svelte-check": "^1.1.17",
     "svelte-preprocess": "^4.6.0",
     "tslib": "^2.0.3",
-    "typescript": "^4.0.5"
+    "typescript": "^4.1.2"
   },
   "dependencies": {
     "sirv-cli": "^1.0.8",
-    "svelte-particles": "^1.2.0-alpha.3"
+    "svelte-particles": "^1.2.0-alpha.4"
   }
 }

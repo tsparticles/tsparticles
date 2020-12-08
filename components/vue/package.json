@@ -1,7 +1,7 @@
 {
   "name": "particles.vue",
   "description": "Official tsParticles Vue.js 2.x Component - Easily create highly customizable particle animations and use them as animated backgrounds for your website. Ready to use components available also for React, Vue.js 3.x, Angular, Svelte, jQuery, Preact, Inferno.",
-  "version": "2.2.0-alpha.3",
+  "version": "2.2.0-alpha.4",
   "scripts": {
     "clean": "rm -rf dist/*",
     "build": "yarn clean && rollup --config rollup.config.js",
@@ -68,16 +68,16 @@
   },
   "dependencies": {
     "tslib": "^2.0.3",
-    "tsparticles": "^1.19.0-alpha.3",
+    "tsparticles": "^1.19.0-alpha.4",
     "vue": ">=2 && <3",
     "vue-class-component": "<8",
-    "vue-property-decorator": "^9.1.1"
+    "vue-property-decorator": "^9.1.2"
   },
   "devDependencies": {
     "@babel/core": "^7.12.3",
     "@babel/plugin-proposal-class-properties": "^7.12.1",
     "@babel/plugin-proposal-decorators": "^7.12.1",
-    "@rollup/plugin-node-resolve": "^10.0.0",
+    "@rollup/plugin-node-resolve": "^11.0.0",
     "@rollup/plugin-replace": "^2.3.4",
     "@vue/cli-plugin-babel": "~4.5.9",
     "@vue/cli-plugin-typescript": "~4.5.9",

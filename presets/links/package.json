@@ -1,6 +1,6 @@
 {
   "name": "tsparticles-preset-links",
-  "version": "1.4.0-alpha.3",
+  "version": "1.4.0-alpha.4",
   "description": "tsParticles links preset",
   "homepage": "https://particles.matteobruni.it/",
   "scripts": {
@@ -64,7 +64,7 @@
     "@typescript-eslint/parser": "^4.8.1",
     "babel-loader": "^8.2.1",
     "eslint": "^7.13.0",
-    "eslint-config-prettier": "^6.15.0",
+    "eslint-config-prettier": "^7.0.0",
     "prettier": "^2.2.0",
     "rimraf": "^3.0.2",
     "terser-webpack-plugin": "^5.0.3",
@@ -74,6 +74,6 @@
     "webpack-cli": "^4.2.0"
   },
   "dependencies": {
-    "tsparticles": "^1.19.0-alpha.3"
+    "tsparticles": "^1.19.0-alpha.4"
   }
 }
