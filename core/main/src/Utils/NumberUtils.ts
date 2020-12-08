@@ -52,15 +52,15 @@ export function setRangeValue(source: RangeValue, value?: number): RangeValue {
         return source;
     }
 
+    const min = getRangeMin(source),
+        max = getRangeMax(source);
+
     return value !== undefined
         ? {
-              min: Math.min(getRangeMin(source), value),
-              max: Math.max(getRangeMax(source), value),
+              min: Math.min(min, value),
+              max: Math.max(max, value),
           }
-        : {
-              min: Math.min(getRangeMin(source)),
-              max: Math.max(getRangeMax(source)),
-          };
+        : setRangeValue(min, max);
 }
 
 /**
