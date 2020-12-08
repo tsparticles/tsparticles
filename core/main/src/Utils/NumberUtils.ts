@@ -24,23 +24,43 @@ export function mix(comp1: number, comp2: number, weight1: number, weight2: numb
     return Math.floor((comp1 * weight1 + comp2 * weight2) / (weight1 + weight2));
 }
 
-export function randomInRange(r1: number, r2: number): number {
-    const max = Math.max(r1, r2),
-        min = Math.min(r1, r2);
+export function randomInRange(r: RangeValue): number {
+    const max = getRangeMax(r);
+    let min = getRangeMin(r);
+
+    if (max === min) {
+        min = 0;
+    }
 
     return Math.random() * (max - min) + min;
 }
 
-export function getValue(value: RangeValue): number {
-    return typeof value === "number" ? value : randomInRange(value.min, value.max);
+export function getRangeValue(value: RangeValue): number {
+    return typeof value === "number" ? value : randomInRange(value);
 }
 
-export function getMin(value: RangeValue): number {
+export function getRangeMin(value: RangeValue): number {
     return typeof value === "number" ? value : value.min;
 }
 
-export function getMax(value: RangeValue): number {
+export function getRangeMax(value: RangeValue): number {
     return typeof value === "number" ? value : value.max;
+}
+
+export function setRangeValue(source: RangeValue, value?: number): RangeValue {
+    if (source === value || (value === undefined && typeof source === "number")) {
+        return source;
+    }
+
+    return value !== undefined
+        ? {
+              min: Math.min(getRangeMin(source), value),
+              max: Math.max(getRangeMax(source), value),
+          }
+        : {
+              min: Math.min(getRangeMin(source)),
+              max: Math.max(getRangeMax(source)),
+          };
 }
 
 /**
@@ -150,12 +170,12 @@ export class NumberUtils {
         return mix(comp1, comp2, weight1, weight2);
     }
 
-    public static randomInRange(r1: number, r2: number): number {
-        return randomInRange(r1, r2);
+    public static randomInRange(r: RangeValue): number {
+        return randomInRange(r);
     }
 
-    public static getValue(value: RangeValue): number {
-        return getValue(value);
+    public static getRangeValue(value: RangeValue): number {
+        return getRangeValue(value);
     }
 
     /**

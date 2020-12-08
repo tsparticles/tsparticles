@@ -275,7 +275,7 @@ export class EmitterInstance {
             return initValue;
         }
 
-        const colorOffset = randomInRange(animation.offset.min, animation.offset.max);
+        const colorOffset = randomInRange(animation.offset);
 
         const emitFactor = (1000 * this.emitterOptions.rate.delay) / container.retina.reduceFactor;
         const colorSpeed = animation.speed ?? 0;

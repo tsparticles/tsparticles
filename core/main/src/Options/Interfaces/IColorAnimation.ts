@@ -2,7 +2,8 @@
  * Color animation interface, these properties are used to animate colors
  * @category Options
  */
-import type { IOffsetValue } from "./IOffsetValue";
+
+import { RangeValue } from "../../Types";
 
 export interface IColorAnimation {
     /**
@@ -13,7 +14,7 @@ export interface IColorAnimation {
     /**
      * The value offset percent applied to color hue
      */
-    offset: IOffsetValue;
+    offset: RangeValue;
 
     /**
      * Hue speed rotation (from 0 to 360 degrees)

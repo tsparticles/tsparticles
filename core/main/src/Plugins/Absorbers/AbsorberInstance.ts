@@ -3,7 +3,7 @@ import type { Container } from "../../Core/Container";
 import type { Particle } from "../../Core/Particle";
 import type { IRgb } from "../../Core/Interfaces/Colors";
 import type { IAbsorber } from "./Options/Interfaces/IAbsorber";
-import { colorToRgb, getDistance, getDistances, getStyleFromRgb, getValue, isPointInside } from "../../Utils";
+import { colorToRgb, getDistance, getDistances, getStyleFromRgb, getRangeValue, isPointInside } from "../../Utils";
 import type { Absorbers } from "./Absorbers";
 import { RotateDirection } from "../../Enums";
 import { Velocity } from "../../Core/Particle/Velocity";
@@ -43,7 +43,7 @@ export class AbsorberInstance {
         this.dragging = false;
 
         this.opacity = this.options.opacity;
-        this.size = getValue(options.size.value) * container.retina.pixelRatio;
+        this.size = getRangeValue(options.size.value) * container.retina.pixelRatio;
         this.mass = this.size * options.size.density * container.retina.reduceFactor;
 
         const limit = options.size.limit;

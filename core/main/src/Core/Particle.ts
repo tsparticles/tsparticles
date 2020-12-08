@@ -29,14 +29,15 @@ import {
     deg2rad,
     getDistance,
     getHslFromAnimation,
-    getMax,
-    getMin,
+    getRangeMax,
+    getRangeMin,
     getParticleBaseVelocity,
-    getValue,
+    getRangeValue,
     isInArray,
     itemFromArray,
     Plugins,
     randomInRange,
+    setRangeValue,
 } from "../Utils";
 import type { IDelta } from "./Interfaces/IDelta";
 import type { ILink } from "./Interfaces/ILink";
@@ -169,11 +170,11 @@ export class Particle implements IParticle {
         this.close = this.shapeData?.close ?? this.close;
         this.options = particlesOptions;
 
-        const zIndexValue = getValue(this.options.zIndex.value);
+        const zIndexValue = getRangeValue(this.options.zIndex.value);
 
         /* size */
         const sizeOptions = this.options.size;
-        const sizeValue = getValue(sizeOptions.value) * container.retina.pixelRatio;
+        const sizeValue = getRangeValue(sizeOptions.value) * container.retina.pixelRatio;
 
         const randomSize = typeof sizeOptions.random === "boolean" ? sizeOptions.random : sizeOptions.random.enable;
 
@@ -202,7 +203,7 @@ export class Particle implements IParticle {
 
         // Scale z-index factor to be between 0 and 2
         this.zIndexFactor = this.position.z / container.zLayers;
-        this.noiseDelay = getValue(this.options.move.noise.delay.value) * 1000;
+        this.noiseDelay = getRangeValue(this.options.move.noise.delay.value) * 1000;
 
         container.retina.initParticle(this);
 
@@ -220,7 +221,7 @@ export class Particle implements IParticle {
         const rotateOptions = this.options.rotate;
 
         this.rotate = {
-            value: deg2rad(rotateOptions.random.enable ? Math.random() * 360 : getValue(rotateOptions.value)),
+            value: deg2rad(rotateOptions.random.enable ? Math.random() * 360 : getRangeValue(rotateOptions.value)),
         };
 
         let rotateDirection = rotateOptions.direction;
@@ -259,13 +260,13 @@ export class Particle implements IParticle {
             if (!randomSize) {
                 switch (sizeAnimation.startValue) {
                     case StartValueType.min:
-                        this.size.value = getMin(this.options.size.value) * pxRatio;
+                        this.size.value = getRangeMin(this.options.size.value) * pxRatio;
                         this.size.status = AnimationStatus.increasing;
 
                         break;
 
                     case StartValueType.random:
-                        this.size.value = getValue(this.options.size.value) * pxRatio;
+                        this.size.value = getRangeValue(this.options.size.value) * pxRatio;
                         this.size.status =
                             Math.random() >= 0.5 ? AnimationStatus.increasing : AnimationStatus.decreasing;
 
@@ -273,7 +274,7 @@ export class Particle implements IParticle {
 
                     case StartValueType.max:
                     default:
-                        this.size.value = getMax(this.options.size.value) * pxRatio;
+                        this.size.value = getRangeMax(this.options.size.value) * pxRatio;
                         this.size.status = AnimationStatus.decreasing;
 
                         break;
@@ -295,10 +296,10 @@ export class Particle implements IParticle {
         if (orbitOptions.enable) {
             const orbitRotationOptions = orbitOptions.rotation.random;
             if (orbitRotationOptions.enable) {
+                const orbitRange = setRangeValue(orbitRotationOptions.minimumValue, 360);
+
                 this.orbitRotation = Math.floor(
-                    orbitRotationOptions.minimumValue
-                        ? randomInRange(orbitRotationOptions.minimumValue, 360)
-                        : Math.random() * 360
+                    orbitRotationOptions.minimumValue ? randomInRange(orbitRange) : Math.random() * 360
                 );
             } else {
                 this.orbitRotation = orbitOptions.rotation.value;
@@ -336,7 +337,7 @@ export class Particle implements IParticle {
             typeof opacityOptions.random === "boolean" ? opacityOptions.random : opacityOptions.random.enable;
 
         this.opacity = {
-            value: getValue(opacityOptions.value),
+            value: getRangeValue(opacityOptions.value),
         };
 
         // Don't let opacity go below 0 or above 1
@@ -350,13 +351,13 @@ export class Particle implements IParticle {
             if (!randomOpacity) {
                 switch (opacityAnimation.startValue) {
                     case StartValueType.min:
-                        this.opacity.value = getMin(this.options.opacity.value);
+                        this.opacity.value = getRangeMin(this.options.opacity.value);
                         this.opacity.status = AnimationStatus.increasing;
 
                         break;
 
                     case StartValueType.random:
-                        this.opacity.value = getValue(this.options.opacity.value);
+                        this.opacity.value = getRangeValue(this.options.opacity.value);
                         this.opacity.status =
                             Math.random() >= 0.5 ? AnimationStatus.increasing : AnimationStatus.decreasing;
 
@@ -364,7 +365,7 @@ export class Particle implements IParticle {
 
                     case StartValueType.max:
                     default:
-                        this.opacity.value = getMax(this.options.opacity.value);
+                        this.opacity.value = getRangeMax(this.options.opacity.value);
                         this.opacity.status = AnimationStatus.decreasing;
 
                         break;
@@ -436,13 +437,13 @@ export class Particle implements IParticle {
 
         this.life = {
             delay: container.retina.reduceFactor
-                ? ((getValue(lifeOptions.delay.value) * (lifeOptions.delay.sync ? 1 : Math.random())) /
+                ? ((getRangeValue(lifeOptions.delay.value) * (lifeOptions.delay.sync ? 1 : Math.random())) /
                       container.retina.reduceFactor) *
                   1000
                 : 0,
             delayTime: 0,
             duration: container.retina.reduceFactor
-                ? ((getValue(lifeOptions.duration.value) * (lifeOptions.duration.sync ? 1 : Math.random())) /
+                ? ((getRangeValue(lifeOptions.duration.value) * (lifeOptions.duration.sync ? 1 : Math.random())) /
                       container.retina.reduceFactor) *
                   1000
                 : 0,
@@ -674,13 +675,10 @@ export class Particle implements IParticle {
         }
 
         if ((moveOptions.straight && moveOptions.random) || !moveOptions.straight) {
-            const range = {
-                left: radOffset - rad / 2,
-                right: radOffset + rad / 2,
-            };
+            const range = setRangeValue(radOffset - rad / 2, radOffset + rad / 2);
 
             // res.length += Math.sqrt(range.left ** 2 + range.right ** 2);
-            res.angle += randomInRange(range.left, range.right);
+            res.angle += randomInRange(range);
         }
 
         return res;
@@ -693,7 +691,7 @@ export class Particle implements IParticle {
             return;
         }
 
-        const rate = getValue(splitOptions.rate.value);
+        const rate = getRangeValue(splitOptions.rate.value);
 
         for (let i = 0; i < rate; i++) {
             this.container.particles.addSplitParticle(this);

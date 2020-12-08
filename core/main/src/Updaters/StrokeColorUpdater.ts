@@ -74,7 +74,7 @@ export class StrokeColorUpdater implements IParticleUpdater {
             return;
         }
 
-        const offset = randomInRange(valueAnimation.offset.min, valueAnimation.offset.max);
+        const offset = randomInRange(valueAnimation.offset);
 
         colorValue.value += (value.velocity ?? 0) * delta.factor + offset * 3.6;
 

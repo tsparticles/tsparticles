@@ -56,7 +56,7 @@ export class ColorUpdater implements IParticleUpdater {
             return;
         }
 
-        const offset = randomInRange(valueAnimation.offset.min, valueAnimation.offset.max);
+        const offset = randomInRange(valueAnimation.offset);
         const velocity = (value.velocity ?? 0) * delta.factor + offset * 3.6;
 
         if (!decrease || colorValue.status === AnimationStatus.increasing) {
