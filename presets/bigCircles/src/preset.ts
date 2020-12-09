@@ -41,7 +41,7 @@ export function loadPreset(tsParticles: Main): void {
             },
             move: {
                 enable: true,
-                speed: 10,
+                speed: 20,
                 direction: MoveDirection.top,
                 outMode: OutMode.destroy,
             },

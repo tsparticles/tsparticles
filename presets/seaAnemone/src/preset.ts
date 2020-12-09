@@ -41,7 +41,7 @@ export function loadPreset(tsParticles: Main): void {
                     generator: "seaAnemoneNoise",
                 },
                 random: false,
-                speed: 1,
+                speed: 2,
                 straight: false,
                 trail: {
                     fillColor: "#000",
