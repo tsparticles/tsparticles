@@ -2761,7 +2761,7 @@ core-js-compat@^3.6.2, core-js-compat@^3.6.5:
     browserslist "^4.14.6"
     semver "7.0.0"
 
-core-js@^3.6.5, core-js@^3.8.0:
+core-js@^3.6.5, core-js@^3.8.1:
   version "3.8.1"
   resolved "https://registry.yarnpkg.com/core-js/-/core-js-3.8.1.tgz#f51523668ac8a294d1285c3b9db44025fda66d47"
   integrity sha512-9Id2xHY1W7m8hCl8NkhQn5CufmF/WuR30BTRewvCXc1aZd3kMECwNZ69ndLbekKfakw9Rf2Xyc+QR6E7Gg+obg==
@@ -5956,17 +5956,6 @@ parseurl@~1.3.2, parseurl@~1.3.3:
   resolved "https://registry.yarnpkg.com/parseurl/-/parseurl-1.3.3.tgz#9da19e7bee8d12dff0513ed5b76957793bc2e8d4"
   integrity sha512-CiyeOxFT/JZyN5m0z9PfXw4SCBJ6Sygz1Dpl0wqjlhDEGGBP1GnsUVEL0p63hoG1fcj3fHynXi9NYO4nWOL+qQ==
 
-particles.vue3@^1.2.0-alpha.3:
-  version "1.2.0-alpha.3"
-  resolved "https://registry.yarnpkg.com/particles.vue3/-/particles.vue3-1.2.0-alpha.3.tgz#bc28fa1c00314dedf42e2bf2c2053c0934221dd4"
-  integrity sha512-cujQbIRGFI9lMILerHb6YM8u443VJW7aV21t/eeTH+NpfbugWcBZJBZpKU4JfJ791p5W6jOq4yX2t7mp5hJmhA==
-  dependencies:
-    core-js "^3.8.0"
-    tslib "^2.0.3"
-    tsparticles "^1.19.0-alpha.3"
-    vue ">=3"
-    vue-class-component "^8.0.0-rc.1"
-
 pascalcase@^0.1.1:
   version "0.1.1"
   resolved "https://registry.yarnpkg.com/pascalcase/-/pascalcase-0.1.1.tgz#b363e55e8006ca6fe21784d2db22bd15d7917f14"
@@ -6033,11 +6022,6 @@ path-type@^4.0.0:
   version "4.0.0"
   resolved "https://registry.yarnpkg.com/path-type/-/path-type-4.0.0.tgz#84ed01c0a7ba380afe09d90a8c180dcd9d03043b"
   integrity sha512-gDKb8aZMDeD/tZWs9P6+q0J9Mwkdl6xMV8TjnGP3qJVJ06bdMgkbBlLU8IdfOsIsFz2BW1rNVT3XuNEl8zPAvw==
-
-pathseg@^1.2.0:
-  version "1.2.0"
-  resolved "https://registry.yarnpkg.com/pathseg/-/pathseg-1.2.0.tgz#22af051e28037671e7799e296fe96c5dcbe53acd"
-  integrity sha512-+pQS7lTaoVIXhaCW7R3Wd/165APzZHWzYVqe7dxzdupxQwebgpBaCmf0/XZwmoA/rkDq3qvzO0qv4d5oFVrBRw==
 
 pbkdf2@^3.0.3:
   version "3.1.1"
@@ -7736,11 +7720,6 @@ tslib@^1.8.0, tslib@^1.8.1, tslib@^1.9.0:
   resolved "https://registry.yarnpkg.com/tslib/-/tslib-1.14.1.tgz#cf2d38bdc34a134bcaf1091c41f6619e2f672d00"
   integrity sha512-Xni35NKzjgMrwevysHTCArtLDpPvye8zV/0E4EyYn43P7/7qvQwPh9BGkHewbMulVntbigmcT7rdX3BNo9wRJg==
 
-tslib@^2.0.3:
-  version "2.0.3"
-  resolved "https://registry.yarnpkg.com/tslib/-/tslib-2.0.3.tgz#8e0741ac45fc0c226e58a17bfc3e64b9bc6ca61c"
-  integrity sha512-uZtkfKblCEQtZKBF6EBXVZeQNl82yqtDQdv+eck8u7tdPxjLu2/lp5/uPW+um2tpuxINHWy3GhiccY7QgEaVHQ==
-
 tslint@^5.20.1:
   version "5.20.1"
   resolved "https://registry.yarnpkg.com/tslint/-/tslint-5.20.1.tgz#e401e8aeda0152bc44dd07e614034f3f80c67b7d"
@@ -7759,27 +7738,6 @@ tslint@^5.20.1:
     semver "^5.3.0"
     tslib "^1.8.0"
     tsutils "^2.29.0"
-
-tsparticles-preset-big-circles@^1.4.0-alpha.3:
-  version "1.4.0-alpha.3"
-  resolved "https://registry.yarnpkg.com/tsparticles-preset-big-circles/-/tsparticles-preset-big-circles-1.4.0-alpha.3.tgz#0b3da6c0fe656860e320969405379466ed688c4e"
-  integrity sha512-zVxZhJUucIRaAxvyGeQPAonuQG3nDOiMh28+NEXkpZRwr8kVGla++/eNgXHcWQf5DavrfMv3WQAPdD9ZUNsjCg==
-  dependencies:
-    tsparticles "^1.19.0-alpha.3"
-
-tsparticles-preset-sea-anemone@^1.4.0-alpha.3:
-  version "1.4.0-alpha.3"
-  resolved "https://registry.yarnpkg.com/tsparticles-preset-sea-anemone/-/tsparticles-preset-sea-anemone-1.4.0-alpha.3.tgz#65f27624c3eaa2a55d4d05be257165b6a197f892"
-  integrity sha512-yakZsU4HC1a3RWFtQTGuf8f/gNyiJEFS9ZcA4Lu5Z1MHUN/aSUksBPKJvHnTPwQtvMoYYmjzvPacfrM7Tx51kQ==
-  dependencies:
-    tsparticles "^1.19.0-alpha.3"
-
-tsparticles@^1.19.0-alpha.3:
-  version "1.19.0-alpha.3"
-  resolved "https://registry.yarnpkg.com/tsparticles/-/tsparticles-1.19.0-alpha.3.tgz#23c6c4b4f838b61eafc34d67b1cd53ebeff9ae5a"
-  integrity sha512-tcXixcPFQ/J9/2Z9+cyiYs6jXepmU0ybHB+CRxvNB59N58VLCHOro4laZ62M5gnzwUkaNu9Aey8X06MnzNvCyA==
-  optionalDependencies:
-    pathseg "^1.2.0"
 
 tsutils@^2.29.0:
   version "2.29.0"
@@ -8105,7 +8063,7 @@ vue-template-es2015-compiler@^1.9.0:
   resolved "https://registry.yarnpkg.com/vue-template-es2015-compiler/-/vue-template-es2015-compiler-1.9.1.tgz#1ee3bc9a16ecbf5118be334bb15f9c46f82f5825"
   integrity sha512-4gDntzrifFnCEvyoO8PqyJDmguXgVPxKiIxrBKjIowvL9l+N66196+72XVYR8BBf1Uv1Fgt3bGevJ+sEmxfZzw==
 
-vue@>=3, vue@^3.0.4:
+vue@^3.0.4:
   version "3.0.4"
   resolved "https://registry.yarnpkg.com/vue/-/vue-3.0.4.tgz#872c65c143f5717bd5387c61613d9f55f4cc0f43"
   integrity sha512-2o+AiQF8sAupyhbyl3oxVCl3WCwC/n5NI7VMM+gVQ231qvSB8eI7sCBloloqDJK6yA367EEtmRSeSCf4sxCC+A==

@@ -7,7 +7,7 @@
     "build": "vue-cli-service build"
   },
   "dependencies": {
-    "core-js": "^3.8.0",
+    "core-js": "^3.8.1",
     "particles.vue3": "^1.2.0-alpha.4",
     "tsparticles": "^1.19.0-alpha.4",
     "tsparticles-preset-big-circles": "^1.4.0-alpha.4",
