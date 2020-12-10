@@ -17,7 +17,7 @@
     ]
   },
   "scripts": {
-    "build": "npx preact build",
+    "build": "echo npx preact build",
     "start": "yarn build && sirv build --cors --single",
     "dev": "preact watch",
     "lint": "eslint src"
