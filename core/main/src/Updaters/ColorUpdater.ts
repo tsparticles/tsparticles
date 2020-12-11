@@ -49,7 +49,7 @@ export class ColorUpdater implements IParticleUpdater {
         valueAnimation: ColorAnimation,
         max: number,
         decrease: boolean
-    ) {
+    ): void {
         const colorValue = value;
 
         if (!colorValue || !valueAnimation.enable) {

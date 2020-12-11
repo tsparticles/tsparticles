@@ -14,7 +14,7 @@ export class HslAnimation implements IHslAnimation, IOptionLoader<IHslAnimation>
         this.l = new ColorAnimation();
     }
 
-    public load(data?: RecursivePartial<IHslAnimation>) {
+    public load(data?: RecursivePartial<IHslAnimation>): void {
         if (!data) {
             return;
         }

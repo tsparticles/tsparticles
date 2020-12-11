@@ -654,20 +654,12 @@ export class Particle implements IParticle {
 
     private calculateVelocity(): Velocity {
         const res = getParticleBaseVelocity(this.direction),
-            moveOptions = this.options.move;
-
-        let rad: number,
-            radOffset = 0;
-
-        if (typeof moveOptions.angle === "number") {
-            rad = deg2rad(moveOptions.angle);
-        } else {
-            rad = deg2rad(moveOptions.angle.value);
-            radOffset = deg2rad(moveOptions.angle.offset);
-        }
+            moveOptions = this.options.move,
+            angle = deg2rad(moveOptions.angle.value),
+            offset = deg2rad(moveOptions.angle.offset);
 
         if ((moveOptions.straight && moveOptions.random) || !moveOptions.straight) {
-            const range = setRangeValue(radOffset - rad / 2, radOffset + rad / 2);
+            const range = setRangeValue(offset - angle / 2, offset + angle / 2);
 
             // res.length += Math.sqrt(range.left ** 2 + range.right ** 2);
             res.angle += randomInRange(range);
