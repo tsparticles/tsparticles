@@ -16,6 +16,7 @@ import type { ICoordinates } from "../../Core/Interfaces/ICoordinates";
 import type { DivEvent } from "../../Options/Classes/Interactivity/Events/DivEvent";
 import type { RepulseDiv } from "../../Options/Classes/Interactivity/Modes/RepulseDiv";
 import { ExternalBase } from "./ExternalBase";
+import { Vector } from "../../Core/Particle/Vector";
 
 /**
  * Particle repulse manager
@@ -128,12 +129,12 @@ export class Repulser extends ExternalBase {
             const { dx, dy, distance } = getDistances(particle.position, position);
             const velocity = (divRepulse?.speed ?? repulseOptions.speed) * repulseOptions.factor;
             const repulseFactor = clamp((1 - Math.pow(distance / repulseRadius, 2)) * velocity, 0, velocity);
-            const normVec = {
-                x: distance === 0 ? velocity : (dx / distance) * repulseFactor,
-                y: distance === 0 ? velocity : (dy / distance) * repulseFactor,
-            };
+            const normVec = new Vector(
+                distance === 0 ? velocity : (dx / distance) * repulseFactor,
+                distance === 0 ? velocity : (dy / distance) * repulseFactor
+            );
 
-            container.particles.mover.moveXY(particle, normVec.x, normVec.y);
+            particle.position.addTo(normVec);
         }
     }
 
@@ -173,10 +174,11 @@ export class Repulser extends ExternalBase {
                 if (d <= repulseRadius) {
                     container.repulse.particles.push(particle);
 
-                    const angle = Math.atan2(dy, dx);
+                    const vect = new Vector(dx, dy);
 
-                    particle.velocity.horizontal = force * Math.cos(angle);
-                    particle.velocity.vertical = force * Math.sin(angle);
+                    vect.length = force;
+
+                    particle.velocity.setTo(vect);
                 }
             }
         } else if (container.repulse.clicking === false) {

@@ -31,10 +31,10 @@ export class Attractor extends ParticlesBase {
                 p1Factor = p2.size.value / p1.size.value,
                 p2Factor = 1 / p1Factor;
 
-            p1.velocity.horizontal -= ax * p1Factor;
-            p1.velocity.vertical -= ay * p1Factor;
-            p2.velocity.horizontal += ax * p2Factor;
-            p2.velocity.vertical += ay * p2Factor;
+            p1.velocity.x -= ax * p1Factor;
+            p1.velocity.y -= ay * p1Factor;
+            p2.velocity.x += ax * p2Factor;
+            p2.velocity.y += ay * p2Factor;
         }
     }
 

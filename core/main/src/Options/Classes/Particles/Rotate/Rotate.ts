@@ -18,6 +18,7 @@ export class Rotate extends ValueWithRandom implements IAnimatable<AnimationOpti
     constructor() {
         super();
         this.animation = new AnimationOptions();
+        this.animation.speed = 0;
         this.direction = RotateDirection.clockwise;
         this.path = false;
     }

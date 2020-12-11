@@ -1,9 +1,9 @@
-import { clamp, getDistance, getDistances, isInArray, isSsr, Plugins } from "../../Utils";
+import { clamp, getDistance, getDistances, getRangeMax, isInArray, isSsr, Plugins } from "../../Utils";
 import type { Container } from "../Container";
 import type { Particle } from "../Particle";
 import { HoverMode, RotateDirection } from "../../Enums";
 import type { IDelta } from "../Interfaces/IDelta";
-import { Velocity } from "./Velocity";
+import { Vector } from "./Vector";
 
 /**
  * @category Core
@@ -42,11 +42,6 @@ export class Mover {
         this.moveParallax(particle);
     }
 
-    public moveXY(particle: Particle, x: number, y: number): void {
-        particle.position.x += x;
-        particle.position.y += y;
-    }
-
     private moveParticle(particle: Particle, delta: IDelta): void {
         const particlesOptions = particle.options;
 
@@ -58,7 +53,7 @@ export class Mover {
             slowFactor = this.getProximitySpeedFactor(particle),
             baseSpeed = particle.moveSpeed * container.retina.pixelRatio * container.retina.reduceFactor,
             sizeValue = particle.options.size.value,
-            maxSize = (typeof sizeValue === "number" ? sizeValue : sizeValue.max) * container.retina.pixelRatio,
+            maxSize = getRangeMax(sizeValue) * container.retina.pixelRatio,
             sizeFactor = particlesOptions.move.size ? particle.getRadius() / maxSize : 1,
             moveSpeed = (baseSpeed / 4) * sizeFactor * slowFactor * delta.factor;
 
@@ -67,15 +62,15 @@ export class Mover {
         const gravityOptions = particlesOptions.move.gravity;
 
         if (gravityOptions.enable) {
-            particle.velocity.vertical += (gravityOptions.acceleration * delta.factor) / (60 * moveSpeed);
+            particle.velocity.y += (gravityOptions.acceleration * delta.factor) / (60 * moveSpeed);
         }
 
         const velocity = particle.velocity.mult(moveSpeed);
 
-        if (gravityOptions.enable && velocity.vertical >= gravityOptions.maxSpeed && gravityOptions.maxSpeed > 0) {
-            velocity.vertical = gravityOptions.maxSpeed;
+        if (gravityOptions.enable && velocity.y >= gravityOptions.maxSpeed && gravityOptions.maxSpeed > 0) {
+            velocity.y = gravityOptions.maxSpeed;
 
-            particle.velocity.vertical = velocity.vertical / moveSpeed;
+            particle.velocity.y = velocity.y / moveSpeed;
         }
 
         const zIndexOptions = particle.options.zIndex,
@@ -86,14 +81,15 @@ export class Mover {
         } else {
             velocity.multTo(zVelocityFactor);
 
-            this.moveXY(particle, velocity.horizontal, velocity.vertical);
+            particle.position.addTo(velocity);
 
             if (particlesOptions.move.vibrate) {
-                this.moveXY(
-                    particle,
+                const vibrateVelocity = new Vector(
                     Math.sin(particle.position.x * Math.cos(particle.position.y) * zVelocityFactor),
                     Math.cos(particle.position.y * Math.sin(particle.position.x) * zVelocityFactor)
                 );
+
+                particle.position.addTo(vibrateVelocity);
             }
         }
 
@@ -150,11 +146,11 @@ export class Mover {
                 (hDistance !== undefined && dxFixed > hDistance) || (vDistance !== undefined && dyFixed > vDistance);
 
             if (hDistance !== undefined) {
-                particle.velocity.horizontal = particle.velocity.vertical / 2 - particle.velocity.horizontal;
+                particle.velocity.x = particle.velocity.y / 2 - particle.velocity.x;
             }
 
             if (vDistance !== undefined) {
-                particle.velocity.vertical = particle.velocity.horizontal / 2 - particle.velocity.vertical;
+                particle.velocity.y = particle.velocity.x / 2 - particle.velocity.y;
             }
         } else if (
             (hDistance === undefined || dxFixed < hDistance) &&
@@ -168,16 +164,16 @@ export class Mover {
 
             if (
                 hDistance !== undefined &&
-                ((pos.x < initialPosition.x && vel.horizontal < 0) || (pos.x > initialPosition.x && vel.horizontal > 0))
+                ((pos.x < initialPosition.x && vel.x < 0) || (pos.x > initialPosition.x && vel.x > 0))
             ) {
-                vel.horizontal *= -Math.random();
+                vel.x *= -Math.random();
             }
 
             if (
                 vDistance !== undefined &&
-                ((pos.y < initialPosition.y && vel.vertical < 0) || (pos.y > initialPosition.y && vel.vertical > 0))
+                ((pos.y < initialPosition.y && vel.y < 0) || (pos.y > initialPosition.y && vel.y > 0))
             ) {
-                vel.vertical *= -Math.random();
+                vel.y *= -Math.random();
             }
         }
     }
@@ -211,7 +207,7 @@ export class Mover {
 
         const noise = generator.generate(particle),
             vel = particle.velocity,
-            noiseVel = new Velocity(0, 0);
+            noiseVel = new Vector(0, 0);
 
         noiseVel.length = noise.length;
         noiseVel.angle = noise.angle;
@@ -219,8 +215,8 @@ export class Mover {
         vel.addTo(noiseVel);
 
         if (noiseOptions.clamp) {
-            vel.horizontal = clamp(vel.horizontal, -1, 1);
-            vel.vertical = clamp(vel.vertical, -1, 1);
+            vel.x = clamp(vel.x, -1, 1);
+            vel.y = clamp(vel.y, -1, 1);
         }
 
         particle.lastNoiseTime -= particle.noiseDelay;

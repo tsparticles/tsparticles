@@ -14,7 +14,7 @@ import type { ISideData } from "../Core/Interfaces/ISideData";
 import type { IRectSideResult } from "../Core/Interfaces/IRectSideResult";
 import type { ICircleBouncer } from "../Core/Interfaces/ICircleBouncer";
 import { Particle } from "../Core/Particle";
-import { Velocity } from "../Core/Particle/Velocity";
+import { Vector } from "../Core/Particle/Vector";
 
 type CSSOMString = string;
 type FontFaceLoadStatus = "unloaded" | "loading" | "loaded" | "error";
@@ -357,7 +357,7 @@ export function circleBounceDataFromParticle(p: IParticle): ICircleBouncer {
         position: p.getPosition(),
         radius: p.getRadius(),
         velocity: p.velocity,
-        factor: new Velocity(
+        factor: new Vector(
             getRangeValue(p.options.bounce.horizontal.value),
             getRangeValue(p.options.bounce.vertical.value)
         ),
@@ -365,8 +365,8 @@ export function circleBounceDataFromParticle(p: IParticle): ICircleBouncer {
 }
 
 export function circleBounce(p1: ICircleBouncer, p2: ICircleBouncer): void {
-    const xVelocityDiff = p1.velocity.horizontal;
-    const yVelocityDiff = p1.velocity.vertical;
+    const xVelocityDiff = p1.velocity.x;
+    const yVelocityDiff = p1.velocity.y;
 
     const pos1 = p1.position;
     const pos2 = p2.position;
@@ -396,11 +396,11 @@ export function circleBounce(p1: ICircleBouncer, p2: ICircleBouncer): void {
         const vFinal2 = rotateVelocity(v2, -angle);
 
         // Swap particle velocities for realistic bounce effect
-        p1.velocity.horizontal = vFinal1.horizontal * p1.factor.horizontal;
-        p1.velocity.vertical = vFinal1.vertical * p1.factor.vertical;
+        p1.velocity.x = vFinal1.x * p1.factor.x;
+        p1.velocity.y = vFinal1.y * p1.factor.y;
 
-        p2.velocity.horizontal = vFinal2.horizontal * p2.factor.horizontal;
-        p2.velocity.vertical = vFinal2.vertical * p2.factor.vertical;
+        p2.velocity.x = vFinal2.x * p2.factor.x;
+        p2.velocity.y = vFinal2.y * p2.factor.y;
     }
 }
 
@@ -426,13 +426,13 @@ export function rectBounce(particle: IParticle, divBounds: IBounds): void {
             min: divBounds.top,
             max: divBounds.bottom,
         },
-        particle.velocity.horizontal,
+        particle.velocity.x,
         getRangeValue(particle.options.bounce.horizontal.value)
     );
 
     if (resH.bounced) {
         if (resH.velocity !== undefined) {
-            particle.velocity.horizontal = resH.velocity;
+            particle.velocity.x = resH.velocity;
         }
 
         if (resH.position !== undefined) {
@@ -457,13 +457,13 @@ export function rectBounce(particle: IParticle, divBounds: IBounds): void {
             min: divBounds.left,
             max: divBounds.right,
         },
-        particle.velocity.vertical,
+        particle.velocity.y,
         getRangeValue(particle.options.bounce.vertical.value)
     );
 
     if (resV.bounced) {
         if (resV.velocity !== undefined) {
-            particle.velocity.vertical = resV.velocity;
+            particle.velocity.y = resV.velocity;
         }
 
         if (resV.position !== undefined) {

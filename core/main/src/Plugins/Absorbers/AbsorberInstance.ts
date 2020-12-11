@@ -6,7 +6,7 @@ import type { IAbsorber } from "./Options/Interfaces/IAbsorber";
 import { colorToRgb, getDistance, getDistances, getStyleFromRgb, getRangeValue, isPointInside } from "../../Utils";
 import type { Absorbers } from "./Absorbers";
 import { RotateDirection } from "../../Enums";
-import { Velocity } from "../../Core/Particle/Velocity";
+import { Vector } from "../../Core/Particle/Vector";
 
 type OrbitingParticle = Particle & {
     absorberOrbitRadius?: number;
@@ -182,15 +182,15 @@ export class AbsorberInstance {
 
             if (particle.absorberOrbitDirection === undefined) {
                 particle.absorberOrbitDirection =
-                    particle.velocity.horizontal >= 0 ? RotateDirection.clockwise : RotateDirection.counterClockwise;
+                    particle.velocity.x >= 0 ? RotateDirection.clockwise : RotateDirection.counterClockwise;
             }
 
             const orbitRadius = particle.absorberOrbitRadius;
             const orbitAngle = particle.absorberOrbitAngle;
             const orbitDirection = particle.absorberOrbitDirection;
 
-            particle.velocity.horizontal = 0;
-            particle.velocity.vertical = 0;
+            particle.velocity.x = 0;
+            particle.velocity.y = 0;
 
             const updateFunc = {
                 x: orbitDirection === RotateDirection.clockwise ? Math.cos : Math.sin,
@@ -204,7 +204,7 @@ export class AbsorberInstance {
             particle.absorberOrbitAngle +=
                 ((particle.moveSpeed * container.retina.pixelRatio) / 100) * container.retina.reduceFactor;
         } else {
-            const addV = new Velocity(0, 0);
+            const addV = new Vector(0, 0);
 
             addV.angle = angle;
             addV.length = acceleration;

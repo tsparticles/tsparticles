@@ -31,7 +31,7 @@ function bounceHorizontal(data: IBounceData): void {
         return;
     }
 
-    const velocity = data.particle.velocity.horizontal;
+    const velocity = data.particle.velocity.x;
     let bounced = false;
 
     if (
@@ -40,7 +40,7 @@ function bounceHorizontal(data: IBounceData): void {
     ) {
         const newVelocity = getRangeValue(data.particle.options.bounce.horizontal.value);
 
-        data.particle.velocity.horizontal *= -newVelocity;
+        data.particle.velocity.x *= -newVelocity;
 
         bounced = true;
     }
@@ -69,7 +69,7 @@ function bounceVertical(data: IBounceData): void {
         data.outMode === "bounceVertical" ||
         data.outMode === OutMode.split
     ) {
-        const velocity = data.particle.velocity.vertical;
+        const velocity = data.particle.velocity.y;
         let bounced = false;
 
         if (
@@ -80,7 +80,7 @@ function bounceVertical(data: IBounceData): void {
         ) {
             const newVelocity = getRangeValue(data.particle.options.bounce.vertical.value);
 
-            data.particle.velocity.vertical *= -newVelocity;
+            data.particle.velocity.y *= -newVelocity;
 
             bounced = true;
         }

@@ -49,7 +49,8 @@ import type { IColorAnimation } from "../Options/Interfaces/IColorAnimation";
 import type { IParticleLife } from "./Interfaces/IParticleLife";
 import type { IParticleSpin } from "./Interfaces/IParticleSpin";
 import type { IShape } from "../Options/Interfaces/Particles/Shape/IShape";
-import { Velocity } from "./Particle/Velocity";
+import { Vector } from "./Particle/Vector";
+import { Vector3d } from "./Particle/Vector3d";
 
 /**
  * The single particle object
@@ -87,8 +88,8 @@ export class Particle implements IParticle {
     public readonly loops: IParticleLoops;
     public readonly spin?: IParticleSpin;
     public readonly stroke: Stroke;
-    public readonly position: ICoordinates3d;
-    public readonly offset: ICoordinates;
+    public readonly position: Vector3d;
+    public readonly offset: Vector;
     public readonly shadowColor: IRgb | undefined;
     public readonly color?: IParticleHslAnimation;
     public readonly maxDistance: Partial<IDistance>;
@@ -97,10 +98,10 @@ export class Particle implements IParticle {
     public readonly size: IParticleValueAnimation<number>;
     public readonly strokeColor?: IParticleHslAnimation;
     public readonly orbitColor?: IHsl;
-    public readonly velocity: Velocity;
+    public readonly velocity: Vector;
     public readonly shape: ShapeType | string;
-    public readonly initialPosition: ICoordinates3d;
-    public readonly initialVelocity: Velocity;
+    public readonly initialPosition: Vector3d;
+    public readonly initialVelocity: Vector;
     public readonly shapeData?: IShapeValues;
     public readonly bubble: IBubbleParticleData;
 
@@ -184,11 +185,7 @@ export class Particle implements IParticle {
 
         /* position */
         this.position = this.calcPosition(this.container, position, clamp(zIndexValue, 0, container.zLayers));
-        this.initialPosition = {
-            x: this.position.x,
-            y: this.position.y,
-            z: this.position.z,
-        };
+        this.initialPosition = this.position.copy();
 
         const particles = this.container.particles;
 
@@ -196,10 +193,7 @@ export class Particle implements IParticle {
         particles.lastZIndex = this.position.z;
 
         /* parallax */
-        this.offset = {
-            x: 0,
-            y: 0,
-        };
+        this.offset = new Vector(0, 0);
 
         // Scale z-index factor to be between 0 and 2
         this.zIndexFactor = this.position.z / container.zLayers;
@@ -465,7 +459,7 @@ export class Particle implements IParticle {
 
             this.spin = {
                 center: spinCenter,
-                direction: this.velocity.horizontal >= 0 ? RotateDirection.clockwise : RotateDirection.counterClockwise,
+                direction: this.velocity.x >= 0 ? RotateDirection.clockwise : RotateDirection.counterClockwise,
                 angle: this.velocity.angle,
                 radius: distance,
                 acceleration: this.options.move.spin.acceleration,
@@ -554,27 +548,23 @@ export class Particle implements IParticle {
         position: ICoordinates | undefined,
         zIndex: number,
         tryCount = 0
-    ): ICoordinates3d {
+    ): Vector3d {
         for (const [, plugin] of container.plugins) {
             const pluginPos =
                 plugin.particlePosition !== undefined ? plugin.particlePosition(position, this) : undefined;
 
             if (pluginPos !== undefined) {
-                return {
-                    x: pluginPos.x,
-                    y: pluginPos.y,
-                    z: zIndex,
-                };
+                return new Vector3d(pluginPos.x, pluginPos.y, zIndex);
             }
         }
 
         const cSize = container.canvas.size;
 
-        const pos = {
-            x: position?.x ?? cSize.width * Math.random(),
-            y: position?.y ?? cSize.height * Math.random(),
-            z: zIndex,
-        };
+        const pos = new Vector3d(
+            position?.x ?? cSize.width * Math.random(),
+            position?.y ?? cSize.height * Math.random(),
+            zIndex
+        );
 
         this.fixPositionInCanvas(pos);
 
@@ -652,7 +642,7 @@ export class Particle implements IParticle {
         return false;
     }
 
-    private calculateVelocity(): Velocity {
+    private calculateVelocity(): Vector {
         const res = getParticleBaseVelocity(this.direction),
             moveOptions = this.options.move,
             angle = deg2rad(moveOptions.angle.value),

@@ -1,6 +1,6 @@
 import type { ICoordinates } from "../Core/Interfaces/ICoordinates";
 import { MoveDirection, MoveDirectionAlt } from "../Enums";
-import { Velocity } from "../Core/Particle/Velocity";
+import { Vector } from "../Core/Particle/Vector";
 import { RangeValue } from "../Types";
 
 /**
@@ -89,8 +89,8 @@ export function getDistance(pointA: ICoordinates, pointB: ICoordinates): number 
  */
 export function getParticleBaseVelocity(
     direction: MoveDirection | keyof typeof MoveDirection | MoveDirectionAlt
-): Velocity {
-    const baseVelocity = new Velocity(0, 0);
+): Vector {
+    const baseVelocity = new Vector(0, 0);
 
     baseVelocity.length = 1;
 
@@ -128,16 +128,16 @@ export function getParticleBaseVelocity(
     return baseVelocity;
 }
 
-export function rotateVelocity(velocity: Velocity, angle: number): Velocity {
-    const res = new Velocity(velocity.horizontal, velocity.vertical);
+export function rotateVelocity(velocity: Vector, angle: number): Vector {
+    const res = new Vector(velocity.x, velocity.y);
 
     res.rotate(angle);
 
     return res;
 }
 
-export function collisionVelocity(v1: Velocity, v2: Velocity, m1: number, m2: number): Velocity {
-    return new Velocity((v1.horizontal * (m1 - m2)) / (m1 + m2) + (v2.horizontal * 2 * m2) / (m1 + m2), v1.vertical);
+export function collisionVelocity(v1: Vector, v2: Vector, m1: number, m2: number): Vector {
+    return new Vector((v1.x * (m1 - m2)) / (m1 + m2) + (v2.x * 2 * m2) / (m1 + m2), v1.y);
 }
 
 export function deg2rad(deg: number): number {
@@ -205,15 +205,15 @@ export class NumberUtils {
      */
     public static getParticleBaseVelocity(
         direction: MoveDirection | keyof typeof MoveDirection | MoveDirectionAlt
-    ): Velocity {
+    ): Vector {
         return getParticleBaseVelocity(direction);
     }
 
-    public static rotateVelocity(velocity: Velocity, angle: number): Velocity {
+    public static rotateVelocity(velocity: Vector, angle: number): Vector {
         return rotateVelocity(velocity, angle);
     }
 
-    public static collisionVelocity(v1: Velocity, v2: Velocity, m1: number, m2: number): Velocity {
+    public static collisionVelocity(v1: Vector, v2: Vector, m1: number, m2: number): Vector {
         return collisionVelocity(v1, v2, m1, m2);
     }
 }
