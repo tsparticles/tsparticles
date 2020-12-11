@@ -198,8 +198,8 @@ export function loadPreset(tsParticles: Main): void {
                 p.seaSpeed += 0.01;
             }
 
-            p.velocity.horizontal = 0;
-            p.velocity.vertical = 0;
+            p.velocity.x = 0;
+            p.velocity.y = 0;
 
             return {
                 angle: p.seaDir,
