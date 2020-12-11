@@ -1,9 +1,10 @@
 import { DestroyType, StartValueType } from "../../../../Enums/Types";
+import { IAnimation } from "../../IAnimation";
 
 /**
  * @category Options
  */
-export interface IOpacityAnimation {
+export interface IOpacityAnimation extends IAnimation {
     /**
      * @deprecated use the new Range syntax
      */
@@ -14,10 +15,6 @@ export interface IOpacityAnimation {
      */
     minimumValue?: number;
 
-    count: number;
     destroy: DestroyType | keyof typeof DestroyType;
-    enable: boolean;
-    speed: number;
-    sync: boolean;
     startValue: StartValueType | keyof typeof StartValueType;
 }

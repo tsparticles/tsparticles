@@ -1,13 +1,13 @@
 import type { IColor } from "../../../../Core/Interfaces/Colors";
-import type { IOrbitAnimation } from "./IOrbitAnimation";
 import type { IValueWithRandom } from "../../IValueWithRandom";
+import type { IAnimation } from "../../IAnimation";
+import { IAnimatable } from "../../IAnimatable";
 
 /**
  * @category Options
  * [[include:Options/Particles/Orbit.md]]
  */
-export interface IOrbit {
-    animation: IOrbitAnimation;
+export interface IOrbit extends IAnimatable<IAnimation> {
     color?: string | IColor;
 
     /**

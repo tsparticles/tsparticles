@@ -4,12 +4,13 @@ import type { RecursivePartial } from "../../../../Types";
 import type { IOptionLoader } from "../../../Interfaces/IOptionLoader";
 import { ValueWithRandom } from "../../ValueWithRandom";
 import { setRangeValue } from "../../../../Utils";
+import type { IAnimatable } from "../../../Interfaces/IAnimatable";
 
 /**
  * [[include:Options/Particles/Size.md]]
  * @category Options
  */
-export class Size extends ValueWithRandom implements ISize, IOptionLoader<ISize> {
+export class Size extends ValueWithRandom implements IAnimatable<SizeAnimation>, ISize, IOptionLoader<ISize> {
     /**
      *
      * @deprecated this property is obsolete, please use the new animation
@@ -43,11 +44,7 @@ export class Size extends ValueWithRandom implements ISize, IOptionLoader<ISize>
 
         super.load(data);
 
-        const animation = data.animation ?? data.anim;
-
-        if (animation !== undefined) {
-            this.animation.load(animation);
-        }
+        this.animation.load(data.animation ?? data.anim);
 
         if (this.animation.enable) {
             this.value = setRangeValue(this.value, this.animation.minimumValue);

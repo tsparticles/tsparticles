@@ -1,15 +1,16 @@
 import type { IOrbit } from "../../../Interfaces/Particles/Orbit/IOrbit";
 import type { RecursivePartial } from "../../../../Types";
 import type { IOptionLoader } from "../../../Interfaces/IOptionLoader";
-import { OrbitAnimation } from "./OrbitAnimation";
 import { OrbitRotation } from "./OrbitRotation";
 import { OptionsColor } from "../../OptionsColor";
+import { AnimationOptions } from "../../AnimationOptions";
+import type { IAnimatable } from "../../../Interfaces/IAnimatable";
 
 /**
  * [[include:Options/Particles/Orbit.md]]
  * @category Options
  */
-export class Orbit implements IOrbit, IOptionLoader<IOrbit> {
+export class Orbit implements IOrbit, IOptionLoader<IOrbit>, IAnimatable<AnimationOptions> {
     public animation;
     public enable: boolean;
     public opacity: number;
@@ -19,7 +20,7 @@ export class Orbit implements IOrbit, IOptionLoader<IOrbit> {
     public rotation;
 
     constructor() {
-        this.animation = new OrbitAnimation();
+        this.animation = new AnimationOptions();
         this.enable = false;
         this.opacity = 1;
         this.rotation = new OrbitRotation();

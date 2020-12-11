@@ -4,12 +4,15 @@ import type { RecursivePartial } from "../../../../Types";
 import type { IOptionLoader } from "../../../Interfaces/IOptionLoader";
 import { ValueWithRandom } from "../../ValueWithRandom";
 import { setRangeValue } from "../../../../Utils";
+import { IAnimatable } from "../../../Interfaces/IAnimatable";
 
 /**
  * [[include:Options/Particles/Opacity.md]]
  * @category Options
  */
-export class Opacity extends ValueWithRandom implements IOpacity, IOptionLoader<IOpacity> {
+export class Opacity
+    extends ValueWithRandom
+    implements IAnimatable<OpacityAnimation>, IOpacity, IOptionLoader<IOpacity> {
     /**
      *
      * @deprecated this property is obsolete, please use the new animation

@@ -2,11 +2,12 @@ import type { IOpacityAnimation } from "../../../Interfaces/Particles/Opacity/IO
 import type { RecursivePartial } from "../../../../Types";
 import type { IOptionLoader } from "../../../Interfaces/IOptionLoader";
 import { DestroyType, StartValueType } from "../../../../Enums/Types";
+import { AnimationOptions } from "../../AnimationOptions";
 
 /**
  * @category Options
  */
-export class OpacityAnimation implements IOpacityAnimation, IOptionLoader<IOpacityAnimation> {
+export class OpacityAnimation extends AnimationOptions implements IOpacityAnimation, IOptionLoader<IOpacityAnimation> {
     /**
      * @deprecated use the new Range syntax
      */
@@ -26,14 +27,11 @@ export class OpacityAnimation implements IOpacityAnimation, IOptionLoader<IOpaci
      */
     public minimumValue?: number;
 
-    public count;
     public destroy: DestroyType | keyof typeof DestroyType;
-    public enable;
-    public speed;
     public startValue: StartValueType | keyof typeof StartValueType;
-    public sync;
 
     constructor() {
+        super();
         this.count = 0;
         this.destroy = DestroyType.none;
         this.enable = false;
@@ -43,36 +41,20 @@ export class OpacityAnimation implements IOpacityAnimation, IOptionLoader<IOpaci
     }
 
     public load(data?: RecursivePartial<IOpacityAnimation>): void {
+        super.load(data);
+
         if (data === undefined) {
             return;
-        }
-
-        if (data.count !== undefined) {
-            this.count = data.count;
         }
 
         if (data.destroy !== undefined) {
             this.destroy = data.destroy;
         }
 
-        if (data.enable !== undefined) {
-            this.enable = data.enable;
-        }
-
-        const minimumValue = data.minimumValue ?? data.opacity_min;
-
-        this.minimumValue = minimumValue;
-
-        if (data.speed !== undefined) {
-            this.speed = data.speed;
-        }
+        this.minimumValue = data.minimumValue ?? data.opacity_min;
 
         if (data.startValue !== undefined) {
             this.startValue = data.startValue;
-        }
-
-        if (data.sync !== undefined) {
-            this.sync = data.sync;
         }
     }
 }

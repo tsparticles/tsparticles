@@ -3,28 +3,12 @@
  * @category Options
  */
 
-import { RangeValue } from "../../Types";
+import type { RangeValue } from "../../Types";
+import type { IAnimation } from "./IAnimation";
 
-export interface IColorAnimation {
-    /**
-     * Enables/disables the animation
-     */
-    enable: boolean;
-
+export interface IColorAnimation extends IAnimation {
     /**
      * The value offset percent applied to color hue
      */
     offset: RangeValue;
-
-    /**
-     * Hue speed rotation (from 0 to 360 degrees)
-     */
-    speed: number;
-
-    /**
-     * Enables the sync animations for the particles created at the same time
-     * pushed or emitter particles will be out of sync
-     * Not using this value will create random colors particles at the same lightness and saturation of the base color
-     */
-    sync: boolean;
 }

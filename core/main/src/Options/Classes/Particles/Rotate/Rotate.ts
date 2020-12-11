@@ -1,22 +1,23 @@
 import type { IRotate } from "../../../Interfaces/Particles/Rotate/IRotate";
-import { RotateAnimation } from "./RotateAnimation";
 import { RotateDirection, RotateDirectionAlt } from "../../../../Enums";
 import type { RecursivePartial } from "../../../../Types";
 import type { IOptionLoader } from "../../../Interfaces/IOptionLoader";
 import { ValueWithRandom } from "../../ValueWithRandom";
+import { AnimationOptions } from "../../AnimationOptions";
+import { IAnimatable } from "../../../Interfaces/IAnimatable";
 
 /**
  * [[include:Options/Particles/Rotate.md]]
  * @category Options
  */
-export class Rotate extends ValueWithRandom implements IRotate, IOptionLoader<IRotate> {
+export class Rotate extends ValueWithRandom implements IAnimatable<AnimationOptions>, IRotate, IOptionLoader<IRotate> {
     public animation;
     public direction: RotateDirection | keyof typeof RotateDirection | RotateDirectionAlt;
     public path;
 
     constructor() {
         super();
-        this.animation = new RotateAnimation();
+        this.animation = new AnimationOptions();
         this.direction = RotateDirection.clockwise;
         this.path = false;
     }

@@ -7,12 +7,14 @@ import { setRangeValue } from "../../Utils";
  * @category Options
  */
 export class ColorAnimation implements IColorAnimation, IOptionLoader<IColorAnimation> {
+    public count;
     public enable;
     public offset: RangeValue;
     public speed;
     public sync;
 
     constructor() {
+        this.count = 0;
         this.enable = false;
         this.offset = 0;
         this.speed = 1;
@@ -22,6 +24,10 @@ export class ColorAnimation implements IColorAnimation, IOptionLoader<IColorAnim
     public load(data?: RecursivePartial<IColorAnimation>): void {
         if (data === undefined) {
             return;
+        }
+
+        if (data.count !== undefined) {
+            this.count = data.count;
         }
 
         if (data.enable !== undefined) {

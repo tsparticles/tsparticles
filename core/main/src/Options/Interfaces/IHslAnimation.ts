@@ -1,4 +1,4 @@
-import { IColorAnimation } from "./IColorAnimation";
+import type { IColorAnimation } from "./IColorAnimation";
 
 export interface IHslAnimation {
     h: IColorAnimation;
