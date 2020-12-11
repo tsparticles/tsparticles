@@ -1,5 +1,5 @@
 import type { IStroke } from "../../Options/Interfaces/Particles/IStroke";
-import type { ICoordinates, ICoordinates3d } from "./ICoordinates";
+import type { ICoordinates } from "./ICoordinates";
 import type { MoveDirection, MoveDirectionAlt, ShapeType } from "../../Enums";
 import type { IParticleValueAnimation } from "./IParticleValueAnimation";
 import type { IShapeValues } from "../../Options/Interfaces/Particles/Shape/IShapeValues";
