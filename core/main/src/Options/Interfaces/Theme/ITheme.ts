@@ -1,5 +1,5 @@
 import type { RecursivePartial } from "../../../Types";
-import type { IOptions } from "../../../Interfaces/Options/IOptions";
+import type { IOptions } from "../IOptions";
 import { IThemeDefault } from "./IThemeDefault";
 
 /**
