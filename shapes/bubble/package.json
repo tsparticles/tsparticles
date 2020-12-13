@@ -44,6 +44,9 @@
     "background",
     "tsparticles-shape"
   ],
+  "publishConfig": {
+    "directory": "dist"
+  },
   "author": "Matteo Bruni",
   "license": "MIT",
   "files": [
