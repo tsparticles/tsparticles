@@ -1,7 +1,7 @@
 import type { Container } from "tsparticles";
 import { EditorGroup, EditorType } from "object-gui";
 import { EditorBase } from "../../../EditorBase";
-import type { IMotion } from "tsparticles/dist/Options/Interfaces/Motion/IMotion";
+import type { IMotion } from "tsparticles/Options/Interfaces/Motion/IMotion";
 
 export class MotionOptionsEditor extends EditorBase {
     private group!: EditorGroup;

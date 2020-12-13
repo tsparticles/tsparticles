@@ -2,7 +2,7 @@ import { EditorGroup, EditorType } from "object-gui";
 import type { Container } from "tsparticles";
 import { CollisionMode } from "tsparticles";
 import { EditorBase } from "../../../../EditorBase";
-import type { ICollisions } from "tsparticles/dist/Options/Interfaces/Particles/Collisions/ICollisions";
+import type { ICollisions } from "tsparticles/Options/Interfaces/Particles/Collisions/ICollisions";
 
 export class CollisionsOptionsEditor extends EditorBase {
     public group!: EditorGroup;

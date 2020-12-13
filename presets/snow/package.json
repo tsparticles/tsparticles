@@ -9,7 +9,8 @@
     "lint": "eslint src --ext .js,.jsx,.ts,.tsx --fix",
     "compile": "tsc",
     "bundle": "webpack --mode production",
-    "build": "yarn clear:dist && yarn prettify:src && yarn compile && yarn lint && yarn bundle && yarn prettify:readme",
+    "distfiles": "node ./scripts/distfiles.js",
+    "build": "yarn clear:dist && yarn prettify:src && yarn compile && yarn lint && yarn bundle && yarn prettify:readme && yarn distfiles",
     "clear:dist": "rimraf -f ./dist",
     "prepack": "yarn build"
   },
@@ -51,12 +52,6 @@
   "bugs": {
     "url": "https://github.com/matteobruni/tsparticles/issues"
   },
-  "main": "dist/preset.js",
-  "jsdelivr": "dist/tsparticles.preset.snow.min.js",
-  "unpkg": "dist/tsparticles.preset.snow.min.js",
-  "browser": "dist/preset.js",
-  "module": "dist/preset.js",
-  "types": "dist/preset.d.ts",
   "devDependencies": {
     "@babel/core": "^7.12.9",
     "@types/webpack-env": "^1.16.0",

@@ -1,5 +1,5 @@
 import { Main } from "tsparticles";
-import { IParticle } from "tsparticles/dist/Core/Interfaces/IParticle";
+import { IParticle } from "tsparticles/Core/Interfaces/IParticle";
 
 export function loadShape(tsParticles: Main): void {
     tsParticles.addShape(

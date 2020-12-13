@@ -1,6 +1,6 @@
-const express = require('express');
-const helmet = require('helmet');
-const stylus = require('stylus');
+const express = require("express");
+const helmet = require("helmet");
+const stylus = require("stylus");
 
 const app = express();
 
@@ -8,16 +8,16 @@ const app = express();
 
 const port = 3000;
 
-app.set('views', './views');
-app.set('view engine', 'pug');
-app.use(stylus.middleware('./public'));
-app.use(express.static('./public'));
+app.set("views", "./views");
+app.set("view engine", "pug");
+app.use(stylus.middleware("./public"));
+app.use(express.static("./public"));
 app.use("/fontawesome", express.static("./node_modules/@fortawesome/fontawesome-free"));
 app.use("/jsoneditor", express.static("./node_modules/jsoneditor/dist"));
 app.use("/jquery", express.static("./node_modules/jquery/dist"));
 app.use("/popper.js", express.static("./node_modules/popper.js/dist"));
 app.use("/bootstrap", express.static("./node_modules/bootstrap/dist"));
-app.use("/tsparticles", express.static("./node_modules/tsparticles/dist"));
+app.use("/tsparticles", express.static("./node_modules/tsparticles/"));
 app.use("/preset-big-circles", express.static("./node_modules/tsparticles-preset-big-circles/dist"));
 app.use("/preset-fire", express.static("./node_modules/tsparticles-preset-fire/dist"));
 app.use("/preset-links", express.static("./node_modules/tsparticles-preset-links/dist"));
@@ -32,12 +32,12 @@ app.use("/shape-spiral", express.static("./node_modules/tsparticles-shape-spiral
 app.use("/stats", express.static("./node_modules/stats.ts/"));
 app.use("/pathseg", express.static("./node_modules/pathseg/"));
 
-app.get('/', function (req, res) {
-    res.render('index');
+app.get("/", function(req, res) {
+  res.render("index");
 });
 
-app.get('/slim', function (req, res) {
-    res.render('slim');
+app.get("/slim", function(req, res) {
+  res.render("slim");
 });
 
 app.listen(port, () => console.log(`Demo app listening on port ${port}!`));

@@ -12,7 +12,7 @@
     "clear:dist": "rimraf -f ./dist",
     "clear:docs": "rimraf -f ./docs",
     "slimbuild": "yarn clear:dist && yarn prettify:src && yarn build:ts:check && yarn lint && yarn build:ts && webpack --mode production",
-    "build": "yarn slimbuild && yarn build:schema && yarn prettify:schema && yarn prettify:tests && yarn test && yarn prettify:readme && yarn build:docs && copyfiles -f ./README.md ./dist/",
+    "build": "yarn slimbuild && yarn build:schema && yarn prettify:schema && yarn prettify:tests && yarn test && yarn prettify:readme && yarn build:docs && yarn distfiles",
     "build:ts:check": "tsc --noEmit",
     "build:ts": "yarn build:ts:browser && yarn build:ts:cjs && yarn build:ts:esm",
     "build:ts:browser": "tsc -b tsconfig.browser.json",
@@ -20,9 +20,9 @@
     "build:ts:esm": "tsc -b tsconfig.module.json",
     "build:docs": "yarn clear:docs && typedoc && copyfiles -f ../../CNAME ./docs",
     "build:schema": "npx mkdirp ./schema && typescript-json-schema tsconfig.schema.json IOptions --out ./schema/options.schema.json",
+    "distfiles": "node ./scripts/distfiles.js",
     "test": "nyc mocha",
     "preversion": "yarn test",
-    "install": "node ./scripts/install.js",
     "version": "node ./scripts/postversion.js && git add tsParticles.nuspec",
     "postversion": "git push && git push --tags",
     "prepack": "yarn build",
@@ -84,19 +84,9 @@
     "Jonathan Adams (https://github.com/PieceMaker)"
   ],
   "license": "MIT",
-  "files": [
-    "dist/**/*",
-    "scripts/install.js"
-  ],
   "bugs": {
     "url": "https://github.com/matteobruni/tsparticles/issues"
   },
-  "main": "dist/index.js",
-  "module": "dist/esm/index.js",
-  "jsdelivr": "dist/tsparticles.min.js",
-  "unpkg": "dist/tsparticles.min.js",
-  "browser": "dist/index.js",
-  "types": "dist/index.d.ts",
   "funding": {
     "type": "github",
     "url": "https://github.com/sponsors/matteobruni"

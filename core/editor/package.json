@@ -11,21 +11,15 @@
     "javascript",
     "wysiwyg"
   ],
+  "publishConfig": {
+    "directory": "dist"
+  },
   "author": "Matteo Bruni <ar3s@icloud.com>",
   "homepage": "https://particles.matteobruni.it/",
   "license": "MIT",
   "directories": {
     "dist": "dist"
   },
-  "files": [
-    "dist/**/*"
-  ],
-  "main": "dist/cjs/index.js",
-  "jsdelivr": "dist/tsparticles.editor.min.js",
-  "unpkg": "dist/tsparticles.editor.min.js",
-  "browser": "dist/index.js",
-  "module": "dist/esm/index.js",
-  "types": "dist/index.d.ts",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/matteobruni/tsparticles.git",
@@ -41,7 +35,8 @@
     "build:ts": "yarn build:ts:browser && yarn build:ts:esm && yarn build:ts:cjs",
     "build:ts:check": "tsc --noEmit",
     "build:ts:browser": "tsc -b tsconfig.browser.json",
-    "build": "yarn clear:dist && yarn prettify:src && yarn build:ts:check && yarn lint && yarn build:ts && webpack --mode production && yarn prettify:readme",
+    "build": "yarn clear:dist && yarn prettify:src && yarn build:ts:check && yarn lint && yarn build:ts && webpack --mode production && yarn prettify:readme && yarn distfiles",
+    "distfiles": "node ./scripts/distfiles.js",
     "prepack": "yarn build"
   },
   "bugs": {

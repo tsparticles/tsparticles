@@ -1,6 +1,6 @@
 import type { Container } from "tsparticles";
-import type { ITwinkle } from "tsparticles/dist/Options/Interfaces/Particles/Twinkle/ITwinkle";
-import type { ITwinkleValues } from "tsparticles/dist/Options/Interfaces/Particles/Twinkle/ITwinkleValues";
+import type { ITwinkle } from "tsparticles/Options/Interfaces/Particles/Twinkle/ITwinkle";
+import type { ITwinkleValues } from "tsparticles/Options/Interfaces/Particles/Twinkle/ITwinkleValues";
 import { EditorGroup, EditorType } from "object-gui";
 import { EditorBase } from "../../../../EditorBase";
 

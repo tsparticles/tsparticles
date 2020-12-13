@@ -2,7 +2,7 @@ import { EditorBase } from "../../../../EditorBase";
 import type { EditorGroup } from "object-gui";
 import { EditorType } from "object-gui";
 import type { Container } from "tsparticles";
-import type { IOrbit } from "tsparticles/dist/Options/Interfaces/Particles/Orbit/IOrbit";
+import type { IOrbit } from "tsparticles/Options/Interfaces/Particles/Orbit/IOrbit";
 
 export class OrbitOptionsEditor extends EditorBase {
     public group!: EditorGroup;

@@ -1,6 +1,6 @@
 import { EditorGroup, EditorType } from "object-gui";
 import type { Container } from "tsparticles";
-import type { IOpacity } from "tsparticles/dist/Options/Interfaces/Particles/Opacity/IOpacity";
+import type { IOpacity } from "tsparticles/Options/Interfaces/Particles/Opacity/IOpacity";
 import { EditorBase } from "../../../../EditorBase";
 import { DestroyType, StartValueType } from "tsparticles";
 

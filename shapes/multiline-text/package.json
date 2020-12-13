@@ -51,12 +51,6 @@
   "bugs": {
     "url": "https://github.com/matteobruni/tsparticles/issues"
   },
-  "main": "dist/shape.js",
-  "jsdelivr": "dist/tsparticles.shape.multiline-text.min.js",
-  "unpkg": "dist/tsparticles.shape.multiline-text.min.js",
-  "browser": "dist/shape.js",
-  "module": "dist/shape.js",
-  "types": "dist/shape.d.ts",
   "devDependencies": {
     "@babel/core": "^7.12.9",
     "@types/webpack-env": "^1.16.0",

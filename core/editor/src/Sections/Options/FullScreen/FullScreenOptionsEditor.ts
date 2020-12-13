@@ -1,7 +1,7 @@
 import type { Container } from "tsparticles";
 import { EditorGroup, EditorType } from "object-gui";
 import { EditorBase } from "../../../EditorBase";
-import type { IFullScreen } from "tsparticles/dist/Options/Interfaces/FullScreen/IFullScreen";
+import type { IFullScreen } from "tsparticles/Options/Interfaces/FullScreen/IFullScreen";
 
 export class FullScreenOptionsEditor extends EditorBase {
     private group!: EditorGroup;

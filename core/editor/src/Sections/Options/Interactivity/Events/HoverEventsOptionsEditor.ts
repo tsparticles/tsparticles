@@ -1,7 +1,7 @@
 import { EditorGroup, EditorType } from "object-gui";
 import type { Container } from "tsparticles";
 import { HoverMode } from "tsparticles";
-import type { IHoverEvent } from "tsparticles/dist/Options/Interfaces/Interactivity/Events/IHoverEvent";
+import type { IHoverEvent } from "tsparticles/Options/Interfaces/Interactivity/Events/IHoverEvent";
 import { EditorBase } from "../../../../EditorBase";
 
 export class HoverEventsOptionsEditor extends EditorBase {
