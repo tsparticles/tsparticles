@@ -2303,6 +2303,11 @@ path-type@^4.0.0:
   resolved "https://registry.yarnpkg.com/path-type/-/path-type-4.0.0.tgz#84ed01c0a7ba380afe09d90a8c180dcd9d03043b"
   integrity sha512-gDKb8aZMDeD/tZWs9P6+q0J9Mwkdl6xMV8TjnGP3qJVJ06bdMgkbBlLU8IdfOsIsFz2BW1rNVT3XuNEl8zPAvw==
 
+pathseg@^1.2.0:
+  version "1.2.0"
+  resolved "https://registry.yarnpkg.com/pathseg/-/pathseg-1.2.0.tgz#22af051e28037671e7799e296fe96c5dcbe53acd"
+  integrity sha512-+pQS7lTaoVIXhaCW7R3Wd/165APzZHWzYVqe7dxzdupxQwebgpBaCmf0/XZwmoA/rkDq3qvzO0qv4d5oFVrBRw==
+
 picomatch@^2.0.5, picomatch@^2.2.1, picomatch@^2.2.2:
   version "2.2.2"
   resolved "https://registry.yarnpkg.com/picomatch/-/picomatch-2.2.2.tgz#21f333e9b6b8eaff02468f5146ea406d345f4dad"
@@ -2462,9 +2467,9 @@ rollup-pluginutils@^2.8.1:
     estree-walker "^0.6.1"
 
 rollup@^2.34.2:
-  version "2.34.2"
-  resolved "https://registry.yarnpkg.com/rollup/-/rollup-2.34.2.tgz#fa73e05c64df587e9ed4dc80d7d4e7d4a43f8908"
-  integrity sha512-mvtQLqu3cNeoctS+kZ09iOPxrc1P1/Bt1z15enuQ5feyKOdM3MJAVFjjsygurDpSWn530xB4AlA83TWIzRstXA==
+  version "2.35.1"
+  resolved "https://registry.yarnpkg.com/rollup/-/rollup-2.35.1.tgz#e6bc8d10893556a638066f89e8c97f422d03968c"
+  integrity sha512-q5KxEyWpprAIcainhVy6HfRttD9kutQpHbeqDTWnqAFNJotiojetK6uqmcydNMymBEtC4I8bCYR+J3mTMqeaUA==
   optionalDependencies:
     fsevents "~2.1.2"
 
@@ -2627,6 +2632,13 @@ tslib@^1.8.1:
   version "1.14.1"
   resolved "https://registry.yarnpkg.com/tslib/-/tslib-1.14.1.tgz#cf2d38bdc34a134bcaf1091c41f6619e2f672d00"
   integrity sha512-Xni35NKzjgMrwevysHTCArtLDpPvye8zV/0E4EyYn43P7/7qvQwPh9BGkHewbMulVntbigmcT7rdX3BNo9wRJg==
+
+tsparticles@^1.19.0-alpha.5:
+  version "1.19.0-alpha.5"
+  resolved "https://registry.yarnpkg.com/tsparticles/-/tsparticles-1.19.0-alpha.5.tgz#87ccc0884350cfa1536a5ce7e0b0b3dc5a48afd8"
+  integrity sha512-Or11usaw6aM7a3WEcRnBGGUbAIAsyQSlhmpUbHCF3TzEqIdGcVLrS6rxomehM8b8MAGMfsrUSg8ANCGhenK2vw==
+  optionalDependencies:
+    pathseg "^1.2.0"
 
 tsutils@^3.17.1:
   version "3.17.1"
