@@ -694,9 +694,9 @@ supports-color@^7.0.0, supports-color@^7.1.0:
     has-flag "^4.0.0"
 
 svelte-check@^1.1.20:
-  version "1.1.20"
-  resolved "https://registry.yarnpkg.com/svelte-check/-/svelte-check-1.1.20.tgz#a7faae78c6af490e2b88d7da2706c132cfa82c0f"
-  integrity sha512-+fNEROQTlfRxMZTpOZjuaal1Ola1T0b7ji+8pOoLmdeUe32maX8zCPnOnM9vuT1xee9kzhQCbOUKvXBCPB/eCw==
+  version "1.1.22"
+  resolved "https://registry.yarnpkg.com/svelte-check/-/svelte-check-1.1.22.tgz#b06b879a2edcf374a26723c14f59736ba6e8e39d"
+  integrity sha512-fgn4ysnsGJ68bsUhf8IGjkVmtMI+d4mv3NCS1x5f1hbYZz844ZJvdtl4gtLctj9Zk09vsIGBoL0SDJ2fkKyGfw==
   dependencies:
     chalk "^4.0.0"
     chokidar "^3.4.1"
@@ -716,17 +716,7 @@ svelte-particles@^1.2.0-alpha.5:
     tslib "^2.0.3"
     tsparticles "^1.19.0-alpha.5"
 
-svelte-preprocess@^4.0.0:
-  version "4.6.0"
-  resolved "https://registry.yarnpkg.com/svelte-preprocess/-/svelte-preprocess-4.6.0.tgz#9ec11e7c00a44f7d0c5932a35b34125d6dbcd458"
-  integrity sha512-kJwcU71+yw3KKMgGu9eHZMJVBSkW4VfGJ5LSMgFQP/XcwvY2QUV6JcyBoQTjJm+h1KRlo/WGDo6A7+7e+B8B4A==
-  dependencies:
-    "@types/pug" "^2.0.4"
-    "@types/sass" "^1.16.0"
-    detect-indent "^6.0.0"
-    strip-indent "^3.0.0"
-
-svelte-preprocess@^4.6.1:
+svelte-preprocess@^4.0.0, svelte-preprocess@^4.6.1:
   version "4.6.1"
   resolved "https://registry.yarnpkg.com/svelte-preprocess/-/svelte-preprocess-4.6.1.tgz#a7de4d91b32d5608b6637da960ee81e6089ae276"
   integrity sha512-s7KdhR2pOsffyOzZIMEb315f6pfgeDnOWN47m6YKFeSEx3NMf/79Znc3vuG/Ai79SL/vsi86WDrjFPLGRfDesg==
