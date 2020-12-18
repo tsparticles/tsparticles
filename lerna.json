@@ -3,6 +3,7 @@
     "components/*",
     "core/*",
     "demo/*",
+    "plugins/*",
     "presets/*",
     "shapes/*",
     "templates/*"
