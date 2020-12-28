@@ -2,12 +2,12 @@
 
 [![Particles][image]][hyperlink]
 
-  [hyperlink]: https://rpj.bembi.org
+  [hyperlink]: https://rpj.bembi.dev
   [image]: https://raw.githubusercontent.com/wufe/react-particles-js/master/img/particles.png (Particles)
 
 Particles React component, using [tsParticles](https://github.com/matteobruni/tsparticles).
 
-Checkout the [demo page](https://rpj.bembi.org).
+Checkout the [demo page](https://rpj.bembi.dev).
 
 ---
 
@@ -56,7 +56,7 @@ Find your parameters configuration [here](https://particles.matteobruni.it).
 
 #### Polygon mask support
 
-Demo: [Polygon mask demo](https://rpj.bembi.org/#mask).
+Demo: [Polygon mask demo](https://rpj.bembi.dev/#mask).
 
 Available only since version `v2.4.0` (available with `npm install react-particles-js@2.4.0`).
 
@@ -114,7 +114,7 @@ class App extends Component{
 
 Lets you use multiple images as particle shape.  
 
-Demo: [Multiple images demo](https://rpj.bembi.org/#images).
+Demo: [Multiple images demo](https://rpj.bembi.dev/#images).
 
 Available only since version `v2.4.0` (available with `npm install react-particles-js@2.4.0`).
 
