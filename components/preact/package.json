@@ -69,7 +69,7 @@
   "dependencies": {
     "lodash": "^4.17.20",
     "preact": ">=10",
-    "tsparticles": "^1.19.0-alpha.5"
+    "tsparticles-core": "^1.0.0-alpha.0"
   },
   "devDependencies": {
     "@babel/core": "^7.12.9",

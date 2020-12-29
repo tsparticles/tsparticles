@@ -1,15 +1,15 @@
-import type { IContainerPlugin } from "tsparticles/Core/Interfaces/IContainerPlugin";
+import type { IContainerPlugin } from "tsparticles-core/Core/Interfaces/IContainerPlugin";
 import { AbsorberInstance } from "./AbsorberInstance";
-import type { Container } from "tsparticles/Core/Container";
-import type { Particle } from "tsparticles/Core/Particle";
+import type { Container } from "tsparticles-core/Core/Container";
+import type { Particle } from "tsparticles-core/Core/Particle";
 import type { IAbsorber } from "./Options/Interfaces/IAbsorber";
-import { itemFromArray } from "tsparticles/Utils";
+import { itemFromArray } from "tsparticles-core/Utils";
 import { Absorber } from "./Options/Classes/Absorber";
-import type { SingleOrMultiple, RecursivePartial } from "tsparticles/Types";
-import type { IOptions } from "tsparticles/Options/Interfaces/IOptions";
+import type { SingleOrMultiple, RecursivePartial } from "tsparticles-core/Types";
+import type { IOptions } from "tsparticles-core/Options/Interfaces/IOptions";
 import { AbsorberClickMode } from "./Enums";
 import type { IAbsorberOptions } from "./Options/Interfaces/IAbsorberOptions";
-import type { ICoordinates } from "tsparticles/Core/Interfaces/ICoordinates";
+import type { ICoordinates } from "tsparticles-core/Core/Interfaces/ICoordinates";
 
 interface AbsorberContainer {
     addAbsorber: (options: IAbsorber, position: ICoordinates) => AbsorberInstance;

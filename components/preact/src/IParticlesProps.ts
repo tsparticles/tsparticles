@@ -1,6 +1,6 @@
 import type { RefObject } from "react";
-import type { ISourceOptions, Container } from "tsparticles";
-import type { Main } from "tsparticles";
+import type { ISourceOptions, Container } from "tsparticles-core";
+import type { Main } from "tsparticles-core";
 
 export interface IParticlesProps {
     id?: string;

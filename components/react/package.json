@@ -96,6 +96,6 @@
     "lodash": "^4.17.20",
     "react": ">=16",
     "tslib": "^2.0.3",
-    "tsparticles": "^1.19.0-alpha.5"
+    "tsparticles-core": "^1.0.0-alpha.0"
   }
 }

@@ -4,11 +4,11 @@ const webpack = require("webpack");
 const { BundleAnalyzerPlugin } = require("webpack-bundle-analyzer");
 const version = require("./package.json").version;
 
-const getEntry = (name) => {
+const getEntry = () => {
   const obj = {};
 
-  obj[`tsparticles.plugin.${name}`] = "./dist/index.js";
-  obj[`tsparticles.plugin.${name}.min`] = "./dist/index.js";
+  obj["tsparticles"] = "./dist/index.js";
+  obj["tsparticles.min"] = "./dist/index.js";
 
   return obj;
 };
@@ -27,10 +27,18 @@ const getConfig = (entry, banner, minBanner, dir) => {
     },
     externals: [
       {
-        tsparticles: {
-          commonjs: "tsparticles",
-          commonjs2: "tsparticles",
-          amd: "tsparticles",
+        "tsparticles-slim": {
+          commonjs: "tsparticles-slim",
+          commonjs2: "tsparticles-slim",
+          amd: "tsparticles-slim",
+          root: "window"
+        }
+      },
+      {
+        "tsparticles-core": {
+          commonjs: "tsparticles-core",
+          commonjs2: "tsparticles-core",
+          amd: "tsparticles-core",
           root: "window"
         }
       }
@@ -58,7 +66,7 @@ const getConfig = (entry, banner, minBanner, dir) => {
         openAnalyzer: false,
         analyzerMode: "static",
         exclude: /\.min\.js$/,
-        reportFilename: `report.html`
+        reportFilename: "report.html"
       })
     ],
     optimization: {
@@ -85,8 +93,8 @@ GitHub : https://www.github.com/matteobruni/tsparticles
 How to use? : Check the GitHub README
 v${version}`;
 
-const minBanner = `tsParticles Emitters Plugin v${version} by Matteo Bruni`;
+const minBanner = `tsParticles v${version} by Matteo Bruni`;
 
 module.exports = [
-  getConfig(getEntry("emitters"), banner, minBanner, __dirname)
+  getConfig(getEntry(), banner, minBanner, __dirname)
 ];

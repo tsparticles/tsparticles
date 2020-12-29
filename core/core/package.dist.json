@@ -62,8 +62,8 @@
   },
   "main": "index.js",
   "module": "esm/index.js",
-  "jsdelivr": "tsparticles.min.js",
-  "unpkg": "tsparticles.min.js",
+  "jsdelivr": "tsparticles.core.min.js",
+  "unpkg": "tsparticles.core.min.js",
   "browser": "index.js",
   "types": "index.d.ts",
   "funding": {

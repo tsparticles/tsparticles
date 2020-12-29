@@ -1,7 +1,7 @@
-import type { IColor } from "tsparticles/Core/Interfaces/Colors";
-import type { Container } from "tsparticles";
-import type { IBackgroundMask } from "tsparticles/Options/Interfaces/BackgroundMask/IBackgroundMask";
-import type { IBackgroundMaskCover } from "tsparticles/Options/Interfaces/BackgroundMask/IBackgroundMaskCover";
+import type { IColor } from "tsparticles-core/Core/Interfaces/Colors";
+import type { Container } from "tsparticles-core";
+import type { IBackgroundMask } from "tsparticles-core/Options/Interfaces/BackgroundMask/IBackgroundMask";
+import type { IBackgroundMaskCover } from "tsparticles-core/Options/Interfaces/BackgroundMask/IBackgroundMaskCover";
 import { EditorGroup, EditorType } from "object-gui";
 import { EditorBase } from "../../../EditorBase";
 

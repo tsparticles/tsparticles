@@ -1,7 +1,7 @@
-import type { SingleOrMultiple } from "tsparticles/Types";
+import type { SingleOrMultiple } from "tsparticles-core/Types";
 import type { IEmitter } from "./IEmitter";
-import type { IInteractivity } from "tsparticles/Options/Interfaces/Interactivity/IInteractivity";
-import type { IModes } from "tsparticles/Options/Interfaces/Interactivity/Modes/IModes";
+import type { IInteractivity } from "tsparticles-core/Options/Interfaces/Interactivity/IInteractivity";
+import type { IModes } from "tsparticles-core/Options/Interfaces/Interactivity/Modes/IModes";
 
 /**
  * @category Emitters Plugin

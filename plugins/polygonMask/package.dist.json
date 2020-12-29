@@ -48,9 +48,7 @@
   "module": "plugin.js",
   "types": "plugin.d.ts",
   "dependencies": {
-    "tsparticles": "^1.19.0-alpha.5"
-  },
-  "optionalDependencies": {
-    "pathseg": "^1.2.0"
+    "pathseg": "^1.2.0",
+    "tsparticles-core": "^1.0.0-alpha.0"
   }
 }

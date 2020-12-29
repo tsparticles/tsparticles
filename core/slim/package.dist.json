@@ -43,7 +43,7 @@
   },
   "main": "index.js",
   "jsdelivr": "tsparticles.slim.min.js",
-  "unpkg": "tsparticles.plugin.min.js",
+  "unpkg": "tsparticles.slim.min.js",
   "browser": "index.js",
   "module": "index.js",
   "types": "index.d.ts",

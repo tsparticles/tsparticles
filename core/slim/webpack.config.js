@@ -7,8 +7,8 @@ const version = require("./package.json").version;
 const getEntry = (name) => {
   const obj = {};
 
-  obj[`tsparticles.plugin.${name}`] = "./dist/index.js";
-  obj[`tsparticles.plugin.${name}.min`] = "./dist/index.js";
+  obj[`tsparticles.${name}`] = "./dist/index.js";
+  obj[`tsparticles.${name}.min`] = "./dist/index.js";
 
   return obj;
 };
@@ -27,10 +27,10 @@ const getConfig = (entry, banner, minBanner, dir) => {
     },
     externals: [
       {
-        tsparticles: {
-          commonjs: "tsparticles",
-          commonjs2: "tsparticles",
-          amd: "tsparticles",
+        "tsparticles-core": {
+          commonjs: "tsparticles-core",
+          commonjs2: "tsparticles-core",
+          amd: "tsparticles-core",
           root: "window"
         }
       }
@@ -58,7 +58,7 @@ const getConfig = (entry, banner, minBanner, dir) => {
         openAnalyzer: false,
         analyzerMode: "static",
         exclude: /\.min\.js$/,
-        reportFilename: `report.html`
+        reportFilename: "report.html"
       })
     ],
     optimization: {
@@ -85,8 +85,8 @@ GitHub : https://www.github.com/matteobruni/tsparticles
 How to use? : Check the GitHub README
 v${version}`;
 
-const minBanner = `tsParticles Emitters Plugin v${version} by Matteo Bruni`;
+const minBanner = `tsParticles Slim v${version} by Matteo Bruni`;
 
 module.exports = [
-  getConfig(getEntry("emitters"), banner, minBanner, __dirname)
+  getConfig(getEntry("slim"), banner, minBanner, __dirname)
 ];

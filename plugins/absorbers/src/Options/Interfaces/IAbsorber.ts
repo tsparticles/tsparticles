@@ -1,7 +1,7 @@
-import type { ICoordinates } from "tsparticles/Core/Interfaces/ICoordinates";
-import type { IColor } from "tsparticles/Core/Interfaces/Colors";
+import type { ICoordinates } from "tsparticles-core/Core/Interfaces/ICoordinates";
+import type { IColor } from "tsparticles-core/Core/Interfaces/Colors";
 import type { IAbsorberSize } from "./IAbsorberSize";
-import { RecursivePartial } from "tsparticles/Types";
+import { RecursivePartial } from "tsparticles-core/Types";
 
 /**
  * Absorber options

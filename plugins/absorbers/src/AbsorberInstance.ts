@@ -1,7 +1,7 @@
-import type { ICoordinates } from "tsparticles/Core/Interfaces/ICoordinates";
-import type { Container } from "tsparticles/Core/Container";
-import type { Particle } from "tsparticles/Core/Particle";
-import type { IRgb } from "tsparticles/Core/Interfaces/Colors";
+import type { ICoordinates } from "tsparticles-core/Core/Interfaces/ICoordinates";
+import type { Container } from "tsparticles-core/Core/Container";
+import type { Particle } from "tsparticles-core/Core/Particle";
+import type { IRgb } from "tsparticles-core/Core/Interfaces/Colors";
 import type { IAbsorber } from "./Options/Interfaces/IAbsorber";
 import {
     colorToRgb,
@@ -10,10 +10,10 @@ import {
     getStyleFromRgb,
     getRangeValue,
     isPointInside,
-} from "tsparticles/Utils";
+} from "tsparticles-core/Utils";
 import type { Absorbers } from "./Absorbers";
-import { RotateDirection } from "tsparticles/Enums";
-import { Vector } from "tsparticles/Core/Particle/Vector";
+import { RotateDirection } from "tsparticles-core/Enums";
+import { Vector } from "tsparticles-core/Core/Particle/Vector";
 
 type OrbitingParticle = Particle & {
     absorberOrbitRadius?: number;

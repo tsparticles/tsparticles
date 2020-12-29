@@ -43,11 +43,12 @@
   },
   "main": "index.js",
   "jsdelivr": "tsparticles.min.js",
-  "unpkg": "tsparticles..min.js",
+  "unpkg": "tsparticles.min.js",
   "browser": "index.js",
   "module": "index.js",
   "types": "index.d.ts",
   "dependencies": {
+    "tsparticles-core": "^1.0.0-alpha.0",
     "tsparticles-slim": "^1.0.0-alpha.0"
   }
 }
