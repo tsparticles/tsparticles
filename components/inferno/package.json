@@ -56,11 +56,9 @@
 	"license": "MIT",
 	"homepage": "https://particles.matteobruni.it/",
 	"dependencies": {
+		"inferno": "^7",
 		"lodash": "^4.17.20",
 		"tsparticles": "^1.18.11"
-	},
-	"peerDependencies": {
-		"inferno": "^7"
 	},
 	"devDependencies": {
 		"@babel/core": "^7.12.3",

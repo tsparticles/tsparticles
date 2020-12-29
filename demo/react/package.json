@@ -35,6 +35,7 @@
   "dependencies": {
     "react": "^16.14.0",
     "react-dom": "^16.14.0",
-    "react-tsparticles": "^1.18.11"
+    "react-tsparticles": "^1.18.11",
+    "tsparticles": "^1.18.11"
   }
 }

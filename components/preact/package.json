@@ -90,9 +90,7 @@
   },
   "dependencies": {
     "lodash": "^4.17.20",
-    "tsparticles": "^1.18.11"
-  },
-  "peerDependencies": {
+    "tsparticles": "^1.18.11",
     "preact": "^10"
   }
 }
