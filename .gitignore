@@ -363,6 +363,7 @@ demo/main/report.*.html
 demo/main/report.*.htm
 components/preact/report.html
 components/react/report.html
+components/react-native/report.html
 
 .idea/
 .nyc_output/
