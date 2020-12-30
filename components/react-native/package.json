@@ -1,6 +1,6 @@
 {
   "name": "react-native-tsparticles",
-  "version": "1.0.0",
+  "version": "0.0.1-alpha.3",
   "description": "tsParticles official React Native component",
   "main": "index.js",
   "unpkg": "umd/particles.js",
@@ -91,11 +91,11 @@
     "webpack-node-externals": "^2.5.2"
   },
   "dependencies": {
+    "@flyskywhy/react-native-gcanvas": "^2.0.0",
     "lodash": "^4.17.20",
-    "tslib": "^2.0.3",
-    "tsparticles": "^1.18.11",
     "react-native": "^0.63.4",
-    "react-native-canvas": "^0.1.37",
-    "react-native-webview": "^11.0.2"
+    "react-native-webview": "^11.0.2",
+    "tslib": "^2.0.3",
+    "tsparticles": "^1.18.11"
   }
 }
