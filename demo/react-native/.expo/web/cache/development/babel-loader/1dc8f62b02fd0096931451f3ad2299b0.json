@@ -1,0 +1,1 @@
+{"ast":null,"code":"export * from \"./AdapterProxy\";\nexport { default as deprecate } from \"./deprecate\";","map":{"version":3,"sources":["../src/index.ts"],"names":[],"mappings":"AAAA;AACA,SAAS,OAAO,IAAI,SAApB","sourcesContent":["export * from './AdapterProxy';\nexport { default as deprecate } from './deprecate';\n"],"sourceRoot":""},"metadata":{},"sourceType":"module"}

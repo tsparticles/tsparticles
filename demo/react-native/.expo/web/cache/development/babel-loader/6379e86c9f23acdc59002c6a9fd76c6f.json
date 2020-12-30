@@ -1,0 +1,1 @@
+{"ast":null,"code":"export * from \"./SplashScreen\";","map":{"version":3,"sources":["../src/index.ts"],"names":[],"mappings":"AAAA","sourcesContent":["export * from './SplashScreen';\n"],"sourceRoot":""},"metadata":{},"sourceType":"module"}

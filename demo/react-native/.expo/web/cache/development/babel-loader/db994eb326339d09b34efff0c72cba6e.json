@@ -1,0 +1,1 @@
+{"ast":null,"code":"export * from '@unimodules/react-native-adapter';","map":{"version":3,"sources":["../src/AdapterProxy.ts"],"names":[],"mappings":"AAAA,cAAc,kCAAd","sourcesContent":["export * from '@unimodules/react-native-adapter';\n"],"sourceRoot":""},"metadata":{},"sourceType":"module"}
