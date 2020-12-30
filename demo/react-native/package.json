@@ -31,7 +31,7 @@
     "react-native-gesture-handler": "~1.8.0",
     "react-native-safe-area-context": "3.1.9",
     "react-native-screens": "~2.15.0",
-    "react-native-tsparticles": "^1.0.0",
+    "react-native-tsparticles": "^0.0.1-alpha.3",
     "react-native-web": "~0.13.12"
   },
   "devDependencies": {

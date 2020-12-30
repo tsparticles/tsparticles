@@ -374,7 +374,10 @@ components/preact/cjs/
 components/preact/umd/
 components/react/cjs/
 components/react/umd/
+components/react-native/cjs/
+components/react-native/umd/
 
 size-plugin.json
 size-plugin-ssr.json
 demo/main/views/index.html
+.expo/
