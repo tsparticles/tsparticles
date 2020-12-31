@@ -1,9 +1,9 @@
 import { EditorGroup, EditorType } from "object-gui";
-import type { Container } from "tsparticles";
-import type { IMove } from "tsparticles/Options/Interfaces/Particles/Move/IMove";
-import { MoveDirection, OutMode } from "tsparticles";
+import type { Container } from "tsparticles-core";
+import type { IMove } from "tsparticles-core/Options/Interfaces/Particles/Move/IMove";
+import { MoveDirection, OutMode } from "tsparticles-core";
 import { EditorBase } from "../../../../EditorBase";
-import type { ITrail } from "tsparticles/Options/Interfaces/Particles/Move/ITrail";
+import type { ITrail } from "tsparticles-core/Options/Interfaces/Particles/Move/ITrail";
 
 export class MoveOptionsEditor extends EditorBase {
     public group!: EditorGroup;

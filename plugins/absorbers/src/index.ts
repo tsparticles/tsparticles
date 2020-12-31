@@ -1,4 +1,4 @@
-import { tsParticles } from "tsparticles";
+import { tsParticles } from "tsparticles-core";
 import { loadPlugin } from "./plugin";
 
 loadPlugin(tsParticles);

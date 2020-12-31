@@ -1,14 +1,14 @@
-import type { IPlugin } from "tsparticles/Core/Interfaces/IPlugin";
-import type { Container } from "tsparticles/Core/Container";
+import type { IPlugin } from "tsparticles-core/Core/Interfaces/IPlugin";
+import type { Container } from "tsparticles-core/Core/Container";
 import { Absorbers } from "./Absorbers";
-import { isInArray } from "tsparticles/Utils";
-import type { RecursivePartial } from "tsparticles/Types";
+import { isInArray } from "tsparticles-core/Utils";
+import type { RecursivePartial } from "tsparticles-core/Types";
 import { AbsorberClickMode } from "./Enums";
 import type { IAbsorberOptions } from "./Options/Interfaces/IAbsorberOptions";
-import type { IOptions } from "tsparticles/Options/Interfaces/IOptions";
-import { Options } from "tsparticles/Options/Classes/Options";
+import type { IOptions } from "tsparticles-core/Options/Interfaces/IOptions";
+import { Options } from "tsparticles-core/Options/Classes/Options";
 import { Absorber } from "./Options/Classes/Absorber";
-import { Main } from "tsparticles";
+import { Main } from "tsparticles-core";
 
 /**
  * @category Absorbers Plugin

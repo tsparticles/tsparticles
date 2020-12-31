@@ -6,7 +6,7 @@ import type { IParticlesProps, IParticlesState, ParticlesProps } from "./src/";
 import type { ISourceOptions } from "tsparticles";
 import type { ComponentClass } from "react";
 
-export * from "tsparticles/Enums";
+export * from "tsparticles-core/Enums";
 
 export type IParticlesParams = IParticlesProps;
 export type { ISourceOptions, IParticlesProps, ParticlesProps };

@@ -7,7 +7,8 @@
 
 <script lang="ts">
 import { Vue } from "vue-property-decorator";
-import { Container, ISourceOptions, Main } from "tsparticles";
+import { Container } from "tsparticles-core";
+import { ISourceOptions, Main } from "tsparticles";
 import { loadPreset } from "tsparticles-preset-big-circles";
 
 export default class App extends Vue {

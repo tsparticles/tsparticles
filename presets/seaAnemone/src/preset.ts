@@ -1,6 +1,6 @@
 import type { ISourceOptions, Main } from "tsparticles";
-import type { INoise } from "tsparticles/Core/Interfaces/INoise";
-import type { IParticle } from "tsparticles/Core/Interfaces/IParticle";
+import type { INoise } from "tsparticles-core/Core/Interfaces/INoise";
+import type { IParticle } from "tsparticles-core/Core/Interfaces/IParticle";
 
 export function loadPreset(tsParticles: Main): void {
     const presetName = "seaAnemone";

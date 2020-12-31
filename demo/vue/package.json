@@ -22,6 +22,8 @@
   "dependencies": {
     "particles.vue": "^2.2.0-alpha.5",
     "tsparticles": "^1.19.0-alpha.5",
+    "tsparticles-core": "^1.0.0-alpha.0",
+    "tsparticles-slim": "^1.0.0-alpha.0",
     "tsparticles-preset-big-circles": "^1.4.0-alpha.5",
     "tsparticles-preset-sea-anemone": "^1.4.0-alpha.5",
     "vue": ">=2 && <3",

@@ -1,14 +1,14 @@
-import type { Container } from "tsparticles/Core/Container";
-import type { ICoordinates } from "tsparticles/Core/Interfaces/ICoordinates";
+import type { Container } from "tsparticles-core/Core/Container";
+import type { ICoordinates } from "tsparticles-core/Core/Interfaces/ICoordinates";
 import { InlineArrangement, Type } from "./Enums";
-import { Particle } from "tsparticles/Core/Particle";
-import { colorToRgb, Constants, deepExtend, getDistance, getStyleFromRgb, itemFromArray } from "tsparticles/Utils";
-import type { IDimension } from "tsparticles/Core/Interfaces/IDimension";
+import { Particle } from "tsparticles-core/Core/Particle";
+import { colorToRgb, Constants, deepExtend, getDistance, getStyleFromRgb, itemFromArray } from "tsparticles-core/Utils";
+import type { IDimension } from "tsparticles-core/Core/Interfaces/IDimension";
 import type { ISvgPath } from "./Interfaces/ISvgPath";
-import type { IContainerPlugin } from "tsparticles/Core/Interfaces/IContainerPlugin";
+import type { IContainerPlugin } from "tsparticles-core/Core/Interfaces/IContainerPlugin";
 import type { IDrawStroke } from "./Options/Interfaces/IDrawStroke";
-import type { IOptions } from "tsparticles/Options/Interfaces/IOptions";
-import type { RecursivePartial } from "tsparticles/Types";
+import type { IOptions } from "tsparticles-core/Options/Interfaces/IOptions";
+import type { RecursivePartial } from "tsparticles-core/Types";
 import type { IPolygonMask } from "./Options/Interfaces/IPolygonMask";
 import { PolygonMask } from "./Options/Classes/PolygonMask";
 

@@ -1,6 +1,6 @@
-import type { Container } from "tsparticles";
-import type { IInteractivity } from "tsparticles/Options/Interfaces/Interactivity/IInteractivity";
-import { InteractivityDetect } from "tsparticles";
+import type { Container } from "tsparticles-core";
+import type { IInteractivity } from "tsparticles-core/Options/Interfaces/Interactivity/IInteractivity";
+import { InteractivityDetect } from "tsparticles-core";
 import { EditorGroup, EditorType } from "object-gui";
 import { ModesOptionsEditor } from "./Modes/ModesOptionsEditor";
 import { EventsOptionsEditor } from "./Events/EventsOptionsEditor";

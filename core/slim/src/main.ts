@@ -1,38 +1,37 @@
-import { SquareDrawer } from "./ShapeDrawers/SquareDrawer";
-import { TextDrawer } from "./ShapeDrawers/TextDrawer";
-import { ImageDrawer } from "./ShapeDrawers/ImageDrawer";
-import { ShapeType } from "./Enums/Types";
-import { LineDrawer } from "./ShapeDrawers/LineDrawer";
-import { CircleDrawer } from "./ShapeDrawers/CircleDrawer";
-import { TriangleDrawer } from "./ShapeDrawers/TriangleDrawer";
-import { StarDrawer } from "./ShapeDrawers/StarDrawer";
-import { PolygonDrawer } from "./ShapeDrawers/PolygonDrawer";
-import { Bouncer } from "./Interactions/External/Bouncer";
-import { Bubbler } from "./Interactions/External/Bubbler";
-import { Connector } from "./Interactions/External/Connector";
-import { Grabber } from "./Interactions/External/Grabber";
-import { Attractor as MouseAttractor } from "./Interactions/External/Attractor";
-import { Repulser as MouseRepulser } from "./Interactions/External/Repulser";
-import { Attractor as ParticlesAttractor } from "./Interactions/Particles/Attractor";
-import { Collider } from "./Interactions/Particles/Collider";
-import { Infecter } from "./Interactions/Particles/Infecter";
-import { Repulser } from "./Interactions/Particles/Repulser";
-import { Linker } from "./Interactions/Particles/Linker";
-import { LifeUpdater } from "./Updaters/LifeUpdater";
-import { OpacityUpdater } from "./Updaters/OpacityUpdater";
-import { SizeUpdater } from "./Updaters/SizeUpdater";
-import { AngleUpdater } from "./Updaters/AngleUpdater";
-import { ColorUpdater } from "./Updaters/ColorUpdater";
-import { StrokeColorUpdater } from "./Updaters/StrokeColorUpdater";
-import { OutOfCanvasUpdater } from "./Updaters/OutOfCanvasUpdater";
-import { MainCore } from "./main.core";
+import { SquareDrawer } from "tsparticles-core/ShapeDrawers/SquareDrawer";
+import { TextDrawer } from "tsparticles-core/ShapeDrawers/TextDrawer";
+import { ImageDrawer } from "tsparticles-core/ShapeDrawers/ImageDrawer";
+import { LineDrawer } from "tsparticles-core/ShapeDrawers/LineDrawer";
+import { CircleDrawer } from "tsparticles-core/ShapeDrawers/CircleDrawer";
+import { TriangleDrawer } from "tsparticles-core/ShapeDrawers/TriangleDrawer";
+import { StarDrawer } from "tsparticles-core/ShapeDrawers/StarDrawer";
+import { PolygonDrawer } from "tsparticles-core/ShapeDrawers/PolygonDrawer";
+import { Bouncer } from "tsparticles-core/Interactions/External/Bouncer";
+import { Bubbler } from "tsparticles-core/Interactions/External/Bubbler";
+import { Connector } from "tsparticles-core/Interactions/External/Connector";
+import { Grabber } from "tsparticles-core/Interactions/External/Grabber";
+import { Attractor as MouseAttractor } from "tsparticles-core/Interactions/External/Attractor";
+import { Repulser as MouseRepulser } from "tsparticles-core/Interactions/External/Repulser";
+import { Attractor as ParticlesAttractor } from "tsparticles-core/Interactions/Particles/Attractor";
+import { Collider } from "tsparticles-core/Interactions/Particles/Collider";
+import { Infecter } from "tsparticles-core/Interactions/Particles/Infecter";
+import { Repulser } from "tsparticles-core/Interactions/Particles/Repulser";
+import { Linker } from "tsparticles-core/Interactions/Particles/Linker";
+import { LifeUpdater } from "tsparticles-core/Updaters/LifeUpdater";
+import { OpacityUpdater } from "tsparticles-core/Updaters/OpacityUpdater";
+import { SizeUpdater } from "tsparticles-core/Updaters/SizeUpdater";
+import { AngleUpdater } from "tsparticles-core/Updaters/AngleUpdater";
+import { ColorUpdater } from "tsparticles-core/Updaters/ColorUpdater";
+import { StrokeColorUpdater } from "tsparticles-core/Updaters/StrokeColorUpdater";
+import { OutOfCanvasUpdater } from "tsparticles-core/Updaters/OutOfCanvasUpdater";
+import { Main, ShapeType } from "tsparticles-core";
 
 /**
  * Main class for creating the singleton on window.
  * It's a singleton proxy to the static [[Loader]] class for initializing [[Container]] instances
  * @category Main
  */
-export class MainSlim extends MainCore {
+export class MainSlim extends Main {
     constructor() {
         super();
 

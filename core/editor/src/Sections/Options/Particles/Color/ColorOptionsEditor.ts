@@ -1,6 +1,6 @@
 import { EditorGroup, EditorType } from "object-gui";
-import type { Container } from "tsparticles";
-import type { IAnimatableColor } from "tsparticles/Options/Interfaces/IAnimatableColor";
+import type { Container } from "tsparticles-core";
+import type { IAnimatableColor } from "tsparticles-core/Options/Interfaces/IAnimatableColor";
 import { EditorBase } from "../../../../EditorBase";
 
 export class ColorOptionsEditor extends EditorBase {

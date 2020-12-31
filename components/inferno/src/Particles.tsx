@@ -1,6 +1,6 @@
 import { Component, InfernoNode } from "inferno";
 import { isEqual } from "lodash";
-import { tsParticles, Container } from "tsparticles";
+import { tsParticles, Container } from "tsparticles-core";
 import type { IParticlesProps } from "./IParticlesProps";
 import type { IParticlesState } from "./IParticlesState";
 

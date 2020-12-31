@@ -1,7 +1,7 @@
 import React, { Component } from "preact/compat";
 import type { ComponentChild } from "preact";
 import isEqual from "lodash/isEqual";
-import { tsParticles, Container } from "tsparticles";
+import { tsParticles, Container } from "tsparticles-core";
 import type { IParticlesProps } from "./IParticlesProps";
 import type { IParticlesState } from "./IParticlesState";
 import { MutableRefObject } from "react";

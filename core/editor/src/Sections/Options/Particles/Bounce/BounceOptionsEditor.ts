@@ -1,7 +1,7 @@
 import { EditorGroup, EditorType } from "object-gui";
-import type { Container } from "tsparticles";
+import type { Container } from "tsparticles-core";
 import { EditorBase } from "../../../../EditorBase";
-import type { IBounce } from "tsparticles/Options/Interfaces/Particles/Bounce/IBounce";
+import type { IBounce } from "tsparticles-core/Options/Interfaces/Particles/Bounce/IBounce";
 
 export class BounceOptionsEditor extends EditorBase {
     public group!: EditorGroup;
