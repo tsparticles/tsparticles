@@ -24,7 +24,7 @@
     "tsparticles": "^1.19.0-alpha.5",
     "tsparticles-preset-big-circles": "^1.4.0-alpha.5",
     "tsparticles-preset-sea-anemone": "^1.4.0-alpha.5",
-    "vue": ">=2 && <3",
+    "vue": ">=2 && <4",
     "vue-class-component": "<8",
     "vue-property-decorator": "^9.1.2"
   },
