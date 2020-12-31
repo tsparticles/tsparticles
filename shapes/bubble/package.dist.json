@@ -45,6 +45,7 @@
   "module": "shape.js",
   "types": "shape.d.ts",
   "dependencies": {
+    "tsparticles-core": "^1.0.0-alpha.0",
     "tsparticles": "^1.19.0-alpha.5"
   }
 }
