@@ -1,0 +1,52 @@
+$media-border-color: bulmaRgba($border, 0.5) !default
+$media-spacing: 1rem
+$media-spacing-large: 1.5rem
+
+.media
+  align-items: flex-start
+  display: flex
+  text-align: inherit
+  .content:not(:last-child)
+    margin-bottom: 0.75rem
+  .media
+    border-top: 1px solid $media-border-color
+    display: flex
+    padding-top: 0.75rem
+    .content:not(:last-child),
+    .control:not(:last-child)
+      margin-bottom: 0.5rem
+    .media
+      padding-top: 0.5rem
+      & + .media
+        margin-top: 0.5rem
+  & + .media
+    border-top: 1px solid $media-border-color
+    margin-top: $media-spacing
+    padding-top: $media-spacing
+  // Sizes
+  &.is-large
+    & + .media
+      margin-top: $media-spacing-large
+      padding-top: $media-spacing-large
+
+.media-left,
+.media-right
+  flex-basis: auto
+  flex-grow: 0
+  flex-shrink: 0
+
+.media-left
+  +ltr-property("margin", $media-spacing)
+
+.media-right
+  +ltr-property("margin", $media-spacing, false)
+
+.media-content
+  flex-basis: auto
+  flex-grow: 1
+  flex-shrink: 1
+  text-align: inherit
+
++mobile
+  .media-content
+    overflow-x: auto

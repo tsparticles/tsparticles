@@ -1,27 +1,33 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <!-- Required meta tags always come first -->
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-        <meta http-equiv="x-ua-compatible" content="ie=edge">
 
-        <title> Fresh :: {{title}}</title>
-        <link rel="icon" type="image/png" href="{{root}}assets/img/favicon.png" />
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Fresh</title>
 
-        <!--Core CSS -->
-        <link rel="stylesheet" href="{{root}}assets/css/bulma.css">
-        <link rel="stylesheet" type="text/css" href="{{root}}assets/css/core.css">
-        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-        <link href="https://fonts.googleapis.com/css?family=Montserrat:400,500,600,700&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/png" href="img/favicon.png" />
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
-    </head>
-    <body>
-        {{> preloader}}
-        {{> body}}
-        {{> footer}}
-        {{> backtotop}}
-        {{> sidebar}}
-        {{> scripts}}
-    </body>  
+    <link rel="stylesheet" href="{{root}}/css/app.css">
+    <link rel="stylesheet" type="text/css" href="{{root}}/css/main.css">
+</head>
+
+<body>
+
+    {{> pageloader}}
+    {{> body}}
+    {{> footer}}
+    {{> backtotop}}
+    {{> sidebar}}
+
+    <script type="module" src="https://unpkg.com/ionicons@5.0.0/dist/ionicons/ionicons.esm.js"></script>
+    <script src="./js/bundle.js"></script>
+
+</body>
+
 </html>

@@ -1,0 +1,116 @@
+/* ==========================================================================
+Hamburger menu icon
+========================================================================== */
+
+.menu-toggle {
+    font-size: 20px;
+    color: #666;
+    line-height: 48px;
+    text-align: center;
+    background: transparent;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 64;
+    height: 64;
+    cursor: pointer;
+    padding: 0;
+    transition: opacity 0.4s;
+    opacity: 1;
+    position: relative;
+    top: 2px;
+
+    .icon-box-toggle {
+        height: 100%;
+        width: 100%;
+        background: transparent;
+        position: relative;
+        display: block;
+        width: 30px;
+        height: 30px;
+
+        &.active > span.rotate {
+            /*transform*/
+            -webkit-transform: rotate(90deg);
+            -moz-transform: translate(0px, 0px) rotate(90deg);
+            -ms-transform: translate(0px, 0px) rotate(90deg);
+            -o-transform: translate(0px, 0px) rotate(90deg);
+            transform: translate(0px, 0px) rotate(90deg);
+        }
+
+        &.active > span > i.icon-line-center {
+            visibility: hidden;
+            width: 1px;
+            height: 3px;
+            left: 70%;
+        }
+
+        &.active > span > i.icon-line-bottom {
+            margin: -2px 0 0 -10px;
+            left: 50%;
+            top: 12px;
+
+            /*transform*/
+            -webkit-transform: rotate(135deg);
+            -moz-transform: translate(0px, 0px) rotate(135deg);
+            -ms-transform: translate(0px, 0px) rotate(135deg);
+            -o-transform: translate(0px, 0px) rotate(135deg);
+            transform: translate(0px, 0px) rotate(135deg);
+        }
+
+        &.active > span > i.icon-line-top {
+            margin: -2px 0 0 -10px;
+            left: 50%;
+            top: 12px;
+
+            /*transform*/
+            -webkit-transform: rotate(45deg);
+            -moz-transform: translate(0px, 0px) rotate(45deg);
+            -ms-transform: translate(0px, 0px) rotate(45deg);
+            -o-transform: translate(0px, 0px) rotate(45deg);
+            transform: translate(0px, 0px) rotate(45deg);
+        }
+    }
+
+    .icon-line-center {
+        position: absolute;
+        width: 20px;
+        height: 2px;
+        background: $title-grey;
+        margin: -1px 0 0 -10px;
+        left: 50%;
+        top: 11px;
+        -webkit-transition: all 0.2s ease;
+        -moz-transition: all 0.2s ease;
+        -o-transition: all 0.2s ease;
+        transition: all 0.2s ease;
+    }
+
+    .icon-line-top {
+        position: absolute;
+        width: 20px;
+        height: 2px;
+        background: $title-grey;
+        margin: -3px 0 0 -10px;
+        left: 50%;
+        top: 7px;
+        -webkit-transition: all 0.2s ease;
+        -moz-transition: all 0.2s ease;
+        -o-transition: all 0.2s ease;
+        transition: all 0.2s ease;
+    }
+
+    .icon-line-bottom {
+        position: absolute;
+        width: 20px;
+        height: 2px;
+        background: $title-grey;
+        margin: 2px 0 0 -10px;
+        left: 50%;
+        top: 14px;
+        -webkit-transition: all 0.2s ease;
+        -moz-transition: all 0.2s ease;
+        -o-transition: all 0.2s ease;
+        transition: all 0.2s ease;
+    }
+}

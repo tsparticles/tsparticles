@@ -1,0 +1,128 @@
+$pageloader-opacity: 1 !default
+
+// keyframes mixin
+=keyframes($name)
+  @-webkit-keyframes #{$name}
+    @content
+  @-moz-keyframes #{$name}
+    @content
+  @-o-keyframes #{$name}
+    @content
+  @keyframes #{$name}
+    @content
+
+.pageloader
+  +overlay
+  position: fixed
+  padding-top: 2em
+  background: $primary
+  background: rgba( $primary, $pageloader-opacity )
+  @each $name, $pair in $colors
+    $color: nth($pair, 1)
+    $color-invert: nth($pair, 2)
+    &.is-#{$name}
+      background-color: $color
+      background: rgba( $color, $pageloader-opacity )
+      &::after
+        border-color: $color-invert
+        -webkit-animation: loader-figure-#{$name} 1.15s infinite cubic-bezier(0.215, 0.61, 0.355, 1)
+        -moz-animation: loader-figure-#{$name} 1.15s infinite cubic-bezier(0.215, 0.61, 0.355, 1)
+        animation: loader-figure-#{$name} 1.15s infinite cubic-bezier(0.215, 0.61, 0.355, 1)
+      .title
+        color: $color-invert
+  z-index: 999998
+  transition: transform .35s ease-out,-webkit-transform .35s ease-out
+  will-change: transform
+  &:not(.is-left-to-right),
+  &:not(.is-right-to-left),
+  &:not(.is-bottom-to-top)
+    -webkit-transform: translateY(-100%)
+    transform: translateY(-100%)
+  &.is-bottom-to-top
+    -webkit-transform: translateY(100%)
+    transform: translateY(100%)
+  &.is-left-to-right
+    -webkit-transform: translateX(-100%)
+    transform: translateX(-100%)
+  &.is-right-to-left
+    -webkit-transform: translateX(100%)
+    transform: translateX(100%)
+  &.is-active
+    &:not(.is-left-to-right),
+    &:not(.is-right-to-left)
+      -webkit-transform: translateY(0)
+      transform: translateY(0)
+    &.is-left-to-right,
+    &.is-right-to-left
+      -webkit-transform: translateX(0)
+      transform: translateX(0)
+  &::after
+    position: absolute
+    top: 50%
+    left: 50%
+    display: block
+    border-radius: 100%
+    content: ''
+    z-index: 9999
+    -webkit-transform: translate(-50%, -50%)
+    transform: translate(-50%, -50%)
+    width: 0
+    height: 0
+    box-sizing: border-box
+    border: 0 solid $white
+    -webkit-animation: loader-figure 1.15s infinite cubic-bezier(0.215, 0.61, 0.355, 1)
+    animation: loader-figure 1.15s infinite cubic-bezier(0.215, 0.61, 0.355, 1)
+  .title
+    position: absolute
+    top: 50%
+    left: 50%
+    -webkit-transform: translateX(-50%)
+    transform: translateX(-50%)
+    margin: 2em 0 0 0
+    font-size: 0.875em
+    letter-spacing: 0.1em
+    line-height: 1.5em
+    color: $white
+    white-space: nowrap
+  +keyframes(loader-figure)
+    0%
+      height: 0
+      width: 0
+      background-color: $white
+    29%
+      background-color: $white
+    30%
+      height: 2em
+      width: 2em
+      background-color: transparent
+      border-width: 1em
+      opacity: 1
+    100%
+      height: 2em
+      width: 2em
+      border-width: 0
+      opacity: 0
+      background-color: transparent
+
+@each $name, $pair in $colors
+  $color: nth($pair, 1)
+  $color-invert: nth($pair, 2)
+  +keyframes(loader-figure-#{$name})
+    0%
+      height: 0
+      width: 0
+      background-color: $color-invert
+    29%
+      background-color: $color-invert
+    30%
+      height: 2em
+      width: 2em
+      background-color: transparent
+      border-width: 1em
+      opacity: 1
+    100%
+      height: 2em
+      width: 2em
+      border-width: 0
+      opacity: 0
+      background-color: transparent

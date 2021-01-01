@@ -1,0 +1,22 @@
+/* ==========================================================================
+Main SCSS file / Fresh
+========================================================================== */
+
+@import 'abstracts/colors';
+@import 'abstracts/animations';
+
+@import "../sass/bulma";
+
+@import 'layout/navbar';
+@import 'layout/sidebar';
+@import 'layout/sections';
+@import 'layout/hero';
+@import 'layout/footer';
+@import 'components/buttons';
+@import 'components/dropdowns';
+@import 'components/hamburger';
+@import 'components/cards';
+@import 'components/forms';
+@import 'components/testimonials';
+@import 'utilities/utils';
+@import 'layout/responsive';

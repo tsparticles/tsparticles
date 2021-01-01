@@ -1,0 +1,210 @@
+$pricing-plan-colors: $colors !default
+$pricing-plan-border: .1rem solid $white-ter !default
+$pricing-plan-border-radius: $radius !default
+$pricing-plan-active-shadow: 0 8px 12px 0 rgba($grey, 0.2) !default
+$pricing-plan-active-transform: scale(1.05) !default
+$pricing-header-background: $white !default
+$pricing-item-background: $white-ter !default
+$pricing-item-border: .1rem solid $white !default
+$pricing-item-color: $grey !default
+$pricing-price-background: white !default
+
+.pricing-table
+  display: flex
+  align-items: stretch
+  flex-direction: row
+  flex-flow: row wrap
+  justify-content: space-between
+
+  &.is-comparative
+    .pricing-plan
+      border-radius: initial
+      margin: 0
+      &:not(:last-child)
+        border-right: none
+      &:first-child
+        border-top-left-radius: $pricing-plan-border-radius
+        border-bottom-left-radius: $pricing-plan-border-radius
+      &:last-child
+        border-top-right-radius: $pricing-plan-border-radius
+        border-bottom-right-radius: $pricing-plan-border-radius
+      &.is-active
+        border: $pricing-plan-border
+        border-radius: $pricing-plan-border-radius
+
+  .pricing-plan
+    display: flex
+    flex-direction: column
+    flex: 1 1 auto
+    background-color: $white
+    border: $pricing-plan-border
+    border-radius: $pricing-plan-border-radius
+    list-style-type: none
+    transition: 0.25s
+    margin: .5em
+
+    .plan-header
+      border-top-left-radius: $pricing-plan-border-radius
+      border-top-right-radius: $pricing-plan-border-radius
+      background-color: $pricing-header-background
+      color: $text
+      font-size: $size-medium
+      font-weight: $weight-semibold
+      padding: .75em
+      align-content: center
+      text-align: center
+
+    .plan-item
+      background: $pricing-item-background
+      border-bottom: $pricing-item-border
+      padding: .75em
+      align-content: center
+      text-align: center
+      font-size: .9em
+      color: $pricing-item-color
+
+    .plan-price
+      background-color: $pricing-price-background
+      color: $text
+      font-size: $size-small
+      font-weight: $weight-normal
+      padding: .75em
+      align-content: center
+      text-align: center
+
+      .plan-price-amount
+        font-size: $size-2
+        font-weight: $weight-bold
+
+        .plan-price-currency
+          vertical-align: super
+          font-size: $size-normal !important
+          font-weight: $weight-normal !important
+          color: $text
+          margin-right: .25rem
+
+    .plan-footer
+      border-bottom-left-radius: $pricing-plan-border-radius
+      border-bottom-right-radius: $pricing-plan-border-radius
+      padding: .75em
+      align-content: center
+      text-align: center
+      margin-top: auto
+
+    &.is-active
+      box-shadow: $pricing-plan-active-shadow
+      transform: $pricing-plan-active-transform
+      .plan-price
+        .plan-price-amount
+          color: $primary
+      .plan-footer
+        .button
+          background-color: $primary
+          border-color: transparent
+          color: findColorInvert( $primary )
+          &:hover,
+          &.is-hovered
+            background-color: darken($primary, 2.5%)
+            border-color: transparent
+            color: findColorInvert( $primary )
+          &:focus,
+          &.is-focused
+            border-color: transparent
+            box-shadow: 0 0 0.5em rgba($primary, 0.25)
+            color: findColorInvert( $primary )
+          &:active,
+          &.is-active
+            background-color: darken($primary, 5%)
+            border-color: transparent
+            color: findColorInvert( $primary )
+          &[disabled]
+            background-color: $primary
+            border-color: transparent
+
+    @each $name, $pair in $pricing-plan-colors
+      $color: nth($pair, 1)
+      $color-invert: nth($pair, 2)
+      &.is-#{$name}
+        .plan-price
+          .plan-price-amount
+            color: $color
+        .plan-footer
+          .button
+            background-color: $color
+            border-color: transparent
+            color: $color-invert
+            &:hover,
+            &.is-hovered
+              background-color: darken($color, 2.5%)
+              border-color: transparent
+              color: $color-invert
+            &:focus,
+            &.is-focused
+              border-color: transparent
+              box-shadow: 0 0 0.5em rgba($color, 0.25)
+              color: $color-invert
+            &:active,
+            &.is-active
+              background-color: darken($color, 5%)
+              border-color: transparent
+              color: $color-invert
+            &[disabled]
+              background-color: $color
+              border-color: transparent
+              box-shadow: none
+
++tablet
+  .pricing-table
+    &.is-comparative
+      margin: .5rem
+      &.is-features
+        display: none
+      .plan-item
+        &::before
+          content: attr( 'data-feature' )
+
+    &.is-horizontal
+      .pricing-plan
+        display: flex
+        flex-direction: row
+        flex-basis: 100%
+        .plan-header
+          width: 50%
+          display: flex
+          flex-direction: column
+          justify-content: center
+        .plan-price
+          width: 100%
+          display: flex
+          flex-direction: row
+          justify-content: center
+        .plan-items
+          width: 100%
+          background-color: $pricing-item-background
+          columns: 2
+          -webkit-columns: 2
+          -moz-columns: 2
+          column-gap: .1rem
+        .plan-footer
+          width: 50%
+          display: flex
+          flex-direction: column
+          justify-content: center
+          margin: auto
+
++mobile
+  .pricing-table
+    &.is-comparative
+      .pricing-plan
+        &.is-plan-first-mobile
+          order: -1
+        &.is-features
+          display: none
+        margin: .5rem
+        .plan-item
+          &::before
+            content: attr(data-feature)
+            display: block
+            font-weight: $weight-semibold
+            font-size: $size-small
+            color: $grey-light

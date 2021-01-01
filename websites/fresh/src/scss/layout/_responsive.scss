@@ -1,0 +1,235 @@
+/* ==========================================================================
+Responsive Styles
+========================================================================== */
+
+@media (max-width: 767px) {
+    .landing-caption {
+        text-align: center;
+    }
+
+    .navbar {
+        .navbar-brand {
+            .navbar-burger {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+        }
+    }
+
+    .navbar-menu {
+        .is-static {
+            position: absolute;
+            width: 100%;
+        }
+
+        .is-fixed {
+            position: fixed;
+            width: 100%;
+        }
+
+        .navbar-item {
+            text-align: center !important;
+
+            .signup-button {
+                width: 100% !important;
+            }
+        }
+
+        .navbar-link {
+            padding: 10px 20px !important;
+        }
+    }
+
+    .title {
+        &.section-title {
+            font-size: 2rem !important;
+        }
+    }
+
+    .level-left {
+        &.level-social {
+            display: flex;
+            justify-content: flex-start;
+        }
+    }
+
+    .app-side {
+        .title, .subtitle {
+            text-align: center;
+        }
+    }
+
+    .testimonial {
+        margin: 0 auto;
+
+        blockquote {
+            font-size: 1rem;
+        }
+    }
+
+    .pricing-wrap {
+        flex-direction: column;
+
+        .feature-card {
+            margin: 12px auto !important;
+        }
+    }
+
+    .form-button {
+        width: 100%;
+    }
+}
+
+@media only screen and (min-width: 768px) and (max-width: 1024px) and (orientation: portrait) {
+
+    .navbar {
+        .navbar-brand {
+            .navbar-burger {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+        }
+    }
+
+    .landing-caption {
+        text-align: center;
+
+        .subtitle {
+            max-width: 440px;
+            margin: 0 auto;
+            margin-bottom: 20px;
+        }
+    }
+
+    form {
+        padding: 0 40px;
+    }
+
+    .hero-body {
+        padding-bottom: 0;
+
+        img {
+            display: block;
+            margin: 0 auto;
+            max-height: 450px !important;
+            max-width: 450px !important;
+        }
+    }
+
+    .navbar-menu {
+        .is-static {
+            position: absolute;
+            width: 100%;
+        }
+
+        .is-fixed {
+            position: fixed;
+            width: 100%;
+        }
+
+        .navbar-item {
+            text-align: center !important;
+
+            .signup-button {
+                width: 100% !important;
+            }
+        }
+
+        .navbar-link {
+            padding: 10px 20px !important;
+        }
+    }
+
+    .side-feature {
+        .subtitle, .title {
+            max-width: 420px;
+            margin: 0 auto;
+        }
+
+        .title {
+            margin-bottom: 12px;
+        }
+
+        img {
+            display: block;
+            max-width: 450px;
+            margin: 0 auto;
+        }
+    }
+
+    .app-side {
+        .title, .subtitle {
+            text-align: center;
+            max-width: 450px;
+            margin: 0 auto;
+        }
+    }
+
+    .icon-list {
+        display: flex;
+
+        .column {
+            max-width: 25%;
+            min-width: 25%;
+        }
+    }
+
+    .testimonial {
+        margin: 0 auto;
+    }
+
+    .is-centered-tablet-portrait {
+        text-align: center !important;
+
+        .divider {
+            margin: 0 auto !important;
+        }
+    }
+
+    .footer-logo, .footer-column {
+        text-align: center;
+    }
+
+    .level {
+        &.is-mobile {
+            justify-content: center !important;
+
+            .level-item {
+                margin: 0 .75rem !important;
+            }
+        }
+    }
+}
+
+@media only screen and (min-width: 768px) and (max-width: 1024px) and (orientation: landscape) {
+
+    .navbar-menu {
+        .navbar-end {
+            a {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+            }
+
+            .navbar-link {
+                padding-right: 0 !important;
+            }
+
+            .button {
+                min-width: 120px;
+            }
+        }
+    }
+
+    .navbar-item {
+        &.is-hidden-mobile {
+            display: none !important;
+        }
+
+        &.is-hidden-desktop.is-hidden-tablet {
+            display: flex !important;
+        }
+    }
+}

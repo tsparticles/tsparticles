@@ -1,51 +1,54 @@
-'use strict';
-const {src, dest, watch, series, parallel } = require('gulp');
-const log = require('fancy-log');
-const colors = require('ansi-colors');
+const { src, dest, task, watch, series, parallel } = require('gulp');
+const del = require('del');
+const options = require("./config");
 const browserSync = require('browser-sync').create();
+
 const sass = require('gulp-sass');
 const bourbon = require('node-bourbon').includePaths;
-const rename = require('gulp-rename');
+const postcss = require('gulp-postcss');
 const concat = require('gulp-concat');
-const del = require('del');
-const panini = require('panini');
-const uglify = require('gulp-uglify-es').default;
-const sourcemaps = require('gulp-sourcemaps');
+const uglify = require('gulp-uglify');
 const imagemin = require('gulp-imagemin');
-const removeCode = require('gulp-remove-code');
-const removeLog = require('gulp-remove-logging');
-const prettyHtml = require('gulp-pretty-html');
-const sassLint = require('gulp-sass-lint');
-const htmllint = require('gulp-htmllint');
-const jshint = require('gulp-jshint');
-const htmlreplace = require('gulp-html-replace');
-const newer = require('gulp-newer');
+const cleanCSS = require('gulp-clean-css');
+const purgecss = require('gulp-purgecss');
+const sourcemaps = require('gulp-sourcemaps');
 const autoprefixer = require('gulp-autoprefixer');
-const accessibility = require('gulp-accessibility');
-const babel = require('gulp-babel');
+const panini = require('panini');
+
+const browserify = require("browserify");
+const babelify = require("babelify");
+const source = require("vinyl-source-stream");
 const nodepath = 'node_modules/';
-const assetspath = 'assets/';
 
-// File paths
-const files = {
-  scssPath: 'app/scss/**/*.scss',
-  jsPath: 'app/js/**/*.js'
+sass.compiler = require('sass');
+
+//Note : Webp still not supported in major browsers including forefox
+//const webp = require('gulp-webp'); //For converting images to WebP format
+//const replace = require('gulp-replace'); //For Replacing img formats to webp in html
+const logSymbols = require('log-symbols'); //For Symbolic Console logs :) :P 
+
+//Load Previews on Browser on dev
+function livePreview(done) {
+  browserSync.init({
+    server: {
+      baseDir: options.paths.dist.base
+    },
+    port: options.config.port || 5000
+  });
+  done();
 }
 
-// ------------ SETUP TASKS -------------
-// Copy Bulma filed into Bulma development folder
+//Copy latest installed Bulma
 function setupBulma() {
-  console.log('---------------COPYING BULMA FILES---------------');
+  console.log("\n\t" + logSymbols.info, "Installing Bulma Files..\n");
   return src([nodepath + 'bulma/*.sass', nodepath + 'bulma/**/*.sass'])
-    .pipe(dest('src/assets/sass/'));
+    .pipe(dest('src/sass/'));
 }
 
-// ------------ DEVELOPMENT TASKS -------------
-
-// COMPILE BULMA SASS INTO CSS
+//Compile Sass code
 function compileSASS() {
-  console.log('---------------COMPILING BULMA SASS---------------');
-  return src(['src/assets/sass/bulma.sass'])
+  console.log("\n\t" + logSymbols.info, "Compiling Bulma Sass..\n");
+  return src(['src/sass/bulma.sass'])
     .pipe(sass({
       outputStyle: 'compressed',
       sourceComments: 'map',
@@ -57,10 +60,10 @@ function compileSASS() {
     .pipe(browserSync.stream());
 }
 
-// COMPILE SCSS INTO CSS
+//Compile Scss code
 function compileSCSS() {
-  console.log('---------------COMPILING SCSS---------------');
-  return src(['src/assets/scss/core.scss'])
+  console.log("\n\t" + logSymbols.info, "Compiling App SCSS..\n");
+  return src(['src/scss/main.scss'])
     .pipe(sass({
       outputStyle: 'compressed',
       sourceComments: 'map',
@@ -68,22 +71,18 @@ function compileSCSS() {
       includePaths: bourbon
     }).on('error', sass.logError))
     .pipe(autoprefixer('last 2 versions'))
-    .pipe(dest('dist/assets/css'))
+    .pipe(dest('dist/css'))
     .pipe(browserSync.stream());
 }
 
-// USING PANINI, TEMPLATE, PAGE AND PARTIAL FILES ARE COMBINED TO FORM HTML MARKUP
+//Compile HTML partials with Panini
 function compileHTML() {
-  console.log('---------------COMPILING HTML WITH PANINI---------------');
+  console.log("\n\t" + logSymbols.info, "Compiling HTML..\n");
   panini.refresh();
   return src('src/pages/**/*.html')
     .pipe(panini({
       root: 'src/pages/',
       layouts: 'src/layouts/',
-          /*pageLayouts: {
-            //All pages inside src/pages/blog will use the blog.html layout
-            'blog': 'blog'
-          }*/
       partials: 'src/partials/',
       helpers: 'src/helpers/',
       data: 'src/data/'
@@ -92,214 +91,96 @@ function compileHTML() {
     .pipe(browserSync.stream());
 }
 
-// COPY CUSTOM JS
-function compileJS() {
-  console.log('---------------COMPILE CUSTOM JS---------------');
-  return src([
-      'src/assets/js/functions.js',
-      'src/assets/js/main.js',
-    ])
-    .pipe(babel())
-    .pipe(dest('dist/assets/js/'))
-    .pipe(browserSync.stream());
-}
-
-// RESET PANINI'S CACHE OF LAYOUTS AND PARTIALS
-function resetPages(done) {
-  console.log('---------------CLEARING PANINI CACHE---------------');
-  panini.refresh();
-  done();
-}
-
-// SASS LINT
-function scssLint() {
-  console.log('---------------SASS LINTING---------------');
-  return src('src/assets/scss/**/*.scss')
-    .pipe(sassLint({
-      configFile: '.scss-lint.yml'
-    }))
-    .pipe(sassLint.format())
-    .pipe(sassLint.failOnError());
-}
-
-// HTML LINTER
-function htmlLint() {
-  console.log('---------------HTML LINTING---------------');
-  return src('dist/*.html')
-    .pipe(htmllint({}, htmllintReporter));
-}
-
-function htmllintReporter(filepath, issues) {
-  if (issues.length > 0) {
-    issues.forEach(function (issue) {
-      log(colors.cyan('[gulp-htmllint] ') + colors.white(filepath + ' [' + issue.line + ']: ') + colors.red('(' + issue.code + ') ' + issue.msg));
-    });
-    process.exitCode = 1;
-  } else {
-    console.log('---------------NO HTML LINT ERROR---------------');
-  }
-}
-
-// JS LINTER
-function jsLint() {
-  return src('src/assets/js/*.js')
-    .pipe(jshint())
-    .pipe(jshint.reporter('default'));
-}
-
-// WATCH FILES
-function watchFiles() {
-  watch('src/**/*.html', compileHTML);
-  watch(['src/assets/scss/**/*', 'src/assets/scss/*'] , compileSCSS);
-  watch('src/assets/js/*.js', compileJS);
-  watch('src/assets/img/**/*', copyImages);
-}
-
-
-// BROWSER SYNC
-function browserSyncInit(done) {
-  console.log('---------------BROWSER SYNC---------------');
-  browserSync.init({
-    server: './dist'
-  });
-  return done();
-}
-
-// ------------ OPTIMIZATION TASKS -------------
-
-// COPIES AND MINIFY IMAGE TO DIST
-function copyImages() {
-  console.log('---------------OPTIMIZING IMAGES---------------');
-  return src('src/assets/img/**/*.+(png|jpg|jpeg|gif|svg)')
-    .pipe(newer('dist/assets/img/'))
-    //.pipe(imagemin())
-    .pipe(dest('dist/assets/img/'))
-    .pipe(browserSync.stream());
-}
-
-
-// PLACES FONT FILES IN THE DIST FOLDER
-function copyFont() {
-  console.log('---------------COPYING FONTS INTO DIST FOLDER---------------');
-  return src([
-      'src/assets/font/**/*',
-    ])
-    .pipe(dest('dist/assets/fonts'))
-    .pipe(browserSync.stream());
-}
-
-// PLACES DATA FILES IN THE DIST FOLDER
-function copyData() {
-  console.log('---------------COPYING DATA INTO DIST FOLDER---------------');
-  return src([
-    'src/data/**/*',
-  ])
-    .pipe(dest('dist/assets/data'))
-    .pipe(browserSync.stream());
-}
-
-// CONCATENATE JS PLUGINS
-function concatPlugins() {
-  console.log('---------------CONCATENATE JS PLUGINS---------------');
-  return src([
-    nodepath + 'jquery/dist/jquery.min.js',
-    nodepath + 'feather-icons/dist/feather.min.js',
-    nodepath + 'slick-carousel/slick/slick.min.js',
-    nodepath + 'scrollreveal/dist/scrollreveal.min.js',
-    nodepath + 'waypoints/lib/jquery.waypoints.min.js',
-    nodepath + 'waypoints/lib/shortcuts/sticky.min.js',
-    nodepath + 'jquery.counterup/jquery.counterup.min.js',
-    //Additional static js assets
-    'src/assets/vendor/js/**/*.js',
-  ])
-    .pipe(sourcemaps.init())
-    .pipe(concat('app.js'))
-    .pipe(sourcemaps.write('./'))
-    .pipe(dest('dist/assets/js'))
-    .pipe(browserSync.stream());
-}
-
-// CONCATENATE CSS PLUGINS
+//Concat CSS Plugins
 function concatCssPlugins() {
-  console.log('---------------CONCATENATE CSS PLUGINS---------------');
+  console.log("\n\t" + logSymbols.info, "Compiling Plugin styles..\n");
   return src([
-    //nodepath + 'slick-carousel/slick/slick.css',
-    //nodepath + 'slick-carousel/slick/slick-theme.css',
-    //Additional static css assets
-    'src/assets/vendor/css/**/*.css',
+    nodepath + 'simplebar/dist/simplebar.min.css',
+    nodepath + 'plyr/dist/plyr.css',
+    nodepath + 'codemirror/lib/codemirror.css',
+    nodepath + 'codemirror/theme/shadowfox.css',
+    'src/assets/vendor/css/*',
   ])
     .pipe(sourcemaps.init())
     .pipe(concat('app.css'))
     .pipe(sourcemaps.write('./'))
-    .pipe(dest('dist/assets/css'))
+    .pipe(dest('dist/css'))
     .pipe(browserSync.stream());
 }
 
-// COPY JS VENDOR FILES
-function jsVendor() {
-  console.log('---------------COPY JAVASCRIPT VENDOR FILES INTO DIST---------------');
+//Reset Panini Cache
+function resetPages(done) {
+  console.log("\n\t" + logSymbols.info, "Clearing Panini Cache..\n");
+  panini.refresh();
+  done();
+}
+
+//Triggers Browser reload
+function previewReload(done) {
+  console.log("\n\t" + logSymbols.info, "Reloading Browser Preview.\n");
+  browserSync.reload();
+  done();
+}
+
+//Development Tasks
+function devHTML() {
+  return src(`${options.paths.src.base}/**/*.html`).pipe(dest(options.paths.dist.base));
+}
+
+//Optimize images
+function devImages() {
+  return src(`${options.paths.src.img}/**/*`).pipe(dest(options.paths.dist.img));
+}
+
+// Let's write our task in a function to keep things clean
+function javascriptBuild() {
+  // Start by calling browserify with our entry pointing to our main javascript file
+  return (
+    browserify({
+      entries: [`${options.paths.src.js}/main.js`],
+      // Pass babelify as a transform and set its preset to @babel/preset-env
+      transform: [babelify.configure({ presets: ["@babel/preset-env"] })]
+    })
+      // Bundle it all up!
+      .bundle()
+      // Source the bundle
+      .pipe(source("bundle.js"))
+      // Then write the resulting files to a folder
+      .pipe(dest(`dist/js`))
+  );
+}
+
+//Copy data files
+function copyData() {
+  console.log("\n\t" + logSymbols.info, "Copying data files..\n");
   return src([
-      'src/assets/vendor/js/*',
-    ])
-    .pipe(dest('dist/assets/vendor/js'))
+    'src/data/**/*',
+  ])
+    .pipe(dest('dist/data'))
     .pipe(browserSync.stream());
 }
 
-// COPY CSS VENDOR FILES
-function cssVendor() {
-  console.log('---------------COPY CSS VENDOR FILES INTO DIST---------------');
-  return src([
-      'src/assets/vendor/css/*',
-
-    ])
-    .pipe(dest('dist/assets/vendor/css'))
-    .pipe(browserSync.stream());
+function watchFiles() {
+  //watch('src/**/*.html', compileHTML);
+  watch(`${options.paths.src.base}/**/*.html`, series(compileHTML, previewReload));
+  watch(['src/scss/**/*', 'src/scss/*'], compileSCSS);
+  watch(`${options.paths.src.js}/**/*.js`, series(javascriptBuild, previewReload));
+  watch(`${options.paths.src.img}/**/*`, series(devImages, previewReload));
+  console.log("\n\t" + logSymbols.info, "Watching for Changes..\n");
 }
 
-// PRETTIFY HTML FILES
-function prettyHTML() {
-  console.log('---------------HTML PRETTIFY---------------');
-  return src('dist/*.html')
-    .pipe(prettyHtml({
-      indent_size: 4,
-      indent_char: ' ',
-      unformatted: ['code', 'pre', 'em', 'strong', 'span', 'i', 'b', 'br']
-    }))
-    .pipe(dest('dist'));
+function devClean() {
+  console.log("\n\t" + logSymbols.info, "Cleaning dist folder for fresh start.\n");
+  return del([options.paths.dist.base]);
 }
 
-// DELETE DIST FOLDER
-function cleanDist(done) {
-  console.log('---------------REMOVING OLD FILES FROM DIST---------------');
-  del.sync('dist');
-  return done();
-}
 
-// ACCESSIBILITY CHECK
-function HTMLAccessibility() {
-  return src('dist/*.html')
-    .pipe(accessibility({
-      force: true
-    }))
-    .on('error', console.log)
-    .pipe(accessibility.report({
-      reportType: 'txt'
-    }))
-    .pipe(rename({
-      extname: '.txt'
-    }))
-    .pipe(dest('accessibility-reports'));
-}
-
-// RUN ALL LINTERS
-exports.linters = series(htmlLint, scssLint, jsLint);
-
-// RUN ACCESSIILITY CHECK
-exports.accessibility = HTMLAccessibility;
-
-//SETUP
 exports.setup = series(setupBulma);
 
-// DEV
-exports.dev = series(cleanDist, copyFont, copyData, jsVendor, cssVendor, copyImages, compileHTML, concatPlugins, concatCssPlugins, compileJS, resetPages, prettyHTML, compileSASS, compileSCSS, browserSyncInit, watchFiles);
-
+exports.default = series(
+  devClean, // Clean Dist Folder
+  resetPages,
+  parallel(concatCssPlugins, compileSCSS, javascriptBuild, devImages, compileHTML),
+  livePreview, // Live Preview Build
+  watchFiles // Watch for Live Changes
+);

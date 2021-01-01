@@ -1,2 +1,5 @@
 <!-- Back To Top Button -->
-<div id="backtotop"><a href="#"></a></div>
+<div x-data="initBackToTop()" x-on:scroll.window="scroll($event)" @click="goTop($event)" id="backtotop"><a href="javascript:" :class="{
+    'visible': scrolled,
+    '': !scrolled
+}"></a></div>
