@@ -9,18 +9,25 @@ You can access the demo [here](https://cssninjastudio.github.io/fresh/).
 
 Fresh is developed with the [Bulma css framework](https://bulma.io)
 
-**Version 3.0.0**
+**Version 4.0.0**
 
 ## Usage
-Fresh is now a Bulma starter fully bundled with **npm** and **gulp**. Bulma has been upgraded to the latest version **0.8.0**.
+Fresh is now a Bulma starter fully bundled with **npm** and **gulp**. Bulma has been upgraded to the latest version **0.9.1**. jQuery support has been dropped and replaced with [Alpine JS](https://github.com/alpinejs/alpine) and [Spruce JS](https://github.com/ryangjchandler/spruce).
 
 * Clone or download the repo
 * Run `npm install`
-* Run `gulp dev`
-
-Most of the dependencies have been sanitized. However, **Panini** will keep throwing 2 npm warnings (low and moderatem, since Panini is only used during development, that shouldn't be a problem). We already got in touch with Zurb / Foundation to have this problem solved.
+* Run `npm run dev`
 
 ## Changelog
+
+**Fresh 4.0**
+* Upgraded to gulp 4 and nodejs 12.13.0
+* Upgraded Bulma to 0.9.1
+* Added ES6 support
+* Removed jQuery support and related dependencies
+* Improved CSS build process
+* Integrated Alpine JS
+* Integrated Spruce JS
 
 **Fresh 3.0**
 * Upgraded to gulp 4 and nodejs 10.15.3
