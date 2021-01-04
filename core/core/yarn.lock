@@ -3689,10 +3689,10 @@ typedoc@^0.19.2, typedoc@~0.19.1:
     shelljs "^0.8.4"
     typedoc-default-themes "^0.11.4"
 
-typescript-json-schema@^0.46.0:
-  version "0.46.0"
-  resolved "https://registry.yarnpkg.com/typescript-json-schema/-/typescript-json-schema-0.46.0.tgz#45204ba80915db3608d01de5b839c470c053e716"
-  integrity sha512-9ktZr69Yh6iGTWVa3Ln0J+H6RyAoED9e68tz8k+0lIiCR+UZLvpvs9PqsSsE7aZ7Olvg0p161ls7JHldlA0Ocg==
+typescript-json-schema@^0.47.0:
+  version "0.47.0"
+  resolved "https://registry.yarnpkg.com/typescript-json-schema/-/typescript-json-schema-0.47.0.tgz#84dde5460b127c6774da81bf70b23c7e04857b13"
+  integrity sha512-A6NVwSOTSsNDHfaqDcDeKwwyXEeKqBHoAr20jcetnYj4e8C6zVFofAVhAuwsBXCRYiWEE/lyHrcxpsSpbIk0Mg==
   dependencies:
     "@types/json-schema" "^7.0.6"
     glob "^7.1.6"
