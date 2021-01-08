@@ -1,6 +1,6 @@
 {
   "name": "react-native-tsparticles",
-  "version": "0.0.1-alpha.9",
+  "version": "0.0.1-alpha.10",
   "description": "tsParticles official React Native component",
   "main": "index.js",
   "unpkg": "umd/particles.js",
@@ -82,6 +82,7 @@
     "eslint": "^7.11.0",
     "eslint-config-prettier": "^6.13.0",
     "prettier": "^2.1.2",
+    "prop-types": "^15.7.2",
     "ts-loader": "^8.0.5",
     "ts-node": "^9.0.0",
     "typescript": "^4.0.3",
@@ -91,7 +92,7 @@
     "webpack-node-externals": "^2.5.2"
   },
   "dependencies": {
-    "@ar3s/react-native-canvas": "^0.1.1",
+    "@ar3s/react-native-canvas": "^0.1.3",
     "lodash": "^4.17.20",
     "react-native": "^0.63.4",
     "react-native-webview": "^11.0.2",
