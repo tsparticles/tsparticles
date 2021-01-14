@@ -2,6 +2,13 @@
 # yarn lockfile v1
 
 
+"@ar3s/react-native-canvas@^0.1.8":
+  version "0.1.8"
+  resolved "https://registry.yarnpkg.com/@ar3s/react-native-canvas/-/react-native-canvas-0.1.8.tgz#7c4b29ac143523f9f953e75999cc4969a51af2ed"
+  integrity sha512-USn5J0177KqcmakwyE6qrskS6pYcVa9wSjR9ldTmsgAMTIEMkUl27qQPojbOIH2SwEsc56dLccSXSj+uJXFNLQ==
+  dependencies:
+    ctx-polyfill "^1.1.4"
+
 "@babel/code-frame@^7.0.0", "@babel/code-frame@^7.10.4", "@babel/code-frame@^7.12.11":
   version "7.12.11"
   resolved "https://registry.yarnpkg.com/@babel/code-frame/-/code-frame-7.12.11.tgz#f4ad435aa263db935b8f10f2c552d23fb716a63f"
@@ -5037,13 +5044,6 @@ react-is@^16.12.0, react-is@^16.8.1, react-is@^16.8.4:
   version "16.13.1"
   resolved "https://registry.yarnpkg.com/react-is/-/react-is-16.13.1.tgz#789729a4dc36de2999dc156dd6c1d9c18cea56a4"
   integrity sha512-24e6ynE2H+OKt4kqsOvNd8kBpV65zoxbA4BVsEOB3ARVWQki/DHzaUoC5KuON/BiccDaCCTZBuOcfZs70kR8bQ==
-
-react-native-canvas@^0.1.37:
-  version "0.1.37"
-  resolved "https://registry.yarnpkg.com/react-native-canvas/-/react-native-canvas-0.1.37.tgz#62381f685effcd3263d10f13b4174a8c5b533dcf"
-  integrity sha512-8W3YlS9WoxQeyK7/fjzlVIOcAqigE5pscn9xoU7rSYyzOJ69h5LjDlytjgZ6i7G7KqCRTarVIYJL8dAuER1OVQ==
-  dependencies:
-    ctx-polyfill "^1.1.4"
 
 react-native-webview@^11.0.2:
   version "11.0.2"

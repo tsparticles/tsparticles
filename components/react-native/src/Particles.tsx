@@ -6,7 +6,7 @@ import type { IParticlesProps } from "./IParticlesProps";
 import type { IParticlesState } from "./IParticlesState";
 //eslint-disable-next-line
 //@ts-ignore
-import Canvas from "react-native-canvas";
+import Canvas from "@ar3s/react-native-canvas";
 
 /**
  * @param {{id?: string,width?: string,height?: string,options?: ISourceOptions,params?: ISourceOptions,style?: CSSProperties,className?: string,canvasClassName?: string,container?: RefObject<Container>}}

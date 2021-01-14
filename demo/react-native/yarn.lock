@@ -2,6 +2,13 @@
 # yarn lockfile v1
 
 
+"@ar3s/react-native-canvas@^0.1.0":
+  version "0.1.0"
+  resolved "https://registry.yarnpkg.com/@ar3s/react-native-canvas/-/react-native-canvas-0.1.0.tgz#35c461e49d60b766046c6da672a51e205ee05fd1"
+  integrity sha512-p/HTrWkg2u2txi7ld32um4VOYOeQaV5ihbcY8Dl/s1Df9oFqKpdvhax8lvdwmECHl9xSlA0JY9VcGxUtxfBlfg==
+  dependencies:
+    ctx-polyfill "^1.1.4"
+
 "@babel/code-frame@^7.0.0", "@babel/code-frame@^7.10.4", "@babel/code-frame@^7.12.11", "@babel/code-frame@^7.8.3":
   version "7.12.11"
   resolved "https://registry.yarnpkg.com/@babel/code-frame/-/code-frame-7.12.11.tgz#f4ad435aa263db935b8f10f2c552d23fb716a63f"
@@ -2762,6 +2769,11 @@ csstype@^3.0.2:
   version "3.0.5"
   resolved "https://registry.yarnpkg.com/csstype/-/csstype-3.0.5.tgz#7fdec6a28a67ae18647c51668a9ff95bb2fa7bb8"
   integrity sha512-uVDi8LpBUKQj6sdxNaTetL6FpeCqTjOvAQuQUa/qAqq8oOd4ivkbhgnqayl0dnPal8Tb/yB1tF+gOvCBiicaiQ==
+
+ctx-polyfill@^1.1.4:
+  version "1.1.4"
+  resolved "https://registry.yarnpkg.com/ctx-polyfill/-/ctx-polyfill-1.1.4.tgz#08420bc5c540d08ac36d05720ca503c65e302d65"
+  integrity sha1-CEILxcVA0IrDbQVyDKUDxl4wLWU=
 
 dashdash@^1.12.0:
   version "1.14.1"

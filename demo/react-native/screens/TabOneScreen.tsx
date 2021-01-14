@@ -9,16 +9,13 @@ export default function TabOneScreen() {
   return (
     <View style={styles.container}>
       <Particles options={{
-        backgroundMode: {
-          enable: true,
-          zIndex: -1
-        },
-        background: {
-          color: "#000"
-        },
         particles: {
+          color: {
+            value: "#000"
+          },
           links: {
-            enable: true
+            enable: true,
+            color: "#000"
           },
           move: {
             enable: true

@@ -59,7 +59,7 @@ const getExternals = (target = 'cjs') => {
     baseExternals.push(/ts[pP]articles/);
     baseExternals.push("react-native");
     baseExternals.push("react-native-webview");
-    baseExternals.push("react-native-canvas");
+    baseExternals.push("@ar3s/react-native-canvas");
 
     if (target === 'cjs') {
         baseExternals.push(/lodash/);
