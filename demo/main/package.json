@@ -25,6 +25,8 @@
     "pathseg": "^1.2.0",
     "stats.ts": "^1.1.0",
     "tsparticles": "^1.19.0-alpha.5",
+    "tsparticles-core": "^1.0.0-alpha.0",
+    "tsparticles-slim": "^1.0.0-alpha.0",
     "tsparticles-preset-big-circles": "^1.4.0-alpha.5",
     "tsparticles-preset-fire": "^1.4.0-alpha.5",
     "tsparticles-preset-fountain": "^1.4.0-alpha.5",
