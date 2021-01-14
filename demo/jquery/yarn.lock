@@ -54,9 +54,9 @@
     strip-json-comments "^3.1.1"
 
 "@fortawesome/fontawesome-free@^5.15.1":
-  version "5.15.1"
-  resolved "https://registry.yarnpkg.com/@fortawesome/fontawesome-free/-/fontawesome-free-5.15.1.tgz#ccfef6ddbe59f8fe8f694783e1d3eb88902dc5eb"
-  integrity sha512-OEdH7SyC1suTdhBGW91/zBfR6qaIhThbcN8PUXtXilY4GYnSBbVqOntdHbC1vXwsDnX0Qix2m2+DSU1J51ybOQ==
+  version "5.15.2"
+  resolved "https://registry.yarnpkg.com/@fortawesome/fontawesome-free/-/fontawesome-free-5.15.2.tgz#218cd7276ab4f9ab57cc3d2efa2697e6a579f25d"
+  integrity sha512-7l/AX41m609L/EXI9EKH3Vs3v0iA8tKlIOGtw+kgcoanI7p+e4I4GYLqW3UXWiTnjSFymKSmTTPKYrivzbxxqA==
 
 "@nodelib/fs.scandir@2.1.3":
   version "2.1.3"
