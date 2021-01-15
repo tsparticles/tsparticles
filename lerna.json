@@ -1,8 +1,10 @@
 {
   "packages": [
     "components/*",
-    "core/*",
+    "editor/*",
     "demo/*",
+    "interactions/**/*",
+    "main/*",
     "plugins/*",
     "presets/*",
     "shapes/*",
