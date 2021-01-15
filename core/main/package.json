@@ -70,6 +70,9 @@
   },
   "dependencies": {
     "tsparticles-core": "^1.0.0-alpha.0",
-    "tsparticles-slim": "^1.0.0-alpha.0"
+    "tsparticles-slim": "^1.0.0-alpha.0",
+    "tsparticles-plugin-absorbers": "^1.0.0-alpha.0",
+    "tsparticles-plugin-emitters": "^1.0.0-alpha.0",
+    "tsparticles-plugin-polygon-mask": "^1.0.0-alpha.0"
   }
 }

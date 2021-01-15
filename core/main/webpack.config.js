@@ -41,6 +41,27 @@ const getConfig = (entry, banner, minBanner, dir) => {
           amd: "tsparticles-core",
           root: "window"
         }
+      }, {
+        "tsparticles-plugin-absorbers": {
+          commonjs: "tsparticles-plugin-absorbers",
+          commonjs2: "tsparticles-plugin-absorbers",
+          amd: "tsparticles-plugin-absorbers",
+          root: "window"
+        }
+      }, {
+        "tsparticles-plugin-emitters": {
+          commonjs: "tsparticles-plugin-emitters",
+          commonjs2: "tsparticles-plugin-emitters",
+          amd: "tsparticles-plugin-emitters",
+          root: "window"
+        }
+      }, {
+        "tsparticles-plugin-polygon-mask": {
+          commonjs: "tsparticles-plugin-polygon-mask",
+          commonjs2: "tsparticles-plugin-polygon-mask",
+          amd: "tsparticles-plugin-polygon-mask",
+          root: "window"
+        }
       }
     ],
     module: {

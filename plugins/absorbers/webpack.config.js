@@ -32,7 +32,19 @@ const getConfig = (entry, banner, minBanner, dir) => {
           commonjs2: "tsparticles",
           amd: "tsparticles",
           root: "window"
-        }
+        },
+        "tsparticles-core": {
+          commonjs: "tsparticles-core",
+          commonjs2: "tsparticles-core",
+          amd: "tsparticles-core",
+          root: "window"
+        },
+        "tsparticles-slim": {
+          commonjs: "tsparticles-slim",
+          commonjs2: "tsparticles-slim",
+          amd: "tsparticles-slim",
+          root: "window"
+        },
       }
     ],
     module: {
@@ -85,8 +97,8 @@ GitHub : https://www.github.com/matteobruni/tsparticles
 How to use? : Check the GitHub README
 v${version}`;
 
-const minBanner = `tsParticles Emitters Plugin v${version} by Matteo Bruni`;
+const minBanner = `tsParticles Absorbers Plugin v${version} by Matteo Bruni`;
 
 module.exports = [
-  getConfig(getEntry("emitters"), banner, minBanner, __dirname)
+  getConfig(getEntry("absorbers"), banner, minBanner, __dirname)
 ];

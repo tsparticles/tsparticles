@@ -32,7 +32,19 @@ const getConfig = (entry, banner, minBanner, dir) => {
           commonjs2: "tsparticles",
           amd: "tsparticles",
           root: "window"
-        }
+        },
+        "tsparticles-core": {
+          commonjs: "tsparticles-core",
+          commonjs2: "tsparticles-core",
+          amd: "tsparticles-core",
+          root: "window"
+        },
+        "tsparticles-slim": {
+          commonjs: "tsparticles-slim",
+          commonjs2: "tsparticles-slim",
+          amd: "tsparticles-slim",
+          root: "window"
+        },
       }
     ],
     module: {

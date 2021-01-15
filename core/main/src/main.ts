@@ -1,7 +1,7 @@
 import { MainSlim } from "tsparticles-slim";
-import { AbsorbersPlugin } from "tsparticles-core/Plugins/Absorbers/AbsorbersPlugin";
-import { EmittersPlugin } from "tsparticles-core/Plugins/Emitters/EmittersPlugin";
-import { PolygonMaskPlugin } from "tsparticles-core/Plugins/PolygonMask/PolygonMaskPlugin";
+import { loadPlugin as loadAbsorbersPlugin } from "tsparticles-plugin-absorbers";
+import { loadPlugin as loadEmittersPlugin } from "tsparticles-plugin-emitters";
+import { loadPlugin as loadPolygonMaskPlugin } from "tsparticles-plugin-polygon-mask";
 import { TrailMaker } from "tsparticles-core/Interactions/External/TrailMaker";
 import { Lighter as MouseLighter } from "tsparticles-core/Interactions/External/Lighter";
 import { Lighter as ParticlesLighter } from "tsparticles-core/Interactions/Particles/Lighter";
@@ -20,8 +20,9 @@ export class Main extends MainSlim {
         this.addInteractor((container) => new MouseLighter(container));
         this.addInteractor((container) => new TrailMaker(container));
         this.addParticleUpdater((container) => new OrbitUpdater(container));
-        this.addPlugin(AbsorbersPlugin);
-        this.addPlugin(EmittersPlugin);
-        this.addPlugin(PolygonMaskPlugin);
+
+        loadAbsorbersPlugin(this);
+        loadEmittersPlugin(this);
+        loadPolygonMaskPlugin(this);
     }
 }
