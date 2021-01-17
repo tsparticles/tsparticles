@@ -1,11 +1,6 @@
-import type { IShapeDrawer } from "../Core/Interfaces/IShapeDrawer";
-import type { IParticle } from "../Core/Interfaces/IParticle";
-import { downloadSvgImage, isInArray, loadImage, replaceColorSvg } from "../Utils";
-import { ShapeType } from "../Enums";
-import type { IImageShape } from "../Options/Interfaces/Particles/Shape/IImageShape";
-import type { IImage } from "../Core/Interfaces/IImage";
-import type { Container } from "../Core/Container";
-import type { Particle } from "../Core/Particle";
+import type { Container, IImage, IParticle, IShapeDrawer, Particle } from "tsparticles-core";
+import { downloadSvgImage, isInArray, loadImage, replaceColorSvg, ShapeType } from "tsparticles-core";
+import type { IImageShape } from "tsparticles-core/Options/Interfaces/Particles/Shape/IImageShape";
 
 interface IParticleImage {
     source: string;

@@ -68,10 +68,26 @@ const getExternals = (bundle) => {
       }
     },
     {
+      "tsparticles-shape-image": {
+        commonjs: "tsparticles-shape-image",
+        commonjs2: "tsparticles-shape-image",
+        amd: "tsparticles-shape-image",
+        root: "window"
+      }
+    },
+    {
       "tsparticles-shape-line": {
         commonjs: "tsparticles-shape-line",
         commonjs2: "tsparticles-shape-line",
         amd: "tsparticles-shape-line",
+        root: "window"
+      }
+    },
+    {
+      "tsparticles-shape-polygon": {
+        commonjs: "tsparticles-shape-polygon",
+        commonjs2: "tsparticles-shape-polygon",
+        amd: "tsparticles-shape-polygon",
         root: "window"
       }
     },

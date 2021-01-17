@@ -1,7 +1,7 @@
 {
-  "name": "tsparticles-slim",
+  "name": "tsparticles-shape-polygon",
   "version": "1.0.0-alpha.0",
-  "description": "tsParticles slim version",
+  "description": "tsParticles Polygon shape",
   "homepage": "https://particles.matteobruni.it/",
   "scripts": {
     "prettify:src": "prettier --write ./src/",
@@ -17,7 +17,7 @@
   "repository": {
     "type": "git",
     "url": "git+https://github.com/matteobruni/tsparticles.git",
-    "directory": "core/slim"
+    "directory": "shapes/polygon"
   },
   "keywords": [
     "tsparticles",
@@ -42,13 +42,16 @@
     "css3",
     "animated",
     "background",
-    "tsparticles-preset"
+    "tsparticles-shape"
   ],
   "publishConfig": {
     "directory": "dist"
   },
   "author": "Matteo Bruni",
   "license": "MIT",
+  "files": [
+    "dist/**/*"
+  ],
   "bugs": {
     "url": "https://github.com/matteobruni/tsparticles/issues"
   },
@@ -69,15 +72,6 @@
     "webpack-cli": "^4.2.0"
   },
   "dependencies": {
-    "tsparticles-core": "^1.0.0-alpha.0",
-    "tsparticles-shape-circle": "^1.0.0-alpha.0",
-    "tsparticles-shape-image": "^1.0.0-alpha.0",
-    "tsparticles-shape-line": "^1.0.0-alpha.0",
-    "tsparticles-shape-polygon": "^1.0.0-alpha.0",
-    "tsparticles-shape-star": "^1.0.0-alpha.0",
-    "tsparticles-interaction-external-attract": "^1.0.0-alpha.0",
-    "tsparticles-interaction-external-repulse": "^1.0.0-alpha.0",
-    "tsparticles-interaction-particles-attract": "^1.0.0-alpha.0",
-    "tsparticles-interaction-particles-repulse": "^1.0.0-alpha.0"
+    "tsparticles-core": "^1.0.0-alpha.0"
   }
 }
