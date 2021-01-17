@@ -1,7 +1,13 @@
-import { Main, Utils } from "tsparticles";
-import type { IParticle } from "tsparticles-core/Core/Interfaces/IParticle";
-import type { IShapeDrawer } from "tsparticles-core/Core/Interfaces/IShapeDrawer";
-import type { Container, SingleOrMultiple } from "tsparticles";
+import {
+    Container,
+    IParticle,
+    IShapeDrawer,
+    isInArray,
+    itemFromArray,
+    loadFont,
+    Main,
+    SingleOrMultiple
+} from "tsparticles-core";
 import type { IShapeValues } from "tsparticles-core/Options/Interfaces/Particles/Shape/IShapeValues";
 
 type CSSOMString = string;
@@ -55,15 +61,15 @@ export class MultilineTextDrawer implements IShapeDrawer {
         const options = container.options;
         const shapeType = "multiline-text";
 
-        if (Utils.isInArray(shapeType, options.particles.shape.type)) {
+        if (isInArray(shapeType, options.particles.shape.type)) {
             const shapeOptions = options.particles.shape.options[shapeType] as SingleOrMultiple<IMultilineTextShape>;
             if (shapeOptions instanceof Array) {
                 for (const character of shapeOptions) {
-                    await Utils.loadFont(character);
+                    await loadFont(character);
                 }
             } else {
                 if (shapeOptions !== undefined) {
-                    await Utils.loadFont(shapeOptions);
+                    await loadFont(shapeOptions);
                 }
             }
         }
@@ -86,7 +92,7 @@ export class MultilineTextDrawer implements IShapeDrawer {
 
         if (textParticle.text === undefined) {
             textParticle.text =
-                textData instanceof Array ? Utils.itemFromArray(textData, particle.randomIndexData) : textData;
+                textData instanceof Array ? itemFromArray(textData, particle.randomIndexData) : textData;
         }
 
         const text = textParticle.text;
@@ -104,7 +110,7 @@ export class MultilineTextDrawer implements IShapeDrawer {
 
                 const pos = {
                     x: -offsetX,
-                    y: radius / 2,
+                    y: radius / 2
                 };
 
                 context.fillText(line, pos.x, pos.y + radius * 2 * index);
@@ -115,7 +121,7 @@ export class MultilineTextDrawer implements IShapeDrawer {
 
                 const pos = {
                     x: -offsetX,
-                    y: radius / 2,
+                    y: radius / 2
                 };
 
                 context.strokeText(line, pos.x, pos.y + radius * 2 * index);

@@ -1,5 +1,4 @@
 import type { Particle } from "../Particle";
-import type { INoiseValue } from "./INoiseValue";
 
 /**
  * @category Interfaces
@@ -10,4 +9,12 @@ export interface INoise {
     update: () => void;
 
     generate: (particle: Particle) => INoiseValue;
+}
+
+/**
+ * @category Interfaces
+ */
+export interface INoiseValue {
+    angle: number;
+    length: number;
 }

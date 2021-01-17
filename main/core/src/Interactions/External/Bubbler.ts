@@ -17,7 +17,7 @@ import { ClickMode, DivMode, DivType, HoverMode, ProcessBubbleType } from "../..
 import { Particle } from "../../Core/Particle";
 import { DivEvent } from "../../Options/Classes/Interactivity/Events/DivEvent";
 import { BubbleDiv } from "../../Options/Classes/Interactivity/Modes/BubbleDiv";
-import { ExternalBase } from "./ExternalBase";
+import { ExternalInteractorBase } from "../../Core/ExternalInteractorBase";
 
 function calculateBubbleValue(
     particleValue: number,
@@ -40,7 +40,7 @@ function calculateBubbleValue(
  * Particle bubble manager
  * @category Interactions
  */
-export class Bubbler extends ExternalBase {
+export class Bubbler extends ExternalInteractorBase {
     constructor(container: Container) {
         super(container, "bubbler");
     }

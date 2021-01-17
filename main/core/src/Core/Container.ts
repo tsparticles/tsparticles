@@ -3,23 +3,25 @@
  * @packageDocumentation
  */
 import { Canvas } from "./Canvas";
-import type { IRepulse } from "./Interfaces/IRepulse";
-import type { IBubble } from "./Interfaces/IBubble";
-import type { IContainerInteractivity } from "./Interfaces/IContainerInteractivity";
+import type {
+    IAttract,
+    IBubble,
+    IContainerInteractivity,
+    INoise,
+    INoiseValue,
+    IRepulse,
+    IRgb,
+    IShapeDrawer,
+} from "./Interfaces";
 import { Particles } from "./Particles";
 import { Retina } from "./Retina";
 import type { IOptions } from "../Options/Interfaces/IOptions";
 import { FrameManager } from "./FrameManager";
 import type { RecursivePartial } from "../Types";
 import { Options } from "../Options/Classes/Options";
-import type { IContainerPlugin } from "./Interfaces/IContainerPlugin";
-import type { IShapeDrawer } from "./Interfaces/IShapeDrawer";
+import type { IContainerPlugin } from "./Interfaces";
 import { animate, cancelAnimation, EventListeners, Plugins } from "../Utils";
 import { Particle } from "./Particle";
-import type { INoiseValue } from "./Interfaces/INoiseValue";
-import type { INoise } from "./Interfaces/INoise";
-import type { IRgb } from "./Interfaces/Colors";
-import type { IAttract } from "./Interfaces/IAttract";
 
 /**
  * The object loaded into an HTML element, it'll contain options loaded and all data to let everything working

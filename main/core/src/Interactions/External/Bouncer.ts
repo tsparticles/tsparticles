@@ -15,10 +15,10 @@ import { HoverMode, DivMode, DivType } from "../../Enums";
 import type { Container } from "../../Core/Container";
 import { DivEvent } from "../../Options/Classes/Interactivity/Events/DivEvent";
 import type { ICoordinates } from "../../Core/Interfaces/ICoordinates";
-import { ExternalBase } from "./ExternalBase";
+import { ExternalInteractorBase } from "../../Core/ExternalInteractorBase";
 import { Vector } from "../../Core/Particle/Vector";
 
-export class Bouncer extends ExternalBase {
+export class Bouncer extends ExternalInteractorBase {
     constructor(container: Container) {
         super(container, "bouncer");
     }

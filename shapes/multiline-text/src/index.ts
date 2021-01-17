@@ -1,4 +1,4 @@
 import { loadShape } from "./shape";
-import { tsParticles } from "tsparticles";
+import { tsParticles } from "tsparticles-core";
 
 loadShape(tsParticles);

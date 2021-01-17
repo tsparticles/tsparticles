@@ -1,13 +1,13 @@
 import type { Container } from "../../Core/Container";
 import { isInArray } from "../../Utils";
 import { HoverMode } from "../../Enums";
-import { ExternalBase } from "./ExternalBase";
+import { ExternalInteractorBase } from "../../Core/ExternalInteractorBase";
 
 /**
  * Particle connection manager
  * @category Interactions
  */
-export class Connector extends ExternalBase {
+export class Connector extends ExternalInteractorBase {
     constructor(container: Container) {
         super(container, "connector");
     }

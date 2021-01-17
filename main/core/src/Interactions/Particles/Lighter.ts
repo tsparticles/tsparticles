@@ -2,9 +2,9 @@ import { isInArray } from "../../Utils";
 import { HoverMode } from "../../Enums";
 import type { Container } from "../../Core/Container";
 import { Particle } from "../../Core/Particle";
-import { ParticlesBase } from "./ParticlesBase";
+import { ParticlesInteractorBase } from "../../Core/ParticlesInteractorBase";
 
-export class Lighter extends ParticlesBase {
+export class Lighter extends ParticlesInteractorBase {
     constructor(container: Container) {
         super(container, "lighter");
     }

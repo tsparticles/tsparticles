@@ -1,7 +1,4 @@
 import type { Container } from "./Container";
-import type { ICoordinates } from "./Interfaces/ICoordinates";
-import type { IMouseData } from "./Interfaces/IMouseData";
-import type { IRgb } from "./Interfaces/Colors";
 import { Particle } from "./Particle";
 import {
     getRangeValue,
@@ -16,8 +13,7 @@ import {
 import type { RecursivePartial } from "../Types";
 import type { IParticles } from "../Options/Interfaces/Particles/IParticles";
 import { InteractionManager } from "./InteractionManager";
-import type { IDelta } from "./Interfaces/IDelta";
-import type { IParticle } from "./Interfaces/IParticle";
+import type { ICoordinates, IDelta, IMouseData, IParticle, IRgb } from "./Interfaces";
 import type { IDensity } from "../Options/Interfaces/Particles/Number/IDensity";
 import { Particles as ParticlesOptions } from "../Options/Classes/Particles/Particles";
 import { Infecter } from "./Particle/Infecter";

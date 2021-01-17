@@ -2,10 +2,10 @@ import type { Container } from "../../Core/Container";
 import type { IParticle } from "../../Core/Interfaces/IParticle";
 import type { ICoordinates } from "../../Core/Interfaces/ICoordinates";
 import type { IDimension } from "../../Core/Interfaces/IDimension";
-import { ParticlesBase } from "./ParticlesBase";
+import { ParticlesInteractorBase } from "../../Core/ParticlesInteractorBase";
 import { Circle, CircleWarp, getDistance, getLinkRandomColor } from "../../Utils";
 
-export class Linker extends ParticlesBase {
+export class Linker extends ParticlesInteractorBase {
     constructor(container: Container) {
         super(container, "linker");
     }

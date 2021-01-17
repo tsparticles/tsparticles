@@ -2,7 +2,7 @@ import type { Particle } from "../../Core/Particle";
 import type { Container } from "../../Core/Container";
 import { CollisionMode } from "../../Enums";
 import { circleBounce, circleBounceDataFromParticle, clamp, getDistance } from "../../Utils";
-import { ParticlesBase } from "./ParticlesBase";
+import { ParticlesInteractorBase } from "../../Core/ParticlesInteractorBase";
 
 function bounce(p1: Particle, p2: Particle): void {
     circleBounce(circleBounceDataFromParticle(p1), circleBounceDataFromParticle(p2));
@@ -29,7 +29,7 @@ function destroy(p1: Particle, p2: Particle): void {
 /**
  * @category Interactions
  */
-export class Collider extends ParticlesBase {
+export class Collider extends ParticlesInteractorBase {
     constructor(container: Container) {
         super(container, "collider");
     }

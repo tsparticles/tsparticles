@@ -1,7 +1,6 @@
 import { Main } from "./main";
 import { initPjs } from "./pjs";
-import { CanvasUtils, Circle, CircleWarp, ColorUtils, Constants, Point, Rectangle, Utils } from "./Utils";
-import type { IOptions as ISlimOptions } from "./Options/Interfaces/IOptions";
+import type { IOptions } from "./Options/Interfaces/IOptions";
 import type { RecursivePartial } from "./Types";
 
 /* ---------- tsParticles functions - start ------------ */
@@ -12,9 +11,14 @@ tsParticles.init();
 const { particlesJS, pJSDom } = initPjs(tsParticles);
 
 export * from "./Core/Container";
+export * from "./Core/Particle";
+export * from "./Core/Particle/Vector";
+export * from "./Core/Particle/Vector3d";
 export * from "./Enums";
-export { CanvasUtils, Circle, CircleWarp, ColorUtils, Constants, Point, Rectangle, Utils, Main };
+export * from "./Utils";
 export * from "./Types";
-export { tsParticles, particlesJS, pJSDom };
-export type IOptions = ISlimOptions;
+export * from "./Core/Interfaces";
+export * from "./Core/ExternalInteractorBase";
+export * from "./Core/ParticlesInteractorBase";
+export { tsParticles, particlesJS, pJSDom, Main, IOptions };
 export type ISourceOptions = RecursivePartial<IOptions>;

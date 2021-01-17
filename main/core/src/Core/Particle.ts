@@ -1,11 +1,22 @@
 import type { Container } from "./Container";
-import type { IDistance } from "./Interfaces/IDistance";
-import type { IParticleValueAnimation } from "./Interfaces/IParticleValueAnimation";
-import type { ICoordinates, ICoordinates3d } from "./Interfaces/ICoordinates";
-import type { IHsl, IRgb } from "./Interfaces/Colors";
+import type {
+    IBubbleParticleData,
+    ICoordinates,
+    ICoordinates3d,
+    IDelta,
+    IDistance,
+    IHsl,
+    ILink,
+    IParticle,
+    IParticleHslAnimation,
+    IParticleInfection,
+    IParticleLife,
+    IParticleLoops,
+    IParticleSpin,
+    IParticleValueAnimation,
+    IRgb,
+} from "./Interfaces";
 import type { IShapeValues } from "../Options/Interfaces/Particles/Shape/IShapeValues";
-import type { IBubbleParticleData } from "./Interfaces/IBubbleParticleData";
-import type { IParticle } from "./Interfaces/IParticle";
 import type { IParticles } from "../Options/Interfaces/Particles/IParticles";
 import { Particles } from "../Options/Classes/Particles/Particles";
 import { Shape } from "../Options/Classes/Particles/Shape/Shape";
@@ -39,15 +50,8 @@ import {
     randomInRange,
     setRangeValue,
 } from "../Utils";
-import type { IDelta } from "./Interfaces/IDelta";
-import type { ILink } from "./Interfaces/ILink";
-import type { IParticleLoops } from "./Interfaces/IParticleLoops";
-import type { IParticleInfection } from "./Interfaces/IParticleInfection";
-import type { IParticleHslAnimation } from "./Interfaces/IParticleHslAnimation";
 import type { Stroke } from "../Options/Classes/Particles/Stroke";
 import type { IColorAnimation } from "../Options/Interfaces/IColorAnimation";
-import type { IParticleLife } from "./Interfaces/IParticleLife";
-import type { IParticleSpin } from "./Interfaces/IParticleSpin";
 import type { IShape } from "../Options/Interfaces/Particles/Shape/IShape";
 import { Vector } from "./Particle/Vector";
 import { Vector3d } from "./Particle/Vector3d";

@@ -1,12 +1,12 @@
 import type { Particle } from "../../Core/Particle";
 import type { Container } from "../../Core/Container";
 import type { IDelta } from "../../Core/Interfaces/IDelta";
-import { ParticlesBase } from "./ParticlesBase";
+import { ParticlesInteractorBase } from "../../Core/ParticlesInteractorBase";
 
 /**
  * @category Interactions
  */
-export class Infecter extends ParticlesBase {
+export class Infecter extends ParticlesInteractorBase {
     constructor(container: Container) {
         super(container, "infecter");
     }

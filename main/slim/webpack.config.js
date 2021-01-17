@@ -26,11 +26,60 @@ const getExternals = (bundle) => {
         amd: "tsparticles-core",
         root: "window"
       }
-    }, {
+    },
+    {
+      "tsparticles-interaction-external-attract": {
+        commonjs: "tsparticles-interaction-external-attract",
+        commonjs2: "tsparticles-interaction-external-attract",
+        amd: "tsparticles-interaction-external-attract",
+        root: "window"
+      }
+    },
+    {
       "tsparticles-interaction-external-repulse": {
         commonjs: "tsparticles-interaction-external-repulse",
         commonjs2: "tsparticles-interaction-external-repulse",
         amd: "tsparticles-interaction-external-repulse",
+        root: "window"
+      }
+    },
+    {
+      "tsparticles-interaction-particles-attract": {
+        commonjs: "tsparticles-interaction-particles-attract",
+        commonjs2: "tsparticles-interaction-particles-attract",
+        amd: "tsparticles-interaction-particles-attract",
+        root: "window"
+      }
+    },
+    {
+      "tsparticles-interaction-particles-repulse": {
+        commonjs: "tsparticles-interaction-particles-repulse",
+        commonjs2: "tsparticles-interaction-particles-repulse",
+        amd: "tsparticles-interaction-particles-repulse",
+        root: "window"
+      }
+    },
+    {
+      "tsparticles-shape-circle": {
+        commonjs: "tsparticles-shape-circle",
+        commonjs2: "tsparticles-shape-circle",
+        amd: "tsparticles-shape-circle",
+        root: "window"
+      }
+    },
+    {
+      "tsparticles-shape-line": {
+        commonjs: "tsparticles-shape-line",
+        commonjs2: "tsparticles-shape-line",
+        amd: "tsparticles-shape-line",
+        root: "window"
+      }
+    },
+    {
+      "tsparticles-shape-star": {
+        commonjs: "tsparticles-shape-star",
+        commonjs2: "tsparticles-shape-star",
+        amd: "tsparticles-shape-star",
         root: "window"
       }
     }

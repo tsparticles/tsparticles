@@ -3,12 +3,12 @@ import { isInArray } from "../../Utils";
 import { ClickMode, HoverMode } from "../../Enums";
 import type { IDelta } from "../../Core/Interfaces/IDelta";
 import { ICoordinates } from "../../Core/Interfaces/ICoordinates";
-import { ExternalBase } from "./ExternalBase";
+import { ExternalInteractorBase } from "../../Core/ExternalInteractorBase";
 
 /**
  * @category Interactions
  */
-export class TrailMaker extends ExternalBase {
+export class TrailMaker extends ExternalInteractorBase {
     private delay: number;
     private lastPosition?: ICoordinates;
 

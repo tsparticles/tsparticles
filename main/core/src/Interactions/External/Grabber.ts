@@ -1,13 +1,13 @@
 import type { Container } from "../../Core/Container";
 import { Constants, getLinkColor, getLinkRandomColor, getDistance, isInArray } from "../../Utils";
 import { HoverMode } from "../../Enums";
-import { ExternalBase } from "./ExternalBase";
+import { ExternalInteractorBase } from "../../Core/ExternalInteractorBase";
 
 /**
  * Particle grab manager
  * @category Interactions
  */
-export class Grabber extends ExternalBase {
+export class Grabber extends ExternalInteractorBase {
     constructor(container: Container) {
         super(container, "grabber");
     }

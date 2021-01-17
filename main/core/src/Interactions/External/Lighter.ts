@@ -1,9 +1,9 @@
 import { isInArray } from "../../Utils";
 import { HoverMode } from "../../Enums";
 import type { Container } from "../../Core/Container";
-import { ExternalBase } from "./ExternalBase";
+import { ExternalInteractorBase } from "../../Core/ExternalInteractorBase";
 
-export class Lighter extends ExternalBase {
+export class Lighter extends ExternalInteractorBase {
     constructor(container: Container) {
         super(container, "lighter");
     }

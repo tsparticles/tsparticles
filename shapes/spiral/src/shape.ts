@@ -1,5 +1,4 @@
-import { Main } from "tsparticles";
-import type { IParticle } from "tsparticles-core/Core/Interfaces/IParticle";
+import type { IParticle, Main } from "tsparticles-core";
 import type { IShapeValues } from "tsparticles-core/Options/Interfaces/Particles/Shape/IShapeValues";
 
 interface ISpiralData extends IShapeValues {

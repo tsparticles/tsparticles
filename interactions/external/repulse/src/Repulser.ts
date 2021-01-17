@@ -1,26 +1,29 @@
-import type { Container } from "tsparticles-core";
-import { ClickMode, DivMode, DivType, HoverMode } from "tsparticles-core";
-import { Circle, Constants, Rectangle } from "tsparticles-core";
+import type { Container, ICoordinates, Range } from "tsparticles-core";
 import {
+    ClickMode,
+    DivMode,
+    DivType,
+    HoverMode,
+    Circle,
+    Constants,
+    Rectangle,
     clamp,
     divMode,
     divModeExecute,
+    ExternalInteractorBase,
     getDistances,
     isDivModeEnabled,
     isInArray,
-    Range,
-} from "tsparticles-core/Utils";
-import type { ICoordinates } from "tsparticles-core/Core/Interfaces/ICoordinates";
+    Vector,
+} from "tsparticles-core";
 import type { DivEvent } from "tsparticles-core/Options/Classes/Interactivity/Events/DivEvent";
 import type { RepulseDiv } from "tsparticles-core/Options/Classes/Interactivity/Modes/RepulseDiv";
-import { ExternalBase } from "tsparticles-core/Interactions/External/ExternalBase";
-import { Vector } from "tsparticles-core/Core/Particle/Vector";
 
 /**
  * Particle repulse manager
  * @category Interactions
  */
-export class Repulser extends ExternalBase {
+export class Repulser extends ExternalInteractorBase {
     constructor(container: Container) {
         super(container, "repulser");
     }
