@@ -69,6 +69,6 @@
     "webpack-cli": "^4.2.0"
   },
   "dependencies": {
-    "tsparticles": "^1.19.0-alpha.5"
+    "tsparticles-core": "^1.0.0-alpha.0"
   }
 }

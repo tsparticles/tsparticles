@@ -6,7 +6,7 @@ import {
     itemFromArray,
     loadFont,
     Main,
-    SingleOrMultiple
+    SingleOrMultiple,
 } from "tsparticles-core";
 import type { IShapeValues } from "tsparticles-core/Options/Interfaces/Particles/Shape/IShapeValues";
 
@@ -110,7 +110,7 @@ export class MultilineTextDrawer implements IShapeDrawer {
 
                 const pos = {
                     x: -offsetX,
-                    y: radius / 2
+                    y: radius / 2,
                 };
 
                 context.fillText(line, pos.x, pos.y + radius * 2 * index);
@@ -121,7 +121,7 @@ export class MultilineTextDrawer implements IShapeDrawer {
 
                 const pos = {
                     x: -offsetX,
-                    y: radius / 2
+                    y: radius / 2,
                 };
 
                 context.strokeText(line, pos.x, pos.y + radius * 2 * index);

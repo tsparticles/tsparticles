@@ -4,14 +4,14 @@ export function loadPreset(tsParticles: Main): void {
     const options = {
         fpsLimit: 60,
         background: {
-            color: "#fff"
+            color: "#fff",
         },
         fullScreen: {
-            enable: true
+            enable: true,
         },
         particles: {
             number: {
-                value: 50
+                value: 50,
             },
             color: {
                 value: [
@@ -23,51 +23,51 @@ export function loadPreset(tsParticles: Main): void {
                     "#F45623",
                     "#D62E32",
                     "#EB586E",
-                    "#9952CF"
-                ]
+                    "#9952CF",
+                ],
             },
             shape: {
-                type: "circle"
+                type: "circle",
             },
             opacity: {
-                value: 0.5
+                value: 0.5,
             },
             size: {
                 value: 400,
                 random: {
                     enable: true,
-                    minimumValue: 200
-                }
+                    minimumValue: 200,
+                },
             },
             move: {
                 enable: true,
                 speed: 20,
                 direction: MoveDirection.top,
-                outMode: OutMode.destroy
-            }
+                outMode: OutMode.destroy,
+            },
         },
         interactivity: {
             detectsOn: InteractivityDetect.canvas,
             events: {
-                resize: true
-            }
+                resize: true,
+            },
         },
         detectRetina: true,
         emitters: {
             direction: MoveDirection.top,
             position: {
                 x: 50,
-                y: 120
+                y: 120,
             },
             rate: {
                 delay: 0.2,
-                quantity: 2
+                quantity: 2,
             },
             size: {
                 width: 100,
-                height: 0
-            }
-        }
+                height: 0,
+            },
+        },
     };
 
     tsParticles.addPreset("bigCircles", options);

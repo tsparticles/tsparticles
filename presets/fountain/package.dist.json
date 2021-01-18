@@ -45,6 +45,6 @@
   "module": "preset.js",
   "types": "preset.d.ts",
   "dependencies": {
-    "tsparticles": "^1.19.0-alpha.5"
+    "tsparticles-core": "^1.0.0-alpha.0"
   }
 }
