@@ -13,7 +13,7 @@ import { loadSlim } from "tsparticles-slim";
  * It's a singleton proxy to the static [[Loader]] class for initializing [[Container]] instances
  * @category Main
  */
-export function loadFull(tsParticles: Main) {
+export function loadFull(tsParticles: Main): void {
     loadSlim(tsParticles);
 
     tsParticles.addInteractor((container) => new ParticlesLighter(container));

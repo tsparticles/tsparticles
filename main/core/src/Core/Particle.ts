@@ -28,7 +28,6 @@ import {
     OutMode,
     OutModeAlt,
     RotateDirection,
-    ShapeType,
     StartValueType,
 } from "../Enums";
 import type { RecursivePartial } from "../Types";
@@ -103,7 +102,7 @@ export class Particle implements IParticle {
     public readonly strokeColor?: IParticleHslAnimation;
     public readonly orbitColor?: IHsl;
     public readonly velocity: Vector;
-    public readonly shape: ShapeType | string;
+    public readonly shape: string;
     public readonly initialPosition: Vector3d;
     public readonly initialVelocity: Vector;
     public readonly shapeData?: IShapeValues;

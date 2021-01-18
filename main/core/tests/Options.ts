@@ -8,10 +8,9 @@ import {
     MoveDirection,
     OutMode,
     RotateDirection,
-    ShapeType,
-} from "../src/Enums";
+} from "../src";
 import { Particles } from "../src/Options/Classes/Particles/Particles";
-import { RecursivePartial } from "../src/Types";
+import { RecursivePartial } from "../src";
 import { IParticles } from "../src/Options/Interfaces/Particles/IParticles";
 
 describe("Options tests", () => {
@@ -137,7 +136,7 @@ describe("Options tests", () => {
         expect(options.particles.shadow.offset.y).to.equal(0);
 
         /* particles shape */
-        expect(options.particles.shape.type).to.equal(ShapeType.circle);
+        expect(options.particles.shape.type).to.equal("circle");
 
         /* particles size */
         expect(options.particles.size.animation.enable).to.be.false;
@@ -335,7 +334,7 @@ describe("Options tests", () => {
         expect(options.particles.opacity.value).to.be.an("object").to.have.property("max").to.equal(0.5);
 
         /* particles shape */
-        expect(options.particles.shape.type).to.equal(ShapeType.circle);
+        expect(options.particles.shape.type).to.equal("circle");
 
         /* particles size */
         expect(options.particles.size.animation.enable).to.be.true;
@@ -422,7 +421,7 @@ describe("Options tests", () => {
                     },
                 },
                 shape: {
-                    type: ShapeType.circle,
+                    type: "circle",
                     stroke: {
                         width: 0,
                         color: "#000000",
@@ -532,7 +531,7 @@ describe("Options tests", () => {
         expect(options.particles.opacity.value).to.equal(0.5);
 
         /* particles shape */
-        expect(options.particles.shape.type).to.equal(ShapeType.circle);
+        expect(options.particles.shape.type).to.equal("circle");
 
         /* particles size */
         expect(options.particles.size.animation.enable).to.be.false;

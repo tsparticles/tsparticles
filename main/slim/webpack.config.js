@@ -92,10 +92,26 @@ const getExternals = (bundle) => {
       }
     },
     {
+      "tsparticles-shape-square": {
+        commonjs: "tsparticles-shape-square",
+        commonjs2: "tsparticles-shape-square",
+        amd: "tsparticles-shape-square",
+        root: "window"
+      }
+    },
+    {
       "tsparticles-shape-star": {
         commonjs: "tsparticles-shape-star",
         commonjs2: "tsparticles-shape-star",
         amd: "tsparticles-shape-star",
+        root: "window"
+      }
+    },
+    {
+      "tsparticles-shape-text": {
+        commonjs: "tsparticles-shape-text",
+        commonjs2: "tsparticles-shape-text",
+        amd: "tsparticles-shape-text",
         root: "window"
       }
     }

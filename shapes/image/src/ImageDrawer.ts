@@ -1,5 +1,5 @@
 import type { Container, IImage, IParticle, IShapeDrawer, Particle } from "tsparticles-core";
-import { downloadSvgImage, isInArray, loadImage, replaceColorSvg, ShapeType } from "tsparticles-core";
+import { downloadSvgImage, isInArray, loadImage, replaceColorSvg } from "tsparticles-core";
 import type { IImageShape } from "tsparticles-core/Options/Interfaces/Particles/Shape/IImageShape";
 
 interface IParticleImage {
@@ -40,7 +40,7 @@ export class ImageDrawer implements IShapeDrawer {
         if (!containerImages.length) {
             this.images.push({
                 id: container.id,
-                images: [],
+                images: []
             });
 
             return this.getImages(container);
@@ -59,11 +59,11 @@ export class ImageDrawer implements IShapeDrawer {
         const options = container.options;
         const shapeOptions = options.particles.shape;
 
-        if (!isInArray(ShapeType.image, shapeOptions.type) && !isInArray(ShapeType.images, shapeOptions.type)) {
+        if (!isInArray("image", shapeOptions.type) && !isInArray("images", shapeOptions.type)) {
             return;
         }
 
-        const imageOptions = shapeOptions.options[ShapeType.images] ?? shapeOptions.options[ShapeType.image];
+        const imageOptions = shapeOptions.options["images"] ?? shapeOptions.options["image"];
 
         if (imageOptions instanceof Array) {
             const promises: Promise<void>[] = [];
@@ -112,7 +112,7 @@ export class ImageDrawer implements IShapeDrawer {
 
         const pos = {
             x: -radius,
-            y: -radius,
+            y: -radius
         };
 
         if (!image?.data.svgData || !image?.replaceColor) {
@@ -127,7 +127,7 @@ export class ImageDrawer implements IShapeDrawer {
     }
 
     public loadShape(particle: Particle): void {
-        if (!(particle.shape === ShapeType.image || particle.shape === ShapeType.images)) {
+        if (!(particle.shape === "image" || particle.shape === "images")) {
             return;
         }
 
@@ -146,7 +146,7 @@ export class ImageDrawer implements IShapeDrawer {
             const svgColoredData = replaceColorSvg(image, color, particle.opacity.value);
 
             /* prepare to create img with colored svg */
-            const svg = new Blob([svgColoredData], { type: "image/svg+xml" });
+            const svg = new Blob([ svgColoredData ], { type: "image/svg+xml" });
             const domUrl = URL || window.URL || window.webkitURL || window;
             const url = domUrl.createObjectURL(svg);
 
@@ -157,7 +157,7 @@ export class ImageDrawer implements IShapeDrawer {
                 data: image,
                 ratio: imageData.width / imageData.height,
                 replaceColor: imageData.replaceColor ?? imageData.replace_color,
-                source: imageData.src,
+                source: imageData.src
             };
 
             img.addEventListener("load", () => {
@@ -192,7 +192,7 @@ export class ImageDrawer implements IShapeDrawer {
                 loaded: true,
                 ratio: imageData.width / imageData.height,
                 replaceColor: imageData.replaceColor ?? imageData.replace_color,
-                source: imageData.src,
+                source: imageData.src
             };
         }
         if (!imageRes.ratio) {
@@ -204,7 +204,7 @@ export class ImageDrawer implements IShapeDrawer {
         const imageShape = {
             image: imageRes,
             fill,
-            close,
+            close
         };
 
         ((particle as unknown) as IImageParticle).image = imageShape.image;

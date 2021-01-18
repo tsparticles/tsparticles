@@ -1,4 +1,3 @@
-import type { ShapeType } from "../../../../Enums";
 import type { IImageShape } from "./IImageShape";
 import type { ICharacterShape } from "./ICharacterShape";
 import type { IPolygonShape } from "./IPolygonShape";
@@ -10,7 +9,7 @@ import type { ShapeData, SingleOrMultiple } from "../../../../Types";
  * @category Options
  */
 export interface IShape {
-    type: SingleOrMultiple<ShapeType | keyof typeof ShapeType | string>;
+    type: SingleOrMultiple<string>;
 
     /**
      * @deprecated this property was moved to particles section
