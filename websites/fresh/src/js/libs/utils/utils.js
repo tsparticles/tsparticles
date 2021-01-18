@@ -37,3 +37,24 @@ export function insertBgImages() {
     }
   }
 }
+
+export function initModals() {
+  let targets = document.querySelectorAll(".modal-trigger");
+  if (typeof targets != "undefined" && targets != null) {
+    for (var i = 0, len = targets.length; i < len; i++) {
+      targets[i].addEventListener('click',  function (event) {
+        var modalID = this.getAttribute('data-modal');
+        document.querySelector('#' + modalID).classList.add('is-active');
+      })
+    }
+  }
+
+  targets = document.querySelectorAll(".modal-close");
+  if (typeof targets != "undefined" && targets != null) {
+    for (var i = 0, len = targets.length; i < len; i++) {
+      targets[i].addEventListener('click',  function (event) {
+        this.closest('.modal').classList.remove('is-active');
+      })
+    }
+  }
+}

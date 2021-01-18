@@ -4,7 +4,7 @@ import './store/store';
 import 'alpinejs';
 import { env } from './libs/utils/constants';
 import { initPageLoader } from './libs/components/pageloader';
-import { switchDemoImages, insertBgImages } from './libs/utils/utils';
+import { switchDemoImages, insertBgImages, initModals } from './libs/utils/utils';
 import { initNavbar } from './libs/components/navbar';
 import { initSidebar } from './libs/components/sidebar';
 import { initBackToTop } from './libs/components/backtotop';
@@ -28,6 +28,8 @@ document.onreadystatechange = function () {
         //Feather Icons
         const featherIcons = feather.replace();
         
+        // Add modal windows
+        const modals = initModals();
     }
 }
 
