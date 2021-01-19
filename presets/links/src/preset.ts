@@ -4,11 +4,11 @@ export function loadPreset(tsParticles: Main) {
     tsParticles.addPreset("basic", {
         particles: {
             lineLinked: {
-                enable: true
+                enable: true,
             },
             move: {
-                enable: true
-            }
-        }
+                enable: true,
+            },
+        },
     });
 }

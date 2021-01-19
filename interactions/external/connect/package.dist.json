@@ -1,0 +1,50 @@
+{
+  "name": "tsparticles-interaction-external-connect",
+  "version": "1.0.0-alpha.0",
+  "description": "tsParticles Connect external interaction",
+  "homepage": "https://particles.matteobruni.it/",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/matteobruni/tsparticles.git",
+    "directory": "interactions/external/connect"
+  },
+  "keywords": [
+    "tsparticles",
+    "particles",
+    "particle",
+    "canvas",
+    "jsparticles",
+    "xparticles",
+    "particles-js",
+    "particles.js",
+    "particles-ts",
+    "particles.ts",
+    "typescript",
+    "javascript",
+    "animation",
+    "web",
+    "html5",
+    "web-design",
+    "webdesign",
+    "css",
+    "html",
+    "css3",
+    "animated",
+    "background",
+    "tsparticles-shape"
+  ],
+  "author": "Matteo Bruni",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/matteobruni/tsparticles/issues"
+  },
+  "main": "interaction.js",
+  "jsdelivr": "tsparticles.interaction.external.connect.min.js",
+  "unpkg": "tsparticles.interaction.external.connect.min.js",
+  "browser": "interaction.js",
+  "module": "interaction.js",
+  "types": "interaction.d.ts",
+  "dependencies": {
+    "tsparticles-core": "^1.0.0-alpha.0"
+  }
+}

@@ -57,6 +57,9 @@
     "tsparticles-shape-star": "^1.0.0-alpha.0",
     "tsparticles-shape-text": "^1.0.0-alpha.0",
     "tsparticles-interaction-external-attract": "^1.0.0-alpha.0",
+    "tsparticles-interaction-external-bounce": "^1.0.0-alpha.0",
+    "tsparticles-interaction-external-bubble": "^1.0.0-alpha.0",
+    "tsparticles-interaction-external-connect": "^1.0.0-alpha.0",
     "tsparticles-interaction-external-repulse": "^1.0.0-alpha.0",
     "tsparticles-interaction-particles-attract": "^1.0.0-alpha.0",
     "tsparticles-interaction-particles-repulse": "^1.0.0-alpha.0"

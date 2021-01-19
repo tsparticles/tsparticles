@@ -1,6 +1,3 @@
-import { Bouncer } from "tsparticles-core/Interactions/External/Bouncer";
-import { Bubbler } from "tsparticles-core/Interactions/External/Bubbler";
-import { Connector } from "tsparticles-core/Interactions/External/Connector";
 import { Grabber } from "tsparticles-core/Interactions/External/Grabber";
 import { Collider } from "tsparticles-core/Interactions/Particles/Collider";
 import { Infecter } from "tsparticles-core/Interactions/Particles/Infecter";
@@ -14,6 +11,9 @@ import { StrokeColorUpdater } from "tsparticles-core/Updaters/StrokeColorUpdater
 import { OutOfCanvasUpdater } from "tsparticles-core/Updaters/OutOfCanvasUpdater";
 import { Main } from "tsparticles-core";
 import { loadInteraction as loadExternalAttractInteraction } from "tsparticles-interaction-external-attract";
+import { loadInteraction as loadExternalBounceInteraction } from "tsparticles-interaction-external-bounce";
+import { loadInteraction as loadExternalBubbleInteraction } from "tsparticles-interaction-external-bubble";
+import { loadInteraction as loadExternalConnectInteraction } from "tsparticles-interaction-external-connect";
 import { loadInteraction as loadExternalRepulseInteraction } from "tsparticles-interaction-external-repulse";
 import { loadInteraction as loadParticlesAttractInteraction } from "tsparticles-interaction-particles-attract";
 import { loadInteraction as loadParticlesRepulseInteraction } from "tsparticles-interaction-particles-repulse";
@@ -34,9 +34,9 @@ export function loadSlim(tsParticles: Main): void {
     tsParticles.addParticleUpdater((container) => new StrokeColorUpdater(container));
     tsParticles.addParticleUpdater((container) => new OutOfCanvasUpdater(container));
     loadExternalAttractInteraction(tsParticles);
-    tsParticles.addInteractor((container) => new Bouncer(container));
-    tsParticles.addInteractor((container) => new Bubbler(container));
-    tsParticles.addInteractor((container) => new Connector(container));
+    loadExternalBounceInteraction(tsParticles);
+    loadExternalBubbleInteraction(tsParticles);
+    loadExternalConnectInteraction(tsParticles);
     tsParticles.addInteractor((container) => new Grabber(container));
     loadExternalRepulseInteraction(tsParticles);
     loadParticlesAttractInteraction(tsParticles);

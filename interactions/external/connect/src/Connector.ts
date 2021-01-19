@@ -1,7 +1,5 @@
-import type { Container } from "../../Core/Container";
-import { isInArray } from "../../Utils";
-import { HoverMode } from "../../Enums";
-import { ExternalInteractorBase } from "../../Core/ExternalInteractorBase";
+import type { Container } from "tsparticles-core";
+import { HoverMode, isInArray, ExternalInteractorBase } from "tsparticles-core";
 
 /**
  * Particle connection manager
@@ -9,7 +7,7 @@ import { ExternalInteractorBase } from "../../Core/ExternalInteractorBase";
  */
 export class Connector extends ExternalInteractorBase {
     constructor(container: Container) {
-        super(container, "connector");
+        super(container, "connect");
     }
 
     public isEnabled(): boolean {

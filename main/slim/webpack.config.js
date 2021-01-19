@@ -114,6 +114,30 @@ const getExternals = (bundle) => {
         amd: "tsparticles-shape-text",
         root: "window"
       }
+    },
+    {
+      "tsparticles-interaction-external-bouncer": {
+        commonjs: "tsparticles-interaction-external-bouncer",
+        commonjs2: "tsparticles-interaction-external-bouncer",
+        amd: "tsparticles-interaction-external-bouncer",
+        root: "window"
+      }
+    },
+    {
+      "tsparticles-interaction-external-bubble": {
+        commonjs: "tsparticles-interaction-external-bubble",
+        commonjs2: "tsparticles-interaction-external-bubble",
+        amd: "tsparticles-interaction-external-bubble",
+        root: "window"
+      }
+    },
+    {
+      "tsparticles-interaction-external-connect": {
+        commonjs: "tsparticles-interaction-external-connect",
+        commonjs2: "tsparticles-interaction-external-connect",
+        amd: "tsparticles-interaction-external-connect",
+        root: "window"
+      }
     }
   ];
 };

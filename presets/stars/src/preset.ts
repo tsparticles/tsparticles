@@ -4,10 +4,10 @@ export function loadPreset(tsParticles: Main) {
     tsParticles.addPreset("stars", {
         particles: {
             color: {
-                value: "#ffffff"
+                value: "#ffffff",
             },
             lineLinked: {
-                enable: false
+                enable: false,
             },
             move: {
                 bounce: false,
@@ -16,25 +16,25 @@ export function loadPreset(tsParticles: Main) {
                 outMode: OutMode.out,
                 random: true,
                 speed: 0.3,
-                straight: false
+                straight: false,
             },
             opacity: {
                 anim: {
                     enable: true,
                     minimumValue: 0,
                     speed: 1,
-                    sync: false
+                    sync: false,
                 },
                 random: true,
-                value: 1
+                value: 1,
             },
             shape: {
-                type: "circle"
+                type: "circle",
             },
             size: {
                 random: true,
-                value: 3
-            }
-        }
+                value: 3,
+            },
+        },
     });
 }

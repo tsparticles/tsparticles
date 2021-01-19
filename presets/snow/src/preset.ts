@@ -4,26 +4,26 @@ export function loadPreset(tsParticles: Main) {
     tsParticles.addPreset("snow", {
         particles: {
             color: {
-                value: "#fff"
+                value: "#fff",
             },
             move: {
                 bounce: false,
                 direction: MoveDirection.bottom,
                 enable: true,
                 random: false,
-                straight: false
+                straight: false,
             },
             opacity: {
                 random: true,
-                value: 0.5
+                value: 0.5,
             },
             shape: {
-                type: "circle"
+                type: "circle",
             },
             size: {
                 random: true,
-                value: 10
-            }
-        }
+                value: 10,
+            },
+        },
     });
 }

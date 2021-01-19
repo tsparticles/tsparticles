@@ -1,14 +1,14 @@
 import { DestroyMode, InteractivityDetect, MoveDirection, OutMode, Main, ISourceOptions } from "tsparticles-core";
 
 export function loadPreset(tsParticles: Main): void {
-    const options = {
+    const options = ({
         fullScreen: {
-            enable: true
+            enable: true,
         },
         fpsLimit: 60,
         particles: {
             number: {
-                value: 0
+                value: 0,
             },
             destroy: {
                 mode: DestroyMode.split,
@@ -18,57 +18,57 @@ export function loadPreset(tsParticles: Main): void {
                         value: 2,
                         random: {
                             enable: true,
-                            minimumValue: 1.1
-                        }
+                            minimumValue: 1.1,
+                        },
                     },
                     rate: {
                         value: 3,
                         random: {
                             enable: true,
-                            minimumValue: 2
-                        }
-                    }
-                }
+                            minimumValue: 2,
+                        },
+                    },
+                },
             },
             shape: {
                 type: "circle",
                 options: {
                     polygon: [
                         {
-                            sides: 3
+                            sides: 3,
                         },
                         {
-                            sides: 4
+                            sides: 4,
                         },
                         {
-                            sides: 5
-                        }
-                    ]
-                }
+                            sides: 5,
+                        },
+                    ],
+                },
             },
             opacity: {
-                value: 1
+                value: 1,
             },
             size: {
                 value: 15,
                 random: {
                     enable: true,
-                    minimumValue: 10
+                    minimumValue: 10,
                 },
                 animation: {
                     enable: false,
                     speed: 40,
                     minimumValue: 0.1,
-                    sync: false
-                }
+                    sync: false,
+                },
             },
             links: {
-                enable: false
+                enable: false,
             },
             move: {
                 enable: true,
                 gravity: {
-                    enable: true
+                    enable: true,
                 },
                 speed: 10,
                 direction: MoveDirection.none,
@@ -77,39 +77,39 @@ export function loadPreset(tsParticles: Main): void {
                 outModes: {
                     bottom: OutMode.split,
                     default: OutMode.bounce,
-                    top: OutMode.none
+                    top: OutMode.none,
                 },
                 trail: {
                     enable: true,
                     fillColor: "#fff",
-                    length: 3
-                }
-            }
+                    length: 3,
+                },
+            },
         },
         interactivity: {
             detectsOn: InteractivityDetect.canvas,
             events: {
-                resize: true
-            }
+                resize: true,
+            },
         },
         detectRetina: true,
         background: {
-            color: "#fff"
+            color: "#fff",
         },
         emitters: {
             direction: MoveDirection.top,
             life: {
                 count: 0,
                 duration: 0.15,
-                delay: 3
+                delay: 3,
             },
             rate: {
                 delay: 0.1,
-                quantity: 5
+                quantity: 5,
             },
             size: {
                 width: 0,
-                height: 0
+                height: 0,
             },
             particles: {
                 bounce: {
@@ -117,9 +117,9 @@ export function loadPreset(tsParticles: Main): void {
                         value: 0.99,
                         random: {
                             enable: true,
-                            minimumValue: 0.88
-                        }
-                    }
+                            minimumValue: 0.88,
+                        },
+                    },
                 },
                 color: {
                     value: [
@@ -131,29 +131,29 @@ export function loadPreset(tsParticles: Main): void {
                         "#F45623",
                         "#D62E32",
                         "#EB586E",
-                        "#9952CF"
-                    ]
+                        "#9952CF",
+                    ],
                 },
                 links: {
-                    enable: false
+                    enable: false,
                 },
                 size: {
                     value: 20,
                     random: {
                         enable: true,
-                        minimumValue: 10
-                    }
+                        minimumValue: 10,
+                    },
                 },
                 opacity: {
-                    value: 0.5
+                    value: 0.5,
                 },
                 move: {
                     speed: 10,
-                    random: false
-                }
-            }
-        }
-    } as unknown as ISourceOptions;
+                    random: false,
+                },
+            },
+        },
+    } as unknown) as ISourceOptions;
 
     tsParticles.addPreset("fountain", options);
 }

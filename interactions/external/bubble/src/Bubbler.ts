@@ -1,5 +1,4 @@
-import type { Container } from "../../Core/Container";
-import type { IBubblerProcessParam } from "../../Core/Interfaces/IBubblerProcessParam";
+import type { IBubblerProcessParam, Container, Particle } from "tsparticles-core";
 import {
     Circle,
     clamp,
@@ -12,19 +11,17 @@ import {
     isInArray,
     itemFromArray,
     Rectangle,
-} from "../../Utils";
-import { ClickMode, DivMode, DivType, HoverMode, ProcessBubbleType } from "../../Enums";
-import { Particle } from "../../Core/Particle";
-import { DivEvent } from "../../Options/Classes/Interactivity/Events/DivEvent";
-import { BubbleDiv } from "../../Options/Classes/Interactivity/Modes/BubbleDiv";
-import { ExternalInteractorBase } from "../../Core/ExternalInteractorBase";
+    ClickMode,
+    DivMode,
+    DivType,
+    HoverMode,
+    ProcessBubbleType,
+    ExternalInteractorBase,
+} from "tsparticles-core";
+import type { DivEvent } from "tsparticles-core/Options/Classes/Interactivity/Events/DivEvent";
+import type { BubbleDiv } from "tsparticles-core/Options/Classes/Interactivity/Modes/BubbleDiv";
 
-function calculateBubbleValue(
-    particleValue: number,
-    modeValue: number,
-    optionsValue: number,
-    ratio: number
-): number | undefined {
+const calculateBubbleValue = (particleValue: number, modeValue: number, optionsValue: number, ratio: number) => {
     if (modeValue > optionsValue) {
         const size = particleValue + (modeValue - optionsValue) * ratio;
 
@@ -34,7 +31,7 @@ function calculateBubbleValue(
 
         return clamp(size, modeValue, particleValue);
     }
-}
+};
 
 /**
  * Particle bubble manager
@@ -42,7 +39,7 @@ function calculateBubbleValue(
  */
 export class Bubbler extends ExternalInteractorBase {
     constructor(container: Container) {
-        super(container, "bubbler");
+        super(container, "bubble");
     }
 
     public isEnabled(): boolean {

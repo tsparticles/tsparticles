@@ -10,17 +10,18 @@ import {
     Circle,
     Range,
     Rectangle,
-} from "../../Utils";
-import { HoverMode, DivMode, DivType } from "../../Enums";
-import type { Container } from "../../Core/Container";
-import { DivEvent } from "../../Options/Classes/Interactivity/Events/DivEvent";
-import type { ICoordinates } from "../../Core/Interfaces/ICoordinates";
-import { ExternalInteractorBase } from "../../Core/ExternalInteractorBase";
-import { Vector } from "../../Core/Particle/Vector";
+    HoverMode,
+    DivMode,
+    DivType,
+    ExternalInteractorBase,
+    Vector,
+} from "tsparticles-core";
+import type { Container, ICoordinates } from "tsparticles-core";
+import type { DivEvent } from "tsparticles-core/Options/Classes/Interactivity/Events/DivEvent";
 
 export class Bouncer extends ExternalInteractorBase {
     constructor(container: Container) {
-        super(container, "bouncer");
+        super(container, "bounce");
     }
 
     public isEnabled(): boolean {
