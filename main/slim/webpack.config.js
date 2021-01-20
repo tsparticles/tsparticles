@@ -146,6 +146,22 @@ const getExternals = (bundle) => {
         amd: "tsparticles-interaction-external-grab",
         root: "window"
       }
+    },
+    {
+      "tsparticles-interaction-particles-collisions": {
+        commonjs: "tsparticles-interaction-external-collisions",
+        commonjs2: "tsparticles-interaction-external-collisions",
+        amd: "tsparticles-interaction-external-collisions",
+        root: "window"
+      }
+    },
+    {
+      "tsparticles-interaction-particles-links": {
+        commonjs: "tsparticles-interaction-external-links",
+        commonjs2: "tsparticles-interaction-external-links",
+        amd: "tsparticles-interaction-external-links",
+        root: "window"
+      }
     }
   ];
 };

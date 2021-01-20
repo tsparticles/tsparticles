@@ -63,6 +63,8 @@
     "tsparticles-interaction-external-grab": "^1.0.0-alpha.0",
     "tsparticles-interaction-external-repulse": "^1.0.0-alpha.0",
     "tsparticles-interaction-particles-attract": "^1.0.0-alpha.0",
+    "tsparticles-interaction-particles-collisions": "^1.0.0-alpha.0",
+    "tsparticles-interaction-particles-links": "^1.0.0-alpha.0",
     "tsparticles-interaction-particles-repulse": "^1.0.0-alpha.0"
   }
 }

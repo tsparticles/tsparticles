@@ -71,6 +71,14 @@ const getExternals = (bundle) => {
         amd: "tsparticles-interaction-light",
         root: "window"
       }
+    },
+    {
+      "tsparticles-interaction-particles-infection": {
+        commonjs: "tsparticles-interaction-particles-infection",
+        commonjs2: "tsparticles-interaction-particles-infection",
+        amd: "tsparticles-interaction-particles-infection",
+        root: "window"
+      }
     }
   ];
 };

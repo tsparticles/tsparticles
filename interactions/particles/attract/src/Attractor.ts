@@ -1,12 +1,12 @@
-import type { Container, IParticle } from "tsparticles-core";
-import { Particle, getDistances, ParticlesInteractorBase } from "tsparticles-core";
+import type { Container, IParticle, Particle } from "tsparticles-core";
+import { getDistances, ParticlesInteractorBase } from "tsparticles-core";
 
 /**
  * @category Interactions
  */
 export class Attractor extends ParticlesInteractorBase {
     constructor(container: Container) {
-        super(container, "attractor");
+        super(container, "attract");
     }
 
     public interact(p1: IParticle): void {

@@ -1,6 +1,4 @@
-import { Collider } from "tsparticles-core/Interactions/Particles/Collider";
-import { Infecter } from "tsparticles-core/Interactions/Particles/Infecter";
-import { Linker } from "tsparticles-core/Interactions/Particles/Linker";
+import type { Main } from "tsparticles-core";
 import { LifeUpdater } from "tsparticles-core/Updaters/LifeUpdater";
 import { OpacityUpdater } from "tsparticles-core/Updaters/OpacityUpdater";
 import { SizeUpdater } from "tsparticles-core/Updaters/SizeUpdater";
@@ -8,7 +6,6 @@ import { AngleUpdater } from "tsparticles-core/Updaters/AngleUpdater";
 import { ColorUpdater } from "tsparticles-core/Updaters/ColorUpdater";
 import { StrokeColorUpdater } from "tsparticles-core/Updaters/StrokeColorUpdater";
 import { OutOfCanvasUpdater } from "tsparticles-core/Updaters/OutOfCanvasUpdater";
-import { Main } from "tsparticles-core";
 import { loadInteraction as loadExternalAttractInteraction } from "tsparticles-interaction-external-attract";
 import { loadInteraction as loadExternalBounceInteraction } from "tsparticles-interaction-external-bounce";
 import { loadInteraction as loadExternalBubbleInteraction } from "tsparticles-interaction-external-bubble";
@@ -16,6 +13,8 @@ import { loadInteraction as loadExternalConnectInteraction } from "tsparticles-i
 import { loadInteraction as loadExternalGrabInteraction } from "tsparticles-interaction-external-grab";
 import { loadInteraction as loadExternalRepulseInteraction } from "tsparticles-interaction-external-repulse";
 import { loadInteraction as loadParticlesAttractInteraction } from "tsparticles-interaction-particles-attract";
+import { loadInteraction as loadParticlesCollisionsInteraction } from "tsparticles-interaction-particles-collisions";
+import { loadInteraction as loadParticlesLinksInteraction } from "tsparticles-interaction-particles-links";
 import { loadInteraction as loadParticlesRepulseInteraction } from "tsparticles-interaction-particles-repulse";
 import { loadShape as loadCircleShape } from "tsparticles-shape-circle";
 import { loadShape as loadImageShape } from "tsparticles-shape-image";
@@ -40,10 +39,9 @@ export function loadSlim(tsParticles: Main): void {
     loadExternalGrabInteraction(tsParticles);
     loadExternalRepulseInteraction(tsParticles);
     loadParticlesAttractInteraction(tsParticles);
-    tsParticles.addInteractor((container) => new Collider(container));
-    tsParticles.addInteractor((container) => new Infecter(container));
+    loadParticlesCollisionsInteraction(tsParticles);
     loadParticlesRepulseInteraction(tsParticles);
-    tsParticles.addInteractor((container) => new Linker(container));
+    loadParticlesLinksInteraction(tsParticles);
 
     loadCircleShape(tsParticles);
     loadImageShape(tsParticles);

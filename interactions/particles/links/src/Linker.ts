@@ -1,13 +1,9 @@
-import type { Container } from "../../Core/Container";
-import type { IParticle } from "../../Core/Interfaces/IParticle";
-import type { ICoordinates } from "../../Core/Interfaces/ICoordinates";
-import type { IDimension } from "../../Core/Interfaces/IDimension";
-import { ParticlesInteractorBase } from "../../Core/ParticlesInteractorBase";
-import { Circle, CircleWarp, getDistance, getLinkRandomColor } from "../../Utils";
+import type { Container, ICoordinates, IDimension, IParticle } from "tsparticles-core";
+import { Circle, CircleWarp, getDistance, getLinkRandomColor, ParticlesInteractorBase } from "tsparticles-core";
 
 export class Linker extends ParticlesInteractorBase {
     constructor(container: Container) {
-        super(container, "linker");
+        super(container, "links");
     }
 
     public isEnabled(particle: IParticle): boolean {
