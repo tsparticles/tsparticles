@@ -55,6 +55,22 @@ const getExternals = (bundle) => {
         amd: "tsparticles-plugin-polygon-mask",
         root: "window"
       }
+    },
+    {
+      "tsparticles-interaction-external-trail": {
+        commonjs: "tsparticles-interaction-external-trail",
+        commonjs2: "tsparticles-interaction-external-trail",
+        amd: "tsparticles-interaction-external-trail",
+        root: "window"
+      }
+    },
+    {
+      "tsparticles-interaction-light": {
+        commonjs: "tsparticles-interaction-light",
+        commonjs2: "tsparticles-interaction-light",
+        amd: "tsparticles-interaction-light",
+        root: "window"
+      }
     }
   ];
 };

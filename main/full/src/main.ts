@@ -2,9 +2,8 @@ import type { Main } from "tsparticles-core";
 import { loadPlugin as loadAbsorbersPlugin } from "tsparticles-plugin-absorbers";
 import { loadPlugin as loadEmittersPlugin } from "tsparticles-plugin-emitters";
 import { loadPlugin as loadPolygonMaskPlugin } from "tsparticles-plugin-polygon-mask";
-import { TrailMaker } from "tsparticles-core/Interactions/External/TrailMaker";
-import { Lighter as MouseLighter } from "tsparticles-core/Interactions/External/Lighter";
-import { Lighter as ParticlesLighter } from "tsparticles-core/Interactions/Particles/Lighter";
+import { loadInteraction as loadTrailInteraction } from "tsparticles-interaction-external-trail";
+import { loadInteraction as loadLightInteraction } from "tsparticles-interaction-light";
 import { OrbitUpdater } from "tsparticles-core/Updaters/OrbitUpdater";
 import { loadSlim } from "tsparticles-slim";
 
@@ -16,9 +15,8 @@ import { loadSlim } from "tsparticles-slim";
 export function loadFull(tsParticles: Main): void {
     loadSlim(tsParticles);
 
-    tsParticles.addInteractor((container) => new ParticlesLighter(container));
-    tsParticles.addInteractor((container) => new MouseLighter(container));
-    tsParticles.addInteractor((container) => new TrailMaker(container));
+    loadTrailInteraction(tsParticles);
+    loadLightInteraction(tsParticles);
     tsParticles.addParticleUpdater((container) => new OrbitUpdater(container));
 
     loadAbsorbersPlugin(tsParticles);

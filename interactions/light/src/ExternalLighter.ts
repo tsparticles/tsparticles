@@ -1,24 +1,23 @@
-import { isInArray } from "../../Utils";
-import { HoverMode } from "../../Enums";
-import type { Container } from "../../Core/Container";
-import { Particle } from "../../Core/Particle";
-import { ParticlesInteractorBase } from "../../Core/ParticlesInteractorBase";
+import { ExternalInteractorBase, HoverMode, isInArray } from "tsparticles-core";
+import type { Container } from "tsparticles-core";
 
-export class Lighter extends ParticlesInteractorBase {
+export class ExternalLighter extends ExternalInteractorBase {
     constructor(container: Container) {
         super(container, "lighter");
     }
 
-    public interact(particle: Particle): void {
+    public interact(): void {
         const container = this.container;
         const options = container.options;
 
         if (options.interactivity.events.onHover.enable && container.interactivity.status === "mousemove") {
-            const mousePos = this.container.interactivity.mouse.position;
+            const mousePos = container.interactivity.mouse.position;
 
-            if (mousePos) {
-                container.canvas.drawParticleShadow(particle, mousePos);
+            if (!mousePos) {
+                return;
             }
+
+            container.canvas.drawLight(mousePos);
         }
     }
 

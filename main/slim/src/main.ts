@@ -1,4 +1,3 @@
-import { Grabber } from "tsparticles-core/Interactions/External/Grabber";
 import { Collider } from "tsparticles-core/Interactions/Particles/Collider";
 import { Infecter } from "tsparticles-core/Interactions/Particles/Infecter";
 import { Linker } from "tsparticles-core/Interactions/Particles/Linker";
@@ -14,6 +13,7 @@ import { loadInteraction as loadExternalAttractInteraction } from "tsparticles-i
 import { loadInteraction as loadExternalBounceInteraction } from "tsparticles-interaction-external-bounce";
 import { loadInteraction as loadExternalBubbleInteraction } from "tsparticles-interaction-external-bubble";
 import { loadInteraction as loadExternalConnectInteraction } from "tsparticles-interaction-external-connect";
+import { loadInteraction as loadExternalGrabInteraction } from "tsparticles-interaction-external-grab";
 import { loadInteraction as loadExternalRepulseInteraction } from "tsparticles-interaction-external-repulse";
 import { loadInteraction as loadParticlesAttractInteraction } from "tsparticles-interaction-particles-attract";
 import { loadInteraction as loadParticlesRepulseInteraction } from "tsparticles-interaction-particles-repulse";
@@ -37,7 +37,7 @@ export function loadSlim(tsParticles: Main): void {
     loadExternalBounceInteraction(tsParticles);
     loadExternalBubbleInteraction(tsParticles);
     loadExternalConnectInteraction(tsParticles);
-    tsParticles.addInteractor((container) => new Grabber(container));
+    loadExternalGrabInteraction(tsParticles);
     loadExternalRepulseInteraction(tsParticles);
     loadParticlesAttractInteraction(tsParticles);
     tsParticles.addInteractor((container) => new Collider(container));

@@ -1,7 +1,7 @@
 {
-  "name": "tsparticles",
-  "version": "1.19.0-alpha.5",
-  "description": "tsParticles full version",
+  "name": "tsparticles-interaction-external-grab",
+  "version": "1.0.0-alpha.0",
+  "description": "tsParticles Grab external interaction",
   "homepage": "https://particles.matteobruni.it/",
   "scripts": {
     "prettify:src": "prettier --write ./src/",
@@ -17,7 +17,7 @@
   "repository": {
     "type": "git",
     "url": "git+https://github.com/matteobruni/tsparticles.git",
-    "directory": "core/full"
+    "directory": "interactions/external/grab"
   },
   "keywords": [
     "tsparticles",
@@ -42,13 +42,16 @@
     "css3",
     "animated",
     "background",
-    "tsparticles-preset"
+    "tsparticles-shape"
   ],
   "publishConfig": {
     "directory": "dist"
   },
   "author": "Matteo Bruni",
   "license": "MIT",
+  "files": [
+    "dist/**/*"
+  ],
   "bugs": {
     "url": "https://github.com/matteobruni/tsparticles/issues"
   },
@@ -69,12 +72,6 @@
     "webpack-cli": "^4.2.0"
   },
   "dependencies": {
-    "tsparticles-core": "^1.0.0-alpha.0",
-    "tsparticles-slim": "^1.0.0-alpha.0",
-    "tsparticles-plugin-absorbers": "^1.0.0-alpha.0",
-    "tsparticles-plugin-emitters": "^1.0.0-alpha.0",
-    "tsparticles-plugin-polygon-mask": "^1.0.0-alpha.0",
-    "tsparticles-interaction-external-trail": "^1.0.0-alpha.0",
-    "tsparticles-interaction-light": "^1.0.0-alpha.0"
+    "tsparticles-core": "^1.0.0-alpha.0"
   }
 }

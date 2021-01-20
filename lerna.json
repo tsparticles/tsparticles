@@ -3,6 +3,7 @@
     "components/*",
     "editor/*",
     "demo/*",
+    "interactions/*",
     "interactions/external/*",
     "interactions/particles/*",
     "main/*",
