@@ -21,6 +21,7 @@ export interface IContainerPlugin {
     particlePosition?: (position?: ICoordinates, particle?: Particle) => ICoordinates | undefined;
     particleUpdate?: (particle: Particle, delta: IDelta) => void;
     particlesInitialization?: () => boolean;
+    particlesSetup?: () => void;
     reset?: () => void;
     resize?: () => void;
     start?: () => void;

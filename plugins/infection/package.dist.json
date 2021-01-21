@@ -1,0 +1,54 @@
+{
+  "name": "tsparticles-plugin-infection",
+  "version": "1.0.0-alpha.0",
+  "description": "tsParticles infection plugin",
+  "homepage": "https://particles.matteobruni.it/",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/matteobruni/tsparticles.git",
+    "directory": "plugins/infection"
+  },
+  "keywords": [
+    "tsparticles",
+    "particles",
+    "particle",
+    "canvas",
+    "jsparticles",
+    "xparticles",
+    "particles-js",
+    "particles.js",
+    "particles-ts",
+    "particles.ts",
+    "typescript",
+    "javascript",
+    "animation",
+    "web",
+    "html5",
+    "web-design",
+    "webdesign",
+    "css",
+    "html",
+    "css3",
+    "animated",
+    "background",
+    "tsparticles-preset"
+  ],
+  "publishConfig": {
+    "directory": "dist"
+  },
+  "author": "Matteo Bruni",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/matteobruni/tsparticles/issues"
+  },
+  "main": "plugin.js",
+  "jsdelivr": "tsparticles.plugin.infection.min.js",
+  "unpkg": "tsparticles.plugin.infection.min.js",
+  "browser": "plugin.js",
+  "module": "plugin.js",
+  "types": "plugin.d.ts",
+  "dependencies": {
+    "pathseg": "^1.2.0",
+    "tsparticles-core": "^1.0.0-alpha.0"
+  }
+}

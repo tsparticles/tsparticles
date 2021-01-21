@@ -1,13 +1,10 @@
-import type { IPlugin } from "tsparticles-core/Core/Interfaces/IPlugin";
-import { PolygonMaskInstance } from "./PolygonMaskInstance";
-import type { Container } from "tsparticles-core/Core/Container";
-import type { RecursivePartial } from "tsparticles-core/Types";
+import type { Container, IPlugin, RecursivePartial, Main } from "tsparticles-core";
 import type { IOptions } from "tsparticles-core/Options/Interfaces/IOptions";
 import type { IPolygonMaskOptions } from "./Options/Interfaces/IPolygonMaskOptions";
 import { Options } from "tsparticles-core/Options/Classes/Options";
 import { PolygonMask } from "./Options/Classes/PolygonMask";
 import { Type } from "./Enums";
-import { Main } from "tsparticles-core";
+import { PolygonMaskInstance } from "./PolygonMaskInstance";
 
 /**
  * @category Polygon Mask Plugin
